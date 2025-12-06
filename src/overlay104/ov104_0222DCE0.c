@@ -26,7 +26,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_0202C858.h"
@@ -123,10 +123,10 @@ BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int pa
     param0->unk_18[1] = param1 * 3;
     param0->trainerType = v0->trainerType;
 
-    Strbuf *v2 = MessageLoader_GetNewStrbuf(v1, param1);
+    String *v2 = MessageLoader_GetNewString(v1, param1);
 
-    Strbuf_ToChars(v2, &param0->trainerName[0], 8);
-    Strbuf_Free(v2);
+    String_ToChars(v2, &param0->trainerName[0], 8);
+    String_Free(v2);
     MessageLoader_Free(v1);
 
     return v0;
@@ -299,10 +299,10 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
 
     if (param0->unk_14_val1_30) {
         MessageLoader *v7 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
-        Strbuf *v8 = MessageLoader_GetNewStrbuf(v7, param0->species);
+        String *v8 = MessageLoader_GetNewString(v7, param0->species);
 
         Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRING, v8);
-        Strbuf_Free(v8);
+        String_Free(v8);
         MessageLoader_Free(v7);
     } else {
         Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->nickname);
@@ -326,7 +326,7 @@ u16 ov104_0222E10C(u8 trainerClass)
 void ov104_0222E134(SaveData *saveData, Pokemon *param1)
 {
     u32 v0;
-    Strbuf *v1;
+    String *v1;
     MessageLoader *v2;
     int v3;
     int v4 = 0;
@@ -339,12 +339,12 @@ void ov104_0222E134(SaveData *saveData, Pokemon *param1)
     UpdateMonStatusAndTrainerInfo(param1, v5, v4, v3, HEAP_ID_FIELD2);
 
     v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0363, HEAP_ID_FIELD2);
-    v1 = MessageLoader_GetNewStrbuf(v2, 0);
+    v1 = MessageLoader_GetNewString(v2, 0);
 
     Pokemon_SetValue(param1, MON_DATA_OT_NAME_STRING, v1);
     Pokemon_SetValue(param1, MON_DATA_OT_ID, &v0);
 
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v2);
 
     return;

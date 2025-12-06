@@ -11,8 +11,8 @@
 typedef void (*UndergroundTextPrinterCallback)(int);
 
 typedef struct UndergroundTextPrinter {
-    Strbuf *mainStrbuf;
-    Strbuf *formatStrbuf;
+    String *mainString;
+    String *formatString;
     Window window;
     BgConfig *bgConfig;
     UndergroundTextPrinterCallback callback;
@@ -32,7 +32,7 @@ typedef struct UndergroundTextPrinter {
 } UndergroundTextPrinter;
 
 const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void);
-UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int strbufSize);
+UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int stringSize);
 void UndergroundTextPrinter_Free(UndergroundTextPrinter *textPrinter);
 void UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundTextPrinter *textPrinter, int bankID, enum MessageLoaderMode loaderMode);
 void UndergroundTextPrinter_SetBackground(UndergroundTextPrinter *textPrinter, BgConfig *bgConfig, u16 messageBoxBaseTile, u16 windowBaseTile);

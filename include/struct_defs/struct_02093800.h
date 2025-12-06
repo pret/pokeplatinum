@@ -6,7 +6,7 @@
 #include "game_options.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 
 typedef struct {
@@ -18,7 +18,7 @@ typedef struct {
     u8 unk_05;
     u8 padding_06[2];
     Pokemon *unk_08;
-    const Strbuf *unk_0C;
+    const String *unk_0C;
     const TrainerInfo *unk_10;
     UnkStruct_0202A750 *unk_14;
     const Options *options;

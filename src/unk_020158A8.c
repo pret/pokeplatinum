@@ -7,7 +7,7 @@
 
 #include "heap.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 UnkStruct_020158A8 *sub_020158A8(int heapID)
 {
@@ -20,8 +20,8 @@ UnkStruct_020158A8 *sub_020158A8(int heapID)
     v0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_NAMES, heapID);
 
     for (v1 = 0; v1 < 29; v1++) {
-        v0->unk_04[v1] = Strbuf_Init(22, heapID);
-        MessageLoader_GetStrbuf(v0->unk_00, v1, v0->unk_04[v1]);
+        v0->unk_04[v1] = String_Init(22, heapID);
+        MessageLoader_GetString(v0->unk_00, v1, v0->unk_04[v1]);
     }
 
     return v0;
@@ -32,14 +32,14 @@ void sub_020158F4(UnkStruct_020158A8 *param0)
     int v0;
 
     for (v0 = (29 - 1); v0 >= 0; v0--) {
-        Strbuf_Free(param0->unk_04[v0]);
+        String_Free(param0->unk_04[v0]);
     }
 
     MessageLoader_Free(param0->unk_00);
     Heap_Free(param0);
 }
 
-const Strbuf *sub_02015918(UnkStruct_020158A8 *param0, int param1)
+const String *sub_02015918(UnkStruct_020158A8 *param0, int param1)
 {
-    return (const Strbuf *)param0->unk_04[param1];
+    return (const String *)param0->unk_04[param1];
 }

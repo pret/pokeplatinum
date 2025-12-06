@@ -19,7 +19,7 @@
 #include "render_window.h"
 #include "scroll_prompts.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
@@ -31,7 +31,7 @@ typedef struct UnkStruct_ov23_022542D8_t {
     Window unk_14;
     StringList *unk_24;
     ListMenu *unk_28;
-    Strbuf *unk_2C;
+    String *unk_2C;
     u16 *unk_30;
     u16 *unk_34;
     u8 unk_38;
@@ -47,7 +47,7 @@ typedef struct UnkStruct_ov23_02254594_t {
     StringList *unk_28;
     UndergroundItemListMenu *unk_2C;
     ListMenu *unk_30;
-    Strbuf *unk_34;
+    String *unk_34;
     u16 *unk_38;
     u16 *unk_3C;
     u8 unk_40;
@@ -177,12 +177,12 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
         v5 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
 
         {
-            Strbuf *v8;
+            String *v8;
 
             Window_FillTilemap(&param0->unk_14, 15);
-            v8 = MessageLoader_GetNewStrbuf(v5, 0);
+            v8 = MessageLoader_GetNewString(v5, 0);
             Text_AddPrinterWithParams(&param0->unk_14, FONT_SYSTEM, v8, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-            Strbuf_Free(v8);
+            String_Free(v8);
         }
 
         for (v6 = 0; v6 < v3 + 1; v6++) {
@@ -410,18 +410,18 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
 
         {
             MessageLoader *v12;
-            Strbuf *v13;
-            Strbuf *v14;
-            Strbuf *v15;
+            String *v13;
+            String *v14;
+            String *v15;
             StringTemplate *v16;
 
             v12 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD1);
 
             Window_FillTilemap(&param0->unk_18, 15);
 
-            v13 = MessageLoader_GetNewStrbuf(v12, 9);
-            v14 = MessageLoader_GetNewStrbuf(v12, 10);
-            v15 = Strbuf_Init(6, HEAP_ID_FIELD1);
+            v13 = MessageLoader_GetNewString(v12, 9);
+            v14 = MessageLoader_GetNewString(v12, 10);
+            v15 = String_Init(6, HEAP_ID_FIELD1);
 
             Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v13, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             v16 = StringTemplate_Default(HEAP_ID_FIELD1);
@@ -432,9 +432,9 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v15, 0, 16, TEXT_SPEED_NO_TRANSFER, NULL);
 
             StringTemplate_Free(v16);
-            Strbuf_Free(v13);
-            Strbuf_Free(v14);
-            Strbuf_Free(v15);
+            String_Free(v13);
+            String_Free(v14);
+            String_Free(v15);
 
             MessageLoader_Free(v12);
         }

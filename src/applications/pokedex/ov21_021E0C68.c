@@ -25,7 +25,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "unk_02012744.h"
 
@@ -409,7 +409,7 @@ static void ov21_021E0FBC(PokedexGraphicData **param0, int heapID)
 
 static void ov21_021E10D0(PokedexGraphicData **param0, const UnkStruct_ov21_021E0D68 *param1, enum HeapID heapID)
 {
-    Strbuf *v0 = Strbuf_Init(64, heapID);
+    String *v0 = String_Init(64, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
     int entryID;
@@ -422,13 +422,13 @@ static void ov21_021E10D0(PokedexGraphicData **param0, const UnkStruct_ov21_021E
 
     entryID = LanguageMessage(param1->unk_18);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, entryID, v0);
+    MessageLoader_GetString(pokedexMessageBank, entryID, v0);
 
-    v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+    v4 = Font_CalcStringWidth(FONT_SYSTEM, v0, 0);
     v4 /= 2;
 
     Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, v0, 176 - v4, 72, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(pokedexMessageBank);
 
     ov21_021E1188(param0, heapID, species, param1->unk_18, param1->unk_1C);
@@ -438,7 +438,7 @@ static void ov21_021E10D0(PokedexGraphicData **param0, const UnkStruct_ov21_021E
 
 static void ov21_021E1188(PokedexGraphicData **param0, int param1, int param2, int param3, int param4)
 {
-    Strbuf *v0 = PokedexText_DexEntry(param2, param3, param4, param1);
+    String *v0 = PokedexText_DexEntry(param2, param3, param4, param1);
     u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
@@ -557,12 +557,12 @@ static void ov21_021E136C(UnkStruct_ov21_021E14D4 *param0, PokedexGraphicData **
 static Window *ov21_021E1460(PokedexGraphicData **param0, int param1, int param2)
 {
     Window *v0 = PokedexTextManager_NewWindow((*param0)->textMan, 18, 2);
-    Strbuf *v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
+    String *v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
 
     {
-        u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
+        u32 v2 = Font_CalcStringWidth(FONT_SUBSCREEN, v1, 0);
         u32 v3 = (v2 < 136) ? (136 - v2) / 2 : 0;
-        PokedexTextManager_DisplayStrbuf((*param0)->textMan, v0, v1, v3, 0);
+        PokedexTextManager_DisplayString((*param0)->textMan, v0, v1, v3, 0);
     }
 
     PokedexText_Free(v1);
@@ -804,7 +804,7 @@ static int LanguageMessage(int param0)
 
 static void ov21_021E18A0(PokedexGraphicData **param0, int param1, int param2, int param3)
 {
-    Strbuf *v0 = PokedexText_NameNumber(param2, param3, param1);
+    String *v0 = PokedexText_NameNumber(param2, param3, param1);
 
     Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, v0, 120, 96, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     PokedexText_Free(v0);
@@ -812,8 +812,8 @@ static void ov21_021E18A0(PokedexGraphicData **param0, int param1, int param2, i
 
 static void ov21_021E18DC(PokedexGraphicData **param0, int param1, int param2, int param3)
 {
-    Strbuf *v0 = PokedexText_Category(param2, param3, param1);
-    u32 v1 = 240 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+    String *v0 = PokedexText_Category(param2, param3, param1);
+    u32 v1 = 240 - Font_CalcStringWidth(FONT_SYSTEM, v0, 0);
 
     Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, v0, v1, 112, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     PokedexText_Free(v0);

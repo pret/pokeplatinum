@@ -17,7 +17,7 @@
 
 #include "pc_boxes.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "unk_020298BC.h"
 
 void ov61_0222AE60(SaveData *saveData, const UnkStruct_02029C68 *param1, UnkStruct_ov61_0222AE80 *param2)
@@ -33,15 +33,15 @@ void ov61_0222AE80(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *pa
 
 void ov61_0222AE88(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStruct_ov62_02239DA4 *param3, int heapID)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov62_02239DA4));
 
-    v0 = Strbuf_Init(20 * 3, heapID);
+    v0 = String_Init(20 * 3, heapID);
     PCBoxes_BufferBoxName(pcBoxes, boxID, v0);
-    Strbuf_ToChars(v0, param3->unk_00, 20);
-    Strbuf_Free(v0);
+    String_ToChars(v0, param3->unk_00, 20);
+    String_Free(v0);
 
     for (v1 = 0; v1 < 30; v1++) {
         param3->unk_28[v1] = PCBoxes_GetBoxMonData(pcBoxes, boxID, v1, MON_DATA_SPECIES, NULL);

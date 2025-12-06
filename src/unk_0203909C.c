@@ -9,7 +9,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 #include "unk_0202ACE0.h"
 #include "unk_020366A0.h"
@@ -117,7 +117,7 @@ void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int pa
     DWCFriendData *v1 = sub_0202AED8(v0, param2);
     TrainerInfo *v2 = CommInfo_TrainerInfo(param1);
     DWCFriendData *v3;
-    Strbuf *v4;
+    String *v4;
 
     if (param4 != 2) {
         v3 = CommInfo_DWCFriendData(param1);
@@ -125,9 +125,9 @@ void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int pa
     }
 
     if (param4 == 0) {
-        v4 = TrainerInfo_NameNewStrbuf(v2, heapID);
+        v4 = TrainerInfo_NameNewString(v2, heapID);
         sub_0202AF0C(v0, param2, v4);
-        Strbuf_Free(v4);
+        String_Free(v4);
         sub_0202AE2C(v0, param2, 8, TrainerInfo_Gender(v2));
         sub_0202AE2C(v0, param2, 0, TrainerInfo_ID(v2));
     } else if (param4 == 1) {
@@ -137,11 +137,11 @@ void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int pa
         }
     }
 
-    v4 = Strbuf_Init(120, heapID);
+    v4 = String_Init(120, heapID);
 
-    Strbuf_CopyChars(v4, sub_02032F54(param1));
+    String_CopyChars(v4, sub_02032F54(param1));
     sub_0202AF50(v0, param2, v4);
-    Strbuf_Free(v4);
+    String_Free(v4);
     sub_0202AE2C(v0, param2, 7, TrainerInfo_Appearance(v2));
     CommInfo_SavePlayerRecord(saveData);
 }

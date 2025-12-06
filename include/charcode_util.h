@@ -2,7 +2,7 @@
 #define POKEPLATINUM_CHARCODE_UTIL_H
 
 #include "charcode.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 charcode_t *CharCode_Copy(charcode_t *dst, const charcode_t *src);
 charcode_t *CharCode_CopyNumChars(charcode_t *dst, const charcode_t *src, u32 num);

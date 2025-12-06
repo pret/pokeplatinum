@@ -9,7 +9,7 @@
 #include "berry_patches.h"
 #include "persisted_map_features.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct ExtraSaveKey {
     u32 keys[EXTRA_SAVE_TABLE_ENTRY_MAX - 1];
@@ -41,9 +41,9 @@ const MiscSaveBlock *SaveData_MiscSaveBlockConst(const SaveData *saveData);
 BerryPatch *MiscSaveBlock_GetBerryPatches(SaveData *saveData);
 PersistedMapFeatures *MiscSaveBlock_GetPersistedMapFeatures(SaveData *saveData);
 const u16 *MiscSaveBlock_RivalName(const MiscSaveBlock *miscSave);
-void MiscSaveBlock_SetRivalName(MiscSaveBlock *miscSave, Strbuf *name);
+void MiscSaveBlock_SetRivalName(MiscSaveBlock *miscSave, String *name);
 const u16 *MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave);
-void MiscSaveBlock_SetTabletName(MiscSaveBlock *miscSave, Strbuf *name);
+void MiscSaveBlock_SetTabletName(MiscSaveBlock *miscSave, String *name);
 void MiscSaveBlock_SetInitFlag(MiscSaveBlock *miscSave);
 u32 MiscSaveBlock_InitFlag(const MiscSaveBlock *miscSave);
 void MiscSaveBlock_SetFavoriteMon(MiscSaveBlock *miscSave, int species, int form, int isEgg);

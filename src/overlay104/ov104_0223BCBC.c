@@ -19,7 +19,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 
 u8 ov104_0223BD70(u8 param0, BOOL param1);

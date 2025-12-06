@@ -18,7 +18,7 @@
 #include "pokemon_sprite.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -186,7 +186,7 @@ static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const Unk
     case 0:
         break;
     case 1:
-        StringTemplate_SetStrbuf(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     default:
@@ -197,7 +197,7 @@ static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const Unk
 
 static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_0224792C *param4)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -206,14 +206,14 @@ static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1
         v1 = TEXT_SPEED_FAST;
     }
 
-    v0 = MessageLoader_GetNewStrbuf(param1, param2);
+    v0 = MessageLoader_GetNewString(param1, param2);
     ov17_0224792C(param0, param3, param4);
 
     StringTemplate_Format(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
     Window_FillTilemap(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_C4 = Text_AddPrinterWithParams(&param0->unk_0C.unk_28[0], FONT_MESSAGE, param0->unk_0C.unk_40, 0, 0, v1, NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 void ov17_02247A08(UnkStruct_ov17_02247A48 *param0, u32 param1, const UnkStruct_ov17_0224792C *param2)

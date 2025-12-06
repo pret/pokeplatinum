@@ -34,7 +34,7 @@
 #include "player_avatar.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
@@ -532,14 +532,14 @@ void ov23_0224AAB0(void)
         CommSys_SendDataFixedSize(91, commPlayerMan->heldFlagOwnerInfo[CommSys_CurNetId()]);
     } else {
         TrainerInfo *v0 = TrainerInfo_New(HEAP_ID_COMMUNICATION);
-        Strbuf *v1 = Strbuf_Init(20, HEAP_ID_COMMUNICATION);
+        String *v1 = String_Init(20, HEAP_ID_COMMUNICATION);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);
 
-        TrainerInfo_SetNameFromStrbuf(v0, v1);
+        TrainerInfo_SetNameFromString(v0, v1);
         CommSys_SendDataFixedSize(91, v0);
-        Strbuf_Free(v1);
+        String_Free(v1);
         Heap_Free(v0);
     }
 }
@@ -554,15 +554,15 @@ void ov23_0224AB30(int param0, int param1, void *param2, void *param3)
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     int v1;
     const TrainerInfo *v2 = param2;
-    Strbuf *v3;
+    String *v3;
     u8 v4 = param0;
 
     if (commPlayerMan) {
         TrainerInfo_Copy(v2, (TrainerInfo *)commPlayerMan->unk_14A[param0].unk_00);
 
-        v3 = TrainerInfo_NameNewStrbuf(v2, 15);
+        v3 = TrainerInfo_NameNewString(v2, 15);
 
-        if (Strbuf_Length(v3) != 0) {
+        if (String_Length(v3) != 0) {
             commPlayerMan->unk_14A[param0].unk_20 = param0;
         }
 
@@ -574,7 +574,7 @@ void ov23_0224AB30(int param0, int param1, void *param2, void *param3)
         }
 
         CommSys_SendDataServer(93, &v4, 1);
-        Strbuf_Free(v3);
+        String_Free(v3);
 
         commPlayerMan->unk_2C2 = 1;
     } else {

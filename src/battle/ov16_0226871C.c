@@ -48,7 +48,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -324,7 +324,7 @@ static void ov16_0226B318(UnkStruct_ov16_02268A14 *param0, int param1);
 void ov16_0226947C(UnkStruct_ov16_02268A14 *param0, int param1, int param2);
 static void ov16_022694A8(SysTask *param0, void *param1);
 static void ov16_0226B314(UnkStruct_ov16_02268A14 *param0, int param1);
-static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A98C *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov16_0226AEA0 *param10);
+static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A98C *param1, const String *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov16_0226AEA0 *param10);
 static void ov16_0226AAC0(UnkStruct_ov16_02268A14 *param0);
 static void ov16_0226A698(UnkStruct_ov16_02268A14 *param0);
 static void ov16_0226A718(UnkStruct_ov16_02268A14 *param0);
@@ -351,8 +351,8 @@ static void ov16_0226C9B8(UnkStruct_ov16_02268A14 *param0, int param1);
 static void ov16_0226B31C(UnkStruct_ov16_02268A14 *param0, const s16 *param1, const UnkStruct_ov16_022702F4 *param2, int param3, int param4);
 static UnkStruct_ov16_0226ABD4 *ov16_0226ABD4(UnkStruct_ov16_02268A14 *param0, int param1);
 static void ov16_0226ABE8(UnkStruct_ov16_02268A14 *param0);
-static void ov16_0226A95C(const Strbuf *param0, int param1, int *param2, int *param3);
-static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const Strbuf *param1, enum Font param2, UnkStruct_ov16_0226AEA0 *param3, TextColor param4);
+static void ov16_0226A95C(const String *param0, int param1, int *param2, int *param3);
+static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const String *param1, enum Font param2, UnkStruct_ov16_0226AEA0 *param3, TextColor param4);
 static void ov16_0226AAF8(UnkStruct_ov16_02268A14 *param0);
 static int ov16_0226C100(UnkStruct_ov16_02268A14 *param0, int param1);
 static void ov16_0226BD74(SysTask *param0, void *param1);
@@ -1782,7 +1782,7 @@ static void ov16_02269654(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
 static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
 {
-    Strbuf *v0, *v1, *v2, *v3;
+    String *v0, *v1, *v2, *v3;
     MessageLoader *v4;
     int v5;
     UnkStruct_ov16_02269668 *v6 = &param0->unk_1A.val1;
@@ -1795,24 +1795,24 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
     param0->unk_66A = v5;
 
     if (BattleSystem_BattleType(param0->battleSys) & BATTLE_TYPE_SAFARI) {
-        v0 = MessageLoader_GetNewStrbuf(v4, 931);
-        v1 = MessageLoader_GetNewStrbuf(v4, 932);
-        v2 = MessageLoader_GetNewStrbuf(v4, 933);
+        v0 = MessageLoader_GetNewString(v4, 931);
+        v1 = MessageLoader_GetNewString(v4, 932);
+        v2 = MessageLoader_GetNewString(v4, 933);
     } else if (BattleSystem_BattleType(param0->battleSys) & BATTLE_TYPE_PAL_PARK) {
-        v0 = MessageLoader_GetNewStrbuf(v4, 1223);
-        v1 = MessageLoader_GetNewStrbuf(v4, 932);
-        v2 = MessageLoader_GetNewStrbuf(v4, 933);
+        v0 = MessageLoader_GetNewString(v4, 1223);
+        v1 = MessageLoader_GetNewString(v4, 932);
+        v2 = MessageLoader_GetNewString(v4, 933);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(v4, 924);
-        v1 = MessageLoader_GetNewStrbuf(v4, 925);
-        v2 = MessageLoader_GetNewStrbuf(v4, 926);
+        v0 = MessageLoader_GetNewString(v4, 924);
+        v1 = MessageLoader_GetNewString(v4, 925);
+        v2 = MessageLoader_GetNewString(v4, 926);
     }
 
     if (param0->unk_6C1 == 1) {
-        v3 = MessageLoader_GetNewStrbuf(v4, 928);
+        v3 = MessageLoader_GetNewString(v4, 928);
         param0->unk_66F = 1;
     } else {
-        v3 = MessageLoader_GetNewStrbuf(v4, 927);
+        v3 = MessageLoader_GetNewString(v4, 927);
         param0->unk_66F = 0;
     }
 
@@ -1821,10 +1821,10 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0226A98C(param0, &param0->unk_4CC[2], v2, FONT_SUBSCREEN, TEXT_COLOR(7, 8, 9), 2, 20023, 216, 170, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[3], v3, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 178, 1, NULL);
 
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v0);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
 
     if ((BattleSystem_BattleType(param0->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == 0) {
         Pokemon *v7;
@@ -1937,11 +1937,11 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
     }
 
     {
-        Strbuf *v5;
+        String *v5;
 
-        v5 = MessageLoader_GetNewStrbuf(messageLoader, 929);
+        v5 = MessageLoader_GetNewString(messageLoader, 929);
         ov16_0226A98C(param0, &param0->unk_4CC[4], v5, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 178, 1, NULL);
-        Strbuf_Free(v5);
+        String_Free(v5);
     }
 
     {
@@ -1992,47 +1992,47 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
 static void ov16_02269C7C(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
 {
     MessageLoader *v0;
-    Strbuf *v1, *v2;
+    String *v1, *v2;
 
     v0 = BattleSystem_MessageLoader(param0->battleSys);
-    v1 = MessageLoader_GetNewStrbuf(v0, 940);
-    v2 = MessageLoader_GetNewStrbuf(v0, 941);
+    v1 = MessageLoader_GetNewString(v0, 940);
+    v2 = MessageLoader_GetNewString(v0, 941);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v1, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v2, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 140, 1, NULL);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
 }
 
 static void ov16_02269D14(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
 {
     MessageLoader *v0;
-    Strbuf *v1, *v2;
+    String *v1, *v2;
 
     v0 = BattleSystem_MessageLoader(param0->battleSys);
-    v1 = MessageLoader_GetNewStrbuf(v0, 1181);
-    v2 = MessageLoader_GetNewStrbuf(v0, 1182);
+    v1 = MessageLoader_GetNewString(v0, 1181);
+    v2 = MessageLoader_GetNewString(v0, 1182);
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v1, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v2, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 140, 1, NULL);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
 }
 
 static void ov16_02269DB0(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
 {
     MessageLoader *v0;
-    Strbuf *v1, *v2, *v3, *v4;
+    String *v1, *v2, *v3, *v4;
     StringTemplate *v5;
     UnkStruct_ov16_022623F0 *v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->battleSys);
     v5 = BattleSystem_StringTemplate(param0->battleSys);
-    v1 = MessageLoader_GetNewStrbuf(v0, 1186);
-    v2 = MessageLoader_GetNewStrbuf(v0, 1187);
-    v3 = Strbuf_Init(100, HEAP_ID_BATTLE);
-    v4 = Strbuf_Init(100, HEAP_ID_BATTLE);
+    v1 = MessageLoader_GetNewString(v0, 1186);
+    v2 = MessageLoader_GetNewString(v0, 1187);
+    v3 = String_Init(100, HEAP_ID_BATTLE);
+    v4 = String_Init(100, HEAP_ID_BATTLE);
 
     StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
@@ -2041,21 +2041,21 @@ static void ov16_02269DB0(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 140, 1, NULL);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
-    Strbuf_Free(v4);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
+    String_Free(v4);
 }
 
 static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
 
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_BGALL, 31, 0);
 
     v0 = BattleSystem_MessageLoader(param0->battleSys);
-    v1 = MessageLoader_GetNewStrbuf(v0, 1260);
+    v1 = MessageLoader_GetNewString(v0, 1260);
 
     {
         BgConfig *v2;
@@ -2080,21 +2080,21 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
     }
 
     ov16_0226A98C(param0, &param0->unk_4CC[0], v1, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 178, 1, NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
 }
 
 static void ov16_02269F68(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
 {
     MessageLoader *v0;
-    Strbuf *v1, *v2, *v3, *v4;
+    String *v1, *v2, *v3, *v4;
     StringTemplate *v5;
     UnkStruct_ov16_022623F0 *v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->battleSys);
     v5 = BattleSystem_StringTemplate(param0->battleSys);
-    v1 = MessageLoader_GetNewStrbuf(v0, 1217);
-    v2 = MessageLoader_GetNewStrbuf(v0, 1218);
-    v3 = Strbuf_Init(100, HEAP_ID_BATTLE);
-    v4 = Strbuf_Init(100, HEAP_ID_BATTLE);
+    v1 = MessageLoader_GetNewString(v0, 1217);
+    v2 = MessageLoader_GetNewString(v0, 1218);
+    v3 = String_Init(100, HEAP_ID_BATTLE);
+    v4 = String_Init(100, HEAP_ID_BATTLE);
 
     StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
@@ -2103,24 +2103,24 @@ static void ov16_02269F68(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 140, 1, NULL);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
-    Strbuf_Free(v4);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
+    String_Free(v4);
 }
 
 static void ov16_0226A04C(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
 {
     MessageLoader *v0;
-    Strbuf *v1, *v2, *v3, *v4;
+    String *v1, *v2, *v3, *v4;
     StringTemplate *v5;
     UnkStruct_ov16_022623F0 *v6 = &param0->unk_1A.val4;
     v0 = BattleSystem_MessageLoader(param0->battleSys);
     v5 = BattleSystem_StringTemplate(param0->battleSys);
-    v1 = MessageLoader_GetNewStrbuf(v0, 1215);
-    v2 = MessageLoader_GetNewStrbuf(v0, 1216);
-    v3 = Strbuf_Init(100, HEAP_ID_BATTLE);
-    v4 = Strbuf_Init(100, HEAP_ID_BATTLE);
+    v1 = MessageLoader_GetNewString(v0, 1215);
+    v2 = MessageLoader_GetNewString(v0, 1216);
+    v3 = String_Init(100, HEAP_ID_BATTLE);
+    v4 = String_Init(100, HEAP_ID_BATTLE);
 
     StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
@@ -2129,10 +2129,10 @@ static void ov16_0226A04C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0226A98C(param0, &param0->unk_4CC[0], v3, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 2, 20023, 128, 68, 1, NULL);
     ov16_0226A98C(param0, &param0->unk_4CC[1], v4, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 140, 1, NULL);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
-    Strbuf_Free(v4);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
+    String_Free(v4);
 }
 
 static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param2)
@@ -2141,7 +2141,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     int i;
     MessageLoader *v2;
     u8 v3[4];
-    Strbuf *v4, *v5;
+    String *v4, *v5;
     Pokemon *v6;
     BoxPokemon *v7;
     StringTemplate *v8;
@@ -2164,18 +2164,18 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0223F87C(param0->battleSys, v10);
     ov16_0223F858(param0->battleSys, v11);
 
-    v4 = Strbuf_Init(12 + 2 + (5 * 2), HEAP_ID_BATTLE);
+    v4 = String_Init(12 + 2 + (5 * 2), HEAP_ID_BATTLE);
 
     for (i = 0; i < 4; i++) {
         v12 = v11[2 + i];
 
         if ((v0->unk_00[v12].unk_01_2 == 1) && (v3[i] == 1)) {
             if (v0->unk_00[v12].unk_01_0 == 0) {
-                v5 = MessageLoader_GetNewStrbuf(v2, 962);
+                v5 = MessageLoader_GetNewString(v2, 962);
             } else if (v0->unk_00[v12].unk_01_0 == 1) {
-                v5 = MessageLoader_GetNewStrbuf(v2, 963);
+                v5 = MessageLoader_GetNewString(v2, 963);
             } else {
-                v5 = MessageLoader_GetNewStrbuf(v2, 964);
+                v5 = MessageLoader_GetNewString(v2, 964);
             }
 
             v6 = BattleSystem_PartyPokemon(param0->battleSys, v12, v0->unk_00[v12].unk_00);
@@ -2191,7 +2191,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
             }
 
             ov16_0226A98C(param0, &param0->unk_4CC[0 + i], v4, FONT_SUBSCREEN, v9, 6, 20023, Unk_ov16_02270328[i][0], Unk_ov16_02270328[i][1], 1, NULL);
-            Strbuf_Free(v5);
+            String_Free(v5);
 
             {
                 switch (i) {
@@ -2210,14 +2210,14 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
         }
     }
 
-    Strbuf_Free(v4);
+    String_Free(v4);
 
     {
-        Strbuf *v13;
+        String *v13;
 
-        v13 = MessageLoader_GetNewStrbuf(v2, 930);
+        v13 = MessageLoader_GetNewString(v2, 930);
         ov16_0226A98C(param0, &param0->unk_4CC[4], v13, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, Unk_ov16_02270328[4][0], Unk_ov16_02270328[4][1], 1, NULL);
-        Strbuf_Free(v13);
+        String_Free(v13);
     }
 }
 
@@ -2609,9 +2609,9 @@ static int ov16_0226A934(u8 param0)
     return v0;
 }
 
-static void ov16_0226A95C(const Strbuf *param0, int param1, int *param2, int *param3)
+static void ov16_0226A95C(const String *param0, int param1, int *param2, int *param3)
 {
-    int v0 = Font_CalcStrbufWidth(param1, param0, 0);
+    int v0 = Font_CalcStringWidth(param1, param0, 0);
     int v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {
@@ -2622,7 +2622,7 @@ static void ov16_0226A95C(const Strbuf *param0, int param1, int *param2, int *pa
     *param3 = v1;
 }
 
-static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A98C *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov16_0226AEA0 *param10)
+static void ov16_0226A98C(UnkStruct_ov16_02268A14 *param0, UnkStruct_ov16_0226A98C *param1, const String *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov16_0226AEA0 *param10)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -2799,19 +2799,19 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
     void *v1;
     NNSG2dCharacterData *v2;
     int i, v3, v5;
-    Strbuf *v6;
-    Strbuf *v7;
-    Strbuf *v8;
-    Strbuf *v9;
+    String *v6;
+    String *v7;
+    String *v8;
+    String *v9;
     StringTemplate *v10;
     TextColor v11;
     MessageLoader *v12 = BattleSystem_MessageLoader(param0->battleSys);
     v0 = ov16_0226ABD4(param0, param1);
     v3 = sub_0208C098(6);
-    v9 = MessageLoader_GetNewStrbuf(v12, 938);
+    v9 = MessageLoader_GetNewString(v12, 938);
     v10 = BattleSystem_StringTemplate(param0->battleSys);
-    v7 = Strbuf_Init((2 + 2 + 1 + 2) * 2 + 2, HEAP_ID_BATTLE);
-    v8 = MessageLoader_GetNewStrbuf(v12, 937);
+    v7 = String_Init((2 + 2 + 1 + 2) * 2 + 2, HEAP_ID_BATTLE);
+    v8 = MessageLoader_GetNewString(v12, 937);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0)) {
@@ -2824,7 +2824,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
         if ((v0->unk_28[i].unk_00.pixels == NULL) || ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0))) {
             v6 = MessageUtil_MoveName(param2->move[i], HEAP_ID_BATTLE);
             ov16_0226AEA0(param0, v6, FONT_SUBSCREEN, &v0->unk_28[i], TEXT_COLOR(7, 8, 9));
-            Strbuf_Free(v6);
+            String_Free(v6);
         }
 
         if ((v0->unk_78[i].unk_00.pixels == NULL) || (v0->unk_C8[i].unk_00.pixels == NULL) || (param2->move[i] != 0) || (param2->move[i] != v0->unk_00.move[i]) || (param2->curPP[i] != v0->unk_00.curPP[i]) || (param2->maxPP[i] != v0->unk_00.maxPP[i])) {
@@ -2844,14 +2844,14 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
         }
     }
 
-    Strbuf_Free(v9);
-    Strbuf_Free(v8);
-    Strbuf_Free(v7);
+    String_Free(v9);
+    String_Free(v8);
+    String_Free(v7);
 
     v0->unk_00 = *param2;
 }
 
-static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const Strbuf *param1, enum Font param2, UnkStruct_ov16_0226AEA0 *param3, TextColor param4)
+static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const String *param1, enum Font param2, UnkStruct_ov16_0226AEA0 *param3, TextColor param4)
 {
     int v0, v1;
 
@@ -4606,7 +4606,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
     }
 
     {
-        Strbuf *v8;
+        String *v8;
         MessageLoader *v9 = BattleSystem_MessageLoader(param0->battleSys);
         int i;
         const u16 v11[][2] = {
@@ -4621,10 +4621,10 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
                 return;
             }
 
-            v8 = MessageLoader_GetNewStrbuf(v9, v11[param1][i]);
+            v8 = MessageLoader_GetNewString(v9, v11[param1][i]);
 
             ov16_0226A98C(param0, &param0->unk_4CC[1 + i], v8, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 4, 20023, 1 * 8 + 8, 6 * 8 + 16 + 16 * i, 0, NULL);
-            Strbuf_Free(v8);
+            String_Free(v8);
         }
     }
 }

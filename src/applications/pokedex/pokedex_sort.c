@@ -16,7 +16,7 @@
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "pokedex_memory.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "trainer_info.h"
 
@@ -143,7 +143,7 @@ void PokedexSort_DefaultPokedexSort(PokedexSortData *param0, PokedexDefaultSortP
 
     param0->trainerGameCode = TrainerInfo_GameCode(param1->trainerInfo);
     param0->trainerGender = TrainerInfo_Gender(param1->trainerInfo);
-    param0->trainerName = TrainerInfo_NameNewStrbuf(param1->trainerInfo, heapID);
+    param0->trainerName = TrainerInfo_NameNewString(param1->trainerInfo, heapID);
     param0->HWData = Pokedex_HeightWeightData(heapID);
 
     if (param0->trainerGender == 0) {
@@ -160,7 +160,7 @@ void PokedexSort_DefaultPokedexSort(PokedexSortData *param0, PokedexDefaultSortP
 
 void PokedexSort_PokedexStatusFreeHWData(PokedexSortData *param0)
 {
-    Strbuf_Free(param0->trainerName);
+    String_Free(param0->trainerName);
     Pokedex_HeightWeightData_Release(param0->HWData);
     Pokedex_HeightWeightData_Free(param0->HWData);
 
@@ -583,7 +583,7 @@ int PokedexSort_NumCaught(const PokedexSortData *param0)
     return param0->numCaught;
 }
 
-Strbuf *PokedexSort_TrainerName(const PokedexSortData *param0)
+String *PokedexSort_TrainerName(const PokedexSortData *param0)
 {
     return param0->trainerName;
 }

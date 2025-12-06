@@ -11,7 +11,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #include "res/graphics/item_icons/item_icon.naix.h"
 
@@ -3128,19 +3128,19 @@ void *Item_Load(u16 item, enum ItemFileType type, u32 heapID)
     return NULL;
 }
 
-void Item_LoadName(Strbuf *dst, u16 item, u32 heapID)
+void Item_LoadName(String *dst, u16 item, u32 heapID)
 {
     MessageLoader *msgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, heapID);
 
-    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_GetString(msgData, item, dst);
     MessageLoader_Free(msgData);
 }
 
-void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID)
+void Item_LoadDescription(String *dst, u16 item, u16 heapID)
 {
     MessageLoader *msgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, heapID);
 
-    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_GetString(msgData, item, dst);
     MessageLoader_Free(msgData);
 }
 

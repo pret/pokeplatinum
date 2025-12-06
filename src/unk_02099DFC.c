@@ -16,7 +16,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 
@@ -27,7 +27,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    Strbuf *unk_10;
+    String *unk_10;
     BgConfig *unk_14;
     MessageLoader *unk_18;
     Window unk_1C;
@@ -319,12 +319,12 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
         Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, 512 - (18 + 12), 2);
 
-        param0->unk_10 = Strbuf_Init(0x400, param0->heapID);
-        MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);
+        param0->unk_10 = String_Init(0x400, param0->heapID);
+        MessageLoader_GetString(param0->unk_18, param1, param0->unk_10);
         param0->unk_0C = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_10, 0, 0, param3, NULL);
 
         if (param3 == 0) {
-            Strbuf_Free(param0->unk_10);
+            String_Free(param0->unk_10);
             param0->unk_08++;
         }
 
@@ -332,7 +332,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
         break;
     case 1:
         if (!(Text_IsPrinterActive(param0->unk_0C))) {
-            Strbuf_Free(param0->unk_10);
+            String_Free(param0->unk_10);
             param0->unk_08++;
         }
         break;

@@ -42,7 +42,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -483,8 +483,8 @@ void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem)
     menu->fieldSystem = fieldSystem;
     menu->exitCallback = exitCallback;
     menu->state = UNDERGROUND_MENU_STATE_INIT;
-    menu->strbuf = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->sysTask = SysTask_Start(UndergroundMenu_Main, menu, 10000);
 
@@ -526,10 +526,10 @@ static void UndergroundMenu_InitStartMenu(UndergroundMenu *menu)
     for (int i = 0; i < NELEMS(sUndergroundMenuOptions); i++) {
         if (i == trainerOptionIndex) {
             const TrainerInfo *info = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem));
-            Strbuf *strbuf = TrainerInfo_NameNewStrbuf(info, HEAP_ID_FIELD1);
+            String *string = TrainerInfo_NameNewString(info, HEAP_ID_FIELD1);
 
-            StringList_AddFromStrbuf(menu->menuOptions, strbuf, sUndergroundMenuOptions[i].callback);
-            Strbuf_Free(strbuf);
+            StringList_AddFromString(menu->menuOptions, string, sUndergroundMenuOptions[i].callback);
+            String_Free(string);
         } else {
             StringList_AddFromMessageBank(menu->menuOptions, loader, sUndergroundMenuOptions[i].bankEntry, sUndergroundMenuOptions[i].callback);
         }
@@ -1054,9 +1054,9 @@ static void UndergroundMenu_InitSpheresMenu(UndergroundMenu *menu, MoveItemCallb
     for (int i = 0; i < sphereCount; i++) {
         StringTemplate_SetUndergroundItemName(menu->template, 2, getSphereType(i, menu));
         StringTemplate_SetNumber(menu->template, 6, getSphereSize(i, menu), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), UndergroundCommon_Text_SphereTemplate, menu->fmtString);
-        StringTemplate_Format(menu->template, menu->strbuf, menu->fmtString);
-        StringList_AddFromStrbuf(menu->menuOptions, menu->strbuf, i);
+        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), UndergroundCommon_Text_SphereTemplate, menu->fmtString);
+        StringTemplate_Format(menu->template, menu->string, menu->fmtString);
+        StringList_AddFromString(menu->menuOptions, menu->string, i);
     }
 
     StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundItems_Text_Close, LIST_CANCEL);
@@ -1415,8 +1415,8 @@ void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fi
     menu->fieldSystem = fieldSystem;
     menu->exitCallback = exitCallback;
     menu->state = UNDERGROUND_MENU_STATE_INIT;
-    menu->strbuf = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
 
     CommPlayerMan_PauseFieldSystem();
@@ -1455,8 +1455,8 @@ static void UndergroundMenu_Free(SysTask *sysTask, UndergroundMenu *menu, BOOL l
         Menu_DestroyForExit(menu->yesNoMenu, HEAP_ID_FIELD1);
     }
 
-    Strbuf_Free(menu->strbuf);
-    Strbuf_Free(menu->fmtString);
+    String_Free(menu->string);
+    String_Free(menu->fmtString);
     StringTemplate_Free(menu->template);
 
     UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCaptureFlagTextPrinter());
@@ -1747,12 +1747,12 @@ void UndergroundMenu_Exit(void *data, u32 input)
         menu->exitCallback = NULL;
     }
 
-    if (menu->strbuf) {
-        Strbuf_Free(menu->strbuf);
+    if (menu->string) {
+        String_Free(menu->string);
     }
 
     if (menu->fmtString) {
-        Strbuf_Free(menu->fmtString);
+        String_Free(menu->fmtString);
     }
 
     if (menu->template) {
@@ -1825,8 +1825,8 @@ void *UndergroundMenu_StartGiftMenu(ExitCallback exitCallback, FieldSystem *fiel
     menu->spriteCount = 0;
     menu->unk_48 = NULL;
     menu->cursorCallback = NULL;
-    menu->strbuf = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
 
     UndergroundMenu_OpenGoodsMenu(menu);

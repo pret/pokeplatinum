@@ -47,7 +47,7 @@
 #include "savedata.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -2019,7 +2019,7 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
     }
 }
 
-BOOL ov23_0224D020(Strbuf *param0)
+BOOL ov23_0224D020(String *param0)
 {
     int v0, v1;
     TrainerInfo *v2;
@@ -2038,7 +2038,7 @@ BOOL ov23_0224D020(Strbuf *param0)
                 v2 = CommInfo_TrainerInfo(v0);
                 v3 = CommInfo_TrainerInfo(v1);
 
-                if (CommManUnderground_FormatStrbufWith2TrainerNames(v2, v3, 104, param0)) {
+                if (CommManUnderground_FormatStringWith2TrainerNames(v2, v3, 104, param0)) {
                     return 1;
                 }
             }
@@ -2050,7 +2050,7 @@ BOOL ov23_0224D020(Strbuf *param0)
 
             Unk_ov23_022577AC->unk_133B[v0] = 0xff;
 
-            if (CommManUnderground_FormatStrbufWith2TrainerNames(v2, v3, 108, param0)) {
+            if (CommManUnderground_FormatStringWith2TrainerNames(v2, v3, 108, param0)) {
                 return 1;
             }
         }
@@ -2059,7 +2059,7 @@ BOOL ov23_0224D020(Strbuf *param0)
             v2 = CommInfo_TrainerInfo(v0);
             Unk_ov23_022577AC->unk_134B[v0] = 0xff;
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(v2, 0, 109, param0)) {
+            if (CommManUnderground_FormatStringWithTrainerName(v2, 0, 109, param0)) {
                 return 1;
             }
             break;
@@ -2071,7 +2071,7 @@ BOOL ov23_0224D020(Strbuf *param0)
 
             Unk_ov23_022577AC->unk_1343[v0] = 0xff;
 
-            if (CommManUnderground_FormatStrbufWith2TrainerNames(v2, v3, 110, param0)) {
+            if (CommManUnderground_FormatStringWith2TrainerNames(v2, v3, 110, param0)) {
                 return 1;
             }
         }

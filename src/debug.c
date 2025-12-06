@@ -2,7 +2,7 @@
 #include "debug.h"
 
 #include "charcode.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define NOCASHGBAIDADDR     0x04FFFA00
 #define NOCASHGBAPRINTADDR1 0x04FFFA14 // does not automatically add the newline

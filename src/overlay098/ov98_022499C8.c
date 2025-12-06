@@ -8,7 +8,7 @@
 
 #include "error_handling.h"
 #include "heap.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 static const struct {
     u16 unk_00;
@@ -26,7 +26,7 @@ static const struct {
     { 0x12a, '9' },
 };
 
-void ov98_022499C8(Strbuf *param0, char *param1, int heapID)
+void ov98_022499C8(String *param0, char *param1, int heapID)
 {
     static const char Unk_ov98_02249D1C[] = "w";
     static const char Unk_ov98_02249D20[] = "@wii.com";
@@ -39,7 +39,7 @@ void ov98_022499C8(Strbuf *param0, char *param1, int heapID)
     }
 
     v1 = Heap_Alloc(heapID, sizeof(charcode_t) * 100);
-    Strbuf_ToChars(param0, v1, 100);
+    String_ToChars(param0, v1, 100);
 
     v0 = 0;
     while (1) {
@@ -65,14 +65,14 @@ void ov98_022499C8(Strbuf *param0, char *param1, int heapID)
     Heap_Free(v1);
 }
 
-int ov98_02249A80(Strbuf *param0, int heapID)
+int ov98_02249A80(String *param0, int heapID)
 {
     charcode_t *v0;
     BOOL v1 = TRUE;
     int v2;
 
     v0 = Heap_Alloc(heapID, sizeof(charcode_t) * 100);
-    Strbuf_ToChars(param0, v0, 100);
+    String_ToChars(param0, v0, 100);
 
     for (v2 = 0; v0[v2] != CHAR_EOS; v2++) {
         if (v0[v2] != CHAR_0) {

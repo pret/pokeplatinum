@@ -38,7 +38,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -187,7 +187,7 @@ typedef struct ChooseStarterApp {
     Window *messageWindow;
     Window *unk_9C[3];
     int unk_A8;
-    Strbuf *unk_AC;
+    String *unk_AC;
     WindowTemplate unk_B0;
     Menu *unk_B8;
     G2dRenderer unk_BC;
@@ -229,7 +229,7 @@ static void ov78_021D12EC(BgConfig *param0);
 static void MakeMessageWindow(ChooseStarterApp *app, enum HeapID heapID);
 static void ov78_021D13A0(ChooseStarterApp *param0);
 static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, TextColor param4, u32 param5);
-static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, Strbuf **param6);
+static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, String **param6);
 static void ov78_021D2090(ChooseStarterApp *param0);
 static void MakeSubplaneWindow(ChooseStarterApp *param0, int heapID);
 static void ov78_021D2884(ChooseStarterApp *param0);
@@ -1267,24 +1267,24 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int heapID)
 static u8 ov78_021D1FB4(Window *param0, int heapID, int param2, int param3, TextColor param4, u32 param5)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
     u8 v2;
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
-    v1 = MessageLoader_GetNewStrbuf(v0, param3);
+    v1 = MessageLoader_GetNewString(v0, param3);
 
     Window_FillTilemap(param0, 15);
     v2 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, v1, 0, 0, param5, param4, NULL);
     Window_DrawMessageBoxWithScrollCursor(param0, 0, 512, 0);
 
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
 
     return v2;
 }
 
-static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, Strbuf **param6)
+static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 param4, u32 param5, String **param6)
 {
     MessageLoader *v0;
     u8 v1;
@@ -1294,7 +1294,7 @@ static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
 
-    *param6 = MessageLoader_GetNewStrbuf(v0, param3);
+    *param6 = MessageLoader_GetNewString(v0, param3);
     Window_FillTilemap(param0, 15);
     v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param6, 0, 0, param5, param4, NULL);
 
@@ -1306,7 +1306,7 @@ static u8 ov78_021D201C(Window *param0, int heapID, int param2, int param3, u32 
 
 static void ov78_021D2090(ChooseStarterApp *param0)
 {
-    Strbuf_Free(param0->unk_AC);
+    String_Free(param0->unk_AC);
     param0->unk_AC = NULL;
 }
 
@@ -1746,15 +1746,15 @@ static void ov78_021D2884(ChooseStarterApp *param0)
 static void ov78_021D28A8(Window *param0, int heapID, int param2, int param3, TextColor param4)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param2, heapID);
     GF_ASSERT(v0);
-    v1 = MessageLoader_GetNewStrbuf(v0, param3);
+    v1 = MessageLoader_GetNewString(v0, param3);
 
     Window_FillTilemap(param0, ((param4) >> 0) & 0xff);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v1, 1, 0, TEXT_SPEED_NO_TRANSFER, param4, NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
 }
 

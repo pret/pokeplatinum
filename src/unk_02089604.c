@@ -10,7 +10,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
@@ -473,7 +473,7 @@ void sub_02089F80(UnkStruct_02089688 *param0)
 {
     int v0;
     u32 v1 = 0;
-    Strbuf *v2 = Strbuf_Init(100, HEAP_ID_101);
+    String *v2 = String_Init(100, HEAP_ID_101);
 
     param0->unk_268[1].unk_00 = 1;
     param0->unk_268[1].unk_14.unk_04 = 0;
@@ -485,11 +485,11 @@ void sub_02089F80(UnkStruct_02089688 *param0)
         }
 
         v1 = param0->unk_00[v0].unk_00 - 1;
-        Strbuf_FormatInt(v2, v1, 1, 1, 1);
-        Strbuf_Concat(param0->unk_3B8.unk_1C, v2);
+        String_FormatInt(v2, v1, 1, 1, 1);
+        String_Concat(param0->unk_3B8.unk_1C, v2);
     }
 
-    Strbuf_Free(v2);
+    String_Free(v2);
     sub_02089808(param0, 3);
 }
 

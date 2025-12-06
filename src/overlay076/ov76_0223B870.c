@@ -33,7 +33,7 @@
 #include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -135,14 +135,14 @@ void ov76_0223B96C(UnkStruct_ov76_0223DE00 *param0, BOOL param1)
 void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_020127E8 v0;
-    Strbuf *v1;
+    String *v1;
     int v2;
     int v3;
     MessageLoader *v4;
     Window v5;
 
     v4 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0008, HEAP_ID_53);
-    v1 = MessageLoader_GetNewStrbuf(v4, 5 + param1);
+    v1 = MessageLoader_GetNewString(v4, 5 + param1);
 
     {
         Window_Init(&v5);
@@ -160,7 +160,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     v0.unk_0C = SpriteManager_FindPlttResourceProxy(param0->unk_D4.unk_0C, v2);
     v0.unk_10 = NULL;
     v0.unk_14 = param0->unk_D4.unk_16C[param1].offset;
-    v0.unk_18 = param2 - Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0) / 2;
+    v0.unk_18 = param2 - Font_CalcStringWidth(FONT_SUBSCREEN, v1, 0) / 2;
     v0.unk_1C = param3 + 192;
     v0.unk_20 = 1;
     v0.unk_24 = 40;
@@ -169,7 +169,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     param0->unk_D4.unk_164[param1] = sub_020127E8(&v0);
 
     sub_02012AC0(param0->unk_D4.unk_164[param1], param4);
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v4);
     Window_Remove(&v5);
 }
@@ -476,14 +476,14 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
 
     {
         int v9;
-        Strbuf *v10;
+        String *v10;
         MessageLoader *v11 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0008, HEAP_ID_53);
 
         for (v9 = 0; v9 < v7; v9++) {
-            v10 = MessageLoader_GetNewStrbuf(v11, Unk_ov76_0223EF3C[v8[v9]].unk_00);
+            v10 = MessageLoader_GetNewString(v11, Unk_ov76_0223EF3C[v8[v9]].unk_00);
 
-            StringList_AddFromStrbuf(param3->unk_D4.unk_C8, v10, Unk_ov76_0223EF3C[v8[v9]].unk_04);
-            Strbuf_Free(v10);
+            StringList_AddFromString(param3->unk_D4.unk_C8, v10, Unk_ov76_0223EF3C[v8[v9]].unk_04);
+            String_Free(v10);
         }
 
         MessageLoader_Free(v11);
@@ -917,7 +917,7 @@ void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 void ov76_0223CA30(Window *param0, int param1)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
 
     if (param1 == 0xFFFF) {
         Window_FillTilemap(param0, 15);
@@ -926,12 +926,12 @@ void ov76_0223CA30(Window *param0, int param1)
     }
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0008, HEAP_ID_53);
-    v1 = MessageLoader_GetNewStrbuf(v0, param1);
+    v1 = MessageLoader_GetNewString(v0, param1);
 
     Window_FillTilemap(param0, 15);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(param0);
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
 }
 
@@ -970,7 +970,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
     int v1;
     int v2;
     int v3;
-    Strbuf *v4;
+    String *v4;
     Window *v5;
 
     for (v0 = 3; v0 < 11; v0++) {
@@ -986,13 +986,13 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
 
         Window_FillTilemap(v5, 0x0);
 
-        v4 = Strbuf_Init(100, HEAP_ID_53);
+        v4 = String_Init(100, HEAP_ID_53);
         v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
-        Strbuf_FormatInt(v4, v3, 3, 1, 1);
+        String_FormatInt(v4, v3, 3, 1, 1);
         Text_AddPrinterWithParamsAndColor(v5, FONT_SYSTEM, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Window_CopyToVRAM(v5);
-        Strbuf_Free(v4);
+        String_Free(v4);
     }
 }
 
@@ -1002,7 +1002,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     int v1;
     int v2;
     int v3;
-    Strbuf *v4;
+    String *v4;
     Window *v5 = &param0->unk_D4.unk_18[param1 + 3];
     v1 = param1;
     v2 = param0->unk_418.unk_08[v1];
@@ -1015,13 +1015,13 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
 
     Window_FillTilemap(v5, 0x0);
 
-    v4 = Strbuf_Init(100, HEAP_ID_53);
+    v4 = String_Init(100, HEAP_ID_53);
     v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
-    Strbuf_FormatInt(v4, v3, 3, 1, 1);
+    String_FormatInt(v4, v3, 3, 1, 1);
     Text_AddPrinterWithParamsAndColor(v5, FONT_MESSAGE, v4, -1 + 8, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(v5);
-    Strbuf_Free(v4);
+    String_Free(v4);
 }
 
 void ov76_0223CDA4(UnkStruct_ov76_0223DE00 *param0)
@@ -1037,7 +1037,7 @@ void ov76_0223CDA4(UnkStruct_ov76_0223DE00 *param0)
 void ov76_0223CDC4(Window *param0, int param1)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
 
     if (param1 == 0xFFFF) {
         Window_FillTilemap(param0, 15);
@@ -1046,12 +1046,12 @@ void ov76_0223CDC4(Window *param0, int param1)
     }
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BALL_SEAL_NAMES, HEAP_ID_53);
-    v1 = MessageLoader_GetNewStrbuf(v0, param1);
+    v1 = MessageLoader_GetNewString(v0, param1);
 
     Window_FillTilemap(param0, 15);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(param0);
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
 }
 

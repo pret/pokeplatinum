@@ -1,4 +1,4 @@
-#include "strbuf.h"
+#include "string_gf.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,49 +7,49 @@
 
 #include "heap.h"
 
-#define SIZEOF_STRBUF_HEADER (sizeof(Strbuf) - sizeof(charcode_t))
-#define STRBUF_MAGIC_NUMBER  (0xB6F8D2EC)
+#define SIZEOF_STRING_HEADER (sizeof(String) - sizeof(charcode_t))
+#define STRING_MAGIC_NUMBER  (0xB6F8D2EC)
 
-static inline void Strbuf_Check(const Strbuf *strbuf)
+static inline void String_Check(const String *string)
 {
-    GF_ASSERT(strbuf != NULL);
-    GF_ASSERT(strbuf->integrity == STRBUF_MAGIC_NUMBER);
+    GF_ASSERT(string != NULL);
+    GF_ASSERT(string->integrity == STRING_MAGIC_NUMBER);
 }
 
-Strbuf *Strbuf_Init(u32 size, u32 heapID)
+String *String_Init(u32 size, u32 heapID)
 {
-    Strbuf *strbuf = Heap_Alloc(heapID, SIZEOF_STRBUF_HEADER + (size * sizeof(charcode_t)));
+    String *string = Heap_Alloc(heapID, SIZEOF_STRING_HEADER + (size * sizeof(charcode_t)));
 
-    if (strbuf) {
-        strbuf->integrity = STRBUF_MAGIC_NUMBER;
-        strbuf->maxSize = size;
-        strbuf->size = 0;
-        strbuf->data[0] = CHAR_EOS;
+    if (string) {
+        string->integrity = STRING_MAGIC_NUMBER;
+        string->maxSize = size;
+        string->size = 0;
+        string->data[0] = CHAR_EOS;
     }
 
-    return strbuf;
+    return string;
 }
 
-void Strbuf_Free(Strbuf *strbuf)
+void String_Free(String *string)
 {
-    Strbuf_Check(strbuf);
+    String_Check(string);
 
-    strbuf->integrity = STRBUF_MAGIC_NUMBER + 1;
-    Heap_Free(strbuf);
+    string->integrity = STRING_MAGIC_NUMBER + 1;
+    Heap_Free(string);
 }
 
-void Strbuf_Clear(Strbuf *strbuf)
+void String_Clear(String *string)
 {
-    Strbuf_Check(strbuf);
+    String_Check(string);
 
-    strbuf->size = 0;
-    strbuf->data[0] = CHAR_EOS;
+    string->size = 0;
+    string->data[0] = CHAR_EOS;
 }
 
-void Strbuf_Copy(Strbuf *dst, const Strbuf *src)
+void String_Copy(String *dst, const String *src)
 {
-    Strbuf_Check(dst);
-    Strbuf_Check(src);
+    String_Check(dst);
+    String_Check(src);
 
     if (dst->maxSize > src->size) {
         memcpy(dst->data, src->data, (src->size + 1) * sizeof(charcode_t));
@@ -60,20 +60,20 @@ void Strbuf_Copy(Strbuf *dst, const Strbuf *src)
     GF_ASSERT(FALSE);
 }
 
-Strbuf *Strbuf_Clone(const Strbuf *src, u32 heapID)
+String *String_Clone(const String *src, u32 heapID)
 {
-    Strbuf_Check(src);
+    String_Check(src);
 
-    Strbuf *strbuf = Strbuf_Init(src->size + 1, heapID);
+    String *string = String_Init(src->size + 1, heapID);
 
-    if (strbuf) {
-        Strbuf_Copy(strbuf, src);
+    if (string) {
+        String_Copy(string, src);
     }
 
-    return strbuf;
+    return string;
 }
 
-void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
+void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
 {
     static const u32 sPowersOfTen[] = {
         1,
@@ -112,14 +112,14 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
         CHAR_9,
     };
 
-    Strbuf_Check(dst);
+    String_Check(dst);
 
     BOOL negative = (num < 0);
 
     if (dst->maxSize > (maxDigits + negative)) {
         const charcode_t *digitSet = (charsetMode == CHARSET_MODE_JP) ? sDigits_JP : sDigits_EN;
 
-        Strbuf_Clear(dst);
+        String_Clear(dst);
 
         if (negative) {
             num *= -1;
@@ -151,7 +151,7 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
     GF_ASSERT(FALSE);
 }
 
-void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
+void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
 {
     static const u64 sPowersOfTen[] = {
         1,
@@ -200,14 +200,14 @@ void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode padd
         CHAR_9,
     };
 
-    Strbuf_Check(dst);
+    String_Check(dst);
 
     BOOL negative = (num < 0);
 
     if (dst->maxSize > (maxDigits + negative)) {
         const charcode_t *digitSet = (charsetMode == CHARSET_MODE_JP) ? sDigits_JP : sDigits_EN;
 
-        Strbuf_Clear(dst);
+        String_Clear(dst);
 
         if (negative) {
             num *= -1;
@@ -238,7 +238,7 @@ void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode padd
     GF_ASSERT(FALSE);
 }
 
-u64 Strbuf_AtoI(const Strbuf *src, BOOL *success)
+u64 String_AtoI(const String *src, BOOL *success)
 {
     u64 result = 0, pow = 1;
     if (src->size > 18) {
@@ -265,10 +265,10 @@ u64 Strbuf_AtoI(const Strbuf *src, BOOL *success)
     return result;
 }
 
-int Strbuf_Compare(const Strbuf *str1, const Strbuf *str2)
+int String_Compare(const String *str1, const String *str2)
 {
-    Strbuf_Check(str1);
-    Strbuf_Check(str2);
+    String_Check(str1);
+    String_Check(str2);
 
     for (int i = 0; str1->data[i] == str2->data[i]; i++) {
         if (str1->data[i] == CHAR_EOS) {
@@ -279,19 +279,19 @@ int Strbuf_Compare(const Strbuf *str1, const Strbuf *str2)
     return 1;
 }
 
-u32 Strbuf_Length(const Strbuf *strbuf)
+u32 String_Length(const String *string)
 {
-    Strbuf_Check(strbuf);
-    return strbuf->size;
+    String_Check(string);
+    return string->size;
 }
 
-u32 Strbuf_NumLines(const Strbuf *strbuf)
+u32 String_NumLines(const String *string)
 {
-    Strbuf_Check(strbuf);
+    String_Check(string);
 
     int i, count;
-    for (i = 0, count = 1; i < strbuf->size; i++) {
-        if (strbuf->data[i] == CHAR_CR) {
+    for (i = 0, count = 1; i < string->size; i++) {
+        if (string->data[i] == CHAR_CR) {
             count++;
         }
     }
@@ -299,10 +299,10 @@ u32 Strbuf_NumLines(const Strbuf *strbuf)
     return count;
 }
 
-void Strbuf_CopyLineNum(Strbuf *dst, const Strbuf *src, u32 lineNum)
+void String_CopyLineNum(String *dst, const String *src, u32 lineNum)
 {
-    Strbuf_Check(src);
-    Strbuf_Check(dst);
+    String_Check(src);
+    String_Check(dst);
 
     int i = 0;
 
@@ -315,20 +315,20 @@ void Strbuf_CopyLineNum(Strbuf *dst, const Strbuf *src, u32 lineNum)
         }
     }
 
-    Strbuf_Clear(dst);
+    String_Clear(dst);
 
     for (; i < src->size; i++) {
         if (src->data[i] == CHAR_CR) {
             break;
         }
 
-        Strbuf_AppendChar(dst, src->data[i]);
+        String_AppendChar(dst, src->data[i]);
     }
 }
 
-void Strbuf_CopyChars(Strbuf *dst, const charcode_t *src)
+void String_CopyChars(String *dst, const charcode_t *src)
 {
-    Strbuf_Check(dst);
+    String_Check(dst);
 
     dst->size = 0;
 
@@ -344,9 +344,9 @@ void Strbuf_CopyChars(Strbuf *dst, const charcode_t *src)
     dst->data[dst->size] = CHAR_EOS;
 }
 
-void Strbuf_CopyNumChars(Strbuf *dst, const charcode_t *src, u32 num)
+void String_CopyNumChars(String *dst, const charcode_t *src, u32 num)
 {
-    Strbuf_Check(dst);
+    String_Check(dst);
 
     if (num <= dst->maxSize) {
         memcpy(dst->data, src, num * sizeof(charcode_t));
@@ -369,9 +369,9 @@ void Strbuf_CopyNumChars(Strbuf *dst, const charcode_t *src, u32 num)
     GF_ASSERT(FALSE);
 }
 
-void Strbuf_ToChars(const Strbuf *src, charcode_t *dst, u32 dstSize)
+void String_ToChars(const String *src, charcode_t *dst, u32 dstSize)
 {
-    Strbuf_Check(src);
+    String_Check(src);
 
     if ((src->size + 1) <= dstSize) {
         memcpy(dst, src->data, (src->size + 1) * sizeof(charcode_t));
@@ -381,17 +381,17 @@ void Strbuf_ToChars(const Strbuf *src, charcode_t *dst, u32 dstSize)
     GF_ASSERT(FALSE);
 }
 
-const charcode_t *Strbuf_GetData(const Strbuf *src)
+const charcode_t *String_GetData(const String *src)
 {
-    Strbuf_Check(src);
+    String_Check(src);
 
     return src->data;
 }
 
-void Strbuf_Concat(Strbuf *dst, const Strbuf *src)
+void String_Concat(String *dst, const String *src)
 {
-    Strbuf_Check(dst);
-    Strbuf_Check(src);
+    String_Check(dst);
+    String_Check(src);
 
     if ((dst->size + src->size + 1) <= dst->maxSize) {
         memcpy(dst->data + dst->size, src->data, (src->size + 1) * sizeof(charcode_t));
@@ -402,9 +402,9 @@ void Strbuf_Concat(Strbuf *dst, const Strbuf *src)
     GF_ASSERT(FALSE);
 }
 
-void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
+void String_AppendChar(String *dst, charcode_t c)
 {
-    Strbuf_Check(dst);
+    String_Check(dst);
 
     if ((dst->size + 1) < dst->maxSize) {
         dst->data[dst->size++] = c;
@@ -418,12 +418,12 @@ void Strbuf_AppendChar(Strbuf *dst, charcode_t c)
 #define COMPRESSED_MASK (0x01FF)
 #define COMPRESSED_EOS  (0x01FF) // 0xFFFF & 0x01FF
 
-BOOL Strbuf_IsTrainerName(Strbuf *strbuf)
+BOOL String_IsTrainerName(String *string)
 {
-    return strbuf->size > 0 && strbuf->data[0] == CHAR_COMPRESSED_MARK;
+    return string->size > 0 && string->data[0] == CHAR_COMPRESSED_MARK;
 }
 
-void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src)
+void String_ConcatTrainerName(String *dst, String *src)
 {
     // Trainer names are expressed using a format with a designating leader
     // code followed by compression algorithm that trims individual characters
@@ -431,7 +431,7 @@ void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src)
     //
     // TODO: This process could do with some more documentation, i.e. why this
     // is done.
-    if (Strbuf_IsTrainerName(src)) {
+    if (String_IsTrainerName(src)) {
         charcode_t *dstChar = &dst->data[dst->size];
         charcode_t *srcChar = &src->data[1];
         s32 shift = 0;
@@ -462,17 +462,17 @@ void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src)
         *dstChar = CHAR_EOS;
         dst->size += charsAdded;
     } else {
-        Strbuf_Concat(dst, src);
+        String_Concat(dst, src);
     }
 }
 
-void Strbuf_UpperChar(Strbuf *strbuf, int i)
+void String_UpperChar(String *string, int i)
 {
-    Strbuf_Check(strbuf);
+    String_Check(string);
 
-    if (strbuf->size > i) {
-        if (strbuf->data[i] >= CHAR_a && strbuf->data[i] <= CHAR_z) {
-            strbuf->data[i] -= (CHAR_a - CHAR_A);
+    if (string->size > i) {
+        if (string->data[i] >= CHAR_a && string->data[i] <= CHAR_z) {
+            string->data[i] -= (CHAR_a - CHAR_A);
         }
     }
 }

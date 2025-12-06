@@ -7,7 +7,7 @@
 #include "constants/pokemon.h"
 
 #include "party.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define MAX_HALL_OF_FAME_ENTRIES 30
 
@@ -37,8 +37,8 @@ typedef struct HallOfFame {
 } HallOfFame;
 
 typedef struct PCHallOfFamePokemon {
-    Strbuf *nickname;
-    Strbuf *OTName;
+    String *nickname;
+    String *OTName;
     u32 personality;
     u32 OTID;
     u16 species;

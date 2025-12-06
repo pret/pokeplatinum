@@ -8,7 +8,7 @@
 
 #include "bg_window.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 typedef struct {
@@ -25,8 +25,8 @@ typedef struct {
     void *unk_24;
     NNSG2dCharacterData *unk_28;
     const StringTemplate *unk_2C;
-    Strbuf *unk_30;
-    Strbuf *unk_34;
+    String *unk_30;
+    String *unk_34;
 } UnkStruct_ov19_021DB6F0;
 
 #endif // POKEPLATINUM_STRUCT_OV19_021DB6F0_H

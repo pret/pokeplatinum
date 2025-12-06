@@ -61,7 +61,7 @@ static void AccessoryShop_DeleteSpriteList(AccessoryShop *shop);
 static void AccessoryShop_LoadOptions(AccessoryShop *shop);
 static void AccessoryShop_ShowMsgBox(AccessoryShopMessageBox *msgbox, BgConfig *bgConfig, enum HeapID heapID, u32 renderDelay);
 static void AccessoryShop_DeleteMsgBox(AccessoryShopMessageBox *msgbox);
-static void AccessoryShop_PrintStrbufToMsgBox(AccessoryShopMessageBox *msgbox, Strbuf *strbuf, enum HeapID heapID);
+static void AccessoryShop_PrintStringToMsgBox(AccessoryShopMessageBox *msgbox, String *string, enum HeapID heapID);
 static BOOL AccessoryShop_HasMsgBoxFinishedPrinting(AccessoryShopMessageBox *msgbox);
 static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx);
 static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx);
@@ -119,23 +119,23 @@ void AccessoryShop_Free(AccessoryShop *shop)
 
 BOOL AccessoryShop_Main(AccessoryShop *shop)
 {
-    Strbuf *strbuf;
+    String *string;
     u32 input;
 
     switch (shop->state) {
     case ACCESSORY_SHOP_STATE_LOAD_GREET_MSG:
         AccessoryShop_ShowMsgBox(&shop->msgbox, shop->bgConfig, shop->heapID, shop->renderDelay);
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Greet);
-        AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-        Strbuf_Free(strbuf);
+        string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_Greet);
+        AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+        String_Free(string);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
         shop->nextState = ACCESSORY_SHOP_STATE_INIT_ITEM_LIST;
         break;
     case ACCESSORY_SHOP_STATE_INIT_ITEM_LIST:
         if (AccessoryShop_HasAllAccessories(shop->unk_0C, sAccessoryShop_ItemLists, ACCESSORY_SHOP_ITEM_LIST_COUNT)) {
-            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Thanks);
-            AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-            Strbuf_Free(strbuf);
+            string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_Thanks);
+            AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+            String_Free(string);
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
             shop->nextState = ACCESSORY_SHOP_STATE_FREE_INTERFACE;
         } else {
@@ -149,9 +149,9 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
         // fallthrough
     case ACCESSORY_SHOP_STATE_LOAD_BUY_MSG:
         AccessoryShop_UpdateItemListMenu(&shop->itemList);
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Purchase);
-        AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-        Strbuf_Free(strbuf);
+        string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_Purchase);
+        AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+        String_Free(string);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_MSGBOX;
         shop->nextState = ACCESSORY_SHOP_STATE_SELECT_ITEM_LIST;
         break;
@@ -169,9 +169,9 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (input == LIST_CANCEL) {
-            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_PleaseComeAgain);
-            AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-            Strbuf_Free(strbuf);
+            string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_PleaseComeAgain);
+            AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+            String_Free(string);
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
             shop->nextState = ACCESSORY_SHOP_STATE_FREE_INTERFACE;
             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -186,9 +186,9 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
 
         if (input == MENU_YES) {
             if (AccessoryShop_HasEnoughBerries(shop->bag, sAccessoryShop_ItemLists, shop->itemList.cursorPos, shop->heapID) == FALSE) {
-                strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_NotEnoughBerries);
-                AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-                Strbuf_Free(strbuf);
+                string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_NotEnoughBerries);
+                AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+                String_Free(string);
                 shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
                 shop->nextState = ACCESSORY_SHOP_STATE_LOAD_BUY_MSG;
                 AccessoryShop_DeleteYesNoChoice(&shop->yesNoChoice);
@@ -196,18 +196,18 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
             }
 
             if (ov7_0224CCE4(shop->unk_0C, sAccessoryShop_ItemLists, shop->itemList.cursorPos) == FALSE) {
-                strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_CantCarryMoreAccessories);
-                AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-                Strbuf_Free(strbuf);
+                string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_CantCarryMoreAccessories);
+                AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+                String_Free(string);
                 AccessoryShop_DeleteYesNoChoice(&shop->yesNoChoice);
                 shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
                 shop->nextState = ACCESSORY_SHOP_STATE_LOAD_BUY_MSG;
                 break;
             }
 
-            strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_PurchaseSuccess);
-            AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-            Strbuf_Free(strbuf);
+            string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_PurchaseSuccess);
+            AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+            String_Free(string);
             AccessoryShop_DeleteYesNoChoice(&shop->yesNoChoice);
 
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
@@ -230,16 +230,16 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
         }
         break;
     case ACCESSORY_SHOP_STATE_LOAD_SHOCKED_MSG:
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_TradedAllAccessories);
-        AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-        Strbuf_Free(strbuf);
+        string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_TradedAllAccessories);
+        AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+        String_Free(string);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
         shop->nextState = ACCESSORY_SHOP_STATE_LOAD_THANKS_MSG;
         break;
     case ACCESSORY_SHOP_STATE_LOAD_THANKS_MSG:
-        strbuf = MessageLoader_GetNewStrbuf(shop->msgLoader, FlowerShop_Text_Thanks);
-        AccessoryShop_PrintStrbufToMsgBox(&shop->msgbox, strbuf, shop->heapID);
-        Strbuf_Free(strbuf);
+        string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_Thanks);
+        AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
+        String_Free(string);
         shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
         shop->nextState = ACCESSORY_SHOP_STATE_FREE_INTERFACE;
         break;
@@ -330,14 +330,14 @@ static void AccessoryShop_DeleteMsgBox(AccessoryShopMessageBox *msgbox)
     msgbox->active = FALSE;
 }
 
-static void AccessoryShop_PrintStrbufToMsgBox(AccessoryShopMessageBox *msgbox, Strbuf *strbuf, enum HeapID heapID)
+static void AccessoryShop_PrintStringToMsgBox(AccessoryShopMessageBox *msgbox, String *string, enum HeapID heapID)
 {
-    GF_ASSERT(msgbox->strbuf == NULL);
+    GF_ASSERT(msgbox->string == NULL);
 
     Window_FillTilemap(msgbox->window, 15);
 
-    msgbox->strbuf = Strbuf_Clone(strbuf, heapID);
-    msgbox->printerID = Text_AddPrinterWithParamsAndColor(msgbox->window, FONT_MESSAGE, msgbox->strbuf, 0, 0, msgbox->renderDelay, TEXT_COLOR(1, 2, 15), NULL);
+    msgbox->string = String_Clone(string, heapID);
+    msgbox->printerID = Text_AddPrinterWithParamsAndColor(msgbox->window, FONT_MESSAGE, msgbox->string, 0, 0, msgbox->renderDelay, TEXT_COLOR(1, 2, 15), NULL);
 
     Window_CopyToVRAM(msgbox->window);
 }
@@ -345,9 +345,9 @@ static void AccessoryShop_PrintStrbufToMsgBox(AccessoryShopMessageBox *msgbox, S
 static BOOL AccessoryShop_HasMsgBoxFinishedPrinting(AccessoryShopMessageBox *msgbox)
 {
     if (Text_IsPrinterActive(msgbox->printerID) == FALSE) {
-        if (msgbox->strbuf != NULL) {
-            Strbuf_Free(msgbox->strbuf);
-            msgbox->strbuf = NULL;
+        if (msgbox->string != NULL) {
+            String_Free(msgbox->string);
+            msgbox->string = NULL;
         }
 
         return TRUE;
@@ -358,10 +358,10 @@ static BOOL AccessoryShop_HasMsgBoxFinishedPrinting(AccessoryShopMessageBox *msg
 
 static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx)
 {
-    Strbuf *fmtString, *strbuf;
+    String *fmtString, *string;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
-    strbuf = Strbuf_Init(200, heapID);
-    fmtString = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_ConfirmPurchase);
+    string = String_Init(200, heapID);
+    fmtString = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_ConfirmPurchase);
 
     if (items[idx].totalAmount == 1) {
         StringTemplate_SetItemName(strTemplate, 0, items[idx].itemBerryID + FIRST_BERRY_IDX);
@@ -371,21 +371,21 @@ static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox
 
     StringTemplate_SetNumber(strTemplate, 1, items[idx].totalAmount, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_SetContestAccessoryName(strTemplate, 2, items[idx].accessoryID);
-    StringTemplate_Format(strTemplate, strbuf, fmtString);
+    StringTemplate_Format(strTemplate, string, fmtString);
 
-    AccessoryShop_PrintStrbufToMsgBox(msgbox, strbuf, heapID);
+    AccessoryShop_PrintStringToMsgBox(msgbox, string, heapID);
 
     StringTemplate_Free(strTemplate);
-    Strbuf_Free(strbuf);
-    Strbuf_Free(fmtString);
+    String_Free(string);
+    String_Free(fmtString);
 }
 
 static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapID heapID, const AccessoryShopItem *items, u32 idx)
 {
-    Strbuf *fmtString, *strbuf;
+    String *fmtString, *string;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
-    strbuf = Strbuf_Init(200, heapID);
-    fmtString = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_PurchasePostSuccess);
+    string = String_Init(200, heapID);
+    fmtString = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_PurchasePostSuccess);
 
     if (items[idx].totalAmount == 1) {
         StringTemplate_SetItemName(strTemplate, 0, items[idx].itemBerryID + FIRST_BERRY_IDX);
@@ -395,13 +395,13 @@ static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msg
 
     StringTemplate_SetNumber(strTemplate, 1, items[idx].totalAmount, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_SetContestAccessoryName(strTemplate, 2, items[idx].accessoryID);
-    StringTemplate_Format(strTemplate, strbuf, fmtString);
+    StringTemplate_Format(strTemplate, string, fmtString);
 
-    AccessoryShop_PrintStrbufToMsgBox(msgbox, strbuf, heapID);
+    AccessoryShop_PrintStringToMsgBox(msgbox, string, heapID);
 
     StringTemplate_Free(strTemplate);
-    Strbuf_Free(strbuf);
-    Strbuf_Free(fmtString);
+    String_Free(string);
+    String_Free(fmtString);
 }
 
 static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *bgConfig, MessageLoader *msgLoader, enum HeapID heapID)
@@ -415,10 +415,10 @@ static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *b
     descBox->strTemplate = StringTemplate_Default(heapID);
 
     for (int i = 0; i < ACCESSORY_SHOP_FORMAT_STRS; i++) {
-        descBox->fmtString[i] = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_BerryNameFormat + i);
+        descBox->fmtString[i] = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_BerryNameFormat + i);
     }
 
-    descBox->strbuf = Strbuf_Init(32, heapID);
+    descBox->string = String_Init(32, heapID);
     Window_FillTilemap(descBox->window, 15);
     descBox->active = TRUE;
 }
@@ -430,10 +430,10 @@ static void AccessoryShop_DeleteDescBox(AccessoryShopDescBox *descBox)
     }
 
     for (int i = 0; i < ACCESSORY_SHOP_FORMAT_STRS; i++) {
-        Strbuf_Free(descBox->fmtString[i]);
+        String_Free(descBox->fmtString[i]);
     }
 
-    Strbuf_Free(descBox->strbuf);
+    String_Free(descBox->string);
     StringTemplate_Free(descBox->strTemplate);
     Window_ClearAndCopyToVRAM(descBox->window);
     Window_Remove(descBox->window);
@@ -450,8 +450,8 @@ static void AccessoryShop_UpdateDescBox(AccessoryShopDescBox *descBox, u32 berry
     Window_FillTilemap(descBox->window, 15);
 
     for (int i = 0; i < ACCESSORY_SHOP_FORMAT_STRS; i++) {
-        StringTemplate_Format(descBox->strTemplate, descBox->strbuf, descBox->fmtString[i]);
-        Text_AddPrinterWithParamsAndColor(descBox->window, FONT_SYSTEM, descBox->strbuf, 0, 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+        StringTemplate_Format(descBox->strTemplate, descBox->string, descBox->fmtString[i]);
+        Text_AddPrinterWithParamsAndColor(descBox->window, FONT_SYSTEM, descBox->string, 0, 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     }
 
     Window_DrawStandardFrame(descBox->window, FALSE, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX);
@@ -460,7 +460,7 @@ static void AccessoryShop_UpdateDescBox(AccessoryShopDescBox *descBox, u32 berry
 static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig *bgConfig, enum HeapID heapID, const AccessoryShopItem *items, u32 maxItems, MessageLoader *msgLoader, void *param6, AccessoryShopUpdateFunc updateFunc, SpriteList *spriteList)
 {
     int i;
-    Strbuf *fmtString;
+    String *fmtString;
     SpriteResourcesHeader scrollArrowResource;
     SpriteListTemplate scrollArrowCellParams;
     static const u8 scrollArrowsYPos[ACCESSORY_SHOP_SPRITE_COUNT] = {
@@ -501,26 +501,26 @@ static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig
     Window_Add(bgConfig, itemList->window, BG_LAYER_MAIN_3, 17, 1, 14, 16, FIELD_MESSAGE_PALETTE_INDEX, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
 
     itemList->strTemplate = StringTemplate_Default(heapID);
-    itemList->tempStrbuf = Strbuf_Init(32, heapID);
+    itemList->tempString = String_Init(32, heapID);
 
-    fmtString = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_BerryNameFormat);
+    fmtString = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_BerryNameFormat);
 
     for (i = 0; i < maxItems; i++) {
         StringTemplate_SetContestAccessoryName(itemList->strTemplate, 0, items[i].accessoryID);
-        StringTemplate_Format(itemList->strTemplate, itemList->tempStrbuf, fmtString);
+        StringTemplate_Format(itemList->strTemplate, itemList->tempString, fmtString);
 
-        itemList->strbuf[i] = Strbuf_Clone(itemList->tempStrbuf, heapID);
-        itemList->strList[i].entry = itemList->strbuf[i];
+        itemList->string[i] = String_Clone(itemList->tempString, heapID);
+        itemList->strList[i].entry = itemList->string[i];
         itemList->strList[i].index = i;
     }
 
-    itemList->strbuf[maxItems] = MessageLoader_GetNewStrbuf(msgLoader, FlowerShop_Text_Exit);
-    itemList->strList[maxItems].entry = itemList->strbuf[maxItems];
+    itemList->string[maxItems] = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_Exit);
+    itemList->strList[maxItems].entry = itemList->string[maxItems];
     itemList->strList[maxItems].index = maxItems;
 
     StringTemplate_Free(itemList->strTemplate);
-    Strbuf_Free(itemList->tempStrbuf);
-    Strbuf_Free(fmtString);
+    String_Free(itemList->tempString);
+    String_Free(fmtString);
 
     listTemplate.window = itemList->window;
     listTemplate.count = itemList->maxListItems;
@@ -567,7 +567,7 @@ static void AccessoryShop_DeleteItemList(AccessoryShopItemList *itemList)
     AccessoryShop_UnloadScrollArrowGfx(itemList);
 
     for (i = 0; i < itemList->maxListItems; i++) {
-        Strbuf_Free(itemList->strbuf[i]);
+        String_Free(itemList->string[i]);
     }
 
     ListMenu_Free(itemList->listMenu, NULL, NULL);

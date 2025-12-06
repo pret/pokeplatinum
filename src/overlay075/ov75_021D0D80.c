@@ -26,7 +26,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -73,7 +73,7 @@ typedef struct {
     BgConfig *unk_18;
     UnkStruct_020978D8 *unk_1C;
     MessageLoader *unk_20;
-    Strbuf *unk_24[3];
+    String *unk_24[3];
     PaletteData *unk_30;
     void *unk_34;
     void *unk_38;
@@ -251,18 +251,18 @@ static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
 
 static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
 {
-    Strbuf *v0 = NULL;
+    String *v0 = NULL;
 
     switch (param0->unk_08) {
     case 0:
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), (15 << 4) | 15);
 
-        v0 = Strbuf_Init(19 * 2 * 2, param0->heapID);
+        v0 = String_Init(19 * 2 * 2, param0->heapID);
 
-        MessageLoader_GetStrbuf(param0->unk_20, 2, v0);
+        MessageLoader_GetString(param0->unk_20, 2, v0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-        Strbuf_Free(v0);
+        String_Free(v0);
         break;
     case 1:
 
@@ -307,7 +307,7 @@ static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0)
 static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
 {
     int v0;
-    Strbuf *v1 = NULL;
+    String *v1 = NULL;
 
     switch (param0->unk_08) {
     case 0:
@@ -316,11 +316,11 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), (15 << 4) | 15);
 
-        v1 = Strbuf_Init(19 * 2 * 2, param0->heapID);
-        MessageLoader_GetStrbuf(param0->unk_20, 3, v1);
+        v1 = String_Init(19 * 2 * 2, param0->heapID);
+        MessageLoader_GetString(param0->unk_20, 3, v1);
         param0->unk_0F = Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], FONT_MESSAGE, v1, 0, 0, param0->unk_10, TEXT_COLOR(1, 2, 15), NULL);
 
-        Strbuf_Free(v1);
+        String_Free(v1);
         PaletteData_Blend(param0->unk_30, 0, 34 + param0->unk_17, 1, 0, 0x7FFF);
 
         param0->unk_17 = param0->unk_16;
@@ -801,7 +801,7 @@ static void ov75_021D19A8(UnkStruct_ov75_021D1184 *param0)
 static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
 {
     int v0 = 0;
-    Strbuf *v1;
+    String *v1;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (!sub_02014BBC(&param0->unk_1C->unk_1A[v0])) {
@@ -811,30 +811,30 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
         v1 = sub_02014B34(&param0->unk_1C->unk_1A[v0], param0->heapID);
 
         Text_AddPrinterWithParamsAndColor(&param0->unk_44[0 + v0], FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-        Strbuf_Free(v1);
+        String_Free(v1);
         Window_CopyToVRAM(&param0->unk_44[0 + v0]);
     }
 
     if (param0->unk_0C == 1) {
-        Strbuf *v2;
+        String *v2;
         int v3;
 
         param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0409, param0->heapID);
 
-        v2 = Strbuf_Init(8 * 2, param0->heapID);
+        v2 = String_Init(8 * 2, param0->heapID);
 
         for (v0 = 0; v0 < 2; v0++) {
-            Strbuf_Clear(v2);
-            MessageLoader_GetStrbuf(param0->unk_20, 0 + v0, v2);
+            String_Clear(v2);
+            MessageLoader_GetString(param0->unk_20, 0 + v0, v2);
 
-            v3 = (8 * 8) - Font_CalcStrbufWidth(FONT_MESSAGE, v2, 0);
+            v3 = (8 * 8) - Font_CalcStringWidth(FONT_MESSAGE, v2, 0);
             v3 /= 2;
 
             Text_AddPrinterWithParamsAndColor(&param0->unk_44[3 + v0], FONT_MESSAGE, v2, v3, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
             Window_CopyToVRAM(&param0->unk_44[3 + v0]);
         }
 
-        Strbuf_Free(v2);
+        String_Free(v2);
     } else {
         Text_AddPrinterWithParamsAndColor(&param0->unk_44[3], FONT_MESSAGE, param0->unk_1C->unk_10, 0, 2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         Window_CopyToVRAM(&param0->unk_44[3]);

@@ -141,8 +141,8 @@ typedef struct ScriptManager {
     u16 *saveType; // the result of the check to determine what type of save is required in ScrCmd_CheckSaveType
     ScriptContext *ctx[NUM_SCRIPT_CONTEXTS];
     StringTemplate *strTemplate;
-    Strbuf *msgBuf;
-    Strbuf *tmpBuf;
+    String *msgBuf;
+    String *tmpBuf;
     void *savingIcon;
     ApproachingTrainer trainers[2];
     u16 data[SCRIPT_DATA_MAX - SCRIPT_DATA_START];

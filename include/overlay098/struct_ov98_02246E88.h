@@ -10,7 +10,7 @@
 #include "game_options.h"
 #include "overlay_manager.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     ApplicationManager *appMan;
@@ -35,8 +35,8 @@ typedef struct {
     u32 unk_10C;
     u8 unk_110;
     u8 unk_111[3];
-    Strbuf *unk_114;
-    Strbuf *unk_118;
+    String *unk_114;
+    String *unk_118;
     BOOL unk_11C;
 } UnkStruct_ov98_02246E88;
 

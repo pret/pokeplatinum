@@ -8,7 +8,7 @@
 #include "overlay023/underground_text_printer.h"
 
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
@@ -51,8 +51,8 @@ UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void);
 void ov23_022421EC(void);
-BOOL CommManUnderground_FormatStrbufWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, Strbuf *dest);
-BOOL CommManUnderground_FormatStrbufWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, Strbuf *dest);
+BOOL CommManUnderground_FormatStringWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, String *dest);
+BOOL CommManUnderground_FormatStringWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, String *dest);
 BOOL ov23_0224240C(int x, int z);
 BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void *param2, void *param3);
@@ -72,7 +72,7 @@ void ov23_02242C78(void);
 void ov23_02242CB4(void);
 void ov23_02242D08(void);
 void ov23_02242D44(FieldSystem *fieldSystem);
-BOOL ov23_02242D60(Strbuf *param0);
+BOOL ov23_02242D60(String *param0);
 UnkStruct_02029894 *ov23_02242E10(SaveData *saveData);
 int ov23_02242E28(void);
 int ov23_02242E40(void);

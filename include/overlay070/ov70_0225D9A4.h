@@ -13,7 +13,7 @@
 #include "enums.h"
 #include "list_menu.h"
 #include "overlay_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 
 int ov70_0225D9A4(ApplicationManager *appMan, int *param1);
@@ -38,18 +38,18 @@ void ov70_0225DF4C(UnkStruct_ov70_0225DEE8 *param0, u8 param1, BOOL param2);
 BOOL ov70_0225DF64(const UnkStruct_ov70_0225DEE8 *param0, u8 param1);
 void ov70_0225DF6C(UnkStruct_ov70_0225DEE8 *param0, u8 param1, BOOL param2);
 BOOL ov70_0225DF84(const UnkStruct_ov70_0225DEE8 *param0, u8 param1);
-void ov70_0225DF8C(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1);
-void ov70_0225DF9C(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1);
+void ov70_0225DF8C(UnkStruct_ov70_0225DEE8 *param0, const String *param1);
+void ov70_0225DF9C(UnkStruct_ov70_0225DEE8 *param0, const String *param1);
 BOOL ov70_0225DFAC(const UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225DFBC(UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225DFCC(UnkStruct_ov70_0225DEE8 *param0);
 BOOL ov70_0225DFDC(const UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225DFEC(UnkStruct_ov70_0225DEE8 *param0);
-void ov70_0225DFFC(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1);
+void ov70_0225DFFC(UnkStruct_ov70_0225DEE8 *param0, const String *param1);
 void ov70_0225E00C(UnkStruct_ov70_0225DEE8 *param0, u32 param1);
 void ov70_0225E020(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2);
 void ov70_0225E034(UnkStruct_ov70_0225DEE8 *param0);
-void ov70_0225E044(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1, u32 param2);
+void ov70_0225E044(UnkStruct_ov70_0225DEE8 *param0, const String *param1, u32 param2);
 const StringList *ov70_0225E054(const UnkStruct_ov70_0225DEE8 *param0);
 BOOL ov70_0225E064(const UnkStruct_ov70_0225DEE8 *param0, u32 param1);
 void ov70_0225E074(UnkStruct_ov70_0225DEE8 *param0, const ListMenuTemplate *param1, u16 param2, u16 param3);
@@ -59,13 +59,13 @@ void ov70_0225E0E4(UnkStruct_ov70_0225DEE8 *param0, u16 *param1, u16 *param2);
 void ov70_0225E0F4(UnkStruct_ov70_0225DEE8 *param0, BOOL param1);
 void ov70_0225E104(UnkStruct_ov70_0225DEE8 *param0, u8 param1, u8 param2, u8 param3, u8 param4);
 void ov70_0225E12C(UnkStruct_ov70_0225DEE8 *param0);
-void ov70_0225E13C(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1, u8 param2, u8 param3);
+void ov70_0225E13C(UnkStruct_ov70_0225DEE8 *param0, const String *param1, u8 param2, u8 param3);
 void ov70_0225E14C(UnkStruct_ov70_0225DEE8 *param0, u16 param1, u16 param2, u16 param3, u16 param4);
 void ov70_0225E164(UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225E194(UnkStruct_ov70_0225DEE8 *param0);
 int ov70_0225E1C4(UnkStruct_ov70_0225DEE8 *param0);
 void ov70_0225E1F8(UnkStruct_ov70_0225DEE8 *param0);
-Strbuf *ov70_0225E20C(UnkStruct_ov70_0225DEE8 *param0, int param1, u32 param2);
+String *ov70_0225E20C(UnkStruct_ov70_0225DEE8 *param0, int param1, u32 param2);
 void ov70_0225E21C(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2, u32 param3, int param4);
 void ov70_0225E234(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2);
 void ov70_0225E27C(UnkStruct_ov70_0225DEE8 *param0, enum PlazaMinigame param1, u32 param2);

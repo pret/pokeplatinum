@@ -31,7 +31,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "tv_episode_segment.h"
 #include "unk_020298BC.h"
@@ -253,11 +253,11 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
 
 static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
 {
-    Strbuf *v0 = Strbuf_Init(64, HEAP_ID_FIELD1);
+    String *v0 = String_Init(64, HEAP_ID_FIELD1);
 
-    Strbuf_CopyChars(v0, param2);
-    StringTemplate_SetStrbuf(param0, param1, v0, param3, param5, param4);
-    Strbuf_Free(v0);
+    String_CopyChars(v0, param2);
+    StringTemplate_SetString(param0, param1, v0, param3, param5, param4);
+    String_Free(v0);
 }
 
 static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
@@ -296,15 +296,15 @@ static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
 
 static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
 {
-    Strbuf *v0;
+    String *v0;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E81C *v2 = sub_0202E81C(broadcast);
 
-    v0 = Strbuf_Init(64, HEAP_ID_FIELD1);
+    v0 = String_Init(64, HEAP_ID_FIELD1);
 
-    Strbuf_CopyChars(v0, v2->unk_06);
-    StringTemplate_SetStrbuf(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
-    Strbuf_Free(v0);
+    String_CopyChars(v0, v2->unk_06);
+    StringTemplate_SetString(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
+    String_Free(v0);
 }
 
 static BOOL sub_02049348(FieldSystem *fieldSystem)

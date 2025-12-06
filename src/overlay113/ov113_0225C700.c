@@ -54,7 +54,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -95,7 +95,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     MessageLoader *unk_30;
     Window unk_34[8];
     Window unk_B4;
-    Strbuf *unk_C4;
+    String *unk_C4;
     u8 unk_C8;
     Camera *camera;
     fx32 unk_D0;
@@ -158,9 +158,9 @@ static void ov113_0225E068(UnkStruct_ov113_0225DBCC *param0, int param1);
 static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC *param0, int param1);
 static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0);
 static int ov113_0225DE98(UnkStruct_ov113_0225DBCC *param0);
-static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9);
+static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const String *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9);
 static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0);
-static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3);
+static void ov113_0225E264(const String *param0, int param1, int *param2, int *param3);
 static void ov113_0225E294(UnkStruct_ov113_0225DBCC *param0);
 static BOOL ov113_0225E318(UnkStruct_ov113_0225DBCC *param0, int param1);
 
@@ -389,7 +389,7 @@ int ov113_0225C700(ApplicationManager *appMan, int *param1)
     ov113_0225D9FC(v0);
     ov113_0225DBCC(v0);
 
-    v0->unk_C4 = Strbuf_Init(256, HEAP_ID_118);
+    v0->unk_C4 = String_Init(256, HEAP_ID_118);
     v0->unk_1C = SpriteSystem_Alloc(118);
 
     SpriteSystem_Init(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, 16 + 16);
@@ -496,7 +496,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
     case 3:
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
-        MessageLoader_GetStrbuf(v0->unk_30, 2, v0->unk_C4);
+        MessageLoader_GetString(v0->unk_30, 2, v0->unk_C4);
         v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->saveData)), NULL);
         (*param1)++;
         break;
@@ -546,7 +546,7 @@ int ov113_0225CA04(ApplicationManager *appMan, int *param1)
     case 6:
         Window_FillTilemap(&v0->unk_B4, 0xf);
         Window_DrawMessageBoxWithScrollCursor(&v0->unk_B4, 0, 1, 14);
-        MessageLoader_GetStrbuf(v0->unk_30, 3, v0->unk_C4);
+        MessageLoader_GetString(v0->unk_30, 3, v0->unk_C4);
         v0->unk_C8 = Text_AddPrinterWithParams(&v0->unk_B4, FONT_MESSAGE, v0->unk_C4, 0, 0, Options_TextFrameDelay(SaveData_GetOptions(v0->saveData)), NULL);
         (*param1)++;
         break;
@@ -624,7 +624,7 @@ int ov113_0225CDFC(ApplicationManager *appMan, int *param1)
     sub_02015938(v0->unk_24);
     ov113_0225E378(&v0->unk_194);
 
-    Strbuf_Free(v0->unk_C4);
+    String_Free(v0->unk_C4);
     Font_Free(FONT_SUBSCREEN);
     sub_020127BC(v0->unk_10);
     MessageLoader_Free(v0->unk_30);
@@ -982,12 +982,12 @@ static void ov113_0225D484(UnkStruct_ov113_0225DBCC *param0)
     }
 
     {
-        Strbuf *v2;
+        String *v2;
 
-        v2 = MessageLoader_GetNewStrbuf(param0->unk_30, 1);
+        v2 = MessageLoader_GetNewString(param0->unk_30, 1);
         ov113_0225E15C(param0, &param0->unk_19C0, v2, FONT_SUBSCREEN, TEXT_COLOR(1, 2, 3), 0, 10003, 0x1c * 8, 176, 1);
         sub_020129D0(param0->unk_19C0.unk_00, 1);
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 }
 
@@ -1479,7 +1479,7 @@ static void ov113_0225E118(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9)
+static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_0225E250 *param1, const String *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -1540,9 +1540,9 @@ static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0)
     CharTransfer_ClearRange(&param0->unk_04);
 }
 
-static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3)
+static void ov113_0225E264(const String *param0, int param1, int *param2, int *param3)
 {
-    int v0 = Font_CalcStrbufWidth(param1, param0, 0);
+    int v0 = Font_CalcStringWidth(param1, param0, 0);
     int v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {

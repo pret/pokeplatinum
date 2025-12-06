@@ -33,7 +33,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
@@ -234,51 +234,51 @@ static void ov62_0223E01C(UnkStruct_0208C06C *param0)
 
 static void ov62_0223E0FC(UnkStruct_0208C06C *param0, int param1, int param2)
 {
-    Strbuf *v0;
+    String *v0;
     Window *v1 = &param0->unk_8A4;
     UnkStruct_ov62_0223E01C *v2 = param0->unk_860;
 
     if (param1 == 100) {
         StringTemplate *v3;
-        Strbuf *v4;
-        Strbuf *v5;
+        String *v4;
+        String *v5;
         UnkStruct_02030A80 *v6 = v2->unk_194.unk_00;
 
         v3 = ov62_02231690(HEAP_ID_102);
-        v0 = Strbuf_Init(255, HEAP_ID_102);
+        v0 = String_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, HEAP_ID_102);
         ov62_022349A8(param0, v4);
-        v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
-        StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);
+        v5 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
+        StringTemplate_SetString(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v5);
-        Strbuf_Free(v4);
-        Strbuf_Free(v5);
+        String_Free(v4);
+        String_Free(v5);
         StringTemplate_Free(v3);
     } else if (param1 == 102) {
         StringTemplate *v7;
-        Strbuf *v8;
-        Strbuf *v9;
+        String *v8;
+        String *v9;
         UnkStruct_02030A80 *v10 = param0->unk_88C[param2];
 
         v7 = ov62_02231690(HEAP_ID_102);
-        v0 = Strbuf_Init(255, HEAP_ID_102);
+        v0 = String_Init(255, HEAP_ID_102);
         v8 = sub_02030B94(v10, HEAP_ID_102);
         ov62_022349A8(param0, v8);
-        v9 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
+        v9 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
 
-        StringTemplate_SetStrbuf(v7, 0, v8, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetString(v7, 0, v8, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v7, v0, v9);
-        Strbuf_Free(v8);
-        Strbuf_Free(v9);
+        String_Free(v8);
+        String_Free(v9);
         StringTemplate_Free(v7);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
+        v0 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
     }
 
     Window_FillTilemap(v1, 0xCC);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 12), NULL);
     Window_ScheduleCopyToVRAM(v1);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 static BOOL ov62_0223E22C(UnkStruct_0208C06C *param0)
@@ -812,28 +812,28 @@ BOOL (*const Unk_ov62_022490DC[])(UnkStruct_0208C06C *) = {
 
 static void ov62_0223EE88(UnkStruct_ov62_022312B0 *param0, UnkStruct_0208C06C *param1, int param2)
 {
-    Strbuf *v0;
+    String *v0;
     MessageLoader *v1;
     Window v2;
     StringTemplate *v3;
-    Strbuf *v4;
-    Strbuf *v5;
+    String *v4;
+    String *v5;
 
     v1 = param1->unk_14.unk_34;
 
     if (param1->unk_88C[param2] == NULL) {
-        v0 = MessageLoader_GetNewStrbuf(v1, 8);
+        v0 = MessageLoader_GetNewString(v1, 8);
     } else {
         v3 = ov62_02231690(HEAP_ID_102);
-        v4 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
+        v4 = MessageLoader_GetNewString(param1->unk_14.unk_34, 7);
         v5 = sub_02030B94(param1->unk_88C[param2], HEAP_ID_102);
         ov62_022349A8(param1, v5);
-        v0 = Strbuf_Init(255, HEAP_ID_102);
+        v0 = String_Init(255, HEAP_ID_102);
 
-        StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
+        StringTemplate_SetString(v3, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v4);
-        Strbuf_Free(v4);
-        Strbuf_Free(v5);
+        String_Free(v4);
+        String_Free(v5);
         StringTemplate_Free(v3);
     }
 
@@ -841,7 +841,7 @@ static void ov62_0223EE88(UnkStruct_ov62_022312B0 *param0, UnkStruct_0208C06C *p
     Window_AddToTopLeftCorner(param1->unk_14.unk_10, &v2, 20, 2, 0, 0);
     Text_AddPrinterWithParamsAndColor(&v2, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 13, 0), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, HEAP_ID_102);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Window_Remove(&v2);
 }
 
@@ -1161,7 +1161,7 @@ static void ov62_0223F65C(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_0223E01C *v0 = param0->unk_860;
     int v1 = 0;
     int v2 = 32;
-    Strbuf *v3;
+    String *v3;
     Window *v4;
     int v5[] = { 97, 98, 123 };
 
@@ -1171,11 +1171,11 @@ static void ov62_0223F65C(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v4, 2, 3, 3, 20, 4, 14, v2);
     Window_FillTilemap(v4, 0x0);
 
-    v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v5[v0->unk_0C]);
+    v3 = MessageLoader_GetNewString(param0->unk_14.unk_34, v5[v0->unk_0C]);
 
     Text_AddPrinterWithParamsAndColor(v4, FONT_SYSTEM, v3, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     Window_ScheduleCopyToVRAM(v4);
-    Strbuf_Free(v3);
+    String_Free(v3);
 
     v2 = 256;
     v4 = &v0->unk_94[0];
@@ -1184,7 +1184,7 @@ static void ov62_0223F65C(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v4, 6, 11, 6, 10, 4, 14, v2);
     Window_FillTilemap(v4, 0x0);
 
-    v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 95);
+    v3 = MessageLoader_GetNewString(param0->unk_14.unk_34, 95);
 
     {
         u32 v6 = (80 - Font_CalcMaxLineWidth(FONT_SYSTEM, v3, 0)) / 2;
@@ -1192,7 +1192,7 @@ static void ov62_0223F65C(UnkStruct_0208C06C *param0)
     }
 
     Window_ScheduleCopyToVRAM(v4);
-    Strbuf_Free(v3);
+    String_Free(v3);
 
     v0->unk_1FB4 = 1;
     v0->unk_1FB8 = 1;
@@ -1654,7 +1654,7 @@ static BOOL ov62_02240084(UnkStruct_0208C06C *param0)
 
 static void ov62_022402FC(UnkStruct_0208C06C *param0, int param1, BOOL param2)
 {
-    Strbuf *v0;
+    String *v0;
     Window *v1 = &param0->unk_8A4;
     UnkStruct_ov62_0223E01C *v2 = param0->unk_860;
 
@@ -1666,28 +1666,28 @@ static void ov62_022402FC(UnkStruct_0208C06C *param0, int param1, BOOL param2)
 
     if (param1 == 100) {
         StringTemplate *v3;
-        Strbuf *v4;
-        Strbuf *v5;
+        String *v4;
+        String *v5;
         UnkStruct_02030A80 *v6 = v2->unk_194.unk_00;
 
         v3 = ov62_02231690(HEAP_ID_102);
-        v0 = Strbuf_Init(255, HEAP_ID_102);
+        v0 = String_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, HEAP_ID_102);
         ov62_022349A8(param0, v4);
-        v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
-        StringTemplate_SetStrbuf(v3, 0, v4, 0, 1, GAME_LANGUAGE);
+        v5 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
+        StringTemplate_SetString(v3, 0, v4, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v5);
-        Strbuf_Free(v4);
-        Strbuf_Free(v5);
+        String_Free(v4);
+        String_Free(v5);
         StringTemplate_Free(v3);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
+        v0 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
     }
 
     Window_FillTilemap(v1, 0xCC);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 12), NULL);
     Window_ScheduleCopyToVRAM(v1);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 static BOOL ov62_022403F8(UnkStruct_0208C06C *a0)
@@ -1855,16 +1855,16 @@ static void ov62_022408A8(UnkStruct_0208C06C *param0, int param1)
 {
     UnkStruct_ov62_0223E01C *v0 = param0->unk_860;
     Window *v1;
-    Strbuf *v2;
+    String *v2;
     int v3;
 
     v1 = &v0->unk_94[0];
     Window_FillTilemap(v1, 0x0);
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v1);
 }
 
@@ -1885,7 +1885,7 @@ static void ov62_02240944(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_0223E01C *v0 = param0->unk_860;
     Window *v1;
-    Strbuf *v2;
+    String *v2;
     int v3 = 1;
     int v4;
 
@@ -1895,11 +1895,11 @@ static void ov62_02240944(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
     Window_FillTilemap(v1, 0x0);
 
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 130);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 130);
     v4 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v1);
 
     v3 += (10 * 2);
@@ -1909,11 +1909,11 @@ static void ov62_02240944(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
     Window_FillTilemap(v1, 0x0);
 
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 131);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 131);
     v4 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v1);
 }
 

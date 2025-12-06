@@ -19,7 +19,7 @@
 #include "palette.h"
 #include "render_window.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "unk_02012744.h"
 
@@ -569,14 +569,14 @@ void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    Strbuf *v3;
+    String *v3;
     int v4;
     int v5;
     MessageLoader *v6;
     Window v7;
 
     v6 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0212, HEAP_ID_101);
-    v3 = MessageLoader_GetNewStrbuf(v6, 2 + param1);
+    v3 = MessageLoader_GetNewString(v6, 2 + param1);
 
     {
         Window_Init(&v7);
@@ -610,7 +610,7 @@ void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3
     param0->unk_2EC.unk_90[param1] = sub_020127E8(&v2);
 
     sub_02012AC0(param0->unk_2EC.unk_90[param1], param4);
-    Strbuf_Free(v3);
+    String_Free(v3);
     MessageLoader_Free(v6);
     Window_Remove(&v7);
 }
@@ -628,17 +628,17 @@ void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int 
 void sub_0208B230(Window *param0, int param1)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
 
     Window_FillTilemap(param0, 15);
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0212, HEAP_ID_101);
-    v1 = MessageLoader_GetNewStrbuf(v0, param1);
+    v1 = MessageLoader_GetNewString(v0, param1);
 
     Window_FillTilemap(param0, 15);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
     Window_CopyToVRAM(param0);
 
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
 }

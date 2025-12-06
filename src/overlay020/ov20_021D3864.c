@@ -16,7 +16,7 @@
 #include "message.h"
 #include "narc.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 typedef struct UnkStruct_ov20_021D3980_t {
@@ -73,19 +73,19 @@ void ov20_021D3898(UnkStruct_ov20_021D3980 *param0, NARC *param1)
 static void ov20_021D390C(BgConfig *param0, const WindowTemplate *param1, u32 param2)
 {
     Window v0;
-    Strbuf *v1;
+    String *v1;
     u32 v2;
 
     Window_AddFromTemplate(param0, &v0, param1);
     Window_PutToTilemap(&v0);
     Window_FillTilemap(&v0, 14);
 
-    v1 = MessageBank_GetNewStrbufFromNARC(26, 438, param2, 35);
-    v2 = ((param1->width * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0)) / 2;
+    v1 = MessageBank_GetNewStringFromNARC(26, 438, param2, 35);
+    v2 = ((param1->width * 8) - Font_CalcStringWidth(FONT_SYSTEM, v1, 0)) / 2;
 
     Text_AddPrinterWithParamsAndColor(&v0, FONT_SYSTEM, v1, v2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 14), NULL);
     Window_LoadTiles(&v0);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_Remove(&v0);
 }
 

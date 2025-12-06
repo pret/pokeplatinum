@@ -15,14 +15,14 @@
 #include "party.h"
 #include "pokemon.h"
 #include "save_player.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 #include "unk_0202F180.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 
-static inline Strbuf *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID);
-static Strbuf *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID);
+static inline String *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID);
+static String *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID);
 static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTrade, u32 level, u32 npcTradeID, u32 heapID, u32 mapID);
 
 NpcTradeData *NpcTrade_Init(u32 heapID, u32 npcTradeID)
@@ -39,11 +39,11 @@ NpcTradeData *NpcTrade_Init(u32 heapID, u32 npcTradeID)
     data->trainerInfo = TrainerInfo_New(heapID);
 
     TrainerInfo_Init(data->trainerInfo);
-    Strbuf *strbuf = NpcTrade_GetOtName(heapID, npcTradeID);
+    String *string = NpcTrade_GetOtName(heapID, npcTradeID);
 
     u16 otName[128];
-    Strbuf_ToChars(strbuf, otName, NELEMS(otName));
-    Strbuf_Free(strbuf);
+    String_ToChars(string, otName, NELEMS(otName));
+    String_Free(string);
     TrainerInfo_SetName(data->trainerInfo, otName);
     TrainerInfo_SetGender(data->trainerInfo, data->npcTradeMon->otGender);
 
@@ -101,26 +101,26 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, TradeA
     }
 }
 
-static inline Strbuf *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID)
+static inline String *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID)
 {
     return NpcTrade_GetNickname(heapID, MAX_NPC_TRADES + npcTradeID);
 }
 
-static Strbuf *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID)
+static String *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID)
 {
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRADE_NAMES, heapID);
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(loader, npcTradeID);
+    String *string = MessageLoader_GetNewString(loader, npcTradeID);
     MessageLoader_Free(loader);
-    return strbuf;
+    return string;
 }
 
 static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level, u32 npcTradeID, u32 heapID, u32 mapID)
 {
     Pokemon_InitWith(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
 
-    Strbuf *strbuf = NpcTrade_GetNickname(heapID, npcTradeID);
-    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, strbuf);
-    Strbuf_Free(strbuf);
+    String *string = NpcTrade_GetNickname(heapID, npcTradeID);
+    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, string);
+    String_Free(string);
 
     u8 hasNickname = TRUE;
     Pokemon_SetValue(mon, MON_DATA_HAS_NICKNAME, &hasNickname);
@@ -137,9 +137,9 @@ static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level
     Pokemon_SetValue(mon, MON_DATA_TOUGH, &npcTradeMon->tough);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &npcTradeMon->heldItem);
 
-    strbuf = NpcTrade_GetOtName(heapID, npcTradeID);
-    Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, strbuf);
-    Strbuf_Free(strbuf);
+    string = NpcTrade_GetOtName(heapID, npcTradeID);
+    Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, string);
+    String_Free(string);
 
     Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &npcTradeMon->otGender);
     Pokemon_SetValue(mon, MON_DATA_LANGUAGE, &npcTradeMon->language);

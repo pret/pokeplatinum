@@ -40,7 +40,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "unk_02012744.h"
 
@@ -1998,7 +1998,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
     return 1;
 }
 
-void ov117_02265DB8(BgConfig *param0, SpriteManager *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov117_02265DB8(BgConfig *param0, SpriteManager *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const String *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -2225,16 +2225,16 @@ ManagedSprite *ov117_02266130(UnkStruct_ov117_02261280 *param0)
 
 void ov117_02266150(UnkStruct_ov117_02261280 *param0)
 {
-    Strbuf *v0;
+    String *v0;
     int v1, v2, v3;
     u32 v4 = param0->unk_3D4C;
     for (v1 = 6 - 1; v1 >= 0; v1--) {
         GF_ASSERT(param0->unk_15A8.unk_108[v1].unk_00 == NULL);
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 4 + (v4 % 10));
+        v0 = MessageLoader_GetNewString(param0->unk_80, 4 + (v4 % 10));
         v4 /= 10;
         FontOAM_GetXY(param0->unk_15A8.unk_04[v1][0].unk_00, &v2, &v3);
         ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_108[v1], v0, FONT_SYSTEM, TEXT_COLOR(14, 15, 0), 0, 10003, v2, 168, 0, 1, 12, 2 * 1);
-        Strbuf_Free(v0);
+        String_Free(v0);
     }
 }
 

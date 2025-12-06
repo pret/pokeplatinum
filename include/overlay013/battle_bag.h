@@ -12,7 +12,7 @@
 #include "message.h"
 #include "palette.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 
@@ -110,7 +110,7 @@ typedef struct BattleBag {
     FontSpecialCharsContext *unk_0C;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
-    Strbuf *strbuf;
+    String *string;
     Window messageBoxWindow;
     Window *windows;
     u8 numWindows;

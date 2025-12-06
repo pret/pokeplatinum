@@ -64,7 +64,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -104,7 +104,7 @@ typedef struct {
     UnkStruct_02095C60 *unk_734;
     const Options *options;
     u32 unk_73C;
-    Strbuf *unk_740;
+    String *unk_740;
     StringTemplate *unk_744;
 } UnkStruct_ov22_02255D44;
 
@@ -1128,17 +1128,17 @@ static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *p
 {
     UnkStruct_ov22_02259560 *v0;
     int v1;
-    Strbuf *v2;
+    String *v2;
     int v3;
 
     sub_02029F84(param0);
     sub_02029FAC(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param2) {
-        v2 = TrainerInfo_NameNewStrbuf(param2, 13);
+        v2 = TrainerInfo_NameNewString(param2, 13);
         v3 = TrainerInfo_Gender(param2);
         sub_0202A0EC(param0, v2, v3);
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     v1 = 0;
@@ -1174,7 +1174,7 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     int v1;
     UnkStruct_ov22_02256FD8 *v2;
     UnkStruct_ov22_02259560 *v3;
-    Strbuf *v4;
+    String *v4;
     int v5;
 
     v2 = Heap_Alloc(HEAP_ID_13, sizeof(UnkStruct_ov22_02256FD8));
@@ -1183,10 +1183,10 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param3) {
-        v4 = TrainerInfo_NameNewStrbuf(param3, 13);
+        v4 = TrainerInfo_NameNewString(param3, 13);
         v5 = TrainerInfo_Gender(param3);
         sub_0202A4B4(param0, v4, v5);
-        Strbuf_Free(v4);
+        String_Free(v4);
     }
 
     ov22_02257778(v2, &param1->unk_00.unk_14, 1);
@@ -1321,7 +1321,7 @@ static u32 ov22_02257278(UnkStruct_ov22_02255D44 *param0)
 static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
     int v2 = Options_Frame(param0->options);
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, HEAP_ID_14);
@@ -1331,10 +1331,10 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
-    v1 = MessageLoader_GetNewStrbuf(v0, param1);
+    v1 = MessageLoader_GetNewString(v0, param1);
 
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
     Window_CopyToVRAM(param0->unk_718);
 }
@@ -1342,19 +1342,19 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
 static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
 {
     MessageLoader *v0;
-    Strbuf *v1;
-    Strbuf *v2;
+    String *v1;
+    String *v2;
 
     Window_FillTilemap(param0->unk_718, 15);
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
-    v2 = MessageLoader_GetNewStrbuf(v0, param1);
-    v1 = Strbuf_Init(256, HEAP_ID_13);
+    v2 = MessageLoader_GetNewString(v0, param1);
+    v1 = String_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
     MessageLoader_Free(v0);
     Window_CopyToVRAM(param0->unk_718);
 }
@@ -1364,15 +1364,15 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
     u32 v0;
     MessageLoader *v1;
     u32 v2;
-    Strbuf *v3;
+    String *v3;
 
     GF_ASSERT(param0->unk_740 == NULL);
 
     Window_FillTilemap(param0->unk_718, 15);
 
     v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
-    v3 = MessageLoader_GetNewStrbuf(v1, param1);
-    param0->unk_740 = Strbuf_Init(256, HEAP_ID_13);
+    v3 = MessageLoader_GetNewString(v1, param1);
+    param0->unk_740 = String_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 
@@ -1384,7 +1384,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, param0->unk_740, 0, 0, v2, TEXT_COLOR(1, 2, 15), NULL);
 
-    Strbuf_Free(v3);
+    String_Free(v3);
     MessageLoader_Free(v1);
     Window_CopyToVRAM(param0->unk_718);
 
@@ -1393,7 +1393,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
 static void ov22_02257498(UnkStruct_ov22_02255D44 *param0)
 {
-    Strbuf_Free(param0->unk_740);
+    String_Free(param0->unk_740);
     param0->unk_740 = NULL;
 }
 

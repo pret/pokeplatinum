@@ -1,20 +1,20 @@
 #ifndef POKEPLATINUM_STRUCT_OV79_021D0E1C_SUB1_H
 #define POKEPLATINUM_STRUCT_OV79_021D0E1C_SUB1_H
 
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 typedef struct {
     StringTemplate *unk_00;
-    Strbuf *unk_04;
-    Strbuf *unk_08;
-    Strbuf *unk_0C;
-    Strbuf *unk_10;
-    Strbuf *unk_14;
-    Strbuf *unk_18;
-    Strbuf *unk_1C;
-    Strbuf *unk_20[6];
-    Strbuf *unk_38[5];
+    String *unk_04;
+    String *unk_08;
+    String *unk_0C;
+    String *unk_10;
+    String *unk_14;
+    String *unk_18;
+    String *unk_1C;
+    String *unk_20[6];
+    String *unk_38[5];
     u8 unk_4C;
     u8 unk_4D[3];
 } UnkStruct_ov79_021D0E1C_sub1;

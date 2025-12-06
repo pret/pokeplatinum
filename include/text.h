@@ -4,7 +4,7 @@
 #include "bg_window.h"
 #include "font.h"
 #include "render_text.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef u32 TextColor;
 
@@ -33,9 +33,9 @@ void Text_SetFontAttributesPtr(const FontAttributes *fontAttributes);
 void Text_ResetAllPrinters(void);
 u8 Text_IsPrinterActive(u8 printerID);
 void Text_RemovePrinter(u8 printerID);
-u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback);
-u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, TextPrinterCallback callback);
-u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const Strbuf *strbuf, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback);
+u8 Text_AddPrinterWithParams(Window *window, u32 fontID, const String *string, u32 xOffset, u32 yOffset, u32 renderDelay, TextPrinterCallback callback);
+u8 Text_AddPrinterWithParamsAndColor(Window *window, u32 fontID, const String *string, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, TextPrinterCallback callback);
+u8 Text_AddPrinterWithParamsColorAndSpacing(Window *window, u32 fontID, const String *string, u32 xOffset, u32 yOffset, u32 renderDelay, TextColor color, u32 letterSpacing, u32 lineSpacing, TextPrinterCallback callback);
 u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPrinterCallback callback);
 void Text_GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor);
 void Text_DecompressGlyph(u8 *src, u8 *dst);

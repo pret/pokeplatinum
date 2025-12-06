@@ -25,7 +25,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -301,7 +301,7 @@ BOOL TownMap_UpdateDisplayedLocationInfo(TownMapAppData *appData)
     }
 
     PrintLocationDescription(appData, &(graphicsMan->windows[TOWN_MAP_WINDOW_LOCATION_DESCRIPTION]), mapBlock);
-    Strbuf_Clear(appData->hoveredMapName);
+    String_Clear(appData->hoveredMapName);
     LoadMapName(appData, header, graphicsMan->cursorX, graphicsMan->cursorZ);
     LoadSignpostContentGraphics(appData->bgConfig, BG_LAYER_SUB_0, BASE_TILE_SIGNPOST_GRAPHIC, PLTT_14, mapBlock->signpostType, mapBlock->signpostNARCMemberIdx, appData->heapID);
 
@@ -500,7 +500,7 @@ static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapH
     TextColor textColor;
     TownMapGraphicsManager *graphicsMan = appData->graphicsMan;
 
-    Strbuf_Clear(appData->hoveredMapName);
+    String_Clear(appData->hoveredMapName);
     Window_FillTilemap(window, 0);
 
     textColor = TEXT_COLOR(1, 2, 0);
@@ -513,7 +513,7 @@ static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapH
             xOffset = 15 * TILE_WIDTH_PIXELS + 2;
         } else {
             // Centered.
-            xOffset = HW_LCD_WIDTH - 6 * TILE_WIDTH_PIXELS - Font_CalcStrbufWidth(FONT_SYSTEM, appData->hoveredMapName, 0);
+            xOffset = HW_LCD_WIDTH - 6 * TILE_WIDTH_PIXELS - Font_CalcStringWidth(FONT_SYSTEM, appData->hoveredMapName, 0);
             xOffset /= 2;
         }
 
@@ -521,10 +521,10 @@ static void PrintLocationName(TownMapAppData *appData, Window *window, enum MapH
     }
 
     if (appData->mode == TOWN_MAP_MODE_FLY) {
-        Strbuf *string = MessageLoader_GetNewStrbuf(appData->townMapStrings, 0);
+        String *string = MessageLoader_GetNewString(appData->townMapStrings, 0);
 
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 6, TEXT_SPEED_NO_TRANSFER, textColor, NULL);
-        Strbuf_Free(string);
+        String_Free(string);
     }
 
     Window_CopyToVRAM(window);
@@ -543,15 +543,15 @@ static void PrintLocationDescription(TownMapAppData *appData, Window *window, To
     Window_FillTilemap(window, 0);
 
     if ((mapBlock->areaDescString != 0xFFFF) && ((appData->context->descCheckResults[mapBlock->index].areaDescHasCheck == FALSE) || appData->context->descCheckResults[mapBlock->index].areaDescCheckResult)) {
-        Strbuf *areaDescString = MessageLoader_GetNewStrbuf(appData->townMapStrings, mapBlock->areaDescString);
+        String *areaDescString = MessageLoader_GetNewString(appData->townMapStrings, mapBlock->areaDescString);
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, areaDescString, mapBlock->areaDescX, mapBlock->areaDescY, TEXT_SPEED_NO_TRANSFER, color, NULL);
-        Strbuf_Free(areaDescString);
+        String_Free(areaDescString);
     }
 
     if ((mapBlock->landmarkDescString != 0xFFFF) && ((appData->context->descCheckResults[mapBlock->index].landmarkDescHasCheck == FALSE) || appData->context->descCheckResults[mapBlock->index].landmarkCheckResult)) {
-        Strbuf *landmarkDescString = MessageLoader_GetNewStrbuf(appData->townMapStrings, mapBlock->landmarkDescString);
+        String *landmarkDescString = MessageLoader_GetNewString(appData->townMapStrings, mapBlock->landmarkDescString);
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, landmarkDescString, mapBlock->landmarkDescX, mapBlock->landmarkDescY, TEXT_SPEED_NO_TRANSFER, color, NULL);
-        Strbuf_Free(landmarkDescString);
+        String_Free(landmarkDescString);
     }
 }
 
@@ -632,15 +632,15 @@ static void PrintBottomScreenHeader(TownMapAppData *appData, Window *window)
 {
     Bg_CopyRectToTilemapRect(appData->bgConfig, BG_LAYER_SUB_1, 10, 0, 12, 2, appData->zoomButtonStates->rawData, 0, 7, appData->zoomButtonStates->screenWidth / 8, appData->zoomButtonStates->screenHeight / 8);
 
-    Strbuf *string = MessageLoader_GetNewStrbuf(appData->townMapStrings, 1);
-    u32 yOffset = (10 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, string, 0);
+    String *string = MessageLoader_GetNewString(appData->townMapStrings, 1);
+    u32 yOffset = (10 * 8) - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     yOffset /= 2;
     TextColor color = TEXT_COLOR(1, 2, 0);
 
     Window_FillTilemap(window, 0);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, yOffset, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
     Window_CopyToVRAM(window);
-    Strbuf_Free(string);
+    String_Free(string);
 }
 
 static void MakeAppWindows(TownMapAppData *appData)

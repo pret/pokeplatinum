@@ -4,7 +4,7 @@
 #include "generated/text_banks.h"
 
 #include "narc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct MessageBankEntry {
     u32 offset;
@@ -76,72 +76,72 @@ void MessageBank_GetFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 he
 
 /**
  * @brief Get an entry out of the pre-loaded message bank and copy it into the
- * destination Strbuf struct.
+ * destination String struct.
  *
  * @param bank      Loaded message bank.
  * @param entryID   Entry in the message bank to load.
- * @param strbuf    Destination Strbuf struct.
+ * @param string    Destination String struct.
  */
-void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf);
+void MessageBank_GetString(const MessageBank *bank, u32 entryID, String *string);
 
 /**
  * @brief Load a message bank from an archive, then load an entry from that bank
- * and copy it into a newly-allocated Strbuf struct.
+ * and copy it into a newly-allocated String struct.
  *
  * @param bank      Loaded message bank.
  * @param entryID   Entry in the message bank to load.
- * @param heapID    Heap on which to allocate the new Strbuf struct.
- * @return A newly-allocated Strbuf struct containing the loaded bank entry.
+ * @param heapID    Heap on which to allocate the new String struct.
+ * @return A newly-allocated String struct containing the loaded bank entry.
  */
-Strbuf *MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapID);
+String *MessageBank_GetNewString(const MessageBank *bank, u32 entryID, u32 heapID);
 
 /**
  * @brief Load a message bank from an archive, then load an entry from that bank
- * and copy it into the destination Strbuf struct.
+ * and copy it into the destination String struct.
  *
  * @param narcID    Archive from which to load the message bank.
  * @param bankID    Index of the bank to load from the archive.
  * @param entryID   Index of the entry to load from the bank.
  * @param heapID    Heap on which to allocate the loaded archive.
- * @param strbuf    Destination Strbuf struct.
+ * @param string    Destination String struct.
  */
-void MessageBank_GetStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf);
+void MessageBank_GetStringFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, String *string);
 
 /**
  * @brief Load a message bank from an archive, then load an entry from that bank
- * and copy it into the destination Strbuf struct.
+ * and copy it into the destination String struct.
  *
  * @param narc      Archive from which to load the message bank.
  * @param bankID    Index of the bank to load from the archive.
  * @param entryID   Index of the entry to load from the bank.
  * @param heapID    Heap on which to allocate the loaded archive.
- * @param strbuf    Destination Strbuf struct.
+ * @param string    Destination String struct.
  */
-void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf);
+void MessageBank_GetStringFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID, String *string);
 
 /**
  * @brief Load a message bank from an archive, then load an entry from that bank
- * and copy it into a destination Strbuf struct.
+ * and copy it into a destination String struct.
  *
  * @param narcID    Archive from which to load the message bank.
  * @param bankID    Index of the bank to load from the archive.
  * @param entryID   Index of the entry to load from the bank.
  * @param heapID    Heap on which to allocate the loaded archive.
- * @return A newly-allocated Strbuf struct containing the loaded bank entry.
+ * @return A newly-allocated String struct containing the loaded bank entry.
  */
-Strbuf *MessageBank_GetNewStrbufFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID);
+String *MessageBank_GetNewStringFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID);
 
 /**
  * @brief Load a message bank from an archive, then load an entry from that bank
- * and copy it into a destination Strbuf struct.
+ * and copy it into a destination String struct.
  *
  * @param narc      Archive from which to load the message bank.
  * @param bankID    Index of the bank to load from the archive.
  * @param entryID   Index of the entry to load from the bank.
  * @param heapID    Heap on which to allocate the loaded archive.
- * @return A newly-allocated Strbuf struct containing the loaded bank entry.
+ * @return A newly-allocated String struct containing the loaded bank entry.
  */
-Strbuf *MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID);
+String *MessageBank_GetNewStringFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID);
 
 /**
  * @brief Get the number of entries in a pre-loaded message bank.
@@ -180,22 +180,22 @@ MessageLoader *MessageLoader_Init(enum MessageLoaderMode mode, enum NarcID narcI
 void MessageLoader_Free(MessageLoader *loader);
 
 /**
- * @brief Load a bank entry into the destination Strbuf struct.
+ * @brief Load a bank entry into the destination String struct.
  *
  * @param loader    The loader; controls the entry load from a message bank.
  * @param entryID   The entry to be loaded from the loader's target bank.
- * @param strbuf    Destination Strbuf struct.
+ * @param string    Destination String struct.
  */
-void MessageLoader_GetStrbuf(const MessageLoader *loader, u32 entryID, Strbuf *strbuf);
+void MessageLoader_GetString(const MessageLoader *loader, u32 entryID, String *string);
 
 /**
- * @brief Load a bank entry and copy it into a newly-allocated Strbuf struct.
+ * @brief Load a bank entry and copy it into a newly-allocated String struct.
  *
  * @param loader    The loader; controls the entry load from a message bank.
  * @param entryID   The entry to be loaded from the loader's target bank.
- * @return A newly-allocated Strbuf struct containing the loaded bank entry.
+ * @return A newly-allocated String struct containing the loaded bank entry.
  */
-Strbuf *MessageLoader_GetNewStrbuf(const MessageLoader *loader, u32 entryID);
+String *MessageLoader_GetNewString(const MessageLoader *loader, u32 entryID);
 
 /**
  * @brief Get the number of entries in the loader's target message bank.

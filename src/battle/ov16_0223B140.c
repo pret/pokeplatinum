@@ -66,7 +66,7 @@
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -611,7 +611,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->unk_0C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
-    battleSys->msgBuffer = Strbuf_Init(2 * 160, HEAP_ID_BATTLE);
+    battleSys->msgBuffer = String_Init(2 * 160, HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 0), &battleSys->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 2), &battleSys->unk_2304[0], 0x20 * 7);
@@ -1726,15 +1726,15 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
 
     {
         MessageLoader *v5;
-        Strbuf *v6;
+        String *v6;
 
         v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
-        v6 = Strbuf_Init(0x100, HEAP_ID_BATTLE);
+        v6 = String_Init(0x100, HEAP_ID_BATTLE);
 
-        MessageLoader_GetStrbuf(v5, 923, v6);
+        MessageLoader_GetString(v5, 923, v6);
         Text_AddPrinterWithParams(v0->unk_08, FONT_MESSAGE, v6, 0, 0, NULL, NULL);
 
-        Strbuf_Free(v6);
+        String_Free(v6);
         MessageLoader_Free(v5);
     }
 
@@ -2083,7 +2083,7 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     if (battleSys->battleType & BATTLE_TYPE_2vs2) {
         for (v3 = 0; v3 < 4; v3++) {
             battleSys->unk_1C0->unk_04[sub_020362F4(v3)] = battleSys->parties[v3];
-            battleSys->unk_1C0->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(battleSys->trainerInfo[v3], 5);
+            battleSys->unk_1C0->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewString(battleSys->trainerInfo[v3], 5);
         }
 
         battleSys->unk_1C0->heapID = HEAP_ID_BATTLE;
@@ -2092,8 +2092,8 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     } else {
         battleSys->unk_1C0->unk_04[sub_020362F4(v2)] = battleSys->parties[v2];
         battleSys->unk_1C0->unk_04[sub_020362F4(v2 ^ 1)] = battleSys->parties[v2 ^ 1];
-        battleSys->unk_1C0->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(battleSys->trainerInfo[v2], 5);
-        battleSys->unk_1C0->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(battleSys->trainerInfo[v2 ^ 1], 5);
+        battleSys->unk_1C0->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewString(battleSys->trainerInfo[v2], 5);
+        battleSys->unk_1C0->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewString(battleSys->trainerInfo[v2 ^ 1], 5);
         battleSys->unk_1C0->heapID = HEAP_ID_BATTLE;
         battleSys->unk_1C0->unk_28 = 1;
         battleSys->unk_1C0->unk_29 = 0;
@@ -2172,7 +2172,7 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
     if (v0->battleType & BATTLE_TYPE_2vs2) {
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_04[sub_020362F4(v3)] = v0->parties[v3];
-            v1->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v3], 5);
+            v1->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewString(v0->trainerInfo[v3], 5);
         }
 
         v1->heapID = HEAP_ID_BATTLE;
@@ -2187,8 +2187,8 @@ static BOOL ov16_0223DB1C(ApplicationManager *appMan)
     } else {
         v1->unk_04[sub_020362F4(v2)] = v0->parties[v2];
         v1->unk_04[sub_020362F4(v2 ^ 1)] = v0->parties[v2 ^ 1];
-        v1->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v2], 5);
-        v1->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v2 ^ 1], 5);
+        v1->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewString(v0->trainerInfo[v2], 5);
+        v1->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewString(v0->trainerInfo[v2 ^ 1], 5);
         v1->heapID = HEAP_ID_BATTLE;
         v1->unk_28 = 2;
         v1->unk_29 = 0;

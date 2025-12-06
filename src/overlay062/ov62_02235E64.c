@@ -21,7 +21,7 @@
 #include "savedata.h"
 #include "screen_fade.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
@@ -284,7 +284,7 @@ static void ov62_022362B8(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
     Window *v1;
-    Strbuf *v2;
+    String *v2;
     int v3 = 1;
     int v4;
 
@@ -293,11 +293,11 @@ static void ov62_022362B8(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
     Window_FillTilemap(v1, 0x0);
 
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 130);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 130);
     v4 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v1);
 
     v3 += (10 * 2);
@@ -307,11 +307,11 @@ static void ov62_022362B8(UnkStruct_0208C06C *param0)
     Window_Add(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
     Window_FillTilemap(v1, 0x0);
 
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 131);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 131);
     v4 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v1);
 }
 
@@ -711,18 +711,18 @@ static void ov62_02236BC8(UnkStruct_0208C06C *param0, int param1)
 {
     UnkStruct_ov62_02235E64 *v0 = param0->unk_860;
     Window *v1;
-    Strbuf *v2;
+    String *v2;
     int v3;
 
     v1 = &v0->unk_178[0];
 
     Window_FillTilemap(v1, 0x0);
 
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v1);
 }
 

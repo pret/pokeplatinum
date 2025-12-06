@@ -7,7 +7,6 @@
 #include "hardware_window.h"
 #include "heap.h"
 #include "screen_fade.h"
-#include "string.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 

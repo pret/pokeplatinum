@@ -48,7 +48,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -89,9 +89,9 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_1B;
     MessageLoader *unk_1C;
     StringTemplate *unk_20;
-    Strbuf *unk_24;
-    Strbuf *unk_28;
-    Strbuf *unk_2C[4];
+    String *unk_24;
+    String *unk_28;
+    String *unk_2C[4];
     u16 unk_3C[8];
     BgConfig *unk_4C;
     Window unk_50[10];
@@ -2518,7 +2518,7 @@ static void ov105_02244C0C(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 static u8 ov105_02244C60(UnkStruct_ov105_02241FF4 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     Window_FillTilemap(param1, param8);
-    MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
+    MessageLoader_GetString(param0->unk_1C, param2, param0->unk_28);
     StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
     return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_24, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
@@ -2526,7 +2526,7 @@ static u8 ov105_02244C60(UnkStruct_ov105_02241FF4 *param0, Window *param1, int p
 
 static u8 ov105_02244CC0(UnkStruct_ov105_02241FF4 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
-    MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_28);
+    MessageLoader_GetString(param0->unk_1C, param2, param0->unk_28);
     StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
 
     return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_24, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
@@ -2566,7 +2566,7 @@ static void ov105_02244DC4(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param
     int v0;
     void *v1;
 
-    MessageLoader_GetStrbuf(param0->unk_1C, param3, param0->unk_2C[param1]);
+    MessageLoader_GetString(param0->unk_1C, param3, param0->unk_2C[param1]);
 
     param0->unk_100[param1].entry = (const void *)param0->unk_2C[param1];
     param0->unk_100[param1].index = param2;
@@ -2623,10 +2623,10 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 {
     TextColor v0;
     const TrainerInfo *v1 = SaveData_GetTrainerInfo(param0->saveData);
-    Strbuf *v2 = Strbuf_Init(7 + 1, HEAP_ID_93);
+    String *v2 = String_Init(7 + 1, HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
-    Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
+    String_CopyChars(v2, TrainerInfo_Name(v1));
 
     if (TrainerInfo_Gender(v1) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);
@@ -2635,7 +2635,7 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     }
 
     Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(param1);
 
     return;
@@ -2645,10 +2645,10 @@ static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 {
     TextColor v0;
     TrainerInfo *v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-    Strbuf *v1 = Strbuf_Init(7 + 1, HEAP_ID_93);
+    String *v1 = String_Init(7 + 1, HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
-    TrainerInfo_NameStrbuf(v2, v1);
+    TrainerInfo_NameString(v2, v1);
 
     if (TrainerInfo_Gender(v2) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);
@@ -2657,7 +2657,7 @@ static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     }
 
     Text_AddPrinterWithParamsAndColor(param1, param4, v1, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_ScheduleCopyToVRAM(param1);
 
     return;
@@ -2668,7 +2668,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     u8 v0;
     u32 v1, v2;
     TextColor v3;
-    Strbuf *v4;
+    String *v4;
     Pokemon *v5;
     u16 v6[(10 + 1)];
 
@@ -2676,8 +2676,8 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param7);
 
-    v4 = Strbuf_Init(10 + 1, HEAP_ID_93);
-    Strbuf_CopyChars(v4, v6);
+    v4 = String_Init(10 + 1, HEAP_ID_93);
+    String_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param5, param6, param7), NULL);
 
     v0 = Window_GetWidth(param1) - 1;
@@ -2685,14 +2685,14 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     v2 = (v1 == 0) ? 25 : 26;
     v3 = (v1 == 0) ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
 
-    Strbuf_Clear(v4);
+    String_Clear(v4);
 
     if (v1 != 2) {
-        MessageLoader_GetStrbuf(param0->unk_1C, v2, v4);
+        MessageLoader_GetString(param0->unk_1C, v2, v4);
         Text_AddPrinterWithParamsAndColor(param1, param8, v4, v0 * 8, param4, TEXT_SPEED_NO_TRANSFER, v3, NULL);
     }
 
-    Strbuf_Free(v4);
+    String_Free(v4);
     Window_ScheduleCopyToVRAM(param1);
 
     return;
@@ -2704,14 +2704,14 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     u32 v1;
     TextColor v2;
     MessageLoader *v3;
-    Strbuf *v4;
+    String *v4;
     Pokemon *v5;
     u16 v6[(10 + 1)];
 
     Window_FillTilemap(param1, param6);
 
     v3 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_93);
-    v4 = MessageLoader_GetNewStrbuf(v3, param8);
+    v4 = MessageLoader_GetNewString(v3, param8);
 
     MessageLoader_Free(v3);
     Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param4, param5, param6), NULL);
@@ -2720,14 +2720,14 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     v1 = (param9 == 0) ? 25 : 26;
     v2 = (param9 == 0) ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
 
-    Strbuf_Clear(v4);
+    String_Clear(v4);
 
     if (param9 != 2) {
-        MessageLoader_GetStrbuf(param0->unk_1C, v1, v4);
+        MessageLoader_GetString(param0->unk_1C, v1, v4);
         Text_AddPrinterWithParamsAndColor(param1, param7, v4, v0 * 8, param3, TEXT_SPEED_NO_TRANSFER, v2, NULL);
     }
 
-    Strbuf_Free(v4);
+    String_Free(v4);
 
     return;
 }
@@ -2766,11 +2766,11 @@ static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
     PokemonSpriteManager_Free(param0->unk_128);
     MessageLoader_Free(param0->unk_1C);
     StringTemplate_Free(param0->unk_20);
-    Strbuf_Free(param0->unk_24);
-    Strbuf_Free(param0->unk_28);
+    String_Free(param0->unk_24);
+    String_Free(param0->unk_28);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Strbuf_Free(param0->unk_2C[v0]);
+        String_Free(param0->unk_2C[v0]);
     }
 
     ov105_02246244(param0->unk_50);
@@ -2822,11 +2822,11 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
 
     param0->unk_1C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0364, HEAP_ID_93);
     param0->unk_20 = StringTemplate_Default(HEAP_ID_93);
-    param0->unk_24 = Strbuf_Init(800, HEAP_ID_93);
-    param0->unk_28 = Strbuf_Init(800, HEAP_ID_93);
+    param0->unk_24 = String_Init(800, HEAP_ID_93);
+    param0->unk_28 = String_Init(800, HEAP_ID_93);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2C[v0] = Strbuf_Init(64, HEAP_ID_93);
+        param0->unk_2C[v0] = String_Init(64, HEAP_ID_93);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_93);

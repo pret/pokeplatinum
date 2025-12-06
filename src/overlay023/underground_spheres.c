@@ -23,7 +23,7 @@
 #include "heap.h"
 #include "message.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -469,11 +469,11 @@ int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int idx)
     return 0;
 }
 
-BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(Strbuf *strbuf)
+BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(String *string)
 {
     int netID;
     StringTemplate *template = NULL;
-    Strbuf *fmtString = NULL;
+    String *fmtString = NULL;
     BOOL isMessageToPrint = FALSE;
 
     if (!buriedSpheresEnv) {
@@ -483,12 +483,12 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(Strbuf *strbuf)
     for (netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         if (buriedSpheresEnv->retrievedSpheres[netID] != SPHERE_NONE) {
             template = StringTemplate_Default(HEAP_ID_FIELD1);
-            fmtString = Strbuf_Init(100, HEAP_ID_FIELD1);
+            fmtString = String_Init(100, HEAP_ID_FIELD1);
 
             StringTemplate_SetUndergroundItemNameWithArticle(template, 2, buriedSpheresEnv->retrievedSpheres[netID]);
             StringTemplate_CapitalizeArgAtIndex(template, 2);
-            MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), UndergroundCommon_Text_ItemWasObtainedExclamationPoint, fmtString);
-            StringTemplate_Format(template, strbuf, fmtString);
+            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), UndergroundCommon_Text_ItemWasObtainedExclamationPoint, fmtString);
+            StringTemplate_Format(template, string, fmtString);
 
             buriedSpheresEnv->retrievedSpheres[netID] = SPHERE_NONE;
             isMessageToPrint = TRUE;
@@ -497,7 +497,7 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(Strbuf *strbuf)
     }
 
     if (fmtString) {
-        Strbuf_Free(fmtString);
+        String_Free(fmtString);
     }
 
     if (template) {

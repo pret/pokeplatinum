@@ -16,7 +16,7 @@
 #include "palette.h"
 #include "screen_fade.h"
 #include "sound.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 
@@ -441,22 +441,22 @@ static BOOL RowanIntroTv_Run(RowanIntroTv *tv, int msgEntryID, int unused0, int 
     switch (tv->state) {
     case RIT_STATE_INIT:
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-        Strbuf *tmpStrbuf = Strbuf_Init(0x400, tv->heapID);
-        MessageLoader_GetStrbuf(tv->msgLoader, msgEntryID, tmpStrbuf);
+        String *tmpString = String_Init(0x400, tv->heapID);
+        MessageLoader_GetString(tv->msgLoader, msgEntryID, tmpString);
         Window_AddFromTemplate(tv->bgConfig, &tv->window, &sMessageWindowTemplate);
         Window_FillRectWithColor(&tv->window, 0, 0, 0, 0x100, 0xc0);
-        u32 xOffset = (0x100 - Font_CalcMaxLineWidth(FONT_SYSTEM, tmpStrbuf, 0)) / 2;
-        u32 yOffset = (0xc0 - Strbuf_NumLines(tmpStrbuf) * 16) / 2;
+        u32 xOffset = (0x100 - Font_CalcMaxLineWidth(FONT_SYSTEM, tmpString, 0)) / 2;
+        u32 yOffset = (0xc0 - String_NumLines(tmpString) * 16) / 2;
         Text_AddPrinterWithParamsAndColor(
             &tv->window,
             FONT_SYSTEM,
-            tmpStrbuf,
+            tmpString,
             xOffset,
             yOffset,
             TEXT_SPEED_INSTANT,
             TEXT_COLOR(15, 2, 0),
             NULL);
-        Strbuf_Free(tmpStrbuf);
+        String_Free(tmpString);
         Window_CopyToVRAM(&tv->window);
         Bg_ToggleLayer(BG_LAYER_MAIN_2, TRUE);
         tv->delayUpdateCounter = 240;

@@ -10,7 +10,7 @@
 #include "bg_window.h"
 #include "menu.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 struct UnkStruct_ov104_022320B4_t {
@@ -22,8 +22,8 @@ struct UnkStruct_ov104_022320B4_t {
     MessageLoader *unk_3C;
     u8 *unk_40;
     StringTemplate *unk_44;
-    Strbuf *unk_48;
-    Strbuf *unk_4C;
+    String *unk_48;
+    String *unk_4C;
     u8 unk_50;
     s8 unk_51;
     u16 unk_52;

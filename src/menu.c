@@ -298,7 +298,7 @@ static u8 CalcMaxEntryWidth(Menu *menu)
 
     u8 width;
     for (u8 i = 0; i < menu->template.xSize * menu->template.ySize; i++) {
-        width = Font_CalcStrbufWidth(menu->template.fontID, menu->template.choices[i].entry, 0);
+        width = Font_CalcStringWidth(menu->template.fontID, menu->template.choices[i].entry, 0);
 
         if (maxWidth < width) {
             maxWidth = width;

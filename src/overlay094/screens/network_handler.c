@@ -38,7 +38,7 @@
 #include "render_window.h"
 #include "savedata.h"
 #include "screen_fade.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "text.h"
@@ -340,12 +340,12 @@ static void GTSApplication_NetworkHandler_CleanupWindows(GTSApplicationState *ap
 
 static void GTSApplication_NetworkHandler_InitStrings(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
+    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
 }
 
 static void GTSApplication_NetworkHandler_CleanupStrings(GTSApplicationState *appState)
 {
-    Strbuf_Free(appState->genericMessageBuffer);
+    String_Free(appState->genericMessageBuffer);
 }
 
 static int GTSApplication_NetworkHandler_ParseScreenArgument(GTSApplicationState *appState)

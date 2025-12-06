@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV79_021D38D0_H
 
 #include "pokemon.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     Pokemon *unk_00;
@@ -11,7 +11,7 @@ typedef struct {
     u8 unk_07;
     u8 unk_08;
     u8 unk_09;
-    Strbuf *unk_0C;
+    String *unk_0C;
 } UnkStruct_ov79_021D38D0;
 
 #endif // POKEPLATINUM_STRUCT_OV79_021D38D0_H

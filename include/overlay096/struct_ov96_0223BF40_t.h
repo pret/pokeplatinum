@@ -19,7 +19,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 struct UnkStruct_ov96_0223BF40_t {
@@ -52,11 +52,11 @@ struct UnkStruct_ov96_0223BF40_t {
     MessageLoader *unk_BD0;
     MessageLoader *unk_BD4;
     MessageLoader *unk_BD8;
-    Strbuf *unk_BDC;
-    Strbuf *unk_BE0;
-    Strbuf *unk_BE4;
-    Strbuf *unk_BE8;
-    Strbuf *unk_BEC;
+    String *unk_BDC;
+    String *unk_BE0;
+    String *unk_BE4;
+    String *unk_BE8;
+    String *unk_BEC;
     int unk_BF0;
     SpriteList *unk_BF4;
     G2dRenderer unk_BF8;

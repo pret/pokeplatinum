@@ -19,7 +19,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -68,8 +68,8 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_1C = FontSpecialChars_Init(1, 2, 15, HEAP_ID_BOX_GRAPHICS);
     param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), HEAP_ID_BOX_GRAPHICS);
     param0->unk_30 = NULL;
-    param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
-    param0->unk_48 = MessageLoader_GetNewStrbuf(param5, 22);
+    param0->unk_44 = MessageLoader_GetNewString(param5, 21);
+    param0->unk_48 = MessageLoader_GetNewString(param5, 22);
     param0->unk_34 = Graphics_GetCellBank(TypeIcon_GetNARC(), TypeIcon_GetCell(), 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -107,11 +107,11 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_44) {
-        Strbuf_Free(param0->unk_44);
+        String_Free(param0->unk_44);
     }
 
     if (param0->unk_48) {
-        Strbuf_Free(param0->unk_48);
+        String_Free(param0->unk_48);
     }
 
     if (param0->unk_24) {
@@ -384,7 +384,7 @@ static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0)
 
 static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 param2, u32 param3)
 {
-    const Strbuf *v0;
+    const String *v0;
     u32 v1 = (param3 * 16) + 0;
 
     switch (param2) {

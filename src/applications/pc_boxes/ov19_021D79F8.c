@@ -215,7 +215,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const BoxCustomizatio
                 v2->height = 4;
                 v2->pixels = v1->pRawData;
 
-                v4 = Font_CalcStrbufWidth(FONT_SYSTEM, customization->name, 0);
+                v4 = Font_CalcStringWidth(FONT_SYSTEM, customization->name, 0);
                 v3 = 84 - (v4 / 2);
 
                 Text_AddPrinterWithParamsAndColor(v2, FONT_SYSTEM, customization->name, v3, 13, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(2, 1, 0), NULL);
