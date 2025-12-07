@@ -32,6 +32,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
+#include "poffin_case.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
@@ -53,7 +54,6 @@
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
-#include "unk_020989DC.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 

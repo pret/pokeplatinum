@@ -1,10 +1,10 @@
-#include "overlay079/ov79_021D3768.h"
+#include "applications/poffin_case/ov79_021D3768.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay079/struct_ov79_021D3820.h"
-#include "overlay079/struct_ov79_021D38D0.h"
+#include "applications/poffin_case/struct_ov79_021D3820.h"
+#include "applications/poffin_case/struct_ov79_021D38D0.h"
 
 #include "camera.h"
 #include "gx_layers.h"
@@ -79,15 +79,15 @@ static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
 
 static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
 {
-    PokemonSpriteTemplate v0;
-    PokemonSprite *v1;
+    PokemonSpriteTemplate spriteTemplate;
+    PokemonSprite *sprite;
 
     param0->unk_04 = PokemonSpriteManager_New(heapID);
 
-    Pokemon_BuildSpriteTemplate(&v0, param1->unk_00, 2);
+    Pokemon_BuildSpriteTemplate(&spriteTemplate, param1->unk_00, 2);
 
-    v1 = PokemonSpriteManager_CreateSprite(param0->unk_04, &v0, 128, 96, 0, 0, NULL, NULL);
-    PokemonSprite_SetAttribute(v1, MON_SPRITE_FLIP_H, param1->unk_08);
+    sprite = PokemonSpriteManager_CreateSprite(param0->unk_04, &spriteTemplate, 128, 96, 0, 0, NULL, NULL);
+    PokemonSprite_SetAttribute(sprite, MON_SPRITE_FLIP_H, param1->unk_08);
 
-    param0->unk_18 = v1;
+    param0->unk_18 = sprite;
 }

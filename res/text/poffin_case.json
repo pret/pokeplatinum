@@ -2,101 +2,101 @@
   "key": 9471,
   "messages": [
     {
-      "id": "pl_msg_00000463_00000",
+      "id": "PoffinCase_Text_PoffinCase",
       "en_US": "POFFIN CASE"
     },
     {
-      "id": "pl_msg_00000463_00001",
+      "id": "PoffinCase_Text_Give",
       "en_US": "GIVE"
     },
     {
-      "id": "pl_msg_00000463_00002",
+      "id": "PoffinCase_Text_Trash",
       "en_US": "TRASH"
     },
     {
-      "id": "pl_msg_00000463_00003",
+      "id": "PoffinCase_Text_Back",
       "en_US": "BACK"
     },
     {
-      "id": "pl_msg_00000463_00004",
+      "id": "PoffinCase_Text_Smooth",
       "en_US": "SMOOTH / {STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000463_00005",
+      "id": "PoffinCase_Text_Dummy",
       "garbage": 8
     },
     {
-      "id": "pl_msg_00000463_00006",
+      "id": "PoffinCase_Text_Close",
       "en_US": "CLOSE"
     },
     {
-      "id": "pl_msg_00000463_00007",
+      "id": "PoffinCase_Text_Discard",
       "en_US": [
         "Discard this\n",
         "{STRVAR_1 9, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000463_00008",
+      "id": "PoffinCase_Text_ThrownOut",
       "en_US": [
         "The {STRVAR_1 9, 0, 0} was\n",
         "thrown out."
       ]
     },
     {
-      "id": "pl_msg_00000463_00009",
+      "id": "PoffinCase_Text_Yes",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000463_00010",
+      "id": "PoffinCase_Text_No",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000463_00011",
+      "id": "PoffinCase_Text_Spicy",
       "en_US": "SPICY"
     },
     {
-      "id": "pl_msg_00000463_00012",
+      "id": "PoffinCase_Text_Dry",
       "en_US": "DRY"
     },
     {
-      "id": "pl_msg_00000463_00013",
+      "id": "PoffinCase_Text_Sweet",
       "en_US": "SWEET"
     },
     {
-      "id": "pl_msg_00000463_00014",
+      "id": "PoffinCase_Text_Bitter",
       "en_US": "BITTER"
     },
     {
-      "id": "pl_msg_00000463_00015",
+      "id": "PoffinCase_Text_Sour",
       "en_US": "SOUR"
     },
     {
-      "id": "pl_msg_00000463_00016",
+      "id": "PoffinCase_Text_All",
       "en_US": "ALL"
     },
     {
-      "id": "pl_msg_00000463_00017",
+      "id": "PoffinCase_Text_RaiseCoolness",
       "en_US": "Raises coolness."
     },
     {
-      "id": "pl_msg_00000463_00018",
+      "id": "PoffinCase_Text_RaiseBeauty",
       "en_US": "Raises beauty."
     },
     {
-      "id": "pl_msg_00000463_00019",
+      "id": "PoffinCase_Text_RaiseCuteness",
       "en_US": "Raises cuteness."
     },
     {
-      "id": "pl_msg_00000463_00020",
+      "id": "PoffinCase_Text_RaiseSmartness",
       "en_US": "Raises smartness."
     },
     {
-      "id": "pl_msg_00000463_00021",
+      "id": "PoffinCase_Text_RaiseToughness",
       "en_US": "Raises toughness."
     },
     {
-      "id": "pl_msg_00000463_00022",
+      "id": "PoffinCase_Text_ListItem",
       "en_US": "{STRVAR_1 9, 0, 0}{CURSOR_X 138}Lv. {STRVAR_1 51, 1, 0}"
     }
   ]

@@ -1,0 +1,52 @@
+#ifndef POKEPLATINUM_POFFIN_TYPES_H
+#define POKEPLATINUM_POFFIN_TYPES_H
+
+#include "constants/heap.h"
+
+#include "message.h"
+#include "string_gf.h"
+
+#define NUM_POFFIN_TYPES 29
+
+enum PoffinType {
+    POFFIN_TYPE_SPICY = 0,
+    POFFIN_TYPE_SPICY_DRY,
+    POFFIN_TYPE_SPICY_SWEET,
+    POFFIN_TYPE_SPICY_BITTER,
+    POFFIN_TYPE_SPICY_SOUR,
+    POFFIN_TYPE_DRY_SPICY,
+    POFFIN_TYPE_DRY,
+    POFFIN_TYPE_DRY_SWEET,
+    POFFIN_TYPE_DRY_BITTER,
+    POFFIN_TYPE_DRY_SOUR,
+    POFFIN_TYPE_SWEET_SPICY,
+    POFFIN_TYPE_SWEET_DRY,
+    POFFIN_TYPE_SWEET,
+    POFFIN_TYPE_SWEET_BITTER,
+    POFFIN_TYPE_SWEET_SOUR,
+    POFFIN_TYPE_BITTER_SPICY,
+    POFFIN_TYPE_BITTER_DRY,
+    POFFIN_TYPE_BITTER_SWEET,
+    POFFIN_TYPE_BITTER,
+    POFFIN_TYPE_BITTER_SOUR,
+    POFFIN_TYPE_SOUR_SPICY,
+    POFFIN_TYPE_SOUR_DRY,
+    POFFIN_TYPE_SOUR_SWEET,
+    POFFIN_TYPE_SOUR_BITTER,
+    POFFIN_TYPE_SOUR,
+    POFFIN_TYPE_RICH,
+    POFFIN_TYPE_OVERRIPE,
+    POFFIN_TYPE_FOUL,
+    POFFIN_TYPE_MILD,
+};
+
+typedef struct PoffinTypeList {
+    MessageLoader *msgLoader;
+    String *names[NUM_POFFIN_TYPES];
+} PoffinTypeList;
+
+PoffinTypeList *PoffinTypeList_New(enum HeapID heapID);
+void PoffinTypeList_Free(PoffinTypeList *types);
+const String *PoffinTypeList_GetString(PoffinTypeList *poffinNames, enum PoffinType type);
+
+#endif // POKEPLATINUM_POFFIN_TYPES_H
