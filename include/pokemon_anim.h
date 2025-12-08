@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02015F84_H
-#define POKEPLATINUM_UNK_02015F84_H
+#ifndef POKEPLATINUM_POKEMON_ANIM_H
+#define POKEPLATINUM_POKEMON_ANIM_H
 
 #include "struct_decls/pokemon_anim_manager_decl.h"
 #include "struct_defs/poke_animation_settings.h"
@@ -12,4 +12,4 @@ void PokeAnimation_Init(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite
 BOOL sub_020160F4(PokemonAnimManager *monAnimMan, const u8 index);
 void sub_02016114(PokemonAnimManager *monAnimMan, const u8 index);
 
-#endif // POKEPLATINUM_UNK_02015F84_H
+#endif // POKEPLATINUM_POKEMON_ANIM_H

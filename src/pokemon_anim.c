@@ -1,4 +1,4 @@
-#include "unk_02015F84.h"
+#include "pokemon_anim.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -77,12 +77,12 @@ enum ComparisonResult {
     COMPARISON_RESULT_EQUAL,
 };
 
-#define NUM_POKEMON_ANIMS       143
+#define NUM_POKEMON_ANIMS         143
 #define NUM_POKEMON_ANIM_COMMANDS 34
 
-#define MAX_ANIM_TRANSFORMS     4
-#define MAX_POKEMON_ANIM_VARS   8
-#define MAX_TRANSFORM_DATA_VARS 8
+#define MAX_ANIM_TRANSFORMS      4
+#define MAX_POKEMON_ANIM_VARS    8
+#define MAX_TRANSFORM_DATA_VARS  8
 #define MAX_ANIM_SCRIPT_COMMANDS 256
 #define MAX_ANIM_RADIANS         0x10000
 

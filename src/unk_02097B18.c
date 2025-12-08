@@ -31,6 +31,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -40,7 +41,6 @@
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
 #include "tv_episode_segment.h"
-#include "unk_02015F84.h"
 #include "unk_0202C9F4.h"
 #include "vram_transfer.h"
 

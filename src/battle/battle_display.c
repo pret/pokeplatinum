@@ -124,6 +124,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sound.h"
@@ -135,7 +136,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0201567C.h"
-#include "unk_02015F84.h"
 
 static void ov16_0225E4E8(SysTask *param0, void *param1);
 static void ov16_0225E894(SysTask *param0, void *param1);
