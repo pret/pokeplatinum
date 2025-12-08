@@ -11,6 +11,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawBackground(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
@@ -68,9 +70,9 @@ static BOOL SetupSprites(DowsingMachineGraphics *graphics)
         .hasAffineTransform = FALSE,
     };
 
-    if (PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, 40, 41, HEAP_ID_POKETCH_APP)) {
+    if (PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, dowsing_machine_cell_NCER_lz, dowsing_machine_anim_NANR_lz, HEAP_ID_POKETCH_APP)) {
 
-        Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 42, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+        Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, dowsing_machine_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
         graphics->radarSprite = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &radarAnimData, &graphics->animData);
         PoketchAnimation_HideSprite(graphics->radarSprite, TRUE);
 
@@ -151,8 +153,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     DowsingMachineGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 39, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 38, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, dowsing_machine_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, dowsing_machine_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
 

@@ -17,6 +17,8 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define ANIM_INDEX_CURSOR          0
 #define ANIM_INDEX_BERRY           7
 #define ANIM_INDEX_HIDDEN_LOCATION 14
@@ -109,10 +111,10 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
 
-    u32 tileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 117, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    u32 tileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, map_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     tileCount /= TILE_SIZE_4BPP;
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 116, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, berry_searcher_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     AddMapLegend(graphics, tileCount);
@@ -208,8 +210,8 @@ static void SetupSprites(BerrySearcherGraphics *graphics)
 {
     const BerrySearcherData *mapData = graphics->mapData;
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 120, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, 118, 119, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, map_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, map_cell_NCER_lz, map_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     PoketchAnimation_AnimationData animData;
     animData.flip = NNS_G2D_RENDERERFLIP_NONE;

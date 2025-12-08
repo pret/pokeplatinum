@@ -18,6 +18,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
 #include "res/text/bank/poketch_link_searcher.h"
 
 #define SPRITE_DS           0
@@ -110,8 +111,8 @@ static void SetupSprites(LinkSearcherGraphics *graphics, const LinkResults *resu
             .hasAffineTransform = FALSE,
         },
     };
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 99, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 97, 98, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, link_searcher_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, link_searcher_cell_NCER_lz, link_searcher_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     for (int i = 0; i < NUM_SPRITES; i++) {
         graphics->sprites[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData[i], &graphics->spriteData);
@@ -186,10 +187,10 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
 
-    u32 tileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 96, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    u32 tileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, link_searcher_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     tileCount /= TILE_SIZE_4BPP;
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 95, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, link_searcher_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
     Window_Add(graphics->bgConfig, &graphics->window, BG_LAYER_SUB_2, 2, 2, 24, 20, PLTT_0, tileCount);

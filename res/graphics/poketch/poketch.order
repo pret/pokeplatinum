@@ -46,11 +46,11 @@ counter_bg_tiles.NCGR.lz
 counter_cell.NCER.lz
 counter_anim.NANR.lz
 counter.NCGR.lz
-pedomether.NSCR.lz
-pedomether_bg_tiles.NCGR.lz
-pedomether_cell.NCER.lz
-pedomether_anim.NANR.lz
-pedomether.NCGR.lz
+pedometer.NSCR.lz
+pedometer_bg_tiles.NCGR.lz
+pedometer_cell.NCER.lz
+pedometer_anim.NANR.lz
+pedometer.NCGR.lz
 coin_toss.NSCR.lz
 coin_toss_bg_tiles.NCGR.lz
 coin_toss_cell.NCER.lz
