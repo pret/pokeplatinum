@@ -92,7 +92,6 @@ poketch_nscrs = copy_gen.process(files(
 
 poketch_bg_tiles = ncgr_lz_gen.process(
     files(
-        'generic_bg_tiles.png',
         'unavailable_bg_tiles.png',
         'poketch_border.png',
         'calculator_bg_tiles.png',
@@ -137,6 +136,28 @@ poketch_palettes = nclr_gen.process(
     ]
 )
 
+poketch_generic_bg_tiles = ncgr_lz_gen.process(
+    files(
+        'generic_bg_tiles.png',
+    ),
+    extra_args: [
+        '-convertTo4Bpp',
+        '-sopc',
+        '-version101',
+        '-nopad',
+    ]
+)
+
+poketch_screen_palette = nclr_gen.process(
+    files('generic_bg_tiles.png'),
+    extra_args: ['-bitdepth', '4'],
+)
+
+poketch_screen_palette_dupe = generator(nitrogfx_exe,
+    arguments: ['@INPUT@', '@OUTPUT@', '-bitdepth', '4'],
+    output: '@BASENAME@_dupe.NCLR',
+).process(files('generic_bg_tiles.png'))
+
 poketch_border_palette = nclr_gen.process(
     files('poketch_border.pal'),
     extra_args: [
@@ -146,16 +167,6 @@ poketch_border_palette = nclr_gen.process(
         '-start', '14',
     ]
 )
-
-poketch_screen_palette = nclr_gen.process(
-    files('screen_themes.pal'),
-    extra_args: ['-bitdepth', '4'],
-)
-
-poketch_screen_palette_dupe = generator(nitrogfx_exe,
-    arguments: ['@INPUT@', '@OUTPUT@', '-bitdepth', '4'],
-    output: '@BASENAME@_dupe.NCLR',
-).process(files('screen_themes.pal'))
 
 poketch_graphics = ncgr_cell_lz_gen.process(
     files(
@@ -213,6 +224,7 @@ poketch_narc = custom_target('poketch_narc',
         poketch_ncgrs,
         poketch_unused_ncgr,
         poketch_bg_tiles,
+        poketch_generic_bg_tiles,
         poketch_cells,
         poketch_anims,
         poketch_nscrs,
