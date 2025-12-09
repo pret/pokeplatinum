@@ -24,7 +24,6 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/mail.h"
-#include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -5136,19 +5135,19 @@ void PokemonSprite_LoadAnimFrames(NARC *narc, SpriteAnimFrame *frames, u16 speci
     MI_CpuCopy8(data.faceAnims[face].frames, frames, sizeof(SpriteAnimFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimManager *monAnimMan, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
+void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimManager *monAnimMan, PokemonSprite *sprite, u16 species, int face, int flipSprite, int frame)
 {
     int faceType = (face == FACE_FRONT) ? 0 : 1;
 
     SpeciesSpriteData spriteData;
     NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &spriteData);
 
-    PokeAnimationSettings settings;
-    settings.animation = spriteData.faceAnims[faceType].animation;
-    settings.startDelay = spriteData.faceAnims[faceType].startDelay;
-    settings.reverse = reverse;
+    PokemonAnimTemplate animTemplate;
+    animTemplate.animation = spriteData.faceAnims[faceType].animation;
+    animTemplate.startDelay = spriteData.faceAnims[faceType].startDelay;
+    animTemplate.flipSprite = flipSprite;
 
-    PokemonAnimManager_InitAnim(monAnimMan, sprite, &settings, frame);
+    PokemonAnimManager_InitAnim(monAnimMan, sprite, &animTemplate, frame);
 }
 
 void PokemonSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)

@@ -850,10 +850,10 @@ void PokemonSprite_LoadAnimFrames(NARC *narc, SpriteAnimFrame *frames, u16 speci
  * @param sprite        Pre-loaded Pokemon sprite
  * @param species       Species to be loaded
  * @param face          Which face is visible to the player
- * @param reverse       If TRUE, reverse the sprite + animation
+ * @param flipSprite    If TRUE, flip the sprite + animation
  * @param frame         Which frame of the animation to initialize
  */
-void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimManager *monAnimMan, PokemonSprite *sprite, u16 species, int face, int reverse, int frame);
+void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimManager *monAnimMan, PokemonSprite *sprite, u16 species, int face, int flipSprite, int frame);
 
 /**
  * @brief Load the cry delay for a given species and a client type.

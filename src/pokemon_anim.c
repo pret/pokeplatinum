@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/poke_animation_settings.h"
-
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
@@ -136,7 +134,7 @@ typedef struct PokemonAnim {
     int scaleY;
     int rotationZ;
     TransformData transforms[MAX_ANIM_TRANSFORMS];
-    u8 reverse;
+    u8 flipSprite;
     u8 waitForTransform;
     u8 yNormalization;
     u8 fadeActive;
@@ -145,7 +143,7 @@ typedef struct PokemonAnim {
 typedef struct PokemonAnimManager {
     PokemonAnim *anims;
     int heapID;
-    u8 reverse;
+    u8 flipSprite;
     u8 animCount;
 } PokemonAnimManager;
 
@@ -246,10 +244,10 @@ static const TransformFuncParameters sTransformFuncToParams[] = {
     [TRANSFORM_FUNC_LINEAR_BOUNDED] = { TransformFunc_LinearBounded, 4, 0 },
 };
 
-PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, const int animCount, const u8 reverse)
+PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, const int animCount, const u8 flipSprite)
 {
     PokemonAnimManager *monAnimMan = Heap_Alloc(heapID, sizeof(PokemonAnimManager));
-    monAnimMan->reverse = reverse;
+    monAnimMan->flipSprite = flipSprite;
     monAnimMan->animCount = animCount;
     monAnimMan->heapID = heapID;
     monAnimMan->anims = Heap_Alloc(heapID, sizeof(PokemonAnim) * animCount);
@@ -265,7 +263,7 @@ void PokemonAnimManager_Free(PokemonAnimManager *monAnimMan)
     Heap_Free(monAnimMan);
 }
 
-void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokeAnimationSettings *animTemplate, const u8 index)
+void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokemonAnimTemplate *animTemplate, const u8 index)
 {
     int animNum = animTemplate->animation;
     int startDelay = animTemplate->startDelay;
@@ -285,10 +283,10 @@ void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *
 
     monAnimMan->anims[index].animNum = animNum;
 
-    if (monAnimMan->reverse) {
-        monAnimMan->anims[index].reverse = animTemplate->reverse;
+    if (monAnimMan->flipSprite) {
+        monAnimMan->anims[index].flipSprite = animTemplate->flipSprite;
     } else {
-        monAnimMan->anims[index].reverse = FALSE;
+        monAnimMan->anims[index].flipSprite = FALSE;
     }
 
     monAnimMan->anims[index].scriptData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_POKEANIME__PL_POKE_ANM, monAnimMan->anims[index].animNum, monAnimMan->heapID);
@@ -893,7 +891,7 @@ static void PokemonAnimCmd_UpdateAttribute(PokemonAnim *monAnim)
 
 static void PokemonAnimCmd_ApplyTranslation(PokemonAnim *monAnim)
 {
-    if (monAnim->reverse) {
+    if (monAnim->flipSprite) {
         PokemonSprite_SetAttribute(monAnim->sprite, MON_SPRITE_X_CENTER, monAnim->originalX - (monAnim->translateX + monAnim->offsetX));
     } else {
         PokemonSprite_SetAttribute(monAnim->sprite, MON_SPRITE_X_CENTER, monAnim->originalX + monAnim->translateX + monAnim->offsetX);
