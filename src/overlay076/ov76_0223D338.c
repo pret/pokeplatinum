@@ -900,7 +900,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 break;
             }
 
-            if (sub_020160F4(param0->unk_D4.unk_188, 0) != 1) {
+            if (PokemonAnimManager_HasAnimCompleted(param0->unk_D4.unk_188, 0) != TRUE) {
                 break;
             }
 

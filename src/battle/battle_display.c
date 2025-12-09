@@ -1562,7 +1562,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
+        if ((PokemonAnimManager_HasAnimCompleted(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_11) == TRUE) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
                     UnkStruct_ov16_02265BBC v6;
@@ -1644,7 +1644,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
+        if ((PokemonAnimManager_HasAnimCompleted(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_11) == TRUE) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
                     UnkStruct_ov16_02265BBC v5;
@@ -1852,7 +1852,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_81) == 1) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
+        if ((PokemonAnimManager_HasAnimCompleted(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_81) == TRUE) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
             ov12_0223783C(v0->unk_04->unk_84);
             v0->unk_04->unk_84 = NULL;
             ov12_02236428(v0->unk_08);
@@ -2044,7 +2044,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         }
         break;
     case 6:
-        if ((sub_020160F4(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_81) == 1) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
+        if ((PokemonAnimManager_HasAnimCompleted(BattleSystem_GetPokemonAnimManager(v0->unk_00), v0->unk_81) == TRUE) && (PokemonSprite_IsAnimActive(v0->unk_04->unk_20) == 0)) {
             ov12_0223783C(v0->unk_0C);
             ov12_02236428(v0->unk_08);
 

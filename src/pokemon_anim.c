@@ -246,8 +246,7 @@ static const TransformFuncParameters sTransformFuncToParams[] = {
     [TRANSFORM_FUNC_LINEAR_BOUNDED] = { TransformFunc_LinearBounded, 4, 0 },
 };
 
-// PokemonAnimManager_New
-PokemonAnimManager *sub_02015F84(enum HeapID heapID, const int animCount, const u8 reverse)
+PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, const int animCount, const u8 reverse)
 {
     PokemonAnimManager *monAnimMan = Heap_Alloc(heapID, sizeof(PokemonAnimManager));
     monAnimMan->reverse = reverse;
@@ -260,15 +259,13 @@ PokemonAnimManager *sub_02015F84(enum HeapID heapID, const int animCount, const 
     return monAnimMan;
 }
 
-// PokemonAnimManager_Free
-void sub_02015FB8(PokemonAnimManager *monAnimMan)
+void PokemonAnimManager_Free(PokemonAnimManager *monAnimMan)
 {
     Heap_Free(monAnimMan->anims);
     Heap_Free(monAnimMan);
 }
 
-// PokemonAnimManager_InitAnimAtIndex
-void PokeAnimation_Init(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokeAnimationSettings *animTemplate, const u8 index)
+void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokeAnimationSettings *animTemplate, const u8 index)
 {
     int animNum = animTemplate->animation;
     int startDelay = animTemplate->startDelay;
@@ -314,15 +311,13 @@ void PokeAnimation_Init(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite
     monAnimMan->anims[index].rotationZ = 0;
 }
 
-// PokemonAnimManager_HasAnimCompleted
-BOOL sub_020160F4(PokemonAnimManager *monAnimMan, const u8 index)
+BOOL PokemonAnimManager_HasAnimCompleted(PokemonAnimManager *monAnimMan, const u8 index)
 {
     GF_ASSERT(index < monAnimMan->animCount);
     return monAnimMan->anims[index].completed;
 }
 
-// PokemonAnimManager_DeleteAnim
-void sub_02016114(PokemonAnimManager *monAnimMan, const u8 index)
+void PokemonAnimManager_DeleteAnim(PokemonAnimManager *monAnimMan, const u8 index)
 {
     if (monAnimMan->anims[index].task != NULL) {
         SysTask_Done(monAnimMan->anims[index].task);

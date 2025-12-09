@@ -181,8 +181,8 @@ void PokemonSummaryScreen_Update3DGfx(PokemonSummaryScreen *summaryScreen)
 void PokemonSummaryScreen_FreeCameraAndMonSprite(PokemonSummaryScreen *summaryScreen)
 {
     Camera_Delete(summaryScreen->monSprite.camera);
-    sub_02016114(summaryScreen->monSprite.monAnimMan, 0);
-    sub_02015FB8(summaryScreen->monSprite.monAnimMan);
+    PokemonAnimManager_DeleteAnim(summaryScreen->monSprite.monAnimMan, 0);
+    PokemonAnimManager_Free(summaryScreen->monSprite.monAnimMan);
     PokemonSpriteManager_Free(summaryScreen->monSprite.spriteManager);
 }
 
@@ -373,7 +373,7 @@ void PokemonSummaryScreen_LoadMonAnimation(PokemonSummaryScreen *summaryScreen)
 
 void PokemonSummaryScreen_ChangeMonSprite(PokemonSummaryScreen *summaryScreen)
 {
-    sub_02016114(summaryScreen->monSprite.monAnimMan, 0);
+    PokemonAnimManager_DeleteAnim(summaryScreen->monSprite.monAnimMan, 0);
     PokemonSpriteManager_Free(summaryScreen->monSprite.spriteManager);
     PokemonSummaryScreen_LoadMonSprite(summaryScreen);
     PokemonSummaryScreen_LoadMonAnimation(summaryScreen);

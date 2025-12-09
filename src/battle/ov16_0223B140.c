@@ -640,7 +640,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     ov16_0223DD4C(battleSys);
     BagCursor_ResetBattle(BattleSystem_BagCursor(battleSys));
 
-    battleSys->monAnimMan = sub_02015F84(HEAP_ID_BATTLE, 4, 0);
+    battleSys->monAnimMan = PokemonAnimManager_New(HEAP_ID_BATTLE, 4, FALSE);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {
@@ -755,7 +755,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     MessageLoader_Free(battleSystem->unk_0C);
     MessageLoader_Free(battleSystem->unk_10);
     StringTemplate_Free(battleSystem->strFormatter);
-    sub_02015FB8(battleSystem->monAnimMan);
+    PokemonAnimManager_Free(battleSystem->monAnimMan);
     ParticleSystem_FreeAll();
 
     BattleAnimSystem_Delete(battleSystem->unk_8C);

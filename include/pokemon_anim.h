@@ -6,10 +6,10 @@
 
 #include "pokemon_sprite.h"
 
-PokemonAnimManager *sub_02015F84(enum HeapID heapID, const int animCount, const u8 reverse);
-void sub_02015FB8(PokemonAnimManager *monAnimMan);
-void PokeAnimation_Init(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokeAnimationSettings *param2, const u8 index);
-BOOL sub_020160F4(PokemonAnimManager *monAnimMan, const u8 index);
-void sub_02016114(PokemonAnimManager *monAnimMan, const u8 index);
+PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, const int animCount, const u8 reverse);
+void PokemonAnimManager_Free(PokemonAnimManager *monAnimMan);
+void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokeAnimationSettings *param2, const u8 index);
+BOOL PokemonAnimManager_HasAnimCompleted(PokemonAnimManager *monAnimMan, const u8 index);
+void PokemonAnimManager_DeleteAnim(PokemonAnimManager *monAnimMan, const u8 index);
 
 #endif // POKEPLATINUM_POKEMON_ANIM_H

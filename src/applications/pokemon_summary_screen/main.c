@@ -229,7 +229,7 @@ static int PokemonSummaryScreen_Init(ApplicationManager *appMan, int *state)
 
     summaryScreen->data = ApplicationManager_Args(appMan);
     summaryScreen->bgConfig = BgConfig_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->monSprite.monAnimMan = sub_02015F84(HEAP_ID_POKEMON_SUMMARY_SCREEN, 1, 1);
+    summaryScreen->monSprite.monAnimMan = PokemonAnimManager_New(HEAP_ID_POKEMON_SUMMARY_SCREEN, 1, TRUE);
     summaryScreen->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_POKEMON_SUMMARY_SCREEN);

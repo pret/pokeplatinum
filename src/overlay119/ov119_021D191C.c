@@ -157,7 +157,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        if (sub_020160F4(param0->unk_04.unk_54, 0) != 1) {
+        if (PokemonAnimManager_HasAnimCompleted(param0->unk_04.unk_54, 0) != TRUE) {
             break;
         }
 
@@ -307,7 +307,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        if (sub_020160F4(param0->unk_04.unk_54, 0) != 1) {
+        if (PokemonAnimManager_HasAnimCompleted(param0->unk_04.unk_54, 0) != TRUE) {
             break;
         }
 

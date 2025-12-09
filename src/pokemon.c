@@ -5148,7 +5148,7 @@ void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimManager *monAnimMan, PokemonS
     settings.startDelay = spriteData.faceAnims[faceType].startDelay;
     settings.reverse = reverse;
 
-    PokeAnimation_Init(monAnimMan, sprite, &settings, frame);
+    PokemonAnimManager_InitAnim(monAnimMan, sprite, &settings, frame);
 }
 
 void PokemonSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)
