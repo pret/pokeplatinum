@@ -20,7 +20,6 @@
 #include "generated/natures.h"
 #include "generated/species_data_params.h"
 
-#include "struct_decls/pokemon_anim_manager_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/mail.h"

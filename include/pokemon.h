@@ -8,7 +8,6 @@
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
-#include "struct_decls/pokemon_anim_manager_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
@@ -20,6 +19,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "string.h"

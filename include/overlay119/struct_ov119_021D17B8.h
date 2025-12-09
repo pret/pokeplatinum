@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV119_021D17B8_H
 #define POKEPLATINUM_STRUCT_OV119_021D17B8_H
 
-#include "struct_decls/pokemon_anim_manager_decl.h"
-
 #include "overlay119/struct_ov119_021D14DC.h"
 
 #include "bg_window.h"
@@ -10,6 +8,7 @@
 #include "menu.h"
 #include "narc.h"
 #include "palette.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "string_list.h"

@@ -9,7 +9,6 @@
 #include "narc.h"
 #include "pokemon_sprite.h"
 #include "sys_task.h"
-#include "sys_task_manager.h"
 
 // The first/third & second/fourth entries here seem to be used interchangeably.
 enum AnimScriptReadType {
@@ -78,74 +77,10 @@ enum ComparisonResult {
 #define NUM_POKEMON_ANIMS         143
 #define NUM_POKEMON_ANIM_COMMANDS 34
 
-#define MAX_ANIM_TRANSFORMS      4
-#define MAX_POKEMON_ANIM_VARS    8
-#define MAX_TRANSFORM_DATA_VARS  8
 #define MAX_ANIM_SCRIPT_COMMANDS 256
 #define MAX_ANIM_RADIANS         0x10000
 
-typedef struct TransformData TransformData;
-typedef struct PokemonAnim PokemonAnim;
-
 typedef void (*PokemonAnimCmd)(PokemonAnim *);
-typedef void (*TransformFunc)(TransformData *, PokemonAnim *);
-
-typedef struct TransformData {
-    BOOL active;
-    int vars[MAX_TRANSFORM_DATA_VARS];
-    int *transformMemberPtr;
-    int *animMemberPtr;
-    u8 calcType;
-    u8 startDelay;
-    int originalValue;
-    int dummy_34;
-    int dummy_38;
-    int offsetX;
-    int offsetY;
-    int scaleX;
-    int scaleY;
-    int rotationZ;
-    TransformFunc func;
-} TransformData;
-
-typedef struct PokemonAnim {
-    PokemonSprite *sprite;
-    SysTask *task;
-    void *scriptData;
-    u32 *scriptPtr;
-    BOOL active;
-    int animNum;
-    int waitFrame;
-    int endAnim;
-    BOOL completed;
-    int vars[MAX_POKEMON_ANIM_VARS];
-    int commandCount;
-    int loopMax;
-    int loopCounter;
-    u32 *loopStart;
-    int startDelay;
-    int originalX;
-    int originalY;
-    int translateX;
-    int translateY;
-    int offsetX;
-    int offsetY;
-    int scaleX;
-    int scaleY;
-    int rotationZ;
-    TransformData transforms[MAX_ANIM_TRANSFORMS];
-    u8 flipSprite;
-    u8 waitForTransform;
-    u8 yNormalization;
-    u8 fadeActive;
-} PokemonAnim;
-
-typedef struct PokemonAnimManager {
-    PokemonAnim *anims;
-    int heapID;
-    u8 flipSprite;
-    u8 animCount;
-} PokemonAnimManager;
 
 typedef struct {
     TransformFunc func;

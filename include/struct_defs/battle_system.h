@@ -8,7 +8,6 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/pokemon_anim_manager_decl.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -30,6 +29,7 @@
 #include "pal_pad.h"
 #include "palette.h"
 #include "party.h"
+#include "pokemon_anim.h"
 #include "poketch.h"
 #include "render_window.h"
 #include "sprite_system.h"
