@@ -172,11 +172,31 @@ static const PokemonAnimCmd sPokemonAnimCmds[NUM_POKEMON_ANIM_COMMANDS] = {
 };
 
 static const TransformFuncParameters sTransformFuncToParams[] = {
-    [TRANSFORM_FUNC_CURVE] = { TransformFunc_Curve, 6, 1 },
-    [TRANSFORM_FUNC_CURVE_EVEN] = { TransformFunc_CurveEven, 6, 1 },
-    [TRANSFORM_FUNC_LINEAR] = { TransformFunc_Linear, 4, 0 },
-    [TRANSFORM_FUNC_LINEAR_EVEN] = { TransformFunc_LinearEven, 3, 0 },
-    [TRANSFORM_FUNC_LINEAR_BOUNDED] = { TransformFunc_LinearBounded, 4, 0 },
+    [TRANSFORM_FUNC_CURVE] = {
+        .func = TransformFunc_Curve,
+        .paramCount = 6,
+        .transformTypeIndex = 1,
+    },
+    [TRANSFORM_FUNC_CURVE_EVEN] = {
+        .func = TransformFunc_CurveEven,
+        .paramCount = 6,
+        .transformTypeIndex = 1,
+    },
+    [TRANSFORM_FUNC_LINEAR] = {
+        .func = TransformFunc_Linear,
+        .paramCount = 4,
+        .transformTypeIndex = 0,
+    },
+    [TRANSFORM_FUNC_LINEAR_EVEN] = {
+        .func = TransformFunc_LinearEven,
+        .paramCount = 3,
+        .transformTypeIndex = 0,
+    },
+    [TRANSFORM_FUNC_LINEAR_BOUNDED] = {
+        .func = TransformFunc_LinearBounded,
+        .paramCount = 4,
+        .transformTypeIndex = 0,
+    },
 };
 
 PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, const int animCount, const u8 flipSprite)

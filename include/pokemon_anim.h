@@ -13,6 +13,7 @@ typedef struct TransformData TransformData;
 typedef struct PokemonAnim PokemonAnim;
 
 typedef void (*TransformFunc)(TransformData *, PokemonAnim *);
+
 typedef struct PokemonAnimTemplate {
     u16 animation;
     u16 startDelay;
