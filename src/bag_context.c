@@ -114,7 +114,7 @@ static u32 CalcTotalBallSeals(SaveData *saveData)
 
     u32 total = 0;
     for (i = 1; i <= 80; i++) {
-        total += sub_0202CBC8(sealCase, i);
+        total += SealCase_CountSealOccurrenceAnywhere(sealCase, i);
     }
 
     return total;
