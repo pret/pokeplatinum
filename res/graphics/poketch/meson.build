@@ -60,35 +60,39 @@ poketch_anims = nanr_lz_gen.process(
     ]
 )
 
-poketch_nscrs = copy_gen.process(files(
-    'unavailable.NSCR.lz',
-    'poketch_border.NSCR.lz',
-    'calculator.NSCR.lz',
-    'stopwatch.NSCR.lz',
-    'digital_watch.NSCR.lz',
-    'digital_watch_digits.NSCR.lz',
-    'analog_watch.NSCR.lz',
-    'memo_pad.NSCR.lz',
-    'dowsing_machine.NSCR.lz',
-    'counter.NSCR.lz',
-    'pedometer.NSCR.lz',
-    'coin_toss.NSCR.lz',
-    'unused_menu.NSCR.lz',
-    'move_tester.NSCR.lz',
-    'color_changer.NSCR.lz',
-    'matchup_checker.NSCR.lz',
-    'alarm_clock.NSCR.lz',
-    'daycare_checker.NSCR.lz',
-    'roulette.NSCR.lz',
-    'kitchen_timer.NSCR.lz',
-    'link_searcher.NSCR.lz',
-    'backlight_toggle.NSCR.lz',
-    'party_status.NSCR.lz',
-    'calendar.NSCR.lz',
-    'marking_map.NSCR.lz',
-    'berry_searcher.NSCR.lz',
-    'trainer_counter.NSCR.lz',
-))
+poketch_nscrs = lz_gen.process(files(
+    'unavailable.NSCR',
+    'poketch_border.NSCR',
+    'calculator.NSCR',
+    'stopwatch.NSCR',
+    'digital_watch.NSCR',
+    'digital_watch_digits.NSCR',
+    'analog_watch.NSCR',
+    'memo_pad.NSCR',
+    'dowsing_machine.NSCR',
+    'counter.NSCR',
+    'pedometer.NSCR',
+    'coin_toss.NSCR',
+    'unused_menu.NSCR',
+    'move_tester.NSCR',
+    'color_changer.NSCR',
+    'matchup_checker.NSCR',
+    'alarm_clock.NSCR',
+    'daycare_checker.NSCR',
+    'roulette.NSCR',
+    'kitchen_timer.NSCR',
+    'link_searcher.NSCR',
+    'backlight_toggle.NSCR',
+    'party_status.NSCR',
+    'calendar.NSCR',
+    'marking_map.NSCR',
+    'berry_searcher.NSCR',
+    'trainer_counter.NSCR',
+    ),
+    extra_args: [ 
+        '-nopad',
+    ]
+)
 
 poketch_bg_tiles = ncgr_lz_gen.process(
     files(
