@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/struct_0208C06C.h"

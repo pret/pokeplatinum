@@ -5,11 +5,11 @@
 
 #include "constants/charcode.h"
 #include "constants/heap.h"
-#include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
 #include "generated/moves.h"
+#include "generated/narc.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/trainer.h"

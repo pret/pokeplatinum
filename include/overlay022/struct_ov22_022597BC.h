@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_022597BC_H
 #define POKEPLATINUM_STRUCT_OV22_022597BC_H
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "bg_window.h"
 

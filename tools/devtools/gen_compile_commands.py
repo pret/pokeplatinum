@@ -317,6 +317,23 @@ datagen_cpp_commands = [
     for file in (homedir / "tools" / "datagen").rglob("*.cpp")
 ]
 
+dataproc_c_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "gcc",
+            f"-I{homedir}/tools/dataproc/include", # library includes
+            f"-I{builddir}", # generated headers (constants),
+            "-std=gnu17",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
+    for file in (homedir / "tools" / "dataproc").rglob("*.c")
+]
+
 with open("compile_commands.json", "w") as ofp:
     json.dump(
         asm_commands
@@ -328,7 +345,8 @@ with open("compile_commands.json", "w") as ofp:
         + libcrypto_c_commands
         + ppwlobby_c_commands
         + c_commands
-        + datagen_cpp_commands,
+        + datagen_cpp_commands
+        + dataproc_c_commands,
         ofp,
         default=str,
         indent=4,

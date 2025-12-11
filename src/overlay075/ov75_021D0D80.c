@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "struct_defs/struct_020978D8.h"
 #include "struct_defs/struct_02099F80.h"

@@ -8,11 +8,11 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
-#include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "generated/abilities.h"
 #include "generated/game_records.h"
+#include "generated/narc.h"
 #include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"

@@ -1,7 +1,7 @@
 #include "berry_data.h"
 
 #include "constants/items.h"
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "message.h"
 #include "narc.h"
