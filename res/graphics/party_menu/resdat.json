@@ -1,0 +1,333 @@
+{
+  "characters": [
+    {
+      "id": "PartyMenu_MemberPokeBall_Chars",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "member_ball_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_Cursor_Chars",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "cursor_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_Button_Chars",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "button_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_StatusIcons_Chars",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_MemberIcon0_Chars",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "icon_00000_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_MemberIcon1_Chars",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "icon_00000_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_MemberIcon2_Chars",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "icon_00000_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_MemberIcon3_Chars",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "icon_00000_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_MemberIcon4_Chars",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "icon_00000_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_MemberIcon5_Chars",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "icon_00000_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_HeldIcons_Chars",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "icons_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_TouchButtonEffect_Chars",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_BAG_GRA",
+      "from_file": "button_shockwave_NCGR",
+      "compressed": false,
+      "on_main_screen": false,
+      "on_sub_screen": true
+    }
+  ],
+  "palettes": [
+    {
+      "id": "PartyMenu_Shared_Palette",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "shared_NCLR",
+      "load_in_slot": 2,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_StatusIcons_Palette",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_MemberIcons_Palette",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "shared_pals_NCLR",
+      "load_in_slot": 3,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_HeldIcons_Palette",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "icons_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PartyMenu_TouchButtonEffect_Palette",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "touch_button_shockwave_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": false,
+      "on_sub_screen": true
+    }
+  ],
+  "cells": [
+    {
+      "id": "PartyMenu_MemberPokeBall_Cells",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "member_ball_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_Cursor_Cells",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "cursor_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_Button_Cells",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "button_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_StatusIcons_Cells",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_MemberIcons_Cells",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "shared_cell_32k_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_HeldIcons_Cells",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "icons_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_TouchButtonEffect_Cells",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_BAG_GRA",
+      "from_file": "button_shockwave_cell_NCER",
+      "compressed": false
+    }
+  ],
+  "animations": [
+    {
+      "id": "PartyMenu_MemberPokeBall_Anims",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "member_ball_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_Cursor_Anims",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "cursor_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_Button_Anims",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "button_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_StatusIcons_Anims",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PST_GRA",
+      "from_file": "status_icons_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_MemberIcons_Anims",
+      "from_narc": "NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON",
+      "from_file": "shared_anim_32k_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_HeldIcons_Anims",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_PLIST_GRA",
+      "from_file": "icons_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PartyMenu_TouchButtonEffect_Anims",
+      "from_narc": "NARC_INDEX_GRAPHIC__PL_BAG_GRA",
+      "from_file": "button_shockwave_anim_NANR",
+      "compressed": false
+    }
+  ],
+  "templates": [
+    {
+      "characters": "PartyMenu_MemberPokeBall_Chars",
+      "palette": "PartyMenu_Shared_Palette",
+      "cells": "PartyMenu_MemberPokeBall_Cells",
+      "animations": "PartyMenu_MemberPokeBall_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_Cursor_Chars",
+      "palette": "PartyMenu_Shared_Palette",
+      "cells": "PartyMenu_Cursor_Cells",
+      "animations": "PartyMenu_Cursor_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_Button_Chars",
+      "palette": "PartyMenu_Shared_Palette",
+      "cells": "PartyMenu_Button_Cells",
+      "animations": "PartyMenu_Button_Anims",
+      "vram_transfer": false,
+      "priority": 2
+    },
+    {
+      "characters": "PartyMenu_StatusIcons_Chars",
+      "palette": "PartyMenu_StatusIcons_Palette",
+      "cells": "PartyMenu_StatusIcons_Cells",
+      "animations": "PartyMenu_StatusIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_MemberIcon0_Chars",
+      "palette": "PartyMenu_MemberIcons_Palette",
+      "cells": "PartyMenu_MemberIcons_Cells",
+      "animations": "PartyMenu_MemberIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_MemberIcon1_Chars",
+      "palette": "PartyMenu_MemberIcons_Palette",
+      "cells": "PartyMenu_MemberIcons_Cells",
+      "animations": "PartyMenu_MemberIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_MemberIcon2_Chars",
+      "palette": "PartyMenu_MemberIcons_Palette",
+      "cells": "PartyMenu_MemberIcons_Cells",
+      "animations": "PartyMenu_MemberIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_MemberIcon3_Chars",
+      "palette": "PartyMenu_MemberIcons_Palette",
+      "cells": "PartyMenu_MemberIcons_Cells",
+      "animations": "PartyMenu_MemberIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_MemberIcon4_Chars",
+      "palette": "PartyMenu_MemberIcons_Palette",
+      "cells": "PartyMenu_MemberIcons_Cells",
+      "animations": "PartyMenu_MemberIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_MemberIcon5_Chars",
+      "palette": "PartyMenu_MemberIcons_Palette",
+      "cells": "PartyMenu_MemberIcons_Cells",
+      "animations": "PartyMenu_MemberIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_HeldIcons_Chars",
+      "palette": "PartyMenu_HeldIcons_Palette",
+      "cells": "PartyMenu_HeldIcons_Cells",
+      "animations": "PartyMenu_HeldIcons_Anims",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "PartyMenu_TouchButtonEffect_Chars",
+      "palette": "PartyMenu_TouchButtonEffect_Palette",
+      "cells": "PartyMenu_TouchButtonEffect_Cells",
+      "animations": "PartyMenu_TouchButtonEffect_Anims",
+      "vram_transfer": false,
+      "priority": 0
+    }
+  ]
+}

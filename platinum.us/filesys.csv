@@ -57,11 +57,11 @@ res/prebuilt/data/pl_wifi.ncgr,/data/pl_wifi.ncgr
 res/prebuilt/data/pl_wm.ncgr,/data/pl_wm.ncgr
 res/prebuilt/data/pl_wm.nclr,/data/pl_wm.nclr
 res/prebuilt/data/plbr.dat,/data/plbr.dat
-res/prebuilt/data/plist_canm.resdat,/data/plist_canm.resdat
-res/prebuilt/data/plist_cell.resdat,/data/plist_cell.resdat
-res/prebuilt/data/plist_chr.resdat,/data/plist_chr.resdat
-res/prebuilt/data/plist_h.cldat,/data/plist_h.cldat
-res/prebuilt/data/plist_pal.resdat,/data/plist_pal.resdat
+res/graphics/party_menu/nanrs.resdat,/data/plist_canm.resdat
+res/graphics/party_menu/ncers.resdat,/data/plist_cell.resdat
+res/graphics/party_menu/ncgrs.resdat,/data/plist_chr.resdat
+res/graphics/party_menu/templates.cldat,/data/plist_h.cldat
+res/graphics/party_menu/nclrs.resdat,/data/plist_pal.resdat
 res/prebuilt/data/porucase_canm.resdat,/data/porucase_canm.resdat
 res/prebuilt/data/porucase_celact.cldat,/data/porucase_celact.cldat
 res/prebuilt/data/porucase_cell.resdat,/data/porucase_cell.resdat
