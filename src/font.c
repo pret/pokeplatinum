@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "charcode.h"
 #include "font_manager.h"

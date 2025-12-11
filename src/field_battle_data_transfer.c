@@ -5,11 +5,11 @@
 
 #include "constants/battle.h"
 #include "constants/heap.h"
-#include "constants/narc.h"
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
 #include "generated/items.h"
+#include "generated/narc.h"
 #include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"

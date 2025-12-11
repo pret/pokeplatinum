@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "struct_defs/seal_case.h"
 #include "struct_defs/struct_020127E8.h"

@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "generated/items.h"
+#include "generated/narc.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"

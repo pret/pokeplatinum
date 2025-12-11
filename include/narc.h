@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_NARC_H
 #define POKEPLATINUM_NARC_H
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 /*
  * The NARC struct wraps NitroSDK type FSFile and manages the important

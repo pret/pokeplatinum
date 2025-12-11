@@ -4,7 +4,7 @@
 #include <nitro/code16.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 

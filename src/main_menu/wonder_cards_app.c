@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/narc.h"
+#include "generated/narc.h"
 #include "generated/string_padding_mode.h"
 
 #include "main_menu/main_menu_util.h"

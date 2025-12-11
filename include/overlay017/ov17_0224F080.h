@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "sprite_system.h"
 
