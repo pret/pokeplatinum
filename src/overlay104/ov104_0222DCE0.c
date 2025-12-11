@@ -101,7 +101,7 @@ static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_POKE_KID, OBJ_EVENT_GFX_PIKACHU }
 };
 
-BattleFrontierTrainerData *BattleTower_GetTrainerDataFromTrainerIDAndNarcID(u16 battleTowerTrainerID, int heapID, enum NarcID narcID)
+BattleFrontierTrainerData *BattleTower_GetTrainerDataFromTrainerIDAndNarcID(u16 battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID)
 {
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, battleTowerTrainerID, heapID);
 }
@@ -111,7 +111,7 @@ void BattleTower_GetMonDataFromSetIDAndNarcID(BattleFrontierPokemonData *monData
     NARC_ReadWholeMemberByIndexPair(monData, narcID, setID);
 }
 
-BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *trDataDTO, int battleTowerTrainerID, int heapID, enum NarcID narcID)
+BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *trDataDTO, int battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID)
 {
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 

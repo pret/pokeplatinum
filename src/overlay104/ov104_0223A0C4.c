@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/species_data_params.h"
 
@@ -656,15 +657,15 @@ static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, Battl
     u8 random;
     u32 v4;
     int setID;
-    int setIDs[4];
-    u32 personalities[4];
+    int setIDs[BT_DOUBLES_PARTY_SIZE];
+    u32 personalities[BT_DOUBLES_PARTY_SIZE];
     int partyIndex;
     int dupeItemFailsafeCount;
     BOOL giveReservedItem = 0;
     BattleFrontierPokemonData monDataPrev;
     BattleFrontierPokemonData monDataCurr;
 
-    GF_ASSERT(partySize <= 4);
+    GF_ASSERT(partySize <= BT_DOUBLES_PARTY_SIZE);
 
     partyIndex = 0;
     dupeItemFailsafeCount = 0;
@@ -845,7 +846,7 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
 
     evs = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
+    for (v0 = 0; v0 < STAT_MAX; v0++) {
         if (monData.evFlags & FlagIndex(v0)) {
             evs++;
         }
@@ -857,7 +858,7 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
         evs = MAX_EVS_ALL_STATS / evs;
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
+    for (v0 = 0; v0 < STAT_MAX; v0++) {
         if (monData.evFlags & FlagIndex(v0)) {
             monDataDTO->evList[v0] = evs;
         }
