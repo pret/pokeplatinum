@@ -2,43 +2,43 @@
   "key": 4003,
   "messages": [
     {
-      "id": "pl_msg_00000003_00000",
+      "id": "BattleParty_Text_PartyPokemon1Name",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00001",
+      "id": "BattleParty_Text_PartyPokemon2Name",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00002",
+      "id": "BattleParty_Text_PartyPokemon3Name",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00003",
+      "id": "BattleParty_Text_PartyPokemon4Name",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00004",
+      "id": "BattleParty_Text_PartyPokemon5Name",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00005",
+      "id": "BattleParty_Text_PartyPokemon6Name",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00006",
+      "id": "BattleParty_Text_ChooseAPokemon",
       "en_US": "Choose a Pokémon."
     },
     {
-      "id": "pl_msg_00000003_00007",
+      "id": "BattleParty_Text_UseOnWhichPokemon",
       "en_US": "Use on which Pokémon?"
     },
     {
-      "id": "pl_msg_00000003_00008",
+      "id": "BattleParty_Text_PokemonAbilityName",
       "en_US": "{STRVAR_1 5, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00009",
+      "id": "BattleParty_Text_PokemonHeldItemName",
       "en_US": "{STRVAR_1 8, 0, 0}"
     },
     {
@@ -58,31 +58,31 @@
       "garbage": 5
     },
     {
-      "id": "pl_msg_00000003_00014",
+      "id": "BattleParty_Text_PokemonPPLabel",
       "en_US": "PP"
     },
     {
-      "id": "pl_msg_00000003_00015",
+      "id": "BattleParty_Text_ShiftButton",
       "en_US": "SHIFT"
     },
     {
-      "id": "pl_msg_00000003_00016",
+      "id": "BattleParty_Text_MaleIcon",
       "en_US": "♂"
     },
     {
-      "id": "pl_msg_00000003_00017",
+      "id": "BattleParty_Text_FemaleIcon",
       "en_US": "♀"
     },
     {
-      "id": "pl_msg_00000003_00018",
+      "id": "BattleParty_Text_SummaryButton",
       "en_US": "SUMMARY"
     },
     {
-      "id": "pl_msg_00000003_00019",
+      "id": "BattleParty_Text_CheckMovesButton",
       "en_US": "CHECK MOVES"
     },
     {
-      "id": "pl_msg_00000003_00020",
+      "id": "BattleParty_Text_PokemonNoItemHeld",
       "en_US": "No item held"
     },
     {
@@ -94,19 +94,19 @@
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00023",
+      "id": "BattleParty_Text_PokemonLevelLabel",
       "en_US": "Lv."
     },
     {
-      "id": "pl_msg_00000003_00024",
+      "id": "BattleParty_Text_PokemonLevelValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00025",
+      "id": "BattleParty_Text_PokemonExpToNextLevelLabel",
       "en_US": "NEXT LV"
     },
     {
-      "id": "pl_msg_00000003_00026",
+      "id": "BattleParty_Text_PokemonExpToNextLevelValue",
       "en_US": "{STRVAR_1 55, 0, 0}"
     },
     {
@@ -114,59 +114,59 @@
       "en_US": "{STRVAR_1 5, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00028",
+      "id": "BattleParty_Text_PokemonHPStatLabel",
       "en_US": "HP"
     },
     {
-      "id": "pl_msg_00000003_00029",
+      "id": "BattleParty_Text_PokemonHPStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00030",
+      "id": "BattleParty_Text_PokemonMaxHPStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00031",
+      "id": "BattleParty_Text_PokemonHPStatDivider",
       "en_US": "/"
     },
     {
-      "id": "pl_msg_00000003_00032",
+      "id": "BattleParty_Text_PokemonAttackStatLabel",
       "en_US": "ATTACK"
     },
     {
-      "id": "pl_msg_00000003_00033",
+      "id": "BattleParty_Text_PokemonAttackStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00034",
+      "id": "BattleParty_Text_PokemonDefenseStatLabel",
       "en_US": "DEFENSE"
     },
     {
-      "id": "pl_msg_00000003_00035",
+      "id": "BattleParty_Text_PokemonDefenseStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00036",
+      "id": "BattleParty_Text_PokemonSpAtkStatLabel",
       "en_US": "SP. ATK"
     },
     {
-      "id": "pl_msg_00000003_00037",
+      "id": "BattleParty_Text_PokemonSpAtkStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00038",
+      "id": "BattleParty_Text_PokemonSpDefStatLabel",
       "en_US": "SP. DEF"
     },
     {
-      "id": "pl_msg_00000003_00039",
+      "id": "BattleParty_Text_PokemonSpDefStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00040",
+      "id": "BattleParty_Text_PokemonSpeedStatLabel",
       "en_US": "SPEED"
     },
     {
-      "id": "pl_msg_00000003_00041",
+      "id": "BattleParty_Text_PokemonSpeedStatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
@@ -174,19 +174,19 @@
       "en_US": "{STRVAR_1 6, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00043",
+      "id": "BattleParty_Text_MovePPLabel",
       "en_US": "PP"
     },
     {
-      "id": "pl_msg_00000003_00044",
+      "id": "BattleParty_Text_MoveCurrentPP",
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00045",
+      "id": "BattleParty_Text_MoveMaxPP",
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00046",
+      "id": "BattleParty_Text_MovePPDivider",
       "en_US": "/"
     },
     {
@@ -194,62 +194,62 @@
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000003_00048",
+      "id": "BattleParty_Text_MovePowerLabel",
       "en_US": "POWER"
     },
     {
-      "id": "pl_msg_00000003_00049",
+      "id": "BattleParty_Text_MovePowerValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00050",
+      "id": "BattleParty_Text_MoveStatNoValue",
       "en_US": "---"
     },
     {
-      "id": "pl_msg_00000003_00051",
+      "id": "BattleParty_Text_MoveAccuracyLabel",
       "en_US": "ACCURACY"
     },
     {
-      "id": "pl_msg_00000003_00052",
+      "id": "BattleParty_Text_MoveAccuracyValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00053",
+      "id": "BattleParty_Text_MoveCategoryLabel",
       "en_US": "CATEGORY"
     },
     {
-      "id": "pl_msg_00000003_00054",
+      "id": "BattleParty_Text_MoveCategoryPhysical",
       "en_US": "PHYSICAL"
     },
     {
-      "id": "pl_msg_00000003_00055",
+      "id": "BattleParty_Text_MoveCategoryStatus",
       "en_US": "STATUS"
     },
     {
-      "id": "pl_msg_00000003_00056",
+      "id": "BattleParty_Text_MoveCategorySpecial",
       "en_US": "SPECIAL"
     },
     {
-      "id": "pl_msg_00000003_00057",
+      "id": "BattleParty_Text_AppealPtsLabel",
       "en_US": "APPEAL PTS"
     },
     {
-      "id": "pl_msg_00000003_00058",
+      "id": "BattleParty_Text_ForgetMoveButton",
       "en_US": "FORGET"
     },
     {
-      "id": "pl_msg_00000003_00059",
+      "id": "BattleParty_Text_CancelMoveButton",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000003_00060",
+      "id": "BattleParty_Text_HMMovesCantBeForgotten",
       "en_US": [
         "HM moves can’t be\n",
         "forgotten now."
       ]
     },
     {
-      "id": "pl_msg_00000003_00061",
+      "id": "BattleParty_Text_Move1Name",
       "en_US": "{STRVAR_1 6, 0, 0}"
     },
     {
@@ -261,7 +261,7 @@
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00064",
+      "id": "BattleParty_Text_Move2Name",
       "en_US": "{STRVAR_1 6, 0, 0}"
     },
     {
@@ -273,7 +273,7 @@
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00067",
+      "id": "BattleParty_Text_Move3Name",
       "en_US": "{STRVAR_1 6, 0, 0}"
     },
     {
@@ -285,7 +285,7 @@
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00070",
+      "id": "BattleParty_Text_Move4Name",
       "en_US": "{STRVAR_1 6, 0, 0}"
     },
     {
@@ -297,7 +297,7 @@
       "en_US": "{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000003_00073",
+      "id": "BattleParty_Text_MoveToLearnName",
       "en_US": "{STRVAR_1 6, 0, 0}"
     },
     {
@@ -345,65 +345,65 @@
       "en_US": "It won’t have any effect."
     },
     {
-      "id": "pl_msg_00000003_00082",
+      "id": "BattleParty_Text_ItemRestoredHealth",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s HP was restored\n",
         "by {STRVAR_1 52, 1, 0} point(s)."
       ]
     },
     {
-      "id": "pl_msg_00000003_00083",
+      "id": "BattleParty_Text_ItemCuredPoisoning",
       "en_US": [
         "{STRVAR_1 1, 0, 0} was cured of its\n",
         "poisoning."
       ]
     },
     {
-      "id": "pl_msg_00000003_00084",
+      "id": "BattleParty_Text_ItemCuredParalysis",
       "en_US": [
         "{STRVAR_1 1, 0, 0} was cured of\n",
         "paralysis."
       ]
     },
     {
-      "id": "pl_msg_00000003_00085",
+      "id": "BattleParty_Text_ItemCuredBurn",
       "en_US": "{STRVAR_1 1, 0, 0}’s burn was healed."
     },
     {
-      "id": "pl_msg_00000003_00086",
+      "id": "BattleParty_Text_ItemCuredFreeze",
       "en_US": "{STRVAR_1 1, 0, 0} was thawed out."
     },
     {
-      "id": "pl_msg_00000003_00087",
+      "id": "BattleParty_Text_ItemRestoredPP",
       "en_US": "PP was restored."
     },
     {
-      "id": "pl_msg_00000003_00088",
+      "id": "BattleParty_Text_ItemRevivedPokemon",
       "en_US": [
         "{STRVAR_1 1, 0, 0} recovered from\n",
         "fainting!"
       ]
     },
     {
-      "id": "pl_msg_00000003_00089",
+      "id": "BattleParty_Text_ItemCuredMultipleStatuses",
       "en_US": "{STRVAR_1 1, 0, 0} became healthy."
     },
     {
-      "id": "pl_msg_00000003_00090",
+      "id": "BattleParty_Text_ItemCuredConfusion",
       "en_US": [
         "{STRVAR_1 1, 0, 0} snapped out of its\n",
         "confusion."
       ]
     },
     {
-      "id": "pl_msg_00000003_00091",
+      "id": "BattleParty_Text_ItemCuredInfatuation",
       "en_US": [
         "{STRVAR_1 1, 0, 0} got over its\n",
         "infatuation."
       ]
     },
     {
-      "id": "pl_msg_00000003_00092",
+      "id": "BattleParty_Text_ItemCuredSleep",
       "en_US": "{STRVAR_1 1, 0, 0} woke up."
     },
     {
@@ -414,11 +414,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000003_00094",
+      "id": "BattleParty_Text_RestoreWhichMove",
       "en_US": "Restore which move?"
     },
     {
-      "id": "pl_msg_00000003_00095",
+      "id": "BattleParty_Text_EmbargoPreventsItemUse",
       "en_US": [
         "{STRVAR_1 6, 1, 0}’s effect prevents\n",
         "the item’s use on {STRVAR_1 1, 0, 0}!"
