@@ -15,6 +15,8 @@
 #include "heap.h"
 #include "sys_task.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define ANIMATION_INDEX_CURSOR          0
 #define ANIMATION_INDEX_MARKER          1
 #define ANIMATION_INDEX_MARKER_BIG      8
@@ -59,8 +61,8 @@ void PoketchMarkingMapGraphics_Free(MarkingMapGraphics *graphics)
 
 static void SetupSprites(MarkingMapGraphics *graphics, const MarkingMapData *mapData)
 {
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 120, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, 118, 119, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, map_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, map_cell_NCER_lz, map_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     PoketchAnimation_AnimationData animData;
     animData.flip = NNS_G2D_RENDERERFLIP_NONE;
@@ -194,8 +196,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     MarkingMapGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 117, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 115, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, map_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, marking_map_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
 

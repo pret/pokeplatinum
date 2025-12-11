@@ -14,6 +14,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void SetupSprites(BacklightToggleGraphics *graphics, const BacklightData *backlight);
 static void UnloadSprites(BacklightToggleGraphics *graphics);
 static void EndTask(PoketchTaskManager *taskMan);
@@ -58,8 +60,8 @@ static void SetupSprites(BacklightToggleGraphics *graphics, const BacklightData 
         .hasAffineTransform = FALSE,
     };
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 104, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->sprite, NARC_INDEX_GRAPHIC__POKETCH, 102, 103, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, backlight_toggle_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->sprite, NARC_INDEX_GRAPHIC__POKETCH, backlight_toggle_cell_NCER_lz, backlight_toggle_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     graphics->animation = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData, &graphics->sprite);
 
@@ -122,8 +124,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     BacklightToggleGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 101, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 100, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, backlight_toggle_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, backlight_toggle_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);

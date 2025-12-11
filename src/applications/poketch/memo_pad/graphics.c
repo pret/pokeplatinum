@@ -16,6 +16,8 @@
 #include "poketch_memory.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define WINDOW_WIDTH_TILES  20
 #define WINDOW_HEIGHT_TILES 19
 
@@ -173,8 +175,8 @@ static void Task_DrawAppBackground(SysTask *task, void *taskMan)
 
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 30, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 31, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, memo_pad_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, memo_pad_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_POKETCH_APP));
@@ -315,9 +317,9 @@ static void SetupSprites(MemoPadGraphics *graphics)
         },
     };
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 32, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, memo_pad_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    if (PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, 33, 34, HEAP_ID_POKETCH_APP)) {
+    if (PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, memo_pad_cell_NCER_lz, memo_pad_anim_NANR_lz, HEAP_ID_POKETCH_APP)) {
 
         for (int i = 0; i < NUM_SPRITES; i++) {
             graphics->sprites[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animationData[i], &graphics->animData);

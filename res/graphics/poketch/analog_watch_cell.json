@@ -1,0 +1,72 @@
+{
+	"labelEnabled":	true,
+	"dontPadKbec":	false,
+	"extended":	false,
+	"vramTransferEnabled":	false,
+	"ucatEnabled":	false,
+	"cellCount":	2,
+	"mappingType":	0,
+	"cells":	[{
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	33
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-88,
+						"Rotation":	true,
+						"SizeDisable":	true,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	2
+					},
+					"Attr1":	{
+						"XCoordinate":	-32,
+						"RotationScaling":	0,
+						"Size":	3
+					},
+					"Attr2":	{
+						"CharName":	0,
+						"Priority":	2,
+						"Palette":	0
+					}
+				}]
+		}, {
+			"cellAttrs":	{
+				"hFlip":	false,
+				"vFlip":	false,
+				"hvFlip":	false,
+				"boundingRect":	false,
+				"boundingSphereRadius":	20
+			},
+			"oamCount":	1,
+			"OAM":	[{
+					"Attr0":	{
+						"YCoordinate":	-48,
+						"Rotation":	true,
+						"SizeDisable":	true,
+						"Mode":	0,
+						"Mosaic":	false,
+						"Colours":	16,
+						"Shape":	0
+					},
+					"Attr1":	{
+						"XCoordinate":	-32,
+						"RotationScaling":	0,
+						"Size":	2
+					},
+					"Attr2":	{
+						"CharName":	32,
+						"Priority":	2,
+						"Palette":	0
+					}
+				}]
+		}],
+	"labels":	["CellAnime0", "CellAnime1", "CellAnime2", "CellAnime3", "CellAnime4", "CellAnime5", "CellAnime6", "CellAnime7", "CellAnime8", "CellAnime9", "CellAnime10", "CellAnime11", "CellAnime12", "CellAnime13", "CellAnime14", "CellAnime15", "CellAnime16", "CellAnime17", "CellAnime18", "CellAnime19", "CellAnime20", "CellAnime21", "CellAnime22", "CellAnime23", "CellAnime24", "CellAnime25", "CellAnime26", "CellAnime27", "CellAnime28", "CellAnime29", "CellAnime30", "CellAnime31", "CellAnime32", "CellAnime33", "CellAnime34", "CellAnime35", "CellAnime36", "CellAnime37", "CellAnime38", "CellAnime39", "CellAnime40", "CellAnime41", "CellAnime42", "CellAnime43", "CellAnime44", "CellAnime45", "CellAnime46", "CellAnime47", "CellAnime48", "CellAnime49", "CellAnime50", "CellAnime51", "CellAnime52", "CellAnime53", "CellAnime54", "CellAnime55", "CellAnime56", "CellAnime57", "CellAnime58", "CellAnime59", "CellAnime601", "CellAnime61", "CellAnime621", "CellAnime622", "CellAnime623", "CellAnime624", "CellAnime625", "CellAnime626", "CellAnime627", "CellAnime628", "CellAnime629", "CellAnime6210", "CellAnime6211", "CellAnime6212", "CellAnime6213", "CellAnime6214", "CellAnime6215", "CellAnime6216", "CellAnime6217", "CellAnime6218", "CellAnime6219", "CellAnime6220", "CellAnime6221", "CellAnime6222", "CellAnime6223", "CellAnime6224", "CellAnime6225", "CellAnime6226", "CellAnime6227", "CellAnime6228", "CellAnime6229", "CellAnime6230", "CellAnime6231", "CellAnime6232", "CellAnime6233", "CellAnime6234", "CellAnime6235", "CellAnime6236", "CellAnime6237", "CellAnime6238", "CellAnime6239", "CellAnime6240", "CellAnime6241", "CellAnime6242", "CellAnime6243", "CellAnime6244", "CellAnime6245", "CellAnime6246", "CellAnime6247", "CellAnime6248", "CellAnime6249", "CellAnime6250", "CellAnime6251", "CellAnime6252", "CellAnime6253", "CellAnime6254", "CellAnime6255", "CellAnime6256", "CellAnime6257", "CellAnime6258", "CellAnime6259", "CellAnime6260", "CellAnime6261", "CellAnime6262", "CellAnime6263", "CellAnime6264", "CellAnime6265", "CellAnime6266", "CellAnime6267", "CellAnime6268", "CellAnime6269", "CellAnime6270", "CellAnime6271", "CellAnime6272", "CellAnime6273", "CellAnime6274", "CellAnime6275", "CellAnime6276", "CellAnime6277", "CellAnime6278", "CellAnime6279", "CellAnime6280", "CellAnime6281", "CellAnime6282", "CellAnime6283", "CellAnime6284", "CellAnime6285", "CellAnime6286", "CellAnime6287", "CellAnime6288", "CellAnime6289", "CellAnime6290", "CellAnime6291", "CellAnime6292", "CellAnime6293", "CellAnime6294", "CellAnime6295", "CellAnime6296", "CellAnime6297", "CellAnime6298", "CellAnime6299", "CellAnime62100", "CellAnime62101", "CellAnime62102", "CellAnime62103", "CellAnime62104", "CellAnime62105", "CellAnime62106", "CellAnime62107", "CellAnime62108", "CellAnime62109", "CellAnime62110", "CellAnime62111", "CellAnime62112", "CellAnime62113", "CellAnime62114", "CellAnime62115", "CellAnime62116", "CellAnime62117", "CellAnime62118", "CellAnime62119", "CellAnime62120", "CellAnime62121", "CellAnime62122", "CellAnime62123", "CellAnime62124", "CellAnime62125", "CellAnime62126", "CellAnime62127", "CellAnime62128", "CellAnime62129", "CellAnime62130", "CellAnime62131", "CellAnime62132", "CellAnime62133", "CellAnime62134", "CellAnime62135", "CellAnime62136", "CellAnime62137", "CellAnime62138", "CellAnime62139", "CellAnime62140", "CellAnime62141", "CellAnime62142", "CellAnime62143", "CellAnime62144", "CellAnime62145", "CellAnime62146", "CellAnime62147", "CellAnime62148", "CellAnime62149", "CellAnime62150", "CellAnime62151", "CellAnime62152", "CellAnime62153", "CellAnime62154", "CellAnime62155", "CellAnime62156", "CellAnime62157", "CellAnime62158", "CellAnime62159", "CellAnime62160", "CellAnime62161", "CellAnime62162", "CellAnime62163", "CellAnime62164", "CellAnime62165", "CellAnime62166", "CellAnime62167", "CellAnime62168", "CellAnime62169", "CellAnime62170", "CellAnime62171", "CellAnime62172", "CellAnime62173", "CellAnime62174", "CellAnime62175", "CellAnime62176", "CellAnime62177", "CellAnime62178", "CellAnime62179", "CellAnime62180", "CellAnime62181", "CellAnime62182", "CellAnime62183", "CellAnime62184", "CellAnime62185", "CellAnime62186", "CellAnime62187", "CellAnime62188", "CellAnime62189", "CellAnime62190", "CellAnime62191", "CellAnime62192", "CellAnime62193", "CellAnime62194", "CellAnime62195", "CellAnime62196", "CellAnime62197", "CellAnime62198", "CellAnime62199", "CellAnime62200", "CellAnime62201", "CellAnime62202", "CellAnime62203", "CellAnime62204", "CellAnime62205", "CellAnime62206", "CellAnime62207", "CellAnime62208", "CellAnime62209", "CellAnime62210", "CellAnime62211", "CellAnime62212", "CellAnime62213", "CellAnime62214", "CellAnime62215", "CellAnime62216", "CellAnime622161", "CellAnime62218", "CellAnime62219", "CellAnime62220", "CellAnime62221", "CellAnime62222", "CellAnime62223", "CellAnime62224", "CellAnime62225", "CellAnime62226", "CellAnime62227", "CellAnime62228", "CellAnime62229", "CellAnime62230", "CellAnime62231", "CellAnime62232", "CellAnime62233", "CellAnime62234", "CellAnime62235", "CellAnime62236", "CellAnime62237", "CellAnime62238", "CellAnime62239", "CellAnime62240", "CellAnime62241", "CellAnime62242", "CellAnime62243", "CellAnime62244", "CellAnime62245", "CellAnime62246", "CellAnime62247", "CellAnime62248", "CellAnime62249", "CellAnime62250", "CellAnime62251", "CellAnime62252", "CellAnime62253", "CellAnime62254", "CellAnime62255", "CellAnime62256", "CellAnime62257", "CellAnime62258", "CellAnime62259", "CellAnime62260", "CellAnime62261", "CellAnime62262", "CellAnime62263", "CellAnime62264", "CellAnime62265", "CellAnime62266", "CellAnime62267", "CellAnime62268", "CellAnime62269", "CellAnime62270", "CellAnime62271", "CellAnime62272", "CellAnime62273", "CellAnime62274", "CellAnime62275", "CellAnime62276", "CellAnime62277", "CellAnime62278", "CellAnime62279", "CellAnime62280", "CellAnime62281", "CellAnime62282", "CellAnime62283", "CellAnime62284", "CellAnime62285", "CellAnime62286", "CellAnime62287", "CellAnime62288", "CellAnime62289", "CellAnime62290", "CellAnime62291", "CellAnime62292", "CellAnime62293", "CellAnime62294", "CellAnime62295", "CellAnime62296", "CellAnime62297", "CellAnime62298", "CellAnime62299", "CellAnime62301", "CellAnime62302", "CellAnime62303", "CellAnime62304", "CellAnime62305", "CellAnime62306", "CellAnime62307", "CellAnime62308", "CellAnime62309", "CellAnime62310", "CellAnime62311", "CellAnime62312", "CellAnime62313", "CellAnime62314", "CellAnime62315", "CellAnime62316", "CellAnime62317", "CellAnime62318", "CellAnime62319", "CellAnime62320", "CellAnime62321", "CellAnime62322", "CellAnime62323", "CellAnime62324", "CellAnime62325", "CellAnime62326", "CellAnime62327", "CellAnime62328", "CellAnime62329", "CellAnime62330", "CellAnime62331", "CellAnime62332", "CellAnime62333", "CellAnime62334", "CellAnime62335", "CellAnime62336", "CellAnime62337", "CellAnime62338", "CellAnime62339", "CellAnime62340", "CellAnime62341", "CellAnime62342", "CellAnime62343", "CellAnime62344", "CellAnime62345", "CellAnime62346", "CellAnime62347", "CellAnime62348", "CellAnime62349", "CellAnime62350", "CellAnime62351", "CellAnime62352", "CellAnime62353", "CellAnime62354", "CellAnime62355", "CellAnime62356", "CellAnime62357", "CellAnime62358", "CellAnime623541"],
+	"labelCount":	420
+}

@@ -7,9 +7,7 @@
 #include "heap.h"
 #include "narc.h"
 
-#define POKETCH_UNAVAILABLE_SCREEN_NARC_TILES_IDX   10
-#define POKETCH_UNAVAILABLE_SCREEN_NARC_TILEMAP_IDX 11
-#define POKETCH_UNAVAILABLE_SCREEN_NARC_PALETTE_IDX 12
+#include "res/graphics/poketch/poketch.naix.h"
 
 void PoketchUnavailableScreen_Init(BgConfig *bgConfig)
 {
@@ -39,9 +37,9 @@ void PoketchUnavailableScreen_Init(BgConfig *bgConfig)
 
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, HEAP_ID_POKETCH_APP);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, POKETCH_UNAVAILABLE_SCREEN_NARC_TILES_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, POKETCH_UNAVAILABLE_SCREEN_NARC_TILEMAP_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadPaletteFromOpenNARC(narc, POKETCH_UNAVAILABLE_SCREEN_NARC_PALETTE_IDX, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, unavailable_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, unavailable_NSCR_lz, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadPaletteFromOpenNARC(narc, unavailable_bg_tiles_NCLR, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_POKETCH_APP);
     NARC_dtor(narc);
 
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);

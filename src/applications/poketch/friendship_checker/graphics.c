@@ -20,6 +20,8 @@
 #include "sys_task_manager.h"
 #include "system.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define TIME_STEPS_PER_FRAME 16
 
 #define POKE_ICON_SIZE 32
@@ -108,8 +110,8 @@ BOOL PoketchFriendshipCheckerGraphics_New(FriendshipCheckerGraphics **dest, cons
             graphics->pokemon[slot].actionSprite = NULL;
         }
 
-        PoketchAnimation_LoadSpriteFromNARC(&graphics->monAnimData, NARC_INDEX_GRAPHIC__POKETCH, 5, 6, HEAP_ID_POKETCH_APP);
-        PoketchAnimation_LoadSpriteFromNARC(&graphics->heartAnimData, NARC_INDEX_GRAPHIC__POKETCH, 36, 37, HEAP_ID_POKETCH_APP);
+        PoketchAnimation_LoadSpriteFromNARC(&graphics->monAnimData, NARC_INDEX_GRAPHIC__POKETCH, poke_icon_cell_NCER_lz, poke_icon_anim_NANR_lz, HEAP_ID_POKETCH_APP);
+        PoketchAnimation_LoadSpriteFromNARC(&graphics->heartAnimData, NARC_INDEX_GRAPHIC__POKETCH, friendship_checker_cell_NCER_lz, friendship_checker_anim_NANR_lz, HEAP_ID_POKETCH_APP);
         *dest = graphics;
         return TRUE;
     }
@@ -189,7 +191,7 @@ static void Task_InitGraphics(SysTask *task, void *taskMan)
     FriendshipCheckerGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 7, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, generic_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, 0, POKETCH_WIDTH_TILES, POKETCH_HEIGHT_TILES, 0);
 
     PoketchGraphics_LoadActivePalette(0, 0);
@@ -219,7 +221,7 @@ static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCh
     NARC *pokeIconNarc;
 
     PoketchTask_LoadPokemonIconLuminancePalette(1);
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 35, DS_SCREEN_SUB, POKE_ICON_SIZE * MAX_PARTY_SIZE * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, friendship_checker_NCGR_lz, DS_SCREEN_SUB, POKE_ICON_SIZE * MAX_PARTY_SIZE * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     pokeIconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 

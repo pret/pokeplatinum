@@ -14,6 +14,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define ANIM_HAND_RIGHT_UP     0
 #define ANIM_HAND_RIGHT_DOWN   1
 #define ANIM_HAND_LEFT_UP      2
@@ -214,11 +216,11 @@ static void SetupSprites(KitchenTimerGraphics *graphics, const KitchenTimerDispl
         },
     };
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 94, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_NUM_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, digits_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, kitchen_timer_NCGR_lz, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_NUM_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->timerSpritesData, NARC_INDEX_GRAPHIC__POKETCH, 92, 93, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSpritesData, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->timerSpritesData, NARC_INDEX_GRAPHIC__POKETCH, kitchen_timer_cell_NCER_lz, kitchen_timer_anim_NANR_lz, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSpritesData, NARC_INDEX_GRAPHIC__POKETCH, digits_cell_NCER_lz, digits_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     for (int i = 0; i < NUM_SPRITES; i++) {
         if (i >= SPRITE_MINUTES_TENS_DIGIT && i <= SPRITE_SECONDS_ONES_DIGIT) {
@@ -300,8 +302,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     KitchenTimerGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 91, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 90, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, kitchen_timer_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, kitchen_timer_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);

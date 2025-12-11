@@ -19,6 +19,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define POKE_ICON_TILE_COUNT 16
 #define POKE_ICON_SIZE_BYTES (POKE_ICON_TILE_COUNT * TILE_SIZE_4BPP)
 
@@ -71,8 +73,8 @@ BOOL PartyStatusGraphics_New(PartyStatusGraphics **dest, const PartyStatus *part
             graphics->itemSprites[i] = NULL;
         }
 
-        PoketchAnimation_LoadSpriteFromNARC(&graphics->monAnimData, NARC_INDEX_GRAPHIC__POKETCH, 5, 6, HEAP_ID_POKETCH_APP);
-        PoketchAnimation_LoadSpriteFromNARC(&graphics->itemSpriteData, NARC_INDEX_GRAPHIC__POKETCH, 107, 108, HEAP_ID_POKETCH_APP);
+        PoketchAnimation_LoadSpriteFromNARC(&graphics->monAnimData, NARC_INDEX_GRAPHIC__POKETCH, poke_icon_cell_NCER_lz, poke_icon_anim_NANR_lz, HEAP_ID_POKETCH_APP);
+        PoketchAnimation_LoadSpriteFromNARC(&graphics->itemSpriteData, NARC_INDEX_GRAPHIC__POKETCH, party_status_cell_NCER_lz, party_status_anim_NANR_lz, HEAP_ID_POKETCH_APP);
         *dest = graphics;
         return TRUE;
     }
@@ -146,7 +148,7 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     graphics = PoketchTask_GetTaskData(taskMan);
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
 
-    bgTileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 106, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    bgTileCount = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, party_status_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     bgTileCount /= TILE_SIZE_4BPP;
 
     Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, 5, 0, 0, POKETCH_WIDTH_TILES, POKETCH_HEIGHT_TILES, 0);
@@ -245,7 +247,7 @@ static void SetupItemSprites(PartyStatusGraphics *graphics, const PartyStatus *p
 {
     PoketchAnimation_AnimationData animData;
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, party_status_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     animData.flip = NNS_G2D_RENDERERFLIP_NONE;
     animData.oamPriority = 2;

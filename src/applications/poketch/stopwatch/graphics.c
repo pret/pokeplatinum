@@ -15,6 +15,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define BUTTON_WIDTH_TILES  5
 #define BUTTON_HEIGHT_TILES 11
 
@@ -81,8 +83,8 @@ BOOL PoketchStopwatchGraphics_New(PoketchStopwatchGraphics **dest, const TimerSt
             return FALSE;
         }
 
-        if (PoketchAnimation_LoadSpriteFromNARC(&graphics->voltorbSprites, NARC_INDEX_GRAPHIC__POKETCH, 18, 19, HEAP_ID_POKETCH_APP)) {
-            if (PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSprites, NARC_INDEX_GRAPHIC__POKETCH, 3, 4, HEAP_ID_POKETCH_APP)) {
+        if (PoketchAnimation_LoadSpriteFromNARC(&graphics->voltorbSprites, NARC_INDEX_GRAPHIC__POKETCH, stopwatch_cell_NCER_lz, stopwatch_anim_NANR_lz, HEAP_ID_POKETCH_APP)) {
+            if (PoketchAnimation_LoadSpriteFromNARC(&graphics->digitSprites, NARC_INDEX_GRAPHIC__POKETCH, digits_cell_NCER_lz, digits_anim_NANR_lz, HEAP_ID_POKETCH_APP)) {
                 PoketchTask_InitActiveTaskList(graphics->activeTasks, STOPWATCH_TASK_SLOTS);
                 graphics->timerUpdateTask = NULL;
                 *dest = graphics;
@@ -197,8 +199,8 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
     PoketchStopwatchGraphics *bgGraphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(bgGraphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 21, bgGraphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 20, bgGraphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, stopwatch_bg_tiles_NCGR_lz, bgGraphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, stopwatch_NSCR_lz, bgGraphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(bgGraphics->bgConfig, BG_LAYER_SUB_2);
@@ -225,8 +227,8 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 
 static BOOL LoadObjectTiles(PoketchStopwatchGraphics *graphics)
 {
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 2, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 22, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_NUM_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, digits_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, stopwatch_NCGR_lz, DS_SCREEN_SUB, POKETCH_DIGITS_NCGR_NUM_TILES * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     return TRUE;
 }

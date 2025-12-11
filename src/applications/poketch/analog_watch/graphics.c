@@ -12,6 +12,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void EndTask(PoketchTaskManager *graphics);
 static void Task_DrawBackground(SysTask *task, void *taskMan);
 static void Task_UpdateTime(SysTask *task, void *taskMan);
@@ -115,8 +117,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     AnalogWatchGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 23, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 26, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, watch_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, analog_watch_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     UpdateClockHandSprites(graphics);
@@ -194,9 +196,9 @@ static BOOL SetupSprites(AnalogWatchGraphics *graphics)
         },
     };
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 29, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, analog_watch_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    if (PoketchAnimation_LoadSpriteFromNARC(&graphics->clockHandSprites, NARC_INDEX_GRAPHIC__POKETCH, 27, 28, HEAP_ID_POKETCH_APP)) {
+    if (PoketchAnimation_LoadSpriteFromNARC(&graphics->clockHandSprites, NARC_INDEX_GRAPHIC__POKETCH, analog_watch_cell_NCER_lz, analog_watch_anim_NANR_lz, HEAP_ID_POKETCH_APP)) {
 
         for (int i = 0; i < NUM_SPRITES; i++) {
             graphics->animSpriteData[i] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData[i], &graphics->clockHandSprites);

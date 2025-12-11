@@ -15,6 +15,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void SetupSprites(ColorChangerGraphics *graphics, const ColorChangerData *colorData);
 static void UnloadSprites(ColorChangerGraphics *graphics);
 static void EndTask(PoketchTaskManager *taskMan);
@@ -51,9 +53,9 @@ static void SetupSprites(ColorChangerGraphics *graphics, const ColorChangerData 
         .hasAffineTransform = FALSE
     };
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 69, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, color_changer_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 67, 68, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, color_changer_cell_NCER_lz, color_changer_anim_NANR_lz, HEAP_ID_POKETCH_APP);
     graphics->sprite = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData, &graphics->spriteData);
     PoketchAnimation_SetSpritePosition(graphics->sprite, (COLOR_SLIDER_LEFT_X + (COLOR_SLIDER_WIDTH * colorData->color)) << FX32_SHIFT, FX32_CONST(COLOR_SLIDER_Y));
 }
@@ -123,8 +125,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     const ColorChangerData *colorData = PoketchTask_GetConstTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 66, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 65, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, color_changer_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, color_changer_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
