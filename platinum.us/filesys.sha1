@@ -56,11 +56,11 @@ bbec5b2143b48f7439efa8eb285b69635f3720fa *res/prebuilt/data/pc.nsbca
 e8982c6379fcc2dbd01e2a3626fa1e11477c77c9 *res/prebuilt/data/pl_wm.ncgr
 26ca766959599944cd52221ad42cc0a93d95ba2e *res/prebuilt/data/pl_wm.nclr
 1914b6e76596ffa892508899cad35acedf7ae070 *res/prebuilt/data/plbr.dat
-516b0800e4ebeca7982a487160ed6a04db95eb8b *res/prebuilt/data/plist_canm.resdat
-c63feb68844c5a535611cd61945810977dc13989 *res/prebuilt/data/plist_cell.resdat
-ea682a75054a3e229c3caa91bf7701d60fa05aa4 *res/prebuilt/data/plist_chr.resdat
-d47a8e1fe411e19c194939abb643d2af1e1cf329 *res/prebuilt/data/plist_h.cldat
-df06f0ebd532087ff88a709a86ec4c6f00b6d05a *res/prebuilt/data/plist_pal.resdat
+516b0800e4ebeca7982a487160ed6a04db95eb8b *res/graphics/party_menu/nanrs.resdat
+c63feb68844c5a535611cd61945810977dc13989 *res/graphics/party_menu/ncers.resdat
+ea682a75054a3e229c3caa91bf7701d60fa05aa4 *res/graphics/party_menu/ncgrs.resdat
+d47a8e1fe411e19c194939abb643d2af1e1cf329 *res/graphics/party_menu/templates.cldat
+df06f0ebd532087ff88a709a86ec4c6f00b6d05a *res/graphics/party_menu/nclrs.resdat
 1e111fc17f1496bab5b2f20455985a6139bd770d *res/prebuilt/data/porucase_canm.resdat
 b844263884695da81d055287a8e5311cf80fc49e *res/prebuilt/data/porucase_celact.cldat
 f8716c3d16aa2f8ccbb29c3e2ae55f2d872a689f *res/prebuilt/data/porucase_cell.resdat

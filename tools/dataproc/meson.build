@@ -21,3 +21,20 @@ dep_dataproc = declare_dependency(
     include_directories: inc_dataproc,
     link_with: lib_dataproc,
 )
+
+dataproc_resdat_exe = executable(
+    'dataproc-resdat',
+
+    sources: [
+        c_consts_generators,
+        files(
+            'src/resdat.c',
+            'src/minilib/map.c',
+        ),
+    ],
+
+    include_directories: [ toplevel_includes ],
+    dependencies: [ dep_dataproc ],
+
+    native: true,
+)

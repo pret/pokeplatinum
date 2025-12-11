@@ -74,5 +74,33 @@ party_menu_narc = custom_target('party_menu_graphics.narc',
     ]
 )
 
+party_menu_resdat = custom_target(
+    output: [
+        'ncgrs.resdat',
+        'nclrs.resdat',
+        'ncers.resdat',
+        'nanrs.resdat',
+        'templates.cldat',
+    ],
+
+    input: [
+        bag_graphics_narc[1],
+        party_menu_narc[1],
+        pokemon_summary_screen_narc[1],
+        pl_poke_icon_narc[1],
+    ],
+
+    command: [
+        dataproc_resdat_exe,
+        '--prefix', meson.current_build_dir(),
+        '-D', 'NARC_INDEX_GRAPHIC__PL_BAG_GRA:@INPUT0@',
+        '-D', 'NARC_INDEX_GRAPHIC__PL_PLIST_GRA:@INPUT1@',
+        '-D', 'NARC_INDEX_GRAPHIC__PL_PST_GRA:@INPUT2@',
+        '-D', 'NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON:@INPUT3@',
+        files('resdat.json'),
+    ],
+)
+
 nitrofs_files += party_menu_narc
+nitrofs_files += party_menu_resdat
 naix_headers += party_menu_narc[1]
