@@ -285,7 +285,7 @@ Static main
 	Object main.nef.p/src_trainer_card.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
-	Object main.nef.p/src_unk_02073838.c.o
+	Object main.nef.p/src_simple3d.c.o
 	Object main.nef.p/src_pokemon.c.o
 	Object main.nef.p/src_move_table.c.o
 	Object main.nef.p/src_trainer_data.c.o

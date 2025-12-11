@@ -4,24 +4,20 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay005/struct_ov5_02201C58.h"
 
 #include "heap.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     UnkStruct_ov5_021DF47C *unk_00;
-    UnkStruct_02073838 unk_04[9];
-    UnkStruct_02073974 unk_B8[1];
+    Simple3DModel unk_04[9];
+    Simple3DAnimation unk_B8[1];
 } UnkStruct_021F47DC;
 
 typedef struct {
@@ -38,17 +34,17 @@ typedef struct {
     u8 unk_03;
     VecFx32 unk_04;
     VecFx32 unk_10;
-    UnkStruct_ov5_02201C58 unk_1C;
+    Simple3DRotationAngles unk_1C;
     UnkStruct_ov5_021F4840 unk_24;
-    UnkStruct_02073B50 unk_34;
-    UnkStruct_02073974 *unk_88;
+    Simple3DRenderObj unk_34;
+    Simple3DAnimation *unk_88;
 } UnkStruct_021F487C;
 
 typedef struct {
     int unk_00;
     UnkStruct_ov5_021DF47C *unk_04;
     UnkStruct_021F47DC *unk_08;
-    UnkStruct_02073B50 unk_0C;
+    Simple3DRenderObj unk_0C;
 } UnkStruct_021F4D50;
 
 static void ov5_021F47DC(UnkStruct_021F47DC *param0);
@@ -63,7 +59,7 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200754;
 static const OverworldAnimManagerFuncs Unk_ov5_02200768;
 static const u32 Unk_ov5_0220079C[9];
 static const u32 Unk_ov5_02200750[1];
-static const UnkStruct_ov5_02201C58 Unk_ov5_0220077C[4];
+static const Simple3DRotationAngles Unk_ov5_0220077C[4];
 static const VecFx32 Unk_ov5_022007C0[4][6];
 static const VecFx32 Unk_ov5_022008E0[4][6];
 
@@ -92,7 +88,7 @@ static void ov5_021F47DC(UnkStruct_021F47DC *param0)
         ov5_021DFB00(param0->unk_00, &param0->unk_04[v0], 0, Unk_ov5_0220079C[v0], 0);
     }
 
-    NNS_G3dMdlSetMdlFogEnableFlagAll(param0->unk_04[0].unk_0C, 0);
+    NNS_G3dMdlSetMdlFogEnableFlagAll(param0->unk_04[0].g3DModel, 0);
 
     for (v0 = 0; v0 < 1; v0++) {
         ov5_021DFB24(param0->unk_00, &param0->unk_B8[v0], 0, Unk_ov5_02200750[v0], 0);
@@ -104,11 +100,11 @@ static void ov5_021F4820(UnkStruct_021F47DC *param0)
     int v0;
 
     for (v0 = 0; v0 < 9; v0++) {
-        sub_0207395C(&param0->unk_04[v0]);
+        Simple3D_FreeModel(&param0->unk_04[v0]);
     }
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_02073AA8(&param0->unk_B8[v0]);
+        Simple3D_FreeAnimation(&param0->unk_B8[v0]);
     }
 }
 
@@ -136,11 +132,11 @@ static int ov5_021F487C(OverworldAnimManager *param0, void *param1)
 
     v0->unk_24 = *v1;
     v0->unk_00 = MapObject_GetFacingDir(v1->unk_0C);
-    v0->unk_88 = ov5_021DF528(v1->unk_04, sizeof(UnkStruct_02073974), 0);
+    v0->unk_88 = ov5_021DF528(v1->unk_04, sizeof(Simple3DAnimation), 0);
 
-    sub_02073B70(&v0->unk_34, &v0->unk_24.unk_08->unk_04[0]);
+    Simple3D_CreateRenderObject(&v0->unk_34, &v0->unk_24.unk_08->unk_04[0]);
     ov5_021DFB40(v0->unk_24.unk_04, v0->unk_88, &v0->unk_24.unk_08->unk_04[0], &v0->unk_24.unk_08->unk_B8[0], 0);
-    sub_02073B84(&v0->unk_34, v0->unk_88);
+    Simple3D_BindAnimToRenderObj(&v0->unk_34, v0->unk_88);
     ov5_021F4A24(param0, v0);
 
     return 1;
@@ -150,7 +146,7 @@ static void ov5_021F48F0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F487C *v0 = param1;
 
-    sub_02073A90(v0->unk_88);
+    Simple3D_FreeAnimObject(v0->unk_88);
     Heap_Free(v0->unk_88);
 }
 
@@ -177,7 +173,7 @@ static void ov5_021F4908(OverworldAnimManager *param0, void *param1)
         ov5_021F49D0(param0, v4);
     }
 
-    sub_02073AC0(v4->unk_88, FX32_ONE, 1);
+    Simple3D_UpdateAnim(v4->unk_88, FX32_ONE, 1);
 }
 
 static void ov5_021F4974(OverworldAnimManager *param0, void *param1)
@@ -185,7 +181,7 @@ static void ov5_021F4974(OverworldAnimManager *param0, void *param1)
     UnkStruct_021F487C *v0 = param1;
 
     if (v0->unk_02 == 0) {
-        UnkStruct_ov5_02201C58 v1;
+        Simple3DRotationAngles v1;
         VecFx32 v2;
 
         OverworldAnimManager_GetPosition(param0, &v2);
@@ -196,11 +192,11 @@ static void ov5_021F4974(OverworldAnimManager *param0, void *param1)
 
         v1 = v0->unk_1C;
 
-        ov5_021F4A80(&v1.unk_00, 0);
-        ov5_021F4A80(&v1.unk_02, 0);
-        ov5_021F4A80(&v1.unk_04, 0);
+        ov5_021F4A80(&v1.alpha, 0);
+        ov5_021F4A80(&v1.beta, 0);
+        ov5_021F4A80(&v1.gamma, 0);
 
-        sub_02073BC8(&v0->unk_34, &v2, &v0->unk_10, &v1);
+        Simple3D_DrawRenderObjRotationAngles(&v0->unk_34, &v2, &v0->unk_10, &v1);
     }
 }
 
@@ -389,7 +385,7 @@ static int ov5_021F4D50(OverworldAnimManager *param0, void *param1)
     v0->unk_04 = (UnkStruct_ov5_021DF47C *)OverworldAnimManager_GetUserData(param0);
     v0->unk_08 = ov5_021DF55C(v0->unk_04, 32);
 
-    sub_02073B70(&v0->unk_0C, &v0->unk_08->unk_04[1 + v0->unk_00]);
+    Simple3D_CreateRenderObject(&v0->unk_0C, &v0->unk_08->unk_04[1 + v0->unk_00]);
     return 1;
 }
 
@@ -409,7 +405,7 @@ static void ov5_021F4D90(OverworldAnimManager *param0, void *param1)
     UnkStruct_021F4D50 *v1 = param1;
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_02073BB4(&v1->unk_0C, &v0);
+    Simple3D_DrawRenderObjWithPos(&v1->unk_0C, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200768 = {
@@ -436,7 +432,7 @@ static const u32 Unk_ov5_02200750[1] = {
     0xC7
 };
 
-static const UnkStruct_ov5_02201C58 Unk_ov5_0220077C[4] = {
+static const Simple3DRotationAngles Unk_ov5_0220077C[4] = {
     { 0x10E, 0xB4, 0x0 },
     { 0x5A, 0xB4, 0xB4 },
     { 0x0, 0x10E, 0x10E },

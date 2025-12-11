@@ -6,14 +6,13 @@
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
 
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021DF84C.h"
 
 #include "overworld_anim_manager.h"
+#include "simple3d.h"
 
 UnkStruct_ov5_021DF47C *ov5_021DF440(FieldSystem *fieldSystem, u32 param1, u32 heapID);
 void ov5_021DF47C(UnkStruct_ov5_021DF47C *param0, u32 param1);
@@ -45,8 +44,8 @@ void ov5_021DFA14(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2);
 void ov5_021DFA30(UnkStruct_ov5_021DF47C *param0, u32 param1);
 void ov5_021DFA3C(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2, u32 param3);
 void ov5_021DFA7C(UnkStruct_ov5_021DF47C *param0, u32 param1);
-void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd);
-void ov5_021DFB24(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, u32 param2, u32 param3, u32 param4);
-void ov5_021DFB40(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, const UnkStruct_02073838 *param2, UnkStruct_02073974 *param3, u32 param4);
+void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, Simple3DModel *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd);
+void ov5_021DFB24(UnkStruct_ov5_021DF47C *param0, Simple3DAnimation *param1, u32 param2, u32 param3, u32 param4);
+void ov5_021DFB40(UnkStruct_ov5_021DF47C *param0, Simple3DAnimation *param1, const Simple3DModel *param2, Simple3DAnimation *param3, u32 param4);
 
 #endif // POKEPLATINUM_OV5_021DF440_H
