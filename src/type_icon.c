@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
 #include "generated/move_classes.h"
+#include "generated/narc.h"
 
 #include "pch/global_pch.h"
 

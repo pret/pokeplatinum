@@ -5,8 +5,8 @@
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/narc.h"
 #include "constants/species.h"
+#include "generated/narc.h"
 
 #include "heap.h"
 #include "narc.h"

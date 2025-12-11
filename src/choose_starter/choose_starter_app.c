@@ -6,8 +6,8 @@
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
-#include "constants/narc.h"
 #include "constants/species.h"
+#include "generated/narc.h"
 
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/struct_02099F80.h"

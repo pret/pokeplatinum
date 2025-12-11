@@ -5,7 +5,7 @@
 #include <nnsys.h>
 
 #include "constants/heap.h"
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "camera.h"
 #include "spl.h"

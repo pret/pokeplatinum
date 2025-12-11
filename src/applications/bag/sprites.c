@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 #include "generated/pokemon_types.h"
 
 #include "applications/bag/main.h"

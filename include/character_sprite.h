@@ -2,8 +2,8 @@
 #define POKEPLATINUM_CHARACTER_SPRITE_H
 
 #include "constants/heap.h"
-#include "constants/narc.h"
 #include "constants/species.h"
+#include "generated/narc.h"
 
 #define FRAME_0_REGION { 0, 0, 10, 10 }
 #define FRAME_1_REGION { 10, 0, 10, 10 }

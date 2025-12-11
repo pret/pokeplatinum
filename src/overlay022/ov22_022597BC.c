@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "overlay022/struct_ov22_022597BC.h"
 #include "overlay022/struct_ov22_02259820.h"
