@@ -18,7 +18,7 @@ u16 sub_0204B044(FieldSystem *fieldSystem, const u16 *param1);
 void sub_0204B060(BattleTower *battleTower, SaveData *saveData);
 void sub_0204B0BC(BattleTower *battleTower);
 void sub_0204B0D4(BattleTower *battleTower, u16 param1);
-u16 sub_0204B0F0(BattleTower *battleTower, u8 param1, u8 param2, int param3);
+u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 roomNum, u8 opponentNum, int challengeMode);
 BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID);
 void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, BOOL param3, const UnkStruct_0204B404 *param4, int heapID);
 

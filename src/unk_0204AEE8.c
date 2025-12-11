@@ -5,6 +5,7 @@
 
 #include "constants/battle_tower.h"
 #include "generated/battle_tower_modes.h"
+#include "generated/frontier_trainers.h"
 #include "generated/object_events.h"
 #include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"
@@ -182,7 +183,7 @@ u16 sub_0204B020(FieldSystem *fieldSystem, const u16 *param1)
         return 0;
     }
 
-    MI_CpuCopy8(param1, battleTower->unk_3E, 14 * 2);
+    MI_CpuCopy8(param1, battleTower->trainerIDs, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
     return 1;
 }
 
@@ -217,7 +218,7 @@ void sub_0204B060(BattleTower *battleTower, SaveData *saveData)
 
 void sub_0204B0BC(BattleTower *battleTower)
 {
-    MI_CpuCopy8(battleTower->unk_3E, battleTower->unk_83E, 14 * 2);
+    MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
 }
 
 void sub_0204B0D4(BattleTower *battleTower, u16 param1)
@@ -226,56 +227,56 @@ void sub_0204B0D4(BattleTower *battleTower, u16 param1)
     battleTower->unk_83E[0] = param1;
 }
 
-static const u16 Unk_020EBD58[][2] = {
-    { 0x0, 0x63 },
-    { 0x50, 0x77 },
-    { 0x64, 0x8B },
-    { 0x78, 0x9F },
-    { 0x8C, 0xB3 },
-    { 0xA0, 0xC7 },
-    { 0xB4, 0xDB },
-    { 0xC8, 0x12B }
+static const u16 sBattleTowerTrainerRangesPerRoom[][2] = {
+    { FRONTIER_TRAINER_YOUNGSTER_JIM, FRONTIER_TRAINER_REPORTER_GINGHAM },
+    { FRONTIER_TRAINER_HIKER_RAIDEN, FRONTIER_TRAINER_SOCIALITE_CARMEN },
+    { FRONTIER_TRAINER_CYCLIST_GASPAR, FRONTIER_TRAINER_CLOWN_PRESCOT },
+    { FRONTIER_TRAINER_PSYCHIC_ALPHA, FRONTIER_TRAINER_ACE_TRAINER_DANIELA },
+    { FRONTIER_TRAINER_ACE_TRAINER_YARDLEY, FRONTIER_TRAINER_IDOL_UTAH },
+    { FRONTIER_TRAINER_YOUNGSTER_KADEN, FRONTIER_TRAINER_PI_SERGEI },
+    { FRONTIER_TRAINER_JOGGER_COLT, FRONTIER_TRAINER_BREEDER_ANTONIA },
+    { FRONTIER_TRAINER_CAMPER_FREDDY, FRONTIER_TRAINER_IDOL_NISSA }
 };
 
-static const u16 Unk_020EBD78[][2] = {
-    { 0x64, 0x77 },
-    { 0x78, 0x8B },
-    { 0x8C, 0x9F },
-    { 0xA0, 0xB3 },
-    { 0xB4, 0xC7 },
-    { 0xC8, 0xDB },
-    { 0xDC, 0xEF },
-    { 0xC8, 0x12B }
+static const u16 sBattleTowerBossTrainerRangesPerRoom[][2] = {
+    { FRONTIER_TRAINER_CYCLIST_GASPAR, FRONTIER_TRAINER_SOCIALITE_CARMEN },
+    { FRONTIER_TRAINER_PSYCHIC_ALPHA, FRONTIER_TRAINER_CLOWN_PRESCOT },
+    { FRONTIER_TRAINER_ACE_TRAINER_YARDLEY, FRONTIER_TRAINER_ACE_TRAINER_DANIELA },
+    { FRONTIER_TRAINER_YOUNGSTER_KADEN, FRONTIER_TRAINER_IDOL_UTAH },
+    { FRONTIER_TRAINER_JOGGER_COLT, FRONTIER_TRAINER_PI_SERGEI },
+    { FRONTIER_TRAINER_CAMPER_FREDDY, FRONTIER_TRAINER_BREEDER_ANTONIA },
+    { FRONTIER_TRAINER_ACE_TRAINER_SAWYER, FRONTIER_TRAINER_VETERAN_ALFRED },
+    { FRONTIER_TRAINER_CAMPER_FREDDY, FRONTIER_TRAINER_IDOL_NISSA }
 };
 
-u16 sub_0204B0F0(BattleTower *battleTower, u8 param1, u8 param2, int challengeMode)
+u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 roomNum, u8 opponentNum, int challengeMode)
 {
-    u16 v0;
+    u16 trainerID;
 
     if (challengeMode == BATTLE_TOWER_MODE_SINGLE) {
-        if (param1 == 2 && param2 == 6) {
-            return 305;
+        if (roomNum == 2 && opponentNum == BT_OPPONENTS_COUNT - 1) { // 21st battle
+            return FRONTIER_TRAINER_TOWER_TYCOON_PALMER_SILVER;
         }
 
-        if (param1 == 6 && param2 == 6) {
-            return 306;
+        if (roomNum == 6 && opponentNum == BT_OPPONENTS_COUNT - 1) { // 49th battle
+            return FRONTIER_TRAINER_TOWER_TYCOON_PALMER_GOLD;
         }
     }
 
-    if (param1 < 7) {
-        if (param2 == (7 - 1)) {
-            v0 = (Unk_020EBD78[param1][1] - Unk_020EBD78[param1][0]) + 1;
-            v0 = Unk_020EBD78[param1][0] + (sub_0204AEC0(battleTower) % v0);
+    if (roomNum < 7) {
+        if (opponentNum == BT_OPPONENTS_COUNT - 1) {
+            trainerID = sBattleTowerBossTrainerRangesPerRoom[roomNum][1] - sBattleTowerBossTrainerRangesPerRoom[roomNum][0] + 1;
+            trainerID = sBattleTowerBossTrainerRangesPerRoom[roomNum][0] + (BattleTower_GetRandom(battleTower) % trainerID);
         } else {
-            v0 = (Unk_020EBD58[param1][1] - Unk_020EBD58[param1][0]) + 1;
-            v0 = Unk_020EBD58[param1][0] + (sub_0204AEC0(battleTower) % v0);
+            trainerID = sBattleTowerTrainerRangesPerRoom[roomNum][1] - sBattleTowerTrainerRangesPerRoom[roomNum][0] + 1;
+            trainerID = sBattleTowerTrainerRangesPerRoom[roomNum][0] + (BattleTower_GetRandom(battleTower) % trainerID);
         }
     } else {
-        v0 = (Unk_020EBD58[7][1] - Unk_020EBD58[7][0]) + 1;
-        v0 = Unk_020EBD58[7][0] + (sub_0204AEC0(battleTower) % v0);
+        trainerID = sBattleTowerTrainerRangesPerRoom[7][1] - sBattleTowerTrainerRangesPerRoom[7][0] + 1;
+        trainerID = sBattleTowerTrainerRangesPerRoom[7][0] + (BattleTower_GetRandom(battleTower) % trainerID);
     }
 
-    return v0;
+    return trainerID;
 }
 
 static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 param1, int heapID)
@@ -339,7 +340,7 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
 
     if (param4 == 0) {
         do {
-            v2 = (sub_0204AEC0(battleTower) | sub_0204AEC0(battleTower) << 16);
+            v2 = (BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16);
         } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param3, v2) == 1));
 
         param1->personality = v2;
@@ -441,7 +442,7 @@ static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *tr
     v9 = 0;
 
     while (v8 != partySize) {
-        v3 = sub_0204AEC0(battleTower) % trainerData->numSets;
+        v3 = BattleTower_GetRandom(battleTower) % trainerData->numSets;
         v5 = trainerData->setIDs[v3];
 
         sub_0204B640(&v12, v5);
@@ -503,7 +504,7 @@ static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *tr
     }
 
     ivs = BattleTower_GetIVsFromTrainerID(partnerBattleTowerID);
-    v4 = (sub_0204AEC0(battleTower) | (sub_0204AEC0(battleTower) << 16));
+    v4 = (BattleTower_GetRandom(battleTower) | (BattleTower_GetRandom(battleTower) << 16));
 
     if (v9 >= 50) {
         v10 = TRUE;

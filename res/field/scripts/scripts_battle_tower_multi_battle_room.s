@@ -1,61 +1,63 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_multi_battle_room.h"
+#include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_battle_tower_multi_battle_room.h"
 #include "constants/map_object.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0074
-    ScriptEntry _0156
-    ScriptEntry _0181
+    ScriptEntry BattleTowerMultiBattleRoom_SetPlayerGraphics
+    ScriptEntry BattleTowerMultiBattleRoom_SetPositions
+    ScriptEntry BattleTowerMultiBattleRoom_Enter
+    ScriptEntry BattleTowerMultiBattleRoom_ContinueMultiChallenge
     ScriptEntryEnd
 
-_0012:
-    GoToIfEq VAR_UNK_0x40DE, 0, _0054
-    SetFlag FLAG_UNK_0x01EA
-    SetFlag FLAG_UNK_0x01EB
+BattleTowerMultiBattleRoom_SetPlayerGraphics:
+    GoToIfEq VAR_UNK_0x40DE, 0, BattleTowerMultiBattleRoom_DontSetPlayerGraphics
+    SetFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_1
+    SetFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_2
     GetCurNetID VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, 1, _0056
+    GoToIfEq VAR_MAP_LOCAL_0, 1, BattleTowerMultiBattleRoom_SetPlayer2Graphics
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
-_0054:
+BattleTowerMultiBattleRoom_DontSetPlayerGraphics:
     End
 
-_0056:
+BattleTowerMultiBattleRoom_SetPlayer2Graphics:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_1, VAR_MAP_LOCAL_0
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PARTNER_GRAPHICS_ID, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
     End
 
-_0074:
-    CallIfNe VAR_UNK_0x40DE, 0, _0090
-    GoToIfEq VAR_UNK_0x40DE, 3, _009E
-_008E:
+BattleTowerMultiBattleRoom_SetPositions:
+    CallIfNe VAR_UNK_0x40DE, 0, BattleTowerMultiBattleRoom_HidePlayer
+    GoToIfEq VAR_UNK_0x40DE, 3, BattleTowerMultiBattleRoom_SetPlayerPositionsForBattle
+BattleTowerMultiBattleRoom_EndSetPositions:
     End
 
-_0090:
+BattleTowerMultiBattleRoom_HidePlayer:
     HideObject LOCALID_PLAYER
     MoveCamera 8, 0, 0
     Return
 
-_009E:
-    SetPosition 2, 5, 0, 5, 3
-    SetPosition 3, 5, 0, 6, 3
-    GoTo _008E
+BattleTowerMultiBattleRoom_SetPlayerPositionsForBattle:
+    SetPosition BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, 5, 0, 5, 3
+    SetPosition BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, 5, 0, 6, 3
+    GoTo BattleTowerMultiBattleRoom_EndSetPositions
     End
 
-_00BE:
-    Message 2
+BattleTowerMultiBattleRoom_RestorePokemon:
+    Message BattleTowerMultiBattleRoom_Text_YourPokemonWillBeRestored
     PlaySound SEQ_ASA
     WaitSound
     HealParty
     Return
 
-_00CB:
+BattleTowerMultiBattleRoom_EndChallenge:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_LINK_MULTI, _0114
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerMultiBattleRoom_EndLinkMultiChallenge
     WaitTime 30, VAR_RESULT
     SetVar VAR_UNK_0x40D8, 1
     FadeScreenOut
@@ -66,7 +68,7 @@ _00CB:
     ReleaseAll
     End
 
-_0114:
+BattleTowerMultiBattleRoom_EndLinkMultiChallenge:
     WaitTime 30, VAR_RESULT
     SetVar VAR_UNK_0x40D8, 1
     ClearReceivedTempDataAllPlayers
@@ -82,52 +84,52 @@ _0114:
     ReleaseAll
     End
 
-_0156:
+BattleTowerMultiBattleRoom_Enter:
     LockAll
     SetVar VAR_UNK_0x40DE, 3
-    Call _048D
+    Call BattleTowerMultiBattleRoom_ApplyPlayersEnterRoomMovement
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_LINK_MULTI, _039E
-    GoTo _02B0
+    GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerMultiBattleRoom_DoLinkMultiBattle
+    GoTo BattleTowerMultiBattleRoom_DoMultiBattle
     End
 
-_0181:
+BattleTowerMultiBattleRoom_ContinueMultiChallenge:
     LockAll
     SetVar VAR_UNK_0x40DE, 3
-    Call _048D
-    Call _04A1
-    GoTo _02E8
+    Call BattleTowerMultiBattleRoom_ApplyPlayersEnterRoomMovement
+    Call BattleTowerMultiBattleRoom_PlayersAndAttendantFaceEachOther
+    GoTo BattleTowerMultiBattleRoom_AskReadyForNextMultiBattle
     End
 
-_019D:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_40, 0, 0
-    Call _04C5
-    Call _0529
-    ScrCmd_1FE 0
+BattleTowerMultiBattleRoom_DoNextMultiBattle:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0
+    Call BattleTowerMultiBattleRoom_SetOpponentGraphicsAndEnterRoom
+    Call BattleTowerMultiBattleRoom_ApplyOpponent1WalkOnSpotSlowWestMovement
+    PrintBattleTowerIntroMessage 0
     WaitABPress
     CloseMessage
-    Call _0535
-    ScrCmd_1FE 1
+    Call BattleTowerMultiBattleRoom_ApplyOpponent2WalkOnSpotSlowWestMovement
+    PrintBattleTowerIntroMessage 1
     WaitABPress
     CloseMessage
-    Call _0505
+    Call BattleTowerMultiBattleRoom_PlayersAndOpponentsApproachEachOther
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_42, 0, 0
     CheckWonBattle VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     Return
 
-_01DF:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_40, 0, 0
-    Call _04C5
-    Call _0529
-    ScrCmd_1FE 0
+BattleTowerMultiBattleRoom_DoNextLinkMultiBattle:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0
+    Call BattleTowerMultiBattleRoom_SetOpponentGraphicsAndEnterRoom
+    Call BattleTowerMultiBattleRoom_ApplyOpponent1WalkOnSpotSlowWestMovement
+    PrintBattleTowerIntroMessage 0
     WaitTime 30, VAR_RESULT
     CloseMessage
-    Call _0535
-    ScrCmd_1FE 1
+    Call BattleTowerMultiBattleRoom_ApplyOpponent2WalkOnSpotSlowWestMovement
+    PrintBattleTowerIntroMessage 1
     WaitTime 30, VAR_RESULT
     CloseMessage
-    Call _0505
+    Call BattleTowerMultiBattleRoom_PlayersAndOpponentsApproachEachOther
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 4
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_42, 0, 0
@@ -135,23 +137,23 @@ _01DF:
     SetVar VAR_0x8004, VAR_RESULT
     Return
 
-_022F:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_37, 0, 0
+BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecords:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS, 0, 0
     SetVar VAR_MAP_LOCAL_0, 0
-    GoTo _00CB
+    GoTo BattleTowerMultiBattleRoom_EndChallenge
     End
 
-_0245:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_38, 0, 0
+BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecordsAndJournal:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0
     SetVar VAR_MAP_LOCAL_0, 1
-    GoTo _00CB
+    GoTo BattleTowerMultiBattleRoom_EndChallenge
     End
 
-_025B:
+BattleTowerMultiBattleRoom_SaveAndQuitMultiChallenge:
     SetVar VAR_UNK_0x40D8, 2
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_39, 0, 0
     FreeBattleTower
-    Message 0
+    Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
     ShowSavingIcon
     TrySaveGame VAR_RESULT
     HideSavingIcon
@@ -160,189 +162,189 @@ _025B:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_02, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_RESET_SYSTEM, 0, 0
     End
 
-_0296:
-    GoTo _022F
+BattleTowerMultiBattleRoom_GoToEndChallengeAndUpdateGameRecords:
+    GoTo BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecords
     End
 
-_029E:
+BattleTowerMultiBattleRoom_HasDefeatedSevenTrainers:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_34, 0, VAR_RESULT
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_35, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
     Return
 
-_02B0:
-    Call _019D
-    GoToIfEq VAR_0x8004, FALSE, _022F
-    Call _029E
-    GoToIfEq VAR_RESULT, 1, _0245
-    Call _0541
-    Call _0565
-    Call _00BE
-_02E8:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_33, 0, VAR_0x8004
+BattleTowerMultiBattleRoom_DoMultiBattle:
+    Call BattleTowerMultiBattleRoom_DoNextMultiBattle
+    GoToIfEq VAR_0x8004, FALSE, BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecords
+    Call BattleTowerMultiBattleRoom_HasDefeatedSevenTrainers
+    GoToIfEq VAR_RESULT, TRUE, BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecordsAndJournal
+    Call BattleTowerMultiBattleRoom_OpponentsLeaveRoom
+    Call BattleTowerMultiBattleRoom_PlayersAndAttendantApproachEachOther
+    Call BattleTowerMultiBattleRoom_RestorePokemon
+BattleTowerMultiBattleRoom_AskReadyForNextMultiBattle:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM, 0, VAR_0x8004
     BufferNumber 0, VAR_0x8004
-    Message 3
+    Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     InitGlobalTextListMenu 31, 11, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
-    AddListMenuEntry 146, 0
-    AddListMenuEntry 147, 1
-    AddListMenuEntry 148, 2
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 0
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Rest, 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 2
     ShowListMenu
     CloseMessage
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 0, _0354
-    GoToIfEq VAR_0x8008, 1, _0362
-    GoToIfEq VAR_0x8008, 2, _0380
-    GoTo _0354
+    GoToIfEq VAR_0x8008, 0, BattleTowerMultiBattleRoom_GoToNextMultiBattle
+    GoToIfEq VAR_0x8008, 1, BattleTowerMultiBattleRoom_AskSaveAndQuitMultiChallenge
+    GoToIfEq VAR_0x8008, 2, BattleTowerMultiBattleRoom_AskCancelMultiChallenge
+    GoTo BattleTowerMultiBattleRoom_GoToNextMultiBattle
     End
 
-_0354:
-    Call _0589
-    GoTo _02B0
+BattleTowerMultiBattleRoom_GoToNextMultiBattle:
+    Call BattleTowerMultiBattleRoom_PlayersAndAttendantsMoveBack
+    GoTo BattleTowerMultiBattleRoom_DoMultiBattle
     End
 
-_0362:
-    Message 4
+BattleTowerMultiBattleRoom_AskSaveAndQuitMultiChallenge:
+    Message BattleTowerMultiBattleRoom_Text_AskSaveAndQuit
     ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_RESULT, MENU_YES, _025B
-    GoTo _02E8
+    GoToIfEq VAR_RESULT, MENU_YES, BattleTowerMultiBattleRoom_SaveAndQuitMultiChallenge
+    GoTo BattleTowerMultiBattleRoom_AskReadyForNextMultiBattle
     End
 
-_0380:
-    Message 5
+BattleTowerMultiBattleRoom_AskCancelMultiChallenge:
+    Message BattleTowerMultiBattleRoom_Text_AskCancelChallenge
     ShowYesNoMenu VAR_RESULT
     CloseMessage
-    GoToIfEq VAR_RESULT, MENU_YES, _0296
-    GoTo _02E8
+    GoToIfEq VAR_RESULT, MENU_YES, BattleTowerMultiBattleRoom_GoToEndChallengeAndUpdateGameRecords
+    GoTo BattleTowerMultiBattleRoom_AskReadyForNextMultiBattle
     End
 
-_039E:
-    Call _01DF
-    GoToIfEq VAR_0x8004, FALSE, _022F
-    Call _029E
-    GoToIfEq VAR_RESULT, 1, _0245
-    Call _0541
-    Call _0565
-    Call _00BE
-_03D6:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_33, 0, VAR_0x8004
+BattleTowerMultiBattleRoom_DoLinkMultiBattle:
+    Call BattleTowerMultiBattleRoom_DoNextLinkMultiBattle
+    GoToIfEq VAR_0x8004, FALSE, BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecords
+    Call BattleTowerMultiBattleRoom_HasDefeatedSevenTrainers
+    GoToIfEq VAR_RESULT, TRUE, BattleTowerMultiBattleRoom_EndChallengeAndUpdateGameRecordsAndJournal
+    Call BattleTowerMultiBattleRoom_OpponentsLeaveRoom
+    Call BattleTowerMultiBattleRoom_PlayersAndAttendantApproachEachOther
+    Call BattleTowerMultiBattleRoom_RestorePokemon
+BattleTowerMultiBattleRoom_AskReadyForNextLinkMultiBattle:
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM, 0, VAR_0x8004
     BufferNumber 0, VAR_0x8004
-    Message 3
+    Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     InitGlobalTextListMenu 31, 13, 0, VAR_RESULT, NO_EXIT_ON_B
     SetMenuXOriginToRight
-    AddListMenuEntry 146, 0
-    AddListMenuEntry 148, 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 0
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 1
     ShowListMenu
     CloseMessage
     SetVar VAR_MAP_LOCAL_0, 0
-    GoToIfEq VAR_RESULT, 1, _0452
-_0418:
-    Message 12
+    GoToIfEq VAR_RESULT, 1, BattleTowerMultiBattleRoom_AskCancelLinkMultiChallenge
+BattleTowerMultiBattleRoom_HandleLinkMultiDecision:
+    Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 5
     ScrCmd_1E1 2, VAR_MAP_LOCAL_0, VAR_RESULT
     ScrCmd_1E2 2, VAR_MAP_LOCAL_0
     CloseMessage
     SetVar VAR_0x8008, VAR_MAP_LOCAL_0
-    GoToIfEq VAR_0x8008, 1, _0474
-    Call _0589
-    GoTo _039E
+    GoToIfEq VAR_0x8008, 1, BattleTowerMultiBattleRoom_LinkMultiRetire
+    Call BattleTowerMultiBattleRoom_PlayersAndAttendantsMoveBack
+    GoTo BattleTowerMultiBattleRoom_DoLinkMultiBattle
     End
 
-_0452:
-    Message 5
+BattleTowerMultiBattleRoom_AskCancelLinkMultiChallenge:
+    Message BattleTowerMultiBattleRoom_Text_AskCancelChallenge
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, _03D6
+    GoToIfEq VAR_RESULT, MENU_NO, BattleTowerMultiBattleRoom_AskReadyForNextLinkMultiBattle
     SetVar VAR_MAP_LOCAL_0, 1
-    GoTo _0418
+    GoTo BattleTowerMultiBattleRoom_HandleLinkMultiDecision
     End
 
-_0474:
-    Message 11
+BattleTowerMultiBattleRoom_LinkMultiRetire:
+    Message BattleTowerMultiBattleRoom_Text_YouHaveChosenToRetire
     WaitTime 30, VAR_RESULT
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 7
     CloseMessage
-    GoTo _0296
+    GoTo BattleTowerMultiBattleRoom_GoToEndChallengeAndUpdateGameRecords
     End
 
-_048D:
-    ApplyMovement 2, _05B0
-    ApplyMovement 3, _05C4
+BattleTowerMultiBattleRoom_ApplyPlayersEnterRoomMovement:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, BattleTowerMultiBattleRoom_LeaderEnterRoomMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, BattleTowerMultiBattleRoom_PartnerEnterRoomMovement
     WaitMovement
     Return
 
-_04A1:
-    ApplyMovement 0, _0644
-    ApplyMovement 1, _0644
-    ApplyMovement 2, _0664
-    ApplyMovement 3, _0664
+BattleTowerMultiBattleRoom_PlayersAndAttendantFaceEachOther:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_NORTH, BattleTowerMultiBattleRoom_AttendantApproachPlayerMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_SOUTH, BattleTowerMultiBattleRoom_AttendantApproachPlayerMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, BattleTowerMultiBattleRoom_PlayerFaceAttendantMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, BattleTowerMultiBattleRoom_PlayerFaceAttendantMovement
     WaitMovement
     Return
 
-_04C5:
+BattleTowerMultiBattleRoom_SetOpponentGraphicsAndEnterRoom:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID, 0, VAR_RESULT
     SetVar VAR_OBJ_GFX_ID_2, VAR_RESULT
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID, 1, VAR_RESULT
     SetVar VAR_OBJ_GFX_ID_3, VAR_RESULT
-    ClearFlag FLAG_UNK_0x01EA
-    ClearFlag FLAG_UNK_0x01EB
-    AddObject 5
-    AddObject 4
-    ApplyMovement 5, _05D8
-    ApplyMovement 4, _05EC
+    ClearFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_1
+    ClearFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_2
+    AddObject BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1
+    AddObject BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1, BattleTowerMultiBattleRoom_Opponent1EnterRoomMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2, BattleTowerMultiBattleRoom_Opponent2EnterRoomMovement
     WaitMovement
     Return
 
-_0505:
-    ApplyMovement 2, _0600
-    ApplyMovement 3, _0600
-    ApplyMovement 5, _0608
-    ApplyMovement 4, _0608
+BattleTowerMultiBattleRoom_PlayersAndOpponentsApproachEachOther:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, BattleTowerMultiBattleRoom_PlayerApproachOpponentMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, BattleTowerMultiBattleRoom_PlayerApproachOpponentMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1, BattleTowerMultiBattleRoom_OpponentApproachPlayerMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2, BattleTowerMultiBattleRoom_OpponentApproachPlayerMovement
     WaitMovement
     Return
 
-_0529:
-    ApplyMovement 5, _0610
+BattleTowerMultiBattleRoom_ApplyOpponent1WalkOnSpotSlowWestMovement:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1, BattleTowerMultiBattleRoom_WalkOnSpotSlowWestMovement
     WaitMovement
     Return
 
-_0535:
-    ApplyMovement 4, _0610
+BattleTowerMultiBattleRoom_ApplyOpponent2WalkOnSpotSlowWestMovement:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2, BattleTowerMultiBattleRoom_WalkOnSpotSlowWestMovement
     WaitMovement
     Return
 
-_0541:
-    ApplyMovement 5, _0618
-    ApplyMovement 4, _0628
+BattleTowerMultiBattleRoom_OpponentsLeaveRoom:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1, BattleTowerMultiBattleRoom_Opponent2LeaveRoomMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2, BattleTowerMultiBattleRoom_Opponent1LeaveRoomMovement
     WaitMovement
-    SetFlag FLAG_UNK_0x01EA
-    SetFlag FLAG_UNK_0x01EB
-    RemoveObject 5
-    RemoveObject 4
+    SetFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_1
+    SetFlag FLAG_HIDE_MULTI_BATTLE_ROOM_OPPONENT_2
+    RemoveObject BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_1
+    RemoveObject BATTLE_TOWER_MULTI_BATTLE_ROOM_OPPONENT_2
     Return
 
-_0565:
-    ApplyMovement 2, _0638
-    ApplyMovement 3, _0638
-    ApplyMovement 0, _0644
-    ApplyMovement 1, _0644
+BattleTowerMultiBattleRoom_PlayersAndAttendantApproachEachOther:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, BattleTowerMultiBattleRoom_PlayerApproachAttendantMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, BattleTowerMultiBattleRoom_PlayerApproachAttendantMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_NORTH, BattleTowerMultiBattleRoom_AttendantApproachPlayerMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_SOUTH, BattleTowerMultiBattleRoom_AttendantApproachPlayerMovement
     WaitMovement
     Return
 
-_0589:
-    ApplyMovement 2, _064C
-    ApplyMovement 3, _064C
-    ApplyMovement 0, _0654
-    ApplyMovement 1, _0654
+BattleTowerMultiBattleRoom_PlayersAndAttendantsMoveBack:
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_LEADER, BattleTowerMultiBattleRoom_PlayersMoveBackEastMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_PARTNER, BattleTowerMultiBattleRoom_PlayersMoveBackEastMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_NORTH, BattleTowerMultiBattleRoom_AttendantsMoveBackWestMovement
+    ApplyMovement BATTLE_TOWER_MULTI_BATTLE_ROOM_ATTENDANT_SOUTH, BattleTowerMultiBattleRoom_AttendantsMoveBackWestMovement
     WaitMovement
     Return
 
     .balign 4, 0
-_05B0:
+BattleTowerMultiBattleRoom_LeaderEnterRoomMovement:
     WalkNormalNorth
     WalkNormalWest 3
     WalkNormalNorth 3
@@ -350,7 +352,7 @@ _05B0:
     EndMovement
 
     .balign 4, 0
-_05C4:
+BattleTowerMultiBattleRoom_PartnerEnterRoomMovement:
     WalkNormalNorth
     WalkNormalWest 4
     WalkNormalNorth 2
@@ -358,7 +360,7 @@ _05C4:
     EndMovement
 
     .balign 4, 0
-_05D8:
+BattleTowerMultiBattleRoom_Opponent1EnterRoomMovement:
     WalkNormalSouth
     WalkNormalEast 3
     WalkNormalSouth 3
@@ -366,7 +368,7 @@ _05D8:
     EndMovement
 
     .balign 4, 0
-_05EC:
+BattleTowerMultiBattleRoom_Opponent2EnterRoomMovement:
     WalkNormalSouth
     WalkNormalEast 4
     WalkNormalSouth 2
@@ -374,58 +376,58 @@ _05EC:
     EndMovement
 
     .balign 4, 0
-_0600:
+BattleTowerMultiBattleRoom_PlayerApproachOpponentMovement:
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_0608:
+BattleTowerMultiBattleRoom_OpponentApproachPlayerMovement:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0610:
+BattleTowerMultiBattleRoom_WalkOnSpotSlowWestMovement:
     WalkOnSpotSlowWest
     EndMovement
 
     .balign 4, 0
-_0618:
+BattleTowerMultiBattleRoom_Opponent2LeaveRoomMovement:
     WalkNormalNorth 3
     WalkNormalWest 2
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0628:
+BattleTowerMultiBattleRoom_Opponent1LeaveRoomMovement:
     WalkNormalNorth 2
     WalkNormalWest 3
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0638:
+BattleTowerMultiBattleRoom_PlayerApproachAttendantMovement:
     WalkNormalWest
     FaceWest
     EndMovement
 
     .balign 4, 0
-_0644:
+BattleTowerMultiBattleRoom_AttendantApproachPlayerMovement:
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_064C:
+BattleTowerMultiBattleRoom_PlayersMoveBackEastMovement:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_0654:
+BattleTowerMultiBattleRoom_AttendantsMoveBackWestMovement:
     FaceWest
     WalkNormalWest
     FaceEast
     EndMovement
 
     .balign 4, 0
-_0664:
+BattleTowerMultiBattleRoom_PlayerFaceAttendantMovement:
     FaceWest
     EndMovement
