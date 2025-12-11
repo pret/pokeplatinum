@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/map_load_mode.h"
-#include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
@@ -28,6 +27,7 @@
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_task.h"

@@ -3780,24 +3780,24 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
     return targetSpecies;
 }
 
-u16 sub_02076F84(const u16 monSpecies)
+u16 Pokemon_GetBaseSpeciesFromPersonalData(const u16 species)
 {
     u16 result = 0;
-    GF_ASSERT(NATIONAL_DEX_COUNT + 1 > monSpecies);
+    GF_ASSERT(NATIONAL_DEX_COUNT + 1 > species);
 
     FSFile file;
     FS_InitFile(&file);
     FS_OpenFile(&file, "poketool/personal/pms.narc");
-    FS_SeekFile(&file, monSpecies * 2, FS_SEEK_SET);
+    FS_SeekFile(&file, species * 2, FS_SEEK_SET);
     FS_ReadFile(&file, &result, 2);
     FS_CloseFile(&file);
 
     return result;
 }
 
-u16 sub_02076FD4(const u16 monSpecies)
+u16 Pokemon_GetBaseSpeciesForBattle(const u16 species)
 {
-    switch (monSpecies) {
+    switch (species) {
     case SPECIES_WOBBUFFET:
     case SPECIES_MARILL:
     case SPECIES_MR_MIME:
@@ -3807,11 +3807,11 @@ u16 sub_02076FD4(const u16 monSpecies)
     case SPECIES_ROSELIA:
     case SPECIES_CHANSEY:
     case SPECIES_CHIMECHO:
-        return monSpecies;
+        return species;
         break;
     }
 
-    return sub_02076F84(monSpecies);
+    return Pokemon_GetBaseSpeciesFromPersonalData(species);
 }
 
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
@@ -5034,10 +5034,10 @@ u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index)
     return sBattleFrontierBanlist[index];
 }
 
-BOOL sub_02078838(Pokemon *mon)
+BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *pokemon)
 {
-    u16 monSpecies = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    return Pokemon_IsOnBattleFrontierBanlist(monSpecies);
+    u16 species = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    return Pokemon_IsOnBattleFrontierBanlist(species);
 }
 
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)

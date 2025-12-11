@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_UNK_020366A0_H
 #define POKEPLATINUM_UNK_020366A0_H
 
-#include "struct_defs/struct_0202610C.h"
-
 #include "overlay065/struct_ov65_0222F6EC.h"
 
+#include "battle_regulation.h"
 #include "bg_window.h"
 #include "enums.h"
 #include "savedata.h"

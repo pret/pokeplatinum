@@ -6,8 +6,6 @@
 #include "generated/size_contest_results.h"
 #include "generated/string_padding_mode.h"
 
-#include "struct_decls/struct_02098700_decl.h"
-
 #include "field/field_system.h"
 
 #include "party.h"
