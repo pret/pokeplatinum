@@ -1,7 +1,14 @@
 #ifndef POKEPLATINUM_Pokedex_HeightWeight_H
 #define POKEPLATINUM_Pokedex_HeightWeight_H
 
-#include "struct_decls/struct_02098700_decl.h"
+typedef struct HeightWeightData {
+    int *height;
+    int *weight;
+    short *trainerPos;
+    short *pokemonPos;
+    short *trainerScale;
+    short *pokemonScale;
+} HeightWeightData;
 
 HeightWeightData *Pokedex_HeightWeightData(int heapID);
 void Pokedex_HeightWeightData_Free(HeightWeightData *HWData);

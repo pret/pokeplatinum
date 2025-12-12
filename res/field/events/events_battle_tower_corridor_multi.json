@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_LEADER",
+            "id": "BATTLE_TOWER_CORRIDOR_MULTI_LEADER",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_CORRIDOR_MULTI_PLAYER_PARTNER",
+            "id": "BATTLE_TOWER_CORRIDOR_MULTI_PARTNER",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

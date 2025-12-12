@@ -5,6 +5,7 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
+#include "constants/string.h"
 #include "generated/object_events.h"
 #include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"
@@ -100,36 +101,36 @@ static const u16 sTrainerClassToObjectID[][2] = {
     { TRAINER_CLASS_POKE_KID, OBJ_EVENT_GFX_PIKACHU }
 };
 
-BattleFrontierTrainerData *ov104_0222DCE0(u16 param0, int param1, enum NarcID narcID)
+BattleFrontierTrainerData *BattleTower_GetTrainerDataFromTrainerIDAndNarcID(u16 battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(narcID, param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(narcID, battleTowerTrainerID, heapID);
 }
 
-void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, enum NarcID narcID)
+void BattleTower_GetMonDataFromSetIDAndNarcID(BattleFrontierPokemonData *monData, int setID, enum NarcID narcID)
 {
-    NARC_ReadWholeMemberByIndexPair(param0, narcID, param1);
+    NARC_ReadWholeMemberByIndexPair(monData, narcID, setID);
 }
 
-BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int heapID, int param3)
+BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *trDataDTO, int battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID)
 {
-    MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
-    MI_CpuClear8(param0, sizeof(FrontierTrainerDataDTO));
+    MI_CpuClear8(trDataDTO, sizeof(FrontierTrainerDataDTO));
 
-    BattleFrontierTrainerData *v0 = ov104_0222DCE0(param1, heapID, param3);
+    BattleFrontierTrainerData *trData = BattleTower_GetTrainerDataFromTrainerIDAndNarcID(battleTowerTrainerID, heapID, narcID);
 
-    param0->trainerID = param1;
-    param0->unk_18[0] = 0xFFFF;
-    param0->unk_18[1] = param1 * 3;
-    param0->trainerType = v0->trainerType;
+    trDataDTO->trainerID = battleTowerTrainerID;
+    trDataDTO->unk_18[0] = 0xFFFF;
+    trDataDTO->unk_18[1] = battleTowerTrainerID * 3;
+    trDataDTO->trainerType = trData->trainerType;
 
-    Strbuf *v2 = MessageLoader_GetNewStrbuf(v1, param1);
+    Strbuf *strbuf = MessageLoader_GetNewStrbuf(msgLoader, battleTowerTrainerID);
 
-    Strbuf_ToChars(v2, &param0->trainerName[0], 8);
-    Strbuf_Free(v2);
-    MessageLoader_Free(v1);
+    Strbuf_ToChars(strbuf, &trDataDTO->trainerName[0], TRAINER_NAME_LEN + 1);
+    Strbuf_Free(strbuf);
+    MessageLoader_Free(msgLoader);
 
-    return v0;
+    return trData;
 }
 
 static const u16 Unk_ov104_0223F290[] = {
@@ -147,7 +148,7 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
     BattleFrontierPokemonData v4;
 
     MI_CpuClear8(param0, sizeof(FrontierPokemonDataDTO));
-    ov104_0222DCF4(&v4, param1, narcID);
+    BattleTower_GetMonDataFromSetIDAndNarcID(&v4, param1, narcID);
 
     param0->species = v4.species;
     param0->form = v4.form;
@@ -407,7 +408,7 @@ u8 ov104_0222E240(u16 param0, u16 param1)
 
 void ov104_0222E278(FrontierDataDTO *param0, u16 param1, int heapID, int param3)
 {
-    Heap_Free(ov104_0222DD04(&param0->trDataDTO, param1, heapID, param3));
+    Heap_Free(BattleTower_GetTrainerData(&param0->trDataDTO, param1, heapID, param3));
 
     return;
 }
@@ -503,7 +504,7 @@ BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const
         v5 = (LCRNG_Next() % param0->numSets);
         v1 = param0->setIDs[v5];
 
-        ov104_0222DCF4(&v3[v0], v1, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+        BattleTower_GetMonDataFromSetIDAndNarcID(&v3[v0], v1, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
 
         for (v4 = 0; v4 < v0; v4++) {
             if ((v3[v4].species == v3[v0].species) || (v3[v4].item == v3[v0].item)) {
@@ -547,7 +548,7 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
     FrontierTrainerDataDTO v4;
     BattleFrontierPokemonData v6;
 
-    BattleFrontierTrainerData *v5 = ov104_0222DD04(&v4, param1, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+    BattleFrontierTrainerData *v5 = BattleTower_GetTrainerData(&v4, param1, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
     for (v0 = 0; v0 < param0; v0++) {
         param5[v0] = ov104_0222E3A8(param1);
@@ -559,13 +560,13 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
         ov104_0222E3E4(v5, v2, v3, 0, (param0 / 2), param3, 11);
 
         for (v0 = 0; v0 < (param0 / 2); v0++) {
-            ov104_0222DCF4(&v6, param3[v0], NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
+            BattleTower_GetMonDataFromSetIDAndNarcID(&v6, param3[v0], NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM);
             v2[v0] = v6.species;
             v3[v0] = v6.item;
         }
 
         Heap_Free(v5);
-        v5 = ov104_0222DD04(&v4, param2, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        v5 = BattleTower_GetTrainerData(&v4, param2, HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         ov104_0222E3E4(v5, v2, v3, (param0 / 2), (param0 / 2), &param3[param0 / 2], 11);
 
         for (v0 = 0; v0 < (param0 / 2); v0++) {

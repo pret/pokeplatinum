@@ -2,7 +2,7 @@
   "key": 9318,
   "messages": [
     {
-      "id": "pl_msg_00000306_00000",
+      "id": "BattleTowerMultiBattleRoom_Text_ThanksForParticipating",
       "en_US": [
         "Thank you so much for participating!\r",
         "Please wait while I save the game.\n",
@@ -10,85 +10,85 @@
       ]
     },
     {
-      "id": "pl_msg_00000306_00001",
+      "id": "BattleTowerMultiBattleRoom_Text_WeHopeToSeeYouAgain",
       "en_US": "We hope to see you again!"
     },
     {
-      "id": "pl_msg_00000306_00002",
+      "id": "BattleTowerMultiBattleRoom_Text_YourPokemonWillBeRestored",
       "en_US": [
         "Your Pokémon will be restored to\n",
         "full health."
       ]
     },
     {
-      "id": "pl_msg_00000306_00003",
+      "id": "BattleTowerMultiBattleRoom_Text_AskReadyForNextPair",
       "en_US": [
         "Up next, opponent pair no. {STRVAR_1 50, 0, 0}.\n",
         "Are you ready?"
       ]
     },
     {
-      "id": "pl_msg_00000306_00004",
+      "id": "BattleTowerMultiBattleRoom_Text_AskSaveAndQuit",
       "en_US": [
         "Would you like to save and\n",
         "quit the game?"
       ]
     },
     {
-      "id": "pl_msg_00000306_00005",
+      "id": "BattleTowerMultiBattleRoom_Text_AskCancelChallenge",
       "en_US": [
         "Would you like to cancel your\n",
         "Battle Room challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000306_00006",
+      "id": "BattleTowerMultiBattleRoom_Text_AskSaveBattleVideo",
       "en_US": [
         "Would you like to save the last battle\n",
         "as your Battle Video?"
       ]
     },
     {
-      "id": "pl_msg_00000306_00007",
+      "id": "BattleTowerMultiBattleRoom_Text_BattleHasBeenSaved",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s battle has been saved\n",
         "as a Battle Video.\r"
       ]
     },
     {
-      "id": "pl_msg_00000306_00008",
+      "id": "BattleTowerMultiBattleRoom_Text_BattleVideoCouldntBeSaved",
       "en_US": [
         "There was an error.\n",
         "The Battle Video couldn’t be saved.\r"
       ]
     },
     {
-      "id": "pl_msg_00000306_00009",
+      "id": "BattleTowerMultiBattleRoom_Text_AskDeleteExistingBattleVideo",
       "en_US": [
         "Delete your existing Battle Video and\n",
         "save the last battle?"
       ]
     },
     {
-      "id": "pl_msg_00000306_00010",
+      "id": "BattleTowerMultiBattleRoom_Text_SavingDontTurnOffPower",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000306_00011",
+      "id": "BattleTowerMultiBattleRoom_Text_YouHaveChosenToRetire",
       "en_US": [
         "You have chosen to retire from\n",
         "this Battle Room challenge."
       ]
     },
     {
-      "id": "pl_msg_00000306_00012",
+      "id": "BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend",
       "en_US": "Awaiting response from a friend..."
     },
     {
-      "id": "pl_msg_00000306_00013",
+      "id": "BattleTowerMultiBattleRoom_Text_YouHaveClearedYourSeventhMatch",
       "en_US": [
         "You have cleared your seventh match!\n",
         "Congratulations!\r",
@@ -97,18 +97,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000306_00014",
+      "id": "BattleTowerMultiBattleRoom_Text_PlayerReceivedBP",
       "en_US": "{STRVAR_1 3, 0, 0} received {STRVAR_1 51, 1, 0} BP!\r"
     },
     {
-      "id": "pl_msg_00000306_00015",
+      "id": "BattleTowerMultiBattleRoom_Text_SavingDontTurnOffPower2",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000306_00016",
+      "id": "BattleTowerMultiBattleRoom_Text_PleaseWait",
       "en_US": "Please wait."
     }
   ]

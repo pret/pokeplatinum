@@ -26,6 +26,8 @@
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
+#include "battle_regulation_validation.h"
 #include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
@@ -36,6 +38,7 @@
 #include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "height_weight_data.h"
 #include "item.h"
 #include "item_use_pokemon.h"
 #include "journal.h"
@@ -59,11 +62,8 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "tv_episode_segment.h"
-#include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
-#include "unk_0207A2A8.h"
-#include "unk_0208C098.h"
 #include "vram_transfer.h"
 
 #include "res/graphics/party_menu/party_menu_graphics.naix.h"
@@ -693,7 +693,7 @@ static BOOL PartyMenu_Exit(ApplicationManager *appMan, int *state)
     StringTemplate_Free(v0->template);
 
     if (v0->heightWeight != NULL) {
-        sub_0207A2C0(v0->heightWeight);
+        HeightWeightData_Free(v0->heightWeight);
     }
 
     ApplicationManager_FreeData(appMan);
@@ -1966,7 +1966,7 @@ u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
 {
     if (application->partyMenu->battleRegulation != NULL) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, partySlot);
-        if (sub_0207A2D0(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
+        if (BattleRegulation_ValidatePokemon(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
             return PARTY_MENU_SELECTION_INELIGIBLE;
         }
     }
@@ -2151,16 +2151,16 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
     }
 
     if (application->partyMenu->battleRegulation != NULL) {
-        switch (sub_0207A3AC(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
-        case 0:
+        switch (BattleRegulation_ValidatePartySelection(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
+        case BATTLE_REGULATION_VALIDATION_SUCCESS:
             break;
 
-        case 1: {
+        case BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED: {
             Strbuf *v1;
             int v2;
 
             v1 = MessageLoader_GetNewStrbuf(application->messageLoader, 184);
-            v2 = sub_02026074(application->partyMenu->battleRegulation, 3);
+            v2 = BattleRegulation_GetRuleValue(application->partyMenu->battleRegulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
 
             StringTemplate_SetNumber(application->template, 0, v2, 3, 0, 1);
             StringTemplate_Format(application->template, application->tmpString, v1);
@@ -2170,12 +2170,12 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
-        case 2:
+        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_SPECIES:
             PartyMenu_PrintLongMessage(application, pl_msg_00000453_00182, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
-        case 3:
+        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_ITEMS:
             PartyMenu_PrintLongMessage(application, pl_msg_00000453_00183, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);

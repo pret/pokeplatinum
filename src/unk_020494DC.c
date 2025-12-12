@@ -75,8 +75,8 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
             *destVar = sub_02049EC4(functionArgument, ctx->fieldSystem->saveData, 1);
         }
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_02:
-        sub_02049F8C();
+    case BATTLE_TOWER_FUNCTION_RESET_SYSTEM:
+        BattleTower_ResetSystem();
         break;
     case BATTLE_TOWER_FUNCTION_UNK_03:
         sub_02049F98(sub_0202D740(ctx->fieldSystem->saveData));
@@ -125,14 +125,14 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BATTLE_TOWER_FUNCTION_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS:
         *destVar = BattleTower_CheckDuplicateSpeciesAndHeldItems(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_35:
-        *destVar = sub_0204A57C(battleTower);
+    case BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS:
+        *destVar = BattleTower_HasDefeatedSevenTrainers(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_37:
-        sub_0204A660(battleTower, ctx->fieldSystem->saveData);
+    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS:
+        BattleTower_UpdateGameRecords(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_38:
-        sub_0204A7A4(battleTower, ctx->fieldSystem->saveData, ctx->fieldSystem->journalEntry);
+    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL:
+        BattleTower_UpdateGameRecordsAndJournal(battleTower, ctx->fieldSystem->saveData, ctx->fieldSystem->journalEntry);
         break;
     case BATTLE_TOWER_FUNCTION_UNK_39:
         sub_0204A8C8(battleTower);

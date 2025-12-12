@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073B50.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DF440.h"
@@ -14,9 +12,9 @@
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "rtc.h"
+#include "simple3d.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02073838.h"
 
 typedef struct {
     int unk_00;
@@ -27,8 +25,8 @@ typedef struct {
     VecFx32 unk_14;
     UnkStruct_ov5_021DF47C *unk_20;
     SysTask *unk_24;
-    UnkStruct_02073838 unk_28[3];
-    UnkStruct_02073B50 unk_64[3];
+    Simple3DModel unk_28[3];
+    Simple3DRenderObj unk_64[3];
 } UnkStruct_ov5_021F1388;
 
 typedef struct {
@@ -174,7 +172,7 @@ static void ov5_021F14FC(UnkStruct_ov5_021F1388 *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         ov5_021DFB00(param0->unk_20, &param0->unk_28[v0], 0, Unk_ov5_02200278[v0], 0);
-        sub_02073B70(&param0->unk_64[v0], &param0->unk_28[v0]);
+        Simple3D_CreateRenderObject(&param0->unk_64[v0], &param0->unk_28[v0]);
     }
 }
 
@@ -183,14 +181,14 @@ static void ov5_021F153C(UnkStruct_ov5_021F1388 *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0207395C(&param0->unk_28[v0]);
+        Simple3D_FreeModel(&param0->unk_28[v0]);
     }
 }
 
 static void ov5_021F1554(UnkStruct_ov5_021F1388 *param0, int param1)
 {
-    NNS_G3dMdlUseMdlAlpha(param0->unk_28[0].unk_0C);
-    NNS_G3dMdlSetMdlAlphaAll(param0->unk_28[0].unk_0C, param1);
+    NNS_G3dMdlUseMdlAlpha(param0->unk_28[0].g3DModel);
+    NNS_G3dMdlSetMdlAlphaAll(param0->unk_28[0].g3DModel, param1);
 }
 
 void ov5_021F1570(MapObject *param0)
@@ -278,7 +276,7 @@ static void ov5_021F1670(OverworldAnimManager *param0, void *param1)
     if (v0->unk_0C == 0) {
         VecFx32 v1, v2;
         MtxFx33 v3 = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
-        UnkStruct_02073B50 *v4 = &v0->unk_14.unk_04->unk_64[0];
+        Simple3DRenderObj *v4 = &v0->unk_14.unk_04->unk_64[0];
 
         ov5_021F13B8(v0->unk_14.unk_04, &v2);
         OverworldAnimManager_GetPosition(param0, &v1);
@@ -287,7 +285,7 @@ static void ov5_021F1670(OverworldAnimManager *param0, void *param1)
         v1.y += (FX32_ONE * -4);
         v1.z += (FX32_ONE * 1);
 
-        sub_02073BA4(v4, &v1, &v2, &v3);
+        Simple3D_DrawRenderObj(v4, &v1, &v2, &v3);
     }
 }
 
@@ -354,13 +352,13 @@ static void ov5_021F176C(OverworldAnimManager *param0, void *param1)
     {
         int v1 = OverworldAnimManager_GetID(param0);
         VecFx32 v2;
-        UnkStruct_02073B50 *v3 = &v0->unk_14.unk_04->unk_64[v1];
+        Simple3DRenderObj *v3 = &v0->unk_14.unk_04->unk_64[v1];
 
         OverworldAnimManager_GetPosition(param0, &v2);
         v2.x += (FX32_ONE * -1) / 2;
         v2.y += (FX32_ONE * -4);
         v2.z += (FX32_ONE * 1);
-        sub_02073BB4(v3, &v2);
+        Simple3D_DrawRenderObjWithPos(v3, &v2);
     }
 }
 

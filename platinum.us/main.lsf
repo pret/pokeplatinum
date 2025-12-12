@@ -108,8 +108,7 @@ Static main
 	Object main.nef.p/src_system_data.c.o
 	Object main.nef.p/src_save_player.c.o
 	Object main.nef.p/src_trainer_info.c.o
-	Object main.nef.p/src_unk_0202602C.c.o
-	Object main.nef.p/src_unk_02026150.c.o
+	Object main.nef.p/src_battle_regulation.c.o
 	Object main.nef.p/src_daycare_save.c.o
 	Object main.nef.p/src_pokedex.c.o
 	Object main.nef.p/src_savedata_misc.c.o
@@ -286,7 +285,7 @@ Static main
 	Object main.nef.p/src_trainer_card.c.o
 	Object main.nef.p/src_unk_020722AC.c.o
 	Object main.nef.p/src_unk_02073700.c.o
-	Object main.nef.p/src_unk_02073838.c.o
+	Object main.nef.p/src_simple3d.c.o
 	Object main.nef.p/src_pokemon.c.o
 	Object main.nef.p/src_move_table.c.o
 	Object main.nef.p/src_trainer_data.c.o
@@ -294,7 +293,8 @@ Static main
 	Object main.nef.p/src_pokemon_icon.c.o
 	Object main.nef.p/src_party.c.o
 	Object main.nef.p/src_dexmode_checker.c.o
-	Object main.nef.p/src_unk_0207A2A8.c.o
+	Object main.nef.p/src_height_weight_data.c.o
+	Object main.nef.p/src_battle_regulation_validation.c.o
 	Object main.nef.p/src_unk_0207A6DC.c.o
 	Object main.nef.p/src_evolution.c.o
 	Object main.nef.p/src_unk_0207C63C.c.o
@@ -662,7 +662,7 @@ Overlay overlay13
 {
 	After overlay11
 	Object main.nef.p/src_overlay013_battle_party.c.o
-	Object main.nef.p/src_overlay013_ov13_02221A88.c.o
+	Object main.nef.p/src_overlay013_battle_party_text.c.o
 	Object main.nef.p/src_overlay013_ov13_02224500.c.o
 	Object main.nef.p/src_overlay013_ov13_02225710.c.o
 	Object main.nef.p/src_overlay013_battle_bag.c.o

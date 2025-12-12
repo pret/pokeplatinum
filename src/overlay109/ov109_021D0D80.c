@@ -8,15 +8,11 @@
 #include "generated/text_banks.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
-#include "struct_defs/struct_02073B50.h"
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_0209BDF8.h"
 #include "struct_defs/struct_0209C0F0.h"
 #include "struct_defs/struct_0209C194.h"
 
-#include "overlay005/struct_ov5_02201C58.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
 
@@ -39,6 +35,7 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "screen_fade.h"
+#include "simple3d.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
@@ -56,7 +53,6 @@
 #include "unk_020366A0.h"
 #include "unk_02038ED4.h"
 #include "unk_020393C8.h"
-#include "unk_02073838.h"
 #include "unk_02092494.h"
 #include "unk_0209BDF8.h"
 #include "vram_transfer.h"
@@ -71,9 +67,9 @@ typedef struct {
     fx32 unk_40;
     fx32 unk_44;
     fx32 unk_48;
-    UnkStruct_ov5_02201C58 unk_4C;
-    UnkStruct_02073838 unk_54;
-    UnkStruct_02073B50 unk_68;
+    Simple3DRotationAngles unk_4C;
+    Simple3DModel unk_54;
+    Simple3DRenderObj unk_68;
 } UnkStruct_ov109_021D2AE4;
 
 typedef struct {
@@ -86,35 +82,35 @@ typedef struct {
     int unk_18;
     fx32 unk_1C;
     fx32 unk_20;
-    UnkStruct_ov5_02201C58 unk_24;
+    Simple3DRotationAngles unk_24;
     VecFx32 unk_2C;
     VecFx32 unk_38;
     VecFx32 unk_44;
     VecFx32 unk_50;
-    UnkStruct_02073B50 unk_5C;
+    Simple3DRenderObj unk_5C;
 } UnkStruct_ov109_021D2D78;
 
 typedef struct {
     int unk_00;
-    UnkStruct_ov5_02201C58 unk_04;
+    Simple3DRotationAngles unk_04;
     VecFx32 unk_0C;
     VecFx32 unk_18;
-    UnkStruct_02073B50 unk_24;
+    Simple3DRenderObj unk_24;
     UnkStruct_ov109_021D2D78 *unk_78;
 } UnkStruct_ov109_021D2EF4;
 
 typedef struct {
     int unk_00;
     VecFx32 unk_04;
-    UnkStruct_02073B50 unk_10;
+    Simple3DRenderObj unk_10;
     UnkStruct_ov109_021D2D78 *unk_64;
 } UnkStruct_ov109_021D2FA4;
 
 typedef struct {
-    UnkStruct_02073838 unk_00;
-    UnkStruct_02073838 unk_14;
-    UnkStruct_02073838 unk_28[5];
-    UnkStruct_02073974 unk_8C[5];
+    Simple3DModel unk_00;
+    Simple3DModel unk_14;
+    Simple3DModel unk_28[5];
+    Simple3DAnimation unk_8C[5];
     UnkStruct_ov109_021D2D78 unk_140[5];
     UnkStruct_ov109_021D2EF4 unk_4B0[5];
     UnkStruct_ov109_021D2FA4 unk_71C[5];
@@ -2253,18 +2249,18 @@ static void ov109_021D29CC(UnkStruct_ov109_021D0F70 *param0)
     v0 = param0->unk_CC->unk_08;
     v1 = Unk_ov109_021D5A80[v0];
 
-    sub_0207389C(&v2->unk_54, 0, v3, v1, HEAP_ID_95, 0);
-    sub_020738EC(&v2->unk_54);
-    sub_02073B70(&v2->unk_68, &v2->unk_54);
+    Simple3D_LoadModelFromSet(&v2->unk_54, 0, v3, v1, HEAP_ID_95, 0);
+    Simple3D_ScheduleBindModelTexture(&v2->unk_54);
+    Simple3D_CreateRenderObject(&v2->unk_68, &v2->unk_54);
 
     v2->unk_3C = (FX32_ONE * 0);
     v2->unk_44 = Unk_ov109_021D5A98[v0];
     v2->unk_18.x = FX32_ONE;
     v2->unk_18.y = FX32_ONE;
     v2->unk_18.z = FX32_ONE;
-    v2->unk_4C.unk_00 = 0;
-    v2->unk_4C.unk_02 = 0;
-    v2->unk_4C.unk_04 = 0;
+    v2->unk_4C.alpha = 0;
+    v2->unk_4C.beta = 0;
+    v2->unk_4C.gamma = 0;
     v2->unk_00.x = (FX32_ONE * 0);
     v2->unk_00.y = (FX32_ONE * -36);
     v2->unk_00.z = (FX32_ONE * 0);
@@ -2274,7 +2270,7 @@ static void ov109_021D29CC(UnkStruct_ov109_021D0F70 *param0)
 static void ov109_021D2A58(UnkStruct_ov109_021D0F70 *param0)
 {
     UnkStruct_ov109_021D2AE4 *v0 = &param0->unk_D4;
-    sub_0207395C(&v0->unk_54);
+    Simple3D_FreeModel(&v0->unk_54);
 }
 
 static void ov109_021D2A68(UnkStruct_ov109_021D0F70 *param0)
@@ -2285,7 +2281,7 @@ static void ov109_021D2A68(UnkStruct_ov109_021D0F70 *param0)
     ov109_021D39D4(&v1, v0->unk_40);
     ov109_021D39D4(&v1, v0->unk_44);
 
-    v0->unk_4C.unk_02 = (360 - ((v1) / FX32_ONE)) % 360;
+    v0->unk_4C.beta = (360 - ((v1) / FX32_ONE)) % 360;
     v0->unk_0C.x = v0->unk_00.x + v0->unk_30.x + v0->unk_24.x;
     v0->unk_0C.y = v0->unk_00.y + v0->unk_30.y + v0->unk_24.y;
     v0->unk_0C.z = v0->unk_00.z + v0->unk_30.z + v0->unk_24.z;
@@ -2294,7 +2290,7 @@ static void ov109_021D2A68(UnkStruct_ov109_021D0F70 *param0)
 static void ov109_021D2AC8(UnkStruct_ov109_021D0F70 *param0)
 {
     UnkStruct_ov109_021D2AE4 *v0 = &param0->unk_D4;
-    sub_02073BC8(&v0->unk_68, &v0->unk_0C, &v0->unk_18, &v0->unk_4C);
+    Simple3D_DrawRenderObjRotationAngles(&v0->unk_68, &v0->unk_0C, &v0->unk_18, &v0->unk_4C);
 }
 
 static void ov109_021D2AE4(UnkStruct_ov109_021D2AE4 *param0, fx32 param1)
@@ -2343,20 +2339,20 @@ static void ov109_021D2B00(UnkStruct_ov109_021D0F70 *param0)
     const u32 *v1, *v2;
     UnkStruct_ov109_021D1334 *v3 = &param0->unk_190;
 
-    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, HEAP_ID_95, 0);
-    sub_020738EC(&v3->unk_00);
-    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, HEAP_ID_95, 0);
-    sub_020738EC(&v3->unk_14);
+    Simple3D_LoadModelFromSet(&v3->unk_00, 0, param0->unk_D80, 0, HEAP_ID_95, 0);
+    Simple3D_ScheduleBindModelTexture(&v3->unk_00);
+    Simple3D_LoadModelFromSet(&v3->unk_14, 0, param0->unk_D80, 5, HEAP_ID_95, 0);
+    Simple3D_ScheduleBindModelTexture(&v3->unk_14);
 
     v1 = Unk_ov109_021D5A14;
     v2 = Unk_ov109_021D5A3C;
 
     for (v0 = 0; v0 < 5; v0++, v1++, v2++) {
-        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, HEAP_ID_95, 0);
-        sub_020738EC(&v3->unk_28[v0]);
-        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, HEAP_ID_95, 0);
-        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
-        sub_02073A5C(&v3->unk_8C[v0], &v3->unk_28[v0]);
+        Simple3D_LoadModelFromSet(&v3->unk_28[v0], 0, param0->unk_D80, *v1, HEAP_ID_95, 0);
+        Simple3D_ScheduleBindModelTexture(&v3->unk_28[v0]);
+        Simple3D_LoadAnimFromOpenNARC(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, HEAP_ID_95, 0);
+        Simple3D_BindModelToAnim(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
+        Simple3D_InitG3DAnimObject(&v3->unk_8C[v0], &v3->unk_28[v0]);
     }
 }
 
@@ -2365,12 +2361,12 @@ static void ov109_021D2BD4(UnkStruct_ov109_021D0F70 *param0)
     int v0;
     UnkStruct_ov109_021D1334 *v1 = &param0->unk_190;
 
-    sub_0207395C(&v1->unk_00);
-    sub_0207395C(&v1->unk_14);
+    Simple3D_FreeModel(&v1->unk_00);
+    Simple3D_FreeModel(&v1->unk_14);
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0207395C(&v1->unk_28[v0]);
-        sub_020739F0(&v1->unk_8C[v0]);
+        Simple3D_FreeModel(&v1->unk_28[v0]);
+        Simple3D_FreeAnimationSet(&v1->unk_8C[v0]);
     }
 }
 
@@ -2378,7 +2374,7 @@ static void ov109_021D2C0C(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
 {
     UnkStruct_ov109_021D1334 *v0 = &param0->unk_190;
 
-    sub_02073B70(&param1->unk_5C, &v0->unk_00);
+    Simple3D_CreateRenderObject(&param1->unk_5C, &v0->unk_00);
     param1->unk_04 = 1;
 
     ov109_021D2EC0(param0, param1);
@@ -2417,15 +2413,15 @@ static void ov109_021D2CCC(UnkStruct_ov109_021D0F70 *param0)
 
     while (v0 < v1) {
         if (v3->unk_04) {
-            sub_02073BC8(&v3->unk_5C, &v3->unk_44, &v3->unk_38, &v3->unk_24);
+            Simple3D_DrawRenderObjRotationAngles(&v3->unk_5C, &v3->unk_44, &v3->unk_38, &v3->unk_24);
         }
 
         if (v4->unk_00) {
-            sub_02073BC8(&v4->unk_24, &v4->unk_18, &v4->unk_0C, &v4->unk_04);
+            Simple3D_DrawRenderObjRotationAngles(&v4->unk_24, &v4->unk_18, &v4->unk_0C, &v4->unk_04);
         }
 
         if (v5->unk_00) {
-            sub_02073BB4(&v5->unk_10, &v5->unk_04);
+            Simple3D_DrawRenderObjWithPos(&v5->unk_10, &v5->unk_04);
         }
 
         v3++;
@@ -2462,9 +2458,9 @@ static void ov109_021D2D78(UnkStruct_ov109_021D2D78 *param0, const VecFx32 *para
     param0->unk_44.y = (FX32_ONE * -6) + param0->unk_50.y + param1->y;
     param0->unk_44.z = (FX32_ONE * 0) + param0->unk_50.z + param1->z + (CalcSineDegrees(v0) * 22);
 
-    param0->unk_24.unk_00 = ((param0->unk_2C.x) / FX32_ONE);
-    param0->unk_24.unk_02 = ((param0->unk_2C.y) / FX32_ONE);
-    param0->unk_24.unk_04 = ((param0->unk_2C.z) / FX32_ONE);
+    param0->unk_24.alpha = ((param0->unk_2C.x) / FX32_ONE);
+    param0->unk_24.beta = ((param0->unk_2C.y) / FX32_ONE);
+    param0->unk_24.gamma = ((param0->unk_2C.z) / FX32_ONE);
 }
 
 static UnkStruct_ov109_021D2D78 *ov109_021D2DF8(UnkStruct_ov109_021D0F70 *param0)
@@ -2514,7 +2510,7 @@ static void ov109_021D2EC0(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
 
     v1->unk_00 = 1;
     v1->unk_78 = param1;
-    sub_02073B70(&v1->unk_24, &v0->unk_14);
+    Simple3D_CreateRenderObject(&v1->unk_24, &v0->unk_14);
     ov109_021D2EF4(param0, v1);
 }
 
@@ -2522,9 +2518,9 @@ static void ov109_021D2EF4(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
 {
     fx32 v0;
 
-    param1->unk_04.unk_00 = 0;
-    param1->unk_04.unk_02 = 0;
-    param1->unk_04.unk_04 = 0;
+    param1->unk_04.alpha = 0;
+    param1->unk_04.beta = 0;
+    param1->unk_04.gamma = 0;
     param1->unk_18 = param1->unk_78->unk_44;
     param1->unk_18.x -= param1->unk_78->unk_50.x;
     param1->unk_18.y -= param1->unk_78->unk_50.y;
@@ -2556,7 +2552,7 @@ static void ov109_021D2F68(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
     v1->unk_00 = 1;
     v1->unk_64 = param1;
 
-    sub_02073B90(&v1->unk_10, &v0->unk_28[param1->unk_10], &v0->unk_8C[param1->unk_10]);
+    Simple3D_CreateRenderObjectWithAnim(&v1->unk_10, &v0->unk_28[param1->unk_10], &v0->unk_8C[param1->unk_10]);
 }
 
 static void ov109_021D2FA4(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021D2FA4 *param1)
@@ -2566,7 +2562,7 @@ static void ov109_021D2FA4(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
     param1->unk_04 = param1->unk_64->unk_44;
     param1->unk_04.y += (FX32_ONE * 20);
 
-    sub_02073AC0(&v0->unk_8C[param1->unk_64->unk_10], FX32_ONE, 1);
+    Simple3D_UpdateAnim(&v0->unk_8C[param1->unk_64->unk_10], FX32_ONE, 1);
 }
 
 static SysTask *ov109_021D2FE0(UnkStruct_ov109_021D0F70 *param0, int param1, int param2, int param3, int param4, int param5, UnkStruct_ov109_021D2D78 *param6)

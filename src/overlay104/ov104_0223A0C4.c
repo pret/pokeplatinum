@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/species_data_params.h"
 
@@ -623,151 +624,151 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
     },
 };
 
-void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
-void ov104_0223A30C(SaveData *saveData, FrontierDataDTO *param1, const u8 param2);
+void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto);
+void ov104_0223A30C(SaveData *saveData, FrontierDataDTO *dto, const u8 param2);
 FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
 void ov104_0223A734(BattleTower *battleTower, u16 param1);
 u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1);
-int ov104_0223A768(u8 param0);
-int ov104_0223A77C(u8 param0);
-int ov104_0223A790(u8 param0);
-static BOOL ov104_0223A118(BattleTower *battleTower, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8);
+int BattleTower_GetPokemonDataNarcID(u8 challengeMode);
+int BattleTower_GetTrainerDataNarcID(u8 challengeMode);
+int BattleTower_GetTrainerMessagesBankID(u8 challengeMode);
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param7, int heapID);
 static void ov104_0223A348(FrontierDataDTO *param0, const u8 param1);
-static u32 ov104_0223A3A8(BattleTower *battleTower, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8);
+static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemonDataDTO *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, int heapID);
 static u32 BattleTower_GetBattleTypeFromChallengeMode(u8 challengeMode);
 static void ov104_0223A6AC(FieldBattleDTO *param0, FrontierDataDTO *param1, int param2, int param3, int param4);
-static int ov104_0223A7AC(u8 param0);
+static int BattleTower_AreAllConnectedGamesPlatinum(u8 challengeMode);
 
-BOOL ov104_0223A0C4(BattleTower *battleTower, FrontierDataDTO *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID)
+BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param6, int heapID)
 {
     BOOL v0 = 0;
-    BattleFrontierTrainerData *v1 = ov104_0222DD04(&param1->trDataDTO, param2, heapID, ov104_0223A77C(battleTower->challengeMode));
-    v0 = ov104_0223A118(battleTower, v1, param2, &param1->monDataDTO[0], param3, param4, param5, param6, heapID);
+    BattleFrontierTrainerData *trData = BattleTower_GetTrainerData(&opponentDataDTO->trDataDTO, battleTowerTrainerID, heapID, BattleTower_GetTrainerDataNarcID(battleTower->challengeMode));
+    v0 = BattleTower_CreateRandomTrainerParty(battleTower, trData, battleTowerTrainerID, &opponentDataDTO->monDataDTO[0], partySize, species, items, param6, heapID);
 
-    Heap_Free(v1);
+    Heap_Free(trData);
 
     return v0;
 }
 
-static BOOL ov104_0223A118(BattleTower *battleTower, BattleFrontierTrainerData *param1, u16 param2, FrontierPokemonDataDTO *param3, u8 param4, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8)
+static BOOL BattleTower_CreateRandomTrainerParty(BattleTower *battleTower, BattleFrontierTrainerData *trData, u16 battleTowerTrainerID, FrontierPokemonDataDTO *monDataDTO, u8 partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param7, int heapID)
 {
-    int v0;
-    u8 v2;
-    u8 v3;
+    int i;
+    u8 ivs;
+    u8 random;
     u32 v4;
-    int v5;
-    int v6[4];
-    u32 v7[4];
-    int v8;
-    int v9;
-    BOOL v10 = 0;
-    BattleFrontierPokemonData v11;
-    BattleFrontierPokemonData v12;
+    int setID;
+    int setIDs[BT_DOUBLES_PARTY_SIZE];
+    u32 personalities[BT_DOUBLES_PARTY_SIZE];
+    int partyIndex;
+    int dupeItemFailsafeCount;
+    BOOL giveReservedItem = 0;
+    BattleFrontierPokemonData monDataPrev;
+    BattleFrontierPokemonData monDataCurr;
 
-    GF_ASSERT(param4 <= 4);
+    GF_ASSERT(partySize <= BT_DOUBLES_PARTY_SIZE);
 
-    v8 = 0;
-    v9 = 0;
+    partyIndex = 0;
+    dupeItemFailsafeCount = 0;
 
-    while (v8 != param4) {
-        v3 = sub_0204AEC0(battleTower) % param1->numSets;
-        v5 = param1->setIDs[v3];
+    while (partyIndex != partySize) {
+        random = BattleTower_GetRandom(battleTower) % trData->numSets;
+        setID = trData->setIDs[random];
 
-        ov104_0222DCF4(&v12, v5, ov104_0223A768(battleTower->challengeMode));
+        BattleTower_GetMonDataFromSetIDAndNarcID(&monDataCurr, setID, BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
-        for (v0 = 0; v0 < v8; v0++) {
-            ov104_0222DCF4(&v11, v6[v0], ov104_0223A768(battleTower->challengeMode));
+        for (i = 0; i < partyIndex; i++) {
+            BattleTower_GetMonDataFromSetIDAndNarcID(&monDataPrev, setIDs[i], BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
-            if (v11.species == v12.species) {
+            if (monDataPrev.species == monDataCurr.species) {
                 break;
             }
         }
 
-        if (v0 != v8) {
+        if (i != partyIndex) {
             continue;
         }
 
-        if (param5 != NULL) {
-            for (v0 = 0; v0 < param4; v0++) {
-                if (param5[v0] == v12.species) {
+        if (species != NULL) {
+            for (i = 0; i < partySize; i++) {
+                if (species[i] == monDataCurr.species) {
                     break;
                 }
             }
 
-            if (v0 != param4) {
+            if (i != partySize) {
                 continue;
             }
         }
 
-        if (v9 < 50) {
-            for (v0 = 0; v0 < v8; v0++) {
-                ov104_0222DCF4(&v11, v6[v0], ov104_0223A768(battleTower->challengeMode));
+        if (dupeItemFailsafeCount < 50) {
+            for (i = 0; i < partyIndex; i++) {
+                BattleTower_GetMonDataFromSetIDAndNarcID(&monDataPrev, setIDs[i], BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
-                if ((v11.item) && (v11.item == v12.item)) {
+                if (monDataPrev.item && monDataPrev.item == monDataCurr.item) {
                     break;
                 }
             }
 
-            if (v0 != v8) {
-                v9++;
+            if (i != partyIndex) {
+                dupeItemFailsafeCount++;
                 continue;
             }
 
-            if (param6 != NULL) {
-                for (v0 = 0; v0 < param4; v0++) {
-                    if ((param6[v0] == v12.item) && (param6[v0] != 0)) {
+            if (items != NULL) {
+                for (i = 0; i < partySize; i++) {
+                    if (items[i] == monDataCurr.item && items[i] != 0) {
                         break;
                     }
                 }
 
-                if (v0 != param4) {
-                    v9++;
+                if (i != partySize) {
+                    dupeItemFailsafeCount++;
                     continue;
                 }
             }
         }
 
-        v6[v8] = v5;
-        v8++;
+        setIDs[partyIndex] = setID;
+        partyIndex++;
     }
 
-    v2 = BattleTower_GetIVsFromTrainerID(param2);
-    v4 = (sub_0204AEC0(battleTower) | (sub_0204AEC0(battleTower) << 16));
+    ivs = BattleTower_GetIVsFromTrainerID(battleTowerTrainerID);
+    v4 = BattleTower_GetRandom(battleTower) | (BattleTower_GetRandom(battleTower) << 16);
 
-    if (v9 >= 50) {
-        v10 = 1;
+    if (dupeItemFailsafeCount >= 50) {
+        giveReservedItem = TRUE;
     }
 
-    for (v0 = 0; v0 < v8; v0++) {
-        v7[v0] = ov104_0223A3A8(battleTower, &(param3[v0]), v6[v0], v4, 0, v2, v0, v10, param8);
+    for (i = 0; i < partyIndex; i++) {
+        personalities[i] = BattleTower_CopySetToPokemonDataDTO(battleTower, &(monDataDTO[i]), setIDs[i], v4, 0, ivs, i, giveReservedItem, heapID);
     }
 
     if (param7 == NULL) {
-        return v10;
+        return giveReservedItem;
     }
 
     param7->unk_00 = v4;
 
-    for (v0 = 0; v0 < 2; v0++) {
-        param7->unk_04[v0] = v6[v0];
-        param7->unk_08[v0] = v7[v0];
+    for (i = 0; i < 2; i++) {
+        param7->unk_04[i] = setIDs[i];
+        param7->unk_08[i] = personalities[i];
     }
 
-    return v10;
+    return giveReservedItem;
 }
 
-void ov104_0223A30C(SaveData *saveData, FrontierDataDTO *param1, const u8 param2)
+void ov104_0223A30C(SaveData *saveData, FrontierDataDTO *dto, const u8 param2)
 {
-    MI_CpuClear8(param1, sizeof(FrontierDataDTO));
+    MI_CpuClear8(dto, sizeof(FrontierDataDTO));
 
     UnkStruct_0202D764 *v1 = sub_0202D764(saveData);
 
     if (!sub_0202D5E8(v1)) {
-        ov104_0223A348(param1, param2);
+        ov104_0223A348(dto, param2);
         return;
     }
 
-    sub_0202D63C(v1, param1, param2);
+    sub_0202D63C(v1, dto, param2);
 }
 
 static void ov104_0223A348(FrontierDataDTO *param0, const u8 param1)
@@ -787,101 +788,101 @@ static void ov104_0223A348(FrontierDataDTO *param0, const u8 param1)
     }
 }
 
-static const u16 Unk_ov104_0223FCAC[] = {
+static const u16 sBattleTowerReservedItems[] = {
     ITEM_BRIGHTPOWDER,
     ITEM_LUM_BERRY,
     ITEM_LEFTOVERS,
     ITEM_QUICK_CLAW,
 };
 
-static u32 ov104_0223A3A8(BattleTower *battleTower, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 param5, u8 param6, BOOL param7, int param8)
+static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, FrontierPokemonDataDTO *monDataDTO, u16 setID, u32 otID, u32 givenPersonality, u8 ivs, u8 partyIndex, BOOL giveReservedItem, int heapID)
 {
     int v0;
-    int v1;
-    u32 v2;
-    BattleFrontierPokemonData v4;
+    int evs;
+    u32 randomPersonality;
+    BattleFrontierPokemonData monData;
 
-    MI_CpuClear8(param1, sizeof(FrontierPokemonDataDTO));
-    ov104_0222DCF4(&v4, param2, ov104_0223A768(battleTower->challengeMode));
+    MI_CpuClear8(monDataDTO, sizeof(FrontierPokemonDataDTO));
+    BattleTower_GetMonDataFromSetIDAndNarcID(&monData, setID, BattleTower_GetPokemonDataNarcID(battleTower->challengeMode));
 
-    param1->species = v4.species;
-    param1->form = v4.form;
+    monDataDTO->species = monData.species;
+    monDataDTO->form = monData.form;
 
-    if (param7) {
-        param1->item = Unk_ov104_0223FCAC[param6];
+    if (giveReservedItem) {
+        monDataDTO->item = sBattleTowerReservedItems[partyIndex];
     } else {
-        param1->item = v4.item;
+        monDataDTO->item = monData.item;
     }
 
     u8 friendship = MAX_FRIENDSHIP_VALUE;
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        param1->moves[v0] = v4.moves[v0];
+        monDataDTO->moves[v0] = monData.moves[v0];
 
-        if (v4.moves[v0] == MOVE_FRUSTRATION) {
+        if (monData.moves[v0] == MOVE_FRUSTRATION) {
             friendship = 0;
         }
     }
 
-    param1->otID = param3;
+    monDataDTO->otID = otID;
 
-    if (param4 == 0) {
+    if (givenPersonality == 0) {
         do {
-            v2 = (sub_0204AEC0(battleTower) | sub_0204AEC0(battleTower) << 16);
-        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param3, v2) == 1));
+            randomPersonality = BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16;
+        } while (monData.nature != Pokemon_GetNatureOf(randomPersonality) || Pokemon_IsPersonalityShiny(otID, randomPersonality) == 1);
 
-        param1->personality = v2;
+        monDataDTO->personality = randomPersonality;
     } else {
-        param1->personality = param4;
-        v2 = param4;
+        monDataDTO->personality = givenPersonality;
+        randomPersonality = givenPersonality;
     }
 
-    param1->hpIV = param5;
-    param1->atkIV = param5;
-    param1->defIV = param5;
-    param1->speedIV = param5;
-    param1->spAtkIV = param5;
-    param1->spDefIV = param5;
+    monDataDTO->hpIV = ivs;
+    monDataDTO->atkIV = ivs;
+    monDataDTO->defIV = ivs;
+    monDataDTO->speedIV = ivs;
+    monDataDTO->spAtkIV = ivs;
+    monDataDTO->spDefIV = ivs;
 
-    v1 = 0;
+    evs = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v4.evFlags & FlagIndex(v0)) {
-            v1++;
+    for (v0 = 0; v0 < STAT_MAX; v0++) {
+        if (monData.evFlags & FlagIndex(v0)) {
+            evs++;
         }
     }
 
-    if ((510 / v1) > 255) {
-        v1 = 255;
+    if (MAX_EVS_ALL_STATS / evs > MAX_EVS_SINGLE_STAT) {
+        evs = MAX_EVS_SINGLE_STAT;
     } else {
-        v1 = 510 / v1;
+        evs = MAX_EVS_ALL_STATS / evs;
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v4.evFlags & FlagIndex(v0)) {
-            param1->evList[v0] = v1;
+    for (v0 = 0; v0 < STAT_MAX; v0++) {
+        if (monData.evFlags & FlagIndex(v0)) {
+            monDataDTO->evList[v0] = evs;
         }
     }
 
-    param1->combinedPPUps = 0;
-    param1->language = gGameLanguage;
+    monDataDTO->combinedPPUps = 0;
+    monDataDTO->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_2);
+    v0 = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
-        if (param1->personality & 1) {
-            param1->ability = v0;
+        if (monDataDTO->personality & 1) {
+            monDataDTO->ability = v0;
         } else {
-            param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+            monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+        monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
     }
 
-    param1->friendship = friendship;
-    MessageLoader_GetSpeciesName(param1->species, param8, &(param1->nickname[0]));
+    monDataDTO->friendship = friendship;
+    MessageLoader_GetSpeciesName(monDataDTO->species, heapID, &(monDataDTO->nickname[0]));
 
-    return v2;
+    return randomPersonality;
 }
 
 FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1)
@@ -918,19 +919,19 @@ FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE
     Heap_Free(mon);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v3);
 
-    ov104_0223A6AC(v3, &(battleTower->unk_78[0]), battleTower->partySize, BATTLER_ENEMY_1, battleTower->heapID);
+    ov104_0223A6AC(v3, &(battleTower->opponentsDataDTO[0]), battleTower->partySize, BATTLER_ENEMY_1, battleTower->heapID);
 
     for (v0 = 0; v0 < MAX_BATTLERS; v0++) {
         v3->trainer[v0].header.aiMask = (0x1 | 0x2 | 0x4);
     }
 
     switch (battleTower->challengeMode) {
-    case 2:
+    case BATTLE_TOWER_MODE_MULTI:
         ov104_0223A6AC(v3, &(battleTower->partnersDataDTO[battleTower->partnerID]), battleTower->partySize, BATTLER_PLAYER_2, battleTower->heapID);
         // fall through
-    case 3:
-    case 6:
-        ov104_0223A6AC(v3, &(battleTower->unk_78[1]), battleTower->partySize, BATTLER_ENEMY_2, battleTower->heapID);
+    case BATTLE_TOWER_MODE_LINK_MULTI:
+    case BATTLE_TOWER_MODE_6:
+        ov104_0223A6AC(v3, &(battleTower->opponentsDataDTO[1]), battleTower->partySize, BATTLER_ENEMY_2, battleTower->heapID);
         break;
     default:
         break;
@@ -987,38 +988,38 @@ u16 ov104_0223A750(BattleTower *battleTower, const u16 *param1)
     return 0;
 }
 
-int ov104_0223A768(u8 param0)
+int BattleTower_GetPokemonDataNarcID(u8 challengeMode)
 {
-    if (ov104_0223A7AC(param0) == FALSE) {
+    if (BattleTower_AreAllConnectedGamesPlatinum(challengeMode) == FALSE) {
         return NARC_INDEX_BATTLE__B_TOWER__BTDPM;
     }
 
     return NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM;
 }
 
-int ov104_0223A77C(u8 param0)
+int BattleTower_GetTrainerDataNarcID(u8 challengeMode)
 {
-    if (ov104_0223A7AC(param0) == FALSE) {
+    if (BattleTower_AreAllConnectedGamesPlatinum(challengeMode) == FALSE) {
         return NARC_INDEX_BATTLE__B_TOWER__BTDTR;
     }
 
     return NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR;
 }
 
-int ov104_0223A790(u8 param0)
+int BattleTower_GetTrainerMessagesBankID(u8 challengeMode)
 {
-    if (ov104_0223A7AC(param0) == FALSE) {
+    if (BattleTower_AreAllConnectedGamesPlatinum(challengeMode) == FALSE) {
         return TEXT_BANK_UNK_0613;
     }
 
     return TEXT_BANK_FRONTIER_TRAINER_MESSAGES;
 }
 
-static int ov104_0223A7AC(u8 param0)
+static int BattleTower_AreAllConnectedGamesPlatinum(u8 challengeMode)
 {
-    switch (param0) {
-    case 3:
-    case 6:
+    switch (challengeMode) {
+    case BATTLE_TOWER_MODE_LINK_MULTI:
+    case BATTLE_TOWER_MODE_6:
         TrainerInfo *v0 = CommInfo_TrainerInfo(0);
 
         if (v0 == NULL) {
@@ -1034,7 +1035,7 @@ static int ov104_0223A7AC(u8 param0)
         u8 v2 = TrainerInfo_GameCode(v0);
         u8 v3 = TrainerInfo_GameCode(v1);
 
-        if ((v2 == 0) || (v3 == 0)) {
+        if (v2 == 0 || v3 == 0) {
             return FALSE;
         }
 

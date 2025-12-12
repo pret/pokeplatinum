@@ -139,7 +139,7 @@ BOOL sub_0209BB08(BattleTower *battleTower)
 
     v1 = (14 * 2);
 
-    MI_CpuCopy8(battleTower->unk_3E, battleTower->unk_83E, v1);
+    MI_CpuCopy8(battleTower->trainerIDs, battleTower->unk_83E, v1);
 
     if (CommSys_SendData(63, battleTower->unk_83E, v1) == 1) {
         v0 = 1;
@@ -167,7 +167,7 @@ static void sub_0209BB34(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    MI_CpuCopy8(v2, battleTower->unk_3E, 14 * 2);
+    MI_CpuCopy8(v2, battleTower->trainerIDs, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
     return;
 }
 

@@ -15,11 +15,11 @@ typedef struct BattleTower {
     int unk_00;
     int heapID;
     u32 unk_08;
-    u8 unk_0C;
+    u8 nextOpponentNum;
     u8 unk_0D;
     u8 partySize;
     u8 challengeMode;
-    u8 unk_10_0 : 1;
+    u8 defeatedSevenTrainers : 1;
     u8 unk_10_1 : 2;
     u8 unk_10_3 : 1;
     u8 unk_10_4 : 1;
@@ -29,7 +29,7 @@ typedef struct BattleTower {
     u16 unk_14;
     u16 unk_16[2];
     u16 unk_1A;
-    u16 unk_1C;
+    u16 roomNum;
     u32 unk_20;
     u16 unk_24;
     u16 unk_26;
@@ -37,11 +37,11 @@ typedef struct BattleTower {
     u8 unk_2A[4];
     u16 unk_2E[4];
     u16 unk_36[4];
-    u16 unk_3E[14];
+    u16 trainerIDs[BT_OPPONENTS_COUNT * 2];
     Location unk_5C;
     UnkStruct_0202D060 *unk_70;
     UnkStruct_0202D750 *unk_74;
-    FrontierDataDTO unk_78[2];
+    FrontierDataDTO opponentsDataDTO[2];
     FrontierDataDTO partnersDataDTO[BT_PARTNERS_COUNT];
     UnkStruct_0204B404 unk_7E8[BT_PARTNERS_COUNT];
     u8 unk_838[BT_PARTNERS_COUNT];
