@@ -223,7 +223,7 @@ pokeplatinum_c = files(
     'catching_show.c',
     'poketch.c',
     'unk_02056B30.c',
-    'unk_020573FC.c',
+    'goods.c',
     'unk_0205749C.c',
     'comm_player_manager.c',
     'field_comm_manager.c',

@@ -1,3 +1,4 @@
+#include "constants/goods.h"
 #include "constants/items.h"
 #include "constants/seals.h"
 #include "generated/mart_decor_id.h"
@@ -241,21 +242,21 @@ const u16 *PokeMartSpecialties[] = {
 };
 
 const u16 VeilstoneDeptStoreStock_4F_UP[] = {
-    0x7,
-    0x16,
-    0x19,
-    0x1A,
-    0x1B,
+    GOOD_YELLOW_CUSHION,
+    GOOD_CUPBOARD,
+    GOOD_TV,
+    GOOD_REFRIGERATOR,
+    GOOD_PRETTY_SINK,
     SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_4F_DOWN[] = {
-    0x73,
-    0x74,
-    0x75,
-    0x77,
-    0x78,
-    0x79,
+    GOOD_MUNCHLAX_DOLL,
+    GOOD_BONSLY_DOLL,
+    GOOD_MIME_JR_DOLL,
+    GOOD_MANTYKE_DOLL,
+    GOOD_BUIZEL_DOLL,
+    GOOD_CHATOT_DOLL,
     SHOP_ITEM_END
 };
 

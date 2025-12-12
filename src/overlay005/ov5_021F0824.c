@@ -11,8 +11,8 @@
 #include "overlay023/ov23_02241F74.h"
 
 #include "field_comm_manager.h"
+#include "goods.h"
 #include "unk_0202854C.h"
-#include "unk_020573FC.h"
 
 void ov5_021F0824(FieldSystem *fieldSystem)
 {
@@ -36,8 +36,8 @@ void ov5_021F0824(FieldSystem *fieldSystem)
 
     for (v0 = 0; v0 < 32; v0++) {
         v1 = sub_020293B0(v2, v0);
-        v7 = sub_020573FC(v1);
-        v8 = sub_0205740C(v1);
+        v7 = Good_GetWidth(v1);
+        v8 = Good_GetDepth(v1);
 
         if (v1 != 0) {
             v5 = sub_020293FC(v2, v0);
