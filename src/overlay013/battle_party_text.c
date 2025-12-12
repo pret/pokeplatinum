@@ -7,15 +7,15 @@
 
 #include "res/text/bank/battle_party.h"
 
-#define BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_NUM                    6
-#define BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_NUM                   4
-#define BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_NUM                  35
-#define BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_NUM                    11
-#define BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_NUM                     17
-#define BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_NUM                  5
-#define BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_NUM                       6
-#define BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_NUM               12
-#define BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_NUM 7
+#define BATTLE_POKEMON_PARTY_SCREEN_WINDOW_NUM                    6
+#define BATTLE_SELECT_POKEMON_SCREEN_WINDOW_NUM                   4
+#define BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_NUM                  35
+#define BATTLE_POKEMON_MOVES_SCREEN_WINDOW_NUM                    11
+#define BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_NUM                     17
+#define BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_NUM                  5
+#define BATTLE_LEARN_MOVE_SCREEN_WINDOW_NUM                       6
+#define BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_NUM               12
+#define BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_NUM 7
 
 #define POKEMON_LEVEL_DIGITS              3
 #define POKEMON_XP_TO_NEXT_LEVEL_DIGITS   6
@@ -70,7 +70,7 @@ static const WindowTemplate sMessageBoxWindowTemplates[] = {
 };
 
 static const WindowTemplate sPartyPokemonScreenWindowTemplates[] = {
-    [BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_1] = {
+    [BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_1] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 0,
         .tilemapTop = 0,
@@ -79,7 +79,7 @@ static const WindowTemplate sPartyPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 133,
     },
-    [BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_2] = {
+    [BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_2] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 16,
         .tilemapTop = 1,
@@ -88,7 +88,7 @@ static const WindowTemplate sPartyPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 208,
     },
-    [BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_3] = {
+    [BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_3] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 0,
         .tilemapTop = 6,
@@ -97,7 +97,7 @@ static const WindowTemplate sPartyPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 283,
     },
-    [BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_4] = {
+    [BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_4] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 16,
         .tilemapTop = 7,
@@ -106,7 +106,7 @@ static const WindowTemplate sPartyPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 358,
     },
-    [BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_5] = {
+    [BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_5] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 0,
         .tilemapTop = 12,
@@ -115,7 +115,7 @@ static const WindowTemplate sPartyPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 433,
     },
-    [BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_6] = {
+    [BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_6] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 16,
         .tilemapTop = 13,
@@ -127,7 +127,7 @@ static const WindowTemplate sPartyPokemonScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sSelectPokemonScreenWindowTemplates[] = {
-    [BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 10,
         .tilemapTop = 4,
@@ -136,7 +136,7 @@ static const WindowTemplate sSelectPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 1,
     },
-    [BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_SHIFT] = {
+    [BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SHIFT] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 11,
         .tilemapTop = 12,
@@ -145,7 +145,7 @@ static const WindowTemplate sSelectPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 37,
     },
-    [BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY] = {
+    [BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 20,
@@ -154,7 +154,7 @@ static const WindowTemplate sSelectPokemonScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 67,
     },
-    [BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES] = {
+    [BATTLE_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 14,
         .tilemapTop = 20,
@@ -166,7 +166,7 @@ static const WindowTemplate sSelectPokemonScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -175,7 +175,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 293,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_NAME] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 9,
@@ -184,7 +184,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 329,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 11,
@@ -193,7 +193,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 351,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HELD_ITEM] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HELD_ITEM] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 4,
         .tilemapTop = 16,
@@ -202,7 +202,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 423,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 24,
         .tilemapTop = 4,
@@ -211,7 +211,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 447,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 7,
@@ -220,7 +220,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 461,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 9,
@@ -229,7 +229,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 467,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 15,
@@ -238,7 +238,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 473,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 11,
@@ -247,7 +247,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 479,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 13,
@@ -256,7 +256,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 485,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HEALTH_BAR] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HEALTH_BAR] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 25,
         .tilemapTop = 6,
@@ -265,7 +265,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 491,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 4,
@@ -274,7 +274,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 497,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 13,
         .tilemapTop = 6,
@@ -283,7 +283,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 503,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 21,
         .tilemapTop = 4,
@@ -292,7 +292,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 133,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 21,
         .tilemapTop = 7,
@@ -301,7 +301,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 137,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 21,
         .tilemapTop = 9,
@@ -310,7 +310,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 149,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 21,
         .tilemapTop = 15,
@@ -319,7 +319,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 161,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 21,
         .tilemapTop = 11,
@@ -328,7 +328,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 173,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 21,
         .tilemapTop = 13,
@@ -337,7 +337,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 185,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 4,
@@ -346,7 +346,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 197,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 6,
@@ -355,7 +355,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 205,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_CHECK_MOVES] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_CHECK_MOVES] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 13,
         .tilemapTop = 20,
@@ -364,7 +364,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 227,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -373,7 +373,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 311,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_ABILITY_NAME] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_ABILITY_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 9,
@@ -382,7 +382,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 609,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_ABILITY_DESC] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_ABILITY_DESC] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 11,
@@ -391,7 +391,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 631,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_HELD_ITEM] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_HELD_ITEM] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 4,
         .tilemapTop = 16,
@@ -400,7 +400,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 703,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_HP] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_HP] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 24,
         .tilemapTop = 4,
@@ -409,7 +409,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 727,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_ATTACK] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_ATTACK] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 7,
@@ -418,7 +418,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 741,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_DEFENSE] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_DEFENSE] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 9,
@@ -427,7 +427,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 747,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_SPEED] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_SPEED] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 15,
@@ -436,7 +436,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 753,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_SP_ATK] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_SP_ATK] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 11,
@@ -445,7 +445,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 759,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_SP_DEF] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_SP_DEF] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 28,
         .tilemapTop = 13,
@@ -454,7 +454,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 765,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_HEALTH_BAR] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_HEALTH_BAR] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 25,
         .tilemapTop = 6,
@@ -463,7 +463,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 771,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_LEVEL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_LEVEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 4,
@@ -472,7 +472,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 777,
     },
-    [BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_EXP_TO_NEXT_LVL] = {
+    [BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_EXP_TO_NEXT_LVL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 13,
         .tilemapTop = 6,
@@ -484,7 +484,7 @@ static const WindowTemplate sPokemonSummaryScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -493,7 +493,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 293,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 6,
@@ -502,7 +502,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 329,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_2] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_2] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 17,
         .tilemapTop = 6,
@@ -511,7 +511,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 399,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_3] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_3] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 12,
@@ -520,7 +520,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 469,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_4] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_4] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 17,
         .tilemapTop = 12,
@@ -529,7 +529,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 539,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_SUMMARY] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_SUMMARY] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 13,
         .tilemapTop = 20,
@@ -538,7 +538,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 260,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_ALT_POKEMON_NAME] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -547,7 +547,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 311,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_1] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_1] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 6,
@@ -556,7 +556,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 609,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_2] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_2] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 17,
         .tilemapTop = 6,
@@ -565,7 +565,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 679,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_3] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_3] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 12,
@@ -574,7 +574,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 749,
     },
-    [BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_4] = {
+    [BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_4] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 17,
         .tilemapTop = 12,
@@ -586,7 +586,7 @@ static const WindowTemplate sPokemonMovesScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 4,
         .tilemapTop = 5,
@@ -595,7 +595,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 157,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_PP] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_PP] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 23,
         .tilemapTop = 5,
@@ -604,7 +604,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 183,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 10,
         .tilemapTop = 16,
@@ -613,7 +613,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 225,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POWER] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POWER] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 10,
         .tilemapTop = 13,
@@ -622,7 +622,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 231,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_DESCRIPTION] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_DESCRIPTION] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 16,
         .tilemapTop = 8,
@@ -631,7 +631,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 237,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 6,
         .tilemapTop = 10,
@@ -640,7 +640,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 411,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -649,7 +649,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 139,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_PP_LABEL] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_PP_LABEL] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 20,
         .tilemapTop = 5,
@@ -658,7 +658,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 179,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY_LABEL] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY_LABEL] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 1,
         .tilemapTop = 16,
@@ -667,7 +667,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 193,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POWER_LABEL] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POWER_LABEL] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 1,
         .tilemapTop = 13,
@@ -676,7 +676,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 209,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY_LABEL] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY_LABEL] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 1,
         .tilemapTop = 8,
@@ -685,7 +685,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 387,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ALT_MOVE_NAME] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ALT_MOVE_NAME] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 4,
         .tilemapTop = 5,
@@ -694,7 +694,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 427,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ALT_PP] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ALT_PP] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 23,
         .tilemapTop = 5,
@@ -703,7 +703,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 449,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ALT_ACCURACY] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ALT_ACCURACY] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 10,
         .tilemapTop = 16,
@@ -712,7 +712,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 459,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ALT_POWER] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ALT_POWER] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 10,
         .tilemapTop = 13,
@@ -721,7 +721,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 465,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ALT_DESCRIPTION] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ALT_DESCRIPTION] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 16,
         .tilemapTop = 8,
@@ -730,7 +730,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 471,
     },
-    [BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ALT_CATEGORY] = {
+    [BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ALT_CATEGORY] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 6,
         .tilemapTop = 10,
@@ -742,7 +742,7 @@ static const WindowTemplate sMoveSummaryScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sRestoreMovePPScreenWindowTemplates[] = {
-    [BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -751,7 +751,7 @@ static const WindowTemplate sRestoreMovePPScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 139,
     },
-    [BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1] = {
+    [BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 1,
         .tilemapTop = 6,
@@ -760,7 +760,7 @@ static const WindowTemplate sRestoreMovePPScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 157,
     },
-    [BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_2] = {
+    [BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_2] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 17,
         .tilemapTop = 6,
@@ -769,7 +769,7 @@ static const WindowTemplate sRestoreMovePPScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 227,
     },
-    [BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_3] = {
+    [BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_3] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 1,
         .tilemapTop = 12,
@@ -778,7 +778,7 @@ static const WindowTemplate sRestoreMovePPScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 297,
     },
-    [BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_4] = {
+    [BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_4] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 17,
         .tilemapTop = 12,
@@ -790,7 +790,7 @@ static const WindowTemplate sRestoreMovePPScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sLearnMoveScreenWindowTemplates[] = {
-    [BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -799,7 +799,7 @@ static const WindowTemplate sLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 133,
     },
-    [BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_1] = {
+    [BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_1] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 1,
         .tilemapTop = 6,
@@ -808,7 +808,7 @@ static const WindowTemplate sLearnMoveScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 151,
     },
-    [BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_2] = {
+    [BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_2] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 17,
         .tilemapTop = 6,
@@ -817,7 +817,7 @@ static const WindowTemplate sLearnMoveScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 221,
     },
-    [BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_3] = {
+    [BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_3] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 1,
         .tilemapTop = 12,
@@ -826,7 +826,7 @@ static const WindowTemplate sLearnMoveScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 291,
     },
-    [BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_4] = {
+    [BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_4] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 17,
         .tilemapTop = 12,
@@ -835,7 +835,7 @@ static const WindowTemplate sLearnMoveScreenWindowTemplates[] = {
         .palette = 9,
         .baseTile = 361,
     },
-    [BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN] = {
+    [BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN] = {
         .bgLayer = BG_LAYER_SUB_0,
         .tilemapLeft = 9,
         .tilemapTop = 18,
@@ -847,7 +847,7 @@ static const WindowTemplate sLearnMoveScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -856,7 +856,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 4,
         .tilemapTop = 5,
@@ -865,7 +865,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 19,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP_LABEL] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 20,
         .tilemapTop = 5,
@@ -874,7 +874,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 41,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 23,
         .tilemapTop = 5,
@@ -883,7 +883,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 45,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY_LABEL] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 16,
@@ -892,7 +892,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 91,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER_LABEL] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 13,
@@ -901,7 +901,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 107,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 10,
         .tilemapTop = 16,
@@ -910,7 +910,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 123,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 10,
         .tilemapTop = 13,
@@ -919,7 +919,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 129,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 16,
         .tilemapTop = 8,
@@ -928,7 +928,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 135,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 1,
         .tilemapTop = 8,
@@ -937,7 +937,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 285,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 6,
         .tilemapTop = 10,
@@ -946,7 +946,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
         .palette = 13,
         .baseTile = 309,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 7,
         .tilemapTop = 20,
@@ -958,7 +958,7 @@ static const WindowTemplate sConfirmLearnMoveScreenWindowTemplates[] = {
 };
 
 static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_POKEMON_NAME] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_POKEMON_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 5,
         .tilemapTop = 1,
@@ -967,7 +967,7 @@ static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 4,
         .tilemapTop = 8,
@@ -976,7 +976,7 @@ static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
         .palette = 13,
         .baseTile = 19,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP_LABEL] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP_LABEL] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 20,
         .tilemapTop = 8,
@@ -985,7 +985,7 @@ static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
         .palette = 13,
         .baseTile = 41,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 23,
         .tilemapTop = 8,
@@ -994,7 +994,7 @@ static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
         .palette = 13,
         .baseTile = 45,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 2,
         .tilemapTop = 11,
@@ -1003,7 +1003,7 @@ static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
         .palette = 13,
         .baseTile = 325,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 16,
         .tilemapTop = 11,
@@ -1012,7 +1012,7 @@ static const WindowTemplate sConfirmLearnMoveContestStatsWindowTemplates[] = {
         .palette = 13,
         .baseTile = 349,
     },
-    [BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM] = {
+    [BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM] = {
         .bgLayer = BG_LAYER_SUB_1,
         .tilemapLeft = 7,
         .tilemapTop = 20,
@@ -1056,40 +1056,40 @@ void BattlePartyText_InitializeScreenWindows(BattleParty *battleParty, enum Batt
     switch (screen) {
     case BATTLE_PARTY_SCREEN_POKEMON_PARTY:
         windowTemplates = sPartyPokemonScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_POKEMON_PARTY_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_POKEMON_PARTY_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_SELECT_POKEMON:
         windowTemplates = sSelectPokemonScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_SELECT_POKEMON_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_POKEMON_SUMMARY:
         windowTemplates = sPokemonSummaryScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_POKEMON_MOVES:
         windowTemplates = sPokemonMovesScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_POKEMON_MOVES_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_MOVE_SUMMARY:
         windowTemplates = sMoveSummaryScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_RESTORE_MOVE_PP:
         windowTemplates = sRestoreMovePPScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_LEARN_MOVE:
     case BATTLE_PARTY_SCREEN_LEARN_MOVE_CONTEST_STATS:
         windowTemplates = sLearnMoveScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_LEARN_MOVE_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_CONFIRM_LEARN_MOVE:
         windowTemplates = sConfirmLearnMoveScreenWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_NUM;
         break;
     case BATTLE_PARTY_SCREEN_CONFIRM_LEARN_MOVE_CONTEST_STATS:
         windowTemplates = sConfirmLearnMoveContestStatsWindowTemplates;
-        battleParty->numWindows = BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_NUM;
+        battleParty->numWindows = BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_NUM;
         break;
     }
 
@@ -1338,12 +1338,12 @@ static void PrintButtonText(BattleParty *battleParty, u32 windowIndex, u32 textI
 static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonLevelLabel);
     Strbuf *formattedStrbuf;
     u16 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonLevelValue);
@@ -1351,13 +1351,13 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->level, POKEMON_LEVEL_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonExpToNextLevelLabel);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonExpToNextLevelValue);
@@ -1373,27 +1373,27 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
 
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
 
-    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset]) * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
+    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset]) * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset]);
 }
 
 static void PrintPokemonAttackStat(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonAttackStatLabel);
     Strbuf *formattedStrbuf;
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonAttackStatValue);
@@ -1403,25 +1403,25 @@ static void PrintPokemonAttackStat(BattleParty *battleParty, u32 partyIndex)
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
 
     stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
-    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset]) * 8 - stringWidth;
+    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset]) * 8 - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset]);
 }
 
 static void PrintPokemonDefenseStat(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonDefenseStatLabel);
     Strbuf *formattedStrbuf;
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonDefenseStatValue);
@@ -1431,25 +1431,25 @@ static void PrintPokemonDefenseStat(BattleParty *battleParty, u32 partyIndex)
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
 
     stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
-    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset]) * 8 - stringWidth;
+    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset]) * 8 - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset]);
 }
 
 static void PrintPokemonSpeedStat(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonSpeedStatLabel);
     Strbuf *formattedStrbuf;
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonSpeedStatValue);
@@ -1459,25 +1459,25 @@ static void PrintPokemonSpeedStat(BattleParty *battleParty, u32 partyIndex)
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
 
     stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
-    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset]) * 8 - stringWidth;
+    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset]) * 8 - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset]);
 }
 
 static void PrintPokemonSpAtkStat(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonSpAtkStatLabel);
     Strbuf *formattedStrbuf;
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonSpAtkStatValue);
@@ -1487,25 +1487,25 @@ static void PrintPokemonSpAtkStat(BattleParty *battleParty, u32 partyIndex)
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
 
     stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
-    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset]) * 8 - stringWidth;
+    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset]) * 8 - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset]);
 }
 
 static void PrintPokemonSpDefStat(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonSpDefStatLabel);
     Strbuf *formattedStrbuf;
     u8 stringWidth;
     u8 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonSpDefStatValue);
@@ -1515,32 +1515,32 @@ static void PrintPokemonSpDefStat(BattleParty *battleParty, u32 partyIndex)
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
 
     stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
-    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset]) * 8 - stringWidth;
+    xOffset = Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset]) * 8 - stringWidth;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset]);
 }
 
 static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonHPStatLabel);
     Strbuf *formattedStrbuf;
     u32 stringWidth, formattedStringWidth;
     u16 xOffset;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonHPStatDivider);
     stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
-    xOffset = (Window_GetWidth(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP]) * 8 - stringWidth) / 2;
+    xOffset = (Window_GetWidth(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP]) * 8 - stringWidth) / 2;
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_PokemonHPStatValue);
@@ -1551,7 +1551,7 @@ static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
 
     formattedStringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, formattedStrbuf, 0);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset - formattedStringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset - formattedStringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
 
@@ -1560,24 +1560,24 @@ static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->maxHP, POKEMON_HP_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedStrbuf, strbuf);
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset + stringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], FONT_SYSTEM, formattedStrbuf, xOffset + stringWidth, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     Strbuf_Free(formattedStrbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset]);
 }
 
 static void PrintPokemonAbilityDescription(BattleParty *battleParty, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    u32 windowIndexOffset = windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u32 windowIndexOffset = windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_DESCRIPTIONS, battleParty->context->heapID);
     Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, pokemon->ability);
 
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(strbuf);
     MessageLoader_Free(messageLoader);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset]);
 }
 
 static void PrintMoveAccuracyLabel(BattleParty *battleParty, u32 windowIndex)
@@ -1912,27 +1912,27 @@ void BattlePartyText_PrintPartyPokemonLevel(BattleParty *battleParty, u8 partyIn
 
 static void RenderSelectPokemonScreen(BattleParty *battleParty)
 {
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_SHIFT], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SHIFT], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES], 0);
 
     PrintSelectedPokemonName(battleParty, battleParty->context->selectedPartyIndex);
 
-    PrintButtonText(battleParty, BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_SHIFT, BattleParty_Text_ShiftButton);
+    PrintButtonText(battleParty, BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SHIFT, BattleParty_Text_ShiftButton);
 
     if (battleParty->partyPokemon[battleParty->context->selectedPartyIndex].isEgg == FALSE) {
-        PrintButtonText(battleParty, BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY, BattleParty_Text_SummaryButton);
-        PrintButtonText(battleParty, BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES, BattleParty_Text_CheckMovesButton);
+        PrintButtonText(battleParty, BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY, BattleParty_Text_SummaryButton);
+        PrintButtonText(battleParty, BATTLE_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES, BattleParty_Text_CheckMovesButton);
     } else {
-        Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY]);
-        Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES]);
+        Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY]);
+        Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES]);
     }
 }
 
 static void PrintSelectedPokemonName(BattleParty *battleParty, u32 partyIndex)
 {
-    Window *window = &battleParty->windows[BATTLE_PARTY_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME];
+    Window *window = &battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME];
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
     Strbuf *strbuf = Strbuf_Init(12, battleParty->context->heapID);
     Strbuf *formattedStrbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, sPartyPokemonNameTextIDs[partyIndex]);
@@ -1987,14 +1987,14 @@ static void PrintSelectedPokemonName(BattleParty *battleParty, u32 partyIndex)
 
 static void RenderPokemonMovesScreen(BattleParty *battleParty)
 {
-    u16 windowIndexOffset = BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u16 windowIndexOffset = BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
 
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_POKEMON_NAME + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_2 + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_3 + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_4 + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_SUMMARY], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_POKEMON_NAME + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_2 + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_3 + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_4 + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_SUMMARY], 0);
 
     PrintPokemonNameHeader(battleParty, 0 + windowIndexOffset, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
 
@@ -2005,95 +2005,95 @@ static void RenderPokemonMovesScreen(BattleParty *battleParty)
             continue;
         }
 
-        PrintMoveName(battleParty, move->move, BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset + i, sMoveNameTextIDs[i], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
-        PrintMovesScreenMovePPStats(battleParty, move, BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset + i);
+        PrintMoveName(battleParty, move->move, BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset + i, sMoveNameTextIDs[i], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
+        PrintMovesScreenMovePPStats(battleParty, move, BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset + i);
     }
 
-    PrintButtonText(battleParty, BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_SUMMARY, BattleParty_Text_SummaryButton);
+    PrintButtonText(battleParty, BATTLE_POKEMON_MOVES_SCREEN_WINDOW_SUMMARY, BattleParty_Text_SummaryButton);
 
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_2 + windowIndexOffset]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_3 + windowIndexOffset]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_POKEMON_MOVES_SCREEN_WINDOW_MOVE_4 + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1 + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_2 + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_3 + windowIndexOffset]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_4 + windowIndexOffset]);
 
     battleParty->useAltSummaryWindows ^= TRUE;
 }
 
 static void RenderPokemonSummaryScreen(BattleParty *battleParty)
 {
-    u32 windowIndexOffset = BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
+    u32 windowIndexOffset = BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ALT_POKEMON_NAME * battleParty->useAltSummaryWindows;
 
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_CHECK_MOVES], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_CHECK_MOVES], 0);
 
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_POKEMON_NAME + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HEALTH_BAR + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_NAME + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HELD_ITEM + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_POKEMON_NAME + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HEALTH_BAR + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_LEVEL + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_EXP_TO_NEXT_LVL + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ATTACK + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_DEFENSE + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SPEED + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_ATK + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_SP_DEF + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HP + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_NAME + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_DESC + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HELD_ITEM + windowIndexOffset], 0);
 
-    PrintPokemonNameHeader(battleParty, BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_POKEMON_NAME + windowIndexOffset, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
+    PrintPokemonNameHeader(battleParty, BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_POKEMON_NAME + windowIndexOffset, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
     PrintPokemonHPStat(battleParty, battleParty->context->selectedPartyIndex);
-    DrawPokemonHealthBar(battleParty, BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HEALTH_BAR + windowIndexOffset, battleParty->context->selectedPartyIndex, 0, 0);
+    DrawPokemonHealthBar(battleParty, BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HEALTH_BAR + windowIndexOffset, battleParty->context->selectedPartyIndex, 0, 0);
     PrintSelectedPokemonLevel(battleParty, battleParty->context->selectedPartyIndex);
     PrintPokemonAttackStat(battleParty, battleParty->context->selectedPartyIndex);
     PrintPokemonDefenseStat(battleParty, battleParty->context->selectedPartyIndex);
     PrintPokemonSpeedStat(battleParty, battleParty->context->selectedPartyIndex);
     PrintPokemonSpAtkStat(battleParty, battleParty->context->selectedPartyIndex);
     PrintPokemonSpDefStat(battleParty, battleParty->context->selectedPartyIndex);
-    PrintPokemonAbilityName(battleParty, BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_NAME + windowIndexOffset, battleParty->context->selectedPartyIndex);
-    PrintPokemonHeldItem(battleParty, BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_HELD_ITEM + windowIndexOffset, battleParty->context->selectedPartyIndex);
+    PrintPokemonAbilityName(battleParty, BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_ABILITY_NAME + windowIndexOffset, battleParty->context->selectedPartyIndex);
+    PrintPokemonHeldItem(battleParty, BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_HELD_ITEM + windowIndexOffset, battleParty->context->selectedPartyIndex);
     PrintPokemonAbilityDescription(battleParty, battleParty->context->selectedPartyIndex);
-    PrintButtonText(battleParty, BATTLE_PARTY_POKEMON_SUMMARY_SCREEN_WINDOW_CHECK_MOVES, BattleParty_Text_CheckMovesButton);
+    PrintButtonText(battleParty, BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_CHECK_MOVES, BattleParty_Text_CheckMovesButton);
 
     battleParty->useAltSummaryWindows ^= TRUE;
 }
 
 static void RenderMoveSummaryScreen(BattleParty *battleParty)
 {
-    u32 windowIndexOffset = BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ALT_MOVE_NAME * battleParty->useAltSummaryWindows;
+    u32 windowIndexOffset = BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ALT_MOVE_NAME * battleParty->useAltSummaryWindows;
     BattlePartyPokemonMove *move;
 
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POKEMON_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_PP_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POWER_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_PP + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POWER + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY + windowIndexOffset], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_DESCRIPTION + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POKEMON_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_PP_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POWER_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_PP + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POWER + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY + windowIndexOffset], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_DESCRIPTION + windowIndexOffset], 0);
 
     move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[battleParty->context->selectedMoveSlot];
 
-    PrintPokemonNameHeader(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
-    PrintPPLabel(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_PP_LABEL, 0, 0);
-    PrintMoveName(battleParty, move->move, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME + windowIndexOffset, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
-    PrintMoveAccuracyLabel(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY_LABEL);
-    PrintMoveAccuracyValue(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY + windowIndexOffset, move->accuracy);
-    PrintMovePowerLabel(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POWER_LABEL);
-    PrintMovePowerValue(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_POWER + windowIndexOffset, move->power);
-    PrintMoveDescription(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_DESCRIPTION + windowIndexOffset, move->move);
-    PrintMoveCategoryLabel(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY_LABEL);
-    PrintMoveCategory(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY + windowIndexOffset, move->class);
-    PrintSummaryScreenMovePPStats(battleParty, BATTLE_PARTY_MOVE_SUMMARY_SCREEN_WINDOW_PP + windowIndexOffset, move->currentPP, move->maxPP);
+    PrintPokemonNameHeader(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
+    PrintPPLabel(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_PP_LABEL, 0, 0);
+    PrintMoveName(battleParty, move->move, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_MOVE_NAME + windowIndexOffset, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+    PrintMoveAccuracyLabel(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY_LABEL);
+    PrintMoveAccuracyValue(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_ACCURACY + windowIndexOffset, move->accuracy);
+    PrintMovePowerLabel(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POWER_LABEL);
+    PrintMovePowerValue(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_POWER + windowIndexOffset, move->power);
+    PrintMoveDescription(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_DESCRIPTION + windowIndexOffset, move->move);
+    PrintMoveCategoryLabel(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY_LABEL);
+    PrintMoveCategory(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_CATEGORY + windowIndexOffset, move->class);
+    PrintSummaryScreenMovePPStats(battleParty, BATTLE_MOVE_SUMMARY_SCREEN_WINDOW_PP + windowIndexOffset, move->currentPP, move->maxPP);
 
     battleParty->useAltSummaryWindows ^= TRUE;
 }
@@ -2102,14 +2102,14 @@ static void RenderLearnMoveScreen(BattleParty *battleParty)
 {
     BattlePartyPokemonMove moveToLearn;
 
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_1], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_2], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_3], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_4], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_1], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_2], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_3], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_4], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN], 0);
 
-    PrintPokemonNameHeader(battleParty, BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
+    PrintPokemonNameHeader(battleParty, BATTLE_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
 
     for (u32 i = 0; i < LEARNED_MOVES_MAX; i++) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[i];
@@ -2118,77 +2118,77 @@ static void RenderLearnMoveScreen(BattleParty *battleParty)
             continue;
         }
 
-        PrintMoveName(battleParty, move->move, BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_1 + i, sMoveNameTextIDs[i], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
-        PrintMovesScreenMovePPStats(battleParty, move, BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_1 + i);
+        PrintMoveName(battleParty, move->move, BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_1 + i, sMoveNameTextIDs[i], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
+        PrintMovesScreenMovePPStats(battleParty, move, BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_1 + i);
     }
 
-    PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN, sMoveNameTextIDs[MOVE_TO_LEARN_SLOT], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
+    PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN, sMoveNameTextIDs[MOVE_TO_LEARN_SLOT], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
 
     moveToLearn.currentPP = MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_PP);
     moveToLearn.maxPP = moveToLearn.currentPP;
 
-    PrintMovesScreenMovePPStats(battleParty, &moveToLearn, BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN);
+    PrintMovesScreenMovePPStats(battleParty, &moveToLearn, BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN);
 
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_1]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_2]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_3]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_4]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_1]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_2]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_3]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_4]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN]);
 }
 
 static void RenderConfirmLearnMoveScreen(BattleParty *battleParty)
 {
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM], 0);
 
-    PrintPokemonNameHeader(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
-    PrintPPLabel(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP_LABEL, 0, 0);
-    PrintMoveAccuracyLabel(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY_LABEL);
-    PrintMovePowerLabel(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER_LABEL);
-    PrintMoveCategoryLabel(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL);
+    PrintPokemonNameHeader(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
+    PrintPPLabel(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP_LABEL, 0, 0);
+    PrintMoveAccuracyLabel(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY_LABEL);
+    PrintMovePowerLabel(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER_LABEL);
+    PrintMoveCategoryLabel(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY_LABEL);
 
     if (battleParty->context->selectedMoveSlot < MOVE_TO_LEARN_SLOT) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[battleParty->context->selectedMoveSlot];
 
-        PrintMoveName(battleParty, move->move, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
-        PrintMoveAccuracyValue(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY, move->accuracy);
-        PrintMovePowerValue(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER, move->power);
-        PrintMoveDescription(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION, move->move);
-        PrintMoveCategory(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY, move->class);
-        PrintSummaryScreenMovePPStats(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP, move->currentPP, move->maxPP);
+        PrintMoveName(battleParty, move->move, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveAccuracyValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY, move->accuracy);
+        PrintMovePowerValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER, move->power);
+        PrintMoveDescription(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION, move->move);
+        PrintMoveCategory(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY, move->class);
+        PrintSummaryScreenMovePPStats(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP, move->currentPP, move->maxPP);
     } else {
         u32 pp = MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_PP);
 
-        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
-        PrintMoveDescription(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION, battleParty->context->moveToLearn);
-        PrintMoveAccuracyValue(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_ACCURACY));
-        PrintMovePowerValue(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_POWER));
-        PrintMoveCategory(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_CLASS));
-        PrintSummaryScreenMovePPStats(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP, pp, pp);
+        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveDescription(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_DESCRIPTION, battleParty->context->moveToLearn);
+        PrintMoveAccuracyValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_ACCURACY, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_ACCURACY));
+        PrintMovePowerValue(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_POWER, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_POWER));
+        PrintMoveCategory(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CATEGORY, MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_CLASS));
+        PrintSummaryScreenMovePPStats(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_PP, pp, pp);
     }
 
-    PrintConfirmMoveButton(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM);
+    PrintConfirmMoveButton(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM);
 }
 
 static void RenderRestoreMovePPScreen(BattleParty *battleParty)
 {
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_POKEMON_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_2], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_3], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_4], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_POKEMON_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_2], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_3], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_4], 0);
 
-    PrintPokemonNameHeader(battleParty, BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
+    PrintPokemonNameHeader(battleParty, BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
 
     for (u32 i = 0; i < LEARNED_MOVES_MAX; i++) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[i];
@@ -2197,18 +2197,18 @@ static void RenderRestoreMovePPScreen(BattleParty *battleParty)
             continue;
         }
 
-        PrintMoveName(battleParty, move->move, BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1 + i, sMoveNameTextIDs[i], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
-        PrintMovesScreenMovePPStats(battleParty, move, BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1 + i);
+        PrintMoveName(battleParty, move->move, BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1 + i, sMoveNameTextIDs[i], FONT_SUBSCREEN, 8, TEXT_COLOR(7, 8, 9));
+        PrintMovesScreenMovePPStats(battleParty, move, BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1 + i);
     }
 
     if (Item_LoadParam(battleParty->context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE_ALL, battleParty->context->heapID) == FALSE) {
         PrintSelectOptionText(battleParty, BattleParty_Text_RestoreWhichMove);
     }
 
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_2]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_3]);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_4]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_2]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_3]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_4]);
 }
 
 void BattlePartyText_PrintSelectedMoveCurrentPP(BattleParty *battleParty, u16 windowIndex, u16 moveIndex)
@@ -2222,39 +2222,39 @@ static void RenderConfirmLearnMoveContestStatsScreen(BattleParty *battleParty)
     Strbuf *strbuf;
     u32 xOffset;
 
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_POKEMON_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP_LABEL], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT], 0);
-    Window_FillTilemap(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_POKEMON_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP_LABEL], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT], 0);
+    Window_FillTilemap(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM], 0);
 
-    PrintPokemonNameHeader(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
-    PrintPPLabel(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP_LABEL, 0, 0);
+    PrintPokemonNameHeader(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
+    PrintPPLabel(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP_LABEL, 0, 0);
 
     strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_AppealPtsLabel);
     xOffset = Font_CalcCenterAlignment(FONT_SYSTEM, strbuf, 0, 96);
-    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS], FONT_SYSTEM, strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
     Strbuf_Free(strbuf);
-    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS]);
+    Window_ScheduleCopyToVRAM(&battleParty->windows[BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_APPEAL_PTS]);
 
     if (battleParty->context->selectedMoveSlot < MOVE_TO_LEARN_SLOT) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[battleParty->context->selectedMoveSlot];
 
-        PrintMoveName(battleParty, move->move, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
-        PrintMoveContestEffect(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT, move->move);
-        PrintSummaryScreenMovePPStats(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP, move->currentPP, move->maxPP);
+        PrintMoveName(battleParty, move->move, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[battleParty->context->selectedMoveSlot], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveContestEffect(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT, move->move);
+        PrintSummaryScreenMovePPStats(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP, move->currentPP, move->maxPP);
     } else {
         u32 pp = MoveTable_LoadParam(battleParty->context->moveToLearn, MOVEATTRIBUTE_PP);
 
-        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
-        PrintMoveContestEffect(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT, battleParty->context->moveToLearn);
-        PrintSummaryScreenMovePPStats(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP, pp, pp);
+        PrintMoveName(battleParty, battleParty->context->moveToLearn, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_MOVE_NAME, sMoveNameTextIDs[4], FONT_SYSTEM, 0, TEXT_COLOR(15, 14, 0));
+        PrintMoveContestEffect(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONTEST_EFFECT, battleParty->context->moveToLearn);
+        PrintSummaryScreenMovePPStats(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_PP, pp, pp);
     }
 
-    PrintConfirmMoveButton(battleParty, BATTLE_PARTY_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM);
+    PrintConfirmMoveButton(battleParty, BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM);
 }
 
 void BattlePartyText_DisplayErrorMessage(BattleParty *battleParty)
