@@ -91,7 +91,7 @@ typedef struct {
 static int ReadScript_WordIndex(u32 *scriptPtr, u8 index, u8 one);
 static int ReadScript_WordIndexZero(u32 *scriptPtr, u8 one);
 static int ReadScript_Word(u32 *scriptPtr);
-static void ReadScript_TransformFunc(PokemonAnim *monAnim, const int param1);
+static void ReadScript_TransformFunc(PokemonAnim *monAnim, int funcType);
 static void Task_RunPokemonAnim(SysTask *task, void *monAnim);
 static void RunPokemonAnimScript(PokemonAnim *monAnim);
 static void PokemonAnimCmd_End(PokemonAnim *monAnim);
@@ -199,7 +199,7 @@ static const TransformFuncParameters sTransformFuncToParams[] = {
     },
 };
 
-PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, const int animCount, const u8 flipSprite)
+PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, int animCount, u8 flipSprite)
 {
     PokemonAnimManager *monAnimMan = Heap_Alloc(heapID, sizeof(PokemonAnimManager));
     monAnimMan->flipSprite = flipSprite;
@@ -218,7 +218,7 @@ void PokemonAnimManager_Free(PokemonAnimManager *monAnimMan)
     Heap_Free(monAnimMan);
 }
 
-void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokemonAnimTemplate *animTemplate, const u8 index)
+void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokemonAnimTemplate *animTemplate, u8 index)
 {
     int animNum = animTemplate->animation;
     int startDelay = animTemplate->startDelay;
@@ -264,13 +264,13 @@ void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *
     monAnimMan->anims[index].rotationZ = 0;
 }
 
-BOOL PokemonAnimManager_HasAnimCompleted(PokemonAnimManager *monAnimMan, const u8 index)
+BOOL PokemonAnimManager_HasAnimCompleted(PokemonAnimManager *monAnimMan, u8 index)
 {
     GF_ASSERT(index < monAnimMan->animCount);
     return monAnimMan->anims[index].completed;
 }
 
-void PokemonAnimManager_DeleteAnim(PokemonAnimManager *monAnimMan, const u8 index)
+void PokemonAnimManager_DeleteAnim(PokemonAnimManager *monAnimMan, u8 index)
 {
     if (monAnimMan->anims[index].task != NULL) {
         SysTask_Done(monAnimMan->anims[index].task);
@@ -378,7 +378,7 @@ static int ReadScript_WordIndex(u32 *scriptPtr, u8 index, u8 one)
     int ret = scriptPtr[index];
 
     if (one != 1) {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return ret;
@@ -394,7 +394,7 @@ static int ReadScript_Word(u32 *scriptPtr)
     return ReadScript_WordIndexZero(scriptPtr, 1);
 }
 
-static TransformData *TransformFuncData_New(PokemonAnim *monAnim, const u8 funcType)
+static TransformData *TransformFuncData_New(PokemonAnim *monAnim, u8 funcType)
 {
     for (u8 i = 0; i < MAX_ANIM_TRANSFORMS; i++) {
         TransformData *retPtr = &(monAnim->transforms[i]);
@@ -454,7 +454,7 @@ static void ReadScript_VarAndIntOrVar(PokemonAnim *monAnim, u8 *outDestIndex, in
         *outOperand1 = monAnim->vars[index1];
         *outOperand2 = monAnim->vars[index2];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -472,7 +472,7 @@ static void ReadScript_TwoIntOrVar(PokemonAnim *monAnim, u8 *outDestIndex, int *
         ReadScript_VarIndex(monAnim, &index1);
         *outOperand1 = monAnim->vars[index1];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     if (readType2 == ANIM_READ_TYPE_VALUE) {
@@ -481,7 +481,7 @@ static void ReadScript_TwoIntOrVar(PokemonAnim *monAnim, u8 *outDestIndex, int *
         ReadScript_VarIndex(monAnim, &index2);
         *outOperand2 = monAnim->vars[index2];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -500,7 +500,7 @@ static void ReadScript_TrigOperands(PokemonAnim *monAnim, u8 *outDestIndex, int 
         ReadScript_VarIndex(monAnim, &amplitudeIndex);
         (*outAmplitude) = monAnim->vars[amplitudeIndex];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     ReadScript_U8(monAnim, &readType);
@@ -511,14 +511,14 @@ static void ReadScript_TrigOperands(PokemonAnim *monAnim, u8 *outDestIndex, int 
         ReadScript_VarIndex(monAnim, &offsetIndex);
         offset = monAnim->vars[offsetIndex];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    (*outRadians) = radians + offset;
-    (*outRadians) %= MAX_ANIM_RADIANS;
+    *outRadians = radians + offset;
+    *outRadians %= MAX_ANIM_RADIANS;
 }
 
-static u8 CompareValues(const int *value1, const int *value2)
+static u8 CompareValues(int *value1, int *value2)
 {
     int result = *value1 - *value2;
 
@@ -631,7 +631,7 @@ static void PokemonAnimCmd_SetVarIf(PokemonAnim *monAnim)
         value1 = monAnim->vars[index1];
         value2 = monAnim->vars[index2];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     ReadScript_U8(monAnim, &condition);
@@ -650,7 +650,7 @@ static void PokemonAnimCmd_SetVarIf(PokemonAnim *monAnim)
         ReadScript_TwoVarIndexes(monAnim, &index1, &index2);
         newValue = monAnim->vars[index2];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     if (condition == comparisonResult) {
@@ -726,7 +726,7 @@ static void PokemonAnimCmd_UpdateSpriteAttribute(PokemonAnim *monAnim)
         ReadScript_VarIndex(monAnim, &index);
         value = monAnim->vars[index];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     u8 updateType;
@@ -738,7 +738,7 @@ static void PokemonAnimCmd_UpdateSpriteAttribute(PokemonAnim *monAnim)
     } else if (updateType == ANIM_ATTRIBUTE_ADD) {
         PokemonSprite_AddAttribute(monAnim->sprite, attribute, value);
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -772,7 +772,7 @@ static void PokemonAnimCmd_SetTranslation(PokemonAnim *monAnim)
     } else if (translationType == ANIM_TRANSLATE_Y) {
         monAnim->translateY = monAnim->vars[index];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -788,7 +788,7 @@ static void PokemonAnimCmd_AddTranslation(PokemonAnim *monAnim)
     } else if (translationType == ANIM_TRANSLATE_Y) {
         monAnim->translateY += monAnim->vars[index];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -814,7 +814,7 @@ static void PokemonAnimCmd_UpdateAttribute(PokemonAnim *monAnim)
     } else if (attribute == ANIM_ROTATION_Z) {
         attributePtr = &monAnim->rotationZ;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     u8 index, readType;
@@ -828,7 +828,7 @@ static void PokemonAnimCmd_UpdateAttribute(PokemonAnim *monAnim)
         ReadScript_VarIndex(monAnim, &index);
         value = monAnim->vars[index];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     u8 updateType;
@@ -840,7 +840,7 @@ static void PokemonAnimCmd_UpdateAttribute(PokemonAnim *monAnim)
     } else if (updateType == ANIM_ATTRIBUTE_ADD) {
         *attributePtr += value;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -872,7 +872,7 @@ static void PokemonAnimCmd_ApplyScaleAndRotation(PokemonAnim *monAnim)
     } else if (monAnim->yNormalization == Y_NORMALIZATION_OFF) {
         return;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -890,7 +890,7 @@ static void PokemonAnimCmd_SetOffset(PokemonAnim *monAnim)
     } else if (attribute == ANIM_TRANSLATE_Y || attribute == ANIM_OFFSET_Y) {
         monAnim->offsetY = monAnim->vars[index];
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
@@ -961,7 +961,7 @@ static void PokemonAnimCmd_Transform_LinearBounded(PokemonAnim *monAnim)
     ReadScript_TransformFunc(monAnim, TRANSFORM_FUNC_LINEAR_BOUNDED);
 }
 
-static void CalcNextTransformValue(const u8 calcType, const int *originalValue, const int *currentValue, int *nextValue)
+static void CalcNextTransformValue(u8 calcType, int *originalValue, int *currentValue, int *nextValue)
 {
     if (calcType == TRANSFORM_CALC_SET) {
         *nextValue = *currentValue;
@@ -970,11 +970,11 @@ static void CalcNextTransformValue(const u8 calcType, const int *originalValue, 
     } else if (calcType == TRANSFORM_CALC_INCREMENT) {
         *nextValue += *currentValue;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 }
 
-static void SetTransformFuncPtrs(const u8 transformType, TransformData *transform, PokemonAnim *monAnim)
+static void SetTransformFuncPtrs(u8 transformType, TransformData *transform, PokemonAnim *monAnim)
 {
     switch (transformType) {
     case TRANSFORM_TYPE_OFFSET_X:
@@ -1007,7 +1007,7 @@ static void SetTransformFuncPtrs(const u8 transformType, TransformData *transfor
     }
 }
 
-static void ReadScript_TransformFunc(PokemonAnim *monAnim, const int funcType)
+static void ReadScript_TransformFunc(PokemonAnim *monAnim, int funcType)
 {
     TransformData *transform = TransformFuncData_New(monAnim, funcType);
 
@@ -1156,7 +1156,7 @@ static void TransformFunc_LinearBounded(TransformData *transform, PokemonAnim *m
             }
         }
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     CalcNextTransformValue(transform->calcType, &(transform->originalValue), transform->transformMemberPtr, transform->animMemberPtr);

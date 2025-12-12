@@ -77,10 +77,10 @@ typedef struct PokemonAnimManager {
     u8 animCount;
 } PokemonAnimManager;
 
-PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, const int animCount, const u8 flipSprite);
+PokemonAnimManager *PokemonAnimManager_New(enum HeapID heapID, int animCount, u8 flipSprite);
 void PokemonAnimManager_Free(PokemonAnimManager *monAnimMan);
-void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokemonAnimTemplate *animTemplate, const u8 index);
-BOOL PokemonAnimManager_HasAnimCompleted(PokemonAnimManager *monAnimMan, const u8 index);
-void PokemonAnimManager_DeleteAnim(PokemonAnimManager *monAnimMan, const u8 index);
+void PokemonAnimManager_InitAnim(PokemonAnimManager *monAnimMan, PokemonSprite *monSprite, const PokemonAnimTemplate *animTemplate, u8 index);
+BOOL PokemonAnimManager_HasAnimCompleted(PokemonAnimManager *monAnimMan, u8 index);
+void PokemonAnimManager_DeleteAnim(PokemonAnimManager *monAnimMan, u8 index);
 
 #endif // POKEPLATINUM_POKEMON_ANIM_H
