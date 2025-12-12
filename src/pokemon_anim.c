@@ -4,75 +4,12 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "generated/pokemon_anim_constants.h"
 
 #include "heap.h"
 #include "narc.h"
 #include "pokemon_sprite.h"
 #include "sys_task.h"
-
-// The first/third & second/fourth entries here seem to be used interchangeably.
-enum AnimScriptReadType {
-    ANIM_READ_TYPE_VALUE = 18,
-    ANIM_READ_TYPE_VAR,
-    ANIM_READ_TYPE_VALUE2,
-    ANIM_READ_TYPE_VAR2,
-};
-
-enum AnimAttributeUpdateType {
-    ANIM_ATTRIBUTE_SET = 22,
-    ANIM_ATTRIBUTE_ADD,
-};
-
-enum YNormalizationType {
-    Y_NORMALIZATION_NEGATIVE_SCALE = 27,
-    Y_NORMALIZATION_OFF,
-    Y_NORMALIZATION_ON,
-};
-
-enum AnimAttributeType {
-    ANIM_TRANSLATE_X = 8,
-    ANIM_TRANSLATE_Y,
-    ANIM_OFFSET_X,
-    ANIM_OFFSET_Y,
-    ANIM_SCALE_X,
-    ANIM_SCALE_Y,
-    ANIM_ROTATION_Z,
-};
-
-enum TransformFuncType {
-    TRANSFORM_FUNC_CURVE = 0,
-    TRANSFORM_FUNC_CURVE_EVEN,
-    TRANSFORM_FUNC_LINEAR,
-    TRANSFORM_FUNC_LINEAR_EVEN,
-    TRANSFORM_FUNC_LINEAR_BOUNDED,
-};
-
-enum TransformType {
-    TRANSFORM_TYPE_OFFSET_X = 35,
-    TRANSFORM_TYPE_OFFSET_Y,
-    TRANSFORM_TYPE_SCALE_X,
-    TRANSFORM_TYPE_SCALE_Y,
-    TRANSFORM_TYPE_ROTATION_Z,
-};
-
-enum TransformCurveType {
-    TRANSFORM_CURVE_SIN = 30,
-    TRANSFORM_CURVE_COS,
-    TRANSFORM_CURVE_NEGATIVE_SIN,
-    TRANSFORM_CURVE_NEGATIVE_COS,
-};
-
-enum TransformCalcType {
-    TRANSFORM_CALC_SET = 24,
-    TRANSFORM_CALC_ADD,
-    TRANSFORM_CALC_INCREMENT,
-};
-
-enum ComparisonResult {
-    COMPARISON_RESULT_LESS_THAN = 15,
-    COMPARISON_RESULT_GREATER_THAN,
-    COMPARISON_RESULT_EQUAL,
-};
 
 #define NUM_POKEMON_ANIMS         143
 #define NUM_POKEMON_ANIM_COMMANDS 34
@@ -494,6 +431,8 @@ static void ReadScript_TrigOperands(PokemonAnim *monAnim, u8 *outDestIndex, int 
     radians = monAnim->vars[radiansIndex];
     ReadScript_U8(monAnim, &readType);
 
+    // The ANIM_READ_TYPE_VALUE and ANIM_READ_TYPE_VALUE2 constants seem to be used interchangeably.
+    // Same with the corresponding _VAR constants.
     if (readType == ANIM_READ_TYPE_VALUE2) {
         ReadScript_Int(monAnim, outAmplitude);
     } else if (readType == ANIM_READ_TYPE_VAR2) {
