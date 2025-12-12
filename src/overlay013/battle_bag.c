@@ -525,7 +525,7 @@ static u8 BattleBagTask_AwaitingInput(BattleBag *battleBag)
 
 static u8 BattleBagTask_ScreenTransition(BattleBag *battleBag)
 {
-    if (battleBag->pressedButtonState == BUTTON_STATE_PRESSED) {
+    if (battleBag->pressedButtonState == BATTLE_SUB_MENU_BUTTON_STATE_PRESSED) {
         return battleBag->queuedState;
     }
 
