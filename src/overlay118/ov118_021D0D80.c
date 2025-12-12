@@ -150,7 +150,7 @@ int ov118_021D0DBC(PartyMenuApplication *param0)
     case 10:
         if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
             ov118_021D0F70(param0);
-            param0->partyMenu->menuSelectionResult = 0;
+            param0->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
             return 1;
         }
 
