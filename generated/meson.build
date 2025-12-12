@@ -80,6 +80,7 @@ metang_generators = {
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
     'player_transitions': { 'type': 'mask', 'tag': 'PlayerTransition' },
+    'pokemon_anim_constants': { 'type': 'enum', 'tag': 'PokemonAnimConstants' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
     'pokemon_colors': { 'type': 'enum', 'tag': 'PokemonColor' },
     'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },

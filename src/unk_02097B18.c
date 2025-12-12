@@ -31,6 +31,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -40,7 +41,6 @@
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
 #include "tv_episode_segment.h"
-#include "unk_02015F84.h"
 #include "unk_0202C9F4.h"
 #include "vram_transfer.h"
 
@@ -153,7 +153,7 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
     ov76_0223BF10();
 
     v0->unk_D4.unk_D0 = PokemonSpriteManager_New(HEAP_ID_53);
-    v0->unk_D4.unk_188 = sub_02015F84(HEAP_ID_53, 1, 0);
+    v0->unk_D4.unk_188 = PokemonAnimManager_New(HEAP_ID_53, 1, FALSE);
 
     int v7 = Options_Frame(v0->unk_00->options);
     ov76_0223C8EC(v0->unk_D4.unk_10, v0->unk_D4.unk_14, v7);
@@ -241,7 +241,7 @@ static int sub_02097D88(ApplicationManager *appMan, int *param1)
     ov76_0223B678(v0);
     TouchScreenActions_Free(v0->unk_D4.unk_F8);
     PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
-    sub_02015FB8(v0->unk_D4.unk_188);
+    PokemonAnimManager_Free(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
     VramTransfer_Free();
