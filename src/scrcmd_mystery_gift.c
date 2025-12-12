@@ -463,7 +463,7 @@ static BOOL CanReceiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        return sub_0202CB70(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
+        return SealCase_CheckSealCount(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
     case MG_COSMETICS_ACCESSORY:
         return TRUE;
     case MG_COSMETICS_BACKDROP:
@@ -481,7 +481,7 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        sub_0202CAE0(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
+        GiveOrTakeSeal(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
         break;
     case MG_COSMETICS_ACCESSORY:
         sub_02029E2C(sub_02029D04(sub_0202A750(fieldSystem->saveData)), id, 1);

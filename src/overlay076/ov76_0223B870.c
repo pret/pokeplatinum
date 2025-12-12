@@ -194,7 +194,7 @@ void ov76_0223BA90(UnkStruct_ov76_0223DE00 *param0, int param1)
 
     for (v0 = 0; v0 < (80 + 1); v0++) {
         for (v1 = 0; v1 < 12; v1++) {
-            v5 = sub_0202CA94(param0->unk_04[v1].unk_04, v0);
+            v5 = SealIsOnCapsule(param0->unk_04[v1].unk_04, v0);
 
             if (v5) {
                 break;

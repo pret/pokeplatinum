@@ -974,7 +974,7 @@ static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         inventoryQty = Bag_GetItemQuantity(shopMenu->destInventory, shopMenu->itemId, HEAP_ID_FIELD2);
     } else if (shopMenu->martType == MART_TYPE_SEAL) {
-        inventoryQty = sub_0202CBC8(shopMenu->destInventory, shopMenu->itemId);
+        inventoryQty = SealCase_CountSealOccurrenceAnywhere(shopMenu->destInventory, shopMenu->itemId);
     } else {
         inventoryQty = 0;
     }
@@ -1049,7 +1049,7 @@ static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
             canFitItem = TRUE;
         }
     } else {
-        canFitItem = sub_0202CB70(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount);
+        canFitItem = SealCase_CheckSealCount(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount);
     }
 
     if (canFitItem == FALSE) {
@@ -1222,7 +1222,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
         Underground_TryAddGoodPC(shopMenu->destInventory, shopMenu->itemId);
     } else {
-        sub_0202CAE0(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount);
+        GiveOrTakeSeal(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount);
     }
 
     Shop_TakeMoney(shopMenu, shopMenu->itemPrice * shopMenu->itemAmount);

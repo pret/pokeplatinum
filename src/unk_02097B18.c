@@ -98,13 +98,13 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
         int v2 = 0;
         int v3;
 
-        v3 = (sub_0202CBA8(v0->unk_00->unk_20));
+        v3 = (SealCase_CountUniqueSeals(v0->unk_00->unk_20));
 
         if (v3 % 8) {
             v2 = 1;
         }
 
-        v0->unk_418.unk_04 = (sub_0202CBA8(v0->unk_00->unk_20) / 8) + v2;
+        v0->unk_418.unk_04 = (SealCase_CountUniqueSeals(v0->unk_00->unk_20) / 8) + v2;
     }
 
     if (v0->unk_418.unk_04 > (SEAL_ID_MAX / 8)) {
