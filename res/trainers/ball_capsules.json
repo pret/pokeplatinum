@@ -1,0 +1,996 @@
+{
+  "seals_per_capsule": 8,
+  "capsules": [
+    [
+      {
+        "id": "FLORA_SEAL_B",
+        "x": 147,
+        "y": 77
+      },
+      {
+        "id": "FLORA_SEAL_B",
+        "x": 147,
+        "y": 60
+      },
+      {
+        "id": "FLORA_SEAL_B",
+        "x": 147,
+        "y": 76
+      },
+      {
+        "id": "FLORA_SEAL_A",
+        "x": 147,
+        "y": 94
+      }
+    ],
+    [
+      {
+        "id": "SONG_SEAL_G",
+        "x": 169,
+        "y": 97
+      },
+      {
+        "id": "SONG_SEAL_E",
+        "x": 214,
+        "y": 97
+      },
+      {
+        "id": "SONG_SEAL_E",
+        "x": 169,
+        "y": 58
+      },
+      {
+        "id": "SONG_SEAL_B",
+        "x": 220,
+        "y": 76
+      },
+      {
+        "id": "SONG_SEAL_B",
+        "x": 157,
+        "y": 77
+      },
+      {
+        "id": "SONG_SEAL_F",
+        "x": 209,
+        "y": 58
+      },
+      {
+        "id": "SONG_SEAL_C",
+        "x": 189,
+        "y": 49
+      },
+      {
+        "id": "SONG_SEAL_D",
+        "x": 189,
+        "y": 108
+      }
+    ],
+    [
+      {
+        "id": "PARTY_SEAL_B",
+        "x": 161,
+        "y": 80
+      },
+      {
+        "id": "PARTY_SEAL_D",
+        "x": 161,
+        "y": 82
+      },
+      {
+        "id": "PARTY_SEAL_A",
+        "x": 160,
+        "y": 79
+      },
+      {
+        "id": "PARTY_SEAL_C",
+        "x": 160,
+        "y": 82
+      }
+    ],
+    [
+      {
+        "id": "ELE_SEAL_A",
+        "x": 155,
+        "y": 112
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 177,
+        "y": 113
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 200,
+        "y": 114
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 222,
+        "y": 114
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 166,
+        "y": 113
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 187,
+        "y": 114
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 211,
+        "y": 114
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 187,
+        "y": 114
+      }
+    ],
+    [
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 150,
+        "y": 58
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 139,
+        "y": 100
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 151,
+        "y": 72
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 137,
+        "y": 58
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 137,
+        "y": 72
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 152,
+        "y": 101
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 137,
+        "y": 86
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 151,
+        "y": 87
+      }
+    ],
+    [
+      {
+        "id": "HEART_SEAL_B",
+        "x": 177,
+        "y": 89
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 184,
+        "y": 98
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 182,
+        "y": 78
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 178,
+        "y": 89
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 166,
+        "y": 90
+      },
+      {
+        "id": "HEART_SEAL_B",
+        "x": 178,
+        "y": 88
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 177,
+        "y": 88
+      }
+    ],
+    [
+      {
+        "id": "HEART_SEAL_F",
+        "x": 182,
+        "y": 112
+      },
+      {
+        "id": "HEART_SEAL_F",
+        "x": 170,
+        "y": 111
+      },
+      {
+        "id": "HEART_SEAL_E",
+        "x": 158,
+        "y": 111
+      },
+      {
+        "id": "HEART_SEAL_E",
+        "x": 206,
+        "y": 112
+      },
+      {
+        "id": "HEART_SEAL_F",
+        "x": 194,
+        "y": 112
+      }
+    ],
+    [
+      {
+        "id": "FOAMY_SEAL_B",
+        "x": 189,
+        "y": 84
+      },
+      {
+        "id": "FOAMY_SEAL_B",
+        "x": 189,
+        "y": 84
+      }
+    ],
+    [
+      {
+        "id": "FOAMY_SEAL_D",
+        "x": 189,
+        "y": 85
+      },
+      {
+        "id": "FOAMY_SEAL_D",
+        "x": 189,
+        "y": 85
+      }
+    ],
+    [
+      {
+        "id": "STAR_SEAL_A",
+        "x": 189,
+        "y": 84
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 190,
+        "y": 84
+      }
+    ],
+    [
+      {
+        "id": "STAR_SEAL_E",
+        "x": 189,
+        "y": 120
+      },
+      {
+        "id": "STAR_SEAL_E",
+        "x": 210,
+        "y": 120
+      },
+      {
+        "id": "STAR_SEAL_E",
+        "x": 168,
+        "y": 120
+      },
+      {
+        "id": "STAR_SEAL_E",
+        "x": 180,
+        "y": 121
+      },
+      {
+        "id": "STAR_SEAL_E",
+        "x": 200,
+        "y": 121
+      },
+      {
+        "id": "STAR_SEAL_E",
+        "x": 158,
+        "y": 120
+      },
+      {
+        "id": "STAR_SEAL_E",
+        "x": 219,
+        "y": 120
+      },
+      {
+        "id": "STAR_SEAL_E",
+        "x": 189,
+        "y": 126
+      }
+    ],
+    [
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 168,
+        "y": 122
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 213,
+        "y": 123
+      },
+      {
+        "id": "SMOKE_SEAL_A",
+        "x": 179,
+        "y": 126
+      },
+      {
+        "id": "SMOKE_SEAL_A",
+        "x": 200,
+        "y": 126
+      },
+      {
+        "id": "SMOKE_SEAL_A",
+        "x": 190,
+        "y": 127
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 202,
+        "y": 122
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 191,
+        "y": 123
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 179,
+        "y": 122
+      }
+    ],
+    [
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 139,
+        "y": 53
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 145,
+        "y": 73
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 139,
+        "y": 94
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 160,
+        "y": 73
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 147,
+        "y": 88
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 145,
+        "y": 61
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 133,
+        "y": 66
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 133,
+        "y": 82
+      }
+    ],
+    [
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 134,
+        "y": 73
+      },
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 149,
+        "y": 66
+      },
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 163,
+        "y": 73
+      },
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 135,
+        "y": 58
+      },
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 135,
+        "y": 90
+      },
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 148,
+        "y": 74
+      },
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 150,
+        "y": 83
+      }
+    ],
+    [
+      {
+        "id": "FOAMY_SEAL_D",
+        "x": 188,
+        "y": 84
+      },
+      {
+        "id": "FOAMY_SEAL_B",
+        "x": 189,
+        "y": 84
+      }
+    ],
+    [
+      {
+        "id": "STAR_SEAL_B",
+        "x": 188,
+        "y": 72
+      },
+      {
+        "id": "LINE_SEAL_D",
+        "x": 190,
+        "y": 70
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 189,
+        "y": 70
+      },
+      {
+        "id": "SMOKE_SEAL_B",
+        "x": 189,
+        "y": 70
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 188,
+        "y": 73
+      },
+      {
+        "id": "FOAMY_SEAL_B",
+        "x": 188,
+        "y": 71
+      },
+      {
+        "id": "PARTY_SEAL_A",
+        "x": 189,
+        "y": 71
+      },
+      {
+        "id": "SMOKE_SEAL_A",
+        "x": 189,
+        "y": 70
+      }
+    ],
+    [
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 165,
+        "y": 55
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 165,
+        "y": 54
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 165,
+        "y": 54
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 167,
+        "y": 54
+      },
+      {
+        "id": "FIRE_SEAL_B",
+        "x": 165,
+        "y": 55
+      },
+      {
+        "id": "STAR_SEAL_D",
+        "x": 166,
+        "y": 53
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 164,
+        "y": 56
+      },
+      {
+        "id": "FIRE_SEAL_D",
+        "x": 166,
+        "y": 54
+      }
+    ],
+    [
+      {
+        "id": "ELE_SEAL_B",
+        "x": 161,
+        "y": 84
+      },
+      {
+        "id": "ELE_SEAL_D",
+        "x": 162,
+        "y": 84
+      },
+      {
+        "id": "ELE_SEAL_A",
+        "x": 162,
+        "y": 84
+      },
+      {
+        "id": "ELE_SEAL_C",
+        "x": 162,
+        "y": 84
+      },
+      {
+        "id": "SONG_SEAL_B",
+        "x": 163,
+        "y": 85
+      },
+      {
+        "id": "SONG_SEAL_B",
+        "x": 163,
+        "y": 86
+      },
+      {
+        "id": "SONG_SEAL_B",
+        "x": 164,
+        "y": 85
+      },
+      {
+        "id": "SONG_SEAL_B",
+        "x": 162,
+        "y": 85
+      }
+    ],
+    [
+      {
+        "id": "FLORA_SEAL_A",
+        "x": 140,
+        "y": 50
+      },
+      {
+        "id": "FLORA_SEAL_D",
+        "x": 157,
+        "y": 85
+      },
+      {
+        "id": "FLORA_SEAL_B",
+        "x": 158,
+        "y": 62
+      },
+      {
+        "id": "FLORA_SEAL_A",
+        "x": 174,
+        "y": 48
+      },
+      {
+        "id": "FLORA_SEAL_F",
+        "x": 156,
+        "y": 42
+      },
+      {
+        "id": "FLORA_SEAL_B",
+        "x": 140,
+        "y": 74
+      },
+      {
+        "id": "FLORA_SEAL_B",
+        "x": 175,
+        "y": 75
+      },
+      {
+        "id": "FLORA_SEAL_E",
+        "x": 156,
+        "y": 24
+      }
+    ],
+    [
+      {
+        "id": "PARTY_SEAL_D",
+        "x": 188,
+        "y": 66
+      },
+      {
+        "id": "FLORA_SEAL_B",
+        "x": 188,
+        "y": 66
+      },
+      {
+        "id": "LINE_SEAL_A",
+        "x": 187,
+        "y": 65
+      }
+    ],
+    [
+      {
+        "id": "HEART_SEAL_C",
+        "x": 238,
+        "y": 53
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 139,
+        "y": 55
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 139,
+        "y": 55
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 237,
+        "y": 54
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 139,
+        "y": 55
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 188,
+        "y": 77
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 237,
+        "y": 53
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 188,
+        "y": 77
+      }
+    ],
+    [
+      {
+        "id": "LINE_SEAL_B",
+        "x": 159,
+        "y": 83
+      }
+    ],
+    [
+      {
+        "id": "LINE_SEAL_A",
+        "x": 189,
+        "y": 78
+      },
+      {
+        "id": "STAR_SEAL_D",
+        "x": 189,
+        "y": 77
+      },
+      {
+        "id": "STAR_SEAL_D",
+        "x": 190,
+        "y": 77
+      },
+      {
+        "id": "STAR_SEAL_C",
+        "x": 190,
+        "y": 76
+      },
+      {
+        "id": "STAR_SEAL_D",
+        "x": 189,
+        "y": 76
+      },
+      {
+        "id": "STAR_SEAL_C",
+        "x": 190,
+        "y": 77
+      },
+      {
+        "id": "STAR_SEAL_C",
+        "x": 190,
+        "y": 77
+      },
+      {
+        "id": "STAR_SEAL_C",
+        "x": 189,
+        "y": 77
+      }
+    ],
+    [
+      {
+        "id": "LINE_SEAL_A",
+        "x": 190,
+        "y": 73
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 190,
+        "y": 72
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 189,
+        "y": 73
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 189,
+        "y": 73
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 189,
+        "y": 73
+      },
+      {
+        "id": "STAR_SEAL_C",
+        "x": 189,
+        "y": 73
+      },
+      {
+        "id": "STAR_SEAL_C",
+        "x": 189,
+        "y": 73
+      },
+      {
+        "id": "STAR_SEAL_C",
+        "x": 189,
+        "y": 73
+      }
+    ],
+    [
+      {
+        "id": "SMOKE_SEAL_D",
+        "x": 161,
+        "y": 67
+      },
+      {
+        "id": "SMOKE_SEAL_D",
+        "x": 167,
+        "y": 75
+      },
+      {
+        "id": "SMOKE_SEAL_D",
+        "x": 147,
+        "y": 71
+      },
+      {
+        "id": "SMOKE_SEAL_D",
+        "x": 163,
+        "y": 86
+      },
+      {
+        "id": "SMOKE_SEAL_D",
+        "x": 149,
+        "y": 84
+      }
+    ],
+    [
+      {
+        "id": "HEART_SEAL_C",
+        "x": 174,
+        "y": 62
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 189,
+        "y": 87
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 204,
+        "y": 60
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 174,
+        "y": 78
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 205,
+        "y": 78
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 188,
+        "y": 54
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 173,
+        "y": 44
+      },
+      {
+        "id": "HEART_SEAL_C",
+        "x": 207,
+        "y": 95
+      }
+    ],
+    [
+      {
+        "id": "HEART_SEAL_A",
+        "x": 189,
+        "y": 84
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 191,
+        "y": 52
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 205,
+        "y": 78
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 205,
+        "y": 62
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 173,
+        "y": 77
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 175,
+        "y": 60
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 176,
+        "y": 43
+      },
+      {
+        "id": "HEART_SEAL_A",
+        "x": 204,
+        "y": 93
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      {
+        "id": "HEART_SEAL_B",
+        "x": 219,
+        "y": 48
+      },
+      {
+        "id": "STAR_SEAL_B",
+        "x": 185,
+        "y": 51
+      },
+      {
+        "id": "HEART_SEAL_F",
+        "x": 165,
+        "y": 104
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ]
+}

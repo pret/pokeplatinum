@@ -91,6 +91,7 @@ metang_generators = {
     'roaming_slots': { 'type': 'enum', 'tag': 'RoamingSlot' },
     'save_types': { 'type': 'enum', 'tag': 'SaveType' },
     'sdat': { 'type': 'enum', 'tag': 'SDATID' },
+    'seals': { 'type': 'enum', 'tag': 'Seal' },
     'signpost_commands': { 'type': 'enum', 'tag': 'SignpostCommand' },
     'signpost_types': { 'type': 'enum', 'tag': 'SignpostType' },
     'size_contest_results': { 'type': 'enum', 'tag': 'SizeContestResult' },
