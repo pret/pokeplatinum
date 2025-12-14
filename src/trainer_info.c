@@ -7,7 +7,7 @@
 
 #include "charcode_util.h"
 #include "heap.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define MONEY_MAX 999999
 
@@ -56,9 +56,9 @@ void TrainerInfo_SetName(TrainerInfo *info, const charcode_t *name)
     CharCode_Copy(info->name, name);
 }
 
-void TrainerInfo_SetNameFromStrbuf(TrainerInfo *info, const Strbuf *name)
+void TrainerInfo_SetNameFromString(TrainerInfo *info, const String *name)
 {
-    Strbuf_ToChars(name, info->name, TRAINER_NAME_LEN + 1);
+    String_ToChars(name, info->name, TRAINER_NAME_LEN + 1);
 }
 
 const charcode_t *TrainerInfo_Name(const TrainerInfo *info)
@@ -66,16 +66,16 @@ const charcode_t *TrainerInfo_Name(const TrainerInfo *info)
     return info->name;
 }
 
-void TrainerInfo_NameStrbuf(const TrainerInfo *info, Strbuf *name)
+void TrainerInfo_NameString(const TrainerInfo *info, String *name)
 {
-    Strbuf_CopyChars(name, info->name);
+    String_CopyChars(name, info->name);
 }
 
-Strbuf *TrainerInfo_NameNewStrbuf(const TrainerInfo *info, int heapID)
+String *TrainerInfo_NameNewString(const TrainerInfo *info, int heapID)
 {
-    Strbuf *name = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
+    String *name = String_Init(TRAINER_NAME_LEN + 1, heapID);
 
-    TrainerInfo_NameStrbuf(info, name);
+    TrainerInfo_NameString(info, name);
     return name;
 }
 

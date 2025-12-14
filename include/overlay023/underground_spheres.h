@@ -7,7 +7,7 @@
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
 
-#include "strbuf.h"
+#include "string_gf.h"
 
 void BuriedSpheresEnv_Init(void *dest, FieldSystem *fieldSystem);
 int BuriedSpheresEnv_Size(void);
@@ -23,7 +23,7 @@ BOOL UndergroundSpheres_IsMiningItemSphere(int miningItemID);
 BOOL UndergroundSpheres_IsBuriedSphereAtCoordinates(int x, int z);
 int UndergroundSpheres_GetBuriedSphereXCoordAtIndex(int idx);
 int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int idx);
-BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(Strbuf *strbuf);
+BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(String *string);
 int ov23_02241DF8(MATHRandContext16 *rand);
 void SphereRadar_Start(void);
 void SphereRadar_Exit(void);

@@ -7,7 +7,7 @@
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -19,7 +19,7 @@ typedef struct FieldMenuManager {
     SysTask *sysTask;
     Window menuWindow;
     Window *parentWindow;
-    Strbuf *choicesStringsBuffers[FIELD_MENU_ENTRIES_MAX];
+    String *choicesStringsBuffers[FIELD_MENU_ENTRIES_MAX];
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     u8 sysTaskDelay;

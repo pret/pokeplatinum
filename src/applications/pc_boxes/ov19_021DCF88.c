@@ -19,7 +19,7 @@
 #include "narc.h"
 #include "pc_boxes.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -76,7 +76,7 @@ struct UnkStruct_ov19_021DCF88_t {
     Sprite *unk_54[10];
     int unk_7C;
     int unk_80;
-    Strbuf *unk_84;
+    String *unk_84;
     Window unk_88;
     void *unk_98;
     NNSG2dCellDataBank *unk_9C;
@@ -315,7 +315,7 @@ BOOL ov19_021DCF88(UnkStruct_ov19_021DCF88 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_04 = param2;
             v0->unk_0C = param4;
             v0->unk_14 = NULL;
-            v0->unk_84 = Strbuf_Init(32, HEAP_ID_BOX_GRAPHICS);
+            v0->unk_84 = String_Init(32, HEAP_ID_BOX_GRAPHICS);
             v0->unk_10 = param2->touchDialHelper.selectedTouchDial;
             v0->unk_98 = NULL;
             v0->unk_A0 = NULL;
@@ -396,7 +396,7 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
         }
 
         if (param0->unk_84 != NULL) {
-            Strbuf_Free(param0->unk_84);
+            String_Free(param0->unk_84);
         }
 
         for (v0 = 0; v0 < 8; v0++) {

@@ -26,7 +26,7 @@
 #include "pokedex_heightweight.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 
@@ -205,7 +205,7 @@ typedef struct PartyMenu {
 } PartyMenu;
 
 typedef struct PartyMenuMember {
-    Strbuf *name;
+    String *name;
     u16 species;
     u16 curHP;
     u16 maxHP;
@@ -259,9 +259,9 @@ typedef struct PartyMenuApplication {
     FontSpecialCharsContext *specialChars;
     MessageLoader *messageLoader;
     StringTemplate *template;
-    Strbuf *tmpString;
-    Strbuf *tmpFormat;
-    Strbuf *menuStrings[NUM_PARTY_MENU_STRS];
+    String *tmpString;
+    String *tmpFormat;
+    String *menuStrings[NUM_PARTY_MENU_STRS];
     StringList *contextMenuChoices;
     Menu *contextMenu;
     PartyMenuMember partyMembers[MAX_PARTY_SIZE];

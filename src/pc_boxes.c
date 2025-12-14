@@ -8,7 +8,7 @@
 #include "message.h"
 #include "pokemon.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #include "res/text/bank/pokemon_storage_system.h"
 
@@ -253,27 +253,27 @@ void PCBoxes_SetWallpaper(PCBoxes *pcBoxes, u32 boxID, u32 wallpaper)
     }
 }
 
-void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, Strbuf *dest)
+void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, String *dest)
 {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
 
     if (boxID < MAX_PC_BOXES) {
-        Strbuf_CopyChars(dest, pcBoxes->names[boxID]);
+        String_CopyChars(dest, pcBoxes->names[boxID]);
     } else {
         GF_ASSERT(0);
     }
 }
 
-void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const Strbuf *newName)
+void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const String *newName)
 {
     if (boxID == USE_CURRENT_BOX) {
         boxID = pcBoxes->currentBoxID;
     }
 
     if (boxID < MAX_PC_BOXES) {
-        Strbuf_ToChars(newName, pcBoxes->names[boxID], 20);
+        String_ToChars(newName, pcBoxes->names[boxID], 20);
         SaveData_SetFullSaveRequired();
     }
 }

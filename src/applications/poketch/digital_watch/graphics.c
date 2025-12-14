@@ -10,6 +10,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst);
 
 static void EndTask(PoketchTaskManager *taskMan);
@@ -32,7 +34,7 @@ BOOL PoketchDigitalWatchGraphics_New(PoketchDigitalWatchGraphics **dest, const D
         graphics->watchData = watchData;
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
 
-        void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_CLOCK_DIGITS_TILEMAP_IDX, TRUE, &screenData, HEAP_ID_POKETCH_APP);
+        void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, digital_watch_digits_NSCR_lz, TRUE, &screenData, HEAP_ID_POKETCH_APP);
 
         if (nscrBuffer == NULL) {
             Heap_Free(graphics);
@@ -120,8 +122,8 @@ static void Task_DrawAppScreen(SysTask *sysTask, void *taskMan)
     PoketchDigitalWatchGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &template, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILES_IDX, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILEMAP_IDX, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, watch_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, digital_watch_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     DrawClockDigits(graphics);

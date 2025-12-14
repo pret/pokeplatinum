@@ -14,9 +14,9 @@
 #include "string_template.h"
 #include "trainer_info.h"
 
-BattleFrontierTrainerData *ov104_0222DCE0(u16 param0, int param1, enum NarcID narcID);
-void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, enum NarcID narcID);
-BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int heapID, int param3);
+BattleFrontierTrainerData *BattleTower_GetTrainerDataFromTrainerIDAndNarcID(u16 battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID);
+void BattleTower_GetMonDataFromSetIDAndNarcID(BattleFrontierPokemonData *monData, int setID, enum NarcID narcID);
+BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *trDataDTO, int battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID);
 u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, enum NarcID narcID);
 void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 param2);
 u16 ov104_0222E10C(u8 param0);

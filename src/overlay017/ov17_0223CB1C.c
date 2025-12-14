@@ -33,7 +33,7 @@
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -181,7 +181,7 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
 
     v0->unk_0C.unk_38 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_VISUAL_COMPETITION, HEAP_ID_22);
     v0->unk_0C.unk_3C = StringTemplate_Default(HEAP_ID_22);
-    v0->unk_0C.unk_40 = Strbuf_Init(2 * 160, HEAP_ID_22);
+    v0->unk_0C.unk_40 = String_Init(2 * 160, HEAP_ID_22);
 
     {
         NARC *v1;
@@ -325,7 +325,7 @@ int ov17_0223CF8C(ApplicationManager *appMan, int *param1)
     PaletteData_FreeBuffer(v0->unk_0C.unk_44, 3);
     PaletteData_Free(v0->unk_0C.unk_44);
     StringTemplate_Free(v0->unk_0C.unk_3C);
-    Strbuf_Free(v0->unk_0C.unk_40);
+    String_Free(v0->unk_0C.unk_40);
     MessageLoader_Free(v0->unk_0C.unk_38);
     Heap_Free(v0->unk_0C.unk_24);
     SysTask_Done(v0->unk_04);

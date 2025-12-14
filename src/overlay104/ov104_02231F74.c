@@ -46,7 +46,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     SysTask *unk_04;
     Window unk_08;
     Window *unk_18;
-    Strbuf *unk_1C[28];
+    String *unk_1C[28];
     MessageLoader *unk_8C;
     StringTemplate *unk_90;
     u8 unk_94;
@@ -110,7 +110,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0);
 static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2);
 void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6);
-static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u16 param4);
+static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u16 param4);
 static BOOL ov104_02233184(UnkStruct_ov104_0222E930 *param0);
 UnkStruct_ov104_02232B5C *ov104_022325FC(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
 void ov104_0223261C(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
@@ -174,7 +174,7 @@ static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
 
 static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u32 param2)
 {
-    MessageLoader_GetStrbuf(param1, param2, param0->unk_4C);
+    MessageLoader_GetString(param1, param2, param0->unk_4C);
     StringTemplate_Format(param0->unk_44, param0->unk_48, param0->unk_4C);
 }
 
@@ -211,10 +211,10 @@ void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16
     }
 }
 
-static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u16 param4)
+static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u16 param4)
 {
     Sentence v0;
-    Strbuf *v1;
+    String *v1;
 
     sub_02014A84(&v0);
     sub_02014CE0(&v0, param1, param2);
@@ -222,8 +222,8 @@ static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u
     sub_02014CF8(&v0, 1, param4);
 
     v1 = sub_02014B34(&v0, HEAP_ID_FIELD3);
-    Strbuf_Copy(param0, v1);
-    Strbuf_Free(v1);
+    String_Copy(param0, v1);
+    String_Free(v1);
 }
 
 static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8)
@@ -266,7 +266,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C[v0] = Strbuf_Init((40 * 2), param0->heapID);
+        param1->unk_1C[v0] = String_Init((40 * 2), param0->heapID);
     }
 
     *param1->unk_A0 = 0xeeee;
@@ -331,12 +331,12 @@ static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
+        String *v2 = String_Init((40 * 2), param0->unk_00->heapID);
 
-        MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
+        MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_B4[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     param0->unk_29C[param0->unk_9B] = param2;
@@ -357,7 +357,7 @@ static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_B4[v0].entry, 0);
+        v1 = Font_CalcStringWidth(FONT_SYSTEM, (String *)param0->unk_B4[v0].entry, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -439,7 +439,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
     Window_Remove(param0->unk_A4.window);
 
     for (v0 = 0; v0 < 28; v0++) {
-        Strbuf_Free(param0->unk_1C[v0]);
+        String_Free(param0->unk_1C[v0]);
     }
 
     if (param0->unk_97_1 == 1) {
@@ -513,13 +513,13 @@ static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
+        String *v2 = String_Init((40 * 2), param0->unk_00->heapID);
 
-        MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
+        MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_1BC[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
 
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     if (param3 == 0xfa) {
@@ -545,7 +545,7 @@ static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_1BC[v0].entry, 0);
+        v1 = Font_CalcStringWidth(FONT_SYSTEM, (String *)param0->unk_1BC[v0].entry, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -673,7 +673,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {
-        Strbuf_Free(param0->unk_1C[v0]);
+        String_Free(param0->unk_1C[v0]);
     }
 
     if (param0->unk_97_1 == 1) {
@@ -687,19 +687,19 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
 
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2)
 {
-    Strbuf *v0 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
-    Strbuf *v1 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
+    String *v0 = String_Init((40 * 2), param0->unk_00->heapID);
+    String *v1 = String_Init((40 * 2), param0->unk_00->heapID);
 
     Window_FillTilemap(param0->unk_18, 15);
 
-    MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
+    MessageLoader_GetString(param0->unk_8C, param1, v0);
 
     StringTemplate_Format(param0->unk_90, v1, v0);
 
     Text_AddPrinterWithParams(param0->unk_18, 1, v1, 0, 0, param2, NULL);
 
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
+    String_Free(v0);
+    String_Free(v1);
     return;
 }
 

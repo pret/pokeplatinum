@@ -33,7 +33,7 @@ typedef struct PoketchMoveTesterGraphics {
     Window windowExclamations;
     MessageLoader *msgLoaderTypes;
     MessageLoader *msgLoaderEffectiveness;
-    Strbuf *strBuf;
+    String *string;
 } PoketchMoveTesterGraphics;
 
 enum MoveTesterGraphicsTask {

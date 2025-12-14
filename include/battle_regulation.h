@@ -2,7 +2,7 @@
 #define POKEPLATINUM_BATTLE_REGULATION_H
 
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define BATTLE_REGULATION_NAME_LENGTH 12
 
@@ -43,13 +43,13 @@ int BattleRegulation_Size(void);
 int BattleRegulation_SaveSize(void);
 void BattleRegulation_Copy(const BattleRegulation *src, BattleRegulation *dst);
 void RegulationBattles_Init(BattleRegulationData *regulationData);
-void BattleRegulation_GetName(const BattleRegulation *regulation, Strbuf *strbuf);
-Strbuf *BattleRegulation_GetNameStrbuf(const BattleRegulation *regulation, int heapID);
+void BattleRegulation_GetName(const BattleRegulation *regulation, String *string);
+String *BattleRegulation_GetNameString(const BattleRegulation *regulation, int heapID);
 int BattleRegulation_GetRuleValue(const BattleRegulation *regulation, enum BattleRegulationRule rule);
 BattleRegulation *BattleRegulation_Load(SaveData *saveData, int index);
 void BattleRegulation_Save(SaveData *saveData, const BattleRegulation *regulation);
 const BattleRegulation *BattleRegulation_GetByIndex(SaveData *saveData, int index);
-void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, Strbuf *strbuf, int heapID);
+void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, String *string, int heapID);
 const BattleRegulation *BattleRegulation_GetDefault(void);
 int BattleRegulation_GetIndex(const BattleRegulation *regulation);
 

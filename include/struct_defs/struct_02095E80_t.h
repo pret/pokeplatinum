@@ -25,7 +25,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -64,9 +64,9 @@ struct UnkStruct_02095E80_t {
     StringTemplate *unk_17C;
     StringTemplate *unk_180;
     MessageLoader *unk_184;
-    Strbuf *unk_188;
-    Strbuf *unk_18C;
-    Strbuf *unk_190;
+    String *unk_188;
+    String *unk_18C;
+    String *unk_190;
     SpriteList *unk_194;
     G2dRenderer unk_198;
     SpriteResourceCollection *unk_324[4];

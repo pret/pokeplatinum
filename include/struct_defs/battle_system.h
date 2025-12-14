@@ -34,7 +34,7 @@
 #include "poketch.h"
 #include "render_window.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
@@ -47,7 +47,7 @@ struct BattleSystem {
     MessageLoader *unk_0C;
     MessageLoader *unk_10;
     StringTemplate *strFormatter;
-    Strbuf *msgBuffer;
+    String *msgBuffer;
     SysTask *unk_1C;
     SysTask *unk_20;
     SysTask *unk_24;

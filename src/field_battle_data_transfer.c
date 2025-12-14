@@ -43,7 +43,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "system_data.h"
 #include "system_flags.h"
@@ -151,12 +151,12 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const Fie
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
-    Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
+    String *string = String_Init(TRAINER_NAME_LEN + 1, heapID);
     Pokemon *mon;
 
-    MessageLoader_GetStrbuf(msgLoader, TrainerInfo_Gender(trainerInfo) ^ 1, strbuf);
-    TrainerInfo_SetName(dto->trainerInfo[BATTLER_PLAYER_1], Strbuf_GetData(strbuf));
-    Strbuf_Free(strbuf);
+    MessageLoader_GetString(msgLoader, TrainerInfo_Gender(trainerInfo) ^ 1, string);
+    TrainerInfo_SetName(dto->trainerInfo[BATTLER_PLAYER_1], String_GetData(string));
+    String_Free(string);
     MessageLoader_Free(msgLoader);
 
     TrainerInfo_SetGender(dto->trainerInfo[BATTLER_PLAYER_1], TrainerInfo_Gender(trainerInfo) ^ 1);

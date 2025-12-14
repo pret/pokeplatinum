@@ -131,9 +131,9 @@ static void sub_020833BC(PartyMenuApplication *param0, int *param1)
 
     param0->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[3], sub_02083370(3));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[4], sub_02083370(4));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
+    StringList_AddFromString(param0->contextMenuChoices, param0->menuStrings[3], sub_02083370(3));
+    StringList_AddFromString(param0->contextMenuChoices, param0->menuStrings[4], sub_02083370(4));
+    StringList_AddFromString(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
 
     v0.choices = param0->contextMenuChoices;
     v0.window = &param0->windows[35];
@@ -174,7 +174,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
 
     if (param0->partyMembers[param0->currPartySlot].heldItem == ITEM_NONE) {
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
-        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00081, param0->tmpFormat);
+        MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00081, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
     } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->partyMembers[param0->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
@@ -194,7 +194,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
             }
         }
 
-        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00082, param0->tmpFormat);
+        MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00082, param0->tmpFormat);
         StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_SetItemName(param0->template, 1, param0->partyMembers[param0->currPartySlot].heldItem);
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
@@ -203,7 +203,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
 
         PartyMenu_DrawMemberHeldItem(param0, param0->currPartySlot, param0->partyMembers[param0->currPartySlot].heldItem);
     } else {
-        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00083, param0->tmpString);
+        MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00083, param0->tmpString);
     }
 
     Window_DrawMessageBoxWithScrollCursor(&param0->windows[34], 1, (1 + 9), 15);
@@ -259,9 +259,9 @@ static void sub_02083700(PartyMenuApplication *param0, int *param1)
 
     param0->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[6], sub_02083370(6));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[7], sub_02083370(7));
-    StringList_AddFromStrbuf(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
+    StringList_AddFromString(param0->contextMenuChoices, param0->menuStrings[6], sub_02083370(6));
+    StringList_AddFromString(param0->contextMenuChoices, param0->menuStrings[7], sub_02083370(7));
+    StringList_AddFromString(param0->contextMenuChoices, param0->menuStrings[9], sub_02083370(9));
 
     v0.choices = param0->contextMenuChoices;
     v0.window = &param0->windows[35];
@@ -841,10 +841,10 @@ int sub_02084780(PartyMenuApplication *param0)
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
     if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
-        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00129, param0->tmpString);
+        MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00129, param0->tmpString);
         Sprite_SetDrawFlag(param0->sprites[22 + param0->currPartySlot], TRUE);
     } else {
-        MessageLoader_GetStrbuf(param0->messageLoader, pl_msg_00000453_00130, param0->tmpString);
+        MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00130, param0->tmpString);
         param0->currPartySlot = 7;
     }
 

@@ -47,7 +47,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -3404,31 +3404,31 @@ static void BoxMonSelection_Free(BoxMonSelection *selection)
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)
 {
     customization->boxID = PCBoxes_GetCurrentBoxID(pcBoxes);
-    customization->name = Strbuf_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_BOX_DATA);
+    customization->name = String_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_BOX_DATA);
     PCBoxes_LoadCustomization(pcBoxes, customization);
 }
 
 static void Customization_Free(BoxCustomization *customization)
 {
-    Strbuf_Free(customization->name);
+    String_Free(customization->name);
 }
 
 static void PCMonPreview_Init(PCMonPreview *preview)
 {
-    preview->nickname = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-    preview->speciesName = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-    preview->heldItemName = Strbuf_Init(18, HEAP_ID_BOX_DATA);
-    preview->nature = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-    preview->ability = Strbuf_Init(16, HEAP_ID_BOX_DATA);
+    preview->nickname = String_Init(12, HEAP_ID_BOX_DATA);
+    preview->speciesName = String_Init(12, HEAP_ID_BOX_DATA);
+    preview->heldItemName = String_Init(18, HEAP_ID_BOX_DATA);
+    preview->nature = String_Init(12, HEAP_ID_BOX_DATA);
+    preview->ability = String_Init(16, HEAP_ID_BOX_DATA);
 }
 
 static void PCMonPreview_Free(PCMonPreview *preview)
 {
-    Strbuf_Free(preview->nickname);
-    Strbuf_Free(preview->speciesName);
-    Strbuf_Free(preview->heldItemName);
-    Strbuf_Free(preview->nature);
-    Strbuf_Free(preview->ability);
+    String_Free(preview->nickname);
+    String_Free(preview->speciesName);
+    String_Free(preview->heldItemName);
+    String_Free(preview->nature);
+    String_Free(preview->ability);
 }
 
 static void PCCompareHelper_Init(CompareModeHelper *compareHelper)
@@ -3439,16 +3439,16 @@ static void PCCompareHelper_Init(CompareModeHelper *compareHelper)
 
     for (int i = 0; i < 2; i++) {
         compareHelper->compareSlotHasMon[i] = FALSE;
-        compareHelper->compareMons[i].monName = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-        compareHelper->compareMons[i].nature = Strbuf_Init(12, HEAP_ID_BOX_DATA);
+        compareHelper->compareMons[i].monName = String_Init(12, HEAP_ID_BOX_DATA);
+        compareHelper->compareMons[i].nature = String_Init(12, HEAP_ID_BOX_DATA);
     }
 }
 
 static void PCCompareHelper_Free(CompareModeHelper *compareHelper)
 {
     for (int i = 0; i < 2; i++) {
-        Strbuf_Free(compareHelper->compareMons[i].monName);
-        Strbuf_Free(compareHelper->compareMons[i].nature);
+        String_Free(compareHelper->compareMons[i].monName);
+        String_Free(compareHelper->compareMons[i].nature);
     }
 }
 
@@ -4119,23 +4119,23 @@ static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *box
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, preview->nickname);
 
     if (preview->isEgg == FALSE) {
-        MessageLoader_GetStrbuf(boxAppMan->speciesNameLoader, preview->species, preview->speciesName);
+        MessageLoader_GetString(boxAppMan->speciesNameLoader, preview->species, preview->speciesName);
     } else {
-        Strbuf_Copy(preview->speciesName, preview->nickname);
-        Strbuf_Clear(preview->nickname);
+        String_Copy(preview->speciesName, preview->nickname);
+        String_Clear(preview->nickname);
     }
 
     if (preview->heldItem != ITEM_NONE) {
         Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_BOX_DATA);
     } else {
-        MessageLoader_GetStrbuf(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
+        MessageLoader_GetString(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     }
 
     u32 value = BoxPokemon_GetNature(boxMon);
-    MessageLoader_GetStrbuf(boxAppMan->natureNameLoader, value, preview->nature);
+    MessageLoader_GetString(boxAppMan->natureNameLoader, value, preview->nature);
 
     value = BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY, NULL);
-    MessageLoader_GetStrbuf(boxAppMan->abilityNameLoader, value, preview->ability);
+    MessageLoader_GetString(boxAppMan->abilityNameLoader, value, preview->ability);
 
     SpeciesData_Free(speciesData);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
@@ -4152,12 +4152,12 @@ static void BoxApp_LoadBoxMonIntoComparison(BoxApplication *boxApp, BoxPokemon *
     compareMon->level = preview->level;
 
     if (compareMon->isEgg) {
-        Strbuf_Copy(compareMon->monName, preview->speciesName);
+        String_Copy(compareMon->monName, preview->speciesName);
     } else {
-        Strbuf_Copy(compareMon->monName, preview->nickname);
+        String_Copy(compareMon->monName, preview->nickname);
     }
 
-    Strbuf_Copy(compareMon->nature, preview->nature);
+    String_Copy(compareMon->nature, preview->nature);
     Pokemon_FromBoxPokemon(boxMon, boxAppMan->mon);
 
     BOOL reencrypt = Pokemon_EnterDecryptionContext(boxAppMan->mon);
@@ -4227,7 +4227,7 @@ static void BoxApp_GiveItemToSelectedMon(BoxApplication *boxApp, u16 item, BoxAp
     if (preview->heldItem != ITEM_NONE) {
         Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_BOX_DATA);
     } else {
-        MessageLoader_GetStrbuf(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
+        MessageLoader_GetString(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     }
 
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX && BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_UNDER_CURSOR) {
@@ -4246,7 +4246,7 @@ static void BoxApp_GiveItemToSelectedMon(BoxApplication *boxApp, u16 item, BoxAp
     } else if (species == SPECIES_GIRATINA) {
         BoxPokemon_SetGiratinaForm(preview->mon);
         int ability = BoxPokemon_GetValue(preview->mon, MON_DATA_ABILITY, NULL);
-        MessageLoader_GetStrbuf(boxAppMan->abilityNameLoader, ability, preview->ability);
+        MessageLoader_GetString(boxAppMan->abilityNameLoader, ability, preview->ability);
     }
 }
 
@@ -4294,7 +4294,7 @@ static void BoxApp_PickUpHeldItem(BoxApplication *boxApp, BoxApplicationManager 
 
     boxApp->cursorItem = preview->heldItem;
 
-    MessageLoader_GetStrbuf(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
+    MessageLoader_GetString(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     BoxApp_GiveItemToSelectedMon(boxApp, itemNone, boxAppMan);
 }
 

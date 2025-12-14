@@ -24,7 +24,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 #include "unk_02014D38.h"
 #include "unk_02017038.h"
@@ -36,7 +36,7 @@
 #include "res/text/bank/special_met_location_names.h"
 
 static void InitStringTemplateArgHeader(StringTemplateArgHeader *header);
-static void SetStringTemplateArg(StringTemplate *template, u32 idx, const Strbuf *argVal, const StringTemplateArgHeader *newHeader);
+static void SetStringTemplateArg(StringTemplate *template, u32 idx, const String *argVal, const StringTemplateArgHeader *newHeader);
 
 StringTemplate *StringTemplate_Default(u32 heapID)
 {
@@ -57,7 +57,7 @@ StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
 
     tmp->maxArgs = maxArgs;
     tmp->heapID = heapID;
-    tmp->templateBuf = Strbuf_Init(maxLen, heapID);
+    tmp->templateBuf = String_Init(maxLen, heapID);
     if (tmp->templateBuf == NULL) {
         goto cleanup;
     }
@@ -70,9 +70,9 @@ StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
     u32 arg;
     for (arg = 0; arg < maxArgs; arg++) {
         InitStringTemplateArgHeader(&tmp->args[arg].header);
-        tmp->args[arg].strbuf = Strbuf_Init(maxLen, heapID);
+        tmp->args[arg].string = String_Init(maxLen, heapID);
 
-        if (tmp->args[arg].strbuf == NULL) {
+        if (tmp->args[arg].string == NULL) {
             break;
         }
     }
@@ -95,8 +95,8 @@ void StringTemplate_Free(StringTemplate *template)
 
     if (template->args) {
         for (u32 i = 0; i < template->maxArgs; i++) {
-            if (template->args[i].strbuf) {
-                Strbuf_Free(template->args[i].strbuf);
+            if (template->args[i].string) {
+                String_Free(template->args[i].string);
             } else {
                 break;
             }
@@ -106,7 +106,7 @@ void StringTemplate_Free(StringTemplate *template)
     }
 
     if (template->templateBuf) {
-        Strbuf_Free(template->templateBuf);
+        String_Free(template->templateBuf);
     }
 
     template->maxArgs = 0;
@@ -118,7 +118,7 @@ static void InitStringTemplateArgHeader(StringTemplateArgHeader *header)
     return;
 }
 
-static void SetStringTemplateArg(StringTemplate *template, u32 idx, const Strbuf *argVal, const StringTemplateArgHeader *newHeader)
+static void SetStringTemplateArg(StringTemplate *template, u32 idx, const String *argVal, const StringTemplateArgHeader *newHeader)
 {
     GF_ASSERT(idx < template->maxArgs);
 
@@ -127,7 +127,7 @@ static void SetStringTemplateArg(StringTemplate *template, u32 idx, const Strbuf
             template->args[idx].header = *newHeader;
         }
 
-        Strbuf_Copy(template->args[idx].strbuf, argVal);
+        String_Copy(template->args[idx].string, argVal);
     }
 }
 
@@ -136,20 +136,20 @@ static inline MessageLoader *InitMessageLoader(u32 bankID, u32 heapID)
     return MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 }
 
-void StringTemplate_SetStrbuf(StringTemplate *template, u32 idx, const Strbuf *argVal, u32 unused3, BOOL unused4, u32 unused5)
+void StringTemplate_SetString(StringTemplate *template, u32 idx, const String *argVal, u32 unused3, BOOL unused4, u32 unused5)
 {
     SetStringTemplateArg(template, idx, argVal, NULL);
 }
 
 void StringTemplate_SetPlayerName(StringTemplate *template, u32 idx, const TrainerInfo *playerInfo)
 {
-    Strbuf_CopyChars(template->templateBuf, TrainerInfo_Name(playerInfo));
+    String_CopyChars(template->templateBuf, TrainerInfo_Name(playerInfo));
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
 void StringTemplate_SetRivalName(StringTemplate *template, u32 idx, const SaveData *saveData)
 {
-    Strbuf_CopyChars(template->templateBuf, MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData)));
+    String_CopyChars(template->templateBuf, MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData)));
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
@@ -159,9 +159,9 @@ void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const 
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_COUNTERPART_NAMES, template->heapID);
 
     if (TrainerInfo_Gender(playerInfo) == GENDER_MALE) {
-        MessageLoader_GetStrbuf(loader, GENDER_FEMALE, template->templateBuf);
+        MessageLoader_GetString(loader, GENDER_FEMALE, template->templateBuf);
     } else {
-        MessageLoader_GetStrbuf(loader, GENDER_MALE, template->templateBuf);
+        MessageLoader_GetString(loader, GENDER_MALE, template->templateBuf);
     }
 
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
@@ -173,7 +173,7 @@ void StringTemplate_SetSpeciesName(StringTemplate *template, u32 idx, BoxPokemon
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_SPECIES_NAME, template->heapID);
     u32 species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
-    MessageLoader_GetStrbuf(loader, species, template->templateBuf);
+    MessageLoader_GetString(loader, species, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
     MessageLoader_Free(loader);
 }
@@ -187,7 +187,7 @@ void StringTemplate_SetSpeciesNameWithArticleByID(StringTemplate *template, u32 
 {
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_SPECIES_NAME_WITH_ARTICLES, template->heapID);
 
-    MessageLoader_GetStrbuf(loader, species, template->templateBuf);
+    MessageLoader_GetString(loader, species, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
     MessageLoader_Free(loader);
 }
@@ -206,7 +206,7 @@ void StringTemplate_SetOTName(StringTemplate *template, u32 idx, BoxPokemon *box
 
 void StringTemplate_SetNumber(StringTemplate *template, u32 idx, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
 {
-    Strbuf_FormatInt(template->templateBuf, num, maxDigits, paddingMode, charsetMode);
+    String_FormatInt(template->templateBuf, num, maxDigits, paddingMode, charsetMode);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
@@ -215,7 +215,7 @@ static inline void SetArgFromArchive(StringTemplate *template, u32 idx, u32 argV
     MessageLoader *loader = InitMessageLoader(bankID, template->heapID);
 
     if (loader) {
-        MessageLoader_GetStrbuf(loader, argVal, template->templateBuf);
+        MessageLoader_GetString(loader, argVal, template->templateBuf);
         SetStringTemplateArg(template, idx, template->templateBuf, NULL);
         MessageLoader_Free(loader);
     }
@@ -240,7 +240,7 @@ void StringTemplate_SetNatureName(StringTemplate *template, u32 idx, u32 nature)
 {
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_NATURE_NAMES, template->heapID);
 
-    MessageLoader_GetStrbuf(loader, nature, template->templateBuf);
+    MessageLoader_GetString(loader, nature, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
     MessageLoader_Free(loader);
 }
@@ -296,7 +296,7 @@ void StringTemplate_SetLocationName(StringTemplate *template, u32 idx, u32 locat
             location = pl_msg_00000434_00002;
         }
 
-        MessageLoader_GetStrbuf(loader, location, template->templateBuf);
+        MessageLoader_GetString(loader, location, template->templateBuf);
         SetStringTemplateArg(template, idx, template->templateBuf, NULL);
         MessageLoader_Free(loader);
     }
@@ -322,7 +322,7 @@ void StringTemplate_SetTrainerClassNameBattle(StringTemplate *template, u32 idx,
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_TRAINER_CLASS_NAMES, template->heapID);
 
     if (loader) {
-        MessageLoader_GetStrbuf(loader, trainer->header.trainerType, template->templateBuf);
+        MessageLoader_GetString(loader, trainer->header.trainerType, template->templateBuf);
         SetStringTemplateArg(template, idx, template->templateBuf, NULL);
         MessageLoader_Free(loader);
     }
@@ -340,7 +340,7 @@ void StringTemplate_SetFrontierTrainerName(StringTemplate *template, u32 idx, u3
 
 void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, Trainer *trainer)
 {
-    Strbuf_CopyChars(template->templateBuf, trainer->name);
+    String_CopyChars(template->templateBuf, trainer->name);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
@@ -405,15 +405,15 @@ void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gend
 
     switch (gender) {
     case GENDER_MALE:
-        MessageLoader_GetStrbuf(loader, pl_msg_00000213_00068, template->templateBuf);
+        MessageLoader_GetString(loader, pl_msg_00000213_00068, template->templateBuf);
         break;
 
     case GENDER_FEMALE:
-        MessageLoader_GetStrbuf(loader, pl_msg_00000213_00069, template->templateBuf);
+        MessageLoader_GetString(loader, pl_msg_00000213_00069, template->templateBuf);
         break;
 
     default:
-        Strbuf_Clear(template->templateBuf);
+        String_Clear(template->templateBuf);
     }
 
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
@@ -480,7 +480,7 @@ void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 lo
     if (loader) {
         if (metLocationID < MessageLoader_MessageCount(loader)
             && (!(metLocationType == 0 && metLocationID == 0))) {
-            MessageLoader_GetStrbuf(loader, metLocationID, template->templateBuf);
+            MessageLoader_GetString(loader, metLocationID, template->templateBuf);
             SetStringTemplateArg(template, idx, template->templateBuf, NULL);
             MessageLoader_Free(loader);
         } else {
@@ -523,16 +523,16 @@ void StringTemplate_SetContestBackdropName(StringTemplate *template, u32 idx, u3
 void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveData, int groupID, int idx, int nameType)
 {
     int gender, countryCode;
-    Strbuf *groupName;
+    String *groupName;
     RecordMixedRNG *group = SaveData_GetRecordMixedRNG(saveData);
 
     gender = RecordMixedRNG_GetEntryGender(group, groupID);
     countryCode = RecordMixedRNG_GetEntryCountryCode(group, groupID);
-    groupName = Strbuf_Init(64, HEAP_ID_FIELD1);
+    groupName = String_Init(64, HEAP_ID_FIELD1);
 
-    Strbuf_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
-    StringTemplate_SetStrbuf(template, idx, groupName, gender, 1, countryCode);
-    Strbuf_Free(groupName);
+    String_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
+    StringTemplate_SetString(template, idx, groupName, gender, 1, countryCode);
+    String_Free(groupName);
 }
 
 void StringTemplate_SetPlazaMinigameName(StringTemplate *template, u32 idx, enum PlazaMinigame minigame)
@@ -584,7 +584,7 @@ void StringTemplate_SetFurniture(StringTemplate *template, u32 idx, u32 furnitur
 {
     MessageLoader *loader = InitMessageLoader(TEXT_BANK_FURNITURE_NAMES, template->heapID);
 
-    MessageLoader_GetStrbuf(loader, furniture, template->templateBuf);
+    MessageLoader_GetString(loader, furniture, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
     MessageLoader_Free(loader);
 }
@@ -598,7 +598,7 @@ void StringTemplate_SetMonthName(StringTemplate *template, u32 idx, u32 month)
             month = 1;
         }
 
-        MessageLoader_GetStrbuf(loader, month - 1, template->templateBuf);
+        MessageLoader_GetString(loader, month - 1, template->templateBuf);
         SetStringTemplateArg(template, idx, template->templateBuf, NULL);
         MessageLoader_Free(loader);
     }
@@ -606,7 +606,7 @@ void StringTemplate_SetMonthName(StringTemplate *template, u32 idx, u32 month)
 
 void StringTemplate_CapitalizeArgAtIndex(StringTemplate *template, u32 idx)
 {
-    Strbuf_UpperChar(template->args[idx].strbuf, 0);
+    String_UpperChar(template->args[idx].string, 0);
 }
 
 void StringTemplate_SetFloorNumber(StringTemplate *template, u32 idx, u32 floor)
@@ -622,16 +622,16 @@ void StringTemplate_SetFloorNumber(StringTemplate *template, u32 idx, u32 floor)
             floor += MenuEntries_Text_1F - 1;
         }
 
-        MessageLoader_GetStrbuf(loader, floor, template->templateBuf);
+        MessageLoader_GetString(loader, floor, template->templateBuf);
         SetStringTemplateArg(template, idx, template->templateBuf, NULL);
         MessageLoader_Free(loader);
     }
 }
 
-void StringTemplate_Format(const StringTemplate *template, Strbuf *dst, const Strbuf *fmtString)
+void StringTemplate_Format(const StringTemplate *template, String *dst, const String *fmtString)
 {
-    const charcode_t *c = Strbuf_GetData(fmtString);
-    Strbuf_Clear(dst);
+    const charcode_t *c = String_GetData(fmtString);
+    String_Clear(dst);
 
     while (*c != CHAR_EOS) {
         if (*c == CHAR_FORMAT_ARG) {
@@ -639,18 +639,18 @@ void StringTemplate_Format(const StringTemplate *template, Strbuf *dst, const St
                 u32 idx = CharCode_FormatArgParam(c, 0);
                 GF_ASSERT(idx < template->maxArgs);
 
-                Strbuf_ConcatTrainerName(dst, template->args[idx].strbuf);
+                String_ConcatTrainerName(dst, template->args[idx].string);
                 c = CharCode_SkipFormatArg(c);
             } else {
                 const charcode_t *tmp = c;
                 c = CharCode_SkipFormatArg(c);
 
                 while (tmp < c) {
-                    Strbuf_AppendChar(dst, *tmp++);
+                    String_AppendChar(dst, *tmp++);
                 }
             }
         } else {
-            Strbuf_AppendChar(dst, *c++);
+            String_AppendChar(dst, *c++);
         }
     }
 }
@@ -658,6 +658,6 @@ void StringTemplate_Format(const StringTemplate *template, Strbuf *dst, const St
 void StringTemplate_ClearArgs(StringTemplate *template)
 {
     for (u32 i = 0; i < template->maxArgs; i++) {
-        Strbuf_Clear(template->args[i].strbuf);
+        String_Clear(template->args[i].string);
     }
 }

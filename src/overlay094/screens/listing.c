@@ -28,7 +28,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -311,11 +311,11 @@ static void ov94_0223D53C(GTSApplicationState *param0)
 {
     int v0;
 
-    param0->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
-    param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_MainMenu_Title);
+    param0->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    param0->title = MessageLoader_GetNewString(param0->gtsMessageLoader, GTS_Text_MainMenu_Title);
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_BB4[v0] = Strbuf_Init(10 * 2, HEAP_ID_62);
+        param0->unk_BB4[v0] = String_Init(10 * 2, HEAP_ID_62);
     }
 }
 
@@ -324,11 +324,11 @@ static void ov94_0223D57C(GTSApplicationState *param0)
     int v0;
 
     for (v0 = 0; v0 < 10; v0++) {
-        Strbuf_Free(param0->unk_BB4[v0]);
+        String_Free(param0->unk_BB4[v0]);
     }
 
-    Strbuf_Free(param0->genericMessageBuffer);
-    Strbuf_Free(param0->title);
+    String_Free(param0->genericMessageBuffer);
+    String_Free(param0->title);
 }
 
 static int ov94_0223D5B0(GTSApplicationState *param0)
@@ -481,17 +481,17 @@ static int ov94_0223D858(GTSApplicationState *param0)
 
 static void ov94_0223D88C(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4, Pokemon *param5)
 {
-    Strbuf *v0;
+    String *v0;
 
     StringTemplate_SetSpeciesName(param0->stringTemplate, 0, Pokemon_GetBoxPokemon(param5));
-    v0 = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, param1);
+    v0 = MessageLoader_GetNewString(param0->gtsMessageLoader, param1);
     StringTemplate_Format(param0->stringTemplate, param0->genericMessageBuffer, v0);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&param0->bottomInstructionWindow, 0, 1, 10);
 
     param0->textPrinter = Text_AddPrinterWithParams(&param0->bottomInstructionWindow, FONT_MESSAGE, param0->genericMessageBuffer, 0, 0, param2, NULL);
 
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 static TextColor Unk_ov94_022467FC[] = {
@@ -502,9 +502,9 @@ static TextColor Unk_ov94_022467FC[] = {
 
 void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *boxMon, GTSPokemonCriteria *param5)
 {
-    Strbuf *v0, *v1, *v2, *v3;
-    Strbuf *v4 = Strbuf_Init((10 + 1) * 2, HEAP_ID_62);
-    Strbuf *v5 = Strbuf_Init((8 + 1) * 2, HEAP_ID_62);
+    String *v0, *v1, *v2, *v3;
+    String *v4 = String_Init((10 + 1) * 2, HEAP_ID_62);
+    String *v5 = String_Init((8 + 1) * 2, HEAP_ID_62);
     int gender, level, item, v9, species;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, v4);
@@ -513,13 +513,13 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     gender = param5->gender;
     level = param5->level;
     item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
-    v3 = MessageLoader_GetNewStrbuf(param0, GTS_Text_Item);
-    v1 = MessageLoader_GetNewStrbuf(param0, gGTSGenderPreferenceMessages[gender]);
+    v3 = MessageLoader_GetNewString(param0, GTS_Text_Item);
+    v1 = MessageLoader_GetNewString(param0, gGTSGenderPreferenceMessages[gender]);
 
     StringTemplate_SetNumber(param2, 3, level, 3, 0, 1);
 
-    v2 = MessageUtil_ExpandedStrbuf(param2, param0, GTS_Text_LevelTemplate, HEAP_ID_62);
-    v0 = MessageLoader_GetNewStrbuf(param1, species);
+    v2 = MessageUtil_ExpandedString(param2, param0, GTS_Text_LevelTemplate, HEAP_ID_62);
+    v0 = MessageLoader_GetNewString(param1, species);
 
     Item_LoadName(v5, item, HEAP_ID_62);
 
@@ -538,26 +538,26 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     ov94_02245900(&param3[3], v3, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param3[4], v5, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
-    Strbuf_Free(v3);
-    Strbuf_Free(v5);
-    Strbuf_Free(v2);
-    Strbuf_Free(v1);
-    Strbuf_Free(v4);
-    Strbuf_Free(v0);
+    String_Free(v3);
+    String_Free(v5);
+    String_Free(v2);
+    String_Free(v1);
+    String_Free(v4);
+    String_Free(v0);
 }
 
 void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon *param3, Window param4[])
 {
-    Strbuf *v0, *v1;
-    Strbuf *v2, *v3;
+    String *v0, *v1;
+    String *v2, *v3;
 
-    v0 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
-    v3 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
+    v0 = String_Init((7 + 1) * 2, HEAP_ID_62);
+    v3 = String_Init((7 + 1) * 2, HEAP_ID_62);
 
-    v1 = MessageLoader_GetNewStrbuf(param0, pl_msg_00000671_00048);
-    Strbuf_CopyChars(v0, param2);
+    v1 = MessageLoader_GetNewString(param0, pl_msg_00000671_00048);
+    String_CopyChars(v0, param2);
 
-    v2 = MessageLoader_GetNewStrbuf(param0, pl_msg_00000671_00172);
+    v2 = MessageLoader_GetNewString(param0, pl_msg_00000671_00172);
     Pokemon_GetValue(param3, MON_DATA_OT_NAME_STRING, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
@@ -565,10 +565,10 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     ov94_02245900(&param4[0], v2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param4[1], v3, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v0);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v1);
+    String_Free(v0);
+    String_Free(v2);
+    String_Free(v3);
 }
 
 void ov94_0223DB2C(Pokemon *param0)

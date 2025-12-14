@@ -30,7 +30,7 @@
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -179,11 +179,11 @@ static BOOL sub_020529C4(FieldTask *task)
 
 static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3)
 {
-    Strbuf *v0 = Strbuf_Init(1024, HEAP_ID_FIELD2);
-    Strbuf *v1 = Strbuf_Init(1024, HEAP_ID_FIELD2);
+    String *v0 = String_Init(1024, HEAP_ID_FIELD2);
+    String *v1 = String_Init(1024, HEAP_ID_FIELD2);
 
     Window_FillTilemap(&param0->unk_0C, 0);
-    MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);
+    MessageLoader_GetString(param0->unk_1C, param1, v0);
     StringTemplate_Format(param0->unk_20, v1, v0);
 
     {
@@ -192,8 +192,8 @@ static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 p
     }
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
+    String_Free(v0);
+    String_Free(v1);
 
     return;
 }

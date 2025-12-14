@@ -11,19 +11,19 @@
 #include "message.h"
 #include "pokemon.h"
 #include "rtc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
 
 static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2);
-static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0);
-static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1);
-static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1);
-static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2);
-static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0);
-static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0);
-static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0);
+static void InitializeNatureRelatedString(PokemonInfoDisplayStruct *param0);
+static void InitializePokemonMetInfoString(PokemonInfoDisplayStruct *param0, int param1);
+static void InitializeAlternateMetInfoString(PokemonInfoDisplayStruct *param0, int param1);
+static void InitializeSpecialMetInfoString(PokemonInfoDisplayStruct *param0, int param1, int param2);
+static void InitializeIVsString(PokemonInfoDisplayStruct *param0);
+static void InitializeFlavorAffinityString(PokemonInfoDisplayStruct *param0);
+static void InitializeFriendshipLevelString(PokemonInfoDisplayStruct *param0);
 static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *param1, int param2);
 static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch);
 static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch);
@@ -59,228 +59,228 @@ PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
     switch (DeterminePokemonStatus(v0->unk_0C, v0->unk_10, v0->heapID)) {
     case 0:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 49);
+        InitializePokemonMetInfoString(v0, 49);
 
         v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 1:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 50);
+        InitializePokemonMetInfoString(v0, 50);
 
         v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 2:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 51);
+        InitializePokemonMetInfoString(v0, 51);
 
         v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 3:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 52);
+        InitializePokemonMetInfoString(v0, 52);
 
         v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 4:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 53);
+        InitializePokemonMetInfoString(v0, 53);
 
         v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 5:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 54);
+        InitializePokemonMetInfoString(v0, 54);
 
         v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 6:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 55);
+        InitializePokemonMetInfoString(v0, 55);
 
         v0->unk_24.unk_00 = 8;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 9;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 7:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 56);
+        InitializePokemonMetInfoString(v0, 56);
 
         v0->unk_24.unk_00 = 7;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 8;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 8:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 57);
+        InitializePokemonMetInfoString(v0, 57);
 
         v0->unk_24.unk_00 = 7;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 8;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 9:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 58);
+        InitializePokemonMetInfoString(v0, 58);
 
         v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
         break;
     case 10:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 59);
+        InitializePokemonMetInfoString(v0, 59);
 
         v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
         break;
     case 11:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 60);
+        InitializePokemonMetInfoString(v0, 60);
 
         v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
         break;
     case 12:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 61);
+        InitializePokemonMetInfoString(v0, 61);
 
         v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
         break;
     case 13:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 62);
+        InitializePokemonMetInfoString(v0, 62);
 
         v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
         break;
     case 14:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializePokemonMetInfoStrBuf(v0, 63);
+        InitializePokemonMetInfoString(v0, 63);
 
         v0->unk_24.unk_00 = 9;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
         break;
     case 15:
         v0->unk_14.unk_00 = 1;
-        InitializeNatureRelatedStrBuf(v0);
+        InitializeNatureRelatedString(v0);
 
         v0->unk_1C.unk_00 = 2;
-        InitializeAlternateMetInfoStrBuf(v0, 64);
+        InitializeAlternateMetInfoString(v0, 64);
 
         v0->unk_24.unk_00 = 6;
-        InitializeIVsStrBuf(v0);
+        InitializeIVsString(v0);
 
         v0->unk_2C.unk_00 = 7;
-        InitializeFlavorAffinityStrBuf(v0);
+        InitializeFlavorAffinityString(v0);
         break;
     case 16:
         v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 101, 0);
+        InitializeSpecialMetInfoString(v0, 101, 0);
 
         v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+        InitializeFriendshipLevelString(v0);
         break;
     case 17:
         v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 102, 1);
+        InitializeSpecialMetInfoString(v0, 102, 1);
 
         v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+        InitializeFriendshipLevelString(v0);
         break;
     case 18:
         v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 103, 0);
+        InitializeSpecialMetInfoString(v0, 103, 0);
 
         v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+        InitializeFriendshipLevelString(v0);
         break;
     case 19:
         v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 103, 1);
+        InitializeSpecialMetInfoString(v0, 103, 1);
 
         v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+        InitializeFriendshipLevelString(v0);
         break;
     case 20:
         v0->unk_1C.unk_00 = 1;
-        InitializeSpecialMetInfoStrBuf(v0, 104, 0);
+        InitializeSpecialMetInfoString(v0, 104, 0);
 
         v0->unk_34.unk_00 = 6;
-        InitializeFriendshipLevelStrBuf(v0);
+        InitializeFriendshipLevelString(v0);
         break;
     }
 
@@ -314,7 +314,7 @@ void sub_0209282C(PokemonInfoDisplayStruct *param0)
     Heap_Free(param0);
 }
 
-static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)
+static void InitializeNatureRelatedString(PokemonInfoDisplayStruct *param0)
 {
     int v0 = Pokemon_GetNature(param0->unk_0C);
 
@@ -322,17 +322,17 @@ static void InitializeNatureRelatedStrBuf(PokemonInfoDisplayStruct *param0)
         return;
     }
 
-    param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
-    MessageLoader_GetStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
+    param0->unk_14.unk_04 = String_Init(((2 * 18) * 2), param0->heapID);
+    MessageLoader_GetString(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
-static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
+static void InitializePokemonMetInfoString(PokemonInfoDisplayStruct *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
+    String *v0 = String_Init((((2 * 18) * 2) * 8), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->heapID);
+    param0->unk_1C.unk_04 = String_Init((((2 * 18) * 2) * 8), param0->heapID);
 
-    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
+    MessageLoader_GetString(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
     StringTemplate_SetMonthName(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_MONTH, NULL));
     StringTemplate_SetNumber(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_DAY, NULL), 2, 0, 1);
@@ -343,16 +343,16 @@ static void InitializePokemonMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int
     StringTemplate_SetNumber(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_EGG_DAY, NULL), 2, 0, 1);
     StringTemplate_SetMetLocationName(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_EGG_LOCATION, NULL));
     StringTemplate_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
-static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1)
+static void InitializeAlternateMetInfoString(PokemonInfoDisplayStruct *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
+    String *v0 = String_Init((((2 * 18) * 2) * 4), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
+    param0->unk_1C.unk_04 = String_Init((((2 * 18) * 2) * 4), param0->heapID);
 
-    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
+    MessageLoader_GetString(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
     StringTemplate_SetMonthName(param0->unk_08, 1, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_MONTH, NULL));
     StringTemplate_SetNumber(param0->unk_08, 2, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_DAY, NULL), 2, 0, 1);
@@ -386,16 +386,16 @@ static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, i
     }
 
     StringTemplate_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
-static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int param1, int param2)
+static void InitializeSpecialMetInfoString(PokemonInfoDisplayStruct *param0, int param1, int param2)
 {
-    Strbuf *v0 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
+    String *v0 = String_Init((((2 * 18) * 2) * 5), param0->heapID);
 
-    param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->heapID);
+    param0->unk_1C.unk_04 = String_Init((((2 * 18) * 2) * 5), param0->heapID);
 
-    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
+    MessageLoader_GetString(param0->unk_04, param1, v0);
 
     if (param2 == 0) {
         StringTemplate_SetNumber(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_EGG_YEAR, NULL), 2, 2, 1);
@@ -410,7 +410,7 @@ static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int
     }
 
     StringTemplate_Format(param0->unk_08, param0->unk_1C.unk_04, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 static const u16 Unk_020F5578[6][5] = {
@@ -422,12 +422,12 @@ static const u16 Unk_020F5578[6][5] = {
     { 0x60, 0x61, 0x62, 0x63, 0x64 }
 };
 
-static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0)
+static void InitializeIVsString(PokemonInfoDisplayStruct *param0)
 {
     int v0[6], v1, v2;
     int v3, v4;
 
-    param0->unk_24.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
+    param0->unk_24.unk_04 = String_Init(((2 * 18) * 2), param0->heapID);
 
     v0[0] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_HP_IV, NULL));
     v0[1] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_ATK_IV, NULL));
@@ -615,7 +615,7 @@ static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0)
     }
 
     v4 = Unk_020F5578[v1][(v2 % 5)];
-    MessageLoader_GetStrbuf(param0->unk_04, v4, param0->unk_24.unk_04);
+    MessageLoader_GetString(param0->unk_04, v4, param0->unk_24.unk_04);
 }
 
 static const u16 Unk_020F556C[6] = {
@@ -627,11 +627,11 @@ static const u16 Unk_020F556C[6] = {
     0x45
 };
 
-static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0)
+static void InitializeFlavorAffinityString(PokemonInfoDisplayStruct *param0)
 {
     int v0, v1, v2;
 
-    param0->unk_2C.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->heapID);
+    param0->unk_2C.unk_04 = String_Init(((2 * 18) * 2), param0->heapID);
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -641,15 +641,15 @@ static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0)
     }
 
     v2 = Unk_020F556C[v1];
-    MessageLoader_GetStrbuf(param0->unk_04, v2, param0->unk_2C.unk_04);
+    MessageLoader_GetString(param0->unk_04, v2, param0->unk_2C.unk_04);
 }
 
-static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0)
+static void InitializeFriendshipLevelString(PokemonInfoDisplayStruct *param0)
 {
     int v0 = Pokemon_GetValue(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
 
-    param0->unk_34.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->heapID);
+    param0->unk_34.unk_04 = String_Init((((2 * 18) * 2) * 4), param0->heapID);
 
     if (v0 <= 5) {
         v1 = 105;
@@ -661,7 +661,7 @@ static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0)
         v1 = 108;
     }
 
-    MessageLoader_GetStrbuf(param0->unk_04, v1, param0->unk_34.unk_04);
+    MessageLoader_GetString(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
 static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
@@ -854,12 +854,12 @@ static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *train
 {
     int v0 = TrainerInfo_ID(trainerInfo);
     int v1 = TrainerInfo_Gender(trainerInfo);
-    Strbuf *v2 = TrainerInfo_NameNewStrbuf(trainerInfo, heapID);
+    String *v2 = TrainerInfo_NameNewString(trainerInfo, heapID);
 
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, &v0);
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_GENDER, &v1);
     BoxPokemon_SetValue(boxMon, MON_DATA_OT_NAME_STRING, v2);
-    Strbuf_Free(v2);
+    String_Free(v2);
 }
 
 static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch)

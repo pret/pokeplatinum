@@ -30,7 +30,7 @@
 #include "screen_fade.h"
 #include "screen_scroll_manager.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -2858,24 +2858,24 @@ static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
     return v2;
 }
 
-static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
+static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
 {
     StringTemplate *template;
     MessageLoader *messageLoader;
-    Strbuf *result;
-    Strbuf *message;
+    String *result;
+    String *message;
 
     messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0359, heapID);
     template = StringTemplate_Default(heapID);
-    result = Strbuf_Init(128, heapID);
-    message = Strbuf_Init(128, heapID);
-    MessageLoader_GetStrbuf(messageLoader, 0, message);
+    result = String_Init(128, heapID);
+    message = String_Init(128, heapID);
+    MessageLoader_GetString(messageLoader, 0, message);
     StringTemplate_SetTrainerName(template, 0, trainerClass);
     StringTemplate_Format(template, result, message);
 
     MessageLoader_Free(messageLoader);
     StringTemplate_Free(template);
-    Strbuf_Free(message);
+    String_Free(message);
     return result;
 }
 
@@ -2888,7 +2888,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
     VecFx32 v4;
     int v5;
     int v6;
-    Strbuf *v7;
+    String *v7;
 
     switch (encEffect->state) {
     case 0:
@@ -2903,7 +2903,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
         Window_FillTilemap(&v0->unk_2E0, 0);
         v7 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
         Text_AddPrinterWithParamsAndColor(&v0->unk_2E0, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-        Strbuf_Free(v7);
+        String_Free(v7);
 
         ov5_021DE47C(&v0->unk_44, 8, 3);
 
@@ -3329,7 +3329,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         Sprite_SetDrawFlag(v0->unk_2CC[3], TRUE);
 
         {
-            Strbuf *v9;
+            String *v9;
 
             Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
@@ -3338,7 +3338,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             Window_FillTilemap(&v0->unk_358, 0);
             v9 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
             Text_AddPrinterWithParamsAndColor(&v0->unk_358, FONT_SYSTEM, v9, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-            Strbuf_Free(v9);
+            String_Free(v9);
         }
 
         encEffect->effectComplete = 3;

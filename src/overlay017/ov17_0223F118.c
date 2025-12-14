@@ -29,7 +29,7 @@
 #include "pokemon.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -102,7 +102,7 @@ void ov17_0223F1E0(G3DPipelineBuffers *param0)
     G3DPipelineBuffers_Free(param0);
 }
 
-void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const String *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -113,7 +113,7 @@ void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruc
     int v7 = 0;
 
     {
-        v5 = Font_CalcStrbufWidth(param6, param5, v7);
+        v5 = Font_CalcStringWidth(param6, param5, v7);
         v6 = v5 / 8;
 
         if (FX_ModS32(v5, 8) != 0) {
@@ -179,10 +179,10 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
     FontOAM_SetXY(param0->unk_00, param1, param2);
 }
 
-Strbuf *ov17_0223F310(u32 param0, u32 heapID)
+String *ov17_0223F310(u32 param0, u32 heapID)
 {
     MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
-    Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    String *v1 = MessageLoader_GetNewString(v0, param0);
 
     MessageLoader_Free(v0);
     return v1;

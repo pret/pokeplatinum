@@ -619,7 +619,7 @@ _09FB:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_02, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_RESET_SYSTEM, 0, 0
     ReleaseAll
     End
 
@@ -878,7 +878,7 @@ _0EBF:
     Call _0724
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, BattleTower_WeHopeToSeeYouAgain
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_35, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0F7E
     GoTo _0F05
     End
