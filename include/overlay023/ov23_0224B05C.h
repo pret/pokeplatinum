@@ -7,7 +7,7 @@
 #include "overlay023/underground_defs.h"
 
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 void ov23_0224B144(void *param0, FieldSystem *fieldSystem);
 void ov23_0224B2C8(FieldSystem *fieldSystem);
@@ -43,7 +43,7 @@ void ov23_0224CD68(void);
 int ov23_0224CD7C(void);
 void ov23_0224CD80(int param0, int param1, void *param2, void *param3);
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3);
-BOOL ov23_0224D020(Strbuf *param0);
+BOOL ov23_0224D020(String *param0);
 UnkStruct_02029894 *ov23_0224D130(SaveData *saveData);
 int ov23_0224D150(void);
 int ov23_0224D178(void);

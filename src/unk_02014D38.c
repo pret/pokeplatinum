@@ -9,7 +9,7 @@
 #include "message.h"
 #include "narc.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 static const u16 Unk_020E5522[] = {
     0x1F0,
@@ -166,24 +166,24 @@ void sub_02014D70(UnkStruct_02014D38 *param0)
     Heap_Free(param0);
 }
 
-void sub_02014D90(UnkStruct_02014D38 *param0, u16 param1, Strbuf *param2)
+void sub_02014D90(UnkStruct_02014D38 *param0, u16 param1, String *param2)
 {
     u32 v0, v1;
 
     sub_02014E4C(param1, &v0, &v1);
-    MessageLoader_GetStrbuf(param0->unk_04[v0], v1, param2);
+    MessageLoader_GetString(param0->unk_04[v0], v1, param2);
 }
 
-void sub_02014DB8(u16 param0, Strbuf *param1)
+void sub_02014DB8(u16 param0, String *param1)
 {
     if (param0 != 0xffff) {
         u32 v0, v1;
 
         sub_02014E4C(param0, &v0, &v1);
         v0 = Unk_020E550C[v0];
-        MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, v0, v1, 0, param1);
+        MessageBank_GetStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, v0, v1, 0, param1);
     } else {
-        Strbuf_Clear(param1);
+        String_Clear(param1);
     }
 }
 

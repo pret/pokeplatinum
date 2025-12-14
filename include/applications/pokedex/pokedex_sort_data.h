@@ -6,7 +6,7 @@
 #include "applications/pokedex/sorted_pokedex.h"
 
 #include "pokedex_heightweight.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     const Pokedex *pokedex;
@@ -20,7 +20,7 @@ typedef struct {
     HeightWeightData *HWData;
     u32 trainerGameCode;
     u32 trainerGender;
-    Strbuf *trainerName;
+    String *trainerName;
     int unk_1758;
     u16 currentSpecies;
     u16 bootMode;

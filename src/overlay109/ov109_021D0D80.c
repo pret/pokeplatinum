@@ -40,7 +40,7 @@
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -252,7 +252,7 @@ typedef struct {
     UnkStruct_ov109_021D17EC unk_34;
     UnkStruct_ov109_021D1048 unk_44[5];
     TrainerInfo *unk_58[5];
-    Strbuf *unk_6C[5];
+    String *unk_6C[5];
 } UnkStruct_ov109_021D0F70_sub1;
 
 typedef struct UnkStruct_ov109_021D0F70_t {
@@ -339,8 +339,8 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
 static void ov109_021D2788(UnkStruct_ov109_021D0F70 *param0);
 static void ov109_021D27AC(UnkStruct_ov109_021D0F70 *param0, int param1);
 static void ov109_021D27F0(UnkStruct_ov109_021D0F70 *param0);
-static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, TextColor param3);
-static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, int param3);
+static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, String *param1, int param2, TextColor param3);
+static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, String *param1, int param2, int param3);
 static void ov109_021D28A0(UnkStruct_ov109_021D0F70 *param0, int param1);
 static void ov109_021D28C4(UnkStruct_ov109_021D0F70 *param0);
 static void ov109_021D293C(UnkStruct_ov109_021D0F70 *param0);
@@ -772,7 +772,7 @@ static int ov109_021D122C(UnkStruct_ov109_021D0F70 *param0)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (ov109_021D3B54(param0, v0)) {
             param0->unk_2C.unk_58[v0] = CommInfo_TrainerInfo(v0);
-            TrainerInfo_NameStrbuf(
+            TrainerInfo_NameString(
                 param0->unk_2C.unk_58[v0], param0->unk_2C.unk_6C[v0]);
         }
     }
@@ -2003,10 +2003,10 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
         Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
     }
 
-    v1->unk_6C = Strbuf_Init(0x100, HEAP_ID_95);
+    v1->unk_6C = String_Init(0x100, HEAP_ID_95);
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_2C.unk_6C[v0] = Strbuf_Init(7 + 1, HEAP_ID_95);
+        param0->unk_2C.unk_6C[v0] = String_Init(7 + 1, HEAP_ID_95);
     }
 
     ov109_021D27AC(param0, param0->unk_CC->unk_08);
@@ -2026,10 +2026,10 @@ static void ov109_021D25E8(UnkStruct_ov109_021D0F70 *param0)
 
     MessageLoader_Free(v1->unk_04);
     StringTemplate_Free(v1->unk_08);
-    Strbuf_Free(v1->unk_6C);
+    String_Free(v1->unk_6C);
 
     for (v0 = 0; v0 < 5; v0++) {
-        Strbuf_Free(param0->unk_2C.unk_6C[v0]);
+        String_Free(param0->unk_2C.unk_6C[v0]);
     }
 }
 
@@ -2041,25 +2041,25 @@ static void ov109_021D2634(UnkStruct_ov109_021D0F70 *param0, u32 param1)
     Window_FillTilemap(v1, 15);
     Window_DrawMessageBoxWithScrollCursor(v1, 1, 1 + 9, 14);
     Window_FillTilemap(v1, 15);
-    MessageLoader_GetStrbuf(v0->unk_04, param1, v0->unk_6C);
+    MessageLoader_GetString(v0->unk_04, param1, v0->unk_6C);
     Text_AddPrinterWithParams(v1, FONT_MESSAGE, v0->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(v1);
 }
 
 static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const TrainerInfo *param2)
 {
-    Strbuf *v0;
+    String *v0;
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
     Window *v2 = &v1->unk_0C[0];
 
     StringTemplate_SetPlayerName(v1->unk_08, 1, CommInfo_TrainerInfo(CommSys_CurNetId()));
     StringTemplate_SetPlayerName(v1->unk_08, 2, param2);
 
-    v0 = Strbuf_Init(0x100, HEAP_ID_95);
+    v0 = String_Init(0x100, HEAP_ID_95);
 
-    MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
+    MessageLoader_GetString(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Window_DrawMessageBoxWithScrollCursor(v2, 1, 1 + 9, 14);
     Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -2068,17 +2068,17 @@ static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const T
 
 static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 param2)
 {
-    Strbuf *v0;
+    String *v0;
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
     Window *v2 = &v1->unk_0C[0];
 
     StringTemplate_SetItemName(v1->unk_08, 0, param2);
 
-    v0 = Strbuf_Init(0x100, HEAP_ID_95);
+    v0 = String_Init(0x100, HEAP_ID_95);
 
-    MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
+    MessageLoader_GetString(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Window_DrawMessageBoxWithScrollCursor(v2, 1, 1 + 9, 14);
     Window_FillTilemap(v2, 15);
     Text_AddPrinterWithParams(v2, FONT_MESSAGE, v1->unk_6C, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -2119,7 +2119,7 @@ static void ov109_021D27F0(UnkStruct_ov109_021D0F70 *param0)
     }
 }
 
-static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, TextColor param3)
+static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, String *param1, int param2, TextColor param3)
 {
     UnkStruct_ov109_021D24F8 *v0 = &param0->unk_C9C;
     Window *v1 = &v0->unk_1C[param2];
@@ -2129,7 +2129,7 @@ static void ov109_021D2820(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int
     Window_ScheduleCopyToVRAM(v1);
 }
 
-static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, Strbuf *param1, int param2, int param3)
+static void ov109_021D2874(UnkStruct_ov109_021D0F70 *param0, String *param1, int param2, int param3)
 {
     TextColor v0 = TEXT_COLOR(1, 2, 0);
 

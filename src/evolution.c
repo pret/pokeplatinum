@@ -43,7 +43,7 @@
 #include "render_window.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -137,7 +137,7 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
     v0->unk_66 = 2;
     v0->unk_08 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, heapID);
     v0->unk_0C = StringTemplate_Default(heapID);
-    v0->unk_10 = Strbuf_Init(2 * 160, heapID);
+    v0->unk_10 = String_Init(2 * 160, heapID);
     v0->unk_3C = Heap_Alloc(heapID, sizeof(PokemonSummary));
 
     MI_CpuClearFast(v0->unk_3C, sizeof(PokemonSummary));
@@ -964,7 +964,7 @@ static void sub_0207C520(void *param0)
 
 static u8 sub_0207C584(EvolutionData *param0, int param1)
 {
-    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
+    String *v0 = MessageLoader_GetNewString(param0->unk_08, param1);
 
     StringTemplate_Format(param0->unk_0C, param0->unk_10, v0);
     Heap_Free(v0);

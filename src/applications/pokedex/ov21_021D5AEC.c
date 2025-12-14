@@ -27,7 +27,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02012744.h"
@@ -720,36 +720,36 @@ static void ov21_021D63C0(UnkStruct_ov21_021D71A8 *param0)
 
 static void ov21_021D63DC(PokedexGraphicData *param0, int heapID, int param2, int param3)
 {
-    Strbuf *v0 = Strbuf_Init(32, heapID);
+    String *v0 = String_Init(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_seen, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_seen, v0);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_obtained, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_obtained, v0);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 128, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    Strbuf_FormatInt(v0, param2, 3, 2, 1);
+    String_FormatInt(v0, param2, 3, 2, 1);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 48, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    Strbuf_FormatInt(v0, param3, 3, 2, 1);
+    String_FormatInt(v0, param3, 3, 2, 1);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 180, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(pokedexMessageBank);
     Bg_ScheduleTilemapTransfer(param0->bgConfig, 1);
 }
 
 static void ov21_021D64B0(PokedexGraphicData *param0, int heapID, int param2)
 {
-    Strbuf *v0 = Strbuf_Init(32, heapID);
+    String *v0 = String_Init(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_results, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_results, v0);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    Strbuf_FormatInt(v0, param2, 3, 2, 1);
+    String_FormatInt(v0, param2, 3, 2, 1);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 48, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(pokedexMessageBank);
     Bg_ScheduleTilemapTransfer(param0->bgConfig, 1);
 }
@@ -1266,7 +1266,7 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
 {
     PokedexDisplayBox displayBox;
     Window *v1;
-    Strbuf *v2 = Strbuf_Init(32, heapID);
+    String *v2 = String_Init(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     displayBox.textMan = param1->textMan;
@@ -1281,9 +1281,9 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
 
     v1 = PokedexTextManager_NewWindow(param1->textMan, 15, 2);
 
-    Strbuf_FormatInt(v2, param4, 3, 2, 1);
+    String_FormatInt(v2, param4, 3, 2, 1);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_noname, v2);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_noname, v2);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
 
     if (param0->unk_28[param3]) {
@@ -1295,7 +1295,7 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
 
     PokedexTextManager_FreeWindow(v1);
 
-    Strbuf_Free(v2);
+    String_Free(v2);
     MessageLoader_Free(pokedexMessageBank);
 }
 

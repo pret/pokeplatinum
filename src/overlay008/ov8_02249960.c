@@ -54,7 +54,7 @@
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -185,7 +185,7 @@ typedef struct {
     u32 unk_40;
     Window *unk_44;
     MessageLoader *unk_48;
-    Strbuf *unk_4C;
+    String *unk_4C;
 } UnkStruct_ov8_0224B67C;
 
 typedef struct {
@@ -2801,7 +2801,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
             v2->unk_00++;
 
             Sound_StopEffect(1593, 0);
-            MessageLoader_GetStrbuf(v2->unk_48, EternaGym_Text_FountainWaterLevelDropped, v2->unk_4C);
+            MessageLoader_GetString(v2->unk_48, EternaGym_Text_FountainWaterLevelDropped, v2->unk_4C);
             FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
             Window_EraseMessageBox(v2->unk_44, 0);
             FieldMessage_DrawWindow(v2->unk_44, SaveData_GetOptions(fieldSystem->saveData));
@@ -2832,7 +2832,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
     return 0;
 }
 
-BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3)
+BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, String *param3)
 {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);

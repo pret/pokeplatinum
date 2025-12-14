@@ -7,7 +7,7 @@
 
 #include "bg_window.h"
 #include "field_task.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define USE_ITEM_TASK_MENU  0
 #define USE_ITEM_TASK_FIELD 1
@@ -65,7 +65,7 @@ typedef struct UnkStruct_0206851C {
 
 typedef struct UnkStruct_02068EFC {
     Window unk_00;
-    Strbuf *unk_10;
+    String *unk_10;
     u16 unk_14;
     u16 unk_16;
 } UnkStruct_02068EFC;

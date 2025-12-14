@@ -13,7 +13,7 @@
 #include "palette.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 typedef struct {
@@ -30,7 +30,7 @@ typedef struct {
     MessageLoader *unk_40;
     MessageLoader *unk_44;
     StringTemplate *unk_48;
-    Strbuf *unk_4C;
+    String *unk_4C;
     PaletteData *unk_50;
     UnkStruct_02012744 *unk_54;
     PokemonSpriteData pokemonSpriteDataArray[4];

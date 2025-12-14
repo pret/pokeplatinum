@@ -51,7 +51,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02015F84.h"
@@ -1072,12 +1072,12 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         // fall-through
     case MON_DATA_NICKNAME_STRING:
         if (boxMon->checksumFailed) {
-            Strbuf *strbuf = MessageUtil_SpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM);
+            String *string = MessageUtil_SpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM);
 
-            Strbuf_Copy(dest, strbuf);
-            Strbuf_Free(strbuf);
+            String_Copy(dest, string);
+            String_Free(string);
         } else {
-            Strbuf_CopyChars(dest, monDataBlockC->nickname);
+            String_CopyChars(dest, monDataBlockC->nickname);
         }
         break;
 
@@ -1124,7 +1124,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_OT_NAME_STRING:
-        Strbuf_CopyChars(dest, monDataBlockD->otName);
+        String_CopyChars(dest, monDataBlockD->otName);
         break;
 
     case MON_DATA_EGG_YEAR:
@@ -1630,13 +1630,13 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         charcode_t nickname[MON_NAME_LEN + 1];
 
         MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
-        Strbuf_ToChars(value, nickname, NELEMS(nickname));
+        String_ToChars(value, nickname, NELEMS(nickname));
 
         monDataBlockB->hasNickname = CharCode_Compare(baseName, nickname);
     }
         // fall-through
     case MON_DATA_NICKNAME_STRING:
-        Strbuf_ToChars(value, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
+        String_ToChars(value, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
         break;
 
     case MON_DATA_UNUSED_121:
@@ -1686,7 +1686,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_OT_NAME_STRING:
-        Strbuf_ToChars(value, monDataBlockD->otName, NELEMS(monDataBlockD->otName));
+        String_ToChars(value, monDataBlockD->otName, NELEMS(monDataBlockD->otName));
         break;
 
     case MON_DATA_EGG_YEAR:
@@ -1774,10 +1774,10 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_SPECIES_NAME: {
-        Strbuf *strbuf = MessageUtil_SpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM);
+        String *string = MessageUtil_SpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM);
 
-        Strbuf_ToChars(strbuf, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
-        Strbuf_Free(strbuf);
+        String_ToChars(string, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
+        String_Free(string);
 
         break;
     }
@@ -5046,19 +5046,19 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
     u32 monOTID = BoxPokemon_GetValue(boxMon, MON_DATA_OT_ID, NULL);
     u32 v2 = TrainerInfo_Gender(param1);
     u32 monOtGender = BoxPokemon_GetValue(boxMon, MON_DATA_OT_GENDER, NULL);
-    Strbuf *v4 = TrainerInfo_NameNewStrbuf(param1, heapID);
+    String *v4 = TrainerInfo_NameNewString(param1, heapID);
     // TODO enum/const value?
-    Strbuf *v5 = Strbuf_Init(8, heapID);
+    String *v5 = String_Init(8, heapID);
     BOOL v6 = FALSE;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_OT_NAME_STRING, v5);
 
-    if (v0 == monOTID && v2 == monOtGender && Strbuf_Compare(v4, v5) == 0) {
+    if (v0 == monOTID && v2 == monOtGender && String_Compare(v4, v5) == 0) {
         v6 = TRUE;
     }
 
-    Strbuf_Free(v5);
-    Strbuf_Free(v4);
+    String_Free(v5);
+    String_Free(v4);
 
     return v6;
 }

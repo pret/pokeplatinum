@@ -20,7 +20,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "start_menu.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_data.h"
 #include "vars_flags.h"
 
@@ -95,8 +95,8 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
         scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD2);
-        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
-        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
+        scriptManager->msgBuf = String_Init(1024, HEAP_ID_FIELD2);
+        scriptManager->tmpBuf = String_Init(1024, HEAP_ID_FIELD2);
         scriptManager->state++;
     case 1:
         for (i = 0; i < NUM_SCRIPT_CONTEXTS; i++) {
@@ -115,8 +115,8 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
         if (scriptManager->numActiveContexts <= 0) {
             scriptFunction = scriptManager->function;
             StringTemplate_Free(scriptManager->strTemplate);
-            Strbuf_Free(scriptManager->msgBuf);
-            Strbuf_Free(scriptManager->tmpBuf);
+            String_Free(scriptManager->msgBuf);
+            String_Free(scriptManager->tmpBuf);
             scriptManager->magic = 0;
             Heap_Free(scriptManager);
 

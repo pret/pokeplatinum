@@ -4,7 +4,7 @@
 #include "bag.h"
 #include "item_use_functions.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_info.h"
 
 typedef struct BagApplicationPocket {
@@ -145,22 +145,22 @@ u8 BagContext_GetSoldAmount(BagContext *bagContext);
  * @brief Loads the message to show after using certain items.
  *
  * @param saveData
- * @param[out] dstString The Strbuf to which the message will be loaded
+ * @param[out] dstString The String to which the message will be loaded
  * @param item The item being used.
  * @param heapID
  * @return Whether a string was loaded into dstString.
  */
-BOOL BagContext_FormatUsageMessage(SaveData *saveData, Strbuf *dstString, u16 item, u32 heapID);
+BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, u32 heapID);
 
 /**
  * @brief Loads the message describing the reason an item couldn't be used.
  *
  * @param playerInfo
- * @param dstString The Strbuf to which the message will be loaded
+ * @param dstString The String to which the message will be loaded
  * @param unused
  * @param error The reason the item couldn't be used. Member of `enum ItemUseCheckResult`
  * @param heapID
  */
-void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, Strbuf *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID);
+void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID);
 
 #endif // POKEPLATINUM_BAG_CONTEXT_H

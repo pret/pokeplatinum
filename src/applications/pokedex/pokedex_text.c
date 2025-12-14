@@ -7,7 +7,7 @@
 #include "message.h"
 #include "message_util.h"
 #include "pokedex_language.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 enum LangIndex {
     LI_JAPANESE,
@@ -29,12 +29,12 @@ static const u8 messageBankLanguageOrder[NUM_LANGUAGES] = {
 
 static inline int LanguageIndex_Guarded(int languageIndex);
 static inline BOOL ValidLanguage(int species, int languageIndex);
-static Strbuf *LoadMessage(int bankID, int entryID, enum HeapID heapID);
+static String *LoadMessage(int bankID, int entryID, enum HeapID heapID);
 static void GetLanguageIndex(int species, int language, int *dexNum, int *languageIndexUnguarded, int *languageIndex);
 
-void PokedexText_Free(Strbuf *strbuf)
+void PokedexText_Free(String *string)
 {
-    Strbuf_Free(strbuf);
+    String_Free(string);
 }
 
 int PokedexText_ForeignLanguage(int languageIndex)
@@ -42,7 +42,7 @@ int PokedexText_ForeignLanguage(int languageIndex)
     return PokedexLanguage_IndexToLanguage(messageBankLanguageOrder[languageIndex + 1]);
 }
 
-Strbuf *PokedexText_NameNumber(int species, int language, enum HeapID heapID)
+String *PokedexText_NameNumber(int species, int language, enum HeapID heapID)
 {
     int dexNum;
     int languageIndex_unguarded;
@@ -69,7 +69,7 @@ Strbuf *PokedexText_NameNumber(int species, int language, enum HeapID heapID)
     return LoadMessage(bankID, index, heapID);
 }
 
-Strbuf *PokedexText_Category(int species, int language, enum HeapID heapID)
+String *PokedexText_Category(int species, int language, enum HeapID heapID)
 {
     int dexNum;
     int languageIndex_unguarded;
@@ -97,7 +97,7 @@ Strbuf *PokedexText_Category(int species, int language, enum HeapID heapID)
     return LoadMessage(bankID, index, heapID);
 }
 
-Strbuf *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapID heapID)
+String *PokedexText_DexEntry(int species, int language, int entryOffset, enum HeapID heapID)
 {
     int dexNum;
     int languageIndex_unguarded;
@@ -136,19 +136,19 @@ static inline BOOL ValidLanguage(int species, int languageIndex)
     return TRUE;
 }
 
-static Strbuf *LoadMessage(int bankID, int entryID, enum HeapID heapID)
+static String *LoadMessage(int bankID, int entryID, enum HeapID heapID)
 {
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 
     if (messageLoader) {
-        Strbuf *strbuf = Strbuf_Init(256, heapID);
+        String *string = String_Init(256, heapID);
 
-        if (strbuf) {
-            MessageLoader_GetStrbuf(messageLoader, entryID, strbuf);
+        if (string) {
+            MessageLoader_GetString(messageLoader, entryID, string);
         }
 
         MessageLoader_Free(messageLoader);
-        return strbuf;
+        return string;
     }
 
     return NULL;

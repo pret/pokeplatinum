@@ -8,7 +8,7 @@
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 static int inline HallOfFame_GetNthPriorEntry(const HallOfFame *hallOfFame, int entryIndex);
 
@@ -26,7 +26,7 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
 {
     HallOfFameEntry *hallOfFameEntry;
     Pokemon *mon;
-    Strbuf *strBuf;
+    String *string;
     int currentPartyCount, i, pokemonIndex;
     BOOL reencrypt;
 
@@ -39,7 +39,7 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
 
     hallOfFameEntry = &hallOfFame->entries[hallOfFame->nextEntryIndex];
     currentPartyCount = Party_GetCurrentCount(party);
-    strBuf = Strbuf_Init(MON_NAME_LEN + 1, HEAP_ID_SYSTEM);
+    string = String_Init(MON_NAME_LEN + 1, HEAP_ID_SYSTEM);
 
     MI_CpuClear16(hallOfFameEntry->pokemon, sizeof(HallOfFamePokemon) * MAX_PARTY_SIZE);
 
@@ -58,12 +58,12 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
             hallOfFameEntry->pokemon[pokemonIndex].moves[2] = Pokemon_GetValue(mon, MON_DATA_MOVE3, NULL);
             hallOfFameEntry->pokemon[pokemonIndex].moves[3] = Pokemon_GetValue(mon, MON_DATA_MOVE4, NULL);
 
-            if (strBuf) {
-                Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, strBuf);
-                Strbuf_ToChars(strBuf, hallOfFameEntry->pokemon[pokemonIndex].nickname, MON_NAME_LEN + 1);
+            if (string) {
+                Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
+                String_ToChars(string, hallOfFameEntry->pokemon[pokemonIndex].nickname, MON_NAME_LEN + 1);
 
-                Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, strBuf);
-                Strbuf_ToChars(strBuf, hallOfFameEntry->pokemon[pokemonIndex].OTName, TRAINER_NAME_LEN + 1);
+                Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, string);
+                String_ToChars(string, hallOfFameEntry->pokemon[pokemonIndex].OTName, TRAINER_NAME_LEN + 1);
             } else {
                 hallOfFameEntry->pokemon[pokemonIndex].nickname[0] = 0xffff;
                 hallOfFameEntry->pokemon[pokemonIndex].OTName[0] = 0xffff;
@@ -85,8 +85,8 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
 
     hallOfFame->totalEntriesCount++;
 
-    if (strBuf) {
-        Strbuf_Free(strBuf);
+    if (string) {
+        String_Free(string);
     }
 }
 
@@ -148,8 +148,8 @@ void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex
     pcHallOfFameMon->OTID = hallOfFameMon->OTID;
     pcHallOfFameMon->form = hallOfFameMon->form;
 
-    Strbuf_CopyChars(pcHallOfFameMon->nickname, hallOfFameMon->nickname);
-    Strbuf_CopyChars(pcHallOfFameMon->OTName, hallOfFameMon->OTName);
+    String_CopyChars(pcHallOfFameMon->nickname, hallOfFameMon->nickname);
+    String_CopyChars(pcHallOfFameMon->OTName, hallOfFameMon->OTName);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         pcHallOfFameMon->moves[i] = hallOfFameMon->moves[i];

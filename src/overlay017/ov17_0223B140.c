@@ -40,7 +40,7 @@
 #include "sound.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -209,7 +209,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_0C.unk_44 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_ACTING_COMPETITION, HEAP_ID_21);
     v0->unk_0C.unk_54 = sub_02012744(2 * 4, HEAP_ID_21);
     v0->unk_0C.unk_48 = StringTemplate_Default(HEAP_ID_21);
-    v0->unk_0C.unk_4C = Strbuf_Init(3 * 160, HEAP_ID_21);
+    v0->unk_0C.unk_4C = String_Init(3 * 160, HEAP_ID_21);
 
     {
         NARC *v1;
@@ -355,7 +355,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
     PaletteData_FreeBuffer(v0->unk_0C.unk_50, 3);
     PaletteData_Free(v0->unk_0C.unk_50);
 
-    Strbuf_Free(v0->unk_0C.unk_4C);
+    String_Free(v0->unk_0C.unk_4C);
     StringTemplate_Free(v0->unk_0C.unk_48);
     MessageLoader_Free(v0->unk_0C.unk_38);
     MessageLoader_Free(v0->unk_0C.unk_3C);

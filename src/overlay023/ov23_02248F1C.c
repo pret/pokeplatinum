@@ -24,7 +24,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
@@ -32,9 +32,9 @@
 #include "res/graphics/trap_effects/trap_effects.naix.h"
 
 typedef struct {
-    Strbuf *unk_00[32];
-    Strbuf *unk_80;
-    Strbuf *unk_84[2];
+    String *unk_00[32];
+    String *unk_80;
+    String *unk_84[2];
     int unk_8C;
     int unk_90;
     u16 unk_94[80];
@@ -73,8 +73,8 @@ static void ov23_02249438(BgConfig *param0);
 static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5);
 static void ov23_02249724(UnkStruct_ov23_02249724 *param0);
 static void ov23_02249778(UnkStruct_ov23_02249724 *param0);
-static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1);
-static Strbuf *ov23_022498C4(UnkStruct_ov23_02249724 *param0);
+static int ov23_02249844(UnkStruct_ov23_02249724 *param0, String *param1);
+static String *ov23_022498C4(UnkStruct_ov23_02249724 *param0);
 static int ov23_02249900(UnkStruct_ov23_02249724 *param0);
 static void ov23_0224937C(int param0[][4], Sprite *param1[]);
 static void ov23_02249334(int param0[][4]);
@@ -453,7 +453,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
 
 static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)
 {
-    Strbuf *v0;
+    String *v0;
 
     while (ov23_02242D60(param5->unk_80)) {
         ov23_02249844(param5, param5->unk_80);
@@ -492,15 +492,15 @@ static void ov23_02249724(UnkStruct_ov23_02249724 *param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        param0->unk_00[v0] = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+        param0->unk_00[v0] = String_Init(50 * 2, HEAP_ID_FIELD1);
     }
 
     param0->unk_8C = 0;
     param0->unk_90 = 0;
-    param0->unk_80 = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+    param0->unk_80 = String_Init(50 * 2, HEAP_ID_FIELD1);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_84[v0] = Strbuf_Init(20 * 2 * 2, HEAP_ID_FIELD1);
+        param0->unk_84[v0] = String_Init(20 * 2 * 2, HEAP_ID_FIELD1);
     }
 }
 
@@ -509,21 +509,21 @@ static void ov23_02249778(UnkStruct_ov23_02249724 *param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        Strbuf_Free(param0->unk_00[v0]);
+        String_Free(param0->unk_00[v0]);
     }
 
-    Strbuf_Free(param0->unk_80);
+    String_Free(param0->unk_80);
 
     for (v0 = 0; v0 < 2; v0++) {
-        Strbuf_Free(param0->unk_84[v0]);
+        String_Free(param0->unk_84[v0]);
     }
 }
 
-static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
+static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, String *param1)
 {
     int v0, v1, v2;
 
-    Strbuf_ToChars(param1, param0->unk_94, 20 * 2 * 2);
+    String_ToChars(param1, param0->unk_94, 20 * 2 * 2);
 
     v1 = 0;
     v0 = 0;
@@ -540,18 +540,18 @@ static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
     GF_ASSERT(v1 < 2);
 
     if (v1 == 0) {
-        Strbuf_Copy(param0->unk_84[0], param1);
+        String_Copy(param0->unk_84[0], param1);
         return 1;
     } else {
         param0->unk_94[v2] = 0xffff;
-        Strbuf_CopyChars(param0->unk_84[0], param0->unk_94);
-        Strbuf_CopyChars(param0->unk_84[1], &param0->unk_94[v2 + 1]);
+        String_CopyChars(param0->unk_84[0], param0->unk_94);
+        String_CopyChars(param0->unk_84[1], &param0->unk_94[v2 + 1]);
     }
 
     return 2;
 }
 
-static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
+static int ov23_02249844(UnkStruct_ov23_02249724 *param0, String *param1)
 {
     int v0, v1, v2;
 
@@ -569,7 +569,7 @@ static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
     }
 
     for (v1 = 0; v1 < v2; v1++) {
-        Strbuf_Copy(param0->unk_00[param0->unk_8C], param0->unk_84[v1]);
+        String_Copy(param0->unk_00[param0->unk_8C], param0->unk_84[v1]);
         param0->unk_8C++;
 
         if (param0->unk_8C == 32) {
@@ -580,7 +580,7 @@ static int ov23_02249844(UnkStruct_ov23_02249724 *param0, Strbuf *param1)
     return 1;
 }
 
-static Strbuf *ov23_022498C4(UnkStruct_ov23_02249724 *param0)
+static String *ov23_022498C4(UnkStruct_ov23_02249724 *param0)
 {
     int v0;
 

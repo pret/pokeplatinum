@@ -11,7 +11,7 @@
 #include "heap.h"
 #include "message.h"
 #include "pokemon_icon.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 
@@ -114,12 +114,12 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     Window_FillTilemap(&window, 4);
     Window_PutToTilemap(&window);
 
-    Strbuf *strbuf = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKETCH_POKEMON_HISTORY, 0, HEAP_ID_POKETCH_APP);
+    String *string = MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKETCH_POKEMON_HISTORY, 0, HEAP_ID_POKETCH_APP);
 
-    if (strbuf) {
-        Text_AddPrinterWithParamsAndColor(&window, FONT_SYSTEM, strbuf, (192 - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0)) / 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    if (string) {
+        Text_AddPrinterWithParamsAndColor(&window, FONT_SYSTEM, string, (192 - Font_CalcStringWidth(FONT_SYSTEM, string, 0)) / 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
         Window_LoadTiles(&window);
-        Strbuf_Free(strbuf);
+        String_Free(string);
     }
 
     Window_Remove(&window);

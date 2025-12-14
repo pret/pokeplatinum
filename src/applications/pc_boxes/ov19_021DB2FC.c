@@ -17,7 +17,7 @@
 #include "narc.h"
 #include "render_window.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 
@@ -37,8 +37,8 @@ BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_20 = optionsFrame;
     param0->unk_10 = boxMessagesLoader;
     param0->unk_14 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_30 = Strbuf_Init(64, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_34 = Strbuf_Init(64, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_30 = String_Init(64, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_34 = String_Init(64, HEAP_ID_BOX_GRAPHICS);
     param0->unk_1C = 0;
     param0->unk_1E = 0;
     param0->unk_18 = NULL;
@@ -69,11 +69,11 @@ void ov19_021DB370(UnkStruct_ov19_021DB6F0 *param0)
         }
 
         if (param0->unk_30) {
-            Strbuf_Free(param0->unk_30);
+            String_Free(param0->unk_30);
         }
 
         if (param0->unk_34) {
-            Strbuf_Free(param0->unk_34);
+            String_Free(param0->unk_34);
         }
 
         Heap_Free(param0->unk_18);
@@ -108,7 +108,7 @@ void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 boxMessageID)
     Window_PutToTilemap(&param0->unk_18[0]);
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].bgLayer, param0->unk_18[0].tilemapLeft, param0->unk_18[0].tilemapTop, param0->unk_18[0].width, param0->unk_18[0].height);
     Window_FillTilemap(&param0->unk_18[0], 15);
-    MessageLoader_GetStrbuf(param0->unk_10, boxMessageID, param0->unk_30);
+    MessageLoader_GetString(param0->unk_10, boxMessageID, param0->unk_30);
     StringTemplate_Format(param0->unk_2C, param0->unk_34, param0->unk_30);
     Text_AddPrinterWithParams(&(param0->unk_18[0]), FONT_MESSAGE, param0->unk_34, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_LoadTiles(&(param0->unk_18[0]));
@@ -176,7 +176,7 @@ void ov19_021DB57C(UnkStruct_ov19_021DB6F0 *param0, const BoxMenu *menu)
         if ((menu->menuItems[i] >= BOX_MENU_FIRST_MARKING) && (menu->menuItems[i] <= BOX_MENU_LAST_MARKING)) {
             ov19_021DB638(param0, v0, menu->markings, menu->menuItems[i] - BOX_MENU_FIRST_MARKING);
         } else {
-            MessageLoader_GetStrbuf(param0->unk_14, 24 + menu->menuItems[i], param0->unk_30);
+            MessageLoader_GetString(param0->unk_14, 24 + menu->menuItems[i], param0->unk_30);
             Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_30, 10, v1, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(11, 12, 15), NULL);
         }
 

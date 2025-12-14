@@ -32,7 +32,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -91,8 +91,8 @@ typedef struct HallOfFameMan {
     SysTask *taskConfetti;
     SysTask *tasks[4];
     StringTemplate *strTemplate;
-    Strbuf *strbuf_1C30;
-    Strbuf *strbuf_1C4C;
+    String *string_1C30;
+    String *string_1C4C;
     MessageLoader *msgLoaderHallOfFame;
     NARC *narc;
 } HallOfFameMan;
@@ -183,8 +183,8 @@ typedef struct HallOfFamePokemonTextAdder {
     BgConfig *bgConfig;
     Window *window;
     StringTemplate *strTemplate;
-    Strbuf *strbuf_18;
-    Strbuf *strbuf_1C;
+    String *string_18;
+    String *string_1C;
     MessageLoader *msgLoader;
     Pokemon *mon;
     const TrainerInfo *trainerInfo;
@@ -309,8 +309,8 @@ BOOL HallOfFameManager_Init(ApplicationManager *appMan, int *state)
 
     hallOfFameMan->displayData = ApplicationManager_Args(appMan);
     hallOfFameMan->msgLoaderHallOfFame = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_HALL_OF_FAME, HEAP_ID_HALL_OF_FAME);
-    hallOfFameMan->strbuf_1C30 = Strbuf_Init(500, HEAP_ID_HALL_OF_FAME);
-    hallOfFameMan->strbuf_1C4C = Strbuf_Init(500, HEAP_ID_HALL_OF_FAME);
+    hallOfFameMan->string_1C30 = String_Init(500, HEAP_ID_HALL_OF_FAME);
+    hallOfFameMan->string_1C4C = String_Init(500, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strTemplate = StringTemplate_Default(HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->narc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_HALL_OF_FAME);
 
@@ -367,8 +367,8 @@ BOOL HallOfFameManager_Exit(ApplicationManager *appMan, int *state)
         ov86_0223B8C4(hallOfFameMan);
 
         StringTemplate_Free(hallOfFameMan->strTemplate);
-        Strbuf_Free(hallOfFameMan->strbuf_1C30);
-        Strbuf_Free(hallOfFameMan->strbuf_1C4C);
+        String_Free(hallOfFameMan->string_1C30);
+        String_Free(hallOfFameMan->string_1C4C);
         MessageLoader_Free(hallOfFameMan->msgLoaderHallOfFame);
         NARC_dtor(hallOfFameMan->narc);
         ApplicationManager_FreeData(appMan);
@@ -1252,8 +1252,8 @@ static void HallOfFame_ShowPokemonText(HallOfFameMan *hallOfFameMan, int monInde
     textAdder->bgConfig = hallOfFameMan->bgConfig;
     textAdder->window = &(hallOfFameMan->window);
     textAdder->strTemplate = hallOfFameMan->strTemplate;
-    textAdder->strbuf_18 = hallOfFameMan->strbuf_1C30;
-    textAdder->strbuf_1C = hallOfFameMan->strbuf_1C4C;
+    textAdder->string_18 = hallOfFameMan->string_1C30;
+    textAdder->string_1C = hallOfFameMan->string_1C4C;
     textAdder->msgLoader = hallOfFameMan->msgLoaderHallOfFame;
     textAdder->xPosition = monIndex & 1 ? 0 : 120;
     textAdder->mon = Party_GetPokemonBySlotIndex(hallOfFameMan->displayData->party, hallOfFameMan->slotIndexes[monIndex]);
@@ -1268,12 +1268,12 @@ static void HallOfFame_PrintTextAtRow(HallOfFamePokemonTextAdder *textAdder, int
 {
     int i, numLines, xOffset;
 
-    numLines = Strbuf_NumLines(textAdder->strbuf_1C);
+    numLines = String_NumLines(textAdder->string_1C);
 
     for (i = 0; i < numLines; i++) {
-        Strbuf_CopyLineNum(textAdder->strbuf_18, textAdder->strbuf_1C, i);
-        xOffset = (136 - Font_CalcStrbufWidth(FONT_SYSTEM, textAdder->strbuf_18, 0)) / 2;
-        Text_AddPrinterWithParamsAndColor(textAdder->window, FONT_SYSTEM, textAdder->strbuf_18, textAdder->xPosition + xOffset, yOffset + i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        String_CopyLineNum(textAdder->string_18, textAdder->string_1C, i);
+        xOffset = (136 - Font_CalcStringWidth(FONT_SYSTEM, textAdder->string_18, 0)) / 2;
+        Text_AddPrinterWithParamsAndColor(textAdder->window, FONT_SYSTEM, textAdder->string_18, textAdder->xPosition + xOffset, yOffset + i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
 }
 
@@ -1284,18 +1284,18 @@ static void HallOfFame_LoadPokemonText(HallOfFamePokemonTextAdder *textAdder)
 
     switch (Pokemon_GetGender(textAdder->mon)) {
     case GENDER_MALE:
-        MessageLoader_GetStrbuf(textAdder->msgLoader, HallOfFame_Text_PokemonInfoMale, textAdder->strbuf_18);
+        MessageLoader_GetString(textAdder->msgLoader, HallOfFame_Text_PokemonInfoMale, textAdder->string_18);
         break;
     case GENDER_FEMALE:
-        MessageLoader_GetStrbuf(textAdder->msgLoader, HallOfFame_Text_PokemonInfoFemale, textAdder->strbuf_18);
+        MessageLoader_GetString(textAdder->msgLoader, HallOfFame_Text_PokemonInfoFemale, textAdder->string_18);
         break;
     case GENDER_NONE:
     default:
-        MessageLoader_GetStrbuf(textAdder->msgLoader, HallOfFame_Text_PokemonInfoGenderless, textAdder->strbuf_18);
+        MessageLoader_GetString(textAdder->msgLoader, HallOfFame_Text_PokemonInfoGenderless, textAdder->string_18);
         break;
     }
 
-    StringTemplate_Format(textAdder->strTemplate, textAdder->strbuf_1C, textAdder->strbuf_18);
+    StringTemplate_Format(textAdder->strTemplate, textAdder->string_1C, textAdder->string_18);
 }
 
 static void HallOfFame_LoadMetString(HallOfFamePokemonTextAdder *textAdder)
@@ -1309,8 +1309,8 @@ static void HallOfFame_LoadMetString(HallOfFamePokemonTextAdder *textAdder)
         break;
     }
 
-    MessageLoader_GetStrbuf(textAdder->msgLoader, HallOfFame_Text_MetAt + metStringIndex, textAdder->strbuf_18);
-    StringTemplate_Format(textAdder->strTemplate, textAdder->strbuf_1C, textAdder->strbuf_18);
+    MessageLoader_GetString(textAdder->msgLoader, HallOfFame_Text_MetAt + metStringIndex, textAdder->string_18);
+    StringTemplate_Format(textAdder->strTemplate, textAdder->string_1C, textAdder->string_18);
 }
 
 static void HallOfFame_PrintPokemonText(SysTask *task, void *data)
@@ -1324,14 +1324,14 @@ static void HallOfFame_PrintPokemonText(SysTask *task, void *data)
 
     switch (textAdder->state) {
     case 0:
-        MessageLoader_GetStrbuf(textAdder->msgLoader, HallOfFame_Text_Welcome, textAdder->strbuf_1C);
+        MessageLoader_GetString(textAdder->msgLoader, HallOfFame_Text_Welcome, textAdder->string_1C);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT);
         Window_LoadTiles(textAdder->window);
         textAdder->delay = 20;
         textAdder->state++;
         break;
     case 1:
-        Pokemon_GetValue(textAdder->mon, MON_DATA_NICKNAME_STRING, textAdder->strbuf_1C);
+        Pokemon_GetValue(textAdder->mon, MON_DATA_NICKNAME_STRING, textAdder->string_1C);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 3);
         HallOfFame_LoadPokemonText(textAdder);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 4);
@@ -1341,8 +1341,8 @@ static void HallOfFame_PrintPokemonText(SysTask *task, void *data)
         break;
     case 2:
         StringTemplate_SetOTName(textAdder->strTemplate, 0, Pokemon_GetBoxPokemon(textAdder->mon));
-        MessageLoader_GetStrbuf(textAdder->msgLoader, HallOfFame_Text_OT, textAdder->strbuf_18);
-        StringTemplate_Format(textAdder->strTemplate, textAdder->strbuf_1C, textAdder->strbuf_18);
+        MessageLoader_GetString(textAdder->msgLoader, HallOfFame_Text_OT, textAdder->string_18);
+        StringTemplate_Format(textAdder->strTemplate, textAdder->string_1C, textAdder->string_18);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 6);
         HallOfFame_LoadMetString(textAdder);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 7);
@@ -1403,20 +1403,20 @@ static void HallOfFame_ShowPlayerText(HallOfFameMan *hallOfFameMan)
 {
     int xOffset;
 
-    MessageLoader_GetStrbuf(hallOfFameMan->msgLoaderHallOfFame, HallOfFame_Text_LeagueChampionCongratulations, hallOfFameMan->strbuf_1C30);
+    MessageLoader_GetString(hallOfFameMan->msgLoaderHallOfFame, HallOfFame_Text_LeagueChampionCongratulations, hallOfFameMan->string_1C30);
 
-    xOffset = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, hallOfFameMan->strbuf_1C30, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->strbuf_1C30, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, hallOfFameMan->string_1C30, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->string_1C30, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     StringTemplate_SetPlayerName(hallOfFameMan->strTemplate, 0, hallOfFameMan->displayData->trainerInfo);
 
     StringTemplate_SetNumber(hallOfFameMan->strTemplate, 1, TrainerInfo_ID_LowHalf(hallOfFameMan->displayData->trainerInfo), 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
     StringTemplate_SetNumber(hallOfFameMan->strTemplate, 2, PlayTime_GetHours(hallOfFameMan->displayData->playTime), 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_SetNumber(hallOfFameMan->strTemplate, 3, PlayTime_GetMinutes(hallOfFameMan->displayData->playTime), 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    MessageLoader_GetStrbuf(hallOfFameMan->msgLoaderHallOfFame, HallOfFame_Text_PlayerInfo, hallOfFameMan->strbuf_1C4C);
-    StringTemplate_Format(hallOfFameMan->strTemplate, hallOfFameMan->strbuf_1C30, hallOfFameMan->strbuf_1C4C);
+    MessageLoader_GetString(hallOfFameMan->msgLoaderHallOfFame, HallOfFame_Text_PlayerInfo, hallOfFameMan->string_1C4C);
+    StringTemplate_Format(hallOfFameMan->strTemplate, hallOfFameMan->string_1C30, hallOfFameMan->string_1C4C);
 
-    xOffset = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, hallOfFameMan->strbuf_1C30, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->strbuf_1C30, xOffset, 172, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    xOffset = (256 - Font_CalcStringWidth(FONT_SYSTEM, hallOfFameMan->string_1C30, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&hallOfFameMan->window, FONT_SYSTEM, hallOfFameMan->string_1C30, xOffset, 172, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_LoadTiles(&hallOfFameMan->window);
 }
 
@@ -1900,10 +1900,10 @@ static int HallOfFame_GetMetStringIndex(HallOfFameMan *hallOfFameMan, Pokemon *m
             break;
         }
 
-        TrainerInfo_NameStrbuf(trainerInfo, hallOfFameMan->strbuf_1C30);
-        Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, hallOfFameMan->strbuf_1C4C);
+        TrainerInfo_NameString(trainerInfo, hallOfFameMan->string_1C30);
+        Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, hallOfFameMan->string_1C4C);
 
-        if (Strbuf_Compare(hallOfFameMan->strbuf_1C30, hallOfFameMan->strbuf_1C4C)) {
+        if (String_Compare(hallOfFameMan->string_1C30, hallOfFameMan->string_1C4C)) {
             metStringIndex = HallOfFame_Text_ObtainedInLinkTrade - HallOfFame_Text_MetAt;
             break;
         }

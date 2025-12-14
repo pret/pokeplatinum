@@ -12,14 +12,14 @@
 #include "message.h"
 #include "save_player.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02014A84.h"
 
 typedef struct ScriptMessage {
-    Strbuf *msgBuf;
-    Strbuf *tempBuf;
+    String *msgBuf;
+    String *tempBuf;
     StringTemplate *template;
     Window *window;
     u8 *isOpen;
@@ -31,7 +31,7 @@ static void InitScriptMessage(FieldSystem *fieldSystem, ScriptMessage *msgData);
 static void Init_ScriptMessageTemplate(FieldSystem *fieldSystem, StringTemplate *template, ScriptMessage *msgData);
 static void OpenMessageBox(FieldSystem *fieldSystem, ScriptMessage *msgData);
 static void LoadAndFormatMessage(ScriptMessage *msgData, const MessageLoader *msgLoader, u32 bufferEntryID);
-static void GetStrBufFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2);
+static void GetStringFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2);
 static void PrintFieldMessage(ScriptMessage *msgData, int fontID, int renderDelay, int canSkipDelay, BOOL autoScroll);
 static void PrintTextMessage(ScriptMessage *msgData, int fontID);
 
@@ -83,7 +83,7 @@ void ScriptMessage_ShowSentence(ScriptContext *ctx, u16 sentenceType, u16 senten
 
     InitScriptMessage(ctx->fieldSystem, &msgData);
     OpenMessageBox(ctx->fieldSystem, &msgData);
-    GetStrBufFromSentence(&msgData, sentenceType, sentenceID, word1, word2);
+    GetStringFromSentence(&msgData, sentenceType, sentenceID, word1, word2);
 
     if (canSkipDelay != FIELD_MESSAGE_SENTENCE_INSTANT) {
         PrintFieldMessage(&msgData, FONT_MESSAGE, GetTextFrameDelay(ctx), canSkipDelay, FALSE);
@@ -109,8 +109,8 @@ static u8 GetTextFrameDelay(ScriptContext *ctx)
 
 static void InitScriptMessage(FieldSystem *fieldSystem, ScriptMessage *msgData)
 {
-    msgData->msgBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    msgData->tempBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    msgData->msgBuf = *(String **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    msgData->tempBuf = *(String **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
     msgData->template = *(StringTemplate **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     msgData->window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
     msgData->isOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
@@ -119,8 +119,8 @@ static void InitScriptMessage(FieldSystem *fieldSystem, ScriptMessage *msgData)
 
 static void Init_ScriptMessageTemplate(FieldSystem *fieldSystem, StringTemplate *template, ScriptMessage *msgData)
 {
-    msgData->msgBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    msgData->tempBuf = *(Strbuf **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    msgData->msgBuf = *(String **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    msgData->tempBuf = *(String **)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
     msgData->template = template;
     msgData->window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
     msgData->isOpen = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
@@ -140,24 +140,24 @@ static void OpenMessageBox(FieldSystem *fieldSystem, ScriptMessage *msgData)
 
 static void LoadAndFormatMessage(ScriptMessage *msgData, const MessageLoader *msgLoader, u32 bufferEntryID)
 {
-    MessageLoader_GetStrbuf(msgLoader, bufferEntryID, msgData->tempBuf);
+    MessageLoader_GetString(msgLoader, bufferEntryID, msgData->tempBuf);
     StringTemplate_Format(msgData->template, msgData->msgBuf, msgData->tempBuf);
 }
 
-static void GetStrBufFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2)
+static void GetStringFromSentence(ScriptMessage *msgData, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2)
 {
     Sentence sentence;
-    Strbuf *strBuf;
+    String *string;
 
     sub_02014A84(&sentence);
     sub_02014CE0(&sentence, sentenceType, sentenceID);
     sub_02014CF8(&sentence, 0, word1);
     sub_02014CF8(&sentence, 1, word2);
 
-    strBuf = sub_02014B34(&sentence, HEAP_ID_FIELD3);
+    string = sub_02014B34(&sentence, HEAP_ID_FIELD3);
 
-    Strbuf_Copy(msgData->msgBuf, strBuf);
-    Strbuf_Free(strBuf);
+    String_Copy(msgData->msgBuf, string);
+    String_Free(string);
 }
 
 static void PrintFieldMessage(ScriptMessage *msgData, int fontID, int renderDelay, int canSkipDelay, BOOL autoScroll)

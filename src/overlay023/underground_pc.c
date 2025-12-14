@@ -41,7 +41,7 @@
 #include "screen_fade.h"
 #include "scroll_prompts.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -665,8 +665,8 @@ static BOOL UndergroundPC_DecorateTask(FieldTask *task)
 
 static void UndergroundPC_ExitPCMenu(SysTask *sysTask, UndergroundMenu *menu)
 {
-    Strbuf_Free(menu->strbuf);
-    Strbuf_Free(menu->fmtString);
+    String_Free(menu->string);
+    String_Free(menu->fmtString);
     StringTemplate_Free(menu->template);
 
     if (menu->exitCallback != NULL) {
@@ -852,8 +852,8 @@ static void UndergroundPC_OpenPCMenu(FieldSystem *fieldSystem)
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_PC, MSG_LOADER_LOAD_ON_DEMAND);
 
     menu->state = UG_PC_MENU_STATE_INIT;
-    menu->strbuf = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->scrollPrompts = ScrollPrompts_New(HEAP_ID_FIELD1);
 

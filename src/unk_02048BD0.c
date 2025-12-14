@@ -12,7 +12,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
@@ -80,15 +80,15 @@ BOOL ScrCmd_21D(ScriptContext *param0)
     }
         return 0;
     case 6: {
-        Strbuf *v14 = Strbuf_Init(64, HEAP_ID_FIELD3);
+        String *v14 = String_Init(64, HEAP_ID_FIELD3);
         TrainerInfo *v15 = SaveData_GetTrainerInfo(param0->fieldSystem->saveData);
 
-        TrainerInfo_NameStrbuf(v15, v14);
-        RecordMixedRNG_GetEntryNameAsStrbuf(v1, 0, 1, v14);
+        TrainerInfo_NameString(v15, v14);
+        RecordMixedRNG_GetEntryNameAsString(v1, 0, 1, v14);
         RecordMixedRNG_SetEntryGender(v1, 0, TrainerInfo_Gender(v15));
         RecordMixedRNG_SetEntryCountryCode(v1, 0, GAME_LANGUAGE);
         RecordMixedRNG_SetEntrySeed(v1, 0, MTRNG_Next());
-        Strbuf_Free(v14);
+        String_Free(v14);
         RecordMixedRNG_CopyEntry(v1, 0, 1);
         FieldSystem_SaveTVEpisodeSegment_LoveThatGroupCorner_NewGroup(param0->fieldSystem);
     } break;

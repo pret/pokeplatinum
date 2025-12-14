@@ -29,7 +29,7 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_padding_mode.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -111,13 +111,13 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
     // Forward declarations required to match
     u8 i;
     u16 bannedSpecies;
-    Strbuf *speciesName, *unused;
+    String *speciesName, *unused;
     Pokedex *pokedex;
     StringTemplate *bannedSpeciesList;
     MessageLoader *speciesNameLoader;
 
-    speciesName = Strbuf_Init(14, HEAP_ID_FIELD1);
-    unused = Strbuf_Init(2, HEAP_ID_FIELD1);
+    speciesName = String_Init(14, HEAP_ID_FIELD1);
+    unused = String_Init(2, HEAP_ID_FIELD1);
     pokedex = SaveData_GetPokedex(saveData);
     speciesNameLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
     bannedSpeciesList = StringTemplate_New(BATTLE_FRONTIER_BANLIST_SIZE + 1, 14, HEAP_ID_FIELD1);
@@ -128,15 +128,15 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
         bannedSpecies = Pokemon_GetBattleFrontierBanlistEntry(i);
 
         if (Pokedex_HasSeenSpecies(pokedex, bannedSpecies)) {
-            MessageLoader_GetStrbuf(speciesNameLoader, bannedSpecies, speciesName);
-            StringTemplate_SetStrbuf(bannedSpeciesList, (*outNumBannedSeen) + 1, speciesName, unused2, unused3, GAME_LANGUAGE);
+            MessageLoader_GetString(speciesNameLoader, bannedSpecies, speciesName);
+            StringTemplate_SetString(bannedSpeciesList, (*outNumBannedSeen) + 1, speciesName, unused2, unused3, GAME_LANGUAGE);
             (*outNumBannedSeen)++;
         }
     }
 
     MessageLoader_Free(speciesNameLoader);
-    Strbuf_Free(unused);
-    Strbuf_Free(speciesName);
+    String_Free(unused);
+    String_Free(speciesName);
 
     return bannedSpeciesList;
 }
@@ -292,10 +292,10 @@ static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 para
     param0->trDataDTO.unk_18[1] = param1 * 3;
     param0->trDataDTO.trainerType = v0->trainerType;
 
-    Strbuf *v2 = MessageLoader_GetNewStrbuf(v1, param1);
+    String *v2 = MessageLoader_GetNewString(v1, param1);
 
-    Strbuf_ToChars(v2, &param0->trDataDTO.trainerName[0], TRAINER_NAME_LEN + 1);
-    Strbuf_Free(v2);
+    String_ToChars(v2, &param0->trDataDTO.trainerName[0], TRAINER_NAME_LEN + 1);
+    String_Free(v2);
     MessageLoader_Free(v1);
 
     return v0;

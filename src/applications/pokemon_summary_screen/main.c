@@ -43,7 +43,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "system_flags.h"
@@ -90,7 +90,7 @@ enum SummaryPageState {
     PAGE_STATE_SCROLL_FINISHED,
 };
 
-#define SUMMARY_STRBUF_LEN 128
+#define SUMMARY_STRING_LEN 128
 
 // also used by pageState, specifically for the condition page
 #define STAT_INCREASE_NONE 0
@@ -536,15 +536,15 @@ static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
     summaryScreen->ribbonLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_RIBBON_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->unk_684 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->strFormatter = StringTemplate_Default(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->monData.speciesName = Strbuf_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->monData.nickname = Strbuf_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->monData.OTName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->strbuf = Strbuf_Init(SUMMARY_STRBUF_LEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.speciesName = String_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.nickname = String_Init(MON_NAME_LEN + 2, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monData.OTName = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->string = String_Init(SUMMARY_STRING_LEN, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->moveNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->playerName = Strbuf_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->playerName = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     if (summaryScreen->data->OTName != NULL) {
-        Strbuf_CopyChars(summaryScreen->playerName, summaryScreen->data->OTName);
+        String_CopyChars(summaryScreen->playerName, summaryScreen->data->OTName);
     }
 }
 
@@ -555,11 +555,11 @@ static void FreeStrings(PokemonSummaryScreen *summaryScreen)
     MessageLoader_Free(summaryScreen->msgLoader);
     FontSpecialChars_Free(summaryScreen->unk_684);
     StringTemplate_Free(summaryScreen->strFormatter);
-    Strbuf_Free(summaryScreen->monData.speciesName);
-    Strbuf_Free(summaryScreen->monData.nickname);
-    Strbuf_Free(summaryScreen->monData.OTName);
-    Strbuf_Free(summaryScreen->strbuf);
-    Strbuf_Free(summaryScreen->playerName);
+    String_Free(summaryScreen->monData.speciesName);
+    String_Free(summaryScreen->monData.nickname);
+    String_Free(summaryScreen->monData.OTName);
+    String_Free(summaryScreen->string);
+    String_Free(summaryScreen->playerName);
 }
 
 static int WaitSummaryScreenTransition(PokemonSummaryScreen *summaryScreen)
@@ -1063,17 +1063,17 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_SpeciesNameTemplate, summaryScreen->strbuf);
+    MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_SpeciesNameTemplate, summaryScreen->string);
     StringTemplate_SetSpeciesName(summaryScreen->strFormatter, 0, boxMon);
-    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.speciesName, summaryScreen->strbuf);
+    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.speciesName, summaryScreen->string);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_NicknameTemplate, summaryScreen->strbuf);
+    MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_NicknameTemplate, summaryScreen->string);
     StringTemplate_SetNickname(summaryScreen->strFormatter, 0, boxMon);
-    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.nickname, summaryScreen->strbuf);
+    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.nickname, summaryScreen->string);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, PokemonSummary_Text_OtnameTemplate, summaryScreen->strbuf);
+    MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_OtnameTemplate, summaryScreen->string);
     StringTemplate_SetOTName(summaryScreen->strFormatter, 0, boxMon);
-    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->strbuf);
+    StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->string);
 
     monData->heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     monData->level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
