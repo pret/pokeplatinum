@@ -148,19 +148,19 @@ _022E:
 
 _0239:
     BufferNumber 0, 20
-    SetVar VAR_0x8004, GOOD_BRONZE_TROPHY
+    SetVar VAR_0x8004, UG_GOOD_BRONZE_TROPHY
     GoTo _0272
     End
 
 _024C:
     BufferNumber 0, 50
-    SetVar VAR_0x8004, GOOD_SILVER_TROPHY
+    SetVar VAR_0x8004, UG_GOOD_SILVER_TROPHY
     GoTo _0272
     End
 
 _025F:
     BufferNumber 0, 100
-    SetVar VAR_0x8004, GOOD_GOLD_TROPHY
+    SetVar VAR_0x8004, UG_GOOD_GOLD_TROPHY
     GoTo _0272
     End
 

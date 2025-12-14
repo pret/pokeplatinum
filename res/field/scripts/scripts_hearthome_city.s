@@ -318,7 +318,7 @@ _03AC:
     GoToIfSet FLAG_UNK_0x014A, _03F4
     GoToIfUnset FLAG_CONNECTED_TO_WIFI, _03F4
     Message 33
-    SetVar VAR_0x8004, GOOD_GLOBE
+    SetVar VAR_0x8004, UG_GOOD_GLOBE
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -333,7 +333,7 @@ _03F4:
     CountBadgesAcquired VAR_RESULT
     GoToIfLt VAR_RESULT, 8, _0442
     Message 34
-    SetVar VAR_0x8004, GOOD_GYM_STATUE
+    SetVar VAR_0x8004, UG_GOOD_GYM_STATUE
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -347,7 +347,7 @@ _0442:
     GoToIfSet FLAG_UNK_0x014C, _048A
     GoToIfUnset FLAG_CONTEST_MASTER_CUTE, _048A
     Message 35
-    SetVar VAR_0x8004, GOOD_CUTE_CUP
+    SetVar VAR_0x8004, UG_GOOD_CUTE_CUP
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -361,7 +361,7 @@ _048A:
     GoToIfSet FLAG_UNK_0x014D, _04D2
     GoToIfUnset FLAG_CONTEST_MASTER_COOL, _04D2
     Message 36
-    SetVar VAR_0x8004, GOOD_COOL_CUP
+    SetVar VAR_0x8004, UG_GOOD_COOL_CUP
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -375,7 +375,7 @@ _04D2:
     GoToIfSet FLAG_UNK_0x014E, _051A
     GoToIfUnset FLAG_CONTEST_MASTER_BEAUTY, _051A
     Message 37
-    SetVar VAR_0x8004, GOOD_BEAUTY_CUP
+    SetVar VAR_0x8004, UG_GOOD_BEAUTY_CUP
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -389,7 +389,7 @@ _051A:
     GoToIfSet FLAG_UNK_0x014F, _0562
     GoToIfUnset FLAG_CONTEST_MASTER_TOUGH, _0562
     Message 38
-    SetVar VAR_0x8004, GOOD_TOUGH_CUP
+    SetVar VAR_0x8004, UG_GOOD_TOUGH_CUP
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -403,7 +403,7 @@ _0562:
     GoToIfSet FLAG_UNK_0x0150, _05AA
     GoToIfUnset FLAG_CONTEST_MASTER_SMART, _05AA
     Message 39
-    SetVar VAR_0x8004, GOOD_CLEVER_CUP
+    SetVar VAR_0x8004, UG_GOOD_CLEVER_CUP
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -418,7 +418,7 @@ _05AA:
     GetUndergroundTalkCounter VAR_RESULT
     GoToIfLt VAR_RESULT, 100, _05F8
     Message 40
-    SetVar VAR_0x8004, GOOD_BLUE_CRYSTAL
+    SetVar VAR_0x8004, UG_GOOD_BLUE_CRYSTAL
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -433,7 +433,7 @@ _05F8:
     GetUndergroundItemsGivenAway VAR_RESULT
     GoToIfLt VAR_RESULT, 100, _0646
     Message 41
-    SetVar VAR_0x8004, GOOD_PINK_CRYSTAL
+    SetVar VAR_0x8004, UG_GOOD_PINK_CRYSTAL
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -448,7 +448,7 @@ _0646:
     GetUndergroundFossilsUnearthed VAR_RESULT
     GoToIfLt VAR_RESULT, 100, _0694
     Message 42
-    SetVar VAR_0x8004, GOOD_RED_CRYSTAL
+    SetVar VAR_0x8004, UG_GOOD_RED_CRYSTAL
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
@@ -463,7 +463,7 @@ _0694:
     GetUndergroundTrapsSet VAR_RESULT
     GoToIfLt VAR_RESULT, 100, _06E2
     Message 43
-    SetVar VAR_0x8004, GOOD_YELLOW_CRYSTAL
+    SetVar VAR_0x8004, UG_GOOD_YELLOW_CRYSTAL
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3

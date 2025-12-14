@@ -28,7 +28,7 @@ typedef struct Good {
 
 // clang-format off
 static const Good sGoods[] = {
-    [GOOD_NONE] = {
+    [UG_GOOD_NONE] = {
         .width = 0,
         .depth = 0,
         .collision = { 
@@ -46,7 +46,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PC_NORMAL_FLAG] = {
+    [UG_GOOD_PC_NORMAL_FLAG] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -64,7 +64,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PC_BRONZE_FLAG] = {
+    [UG_GOOD_PC_BRONZE_FLAG] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -82,7 +82,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PC_SILVER_FLAG] = {
+    [UG_GOOD_PC_SILVER_FLAG] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -100,7 +100,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PC_GOLD_FLAG] = {
+    [UG_GOOD_PC_GOLD_FLAG] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -118,7 +118,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PC_PLATINUM_FLAG] = {
+    [UG_GOOD_PC_PLATINUM_FLAG] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -136,7 +136,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BIG_BOULDER] = {
+    [UG_GOOD_BIG_BOULDER] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -154,7 +154,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_YELLOW_CUSHION] = {
+    [UG_GOOD_YELLOW_CUSHION] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -172,7 +172,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BLUE_CUSHION] = {
+    [UG_GOOD_BLUE_CUSHION] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -190,7 +190,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_WOODEN_CHAIR] = {
+    [UG_GOOD_WOODEN_CHAIR] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -208,7 +208,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BIG_TABLE] = {
+    [UG_GOOD_BIG_TABLE] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -226,7 +226,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PLAIN_TABLE] = {
+    [UG_GOOD_PLAIN_TABLE] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -244,7 +244,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_SMALL_TABLE] = {
+    [UG_GOOD_SMALL_TABLE] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -262,7 +262,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_LONG_TABLE] = {
+    [UG_GOOD_LONG_TABLE] = {
         .width = 1,
         .depth = 3,
         .collision = {
@@ -280,7 +280,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_WIDE_TABLE] = {
+    [UG_GOOD_WIDE_TABLE] = {
         .width = 3,
         .depth = 1,
         .collision = {
@@ -298,7 +298,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_POKE_TABLE] = {
+    [UG_GOOD_POKE_TABLE] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -316,7 +316,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BIG_BOOKSHELF] = {
+    [UG_GOOD_BIG_BOOKSHELF] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -334,7 +334,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_SMALL_BOOKSHELF] = {
+    [UG_GOOD_SMALL_BOOKSHELF] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -352,7 +352,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_RESEARCH_SHELF] = {
+    [UG_GOOD_RESEARCH_SHELF] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -370,7 +370,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BIKE_RACK] = {
+    [UG_GOOD_BIKE_RACK] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -388,7 +388,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_SHOP_SHELF] = {
+    [UG_GOOD_SHOP_SHELF] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -406,7 +406,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_DISPLAY_SHELF] = {
+    [UG_GOOD_DISPLAY_SHELF] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -424,7 +424,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_CUPBOARD] = {
+    [UG_GOOD_CUPBOARD] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -442,7 +442,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_WOOD_DRESSER] = {
+    [UG_GOOD_WOOD_DRESSER] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -460,7 +460,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PINK_DRESSER] = {
+    [UG_GOOD_PINK_DRESSER] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -478,7 +478,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_TV] = {
+    [UG_GOOD_TV] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -496,7 +496,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_REFRIGERATOR] = {
+    [UG_GOOD_REFRIGERATOR] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -514,7 +514,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PRETTY_SINK] = {
+    [UG_GOOD_PRETTY_SINK] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -532,7 +532,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_FEATHERY_BED] = {
+    [UG_GOOD_FEATHERY_BED] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -550,7 +550,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_TRASH_CAN] = {
+    [UG_GOOD_TRASH_CAN] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -568,7 +568,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_CARDBOARD_BOX] = {
+    [UG_GOOD_CARDBOARD_BOX] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -586,7 +586,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_CRATE] = {
+    [UG_GOOD_CRATE] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -604,7 +604,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_CONTAINER] = {
+    [UG_GOOD_CONTAINER] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -622,7 +622,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_OIL_DRUM] = {
+    [UG_GOOD_OIL_DRUM] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -640,7 +640,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BIG_OIL_DRUM] = {
+    [UG_GOOD_BIG_OIL_DRUM] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -658,7 +658,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_IRON_BEAM] = {
+    [UG_GOOD_IRON_BEAM] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -676,7 +676,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_POTTED_PLANT] = {
+    [UG_GOOD_POTTED_PLANT] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -694,7 +694,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_POKE_FLOWER] = {
+    [UG_GOOD_POKE_FLOWER] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -712,7 +712,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_HEALING_MACHINE] = {
+    [UG_GOOD_HEALING_MACHINE] = {
         .width = 2,
         .depth = 3,
         .collision = {
@@ -730,7 +730,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_LAB_MACHINE] = {
+    [UG_GOOD_LAB_MACHINE] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -748,7 +748,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_TEST_MACHINE] = {
+    [UG_GOOD_TEST_MACHINE] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -766,7 +766,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_GAME_SYSTEM] = {
+    [UG_GOOD_GAME_SYSTEM] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -784,7 +784,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_VENDING_MACHINE] = {
+    [UG_GOOD_VENDING_MACHINE] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -802,7 +802,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_RED_BIKE] = {
+    [UG_GOOD_RED_BIKE] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -820,7 +820,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_GREEN_BIKE] = {
+    [UG_GOOD_GREEN_BIKE] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -838,7 +838,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BINOCULARS] = {
+    [UG_GOOD_BINOCULARS] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -856,7 +856,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_GLOBE] = {
+    [UG_GOOD_GLOBE] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -874,7 +874,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_GYM_STATUE] = {
+    [UG_GOOD_GYM_STATUE] = {
         .width = 1,
         .depth = 2,
         .collision = {
@@ -892,7 +892,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_RED_TENT] = {
+    [UG_GOOD_RED_TENT] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -910,7 +910,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BLUE_TENT] = {
+    [UG_GOOD_BLUE_TENT] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -928,7 +928,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_CLEAR_TENT] = {
+    [UG_GOOD_CLEAR_TENT] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -946,7 +946,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_MAZE_BLOCK_1] = {
+    [UG_GOOD_MAZE_BLOCK_1] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -964,7 +964,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_MAZE_BLOCK_2] = {
+    [UG_GOOD_MAZE_BLOCK_2] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -982,7 +982,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_MAZE_BLOCK_3] = {
+    [UG_GOOD_MAZE_BLOCK_3] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -1000,7 +1000,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_MAZE_BLOCK_4] = {
+    [UG_GOOD_MAZE_BLOCK_4] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -1018,7 +1018,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_MAZE_BLOCK_5] = {
+    [UG_GOOD_MAZE_BLOCK_5] = {
         .width = 3,
         .depth = 3,
         .collision = {
@@ -1036,7 +1036,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_HOLE_TOOL] = {
+    [UG_GOOD_HOLE_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1054,7 +1054,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_PIT_TOOL] = {
+    [UG_GOOD_PIT_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1072,7 +1072,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_SMOKE_TOOL] = {
+    [UG_GOOD_SMOKE_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1090,7 +1090,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_BIG_SMOKE_TOOL] = {
+    [UG_GOOD_BIG_SMOKE_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1108,7 +1108,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_ROCK_TOOL] = {
+    [UG_GOOD_ROCK_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1126,7 +1126,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_ROCKFALL_TOOL] = {
+    [UG_GOOD_ROCKFALL_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1144,7 +1144,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_FOAM_TOOL] = {
+    [UG_GOOD_FOAM_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1162,7 +1162,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_BUBBLE_TOOL] = {
+    [UG_GOOD_BUBBLE_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1180,7 +1180,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_ALERT_TOOL_1] = {
+    [UG_GOOD_ALERT_TOOL_1] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1198,7 +1198,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_ALERT_TOOL_2] = {
+    [UG_GOOD_ALERT_TOOL_2] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1216,7 +1216,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_ALERT_TOOL_3] = {
+    [UG_GOOD_ALERT_TOOL_3] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1234,7 +1234,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_ALERT_TOOL_4] = {
+    [UG_GOOD_ALERT_TOOL_4] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1252,7 +1252,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_LEAF_TOOL] = {
+    [UG_GOOD_LEAF_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1270,7 +1270,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_FLOWER_TOOL] = {
+    [UG_GOOD_FLOWER_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1288,7 +1288,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_EMBER_TOOL] = {
+    [UG_GOOD_EMBER_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1306,7 +1306,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_FIRE_TOOL] = {
+    [UG_GOOD_FIRE_TOOL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1324,7 +1324,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = FALSE,
     },
-    [GOOD_CUTE_CUP] = {
+    [UG_GOOD_CUTE_CUP] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1342,7 +1342,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_COOL_CUP] = {
+    [UG_GOOD_COOL_CUP] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1360,7 +1360,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BEAUTY_CUP] = {
+    [UG_GOOD_BEAUTY_CUP] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1378,7 +1378,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_TOUGH_CUP] = {
+    [UG_GOOD_TOUGH_CUP] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1396,7 +1396,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_CLEVER_CUP] = {
+    [UG_GOOD_CLEVER_CUP] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1414,7 +1414,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BLUE_CRYSTAL] = {
+    [UG_GOOD_BLUE_CRYSTAL] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1432,7 +1432,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_PINK_CRYSTAL] = {
+    [UG_GOOD_PINK_CRYSTAL] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1450,7 +1450,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_RED_CRYSTAL] = {
+    [UG_GOOD_RED_CRYSTAL] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1468,7 +1468,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_YELLOW_CRYSTAL] = {
+    [UG_GOOD_YELLOW_CRYSTAL] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1486,7 +1486,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_PRETTY_GEM] = {
+    [UG_GOOD_PRETTY_GEM] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1504,7 +1504,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_SHINY_GEM] = {
+    [UG_GOOD_SHINY_GEM] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1522,7 +1522,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_MYSTIC_GEM] = {
+    [UG_GOOD_MYSTIC_GEM] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1540,7 +1540,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_GLITTER_GEM] = {
+    [UG_GOOD_GLITTER_GEM] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1558,7 +1558,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BRONZE_TROPHY] = {
+    [UG_GOOD_BRONZE_TROPHY] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1576,7 +1576,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_SILVER_TROPHY] = {
+    [UG_GOOD_SILVER_TROPHY] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1594,7 +1594,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_GOLD_TROPHY] = {
+    [UG_GOOD_GOLD_TROPHY] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1612,7 +1612,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_GREAT_TROPHY_UNUSED] = {
+    [UG_GOOD_GREAT_TROPHY_UNUSED] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1630,7 +1630,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BALL_ORNAMENT_UNUSED] = {
+    [UG_GOOD_BALL_ORNAMENT_UNUSED] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1648,7 +1648,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_ROUND_ORNAMENT_UNUSED] = {
+    [UG_GOOD_ROUND_ORNAMENT_UNUSED] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1666,7 +1666,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_CLEAR_ORNAMENT_UNUSED] = {
+    [UG_GOOD_CLEAR_ORNAMENT_UNUSED] = {
         .width = 2,
         .depth = 2,
         .collision = {
@@ -1684,7 +1684,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_CHARMANDER_DOLL] = {
+    [UG_GOOD_CHARMANDER_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1702,7 +1702,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_BULBASAUR_DOLL] = {
+    [UG_GOOD_BULBASAUR_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1720,7 +1720,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_SQUIRTLE_DOLL] = {
+    [UG_GOOD_SQUIRTLE_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1738,7 +1738,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_CYNDAQUIL_DOLL] = {
+    [UG_GOOD_CYNDAQUIL_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1756,7 +1756,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_CHIKORITA_DOLL] = {
+    [UG_GOOD_CHIKORITA_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1774,7 +1774,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_TOTODILE_DOLL] = {
+    [UG_GOOD_TOTODILE_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1792,7 +1792,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_TORCHIC_DOLL] = {
+    [UG_GOOD_TORCHIC_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1810,7 +1810,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_TREECKO_DOLL] = {
+    [UG_GOOD_TREECKO_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1828,7 +1828,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_MUDKIP_DOLL] = {
+    [UG_GOOD_MUDKIP_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1846,7 +1846,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_CHIMCHAR_DOLL] = {
+    [UG_GOOD_CHIMCHAR_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1864,7 +1864,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_TURTWIG_DOLL] = {
+    [UG_GOOD_TURTWIG_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1882,7 +1882,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_PIPLUP_DOLL] = {
+    [UG_GOOD_PIPLUP_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1900,7 +1900,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_PIKACHU_DOLL] = {
+    [UG_GOOD_PIKACHU_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1918,7 +1918,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_PLUSLE_DOLL] = {
+    [UG_GOOD_PLUSLE_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1936,7 +1936,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_MINUN_DOLL] = {
+    [UG_GOOD_MINUN_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1954,7 +1954,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_CLEFAIRY_DOLL] = {
+    [UG_GOOD_CLEFAIRY_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1972,7 +1972,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_JIGGLYPUFF_DOLL] = {
+    [UG_GOOD_JIGGLYPUFF_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -1990,7 +1990,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_WOBBUFFET_DOLL] = {
+    [UG_GOOD_WOBBUFFET_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2008,7 +2008,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_MEOWTH_DOLL] = {
+    [UG_GOOD_MEOWTH_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2026,7 +2026,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_SKITTY_DOLL] = {
+    [UG_GOOD_SKITTY_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2044,7 +2044,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_GLAMEOW_DOLL] = {
+    [UG_GOOD_GLAMEOW_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2062,7 +2062,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BUNEARY_DOLL] = {
+    [UG_GOOD_BUNEARY_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2080,7 +2080,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_WEAVILE_DOLL] = {
+    [UG_GOOD_WEAVILE_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2098,7 +2098,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_MUNCHLAX_DOLL] = {
+    [UG_GOOD_MUNCHLAX_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2116,7 +2116,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BONSLY_DOLL] = {
+    [UG_GOOD_BONSLY_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2134,7 +2134,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_MIME_JR_DOLL] = {
+    [UG_GOOD_MIME_JR_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2152,7 +2152,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_LUCARIO_DOLL] = {
+    [UG_GOOD_LUCARIO_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2170,7 +2170,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_MANTYKE_DOLL] = {
+    [UG_GOOD_MANTYKE_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2188,7 +2188,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BUIZEL_DOLL] = {
+    [UG_GOOD_BUIZEL_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2206,7 +2206,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_CHATOT_DOLL] = {
+    [UG_GOOD_CHATOT_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2224,7 +2224,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_MANAPHY_DOLL_UNUSED] = {
+    [UG_GOOD_MANAPHY_DOLL_UNUSED] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2242,7 +2242,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_SNORLAX_DOLL] = {
+    [UG_GOOD_SNORLAX_DOLL] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -2260,7 +2260,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_WAILORD_DOLL] = {
+    [UG_GOOD_WAILORD_DOLL] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -2278,7 +2278,7 @@ static const Good sGoods[] = {
         .natDexRequired = TRUE,
         .ungiftable = TRUE,
     },
-    [GOOD_MAGNEZONE_DOLL_UNUSED] = {
+    [UG_GOOD_MAGNEZONE_DOLL_UNUSED] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -2296,7 +2296,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_DRIFLOON_DOLL] = {
+    [UG_GOOD_DRIFLOON_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2314,7 +2314,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_HAPPINY_DOLL] = {
+    [UG_GOOD_HAPPINY_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2332,7 +2332,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_PACHIRISU_DOLL] = {
+    [UG_GOOD_PACHIRISU_DOLL] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2350,7 +2350,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [GOOD_BASE_ENTRANCE_SOUTH] = {
+    [UG_GOOD_BASE_ENTRANCE_SOUTH] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2368,7 +2368,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BASE_ENTRANCE_NORTH] = {
+    [UG_GOOD_BASE_ENTRANCE_NORTH] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2386,7 +2386,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BASE_ENTRANCE_EAST] = {
+    [UG_GOOD_BASE_ENTRANCE_EAST] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2404,7 +2404,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BASE_ENTRANCE_WEST] = {
+    [UG_GOOD_BASE_ENTRANCE_WEST] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2422,7 +2422,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_WIDE_SOFA] = {
+    [UG_GOOD_WIDE_SOFA] = {
         .width = 2,
         .depth = 1,
         .collision = {
@@ -2440,7 +2440,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_BONSAI] = {
+    [UG_GOOD_BONSAI] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2458,7 +2458,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_DAINTY_FLOWERS] = {
+    [UG_GOOD_DAINTY_FLOWERS] = {
         .width = 1,
         .depth = 2,
         .collision = {
@@ -2476,7 +2476,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_LOVELY_FLOWERS] = {
+    [UG_GOOD_LOVELY_FLOWERS] = {
         .width = 1,
         .depth = 2,
         .collision = {
@@ -2494,7 +2494,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_PRETTY_FLOWERS] = {
+    [UG_GOOD_PRETTY_FLOWERS] = {
         .width = 1,
         .depth = 2,
         .collision = {
@@ -2512,7 +2512,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [GOOD_LAVISH_FLOWERS] = {
+    [UG_GOOD_LAVISH_FLOWERS] = {
         .width = 3,
         .depth = 1,
         .collision = {
