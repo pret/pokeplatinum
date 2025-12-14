@@ -202,7 +202,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     Heap_Free(v6);
     FieldBattleDTO_CopyPlayerInfoToTrainerData(v5);
 
-    BattleFrontierTrainerData *v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+    BattleFrontierTrainerData *v8 = BattleTower_GetTrainerData(&v7, param0->unk_78[param0->unk_11], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
     Heap_Free(v8);
     ov104_0222E284(v5, &v7, v3, 1, 11);
@@ -228,7 +228,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
 
         TrainerInfo_Copy(CommInfo_TrainerInfo(1 - CommSys_CurNetId()), v5->trainerInfo[2]);
 
-        v8 = ov104_0222DD04(&v7, param0->unk_78[param0->unk_11 + 7], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        v8 = BattleTower_GetTrainerData(&v7, param0->unk_78[param0->unk_11 + 7], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         Heap_Free(v8);
 
         ov104_0222E284(v5, &v7, v3, 3, 11);

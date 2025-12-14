@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
-#include "struct_defs/struct_02073B50.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
@@ -14,14 +10,14 @@
 #include "heap.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
-#include "unk_02073838.h"
+#include "simple3d.h"
 
 typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_ov5_021DF47C *unk_08;
-    UnkStruct_02073838 unk_0C[3];
-    UnkStruct_02073974 unk_48[12];
+    Simple3DModel unk_0C[3];
+    Simple3DAnimation unk_48[12];
     OverworldAnimManager **unk_1F8;
     OverworldAnimManager **unk_1FC;
 } UnkStruct_ov5_021F431C;
@@ -44,14 +40,14 @@ typedef struct {
     s16 unk_02;
     s16 unk_04;
     fx32 unk_08;
-    UnkStruct_02073974 unk_0C;
-    UnkStruct_02073B50 unk_30;
+    Simple3DAnimation unk_0C;
+    Simple3DRenderObj unk_30;
     UnkStruct_ov5_021F440C unk_84;
 } UnkStruct_ov5_021F4698;
 
 typedef struct {
     u32 unk_00;
-    UnkStruct_02073974 unk_04[4];
+    Simple3DAnimation unk_04[4];
 } UnkStruct_ov5_021F45F8;
 
 typedef struct {
@@ -59,7 +55,7 @@ typedef struct {
     s16 unk_04;
     s16 unk_06;
     s16 unk_08;
-    UnkStruct_02073B50 unk_0C;
+    Simple3DRenderObj unk_0C;
     UnkStruct_ov5_021F440C unk_60;
     UnkStruct_ov5_021F45F8 *unk_74;
 } UnkStruct_ov5_021F44A4;
@@ -138,11 +134,11 @@ static void ov5_021F4370(UnkStruct_ov5_021F431C *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0207395C(&param0->unk_0C[v0]);
+        Simple3D_FreeModel(&param0->unk_0C[v0]);
     }
 
     for (v0 = 0; v0 < 12; v0++) {
-        sub_02073AA8(&param0->unk_48[v0]);
+        Simple3D_FreeAnimation(&param0->unk_48[v0]);
     }
 }
 
@@ -225,11 +221,11 @@ void ov5_021F44A4(OverworldAnimManager *param0)
     v2->unk_00 = 1;
     v2->unk_74 = ov5_021DF53C(v1->unk_08, sizeof(UnkStruct_ov5_021F45F8), 1, 0);
 
-    sub_02073B70(&v2->unk_0C, &v2->unk_60.unk_0C->unk_0C[0]);
+    Simple3D_CreateRenderObject(&v2->unk_0C, &v2->unk_60.unk_0C->unk_0C[0]);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021DFB40(v1->unk_08, &v2->unk_74->unk_04[v0], &v1->unk_0C[0], &v1->unk_48[Unk_ov5_022006E8[v0]], 0);
-        sub_02073B84(&v2->unk_0C, &v2->unk_74->unk_04[v0]);
+        Simple3D_BindAnimToRenderObj(&v2->unk_0C, &v2->unk_74->unk_04[v0]);
     }
 }
 
@@ -262,7 +258,7 @@ static int ov5_021F4560(OverworldAnimManager *param0, void *param1)
     v0.y += (FX32_ONE * 6) + v1->unk_60.unk_08;
 
     OverworldAnimManager_SetPosition(param0, &v0);
-    sub_02073B70(&v1->unk_0C, &v1->unk_60.unk_0C->unk_0C[1]);
+    Simple3D_CreateRenderObject(&v1->unk_0C, &v1->unk_60.unk_0C->unk_0C[1]);
 
     return 1;
 }
@@ -275,7 +271,7 @@ static void ov5_021F45D0(OverworldAnimManager *param0, void *param1)
         int v1;
 
         for (v1 = 0; v1 < 4; v1++) {
-            sub_02073AA8(&v0->unk_74->unk_04[v1]);
+            Simple3D_FreeAnimation(&v0->unk_74->unk_04[v1]);
         }
 
         Heap_Free(v0->unk_74);
@@ -297,7 +293,7 @@ static void ov5_021F45F8(OverworldAnimManager *param0, void *param1)
         v2 = v0->unk_74;
 
         for (v1 = 0; v1 < 4; v1++) {
-            if (sub_02073AC0(&v2->unk_04[v1], FX32_ONE, 0)) {
+            if (Simple3D_UpdateAnim(&v2->unk_04[v1], FX32_ONE, 0)) {
                 v2->unk_00 |= 1 << v1;
             }
         }
@@ -315,7 +311,7 @@ static void ov5_021F464C(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F44A4 *v1 = param1;
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_02073BB4(&v1->unk_0C, &v0);
+    Simple3D_DrawRenderObjWithPos(&v1->unk_0C, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_0220070C = {
@@ -341,12 +337,12 @@ OverworldAnimManager *ov5_021F4668(FieldSystem *fieldSystem, int param1, int par
 
 void ov5_021F4698(OverworldAnimManager *param0, int param1, BOOL param2)
 {
-    UnkStruct_02073974 *v0;
+    Simple3DAnimation *v0;
     UnkStruct_ov5_021F4698 *v2 = OverworldAnimManager_GetFuncsContext(param0);
     UnkStruct_ov5_021F431C *v1 = v2->unk_84.unk_0C;
 
     if (v2->unk_00_6 == 1) {
-        sub_02073A90(&v2->unk_0C);
+        Simple3D_FreeAnimObject(&v2->unk_0C);
     }
 
     v2->unk_00_6 = 1;
@@ -362,12 +358,12 @@ void ov5_021F4698(OverworldAnimManager *param0, int param1, BOOL param2)
     }
 
     ov5_021DFB40(v1->unk_08, &v2->unk_0C, &v1->unk_0C[2], &v1->unk_48[param1], 0);
-    sub_02073B90(&v2->unk_30, &v1->unk_0C[2], &v2->unk_0C);
+    Simple3D_CreateRenderObjectWithAnim(&v2->unk_30, &v1->unk_0C[2], &v2->unk_0C);
 }
 
 void ov5_021F4714(OverworldAnimManager *param0, fx32 param1)
 {
-    UnkStruct_02073974 *v0;
+    Simple3DAnimation *v0;
     UnkStruct_ov5_021F431C *v1;
     UnkStruct_ov5_021F4698 *v2 = OverworldAnimManager_GetFuncsContext(param0);
     v2->unk_08 = param1;
@@ -384,7 +380,7 @@ static int ov5_021F4730(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F4698 *v0 = param1;
 
     ov5_021F440C(param0, v0);
-    sub_02073B70(&v0->unk_30, &v0->unk_84.unk_0C->unk_0C[2]);
+    Simple3D_CreateRenderObject(&v0->unk_30, &v0->unk_84.unk_0C->unk_0C[2]);
 
     return 1;
 }
@@ -394,7 +390,7 @@ static void ov5_021F474C(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F4698 *v0 = param1;
 
     if (v0->unk_00_6) {
-        sub_02073AA8(&v0->unk_0C);
+        Simple3D_FreeAnimation(&v0->unk_0C);
     }
 }
 
@@ -406,7 +402,7 @@ static void ov5_021F4760(OverworldAnimManager *param0, void *param1)
     case 0:
         break;
     case 1:
-        if (sub_02073AC0(&v0->unk_0C, v0->unk_08, 0)) {
+        if (Simple3D_UpdateAnim(&v0->unk_0C, v0->unk_08, 0)) {
             v0->unk_00_0 = 0;
             v0->unk_00_7 = 1;
         }
@@ -420,7 +416,7 @@ static void ov5_021F4794(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F4698 *v1 = param1;
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_02073BB4(&v1->unk_30, &v0);
+    Simple3D_DrawRenderObjWithPos(&v1->unk_30, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_022006F8 = {
