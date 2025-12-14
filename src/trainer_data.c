@@ -18,7 +18,7 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "savedata_misc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID);
 
@@ -39,9 +39,9 @@ void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID
         if (trdata.header.trainerType == TRAINER_CLASS_RIVAL) {
             CharCode_Copy(dto->trainer[i].name, rivalName);
         } else {
-            Strbuf *trainerName = MessageLoader_GetNewStrbuf(msgLoader, dto->trainerIDs[i]);
-            Strbuf_ToChars(trainerName, dto->trainer[i].name, TRAINER_NAME_LEN + 1);
-            Strbuf_Free(trainerName);
+            String *trainerName = MessageLoader_GetNewString(msgLoader, dto->trainerIDs[i]);
+            String_ToChars(trainerName, dto->trainer[i].name, TRAINER_NAME_LEN + 1);
+            String_Free(trainerName);
         }
 
         TrainerData_BuildParty(dto, i, heapID);
@@ -124,7 +124,7 @@ BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int 
     return result;
 }
 
-void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID)
+void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, String *string, int heapID)
 {
     NARC *narc; // must declare up here to match
     u16 offset, data[2];
@@ -137,7 +137,7 @@ void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf 
         NARC_ReadFromMember(narc, 0, offset, 4, data);
 
         if (data[0] == trainerID && data[1] == msgType) {
-            MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_MESSAGES, offset / 4, heapID, strbuf);
+            MessageBank_GetStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_MESSAGES, offset / 4, heapID, string);
             break;
         }
 
@@ -147,7 +147,7 @@ void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf 
     NARC_dtor(narc);
 
     if (offset == size) {
-        Strbuf_Clear(strbuf);
+        String_Clear(string);
     }
 }
 

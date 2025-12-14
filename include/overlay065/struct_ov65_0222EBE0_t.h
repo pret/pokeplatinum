@@ -20,7 +20,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "trainer_info.h"
 
@@ -41,10 +41,10 @@ struct UnkStruct_ov65_0222EBE0_t {
     StringTemplate *unk_164;
     MessageLoader *unk_168;
     MessageLoader *unk_16C;
-    Strbuf *unk_170;
-    Strbuf *unk_174;
-    Strbuf *unk_178;
-    Strbuf *unk_17C;
+    String *unk_170;
+    String *unk_174;
+    String *unk_178;
+    String *unk_17C;
     int unk_180;
     Menu *unk_184;
     void *unk_188;

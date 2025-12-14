@@ -33,7 +33,7 @@
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_0201567C.h"
@@ -109,7 +109,7 @@ u16 *ov16_0223E0B0(BattleSystem *battleSys);
 u16 *ov16_0223E0BC(BattleSystem *battleSys);
 PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSys);
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSys);
-Strbuf *ov16_0223E0D4(BattleSystem *battleSys);
+String *ov16_0223E0D4(BattleSystem *battleSys);
 
 /**
  * @brief Get the trainer ID for a particular battler.

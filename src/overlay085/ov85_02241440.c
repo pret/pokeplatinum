@@ -18,7 +18,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "screen_fade.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -474,15 +474,15 @@ static void ov85_02241860(Window *param0)
 static void ov85_02241878(UnkStruct_ov85_022417E4 *param0, u32 param1, u32 param2, u32 param3)
 {
     Window *v0;
-    Strbuf *v1;
+    String *v1;
     u32 v2;
 
     v0 = &param0->unk_04[param1];
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, param2);
-    v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
+    v1 = MessageLoader_GetNewString(param0->unk_C4, param2);
+    v2 = Font_CalcStringWidth(FONT_SYSTEM, v1, 0);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, (Window_GetWidth(v0) * 8 - v2) / 2, 0, TEXT_SPEED_NO_TRANSFER, param3, NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_ScheduleCopyToVRAM(v0);
 }
 
@@ -525,34 +525,34 @@ static void ov85_0224196C(UnkStruct_ov85_022417E4 *param0)
 static void ov85_0224198C(UnkStruct_ov85_022417E4 *param0)
 {
     Window *v0;
-    Strbuf *v1;
-    Strbuf *v2;
+    String *v1;
+    String *v2;
 
     v0 = &param0->unk_04[1];
 
     Window_FillTilemap(v0, 0);
     FontSpecialChars_DrawPartyScreenLevelText(param0->unk_CC, 2, v0, 0, 5);
 
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 6);
-    v2 = Strbuf_Init((2 + 1) * 2, HEAP_ID_36);
+    v1 = MessageLoader_GetNewString(param0->unk_C4, 6);
+    v2 = String_Init((2 + 1) * 2, HEAP_ID_36);
 
     StringTemplate_SetNumber(param0->unk_C8, 0, param0->unk_1F8->unk_08 + 1, 2, 2, 1);
     StringTemplate_Format(param0->unk_C8, v2, v1);
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v2, 16, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
 
     v1 = BerryData_AllocAndGetName(param0->unk_1F8->unk_08, 36);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_ScheduleCopyToVRAM(v0);
 }
 
 static void ov85_02241A58(UnkStruct_ov85_022417E4 *param0)
 {
     Window *v0;
-    Strbuf *v1;
+    String *v1;
 
     v0 = &param0->unk_04[11];
 
@@ -561,28 +561,28 @@ static void ov85_02241A58(UnkStruct_ov85_022417E4 *param0)
     v1 = BerryData_AllocAndGetDescription(param0->unk_1F8->unk_08, 36);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_ScheduleCopyToVRAM(v0);
 }
 
 static void ov85_02241AA8(UnkStruct_ov85_022417E4 *param0)
 {
     Window *v0;
-    Strbuf *v1;
+    String *v1;
 
     v0 = &param0->unk_04[9];
     Window_FillTilemap(v0, 0);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 10);
+    v1 = MessageLoader_GetNewString(param0->unk_C4, 10);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_ScheduleCopyToVRAM(v0);
 }
 
 static void ov85_02241AF4(UnkStruct_ov85_022417E4 *param0)
 {
     Window *v0;
-    Strbuf *v1;
+    String *v1;
     u32 v2;
 
     v0 = &param0->unk_04[10];
@@ -595,32 +595,32 @@ static void ov85_02241AF4(UnkStruct_ov85_022417E4 *param0)
         v2--;
     }
 
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 11 + v2);
+    v1 = MessageLoader_GetNewString(param0->unk_C4, 11 + v2);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_ScheduleCopyToVRAM(v0);
 }
 
 static void ov85_02241B50(UnkStruct_ov85_022417E4 *param0)
 {
     Window *v0;
-    Strbuf *v1;
+    String *v1;
 
     v0 = &param0->unk_04[7];
     Window_FillTilemap(v0, 0);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 8);
+    v1 = MessageLoader_GetNewString(param0->unk_C4, 8);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_ScheduleCopyToVRAM(v0);
 }
 
 static void ov85_02241B9C(UnkStruct_ov85_022417E4 *param0)
 {
     Window *v0;
-    Strbuf *v1;
-    Strbuf *v2;
+    String *v1;
+    String *v2;
     u32 v3;
 
     v0 = &param0->unk_04[8];
@@ -629,15 +629,15 @@ static void ov85_02241B9C(UnkStruct_ov85_022417E4 *param0)
 
     v3 = BerryData_GetAttribute(param0->unk_1FC, 0);
     v3 = (((v3 * 1000) / 254 + 5) / 10);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 9);
-    v2 = Strbuf_Init(32, HEAP_ID_36);
+    v1 = MessageLoader_GetNewString(param0->unk_C4, 9);
+    v2 = String_Init(32, HEAP_ID_36);
 
     StringTemplate_SetNumber(param0->unk_C8, 0, v3 / 10, 2, 0, 1);
     StringTemplate_SetNumber(param0->unk_C8, 1, v3 % 10, 1, 0, 1);
     StringTemplate_Format(param0->unk_C8, v2, v1);
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v0);
 }
 

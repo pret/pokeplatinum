@@ -12,7 +12,7 @@
 #include "pokedex_heightweight.h"
 #include "pokemon.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "tv_episode_segment.h"

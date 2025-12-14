@@ -8,7 +8,7 @@
 #include "message.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 
 #define TOWN_MAP_GRID_SPACING  7
@@ -152,7 +152,7 @@ struct TownMapAppData {
     TownMapLocationHistoryEntry unused_44[5];
     MessageLoader *locationNames;
     MessageLoader *townMapStrings;
-    Strbuf *hoveredMapName;
+    String *hoveredMapName;
     BOOL locationChanged;
     enum MapHeader hoveredMapHeader;
     TownMapBlock *hoveredMapBlock;

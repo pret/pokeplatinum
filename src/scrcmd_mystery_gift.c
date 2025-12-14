@@ -23,7 +23,7 @@
 #include "ribbon.h"
 #include "save_player.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "trainer_info.h"
@@ -271,7 +271,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     }
 
     if (giftData->pokemonGiftData.hasCustomOT == FALSE) {
-        Strbuf *playerName = TrainerInfo_NameNewStrbuf(trainerInfo, HEAP_ID_FIELD3);
+        String *playerName = TrainerInfo_NameNewString(trainerInfo, HEAP_ID_FIELD3);
         u32 playerID = TrainerInfo_ID(trainerInfo);
         u32 playerGender = TrainerInfo_Gender(trainerInfo);
 
@@ -283,7 +283,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
         Pokemon_SetValue(tmpPoke, MON_DATA_OT_GENDER, &playerGender);
 
         pokemon = tmpPoke;
-        Strbuf_Free(playerName);
+        String_Free(playerName);
     }
 
     UpdateMonStatusAndTrainerInfo(pokemon, trainerInfo, 4, SpecialMetLoc_GetId(2, metLocation), HEAP_ID_FIELD3);
@@ -411,9 +411,9 @@ static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTe
 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
 
-    Strbuf *battleRegName = BattleRegulation_GetNameStrbuf(battleReg, HEAP_ID_FIELD3);
-    StringTemplate_SetStrbuf(formatter->stringTemplate, 1, battleRegName, 0, 1, GAME_LANGUAGE);
-    Strbuf_Free(battleRegName);
+    String *battleRegName = BattleRegulation_GetNameString(battleReg, HEAP_ID_FIELD3);
+    StringTemplate_SetString(formatter->stringTemplate, 1, battleRegName, 0, 1, GAME_LANGUAGE);
+    String_Free(battleRegName);
 }
 
 static void PrepCannotReceiveRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)

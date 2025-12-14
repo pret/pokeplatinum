@@ -11,7 +11,7 @@
 #include "palette.h"
 #include "party.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 enum BattlePartyScreen {
@@ -128,7 +128,7 @@ typedef struct BattleParty {
     FontSpecialCharsContext *unk_1FA0;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
-    Strbuf *strbuf;
+    String *string;
     SpriteManager *spriteMan;
     ManagedSprite *unk_1FB4[38];
     Window messageBoxWindows[NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS];

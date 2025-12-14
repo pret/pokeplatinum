@@ -12,7 +12,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -128,7 +128,7 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
 
 static void AddMapLegend(BerrySearcherGraphics *graphics, u32 tileOffset)
 {
-    Strbuf *title = MessageBank_GetNewStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKETCH_BERRY_SEARCHER, 0, HEAP_ID_POKETCH_APP);
+    String *title = MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKETCH_BERRY_SEARCHER, 0, HEAP_ID_POKETCH_APP);
 
     if (title) {
         Window window;
@@ -138,7 +138,7 @@ static void AddMapLegend(BerrySearcherGraphics *graphics, u32 tileOffset)
         Window_PutToTilemap(&window);
         Window_LoadTiles(&window);
         Window_Remove(&window);
-        Strbuf_Free(title);
+        String_Free(title);
     }
 }
 

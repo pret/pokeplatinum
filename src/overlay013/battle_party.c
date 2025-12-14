@@ -29,7 +29,7 @@
 #include "render_window.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -523,7 +523,7 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
         battleParty->useItemState = BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_INITIALISING;
         return TASK_STATE_SCREEN_TRANSITION;
     } else {
-        MessageLoader_GetStrbuf(battleParty->messageLoader, BattleParty_Text_ItemWontHaveAnyEffect, battleParty->strbuf);
+        MessageLoader_GetString(battleParty->messageLoader, BattleParty_Text_ItemWontHaveAnyEffect, battleParty->string);
         BattlePartyText_DisplayErrorMessage(battleParty);
         battleParty->context->selectedPartyIndex = NO_SELECTION_PARTY_SLOT;
         battleParty->queuedState = TASK_STATE_EXIT;
@@ -852,7 +852,7 @@ static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
             battleParty->queuedState = TASK_STATE_USE_RESTORATION_ITEM;
             return TASK_STATE_SCREEN_TRANSITION;
         } else {
-            MessageLoader_GetStrbuf(battleParty->messageLoader, BattleParty_Text_ItemWontHaveAnyEffect, battleParty->strbuf);
+            MessageLoader_GetString(battleParty->messageLoader, BattleParty_Text_ItemWontHaveAnyEffect, battleParty->string);
             BattlePartyText_DisplayErrorMessage(battleParty);
             battleParty->context->selectedPartyIndex = NO_SELECTION_PARTY_SLOT;
             battleParty->queuedState = TASK_STATE_EXIT;
@@ -1284,7 +1284,7 @@ static void InitializeMessageLoader(BattleParty *battleParty)
     battleParty->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_PARTY, battleParty->context->heapID);
     battleParty->unk_1FA0 = FontSpecialChars_Init(15, 14, 0, battleParty->context->heapID);
     battleParty->stringTemplate = StringTemplate_Default(battleParty->context->heapID);
-    battleParty->strbuf = Strbuf_Init(512, battleParty->context->heapID);
+    battleParty->string = String_Init(512, battleParty->context->heapID);
 }
 
 static void CleanupMessageLoader(BattleParty *battleParty)
@@ -1292,7 +1292,7 @@ static void CleanupMessageLoader(BattleParty *battleParty)
     MessageLoader_Free(battleParty->messageLoader);
     FontSpecialChars_Free(battleParty->unk_1FA0);
     StringTemplate_Free(battleParty->stringTemplate);
-    Strbuf_Free(battleParty->strbuf);
+    String_Free(battleParty->string);
 }
 
 static void InitialisePartyPokemon(BattleParty *battleParty)
@@ -1690,57 +1690,57 @@ static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScree
 
 static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
 {
-    Strbuf *strbuf;
+    String *string;
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex];
 
     if (BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(battleParty, battleParty->context->selectedPartyIndex) == TRUE) {
-        strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPartnersPokemon);
+        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPartnersPokemon);
 
         int trainerSlot = BattleSystem_Partner(battleParty->context->battleSystem, battleParty->context->battler);
         StringTemplate_SetTrainerNameBattle(battleParty->stringTemplate, 0, BattleSystem_GetTrainer(battleParty->context->battleSystem, trainerSlot));
-        StringTemplate_Format(battleParty->stringTemplate, battleParty->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
+        String_Free(string);
         return FALSE;
     }
 
     if (pokemon->curHP == 0) {
-        strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_CantSwitchWithFaintedPokemon);
+        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithFaintedPokemon);
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
-        StringTemplate_Format(battleParty->stringTemplate, battleParty->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
+        String_Free(string);
         return FALSE;
     }
 
     if (battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->playerPokemonPartySlot || battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->partnerPokemonPartySlot) {
-        strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPokemonAlreadyInBattle);
+        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPokemonAlreadyInBattle);
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
-        StringTemplate_Format(battleParty->stringTemplate, battleParty->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
+        String_Free(string);
         return FALSE;
     }
 
     if (CheckSelectedPokemonIsEgg(battleParty) == TRUE) {
-        MessageLoader_GetStrbuf(battleParty->messageLoader, BattleParty_Text_CantSwitchWithEgg, battleParty->strbuf);
+        MessageLoader_GetString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithEgg, battleParty->string);
         return FALSE;
     }
 
     if (battleParty->context->doubleBattleFirstSelectedPartySlot != NO_SELECTION_PARTY_SLOT && battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->doubleBattleFirstSelectedPartySlot) {
         pokemon = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex];
-        strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_CantSwitchWithAlreadySelectedPokemon);
+        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithAlreadySelectedPokemon);
 
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
-        StringTemplate_Format(battleParty->stringTemplate, battleParty->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
+        String_Free(string);
         return FALSE;
     }
 
     if (battleParty->context->moveToLearn != MOVE_NONE) {
         pokemon = &battleParty->partyPokemon[battleParty->partySlotLearningMove];
-        strbuf = MessageLoader_GetNewStrbuf(battleParty->messageLoader, BattleParty_Text_CantSwitchPokemon);
+        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchPokemon);
 
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
-        StringTemplate_Format(battleParty->stringTemplate, battleParty->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
+        String_Free(string);
         return FALSE;
     }
 

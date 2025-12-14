@@ -15,7 +15,7 @@
 #include "overlay070/struct_ov70_02263344_decl.h"
 
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     u32 unk_00;
@@ -28,7 +28,7 @@ BOOL ov70_0226CC74(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
     UnkStruct_ov70_0225CA20 *v2;
     UnkStruct_ov70_0225CC54 *v3;
     UnkStruct_ov70_0225CC54 *v4;
-    Strbuf *v5;
+    String *v5;
 
     v0 = ov70_02262E80(param0);
     v1 = ov70_0225DEE8(param1);

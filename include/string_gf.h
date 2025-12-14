@@ -1,12 +1,12 @@
-#ifndef POKEPLATINUM_STRBUF_H
-#define POKEPLATINUM_STRBUF_H
+#ifndef POKEPLATINUM_STRING_H
+#define POKEPLATINUM_STRING_H
 
 #include "charcode.h"
 
 /**
  * Managed string buffer.
  */
-typedef struct Strbuf {
+typedef struct String {
     /// Maximum allocated size of the buffer.
     u16 maxSize;
 
@@ -22,7 +22,7 @@ typedef struct Strbuf {
     /// incorrectly in order to match the original byte-code. The correct
     /// definition method would be as `data[]`.
     charcode_t data[1];
-} Strbuf;
+} String;
 
 #include "generated/string_padding_mode.h"
 
@@ -38,31 +38,31 @@ enum CharsetMode {
 };
 
 /**
- * @brief Init routine. Allocates memory for a new Strbuf, initializes it
+ * @brief Init routine. Allocates memory for a new String, initializes it
  * with an integrity-check value, and exposes its address.
  *
- * @param size The size of the new Strbuf to allocate from the heap.
- * @param heapID ID of the heap to own the new Strbuf.
- * @return Address to the new Strbuf.
+ * @param size The size of the new String to allocate from the heap.
+ * @param heapID ID of the heap to own the new String.
+ * @return Address to the new String.
  */
-Strbuf *Strbuf_Init(u32 size, u32 heapID);
+String *String_Init(u32 size, u32 heapID);
 
 /**
- * @brief Free routine. Destroys an existing Strbuf and returns its memory
+ * @brief Free routine. Destroys an existing String and returns its memory
  * to the owning heap.
  *
- * @param strbuf Address to the Strbuf to be freed.
+ * @param string Address to the String to be freed.
  */
-void Strbuf_Free(Strbuf *strbuf);
+void String_Free(String *string);
 
 /**
  * @brief Clears out a string of any existing character data. The first value
- * in the underlying data buffer is set to `CHAR_EOS`, and `strbuf->size` is
+ * in the underlying data buffer is set to `CHAR_EOS`, and `string->size` is
  * set to 0.
  *
- * @param strbuf Address to the Strbuf to be cleared.
+ * @param string Address to the String to be cleared.
  */
-void Strbuf_Clear(Strbuf *strbuf);
+void String_Clear(String *string);
 
 /**
  * @brief Copies the contents of the data buffer in `src` to the data buffer
@@ -72,24 +72,24 @@ void Strbuf_Clear(Strbuf *strbuf);
  * @param dst Destination buffer. `dst->size` and `dst->data` will be modified.
  * @param src Source buffer. `src->size` and `src->data` will be accessed.
  */
-void Strbuf_Copy(Strbuf *dst, const Strbuf *src);
+void String_Copy(String *dst, const String *src);
 
 /**
- * @brief Clones the contents of a given Strbuf into a new Strbuf and returns
+ * @brief Clones the contents of a given String into a new String and returns
  * the address of the newly-created struct.
  *
  * This is effectively a nice wrapper around the following code:
  *
  * ```c
- * Strbuf *dst = Strbuf_Init(src->size + 1, heapID);
- * Strbuf_Copy(dst, src);
+ * String *dst = String_Init(src->size + 1, heapID);
+ * String_Copy(dst, src);
  * ```
  *
  * @param src Source buffer to clone.
- * @param heapID ID of the heap which will own the new Strbuf.
- * @return Address to the cloned Strbuf.
+ * @param heapID ID of the heap which will own the new String.
+ * @return Address to the cloned String.
  */
-Strbuf *Strbuf_Clone(const Strbuf *src, u32 heapID);
+String *String_Clone(const String *src, u32 heapID);
 
 /**
  * @brief Format a number into a destination buffer.
@@ -102,7 +102,7 @@ Strbuf *Strbuf_Clone(const Strbuf *src, u32 heapID);
  * @param paddingMode Padding mode to use when formatting the number.
  * @param charsetMode Charset mode to use when formatting the number.
  */
-void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
+void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
 
 /**
  * @brief Format a number into a destination buffer.
@@ -115,7 +115,7 @@ void Strbuf_FormatInt(Strbuf *dst, int num, u32 maxDigits, enum PaddingMode padd
  * @param paddingMode Padding mode to use when formatting the number.
  * @param charsetMode Charset mode to use when formatting the number.
  */
-void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
+void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
 
 /**
  * @brief Parses a numeric string into a number.
@@ -124,7 +124,7 @@ void Strbuf_FormatU64(Strbuf *dst, u64 num, u32 maxDigits, enum PaddingMode padd
  * @param[out] success Flag denoting if the result string was fully processed.
  * @return Parsed result.
  */
-u64 Strbuf_AtoI(const Strbuf *src, BOOL *success);
+u64 String_AtoI(const String *src, BOOL *success);
 
 /**
  * @brief Compares two strings. Follows the `strcmp` standard.
@@ -133,23 +133,23 @@ u64 Strbuf_AtoI(const Strbuf *src, BOOL *success);
  * @param str2 Second string.
  * @return 0 if the strings match, 1 if they do not.
  */
-int Strbuf_Compare(const Strbuf *str1, const Strbuf *str2);
+int String_Compare(const String *str1, const String *str2);
 
 /**
  * @brief Accessor for the length of a string.
  *
- * @param strbuf
- * @return `strbuf->size`
+ * @param string
+ * @return `string->size`
  */
-u32 Strbuf_Length(const Strbuf *strbuf);
+u32 String_Length(const String *string);
 
 /**
  * @brief Counts the number of lines in a string.
  *
- * @param strbuf
- * @return The number of lines in `strbuf`.
+ * @param string
+ * @return The number of lines in `string`.
  */
-u32 Strbuf_NumLines(const Strbuf *strbuf);
+u32 String_NumLines(const String *string);
 
 /**
  * @brief Copies a particular line number from `src` into `dst`.
@@ -161,28 +161,28 @@ u32 Strbuf_NumLines(const Strbuf *strbuf);
  * @param src Source buffer.
  * @param lineNum Number of the line to copy, zero-indexed.
  */
-void Strbuf_CopyLineNum(Strbuf *dst, const Strbuf *src, u32 lineNum);
+void String_CopyLineNum(String *dst, const String *src, u32 lineNum);
 
 /**
- * @brief Copies data from a raw character buffer into a managed Strbuf.
+ * @brief Copies data from a raw character buffer into a managed String.
  *
  * @param[out] dst Destination buffer.
  * @param src Raw character source buffer.
  */
-void Strbuf_CopyChars(Strbuf *dst, const charcode_t *src);
+void String_CopyChars(String *dst, const charcode_t *src);
 
 /**
  * @brief Copies a specific number of values from a raw character buffer into
- * a managed Strbuf.
+ * a managed String.
  *
  * @param[out] dst Destination buffer.
  * @param src Raw character source buffer.
  * @param num Number of values to copy.
  */
-void Strbuf_CopyNumChars(Strbuf *dst, const charcode_t *src, u32 num);
+void String_CopyNumChars(String *dst, const charcode_t *src, u32 num);
 
 /**
- * @brief Dumps the contents of a Strbuf into a raw character buffer.
+ * @brief Dumps the contents of a String into a raw character buffer.
  *
  * Fails if `src->size + 1 > dstSize`.
  *
@@ -190,15 +190,15 @@ void Strbuf_CopyNumChars(Strbuf *dst, const charcode_t *src, u32 num);
  * @param[out] dst Destination buffer.
  * @param dstSize Size of `dst`.
  */
-void Strbuf_ToChars(const Strbuf *src, charcode_t *dst, u32 dstSize);
+void String_ToChars(const String *src, charcode_t *dst, u32 dstSize);
 
 /**
  * @brief Accessor for the underlying data buffer of a managed string.
  *
- * @param strbuf
- * @return Underlying data buffer for `strbuf`.
+ * @param string
+ * @return Underlying data buffer for `string`.
  */
-const charcode_t *Strbuf_GetData(const Strbuf *strbuf);
+const charcode_t *String_GetData(const String *string);
 
 /**
  * @brief Concatenates `src` onto the end of `dst`, if allocation permits.
@@ -208,7 +208,7 @@ const charcode_t *Strbuf_GetData(const Strbuf *strbuf);
  * @param[out] dst Destination buffer.
  * @param src Source buffer.
  */
-void Strbuf_Concat(Strbuf *dst, const Strbuf *src);
+void String_Concat(String *dst, const String *src);
 
 /**
  * @brief Appends a single character onto `dst`, if allocation permits.
@@ -218,7 +218,7 @@ void Strbuf_Concat(Strbuf *dst, const Strbuf *src);
  * @param[out] dst Destination buffer.
  * @param c Character to append.
  */
-void Strbuf_AppendChar(Strbuf *dst, charcode_t c);
+void String_AppendChar(String *dst, charcode_t c);
 
 /**
  * @brief Checks if a given string is a trainer name.
@@ -226,28 +226,28 @@ void Strbuf_AppendChar(Strbuf *dst, charcode_t c);
  * Trainer names are identified using a specific leader character which denotes
  * different handling methods for their concatenation.
  *
- * @param strbuf
- * @return TRUE if `strbuf` is a trainer name, FALSE otherwise.
+ * @param string
+ * @return TRUE if `string` is a trainer name, FALSE otherwise.
  */
-BOOL Strbuf_IsTrainerName(Strbuf *strbuf);
+BOOL String_IsTrainerName(String *string);
 
 /**
  * @brief Concatenates `src` onto the end of `dst`, accounting for trainer
  * name compression.
  *
- * If `src` is not a trainer name, then this falls back to `Strbuf_Concat`.
+ * If `src` is not a trainer name, then this falls back to `String_Concat`.
  *
  * @param[out] dst Destination buffer.
  * @param src Source buffer.
  */
-void Strbuf_ConcatTrainerName(Strbuf *dst, Strbuf *src);
+void String_ConcatTrainerName(String *dst, String *src);
 
 /**
  * @brief Converts a particular character to uppercase.
  *
- * @param strbuf
+ * @param string
  * @param i Index of the character to capitalize, zero-indexed.
  */
-void Strbuf_UpperChar(Strbuf *strbuf, int i);
+void String_UpperChar(String *string, int i);
 
-#endif // POKEPLATINUM_STRBUF_H
+#endif // POKEPLATINUM_STRING_H

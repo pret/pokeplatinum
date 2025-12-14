@@ -5,7 +5,7 @@
 
 #include "heap.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 static StringList *FindFirstEmptyEntry(StringList *list, u32 *outHeapID);
 static void FreeEntries(StringList *list);
@@ -42,18 +42,18 @@ void StringList_AddFromMessageBank(StringList *list, const MessageLoader *loader
     list = FindFirstEmptyEntry(list, &tmp);
 
     if (list) {
-        list->entry = MessageLoader_GetNewStrbuf(loader, bankEntry);
+        list->entry = MessageLoader_GetNewString(loader, bankEntry);
         list->index = index;
     }
 }
 
-void StringList_AddFromStrbuf(StringList *list, const Strbuf *strbuf, u32 index)
+void StringList_AddFromString(StringList *list, const String *string, u32 index)
 {
     u32 heapID;
     list = FindFirstEmptyEntry(list, &heapID);
 
     if (list) {
-        list->entry = Strbuf_Clone(strbuf, heapID);
+        list->entry = String_Clone(string, heapID);
         list->index = index;
     }
 }
@@ -99,7 +99,7 @@ static void FreeEntries(StringList *list)
             break;
         }
 
-        Strbuf_Free(tmp->entry);
+        String_Free(tmp->entry);
         tmp->entry = NULL;
         tmp++;
     }

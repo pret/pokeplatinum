@@ -7,7 +7,7 @@
 
 #include "message.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #include "res/text/bank/unk_0353.h"
 
@@ -31,17 +31,17 @@ void RegulationBattles_Init(BattleRegulationData *regulationData)
     memset(regulationData, 0, sizeof(BattleRegulationData));
 }
 
-void BattleRegulation_GetName(const BattleRegulation *regulation, Strbuf *strbuf)
+void BattleRegulation_GetName(const BattleRegulation *regulation, String *string)
 {
-    Strbuf_CopyNumChars(strbuf, regulation->name, BATTLE_REGULATION_NAME_LENGTH);
+    String_CopyNumChars(string, regulation->name, BATTLE_REGULATION_NAME_LENGTH);
 }
 
-Strbuf *BattleRegulation_GetNameStrbuf(const BattleRegulation *regulation, int heapID)
+String *BattleRegulation_GetNameString(const BattleRegulation *regulation, int heapID)
 {
-    Strbuf *strbuf = Strbuf_Init(BATTLE_REGULATION_NAME_LENGTH * 2, heapID);
+    String *string = String_Init(BATTLE_REGULATION_NAME_LENGTH * 2, heapID);
 
-    Strbuf_CopyChars(strbuf, regulation->name);
-    return strbuf;
+    String_CopyChars(string, regulation->name);
+    return string;
 }
 
 int BattleRegulation_GetRuleValue(const BattleRegulation *regulation, enum BattleRegulationRule rule)
@@ -210,17 +210,17 @@ const BattleRegulation *BattleRegulation_GetByIndex(SaveData *saveData, int inde
     return &regulationData->regulations[0];
 }
 
-void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, Strbuf *strbuf, int heapID)
+void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, String *string, int heapID)
 {
     MessageLoader *messageLoader;
     BattleRegulationData *regulationData = NULL;
 
     if (index < NELEMS(BattleRegulation_PredefinedRules)) {
         messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, heapID);
-        MessageLoader_GetStrbuf(messageLoader, pl_msg_00000353_00070 + index, strbuf);
+        MessageLoader_GetString(messageLoader, pl_msg_00000353_00070 + index, string);
         MessageLoader_Free(messageLoader);
     } else {
-        BattleRegulation_GetName(BattleRegulation_Load(saveData, 0), strbuf);
+        BattleRegulation_GetName(BattleRegulation_Load(saveData, 0), string);
     }
 }
 

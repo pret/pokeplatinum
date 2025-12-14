@@ -19,7 +19,7 @@
 #include "message.h"
 #include "narc.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -59,7 +59,7 @@ typedef struct {
 
 static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
 static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
-static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2, int param3);
+static void ov20_021D498C(Window *param0, BgConfig *param1, const String *param2, int param3);
 static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1);
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0);
 static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 param2, u32 param3);
@@ -138,13 +138,13 @@ static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 
 static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 {
-    Strbuf *v0, *v1;
+    String *v0, *v1;
     void *v2;
     NNSG2dCharacterData *v3;
 
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_SYSTEM);
-    v0 = MessageBank_GetNewStrbufFromNARC(0x1A, 0x1B5, 0xB, 0x23);
-    v1 = MessageBank_GetNewStrbufFromNARC(0x1A, 0x1B5, 0xC, 0x23);
+    v0 = MessageBank_GetNewStringFromNARC(0x1A, 0x1B5, 0xB, 0x23);
+    v1 = MessageBank_GetNewStringFromNARC(0x1A, 0x1B5, 0xC, 0x23);
     v2 = Graphics_GetCharDataFromOpenNARC(param1, 20, 1, &v3, 0x23);
     if (v2) {
         Window v4;
@@ -163,8 +163,8 @@ static void ov20_021D48C4(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
         Heap_Free(v2);
     }
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v0);
+    String_Free(v1);
+    String_Free(v0);
     Font_Free(FONT_SUBSCREEN);
 }
 
@@ -175,18 +175,18 @@ static const s16 Unk_ov20_021D52EC[] = {
     (22 + 56 * 3) - 1,
 };
 
-static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2, int param3)
+static void ov20_021D498C(Window *param0, BgConfig *param1, const String *param2, int param3)
 {
     int v0, v1, v2, v3;
     u32 v4;
-    Strbuf *v5;
+    String *v5;
 
-    v4 = Strbuf_NumLines(param2);
-    v5 = Strbuf_Init(32, HEAP_ID_35);
+    v4 = String_NumLines(param2);
+    v5 = String_Init(32, HEAP_ID_35);
     param3 += ((2 - v4) * 16) / 2;
 
     for (v1 = 0; v1 < v4; v1++) {
-        Strbuf_CopyLineNum(v5, param2, v1);
+        String_CopyLineNum(v5, param2, v1);
         v2 = Font_CalcCenterAlignment(2, v5, 0, 88);
         for (v0 = 0; v0 < NELEMS(Unk_ov20_021D52EC); v0++) {
             v3 = Unk_ov20_021D52EC[v0] + param3;
@@ -194,7 +194,7 @@ static void ov20_021D498C(Window *param0, BgConfig *param1, const Strbuf *param2
         }
         param3 += 16;
     }
-    Strbuf_Free(v5);
+    String_Free(v5);
 }
 
 static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)

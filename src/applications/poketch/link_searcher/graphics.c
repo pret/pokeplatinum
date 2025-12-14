@@ -14,7 +14,7 @@
 #include "graphics.h"
 #include "heap.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 
@@ -54,7 +54,7 @@ BOOL PoketchLinkSearcherGraphics_New(LinkSearcherGraphics **dest, const LinkResu
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
         graphics->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKETCH_LINK_SEARCHER, HEAP_ID_POKETCH_APP);
-        graphics->strbuf = Strbuf_Init(96, HEAP_ID_POKETCH_APP);
+        graphics->string = String_Init(96, HEAP_ID_POKETCH_APP);
         SetupSprites(graphics, results);
         *dest = graphics;
 
@@ -67,7 +67,7 @@ BOOL PoketchLinkSearcherGraphics_New(LinkSearcherGraphics **dest, const LinkResu
 void PoketchLinkSearchGraphics_Free(LinkSearcherGraphics *graphics)
 {
     if (graphics != NULL) {
-        Strbuf_Free(graphics->strbuf);
+        String_Free(graphics->string);
         MessageLoader_Free(graphics->msgLoader);
         UnloadSprites(graphics);
         Heap_Free(graphics);
@@ -300,16 +300,16 @@ static void PrintIntroMessage(LinkSearcherGraphics *graphics)
 {
     Window_FillTilemap(&graphics->window, 4);
 
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_Title, graphics->strbuf);
-    u32 xOffset = (192 - Font_CalcStrbufWidth(FONT_SYSTEM, graphics->strbuf, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_Title, graphics->string);
+    u32 xOffset = (192 - Font_CalcStringWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_TouchToBegin, graphics->strbuf);
-    xOffset = (192 - Font_CalcMaxLineWidth(FONT_SYSTEM, graphics->strbuf, 0)) / 2;
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_TouchToBegin, graphics->string);
+    xOffset = (192 - Font_CalcMaxLineWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
 
     u32 yOffset = 64;
-    yOffset -= Strbuf_NumLines(graphics->strbuf) * 8;
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    yOffset -= String_NumLines(graphics->string) * 8;
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
     Window_LoadTiles(&graphics->window);
 }
@@ -318,9 +318,9 @@ static void PrintSearchingMessage(LinkSearcherGraphics *graphics)
 {
     Window_FillTilemap(&graphics->window, 4);
 
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_Searching, graphics->strbuf);
-    u32 xOffset = (192 - Font_CalcMaxLineWidth(FONT_SYSTEM, graphics->strbuf, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, xOffset, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_Searching, graphics->string);
+    u32 xOffset = (192 - Font_CalcMaxLineWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
     Window_LoadTiles(&graphics->window);
 }
@@ -329,12 +329,12 @@ static void PrintUnusableError(LinkSearcherGraphics *graphics)
 {
     Window_FillTilemap(&graphics->window, 4);
 
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_Error, graphics->strbuf);
-    u32 xOffset = (192 - Font_CalcStrbufWidth(FONT_SYSTEM, graphics->strbuf, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_Error, graphics->string);
+    u32 xOffset = (192 - Font_CalcStringWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_Unusable, graphics->strbuf);
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, 16, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_Unusable, graphics->string);
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, 16, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
     Window_LoadTiles(&graphics->window);
 }
@@ -343,13 +343,13 @@ static void PrintDontMoveError(LinkSearcherGraphics *graphics)
 {
     Window_FillTilemap(&graphics->window, 4);
 
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_Error, graphics->strbuf);
-    u32 xOffset = (192 - Font_CalcStrbufWidth(FONT_SYSTEM, graphics->strbuf, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_Error, graphics->string);
+    u32 xOffset = (192 - Font_CalcStringWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_DontMove, graphics->strbuf);
-    xOffset = (192 - Font_CalcMaxLineWidth(FONT_SYSTEM, graphics->strbuf, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, xOffset, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_DontMove, graphics->string);
+    xOffset = (192 - Font_CalcMaxLineWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
     Window_LoadTiles(&graphics->window);
 }
@@ -364,16 +364,16 @@ static void PrintSearchResults(LinkSearcherGraphics *graphics, const LinkResults
     };
 
     Window_FillTilemap(&graphics->window, 4);
-    MessageLoader_GetStrbuf(graphics->msgLoader, LinkSearcher_Text_Status, graphics->strbuf);
+    MessageLoader_GetString(graphics->msgLoader, LinkSearcher_Text_Status, graphics->string);
 
-    u32 xOffset = (192 - Font_CalcStrbufWidth(FONT_SYSTEM, graphics->strbuf, 0)) / 2;
-    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+    u32 xOffset = (192 - Font_CalcStringWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
+    Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, 8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
     for (int i = 0; i < 4; i++) {
-        MessageLoader_GetStrbuf(graphics->msgLoader, entryIDs[i], graphics->strbuf);
-        Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, 8, 32 + 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
-        Strbuf_FormatInt(graphics->strbuf, results->results[i], 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-        Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->strbuf, 160, 32 + 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+        MessageLoader_GetString(graphics->msgLoader, entryIDs[i], graphics->string);
+        Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, 8, 32 + 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
+        String_FormatInt(graphics->string, results->results[i], 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
+        Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, 160, 32 + 16 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
     }
 
     Window_LoadTiles(&graphics->window);

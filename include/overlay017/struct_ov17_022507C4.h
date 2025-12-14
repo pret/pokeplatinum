@@ -12,7 +12,7 @@
 #include "palette.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 
@@ -26,7 +26,7 @@ typedef struct {
     Window unk_24[9];
     MessageLoader *unk_B4;
     StringTemplate *unk_B8;
-    Strbuf *unk_BC;
+    String *unk_BC;
     PaletteData *unk_C0;
     UnkStruct_02012744 *unk_C4;
     PokemonSpriteData pokemonSpriteDataArray[4];

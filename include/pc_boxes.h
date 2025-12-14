@@ -4,7 +4,7 @@
 #include "struct_decls/pc_boxes_decl.h"
 
 #include "pokemon.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define MAX_PC_BOXES              18
 #define MAX_PC_ROWS               5
@@ -30,8 +30,8 @@ u32 PCBoxes_CountAllBoxMons(const PCBoxes *pcBoxes);
 void PCBoxes_SetCurrentBox(PCBoxes *pcBoxes, u32 boxID);
 u32 PCBoxes_GetWallpaper(const PCBoxes *pcBoxes, u32 boxID);
 void PCBoxes_SetWallpaper(PCBoxes *pcBoxes, u32 boxID, u32 wallpaper);
-void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, Strbuf *dest);
-void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const Strbuf *newName);
+void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, String *dest);
+void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const String *newName);
 u32 PCBoxes_CountMonsInBox(const PCBoxes *pcBoxes, u32 boxID);
 u32 PCBoxes_CountNonEggMonsInBox(const PCBoxes *pcBoxes, u32 boxID);
 u32 PCBoxes_CountAllNonEggBoxMons(const PCBoxes *pcBoxes);

@@ -24,7 +24,7 @@ typedef struct EvolutionData {
     Window *unk_04;
     MessageLoader *unk_08;
     StringTemplate *unk_0C;
-    Strbuf *unk_10;
+    String *unk_10;
     PaletteData *unk_14;
     PokemonSpriteManager *unk_18;
     PokemonSprite *unk_1C[2];

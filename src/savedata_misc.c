@@ -66,9 +66,9 @@ const u16 *MiscSaveBlock_RivalName(const MiscSaveBlock *miscSave)
     return miscSave->rivalName;
 }
 
-void MiscSaveBlock_SetRivalName(MiscSaveBlock *miscSave, Strbuf *name)
+void MiscSaveBlock_SetRivalName(MiscSaveBlock *miscSave, String *name)
 {
-    Strbuf_ToChars(name, miscSave->rivalName, TRAINER_NAME_LEN + 1);
+    String_ToChars(name, miscSave->rivalName, TRAINER_NAME_LEN + 1);
 }
 
 const u16 *MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave)
@@ -76,9 +76,9 @@ const u16 *MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave)
     return miscSave->tabletName;
 }
 
-void MiscSaveBlock_SetTabletName(MiscSaveBlock *miscSave, Strbuf *name)
+void MiscSaveBlock_SetTabletName(MiscSaveBlock *miscSave, String *name)
 {
-    Strbuf_ToChars(name, miscSave->tabletName, TABLET_NAME_LEN + 1);
+    String_ToChars(name, miscSave->tabletName, TABLET_NAME_LEN + 1);
 }
 
 void MiscSaveBlock_SetInitFlag(MiscSaveBlock *miscSave)

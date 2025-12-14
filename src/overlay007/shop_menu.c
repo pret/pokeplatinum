@@ -44,7 +44,7 @@
 #include "sprite_resource.h"
 #include "sprite_system.h"
 #include "sprite_transfer.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -242,7 +242,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
 
     shopMenu->bgConfig = fieldSystem->bgConfig;
 
-    shopMenu->strbuf = Strbuf_Init(96, HEAP_ID_FIELD2);
+    shopMenu->string = String_Init(96, HEAP_ID_FIELD2);
     shopMenu->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     shopMenu->options = SaveData_GetOptions(fieldSystem->saveData);
     shopMenu->records = SaveData_GetGameRecords(fieldSystem->saveData);
@@ -453,7 +453,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         Window_Remove(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION]);
         MessageLoader_Free(shopMenu->msgLoader);
         StringTemplate_Free(shopMenu->strTemplate);
-        Strbuf_Free(shopMenu->strbuf);
+        String_Free(shopMenu->string);
 
         if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_VeilstoneStore
             && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_HERB_SHOP
@@ -633,7 +633,7 @@ static u32 Shop_GetItemId(ShopMenu *shopMenu, u16 itemId)
 static void Shop_InitItemsList(ShopMenu *shopMenu)
 {
     MessageLoader *itemNames;
-    Strbuf *strbuf;
+    String *string;
     ListMenuTemplate listTemplate;
     u32 i, itemId;
     MessageLoader *moveNames;
@@ -654,15 +654,15 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
         itemId = Shop_GetItemId(shopMenu, shopMenu->itemsPtr[i]);
 
         if ((itemId <= ITEM_HM01) && (itemId >= ITEM_TM01)) {
-            strbuf = MessageLoader_GetNewStrbuf(moveNames, Item_MoveForTMHM(itemId));
-            StringList_AddFromStrbuf(shopMenu->itemsList, strbuf, shopMenu->itemsPtr[i]);
-            Strbuf_Free(strbuf);
+            string = MessageLoader_GetNewString(moveNames, Item_MoveForTMHM(itemId));
+            StringList_AddFromString(shopMenu->itemsList, string, shopMenu->itemsPtr[i]);
+            String_Free(string);
 
             isTMShop = TRUE;
         } else {
-            strbuf = MessageLoader_GetNewStrbuf(itemNames, itemId);
-            StringList_AddFromStrbuf(shopMenu->itemsList, strbuf, shopMenu->itemsPtr[i]);
-            Strbuf_Free(strbuf);
+            string = MessageLoader_GetNewString(itemNames, itemId);
+            StringList_AddFromString(shopMenu->itemsList, string, shopMenu->itemsPtr[i]);
+            String_Free(string);
         }
     }
 
@@ -705,31 +705,31 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
     Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION], 0);
 
     if (index != MENU_CANCELED) {
-        Strbuf *strbuf;
+        String *string;
 
         if (shopMenu->martType == MART_TYPE_NORMAL) {
-            strbuf = Strbuf_Init(130, HEAP_ID_FIELD2);
-            Item_LoadDescription(strbuf, index, HEAP_ID_FIELD2);
+            string = String_Init(130, HEAP_ID_FIELD2);
+            Item_LoadDescription(string, index, HEAP_ID_FIELD2);
         } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
-            strbuf = Strbuf_Init(130, HEAP_ID_FIELD2);
-            Item_LoadDescription(strbuf, index, HEAP_ID_FIELD2);
+            string = String_Init(130, HEAP_ID_FIELD2);
+            Item_LoadDescription(string, index, HEAP_ID_FIELD2);
         } else if (shopMenu->martType == MART_TYPE_DECOR) {
             MessageLoader *loader;
 
             loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD2);
-            strbuf = MessageLoader_GetNewStrbuf(loader, UNDERGROUND_GOOD_DESCRIPTIONS_START + index - 1);
+            string = MessageLoader_GetNewString(loader, UNDERGROUND_GOOD_DESCRIPTIONS_START + index - 1);
             MessageLoader_Free(loader);
         } else {
             MessageLoader *loader;
 
             loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0542, HEAP_ID_FIELD2);
-            strbuf = MessageLoader_GetNewStrbuf(loader, sub_020981F4(index));
+            string = MessageLoader_GetNewString(loader, sub_020981F4(index));
 
             MessageLoader_Free(loader);
         }
 
-        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-        Strbuf_Free(strbuf);
+        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        String_Free(string);
 
         Shop_ChangeItemIconGfx(shopMenu, index);
     } else {
@@ -763,7 +763,7 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
     ShopMenu *shopMenu = (ShopMenu *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
     if (index != MENU_CANCELED) {
-        Strbuf *strbuf, *fmtString;
+        String *string, *fmtString;
         u32 price, strWidth;
         u16 itemId = index;
 
@@ -774,36 +774,36 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
         }
 
         price = Shop_GetItemPrice(shopMenu, index);
-        strbuf = Strbuf_Init(12, HEAP_ID_FIELD2);
+        string = String_Init(12, HEAP_ID_FIELD2);
 
         if (shopMenu->martType == MART_TYPE_FRONTIER) {
-            fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00032);
+            fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00032);
         } else {
-            fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00009);
+            fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00009);
         }
 
         StringTemplate_SetNumber(shopMenu->strTemplate, 0, price, 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-        StringTemplate_Format(shopMenu->strTemplate, strbuf, fmtString);
+        StringTemplate_Format(shopMenu->strTemplate, string, fmtString);
 
-        strWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+        strWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, strbuf, (19 * 8) - strWidth, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-        Strbuf_Free(fmtString);
-        Strbuf_Free(strbuf);
+        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, string, (19 * 8) - strWidth, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        String_Free(fmtString);
+        String_Free(string);
     }
 
     if (index == MENU_CANCELED) {
-        Strbuf *strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00008);
+        String *string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00008);
 
         Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 15, 0, yOffset, 19 * 8, 16);
-        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, strbuf, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-        Strbuf_Free(strbuf);
+        Text_AddPrinterWithParamsAndColor(&shopMenu->windows[SHOP_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        String_Free(string);
     }
 }
 
 static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney)
 {
-    Strbuf *strbuf, *fmtString;
+    String *string, *fmtString;
     u32 currMoney, strWidth;
 
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
@@ -815,43 +815,43 @@ static void Shop_PrintCurrentMoney(ShopMenu *shopMenu, u8 clearCurrMoney)
             Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15, 0, 0, 9 * 8, 16);
         }
 
-        strbuf = Strbuf_Init(16, HEAP_ID_FIELD2);
-        fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00038);
+        string = String_Init(16, HEAP_ID_FIELD2);
+        fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00038);
         currMoney = Shop_GetCurrentMoney(shopMenu);
 
         StringTemplate_SetNumber(shopMenu->strTemplate, 0, currMoney, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-        StringTemplate_Format(shopMenu->strTemplate, strbuf, fmtString);
+        StringTemplate_Format(shopMenu->strTemplate, string, fmtString);
 
-        strWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+        strWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-        Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], FONT_SYSTEM, strbuf, (9 * 8) - strWidth - 8, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], FONT_SYSTEM, string, (9 * 8) - strWidth - 8, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
         if (clearCurrMoney == FALSE) {
             Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15);
             Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], TRUE, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX);
 
-            fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, 18);
+            fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, 18);
 
             Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], FONT_SYSTEM, fmtString, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-            Strbuf_Free(fmtString);
+            String_Free(fmtString);
         } else {
             Window_FillRectWithColor(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], 15, 0, 16, 9 * 8, 16);
         }
 
-        strbuf = Strbuf_Init(16, HEAP_ID_FIELD2);
-        fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00019);
+        string = String_Init(16, HEAP_ID_FIELD2);
+        fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00019);
         currMoney = Shop_GetCurrentMoney(shopMenu);
 
         StringTemplate_SetNumber(shopMenu->strTemplate, 0, currMoney, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-        StringTemplate_Format(shopMenu->strTemplate, strbuf, fmtString);
+        StringTemplate_Format(shopMenu->strTemplate, string, fmtString);
 
-        strWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+        strWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-        Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], FONT_SYSTEM, strbuf, (9 * 8) - strWidth, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY], FONT_SYSTEM, string, (9 * 8) - strWidth, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
-    Strbuf_Free(fmtString);
-    Strbuf_Free(strbuf);
+    String_Free(fmtString);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_CURRENT_MONEY]);
 }
 
@@ -880,7 +880,7 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         return SHOP_STATE_MOVE_CAMERA_BACK;
     default: {
-        Strbuf *strbuf;
+        String *string;
         u32 currMoney;
 
         shopMenu->spriteDrawFlags[SHOP_SPRITE_SCROLL_ARROW_UP] = Sprite_GetDrawFlag(shopMenu->sprites[SHOP_SPRITE_SCROLL_ARROW_UP]);
@@ -903,15 +903,15 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
 
         if (currMoney < shopMenu->itemPrice) {
             if (shopMenu->martType == MART_TYPE_FRONTIER) {
-                strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00037);
+                string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00037);
             } else {
-                strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00003);
+                string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00003);
             }
 
-            StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-            Strbuf_Free(strbuf);
+            StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+            String_Free(string);
 
-            shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
+            shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, TRUE);
             return SHOP_STATE_FINISH_PURCHASE;
         }
 
@@ -929,15 +929,15 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         Shop_SetItemNameToIndex(shopMenu, shopMenu->itemId, 0);
 
         if (shopMenu->martType == MART_TYPE_FRONTIER) {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00033);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00033);
         } else {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00004);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00004);
         }
 
-        StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+        String_Free(string);
 
-        shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, 1);
+        shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, 1);
 
         Shop_SetScrollSpritesPositionXY(shopMenu, TRUE);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -966,7 +966,7 @@ static u8 Shop_ShowPurchaseMenu(ShopMenu *shopMenu)
 
 static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
 {
-    Strbuf *strbuf, *fmtString;
+    String *string, *fmtString;
     u16 inventoryQty;
 
     if (shopMenu->martType == MART_TYPE_NORMAL) {
@@ -982,14 +982,14 @@ static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu)
     Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], 15);
     Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], TRUE, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX);
 
-    strbuf = Strbuf_Init(24, HEAP_ID_FIELD2);
-    fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00020);
+    string = String_Init(24, HEAP_ID_FIELD2);
+    fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00020);
 
     StringTemplate_SetNumber(shopMenu->strTemplate, 0, inventoryQty, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(shopMenu->strTemplate, strbuf, fmtString);
-    Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(fmtString);
-    Strbuf_Free(strbuf);
+    StringTemplate_Format(shopMenu->strTemplate, string, fmtString);
+    Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    String_Free(fmtString);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_ITEMS_IN_BAG]);
 }
 
@@ -1035,7 +1035,7 @@ static u8 Shop_SelectPurchaseMenu(ShopMenu *shopMenu)
 
 static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
 {
-    Strbuf *strbuf;
+    String *string;
     BOOL canFitItem;
 
     if (shopMenu->martType == MART_TYPE_NORMAL) {
@@ -1056,19 +1056,19 @@ static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
         shopMenu->itemAmount = 0;
 
         if (shopMenu->martType == MART_TYPE_NORMAL) {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00007);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00007);
         } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00007);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00007);
         } else if (shopMenu->martType == MART_TYPE_DECOR) {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00012);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00012);
         } else {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00014);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00014);
         }
 
-        StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+        String_Free(string);
 
-        shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
+        shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, TRUE);
         return SHOP_STATE_FINISH_PURCHASE;
     }
 
@@ -1083,29 +1083,29 @@ static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
         StringTemplate_SetMoveName(shopMenu->strTemplate, 3, move);
 
         if (shopMenu->martType == MART_TYPE_FRONTIER) {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00036);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00036);
         } else {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00027);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00027);
         }
     } else {
         if (shopMenu->martType == MART_TYPE_FRONTIER) {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00035);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00035);
         } else {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00005);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00005);
         }
     }
 
-    StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-    Strbuf_Free(strbuf);
+    StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+    String_Free(string);
 
-    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
+    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, TRUE);
     return SHOP_STATE_SHOW_CONFIRM_PURCHASE;
 }
 
 static void Shop_ShowQtyTotalItemPurchase(ShopMenu *shopMenu, u8 dontDrawFrame)
 {
-    Strbuf *strbuf, *fmtString;
-    u32 strbufWidth;
+    String *string, *fmtString;
+    u32 stringWidth;
 
     Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], 15);
 
@@ -1113,28 +1113,28 @@ static void Shop_ShowQtyTotalItemPurchase(ShopMenu *shopMenu, u8 dontDrawFrame)
         Window_DrawStandardFrame(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], TRUE, 1 + (18 + 12), FIELD_WINDOW_PALETTE_INDEX);
     }
 
-    strbuf = Strbuf_Init(24, HEAP_ID_FIELD2);
-    fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00021);
+    string = String_Init(24, HEAP_ID_FIELD2);
+    fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00021);
 
     StringTemplate_SetNumber(shopMenu->strTemplate, 0, shopMenu->itemAmount, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    StringTemplate_Format(shopMenu->strTemplate, strbuf, fmtString);
-    Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], FONT_SYSTEM, strbuf, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(fmtString);
+    StringTemplate_Format(shopMenu->strTemplate, string, fmtString);
+    Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], FONT_SYSTEM, string, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    String_Free(fmtString);
 
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00034);
+        fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00034);
     } else {
-        fmtString = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00022);
+        fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00022);
     }
 
     StringTemplate_SetNumber(shopMenu->strTemplate, 0, shopMenu->itemPrice * shopMenu->itemAmount, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(shopMenu->strTemplate, strbuf, fmtString);
+    StringTemplate_Format(shopMenu->strTemplate, string, fmtString);
 
-    strbufWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-    Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], FONT_SYSTEM, strbuf, (12 * 8) - strbufWidth, 8, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(fmtString);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParams(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE], FONT_SYSTEM, string, (12 * 8) - stringWidth, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    String_Free(fmtString);
+    String_Free(string);
     Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_QUANTITY_TOTAL_PRICE]);
 }
 
@@ -1152,10 +1152,10 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
 {
     switch (Menu_ProcessInputAndHandleExit(shopMenu->choiceMenu, HEAP_ID_FIELD2)) {
     case 0: {
-        Strbuf *strbuf;
+        String *string;
 
         if (shopMenu->martType == MART_TYPE_NORMAL) {
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00006);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00006);
 
             if (shopMenu->itemAmount == 1) {
                 StringTemplate_SetItemName(shopMenu->strTemplate, 0, shopMenu->itemId);
@@ -1171,12 +1171,12 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
                 StringTemplate_SetItemNamePlural(shopMenu->strTemplate, 0, shopMenu->itemId);
             }
 
-            strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00006);
+            string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00006);
             StringTemplate_SetBagPocketName(shopMenu->strTemplate, 1, Item_LoadParam(shopMenu->itemId, ITEM_PARAM_FIELD_POCKET, HEAP_ID_FIELD2));
         } else {
             if (shopMenu->martType == MART_TYPE_DECOR) {
                 Shop_SetItemNameToIndex(shopMenu, shopMenu->itemId, 0);
-                strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00011);
+                string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00011);
             } else {
                 if (shopMenu->itemAmount == 1) {
                     StringTemplate_SetBallSealName(shopMenu->strTemplate, 0, sub_02098164(shopMenu->itemId));
@@ -1184,14 +1184,14 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
                     StringTemplate_SetBallSealNamePlural(shopMenu->strTemplate, 0, sub_02098164(shopMenu->itemId));
                 }
 
-                strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00013);
+                string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00013);
             }
         }
 
-        StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-        Strbuf_Free(strbuf);
+        StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+        String_Free(string);
         Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_MESSAGE], 15);
-        shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
+        shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_REGI);
         return SHOP_STATE_CONFIRM_PURCHASE;
     }
@@ -1259,13 +1259,13 @@ static u8 Shop_FinishPurchase(ShopMenu *shopMenu)
 
         if (((shopMenu->martType == MART_TYPE_NORMAL) || (shopMenu->martType == MART_TYPE_FRONTIER)) && (shopMenu->itemId == ITEM_POKE_BALL) && (shopMenu->itemAmount >= 10)) {
             if (Bag_TryAddItem(shopMenu->destInventory, ITEM_PREMIER_BALL, 1, HEAP_ID_FIELD2) == TRUE) {
-                Strbuf *strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00010);
+                String *string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00010);
 
-                StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-                Strbuf_Free(strbuf);
+                StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+                String_Free(string);
                 Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_MESSAGE], 15);
 
-                shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
+                shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->string, shopMenu->options, TRUE);
 
                 GameRecords *records = SaveData_GetGameRecords(shopMenu->saveData);
                 GameRecords_IncrementRecordValue(records, RECORD_UNK_050);
@@ -1432,11 +1432,11 @@ static u8 Shop_MoveCameraBack(FieldSystem *fieldSystem, ShopMenu *shopMenu)
     FieldMessage_AddWindow(fieldSystem->bgConfig, &shopMenu->windows[1], BG_LAYER_MAIN_3);
     FieldMessage_DrawWindow(&shopMenu->windows[1], shopMenu->options);
 
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00002);
-    StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-    Strbuf_Free(strbuf);
+    String *string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00002);
+    StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+    String_Free(string);
 
-    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[1], shopMenu->strbuf, shopMenu->options, TRUE);
+    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[1], shopMenu->string, shopMenu->options, TRUE);
 
     return SHOP_STATE_REINIT_CONTEXT_MENU;
 }
@@ -1455,20 +1455,20 @@ static u8 Shop_ReinitContextMenu(ShopMenu *shopMenu)
 
 static void Shop_PrintExit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
-    Strbuf *strbuf;
+    String *string;
 
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00031);
+        string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00031);
     } else {
-        strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00001);
+        string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00001);
     }
 
-    StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-    Strbuf_Free(strbuf);
+    StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+    String_Free(string);
     FieldMessage_AddWindow(fieldSystem->bgConfig, &shopMenu->windows[1], BG_LAYER_MAIN_3);
     FieldMessage_DrawWindow(&shopMenu->windows[1], shopMenu->options);
 
-    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[1], shopMenu->strbuf, shopMenu->options, TRUE);
+    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[1], shopMenu->string, shopMenu->options, TRUE);
 }
 
 static const SpriteResourceDataPaths sShop_SpriteResourcePaths = {
@@ -1635,10 +1635,10 @@ static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMen
     FieldMessage_AddWindow(fieldSystem->bgConfig, &shopMenu->windows[1], BG_LAYER_MAIN_3);
     FieldMessage_DrawWindow(&shopMenu->windows[1], shopMenu->options);
 
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(shopMenu->msgLoader, pl_msg_00000543_00002);
-    StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
-    Strbuf_Free(strbuf);
+    String *string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00002);
+    StringTemplate_Format(shopMenu->strTemplate, shopMenu->string, string);
+    String_Free(string);
 
-    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[1], shopMenu->strbuf, shopMenu->options, TRUE);
+    shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[1], shopMenu->string, shopMenu->options, TRUE);
     return SHOP_STATE_REINIT_CONTEXT_MENU;
 }
