@@ -26,7 +26,7 @@ typedef struct {
     BOOL isActive;
 } TransitionController;
 
-static void BrightnessController_TransitionSetup(TransitionController *controller, const u8 stepCount, const s16 targetBrightness, const s16 startBrightness, const int planeMask, const u32 screenSelect);
+static void BrightnessController_TransitionSetup(TransitionController *controller, u8 stepCount, s16 targetBrightness, s16 startBrightness, int planeMask, u32 screenSelect);
 
 static TransitionController controllerMain; // Top Screen
 static TransitionController controllerSub; // Bottom Screen
@@ -65,7 +65,7 @@ static void BrightnessController_StepTransition(TransitionController *controller
     }
 }
 
-static void BrightnessController_TransitionSetup(TransitionController *controller, const u8 stepCount, const s16 targetBrightness, const s16 startBrightness, const int planeMask, const u32 screenSelect)
+static void BrightnessController_TransitionSetup(TransitionController *controller, u8 stepCount, s16 targetBrightness, s16 startBrightness, int planeMask, u32 screenSelect)
 {
     GF_ASSERT(controller->isActive == FALSE);
     controller->isActive = TRUE;
@@ -92,7 +92,7 @@ static void BrightnessController_TransitionSetup(TransitionController *controlle
     controller->accumulator = 0;
 }
 
-void BrightnessController_StartTransition(const u8 stepCount, const s16 tragetBrightness, const s16 startBrightness, const int planeMask, const u32 screenSelect)
+void BrightnessController_StartTransition(u8 stepCount, s16 targetBrightness, s16 startBrightness, int planeMask, u32 screenSelect)
 {
     if (stepCount == 0) {
         return;
@@ -101,17 +101,17 @@ void BrightnessController_StartTransition(const u8 stepCount, const s16 tragetBr
     if (IS_SCREEN_SELECTED(screenSelect, BRIGHTNESS_MAIN_SCREEN)) {
         G2_SetBlendBrightness(planeMask, startBrightness);
         TransitionController *controller = &controllerMain;
-        BrightnessController_TransitionSetup(controller, stepCount, tragetBrightness, startBrightness, planeMask, BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_TransitionSetup(controller, stepCount, targetBrightness, startBrightness, planeMask, BRIGHTNESS_MAIN_SCREEN);
     }
 
     if (IS_SCREEN_SELECTED(screenSelect, BRIGHTNESS_SUB_SCREEN)) {
         G2S_SetBlendBrightness(planeMask, startBrightness);
         TransitionController *controller = &controllerSub;
-        BrightnessController_TransitionSetup(controller, stepCount, tragetBrightness, startBrightness, planeMask, BRIGHTNESS_SUB_SCREEN);
+        BrightnessController_TransitionSetup(controller, stepCount, targetBrightness, startBrightness, planeMask, BRIGHTNESS_SUB_SCREEN);
     }
 }
 
-void BrightnessController_SetScreenBrightness(const s16 brightness, const int planeMask, const u32 screenSelect)
+void BrightnessController_SetScreenBrightness(s16 brightness, int planeMask, u32 screenSelect)
 {
     if (IS_SCREEN_SELECTED(screenSelect, BRIGHTNESS_MAIN_SCREEN)) {
         G2_SetBlendBrightness(planeMask, brightness);
@@ -133,7 +133,7 @@ void BrightnessController_ResetAllControllers(void)
     controllerSub.isActive = FALSE;
 }
 
-void BrightnessController_ResetScreenController(const u32 screenSelect)
+void BrightnessController_ResetScreenController(u32 screenSelect)
 {
     if (IS_SCREEN_SELECTED(screenSelect, BRIGHTNESS_MAIN_SCREEN)) {
         MI_CpuClear8(&controllerMain, sizeof(TransitionController));
