@@ -36,7 +36,7 @@ void BattleRegulation_GetName(const BattleRegulation *regulation, String *string
     String_CopyNumChars(string, regulation->name, BATTLE_REGULATION_NAME_LENGTH);
 }
 
-String *BattleRegulation_GetNameStrbuf(const BattleRegulation *regulation, int heapID)
+String *BattleRegulation_GetNameString(const BattleRegulation *regulation, int heapID)
 {
     String *string = String_Init(BATTLE_REGULATION_NAME_LENGTH * 2, heapID);
 

@@ -411,7 +411,7 @@ static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTe
 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
 
-    String *battleRegName = BattleRegulation_GetNameStrbuf(battleReg, HEAP_ID_FIELD3);
+    String *battleRegName = BattleRegulation_GetNameString(battleReg, HEAP_ID_FIELD3);
     StringTemplate_SetString(formatter->stringTemplate, 1, battleRegName, 0, 1, GAME_LANGUAGE);
     String_Free(battleRegName);
 }

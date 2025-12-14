@@ -124,10 +124,10 @@ BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *tr
     trDataDTO->unk_18[1] = battleTowerTrainerID * 3;
     trDataDTO->trainerType = trData->trainerType;
 
-    String *strbuf = MessageLoader_GetNewString(msgLoader, battleTowerTrainerID);
+    String *string = MessageLoader_GetNewString(msgLoader, battleTowerTrainerID);
 
-    String_ToChars(strbuf, &trDataDTO->trainerName[0], TRAINER_NAME_LEN + 1);
-    String_Free(strbuf);
+    String_ToChars(string, &trDataDTO->trainerName[0], TRAINER_NAME_LEN + 1);
+    String_Free(string);
     MessageLoader_Free(msgLoader);
 
     return trData;

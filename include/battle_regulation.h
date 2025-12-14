@@ -44,7 +44,7 @@ int BattleRegulation_SaveSize(void);
 void BattleRegulation_Copy(const BattleRegulation *src, BattleRegulation *dst);
 void RegulationBattles_Init(BattleRegulationData *regulationData);
 void BattleRegulation_GetName(const BattleRegulation *regulation, String *string);
-String *BattleRegulation_GetNameStrbuf(const BattleRegulation *regulation, int heapID);
+String *BattleRegulation_GetNameString(const BattleRegulation *regulation, int heapID);
 int BattleRegulation_GetRuleValue(const BattleRegulation *regulation, enum BattleRegulationRule rule);
 BattleRegulation *BattleRegulation_Load(SaveData *saveData, int index);
 void BattleRegulation_Save(SaveData *saveData, const BattleRegulation *regulation);
