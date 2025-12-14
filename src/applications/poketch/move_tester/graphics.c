@@ -24,6 +24,8 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[] = {
     {
         .translation = { FX32_CONST(28), FX32_CONST(128) },
@@ -141,8 +143,8 @@ static void SetupSprites(PoketchMoveTesterGraphics *graphics)
 {
     int index;
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 64, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 62, 63, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, move_tester_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, move_tester_cell_NCER_lz, move_tester_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     for (index = 0; index < 6; index++) {
         graphics->animSpriteData[index] = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &sPoketchMoveTester_AnimDataButtons[index], &graphics->spriteData);
@@ -228,8 +230,8 @@ static void Task_DrawAppScreen(SysTask *task, void *taskMan)
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &sMoveTesterBgTemplate, BG_TYPE_STATIC);
 
-    tileSize = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 61, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 60, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    tileSize = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, move_tester_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, move_tester_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
     tileSize /= 0x20;

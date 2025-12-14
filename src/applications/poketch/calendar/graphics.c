@@ -11,6 +11,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define MARKED_CELL_TILE_IDX   143
 #define UNMARKED_CELL_TILE_IDX 131
 
@@ -66,9 +68,9 @@ static void SetupSprites(CalendarGraphics *graphics, const CalendarData *calenda
         .hasAffineTransform = FALSE,
     };
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 114, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, calendar_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 112, 113, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, calendar_cell_NCER_lz, calendar_anim_NANR_lz, HEAP_ID_POKETCH_APP);
     graphics->sprite = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animData, &graphics->spriteData);
     SetCurrentDayBoxPosition(graphics->sprite, calendar->days[calendar->currentDay - 1].calendarCell);
 }
@@ -154,7 +156,7 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     SetMarkedCells(graphics, calendar);
     DrawCalendarNumbers(graphics, calendar);
 
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 111, graphics->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, calendar_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     PoketchGraphics_LoadActivePalette(0, 0);
 
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);
@@ -188,7 +190,7 @@ static void Task_UpdateCalendarCell(SysTask *task, void *taskMan)
 
 static void SetMarkedCells(CalendarGraphics *graphics, const CalendarData *calendar)
 {
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 110, graphics->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, calendar_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_3, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     for (u32 i = 0; i < calendar->daysInMonth; i++) {
         if (calendar->days[i].isMarked) {

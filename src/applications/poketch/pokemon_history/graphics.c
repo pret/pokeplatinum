@@ -15,6 +15,8 @@
 #include "sys_task_manager.h"
 #include "text.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define MON_ANIM_DATA(r, c)                                        \
     {                                                              \
         .translation = { FX32_CONST(48 + HISTORY_ICON_STEP_X * c), \
@@ -159,7 +161,7 @@ static void SetupSprites(PokemonHistoryGraphics *graphics, const HistoryData *hi
     };
 
     PoketchTask_LoadPokemonIconLuminancePalette(0);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, 5, 6, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->spriteData, NARC_INDEX_GRAPHIC__POKETCH, poke_icon_cell_NCER_lz, poke_icon_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     int i;
     for (i = 0; i < history->count; i++) {
