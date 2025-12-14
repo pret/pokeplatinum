@@ -66,7 +66,7 @@ void CommCmd_16(int netId, int param1, void *_buff, void *param3)
     if (CommSys_CurNetId() == 0) {
         v2[0] = netId;
         v2[1] = syncNo;
-        sub_02035B48(18, &v2);
+        CommSys_SendDataFixedSizeServer(18, &v2);
 
         sCommTool->syncNo[netId] = syncNo;
 
@@ -78,7 +78,7 @@ void CommCmd_16(int netId, int param1, void *_buff, void *param3)
             }
         }
 
-        sub_02035B48(17, &syncNo);
+        CommSys_SendDataFixedSizeServer(17, &syncNo);
     }
 }
 

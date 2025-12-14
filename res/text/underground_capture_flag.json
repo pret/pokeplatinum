@@ -15,7 +15,7 @@
       "garbage": 32
     },
     {
-      "id": "pl_msg_00000638_00002",
+      "id": "UndergroundCaptureFlag_Text_DiscardedFlag",
       "en_US": "Discarded the Flag."
     },
     {
@@ -27,21 +27,21 @@
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000638_00005",
+      "id": "UndergroundCaptureFlag_Text_SomethingBuriedButHoldingFlag",
       "en_US": [
         "Something is buried in front of you.\n",
         "But you’re holding a Flag!"
       ]
     },
     {
-      "id": "pl_msg_00000638_00006",
+      "id": "UndergroundCaptureFlag_Text_NoTimeToChat",
       "en_US": [
         "You don’t have the time to stop\n",
         "and chat!"
       ]
     },
     {
-      "id": "pl_msg_00000638_00007",
+      "id": "UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered",
       "en_US": [
         "The obtained Flag was registered\n",
         "on the PC!"
@@ -59,19 +59,19 @@
       "en_US": "You already have a Flag!"
     },
     {
-      "id": "pl_msg_00000638_00010",
+      "id": "UndergroundCaptureFlag_Text_PlayerTookAwayYourFlag",
       "en_US": "{STRVAR_1 1, 0, 0} took away your Flag!"
     },
     {
-      "id": "pl_msg_00000638_00011",
+      "id": "UndergroundCaptureFlag_Text_PlayerTookBackTheFlag",
       "en_US": "{STRVAR_1 1, 0, 0} took back the Flag!"
     },
     {
-      "id": "pl_msg_00000638_00012",
+      "id": "UndergroundCaptureFlag_Text_TookAFlagFromPlayer",
       "en_US": "Took a Flag from {STRVAR_1 1, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000638_00013",
+      "id": "UndergroundCaptureFlag_Text_YouTookBackTheFlag",
       "en_US": "Took back the Flag!"
     },
     {

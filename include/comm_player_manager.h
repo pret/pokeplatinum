@@ -3,11 +3,10 @@
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_defs/struct_02057B48.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
-#include "overlay023/struct_ov23_0224991C_decl.h"
-#include "overlay023/struct_ov23_0224A294_sub1.h"
-#include "overlay023/struct_ov23_0224ABC4.h"
+#include "overlay023/underground_player_status.h"
 
 #include "communication_system.h"
 #include "overworld_anim_manager.h"
@@ -15,12 +14,11 @@
 #include "trainer_info.h"
 
 enum PauseBit {
-    PAUSE_BIT_0 = 1,
-    PAUSE_BIT_1 = 1 << 1,
-    PAUSE_BIT_2 = 1 << 2,
-    PAUSE_BIT_3 = 1 << 3,
+    PAUSE_BIT_STOLE_FLAG = 1,
+    PAUSE_BIT_TALK_WITH_FLAG = 1 << 1,
+    PAUSE_BIT_LOST_FLAG = 1 << 2,
     PAUSE_BIT_TRAPS = 1 << 4,
-    PAUSE_BIT_5 = 1 << 5,
+    PAUSE_BIT_BURIED_OBJECT_WITH_FLAG = 1 << 5,
     PAUSE_BIT_LINK_PC = 1 << 6,
     PAUSE_BIT_RADAR = 1 << 7,
 };
@@ -32,20 +30,32 @@ enum Emote {
     EMOTE_OK,
 };
 
+typedef struct DummiedTalkStruct {
+    u8 field0 : 4;
+    u8 field1 : 4;
+    u8 field2 : 1;
+    u8 field3 : 1;
+} DummiedTalkStruct;
+
+typedef struct HeldFlagInfo {
+    u8 ownerInfo[sizeof(TrainerInfo)];
+    u16 netID;
+} HeldFlagInfo;
+
 typedef struct CommPlayerManager {
     u32 pauseBits;
-    UnkStruct_ov23_0224991C *unk_04;
+    UndergroundPlayerStatuses *playerStatuses;
     PlayerAvatar *playerAvatar[MAX_CONNECTED_PLAYERS];
-    OverworldAnimManager *unk_28[MAX_CONNECTED_PLAYERS];
+    OverworldAnimManager *animManager[MAX_CONNECTED_PLAYERS];
     u8 isActive[MAX_CONNECTED_PLAYERS];
     SysTask *task;
     FieldSystem *fieldSystem;
-    UnkStruct_ov23_0224A294_sub1 unk_58;
-    u8 unk_5A[MAX_CONNECTED_PLAYERS];
+    DummiedTalkStruct dummy;
+    u8 talkCount[MAX_CONNECTED_PLAYERS];
     CommPlayerLocation playerLocationServer[MAX_CONNECTED_PLAYERS];
     CommPlayerLocation playerLocation[MAX_CONNECTED_PLAYERS];
-    u8 unk_E2[MAX_CONNECTED_PLAYERS];
-    u8 unk_EA[MAX_CONNECTED_PLAYERS];
+    u8 movementEnabled[MAX_CONNECTED_PLAYERS];
+    u8 movementEnabled2[MAX_CONNECTED_PLAYERS];
     u8 unk_F2[MAX_CONNECTED_PLAYERS];
     u8 emote[MAX_CONNECTED_PLAYERS];
     s8 slideAnimationDir[MAX_CONNECTED_PLAYERS];
@@ -57,14 +67,14 @@ typedef struct CommPlayerManager {
     u8 movementChanged[MAX_CONNECTED_PLAYERS];
     u8 moveTimerServer[MAX_CONNECTED_PLAYERS];
     u8 moveTimer[MAX_CONNECTED_PLAYERS];
-    UnkStruct_ov23_0224ABC4 unk_14A[8 + 1];
-    TrainerInfo *unk_27C[5];
+    HeldFlagInfo heldFlagInfo[MAX_CONNECTED_PLAYERS + 1];
+    TrainerInfo *registeredFlagOwnerInfoUnused[MAX_CAPTURED_FLAG_RECORDS]; // this is never read from and presumably superseded by the fields in the underground struct
     TrainerInfo *heldFlagOwnerInfo[MAX_CONNECTED_PLAYERS];
     u16 unk_2B0;
-    u16 unk_2B2;
+    u16 flagsRegisteredInCurrentSession;
     u8 unk_2B4[4];
-    u8 unk_2B8;
-    u8 unk_2B9;
+    u8 menuOpen;
+    u8 linksReceivedHeldFlagData;
     u8 unk_2BA;
     u8 sendAllPos;
     u8 isFieldSystemActive;
@@ -73,7 +83,7 @@ typedef struct CommPlayerManager {
     u8 unk_2BF;
     u8 forceDirTimer;
     u8 unk_2C1;
-    u8 unk_2C2;
+    u8 updatingHeldFlags;
     u8 unk_2C3;
 } CommPlayerManager;
 
@@ -125,7 +135,7 @@ int CommPlayer_DirServer(int netId);
 void CommPlayer_LookTowardsServer(int netIdTarget, int netIdSet);
 void CommPlayer_LookTowards(int netIdTarget, int netIdSet);
 int CommPlayerMan_GetLinkNetIDAtLocation(int xPos, int zPos);
-void sub_02059058(int netId, BOOL param1);
+void CommPlayerMan_SetMovementEnabled(int netId, BOOL movementEnabled);
 BOOL sub_02059094(int netId);
 BOOL sub_020590C4(void);
 void sub_02059180(int netId, int unused0, void *src, void *unused3);

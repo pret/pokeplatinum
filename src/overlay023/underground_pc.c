@@ -11,13 +11,13 @@
 #include "field/field_system.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02254A14.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -193,7 +193,7 @@ BOOL UndergroundPC_TryUsePC(int netID, Coordinates *coordinates)
     }
 
     if (pcNetID != PC_NONE) {
-        sub_02059058(netID, FALSE);
+        CommPlayerMan_SetMovementEnabled(netID, FALSE);
 
         PCInteraction pcInteraction;
         pcInteraction.pcNetID = pcNetID;
@@ -201,18 +201,18 @@ BOOL UndergroundPC_TryUsePC(int netID, Coordinates *coordinates)
         pcInteraction.canTakeFlag = FALSE;
 
         if (pcNetID != netID) {
-            if (!ov23_IsPlayerHoldingFlag(netID)) {
+            if (!UndergroundPlayer_IsHoldingFlag(netID)) {
                 pcInteraction.canTakeFlag = TRUE;
             }
         } else {
-            if (ov23_IsPlayerHoldingFlag(netID)) {
-                u8 v5 = 3; // TODO: label this when below function is documented
-                ov23_0224A570(netID, 1, &v5, NULL);
+            if (UndergroundPlayer_IsHoldingFlag(netID)) {
+                u8 flagEventType = FLAG_EVENT_REGISTER;
+                UndergroundPlayer_ProcessFlagEventType(netID, 1, &flagEventType, NULL);
                 return TRUE;
             }
         }
 
-        sub_02035B48(83, &pcInteraction);
+        CommSys_SendDataFixedSizeServer(83, &pcInteraction);
         return TRUE;
     }
 
@@ -936,8 +936,8 @@ void UndergroundPC_ProcessTakeFlagAttempt(int unused0, int unused1, void *data, 
 {
     PCInteraction *pcInteraction = data;
 
-    if (ov23_TryTakeFlag(pcInteraction->playerNetID, pcInteraction->pcNetID)) {
-        sub_02035B48(90, pcInteraction);
+    if (UndergroundPlayer_TryTakeFlagFromBase(pcInteraction->playerNetID, pcInteraction->pcNetID)) {
+        CommSys_SendDataFixedSizeServer(90, pcInteraction);
     }
 }
 
@@ -951,7 +951,7 @@ void UndergroundPC_ProcessTakenFlag(int unused0, int unused1, void *data, void *
         Sound_PlayBGM(SEQ_HATANIGE);
     }
 
-    ov23_TryTakeFlag(pcInteraction->playerNetID, pcInteraction->pcNetID);
+    UndergroundPlayer_TryTakeFlagFromBase(pcInteraction->playerNetID, pcInteraction->pcNetID);
     ov23_0224D500(pcInteraction->playerNetID, pcInteraction->pcNetID);
 }
 

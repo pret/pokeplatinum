@@ -16,9 +16,10 @@
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_player.h"
+#include "overlay023/underground_player_status.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -945,7 +946,7 @@ void UndergroundTraps_RemoveLinkData(int netID)
     UndergroundTraps_ResetPlayerTrapsCoordinateOrdering(netID);
 
     if (trapsEnv->triggeredTrapIDs[netID] != TRAP_NONE) {
-        ov23_RevertPlayerStatusToNormal(netID);
+        UndergroundPlayer_RevertStatusToNormal(netID);
         UndergroundTraps_EndTrapEffectServer(netID, trapsEnv->triggeredTrapIDs[netID]);
         trapsEnv->triggeredTrapIDs[netID] = TRAP_NONE;
     }
@@ -1467,7 +1468,7 @@ BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 bits)
     BuriedTrap *trap = UndergroundTraps_GetTrapAtCoordinates(x, z);
 
     if (trap) {
-        if (ov23_0224A6B8(netID)) {
+        if (UndergroundPlayer_BuriedObjectHeldFlagCheck(netID)) {
             return TRUE;
         }
 
@@ -1488,7 +1489,7 @@ BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 bits)
             Underground_RemoveSpawnedTrapAtIndex(underground, retrievedTrap.trap.spawnedTrapIndex);
         }
 
-        sub_02059058(netID, FALSE);
+        CommPlayerMan_SetMovementEnabled(netID, FALSE);
         CommSys_SendDataServer(51, &retrievedTrap, sizeof(TriggeredTrap));
 
         return TRUE;
@@ -1600,7 +1601,7 @@ static BOOL CheckPlayerSteppedOnTrap(int netID)
 {
     Underground *underground = SaveData_GetUnderground(trapsEnv->fieldSystem->saveData);
 
-    if (ov23_0224162C(netID)) {
+    if (Mining_IsPlayerMining(netID)) {
         return FALSE;
     }
 
@@ -1611,7 +1612,7 @@ static BOOL CheckPlayerSteppedOnTrap(int netID)
     }
 
     if (trapsEnv->triggeredTrapIDs[netID] != TRAP_NONE) {
-        ov23_RevertPlayerStatusToNormal(netID);
+        UndergroundPlayer_RevertStatusToNormal(netID);
         UndergroundTraps_EndTrapEffectServer(netID, trapsEnv->triggeredTrapIDs[netID]);
     }
 
@@ -1709,7 +1710,7 @@ void UndergroundTraps_HandleTriggeredTrap(int unused0, int unused1, void *data, 
         UndergroundTraps_StartLinkSpinTask(trap->victimNetID, trap->trap.trapID);
     }
 
-    ov23_ShowExclamationEmote(trap->victimNetID);
+    UndergroundPlayer_AddExclamationEmote(trap->victimNetID);
 
     if (CommSys_CurNetId() == trap->victimNetID) {
         UndergroundRecord_IncrementNumTrapsTriggered(undergroundRecord);
@@ -1763,7 +1764,7 @@ void UndergroundTraps_SendTriggeredTrapBits(void)
             }
         }
 
-        sub_02035B48(45, &bits);
+        CommSys_SendDataFixedSizeServer(45, &bits);
     }
 }
 
@@ -1777,7 +1778,7 @@ void UndergroundTraps_ProcessTriggeredTrapBits(int unused0, int unused1, void *d
 
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         if (bits & (1 << netID)) {
-            ov23_ShowExclamationEmote(netID);
+            UndergroundPlayer_AddExclamationEmote(netID);
         }
     }
 }
@@ -1892,7 +1893,7 @@ void UndergroundTraps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolS
         }
 
         if (CommSys_CurNetId() != 0) {
-            ov23_RevertPlayerStatusToNormal(netID);
+            UndergroundPlayer_RevertStatusToNormal(netID);
         }
 
         CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
@@ -1900,7 +1901,7 @@ void UndergroundTraps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolS
 
         trapsEnv->unused4 = NULL;
 
-        ov23_ClearEmote(netID);
+        UndergroundPlayer_RemoveEmote(netID);
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
 
         trapsEnv->triggeredTrapIDClient = TRAP_NONE;
@@ -1955,35 +1956,35 @@ static BOOL UndergroundTraps_CheckPlayerPosRelativeToTrap(int dir, enum TrapRela
 
 static void UndergroundTraps_ReverseTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
     CommPlayerMan_SetPlayerAlteredMovement(netID, 30);
 }
 
 static void UndergroundTraps_ConfuseTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
     CommPlayerMan_SetPlayerAlteredMovement(netID, 30);
 }
 
 static void UndergroundTraps_EndAlteredMovementTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_NORMAL);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_NORMAL);
     CommPlayerMan_EndPlayerAlteredMovement(netID);
 }
 
 static void UndergroundTraps_SmokeTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 }
 
 static void UndergroundTraps_LeafTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 }
 
 static void UndergroundTraps_MoveTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_SLIDING);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_SLIDING);
     CommPlayer_EndCurrentSlide(netID);
 }
 
@@ -2029,7 +2030,7 @@ static void UndergroundTraps_HurlTrapRightEffectServer(int netID)
 
 static void UndergroundTraps_EndMoveTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_NORMAL);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_NORMAL);
     CommPlayer_StopSlide(netID);
 }
 
@@ -2040,7 +2041,7 @@ static void UndergroundTraps_DummyServer(int unused)
 
 static void UndergroundTraps_ReverseTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartAlterMovementTrapClientTask(TRUE);
@@ -2049,7 +2050,7 @@ static void UndergroundTraps_ReverseTrapEffectClient(int netID, BOOL isTool, int
 
 static void UndergroundTraps_ConfuseTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_MOVEMENT_ALTERED);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartAlterMovementTrapClientTask(FALSE);
@@ -2058,7 +2059,7 @@ static void UndergroundTraps_ConfuseTrapEffectClient(int netID, BOOL isTool, int
 
 static void UndergroundTraps_SmokeTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartSmokeTrapClientTask(trapsEnv->fieldSystem, isTool, toolInitialDir);
@@ -2067,7 +2068,7 @@ static void UndergroundTraps_SmokeTrapEffectClient(int netID, BOOL isTool, int t
 
 static void UndergroundTraps_LeafTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartLeafTrapClientTask(trapsEnv->fieldSystem, isTool, toolInitialDir);
@@ -2543,8 +2544,8 @@ int CommPacketSizeOf_EscapedTrap(void)
 
 void UndergroundTraps_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3)
 {
-    if (ov23_0224ACC0(netID)) {
-        ov23_RevertPlayerStatusToNormal(netID);
+    if (UndergroundPlayer_IsAffectedByTrap(netID)) {
+        UndergroundPlayer_RevertStatusToNormal(netID);
         UndergroundTraps_EndTrapEffectServer(netID, trapsEnv->triggeredTrapIDs[netID]);
 
         EscapedTrap trap;
@@ -2553,7 +2554,7 @@ void UndergroundTraps_EscapeTrapServer(int netID, int unused1, void *unused2, vo
         trap.netID = netID;
         trap.showOKEmote = TRUE;
 
-        sub_02035B48(42, &trap);
+        CommSys_SendDataFixedSizeServer(42, &trap);
     }
 
     trapsEnv->triggeredTrapIDs[netID] = TRAP_NONE;
@@ -2561,7 +2562,7 @@ void UndergroundTraps_EscapeTrapServer(int netID, int unused1, void *unused2, vo
 
 void UndergroundTraps_EndCurrentTrapEffectServer(int netID, int unused1, void *unused2, void *unused3)
 {
-    ov23_RevertPlayerStatusToNormal(netID);
+    UndergroundPlayer_RevertStatusToNormal(netID);
 
     if (trapsEnv->triggeredTrapIDs[netID] != TRAP_NONE) {
         UndergroundTraps_EndTrapEffectServer(netID, trapsEnv->triggeredTrapIDs[netID]);
@@ -2579,10 +2580,10 @@ void UndergroundTraps_ProcessEscapedTrap(int unused0, int unused1, void *data, v
     int trapID = escapedTrap->trapID;
 
     if (escapedTrap->showOKEmote) {
-        ov23_ShowOKEmote(escapedTrap->netID);
+        UndergroundPlayer_AddOKEmote(escapedTrap->netID);
     } else {
         // dead code, field being checked is always true
-        ov23_ClearEmote(escapedTrap->netID);
+        UndergroundPlayer_RemoveEmote(escapedTrap->netID);
     }
 
     UndergroundTraps_StopLinkSpin(escapedTrap->netID);
@@ -2609,7 +2610,7 @@ void UndergroundTraps_ProcessEscapedTrap(int unused0, int unused1, void *data, v
     }
 
     if (CommSys_CurNetId() != 0) {
-        ov23_RevertPlayerStatusToNormal(escapedTrap->netID);
+        UndergroundPlayer_RevertStatusToNormal(escapedTrap->netID);
     }
 }
 
@@ -2625,7 +2626,7 @@ void UndergroundTraps_EscapeHole(int unused0, int unused1, void *data, void *unu
 
 void UndergroundTraps_HelpLink(int netID, int linkNetID)
 {
-    ov23_RevertPlayerStatusToNormal(linkNetID);
+    UndergroundPlayer_RevertStatusToNormal(linkNetID);
     UndergroundTraps_EndTrapEffectServer(linkNetID, trapsEnv->triggeredTrapIDs[linkNetID]);
 
     TrapHelpData helpData;
@@ -2633,9 +2634,9 @@ void UndergroundTraps_HelpLink(int netID, int linkNetID)
     helpData.helperNetID = netID;
     helpData.trapID = trapsEnv->triggeredTrapIDs[linkNetID];
 
-    sub_02035B48(44, &helpData);
+    CommSys_SendDataFixedSizeServer(44, &helpData);
     trapsEnv->triggeredTrapIDs[linkNetID] = TRAP_NONE;
-    sub_02059058(netID, FALSE);
+    CommPlayerMan_SetMovementEnabled(netID, FALSE);
 }
 
 void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void *unused3)
@@ -2643,7 +2644,7 @@ void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void
     TrapHelpData *helpdata = data;
     UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
 
-    ov23_ShowOKEmote(helpdata->helpeeNetID);
+    UndergroundPlayer_AddOKEmote(helpdata->helpeeNetID);
 
     if (helpdata->helperNetID == CommSys_CurNetId()) {
         UndergroundRecord_IncrementNumPlayersHelped(undergroundRecord);
@@ -2672,7 +2673,7 @@ void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void
     }
 
     if (CommSys_CurNetId() != 0) {
-        ov23_RevertPlayerStatusToNormal(helpdata->helpeeNetID);
+        UndergroundPlayer_RevertStatusToNormal(helpdata->helpeeNetID);
     }
 
     trapsEnv->helpedNetIDs[helpdata->helperNetID] = helpdata->helpeeNetID;
@@ -2773,7 +2774,7 @@ static void SendTrapRadarResults(void)
                         radarResult.x = trap->x;
                         radarResult.z = trap->z;
                         radarResult.netID = netID;
-                        sub_02035B48(47, &radarResult);
+                        CommSys_SendDataFixedSizeServer(47, &radarResult);
                         trapsEnv->trapRadarIndex[netID] = index + 2;
                         break;
                     }
@@ -3112,7 +3113,7 @@ static void UndergroundTraps_StartHoleTrapClientTask(BOOL isPitTrap, BOOL isTool
 
 static void UndergroundTraps_HoleTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IN_HOLE);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IN_HOLE);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartHoleTrapClientTask(FALSE, isTool, toolInitialDir);
@@ -3121,7 +3122,7 @@ static void UndergroundTraps_HoleTrapEffectClient(int netID, BOOL isTool, int to
 
 static void UndergroundTraps_PitTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IN_HOLE);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IN_HOLE);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartHoleTrapClientTask(TRUE, isTool, toolInitialDir);
@@ -3130,19 +3131,19 @@ static void UndergroundTraps_PitTrapEffectClient(int netID, BOOL isTool, int too
 
 static void UndergroundTraps_EndHoleTrapEffectServer(int netID)
 {
-    ov23_RevertPlayerStatusToNormal(netID);
+    UndergroundPlayer_RevertStatusToNormal(netID);
     CommPlayerMan_RemovePlayerFromHole(netID);
 }
 
 static void UndergroundTraps_HoleTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IN_HOLE);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IN_HOLE);
     CommPlayerMan_PutPlayerInHole(netID, 10);
 }
 
 static void UndergroundTraps_PitTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IN_HOLE);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IN_HOLE);
     CommPlayerMan_PutPlayerInHole(netID, 20);
 }
 
@@ -3832,7 +3833,7 @@ static BOOL UndergroundTraps_ProcessBubbles(BgConfig *unused, BubbleTrapContext 
 
 static void UndergroundTraps_BubbleTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartBubbleTrapClientTask(trapsEnv->fieldSystem->bgConfig, isTool, toolInitialDir);
@@ -3841,7 +3842,7 @@ static void UndergroundTraps_BubbleTrapEffectClient(int netID, BOOL isTool, int 
 
 static void UndergroundTraps_BubbleTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 }
 
 static void UndergroundTraps_EndBubbleTrapEffectClient(int netID, BOOL allowToolStepBack)
@@ -4285,7 +4286,7 @@ static void UndergroundTraps_StartRockTrapClientTask(BgConfig *unused, BOOL isTo
 
 static void UndergroundTraps_RockTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartRockTrapClientTask(trapsEnv->fieldSystem->bgConfig, isTool, toolInitialDir);
@@ -4294,7 +4295,7 @@ static void UndergroundTraps_RockTrapEffectClient(int netID, BOOL isTool, int to
 
 static void UndergroundTraps_RockTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 }
 
 static void UndergroundTraps_EndRockTrapEffectClient(int netID, BOOL allowToolStepBack)
@@ -4573,7 +4574,7 @@ static void UndergroundTraps_StartFireTrapClientTask(BgConfig *unused, BOOL isTo
 
 static void UndergroundTraps_FireTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartFireTrapClientTask(trapsEnv->fieldSystem->bgConfig, isTool, toolInitialDir);
@@ -4582,7 +4583,7 @@ static void UndergroundTraps_FireTrapEffectClient(int netID, BOOL isTool, int to
 
 static void UndergroundTraps_FireTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 }
 
 static void UndergroundTraps_EndFireTrapEffectClient(int netID, BOOL allowToolStepBack)
@@ -4691,7 +4692,7 @@ static void UndergroundTraps_StartAlertTrapClientTask(BgConfig *unused, BOOL isT
 
 static void UndergroundTraps_AlertTrapEffectClient(int netID, BOOL isTool, int toolInitialDir)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 
     if (CommSys_CurNetId() == netID) {
         UndergroundTraps_StartAlertTrapClientTask(trapsEnv->fieldSystem->bgConfig, isTool, toolInitialDir);
@@ -4700,7 +4701,7 @@ static void UndergroundTraps_AlertTrapEffectClient(int netID, BOOL isTool, int t
 
 static void UndergroundTraps_AlertTrapEffectServer(int netID)
 {
-    ov23_UpdatePlayerStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
+    UndergroundPlayer_UpdateStatus(netID, PLAYER_STATUS_IMMOBILIZED_BY_TRAP);
 }
 
 static void UndergroundTraps_EndAlertTrapEffectClient(int netID, BOOL allowToolStepBack)
@@ -4987,7 +4988,7 @@ void UndergroundTraps_StopLinkSpin(int netID)
         return;
     }
 
-    ov23_ClearEmote(netID);
+    UndergroundPlayer_RemoveEmote(netID);
 
     trapsEnv->spinCtx[netID]->doneSpinning = TRUE;
     trapsEnv->spinCtx[netID] = NULL;

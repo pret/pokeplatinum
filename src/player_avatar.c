@@ -538,11 +538,11 @@ void sub_0205ECB8(PlayerAvatar *playerAvatar, const VecFx32 *param1, int param2)
     sub_0205EB10(playerAvatar, 0);
 }
 
-void sub_0205ECE0(PlayerAvatar *playerAvatar, int param1, int param2, int param3)
+void sub_0205ECE0(PlayerAvatar *playerAvatar, int x, int z, int dir)
 {
     MapObject *mapObj = Player_MapObject(playerAvatar);
 
-    MapObject_SetPosDirFromCoords(mapObj, param1, 0, param2, param3);
+    MapObject_SetPosDirFromCoords(mapObj, x, 0, z, dir);
     sub_0205EB08(playerAvatar, 0);
     sub_0205EB10(playerAvatar, 0);
 }

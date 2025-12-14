@@ -15,9 +15,9 @@
 #include "overlay005/hblank_system.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248F1C.h"
-#include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -148,7 +148,7 @@ typedef struct {
     UnkStruct_ov23_0223E6F8 unk_26C[250];
     Menu *unk_848;
     UnkStruct_ov23_0223E6F8 *unk_84C[8];
-    u8 unk_86C[8];
+    u8 isPlayerMining[MAX_CONNECTED_PLAYERS];
     BuriedObject buriedObjects[MINING_MAX_BURIED_OBJECTS];
     u8 unk_8BC[8];
     SysTask *unk_8C4;
@@ -701,12 +701,12 @@ BOOL ov23_0223E354(int param0, Coordinates *param1)
     u8 v1 = param0;
 
     if ((v0 != NULL) && (v0->unk_04 == 0xff)) {
-        if (ov23_0224A6B8(param0)) {
+        if (UndergroundPlayer_BuriedObjectHeldFlagCheck(param0)) {
             return 1;
         }
 
         CommSys_SendDataServer(64, &v1, 1);
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
 
         Unk_ov23_02257740->unk_84C[param0] = v0;
         return 1;
@@ -1060,11 +1060,11 @@ void ov23_0223EAF8(int param0, int param1, void *param2, void *param3)
 
             sub_020291A4(v0, v1->unk_05);
 
-            Unk_ov23_02257740->unk_86C[param0] = 1;
+            Unk_ov23_02257740->isPlayerMining[param0] = TRUE;
             Unk_ov23_02257740->unk_84C[param0] = NULL;
         }
     } else {
-        Unk_ov23_02257740->unk_86C[param0] = 0;
+        Unk_ov23_02257740->isPlayerMining[param0] = FALSE;
         Unk_ov23_02257740->unk_84C[param0] = NULL;
     }
 }
@@ -1083,8 +1083,7 @@ void ov23_0223EB8C(int param0, int param1, void *param2, void *param3)
 
 void ov23_0223EBC0(int param0, int param1, void *param2, void *param3)
 {
-    Unk_ov23_02257740->unk_86C[param0] = 0;
-
+    Unk_ov23_02257740->isPlayerMining[param0] = FALSE;
     Unk_ov23_02257740->unk_8FC[param0] = 0;
 }
 
@@ -1097,7 +1096,7 @@ void ov23_0223EBE4(int param0, int param1, void *param2, void *param3)
     v1[1] = v0[0];
     v1[2] = v0[1];
 
-    sub_02035B48(69, v1);
+    CommSys_SendDataFixedSizeServer(69, v1);
 }
 
 int ov23_0223EBFC(void)
@@ -2421,8 +2420,8 @@ static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
         if ((Unk_ov23_02257740->linkTouchX[netID] != (u8)TOUCHSCREEN_INPUT_NONE) && (Unk_ov23_02257740->linkTouchY[netID] != (u8)TOUCHSCREEN_INPUT_NONE)) {
             int playerXPos = CommPlayer_XPos(CommSys_CurNetId());
             int playerZPos = CommPlayer_ZPos(CommSys_CurNetId());
-            int linkXPos = Underground_GetLinkXPos(netID);
-            int linkZPos = Underground_GetLinkZPos(netID);
+            int linkXPos = UndergroundPlayer_GetXPos(netID);
+            int linkZPos = UndergroundPlayer_GetZPos(netID);
 
             if ((linkXPos > (playerXPos - 10)) && (linkXPos < (playerXPos + 10))) {
                 if ((linkZPos > (playerZPos - 10)) && (linkZPos < (playerZPos + 10))) {
@@ -2954,7 +2953,7 @@ static void ov23_022413B4(void)
                     v4.unk_00 = v3->unk_00;
                     v4.unk_02 = v3->unk_02;
                     v4.unk_04 = v0;
-                    sub_02035B48(72, &v4);
+                    CommSys_SendDataFixedSizeServer(72, &v4);
                     Unk_ov23_02257740->unk_8BC[v0] = v2 + 3;
                     break;
                 }
@@ -3045,7 +3044,7 @@ static void ov23_022414D4(void)
                 v3.unk_00 = v0->unk_00;
                 v3.unk_02 = v0->unk_02;
 
-                sub_02035B48(72, &v3);
+                CommSys_SendDataFixedSizeServer(72, &v3);
             }
         } else {
             UnkStruct_ov23_0224142C v4;
@@ -3054,7 +3053,7 @@ static void ov23_022414D4(void)
             v4.unk_00 = 0;
             v4.unk_02 = 0;
 
-            sub_02035B48(72, &v4);
+            CommSys_SendDataFixedSizeServer(72, &v4);
         }
     }
 }
@@ -3090,19 +3089,19 @@ void ov23_0224160C(void)
     }
 }
 
-BOOL ov23_0224162C(int netID)
+BOOL Mining_IsPlayerMining(int netID)
 {
     if (Unk_ov23_02257740) {
-        return Unk_ov23_02257740->unk_86C[netID];
+        return Unk_ov23_02257740->isPlayerMining[netID];
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov23_02241648(int param0)
 {
     if (Unk_ov23_02257740) {
-        Unk_ov23_02257740->unk_86C[param0] = 0;
+        Unk_ov23_02257740->isPlayerMining[param0] = FALSE;
         Unk_ov23_02257740->unk_8FC[param0] = 0;
     }
 }
@@ -3121,6 +3120,6 @@ BOOL ov23_02241670(void)
 void ov23_02241690(int param0, int param1)
 {
     if (Unk_ov23_02257740) {
-        Unk_ov23_02257740->unk_86C[param0] = param1;
+        Unk_ov23_02257740->isPlayerMining[param0] = param1;
     }
 }

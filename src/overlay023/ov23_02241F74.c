@@ -13,7 +13,6 @@
 #include "overlay005/land_data.h"
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
@@ -22,6 +21,7 @@
 #include "overlay023/struct_ov23_02253598_decl.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_pc.h"
+#include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -99,12 +99,6 @@ typedef struct {
     u8 unk_14B;
     u8 unk_14C;
 } CommManUnderground;
-
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-} UnkStruct_ov23_022428D8;
 
 typedef struct {
     u8 bits;
@@ -351,7 +345,7 @@ BOOL ov23_02242458(void)
         sCommManUnderground->unk_134 = 30;
 
         if (!sCommManUnderground->unk_14B) {
-            if (sub_02057FAC() && !ov23_0224ACC0(CommSys_CurNetId())) {
+            if (sub_02057FAC() && !UndergroundPlayer_IsAffectedByTrap(CommSys_CurNetId())) {
                 if (CommSys_CheckError()) {
                     return 0;
                 }
@@ -436,11 +430,11 @@ void ov23_022425F8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (ov23_0224ACC0(param0)) {
+    if (UndergroundPlayer_IsAffectedByTrap(param0)) {
         return;
     }
 
-    sub_02059058(param0, 0);
+    CommPlayerMan_SetMovementEnabled(param0, 0);
     ov23_022425B8(param0, v0);
 }
 
@@ -602,7 +596,7 @@ int ov23_022428D4(void)
 
 void ov23_022428D8(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov23_022428D8 v0;
+    TalkEvent v0;
     UnkStruct_ov23_02242830 *v1 = param2;
     Coordinates v2;
     int v3;
@@ -618,53 +612,53 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (ov23_0224ACC0(param0)) {
+    if (UndergroundPlayer_IsAffectedByTrap(param0)) {
         return;
     }
 
     v3 = CommPlayerMan_GetLinkNetIDAtLocation(v2.x, v2.z);
 
-    if (v3 != 0xff) {
+    if (v3 != NETID_NONE) {
         if (ov23_0224C1C8(v3)) {
-            (void)0;
-        } else if (ov23_0224162C(v3)) {
-            v0.unk_00 = 4;
-            v0.unk_02 = v3;
-            v0.unk_01 = param0;
+            return;
+        } else if (Mining_IsPlayerMining(v3)) {
+            v0.result = TALK_RESULT_MINING;
+            v0.talkTargetNetID = v3;
+            v0.netID = param0;
 
             CommSys_SendDataServer(30, &v0, sizeof(v0));
-            sub_02059058(param0, 0);
-        } else if (ov23_0224A658(param0, v3, 0)) {
-            (void)0;
-        } else if (ov23_0224ACC0(v3)) {
+            CommPlayerMan_SetMovementEnabled(param0, 0);
+        } else if (UndergroundPlayer_TalkHeldFlagCheck(param0, v3, FALSE)) {
+            return;
+        } else if (UndergroundPlayer_IsAffectedByTrap(v3)) {
             if (!UndergroundTraps_HasPlayerTriggeredTool(v3)) {
                 UndergroundTraps_HelpLink(param0, v3);
             } else {
-                v0.unk_00 = 2;
-                v0.unk_02 = v3;
-                v0.unk_01 = param0;
+                v0.result = TALK_RESULT_FAIL;
+                v0.talkTargetNetID = v3;
+                v0.netID = param0;
 
                 CommSys_SendDataServer(30, &v0, sizeof(v0));
-                sub_02059058(param0, 0);
+                CommPlayerMan_SetMovementEnabled(param0, 0);
             }
         } else if (!sub_02059094(param0)) {
-            (void)0;
-        } else if (!sub_02059094(v3) || (0 != CommPlayer_GetMovementTimerServer(v3))) {
-            v0.unk_00 = 2;
-            v0.unk_02 = v3;
-            v0.unk_01 = param0;
+            return;
+        } else if (!sub_02059094(v3) || CommPlayer_GetMovementTimerServer(v3) != 0) {
+            v0.result = TALK_RESULT_FAIL;
+            v0.talkTargetNetID = v3;
+            v0.netID = param0;
 
             CommSys_SendDataServer(30, &v0, sizeof(v0));
-            sub_02059058(param0, 0);
+            CommPlayerMan_SetMovementEnabled(param0, 0);
         } else {
-            v0.unk_00 = 1;
-            v0.unk_02 = v3;
-            v0.unk_01 = param0;
+            v0.result = TALK_RESULT_SUCCESS;
+            v0.talkTargetNetID = v3;
+            v0.netID = param0;
 
             if (sub_02059094(v3)) {
                 if (CommSys_SendDataServer(30, &v0, sizeof(v0))) {
-                    sub_02059058(param0, 0);
-                    sub_02059058(v3, 0);
+                    CommPlayerMan_SetMovementEnabled(param0, 0);
+                    CommPlayerMan_SetMovementEnabled(v3, 0);
                     CommPlayer_LookTowardsServer(param0, v3);
                 }
             }
@@ -674,44 +668,44 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
     }
 
     if (UndergroundTraps_TryDisengageTrap(param0, &v2, v1->bits)) {
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
     if (ov23_0223E354(param0, &v2)) {
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
     if (UndergroundPC_TryUsePC(param0, &v2)) {
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
     if (ov23_0224D454(param0, &v2)) {
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
     if (CommPlayer_CheckNPCCollision(v2.x, v2.z)) {
-        if (ov23_0224A658(param0, 0xff, 0)) {
+        if (UndergroundPlayer_TalkHeldFlagCheck(param0, NETID_NONE, FALSE)) {
             return;
         }
 
-        sub_02035B48(24, &v4);
-        sub_02059058(param0, 0);
+        CommSys_SendDataFixedSizeServer(24, &v4);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
 
         return;
     }
 
     if (v1->bits & BIT_BURIED_SPHERE_IN_FRONT) {
-        if (ov23_0224A6B8(param0)) {
+        if (UndergroundPlayer_BuriedObjectHeldFlagCheck(param0)) {
             return;
         }
 
         if (v1->unk_01 == (v2.x & 0xf) * 16 + (v2.z & 0xf)) {
-            sub_02035B48(63, &v4);
-            sub_02059058(param0, 0);
+            CommSys_SendDataFixedSizeServer(63, &v4);
+            CommPlayerMan_SetMovementEnabled(param0, 0);
         }
     }
 }
@@ -1186,7 +1180,7 @@ BOOL ov23_02243298(int param0)
         return 0;
     }
 
-    if (ov23_0224ACC0(param0)) {
+    if (UndergroundPlayer_IsAffectedByTrap(param0)) {
         return 0;
     }
 

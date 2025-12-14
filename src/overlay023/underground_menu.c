@@ -12,11 +12,11 @@
 #include "overlay005/sprite_resource_manager.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/underground_item_list_menu.h"
+#include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -154,7 +154,7 @@ static void UndergroundMenu_GoUpCallback(UndergroundMenu *menu);
 static void UndergroundMenu_OpenTrainerRecords(UndergroundMenu *menu);
 static BOOL UndergroundMenu_HandleTrapSelectedMenu(SysTask *sysTask, void *data);
 static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data);
-static void ov23_02250B9C(SysTask *sysTask, void *param1);
+static void UndergroundMenu_MainHoldingFlag(SysTask *sysTask, void *param1);
 static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback);
 static BOOL UndergroundMenu_HandleGoodsMenu(SysTask *sysTask, void *data);
 static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *param1);
@@ -1422,7 +1422,7 @@ void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fi
     CommPlayerMan_PauseFieldSystem();
 
     UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_PromptThrowAwayFlag, FALSE, NULL);
-    menu->sysTask = SysTask_Start(ov23_02250B9C, menu, 10000);
+    menu->sysTask = SysTask_Start(UndergroundMenu_MainHoldingFlag, menu, 10000);
     CommManUnderground_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 }
 
@@ -1481,11 +1481,11 @@ static void UndergroundMenu_Free(SysTask *sysTask, UndergroundMenu *menu, BOOL l
     SysTask_Done(sysTask);
 }
 
-static void ov23_02250B9C(SysTask *sysTask, void *data)
+static void UndergroundMenu_MainHoldingFlag(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
-    if (!ov23_IsPlayerHoldingFlag(CommSys_CurNetId())) {
+    if (!UndergroundPlayer_IsHoldingFlag(CommSys_CurNetId())) {
         if (menu->state == UNDERGROUND_MENU_STATE_INIT || menu->state == UNDERGROUND_MENU_STATE_START) {
             menu->state = UNDERGROUND_MENU_STATE_CLOSE;
         }
@@ -1505,8 +1505,8 @@ static void ov23_02250B9C(SysTask *sysTask, void *data)
     case UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED:
         CommManUnderground_ClearCurrentSysTaskInfo();
         UndergroundMenu_Free(sysTask, data, TRUE);
-        u8 buffer = 0;
-        CommSys_SendDataFixedSize(84, &buffer);
+        u8 flagEventType = FLAG_EVENT_DISCARD;
+        CommSys_SendDataFixedSize(84, &flagEventType);
         return;
     case UNDERGROUND_MENU_STATE_UNUSED:
         if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCaptureFlagTextPrinter()) == FALSE) {

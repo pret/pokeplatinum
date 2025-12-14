@@ -9,6 +9,7 @@
 #include "struct_defs/struct_0203233C.h"
 
 #include "comm_ring.h"
+#include "communication_system.h"
 #include "heap.h"
 #include "unk_02032798.h"
 
@@ -169,7 +170,7 @@ BOOL CommQueue_Write(CommQueueMan *param0, int cmd, u8 *data, int size, BOOL par
     GF_ASSERT(size < 65534);
     v3 = CommCmd_PacketSizeOf(cmd);
 
-    if (0xffff == v3) {
+    if (v3 == PACKET_SIZE_VARIABLE) {
         v3 = size;
     }
 

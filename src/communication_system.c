@@ -1305,13 +1305,13 @@ static BOOL sub_0203594C(void)
     return FALSE;
 }
 
-BOOL CommSys_SendDataHuge(int cmd, const void *data, int param2)
+BOOL CommSys_SendDataHuge(int cmd, const void *data, int size)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return FALSE;
     }
 
-    if (CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, param2, 1, 0)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, size, 1, 0)) {
         return TRUE;
     }
 
@@ -1322,13 +1322,13 @@ BOOL CommSys_SendDataHuge(int cmd, const void *data, int param2)
     return FALSE;
 }
 
-BOOL CommSys_SendData(int cmd, const void *data, int param2)
+BOOL CommSys_SendData(int cmd, const void *data, int size)
 {
     if (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone()) {
         return FALSE;
     }
 
-    if (CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, param2, 1, 1)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, size, 1, 1)) {
         return TRUE;
     }
 
@@ -1339,7 +1339,7 @@ BOOL CommSys_SendData(int cmd, const void *data, int param2)
     return FALSE;
 }
 
-BOOL sub_02035A3C(int cmd, const void *data, int param2)
+BOOL CommSys_SendDataHugeServer(int cmd, const void *data, int size)
 {
     if (CommSys_CurNetId() != 0) {
         GF_ASSERT(FALSE);
@@ -1351,10 +1351,10 @@ BOOL sub_02035A3C(int cmd, const void *data, int param2)
     }
 
     if (CommSys_TransmissionType() == 1) {
-        return CommSys_SendDataHuge(cmd, data, param2);
+        return CommSys_SendDataHuge(cmd, data, size);
     }
 
-    if (CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)data, param2, 1, 0)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)data, size, 1, 0)) {
         return TRUE;
     }
 
@@ -1365,7 +1365,7 @@ BOOL sub_02035A3C(int cmd, const void *data, int param2)
     return FALSE;
 }
 
-BOOL CommSys_SendDataServer(int cmd, const void *data, int param2)
+BOOL CommSys_SendDataServer(int cmd, const void *data, int size)
 {
     if (CommSys_CurNetId() != 0) {
         sub_020363BC();
@@ -1378,10 +1378,10 @@ BOOL CommSys_SendDataServer(int cmd, const void *data, int param2)
     }
 
     if (CommSys_TransmissionType() == 1) {
-        return CommSys_SendData(cmd, data, param2);
+        return CommSys_SendData(cmd, data, size);
     }
 
-    if (CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)data, param2, 1, 1)) {
+    if (CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)data, size, 1, 1)) {
         return TRUE;
     }
 
@@ -1392,7 +1392,7 @@ BOOL CommSys_SendDataServer(int cmd, const void *data, int param2)
     return FALSE;
 }
 
-BOOL sub_02035B48(int cmd, const void *data)
+BOOL CommSys_SendDataFixedSizeServer(int cmd, const void *data)
 {
     return CommSys_SendDataServer(cmd, data, 0);
 }
@@ -1443,7 +1443,7 @@ static void CommSys_RecvDataSingle(CommRing *ring, int netId, u8 *buffer, CommRe
                 return;
             }
 
-            if (0xffff == size) {
+            if (size == PACKET_SIZE_VARIABLE) {
                 if (CommRing_DataSize(ring) < 1) {
                     ring->startIndex = v2;
                     break;
@@ -1647,12 +1647,12 @@ BOOL CommSys_IsSendingMovementData(void)
     return TRUE;
 }
 
-BOOL CommSys_WriteToQueueServer(int cmd, const void *data, int param2)
+BOOL CommSys_WriteToQueueServer(int cmd, const void *data, int size)
 {
     if (CommSys_TransmissionType() == 1) {
-        return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, param2, 1, 0);
+        return CommQueue_Write(&sCommunicationSystem->commQueueManSend, cmd, (u8 *)data, size, 1, 0);
     } else {
-        return CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)data, param2, 1, 0);
+        return CommQueue_Write(&sCommunicationSystem->commQueueManSendServer, cmd, (u8 *)data, size, 1, 0);
     }
 }
 
@@ -1820,7 +1820,7 @@ void sub_0203619C(int param0, int param1, void *param2, void *param3)
     u8 v0;
 
     if (!sub_0203406C() && CommSys_CurNetId() == 0) {
-        sub_02035B48(2, &v0);
+        CommSys_SendDataFixedSizeServer(2, &v0);
     }
 
     sub_0203408C();

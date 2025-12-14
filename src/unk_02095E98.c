@@ -129,12 +129,12 @@ static const CommCmdTable Unk_020F5A40[] = {
     { sub_0209610C, CommPacketSizeOf_NetId },
     { sub_02096110, CommPacketSizeOf_NetId },
     { sub_020960D8, CommPacketSizeOf_NetId },
-    { sub_02095F9C, sub_0203294C },
-    { sub_020960D4, sub_0203294C },
+    { sub_02095F9C, CommPacketSizeOf_Nothing },
+    { sub_020960D4, CommPacketSizeOf_Nothing },
     { sub_02095FE4, sub_020961E4 },
-    { sub_02096114, sub_0203294C },
-    { sub_0209612C, sub_0203294C },
-    { sub_02096170, sub_0203294C },
+    { sub_02096114, CommPacketSizeOf_Nothing },
+    { sub_0209612C, CommPacketSizeOf_Nothing },
+    { sub_02096170, CommPacketSizeOf_Nothing },
     { sub_02099510, CommPacketSizeOf_NetId, NULL },
     { sub_02099510, CommPacketSizeOf_NetId, NULL }
 };
@@ -348,7 +348,7 @@ static void sub_0209617C(UnkStruct_02095EAC *param0, int param1)
 
     param0->unk_7C74.unk_3EC = param1;
 
-    sub_02035A3C(118, &param0->unk_7C74, sizeof(UnkStruct_02095EAC_sub1));
+    CommSys_SendDataHugeServer(118, &param0->unk_7C74, sizeof(UnkStruct_02095EAC_sub1));
 }
 
 static u8 *sub_020961D0(int param0, void *param1, int param2)
