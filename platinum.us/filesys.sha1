@@ -61,11 +61,11 @@ c63feb68844c5a535611cd61945810977dc13989 *res/graphics/party_menu/ncers.resdat
 ea682a75054a3e229c3caa91bf7701d60fa05aa4 *res/graphics/party_menu/ncgrs.resdat
 d47a8e1fe411e19c194939abb643d2af1e1cf329 *res/graphics/party_menu/templates.cldat
 df06f0ebd532087ff88a709a86ec4c6f00b6d05a *res/graphics/party_menu/nclrs.resdat
-1e111fc17f1496bab5b2f20455985a6139bd770d *res/prebuilt/data/porucase_canm.resdat
-b844263884695da81d055287a8e5311cf80fc49e *res/prebuilt/data/porucase_celact.cldat
-f8716c3d16aa2f8ccbb29c3e2ae55f2d872a689f *res/prebuilt/data/porucase_cell.resdat
-f70867dd71f9809cfad32b8dad2adc1f7b9cd281 *res/prebuilt/data/porucase_chr.resdat
-ecff5b0d3d4800d3843db63620537fa487ce8934 *res/prebuilt/data/porucase_pal.resdat
+1e111fc17f1496bab5b2f20455985a6139bd770d *res/graphics/poffin_case/nanrs.resdat
+b844263884695da81d055287a8e5311cf80fc49e *res/graphics/poffin_case/templates.cldat
+f8716c3d16aa2f8ccbb29c3e2ae55f2d872a689f *res/graphics/poffin_case/ncers.resdat
+f70867dd71f9809cfad32b8dad2adc1f7b9cd281 *res/graphics/poffin_case/ncgrs.resdat
+ecff5b0d3d4800d3843db63620537fa487ce8934 *res/graphics/poffin_case/nclrs.resdat
 6d3ed9ed9df3f3b4285a4e767de4c8aea01ed950 *res/prebuilt/data/pst_canm.resdat
 132a2e16407dc32b15bc22812234cc720b351126 *res/prebuilt/data/pst_cell.resdat
 61aa12d59c1c79a7f2e7c0e1e2476d361c2876ee *res/prebuilt/data/pst_chr.resdat

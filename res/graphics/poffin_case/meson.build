@@ -90,5 +90,28 @@ poffin_case_narc = custom_target('poru_gra.narc',
         '@PRIVATE_DIR@',
     ]
 )
+
+poffin_case_resdat = custom_target(
+    output: [
+        'ncgrs.resdat',
+        'nclrs.resdat',
+        'ncers.resdat',
+        'nanrs.resdat',
+        'templates.cldat',
+    ],
+
+    input: [
+        poffin_case_narc[1],
+    ],
+
+    command: [
+        dataproc_resdat_exe,
+        '--prefix', meson.current_build_dir(),
+        '-D', 'NARC_INDEX_GRAPHIC__PORU_GRA:@INPUT0@',
+        files('resdat.json'),
+    ],
+)
+
 nitrofs_files += poffin_case_narc
+nitrofs_files += poffin_case_resdat
 naix_headers += poffin_case_narc[1]
