@@ -284,48 +284,46 @@ void Underground_SetUnusedField(Underground *underground)
     underground->unused = 1;
 }
 
-void sub_02028830(Underground *underground, const TrainerInfo *info)
+void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const TrainerInfo *info)
 {
-    int v0 = underground->unk_10A;
-    int v1;
+    int index = underground->registeredFlagOwnerIndex;
 
-    for (v1 = 0; v1 < 5; v1++) {
-        if (underground->unk_9C[v1] == TrainerInfo_ID(info)) {
+    for (int i = 0; i < MAX_CAPTURED_FLAG_RECORDS; i++) {
+        if (underground->registeredFlagOwnerIDs[i] == TrainerInfo_ID(info)) {
             return;
         }
     }
 
-    GF_ASSERT(v0 < 5);
-    MI_CpuCopy8(TrainerInfo_Name(info), underground->unk_B0[v0], (sizeof(u16) * (7 + 1)));
+    GF_ASSERT(index < MAX_CAPTURED_FLAG_RECORDS);
+    MI_CpuCopy8(TrainerInfo_Name(info), underground->registeredFlagOwnerNames[index], (sizeof(u16) * (TRAINER_NAME_LEN + 1)));
 
-    underground->unk_9C[v0] = TrainerInfo_ID(info);
-    underground->unk_100[v0] = TrainerInfo_RegionCode(info);
-    underground->unk_105[v0] = TrainerInfo_GameCode(info);
-    underground->unk_10A++;
+    underground->registeredFlagOwnerIDs[index] = TrainerInfo_ID(info);
+    underground->registeredFlagOwnerRegionCodes[index] = TrainerInfo_RegionCode(info);
+    underground->registeredFlagOwnerGameCodes[index] = TrainerInfo_GameCode(info);
+    underground->registeredFlagOwnerIndex++;
 
-    if (underground->unk_10A >= 5) {
-        underground->unk_10A = 0;
+    if (underground->registeredFlagOwnerIndex >= MAX_CAPTURED_FLAG_RECORDS) {
+        underground->registeredFlagOwnerIndex = 0;
     }
 }
 
-TrainerInfo *sub_020288C8(const Underground *underground, int heapID, int param2)
+TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, int heapID, int offset)
 {
-    TrainerInfo *v2;
-    int v3 = underground->unk_10A - param2 - 1;
+    int index = underground->registeredFlagOwnerIndex - offset - 1;
 
-    if (v3 < 0) {
-        v3 += 5;
+    if (index < 0) {
+        index += MAX_CAPTURED_FLAG_RECORDS;
     }
 
-    if (underground->unk_B0[v3][0] != CHAR_NONE) {
-        v2 = TrainerInfo_New(heapID);
+    if (underground->registeredFlagOwnerNames[index][0] != CHAR_NONE) {
+        TrainerInfo *flagOwnerInfo = TrainerInfo_New(heapID);
 
-        TrainerInfo_SetName(v2, underground->unk_B0[v3]);
-        TrainerInfo_SetGameCode(v2, underground->unk_105[v3]);
-        TrainerInfo_SetRegionCode(v2, underground->unk_100[v3]);
-        TrainerInfo_SetID(v2, underground->unk_9C[v3]);
+        TrainerInfo_SetName(flagOwnerInfo, underground->registeredFlagOwnerNames[index]);
+        TrainerInfo_SetGameCode(flagOwnerInfo, underground->registeredFlagOwnerGameCodes[index]);
+        TrainerInfo_SetRegionCode(flagOwnerInfo, underground->registeredFlagOwnerRegionCodes[index]);
+        TrainerInfo_SetID(flagOwnerInfo, underground->registeredFlagOwnerIDs[index]);
 
-        return v2;
+        return flagOwnerInfo;
     }
 
     return NULL;
@@ -1134,7 +1132,7 @@ int UndergroundRecord_GetPeopleMet(const UndergroundRecord *undergroundRecord)
     return undergroundRecord->peopleMet;
 }
 
-void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int param1)
+void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int unused)
 {
     if (undergroundRecord->peopleMet < 999999) {
         undergroundRecord->peopleMet++;
@@ -1153,10 +1151,10 @@ void UndergroundRecord_IncrementGiftsGiven(UndergroundRecord *undergroundRecord)
     }
 }
 
-void sub_0202955C(UndergroundRecord *undergroundRecord)
+void UndergroundRecord_IncrementFlagsStolen(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->unk_0C_0 < 999999) {
-        undergroundRecord->unk_0C_0++;
+    if (undergroundRecord->flagsStolen < 999999) {
+        undergroundRecord->flagsStolen++;
     }
 }
 
@@ -1286,15 +1284,15 @@ void UndergroundRecord_IncrementTimesFlagTaken(UndergroundRecord *undergroundRec
     }
 }
 
-int sub_020297E4(const UndergroundRecord *param0)
+int UndergroundRecord_GetFlagsRecovered(const UndergroundRecord *param0)
 {
-    return param0->unk_30_0;
+    return param0->flagsRecovered;
 }
 
-void sub_020297EC(UndergroundRecord *param0)
+void UndergroundRecord_IncrementFlagsRecovered(UndergroundRecord *param0)
 {
-    if (param0->unk_30_0 < 999999) {
-        param0->unk_30_0++;
+    if (param0->flagsRecovered < 999999) {
+        param0->flagsRecovered++;
     }
 }
 

@@ -11,8 +11,8 @@
 #include "functypes/funcptr_020598EC.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
+#include "overlay023/underground_player.h"
 #include "overlay023/underground_traps.h"
 
 #include "comm_player_manager.h"
@@ -376,7 +376,7 @@ static void ov23_02249DBC(void)
 
         CommPlayer_SendPos(0);
 
-        ov23_0224AAB0();
+        UndergroundPlayer_SendHeldFlagOwnerInfo();
         ov23_0224C21C();
         ov23_02243360();
         ov23_02249C24(ov23_02249E18, 0);
@@ -397,7 +397,7 @@ static void ov23_02249E18(void)
 
     if (CommSys_CheckError() || !CommServerClient_IsClientConnecting() || (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone())) {
         ov23_0224B5CC(0);
-        ov23_0224AA84();
+        UndergroundPlayer_ClearHeldFlagInfo();
         ov23_0224DA8C();
 
         Link_Message(43);
@@ -450,7 +450,7 @@ static void ov23_02249EBC(void)
 
     if (CommInfo_IsDataFinishedReading()) {
         ov23_022499E4("\u0069\u006E\u0066\u006F\u0083\u0066\u0081\u005B\u0083\u005E\u008E\u00F3\u0090\u004D\u008A\u00AE\u0097\u00B9");
-        ov23_0224AAB0();
+        UndergroundPlayer_SendHeldFlagOwnerInfo();
         ov23_02249C24(ov23_02249F14, 200);
         return;
     }
@@ -462,7 +462,7 @@ static void ov23_02249F14(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    if (ov23_0224AC3C()) {
+    if (UndergroundPlayer_HaveLinksReceivedHeldFlagData()) {
         UndergroundTraps_SendPlacedTraps();
         ov23_02249C24(ov23_02249F4C, 0);
     } else {
@@ -509,7 +509,7 @@ static void ov23_02249FB4(void)
         return;
     }
 
-    sub_02059058(0, 0);
+    CommPlayerMan_SetMovementEnabled(0, 0);
     ov23_02249C24(ov23_02249FD4, 30);
 }
 
@@ -640,7 +640,7 @@ static void ov23_0224A150(void)
 
 static void ov23_0224A16C(void)
 {
-    ov23_0224A1D0();
+    UndergroundPlayer_DeleteAllPlayers();
     ov23_02249C24(ov23_0224A180, 0);
 }
 

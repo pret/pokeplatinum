@@ -1341,12 +1341,12 @@ void UndergroundTalkResponse_Start(int unused, int linkNetID, FieldSystem *field
 
 void UndergroundTalk_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(75, data);
+    CommSys_SendDataFixedSizeServer(75, data);
 }
 
 void UndergroundTalkResponse_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(76, data);
+    CommSys_SendDataFixedSizeServer(76, data);
 }
 
 void UndergroundTalkResponse_HandleLinkTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
@@ -1378,7 +1378,7 @@ int CommPacketSizeOf_TalkStateChangeRequest(void)
 
 void UndergroundTalk_SendGiftServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(78, data);
+    CommSys_SendDataFixedSizeServer(78, data);
 }
 
 void UndergroundTalkResponse_ReceiveGiftOffer(int unused0, int unused1, void *data, void *unused3)
@@ -1414,7 +1414,7 @@ int CommPacketSizeOf_Gift(void)
 
 void UndergroundTalk_SendTalkMessageServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(80, data);
+    CommSys_SendDataFixedSizeServer(80, data);
 }
 
 void UndergroundTalk_ReceiveTalkMessage(int unused0, int unused1, void *data, void *unused3)

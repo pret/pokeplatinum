@@ -11,7 +11,7 @@
 
 static const CommCmdTable Unk_ov97_0223D704[] = {
     { ov97_0222D284, ov97_0222D2B0, ov97_0222D2B8 },
-    { ov97_0222D2C4, sub_0203294C, NULL }
+    { ov97_0222D2C4, CommPacketSizeOf_Nothing, NULL }
 };
 
 void ov97_0222D2F8(void *param0)

@@ -1436,12 +1436,12 @@ void sub_02037A78(int param0, int param1, void *param2, void *param3)
 
     if (v2 && (!Unk_021C07D4->unk_53)) {
         Unk_02100A30[0] = param0;
-        sub_02035B48(7, Unk_02100A30);
+        CommSys_SendDataFixedSizeServer(7, Unk_02100A30);
         return;
     }
 
     Unk_02100A28[0] = param0;
-    sub_02035B48(7, Unk_02100A28);
+    CommSys_SendDataFixedSizeServer(7, Unk_02100A28);
 }
 
 void sub_02037AD8(int param0, int param1, void *param2, void *param3)

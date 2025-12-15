@@ -44,7 +44,7 @@ void ov23_0224142C(int param0, int param1, void *param2, void *param3);
 int ov23_022414D0(void);
 BOOL ov23_022415B8(String *param0);
 void ov23_0224160C(void);
-BOOL ov23_0224162C(int param0);
+BOOL Mining_IsPlayerMining(int netID);
 void ov23_02241648(int param0);
 BOOL ov23_02241670(void);
 void ov23_02241690(int param0, int param1);

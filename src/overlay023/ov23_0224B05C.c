@@ -18,9 +18,9 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
-#include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_player.h"
 #include "overlay023/underground_player_talk.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
@@ -627,7 +627,7 @@ void ov23_0224B730(int param0, int param1, void *param2, void *param3)
         if (v0->unk_02) {
             if (!ov23_0224B79C(v0->unk_00, param0)) {
                 Unk_ov23_022577AC->unk_135B[param0] = 0xff;
-                sub_02035B48(61, &v1);
+                CommSys_SendDataFixedSizeServer(61, &v1);
             }
         } else {
             ov23_0224B844(v0->unk_00, param0, 0);
@@ -672,7 +672,7 @@ static BOOL ov23_0224B79C(int param0, int param1)
     Unk_ov23_022577AC->unk_135B[param1] = param0;
     Unk_ov23_022577AC->unk_1363[param1] = param0;
 
-    ov23_0224ADB0(param1, v0.unk_00, v0.unk_02, 0);
+    UndergroundPlayer_MoveToFromSecretBaseServer(param1, v0.unk_00, v0.unk_02, 0);
 
     return 1;
 }
@@ -698,7 +698,7 @@ static void ov23_0224B844(int param0, int param1, BOOL param2)
         v4 = Unk_ov23_022577AC->unk_13BC[param1];
     }
 
-    ov23_0224ADB0(param1, v2, v3, v4);
+    UndergroundPlayer_MoveToFromSecretBaseServer(param1, v2, v3, v4);
 
     v2 += MapObject_GetDxFromDir(v4);
     v3 += MapObject_GetDzFromDir(v4);
@@ -709,8 +709,8 @@ static void ov23_0224B844(int param0, int param1, BOOL param2)
     v0.unk_05 = v4;
     v0.unk_06 = param2;
 
-    sub_02035B48(57, &v0);
-    sub_02059058(param1, 0);
+    CommSys_SendDataFixedSizeServer(57, &v0);
+    CommPlayerMan_SetMovementEnabled(param1, 0);
 }
 
 BOOL ov23_0224B8E0(int param0, int param1, int param2)
@@ -729,7 +729,7 @@ BOOL ov23_0224B8E0(int param0, int param1, int param2)
         return 0;
     }
 
-    if (ov23_0224ACC0(param0)) {
+    if (UndergroundPlayer_IsAffectedByTrap(param0)) {
         return 0;
     }
 
@@ -749,8 +749,8 @@ BOOL ov23_0224B8E0(int param0, int param1, int param2)
         v3.unk_04 = param0;
         v3.unk_05 = v0;
 
-        sub_02035B48(58, &v3);
-        sub_02059058(param0, 0);
+        CommSys_SendDataFixedSizeServer(58, &v3);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
 
         return 1;
     }
@@ -775,8 +775,8 @@ BOOL ov23_0224B8E0(int param0, int param1, int param2)
             v3.unk_04 = param0;
             v3.unk_05 = v0;
 
-            sub_02035B48(58, &v3);
-            sub_02059058(param0, 0);
+            CommSys_SendDataFixedSizeServer(58, &v3);
+            CommPlayerMan_SetMovementEnabled(param0, 0);
 
             return 1;
         }
@@ -791,8 +791,8 @@ BOOL ov23_0224B8E0(int param0, int param1, int param2)
 
         Unk_ov23_022577AC->unk_135B[param0] = 0;
 
-        ov23_0224ADB0(param0, v1.unk_00, v1.unk_02, v1.unk_05);
-        sub_02035B48(57, &v1);
+        UndergroundPlayer_MoveToFromSecretBaseServer(param0, v1.unk_00, v1.unk_02, v1.unk_05);
+        CommSys_SendDataFixedSizeServer(57, &v1);
         return 1;
     }
 
@@ -1086,7 +1086,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         if (v6 == 0) {
             v0->unk_04 = NULL;
 
-            if (ov23_IsPlayerHoldingFlag(v0->unk_2C) || (ov23_0224BD1C(v0->unk_2C, 0) > 0)) {
+            if (UndergroundPlayer_IsHoldingFlag(v0->unk_2C) || (ov23_0224BD1C(v0->unk_2C, 0) > 0)) {
                 UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 44, FALSE, NULL);
                 v0->unk_0C = 3;
             } else {
@@ -1212,7 +1212,7 @@ void ov23_0224C104(int param0, int param1, void *param2, void *param3)
         Unk_ov23_022577AC->unk_A00 = NULL;
     } else {
         UndergroundTraps_StopLinkSpin(v0->unk_04);
-        ov23_0224ADE8(v0->unk_04, v0->unk_00, v0->unk_02, v0->unk_05);
+        UndergroundPlayer_MoveToFromSecretBaseClient(v0->unk_04, v0->unk_00, v0->unk_02, v0->unk_05);
     }
 }
 
@@ -1319,7 +1319,7 @@ void ov23_0224C25C(int param0, int param1, void *param2, void *param3)
 
         ov23_02243360();
     } else {
-        ov23_0224ADE8(v1->unk_01, v3.unk_00, v3.unk_02, 0);
+        UndergroundPlayer_MoveToFromSecretBaseClient(v1->unk_01, v3.unk_00, v3.unk_02, 0);
     }
 }
 
@@ -1935,7 +1935,7 @@ void ov23_0224CD80(int param0, int param1, void *param2, void *param3)
         }
     }
 
-    sub_02035B48(87, &v8);
+    CommSys_SendDataFixedSizeServer(87, &v8);
 }
 
 static void ov23_0224CE94(SysTask *param0, void *param1)
@@ -2282,8 +2282,8 @@ BOOL ov23_0224D454(int param0, Coordinates *param1)
         v6[1] = Good_GetInteractMessageID(v3);
 
         if (v6[1] != 0) {
-            sub_02059058(param0, 0);
-            sub_02035B48(60, &v6);
+            CommPlayerMan_SetMovementEnabled(param0, 0);
+            CommSys_SendDataFixedSizeServer(60, &v6);
 
             return 1;
         }
@@ -2396,7 +2396,7 @@ void ov23_0224D698(int param0, int param1, void *param2, void *param3)
     v0[0] = param0;
     v0[1] = v1[0];
 
-    sub_02035B48(97, v0);
+    CommSys_SendDataFixedSizeServer(97, v0);
 }
 
 void ov23_0224D6AC(int param0, int param1, void *param2, void *param3)

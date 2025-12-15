@@ -93,7 +93,7 @@ void PlayerData_SetCyclingGear(PlayerData *param0, int param1);
 void PlayerAvatar_SetCyclingGear(PlayerAvatar *playerAvatar, int param1);
 int PlayerAvatar_CyclingGear(PlayerAvatar *playerAvatar);
 void sub_0205ECB8(PlayerAvatar *playerAvatar, const VecFx32 *param1, int param2);
-void sub_0205ECE0(PlayerAvatar *playerAvatar, int param1, int param2, int param3);
+void sub_0205ECE0(PlayerAvatar *playerAvatar, int x, int z, int dir);
 void Player_SetYPos(PlayerAvatar *playerAvatar, fx32 y);
 void PlayerAvatar_SetHeightCalculationEnabled(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled);
 void PlayerAvatar_SetHeightCalculationEnabledAndUpdate(PlayerAvatar *playerAvatar, BOOL heightCalculationEnabled);
