@@ -1,10 +1,10 @@
 #include "constants/goods.h"
 #include "constants/items.h"
-#include "constants/seals.h"
 #include "generated/mart_decor_id.h"
 #include "generated/mart_frontier_id.h"
 #include "generated/mart_seal_id.h"
 #include "generated/mart_specialties_id.h"
+#include "generated/seals.h"
 
 typedef struct {
     u16 itemID;
