@@ -127,6 +127,7 @@
   ],
   "templates": [
     {
+      "id": "TownMap_Template_ZoomButtonShockwave",
       "characters": "TownMap_Chars_ZoomButtonShockwave",
       "palette": "TownMap_Palette_ZoomButtonShockwaves",
       "cells": "TownMap_Cells_ZoomButtonShockwave",
@@ -135,6 +136,7 @@
       "priority": 0
     },
     {
+      "id": "TownMap_Template_Cursor",
       "characters": "TownMap_Chars_Cursor",
       "palette": "TownMap_Palette_Shareds",
       "cells": "TownMap_Cells_Cursor",
@@ -143,6 +145,7 @@
       "priority": 2
     },
     {
+      "id": "TownMap_Template_PlayerIcons",
       "characters": "TownMap_Chars_PlayerIcons",
       "palette": "TownMap_Palette_Shareds",
       "cells": "TownMap_Cells_PlayerIcons",
@@ -151,6 +154,7 @@
       "priority": 2
     },
     {
+      "id": "TownMap_Template_LocationHistoryDot",
       "characters": "TownMap_Chars_LocationHistoryDot",
       "palette": "TownMap_Palette_Shareds",
       "cells": "TownMap_Cells_LocationHistoryDot",
@@ -159,6 +163,7 @@
       "priority": 2
     },
     {
+      "id": "TownMap_Template_FlyDestinationBlocks",
       "characters": "TownMap_Chars_FlyDestinationBlocks",
       "palette": "TownMap_Palette_Shareds",
       "cells": "TownMap_Cells_FlyDestinationBlocks",

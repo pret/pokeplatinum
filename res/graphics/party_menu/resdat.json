@@ -234,6 +234,7 @@
   ],
   "templates": [
     {
+      "id": "PartyMenu_Template_MemberPokeBall",
       "characters": "PartyMenu_Chars_MemberPokeBall",
       "palette": "PartyMenu_Palette_Shared",
       "cells": "PartyMenu_Cells_MemberPokeBall",
@@ -242,6 +243,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_Cursor",
       "characters": "PartyMenu_Chars_Cursor",
       "palette": "PartyMenu_Palette_Shared",
       "cells": "PartyMenu_Cells_Cursor",
@@ -250,6 +252,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_Button",
       "characters": "PartyMenu_Chars_Button",
       "palette": "PartyMenu_Palette_Shared",
       "cells": "PartyMenu_Cells_Button",
@@ -258,6 +261,7 @@
       "priority": 2
     },
     {
+      "id": "PartyMenu_Template_StatusIcons",
       "characters": "PartyMenu_Chars_StatusIcons",
       "palette": "PartyMenu_Palette_StatusIcons",
       "cells": "PartyMenu_Cells_StatusIcons",
@@ -266,6 +270,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_MemberIcon0",
       "characters": "PartyMenu_Chars_MemberIcon0",
       "palette": "PartyMenu_Palette_MemberIcons",
       "cells": "PartyMenu_Cells_MemberIcons",
@@ -274,6 +279,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_MemberIcon1",
       "characters": "PartyMenu_Chars_MemberIcon1",
       "palette": "PartyMenu_Palette_MemberIcons",
       "cells": "PartyMenu_Cells_MemberIcons",
@@ -282,6 +288,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_MemberIcon2",
       "characters": "PartyMenu_Chars_MemberIcon2",
       "palette": "PartyMenu_Palette_MemberIcons",
       "cells": "PartyMenu_Cells_MemberIcons",
@@ -290,6 +297,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_MemberIcon3",
       "characters": "PartyMenu_Chars_MemberIcon3",
       "palette": "PartyMenu_Palette_MemberIcons",
       "cells": "PartyMenu_Cells_MemberIcons",
@@ -298,6 +306,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_MemberIcon4",
       "characters": "PartyMenu_Chars_MemberIcon4",
       "palette": "PartyMenu_Palette_MemberIcons",
       "cells": "PartyMenu_Cells_MemberIcons",
@@ -306,6 +315,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_MemberIcon5",
       "characters": "PartyMenu_Chars_MemberIcon5",
       "palette": "PartyMenu_Palette_MemberIcons",
       "cells": "PartyMenu_Cells_MemberIcons",
@@ -314,6 +324,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_HeldIcons",
       "characters": "PartyMenu_Chars_HeldIcons",
       "palette": "PartyMenu_Palette_HeldIcons",
       "cells": "PartyMenu_Cells_HeldIcons",
@@ -322,6 +333,7 @@
       "priority": 1
     },
     {
+      "id": "PartyMenu_Template_TouchButtonEffect",
       "characters": "PartyMenu_Chars_TouchButtonEffect",
       "palette": "PartyMenu_Palette_TouchButtonEffect",
       "cells": "PartyMenu_Cells_TouchButtonEffect",

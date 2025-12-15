@@ -58,6 +58,7 @@
   ],
   "templates": [
     {
+      "id": "PoffinCase_Template_TopScreen",
       "characters": "PoffinCase_Chars_TopScreen",
       "palette": "PoffinCase_Palette_Shareds",
       "cells": "PoffinCase_Cells_TopScreen",
@@ -66,6 +67,7 @@
       "priority": 3
     },
     {
+      "id": "PoffinCase_Template_BottomScreen",
       "characters": "PoffinCase_Chars_BottomScreen",
       "palette": "PoffinCase_Palette_Shareds",
       "cells": "PoffinCase_Cells_BottomScreen",

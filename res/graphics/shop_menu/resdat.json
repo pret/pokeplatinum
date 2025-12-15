@@ -87,6 +87,7 @@
   ],
   "templates": [
     {
+      "id": "ShopMenu_Template_ScrollArrow",
       "characters": "ShopMenu_Chars_ScrollArrow",
       "palette": "ShopMenu_Palette_Sprites",
       "cells": "ShopMenu_Cells_ScrollArrow",
@@ -95,6 +96,7 @@
       "priority": 0
     },
     {
+      "id": "ShopMenu_Template_Cursor",
       "characters": "ShopMenu_Chars_Cursor",
       "palette": "ShopMenu_Palette_Sprites",
       "cells": "ShopMenu_Cells_Cursor",
@@ -103,6 +105,7 @@
       "priority": 1
     },
     {
+      "id": "ShopMenu_Template_ItemIcon",
       "characters": "ShopMenu_Chars_ItemIcon",
       "palette": "ShopMenu_Palette_ItemIcon",
       "cells": "ShopMenu_Cells_ItemIcon",

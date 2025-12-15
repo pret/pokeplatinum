@@ -25,6 +25,8 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/party_menu/templates.h"
+
 void PartyMenu_InitSpriteResources(PartyMenuApplication *application)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
@@ -87,7 +89,7 @@ void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot,
     u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
     SpriteTemplateFromResourceHeader template;
-    template.resourceHeaderID = 4 + slot;
+    template.resourceHeaderID = PartyMenu_Template_MemberIcon0 + slot;
     template.x = x;
     template.y = y;
     template.z = 0;
@@ -148,12 +150,12 @@ enum {
     SPRITE_TEMPLATE_BALL_SEAL_MEMB3,
     SPRITE_TEMPLATE_BALL_SEAL_MEMB4,
     SPRITE_TEMPLATE_BALL_SEAL_MEMB5,
-    SPRITE_TEMPLATE_UNK_22,
+    SPRITE_TEMPLATE_TOUCH_BUTTON_EFFECT,
 };
 
 static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
     [SPRITE_TEMPLATE_CURSOR_NORMAL] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PartyMenu_Template_Cursor,
         .x = 64,
         .y = 24,
         .z = 0,
@@ -163,7 +165,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_CURSOR_SWITCH] = {
-        .resourceHeaderID = 1,
+        .resourceHeaderID = PartyMenu_Template_Cursor,
         .x = 64,
         .y = 72,
         .z = 0,
@@ -173,7 +175,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_CONFIRM_BUTTON] = {
-        .resourceHeaderID = 2,
+        .resourceHeaderID = PartyMenu_Template_Button,
         .x = 232,
         .y = 168,
         .z = 0,
@@ -183,7 +185,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_CANCEL_BUTTON] = {
-        .resourceHeaderID = 2,
+        .resourceHeaderID = PartyMenu_Template_Button,
         .x = 232,
         .y = 184,
         .z = 0,
@@ -193,7 +195,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_STATUS_ICON_MEMB0] = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = PartyMenu_Template_StatusIcons,
         .x = 36,
         .y = 44,
         .z = 0,
@@ -203,7 +205,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_STATUS_ICON_MEMB1] = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = PartyMenu_Template_StatusIcons,
         .x = 164,
         .y = 52,
         .z = 0,
@@ -213,7 +215,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_STATUS_ICON_MEMB2] = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = PartyMenu_Template_StatusIcons,
         .x = 36,
         .y = 92,
         .z = 0,
@@ -223,7 +225,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_STATUS_ICON_MEMB3] = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = PartyMenu_Template_StatusIcons,
         .x = 164,
         .y = 100,
         .z = 0,
@@ -233,7 +235,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_STATUS_ICON_MEMB4] = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = PartyMenu_Template_StatusIcons,
         .x = 36,
         .y = 140,
         .z = 0,
@@ -243,7 +245,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_STATUS_ICON_MEMB5] = {
-        .resourceHeaderID = 3,
+        .resourceHeaderID = PartyMenu_Template_StatusIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -253,7 +255,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_HELD_ITEM_MEMB0] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -263,7 +265,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_HELD_ITEM_MEMB1] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -273,7 +275,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_HELD_ITEM_MEMB2] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -283,7 +285,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_HELD_ITEM_MEMB3] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -293,7 +295,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_HELD_ITEM_MEMB4] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -303,7 +305,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_HELD_ITEM_MEMB5] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -313,7 +315,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_BALL_SEAL_MEMB0] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -323,7 +325,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_BALL_SEAL_MEMB1] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -333,7 +335,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_BALL_SEAL_MEMB2] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -343,7 +345,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_BALL_SEAL_MEMB3] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -353,7 +355,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_BALL_SEAL_MEMB4] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -363,7 +365,7 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
     [SPRITE_TEMPLATE_BALL_SEAL_MEMB5] = {
-        .resourceHeaderID = 10,
+        .resourceHeaderID = PartyMenu_Template_HeldIcons,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -372,8 +374,8 @@ static const SpriteTemplateFromResourceHeader sSpriteTemplates[] = {
         .plttIdx = 6,
         .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
     },
-    [SPRITE_TEMPLATE_UNK_22] = {
-        .resourceHeaderID = 11,
+    [SPRITE_TEMPLATE_TOUCH_BUTTON_EFFECT] = {
+        .resourceHeaderID = PartyMenu_Template_TouchButtonEffect,
         .x = 164,
         .y = 148,
         .z = 0,
@@ -398,7 +400,7 @@ void PartyMenu_InitSprites(PartyMenuApplication *application)
     LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_CURSOR_SWITCH, SPRITE_TEMPLATE_CURSOR_SWITCH);
     LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_CONFIRM_BUTTON, SPRITE_TEMPLATE_CONFIRM_BUTTON);
     LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_CANCEL_BUTTON, SPRITE_TEMPLATE_CANCEL_BUTTON);
-    LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT, SPRITE_TEMPLATE_UNK_22);
+    LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_TOUCH_BUTTON_EFFECT, SPRITE_TEMPLATE_TOUCH_BUTTON_EFFECT);
 
     for (u32 i = 0; i < MAX_PARTY_SIZE; i++) {
         LoadSpriteFromResourceHeader(PARTY_MENU_SPRITE_STATUS_ICON_MEMB0 + i, SPRITE_TEMPLATE_STATUS_ICON_MEMB0 + i);
