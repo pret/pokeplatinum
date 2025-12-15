@@ -3390,7 +3390,7 @@ static BOOL ScrCmd_2AB(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     SealCase *sealCase = SaveData_GetSealCase(ctx->fieldSystem->saveData);
-    *destVar = sub_0202CBA8(sealCase);
+    *destVar = SealCase_CountUniqueSeals(sealCase);
 
     return FALSE;
 }
@@ -3401,7 +3401,7 @@ static BOOL ScrCmd_093(ScriptContext *ctx)
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
     SealCase *v0 = SaveData_GetSealCase(ctx->fieldSystem->saveData);
-    *v2 = sub_0202CBC8(v0, v1);
+    *v2 = SealCase_CountSealOccurrenceAnywhere(v0, v1);
 
     return FALSE;
 }
@@ -3411,7 +3411,7 @@ static BOOL ScrCmd_094(ScriptContext *ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0202CAE0(SaveData_GetSealCase(ctx->fieldSystem->saveData), v0, v1);
+    GiveOrTakeSeal(SaveData_GetSealCase(ctx->fieldSystem->saveData), v0, v1);
     return FALSE;
 }
 
