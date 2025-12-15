@@ -1,0 +1,114 @@
+{
+  "characters": [
+    {
+      "id": "ShopMenu_Chars_ScrollArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__SHOP_GRA",
+      "from_file": "scroll_arrow_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "ShopMenu_Chars_Cursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__SHOP_GRA",
+      "from_file": "cursor_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "ShopMenu_Chars_ItemIcon",
+      "from_narc": "NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON",
+      "from_file": "master_ball_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "palettes": [
+    {
+      "id": "ShopMenu_Palette_Sprites",
+      "from_narc": "NARC_INDEX_GRAPHIC__SHOP_GRA",
+      "from_file": "sprites_NCLR",
+      "load_in_slot": 2,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "ShopMenu_Palette_ItemIcon",
+      "from_narc": "NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON",
+      "from_file": "master_ball_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "cells": [
+    {
+      "id": "ShopMenu_Cells_ScrollArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__SHOP_GRA",
+      "from_file": "scroll_arrow_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "ShopMenu_Cells_Cursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__SHOP_GRA",
+      "from_file": "cursor_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "ShopMenu_Cells_ItemIcon",
+      "from_narc": "NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON",
+      "from_file": "generic_cell_NCER",
+      "compressed": false
+    }
+  ],
+  "animations": [
+    {
+      "id": "ShopMenu_Anims_ScrollArrow",
+      "from_narc": "NARC_INDEX_GRAPHIC__SHOP_GRA",
+      "from_file": "scroll_arrow_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "ShopMenu_Anims_Cursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__SHOP_GRA",
+      "from_file": "cursor_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "ShopMenu_Anims_ItemIcon",
+      "from_narc": "NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON",
+      "from_file": "generic_anim_NANR",
+      "compressed": false
+    }
+  ],
+  "templates": [
+    {
+      "characters": "ShopMenu_Chars_ScrollArrow",
+      "palette": "ShopMenu_Palette_Sprites",
+      "cells": "ShopMenu_Cells_ScrollArrow",
+      "animations": "ShopMenu_Anims_ScrollArrow",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "characters": "ShopMenu_Chars_Cursor",
+      "palette": "ShopMenu_Palette_Sprites",
+      "cells": "ShopMenu_Cells_Cursor",
+      "animations": "ShopMenu_Anims_Cursor",
+      "vram_transfer": false,
+      "priority": 1
+    },
+    {
+      "characters": "ShopMenu_Chars_ItemIcon",
+      "palette": "ShopMenu_Palette_ItemIcon",
+      "cells": "ShopMenu_Cells_ItemIcon",
+      "animations": "ShopMenu_Anims_ItemIcon",
+      "vram_transfer": false,
+      "priority": 1
+    }
+  ]
+}

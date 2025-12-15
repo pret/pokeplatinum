@@ -72,11 +72,11 @@ res/prebuilt/data/pst_cell.resdat,/data/pst_cell.resdat
 res/prebuilt/data/pst_chr.resdat,/data/pst_chr.resdat
 res/prebuilt/data/pst_h.cldat,/data/pst_h.cldat
 res/prebuilt/data/pst_pal.resdat,/data/pst_pal.resdat
-res/prebuilt/data/shop_canm.resdat,/data/shop_canm.resdat
-res/prebuilt/data/shop_cell.resdat,/data/shop_cell.resdat
-res/prebuilt/data/shop_chr.resdat,/data/shop_chr.resdat
-res/prebuilt/data/shop_h.cldat,/data/shop_h.cldat
-res/prebuilt/data/shop_pal.resdat,/data/shop_pal.resdat
+res/graphics/shop_menu/nanrs.resdat,/data/shop_canm.resdat
+res/graphics/shop_menu/ncers.resdat,/data/shop_cell.resdat
+res/graphics/shop_menu/ncgrs.resdat,/data/shop_chr.resdat
+res/graphics/shop_menu/templates.cldat,/data/shop_h.cldat
+res/graphics/shop_menu/nclrs.resdat,/data/shop_pal.resdat
 res/prebuilt/data/slot.narc,/data/slot.narc
 res/prebuilt/data/smptm_koori.NANR,/data/smptm_koori.NANR
 res/prebuilt/data/smptm_koori.NCER,/data/smptm_koori.NCER

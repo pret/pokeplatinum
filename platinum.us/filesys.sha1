@@ -71,11 +71,11 @@ ecff5b0d3d4800d3843db63620537fa487ce8934 *res/prebuilt/data/porucase_pal.resdat
 61aa12d59c1c79a7f2e7c0e1e2476d361c2876ee *res/prebuilt/data/pst_chr.resdat
 51305113cfd7a2694d82b5ff6e56878b31e193e9 *res/prebuilt/data/pst_h.cldat
 729603785c0d10750cef1f42d344616a37630415 *res/prebuilt/data/pst_pal.resdat
-4b9fc365f7dbe2486e9f07b129422d131b3ded2d *res/prebuilt/data/shop_canm.resdat
-ca25450477e4d283af4693f1d4664ed4ba279608 *res/prebuilt/data/shop_cell.resdat
-4607568f0688fbabc865d01cfbb38d33c707044f *res/prebuilt/data/shop_chr.resdat
-13b14a575d361fea840cf6a433bde418e992bc5d *res/prebuilt/data/shop_h.cldat
-6ef9a9cb38575cb47bfa9f3070c068aeff2b7ab0 *res/prebuilt/data/shop_pal.resdat
+4b9fc365f7dbe2486e9f07b129422d131b3ded2d *res/graphics/shop_menu/nanrs.resdat
+ca25450477e4d283af4693f1d4664ed4ba279608 *res/graphics/shop_menu/ncers.resdat
+4607568f0688fbabc865d01cfbb38d33c707044f *res/graphics/shop_menu/ncgrs.resdat
+13b14a575d361fea840cf6a433bde418e992bc5d *res/graphics/shop_menu/templates.cldat
+6ef9a9cb38575cb47bfa9f3070c068aeff2b7ab0 *res/graphics/shop_menu/nclrs.resdat
 7d890728684f972892221535e43f2dd07a63ac5c *res/prebuilt/data/slot.narc
 5bb388f5b16ef1eb8c8ea4c638eccf1244e7789c *res/prebuilt/data/smptm_koori.NANR
 295d997311252e0c1cedaa36fc0083d024a140a2 *res/prebuilt/data/smptm_koori.NCER
