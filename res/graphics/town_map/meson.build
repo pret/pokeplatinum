@@ -180,5 +180,27 @@ town_map_graphics_narc = custom_target('town_map_graphics.narc',
     ],
 )
 
+town_map_resdat = custom_target(
+    output: [
+        'ncgrs.resdat',
+        'nclrs.resdat',
+        'ncers.resdat',
+        'nanrs.resdat',
+        'templates.cldat',
+    ],
+
+    input: [
+        town_map_graphics_narc[1],
+    ],
+
+    command: [
+        dataproc_resdat_exe,
+        '--prefix', meson.current_build_dir(),
+        '-D', 'NARC_INDEX_GRAPHIC__TMAP_GRA:@INPUT0@',
+        files('resdat.json'),
+    ],
+)
+
 nitrofs_files += town_map_graphics_narc
+nitrofs_files += town_map_resdat
 naix_headers += town_map_graphics_narc[1]

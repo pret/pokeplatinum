@@ -93,12 +93,12 @@ efcb17fc440548aefb1ec4b830955fa9e7954025 *res/prebuilt/data/t3_fl_y.nsbtx
 b5b6089df980ad54540fad84c76f76bcde0bb464 *res/prebuilt/data/test.atr
 337f8bd7788eaea30946c8632bdbc9ef9b12b51f *res/town_map/town_map_blocks.dat
 973dc6f187a2b7469c6a1a11d5c4c0c41b2f221c *res/town_map/town_map_flags.dat
-aba8f43ada2b1919151c50366ec00df4f875350d *res/prebuilt/data/tmapn_canm.resdat
-b350396f553cf8c70888aca59e327310812b1ee9 *res/prebuilt/data/tmapn_celact.cldat
+aba8f43ada2b1919151c50366ec00df4f875350d *res/graphics/town_map/nanrs.resdat
+b350396f553cf8c70888aca59e327310812b1ee9 *res/graphics/town_map/templates.cldat
 b2d44b4083a618fa1da3e463e757b7af5e839bb3 *res/prebuilt/data/tmapn_celact.txt
-066150350014d8db521c0905da4c2cf9b523229b *res/prebuilt/data/tmapn_cell.resdat
-b976d3f03befcad1b4ed934c0f78a8a5d1d34aa8 *res/prebuilt/data/tmapn_chr.resdat
-9ea7f860223c7895ca701901d7ab9453b5f4a72f *res/prebuilt/data/tmapn_pal.resdat
+066150350014d8db521c0905da4c2cf9b523229b *res/graphics/town_map/ncers.resdat
+b976d3f03befcad1b4ed934c0f78a8a5d1d34aa8 *res/graphics/town_map/ncgrs.resdat
+9ea7f860223c7895ca701901d7ab9453b5f4a72f *res/graphics/town_map/nclrs.resdat
 a1d847fd53a2b8f2a1fbee0afd6cab7985f0aab7 *res/prebuilt/data/tmapn_res_canm.txt
 52930c878755a7bb702fbe24ebfc2908617605ae *res/prebuilt/data/tmapn_res_cell.txt
 9750b822217dbcfa12f08d33f2597b3c7c4f52c4 *res/prebuilt/data/tmapn_res_chr.txt
