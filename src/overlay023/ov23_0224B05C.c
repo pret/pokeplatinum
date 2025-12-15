@@ -35,6 +35,7 @@
 #include "field_task.h"
 #include "font.h"
 #include "game_records.h"
+#include "goods.h"
 #include "graphics.h"
 #include "heap.h"
 #include "journal.h"
@@ -59,7 +60,6 @@
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
-#include "unk_020573FC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"
@@ -427,7 +427,7 @@ static void ov23_0224B39C(UnkStruct_02029894 *param0, u32 *param1)
         if (v0 == 0) {
             v3 = v4;
         } else if (v0 < (15 + 1)) {
-            v3 = sub_0205741C(v6);
+            v3 = Good_GetCollision(v6);
         } else {
             v3 = v5;
         }
@@ -2236,7 +2236,7 @@ static int ov23_0224D3E4(UnkStruct_02029894 *param0, int param1, int param2)
         if (v0 == 0) {
             continue;
         } else if (v0 < (15 + 1)) {
-            v3 = sub_0205741C(v4);
+            v3 = Good_GetCollision(v4);
         } else {
             continue;
         }
@@ -2279,7 +2279,7 @@ BOOL ov23_0224D454(int param0, Coordinates *param1)
         v5 = (UnkStruct_02029894 *)Unk_ov23_022577AC->unk_08[v2].unk_02;
         v3 = ov23_0224D3E4(v5, v0 % 32, v1 % 32);
 
-        v6[1] = sub_0205746C(v3);
+        v6[1] = Good_GetInteractMessageID(v3);
 
         if (v6[1] != 0) {
             sub_02059058(param0, 0);
@@ -2440,7 +2440,7 @@ static int ov23_0224D6F8(UnkStruct_02029894 *param0, int param1, int param2)
         if (v0 == 0) {
             continue;
         } else if (v0 < (15 + 1)) {
-            v3 = sub_0205741C(v4);
+            v3 = Good_GetCollision(v4);
         } else {
             continue;
         }

@@ -18,6 +18,7 @@
 #include "communication_system.h"
 #include "field_system.h"
 #include "game_records.h"
+#include "goods.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "math_util.h"
@@ -32,7 +33,6 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_020573FC.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/underground_answers.h"
@@ -743,7 +743,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         } else if (!sub_02028810(menu->fieldSystem->saveData)) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_IllPass);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
-        } else if (sub_0205748C(sCurrentTalkMenu->sentGift.goodID)) {
+        } else if (Good_IsUngiftable(sCurrentTalkMenu->sentGift.goodID)) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_CantAcceptImportant);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
         } else {

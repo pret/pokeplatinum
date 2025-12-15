@@ -21,6 +21,7 @@
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_system.h"
+#include "goods.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "map_header_data.h"
@@ -39,7 +40,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202854C.h"
-#include "unk_020573FC.h"
 
 typedef struct {
     u16 unk_00;
@@ -131,7 +131,7 @@ static void ov23_022521F0(UndergroundMenu *param0, int param1)
 static void ov23_022522F0(UndergroundMenu *param0, int param1)
 {
     MATHRandContext16 v0;
-    int v1, v2, v3, v4, v5;
+    int v2, v3, v4, v5;
     SaveData *saveData = FieldSystem_GetSaveData(param0->fieldSystem);
     Underground *v7 = SaveData_GetUnderground(saveData);
     BOOL natdexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
@@ -139,7 +139,7 @@ static void ov23_022522F0(UndergroundMenu *param0, int param1)
     MATH_InitRand16(&v0, Underground_GetRandomSeed(v7) + param1);
 
     for (v5 = 0; v5 < 5; v5++) {
-        v1 = MATH_Rand16(&v0, 139 - 1) + 1;
+        int v1 = MATH_Rand16(&v0, 139 - 1) + 1;
 
         for (v4 = 0; v4 < v5; v4++) {
             if (param0->unk_274[v4] == v1) {
@@ -153,9 +153,9 @@ static void ov23_022522F0(UndergroundMenu *param0, int param1)
         }
 
         param0->unk_274[v5] = v1;
-        param0->unk_279[v5] = sub_0205742C(v1);
+        param0->unk_279[v5] = Good_GetSpherePriceType(v1);
 
-        if ((natdexObtained == 0) && (1 == sub_0205747C(v1))) {
+        if ((natdexObtained == 0) && (1 == Good_IsNatDexRequired(v1))) {
             v5--;
             continue;
         }
@@ -167,8 +167,8 @@ static void ov23_022522F0(UndergroundMenu *param0, int param1)
             param0->unk_279[v5] = MATH_Rand16(&v0, 6 - 1) + 1;
         }
 
-        v3 = sub_0205743C(v1);
-        v2 = sub_0205744C(v1);
+        v3 = Good_GetSpherePriceMinSize(v1);
+        v2 = Good_GetSpherePriceMaxSize(v1);
 
         param0->unk_27E[v5] = MATH_Rand16(&v0, v2 - v3) + v3;
     }
@@ -302,13 +302,13 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
     UndergroundMenu *v1 = (UndergroundMenu *)ListMenu_GetAttribute(param0, 19);
     Underground *v2 = SaveData_GetUnderground(FieldSystem_GetSaveData(v1->fieldSystem));
     int v3 = index, v4, v5;
-    int v6, v7 = 0, v8;
+    int v7 = 0, v8;
 
     Window_FillTilemap(&v1->secondaryWindow, 15);
 
     if (index != 0xfffffffe) {
         if (v1->unk_2AC == 1) {
-            v6 = UndergroundMenu_GetTrapAtSlot(v3, v1);
+            int v6 = UndergroundMenu_GetTrapAtSlot(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225429C(v6);
 
@@ -321,20 +321,20 @@ static void ov23_02252754(ListMenu *param0, u32 index, u8 onInit)
             v8 = MATH_Rand16(&v0, v5 - v4) + v4;
             v8 = v8 / 2;
         } else if (v1->unk_2AC == 0) {
-            v6 = UndergroundMenu_GetGoodAtSlotBag(v3, v1);
+            const int v6 = UndergroundMenu_GetGoodAtSlotBag(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
-            v7 = sub_0205742C(v6);
+            v7 = Good_GetSpherePriceType(v6);
 
             if (v7 == 6) {
                 v7 = MATH_Rand16(&v0, 6 - 1) + 1;
             }
 
-            v4 = sub_0205743C(v6);
-            v5 = sub_0205744C(v6);
+            v4 = Good_GetSpherePriceMinSize(v6);
+            v5 = Good_GetSpherePriceMaxSize(v6);
             v8 = MATH_Rand16(&v0, v5 - v4) + v4;
             v8 = v8 / 2;
         } else {
-            v6 = UndergroundMenu_GetTreasureAtSlot(v3, v1);
+            int v6 = UndergroundMenu_GetTreasureAtSlot(v3, v1);
             MATH_InitRand16(&v0, Underground_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225426C(v6);
 
