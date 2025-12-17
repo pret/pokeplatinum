@@ -21,7 +21,7 @@ void ov16_0226914C(UnkStruct_ov16_02268A14 *param0, const u8 *param1);
 void ov16_02269168(UnkStruct_ov16_02268A14 *param0, u8 param1[], u8 param2[]);
 void ov16_022691BC(UnkStruct_ov16_02268A14 *param0);
 void ov16_02269218(UnkStruct_ov16_02268A14 *param0);
-int ov16_0226925C(UnkStruct_ov16_02268A14 *param0);
+int BattleSystem_MenuInput(UnkStruct_ov16_02268A14 *param0);
 BOOL ov16_02269348(UnkStruct_ov16_02268A14 *param0);
 int ov16_02269368(int param0, int param1);
 void ov16_0226940C(UnkStruct_ov16_02268A14 *param0);

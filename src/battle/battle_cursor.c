@@ -1,4 +1,4 @@
-#include "battle/ov16_0226871C.h"
+#include "battle/battle_cursor.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -165,11 +165,11 @@ typedef struct {
 } UnkStruct_ov16_02268FCC;
 
 typedef struct {
-    u8 unk_00;
-    s8 unk_01;
-    s8 unk_02;
+    u8 isActive;
+    s8 y;
+    s8 x;
     u8 unk_03;
-} UnkStruct_ov16_0226CB10;
+} MenuCursor;
 
 typedef union {
     UnkStruct_ov16_02269668 val1;
@@ -236,7 +236,7 @@ typedef struct UnkStruct_ov16_02268A14_t {
     s32 unk_6B0;
     s32 unk_6B4;
     UnkStruct_ov16_0226DC24 *unk_6B8;
-    UnkStruct_ov16_0226CB10 unk_6BC;
+    MenuCursor cursor;
     u8 unk_6C0;
     u8 unk_6C1;
     struct {
@@ -339,12 +339,12 @@ void ov16_0226BCCC(UnkStruct_ov16_02268A14 *param0, int param1);
 BOOL ov16_0226BCD0(UnkStruct_ov16_02268A14 *param0);
 static void ov16_0226BCE4(SysTask *param0, void *param1);
 static void ov16_02268FCC(SysTask *param0, void *param1);
-static int ov16_0226BE48(UnkStruct_ov16_02268A14 *param0);
-static int ov16_0226BEC0(UnkStruct_ov16_02268A14 *param0, int param1);
-static int ov16_0226C1F8(UnkStruct_ov16_02268A14 *param0, int param1);
-static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1);
-static int ov16_0226CA14(UnkStruct_ov16_02268A14 *param0, int param1);
-static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2, const u8 *param3);
+static int BattleSystem_MenuKeys(UnkStruct_ov16_02268A14 *param0);
+static int BattleSystem_Cursor_Menu(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden);
+static int BattleSystem_Cursor_Moves(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden);
+static int BattleSystem_Cursor_Battler(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden);
+static int BattleSystem_Cursor_YesNo(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden);
+static u32 BattleSystem_MoveCursor(MenuCursor *cursor, int width, int height, const u8 *layout);
 static void ov16_0226C0A0(UnkStruct_ov16_02268A14 *param0, int param1);
 static void ov16_0226C378(UnkStruct_ov16_02268A14 *param0, int param1);
 static void ov16_0226C9B8(UnkStruct_ov16_02268A14 *param0, int param1);
@@ -354,7 +354,7 @@ static void ov16_0226ABE8(UnkStruct_ov16_02268A14 *param0);
 static void ov16_0226A95C(const String *param0, int param1, int *param2, int *param3);
 static void ov16_0226AEA0(UnkStruct_ov16_02268A14 *param0, const String *param1, enum Font param2, UnkStruct_ov16_0226AEA0 *param3, TextColor param4);
 static void ov16_0226AAF8(UnkStruct_ov16_02268A14 *param0);
-static int ov16_0226C100(UnkStruct_ov16_02268A14 *param0, int param1);
+static int BattleSystem_Cursor_PalPark(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden);
 static void ov16_0226BD74(SysTask *param0, void *param1);
 static int ov16_0226CD18(UnkStruct_ov16_02268A14 *param0);
 static int ov16_0226CD84(UnkStruct_ov16_02268A14 *param0);
@@ -492,7 +492,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_02270A08[NELEMS(Unk_ov16_02
     0x4
 };
 
-__attribute__((aligned(4))) static const u8 Unk_ov16_022701EC[2][3] = {
+__attribute__((aligned(4))) static const u8 sBattleMenuButtonLayout[2][3] = {
     { 0x0, 0x0, 0x0 },
     { 0x1, 0x3, 0x2 }
 };
@@ -518,7 +518,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_02270A04[NELEMS(Unk_ov16_02
     0x4
 };
 
-__attribute__((aligned(4))) static const u8 Unk_ov16_022701CC[2][1] = {
+__attribute__((aligned(4))) static const u8 palParkMenuButtonLayout[2][1] = {
     { 0x0 },
     { 0x1 }
 };
@@ -548,7 +548,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_02270A14[NELEMS(Unk_ov16_02
     0xB
 };
 
-__attribute__((aligned(4))) static const u8 Unk_ov16_022701E4[3][2] = {
+__attribute__((aligned(4))) static const u8 sMoveMenuButtonLayout[3][2] = {
     { 0x1, 0x2 },
     { 0x3, 0x4 },
     { 0x0, 0x0 }
@@ -570,7 +570,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_02270A00[NELEMS(Unk_ov16_02
     0x4
 };
 
-__attribute__((aligned(4))) static const u8 Unk_ov16_022701C8[2][1] = {
+__attribute__((aligned(4))) static const u8 sYesNoMenuButtonLayout[2][1] = {
     { 0x0 },
     { 0x1 }
 };
@@ -600,7 +600,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_02270A0C[NELEMS(Unk_ov16_02
     0x4
 };
 
-__attribute__((aligned(4))) static const u8 Unk_ov16_022701DC[3][2] = {
+__attribute__((aligned(4))) static const u8 sSelectTargetMenuButtonLayout[3][2] = {
     { 0x3, 0x1 },
     { 0x0, 0x2 },
     { 0x4, 0x4 }
@@ -620,6 +620,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov16_022701C4[NELEMS(Unk_ov16_02
 };
 
 static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
+    // Menu structures
     {
         0x1C,
         0xF2,
@@ -641,7 +642,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270350,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_02269654,
         ov16_0226A318,
@@ -654,7 +655,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270350,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_02269654,
         ov16_0226A318,
@@ -667,7 +668,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270350,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_02269668,
         ov16_0226A318,
@@ -680,7 +681,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270350,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_02269668,
         ov16_0226A318,
@@ -693,7 +694,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270214,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_022698A8,
         ov16_0226A318,
@@ -706,7 +707,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270214,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_022698BC,
         ov16_0226A318,
@@ -719,7 +720,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270350,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_02269654,
         ov16_0226A318,
@@ -732,7 +733,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270350,
         Unk_ov16_022702A4,
         Unk_ov16_02270A08,
-        ov16_0226BEC0,
+        BattleSystem_Cursor_Menu,
         ov16_0226C0A0,
         ov16_02269668,
         ov16_0226A318,
@@ -745,7 +746,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270258,
         Unk_ov16_022702E4,
         Unk_ov16_02270A04,
-        ov16_0226C100,
+        BattleSystem_Cursor_PalPark,
         NULL,
         ov16_02269924,
         ov16_0226A318,
@@ -758,7 +759,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_02270258,
         Unk_ov16_022702E4,
         Unk_ov16_02270A04,
-        ov16_0226C100,
+        BattleSystem_Cursor_PalPark,
         NULL,
         ov16_02269938,
         ov16_0226A318,
@@ -771,7 +772,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_0227038C,
         Unk_ov16_02270364,
         Unk_ov16_02270A14,
-        ov16_0226C1F8,
+        BattleSystem_Cursor_Moves,
         ov16_0226C378,
         ov16_022699AC,
         ov16_0226A3F4,
@@ -784,7 +785,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_022703BC,
         Unk_ov16_02270314,
         Unk_ov16_02270A0C,
-        ov16_0226C3C8,
+        BattleSystem_Cursor_Battler,
         ov16_0226C9B8,
         ov16_0226A12C,
         ov16_0226A528,
@@ -797,7 +798,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_0227024C,
         Unk_ov16_02270224,
         Unk_ov16_02270A00,
-        ov16_0226CA14,
+        BattleSystem_Cursor_YesNo,
         NULL,
         ov16_02269C7C,
         ov16_0226A4A4,
@@ -810,7 +811,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_0227024C,
         Unk_ov16_02270224,
         Unk_ov16_02270A00,
-        ov16_0226CA14,
+        BattleSystem_Cursor_YesNo,
         NULL,
         ov16_02269D14,
         ov16_0226A4A4,
@@ -823,7 +824,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_0227024C,
         Unk_ov16_02270224,
         Unk_ov16_02270A00,
-        ov16_0226CA14,
+        BattleSystem_Cursor_YesNo,
         NULL,
         ov16_02269DB0,
         ov16_0226A4A4,
@@ -836,7 +837,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_0227024C,
         Unk_ov16_02270224,
         Unk_ov16_02270A00,
-        ov16_0226CA14,
+        BattleSystem_Cursor_YesNo,
         NULL,
         ov16_02269F68,
         ov16_0226A4A4,
@@ -849,7 +850,7 @@ static const UnkStruct_ov16_02270670 Unk_ov16_02270670[] = {
         Unk_ov16_0227024C,
         Unk_ov16_02270224,
         Unk_ov16_02270A00,
-        ov16_0226CA14,
+        BattleSystem_Cursor_YesNo,
         NULL,
         ov16_0226A04C,
         ov16_0226A4A4,
@@ -1589,7 +1590,7 @@ void ov16_02269218(UnkStruct_ov16_02268A14 *param0)
     }
 }
 
-int ov16_0226925C(UnkStruct_ov16_02268A14 *param0)
+int BattleSystem_MenuInput(UnkStruct_ov16_02268A14 *param0)
 {
     int v0, v1, v2, v3;
     const UnkStruct_ov16_02270670 *v4;
@@ -1610,8 +1611,8 @@ int ov16_0226925C(UnkStruct_ov16_02268A14 *param0)
     } else {
         v1 = TouchScreen_CheckRectanglePressed(v4->unk_14);
 
-        if (v1 == 0xffffffff) {
-            v1 = ov16_0226BE48(param0);
+        if (v1 == TOUCHSCREEN_INPUT_NONE) { // Nothing was selected with touch
+            v1 = BattleSystem_MenuKeys(param0);
             v5++;
         }
     }
@@ -1632,7 +1633,7 @@ int ov16_0226925C(UnkStruct_ov16_02268A14 *param0)
                 v4->unk_24(param0, v1);
             }
 
-            MI_CpuClear8(&param0->unk_6BC, sizeof(UnkStruct_ov16_0226CB10));
+            MI_CpuClear8(&param0->cursor, sizeof(MenuCursor));
             ov16_0226DDE8(param0->unk_6B8);
 
             if (v5 > 0) {
@@ -3782,26 +3783,26 @@ static void ov16_0226BD74(SysTask *param0, void *param1)
     }
 }
 
-static int ov16_0226BE48(UnkStruct_ov16_02268A14 *param0)
+static int BattleSystem_MenuKeys(UnkStruct_ov16_02268A14 *param0)
 {
-    UnkStruct_ov16_0226CB10 *v0;
+    MenuCursor *cursor;
     const UnkStruct_ov16_02270670 *v1;
 
-    v0 = &param0->unk_6BC;
+    cursor = &param0->cursor;
     v1 = &Unk_ov16_02270670[param0->unk_66B];
 
     if (v1->unk_20 == NULL) {
         return 0xffffffff;
     }
 
-    if (v0->unk_00 == 0) {
+    if (!cursor->isActive) { // Check if the cursor is inactive
         if ((param0->unk_6C0 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
-            if (param0->unk_6C0 == 0) {
+            if (param0->unk_6C0 == 0) { // If a key was pressed, play sfx
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
 
-            v0->unk_00 = 1;
-            param0->unk_6C0 = 0;
+            cursor->isActive = TRUE; // Activate the cursor
+            param0->unk_6C0 = 0; // Unpress the key
             v1->unk_20(param0, 1);
         }
 
@@ -3811,67 +3812,68 @@ static int ov16_0226BE48(UnkStruct_ov16_02268A14 *param0)
     return v1->unk_20(param0, 0);
 }
 
-static int ov16_0226BEC0(UnkStruct_ov16_02268A14 *param0, int param1)
+static int BattleSystem_Cursor_Menu(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden)
 {
-    UnkStruct_ov16_0226CB10 *v0;
-    u32 v1;
+    // Returns the ID of the menu button pressed, or -1 if nothing was pressed
+    MenuCursor *cursor;
+    u32 button;
     const UnkStruct_ov16_02270670 *v2;
-    int i, v4, v5;
+    int i, buttonId, v5;
     UnkStruct_ov16_0226C378 *v6;
 
-    v0 = &param0->unk_6BC;
+    cursor = &param0->cursor;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
     v5 = BattleSystem_BattlerOfType(param0->battleSys, param0->unk_66A);
     v6 = ov16_02263B0C(BattleSystem_BattlerData(param0->battleSys, v5));
 
-    if (param1 == 1) {
-        v0->unk_02 = v6->unk_00;
-        v0->unk_01 = v6->unk_01;
-        v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+    if (cursorHidden == TRUE) {
+        cursor->x = v6->unk_00;
+        cursor->y = v6->unk_01;
+        buttonId = sBattleMenuButtonLayout[cursor->y][cursor->x];
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[buttonId].rect.left + 8, v2->unk_14[buttonId].rect.right - 8, v2->unk_14[buttonId].rect.top + 8, v2->unk_14[buttonId].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
     switch (param0->unk_66B) {
     case 6:
-    case 5:
-        v1 = ov16_0226CB10(v0, 1, 1, Unk_ov16_022701EC[0]);
+    case 5: // fight menus where bag, run and pokemon aren't available
+        button = BattleSystem_MoveCursor(cursor, 1, 1, sBattleMenuButtonLayout[0]);
         break;
-    default:
-        v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
+    default: // normal fight menu, with bag, run and pokemon
+        buttonId = sBattleMenuButtonLayout[cursor->y][cursor->x];
 
-        if ((v4 == 3) && (gSystem.pressedKeys & PAD_KEY_UP)) {
-            (void)0;
+        if ((buttonId == 3) && (gSystem.pressedKeys & PAD_KEY_UP)) {
+            (void)0; // Do nothing if run is selected and up is pressed
         } else {
-            v1 = ov16_0226CB10(v0, 3, 2, Unk_ov16_022701EC[0]);
+            button = BattleSystem_MoveCursor(cursor, 3, 2, sBattleMenuButtonLayout[0]); // temporarily set button to the id of the new button
 
-            if ((v1 == 0) && (v4 == 0)) {
-                if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-                    v0->unk_02 = 0;
-                    v0->unk_01 = 1;
+            if ((button == 0) && (buttonId == 0)) { // if fight is selected, and is still selected
+                if (gSystem.pressedKeys & PAD_KEY_LEFT) { // Move to bag on the bottom row
+                    cursor->x = 0;
+                    cursor->y = 1;
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
-                    v1 = PAD_KEY_LEFT;
-                } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-                    v0->unk_02 = 2;
-                    v0->unk_01 = 1;
+                    button = PAD_KEY_LEFT;
+                } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) { // Move to pokemon on the bottom row
+                    cursor->x = 2;
+                    cursor->y = 1;
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
-                    v1 = PAD_KEY_RIGHT;
+                    button = PAD_KEY_RIGHT;
                 }
             }
         }
         break;
     }
 
-    switch (v1) {
+    switch (button) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        buttonId = sBattleMenuButtonLayout[cursor->y][cursor->x];
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[buttonId].rect.left + 8, v2->unk_14[buttonId].rect.right - 8, v2->unk_14[buttonId].rect.top + 8, v2->unk_14[buttonId].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
-        return Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
+        return sBattleMenuButtonLayout[cursor->y][cursor->x];
     case PAD_BUTTON_B:
         if (param0->unk_66F == 1) {
             for (i = 0; i < v2->unk_14[i].rect.top != 0xff; i++) {
@@ -3898,7 +3900,7 @@ static void ov16_0226C0A0(UnkStruct_ov16_02268A14 *param0, int param1)
 
         for (i = 0; i < 2; i++) {
             for (j = 0; j < 3; j++) {
-                if (param1 == Unk_ov16_022701EC[i][j]) {
+                if (param1 == sBattleMenuButtonLayout[i][j]) {
                     v0->unk_00 = j;
                     v0->unk_01 = i;
 
@@ -3909,36 +3911,36 @@ static void ov16_0226C0A0(UnkStruct_ov16_02268A14 *param0, int param1)
     }
 }
 
-static int ov16_0226C100(UnkStruct_ov16_02268A14 *param0, int param1)
+static int BattleSystem_Cursor_PalPark(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden)
 {
-    UnkStruct_ov16_0226CB10 *v0;
+    MenuCursor *cursor;
     u32 v1;
     const UnkStruct_ov16_02270670 *v2;
     int v3, v4;
 
-    v0 = &param0->unk_6BC;
+    cursor = &param0->cursor;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
 
-    if (param1 == 1) {
-        v0->unk_02 = 0;
-        v0->unk_01 = 0;
-        v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+    if (cursorHidden == TRUE) {
+        cursor->x = 0;
+        cursor->y = 0;
+        v4 = palParkMenuButtonLayout[cursor->y][cursor->x];
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
-    v1 = ov16_0226CB10(v0, 1, 2, Unk_ov16_022701CC[0]);
+    v1 = BattleSystem_MoveCursor(cursor, 1, 2, palParkMenuButtonLayout[0]);
 
     switch (v1) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v4 = Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        v4 = palParkMenuButtonLayout[cursor->y][cursor->x];
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
-        return Unk_ov16_022701CC[v0->unk_01][v0->unk_02];
+        return palParkMenuButtonLayout[cursor->y][cursor->x];
     case PAD_BUTTON_B:
         break;
     }
@@ -3946,49 +3948,49 @@ static int ov16_0226C100(UnkStruct_ov16_02268A14 *param0, int param1)
     return 0xffffffff;
 }
 
-static int ov16_0226C1F8(UnkStruct_ov16_02268A14 *param0, int param1)
+static int BattleSystem_Cursor_Moves(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden)
 {
-    UnkStruct_ov16_0226CB10 *v0;
+    MenuCursor *cursor;
     u32 v1;
     const UnkStruct_ov16_02270670 *v2;
     int v3, i;
     u8 v5[3][2];
     UnkStruct_ov16_02260C00 *v6;
     UnkStruct_ov16_0226C378 *v7 = ov16_02263B0C(BattleSystem_BattlerData(param0->battleSys, BattleSystem_BattlerOfType(param0->battleSys, param0->unk_66A)));
-    v0 = &param0->unk_6BC;
+    cursor = &param0->cursor;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
     v6 = &param0->unk_1A.val2;
 
-    if (param1 == 1) {
-        v0->unk_02 = v7->unk_02;
-        v0->unk_01 = v7->unk_03;
-        v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
+    if (cursorHidden == TRUE) {
+        cursor->x = v7->unk_02;
+        cursor->y = v7->unk_03;
+        v3 = sMoveMenuButtonLayout[cursor->y][cursor->x];
 
         if ((v3 != 0) && (v6->moveIDs[v3 - 1] == 0)) {
             v7->unk_02 = 0;
             v7->unk_03 = 0;
-            v0->unk_02 = 0;
-            v0->unk_01 = 0;
-            v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
+            cursor->x = 0;
+            cursor->y = 0;
+            v3 = sMoveMenuButtonLayout[cursor->y][cursor->x];
         }
 
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
-    MI_CpuCopy8(Unk_ov16_022701E4, v5, 3 * 2);
-    v1 = ov16_0226CB10(v0, 2, 3, v5[0]);
+    MI_CpuCopy8(sMoveMenuButtonLayout, v5, 3 * 2);
+    v1 = BattleSystem_MoveCursor(cursor, 2, 3, v5[0]);
 
     switch (v1) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v3 = Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        v3 = sMoveMenuButtonLayout[cursor->y][cursor->x];
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
-        return Unk_ov16_022701E4[v0->unk_01][v0->unk_02];
+        return sMoveMenuButtonLayout[cursor->y][cursor->x];
     case PAD_BUTTON_B:
         for (i = 0; i < v2->unk_14[i].rect.top != 0xff; i++) {
             if (0xff == v2->unk_18[i]) {
@@ -4016,7 +4018,7 @@ static void ov16_0226C378(UnkStruct_ov16_02268A14 *param0, int param1)
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 2; j++) {
-            if (param1 == Unk_ov16_022701E4[i][j]) {
+            if (param1 == sMoveMenuButtonLayout[i][j]) {
                 v0->unk_02 = j;
                 v0->unk_03 = i;
                 return;
@@ -4025,9 +4027,9 @@ static void ov16_0226C378(UnkStruct_ov16_02268A14 *param0, int param1)
     }
 }
 
-static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
+static int BattleSystem_Cursor_Battler(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden)
 {
-    UnkStruct_ov16_0226CB10 *v0;
+    MenuCursor *cursor;
     u32 v1;
     const UnkStruct_ov16_02270670 *v2;
     int v3, v4;
@@ -4041,10 +4043,10 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
     int v27, v28;
     int v29;
     UnkStruct_ov16_0226C378 *v30 = ov16_02263B0C(BattleSystem_BattlerData(param0->battleSys, BattleSystem_BattlerOfType(param0->battleSys, param0->unk_66A)));
-    v0 = &param0->unk_6BC;
+    cursor = &param0->cursor;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
 
-    MI_CpuCopy8(Unk_ov16_022701DC, v8, 3 * 2);
+    MI_CpuCopy8(sSelectTargetMenuButtonLayout, v8, 3 * 2);
 
     ov16_0226B20C(param0, v6, 1);
     ov16_0226B20C(param0, v7, 0);
@@ -4178,37 +4180,37 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
         break;
     }
 
-    if (param1 == 1) {
+    if (cursorHidden == TRUE) {
         if (v5 == 0) {
             if (v30->unk_06 == param0->unk_66C) {
-                v0->unk_02 = v30->unk_04;
-                v0->unk_01 = v30->unk_05;
+                cursor->x = v30->unk_04;
+                cursor->y = v30->unk_05;
             } else if (v6[5 - 2] == 1) {
-                v0->unk_02 = 0;
-                v0->unk_01 = 0;
+                cursor->x = 0;
+                cursor->y = 0;
             } else if (v6[3 - 2] == 1) {
-                v0->unk_02 = 1;
-                v0->unk_01 = 0;
+                cursor->x = 1;
+                cursor->y = 0;
             } else if (v6[2 - 2] == 1) {
-                v0->unk_02 = 0;
-                v0->unk_01 = 1;
+                cursor->x = 0;
+                cursor->y = 1;
             } else {
-                v0->unk_02 = 1;
-                v0->unk_01 = 1;
+                cursor->x = 1;
+                cursor->y = 1;
             }
 
-            v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+            v4 = sSelectTargetMenuButtonLayout[cursor->y][cursor->x];
+            BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         } else {
-            v0->unk_02 = 0;
-            v0->unk_01 = 0;
+            cursor->x = 0;
+            cursor->y = 0;
 
             if (((v28 == -1) && (v27 == -1)) || (v17 == -1)) {
-                ov16_0226DD9C(param0->unk_6B8, v13, v14, v15, v16, (192 + 80) << FX32_SHIFT);
+                BattleSystem_DrawCursor(param0->unk_6B8, v13, v14, v15, v16, (192 + 80) << FX32_SHIFT);
             } else if ((v28 != -1) && (v27 == -1)) {
-                ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, (192 + 80) << FX32_SHIFT);
+                BattleSystem_DrawCursorSprites(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, (192 + 80) << FX32_SHIFT);
             } else {
-                ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, (192 + 80) << FX32_SHIFT);
+                BattleSystem_DrawCursorSprites(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, (192 + 80) << FX32_SHIFT);
             }
 
             if (v17 != -1) {
@@ -4220,9 +4222,9 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
     }
 
     if (v5 == 0) {
-        v1 = ov16_0226CB10(v0, v11, v12, v8[0]);
+        v1 = BattleSystem_MoveCursor(cursor, v11, v12, v8[0]);
     } else {
-        v1 = ov16_0226CB10(v0, v11, v12, NULL);
+        v1 = BattleSystem_MoveCursor(cursor, v11, v12, NULL);
     }
 
     switch (v1) {
@@ -4231,16 +4233,16 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
         if (v5 == 0) {
-            v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
-            ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+            v4 = sSelectTargetMenuButtonLayout[cursor->y][cursor->x];
+            BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v4].rect.left + 8, v2->unk_14[v4].rect.right - 8, v2->unk_14[v4].rect.top + 8, v2->unk_14[v4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         } else {
-            if (v0->unk_01 == 0) {
+            if (cursor->y == 0) {
                 if (((v27 == -1) && (v28 == -1)) || (v17 == -1)) {
-                    ov16_0226DD9C(param0->unk_6B8, v13, v14, v15, v16, (192 + 80) << FX32_SHIFT);
+                    BattleSystem_DrawCursor(param0->unk_6B8, v13, v14, v15, v16, (192 + 80) << FX32_SHIFT);
                 } else if ((v28 != -1) && (v27 == -1)) {
-                    ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, (192 + 80) << FX32_SHIFT);
+                    BattleSystem_DrawCursorSprites(param0->unk_6B8, v13, v15, v14, v15, v13, v28, v14, v16, (192 + 80) << FX32_SHIFT);
                 } else {
-                    ov16_0226DCCC(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, (192 + 80) << FX32_SHIFT);
+                    BattleSystem_DrawCursorSprites(param0->unk_6B8, v13, v15, v14, v15, v13, v16, v14, v27, (192 + 80) << FX32_SHIFT);
                 }
 
                 if (v17 != -1) {
@@ -4249,14 +4251,14 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
                     ov16_0226DE04(param0->unk_6B8);
                 }
             } else {
-                ov16_0226DD9C(param0->unk_6B8, v2->unk_14[4].rect.left + 8, v2->unk_14[4].rect.right - 8, v2->unk_14[4].rect.top + 8, v2->unk_14[4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+                BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[4].rect.left + 8, v2->unk_14[4].rect.right - 8, v2->unk_14[4].rect.top + 8, v2->unk_14[4].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
                 ov16_0226DE04(param0->unk_6B8);
             }
         }
         break;
     case PAD_BUTTON_A:
         if (v5 == 1) {
-            if (v0->unk_01 > 0) {
+            if (cursor->y > 0) {
                 return 4;
             } else {
                 for (v3 = 0; v3 < 4; v3++) {
@@ -4266,7 +4268,7 @@ static int ov16_0226C3C8(UnkStruct_ov16_02268A14 *param0, int param1)
                 }
             }
         } else {
-            v4 = Unk_ov16_022701DC[v0->unk_01][v0->unk_02];
+            v4 = sSelectTargetMenuButtonLayout[cursor->y][cursor->x];
 
             if ((v4 == 4) || (v6[v4 - 0] == 1)) {
                 return v4;
@@ -4296,7 +4298,7 @@ static void ov16_0226C9B8(UnkStruct_ov16_02268A14 *param0, int param1)
 
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 2; j++) {
-            if (param1 == Unk_ov16_022701DC[i][j]) {
+            if (param1 == sSelectTargetMenuButtonLayout[i][j]) {
                 v0->unk_04 = j;
                 v0->unk_05 = i;
 
@@ -4306,34 +4308,34 @@ static void ov16_0226C9B8(UnkStruct_ov16_02268A14 *param0, int param1)
     }
 }
 
-static int ov16_0226CA14(UnkStruct_ov16_02268A14 *param0, int param1)
+static int BattleSystem_Cursor_YesNo(UnkStruct_ov16_02268A14 *param0, BOOL cursorHidden)
 {
-    UnkStruct_ov16_0226CB10 *v0;
+    MenuCursor *cursor;
     u32 v1;
     const UnkStruct_ov16_02270670 *v2;
     int v3, v4;
 
-    v0 = &param0->unk_6BC;
+    cursor = &param0->cursor;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
 
-    if (param1 == 1) {
-        v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+    if (cursorHidden == TRUE) {
+        v3 = sYesNoMenuButtonLayout[cursor->y][cursor->x];
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
     }
 
-    v1 = ov16_0226CB10(v0, 1, 2, Unk_ov16_022701C8[0]);
+    v1 = BattleSystem_MoveCursor(cursor, 1, 2, sYesNoMenuButtonLayout[0]);
 
     switch (v1) {
     case PAD_KEY_UP:
     case PAD_KEY_DOWN:
     case PAD_KEY_LEFT:
     case PAD_KEY_RIGHT:
-        v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
-        ov16_0226DD9C(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+        v3 = sYesNoMenuButtonLayout[cursor->y][cursor->x];
+        BattleSystem_DrawCursor(param0->unk_6B8, v2->unk_14[v3].rect.left + 8, v2->unk_14[v3].rect.right - 8, v2->unk_14[v3].rect.top + 8, v2->unk_14[v3].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         break;
     case PAD_BUTTON_A:
-        v3 = Unk_ov16_022701C8[v0->unk_01][v0->unk_02];
+        v3 = sYesNoMenuButtonLayout[cursor->y][cursor->x];
         return v3;
     case PAD_BUTTON_B:
         return 1;
@@ -4342,35 +4344,35 @@ static int ov16_0226CA14(UnkStruct_ov16_02268A14 *param0, int param1)
     return 0xffffffff;
 }
 
-static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2, const u8 *param3)
+static u32 BattleSystem_MoveCursor(MenuCursor *cursor, int width, int height, const u8 *layout)
 {
     int v0, v1;
     u32 v2;
 
-    if (param0->unk_02 >= param1) {
-        param0->unk_02 = param1 - 1;
+    if (cursor->x >= width) {
+        cursor->x = width - 1;
     }
 
-    if (param0->unk_01 >= param2) {
-        param0->unk_01 = param2 - 1;
+    if (cursor->y >= height) {
+        cursor->y = height - 1;
     }
 
-    v1 = param0->unk_02;
-    v0 = param0->unk_01;
+    v1 = cursor->x;
+    v0 = cursor->y;
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        param0->unk_01--;
+        cursor->y--;
 
-        if (param0->unk_01 < 0) {
-            param0->unk_01 = 0;
+        if (cursor->y < 0) {
+            cursor->y = 0;
         }
 
-        if (param3 != NULL) {
-            while (param3[param1 * param0->unk_01 + param0->unk_02] == 0xff) {
-                param0->unk_01--;
+        if (layout != NULL) {
+            while (layout[width * cursor->y + cursor->x] == 0xff) {
+                cursor->y--;
 
-                if (param0->unk_01 < 0) {
-                    param0->unk_01 = v0;
+                if (cursor->y < 0) {
+                    cursor->y = v0;
                     break;
                 }
             }
@@ -4378,18 +4380,18 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
 
         v2 = PAD_KEY_UP;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        param0->unk_01++;
+        cursor->y++;
 
-        if (param0->unk_01 >= param2) {
-            param0->unk_01 = param2 - 1;
+        if (cursor->y >= height) {
+            cursor->y = height - 1;
         }
 
-        if (param3 != NULL) {
-            while (param3[param1 * param0->unk_01 + param0->unk_02] == 0xff) {
-                param0->unk_01++;
+        if (layout != NULL) {
+            while (layout[width * cursor->y + cursor->x] == 0xff) {
+                cursor->y++;
 
-                if (param0->unk_01 >= param2) {
-                    param0->unk_01 = v0;
+                if (cursor->y >= height) {
+                    cursor->y = v0;
                     break;
                 }
             }
@@ -4397,18 +4399,18 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
 
         v2 = PAD_KEY_DOWN;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        param0->unk_02--;
+        cursor->x--;
 
-        if (param0->unk_02 < 0) {
-            param0->unk_02 = 0;
+        if (cursor->x < 0) {
+            cursor->x = 0;
         }
 
-        if (param3 != NULL) {
-            while (param3[param1 * param0->unk_01 + param0->unk_02] == 0xff) {
-                param0->unk_02--;
+        if (layout != NULL) {
+            while (layout[width * cursor->y + cursor->x] == 0xff) {
+                cursor->x--;
 
-                if (param0->unk_02 < 0) {
-                    param0->unk_02 = v1;
+                if (cursor->x < 0) {
+                    cursor->x = v1;
                     break;
                 }
             }
@@ -4416,18 +4418,18 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
 
         v2 = PAD_KEY_LEFT;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        param0->unk_02++;
+        cursor->x++;
 
-        if (param0->unk_02 >= param1) {
-            param0->unk_02 = param1 - 1;
+        if (cursor->x >= width) {
+            cursor->x = width - 1;
         }
 
-        if (param3 != NULL) {
-            while (param3[param1 * param0->unk_01 + param0->unk_02] == 0xff) {
-                param0->unk_02++;
+        if (layout != NULL) {
+            while (layout[width * cursor->y + cursor->x] == 0xff) {
+                cursor->x++;
 
-                if (param0->unk_02 >= param1) {
-                    param0->unk_02 = v1;
+                if (cursor->x >= width) {
+                    cursor->x = v1;
                     break;
                 }
             }
@@ -4442,19 +4444,19 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
         return 0;
     }
 
-    if (param3 != NULL) {
+    if (layout != NULL) {
         int v3, v4;
 
-        v3 = param3[param1 * v0 + v1];
-        v4 = param3[param1 * param0->unk_01 + param0->unk_02];
+        v3 = layout[width * v0 + v1];
+        v4 = layout[width * cursor->y + cursor->x];
 
         if (v3 == v4) {
-            param0->unk_02 = v1;
-            param0->unk_01 = v0;
+            cursor->x = v1;
+            cursor->y = v0;
         }
     }
 
-    if ((param0->unk_02 != v1) || (param0->unk_01 != v0)) {
+    if ((cursor->x != v1) || (cursor->y != v0)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else {
         if (v2 & PAD_KEY) {
