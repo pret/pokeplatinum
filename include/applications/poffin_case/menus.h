@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_APPLICATIONS_POFFIN_CASE_MENUS_H
 #define POKEPLATINUM_APPLICATIONS_POFFIN_CASE_MENUS_H
 
-#include "applications/poffin_case/poffin_manager.h"
+#include "applications/poffin_case/manager.h"
 
 #define BUTTON_ACTION_DESELECT         0
 #define BUTTON_ACTION_SELECT           1

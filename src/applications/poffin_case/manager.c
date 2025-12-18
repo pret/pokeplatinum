@@ -1,12 +1,11 @@
-#include "applications/poffin_case/manager_main.h"
+#include "applications/poffin_case/manager.h"
 
 #include <nitro.h>
 
-#include "struct_defs/poffin_case.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/poffin_case/main.h"
 #include "applications/poffin_case/menus.h"
-#include "applications/poffin_case/poffin_manager.h"
 #include "applications/poffin_case/sprites.h"
 
 #include "bg_window.h"

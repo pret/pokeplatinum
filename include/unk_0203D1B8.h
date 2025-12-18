@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/poffin_case.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
@@ -16,6 +15,7 @@
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
+#include "applications/poffin_case/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
 #include "field/field_system_decl.h"

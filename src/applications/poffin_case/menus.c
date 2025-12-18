@@ -2,9 +2,8 @@
 
 #include <nitro.h>
 
-#include "struct_defs/poffin_case.h"
-
-#include "applications/poffin_case/poffin_manager.h"
+#include "applications/poffin_case/main.h"
+#include "applications/poffin_case/manager.h"
 
 #include "bg_window.h"
 #include "font.h"

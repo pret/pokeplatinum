@@ -19,6 +19,7 @@
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/poffin_case/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
@@ -52,7 +53,6 @@
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "poffin_case.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "poketch.h"

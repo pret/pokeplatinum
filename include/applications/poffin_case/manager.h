@@ -1,17 +1,16 @@
-#ifndef POKEPLATINUM_APPLICATIONS_POFFIN_CASE_POFFIN_MANAGER_H
-#define POKEPLATINUM_APPLICATIONS_POFFIN_CASE_POFFIN_MANAGER_H
-
-#include <nnsys.h>
+#ifndef POKEPLATINUM_APPLICATIONS_POFFIN_CASE_MANAGER_H
+#define POKEPLATINUM_APPLICATIONS_POFFIN_CASE_MANAGER_H
 
 #include "constants/flavor.h"
 
-#include "struct_defs/poffin_case.h"
-#include "struct_defs/poffin_sprite.h"
+#include "applications/poffin_case/main.h"
 
 #include "bg_window.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "overlay_manager.h"
+#include "poffin_sprite.h"
 #include "poffin_types.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -81,4 +80,8 @@ typedef struct PoffinManager {
     PoffinSprite *poffinSprite;
 } PoffinManager;
 
-#endif // POKEPLATINUM_APPLICATIONS_POFFIN_CASE_POFFIN_MANAGER_H
+BOOL PoffinManager_Init(ApplicationManager *appMan, int *unused);
+BOOL PoffinManager_Main(ApplicationManager *appMan, int *unused);
+BOOL PoffinManager_Exit(ApplicationManager *appMan, int *unused);
+
+#endif // POKEPLATINUM_APPLICATIONS_POFFIN_CASE_MANAGER_H

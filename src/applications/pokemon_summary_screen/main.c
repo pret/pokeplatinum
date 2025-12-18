@@ -12,6 +12,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/poffin_case/main.h"
 #include "applications/pokemon_summary_screen/3d_anim.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprites.h"
@@ -32,7 +33,6 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
-#include "poffin_case.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"

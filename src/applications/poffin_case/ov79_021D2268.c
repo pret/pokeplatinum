@@ -6,6 +6,7 @@
 #include "struct_defs/struct_02098DE8.h"
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/poffin_case/main.h"
 #include "applications/poffin_case/ov79_021D3768.h"
 #include "applications/poffin_case/struct_ov79_021D3820.h"
 #include "applications/poffin_case/struct_ov79_021D38D0.h"
@@ -19,7 +20,6 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
-#include "poffin_case.h"
 #include "poffin_sprite.h"
 #include "poffin_types.h"
 #include "pokemon.h"

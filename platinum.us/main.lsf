@@ -344,7 +344,7 @@ Static main
 	Object main.nef.p/src_pokedex_heightweight.c.o
 	Object main.nef.p/src_pokedex_data_index.c.o
 	Object main.nef.p/src_rowan_intro_app_template.c.o
-	Object main.nef.p/src_poffin_case.c.o
+	Object main.nef.p/src_applications_poffin_case_main.c.o
 	Object main.nef.p/src_poffin_sprite.c.o
 	Object main.nef.p/src_unk_02099500.c.o
 	Object main.nef.p/src_unk_02099550.c.o
@@ -1305,7 +1305,7 @@ Overlay choose_starter
 Overlay poffin_case
 {
 	After main
-	Object main.nef.p/src_applications_poffin_case_manager_main.c.o
+	Object main.nef.p/src_applications_poffin_case_manager.c.o
 	Object main.nef.p/src_applications_poffin_case_menus.c.o
 	Object main.nef.p/src_applications_poffin_case_sprites.c.o
 	Object main.nef.p/src_applications_poffin_case_ov79_021D2268.c.o

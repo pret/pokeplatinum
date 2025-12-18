@@ -1,10 +1,14 @@
-#ifndef POKEPLATINUM_STRUCT_POFFIN_CASE_H
-#define POKEPLATINUM_STRUCT_POFFIN_CASE_H
+#ifndef POKEPLATINUM_POFFIN_CASE_MAIN_H
+#define POKEPLATINUM_POFFIN_CASE_MAIN_H
+
+#include "struct_defs/pokemon.h"
 
 #include "bag.h"
+#include "enums.h"
 #include "game_options.h"
 #include "party.h"
 #include "poffin.h"
+#include "savedata.h"
 #include "trainer_info.h"
 
 typedef struct PoffinCaseAppItem {
@@ -45,4 +49,9 @@ typedef struct PoffinCaseAppData {
     PoffinCaseAppItem poffins[MAX_POFFINS];
 } PoffinCaseAppData;
 
-#endif // POKEPLATINUM_STRUCT_POFFIN_CASE_H
+PoffinCaseAppData *PoffinCaseAppData_New(SaveData *saveData, int heapID);
+void PoffinCaseAppData_Free(PoffinCaseAppData *appData);
+UnkEnum_02098EAC sub_02098EAC(Poffin *param0, u8 param1);
+void sub_02098EF8(Poffin *param0, Pokemon *param1);
+
+#endif // POKEPLATINUM_POFFIN_CASE_MAIN_H

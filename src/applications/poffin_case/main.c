@@ -1,15 +1,14 @@
-#include "poffin_case.h"
+#include "applications/poffin_case/main.h"
 
 #include <nitro.h>
 
 #include "generated/natures.h"
 
-#include "struct_defs/poffin_case.h"
 #include "struct_defs/struct_02098DE8.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
-#include "applications/poffin_case/manager_main.h"
+#include "applications/poffin_case/manager.h"
 #include "applications/poffin_case/ov79_021D2268.h"
 #include "applications/pokemon_summary_screen/main.h"
 
@@ -26,7 +25,6 @@
 #include "string_template.h"
 
 #include "constdata/const_020F410C.h"
-#include "constdata/const_020F6890.h"
 
 FS_EXTERN_OVERLAY(poffin_case);
 

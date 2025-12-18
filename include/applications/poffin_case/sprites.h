@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_APPLICATIONS_POFFIN_CASE_SPRITES_H
 #define POKEPLATINUM_APPLICATIONS_POFFIN_CASE_SPRITES_H
 
-#include "applications/poffin_case/poffin_manager.h"
+#include "applications/poffin_case/manager.h"
 
 void PoffinManager_InitSpriteSystem(PoffinManager *app);
 void PoffinManager_FreeSpriteSystem(PoffinManager *app);

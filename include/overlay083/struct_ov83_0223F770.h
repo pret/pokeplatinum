@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223F770_H
 #define POKEPLATINUM_STRUCT_OV83_0223F770_H
 
-#include "struct_defs/poffin_sprite.h"
+#include "poffin_sprite.h"
 
 typedef struct {
     PoffinSpriteManager *unk_00;

@@ -1,9 +1,36 @@
 #ifndef POKEPLATINUM_POFFIN_SPRITE_H
 #define POKEPLATINUM_POFFIN_SPRITE_H
 
-#include "struct_defs/poffin_sprite.h"
-
 #include "poffin_types.h"
+#include "sprite.h"
+#include "sprite_resource.h"
+#include "sprite_util.h"
+
+typedef struct PoffinSpriteItem {
+    u8 inUse;
+    u8 type;
+    u16 index;
+} PoffinSpriteItem;
+
+typedef struct PoffinSpriteManager {
+    enum HeapID heapID;
+    int transferType;
+    u16 unused;
+    u16 numPalettes;
+    u16 maxSprites;
+    u16 vramType;
+    SpriteList *spriteList;
+    G2dRenderer renderer;
+    u32 unused2;
+    SpriteResourceCollection *ownedResources[4];
+    SpriteResourceList *unownedResources[4];
+    PoffinSpriteItem *poffinList;
+} PoffinSpriteManager;
+
+typedef struct PoffinSprite {
+    u16 index;
+    ManagedSprite *sprite;
+} PoffinSprite;
 
 PoffinSpriteManager *PoffinSpriteManager_New(enum HeapID heapID, u16 maxSprites, u16 numPalettes, u16 vramType, int transferType);
 void PoffinSpriteManager_Free(PoffinSpriteManager *spriteMan);

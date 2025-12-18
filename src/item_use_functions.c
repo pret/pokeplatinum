@@ -7,12 +7,12 @@
 #include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/poffin_case.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/poffin_case/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/fishing.h"
@@ -44,7 +44,6 @@
 #include "map_tile_behavior.h"
 #include "party.h"
 #include "player_avatar.h"
-#include "poffin_case.h"
 #include "pokedex.h"
 #include "pokeradar.h"
 #include "render_window.h"
