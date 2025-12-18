@@ -3,6 +3,6 @@
 
 #include "overlay_manager.h"
 
-extern const ApplicationManagerTemplate Unk_020F6890;
+extern const ApplicationManagerTemplate gPoffinCaseAppTemplate;
 
 #endif // POKEPLATINUM_CONST_020F6890_H

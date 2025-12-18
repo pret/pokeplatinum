@@ -12,6 +12,7 @@
 
 #include "struct_defs/struct_02099F80.h"
 
+#include "applications/poffin_case/main.h"
 #include "applications/pokemon_summary_screen/3d_anim.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprites.h"
@@ -53,7 +54,6 @@
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
-#include "unk_020989DC.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
 

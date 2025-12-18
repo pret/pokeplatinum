@@ -7,12 +7,12 @@
 #include "constants/savedata/vars_flags.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020708E0.h"
 #include "struct_defs/struct_02097728.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/poffin_case/main.h"
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/fishing.h"
@@ -61,7 +61,6 @@
 #include "unk_020553DC.h"
 #include "unk_0205F180.h"
 #include "unk_0206B9D8.h"
-#include "unk_020989DC.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/location_names.h"
@@ -602,9 +601,9 @@ static void UsePoffinCaseFromMenu(ItemMenuUseContext *usageContext, const ItemUs
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
-    UnkStruct_0203D9B8 *v2 = sub_0203D9B8(fieldSystem, HEAP_ID_FIELD2);
+    PoffinCaseAppData *poffinCase = FieldSystem_LaunchPoffinCaseApp(fieldSystem, HEAP_ID_FIELD2);
 
-    menu->taskData = v2;
+    menu->taskData = poffinCase;
     sub_0203B674(menu, sub_0203C710);
 }
 
@@ -616,7 +615,7 @@ static BOOL UsePoffinCaseInField(ItemFieldUseContext *usageContext)
 
 static void *sub_02068B9C(void *some_param)
 {
-    return sub_0203D9B8(some_param, HEAP_ID_FIELD2);
+    return FieldSystem_LaunchPoffinCaseApp(some_param, HEAP_ID_FIELD2);
 }
 
 static void UsePalPadFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -1136,7 +1135,7 @@ static BOOL RegisteredItem_GoToApp(FieldTask *task)
 
         if (v1->unk_24 != NULL) {
             if (v1->unk_20 == sub_02068B9C) {
-                sub_02098AF0(v1->unk_24);
+                PoffinCaseAppData_Free(v1->unk_24);
             } else {
                 Heap_Free(v1->unk_24);
             }

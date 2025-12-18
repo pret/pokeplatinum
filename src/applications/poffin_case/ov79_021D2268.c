@@ -1,17 +1,15 @@
-#include "overlay079/ov79_021D2268.h"
+#include "applications/poffin_case/ov79_021D2268.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_020158A8.h"
 #include "struct_defs/struct_02098DE8.h"
-#include "struct_defs/struct_0209903C.h"
-#include "struct_defs/struct_0209916C.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay079/ov79_021D3768.h"
-#include "overlay079/struct_ov79_021D3820.h"
-#include "overlay079/struct_ov79_021D38D0.h"
+#include "applications/poffin_case/main.h"
+#include "applications/poffin_case/ov79_021D3768.h"
+#include "applications/poffin_case/struct_ov79_021D3820.h"
+#include "applications/poffin_case/struct_ov79_021D38D0.h"
 
 #include "bg_window.h"
 #include "communication_system.h"
@@ -22,6 +20,8 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "poffin_sprite.h"
+#include "poffin_types.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_oam.h"
@@ -38,8 +38,6 @@
 #include "text.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
-#include "unk_020989DC.h"
-#include "unk_02098FFC.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -93,13 +91,13 @@ typedef struct {
     u16 unk_0C;
     u16 unk_0E;
     UnkStruct_02098DE8 *unk_10;
-    UnkStruct_020158A8 *unk_14;
+    PoffinTypeList *unk_14;
     MessageLoader *unk_18;
     UnkStruct_ov79_021D2928_sub1 unk_1C;
     UnkStruct_ov79_021D38D0 unk_30;
     UnkStruct_ov79_021D3820 unk_40;
-    UnkStruct_0209903C *unk_5C;
-    UnkStruct_0209916C *unk_60[2];
+    PoffinSpriteManager *unk_5C;
+    PoffinSprite *unk_60[2];
     BgConfig *unk_68;
     Window unk_6C;
     SpriteSystem *unk_7C;
@@ -184,7 +182,7 @@ int ov79_021D22E4(ApplicationManager *appMan, int *param1)
 
     if ((*param1 >= 2) && (*param1 <= 5)) {
         ov79_021D3820(&v0->unk_40);
-        sub_02099160(v0->unk_5C);
+        PoffinSpriteManager_DrawSprites(v0->unk_5C);
     }
 
     switch (*param1) {
@@ -548,10 +546,10 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
         RenderOam_ClearMain(param0->heapID);
     }
 
-    param0->unk_5C = sub_02098FFC(param0->heapID, 2, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
-    param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
+    param0->unk_5C = PoffinSpriteManager_New(param0->heapID, 2, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
+    param0->unk_60[0] = PoffinSprite_New(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
-    ManagedSprite_SetDrawFlag(param0->unk_60[0]->unk_04, 0);
+    ManagedSprite_SetDrawFlag(param0->unk_60[0]->sprite, 0);
 
     if (CommSys_IsInitialized()) {
         sub_02039734();
@@ -562,8 +560,8 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
 {
-    sub_02099370(param0->unk_5C, param0->unk_60[0]);
-    sub_0209903C(param0->unk_5C);
+    PoffinSprite_Free(param0->unk_5C, param0->unk_60[0]);
+    PoffinSpriteManager_Free(param0->unk_5C);
     SpriteSystem_Free(param0->unk_7C);
     VramTransfer_Free();
 }
@@ -632,7 +630,7 @@ static int ov79_021D2A04(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov79_021D29B4));
 
-    param1->unk_C4 = param0->unk_60[0]->unk_04->sprite;
+    param1->unk_C4 = param0->unk_60[0]->sprite->sprite;
     param1->unk_C8 = param0->unk_40.unk_18;
     param1->unk_08 = param0->unk_30.unk_09;
     param1->unk_00 = 24;
