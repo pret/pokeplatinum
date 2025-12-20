@@ -35,6 +35,13 @@
 
 #define BATTLE_FRONTIER_BANLIST_SIZE 18
 
+#define GET_UNOWN_LETTER_FROM_PERSONALITY(personality) ((                                          \
+                                                            (((personality) & 0x03000000) >> 18)   \
+                                                            | (((personality) & 0x00030000) >> 12) \
+                                                            | (((personality) & 0x00000300) >> 6)  \
+                                                            | (((personality) & 0x00000003) >> 0)) \
+    % UNOWN_FORM_COUNT)
+
 enum EvolutionClass {
     EVO_CLASS_BY_LEVEL = 0,
     EVO_CLASS_BY_TRADE,
@@ -107,7 +114,7 @@ BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
 
 void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
 void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 nature);
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
+void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 gender, u8 nature, u8 letter);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
 

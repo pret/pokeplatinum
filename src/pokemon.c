@@ -493,22 +493,21 @@ void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 natu
     Pokemon_InitWith(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gender, u8 param5, u8 param6)
+void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 gender, u8 nature, u8 letter)
 {
-    u32 monPersonality;
-    u16 unownLetter;
+    u32 personality = 0;
+    u16 unownLetter = 0;
 
-    // TODO enum value
-    if (param6 && param6 < 29) {
+    if (letter != 0 && letter < UNOWN_FORM_COUNT + 1) {
         do {
-            monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
-            unownLetter = (((monPersonality & 0x3000000) >> 18) | ((monPersonality & 0x30000) >> 12) | ((monPersonality & 0x300) >> 6) | (monPersonality & 0x3)) % 28;
-        } while (param5 != Pokemon_GetNatureOf(monPersonality) || gender != Pokemon_GetGenderOf(monSpecies, monPersonality) || unownLetter != param6 - 1);
+            personality = (LCRNG_Next() | (LCRNG_Next() << 16));
+            unownLetter = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
+        } while (nature != Pokemon_GetNatureOf(personality) || gender != Pokemon_GetGenderOf(species, personality) || unownLetter != letter - 1);
     } else {
-        monPersonality = sub_02074128(monSpecies, gender, param5);
+        personality = sub_02074128(species, gender, nature);
     }
 
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
+    Pokemon_InitWith(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
