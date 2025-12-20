@@ -106,7 +106,7 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon);
 BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
 
 void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
+void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 nature);
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);

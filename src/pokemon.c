@@ -484,15 +484,13 @@ static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature)
+void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 nature)
 {
-    u32 monPersonality;
-
+    u32 personality;
     do {
-        monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
-    } while (monNature != Pokemon_GetNatureOf(monPersonality));
-
-    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, OTID_NOT_SET, 0);
+        personality = (LCRNG_Next() | (LCRNG_Next() << 16));
+    } while (nature != Pokemon_GetNatureOf(personality));
+    Pokemon_InitWith(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 gender, u8 param5, u8 param6)

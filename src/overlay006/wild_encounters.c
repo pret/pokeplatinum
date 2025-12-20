@@ -1079,7 +1079,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
         return;
     }
 
-    sub_02074044(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
+    Pokemon_InitWithNature(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
     Pokemon_SetData(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
