@@ -555,87 +555,83 @@ void Pokemon_CalcLevelAndStats(Pokemon *mon)
 
 void Pokemon_CalcStats(Pokemon *mon)
 {
-    int monMaxHp;
-    int monCurrentHp;
-    int monHpIV, monAtkIV, monDefIV, monSpeedIV, monSpAtkIV, monSpDefIV;
-    int monHpEV, monAtkEV, monDefEV, monSpeedEV, monSpAtkEV, monSpDefEV;
+    int maxHp, hp;
+    int hpIV, atkIV, defIV, speedIV, spAtkIV, spDefIV;
+    int hpEV, atkEV, defEV, speedEV, spAtkEV, spDefEV;
+    int form, species;
+    int newMaxHp;
 
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-    int monLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    int level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    maxHp = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+    hp = Pokemon_GetData(mon, MON_DATA_HP, NULL);
+    hpIV = Pokemon_GetData(mon, MON_DATA_HP_IV, NULL);
+    hpEV = Pokemon_GetData(mon, MON_DATA_HP_EV, NULL);
+    atkIV = Pokemon_GetData(mon, MON_DATA_ATK_IV, NULL);
+    atkEV = Pokemon_GetData(mon, MON_DATA_ATK_EV, NULL);
+    defIV = Pokemon_GetData(mon, MON_DATA_DEF_IV, NULL);
+    defEV = Pokemon_GetData(mon, MON_DATA_DEF_EV, NULL);
+    speedIV = Pokemon_GetData(mon, MON_DATA_SPEED_IV, NULL);
+    speedEV = Pokemon_GetData(mon, MON_DATA_SPEED_EV, NULL);
+    spAtkIV = Pokemon_GetData(mon, MON_DATA_SPATK_IV, NULL);
+    spAtkEV = Pokemon_GetData(mon, MON_DATA_SPATK_EV, NULL);
+    spDefIV = Pokemon_GetData(mon, MON_DATA_SPDEF_IV, NULL);
+    spDefEV = Pokemon_GetData(mon, MON_DATA_SPDEF_EV, NULL);
+    form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+    species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
 
-    monMaxHp = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
-    monCurrentHp = Pokemon_GetData(mon, MON_DATA_HP, NULL);
-
-    monHpIV = Pokemon_GetData(mon, MON_DATA_HP_IV, NULL);
-    monHpEV = Pokemon_GetData(mon, MON_DATA_HP_EV, NULL);
-    monAtkIV = Pokemon_GetData(mon, MON_DATA_ATK_IV, NULL);
-    monAtkEV = Pokemon_GetData(mon, MON_DATA_ATK_EV, NULL);
-    monDefIV = Pokemon_GetData(mon, MON_DATA_DEF_IV, NULL);
-    monDefEV = Pokemon_GetData(mon, MON_DATA_DEF_EV, NULL);
-    monSpeedIV = Pokemon_GetData(mon, MON_DATA_SPEED_IV, NULL);
-    monSpeedEV = Pokemon_GetData(mon, MON_DATA_SPEED_EV, NULL);
-    monSpAtkIV = Pokemon_GetData(mon, MON_DATA_SPATK_IV, NULL);
-    monSpAtkEV = Pokemon_GetData(mon, MON_DATA_SPATK_EV, NULL);
-    monSpDefIV = Pokemon_GetData(mon, MON_DATA_SPDEF_IV, NULL);
-    monSpDefEV = Pokemon_GetData(mon, MON_DATA_SPDEF_EV, NULL);
-
-    int monForm = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
-    int monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     SpeciesData *speciesData = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesData));
+    SpeciesData_LoadForm(species, form, speciesData);
 
-    SpeciesData_LoadForm(monSpecies, monForm, speciesData);
-
-    int newMaxHp;
-    if (monSpecies == SPECIES_SHEDINJA) {
+    if (species == SPECIES_SHEDINJA) {
         newMaxHp = 1;
     } else {
-        newMaxHp = ((2 * speciesData->baseStats.hp + monHpIV + monHpEV / 4) * monLevel / 100 + monLevel + 10);
+        newMaxHp = (speciesData->baseStats.hp * 2 + hpIV + hpEV / 4) * level / 100 + level + 10;
     }
-
     Pokemon_SetData(mon, MON_DATA_MAX_HP, &newMaxHp);
 
-    // TODO inline func maybe
-    int newAtk = ((2 * speciesData->baseStats.attack + monAtkIV + monAtkEV / 4) * monLevel / 100 + 5);
+    int newAtk = (speciesData->baseStats.attack * 2 + atkIV + atkEV / 4) * level / 100 + 5;
     newAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newAtk, STAT_ATTACK);
-
     Pokemon_SetData(mon, MON_DATA_ATK, &newAtk);
 
-    int newDef = ((2 * speciesData->baseStats.defense + monDefIV + monDefEV / 4) * monLevel / 100 + 5);
+    int newDef = (speciesData->baseStats.defense * 2 + defIV + defEV / 4) * level / 100 + 5;
     newDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newDef, STAT_DEFENSE);
-
     Pokemon_SetData(mon, MON_DATA_DEF, &newDef);
 
-    int newSpeed = ((2 * speciesData->baseStats.speed + monSpeedIV + monSpeedEV / 4) * monLevel / 100 + 5);
+    int newSpeed = (speciesData->baseStats.speed * 2 + speedIV + speedEV / 4) * level / 100 + 5;
     newSpeed = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpeed, STAT_SPEED);
-
     Pokemon_SetData(mon, MON_DATA_SPEED, &newSpeed);
 
-    int newSpAtk = ((2 * speciesData->baseStats.spAttack + monSpAtkIV + monSpAtkEV / 4) * monLevel / 100 + 5);
+    int newSpAtk = (speciesData->baseStats.spAttack * 2 + spAtkIV + spAtkEV / 4) * level / 100 + 5;
     newSpAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpAtk, STAT_SPECIAL_ATTACK);
-
     Pokemon_SetData(mon, MON_DATA_SP_ATK, &newSpAtk);
 
-    int newSpDef = ((2 * speciesData->baseStats.spDefense + monSpDefIV + monSpDefEV / 4) * monLevel / 100 + 5);
+    int newSpDef = (speciesData->baseStats.spDefense * 2 + spDefIV + spDefEV / 4) * level / 100 + 5;
     newSpDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpDef, STAT_SPECIAL_DEFENSE);
-
     Pokemon_SetData(mon, MON_DATA_SP_DEF, &newSpDef);
+
     Heap_Free(speciesData);
 
-    if (monCurrentHp != 0 || monMaxHp == 0) {
-        if (monSpecies == SPECIES_SHEDINJA) {
-            monCurrentHp = 1;
-        } else if (monCurrentHp == 0) {
-            monCurrentHp = newMaxHp;
+    if (hp != 0 || maxHp == 0) {
+        if (species == SPECIES_SHEDINJA) {
+            hp = 1;
+        } else if (hp == 0) {
+            hp = newMaxHp;
+        // BUG: Pomeg glitch.
+        // Fixed in HGSS by adding:
+        // } else if (newMaxHp - maxHp < 0) {
+        //     if (hp > newMaxHp) {
+        //         hp = newMaxHp;
+        //     }
         } else {
-            monCurrentHp += newMaxHp - monMaxHp;
+            hp += newMaxHp - maxHp;
         }
     }
 
-    if (monCurrentHp) {
-        Pokemon_SetData(mon, MON_DATA_HP, &monCurrentHp);
+    if (hp != 0) {
+        Pokemon_SetData(mon, MON_DATA_HP, &hp);
     }
-
     Pokemon_ExitDecryptionContext(mon, reencrypt);
 }
 
