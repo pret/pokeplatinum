@@ -113,7 +113,7 @@
             vApplyUpdatedEV = CalculateEVUpdate(__currentEV, __otherEVsSum, vApplyEVChange);                  \
             if (vApplyUpdatedEV != EV_UNCHANGED) {                                                            \
                 __currentEV = vApplyUpdatedEV;                                                                \
-                Pokemon_SetValue(mon, __monDataParam, &__currentEV);                                          \
+                Pokemon_SetData(mon, __monDataParam, &__currentEV);                                          \
                 Pokemon_CalcLevelAndStats(mon);                                                               \
                 effectApplied = TRUE;                                                                         \
             }                                                                                                 \
@@ -261,7 +261,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     APPLY_HEAL_STATUS(ITEM_PARAM_HEAL_PARALYSIS, MON_CONDITION_PARALYSIS);
 
     if (vApplyStatus != vApplyStatusTmp) {
-        Pokemon_SetValue(mon, MON_DATA_STATUS, &vApplyStatusTmp);
+        Pokemon_SetData(mon, MON_DATA_STATUS, &vApplyStatusTmp);
         effectApplied = TRUE;
     }
 
@@ -435,7 +435,7 @@ static u8 RestorePokemonMovePP(Pokemon *mon, u32 moveSlot, u32 amount)
             }
         }
 
-        Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + moveSlot, &currPP);
+        Pokemon_SetData(mon, MON_DATA_MOVE1_PP + moveSlot, &currPP);
         return TRUE;
     }
 
@@ -469,8 +469,8 @@ static u8 IncreaseMovePPUps(Pokemon *mon, u32 moveSlot, u32 amount)
 
     currPP = currPP + MoveTable_CalcMaxPP(moveId, currPPUps) - maxPP;
 
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &currPPUps);
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + moveSlot, &currPP);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &currPPUps);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_PP + moveSlot, &currPP);
 
     return TRUE;
 }
@@ -493,7 +493,7 @@ static void RestorePokemonHP(Pokemon *mon, u32 currentHP, u32 maxHP, u32 amount)
         currentHP += amount;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_HP, &currentHP);
+    Pokemon_SetData(mon, MON_DATA_HP, &currentHP);
 }
 
 static s32 CalculateEVUpdate(s32 current, s32 sumOthers, s32 change)
@@ -596,7 +596,7 @@ static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 loc
         change = 0;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &change);
+    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &change);
     return TRUE;
 }
 
@@ -614,10 +614,10 @@ void Party_HealAllMembers(Party *party)
         }
 
         u32 tmp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-        Pokemon_SetValue(mon, MON_DATA_HP, &tmp);
+        Pokemon_SetData(mon, MON_DATA_HP, &tmp);
 
         tmp = MON_CONDITION_NONE;
-        Pokemon_SetValue(mon, MON_DATA_STATUS, &tmp);
+        Pokemon_SetData(mon, MON_DATA_STATUS, &tmp);
 
         for (j = 0; j < LEARNED_MOVES_MAX; j++) {
             if (IsMoveMissingPP(mon, j) == TRUE) {

@@ -731,7 +731,7 @@ void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
     {
         int v5 = 0;
 
-        Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v5);
+        Pokemon_SetData(v2, MON_DATA_IS_EGG, &v5);
     }
 
     Pokemon_BuildSpriteTemplate(&v0, v2, 2);

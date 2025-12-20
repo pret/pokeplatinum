@@ -142,11 +142,11 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *saveData, u16 param1, u8 para
         v3 = Party_GetPokemonBySlotIndex(v9->unk_28, v7);
         v0 = 0;
 
-        Pokemon_SetValue(v3, MON_DATA_HELD_ITEM, &v0);
+        Pokemon_SetData(v3, MON_DATA_HELD_ITEM, &v0);
 
         if (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) > 50) {
             v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 50);
-            Pokemon_SetValue(v3, MON_DATA_EXPERIENCE, &v1);
+            Pokemon_SetData(v3, MON_DATA_EXPERIENCE, &v1);
             Pokemon_CalcLevelAndStats(v3);
         }
     }
@@ -240,25 +240,25 @@ static void ov104_022366A4(UnkStruct_ov104_0223BA10 *param0)
         v5 = Party_GetPokemonBySlotIndex(param0->unk_28, v4);
 
         v2 = (u16)sub_02030398(param0->unk_08, 2, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_HP, &v2);
+        Pokemon_SetData(v5, MON_DATA_HP, &v2);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE1_PP, &v3);
+        Pokemon_SetData(v5, MON_DATA_MOVE1_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 1, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE2_PP, &v3);
+        Pokemon_SetData(v5, MON_DATA_MOVE2_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 2, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE3_PP, &v3);
+        Pokemon_SetData(v5, MON_DATA_MOVE3_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 3, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE4_PP, &v3);
+        Pokemon_SetData(v5, MON_DATA_MOVE4_PP, &v3);
 
         v1 = (u32)sub_02030398(param0->unk_08, 4, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_STATUS, &v1);
+        Pokemon_SetData(v5, MON_DATA_STATUS, &v1);
 
         v2 = (u16)sub_02030398(param0->unk_08, 5, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v2);
+        Pokemon_SetData(v5, MON_DATA_HELD_ITEM, &v2);
     }
 
     return;

@@ -1267,8 +1267,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
             }
         }
 
-        Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
-        Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
+        Pokemon_SetData(pokemon, MON_DATA_FRIENDSHIP, &friendship);
+        Pokemon_SetData(pokemon, MON_DATA_GENDER, NULL);
 
         GTS_SetTradedTimestamp(appState->playerData->globalTrade, GTS_TIMESTAMPS_TRADE_BY_DEPOSITING);
     }
@@ -1313,9 +1313,9 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
     }
 
     u8 friendship = BASE_FRIENDSHIP_VALUE;
-    Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
+    Pokemon_SetData(pokemon, MON_DATA_FRIENDSHIP, &friendship);
 
-    Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
+    Pokemon_SetData(pokemon, MON_DATA_GENDER, NULL);
 
     if (boxIndex == MAX_PC_BOXES) {
         Party_AddPokemon(appState->playerData->party, pokemon);

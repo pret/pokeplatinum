@@ -6424,11 +6424,11 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
 
                 // Don't copy the Griseous Orb
                 int tmp = ITEM_NONE;
-                Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &tmp);
+                Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &tmp);
 
                 // Force Giratina-Altered form
                 tmp = GIRATINA_FORM_ALTERED;
-                Pokemon_SetValue(mon, MON_DATA_FORM, &tmp);
+                Pokemon_SetData(mon, MON_DATA_FORM, &tmp);
                 Pokemon_SetGiratinaFormByHeldItem(mon);
 
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].attack = Pokemon_GetValue(mon, MON_DATA_ATK, 0);

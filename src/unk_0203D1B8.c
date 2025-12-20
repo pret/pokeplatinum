@@ -1202,7 +1202,7 @@ static void sub_0203DF68(FieldTask *param0)
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
-        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->nameInputRaw);
+        Pokemon_SetData(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->nameInputRaw);
     } break;
     case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);

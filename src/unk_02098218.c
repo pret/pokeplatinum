@@ -214,9 +214,9 @@ static BOOL sub_0209843C(FieldTask *param0)
             int heapID = HEAP_ID_FIELD2;
             int isEgg = FALSE;
 
-            Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
+            Pokemon_SetData(mon, MON_DATA_IS_EGG, &isEgg);
             UpdateMonStatusAndTrainerInfo(mon, trainerInfo, v4, location, heapID);
-            Pokemon_SetValue(mon, MON_DATA_SPECIES_NAME, NULL);
+            Pokemon_SetData(mon, MON_DATA_SPECIES_NAME, NULL);
         }
 
         {
@@ -243,7 +243,7 @@ static BOOL sub_0209843C(FieldTask *param0)
     } break;
     case 4:
         if (v0->unk_08->returnCode == NAMING_SCREEN_CODE_OK) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRING_AND_FLAG, v0->unk_08->textInputStr);
+            Pokemon_SetData(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRING_AND_FLAG, v0->unk_08->textInputStr);
 
             {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);

@@ -200,7 +200,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     sub_020780C4(pokemon, personality);
     u32 tmp = Pokemon_GetGender(pokemon);
 
-    Pokemon_SetValue(pokemon, MON_DATA_GENDER, &tmp);
+    Pokemon_SetData(pokemon, MON_DATA_GENDER, &tmp);
 
     // couldn't get a match without reusing the variable
     tmp = Pokemon_GetValue(pokemon, MON_DATA_HP_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_ATK_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_DEF_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_SPEED_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_SPATK_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_SPDEF_IV, NULL);
@@ -209,23 +209,23 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
         u32 rand = LCRNG_Next();
         personality = (rand & (0x1F << 0)) >> 0; // couldn't get a match without reusing the variable
 
-        Pokemon_SetValue(pokemon, MON_DATA_HP_IV, &personality);
+        Pokemon_SetData(pokemon, MON_DATA_HP_IV, &personality);
 
         personality = (rand & (0x1F << 5)) >> 5;
-        Pokemon_SetValue(pokemon, MON_DATA_ATK_IV, &personality);
+        Pokemon_SetData(pokemon, MON_DATA_ATK_IV, &personality);
 
         personality = (rand & (0x1F << 10)) >> 10;
-        Pokemon_SetValue(pokemon, MON_DATA_DEF_IV, &personality);
+        Pokemon_SetData(pokemon, MON_DATA_DEF_IV, &personality);
 
         rand = LCRNG_Next();
         personality = (rand & (0x1F << 0)) >> 0;
-        Pokemon_SetValue(pokemon, MON_DATA_SPEED_IV, &personality);
+        Pokemon_SetData(pokemon, MON_DATA_SPEED_IV, &personality);
 
         personality = (rand & (0x1F << 5)) >> 5;
-        Pokemon_SetValue(pokemon, MON_DATA_SPATK_IV, &personality);
+        Pokemon_SetData(pokemon, MON_DATA_SPATK_IV, &personality);
 
         personality = (rand & (0x1F << 10)) >> 10;
-        Pokemon_SetValue(pokemon, MON_DATA_SPDEF_IV, &personality);
+        Pokemon_SetData(pokemon, MON_DATA_SPDEF_IV, &personality);
     }
 
     u8 *specialRibbons = sub_0202D79C(fieldSystem->saveData);
@@ -278,9 +278,9 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
         tmpPoke = Pokemon_New(HEAP_ID_FIELD3);
 
         Pokemon_Copy(pokemon, tmpPoke);
-        Pokemon_SetValue(tmpPoke, MON_DATA_OT_NAME_STRING, playerName);
-        Pokemon_SetValue(tmpPoke, MON_DATA_OT_ID, &playerID);
-        Pokemon_SetValue(tmpPoke, MON_DATA_OT_GENDER, &playerGender);
+        Pokemon_SetData(tmpPoke, MON_DATA_OT_NAME_STRING, playerName);
+        Pokemon_SetData(tmpPoke, MON_DATA_OT_ID, &playerID);
+        Pokemon_SetData(tmpPoke, MON_DATA_OT_GENDER, &playerGender);
 
         pokemon = tmpPoke;
         String_Free(playerName);

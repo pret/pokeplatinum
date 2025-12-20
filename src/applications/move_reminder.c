@@ -929,13 +929,13 @@ static int MoveReminder_State_ProcessYesNoInput(MoveReminderController *controll
 static int MoveReminder_State_ReplaceOldMove(MoveReminderController *controller)
 {
     u32 value = MoveReminder_GetSelectedMove(controller);
-    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, &value);
+    Pokemon_SetData(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, &value);
 
     value = 0;
-    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1_PP_UPS + controller->data->moveSlot, &value);
+    Pokemon_SetData(controller->data->mon, MON_DATA_MOVE1_PP_UPS + controller->data->moveSlot, &value);
 
     value = MoveTable_CalcMaxPP(MoveReminder_GetSelectedMove(controller), 0);
-    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1_PP + controller->data->moveSlot, &value);
+    Pokemon_SetData(controller->data->mon, MON_DATA_MOVE1_PP + controller->data->moveSlot, &value);
 
     controller->data->keepOldMove = FALSE;
 

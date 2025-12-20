@@ -45,7 +45,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapID heapID, SaveData *saveData, u16 speci
     Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
 
     item = heldItem;
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
     result = Party_AddPokemon(party, mon);
 
     if (result) {
@@ -169,7 +169,7 @@ void Party_GiveChampionRibbons(Party *party)
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
-            Pokemon_SetValue(mon, MON_DATA_SINNOH_CHAMP_RIBBON, &championRibbon);
+            Pokemon_SetData(mon, MON_DATA_SINNOH_CHAMP_RIBBON, &championRibbon);
         }
     }
 }
@@ -192,7 +192,7 @@ int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
                 hp--;
             }
 
-            Pokemon_SetValue(mon, MON_DATA_HP, &hp);
+            Pokemon_SetData(mon, MON_DATA_HP, &hp);
 
             if (hp == 1) {
                 numFainted++;
@@ -218,7 +218,7 @@ BOOL Pokemon_TrySurvivePoison(Pokemon *mon)
         && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 1) {
         u32 condition = MON_CONDITION_NONE;
 
-        Pokemon_SetValue(mon, MON_DATA_STATUS, &condition);
+        Pokemon_SetData(mon, MON_DATA_STATUS, &condition);
         return TRUE;
     }
 

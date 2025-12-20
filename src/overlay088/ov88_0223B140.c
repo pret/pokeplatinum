@@ -2474,11 +2474,11 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         }
     }
 
-    Pokemon_SetValue(v1, MON_DATA_GENDER, NULL);
+    Pokemon_SetData(v1, MON_DATA_GENDER, NULL);
 
     if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
         u8 v3 = 70;
-        Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
+        Pokemon_SetData(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
     UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);

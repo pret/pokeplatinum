@@ -521,13 +521,13 @@ void sub_02098EF8(Poffin *param0, Pokemon *param1)
             v7[v0] = 255;
         }
 
-        Pokemon_SetValue(param1, 19 + v0, &v7[v0]);
+        Pokemon_SetData(param1, 19 + v0, &v7[v0]);
     }
 
     v3 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v3 < 255) {
         ++v3;
-        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v3);
+        Pokemon_SetData(param1, MON_DATA_FRIENDSHIP, &v3);
     }
 }

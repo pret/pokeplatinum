@@ -119,30 +119,30 @@ static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level
     Pokemon_InitWith(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
 
     String *string = NpcTrade_GetNickname(heapID, npcTradeID);
-    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, string);
+    Pokemon_SetData(mon, MON_DATA_NICKNAME_STRING, string);
     String_Free(string);
 
     u8 hasNickname = TRUE;
-    Pokemon_SetValue(mon, MON_DATA_HAS_NICKNAME, &hasNickname);
-    Pokemon_SetValue(mon, MON_DATA_HP_IV, &npcTradeMon->hpIV);
-    Pokemon_SetValue(mon, MON_DATA_ATK_IV, &npcTradeMon->atkIV);
-    Pokemon_SetValue(mon, MON_DATA_DEF_IV, &npcTradeMon->defIV);
-    Pokemon_SetValue(mon, MON_DATA_SPEED_IV, &npcTradeMon->speedIV);
-    Pokemon_SetValue(mon, MON_DATA_SPATK_IV, &npcTradeMon->spAtkIV);
-    Pokemon_SetValue(mon, MON_DATA_SPDEF_IV, &npcTradeMon->spDefIV);
-    Pokemon_SetValue(mon, MON_DATA_COOL, &npcTradeMon->cool);
-    Pokemon_SetValue(mon, MON_DATA_BEAUTY, &npcTradeMon->beauty);
-    Pokemon_SetValue(mon, MON_DATA_CUTE, &npcTradeMon->cute);
-    Pokemon_SetValue(mon, MON_DATA_SMART, &npcTradeMon->smart);
-    Pokemon_SetValue(mon, MON_DATA_TOUGH, &npcTradeMon->tough);
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &npcTradeMon->heldItem);
+    Pokemon_SetData(mon, MON_DATA_HAS_NICKNAME, &hasNickname);
+    Pokemon_SetData(mon, MON_DATA_HP_IV, &npcTradeMon->hpIV);
+    Pokemon_SetData(mon, MON_DATA_ATK_IV, &npcTradeMon->atkIV);
+    Pokemon_SetData(mon, MON_DATA_DEF_IV, &npcTradeMon->defIV);
+    Pokemon_SetData(mon, MON_DATA_SPEED_IV, &npcTradeMon->speedIV);
+    Pokemon_SetData(mon, MON_DATA_SPATK_IV, &npcTradeMon->spAtkIV);
+    Pokemon_SetData(mon, MON_DATA_SPDEF_IV, &npcTradeMon->spDefIV);
+    Pokemon_SetData(mon, MON_DATA_COOL, &npcTradeMon->cool);
+    Pokemon_SetData(mon, MON_DATA_BEAUTY, &npcTradeMon->beauty);
+    Pokemon_SetData(mon, MON_DATA_CUTE, &npcTradeMon->cute);
+    Pokemon_SetData(mon, MON_DATA_SMART, &npcTradeMon->smart);
+    Pokemon_SetData(mon, MON_DATA_TOUGH, &npcTradeMon->tough);
+    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &npcTradeMon->heldItem);
 
     string = NpcTrade_GetOtName(heapID, npcTradeID);
-    Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, string);
+    Pokemon_SetData(mon, MON_DATA_OT_NAME_STRING, string);
     String_Free(string);
 
-    Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &npcTradeMon->otGender);
-    Pokemon_SetValue(mon, MON_DATA_LANGUAGE, &npcTradeMon->language);
+    Pokemon_SetData(mon, MON_DATA_OT_GENDER, &npcTradeMon->otGender);
+    Pokemon_SetData(mon, MON_DATA_LANGUAGE, &npcTradeMon->language);
 
     UpdateMonStatusAndTrainerInfo(mon, NULL, 1, MapHeader_GetMapLabelTextID(mapID), heapID);
     Pokemon_CalcLevelAndStats(mon);

@@ -589,7 +589,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_SLEEP) {
             param &= ~MON_CONDITION_SLEEP;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -609,7 +609,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_ANY_POISON) {
             param &= ~MON_CONDITION_ANY_POISON;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -625,7 +625,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_BURN) {
             param &= ~MON_CONDITION_BURN;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -641,7 +641,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_FREEZE) {
             param &= ~MON_CONDITION_FREEZE;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -657,7 +657,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_PARALYSIS) {
             param &= ~MON_CONDITION_PARALYSIS;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -1096,7 +1096,7 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
                 break;
             }
 
-            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SetData(mon, MON_DATA_FORM, &form);
         }
     }
 }

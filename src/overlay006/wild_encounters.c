@@ -1072,7 +1072,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
         }
 
         sub_02074088(newEncounter, species, level, 32, gender, GetNatureForWildMon(firstPartyMon, encounterFieldParams), 0);
-        Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
+        Pokemon_SetData(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
         GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
         Heap_Free(newEncounter);
@@ -1080,7 +1080,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
     }
 
     sub_02074044(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
-    Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
+    Pokemon_SetData(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
     Heap_Free(newEncounter);
@@ -1410,9 +1410,9 @@ static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBatt
     u16 roamerCurrentHP = Roamer_GetData(roamer, ROAMER_DATA_CURRENT_HP);
 
     Pokemon_InitAndCalcStats(mon, roamerSpecies, roamerLevel, roamerCombinedIVs, roamerPersonality);
-    Pokemon_SetValue(mon, MON_DATA_OT_ID, &trainerID);
-    Pokemon_SetValue(mon, MON_DATA_STATUS, &roamerStatusCondition);
-    Pokemon_SetValue(mon, MON_DATA_HP, &roamerCurrentHP);
+    Pokemon_SetData(mon, MON_DATA_OT_ID, &trainerID);
+    Pokemon_SetData(mon, MON_DATA_STATUS, &roamerStatusCondition);
+    Pokemon_SetData(mon, MON_DATA_HP, &roamerCurrentHP);
 
     GF_ASSERT(Party_AddPokemon(battle->parties[1], mon));
     Heap_Free(mon);
@@ -1490,7 +1490,7 @@ static BOOL AddWildMonToParty(const int partySlot, const WildEncounters_FieldPar
     }
 
     if (setForm) {
-        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_SetData(mon, MON_DATA_FORM, &form);
     }
 
     return Party_AddPokemon(battleParams->parties[partySlot], mon);

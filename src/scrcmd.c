@@ -6612,7 +6612,7 @@ static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx)
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
-            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SetData(mon, MON_DATA_FORM, &form);
             Pokemon_CalcLevelAndStats(mon);
             Pokedex_Capture(pokedex, mon);
         }

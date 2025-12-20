@@ -183,7 +183,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         v4 = 0;
 
-        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v4);
+        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &v4);
         Pokemon_SetArceusForm(mon);
 
         if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
@@ -345,7 +345,7 @@ static int sub_020838F4(void *param0)
         mon = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
         item = 0;
 
-        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
         Pokemon_SetArceusForm(mon);
         Pokemon_SetGiratinaFormByHeldItem(mon);
 

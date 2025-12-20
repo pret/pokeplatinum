@@ -152,7 +152,7 @@ u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *d
  * @param param
  * @param value
  */
-void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *value);
+void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Sets a value in a BoxPokemon, reading it from value if neccessary

@@ -8029,12 +8029,12 @@ static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContex
             // find the item to generate
             for (j = 0; j < COMMON_PICKUP_ENTRIES; j++) {
                 if (sCommonPickupRate[j] > rnd) {
-                    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &sCommonPickupItems[level + j]);
+                    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &sCommonPickupItems[level + j]);
                     break;
                 }
 
                 if (rnd >= 98 && rnd <= 99) {
-                    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &sRarePickupItems[level + (99 - rnd)]);
+                    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &sRarePickupItems[level + (99 - rnd)]);
                     break;
                 }
             }
@@ -8059,7 +8059,7 @@ static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContex
 
             if (BattleSystem_RandNext(battleSys) % 100 < sHoneyGatherRate[j]) {
                 j = ITEM_HONEY;
-                Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &j);
+                Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &j);
             }
         }
     }
@@ -9995,7 +9995,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
                 data->battleCtx->battleMons[expBattler].exp = newExp;
             }
 
-            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &newExp);
+            Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &newExp);
             BattleScript_CalcEffortValues(BattleSystem_Party(data->battleSys, expBattler),
                 slot,
                 data->battleCtx->battleMons[data->battleCtx->faintedMon].species,
@@ -10392,7 +10392,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
 
         i = 0;
-        Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + data->tmpData[GET_EXP_MOVE_SLOT], &i);
+        Pokemon_SetData(mon, MON_DATA_MOVE1_PP_UPS + data->tmpData[GET_EXP_MOVE_SLOT], &i);
         Pokemon_SetMoveSlot(mon, data->tmpData[GET_EXP_MOVE], data->tmpData[GET_EXP_MOVE_SLOT]);
 
         if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
@@ -10527,7 +10527,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
 
         curEVs[stat] += tmp;
         sumEVs += tmp;
-        Pokemon_SetValue(mon, MON_DATA_HP_EV + stat, &curEVs[stat]);
+        Pokemon_SetData(mon, MON_DATA_HP_EV + stat, &curEVs[stat]);
     }
 
     SpeciesData_Free(personal);
@@ -10909,7 +10909,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
                 if (v19->returnCode == NAMING_SCREEN_CODE_OK) {
-                    Pokemon_SetValue(v3, MON_DATA_NICKNAME_STRING_AND_FLAG, v19->textInputStr);
+                    Pokemon_SetData(v3, MON_DATA_NICKNAME_STRING_AND_FLAG, v19->textInputStr);
                     ov16_0223F24C(v2->battleSys, 1 + 48);
                 }
 
@@ -10963,7 +10963,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
 
                         for (v27 = 0; v27 < LEARNED_MOVES_MAX; v27++) {
                             v28 = Pokemon_GetValue(v3, MON_DATA_MOVE1_MAX_PP + v27, NULL);
-                            Pokemon_SetValue(v3, MON_DATA_MOVE1_PP + v27, &v28);
+                            Pokemon_SetData(v3, MON_DATA_MOVE1_PP + v27, &v28);
                         }
 
                         if (Pokemon_SetGiratinaFormByHeldItem(v3) != -1) {

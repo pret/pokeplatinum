@@ -959,7 +959,7 @@ static u16 sub_0204AC54(SaveData *saveData, enum PokemonDataParam param, BattleT
             continue;
         }
 
-        Pokemon_SetValue(v4, param, &v0);
+        Pokemon_SetData(v4, param, &v0);
         sub_0206DDB8(saveData, v4, param);
         ++v1;
     }

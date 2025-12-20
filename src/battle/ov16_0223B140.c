@@ -1116,7 +1116,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
             for (v1 = 0; v1 < Party_GetCurrentCount(dto->parties[i]); v1++) {
                 v3 = Party_GetPokemonBySlotIndex(dto->parties[i], v1);
                 v5 = Pokemon_GetGender(v3);
-                Pokemon_SetValue(v3, MON_DATA_GENDER, &v5);
+                Pokemon_SetData(v3, MON_DATA_GENDER, &v5);
             }
         }
     }

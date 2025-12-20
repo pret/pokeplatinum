@@ -308,7 +308,7 @@ BOOL ScrCmd_IncreasePartyMonFriendship(ScriptContext *ctx)
         friendship = MAX_FRIENDSHIP_VALUE;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
+    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &friendship);
     return FALSE;
 }
 
@@ -327,7 +327,7 @@ BOOL ScrCmd_DecreasePartyMonFriendship_Unused(ScriptContext *ctx)
         friendship -= value;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
+    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &friendship);
     return FALSE;
 }
 
@@ -574,7 +574,7 @@ BOOL ScrCmd_DeletePartyMonHeldItem_Unused(ScriptContext *ctx)
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
     u16 value = ITEM_NONE;
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &value);
+    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &value);
 
     return FALSE;
 }
@@ -740,7 +740,7 @@ BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), slot);
 
-    Pokemon_SetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), &value);
+    Pokemon_SetData(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), &value);
     sub_0206DDB8(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM));
 
     return FALSE;

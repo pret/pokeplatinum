@@ -307,7 +307,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
 
         if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != level && level != 0) {
             levelBaseExp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
-            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &levelBaseExp);
+            Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &levelBaseExp);
             Pokemon_CalcLevelAndStats(mon);
         }
 

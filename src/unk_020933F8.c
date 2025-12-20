@@ -1593,7 +1593,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
                 v0 = 1;
             }
 
-            Pokemon_SetValue(param0->unk_1974, v2, &v3);
+            Pokemon_SetData(param0->unk_1974, v2, &v3);
             sub_0206DDB8(param0->saveData, param0->unk_1974, v2);
         }
 

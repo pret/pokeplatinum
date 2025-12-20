@@ -523,7 +523,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
         for (v3 = 0; v3 < v2; v3++) {
             if (v8[v3] == ITEM_GRISEOUS_ORB) {
                 v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
+                Pokemon_SetData(v0, MON_DATA_HELD_ITEM, &v7);
             }
         }
     }
@@ -584,7 +584,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         }
 
         emptyHeldItem = 0;
-        Pokemon_SetValue(pokemon, MON_DATA_HELD_ITEM, &emptyHeldItem);
+        Pokemon_SetData(pokemon, MON_DATA_HELD_ITEM, &emptyHeldItem);
     }
 
     pokemonForm = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
@@ -616,7 +616,7 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
 
     v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2);
-    Pokemon_SetValue(v0, MON_DATA_FORM, &v3);
+    Pokemon_SetData(v0, MON_DATA_FORM, &v3);
 
     return 0;
 }

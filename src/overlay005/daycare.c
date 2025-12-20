@@ -182,12 +182,12 @@ static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMo
     if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
         experience = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
         experience += DaycareMon_GetSteps(daycareMon);
-        Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, (u8 *)&experience);
+        Pokemon_SetData(mon, MON_DATA_EXPERIENCE, (u8 *)&experience);
         ov5_021E63E0(mon);
     }
 
     if (BoxPokemon_HoldsMail(boxMon)) {
-        Pokemon_SetValue(mon, MON_DATA_MAIL, DaycareMail_GetMail(daycareMail));
+        Pokemon_SetData(mon, MON_DATA_MAIL, DaycareMail_GetMail(daycareMail));
     }
 
     Party_AddPokemon(party, mon);
@@ -416,27 +416,27 @@ static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
         switch (selectedIVs[i]) {
         case STAT_HP:
             value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_HP_IV, NULL);
-            Pokemon_SetValue(egg, MON_DATA_HP_IV, (u8 *)&value);
+            Pokemon_SetData(egg, MON_DATA_HP_IV, (u8 *)&value);
             break;
         case STAT_ATTACK:
             value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_ATK_IV, NULL);
-            Pokemon_SetValue(egg, MON_DATA_ATK_IV, (u8 *)&value);
+            Pokemon_SetData(egg, MON_DATA_ATK_IV, (u8 *)&value);
             break;
         case STAT_DEFENSE:
             value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_DEF_IV, NULL);
-            Pokemon_SetValue(egg, MON_DATA_DEF_IV, (u8 *)&value);
+            Pokemon_SetData(egg, MON_DATA_DEF_IV, (u8 *)&value);
             break;
         case STAT_SPEED:
             value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPEED_IV, NULL);
-            Pokemon_SetValue(egg, MON_DATA_SPEED_IV, (u8 *)&value);
+            Pokemon_SetData(egg, MON_DATA_SPEED_IV, (u8 *)&value);
             break;
         case STAT_SPECIAL_ATTACK:
             value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPATK_IV, NULL);
-            Pokemon_SetValue(egg, MON_DATA_SPATK_IV, (u8 *)&value);
+            Pokemon_SetData(egg, MON_DATA_SPATK_IV, (u8 *)&value);
             break;
         case STAT_SPECIAL_DEFENSE:
             value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPDEF_IV, NULL);
-            Pokemon_SetValue(egg, MON_DATA_SPDEF_IV, (u8 *)&value);
+            Pokemon_SetData(egg, MON_DATA_SPDEF_IV, (u8 *)&value);
             break;
         }
     }
@@ -677,19 +677,19 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     metLvl = 0;
     ball = ITEM_POKE_BALL;
 
-    Pokemon_SetValue(egg, MON_DATA_POKEBALL, &ball);
-    Pokemon_SetValue(egg, MON_DATA_FRIENDSHIP, &hatchCycles);
-    Pokemon_SetValue(egg, MON_DATA_MET_LEVEL, &metLvl);
+    Pokemon_SetData(egg, MON_DATA_POKEBALL, &ball);
+    Pokemon_SetData(egg, MON_DATA_FRIENDSHIP, &hatchCycles);
+    Pokemon_SetData(egg, MON_DATA_MET_LEVEL, &metLvl);
 
     if (param2) {
-        Pokemon_SetValue(egg, MON_DATA_EGG_LOCATION, &param2);
+        Pokemon_SetData(egg, MON_DATA_EGG_LOCATION, &param2);
     }
 
     isEgg = TRUE;
-    Pokemon_SetValue(egg, MON_DATA_IS_EGG, &isEgg);
+    Pokemon_SetData(egg, MON_DATA_IS_EGG, &isEgg);
 
     eggName = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
-    Pokemon_SetValue(egg, MON_DATA_NICKNAME_STRING, eggName);
+    Pokemon_SetData(egg, MON_DATA_NICKNAME_STRING, eggName);
     String_Free(eggName);
 
     if (param4 == 4) {
@@ -697,9 +697,9 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
         u32 gender = TrainerInfo_Gender(trainerInfo);
         String *otName = TrainerInfo_NameNewString(trainerInfo, 32);
 
-        Pokemon_SetValue(egg, MON_DATA_OT_NAME_STRING, otName);
-        Pokemon_SetValue(egg, MON_DATA_OT_ID, &trainerId);
-        Pokemon_SetValue(egg, MON_DATA_OT_GENDER, &gender);
+        Pokemon_SetData(egg, MON_DATA_OT_NAME_STRING, otName);
+        Pokemon_SetData(egg, MON_DATA_OT_ID, &trainerId);
+        Pokemon_SetData(egg, MON_DATA_OT_GENDER, &gender);
         String_Free(otName);
     }
 
@@ -737,14 +737,14 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     level = 0;
     ball = ITEM_POKE_BALL;
 
-    Pokemon_SetValue(mon, MON_DATA_POKEBALL, &ball);
-    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &hatchCycles);
-    Pokemon_SetValue(mon, MON_DATA_MET_LEVEL, &level);
-    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+    Pokemon_SetData(mon, MON_DATA_POKEBALL, &ball);
+    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &hatchCycles);
+    Pokemon_SetData(mon, MON_DATA_MET_LEVEL, &level);
+    Pokemon_SetData(mon, MON_DATA_FORM, &form);
 
     string = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
 
-    Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, string);
+    Pokemon_SetData(mon, MON_DATA_NICKNAME_STRING, string);
     String_Free(string);
 }
 
@@ -773,7 +773,7 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
     }
 
     isEgg = TRUE;
-    Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
+    Pokemon_SetData(mon, MON_DATA_IS_EGG, &isEgg);
 
     Party_AddPokemon(party, mon);
     Daycare_ResetPersonalityAndStepCounter(daycare);
@@ -969,7 +969,7 @@ BOOL Daycare_Update(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
                         eggCycles--;
                     }
 
-                    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, (u8 *)&eggCycles);
+                    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, (u8 *)&eggCycles);
                 } else {
                     return TRUE;
                 }
@@ -1136,47 +1136,47 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     Pokemon_InitWith(mon, species, 1, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &(moves[i]));
-        Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + i, &(movesPP[i]));
+        Pokemon_SetData(mon, MON_DATA_MOVE1 + i, &(moves[i]));
+        Pokemon_SetData(mon, MON_DATA_MOVE1_PP + i, &(movesPP[i]));
     }
 
     for (i = 0; i < STAT_MAX; i++) {
-        Pokemon_SetValue(mon, MON_DATA_HP_IV + i, &(ivs[i]));
+        Pokemon_SetData(mon, MON_DATA_HP_IV + i, &(ivs[i]));
     }
 
-    Pokemon_SetValue(mon, MON_DATA_LANGUAGE, &language);
-    Pokemon_SetValue(mon, MON_DATA_MET_GAME, &metGame);
-    Pokemon_SetValue(mon, MON_DATA_MARKINGS, &marks);
+    Pokemon_SetData(mon, MON_DATA_LANGUAGE, &language);
+    Pokemon_SetData(mon, MON_DATA_MET_GAME, &metGame);
+    Pokemon_SetData(mon, MON_DATA_MARKINGS, &marks);
 
     friendship = 120;
 
-    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
-    Pokemon_SetValue(mon, MON_DATA_POKERUS, &pokerus);
-    Pokemon_SetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, &fatefulEncounter);
-    Pokemon_SetValue(mon, MON_DATA_OT_NAME_STRING, string);
-    Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &gender);
-    Pokemon_SetValue(mon, MON_DATA_OT_ID, &otID);
-    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &friendship);
+    Pokemon_SetData(mon, MON_DATA_POKERUS, &pokerus);
+    Pokemon_SetData(mon, MON_DATA_FATEFUL_ENCOUNTER, &fatefulEncounter);
+    Pokemon_SetData(mon, MON_DATA_OT_NAME_STRING, string);
+    Pokemon_SetData(mon, MON_DATA_OT_GENDER, &gender);
+    Pokemon_SetData(mon, MON_DATA_OT_ID, &otID);
+    Pokemon_SetData(mon, MON_DATA_FORM, &form);
 
     u16 location = Pokemon_GetValue(egg, MON_DATA_EGG_LOCATION, NULL);
     u8 year = Pokemon_GetValue(egg, MON_DATA_EGG_YEAR, NULL);
     u8 month = Pokemon_GetValue(egg, MON_DATA_EGG_MONTH, NULL);
     u8 day = Pokemon_GetValue(egg, MON_DATA_EGG_DAY, NULL);
 
-    Pokemon_SetValue(mon, MON_DATA_EGG_LOCATION, &location);
-    Pokemon_SetValue(mon, MON_DATA_EGG_YEAR, &year);
-    Pokemon_SetValue(mon, MON_DATA_EGG_MONTH, &month);
-    Pokemon_SetValue(mon, MON_DATA_EGG_DAY, &day);
+    Pokemon_SetData(mon, MON_DATA_EGG_LOCATION, &location);
+    Pokemon_SetData(mon, MON_DATA_EGG_YEAR, &year);
+    Pokemon_SetData(mon, MON_DATA_EGG_MONTH, &month);
+    Pokemon_SetData(mon, MON_DATA_EGG_DAY, &day);
 
     location = Pokemon_GetValue(egg, MON_DATA_MET_LOCATION, NULL);
     year = Pokemon_GetValue(egg, MON_DATA_MET_YEAR, NULL);
     month = Pokemon_GetValue(egg, MON_DATA_MET_MONTH, NULL);
     day = Pokemon_GetValue(egg, MON_DATA_MET_DAY, NULL);
 
-    Pokemon_SetValue(mon, MON_DATA_MET_LOCATION, &location);
-    Pokemon_SetValue(mon, MON_DATA_MET_YEAR, &year);
-    Pokemon_SetValue(mon, MON_DATA_MET_MONTH, &month);
-    Pokemon_SetValue(mon, MON_DATA_MET_DAY, &day);
+    Pokemon_SetData(mon, MON_DATA_MET_LOCATION, &location);
+    Pokemon_SetData(mon, MON_DATA_MET_YEAR, &year);
+    Pokemon_SetData(mon, MON_DATA_MET_MONTH, &month);
+    Pokemon_SetData(mon, MON_DATA_MET_DAY, &day);
 
     Pokemon_Copy(mon, egg);
     String_Free(string);
@@ -1196,15 +1196,15 @@ void Egg_CreateHatchedMon(Pokemon *egg, int heapID)
     metLevel = 0;
 
     Egg_CreateHatchedMonInternal(egg, heapID);
-    Pokemon_SetValue(egg, MON_DATA_IS_EGG, &isEgg);
+    Pokemon_SetData(egg, MON_DATA_IS_EGG, &isEgg);
 
     species = Pokemon_GetValue(egg, MON_DATA_SPECIES, NULL);
 
     MessageLoader_GetSpeciesName(species, HEAP_ID_SYSTEM, nickname);
-    Pokemon_SetValue(egg, MON_DATA_NICKNAME, nickname);
-    Pokemon_SetValue(egg, MON_DATA_HAS_NICKNAME, &hasNickname);
-    Pokemon_SetValue(egg, MON_DATA_POKEBALL, &ball);
-    Pokemon_SetValue(egg, MON_DATA_MET_LEVEL, &metLevel);
+    Pokemon_SetData(egg, MON_DATA_NICKNAME, nickname);
+    Pokemon_SetData(egg, MON_DATA_HAS_NICKNAME, &hasNickname);
+    Pokemon_SetData(egg, MON_DATA_POKEBALL, &ball);
+    Pokemon_SetData(egg, MON_DATA_MET_LEVEL, &metLevel);
     Pokemon_CalcLevelAndStats(egg);
 }
 

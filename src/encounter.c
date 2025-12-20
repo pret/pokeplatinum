@@ -580,7 +580,7 @@ void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 le
 
     BOOL tmp = TRUE;
     Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
-    Pokemon_SetValue(wildMon, MON_DATA_FATEFUL_ENCOUNTER, &tmp);
+    Pokemon_SetData(wildMon, MON_DATA_FATEFUL_ENCOUNTER, &tmp);
 
     if (isLegendary) {
         dto->battleStatusMask |= BATTLE_STATUS_LEGENDARY;

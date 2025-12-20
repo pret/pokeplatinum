@@ -1113,13 +1113,13 @@ static int sub_02086538(void *applicationPtr)
 static void TeachMove(PartyMenuApplication *application, Pokemon *mon, u32 moveSlot)
 {
     u32 tempVar = application->partyMenu->learnedMove;
-    Pokemon_SetValue(mon, MON_DATA_MOVE1 + moveSlot, &tempVar);
+    Pokemon_SetData(mon, MON_DATA_MOVE1 + moveSlot, &tempVar);
 
     tempVar = 0;
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &tempVar);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, &tempVar);
 
     tempVar = MoveTable_CalcMaxPP(application->partyMenu->learnedMove, 0);
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + moveSlot, &tempVar);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_PP + moveSlot, &tempVar);
 
     if (application->partyMenu->usedItemID != 0) {
         if (Item_IsHMMove(application->partyMenu->learnedMove) == FALSE) {
