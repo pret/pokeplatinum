@@ -70,13 +70,13 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
         for (v11 = 0; v11 < v12; v11++) {
             v13 = Party_GetPokemonBySlotIndex(param1->parties[v4], v11);
 
-            if (Pokemon_GetValue(v13, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+            if (Pokemon_GetData(v13, MON_DATA_SPECIES_EXISTS, NULL) == 0) {
                 break;
             }
 
             MI_CpuClear16(v8, sizeof(u16) * v9);
 
-            Pokemon_GetValue(v13, MON_DATA_NICKNAME, v8);
+            Pokemon_GetData(v13, MON_DATA_NICKNAME, v8);
             String_Clear(v6);
             String_CopyChars(v6, v8);
 

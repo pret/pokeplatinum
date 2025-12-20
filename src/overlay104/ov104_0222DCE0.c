@@ -270,7 +270,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
         v2 = (param0->combinedPPUps >> (v0 * 2)) & 0x3;
         Pokemon_SetData(param1, MON_DATA_MOVE1_PP_UPS + v0, &v2);
 
-        v3 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
+        v3 = (u8)Pokemon_GetData(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
         Pokemon_SetData(param1, MON_DATA_MOVE1_PP + v0, &v3);
     }
 
@@ -333,7 +333,7 @@ void ov104_0222E134(SaveData *saveData, Pokemon *param1)
     int v4 = 0;
     TrainerInfo *v5 = SaveData_GetTrainerInfo(saveData);
 
-    v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
+    v0 = Pokemon_GetData(param1, MON_DATA_OT_ID, NULL);
     Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(saveData), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);

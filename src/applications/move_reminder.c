@@ -1309,7 +1309,7 @@ static u16 MoveReminder_GetSelectedMove(MoveReminderController *controller)
 
 static u16 MoveReminder_GetForgottenMove(MoveReminderController *controller)
 {
-    return (u16)Pokemon_GetValue(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, NULL);
+    return (u16)Pokemon_GetData(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, NULL);
 }
 
 static void MoveReminder_SetMessageBoxText(MoveReminderController *controller, u32 str)
@@ -1350,7 +1350,7 @@ static u8 MoveReminder_GetEmptyMoveSlot(MoveReminderController *controller)
 {
     u8 i;
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        if (Pokemon_GetValue(controller->data->mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
+        if (Pokemon_GetData(controller->data->mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
             break;
         }
     }

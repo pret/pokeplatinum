@@ -1244,7 +1244,7 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
 
 static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicationState *appState, Pokemon *pokemon, int boxIndex, int exchangedFromRemote)
 {
-    int unused = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
+    int unused = Pokemon_GetData(pokemon, MON_DATA_HELD_ITEM, NULL);
 
     SaveData_UpdateCatchRecords(appState->playerData->saveData, pokemon);
     boxIndex = MAX_PC_BOXES;
@@ -1257,8 +1257,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
     if (exchangedFromRemote) {
         u8 friendship = BASE_FRIENDSHIP_VALUE;
 
-        if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-            if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+        if (Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+            if (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetData(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
                 VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
                 if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1302,8 +1302,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         boxIndex = 0;
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+    if (Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetData(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
             VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
             if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1364,7 +1364,7 @@ static void GTS_LogTradeInJournal(JournalEntry *journalEntry, GTSPokemonListing 
     u16 nickname[MON_NAME_LEN + 1];
     Pokemon *mon = (Pokemon *)listing->pokemon.bytes;
 
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    Pokemon_GetData(mon, MON_DATA_NICKNAME, nickname);
     journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(listing->unk_10C, listing->unk_F6, nickname, Pokemon_GetGender(mon), 62);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }

@@ -90,7 +90,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
 
             if (appState->screenArgument == SCREEN_ARGUMENT_9) { // search flow
                 Pokemon *receivingPokemon = GTSApplication_Trade_GetTradedPokemon(appState, appState->screenArgument);
-                int heldItem = Pokemon_GetValue(receivingPokemon, MON_DATA_HELD_ITEM, NULL);
+                int heldItem = Pokemon_GetData(receivingPokemon, MON_DATA_HELD_ITEM, NULL);
                 int evolutionType;
 
                 int evolvedSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, receivingPokemon, EVO_CLASS_BY_TRADE, heldItem, &evolutionType);
@@ -108,8 +108,8 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
 
                 GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, storedPokemon);
 
-                if ((Pokemon_GetValue(tradedPokemon, MON_DATA_SPECIES, NULL) != Pokemon_GetValue(storedPokemon, MON_DATA_SPECIES, NULL)) || (Pokemon_GetValue(tradedPokemon, MON_DATA_PERSONALITY, NULL) != Pokemon_GetValue(storedPokemon, MON_DATA_PERSONALITY, NULL))) {
-                    int heldItem = Pokemon_GetValue(tradedPokemon, MON_DATA_HELD_ITEM, NULL);
+                if ((Pokemon_GetData(tradedPokemon, MON_DATA_SPECIES, NULL) != Pokemon_GetData(storedPokemon, MON_DATA_SPECIES, NULL)) || (Pokemon_GetData(tradedPokemon, MON_DATA_PERSONALITY, NULL) != Pokemon_GetData(storedPokemon, MON_DATA_PERSONALITY, NULL))) {
+                    int heldItem = Pokemon_GetData(tradedPokemon, MON_DATA_HELD_ITEM, NULL);
                     int evolutionType;
 
                     int evolvedSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, tradedPokemon, EVO_CLASS_BY_TRADE, heldItem, &evolutionType);

@@ -562,9 +562,9 @@ void ov76_0223C188(UnkStruct_ov76_0223DE00 *param0)
 
         param0->unk_2FC[v0] = SpriteSystem_NewSprite(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, &v6);
 
-        v2 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
-        v1 = Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL);
-        v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
+        v2 = Pokemon_GetData(v5, MON_DATA_SPECIES, NULL);
+        v1 = Pokemon_GetData(v5, MON_DATA_IS_EGG, NULL);
+        v4 = Pokemon_GetData(v5, MON_DATA_FORM, NULL);
         v3 = PokeIconPaletteIndex(v2, v4, v1);
 
         Sprite_SetExplicitPaletteOffsetAutoAdjust(param0->unk_2FC[v0]->sprite, v3);

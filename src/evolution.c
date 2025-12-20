@@ -101,8 +101,8 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
 
     v0->unk_24 = param0;
     v0->unk_28 = param1;
-    v0->unk_60 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    v0->unk_86 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    v0->unk_60 = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
+    v0->unk_86 = Pokemon_GetData(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
     v0->heapID = heapID;
     v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
@@ -411,7 +411,7 @@ static void sub_0207B180(EvolutionData *param0)
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
                 Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
 
-                if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
+                if (Pokemon_GetData(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
                     Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
                 }
 
@@ -575,7 +575,7 @@ static void sub_0207B180(EvolutionData *param0)
         break;
     case 27:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-        StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
+        StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetData(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01200);
         param0->unk_66 = 30;
         param0->unk_64++;

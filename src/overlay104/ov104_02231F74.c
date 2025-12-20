@@ -902,8 +902,8 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
         u32 personality, species;
 
         v4 = Heap_Alloc(heapID, (10 * 10 * ((8 / 2) * 8)));
-        personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-        species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+        personality = Pokemon_GetData(param1, MON_DATA_PERSONALITY, NULL);
+        species = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildSpriteTemplate(&v3, param1, 2);
         CharacterSprite_LoadPokemonSpriteRect(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, personality, FALSE, 2, species);

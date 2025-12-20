@@ -906,8 +906,8 @@ FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE
     for (v0 = 0; v0 < battleTower->partySize; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[v0]), mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > level) {
-            u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
+        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) > level) {
+            u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), level);
 
             Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &v2);
             Pokemon_CalcLevelAndStats(mon);

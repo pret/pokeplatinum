@@ -87,11 +87,11 @@ static BOOL Init(PoketchFriendshipChecker *appData, PoketchSystem *poketchSys, B
         for (int i = 0; i < appData->friendshipCheckerData.monCount; i++) {
             pokemon = Party_GetPokemonBySlotIndex(party, i);
 
-            if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
-                appData->friendshipCheckerData.party[slot].species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-                appData->friendshipCheckerData.party[slot].form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+            if (Pokemon_GetData(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
+                appData->friendshipCheckerData.party[slot].species = Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
+                appData->friendshipCheckerData.party[slot].form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
                 appData->friendshipCheckerData.party[slot].spriteIdx = BoxPokemon_IconSpriteIndex((const BoxPokemon *)pokemon);
-                friendshipLevel = GetFriendshipLevel(Pokemon_GetValue(pokemon, MON_DATA_FRIENDSHIP, NULL));
+                friendshipLevel = GetFriendshipLevel(Pokemon_GetData(pokemon, MON_DATA_FRIENDSHIP, NULL));
 
                 switch (friendshipLevel) {
                 case 0:

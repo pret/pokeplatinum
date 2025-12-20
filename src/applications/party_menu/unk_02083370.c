@@ -840,7 +840,7 @@ int sub_02084780(PartyMenuApplication *param0)
 {
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
-    if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
+    if (Pokemon_GetData(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
         MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00129, param0->tmpString);
         Sprite_SetDrawFlag(param0->sprites[22 + param0->currPartySlot], TRUE);
     } else {

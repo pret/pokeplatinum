@@ -176,9 +176,9 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
 
         for (v1 = 0; v1 < v0; v1++) {
             v11 = Party_GetPokemonBySlotIndex(v9->unk_70, v1);
-            v7 = Pokemon_GetValue(v11, MON_DATA_LEVEL, NULL);
+            v7 = Pokemon_GetData(v11, MON_DATA_LEVEL, NULL);
             v7 -= 3;
-            v6 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v11, MON_DATA_SPECIES, NULL), v7);
+            v6 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(v11, MON_DATA_SPECIES, NULL), v7);
 
             Pokemon_SetData(v11, MON_DATA_EXPERIENCE, &v6);
             Pokemon_CalcLevelAndStats(v11);
@@ -256,12 +256,12 @@ static void ov104_02237634(UnkStruct_ov104_02238240 *param0, UnkStruct_ov104_022
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param1->unk_70, v0);
 
-        param1->unk_94[v0] = Pokemon_GetValue(v2, MON_DATA_MAX_HP, NULL);
-        param1->unk_A4[v0] = Pokemon_GetValue(v2, MON_DATA_ATK, NULL);
-        param1->unk_B4[v0] = Pokemon_GetValue(v2, MON_DATA_DEF, NULL);
-        param1->unk_C4[v0] = Pokemon_GetValue(v2, MON_DATA_SPEED, NULL);
-        param1->unk_D4[v0] = Pokemon_GetValue(v2, MON_DATA_SP_ATK, NULL);
-        param1->unk_E4[v0] = Pokemon_GetValue(v2, MON_DATA_SP_DEF, NULL);
+        param1->unk_94[v0] = Pokemon_GetData(v2, MON_DATA_MAX_HP, NULL);
+        param1->unk_A4[v0] = Pokemon_GetData(v2, MON_DATA_ATK, NULL);
+        param1->unk_B4[v0] = Pokemon_GetData(v2, MON_DATA_DEF, NULL);
+        param1->unk_C4[v0] = Pokemon_GetData(v2, MON_DATA_SPEED, NULL);
+        param1->unk_D4[v0] = Pokemon_GetData(v2, MON_DATA_SP_ATK, NULL);
+        param1->unk_E4[v0] = Pokemon_GetData(v2, MON_DATA_SP_DEF, NULL);
     }
 
     return;
@@ -354,7 +354,7 @@ BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0)
             v1 = Party_GetPokemonBySlotIndex(v3->unk_74, 0);
         }
 
-        *v20 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
+        *v20 = Pokemon_GetData(v1, MON_DATA_HELD_ITEM, NULL);
         break;
     case 16:
         *v20 = v3->unk_13;

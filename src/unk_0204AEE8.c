@@ -210,7 +210,7 @@ void sub_0204B060(BattleTower *battleTower, SaveData *saveData)
     v1 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < 2; v0++) {
-        battleTower->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, battleTower->unk_2A[v0]), MON_DATA_SPECIES, NULL);
+        battleTower->unk_83E[1 + v0] = Pokemon_GetData(Party_GetPokemonBySlotIndex(v1, battleTower->unk_2A[v0]), MON_DATA_SPECIES, NULL);
     }
 
     battleTower->unk_83E[3] = sub_0202D3B4(battleTower->unk_74, 3, 0);

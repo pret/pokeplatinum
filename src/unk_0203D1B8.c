@@ -1031,7 +1031,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_00 = 5;
         break;
     case 5: {
-        int v3 = Pokemon_GetValue(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetData(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
@@ -1239,8 +1239,8 @@ void sub_0203DFE8(
     switch (type) {
     case NAMING_SCREEN_TYPE_POKEMON:
         v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2->unk_04);
-        v2->unk_0C->monGender = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
-        v2->unk_0C->monForm = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        v2->unk_0C->monGender = Pokemon_GetData(v0, MON_DATA_GENDER, NULL);
+        v2->unk_0C->monForm = Pokemon_GetData(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
             String_CopyChars(v2->unk_10, param5);

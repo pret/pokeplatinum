@@ -292,7 +292,7 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
     case 17:
         v3 = Pokemon_New(HEAP_ID_FIELD2);
         ov104_0222DF40(&v4->unk_3F0[v13], v3, ov104_0223ADA0(v4));
-        *v15 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
+        *v15 = Pokemon_GetData(v3, MON_DATA_TYPE_1, NULL);
         Heap_Free(v3);
         break;
     case 18:
@@ -307,8 +307,8 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         for (v10 = 0; v10 < v5; v10++) {
             ov104_0222DF40(&v4->unk_3F0[v10], v3, ov104_0223ADA0(v4));
 
-            v7 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
-            v8 = Pokemon_GetValue(v3, MON_DATA_TYPE_2, NULL);
+            v7 = Pokemon_GetData(v3, MON_DATA_TYPE_1, NULL);
+            v8 = Pokemon_GetData(v3, MON_DATA_TYPE_2, NULL);
 
             if (v7 == v8) {
                 v8 = 0xff;

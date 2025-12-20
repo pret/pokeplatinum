@@ -182,9 +182,9 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
 
     Pokemon *pokemon = &giftData->pokemonGiftData.pokemon;
     u8 *giftSpecialRibbons = giftData->pokemonGiftData.specialRibbonsDescIDs;
-    int metLocation = Pokemon_GetValue(pokemon, MON_DATA_EGG_LOCATION, NULL);
-    u32 giftPersonality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
-    u32 giftOtID = Pokemon_GetValue(pokemon, MON_DATA_OT_ID, NULL);
+    int metLocation = Pokemon_GetData(pokemon, MON_DATA_EGG_LOCATION, NULL);
+    u32 giftPersonality = Pokemon_GetData(pokemon, MON_DATA_PERSONALITY, NULL);
+    u32 giftOtID = Pokemon_GetData(pokemon, MON_DATA_OT_ID, NULL);
     u32 personality = ARNG_Next(OS_GetTick());
 
     if (giftPersonality == RANDOMIZE_PERSONALITY) {
@@ -203,7 +203,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     Pokemon_SetData(pokemon, MON_DATA_GENDER, &tmp);
 
     // couldn't get a match without reusing the variable
-    tmp = Pokemon_GetValue(pokemon, MON_DATA_HP_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_ATK_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_DEF_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_SPEED_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_SPATK_IV, NULL) + Pokemon_GetValue(pokemon, MON_DATA_SPDEF_IV, NULL);
+    tmp = Pokemon_GetData(pokemon, MON_DATA_HP_IV, NULL) + Pokemon_GetData(pokemon, MON_DATA_ATK_IV, NULL) + Pokemon_GetData(pokemon, MON_DATA_DEF_IV, NULL) + Pokemon_GetData(pokemon, MON_DATA_SPEED_IV, NULL) + Pokemon_GetData(pokemon, MON_DATA_SPATK_IV, NULL) + Pokemon_GetData(pokemon, MON_DATA_SPDEF_IV, NULL);
 
     if (tmp == RANDOMIZE_IVS) {
         u32 rand = LCRNG_Next();
@@ -230,43 +230,43 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
 
     u8 *specialRibbons = sub_0202D79C(fieldSystem->saveData);
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_RED_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_RED_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_RED)] = giftSpecialRibbons[0];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_GREEN_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_GREEN_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_GREEN)] = giftSpecialRibbons[1];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_BLUE_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_BLUE_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_BLUE)] = giftSpecialRibbons[2];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_FESTIVAL_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_FESTIVAL_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_FESTIVAL)] = giftSpecialRibbons[3];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_CARNIVAL_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_CARNIVAL_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_CARNIVAL)] = giftSpecialRibbons[4];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_CLASSIC_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_CLASSIC_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_CLASSIC)] = giftSpecialRibbons[5];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_PREMIER_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_PREMIER_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_PREMIER)] = giftSpecialRibbons[6];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_MARINE_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_MARINE_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_HOENN_MARINE)] = giftSpecialRibbons[7];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_LAND_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_LAND_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_HOENN_LAND)] = giftSpecialRibbons[8];
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_SKY_RIBBON, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_SKY_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_HOENN_SKY)] = giftSpecialRibbons[9];
     }
 
@@ -288,8 +288,8 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
 
     UpdateMonStatusAndTrainerInfo(pokemon, trainerInfo, 4, SpecialMetLoc_GetId(2, metLocation), HEAP_ID_FIELD3);
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == TRUE) {
+    if (Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == TRUE) {
             if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
                 SystemVars_SetArceusEventState(varsFlags, TRUE);
             }

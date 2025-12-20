@@ -1361,12 +1361,12 @@ void PartyMenu_DrawLevelUpStatIncreases(PartyMenuApplication *application)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
     u16 stats[STAT_MAX] = {
-        Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL),
-        Pokemon_GetValue(mon, MON_DATA_ATK, NULL),
-        Pokemon_GetValue(mon, MON_DATA_DEF, NULL),
-        Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL),
-        Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL),
-        Pokemon_GetValue(mon, MON_DATA_SPEED, NULL),
+        Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL),
+        Pokemon_GetData(mon, MON_DATA_ATK, NULL),
+        Pokemon_GetData(mon, MON_DATA_DEF, NULL),
+        Pokemon_GetData(mon, MON_DATA_SP_ATK, NULL),
+        Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL),
+        Pokemon_GetData(mon, MON_DATA_SPEED, NULL),
     };
 
     Window_Add(application->bgConfig, &application->menuWindows[0], BG_LAYER_MAIN_0, 1, 1, 14, 12, 0, WIN_CONTEXT_WINDOW_BASE_TILE);

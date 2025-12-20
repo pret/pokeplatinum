@@ -133,7 +133,7 @@ void Pokemon_CalcStats(Pokemon *mon);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest);
+u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Gets a value from a Pokemon, storing it in dest if neccessary

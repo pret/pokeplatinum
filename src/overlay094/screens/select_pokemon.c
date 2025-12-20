@@ -732,7 +732,7 @@ static int ov94_02240688(GTSApplicationState *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                if (Pokemon_GetData(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->currentScreenInstruction = 14;
                 }
@@ -824,7 +824,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                if (Pokemon_GetData(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->currentScreenInstruction = 11;
                 }
@@ -1151,7 +1151,7 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
             ov94_02240E50(boxMon, &appState->boxCriteria->criteria[i]);
             ov94_02240EAC(boxMon, appState->unk_E28[i], appState->unk_EA0[i], &species[i], i, v6, &appState->boxCriteria->criteria[i], &icons[i]);
 
-            if (Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+            if (Pokemon_GetData(mon, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                 Sprite_SetDrawFlag(appState->selectPokemonPartySprites[i], 1);
             } else {
                 Sprite_SetDrawFlag(appState->selectPokemonPartySprites[i], 0);
@@ -1379,7 +1379,7 @@ static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteri
 
 BOOL Pokemon_IsHoldingMail(Pokemon *mon)
 {
-    if (Item_IsMail(Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL))) {
+    if (Item_IsMail(Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL))) {
         return TRUE;
     }
 

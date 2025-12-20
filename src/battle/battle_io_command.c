@@ -690,7 +690,7 @@ static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
         if (v0->unk_01 == 104) {
             v4 = ABILITY_NONE;
         } else {
-            v4 = Pokemon_GetValue(v1, MON_DATA_ABILITY, NULL);
+            v4 = Pokemon_GetData(v1, MON_DATA_ABILITY, NULL);
         }
 
         if ((v0->unk_02 != 215) || ((v0->unk_02 == 215) && (v4 != ABILITY_SOUNDPROOF))) {
@@ -976,11 +976,11 @@ static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
             for (v3 = 0; v3 < Party_GetCurrentCount(v1); v3++) {
                 v2 = Party_GetPokemonBySlotIndex(v1, v3);
 
-                if ((Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
+                if ((Pokemon_GetData(v2, MON_DATA_SPECIES, NULL)) && (Pokemon_GetData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     if (Battler_Side(battleSys, v4)) {
-                        v6 += Pokemon_GetValue(v2, MON_DATA_HP, NULL);
+                        v6 += Pokemon_GetData(v2, MON_DATA_HP, NULL);
                     } else {
-                        v5 += Pokemon_GetValue(v2, MON_DATA_HP, NULL);
+                        v5 += Pokemon_GetData(v2, MON_DATA_HP, NULL);
                     }
                 }
             }

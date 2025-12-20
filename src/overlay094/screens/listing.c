@@ -558,7 +558,7 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     String_CopyChars(v0, param2);
 
     v2 = MessageLoader_GetNewString(param0, pl_msg_00000671_00172);
-    Pokemon_GetValue(param3, MON_DATA_OT_NAME_STRING, v3);
+    Pokemon_GetData(param3, MON_DATA_OT_NAME_STRING, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param1[1], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
@@ -579,8 +579,8 @@ void ov94_0223DB2C(Pokemon *param0)
     Pokemon_BuildSpriteTemplate(&v0, param0, 2);
 
     {
-        int personality = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        enum Species species = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
+        int personality = Pokemon_GetData(param0, MON_DATA_PERSONALITY, NULL);
+        enum Species species = Pokemon_GetData(param0, MON_DATA_SPECIES, NULL);
 
         CharacterSprite_LoadPokemonSpriteRect(v0.narcID, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, personality, FALSE, FACE_FRONT, species);
     }

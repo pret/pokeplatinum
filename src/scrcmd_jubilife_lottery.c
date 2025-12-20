@@ -48,8 +48,8 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
     for (u16 i = 0; i < currentPartyCount; i++) {
         partyPokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(partyPokemon, MON_DATA_IS_EGG, NULL) == 0) {
-            pokemonOtId = Pokemon_GetValue(partyPokemon, MON_DATA_OT_ID, NULL) & 0xffff;
+        if (Pokemon_GetData(partyPokemon, MON_DATA_IS_EGG, NULL) == 0) {
+            pokemonOtId = Pokemon_GetData(partyPokemon, MON_DATA_OT_ID, NULL) & 0xffff;
             matchedTrainerIdDigits = CheckTrainerIdForMatch(winningLotteryId, pokemonOtId);
 
             if (matchedTrainerIdDigits > 0 && highestPartyMatchedDigits < matchedTrainerIdDigits) {

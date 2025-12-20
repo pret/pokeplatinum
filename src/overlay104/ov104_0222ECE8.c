@@ -649,8 +649,8 @@ BOOL ov104_0222F238(UnkStruct_ov104_0223ADA0 *param0)
 
     for (v1 = 0; v1 < v0; v1++) {
         v8 = Party_GetPokemonBySlotIndex(param0->unk_4D4, v1);
-        v7[v1] = Pokemon_GetValue(v8, MON_DATA_ATK_IV, NULL);
-        v6[v1] = Pokemon_GetValue(v8, MON_DATA_PERSONALITY, NULL);
+        v7[v1] = Pokemon_GetData(v8, MON_DATA_ATK_IV, NULL);
+        v6[v1] = Pokemon_GetData(v8, MON_DATA_PERSONALITY, NULL);
     }
 
     for (v1 = 0; v1 < v0; v1++) {

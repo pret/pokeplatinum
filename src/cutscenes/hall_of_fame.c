@@ -320,7 +320,7 @@ BOOL HallOfFameManager_Init(ApplicationManager *appMan, int *state)
     currentPartyCount = Party_GetCurrentCount(hallOfFameMan->displayData->party);
 
     for (i = 0; i < currentPartyCount; i++) {
-        if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(hallOfFameMan->displayData->party, i), MON_DATA_IS_EGG, NULL) == 0) {
+        if (Pokemon_GetData(Party_GetPokemonBySlotIndex(hallOfFameMan->displayData->party, i), MON_DATA_IS_EGG, NULL) == 0) {
             hallOfFameMan->slotIndexes[hallOfFameMan->monCount] = i;
             hallOfFameMan->monCount++;
         }
@@ -841,15 +841,15 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
         mon = Party_GetPokemonBySlotIndex(hallOfFameMan->displayData->party, hallOfFameMan->slotIndexes[i]);
         Pokemon_BuildSpriteTemplate(&spriteTemplate, (Pokemon *)mon, FACE_FRONT);
 
-        hallOfFameMan->species[i] = Pokemon_GetValue((Pokemon *)mon, MON_DATA_SPECIES, NULL);
-        hallOfFameMan->forms[i] = Pokemon_GetValue((Pokemon *)mon, MON_DATA_FORM, NULL);
+        hallOfFameMan->species[i] = Pokemon_GetData((Pokemon *)mon, MON_DATA_SPECIES, NULL);
+        hallOfFameMan->forms[i] = Pokemon_GetData((Pokemon *)mon, MON_DATA_FORM, NULL);
 
         CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID,
             spriteTemplate.character,
             HEAP_ID_HALL_OF_FAME,
             &tileRegions[0],
             hallOfFameMan->unk_310,
-            Pokemon_GetValue((Pokemon *)mon,
+            Pokemon_GetData((Pokemon *)mon,
                 MON_DATA_PERSONALITY,
                 NULL),
             TRUE,
@@ -864,7 +864,7 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
             HEAP_ID_HALL_OF_FAME,
             &tileRegions[1],
             hallOfFameMan->unk_310,
-            Pokemon_GetValue((Pokemon *)mon,
+            Pokemon_GetData((Pokemon *)mon,
                 MON_DATA_PERSONALITY,
                 NULL),
             TRUE,
@@ -1305,7 +1305,7 @@ static void HallOfFame_LoadMetString(HallOfFamePokemonTextAdder *textAdder)
     switch (metStringIndex) {
     case HallOfFame_Text_MetAt - HallOfFame_Text_MetAt:
     case HallOfFame_Text_HatchedAt - HallOfFame_Text_MetAt:
-        StringTemplate_SetLocationName(textAdder->strTemplate, 0, Pokemon_GetValue(textAdder->mon, MON_DATA_MET_LOCATION, NULL));
+        StringTemplate_SetLocationName(textAdder->strTemplate, 0, Pokemon_GetData(textAdder->mon, MON_DATA_MET_LOCATION, NULL));
         break;
     }
 
@@ -1331,7 +1331,7 @@ static void HallOfFame_PrintPokemonText(SysTask *task, void *data)
         textAdder->state++;
         break;
     case 1:
-        Pokemon_GetValue(textAdder->mon, MON_DATA_NICKNAME_STRING, textAdder->string_1C);
+        Pokemon_GetData(textAdder->mon, MON_DATA_NICKNAME_STRING, textAdder->string_1C);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 3);
         HallOfFame_LoadPokemonText(textAdder);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 4);
@@ -1870,7 +1870,7 @@ static int HallOfFame_GetMetStringIndex(HallOfFameMan *hallOfFameMan, Pokemon *m
     int metStringIndex = HallOfFame_Text_ObtainedInFatefulEncounter - HallOfFame_Text_MetAt;
 
     do {
-        int metGame = Pokemon_GetValue(mon, MON_DATA_MET_GAME, NULL);
+        int metGame = Pokemon_GetData(mon, MON_DATA_MET_GAME, NULL);
 
         if (metGame == VERSION_SAPPHIRE || metGame == VERSION_RUBY || metGame == VERSION_EMERALD) {
             metStringIndex = HallOfFame_Text_ArrivedFromHoenn - HallOfFame_Text_MetAt;
@@ -1887,13 +1887,13 @@ static int HallOfFame_GetMetStringIndex(HallOfFameMan *hallOfFameMan, Pokemon *m
             break;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL)) {
+        if (Pokemon_GetData(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL)) {
             metStringIndex = HallOfFame_Text_ObtainedInFatefulEncounter - HallOfFame_Text_MetAt;
             break;
         }
 
         u32 trainerID = TrainerInfo_ID(trainerInfo);
-        u32 otID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
+        u32 otID = Pokemon_GetData(mon, MON_DATA_OT_ID, NULL);
 
         if (trainerID != otID) {
             metStringIndex = HallOfFame_Text_ObtainedInLinkTrade - HallOfFame_Text_MetAt;
@@ -1901,18 +1901,18 @@ static int HallOfFame_GetMetStringIndex(HallOfFameMan *hallOfFameMan, Pokemon *m
         }
 
         TrainerInfo_NameString(trainerInfo, hallOfFameMan->string_1C30);
-        Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, hallOfFameMan->string_1C4C);
+        Pokemon_GetData(mon, MON_DATA_OT_NAME_STRING, hallOfFameMan->string_1C4C);
 
         if (String_Compare(hallOfFameMan->string_1C30, hallOfFameMan->string_1C4C)) {
             metStringIndex = HallOfFame_Text_ObtainedInLinkTrade - HallOfFame_Text_MetAt;
             break;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) >= 2000) {
+        if (Pokemon_GetData(mon, MON_DATA_MET_LOCATION, NULL) >= 2000) {
             metStringIndex = HallOfFame_Text_ObtainedInFatefulEncounter - HallOfFame_Text_MetAt;
             ;
         } else {
-            if (Pokemon_GetValue(mon, MON_DATA_EGG_MONTH, NULL) == 0) {
+            if (Pokemon_GetData(mon, MON_DATA_EGG_MONTH, NULL) == 0) {
                 metStringIndex = HallOfFame_Text_MetAt - HallOfFame_Text_MetAt;
             } else {
                 metStringIndex = HallOfFame_Text_HatchedAt - HallOfFame_Text_MetAt;

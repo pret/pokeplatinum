@@ -11,7 +11,7 @@
 
 BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemon *pokemon, const HeightWeightData *heightWeightData)
 {
-    u16 species = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    u16 species = (u16)Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
     int ruleValue, height, weight;
 
     if (regulation == NULL) {
@@ -20,11 +20,11 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_MAX_LEVEL);
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL) > ruleValue) {
+    if (Pokemon_GetData(pokemon, MON_DATA_LEVEL, NULL) > ruleValue) {
         return FALSE;
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL)) {
+    if (Pokemon_GetData(pokemon, MON_DATA_IS_EGG, NULL)) {
         return FALSE;
     }
 
@@ -114,10 +114,10 @@ enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(con
                 return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_POKEMON;
             }
 
-            species[i] = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-            heldItems[i] = (u16)Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
+            species[i] = (u16)Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
+            heldItems[i] = (u16)Pokemon_GetData(pokemon, MON_DATA_HELD_ITEM, NULL);
 
-            totalLevel += Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
+            totalLevel += Pokemon_GetData(pokemon, MON_DATA_LEVEL, NULL);
         }
     }
 
@@ -212,8 +212,8 @@ enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const B
 
     for (i = 0; i < partyCount; i++) {
         pokemon = Party_GetPokemonBySlotIndex(party, i);
-        species[i] = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-        levels[i] = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
+        species[i] = (u16)Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
+        levels[i] = Pokemon_GetData(pokemon, MON_DATA_LEVEL, NULL);
 
         if (BattleRegulation_ValidatePokemon(regulation, pokemon, heightWeightData) == FALSE) {
             species[i] = 0;

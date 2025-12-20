@@ -210,8 +210,8 @@ static u16 GetMoveIndex(u16 moveID)
 
 static u8 Pokemon_ReadMovesetMaskByte(Pokemon *pokemon, u8 offset)
 {
-    u32 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-    u32 form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+    u32 species = Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
+    u32 form = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
     u16 moveset = species;
 
     switch (species) {
@@ -266,10 +266,10 @@ static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation loc
     u32 species;
     u16 knownMoves[LEARNED_MOVES_MAX];
 
-    species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    species = Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
 
     for (knownMovesIndex = 0; knownMovesIndex < LEARNED_MOVES_MAX; knownMovesIndex++) {
-        knownMoves[knownMovesIndex] = Pokemon_GetValue(pokemon, MON_DATA_MOVE1 + knownMovesIndex, NULL);
+        knownMoves[knownMovesIndex] = Pokemon_GetData(pokemon, MON_DATA_MOVE1 + knownMovesIndex, NULL);
     }
 
     for (movesetMaskByteOffset = 0; movesetMaskByteOffset < MOVESET_MASK_SIZE; movesetMaskByteOffset++) {
@@ -328,7 +328,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
 
     if (partySlot != 0xff) {
         for (knownMoveIndex = 0; knownMoveIndex < LEARNED_MOVES_MAX; knownMoveIndex++) {
-            knownMoves[knownMoveIndex] = Pokemon_GetValue(pokemon, (MON_DATA_MOVE1 + knownMoveIndex), NULL);
+            knownMoves[knownMoveIndex] = Pokemon_GetData(pokemon, (MON_DATA_MOVE1 + knownMoveIndex), NULL);
         }
 
         for (i = 0; i < MOVESET_MASK_SIZE; i++) {

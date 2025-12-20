@@ -2282,7 +2282,7 @@ void BattlePartyText_PrintUseItemEffect(BattleParty *battleParty)
 
     itemData = Item_Load(context->selectedBattleBagItem, ITEM_FILE_TYPE_DATA, context->heapID);
     pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
-    newHP = Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
+    newHP = Pokemon_GetData(pokemon, MON_DATA_HP, NULL);
     healedStatusEffectFlags = 0;
 
     if (Item_Get(itemData, ITEM_PARAM_HEAL_SLEEP) != FALSE) {

@@ -132,7 +132,7 @@ static int sub_02097B18(ApplicationManager *appMan, int *param1)
                 continue;
             }
 
-            capsuleId = Pokemon_GetValue(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
+            capsuleId = Pokemon_GetData(v0->unk_00->unk_04[i], MON_DATA_BALL_CAPSULE_ID, 0);
 
             if (capsuleId != 0) {
                 v0->unk_04[capsuleId - 1].unk_00 = i;

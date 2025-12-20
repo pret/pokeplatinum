@@ -106,7 +106,7 @@ UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID
     v0->saveData = saveData;
     v0->unk_14 = Mail_New(heapID);
 
-    Pokemon_GetValue(param1, MON_DATA_MAIL, v0->unk_14);
+    Pokemon_GetData(param1, MON_DATA_MAIL, v0->unk_14);
     return v0;
 }
 
@@ -168,7 +168,7 @@ int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
 
     Mail *mail = Mail_New(heapID);
 
-    Pokemon_GetValue(mon, MON_DATA_MAIL, mail);
+    Pokemon_GetData(mon, MON_DATA_MAIL, mail);
     Mailbox_CopyMailToSlot(mailbox, 0, slot, mail);
     Mail_Init(mail);
     Pokemon_SetData(mon, MON_DATA_MAIL, mail);

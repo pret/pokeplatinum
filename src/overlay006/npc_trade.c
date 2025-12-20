@@ -78,7 +78,7 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, TradeA
 {
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *partyMon = Party_GetPokemonBySlotIndex(party, slot);
-    u32 level = Pokemon_GetValue(partyMon, MON_DATA_LEVEL, NULL);
+    u32 level = Pokemon_GetData(partyMon, MON_DATA_LEVEL, NULL);
 
     NpcTrade_CreateMon(data->mon, data->npcTradeMon, level, data->npcTradeID, data->heapID, fieldSystem->location->mapId);
 

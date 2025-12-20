@@ -208,13 +208,13 @@ static void GetPartyMonInfo(PartyStatus *data, Party *party)
         decrypted = Pokemon_EnterDecryptionContext(mon);
 
         data->mons[i].iconSpriteIndex = BoxPokemon_IconSpriteIndex((const BoxPokemon *)mon);
-        data->mons[i].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-        data->mons[i].currentHp = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
-        data->mons[i].maxHp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-        data->mons[i].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
-        data->mons[i].hasStatus = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL) != 0;
-        data->mons[i].isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
-        data->mons[i].form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        data->mons[i].species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+        data->mons[i].currentHp = Pokemon_GetData(mon, MON_DATA_HP, NULL);
+        data->mons[i].maxHp = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+        data->mons[i].heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
+        data->mons[i].hasStatus = Pokemon_GetData(mon, MON_DATA_STATUS, NULL) != 0;
+        data->mons[i].isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
+        data->mons[i].form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
 
         Pokemon_ExitDecryptionContext(mon, decrypted);
     }

@@ -121,12 +121,12 @@ static void sub_020298D8(UnkStruct_020298D8 *param0, u8 *param1, u8 *param2, s8 
 
 static void sub_0202992C(UnkStruct_0202A138 *param0, Pokemon *param1, u8 param2, u8 param3, s8 param4)
 {
-    param0->unk_08 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_0A);
+    param0->unk_08 = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
+    Pokemon_GetData(param1, MON_DATA_NICKNAME, param0->unk_0A);
 
-    param0->unk_00 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_04 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_33 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    param0->unk_00 = Pokemon_GetData(param1, MON_DATA_PERSONALITY, NULL);
+    param0->unk_04 = Pokemon_GetData(param1, MON_DATA_OT_ID, NULL);
+    param0->unk_33 = Pokemon_GetData(param1, MON_DATA_FORM, NULL);
 
     param0->unk_31 = param2;
     param0->unk_32 = param3;

@@ -47,22 +47,22 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
         mon = Party_GetPokemonBySlotIndex(party, i);
         reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
-            hallOfFameEntry->pokemon[pokemonIndex].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].OTID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].moves[0] = Pokemon_GetValue(mon, MON_DATA_MOVE1, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].moves[1] = Pokemon_GetValue(mon, MON_DATA_MOVE2, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].moves[2] = Pokemon_GetValue(mon, MON_DATA_MOVE3, NULL);
-            hallOfFameEntry->pokemon[pokemonIndex].moves[3] = Pokemon_GetValue(mon, MON_DATA_MOVE4, NULL);
+        if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) == 0) {
+            hallOfFameEntry->pokemon[pokemonIndex].species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].personality = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].OTID = Pokemon_GetData(mon, MON_DATA_OT_ID, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].moves[0] = Pokemon_GetData(mon, MON_DATA_MOVE1, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].moves[1] = Pokemon_GetData(mon, MON_DATA_MOVE2, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].moves[2] = Pokemon_GetData(mon, MON_DATA_MOVE3, NULL);
+            hallOfFameEntry->pokemon[pokemonIndex].moves[3] = Pokemon_GetData(mon, MON_DATA_MOVE4, NULL);
 
             if (string) {
-                Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
+                Pokemon_GetData(mon, MON_DATA_NICKNAME_STRING, string);
                 String_ToChars(string, hallOfFameEntry->pokemon[pokemonIndex].nickname, MON_NAME_LEN + 1);
 
-                Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, string);
+                Pokemon_GetData(mon, MON_DATA_OT_NAME_STRING, string);
                 String_ToChars(string, hallOfFameEntry->pokemon[pokemonIndex].OTName, TRAINER_NAME_LEN + 1);
             } else {
                 hallOfFameEntry->pokemon[pokemonIndex].nickname[0] = 0xffff;

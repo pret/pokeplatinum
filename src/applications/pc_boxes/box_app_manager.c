@@ -2106,7 +2106,7 @@ static BOOL BoxAppMan_OnLastAliveMon(BoxApplicationManager *boxAppMan)
         mon = Party_GetPokemonBySlotIndex(boxAppMan->party, i);
         reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
+        if (Pokemon_GetData(mon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE && Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
             count++;
         }
 
@@ -4162,22 +4162,22 @@ static void BoxApp_LoadBoxMonIntoComparison(BoxApplication *boxApp, BoxPokemon *
 
     BOOL reencrypt = Pokemon_EnterDecryptionContext(boxAppMan->mon);
 
-    compareMon->maxHP = Pokemon_GetValue(boxAppMan->mon, MON_DATA_MAX_HP, NULL);
-    compareMon->attack = Pokemon_GetValue(boxAppMan->mon, MON_DATA_ATK, NULL);
-    compareMon->defense = Pokemon_GetValue(boxAppMan->mon, MON_DATA_DEF, NULL);
-    compareMon->spAttack = Pokemon_GetValue(boxAppMan->mon, MON_DATA_SP_ATK, NULL);
-    compareMon->spDefense = Pokemon_GetValue(boxAppMan->mon, MON_DATA_SP_DEF, NULL);
-    compareMon->speed = Pokemon_GetValue(boxAppMan->mon, MON_DATA_SPEED, NULL);
-    compareMon->cool = Pokemon_GetValue(boxAppMan->mon, MON_DATA_COOL, NULL);
-    compareMon->beauty = Pokemon_GetValue(boxAppMan->mon, MON_DATA_BEAUTY, NULL);
-    compareMon->cute = Pokemon_GetValue(boxAppMan->mon, MON_DATA_CUTE, NULL);
-    compareMon->smart = Pokemon_GetValue(boxAppMan->mon, MON_DATA_SMART, NULL);
-    compareMon->tough = Pokemon_GetValue(boxAppMan->mon, MON_DATA_TOUGH, NULL);
-    compareMon->moves[0] = Pokemon_GetValue(boxAppMan->mon, MON_DATA_MOVE1, NULL);
-    compareMon->moves[1] = Pokemon_GetValue(boxAppMan->mon, MON_DATA_MOVE2, NULL);
-    compareMon->moves[2] = Pokemon_GetValue(boxAppMan->mon, MON_DATA_MOVE3, NULL);
-    compareMon->moves[3] = Pokemon_GetValue(boxAppMan->mon, MON_DATA_MOVE4, NULL);
-    compareMon->form = Pokemon_GetValue(boxAppMan->mon, MON_DATA_FORM, NULL);
+    compareMon->maxHP = Pokemon_GetData(boxAppMan->mon, MON_DATA_MAX_HP, NULL);
+    compareMon->attack = Pokemon_GetData(boxAppMan->mon, MON_DATA_ATK, NULL);
+    compareMon->defense = Pokemon_GetData(boxAppMan->mon, MON_DATA_DEF, NULL);
+    compareMon->spAttack = Pokemon_GetData(boxAppMan->mon, MON_DATA_SP_ATK, NULL);
+    compareMon->spDefense = Pokemon_GetData(boxAppMan->mon, MON_DATA_SP_DEF, NULL);
+    compareMon->speed = Pokemon_GetData(boxAppMan->mon, MON_DATA_SPEED, NULL);
+    compareMon->cool = Pokemon_GetData(boxAppMan->mon, MON_DATA_COOL, NULL);
+    compareMon->beauty = Pokemon_GetData(boxAppMan->mon, MON_DATA_BEAUTY, NULL);
+    compareMon->cute = Pokemon_GetData(boxAppMan->mon, MON_DATA_CUTE, NULL);
+    compareMon->smart = Pokemon_GetData(boxAppMan->mon, MON_DATA_SMART, NULL);
+    compareMon->tough = Pokemon_GetData(boxAppMan->mon, MON_DATA_TOUGH, NULL);
+    compareMon->moves[0] = Pokemon_GetData(boxAppMan->mon, MON_DATA_MOVE1, NULL);
+    compareMon->moves[1] = Pokemon_GetData(boxAppMan->mon, MON_DATA_MOVE2, NULL);
+    compareMon->moves[2] = Pokemon_GetData(boxAppMan->mon, MON_DATA_MOVE3, NULL);
+    compareMon->moves[3] = Pokemon_GetData(boxAppMan->mon, MON_DATA_MOVE4, NULL);
+    compareMon->form = Pokemon_GetData(boxAppMan->mon, MON_DATA_FORM, NULL);
 
     Pokemon_ExitDecryptionContext(boxAppMan->mon, reencrypt);
 
@@ -4626,7 +4626,7 @@ static u32 BoxApp_GetPreviewedMonValue(BoxApplication *boxApp, enum PokemonDataP
         }
     }
 
-    return Pokemon_GetValue(boxApp->pcMonPreview.mon, value, dest);
+    return Pokemon_GetData(boxApp->pcMonPreview.mon, value, dest);
 }
 
 static u32 BoxApp_GetPreviewedOrSelectedMonValue(BoxApplication *boxApp, enum PokemonDataParam value, void *dest)
@@ -4634,6 +4634,6 @@ static u32 BoxApp_GetPreviewedOrSelectedMonValue(BoxApplication *boxApp, enum Po
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX) {
         return BoxPokemon_GetValue(boxApp->pcMonPreview.mon, value, dest);
     } else {
-        return Pokemon_GetValue(boxApp->cursor.mon, value, dest);
+        return Pokemon_GetData(boxApp->cursor.mon, value, dest);
     }
 }
