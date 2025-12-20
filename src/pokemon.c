@@ -252,7 +252,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value);
 static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
 static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam param, int value);
-static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
+static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
 static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon);
 static void Pokemon_LoadExperienceTableOf(enum ExpRate monExpRate, u32 *monExpTable);
 static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel);
@@ -1676,12 +1676,12 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
         GF_ASSERT(0);
         break;
     default:
-        BoxPokemon_IncreaseDataInternal(&mon->box, param, value);
+        BoxPokemon_AddDataInternal(&mon->box, param, value);
         break;
     }
 }
 
-static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value)
+static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value)
 {
     PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
     PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
@@ -1697,21 +1697,15 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
         }
         break;
     case MON_DATA_FRIENDSHIP:
-        int newValue;
-
-        newValue = blockA->friendship;
-
-        if (newValue + value > MAX_FRIENDSHIP_VALUE) {
-            newValue = MAX_FRIENDSHIP_VALUE;
+        int friendship = blockA->friendship;
+        if (friendship + value > MAX_FRIENDSHIP_VALUE) {
+            friendship = MAX_FRIENDSHIP_VALUE;
         }
-
-        if (newValue + value < 0) {
-            newValue = 0;
-        } else {
-            newValue += value;
+        friendship += value;
+        if (friendship < 0) {
+            friendship = 0;
         }
-
-        blockA->friendship = newValue;
+        blockA->friendship = friendship;
         break;
     case MON_DATA_HP_EV:
         blockA->hpEV += value;
