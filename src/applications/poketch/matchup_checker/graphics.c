@@ -16,6 +16,8 @@
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define ANIM_COMMAND_END           -1
 #define ANIM_COMMAND_MOVE_FORWARD  -2
 #define ANIM_COMMAND_MOVE_BACKWARD -3
@@ -122,13 +124,13 @@ static void SetupSprites(MatchupCheckerGraphics *graphics, const MatchupCheckerD
 
     PoketchTask_LoadPokemonIconLuminancePalette(1);
 
-    u32 indicatorsTileCount = Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 74, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    u32 indicatorsTileCount = Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, matchup_checker_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     indicatorsTileCount /= 20;
     graphics->monIconTileOffset = indicatorsTileCount;
 
     PoketchTask_LoadPokemonIcons(indicatorsTileCount, matchupData->spriteIndices, matchupData->partySize, FALSE);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->indicatorSpriteData, NARC_INDEX_GRAPHIC__POKETCH, 72, 73, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->monIconData, NARC_INDEX_GRAPHIC__POKETCH, 5, 6, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->indicatorSpriteData, NARC_INDEX_GRAPHIC__POKETCH, matchup_checker_cell_NCER_lz, matchup_checker_anim_NANR_lz, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->monIconData, NARC_INDEX_GRAPHIC__POKETCH, poke_icon_cell_NCER_lz, poke_icon_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     int i;
     for (i = 0; i < NUM_SPRITES - 2; i++) {
@@ -214,8 +216,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     const MatchupCheckerData *matchupData = PoketchTask_GetConstTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 71, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 70, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, matchup_checker_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, matchup_checker_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);

@@ -18,7 +18,7 @@
 #include "enums.h"
 #include "heap.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 
@@ -36,7 +36,7 @@ typedef struct {
 typedef struct UnkStruct_ov66_02231FB0_t {
     u8 unk_00;
     u32 unk_04[3];
-    Strbuf *unk_10[4];
+    String *unk_10[4];
     u16 unk_20[4];
     u16 unk_28;
     s16 unk_2A;
@@ -79,14 +79,14 @@ static void ov66_02231FB0(UnkStruct_ov66_02231FB0 *param0, UnkStruct_ov66_02231F
 static void ov66_02231FC0(UnkStruct_ov66_02231E94 *param0, UnkStruct_ov66_02231FB0 *param1);
 static void ov66_02231FE8(UnkStruct_ov66_02231E94 *param0, UnkStruct_ov66_02231FB0 *param1);
 static void ov66_02231FFC(UnkStruct_ov66_02231FB0 *param0, u32 param1, u32 param2, u32 param3, const TrainerInfo *param4, const TrainerInfo *param5, const TrainerInfo *param6, const TrainerInfo *param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14);
-static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
-static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
-static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
-static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5);
+static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
+static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5);
 static u32 ov66_0223245C(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static u32 ov66_0223246C(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static u32 ov66_0223247C(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
@@ -396,14 +396,14 @@ int ov66_02231C78(const UnkStruct_ov66_0223177C *param0)
     return param0->unk_5C.unk_188.unk_2C->unk_00;
 }
 
-BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02232068 *param1, int param2, Strbuf *param3, u32 heapID)
+BOOL ov66_02231C94(const UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02232068 *param1, int param2, String *param3, u32 heapID)
 {
     StringTemplate *v0;
     MessageLoader *v1;
     UnkStruct_ov66_02231FB0 *v2;
     BOOL v3;
 
-    static BOOL (*const v4[])(UnkStruct_ov66_02231FB0 *, const UnkStruct_ov66_02232068 *, StringTemplate *, MessageLoader *, Strbuf *, u32) = {
+    static BOOL (*const v4[])(UnkStruct_ov66_02231FB0 *, const UnkStruct_ov66_02232068 *, StringTemplate *, MessageLoader *, String *, u32) = {
         ov66_02232068,
         ov66_022320BC,
         ov66_0223211C,
@@ -580,7 +580,7 @@ static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 heapID)
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
-            param0->unk_00[v0].unk_10[v1] = Strbuf_Init((7 + 1), heapID);
+            param0->unk_00[v0].unk_10[v1] = String_Init((7 + 1), heapID);
         }
     }
 
@@ -594,7 +594,7 @@ static void ov66_02231EEC(UnkStruct_ov66_02231E94 *param0)
 
     for (v0 = 0; v0 < 8; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
-            Strbuf_Free(param0->unk_00[v0].unk_10[v1]);
+            String_Free(param0->unk_00[v0].unk_10[v1]);
         }
     }
 
@@ -700,56 +700,56 @@ static void ov66_02231FFC(UnkStruct_ov66_02231FB0 *param0, u32 param1, u32 param
     param0->unk_20[3] = param11;
 
     if (param4) {
-        TrainerInfo_NameStrbuf(param4, param0->unk_10[0]);
+        TrainerInfo_NameString(param4, param0->unk_10[0]);
     }
 
     if (param5) {
-        TrainerInfo_NameStrbuf(param5, param0->unk_10[1]);
+        TrainerInfo_NameString(param5, param0->unk_10[1]);
     }
 
     if (param6) {
-        TrainerInfo_NameStrbuf(param6, param0->unk_10[2]);
+        TrainerInfo_NameString(param6, param0->unk_10[2]);
     }
 
     if (param7) {
-        TrainerInfo_NameStrbuf(param7, param0->unk_10[3]);
+        TrainerInfo_NameString(param7, param0->unk_10[3]);
     }
 }
 
-static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
-    Strbuf *v0;
+    String *v0;
 
-    StringTemplate_SetStrbuf(param2, 0, param0->unk_10[0], 0, 1, gGameLanguage);
-    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[1], 0, 1, gGameLanguage);
+    StringTemplate_SetString(param2, 0, param0->unk_10[0], 0, 1, gGameLanguage);
+    StringTemplate_SetString(param2, 1, param0->unk_10[1], 0, 1, gGameLanguage);
 
-    v0 = MessageLoader_GetNewStrbuf(param3, 7);
+    v0 = MessageLoader_GetNewString(param3, 7);
 
     StringTemplate_Format(param2, param4, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 1;
 }
 
-static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
-    Strbuf *v0;
+    String *v0;
 
-    StringTemplate_SetStrbuf(param2, 0, param0->unk_10[0], 0, 1, gGameLanguage);
-    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[1], 0, 1, gGameLanguage);
+    StringTemplate_SetString(param2, 0, param0->unk_10[0], 0, 1, gGameLanguage);
+    StringTemplate_SetString(param2, 1, param0->unk_10[1], 0, 1, gGameLanguage);
     StringTemplate_SetPlazaItemName(param2, 2, param0->unk_04[0]);
 
-    v0 = MessageLoader_GetNewStrbuf(param3, 8);
+    v0 = MessageLoader_GetNewString(param3, 8);
 
     StringTemplate_Format(param2, param4, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 1;
 }
 
-static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
-    Strbuf *v0;
+    String *v0;
 
     StringTemplate_SetPlazaMinigameName(param2, 0, param0->unk_04[0]);
 
@@ -758,65 +758,65 @@ static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
 
         switch (param0->unk_04[1]) {
         case 3:
-            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
-            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
-            StringTemplate_SetStrbuf(param2, 3, param0->unk_10[2], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 3, param0->unk_10[2], 0, 1, gGameLanguage);
             v1 = 18;
             break;
         case 2:
-            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
-            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
             v1 = 19;
             break;
         case 4:
-            StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
-            StringTemplate_SetStrbuf(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
-            StringTemplate_SetStrbuf(param2, 3, param0->unk_10[2], 0, 1, gGameLanguage);
-            StringTemplate_SetStrbuf(param2, 4, param0->unk_10[3], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 2, param0->unk_10[1], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 3, param0->unk_10[2], 0, 1, gGameLanguage);
+            StringTemplate_SetString(param2, 4, param0->unk_10[3], 0, 1, gGameLanguage);
             v1 = 6;
             break;
         default:
             return 0;
         }
 
-        v0 = MessageLoader_GetNewStrbuf(param3, v1);
+        v0 = MessageLoader_GetNewString(param3, v1);
     } else {
-        StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+        StringTemplate_SetString(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
         StringTemplate_SetNumber(param2, 2, 4 - param0->unk_04[1], 1, 1, 1);
 
-        v0 = MessageLoader_GetNewStrbuf(param3, 5);
+        v0 = MessageLoader_GetNewString(param3, 5);
     }
 
     StringTemplate_Format(param2, param4, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 1;
 }
 
-static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
-    Strbuf *v0;
+    String *v0;
 
     StringTemplate_SetPlazaMinigameName(param2, 0, param0->unk_04[0]);
-    StringTemplate_SetStrbuf(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
+    StringTemplate_SetString(param2, 1, param0->unk_10[0], 0, 1, gGameLanguage);
     StringTemplate_SetNumber(param2, 2, 8 - param0->unk_04[1], 1, 1, 1);
 
-    v0 = MessageLoader_GetNewStrbuf(param3, 9);
+    v0 = MessageLoader_GetNewString(param3, 9);
 
     StringTemplate_Format(param2, param4, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 1;
 }
 
-static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
     u32 v2;
 
     for (v1 = 0; v1 < param0->unk_04[0]; v1++) {
-        StringTemplate_SetStrbuf(param2, v1, param0->unk_10[v1], 0, 1, gGameLanguage);
+        StringTemplate_SetString(param2, v1, param0->unk_10[v1], 0, 1, gGameLanguage);
     }
 
     if (param0->unk_00 == 4) {
@@ -825,17 +825,17 @@ static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
         StringTemplate_SetPlazaMinigameName(param2, param0->unk_04[0], UnkEnum_ov66_022324D0_06);
     }
 
-    v0 = MessageLoader_GetNewStrbuf(param3, 10 + (4 - param0->unk_04[0]));
+    v0 = MessageLoader_GetNewString(param3, 10 + (4 - param0->unk_04[0]));
 
     StringTemplate_Format(param2, param4, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 1;
 }
 
-static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
-    Strbuf *v0;
+    String *v0;
     u32 v1;
 
     switch (param0->unk_04[1]) {
@@ -860,15 +860,15 @@ static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
         return 0;
     }
 
-    v0 = MessageLoader_GetNewStrbuf(param3, v1);
+    v0 = MessageLoader_GetNewString(param3, v1);
 
     StringTemplate_Format(param2, param4, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 1;
 }
 
-static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
     if (param0->unk_04[0] >= 20) {
         return 0;
@@ -878,14 +878,14 @@ static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
         return 0;
     }
 
-    MessageLoader_GetStrbuf(param3, 21, param4);
+    MessageLoader_GetString(param3, 21, param4);
 
     return 1;
 }
 
-static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_02232068 *param1, StringTemplate *param2, MessageLoader *param3, String *param4, u32 param5)
 {
-    Strbuf *v0;
+    String *v0;
     u32 v1;
     int v2;
     static const u16 v3[4] = {
@@ -908,17 +908,17 @@ static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 *param0, const UnkStruct_ov66_
     StringTemplate_SetPlazaMinigameName(param2, 0, param0->unk_04[0]);
 
     for (v2 = 0; v2 < param0->unk_04[1]; v2++) {
-        StringTemplate_SetStrbuf(param2, v2 + 1, param0->unk_10[v2], 0, 1, gGameLanguage);
+        StringTemplate_SetString(param2, v2 + 1, param0->unk_10[v2], 0, 1, gGameLanguage);
     }
 
     if ((param0->unk_04[0] == UnkEnum_ov66_022324D0_00) || (param0->unk_04[0] == UnkEnum_ov66_022324D0_01)) {
-        v0 = MessageLoader_GetNewStrbuf(param3, v4[param0->unk_04[1] - 1]);
+        v0 = MessageLoader_GetNewString(param3, v4[param0->unk_04[1] - 1]);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(param3, v3[param0->unk_04[1] - 1]);
+        v0 = MessageLoader_GetNewString(param3, v3[param0->unk_04[1] - 1]);
     }
 
     StringTemplate_Format(param2, param4, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
 
     return 1;
 }

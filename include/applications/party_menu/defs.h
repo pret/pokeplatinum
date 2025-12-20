@@ -4,17 +4,16 @@
 #include "constants/graphics.h"
 #include "constants/pokemon.h"
 
-#include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/struct_0202440C.h"
-#include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_0207F248.h"
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
 #include "bg_window.h"
 #include "field_move_tasks.h"
 #include "font_special_chars.h"
@@ -24,9 +23,10 @@
 #include "menu.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 
@@ -205,7 +205,7 @@ typedef struct PartyMenu {
 } PartyMenu;
 
 typedef struct PartyMenuMember {
-    Strbuf *name;
+    String *name;
     u16 species;
     u16 curHP;
     u16 maxHP;
@@ -259,9 +259,9 @@ typedef struct PartyMenuApplication {
     FontSpecialCharsContext *specialChars;
     MessageLoader *messageLoader;
     StringTemplate *template;
-    Strbuf *tmpString;
-    Strbuf *tmpFormat;
-    Strbuf *menuStrings[NUM_PARTY_MENU_STRS];
+    String *tmpString;
+    String *tmpFormat;
+    String *menuStrings[NUM_PARTY_MENU_STRS];
     StringList *contextMenuChoices;
     Menu *contextMenu;
     PartyMenuMember partyMembers[MAX_PARTY_SIZE];

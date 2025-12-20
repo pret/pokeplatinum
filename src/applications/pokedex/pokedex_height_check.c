@@ -27,7 +27,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 #include "res/graphics/pokedex/zukan.naix.h"
@@ -415,42 +415,42 @@ static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals)
 
 static void DisplayHeightLabels(PokedexGraphicData **param0, enum HeapID heapID)
 {
-    Strbuf *strbuf = Strbuf_Init(32, heapID);
+    String *string = String_Init(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_heightcheck_topscreen, strbuf);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_heightcheck_topscreen, string);
 
     {
-        u32 xOffset = Font_CalcCenterAlignment(FONT_SYSTEM, strbuf, 0, 256);
-        Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, strbuf, xOffset, 24, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+        u32 xOffset = Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 256);
+        Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, string, xOffset, 24, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_ht, strbuf);
-    Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, strbuf, 32, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_ht, strbuf);
-    Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, strbuf, 152, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    Strbuf_Free(strbuf);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_ht, string);
+    Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, string, 32, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_ht, string);
+    Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, string, 152, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+    String_Free(string);
     MessageLoader_Free(pokedexMessageBank);
 }
 
 static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov21_021E6104 *param1, enum HeapID heapID)
 {
-    Strbuf *strbuf = Strbuf_Init(32, heapID);
+    String *string = String_Init(32, heapID);
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
-    Strbuf *speciesName = MessageUtil_SpeciesName(species, heapID);
+    String *speciesName = MessageUtil_SpeciesName(species, heapID);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
     MessageLoader *messageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
 
     Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, speciesName, 26, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    MessageLoader_GetStrbuf(messageBank, species, strbuf);
+    MessageLoader_GetString(messageBank, species, string);
 
     {
-        u32 v5 = 32 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
-        Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, strbuf, v5, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+        u32 v5 = 32 + 78 - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
+        Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, string, v5, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    Strbuf_Free(speciesName);
+    String_Free(speciesName);
     MessageLoader_Free(messageBank);
 
     messageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
@@ -458,17 +458,17 @@ static void DisplayHeightValues(PokedexGraphicData **param0, const UnkStruct_ov2
     Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_04), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     if (PokedexSort_TrainerGender(param1->unk_04) == GENDER_MALE) {
-        MessageLoader_GetStrbuf(messageBank, pl_msg_pokedex_lucasheight, strbuf);
+        MessageLoader_GetString(messageBank, pl_msg_pokedex_lucasheight, string);
     } else {
-        MessageLoader_GetStrbuf(messageBank, pl_msg_pokedex_dawnheight, strbuf);
+        MessageLoader_GetString(messageBank, pl_msg_pokedex_dawnheight, string);
     }
 
     {
-        u32 v6 = 152 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
-        Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, strbuf, v6, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+        u32 v6 = 152 + 78 - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
+        Text_AddPrinterWithParamsAndColor(&(*param0)->window, FONT_SYSTEM, string, v6, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    Strbuf_Free(strbuf);
+    String_Free(string);
     MessageLoader_Free(messageBank);
 }
 

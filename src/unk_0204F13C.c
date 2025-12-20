@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_0204F3D0.h"
 
 #include "applications/party_menu/defs.h"

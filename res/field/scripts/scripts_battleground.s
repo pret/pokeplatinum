@@ -58,23 +58,23 @@ _00F9:
     Return
 
 _00FF:
-    CallIfUnset FLAG_UNK_0x00E3, _00F9
+    CallIfUnset FLAG_TRAVELED_WITH_CHERYL, _00F9
     Return
 
 _010C:
-    CallIfUnset FLAG_UNK_0x00E5, _00F9
+    CallIfUnset FLAG_TRAVELED_WITH_RILEY, _00F9
     Return
 
 _0119:
-    CallIfUnset FLAG_UNK_0x00E6, _00F9
+    CallIfUnset FLAG_TRAVELED_WITH_MARLEY, _00F9
     Return
 
 _0126:
-    CallIfUnset FLAG_UNK_0x00E7, _00F9
+    CallIfUnset FLAG_BUCK_LEFT_BATTLEGROUND, _00F9
     Return
 
 _0133:
-    CallIfUnset FLAG_UNK_0x00E4, _00F9
+    CallIfUnset FLAG_TRAVELED_WITH_MIRA, _00F9
     Return
 
 _0140:
@@ -115,7 +115,7 @@ _0183:
     CallIfEq VAR_0x8005, 9, _01FD
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    SetFlag FLAG_UNK_0x00E7
+    SetFlag FLAG_BUCK_LEFT_BATTLEGROUND
     SetFlag FLAG_UNK_0x01D6
     ReleaseAll
     End

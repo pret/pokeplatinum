@@ -25,7 +25,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -98,7 +98,7 @@ typedef struct GTSBoxPokemonCriteria {
 } GTSBoxPokemonCriteria;
 
 typedef struct {
-    Strbuf **unk_00;
+    String **unk_00;
     u16 unk_04; // cursor
     u16 unk_06; // start pos
     u16 unk_08;
@@ -169,12 +169,12 @@ typedef struct GTSApplicationState {
     MessageLoader *unk0674MessageLoader;
     MessageLoader *unk0695MessageLoader;
     MessageLoader *countryMessageLoader;
-    Strbuf *selectPokemonBoxName;
-    Strbuf *unk_BA8;
-    Strbuf *genericMessageBuffer;
-    Strbuf *title;
-    Strbuf *unk_BB4[10];
-    Strbuf *shortErrorBuffer;
+    String *selectPokemonBoxName;
+    String *unk_BA8;
+    String *genericMessageBuffer;
+    String *title;
+    String *unk_BB4[10];
+    String *shortErrorBuffer;
     int textPrinter;
     SpriteList *spriteList;
     G2dRenderer g2dRenderer;

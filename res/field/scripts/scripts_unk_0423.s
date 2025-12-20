@@ -224,7 +224,7 @@ _0328:
 _0333:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_2A4 VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _035A
     ScrCmd_0A3
@@ -417,7 +417,7 @@ _0526:
 Unk423_Unused:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_0B3 VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     ScrCmd_2F7 VAR_0x8004

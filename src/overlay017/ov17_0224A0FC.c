@@ -45,7 +45,7 @@
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -630,11 +630,11 @@ void ov17_0224A650(UnkStruct_ov17_0224A1EC *param0)
 void ov17_0224A674(UnkStruct_ov17_0224A1EC *param0)
 {
     int v0;
-    Strbuf *v1, *v2, *v3;
+    String *v1, *v2, *v3;
 
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_84, 5);
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_84, 6);
-    v3 = MessageLoader_GetNewStrbuf(param0->unk_84, 7);
+    v1 = MessageLoader_GetNewString(param0->unk_84, 5);
+    v2 = MessageLoader_GetNewString(param0->unk_84, 6);
+    v3 = MessageLoader_GetNewString(param0->unk_84, 7);
 
     for (v0 = 0; v0 < 3; v0++) {
         ov17_0223F1E8(HEAP_ID_23, param0->unk_60, param0->unk_5C, param0->unk_94, &param0->unk_96C[0][v0], v1, FONT_SYSTEM, TEXT_COLOR(0xb, 0xc, 0), 0, 33001, 0, 0, 1, 1, 12);
@@ -647,9 +647,9 @@ void ov17_0224A674(UnkStruct_ov17_0224A1EC *param0)
         sub_020129D0(param0->unk_96C[2][v0].unk_00, 0);
     }
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
 }
 
 void ov17_0224A7B8(UnkStruct_ov17_0224A1EC *param0)
@@ -1886,7 +1886,7 @@ static void ov17_0224C0C0(UnkStruct_ov17_0224DF54 *param0, int param1, const Unk
         StringTemplate_SetNumber(param0->unk_14.unk_88, 0, param2->unk_04, 1, 0, 1);
         break;
     case 4:
-        StringTemplate_SetStrbuf(param0->unk_14.unk_88, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_14.unk_88, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_14.unk_88, 1, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
         break;
     case 5:
@@ -1897,7 +1897,7 @@ static void ov17_0224C0C0(UnkStruct_ov17_0224DF54 *param0, int param1, const Unk
         v0 = sub_02095848(param0->unk_00->unk_00.unk_110, param0->unk_00->unk_00.unk_111, param0->unk_00->unk_155);
         StringTemplate_SetContestRankName(param0->unk_14.unk_88, 0, v0);
         StringTemplate_SetNumber(param0->unk_14.unk_88, 1, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetStrbuf(param0->unk_14.unk_88, 2, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_14.unk_88, 2, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_14.unk_88, 3, Pokemon_GetBoxPokemon(param0->unk_14.unk_00->unk_00[param2->unk_00]));
         break;
     default:
@@ -1908,7 +1908,7 @@ static void ov17_0224C0C0(UnkStruct_ov17_0224DF54 *param0, int param1, const Unk
 
 static void ov17_0224C244(UnkStruct_ov17_0224DF54 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_0224C0C0 *param4)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -1917,14 +1917,14 @@ static void ov17_0224C244(UnkStruct_ov17_0224DF54 *param0, MessageLoader *param1
         v1 = TEXT_SPEED_FAST;
     }
 
-    v0 = MessageLoader_GetNewStrbuf(param1, param2);
+    v0 = MessageLoader_GetNewString(param1, param2);
     ov17_0224C0C0(param0, param3, param4);
 
     StringTemplate_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v0);
     Window_FillTilemap(&param0->unk_14.unk_64[0], 0xff);
 
     param0->unk_14.unk_A18 = Text_AddPrinterWithParams(&param0->unk_14.unk_64[0], FONT_MESSAGE, param0->unk_14.unk_8C, 0, 0, v1, NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 void ov17_0224C2CC(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_ov17_0224C0C0 *param2)
@@ -2072,7 +2072,7 @@ int ov17_0224C57C(int param0)
 void ov17_0224C5A0(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_ov17_0224C0C0 *param2)
 {
     u32 v0, v1;
-    Strbuf *v2;
+    String *v2;
 
     GF_ASSERT(param1 < NELEMS(Unk_ov17_0225470C));
 
@@ -2085,14 +2085,14 @@ void ov17_0224C5A0(UnkStruct_ov17_0224DF54 *param0, u32 param1, const UnkStruct_
 
     v0 = Unk_ov17_0225470C[param1].unk_00;
     v1 = Unk_ov17_0225470C[param1].unk_02;
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_84, v0);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_84, v0);
 
     ov17_0224C0C0(param0, v1, param2);
 
     StringTemplate_Format(param0->unk_14.unk_88, param0->unk_14.unk_8C, v2);
     Window_FillTilemap(&param0->unk_14.unk_64[1], 0xff);
     Text_AddPrinterWithParams(&param0->unk_14.unk_64[1], FONT_MESSAGE, param0->unk_14.unk_8C, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
 
     param0->unk_1B25 = 1;
 }

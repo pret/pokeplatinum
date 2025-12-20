@@ -14,7 +14,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 enum AccessoryShopState {
@@ -66,15 +66,15 @@ typedef struct AccessoryShopMessageBox {
     Window *window;
     u32 renderDelay;
     u32 printerID;
-    Strbuf *strbuf;
+    String *string;
 } AccessoryShopMessageBox;
 
 typedef struct AccessoryShopDescBox {
     BOOL active;
     Window *window;
     StringTemplate *strTemplate;
-    Strbuf *strbuf;
-    Strbuf *fmtString[ACCESSORY_SHOP_FORMAT_STRS];
+    String *string;
+    String *fmtString[ACCESSORY_SHOP_FORMAT_STRS];
 } AccessoryShopDescBox;
 
 typedef struct AccessoryShopItemList {
@@ -82,10 +82,10 @@ typedef struct AccessoryShopItemList {
     Window *window;
     ListMenu *listMenu;
     StringList strList[ACCESSORY_SHOP_ITEM_LIST_COUNT + 1];
-    Strbuf *strbuf[ACCESSORY_SHOP_ITEM_LIST_COUNT + 1];
+    String *string[ACCESSORY_SHOP_ITEM_LIST_COUNT + 1];
     s32 maxListItems;
     StringTemplate *strTemplate;
-    Strbuf *tempStrbuf;
+    String *tempString;
     u16 cursorPos;
     u16 unused;
     void *unk_130;

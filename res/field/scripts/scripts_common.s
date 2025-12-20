@@ -323,7 +323,7 @@ _0457:
     FadeOutBGM 0, 10
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1F8
+    WaitForTransition
     BlackOutFromBattle2
     End
 

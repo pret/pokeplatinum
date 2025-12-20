@@ -26,6 +26,8 @@
 #include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
+#include "battle_regulation_validation.h"
 #include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
@@ -36,6 +38,7 @@
 #include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "height_weight_data.h"
 #include "item.h"
 #include "item_use_pokemon.h"
 #include "journal.h"
@@ -51,7 +54,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -59,11 +62,8 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "tv_episode_segment.h"
-#include "unk_0202602C.h"
 #include "unk_020393C8.h"
 #include "unk_0206B9D8.h"
-#include "unk_0207A2A8.h"
-#include "unk_0208C098.h"
 #include "vram_transfer.h"
 
 #include "res/graphics/party_menu/party_menu_graphics.naix.h"
@@ -654,7 +654,7 @@ static int sub_0207E750(PartyMenuApplication *application)
             PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
             application->partyMenu->menuSelectionResult = 0;
             application->unk_B0E = 25;
-            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
+            MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
             return 24;
         }
     } else if (v0 == 3) {
@@ -678,14 +678,14 @@ static BOOL PartyMenu_Exit(ApplicationManager *appMan, int *state)
     VramTransfer_Free();
 
     for (v1 = 0; v1 < 6; v1++) {
-        Strbuf_Free(v0->partyMembers[v1].name);
+        String_Free(v0->partyMembers[v1].name);
     }
 
-    Strbuf_Free(v0->tmpString);
-    Strbuf_Free(v0->tmpFormat);
+    String_Free(v0->tmpString);
+    String_Free(v0->tmpFormat);
 
     for (v1 = 0; v1 < 20; v1++) {
-        Strbuf_Free(v0->menuStrings[v1]);
+        String_Free(v0->menuStrings[v1]);
     }
 
     MessageLoader_Free(v0->messageLoader);
@@ -693,7 +693,7 @@ static BOOL PartyMenu_Exit(ApplicationManager *appMan, int *state)
     StringTemplate_Free(v0->template);
 
     if (v0->heightWeight != NULL) {
-        sub_0207A2C0(v0->heightWeight);
+        HeightWeightData_Free(v0->heightWeight);
     }
 
     ApplicationManager_FreeData(appMan);
@@ -1018,14 +1018,14 @@ static PartyMenuApplication *NewPartyMenuApplication(ApplicationManager *appMan)
     application->template = StringTemplate_Default(HEAP_ID_PARTY_MENU);
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
-        application->partyMembers[i].name = Strbuf_Init(MON_NAME_LEN + 1, HEAP_ID_PARTY_MENU);
+        application->partyMembers[i].name = String_Init(MON_NAME_LEN + 1, HEAP_ID_PARTY_MENU);
     }
 
-    application->tmpString = Strbuf_Init(256, HEAP_ID_PARTY_MENU);
-    application->tmpFormat = Strbuf_Init(256, HEAP_ID_PARTY_MENU);
+    application->tmpString = String_Init(256, HEAP_ID_PARTY_MENU);
+    application->tmpFormat = String_Init(256, HEAP_ID_PARTY_MENU);
 
     for (i = 0; i < NUM_PARTY_MENU_STRS; i++) {
-        application->menuStrings[i] = Strbuf_Init(32, HEAP_ID_PARTY_MENU);
+        application->menuStrings[i] = String_Init(32, HEAP_ID_PARTY_MENU);
     }
 
     application->currPartySlot = application->partyMenu->selectedMonSlot;
@@ -1966,7 +1966,7 @@ u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
 {
     if (application->partyMenu->battleRegulation != NULL) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, partySlot);
-        if (sub_0207A2D0(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
+        if (BattleRegulation_ValidatePokemon(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
             return PARTY_MENU_SELECTION_INELIGIBLE;
         }
     }
@@ -2151,31 +2151,31 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
     }
 
     if (application->partyMenu->battleRegulation != NULL) {
-        switch (sub_0207A3AC(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
-        case 0:
+        switch (BattleRegulation_ValidatePartySelection(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
+        case BATTLE_REGULATION_VALIDATION_SUCCESS:
             break;
 
-        case 1: {
-            Strbuf *v1;
+        case BATTLE_REGULATION_VALIDATION_ERROR_TOTAL_LEVEL_EXCEEDED: {
+            String *v1;
             int v2;
 
-            v1 = MessageLoader_GetNewStrbuf(application->messageLoader, 184);
-            v2 = sub_02026074(application->partyMenu->battleRegulation, 3);
+            v1 = MessageLoader_GetNewString(application->messageLoader, 184);
+            v2 = BattleRegulation_GetRuleValue(application->partyMenu->battleRegulation, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
 
             StringTemplate_SetNumber(application->template, 0, v2, 3, 0, 1);
             StringTemplate_Format(application->template, application->tmpString, v1);
-            Strbuf_Free(v1);
+            String_Free(v1);
         }
             PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
-        case 2:
+        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_SPECIES:
             PartyMenu_PrintLongMessage(application, pl_msg_00000453_00182, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             return 24;
-        case 3:
+        case BATTLE_REGULATION_VALIDATION_ERROR_DUPLICATE_ITEMS:
             PartyMenu_PrintLongMessage(application, pl_msg_00000453_00183, TRUE);
             application->unk_B0E = 23;
             Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
@@ -2505,17 +2505,17 @@ static int ProcessWindowInput(PartyMenuApplication *application)
     case 3:
         if (UpdatePokemonStatus(application, application->currPartySlot, 1) == 1) {
             Pokemon *mon;
-            Strbuf *v1;
+            String *v1;
             void *journalEntryLocationEvent;
             FieldSystem *fieldSystem;
 
             mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-            v1 = MessageLoader_GetNewStrbuf(application->messageLoader, 64);
+            v1 = MessageLoader_GetNewString(application->messageLoader, 64);
 
             StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
             StringTemplate_SetNumber(application->template, 1, application->monStats[2], 3, 0, 1);
             StringTemplate_Format(application->template, application->tmpString, v1);
-            Strbuf_Free(v1);
+            String_Free(v1);
             PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
             journalEntryLocationEvent = JournalEntry_CreateEventUsedMove((u8)application->monStats[3], 0, 12);
@@ -2701,14 +2701,14 @@ static int ProcessItemApplication(PartyMenuApplication *application)
 
     if (application->partyMenu->usedItemID == 112) {
         if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
-            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00203, application->tmpFormat);
+            MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00203, application->tmpFormat);
             StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
             StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMenu->usedItemID);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = 11;
         } else if (fieldSystem != NULL) {
             if (fieldSystem->location->mapId == MAP_HEADER_UNION_ROOM) {
-                MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00204, application->tmpFormat);
+                MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00204, application->tmpFormat);
                 StringTemplate_SetItemName(application->template, 0, application->partyMenu->usedItemID);
                 StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
                 v2 = 11;
@@ -2726,20 +2726,20 @@ static int ProcessItemApplication(PartyMenuApplication *application)
 
             v2 = UpdatePokemonWithItem(application, v0, &v3);
 
-            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
+            MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
             StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
             StringTemplate_SetItemName(application->template, 1, application->partyMenu->usedItemID);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             break;
         case 1:
-            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00078, application->tmpFormat);
+            MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00078, application->tmpFormat);
             StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
             StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMembers[application->currPartySlot].heldItem);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = 9;
             break;
         case 2:
-            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00077, application->tmpString);
+            MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00077, application->tmpString);
             v2 = 11;
             break;
         }
@@ -2851,7 +2851,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
 
         if (Bag_TryAddItem(application->partyMenu->bag, (u16)v5, 1, HEAP_ID_PARTY_MENU) == FALSE) {
             SwapPokemonItem(application, v2, v4, v5);
-            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00083, application->tmpString);
+            MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00083, application->tmpString);
             v0 = 11;
         } else {
             if (Item_IsMail(application->partyMenu->usedItemID) == 1) {
@@ -2861,7 +2861,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
                 return 32;
             }
 
-            MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00084, application->tmpFormat);
+            MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00084, application->tmpFormat);
             StringTemplate_SetItemName(application->template, 1, v5);
             StringTemplate_SetItemName(application->template, 2, v4);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
@@ -2917,13 +2917,13 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
     }
 
     if (item == ITEM_NONE) {
-        MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
+        MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
         StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
         StringTemplate_SetItemName(application->template, 1, application->partyMenu->usedItemID);
         StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
     } else {
         Bag_TryAddItem(application->partyMenu->bag, (u16)item, 1, HEAP_ID_PARTY_MENU);
-        MessageLoader_GetStrbuf(application->messageLoader, pl_msg_00000453_00084, application->tmpFormat);
+        MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00084, application->tmpFormat);
         StringTemplate_SetItemName(application->template, 1, item);
         StringTemplate_SetItemName(application->template, 2, v2);
         StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);

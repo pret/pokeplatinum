@@ -42,7 +42,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -88,7 +88,7 @@ static void ov72_0223E3A8(Sprite **param0, BOOL param1);
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 *param0, int param1);
 static void ov72_0223E430(BgConfig *param0, UnkStruct_02015920 *param1);
 static void ov72_0223E9B4(u8 *param0, u8 *param1);
-static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3, const u32 param4);
+static void *ov72_0223E060(Window *param0, String *param1, int param2, u8 param3, const u32 param4);
 static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0);
 static void ov72_0223EAD8(UnkStruct_ov72_0223EAD8 *param0);
 static void ov72_0223E5E0(Window *param0, void *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
@@ -386,19 +386,19 @@ static void ov72_0223DB98(UnkStruct_ov72_0223DB98 *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_18[v0] = Strbuf_Init(7 + 1, HEAP_ID_39);
+        param0->unk_18[v0] = String_Init(7 + 1, HEAP_ID_39);
         param0->unk_4391[v0].unk_10_4 = 0;
         param0->unk_43E6[v0].unk_02 = 0;
     }
 
-    param0->unk_2C = Strbuf_Init(10 * 2, HEAP_ID_39);
-    param0->unk_30 = Strbuf_Init(20 * 2, HEAP_ID_39);
-    param0->unk_34 = Strbuf_Init(40 * 2, HEAP_ID_39);
+    param0->unk_2C = String_Init(10 * 2, HEAP_ID_39);
+    param0->unk_30 = String_Init(20 * 2, HEAP_ID_39);
+    param0->unk_34 = String_Init(40 * 2, HEAP_ID_39);
     param0->unk_437E = 0;
     param0->unk_370 = 1;
 
-    MessageLoader_GetStrbuf(param0->unk_14, 12, param0->unk_2C);
-    MessageLoader_GetStrbuf(param0->unk_14, 9, param0->unk_30);
+    MessageLoader_GetString(param0->unk_14, 12, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_14, 9, param0->unk_30);
 
     param0->unk_5D00 = sub_02015920(HEAP_ID_39);
 
@@ -412,12 +412,12 @@ static void ov72_0223DC34(UnkStruct_ov72_0223DB98 *param0)
     sub_02015938(param0->unk_5D00);
 
     for (v0 = 0; v0 < 5; v0++) {
-        Strbuf_Free(param0->unk_18[v0]);
+        String_Free(param0->unk_18[v0]);
     }
 
-    Strbuf_Free(param0->unk_34);
-    Strbuf_Free(param0->unk_30);
-    Strbuf_Free(param0->unk_2C);
+    String_Free(param0->unk_34);
+    String_Free(param0->unk_30);
+    String_Free(param0->unk_2C);
 }
 
 static void ov72_0223DC6C(BgConfig *param0)
@@ -539,11 +539,11 @@ static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void *ov72_0223E060(Window *param0, Strbuf *param1, int param2, u8 param3, const u32 param4)
+static void *ov72_0223E060(Window *param0, String *param1, int param2, u8 param3, const u32 param4)
 {
     int v0, v1;
 
-    v1 = Font_CalcStrbufWidth(FONT_SUBSCREEN, param1, 0);
+    v1 = Font_CalcStringWidth(FONT_SUBSCREEN, param1, 0);
     v0 = ((param0->width * 8) - v1) / 2;
 
     Text_AddPrinterWithParamsAndColor(param0, param3, param1, v0, param2, TEXT_SPEED_NO_TRANSFER, param4, NULL);
@@ -578,7 +578,7 @@ static void ov72_0223E0A0(UnkStruct_ov72_0223DB98 *param0, ApplicationManager *a
     Window_Add(param0->unk_00, &param0->unk_358, 1, 2, 2, 28, 2, 13, (1 + 24 * 8) + 8 * 2);
 
     {
-        int v2 = Font_CalcStrbufWidth(FONT_MESSAGE, param0->unk_30, 0);
+        int v2 = Font_CalcStringWidth(FONT_MESSAGE, param0->unk_30, 0);
         int v3 = (28 * 8 - v2) / 2;
 
         Window_FillTilemap(&param0->unk_358, 0x0);
@@ -1090,11 +1090,11 @@ static void ov72_0223E914(UnkStruct_ov72_0223DB98 *param0)
 
 static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init(40 * 2, HEAP_ID_39);
+    String *v0 = String_Init(40 * 2, HEAP_ID_39);
 
-    MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
+    MessageLoader_GetString(param0->unk_14, param1, v0);
     StringTemplate_Format(param0->unk_10, param0->unk_34, v0);
-    Strbuf_Free(v0);
+    String_Free(v0);
     Window_FillTilemap(&param0->unk_338, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_338, 0, 1, 10);
 

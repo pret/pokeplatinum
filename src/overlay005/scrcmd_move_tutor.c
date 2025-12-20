@@ -27,7 +27,7 @@
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -43,7 +43,7 @@ typedef struct {
     SysTask *sysTask;
     Window moveSelectWindow;
     Window *window;
-    Strbuf *moveNames[NELEMS(sTeachableMoves) + 1];
+    String *moveNames[NELEMS(sTeachableMoves) + 1];
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     u8 sysTaskDelay;
@@ -420,7 +420,7 @@ static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *mo
     }
 
     for (moveIndex = 0; moveIndex < (NELEMS(sTeachableMoves) + 1); moveIndex++) {
-        moveTutorManager->moveNames[moveIndex] = Strbuf_Init((40 * 2), HEAP_ID_FIELD1);
+        moveTutorManager->moveNames[moveIndex] = String_Init((40 * 2), HEAP_ID_FIELD1);
     }
 
     *moveTutorManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
@@ -464,12 +464,12 @@ static void MoveTutorManager_ShowMoveSelectionMenu(MoveTutorManager *moveTutorMa
 static void _MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 stringEntryID, u32 param2, u32 index)
 {
     {
-        Strbuf *strbuf = Strbuf_Init((40 * 2), HEAP_ID_FIELD1);
+        String *string = String_Init((40 * 2), HEAP_ID_FIELD1);
 
-        MessageLoader_GetStrbuf(moveTutorManager->messageLoader, stringEntryID, strbuf);
-        StringTemplate_Format(moveTutorManager->stringTemplate, moveTutorManager->moveNames[moveTutorManager->menuOptionsCount], strbuf);
+        MessageLoader_GetString(moveTutorManager->messageLoader, stringEntryID, string);
+        StringTemplate_Format(moveTutorManager->stringTemplate, moveTutorManager->moveNames[moveTutorManager->menuOptionsCount], string);
         moveTutorManager->movesChoices[moveTutorManager->menuOptionsCount].entry = (const void *)moveTutorManager->moveNames[moveTutorManager->menuOptionsCount];
-        Strbuf_Free(strbuf);
+        String_Free(string);
     }
 
     if (index == 0xfa) {
@@ -559,7 +559,7 @@ static void MoveTutorManager_Delete(MoveTutorManager *moveTutorManager)
     Window_Remove(&moveTutorManager->moveSelectWindow);
 
     for (int i = 0; i < NELEMS(sTeachableMoves) + 1; i++) {
-        Strbuf_Free(moveTutorManager->moveNames[i]);
+        String_Free(moveTutorManager->moveNames[i]);
     }
 
     if (moveTutorManager->freeMsgLoaderOnDelete == TRUE) {

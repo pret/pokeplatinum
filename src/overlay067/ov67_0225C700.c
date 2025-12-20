@@ -34,7 +34,7 @@
 #include "savedata.h"
 #include "screen_fade.h"
 #include "sound.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -45,8 +45,8 @@ typedef struct {
     StringTemplate *unk_00;
     MessageLoader *unk_04;
     Window unk_08;
-    Strbuf *unk_18;
-    Strbuf *unk_1C;
+    String *unk_18;
+    String *unk_1C;
     u32 unk_20;
     void *unk_24;
     u32 unk_28;
@@ -612,8 +612,8 @@ static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32
 {
     param0->unk_00 = StringTemplate_Default(heapID);
     param0->unk_04 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
-    param0->unk_18 = Strbuf_Init(256, heapID);
-    param0->unk_1C = Strbuf_Init(256, heapID);
+    param0->unk_18 = String_Init(256, heapID);
+    param0->unk_1C = String_Init(256, heapID);
     param0->unk_20 = param2;
     param0->unk_28 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
     param0->unk_2C = 0;
@@ -628,7 +628,7 @@ static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1)
     }
 
     Window_FillTilemap(&param0->unk_08, 15);
-    MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
+    MessageLoader_GetString(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
     Text_AddPrinterWithParams(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
@@ -688,8 +688,8 @@ static void ov67_0225D330(UnkStruct_ov67_0225D210 *param0)
     }
 
     Window_Remove(&param0->unk_08);
-    Strbuf_Free(param0->unk_1C);
-    Strbuf_Free(param0->unk_18);
+    String_Free(param0->unk_1C);
+    String_Free(param0->unk_18);
     MessageLoader_Free(param0->unk_04);
     StringTemplate_Free(param0->unk_00);
 }
@@ -697,7 +697,7 @@ static void ov67_0225D330(UnkStruct_ov67_0225D210 *param0)
 static void ov67_0225D37C(UnkStruct_ov67_0225D210 *param0, u32 param1)
 {
     Window_FillTilemap(&param0->unk_08, 0);
-    MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
+    MessageLoader_GetString(param0->unk_04, param1, param0->unk_1C);
     StringTemplate_Format(param0->unk_00, param0->unk_18, param0->unk_1C);
     Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, Font_CalcCenterAlignment(FONT_SYSTEM, param0->unk_18, 0, 0xB0), 0, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 14, 0), 0);
 }

@@ -22,7 +22,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
@@ -113,7 +113,7 @@ void BagUI_LoadPocketNames(BagController *controller)
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BAG_POCKET_NAMES, HEAP_ID_BAG);
 
     for (u16 i = 0; i < POCKET_MAX; i++) {
-        controller->pocketNames[i] = MessageLoader_GetNewStrbuf(msgLoader, i);
+        controller->pocketNames[i] = MessageLoader_GetNewString(msgLoader, i);
     }
 
     MessageLoader_Free(msgLoader);
@@ -122,7 +122,7 @@ void BagUI_LoadPocketNames(BagController *controller)
 void BagUI_FreePocketNames(BagController *controller)
 {
     for (u16 i = 0; i < POCKET_MAX; i++) {
-        Strbuf_Free(controller->pocketNames[i]);
+        String_Free(controller->pocketNames[i]);
     }
 }
 
@@ -134,9 +134,9 @@ void BagUI_ClearPocketNameBox(BagController *controller)
     }
 }
 
-static void PrintPocketNameCentered(BagController *controller, Strbuf *string, u16 centerY)
+static void PrintPocketNameCentered(BagController *controller, String *string, u16 centerY)
 {
-    u32 stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, string, 0);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
     Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_POCKET_NAMES], FONT_SYSTEM, string, centerY - stringWidth / 2, 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 }
 
@@ -145,8 +145,8 @@ void BagUI_PrintPocketNames(BagController *controller)
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_POCKET_NAMES], 0);
 
     BagPocketSelector *pocketSelector = &controller->pocketSelector;
-    Strbuf *currentPocketName = controller->pocketNames[controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType];
-    Strbuf *nextPocketName = controller->pocketNames[controller->bagCtx->accessiblePockets[pocketSelector->nextPocket].pocketType];
+    String *currentPocketName = controller->pocketNames[controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType];
+    String *nextPocketName = controller->pocketNames[controller->bagCtx->accessiblePockets[pocketSelector->nextPocket].pocketType];
 
     u16 curPocketNamePos;
     if (pocketSelector->nextPocketDirection == 0) {
@@ -220,17 +220,17 @@ static void BufferPocketSlotItemNamePlural(BagController *controller, u32 slotId
 
 void BagUI_PrintItemDescription(BagController *controller, u16 item)
 {
-    Strbuf *strBuf;
+    String *string;
 
     if (item != 0xffff) {
-        strBuf = Strbuf_Init(130, HEAP_ID_BAG);
-        Item_LoadDescription(strBuf, item, HEAP_ID_BAG);
+        string = String_Init(130, HEAP_ID_BAG);
+        Item_LoadDescription(string, item, HEAP_ID_BAG);
     } else {
-        strBuf = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CloseBagDescription);
+        string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_CloseBagDescription);
     }
 
-    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, strBuf, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(strBuf);
+    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, string, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    String_Free(string);
 }
 
 void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
@@ -238,69 +238,69 @@ void BagUI_PrintTMHMMoveStats(BagController *controller, u16 item)
     Window *window = &controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION];
     u16 move = Item_MoveForTMHM(item);
 
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Type);
+    String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Type);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(string);
+    String_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PP);
+    string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PP);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(string);
+    String_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Category);
+    string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Category);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(string);
+    String_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Power);
+    string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Power);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(string);
+    String_Free(string);
 
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Accuracy);
+    string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Accuracy);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 96, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
-    Strbuf_Free(string);
+    String_Free(string);
 
     u16 moveStat = MoveTable_CalcMaxPP(move, 0);
-    string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MaxPPNum);
+    string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MaxPPNum);
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 2, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
-    Strbuf_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->strBuffer, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    String_Free(string);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 48, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_POWER);
 
     if (moveStat <= 1) {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Not_Applicable);
+        string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Not_Applicable);
     } else {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PowerAccuracyNum);
+        string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PowerAccuracyNum);
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
-    Strbuf_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->strBuffer, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    String_Free(string);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     moveStat = MoveTable_LoadParam(move, MOVEATTRIBUTE_ACCURACY);
 
     if (moveStat == 0) {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Not_Applicable);
+        string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Not_Applicable);
     } else {
-        string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PowerAccuracyNum);
+        string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PowerAccuracyNum);
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 0, moveStat, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
-    Strbuf_Free(string);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->strBuffer, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    String_Free(string);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, controller->stringBuffer, 96 + 64, 32, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 }
 
 void BagUI_LoadItemCountStrings(BagController *controller)
 {
-    controller->itemCountX = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ItemCountX);
-    controller->itemCountNumberFmt = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ItemCountNum);
+    controller->itemCountX = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ItemCountX);
+    controller->itemCountNumberFmt = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ItemCountNum);
 }
 
 void BagUI_FreeItemCountStrings(BagController *controller)
 {
-    Strbuf_Free(controller->itemCountX);
-    Strbuf_Free(controller->itemCountNumberFmt);
+    String_Free(controller->itemCountX);
+    String_Free(controller->itemCountNumberFmt);
 }
 
 void BagUI_PrintItemCount(BagController *controller, u16 count, u16 yOffset, u32 color)
@@ -311,15 +311,15 @@ void BagUI_PrintItemCount(BagController *controller, u16 count, u16 yOffset, u32
         Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, controller->itemCountX, ITEM_COUNT_START_POS, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     }
 
-    Strbuf *string = Strbuf_Init(10, HEAP_ID_BAG);
+    String *string = String_Init(10, HEAP_ID_BAG);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, count, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, string, controller->itemCountNumberFmt);
 
-    u32 stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, string, 0);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
     Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, string, ITEM_COUNT_NUMBER_START_POS - stringWidth, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
-    Strbuf_Free(string);
+    String_Free(string);
 }
 
 void BagUI_PrintTMHMNumber(BagController *controller, BagItem *itemSlot, u32 yOffset)
@@ -361,11 +361,11 @@ static void DrawHMIcon(BagController *controller, u32 yOffset)
 
 void BagUI_PrintCloseBagEntry(BagController *controller, u32 yOffset)
 {
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CloseBag);
+    String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_CloseBag);
 
     Window_FillRectWithColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], 0, 0, yOffset, ITEM_LIST_WINDOW_WIDTH * TILE_WIDTH_PIXELS, TEXT_LINES(1));
     Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(string);
+    String_Free(string);
 }
 
 void BagUI_DrawRegisteredIcon(BagController *controller, u32 yOffset)
@@ -379,24 +379,24 @@ void BagUI_DrawRegisteredIcon(BagController *controller, u32 yOffset)
 
 void BagUI_LoadItemActionStrings(BagController *controller)
 {
-    controller->itemActionStrings[0] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Use);
-    controller->itemActionStrings[1] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Walk);
-    controller->itemActionStrings[2] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Check);
-    controller->itemActionStrings[3] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Plant);
-    controller->itemActionStrings[4] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Open);
-    controller->itemActionStrings[5] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Trash);
-    controller->itemActionStrings[6] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Register);
-    controller->itemActionStrings[7] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Deselect);
-    controller->itemActionStrings[8] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Give);
-    controller->itemActionStrings[9] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_CheckTag);
-    controller->itemActionStrings[10] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Confirm);
-    controller->itemActionStrings[11] = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_Cancel);
+    controller->itemActionStrings[0] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Use);
+    controller->itemActionStrings[1] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Walk);
+    controller->itemActionStrings[2] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Check);
+    controller->itemActionStrings[3] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Plant);
+    controller->itemActionStrings[4] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Open);
+    controller->itemActionStrings[5] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Trash);
+    controller->itemActionStrings[6] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Register);
+    controller->itemActionStrings[7] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Deselect);
+    controller->itemActionStrings[8] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Give);
+    controller->itemActionStrings[9] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_CheckTag);
+    controller->itemActionStrings[10] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Confirm);
+    controller->itemActionStrings[11] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Cancel);
 }
 
 void BagUI_FreeItemActionStrings(BagController *param0)
 {
     for (u16 i = 0; i < 12; i++) {
-        Strbuf_Free(param0->itemActionStrings[i]);
+        String_Free(param0->itemActionStrings[i]);
     }
 }
 
@@ -414,7 +414,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
     controller->itemActionChoices = StringList_New(numActions, HEAP_ID_BAG);
 
     for (u16 i = 0; i < numActions; i++) {
-        StringList_AddFromStrbuf(controller->itemActionChoices, controller->itemActionStrings[actions[i]], BagApplication_GetItemActionFunc(actions[i]));
+        StringList_AddFromString(controller->itemActionChoices, controller->itemActionStrings[actions[i]], BagApplication_GetItemActionFunc(actions[i]));
     }
 
     MenuTemplate menuTemplate;
@@ -443,15 +443,15 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         Window_DrawMessageBoxWithScrollCursor(&controller->windows[msgBoxWindowIdx], TRUE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
         Window_FillTilemap(&controller->windows[msgBoxWindowIdx], 15);
 
-        Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ItemIsSelected);
-        Strbuf *formatted = Strbuf_Init(28 * 2, HEAP_ID_BAG);
+        String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ItemIsSelected);
+        String *formatted = String_Init(28 * 2, HEAP_ID_BAG);
         BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
         BufferPocketSlotItemName(controller, pocket->cursorScroll + pocket->cursorPos - 1, 0);
         StringTemplate_Format(controller->strTemplate, formatted, template);
         Text_AddPrinterWithParams(&controller->windows[msgBoxWindowIdx], FONT_MESSAGE, formatted, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(formatted);
-        Strbuf_Free(template);
+        String_Free(formatted);
+        String_Free(template);
         Window_ScheduleCopyToVRAM(&controller->windows[msgBoxWindowIdx]);
     }
 
@@ -488,16 +488,16 @@ void BagUI_PrintMovingItemMsg(BagController *controller)
 {
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], 0);
 
-    Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoveItemWhere);
-    Strbuf *formatted = Strbuf_Init(130, HEAP_ID_BAG);
+    String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MoveItemWhere);
+    String *formatted = String_Init(130, HEAP_ID_BAG);
 
     BufferPocketSlotItemName(controller, controller->movedItemPos - 1, 0);
 
     StringTemplate_Format(controller->strTemplate, formatted, template);
     Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], FONT_SYSTEM, formatted, 40, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
-    Strbuf_Free(formatted);
-    Strbuf_Free(template);
+    String_Free(formatted);
+    String_Free(template);
 }
 
 void BagUI_ShowItemTrashWindows(BagController *controller)
@@ -507,8 +507,8 @@ void BagUI_ShowItemTrashWindows(BagController *controller)
     Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 1, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 15);
 
-    Strbuf *template = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ThrowAwayHowMany);
-    Strbuf *formatted = Strbuf_Init(14 * 2 * 2, HEAP_ID_BAG);
+    String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrowAwayHowMany);
+    String *formatted = String_Init(14 * 2 * 2, HEAP_ID_BAG);
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
     BufferPocketSlotItemName(controller, pocket->cursorScroll + pocket->cursorPos - 1, 0);
@@ -516,21 +516,21 @@ void BagUI_ShowItemTrashWindows(BagController *controller)
     StringTemplate_Format(controller->strTemplate, formatted, template);
     Text_AddPrinterWithParams(&controller->windows[BAG_UI_WINDOW_MSG_BOX], FONT_MESSAGE, formatted, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_MSG_BOX]);
-    Strbuf_Free(formatted);
-    Strbuf_Free(template);
+    String_Free(formatted);
+    String_Free(template);
 }
 
 void BagUI_PrintItemTrashCount(BagController *controller)
 {
     Window *window = &controller->windows[BAG_UI_WINDOW_THROW_AWAY_COUNT];
     Window_FillTilemap(window, 15);
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ThrowAwayCount);
+    String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrowAwayCount);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount, 3, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->strBuffer, 16, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, 16, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
-    Strbuf_Free(string);
+    String_Free(string);
 }
 
 void BagUI_CloseItemTrashWindows(BagController *controller)
@@ -548,7 +548,7 @@ void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
     Window_DrawMessageBoxWithScrollCursor(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], TRUE, BASE_TILE_MSG_BOX_FRAME, PLTT_12);
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
 
-    Strbuf *string = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_ThrowAwayOK);
+    String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrowAwayOK);
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
     if (controller->selectedItemCount == 1) {
@@ -558,8 +558,8 @@ void BagUI_PrintConfirmItemTrashMsg(BagController *controller)
     }
 
     StringTemplate_SetNumber(controller->strTemplate, 1, controller->selectedItemCount, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, string);
-    Strbuf_Free(string);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
+    String_Free(string);
 
     controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
 }
@@ -568,7 +568,7 @@ u8 BagUI_PrintStrBufferToWideMsgBox(BagController *interface)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
-    u8 textPrinterID = Text_AddPrinterWithParams(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, interface->strBuffer, 0, 0, Options_TextFrameDelay(interface->options), BagUITextPrinterCallback);
+    u8 textPrinterID = Text_AddPrinterWithParams(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FONT_MESSAGE, interface->stringBuffer, 0, 0, Options_TextFrameDelay(interface->options), BagUITextPrinterCallback);
 
     return textPrinterID;
 }
@@ -605,23 +605,23 @@ void BagUI_PrintSellCountAndValue(BagController *controller, u8 skipFrame)
 
     Window_FillTilemap(window, 15);
 
-    Strbuf *sellCount = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_SellNum);
+    String *sellCount = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SellNum);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->selectedItemCount, 2, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, sellCount);
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->strBuffer, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(sellCount);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, sellCount);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    String_Free(sellCount);
 
-    Strbuf *sellValue = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_SellValue);
+    String *sellValue = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SellValue);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, controller->soldItemPrice * controller->selectedItemCount, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, sellValue);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, sellValue);
 
-    u32 stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, controller->strBuffer, 0);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->stringBuffer, 0);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->strBuffer, SELL_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, SELL_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
-    Strbuf_Free(sellValue);
+    String_Free(sellValue);
 }
 
 void BagUI_PrintMoney(BagController *controller, u8 skipLabel)
@@ -632,24 +632,24 @@ void BagUI_PrintMoney(BagController *controller, u8 skipLabel)
         Window_FillTilemap(window, 15);
         Window_DrawStandardFrame(window, 1, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
 
-        Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoneyLabel);
+        String *label = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MoneyLabel);
 
         Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(label);
+        String_Free(label);
     } else {
         Window_FillRectWithColor(window, 15, 0, 16, MONEY_WINDOW_WIDTH * TILE_WIDTH_PIXELS, TEXT_LINES(1));
     }
 
-    Strbuf *amount = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_MoneyNum);
+    String *amount = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MoneyNum);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, TrainerInfo_Money(controller->trainerInfo), 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, amount);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, amount);
 
-    u32 stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, controller->strBuffer, 0);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->stringBuffer, 0);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->strBuffer, MONEY_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, TEXT_LINES(1), TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, MONEY_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, TEXT_LINES(1), TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
-    Strbuf_Free(amount);
+    String_Free(amount);
 }
 
 void BagUI_DrawPoffinCountMsgBox(BagController *controller)
@@ -658,16 +658,16 @@ void BagUI_DrawPoffinCountMsgBox(BagController *controller)
     Window_FillTilemap(window, 15);
     Window_DrawStandardFrame(window, TRUE, BASE_TILE_BAG_WINDOW_FRAME, PLTT_14);
 
-    Strbuf *label = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PoffinCountLabel);
+    String *label = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PoffinCountLabel);
     Text_AddPrinterWithParams(window, FONT_SYSTEM, label, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(label);
+    String_Free(label);
 
-    Strbuf *count = MessageLoader_GetNewStrbuf(controller->bagStringsLoader, Bag_Text_PoffinCountNum);
+    String *count = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_PoffinCountNum);
     StringTemplate_SetNumber(controller->strTemplate, 0, PoffinCase_CountFilledSlots(SaveData_GetPoffinCase(controller->bagCtx->saveData)), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(controller->strTemplate, controller->strBuffer, count);
-    Strbuf_Free(count);
+    StringTemplate_Format(controller->strTemplate, controller->stringBuffer, count);
+    String_Free(count);
 
-    u32 stringWidth = Font_CalcStrbufWidth(FONT_SYSTEM, controller->strBuffer, 0);
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->strBuffer, POFFIN_COUNT_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, controller->stringBuffer, 0);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, controller->stringBuffer, POFFIN_COUNT_WINDOW_WIDTH * TILE_WIDTH_PIXELS - stringWidth, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(window);
 }

@@ -33,7 +33,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -461,16 +461,16 @@ static void ov94_02240190(GTSApplicationState *param0)
 
 static void ov94_022401E0(GTSApplicationState *param0)
 {
-    param0->selectPokemonBoxName = Strbuf_Init(9 * 2, HEAP_ID_62);
-    param0->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
+    param0->selectPokemonBoxName = String_Init(9 * 2, HEAP_ID_62);
+    param0->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
 
     if (param0->screenArgument == SCREEN_ARGUMENT_5) {
-        param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_ChooseYourOfferPokemon);
+        param0->title = MessageLoader_GetNewString(param0->gtsMessageLoader, GTS_Text_ChooseYourOfferPokemon);
     } else if (param0->screenArgument == SCREEN_ARGUMENT_6) {
-        param0->title = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_ChooseYourListedPokemon);
+        param0->title = MessageLoader_GetNewString(param0->gtsMessageLoader, GTS_Text_ChooseYourListedPokemon);
     }
 
-    param0->unk_BA8 = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, GTS_Text_CancelPokemonSelection);
+    param0->unk_BA8 = MessageLoader_GetNewString(param0->gtsMessageLoader, GTS_Text_CancelPokemonSelection);
 
     if (param0->unk_112 == 30) {
         param0->unk_112 = 0;
@@ -482,10 +482,10 @@ static void ov94_022401E0(GTSApplicationState *param0)
 static void ov94_02240268(GTSApplicationState *param0)
 {
     Heap_Free(param0->boxCriteria);
-    Strbuf_Free(param0->selectPokemonBoxName);
-    Strbuf_Free(param0->genericMessageBuffer);
-    Strbuf_Free(param0->unk_BA8);
-    Strbuf_Free(param0->title);
+    String_Free(param0->selectPokemonBoxName);
+    String_Free(param0->genericMessageBuffer);
+    String_Free(param0->unk_BA8);
+    String_Free(param0->title);
 }
 
 static int ov94_022402A8(GTSApplicationState *param0)
@@ -998,7 +998,7 @@ static int ov94_02240D28(GTSApplicationState *param0)
 static void ov94_02240D58(GTSApplicationState *param0, int param1, int param2, int param3, u16 param4, int param5)
 {
     Window *v0;
-    Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->gtsMessageLoader, param1);
+    String *v1 = MessageLoader_GetNewString(param0->gtsMessageLoader, param1);
     StringTemplate_Format(param0->stringTemplate, param0->genericMessageBuffer, v1);
 
     if (param5 == 0) {
@@ -1012,7 +1012,7 @@ static void ov94_02240D58(GTSApplicationState *param0, int param1, int param2, i
 
     param0->textPrinter = Text_AddPrinterWithParams(v0, FONT_MESSAGE, param0->genericMessageBuffer, 0, 0, param2, NULL);
 
-    Strbuf_Free(v1);
+    String_Free(v1);
 }
 
 void *ov94_02240DD0(NARC *param0, u32 param1, NNSG2dCharacterData **param2, u32 param3)
@@ -1169,7 +1169,7 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
             }
         }
 
-        MessageLoader_GetStrbuf(appState->gtsMessageLoader, pl_msg_00000671_00089, appState->selectPokemonBoxName);
+        MessageLoader_GetString(appState->gtsMessageLoader, pl_msg_00000671_00089, appState->selectPokemonBoxName);
     }
 
     NARC_dtor(v6);

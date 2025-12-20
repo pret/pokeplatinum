@@ -28,7 +28,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -41,19 +41,19 @@
 typedef struct {
     MessageLoader *unk_00;
     StringTemplate *unk_04;
-    Strbuf *unk_08;
-    Strbuf *unk_0C;
-    Strbuf *unk_10;
-    Strbuf *unk_14;
-    Strbuf *unk_18;
-    Strbuf *unk_1C;
-    Strbuf *unk_20;
-    Strbuf *unk_24[6];
-    Strbuf *unk_3C[2];
+    String *unk_08;
+    String *unk_0C;
+    String *unk_10;
+    String *unk_14;
+    String *unk_18;
+    String *unk_1C;
+    String *unk_20;
+    String *unk_24[6];
+    String *unk_3C[2];
 } UnkStruct_ov90_021D0ECC_sub1;
 
 typedef struct {
-    Strbuf *unk_00;
+    String *unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -102,7 +102,7 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D18BC(UnkStruct_ov90_021D0ECC *param0);
-static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbuf *param2, u8 param3, u8 param4, u8 param5);
+static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, String *param2, u8 param3, u8 param4, u8 param5);
 static void ov90_021D1984(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0);
 static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0);
@@ -597,40 +597,40 @@ static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
 
     param0->unk_28.unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, param0->heapID);
     param0->unk_28.unk_04 = StringTemplate_New(2, (18 + 1) * 4, param0->heapID);
-    param0->unk_28.unk_08 = Strbuf_Init((18 + 1) * 4, param0->heapID);
+    param0->unk_28.unk_08 = String_Init((18 + 1) * 4, param0->heapID);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_28.unk_24[v0] = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 9 + v0);
+        param0->unk_28.unk_24[v0] = MessageLoader_GetNewString(param0->unk_28.unk_00, 9 + v0);
     }
 
-    param0->unk_28.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 15);
-    param0->unk_28.unk_14 = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 17);
-    param0->unk_28.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 18);
-    param0->unk_28.unk_18 = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 19);
-    param0->unk_28.unk_1C = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 20);
-    param0->unk_28.unk_20 = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 21);
-    param0->unk_28.unk_3C[0] = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 22);
-    param0->unk_28.unk_3C[1] = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 23);
+    param0->unk_28.unk_10 = MessageLoader_GetNewString(param0->unk_28.unk_00, 15);
+    param0->unk_28.unk_14 = MessageLoader_GetNewString(param0->unk_28.unk_00, 17);
+    param0->unk_28.unk_0C = MessageLoader_GetNewString(param0->unk_28.unk_00, 18);
+    param0->unk_28.unk_18 = MessageLoader_GetNewString(param0->unk_28.unk_00, 19);
+    param0->unk_28.unk_1C = MessageLoader_GetNewString(param0->unk_28.unk_00, 20);
+    param0->unk_28.unk_20 = MessageLoader_GetNewString(param0->unk_28.unk_00, 21);
+    param0->unk_28.unk_3C[0] = MessageLoader_GetNewString(param0->unk_28.unk_00, 22);
+    param0->unk_28.unk_3C[1] = MessageLoader_GetNewString(param0->unk_28.unk_00, 23);
 }
 
 static void ov90_021D146C(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0 = 0;
 
-    Strbuf_Free(param0->unk_28.unk_3C[1]);
-    Strbuf_Free(param0->unk_28.unk_3C[0]);
-    Strbuf_Free(param0->unk_28.unk_20);
-    Strbuf_Free(param0->unk_28.unk_1C);
-    Strbuf_Free(param0->unk_28.unk_18);
-    Strbuf_Free(param0->unk_28.unk_0C);
-    Strbuf_Free(param0->unk_28.unk_14);
-    Strbuf_Free(param0->unk_28.unk_10);
+    String_Free(param0->unk_28.unk_3C[1]);
+    String_Free(param0->unk_28.unk_3C[0]);
+    String_Free(param0->unk_28.unk_20);
+    String_Free(param0->unk_28.unk_1C);
+    String_Free(param0->unk_28.unk_18);
+    String_Free(param0->unk_28.unk_0C);
+    String_Free(param0->unk_28.unk_14);
+    String_Free(param0->unk_28.unk_10);
 
     for (v0 = 0; v0 < 6; v0++) {
-        Strbuf_Free(param0->unk_28.unk_24[v0]);
+        String_Free(param0->unk_28.unk_24[v0]);
     }
 
-    Strbuf_Free(param0->unk_28.unk_08);
+    String_Free(param0->unk_28.unk_08);
     StringTemplate_Free(param0->unk_28.unk_04);
     MessageLoader_Free(param0->unk_28.unk_00);
 }
@@ -648,7 +648,7 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v2, 4, 1, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[4]);
 
-    v3 = 21 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0) - 4;
+    v3 = 21 * 8 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0) - 4;
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28.unk_08, v3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     param4 += 24;
@@ -656,7 +656,7 @@ static void ov90_021D14C8(UnkStruct_ov90_021D0ECC *param0, Window *param1, u8 pa
     StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v1, 4, 1, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[4]);
 
-    v3 = 21 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0) - 4;
+    v3 = 21 * 8 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0) - 4;
     Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28.unk_08, v3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(param1);
 }
@@ -666,15 +666,15 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
     int v0;
     u16 v1, v2;
 
-    MessageLoader_GetStrbuf(param0->unk_28.unk_00, 0 + param0->unk_0A, param0->unk_28.unk_08);
+    MessageLoader_GetString(param0->unk_28.unk_00, 0 + param0->unk_0A, param0->unk_28.unk_08);
 
-    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
+    v0 = Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
     v0 = (24 * 8) - v0;
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[0], FONT_SYSTEM, param0->unk_28.unk_08, v0 / 2, 8, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
-    MessageLoader_GetStrbuf(param0->unk_28.unk_00, 3 + param0->unk_0A, param0->unk_28.unk_08);
+    MessageLoader_GetString(param0->unk_28.unk_00, 3 + param0->unk_0A, param0->unk_28.unk_08);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[1], FONT_SYSTEM, param0->unk_28.unk_08, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
-    MessageLoader_GetStrbuf(param0->unk_28.unk_00, 6 + param0->unk_0A, param0->unk_28.unk_08);
+    MessageLoader_GetString(param0->unk_28.unk_00, 6 + param0->unk_0A, param0->unk_28.unk_08);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, param0->unk_28.unk_08, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
 
     switch (param0->unk_0A) {
@@ -687,12 +687,12 @@ static void ov90_021D15D0(UnkStruct_ov90_021D0ECC *param0)
         ov90_021D14C8(param0, &param0->unk_6C[4], 3, 6, 3);
         break;
     case 2:
-        MessageLoader_GetStrbuf(param0->unk_28.unk_00, 12, param0->unk_28.unk_08);
+        MessageLoader_GetString(param0->unk_28.unk_00, 12, param0->unk_28.unk_08);
         Text_AddPrinterWithParamsAndColor(&param0->unk_6C[3], FONT_SYSTEM, param0->unk_28.unk_08, 4, 10, TEXT_SPEED_INSTANT, TEXT_COLOR(3, 4, 0), NULL);
         StringTemplate_SetNumber(param0->unk_28.unk_04, 0, sub_0202D2C0(param0->unk_20, 0), 2, 0, 1);
         StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[5]);
 
-        v0 = 64 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
+        v0 = 64 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
         v0 = v0 / 2 + 64;
 
         Text_AddPrinterWithParamsAndColor(&param0->unk_6C[3], FONT_SYSTEM, param0->unk_28.unk_08, v0, 10, TEXT_SPEED_INSTANT, TEXT_COLOR(5, 6, 0), NULL);
@@ -718,12 +718,12 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
 
         MI_CpuCopy8(v1[v0].unk_18, &v2->unk_08, 8);
 
-        v2->unk_00 = Strbuf_Init(8, param0->heapID);
+        v2->unk_00 = String_Init(8, param0->heapID);
 
         if (v2->unk_07) {
-            Strbuf_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
+            String_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
         } else {
-            Strbuf_CopyChars(v2->unk_00, v1[v0].unk_00);
+            String_CopyChars(v2->unk_00, v1[v0].unk_00);
         }
     }
 
@@ -735,11 +735,11 @@ static void ov90_021D17DC(UnkStruct_ov90_021D0ECC *param0)
     int v0 = 0;
 
     for (v0 = 0; v0 < 30; v0++) {
-        Strbuf_Free(param0->unk_BC[v0].unk_00);
+        String_Free(param0->unk_BC[v0].unk_00);
     }
 }
 
-static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbuf *param2, u8 param3, u8 param4, u8 param5)
+static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, String *param2, u8 param3, u8 param4, u8 param5)
 {
     UnkStruct_ov90_021D17F8 *v0;
     int v1, v2, v3, v4, v5;
@@ -749,7 +749,7 @@ static void ov90_021D17F8(UnkStruct_ov90_021D17F8 *param0, Window *param1, Strbu
 
     if (param3 >= (10 - 2)) {
         v4 = 2;
-        v5 = (40 - Font_CalcStrbufWidth(FONT_SYSTEM, param2, 0)) / 2;
+        v5 = (40 - Font_CalcStringWidth(FONT_SYSTEM, param2, 0)) / 2;
         Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param2, 2 * 72 + 16 + v5, 2 * 24 + 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     } else {
         v4 = 3;
@@ -780,16 +780,16 @@ static void ov90_021D18BC(UnkStruct_ov90_021D0ECC *param0)
     int v1;
 
     sub_0202D708(param0->unk_24, &v0);
-    Strbuf_Clear(param0->unk_28.unk_08);
+    String_Clear(param0->unk_28.unk_08);
     StringTemplate_SetNumber(param0->unk_28.unk_04, 0, v0.unk_00, 2, 0, 1);
     StringTemplate_SetNumber(param0->unk_28.unk_04, 1, v0.unk_04, 3, 2, 1);
     StringTemplate_Format(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_10);
 
-    v1 = 24 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
+    v1 = 24 * 8 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[0], FONT_SYSTEM, param0->unk_28.unk_08, v1 / 2, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 2, 0), NULL);
-    MessageLoader_GetStrbuf(param0->unk_28.unk_00, 16 + param0->unk_0A, param0->unk_28.unk_08);
+    MessageLoader_GetString(param0->unk_28.unk_00, 16 + param0->unk_0A, param0->unk_28.unk_08);
 
-    v1 = 24 * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
+    v1 = 24 * 8 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28.unk_08, 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[0], FONT_SYSTEM, param0->unk_28.unk_08, v1 / 2, 20, TEXT_SPEED_INSTANT, TEXT_COLOR(15, 2, 0), NULL);
     ov90_021D17F8(param0->unk_BC, &param0->unk_6C[1], param0->unk_28.unk_0C, 0, 0, 0);
 }
@@ -819,14 +819,14 @@ static void ov90_021D1984(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
 {
-    Strbuf *v0;
+    String *v0;
     UnkStruct_ov90_021D17F8 *v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
     v0 = sub_02014B34(&v1->unk_08, param0->heapID);
 
     Window_FillTilemap(&param0->unk_6C[2], (0 << 4) | 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0)

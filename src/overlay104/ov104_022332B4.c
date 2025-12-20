@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "party.h"
 #include "pokemon.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -236,7 +236,7 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
 {
     int v0[18];
     UnkStruct_ov104_0223C4CC *v1;
-    Strbuf *v2;
+    String *v2;
     Pokemon *v3;
     UnkStruct_ov104_0223ADA0 *v4;
     u8 v5, v6;
@@ -505,7 +505,7 @@ BOOL ov104_0223397C(UnkStruct_ov104_0222E930 *param0)
         return 0;
     }
 
-    v0 = v1->unk_34[v3].unk_00.unk_18;
+    v0 = v1->unk_34[v3].trDataDTO.unk_18;
 
     ov104_022330FC(param0, v0);
     return 1;

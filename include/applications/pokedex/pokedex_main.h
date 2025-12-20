@@ -18,7 +18,7 @@
 #include "overlay_manager.h"
 #include "pokedex_memory.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 
@@ -94,6 +94,6 @@ u32 PokedexMain_DisplayDeoxysSprite(PokedexGraphicData *pokedexGraphicData, cons
 u32 PokedexMain_DisplayShayminSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
 u32 PokedexMain_DisplayGiratinaSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
 u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int param3, int param4, int formIndex, int param6);
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID);
+String *PokedexMain_GetMessage(int entryID, enum HeapID heapID);
 
 #endif // POKEPLATINUM_POKEDEX_MAIN_H

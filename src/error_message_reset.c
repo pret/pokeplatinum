@@ -18,7 +18,7 @@
 #include "message.h"
 #include "render_window.h"
 #include "screen_fade.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "unk_020366A0.h"
@@ -86,7 +86,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     BgConfig *bgConfig;
     Window window;
     MessageLoader *errorMsgData;
-    Strbuf *errorString;
+    String *errorString;
     int v4;
     int heapID = HEAP_ID_SYSTEM;
 
@@ -139,16 +139,16 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     errorMsgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, heapID);
-    errorString = Strbuf_Init(0x180, heapID);
+    errorString = String_Init(0x180, heapID);
 
     Text_ResetAllPrinters();
 
     Window_AddFromTemplate(bgConfig, &window, &sErrorMessageWindowTemplate);
     Window_FillRectWithColor(&window, 15, 0, 0, 26 * 8, 18 * 8);
     Window_DrawStandardFrame(&window, 0, 512 - 9, 2);
-    MessageLoader_GetStrbuf(errorMsgData, v4, errorString);
+    MessageLoader_GetString(errorMsgData, v4, errorString);
     Text_AddPrinterWithParams(&window, FONT_SYSTEM, errorString, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    Strbuf_Free(errorString);
+    String_Free(errorString);
 
     GXLayers_TurnBothDispOn();
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);

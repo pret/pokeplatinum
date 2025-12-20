@@ -40,7 +40,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -184,9 +184,9 @@ struct UnkStruct_ov108_02241DB0_t {
     u8 unk_64;
     MessageLoader *unk_68;
     StringTemplate *unk_6C;
-    Strbuf *unk_70;
-    Strbuf *unk_74;
-    Strbuf *unk_78[2];
+    String *unk_70;
+    String *unk_74;
+    String *unk_78[2];
     u16 unk_80[8];
     BgConfig *unk_90;
     Window unk_94[2];
@@ -768,11 +768,11 @@ static void ov108_02242238(UnkStruct_ov108_02241DB0 *param0)
 
     MessageLoader_Free(param0->unk_68);
     StringTemplate_Free(param0->unk_6C);
-    Strbuf_Free(param0->unk_70);
-    Strbuf_Free(param0->unk_74);
+    String_Free(param0->unk_70);
+    String_Free(param0->unk_74);
 
     for (v1 = 0; v1 < 2; v1++) {
-        Strbuf_Free(param0->unk_78[v1]);
+        String_Free(param0->unk_78[v1]);
     }
 
     ov108_02243660(param0->unk_94);
@@ -811,11 +811,11 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
 
     param0->unk_68 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_DUMMY_0536, HEAP_ID_103);
     param0->unk_6C = StringTemplate_Default(HEAP_ID_103);
-    param0->unk_70 = Strbuf_Init(600, HEAP_ID_103);
-    param0->unk_74 = Strbuf_Init(600, HEAP_ID_103);
+    param0->unk_70 = String_Init(600, HEAP_ID_103);
+    param0->unk_74 = String_Init(600, HEAP_ID_103);
 
     for (v5 = 0; v5 < 2; v5++) {
-        param0->unk_78[v5] = Strbuf_Init(32, HEAP_ID_103);
+        param0->unk_78[v5] = String_Init(32, HEAP_ID_103);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_103);

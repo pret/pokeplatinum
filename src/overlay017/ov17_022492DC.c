@@ -18,7 +18,7 @@
 #include "message.h"
 #include "palette.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -139,7 +139,7 @@ static void ov17_0224A038(SysTask *param0, void *param1);
 static void ov17_0224A088(SysTask *param0, void *param1);
 static void ov17_0224A0C8(SysTask *param0, void *param1);
 static void ov17_022498F4(UnkStruct_ov17_022492DC *param0);
-static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249BC4 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
+static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249BC4 *param1, const String *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
 static void ov17_02249CD0(UnkStruct_ov17_022492DC *param0);
 static void ov17_02249CFC(UnkStruct_ov17_022492DC *param0, int param1);
 static void ov17_02249828(UnkStruct_ov17_022492DC *param0);
@@ -512,19 +512,19 @@ static void ov17_0224981C(UnkStruct_ov17_022492DC *param0, int param1, int param
 
 static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
 {
-    Strbuf *v0, *v1;
+    String *v0, *v1;
     u32 v2, v3;
     MessageLoader *v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_23);
     v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
     v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
-    v0 = MessageLoader_GetNewStrbuf(v4, v2);
-    v1 = MessageLoader_GetNewStrbuf(v4, v3);
+    v0 = MessageLoader_GetNewString(v4, v2);
+    v1 = MessageLoader_GetNewString(v4, v3);
 
     ov17_02249BC4(param0, &param0->unk_1C[0], v0, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, 8 * 0x10 - 1, 1);
     ov17_02249BC4(param0, &param0->unk_1C[1], v1, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 33003, 128, 8 * 0x14 - 1, 1);
 
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
+    String_Free(v0);
+    String_Free(v1);
     MessageLoader_Free(v4);
 }
 
@@ -535,28 +535,28 @@ static void ov17_022498E8(UnkStruct_ov17_022492DC *param0, int param1, int param
 
 static void ov17_022498F4(UnkStruct_ov17_022492DC *param0)
 {
-    Strbuf *v0, *v1, *v2, *v3;
+    String *v0, *v1, *v2, *v3;
     MessageLoader *v4 = param0->unk_04->unk_84;
 
     if (param0->unk_04->unk_A14[param0->unk_04->unk_00->unk_113] == 1) {
-        v0 = MessageLoader_GetNewStrbuf(v4, 0);
+        v0 = MessageLoader_GetNewString(v4, 0);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(v4, 1);
+        v0 = MessageLoader_GetNewString(v4, 1);
     }
 
-    v1 = MessageLoader_GetNewStrbuf(v4, 2);
-    v2 = MessageLoader_GetNewStrbuf(v4, 3);
-    v3 = MessageLoader_GetNewStrbuf(v4, 4);
+    v1 = MessageLoader_GetNewString(v4, 2);
+    v2 = MessageLoader_GetNewString(v4, 3);
+    v3 = MessageLoader_GetNewString(v4, 4);
 
     ov17_02249BC4(param0, &param0->unk_1C[2], v0, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 128, 24, 1);
     ov17_02249BC4(param0, &param0->unk_1C[3], v1, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 128, 120, 1);
     ov17_02249BC4(param0, &param0->unk_1C[4], v2, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 48, 64, 1);
     ov17_02249BC4(param0, &param0->unk_1C[5], v3, FONT_SUBSCREEN, TEXT_COLOR(1, 1, 0xb), 0, 33003, 208, 64, 1);
 
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v0);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
 }
 
 static int ov17_02249A0C(UnkStruct_ov17_022492DC *param0, int param1)
@@ -653,7 +653,7 @@ static void ov17_02249B54(UnkStruct_ov17_02249B30 *param0)
     }
 }
 
-static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249BC4 *param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
+static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249BC4 *param1, const String *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -670,7 +670,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     v6 = param0->unk_04->unk_5C;
 
     {
-        v7 = Font_CalcStrbufWidth(param3, param2, 0);
+        v7 = Font_CalcStringWidth(param3, param2, 0);
         v8 = v7 / 8;
 
         if (FX_ModS32(v7, 8) != 0) {

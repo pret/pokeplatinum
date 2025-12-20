@@ -78,7 +78,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -197,7 +197,7 @@ static BOOL ov104_02230E20(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230EB8(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230ED8(UnkStruct_ov104_0222E930 *param0);
-static Strbuf *ov104_02230E90(u16 param0, u32 heapID);
+static String *ov104_02230E90(u16 param0, u32 heapID);
 static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F6C(UnkStruct_ov104_0222E930 *param0);
@@ -1815,18 +1815,18 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
     u16 v1 = ov104_0222FC00(param0);
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    Strbuf *v4 = ov104_02230E90(v1, HEAP_ID_FIELD2);
+    String *v4 = ov104_02230E90(v1, HEAP_ID_FIELD2);
 
-    StringTemplate_SetStrbuf(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
-    Strbuf_Free(v4);
+    StringTemplate_SetString(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
+    String_Free(v4);
 
     return 0;
 }
 
-static Strbuf *ov104_02230E90(u16 param0, u32 heapID)
+static String *ov104_02230E90(u16 param0, u32 heapID)
 {
     MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
-    Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    String *v1 = MessageLoader_GetNewString(v0, param0);
 
     MessageLoader_Free(v0);
     return v1;

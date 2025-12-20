@@ -16,6 +16,8 @@
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawBackground(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
@@ -99,8 +101,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     const TrainerCounterData *chainData = PoketchTask_GetConstTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 122, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 121, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, trainer_counter_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, trainer_counter_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     SetupSprites(graphics, chainData);
@@ -307,10 +309,10 @@ static void SetupSprites(TrainerCounterGraphics *graphics, const TrainerCounterD
         },
     };
 
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->monData, NARC_INDEX_GRAPHIC__POKETCH, 5, 6, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->digitData, NARC_INDEX_GRAPHIC__POKETCH, 123, 124, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->monData, NARC_INDEX_GRAPHIC__POKETCH, poke_icon_cell_NCER_lz, poke_icon_anim_NANR_lz, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->digitData, NARC_INDEX_GRAPHIC__POKETCH, trainer_counter_cell_NCER_lz, trainer_counter_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
-    u32 digitTileCount = Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 125, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    u32 digitTileCount = Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, trainer_counter_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     digitTileCount /= TILE_SIZE_4BPP;
     graphics->monIconTileOffset = digitTileCount;
 

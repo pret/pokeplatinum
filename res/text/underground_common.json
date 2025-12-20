@@ -13,7 +13,7 @@
       "garbage": 16
     },
     {
-      "id": "pl_msg_00000634_00002",
+      "id": "UndergroundCommon_Text_PersonSeemsOccupied",
       "en_US": [
         "...\n",
         "This person seems to be occupied."
@@ -391,7 +391,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00067",
+      "id": "UndergroundCommon_Text_TakeFlagPrompt",
       "en_US": [
         "This appears to be {STRVAR_1 3, 0, 0}’s\n",
         "Secret Base.\r",
@@ -421,7 +421,7 @@
       "en_US": "Helped out {STRVAR_1 3, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000634_00072",
+      "id": "UndergroundCommon_Text_ImDiggingRightNow",
       "en_US": [
         "I’m digging for Treasure right now.\n",
         "Want to dig with me?\r",
