@@ -144,10 +144,10 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
             tradeData->unk_18 = SpriteList_InitRendering(64, &tradeData->unk_1C, HEAP_ID_57);
             SetSubScreenViewRect(&(tradeData->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
-            tradeData->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_SPECIES, NULL);
-            tradeData->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_FORM, NULL);
-            tradeData->unk_1B4 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_SPECIES, NULL);
-            tradeData->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_FORM, NULL);
+            tradeData->unk_1B0 = BoxPokemon_GetData((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_SPECIES, NULL);
+            tradeData->unk_1B2 = BoxPokemon_GetData((BoxPokemon *)(tradeData->animationConfig->sendingPokemon), MON_DATA_FORM, NULL);
+            tradeData->unk_1B4 = BoxPokemon_GetData((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_SPECIES, NULL);
+            tradeData->unk_1B6 = BoxPokemon_GetData((BoxPokemon *)(tradeData->animationConfig->receivingPokemon), MON_DATA_FORM, NULL);
             tradeData->unk_1B8 = NULL;
 
             SetVBlankCallback(NULL, NULL);
@@ -170,8 +170,8 @@ int TradeSequence_Init(ApplicationManager *appMan, int *param1)
 
 static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon)
 {
-    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    int form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
     return SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
 }
@@ -544,8 +544,8 @@ void ov95_022473E8(TradeSequenceData *param0, int param1, u32 param2, u32 param3
 
         BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
-        personality = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
-        species = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+        personality = BoxPokemon_GetData(v5, MON_DATA_PERSONALITY, NULL);
+        species = BoxPokemon_GetData(v5, MON_DATA_SPECIES, NULL);
 
         if (param4) {
             v4.width *= 2;

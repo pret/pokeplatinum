@@ -7817,9 +7817,9 @@ static u32 SaveData_GetRotomFormsInSave(SaveData *saveData)
         DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, i);
         boxMon = DaycareMon_GetBoxMon(daycareMon);
 
-        if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM)
-            && (!BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL))) {
-            rotomForms |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+        if ((BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM)
+            && (!BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL))) {
+            rotomForms |= 1 << BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
         }
     }
 
@@ -7829,9 +7829,9 @@ static u32 SaveData_GetRotomFormsInSave(SaveData *saveData)
         for (i = 0; i < MAX_MONS_PER_BOX; i++) {
             boxMon = PCBoxes_GetBoxMonAt(pcBoxes, boxID, i);
 
-            if ((BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM)
-                && (!BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL))) {
-                rotomForms |= 1 << BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+            if ((BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM)
+                && (!BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL))) {
+                rotomForms |= 1 << BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
             }
         }
     }

@@ -1221,7 +1221,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
     case MON_ITEM_MENU_SELECTED:
         switch (boxAppMan->menuItem) {
         case BOX_MENU_GIVE:
-            if (BoxApp_GetCursorItem(&boxAppMan->boxApp) == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+            if (BoxApp_GetCursorItem(&boxAppMan->boxApp) == ITEM_GRISEOUS_ORB && BoxPokemon_GetData(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 StringTemplate_SetItemName(boxAppMan->MessageVariableBuffer, 0, ITEM_GRISEOUS_ORB);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_MonCantHoldItem);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -1261,7 +1261,7 @@ static void BoxAppMan_MonItemMenuAction(BoxApplicationManager *boxAppMan, u32 *s
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_CantTakeMail);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
                 *state = MON_ITEM_MENU_CONFIRM_MESSAGE;
-            } else if (boxAppMan->boxApp.cursorItem == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+            } else if (boxAppMan->boxApp.cursorItem == ITEM_GRISEOUS_ORB && BoxPokemon_GetData(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 StringTemplate_SetItemName(boxAppMan->MessageVariableBuffer, ITEM_NONE, ITEM_GRISEOUS_ORB);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_MonCantHoldItem);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -1726,7 +1726,7 @@ static BOOL BoxApp_IsBoxUnderSelectedMonsEmpty(const BoxApplication *boxApp)
         posInBox = selectionTopLeftPos + (selection->selectedMonsOrigBoxPos[i] - origSelectionTopLeftPos);
         boxMon = PCBoxes_GetBoxMonAt(boxApp->pcBoxes, USE_CURRENT_BOX, posInBox);
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
             return FALSE;
         }
     }
@@ -2367,7 +2367,7 @@ static void CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releaseMonP
         for (monIndex = releaseMon->monPosInBox; monIndex < v4; monIndex++) {
             boxMon = PCBoxes_GetBoxMonAt(releaseMon->pcBoxes, releaseMon->boxID, monIndex);
 
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
                 for (i = 0; i < NUM_RELEASE_BLOCKING_MOVES; i++) {
                     if (BoxPokemon_HasMove(boxMon, sReleaseBlockingMoves[i])) {
                         releaseMon->monsWithReleaseBlockingMoveCount[i]++;
@@ -2422,9 +2422,9 @@ static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
     BOOL hasMove = FALSE;
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE) {
         for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
                 hasMove = TRUE;
                 break;
             }
@@ -2601,7 +2601,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
             Heap_Free(boxAppMan->bagAppArgs);
             Overlay_UnloadByID(FS_OVERLAY_ID(bag));
 
-            if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+            if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetData(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 (void)0;
             } else if (item != ITEM_NONE) {
                 Bag_TryRemoveItem(SaveData_GetBag(boxAppMan->saveData), item, 1, HEAP_ID_BOX_DATA);
@@ -2625,7 +2625,7 @@ static void BoxAppMan_GiveItemFromBagAction(BoxApplicationManager *boxAppMan, u3
         if (BoxGraphics_IsSysTaskDone(boxAppMan->unk_114, FUNC_BoxGraphics_ScreenFadeBothToBlack1)) {
             if (item == ITEM_NONE) {
                 BoxAppMan_ClearBoxApplicationAction(boxAppMan);
-            } else if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+            } else if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetData(boxAppMan->boxApp.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
                 StringTemplate_SetItemName(boxAppMan->MessageVariableBuffer, 0, item);
                 BoxApp_SetBoxMessage(&boxAppMan->boxApp, BoxText_MonCantHoldItem);
                 BoxGraphics_TaskHandler(boxAppMan->unk_114, FUNC_BoxGraphics_DisplayBoxMessage);
@@ -3798,7 +3798,7 @@ static BOOL BoxAppMan_TryPreviewCursorMon(BoxApplicationManager *boxAppMan)
     }
 
     if (cursor->mon) {
-        if (BoxPokemon_GetValue(cursor->mon, MON_DATA_SPECIES_EXISTS, NULL)) {
+        if (BoxPokemon_GetData(cursor->mon, MON_DATA_SPECIES_EXISTS, NULL)) {
             cursor->isMonUnderCursor = TRUE;
 
             if (!(BoxApp_GetPreviewMonSource(boxApp) & PREVIEW_MON_HELD)) {
@@ -3901,7 +3901,7 @@ static void BoxAppMan_PickUpMultiSelectedMons(BoxApplicationManager *boxAppMan, 
         for (col = selectionLeftCol; col <= selectionRightCol; col++) {
             boxMon = PCBoxes_GetBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, monPosInBox);
 
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
                 MI_CpuCopy32(boxMon, cursorMonBuffer, boxMonSize);
                 PCBoxes_InitBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, monPosInBox);
                 cursorMonBuffer += boxMonSize;
@@ -3949,11 +3949,11 @@ static void BoxAppMan_PutDownCursorMon(BoxApplicationManager *boxAppMan, BoxAppl
     BOOL shayminIsSkyForm = FALSE;
 
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX) {
-        int monForm = BoxPokemon_GetValue(selection->boxMon, MON_DATA_FORM, NULL);
+        int monForm = BoxPokemon_GetData(selection->boxMon, MON_DATA_FORM, NULL);
         PCBoxes_TryStoreBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, cursor->posInBox, selection->boxMon);
         boxMon = PCBoxes_GetBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, cursor->posInBox);
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN && monForm == SHAYMIN_FORM_SKY) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN && monForm == SHAYMIN_FORM_SKY) {
             shayminIsSkyForm = TRUE;
         }
     } else {
@@ -4100,23 +4100,23 @@ static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *box
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
     preview->mon = boxMon;
-    preview->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    preview->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    preview->species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    preview->heldItem = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
     preview->dexNum = GetDexNumber(SaveData_GetDexMode(boxAppMan->saveData), preview->species);
-    preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL);
+    preview->isEgg = BoxPokemon_GetData(boxMon, MON_DATA_SANITY_IS_EGG, NULL);
     SpeciesData *speciesData = SpeciesData_FromMonSpecies(preview->species, HEAP_ID_BOX_DATA);
-    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXPERIENCE, NULL));
-    preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
-    preview->type1 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
-    preview->type2 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_2, NULL);
+    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL));
+    preview->markings = BoxPokemon_GetData(boxMon, MON_DATA_MARKINGS, NULL);
+    preview->type1 = BoxPokemon_GetData(boxMon, MON_DATA_TYPE_1, NULL);
+    preview->type2 = BoxPokemon_GetData(boxMon, MON_DATA_TYPE_2, NULL);
 
-    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NO_PRINT_GENDER, NULL)) {
-        preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL));
+    if ((preview->isEgg == FALSE) && BoxPokemon_GetData(boxMon, MON_DATA_NO_PRINT_GENDER, NULL)) {
+        preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL));
     } else {
         preview->gender = PREVIEW_GENDER_INVALID;
     }
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, preview->nickname);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRING, preview->nickname);
 
     if (preview->isEgg == FALSE) {
         MessageLoader_GetString(boxAppMan->speciesNameLoader, preview->species, preview->speciesName);
@@ -4134,7 +4134,7 @@ static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *box
     u32 value = BoxPokemon_GetNature(boxMon);
     MessageLoader_GetString(boxAppMan->natureNameLoader, value, preview->nature);
 
-    value = BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY, NULL);
+    value = BoxPokemon_GetData(boxMon, MON_DATA_ABILITY, NULL);
     MessageLoader_GetString(boxAppMan->abilityNameLoader, value, preview->ability);
 
     SpeciesData_Free(speciesData);
@@ -4237,15 +4237,15 @@ static void BoxApp_GiveItemToSelectedMon(BoxApplication *boxApp, u16 item, BoxAp
 
     BoxPokemon_SetData(preview->mon, MON_DATA_HELD_ITEM, &item);
 
-    int species = BoxPokemon_GetValue(preview->mon, MON_DATA_SPECIES, NULL);
+    int species = BoxPokemon_GetData(preview->mon, MON_DATA_SPECIES, NULL);
 
     if (species == SPECIES_ARCEUS) {
         BoxPokemon_SetArceusForm(preview->mon);
-        preview->type1 = BoxPokemon_GetValue(preview->mon, MON_DATA_TYPE_1, NULL);
-        preview->type2 = BoxPokemon_GetValue(preview->mon, MON_DATA_TYPE_2, NULL);
+        preview->type1 = BoxPokemon_GetData(preview->mon, MON_DATA_TYPE_1, NULL);
+        preview->type2 = BoxPokemon_GetData(preview->mon, MON_DATA_TYPE_2, NULL);
     } else if (species == SPECIES_GIRATINA) {
         BoxPokemon_SetGiratinaForm(preview->mon);
-        int ability = BoxPokemon_GetValue(preview->mon, MON_DATA_ABILITY, NULL);
+        int ability = BoxPokemon_GetData(preview->mon, MON_DATA_ABILITY, NULL);
         MessageLoader_GetString(boxAppMan->abilityNameLoader, ability, preview->ability);
     }
 }
@@ -4616,13 +4616,13 @@ static u32 BoxApp_GetPreviewedMonValue(BoxApplication *boxApp, enum PokemonDataP
 {
     if (BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_UNDER_CURSOR) {
         if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX) {
-            return BoxPokemon_GetValue(boxApp->pcMonPreview.mon, value, dest);
+            return BoxPokemon_GetData(boxApp->pcMonPreview.mon, value, dest);
         }
     } else {
         BoxMonSelection *selection = &boxApp->selection;
 
         if (selection->cursorMonIsPartyMon == FALSE) {
-            return BoxPokemon_GetValue(boxApp->pcMonPreview.mon, value, dest);
+            return BoxPokemon_GetData(boxApp->pcMonPreview.mon, value, dest);
         }
     }
 
@@ -4632,7 +4632,7 @@ static u32 BoxApp_GetPreviewedMonValue(BoxApplication *boxApp, enum PokemonDataP
 static u32 BoxApp_GetPreviewedOrSelectedMonValue(BoxApplication *boxApp, enum PokemonDataParam value, void *dest)
 {
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX) {
-        return BoxPokemon_GetValue(boxApp->pcMonPreview.mon, value, dest);
+        return BoxPokemon_GetData(boxApp->pcMonPreview.mon, value, dest);
     } else {
         return Pokemon_GetData(boxApp->cursor.mon, value, dest);
     }

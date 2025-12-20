@@ -1604,8 +1604,8 @@ static s8 TryAdvanceBoxMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
         boxMon = (BoxPokemon *)(summaryScreen->data->monData + BoxPokemon_GetStructSize() * monIndex);
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
-            && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE || CanAdvanceToEgg(summaryScreen) == TRUE)) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+            && (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE || CanAdvanceToEgg(summaryScreen) == TRUE)) {
             break;
         }
     }

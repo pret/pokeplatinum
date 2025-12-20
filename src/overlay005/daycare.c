@@ -60,7 +60,7 @@ u8 Daycare_CountMons(Daycare *daycare)
     for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         boxMon = DaycareMon_GetBoxMon(Daycare_GetDaycareMon(daycare, i));
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
             count++;
         }
     }
@@ -78,7 +78,7 @@ static int Daycare_FindFirstEmptySlot(Daycare *daycare)
     for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         boxMon = DaycareMon_GetBoxMon(Daycare_GetDaycareMon(daycare, i));
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
             return i;
         }
     }
@@ -88,7 +88,7 @@ static int Daycare_FindFirstEmptySlot(Daycare *daycare)
 
 static int BoxPokemon_HoldsMail(BoxPokemon *boxMon)
 {
-    int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    int item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
     return Item_IsMail(item);
 }
 
@@ -136,8 +136,8 @@ static void Daycare_ShiftMonSlots(Daycare *daycare)
     BoxPokemon *boxMon1 = DaycareMon_GetBoxMon(daycareMon1);
     BoxPokemon *boxMon2 = DaycareMon_GetBoxMon(daycareMon2);
 
-    if (BoxPokemon_GetValue(boxMon1, MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
-        if (BoxPokemon_GetValue(boxMon2, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+    if (BoxPokemon_GetData(boxMon1, MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
+        if (BoxPokemon_GetData(boxMon2, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
             DaycareMon_CopyToDaycareMon(daycareMon1, daycareMon2);
             DaycareMon_Init(daycareMon2);
         }
@@ -176,7 +176,7 @@ static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMo
     u16 species;
 
     StringTemplate_SetNickname(template, 0, boxMon);
-    species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     Pokemon_FromBoxPokemon(boxMon, mon);
 
     if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
@@ -218,7 +218,7 @@ int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 
     BoxPokemon_Copy(boxMon, boxMonRef);
 
-    exp = BoxPokemon_GetValue(boxMonRef, MON_DATA_EXPERIENCE, NULL);
+    exp = BoxPokemon_GetData(boxMonRef, MON_DATA_EXPERIENCE, NULL);
     exp += givenExp;
 
     BoxPokemon_SetData(boxMonRef, MON_DATA_EXPERIENCE, (u8 *)&exp);
@@ -286,7 +286,7 @@ u8 Daycare_BufferGainedLevelsInSlot(Daycare *daycare, int slot, StringTemplate *
     DaycareMon *daycareMon = Daycare_GetDaycareMon(daycare, slot);
     BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
         return DaycareMon_BufferGainedLevels(daycareMon, template);
     }
 
@@ -316,7 +316,7 @@ static int Daycare_GetParentToInheritNature(Daycare *daycare)
 
     // search for ditto
     for (dittoCount = 0, i = 0; i < NUM_DAYCARE_MONS; i++) {
-        if ((species[i] = BoxPokemon_GetValue(boxMon[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
+        if ((species[i] = BoxPokemon_GetData(boxMon[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
             dittoCount++;
             slot = i;
         }
@@ -332,7 +332,7 @@ static int Daycare_GetParentToInheritNature(Daycare *daycare)
     }
 
     // Don't inherit nature if not holding Everstone
-    if (BoxPokemon_GetValue(boxMon[slot], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
+    if (BoxPokemon_GetData(boxMon[slot], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
         if (LCRNG_Next() >= (0xffff / 2)) {
             return -1;
         }
@@ -354,7 +354,7 @@ static void Daycare_SetInheritedNature(Daycare *daycare)
     } else {
         BoxPokemon *boxMon = Daycare_GetBoxMon(daycare, slot);
 
-        personality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+        personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
         nature = Pokemon_GetNatureOf(personality);
 
         while (TRUE) {
@@ -415,27 +415,27 @@ static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
 
         switch (selectedIVs[i]) {
         case STAT_HP:
-            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_HP_IV, NULL);
+            value = BoxPokemon_GetData(daycareBoxMon, MON_DATA_HP_IV, NULL);
             Pokemon_SetData(egg, MON_DATA_HP_IV, (u8 *)&value);
             break;
         case STAT_ATTACK:
-            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_ATK_IV, NULL);
+            value = BoxPokemon_GetData(daycareBoxMon, MON_DATA_ATK_IV, NULL);
             Pokemon_SetData(egg, MON_DATA_ATK_IV, (u8 *)&value);
             break;
         case STAT_DEFENSE:
-            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_DEF_IV, NULL);
+            value = BoxPokemon_GetData(daycareBoxMon, MON_DATA_DEF_IV, NULL);
             Pokemon_SetData(egg, MON_DATA_DEF_IV, (u8 *)&value);
             break;
         case STAT_SPEED:
-            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPEED_IV, NULL);
+            value = BoxPokemon_GetData(daycareBoxMon, MON_DATA_SPEED_IV, NULL);
             Pokemon_SetData(egg, MON_DATA_SPEED_IV, (u8 *)&value);
             break;
         case STAT_SPECIAL_ATTACK:
-            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPATK_IV, NULL);
+            value = BoxPokemon_GetData(daycareBoxMon, MON_DATA_SPATK_IV, NULL);
             Pokemon_SetData(egg, MON_DATA_SPATK_IV, (u8 *)&value);
             break;
         case STAT_SPECIAL_DEFENSE:
-            value = BoxPokemon_GetValue(daycareBoxMon, MON_DATA_SPDEF_IV, NULL);
+            value = BoxPokemon_GetData(daycareBoxMon, MON_DATA_SPDEF_IV, NULL);
             Pokemon_SetData(egg, MON_DATA_SPDEF_IV, (u8 *)&value);
             break;
         }
@@ -483,8 +483,8 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
     levelUpMoveCount = Pokemon_LoadLevelUpMoveIdsOf(species, form, builder->eggSpeciesLevelUpMoves);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        builder->fatherMoves[i] = BoxPokemon_GetValue(father, MON_DATA_MOVE1 + i, NULL);
-        builder->motherMoves[i] = BoxPokemon_GetValue(mother, MON_DATA_MOVE1 + i, NULL);
+        builder->fatherMoves[i] = BoxPokemon_GetData(father, MON_DATA_MOVE1 + i, NULL);
+        builder->motherMoves[i] = BoxPokemon_GetData(mother, MON_DATA_MOVE1 + i, NULL);
     }
 
     eggMoveCount = LoadSpeciesEggMoves(egg, builder->eggSpeciesEggMoves);
@@ -589,8 +589,8 @@ static u16 Daycare_AlterEggSpeciesWithIncenseItem(u16 species, Daycare *daycare)
         return species;
     }
 
-    item1 = BoxPokemon_GetValue(parents[0], MON_DATA_HELD_ITEM, NULL);
-    item2 = BoxPokemon_GetValue(parents[1], MON_DATA_HELD_ITEM, NULL);
+    item1 = BoxPokemon_GetData(parents[0], MON_DATA_HELD_ITEM, NULL);
+    item2 = BoxPokemon_GetData(parents[1], MON_DATA_HELD_ITEM, NULL);
 
     if ((item1 != sIncenseBabyTable[slot][1]) && (item2 != sIncenseBabyTable[slot][1])) {
         species = sIncenseBabyTable[slot][2];
@@ -606,8 +606,8 @@ static void Egg_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, parents);
 
-    item1 = BoxPokemon_GetValue(parents[0], MON_DATA_HELD_ITEM, NULL);
-    item2 = BoxPokemon_GetValue(parents[1], MON_DATA_HELD_ITEM, NULL);
+    item1 = BoxPokemon_GetData(parents[0], MON_DATA_HELD_ITEM, NULL);
+    item2 = BoxPokemon_GetData(parents[1], MON_DATA_HELD_ITEM, NULL);
 
     if (item1 == ITEM_LIGHT_BALL || item2 == ITEM_LIGHT_BALL) {
         if (Pokemon_AddMove(mon, MOVE_VOLT_TACKLE) == LEARNSET_ALL_SLOTS_FILLED) {
@@ -624,7 +624,7 @@ static u16 Egg_DetermineEggSpeciesAndParentSlots(Daycare *daycare, u8 parentSlot
     Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMons);
 
     for (i = 0; i < NUM_DAYCARE_MONS; i++) {
-        if ((species[i] = BoxPokemon_GetValue(boxMons[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
+        if ((species[i] = BoxPokemon_GetData(boxMons[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
             parentSlots[0] = i ^ 1;
             parentSlots[1] = i;
         } else if (BoxPokemon_GetGender(boxMons[i]) == GENDER_FEMALE) {
@@ -759,7 +759,7 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
 
     u32 monOTID = TrainerInfo_ID(trainerInfo);
     BoxPokemon *boxMon = Daycare_GetBoxMon(daycare, parentSlots[0]);
-    u8 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+    u8 form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
     Egg_SetInitialData(mon, species, daycare, monOTID, form);
 
@@ -821,9 +821,9 @@ static u8 BoxMon_GetPairDaycareCompatibilityScore(BoxPokemon **boxMonPair)
     u32 trainerIDs[NUM_DAYCARE_MONS], genders[NUM_DAYCARE_MONS], personality, i;
 
     for (i = 0; i < NUM_DAYCARE_MONS; i++) {
-        species[i] = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_SPECIES, NULL);
-        trainerIDs[i] = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_OT_ID, NULL);
-        personality = BoxPokemon_GetValue(boxMonPair[i], MON_DATA_PERSONALITY, NULL);
+        species[i] = BoxPokemon_GetData(boxMonPair[i], MON_DATA_SPECIES, NULL);
+        trainerIDs[i] = BoxPokemon_GetData(boxMonPair[i], MON_DATA_OT_ID, NULL);
+        personality = BoxPokemon_GetData(boxMonPair[i], MON_DATA_PERSONALITY, NULL);
         genders[i] = Pokemon_GetGenderOf(species[i], personality);
         eggGroups[i][0] = SpeciesData_GetSpeciesValue(species[i], SPECIES_DATA_EGG_GROUP_1);
         eggGroups[i][1] = SpeciesData_GetSpeciesValue(species[i], SPECIES_DATA_EGG_GROUP_2);
@@ -927,7 +927,7 @@ BOOL Daycare_Update(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
     monCount = 0;
 
     for (i = 0; i < NUM_DAYCARE_MONS; i++) {
-        if (BoxPokemon_GetValue(boxMon[i], MON_DATA_SPECIES_EXISTS, NULL) != FALSE) {
+        if (BoxPokemon_GetData(boxMon[i], MON_DATA_SPECIES_EXISTS, NULL) != FALSE) {
             DaycareMon_AddSteps(Daycare_GetDaycareMon(daycare, i), 1);
             monCount++;
         }
@@ -1005,12 +1005,12 @@ void ov5_021E72BC(Daycare *daycare, StringTemplate *strTemplate)
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
 
-    if (BoxPokemon_GetValue(boxMon[0], MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+    if (BoxPokemon_GetData(boxMon[0], MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
         StringTemplate_SetNickname(strTemplate, 0, boxMon[0]);
         StringTemplate_SetOTName(strTemplate, 2, boxMon[0]);
     }
 
-    if (BoxPokemon_GetValue(boxMon[1], MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+    if (BoxPokemon_GetData(boxMon[1], MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
         StringTemplate_SetNickname(strTemplate, 1, boxMon[1]);
     }
 }
@@ -1029,12 +1029,12 @@ void Daycare_BufferNicknameLevelGender(Daycare *daycare, u32 idxNickname, u32 id
 
     level = BoxPokemon_GiveExperience(boxMon, DaycareMon_GetSteps(daycareMon));
     StringTemplate_SetNumber(template, idxLevel, level, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
-    gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL);
+    gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL);
 
     if (gender != GENDER_NONE) {
-        species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+        species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
 
-        if (((species == SPECIES_NIDORAN_F) || (species == SPECIES_NIDORAN_M)) && (BoxPokemon_GetValue(boxMon, MON_DATA_HAS_NICKNAME, NULL) == 0)) {
+        if (((species == SPECIES_NIDORAN_F) || (species == SPECIES_NIDORAN_M)) && (BoxPokemon_GetData(boxMon, MON_DATA_HAS_NICKNAME, NULL) == 0)) {
             gender = GENDER_NONE;
         }
     }

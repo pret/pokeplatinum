@@ -1075,15 +1075,15 @@ static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u1
 
     BoxPokemon_EnterDecryptionContext(boxMon);
 
-    v0 = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
-    *species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    v0 = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
+    *species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
 
-    form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
-    isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL);
-    item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
+    isEgg = BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL);
+    item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     param6->species = *species;
-    param6->gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    param6->gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
 
     if (isEgg) {
         param6->level = 0;
@@ -1232,7 +1232,7 @@ static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
     for (int i = 0; i < (int)NELEMS(sUnusedRibbons); i++) {
-        count += BoxPokemon_GetValue(boxMon, sUnusedRibbons[i], NULL);
+        count += BoxPokemon_GetData(boxMon, sUnusedRibbons[i], NULL);
     }
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
@@ -1247,8 +1247,8 @@ static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
 static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon)
 {
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    int form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 
@@ -1267,7 +1267,7 @@ static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon)
 static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
 {
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    int item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 
@@ -1287,11 +1287,11 @@ static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3
         return 0;
     }
 
-    if (!BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+    if (!BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
         return 0;
     }
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL)) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_SANITY_IS_EGG, NULL)) {
         return 2;
     }
 
@@ -1333,8 +1333,8 @@ static int ov94_02241384(BoxPokemon *boxMon, GTSPokemonRequirements *param1)
 {
     GTSPokemonCriteria v0;
 
-    v0.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    v0.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    v0.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
     v0.level = BoxPokemon_GetLevel(boxMon);
 
     return GTSApplication_SelectPokemon_MatchesRequirements(&v0, param1);
@@ -1346,8 +1346,8 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *param1
     GTSPokemonRequirements v1;
     BoxPokemon *boxMon;
 
-    v0.species = BoxPokemon_GetValue(param1->unk_114, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
+    v0.species = BoxPokemon_GetData(param1->unk_114, MON_DATA_SPECIES, NULL);
+    v0.gender = BoxPokemon_GetData(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
     v0.level = BoxPokemon_GetLevel(param1->unk_114);
 
     param0->unk_EC = v0;
@@ -1356,8 +1356,8 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *param1
 
     boxMon = Pokemon_GetBoxPokemon((Pokemon *)param1->searchResults[param1->selectedSearchResult].pokemon.bytes);
 
-    v1.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v1.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    v1.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    v1.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
     v1.level = 0;
     v1.level2 = 0;
 

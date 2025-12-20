@@ -939,9 +939,9 @@ static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *templ
     String *nicknameString = String_Init(10 + 1, HEAP_ID_62);
     String *genderString = String_Init(10 + 1, HEAP_ID_62);
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, nicknameString);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRING, nicknameString);
 
-    int gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    int gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
     int level = BoxPokemon_GetLevel(boxMon);
     offerString = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_OfferPokemonHeader);
 
@@ -964,7 +964,7 @@ static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *templ
         ov94_02245900(&windows[1], genderString, 70, 0, 0, sGenderTextColors[gender - 1]);
     }
 
-    criteria->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    criteria->species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     criteria->gender = gender;
     criteria->level = level;
 

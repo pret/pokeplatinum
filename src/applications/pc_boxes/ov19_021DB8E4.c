@@ -248,11 +248,11 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
         for (v2 = 0; v2 < 6; v2++) {
             boxMon = PCBoxes_GetBoxMonAt(pcBoxes, param1, v4++);
             v7 = BoxPokemon_EnterDecryptionContext(boxMon);
-            species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+            species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
 
             if (species) {
-                if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
-                    u16 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+                if (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+                    u16 form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
                     color = SpeciesData_GetFormValue(species, form, SPECIES_DATA_BODY_COLOR);
                 } else {

@@ -507,12 +507,12 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     String *v5 = String_Init((8 + 1) * 2, HEAP_ID_62);
     int gender, level, item, v9, species;
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, v4);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRING, v4);
 
     species = param5->species;
     gender = param5->gender;
     level = param5->level;
-    item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewString(param0, GTS_Text_Item);
     v1 = MessageLoader_GetNewString(param0, gGTSGenderPreferenceMessages[gender]);
 

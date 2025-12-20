@@ -760,7 +760,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
             metLocation = (SpecialMetLoc_GetId(2, 2));
         }
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
             BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
             BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
             BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
@@ -772,7 +772,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
         AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     case 1:
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
             BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
             BoxPokemon_SetMetLocationAndDate(boxMon, (SpecialMetLoc_GetId(1, 1)), TRUE);
             BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
@@ -793,7 +793,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
         break;
     case 4:
         if (sub_0207884C(boxMon, trainerInfo, heapID) == 1) {
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
                 BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
                 BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
                 BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
@@ -802,7 +802,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
                 BoxPokemon_ResetMetLocationAndDate(boxMon, TRUE);
             }
         } else {
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            if (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
                 BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
                 BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
                 BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
@@ -815,7 +815,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
         BoxPokemon_SetFatefulEncounterFlag(boxMon);
         break;
     case 5:
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
             (void)0;
         } else {
             BoxPokemon_SetMetLocationAndDate(boxMon, (SpecialMetLoc_GetId(1, 2)), TRUE);
@@ -830,16 +830,16 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
             {
                 int v0;
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_LOCATION, NULL);
+                v0 = BoxPokemon_GetData(boxMon, MON_DATA_MET_LOCATION, NULL);
                 BoxPokemon_SetData(boxMon, MON_DATA_EGG_LOCATION, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_YEAR, NULL);
+                v0 = BoxPokemon_GetData(boxMon, MON_DATA_MET_YEAR, NULL);
                 BoxPokemon_SetData(boxMon, MON_DATA_EGG_YEAR, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_MONTH, NULL);
+                v0 = BoxPokemon_GetData(boxMon, MON_DATA_MET_MONTH, NULL);
                 BoxPokemon_SetData(boxMon, MON_DATA_EGG_MONTH, &v0);
 
-                v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_DAY, NULL);
+                v0 = BoxPokemon_GetData(boxMon, MON_DATA_MET_DAY, NULL);
                 BoxPokemon_SetData(boxMon, MON_DATA_EGG_DAY, &v0);
             }
         }
@@ -900,7 +900,7 @@ static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch)
 
 static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon)
 {
-    int level = BoxPokemon_GetValue(boxMon, MON_DATA_LEVEL, NULL);
+    int level = BoxPokemon_GetData(boxMon, MON_DATA_LEVEL, NULL);
     BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &level);
 }
 

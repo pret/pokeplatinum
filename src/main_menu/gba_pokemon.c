@@ -764,7 +764,7 @@ static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *box
     u16 species;
     int abilityNum;
 
-    species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     abilityNum = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_ABILITY_NUM, NULL);
     ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
 
@@ -876,7 +876,7 @@ void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
         value = (value & (0x3 << (i * 2))) >> (i * 2);
         BoxPokemon_SetData(boxMon, MON_DATA_MOVE1_PP_UPS + i, (u8 *)&value);
 
-        value = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
+        value = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
         BoxPokemon_SetData(boxMon, MON_DATA_MOVE1_PP + i, (u8 *)&value);
     }
 
@@ -983,14 +983,14 @@ void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
     value = BoxPokemon_GetGender(boxMon);
     BoxPokemon_SetData(boxMon, MON_DATA_GENDER, (u8 *)&value);
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
         value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_PERSONALITY, NULL);
         value = (((value & 0x3000000) >> 18) | ((value & 0x30000) >> 12) | ((value & 0x300) >> 6) | (value & 0x3)) % 28;
 
         BoxPokemon_SetData(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
         switch (gSystem.gbaCartridgeVersion) {
         default:
         case VERSION_RUBY:

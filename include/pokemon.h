@@ -143,7 +143,7 @@ u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
+u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Sets a value in a Pokemon, reading it from value if neccessary
