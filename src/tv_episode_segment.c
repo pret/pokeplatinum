@@ -1412,7 +1412,7 @@ void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam)
     case 35:
     case 40:
         if (Ribbon_MonDataParamToNameID(monDataParam) > 0xff) {
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             return;
         }
 
@@ -2169,7 +2169,7 @@ static int TVEpisodeSegment_LoadMessage_OnTheSpotWeather(FieldSystem *fieldSyste
     case OVERWORLD_WEATHER_HAILING:
         return pl_msg_00000418_00012;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
     return pl_msg_00000418_00001;
