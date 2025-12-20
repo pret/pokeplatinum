@@ -1048,7 +1048,7 @@ static void ov94_02240DF8(int param0, int param1, int param2, int param3, Sprite
 
 static void ov94_02240E50(BoxPokemon *boxMon, GTSPokemonCriteria *param1)
 {
-    param1->level = BoxPokemon_GetLevel(boxMon);
+    param1->level = BoxPokemon_CalcLevel(boxMon);
 }
 
 static void ov94_02240E5C(void *param0)
@@ -1335,7 +1335,7 @@ static int ov94_02241384(BoxPokemon *boxMon, GTSPokemonRequirements *param1)
 
     v0.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     v0.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
-    v0.level = BoxPokemon_GetLevel(boxMon);
+    v0.level = BoxPokemon_CalcLevel(boxMon);
 
     return GTSApplication_SelectPokemon_MatchesRequirements(&v0, param1);
 }
@@ -1348,7 +1348,7 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *param1
 
     v0.species = BoxPokemon_GetData(param1->unk_114, MON_DATA_SPECIES, NULL);
     v0.gender = BoxPokemon_GetData(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
-    v0.level = BoxPokemon_GetLevel(param1->unk_114);
+    v0.level = BoxPokemon_CalcLevel(param1->unk_114);
 
     param0->unk_EC = v0;
 

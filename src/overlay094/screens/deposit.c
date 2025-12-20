@@ -942,7 +942,7 @@ static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *templ
     BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRING, nicknameString);
 
     int gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
-    int level = BoxPokemon_GetLevel(boxMon);
+    int level = BoxPokemon_CalcLevel(boxMon);
     offerString = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_OfferPokemonHeader);
 
     StringTemplate_SetNumber(template, 3, level, 3, 0, 1);

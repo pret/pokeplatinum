@@ -222,7 +222,7 @@ int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
     exp += givenExp;
 
     BoxPokemon_SetData(boxMonRef, MON_DATA_EXPERIENCE, (u8 *)&exp);
-    level = BoxPokemon_GetLevel(boxMonRef);
+    level = BoxPokemon_CalcLevel(boxMonRef);
     Heap_Free(mon);
 
     return level;
@@ -232,7 +232,7 @@ static int Daycare_GiveDaycareMonExperience(DaycareMon *daycareMon)
 {
     u8 level, newLevel;
     BoxPokemon *boxMon = DaycareMon_GetBoxMon(daycareMon);
-    level = BoxPokemon_GetLevel(boxMon);
+    level = BoxPokemon_CalcLevel(boxMon);
     newLevel = BoxPokemon_GiveExperience(boxMon, DaycareMon_GetSteps(daycareMon));
 
     return newLevel - level;

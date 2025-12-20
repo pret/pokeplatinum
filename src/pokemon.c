@@ -2153,7 +2153,7 @@ u32 Pokemon_GetExpToNextLevel(Pokemon *mon)
 static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon)
 {
     u16 monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-    u16 monNextlevel = BoxPokemon_GetLevel(boxMon) + 1;
+    u16 monNextlevel = BoxPokemon_CalcLevel(boxMon) + 1;
     u32 monExp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
 
     return Pokemon_GetSpeciesBaseExpAt(monSpecies, monNextlevel) - monExp;
@@ -2191,18 +2191,16 @@ static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel)
 
 u32 Pokemon_GetLevel(Pokemon *mon)
 {
-    return BoxPokemon_GetLevel(&mon->box);
+    return BoxPokemon_CalcLevel(&mon->box);
 }
 
-u32 BoxPokemon_GetLevel(BoxPokemon *boxMon)
+int BoxPokemon_CalcLevel(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    int monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-    u32 monExp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
-
+    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    int exp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
-
-    return Pokemon_GetSpeciesLevelAt(monSpecies, monExp);
+    return Pokemon_GetSpeciesLevelAt(species, exp);
 }
 
 u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp)
@@ -3667,7 +3665,7 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
 
     u16 monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     int monForm = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
-    u8 monLevel = BoxPokemon_GetLevel(boxMon);
+    u8 monLevel = BoxPokemon_CalcLevel(boxMon);
 
     Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
 

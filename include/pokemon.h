@@ -282,7 +282,7 @@ u32 Pokemon_GetLevel(Pokemon *mon);
  * @param boxMon
  * @return The pokemons level
  */
-u32 BoxPokemon_GetLevel(BoxPokemon *boxMon);
+int BoxPokemon_CalcLevel(BoxPokemon *boxMon);
 
 /**
  * @brief Gets the level of a pokemon based on its species and exp
