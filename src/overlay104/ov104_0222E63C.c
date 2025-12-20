@@ -107,9 +107,9 @@ void ov104_0222E748(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
 
     if ((param1 == 0xffff) || (param0->unk_52 == param1)) {
         ctx->scripts = param0->unk_40;
-        ctx->unk_80 = param0->unk_3C;
+        ctx->msgLoader = param0->unk_3C;
     } else {
-        ov104_0222E830(&ctx->scripts, &ctx->unk_80, param1, param0->heapID);
+        ov104_0222E830(&ctx->scripts, &ctx->msgLoader, param1, param0->heapID);
     }
 
     FrontierScriptContext_Start(ctx, ctx->scripts);
@@ -135,8 +135,8 @@ static BOOL ov104_0222E7CC(UnkStruct_ov104_022320B4 *param0, FrontierScriptConte
 
 static void ov104_0222E7FC(UnkStruct_ov104_022320B4 *param0, FrontierScriptContext *param1)
 {
-    if (param1->unk_80 != param0->unk_3C) {
-        MessageLoader_Free(param1->unk_80);
+    if (param1->msgLoader != param0->unk_3C) {
+        MessageLoader_Free(param1->msgLoader);
     }
 
     if (param1->scripts != param0->unk_40) {
@@ -182,8 +182,8 @@ void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
         v1 = param0->unk_04[v0];
 
         if (v1 != NULL) {
-            if (v1->unk_80 == param0->unk_3C) {
-                v1->unk_80 = v4;
+            if (v1->msgLoader == param0->unk_3C) {
+                v1->msgLoader = v4;
             }
         }
     }

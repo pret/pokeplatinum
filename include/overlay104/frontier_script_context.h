@@ -21,7 +21,7 @@ struct FrontierScriptContext {
     const FrontierScrCmdFunc *cmdTable;
     u32 cmdTableSize;
     u16 data[4];
-    MessageLoader *unk_80;
+    MessageLoader *msgLoader;
     u8 *scripts;
     FrontierShouldResumeScriptFunc shouldResume;
     u8 unk_8C;

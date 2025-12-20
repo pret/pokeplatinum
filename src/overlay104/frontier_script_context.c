@@ -22,7 +22,7 @@ void FrontierScriptContext_Init(FrontierScriptContext *ctx, const FrontierScrCmd
         ctx->data[i] = 0;
     }
 
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < NELEMS(ctx->stack); i++) {
         ctx->stack[i] = NULL;
     }
 }

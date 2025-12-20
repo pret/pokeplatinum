@@ -770,7 +770,7 @@ static BOOL FrontierScrCmd_0F(FrontierScriptContext *param0)
     v0.unk_02 = 1;
     v0.unk_03 = 0;
 
-    ov104_02231F74(param0->unk_00, param0->unk_80, v1, 0, &v0);
+    ov104_02231F74(param0->unk_00, param0->msgLoader, v1, 0, &v0);
 
     return 0;
 }
@@ -779,7 +779,7 @@ static BOOL FrontierScrCmd_10(FrontierScriptContext *param0)
 {
     u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
 
-    ov104_02231F74(param0->unk_00, param0->unk_80, v0, 0, NULL);
+    ov104_02231F74(param0->unk_00, param0->msgLoader, v0, 0, NULL);
     FrontierScriptContext_Pause(param0, ov104_0222FF6C);
     return 1;
 }
@@ -788,7 +788,7 @@ static BOOL FrontierScrCmd_11(FrontierScriptContext *param0)
 {
     u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
 
-    ov104_02231F74(param0->unk_00, param0->unk_80, v0, 1, NULL);
+    ov104_02231F74(param0->unk_00, param0->msgLoader, v0, 1, NULL);
     FrontierScriptContext_Pause(param0, ov104_0222FF6C);
     return 1;
 }
@@ -861,7 +861,7 @@ static BOOL FrontierScrCmd_16(FrontierScriptContext *param0)
     u8 v4 = FrontierScriptContext_ReadByte(param0);
     u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
 
-    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, param0->unk_80);
+    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, param0->msgLoader);
     param0->data[0] = v5;
 
     return 1;
@@ -940,7 +940,7 @@ static BOOL FrontierScrCmd_1B(FrontierScriptContext *param0)
     u8 v4 = FrontierScriptContext_ReadByte(param0);
     u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
 
-    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, param0->unk_80);
+    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, param0->msgLoader);
     param0->data[0] = v5;
 
     return 1;
