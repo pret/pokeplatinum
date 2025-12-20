@@ -831,16 +831,16 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
                 int v0;
 
                 v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_LOCATION, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_LOCATION, &v0);
+                BoxPokemon_SetData(boxMon, MON_DATA_EGG_LOCATION, &v0);
 
                 v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_YEAR, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_YEAR, &v0);
+                BoxPokemon_SetData(boxMon, MON_DATA_EGG_YEAR, &v0);
 
                 v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_MONTH, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_MONTH, &v0);
+                BoxPokemon_SetData(boxMon, MON_DATA_EGG_MONTH, &v0);
 
                 v0 = BoxPokemon_GetValue(boxMon, MON_DATA_MET_DAY, NULL);
-                BoxPokemon_SetValue(boxMon, MON_DATA_EGG_DAY, &v0);
+                BoxPokemon_SetData(boxMon, MON_DATA_EGG_DAY, &v0);
             }
         }
 
@@ -856,9 +856,9 @@ static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *train
     int v1 = TrainerInfo_Gender(trainerInfo);
     String *v2 = TrainerInfo_NameNewString(trainerInfo, heapID);
 
-    BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, &v0);
-    BoxPokemon_SetValue(boxMon, MON_DATA_OT_GENDER, &v1);
-    BoxPokemon_SetValue(boxMon, MON_DATA_OT_NAME_STRING, v2);
+    BoxPokemon_SetData(boxMon, MON_DATA_OT_ID, &v0);
+    BoxPokemon_SetData(boxMon, MON_DATA_OT_GENDER, &v1);
+    BoxPokemon_SetData(boxMon, MON_DATA_OT_NAME_STRING, v2);
     String_Free(v2);
 }
 
@@ -869,15 +869,15 @@ static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation
     GetCurrentDate(&date);
 
     if (isHatch == FALSE) {
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_LOCATION, &metLocation);
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_YEAR, &date.year);
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_MONTH, &date.month);
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_DAY, &date.day);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_LOCATION, &metLocation);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_YEAR, &date.year);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_MONTH, &date.month);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_DAY, &date.day);
     } else {
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_LOCATION, &metLocation);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_YEAR, &date.year);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_MONTH, &date.month);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_DAY, &date.day);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_LOCATION, &metLocation);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_YEAR, &date.year);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_MONTH, &date.month);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_DAY, &date.day);
     }
 }
 
@@ -886,26 +886,26 @@ static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch)
     int value = 0;
 
     if (isHatch == FALSE) {
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_LOCATION, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_YEAR, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_MONTH, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_EGG_DAY, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_LOCATION, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_YEAR, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_MONTH, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_EGG_DAY, &value);
     } else {
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_LOCATION, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_YEAR, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_MONTH, &value);
-        BoxPokemon_SetValue(boxMon, MON_DATA_MET_DAY, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_LOCATION, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_YEAR, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_MONTH, &value);
+        BoxPokemon_SetData(boxMon, MON_DATA_MET_DAY, &value);
     }
 }
 
 static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon)
 {
     int level = BoxPokemon_GetValue(boxMon, MON_DATA_LEVEL, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &level);
+    BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &level);
 }
 
 static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon)
 {
     int fatefulEncounter = TRUE;
-    BoxPokemon_SetValue(boxMon, MON_DATA_FATEFUL_ENCOUNTER, &fatefulEncounter);
+    BoxPokemon_SetData(boxMon, MON_DATA_FATEFUL_ENCOUNTER, &fatefulEncounter);
 }

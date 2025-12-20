@@ -221,7 +221,7 @@ int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
     exp = BoxPokemon_GetValue(boxMonRef, MON_DATA_EXPERIENCE, NULL);
     exp += givenExp;
 
-    BoxPokemon_SetValue(boxMonRef, MON_DATA_EXPERIENCE, (u8 *)&exp);
+    BoxPokemon_SetData(boxMonRef, MON_DATA_EXPERIENCE, (u8 *)&exp);
     level = BoxPokemon_GetLevel(boxMonRef);
     Heap_Free(mon);
 

@@ -161,7 +161,7 @@ void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *val
  * @param param
  * @param value
  */
-void BoxPokemon_SetValue(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
+void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Increases some numerical fields in a Pokemon by the given value. Does nothing if the field is not supported

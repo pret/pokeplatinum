@@ -4212,7 +4212,7 @@ static void BoxApp_UpdatePreviewMonMarkings(BoxApplication *boxApp)
     u8 markings = boxApp->boxMenu.markings;
     preview->markings = markings;
 
-    BoxPokemon_SetValue(preview->mon, MON_DATA_MARKINGS, &markings);
+    BoxPokemon_SetData(preview->mon, MON_DATA_MARKINGS, &markings);
 
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX && BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_UNDER_CURSOR) {
         SaveData_SetFullSaveRequired();
@@ -4235,7 +4235,7 @@ static void BoxApp_GiveItemToSelectedMon(BoxApplication *boxApp, u16 item, BoxAp
         PCBoxes_SetBoxMonData(boxAppMan->pcBoxes, USE_CURRENT_BOX, posInBox, MON_DATA_HELD_ITEM, &item);
     }
 
-    BoxPokemon_SetValue(preview->mon, MON_DATA_HELD_ITEM, &item);
+    BoxPokemon_SetData(preview->mon, MON_DATA_HELD_ITEM, &item);
 
     int species = BoxPokemon_GetValue(preview->mon, MON_DATA_SPECIES, NULL);
 

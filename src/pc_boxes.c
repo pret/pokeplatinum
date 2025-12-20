@@ -358,7 +358,7 @@ void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 boxID, u32 slot, enum PokemonDa
         boxID = pcBoxes->currentBoxID;
     }
 
-    BoxPokemon_SetValue((&pcBoxes->boxMons[boxID][slot]), pokemonData, value);
+    BoxPokemon_SetData((&pcBoxes->boxMons[boxID][slot]), pokemonData, value);
     SaveData_SetFullSaveRequired();
 }
 
