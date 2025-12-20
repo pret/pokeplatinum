@@ -4640,15 +4640,14 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality)
     Heap_Free(newMon);
 }
 
-static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData)
+static void SpeciesData_LoadSpecies(int species, SpeciesData *speciesData)
 {
-    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
+    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, species);
 }
 
-static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData)
+static void SpeciesData_LoadForm(int species, int form, SpeciesData *speciesData)
 {
-    monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
-    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, monSpecies);
+    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, Pokemon_GetFormNarcIndex(species, form));
 }
 
 static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolutions[MAX_EVOLUTIONS])
