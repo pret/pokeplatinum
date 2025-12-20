@@ -274,7 +274,7 @@ u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel);
  * @param mon
  * @return The pokemons level
  */
-u32 Pokemon_GetLevel(Pokemon *mon);
+int Pokemon_CalcLevel(Pokemon *mon);
 
 /**
  * @copybrief GetMonSpeciesLevel()

@@ -546,7 +546,7 @@ void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 mon
 void Pokemon_CalcLevelAndStats(Pokemon *mon)
 {
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
-    int monLevel = Pokemon_GetLevel(mon);
+    int monLevel = Pokemon_CalcLevel(mon);
 
     Pokemon_SetData(mon, MON_DATA_LEVEL, &monLevel);
     Pokemon_CalcStats(mon);
@@ -2189,7 +2189,7 @@ static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel)
     return result;
 }
 
-u32 Pokemon_GetLevel(Pokemon *mon)
+int Pokemon_CalcLevel(Pokemon *mon)
 {
     return BoxPokemon_CalcLevel(&mon->box);
 }
