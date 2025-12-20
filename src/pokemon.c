@@ -276,24 +276,32 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
 static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
 static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolution[MAX_EVOLUTIONS]);
-static void Pokemon_EncryptData(void *data, u32 bytes, u32 seed);
-static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed);
+static void MonEncryptSegment(void *data, u32 bytes, u32 seed);
+static void MonDecryptSegment(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
 static inline int Pokemon_Face(int num);
 
+#define ENCRY_ARGS_PARTY(mon)  (u16 *)&(mon)->party, sizeof((mon)->party), (mon)->box.personality
+#define ENCRY_ARGS_BOX(boxMon) (u16 *)&(boxMon)->dataBlocks, sizeof((boxMon)->dataBlocks), (boxMon)->checksum
+#define ENCRYPT_PARTY(mon)     MonEncryptSegment(ENCRY_ARGS_PARTY(mon))
+#define ENCRYPT_BOX(boxMon)    MonEncryptSegment(ENCRY_ARGS_BOX(boxMon))
+#define DECRYPT_PARTY(mon)     MonDecryptSegment(ENCRY_ARGS_PARTY(mon))
+#define DECRYPT_BOX(boxMon)    MonDecryptSegment(ENCRY_ARGS_BOX(boxMon))
+#define CHECKSUM(boxMon)       Pokemon_GetDataChecksum((u16 *)(boxMon)->dataBlocks, sizeof((boxMon)->dataBlocks))
+
 void Pokemon_Init(Pokemon *mon)
 {
     MI_CpuClearFast(mon, sizeof(Pokemon));
-    Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
-    Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
+    ENCRYPT_BOX(&mon->box);
+    ENCRYPT_PARTY(mon);
 }
 
 void BoxPokemon_Init(BoxPokemon *boxMon)
 {
     MI_CpuClearFast(boxMon, sizeof(BoxPokemon));
-    Pokemon_EncryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
+    ENCRYPT_BOX(boxMon);
 }
 
 int Pokemon_StructSize(void)
@@ -318,9 +326,8 @@ BOOL Pokemon_EnterDecryptionContext(Pokemon *mon)
 
         mon->box.partyDecrypted = TRUE;
         mon->box.boxDecrypted = TRUE;
-
-        Pokemon_DecryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        Pokemon_DecryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        DECRYPT_PARTY(mon);
+        DECRYPT_BOX(&mon->box);
     }
 
     return wasDecrypted;
@@ -334,10 +341,9 @@ BOOL Pokemon_ExitDecryptionContext(Pokemon *mon, BOOL encrypt)
         wasEncrypted = TRUE;
         mon->box.partyDecrypted = FALSE;
         mon->box.boxDecrypted = FALSE;
-
-        Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        mon->box.checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
-        Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        ENCRYPT_PARTY(mon);
+        mon->box.checksum = CHECKSUM(&mon->box);
+        ENCRYPT_BOX(&mon->box);
     }
 
     return wasEncrypted;
@@ -350,7 +356,7 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon)
     if (boxMon->boxDecrypted == FALSE) {
         wasDecrypted = TRUE;
         boxMon->boxDecrypted = TRUE;
-        Pokemon_DecryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
+        DECRYPT_BOX(boxMon);
     }
 
     return wasDecrypted;
@@ -364,11 +370,9 @@ BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt)
         wasEncrypted = TRUE;
 
         boxMon->boxDecrypted = FALSE;
-        boxMon->checksum = Pokemon_GetDataChecksum(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
-
-        Pokemon_EncryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
+        boxMon->checksum = CHECKSUM(boxMon);
+        ENCRYPT_BOX(boxMon);
     }
-
     return wasEncrypted;
 }
 
@@ -377,8 +381,9 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_Init(mon);
 
     BoxPokemon_InitWith(&mon->box, monSpecies, monLevel, monIVs, useMonPersonalityParam, monPersonality, monOTIDSource, monOTID);
-    Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), 0);
-    Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
+    // Not your average encryption call
+    MonEncryptSegment((u16 *)&mon->party, sizeof(mon->party), 0);
+    ENCRYPT_PARTY(mon);
     Pokemon_SetData(mon, MON_DATA_LEVEL, &monLevel);
 
     Mail *mail = Mail_New(HEAP_ID_SYSTEM);
@@ -638,8 +643,8 @@ void Pokemon_CalcStats(Pokemon *mon)
 u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest)
 {
     if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_DecryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        Pokemon_DecryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        MonDecryptSegment(&mon->party, sizeof(PartyPokemon), mon->box.personality);
+        MonDecryptSegment(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
 
         u16 checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
 
@@ -652,8 +657,8 @@ u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest)
     u32 result = Pokemon_GetDataInternal(mon, param, dest);
 
     if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        ENCRYPT_PARTY(mon);
+        ENCRYPT_BOX(&mon->box);
     }
 
     return result;
@@ -696,7 +701,7 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
 u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest)
 {
     if (boxMon->boxDecrypted == FALSE) {
-        Pokemon_DecryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
+        MonDecryptSegment(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
         u16 checksum = Pokemon_GetDataChecksum(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
 
         if (checksum != boxMon->checksum) {
@@ -708,7 +713,7 @@ u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *de
     u32 result = BoxPokemon_GetDataInternal(boxMon, param, dest);
 
     if (boxMon->boxDecrypted == FALSE) {
-        Pokemon_EncryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
+        ENCRYPT_BOX(boxMon);
     }
 
     return result;
@@ -1123,14 +1128,14 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
 void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *value)
 {
     if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_DecryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        Pokemon_DecryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        MonDecryptSegment(&mon->party, sizeof(PartyPokemon), mon->box.personality);
+        MonDecryptSegment(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
         u16 checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
 
         if (checksum != mon->box.checksum) {
             GF_ASSERT(checksum == mon->box.checksum);
             mon->box.checksumFailed = TRUE;
-            Pokemon_EncryptData(mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+            ENCRYPT_BOX(&mon->box);
             return;
         }
     }
@@ -1138,9 +1143,9 @@ void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *valu
     Pokemon_SetDataInternal(mon, param, value);
 
     if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        mon->box.checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
-        Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        ENCRYPT_PARTY(mon);
+        mon->box.checksum = CHECKSUM(&mon->box);
+        ENCRYPT_BOX(&mon->box);
     }
 }
 
@@ -1193,23 +1198,21 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
 
 void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value)
 {
+    u32 checksum;
     if (boxMon->boxDecrypted == FALSE) {
-        Pokemon_DecryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
-        u16 checksum = Pokemon_GetDataChecksum(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
-
+        DECRYPT_BOX(boxMon);
+        checksum = CHECKSUM(boxMon);
         if (checksum != boxMon->checksum) {
             GF_ASSERT(checksum == boxMon->checksum);
             boxMon->checksumFailed = TRUE;
-            Pokemon_EncryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
+            ENCRYPT_BOX(boxMon);
             return;
         }
     }
-
     BoxPokemon_SetDataInternal(boxMon, param, value);
-
     if (boxMon->boxDecrypted == FALSE) {
-        boxMon->checksum = Pokemon_GetDataChecksum(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
-        Pokemon_EncryptData(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
+        boxMon->checksum = CHECKSUM(boxMon);
+        ENCRYPT_BOX(boxMon);
     }
 }
 
@@ -1584,25 +1587,22 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
 void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
 {
-    if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_DecryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        Pokemon_DecryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
-
-        u16 checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
-
+    u32 checksum;
+    if (!mon->box.partyDecrypted) {
+        DECRYPT_PARTY(mon);
+        DECRYPT_BOX(&mon->box);
+        checksum = CHECKSUM(&mon->box);
         if (checksum != mon->box.checksum) {
             GF_ASSERT(checksum == mon->box.checksum);
-            Pokemon_EncryptData(mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+            ENCRYPT_BOX(&mon->box);
             return;
         }
     }
-
     Pokemon_IncreaseDataInternal(mon, param, value);
-
-    if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        mon->box.checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
-        Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+    if (!mon->box.partyDecrypted) {
+        ENCRYPT_PARTY(mon);
+        mon->box.checksum = CHECKSUM(&mon->box);
+        ENCRYPT_BOX(&mon->box);
     }
 }
 
@@ -1626,7 +1626,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
     case MON_DATA_SP_ATK:
     case MON_DATA_SP_DEF:
     case MON_DATA_MAIL:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     default:
         BoxPokemon_AddDataInternal(&mon->box, param, value);
@@ -4569,9 +4569,9 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality)
     PokemonDataBlockC *monBlockC = BoxPokemon_GetDataBlock(&mon->box, monPersonality, DATA_BLOCK_C);
     PokemonDataBlockD *monBlockD = BoxPokemon_GetDataBlock(&mon->box, monPersonality, DATA_BLOCK_D);
 
-    Pokemon_DecryptData(&newMon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, newMon->box.checksum);
-    Pokemon_DecryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-    Pokemon_DecryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+    MonDecryptSegment(&newMon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, newMon->box.checksum);
+    MonDecryptSegment(&mon->party, sizeof(PartyPokemon), mon->box.personality);
+    MonDecryptSegment(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
 
     mon->box.personality = monPersonality;
 
@@ -4580,10 +4580,9 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality)
     *monBlockC = *newMonBlockC;
     *monBlockD = *newMonBlockD;
 
-    mon->box.checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
-
-    Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
-    Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
+    mon->box.checksum = CHECKSUM(&mon->box);
+    ENCRYPT_BOX(&mon->box);
+    ENCRYPT_PARTY(mon);
     Heap_Free(newMon);
 }
 
@@ -4602,12 +4601,12 @@ static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolut
     NARC_ReadWholeMemberByIndexPair(speciesEvolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, monSpecies);
 }
 
-static void Pokemon_EncryptData(void *data, u32 bytes, u32 seed)
+static void MonEncryptSegment(void *data, u32 bytes, u32 seed)
 {
     EncodeData(data, bytes, seed);
 }
 
-static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed)
+static void MonDecryptSegment(void *data, u32 bytes, u32 seed)
 {
     DecodeData(data, bytes, seed);
 }
@@ -4996,8 +4995,8 @@ BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
 void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
 {
     if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_DecryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        Pokemon_DecryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        MonDecryptSegment(&mon->party, sizeof(PartyPokemon), mon->box.personality);
+        MonDecryptSegment(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
     }
 
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
@@ -5066,8 +5065,8 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
     param1->unk_6E = mon->party.spDef;
 
     if (mon->box.partyDecrypted == FALSE) {
-        Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-        Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+        ENCRYPT_PARTY(mon);
+        ENCRYPT_BOX(&mon->box);
     }
 }
 
@@ -5141,7 +5140,7 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
     mon->party.spAtk = param0->unk_6C;
     mon->party.spDef = param0->unk_6E;
 
-    Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-    mon->box.checksum = Pokemon_GetDataChecksum(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4);
-    Pokemon_EncryptData(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+    ENCRYPT_PARTY(mon);
+    mon->box.checksum = CHECKSUM(&mon->box);
+    ENCRYPT_BOX(&mon->box);
 }
