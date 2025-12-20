@@ -198,7 +198,7 @@ SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID);
+SpeciesData *SpeciesData_NewFromSpecies(int monSpecies, enum HeapID heapID);
 
 /**
  * @brief Gets a value from a SpeciesData structure
