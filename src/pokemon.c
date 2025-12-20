@@ -661,65 +661,36 @@ u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest)
 
 static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *dest)
 {
-    u32 result = 0;
-
     switch (param) {
     case MON_DATA_STATUS:
-        result = mon->party.status;
-        break;
-
+        return mon->party.status;
     case MON_DATA_LEVEL:
-        result = mon->party.level;
-        break;
-
+        return mon->party.level;
     case MON_DATA_BALL_CAPSULE_ID:
-        result = mon->party.ballCapsuleID;
-        break;
-
+        return mon->party.ballCapsuleID;
     case MON_DATA_HP:
-        result = mon->party.hp;
-        break;
-
+        return mon->party.hp;
     case MON_DATA_MAX_HP:
-        result = mon->party.maxHP;
-        break;
-
+        return mon->party.maxHP;
     case MON_DATA_ATK:
-        result = mon->party.attack;
-        break;
-
+        return mon->party.attack;
     case MON_DATA_DEF:
-        result = mon->party.defense;
-        break;
-
+        return mon->party.defense;
     case MON_DATA_SPEED:
-        result = mon->party.speed;
-        break;
-
+        return mon->party.speed;
     case MON_DATA_SP_ATK:
-        result = mon->party.spAtk;
-        break;
-
+        return mon->party.spAtk;
     case MON_DATA_SP_DEF:
-        result = mon->party.spDef;
-        break;
-
+        return mon->party.spDef;
     case MON_DATA_MAIL:
         Mail_Copy(&mon->party.mail, dest);
-        result = TRUE;
-        break;
-
+        return TRUE;
     case MON_DATA_BALL_CAPSULE:
         BallCapsule_Copy(&mon->party.ballCapsule, dest);
-        result = TRUE;
-        break;
-
+        return TRUE;
     default:
-        result = BoxPokemon_GetDataInternal(&mon->box, param, dest);
-        break;
+        return BoxPokemon_GetDataInternal(&mon->box, param, dest);
     }
-
-    return result;
 }
 
 u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest)
