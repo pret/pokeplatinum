@@ -1704,23 +1704,23 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
 
 static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value)
 {
-    PokemonDataBlockA *monDataBlockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
-    PokemonDataBlockB *monDataBlockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
-    PokemonDataBlockC *monDataBlockC = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
-    PokemonDataBlockD *monDataBlockD = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
+    PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *blockC = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *blockD = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
 
     switch (param) {
     case MON_DATA_EXPERIENCE:
-        if (monDataBlockA->exp + value > Pokemon_GetSpeciesBaseExpAt(monDataBlockA->species, MAX_POKEMON_LEVEL)) {
-            monDataBlockA->exp = Pokemon_GetSpeciesBaseExpAt(monDataBlockA->species, MAX_POKEMON_LEVEL);
+        if (blockA->exp + value > Pokemon_GetSpeciesBaseExpAt(blockA->species, MAX_POKEMON_LEVEL)) {
+            blockA->exp = Pokemon_GetSpeciesBaseExpAt(blockA->species, MAX_POKEMON_LEVEL);
         } else {
-            monDataBlockA->exp += value;
+            blockA->exp += value;
         }
         break;
     case MON_DATA_FRIENDSHIP:
         int newValue;
 
-        newValue = monDataBlockA->friendship;
+        newValue = blockA->friendship;
 
         if (newValue + value > MAX_FRIENDSHIP_VALUE) {
             newValue = MAX_FRIENDSHIP_VALUE;
@@ -1732,86 +1732,86 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
             newValue += value;
         }
 
-        monDataBlockA->friendship = newValue;
+        blockA->friendship = newValue;
         break;
     case MON_DATA_HP_EV:
-        monDataBlockA->hpEV += value;
+        blockA->hpEV += value;
         break;
     case MON_DATA_ATK_EV:
-        monDataBlockA->atkEV += value;
+        blockA->atkEV += value;
         break;
     case MON_DATA_DEF_EV:
-        monDataBlockA->defEV += value;
+        blockA->defEV += value;
         break;
     case MON_DATA_SPEED_EV:
-        monDataBlockA->speedEV += value;
+        blockA->speedEV += value;
         break;
     case MON_DATA_SPATK_EV:
-        monDataBlockA->spAtkEV += value;
+        blockA->spAtkEV += value;
         break;
     case MON_DATA_SPDEF_EV:
-        monDataBlockA->spDefEV += value;
+        blockA->spDefEV += value;
         break;
     case MON_DATA_COOL:
-        if (monDataBlockA->cool + value > MAX_CONTEST_STAT) {
-            monDataBlockA->cool = MAX_CONTEST_STAT;
+        if (blockA->cool + value > MAX_CONTEST_STAT) {
+            blockA->cool = MAX_CONTEST_STAT;
         } else {
-            monDataBlockA->cool += value;
+            blockA->cool += value;
         }
         break;
     case MON_DATA_BEAUTY:
-        if (monDataBlockA->beauty + value > MAX_CONTEST_STAT) {
-            monDataBlockA->beauty = MAX_CONTEST_STAT;
+        if (blockA->beauty + value > MAX_CONTEST_STAT) {
+            blockA->beauty = MAX_CONTEST_STAT;
         } else {
-            monDataBlockA->beauty += value;
+            blockA->beauty += value;
         }
         break;
     case MON_DATA_CUTE:
-        if (monDataBlockA->cute + value > MAX_CONTEST_STAT) {
-            monDataBlockA->cute = MAX_CONTEST_STAT;
+        if (blockA->cute + value > MAX_CONTEST_STAT) {
+            blockA->cute = MAX_CONTEST_STAT;
         } else {
-            monDataBlockA->cute += value;
+            blockA->cute += value;
         }
         break;
     case MON_DATA_SMART:
-        if (monDataBlockA->smart + value > MAX_CONTEST_STAT) {
-            monDataBlockA->smart = MAX_CONTEST_STAT;
+        if (blockA->smart + value > MAX_CONTEST_STAT) {
+            blockA->smart = MAX_CONTEST_STAT;
         } else {
-            monDataBlockA->smart += value;
+            blockA->smart += value;
         }
         break;
     case MON_DATA_TOUGH:
-        if (monDataBlockA->tough + value > MAX_CONTEST_STAT) {
-            monDataBlockA->tough = MAX_CONTEST_STAT;
+        if (blockA->tough + value > MAX_CONTEST_STAT) {
+            blockA->tough = MAX_CONTEST_STAT;
         } else {
-            monDataBlockA->tough += value;
+            blockA->tough += value;
         }
         break;
     case MON_DATA_SHEEN:
-        if (monDataBlockA->sheen + value > MAX_POKEMON_SHEEN) {
-            monDataBlockA->sheen = MAX_POKEMON_SHEEN;
+        if (blockA->sheen + value > MAX_POKEMON_SHEEN) {
+            blockA->sheen = MAX_POKEMON_SHEEN;
         } else {
-            monDataBlockA->sheen += value;
+            blockA->sheen += value;
         }
         break;
     case MON_DATA_MOVE1_PP:
     case MON_DATA_MOVE2_PP:
     case MON_DATA_MOVE3_PP:
     case MON_DATA_MOVE4_PP:
-        if (monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] + value > MoveTable_CalcMaxPP(monDataBlockB->moves[param - MON_DATA_MOVE1_PP], monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP])) {
-            monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] = MoveTable_CalcMaxPP(monDataBlockB->moves[param - MON_DATA_MOVE1_PP], monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP]);
+        if (blockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] + value > MoveTable_CalcMaxPP(blockB->moves[param - MON_DATA_MOVE1_PP], blockB->movePPUps[param - MON_DATA_MOVE1_PP])) {
+            blockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] = MoveTable_CalcMaxPP(blockB->moves[param - MON_DATA_MOVE1_PP], blockB->movePPUps[param - MON_DATA_MOVE1_PP]);
         } else {
-            monDataBlockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] += value;
+            blockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] += value;
         }
         break;
     case MON_DATA_MOVE1_PP_UPS:
     case MON_DATA_MOVE2_PP_UPS:
     case MON_DATA_MOVE3_PP_UPS:
     case MON_DATA_MOVE4_PP_UPS:
-        if (monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] + value > MAX_PP_UP_BONUSES) {
-            monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] = MAX_PP_UP_BONUSES;
+        if (blockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] + value > MAX_PP_UP_BONUSES) {
+            blockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] = MAX_PP_UP_BONUSES;
         } else {
-            monDataBlockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] += value;
+            blockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] += value;
         }
         break;
     case MON_DATA_MOVE1_MAX_PP:
@@ -1820,45 +1820,45 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_MOVE4_MAX_PP:
         break;
     case MON_DATA_HP_IV:
-        if (monDataBlockB->hpIV + value > MAX_IVS_SINGLE_STAT) {
-            monDataBlockB->hpIV = MAX_IVS_SINGLE_STAT;
+        if (blockB->hpIV + value > MAX_IVS_SINGLE_STAT) {
+            blockB->hpIV = MAX_IVS_SINGLE_STAT;
         } else {
-            monDataBlockB->hpIV += value;
+            blockB->hpIV += value;
         }
         break;
     case MON_DATA_ATK_IV:
-        if (monDataBlockB->atkIV + value > MAX_IVS_SINGLE_STAT) {
-            monDataBlockB->atkIV = MAX_IVS_SINGLE_STAT;
+        if (blockB->atkIV + value > MAX_IVS_SINGLE_STAT) {
+            blockB->atkIV = MAX_IVS_SINGLE_STAT;
         } else {
-            monDataBlockB->atkIV += value;
+            blockB->atkIV += value;
         }
         break;
     case MON_DATA_DEF_IV:
-        if (monDataBlockB->defIV + value > MAX_IVS_SINGLE_STAT) {
-            monDataBlockB->defIV = MAX_IVS_SINGLE_STAT;
+        if (blockB->defIV + value > MAX_IVS_SINGLE_STAT) {
+            blockB->defIV = MAX_IVS_SINGLE_STAT;
         } else {
-            monDataBlockB->defIV += value;
+            blockB->defIV += value;
         }
         break;
     case MON_DATA_SPEED_IV:
-        if (monDataBlockB->speedIV + value > MAX_IVS_SINGLE_STAT) {
-            monDataBlockB->speedIV = MAX_IVS_SINGLE_STAT;
+        if (blockB->speedIV + value > MAX_IVS_SINGLE_STAT) {
+            blockB->speedIV = MAX_IVS_SINGLE_STAT;
         } else {
-            monDataBlockB->speedIV += value;
+            blockB->speedIV += value;
         }
         break;
     case MON_DATA_SPATK_IV:
-        if (monDataBlockB->spAtkIV + value > MAX_IVS_SINGLE_STAT) {
-            monDataBlockB->spAtkIV = MAX_IVS_SINGLE_STAT;
+        if (blockB->spAtkIV + value > MAX_IVS_SINGLE_STAT) {
+            blockB->spAtkIV = MAX_IVS_SINGLE_STAT;
         } else {
-            monDataBlockB->spAtkIV += value;
+            blockB->spAtkIV += value;
         }
         break;
     case MON_DATA_SPDEF_IV:
-        if (monDataBlockB->spDefIV + value > MAX_IVS_SINGLE_STAT) {
-            monDataBlockB->spDefIV = MAX_IVS_SINGLE_STAT;
+        if (blockB->spDefIV + value > MAX_IVS_SINGLE_STAT) {
+            blockB->spDefIV = MAX_IVS_SINGLE_STAT;
         } else {
-            monDataBlockB->spDefIV += value;
+            blockB->spDefIV += value;
         }
         break;
     case MON_DATA_PERSONALITY:
@@ -5081,57 +5081,57 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
 
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-    PokemonDataBlockA *monDataBlockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
-    PokemonDataBlockB *monDataBlockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
-    PokemonDataBlockC *monDataBlockC = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
-    PokemonDataBlockD *monDataBlockD = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
+    PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *blockC = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *blockD = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
 
     param1->personality = boxMon->personality;
     param1->partyDecrypted = FALSE;
     param1->boxDecrypted = FALSE;
     param1->checksumFailed = boxMon->checksumFailed;
-    param1->species = monDataBlockA->species;
-    param1->heldItem = monDataBlockA->heldItem;
-    param1->otID = monDataBlockA->otID;
-    param1->exp = monDataBlockA->exp;
-    param1->friendship = monDataBlockA->friendship;
-    param1->ability = monDataBlockA->ability;
-    param1->hpEV = monDataBlockA->hpEV;
-    param1->atkEV = monDataBlockA->atkEV;
-    param1->defEV = monDataBlockA->defEV;
-    param1->speedEV = monDataBlockA->speedEV;
-    param1->spAtkEV = monDataBlockA->spAtkEV;
-    param1->spDefEV = monDataBlockA->spDefEV;
-    param1->originLanguage = monDataBlockA->originLanguage;
+    param1->species = blockA->species;
+    param1->heldItem = blockA->heldItem;
+    param1->otID = blockA->otID;
+    param1->exp = blockA->exp;
+    param1->friendship = blockA->friendship;
+    param1->ability = blockA->ability;
+    param1->hpEV = blockA->hpEV;
+    param1->atkEV = blockA->atkEV;
+    param1->defEV = blockA->defEV;
+    param1->speedEV = blockA->speedEV;
+    param1->spAtkEV = blockA->spAtkEV;
+    param1->spDefEV = blockA->spDefEV;
+    param1->originLanguage = blockA->originLanguage;
 
     int i;
     for (i = 0; i < 4; i++) {
-        param1->unk_1C[i] = monDataBlockB->moves[i];
-        param1->unk_24[i] = monDataBlockB->moveCurrentPPs[i];
-        param1->unk_28[i] = monDataBlockB->movePPUps[i];
+        param1->unk_1C[i] = blockB->moves[i];
+        param1->unk_24[i] = blockB->moveCurrentPPs[i];
+        param1->unk_28[i] = blockB->movePPUps[i];
     }
 
-    param1->hpIV = monDataBlockB->hpIV;
-    param1->atkIV = monDataBlockB->atkIV;
-    param1->defIV = monDataBlockB->defIV;
-    param1->speedIV = monDataBlockB->speedIV;
-    param1->spAtkIV = monDataBlockB->spAtkIV;
-    param1->spDefIV = monDataBlockB->spDefIV;
-    param1->isEgg = monDataBlockB->isEgg;
-    param1->unk_2C_31 = monDataBlockB->hasNickname;
-    param1->fatefulEncounter = monDataBlockB->fatefulEncounter;
-    param1->gender = monDataBlockB->gender;
-    param1->form = monDataBlockB->form;
+    param1->hpIV = blockB->hpIV;
+    param1->atkIV = blockB->atkIV;
+    param1->defIV = blockB->defIV;
+    param1->speedIV = blockB->speedIV;
+    param1->spAtkIV = blockB->spAtkIV;
+    param1->spDefIV = blockB->spDefIV;
+    param1->isEgg = blockB->isEgg;
+    param1->unk_2C_31 = blockB->hasNickname;
+    param1->fatefulEncounter = blockB->fatefulEncounter;
+    param1->gender = blockB->gender;
+    param1->form = blockB->form;
 
     for (i = 0; i < 10 + 1; i++) {
-        param1->unk_32[i] = monDataBlockC->nickname[i];
+        param1->unk_32[i] = blockC->nickname[i];
     }
 
     for (i = 0; i < 7 + 1; i++) {
-        param1->unk_48[i] = monDataBlockD->otName[i];
+        param1->unk_48[i] = blockD->otName[i];
     }
 
-    param1->pokeball = monDataBlockD->pokeball;
+    param1->pokeball = blockD->pokeball;
 
     param1->unk_5C = mon->party.status;
     param1->level = mon->party.level;
@@ -5156,58 +5156,58 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
 
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-    PokemonDataBlockA *monDataBlockA = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_A);
-    PokemonDataBlockB *monDataBlockB = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_B);
-    PokemonDataBlockC *monDataBlockC = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_C);
-    PokemonDataBlockD *monDataBlockD = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_D);
+    PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *blockC = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *blockD = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_D);
 
     boxMon->personality = param0->personality;
     boxMon->partyDecrypted = FALSE;
     boxMon->boxDecrypted = FALSE;
     boxMon->checksumFailed = param0->checksumFailed;
 
-    monDataBlockA->species = param0->species;
-    monDataBlockA->heldItem = param0->heldItem;
-    monDataBlockA->otID = param0->otID;
-    monDataBlockA->exp = param0->exp;
-    monDataBlockA->friendship = param0->friendship;
-    monDataBlockA->ability = param0->ability;
-    monDataBlockA->hpEV = param0->hpEV;
-    monDataBlockA->atkEV = param0->atkEV;
-    monDataBlockA->defEV = param0->defEV;
-    monDataBlockA->speedEV = param0->speedEV;
-    monDataBlockA->spAtkEV = param0->spAtkEV;
-    monDataBlockA->spDefEV = param0->spDefEV;
-    monDataBlockA->originLanguage = param0->originLanguage;
+    blockA->species = param0->species;
+    blockA->heldItem = param0->heldItem;
+    blockA->otID = param0->otID;
+    blockA->exp = param0->exp;
+    blockA->friendship = param0->friendship;
+    blockA->ability = param0->ability;
+    blockA->hpEV = param0->hpEV;
+    blockA->atkEV = param0->atkEV;
+    blockA->defEV = param0->defEV;
+    blockA->speedEV = param0->speedEV;
+    blockA->spAtkEV = param0->spAtkEV;
+    blockA->spDefEV = param0->spDefEV;
+    blockA->originLanguage = param0->originLanguage;
 
     int i;
     for (i = 0; i < 4; i++) {
-        monDataBlockB->moves[i] = param0->unk_1C[i];
-        monDataBlockB->moveCurrentPPs[i] = param0->unk_24[i];
-        monDataBlockB->movePPUps[i] = param0->unk_28[i];
+        blockB->moves[i] = param0->unk_1C[i];
+        blockB->moveCurrentPPs[i] = param0->unk_24[i];
+        blockB->movePPUps[i] = param0->unk_28[i];
     }
 
-    monDataBlockB->hpIV = param0->hpIV;
-    monDataBlockB->atkIV = param0->atkIV;
-    monDataBlockB->defIV = param0->defIV;
-    monDataBlockB->speedIV = param0->speedIV;
-    monDataBlockB->spAtkIV = param0->spAtkIV;
-    monDataBlockB->spDefIV = param0->spDefIV;
-    monDataBlockB->isEgg = param0->isEgg;
-    monDataBlockB->hasNickname = param0->unk_2C_31;
-    monDataBlockB->fatefulEncounter = param0->fatefulEncounter;
-    monDataBlockB->gender = param0->gender;
-    monDataBlockB->form = param0->form;
+    blockB->hpIV = param0->hpIV;
+    blockB->atkIV = param0->atkIV;
+    blockB->defIV = param0->defIV;
+    blockB->speedIV = param0->speedIV;
+    blockB->spAtkIV = param0->spAtkIV;
+    blockB->spDefIV = param0->spDefIV;
+    blockB->isEgg = param0->isEgg;
+    blockB->hasNickname = param0->unk_2C_31;
+    blockB->fatefulEncounter = param0->fatefulEncounter;
+    blockB->gender = param0->gender;
+    blockB->form = param0->form;
 
     for (i = 0; i < 10 + 1; i++) {
-        monDataBlockC->nickname[i] = param0->unk_32[i];
+        blockC->nickname[i] = param0->unk_32[i];
     }
 
     for (i = 0; i < 7 + 1; i++) {
-        monDataBlockD->otName[i] = param0->unk_48[i];
+        blockD->otName[i] = param0->unk_48[i];
     }
 
-    monDataBlockD->pokeball = param0->pokeball;
+    blockD->pokeball = param0->pokeball;
 
     mon->party.status = param0->unk_5C;
     mon->party.level = param0->level;
