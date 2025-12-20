@@ -184,21 +184,21 @@ void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
 /**
  * @brief Gets a SpeciesData based on a pokemon species and form
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
+SpeciesData *SpeciesData_NewFromForm(int species, int form, enum HeapID heapID);
 
 /**
  * @brief Gets a SpeciesData based on a pokemon species
  *
- * @param monSpecies
+ * @param species
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_NewFromSpecies(int monSpecies, enum HeapID heapID);
+SpeciesData *SpeciesData_NewFromSpecies(int species, enum HeapID heapID);
 
 /**
  * @brief Gets a value from a SpeciesData structure

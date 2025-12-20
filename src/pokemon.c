@@ -1975,11 +1975,10 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     }
 }
 
-SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID)
+SpeciesData *SpeciesData_NewFromForm(int species, int form, enum HeapID heapID)
 {
     SpeciesData *speciesData = Heap_Alloc(heapID, sizeof(SpeciesData));
-    SpeciesData_LoadForm(monSpecies, monForm, speciesData);
-
+    SpeciesData_LoadForm(species, form, speciesData);
     return speciesData;
 }
 

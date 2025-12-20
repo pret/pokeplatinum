@@ -10446,7 +10446,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     u16 item;
     int itemEffect;
     int itemPower;
-    SpeciesData *personal = SpeciesData_FromMonForm(species, form, HEAP_ID_BATTLE);
+    SpeciesData *personal = SpeciesData_NewFromForm(species, form, HEAP_ID_BATTLE);
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
     item = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
     itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
