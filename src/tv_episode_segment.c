@@ -2053,7 +2053,7 @@ static BOOL TVEpisodeSegment_IsEligible_BattleFrontierFrontlineNews_Multi(FieldS
     return SystemFlag_HandleFirstArrivalToZone(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK, FIRST_ARRIVAL_FIGHT_AREA);
 }
 
-static const u8 Unk_020EFD34[] = {
+static const u8 sGroupRNGEntries[] = {
     RECORD_MIXED_RNG_PLAYER_OVERRIDE,
     RECORD_MIXED_RNG_QUEUE_0,
     RECORD_MIXED_RNG_QUEUE_1,
@@ -2065,8 +2065,8 @@ static int RecordMixedRNG_CountValidEntries(RecordMixedRNG *rngCollection)
 {
     int i, count;
 
-    for (i = 0, count = 0; i < NELEMS(Unk_020EFD34); i++) {
-        if (RecordMixedRNG_IsEntryValid(rngCollection, Unk_020EFD34[i])) {
+    for (i = 0, count = 0; i < NELEMS(sGroupRNGEntries); i++) {
+        if (RecordMixedRNG_IsEntryValid(rngCollection, sGroupRNGEntries[i])) {
             count++;
         }
     }
@@ -2089,10 +2089,10 @@ static int TVEpisodeSegment_LoadMessage_DiscoveringGroups(FieldSystem *fieldSyst
         validEntries = 0;
     }
 
-    for (i = 0; i < NELEMS(Unk_020EFD34); i++) {
-        if (RecordMixedRNG_IsEntryValid(rngCollection, Unk_020EFD34[i])) {
+    for (i = 0; i < NELEMS(sGroupRNGEntries); i++) {
+        if (RecordMixedRNG_IsEntryValid(rngCollection, sGroupRNGEntries[i])) {
             if (validEntries == 0) {
-                entry = Unk_020EFD34[i];
+                entry = sGroupRNGEntries[i];
                 break;
             } else {
                 validEntries--;
