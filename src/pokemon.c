@@ -1244,10 +1244,13 @@ void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const v
 
 static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value)
 {
-    // TODO can this be restructured better?
-    u32 *u32Value = value;
-    u16 *u16Value = value;
-    u8 *u8Value = value;
+#define VALUE(type) (*(const type *)value)
+    u64 mask;
+    u32 i;
+    u16 namebuf[MON_NAME_LEN + 1];
+    u16 namebuf2[MON_NAME_LEN + 1];
+    u16 namebuf3[MON_NAME_LEN + 1];
+    String *speciesName;
 
     PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
     PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
@@ -1256,81 +1259,81 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     switch (param) {
     case MON_DATA_PERSONALITY:
-        boxMon->personality = *u32Value;
+        boxMon->personality = VALUE(u32);
         break;
     case MON_DATA_IS_PARTY_DECRYPTED:
         GF_ASSERT(FALSE);
-        boxMon->partyDecrypted = *u8Value;
+        boxMon->partyDecrypted = VALUE(u8);
         break;
     case MON_DATA_IS_BOX_DECRYPTED:
         GF_ASSERT(FALSE);
-        boxMon->boxDecrypted = *u8Value;
+        boxMon->boxDecrypted = VALUE(u8);
         break;
     case MON_DATA_CHECKSUM_FAILED:
-        boxMon->checksumFailed = *u8Value;
+        boxMon->checksumFailed = VALUE(u8);
         break;
     case MON_DATA_CHECKSUM:
-        boxMon->checksum = *u16Value;
+        boxMon->checksum = VALUE(u16);
         break;
     case MON_DATA_SPECIES:
-        blockA->species = *u16Value;
+        blockA->species = VALUE(u16);
         break;
     case MON_DATA_HELD_ITEM:
-        blockA->heldItem = *u16Value;
+        blockA->heldItem = VALUE(u16);
         break;
     case MON_DATA_OT_ID:
-        blockA->otID = *u32Value;
+        blockA->otID = VALUE(u32);
         break;
     case MON_DATA_EXPERIENCE:
-        blockA->exp = *u32Value;
+        blockA->exp = VALUE(u32);
         break;
     case MON_DATA_FRIENDSHIP:
-        blockA->friendship = *u8Value;
+        blockA->friendship = VALUE(u8);
         break;
     case MON_DATA_ABILITY:
-        blockA->ability = *u8Value;
+        blockA->ability = VALUE(u8);
         break;
     case MON_DATA_MARKINGS:
-        blockA->markings = *u8Value;
+        blockA->markings = VALUE(u8);
         break;
     case MON_DATA_LANGUAGE:
-        blockA->originLanguage = *u8Value;
+        blockA->originLanguage = VALUE(u8);
         break;
     case MON_DATA_HP_EV:
-        blockA->hpEV = *u8Value;
+        blockA->hpEV = VALUE(u8);
         break;
     case MON_DATA_ATK_EV:
-        blockA->atkEV = *u8Value;
+        blockA->atkEV = VALUE(u8);
         break;
     case MON_DATA_DEF_EV:
-        blockA->defEV = *u8Value;
+        blockA->defEV = VALUE(u8);
         break;
     case MON_DATA_SPEED_EV:
-        blockA->speedEV = *u8Value;
+        blockA->speedEV = VALUE(u8);
         break;
     case MON_DATA_SPATK_EV:
-        blockA->spAtkEV = *u8Value;
+        blockA->spAtkEV = VALUE(u8);
         break;
     case MON_DATA_SPDEF_EV:
-        blockA->spDefEV = *u8Value;
+        blockA->spDefEV = VALUE(u8);
         break;
     case MON_DATA_COOL:
-        blockA->cool = *u8Value;
+        blockA->cool = VALUE(u8);
         break;
     case MON_DATA_BEAUTY:
-        blockA->beauty = *u8Value;
+        blockA->beauty = VALUE(u8);
         break;
     case MON_DATA_CUTE:
-        blockA->cute = *u8Value;
+        blockA->cute = VALUE(u8);
         break;
     case MON_DATA_SMART:
-        blockA->smart = *u8Value;
+        blockA->smart = VALUE(u8);
         break;
     case MON_DATA_TOUGH:
-        blockA->tough = *u8Value;
+        blockA->tough = VALUE(u8);
         break;
     case MON_DATA_SHEEN:
-        blockA->sheen = *u8Value;
+        blockA->sheen = VALUE(u8);
         break;
     case MON_DATA_SINNOH_CHAMP_RIBBON:
     case MON_DATA_ABILITY_RIBBON:
@@ -1360,63 +1363,60 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_CARNIVAL_RIBBON:
     case MON_DATA_CLASSIC_RIBBON:
     case MON_DATA_PREMIER_RIBBON:
-    case MON_DATA_UNUSED_RIBBON_53: {
-        u64 bit = 1 << (param - MON_DATA_SINNOH_CHAMP_RIBBON);
-
-        if (*u8Value) {
-            blockA->ribbonsDS1 |= bit;
+    case MON_DATA_UNUSED_RIBBON_53:
+        mask = 1 << (param - MON_DATA_SINNOH_CHAMP_RIBBON);
+        if (VALUE(u8)) {
+            blockA->ribbonsDS1 |= mask;
         } else {
-            blockA->ribbonsDS1 &= (bit ^ 0xFFFFFFFF);
+            blockA->ribbonsDS1 &= mask ^ 0xFFFFFFFF;
         }
         break;
-    }
     case MON_DATA_MOVE1:
     case MON_DATA_MOVE2:
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
-        blockB->moves[param - MON_DATA_MOVE1] = *u16Value;
+        blockB->moves[param - MON_DATA_MOVE1] = VALUE(u16);
         break;
     case MON_DATA_MOVE1_PP:
     case MON_DATA_MOVE2_PP:
     case MON_DATA_MOVE3_PP:
     case MON_DATA_MOVE4_PP:
-        blockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] = *u8Value;
+        blockB->moveCurrentPPs[param - MON_DATA_MOVE1_PP] = VALUE(u8);
         break;
     case MON_DATA_MOVE1_PP_UPS:
     case MON_DATA_MOVE2_PP_UPS:
     case MON_DATA_MOVE3_PP_UPS:
     case MON_DATA_MOVE4_PP_UPS:
-        blockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] = *u8Value;
+        blockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS] = VALUE(u8);
         break;
-
     case MON_DATA_MOVE1_MAX_PP:
     case MON_DATA_MOVE2_MAX_PP:
     case MON_DATA_MOVE3_MAX_PP:
     case MON_DATA_MOVE4_MAX_PP:
         break;
     case MON_DATA_HP_IV:
-        blockB->hpIV = *u8Value;
+        blockB->hpIV = VALUE(u8);
         break;
     case MON_DATA_ATK_IV:
-        blockB->atkIV = *u8Value;
+        blockB->atkIV = VALUE(u8);
         break;
     case MON_DATA_DEF_IV:
-        blockB->defIV = *u8Value;
+        blockB->defIV = VALUE(u8);
         break;
     case MON_DATA_SPEED_IV:
-        blockB->speedIV = *u8Value;
+        blockB->speedIV = VALUE(u8);
         break;
     case MON_DATA_SPATK_IV:
-        blockB->spAtkIV = *u8Value;
+        blockB->spAtkIV = VALUE(u8);
         break;
     case MON_DATA_SPDEF_IV:
-        blockB->spDefIV = *u8Value;
+        blockB->spDefIV = VALUE(u8);
         break;
     case MON_DATA_IS_EGG:
-        blockB->isEgg = *u8Value;
+        blockB->isEgg = VALUE(u8);
         break;
     case MON_DATA_HAS_NICKNAME:
-        blockB->hasNickname = *u8Value;
+        blockB->hasNickname = VALUE(u8);
         break;
     case MON_DATA_COOL_RIBBON:
     case MON_DATA_COOL_RIBBON_SUPER:
@@ -1449,67 +1449,54 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_COUNTRY_RIBBON:
     case MON_DATA_NATIONAL_RIBBON:
     case MON_DATA_EARTH_RIBBON:
-    case MON_DATA_WORLD_RIBBON: {
-        u64 bit = 1 << (param - MON_DATA_COOL_RIBBON);
-
-        if (*u8Value) {
-            blockB->ribbonsGBA |= bit;
+    case MON_DATA_WORLD_RIBBON:
+        mask = 1 << (param - MON_DATA_COOL_RIBBON);
+        if (VALUE(u8)) {
+            blockB->ribbonsGBA |= mask;
         } else {
-            blockB->ribbonsGBA &= (bit ^ 0xFFFFFFFF);
+            blockB->ribbonsGBA &= mask ^ 0xFFFFFFFF;
         }
-
         break;
-    }
     case MON_DATA_FATEFUL_ENCOUNTER:
-        blockB->fatefulEncounter = *u8Value;
+        blockB->fatefulEncounter = VALUE(u8);
         break;
     case MON_DATA_GENDER:
         blockB->gender = Pokemon_GetGenderOf(blockA->species, boxMon->personality);
         break;
     case MON_DATA_FORM:
-        blockB->form = *u8Value;
+        blockB->form = VALUE(u8);
         break;
     case MON_DATA_UNUSED_113:
-        blockB->unused1 = *u8Value;
+        blockB->unused1 = VALUE(u8);
         break;
     case MON_DATA_UNUSED_114:
-        blockB->unused2 = *u16Value;
+        blockB->unused2 = VALUE(u16);
         break;
-    case MON_DATA_NICKNAME_AND_FLAG: {
-        charcode_t baseName[MON_NAME_LEN + 1];
-
-        MessageLoader_GetSpeciesName(blockA->species, HEAP_ID_SYSTEM, baseName);
-        blockB->hasNickname = CharCode_Compare(baseName, u16Value);
-    }
-        // fall-through
+    case MON_DATA_NICKNAME_AND_FLAG:
+        MessageLoader_GetSpeciesName(blockA->species, HEAP_ID_SYSTEM, namebuf);
+        blockB->hasNickname = CharCode_Compare(namebuf, value);
+        // fallthrough
     case MON_DATA_NICKNAME:
-        for (int i = 0; i < NELEMS(blockC->nickname); i++) {
-            blockC->nickname[i] = u16Value[i];
+        for (i = 0; i < MON_NAME_LEN + 1; i++) {
+            blockC->nickname[i] = VALUE(u16);
+            value = (void *const)((char *)value + 2);
         }
         break;
 
-    case MON_DATA_NICKNAME_STRING_AND_FLAG: {
-        charcode_t baseName[MON_NAME_LEN + 1];
-        charcode_t nickname[MON_NAME_LEN + 1];
-
-        MessageLoader_GetSpeciesName(blockA->species, HEAP_ID_SYSTEM, baseName);
-        String_ToChars(value, nickname, NELEMS(nickname));
-
-        blockB->hasNickname = CharCode_Compare(baseName, nickname);
-    }
-        // fall-through
+    case MON_DATA_NICKNAME_STRING_AND_FLAG:
+        MessageLoader_GetSpeciesName(blockA->species, HEAP_ID_SYSTEM, namebuf2);
+        String_ToChars(value, namebuf3, MON_NAME_LEN + 1);
+        blockB->hasNickname = CharCode_Compare(namebuf2, namebuf3);
+        // fallthrough
     case MON_DATA_NICKNAME_STRING:
-        String_ToChars(value, blockC->nickname, NELEMS(blockC->nickname));
+        String_ToChars(value, blockC->nickname, MON_NAME_LEN + 1);
         break;
-
     case MON_DATA_UNUSED_121:
-        blockC->unused = *u8Value;
+        blockC->unused = VALUE(u8);
         break;
-
     case MON_DATA_MET_GAME:
-        blockC->originGame = *u8Value;
+        blockC->originGame = VALUE(u8);
         break;
-
     case MON_DATA_SUPER_COOL_RIBBON:
     case MON_DATA_SUPER_COOL_RIBBON_GREAT:
     case MON_DATA_SUPER_COOL_RIBBON_ULTRA:
@@ -1530,103 +1517,98 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_SUPER_TOUGH_RIBBON_GREAT:
     case MON_DATA_SUPER_TOUGH_RIBBON_ULTRA:
     case MON_DATA_SUPER_TOUGH_RIBBON_MASTER:
-    case MON_DATA_UNUSED_RIBBON_143: {
-        u64 bit = 1 << (param - MON_DATA_SUPER_COOL_RIBBON);
-
-        if (*u8Value) {
-            blockC->ribbonsDS2 |= bit;
+    case MON_DATA_UNUSED_RIBBON_143:
+        mask = 1 << (param - MON_DATA_SUPER_COOL_RIBBON);
+        if (VALUE(u8)) {
+            blockC->ribbonsDS2 |= mask;
         } else {
-            blockC->ribbonsDS2 &= (bit ^ 0xFFFFFFFFFFFFFFFF);
+            blockC->ribbonsDS2 &= mask ^ 0xFFFFFFFFFFFFFFFF;
         }
-
         break;
-    }
-
     case MON_DATA_OT_NAME:
-        for (int i = 0; i < NELEMS(blockD->otName); i++) {
-            blockD->otName[i] = u16Value[i];
+        for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
+            blockD->otName[i] = VALUE(u16);
+            value = (void *)((char *)value + 2);
         }
         break;
     case MON_DATA_OT_NAME_STRING:
-        String_ToChars(value, blockD->otName, NELEMS(blockD->otName));
+        String_ToChars(value, blockD->otName, TRAINER_NAME_LEN + 1);
         break;
     case MON_DATA_EGG_YEAR:
-        blockD->eggYear = *u8Value;
+        blockD->eggYear = VALUE(u8);
         break;
     case MON_DATA_EGG_MONTH:
-        blockD->eggMonth = *u8Value;
+        blockD->eggMonth = VALUE(u8);
         break;
     case MON_DATA_EGG_DAY:
-        blockD->eggDay = *u8Value;
+        blockD->eggDay = VALUE(u8);
         break;
     case MON_DATA_MET_YEAR:
-        blockD->metYear = *u8Value;
+        blockD->metYear = VALUE(u8);
         break;
     case MON_DATA_MET_MONTH:
-        blockD->metMonth = *u8Value;
+        blockD->metMonth = VALUE(u8);
         break;
     case MON_DATA_MET_DAY:
-        blockD->metDay = *u8Value;
+        blockD->metDay = VALUE(u8);
         break;
     case MON_DATA_EGG_LOCATION:
     case MON_DATA_EGG_LOCATION_PTHGSS:
-        if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
-            blockD->EggLocation_DP = *u16Value;
-            blockB->EggLocation_PtHGSS = *u16Value;
+        if (VALUE(u16) == 0 || sub_0201708C(VALUE(u16)) == TRUE) {
+            blockD->EggLocation_DP = VALUE(u16);
+            blockB->EggLocation_PtHGSS = VALUE(u16);
         } else {
             blockD->EggLocation_DP = FATEFUL_ENCOUNTER_LOCATION;
-            blockB->EggLocation_PtHGSS = *u16Value;
+            blockB->EggLocation_PtHGSS = VALUE(u16);
         }
         break;
     case MON_DATA_MET_LOCATION:
     case MON_DATA_MET_LOCATION_PTHGSS:
-        if (*u16Value == 0 || sub_0201708C(*u16Value) == TRUE) {
-            blockD->MetLocation_DP = *u16Value;
-            blockB->MetLocation_PtHGSS = *u16Value;
+        if (VALUE(u16) == 0 || sub_0201708C(VALUE(u16)) == TRUE) {
+            blockD->MetLocation_DP = VALUE(u16);
+            blockB->MetLocation_PtHGSS = VALUE(u16);
         } else {
             blockD->MetLocation_DP = FATEFUL_ENCOUNTER_LOCATION;
-            blockB->MetLocation_PtHGSS = *u16Value;
+            blockB->MetLocation_PtHGSS = VALUE(u16);
         }
         break;
     case MON_DATA_POKERUS:
-        blockD->pokerus = *u8Value;
+        blockD->pokerus = VALUE(u8);
         break;
     case MON_DATA_POKEBALL:
-        blockD->pokeball = *u8Value;
+        blockD->pokeball = VALUE(u8);
         break;
     case MON_DATA_MET_LEVEL:
-        blockD->metLevel = *u8Value;
+        blockD->metLevel = VALUE(u8);
         break;
     case MON_DATA_OT_GENDER:
-        blockD->otGender = *u8Value;
+        blockD->otGender = VALUE(u8);
         break;
     case MON_DATA_MET_TERRAIN:
-        blockD->metTerrain = *u8Value;
+        blockD->metTerrain = VALUE(u8);
         break;
     case MON_DATA_UNUSED_159:
-        blockD->unused = *u16Value;
+        blockD->unused = VALUE(u16);
         break;
     case MON_DATA_COMBINED_IVS:
-        blockB->hpIV = (*u32Value >> 0) & 0x1F;
-        blockB->atkIV = (*u32Value >> 5) & 0x1F;
-        blockB->defIV = (*u32Value >> 10) & 0x1F;
-        blockB->speedIV = (*u32Value >> 15) & 0x1F;
-        blockB->spAtkIV = (*u32Value >> 20) & 0x1F;
-        blockB->spDefIV = (*u32Value >> 25) & 0x1F;
+        blockB->hpIV = (VALUE(u32) >> 0) & 0x1F;
+        blockB->atkIV = (VALUE(u32) >> 5) & 0x1F;
+        blockB->defIV = (VALUE(u32) >> 10) & 0x1F;
+        blockB->speedIV = (VALUE(u32) >> 15) & 0x1F;
+        blockB->spAtkIV = (VALUE(u32) >> 20) & 0x1F;
+        blockB->spDefIV = (VALUE(u32) >> 25) & 0x1F;
+        break;
+    case MON_DATA_SPECIES_NAME:
+        String *speciesName = MessageUtil_SpeciesName(blockA->species, HEAP_ID_SYSTEM);
+        String_ToChars(speciesName, blockC->nickname, MON_NAME_LEN + 1);
+        String_Free(speciesName);
         break;
     case MON_DATA_NO_PRINT_GENDER:
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
         break;
-    case MON_DATA_SPECIES_NAME: {
-        String *string = MessageUtil_SpeciesName(blockA->species, HEAP_ID_SYSTEM);
-
-        String_ToChars(string, blockC->nickname, NELEMS(blockC->nickname));
-        String_Free(string);
-
-        break;
     }
-    }
+#undef VALUE
 }
 
 void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
