@@ -1182,63 +1182,49 @@ void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *valu
 
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value)
 {
-    u32 *u32Value = value;
-    u16 *u16Value = value;
-    u8 *u8Value = value;
-
+#define VALUE(type) (*(const type *)value)
     switch (param) {
     case MON_DATA_STATUS:
-        mon->party.status = *u32Value;
+        mon->party.status = VALUE(u32);
         break;
-
     case MON_DATA_LEVEL:
-        mon->party.level = *u8Value;
+        mon->party.level = VALUE(u8);
         break;
-
     case MON_DATA_BALL_CAPSULE_ID:
-        mon->party.ballCapsuleID = *u8Value;
+        mon->party.ballCapsuleID = VALUE(u8);
         break;
-
     case MON_DATA_HP:
-        mon->party.hp = *u16Value;
+        mon->party.hp = VALUE(u16);
         break;
-
     case MON_DATA_MAX_HP:
-        mon->party.maxHP = *u16Value;
+        mon->party.maxHP = VALUE(u16);
         break;
-
     case MON_DATA_ATK:
-        mon->party.attack = *u16Value;
+        mon->party.attack = VALUE(u16);
         break;
-
     case MON_DATA_DEF:
-        mon->party.defense = *u16Value;
+        mon->party.defense = VALUE(u16);
         break;
-
     case MON_DATA_SPEED:
-        mon->party.speed = *u16Value;
+        mon->party.speed = VALUE(u16);
         break;
-
     case MON_DATA_SP_ATK:
-        mon->party.spAtk = *u16Value;
+        mon->party.spAtk = VALUE(u16);
         break;
-
     case MON_DATA_SP_DEF:
-        mon->party.spDef = *u16Value;
+        mon->party.spDef = VALUE(u16);
         break;
-
     case MON_DATA_MAIL:
         Mail_Copy(value, &mon->party.mail);
         break;
-
     case MON_DATA_BALL_CAPSULE:
         BallCapsule_Copy(value, &mon->party.ballCapsule);
         break;
-
     default:
         BoxPokemon_SetDataInternal(&mon->box, param, value);
         break;
     }
+#undef VALUE
 }
 
 void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value)
