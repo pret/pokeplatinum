@@ -246,7 +246,7 @@ enum PokemonDataBlockID {
     DATA_BLOCK_D
 };
 
-static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID);
 static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *dest);
 static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value);
@@ -376,7 +376,7 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
 {
     Pokemon_Init(mon);
 
-    sub_02073E18(&mon->box, monSpecies, monLevel, monIVs, useMonPersonalityParam, monPersonality, monOTIDSource, monOTID);
+    BoxPokemon_InitWith(&mon->box, monSpecies, monLevel, monIVs, useMonPersonalityParam, monPersonality, monOTIDSource, monOTID);
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), 0);
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     Pokemon_SetData(mon, MON_DATA_LEVEL, &monLevel);
@@ -396,52 +396,52 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_CalcLevelAndStats(mon);
 }
 
-static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID)
 {
     BoxPokemon_Init(boxMon);
 
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    if (!useMonPersonalityParam) {
-        monPersonality = (LCRNG_Next() | (LCRNG_Next() << 16));
+    if (!hasFixedPersonality) {
+        personality = (LCRNG_Next() | (LCRNG_Next() << 16));
     }
 
-    BoxPokemon_SetData(boxMon, MON_DATA_PERSONALITY, &monPersonality);
+    BoxPokemon_SetData(boxMon, MON_DATA_PERSONALITY, &personality);
 
-    if (monOTIDSource == OTID_NOT_SHINY) {
+    if (otIDType == OTID_NOT_SHINY) {
         do {
-            monOTID = (LCRNG_Next() | (LCRNG_Next() << 16));
-        } while (Pokemon_InlineIsPersonalityShiny(monOTID, monPersonality));
-    } else if (monOTIDSource != OTID_SET) {
-        monOTID = 0;
+            otID = (LCRNG_Next() | (LCRNG_Next() << 16));
+        } while (Pokemon_InlineIsPersonalityShiny(otID, personality));
+    } else if (otIDType != OTID_SET) {
+        otID = 0;
     }
 
-    BoxPokemon_SetData(boxMon, MON_DATA_OT_ID, &monOTID);
+    BoxPokemon_SetData(boxMon, MON_DATA_OT_ID, &otID);
     BoxPokemon_SetData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
-    BoxPokemon_SetData(boxMon, MON_DATA_SPECIES, &monSpecies);
+    BoxPokemon_SetData(boxMon, MON_DATA_SPECIES, &species);
     BoxPokemon_SetData(boxMon, MON_DATA_SPECIES_NAME, NULL);
 
     u32 v1, v2; // TODO rename, these are used/reused as temp vars through the whole function.
 
-    v1 = Pokemon_GetSpeciesBaseExpAt(monSpecies, monLevel);
+    v1 = Pokemon_GetSpeciesBaseExpAt(species, level);
     BoxPokemon_SetData(boxMon, MON_DATA_EXPERIENCE, &v1);
 
-    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_BASE_FRIENDSHIP);
+    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
     BoxPokemon_SetData(boxMon, MON_DATA_FRIENDSHIP, &v1);
 
-    BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &monLevel);
+    BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &level);
     BoxPokemon_SetData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
 
     v1 = ITEM_POKE_BALL;
     BoxPokemon_SetData(boxMon, MON_DATA_POKEBALL, &v1);
 
-    if (monIVs < INIT_IVS_RANDOM) {
-        BoxPokemon_SetData(boxMon, MON_DATA_HP_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_ATK_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_DEF_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_SPEED_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_SPATK_IV, &monIVs);
-        BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &monIVs);
+    if (ivs < INIT_IVS_RANDOM) {
+        BoxPokemon_SetData(boxMon, MON_DATA_HP_IV, &ivs);
+        BoxPokemon_SetData(boxMon, MON_DATA_ATK_IV, &ivs);
+        BoxPokemon_SetData(boxMon, MON_DATA_DEF_IV, &ivs);
+        BoxPokemon_SetData(boxMon, MON_DATA_SPEED_IV, &ivs);
+        BoxPokemon_SetData(boxMon, MON_DATA_SPATK_IV, &ivs);
+        BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &ivs);
     } else {
         v1 = LCRNG_Next();
         v2 = (v1 & (0x1f << 0)) >> 0;
@@ -464,11 +464,11 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
         BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &v2);
     }
 
-    v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_1);
-    v2 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_2);
+    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
+    v2 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
 
     if (v2 != ABILITY_NONE) {
-        if (monPersonality & 1) {
+        if (personality & 1) {
             BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &v2);
         } else {
             BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &v1);
