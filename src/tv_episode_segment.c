@@ -2074,7 +2074,7 @@ static int RecordMixedRNG_CountValidEntries(RecordMixedRNG *rngCollection)
     return count;
 }
 
-static int MsgFunc_DiscoveringGroups(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_DiscoveringGroups(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     int i, validEntries, entry;
     enum PokemonType type;
@@ -2115,7 +2115,7 @@ static int MsgFunc_DiscoveringGroups(FieldSystem *fieldSystem, StringTemplate *t
     return pl_msg_00000418_00000;
 }
 
-static BOOL FieldSystem_RecordMixedRNGHasValidEntries(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_DiscoveringGroups(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     RecordMixedRNG *rngCollection = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
@@ -2134,7 +2134,7 @@ static u16 sOnTheSpotWeatherLocations[] = {
     MAP_HEADER_SNOWPOINT_CITY
 };
 
-static int MsgFunc_OnTheSpotWeather(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_OnTheSpotWeather(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     int mapHeaderID = sOnTheSpotWeatherLocations[LCRNG_RandMod(NELEMS(sOnTheSpotWeatherLocations))];
     int weather = FieldSystem_GetWeather(fieldSystem, mapHeaderID);
@@ -2181,7 +2181,7 @@ static BOOL FieldSystem_AlwaysTrue(FieldSystem *fieldSystem, UnkStruct_ov6_02246
 }
 
 // Skips Marts, Gyms and Pokémon Centers
-static int MsgFunc_YourTownsBestThree(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_YourTownsBestThree(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
     int mapID = fieldSystem->location->mapId;
@@ -2251,7 +2251,7 @@ static int MsgFunc_YourTownsBestThree(FieldSystem *fieldSystem, StringTemplate *
     return pl_msg_00000418_00027;
 }
 
-static int MsgFunc_SwarmNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_SwarmNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     u16 mapID, species;
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
@@ -2263,13 +2263,14 @@ static int MsgFunc_SwarmNewsFlash(FieldSystem *fieldSystem, StringTemplate *temp
     return pl_msg_00000418_00029;
 }
 
-static BOOL FieldSystem_IsSwarmEnabled(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *unused)
+static BOOL TVEpisodeSegment_IsEligible_SwarmNewsFlash(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *unused)
 {
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     return SpecialEncounter_IsSwarmEnabled(speEnc);
 }
 
-static BOOL FieldSystem_AlwaysFalse(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+// Leftover from DP
+static BOOL MatchupChannelDummy(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     return FALSE;
 }
@@ -2461,7 +2462,7 @@ static int BerryLookout_GetVisitedPatch(FieldSystem *fieldSystem)
     return patches[LCRNG_RandMod(count)];
 }
 
-static int MsgFunc_BerryLookout(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_BerryLookout(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
     int patchID = BerryLookout_GetVisitedPatch(fieldSystem);
@@ -2484,18 +2485,19 @@ static int MsgFunc_BerryLookout(FieldSystem *fieldSystem, StringTemplate *templa
     }
 }
 
-static BOOL FieldSystem_HasVisitedOreburghCity(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_BerryLookout(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     return SystemFlag_HandleFirstArrivalToZone(varsFlags, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_OREBURGH_CITY);
 }
 
-static BOOL FieldSystem_AlwaysFalse2(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+// Leftover from DP
+static BOOL PokemonResearchCornerDummy(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     return FALSE;
 }
 
-static int MsgFunc_RichBoyNatureCorner(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_RichBoyNatureCorner(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     u32 personality, i;
     u8 nature;
@@ -2536,7 +2538,7 @@ static int MsgFunc_RichBoyNatureCorner(FieldSystem *fieldSystem, StringTemplate 
     return pl_msg_00000418_00044;
 }
 
-static int MsgFunc_RoamerNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_RoamerNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     Roamer *roamer;
     SpecialEncounter *speEnc;
@@ -2567,7 +2569,7 @@ static int MsgFunc_RoamerNewsFlash(FieldSystem *fieldSystem, StringTemplate *tem
     return pl_msg_00000418_00049;
 }
 
-static BOOL FieldSystem_IsRoamerActive(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_RoamerNewsFlash(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     int i;
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
@@ -3011,21 +3013,21 @@ static const TVProgramSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_NUM
 };
 
 static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS] = {
-    { MsgFunc_DiscoveringGroups, FieldSystem_RecordMixedRNGHasValidEntries },
-    { MsgFunc_OnTheSpotWeather, FieldSystem_AlwaysTrue },
-    { MsgFunc_YourTownsBestThree, NULL },
+    { TVEpisodeSegment_LoadMessage_DiscoveringGroups, TVEpisodeSegment_IsEligible_DiscoveringGroups },
+    { TVEpisodeSegment_LoadMessage_OnTheSpotWeather, FieldSystem_AlwaysTrue },
+    { TVEpisodeSegment_LoadMessage_YourTownsBestThree, NULL },
     TV_PROGRAM_SEGMENT_NULL,
-    { MsgFunc_SwarmNewsFlash, FieldSystem_IsSwarmEnabled },
+    { TVEpisodeSegment_LoadMessage_SwarmNewsFlash, TVEpisodeSegment_IsEligible_SwarmNewsFlash },
     TV_PROGRAM_SEGMENT_NULL,
-    { NULL, FieldSystem_AlwaysFalse },
+    { NULL, MatchupChannelDummy },
     TV_PROGRAM_SEGMENT_NULL,
-    { MsgFunc_BerryLookout, FieldSystem_HasVisitedOreburghCity },
+    { TVEpisodeSegment_LoadMessage_BerryLookout, TVEpisodeSegment_IsEligible_BerryLookout },
     TV_PROGRAM_SEGMENT_NULL,
-    { NULL, FieldSystem_AlwaysFalse2 },
-    { MsgFunc_RichBoyNatureCorner, NULL },
+    { NULL, PokemonResearchCornerDummy },
+    { TVEpisodeSegment_LoadMessage_RichBoyNatureCorner, NULL },
     TV_PROGRAM_SEGMENT_NULL,
     TV_PROGRAM_SEGMENT_NULL,
-    { MsgFunc_RoamerNewsFlash, FieldSystem_IsRoamerActive },
+    { TVEpisodeSegment_LoadMessage_RoamerNewsFlash, TVEpisodeSegment_IsEligible_RoamerNewsFlash },
     TV_PROGRAM_SEGMENT_NULL,
     { sub_0206EEBC, sub_0206EF64 }
 };
