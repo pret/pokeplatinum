@@ -2,8 +2,11 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
+#include "generated/battle_tower_modes.h"
+
 #include "struct_decls/struct_0202D750_decl.h"
-#include "struct_defs/struct_0204AFC4.h"
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_0209BBA4.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -324,10 +327,10 @@ BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
     v4 = *v3;
     ov104_02239C7C(v3);
 
-    battleTower = BattleTower_Init(v2->saveData, 0, 6);
+    battleTower = BattleTower_Init(v2->saveData, 0, BATTLE_TOWER_MODE_6);
     sub_0209B980(param0->unk_00->unk_00, battleTower);
 
-    if (battleTower->challengeMode == 6) {
+    if (battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
         ov104_0222E630(v2->saveData);
     }
 
@@ -339,8 +342,8 @@ BOOL ov104_02239B14(UnkStruct_ov104_0222E930 *param0)
 
     battleTower->unk_16[0] = v4.unk_86[0];
     battleTower->unk_16[1] = v4.unk_86[1];
-    battleTower->unk_12 = v4.unk_58;
-    battleTower->unk_10_5 = 5 + battleTower->unk_12;
+    battleTower->partnerGender = v4.unk_58;
+    battleTower->partnerID = BT_PARTNERS_COUNT + battleTower->partnerGender;
 
     if (CommSys_CurNetId() == 0) {
         sub_0204A4C8(battleTower, v2->saveData);

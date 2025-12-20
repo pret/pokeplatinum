@@ -2,11 +2,11 @@
 #define POKEPLATINUM_POKEDEX_SORT_DATA_H
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02098700_decl.h"
 
 #include "applications/pokedex/sorted_pokedex.h"
 
-#include "strbuf.h"
+#include "pokedex_heightweight.h"
+#include "string_gf.h"
 
 typedef struct {
     const Pokedex *pokedex;
@@ -20,7 +20,7 @@ typedef struct {
     HeightWeightData *HWData;
     u32 trainerGameCode;
     u32 trainerGender;
-    Strbuf *trainerName;
+    String *trainerName;
     int unk_1758;
     u16 currentSpecies;
     u16 bootMode;

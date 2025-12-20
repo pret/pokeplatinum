@@ -9,17 +9,19 @@
 
 #include "charcode.h"
 
+#define MAX_CAPTURED_FLAG_RECORDS 5
+
 typedef struct Underground {
     UnkStruct_02029894 unk_00;
     u32 randomSeed;
     s32 unk_94;
     u8 unk_98;
     u8 unused; // Set but never read
-    u32 unk_9C[5];
-    charcode_t unk_B0[5][TRAINER_NAME_LEN + 1];
-    u8 unk_100[5];
-    u8 unk_105[5];
-    u8 unk_10A;
+    u32 registeredFlagOwnerIDs[MAX_CAPTURED_FLAG_RECORDS];
+    charcode_t registeredFlagOwnerNames[MAX_CAPTURED_FLAG_RECORDS][TRAINER_NAME_LEN + 1];
+    u8 registeredFlagOwnerRegionCodes[MAX_CAPTURED_FLAG_RECORDS];
+    u8 registeredFlagOwnerGameCodes[MAX_CAPTURED_FLAG_RECORDS];
+    u8 registeredFlagOwnerIndex;
     u8 spawnedTrapIDs[MAX_SPAWNED_TRAPS];
     u8 spawnedTrapCoordinates[MAX_SPAWNED_TRAPS][3];
     u8 unk_20B[255][3];

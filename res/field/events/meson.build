@@ -564,7 +564,7 @@ events_narc = custom_target('zone_event.narc',
         'zone_event.naix.h',
     ],
     input: event_bin_gen.process(events_files, env: json2bin_env),
-    depends: [ py_consts_generators, events_headers],
+    depends: [ py_consts_generators, events_headers ],
     command: [
         narc_exe, 'create',
         '--naix',

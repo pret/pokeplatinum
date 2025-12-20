@@ -20,7 +20,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_text.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
 
@@ -625,18 +625,18 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     }
 
     {
-        Strbuf *v3, *v4;
+        String *v3, *v4;
         MessageLoader *v5;
 
         v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, heapID);
-        v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
-        v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
+        v3 = MessageLoader_GetNewString(v5, param0->unk_16);
+        v4 = MessageLoader_GetNewString(v5, param0->unk_18);
 
         Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRING, v3);
         Pokemon_SetValue(param1, MON_DATA_OT_NAME_STRING, v4);
 
-        Strbuf_Free(v3);
-        Strbuf_Free(v4);
+        String_Free(v3);
+        String_Free(v4);
         MessageLoader_Free(v5);
     }
 

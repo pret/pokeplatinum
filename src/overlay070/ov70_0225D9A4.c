@@ -62,7 +62,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -106,7 +106,7 @@ typedef struct {
     Window unk_00;
     u32 unk_10;
     u32 unk_14;
-    Strbuf *unk_18;
+    String *unk_18;
     void *unk_1C;
 } UnkStruct_ov70_0225E9C8;
 
@@ -138,8 +138,8 @@ typedef struct {
 typedef struct {
     StringTemplate *unk_00;
     MessageLoader *unk_04[4];
-    Strbuf *unk_14;
-    Strbuf *unk_18;
+    String *unk_14;
+    String *unk_18;
 } UnkStruct_ov70_0225F208;
 
 typedef struct {
@@ -237,8 +237,8 @@ static void ov70_0225E92C(UnkStruct_ov70_0225DEE8 *param0);
 static void ov70_0225E970(UnkStruct_ov70_0225DEE8 *param0);
 static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *saveData, u32 heapID);
 static void ov70_0225EA14(UnkStruct_ov70_0225E9C8 *param0);
-static void ov70_0225EA44(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1);
-static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1);
+static void ov70_0225EA44(UnkStruct_ov70_0225E9C8 *param0, const String *param1);
+static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const String *param1);
 static void ov70_0225EB08(UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EB24(UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EB38(UnkStruct_ov70_0225E9C8 *param0);
@@ -247,12 +247,12 @@ static BOOL ov70_0225EB5C(const UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EB74(UnkStruct_ov70_0225E9C8 *param0);
 static void ov70_0225EBA8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4EC *param1, SaveData *saveData, u32 heapID);
 static void ov70_0225EBBC(UnkStruct_ov70_0225E9C8 *param0);
-static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1);
+static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const String *param1);
 static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID);
 static void ov70_0225ED4C(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4EC *param1);
 static void ov70_0225EDA8(UnkStruct_ov70_0225EC20 *param0, u32 param1, u32 heapID, u32 param3);
 static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 *param0);
-static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const Strbuf *param1, u32 param2);
+static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const String *param1, u32 param2);
 static const StringList *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0);
 static BOOL ov70_0225EE08(const UnkStruct_ov70_0225EC20 *param0, u32 param1);
 static void ov70_0225EE30(UnkStruct_ov70_0225EC20 *param0, const ListMenuTemplate *param1, UnkStruct_ov70_0225E4EC *param2, u16 param3, u16 param4, u32 heapID, u8 param6, u8 param7, u8 param8);
@@ -265,19 +265,19 @@ static void ov70_0225EFD4(UnkStruct_ov70_0225EFD4 *param0, UnkStruct_ov70_0225E4
 static void ov70_0225EFD8(UnkStruct_ov70_0225EFD4 *param0);
 static void ov70_0225EFE0(UnkStruct_ov70_0225EFD4 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, u8 param3, u8 param4, u8 param5, u8 param6);
 static void ov70_0225F024(UnkStruct_ov70_0225EFD4 *param0);
-static void ov70_0225F048(UnkStruct_ov70_0225EFD4 *param0, const Strbuf *param1, u8 param2, u8 param3);
+static void ov70_0225F048(UnkStruct_ov70_0225EFD4 *param0, const String *param1, u8 param2, u8 param3);
 static void ov70_0225F078(UnkStruct_ov70_0225EFD4 *param0, u16 param1, u16 param2, u16 param3, u16 param4);
 static void ov70_0225F098(UnkStruct_ov70_0225F098 *param0, UnkStruct_ov70_0225F208 *param1, u32 heapID);
 static void ov70_0225F100(UnkStruct_ov70_0225F098 *param0);
 static void ov70_0225F114(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225E4EC *param1, u32 heapID);
 static void ov70_0225F144(UnkStruct_ov70_0225F114 *param0);
-static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const Strbuf *param1);
+static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const String *param1);
 static void ov70_0225F184(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F208 *param1);
 static void ov70_0225F1C0(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F208 *param1, int param2);
 static void ov70_0225F1F0(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F208 *param1, int param2);
 static void ov70_0225F208(UnkStruct_ov70_0225F208 *param0, u32 heapID);
 static void ov70_0225F25C(UnkStruct_ov70_0225F208 *param0);
-static Strbuf *ov70_0225F288(UnkStruct_ov70_0225F208 *param0, int param1, u32 param2);
+static String *ov70_0225F288(UnkStruct_ov70_0225F208 *param0, int param1, u32 param2);
 static void ov70_0225F2A8(UnkStruct_ov70_0225F208 *param0, u32 param1, u32 param2, u32 param3, int param4);
 static void ov70_0225F2C8(UnkStruct_ov70_0225F208 *param0, const TrainerInfo *param1, u32 param2);
 static void ov70_0225F2D8(UnkStruct_ov70_0225F208 *param0, enum PlazaMinigame param1, u32 param2);
@@ -900,12 +900,12 @@ BOOL ov70_0225DF84(const UnkStruct_ov70_0225DEE8 *param0, u8 param1)
     return param0->unk_0C.unk_14[param1];
 }
 
-void ov70_0225DF8C(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1)
+void ov70_0225DF8C(UnkStruct_ov70_0225DEE8 *param0, const String *param1)
 {
     ov70_0225EA44(&param0->unk_35C, param1);
 }
 
-void ov70_0225DF9C(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1)
+void ov70_0225DF9C(UnkStruct_ov70_0225DEE8 *param0, const String *param1)
 {
     ov70_0225EAA4(&param0->unk_35C, param1);
 }
@@ -935,7 +935,7 @@ void ov70_0225DFEC(UnkStruct_ov70_0225DEE8 *param0)
     ov70_0225EB74(&param0->unk_35C);
 }
 
-void ov70_0225DFFC(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1)
+void ov70_0225DFFC(UnkStruct_ov70_0225DEE8 *param0, const String *param1)
 {
     ov70_0225EBC4(&param0->unk_37C, param1);
 }
@@ -955,7 +955,7 @@ void ov70_0225E034(UnkStruct_ov70_0225DEE8 *param0)
     ov70_0225EDE0(&param0->unk_39C);
 }
 
-void ov70_0225E044(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1, u32 param2)
+void ov70_0225E044(UnkStruct_ov70_0225DEE8 *param0, const String *param1, u32 param2)
 {
     ov70_0225EDF8(&param0->unk_39C, param1, param2);
 }
@@ -1005,7 +1005,7 @@ void ov70_0225E12C(UnkStruct_ov70_0225DEE8 *param0)
     ov70_0225F024(&param0->unk_428);
 }
 
-void ov70_0225E13C(UnkStruct_ov70_0225DEE8 *param0, const Strbuf *param1, u8 param2, u8 param3)
+void ov70_0225E13C(UnkStruct_ov70_0225DEE8 *param0, const String *param1, u8 param2, u8 param3)
 {
     ov70_0225F048(&param0->unk_428, param1, param2, param3);
 }
@@ -1048,7 +1048,7 @@ void ov70_0225E1F8(UnkStruct_ov70_0225DEE8 *param0)
     ov70_0225EF14(&param0->unk_39C, NULL, NULL);
 }
 
-Strbuf *ov70_0225E20C(UnkStruct_ov70_0225DEE8 *param0, int param1, u32 param2)
+String *ov70_0225E20C(UnkStruct_ov70_0225DEE8 *param0, int param1, u32 param2)
 {
     return ov70_0225F288(&param0->unk_340, param1, param2);
 }
@@ -1496,7 +1496,7 @@ static void ov70_0225E9C8(UnkStruct_ov70_0225E9C8 *param0, UnkStruct_ov70_0225E4
     Window_Add(param1->unk_00, &param0->unk_00, Unk_ov70_0226D5CC[0], 2, 19, 27, 4, 4, ((1 + (18 + 12)) + ((18 + 12) + 24)) + 9);
     Window_FillTilemap(&param0->unk_00, 15);
 
-    param0->unk_18 = Strbuf_Init(384, heapID);
+    param0->unk_18 = String_Init(384, heapID);
     param0->unk_14 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
 }
 
@@ -1508,32 +1508,32 @@ static void ov70_0225EA14(UnkStruct_ov70_0225E9C8 *param0)
 
     ov70_0225EB38(param0);
 
-    Strbuf_Free(param0->unk_18);
+    String_Free(param0->unk_18);
     Window_Remove(&param0->unk_00);
 }
 
-static void ov70_0225EA44(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
+static void ov70_0225EA44(UnkStruct_ov70_0225E9C8 *param0, const String *param1)
 {
     if (Text_IsPrinterActive(param0->unk_10)) {
         Text_RemovePrinter(param0->unk_10);
     }
 
     Window_FillTilemap(&param0->unk_00, 15);
-    Strbuf_Copy(param0->unk_18, param1);
+    String_Copy(param0->unk_18, param1);
 
     param0->unk_10 = Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_14, TEXT_COLOR(1, 2, 15), NULL);
 
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_00, 1, 1, 1);
 }
 
-static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
+static void ov70_0225EAA4(UnkStruct_ov70_0225E9C8 *param0, const String *param1)
 {
     if (Text_IsPrinterActive(param0->unk_10)) {
         Text_RemovePrinter(param0->unk_10);
     }
 
     Window_FillTilemap(&param0->unk_00, 15);
-    Strbuf_Copy(param0->unk_18, param1);
+    String_Copy(param0->unk_18, param1);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_00, 1, 1, 1);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
@@ -1602,14 +1602,14 @@ static void ov70_0225EBBC(UnkStruct_ov70_0225E9C8 *param0)
     ov70_0225EA14(param0);
 }
 
-static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const Strbuf *param1)
+static void ov70_0225EBC4(UnkStruct_ov70_0225E9C8 *param0, const String *param1)
 {
     if (Text_IsPrinterActive(param0->unk_10)) {
         Text_RemovePrinter(param0->unk_10);
     }
 
     Window_FillTilemap(&param0->unk_00, 15);
-    Strbuf_Copy(param0->unk_18, param1);
+    String_Copy(param0->unk_18, param1);
 
     param0->unk_10 = Text_AddPrinterWithParams(&param0->unk_00, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_14, NULL);
 
@@ -1698,9 +1698,9 @@ static void ov70_0225EDE0(UnkStruct_ov70_0225EC20 *param0)
     }
 }
 
-static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const Strbuf *param1, u32 param2)
+static void ov70_0225EDF8(UnkStruct_ov70_0225EC20 *param0, const String *param1, u32 param2)
 {
-    StringList_AddFromStrbuf(param0->unk_34, param1, param2);
+    StringList_AddFromString(param0->unk_34, param1, param2);
 }
 
 static const StringList *ov70_0225EE04(const UnkStruct_ov70_0225EC20 *param0)
@@ -1850,7 +1850,7 @@ static void ov70_0225F024(UnkStruct_ov70_0225EFD4 *param0)
     }
 }
 
-static void ov70_0225F048(UnkStruct_ov70_0225EFD4 *param0, const Strbuf *param1, u8 param2, u8 param3)
+static void ov70_0225F048(UnkStruct_ov70_0225EFD4 *param0, const String *param1, u8 param2, u8 param3)
 {
     Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_00);
@@ -1863,15 +1863,15 @@ static void ov70_0225F078(UnkStruct_ov70_0225EFD4 *param0, u16 param1, u16 param
 
 static void ov70_0225F098(UnkStruct_ov70_0225F098 *param0, UnkStruct_ov70_0225F208 *param1, u32 heapID)
 {
-    Strbuf *v0;
+    String *v0;
 
     GF_ASSERT(param0->unk_00 == NULL);
     param0->unk_00 = StringList_New(2, heapID);
 
     v0 = ov70_0225F288(param1, 1, 67);
-    StringList_AddFromStrbuf(param0->unk_00, v0, 0);
+    StringList_AddFromString(param0->unk_00, v0, 0);
     v0 = ov70_0225F288(param1, 1, 66);
-    StringList_AddFromStrbuf(param0->unk_00, v0, 1);
+    StringList_AddFromString(param0->unk_00, v0, 1);
 
     param0->unk_04 = Unk_ov70_0226D644;
     param0->unk_04.count = 2;
@@ -1897,7 +1897,7 @@ static void ov70_0225F144(UnkStruct_ov70_0225F114 *param0)
     Window_Remove(&param0->unk_00);
 }
 
-static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const Strbuf *param1)
+static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const String *param1)
 {
     Text_AddPrinterWithParamsAndColor(&param0->unk_00, FONT_SYSTEM, param1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_DrawStandardFrame(&param0->unk_00, 1, (1 + (18 + 12)) + ((18 + 12) + 24), 3);
@@ -1907,7 +1907,7 @@ static void ov70_0225F14C(UnkStruct_ov70_0225F114 *param0, const Strbuf *param1)
 static void ov70_0225F184(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F208 *param1)
 {
     u32 v0;
-    Strbuf *v1;
+    String *v1;
     UnkStruct_ov65_0222F6EC *v2 = sub_020382F8();
     v0 = ov66_022316F4(v2->unk_00, v2->unk_04);
 
@@ -1920,7 +1920,7 @@ static void ov70_0225F1C0(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F2
 {
     u32 v0;
     s32 v1;
-    Strbuf *v2;
+    String *v2;
 
     v1 = ov66_0223270C(param2);
     ov70_0225F2A8(param1, v1, 5, 0, 2);
@@ -1931,7 +1931,7 @@ static void ov70_0225F1C0(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F2
 
 static void ov70_0225F1F0(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F208 *param1, int param2)
 {
-    Strbuf *v0 = ov70_0225F288(param1, 2, 14);
+    String *v0 = ov70_0225F288(param1, 2, 14);
     ov70_0225F14C(param0, v0);
 }
 
@@ -1948,8 +1948,8 @@ static void ov70_0225F208(UnkStruct_ov70_0225F208 *param0, u32 heapID)
         param0->unk_04[v0] = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
     }
 
-    param0->unk_14 = Strbuf_Init(480, heapID);
-    param0->unk_18 = Strbuf_Init(480, heapID);
+    param0->unk_14 = String_Init(480, heapID);
+    param0->unk_18 = String_Init(480, heapID);
 }
 
 static void ov70_0225F25C(UnkStruct_ov70_0225F208 *param0)
@@ -1962,13 +1962,13 @@ static void ov70_0225F25C(UnkStruct_ov70_0225F208 *param0)
         MessageLoader_Free(param0->unk_04[v0]);
     }
 
-    Strbuf_Free(param0->unk_14);
-    Strbuf_Free(param0->unk_18);
+    String_Free(param0->unk_14);
+    String_Free(param0->unk_18);
 }
 
-static Strbuf *ov70_0225F288(UnkStruct_ov70_0225F208 *param0, int param1, u32 param2)
+static String *ov70_0225F288(UnkStruct_ov70_0225F208 *param0, int param1, u32 param2)
 {
-    MessageLoader_GetStrbuf(param0->unk_04[param1], param2, param0->unk_18);
+    MessageLoader_GetString(param0->unk_04[param1], param2, param0->unk_18);
     StringTemplate_Format(param0->unk_00, param0->unk_14, param0->unk_18);
     return param0->unk_14;
 }
@@ -2820,18 +2820,18 @@ static void ov70_022602C0(UnkStruct_ov70_0225FA84 *param0)
 
 static void ov70_022602DC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, u32 param2, u32 param3, u8 param4, u8 param5, u32 param6)
 {
-    Strbuf *v0 = ov70_0225F288(param1, 1, param3);
+    String *v0 = ov70_0225F288(param1, 1, param3);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[param2], FONT_SYSTEM, v0, param4, param5, TEXT_SPEED_NO_TRANSFER, param6, NULL);
 }
 
 static void ov70_02260314(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, u32 param2, u32 param3, u8 param4, u8 param5, u32 param6)
 {
-    Strbuf *v0;
+    String *v0;
     u32 v1;
     s32 v2;
 
     v0 = ov70_0225F288(param1, 1, param3);
-    v1 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+    v1 = Font_CalcStringWidth(FONT_SYSTEM, v0, 0);
     v2 = param4 - v1;
 
     if (v2 < 0) {
@@ -3103,7 +3103,7 @@ static void ov70_02260870(UnkStruct_ov70_02260744 *param0, UnkStruct_ov70_0225E4
     ov70_0225FA14(param1, param4, 27 + param0->unk_0A, Unk_ov70_0226D5CC[3], 320, heapID);
 
     {
-        Strbuf *v0;
+        String *v0;
 
         v0 = ov70_0225F288(param2, 1, 63);
 

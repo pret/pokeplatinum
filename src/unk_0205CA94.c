@@ -127,7 +127,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
     switch (v0->unk_1E4) {
     case 0:
         MapObject_SetPauseMovementOff(Player_MapObject(v0->fieldSystem->playerAvatar));
-        PlayerAvatar_SetHidden(v0->fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetVisible(v0->fieldSystem->playerAvatar, 0);
         v0->unk_1E4++;
         break;
     case 1:
@@ -189,7 +189,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        PlayerAvatar_SetHidden(v0->fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetVisible(v0->fieldSystem->playerAvatar, 0);
         v0->unk_1E4++;
         break;
     case 1:
@@ -216,7 +216,7 @@ void sub_0205CBFC(SysTask *param0, void *param1)
 
         if (v0->unk_1E8 > 0) {
             v0->unk_1E4++;
-            PlayerAvatar_SetHidden(v0->fieldSystem->playerAvatar, 1);
+            PlayerAvatar_SetVisible(v0->fieldSystem->playerAvatar, 1);
         }
         break;
     case 4:
@@ -242,7 +242,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        PlayerAvatar_SetHidden(v0->fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetVisible(v0->fieldSystem->playerAvatar, 0);
         v0->unk_1E4++;
         break;
     case 1:
@@ -303,7 +303,7 @@ void sub_0205CE7C(SysTask *param0, void *param1)
 
     switch (v0->unk_1E4) {
     case 0:
-        PlayerAvatar_SetHidden(v0->fieldSystem->playerAvatar, 0);
+        PlayerAvatar_SetVisible(v0->fieldSystem->playerAvatar, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 4);
         sub_0205D274(v0, &v0->unk_1C0[1], 5);
         v0->unk_1E0 = 2;
@@ -323,7 +323,7 @@ void sub_0205CE7C(SysTask *param0, void *param1)
         v1[0] = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
         if (v1[0] == 0) {
-            PlayerAvatar_SetHidden(v0->fieldSystem->playerAvatar, 1);
+            PlayerAvatar_SetVisible(v0->fieldSystem->playerAvatar, 1);
             v0->unk_1E8 = 6;
             v0->unk_1E4++;
         }

@@ -19,10 +19,10 @@ static int ov117_02266610(void);
 static int ov117_02266614(void);
 
 static const CommCmdTable Unk_ov117_02266FE4[] = {
-    { NULL, sub_0203294C, NULL },
+    { NULL, CommPacketSizeOf_Nothing, NULL },
     { ov117_02266660, ov117_02266614, NULL },
     { ov117_02266618, ov117_02266610, NULL },
-    { ov117_0226663C, sub_0203294C, NULL }
+    { ov117_0226663C, CommPacketSizeOf_Nothing, NULL }
 };
 
 void ov117_022665FC(void *param0)

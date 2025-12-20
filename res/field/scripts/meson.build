@@ -1,5 +1,33 @@
-relative_source_root = fs.relative_to(meson.project_source_root(), meson.project_build_root())
 relative_build_dir = fs.relative_to(meson.current_build_dir(), meson.project_build_root())
+
+# NOTE: This is a functional copy of script_bin_gen, which is separated from the
+# base generator due to an additional dependency on headers generated for
+# events IDs. Meson unfortunately does not have a clean way to copy an existing
+# object and tweak a single property.
+# WARN: If you update this generator, you should also consider updating its parent
+# in res/meson.build
+field_script_bin_gen = generator(make_script_bin_sh,
+    arguments: [
+        '-i', relative_source_root / 'include',
+        '-i', relative_source_root / 'asm',
+        '-i', '.' / 'res' / 'text',
+        '-i', '.' / 'res',
+        '-i', '.',
+        '--depfile',
+        '--assembler', arm_none_eabi_gcc_exe.full_path(),
+        '--objcopy', arm_none_eabi_objcopy_exe.full_path(),
+        '@EXTRA_ARGS@',
+        '@INPUT@',
+    ],
+    depends: [
+        text_banks,
+        c_consts_generators,
+        h_headers,
+        events_headers,
+    ],
+    output: '@BASENAME@',
+    depfile: '@BASENAME@.d',
+)
 
 scr_seq_target_name = 'scr_seq.narc'
 scr_seq_private_dir = relative_build_dir / scr_seq_target_name + '.p'
@@ -1138,7 +1166,7 @@ scr_seq_narc = custom_target('scr_seq.narc',
         'scr_seq.narc',
         'scr_seq.naix.h',
     ],
-    input: script_bin_gen.process(
+    input: field_script_bin_gen.process(
         scr_seq_files,
         extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
     ),

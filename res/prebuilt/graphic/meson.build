@@ -26,7 +26,6 @@ prebuilt_files = [
     'pl_wifinote.narc',
     'plist_gra.narc',
     'pmsi.narc',
-    'poketch.narc',
     'poruact.narc',
     'porudemo.narc',
     'pst_gra.narc',

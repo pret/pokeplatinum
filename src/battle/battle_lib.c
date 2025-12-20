@@ -15,7 +15,6 @@
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/fraction.h"
 
 #include "battle/battle_context.h"
@@ -38,7 +37,7 @@
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "pokemon.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_020366A0.h"
@@ -406,8 +405,8 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
         }
     } break;
 
-    case BATTLEMON_NICKNAME_STRBUF:
-        Strbuf_CopyChars((Strbuf *)buf, battleMon->nickname);
+    case BATTLEMON_NICKNAME_STRING:
+        String_CopyChars((String *)buf, battleMon->nickname);
         break;
 
     case BATTLEMON_CUR_HP:

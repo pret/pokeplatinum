@@ -8,11 +8,10 @@
 #include "generated/items.h"
 #include "generated/mystery_gift_delivery_stages.h"
 
-#include "struct_defs/struct_0202610C.h"
-
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "battle_regulation.h"
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
@@ -24,12 +23,11 @@
 #include "ribbon.h"
 #include "save_player.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_0202602C.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
@@ -273,7 +271,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     }
 
     if (giftData->pokemonGiftData.hasCustomOT == FALSE) {
-        Strbuf *playerName = TrainerInfo_NameNewStrbuf(trainerInfo, HEAP_ID_FIELD3);
+        String *playerName = TrainerInfo_NameNewString(trainerInfo, HEAP_ID_FIELD3);
         u32 playerID = TrainerInfo_ID(trainerInfo);
         u32 playerGender = TrainerInfo_Gender(trainerInfo);
 
@@ -285,7 +283,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
         Pokemon_SetValue(tmpPoke, MON_DATA_OT_GENDER, &playerGender);
 
         pokemon = tmpPoke;
-        Strbuf_Free(playerName);
+        String_Free(playerName);
     }
 
     UpdateMonStatusAndTrainerInfo(pokemon, trainerInfo, 4, SpecialMetLoc_GetId(2, metLocation), HEAP_ID_FIELD3);
@@ -400,7 +398,7 @@ static void GiveBattleReg(FieldSystem *fieldSystem, GiftData *dummy)
     GiftData *giftData = GetCurrentPgtData(fieldSystem);
     const BattleRegulation *battleReg = &giftData->battleReg;
 
-    sub_0202613C(fieldSystem->saveData, battleReg);
+    BattleRegulation_Save(fieldSystem->saveData, battleReg);
 }
 
 static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
@@ -413,9 +411,9 @@ static void PrepReceivedRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTe
 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
 
-    Strbuf *battleRegName = sub_0202605C(battleReg, HEAP_ID_FIELD3);
-    StringTemplate_SetStrbuf(formatter->stringTemplate, 1, battleRegName, 0, 1, GAME_LANGUAGE);
-    Strbuf_Free(battleRegName);
+    String *battleRegName = BattleRegulation_GetNameString(battleReg, HEAP_ID_FIELD3);
+    StringTemplate_SetString(formatter->stringTemplate, 1, battleRegName, 0, 1, GAME_LANGUAGE);
+    String_Free(battleRegName);
 }
 
 static void PrepCannotReceiveRulesMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
@@ -465,7 +463,7 @@ static BOOL CanReceiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        return sub_0202CB70(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
+        return SealCase_CheckSealCount(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
     case MG_COSMETICS_ACCESSORY:
         return TRUE;
     case MG_COSMETICS_BACKDROP:
@@ -483,7 +481,7 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
 
     switch (type) {
     case MG_COSMETICS_SEAL:
-        sub_0202CAE0(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
+        GiveOrTakeSeal(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
         break;
     case MG_COSMETICS_ACCESSORY:
         sub_02029E2C(sub_02029D04(sub_0202A750(fieldSystem->saveData)), id, 1);

@@ -1,8 +1,11 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_H
 #define POKEPLATINUM_BATTLE_PARTY_H
 
+#include "constants/moves.h"
+
 #include "struct_decls/battle_system.h"
 
+#include "overlay013/battle_sub_menu_buttons_defs.h"
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bg_window.h"
@@ -11,11 +14,11 @@
 #include "palette.h"
 #include "party.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 enum BattlePartyScreen {
-    BATTLE_PARTY_SCREEN_PARTY_POKEMON = 0,
+    BATTLE_PARTY_SCREEN_POKEMON_PARTY = 0,
     BATTLE_PARTY_SCREEN_SELECT_POKEMON,
     BATTLE_PARTY_SCREEN_POKEMON_SUMMARY,
     BATTLE_PARTY_SCREEN_POKEMON_MOVES,
@@ -25,6 +28,73 @@ enum BattlePartyScreen {
     BATTLE_PARTY_SCREEN_CONFIRM_LEARN_MOVE,
     BATTLE_PARTY_SCREEN_LEARN_MOVE_CONTEST_STATS,
     BATTLE_PARTY_SCREEN_CONFIRM_LEARN_MOVE_CONTEST_STATS,
+};
+
+enum BattlePokemonPartyScreenButton {
+    BATTLE_POKEMON_PARTY_SCREEN_BUTTON_POKEMON_1 = 0,
+    BATTLE_POKEMON_PARTY_SCREEN_BUTTON_POKEMON_2,
+    BATTLE_POKEMON_PARTY_SCREEN_BUTTON_POKEMON_3,
+    BATTLE_POKEMON_PARTY_SCREEN_BUTTON_POKEMON_4,
+    BATTLE_POKEMON_PARTY_SCREEN_BUTTON_POKEMON_5,
+    BATTLE_POKEMON_PARTY_SCREEN_BUTTON_POKEMON_6,
+    BATTLE_POKEMON_PARTY_SCREEN_BUTTON_CANCEL,
+};
+
+enum BattleSelectPokemonScreenButton {
+    BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_SHIFT = 0,
+    BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_SUMMARY,
+    BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_CHECK_MOVES,
+    BATTLE_POKEMON_SELECT_POKEMON_SCREEN_BUTTON_CANCEL,
+};
+
+enum BattlePokemonSummaryScreenButton {
+    BATTLE_POKEMON_SUMMARY_SCREEN_BUTTON_PREV_POKEMON = 0,
+    BATTLE_POKEMON_SUMMARY_SCREEN_BUTTON_NEXT_POKEMON,
+    BATTLE_POKEMON_SUMMARY_SCREEN_BUTTON_CHECK_MOVES,
+    BATTLE_POKEMON_SUMMARY_SCREEN_BUTTON_CANCEL,
+};
+
+enum BattlePokemonMovesScreenButton {
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_MOVE_1 = 0,
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_MOVE_2,
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_MOVE_3,
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_MOVE_4,
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_PREV_POKEMON,
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_NEXT_POKEMON,
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_SUMMARY,
+    BATTLE_POKEMON_MOVES_SCREEN_BUTTON_CANCEL,
+};
+
+enum BattleMoveSummaryScreenButton {
+    BATTLE_MOVE_SUMMARY_SCREEN_BUTTON_MOVE_1 = 0,
+    BATTLE_MOVE_SUMMARY_SCREEN_BUTTON_MOVE_2,
+    BATTLE_MOVE_SUMMARY_SCREEN_BUTTON_MOVE_3,
+    BATTLE_MOVE_SUMMARY_SCREEN_BUTTON_MOVE_4,
+    BATTLE_MOVE_SUMMARY_SCREEN_BUTTON_CANCEL,
+};
+
+enum BattleRestoreMovePPScreenButton {
+    BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_MOVE_1 = 0,
+    BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_MOVE_2,
+    BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_MOVE_3,
+    BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_MOVE_4,
+    BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_CANCEL,
+};
+
+enum BattleLearnMoveScreenButton {
+    BATTLE_LEARN_MOVE_SCREEN_BUTTON_MOVE_1 = 0,
+    BATTLE_LEARN_MOVE_SCREEN_BUTTON_MOVE_2,
+    BATTLE_LEARN_MOVE_SCREEN_BUTTON_MOVE_3,
+    BATTLE_LEARN_MOVE_SCREEN_BUTTON_MOVE_4,
+    BATTLE_LEARN_MOVE_SCREEN_BUTTON_MOVE_TO_LEARN,
+    BATTLE_LEARN_MOVE_SCREEN_BUTTON_CONTEST_STATS,
+    BATTLE_LEARN_MOVE_SCREEN_BUTTON_CANCEL,
+};
+
+enum BattleConfirmLearnMoveScreenButton {
+    BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_CONFIRM = 0,
+    BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_CONTEST_STATS,
+    BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_CANCEL,
 };
 
 enum BattlePartyMode {
@@ -100,9 +170,11 @@ typedef struct BattlePartyContext {
     u8 battlePartyExited;
 } BattlePartyContext;
 
+#define NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS 2
+
 typedef struct BattleParty {
     BattlePartyContext *context;
-    BattlePartyPokemon partyPokemon[6];
+    BattlePartyPokemon partyPokemon[MAX_PARTY_SIZE];
     BgConfig *background;
     PaletteData *palette;
     u16 unk_1E8[4][96];
@@ -126,13 +198,13 @@ typedef struct BattleParty {
     FontSpecialCharsContext *unk_1FA0;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
-    Strbuf *strbuf;
+    String *string;
     SpriteManager *spriteMan;
     ManagedSprite *unk_1FB4[38];
-    Window messageBoxWindows[2];
-    Window *unk_206C;
-    u8 unk_2070;
-    u8 unk_2071;
+    Window messageBoxWindows[NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS];
+    Window *windows;
+    u8 numWindows;
+    u8 useAltSummaryWindows;
     u8 partySlotLearningMove;
     u8 displayingContestStats : 4;
     u8 hasVisitedContestHall : 4;
@@ -143,7 +215,7 @@ typedef struct BattleParty {
     u8 useItemState;
     u8 unk_2079;
     u16 selectedPokemonCurrentHP;
-    u16 selectedPokemonCurrentMovePPs[4];
+    u16 selectedPokemonCurrentMovePPs[LEARNED_MOVES_MAX];
     BattleSubMenuCursor *cursor;
     u8 selectPokemonPreviousScreenButton;
     u8 learnMovePreviousScreenButton;
@@ -153,6 +225,8 @@ typedef struct BattleParty {
 
 #define PARTY_SLOT_SELECTABLE_IN_BATTLE     1
 #define PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE 2
+
+#define MOVE_TO_LEARN_SLOT LEARNED_MOVES_MAX
 
 void BattlePartyTask_Start(BattlePartyContext *context);
 u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 partySlot);

@@ -77,8 +77,8 @@ static void sub_0207AE34(int param0, int param1, void *param2, void *param3);
 static void PalPad_CreateNetworkObject(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const CommCmdTable Unk_020F099C[] = {
-    { sub_0207ADB4, sub_02032944, NULL },
-    { sub_0207A8A8, sub_02032944, NULL },
+    { sub_0207ADB4, CommPacketSizeOf_Variable, NULL },
+    { sub_0207A8A8, CommPacketSizeOf_Variable, NULL },
     { sub_0207A934, sub_0207A758, NULL },
     { sub_0207A9BC, sub_0207A75C, sub_0207A778 },
     { sub_0207AA28, sub_0207A774, sub_0207A798 },

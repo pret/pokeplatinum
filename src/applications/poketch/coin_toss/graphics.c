@@ -14,6 +14,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 #define ANIM_INDEX_SPINNING 0
 #define ANIM_INDEX_HEADS    1
 #define ANIM_INDEX_TAILS    2
@@ -61,8 +63,8 @@ static void SetupSprites(CoinTossGraphics *graphics)
         .hasAffineTransform = FALSE,
     };
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 57, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, 55, 56, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, coin_toss_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->animData, NARC_INDEX_GRAPHIC__POKETCH, coin_toss_cell_NCER_lz, coin_toss_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     graphics->sprite = PoketchAnimation_SetupNewAnimatedSprite(graphics->animMan, &animationData, &graphics->animData);
 
@@ -132,8 +134,8 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     CoinTossGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 54, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 53, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, coin_toss_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, coin_toss_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);

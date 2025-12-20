@@ -20,7 +20,7 @@
 #include "save_player.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -122,7 +122,7 @@ static void FieldMenuManager_Init(FieldSystem *fieldSystem, FieldMenuManager *me
     }
 
     for (i = 0; i < FIELD_MENU_ENTRIES_MAX; i++) {
-        menuManager->choicesStringsBuffers[i] = Strbuf_Init(80, HEAP_ID_FIELD1);
+        menuManager->choicesStringsBuffers[i] = String_Init(80, HEAP_ID_FIELD1);
     }
 
     *menuManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
@@ -173,12 +173,12 @@ void FieldMenuManager_ShowSingleColumnMenu(FieldMenuManager *menuManager)
 
 static void _FieldMenuManager_AddMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 index)
 {
-    Strbuf *entryBuf = Strbuf_Init(80, HEAP_ID_FIELD1);
+    String *entryBuf = String_Init(80, HEAP_ID_FIELD1);
 
-    MessageLoader_GetStrbuf(menuManager->messageLoader, entryID, entryBuf);
+    MessageLoader_GetString(menuManager->messageLoader, entryID, entryBuf);
     StringTemplate_Format(menuManager->stringTemplate, menuManager->choicesStringsBuffers[menuManager->optionsCount], entryBuf);
     menuManager->menuChoicesStrings[menuManager->optionsCount].entry = (const void *)menuManager->choicesStringsBuffers[menuManager->optionsCount];
-    Strbuf_Free(entryBuf);
+    String_Free(entryBuf);
 
     menuManager->menuChoicesStrings[menuManager->optionsCount].index = index;
     menuManager->optionsCount++;
@@ -194,7 +194,7 @@ static u32 CalcMenuWidth(FieldMenuManager *menuManager)
             break;
         }
 
-        entryWidth = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)menuManager->menuChoicesStrings[i].entry);
+        entryWidth = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (String *)menuManager->menuChoicesStrings[i].entry);
 
         if (maxWidth < entryWidth) {
             maxWidth = entryWidth;
@@ -260,7 +260,7 @@ void FieldMenuManager_DeleteWithMenu(FieldMenuManager *menuManager)
     Window_Remove(menuManager->menuTemplate.window);
 
     for (int i = 0; i < FIELD_MENU_ENTRIES_MAX; i++) {
-        Strbuf_Free(menuManager->choicesStringsBuffers[i]);
+        String_Free(menuManager->choicesStringsBuffers[i]);
     }
 
     if (menuManager->freeMsgLoaderOnDelete == TRUE) {
@@ -354,12 +354,12 @@ void FieldMenuManager_ShowListMenuWithCursorPosition(FieldMenuManager *menuManag
 
 static void _FieldMenuManager_AddListMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex)
 {
-    Strbuf *fmtString = Strbuf_Init(80, HEAP_ID_FIELD1);
+    String *fmtString = String_Init(80, HEAP_ID_FIELD1);
 
-    MessageLoader_GetStrbuf(menuManager->messageLoader, entryID, fmtString);
+    MessageLoader_GetString(menuManager->messageLoader, entryID, fmtString);
     StringTemplate_Format(menuManager->stringTemplate, menuManager->choicesStringsBuffers[menuManager->optionsCount], fmtString);
     menuManager->listMenuChoicesStrings[menuManager->optionsCount].entry = (const void *)menuManager->choicesStringsBuffers[menuManager->optionsCount];
-    Strbuf_Free(fmtString);
+    String_Free(fmtString);
 
     if (entryIndex == LIST_MENU_BUILDER_HEADER) {
         menuManager->listMenuChoicesStrings[menuManager->optionsCount].index = LIST_HEADER;
@@ -381,7 +381,7 @@ static u32 CalcListMenuWidth(FieldMenuManager *menuManager)
             break;
         }
 
-        entryWidth = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (Strbuf *)menuManager->listMenuChoicesStrings[i].entry);
+        entryWidth = Font_CalcStringWidthWithCursorControl(FONT_SYSTEM, (String *)menuManager->listMenuChoicesStrings[i].entry);
 
         if (maxWidth < entryWidth) {
             maxWidth = entryWidth;
@@ -489,7 +489,7 @@ static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager)
     Window_Remove(&menuManager->menuWindow);
 
     for (int i = 0; i < FIELD_MENU_ENTRIES_MAX; i++) {
-        Strbuf_Free(menuManager->choicesStringsBuffers[i]);
+        String_Free(menuManager->choicesStringsBuffers[i]);
     }
 
     if (menuManager->freeMsgLoaderOnDelete == TRUE) {
@@ -502,15 +502,15 @@ static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager)
 
 static void FieldMenuManager_PrintListMenyAltText(FieldMenuManager *menuManager, u16 entryID, u32 printerDelay)
 {
-    Strbuf *v0 = Strbuf_Init(80, HEAP_ID_FIELD1);
-    Strbuf *v1 = Strbuf_Init(80, HEAP_ID_FIELD1);
+    String *v0 = String_Init(80, HEAP_ID_FIELD1);
+    String *v1 = String_Init(80, HEAP_ID_FIELD1);
 
     Window_FillTilemap(menuManager->parentWindow, 15);
-    MessageLoader_GetStrbuf(menuManager->messageLoader, entryID, v0);
+    MessageLoader_GetString(menuManager->messageLoader, entryID, v0);
     StringTemplate_Format(menuManager->stringTemplate, v1, v0);
     Text_AddPrinterWithParams(menuManager->parentWindow, FONT_MESSAGE, v1, 0, 0, printerDelay, NULL);
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
+    String_Free(v0);
+    String_Free(v1);
 }
 
 static void FieldMenuManager_UpdateListMenuAltText(FieldMenuManager *menuManager)
@@ -550,14 +550,14 @@ void FieldMenu_ShowCurrentFloorWindow(FieldSystem *fieldSystem, u8 tilemapLeft, 
 
 static void FieldMenuManager_PrintString(FieldMenuManager *menuManager, u16 entryID, u8 xOffset, u8 yOffset)
 {
-    Strbuf *fmtString = Strbuf_Init(80, HEAP_ID_FIELD1);
-    Strbuf *formatted = Strbuf_Init(80, HEAP_ID_FIELD1);
+    String *fmtString = String_Init(80, HEAP_ID_FIELD1);
+    String *formatted = String_Init(80, HEAP_ID_FIELD1);
 
-    MessageLoader_GetStrbuf(menuManager->messageLoader, entryID, fmtString);
+    MessageLoader_GetString(menuManager->messageLoader, entryID, fmtString);
     StringTemplate_Format(menuManager->stringTemplate, formatted, fmtString);
     Text_AddPrinterWithParams(&menuManager->menuWindow, FONT_SYSTEM, formatted, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(fmtString);
-    Strbuf_Free(formatted);
+    String_Free(fmtString);
+    String_Free(formatted);
 }
 
 static void CurrentFloorWindowSystaskCallback(SysTask *sysTask, void *param)
@@ -569,7 +569,7 @@ static void CurrentFloorWindowSystaskCallback(SysTask *sysTask, void *param)
         Window_Remove(menuManager->menuTemplate.window);
 
         for (int i = 0; i < FIELD_MENU_ENTRIES_MAX; i++) {
-            Strbuf_Free(menuManager->choicesStringsBuffers[i]);
+            String_Free(menuManager->choicesStringsBuffers[i]);
         }
 
         if (menuManager->freeMsgLoaderOnDelete == TRUE) {
@@ -690,11 +690,11 @@ Window *FieldMenu_CreateMoneyWindow(FieldSystem *fieldSystem, u8 tilemapTop, u8 
     Window_FillTilemap(window, 15);
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD1);
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, pl_msg_00000543_00018);
+    String *string = MessageLoader_GetNewString(messageLoader, pl_msg_00000543_00018);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, strbuf, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     MessageLoader_Free(messageLoader);
-    Strbuf_Free(strbuf);
+    String_Free(string);
 
     FieldMenu_PrintMoneyToWindow(fieldSystem, window);
 
@@ -713,18 +713,18 @@ void FieldMenu_PrintMoneyToWindow(FieldSystem *fieldSystem, Window *window)
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELD1);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
-    Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD1);
-    Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLoader, pl_msg_00000543_00019);
+    String *string = String_Init(16, HEAP_ID_FIELD1);
+    String *fmtString = MessageLoader_GetNewString(messageLoader, pl_msg_00000543_00019);
     u32 money = TrainerInfo_Money(SaveData_GetTrainerInfo(fieldSystem->saveData));
 
     StringTemplate_SetNumber(stringTemplate, 0, money, 6, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(stringTemplate, strbuf, fmtString);
+    StringTemplate_Format(stringTemplate, string, fmtString);
 
-    u32 printerOffset = (MONEY_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    u32 printerOffset = (MONEY_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, strbuf, printerOffset, GLYPH_ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(fmtString);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, string, printerOffset, GLYPH_ROW_HEIGHT, TEXT_SPEED_NO_TRANSFER, NULL);
+    String_Free(fmtString);
+    String_Free(string);
     StringTemplate_Free(stringTemplate);
     MessageLoader_Free(messageLoader);
     Window_ScheduleCopyToVRAM(window);
@@ -755,18 +755,18 @@ void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window)
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
-    Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD1);
-    Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLoader, pl_msg_00000361_00197);
+    String *string = String_Init(16, HEAP_ID_FIELD1);
+    String *fmtString = MessageLoader_GetNewString(messageLoader, pl_msg_00000361_00197);
     u32 coins = Coins_GetValue(SaveData_GetCoins(fieldSystem->saveData));
 
     StringTemplate_SetNumber(stringTemplate, 0, coins, 5, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(stringTemplate, strbuf, fmtString);
+    StringTemplate_Format(stringTemplate, string, fmtString);
 
-    u32 printerOffset = (COIN_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    u32 printerOffset = (COIN_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, strbuf, printerOffset, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(fmtString);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, string, printerOffset, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    String_Free(fmtString);
+    String_Free(string);
     StringTemplate_Free(stringTemplate);
     MessageLoader_Free(messageLoader);
     Window_ScheduleCopyToVRAM(window);
@@ -791,18 +791,18 @@ void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window)
 
     MessageLoader *messageLaoder = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, HEAP_ID_FIELD1);
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
-    Strbuf *strbuf = Strbuf_Init(16, HEAP_ID_FIELD1);
-    Strbuf *fmtString = MessageLoader_GetNewStrbuf(messageLaoder, pl_msg_00000361_00230);
+    String *string = String_Init(16, HEAP_ID_FIELD1);
+    String *fmtString = MessageLoader_GetNewString(messageLaoder, pl_msg_00000361_00230);
     u16 battlePoints = sub_0202D230(sub_0202D750(fieldSystem->saveData), 0, 0);
 
     StringTemplate_SetNumber(stringTemplate, 0, battlePoints, 5, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    StringTemplate_Format(stringTemplate, strbuf, fmtString);
+    StringTemplate_Format(stringTemplate, string, fmtString);
 
-    u32 printerOffset = (COIN_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStrbufWidth(FONT_SYSTEM, strbuf, 0);
+    u32 printerOffset = (COIN_BP_WINDOW_WIDTH * TILE_SIDELENGTH) - Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
-    Text_AddPrinterWithParams(window, FONT_SYSTEM, strbuf, printerOffset, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(fmtString);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParams(window, FONT_SYSTEM, string, printerOffset, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    String_Free(fmtString);
+    String_Free(string);
     StringTemplate_Free(stringTemplate);
     MessageLoader_Free(messageLaoder);
     Window_ScheduleCopyToVRAM(window);
@@ -845,7 +845,7 @@ void FieldMenuManager_DeleteMoveTutorCost(FieldMenuManager *menuManager)
     Window_Remove(menuManager->menuTemplate.window);
 
     for (int i = 0; i < FIELD_MENU_ENTRIES_MAX; i++) {
-        Strbuf_Free(menuManager->choicesStringsBuffers[i]);
+        String_Free(menuManager->choicesStringsBuffers[i]);
     }
 
     if (menuManager->freeMsgLoaderOnDelete == TRUE) {

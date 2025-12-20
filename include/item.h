@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct ItemPartyParam {
     u8 healSleep : 1;
@@ -208,7 +208,7 @@ void *Item_Load(u16 item, enum ItemFileType type, u32 heapID);
  * @param item      The item whose name we should load.
  * @param heapID    ID of the heap to own memory needed for the text archive.
  */
-void Item_LoadName(Strbuf *dst, u16 item, u32 heapID);
+void Item_LoadName(String *dst, u16 item, u32 heapID);
 
 /**
  * @brief Load the description of the item into a string buffer.
@@ -217,7 +217,7 @@ void Item_LoadName(Strbuf *dst, u16 item, u32 heapID);
  * @param item      The item whose description we should load.
  * @param heapID    ID of the heap to own memory needed for the text archive.
  */
-void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID);
+void Item_LoadDescription(String *dst, u16 item, u16 heapID);
 
 /**
  * @brief Load a parameter for a given item from the data archive.

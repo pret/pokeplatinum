@@ -8,7 +8,7 @@
 #include "bg_window.h"
 #include "sprite.h"
 #include "sprite_resource.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     UnkStruct_ov22_022597BC unk_00;
@@ -21,7 +21,7 @@ typedef struct {
     int unk_138;
     int unk_13C;
     u32 unk_140;
-    Strbuf *unk_144;
+    String *unk_144;
 } UnkStruct_ov22_0225A428;
 
 #endif // POKEPLATINUM_STRUCT_OV22_0225A428_H

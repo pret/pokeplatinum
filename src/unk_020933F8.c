@@ -44,7 +44,7 @@
 #include "rtc.h"
 #include "savedata.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -446,8 +446,8 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
 
     {
         Pokemon_Copy(param0->unk_08, v0->unk_00.unk_00[0]);
-        v0->unk_00.unk_D8[0] = Strbuf_Init(8, HEAP_ID_20);
-        Strbuf_Copy(v0->unk_00.unk_D8[0], param0->unk_0C);
+        v0->unk_00.unk_D8[0] = String_Init(8, HEAP_ID_20);
+        String_Copy(v0->unk_00.unk_D8[0], param0->unk_0C);
 
         v0->unk_00.unk_F8[0] = TrainerInfo_Gender(param0->unk_10);
         v0->unk_00.unk_FC[0] = 0;
@@ -496,7 +496,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
 
     for (v1 = 1; v1 < 4; v1++) {
         if (param0->unk_00.unk_D8[v1] == NULL) {
-            param0->unk_00.unk_D8[v1] = Strbuf_Init(8, HEAP_ID_20);
+            param0->unk_00.unk_D8[v1] = String_Init(8, HEAP_ID_20);
         }
 
         Pokemon_GetValue(param0->unk_00.unk_00[v1], MON_DATA_OT_NAME_STRING, param0->unk_00.unk_D8[v1]);
@@ -529,7 +529,7 @@ void sub_02093AD4(UnkStruct_02095C48 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         Heap_Free(param0->unk_00.unk_00[v0]);
-        Strbuf_Free(param0->unk_00.unk_D8[v0]);
+        String_Free(param0->unk_00.unk_D8[v0]);
         Heap_Free(param0->unk_00.unk_E8[v0]);
         Heap_Free(param0->unk_14C[v0]);
     }
@@ -760,8 +760,8 @@ static void sub_02093C6C(SysTask *param0, void *param1)
 
                 for (v1 = 0; v1 < v0->unk_00.unk_117; v1++) {
                     v2 = CommInfo_TrainerInfo(v1);
-                    Strbuf_Clear(v0->unk_00.unk_D8[v1]);
-                    TrainerInfo_NameStrbuf(v2, v0->unk_00.unk_D8[v1]);
+                    String_Clear(v0->unk_00.unk_D8[v1]);
+                    TrainerInfo_NameString(v2, v0->unk_00.unk_D8[v1]);
                 }
             }
 
@@ -1130,7 +1130,7 @@ void sub_02094648(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2
     int v0, v1;
 
     v1 = sub_02095904(param1);
-    StringTemplate_SetStrbuf(param2, param3, param0->unk_00.unk_D8[v1], param0->unk_00.unk_F8[v1], 1, GAME_LANGUAGE);
+    StringTemplate_SetString(param2, param3, param0->unk_00.unk_D8[v1], param0->unk_00.unk_F8[v1], 1, GAME_LANGUAGE);
 }
 
 void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3)

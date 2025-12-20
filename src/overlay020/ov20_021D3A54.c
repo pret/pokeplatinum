@@ -22,7 +22,7 @@
 #include "message.h"
 #include "narc.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_020998EC.h"
@@ -102,7 +102,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     int v0, v1, v2;
     Window v3;
     MessageLoader *v4;
-    Strbuf *v5;
+    String *v5;
     u32 v6, v7;
 
     v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EASY_CHAT_GROUPS, HEAP_ID_35);
@@ -117,10 +117,10 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
         }
 
         if (sub_02099CA0(param0->unk_08, v0)) {
-            v5 = MessageLoader_GetNewStrbuf(v4, 0 + v0);
+            v5 = MessageLoader_GetNewString(v4, 0 + v0);
             v6 = TEXT_COLOR(1, 2, 15);
         } else {
-            v5 = MessageLoader_GetNewStrbuf(v4, 12);
+            v5 = MessageLoader_GetNewString(v4, 12);
             v6 = TEXT_COLOR(3, 4, 15);
         }
 
@@ -129,12 +129,12 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
         Window_Add(param1, &v3, 1, v1, v2, 9, 2, 11, param2);
         Window_FillTilemap(&v3, 15);
 
-        v7 = ((9 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v5, 0)) / 2;
+        v7 = ((9 * 8) - Font_CalcStringWidth(FONT_SYSTEM, v5, 0)) / 2;
 
         Text_AddPrinterWithParamsAndColor(&v3, FONT_SYSTEM, v5, v7, 0, TEXT_SPEED_NO_TRANSFER, v6, NULL);
         Window_PutToTilemap(&v3);
         Window_LoadTiles(&v3);
-        Strbuf_Free(v5);
+        String_Free(v5);
         Window_Remove(&v3);
 
         param2 += 18;
@@ -149,7 +149,7 @@ static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
 static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 param2)
 {
     Window v0;
-    Strbuf *v1;
+    String *v1;
     u32 v2, v3, v4, v5, v6;
 
     GF_ASSERT(param2 < (1024 - 200));
@@ -157,7 +157,7 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     Window_Add(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
     param2 += 200;
 
-    v1 = Strbuf_Init(4, HEAP_ID_35);
+    v1 = String_Init(4, HEAP_ID_35);
 
     Window_FillTilemap(&v0, 15);
 
@@ -179,7 +179,7 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     Window_LoadTiles(&v0);
     Window_PutToTilemap(&v0);
 
-    Strbuf_Free(v1);
+    String_Free(v1);
     Window_Remove(&v0);
 
     return param2;
@@ -196,12 +196,12 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     };
     Window v1;
     MessageLoader *v2;
-    Strbuf *v3;
+    String *v3;
     int v4, v5;
 
     v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EASY_CHAT_GROUPS, HEAP_ID_35);
-    v3 = MessageLoader_GetNewStrbuf(v2, 13);
-    v5 = ((8 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0)) / 2;
+    v3 = MessageLoader_GetNewString(v2, 13);
+    v5 = ((8 * 8) - Font_CalcStringWidth(FONT_SYSTEM, v3, 0)) / 2;
 
     for (v4 = 0; v4 < NELEMS(v0); v4++) {
         GF_ASSERT(param2 < (1024 - 16));
@@ -216,7 +216,7 @@ static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
         param2 += 16;
     }
 
-    Strbuf_Free(v3);
+    String_Free(v3);
     MessageLoader_Free(v2);
 
     return param2;

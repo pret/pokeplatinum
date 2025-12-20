@@ -12,7 +12,7 @@
 #include "menu.h"
 #include "scroll_prompts.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -40,7 +40,7 @@ typedef struct UndergroundMenu {
     FieldSystem *fieldSystem;
     Window primaryWindow;
     Window secondaryWindow;
-    Window unk_30;
+    Window menuDescriptionWindow;
     StringList *menuOptions;
     StringList *itemSelectedOptions;
     ListMenu *unk_48;
@@ -51,8 +51,8 @@ typedef struct UndergroundMenu {
     Menu *yesNoMenu;
     CursorCallback cursorCallback;
     PrintCallback printCallback;
-    Strbuf *strbuf;
-    Strbuf *fmtString;
+    String *string;
+    String *fmtString;
     StringTemplate *template;
     SpriteResourceManager spriteManager;
     ManagedSprite *sprites[UNDERGROUND_START_MENU_OPTION_COUNT + 1];
@@ -113,11 +113,12 @@ void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fi
 void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onInit);
 void ov23_02250CB0(UndergroundMenu *menu);
 void UndergroundMenu_OpenGoodsMenu(UndergroundMenu *menu);
-void ov23_02250D2C(UndergroundMenu *menu);
-void ov23_02250D5C(UndergroundMenu *menu);
-void UndergroundMenu_ExitGiftMenu(void *data, u32 input);
+void UndergroundMenu_OpenStoreGoodsMenu(UndergroundMenu *menu);
+void UndergroundMenu_OpenWithdrawGoodsMenu(UndergroundMenu *menu);
+void UndergroundMenu_Exit(void *data, u32 input);
 void *UndergroundMenu_StartGiftMenu(ExitCallback exitCallback, FieldSystem *fieldSystem);
 void UndergroundMenu_MoveListCursorPosInBounds(UndergroundMenu *menu, int maxDisplay, int count);
-void ov23_02251270(SysTask *sysTask, void *param1);
+void UndergroundMenu_ResetBrightnessAndExit(SysTask *sysTask, void *data);
+void UndergroundMenu_UpdateScrollPrompts(UndergroundMenu *menu, int listPos, int count, int maxDisplay);
 
 #endif // POKEPLATINUM_OV23_0224F294_H

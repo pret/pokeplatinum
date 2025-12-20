@@ -1,11 +1,12 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"
+#include "constants/goods.h"
 
 
-    ScriptEntry BattleTower_SingleDoubleBattleRoomGuide
-    ScriptEntry BattleTower_MultiBattleRoomGuide
-    ScriptEntry BattleTower_WiFiBattleRoomGuide
+    ScriptEntry BattleTower_SingleDoubleBattleRoomAttendant
+    ScriptEntry BattleTower_MultiBattleRoomAttendant
+    ScriptEntry BattleTower_WiFiBattleRoomAttendant
     ScriptEntry _0EBF
     ScriptEntry _04EC
     ScriptEntry _0597
@@ -147,19 +148,19 @@ _022E:
 
 _0239:
     BufferNumber 0, 20
-    SetVar VAR_0x8004, 85
+    SetVar VAR_0x8004, UG_GOOD_BRONZE_TROPHY
     GoTo _0272
     End
 
 _024C:
     BufferNumber 0, 50
-    SetVar VAR_0x8004, 86
+    SetVar VAR_0x8004, UG_GOOD_SILVER_TROPHY
     GoTo _0272
     End
 
 _025F:
     BufferNumber 0, 100
-    SetVar VAR_0x8004, 87
+    SetVar VAR_0x8004, UG_GOOD_GOLD_TROPHY
     GoTo _0272
     End
 
@@ -171,7 +172,7 @@ _0272:
     GoTo _020B
     End
 
-BattleTower_SingleDoubleBattleRoomGuide:
+BattleTower_SingleDoubleBattleRoomAttendant:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     SetBattleTowerNull
@@ -320,7 +321,7 @@ BattleTower_HealAndSaveBeforeEnteringMultiBattleRoom:
     Call _0577
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE, 0, 0
     Call BattleTower_TrySaveGame
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_51, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_ID, 0, VAR_RESULT
     SetVar VAR_MAP_LOCAL_9, VAR_RESULT
     Message BattleTower_Text_DirectToMultiBattleRoom
     WaitABPress
@@ -486,7 +487,7 @@ _07B9:
     SetVar VAR_UNK_0x40DF, 0
     Return
 
-BattleTower_WiFiBattleRoomGuide:
+BattleTower_WiFiBattleRoomAttendant:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     SetBattleTowerNull
@@ -619,7 +620,7 @@ _09FB:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_02, 0, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_RESET_SYSTEM, 0, 0
     ReleaseAll
     End
 
@@ -653,7 +654,7 @@ _0AC3:
     WaitMovement
     Return
 
-BattleTower_MultiBattleRoomGuide:
+BattleTower_MultiBattleRoomAttendant:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     SetBattleTowerNull
@@ -878,7 +879,7 @@ _0EBF:
     Call _0724
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, BattleTower_WeHopeToSeeYouAgain
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_35, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0F7E
     GoTo _0F05
     End

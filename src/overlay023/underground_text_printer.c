@@ -8,7 +8,7 @@
 #include "list_menu.h"
 #include "message.h"
 #include "render_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "system.h"
 #include "text.h"
@@ -49,9 +49,9 @@ const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void)
     return &sListMenuTemplate;
 }
 
-UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int strbufSize)
+UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int stringSize)
 {
-    int size = strbufSize;
+    int size = stringSize;
     UndergroundTextPrinter *textPrinter = Heap_Alloc(heapID, sizeof(UndergroundTextPrinter));
 
     MI_CpuClear8(textPrinter, sizeof(UndergroundTextPrinter));
@@ -60,8 +60,8 @@ UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgCon
         size = 230;
     }
 
-    textPrinter->mainStrbuf = Strbuf_Init(size, heapID);
-    textPrinter->formatStrbuf = Strbuf_Init(size, heapID);
+    textPrinter->mainString = String_Init(size, heapID);
+    textPrinter->formatString = String_Init(size, heapID);
     textPrinter->template = StringTemplate_Default(heapID);
     textPrinter->bankID = bankID;
     textPrinter->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
@@ -82,8 +82,8 @@ UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgCon
 
 void UndergroundTextPrinter_Free(UndergroundTextPrinter *textPrinter)
 {
-    Strbuf_Free(textPrinter->mainStrbuf);
-    Strbuf_Free(textPrinter->formatStrbuf);
+    String_Free(textPrinter->mainString);
+    String_Free(textPrinter->formatString);
     StringTemplate_Free(textPrinter->template);
     MessageLoader_Free(textPrinter->msgLoader);
     Heap_Free(textPrinter);
@@ -127,17 +127,17 @@ static void UndergroundTextPrinter_SysTaskEraseMessageBoxOnAPress(SysTask *sysTa
     }
 }
 
-static Strbuf *UndergroundTextPrinter_GetStrbuf(UndergroundTextPrinter *textPrinter)
+static String *UndergroundTextPrinter_GetString(UndergroundTextPrinter *textPrinter)
 {
-    Strbuf *strbuf = textPrinter->mainStrbuf;
+    String *string = textPrinter->mainString;
 
     if (textPrinter->formattingNeeded) {
-        StringTemplate_Format(textPrinter->template, textPrinter->formatStrbuf, textPrinter->mainStrbuf);
-        strbuf = textPrinter->formatStrbuf;
+        StringTemplate_Format(textPrinter->template, textPrinter->formatString, textPrinter->mainString);
+        string = textPrinter->formatString;
         textPrinter->formattingNeeded = FALSE;
     }
 
-    return strbuf;
+    return string;
 }
 
 static int UndergroundTextPrinter_AddPrinter(UndergroundTextPrinter *textPrinter, BOOL sysTaskManaged, UndergroundTextPrinterCallback callback, int callbackParam)
@@ -159,9 +159,9 @@ static int UndergroundTextPrinter_AddPrinter(UndergroundTextPrinter *textPrinter
     textPrinter->messageBoxActive = TRUE;
     textPrinter->dummy = FALSE;
 
-    Strbuf *strbuf = UndergroundTextPrinter_GetStrbuf(textPrinter);
+    String *string = UndergroundTextPrinter_GetString(textPrinter);
 
-    textPrinter->printerID = Text_AddPrinterWithParams(&textPrinter->window, FONT_MESSAGE, strbuf, 0, 0, textPrinter->renderDelay, NULL);
+    textPrinter->printerID = Text_AddPrinterWithParams(&textPrinter->window, FONT_MESSAGE, string, 0, 0, textPrinter->renderDelay, NULL);
     textPrinter->callback = callback;
     textPrinter->callbackParam = callbackParam;
 
@@ -170,7 +170,7 @@ static int UndergroundTextPrinter_AddPrinter(UndergroundTextPrinter *textPrinter
 
 int UndergroundTextPrinter_PrintText(UndergroundTextPrinter *textPrinter, int entryID, BOOL sysTaskManaged, UndergroundTextPrinterCallback callback)
 {
-    MessageLoader_GetStrbuf(textPrinter->msgLoader, entryID, textPrinter->mainStrbuf);
+    MessageLoader_GetString(textPrinter->msgLoader, entryID, textPrinter->mainString);
     return UndergroundTextPrinter_AddPrinter(textPrinter, sysTaskManaged, callback, 0);
 }
 
@@ -188,7 +188,7 @@ int UndergroundTextPrinter_PrintTextInstant(UndergroundTextPrinter *textPrinter,
 
 int UndergroundTextPrinter_PrintTextWithCallbackParam(UndergroundTextPrinter *textPrinter, int entryID, BOOL sysTaskManaged, UndergroundTextPrinterCallback callback, int callbackParam)
 {
-    MessageLoader_GetStrbuf(textPrinter->msgLoader, entryID, textPrinter->mainStrbuf);
+    MessageLoader_GetString(textPrinter->msgLoader, entryID, textPrinter->mainString);
     return UndergroundTextPrinter_AddPrinter(textPrinter, sysTaskManaged, callback, callbackParam);
 }
 

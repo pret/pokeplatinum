@@ -6,7 +6,7 @@
 
 #include "bg_window.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #define LINK_SEARCHER_TASK_SLOTS 4
 
@@ -25,7 +25,7 @@ typedef struct LinkSearcherGraphics {
     PoketchAnimation_AnimatedSpriteData *sprites[NUM_SPRITES];
     PoketchAnimation_SpriteData spriteData;
     MessageLoader *msgLoader;
-    Strbuf *strbuf;
+    String *string;
 } LinkSearcherGraphics;
 
 enum LinkSearcherGraphicsTask {

@@ -22,7 +22,7 @@
 #include "list_menu.h"
 #include "math_util.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     ListMenuTemplate unk_00;
@@ -71,8 +71,8 @@ typedef struct {
 } UnkStruct_ov70_0226DD5C;
 
 static u32 ov70_02268A3C(const UnkStruct_ov66_0222E71C *param0);
-static Strbuf *ov70_02268AAC(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2);
-static Strbuf *ov70_02268AF8(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2);
+static String *ov70_02268AAC(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2);
+static String *ov70_02268AF8(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2);
 static BOOL ov70_02268B50(UnkStruct_ov70_02268BA0 *param0, UnkStruct_ov66_0222DFF8 *param1, u32 param2);
 static void ov70_02268BA0(UnkStruct_ov70_02268BA0 *param0);
 static void ov70_02268BA4(UnkStruct_ov70_02268BA0 *param0, u8 param1, u8 param2, UnkStruct_ov70_02263344 *param3, u8 param4);
@@ -487,7 +487,7 @@ BOOL ov70_02266E9C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
     UnkStruct_ov70_022630A4 *v2;
     u32 v3;
     u32 v4;
-    Strbuf *v5;
+    String *v5;
     const UnkStruct_ov66_0222E71C *v6;
     const UnkStruct_ov66_0222E71C *v7;
 
@@ -1104,7 +1104,7 @@ BOOL ov70_02267A44(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
     UnkStruct_ov66_0222DFF8 *v1;
     u32 v2;
     u32 v3;
-    Strbuf *v4;
+    String *v4;
     const UnkStruct_ov66_0222E71C *v5;
     const UnkStruct_ov66_0222E71C *v6;
 
@@ -1570,7 +1570,7 @@ BOOL ov70_02267A44(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 BOOL ov70_02268390(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2)
 {
     UnkStruct_ov70_02268390 *v0;
-    Strbuf *v1;
+    String *v1;
     UnkStruct_ov66_0222DFF8 *v2;
 
     v0 = ov70_02262E80(param0);
@@ -1853,7 +1853,7 @@ BOOL ov70_0226889C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 {
     UnkStruct_ov70_02268390 *v0;
     UnkStruct_ov66_0222DFF8 *v1;
-    Strbuf *v2;
+    String *v2;
 
     v0 = ov70_02262E80(param0);
     v1 = ov70_0225DEE8(param1);
@@ -1988,7 +1988,7 @@ static u32 ov70_02268A3C(const UnkStruct_ov66_0222E71C *param0)
     return 1;
 }
 
-static Strbuf *ov70_02268AAC(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2)
+static String *ov70_02268AAC(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2)
 {
     BOOL v0;
     UnkStruct_ov66_0222DFF8 *v1;
@@ -2009,7 +2009,7 @@ static Strbuf *ov70_02268AAC(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 pa
     return ov70_0225E20C(param0, 3, param2);
 }
 
-static Strbuf *ov70_02268AF8(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2)
+static String *ov70_02268AF8(UnkStruct_ov70_0225DEE8 *param0, u32 param1, u32 param2)
 {
     BOOL v0, v1;
     UnkStruct_ov66_0222DFF8 *v2;
@@ -2196,7 +2196,7 @@ static void ov70_02268D38(UnkStruct_ov70_02268BA0 *param0, UnkStruct_ov66_0222DF
 static void ov70_02268D70(UnkStruct_ov70_02268BA0 *param0, UnkStruct_ov70_0225DEE8 *param1)
 {
     UnkStruct_ov66_0222DFF8 *v0;
-    Strbuf *v1;
+    String *v1;
 
     v0 = ov70_0225DEE8(param1);
 
@@ -2225,7 +2225,7 @@ static void ov70_02268DC4(UnkStruct_ov70_02268BA0 *param0)
 
 static void ov70_02268DCC(UnkStruct_ov70_02268BA0 *param0, UnkStruct_ov70_0225DEE8 *param1)
 {
-    Strbuf *v0;
+    String *v0;
 
     if (param0->unk_0D == 1) {
         if (param0->unk_0E == 450) {
@@ -2257,7 +2257,7 @@ static void ov70_02268E20(UnkStruct_ov70_02268BA0 *param0, const UnkStruct_ov66_
 static void ov70_02268E44(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2, u32 param3, u32 param4)
 {
     int v0;
-    const Strbuf *v1;
+    const String *v1;
 
     ov70_0225E00C(param1, param2);
     param0->unk_20 = param2;
@@ -2291,7 +2291,7 @@ static void ov70_02268EEC(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
     int v0;
     u32 v1;
     u32 v2;
-    const Strbuf *v3;
+    const String *v3;
     BOOL v4;
 
     ov70_0225E020(param1, param3, param2);
@@ -2332,7 +2332,7 @@ static void ov70_02268EEC(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
 static void ov70_02268FB8(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1)
 {
     int v0;
-    Strbuf *v1;
+    String *v1;
     static const u8 v2[8] = {
         31,
         32,
@@ -2361,7 +2361,7 @@ static void ov70_02268FB8(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
 static void ov70_02269018(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1)
 {
     int v0;
-    Strbuf *v1;
+    String *v1;
 
     ov70_0225E00C(param1, 4);
     param0->unk_20 = 4;
@@ -2385,7 +2385,7 @@ static void ov70_02269018(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DE
 static void ov70_02269090(UnkStruct_ov70_02268E44 *param0, UnkStruct_ov70_0225DEE8 *param1)
 {
     int v0;
-    Strbuf *v1;
+    String *v1;
 
     ov70_0225E00C(param1, 4);
     param0->unk_20 = 4;

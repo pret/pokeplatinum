@@ -29,7 +29,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -221,12 +221,12 @@ static void ov17_022507F0(UnkStruct_ov17_0224FCA0 *param0, int param1, const Unk
         StringTemplate_SetContestRankName(param0->unk_10.unk_B8, 0, v0);
         break;
     case 2:
-        StringTemplate_SetStrbuf(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
         StringTemplate_SetNumber(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetStrbuf(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
         StringTemplate_SetNickname(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     default:
@@ -237,7 +237,7 @@ static void ov17_022507F0(UnkStruct_ov17_0224FCA0 *param0, int param1, const Unk
 
 static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 *param4)
 {
-    Strbuf *v0;
+    String *v0;
     int v1;
 
     if (param0->unk_00->unk_155 == 0) {
@@ -246,7 +246,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
         v1 = TEXT_SPEED_FAST;
     }
 
-    v0 = MessageLoader_GetNewStrbuf(param1, param2);
+    v0 = MessageLoader_GetNewString(param1, param2);
     ov17_022507F0(param0, param3, param4);
 
     StringTemplate_Format(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
@@ -254,7 +254,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
 
     param0->unk_10.unk_388 = Text_AddPrinterWithParams(&param0->unk_10.unk_24[0], FONT_MESSAGE, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 void ov17_02250968(UnkStruct_ov17_0224FCA0 *param0, u32 param1, const UnkStruct_ov17_022508E4 *param2)
@@ -328,10 +328,10 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 38, GetMessageBoxPaletteNARCMember(v0), 24, 0, 0x20, 14 * 16);
 
     {
-        Strbuf *v2;
+        String *v2;
         int v3, v4;
 
-        v2 = Strbuf_Init(12, HEAP_ID_24);
+        v2 = String_Init(12, HEAP_ID_24);
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
@@ -342,7 +342,7 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
             Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[5 + v3], FONT_SYSTEM, param0->unk_00->unk_00.unk_D8[v4], 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         }
 
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);

@@ -5,6 +5,10 @@
 
 #define MAX_CONNECTED_PLAYERS 8
 
+#define NETID_NONE 0xFF
+
+#define PACKET_SIZE_VARIABLE 0xFFFF
+
 BOOL CommSys_InitServer(BOOL param0, BOOL param1, int param2, BOOL param3);
 BOOL CommSys_InitClient(BOOL param0, BOOL param1, int param2);
 void CommSys_SwitchTransitionTypeToParallel(void);
@@ -24,11 +28,11 @@ void CommSys_ReversePlayerMovement(void);
 void CommSys_RevertPlayerMovementToNormal(void);
 void sub_0203572C(void);
 void sub_02035938(u8 param0);
-BOOL CommSys_SendDataHuge(int cmd, const void *data, int param2);
-BOOL CommSys_SendData(int cmd, const void *data, int param2);
-BOOL sub_02035A3C(int cmd, const void *data, int param2);
-BOOL CommSys_SendDataServer(int cmd, const void *data, int param2);
-BOOL sub_02035B48(int cmd, const void *data);
+BOOL CommSys_SendDataHuge(int cmd, const void *data, int size);
+BOOL CommSys_SendData(int cmd, const void *data, int size);
+BOOL CommSys_SendDataHugeServer(int cmd, const void *data, int size);
+BOOL CommSys_SendDataServer(int cmd, const void *data, int size);
+BOOL CommSys_SendDataFixedSizeServer(int cmd, const void *data);
 int CommSys_SendRingRemainingSize(void);
 BOOL CommSys_IsPlayerConnected(u16 param0);
 int CommSys_ConnectedCount(void);

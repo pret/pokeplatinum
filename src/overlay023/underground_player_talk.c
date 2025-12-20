@@ -18,6 +18,7 @@
 #include "communication_system.h"
 #include "field_system.h"
 #include "game_records.h"
+#include "goods.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "math_util.h"
@@ -32,7 +33,6 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_020573FC.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/underground_answers.h"
@@ -360,8 +360,8 @@ static void UndergroundTalk_Exit(SysTask *sysTask, TalkMenu *menu)
     }
 
     if (menu->giftMenu) {
-        UndergroundMenu_ExitGiftMenu(menu->giftMenu, LIST_CANCEL);
-        ov23_02243204();
+        UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
+        CommManUnderground_ClearCurrentSysTaskInfo();
     }
 
     UndergroundTalk_CloseTalkMenu(sysTask, menu);
@@ -743,7 +743,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         } else if (!sub_02028810(menu->fieldSystem->saveData)) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_IllPass);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
-        } else if (sub_0205748C(sCurrentTalkMenu->sentGift.goodID)) {
+        } else if (Good_IsUngiftable(sCurrentTalkMenu->sentGift.goodID)) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_CantAcceptImportant);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
         } else {
@@ -908,8 +908,8 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         }
 
         if (menu->giftMenu) {
-            UndergroundMenu_ExitGiftMenu(menu->giftMenu, LIST_CANCEL);
-            ov23_02243204();
+            UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
+            CommManUnderground_ClearCurrentSysTaskInfo();
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
             menu->giftMenu = NULL;
         }
@@ -1341,12 +1341,12 @@ void UndergroundTalkResponse_Start(int unused, int linkNetID, FieldSystem *field
 
 void UndergroundTalk_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(75, data);
+    CommSys_SendDataFixedSizeServer(75, data);
 }
 
 void UndergroundTalkResponse_RequestLinkTalkStateUpdateServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(76, data);
+    CommSys_SendDataFixedSizeServer(76, data);
 }
 
 void UndergroundTalkResponse_HandleLinkTalkStateUpdateServer(int unused0, int size, void *data, void *unused3)
@@ -1378,7 +1378,7 @@ int CommPacketSizeOf_TalkStateChangeRequest(void)
 
 void UndergroundTalk_SendGiftServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(78, data);
+    CommSys_SendDataFixedSizeServer(78, data);
 }
 
 void UndergroundTalkResponse_ReceiveGiftOffer(int unused0, int unused1, void *data, void *unused3)
@@ -1414,7 +1414,7 @@ int CommPacketSizeOf_Gift(void)
 
 void UndergroundTalk_SendTalkMessageServer(int unused0, int unused1, void *data, void *unused3)
 {
-    sub_02035B48(80, data);
+    CommSys_SendDataFixedSizeServer(80, data);
 }
 
 void UndergroundTalk_ReceiveTalkMessage(int unused0, int unused1, void *data, void *unused3)
@@ -1456,12 +1456,10 @@ void UndergroundTalk_ExitConversation(void)
 
 static void UndergroundTalk_UpdateCursorPos(TalkMenu *menu)
 {
-    u16 pos = menu->cursorPos;
+    u16 prevPos = menu->cursorPos;
     ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->cursorPos);
 
-    if (pos != menu->cursorPos) {
+    if (prevPos != menu->cursorPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
-
-    return;
 }

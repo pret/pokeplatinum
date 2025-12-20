@@ -21,7 +21,7 @@
 #include "message.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -1266,7 +1266,7 @@ Sentence *sub_0205C028(UnkStruct_0205B43C *param0)
 void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *param3, UnkStruct_02014EC4 *param4)
 {
     TrainerInfo *v0;
-    Strbuf *v1;
+    String *v1;
     MessageLoader *v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
     int v3, v4;
 
@@ -1328,9 +1328,9 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
         v4 = 217;
     }
 
-    v1 = MessageLoader_GetNewStrbuf(v2, v4);
+    v1 = MessageLoader_GetNewString(v2, v4);
 
-    StringTemplate_SetStrbuf(param0, 2, v1, 0, 1, v3);
+    StringTemplate_SetString(param0, 2, v1, 0, 1, v3);
     Heap_Free(v1);
     MessageLoader_Free(v2);
 }

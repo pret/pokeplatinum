@@ -46,7 +46,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -940,12 +940,12 @@ static void ShowMessageBox(ApplicationManager *appMan, Window *window, u32 entry
 
     Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
-    Strbuf *strBuf = appData->strBuf ? appData->strBuf : MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, entryId, HEAP_ID_MYSTERY_GIFT_APP);
+    String *string = appData->string ? appData->string : MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, entryId, HEAP_ID_MYSTERY_GIFT_APP);
 
-    appData->textPrinterId = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, appData->msgBoxPrinterDelay, TEXT_COLOR(1, 2, 15), NULL);
+    appData->textPrinterId = Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, appData->msgBoxPrinterDelay, TEXT_COLOR(1, 2, 15), NULL);
 
-    if (appData->strBuf == NULL) {
-        Strbuf_Free(strBuf);
+    if (appData->string == NULL) {
+        String_Free(string);
     }
 
     Window_DrawMessageBoxWithScrollCursor(window, FALSE, BASE_TILE_MESSAGE_BOX_FRAME, PLTT_2);
@@ -959,13 +959,13 @@ static void ShowWonderCardTitle(ApplicationManager *appMann, Window *window, cha
 {
     MysteryGiftAppData *appData = ApplicationManager_Data(appMann);
 
-    Strbuf *strBuf = Strbuf_Init(WONDERCARD_TITLE_LENGTH + 1, HEAP_ID_MYSTERY_GIFT_APP);
+    String *string = String_Init(WONDERCARD_TITLE_LENGTH + 1, HEAP_ID_MYSTERY_GIFT_APP);
 
-    Strbuf_CopyNumChars(strBuf, title, WONDERCARD_TITLE_LENGTH);
+    String_CopyNumChars(string, title, WONDERCARD_TITLE_LENGTH);
     Window_FillTilemap(window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_DrawStandardFrame(window, FALSE, BASE_TILE_MG_WINDOW_FRAME, PLTT_3);
-    Strbuf_Free(strBuf);
+    String_Free(string);
 }
 
 static void ProcessStateTransitionMenuInput(ApplicationManager *appMan, enum MysteryGiftAppState *state, StateTransitionFuncPtr onCancel)
@@ -1117,7 +1117,7 @@ static int ShowMessageBoxIntoStateTransition(ApplicationManager *appMan, Window 
     if (window && textEntryId) {
         msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_MYSTERY_GIFT_APP);
         strTemplate = StringTemplate_Default(HEAP_ID_MYSTERY_GIFT_APP);
-        appData->strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, textEntryId, HEAP_ID_MYSTERY_GIFT_APP);
+        appData->string = MessageUtil_ExpandedString(strTemplate, msgLoader, textEntryId, HEAP_ID_MYSTERY_GIFT_APP);
         appData->msgBoxPrinterDelay = TEXT_SPEED_FAST;
 
         ShowMessageBox(appMan, window, textEntryId);
@@ -1127,8 +1127,8 @@ static int ShowMessageBoxIntoStateTransition(ApplicationManager *appMan, Window 
         MessageLoader_Free(msgLoader);
     } else {
         if (Text_IsPrinterActive(appData->textPrinterId) == FALSE) {
-            Strbuf_Free(appData->strBuf);
-            appData->strBuf = NULL;
+            String_Free(appData->string);
+            appData->string = NULL;
             appData->msgBoxPrinterDelay = TEXT_SPEED_INSTANT;
             return appData->queuedState;
         }

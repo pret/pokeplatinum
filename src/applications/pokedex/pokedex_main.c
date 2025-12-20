@@ -53,7 +53,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
@@ -605,12 +605,12 @@ BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
 
 void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID)
 {
-    Strbuf *numStr;
-    Strbuf *nameNumber;
+    String *numStr;
+    String *nameNumber;
 
     if (dexNumber > 0) {
-        numStr = Strbuf_Init(4, heapID);
-        Strbuf_FormatInt(numStr, dexNumber, 3, 2, 1);
+        numStr = String_Init(4, heapID);
+        String_FormatInt(numStr, dexNumber, 3, 2, 1);
     } else {
         numStr = PokedexMain_GetMessage(pl_msg_pokedex_none, heapID);
     }
@@ -619,7 +619,7 @@ void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int specie
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, numStr, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, nameNumber, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-    Strbuf_Free(numStr);
+    String_Free(numStr);
 
     PokedexText_Free(nameNumber);
 }
@@ -890,11 +890,11 @@ u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const
     return form;
 }
 
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID)
+String *PokedexMain_GetMessage(int entryID, enum HeapID heapID)
 {
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
-    Strbuf *pokedexMessage = MessageLoader_GetNewStrbuf(pokedexMessageBank, entryID);
+    String *pokedexMessage = MessageLoader_GetNewString(pokedexMessageBank, entryID);
     MessageLoader_Free(pokedexMessageBank);
 
     return pokedexMessage;

@@ -10,6 +10,8 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void EndTask(PoketchTaskManager *taskMan);
 static void Task_DrawBackground(SysTask *task, void *taskMan);
 static void Task_FreeBackground(SysTask *task, void *taskMan);
@@ -86,9 +88,9 @@ static void Task_DrawBackground(SysTask *task, void *taskMan)
     UnusedApp1Graphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 8, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, FALSE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, unused_apps_NCGR, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, FALSE, HEAP_ID_POKETCH_APP);
     Bg_FillTilemapRect(graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, 0, POKETCH_WIDTH_TILES, POKETCH_HEIGHT_TILES, 0);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 9, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_POKETCH_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, unused_apps_NCLR, PAL_LOAD_SUB_BG, 0, 0x20, HEAP_ID_POKETCH_APP);
 
     Poketch_ShowUnusedDummyText(graphics->bgConfig, 12, BG_LAYER_SUB_2);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);

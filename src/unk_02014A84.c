@@ -8,7 +8,7 @@
 #include "charcode.h"
 #include "message.h"
 #include "message_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "unk_02014D38.h"
 
@@ -85,9 +85,9 @@ void sub_02014AC4(Sentence *sentence, int param1)
     }
 }
 
-Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID)
+String *sub_02014B34(const Sentence *sentence, u32 heapID)
 {
-    Strbuf *v0;
+    String *v0;
     StringTemplate *v1;
     MessageLoader *v2;
     int v3;
@@ -103,7 +103,7 @@ Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID)
     }
 
     v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, Unk_020E5498[sentence->type], heapID);
-    v0 = MessageUtil_ExpandedStrbuf(v1, v2, sentence->id, heapID);
+    v0 = MessageUtil_ExpandedString(v1, v2, sentence->id, heapID);
 
     MessageLoader_Free(v2);
     StringTemplate_Free(v1);
@@ -111,9 +111,9 @@ Strbuf *sub_02014B34(const Sentence *sentence, u32 heapID)
     return v0;
 }
 
-Strbuf *sub_02014BA0(const Sentence *sentence, u32 param1)
+String *sub_02014BA0(const Sentence *sentence, u32 param1)
 {
-    return MessageBank_GetNewStrbufFromNARC(26, Unk_020E5498[sentence->type], sentence->id, param1);
+    return MessageBank_GetNewStringFromNARC(26, Unk_020E5498[sentence->type], sentence->id, param1);
 }
 
 BOOL sub_02014BBC(const Sentence *sentence)
@@ -138,15 +138,15 @@ BOOL sub_02014BD0(const Sentence *sentence)
 
 static u32 sub_02014C00(u32 param0, u32 param1)
 {
-    Strbuf *v0;
+    String *v0;
     const u16 *v1;
     u32 v2;
 
     GF_ASSERT(param0 < 5);
     GF_ASSERT(param1 < sub_02014CD4(param0));
 
-    v0 = MessageBank_GetNewStrbufFromNARC(26, Unk_020E5498[param0], param1, 0);
-    v1 = Strbuf_GetData(v0);
+    v0 = MessageBank_GetNewStringFromNARC(26, Unk_020E5498[param0], param1, 0);
+    v1 = String_GetData(v0);
     v2 = 0;
 
     while (*v1 != 0xffff) {
@@ -161,7 +161,7 @@ static u32 sub_02014C00(u32 param0, u32 param1)
         }
     }
 
-    Strbuf_Free(v0);
+    String_Free(v0);
     return v2;
 }
 

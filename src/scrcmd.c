@@ -36,6 +36,7 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/battle_tower.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
 #include "struct_defs/mail.h"
@@ -43,7 +44,6 @@
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
-#include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
@@ -168,7 +168,7 @@
 #include "script_manager.h"
 #include "sound.h"
 #include "special_encounter.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -290,7 +290,7 @@ static BOOL ScrCmd_MessageFromBankInstant(ScriptContext *ctx);
 static BOOL ScrCmd_MessageFromBank(ScriptContext *ctx);
 static BOOL ScrCmd_SentenceInstant(ScriptContext *ctx);
 static BOOL ScrCmd_Sentence(ScriptContext *ctx);
-static BOOL ScrCmd_1FE(ScriptContext *ctx);
+static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx);
 static BOOL ScrCmd_MessageSeenBanlistSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_MessageUnown(ScriptContext *ctx);
 static BOOL ScrCmd_Message(ScriptContext *ctx);
@@ -352,7 +352,7 @@ static BOOL ScrCmd_FacePlayer(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06A(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx);
-static BOOL ScrCmd_06B(ScriptContext *ctx);
+static BOOL ScrCmd_MoveCamera(ScriptContext *ctx);
 static BOOL ScrCmd_06C(ScriptContext *ctx);
 static BOOL ScrCmd_06D(ScriptContext *ctx);
 static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
@@ -367,7 +367,7 @@ static BOOL ScrCmd_Unused_09D(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09E(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_09F(ScriptContext *ctx);
 static BOOL ScrCmd_ReturnToField(ScriptContext *ctx);
-static BOOL ScrCmd_1F8(ScriptContext *ctx);
+static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx);
 static BOOL ScrCmd_0A2(ScriptContext *ctx);
 static BOOL ScrCmd_0A3(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0A4(ScriptContext *ctx);
@@ -876,7 +876,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FacePlayer,
     ScrCmd_GetPlayerMapPos,
     ScrCmd_Unused_06A,
-    ScrCmd_06B,
+    ScrCmd_MoveCamera,
     ScrCmd_06C,
     ScrCmd_06D,
     ScrCmd_Unused_06E,
@@ -1247,7 +1247,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_InitBattleTower,
     ScrCmd_FreeBattleTower,
     ScrCmd_CallBattleTowerFunction,
-    ScrCmd_1DE,
+    ScrCmd_GetBattleTowerPartnerSpeciesAndMove,
     ScrCmd_1DF,
     ScrCmd_1E0,
     ScrCmd_1E1,
@@ -1273,13 +1273,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FindFossilAtThreshold,
     ScrCmd_CountPartyMonsBelowLevelThreshold,
     ScrCmd_SurvivePoison,
-    ScrCmd_1F8,
+    ScrCmd_WaitForTransition,
     ScrCmd_Dummy1F9,
     ScrCmd_MessageFromBankInstant,
     ScrCmd_MessageFromBank,
     ScrCmd_SentenceInstant,
     ScrCmd_Sentence,
-    ScrCmd_1FE,
+    ScrCmd_PrintBattleTowerIntroMessage,
     ScrCmd_MessageSeenBanlistSpecies,
     ScrCmd_GetPreviousMapID,
     ScrCmd_GetCurrentMapID,
@@ -2090,9 +2090,9 @@ static BOOL ScrCmd_Sentence(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1FE(ScriptContext *ctx)
+static BOOL ScrCmd_PrintBattleTowerIntroMessage(ScriptContext *ctx)
 {
-    u16 v3 = ScriptContext_ReadByte(ctx);
+    u16 opponentID = ScriptContext_ReadByte(ctx);
 
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
@@ -2100,7 +2100,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
         return FALSE;
     }
 
-    u16 *v0 = battleTower->unk_78[v3].unk_00.unk_18;
+    u16 *v0 = battleTower->opponentsDataDTO[opponentID].trDataDTO.unk_18;
 
     if (v0[0] == 0xFFFF) {
         MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0613, HEAP_ID_FIELD3);
@@ -2409,8 +2409,8 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx)
 static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Strbuf **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    String **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 signpostType;
     u8 messageID = ScriptContext_ReadByte(ctx);
@@ -2428,7 +2428,7 @@ static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx)
     Signpost_SetCommand(fieldSystem->signpost, SIGNPOST_CMD_DRAW);
     Signpost_DoCurrentCommand(fieldSystem);
 
-    MessageLoader_GetStrbuf(ctx->loader, messageID, *tempBuf);
+    MessageLoader_GetString(ctx->loader, messageID, *tempBuf);
     StringTemplate_Format(*strTemplate, *msgBuf, *tempBuf);
     Text_AddPrinterWithParams(Signpost_GetWindow(fieldSystem->signpost), FONT_MESSAGE, *msgBuf, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
@@ -2484,13 +2484,13 @@ static BOOL ScrCmd_DrawSignpostScrollingMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
-    Strbuf **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    String **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 messageID = ScriptContext_ReadByte(ctx);
     u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
-    MessageLoader_GetStrbuf(ctx->loader, messageID, *tempBuf);
+    MessageLoader_GetString(ctx->loader, messageID, *tempBuf);
     StringTemplate_Format(*strTemplate, *msgBuf, *tempBuf);
 
     *printerID = FieldMessage_Print(Signpost_GetWindow(fieldSystem->signpost), *msgBuf, SaveData_GetOptions(ctx->fieldSystem->saveData), 1);
@@ -3326,21 +3326,21 @@ static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_06B(ScriptContext *ctx)
+static BOOL ScrCmd_MoveCamera(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 x = ScriptContext_GetVar(ctx);
+    u16 y = ScriptContext_GetVar(ctx);
+    u16 z = ScriptContext_GetVar(ctx);
 
-    VecFx32 v3;
-    v3.x = FX32_CONST(v0);
-    v3.y = FX32_CONST(v1);
-    v3.z = FX32_CONST(v2);
+    VecFx32 pos;
+    pos.x = FX32_CONST(x);
+    pos.y = FX32_CONST(y);
+    pos.z = FX32_CONST(z);
 
-    sub_020630AC(Player_MapObject(ctx->fieldSystem->playerAvatar), &v3);
-    Camera_Move(&v3, ctx->fieldSystem->camera);
+    sub_020630AC(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
+    Camera_Move(&pos, ctx->fieldSystem->camera);
 
     return FALSE;
 }
@@ -3390,7 +3390,7 @@ static BOOL ScrCmd_2AB(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     SealCase *sealCase = SaveData_GetSealCase(ctx->fieldSystem->saveData);
-    *destVar = sub_0202CBA8(sealCase);
+    *destVar = SealCase_CountUniqueSeals(sealCase);
 
     return FALSE;
 }
@@ -3401,7 +3401,7 @@ static BOOL ScrCmd_093(ScriptContext *ctx)
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
     SealCase *v0 = SaveData_GetSealCase(ctx->fieldSystem->saveData);
-    *v2 = sub_0202CBC8(v0, v1);
+    *v2 = SealCase_CountSealOccurrenceAnywhere(v0, v1);
 
     return FALSE;
 }
@@ -3411,7 +3411,7 @@ static BOOL ScrCmd_094(ScriptContext *ctx)
     u16 v0 = ScriptContext_GetVar(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    sub_0202CAE0(SaveData_GetSealCase(ctx->fieldSystem->saveData), v0, v1);
+    GiveOrTakeSeal(SaveData_GetSealCase(ctx->fieldSystem->saveData), v0, v1);
     return FALSE;
 }
 
@@ -3772,7 +3772,7 @@ static BOOL ScrCmd_ReturnToField(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_1F8(ScriptContext *ctx)
+static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx)
 {
     FieldTransition_FinishMap(ctx->fieldSystem->task);
     return TRUE;
@@ -4636,16 +4636,16 @@ static BOOL ScrCmd_PrintTrainerDialogue(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *unused = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_SCRIPT_ID);
-    Strbuf **strbuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **string = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     u8 *unused2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_IS_MSG_BOX_OPEN);
     u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
     u16 trainerID = ScriptContext_GetVar(ctx);
     u16 msgType = ScriptContext_GetVar(ctx);
 
-    Trainer_LoadMessage(trainerID, msgType, *strbuf, HEAP_ID_FIELD2);
+    Trainer_LoadMessage(trainerID, msgType, *string, HEAP_ID_FIELD2);
     Window_FillTilemap(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), SCRIPT_MANAGER_STR_TEMPLATE);
 
-    *printerID = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *strbuf, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
+    *printerID = FieldMessage_Print(FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW), *string, SaveData_GetOptions(ctx->fieldSystem->saveData), SCRIPT_MANAGER_WINDOW);
     ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting);
 
     return TRUE;
@@ -7296,12 +7296,12 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     StringTemplate_SetCustomMessageWord(v6, 2, v4);
     StringTemplate_SetCustomMessageWord(v6, 3, v5);
 
-    Strbuf *v8 = MessageUtil_ExpandedStrbuf(v6, v7, 1, HEAP_ID_FIELD3);
-    Strbuf *v9 = MessageLoader_GetNewStrbuf(v7, 0);
-    *v1 = (Strbuf_Compare(v8, v9) == 0);
+    String *v8 = MessageUtil_ExpandedString(v6, v7, 1, HEAP_ID_FIELD3);
+    String *v9 = MessageLoader_GetNewString(v7, 0);
+    *v1 = (String_Compare(v8, v9) == 0);
 
-    Strbuf_Free(v8);
-    Strbuf_Free(v9);
+    String_Free(v8);
+    String_Free(v9);
     MessageLoader_Free(v7);
     StringTemplate_Free(v6);
 
@@ -7451,7 +7451,7 @@ static BOOL ScrCmd_2C4(ScriptContext *ctx)
 static BOOL ScrCmd_AdvanceEternaGymClock(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    String **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
     Window *window = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_WINDOW);
 
     ov8_0224B67C(fieldSystem, window, ctx->loader, *msgBuf);

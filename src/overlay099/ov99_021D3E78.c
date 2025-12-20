@@ -9,7 +9,7 @@
 #include "font.h"
 #include "heap.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -271,7 +271,7 @@ struct UnkStruct_ov99_021D3E78_t {
     Window *unk_24;
     Window *unk_28;
     MessageLoader *unk_2C;
-    Strbuf *unk_30;
+    String *unk_30;
     SysTask *unk_34;
 };
 
@@ -292,7 +292,7 @@ UnkStruct_ov99_021D3E78 *ov99_021D3E78(BgConfig *param0, int param1, int param2,
         v0->unk_14 = 0;
         v0->unk_18 = 0;
         v0->unk_1C = 0;
-        v0->unk_30 = Strbuf_Init(256, HEAP_ID_75);
+        v0->unk_30 = String_Init(256, HEAP_ID_75);
         v0->unk_24 = Window_New(HEAP_ID_75, 1);
 
         Window_Add(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);
@@ -314,7 +314,7 @@ void ov99_021D3F38(UnkStruct_ov99_021D3E78 *param0)
         SysTask_Done(param0->unk_34);
     }
 
-    Strbuf_Free(param0->unk_30);
+    String_Free(param0->unk_30);
     Window_Remove(param0->unk_24);
     Window_Remove(param0->unk_28);
     Heap_Free(param0->unk_24);
@@ -333,10 +333,10 @@ BOOL ov99_021D3F6C(UnkStruct_ov99_021D3E78 *param0, int param1)
             if (v0 >= Unk_ov99_021D4CE4[param0->unk_0C].unk_02) {
                 int v1, v2;
 
-                MessageLoader_GetStrbuf(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
+                MessageLoader_GetString(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
 
                 if (Unk_ov99_021D4CE4[param0->unk_0C].unk_04) {
-                    v1 = (256 - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_30, 0)) / 2;
+                    v1 = (256 - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_30, 0)) / 2;
                 } else {
                     v1 = 32;
                 }

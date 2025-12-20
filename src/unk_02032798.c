@@ -29,12 +29,12 @@ static void sub_020329C4(int param0, int param1, void *param2, void *param3);
 static int sub_02032954(void);
 
 static const CommCmdTable Unk_020E5D64[] = {
-    { NULL, sub_0203294C, NULL },
-    { NULL, sub_0203294C, NULL },
-    { sub_0203619C, sub_0203294C, NULL },
+    { NULL, CommPacketSizeOf_Nothing, NULL },
+    { NULL, CommPacketSizeOf_Nothing, NULL },
+    { sub_0203619C, CommPacketSizeOf_Nothing, NULL },
     { CommInfo_RecvPlayerData, CommPlayerInfo_Size, NULL },
     { CommInfo_RecvPlayerDataArray, CommPlayerInfo_Size, NULL },
-    { CommunicatitonInformaion_FinishReading, sub_0203294C, NULL },
+    { CommunicatitonInformaion_FinishReading, CommPacketSizeOf_Nothing, NULL },
     { sub_02037A78, sub_02037B54, NULL },
     { sub_02037AD8, sub_02037B54, NULL },
     { NULL, NULL, NULL },
@@ -42,15 +42,15 @@ static const CommCmdTable Unk_020E5D64[] = {
     { sub_02036008, CommPacketSizeOf_NetId, NULL },
     { sub_02036030, CommPacketSizeOf_NetId, NULL },
     { sub_02036058, CommPacketSizeOf_NetId, NULL },
-    { sub_02032958, sub_0203294C, NULL },
-    { sub_0203299C, sub_0203294C, NULL },
-    { sub_020329C4, sub_0203294C, NULL },
+    { sub_02032958, CommPacketSizeOf_Nothing, NULL },
+    { sub_0203299C, CommPacketSizeOf_Nothing, NULL },
+    { sub_020329C4, CommPacketSizeOf_Nothing, NULL },
     { CommCmd_16, CommPacketSizeOf_NetId, NULL },
     { CommCmd_17, CommPacketSizeOf_NetId, NULL },
     { CommCmd_18, sub_02032954, NULL },
     { sub_02036574, sub_02036590, NULL },
     { sub_02036670, CommTool_TempDataSize, NULL },
-    { sub_02038240, sub_0203294C, NULL }
+    { sub_02038240, CommPacketSizeOf_Nothing, NULL }
 };
 
 static CommCmdManager *sCommCmdManager = NULL;
@@ -163,12 +163,12 @@ void *sub_0203290C(int cmd, int netId, int param2)
     return NULL;
 }
 
-int sub_02032944(void)
+int CommPacketSizeOf_Variable(void)
 {
-    return 0xffff;
+    return PACKET_SIZE_VARIABLE;
 }
 
-int sub_0203294C(void)
+int CommPacketSizeOf_Nothing(void)
 {
     return 0;
 }

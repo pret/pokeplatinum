@@ -31,7 +31,7 @@ void sub_020339AC(int param0, TrainerInfo *param1);
 BOOL sub_020339E8(u16 param0);
 void sub_02033A5C(void);
 void sub_02033D94(u16 param0);
-BOOL sub_02033DFC(void);
+BOOL CommServerClient_IsInClosedSecretBase(void);
 BOOL CommServerClient_IsInitialized(void);
 BOOL sub_02033E30(void);
 BOOL CommServerClient_IsClientConnecting(void);

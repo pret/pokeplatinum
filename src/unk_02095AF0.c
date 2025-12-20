@@ -28,22 +28,22 @@ static int sub_02095B24(void);
 static int sub_02095B28(void);
 
 static const CommCmdTable Unk_020F58FC[] = {
-    { NULL, sub_0203294C, NULL },
-    { sub_02095B2C, sub_0203294C, NULL },
-    { ov17_02252CEC, sub_02032944, sub_02095B04 },
+    { NULL, CommPacketSizeOf_Nothing, NULL },
+    { sub_02095B2C, CommPacketSizeOf_Nothing, NULL },
+    { ov17_02252CEC, CommPacketSizeOf_Variable, sub_02095B04 },
     { ov17_02252D7C, sub_02095B24, NULL },
-    { ov6_022489E4, sub_02032944, NULL },
-    { ov6_02248AC8, sub_02032944, NULL },
-    { ov6_02248B30, sub_02032944, sub_02095B04 },
-    { ov6_02248BC0, sub_02032944, NULL },
-    { ov6_02248C28, sub_02032944, NULL },
-    { ov6_02248CBC, sub_02032944, NULL },
-    { sub_02095B30, sub_02032944, NULL },
-    { sub_02095B9C, sub_02032944, sub_02095B04 },
+    { ov6_022489E4, CommPacketSizeOf_Variable, NULL },
+    { ov6_02248AC8, CommPacketSizeOf_Variable, NULL },
+    { ov6_02248B30, CommPacketSizeOf_Variable, sub_02095B04 },
+    { ov6_02248BC0, CommPacketSizeOf_Variable, NULL },
+    { ov6_02248C28, CommPacketSizeOf_Variable, NULL },
+    { ov6_02248CBC, CommPacketSizeOf_Variable, NULL },
+    { sub_02095B30, CommPacketSizeOf_Variable, NULL },
+    { sub_02095B9C, CommPacketSizeOf_Variable, sub_02095B04 },
     { sub_02095C48, sub_02095B28, NULL },
     { sub_02095C98, sub_02095B28, NULL },
-    { ov6_02248D38, sub_02032944, sub_02095B04 },
-    { ov6_02248DA0, sub_02032944, NULL }
+    { ov6_02248D38, CommPacketSizeOf_Variable, sub_02095B04 },
+    { ov6_02248DA0, CommPacketSizeOf_Variable, NULL }
 };
 
 void sub_02095AF0(void *param0)
