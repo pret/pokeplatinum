@@ -532,7 +532,7 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon);
  */
 BoxPokemon *Pokemon_GetBoxMon(Pokemon *mon);
 
-BOOL Pokemon_ShouldLevelUp(Pokemon *mon);
+BOOL Pokemon_TryLevelUp(Pokemon *mon);
 u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
 u16 Pokemon_GetBaseSpeciesFromPersonalData(const u16 species);
 u16 Pokemon_GetBaseSpeciesForBattle(const u16 species);

@@ -3081,30 +3081,25 @@ BoxPokemon *Pokemon_GetBoxMon(Pokemon *mon)
     return &mon->box;
 }
 
-BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
+BOOL Pokemon_TryLevelUp(Pokemon *mon)
 {
-    u16 monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
-    u8 monNextLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) + 1;
-    u32 monExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
-    int monExpRate = Species_GetValue(monSpecies, SPECIES_DATA_EXP_RATE);
-    u32 maxExp = ExpRate_GetExpAtLevel(monExpRate, MAX_POKEMON_LEVEL);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    u8 nextLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) + 1;
+    u32 exp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
+    int expRate = Species_GetValue(species, SPECIES_DATA_EXP_RATE);
+    u32 maxExp = ExpRate_GetExpAtLevel(expRate, MAX_POKEMON_LEVEL);
 
-    if (monExp > maxExp) {
-        monExp = maxExp;
-        Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &monExp);
+    if (exp > maxExp) {
+        exp = maxExp;
+        Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &exp);
     }
-
-    if (monNextLevel > MAX_POKEMON_LEVEL) {
+    if (nextLevel > MAX_POKEMON_LEVEL) {
         return FALSE;
     }
-
-    maxExp = ExpRate_GetExpAtLevel(monExpRate, monNextLevel);
-
-    if (monExp >= maxExp) {
-        Pokemon_SetData(mon, MON_DATA_LEVEL, &monNextLevel);
+    if (exp >= ExpRate_GetExpAtLevel(expRate, nextLevel)) {
+        Pokemon_SetData(mon, MON_DATA_LEVEL, &nextLevel);
         return TRUE;
     }
-
     return FALSE;
 }
 
