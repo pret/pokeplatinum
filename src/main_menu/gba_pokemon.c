@@ -754,7 +754,7 @@ u32 GBABoxPokemon_GetLevel(GBABoxPokemon *gbaBoxMon)
     int species = GBAPokemon_ConvertSpeciesToDS(GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPECIES, NULL));
     u32 exp = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_EXP, NULL);
 
-    return Pokemon_GetSpeciesLevelAt(species, exp);
+    return Species_CalcLevelByExp(species, exp);
 }
 
 static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)

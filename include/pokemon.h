@@ -241,7 +241,7 @@ int Species_GetValue(int species, enum SpeciesDataParam param);
  * @param mon
  * @return how much progress a Pokemon has made towards its next level as a percentage
  */
-u8 Pokemon_GetPercentToNextLevel(Pokemon *mon);
+u8 Pokemon_CalcPercentToNextLevel(Pokemon *mon);
 
 /**
  * @brief Gets how much experience is needed for the given Pokemon to level up
@@ -249,7 +249,7 @@ u8 Pokemon_GetPercentToNextLevel(Pokemon *mon);
  * @param boxMon
  * @return The amount of exp. needed for the given Pokemon to level up
  */
-u32 Pokemon_GetExpToNextLevel(Pokemon *mon);
+u32 Pokemon_CalcExpToNextLevel(Pokemon *mon);
 
 /**
  * @brief Gets the amount of expeirence needed for the given Pokemon to reach its current level
@@ -287,21 +287,21 @@ int BoxPokemon_CalcLevel(BoxPokemon *boxMon);
 /**
  * @brief Gets the level of a pokemon based on its species and exp
  *
- * @param monSpecies
- * @param monExp
+ * @param species
+ * @param exp
  * @return The pokemons level
  */
-u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp);
+int Species_CalcLevelByExp(u16 species, u32 exp);
 
 /**
  * @brief Gets the level of a pokemon based on its personal data and exp
  *
  * @param speciesData
- * @param unused_monSpecies unused
- * @param monExp
+ * @param unused_species unused
+ * @param exp
  * @return The pokemons level
  */
-u32 SpeciesData_GetLevelAt(SpeciesData *speciesData, u16 unused_monSpecies, u32 monExp);
+int SpeciesData_CalcLevelByExp(SpeciesData *speciesData, u16 unused_species, u32 exp);
 
 /**
  * @brief Gets the nature of a Pokemon based on its personality value

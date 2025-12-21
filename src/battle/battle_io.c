@@ -549,7 +549,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
             if (battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PAL_PARK)) {
                 v0.unk_02[v6] = 0;
             } else {
-                v0.unk_02[v6] = Pokemon_GetPercentToNextLevel(v8);
+                v0.unk_02[v6] = Pokemon_CalcPercentToNextLevel(v8);
             }
 
             v6++;

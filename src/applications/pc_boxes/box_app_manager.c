@@ -4105,7 +4105,7 @@ static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *box
     preview->dexNum = GetDexNumber(SaveData_GetDexMode(boxAppMan->saveData), preview->species);
     preview->isEgg = BoxPokemon_GetData(boxMon, MON_DATA_SANITY_IS_EGG, NULL);
     SpeciesData *speciesData = SpeciesData_NewFromSpecies(preview->species, HEAP_ID_BOX_DATA);
-    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL));
+    preview->level = SpeciesData_CalcLevelByExp(speciesData, preview->species, BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL));
     preview->markings = BoxPokemon_GetData(boxMon, MON_DATA_MARKINGS, NULL);
     preview->type1 = BoxPokemon_GetData(boxMon, MON_DATA_TYPE_1, NULL);
     preview->type2 = BoxPokemon_GetData(boxMon, MON_DATA_TYPE_2, NULL);

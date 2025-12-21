@@ -253,7 +253,7 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
 static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
 static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam param, int value);
 static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
-static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon);
+static u32 BoxPokemon_CalcExpToNextLevel(BoxPokemon *boxMon);
 static void ExpRate_LoadTable(enum ExpRate monExpRate, u32 *monExpTable);
 static u32 ExpRate_GetExpAtLevel(enum ExpRate rate, int monLevel);
 static u16 Nature_ModifyStatValue(u8 nature, u16 value, u8 stat);
@@ -766,7 +766,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         }
         break;
     case MON_DATA_LEVEL:
-        ret = Pokemon_GetSpeciesLevelAt(blockA->species, blockA->exp);
+        ret = Species_CalcLevelByExp(blockA->species, blockA->exp);
         break;
     case MON_DATA_SPECIES:
         if (boxMon->checksumFailed) {
@@ -2059,7 +2059,7 @@ int Species_GetValue(int species, enum SpeciesDataParam param)
     return result;
 }
 
-u8 Pokemon_GetPercentToNextLevel(Pokemon *mon)
+u8 Pokemon_CalcPercentToNextLevel(Pokemon *mon)
 {
     BOOL recrypt = Pokemon_EnterDecryptionContext(mon);
     u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
@@ -2074,18 +2074,17 @@ u8 Pokemon_GetPercentToNextLevel(Pokemon *mon)
     return percent;
 }
 
-u32 Pokemon_GetExpToNextLevel(Pokemon *mon)
+u32 Pokemon_CalcExpToNextLevel(Pokemon *mon)
 {
-    return BoxPokemon_GetExpToNextLevel(&mon->box);
+    return BoxPokemon_CalcExpToNextLevel(&mon->box);
 }
 
-static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon)
+static u32 BoxPokemon_CalcExpToNextLevel(BoxPokemon *boxMon)
 {
-    u16 monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-    u16 monNextlevel = BoxPokemon_CalcLevel(boxMon) + 1;
-    u32 monExp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
-
-    return Species_GetExpAtLevel(monSpecies, monNextlevel) - monExp;
+    u16 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    u16 nextLevel = BoxPokemon_CalcLevel(boxMon) + 1;
+    u32 exp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
+    return Species_GetExpAtLevel(species, nextLevel) - exp;
 }
 
 u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon)
@@ -2131,29 +2130,24 @@ int BoxPokemon_CalcLevel(BoxPokemon *boxMon)
     int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     int exp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
-    return Pokemon_GetSpeciesLevelAt(species, exp);
+    return Species_CalcLevelByExp(species, exp);
 }
 
-u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp)
+int Species_CalcLevelByExp(u16 species, u32 exp)
 {
-    SpeciesData *speciesData = SpeciesData_NewFromSpecies(monSpecies, HEAP_ID_SYSTEM);
-
-    u32 monLevel = SpeciesData_GetLevelAt(speciesData, monSpecies, monExp);
+    SpeciesData *speciesData = SpeciesData_NewFromSpecies(species, HEAP_ID_SYSTEM);
+    int level = SpeciesData_CalcLevelByExp(speciesData, species, exp);
     SpeciesData_Free(speciesData);
-
-    return monLevel;
+    return level;
 }
 
-u32 SpeciesData_GetLevelAt(SpeciesData *speciesData, u16 unused_monSpecies, u32 monExp)
+int SpeciesData_CalcLevelByExp(SpeciesData *speciesData, u16 unused_species, u32 exp)
 {
-    static u32 monExpTable[MAX_POKEMON_LEVEL + 1];
-
-    enum ExpRate monExpRate = SpeciesData_GetValue(speciesData, SPECIES_DATA_EXP_RATE);
-    ExpRate_LoadTable(monExpRate, monExpTable);
-
+    static u32 table[MAX_POKEMON_LEVEL + 1];
+    ExpRate_LoadTable(SpeciesData_GetValue(speciesData, SPECIES_DATA_EXP_RATE), table);
     int i;
     for (i = 1; i < MAX_POKEMON_LEVEL + 1; i++) {
-        if (monExpTable[i] > monExp) {
+        if (table[i] > exp) {
             break;
         }
     }
