@@ -719,11 +719,11 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     if (Daycare_AreParentLanguagesDifferent(daycare)) {
         int i;
 
-        if (Pokemon_IsPersonalityShiny(monOTID, personality) == FALSE) {
+        if (Personality_IsShiny(monOTID, personality) == FALSE) {
             for (i = 0; i < 4; i++) {
                 personality = ARNG_Next(personality);
 
-                if (Pokemon_IsPersonalityShiny(monOTID, personality)) {
+                if (Personality_IsShiny(monOTID, personality)) {
                     break;
                 }
             }
@@ -1127,7 +1127,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
 
     if (species == SPECIES_MANAPHY) {
         if (Pokemon_GetData(egg, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
-            while (Pokemon_IsPersonalityShiny(otID, personality)) {
+            while (Personality_IsShiny(otID, personality)) {
                 personality = ARNG_Next(personality);
             }
         }

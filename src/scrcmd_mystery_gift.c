@@ -190,7 +190,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
     if (giftPersonality == RANDOMIZE_PERSONALITY) {
         (void)0;
     } else if (giftPersonality == RANDOMIZE_PERSONALITY_NO_SHINY) {
-        while (Pokemon_IsPersonalityShiny(giftOtID, personality)) {
+        while (Personality_IsShiny(giftOtID, personality)) {
             personality = ARNG_Next(personality);
         }
     } else {

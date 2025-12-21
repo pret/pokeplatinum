@@ -829,7 +829,7 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
     if (givenPersonality == 0) {
         do {
             randomPersonality = BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16;
-        } while (monData.nature != Pokemon_GetNatureOf(randomPersonality) || Pokemon_IsPersonalityShiny(otID, randomPersonality) == 1);
+        } while (monData.nature != Pokemon_GetNatureOf(randomPersonality) || Personality_IsShiny(otID, randomPersonality) == 1);
 
         monDataDTO->personality = randomPersonality;
     } else {

@@ -384,11 +384,11 @@ u8 Pokemon_IsShiny(Pokemon *mon);
 /**
  * @brief Gets whether a pokemon is shiny based on its Original Trainer ID and its personality value
  *
- * @param monOTID
- * @param monPersonality
+ * @param otID
+ * @param personality
  * @return Whether the pokemon is shiny or not
  */
-u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
+u8 Personality_IsShiny(u32 otID, u32 personality);
 
 /**
  * @brief Computes a personality value which, when applied to the given trainer ID, will result

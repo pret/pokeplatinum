@@ -1666,7 +1666,7 @@ static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
         param0->unk_290[param1].personality += ((24 + 1) * 10001);
     }
 
-    return Pokemon_IsPersonalityShiny(param0->unk_290[param1].otID, param0->unk_290[param1].personality);
+    return Personality_IsShiny(param0->unk_290[param1].otID, param0->unk_290[param1].personality);
 }
 
 static u32 ov104_0223B4D4(u8 param0)

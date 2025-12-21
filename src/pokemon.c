@@ -2509,10 +2509,9 @@ u8 Pokemon_IsShiny(Pokemon *mon)
 // TODO return bool
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon)
 {
-    u32 monOTID = BoxPokemon_GetData(boxMon, MON_DATA_OT_ID, NULL);
-    u32 monPersonality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-
-    return Pokemon_IsPersonalityShiny(monOTID, monPersonality);
+    u32 otID = BoxPokemon_GetData(boxMon, MON_DATA_OT_ID, NULL);
+    u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
+    return Personality_IsShiny(otID, personality);
 }
 
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality)
@@ -2520,9 +2519,9 @@ static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonal
     return (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF) ^ ((monPersonality & 0xFFFF0000) >> 16) ^ (monPersonality & 0xFFFF)) < 8;
 }
 
-u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality)
+u8 Personality_IsShiny(u32 otID, u32 personality)
 {
-    return Pokemon_InlineIsPersonalityShiny(monOTID, monPersonality);
+    return Pokemon_InlineIsPersonalityShiny(otID, personality);
 }
 
 u32 Pokemon_FindShinyPersonality(u32 monOTID)
