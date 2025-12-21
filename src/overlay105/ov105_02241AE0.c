@@ -2079,12 +2079,12 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
         ov104_0222E5D0(param0->unk_20, 0);
 
         v1 = Party_GetPokemonBySlotIndex(param0->unk_31C, 2 + param0->unk_324[0]);
-        v2 = Pokemon_GetBoxPokemon(v1);
+        v2 = Pokemon_GetBoxMon(v1);
 
         ov105_02244F00(param0, 1, v2);
 
         v1 = Party_GetPokemonBySlotIndex(param0->unk_320, param0->unk_324[1]);
-        v2 = Pokemon_GetBoxPokemon(v1);
+        v2 = Pokemon_GetBoxMon(v1);
 
         ov105_02244F00(param0, 2, v2);
         ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));

@@ -31,7 +31,7 @@ u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon)
 
 u32 Pokemon_IconSpriteIndex(Pokemon *mon)
 {
-    return BoxPokemon_IconSpriteIndex((const BoxPokemon *)Pokemon_GetBoxPokemon(mon));
+    return BoxPokemon_IconSpriteIndex(Pokemon_GetBoxMon(mon));
 }
 
 u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
@@ -162,7 +162,7 @@ const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *boxMon)
 
 const u8 Pokemon_IconPaletteIndex(Pokemon *mon)
 {
-    return BoxPokemon_IconPaletteIndex((const BoxPokemon *)Pokemon_GetBoxPokemon(mon));
+    return BoxPokemon_IconPaletteIndex(Pokemon_GetBoxMon(mon));
 }
 
 u32 PokeIconPalettesFileIndex(void)

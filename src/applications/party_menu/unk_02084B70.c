@@ -229,7 +229,7 @@ static void BufferUsedItemMessage(PartyMenuApplication *application, u16 param1,
     String *string;
 
     mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
 
     switch (sub_02084B70(param1)) {
     case 4:
@@ -499,7 +499,7 @@ static int sub_020855C4(void *applicationPtr)
         string = MessageLoader_GetNewString(application->messageLoader, 64);
     }
 
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
     StringTemplate_SetNumber(application->template, 1, curHP - application->partyMembers[application->currPartySlot].curHP, 3, 0, 1);
     StringTemplate_Format(application->template, application->tmpString, string);
     String_Free(string);
@@ -603,7 +603,7 @@ int sub_02085804(PartyMenuApplication *application)
         curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
         string = MessageLoader_GetNewString(application->messageLoader, 70);
 
-        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
         StringTemplate_Format(application->template, application->tmpString, string);
         String_Free(string);
 
@@ -686,7 +686,7 @@ static int sub_02085A70(void *applicationPtr)
 
     string = MessageLoader_GetNewString(application->messageLoader, 193);
 
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
     StringTemplate_SetNumber(application->template, 1, application->partyMembers[application->currPartySlot].level, 3, 0, 1);
     StringTemplate_Format(application->template, application->tmpString, string);
     String_Free(string);
@@ -754,7 +754,7 @@ static int sub_02085C50(void *applicationPtr)
             application->unk_B13 = 6;
             break;
         case 0xffff:
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
             StringTemplate_SetMoveName(application->template, 1, application->partyMenu->learnedMove);
 
             string = MessageLoader_GetNewString(application->messageLoader, 52);
@@ -771,7 +771,7 @@ static int sub_02085C50(void *applicationPtr)
         case 0xfffe:
             break;
         default:
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
             StringTemplate_SetMoveName(application->template, 1, application->partyMenu->learnedMove);
 
             string = MessageLoader_GetNewString(application->messageLoader, 194);
@@ -836,7 +836,7 @@ int sub_02085EF4(PartyMenuApplication *application)
     application->unk_B13 = 3;
 
     mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
 
     if (application->partyMenu->selectedMoveSlot == 4) {
         StringTemplate_SetMoveName(application->template, 1, application->partyMenu->learnedMove);
@@ -953,7 +953,7 @@ int sub_0208615C(PartyMenuApplication *application)
     mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
     v2 = PartyMenu_CanMonLearnMove(application, mon);
 
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
     StringTemplate_SetMoveName(application->template, 1, application->partyMenu->learnedMove);
 
     switch (v2) {
@@ -1007,7 +1007,7 @@ int sub_020862F8(PartyMenuApplication *application)
     String *string;
 
     mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
 
     if (application->partyMenu->selectedMoveSlot == 4) {
         StringTemplate_SetMoveName(application->template, 1, application->partyMenu->learnedMove);

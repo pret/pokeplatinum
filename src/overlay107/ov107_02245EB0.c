@@ -541,7 +541,7 @@ static BOOL ov107_022462CC(UnkStruct_ov107_02246170 *param0)
                 v8 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
 
                 ov107_02248BEC(param0);
-                ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v8));
+                ov107_02248104(param0, 0, Pokemon_GetBoxMon(v8));
 
                 param0->unk_0A = ov107_022477CC(param0, 20, FONT_MESSAGE);
                 param0->unk_08 = 15;
@@ -554,7 +554,7 @@ static BOOL ov107_022462CC(UnkStruct_ov107_02246170 *param0)
             v8 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
 
             ov107_02248BEC(param0);
-            ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v8));
+            ov107_02248104(param0, 0, Pokemon_GetBoxMon(v8));
 
             param0->unk_0A = ov107_022477CC(param0, 21, FONT_MESSAGE);
             ov107_02247DF0(param0);
@@ -2616,7 +2616,7 @@ static void ov107_02248A8C(UnkStruct_ov107_02246170 *param0, u8 param1)
     ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
+    ov107_02248104(param0, 0, Pokemon_GetBoxMon(v0));
 
     param0->unk_0A = ov107_022477CC(param0, 47, FONT_MESSAGE);
 
@@ -2656,7 +2656,7 @@ static void ov107_02248B50(UnkStruct_ov107_02246170 *param0, u8 param1)
     ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
+    ov107_02248104(param0, 0, Pokemon_GetBoxMon(v0));
 
     param0->unk_0A = ov107_022477CC(param0, 70, FONT_MESSAGE);
 
@@ -2849,7 +2849,7 @@ static void ov107_02249024(UnkStruct_ov107_02246170 *param0, u8 param1)
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
 
     ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
-    ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
+    ov107_02248104(param0, 0, Pokemon_GetBoxMon(v0));
 
     param0->unk_0A = ov107_022477CC(param0, 20, FONT_MESSAGE);
     param0->unk_3CC[ov107_02249C98(param0->unk_14, param1)] = 1;
@@ -2873,7 +2873,7 @@ static void ov107_022490E8(UnkStruct_ov107_02246170 *param0, u8 param1, u8 param
 
     ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
     v1 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v1));
+    ov107_02248104(param0, 0, Pokemon_GetBoxMon(v1));
 
     if (param2 == 1) {
         param0->unk_0A = ov107_022477CC(param0, 31, FONT_MESSAGE);

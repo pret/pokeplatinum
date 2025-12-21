@@ -140,7 +140,7 @@ int ov118_021D0DBC(PartyMenuApplication *param0)
 
         v2 = MessageLoader_GetNewString(param0->messageLoader, 202);
 
-        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v1));
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxMon(v1));
         StringTemplate_Format(param0->template, param0->tmpString, v2);
         String_Free(v2);
         PartyMenu_PrintLongMessage(param0, PRINT_MESSAGE_PRELOADED, TRUE);

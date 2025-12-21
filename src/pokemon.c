@@ -3092,7 +3092,7 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon)
     return BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 }
 
-BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon)
+BoxPokemon *Pokemon_GetBoxMon(Pokemon *mon)
 {
     return &mon->box;
 }
@@ -3444,7 +3444,7 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
 
 u16 Pokemon_AddMove(Pokemon *mon, u16 moveID)
 {
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
     return BoxPokemon_AddMove(boxMon, moveID);
 }
 
@@ -3473,7 +3473,7 @@ static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID)
 
 void Pokemon_ReplaceMove(Pokemon *mon, u16 moveID)
 {
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
     BoxPokemon_ReplaceMove(boxMon, moveID);
 }
 
@@ -4812,7 +4812,7 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
         MonDecryptSegment(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
     }
 
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
 
     PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
     PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
@@ -4887,7 +4887,7 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
 {
     MI_CpuClearFast(mon, sizeof(Pokemon));
 
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
 
     PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_A);
     PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, param0->personality, DATA_BLOCK_B);

@@ -1248,7 +1248,7 @@ static void MoveReminder_SetStringTemplate(MoveReminderController *controller, u
 {
     switch (str) {
     case MOVE_REMINDER_STR_ASK_TEACH_WHICH_TO_MON:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         break;
 
     case MOVE_REMINDER_STR_ASK_SHOULD_TEACH_MOVE:
@@ -1256,26 +1256,26 @@ static void MoveReminder_SetStringTemplate(MoveReminderController *controller, u
         break;
 
     case MOVE_REMINDER_STR_ASK_GIVE_UP_TEACHING_MON:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         break;
 
     case MOVE_REMINDER_STR_LEARNED_MOVE_NO_FANFARE:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 
     case MOVE_REMINDER_STR_ASK_MORE_THAN_FOUR_MOVES:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 
     case MOVE_REMINDER_STR_1_2_AND_POOF:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetForgottenMove(controller));
         break;
 
     case MOVE_REMINDER_STR_LEARNED_MOVE_FANFARE:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 
@@ -1284,7 +1284,7 @@ static void MoveReminder_SetStringTemplate(MoveReminderController *controller, u
         break;
 
     case MOVE_REMINDER_STR_MON_DID_NOT_LEARN_MOVE:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 

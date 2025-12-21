@@ -71,7 +71,7 @@ int GTSApplication_SearchListing_Init(GTSApplicationState *appState, int unused1
     ov94_0223DE04(appState);
     ov94_0223DED8(appState);
     ov94_0223DE7C(appState);
-    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes), &appState->searchResults[appState->selectedSearchResult].unk_EC);
+    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxMon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes), &appState->searchResults[appState->selectedSearchResult].unk_EC);
 
     Pokemon *mon = (Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes;
 

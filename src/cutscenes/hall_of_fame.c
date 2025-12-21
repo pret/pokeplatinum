@@ -1279,7 +1279,7 @@ static void HallOfFame_PrintTextAtRow(HallOfFamePokemonTextAdder *textAdder, int
 
 static void HallOfFame_LoadPokemonText(HallOfFamePokemonTextAdder *textAdder)
 {
-    StringTemplate_SetSpeciesName(textAdder->strTemplate, 0, Pokemon_GetBoxPokemon(textAdder->mon));
+    StringTemplate_SetSpeciesName(textAdder->strTemplate, 0, Pokemon_GetBoxMon(textAdder->mon));
     StringTemplate_SetNumber(textAdder->strTemplate, 1, Pokemon_CalcLevel(textAdder->mon), 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
     switch (Pokemon_GetGender(textAdder->mon)) {
@@ -1340,7 +1340,7 @@ static void HallOfFame_PrintPokemonText(SysTask *task, void *data)
         textAdder->state++;
         break;
     case 2:
-        StringTemplate_SetOTName(textAdder->strTemplate, 0, Pokemon_GetBoxPokemon(textAdder->mon));
+        StringTemplate_SetOTName(textAdder->strTemplate, 0, Pokemon_GetBoxMon(textAdder->mon));
         MessageLoader_GetString(textAdder->msgLoader, HallOfFame_Text_OT, textAdder->string_18);
         StringTemplate_Format(textAdder->strTemplate, textAdder->string_1C, textAdder->string_18);
         HallOfFame_PrintTextAtRow(textAdder, ROW_HEIGHT * 6);

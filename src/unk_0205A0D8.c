@@ -510,7 +510,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         }
         break;
     case 36:
-        StringTemplate_SetSpeciesName(v0->unk_28, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
+        StringTemplate_SetSpeciesName(v0->unk_28, 1, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
         MessageLoader_GetString(v0->unk_2C, 18, v0->unk_0C);
         StringTemplate_Format(v0->unk_28, v0->unk_10, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_10);

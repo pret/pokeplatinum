@@ -821,7 +821,7 @@ void PartyMenu_LoadContextMenuPrompt(PartyMenuApplication *application)
         Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
         String *fmtString = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_PromptPokemon);
 
-        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
         StringTemplate_Format(application->template, application->tmpString, fmtString);
         String_Free(fmtString);
     }
@@ -854,7 +854,7 @@ static void PartyMenu_PrintMemberHPSlash(PartyMenuApplication *application, u8 s
 void PartyMenu_SetMemberName(PartyMenuApplication *application, Pokemon *mon, u32 partySlot)
 {
     String *fmt = MessageLoader_GetNewString(application->messageLoader, sPartySlotNicknameTemplates[partySlot].bankEntry);
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
     StringTemplate_Format(application->template, application->partyMembers[partySlot].name, fmt);
     String_Free(fmt);
 }

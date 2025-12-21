@@ -1146,7 +1146,7 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
 
         for (i = 0; i < partyCount; i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(appState->playerData->party, i);
-            BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+            BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
 
             ov94_02240E50(boxMon, &appState->boxCriteria->criteria[i]);
             ov94_02240EAC(boxMon, appState->unk_E28[i], appState->unk_EA0[i], &species[i], i, v6, &appState->boxCriteria->criteria[i], &icons[i]);
@@ -1196,7 +1196,7 @@ BoxPokemon *ov94_022411DC(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
             return NULL;
         }
 
-        return Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(party, slot));
+        return Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(party, slot));
     }
 
     return PCBoxes_GetBoxMonAt(pcBoxes, boxID, slot);
@@ -1354,7 +1354,7 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *param1
 
     ov94_022425A8(param0, param1);
 
-    boxMon = Pokemon_GetBoxPokemon((Pokemon *)param1->searchResults[param1->selectedSearchResult].pokemon.bytes);
+    boxMon = Pokemon_GetBoxMon((Pokemon *)param1->searchResults[param1->selectedSearchResult].pokemon.bytes);
 
     v1.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     v1.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;

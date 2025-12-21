@@ -2180,7 +2180,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
             }
 
             v6 = BattleSystem_PartyPokemon(param0->battleSys, v12, v0->unk_00[v12].unk_00);
-            v7 = Pokemon_GetBoxPokemon(v6);
+            v7 = Pokemon_GetBoxMon(v6);
 
             StringTemplate_SetNickname(v8, 0, v7);
             StringTemplate_Format(v8, v4, v5);

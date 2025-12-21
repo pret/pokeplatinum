@@ -10970,7 +10970,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                             ov16_0223F9A0(v2->battleSys, v1);
                         }
 
-                        PCBoxes_TryStoreBoxMonInBox(pcBoxes, v26, Pokemon_GetBoxPokemon(v3));
+                        PCBoxes_TryStoreBoxMonInBox(pcBoxes, v26, Pokemon_GetBoxMon(v3));
 
                         if (v2->seqNum == 22) {
                             if (v25 == v26) {
@@ -12242,7 +12242,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
         v6 = MessageLoader_GetNewString(v4, 946);
     }
 
-    StringTemplate_SetNickname(v5, 0, Pokemon_GetBoxPokemon(param2));
+    StringTemplate_SetNickname(v5, 0, Pokemon_GetBoxMon(param2));
     StringTemplate_SetNumber(v5, 1, Pokemon_GetData(param2, MON_DATA_LEVEL, NULL), 3, 0, 1);
     StringTemplate_Format(v5, v7, v6);
     String_Free(v6);

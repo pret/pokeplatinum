@@ -495,7 +495,7 @@ static void ov88_0223B710(StringTemplate *param0, Party *param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param1); v0++) {
-        StringTemplate_SetNickname(param0, v0 + param2, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param1, v0)));
+        StringTemplate_SetNickname(param0, v0 + param2, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param1, v0)));
     }
 }
 
@@ -2060,7 +2060,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
@@ -2271,8 +2271,8 @@ static void ov88_0223DFF4(UnkStruct_02095E80 *param0)
 static int ov88_0223E110(UnkStruct_02095E80 *param0)
 {
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
-    StringTemplate_SetNickname(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringTemplate_SetNickname(param0->unk_17C, 1, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
 
     ov88_0223ECBC(&param0->unk_49C[23], 21, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
     param0->unk_226C = ov88_0223E20C;
@@ -2409,7 +2409,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 

@@ -320,7 +320,7 @@ static void PrepReceivedPokemonMsg(MystGiftGiveMsgFormatter *formatter, u16 *out
     Pokemon *pokemon = &giftData->pokemonGiftData.pokemon;
 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
-    StringTemplate_SetSpeciesNameWithArticle(formatter->stringTemplate, 1, Pokemon_GetBoxPokemon(pokemon));
+    StringTemplate_SetSpeciesNameWithArticle(formatter->stringTemplate, 1, Pokemon_GetBoxMon(pokemon));
 }
 
 static void PrepCannotReceivePokemonMsg(MystGiftGiveMsgFormatter *formatter, u16 *outTextBank, u16 *outStringID)
@@ -344,7 +344,7 @@ static void PrepReceivedEggMsg(MystGiftGiveMsgFormatter *formatter, u16 *outText
     Pokemon *pokemon = &giftData->pokemonGiftData.pokemon;
 
     StringTemplate_SetPlayerName(formatter->stringTemplate, 0, SaveData_GetTrainerInfo(formatter->fieldSystem->saveData));
-    StringTemplate_SetSpeciesName(formatter->stringTemplate, 1, Pokemon_GetBoxPokemon(pokemon));
+    StringTemplate_SetSpeciesName(formatter->stringTemplate, 1, Pokemon_GetBoxMon(pokemon));
 }
 
 static BOOL CanReceiveItem(FieldSystem *fieldSystem, GiftData *dummy)

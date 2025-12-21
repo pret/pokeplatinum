@@ -1003,8 +1003,8 @@ BOOL sub_0203DBF0(FieldTask *param0)
         break;
     case 4:
         v2->unk_48.otherTrainer = v2->unk_04.unk_38;
-        v2->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
-        v2->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
+        v2->unk_48.sendingPokemon = Pokemon_GetBoxMon(v2->unk_04.unk_3C);
+        v2->unk_48.receivingPokemon = Pokemon_GetBoxMon(v2->unk_04.unk_40);
         v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
         v2->unk_48.tradeType = TRADE_TYPE_NORMAL;
 

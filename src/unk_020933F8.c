@@ -1137,7 +1137,7 @@ void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2
 {
     BoxPokemon *v0;
     int v1 = sub_02095904(param1);
-    v0 = Pokemon_GetBoxPokemon(param0->unk_00.unk_00[v1]);
+    v0 = Pokemon_GetBoxMon(param0->unk_00.unk_00[v1]);
 
     StringTemplate_SetNickname(param2, param3, v0);
 }

@@ -773,7 +773,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
                 GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
-                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
+                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxMon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00002;
                 appState->currentScreenInstruction = 34;
@@ -793,7 +793,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
                 GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
-                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
+                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxMon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00003;
                 appState->currentScreenInstruction = 34;
@@ -1283,7 +1283,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
         int boxPosition = 0;
 
         PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIndex, &boxPosition);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(pokemon));
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxMon(pokemon));
 
         appState->tradedPokemonLocation.boxIndex = boxIndex;
         appState->tradedPokemonLocation.index = boxPosition;
@@ -1327,7 +1327,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         int boxPosition = 0;
 
         PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIndex, &boxPosition);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(pokemon));
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxMon(pokemon));
 
         appState->tradedPokemonLocation.boxIndex = boxIndex;
         appState->tradedPokemonLocation.index = boxPosition;

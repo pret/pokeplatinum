@@ -822,7 +822,7 @@ static void JournalPrinter_SetSpeciesName(JournalManager *journalManager, u16 sp
     Pokemon *mon = Pokemon_New(HEAP_ID_JOURNAL);
 
     Pokemon_InitWithGenderNatureLetter(mon, species, 1, 32, gender, 0, 0);
-    StringTemplate_SetSpeciesName(journalManager->template, idx, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetSpeciesName(journalManager->template, idx, Pokemon_GetBoxMon(mon));
     Heap_Free(mon);
 }
 

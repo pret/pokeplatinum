@@ -85,8 +85,8 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, TradeA
     Pokemon_Copy(partyMon, givingMon);
     Pokemon_Copy(data->mon, receivingMon);
 
-    animationConfig->sendingPokemon = Pokemon_GetBoxPokemon(givingMon);
-    animationConfig->receivingPokemon = Pokemon_GetBoxPokemon(receivingMon);
+    animationConfig->sendingPokemon = Pokemon_GetBoxMon(givingMon);
+    animationConfig->receivingPokemon = Pokemon_GetBoxMon(receivingMon);
     animationConfig->otherTrainer = data->trainerInfo;
     animationConfig->tradeType = TRADE_TYPE_NORMAL;
     animationConfig->options = SaveData_GetOptions(fieldSystem->saveData);

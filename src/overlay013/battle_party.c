@@ -1638,7 +1638,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
 
     if (pokemon->curHP == 0) {
         string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithFaintedPokemon);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxMon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
         return FALSE;
@@ -1646,7 +1646,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
 
     if (battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->playerPokemonPartySlot || battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->partnerPokemonPartySlot) {
         string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPokemonAlreadyInBattle);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxMon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
         return FALSE;
@@ -1661,7 +1661,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
         pokemon = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex];
         string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithAlreadySelectedPokemon);
 
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxMon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
         return FALSE;
@@ -1671,7 +1671,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
         pokemon = &battleParty->partyPokemon[battleParty->partySlotLearningMove];
         string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchPokemon);
 
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxMon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
         return FALSE;

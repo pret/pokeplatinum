@@ -77,7 +77,7 @@ int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused)
     ov94_0223D2E8(appState);
     ov94_0223D438(appState);
     ov94_0223D3DC(appState);
-    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes), &appState->receivedListing.unk_EC);
+    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxMon((Pokemon *)appState->receivedListing.pokemon.bytes), &appState->receivedListing.unk_EC);
 
     Pokemon *mon = (Pokemon *)appState->receivedListing.pokemon.bytes;
 
@@ -483,7 +483,7 @@ static void ov94_0223D88C(GTSApplicationState *param0, int param1, int param2, i
 {
     String *v0;
 
-    StringTemplate_SetSpeciesName(param0->stringTemplate, 0, Pokemon_GetBoxPokemon(param5));
+    StringTemplate_SetSpeciesName(param0->stringTemplate, 0, Pokemon_GetBoxMon(param5));
     v0 = MessageLoader_GetNewString(param0->gtsMessageLoader, param1);
     StringTemplate_Format(param0->stringTemplate, param0->genericMessageBuffer, v0);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);

@@ -175,7 +175,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
     if (param0->partyMembers[param0->currPartySlot].heldItem == ITEM_NONE) {
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00081, param0->tmpFormat);
-        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxMon(mon));
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
     } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->partyMembers[param0->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         u32 v4;
@@ -195,7 +195,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         }
 
         MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00082, param0->tmpFormat);
-        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxMon(mon));
         StringTemplate_SetItemName(param0->template, 1, param0->partyMembers[param0->currPartySlot].heldItem);
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
 

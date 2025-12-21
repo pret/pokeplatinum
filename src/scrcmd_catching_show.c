@@ -72,7 +72,7 @@ BOOL ScrCmd_MoveCatchingShowMonsToPCBoxes(ScriptContext *ctx)
     for (int i = 0; i < CATCHING_SHOW_MONS; i++) {
         MigratedPokemon_ConvertToPokemon(transferData, i, mon);
         UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 2, 0, HEAP_ID_FIELD3);
-        success = PCBoxes_TryStoreBoxMon(pcBoxes, Pokemon_GetBoxPokemon(mon));
+        success = PCBoxes_TryStoreBoxMon(pcBoxes, Pokemon_GetBoxMon(mon));
         GF_ASSERT(success);
         SaveData_UpdateCatchRecords(ctx->fieldSystem->saveData, mon);
     }

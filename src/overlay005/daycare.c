@@ -104,7 +104,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, Dayca
     trainerName = TrainerInfo_Name(trainerInfo);
     Pokemon_GetData(mon, MON_DATA_NICKNAME, nickname);
 
-    if (BoxPokemon_HoldsMail(Pokemon_GetBoxPokemon(mon))) {
+    if (BoxPokemon_HoldsMail(Pokemon_GetBoxMon(mon))) {
         Pokemon_GetData(mon, MON_DATA_MAIL, DaycareMail_GetMail(daycareMail));
     }
 
@@ -212,7 +212,7 @@ u16 Daycare_MoveToPartyFromDaycareSlot(Party *party, StringTemplate *template, D
 int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_FIELD1);
-    BoxPokemon *boxMonRef = Pokemon_GetBoxPokemon(mon);
+    BoxPokemon *boxMonRef = Pokemon_GetBoxMon(mon);
     int level;
     u32 exp;
 
@@ -1046,7 +1046,7 @@ u16 Party_StringTemplateSetNicknameReturnSpecies(Party *party, int slot, StringT
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
 
-    StringTemplate_SetNickname(strTemplate, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(strTemplate, 0, Pokemon_GetBoxMon(mon));
     return Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
 }
 

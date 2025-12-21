@@ -1070,7 +1070,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
                     return 1;
                 }
             } else {
-                ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v7));
+                ov107_02244A8C(param0, 0, Pokemon_GetBoxMon(v7));
                 StringTemplate_SetItemNameWithArticle(param0->unk_24, 1, Pokemon_GetData(v7, MON_DATA_HELD_ITEM, NULL));
                 param0->unk_0A = ov107_02243918(param0, 60, FONT_MESSAGE);
                 param0->unk_08 = 16;
@@ -3380,7 +3380,7 @@ static void ov107_022454F8(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     v1 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
     v0 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
 
-    ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v1));
+    ov107_02244A8C(param0, 0, Pokemon_GetBoxMon(v1));
     ov107_02249DBC(&param0->unk_50[6], Options_Frame(param0->options));
 
     param0->unk_0A = ov107_02243918(param0, Unk_ov107_02249E00[param2 - 1], FONT_MESSAGE);
@@ -3415,7 +3415,7 @@ static void ov107_022455A0(UnkStruct_ov107_02241D6C *param0, u8 param1, u16 para
     Pokemon_SetData(v0, MON_DATA_HELD_ITEM, &param2);
 
     ov107_02249BAC(param0->unk_404[ov107_02249C98(param0->unk_14, param1)], 1);
-    ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v0));
+    ov107_02244A8C(param0, 0, Pokemon_GetBoxMon(v0));
 
     StringTemplate_SetItemName(param0->unk_24, 1, param2);
     param0->unk_0A = ov107_02243918(param0, 59, FONT_MESSAGE);

@@ -1061,7 +1061,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
 {
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
     monData->species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
 
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_SpeciesNameTemplate, summaryScreen->string);
     StringTemplate_SetSpeciesName(summaryScreen->strFormatter, 0, boxMon);

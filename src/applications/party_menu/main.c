@@ -2512,7 +2512,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
             mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
             v1 = MessageLoader_GetNewString(application->messageLoader, 64);
 
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
             StringTemplate_SetNumber(application->template, 1, application->monStats[2], 3, 0, 1);
             StringTemplate_Format(application->template, application->tmpString, v1);
             String_Free(v1);
@@ -2702,7 +2702,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
     if (application->partyMenu->usedItemID == 112) {
         if (Pokemon_GetData(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00203, application->tmpFormat);
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
             StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMenu->usedItemID);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = 11;
@@ -2727,13 +2727,13 @@ static int ProcessItemApplication(PartyMenuApplication *application)
             v2 = UpdatePokemonWithItem(application, v0, &v3);
 
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
             StringTemplate_SetItemName(application->template, 1, application->partyMenu->usedItemID);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             break;
         case 1:
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00078, application->tmpFormat);
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
             StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMembers[application->currPartySlot].heldItem);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = 9;
@@ -2918,7 +2918,7 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
 
     if (item == ITEM_NONE) {
         MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
-        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
         StringTemplate_SetItemName(application->template, 1, application->partyMenu->usedItemID);
         StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
     } else {

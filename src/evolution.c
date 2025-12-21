@@ -284,7 +284,7 @@ static void sub_0207B180(EvolutionData *param0)
             }
 
             Sound_PlayDelayedPokemonCry(param0->unk_60, param0->unk_84, param0->unk_86);
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
                 param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00917);
@@ -396,8 +396,8 @@ static void sub_0207B180(EvolutionData *param0)
             Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-            StringTemplate_SetSpeciesName(param0->unk_0C, 1, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
+            StringTemplate_SetSpeciesName(param0->unk_0C, 1, Pokemon_GetBoxMon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00918);
             param0->unk_66 = 40;
             param0->unk_64++;
@@ -409,7 +409,7 @@ static void sub_0207B180(EvolutionData *param0)
                 Pokedex_Capture(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxMon(param0->unk_28));
 
                 if (Pokemon_GetData(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
                     Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
@@ -433,7 +433,7 @@ static void sub_0207B180(EvolutionData *param0)
             param0->unk_64 = 14;
             break;
         default:
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, v3);
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00004);
             param0->unk_66 = 30;
@@ -442,14 +442,14 @@ static void sub_0207B180(EvolutionData *param0)
         }
     } break;
     case 14:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01193);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01194);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -549,7 +549,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 35:
         switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->heapID)) {
         case 0:
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01198);
             param0->unk_66 = 30;
@@ -574,7 +574,7 @@ static void sub_0207B180(EvolutionData *param0)
         param0->unk_64++;
         break;
     case 27:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetData(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01200);
         param0->unk_66 = 30;
@@ -586,7 +586,7 @@ static void sub_0207B180(EvolutionData *param0)
         param0->unk_64++;
         break;
     case 31:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01202);
         param0->unk_66 = 0;
@@ -655,7 +655,7 @@ static void sub_0207B180(EvolutionData *param0)
         break;
     case 43:
         if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00919);
             param0->unk_66 = 20;
             param0->unk_64++;
@@ -738,7 +738,7 @@ static void sub_0207C028(EvolutionData *param0)
                 Pokedex_Capture(param0->unk_48, shedinja);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(shedinja));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxMon(shedinja));
                 Heap_Free(shedinja);
                 Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->heapID);
             }

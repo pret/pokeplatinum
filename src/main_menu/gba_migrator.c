@@ -426,7 +426,7 @@ static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
     GBABoxPokemon *gbaBoxMon;
     Pokemon mon;
     MigratedPokemon *transfer = SaveData_GetPalParkTransfer(migrator->saveData);
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(&mon);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         boxPos = migrator->selectedMonData[i].boxPosition;

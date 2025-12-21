@@ -2223,7 +2223,7 @@ static void ov10_02222400(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
 
     v2 = MessageLoader_GetNewString(param1, 8 + param5);
 
-    StringTemplate_SetNickname(param3, 0, Pokemon_GetBoxPokemon(v0));
+    StringTemplate_SetNickname(param3, 0, Pokemon_GetBoxMon(v0));
     StringTemplate_Format(param3, param4, v2);
     String_Free(v2);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, param4, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);

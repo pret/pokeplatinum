@@ -1687,7 +1687,7 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
 
         pkm = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
         Pokemon_InitWith(pkm, namingScreen->playerGenderOrMonSpecies, 5, 10, 10, 10, 10, 10);
-        StringTemplate_SetSpeciesName(namingScreen->strTemplate, 0, Pokemon_GetBoxPokemon(pkm));
+        StringTemplate_SetSpeciesName(namingScreen->strTemplate, 0, Pokemon_GetBoxMon(pkm));
         Heap_Free(pkm);
     }
 
@@ -1759,7 +1759,7 @@ static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, Applic
             Pokemon *mon = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
 
             Pokemon_InitWith(mon, namingScreen->playerGenderOrMonSpecies, 1, 0, FALSE, 0, OTID_NOT_SET, 0);
-            StringTemplate_SetSpeciesName(namingScreen->strTemplate, 0, Pokemon_GetBoxPokemon(mon));
+            StringTemplate_SetSpeciesName(namingScreen->strTemplate, 0, Pokemon_GetBoxMon(mon));
             Heap_Free(mon);
         } else {
             namingScreen->entryBuf[namingScreen->textCursorPos] = CHAR_EOS;
