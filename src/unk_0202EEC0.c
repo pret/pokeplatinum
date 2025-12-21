@@ -75,7 +75,7 @@ static int GetTransferSlotByTrainerID(MigratedPokemon *transferData, u32 param1)
 
 void BoxMonToTransferData(MigratedPokemon *transfer, BoxPokemon *boxMon, int slot)
 {
-    Pokemon_FromBoxPokemon(boxMon, &transfer->mons[slot]);
+    BoxPokemon_CopyToPokemon(boxMon, &transfer->mons[slot]);
 }
 
 void PalParkTransfer_SaveTransferHistory(MigratedPokemon *transferData, u32 gbaTrainerId)

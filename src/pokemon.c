@@ -3591,51 +3591,47 @@ static BOOL Pokemon_HasMove(Pokemon *mon, u16 move)
     return i != LEARNED_MOVES_MAX;
 }
 
-void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
+void BoxPokemon_CopyToPokemon(BoxPokemon *src, Pokemon *dest)
 {
     u32 zero = 0;
 
-    mon->box = *boxMon;
-    if (mon->box.boxDecrypted) {
-        mon->box.partyDecrypted = TRUE;
+    dest->box = *src;
+    if (dest->box.boxDecrypted) {
+        dest->box.partyDecrypted = TRUE;
     }
-
-    Pokemon_SetData(mon, MON_DATA_STATUS, &zero);
-    Pokemon_SetData(mon, MON_DATA_HP, &zero);
-    Pokemon_SetData(mon, MON_DATA_MAX_HP, &zero);
+    Pokemon_SetData(dest, MON_DATA_STATUS, &zero);
+    Pokemon_SetData(dest, MON_DATA_HP, &zero);
+    Pokemon_SetData(dest, MON_DATA_MAX_HP, &zero);
 
     Mail *mail = Mail_New(HEAP_ID_SYSTEM);
-    Pokemon_SetData(mon, MON_DATA_MAIL, mail);
+    Pokemon_SetData(dest, MON_DATA_MAIL, mail);
     Heap_Free(mail);
 
-    Pokemon_SetData(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
+    BallCapsule capsule;
+    Pokemon_SetData(dest, MON_DATA_BALL_CAPSULE_ID, &zero);
+    MI_CpuClearFast(&capsule, sizeof(capsule));
+    Pokemon_SetData(dest, MON_DATA_BALL_CAPSULE, &capsule);
 
-    BallCapsule v2;
-    MI_CpuClearFast(&v2, sizeof(BallCapsule));
-    Pokemon_SetData(mon, MON_DATA_BALL_CAPSULE, &v2);
-
-    Pokemon_CalcLevelAndStats(mon);
+    Pokemon_CalcLevelAndStats(dest);
 }
 
 u8 Party_GetMaxLevel(Party *party)
 {
-    int currentPartyCount = Party_GetCurrentCount(party);
+    int count = Party_GetCurrentCount(party);
+    u8 ret = 1;
 
-    u8 result = 1;
-
-    for (int i = 0; i < currentPartyCount; i++) {
+    for (int i = 0; i < count; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
-            u8 monLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
-
-            if (monLevel > result) {
-                result = monLevel;
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+            && !Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL)) {
+            u8 level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+            if (level > ret) {
+                ret = level;
             }
         }
     }
-
-    return result;
+    return ret;
 }
 
 u16 Pokemon_SinnohDexNumber(u16 species)
@@ -3661,19 +3657,16 @@ u16 Pokemon_NationalDexNumber(u16 sinnohDexNumber)
 void Pokemon_Copy(Pokemon *src, Pokemon *dest)
 {
     *dest = *src;
-    return;
 }
 
 void BoxPokemon_Copy(BoxPokemon *src, BoxPokemon *dest)
 {
     *dest = *src;
-    return;
 }
 
-void BoxPokemon_FromPokemon(Pokemon *src, BoxPokemon *dest)
+void Pokemon_CopyToBoxPokemon(Pokemon *src, BoxPokemon *dest)
 {
     *dest = src->box;
-    return;
 }
 
 s8 Pokemon_GetFlavorAffinity(Pokemon *mon, enum Flavor flavor)

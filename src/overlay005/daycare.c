@@ -108,7 +108,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, Dayca
         Pokemon_GetData(mon, MON_DATA_MAIL, DaycareMail_GetMail(daycareMail));
     }
 
-    BoxPokemon_FromPokemon(mon, daycareBoxMon);
+    Pokemon_CopyToBoxPokemon(mon, daycareBoxMon);
     BoxPokemon_SetShayminForm(daycareBoxMon, SHAYMIN_FORM_LAND);
     DaycareMon_SetSteps(daycareMon, 0);
     Party_RemovePokemonBySlotIndex(party, partySlot);
@@ -177,7 +177,7 @@ static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMo
 
     StringTemplate_SetNickname(template, 0, boxMon);
     species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-    Pokemon_FromBoxPokemon(boxMon, mon);
+    BoxPokemon_CopyToPokemon(boxMon, mon);
 
     if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
         experience = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);

@@ -1012,7 +1012,7 @@ void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *appState)
         MI_CpuCopyFast(appState->unk_114, listing->pokemon.bytes, Pokemon_StructSize());
     } else {
         BoxPokemon_SetShayminForm(appState->unk_114, SHAYMIN_FORM_LAND);
-        Pokemon_FromBoxPokemon(appState->unk_114, (Pokemon *)listing->pokemon.bytes);
+        BoxPokemon_CopyToPokemon(appState->unk_114, (Pokemon *)listing->pokemon.bytes);
     }
 
     CharCode_CopyNumChars(listing->unk_10C, TrainerInfo_Name(appState->playerData->trainerInfo), 8);

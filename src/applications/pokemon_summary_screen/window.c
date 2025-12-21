@@ -1132,7 +1132,7 @@ static void DrawMemoPageWindows(PokemonSummaryScreen *summaryScreen)
     if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
         Pokemon *mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-        Pokemon_FromBoxPokemon(monData, mon);
+        BoxPokemon_CopyToPokemon(monData, mon);
         PrintTrainerMemo(&summaryScreen->extraWindows[SUMMARY_WINDOW_MEMO], mon, monOTMatches);
         Heap_Free(mon);
     } else {

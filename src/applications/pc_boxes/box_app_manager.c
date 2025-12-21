@@ -3960,7 +3960,7 @@ static void BoxAppMan_PutDownCursorMon(BoxApplicationManager *boxAppMan, BoxAppl
         if (selection->cursorMonIsPartyMon) {
             Party_AddPokemon(boxAppMan->party, (Pokemon *)selection->boxMon);
         } else {
-            Pokemon_FromBoxPokemon(selection->boxMon, boxAppMan->mon);
+            BoxPokemon_CopyToPokemon(selection->boxMon, boxAppMan->mon);
             Party_AddPokemon(boxAppMan->party, boxAppMan->mon);
         }
 
@@ -4019,7 +4019,7 @@ static void BoxAppMan_SwapMonInCursor(BoxApplicationManager *boxAppMan, BoxAppli
         selection->cursorMonIsPartyMon = FALSE;
     } else {
         if (selection->cursorMonIsPartyMon == FALSE) {
-            Pokemon_FromBoxPokemon(monBuffer, boxAppMan->mon);
+            BoxPokemon_CopyToPokemon(monBuffer, boxAppMan->mon);
         } else {
             MI_CpuCopy32(monBuffer, boxAppMan->mon, monStructSize);
         }
@@ -4158,7 +4158,7 @@ static void BoxApp_LoadBoxMonIntoComparison(BoxApplication *boxApp, BoxPokemon *
     }
 
     String_Copy(compareMon->nature, preview->nature);
-    Pokemon_FromBoxPokemon(boxMon, boxAppMan->mon);
+    BoxPokemon_CopyToPokemon(boxMon, boxAppMan->mon);
 
     BOOL reencrypt = Pokemon_EnterDecryptionContext(boxAppMan->mon);
 

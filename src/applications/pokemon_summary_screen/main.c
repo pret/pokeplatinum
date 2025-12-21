@@ -931,7 +931,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
             boxMon = PokemonSummaryScreen_MonData(summaryScreen);
             mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-            Pokemon_FromBoxPokemon(boxMon, mon);
+            BoxPokemon_CopyToPokemon(boxMon, mon);
         } else {
             mon = PokemonSummaryScreen_MonData(summaryScreen);
         }
@@ -1052,7 +1052,7 @@ static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Pokemon_FromBoxPokemon(boxMon, mon);
+    BoxPokemon_CopyToPokemon(boxMon, mon);
     SetMonDataFromMon(summaryScreen, mon, monData);
     Heap_Free(mon);
 }

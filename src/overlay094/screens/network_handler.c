@@ -1220,7 +1220,7 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
     if (param0->selectedBoxId != MAX_PC_BOXES) {
         Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
+        BoxPokemon_CopyToPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
         sub_0202DA7C(param0->playerData->globalTrade, v0, param0->selectedBoxId);
         PCBoxes_InitBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
         Heap_Free(v0);

@@ -600,7 +600,7 @@ void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int slot1, int slot2);
  */
 void Pokemon_ClearMoveSlot(Pokemon *mon, u32 slot);
 
-void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon);
+void BoxPokemon_CopyToPokemon(BoxPokemon *src, Pokemon *dest);
 
 /**
  * @brief Gets the level of the highest level pokemon in the Party
@@ -629,7 +629,7 @@ u16 Pokemon_NationalDexNumber(u16 sinnohDexNumber);
 
 void Pokemon_Copy(Pokemon *src, Pokemon *dest);
 void BoxPokemon_Copy(BoxPokemon *src, BoxPokemon *dest);
-void BoxPokemon_FromPokemon(Pokemon *src, BoxPokemon *dest);
+void Pokemon_CopyToBoxPokemon(Pokemon *src, BoxPokemon *dest);
 
 /**
  * @brief Gets the affinitiy of a given Pokemon to a given flavor
