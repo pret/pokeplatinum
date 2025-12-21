@@ -44,7 +44,7 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
         return IconTilesIndex(ICON_EGG);
     }
 
-    form = Pokemon_SanitizeFormId(species, form);
+    form = Species_SanitizeFormId(species, form);
 
     if (form != 0) {
         if (species == SPECIES_DEOXYS) {

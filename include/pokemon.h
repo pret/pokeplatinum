@@ -445,11 +445,11 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @return The sanitized pokemon form
  */
-u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm);
+u8 Species_SanitizeFormId(u16 species, u8 form);
 
 /**
  * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.

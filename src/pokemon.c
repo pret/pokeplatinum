@@ -2615,7 +2615,7 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
     spriteTemplate->spindaSpots = 0;
     spriteTemplate->dummy = 0;
     spriteTemplate->personality = 0;
-    form = Pokemon_SanitizeFormId(species, form);
+    form = Species_SanitizeFormId(species, form);
 
     switch (species) {
     case SPECIES_BURMY:
@@ -2715,77 +2715,77 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
     }
 }
 
-u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
+u8 Species_SanitizeFormId(u16 species, u8 form)
 {
-    switch (monSpecies) {
+    switch (species) {
     case SPECIES_BURMY:
-        if (monForm > BURMY_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > BURMY_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_WORMADAM:
-        if (monForm > WORMADAM_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > WORMADAM_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_SHELLOS:
-        if (monForm > SHELLOS_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > SHELLOS_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_GASTRODON:
-        if (monForm > GASTRODON_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > GASTRODON_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_CHERRIM:
-        if (monForm > CHERRIM_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > CHERRIM_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_ARCEUS:
-        if (monForm > ARCEUS_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > ARCEUS_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_CASTFORM:
-        if (monForm > CASTFORM_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > CASTFORM_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_DEOXYS:
-        if (monForm > DEOXYS_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > DEOXYS_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_UNOWN:
-        if (monForm >= UNOWN_FORM_COUNT) {
-            monForm = 0;
+        if (form >= UNOWN_FORM_COUNT) {
+            form = 0;
         }
         break;
     case SPECIES_EGG:
-        if (monForm > EGG_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > EGG_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_SHAYMIN:
-        if (monForm > SHAYMIN_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > SHAYMIN_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_ROTOM:
-        if (monForm > ROTOM_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > ROTOM_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     case SPECIES_GIRATINA:
-        if (monForm > GIRATINA_FORM_COUNT - 1) {
-            monForm = 0;
+        if (form > GIRATINA_FORM_COUNT - 1) {
+            form = 0;
         }
         break;
     }
 
-    return monForm;
+    return form;
 }
 
 /**
@@ -2812,7 +2812,7 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
     spriteTemplate->dummy = 0;
     spriteTemplate->personality = 0;
 
-    form = Pokemon_SanitizeFormId(species, form);
+    form = Species_SanitizeFormId(species, form);
 
     switch (species) {
     case SPECIES_BURMY:
@@ -2968,7 +2968,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
 
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
-    form = Pokemon_SanitizeFormId(species, form);
+    form = Species_SanitizeFormId(species, form);
 
     enum NarcID narcID;
     int memberIndex;
@@ -3057,7 +3057,7 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
 static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
     // TODO enum values?
-    form = Pokemon_SanitizeFormId(species, form);
+    form = Species_SanitizeFormId(species, form);
 
     enum NarcID narcID;
     int memberIndex;
