@@ -262,7 +262,7 @@ static void SetupSprites(FriendshipCheckerGraphics *graphics, const FriendshipCh
                 GF_ASSERT(0);
             }
 
-            graphics->pokemon[slot].flipSprite = SpeciesData_GetFormValue(friendshipData->party[slot].species, friendshipData->party[slot].form, SPECIES_DATA_FLIP_SPRITE);
+            graphics->pokemon[slot].flipSprite = Species_GetFormValue(friendshipData->party[slot].species, friendshipData->party[slot].form, SPECIES_DATA_FLIP_SPRITE);
             graphics->pokemon[slot].unused2 = 0;
             graphics->pokemon[slot].bumpedFromRest = FALSE;
 

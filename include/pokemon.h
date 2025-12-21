@@ -219,12 +219,12 @@ void SpeciesData_Free(SpeciesData *speciesData);
 /**
  * @brief Loads a SpeciesData based on its species and form and gets a value from it
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param);
+u32 Species_GetFormValue(int species, int form, enum SpeciesDataParam param);
 
 /**
  * @brief Loads a SpeciesData based on its species and gets a value from it

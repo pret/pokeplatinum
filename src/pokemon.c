@@ -1114,7 +1114,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         if (blockA->species == SPECIES_ARCEUS && blockA->ability == ABILITY_MULTITYPE) {
             ret = Pokemon_GetArceusTypeOf(Item_LoadParam(blockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         } else {
-            ret = SpeciesData_GetFormValue(blockA->species, blockB->form, SPECIES_DATA_TYPE_1 + (param - MON_DATA_TYPE_1));
+            ret = Species_GetFormValue(blockA->species, blockB->form, SPECIES_DATA_TYPE_1 + (param - MON_DATA_TYPE_1));
         }
         break;
     case MON_DATA_SPECIES_NAME:
@@ -2049,15 +2049,11 @@ void SpeciesData_Free(SpeciesData *speciesData)
     Heap_Free(speciesData);
 }
 
-u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param)
+u32 Species_GetFormValue(int species, int form, enum SpeciesDataParam param)
 {
-    monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
-
-    SpeciesData *speciesData = SpeciesData_NewFromSpecies(monSpecies, HEAP_ID_SYSTEM);
+    SpeciesData *speciesData = SpeciesData_NewFromSpecies(Pokemon_GetFormNarcIndex(species, form), HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
-
     SpeciesData_Free(speciesData);
-
     return result;
 }
 
@@ -4464,8 +4460,8 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates)
     u32 rand = LCRNG_Next() % 100;
     u16 monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     u16 monForm = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
-    u16 monItem1 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_COMMON);
-    u16 monItem2 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_RARE);
+    u16 monItem1 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_COMMON);
+    u16 monItem2 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_RARE);
 
     if (monItem1 == monItem2 && monItem1 != ITEM_NONE) {
         Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &monItem1);
@@ -4518,7 +4514,7 @@ BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID)
         speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_4;
     }
 
-    return (SpeciesData_GetFormValue(monSpecies, monForm, speciesDataAttribute) & tmFlag) != 0;
+    return (Species_GetFormValue(monSpecies, monForm, speciesDataAttribute) & tmFlag) != 0;
 }
 
 void Pokemon_CalcAbility(Pokemon *mon)
@@ -4532,8 +4528,8 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     int monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     u32 monPersonality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
     int monForm = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
-    int monAbility1 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_1);
-    int monAbility2 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_2);
+    int monAbility1 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_1);
+    int monAbility2 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_2);
 
     if (monAbility2 != ABILITY_NONE) {
         if (monPersonality & 1) {

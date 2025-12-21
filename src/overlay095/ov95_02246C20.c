@@ -173,7 +173,7 @@ static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon)
     int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
-    return SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
+    return Species_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
 }
 
 int TradeSequence_Exit(ApplicationManager *appMan, int *param1)

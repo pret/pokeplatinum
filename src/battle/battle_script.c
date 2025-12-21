@@ -6421,10 +6421,10 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
 
-    battleCtx->damage = SpeciesData_GetFormValue(species, form, SPECIES_DATA_BASE_ATK);
+    battleCtx->damage = Species_GetFormValue(species, form, SPECIES_DATA_BASE_ATK);
     battleCtx->damage *= CURRENT_MOVE_DATA.power;
     battleCtx->damage *= ((level * 2 / 5) + 2);
-    battleCtx->damage /= SpeciesData_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, SPECIES_DATA_BASE_DEF);
+    battleCtx->damage /= Species_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, SPECIES_DATA_BASE_DEF);
     battleCtx->damage /= 50;
     battleCtx->damage += 2;
     battleCtx->damage *= battleCtx->criticalMul;
@@ -9638,7 +9638,7 @@ static BOOL BtlCmd_LoadArchivedMonData(BattleSystem *battleSys, BattleContext *b
     int personalParam = BattleScript_Read(battleCtx);
 
     int *form = BattleScript_VarAddress(battleSys, battleCtx, formVar);
-    battleCtx->calcTemp = SpeciesData_GetFormValue(species, *form, personalParam);
+    battleCtx->calcTemp = Species_GetFormValue(species, *form, personalParam);
 
     return FALSE;
 }

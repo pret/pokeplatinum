@@ -367,7 +367,7 @@ static void DrawSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *d
     PoketchAnimation_SetCParam(graphics->sprites[2], 1 + PokeIconPaletteIndex(1, 0, TRUE));
 
     if (daycareStatus->numMons > 0) {
-        if (SpeciesData_GetFormValue(daycareStatus->species[0], daycareStatus->forms[0], SPECIES_DATA_FLIP_SPRITE)) {
+        if (Species_GetFormValue(daycareStatus->species[0], daycareStatus->forms[0], SPECIES_DATA_FLIP_SPRITE)) {
             PoketchAnimation_UpdateAnimationIdx(graphics->sprites[0], 6);
         } else {
             PoketchAnimation_UpdateAnimationIdx(graphics->sprites[0], 7);
