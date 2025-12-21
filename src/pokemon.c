@@ -2091,7 +2091,9 @@ static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon)
 
 u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon)
 {
-    return Species_GetExpAtLevel(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), Pokemon_GetData(mon, MON_DATA_LEVEL, NULL));
+    int species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    int level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    return Species_GetExpAtLevel(species, level);
 }
 
 u32 Species_GetExpAtLevel(int species, int level)
