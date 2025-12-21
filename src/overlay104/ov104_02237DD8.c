@@ -218,7 +218,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *saveData, u16 param1, u8 para
         Pokemon_SetData(v3, MON_DATA_HELD_ITEM, &v0);
 
         if (Pokemon_GetData(v3, MON_DATA_LEVEL, NULL) > 50) {
-            v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(v3, MON_DATA_SPECIES, NULL), 50);
+            v1 = Species_GetExpAtLevel(Pokemon_GetData(v3, MON_DATA_SPECIES, NULL), 50);
             Pokemon_SetData(v3, MON_DATA_EXPERIENCE, &v1);
             Pokemon_CalcLevelAndStats(v3);
         }
@@ -1321,7 +1321,7 @@ static void ov104_02238F54(UnkStruct_ov104_0223BFFC *param0, Party *param1, u8 p
             v2 = 100;
         }
 
-        v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(v3, MON_DATA_SPECIES, NULL), v2);
+        v1 = Species_GetExpAtLevel(Pokemon_GetData(v3, MON_DATA_SPECIES, NULL), v2);
 
         Pokemon_SetData(v3, MON_DATA_EXPERIENCE, &v1);
         Pokemon_CalcLevelAndStats(v3);

@@ -178,7 +178,7 @@ BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0)
             v11 = Party_GetPokemonBySlotIndex(v9->unk_70, v1);
             v7 = Pokemon_GetData(v11, MON_DATA_LEVEL, NULL);
             v7 -= 3;
-            v6 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(v11, MON_DATA_SPECIES, NULL), v7);
+            v6 = Species_GetExpAtLevel(Pokemon_GetData(v11, MON_DATA_SPECIES, NULL), v7);
 
             Pokemon_SetData(v11, MON_DATA_EXPERIENCE, &v6);
             Pokemon_CalcLevelAndStats(v11);

@@ -1263,12 +1263,12 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].ability = (u16)Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_ABILITY, NULL);
         battleParty->partyPokemon[i].heldItem = (u16)Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_HELD_ITEM, NULL);
         battleParty->partyPokemon[i].exp = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_EXPERIENCE, NULL);
-        battleParty->partyPokemon[i].currentLevelBaseExp = Pokemon_GetSpeciesBaseExpAt(battleParty->partyPokemon[i].species, battleParty->partyPokemon[i].level);
+        battleParty->partyPokemon[i].currentLevelBaseExp = Species_GetExpAtLevel(battleParty->partyPokemon[i].species, battleParty->partyPokemon[i].level);
 
         if (battleParty->partyPokemon[i].level == MAX_POKEMON_LEVEL) {
             battleParty->partyPokemon[i].nextLevelExp = battleParty->partyPokemon[i].currentLevelBaseExp;
         } else {
-            battleParty->partyPokemon[i].nextLevelExp = Pokemon_GetSpeciesBaseExpAt(battleParty->partyPokemon[i].species, battleParty->partyPokemon[i].level + 1);
+            battleParty->partyPokemon[i].nextLevelExp = Species_GetExpAtLevel(battleParty->partyPokemon[i].species, battleParty->partyPokemon[i].level + 1);
         }
 
         battleParty->partyPokemon[i].cool = (u8)Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_COOL, NULL);

@@ -428,7 +428,7 @@ static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int 
 
     u32 v1, v2; // TODO rename, these are used/reused as temp vars through the whole function.
 
-    v1 = Pokemon_GetSpeciesBaseExpAt(species, level);
+    v1 = Species_GetExpAtLevel(species, level);
     BoxPokemon_SetData(boxMon, MON_DATA_EXPERIENCE, &v1);
 
     v1 = Species_GetValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
@@ -1637,8 +1637,8 @@ static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     switch (param) {
     case MON_DATA_EXPERIENCE:
-        if (blockA->exp + value > Pokemon_GetSpeciesBaseExpAt(blockA->species, MAX_POKEMON_LEVEL)) {
-            blockA->exp = Pokemon_GetSpeciesBaseExpAt(blockA->species, MAX_POKEMON_LEVEL);
+        if (blockA->exp + value > Species_GetExpAtLevel(blockA->species, MAX_POKEMON_LEVEL)) {
+            blockA->exp = Species_GetExpAtLevel(blockA->species, MAX_POKEMON_LEVEL);
         } else {
             blockA->exp += value;
         }
@@ -2065,8 +2065,8 @@ u8 Pokemon_GetPercentToNextLevel(Pokemon *mon)
     BOOL recrypt = Pokemon_EnterDecryptionContext(mon);
     u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     u8 level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
-    u32 curLevelExp = Pokemon_GetSpeciesBaseExpAt(species, level);
-    u32 nextLevelExp = Pokemon_GetSpeciesBaseExpAt(species, level + 1);
+    u32 curLevelExp = Species_GetExpAtLevel(species, level);
+    u32 nextLevelExp = Species_GetExpAtLevel(species, level + 1);
     u32 curExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
 
     Pokemon_ExitDecryptionContext(mon, recrypt);
@@ -2086,17 +2086,17 @@ static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon)
     u16 monNextlevel = BoxPokemon_CalcLevel(boxMon) + 1;
     u32 monExp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
 
-    return Pokemon_GetSpeciesBaseExpAt(monSpecies, monNextlevel) - monExp;
+    return Species_GetExpAtLevel(monSpecies, monNextlevel) - monExp;
 }
 
 u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon)
 {
-    return Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), Pokemon_GetData(mon, MON_DATA_LEVEL, NULL));
+    return Species_GetExpAtLevel(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), Pokemon_GetData(mon, MON_DATA_LEVEL, NULL));
 }
 
-u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel)
+u32 Species_GetExpAtLevel(int species, int level)
 {
-    return Pokemon_GetExpRateBaseExpAt(Species_GetValue(monSpecies, SPECIES_DATA_EXP_RATE), monLevel);
+    return Pokemon_GetExpRateBaseExpAt(Species_GetValue(species, SPECIES_DATA_EXP_RATE), level);
 }
 
 static void Pokemon_LoadExperienceTableOf(enum ExpRate monExpRate, u32 *monExpTable)

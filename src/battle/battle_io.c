@@ -477,8 +477,8 @@ void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx
         healthbar.gender = battleCtx->battleMons[battler].gender;
     }
 
-    healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
-    healthbar.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Species_GetExpAtLevel(species, level);
+    healthbar.expToNextLevel = Species_GetExpAtLevel(species, level + 1) - Species_GetExpAtLevel(species, level);
     healthbar.speciesCaught = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
     healthbar.numSafariBalls = BattleSystem_NumSafariBalls(battleSys);
     healthbar.delay = delay;
@@ -928,8 +928,8 @@ void BattleIO_UpdateHPGauge(BattleSystem *battleSys, BattleContext *param1, int 
         v0.unk_07 = param1->battleMons[param2].gender;
     }
 
-    v0.unk_0C = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_10 = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_0C = param1->battleMons[param2].exp - Species_GetExpAtLevel(v2, v3);
+    v0.unk_10 = Species_GetExpAtLevel(v2, v3 + 1) - Species_GetExpAtLevel(v2, v3);
 
     SendMessage(battleSys, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
 }
@@ -947,8 +947,8 @@ void BattleIO_UpdateExpGauge(BattleSystem *battleSys, BattleContext *param1, int
 
     v0.unk_00 = 25;
     v0.unk_04 = param3;
-    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_08 = param1->battleMons[param2].exp - Species_GetExpAtLevel(v2, v3);
+    v0.unk_0C = Species_GetExpAtLevel(v2, v3 + 1) - Species_GetExpAtLevel(v2, v3);
 
     SendMessage(battleSys, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C370));
 }
@@ -1164,8 +1164,8 @@ void BattleIO_RefreshHPGauge(BattleSystem *battleSys, BattleContext *param1, int
         v0.unk_07_5 = param1->battleMons[param2].gender;
     }
 
-    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_08 = param1->battleMons[param2].exp - Species_GetExpAtLevel(v2, v3);
+    v0.unk_0C = Species_GetExpAtLevel(v2, v3 + 1) - Species_GetExpAtLevel(v2, v3);
     v0.unk_07_7 = BattleSystem_CaughtSpecies(battleSys, param1->battleMons[param2].species);
     v0.unk_10 = BattleSystem_NumSafariBalls(battleSys);
 

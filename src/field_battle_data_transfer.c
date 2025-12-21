@@ -306,7 +306,7 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
         Pokemon_Copy(Party_GetPokemonBySlotIndex(party, i), mon);
 
         if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != level && level != 0) {
-            levelBaseExp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), level);
+            levelBaseExp = Species_GetExpAtLevel(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), level);
             Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &levelBaseExp);
             Pokemon_CalcLevelAndStats(mon);
         }

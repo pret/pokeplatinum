@@ -1092,12 +1092,12 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->OTID = Pokemon_GetData(mon, MON_DATA_OT_ID, NULL);
     monData->curExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
     monData->OTGender = Pokemon_GetData(mon, MON_DATA_OT_GENDER, NULL);
-    monData->curLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level);
+    monData->curLevelExp = Species_GetExpAtLevel(monData->species, monData->level);
 
     if (monData->level == MAX_POKEMON_LEVEL) {
         monData->nextLevelExp = monData->curLevelExp;
     } else {
-        monData->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level + 1);
+        monData->nextLevelExp = Species_GetExpAtLevel(monData->species, monData->level + 1);
     }
 
     monData->curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);

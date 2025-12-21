@@ -262,11 +262,11 @@ u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon);
 /**
  * @brief Gets the amount of expeirence needed for a pokemon species to reach a specified level
  *
- * @param monSpecies
- * @param monLevel
+ * @param species
+ * @param level
  * @return The amount of exp. needed for the given pokemon species to reach the specified level
  */
-u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel);
+u32 Species_GetExpAtLevel(int species, int level);
 
 /**
  * @copybrief GetMonSpeciesLevel()
