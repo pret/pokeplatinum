@@ -336,7 +336,7 @@ u8 Personality_GetNature(u32 personality);
  */
 s8 Nature_GetStatModifier(u8 nature, u8 stat);
 
-void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2);
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location);
 
 /**
  * @brief Gets the gender of a Pokemon based on its species and personality value

@@ -519,8 +519,7 @@ u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
     case GENDER_RATIO_NO_GENDER:
         break;
     default:
-        // TODO gender enum value?
-        if (gender == 0) {
+        if (gender == GENDER_MALE) {
             // Smallest increment that forces the low byte to exceed the
             // gender ratio, thus making the mon male
             pid = 25 * ((ratio / 25) + 1);
@@ -2221,74 +2220,60 @@ s8 Nature_GetStatModifier(u8 nature, u8 stat)
     return sNatureStatModifiers[nature][stat - 1];
 }
 
-static const s8 Unk_020F05A0[][3] = {
-    { 5, 3, 2 }, // ??? in battle overlay
-    { 5, 3, 2 }, // unused?
-    { 1, 1, 0 }, // unused?
-    { 3, 2, 1 }, // ??? in battle overlay
-    { 1, 1, 0 }, // ??? in unk_02084B70.c
-    { 1, 1, 1 }, // walking 128 steps
-    { -1, -1, -1 }, // fainting (opponent level difference < 30)
-    { -5, -5, -10 }, // letting poison tick mon to 1HP
-    { -5, -5, -10 }, // fainting (opponent level difference >= 30)
-    { 3, 2, 1 } // ??? in unk_020933F8.c
+static const s8 sFriendshipModifiers[FRIENDSHIP_EVENT_NUM][FRIENDSHIP_TIER_NUM] = {
+    [FRIENDSHIP_EVENT_GROW_LEVEL] =     {  5,  3,   2 },
+    [FRIENDSHIP_EVENT_VITAMIN] =        {  5,  3,   2 },
+    [FRIENDSHIP_EVENT_BATTLE_ITEM] =    {  1,  1,   0 },
+    [FRIENDSHIP_EVENT_LEAGUE_BATTLE] =  {  3,  2,   1 },
+    [FRIENDSHIP_EVENT_LEARN_TMHM] =     {  1,  1,   0 },
+    [FRIENDSHIP_EVENT_WALKING] =        {  1,  1,   1 },
+    [FRIENDSHIP_EVENT_FAINT_SMALL] =    { -1, -1,  -1 },
+    [FRIENDSHIP_EVENT_HEAL_FIELD_PSN] = { -5, -5, -10 },
+    [FRIENDSHIP_EVENT_FAINT_LARGE] =    { -5, -5, -10 },
+    [FRIENDHSIP_EVENT_CONTEST_WIN] =    {  3,  2,   1 },
 };
 
-void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2)
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location)
 {
-    // TODO enum value (param 1 is method of gaining/losing friendship)
-    if (param1 == 5) {
-        if (LCRNG_Next() & 1) {
-            return;
-        }
-    }
-
-    u16 monSpeciesEgg = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
-
-    if (monSpeciesEgg == SPECIES_NONE || monSpeciesEgg == SPECIES_EGG) {
+    if (kind == FRIENDSHIP_EVENT_WALKING && (LCRNG_Next() & 1)) {
         return;
     }
 
-    u16 monHeldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
-    u8 itemHoldEffect = Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
-    u8 v4 = 0;
-    s16 monFriendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
-
-    if (monFriendship >= LOW_FRIENDSHIP_LIMIT) {
-        v4++;
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+    if (species == SPECIES_NONE || species == SPECIES_EGG) {
+        return;
     }
 
-    if (monFriendship >= MED_FRIENDSHIP_LIMIT) {
-        v4++;
+    u16 item = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
+    u8 effect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
+    u8 tier = 0;
+    s16 friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
+    if (friendship >= LOW_FRIENDSHIP_LIMIT) {
+        tier++;
+    }
+    if (friendship >= MED_FRIENDSHIP_LIMIT) {
+        tier++;
     }
 
-    s8 v3 = Unk_020F05A0[param1][v4];
-
-    if (v3 > 0 && Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
-        v3++;
+    s8 modifier = sFriendshipModifiers[kind][tier];
+    if (modifier > 0 && Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
+        modifier++;
+    }
+    if (modifier > 0 && Pokemon_GetData(mon, MON_DATA_EGG_LOCATION, NULL) == location) {
+        modifier++;
+    }
+    if (modifier > 0 && effect == HOLD_EFFECT_FRIENDSHIP_UP) {
+        modifier = modifier * 150 / 100;
     }
 
-    if (v3 > 0 && Pokemon_GetData(mon, MON_DATA_EGG_LOCATION, NULL) == param2) {
-        v3++;
+    friendship += modifier;
+    if (friendship < 0) {
+        friendship = 0;
     }
-
-    if (v3 > 0) {
-        if (itemHoldEffect == HOLD_EFFECT_FRIENDSHIP_UP) {
-            v3 = v3 * 150 / 100;
-        }
+    if (friendship > MAX_FRIENDSHIP_VALUE) {
+        friendship = MAX_FRIENDSHIP_VALUE;
     }
-
-    monFriendship += v3;
-
-    if (monFriendship < 0) {
-        monFriendship = 0;
-    }
-
-    if (monFriendship > MAX_FRIENDSHIP_VALUE) {
-        monFriendship = MAX_FRIENDSHIP_VALUE;
-    }
-
-    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &monFriendship);
+    Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &friendship);
 }
 
 u8 Pokemon_GetGender(Pokemon *mon)
