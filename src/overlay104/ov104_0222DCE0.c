@@ -178,7 +178,7 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
     if (param3 == 0) {
         do {
             v2 = (LCRNG_Next() | LCRNG_Next() << 16);
-        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Personality_IsShiny(param2, v2) == TRUE));
+        } while ((v4.nature != Personality_GetNature(v2)) || (Personality_IsShiny(param2, v2) == TRUE));
 
         param0->personality = v2;
     } else {

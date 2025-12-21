@@ -256,7 +256,7 @@ static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon);
 static void ExpRate_LoadTable(enum ExpRate monExpRate, u32 *monExpTable);
 static u32 ExpRate_GetExpAtLevel(enum ExpRate rate, int monLevel);
-static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType);
+static u16 Nature_ModifyStatValue(u8 nature, u16 value, u8 stat);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
 static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
@@ -494,7 +494,7 @@ void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 natu
     u32 personality;
     do {
         personality = (LCRNG_Next() | (LCRNG_Next() << 16));
-    } while (nature != Pokemon_GetNatureOf(personality));
+    } while (nature != Personality_GetNature(personality));
     Pokemon_InitWith(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
@@ -507,7 +507,7 @@ void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 
         do {
             personality = (LCRNG_Next() | (LCRNG_Next() << 16));
             unownLetter = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
-        } while (nature != Pokemon_GetNatureOf(personality) || gender != Species_GetGenderFromPersonality(species, personality) || unownLetter != letter - 1);
+        } while (nature != Personality_GetNature(personality) || gender != Species_GetGenderFromPersonality(species, personality) || unownLetter != letter - 1);
     } else {
         personality = sub_02074128(species, gender, nature);
     }
@@ -596,23 +596,23 @@ void Pokemon_CalcStats(Pokemon *mon)
     Pokemon_SetData(mon, MON_DATA_MAX_HP, &newMaxHp);
 
     int newAtk = (speciesData->baseStats.attack * 2 + atkIV + atkEV / 4) * level / 100 + 5;
-    newAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newAtk, STAT_ATTACK);
+    newAtk = Nature_ModifyStatValue(Pokemon_GetNature(mon), newAtk, STAT_ATTACK);
     Pokemon_SetData(mon, MON_DATA_ATK, &newAtk);
 
     int newDef = (speciesData->baseStats.defense * 2 + defIV + defEV / 4) * level / 100 + 5;
-    newDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newDef, STAT_DEFENSE);
+    newDef = Nature_ModifyStatValue(Pokemon_GetNature(mon), newDef, STAT_DEFENSE);
     Pokemon_SetData(mon, MON_DATA_DEF, &newDef);
 
     int newSpeed = (speciesData->baseStats.speed * 2 + speedIV + speedEV / 4) * level / 100 + 5;
-    newSpeed = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpeed, STAT_SPEED);
+    newSpeed = Nature_ModifyStatValue(Pokemon_GetNature(mon), newSpeed, STAT_SPEED);
     Pokemon_SetData(mon, MON_DATA_SPEED, &newSpeed);
 
     int newSpAtk = (speciesData->baseStats.spAttack * 2 + spAtkIV + spAtkEV / 4) * level / 100 + 5;
-    newSpAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpAtk, STAT_SPECIAL_ATTACK);
+    newSpAtk = Nature_ModifyStatValue(Pokemon_GetNature(mon), newSpAtk, STAT_SPECIAL_ATTACK);
     Pokemon_SetData(mon, MON_DATA_SP_ATK, &newSpAtk);
 
     int newSpDef = (speciesData->baseStats.spDefense * 2 + spDefIV + spDefEV / 4) * level / 100 + 5;
-    newSpDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpDef, STAT_SPECIAL_DEFENSE);
+    newSpDef = Nature_ModifyStatValue(Pokemon_GetNature(mon), newSpDef, STAT_SPECIAL_DEFENSE);
     Pokemon_SetData(mon, MON_DATA_SP_DEF, &newSpDef);
 
     Heap_Free(speciesData);
@@ -1450,7 +1450,6 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
             value = (void *const)((char *)value + 2);
         }
         break;
-
     case MON_DATA_NICKNAME_STRING_AND_FLAG:
         MessageLoader_GetSpeciesName(blockA->species, HEAP_ID_SYSTEM, namebuf2);
         String_ToChars(value, namebuf3, MON_NAME_LEN + 1);
@@ -2158,7 +2157,6 @@ u32 SpeciesData_GetLevelAt(SpeciesData *speciesData, u16 unused_monSpecies, u32 
             break;
         }
     }
-
     return i - 1;
 }
 
@@ -2170,223 +2168,74 @@ u8 Pokemon_GetNature(Pokemon *mon)
 u8 BoxPokemon_GetNature(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    u32 monPersonality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-
+    u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
-
-    return Pokemon_GetNatureOf(monPersonality);
+    return Personality_GetNature(personality);
 }
 
-u8 Pokemon_GetNatureOf(u32 monPersonality)
+u8 Personality_GetNature(u32 personality)
 {
-    return (u8)(monPersonality % NATURE_COUNT);
+    return (u8)(personality % NATURE_COUNT);
 }
 
-static const s8 sNatureStatAffinities[][5] = {
-    [NATURE_HARDY] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_LONELY] = {
-        [STAT_ATTACK - 1] = 1,
-        [STAT_DEFENSE - 1] = -1,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_BRAVE] = {
-        [STAT_ATTACK - 1] = 1,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = -1,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_ADAMANT] = {
-        [STAT_ATTACK - 1] = 1,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = -1,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_NAUGHTY] = {
-        [STAT_ATTACK - 1] = 1,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = -1,
-    },
-    [NATURE_BOLD] = {
-        [STAT_ATTACK - 1] = -1,
-        [STAT_DEFENSE - 1] = 1,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_DOCILE] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_RELAXED] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 1,
-        [STAT_SPEED - 1] = -1,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_IMPISH] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 1,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = -1,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_LAX] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 1,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = -1,
-    },
-    [NATURE_TIMID] = {
-        [STAT_ATTACK - 1] = -1,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 1,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_HASTY] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = -1,
-        [STAT_SPEED - 1] = 1,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_SERIOUS] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_JOLLY] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 1,
-        [STAT_SPECIAL_ATTACK - 1] = -1,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_NAIVE] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 1,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = -1,
-    },
-    [NATURE_MODEST] = {
-        [STAT_ATTACK - 1] = -1,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 1,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_MILD] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = -1,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 1,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_QUIET] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = -1,
-        [STAT_SPECIAL_ATTACK - 1] = 1,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_BASHFUL] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    },
-    [NATURE_RASH] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 1,
-        [STAT_SPECIAL_DEFENSE - 1] = -1,
-    },
-    [NATURE_CALM] = {
-        [STAT_ATTACK - 1] = -1,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 1,
-    },
-    [NATURE_GENTLE] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = -1,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 1,
-    },
-    [NATURE_SASSY] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = -1,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 1,
-    },
-    [NATURE_CAREFUL] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = -1,
-        [STAT_SPECIAL_DEFENSE - 1] = 1,
-    },
-    [NATURE_QUIRKY] = {
-        [STAT_ATTACK - 1] = 0,
-        [STAT_DEFENSE - 1] = 0,
-        [STAT_SPEED - 1] = 0,
-        [STAT_SPECIAL_ATTACK - 1] = 0,
-        [STAT_SPECIAL_DEFENSE - 1] = 0,
-    }
+static const s8 sNatureStatModifiers[NATURE_COUNT][5] = {
+                    // Attack Defense Speed Sp.Atk Sp.Def
+    [NATURE_HARDY]   = {  0,     0,     0,     0,    0 },
+    [NATURE_LONELY]  = { +1,    -1,     0,     0,    0 },
+    [NATURE_BRAVE]   = { +1,     0,    -1,     0,    0 },
+    [NATURE_ADAMANT] = { +1,     0,     0,    -1,    0 },
+    [NATURE_NAUGHTY] = { +1,     0,     0,     0,   -1 },
+    [NATURE_BOLD]    = { -1,    +1,     0,     0,    0 },
+    [NATURE_DOCILE]  = {  0,     0,     0,     0,    0 },
+    [NATURE_RELAXED] = {  0,    +1,    -1,     0,    0 },
+    [NATURE_IMPISH]  = {  0,    +1,     0,    -1,    0 },
+    [NATURE_LAX]     = {  0,    +1,     0,     0,   -1 },
+    [NATURE_TIMID]   = { -1,     0,    +1,     0,    0 },
+    [NATURE_HASTY]   = {  0,    -1,    +1,     0,    0 },
+    [NATURE_SERIOUS] = {  0,     0,     0,     0,    0 },
+    [NATURE_JOLLY]   = {  0,     0,    +1,    -1,    0 },
+    [NATURE_NAIVE]   = {  0,     0,    +1,     0,   -1 },
+    [NATURE_MODEST]  = { -1,     0,     0,    +1,    0 },
+    [NATURE_MILD]    = {  0,    -1,     0,    +1,    0 },
+    [NATURE_QUIET]   = {  0,     0,    -1,    +1,    0 },
+    [NATURE_BASHFUL] = {  0,     0,     0,     0,    0 },
+    [NATURE_RASH]    = {  0,     0,     0,    +1,   -1 },
+    [NATURE_CALM]    = { -1,     0,     0,     0,   +1 },
+    [NATURE_GENTLE]  = {  0,    -1,     0,     0,   +1 },
+    [NATURE_SASSY]   = {  0,     0,    -1,     0,   +1 },
+    [NATURE_CAREFUL] = {  0,     0,     0,    -1,   +1 },
+    [NATURE_QUIRKY]  = {  0,     0,     0,     0,    0 },
 };
 
-static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType)
+static u16 Nature_ModifyStatValue(u8 nature, u16 value, u8 stat)
 {
-    if (statType < STAT_ATTACK || statType > STAT_SPECIAL_DEFENSE) {
-        return monStatValue;
+    u16 ret;
+    // Dont modify HP, Accuracy, or Evasion by nature
+    if (stat < STAT_ATTACK || stat > STAT_SPECIAL_DEFENSE) {
+        return value;
     }
 
-    u16 result;
-    switch (sNatureStatAffinities[monNature][statType - 1]) {
+    switch (sNatureStatModifiers[nature][stat - 1]) {
     case 1:
-        result = monStatValue * 110;
-        result /= 100;
+        // NOTE: will overflow for n > 595 because the intermediate value is cast to u16 before the division.
+        ret = value * 110;
+        ret /= 100;
         break;
     case -1:
-        result = monStatValue * 90;
-        result /= 100;
+        // NOTE: will overflow for n > 728, see above
+        ret = value * 90;
+        ret /= 100;
         break;
     default:
-        result = monStatValue;
+        ret = value;
         break;
     }
-
-    return result;
+    return ret;
 }
 
-s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType)
+s8 Nature_GetStatModifier(u8 nature, u8 stat)
 {
-    return sNatureStatAffinities[monNature][statType - 1];
+    return sNatureStatModifiers[nature][stat - 1];
 }
 
 static const s8 Unk_020F05A0[][3] = {
@@ -3892,7 +3741,7 @@ static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, enum Flavor flavor)
 
 s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor)
 {
-    u8 monNature = Pokemon_GetNatureOf(monPersonality);
+    u8 monNature = Personality_GetNature(monPersonality);
     return sNatureFlavorAffinities[monNature][flavor];
 }
 

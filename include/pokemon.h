@@ -322,19 +322,19 @@ u8 BoxPokemon_GetNature(BoxPokemon *boxMon);
 /**
  * @brief Gets the nature of a pokemon based on its personality value
  *
- * @param monPersonality
+ * @param personality
  * @return The pokemons nature
  */
-u8 Pokemon_GetNatureOf(u32 monPersonality);
+u8 Personality_GetNature(u32 personality);
 
 /**
  * @brief Gets the affinitiy of a given pokemon nature to a given stat
  *
- * @param monNature
- * @param statType
+ * @param nature
+ * @param stat
  * @return 1 if stat is increased, -1 if stat is decreased, else 0
  */
-s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType);
+s8 Nature_GetStatModifier(u8 nature, u8 stat);
 
 void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2);
 

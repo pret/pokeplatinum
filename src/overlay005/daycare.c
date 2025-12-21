@@ -355,12 +355,12 @@ static void Daycare_SetInheritedNature(Daycare *daycare)
         BoxPokemon *boxMon = Daycare_GetBoxMon(daycare, slot);
 
         personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-        nature = Pokemon_GetNatureOf(personality);
+        nature = Personality_GetNature(personality);
 
         while (TRUE) {
             newPersonality = MTRNG_Next();
 
-            if ((nature == Pokemon_GetNatureOf(newPersonality)) && (newPersonality != 0)) {
+            if ((nature == Personality_GetNature(newPersonality)) && (newPersonality != 0)) {
                 break;
             }
 

@@ -2593,7 +2593,7 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     int v5 = 0xff, v6;
     v6 = 0xff;
     v0 = (LCRNG_Next() % 0xffff);
-    v2 = Pokemon_GetNatureOf(v0);
+    v2 = Personality_GetNature(v0);
 
     StringTemplate_SetNatureName(param1, 0, v2);
 
@@ -2614,7 +2614,7 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 
     for (v1 = 0; v1 < 5; v1++) {
-        if (Pokemon_GetStatAffinityOf(v2, 1 + v1) > 0) {
+        if (Nature_GetStatModifier(v2, 1 + v1) > 0) {
             v6 = v1;
             break;
         }

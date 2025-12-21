@@ -314,7 +314,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v4->unk_2C = param2->unk_01_3;
     v4->unk_18 = param2->unk_08;
     v4->unk_1C = param1->battlerType;
-    v4->unk_24 = Pokemon_GetNatureOf(param2->unk_04);
+    v4->unk_24 = Personality_GetNature(param2->unk_04);
     v4->unk_28 = param2->unk_01_2;
 
     if ((v4->unk_13 == 2) && (BattleSystem_BattleStatus(battleSys) & 0x40)) {
@@ -365,7 +365,7 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v1->unk_82 = param1->battlerType;
     v1->unk_88 = param2->unk_08;
     v1->unk_8C = param2->unk_0C;
-    v1->unk_8D = Pokemon_GetNatureOf(param2->unk_04);
+    v1->unk_8D = Personality_GetNature(param2->unk_04);
     v1->unk_8E = param2->unk_10;
     v1->unk_92 = param2->unk_01_2;
     v1->unk_94 = 0;
@@ -413,7 +413,7 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v2->unk_82 = param1->battlerType;
     v2->unk_88 = param2->unk_08;
     v2->unk_8C = param2->unk_0C;
-    v2->unk_8D = Pokemon_GetNatureOf(param2->unk_04);
+    v2->unk_8D = Personality_GetNature(param2->unk_04);
     v2->unk_8E = param2->unk_10;
     v2->unk_92 = param2->unk_01_2;
     v2->unk_94 = param2->unk_14;

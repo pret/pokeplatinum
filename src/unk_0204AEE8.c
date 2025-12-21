@@ -341,7 +341,7 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
     if (param4 == 0) {
         do {
             v2 = (BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16);
-        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Personality_IsShiny(param3, v2) == 1));
+        } while ((v4.nature != Personality_GetNature(v2)) || (Personality_IsShiny(param3, v2) == 1));
 
         param1->personality = v2;
     } else {

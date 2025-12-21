@@ -1027,7 +1027,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
                     newEncounterPersonality = Pokemon_FindShinyPersonality(param3);
                 }
             } else if (encounterFieldParams->firstMonAbility == ABILITY_SYNCHRONIZE) {
-                u8 newEncounterNature = Pokemon_GetNatureOf(newEncounterPersonality);
+                u8 newEncounterNature = Personality_GetNature(newEncounterPersonality);
 
                 if (newEncounterNature == firstMonNature) {
                     break;
