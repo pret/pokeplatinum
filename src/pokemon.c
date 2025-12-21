@@ -254,8 +254,8 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam param, int value);
 static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
 static u32 BoxPokemon_GetExpToNextLevel(BoxPokemon *boxMon);
-static void Pokemon_LoadExperienceTableOf(enum ExpRate monExpRate, u32 *monExpTable);
-static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel);
+static void ExpRate_LoadTable(enum ExpRate monExpRate, u32 *monExpTable);
+static u32 ExpRate_GetExpAtLevel(enum ExpRate rate, int monLevel);
 static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
@@ -2096,27 +2096,27 @@ u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon)
 
 u32 Species_GetExpAtLevel(int species, int level)
 {
-    return Pokemon_GetExpRateBaseExpAt(Species_GetValue(species, SPECIES_DATA_EXP_RATE), level);
+    return ExpRate_GetExpAtLevel(Species_GetValue(species, SPECIES_DATA_EXP_RATE), level);
 }
 
-static void Pokemon_LoadExperienceTableOf(enum ExpRate monExpRate, u32 *monExpTable)
+static void ExpRate_LoadTable(enum ExpRate rate, u32 *dest)
 {
-    GF_ASSERT(monExpRate < EXP_RATE_COUNT);
-    NARC_ReadWholeMemberByIndexPair(monExpTable, NARC_INDEX_POKETOOL__PERSONAL__PL_GROWTBL, monExpRate);
+    GF_ASSERT(rate < EXP_RATE_COUNT);
+    NARC_ReadWholeMemberByIndexPair(dest, NARC_INDEX_POKETOOL__PERSONAL__PL_GROWTBL, rate);
 }
 
-static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel)
+static u32 ExpRate_GetExpAtLevel(enum ExpRate rate, int level)
 {
-    GF_ASSERT(monExpRate < EXP_RATE_COUNT);
-    GF_ASSERT(monLevel <= MAX_POKEMON_LEVEL + 1);
+    GF_ASSERT(rate < EXP_RATE_COUNT);
+    GF_ASSERT(level <= MAX_POKEMON_LEVEL + 1);
 
     u32 *expTable = Heap_Alloc(HEAP_ID_SYSTEM, (MAX_POKEMON_LEVEL + 1) * 4);
-    Pokemon_LoadExperienceTableOf(monExpRate, expTable);
+    ExpRate_LoadTable(rate, expTable);
 
-    u32 result = expTable[monLevel];
+    u32 ret = expTable[level];
     Heap_Free(expTable);
 
-    return result;
+    return ret;
 }
 
 int Pokemon_CalcLevel(Pokemon *mon)
@@ -2148,7 +2148,7 @@ u32 SpeciesData_GetLevelAt(SpeciesData *speciesData, u16 unused_monSpecies, u32 
     static u32 monExpTable[MAX_POKEMON_LEVEL + 1];
 
     enum ExpRate monExpRate = SpeciesData_GetValue(speciesData, SPECIES_DATA_EXP_RATE);
-    Pokemon_LoadExperienceTableOf(monExpRate, monExpTable);
+    ExpRate_LoadTable(monExpRate, monExpTable);
 
     int i;
     for (i = 1; i < MAX_POKEMON_LEVEL + 1; i++) {
@@ -3275,7 +3275,7 @@ BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
     u8 monNextLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) + 1;
     u32 monExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
     int monExpRate = Species_GetValue(monSpecies, SPECIES_DATA_EXP_RATE);
-    u32 maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, MAX_POKEMON_LEVEL);
+    u32 maxExp = ExpRate_GetExpAtLevel(monExpRate, MAX_POKEMON_LEVEL);
 
     if (monExp > maxExp) {
         monExp = maxExp;
@@ -3286,7 +3286,7 @@ BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
         return FALSE;
     }
 
-    maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, monNextLevel);
+    maxExp = ExpRate_GetExpAtLevel(monExpRate, monNextLevel);
 
     if (monExp >= maxExp) {
         Pokemon_SetData(mon, MON_DATA_LEVEL, &monNextLevel);
