@@ -499,14 +499,14 @@ void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
  *
  * @return Size in bytes of a Pokemon struct
  */
-u32 Pokemon_GetStructSize(void);
+u32 Pokemon_Size(void);
 
 /**
  * @brief Returns the size in bytes of a BoxPokemon struct as a u32
  *
  * @return Size in bytes of a BoxPokemon struct
  */
-u32 BoxPokemon_GetStructSize(void);
+u32 BoxPokemon_Size(void);
 
 /**
  * @brief Gets the form of a Pokemon

@@ -3072,14 +3072,14 @@ void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2)
     }
 }
 
-u32 Pokemon_GetStructSize(void)
+u32 Pokemon_Size(void)
 {
-    return (u32)sizeof(Pokemon);
+    return sizeof(Pokemon);
 }
 
-u32 BoxPokemon_GetStructSize(void)
+u32 BoxPokemon_Size(void)
 {
-    return (u32)sizeof(BoxPokemon);
+    return sizeof(BoxPokemon);
 }
 
 u8 Pokemon_GetForm(Pokemon *mon)

@@ -3391,7 +3391,7 @@ static void BoxAppMan_InitCursor(BoxApplicationManager *boxAppMan)
 
 static void BoxMonSelection_Init(BoxMonSelection *selection)
 {
-    selection->boxMon = Heap_Alloc(HEAP_ID_BOX_DATA, MAX_MONS_PER_BOX * BoxPokemon_GetStructSize());
+    selection->boxMon = Heap_Alloc(HEAP_ID_BOX_DATA, MAX_MONS_PER_BOX * BoxPokemon_Size());
     selection->selectedMonCount = 0;
     selection->cursorMonIsPartyMon = FALSE;
 }
@@ -3862,11 +3862,11 @@ static void BoxAppMan_PickUpMon(BoxApplicationManager *boxAppMan, BoxApplication
     BoxCursor *cursor = &boxApp->cursor;
 
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX) {
-        MI_CpuCopy32(cursor->mon, selection->boxMon, BoxPokemon_GetStructSize());
+        MI_CpuCopy32(cursor->mon, selection->boxMon, BoxPokemon_Size());
         PCBoxes_InitBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, cursor->posInBox);
         selection->cursorMonIsPartyMon = FALSE;
     } else {
-        MI_CpuCopy32(cursor->mon, selection->boxMon, Pokemon_GetStructSize());
+        MI_CpuCopy32(cursor->mon, selection->boxMon, Pokemon_Size());
         Party_RemovePokemonBySlotIndex(boxAppMan->party, cursor->posInParty);
         selection->cursorMonIsPartyMon = TRUE;
     }
@@ -3889,7 +3889,7 @@ static void BoxAppMan_PickUpMultiSelectedMons(BoxApplicationManager *boxAppMan, 
     selection->unused = 1;
 
     u32 cursorPosInBox = BoxApp_GetCursorBoxPosition(boxApp);
-    u32 boxMonSize = BoxPokemon_GetStructSize();
+    u32 boxMonSize = BoxPokemon_Size();
     u32 processedMonCount = 0;
     void *cursorMonBuffer = selection->boxMon;
 
@@ -3987,7 +3987,7 @@ static void BoxAppMan_PutDownSelectedMons(BoxApplicationManager *boxAppMan, BoxA
 
     int selectionTopLeftPos = BoxApp_GetMultiSelectTopLeftPos(boxApp);
     origSelectionTopLeftPos = selection->origSelectionTopLeftPos;
-    int boxMonStructSize = BoxPokemon_GetStructSize();
+    int boxMonStructSize = BoxPokemon_Size();
     BoxPokemon *boxMon = selection->boxMon;
 
     int posInBox;
@@ -4007,7 +4007,7 @@ static void BoxAppMan_PutDownSelectedMons(BoxApplicationManager *boxAppMan, BoxA
 static void BoxAppMan_SwapMonInCursor(BoxApplicationManager *boxAppMan, BoxApplication *boxApp)
 {
     BoxMonSelection *selection = &boxApp->selection;
-    u32 monStructSize = Pokemon_GetStructSize();
+    u32 monStructSize = Pokemon_Size();
     void *monBuffer = (u8 *)selection->boxMon + monStructSize;
     BoxCursor *cursor = &boxApp->cursor;
 

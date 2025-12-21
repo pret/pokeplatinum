@@ -746,7 +746,7 @@ static void sub_0205AC80(UnkStruct_0205A0D8 *param0, BOOL param1)
 
     v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     v2 = param0->unk_4C;
-    v4 = Pokemon_GetStructSize();
+    v4 = Pokemon_Size();
     v1 = (UnkStruct_0205AD20 *)(v2 + v4 * 3);
     v1->unk_00 = param1;
 
@@ -795,7 +795,7 @@ static BOOL sub_0205AD10(UnkStruct_0205A0D8 *param0)
 
 static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0)
 {
-    UnkStruct_0205AD20 *v0 = (UnkStruct_0205AD20 *)((u8 *)(param0->unk_48) + (Pokemon_GetStructSize() * 3));
+    UnkStruct_0205AD20 *v0 = (UnkStruct_0205AD20 *)((u8 *)(param0->unk_48) + (Pokemon_Size() * 3));
     return v0->unk_00;
 }
 
@@ -830,7 +830,7 @@ static void sub_0205AD80(UnkStruct_0205A0D8 *param0)
     u32 v0;
     int v1;
 
-    v0 = Pokemon_GetStructSize();
+    v0 = Pokemon_Size();
     Party_InitWithCapacity(param0->unk_50, 3);
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -844,7 +844,7 @@ static void sub_0205ADAC(UnkStruct_0205A0D8 *param0)
     u8 *v1, *v2;
     int v3;
 
-    v0 = Pokemon_GetStructSize();
+    v0 = Pokemon_Size();
     v1 = &param0->unk_4C[param0->unk_85 * v0];
     v2 = &param0->unk_48[param0->unk_84 * v0];
 
@@ -866,7 +866,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         MessageLoader *v4;
 
         v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
-        v3 = Pokemon_GetStructSize();
+        v3 = Pokemon_Size();
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);
         LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD1);
@@ -974,7 +974,7 @@ void sub_0205B0C0(int param0, int param1, void *param2, void *param3)
 
 int sub_0205B0E4(void)
 {
-    return Pokemon_GetStructSize() * 3 + sizeof(UnkStruct_0205AD20);
+    return Pokemon_Size() * 3 + sizeof(UnkStruct_0205AD20);
 }
 
 u8 *sub_0205B0F4(int param0, void *param1, int param2)
