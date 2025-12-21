@@ -422,7 +422,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 13: {
         u16 v3;
 
-        switch (Pokemon_LevelUpMove(param0->unk_28, &param0->unk_68, &v3)) {
+        switch (Pokemon_TryLevelUpMove(param0->unk_28, &param0->unk_68, &v3)) {
         case 0xfffe:
             break;
         case 0x0:
@@ -591,7 +591,7 @@ static void sub_0207B180(EvolutionData *param0)
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01202);
         param0->unk_66 = 0;
         Pokemon_SetData(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
-        Pokemon_SetMoveSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
+        Pokemon_SetMoveInSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
         param0->unk_66 = 30;
         param0->unk_64 = 37;
         break;

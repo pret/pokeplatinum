@@ -154,9 +154,9 @@ static void ov5_021E63E0(Pokemon *param0)
         if (Pokemon_TryLevelUp(param0)) {
             v1 = 0;
 
-            while ((v4 = Pokemon_LevelUpMove(param0, &v1, &v3)) != 0) {
+            while ((v4 = Pokemon_TryLevelUpMove(param0, &v1, &v3)) != 0) {
                 if (v4 == 0xffff) {
-                    Pokemon_ReplaceMove(param0, v3);
+                    Pokemon_ForceAppendMove(param0, v3);
                 }
             }
         } else {
@@ -494,8 +494,8 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
         if (builder->fatherMoves[i] != MOVE_NONE) {
             for (j = 0; j < eggMoveCount; j++) {
                 if (builder->fatherMoves[i] == builder->eggSpeciesEggMoves[j]) {
-                    if (Pokemon_AddMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
-                        Pokemon_ReplaceMove(egg, builder->fatherMoves[i]);
+                    if (Pokemon_TryAppendMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
+                        Pokemon_ForceAppendMove(egg, builder->fatherMoves[i]);
                     }
                     break;
                 }
@@ -511,8 +511,8 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
             for (j = 0; j < NUM_TMHMS; j++) {
                 if (builder->fatherMoves[i] == Item_MoveForTMHM(ITEM_TM01 + j)) {
                     if (CanPokemonFormLearnTM(species, form, j)) {
-                        if (Pokemon_AddMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
-                            Pokemon_ReplaceMove(egg, builder->fatherMoves[i]);
+                        if (Pokemon_TryAppendMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
+                            Pokemon_ForceAppendMove(egg, builder->fatherMoves[i]);
                         }
                     }
                 }
@@ -541,8 +541,8 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
         for (j = 0; j < levelUpMoveCount; j++) {
             if (builder->eggSpeciesLevelUpMoves[j] != MOVE_NONE) {
                 if (builder->sharedMoves[i] == builder->eggSpeciesLevelUpMoves[j]) {
-                    if (Pokemon_AddMove(egg, builder->sharedMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
-                        Pokemon_ReplaceMove(egg, builder->sharedMoves[i]);
+                    if (Pokemon_TryAppendMove(egg, builder->sharedMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
+                        Pokemon_ForceAppendMove(egg, builder->sharedMoves[i]);
                     }
                     break;
                 }
@@ -610,8 +610,8 @@ static void Egg_TryGiveVoltTackle(Pokemon *mon, Daycare *daycare)
     item2 = BoxPokemon_GetData(parents[1], MON_DATA_HELD_ITEM, NULL);
 
     if (item1 == ITEM_LIGHT_BALL || item2 == ITEM_LIGHT_BALL) {
-        if (Pokemon_AddMove(mon, MOVE_VOLT_TACKLE) == LEARNSET_ALL_SLOTS_FILLED) {
-            Pokemon_ReplaceMove(mon, MOVE_VOLT_TACKLE);
+        if (Pokemon_TryAppendMove(mon, MOVE_VOLT_TACKLE) == LEARNSET_ALL_SLOTS_FILLED) {
+            Pokemon_ForceAppendMove(mon, MOVE_VOLT_TACKLE);
         }
     }
 }

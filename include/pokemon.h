@@ -544,7 +544,7 @@ u16 Pokemon_GetBaseSpeciesForBattle(const u16 species);
  * @param moveID
  * @return The given moveID if successful, 0xfffe if already known, 0xffff if there is no room for the move
  */
-u16 Pokemon_AddMove(Pokemon *mon, u16 moveID);
+u16 Pokemon_TryAppendMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Deletes the first move of a Pokemon and adds the given move to the end of its moveset
@@ -552,16 +552,16 @@ u16 Pokemon_AddMove(Pokemon *mon, u16 moveID);
  * @param mon
  * @param moveID
  */
-void Pokemon_ReplaceMove(Pokemon *mon, u16 moveID);
+void Pokemon_ForceAppendMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, removing its PP Ups
  *
  * @param mon
- * @param moveID
- * @param moveSlot
+ * @param move
+ * @param slot
  */
-void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
+void Pokemon_SetMoveInSlot_ResetPPUp(Pokemon *mon, u16 move, u8 slot);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, retaining the PP Ups for that slot
@@ -570,35 +570,35 @@ void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
  * @param moveID
  * @param moveSlot
  */
-void Pokemon_SetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
+void Pokemon_SetMoveInSlot(Pokemon *mon, u16 move, u8 slot);
 
-u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID);
+u16 Pokemon_TryLevelUpMove(Pokemon *mon, int *index, u16 *moveID);
 
 /**
  * @brief Swaps the places of two moves on a Pokemon
  *
  * @param mon
- * @param moveSlot1
- * @param moveSlot2
+ * @param slot1
+ * @param slot2
  */
-void Pokemon_SwapMoveSlots(Pokemon *mon, int moveSlot1, int moveSlot2);
+void Pokemon_SwapMoveSlots(Pokemon *mon, int slot1, int slot2);
 
 /**
  * @brief Swaps the places of two moves on a BoxPokemon
  *
  * @param boxMon
- * @param moveSlot1
- * @param moveSlot2
+ * @param slot1
+ * @param slot2
  */
-void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int moveSlot1, int moveSlot2);
+void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int slot1, int slot2);
 
 /**
  * @brief Deletes the given moveSlot of a Pokemon, shifting the ones above it down
  *
  * @param mon
- * @param moveSlot
+ * @param slot
  */
-void Pokemon_ClearMoveSlot(Pokemon *mon, u32 moveSlot);
+void Pokemon_ClearMoveSlot(Pokemon *mon, u32 slot);
 
 void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon);
 
@@ -781,7 +781,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot);
  * @param monForm
  * @param[out] monLevelUpMoves Pointer to a u16 array to store the move table
  */
-void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
+void Species_LoadLevelUpLearnset(int monSpecies, int monForm, u16 *monLevelUpMoves);
 
 /**
  * @brief Play a Pokemon's cry, according to the given species and form number.

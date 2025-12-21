@@ -10229,7 +10229,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         u16 move;
         BgConfig *bgl = BattleSystem_BGL(data->battleSys); // unused, but must be kept to match
 
-        switch (Pokemon_LevelUpMove(mon, &data->tmpData[GET_EXP_LEARNSET_INDEX], &move)) {
+        switch (Pokemon_TryLevelUpMove(mon, &data->tmpData[GET_EXP_LEARNSET_INDEX], &move)) {
         case LEARNSET_MOVE_ALREADY_KNOWN:
             // go to the next move possibly learnable for a given level
             break;
@@ -10393,7 +10393,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
         i = 0;
         Pokemon_SetData(mon, MON_DATA_MOVE1_PP_UPS + data->tmpData[GET_EXP_MOVE_SLOT], &i);
-        Pokemon_SetMoveSlot(mon, data->tmpData[GET_EXP_MOVE], data->tmpData[GET_EXP_MOVE_SLOT]);
+        Pokemon_SetMoveInSlot(mon, data->tmpData[GET_EXP_MOVE], data->tmpData[GET_EXP_MOVE_SLOT]);
 
         if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
             BattleSystem_ReloadPokemon(data->battleSys,

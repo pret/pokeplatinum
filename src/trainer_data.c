@@ -241,7 +241,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
 
             for (j = 0; j < 4; j++) {
-                Pokemon_SetMoveSlot(mon, trmon[i].moves[j], j);
+                Pokemon_SetMoveInSlot(mon, trmon[i].moves[j], j);
             }
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
@@ -298,7 +298,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
             Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
 
             for (j = 0; j < 4; j++) {
-                Pokemon_SetMoveSlot(mon, trmon[i].moves[j], j);
+                Pokemon_SetMoveInSlot(mon, trmon[i].moves[j], j);
             }
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);

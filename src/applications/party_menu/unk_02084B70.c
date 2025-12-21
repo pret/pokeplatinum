@@ -749,7 +749,7 @@ static int sub_02085C50(void *applicationPtr)
     case 3:
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
 
-        switch (Pokemon_LevelUpMove(mon, &application->partyMenu->unk_34, &application->partyMenu->learnedMove)) {
+        switch (Pokemon_TryLevelUpMove(mon, &application->partyMenu->unk_34, &application->partyMenu->learnedMove)) {
         case 0x0:
             application->unk_B13 = 6;
             break;

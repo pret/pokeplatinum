@@ -39,7 +39,7 @@ u16 *MoveReminderData_GetMoves(Pokemon *mon, u32 heapID)
     u16 *levelUpMoves = Heap_Alloc(heapID, MAX_NUMBER_REMINDER_MOVES * sizeof(u16));
     u16 *reminderMoves = Heap_Alloc(heapID, MAX_NUMBER_REMINDER_MOVES * sizeof(u16));
 
-    Pokemon_LoadLevelUpMovesOf(species, form, levelUpMoves);
+    Species_LoadLevelUpLearnset(species, form, levelUpMoves);
 
     j = 0;
 
