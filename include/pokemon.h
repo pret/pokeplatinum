@@ -361,17 +361,17 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon);
  * @param monPersonality
  * @return The pokemons gender
  */
-u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality);
+u8 Species_GetGenderFromPersonality(u16 monSpecies, u32 monPersonality);
 
 /**
  * @brief Gets the gender of a pokemon based on its SpeciesData and personality value
  *
  * @param speciesData
- * @param unused_monSpecies unused
- * @param monPersonality
+ * @param unused_species unused
+ * @param personality
  * @return The pokemons gender
  */
-u8 SpeciesData_GetGenderOf(SpeciesData *speciesData, u16 unused_monSpecies, u32 monPersonality);
+u8 SpeciesData_GetGenderFromPersonality(SpeciesData *speciesData, u16 unused_species, u32 personality);
 
 /**
  * @brief Gets whether a BoxPokemon is shiny based on its Original Trainer ID and its personality value

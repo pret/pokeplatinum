@@ -1018,7 +1018,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
     if (abilityInEffect) {
         do {
             if (encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM) {
-                u8 newEncounterGender = Pokemon_GetGenderOf(species, newEncounterPersonality);
+                u8 newEncounterGender = Species_GetGenderFromPersonality(species, newEncounterPersonality);
                 GF_ASSERT(newEncounterGender != GENDER_NONE);
 
                 if (newEncounterGender != firstMonGender) {

@@ -824,7 +824,7 @@ static u8 BoxMon_GetPairDaycareCompatibilityScore(BoxPokemon **boxMonPair)
         species[i] = BoxPokemon_GetData(boxMonPair[i], MON_DATA_SPECIES, NULL);
         trainerIDs[i] = BoxPokemon_GetData(boxMonPair[i], MON_DATA_OT_ID, NULL);
         personality = BoxPokemon_GetData(boxMonPair[i], MON_DATA_PERSONALITY, NULL);
-        genders[i] = Pokemon_GetGenderOf(species[i], personality);
+        genders[i] = Species_GetGenderFromPersonality(species[i], personality);
         eggGroups[i][0] = Species_GetValue(species[i], SPECIES_DATA_EGG_GROUP_1);
         eggGroups[i][1] = Species_GetValue(species[i], SPECIES_DATA_EGG_GROUP_2);
     }

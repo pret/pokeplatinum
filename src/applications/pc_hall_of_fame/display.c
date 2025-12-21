@@ -399,7 +399,7 @@ static void PCHallOfFame_PrintCurrentTextState(PCHallOfFameApp *pcHallOfFameApp)
         MessageLoader_GetString(pcHallOfFameApp->msgLoaderSpeciesNames, pcHallOfFameMon->species, pcHallOfFameApp->unk_1F4);
         Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 94, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
-        switch (Pokemon_GetGenderOf(pcHallOfFameMon->species, pcHallOfFameMon->personality)) {
+        switch (Species_GetGenderFromPersonality(pcHallOfFameMon->species, pcHallOfFameMon->personality)) {
         case GENDER_MALE:
             MessageLoader_GetString(pcHallOfFameApp->msgLoaderHallOfFame, PCHallOfFame_Text_MaleSign, pcHallOfFameApp->unk_1F4);
             break;

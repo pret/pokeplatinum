@@ -507,7 +507,7 @@ void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 
         do {
             personality = (LCRNG_Next() | (LCRNG_Next() << 16));
             unownLetter = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
-        } while (nature != Pokemon_GetNatureOf(personality) || gender != Pokemon_GetGenderOf(species, personality) || unownLetter != letter - 1);
+        } while (nature != Pokemon_GetNatureOf(personality) || gender != Species_GetGenderFromPersonality(species, personality) || unownLetter != letter - 1);
     } else {
         personality = sub_02074128(species, gender, nature);
     }
@@ -955,7 +955,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         ret = blockB->fatefulEncounter;
         break;
     case MON_DATA_GENDER:
-        ret = Pokemon_GetGenderOf(blockA->species, boxMon->personality);
+        ret = Species_GetGenderFromPersonality(blockA->species, boxMon->personality);
         blockB->gender = ret;
         boxMon->checksum = Pokemon_GetDataChecksum(&boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
         break;
@@ -1429,7 +1429,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         blockB->fatefulEncounter = VALUE(u8);
         break;
     case MON_DATA_GENDER:
-        blockB->gender = Pokemon_GetGenderOf(blockA->species, boxMon->personality);
+        blockB->gender = Species_GetGenderFromPersonality(blockA->species, boxMon->personality);
         break;
     case MON_DATA_FORM:
         blockB->form = VALUE(u8);
@@ -2467,41 +2467,36 @@ u8 Pokemon_GetGender(Pokemon *mon)
 u8 BoxPokemon_GetGender(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    u16 monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-    u32 monPersonality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-
+    u16 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
-
-    return Pokemon_GetGenderOf(monSpecies, monPersonality);
+    return Species_GetGenderFromPersonality(species, personality);
 }
 
-u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality)
+u8 Species_GetGenderFromPersonality(u16 species, u32 personality)
 {
-    SpeciesData *speciesData = SpeciesData_NewFromSpecies(monSpecies, HEAP_ID_SYSTEM);
-    u8 monGender = SpeciesData_GetGenderOf(speciesData, monSpecies, monPersonality);
-
+    SpeciesData *speciesData = SpeciesData_NewFromSpecies(species, HEAP_ID_SYSTEM);
+    u8 gender = SpeciesData_GetGenderFromPersonality(speciesData, species, personality);
     SpeciesData_Free(speciesData);
-
-    return monGender;
+    return gender;
 }
 
-u8 SpeciesData_GetGenderOf(SpeciesData *speciesData, u16 unused_monSpecies, u32 monPersonality)
+u8 SpeciesData_GetGenderFromPersonality(SpeciesData *speciesData, u16 unused_species, u32 personality)
 {
-    u8 monGender = SpeciesData_GetValue(speciesData, SPECIES_DATA_GENDER_RATIO);
-
-    switch (monGender) {
+    u8 ratio = SpeciesData_GetValue(speciesData, SPECIES_DATA_GENDER_RATIO);
+    switch (ratio) {
     case GENDER_RATIO_MALE_ONLY:
         return GENDER_MALE;
     case GENDER_RATIO_FEMALE_ONLY:
         return GENDER_FEMALE;
     case GENDER_RATIO_NO_GENDER:
         return GENDER_NONE;
-    }
-
-    if (monGender > (monPersonality & 0xff)) {
-        return GENDER_FEMALE;
-    } else {
-        return GENDER_MALE;
+    default:
+        if (ratio > (personality & 0xff)) {
+            return GENDER_FEMALE;
+        } else {
+            return GENDER_MALE;
+        }
     }
 }
 
