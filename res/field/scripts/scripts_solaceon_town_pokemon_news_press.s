@@ -157,7 +157,7 @@ _025C:
     GiveItemQuantity
     SetVar VAR_0x8004, 93
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

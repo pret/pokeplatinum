@@ -586,7 +586,7 @@ PalParkLobby_GBASlotGiftLady_GiveAccessory:
     End
 
 PalParkLobby_GBASlotGiftLady_GiveBackdrop:
-    CallCommonScript 0x7F4
+    ObtainContestBackdropWaitForConfirm
     SetVar VAR_MAP_LOCAL_9, 1
     CloseMessage
     ReleaseAll

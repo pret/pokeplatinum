@@ -100,14 +100,14 @@ _0174:
     End
 
 _019F:
-    CallCommonScript 0x7F8
+    SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 2
     GoTo _01C5
 
 _01B2:
-    CallCommonScript 0x7F8
+    SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 7

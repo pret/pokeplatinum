@@ -175,7 +175,7 @@ _02B5:
     Message 4
     ApplyMovement 3, _0564
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message 5
@@ -185,7 +185,7 @@ _02B5:
     ApplyMovement 3, _056C
     WaitMovement
     RemoveObject 3
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _0344
     GoToIfEq VAR_RESULT, GENDER_FEMALE, _0352
@@ -500,7 +500,7 @@ _066B:
 
 _067A:
     CloseMessage
-    CallCommonScript 0x800
+    SetFollowMeBGM
     ApplyMovement 4, _0808
     ApplyMovement LOCALID_PLAYER, _07C0
     WaitMovement
@@ -568,7 +568,7 @@ _0772:
     ApplyMovement 4, _0830
     ApplyMovement LOCALID_PLAYER, _07E4
     WaitMovement
-    CallCommonScript 0x801
+    FadeToDefaultMusic3
     RemoveObject 4
     SetVar VAR_UNK_0x4071, 2
     ReleaseAll
