@@ -669,7 +669,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
 {
     u8 metLvl, isEgg;
     u16 ball;
-    u8 hatchCycles = Species_GetValue(species, SPECIES_DATA_HATCH_CYCLES);
+    u8 hatchCycles = Species_GetValue(species, SPECIES_DATA_EGG_CYCLES);
     String *eggName;
 
     Pokemon_InitWith(egg, species, 1, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
@@ -712,7 +712,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     u16 ball;
     u32 personality;
     String *string;
-    u8 hatchCycles = Species_GetValue(species, SPECIES_DATA_HATCH_CYCLES);
+    u8 hatchCycles = Species_GetValue(species, SPECIES_DATA_EGG_CYCLES);
 
     personality = Daycare_GetOffspringPersonality(daycare);
 

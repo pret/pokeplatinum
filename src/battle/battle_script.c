@@ -2433,7 +2433,7 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
             }
         }
 
-        u16 exp = Species_GetValue(battleCtx->battleMons[battleCtx->faintedMon].species, SPECIES_DATA_BASE_EXP_REWARD);
+        u16 exp = Species_GetValue(battleCtx->battleMons[battleCtx->faintedMon].species, SPECIES_DATA_EXP_YIELD);
         exp = (exp * battleCtx->battleMons[battleCtx->faintedMon].level) / 7;
 
         if (totalMonsWithExpShare) {

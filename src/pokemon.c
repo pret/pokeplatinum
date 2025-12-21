@@ -1932,110 +1932,110 @@ SpeciesData *SpeciesData_NewFromSpecies(int species, enum HeapID heapID)
 
 int SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
 {
-    u32 result;
+    u32 ret;
     GF_ASSERT(speciesData != NULL);
     switch (param) {
     case SPECIES_DATA_BASE_HP:
-        result = speciesData->baseStats.hp;
+        ret = speciesData->baseStats.hp;
         break;
     case SPECIES_DATA_BASE_ATK:
-        result = speciesData->baseStats.attack;
+        ret = speciesData->baseStats.attack;
         break;
     case SPECIES_DATA_BASE_DEF:
-        result = speciesData->baseStats.defense;
+        ret = speciesData->baseStats.defense;
         break;
     case SPECIES_DATA_BASE_SPEED:
-        result = speciesData->baseStats.speed;
+        ret = speciesData->baseStats.speed;
         break;
     case SPECIES_DATA_BASE_SP_ATK:
-        result = speciesData->baseStats.spAttack;
+        ret = speciesData->baseStats.spAttack;
         break;
     case SPECIES_DATA_BASE_SP_DEF:
-        result = speciesData->baseStats.spDefense;
+        ret = speciesData->baseStats.spDefense;
         break;
     case SPECIES_DATA_TYPE_1:
-        result = speciesData->types[0];
+        ret = speciesData->types[0];
         break;
     case SPECIES_DATA_TYPE_2:
-        result = speciesData->types[1];
+        ret = speciesData->types[1];
         break;
     case SPECIES_DATA_CATCH_RATE:
-        result = speciesData->catchRate;
+        ret = speciesData->catchRate;
         break;
-    case SPECIES_DATA_BASE_EXP_REWARD:
-        result = speciesData->baseExpReward;
+    case SPECIES_DATA_EXP_YIELD:
+        ret = speciesData->baseExpReward;
         break;
     case SPECIES_DATA_EV_HP_YIELD:
-        result = speciesData->evYields.hp;
+        ret = speciesData->evYields.hp;
         break;
     case SPECIES_DATA_EV_ATK_YIELD:
-        result = speciesData->evYields.attack;
+        ret = speciesData->evYields.attack;
         break;
     case SPECIES_DATA_EV_DEF_YIELD:
-        result = speciesData->evYields.defense;
+        ret = speciesData->evYields.defense;
         break;
     case SPECIES_DATA_EV_SPEED_YIELD:
-        result = speciesData->evYields.speed;
+        ret = speciesData->evYields.speed;
         break;
     case SPECIES_DATA_EV_SP_ATK_YIELD:
-        result = speciesData->evYields.spAttack;
+        ret = speciesData->evYields.spAttack;
         break;
     case SPECIES_DATA_EV_SP_DEF_YIELD:
-        result = speciesData->evYields.spDefense;
+        ret = speciesData->evYields.spDefense;
         break;
     case SPECIES_DATA_HELD_ITEM_COMMON:
-        result = speciesData->wildHeldItems.common;
+        ret = speciesData->wildHeldItems.common;
         break;
     case SPECIES_DATA_HELD_ITEM_RARE:
-        result = speciesData->wildHeldItems.rare;
+        ret = speciesData->wildHeldItems.rare;
         break;
     case SPECIES_DATA_GENDER_RATIO:
-        result = speciesData->genderRatio;
+        ret = speciesData->genderRatio;
         break;
-    case SPECIES_DATA_HATCH_CYCLES:
-        result = speciesData->hatchCycles;
+    case SPECIES_DATA_EGG_CYCLES:
+        ret = speciesData->hatchCycles;
         break;
     case SPECIES_DATA_BASE_FRIENDSHIP:
-        result = speciesData->baseFriendship;
+        ret = speciesData->baseFriendship;
         break;
     case SPECIES_DATA_EXP_RATE:
-        result = speciesData->expRate;
+        ret = speciesData->expRate;
         break;
     case SPECIES_DATA_EGG_GROUP_1:
-        result = speciesData->eggGroups[0];
+        ret = speciesData->eggGroups[0];
         break;
     case SPECIES_DATA_EGG_GROUP_2:
-        result = speciesData->eggGroups[1];
+        ret = speciesData->eggGroups[1];
         break;
     case SPECIES_DATA_ABILITY_1:
-        result = speciesData->abilities[0];
+        ret = speciesData->abilities[0];
         break;
     case SPECIES_DATA_ABILITY_2:
-        result = speciesData->abilities[1];
+        ret = speciesData->abilities[1];
         break;
     case SPECIES_DATA_SAFARI_FLEE_RATE:
-        result = speciesData->safariFleeRate;
+        ret = speciesData->safariFleeRate;
         break;
     case SPECIES_DATA_BODY_COLOR:
-        result = speciesData->bodyColor;
+        ret = speciesData->bodyColor;
         break;
     case SPECIES_DATA_FLIP_SPRITE:
-        result = speciesData->flipSprite;
+        ret = speciesData->flipSprite;
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_1:
-        result = speciesData->tmLearnsetMasks[0];
+        ret = speciesData->tmLearnsetMasks[0];
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_2:
-        result = speciesData->tmLearnsetMasks[1];
+        ret = speciesData->tmLearnsetMasks[1];
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_3:
-        result = speciesData->tmLearnsetMasks[2];
+        ret = speciesData->tmLearnsetMasks[2];
         break;
     case SPECIES_DATA_TM_LEARNSET_MASK_4:
-        result = speciesData->tmLearnsetMasks[3];
+        ret = speciesData->tmLearnsetMasks[3];
         break;
     }
-    return result;
+    return ret;
 }
 
 void SpeciesData_Free(SpeciesData *speciesData)
