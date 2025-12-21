@@ -2068,16 +2068,16 @@ int Species_GetValue(int species, enum SpeciesDataParam param)
 u8 Pokemon_GetPercentToNextLevel(Pokemon *mon)
 {
     BOOL recrypt = Pokemon_EnterDecryptionContext(mon);
-    u16 monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
-    u8 monLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
-    u32 monCurrentLevelExp = Pokemon_GetSpeciesBaseExpAt(monSpecies, monLevel);
-    u32 monNextLevelExp = Pokemon_GetSpeciesBaseExpAt(monSpecies, monLevel + 1);
-    u32 monExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    u8 level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    u32 curLevelExp = Pokemon_GetSpeciesBaseExpAt(species, level);
+    u32 nextLevelExp = Pokemon_GetSpeciesBaseExpAt(species, level + 1);
+    u32 curExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
 
     Pokemon_ExitDecryptionContext(mon, recrypt);
-    u8 monPercentToNextLevel = ((monExp - monCurrentLevelExp) * 100) / (monNextLevelExp - monCurrentLevelExp);
+    u8 percent = ((curExp - curLevelExp) * 100) / (nextLevelExp - curLevelExp);
 
-    return monPercentToNextLevel;
+    return percent;
 }
 
 u32 Pokemon_GetExpToNextLevel(Pokemon *mon)
