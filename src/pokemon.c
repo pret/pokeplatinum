@@ -551,9 +551,8 @@ void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 mon
 void Pokemon_CalcLevelAndStats(Pokemon *mon)
 {
     BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
-    int monLevel = Pokemon_CalcLevel(mon);
-
-    Pokemon_SetData(mon, MON_DATA_LEVEL, &monLevel);
+    int level = Pokemon_CalcLevel(mon);
+    Pokemon_SetData(mon, MON_DATA_LEVEL, &level);
     Pokemon_CalcStats(mon);
     Pokemon_ExitDecryptionContext(mon, reencrypt);
 }
