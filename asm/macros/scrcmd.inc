@@ -25,6 +25,7 @@
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
+#include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/string_padding_mode.h"
 #include "generated/trainer_score_events.h"
@@ -45,7 +46,6 @@
 #include "constants/tv_broadcast.h"
 #include "constants/battle.h"
 
-#include "macros/common.inc"
 #include "macros/movement.inc"
 
     .set FALSE, 0
@@ -339,6 +339,38 @@
 
     .macro CloseMessageWithoutErasing
     .short 53
+    .endm
+
+    .macro ShowMapSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput VAR_RESULT
+    HandleSignpostInput
+    .endm
+
+    .macro ShowArrowSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_ARROW
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput VAR_RESULT
+    HandleSignpostInput
+    .endm
+
+    .macro ShowLandmarkSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_LANDMARK
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput VAR_RESULT
+    HandleSignpostInput
+    .endm
+
+    .macro ShowScrollingSign messageID
+    DrawSignpostTextBox SIGNPOST_TYPE_SCROLLING
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostScrollingMessage \messageID, VAR_RESULT
+    HandleSignpostInput
     .endm
 
     .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_RESULT
@@ -5081,6 +5113,121 @@
     .macro GoToIfCannotFitItem item, count, destVarID, offset
     CanFitItem \item, \count, \destVarID
     GoToIfEq \destVarID, FALSE, \offset
+    .endm
+
+    /* CallCommonScript aliases below */
+
+    .macro HandleSignpostInput
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro CheckBagPocketForItem
+    CallCommonScript 0x7D1
+    .endm
+
+    .macro CallPokecenterNurse nurseLocalID
+    SetVar VAR_0x8007, \nurseLocalID
+    CallCommonScript 0x7D2
+    .endm
+
+    .macro SaveGame
+    CallCommonScript 0x7D6
+    .endm
+
+    .macro GivePoketchApp
+    CallCommonScript 0x7D9
+    .endm
+
+    .macro SendToUndergroundPC
+    CallCommonScript 0x7DC
+    .endm
+
+    .macro ObtainUndergroundTrap
+    CallCommonScript 0x7DD
+    .endm
+
+    .macro ObtainUndergroundSphere
+    CallCommonScript 0x7DE
+    .endm
+
+    .macro GiveAccessoryWaitForConfirm
+    CallCommonScript 0x7DF
+    .endm
+
+    .macro GiveItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
+    .endm
+
+    .macro MessageBagIsFull
+    CallCommonScript 0x7E1
+    .endm
+
+    .macro VendorGreeting
+    CallCommonScript 0x7E3
+    .endm
+
+    .macro ObtainContestBackdropWaitForConfirm
+    CallCommonScript 0x7F4
+    .endm
+
+    .macro PrintPlateObtainedMessage
+    CallCommonScript 0x7F6
+    .endm
+
+    .macro SetCounterpartBGM
+    CallCommonScript 0x7F8
+    .endm
+
+    .macro FadeToDefaultMusic
+    CallCommonScript 0x7F9
+    .endm
+
+    .macro SetRivalBGM
+    CallCommonScript 0x7FA
+    .endm
+
+    .macro FadeToDefaultMusic2
+    CallCommonScript 0x7FB
+    .endm
+
+    .macro GiveItemQuantity
+    CallCommonScript 0x7FC
+    .endm
+
+    .macro ObtainContestBackdrop
+    CallCommonScript 0x7FD
+    .endm
+
+    .macro SendToUndergroundPCWithLinefeed
+    CallCommonScript 0x7FE
+    .endm
+
+    .macro GiveAccessory
+    CallCommonScript 0x7FF
+    .endm
+
+    .macro SetFollowMeBGM
+    CallCommonScript 0x800
+    .endm
+
+    .macro FadeToDefaultMusic3
+    CallCommonScript 0x801
+    .endm
+
+    .macro CheckAllFrontierGoldPrintsObtained
+    CallCommonScript 0x806
+    .endm
+
+    .macro SetLookerBGM
+    CallCommonScript 0x807
+    .endm
+
+    .macro FadeToDefaultMusic4
+    CallCommonScript 0x808
+    .endm
+
+    .macro GriseousOrbCouldNotBeRemoved
+    CallCommonScript 0x809
     .endm
 
     .text
