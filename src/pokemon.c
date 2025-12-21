@@ -403,14 +403,13 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
 
 static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID)
 {
+    u32 var1, var2;
     BoxPokemon_Init(boxMon);
-
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
     if (!hasFixedPersonality) {
         personality = (LCRNG_Next() | (LCRNG_Next() << 16));
     }
-
     BoxPokemon_SetData(boxMon, MON_DATA_PERSONALITY, &personality);
 
     if (otIDType == OTID_NOT_SHINY) {
@@ -420,25 +419,23 @@ static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int 
     } else if (otIDType != OTID_SET) {
         otID = 0;
     }
-
     BoxPokemon_SetData(boxMon, MON_DATA_OT_ID, &otID);
     BoxPokemon_SetData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
     BoxPokemon_SetData(boxMon, MON_DATA_SPECIES, &species);
     BoxPokemon_SetData(boxMon, MON_DATA_SPECIES_NAME, NULL);
 
-    u32 v1, v2; // TODO rename, these are used/reused as temp vars through the whole function.
 
-    v1 = Species_GetExpAtLevel(species, level);
-    BoxPokemon_SetData(boxMon, MON_DATA_EXPERIENCE, &v1);
+    var1 = Species_GetExpAtLevel(species, level);
+    BoxPokemon_SetData(boxMon, MON_DATA_EXPERIENCE, &var1);
 
-    v1 = Species_GetValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
-    BoxPokemon_SetData(boxMon, MON_DATA_FRIENDSHIP, &v1);
+    var1 = Species_GetValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
+    BoxPokemon_SetData(boxMon, MON_DATA_FRIENDSHIP, &var1);
 
     BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &level);
     BoxPokemon_SetData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
 
-    v1 = ITEM_POKE_BALL;
-    BoxPokemon_SetData(boxMon, MON_DATA_POKEBALL, &v1);
+    var1 = ITEM_POKE_BALL;
+    BoxPokemon_SetData(boxMon, MON_DATA_POKEBALL, &var1);
 
     if (ivs < INIT_IVS_RANDOM) {
         BoxPokemon_SetData(boxMon, MON_DATA_HP_IV, &ivs);
@@ -448,43 +445,41 @@ static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int 
         BoxPokemon_SetData(boxMon, MON_DATA_SPATK_IV, &ivs);
         BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &ivs);
     } else {
-        v1 = LCRNG_Next();
-        v2 = (v1 & (0x1f << 0)) >> 0;
-        BoxPokemon_SetData(boxMon, MON_DATA_HP_IV, &v2);
+        var1 = LCRNG_Next();
+        var2 = (var1 & (0x1f << 0)) >> 0;
+        BoxPokemon_SetData(boxMon, MON_DATA_HP_IV, &var2);
 
-        v2 = (v1 & (0x1f << 5)) >> 5;
-        BoxPokemon_SetData(boxMon, MON_DATA_ATK_IV, &v2);
+        var2 = (var1 & (0x1f << 5)) >> 5;
+        BoxPokemon_SetData(boxMon, MON_DATA_ATK_IV, &var2);
 
-        v2 = (v1 & (0x1f << 10)) >> 10;
-        BoxPokemon_SetData(boxMon, MON_DATA_DEF_IV, &v2);
+        var2 = (var1 & (0x1f << 10)) >> 10;
+        BoxPokemon_SetData(boxMon, MON_DATA_DEF_IV, &var2);
 
-        v1 = LCRNG_Next();
-        v2 = (v1 & (0x1f << 0)) >> 0;
-        BoxPokemon_SetData(boxMon, MON_DATA_SPEED_IV, &v2);
+        var1 = LCRNG_Next();
+        var2 = (var1 & (0x1f << 0)) >> 0;
+        BoxPokemon_SetData(boxMon, MON_DATA_SPEED_IV, &var2);
 
-        v2 = (v1 & (0x1f << 5)) >> 5;
-        BoxPokemon_SetData(boxMon, MON_DATA_SPATK_IV, &v2);
+        var2 = (var1 & (0x1f << 5)) >> 5;
+        BoxPokemon_SetData(boxMon, MON_DATA_SPATK_IV, &var2);
 
-        v2 = (v1 & (0x1f << 10)) >> 10;
-        BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &v2);
+        var2 = (var1 & (0x1f << 10)) >> 10;
+        BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &var2);
     }
 
-    v1 = Species_GetValue(species, SPECIES_DATA_ABILITY_1);
-    v2 = Species_GetValue(species, SPECIES_DATA_ABILITY_2);
-
-    if (v2 != ABILITY_NONE) {
+    var1 = Species_GetValue(species, SPECIES_DATA_ABILITY_1);
+    var2 = Species_GetValue(species, SPECIES_DATA_ABILITY_2);
+    if (var2 != ABILITY_NONE) {
         if (personality & 1) {
-            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &v2);
+            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &var2);
         } else {
-            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &v1);
+            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &var1);
         }
     } else {
-        BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &v1);
+        BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &var1);
     }
 
-    v1 = BoxPokemon_GetGender(boxMon);
-
-    BoxPokemon_SetData(boxMon, MON_DATA_GENDER, &v1);
+    var1 = BoxPokemon_GetGender(boxMon);
+    BoxPokemon_SetData(boxMon, MON_DATA_GENDER, &var1);
     BoxPokemon_SetDefaultMoves(boxMon);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
@@ -509,35 +504,31 @@ void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 
             unownLetter = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
         } while (nature != Personality_GetNature(personality) || gender != Species_GetGenderFromPersonality(species, personality) || unownLetter != letter - 1);
     } else {
-        personality = sub_02074128(species, gender, nature);
+        personality = Personality_CreateFromGenderAndNature(species, gender, nature);
     }
-
     Pokemon_InitWith(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
-u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
+u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
 {
-    u8 monGenderChance = Species_GetValue(monSpecies, SPECIES_DATA_GENDER_RATIO);
-
-    u32 result;
-    switch (monGenderChance) {
+    int pid = nature;
+    u8 ratio = Species_GetValue(species, SPECIES_DATA_GENDER_RATIO);
+    switch (ratio) {
     case GENDER_RATIO_MALE_ONLY:
     case GENDER_RATIO_FEMALE_ONLY:
     case GENDER_RATIO_NO_GENDER:
-        result = param2;
         break;
     default:
         // TODO gender enum value?
-        if (param1 == 0) {
-            result = 25 * ((monGenderChance / 25) + 1);
-            result += param2;
-        } else {
-            result = param2;
+        if (gender == 0) {
+            // Smallest increment that forces the low byte to exceed the
+            // gender ratio, thus making the mon male
+            pid = 25 * ((ratio / 25) + 1);
+            pid += nature;
         }
         break;
     }
-
-    return result;
+    return pid;
 }
 
 // only used when encountering a roamer
@@ -696,23 +687,21 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
 
 u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest)
 {
-    if (boxMon->boxDecrypted == FALSE) {
-        MonDecryptSegment(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4, boxMon->checksum);
-        u16 checksum = Pokemon_GetDataChecksum(boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
-
+    u32 ret;
+    u32 checksum;
+    if (!boxMon->boxDecrypted) {
+        DECRYPT_BOX(boxMon);
+        checksum = CHECKSUM(boxMon);
         if (checksum != boxMon->checksum) {
             GF_ASSERT(checksum == boxMon->checksum);
             boxMon->checksumFailed = TRUE;
         }
     }
-
-    u32 result = BoxPokemon_GetDataInternal(boxMon, param, dest);
-
-    if (boxMon->boxDecrypted == FALSE) {
+    ret = BoxPokemon_GetDataInternal(boxMon, param, dest);
+    if (!boxMon->boxDecrypted) {
         ENCRYPT_BOX(boxMon);
     }
-
-    return result;
+    return ret;
 }
 
 static inline u32 GetRibbon(u64 mask, enum PokemonDataParam param, enum PokemonDataParam ribbonStart)
