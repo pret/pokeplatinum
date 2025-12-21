@@ -394,10 +394,10 @@ u8 Personality_IsShiny(u32 otID, u32 personality);
  * @brief Computes a personality value which, when applied to the given trainer ID, will result
  * in a shiny Pokemon.
  *
- * @param monOTID
+ * @param otID
  * @return The computed personality value
  */
-u32 Pokemon_FindShinyPersonality(u32 monOTID);
+u32 Personality_GenerateShiny(u32 otID);
 
 /**
  * @brief Build a PokemonSpriteTemplate for a Pokemon.

@@ -2341,24 +2341,24 @@ u8 Personality_IsShiny(u32 otID, u32 personality)
     return Pokemon_InlineIsPersonalityShiny(otID, personality);
 }
 
-u32 Pokemon_FindShinyPersonality(u32 monOTID)
+u32 Personality_GenerateShiny(u32 otID)
 {
     // 1. Pre-compute the XOR of the two halves of the trainer ID. We only
     // care about the most-significant 13 bits, so truncate the last 3.
-    monOTID = (((monOTID & 0xFFFF0000) >> 16) ^ (monOTID & 0xFFFF)) >> 3;
+    otID = (((otID & 0xFFFF0000) >> 16) ^ (otID & 0xFFFF)) >> 3u;
 
     int i;
 
     // 2. Randomize the least-significant 3-bits of each half of the
     // generated personality.
-    u16 rndLow = LCRNG_Next() & 0x7;
-    u16 rndHigh = LCRNG_Next() & 0x7;
+    u16 rndLow = LCRNG_Next() & 7;
+    u16 rndHigh = LCRNG_Next() & 7;
 
     // 3. For each of the remaining 13 bits, pick some permutation of them
     // across both halves to be set to 1 such that the XOR of their bits
     // will XOR with the monOTID to 0.
     for (i = 0; i < 13; i++) {
-        if (monOTID & FlagIndex(i)) {
+        if (FlagIndex(i) & otID) {
             // Trainer ID XORs to 1; set one of the two personality bits to 1
             if (LCRNG_Next() & 1) {
                 rndLow |= FlagIndex(i + 3);
@@ -2371,7 +2371,6 @@ u32 Pokemon_FindShinyPersonality(u32 monOTID)
             rndHigh |= FlagIndex(i + 3);
         }
     }
-
     return rndLow | (rndHigh << 16);
 }
 

@@ -1013,7 +1013,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
         }
     }
 
-    u32 newEncounterPersonality = Pokemon_FindShinyPersonality(param3);
+    u32 newEncounterPersonality = Personality_GenerateShiny(param3);
 
     if (abilityInEffect) {
         do {
@@ -1024,7 +1024,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
                 if (newEncounterGender != firstMonGender) {
                     break;
                 } else {
-                    newEncounterPersonality = Pokemon_FindShinyPersonality(param3);
+                    newEncounterPersonality = Personality_GenerateShiny(param3);
                 }
             } else if (encounterFieldParams->firstMonAbility == ABILITY_SYNCHRONIZE) {
                 u8 newEncounterNature = Personality_GetNature(newEncounterPersonality);
@@ -1032,7 +1032,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
                 if (newEncounterNature == firstMonNature) {
                     break;
                 } else {
-                    newEncounterPersonality = Pokemon_FindShinyPersonality(param3);
+                    newEncounterPersonality = Personality_GenerateShiny(param3);
                 }
             }
         } while (TRUE);
