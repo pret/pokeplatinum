@@ -790,7 +790,7 @@ static int ov21_021E02F0(int species, const UnkStruct_ov21_021DF844 *param1)
     int genderRatio;
     int v1;
 
-    genderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
+    genderRatio = Species_GetValue(species, SPECIES_DATA_GENDER_RATIO);
 
     if (genderRatio == GENDER_RATIO_MALE_ONLY) {
         return 1;

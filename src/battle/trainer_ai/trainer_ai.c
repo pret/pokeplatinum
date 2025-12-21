@@ -1295,8 +1295,8 @@ static void AICmd_LoadBattlerAbility(BattleSystem *battleSys, BattleContext *bat
                 AI_CONTEXT.calcTemp = battleCtx->battleMons[battler].ability;
             } else {
                 // Try to guess the opponent's ability (flip a coin)
-                int ability1 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
-                int ability2 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
+                int ability1 = Species_GetValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
+                int ability2 = Species_GetValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
 
                 if (ability1 && ability2) {
                     if (BattleSystem_RandNext(battleSys) & 1) {
@@ -1340,8 +1340,8 @@ static void AICmd_CheckBattlerAbility(BattleSystem *battleSys, BattleContext *ba
                 tmpAbility = battleCtx->battleMons[battler].ability;
             } else {
                 // Try to guess the opponent's ability (flip a coin)
-                int ability1 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
-                int ability2 = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
+                int ability1 = Species_GetValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_1);
+                int ability2 = Species_GetValue(battleCtx->battleMons[battler].species, SPECIES_DATA_ABILITY_2);
 
                 if (ability1 && ability2) {
                     // If the opponent has two abilities, but neither are the expected one,

@@ -207,7 +207,7 @@ SpeciesData *SpeciesData_NewFromSpecies(int species, enum HeapID heapID);
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param);
+int SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param);
 
 /**
  * @brief Frees a SpeciesData structure from the heap
@@ -229,11 +229,11 @@ u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam 
 /**
  * @brief Loads a SpeciesData based on its species and gets a value from it
  *
- * @param monSpecies
+ * @param species
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param);
+int Species_GetValue(int species, enum SpeciesDataParam param);
 
 /**
  * @brief Gets how much progress a Pokemon has made towards its next level as a percentage

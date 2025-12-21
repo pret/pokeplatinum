@@ -379,16 +379,16 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
     param1->combinedPPUps = 0;
     param1->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_2);
+    v0 = Species_GetValue(param1->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (param1->personality & 1) {
             param1->ability = v0;
         } else {
-            param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+            param1->ability = Species_GetValue(param1->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+        param1->ability = Species_GetValue(param1->species, SPECIES_DATA_ABILITY_1);
     }
 
     param1->friendship = friendship;

@@ -431,7 +431,7 @@ static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int 
     v1 = Pokemon_GetSpeciesBaseExpAt(species, level);
     BoxPokemon_SetData(boxMon, MON_DATA_EXPERIENCE, &v1);
 
-    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
+    v1 = Species_GetValue(species, SPECIES_DATA_BASE_FRIENDSHIP);
     BoxPokemon_SetData(boxMon, MON_DATA_FRIENDSHIP, &v1);
 
     BoxPokemon_SetData(boxMon, MON_DATA_MET_LEVEL, &level);
@@ -469,8 +469,8 @@ static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int 
         BoxPokemon_SetData(boxMon, MON_DATA_SPDEF_IV, &v2);
     }
 
-    v1 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
-    v2 = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
+    v1 = Species_GetValue(species, SPECIES_DATA_ABILITY_1);
+    v2 = Species_GetValue(species, SPECIES_DATA_ABILITY_2);
 
     if (v2 != ABILITY_NONE) {
         if (personality & 1) {
@@ -517,7 +517,7 @@ void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 
 
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 {
-    u8 monGenderChance = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_GENDER_RATIO);
+    u8 monGenderChance = Species_GetValue(monSpecies, SPECIES_DATA_GENDER_RATIO);
 
     u32 result;
     switch (monGenderChance) {
@@ -1917,7 +1917,7 @@ static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_TYPE_2:
     case MON_DATA_SPECIES_NAME:
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
@@ -1936,12 +1936,10 @@ SpeciesData *SpeciesData_NewFromSpecies(int species, enum HeapID heapID)
     return speciesData;
 }
 
-u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
+int SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
 {
     u32 result;
-
-    GF_ASSERT(speciesData);
-
+    GF_ASSERT(speciesData != NULL);
     switch (param) {
     case SPECIES_DATA_BASE_HP:
         result = speciesData->baseStats.hp;
@@ -2043,13 +2041,12 @@ u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
         result = speciesData->tmLearnsetMasks[3];
         break;
     }
-
     return result;
 }
 
 void SpeciesData_Free(SpeciesData *speciesData)
 {
-    GF_ASSERT(speciesData);
+    GF_ASSERT(speciesData != NULL);
     Heap_Free(speciesData);
 }
 
@@ -2065,13 +2062,11 @@ u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam 
     return result;
 }
 
-u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param)
+int Species_GetValue(int species, enum SpeciesDataParam param)
 {
-    SpeciesData *speciesData = SpeciesData_NewFromSpecies(monSpecies, HEAP_ID_SYSTEM);
-    u32 result = SpeciesData_GetValue(speciesData, param);
-
+    SpeciesData *speciesData = SpeciesData_NewFromSpecies(species, HEAP_ID_SYSTEM);
+    int result = SpeciesData_GetValue(speciesData, param);
     SpeciesData_Free(speciesData);
-
     return result;
 }
 
@@ -2111,7 +2106,7 @@ u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon)
 
 u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel)
 {
-    return Pokemon_GetExpRateBaseExpAt(SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_EXP_RATE), monLevel);
+    return Pokemon_GetExpRateBaseExpAt(Species_GetValue(monSpecies, SPECIES_DATA_EXP_RATE), monLevel);
 }
 
 static void Pokemon_LoadExperienceTableOf(enum ExpRate monExpRate, u32 *monExpTable)
@@ -3289,7 +3284,7 @@ BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
     u16 monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     u8 monNextLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) + 1;
     u32 monExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
-    int monExpRate = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_EXP_RATE);
+    int monExpRate = Species_GetValue(monSpecies, SPECIES_DATA_EXP_RATE);
     u32 maxExp = Pokemon_GetExpRateBaseExpAt(monExpRate, MAX_POKEMON_LEVEL);
 
     if (monExp > maxExp) {

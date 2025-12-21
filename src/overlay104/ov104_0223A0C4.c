@@ -867,16 +867,16 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
     monDataDTO->combinedPPUps = 0;
     monDataDTO->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_2);
+    v0 = Species_GetValue(monDataDTO->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (monDataDTO->personality & 1) {
             monDataDTO->ability = v0;
         } else {
-            monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
+            monDataDTO->ability = Species_GetValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
+        monDataDTO->ability = Species_GetValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
     }
 
     monDataDTO->friendship = friendship;

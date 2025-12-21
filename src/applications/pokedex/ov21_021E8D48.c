@@ -573,8 +573,8 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, SpriteList *param1, S
 {
     SpriteListTemplate v0;
     SpriteResourcesHeader v1;
-    int type1 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_1);
-    int type2 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_2);
+    int type1 = Species_GetValue(param4, SPECIES_DATA_TYPE_1);
+    int type2 = Species_GetValue(param4, SPECIES_DATA_TYPE_2);
     type1 = PokedexGraphics_GetAnimIDfromType(type1);
     type2 = PokedexGraphics_GetAnimIDfromType(type2);
 

@@ -619,7 +619,7 @@ static u32 GetDisplayGender(const Pokedex *pokedexData, u16 species, int display
     u32 defaultGender, secondaryGender;
     u32 displayGender;
 
-    if (SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO) == GENDER_RATIO_NO_GENDER) {
+    if (Species_GetValue(species, SPECIES_DATA_GENDER_RATIO) == GENDER_RATIO_NO_GENDER) {
         if (displaySecondary == FALSE) {
             return GENDER_NONE;
         } else {

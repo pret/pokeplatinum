@@ -992,7 +992,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
 
     if (!encounterFieldParams->isFirstMonEgg) {
         if (encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM) {
-            u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
+            u32 speciesGenderRatio = Species_GetValue(species, SPECIES_DATA_GENDER_RATIO);
 
             switch (speciesGenderRatio) {
             case GENDER_RATIO_MALE_ONLY:
@@ -1050,7 +1050,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
     Pokemon_Init(newEncounter);
     BOOL hasRandomGender = TRUE;
 
-    u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
+    u32 speciesGenderRatio = Species_GetValue(species, SPECIES_DATA_GENDER_RATIO);
 
     switch (speciesGenderRatio) {
     case GENDER_RATIO_MALE_ONLY:
@@ -1297,8 +1297,8 @@ static BOOL ForceMatchingTypeEncounterSlot(const EncounterSlot *encounterTable, 
     u8 numMonsOfType = 0;
 
     for (i = 0; i < maxEncounters; i++) {
-        u8 type1 = SpeciesData_GetSpeciesValue(encounterTable[i].species, SPECIES_DATA_TYPE_1);
-        u8 type2 = SpeciesData_GetSpeciesValue(encounterTable[i].species, SPECIES_DATA_TYPE_2);
+        u8 type1 = Species_GetValue(encounterTable[i].species, SPECIES_DATA_TYPE_1);
+        u8 type2 = Species_GetValue(encounterTable[i].species, SPECIES_DATA_TYPE_2);
 
         if (type1 == type || type2 == type) {
             typeMatchingSlots[numMonsOfType++] = i;

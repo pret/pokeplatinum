@@ -415,7 +415,7 @@ static int ov94_0223EA84(GTSApplicationState *param0)
             break;
         case 1:
             if (param0->unk_B7A.species != 0) {
-                param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_B7A.species, SPECIES_DATA_GENDER_RATIO);
+                param0->unk_10E4->unk_20 = Species_GetValue(param0->unk_B7A.species, SPECIES_DATA_GENDER_RATIO);
 
                 if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {
                     Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -827,7 +827,7 @@ static int ov94_0223F2B0(GTSApplicationState *param0)
         Window_FillTilemap(&param0->unk_FCC[1], 0x0);
 
         ov94_02242158(&param0->unk_FCC[1], param0->speciesMessageLoader, v0, 0, 0, TEXT_COLOR(1, 2, 0));
-        param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
+        param0->unk_10E4->unk_20 = Species_GetValue(v0, SPECIES_DATA_GENDER_RATIO);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
 
         if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {

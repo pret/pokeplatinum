@@ -766,21 +766,21 @@ static int ConvertBoxMonGBAtoDSAbility(GBABoxPokemon *gbaBoxMon, BoxPokemon *box
 
     species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     abilityNum = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_ABILITY_NUM, NULL);
-    ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
+    ability = Species_GetValue(species, SPECIES_DATA_ABILITY_2);
 
     if (ability != ABILITY_NONE) {
         for (i = 0; i < (NELEMS(sSpeciesWithNewAbilities)); i++) {
             if (sSpeciesWithNewAbilities[i] == species) {
-                ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
+                ability = Species_GetValue(species, SPECIES_DATA_ABILITY_1);
                 break;
             }
         }
 
         if ((i == (NELEMS(sSpeciesWithNewAbilities))) && ((abilityNum & 1) == 0)) {
-            ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
+            ability = Species_GetValue(species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
+        ability = Species_GetValue(species, SPECIES_DATA_ABILITY_1);
     }
 
     return ability;

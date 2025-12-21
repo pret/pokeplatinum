@@ -216,16 +216,16 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
     param0->combinedPPUps = 0;
     param0->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_2);
+    v0 = Species_GetValue(param0->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (param0->personality & 1) {
             param0->ability = v0;
         } else {
-            param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
+            param0->ability = Species_GetValue(param0->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
+        param0->ability = Species_GetValue(param0->species, SPECIES_DATA_ABILITY_1);
     }
 
     param0->friendship = friendship;

@@ -624,7 +624,7 @@ static int ov94_02241BAC(GTSApplicationState *appState)
         Window_Remove(&appState->unk_F9C[1]);
         appState->unk_B74.species = input;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        appState->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(input, SPECIES_DATA_GENDER_RATIO);
+        appState->unk_10E4->unk_20 = Species_GetValue(input, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&appState->unk_B74, appState->unk_10E4->unk_20)) {
             appState->currentScreenInstruction = 10;
