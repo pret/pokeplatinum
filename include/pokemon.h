@@ -35,6 +35,20 @@
 
 #define BATTLE_FRONTIER_BANLIST_SIZE 18
 
+enum FriendshipEvents {
+    FRIENDSHIP_EVENT_LEVEL_UP,
+    FRIENDSHIP_EVENT_UNK_1,
+    FRIENDSHIP_EVENT_UNK_2,
+    FRIENDSHIP_EVENT_BEAT_GYM_LEADER_E4_OR_CHAMPION,
+    FRIENDSHIP_EVENT_LEARN_TMHM,
+    FRIENDSHIP_EVENT_WALK_CYCLE,
+    FRIENDSHIP_EVENT_BATTLE_FAINT,
+    FRIENDSHIP_EVENT_POISON_SURVIVE,
+    FRIENDSHIP_EVENT_BATTLE_FAINT_HIGH_LVL_DIFF,
+    FRIENDSHIP_EVENT_CONTEST_WIN,
+    FRIENDSHIP_EVENT_MAX
+};
+
 enum EvolutionClass {
     EVO_CLASS_BY_LEVEL = 0,
     EVO_CLASS_BY_TRADE,
@@ -329,7 +343,7 @@ u8 Pokemon_GetNatureOf(u32 monPersonality);
  */
 s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType);
 
-void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2);
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 friendshipEvent, u16 mapID);
 
 /**
  * @brief Gets the gender of a Pokemon based on its species and personality value
