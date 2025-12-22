@@ -559,8 +559,8 @@ CommonScript_InternalObtainPoketchApp:
     CallIfEq VAR_0x8004, POKETCH_APPID_KITCHENTIMER, CommonScript_ObtainedPoketchKitchenTimer
     CallIfEq VAR_0x8004, POKETCH_APPID_COLORCHANGER, CommonScript_ObtainedPoketchColorChanger
     CallIfEq VAR_0x8004, POKETCH_APPID_MATCHUPCHECKER, CommonScript_ObtainedPoketchMatchupChecker
-    CallIfEq VAR_0x8004, POKETCH_APPID_UNUSED_STOPWATCH, CommonScript_ObtainedPoketchStopwatch
-    CallIfEq VAR_0x8004, POKETCH_APPID_UNUSED_ALARMCLOCK, CommonScript_ObtainedPoketchAlarmClock
+    CallIfEq VAR_0x8004, POKETCH_APPID_STOPWATCH, CommonScript_ObtainedPoketchStopwatch
+    CallIfEq VAR_0x8004, POKETCH_APPID_ALARMCLOCK, CommonScript_ObtainedPoketchAlarmClock
     Return
 
 CommonScript_ObtainedPoketchDigitalWatch:
