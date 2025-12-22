@@ -1645,7 +1645,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
     }
 
     if (sub_02094790(param0) == 0) {
-        Pokemon_UpdateFriendship(param0->unk_1974, 9, param2);
+        Pokemon_UpdateFriendship(param0->unk_1974, FRIENDSHIP_EVENT_CONTEST_WIN, param2);
     }
 }
 
