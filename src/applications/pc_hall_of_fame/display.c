@@ -535,7 +535,7 @@ static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
     pcHallOfFameScreen = pcHallOfFameApp->pcHallOfFameScreen;
 
     for (i = 0; i < pcHallOfFameScreen->pokemonCount; i++) {
-        Pokemon_InitWith(pcHallOfFameApp->mon, pcHallOfFameScreen->pokemon[i].species, pcHallOfFameScreen->pokemon[i].level, INIT_IVS_RANDOM, TRUE, pcHallOfFameScreen->pokemon[i].personality, OTID_SET, pcHallOfFameScreen->pokemon[i].OTID);
+        Pokemon_InitWithParams(pcHallOfFameApp->mon, pcHallOfFameScreen->pokemon[i].species, pcHallOfFameScreen->pokemon[i].level, INIT_IVS_RANDOM, TRUE, pcHallOfFameScreen->pokemon[i].personality, OTID_SET, pcHallOfFameScreen->pokemon[i].OTID);
         Pokemon_SetData(pcHallOfFameApp->mon, MON_DATA_FORM, (void *)(&(pcHallOfFameScreen->pokemon[i].form)));
         Pokemon_BuildSpriteTemplate(&spriteTemplate, pcHallOfFameApp->mon, FACE_FRONT);
         CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_PC_HALL_OF_FAME, &tileRegion, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, FALSE, FACE_FRONT, pcHallOfFameScreen->pokemon[i].species);

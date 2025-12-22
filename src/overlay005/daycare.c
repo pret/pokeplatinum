@@ -672,7 +672,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     u8 hatchCycles = Species_GetValue(species, SPECIES_DATA_EGG_CYCLES);
     String *eggName;
 
-    Pokemon_InitWith(egg, species, 1, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(egg, species, 1, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
 
     metLvl = 0;
     ball = ITEM_POKE_BALL;
@@ -732,7 +732,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
         }
     }
 
-    Pokemon_InitWith(mon, species, EGG_POKEMON_LEVEL, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, EGG_POKEMON_LEVEL, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
 
     level = 0;
     ball = ITEM_POKE_BALL;
@@ -1133,7 +1133,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
         }
     }
 
-    Pokemon_InitWith(mon, species, 1, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, 1, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         Pokemon_SetData(mon, MON_DATA_MOVE1 + i, &(moves[i]));

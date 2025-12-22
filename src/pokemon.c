@@ -246,7 +246,7 @@ enum PokemonDataBlockID {
     DATA_BLOCK_D
 };
 
-static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID);
+static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID);
 static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *dest);
 static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value);
@@ -376,32 +376,30 @@ BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt)
     return wasEncrypted;
 }
 
-void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+void Pokemon_InitWithParams(Pokemon *mon, int species, int level, int ivs, BOOL hasFixedPersonality, int personality, int otIDType, int otID)
 {
     Pokemon_Init(mon);
 
-    BoxPokemon_InitWith(&mon->box, monSpecies, monLevel, monIVs, useMonPersonalityParam, monPersonality, monOTIDSource, monOTID);
+    BoxPokemon_InitWithParams(&mon->box, species, level, ivs, hasFixedPersonality, personality, otIDType, otID);
     // Not your average encryption call
     MonEncryptSegment((u16 *)&mon->party, sizeof(mon->party), 0);
     ENCRYPT_PARTY(mon);
-    Pokemon_SetData(mon, MON_DATA_LEVEL, &monLevel);
+    Pokemon_SetData(mon, MON_DATA_LEVEL, &level);
 
     Mail *mail = Mail_New(HEAP_ID_SYSTEM);
-
     Pokemon_SetData(mon, MON_DATA_MAIL, mail);
     Heap_Free(mail);
 
     u32 zero = 0;
+    BallCapsule capsule;
     Pokemon_SetData(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
+    MI_CpuClearFast(&capsule, sizeof(capsule));
+    Pokemon_SetData(mon, MON_DATA_BALL_CAPSULE, &capsule);
 
-    BallCapsule v2;
-    MI_CpuClearFast(&v2, sizeof(BallCapsule));
-
-    Pokemon_SetData(mon, MON_DATA_BALL_CAPSULE, &v2);
     Pokemon_CalcLevelAndStats(mon);
 }
 
-static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID)
+static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID)
 {
     u32 var1, var2;
     BoxPokemon_Init(boxMon);
@@ -489,7 +487,7 @@ void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 natu
     do {
         personality = (LCRNG_Next() | (LCRNG_Next() << 16));
     } while (nature != Personality_GetNature(personality));
-    Pokemon_InitWith(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
 void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 gender, u8 nature, u8 letter)
@@ -505,7 +503,7 @@ void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 
     } else {
         personality = Personality_CreateFromGenderAndNature(species, gender, nature);
     }
-    Pokemon_InitWith(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
 }
 
 u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
@@ -532,7 +530,7 @@ u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
 // only used when encountering a roamer
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
 {
-    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
     Pokemon_SetData(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }
