@@ -424,7 +424,6 @@ static void BoxPokemon_InitWith(BoxPokemon *boxMon, int species, int level, int 
     BoxPokemon_SetData(boxMon, MON_DATA_SPECIES, &species);
     BoxPokemon_SetData(boxMon, MON_DATA_SPECIES_NAME, NULL);
 
-
     var1 = Species_GetExpAtLevel(species, level);
     BoxPokemon_SetData(boxMon, MON_DATA_EXPERIENCE, &var1);
 
@@ -612,12 +611,12 @@ void Pokemon_CalcStats(Pokemon *mon)
             hp = 1;
         } else if (hp == 0) {
             hp = newMaxHp;
-        // BUG: Pomeg glitch.
-        // Fixed in HGSS by adding:
-        // } else if (newMaxHp - maxHp < 0) {
-        //     if (hp > newMaxHp) {
-        //         hp = newMaxHp;
-        //     }
+            // BUG: Pomeg glitch.
+            // Fixed in HGSS by adding:
+            // } else if (newMaxHp - maxHp < 0) {
+            //     if (hp > newMaxHp) {
+            //         hp = newMaxHp;
+            //     }
         } else {
             hp += newMaxHp - maxHp;
         }
@@ -2160,6 +2159,7 @@ u8 Personality_GetNature(u32 personality)
     return (u8)(personality % NATURE_COUNT);
 }
 
+// clang-format off
 static const s8 sNatureStatModifiers[NATURE_COUNT][5] = {
                     // Attack Defense Speed Sp.Atk Sp.Def
     [NATURE_HARDY]   = {  0,     0,     0,     0,    0 },
@@ -2188,6 +2188,7 @@ static const s8 sNatureStatModifiers[NATURE_COUNT][5] = {
     [NATURE_CAREFUL] = {  0,     0,     0,    -1,   +1 },
     [NATURE_QUIRKY]  = {  0,     0,     0,     0,    0 },
 };
+// clang-format on
 
 static u16 Nature_ModifyStatValue(u8 nature, u16 value, u8 stat)
 {
@@ -2220,6 +2221,7 @@ s8 Nature_GetStatModifier(u8 nature, u8 stat)
     return sNatureStatModifiers[nature][stat - 1];
 }
 
+// clang-format off
 static const s8 sFriendshipModifiers[FRIENDSHIP_EVENT_NUM][FRIENDSHIP_TIER_NUM] = {
     [FRIENDSHIP_EVENT_GROW_LEVEL] =     {  5,  3,   2 },
     [FRIENDSHIP_EVENT_VITAMIN] =        {  5,  3,   2 },
@@ -2232,6 +2234,7 @@ static const s8 sFriendshipModifiers[FRIENDSHIP_EVENT_NUM][FRIENDSHIP_TIER_NUM] 
     [FRIENDSHIP_EVENT_FAINT_LARGE] =    { -5, -5, -10 },
     [FRIENDHSIP_EVENT_CONTEST_WIN] =    {  3,  2,   1 },
 };
+// clang-format on
 
 void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location)
 {
