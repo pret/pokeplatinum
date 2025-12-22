@@ -817,8 +817,8 @@ BOOL Pokemon_PlayCry(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates);
-BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);
-BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
+BOOL Pokemon_CanLearnTMHM(Pokemon *mon, u8 tmHM);
+BOOL Species_CanLearnTMHM(u16 species, int form, u8 tmHM);
 
 /**
  * @brief Sets the ability of a Pokemon based on its species, form and peronsality value

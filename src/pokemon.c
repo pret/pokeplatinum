@@ -271,7 +271,7 @@ static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
+static BOOL BoxPokemon_CanLearnTMHM(BoxPokemon *boxMon, u8 tmHM);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
 static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
@@ -4260,42 +4260,42 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates)
     }
 }
 
-BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID)
+BOOL Pokemon_CanLearnTMHM(Pokemon *mon, u8 tmHM)
 {
-    return CanBoxPokemonLearnTM(&mon->box, tmID);
+    return BoxPokemon_CanLearnTMHM(&mon->box, tmHM);
 }
 
-static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID)
+static BOOL BoxPokemon_CanLearnTMHM(BoxPokemon *boxMon, u8 tmHM)
 {
-    u16 monSpeciesEgg = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
-    int monForm = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
+    u16 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
+    int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
-    return CanPokemonFormLearnTM(monSpeciesEgg, monForm, tmID);
+    return Species_CanLearnTMHM(species, form, tmHM);
 }
 
-BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID)
+BOOL Species_CanLearnTMHM(u16 species, int form, u8 tmHM)
 {
-    if (monSpecies == SPECIES_EGG) {
+    if (species == SPECIES_EGG) {
         return FALSE;
     }
 
-    u32 tmFlag;
-    u8 speciesDataAttribute;
-    if (tmID < 32) {
-        tmFlag = (1 << tmID);
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_1;
-    } else if (tmID < 64) {
-        tmFlag = (1 << (tmID - 32));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_2;
-    } else if (tmID < 96) {
-        tmFlag = (1 << (tmID - 64));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_3;
+    u32 mask;
+    int param;
+    if (tmHM < 32) {
+        mask = (1 << tmHM);
+        param = SPECIES_DATA_TM_LEARNSET_MASK_1;
+    } else if (tmHM < 64) {
+        mask = (1 << (tmHM - 32));
+        param = SPECIES_DATA_TM_LEARNSET_MASK_2;
+    } else if (tmHM < 96) {
+        mask = (1 << (tmHM - 64));
+        param = SPECIES_DATA_TM_LEARNSET_MASK_3;
     } else {
-        tmFlag = (1 << (tmID - 96));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_4;
+        mask = (1 << (tmHM - 96));
+        param = SPECIES_DATA_TM_LEARNSET_MASK_4;
     }
 
-    return (Species_GetFormValue(monSpecies, monForm, speciesDataAttribute) & tmFlag) != 0;
+    return (Species_GetFormValue(species, form, param) & mask) != 0;
 }
 
 void Pokemon_CalcAbility(Pokemon *mon)
@@ -4568,7 +4568,7 @@ static const u16 sBattleFrontierBanlist[BATTLE_FRONTIER_BANLIST_SIZE] = {
     SPECIES_MANAPHY,
     SPECIES_DARKRAI,
     SPECIES_SHAYMIN,
-    SPECIES_ARCEUS
+    SPECIES_ARCEUS,
 };
 
 BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species)

@@ -933,7 +933,7 @@ u8 PartyMenu_CanMonLearnMove(PartyMenuApplication *application, Pokemon *mon)
         }
     }
 
-    if (Pokemon_CanLearnTM(mon, Item_TMHMNumber(application->partyMenu->usedItemID)) == FALSE) {
+    if (Pokemon_CanLearnTMHM(mon, Item_TMHMNumber(application->partyMenu->usedItemID)) == FALSE) {
         return MON_MOVE_RESULT_CANNOT_LEARN;
     }
 
