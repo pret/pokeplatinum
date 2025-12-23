@@ -47,7 +47,7 @@ void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHea
     }
 
     sHeapInfo.heapHandles = OS_AllocFromMainArenaLo(
-    	(usableHeaps + 1) * sizeof(NNSFndHeapHandle)
+        (usableHeaps + 1) * sizeof(NNSFndHeapHandle)
             + usableHeaps * sizeof(NNSFndHeapHandle)
             + usableHeaps * sizeof(void *)
             + totalNumHeaps * sizeof(u16)
