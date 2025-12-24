@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "constants/narc.h"
 #include "constants/savedata/savedata.h"
+#include "generated/narc.h"
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 

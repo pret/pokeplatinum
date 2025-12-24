@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/narc.h"
 #include "constants/string.h"
+#include "generated/narc.h"
 #include "generated/object_events.h"
 #include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"

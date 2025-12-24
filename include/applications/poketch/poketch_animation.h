@@ -4,7 +4,7 @@
 #include <nnsys.h>
 
 #include "constants/heap.h"
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 typedef struct PoketchAnimation_AnimationManager PoketchAnimation_AnimationManager;
 typedef struct PoketchAnimation_AnimatedSpriteData PoketchAnimation_AnimatedSpriteData;

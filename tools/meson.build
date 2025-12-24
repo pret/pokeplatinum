@@ -3,6 +3,7 @@ rapidjson_dep = dependency('rapidjson')
 # Native tools
 subdir('csv2bin')
 subdir('datagen')
+subdir('dataproc')
 subdir('fixrom')
 subdir('json2bin')
 subdir('msgenc')

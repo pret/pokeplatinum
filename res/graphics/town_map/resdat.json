@@ -1,0 +1,175 @@
+{
+  "characters": [
+    {
+      "id": "TownMap_Chars_ZoomButtonShockwave",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "zoom_button_shockwave_NCGR",
+      "compressed": false,
+      "on_main_screen": false,
+      "on_sub_screen": true
+    },
+    {
+      "id": "TownMap_Chars_Cursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "cursor_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "TownMap_Chars_PlayerIcons",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "player_icons_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "TownMap_Chars_LocationHistoryDot",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "location_history_dot_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "TownMap_Chars_FlyDestinationBlocks",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "fly_destination_blocks_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    }
+  ],
+  "palettes": [
+    {
+      "id": "TownMap_Palette_Shareds",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "top_screen_sprites_NCLR",
+      "load_in_slot": 10,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "TownMap_Palette_ZoomButtonShockwaves",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "zoom_button_shockwave_NCLR",
+      "load_in_slot": 1,
+      "compressed": false,
+      "on_main_screen": false,
+      "on_sub_screen": true
+    }
+  ],
+  "cells": [
+    {
+      "id": "TownMap_Cells_ZoomButtonShockwave",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "zoom_button_shockwave_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Cells_Cursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "cursor_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Cells_PlayerIcons",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "player_icons_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Cells_LocationHistoryDot",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "location_history_dot_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Cells_FlyDestinationBlocks",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "fly_destination_blocks_cell_NCER",
+      "compressed": false
+    }
+  ],
+  "animations": [
+    {
+      "id": "TownMap_Anims_ZoomButtonShockwave",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "zoom_button_shockwave_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Anims_Cursor",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "cursor_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Anims_PlayerIcons",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "player_icons_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Anims_LocationHistoryDot",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "location_history_dot_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "TownMap_Anims_FlyDestinationBlocks",
+      "from_narc": "NARC_INDEX_GRAPHIC__TMAP_GRA",
+      "from_file": "fly_destination_blocks_anim_NANR",
+      "compressed": false
+    }
+  ],
+  "templates": [
+    {
+      "id": "TownMap_Template_ZoomButtonShockwave",
+      "characters": "TownMap_Chars_ZoomButtonShockwave",
+      "palette": "TownMap_Palette_ZoomButtonShockwaves",
+      "cells": "TownMap_Cells_ZoomButtonShockwave",
+      "animations": "TownMap_Anims_ZoomButtonShockwave",
+      "vram_transfer": false,
+      "priority": 0
+    },
+    {
+      "id": "TownMap_Template_Cursor",
+      "characters": "TownMap_Chars_Cursor",
+      "palette": "TownMap_Palette_Shareds",
+      "cells": "TownMap_Cells_Cursor",
+      "animations": "TownMap_Anims_Cursor",
+      "vram_transfer": false,
+      "priority": 2
+    },
+    {
+      "id": "TownMap_Template_PlayerIcons",
+      "characters": "TownMap_Chars_PlayerIcons",
+      "palette": "TownMap_Palette_Shareds",
+      "cells": "TownMap_Cells_PlayerIcons",
+      "animations": "TownMap_Anims_PlayerIcons",
+      "vram_transfer": false,
+      "priority": 2
+    },
+    {
+      "id": "TownMap_Template_LocationHistoryDot",
+      "characters": "TownMap_Chars_LocationHistoryDot",
+      "palette": "TownMap_Palette_Shareds",
+      "cells": "TownMap_Cells_LocationHistoryDot",
+      "animations": "TownMap_Anims_LocationHistoryDot",
+      "vram_transfer": false,
+      "priority": 2
+    },
+    {
+      "id": "TownMap_Template_FlyDestinationBlocks",
+      "characters": "TownMap_Chars_FlyDestinationBlocks",
+      "palette": "TownMap_Palette_Shareds",
+      "cells": "TownMap_Cells_FlyDestinationBlocks",
+      "animations": "TownMap_Anims_FlyDestinationBlocks",
+      "vram_transfer": false,
+      "priority": 2
+    }
+  ]
+}

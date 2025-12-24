@@ -7,7 +7,6 @@ subdir('mining')
 subdir('move_tutor')
 subdir('naming_screen')
 subdir('options_menu')
-subdir('party_menu')
 subdir('poffin_case')
 subdir('pokedex')
 subdir('pokemon_summary_screen')
@@ -21,3 +20,5 @@ subdir('town_map')
 subdir('trap_effects')
 subdir('underground_map_transition')
 subdir('windows')
+
+subdir('party_menu') # Depends on bag and pokemon_summary_screen
