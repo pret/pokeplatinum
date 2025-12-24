@@ -653,7 +653,7 @@ static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
 
     switch (speciesNDS) {
     case SPECIES_UNOWN:
-        form = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
+        form = CALC_UNOWN_LETTER(personality);
         break;
     case SPECIES_DEOXYS:
         switch (gbaVersion) {

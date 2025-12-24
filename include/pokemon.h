@@ -35,11 +35,11 @@
 
 #define BATTLE_FRONTIER_BANLIST_SIZE 18
 
-#define GET_UNOWN_LETTER_FROM_PERSONALITY(personality) ((                                          \
-                                                            (((personality) & 0x03000000) >> 18)   \
-                                                            | (((personality) & 0x00030000) >> 12) \
-                                                            | (((personality) & 0x00000300) >> 6)  \
-                                                            | (((personality) & 0x00000003) >> 0)) \
+#define CALC_UNOWN_LETTER(personality) ((                                          \
+                                            (((personality) & 0x03000000) >> 18)   \
+                                            | (((personality) & 0x00030000) >> 12) \
+                                            | (((personality) & 0x00000300) >> 6)  \
+                                            | (((personality) & 0x00000003) >> 0)) \
     % UNOWN_FORM_COUNT)
 
 enum EvolutionClass {

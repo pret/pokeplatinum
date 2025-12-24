@@ -985,7 +985,7 @@ void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
 
     if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
         value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_PERSONALITY, NULL);
-        value = GET_UNOWN_LETTER_FROM_PERSONALITY(value);
+        value = CALC_UNOWN_LETTER(value);
 
         BoxPokemon_SetData(boxMon, MON_DATA_FORM, (u8 *)&value);
     }

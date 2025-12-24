@@ -498,7 +498,7 @@ void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 
     if (letter != 0 && letter < UNOWN_FORM_COUNT + 1) {
         do {
             personality = (LCRNG_Next() | (LCRNG_Next() << 16));
-            unownLetter = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
+            unownLetter = CALC_UNOWN_LETTER(personality);
         } while (nature != Personality_GetNature(personality) || gender != Species_GetGenderFromPersonality(species, personality) || unownLetter != letter - 1);
     } else {
         personality = Personality_CreateFromGenderAndNature(species, gender, nature);
@@ -527,11 +527,10 @@ u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
     return pid;
 }
 
-// only used when encountering a roamer
-void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
+void Pokemon_InitAndCalcStats(Pokemon *mon, u16 species, u8 level, u32 combinedIVs, u32 personality)
 {
-    Pokemon_InitWithParams(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
-    Pokemon_SetData(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
+    Pokemon_InitWithParams(mon, species, level, 0, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_SetData(mon, MON_DATA_COMBINED_IVS, &combinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }
 
