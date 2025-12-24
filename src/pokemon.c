@@ -320,16 +320,14 @@ BOOL Pokemon_UnlockEncryption(Pokemon *mon)
 {
     BOOL wasDecrypted = FALSE;
 
-    if (mon->box.partyDecrypted == FALSE) {
+    if (!mon->box.partyDecrypted) {
         wasDecrypted = TRUE;
-        GF_ASSERT(mon->box.boxDecrypted == FALSE);
-
+        GF_ASSERT(!mon->box.boxDecrypted);
         mon->box.partyDecrypted = TRUE;
         mon->box.boxDecrypted = TRUE;
         DECRYPT_PARTY(mon);
         DECRYPT_BOX(&mon->box);
     }
-
     return wasDecrypted;
 }
 
@@ -345,7 +343,6 @@ BOOL Pokemon_LockEncryption(Pokemon *mon, BOOL encrypt)
         mon->box.checksum = CHECKSUM(&mon->box);
         ENCRYPT_BOX(&mon->box);
     }
-
     return wasEncrypted;
 }
 
@@ -353,12 +350,11 @@ BOOL BoxPokemon_UnlockEncryption(BoxPokemon *boxMon)
 {
     BOOL wasDecrypted = FALSE;
 
-    if (boxMon->boxDecrypted == FALSE) {
+    if (!boxMon->boxDecrypted) {
         wasDecrypted = TRUE;
         boxMon->boxDecrypted = TRUE;
         DECRYPT_BOX(boxMon);
     }
-
     return wasDecrypted;
 }
 
@@ -368,7 +364,6 @@ BOOL BoxPokemon_LockEncryption(BoxPokemon *boxMon, BOOL encrypt)
 
     if (boxMon->boxDecrypted == TRUE && encrypt == TRUE) {
         wasEncrypted = TRUE;
-
         boxMon->boxDecrypted = FALSE;
         boxMon->checksum = CHECKSUM(boxMon);
         ENCRYPT_BOX(boxMon);
