@@ -2,7 +2,7 @@
   "key": 54322,
   "messages": [
     {
-      "id": "pl_msg_00000186_00000",
+      "id": "PokemonLeagueBerthaRoom_Text_BerthaIntro",
       "en_US": [
         "Well, well.\r",
         "You’re quite the adorable Trainer,\n",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000186_00001",
+      "id": "PokemonLeagueBerthaRoom_Text_BerthaDefeat",
       "en_US": [
         "You’re quite something, youngster.\r",
         "I like how you and your Pokémon\n",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000186_00002",
+      "id": "PokemonLeagueBerthaRoom_Text_BerthaPostBattle",
       "en_US": [
         "The Trainer in the next room is a\n",
         "much more formidable opponent.\r",
