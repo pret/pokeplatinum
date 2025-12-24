@@ -316,7 +316,7 @@ Pokemon *Pokemon_New(enum HeapID heapID)
     return mon;
 }
 
-BOOL Pokemon_EnterDecryptionContext(Pokemon *mon)
+BOOL Pokemon_UnlockEncryption(Pokemon *mon)
 {
     BOOL wasDecrypted = FALSE;
 
@@ -333,7 +333,7 @@ BOOL Pokemon_EnterDecryptionContext(Pokemon *mon)
     return wasDecrypted;
 }
 
-BOOL Pokemon_ExitDecryptionContext(Pokemon *mon, BOOL encrypt)
+BOOL Pokemon_LockEncryption(Pokemon *mon, BOOL encrypt)
 {
     BOOL wasEncrypted = FALSE;
 
@@ -349,7 +349,7 @@ BOOL Pokemon_ExitDecryptionContext(Pokemon *mon, BOOL encrypt)
     return wasEncrypted;
 }
 
-BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon)
+BOOL BoxPokemon_UnlockEncryption(BoxPokemon *boxMon)
 {
     BOOL wasDecrypted = FALSE;
 
@@ -362,7 +362,7 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon)
     return wasDecrypted;
 }
 
-BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt)
+BOOL BoxPokemon_LockEncryption(BoxPokemon *boxMon, BOOL encrypt)
 {
     BOOL wasEncrypted = FALSE;
 
@@ -403,7 +403,7 @@ static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level
 {
     u32 var1, var2;
     BoxPokemon_Init(boxMon);
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     if (!hasFixedPersonality) {
         personality = (LCRNG_Next() | (LCRNG_Next() << 16));
@@ -478,7 +478,7 @@ static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level
     var1 = BoxPokemon_GetGender(boxMon);
     BoxPokemon_SetData(boxMon, MON_DATA_GENDER, &var1);
     BoxPokemon_SetDefaultMoves(boxMon);
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
 void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 nature)
@@ -537,11 +537,11 @@ void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 mon
 
 void Pokemon_CalcLevelAndStats(Pokemon *mon)
 {
-    BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
+    BOOL reencrypt = Pokemon_UnlockEncryption(mon);
     int level = Pokemon_CalcLevel(mon);
     Pokemon_SetData(mon, MON_DATA_LEVEL, &level);
     Pokemon_CalcStats(mon);
-    Pokemon_ExitDecryptionContext(mon, reencrypt);
+    Pokemon_LockEncryption(mon, reencrypt);
 }
 
 void Pokemon_CalcStats(Pokemon *mon)
@@ -552,7 +552,7 @@ void Pokemon_CalcStats(Pokemon *mon)
     int form, species;
     int newMaxHp;
 
-    BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
+    BOOL reencrypt = Pokemon_UnlockEncryption(mon);
 
     int level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
     maxHp = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
@@ -623,7 +623,7 @@ void Pokemon_CalcStats(Pokemon *mon)
     if (hp != 0) {
         Pokemon_SetData(mon, MON_DATA_HP, &hp);
     }
-    Pokemon_ExitDecryptionContext(mon, reencrypt);
+    Pokemon_LockEncryption(mon, reencrypt);
 }
 
 u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest)
@@ -2034,14 +2034,14 @@ int Species_GetValue(int species, enum SpeciesDataParam param)
 
 u8 Pokemon_CalcPercentToNextLevel(Pokemon *mon)
 {
-    BOOL recrypt = Pokemon_EnterDecryptionContext(mon);
+    BOOL recrypt = Pokemon_UnlockEncryption(mon);
     u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     u8 level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
     u32 curLevelExp = Species_GetExpAtLevel(species, level);
     u32 nextLevelExp = Species_GetExpAtLevel(species, level + 1);
     u32 curExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
 
-    Pokemon_ExitDecryptionContext(mon, recrypt);
+    Pokemon_LockEncryption(mon, recrypt);
     u8 percent = ((curExp - curLevelExp) * 100) / (nextLevelExp - curLevelExp);
 
     return percent;
@@ -2099,10 +2099,10 @@ int Pokemon_CalcLevel(Pokemon *mon)
 
 int BoxPokemon_CalcLevel(BoxPokemon *boxMon)
 {
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
     int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     int exp = BoxPokemon_GetData(boxMon, MON_DATA_EXPERIENCE, NULL);
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
     return Species_CalcLevelByExp(species, exp);
 }
 
@@ -2134,9 +2134,9 @@ u8 Pokemon_GetNature(Pokemon *mon)
 
 u8 BoxPokemon_GetNature(BoxPokemon *boxMon)
 {
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
     u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
     return Personality_GetNature(personality);
 }
 
@@ -2272,10 +2272,10 @@ u8 Pokemon_GetGender(Pokemon *mon)
 
 u8 BoxPokemon_GetGender(BoxPokemon *boxMon)
 {
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
     u16 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
     return Species_GetGenderFromPersonality(species, personality);
 }
 
@@ -2375,7 +2375,7 @@ void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, Pokemo
 
 void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *mon, u8 face, BOOL preferDP)
 {
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(mon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(mon);
 
     u16 monSpeciesEgg = BoxPokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
     u8 monGender = BoxPokemon_GetGender(mon);
@@ -2399,7 +2399,7 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
         BuildPokemonSpriteTemplate(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
     }
 
-    BoxPokemon_ExitDecryptionContext(mon, reencrypt);
+    BoxPokemon_LockEncryption(mon, reencrypt);
 }
 
 void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
@@ -3386,7 +3386,7 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
 {
     BOOL reencrypt; // must pre-declare to match
     u16 *levelUpLearnset = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
-    reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     u16 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
@@ -3404,7 +3404,7 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
         }
     }
     Heap_Free(levelUpLearnset);
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
 u16 Pokemon_TryAppendMove(Pokemon *mon, u16 move)
@@ -3415,7 +3415,7 @@ u16 Pokemon_TryAppendMove(Pokemon *mon, u16 move)
 static u16 BoxPokemon_TryAppendMove(BoxPokemon *boxMon, u16 move)
 {
     u16 ret = LEARNSET_ALL_SLOTS_FILLED;
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         u16 slotMove = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i, NULL);
@@ -3429,7 +3429,7 @@ static u16 BoxPokemon_TryAppendMove(BoxPokemon *boxMon, u16 move)
             break;
         }
     }
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
     return ret;
 }
 
@@ -3440,7 +3440,7 @@ void Pokemon_ForceAppendMove(Pokemon *mon, u16 move)
 
 static void BoxPokemon_ForceAppendMove(BoxPokemon *boxMon, u16 move)
 {
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
     u16 moves[LEARNED_MOVES_MAX];
     u8 pp[LEARNED_MOVES_MAX];
     u8 ppUp[LEARNED_MOVES_MAX];
@@ -3462,7 +3462,7 @@ static void BoxPokemon_ForceAppendMove(BoxPokemon *boxMon, u16 move)
         BoxPokemon_SetData(boxMon, MON_DATA_MOVE1_PP_UPS + i, &ppUp[i]);
     }
 
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
 void Pokemon_SetMoveInSlot_ResetPPUp(Pokemon *mon, u16 move, u8 slot)
@@ -4293,7 +4293,7 @@ void Pokemon_CalcAbility(Pokemon *mon)
 
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
 {
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
     int monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     u32 monPersonality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
     int monForm = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
@@ -4310,7 +4310,7 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
         BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &monAbility1);
     }
 
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality)
@@ -4654,7 +4654,7 @@ void Pokemon_ClearBallCapsuleData(Pokemon *mon)
 
 void BoxPokemon_RestorePP(BoxPokemon *boxMon)
 {
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i, NULL)) {
@@ -4664,7 +4664,7 @@ void BoxPokemon_RestorePP(BoxPokemon *boxMon)
         }
     }
 
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
 static inline int Pokemon_Face(int clientType)

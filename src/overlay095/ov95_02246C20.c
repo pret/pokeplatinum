@@ -540,7 +540,7 @@ void ov95_022473E8(TradeSequenceData *param0, int param1, u32 param2, u32 param3
         u16 species;
 
         v5 = (BoxPokemon *)((param1 == 0) ? param0->animationConfig->sendingPokemon : param0->animationConfig->receivingPokemon);
-        v6 = BoxPokemon_EnterDecryptionContext(v5);
+        v6 = BoxPokemon_UnlockEncryption(v5);
 
         BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
@@ -555,7 +555,7 @@ void ov95_022473E8(TradeSequenceData *param0, int param1, u32 param2, u32 param3
         DC_FlushRange(v3, v2);
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 
-        BoxPokemon_ExitDecryptionContext(v5, v6);
+        BoxPokemon_LockEncryption(v5, v6);
         Heap_Free(v3);
     }
 

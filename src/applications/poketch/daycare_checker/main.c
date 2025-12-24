@@ -215,7 +215,7 @@ static void LoadDaycareSummary(DaycareStatus *daycareStatus, Daycare *daycare)
     for (int slot = 0; slot < daycareStatus->numMons; slot++) {
         daycareMon = Daycare_GetDaycareMon(daycare, slot);
         boxMon = DaycareMon_GetBoxMon(daycareMon);
-        reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+        reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
         daycareStatus->iconSpriteIndices[slot] = BoxPokemon_IconSpriteIndex(boxMon);
         daycareStatus->species[slot] = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
@@ -223,6 +223,6 @@ static void LoadDaycareSummary(DaycareStatus *daycareStatus, Daycare *daycare)
         daycareStatus->levels[slot] = DaycareMon_GiveExperience(daycareMon);
         daycareStatus->genders[slot] = BoxPokemon_GetGender(boxMon);
 
-        BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+        BoxPokemon_LockEncryption(boxMon, reencrypt);
     }
 }

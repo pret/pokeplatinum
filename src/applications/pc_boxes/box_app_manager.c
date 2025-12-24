@@ -2104,13 +2104,13 @@ static BOOL BoxAppMan_OnLastAliveMon(BoxApplicationManager *boxAppMan)
     int partyCount = Party_GetCurrentCount(boxAppMan->party);
     for (int i = 0, count = 0; i < partyCount; i++) {
         mon = Party_GetPokemonBySlotIndex(boxAppMan->party, i);
-        reencrypt = Pokemon_EnterDecryptionContext(mon);
+        reencrypt = Pokemon_UnlockEncryption(mon);
 
         if (Pokemon_GetData(mon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE && Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
             count++;
         }
 
-        Pokemon_ExitDecryptionContext(mon, reencrypt);
+        Pokemon_LockEncryption(mon, reencrypt);
 
         if (count >= 2) {
             return FALSE;
@@ -2420,7 +2420,7 @@ static void CheckLastMonWithReleaseBlockingMove(SysTask *task, void *releaseMonP
 static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
 {
     BOOL hasMove = FALSE;
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     if (BoxPokemon_GetData(boxMon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE) {
         for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -2431,7 +2431,7 @@ static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
         }
     }
 
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
     return hasMove;
 }
 
@@ -4097,7 +4097,7 @@ static void BoxApp_PreviewBoxMon(BoxApplication *boxApp, BoxPokemon *boxMon, Box
 static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *boxMon, BoxApplicationManager *boxAppMan)
 {
     PCMonPreview *preview = &boxApp->pcMonPreview;
-    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     preview->mon = boxMon;
     preview->species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
@@ -4138,7 +4138,7 @@ static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *box
     MessageLoader_GetString(boxAppMan->abilityNameLoader, value, preview->ability);
 
     SpeciesData_Free(speciesData);
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
 static void BoxApp_LoadBoxMonIntoComparison(BoxApplication *boxApp, BoxPokemon *boxMon, BoxApplicationManager *boxAppMan)
@@ -4160,7 +4160,7 @@ static void BoxApp_LoadBoxMonIntoComparison(BoxApplication *boxApp, BoxPokemon *
     String_Copy(compareMon->nature, preview->nature);
     BoxPokemon_CopyToPokemon(boxMon, boxAppMan->mon);
 
-    BOOL reencrypt = Pokemon_EnterDecryptionContext(boxAppMan->mon);
+    BOOL reencrypt = Pokemon_UnlockEncryption(boxAppMan->mon);
 
     compareMon->maxHP = Pokemon_GetData(boxAppMan->mon, MON_DATA_MAX_HP, NULL);
     compareMon->attack = Pokemon_GetData(boxAppMan->mon, MON_DATA_ATK, NULL);
@@ -4179,7 +4179,7 @@ static void BoxApp_LoadBoxMonIntoComparison(BoxApplication *boxApp, BoxPokemon *
     compareMon->moves[3] = Pokemon_GetData(boxAppMan->mon, MON_DATA_MOVE4, NULL);
     compareMon->form = Pokemon_GetData(boxAppMan->mon, MON_DATA_FORM, NULL);
 
-    Pokemon_ExitDecryptionContext(boxAppMan->mon, reencrypt);
+    Pokemon_LockEncryption(boxAppMan->mon, reencrypt);
 
     boxApp->compareModeHelper.compareSlotHasMon[boxApp->compareModeHelper.compareMonSlot] = TRUE;
 }
