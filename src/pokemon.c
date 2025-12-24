@@ -249,8 +249,8 @@ enum PokemonDataBlockID {
 static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level, int ivs, BOOL hasFixedPersonality, u32 personality, int otIDType, u32 otID);
 static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *dest);
 static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
-static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value);
-static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
+static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *value);
+static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *value);
 static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam param, int value);
 static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
 static u32 BoxPokemon_CalcExpToNextLevel(BoxPokemon *boxMon);
@@ -709,7 +709,6 @@ static inline u32 GetRibbon(u64 mask, enum PokemonDataParam param, enum PokemonD
 static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest)
 {
     u32 ret = 0;
-
     PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
     PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
     PokemonDataBlockC *blockC = BoxPokemon_GetDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
@@ -848,7 +847,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_UNUSED_RIBBON_53:
         ret = GetRibbon(blockA->ribbonsDS1, param, MON_DATA_SINNOH_CHAMP_RIBBON);
         break;
-
     case MON_DATA_MOVE1:
     case MON_DATA_MOVE2:
     case MON_DATA_MOVE3:
@@ -867,7 +865,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_MOVE4_PP_UPS:
         ret = blockB->movePPUps[param - MON_DATA_MOVE1_PP_UPS];
         break;
-
     case MON_DATA_MOVE1_MAX_PP:
     case MON_DATA_MOVE2_MAX_PP:
     case MON_DATA_MOVE3_MAX_PP:
@@ -942,7 +939,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_GENDER:
         ret = Species_GetGenderFromPersonality(blockA->species, boxMon->personality);
         blockB->gender = ret;
-        boxMon->checksum = Pokemon_GetDataChecksum(&boxMon->dataBlocks, sizeof(PokemonDataBlock) * 4);
+        boxMon->checksum = CHECKSUM(boxMon);
         break;
     case MON_DATA_FORM:
         ret = blockB->form;
@@ -955,27 +952,23 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
     case MON_DATA_NICKNAME:
         if (boxMon->checksumFailed) {
-            // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
             MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, 0, dest);
         } else {
-            charcode_t *buf = dest;
-
+            charcode_t *nickname = dest;
             for (ret = 0; ret < MON_NAME_LEN; ret++) {
-                buf[ret] = blockC->nickname[ret];
+                nickname[ret] = blockC->nickname[ret];
             }
-
-            buf[ret] = CHAR_EOS;
+            nickname[ret] = CHAR_EOS;
         }
         break;
     case MON_DATA_NICKNAME_STRING_AND_FLAG:
         ret = blockB->hasNickname;
-        // fall-through
+        // fallthrough
     case MON_DATA_NICKNAME_STRING:
         if (boxMon->checksumFailed) {
-            String *string = MessageUtil_SpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM);
-
-            String_Copy(dest, string);
-            String_Free(string);
+            String *nickname = MessageUtil_SpeciesName(SPECIES_BAD_EGG, HEAP_ID_SYSTEM);
+            String_Copy(dest, nickname);
+            String_Free(nickname);
         } else {
             String_CopyChars(dest, blockC->nickname);
         }
@@ -1009,17 +1002,13 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_UNUSED_RIBBON_143:
         ret = GetRibbon(blockC->ribbonsDS2, param, MON_DATA_SUPER_COOL_RIBBON);
         break;
-
     case MON_DATA_OT_NAME:
         u16 *otName = dest;
-
         for (ret = 0; ret < TRAINER_NAME_LEN; ret++) {
             otName[ret] = blockD->otName[ret];
         }
-
         otName[ret] = CHAR_EOS;
         break;
-
     case MON_DATA_OT_NAME_STRING:
         String_CopyChars(dest, blockD->otName);
         break;
@@ -1084,8 +1073,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
             | (blockB->spDefIV << 25);
         break;
     case MON_DATA_NO_PRINT_GENDER:
-        if ((blockA->species == SPECIES_NIDORAN_F || blockA->species == SPECIES_NIDORAN_M)
-            && blockB->hasNickname == FALSE) {
+        if ((blockA->species == SPECIES_NIDORAN_F || blockA->species == SPECIES_NIDORAN_M) && !blockB->hasNickname) {
             ret = FALSE;
         } else {
             ret = TRUE;
@@ -1106,7 +1094,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     return ret;
 }
 
-void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *value)
+void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, void *value)
 {
     u32 checksum;
     if (!mon->box.partyDecrypted) {
@@ -1128,7 +1116,7 @@ void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *valu
     }
 }
 
-static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, const void *value)
+static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, void *value)
 {
 #define VALUE(type) (*(const type *)value)
     switch (param) {
@@ -1175,7 +1163,7 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
 #undef VALUE
 }
 
-void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value)
+void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *value)
 {
     u32 checksum;
     if (!boxMon->boxDecrypted) {
@@ -1195,7 +1183,7 @@ void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const v
     }
 }
 
-static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value)
+static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam param, void *value)
 {
 #define VALUE(type) (*(const type *)value)
     u64 mask;
@@ -2318,13 +2306,13 @@ u8 SpeciesData_GetGenderFromPersonality(SpeciesData *speciesData, u16 unused_spe
     }
 }
 
-// TODO return bool
+// TODO: bool8?
 u8 Pokemon_IsShiny(Pokemon *mon)
 {
     return BoxPokemon_IsShiny(&mon->box);
 }
 
-// TODO return bool
+// TODO: bool8?
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon)
 {
     u32 otID = BoxPokemon_GetData(boxMon, MON_DATA_OT_ID, NULL);

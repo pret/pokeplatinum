@@ -159,7 +159,7 @@ u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *de
  * @param param
  * @param value
  */
-void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *value);
+void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, void *value);
 
 /**
  * @brief Sets a value in a BoxPokemon, reading it from value if neccessary
@@ -168,7 +168,7 @@ void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, const void *valu
  * @param param
  * @param value
  */
-void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
+void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *value);
 
 /**
  * @brief Increases some numerical fields in a Pokemon by the given value. Does nothing if the field is not supported
