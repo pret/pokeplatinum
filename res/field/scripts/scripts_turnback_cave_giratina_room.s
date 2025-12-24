@@ -18,7 +18,7 @@ _001C:
     End
 
 _0029:
-    SetFlag FLAG_UNK_0x0250
+    SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     RemoveObject 0
     ClearFlag FLAG_MAP_LOCAL
     End
@@ -41,8 +41,8 @@ _0037:
     End
 
 _0084:
-    SetFlag FLAG_UNK_0x0121
-    SetFlag FLAG_UNK_0x0250
+    SetFlag FLAG_CAUGHT_GIRATINA
+    SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     ReleaseAll
     End
 
@@ -54,7 +54,7 @@ _0090:
     End
 
 _009B:
-    ClearFlag FLAG_UNK_0x0250
+    ClearFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     BlackOutFromBattle
     ReleaseAll
     End

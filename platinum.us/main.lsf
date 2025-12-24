@@ -223,7 +223,7 @@ Static main
 	Object main.nef.p/src_enc_effects.c.o
 	Object main.nef.p/src_field_battle_data_transfer.c.o
 	Object main.nef.p/src_unk_020528D0.c.o
-	Object main.nef.p/src_unk_02052C6C.c.o
+	Object main.nef.p/src_clear_game.c.o
 	Object main.nef.p/src_field_map_change.c.o
 	Object main.nef.p/src_unk_02054884.c.o
 	Object main.nef.p/src_terrain_attributes.c.o
