@@ -64,7 +64,7 @@ PokemonLeagueFlintRoom_PostBattle:
 PokemonLeagueFlintRoom_FlintIntro:
     Message PokemonLeagueFlintRoom_Text_FlintIntroPart1
     CloseMessage
-    ApplyMovement POKEMON_LEAGUE_FLINT_ROOM_FLINT, PokemonLeagueFlintRoom_Movement_FlintTurnInPlace
+    ApplyMovement POKEMON_LEAGUE_FLINT_ROOM_FLINT, PokemonLeagueFlintRoom_Movement_WalkFastInPlace
     WaitMovement
     Message PokemonLeagueFlintRoom_Text_FlintIntroPart2
     Return
@@ -90,7 +90,7 @@ PokemonLeagueFlintRoom_FlintGameCompletedPostBattle:
     Return
 
     .balign 4, 0
-PokemonLeagueFlintRoom_Movement_FlintTurnInPlace:
+PokemonLeagueFlintRoom_Movement_WalkFastInPlace:
     LockDir
     WalkOnSpotNormalSouth 3
     WalkOnSpotFastSouth 4

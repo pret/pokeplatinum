@@ -37,14 +37,14 @@ _000E:
     WaitTime 30, VAR_RESULT
     TriggerPlatformLift
     WaitTime 30, VAR_RESULT
-    SetFlag FLAG_UNK_0x023A
-    SetFlag FLAG_UNK_0x023B
+    SetFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA
+    SetFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
     ApplyMovement LOCALID_PLAYER, _013C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_HALL_OF_FAME, 0, 5, 23, 0
+    Warp MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME, 0, 5, 23, 0
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
