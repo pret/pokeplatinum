@@ -33,7 +33,6 @@
 #include "res/text/bank/contest_text.h"
 
 const UnkStruct_020F568C Unk_020F568C[CONTEST_EFFECT_MAX] = {
-    // TODO: contest move effects?
     [CONTEST_EFFECT_NONE] = {
         0x0,
         0x0,
@@ -428,7 +427,7 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int contes
     v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
     v2 = Heap_AllocAtEnd(heapID, v6 + 1);
 
-    if ((isGameCompleted == TRUE) && (isNatDexObtained == TRUE)) {
+    if (isGameCompleted == TRUE && isNatDexObtained == TRUE) {
         v5 = 1;
     }
 
@@ -712,31 +711,31 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int contes
             continue;
         }
 
-        if ((contestType == CONTEST_TYPE_COOL) && v6[v0].unk_04_0) {
+        if (contestType == CONTEST_TYPE_COOL && v6[v0].unk_04_0) {
             if (v6[v0].unk_04_0 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((contestType == CONTEST_TYPE_BEAUTY) && v6[v0].unk_04_2) {
+        } else if (contestType == CONTEST_TYPE_BEAUTY && v6[v0].unk_04_2) {
             if (v6[v0].unk_04_2 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((contestType == CONTEST_TYPE_CUTE) && v6[v0].unk_04_4) {
+        } else if (contestType == CONTEST_TYPE_CUTE && v6[v0].unk_04_4) {
             if (v6[v0].unk_04_4 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((contestType == CONTEST_TYPE_SMART) && v6[v0].unk_04_6) {
+        } else if (contestType == CONTEST_TYPE_SMART && v6[v0].unk_04_6) {
             if (v6[v0].unk_04_6 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((contestType == CONTEST_TYPE_TOUGH) && v6[v0].unk_04_8) {
+        } else if (contestType == CONTEST_TYPE_TOUGH && v6[v0].unk_04_8) {
             if (v6[v0].unk_04_8 > 1) {
                 v8[v3++] = v0;
             } else {
@@ -821,7 +820,6 @@ void sub_02095790(int param0, int param1, u32 *destMessageID, u32 *param3)
     }
 }
 
-// get messageID based on contest rank, or link contest, or practice
 u32 sub_02095848(int contestRank, int param1, BOOL isLinkContest)
 {
     u32 messageID;
@@ -887,7 +885,6 @@ u32 Contest_GetContestTypeMessageID(int contestType)
     return sub_020958C4(contestType, 2);
 }
 
-// Contest_GetContestTypeMessageID, except if Param1 is 5, then it's just the ID for "CONTEST"
 u32 sub_020958C4(int contestType, int param1)
 {
     u32 messageID;
