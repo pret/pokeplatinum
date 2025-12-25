@@ -11,13 +11,11 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/battle_tower.h"
 
-#include "overlay104/ov104_0222E930.h"
+#include "overlay104/frontier_script_context.h"
 #include "overlay104/ov104_0222FBE4.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022394A4.h"
 #include "overlay104/ov104_0223A0C4.h"
-#include "overlay104/struct_ov104_0222E930_decl.h"
-#include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "savedata/save_table.h"
@@ -35,18 +33,11 @@
 
 #include "constdata/const_020EA358.h"
 
-BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_022392C0(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02239300(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02239314(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02239364(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_0223939C(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02239400(UnkStruct_ov104_0222E930 *param0);
-static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 *param0);
+static BOOL ov104_0223942C(FrontierScriptContext *param0);
 static u16 ov104_0223927C(BattleTower *battleTower, u8 param1);
-static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, BattleTower *battleTower, SaveData *saveData, u16 param3, u16 param4);
+static BOOL ov104_02239464(FrontierScriptContext *param0, BattleTower *battleTower, SaveData *saveData, u16 param3, u16 param4);
 
-BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_84(FrontierScriptContext *param0)
 {
     TVBroadcast *broadcast;
     BattleTower *battleTower;
@@ -54,7 +45,7 @@ BOOL ov104_02239130(UnkStruct_ov104_0222E930 *param0)
     u16 *v7;
     UnkStruct_ov104_02230BE4 *v8 = sub_0209B970(param0->unk_00->unk_00);
 
-    functionIndex = ov104_0222EA48(param0);
+    functionIndex = FrontierScriptContext_ReadHalfWord(param0);
     v6 = ov104_0222FC00(param0);
     v7 = ov104_0222FBE4(param0);
     battleTower = sub_0209B978(param0->unk_00->unk_00);
@@ -159,13 +150,13 @@ static u16 ov104_0223927C(BattleTower *battleTower, u8 param)
     }
 }
 
-BOOL ov104_022392C0(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_85(FrontierScriptContext *param0)
 {
     u8 v0;
     u16 *v1;
     BattleTower *battleTower;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
-    u16 v4 = (*((param0)->unk_1C++));
+    u16 v4 = FrontierScriptContext_ReadByte(param0);
 
     battleTower = sub_0209B978(param0->unk_00->unk_00);
 
@@ -179,7 +170,7 @@ BOOL ov104_022392C0(UnkStruct_ov104_0222E930 *param0)
     return 1;
 }
 
-BOOL ov104_02239300(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_86(FrontierScriptContext *param0)
 {
     BattleTower *battleTower = sub_0209B978(param0->unk_00->unk_00);
     BattleTower_Free(battleTower);
@@ -187,7 +178,7 @@ BOOL ov104_02239300(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_02239314(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_87(FrontierScriptContext *param0)
 {
     FieldBattleDTO *v0;
     BattleTower *battleTower;
@@ -204,7 +195,7 @@ BOOL ov104_02239314(UnkStruct_ov104_0222E930 *param0)
     return 1;
 }
 
-BOOL ov104_02239364(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_88(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
     FieldBattleDTO *v1;
@@ -221,7 +212,7 @@ BOOL ov104_02239364(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_0223939C(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_89(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
@@ -250,33 +241,33 @@ BOOL ov104_0223939C(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_02239400(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_8A(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222EA48(param0);
-    u16 v1 = ov104_0222EA48(param0);
+    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
+    u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
 
-    param0->unk_78[0] = v0;
-    param0->unk_78[1] = v1;
+    param0->data[0] = v0;
+    param0->data[1] = v1;
 
-    ov104_0222E974(param0, ov104_0223942C);
+    FrontierScriptContext_Pause(param0, ov104_0223942C);
     return 1;
 }
 
-static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 *param0)
+static BOOL ov104_0223942C(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
 
     battleTower = sub_0209B978(param0->unk_00->unk_00);
 
-    if (ov104_02239464(param0, battleTower, v1->saveData, param0->unk_78[0], param0->unk_78[1]) == 1) {
+    if (ov104_02239464(param0, battleTower, v1->saveData, param0->data[0], param0->data[1]) == 1) {
         return 1;
     }
 
     return 0;
 }
 
-static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, BattleTower *battleTower, SaveData *saveData, u16 param3, u16 param4)
+static BOOL ov104_02239464(FrontierScriptContext *param0, BattleTower *battleTower, SaveData *saveData, u16 param3, u16 param4)
 {
     u16 *v0;
     const void *v1 = sub_0203664C(1 - CommSys_CurNetId());
