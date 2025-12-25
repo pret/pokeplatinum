@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0205964C_H
 #define POKEPLATINUM_UNK_0205964C_H
 
-#include "struct_decls/struct_02029894_decl.h"
 #include "struct_defs/struct_0205964C.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
 
@@ -40,7 +40,7 @@ void sub_02059D0C(int unused0, int unused1, void *param2, void *unused3);
 BOOL sub_02059D2C(void);
 void sub_02059EAC(int param0, int unused1, void *unused2, void *unused3);
 u8 *sub_02059EBC(int param0, void *unused1, int unused2);
-UnkStruct_02029894 *sub_0205A080(SaveData *saveData);
+SecretBase *sub_0205A080(SaveData *saveData);
 void sub_0205A0A0(void);
 void sub_0205A0BC(void);
 
