@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0205F180_H
 #define POKEPLATINUM_UNK_0205F180_H
 
+#include "generated/movement_actions.h"
+
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -23,7 +25,7 @@ int sub_0206140C(PlayerAvatar *playerAvatar);
 int sub_02061434(PlayerAvatar *playerAvatar, int param1);
 u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3, int param4, int param5);
 int sub_02061544(PlayerAvatar *playerAvatar);
-void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 param1, int param2);
+void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, enum MovementAction movementAction, int param2);
 u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1);
 void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int direction, int *x, int *z);
 void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z);

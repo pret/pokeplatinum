@@ -11,10 +11,10 @@
 #include "field/field_system.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
 #include "overlay023/ov23_02254A14.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
@@ -55,12 +55,6 @@
 #include "res/text/bank/underground_capture_flag.h"
 #include "res/text/bank/underground_common.h"
 #include "res/text/bank/underground_pc.h"
-
-#define SECRET_BASE_WIDTH  32
-#define SECRET_BASE_HEIGHT 32
-
-#define PC_COORDINATE_X 15
-#define PC_COORDINATE_Z 12
 
 enum UndergroundPCMenuState {
     UG_PC_MENU_STATE_INIT = 0,
@@ -163,7 +157,7 @@ int UndergroundPC_GetPCAtCoordinates(Coordinates *coordinates, int dir)
 
     if (z == PC_COORDINATE_Z) {
         modifier = 0;
-    } else if (z == PC_COORDINATE_Z + SECRET_BASE_HEIGHT) {
+    } else if (z == PC_COORDINATE_Z + SECRET_BASE_DEPTH) {
         modifier = MAX_CONNECTED_PLAYERS; // bug: would lead to out of bounds array access
     } else {
         return PC_NONE;
@@ -370,7 +364,7 @@ static void UndergroundPC_InitMenu(UndergroundMenu *menu, int startBankEntry, in
     int trueOptionCount = optionCount + 1;
     BOOL radarEnabled = TRUE;
 
-    if (UndergroundRecord_GetFlagRank(SaveData_UndergroundRecord(menu->fieldSystem->saveData)) < BASE_FLAG_GOLD) {
+    if (UndergroundRecord_GetFlagRank(SaveData_GetUndergroundRecord(menu->fieldSystem->saveData)) < BASE_FLAG_GOLD) {
         radarEnabled = FALSE;
         trueOptionCount -= 1;
     }
@@ -651,7 +645,7 @@ static BOOL UndergroundPC_DecorateTask(FieldTask *task)
         break;
     case DECORATE_STATE_END:
         if (IsScreenFadeDone()) {
-            ov23_0224B2C8(fieldSystem);
+            SecretBases_LoadCurrentPlayerBase(fieldSystem);
             SystemFlag_SetDecoratedSecretBase(SaveData_GetVarsFlags(fieldSystem->saveData));
             UndergroundPC_OpenPCMenu(fieldSystem);
             Heap_Free(ctx);
@@ -952,7 +946,7 @@ void UndergroundPC_ProcessTakenFlag(int unused0, int unused1, void *data, void *
     }
 
     UndergroundPlayer_TryTakeFlagFromBase(pcInteraction->playerNetID, pcInteraction->pcNetID);
-    ov23_0224D500(pcInteraction->playerNetID, pcInteraction->pcNetID);
+    SecretBases_QueueObtainedFlagMessage(pcInteraction->playerNetID, pcInteraction->pcNetID);
 }
 
 static void UndergroundPC_UpdateCursorPos(UndergroundMenu *menu)

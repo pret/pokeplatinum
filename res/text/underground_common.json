@@ -212,37 +212,37 @@
       "en_US": "OK, see you around!"
     },
     {
-      "id": "pl_msg_00000634_00033",
+      "id": "UndergroundCommon_Text_ItemWasUsed",
       "en_US": "The {STRVAR_1 25, 3, 0} was used!"
     },
     {
-      "id": "pl_msg_00000634_00034",
+      "id": "UndergroundCommon_Text_DiscoveredCavern",
       "en_US": "Discovered a small cavern!\r"
     },
     {
-      "id": "pl_msg_00000634_00035",
+      "id": "UndergroundCommon_Text_MakeBasePrompt",
       "en_US": [
         "Would you like to make your\n",
         "Secret Base here?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00036",
+      "id": "UndergroundCommon_Text_MoveBasePrompt",
       "en_US": "Would you like to move here?"
     },
     {
-      "id": "pl_msg_00000634_00037",
+      "id": "UndergroundCommon_Text_LeaveEntranceOpenOrClose",
       "en_US": [
         "Leave the entrance open?\n",
         "Or close it so you can decorate?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00038",
+      "id": "UndergroundCommon_Text_LeaveDoorOpen",
       "en_US": "Leave door open"
     },
     {
-      "id": "pl_msg_00000634_00039",
+      "id": "UndergroundCommon_Text_CloseAndDecorate",
       "en_US": "Close and decorate"
     },
     {
@@ -250,7 +250,7 @@
       "garbage": 24
     },
     {
-      "id": "pl_msg_00000634_00041",
+      "id": "UndergroundCommon_Text_EnterOwnBasePrompt",
       "en_US": [
         "It’s your own Secret Base.\n",
         "Would you like to go in?"
@@ -265,11 +265,11 @@
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000634_00044",
+      "id": "UndergroundCommon_Text_EnteredOwnBase",
       "en_US": "You entered your own Secret Base."
     },
     {
-      "id": "pl_msg_00000634_00045",
+      "id": "UndergroundCommon_Text_DiscoveredCavernEnterPrompt",
       "en_US": [
         "Discovered a small cavern!\n",
         "Would you like to go in?"
@@ -280,14 +280,14 @@
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000634_00047",
+      "id": "UndergroundCommon_Text_OpenDoorAndExitBasePrompt",
       "en_US": [
         "Open the door and exit the\n",
         "Secret Base?"
       ]
     },
     {
-      "id": "pl_msg_00000634_00048",
+      "id": "UndergroundCommon_Text_CommsWillBeLaunched",
       "en_US": [
         "DS Wireless Communications will be\n",
         "launched."
@@ -298,11 +298,11 @@
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000634_00050",
+      "id": "UndergroundCommon_Text_ExitBasePrompt",
       "en_US": "Exit the Secret Base?"
     },
     {
-      "id": "pl_msg_00000634_00051",
+      "id": "UndergroundCommon_Text_EscapedToAvoidDanger",
       "en_US": [
         "It’s an earthquake!\r",
         "Escaped into the corridor\n",
@@ -321,7 +321,7 @@
       "garbage": 33
     },
     {
-      "id": "pl_msg_00000634_00054",
+      "id": "UndergroundCommon_Text_CantBeUsedHere",
       "en_US": "That can’t be used here!"
     },
     {
@@ -329,11 +329,11 @@
       "en_US": "That can’t be placed there."
     },
     {
-      "id": "pl_msg_00000634_00056",
+      "id": "UndergroundCommon_Text_ClosedHole",
       "en_US": "Closed up the hole."
     },
     {
-      "id": "pl_msg_00000634_00057",
+      "id": "UndergroundCommon_Text_CantMoveBaseSomeoneInside",
       "en_US": [
         "Someone is inside your Secret Base.\n",
         "You may not move your base now."
@@ -399,7 +399,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00068",
+      "id": "UndergroundCommon_Text_BlockedEntranceToDecorate",
       "en_US": [
         "Blocked the entrance to decorate\n",
         "the Secret Base."
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00074",
+      "id": "UndergroundCommon_Text_CantDrillInBase",
       "en_US": [
         "You can’t drill holes inside\n",
         "a Secret Base!"
@@ -536,7 +536,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00088",
+      "id": "UndergroundCommon_Text_WallCrumbledCantEnter",
       "en_US": [
         "...\r",
         "The wall started to crumble.\n",
@@ -610,7 +610,7 @@
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000634_00104",
+      "id": "UndergroundCommon_Text_PlayerEnteredPlayersSecretBase",
       "en_US": [
         "{STRVAR_1 3, 0, 0} entered\n",
         "{STRVAR_1 3, 1, 0}’s Secret Base."
@@ -629,18 +629,18 @@
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000634_00108",
+      "id": "UndergroundCommon_Text_PlayerObtainedPlayersFlag",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "{STRVAR_1 3, 1, 0}’s Flag!"
       ]
     },
     {
-      "id": "pl_msg_00000634_00109",
+      "id": "UndergroundCommon_Text_PlayerTookBackFlag",
       "en_US": "{STRVAR_1 3, 0, 0} took back the Flag!"
     },
     {
-      "id": "pl_msg_00000634_00110",
+      "id": "UndergroundCommon_Text_PlayerTookPlayersFlag",
       "en_US": [
         "{STRVAR_1 3, 0, 0} took\n",
         "{STRVAR_1 3, 1, 0}’s Flag!"

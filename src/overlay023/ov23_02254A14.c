@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02029894_decl.h"
 #include "struct_defs/underground.h"
 
 #include "field/field_system.h"
@@ -15,8 +14,8 @@
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
-#include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_022542CC.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/struct_ov23_022542D8_decl.h"
 #include "overlay023/struct_ov23_02254594_decl.h"
 
@@ -29,6 +28,8 @@
 #include "system.h"
 #include "text.h"
 #include "unk_0202854C.h"
+
+#include "res/text/bank/underground_decorate_base.h"
 
 typedef struct {
     int unk_00;
@@ -106,7 +107,7 @@ typedef struct {
     u8 unk_51E;
     u8 unk_51F;
     u8 unk_520;
-    u8 secretBaseMaxRemovableRocks;
+    u8 secretBaseUnremovableRocks;
     u8 secretBaseMaxDisplayItems;
 } UnkStruct_ov23_02256098;
 
@@ -116,39 +117,39 @@ static BOOL ov23_02254DF8(FieldTask *param0);
 static BOOL ov23_02255100(FieldTask *param0);
 static BOOL ov23_02255580(FieldTask *param0);
 static BOOL ov23_02255850(FieldTask *param0);
-static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_ov23_02256098 *param2);
-static void ov23_02254A94(FieldSystem *fieldSystem, const int param1);
-static void ov23_02254AA4(const int param0, UnkStruct_ov23_02256098 *param1);
+static void ov23_02254A14(FieldSystem *fieldSystem, int param1, UnkStruct_ov23_02256098 *param2);
+static void ov23_02254A94(FieldSystem *fieldSystem, int param1);
+static void ov23_02254AA4(int param0, UnkStruct_ov23_02256098 *param1);
 static BOOL ov23_02255A98(const UnkStruct_ov23_02255A98 *param0, const UnkStruct_ov23_02255BF4 *param1);
-static BOOL ov23_02255B14(const int param0, const int param1, const UnkStruct_ov23_02255BF4 *param2, int *param3);
+static BOOL ov23_02255B14(int param0, int param1, const UnkStruct_ov23_02255BF4 *param2, int *param3);
 static int ov23_02255B78(const UnkStruct_ov23_02255A98 *param0, UnkStruct_ov23_02255BF4 *param1);
-static void ov23_02255BB8(const UnkStruct_ov23_02255A98 *param0, const int param1, UnkStruct_ov23_02255BF4 *param2);
-static void ov23_02255BF4(const int param0, UnkStruct_ov23_02255BF4 *param1);
+static void ov23_02255BB8(const UnkStruct_ov23_02255A98 *param0, int param1, UnkStruct_ov23_02255BF4 *param2);
+static void ov23_02255BF4(int param0, UnkStruct_ov23_02255BF4 *param1);
 static BOOL ov23_02255C30(const UnkStruct_ov23_02255C30 *param0, const UnkStruct_ov23_02255C30 *param1);
-static BOOL ov23_02255C58(const UnkStruct_ov23_02255C30 *param0, const int param1, const int param2);
+static BOOL ov23_02255C58(const UnkStruct_ov23_02255C30 *param0, int param1, int param2);
 static BOOL ov23_02255B58(const UnkStruct_ov23_02255C30 *param0);
 static void ov23_02255C78(FieldSystem *fieldSystem, UnkStruct_ov23_02256098 *param1, UnkStruct_ov23_02255BF4 *param2);
-static void ov23_02255D1C(const int param0, const int param1, const int param2, const int param3, UnkStruct_ov23_02255BF4 *param4);
+static void ov23_02255D1C(int param0, int param1, int param2, int param3, UnkStruct_ov23_02255BF4 *param4);
 static void ov23_02255D78(FieldSystem *fieldSystem, UnkStruct_ov23_02255BF4 *param1);
 static void ov23_02255DDC(FieldSystem *fieldSystem, const UnkStruct_ov23_02255BF4 *param1);
-static const int ov23_02255E14(FieldSystem *fieldSystem, const int param1);
-static void ov23_02255E2C(const int param0, UnkStruct_ov23_02256098 *param1);
+static int ov23_02255E14(FieldSystem *fieldSystem, int param1);
+static void ov23_02255E2C(int param0, UnkStruct_ov23_02256098 *param1);
 static void ov23_02255E8C(UnkStruct_ov23_02256098 *param0);
-static void ov23_02255EBC(const int param0, UnkStruct_ov23_02256098 *param1);
+static void ov23_02255EBC(int param0, UnkStruct_ov23_02256098 *param1);
 static void ov23_02255EC4(UnkStruct_ov23_02255EC4 *param0);
 static void ov23_02255EF0(UnkStruct_ov23_02255EC4 *param0);
 static void ov23_02255EFC(UnkStruct_ov23_02255EC4 *param0);
-static void ov23_02255F04(const int param0, const int param1, UnkStruct_ov23_02255EC4 *param2);
+static void ov23_02255F04(int param0, int param1, UnkStruct_ov23_02255EC4 *param2);
 static void ov23_02255F20(UnkStruct_ov23_02255EC4 *param0);
 static BOOL ov23_02256098(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2);
 static BOOL ov23_02256104(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2);
 static BOOL ov23_02256174(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2);
 static BOOL ov23_022561BC(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2);
 static void ov23_02256228(UnkStruct_ov23_02256228 *param0);
-static void ov23_0225623C(const int param0, const int param1, UnkStruct_ov23_02256228 *param2);
+static void ov23_0225623C(int param0, int param1, UnkStruct_ov23_02256228 *param2);
 static void ov23_0225624C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *param1);
 static void ov23_0225628C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *param1);
-static const int ov23_022562A8(UnkStruct_ov23_02256228 *param0);
+static int ov23_022562A8(UnkStruct_ov23_02256228 *param0);
 static void ov23_022562AC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2);
 static void ov23_022562B8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2);
 static void ov23_022562BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2);
@@ -163,14 +164,13 @@ static const UnkStruct_ov6_0223E6EC Unk_ov23_02256B88 = {
     ov23_022562C8
 };
 
-static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_ov23_02256098 *param2)
+static void ov23_02254A14(FieldSystem *fieldSystem, int param1, UnkStruct_ov23_02256098 *param2)
 {
-    UnkStruct_ov23_02255A98 *v0;
     VecFx32 v1;
 
     GF_ASSERT(param1 != 0);
 
-    v0 = &param2->unk_3C;
+    UnkStruct_ov23_02255A98 *v0 = &param2->unk_3C;
 
     v0->unk_18 = Good_GetWidth(param1);
     v0->unk_1C = Good_GetDepth(param1);
@@ -187,18 +187,16 @@ static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_
     v0->unk_14 = param1;
 }
 
-static void ov23_02254A94(FieldSystem *fieldSystem, const int param1)
+static void ov23_02254A94(FieldSystem *fieldSystem, int param1)
 {
     MapPropManager_InitOne(param1, fieldSystem->mapPropManager);
 }
 
-static void ov23_02254AA4(const int param0, UnkStruct_ov23_02256098 *param1)
+static void ov23_02254AA4(int param0, UnkStruct_ov23_02256098 *param1)
 {
-    UnkStruct_ov23_02255A98 *v0;
-
     GF_ASSERT(param1->unk_5C[param0].unk_00);
 
-    v0 = &(param1->unk_5C[param0].unk_04);
+    UnkStruct_ov23_02255A98 *v0 = &(param1->unk_5C[param0].unk_04);
     param1->unk_3C = (*v0);
 }
 
@@ -247,7 +245,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
     case 8:
         if (Text_IsPrinterActive(v1->unk_08) == 0) {
             if ((v1->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 ov23_02255EBC(3, v1);
             }
         }
@@ -273,11 +271,10 @@ static BOOL ov23_02254AD4(FieldTask *param0)
 
 static BOOL ov23_02254C84(FieldTask *param0)
 {
-    BOOL v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov23_02256098 *v2 = FieldTask_GetEnv(param0);
 
-    v0 = ov23_02254318(v2->unk_504);
+    BOOL v0 = ov23_02254318(v2->unk_504);
 
     if (v0) {
         switch (ov23_02254314(v2->unk_504)) {
@@ -289,21 +286,21 @@ static BOOL ov23_02254C84(FieldTask *param0)
             v4 = Underground_GetGoodsCountPC(v3);
 
             if (v4 == 0) {
-                v2->unk_08 = ov23_0224D39C(19);
+                v2->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_NoGoodsInPC);
                 v2->unk_51E = 0;
                 ov23_02255EBC(8, v2);
                 return 1;
             }
 
             if (v2->unk_51F > 15) {
-                v2->unk_08 = ov23_0224D39C(20);
+                v2->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_DisplayLimitReached);
                 v2->unk_51E = 0;
                 ov23_02255EBC(8, v2);
                 return 1;
             }
 
             if (v2->unk_51F + 1 > v2->secretBaseMaxDisplayItems) {
-                v2->unk_08 = ov23_0224D39C(20);
+                v2->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_DisplayLimitReached);
                 v2->unk_51E = 0;
                 ov23_02255EBC(8, v2);
                 return 1;
@@ -385,7 +382,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                     ov23_02254A14(fieldSystem, v9, v6);
                     v6->unk_04 = 1;
                 } else {
-                    v6->unk_08 = ov23_0224D39C(21);
+                    v6->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_GoodAlreadyDisplayed);
                     v6->unk_51E = 0;
                     v6->unk_04 = 5;
                 }
@@ -476,8 +473,8 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                 sub_02028ACC(v18, v16, v17);
                 Sound_PlayEffect(SEQ_SE_DP_BOWA);
 
-                ov23_0224D3BC(v6->unk_3C.unk_14);
-                v6->unk_08 = ov23_0224D39C(11);
+                SecretBases_SetGoodNameForPrinter(v6->unk_3C.unk_14);
+                v6->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_GoodWasPlaced);
                 ov23_0225628C(fieldSystem, &v6->unk_4DC);
 
                 v6->unk_51F++;
@@ -487,7 +484,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
             } else {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2);
 
-                v6->unk_08 = ov23_0224D39C(12);
+                v6->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CantPlaceHere);
                 v6->unk_51E = 0;
                 v6->unk_04 = 3;
             }
@@ -496,7 +493,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
     case 3:
         if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 v6->unk_04 = 2;
             }
         }
@@ -504,7 +501,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
     case 4:
         if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 ov23_02255EBC(3, v6);
                 return 1;
             }
@@ -513,7 +510,7 @@ static BOOL ov23_02254DF8(FieldTask *param0)
     case 5:
         if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 v6->unk_04 = 0;
             }
         }
@@ -642,23 +639,23 @@ static BOOL ov23_02255100(FieldTask *param0)
 
             if (v13) {
                 if (v16 != 0) {
-                    ov23_0224D3BC(v7->unk_5C[v16].unk_04.unk_14);
+                    SecretBases_SetGoodNameForPrinter(v7->unk_5C[v16].unk_04.unk_14);
 
                     if (v7->unk_5C[v16].unk_04.unk_14 == 6) {
-                        if (v7->secretBaseMaxRemovableRocks == 16) {
-                            v7->unk_08 = ov23_0224D39C(15);
+                        if (v7->secretBaseUnremovableRocks == 16) {
+                            v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CantRemoveBigBoulder);
                             v7->unk_51E = 0;
                             v7->unk_04 = 4;
                             break;
-                        } else if (v7->unk_520 - 1 < v7->secretBaseMaxRemovableRocks) {
-                            v7->unk_08 = ov23_0224D39C(18);
+                        } else if (v7->unk_520 - 1 < v7->secretBaseUnremovableRocks) {
+                            v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CantRemoveMoreBoulders);
                             v7->unk_51E = 0;
                             v7->unk_04 = 4;
                             break;
                         } else {
                             Sound_PlayEffect(SEQ_SE_DP_F017);
 
-                            v7->unk_08 = ov23_0224D39C(14);
+                            v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_BigBoulderRemoved);
                             GF_ASSERT(v7->unk_520 > 0);
                             v7->unk_520--;
                             v7->unk_51E = 0;
@@ -672,7 +669,7 @@ static BOOL ov23_02255100(FieldTask *param0)
                         Sound_PlayEffect(SEQ_SE_DP_BOX02);
                         sub_02028B20(v17, v16);
 
-                        v7->unk_08 = ov23_0224D39C(13);
+                        v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_GoodReturnedToPC);
                         GF_ASSERT(v7->unk_51F > 0);
                         v7->unk_51F--;
                         v7->unk_51E = 0;
@@ -684,7 +681,7 @@ static BOOL ov23_02255100(FieldTask *param0)
                     ov23_02255F20(v7->unk_4FC);
                     v7->unk_51E = 0;
                 } else {
-                    v7->unk_08 = ov23_0224D39C(22);
+                    v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CantPutAwayPC);
                     v7->unk_51E = 0;
                     v7->unk_04 = 4;
                 }
@@ -698,8 +695,8 @@ static BOOL ov23_02255100(FieldTask *param0)
             if ((v7->unk_51E++) >= 30) {
                 int v18;
 
-                ov23_0224D3B0();
-                v18 = v7->unk_520 - v7->secretBaseMaxRemovableRocks;
+                SecretBases_EraseDecorateBaseMessageBox();
+                v18 = v7->unk_520 - v7->secretBaseUnremovableRocks;
                 GF_ASSERT(v18 >= 0);
 
                 if (v18 == 0) {
@@ -715,7 +712,7 @@ static BOOL ov23_02255100(FieldTask *param0)
     case 3:
         if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 v7->unk_04 = 0;
                 return 1;
             }
@@ -724,7 +721,7 @@ static BOOL ov23_02255100(FieldTask *param0)
     case 4:
         if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 v7->unk_04 = 1;
             }
         }
@@ -733,13 +730,13 @@ static BOOL ov23_02255100(FieldTask *param0)
         if ((v7->unk_51E++) >= 10) {
             int v19;
 
-            v19 = v7->unk_520 - v7->secretBaseMaxRemovableRocks;
-            ov23_0224D3D0(v19, 0);
+            v19 = v7->unk_520 - v7->secretBaseUnremovableRocks;
+            SecretBases_SetTwoDigitNumberWithIndexForPrinter(v19, 0);
 
             if (v19 == 1) {
-                v7->unk_08 = ov23_0224D39C(17);
+                v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CanRemove1MoreBoulder);
             } else {
-                v7->unk_08 = ov23_0224D39C(25);
+                v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CanRemoveXMoreBoulders);
             }
 
             v7->unk_51E = 0;
@@ -749,7 +746,7 @@ static BOOL ov23_02255100(FieldTask *param0)
     case 6:
         if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 ov23_02255EBC(3, v7);
                 return 1;
             }
@@ -878,7 +875,7 @@ static BOOL ov23_02255580(FieldTask *param0)
             if (v13) {
                 if (v16 != 0) {
                     if (v7->unk_5C[v16].unk_04.unk_14 == 6) {
-                        v7->unk_08 = ov23_0224D39C(16);
+                        v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CantMoveBigBoulder);
                         v7->unk_51E = 0;
                         v7->unk_04 = 2;
                     } else {
@@ -891,19 +888,17 @@ static BOOL ov23_02255580(FieldTask *param0)
                         return 1;
                     }
                 } else {
-                    v7->unk_08 = ov23_0224D39C(23);
+                    v7->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CantMovePC);
                     v7->unk_51E = 0;
                     v7->unk_04 = 2;
                 }
-            } else {
-                (void)0;
             }
         }
         break;
     case 2:
         if (Text_IsPrinterActive(v7->unk_08) == 0) {
             if ((v7->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 v7->unk_04 = 1;
             }
         }
@@ -1005,7 +1000,7 @@ static BOOL ov23_02255850(FieldTask *param0)
             } else {
                 Sound_PlayEffect(SEQ_SE_DP_WALL_HIT2);
 
-                v6->unk_08 = ov23_0224D39C(12);
+                v6->unk_08 = SecretBases_PrintDecorateBaseMessage(UndergroundDecorateBase_Text_CantPlaceHere);
                 v6->unk_51E = 0;
                 v6->unk_04 = 2;
             }
@@ -1014,7 +1009,7 @@ static BOOL ov23_02255850(FieldTask *param0)
     case 2:
         if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 v6->unk_04 = 1;
             }
         }
@@ -1022,7 +1017,7 @@ static BOOL ov23_02255850(FieldTask *param0)
     case 3:
         if (Text_IsPrinterActive(v6->unk_08) == 0) {
             if ((v6->unk_51E++) >= 30) {
-                ov23_0224D3B0();
+                SecretBases_EraseDecorateBaseMessageBox();
                 ov23_02255EBC(6, v6);
                 return 1;
             }
@@ -1064,11 +1059,9 @@ static BOOL ov23_02255A98(const UnkStruct_ov23_02255A98 *param0, const UnkStruct
     return 1;
 }
 
-static BOOL ov23_02255B14(const int param0, const int param1, const UnkStruct_ov23_02255BF4 *param2, int *param3)
+static BOOL ov23_02255B14(int param0, int param1, const UnkStruct_ov23_02255BF4 *param2, int *param3)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 32; v0++) {
+    for (int v0 = 0; v0 < 32; v0++) {
         if (param2[v0].unk_00 == 1) {
             if (ov23_02255C58(&(param2[v0].unk_04.unk_00), param0, param1)) {
                 (*param3) = v0;
@@ -1077,7 +1070,7 @@ static BOOL ov23_02255B14(const int param0, const int param1, const UnkStruct_ov
         }
     }
 
-    (*param3) = 32;
+    *param3 = 32;
     return 0;
 }
 
@@ -1107,7 +1100,7 @@ static int ov23_02255B78(const UnkStruct_ov23_02255A98 *param0, UnkStruct_ov23_0
     return 0;
 }
 
-static void ov23_02255BB8(const UnkStruct_ov23_02255A98 *param0, const int param1, UnkStruct_ov23_02255BF4 *param2)
+static void ov23_02255BB8(const UnkStruct_ov23_02255A98 *param0, int param1, UnkStruct_ov23_02255BF4 *param2)
 {
     GF_ASSERT(param1 < 32);
     GF_ASSERT(!param2[param1].unk_00);
@@ -1116,7 +1109,7 @@ static void ov23_02255BB8(const UnkStruct_ov23_02255A98 *param0, const int param
     param2[param1].unk_04 = (*param0);
 }
 
-static void ov23_02255BF4(const int param0, UnkStruct_ov23_02255BF4 *param1)
+static void ov23_02255BF4(int param0, UnkStruct_ov23_02255BF4 *param1)
 {
     GF_ASSERT(param0 < 32);
     GF_ASSERT(param0 != 0);
@@ -1142,7 +1135,7 @@ static BOOL ov23_02255C30(const UnkStruct_ov23_02255C30 *param0, const UnkStruct
     }
 }
 
-static BOOL ov23_02255C58(const UnkStruct_ov23_02255C30 *param0, const int param1, const int param2)
+static BOOL ov23_02255C58(const UnkStruct_ov23_02255C30 *param0, int param1, int param2)
 {
     if ((param0->unk_00 <= param1) && (param1 <= param0->unk_08) && (param0->unk_04 <= param2) && (param2 <= param0->unk_0C)) {
         return 1;
@@ -1156,15 +1149,15 @@ static void ov23_02255C78(FieldSystem *fieldSystem, UnkStruct_ov23_02256098 *par
     int v0;
     int v1;
     int v2, v3;
-    UnkStruct_02029894 *v4 = sub_02029894(fieldSystem->saveData);
+    SecretBase *v4 = SaveData_GetSecretBase(fieldSystem->saveData);
 
     param1->unk_51F = 0;
     param1->unk_520 = 0;
-    param1->secretBaseMaxRemovableRocks = sub_GetMaxRemovableRocks(v4);
-    param1->secretBaseMaxDisplayItems = sub_GetMaxDisplayItemsCount(v4);
+    param1->secretBaseUnremovableRocks = SecretBase_GetUnremovableBoulderCount(v4);
+    param1->secretBaseMaxDisplayItems = SecretBase_GetPlacedGoodsLimit(v4);
 
     for (v0 = 0; v0 < 32; v0++) {
-        v1 = sub_020293B0(v4, v0);
+        v1 = SecretBase_GetGoodIDAtIndex(v4, v0);
 
         if (v1 != 0) {
             if (v1 == 6) {
@@ -1173,18 +1166,17 @@ static void ov23_02255C78(FieldSystem *fieldSystem, UnkStruct_ov23_02256098 *par
                 param1->unk_51F++;
             }
 
-            v2 = sub_020293FC(v4, v0);
-            v3 = sub_0202942C(v4, v0);
+            v2 = SecretBase_GetGoodXCoordAtIndex(v4, v0);
+            v3 = SecretBase_GetGoodZCoordAtIndex(v4, v0);
 
             ov23_02255D1C(v0, v1, v2, v3, param2);
         }
     }
 }
 
-static void ov23_02255D1C(const int param0, const int param1, const int param2, const int param3, UnkStruct_ov23_02255BF4 *param4)
+static void ov23_02255D1C(int param0, int param1, int param2, int param3, UnkStruct_ov23_02255BF4 *param4)
 {
     UnkStruct_ov23_02255A98 v0;
-    int v1, v2;
 
     v0.unk_10 = 0;
     v0.unk_14 = param1;
@@ -1235,7 +1227,7 @@ static void ov23_02255DDC(FieldSystem *fieldSystem, const UnkStruct_ov23_02255BF
     int v0;
     int v1;
     int v2, v3;
-    UnkStruct_02029894 *v4 = sub_02029894(fieldSystem->saveData);
+    SecretBase *v4 = SaveData_GetSecretBase(fieldSystem->saveData);
 
     for (v0 = 0; v0 < 32; v0++) {
         if (param1[v0].unk_00 == 1) {
@@ -1248,29 +1240,22 @@ static void ov23_02255DDC(FieldSystem *fieldSystem, const UnkStruct_ov23_02255BF
             v3 = 0;
         }
 
-        sub_02029308(v4, v0, v1, v2, v3);
+        SecretBase_AddGoodAtIndex(v4, v0, v1, v2, v3);
     }
 }
 
-static const int ov23_02255E14(FieldSystem *fieldSystem, const int param1)
+static int ov23_02255E14(FieldSystem *fieldSystem, int param1)
 {
-    int v0;
-
     GF_ASSERT(param1 != 0);
-    v0 = AreaDataManager_GetMapPropModelID(fieldSystem->areaDataManager, param1);
-
-    return v0;
+    return AreaDataManager_GetMapPropModelID(fieldSystem->areaDataManager, param1);
 }
 
-static void ov23_02255E2C(const int param0, UnkStruct_ov23_02256098 *param1)
+static void ov23_02255E2C(int param0, UnkStruct_ov23_02256098 *param1)
 {
-    MapProp *v0;
-    UnkStruct_ov23_02255A98 *v1;
-
     GF_ASSERT(param1->unk_5C[param0].unk_00);
 
-    v1 = &(param1->unk_5C[param0].unk_04);
-    v0 = MapPropManager_GetLoadedPropSafely(param1->fieldSystem->mapPropManager, v1->unk_10);
+    UnkStruct_ov23_02255A98 *v1 = &(param1->unk_5C[param0].unk_04);
+    MapProp *v0 = MapPropManager_GetLoadedPropSafely(param1->fieldSystem->mapPropManager, v1->unk_10);
 
     param1->unk_0C.unk_04 = MapProp_GetPosition(v0);
     param1->unk_0C.unk_00 = param0;
@@ -1279,18 +1264,16 @@ static void ov23_02255E2C(const int param0, UnkStruct_ov23_02256098 *param1)
 
 static void ov23_02255E8C(UnkStruct_ov23_02256098 *param0)
 {
-    MapProp *v0;
-    UnkStruct_ov23_02255A98 *v1;
     int v2 = param0->unk_0C.unk_00;
     GF_ASSERT(param0->unk_5C[v2].unk_00);
 
-    v1 = &(param0->unk_0C.unk_10);
-    v0 = MapPropManager_GetLoadedPropSafely(param0->fieldSystem->mapPropManager, v1->unk_10);
+    UnkStruct_ov23_02255A98 *v1 = &(param0->unk_0C.unk_10);
+    MapProp *v0 = MapPropManager_GetLoadedPropSafely(param0->fieldSystem->mapPropManager, v1->unk_10);
 
     MapProp_SetPosition(v0, &param0->unk_0C.unk_04);
 }
 
-static void ov23_02255EBC(const int param0, UnkStruct_ov23_02256098 *param1)
+static void ov23_02255EBC(int param0, UnkStruct_ov23_02256098 *param1)
 {
     param1->unk_00 = param0;
     param1->unk_04 = 0;
@@ -1299,8 +1282,7 @@ static void ov23_02255EBC(const int param0, UnkStruct_ov23_02256098 *param1)
 static void ov23_02255EC4(UnkStruct_ov23_02255EC4 *param0)
 {
     NNSG3dResMdl *v0;
-
-    Easy3D_InitRenderObjFromPath(4, "data/ug_base_cur.nsbmd", &param0->unk_00, &v0, &param0->unk_54);
+    Easy3D_InitRenderObjFromPath(HEAP_ID_FIELD1, "data/ug_base_cur.nsbmd", &param0->unk_00, &v0, &param0->unk_54);
 
     param0->unk_58.x = 0;
     param0->unk_58.y = 0;
@@ -1320,13 +1302,13 @@ static void ov23_02255EFC(UnkStruct_ov23_02255EC4 *param0)
     param0->unk_6C = 1;
 }
 
-static void ov23_02255F04(const int param0, const int param1, UnkStruct_ov23_02255EC4 *param2)
+static void ov23_02255F04(int param0, int param1, UnkStruct_ov23_02255EC4 *param2)
 {
     param2->unk_64 = param0;
     param2->unk_68 = param1;
-    param2->unk_58.x = (FX32_ONE * 16) * ((0 * 32) + param0) + (FX32_ONE * 8);
+    param2->unk_58.x = (FX32_ONE * 16) * param0 + (FX32_ONE * 8);
     param2->unk_58.y = FX32_ONE;
-    param2->unk_58.z = (FX32_ONE * 16) * ((0 * 32) + param1) + (FX32_ONE * 8);
+    param2->unk_58.z = (FX32_ONE * 16) * param1 + (FX32_ONE * 8);
 }
 
 static void ov23_02255F20(UnkStruct_ov23_02255EC4 *param0)
@@ -1334,14 +1316,14 @@ static void ov23_02255F20(UnkStruct_ov23_02255EC4 *param0)
     param0->unk_6C = 0;
 }
 
-static void ov23_02255F28(const int param0, const int param1, UnkStruct_ov23_02256000 *param2)
+static void ov23_02255F28(int touchX, int touchY, UnkStruct_ov23_02256000 *param2)
 {
-    if (param0 != 0xffff) {
-        param2->unk_00 = param0;
+    if (touchX != (u16)TOUCHSCREEN_INPUT_NONE) {
+        param2->unk_00 = touchX;
     }
 
-    if (param1 != 0xffff) {
-        param2->unk_04 = param1;
+    if (touchY != (u16)TOUCHSCREEN_INPUT_NONE) {
+        param2->unk_04 = touchY;
     }
 }
 
@@ -1349,18 +1331,16 @@ static void ov23_02255F40(FieldSystem *fieldSystem, UnkStruct_ov23_02255A98 *par
 {
     UnkStruct_ov23_02255C30 v0;
     VecFx32 v1;
-    int v2, v3;
-    int v4, v5;
     UnkStruct_ov5_021EB0E0 *v6 = fieldSystem->unk_8C;
 
     ov23_02255F28(gSystem.touchX, gSystem.touchY, param2);
 
     v1 = ov5_021EAFA4(param2->unk_00, param2->unk_04, v6);
-    v2 = v1.x / (FX32_ONE * 16);
-    v3 = v1.z / (FX32_ONE * 16);
+    int v2 = v1.x / (FX32_ONE * 16);
+    int v3 = v1.z / (FX32_ONE * 16);
 
-    v4 = param1->unk_18;
-    v5 = param1->unk_1C;
+    int v4 = param1->unk_18;
+    int v5 = param1->unk_1C;
 
     v0.unk_00 = v2 % 32;
     v0.unk_04 = v3 % 32;
@@ -1377,12 +1357,8 @@ static void ov23_02255F40(FieldSystem *fieldSystem, UnkStruct_ov23_02255A98 *par
         v1.z += (FX32_ONE * 8) * v5;
         v1.y = FX32_ONE;
 
-        {
-            MapProp *v7;
-
-            v7 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_10);
-            MapProp_SetPosition(v7, &v1);
-        }
+        MapProp *v7 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_10);
+        MapProp_SetPosition(v7, &v1);
     }
 }
 
@@ -1390,14 +1366,13 @@ static void ov23_02256000(FieldSystem *fieldSystem, UnkStruct_ov23_02256000 *par
 {
     UnkStruct_ov23_02255C30 v0;
     VecFx32 v1;
-    int v2, v3;
     UnkStruct_ov5_021EB0E0 *v4 = fieldSystem->unk_8C;
 
     ov23_02255F28(gSystem.touchX, gSystem.touchY, param1);
 
     v1 = ov5_021EAFA4(param1->unk_00, param1->unk_04, v4);
-    v2 = v1.x / (FX32_ONE * 16);
-    v3 = v1.z / (FX32_ONE * 16);
+    int v2 = v1.x / (FX32_ONE * 16);
+    int v3 = v1.z / (FX32_ONE * 16);
 
     v0.unk_00 = v2 % 32;
     v0.unk_04 = v3 % 32;
@@ -1417,7 +1392,6 @@ static void ov23_02256000(FieldSystem *fieldSystem, UnkStruct_ov23_02256000 *par
 
 static BOOL ov23_02256098(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
-    VecFx32 v0;
     BOOL v1 = 0;
     *param2 = 0;
 
@@ -1446,7 +1420,6 @@ static BOOL ov23_02256098(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
 
 static BOOL ov23_02256104(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
-    VecFx32 v0;
     BOOL v1 = 0;
     *param2 = 0;
 
@@ -1475,7 +1448,6 @@ static BOOL ov23_02256104(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
 
 static BOOL ov23_02256174(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
-    VecFx32 v0;
     BOOL v1 = 0;
     *param2 = 0;
 
@@ -1496,7 +1468,6 @@ static BOOL ov23_02256174(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
 
 static BOOL ov23_022561BC(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
-    VecFx32 v0;
     BOOL v1 = 0;
     *param2 = 0;
 
@@ -1532,7 +1503,7 @@ static void ov23_02256228(UnkStruct_ov23_02256228 *param0)
     param0->unk_10 = 0;
 }
 
-static void ov23_0225623C(const int param0, const int param1, UnkStruct_ov23_02256228 *param2)
+static void ov23_0225623C(int param0, int param1, UnkStruct_ov23_02256228 *param2)
 {
     param2->unk_04 = 0;
     param2->unk_08 = param1;
@@ -1543,8 +1514,6 @@ static void ov23_0225623C(const int param0, const int param1, UnkStruct_ov23_022
 
 static void ov23_0225624C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *param1)
 {
-    MapProp *v0;
-
     if (!param1->unk_10) {
         return;
     }
@@ -1554,24 +1523,22 @@ static void ov23_0225624C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *par
     if (param1->unk_04 >= param1->unk_08) {
         param1->unk_04 = 0;
         param1->unk_0C = (param1->unk_0C + 1) % 2;
-        v0 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_00);
+        MapProp *v0 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_00);
         MapProp_SetHidden(v0, param1->unk_0C);
     }
 }
 
 static void ov23_0225628C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *param1)
 {
-    MapProp *v0;
-
     if (!param1->unk_10) {
         return;
     }
 
-    v0 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_00);
+    MapProp *v0 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_00);
     MapProp_SetHidden(v0, 0);
 }
 
-static const int ov23_022562A8(UnkStruct_ov23_02256228 *param0)
+static int ov23_022562A8(UnkStruct_ov23_02256228 *param0)
 {
     return param0->unk_00;
 }
@@ -1601,10 +1568,14 @@ static void ov23_022562C8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyst
         return;
     }
 
-    {
-        MtxFx33 v1 = { FX32_ONE, 0, 0, 0, FX32_ONE, 0, 0, 0, FX32_ONE };
-        VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
+    // clang-format off
+    MtxFx33 v1 = {
+        FX32_ONE, 0, 0,
+        0, FX32_ONE, 0,
+        0, 0, FX32_ONE
+    };
+    // clang-format on
+    VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
 
-        Easy3D_DrawRenderObj(&v0->unk_00, &v0->unk_58, &v1, &v2);
-    }
+    Easy3D_DrawRenderObj(&v0->unk_00, &v0->unk_58, &v1, &v2);
 }

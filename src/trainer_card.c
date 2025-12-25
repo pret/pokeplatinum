@@ -109,7 +109,7 @@ u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem)
     SaveData *saveData = FieldSystem_GetSaveData(fieldSystem);
     GameRecords *gameRecords = SaveData_GetGameRecords(saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(saveData);
-    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(saveData);
+    UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(saveData);
     BattleFrontier *frontier = SaveData_GetBattleFrontier(saveData);
     trainerCardLevel = 0;
 

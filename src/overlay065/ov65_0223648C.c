@@ -1551,7 +1551,7 @@ static void ov65_02237970(UnkStruct_ov65_022367A8 *param0)
     v1 = CommInfo_CountReceived();
 
     if (CommInfo_IsReceivingData()) {
-        if (!sub_02036254(5)) {
+        if (!CommSys_IsCmdQueuedServer(5)) {
             v2 = 1;
         }
     }

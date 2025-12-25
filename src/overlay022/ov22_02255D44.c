@@ -549,7 +549,7 @@ int ov22_022562EC(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 11:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_TOP_HALF_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:

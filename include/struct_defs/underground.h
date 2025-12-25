@@ -3,7 +3,7 @@
 
 #include "constants/string.h"
 
-#include "struct_defs/struct_02029894.h"
+#include "struct_defs/underground_record.h"
 
 #include "overlay023/underground_defs.h"
 
@@ -11,8 +11,29 @@
 
 #define MAX_CAPTURED_FLAG_RECORDS 5
 
+typedef struct PlacedGood {
+    u8 x;
+    u8 z;
+    u8 goodID;
+} PlacedGood;
+
+typedef struct SecretBaseBoulder {
+    u8 x;
+    u8 z;
+} SecretBaseBoulder;
+
+typedef struct SecretBase {
+    PlacedGood placedGoods[MAX_PLACED_GOODS];
+    SecretBaseBoulder boulders[MAX_BASE_BOULDERS];
+    UndergroundRecord undergroundRecord;
+    u16 entranceX;
+    u16 entranceZ;
+    u8 entranceDir;
+    u8 active;
+} SecretBase;
+
 typedef struct Underground {
-    UnkStruct_02029894 unk_00;
+    SecretBase secretBase;
     u32 randomSeed;
     s32 unk_94;
     u8 unk_98;

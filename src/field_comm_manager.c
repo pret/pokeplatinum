@@ -6,8 +6,8 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02029894_decl.h"
 #include "struct_defs/struct_0205964C.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
@@ -715,7 +715,7 @@ static void sub_0205A058(void)
     FieldCommMan_SetTask(FieldCommMan_Delete, 0);
 }
 
-UnkStruct_02029894 *sub_0205A080(SaveData *saveData)
+SecretBase *sub_0205A080(SaveData *saveData)
 {
     if (!sFieldCommMan || !sFieldCommMan->unk_41) {
         return NULL;
