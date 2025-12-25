@@ -8,7 +8,6 @@
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
@@ -20,6 +19,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "trainer_info.h"
@@ -845,14 +845,14 @@ void PokemonSprite_LoadAnimFrames(NARC *narc, SpriteAnimFrame *frames, u16 speci
  * @brief Load the animation data for a given species and a client type.
  *
  * @param narc          Handle to the pl_poke_data archive
- * @param animationSys  Animation system container
+ * @param monAnimMan    Pokemon animation manager
  * @param sprite        Pre-loaded Pokemon sprite
  * @param species       Species to be loaded
  * @param face          Which face is visible to the player
- * @param reverse       If TRUE, reverse the sprite + animation
+ * @param flipSprite    If TRUE, flip the sprite + animation
  * @param frame         Which frame of the animation to initialize
  */
-void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame);
+void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimManager *monAnimMan, PokemonSprite *sprite, u16 species, int face, int flipSprite, int frame);
 
 /**
  * @brief Load the cry delay for a given species and a client type.

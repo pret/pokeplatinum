@@ -30,13 +30,13 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "save_player.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02015F84.h"
 #include "unk_0202F180.h"
 #include "unk_02092494.h"
 #include "vram_transfer.h"
@@ -80,7 +80,7 @@ static int sub_02098218(ApplicationManager *appMan, int *param1)
 
     VramTransfer_New(64, HEAP_ID_71);
 
-    v1->unk_04.unk_54 = sub_02015F84(HEAP_ID_71, 1, 0);
+    v1->unk_04.unk_54 = PokemonAnimManager_New(HEAP_ID_71, 1, FALSE);
     v1->unk_04.unk_04 = PaletteData_New(HEAP_ID_71);
 
     PaletteData_SetAutoTransparent(v1->unk_04.unk_04, 1);
@@ -175,7 +175,7 @@ static int sub_02098388(ApplicationManager *appMan, int *param1)
     Heap_Free(v0->unk_04.unk_00);
     VramTransfer_Free();
     PokemonSpriteManager_Free(v0->unk_04.unk_38);
-    sub_02015FB8(v0->unk_04.unk_54);
+    PokemonAnimManager_Free(v0->unk_04.unk_54);
     NARC_dtor(v0->unk_04.unk_3C);
 
     ov119_021D1844(&v0->unk_04);

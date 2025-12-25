@@ -57,7 +57,7 @@ pokeplatinum_c = files(
     'unk_0201567C.c',
     'unk_020158A8.c',
     'unk_02015920.c',
-    'unk_02015F84.c',
+    'pokemon_anim.c',
     'unk_02017038.c',
     'easy3d_object.c',
     'play_time_manager.c',

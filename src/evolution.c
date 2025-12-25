@@ -37,6 +37,7 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "poketch.h"
 #include "render_text.h"
@@ -49,7 +50,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
@@ -132,7 +132,7 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
     Window_DrawMessageBoxWithScrollCursor(v0->unk_04, 0, 1, 10);
 
     v0->unk_18 = PokemonSpriteManager_New(heapID);
-    v0->unk_44 = sub_02015F84(heapID, 1, 0);
+    v0->unk_44 = PokemonAnimManager_New(heapID, 1, FALSE);
     v0->unk_67 = 0;
     v0->unk_66 = 2;
     v0->unk_08 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, heapID);
@@ -197,7 +197,7 @@ void sub_0207B0E0(EvolutionData *param0)
     PaletteData_FreeBuffer(param0->unk_14, 3);
     PaletteData_Free(param0->unk_14);
     PokemonSpriteManager_Free(param0->unk_18);
-    sub_02015FB8(param0->unk_44);
+    PokemonAnimManager_Free(param0->unk_44);
     G3DPipelineBuffers_Free(param0->unk_34);
     sub_0207C460(param0->unk_00);
     MessageLoader_Free(param0->unk_08);
@@ -296,7 +296,7 @@ static void sub_0207B180(EvolutionData *param0)
         }
         break;
     case 5:
-        if ((Text_IsPrinterActive(param0->unk_65) == 0) && (Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
+        if ((Text_IsPrinterActive(param0->unk_65) == 0) && (Sound_IsPokemonCryPlaying() == 0) && (PokemonAnimManager_HasAnimCompleted(param0->unk_44, 0) == TRUE) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             sub_02015738(param0->unk_58, 1);
             Sound_PlayBasicBGM(SEQ_SHINKA);
             param0->unk_66 = 20;
@@ -392,7 +392,7 @@ static void sub_0207B180(EvolutionData *param0)
         }
         break;
     case 11:
-        if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (PokemonAnimManager_HasAnimCompleted(param0->unk_44, 0) == TRUE) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
             Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
             Pokemon_CalcAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
@@ -654,7 +654,7 @@ static void sub_0207B180(EvolutionData *param0)
         }
         break;
     case 43:
-        if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
+        if ((Sound_IsPokemonCryPlaying() == 0) && (PokemonAnimManager_HasAnimCompleted(param0->unk_44, 0) == TRUE) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00919);
             param0->unk_66 = 20;
