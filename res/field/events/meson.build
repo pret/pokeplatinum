@@ -191,7 +191,7 @@ events_files = files(
     'events_pokemon_league_lucian_room.json',
     'events_pokemon_league_elevator_to_champion_room.json',
     'events_pokemon_league_champion_room.json',
-    'events_pokemon_league_elevator_to_hall_of_fame.json',
+    'events_pokemon_league_hallway_to_hall_of_fame.json',
     'events_pokemon_league_hall_of_fame.json',
     'events_fight_area.json',
     'events_fight_area_pokecenter_1f.json',

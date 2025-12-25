@@ -106,7 +106,7 @@ _0183:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetFlag FLAG_MESPRIT_CAUGHT
+    SetFlag FLAG_CAUGHT_MESPRIT
     Message 5
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

@@ -2,23 +2,23 @@
 #include "res/text/bank/pokemon_league_south_pokecenter_1f.h"
 
 
-    ScriptEntry _0020
-    ScriptEntry _002C
-    ScriptEntry _0042
-    ScriptEntry _001A
-    ScriptEntry _0058
-    ScriptEntry _006B
+    ScriptEntry PokemonLeagueSouthPokecenter1F_Nurse
+    ScriptEntry PokemonLeagueSouthPokecenter1F_UnusedVendor2
+    ScriptEntry PokemonLeagueSouthPokecenter1F_UnusedVendor3
+    ScriptEntry PokemonLeagueSouthPokecenter1F_OnTransition
+    ScriptEntry PokemonLeagueSouthPokecenter1F_Pokefan
+    ScriptEntry PokemonLeagueSouthPokecenter1F_AceTrainer
     ScriptEntryEnd
 
-_001A:
-    SetFlag FLAG_UNK_0x09C0
+PokemonLeagueSouthPokecenter1F_OnTransition:
+    SetFlag FLAG_FIRST_ARRIVAL_OUTSIDE_VICTORY_ROAD
     End
 
-_0020:
+PokemonLeagueSouthPokecenter1F_Nurse:
     CallPokecenterNurse 0
     End
 
-_002C:
+PokemonLeagueSouthPokecenter1F_UnusedVendor2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -28,7 +28,7 @@ _002C:
     ReleaseAll
     End
 
-_0042:
+PokemonLeagueSouthPokecenter1F_UnusedVendor3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -38,21 +38,21 @@ _0042:
     ReleaseAll
     End
 
-_0058:
+PokemonLeagueSouthPokecenter1F_Pokefan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message PokemonLeagueSouthPokecenter1F_Text_TheObjectiveIsToReachThePokemonLeague
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_006B:
+PokemonLeagueSouthPokecenter1F_AceTrainer:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message PokemonLeagueSouthPokecenter1F_Text_VictoryRoadConfusesMe
     WaitABXPadPress
     CloseMessage
     ReleaseAll

@@ -186,7 +186,7 @@ int ov99_021D1028(ApplicationManager *appMan, int *param1)
         v0->unk_1110 = ov99_021D3F6C(v0->unk_110C, 1);
     }
 
-    if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
+    if (v0->unk_00->gameCompleted && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_75);
             v0->unk_1100 = 1;

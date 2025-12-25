@@ -12,7 +12,7 @@ _000E:
     End
 
 _001B:
-    ClearFlag FLAG_UNK_0x01D1
+    ClearFlag FLAG_HIDE_DAY_CARE_GYM_GUIDE
     Return
 
 _0021:

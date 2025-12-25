@@ -16,22 +16,22 @@ _0016:
     End
 
 _0031:
-    SetFlag FLAG_UNK_0x01DB
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_BUCK
     Return
 
 _0037:
-    GoToIfSet FLAG_UNK_0x0120, _0083
+    GoToIfSet FLAG_CAUGHT_HEATRAN, _0083
     CheckGameCompleted VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
     GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
-    GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
+    GoToIfUnset FLAG_CAUGHT_MESPRIT, _0083
     GoToIfNe VAR_UNK_0x409E, 1, _0083
-    ClearFlag FLAG_UNK_0x01DD
+    ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     Return
 
 _0083:
-    SetFlag FLAG_UNK_0x01DD
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     Return
 
 _0089:
@@ -39,7 +39,7 @@ _0089:
     End
 
 _0096:
-    SetFlag FLAG_UNK_0x01DD
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     RemoveObject 1
     ClearFlag FLAG_MAP_LOCAL
     End
@@ -97,7 +97,7 @@ _00E6:
     End
 
 _0155:
-    SetFlag FLAG_UNK_0x0120
+    SetFlag FLAG_CAUGHT_HEATRAN
     ReleaseAll
     End
 
@@ -229,7 +229,7 @@ _019C:
     Message 14
     CloseMessage
     SetVar VAR_UNK_0x40A0, 2
-    SetFlag FLAG_UNK_0x01DB
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_BUCK
     SetFlag FLAG_UNK_0x0231
     SetVar VAR_UNK_0x409E, 1
     SetFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN

@@ -2,7 +2,7 @@
   "key": 53282,
   "messages": [
     {
-      "id": "pl_msg_00000189_00000",
+      "id": "PokemonLeagueChampionRoom_Text_CynthiaIntro",
       "en_US": [
         "Cynthia: Have you been keeping well?\r",
         "Thank you for Mt. Coronet.\n",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000189_00001",
+      "id": "PokemonLeagueChampionRoom_Text_CynthiaDefeat",
       "en_US": [
         "Cynthia: That was excellent.\n",
         "Truly, an outstanding battle.\r",
@@ -42,14 +42,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000189_00002",
+      "id": "PokemonLeagueChampionRoom_Text_ComeWithMe",
       "en_US": [
         "Come with me.\n",
         "We’ll take the lift.\r"
       ]
     },
     {
-      "id": "pl_msg_00000189_00003",
+      "id": "PokemonLeagueChampionRoom_Text_CynthiaGameCompletedIntro",
       "en_US": [
         "Cynthia: One look at you tells\n",
         "me many things about you.\r",

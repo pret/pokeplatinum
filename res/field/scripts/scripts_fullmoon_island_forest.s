@@ -22,10 +22,10 @@ _000C:
     ReleaseObject 0
     ScrCmd_26A 0, 6, 8
     LockObject 0
-    SetFlag FLAG_UNK_0x024F
+    SetFlag FLAG_HIDE_FULLMOON_ISLAND_FOREST_CRESSELIA
     RemoveObject 0
     ActivateRoamingPokemon ROAMING_SLOT_CRESSELIA
-    GoToIfEq VAR_ROAMING_CRESSELIA_STATE, 3, _0074
+    GoToIfEq VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_RESET, _0074
     ClearFlag FLAG_UNK_0x0452
     AddObject 1
     SetFlag FLAG_UNK_0x011F
@@ -36,7 +36,7 @@ _000C:
     End
 
 _0074:
-    SetVar VAR_ROAMING_CRESSELIA_STATE, 0
+    SetVar VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_ROAMING
     ReleaseAll
     End
 

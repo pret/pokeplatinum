@@ -2,7 +2,7 @@
   "key": 54306,
   "messages": [
     {
-      "id": "pl_msg_00000184_00000",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_RivalIntro",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hold it!\n",
         "Don’t go off without me!\r",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000184_00001",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_RivalDefeat",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: I guess I’m not ready\n",
         "for the Pokémon League if I’m losing\f",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000184_00002",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_LetUsExamineYourGymBadges",
       "en_US": [
         "Let me confirm that you are qualified\n",
         "to challenge the Pokémon League.\r",
@@ -48,7 +48,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000184_00003",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_YouveCollectedAllGymBadges",
       "en_US": [
         "Very well!\r",
         "Trainer, you’ve indeed collected\n",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000184_00004",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_YouWillBeFacingTheEliteFour",
       "en_US": [
         "You will be facing the Elite Four\n",
         "of the Pokémon League.\r",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000184_00005",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_ImNeverGivingUp",
       "en_US": [
         "It doesn’t matter if the going is slow.\r",
         "Nor does it matter how many challenges\n",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000184_00006",
+      "id": "PokemonLeagueNorthPokecenter1F_Text_ExperienceItForYourself",
       "en_US": [
         "What is the Pokémon League?\n",
         "Don’t take my word for it.\r",

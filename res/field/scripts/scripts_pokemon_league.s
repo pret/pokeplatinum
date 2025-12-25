@@ -2,23 +2,23 @@
 #include "res/text/bank/pokemon_league.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0025
-    ScriptEntry _003C
+    ScriptEntry PokemonLeague_ArrowSignPokemonleague
+    ScriptEntry PokemonLeague_SignboardVictoryRoad
+    ScriptEntry PokemonLeague_Statue
     ScriptEntryEnd
 
-_000E:
-    ShowArrowSign 1
+PokemonLeague_ArrowSignPokemonleague:
+    ShowArrowSign PokemonLeague_Text_PokemonLeagueAhead
     End
 
-_0025:
-    ShowLandmarkSign 2
+PokemonLeague_SignboardVictoryRoad:
+    ShowLandmarkSign PokemonLeague_Text_VictoryRoadAhead
     End
 
-_003C:
+PokemonLeague_Statue:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 0
+    Message PokemonLeague_Text_PokemonLeagueThePinnacleOfTrainerdom
     WaitABXPadPress
     CloseMessage
     ReleaseAll

@@ -210,7 +210,7 @@ pokeplatinum_c = files(
     'encounter.c',
     'field_battle_data_transfer.c',
     'unk_020528D0.c',
-    'unk_02052C6C.c',
+    'clear_game.c',
     'field_map_change.c',
     'unk_02054884.c',
     'terrain_attributes.c',

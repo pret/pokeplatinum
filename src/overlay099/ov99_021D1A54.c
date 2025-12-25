@@ -320,7 +320,7 @@ static void ov99_021D1A54(UnkStruct_ov99_021D2CB0 *param0)
 {
     u8 v0;
 
-    if (param0->unk_00->unk_00 == 0) {
+    if (param0->unk_00->gender == 0) {
         v0 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_0C, PLTTBUF_MAIN_OBJ, param0->unk_18, param0->unk_1C, param0->unk_10F8, 31, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
         SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_18, param0->unk_1C, param0->unk_10F8, 28, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
         SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_18, param0->unk_1C, param0->unk_10F8, 29, FALSE, 10001);
@@ -382,7 +382,7 @@ static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite **param
 
         GF_ASSERT(param0->unk_10F4 == NULL);
 
-        if (param0->unk_00->unk_00 == 0) {
+        if (param0->unk_00->gender == 0) {
             v5 = 27;
         } else {
             v5 = 32;

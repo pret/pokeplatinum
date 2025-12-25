@@ -163,7 +163,7 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
     case 0:
         GF_ASSERT(NELEMS(Unk_ov99_021D5394) > param1);
 
-        if (param0->unk_00->unk_00 == 0) {
+        if (param0->unk_00->gender == 0) {
             v3 = &Unk_ov99_021D5394[param1];
         } else {
             v3 = &Unk_ov99_021D52F4[param1];
@@ -172,7 +172,7 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
     case 1:
         GF_ASSERT(NELEMS(Unk_ov99_021D52F4) > param1);
 
-        if (param0->unk_00->unk_00 == 0) {
+        if (param0->unk_00->gender == 0) {
             v3 = &Unk_ov99_021D5274[param1];
         } else {
             v3 = &Unk_ov99_021D52B4[param1];
@@ -219,7 +219,7 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1)
             v0 = G2_GetOBJCharPtr();
             v2 = Sprite_GetImageProxy(param1->sprite);
 
-            if (param0->unk_00->unk_00 == 0) {
+            if (param0->unk_00->gender == 0) {
                 MI_CpuCopy32(&param0->unk_10F4[param0->unk_1114.unk_02 * ((0x20 * 8) / 2)], (void *)((u32)v0 + 0x1d * 0x20 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
                 MI_CpuCopy32(&param0->unk_10F4[param0->unk_1114.unk_02 * ((0x20 * 8) / 2) + 0x20], (void *)((u32)v0 + 0x1e * 0x20 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
                 MI_CpuCopy32(&param0->unk_10F4[param0->unk_1114.unk_02 * ((0x20 * 8) / 2) + 0x40], (void *)((u32)v0 + 0x25 * 0x20 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);

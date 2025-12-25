@@ -341,8 +341,8 @@ _0494:
     EndMovement
 
 _04A4:
-    GoToIfEq VAR_UNK_0x40C4, 1, _04C6
-    GoToIfEq VAR_UNK_0x40C5, 1, _04C6
+    GoToIfEq VAR_SPEAR_PILLAR_DIALGA_STATE, 1, _04C6
+    GoToIfEq VAR_SPEAR_PILLAR_PALKIA_STATE, 1, _04C6
     SetVar VAR_RESULT, 1
     Return
 

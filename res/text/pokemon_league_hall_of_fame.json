@@ -2,14 +2,14 @@
   "key": 53290,
   "messages": [
     {
-      "id": "pl_msg_00000191_00000",
+      "id": "PokemonLeagueHallOfFame_Text_BeenAWhileSinceIEnteredThisRoom",
       "en_US": [
         "Rowan: It’s been a long while since\n",
         "I last entered this room...\r"
       ]
     },
     {
-      "id": "pl_msg_00000191_00001",
+      "id": "PokemonLeagueHallOfFame_Text_AlwaysStraighterThanUsual",
       "en_US": [
         "Rowan: No matter how many times\n",
         "I come here, I always find myself\f",
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000191_00002",
+      "id": "PokemonLeagueHallOfFame_Text_LastTimeWasLongTimeAgo",
       "en_US": [
         "Cynthia: If your last time here was\n",
         "when I became Champion, then yes,\f",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000191_00003",
+      "id": "PokemonLeagueHallOfFame_Text_ThisRoomIsALegacyToPokemonAndTrainers",
       "en_US": [
         "Cynthia: It’s a natural reaction,\n",
         "Professor.\r",
@@ -35,21 +35,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000191_00004",
+      "id": "PokemonLeagueHallOfFame_Text_WelcomeToTheHallOfFameMale",
       "en_US": [
         "Cynthia: {STRVAR_1 3, 0, 0}, welcome\n",
         "to the Hall of Fame.\r"
       ]
     },
     {
-      "id": "pl_msg_00000191_00005",
+      "id": "PokemonLeagueHallOfFame_Text_WelcomeToTheHallOfFameFemale",
       "en_US": [
         "Cynthia: {STRVAR_1 3, 0, 0}, welcome\n",
         "to the Hall of Fame.\r"
       ]
     },
     {
-      "id": "pl_msg_00000191_00006",
+      "id": "PokemonLeagueHallOfFame_Text_TimeToRecordYourNameAndYourPokemon",
       "en_US": [
         "Your names will be recorded for\n",
         "posterity here.\r",

@@ -845,7 +845,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
         }
         break;
     case 15:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_073) < 10) {
+        if (GameRecords_GetRecordValue(v1, RECORD_TIMES_ENTERED_HALL_OF_FAME) < 10) {
             *v4 = 0;
         }
         break;

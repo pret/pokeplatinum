@@ -173,7 +173,7 @@ _01BE:
     End
 
 _01FA:
-    ScrCmd_28F VAR_RESULT
+    GetLeagueVictories VAR_RESULT
     GoToIfLt VAR_RESULT, 20, _021A
     GoToIfGe VAR_RESULT, 20, _0228
     End
@@ -189,7 +189,7 @@ _0228:
     End
 
 _0236:
-    ScrCmd_28F VAR_RESULT
+    GetLeagueVictories VAR_RESULT
     GoToIfLt VAR_RESULT, 20, _0256
     GoToIfGe VAR_RESULT, 20, _0264
     End
@@ -205,7 +205,7 @@ _0264:
     End
 
 _0272:
-    ScrCmd_28F VAR_RESULT
+    GetLeagueVictories VAR_RESULT
     GoToIfLt VAR_RESULT, 20, _0292
     GoToIfGe VAR_RESULT, 20, _02A0
     End

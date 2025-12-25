@@ -31,8 +31,8 @@ _0075:
 _0077:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe VAR_UNK_0x40C5, 1, _00F4
-    GoToIfSet FLAG_UNK_0x00D1, _00F4
+    GoToIfGe VAR_SPEAR_PILLAR_PALKIA_STATE, 1, _00F4
+    GoToIfSet FLAG_CAUGHT_PALKIA, _00F4
     Message 0
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, _0101
@@ -43,7 +43,7 @@ _0077:
     StartLegendaryBattle SPECIES_PALKIA, 70
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _00E8
-    SetVar VAR_UNK_0x40C5, 1
+    SetVar VAR_SPEAR_PILLAR_PALKIA_STATE, 1
     CheckDidNotCapture VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, _00EE
     ReleaseAll
@@ -55,7 +55,7 @@ _00E8:
     End
 
 _00EE:
-    SetFlag FLAG_UNK_0x00D1
+    SetFlag FLAG_CAUGHT_PALKIA
     Return
 
 _00F4:
