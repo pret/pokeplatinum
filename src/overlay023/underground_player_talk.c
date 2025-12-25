@@ -530,7 +530,7 @@ static void UndergroundTalk_RemoveGiftedGood(TalkMenu *menu)
     UndergroundTextPrinter_SetUndergroundGoodsName(CommManUnderground_GetCommonTextPrinter(), menu->sentGift.goodID);
     UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_GiftWasGiven, FALSE, NULL);
 
-    UndergroundRecord_IncrementGiftsGiven(SaveData_UndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
+    UndergroundRecord_IncrementGiftsGiven(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
     UndergroundMenu_RemoveSelectedGoodBag(menu->sentGift.goodID);
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
@@ -959,7 +959,7 @@ static void UndergroundTalkResponse_HandleAcceptGiftMenu(SysTask *unused, Respon
 
     if (input == 0) {
         if (UndergroundInventory_TryAddGoodBag(menu->receivedGift.goodID)) {
-            UndergroundRecord_IncrementGiftsReceived(SaveData_UndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
+            UndergroundRecord_IncrementGiftsReceived(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_MENU_STATE_GIFT_ACCEPTED);
 

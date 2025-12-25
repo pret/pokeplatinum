@@ -160,7 +160,7 @@ BOOL TownMap_FadeInBothScreens(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, appData->heapID);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, appData->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU);
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
@@ -173,7 +173,7 @@ BOOL TownMap_FadeOutBothScreens(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
-    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, appData->heapID);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, appData->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
     return FALSE;
 }
@@ -182,7 +182,7 @@ BOOL TownMap_FadeInTopScreen(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, appData->heapID);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 6, 1, appData->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU);
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);
 
@@ -194,7 +194,7 @@ BOOL TownMap_FadeOutTopScreen(TownMapAppData *appData)
 {
     appData->dummy_14 = 0;
 
-    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, appData->heapID);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 6, 1, appData->heapID);
     Sound_PlayEffect(SEQ_SE_DP_MEKURU2);
 
     return FALSE;

@@ -324,9 +324,9 @@ void UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundTextPrint
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goods)
+void UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goodID)
 {
-    StringTemplate_SetUndergroundGoodsName(textPrinter->template, idx, goods);
+    StringTemplate_SetUndergroundGoodsName(textPrinter->template, idx, goodID);
     textPrinter->formattingNeeded = TRUE;
 }
 

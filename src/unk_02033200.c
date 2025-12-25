@@ -781,10 +781,10 @@ static int sub_02033DDC(void)
 BOOL CommServerClient_IsInClosedSecretBase(void)
 {
     if (sCommServerClient && (sCommServerClient->unk_1516 == 3)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL CommServerClient_IsInitialized(void)

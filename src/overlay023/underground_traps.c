@@ -16,7 +16,7 @@
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224B05C.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_status.h"
@@ -1165,7 +1165,7 @@ void UndergroundTraps_TryPlaceTrap(int netID, int unused1, void *data, void *unu
     int x = CommPlayer_GetXInFrontOfPlayerServer(netID);
     int z = CommPlayer_GetZInFrontOfPlayerServer(netID);
 
-    if (CommPlayer_GetXServer(netID) == 0xFFFF && CommPlayer_GetZServer(netID) == 0xFFFF) {
+    if (CommPlayer_GetXServerIfActive(netID) == 0xFFFF && CommPlayer_GetZServerIfActive(netID) == 0xFFFF) {
         placeResult.result = PLACE_TRAP_FAIL;
         CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
         return;
@@ -1605,7 +1605,7 @@ static BOOL CheckPlayerSteppedOnTrap(int netID)
         return FALSE;
     }
 
-    BuriedTrap *trap = UndergroundTraps_GetTrapAtCoordinates(CommPlayer_GetXServer(netID), CommPlayer_GetZServer(netID));
+    BuriedTrap *trap = UndergroundTraps_GetTrapAtCoordinates(CommPlayer_GetXServerIfActive(netID), CommPlayer_GetZServerIfActive(netID));
 
     if (!trap) {
         return FALSE;
@@ -1681,7 +1681,7 @@ void UndergroundTraps_HandleTriggeredTrap(int unused0, int unused1, void *data, 
         return;
     }
 
-    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
+    UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
 
     Sound_PlayEffect(SEQ_SE_DP_UG_007);
     MI_CpuCopy8(trap, &trapsEnv->triggeredTraps[trap->victimNetID], sizeof(TriggeredTrap));
@@ -1796,14 +1796,14 @@ BOOL UndergroundTraps_GetQueuedMessage(String *dest)
             if (trapsEnv->triggeredTraps[netID].setterNetID >= MAX_CONNECTED_PLAYERS) {
                 TrainerInfo *trapVictimInfo = CommInfo_TrainerInfo(netID);
 
-                if (CommManUnderground_FormatStringWithTrainerName(trapVictimInfo, 0, UndergroundCommon_Text_PlayerTriggeredTrap, dest)) {
+                if (CommManUnderground_FormatCommonStringWithTrainerName(trapVictimInfo, 0, UndergroundCommon_Text_PlayerTriggeredTrap, dest)) {
                     return TRUE;
                 }
             } else {
                 TrainerInfo *trapSetterInfo = CommInfo_TrainerInfo(trapsEnv->triggeredTraps[netID].setterNetID);
                 TrainerInfo *trapVictimInfo = CommInfo_TrainerInfo(netID);
 
-                if (CommManUnderground_FormatStringWith2TrainerNames(trapVictimInfo, trapSetterInfo, UndergroundCommon_Text_PlayerTriggeredOtherPlayersTrap, dest)) {
+                if (CommManUnderground_FormatCommonStringWith2TrainerNames(trapVictimInfo, trapSetterInfo, UndergroundCommon_Text_PlayerTriggeredOtherPlayersTrap, dest)) {
                     return TRUE;
                 }
             }
@@ -1815,7 +1815,7 @@ BOOL UndergroundTraps_GetQueuedMessage(String *dest)
 
             trapsEnv->helpedNetIDs[netID] = 0xFF;
 
-            if (CommManUnderground_FormatStringWith2TrainerNames(helperInfo, trapVictimInfo, UndergroundCommon_Text_PlayerHelpedOtherPlayer, dest)) {
+            if (CommManUnderground_FormatCommonStringWith2TrainerNames(helperInfo, trapVictimInfo, UndergroundCommon_Text_PlayerHelpedOtherPlayer, dest)) {
                 return TRUE;
             }
         }
@@ -1838,7 +1838,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
             trapsEnv->queuedAlertMessages[netID] = 0;
             trainerInfo = CommInfo_TrainerInfo(netID);
 
-            if (CommManUnderground_FormatStringWithTrainerName(trainerInfo, 0, bankEntry, dest)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(trainerInfo, 0, bankEntry, dest)) {
                 return TRUE;
             }
         }
@@ -1847,7 +1847,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
             trapsEnv->queuedDisengageMessages[netID] = FALSE;
             trainerInfo = CommInfo_TrainerInfo(netID);
 
-            if (CommManUnderground_FormatStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerDisengagedTrap, dest)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerDisengagedTrap, dest)) {
                 return TRUE;
             }
         }
@@ -1856,7 +1856,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
             trainerInfo = CommInfo_TrainerInfo(netID);
             trapsEnv->queuedEscapeMessages[netID] = FALSE;
 
-            if (CommManUnderground_FormatStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerEscapedFromTrap, dest)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerEscapedFromTrap, dest)) {
                 return TRUE;
             }
         }
@@ -2549,7 +2549,7 @@ void UndergroundTraps_EscapeTrapServer(int netID, int unused1, void *unused2, vo
         UndergroundTraps_EndTrapEffectServer(netID, trapsEnv->triggeredTrapIDs[netID]);
 
         EscapedTrap trap;
-        trap.allowToolStepBack = ov23_0224D87C(netID);
+        trap.allowToolStepBack = SecretBases_ClearToolEffectFlag(netID);
         trap.trapID = trapsEnv->triggeredTrapIDs[netID];
         trap.netID = netID;
         trap.showOKEmote = TRUE;
@@ -2571,7 +2571,7 @@ void UndergroundTraps_EndCurrentTrapEffectServer(int netID, int unused1, void *u
     trapsEnv->triggeredTrapIDs[netID] = TRAP_NONE;
     trapsEnv->triggeredTraps[netID].isTool = FALSE;
 
-    ov23_0224D87C(netID);
+    SecretBases_ClearToolEffectFlag(netID);
 }
 
 void UndergroundTraps_ProcessEscapedTrap(int unused0, int unused1, void *data, void *unused3)
@@ -2642,7 +2642,7 @@ void UndergroundTraps_HelpLink(int netID, int linkNetID)
 void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void *unused3)
 {
     TrapHelpData *helpdata = data;
-    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
+    UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
 
     UndergroundPlayer_AddOKEmote(helpdata->helpeeNetID);
 

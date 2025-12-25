@@ -541,7 +541,7 @@ void ov23_02252CF4(int param0, int param1)
 
 void ov23_02252D08(int param0, int param1)
 {
-    UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(CommManUnderground_GetMiscTextPrinter(), param0, param1);
+    UndergroundTextPrinter_SetGoodNameWithIndex(CommManUnderground_GetMiscTextPrinter(), param0, param1);
 }
 
 static void ov23_02252D1C(UndergroundMenu *param0)

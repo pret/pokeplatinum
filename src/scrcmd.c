@@ -6456,7 +6456,7 @@ static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx)
     UndergroundRecord *undergroundRecord;
     u16 *destFlagCount = ScriptContext_GetVarPointer(ctx);
 
-    undergroundRecord = SaveData_UndergroundRecord(saveData);
+    undergroundRecord = SaveData_GetUndergroundRecord(saveData);
     *destFlagCount = UndergroundRecord_GetCapturedFlagCount(undergroundRecord);
 
     return FALSE;
