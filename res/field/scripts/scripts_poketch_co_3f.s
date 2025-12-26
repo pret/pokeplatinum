@@ -91,7 +91,7 @@ _013D:
     GoTo _0062
 
 _0146:
-    CheckPoketchAppRegistered POKETCH_APPID_UNUSED_STOPWATCH, VAR_RESULT
+    CheckPoketchAppRegistered POKETCH_APPID_STOPWATCH, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 234, 3
     Return
@@ -111,7 +111,7 @@ _0185:
     GoTo _0062
 
 _018E:
-    CheckPoketchAppRegistered POKETCH_APPID_UNUSED_ALARMCLOCK, VAR_RESULT
+    CheckPoketchAppRegistered POKETCH_APPID_ALARMCLOCK, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _01D6
     AddMenuEntry 249, 5
     Return
