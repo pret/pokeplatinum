@@ -614,7 +614,7 @@ static void LoadSpriteForMonGift(MainMenuUtilManager *param0, enum MysteryGiftTy
         LoadPokemonSprite(param0->mysteryGiftSprite, mon, Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), Pokemon_GetData(mon, MON_DATA_FORM, NULL), param0->monSpriteBuffer, &param0->monSpriteTemplate);
         break;
     case MYST_GIFT_EGG:
-        LoadPokemonSprite(param0->mysteryGiftSprite, mon, SPECIES_EGG, EGG_FORM_BASE, param0->monSpriteBuffer, &param0->monSpriteTemplate);
+        LoadPokemonSprite(param0->mysteryGiftSprite, mon, SPECIES_EGG, EGG_FORM_NORMAL, param0->monSpriteBuffer, &param0->monSpriteTemplate);
         break;
     case MYST_GIFT_MANAPHY_EGG:
         LoadPokemonSprite(param0->mysteryGiftSprite, mon, SPECIES_EGG, EGG_FORM_MANAPHY, param0->monSpriteBuffer, &param0->monSpriteTemplate);

@@ -169,7 +169,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapID 
     }
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) < MAX_POKEMON_LEVEL) {
+        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) < MAX_MON_LEVEL) {
             Heap_Free(item);
             return TRUE;
         }
@@ -289,7 +289,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     vApplyLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        if (vApplyLevel < MAX_POKEMON_LEVEL) {
+        if (vApplyLevel < MAX_MON_LEVEL) {
             Pokemon_IncreaseData(mon, MON_DATA_EXPERIENCE, Pokemon_CalcExpToNextLevel(mon));
             Pokemon_CalcLevelAndStats(mon);
 
@@ -529,7 +529,7 @@ static u8 CheckFriendshipItemEffect(Pokemon *mon, ItemData *item)
 {
     s32 friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    if (friendship >= MAX_FRIENDSHIP_VALUE) {
+    if (friendship >= MAX_FRIENDSHIP) {
         return FALSE;
     }
 
@@ -564,7 +564,7 @@ static u8 CheckFriendshipItemEffect(Pokemon *mon, ItemData *item)
 
 static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 location, enum HeapID heapID)
 {
-    if (current == MAX_FRIENDSHIP_VALUE && change > 0) {
+    if (current == MAX_FRIENDSHIP && change > 0) {
         return FALSE;
     }
 
@@ -588,8 +588,8 @@ static u8 UpdatePokemonFriendship(Pokemon *mon, s32 current, s32 change, u16 loc
 
     change += current;
 
-    if (change > MAX_FRIENDSHIP_VALUE) {
-        change = MAX_FRIENDSHIP_VALUE;
+    if (change > MAX_FRIENDSHIP) {
+        change = MAX_FRIENDSHIP;
     }
 
     if (change < 0) {

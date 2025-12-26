@@ -402,8 +402,8 @@ static void SetLevelSprites(PoketchAnimation_AnimatedSpriteData **digitSprites, 
 {
     u32 digits[3];
 
-    if (level > MAX_POKEMON_LEVEL) {
-        level = MAX_POKEMON_LEVEL;
+    if (level > MAX_MON_LEVEL) {
+        level = MAX_MON_LEVEL;
     }
 
     CP_SetDiv32_32(level, 100);

@@ -179,7 +179,7 @@ static int Daycare_MoveToPartyFromDaycareMon(Party *party, DaycareMon *daycareMo
     species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     BoxPokemon_CopyToPokemon(boxMon, mon);
 
-    if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
+    if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != MAX_MON_LEVEL) {
         experience = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
         experience += DaycareMon_GetSteps(daycareMon);
         Pokemon_SetData(mon, MON_DATA_EXPERIENCE, (u8 *)&experience);

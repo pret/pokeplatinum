@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "generated/species.h"
 
 #include "battle_anim/const_ov12_0223B0A0.h"

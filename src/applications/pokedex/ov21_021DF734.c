@@ -800,7 +800,7 @@ static int ov21_021E02F0(int species, const UnkStruct_ov21_021DF844 *param1)
         return 2;
     }
 
-    if (genderRatio == GENDER_RATIO_NO_GENDER) {
+    if (genderRatio == GENDER_RATIO_UNKNOWN) {
         return 3;
     }
 

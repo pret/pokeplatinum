@@ -56,7 +56,7 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
     case GENDER_RATIO_FEMALE_ONLY:
         gender = GENDER_FEMALE;
         break;
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         gender = GENDER_NONE;
         break;
     default:

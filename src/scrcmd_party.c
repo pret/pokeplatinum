@@ -304,8 +304,8 @@ BOOL ScrCmd_IncreasePartyMonFriendship(ScriptContext *ctx)
 
     friendship += value;
 
-    if (friendship > MAX_FRIENDSHIP_VALUE) {
-        friendship = MAX_FRIENDSHIP_VALUE;
+    if (friendship > MAX_FRIENDSHIP) {
+        friendship = MAX_FRIENDSHIP;
     }
 
     Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &friendship);

@@ -471,7 +471,7 @@ static void PackHeights(vfs_pack_ctx *vfs, rapidjson::Document &root, u8 genderR
         *frontMale = frontOffsets["male"].GetUint();
     }
 
-    if (genderRatio == GENDER_RATIO_MALE_ONLY || genderRatio == GENDER_RATIO_NO_GENDER) {
+    if (genderRatio == GENDER_RATIO_MALE_ONLY || genderRatio == GENDER_RATIO_UNKNOWN) {
         backFemale = static_cast<u8 *>(malloc(0));
         frontFemale = static_cast<u8 *>(malloc(0));
         femaleSize = 0;

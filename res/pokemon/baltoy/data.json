@@ -22,7 +22,7 @@
         "common": "ITEM_NONE",
         "rare": "ITEM_NONE"
     },
-    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "gender_ratio": "GENDER_RATIO_UNKNOWN",
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",

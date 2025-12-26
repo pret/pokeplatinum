@@ -997,7 +997,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
             switch (speciesGenderRatio) {
             case GENDER_RATIO_MALE_ONLY:
             case GENDER_RATIO_FEMALE_ONLY:
-            case GENDER_RATIO_NO_GENDER:
+            case GENDER_RATIO_UNKNOWN:
                 break;
             default:
                 if (LCRNG_RandMod(3) > 0) {
@@ -1055,7 +1055,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
     switch (speciesGenderRatio) {
     case GENDER_RATIO_MALE_ONLY:
     case GENDER_RATIO_FEMALE_ONLY:
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         hasRandomGender = FALSE;
     }
 

@@ -1,8 +1,8 @@
 #include "pokemon_sprite.h"
 
 #include "constants/graphics.h"
-#include "generated/shadow_sizes.h"
 #include "constants/species.h"
+#include "generated/shadow_sizes.h"
 
 #include "struct_defs/sprite_animation_frame.h"
 

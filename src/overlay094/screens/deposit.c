@@ -589,7 +589,7 @@ int ov94_02241B80(GTSPokemonRequirements *requirements, int genderRatio)
     case GENDER_RATIO_FEMALE_ONLY:
         requirements->gender = GENDER_FEMALE + 1;
         return TRUE;
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         requirements->gender = GENDER_NONE + 1;
         return TRUE;
     }

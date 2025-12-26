@@ -100,7 +100,7 @@
 
 #define ARCEUS_FORM_COUNT 18
 
-#define EGG_FORM_BASE    0
+#define EGG_FORM_NORMAL  0
 #define EGG_FORM_MANAPHY 1
 #define EGG_FORM_COUNT   2
 

@@ -1094,7 +1094,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->OTGender = Pokemon_GetData(mon, MON_DATA_OT_GENDER, NULL);
     monData->curLevelExp = Species_GetExpAtLevel(monData->species, monData->level);
 
-    if (monData->level == MAX_POKEMON_LEVEL) {
+    if (monData->level == MAX_MON_LEVEL) {
         monData->nextLevelExp = monData->curLevelExp;
     } else {
         monData->nextLevelExp = Species_GetExpAtLevel(monData->species, monData->level + 1);
@@ -1439,7 +1439,7 @@ static void DrawExperienceProgressBar(PokemonSummaryScreen *summaryScreen)
     u32 maxExp;
     u32 curExp;
 
-    if (summaryScreen->monData.level < MAX_POKEMON_LEVEL) {
+    if (summaryScreen->monData.level < MAX_MON_LEVEL) {
         maxExp = summaryScreen->monData.nextLevelExp - summaryScreen->monData.curLevelExp;
         curExp = summaryScreen->monData.curExp - summaryScreen->monData.curLevelExp;
     } else {

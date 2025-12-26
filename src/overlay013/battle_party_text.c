@@ -1364,7 +1364,7 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonExpToNextLevelValue);
     formattedString = String_Init(14, battleParty->context->heapID);
 
-    if (pokemon->level < MAX_POKEMON_LEVEL) {
+    if (pokemon->level < MAX_MON_LEVEL) {
         StringTemplate_SetNumber(
             battleParty->stringTemplate, 0, pokemon->nextLevelExp - pokemon->exp, POKEMON_XP_TO_NEXT_LEVEL_DIGITS, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     } else {

@@ -508,7 +508,7 @@ u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
     switch (ratio) {
     case GENDER_RATIO_MALE_ONLY:
     case GENDER_RATIO_FEMALE_ONLY:
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         break;
     default:
         if (gender == GENDER_MALE) {
@@ -1603,16 +1603,16 @@ static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 
     switch (param) {
     case MON_DATA_EXPERIENCE:
-        if (blockA->exp + value > Species_GetExpAtLevel(blockA->species, MAX_POKEMON_LEVEL)) {
-            blockA->exp = Species_GetExpAtLevel(blockA->species, MAX_POKEMON_LEVEL);
+        if (blockA->exp + value > Species_GetExpAtLevel(blockA->species, MAX_MON_LEVEL)) {
+            blockA->exp = Species_GetExpAtLevel(blockA->species, MAX_MON_LEVEL);
         } else {
             blockA->exp += value;
         }
         break;
     case MON_DATA_FRIENDSHIP:
         int friendship = blockA->friendship;
-        if (friendship + value > MAX_FRIENDSHIP_VALUE) {
-            friendship = MAX_FRIENDSHIP_VALUE;
+        if (friendship + value > MAX_FRIENDSHIP) {
+            friendship = MAX_FRIENDSHIP;
         }
         friendship += value;
         if (friendship < 0) {
@@ -1750,6 +1750,7 @@ static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_PERSONALITY:
     case MON_DATA_IS_PARTY_DECRYPTED:
     case MON_DATA_IS_BOX_DECRYPTED:
+    case MON_DATA_CHECKSUM_FAILED:
     case MON_DATA_CHECKSUM:
     case MON_DATA_SPECIES:
     case MON_DATA_HELD_ITEM:
@@ -1830,6 +1831,7 @@ static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_UNUSED_113:
     case MON_DATA_UNUSED_114:
     case MON_DATA_NICKNAME:
+    case MON_DATA_NICKNAME_AND_FLAG:
     case MON_DATA_NICKNAME_STRING:
     case MON_DATA_NICKNAME_STRING_AND_FLAG:
     case MON_DATA_UNUSED_121:
@@ -1871,6 +1873,21 @@ static void BoxPokemon_AddDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_OT_GENDER:
     case MON_DATA_MET_TERRAIN:
     case MON_DATA_UNUSED_159:
+    case MON_DATA_STATUS:
+    case MON_DATA_LEVEL:
+    case MON_DATA_BALL_CAPSULE_ID:
+    case MON_DATA_HP:
+    case MON_DATA_MAX_HP:
+    case MON_DATA_ATK:
+    case MON_DATA_DEF:
+    case MON_DATA_SPEED:
+    case MON_DATA_SP_ATK:
+    case MON_DATA_SP_DEF:
+    case MON_DATA_MAIL:
+    case MON_DATA_BALL_CAPSULE:
+    case MON_DATA_SPECIES_EXISTS:
+    case MON_DATA_SANITY_IS_EGG:
+    case MON_DATA_SPECIES_OR_EGG:
     case MON_DATA_COMBINED_IVS:
     case MON_DATA_NO_PRINT_GENDER:
     case MON_DATA_TYPE_1:
@@ -2075,9 +2092,9 @@ static void ExpRate_LoadTable(enum ExpRate rate, u32 *dest)
 static u32 ExpRate_GetExpAtLevel(enum ExpRate rate, int level)
 {
     GF_ASSERT(rate < EXP_RATE_COUNT);
-    GF_ASSERT(level <= MAX_POKEMON_LEVEL + 1);
+    GF_ASSERT(level <= MAX_MON_LEVEL + 1);
 
-    u32 *expTable = Heap_Alloc(HEAP_ID_SYSTEM, (MAX_POKEMON_LEVEL + 1) * 4);
+    u32 *expTable = Heap_Alloc(HEAP_ID_SYSTEM, (MAX_MON_LEVEL + 1) * 4);
     ExpRate_LoadTable(rate, expTable);
 
     u32 ret = expTable[level];
@@ -2110,10 +2127,10 @@ int Species_CalcLevelByExp(u16 species, u32 exp)
 
 int SpeciesData_CalcLevelByExp(SpeciesData *speciesData, u16 unused_species, u32 exp)
 {
-    static u32 table[MAX_POKEMON_LEVEL + 1];
+    static u32 table[MAX_MON_LEVEL + 1];
     ExpRate_LoadTable(SpeciesData_GetValue(speciesData, SPECIES_DATA_EXP_RATE), table);
     int i;
-    for (i = 1; i < MAX_POKEMON_LEVEL + 1; i++) {
+    for (i = 1; i < MAX_MON_LEVEL + 1; i++) {
         if (table[i] > exp) {
             break;
         }
@@ -2253,8 +2270,8 @@ void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location)
     if (friendship < 0) {
         friendship = 0;
     }
-    if (friendship > MAX_FRIENDSHIP_VALUE) {
-        friendship = MAX_FRIENDSHIP_VALUE;
+    if (friendship > MAX_FRIENDSHIP) {
+        friendship = MAX_FRIENDSHIP;
     }
     Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &friendship);
 }
@@ -2289,7 +2306,7 @@ u8 SpeciesData_GetGenderFromPersonality(SpeciesData *speciesData, u16 unused_spe
         return GENDER_MALE;
     case GENDER_RATIO_FEMALE_ONLY:
         return GENDER_FEMALE;
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         return GENDER_NONE;
     default:
         if (ratio > (personality & 0xff)) {
@@ -2362,7 +2379,8 @@ void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *template, Pokemon *mon, 
     BoxPokemon_BuildSpriteTemplate(template, &mon->box, face, FALSE);
 }
 
-void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *template, Pokemon *mon, u8 face) {
+void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *template, Pokemon *mon, u8 face)
+{
     BoxPokemon_BuildSpriteTemplate(template, &mon->box, face, TRUE);
 }
 
@@ -2702,7 +2720,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
         if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
             form = EGG_FORM_MANAPHY;
         } else {
-            form = EGG_FORM_BASE;
+            form = EGG_FORM_NORMAL;
         }
     } else {
         form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
@@ -3003,13 +3021,13 @@ BOOL Pokemon_TryLevelUp(Pokemon *mon)
     u8 nextLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) + 1;
     u32 exp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
     int expRate = Species_GetValue(species, SPECIES_DATA_EXP_RATE);
-    u32 maxExp = ExpRate_GetExpAtLevel(expRate, MAX_POKEMON_LEVEL);
+    u32 maxExp = ExpRate_GetExpAtLevel(expRate, MAX_MON_LEVEL);
 
     if (exp > maxExp) {
         exp = maxExp;
         Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &exp);
     }
-    if (nextLevel > MAX_POKEMON_LEVEL) {
+    if (nextLevel > MAX_MON_LEVEL) {
         return FALSE;
     }
     if (exp >= ExpRate_GetExpAtLevel(expRate, nextLevel)) {
