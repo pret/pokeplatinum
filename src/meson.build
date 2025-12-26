@@ -927,7 +927,7 @@ pokeplatinum_c = files(
     'overlay103/ov103_dummy.c',
     'overlay104/ov104_0222DCE0.c',
     'overlay104/ov104_0222E63C.c',
-    'overlay104/ov104_0222E930.c',
+    'overlay104/frontier_script_context.c',
     'overlay104/ov104_0222EA90.c',
     'overlay104/ov104_0222ECE8.c',
     'overlay104/ov104_0222FBE4.c',

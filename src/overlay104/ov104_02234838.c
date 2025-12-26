@@ -3,14 +3,12 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 
+#include "overlay104/frontier_script_context.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay104/ov104_0222E930.h"
 #include "overlay104/ov104_0222FBE4.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_02234DB4.h"
 #include "overlay104/ov104_0223AF58.h"
-#include "overlay104/struct_ov104_0222E930_decl.h"
-#include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
 #include "overlay104/struct_ov104_02235208.h"
@@ -35,23 +33,10 @@ FS_EXTERN_OVERLAY(overlay106);
 
 #include <nitro/code16.h>
 
-BOOL ov104_02234838(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_0223488C(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_022348A8(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_022348BC(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02234994(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_022349B8(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02234A1C(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02234C80(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02234C9C(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02234CCC(UnkStruct_ov104_0222E930 *param0);
-static BOOL ov104_02234CEC(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02234D18(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02234D50(UnkStruct_ov104_0222E930 *param0);
+static BOOL ov104_02234CEC(FrontierScriptContext *param0);
 static void ov104_02234A08(void *param0);
-BOOL ov104_02234D6C(UnkStruct_ov104_0222E930 *param0);
 
-BOOL ov104_02234838(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_8B(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0;
     UnkStruct_ov104_02230BE4 *v1;
@@ -68,7 +53,7 @@ BOOL ov104_02234838(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_0223488C(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_8C(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0;
     u16 v1 = ov104_0222FC00(param0);
@@ -79,7 +64,7 @@ BOOL ov104_0223488C(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_022348A8(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_8D(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_02235190(v0);
@@ -87,7 +72,7 @@ BOOL ov104_022348A8(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_022348BC(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_8E(FrontierScriptContext *param0)
 {
     int v0;
     Party *v1;
@@ -137,7 +122,7 @@ BOOL ov104_022348BC(UnkStruct_ov104_0222E930 *param0)
     return 1;
 }
 
-BOOL ov104_02234994(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_8F(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0 = sub_0209B978(param0->unk_00->unk_00);
     FieldBattleDTO *v1 = v0->unk_700;
@@ -148,7 +133,7 @@ BOOL ov104_02234994(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_022349B8(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_90(FrontierScriptContext *param0)
 {
     FieldBattleDTO *v0;
     UnkStruct_ov104_0223B5C0 *v1;
@@ -177,7 +162,7 @@ static void ov104_02234A08(void *param0)
     return;
 }
 
-BOOL ov104_02234A1C(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_91(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_02230BE4 *v0;
     Pokemon *v1;
@@ -186,9 +171,9 @@ BOOL ov104_02234A1C(UnkStruct_ov104_0222E930 *param0)
     u8 v4, v5;
     u32 v6;
     int v7;
-    u8 v8 = (*((param0)->unk_1C++));
-    u8 v9 = (*((param0)->unk_1C++));
-    u8 v10 = (*((param0)->unk_1C++));
+    u8 v8 = FrontierScriptContext_ReadByte(param0);
+    u8 v9 = FrontierScriptContext_ReadByte(param0);
+    u8 v10 = FrontierScriptContext_ReadByte(param0);
     u16 *v11 = ov104_0222FBE4(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
@@ -314,7 +299,7 @@ BOOL ov104_02234A1C(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_02234C80(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_92(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0;
     u16 *v1 = ov104_0222FBE4(param0);
@@ -325,7 +310,7 @@ BOOL ov104_02234C80(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_02234C9C(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_93(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0;
     u16 v1 = ov104_0222FC00(param0);
@@ -338,20 +323,20 @@ BOOL ov104_02234C9C(UnkStruct_ov104_0222E930 *param0)
     return 1;
 }
 
-BOOL ov104_02234CCC(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_94(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222EA48(param0);
+    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
 
-    param0->unk_78[0] = v0;
-    ov104_0222E974(param0, ov104_02234CEC);
+    param0->data[0] = v0;
+    FrontierScriptContext_Pause(param0, ov104_02234CEC);
 
     return 1;
 }
 
-static BOOL ov104_02234CEC(UnkStruct_ov104_0222E930 *param0)
+static BOOL ov104_02234CEC(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0;
-    u16 v1 = ov104_0222FC8C(param0, param0->unk_78[0]);
+    u16 v1 = ov104_0222FC8C(param0, param0->data[0]);
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
 
@@ -363,12 +348,12 @@ static BOOL ov104_02234CEC(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-BOOL ov104_02234D18(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_95(FrontierScriptContext *param0)
 {
     u16 *v0;
     UnkStruct_ov104_0223B5C0 *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
-    u16 v3 = (*((param0)->unk_1C++));
+    u16 v3 = FrontierScriptContext_ReadByte(param0);
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
 
@@ -382,7 +367,7 @@ BOOL ov104_02234D18(UnkStruct_ov104_0222E930 *param0)
     return 1;
 }
 
-BOOL ov104_02234D50(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_76(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_0223B5C0 *v0;
     u16 *v1 = ov104_0222FBE4(param0);
@@ -393,7 +378,7 @@ BOOL ov104_02234D50(UnkStruct_ov104_0222E930 *param0)
     return 1;
 }
 
-BOOL ov104_02234D6C(UnkStruct_ov104_0222E930 *param0)
+BOOL FrontierScrCmd_C7(FrontierScriptContext *param0)
 {
     TVBroadcast *broadcast;
     u16 v1;
