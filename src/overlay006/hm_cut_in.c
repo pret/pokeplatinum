@@ -2092,7 +2092,7 @@ static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplat
     GF_ASSERT(spriteSource != NULL);
 
     int personality = Pokemon_GetData(pokemon, MON_DATA_PERSONALITY, NULL);
-    CharacterSprite_LoadPokemonSprite(spriteTemplate->narcID, spriteTemplate->character, heapID, spriteSource, personality, FALSE, 2, spriteTemplate->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(spriteTemplate->narcID, spriteTemplate->character, heapID, spriteSource, personality, FALSE, 2, spriteTemplate->species);
 
     return spriteSource;
 }

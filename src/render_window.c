@@ -852,7 +852,7 @@ static void LoadAndDrawPokemonPreviewSprite(SpriteResourceManager *param0, u16 s
     void *buf = PokemonSpriteManager_New(param0->heapID);
 
     PokemonSpriteTemplate sprite;
-    BuildPokemonSpriteTemplate(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
+    Species_BuildSpriteTemplate(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
     DrawPokemonPreviewSprite(param0, &sprite);
     PokemonSpriteManager_Free(buf);
 }

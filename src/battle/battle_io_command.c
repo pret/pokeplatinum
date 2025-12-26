@@ -732,18 +732,18 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
         v4 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
+    Species_BuildSpriteTemplate(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
 
     v2 = PokemonSprite_GetTemplate(param1->unk_20);
     *v2 = v1;
 
     PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
-    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, FALSE, v4, v2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, FALSE, v4, v2->species);
 
     PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
     PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
 
-    v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
+    v3 = Species_LoadSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
     PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param1->battler, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;

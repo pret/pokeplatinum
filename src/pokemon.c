@@ -259,8 +259,8 @@ static u32 ExpRate_GetExpAtLevel(enum ExpRate rate, int monLevel);
 static u16 Nature_ModifyStatValue(u8 nature, u16 value, u8 stat);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
-static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
-static u8 LoadPokemonDPSpriteHeight(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
+static void Species_BuildSpriteTemplateDP(PokemonSpriteTemplate *template, u16 species, u8 gender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+static u8 Species_LoadSpriteYOffsetDP(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_TryAppendMove(BoxPokemon *boxMon, u16 move);
 static void BoxPokemon_ForceAppendMove(BoxPokemon *boxMon, u16 moveID);
@@ -2357,146 +2357,128 @@ u32 Personality_GenerateShiny(u32 otID)
     return rndLow | (rndHigh << 16);
 }
 
-void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face)
+void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *template, Pokemon *mon, u8 face)
 {
-    BoxPokemon_BuildSpriteTemplate(spriteTemplate, &mon->box, face, FALSE);
+    BoxPokemon_BuildSpriteTemplate(template, &mon->box, face, FALSE);
 }
 
-void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face)
-{
-    BoxPokemon_BuildSpriteTemplate(spriteTemplate, &mon->box, face, TRUE);
+void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *template, Pokemon *mon, u8 face) {
+    BoxPokemon_BuildSpriteTemplate(template, &mon->box, face, TRUE);
 }
 
-void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *mon, u8 face, BOOL preferDP)
+void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *template, BoxPokemon *boxMon, u8 face, BOOL preferDP)
 {
-    BOOL reencrypt = BoxPokemon_UnlockEncryption(mon);
-
-    u16 monSpeciesEgg = BoxPokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
-    u8 monGender = BoxPokemon_GetGender(mon);
-    u8 monShininess = BoxPokemon_IsShiny(mon);
-    u32 monPersonality = BoxPokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
-
-    u8 monForm;
-    if (monSpeciesEgg == SPECIES_EGG) {
-        if (BoxPokemon_GetData(mon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
-            monForm = 1;
+    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
+    u16 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
+    u8 gender = BoxPokemon_GetGender(boxMon);
+    u8 shiny = BoxPokemon_IsShiny(boxMon);
+    u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
+    u8 form;
+    if (species == SPECIES_EGG) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
+            form = 1;
         } else {
-            monForm = 0;
+            form = 0;
         }
     } else {
-        monForm = BoxPokemon_GetData(mon, MON_DATA_FORM, NULL);
+        form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
     }
 
     if (preferDP == TRUE) {
-        BuildPokemonSpriteTemplateDP(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
+        Species_BuildSpriteTemplateDP(template, species, gender, face, shiny, form, personality);
     } else {
-        BuildPokemonSpriteTemplate(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
+        Species_BuildSpriteTemplate(template, species, gender, face, shiny, form, personality);
     }
-
-    BoxPokemon_LockEncryption(mon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
-void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
+void Species_BuildSpriteTemplate(PokemonSpriteTemplate *template, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
-    spriteTemplate->spindaSpots = 0;
-    spriteTemplate->dummy = 0;
-    spriteTemplate->personality = 0;
+    template->species = SPECIES_NONE;
+    template->isAnimated = FALSE;
+    template->personality = 0;
     form = Species_SanitizeFormId(species, form);
 
     switch (species) {
     case SPECIES_BURMY:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 72 + (face / 2) + form * 2;
-        spriteTemplate->palette = 166 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 72 + (face / 2) + form * 2;
+        template->palette = 166 + shiny + form * 2;
         break;
-
     case SPECIES_WORMADAM:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 78 + (face / 2) + form * 2;
-        spriteTemplate->palette = 172 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 78 + (face / 2) + form * 2;
+        template->palette = 172 + shiny + form * 2;
         break;
-
     case SPECIES_SHELLOS:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 84 + face + form;
-        spriteTemplate->palette = 178 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 84 + face + form;
+        template->palette = 178 + shiny + form * 2;
         break;
-
     case SPECIES_GASTRODON:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 88 + face + form;
-        spriteTemplate->palette = 182 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 88 + face + form;
+        template->palette = 182 + shiny + form * 2;
         break;
-
     case SPECIES_CHERRIM:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 92 + face + form;
-        spriteTemplate->palette = 186 + (shiny * 2) + form;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 92 + face + form;
+        template->palette = 186 + (shiny * 2) + form;
         break;
-
     case SPECIES_ARCEUS:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 96 + (face / 2) + form * 2;
-        spriteTemplate->palette = 190 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 96 + (face / 2) + form * 2;
+        template->palette = 190 + shiny + form * 2;
         break;
-
     case SPECIES_CASTFORM:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 64 + (face * 2) + form;
-        spriteTemplate->palette = 158 + (shiny * 4) + form;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 64 + (face * 2) + form;
+        template->palette = 158 + (shiny * 4) + form;
         break;
-
     case SPECIES_DEOXYS:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 0 + (face / 2) + form * 2;
-        spriteTemplate->palette = 154 + shiny;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 0 + (face / 2) + form * 2;
+        template->palette = 154 + shiny;
         break;
-
     case SPECIES_UNOWN:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 8 + (face / 2) + form * 2;
-        spriteTemplate->palette = 156 + shiny;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 8 + (face / 2) + form * 2;
+        template->palette = 156 + shiny;
         break;
-
     case SPECIES_EGG:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 132 + form;
-        spriteTemplate->palette = 226 + form;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 132 + form;
+        template->palette = 226 + form;
         break;
-
     case SPECIES_BAD_EGG:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 132;
-        spriteTemplate->palette = 226;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 132;
+        template->palette = 226;
         break;
-
     case SPECIES_SHAYMIN:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 134 + (face / 2) + form * 2;
-        spriteTemplate->palette = 228 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 134 + (face / 2) + form * 2;
+        template->palette = 228 + shiny + form * 2;
         break;
-
     case SPECIES_ROTOM:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 138 + (face / 2) + form * 2;
-        spriteTemplate->palette = 232 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 138 + (face / 2) + form * 2;
+        template->palette = 232 + shiny + form * 2;
         break;
-
     case SPECIES_GIRATINA:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-        spriteTemplate->character = 150 + (face / 2) + form * 2;
-        spriteTemplate->palette = 244 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        template->character = 150 + (face / 2) + form * 2;
+        template->palette = 244 + shiny + form * 2;
         break;
-
     default:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
-        spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0); // ternary must remain to match
-        spriteTemplate->palette = species * 6 + 4 + shiny;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
+        template->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0); // ternary must remain to match
+        template->palette = species * 6 + 4 + shiny;
 
         if (species == SPECIES_SPINDA && face == FACE_FRONT) {
-            spriteTemplate->spindaSpots = SPECIES_SPINDA;
-            spriteTemplate->dummy = 0;
-            spriteTemplate->personality = personality;
+            template->species = SPECIES_SPINDA;
+            template->isAnimated = FALSE;
+            template->personality = personality;
         }
     }
 }
@@ -2576,7 +2558,7 @@ u8 Species_SanitizeFormId(u16 species, u8 form)
 
 /**
  * @brief Build a PokemonSpriteTemplate for a Pokemon sprite, preferring sprites from
- * Diamond/Pearl over Platinum.
+ * Diamond/Pearl over Platinum/HGSS.
  *
  * This routine will still use sprites from Platinum for Pokemon variants which
  * did not exist in Diamond/Pearl, namely:
@@ -2584,7 +2566,7 @@ u8 Species_SanitizeFormId(u16 species, u8 form)
  * - Shaymin-Sky
  * - Rotom appliances
  *
- * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param template       Pointer to the sprite template to be populated
  * @param species        The Pokemon's species
  * @param gender         The Pokemon's gender
  * @param face           Which face of the Pokemon the player sees
@@ -2592,128 +2574,110 @@ u8 Species_SanitizeFormId(u16 species, u8 form)
  * @param form           The Pokemon's form
  * @param personality    The Pokemon's personality value
  */
-static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
+static void Species_BuildSpriteTemplateDP(PokemonSpriteTemplate *template, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
-    spriteTemplate->spindaSpots = 0;
-    spriteTemplate->dummy = 0;
-    spriteTemplate->personality = 0;
-
+    template->species = SPECIES_NONE;
+    template->isAnimated = FALSE;
+    template->personality = 0;
     form = Species_SanitizeFormId(species, form);
-
     switch (species) {
     case SPECIES_BURMY:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 72 + (face / 2) + form * 2;
-        spriteTemplate->palette = 146 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 72 + (face / 2) + form * 2;
+        template->palette = 146 + shiny + form * 2;
         break;
-
     case SPECIES_WORMADAM:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 78 + (face / 2) + form * 2;
-        spriteTemplate->palette = 152 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 78 + (face / 2) + form * 2;
+        template->palette = 152 + shiny + form * 2;
         break;
-
     case SPECIES_SHELLOS:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 84 + face + form;
-        spriteTemplate->palette = 158 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 84 + face + form;
+        template->palette = 158 + shiny + form * 2;
         break;
-
     case SPECIES_GASTRODON:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 88 + face + form;
-        spriteTemplate->palette = 162 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 88 + face + form;
+        template->palette = 162 + shiny + form * 2;
         break;
-
     case SPECIES_CHERRIM:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 92 + face + form;
-        spriteTemplate->palette = 166 + (shiny * 2) + form;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 92 + face + form;
+        template->palette = 166 + (shiny * 2) + form;
         break;
-
     case SPECIES_ARCEUS:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 96 + (face / 2) + form * 2;
-        spriteTemplate->palette = 170 + shiny + form * 2;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 96 + (face / 2) + form * 2;
+        template->palette = 170 + shiny + form * 2;
         break;
-
     case SPECIES_CASTFORM:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 64 + (face * 2) + form;
-        spriteTemplate->palette = 138 + (shiny * 4) + form;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 64 + (face * 2) + form;
+        template->palette = 138 + (shiny * 4) + form;
         break;
-
     case SPECIES_DEOXYS:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 0 + (face / 2) + form * 2;
-        spriteTemplate->palette = 134 + shiny;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 0 + (face / 2) + form * 2;
+        template->palette = 134 + shiny;
         break;
-
     case SPECIES_UNOWN:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 8 + (face / 2) + form * 2;
-        spriteTemplate->palette = 136 + shiny;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 8 + (face / 2) + form * 2;
+        template->palette = 136 + shiny;
         break;
-
     case SPECIES_EGG:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 132 + form;
-        spriteTemplate->palette = 206 + form;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 132 + form;
+        template->palette = 206 + form;
         break;
-
     case SPECIES_BAD_EGG:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
-        spriteTemplate->character = 132;
-        spriteTemplate->palette = 206;
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        template->character = 132;
+        template->palette = 206;
         break;
-
     case SPECIES_SHAYMIN:
         if (form > 0) {
-            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-            spriteTemplate->character = 134 + (face / 2) + form * 2;
-            spriteTemplate->palette = 230 + shiny;
+            template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            template->character = 134 + (face / 2) + form * 2;
+            template->palette = 230 + shiny;
         } else {
-            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
-            spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
-            spriteTemplate->palette = species * 6 + 4 + shiny;
+            template->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+            template->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            template->palette = species * 6 + 4 + shiny;
         }
         break;
-
     case SPECIES_ROTOM:
         if (form > 0) {
-            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-            spriteTemplate->character = 138 + (face / 2) + form * 2;
-            spriteTemplate->palette = 232 + shiny + form * 2;
+            template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            template->character = 138 + (face / 2) + form * 2;
+            template->palette = 232 + shiny + form * 2;
         } else {
-            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
-            spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
-            spriteTemplate->palette = species * 6 + 4 + shiny;
+            template->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+            template->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            template->palette = species * 6 + 4 + shiny;
         }
         break;
-
     case SPECIES_GIRATINA:
         if (form > 0) {
-            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
-            spriteTemplate->character = 150 + (face / 2) + form * 2;
-            spriteTemplate->palette = 244 + shiny + form * 2;
+            template->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            template->character = 150 + (face / 2) + form * 2;
+            template->palette = 244 + shiny + form * 2;
         } else {
-            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
-            spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
-            spriteTemplate->palette = species * 6 + 4 + shiny;
+            template->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+            template->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            template->palette = species * 6 + 4 + shiny;
         }
         break;
-
     default:
-        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
-        spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
-        spriteTemplate->palette = species * 6 + 4 + shiny;
-
+        template->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+        template->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
+        template->palette = species * 6 + 4 + shiny;
         if (species == SPECIES_SPINDA && face == FACE_FRONT) {
-            spriteTemplate->spindaSpots = SPECIES_SPINDA;
-            spriteTemplate->dummy = 0;
-            spriteTemplate->personality = personality;
+            template->species = SPECIES_SPINDA;
+            template->isAnimated = FALSE;
+            template->personality = personality;
         }
-
         break;
     }
 }
@@ -2733,225 +2697,194 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
     u16 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
     u8 gender = BoxPokemon_GetGender(boxMon);
     u32 personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-
     u8 form;
     if (species == SPECIES_EGG) {
         if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
-            form = 1;
+            form = EGG_FORM_MANAPHY;
         } else {
-            form = 0;
+            form = EGG_FORM_BASE;
         }
     } else {
         form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
     }
 
     if (preferDP == TRUE) {
-        return LoadPokemonDPSpriteHeight(species, gender, face, form, personality);
+        return Species_LoadSpriteYOffsetDP(species, gender, face, form, personality);
     }
-
-    return LoadPokemonSpriteYOffset(species, gender, face, form, personality);
+    return Species_LoadSpriteYOffset(species, gender, face, form, personality);
 }
 
-u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
+u8 Species_LoadSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
     form = Species_SanitizeFormId(species, form);
 
     enum NarcID narcID;
-    int memberIndex;
+    int fileID;
     switch (species) {
     case SPECIES_BURMY:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 72 + (face / 2) + form * 2;
+        fileID = 72 + (face / 2) + form * 2;
         break;
-
     case SPECIES_WORMADAM:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 78 + (face / 2) + form * 2;
+        fileID = 78 + (face / 2) + form * 2;
         break;
-
     case SPECIES_SHELLOS:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 84 + face + form;
+        fileID = 84 + face + form;
         break;
-
     case SPECIES_GASTRODON:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 88 + face + form;
+        fileID = 88 + face + form;
         break;
-
     case SPECIES_CHERRIM:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 92 + face + form;
+        fileID = 92 + face + form;
         break;
-
     case SPECIES_ARCEUS:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 96 + (face / 2) + form * 2;
+        fileID = 96 + (face / 2) + form * 2;
         break;
-
     case SPECIES_CASTFORM:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 64 + face * 2 + form;
+        fileID = 64 + face * 2 + form;
         break;
-
     case SPECIES_DEOXYS:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 0 + (face / 2) + form * 2;
+        fileID = 0 + (face / 2) + form * 2;
         break;
-
     case SPECIES_UNOWN:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 8 + (face / 2) + form * 2;
+        fileID = 8 + (face / 2) + form * 2;
         break;
-
     case SPECIES_EGG:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 132 + form;
+        fileID = 132 + form;
         break;
-
     case SPECIES_BAD_EGG:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 132;
+        fileID = 132;
         break;
-
     case SPECIES_SHAYMIN:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 136 + (face / 2) + form * 2;
+        fileID = 136 + (face / 2) + form * 2;
         break;
-
     case SPECIES_ROTOM:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 140 + (face / 2) + form * 2;
+        fileID = 140 + (face / 2) + form * 2;
         break;
-
     case SPECIES_GIRATINA:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-        memberIndex = 152 + (face / 2) + form * 2;
+        fileID = 152 + (face / 2) + form * 2;
         break;
-
     default:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT;
-        memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
+        fileID = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 
-    u8 result;
-    NARC_ReadWholeMemberByIndexPair(&result, narcID, memberIndex);
-    return result;
+    u8 ret;
+    NARC_ReadWholeMemberByIndexPair(&ret, narcID, fileID);
+    return ret;
 }
 
-static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
+static u8 Species_LoadSpriteYOffsetDP(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
-    // TODO enum values?
     form = Species_SanitizeFormId(species, form);
 
     enum NarcID narcID;
-    int memberIndex;
+    int fileID;
     switch (species) {
     case SPECIES_BURMY:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 72 + (face / 2) + form * 2;
+        fileID = 72 + (face / 2) + form * 2;
         break;
-
     case SPECIES_WORMADAM:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 78 + (face / 2) + form * 2;
+        fileID = 78 + (face / 2) + form * 2;
         break;
-
     case SPECIES_SHELLOS:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 84 + face + form;
+        fileID = 84 + face + form;
         break;
-
     case SPECIES_GASTRODON:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 88 + face + form;
+        fileID = 88 + face + form;
         break;
-
     case SPECIES_CHERRIM:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 92 + face + form;
+        fileID = 92 + face + form;
         break;
-
     case SPECIES_ARCEUS:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 96 + (face / 2) + form * 2;
+        fileID = 96 + (face / 2) + form * 2;
         break;
-
     case SPECIES_CASTFORM:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 64 + face * 2 + form;
+        fileID = 64 + face * 2 + form;
         break;
-
     case SPECIES_DEOXYS:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 0 + (face / 2) + form * 2;
+        fileID = 0 + (face / 2) + form * 2;
         break;
-
     case SPECIES_UNOWN:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 8 + (face / 2) + form * 2;
+        fileID = 8 + (face / 2) + form * 2;
         break;
-
     case SPECIES_EGG:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 132 + form;
+        fileID = 132 + form;
         break;
-
     case SPECIES_BAD_EGG:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
-        memberIndex = 132;
+        fileID = 132;
         break;
-
     case SPECIES_SHAYMIN:
         if (form > 0) {
             narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 136 + (face / 2) + form * 2;
+            fileID = 136 + (face / 2) + form * 2;
         } else {
             narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            fileID = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
-
     case SPECIES_ROTOM:
         if (form > 0) {
             narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 140 + (face / 2) + form * 2;
+            fileID = 140 + (face / 2) + form * 2;
         } else {
             narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            fileID = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
-
     case SPECIES_GIRATINA:
         if (form > 0) {
             narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
-            memberIndex = 152 + (face / 2) + form * 2;
+            fileID = 152 + (face / 2) + form * 2;
         } else {
             narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-            memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            fileID = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
-
     default:
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
-        memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
+        fileID = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 
-    u8 result;
-    NARC_ReadWholeMemberByIndexPair(&result, narcID, memberIndex);
-    return result;
+    u8 ret;
+    NARC_ReadWholeMemberByIndexPair(&ret, narcID, fileID);
+    return ret;
 }
 
-void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1)
+void sub_0207697C(PokemonSpriteTemplate *template, u16 param1)
 {
-    param0->narcID = 60;
-    param0->character = param1 * 2;
-    param0->palette = param1 * 2 + 1;
-    param0->spindaSpots = 0;
-    param0->dummy = 0;
-    param0->personality = 0;
+    template->narcID = 60;
+    template->character = param1 * 2;
+    template->palette = param1 * 2 + 1;
+    template->species = SPECIES_NONE;
+    template->isAnimated = FALSE;
+    template->personality = 0;
 }
 
 static const SpriteTemplate Unk_020F05E4 = {
@@ -3441,9 +3374,9 @@ static void BoxPokemon_ForceAppendMove(BoxPokemon *boxMon, u16 move)
 
     // Bubble move slots 2 through 4 upwards
     for (int i = 0; i < LEARNED_MOVES_MAX - 1; i++) {
-        moves[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE2 + i, NULL);
-        pp[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE2_PP + i, NULL);
-        ppUp[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE2_PP_UPS + i, NULL);
+        moves[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i + 1, NULL);
+        pp[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_PP + i + 1, NULL);
+        ppUp[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_PP_UPS + i + 1, NULL);
     }
 
     moves[LEARNED_MOVES_MAX - 1] = move;
@@ -3570,7 +3503,6 @@ static BOOL Pokemon_HasMove(Pokemon *mon, u16 move)
             break;
         }
     }
-
     return i != LEARNED_MOVES_MAX;
 }
 

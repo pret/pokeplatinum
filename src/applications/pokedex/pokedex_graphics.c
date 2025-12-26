@@ -147,10 +147,10 @@ void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, e
         gender = Species_GetGenderFromPersonality(species, 0);
     }
 
-    BuildPokemonSpriteTemplate(&spriteTemplate, species, gender, face, shiny, form, personality);
+    Species_BuildSpriteTemplate(&spriteTemplate, species, gender, face, shiny, form, personality);
 
     if (face == 0) {
-        yOffset = LoadPokemonSpriteYOffset(species, gender, face, form, personality);
+        yOffset = Species_LoadSpriteYOffset(species, gender, face, form, personality);
         yOffset += 0;
     } else {
         yOffset = 0;

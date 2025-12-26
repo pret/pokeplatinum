@@ -358,9 +358,9 @@ void BattleIO_ReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int 
     v0.unk_00 = 5;
 
     if (battleSys->battleCtx->battleMons[param2].statusVolatile & 0x200000) {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].gender, v1, v2, battleSys->battleCtx->battleMons[param2].personality);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].gender, v1, v2, battleSys->battleCtx->battleMons[param2].personality);
     }
 
     v0.unk_02 = battleSys->battleCtx->battleMons[param2].capturedBall;
@@ -399,9 +399,9 @@ void ov16_02265050(BattleSystem *battleSys, int param1, int param2)
     v0.unk_00 = 6;
 
     if (battleSys->battleCtx->battleMons[param1].statusVolatile & 0x200000) {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].gender, v1, v2, battleSys->battleCtx->battleMons[param1].personality);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].gender, v1, v2, battleSys->battleCtx->battleMons[param1].personality);
     }
 
     v0.unk_02 = param2;

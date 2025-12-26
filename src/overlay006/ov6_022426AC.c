@@ -67,7 +67,7 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
         }
     }
 
-    BuildPokemonSpriteTemplate(&resources->unk_28, species, gender, 2, 0, NULL, NULL);
+    Species_BuildSpriteTemplate(&resources->unk_28, species, gender, 2, 0, NULL, NULL);
 
     resources->unk_38 = SpriteList_InitRendering(1, &resources->unk_3C, HEAP_ID_FIELD1);
     v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD1);

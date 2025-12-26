@@ -575,7 +575,7 @@ static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species
     enum Gender monGender = Pokemon_GetGender(mon);
     BOOL shiny = Pokemon_IsShiny(mon);
 
-    BuildPokemonSpriteTemplate(monSpriteTemplate, species, monGender, FACE_FRONT, shiny, form, 0);
+    Species_BuildSpriteTemplate(monSpriteTemplate, species, monGender, FACE_FRONT, shiny, form, 0);
 
     u32 personality = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
     CharacterSprite_LoadPokemonSpriteRect(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, FALSE, FACE_FRONT, species);

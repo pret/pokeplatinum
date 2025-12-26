@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+#include "generated/species.h"
 
 #include "battle_anim/const_ov12_0223B0A0.h"
 #include "battle_anim/const_ov12_0223B0B8.h"
@@ -90,18 +91,18 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
         }
     }
 
-    BuildPokemonSpriteTemplate(&v0, v2, v3, v4, v5, v6, v7);
+    Species_BuildSpriteTemplate(&v0, v2, v3, v4, v5, v6, v7);
 
     v1 = PokemonSprite_GetTemplate(param0->sprites[param0->unk_00]);
     *v1 = v0;
 
     PokemonSprite_ScheduleReloadFromNARC(param0->sprites[param0->unk_00]);
-    CharacterSprite_LoadPokemonSprite(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v7, FALSE, v4, v1->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v1->narcID, v1->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v7, FALSE, v4, v1->species);
 
     param0->pokemonSpriteData[param0->unk_00]->narcID = v1->narcID;
     param0->pokemonSpriteData[param0->unk_00]->palette = v1->palette;
 
-    v11 = param0->pokemonSpriteData[param0->unk_00]->yOffset = LoadPokemonSpriteYOffset(v2, v3, v4, v6, v7);
+    v11 = param0->pokemonSpriteData[param0->unk_00]->yOffset = Species_LoadSpriteYOffset(v2, v3, v4, v6, v7);
     v8 = ov12_022384CC(param0->types[param0->unk_00], 1);
 
     PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_Y_CENTER, v8 + v11);
@@ -146,11 +147,11 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
         v3 = 0;
     }
 
-    CharacterSprite_LoadPokemonSprite(v0->narcID, v0->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v5, FALSE, v3, v0->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v0->narcID, v0->character, heapID, param0->pokemonSpriteData[param0->unk_00]->tiles, v5, FALSE, v3, v0->species);
 
     param0->pokemonSpriteData[param0->unk_00]->narcID = v0->narcID;
     param0->pokemonSpriteData[param0->unk_00]->palette = v0->palette;
-    param0->pokemonSpriteData[param0->unk_00]->yOffset = LoadPokemonSpriteYOffset(v1, v2, v3, v4, v5);
+    param0->pokemonSpriteData[param0->unk_00]->yOffset = Species_LoadSpriteYOffset(v1, v2, v3, v4, v5);
 
     v6 = ov12_022384CC(param0->types[param0->unk_00], 1) + param0->pokemonSpriteData[param0->unk_00]->yOffset;
 
@@ -169,8 +170,8 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
 
     v0.narcID = 117;
     v0.palette = 250;
-    v0.spindaSpots = 0;
-    v0.dummy = 0;
+    v0.species = SPECIES_NONE;
+    v0.isAnimated = FALSE;
     v0.personality = 0;
 
     if (param0->types[param0->unk_00] & 0x1) {

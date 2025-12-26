@@ -276,9 +276,9 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
+    Species_BuildSpriteTemplate(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
 
-    v6 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
+    v6 = Species_LoadSpriteYOffset(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
 
     PokemonSprite_LoadYOffset(param1->unk_1A0, &v7, param2->unk_02);
     PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v8, param2->unk_02);
@@ -345,9 +345,9 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
+    Species_BuildSpriteTemplate(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
 
-    v1->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
+    v1->unk_85 = Species_LoadSpriteYOffset(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
 
     PokemonSprite_LoadYOffset(param1->unk_1A0, &v1->unk_90, param2->unk_02);
     PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v1->unk_91, param2->unk_02);
@@ -395,9 +395,9 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v1 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
+    Species_BuildSpriteTemplate(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
 
-    v2->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
+    v2->unk_85 = Species_LoadSpriteYOffset(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
 
     PokemonSprite_LoadYOffset(param1->unk_1A0, &v2->unk_90, param2->unk_02);
     PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v2->unk_91, param2->unk_02);
@@ -4802,7 +4802,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
 
         v0->unk_66++;
     case 8:
-        v3 = LoadPokemonSpriteYOffset(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
+        v3 = Species_LoadSpriteYOffset(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
         v3 = 80 - v3;
         PokemonSprite_SetPartialDraw(v0->unk_08, 0, 0, 80, v3);
         v0->unk_66++;
@@ -5643,7 +5643,7 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
         face = FACE_BACK;
     }
 
-    CharacterSprite_LoadPokemonSprite(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, FALSE, face, param2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, FALSE, face, param2->species);
     PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param10, param2->narcID);
     PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param10, param2->palette);
     PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param10, param6);

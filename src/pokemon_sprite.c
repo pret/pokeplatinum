@@ -2,6 +2,7 @@
 
 #include "constants/graphics.h"
 #include "generated/shadow_sizes.h"
+#include "constants/species.h"
 
 #include "struct_defs/sprite_animation_frame.h"
 
@@ -1509,7 +1510,7 @@ static u8 SwapNybbles(u8 value)
 
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData)
 {
-    if (monSprite->template.spindaSpots != 0) {
+    if (monSprite->template.species != SPECIES_NONE) {
         PokemonSprite_DrawSpindaSpots(rawCharData, monSprite->template.personality, TRUE);
     }
 }
