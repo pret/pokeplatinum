@@ -1545,7 +1545,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
 #undef VALUE
 }
 
-void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
+void Pokemon_IncreaseData(Pokemon *mon, enum PokemonDataParam param, int value)
 {
     u32 checksum;
     if (!mon->box.partyDecrypted) {

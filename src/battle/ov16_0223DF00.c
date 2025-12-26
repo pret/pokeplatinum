@@ -758,7 +758,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
         if (Pokemon_GetData(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetData(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-            Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
+            Pokemon_IncreaseData(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
             // Don't permit restoring PP on copied moves
             if ((selectedSlot == partySlot || targetSlot == partySlot)
@@ -776,7 +776,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
 
         for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
             if (Pokemon_GetData(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetData(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-                Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
+                Pokemon_IncreaseData(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
                 if ((selectedSlot == partySlot || targetSlot == partySlot)
                     && (BattleMon_Get(battleCtx, battler, BATTLEMON_VOLATILE_STATUS, NULL) & VOLATILE_CONDITION_TRANSFORM) == FALSE
@@ -828,7 +828,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
                 break;
             }
 
-            Pokemon_IncreaseValue(mon, MON_DATA_HP, param);
+            Pokemon_IncreaseData(mon, MON_DATA_HP, param);
 
             if (Item_LoadParam(item, ITEM_PARAM_REVIVE, HEAP_ID_BATTLE) == FALSE) {
                 if (Battler_Side(battleSys, battler)) {
@@ -877,7 +877,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
             }
         }
 
-        Pokemon_IncreaseValue(mon, MON_DATA_FRIENDSHIP, friendship);
+        Pokemon_IncreaseData(mon, MON_DATA_FRIENDSHIP, friendship);
         if (selectedSlot == partySlot || targetSlot == partySlot) {
             Battler_AddVal(battleCtx, battler, BATTLEMON_FRIENDSHIP, friendship);
         }

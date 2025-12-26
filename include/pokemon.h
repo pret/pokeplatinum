@@ -179,7 +179,7 @@ void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *v
  * @param param
  * @param value
  */
-void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value);
+void Pokemon_IncreaseData(Pokemon *mon, enum PokemonDataParam param, int value);
 
 /**
  * @brief Gets a SpeciesData based on a pokemon species and form
