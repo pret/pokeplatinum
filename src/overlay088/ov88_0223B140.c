@@ -569,7 +569,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
                 form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
 
                 if (form != SHAYMIN_FORM_LAND) {
-                    Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
+                    Pokemon_UpdateShayminForm(mon, SHAYMIN_FORM_LAND);
                 }
             }
         }

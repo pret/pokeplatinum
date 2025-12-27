@@ -1007,11 +1007,11 @@ u8 *ov94_02242548(int heapID)
 void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *appState)
 {
     if (GTSApplication_IsBoxIDParty(appState->selectedBoxId)) {
-        Pokemon_SetShayminForm((Pokemon *)(appState->unk_114), SHAYMIN_FORM_LAND);
+        Pokemon_UpdateShayminForm((Pokemon *)(appState->unk_114), SHAYMIN_FORM_LAND);
 
         MI_CpuCopyFast(appState->unk_114, listing->pokemon.bytes, Pokemon_StructSize());
     } else {
-        BoxPokemon_SetShayminForm(appState->unk_114, SHAYMIN_FORM_LAND);
+        BoxPokemon_UpdateShayminForm(appState->unk_114, SHAYMIN_FORM_LAND);
         BoxPokemon_CopyToPokemon(appState->unk_114, (Pokemon *)listing->pokemon.bytes);
     }
 

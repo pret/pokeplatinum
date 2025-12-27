@@ -3877,19 +3877,16 @@ void Party_UpdateGiratinaForms(Party *party, BOOL forceOrigin)
     }
 }
 
-void Pokemon_SetShayminForm(Pokemon *mon, int form)
+void Pokemon_UpdateShayminForm(Pokemon *mon, int form)
 {
-    BoxPokemon_SetShayminForm(&mon->box, form);
+    BoxPokemon_UpdateShayminForm(&mon->box, form);
     Pokemon_CalcLevelAndStats(mon);
 }
 
-void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int form)
+void BoxPokemon_UpdateShayminForm(BoxPokemon *boxMon, int form)
 {
-    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-
-    if (species == SPECIES_SHAYMIN) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN) {
         GF_ASSERT(form <= SHAYMIN_FORM_COUNT - 1);
-
         BoxPokemon_SetData(boxMon, MON_DATA_FORM, &form);
         BoxPokemon_UpdateAbility(boxMon);
     }
@@ -3898,67 +3895,60 @@ void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int form)
 BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
 {
     u32 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
-    u32 monForm = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
-    u32 condition = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
-    u32 currentHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
-    u32 fatefulEncounter = Pokemon_GetData(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
+    u32 form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+    u32 status = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
+    u32 hp = Pokemon_GetData(mon, MON_DATA_HP, NULL);
+    BOOL fatefulEncounter = Pokemon_GetData(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
-    RTCTime rtcTime;
-    RTC_GetCurrentTime(&rtcTime);
+    RTCTime time;
+    RTC_GetCurrentTime(&time);
 
-    return species == SPECIES_SHAYMIN
-        && monForm == SHAYMIN_FORM_LAND
-        && currentHP > 0
+    if (species == SPECIES_SHAYMIN
+        && form == SHAYMIN_FORM_LAND
+        && hp > 0
         && fatefulEncounter == TRUE
-        && (condition & MON_CONDITION_FREEZE) == FALSE
-        && rtcTime.hour >= 4
-        && rtcTime.hour < 20;
+        && !(status & MON_CONDITION_FREEZE)
+        && time.hour >= 4
+        && time.hour < 20) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
-void Party_SetShayminLandForm(Party *party)
+void Party_SetShayminLandForms(Party *party)
 {
-    int currentPartyCount = Party_GetCurrentCount(party);
-
-    for (int i = 0; i < currentPartyCount; i++) {
+    int count = Party_GetCurrentCount(party);
+    for (int i = 0; i < count; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
         int species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
         int form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
-
         if (species == SPECIES_SHAYMIN && form == SHAYMIN_FORM_SKY) {
-            int newForm = SHAYMIN_FORM_LAND;
-            Pokemon_SetShayminForm(mon, newForm);
+            Pokemon_UpdateShayminForm(mon, SHAYMIN_FORM_LAND);
         }
     }
 }
 
-BOOL Party_SetShayminForm(Party *party, int param1, const RTCTime *rtcTime)
+BOOL Party_UpdateShayminForms(Party *party, int minutesDiff, const RTCTime *time)
 {
-    if (rtcTime->hour >= 20 || rtcTime->hour < 4) {
-        s32 hours = rtcTime->hour;
-
-        if (hours < 4) {
-            hours += 24;
+    s32 hour, minutes;
+    if (time->hour >= 20 || time->hour < 4) {
+        hour = time->hour;
+        if (hour < 4) {
+            hour += 24;
         }
-
-        hours -= 20;
-        s32 minutes = rtcTime->minute + hours * 60;
-
-        param1++;
-
-        if (minutes < param1) {
-            Party_SetShayminLandForm(party);
+        minutes = time->minute + 60 * (hour - 20);
+        if (minutes < minutesDiff + 1) {
+            Party_SetShayminLandForms(party);
             return TRUE;
         }
-
         return FALSE;
     } else {
-        s32 minutes = rtcTime->minute + (rtcTime->hour - 4) * 60;
-
-        if (minutes < param1) {
-            Party_SetShayminLandForm(party);
+        minutes = time->minute + (time->hour - 4) * 60;
+        if (minutes < minutesDiff) {
+            Party_SetShayminLandForms(party);
             return TRUE;
         }
-
         return FALSE;
     }
 }

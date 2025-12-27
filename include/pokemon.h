@@ -726,7 +726,7 @@ void Party_UpdateGiratinaForms(Party *party, BOOL forceOrigin);
  * @param mon
  * @param form
  */
-void Pokemon_SetShayminForm(Pokemon *mon, int form);
+void Pokemon_UpdateShayminForm(Pokemon *mon, int form);
 
 /**
  * @brief Sets Shaymin to the given form. Has no effect if the given BoxPokemon is not a Shaymin
@@ -734,7 +734,7 @@ void Pokemon_SetShayminForm(Pokemon *mon, int form);
  * @param boxMon
  * @param form
  */
-void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int form);
+void BoxPokemon_UpdateShayminForm(BoxPokemon *boxMon, int form);
 
 /**
  * @brief Checks whether Shaymin is allowed to change into Sky Form. Always returns false if the given Pokemon is not a Shaymin
@@ -749,7 +749,7 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon);
  *
  * @param party
  */
-void Party_SetShayminLandForm(Party *party);
+void Party_SetShayminLandForms(Party *party);
 
 /**
  * @brief Sets all Shaymin in the party to Land form at night
@@ -758,10 +758,10 @@ void Party_SetShayminLandForm(Party *party);
  *
  * @param party
  * @param param1
- * @param rtcTime
+ * @param time
  * @return Whether Shaymin should be set to Land form
  */
-BOOL Party_SetShayminForm(Party *party, int param1, const RTCTime *rtcTime);
+BOOL Party_UpdateShayminForms(Party *party, int minutesDiff, const RTCTime *time);
 
 /**
  * @brief Sets Rotom to the given form. Has no effect if the given Pokemon is not a Rotom

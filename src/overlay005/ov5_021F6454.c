@@ -543,7 +543,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
                 Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
+                Pokemon_UpdateShayminForm(v0, SHAYMIN_FORM_LAND);
                 break;
             }
         }
@@ -600,7 +600,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
             Pokemon_SetRotomForm(pokemon, ROTOM_FORM_BASE, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(pokemon, SHAYMIN_FORM_LAND);
+            Pokemon_UpdateShayminForm(pokemon, SHAYMIN_FORM_LAND);
             break;
         }
     }
