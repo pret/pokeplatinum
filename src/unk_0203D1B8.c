@@ -1035,7 +1035,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         int v4;
         int v5;
 
-        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
+        if ((v4 = Pokemon_GetEvolutionTarget(NULL, v2->unk_04.unk_40, EVO_CONTEXT_TRADE, v3, &v5)) != 0) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
             v2->unk_60 = Evolution_Begin(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
             v2->unk_00 = 6;

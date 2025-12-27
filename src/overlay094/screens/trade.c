@@ -93,7 +93,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                 int heldItem = Pokemon_GetData(receivingPokemon, MON_DATA_HELD_ITEM, NULL);
                 int evolutionType;
 
-                int evolvedSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, receivingPokemon, EVO_CLASS_BY_TRADE, heldItem, &evolutionType);
+                int evolvedSpecies = Pokemon_GetEvolutionTarget(NULL, receivingPokemon, EVO_CONTEXT_TRADE, heldItem, &evolutionType);
 
                 if (evolvedSpecies != SPECIES_NONE) {
                     appState->evolutionData = Evolution_Begin(NULL, receivingPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);
@@ -112,7 +112,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
                     int heldItem = Pokemon_GetData(tradedPokemon, MON_DATA_HELD_ITEM, NULL);
                     int evolutionType;
 
-                    int evolvedSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, tradedPokemon, EVO_CLASS_BY_TRADE, heldItem, &evolutionType);
+                    int evolvedSpecies = Pokemon_GetEvolutionTarget(NULL, tradedPokemon, EVO_CONTEXT_TRADE, heldItem, &evolutionType);
 
                     if (evolvedSpecies != SPECIES_NONE) {
                         appState->evolutionData = Evolution_Begin(NULL, tradedPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);

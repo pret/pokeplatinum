@@ -1043,7 +1043,7 @@ void PartyMenu_PrintMemberComment_CanUseEvoItem(PartyMenuApplication *applicatio
     PartyMenu_PrintMemberLevel(application, slot);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
-    if (Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, application->partyMenu->usedItemID, NULL) == SPECIES_NONE) {
+    if (Pokemon_GetEvolutionTarget(NULL, mon, EVO_CONTEXT_ITEM_USE, application->partyMenu->usedItemID, NULL) == SPECIES_NONE) {
         PrintMemberEvoComment(application, slot, EVO_COMMENT_UNABLE);
     } else {
         PrintMemberEvoComment(application, slot, EVO_COMMENT_ABLE);

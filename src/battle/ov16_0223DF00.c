@@ -973,7 +973,7 @@ u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *dto, int *outPartySlot, int *
 
         if (*outPartySlot < 6) {
             mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLE_SIDE_PLAYER], *outPartySlot);
-            species = Pokemon_GetEvolutionTargetSpecies(dto->parties[BATTLE_SIDE_PLAYER], mon, EVO_CLASS_BY_LEVEL, dto->mapEvolutionMethod, outEvoType);
+            species = Pokemon_GetEvolutionTarget(dto->parties[BATTLE_SIDE_PLAYER], mon, EVO_CONTEXT_LEVEL_UP, dto->mapEvolutionMethod, outEvoType);
             if (species) {
                 return species;
             }

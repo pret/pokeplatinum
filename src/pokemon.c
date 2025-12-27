@@ -97,7 +97,7 @@ static BOOL BoxPokemon_CanLearnTMHM(BoxPokemon *boxMon, u8 tmHM);
 static void BoxPokemon_UpdateAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
 static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
-static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolution[MAX_EVOLUTIONS]);
+static void Species_LoadEvolutions(int monSpecies, Evolution speciesEvolution[MAX_MON_EVOLUTIONS]);
 static void MonEncryptSegment(void *data, u32 bytes, u32 seed);
 static void MonDecryptSegment(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
@@ -2247,9 +2247,9 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *template, BoxPokemon 
     u8 form;
     if (species == SPECIES_EGG) {
         if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_MANAPHY) {
-            form = 1;
+            form = EGG_FORM_MANAPHY;
         } else {
-            form = 0;
+            form = EGG_FORM_NORMAL;
         }
     } else {
         form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
@@ -2890,260 +2890,226 @@ BOOL Pokemon_TryLevelUp(Pokemon *mon)
     return FALSE;
 }
 
-u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult)
+u16 Pokemon_GetEvolutionTarget(Party *party, Pokemon *mon, u8 context, u16 evoParam, int *methodRet)
 {
     u16 targetSpecies = SPECIES_NONE;
 
-    u16 monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
-    u16 monHeldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
-    u32 monPersonality = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
-    u8 monBeauty = Pokemon_GetData(mon, MON_DATA_BEAUTY, NULL);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    u16 heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
+    u32 personality = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
+    u8 beauty = Pokemon_GetData(mon, MON_DATA_BEAUTY, NULL);
 
     int i;
-    u16 monFriendship;
+    u16 friendship;
+    u16 personalityUpper = (personality & 0xFFFF0000) >> 16;
+    u8 holdEffect = Item_LoadParam(heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
 
-    u16 monPersonalityUpper = (monPersonality & 0xFFFF0000) >> 16;
-    u8 itemHoldEffect = Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
-
-    if (monSpecies != SPECIES_KADABRA
-        && itemHoldEffect == HOLD_EFFECT_NO_EVOLVE
-        && evoClass != EVO_CLASS_BY_ITEM) {
+    // Kadabra bypasses Everstone because he's just that broken.
+    if (species != SPECIES_KADABRA
+        && holdEffect == HOLD_EFFECT_NO_EVOLVE
+        && context != EVO_CONTEXT_ITEM_USE) {
         return SPECIES_NONE;
     }
 
     int stackVar;
-    if (evoTypeResult == NULL) {
-        evoTypeResult = &stackVar;
+    if (methodRet == NULL) {
+        methodRet = &stackVar;
     }
-
-    SpeciesEvolution *speciesEvolutions = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesEvolution) * MAX_EVOLUTIONS);
-    LoadSpeciesEvolutions(monSpecies, speciesEvolutions);
-
-    switch (evoClass) {
-    case EVO_CLASS_BY_LEVEL: {
-        u8 monLevel = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
-        monFriendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
-
-        for (i = 0; i < MAX_EVOLUTIONS; i++) {
-            switch (speciesEvolutions[i].method) {
-            case EVO_LEVEL_HAPPINESS:
-                if (EVOLVE_FRIENDSHIP_THRESHOLD <= monFriendship) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_HAPPINESS;
-                }
-                break;
-
-            case EVO_LEVEL_HAPPINESS_DAY:
-                if (IsNight() == FALSE && EVOLVE_FRIENDSHIP_THRESHOLD <= monFriendship) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_HAPPINESS_DAY;
-                }
-                break;
-
-            case EVO_LEVEL_HAPPINESS_NIGHT:
-                if (IsNight() == TRUE && EVOLVE_FRIENDSHIP_THRESHOLD <= monFriendship) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_HAPPINESS_NIGHT;
-                }
-                break;
-
-            case EVO_LEVEL:
-                if (speciesEvolutions[i].param <= monLevel) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL;
-                }
-                break;
-
-            case EVO_LEVEL_ATK_GT_DEF:
-                if (speciesEvolutions[i].param <= monLevel) {
-                    if (Pokemon_GetData(mon, MON_DATA_ATK, NULL) > Pokemon_GetData(mon, MON_DATA_DEF, NULL)) {
-                        targetSpecies = speciesEvolutions[i].targetSpecies;
-                        *evoTypeResult = EVO_LEVEL_ATK_GT_DEF;
-                    }
-                }
-                break;
-
-            case EVO_LEVEL_ATK_EQ_DEF:
-                if (speciesEvolutions[i].param <= monLevel) {
-                    if (Pokemon_GetData(mon, MON_DATA_ATK, NULL) == Pokemon_GetData(mon, MON_DATA_DEF, NULL)) {
-                        targetSpecies = speciesEvolutions[i].targetSpecies;
-                        *evoTypeResult = EVO_LEVEL_ATK_EQ_DEF;
-                    }
-                }
-                break;
-
-            case EVO_LEVEL_ATK_LT_DEF:
-                if (speciesEvolutions[i].param <= monLevel) {
-                    if (Pokemon_GetData(mon, MON_DATA_ATK, NULL) < Pokemon_GetData(mon, MON_DATA_DEF, NULL)) {
-                        targetSpecies = speciesEvolutions[i].targetSpecies;
-                        *evoTypeResult = EVO_LEVEL_ATK_LT_DEF;
-                    }
-                }
-                break;
-
-            case EVO_LEVEL_PID_LOW:
-                if (speciesEvolutions[i].param <= monLevel) {
-                    if (monPersonalityUpper % 10 < 5) {
-                        targetSpecies = speciesEvolutions[i].targetSpecies;
-                        *evoTypeResult = EVO_LEVEL_PID_LOW;
-                    }
-                }
-                break;
-
-            case EVO_LEVEL_PID_HIGH:
-                if (speciesEvolutions[i].param <= monLevel) {
-                    if (monPersonalityUpper % 10 >= 5) {
-                        targetSpecies = speciesEvolutions[i].targetSpecies;
-                        *evoTypeResult = EVO_LEVEL_PID_HIGH;
-                    }
-                }
-                break;
-
-            case EVO_LEVEL_NINJASK:
-                if (speciesEvolutions[i].param <= monLevel) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_NINJASK;
-                }
-                break;
-
-            case EVO_LEVEL_SHEDINJA:
-                *evoTypeResult = EVO_LEVEL_SHEDINJA;
-                break;
-
-            case EVO_LEVEL_BEAUTY:
-                if (speciesEvolutions[i].param <= monBeauty) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_BEAUTY;
-                }
-                break;
-
-            case EVO_LEVEL_WITH_HELD_ITEM_DAY:
-                if (IsNight() == FALSE && speciesEvolutions[i].param == monHeldItem) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_WITH_HELD_ITEM_DAY;
-                }
-                break;
-
-            case EVO_LEVEL_WITH_HELD_ITEM_NIGHT:
-                if (IsNight() == TRUE && speciesEvolutions[i].param == monHeldItem) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_WITH_HELD_ITEM_NIGHT;
-                }
-                break;
-
-            case EVO_LEVEL_KNOW_MOVE:
-                if (Pokemon_HasMove(mon, speciesEvolutions[i].param) == TRUE) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_KNOW_MOVE;
-                }
-                break;
-
-            case EVO_LEVEL_SPECIES_IN_PARTY:
-                if (party != NULL) {
-                    if (Party_HasSpecies(party, speciesEvolutions[i].param) == TRUE) {
-                        targetSpecies = speciesEvolutions[i].targetSpecies;
-                        *evoTypeResult = EVO_LEVEL_SPECIES_IN_PARTY;
-                    }
-                }
-                break;
-
-            case EVO_LEVEL_MALE:
-                if (Pokemon_GetData(mon, MON_DATA_GENDER, NULL) == GENDER_MALE && speciesEvolutions[i].param <= monLevel) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_MALE;
-                }
-                break;
-
-            case EVO_LEVEL_FEMALE:
-                if (Pokemon_GetData(mon, MON_DATA_GENDER, NULL) == GENDER_FEMALE && speciesEvolutions[i].param <= monLevel) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_FEMALE;
-                }
-                break;
-
-            case EVO_LEVEL_MAGNETIC_FIELD:
-                if (speciesEvolutions[i].method == evoParam) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_MAGNETIC_FIELD;
-                }
-                break;
-
-            case EVO_LEVEL_MOSS_ROCK:
-                if (speciesEvolutions[i].method == evoParam) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_MOSS_ROCK;
-                }
-                break;
-
-            case EVO_LEVEL_ICE_ROCK:
-                if (speciesEvolutions[i].method == evoParam) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_LEVEL_ICE_ROCK;
-                }
-                break;
-            }
-
-            if (targetSpecies) {
-                break;
-            }
-        }
-    } break;
-
-    case EVO_CLASS_BY_TRADE:
-        for (i = 0; i < MAX_EVOLUTIONS; i++) {
-            switch (speciesEvolutions[i].method) {
+    Evolution *evolutions = Heap_Alloc(HEAP_ID_SYSTEM, MAX_MON_EVOLUTIONS * sizeof(Evolution));
+    Species_LoadEvolutions(species, evolutions);
+    switch (context) {
+    case EVO_CONTEXT_LEVEL_UP:
+        u8 level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+        friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
+        for (i = 0; i < MAX_MON_EVOLUTIONS; i++) {
+            switch (evolutions[i].method) {
+            case EVO_NONE:
             case EVO_TRADE:
-                targetSpecies = speciesEvolutions[i].targetSpecies;
-                *evoTypeResult = EVO_TRADE;
+            case EVO_TRADE_HELD_ITEM:
+            case EVO_USE_ITEM:
+            case EVO_USE_ITEM_MALE:
+            case EVO_USE_ITEM_FEMALE:
                 break;
-
-            case EVO_TRADE_WITH_HELD_ITEM:
-                if (speciesEvolutions[i].param == monHeldItem) {
-                    targetSpecies = speciesEvolutions[i].targetSpecies;
-                    *evoTypeResult = EVO_TRADE_WITH_HELD_ITEM;
+            case EVO_LEVEL_FRIENDSHIP:
+                if (friendship >= FRIENDSHIP_EVO_THRESHOLD) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_FRIENDSHIP;
+                }
+                break;
+            case EVO_LEVEL_FRIENDSHIP_DAY:
+                if (IsNight() == FALSE && friendship >= FRIENDSHIP_EVO_THRESHOLD) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_FRIENDSHIP_DAY;
+                }
+                break;
+            case EVO_LEVEL_FRIENDSHIP_NIGHT:
+                if (IsNight() == TRUE && friendship >= FRIENDSHIP_EVO_THRESHOLD) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_FRIENDSHIP_NIGHT;
+                }
+                break;
+            case EVO_LEVEL:
+                if (evolutions[i].param <= level) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL;
+                }
+                break;
+            case EVO_LEVEL_ATK_GT_DEF:
+                if (evolutions[i].param <= level && Pokemon_GetData(mon, MON_DATA_ATK, NULL) > Pokemon_GetData(mon, MON_DATA_DEF, NULL)) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_ATK_GT_DEF;
+                }
+                break;
+            case EVO_LEVEL_ATK_EQ_DEF:
+                if (evolutions[i].param <= level && Pokemon_GetData(mon, MON_DATA_ATK, NULL) == Pokemon_GetData(mon, MON_DATA_DEF, NULL)) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_ATK_EQ_DEF;
+                }
+                break;
+            case EVO_LEVEL_ATK_LT_DEF:
+                if (evolutions[i].param <= level && Pokemon_GetData(mon, MON_DATA_ATK, NULL) < Pokemon_GetData(mon, MON_DATA_DEF, NULL)) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_ATK_LT_DEF;
+                }
+                break;
+            case EVO_LEVEL_PID_LOW:
+                if (evolutions[i].param <= level && personalityUpper % 10 < 5) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_PID_LOW;
+                }
+                break;
+            case EVO_LEVEL_PID_HIGH:
+                if (evolutions[i].param <= level && personalityUpper % 10 >= 5) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_PID_HIGH;
+                }
+                break;
+            case EVO_LEVEL_NINJASK:
+                if (evolutions[i].param <= level) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_NINJASK;
+                }
+                break;
+            case EVO_LEVEL_SHEDINJA:
+                *methodRet = EVO_LEVEL_SHEDINJA;
+                break;
+            case EVO_LEVEL_BEAUTY:
+                if (evolutions[i].param <= beauty) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_BEAUTY;
+                }
+                break;
+            case EVO_LEVEL_HELD_ITEM_DAY:
+                if (IsNight() == FALSE && evolutions[i].param == heldItem) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_HELD_ITEM_DAY;
+                }
+                break;
+            case EVO_LEVEL_HELD_ITEM_NIGHT:
+                if (IsNight() == TRUE && evolutions[i].param == heldItem) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_HELD_ITEM_NIGHT;
+                }
+                break;
+            case EVO_LEVEL_KNOW_MOVE:
+                if (Pokemon_HasMove(mon, evolutions[i].param) == TRUE) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_KNOW_MOVE;
+                }
+                break;
+            case EVO_LEVEL_SPECIES_IN_PARTY:
+                if (party != NULL && Party_HasSpecies(party, evolutions[i].param) == TRUE) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_SPECIES_IN_PARTY;
+                }
+                break;
+            case EVO_LEVEL_MALE:
+                if (Pokemon_GetData(mon, MON_DATA_GENDER, NULL) == GENDER_MALE && evolutions[i].param <= level) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_MALE;
+                }
+                break;
+            case EVO_LEVEL_FEMALE:
+                if (Pokemon_GetData(mon, MON_DATA_GENDER, NULL) == GENDER_FEMALE && evolutions[i].param <= level) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_FEMALE;
+                }
+                break;
+            case EVO_LEVEL_MAGNETIC_FIELD:
+                if (evoParam == evolutions[i].method) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_MAGNETIC_FIELD;
+                }
+                break;
+            case EVO_LEVEL_MOSS_ROCK:
+                if (evoParam == evolutions[i].method) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_MOSS_ROCK;
+                }
+                break;
+            case EVO_LEVEL_ICE_ROCK:
+                if (evoParam == evolutions[i].method) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_LEVEL_ICE_ROCK;
                 }
                 break;
             }
 
-            if (targetSpecies) {
+            if (targetSpecies != SPECIES_NONE) {
                 break;
             }
         }
         break;
-
-    case EVO_CLASS_UNUSED_02:
-    case EVO_CLASS_BY_ITEM:
-        for (i = 0; i < MAX_EVOLUTIONS; i++) {
-            if (speciesEvolutions[i].method == EVO_USE_ITEM && speciesEvolutions[i].param == evoParam) {
-                targetSpecies = speciesEvolutions[i].targetSpecies;
-                *evoTypeResult = EVO_NONE;
+    case EVO_CONTEXT_TRADE:
+        for (i = 0; i < MAX_MON_EVOLUTIONS; i++) {
+            switch (evolutions[i].method) {
+            case EVO_TRADE:
+                targetSpecies = evolutions[i].target;
+                *methodRet = EVO_TRADE;
+                break;
+            case EVO_TRADE_HELD_ITEM:
+                if (heldItem == evolutions[i].param) {
+                    targetSpecies = evolutions[i].target;
+                    *methodRet = EVO_TRADE_HELD_ITEM;
+                }
                 break;
             }
 
-            if (speciesEvolutions[i].method == EVO_USE_ITEM_MALE
+            if (targetSpecies != SPECIES_NONE) {
+                break;
+            }
+        }
+        break;
+    case EVO_CONTEXT_ITEM_CHECK:
+    case EVO_CONTEXT_ITEM_USE:
+        for (i = 0; i < MAX_MON_EVOLUTIONS; i++) {
+            if (evolutions[i].method == EVO_USE_ITEM && evoParam == evolutions[i].param) {
+                targetSpecies = evolutions[i].target;
+                *methodRet = EVO_NONE;
+                break;
+            }
+            if (evolutions[i].method == EVO_USE_ITEM_MALE
                 && Pokemon_GetData(mon, MON_DATA_GENDER, NULL) == GENDER_MALE
-                && speciesEvolutions[i].param == evoParam) {
-                targetSpecies = speciesEvolutions[i].targetSpecies;
-                *evoTypeResult = EVO_NONE;
+                && evoParam == evolutions[i].param) {
+                targetSpecies = evolutions[i].target;
+                *methodRet = EVO_NONE;
                 break;
             }
-
-            if (speciesEvolutions[i].method == EVO_USE_ITEM_FEMALE
+            if (evolutions[i].method == EVO_USE_ITEM_FEMALE
                 && Pokemon_GetData(mon, MON_DATA_GENDER, NULL) == GENDER_FEMALE
-                && speciesEvolutions[i].param == evoParam) {
-                targetSpecies = speciesEvolutions[i].targetSpecies;
-                *evoTypeResult = EVO_NONE;
+                && evoParam == evolutions[i].param) {
+                targetSpecies = evolutions[i].target;
+                *methodRet = EVO_NONE;
                 break;
             }
 
-            if (targetSpecies) {
+            if (targetSpecies != SPECIES_NONE) {
                 break;
             }
         }
         break;
     }
-
-    Heap_Free(speciesEvolutions);
+    Heap_Free(evolutions);
     return targetSpecies;
 }
 
@@ -4084,7 +4050,7 @@ static void SpeciesData_LoadForm(int species, int form, SpeciesData *speciesData
     NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, Pokemon_GetFormNarcIndex(species, form));
 }
 
-static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolutions[MAX_EVOLUTIONS])
+static void Species_LoadEvolutions(int monSpecies, Evolution speciesEvolutions[MAX_MON_EVOLUTIONS])
 {
     NARC_ReadWholeMemberByIndexPair(speciesEvolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, monSpecies);
 }

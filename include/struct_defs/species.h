@@ -5,7 +5,7 @@
 #define MAX_EGG_GROUPS 2
 #define MAX_TYPES      2
 
-#define MAX_EVOLUTIONS 7
+#define MAX_MON_EVOLUTIONS 7
 
 #define MAX_LEARNSET_ENTRIES        20
 #define LEARNSET_NO_MOVE_TO_LEARN   0
@@ -57,11 +57,11 @@ typedef struct SpeciesData {
     u32 tmLearnsetMasks[4]; // Bitflags for whether this pokemon can learn a TM
 } SpeciesData;
 
-typedef struct SpeciesEvolution {
+typedef struct Evolution {
     u16 method;
     u16 param;
-    u16 targetSpecies;
-} SpeciesEvolution;
+    u16 target;
+} Evolution;
 
 typedef struct SpeciesLearnsetEntry {
     u16 move : 9;

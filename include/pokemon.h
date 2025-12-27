@@ -42,11 +42,11 @@
                                             | (((personality) & 0x00000003) >> 0)) \
     % UNOWN_FORM_COUNT)
 
-enum EvolutionClass {
-    EVO_CLASS_BY_LEVEL = 0,
-    EVO_CLASS_BY_TRADE,
-    EVO_CLASS_UNUSED_02,
-    EVO_CLASS_BY_ITEM,
+enum EvolutionContext {
+    EVO_CONTEXT_LEVEL_UP = 0,
+    EVO_CONTEXT_TRADE,
+    EVO_CONTEXT_ITEM_CHECK,
+    EVO_CONTEXT_ITEM_USE,
 };
 
 /**
@@ -533,7 +533,7 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon);
 BoxPokemon *Pokemon_GetBoxMon(Pokemon *mon);
 
 BOOL Pokemon_TryLevelUp(Pokemon *mon);
-u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
+u16 Pokemon_GetEvolutionTarget(Party *party, Pokemon *mon, u8 context, u16 evoParam, int *methodRet);
 u16 Pokemon_GetBaseSpeciesFromPersonalData(const u16 species);
 u16 Pokemon_GetBaseSpeciesForBattle(const u16 species);
 

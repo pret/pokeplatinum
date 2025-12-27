@@ -2655,7 +2655,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *application)
         if (Item_Get(v0, 26) != 0) {
             Pokemon *v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
 
-            application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, application->partyMenu->usedItemID, &application->partyMenu->evoType);
+            application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTarget(NULL, v1, EVO_CONTEXT_ITEM_USE, application->partyMenu->usedItemID, &application->partyMenu->evoType);
             application->partyMenu->menuSelectionResult = 8;
             Heap_Free(v0);
             return 32;

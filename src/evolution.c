@@ -744,9 +744,9 @@ static void sub_0207C028(EvolutionData *param0)
             }
         }
         break;
-    case EVO_TRADE_WITH_HELD_ITEM:
-    case EVO_LEVEL_WITH_HELD_ITEM_DAY:
-    case EVO_LEVEL_WITH_HELD_ITEM_NIGHT:
+    case EVO_TRADE_HELD_ITEM:
+    case EVO_LEVEL_HELD_ITEM_DAY:
+    case EVO_LEVEL_HELD_ITEM_NIGHT:
         i = 0;
         Pokemon_SetData(param0->unk_28, MON_DATA_HELD_ITEM, &i);
         break;

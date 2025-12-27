@@ -813,7 +813,7 @@ static int sub_02085C50(void *applicationPtr)
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
         fieldSystem = application->partyMenu->fieldSystem;
         v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
-        application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(application->partyMenu->party, mon, EVO_CLASS_BY_LEVEL, v5, &application->partyMenu->evoType);
+        application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTarget(application->partyMenu->party, mon, EVO_CONTEXT_LEVEL_UP, v5, &application->partyMenu->evoType);
 
         if (application->partyMenu->evoTargetSpecies != 0) {
             application->partyMenu->menuSelectionResult = 9;

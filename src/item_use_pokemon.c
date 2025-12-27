@@ -176,7 +176,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapID 
     }
 
     if (Item_Get(item, ITEM_PARAM_EVOLVE)) {
-        if (Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, itemId, NULL) != SPECIES_NONE) {
+        if (Pokemon_GetEvolutionTarget(NULL, mon, EVO_CONTEXT_ITEM_USE, itemId, NULL) != SPECIES_NONE) {
             Heap_Free(item);
             return TRUE;
         }
