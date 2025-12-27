@@ -1079,7 +1079,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
     SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExp, summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);
     PrintStringToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_EXP], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
 
-    if (summaryScreen->monData.level < MAX_POKEMON_LEVEL) {
+    if (summaryScreen->monData.level < MAX_MON_LEVEL) {
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExpNextLv, summaryScreen->monData.nextLevelExp - summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);
     } else {
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_TemplateExpNextLv, 0, 7, PADDING_MODE_SPACES);
@@ -1132,7 +1132,7 @@ static void DrawMemoPageWindows(PokemonSummaryScreen *summaryScreen)
     if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
         Pokemon *mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-        Pokemon_FromBoxPokemon(monData, mon);
+        BoxPokemon_CopyToPokemon(monData, mon);
         PrintTrainerMemo(&summaryScreen->extraWindows[SUMMARY_WINDOW_MEMO], mon, monOTMatches);
         Heap_Free(mon);
     } else {
@@ -1373,7 +1373,7 @@ static void PrintMoveNameAndPP(PokemonSummaryScreen *summaryScreen, u32 moveInde
 
     Window *window = &summaryScreen->extraWindows[moveIndex];
 
-    if (moveIndex != LEARNED_MOVES_MAX) {
+    if (moveIndex != MAX_MON_MOVES) {
         moveName = summaryScreen->monData.moves[moveIndex];
         curPP = summaryScreen->monData.curPP[moveIndex];
         maxPP = summaryScreen->monData.maxPP[moveIndex];
@@ -1452,7 +1452,7 @@ void PokemonSummaryScreen_ShowMove5OrCancel(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->data->move != MOVE_NONE) {
         Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_5], 0);
-        PrintMoveNameAndPP(summaryScreen, LEARNED_MOVES_MAX);
+        PrintMoveNameAndPP(summaryScreen, MAX_MON_MOVES);
         Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_5]);
     } else {
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_CANCEL]);

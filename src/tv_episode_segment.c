@@ -491,17 +491,17 @@ static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
 {
     String *string = String_Init(64, heapID);
 
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
+    Pokemon_GetData(mon, MON_DATA_NICKNAME_STRING, string);
     String_ToChars(string, param1, TEMPLATE_NAME_SIZE);
     String_Free(string);
 }
 
 static void TVEpisodeSegment_CopyPokemonValues(Pokemon *mon, u16 *species, u8 *gender, u8 *language, u8 *metGame)
 {
-    *species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    *gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
-    *language = Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL);
-    *metGame = Pokemon_GetValue(mon, MON_DATA_MET_GAME, NULL);
+    *species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    *gender = Pokemon_GetData(mon, MON_DATA_GENDER, NULL);
+    *language = Pokemon_GetData(mon, MON_DATA_LANGUAGE, NULL);
+    *metGame = Pokemon_GetData(mon, MON_DATA_MET_GAME, NULL);
 }
 
 static void TVEpisodeSegment_SetTemplatePokemonSpecies(StringTemplate *template, int idx, u16 species, u8 unused3, u8 unused4, u8 unused5)
@@ -522,12 +522,12 @@ static void TVEpisodeSegment_SetTemplateOwnPokemonSpecies(StringTemplate *templa
 
 static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
 {
-    *param2 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
+    *param2 = Pokemon_GetData(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     if (*param2) {
         String *string = String_Init(64, heapID);
 
-        Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
+        Pokemon_GetData(mon, MON_DATA_NICKNAME_STRING, string);
         String_ToChars(string, param3, TEMPLATE_NAME_SIZE);
         String_Free(string);
     }
@@ -555,7 +555,7 @@ void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, int heapID)
     v0->unk_1E = Pokemon_GetNature(param1);
 
     TVEpisodeSegment_CopyPokemonValues(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_HAS_NICKNAME, NULL);
+    v0->unk_07 = Pokemon_GetData(param1, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(heapID, param1, &v0->unk_07, v0->unk_08);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
@@ -630,7 +630,7 @@ void sub_0206D048(TVBroadcast *broadcast, Pokemon *mon)
 
     v0->unk_00 = 1;
     TVEpisodeSegment_CopyPokemonValues(mon, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
+    v0->unk_07 = Pokemon_GetData(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(HEAP_ID_FIELD2, mon, &v0->unk_07, v0->unk_08);
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
@@ -718,7 +718,7 @@ void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resul
 
     TVEpisodeSegment_CopyPokemonValues(mon, &captureAttempt->species, &captureAttempt->gender, &captureAttempt->language, &captureAttempt->metGame);
 
-    captureAttempt->pokeballItemID = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
+    captureAttempt->pokeballItemID = Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL);
     GF_ASSERT(captureAttempt->pokeballItemID);
 
     sub_0206CED0(heapID, mon, &captureAttempt->hasNickname, captureAttempt->nickname);
@@ -1066,8 +1066,8 @@ void FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(FieldSys
     for (partyIndex = 0; partyIndex < partyCount; partyIndex++) {
         pokemon = Party_GetPokemonBySlotIndex(party, partyIndex);
 
-        if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == FALSE) {
-            gender = Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL);
+        if (Pokemon_GetData(pokemon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            gender = Pokemon_GetData(pokemon, MON_DATA_GENDER, NULL);
 
             if (gender == GENDER_MALE) {
                 hasMale = TRUE;
@@ -1470,7 +1470,7 @@ static u8 sub_0206DE4C(Pokemon *param0)
     u8 v0 = 0, v1;
 
     for (v1 = 0; v1 < (NELEMS(Unk_020EFDDC)); v1++) {
-        if (Pokemon_GetValue(param0, Unk_020EFDDC[v1], NULL) == 1) {
+        if (Pokemon_GetData(param0, Unk_020EFDDC[v1], NULL) == 1) {
             v0++;
         }
     }
@@ -2593,7 +2593,7 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     int v5 = 0xff, v6;
     v6 = 0xff;
     v0 = (LCRNG_Next() % 0xffff);
-    v2 = Pokemon_GetNatureOf(v0);
+    v2 = Personality_GetNature(v0);
 
     StringTemplate_SetNatureName(param1, 0, v2);
 
@@ -2603,7 +2603,7 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     if ((v0 % 2) == 0) {
         for (v1 = 0; v1 < 5; v1++) {
-            if (Pokemon_GetFlavorAffinityOf(v0, v1) == 1) {
+            if (Personality_GetFlavorAffinity(v0, v1) == 1) {
                 v5 = v1;
                 break;
             }
@@ -2614,7 +2614,7 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 
     for (v1 = 0; v1 < 5; v1++) {
-        if (Pokemon_GetStatAffinityOf(v2, 1 + v1) > 0) {
+        if (Nature_GetStatModifier(v2, 1 + v1) > 0) {
             v6 = v1;
             break;
         }
@@ -2647,7 +2647,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
             v4 = Roamer_GetData(v0, ROAMER_DATA_SPECIES);
             v5 = Roamer_GetData(v0, ROAMER_DATA_PERSONALITY);
 
-            TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v4, Pokemon_GetGenderOf(v4, v5), TrainerInfo_RegionCode(v7), TrainerInfo_GameCode(v7));
+            TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v4, Species_GetGenderFromPersonality(v4, v5), TrainerInfo_RegionCode(v7), TrainerInfo_GameCode(v7));
             break;
         }
     }
@@ -2851,7 +2851,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     party = SaveData_GetParty(fieldSystem->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
-    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
+    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 0, Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetData(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
     StringTemplate_SetContestAccessoryName(param1, 1, LCRNG_Next() % 100);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);

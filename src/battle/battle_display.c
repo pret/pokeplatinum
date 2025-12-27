@@ -276,9 +276,9 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
+    Species_BuildSpriteTemplate(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
 
-    v6 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
+    v6 = Species_LoadSpriteYOffset(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
 
     PokemonSprite_LoadYOffset(param1->unk_1A0, &v7, param2->unk_02);
     PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v8, param2->unk_02);
@@ -314,7 +314,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v4->unk_2C = param2->unk_01_3;
     v4->unk_18 = param2->unk_08;
     v4->unk_1C = param1->battlerType;
-    v4->unk_24 = Pokemon_GetNatureOf(param2->unk_04);
+    v4->unk_24 = Personality_GetNature(param2->unk_04);
     v4->unk_28 = param2->unk_01_2;
 
     if ((v4->unk_13 == 2) && (BattleSystem_BattleStatus(battleSys) & 0x40)) {
@@ -345,9 +345,9 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v0 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
+    Species_BuildSpriteTemplate(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
 
-    v1->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
+    v1->unk_85 = Species_LoadSpriteYOffset(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
 
     PokemonSprite_LoadYOffset(param1->unk_1A0, &v1->unk_90, param2->unk_02);
     PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v1->unk_91, param2->unk_02);
@@ -365,7 +365,7 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v1->unk_82 = param1->battlerType;
     v1->unk_88 = param2->unk_08;
     v1->unk_8C = param2->unk_0C;
-    v1->unk_8D = Pokemon_GetNatureOf(param2->unk_04);
+    v1->unk_8D = Personality_GetNature(param2->unk_04);
     v1->unk_8E = param2->unk_10;
     v1->unk_92 = param2->unk_01_2;
     v1->unk_94 = 0;
@@ -395,9 +395,9 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v1 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
+    Species_BuildSpriteTemplate(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
 
-    v2->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
+    v2->unk_85 = Species_LoadSpriteYOffset(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
 
     PokemonSprite_LoadYOffset(param1->unk_1A0, &v2->unk_90, param2->unk_02);
     PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v2->unk_91, param2->unk_02);
@@ -413,7 +413,7 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v2->unk_82 = param1->battlerType;
     v2->unk_88 = param2->unk_08;
     v2->unk_8C = param2->unk_0C;
-    v2->unk_8D = Pokemon_GetNatureOf(param2->unk_04);
+    v2->unk_8D = Personality_GetNature(param2->unk_04);
     v2->unk_8E = param2->unk_10;
     v2->unk_92 = param2->unk_01_2;
     v2->unk_94 = param2->unk_14;
@@ -2849,7 +2849,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         MoveDisplayInfo v7;
         int i;
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             v7.move[i] = v0->unk_24[i];
             v7.curPP[i] = v0->unk_2C[i];
             v7.maxPP[i] = v0->unk_30[i];
@@ -3121,7 +3121,7 @@ static void ov16_02260B04(SysTask *param0, void *param1)
     u16 v2;
     u8 v3 = ov16_0223ED6C(v0->unk_00);
     v2 = BattleMon_Get(BattleSystem_Context(v0->unk_00), v0->unk_09, 0, NULL);
-    v1 = SpeciesData_GetSpeciesValue(v2, SPECIES_DATA_SAFARI_FLEE_RATE);
+    v1 = Species_GetValue(v2, SPECIES_DATA_SAFARI_FLEE_RATE);
     v1 = v1 * Unk_ov16_0226F194[v3][0] / Unk_ov16_0226F194[v3][1];
 
     if ((BattleSystem_RandNext(v0->unk_00) % 255) <= v1) {
@@ -3875,11 +3875,11 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v18->type = Healthbar_Type(BattleSystem_BattlerSlot(v0->unk_00, v20), BattleSystem_BattleType(v0->unk_00));
 
         v19 = BattleSystem_PartyPokemon(v0->unk_00, v20, v21);
-        v18->curHP = Pokemon_GetValue(v19, MON_DATA_HP, NULL) - v0->unk_08->unk_04->currentDamage;
-        v18->maxHP = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
+        v18->curHP = Pokemon_GetData(v19, MON_DATA_HP, NULL) - v0->unk_08->unk_04->currentDamage;
+        v18->maxHP = Pokemon_GetData(v19, MON_DATA_MAX_HP, NULL);
         v18->damage = v0->unk_08->unk_04->currentDamage;
 
-        if (Pokemon_GetValue(v19, MON_DATA_STATUS, NULL) == 0) {
+        if (Pokemon_GetData(v19, MON_DATA_STATUS, NULL) == 0) {
             v18->status = 0;
         }
 
@@ -3938,7 +3938,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v34 = v0->unk_08->unk_04->pokemonPartySlots[v0->unk_08->unk_04->selectedPartyIndex];
         v33 = BattleSystem_PartyPokemon(v0->unk_00, v28, v34);
 
-        if (Pokemon_GetValue(v33, MON_DATA_STATUS, NULL) == 0) {
+        if (Pokemon_GetData(v33, MON_DATA_STATUS, NULL) == 0) {
             v27->status = 0;
         }
 
@@ -4287,7 +4287,7 @@ static void ov16_02262258(SysTask *param0, void *param1)
             for (v1 = 0; v1 < Party_GetCurrentCount(v2); v1++) {
                 v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_09, v1);
 
-                if ((Pokemon_GetValue(v3, MON_DATA_HP, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
+                if ((Pokemon_GetData(v3, MON_DATA_HP, NULL)) && (v0->unk_0C[v4] != v1) && (v0->unk_0C[v5] != v1)) {
                     break;
                 }
             }
@@ -4337,11 +4337,11 @@ static void ov16_0226232C(SysTask *param0, void *param1)
             } else {
                 v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_09, v1 - 1);
 
-                if (Pokemon_GetValue(v3, MON_DATA_HP, NULL) == 0) {
+                if (Pokemon_GetData(v3, MON_DATA_HP, NULL) == 0) {
                     ov16_02264730(v0->unk_00);
                 }
 
-                if (Pokemon_GetValue(v3, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_EGG) {
+                if (Pokemon_GetData(v3, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_EGG) {
                     ov16_02264730(v0->unk_00);
                 }
             }
@@ -4802,7 +4802,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
 
         v0->unk_66++;
     case 8:
-        v3 = LoadPokemonSpriteYOffset(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
+        v3 = Species_LoadSpriteYOffset(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
         v3 = 80 - v3;
         PokemonSprite_SetPartialDraw(v0->unk_08, 0, 0, 80, v3);
         v0->unk_66++;
@@ -5643,7 +5643,7 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
         face = FACE_BACK;
     }
 
-    CharacterSprite_LoadPokemonSprite(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, FALSE, face, param2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(param2->narcID, param2->character, HEAP_ID_BATTLE, v1, param2->personality, FALSE, face, param2->species);
     PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param10, param2->narcID);
     PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param10, param2->palette);
     PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param10, param6);

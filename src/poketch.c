@@ -269,9 +269,9 @@ void Poketch_PokemonHistoryEnqueue(Poketch *poketch, const BoxPokemon *boxPokemo
     }
 
     // Add new entry to end of the list
-    poketch->pokemonHistoryQueue[index].species = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_SPECIES, NULL);
+    poketch->pokemonHistoryQueue[index].species = BoxPokemon_GetData((BoxPokemon *)boxPokemon, MON_DATA_SPECIES, NULL);
     poketch->pokemonHistoryQueue[index].icon = BoxPokemon_IconFormOffset(boxPokemon);
-    poketch->pokemonHistoryQueue[index].form = BoxPokemon_GetValue((BoxPokemon *)boxPokemon, MON_DATA_FORM, NULL);
+    poketch->pokemonHistoryQueue[index].form = BoxPokemon_GetData((BoxPokemon *)boxPokemon, MON_DATA_FORM, NULL);
 }
 
 int Poketch_PokemonHistorySize(const Poketch *poketch)

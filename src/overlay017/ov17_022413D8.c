@@ -481,8 +481,8 @@ void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
     {
         u32 v0, v1;
 
-        v0 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_SPECIES, NULL);
-        v1 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetData(param0->unk_00->unk_00[param1], MON_DATA_SPECIES, NULL);
+        v1 = Pokemon_GetData(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
 
         if (IsFormSymmetrical(v0, v1) == 1) {
             PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_FLIP_H, 1);
@@ -506,8 +506,8 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
         {
             u32 v1, v2;
 
-            v1 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_SPECIES, NULL);
-            v2 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
+            v1 = Pokemon_GetData(param0->unk_00->unk_00[v0], MON_DATA_SPECIES, NULL);
+            v2 = Pokemon_GetData(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
 
             if (IsFormSymmetrical(v1, v2) == 1) {
                 PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_FLIP_H, 1);
@@ -1360,13 +1360,13 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
     case 0:
         break;
     case 1:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param0->unk_304.unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param0->unk_304.unk_00]));
         break;
     case 2:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 4:
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
@@ -1378,44 +1378,44 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
         StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         break;
     case 7:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 8:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 9:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 10:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         break;
     case 11:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 12:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 1, param2->unk_02);
         break;
     case 13:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 14:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 15:
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 16:
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 17:
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
@@ -1423,15 +1423,15 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
         break;
     case 18:
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 0, param2->unk_02);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 19:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 20:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 21:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
@@ -1439,15 +1439,15 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
         break;
     case 22:
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 0, param2->unk_04, 1, 0, 1);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 23:
         StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     case 24:
         StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_01]));
         break;
     case 25:
         StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 0, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
@@ -1458,7 +1458,7 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
         StringTemplate_SetNumber(param0->unk_0C.unk_48, 1, param2->unk_04, 1, 0, 1);
         break;
     case 27:
-        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_48, 0, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         StringTemplate_SetContestJudgeName(param0->unk_0C.unk_48, 1, param0->unk_0C.unk_00->unk_C0[param2->unk_05].unk_00);
         StringTemplate_SetMoveName(param0->unk_0C.unk_48, 2, param2->unk_02);
         break;
@@ -1473,7 +1473,7 @@ static void ov17_0224290C(UnkStruct_ov17_02246F24 *param0, int param1, const Unk
                 break;
             }
 
-            StringTemplate_SetNickname(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[v0->unk_01[v1]]));
+            StringTemplate_SetNickname(param0->unk_0C.unk_48, 1 + v1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[v0->unk_01[v1]]));
         }
     } break;
     default:
@@ -1560,7 +1560,7 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
 
     v0 = String_Init(12, HEAP_ID_21);
 
-    Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRING, v0);
+    Pokemon_GetData(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRING, v0);
 
     if (param1 == param0->unk_00->unk_00.unk_113) {
         v1 = TEXT_COLOR(1, 2, 0);
@@ -2113,8 +2113,8 @@ void ov17_022439C8(UnkStruct_02095C48 *param0, int param1, int param2, UnkStruct
     case 174: {
         int v0, v1;
 
-        v0 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_1, NULL);
-        v1 = Pokemon_GetValue(param0->unk_00.unk_00[param1], MON_DATA_TYPE_2, NULL);
+        v0 = Pokemon_GetData(param0->unk_00.unk_00[param1], MON_DATA_TYPE_1, NULL);
+        v1 = Pokemon_GetData(param0->unk_00.unk_00[param1], MON_DATA_TYPE_2, NULL);
 
         if ((v0 == TYPE_GHOST) || (v1 == TYPE_GHOST)) {
             param3->unk_07 = 1;

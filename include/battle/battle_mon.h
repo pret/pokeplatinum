@@ -61,7 +61,7 @@ typedef struct BattleMon {
     u16 speed;
     u16 spAttack;
     u16 spDefense;
-    u16 moves[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
 
     u32 hpIV : 5;
     u32 attackIV : 5;
@@ -96,8 +96,8 @@ typedef struct BattleMon {
     u32 pressureAnnounced : 1;
     u32 padding0028_0B : 2;
 
-    u8 ppCur[LEARNED_MOVES_MAX];
-    u8 ppUps[LEARNED_MOVES_MAX];
+    u8 ppCur[MAX_MON_MOVES];
+    u8 ppUps[MAX_MON_MOVES];
 
     u8 level;
     u8 friendship;

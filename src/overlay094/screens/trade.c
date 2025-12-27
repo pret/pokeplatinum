@@ -37,7 +37,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
 
     switch (appState->screenArgument) {
     case SCREEN_ARGUMENT_DEPOSIT_POKEMON:
-        appState->tradeAnimationConfig.sendingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
+        appState->tradeAnimationConfig.sendingPokemon = (BoxPokemon *)Pokemon_GetBoxMon((Pokemon *)appState->receivedListing.pokemon.bytes);
         appState->tradeAnimationConfig.receivingPokemon = appState->tradeAnimationConfig.sendingPokemon;
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
@@ -45,7 +45,7 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.tradeType = TRADE_TYPE_SEND_ONLY;
         break;
     case SCREEN_ARGUMENT_TAKE_BACK_POKEMON:
-        appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
+        appState->tradeAnimationConfig.receivingPokemon = (BoxPokemon *)Pokemon_GetBoxMon((Pokemon *)appState->receivedListing.pokemon.bytes);
         appState->tradeAnimationConfig.sendingPokemon = appState->tradeAnimationConfig.receivingPokemon;
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
@@ -53,9 +53,9 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         appState->tradeAnimationConfig.tradeType = TRADE_TYPE_RECEIVE_ONLY;
         break;
     case SCREEN_ARGUMENT_10:
-        appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes);
+        appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxMon((Pokemon *)appState->receivedListing.pokemon.bytes);
         GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
-        appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
+        appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxMon(appState->tradeTempPokemon);
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->receivedListing);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
         appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
@@ -63,8 +63,8 @@ int GTSApplication_Trade_Init(GTSApplicationState *appState, int unused1)
         break;
     case SCREEN_ARGUMENT_9: // from the search flow
         GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, appState->tradeTempPokemon);
-        appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxPokemon(appState->tradeTempPokemon);
-        appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxPokemon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
+        appState->tradeAnimationConfig.sendingPokemon = Pokemon_GetBoxMon(appState->tradeTempPokemon);
+        appState->tradeAnimationConfig.receivingPokemon = Pokemon_GetBoxMon((Pokemon *)appState->searchResults[appState->selectedSearchResult].pokemon.bytes);
         appState->receivingPokemonTrainer = GTSPokemonListing_GetTrainerInfo(&appState->searchResults[appState->selectedSearchResult]);
         appState->tradeAnimationConfig.otherTrainer = appState->receivingPokemonTrainer;
         appState->tradeAnimationConfig.background = TRADE_BACKGROUND_WIFI;
@@ -90,10 +90,10 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
 
             if (appState->screenArgument == SCREEN_ARGUMENT_9) { // search flow
                 Pokemon *receivingPokemon = GTSApplication_Trade_GetTradedPokemon(appState, appState->screenArgument);
-                int heldItem = Pokemon_GetValue(receivingPokemon, MON_DATA_HELD_ITEM, NULL);
+                int heldItem = Pokemon_GetData(receivingPokemon, MON_DATA_HELD_ITEM, NULL);
                 int evolutionType;
 
-                int evolvedSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, receivingPokemon, EVO_CLASS_BY_TRADE, heldItem, &evolutionType);
+                int evolvedSpecies = Pokemon_GetEvolutionTarget(NULL, receivingPokemon, EVO_CONTEXT_TRADE, heldItem, &evolutionType);
 
                 if (evolvedSpecies != SPECIES_NONE) {
                     appState->evolutionData = Evolution_Begin(NULL, receivingPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);
@@ -108,11 +108,11 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
 
                 GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, storedPokemon);
 
-                if ((Pokemon_GetValue(tradedPokemon, MON_DATA_SPECIES, NULL) != Pokemon_GetValue(storedPokemon, MON_DATA_SPECIES, NULL)) || (Pokemon_GetValue(tradedPokemon, MON_DATA_PERSONALITY, NULL) != Pokemon_GetValue(storedPokemon, MON_DATA_PERSONALITY, NULL))) {
-                    int heldItem = Pokemon_GetValue(tradedPokemon, MON_DATA_HELD_ITEM, NULL);
+                if ((Pokemon_GetData(tradedPokemon, MON_DATA_SPECIES, NULL) != Pokemon_GetData(storedPokemon, MON_DATA_SPECIES, NULL)) || (Pokemon_GetData(tradedPokemon, MON_DATA_PERSONALITY, NULL) != Pokemon_GetData(storedPokemon, MON_DATA_PERSONALITY, NULL))) {
+                    int heldItem = Pokemon_GetData(tradedPokemon, MON_DATA_HELD_ITEM, NULL);
                     int evolutionType;
 
-                    int evolvedSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, tradedPokemon, EVO_CLASS_BY_TRADE, heldItem, &evolutionType);
+                    int evolvedSpecies = Pokemon_GetEvolutionTarget(NULL, tradedPokemon, EVO_CONTEXT_TRADE, heldItem, &evolutionType);
 
                     if (evolvedSpecies != SPECIES_NONE) {
                         appState->evolutionData = Evolution_Begin(NULL, tradedPokemon, evolvedSpecies, appState->playerData->options, appState->playerData->showContestData, appState->playerData->pokedex, appState->playerData->bag, appState->playerData->records, SaveData_GetPoketch(appState->playerData->saveData), evolutionType, 0x4, HEAP_ID_62);
@@ -194,6 +194,6 @@ static void GTSApplication_Trade_StoreTradedPokemon(GTSApplicationState *appStat
 
         PCBoxes_InitBoxMonAt(appState->playerData->pcBoxes, appState->tradedPokemonLocation.boxIndex, appState->tradedPokemonLocation.index);
         PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIdx, &boxSpaceIdx);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIdx, Pokemon_GetBoxPokemon(tradedPokemon));
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIdx, Pokemon_GetBoxMon(tradedPokemon));
     }
 }

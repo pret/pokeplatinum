@@ -120,12 +120,12 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
     unused = String_Init(2, HEAP_ID_FIELD1);
     pokedex = SaveData_GetPokedex(saveData);
     speciesNameLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
-    bannedSpeciesList = StringTemplate_New(BATTLE_FRONTIER_BANLIST_SIZE + 1, 14, HEAP_ID_FIELD1);
+    bannedSpeciesList = StringTemplate_New(BATTLE_FACILITY_BANLIST_SIZE + 1, 14, HEAP_ID_FIELD1);
 
     StringTemplate_SetNumber(bannedSpeciesList, 0, numPokemonRequired, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
-    for (i = 0; i < BATTLE_FRONTIER_BANLIST_SIZE; i++) {
-        bannedSpecies = Pokemon_GetBattleFrontierBanlistEntry(i);
+    for (i = 0; i < BATTLE_FACILITY_BANLIST_SIZE; i++) {
+        bannedSpecies = BattleFacility_GetBanlistEntry(i);
 
         if (Pokedex_HasSeenSpecies(pokedex, bannedSpecies)) {
             MessageLoader_GetString(speciesNameLoader, bannedSpecies, speciesName);
@@ -210,7 +210,7 @@ void sub_0204B060(BattleTower *battleTower, SaveData *saveData)
     v1 = SaveData_GetParty(saveData);
 
     for (v0 = 0; v0 < 2; v0++) {
-        battleTower->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, battleTower->unk_2A[v0]), MON_DATA_SPECIES, NULL);
+        battleTower->unk_83E[1 + v0] = Pokemon_GetData(Party_GetPokemonBySlotIndex(v1, battleTower->unk_2A[v0]), MON_DATA_SPECIES, NULL);
     }
 
     battleTower->unk_83E[3] = sub_0202D3B4(battleTower->unk_74, 3, 0);
@@ -326,9 +326,9 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
         param1->item = v4.item;
     }
 
-    u8 friendship = MAX_FRIENDSHIP_VALUE;
+    u8 friendship = MAX_FRIENDSHIP;
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         param1->moves[v0] = v4.moves[v0];
 
         if (v4.moves[v0] == MOVE_FRUSTRATION) {
@@ -341,7 +341,7 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
     if (param4 == 0) {
         do {
             v2 = (BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16);
-        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param3, v2) == 1));
+        } while ((v4.nature != Personality_GetNature(v2)) || (Personality_IsShiny(param3, v2) == 1));
 
         param1->personality = v2;
     } else {
@@ -379,16 +379,16 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
     param1->combinedPPUps = 0;
     param1->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_2);
+    v0 = Species_GetValue(param1->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (param1->personality & 1) {
             param1->ability = v0;
         } else {
-            param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+            param1->ability = Species_GetValue(param1->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param1->ability = SpeciesData_GetSpeciesValue(param1->species, SPECIES_DATA_ABILITY_1);
+        param1->ability = Species_GetValue(param1->species, SPECIES_DATA_ABILITY_1);
     }
 
     param1->friendship = friendship;

@@ -426,7 +426,7 @@ static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
     GBABoxPokemon *gbaBoxMon;
     Pokemon mon;
     MigratedPokemon *transfer = SaveData_GetPalParkTransfer(migrator->saveData);
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(&mon);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         boxPos = migrator->selectedMonData[i].boxPosition;
@@ -647,22 +647,13 @@ static void ov97_022341EC(u32 memberIndex, NNSG2dCharacterData **param1, void *p
     NNS_G2dGetUnpackedBGCharacterData(param2, param1);
 }
 
-#define NUM_UNOWN_FORMS 28
-
-#define GET_UNOWN_LETTER_FROM_PERSONALITY(personality) ((                                          \
-                                                            (((personality) & 0x03000000) >> 18)   \
-                                                            | (((personality) & 0x00030000) >> 12) \
-                                                            | (((personality) & 0x00000300) >> 6)  \
-                                                            | (((personality) & 0x00000003) >> 0)) \
-    % NUM_UNOWN_FORMS)
-
 static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
 {
     u8 form = 0;
 
     switch (speciesNDS) {
     case SPECIES_UNOWN:
-        form = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
+        form = CALC_UNOWN_LETTER(personality);
         break;
     case SPECIES_DEOXYS:
         switch (gbaVersion) {
@@ -895,7 +886,7 @@ static BOOL BoxMonGBAHasHM(GBAMigrator *migrator, int boxPosition)
     int i, j, move;
     GBABoxPokemon *boxMon = &migrator->pokemonStorage->boxes[migrator->currentBox][boxPosition];
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         move = GBABoxPokemon_GetData(boxMon, GBA_MON_DATA_MOVE1 + i, NULL);
 
         for (j = 0; j < sizeof(sGBAHMMoves) / sizeof(int); j++) {

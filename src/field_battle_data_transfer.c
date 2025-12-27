@@ -166,9 +166,9 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const Fie
     Bag_TryAddItem(dto->bag, ITEM_POKE_BALL, 20, heapID);
 
     mon = Pokemon_New(heapID);
-    Pokemon_InitWith(mon, SystemVars_GetPlayerCounterpartStarter(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
+    Pokemon_InitWithParams(mon, SystemVars_GetPlayerCounterpartStarter(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(dto->parties[BATTLER_PLAYER_1], mon);
-    Pokemon_InitWith(mon, SPECIES_BIDOOF, 2, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
+    Pokemon_InitWithParams(mon, SPECIES_BIDOOF, 2, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(dto->parties[BATTLER_ENEMY_1], mon);
     Heap_Free(mon);
 
@@ -305,9 +305,9 @@ void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const Field
     for (i = 0; i < Party_GetCurrentCount(party); i++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(party, i), mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != level && level != 0) {
-            levelBaseExp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
-            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &levelBaseExp);
+        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) != level && level != 0) {
+            levelBaseExp = Species_GetExpAtLevel(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), level);
+            Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &levelBaseExp);
             Pokemon_CalcLevelAndStats(mon);
         }
 

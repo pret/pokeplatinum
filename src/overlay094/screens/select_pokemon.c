@@ -732,7 +732,7 @@ static int ov94_02240688(GTSApplicationState *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                if (Pokemon_GetData(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->currentScreenInstruction = 14;
                 }
@@ -824,7 +824,7 @@ static int ov94_022408E8(GTSApplicationState *param0)
 
                 v2 = Party_GetPokemonBySlotIndex(param0->playerData->party, param0->unk_112);
 
-                if (Pokemon_GetValue(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+                if (Pokemon_GetData(v2, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                     v1 = 1;
                     param0->currentScreenInstruction = 11;
                 }
@@ -1048,7 +1048,7 @@ static void ov94_02240DF8(int param0, int param1, int param2, int param3, Sprite
 
 static void ov94_02240E50(BoxPokemon *boxMon, GTSPokemonCriteria *param1)
 {
-    param1->level = BoxPokemon_GetLevel(boxMon);
+    param1->level = BoxPokemon_CalcLevel(boxMon);
 }
 
 static void ov94_02240E5C(void *param0)
@@ -1073,23 +1073,23 @@ static void ov94_02240EAC(BoxPokemon *boxMon, Sprite *param1, Sprite *param2, u1
 {
     int v0, item, isEgg, form;
 
-    BoxPokemon_EnterDecryptionContext(boxMon);
+    BoxPokemon_UnlockEncryption(boxMon);
 
-    v0 = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
-    *species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    v0 = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL);
+    *species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
 
-    form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
-    isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL);
-    item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
+    isEgg = BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL);
+    item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     param6->species = *species;
-    param6->gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    param6->gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
 
     if (isEgg) {
         param6->level = 0;
     }
 
-    BoxPokemon_ExitDecryptionContext(boxMon, 1);
+    BoxPokemon_LockEncryption(boxMon, 1);
 
     if (v0) {
         ov94_02240DF8(*species, form, isEgg, param4, param1, param5, param7);
@@ -1146,12 +1146,12 @@ static void ov94_02240FA0(GTSApplicationState *appState, int boxID)
 
         for (i = 0; i < partyCount; i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(appState->playerData->party, i);
-            BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+            BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
 
             ov94_02240E50(boxMon, &appState->boxCriteria->criteria[i]);
             ov94_02240EAC(boxMon, appState->unk_E28[i], appState->unk_EA0[i], &species[i], i, v6, &appState->boxCriteria->criteria[i], &icons[i]);
 
-            if (Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL)) {
+            if (Pokemon_GetData(mon, MON_DATA_BALL_CAPSULE_ID, NULL)) {
                 Sprite_SetDrawFlag(appState->selectPokemonPartySprites[i], 1);
             } else {
                 Sprite_SetDrawFlag(appState->selectPokemonPartySprites[i], 0);
@@ -1196,7 +1196,7 @@ BoxPokemon *ov94_022411DC(Party *party, PCBoxes *pcBoxes, int boxID, int slot)
             return NULL;
         }
 
-        return Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(party, slot));
+        return Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(party, slot));
     }
 
     return PCBoxes_GetBoxMonAt(pcBoxes, boxID, slot);
@@ -1229,13 +1229,13 @@ static const u16 sUnusedRibbons[] = {
 static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
 {
     int count = 0;
-    int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    int reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     for (int i = 0; i < (int)NELEMS(sUnusedRibbons); i++) {
-        count += BoxPokemon_GetValue(boxMon, sUnusedRibbons[i], NULL);
+        count += BoxPokemon_GetData(boxMon, sUnusedRibbons[i], NULL);
     }
 
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 
     if (count) {
         return TRUE;
@@ -1246,11 +1246,11 @@ static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
 
 static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon)
 {
-    int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    int form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
+    int reencrypt = BoxPokemon_UnlockEncryption(boxMon);
+    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 
     if (form > 0) {
         switch (species) {
@@ -1266,10 +1266,10 @@ static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon)
 
 static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
 {
-    int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
-    int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    int reencrypt = BoxPokemon_UnlockEncryption(boxMon);
+    int item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
-    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    BoxPokemon_LockEncryption(boxMon, reencrypt);
 
     switch (item) {
     case ITEM_GRISEOUS_ORB:
@@ -1287,11 +1287,11 @@ static int ov94_022412F4(Party *param0, PCBoxes *pcBoxes, int param2, int param3
         return 0;
     }
 
-    if (!BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
+    if (!BoxPokemon_GetData(boxMon, MON_DATA_SPECIES_EXISTS, NULL)) {
         return 0;
     }
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL)) {
+    if (BoxPokemon_GetData(boxMon, MON_DATA_SANITY_IS_EGG, NULL)) {
         return 2;
     }
 
@@ -1333,9 +1333,9 @@ static int ov94_02241384(BoxPokemon *boxMon, GTSPokemonRequirements *param1)
 {
     GTSPokemonCriteria v0;
 
-    v0.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
-    v0.level = BoxPokemon_GetLevel(boxMon);
+    v0.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    v0.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
+    v0.level = BoxPokemon_CalcLevel(boxMon);
 
     return GTSApplication_SelectPokemon_MatchesRequirements(&v0, param1);
 }
@@ -1346,18 +1346,18 @@ static void ov94_022413BC(GTSPokemonListing *param0, GTSApplicationState *param1
     GTSPokemonRequirements v1;
     BoxPokemon *boxMon;
 
-    v0.species = BoxPokemon_GetValue(param1->unk_114, MON_DATA_SPECIES, NULL);
-    v0.gender = BoxPokemon_GetValue(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
-    v0.level = BoxPokemon_GetLevel(param1->unk_114);
+    v0.species = BoxPokemon_GetData(param1->unk_114, MON_DATA_SPECIES, NULL);
+    v0.gender = BoxPokemon_GetData(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
+    v0.level = BoxPokemon_CalcLevel(param1->unk_114);
 
     param0->unk_EC = v0;
 
     ov94_022425A8(param0, param1);
 
-    boxMon = Pokemon_GetBoxPokemon((Pokemon *)param1->searchResults[param1->selectedSearchResult].pokemon.bytes);
+    boxMon = Pokemon_GetBoxMon((Pokemon *)param1->searchResults[param1->selectedSearchResult].pokemon.bytes);
 
-    v1.species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v1.gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    v1.species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    v1.gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
     v1.level = 0;
     v1.level2 = 0;
 
@@ -1379,7 +1379,7 @@ static void GTSApplication_SelectPokemon_DarkenNonMatchingMons(GTSPokemonCriteri
 
 BOOL Pokemon_IsHoldingMail(Pokemon *mon)
 {
-    if (Item_IsMail(Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL))) {
+    if (Item_IsMail(Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL))) {
         return TRUE;
     }
 

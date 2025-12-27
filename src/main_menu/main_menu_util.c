@@ -575,9 +575,9 @@ static void LoadPokemonSprite(Sprite *sprite, Pokemon *mon, enum Species species
     enum Gender monGender = Pokemon_GetGender(mon);
     BOOL shiny = Pokemon_IsShiny(mon);
 
-    BuildPokemonSpriteTemplate(monSpriteTemplate, species, monGender, FACE_FRONT, shiny, form, 0);
+    Species_BuildSpriteTemplate(monSpriteTemplate, species, monGender, FACE_FRONT, shiny, form, 0);
 
-    u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    u32 personality = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
     CharacterSprite_LoadPokemonSpriteRect(monSpriteTemplate->narcID, monSpriteTemplate->character, utilMan->heapID, 0, 0, 10, 10, buffer, personality, FALSE, FACE_FRONT, species);
 
     DC_FlushRange(buffer, MON_SPRITE_FRAME_MAX_SIZE_BYTES);
@@ -611,10 +611,10 @@ static void LoadSpriteForMonGift(MainMenuUtilManager *param0, enum MysteryGiftTy
     switch (giftType) {
     case MYST_GIFT_POKEMON:
     case MYST_GIFT_UNKNOWN:
-        LoadPokemonSprite(param0->mysteryGiftSprite, mon, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL), param0->monSpriteBuffer, &param0->monSpriteTemplate);
+        LoadPokemonSprite(param0->mysteryGiftSprite, mon, Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), Pokemon_GetData(mon, MON_DATA_FORM, NULL), param0->monSpriteBuffer, &param0->monSpriteTemplate);
         break;
     case MYST_GIFT_EGG:
-        LoadPokemonSprite(param0->mysteryGiftSprite, mon, SPECIES_EGG, EGG_FORM_BASE, param0->monSpriteBuffer, &param0->monSpriteTemplate);
+        LoadPokemonSprite(param0->mysteryGiftSprite, mon, SPECIES_EGG, EGG_FORM_NORMAL, param0->monSpriteBuffer, &param0->monSpriteTemplate);
         break;
     case MYST_GIFT_MANAPHY_EGG:
         LoadPokemonSprite(param0->mysteryGiftSprite, mon, SPECIES_EGG, EGG_FORM_MANAPHY, param0->monSpriteBuffer, &param0->monSpriteTemplate);

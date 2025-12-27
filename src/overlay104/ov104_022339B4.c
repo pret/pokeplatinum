@@ -396,10 +396,10 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
         v6[0] = param0->unk_4E8[v0];
         sub_0202FF84(param0->unk_4F4, 4, v0, v6);
 
-        v5[0] = Pokemon_GetValue(v12, MON_DATA_ATK_IV, NULL);
+        v5[0] = Pokemon_GetData(v12, MON_DATA_ATK_IV, NULL);
         sub_0202FF84(param0->unk_4F4, 5, v0, v5);
 
-        v7[0] = Pokemon_GetValue(v12, MON_DATA_PERSONALITY, NULL);
+        v7[0] = Pokemon_GetData(v12, MON_DATA_PERSONALITY, NULL);
         sub_0202FF84(param0->unk_4F4, 6, v0, v7);
     }
 
@@ -411,10 +411,10 @@ void ov104_02234148(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
         v6[0] = param0->unk_3D2[v0];
         sub_0202FF84(param0->unk_4F4, 7, v0, v6);
 
-        v5[0] = Pokemon_GetValue(v12, MON_DATA_ATK_IV, NULL);
+        v5[0] = Pokemon_GetData(v12, MON_DATA_ATK_IV, NULL);
         sub_0202FF84(param0->unk_4F4, 8, v0, v5);
 
-        v7[0] = Pokemon_GetValue(v12, MON_DATA_PERSONALITY, NULL);
+        v7[0] = Pokemon_GetData(v12, MON_DATA_PERSONALITY, NULL);
         sub_0202FF84(param0->unk_4F4, 9, v0, v7);
     }
 
@@ -511,8 +511,8 @@ void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param0->unk_4D4, v0);
-        v4[v0] = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
-        v5[v0] = Pokemon_GetValue(v6, MON_DATA_HELD_ITEM, NULL);
+        v4[v0] = Pokemon_GetData(v6, MON_DATA_SPECIES, NULL);
+        v5[v0] = Pokemon_GetData(v6, MON_DATA_HELD_ITEM, NULL);
     }
 
     v2 = v1;
@@ -520,8 +520,8 @@ void ov104_02234570(UnkStruct_ov104_0223ADA0 *param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param0->unk_4D8, v0);
-        v4[v0 + v2] = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
-        v5[v0 + v2] = Pokemon_GetValue(v6, MON_DATA_HELD_ITEM, NULL);
+        v4[v0 + v2] = Pokemon_GetData(v6, MON_DATA_SPECIES, NULL);
+        v5[v0 + v2] = Pokemon_GetData(v6, MON_DATA_HELD_ITEM, NULL);
 
         param0->unk_254[v0] = param0->unk_3D2[v0];
     }

@@ -69,28 +69,28 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
 {
     Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
 
-    battleCtx->battleMons[battler].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
-    battleCtx->battleMons[battler].defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
-    battleCtx->battleMons[battler].speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
-    battleCtx->battleMons[battler].spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL);
-    battleCtx->battleMons[battler].spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
+    battleCtx->battleMons[battler].species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    battleCtx->battleMons[battler].attack = Pokemon_GetData(mon, MON_DATA_ATK, NULL);
+    battleCtx->battleMons[battler].defense = Pokemon_GetData(mon, MON_DATA_DEF, NULL);
+    battleCtx->battleMons[battler].speed = Pokemon_GetData(mon, MON_DATA_SPEED, NULL);
+    battleCtx->battleMons[battler].spAttack = Pokemon_GetData(mon, MON_DATA_SP_ATK, NULL);
+    battleCtx->battleMons[battler].spDefense = Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL);
 
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        battleCtx->battleMons[battler].moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
-        battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + i, NULL);
-        battleCtx->battleMons[battler].ppUps[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        battleCtx->battleMons[battler].moves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
+        battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP + i, NULL);
+        battleCtx->battleMons[battler].ppUps[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
     }
 
-    battleCtx->battleMons[battler].hpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL);
-    battleCtx->battleMons[battler].attackIV = Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL);
-    battleCtx->battleMons[battler].defenseIV = Pokemon_GetValue(mon, MON_DATA_DEF_IV, NULL);
-    battleCtx->battleMons[battler].speedIV = Pokemon_GetValue(mon, MON_DATA_SPEED_IV, NULL);
-    battleCtx->battleMons[battler].spAttackIV = Pokemon_GetValue(mon, MON_DATA_SPATK_IV, NULL);
-    battleCtx->battleMons[battler].spDefenseIV = Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL);
-    battleCtx->battleMons[battler].isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
-    battleCtx->battleMons[battler].hasNickname = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
+    battleCtx->battleMons[battler].hpIV = Pokemon_GetData(mon, MON_DATA_HP_IV, NULL);
+    battleCtx->battleMons[battler].attackIV = Pokemon_GetData(mon, MON_DATA_ATK_IV, NULL);
+    battleCtx->battleMons[battler].defenseIV = Pokemon_GetData(mon, MON_DATA_DEF_IV, NULL);
+    battleCtx->battleMons[battler].speedIV = Pokemon_GetData(mon, MON_DATA_SPEED_IV, NULL);
+    battleCtx->battleMons[battler].spAttackIV = Pokemon_GetData(mon, MON_DATA_SPATK_IV, NULL);
+    battleCtx->battleMons[battler].spDefenseIV = Pokemon_GetData(mon, MON_DATA_SPDEF_IV, NULL);
+    battleCtx->battleMons[battler].isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
+    battleCtx->battleMons[battler].hasNickname = Pokemon_GetData(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE) {
         for (i = 0; i < BATTLE_STAT_MAX; i++) {
@@ -109,8 +109,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].friskAnnounced = FALSE;
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
-    battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
-    battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+    battleCtx->battleMons[battler].type1 = Pokemon_GetData(mon, MON_DATA_TYPE_1, NULL);
+    battleCtx->battleMons[battler].type2 = Pokemon_GetData(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
     battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(mon);
 
@@ -119,26 +119,26 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
         battleCtx->battleMons[battler].status = MON_CONDITION_NONE;
         battleCtx->battleMons[battler].heldItem = ITEM_NONE;
     } else {
-        battleCtx->battleMons[battler].ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
-        battleCtx->battleMons[battler].status = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
-        battleCtx->battleMons[battler].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        battleCtx->battleMons[battler].ability = Pokemon_GetData(mon, MON_DATA_ABILITY, NULL);
+        battleCtx->battleMons[battler].status = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
+        battleCtx->battleMons[battler].heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
     }
 
     if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) && Battler_Side(battleSys, battler) == BATTLER_US) {
         battleCtx->battleMons[battler].formNum = 0;
     } else {
-        battleCtx->battleMons[battler].formNum = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        battleCtx->battleMons[battler].formNum = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     }
 
-    battleCtx->battleMons[battler].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    battleCtx->battleMons[battler].friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
-    battleCtx->battleMons[battler].curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
-    battleCtx->battleMons[battler].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-    battleCtx->battleMons[battler].exp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
-    battleCtx->battleMons[battler].personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
-    battleCtx->battleMons[battler].OTId = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
-    battleCtx->battleMons[battler].OTGender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
-    battleCtx->battleMons[battler].capturedBall = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
+    battleCtx->battleMons[battler].level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    battleCtx->battleMons[battler].friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
+    battleCtx->battleMons[battler].curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
+    battleCtx->battleMons[battler].maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+    battleCtx->battleMons[battler].exp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
+    battleCtx->battleMons[battler].personality = Pokemon_GetData(mon, MON_DATA_PERSONALITY, NULL);
+    battleCtx->battleMons[battler].OTId = Pokemon_GetData(mon, MON_DATA_OT_ID, NULL);
+    battleCtx->battleMons[battler].OTGender = Pokemon_GetData(mon, MON_DATA_OT_GENDER, NULL);
+    battleCtx->battleMons[battler].capturedBall = Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL);
 
     Pokedex_SetupGiratina(battleCtx->battleMons[battler].formNum);
 
@@ -149,8 +149,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
 
     Pokedex_HeightWeightData_Release(heightWeightData);
     Pokedex_HeightWeightData_Free(heightWeightData);
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME, battleCtx->battleMons[battler].nickname);
-    Pokemon_GetValue(mon, MON_DATA_OT_NAME, battleCtx->battleMons[battler].OTName);
+    Pokemon_GetData(mon, MON_DATA_NICKNAME, battleCtx->battleMons[battler].nickname);
+    Pokemon_GetData(mon, MON_DATA_OT_NAME, battleCtx->battleMons[battler].OTName);
 
     battleCtx->battleMons[battler].timesDamaged = 0;
     battleCtx->battleMons[battler].trainerMessageFlags = 0;
@@ -168,26 +168,26 @@ void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCt
 {
     Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
 
-    battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
-    battleCtx->battleMons[battler].defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
-    battleCtx->battleMons[battler].speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
-    battleCtx->battleMons[battler].spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL);
-    battleCtx->battleMons[battler].spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
-    battleCtx->battleMons[battler].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    battleCtx->battleMons[battler].friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
-    battleCtx->battleMons[battler].curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
-    battleCtx->battleMons[battler].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+    battleCtx->battleMons[battler].attack = Pokemon_GetData(mon, MON_DATA_ATK, NULL);
+    battleCtx->battleMons[battler].defense = Pokemon_GetData(mon, MON_DATA_DEF, NULL);
+    battleCtx->battleMons[battler].speed = Pokemon_GetData(mon, MON_DATA_SPEED, NULL);
+    battleCtx->battleMons[battler].spAttack = Pokemon_GetData(mon, MON_DATA_SP_ATK, NULL);
+    battleCtx->battleMons[battler].spDefense = Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL);
+    battleCtx->battleMons[battler].level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    battleCtx->battleMons[battler].friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
+    battleCtx->battleMons[battler].curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
+    battleCtx->battleMons[battler].maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
 
     if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
-        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (int i = 0; i < MAX_MON_MOVES; i++) {
             if ((battleCtx->battleMons[battler].moveEffectsData.mimickedMoveSlot & FlagIndex(i)) == FALSE) {
-                battleCtx->battleMons[battler].moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
-                battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + i, NULL);
-                battleCtx->battleMons[battler].ppUps[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
+                battleCtx->battleMons[battler].moves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
+                battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP + i, NULL);
+                battleCtx->battleMons[battler].ppUps[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
             }
         }
 
-        battleCtx->battleMons[battler].exp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
+        battleCtx->battleMons[battler].exp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
     }
 }
 
@@ -1921,7 +1921,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
                 for (int i = 0; i < Party_GetCurrentCount(party); i++) {
                     Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-                    if (Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
                         alive++;
                     }
                 }
@@ -1944,7 +1944,7 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem *battleSys, BattleContext *ba
                 for (int i = 0; i < Party_GetCurrentCount(party); i++) {
                     Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-                    if (Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
                         alive++;
                     }
                 }
@@ -2254,7 +2254,7 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
 {
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         if (battleCtx->battleMons[battler].moves[i] == MOVE_NONE
             && (opMask & CHECK_INVALID_NO_MOVE)) {
             invalidMoves |= FlagIndex(i);
@@ -2304,7 +2304,7 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
 
         if ((itemEffect == HOLD_EFFECT_CHOICE_ATK || itemEffect == HOLD_EFFECT_CHOICE_SPEED || itemEffect == HOLD_EFFECT_CHOICE_SPATK)
             && (opMask & CHECK_INVALID_CHOICE_ITEM)) {
-            if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == LEARNED_MOVES_MAX) {
+            if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == MAX_MON_MOVES) {
                 battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove = MOVE_NONE;
             } else if (battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove
                 && battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove != battleCtx->battleMons[battler].moves[i]) {
@@ -2375,7 +2375,7 @@ int Battler_SlotForMove(BattleMon *mon, u16 move)
 {
     int i;
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (mon->moves[i] == move) {
             break;
         }
@@ -3162,9 +3162,9 @@ BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *bat
 
     for (int i = start; i < end; i++) {
         pokemon = Party_GetPokemonBySlotIndex(party, i);
-        if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL)
-            && Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == FALSE
-            && Pokemon_GetValue(pokemon, MON_DATA_HP, NULL)
+        if (Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL)
+            && Pokemon_GetData(pokemon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetData(pokemon, MON_DATA_HP, NULL)
             && selectedSlot1 != i
             && selectedSlot2 != i) {
             aliveMons++;
@@ -3322,13 +3322,13 @@ BOOL Move_Imprisoned(BattleSystem *battleSys, BattleContext *battleCtx, int batt
     for (i = 0; i < maxBattlers; i++) {
         if (side != Battler_Side(battleSys, i)
             && (battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_IMPRISON)) {
-            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            for (j = 0; j < MAX_MON_MOVES; j++) {
                 if (move == battleCtx->battleMons[i].moves[j]) {
                     break;
                 }
             }
 
-            if (j != LEARNED_MOVES_MAX) {
+            if (j != MAX_MON_MOVES) {
                 result = TRUE;
             }
         }
@@ -3459,7 +3459,7 @@ void BattleSystem_UpdateLastResort(BattleSystem *battleSys, BattleContext *battl
 int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (battleCtx->battleMons[battler].moves[i] == MOVE_NONE) {
             break;
         }
@@ -4630,13 +4630,13 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
 
         case HOLD_EFFECT_PP_RESTORE: {
             int i;
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 0; i < MAX_MON_MOVES; i++) {
                 if (battleCtx->battleMons[battler].moves[i] && battleCtx->battleMons[battler].ppCur[i] == 0) {
                     break;
                 }
             }
 
-            if (i != LEARNED_MOVES_MAX) {
+            if (i != MAX_MON_MOVES) {
                 BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
@@ -4695,7 +4695,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SPICY;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SPICY) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_SPICY) == -1) {
                     subscript = subscript_held_item_dislike_flavor;
                 } else {
                     subscript = subscript_held_item_hp_restore;
@@ -4710,7 +4710,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_DRY;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_DRY) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_DRY) == -1) {
                     subscript = subscript_held_item_dislike_flavor;
                 } else {
                     subscript = subscript_held_item_hp_restore;
@@ -4725,7 +4725,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SWEET;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SWEET) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_SWEET) == -1) {
                     subscript = subscript_held_item_dislike_flavor;
                 } else {
                     subscript = subscript_held_item_hp_restore;
@@ -4740,7 +4740,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_BITTER;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_BITTER) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_BITTER) == -1) {
                     subscript = subscript_held_item_dislike_flavor;
                 } else {
                     subscript = subscript_held_item_hp_restore;
@@ -4755,7 +4755,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SOUR;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SOUR) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_SOUR) == -1) {
                     subscript = subscript_held_item_dislike_flavor;
                 } else {
                     subscript = subscript_held_item_hp_restore;
@@ -5020,13 +5020,13 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
 
         case HOLD_EFFECT_PP_RESTORE: {
             int i;
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 0; i < MAX_MON_MOVES; i++) {
                 if (battleCtx->battleMons[battler].moves[i] && battleCtx->battleMons[battler].ppCur[i] == 0) {
                     break;
                 }
             }
 
-            if (i != LEARNED_MOVES_MAX) {
+            if (i != MAX_MON_MOVES) {
                 BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
@@ -5118,7 +5118,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SPICY;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SPICY) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_SPICY) == -1) {
                     *subscript = subscript_held_item_dislike_flavor;
                 } else {
                     *subscript = subscript_held_item_hp_restore;
@@ -5133,7 +5133,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_DRY;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_DRY) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_DRY) == -1) {
                     *subscript = subscript_held_item_dislike_flavor;
                 } else {
                     *subscript = subscript_held_item_hp_restore;
@@ -5148,7 +5148,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SWEET;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SWEET) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_SWEET) == -1) {
                     *subscript = subscript_held_item_dislike_flavor;
                 } else {
                     *subscript = subscript_held_item_hp_restore;
@@ -5163,7 +5163,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_BITTER;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_BITTER) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_BITTER) == -1) {
                     *subscript = subscript_held_item_dislike_flavor;
                 } else {
                     *subscript = subscript_held_item_hp_restore;
@@ -5178,7 +5178,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SOUR;
 
-                if (Pokemon_GetFlavorAffinityOf(battleCtx->battleMons[battler].personality, FLAVOR_SOUR) == -1) {
+                if (Personality_GetFlavorAffinity(battleCtx->battleMons[battler].personality, FLAVOR_SOUR) == -1) {
                     *subscript = subscript_held_item_dislike_flavor;
                 } else {
                     *subscript = subscript_held_item_hp_restore;
@@ -5607,7 +5607,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         // Find the move that has the highest difference between its current
         // and maximum PP.
         maxDiff = 0;
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (ATTACKING_MON.moves[i]) {
                 diff = MoveTable_CalcMaxPP(ATTACKING_MON.moves[i], ATTACKING_MON.ppUps[i]) - ATTACKING_MON.ppCur[i];
 
@@ -5675,7 +5675,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, power);
             battleCtx->msgTemp = FLAVOR_SPICY;
 
-            if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_SPICY) == -1) {
+            if (Personality_GetFlavorAffinity(ATTACKING_MON.personality, FLAVOR_SPICY) == -1) {
                 nextSeq = subscript_held_item_dislike_flavor;
             } else {
                 nextSeq = subscript_held_item_hp_restore;
@@ -5690,7 +5690,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, power);
             battleCtx->msgTemp = FLAVOR_DRY;
 
-            if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_DRY) == -1) {
+            if (Personality_GetFlavorAffinity(ATTACKING_MON.personality, FLAVOR_DRY) == -1) {
                 nextSeq = subscript_held_item_dislike_flavor;
             } else {
                 nextSeq = subscript_held_item_hp_restore;
@@ -5705,7 +5705,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, power);
             battleCtx->msgTemp = FLAVOR_SWEET;
 
-            if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_SWEET) == -1) {
+            if (Personality_GetFlavorAffinity(ATTACKING_MON.personality, FLAVOR_SWEET) == -1) {
                 nextSeq = subscript_held_item_dislike_flavor;
             } else {
                 nextSeq = subscript_held_item_hp_restore;
@@ -5720,7 +5720,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, power);
             battleCtx->msgTemp = FLAVOR_BITTER;
 
-            if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_BITTER) == -1) {
+            if (Personality_GetFlavorAffinity(ATTACKING_MON.personality, FLAVOR_BITTER) == -1) {
                 nextSeq = subscript_held_item_dislike_flavor;
             } else {
                 nextSeq = subscript_held_item_hp_restore;
@@ -5735,7 +5735,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, power);
             battleCtx->msgTemp = FLAVOR_SOUR;
 
-            if (Pokemon_GetFlavorAffinityOf(ATTACKING_MON.personality, FLAVOR_SOUR) == -1) {
+            if (Personality_GetFlavorAffinity(ATTACKING_MON.personality, FLAVOR_SOUR) == -1) {
                 nextSeq = subscript_held_item_dislike_flavor;
             } else {
                 nextSeq = subscript_held_item_hp_restore;
@@ -5906,7 +5906,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         // Find the move that has the highest difference between its current
         // and maximum PP.
         maxDiff = 0;
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (DEFENDING_MON.moves[i]) {
                 diff = MoveTable_CalcMaxPP(DEFENDING_MON.moves[i], DEFENDING_MON.ppUps[i]) - DEFENDING_MON.ppCur[i];
 
@@ -5970,7 +5970,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->flingTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, effectPower);
         battleCtx->msgTemp = FLAVOR_SPICY;
 
-        if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_SPICY) == -1) {
+        if (Personality_GetFlavorAffinity(DEFENDING_MON.personality, FLAVOR_SPICY) == -1) {
             battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
             battleCtx->flingScript = subscript_held_item_hp_restore;
@@ -5981,7 +5981,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->flingTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, effectPower);
         battleCtx->msgTemp = FLAVOR_DRY;
 
-        if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_DRY) == -1) {
+        if (Personality_GetFlavorAffinity(DEFENDING_MON.personality, FLAVOR_DRY) == -1) {
             battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
             battleCtx->flingScript = subscript_held_item_hp_restore;
@@ -5992,7 +5992,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->flingTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, effectPower);
         battleCtx->msgTemp = FLAVOR_SWEET;
 
-        if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_SWEET) == -1) {
+        if (Personality_GetFlavorAffinity(DEFENDING_MON.personality, FLAVOR_SWEET) == -1) {
             battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
             battleCtx->flingScript = subscript_held_item_hp_restore;
@@ -6003,7 +6003,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->flingTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, effectPower);
         battleCtx->msgTemp = FLAVOR_BITTER;
 
-        if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_BITTER) == -1) {
+        if (Personality_GetFlavorAffinity(DEFENDING_MON.personality, FLAVOR_BITTER) == -1) {
             battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
             battleCtx->flingScript = subscript_held_item_hp_restore;
@@ -6014,7 +6014,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         battleCtx->flingTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, effectPower);
         battleCtx->msgTemp = FLAVOR_SOUR;
 
-        if (Pokemon_GetFlavorAffinityOf(DEFENDING_MON.personality, FLAVOR_SOUR) == -1) {
+        if (Personality_GetFlavorAffinity(DEFENDING_MON.personality, FLAVOR_SOUR) == -1) {
             battleCtx->flingScript = subscript_held_item_dislike_flavor;
         } else {
             battleCtx->flingScript = subscript_held_item_hp_restore;
@@ -6238,7 +6238,7 @@ void BattleSystem_SetPokemonCatchData(BattleSystem *battleSys, BattleContext *ba
 
     int ball;
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_PAL_PARK) {
-        ball = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
+        ball = Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL);
     } else {
         ball = battleCtx->msgItemTemp;
     }
@@ -6286,10 +6286,10 @@ BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon)
     const charcode_t *trName = TrainerInfo_Name(trInfo);
 
     charcode_t monOTName[TRAINER_NAME_LEN + 1];
-    Pokemon_GetValue(mon, MON_DATA_OT_NAME, monOTName);
+    Pokemon_GetData(mon, MON_DATA_OT_NAME, monOTName);
 
-    if (trID == Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL)
-        && trGender == Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL)
+    if (trID == Pokemon_GetData(mon, MON_DATA_OT_ID, NULL)
+        && trGender == Pokemon_GetData(mon, MON_DATA_OT_GENDER, NULL)
         && CharCode_CompareNumChars(trName, monOTName, TRAINER_NAME_LEN) == 0) {
         return TRUE;
     }
@@ -6394,7 +6394,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
         if (battleCtx->battleMons[battleCtx->msgBattlerTemp].species == SPECIES_ARCEUS
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP
             && Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_MULTITYPE) {
-            arceusForm = Pokemon_GetArceusTypeOf(Item_LoadParam(battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE));
+            arceusForm = HoldEffect_GetArceusType(Item_LoadParam(battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE));
 
             if (battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum != arceusForm) {
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = arceusForm;
@@ -6424,19 +6424,19 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
 
                 // Don't copy the Griseous Orb
                 int tmp = ITEM_NONE;
-                Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &tmp);
+                Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &tmp);
 
                 // Force Giratina-Altered form
                 tmp = GIRATINA_FORM_ALTERED;
-                Pokemon_SetValue(mon, MON_DATA_FORM, &tmp);
-                Pokemon_SetGiratinaFormByHeldItem(mon);
+                Pokemon_SetData(mon, MON_DATA_FORM, &tmp);
+                Pokemon_UpdateGiratinaForm(mon);
 
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].attack = Pokemon_GetValue(mon, MON_DATA_ATK, 0);
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].defense = Pokemon_GetValue(mon, MON_DATA_DEF, 0);
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].speed = Pokemon_GetValue(mon, MON_DATA_SPEED, 0);
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, 0);
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, 0);
-                battleCtx->battleMons[battleCtx->msgBattlerTemp].ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, 0);
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].attack = Pokemon_GetData(mon, MON_DATA_ATK, 0);
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].defense = Pokemon_GetData(mon, MON_DATA_DEF, 0);
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].speed = Pokemon_GetData(mon, MON_DATA_SPEED, 0);
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].spAttack = Pokemon_GetData(mon, MON_DATA_SP_ATK, 0);
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].spDefense = Pokemon_GetData(mon, MON_DATA_SP_DEF, 0);
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].ability = Pokemon_GetData(mon, MON_DATA_ABILITY, 0);
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = GIRATINA_FORM_ALTERED;
                 battleCtx->battleStatusMask2 |= SYSCTL_FORM_CHANGE;
 
@@ -7705,7 +7705,7 @@ static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonP
  */
 static void BattleAI_ClearKnownMoves(BattleContext *battleCtx, u8 battler)
 {
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         battleCtx->aiContext.battlerMoves[battler][i] = MOVE_NONE;
     }
 }
@@ -7957,11 +7957,11 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
         for (i = 0; i < partySize; i++) {
             mon = BattleSystem_PartyPokemon(battleSys, battler, i);
-            monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+            monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if (monSpecies != SPECIES_NONE
                 && monSpecies != SPECIES_EGG
-                && Pokemon_GetValue(mon, MON_DATA_HP, NULL)
+                && Pokemon_GetData(mon, MON_DATA_HP, NULL)
                 && (battlersDisregarded & FlagIndex(i)) == FALSE
                 && battleCtx->selectedPartySlot[slot1] != i
                 && battleCtx->selectedPartySlot[slot2] != i
@@ -7969,8 +7969,8 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                 && i != battleCtx->aiSwitchedPartySlot[slot2]) {
                 defenderType1 = BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL);
                 defenderType2 = BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL);
-                monType1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
-                monType2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+                monType1 = Pokemon_GetData(mon, MON_DATA_TYPE_1, NULL);
+                monType2 = Pokemon_GetData(mon, MON_DATA_TYPE_2, NULL);
 
                 score = BattleSystem_TypeMatchupMultiplier(monType1, defenderType1, defenderType2);
                 score += BattleSystem_TypeMatchupMultiplier(monType2, defenderType1, defenderType2);
@@ -7988,8 +7988,8 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
             // Determine if this mon has any super-effective moves against the defender
             mon = BattleSystem_PartyPokemon(battleSys, battler, picked);
 
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-                move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
+            for (i = 0; i < MAX_MON_MOVES; i++) {
+                move = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
                 moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
                 if (move) {
@@ -7997,7 +7997,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                     BattleSystem_CalcEffectiveness(battleCtx,
                         move,
                         moveType,
-                        Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
+                        Pokemon_GetData(mon, MON_DATA_ABILITY, NULL),
                         Battler_Ability(battleCtx, defender),
                         Battler_HeldItemEffect(battleCtx, defender),
                         BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL),
@@ -8012,7 +8012,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
             // If this mon has no moves which would be super-effective against the
             // defender, mark it as disregarded and move to the next in priority.
-            if (i == LEARNED_MOVES_MAX) {
+            if (i == MAX_MON_MOVES) {
                 battlersDisregarded |= FlagIndex(picked);
             } else {
                 return picked;
@@ -8032,17 +8032,17 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     // party-order.
     for (i = 0; i < partySize; i++) {
         mon = BattleSystem_PartyPokemon(battleSys, battler, i);
-        monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+        monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (monSpecies != SPECIES_NONE
             && monSpecies != SPECIES_EGG
-            && Pokemon_GetValue(mon, MON_DATA_HP, NULL)
+            && Pokemon_GetData(mon, MON_DATA_HP, NULL)
             && battleCtx->selectedPartySlot[slot1] != i
             && battleCtx->selectedPartySlot[slot2] != i
             && i != battleCtx->aiSwitchedPartySlot[slot1]
             && i != battleCtx->aiSwitchedPartySlot[slot2]) {
-            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
-                move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + j, NULL);
+            for (j = 0; j < MAX_MON_MOVES; j++) {
+                move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                 moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
                 if (move && MOVE_DATA(move).power != 1) {
@@ -8095,11 +8095,11 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
 
     switch (move) {
     case MOVE_NATURAL_GIFT:
-        type = BattleSystem_GetItemData(battleCtx, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_NATURAL_GIFT_TYPE);
+        type = BattleSystem_GetItemData(battleCtx, Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_NATURAL_GIFT_TYPE);
         break;
 
     case MOVE_JUDGMENT:
-        switch (BattleSystem_GetItemData(battleCtx, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT)) {
+        switch (BattleSystem_GetItemData(battleCtx, Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT)) {
         case HOLD_EFFECT_ARCEUS_FIGHTING:
             type = TYPE_FIGHTING;
             break;
@@ -8155,12 +8155,12 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
         break;
 
     case MOVE_HIDDEN_POWER:
-        type = ((Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL) & 1) >> 0)
-            | ((Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL) & 1) << 1)
-            | ((Pokemon_GetValue(mon, MON_DATA_DEF_IV, NULL) & 1) << 2)
-            | ((Pokemon_GetValue(mon, MON_DATA_SPEED_IV, NULL) & 1) << 3)
-            | ((Pokemon_GetValue(mon, MON_DATA_SPATK_IV, NULL) & 1) << 4)
-            | ((Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL) & 1) << 5);
+        type = ((Pokemon_GetData(mon, MON_DATA_HP_IV, NULL) & 1) >> 0)
+            | ((Pokemon_GetData(mon, MON_DATA_ATK_IV, NULL) & 1) << 1)
+            | ((Pokemon_GetData(mon, MON_DATA_DEF_IV, NULL) & 1) << 2)
+            | ((Pokemon_GetData(mon, MON_DATA_SPEED_IV, NULL) & 1) << 3)
+            | ((Pokemon_GetData(mon, MON_DATA_SPATK_IV, NULL) & 1) << 4)
+            | ((Pokemon_GetData(mon, MON_DATA_SPDEF_IV, NULL) & 1) << 5);
         type = (type * 15 / 63) + 1;
 
         if (type >= TYPE_MYSTERY) {

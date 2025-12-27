@@ -35,7 +35,7 @@ void ov22_022590C0(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
 
 void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4, BOOL param5)
 {
-    int v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
+    int v0 = Pokemon_GetData(param2, MON_DATA_SPECIES, NULL);
 
     Pokemon_BuildSpriteTemplateDP(param3, param2, 2);
     param0->unk_00 = PokemonSpriteManager_CreateSprite(param1, param3, 192, 56, 0, 0, NULL, NULL);

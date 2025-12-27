@@ -115,7 +115,7 @@ static int sub_02098304(ApplicationManager *appMan, int *param1)
         {
             int v1;
 
-            v1 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+            v1 = Pokemon_GetData(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
 
             PokemonSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
@@ -214,9 +214,9 @@ static BOOL sub_0209843C(FieldTask *param0)
             int heapID = HEAP_ID_FIELD2;
             int isEgg = FALSE;
 
-            Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
+            Pokemon_SetData(mon, MON_DATA_IS_EGG, &isEgg);
             UpdateMonStatusAndTrainerInfo(mon, trainerInfo, v4, location, heapID);
-            Pokemon_SetValue(mon, MON_DATA_SPECIES_NAME, NULL);
+            Pokemon_SetData(mon, MON_DATA_SPECIES_NAME, NULL);
         }
 
         {
@@ -233,17 +233,17 @@ static BOOL sub_0209843C(FieldTask *param0)
         FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
         int v9;
 
-        v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
+        v9 = Pokemon_GetData(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
         v0->unk_08 = NamingScreenArgs_Init(HEAP_ID_FIELD2, NAMING_SCREEN_TYPE_POKEMON, v9, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
-        v0->unk_08->monGender = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
-        v0->unk_08->monForm = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
+        v0->unk_08->monGender = Pokemon_GetData(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
+        v0->unk_08->monForm = Pokemon_GetData(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v0->unk_08);
         v0->unk_00++;
     } break;
     case 4:
         if (v0->unk_08->returnCode == NAMING_SCREEN_CODE_OK) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRING_AND_FLAG, v0->unk_08->textInputStr);
+            Pokemon_SetData(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRING_AND_FLAG, v0->unk_08->textInputStr);
 
             {
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);

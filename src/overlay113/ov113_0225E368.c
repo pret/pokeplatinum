@@ -1020,7 +1020,7 @@ static BOOL ov113_0225EEBC(UnkStruct_ov113_0225E6B8 *param0, int param1)
 
 static u8 ov113_0225EEF8(const UnkStruct_ov113_02260818 *param0)
 {
-    u8 v0 = Pokemon_GetNatureOf(param0->unk_04);
+    u8 v0 = Personality_GetNature(param0->unk_04);
     return Unk_ov113_02260D30[v0];
 }
 

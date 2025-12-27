@@ -821,7 +821,7 @@ void PartyMenu_LoadContextMenuPrompt(PartyMenuApplication *application)
         Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
         String *fmtString = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_PromptPokemon);
 
-        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
         StringTemplate_Format(application->template, application->tmpString, fmtString);
         String_Free(fmtString);
     }
@@ -854,7 +854,7 @@ static void PartyMenu_PrintMemberHPSlash(PartyMenuApplication *application, u8 s
 void PartyMenu_SetMemberName(PartyMenuApplication *application, Pokemon *mon, u32 partySlot)
 {
     String *fmt = MessageLoader_GetNewString(application->messageLoader, sPartySlotNicknameTemplates[partySlot].bankEntry);
-    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+    StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
     StringTemplate_Format(application->template, application->partyMembers[partySlot].name, fmt);
     String_Free(fmt);
 }
@@ -1043,7 +1043,7 @@ void PartyMenu_PrintMemberComment_CanUseEvoItem(PartyMenuApplication *applicatio
     PartyMenu_PrintMemberLevel(application, slot);
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
-    if (Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, application->partyMenu->usedItemID, NULL) == SPECIES_NONE) {
+    if (Pokemon_GetEvolutionTarget(NULL, mon, EVO_CONTEXT_ITEM_USE, application->partyMenu->usedItemID, NULL) == SPECIES_NONE) {
         PrintMemberEvoComment(application, slot, EVO_COMMENT_UNABLE);
     } else {
         PrintMemberEvoComment(application, slot, EVO_COMMENT_ABLE);
@@ -1361,12 +1361,12 @@ void PartyMenu_DrawLevelUpStatIncreases(PartyMenuApplication *application)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
     u16 stats[STAT_MAX] = {
-        Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL),
-        Pokemon_GetValue(mon, MON_DATA_ATK, NULL),
-        Pokemon_GetValue(mon, MON_DATA_DEF, NULL),
-        Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL),
-        Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL),
-        Pokemon_GetValue(mon, MON_DATA_SPEED, NULL),
+        Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL),
+        Pokemon_GetData(mon, MON_DATA_ATK, NULL),
+        Pokemon_GetData(mon, MON_DATA_DEF, NULL),
+        Pokemon_GetData(mon, MON_DATA_SP_ATK, NULL),
+        Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL),
+        Pokemon_GetData(mon, MON_DATA_SPEED, NULL),
     };
 
     Window_Add(application->bgConfig, &application->menuWindows[0], BG_LAYER_MAIN_0, 1, 1, 14, 12, 0, WIN_CONTEXT_WINDOW_BASE_TILE);

@@ -947,8 +947,8 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_1C = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecords(fieldSystem->saveData);
     param0->unk_38 = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
-    param0->unk_3C = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
-    param0->unk_40 = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_GetStructSize());
+    param0->unk_3C = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_Size2());
+    param0->unk_40 = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_Size2());
     param0->fieldSystem = fieldSystem;
     param0->unk_34 = 0;
 }
@@ -1003,8 +1003,8 @@ BOOL sub_0203DBF0(FieldTask *param0)
         break;
     case 4:
         v2->unk_48.otherTrainer = v2->unk_04.unk_38;
-        v2->unk_48.sendingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
-        v2->unk_48.receivingPokemon = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
+        v2->unk_48.sendingPokemon = Pokemon_GetBoxMon(v2->unk_04.unk_3C);
+        v2->unk_48.receivingPokemon = Pokemon_GetBoxMon(v2->unk_04.unk_40);
         v2->unk_48.options = SaveData_GetOptions(fieldSystem->saveData);
         v2->unk_48.tradeType = TRADE_TYPE_NORMAL;
 
@@ -1031,11 +1031,11 @@ BOOL sub_0203DBF0(FieldTask *param0)
         v2->unk_00 = 5;
         break;
     case 5: {
-        int v3 = Pokemon_GetValue(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetData(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
-        if ((v4 = Pokemon_GetEvolutionTargetSpecies(NULL, v2->unk_04.unk_40, EVO_CLASS_BY_TRADE, v3, &v5)) != 0) {
+        if ((v4 = Pokemon_GetEvolutionTarget(NULL, v2->unk_04.unk_40, EVO_CONTEXT_TRADE, v3, &v5)) != 0) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x30000);
             v2->unk_60 = Evolution_Begin(NULL, v2->unk_04.unk_40, v4, SaveData_GetOptions(fieldSystem->saveData), PokemonSummaryScreen_ShowContestData(fieldSystem->saveData), SaveData_GetPokedex(fieldSystem->saveData), SaveData_GetBag(fieldSystem->saveData), SaveData_GetGameRecords(fieldSystem->saveData), SaveData_GetPoketch(fieldSystem->saveData), v5, 0x4, HEAP_ID_26);
             v2->unk_00 = 6;
@@ -1202,7 +1202,7 @@ static void sub_0203DF68(FieldTask *param0)
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v1->unk_04);
-        Pokemon_SetValue(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->nameInputRaw);
+        Pokemon_SetData(v3, MON_DATA_NICKNAME_AND_FLAG, (u8 *)&v1->unk_0C->nameInputRaw);
     } break;
     case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
@@ -1239,8 +1239,8 @@ void sub_0203DFE8(
     switch (type) {
     case NAMING_SCREEN_TYPE_POKEMON:
         v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2->unk_04);
-        v2->unk_0C->monGender = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
-        v2->unk_0C->monForm = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        v2->unk_0C->monGender = Pokemon_GetData(v0, MON_DATA_GENDER, NULL);
+        v2->unk_0C->monForm = Pokemon_GetData(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
             String_CopyChars(v2->unk_10, param5);

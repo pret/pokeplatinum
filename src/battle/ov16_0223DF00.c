@@ -586,10 +586,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     int friendship = 0;
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_SLEEP, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
+        param = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_SLEEP) {
             param &= ~MON_CONDITION_SLEEP;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -606,10 +606,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_POISON, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
+        param = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_ANY_POISON) {
             param &= ~MON_CONDITION_ANY_POISON;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -622,10 +622,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_BURN, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
+        param = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_BURN) {
             param &= ~MON_CONDITION_BURN;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -638,10 +638,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_FREEZE, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
+        param = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_FREEZE) {
             param &= ~MON_CONDITION_FREEZE;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -654,10 +654,10 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_HEAL_PARALYSIS, HEAP_ID_BATTLE)) {
-        param = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
+        param = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
         if (param & MON_CONDITION_PARALYSIS) {
             param &= ~MON_CONDITION_PARALYSIS;
-            Pokemon_SetValue(mon, MON_DATA_STATUS, &param);
+            Pokemon_SetData(mon, MON_DATA_STATUS, &param);
 
             if (selectedSlot == partySlot || targetSlot == partySlot) {
                 param = BattleMon_Get(battleCtx, battler, BATTLEMON_STATUS, NULL);
@@ -757,8 +757,8 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     if (Item_LoadParam(item, ITEM_PARAM_PP_RESTORE, HEAP_ID_BATTLE)) {
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
-        if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-            Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
+        if (Pokemon_GetData(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetData(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
+            Pokemon_IncreaseData(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
             // Don't permit restoring PP on copied moves
             if ((selectedSlot == partySlot || targetSlot == partySlot)
@@ -774,9 +774,9 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     if (Item_LoadParam(item, ITEM_PARAM_PP_RESTORE_ALL, HEAP_ID_BATTLE)) {
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
-        for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
-            if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetValue(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
-                Pokemon_IncreaseValue(mon, MON_DATA_MOVE1_PP + moveSlot, param);
+        for (moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++) {
+            if (Pokemon_GetData(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetData(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
+                Pokemon_IncreaseData(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 
                 if ((selectedSlot == partySlot || targetSlot == partySlot)
                     && (BattleMon_Get(battleCtx, battler, BATTLEMON_VOLATILE_STATUS, NULL) & VOLATILE_CONDITION_TRANSFORM) == FALSE
@@ -793,23 +793,23 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
         param = 0;
 
         if (Item_LoadParam(item, ITEM_PARAM_REVIVE, HEAP_ID_BATTLE)) {
-            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+            if (Pokemon_GetData(mon, MON_DATA_HP, NULL) == 0) {
                 param = 1;
             }
         } else {
-            param = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
+            param = Pokemon_GetData(mon, MON_DATA_HP, NULL);
         }
 
-        if (param && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
+        if (param && Pokemon_GetData(mon, MON_DATA_HP, NULL) != Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL)) {
             param = Item_LoadParam(item, ITEM_PARAM_HP_RESTORED, HEAP_ID_BATTLE);
 
             switch (param) {
             case 0xFF:
-                param = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+                param = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
                 break;
 
             case 0xFE:
-                param = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL) / 2;
+                param = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL) / 2;
 
                 if (param == 0) {
                     param = 1;
@@ -817,7 +817,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
                 break;
 
             case 0xFD:
-                param = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL) * 25 / 100;
+                param = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL) * 25 / 100;
 
                 if (param == 0) {
                     param = 1;
@@ -828,7 +828,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
                 break;
             }
 
-            Pokemon_IncreaseValue(mon, MON_DATA_HP, param);
+            Pokemon_IncreaseData(mon, MON_DATA_HP, param);
 
             if (Item_LoadParam(item, ITEM_PARAM_REVIVE, HEAP_ID_BATTLE) == FALSE) {
                 if (Battler_Side(battleSys, battler)) {
@@ -843,41 +843,41 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_GIVE_FRIENDSHIP_LOW, HEAP_ID_BATTLE)
-        && Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL) < 100
+        && Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL) < 100
         && result == TRUE) {
         friendship = Item_LoadParam(item, ITEM_PARAM_FRIENDSHIP_LOW, HEAP_ID_BATTLE);
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_GIVE_FRIENDSHIP_MED, HEAP_ID_BATTLE)
-        && Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL) >= 100
-        && Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL) < 200
+        && Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL) >= 100
+        && Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL) < 200
         && result == TRUE) {
         friendship = Item_LoadParam(item, ITEM_PARAM_FRIENDSHIP_MED, HEAP_ID_BATTLE);
     }
 
     if (Item_LoadParam(item, ITEM_PARAM_GIVE_FRIENDSHIP_HIGH, HEAP_ID_BATTLE)
-        && Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL) >= 200
+        && Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL) >= 200
         && result == TRUE) {
         friendship = Item_LoadParam(item, ITEM_PARAM_FRIENDSHIP_HIGH, HEAP_ID_BATTLE);
     }
 
     if (friendship) {
         if (friendship > 0) {
-            if (Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
+            if (Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
                 friendship++;
             }
 
-            if (Pokemon_GetValue(mon, MON_DATA_EGG_LOCATION, NULL) == BattleSystem_MapHeader(battleSys)) {
+            if (Pokemon_GetData(mon, MON_DATA_EGG_LOCATION, NULL) == BattleSystem_MapHeader(battleSys)) {
                 friendship++;
             }
 
-            param = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+            param = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
             if (Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE) == HOLD_EFFECT_FRIENDSHIP_UP) {
                 friendship = friendship * 150 / 100;
             }
         }
 
-        Pokemon_IncreaseValue(mon, MON_DATA_FRIENDSHIP, friendship);
+        Pokemon_IncreaseData(mon, MON_DATA_FRIENDSHIP, friendship);
         if (selectedSlot == partySlot || targetSlot == partySlot) {
             Battler_AddVal(battleCtx, battler, BATTLEMON_FRIENDSHIP, friendship);
         }
@@ -973,7 +973,7 @@ u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *dto, int *outPartySlot, int *
 
         if (*outPartySlot < 6) {
             mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLE_SIDE_PLAYER], *outPartySlot);
-            species = Pokemon_GetEvolutionTargetSpecies(dto->parties[BATTLE_SIDE_PLAYER], mon, EVO_CLASS_BY_LEVEL, dto->mapEvolutionMethod, outEvoType);
+            species = Pokemon_GetEvolutionTarget(dto->parties[BATTLE_SIDE_PLAYER], mon, EVO_CONTEXT_LEVEL_UP, dto->mapEvolutionMethod, outEvoType);
             if (species) {
                 return species;
             }
@@ -1064,7 +1064,7 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
 
     for (i = 0; i < BattleSystem_PartyCount(battleSys, 0); i++) {
         Pokemon *mon = BattleSystem_PartyPokemon(battleSys, 0, i);
-        u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+        u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (species == SPECIES_BURMY && (battleSys->unk_2414[0] & FlagIndex(i))) {
             switch (BattleSystem_Terrain(battleSys)) {
@@ -1096,7 +1096,7 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
                 break;
             }
 
-            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SetData(mon, MON_DATA_FORM, &form);
         }
     }
 }
@@ -1109,7 +1109,7 @@ void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2)
 void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1)
 {
     if (battleSystem->poketch) {
-        Poketch_PokemonHistoryEnqueue(battleSystem->poketch, Pokemon_GetBoxPokemon(param1));
+        Poketch_PokemonHistoryEnqueue(battleSystem->poketch, Pokemon_GetBoxMon(param1));
     }
 }
 
@@ -1686,7 +1686,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     }
 
     if (((battlerType & BATTLER_THEM) == FALSE)
-        && (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_BURMY)) {
+        && (Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_BURMY)) {
         Pokedex_Capture(battleSystem->pokedex, mon);
     }
 }

@@ -175,7 +175,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
     if (param0->partyMembers[param0->currPartySlot].heldItem == ITEM_NONE) {
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00081, param0->tmpFormat);
-        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxMon(mon));
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
     } else if (Bag_TryAddItem(param0->partyMenu->bag, param0->partyMembers[param0->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         u32 v4;
@@ -183,11 +183,11 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         mon = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
         v4 = 0;
 
-        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v4);
-        Pokemon_SetArceusForm(mon);
+        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &v4);
+        Pokemon_UpdateArceusForm(mon);
 
         if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
-            v1 = Pokemon_SetGiratinaFormByHeldItem(mon);
+            v1 = Pokemon_UpdateGiratinaForm(mon);
 
             if ((param0->partyMembers[param0->currPartySlot].heldItem == ITEM_GRISEOUS_ORB) && (v1 == 0)) {
                 v2 = 18;
@@ -195,7 +195,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         }
 
         MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00082, param0->tmpFormat);
-        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(mon));
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxMon(mon));
         StringTemplate_SetItemName(param0->template, 1, param0->partyMembers[param0->currPartySlot].heldItem);
         StringTemplate_Format(param0->template, param0->tmpString, param0->tmpFormat);
 
@@ -345,9 +345,9 @@ static int sub_020838F4(void *param0)
         mon = Party_GetPokemonBySlotIndex(v0->partyMenu->party, v0->currPartySlot);
         item = 0;
 
-        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
-        Pokemon_SetArceusForm(mon);
-        Pokemon_SetGiratinaFormByHeldItem(mon);
+        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
+        Pokemon_UpdateArceusForm(mon);
+        Pokemon_UpdateGiratinaForm(mon);
 
         v0->partyMembers[v0->currPartySlot].heldItem = ITEM_NONE;
 
@@ -840,7 +840,7 @@ int sub_02084780(PartyMenuApplication *param0)
 {
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->partyMenu->party, param0->currPartySlot);
 
-    if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
+    if (Pokemon_GetData(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
         MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00129, param0->tmpString);
         Sprite_SetDrawFlag(param0->sprites[22 + param0->currPartySlot], TRUE);
     } else {

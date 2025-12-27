@@ -151,7 +151,7 @@ void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0)
 {
     PokemonSpriteTemplate v0;
 
-    BuildPokemonSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
+    Species_BuildSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
     param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
 }
 

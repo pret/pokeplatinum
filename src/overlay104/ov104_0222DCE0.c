@@ -163,9 +163,9 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
         param0->item = v4.item;
     }
 
-    u8 friendship = MAX_FRIENDSHIP_VALUE;
+    u8 friendship = MAX_FRIENDSHIP;
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         param0->moves[v0] = v4.moves[v0];
 
         if (v4.moves[v0] == MOVE_FRUSTRATION) {
@@ -178,7 +178,7 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
     if (param3 == 0) {
         do {
             v2 = (LCRNG_Next() | LCRNG_Next() << 16);
-        } while ((v4.nature != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param2, v2) == TRUE));
+        } while ((v4.nature != Personality_GetNature(v2)) || (Personality_IsShiny(param2, v2) == TRUE));
 
         param0->personality = v2;
     } else {
@@ -216,16 +216,16 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
     param0->combinedPPUps = 0;
     param0->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_2);
+    v0 = Species_GetValue(param0->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (param0->personality & 1) {
             param0->ability = v0;
         } else {
-            param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
+            param0->ability = Species_GetValue(param0->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        param0->ability = SpeciesData_GetSpeciesValue(param0->species, SPECIES_DATA_ABILITY_1);
+        param0->ability = Species_GetValue(param0->species, SPECIES_DATA_ABILITY_1);
     }
 
     param0->friendship = friendship;
@@ -254,62 +254,62 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
 
     v1 = (param0->combinedIVs & 0x3FFFFFFF);
 
-    Pokemon_InitWith(param1, param0->species, v4, v1, TRUE, param0->personality, OTID_NOT_SHINY, 0);
-    Pokemon_SetValue(param1, MON_DATA_COMBINED_IVS, &v1);
+    Pokemon_InitWithParams(param1, param0->species, v4, v1, TRUE, param0->personality, OTID_NOT_SHINY, 0);
+    Pokemon_SetData(param1, MON_DATA_COMBINED_IVS, &v1);
     Pokemon_CalcLevelAndStats(param1);
 
     v2 = param0->form;
 
-    Pokemon_SetValue(param1, MON_DATA_FORM, &v2);
-    Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &param0->item);
+    Pokemon_SetData(param1, MON_DATA_FORM, &v2);
+    Pokemon_SetData(param1, MON_DATA_HELD_ITEM, &param0->item);
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         v5 = param0->moves[v0];
-        Pokemon_SetValue(param1, MON_DATA_MOVE1 + v0, &v5);
+        Pokemon_SetData(param1, MON_DATA_MOVE1 + v0, &v5);
 
         v2 = (param0->combinedPPUps >> (v0 * 2)) & 0x3;
-        Pokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, &v2);
+        Pokemon_SetData(param1, MON_DATA_MOVE1_PP_UPS + v0, &v2);
 
-        v3 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
-        Pokemon_SetValue(param1, MON_DATA_MOVE1_PP + v0, &v3);
+        v3 = (u8)Pokemon_GetData(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
+        Pokemon_SetData(param1, MON_DATA_MOVE1_PP + v0, &v3);
     }
 
     v6 = param0->otID;
-    Pokemon_SetValue(param1, MON_DATA_OT_ID, &v6);
+    Pokemon_SetData(param1, MON_DATA_OT_ID, &v6);
 
     v2 = param0->hpEV;
-    Pokemon_SetValue(param1, MON_DATA_HP_EV, &v2);
+    Pokemon_SetData(param1, MON_DATA_HP_EV, &v2);
 
     v2 = param0->atkEV;
-    Pokemon_SetValue(param1, MON_DATA_ATK_EV, &v2);
+    Pokemon_SetData(param1, MON_DATA_ATK_EV, &v2);
 
     v2 = param0->defEV;
-    Pokemon_SetValue(param1, MON_DATA_DEF_EV, &v2);
+    Pokemon_SetData(param1, MON_DATA_DEF_EV, &v2);
 
     v2 = param0->speedEV;
-    Pokemon_SetValue(param1, MON_DATA_SPEED_EV, &v2);
+    Pokemon_SetData(param1, MON_DATA_SPEED_EV, &v2);
 
     v2 = param0->spAtkEV;
-    Pokemon_SetValue(param1, MON_DATA_SPATK_EV, &v2);
+    Pokemon_SetData(param1, MON_DATA_SPATK_EV, &v2);
 
     v2 = param0->spDefEV;
-    Pokemon_SetValue(param1, MON_DATA_SPDEF_EV, &v2);
+    Pokemon_SetData(param1, MON_DATA_SPDEF_EV, &v2);
 
-    Pokemon_SetValue(param1, MON_DATA_ABILITY, &param0->ability);
-    Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &param0->friendship);
+    Pokemon_SetData(param1, MON_DATA_ABILITY, &param0->ability);
+    Pokemon_SetData(param1, MON_DATA_FRIENDSHIP, &param0->friendship);
 
     if (param0->unk_14_val1_30) {
         MessageLoader *v7 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
         String *v8 = MessageLoader_GetNewString(v7, param0->species);
 
-        Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRING, v8);
+        Pokemon_SetData(param1, MON_DATA_NICKNAME_STRING, v8);
         String_Free(v8);
         MessageLoader_Free(v7);
     } else {
-        Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->nickname);
+        Pokemon_SetData(param1, MON_DATA_NICKNAME, param0->nickname);
     }
 
-    Pokemon_SetValue(param1, MON_DATA_LANGUAGE, &param0->language);
+    Pokemon_SetData(param1, MON_DATA_LANGUAGE, &param0->language);
     Pokemon_CalcLevelAndStats(param1);
 }
 
@@ -333,7 +333,7 @@ void ov104_0222E134(SaveData *saveData, Pokemon *param1)
     int v4 = 0;
     TrainerInfo *v5 = SaveData_GetTrainerInfo(saveData);
 
-    v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
+    v0 = Pokemon_GetData(param1, MON_DATA_OT_ID, NULL);
     Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(saveData), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);
@@ -342,8 +342,8 @@ void ov104_0222E134(SaveData *saveData, Pokemon *param1)
     v2 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0363, HEAP_ID_FIELD2);
     v1 = MessageLoader_GetNewString(v2, 0);
 
-    Pokemon_SetValue(param1, MON_DATA_OT_NAME_STRING, v1);
-    Pokemon_SetValue(param1, MON_DATA_OT_ID, &v0);
+    Pokemon_SetData(param1, MON_DATA_OT_NAME_STRING, v1);
+    Pokemon_SetData(param1, MON_DATA_OT_ID, &v0);
 
     String_Free(v1);
     MessageLoader_Free(v2);

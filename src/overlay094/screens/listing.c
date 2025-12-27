@@ -77,7 +77,7 @@ int GTSApplication_Listing_Init(GTSApplicationState *appState, int unused)
     ov94_0223D2E8(appState);
     ov94_0223D438(appState);
     ov94_0223D3DC(appState);
-    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)appState->receivedListing.pokemon.bytes), &appState->receivedListing.unk_EC);
+    ov94_0223D910(appState->gtsMessageLoader, appState->speciesMessageLoader, appState->stringTemplate, &appState->unk_FCC[0], Pokemon_GetBoxMon((Pokemon *)appState->receivedListing.pokemon.bytes), &appState->receivedListing.unk_EC);
 
     Pokemon *mon = (Pokemon *)appState->receivedListing.pokemon.bytes;
 
@@ -483,7 +483,7 @@ static void ov94_0223D88C(GTSApplicationState *param0, int param1, int param2, i
 {
     String *v0;
 
-    StringTemplate_SetSpeciesName(param0->stringTemplate, 0, Pokemon_GetBoxPokemon(param5));
+    StringTemplate_SetSpeciesName(param0->stringTemplate, 0, Pokemon_GetBoxMon(param5));
     v0 = MessageLoader_GetNewString(param0->gtsMessageLoader, param1);
     StringTemplate_Format(param0->stringTemplate, param0->genericMessageBuffer, v0);
     Window_FillTilemap(&param0->bottomInstructionWindow, 0xf0f);
@@ -507,12 +507,12 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     String *v5 = String_Init((8 + 1) * 2, HEAP_ID_62);
     int gender, level, item, v9, species;
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, v4);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRING, v4);
 
     species = param5->species;
     gender = param5->gender;
     level = param5->level;
-    item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewString(param0, GTS_Text_Item);
     v1 = MessageLoader_GetNewString(param0, gGTSGenderPreferenceMessages[gender]);
 
@@ -558,7 +558,7 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     String_CopyChars(v0, param2);
 
     v2 = MessageLoader_GetNewString(param0, pl_msg_00000671_00172);
-    Pokemon_GetValue(param3, MON_DATA_OT_NAME_STRING, v3);
+    Pokemon_GetData(param3, MON_DATA_OT_NAME_STRING, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param1[1], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
@@ -579,8 +579,8 @@ void ov94_0223DB2C(Pokemon *param0)
     Pokemon_BuildSpriteTemplate(&v0, param0, 2);
 
     {
-        int personality = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        enum Species species = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
+        int personality = Pokemon_GetData(param0, MON_DATA_PERSONALITY, NULL);
+        enum Species species = Pokemon_GetData(param0, MON_DATA_SPECIES, NULL);
 
         CharacterSprite_LoadPokemonSpriteRect(v0.narcID, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, personality, FALSE, FACE_FRONT, species);
     }

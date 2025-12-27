@@ -222,12 +222,12 @@ static void ov17_022507F0(UnkStruct_ov17_0224FCA0 *param0, int param1, const Unk
         break;
     case 2:
         StringTemplate_SetString(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringTemplate_SetNickname(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_10.unk_B8, 1, Pokemon_GetBoxMon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
         StringTemplate_SetNumber(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
         StringTemplate_SetString(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringTemplate_SetNickname(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_10.unk_B8, 2, Pokemon_GetBoxMon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -335,7 +335,7 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
-            Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_NICKNAME_STRING, v2);
+            Pokemon_GetData(param0->unk_10.unk_00->unk_00[v4], MON_DATA_NICKNAME_STRING, v2);
             Window_FillTilemap(&param0->unk_10.unk_24[1 + v3], 0x0);
             Window_FillTilemap(&param0->unk_10.unk_24[5 + v3], 0x0);
             Text_AddPrinterWithParamsAndColor(&param0->unk_10.unk_24[1 + v3], FONT_SYSTEM, v2, 0, 3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);

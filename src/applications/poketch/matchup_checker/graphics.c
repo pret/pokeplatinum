@@ -297,7 +297,7 @@ static void UpdateMonIcon(MatchupCheckerGraphics *graphics, u32 spriteIdx, u32 p
     if (spriteIdx == SPRITE_MON_ICON_RIGHT) {
         animIdx = 4;
     } else {
-        if (SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE)) {
+        if (Species_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE)) {
             animIdx = 4;
         } else {
             animIdx = 5;

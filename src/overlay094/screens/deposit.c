@@ -589,7 +589,7 @@ int ov94_02241B80(GTSPokemonRequirements *requirements, int genderRatio)
     case GENDER_RATIO_FEMALE_ONLY:
         requirements->gender = GENDER_FEMALE + 1;
         return TRUE;
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         requirements->gender = GENDER_NONE + 1;
         return TRUE;
     }
@@ -624,7 +624,7 @@ static int ov94_02241BAC(GTSApplicationState *appState)
         Window_Remove(&appState->unk_F9C[1]);
         appState->unk_B74.species = input;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        appState->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(input, SPECIES_DATA_GENDER_RATIO);
+        appState->unk_10E4->unk_20 = Species_GetValue(input, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&appState->unk_B74, appState->unk_10E4->unk_20)) {
             appState->currentScreenInstruction = 10;
@@ -939,10 +939,10 @@ static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *templ
     String *nicknameString = String_Init(10 + 1, HEAP_ID_62);
     String *genderString = String_Init(10 + 1, HEAP_ID_62);
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, nicknameString);
+    BoxPokemon_GetData(boxMon, MON_DATA_NICKNAME_STRING, nicknameString);
 
-    int gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
-    int level = BoxPokemon_GetLevel(boxMon);
+    int gender = BoxPokemon_GetData(boxMon, MON_DATA_GENDER, NULL) + 1;
+    int level = BoxPokemon_CalcLevel(boxMon);
     offerString = MessageLoader_GetNewString(gtsMessageLoader, GTS_Text_OfferPokemonHeader);
 
     StringTemplate_SetNumber(template, 3, level, 3, 0, 1);
@@ -964,7 +964,7 @@ static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *templ
         ov94_02245900(&windows[1], genderString, 70, 0, 0, sGenderTextColors[gender - 1]);
     }
 
-    criteria->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    criteria->species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     criteria->gender = gender;
     criteria->level = level;
 
@@ -1007,12 +1007,12 @@ u8 *ov94_02242548(int heapID)
 void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *appState)
 {
     if (GTSApplication_IsBoxIDParty(appState->selectedBoxId)) {
-        Pokemon_SetShayminForm((Pokemon *)(appState->unk_114), SHAYMIN_FORM_LAND);
+        Pokemon_UpdateShayminForm((Pokemon *)(appState->unk_114), SHAYMIN_FORM_LAND);
 
-        MI_CpuCopyFast(appState->unk_114, listing->pokemon.bytes, Pokemon_StructSize());
+        MI_CpuCopyFast(appState->unk_114, listing->pokemon.bytes, Pokemon_Size());
     } else {
-        BoxPokemon_SetShayminForm(appState->unk_114, SHAYMIN_FORM_LAND);
-        Pokemon_FromBoxPokemon(appState->unk_114, (Pokemon *)listing->pokemon.bytes);
+        BoxPokemon_UpdateShayminForm(appState->unk_114, SHAYMIN_FORM_LAND);
+        BoxPokemon_CopyToPokemon(appState->unk_114, (Pokemon *)listing->pokemon.bytes);
     }
 
     CharCode_CopyNumChars(listing->unk_10C, TrainerInfo_Name(appState->playerData->trainerInfo), 8);

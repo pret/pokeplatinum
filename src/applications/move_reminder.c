@@ -884,7 +884,7 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 1);
         MoveReminder_HideScrollArrows(controller);
-        if (MoveReminder_GetEmptyMoveSlot(controller) < LEARNED_MOVES_MAX) {
+        if (MoveReminder_GetEmptyMoveSlot(controller) < MAX_MON_MOVES) {
             MoveReminder_SetMessageBoxText(controller, MOVE_REMINDER_STR_ASK_SHOULD_TEACH_MOVE);
             controller->yesNoCallback = MOVE_REMINDER_YES_NO_SHOULD_TEACH_MOVE;
             controller->nextState = MOVE_REMINDER_STATE_DRAW_YES_NO_MENU;
@@ -929,13 +929,13 @@ static int MoveReminder_State_ProcessYesNoInput(MoveReminderController *controll
 static int MoveReminder_State_ReplaceOldMove(MoveReminderController *controller)
 {
     u32 value = MoveReminder_GetSelectedMove(controller);
-    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, &value);
+    Pokemon_SetData(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, &value);
 
     value = 0;
-    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1_PP_UPS + controller->data->moveSlot, &value);
+    Pokemon_SetData(controller->data->mon, MON_DATA_MOVE1_PP_UPS + controller->data->moveSlot, &value);
 
     value = MoveTable_CalcMaxPP(MoveReminder_GetSelectedMove(controller), 0);
-    Pokemon_SetValue(controller->data->mon, MON_DATA_MOVE1_PP + controller->data->moveSlot, &value);
+    Pokemon_SetData(controller->data->mon, MON_DATA_MOVE1_PP + controller->data->moveSlot, &value);
 
     controller->data->keepOldMove = FALSE;
 
@@ -951,7 +951,7 @@ static int MoveReminder_State_PlayFanfare(MoveReminderController *controller)
 
 static int MoveReminder_State_ConfirmSelection(MoveReminderController *controller)
 {
-    if (controller->data->moveSlot < LEARNED_MOVES_MAX) {
+    if (controller->data->moveSlot < MAX_MON_MOVES) {
         MoveReminder_SetMessageBoxText(controller, MOVE_REMINDER_STR_ASK_FORGET_THIS_MOVE);
         controller->yesNoCallback = MOVE_REMINDER_YES_NO_FORGET_THIS_MOVE;
     } else {
@@ -1248,7 +1248,7 @@ static void MoveReminder_SetStringTemplate(MoveReminderController *controller, u
 {
     switch (str) {
     case MOVE_REMINDER_STR_ASK_TEACH_WHICH_TO_MON:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         break;
 
     case MOVE_REMINDER_STR_ASK_SHOULD_TEACH_MOVE:
@@ -1256,26 +1256,26 @@ static void MoveReminder_SetStringTemplate(MoveReminderController *controller, u
         break;
 
     case MOVE_REMINDER_STR_ASK_GIVE_UP_TEACHING_MON:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         break;
 
     case MOVE_REMINDER_STR_LEARNED_MOVE_NO_FANFARE:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 
     case MOVE_REMINDER_STR_ASK_MORE_THAN_FOUR_MOVES:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 
     case MOVE_REMINDER_STR_1_2_AND_POOF:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetForgottenMove(controller));
         break;
 
     case MOVE_REMINDER_STR_LEARNED_MOVE_FANFARE:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 
@@ -1284,7 +1284,7 @@ static void MoveReminder_SetStringTemplate(MoveReminderController *controller, u
         break;
 
     case MOVE_REMINDER_STR_MON_DID_NOT_LEARN_MOVE:
-        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxPokemon(controller->data->mon));
+        StringTemplate_SetNickname(controller->stringTemplate, 0, Pokemon_GetBoxMon(controller->data->mon));
         StringTemplate_SetMoveName(controller->stringTemplate, 1, MoveReminder_GetSelectedMove(controller));
         break;
 
@@ -1309,7 +1309,7 @@ static u16 MoveReminder_GetSelectedMove(MoveReminderController *controller)
 
 static u16 MoveReminder_GetForgottenMove(MoveReminderController *controller)
 {
-    return (u16)Pokemon_GetValue(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, NULL);
+    return (u16)Pokemon_GetData(controller->data->mon, MON_DATA_MOVE1 + controller->data->moveSlot, NULL);
 }
 
 static void MoveReminder_SetMessageBoxText(MoveReminderController *controller, u32 str)
@@ -1349,8 +1349,8 @@ static BOOL MoveReminder_TextPrinterCallback(TextPrinterTemplate *printer, u16 p
 static u8 MoveReminder_GetEmptyMoveSlot(MoveReminderController *controller)
 {
     u8 i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        if (Pokemon_GetValue(controller->data->mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        if (Pokemon_GetData(controller->data->mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
             break;
         }
     }

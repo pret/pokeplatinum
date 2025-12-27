@@ -27,7 +27,7 @@ void PalParkTransfer_Init(MigratedPokemon *transferData)
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         Pokemon_Init(&transferData->mons[i]);
-        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
+        GF_ASSERT(Pokemon_GetData(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
     }
 }
 
@@ -39,7 +39,7 @@ void ClearPalParkTransferPokemonData(MigratedPokemon *transferData)
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         Pokemon_Init(&transferData->mons[i]);
-        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
+        GF_ASSERT(Pokemon_GetData(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
     }
 }
 
@@ -75,7 +75,7 @@ static int GetTransferSlotByTrainerID(MigratedPokemon *transferData, u32 param1)
 
 void BoxMonToTransferData(MigratedPokemon *transfer, BoxPokemon *boxMon, int slot)
 {
-    Pokemon_FromBoxPokemon(boxMon, &transfer->mons[slot]);
+    BoxPokemon_CopyToPokemon(boxMon, &transfer->mons[slot]);
 }
 
 void PalParkTransfer_SaveTransferHistory(MigratedPokemon *transferData, u32 gbaTrainerId)
@@ -100,7 +100,7 @@ int GetPalParkTransferMonCount(const MigratedPokemon *transferData)
     int i, count;
 
     for (count = 0, i = 0; i < CATCHING_SHOW_MONS; i++) {
-        if (Pokemon_GetValue((Pokemon *)&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL)) {
+        if (Pokemon_GetData((Pokemon *)&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL)) {
             count++;
         }
     }

@@ -410,7 +410,7 @@ static u8 TryUseItem(BattleBag *battleBag)
             Pokemon *pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, partySlot);
             String *string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_EmbargoBlockingItemUse);
 
-            StringTemplate_SetNickname(battleBag->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+            StringTemplate_SetNickname(battleBag->stringTemplate, 0, Pokemon_GetBoxMon(pokemon));
             StringTemplate_SetMoveName(battleBag->stringTemplate, 1, MOVE_EMBARGO);
             StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
             String_Free(string);

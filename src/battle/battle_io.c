@@ -358,9 +358,9 @@ void BattleIO_ReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int 
     v0.unk_00 = 5;
 
     if (battleSys->battleCtx->battleMons[param2].statusVolatile & 0x200000) {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].gender, v1, v2, battleSys->battleCtx->battleMons[param2].personality);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].gender, v1, v2, battleSys->battleCtx->battleMons[param2].personality);
     }
 
     v0.unk_02 = battleSys->battleCtx->battleMons[param2].capturedBall;
@@ -399,9 +399,9 @@ void ov16_02265050(BattleSystem *battleSys, int param1, int param2)
     v0.unk_00 = 6;
 
     if (battleSys->battleCtx->battleMons[param1].statusVolatile & 0x200000) {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].gender, v1, v2, battleSys->battleCtx->battleMons[param1].personality);
+        v0.unk_01 = Species_LoadSpriteYOffset(battleSys->battleCtx->battleMons[param1].species, battleSys->battleCtx->battleMons[param1].gender, v1, v2, battleSys->battleCtx->battleMons[param1].personality);
     }
 
     v0.unk_02 = param2;
@@ -460,8 +460,8 @@ void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx
     HealthbarData healthbar;
 
     Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
-    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    int species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    int level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
 
     healthbar.command = BTLIOCMD_SLIDE_HEALTHBAR_IN;
     healthbar.level = battleCtx->battleMons[battler].level;
@@ -477,8 +477,8 @@ void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx
         healthbar.gender = battleCtx->battleMons[battler].gender;
     }
 
-    healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
-    healthbar.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
+    healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Species_GetExpAtLevel(species, level);
+    healthbar.expToNextLevel = Species_GetExpAtLevel(species, level + 1) - Species_GetExpAtLevel(species, level);
     healthbar.speciesCaught = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
     healthbar.numSafariBalls = BattleSystem_NumSafariBalls(battleSys);
     healthbar.delay = delay;
@@ -533,11 +533,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
     for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
         v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-        v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
+        v5 = Pokemon_GetData(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if ((v5) && (v5 != SPECIES_EGG)) {
-            if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
-                if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
+            if (Pokemon_GetData(v8, MON_DATA_HP, NULL)) {
+                if (Pokemon_GetData(v8, MON_DATA_STATUS, NULL)) {
                     v0.unk_08[0][v6] = 3;
                 } else {
                     v0.unk_08[0][v6] = 1;
@@ -549,7 +549,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
             if (battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PAL_PARK)) {
                 v0.unk_02[v6] = 0;
             } else {
-                v0.unk_02[v6] = Pokemon_GetPercentToNextLevel(v8);
+                v0.unk_02[v6] = Pokemon_CalcPercentToNextLevel(v8);
             }
 
             v6++;
@@ -571,11 +571,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
+            v5 = Pokemon_GetData(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
+                if (Pokemon_GetData(v8, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetData(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -599,11 +599,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
+            v5 = Pokemon_GetData(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
+                if (Pokemon_GetData(v8, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetData(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -622,11 +622,11 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_OR_EGG, NULL);
+            v5 = Pokemon_GetData(v8, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if ((v5) && (v5 != SPECIES_EGG)) {
-                if (Pokemon_GetValue(v8, MON_DATA_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_STATUS, NULL)) {
+                if (Pokemon_GetData(v8, MON_DATA_HP, NULL)) {
+                    if (Pokemon_GetData(v8, MON_DATA_STATUS, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -675,7 +675,7 @@ void BattleIO_ShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battl
     v0.unk_00 = 15;
     v0.unk_01 = battleCtx->selectedPartySlot[battler];
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         v0.unk_04[i] = battleCtx->battleMons[battler].moves[i];
         v0.unk_0C[i] = battleCtx->battleMons[battler].ppCur[i];
         v0.unk_10[i] = MoveTable_CalcMaxPP(battleCtx->battleMons[battler].moves[i], battleCtx->battleMons[battler].ppUps[i]);
@@ -913,8 +913,8 @@ void BattleIO_UpdateHPGauge(BattleSystem *battleSys, BattleContext *param1, int 
     int v3;
 
     v1 = BattleSystem_PartyPokemon(battleSys, param2, param1->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetData(v1, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetData(v1, MON_DATA_LEVEL, NULL);
 
     v0.unk_00 = 24;
     v0.unk_01 = param1->battleMons[param2].level;
@@ -928,8 +928,8 @@ void BattleIO_UpdateHPGauge(BattleSystem *battleSys, BattleContext *param1, int 
         v0.unk_07 = param1->battleMons[param2].gender;
     }
 
-    v0.unk_0C = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_10 = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_0C = param1->battleMons[param2].exp - Species_GetExpAtLevel(v2, v3);
+    v0.unk_10 = Species_GetExpAtLevel(v2, v3 + 1) - Species_GetExpAtLevel(v2, v3);
 
     SendMessage(battleSys, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
 }
@@ -942,13 +942,13 @@ void BattleIO_UpdateExpGauge(BattleSystem *battleSys, BattleContext *param1, int
     int v3;
 
     v1 = BattleSystem_PartyPokemon(battleSys, param2, param1->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetData(v1, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetData(v1, MON_DATA_LEVEL, NULL);
 
     v0.unk_00 = 25;
     v0.unk_04 = param3;
-    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_08 = param1->battleMons[param2].exp - Species_GetExpAtLevel(v2, v3);
+    v0.unk_0C = Species_GetExpAtLevel(v2, v3 + 1) - Species_GetExpAtLevel(v2, v3);
 
     SendMessage(battleSys, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C370));
 }
@@ -1148,8 +1148,8 @@ void BattleIO_RefreshHPGauge(BattleSystem *battleSys, BattleContext *param1, int
     int v3;
 
     v1 = BattleSystem_PartyPokemon(battleSys, param2, param1->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetData(v1, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetData(v1, MON_DATA_LEVEL, NULL);
 
     v0.unk_00 = 38;
     v0.unk_01 = param1->battleMons[param2].level;
@@ -1164,8 +1164,8 @@ void BattleIO_RefreshHPGauge(BattleSystem *battleSys, BattleContext *param1, int
         v0.unk_07_5 = param1->battleMons[param2].gender;
     }
 
-    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_08 = param1->battleMons[param2].exp - Species_GetExpAtLevel(v2, v3);
+    v0.unk_0C = Species_GetExpAtLevel(v2, v3 + 1) - Species_GetExpAtLevel(v2, v3);
     v0.unk_07_7 = BattleSystem_CaughtSpecies(battleSys, param1->battleMons[param2].species);
     v0.unk_10 = BattleSystem_NumSafariBalls(battleSys);
 
@@ -1631,11 +1631,11 @@ static inline void PartyGaugeData_Fill(BattleContext *battleCtx, PartyGaugeData 
 {
     for (int i = 0; i < Party_GetCurrentCount(party); i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, battleCtx->partyOrder[battler][i]);
-        int species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+        int species = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
         if (species && species != SPECIES_EGG) {
-            if (Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
-                if (Pokemon_GetValue(mon, MON_DATA_STATUS, NULL)) {
+            if (Pokemon_GetData(mon, MON_DATA_HP, NULL)) {
+                if (Pokemon_GetData(mon, MON_DATA_STATUS, NULL)) {
                     partyGauge->status[slot] = BALL_STATUS_HAS_STATUS_CONDITION;
                 } else {
                     partyGauge->status[slot] = BALL_STATUS_MON_ALIVE;

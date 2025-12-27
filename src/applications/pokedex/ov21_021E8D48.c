@@ -132,8 +132,8 @@ UnkStruct_ov21_021E8D48 *ov21_021E8D48(const UnkStruct_ov21_021E8E0C *param0)
         u32 v1;
         u32 v2;
 
-        v1 = Pokemon_GetValue(param0->unk_10, MON_DATA_SPECIES, NULL);
-        v2 = Pokemon_GetValue(param0->unk_10, MON_DATA_FORM, NULL);
+        v1 = Pokemon_GetData(param0->unk_10, MON_DATA_SPECIES, NULL);
+        v2 = Pokemon_GetData(param0->unk_10, MON_DATA_FORM, NULL);
 
         if (v1 == SPECIES_GIRATINA) {
             Pokedex_SetupGiratina(v2);
@@ -184,8 +184,8 @@ static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_
     NARC *v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1->heapID);
     int v2;
 
-    param0->unk_220 = Pokemon_GetValue(param1->unk_10, MON_DATA_SPECIES, NULL);
-    v2 = Pokemon_GetValue(param1->unk_10, MON_DATA_FORM, NULL);
+    param0->unk_220 = Pokemon_GetData(param1->unk_10, MON_DATA_SPECIES, NULL);
+    v2 = Pokemon_GetData(param1->unk_10, MON_DATA_FORM, NULL);
 
     param0->unk_00 = param1->unk_00;
     param0->unk_19C = SpriteList_InitRendering(32, &param0->unk_10, param1->heapID);
@@ -573,8 +573,8 @@ static void ov21_021E95F8(UnkStruct_ov21_021E968C *param0, SpriteList *param1, S
 {
     SpriteListTemplate v0;
     SpriteResourcesHeader v1;
-    int type1 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_1);
-    int type2 = SpeciesData_GetSpeciesValue(param4, SPECIES_DATA_TYPE_2);
+    int type1 = Species_GetValue(param4, SPECIES_DATA_TYPE_1);
+    int type2 = Species_GetValue(param4, SPECIES_DATA_TYPE_2);
     type1 = PokedexGraphics_GetAnimIDfromType(type1);
     type2 = PokedexGraphics_GetAnimIDfromType(type2);
 

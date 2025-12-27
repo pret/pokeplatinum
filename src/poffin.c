@@ -103,7 +103,7 @@ static void Poffin_MakeFoul(Poffin *poffin, u8 param1)
 int Poffin_MakePoffin(Poffin *poffin, u8 *flavors, u8 smoothness, BOOL isFoul)
 {
     int i, flavorCount = 0;
-    u8 poffinFlavors[FLAVOR_MAX];
+    u8 poffinFlavors[FLAVOR_COUNT];
     u8 isMild = FALSE, flavor = 0;
 
     flavor = POFFIN_FLAVOR_FOUL;
@@ -113,7 +113,7 @@ int Poffin_MakePoffin(Poffin *poffin, u8 *flavors, u8 smoothness, BOOL isFoul)
         return flavor;
     }
 
-    for (i = 0; i < FLAVOR_MAX; i++) {
+    for (i = 0; i < FLAVOR_COUNT; i++) {
         if (flavors[i]) {
             if (flavors[i] >= 50) {
                 isMild = TRUE;
@@ -128,13 +128,13 @@ int Poffin_MakePoffin(Poffin *poffin, u8 *flavors, u8 smoothness, BOOL isFoul)
         Poffin_MakeFoul(poffin, smoothness);
         return flavor;
     case 1:
-        flavor = poffinFlavors[0] * FLAVOR_MAX + poffinFlavors[0];
+        flavor = poffinFlavors[0] * FLAVOR_COUNT + poffinFlavors[0];
         break;
     case 2:
         if (flavors[poffinFlavors[0]] >= flavors[poffinFlavors[1]]) {
-            flavor = poffinFlavors[0] * FLAVOR_MAX + poffinFlavors[1];
+            flavor = poffinFlavors[0] * FLAVOR_COUNT + poffinFlavors[1];
         } else {
-            flavor = poffinFlavors[1] * FLAVOR_MAX + poffinFlavors[0];
+            flavor = poffinFlavors[1] * FLAVOR_COUNT + poffinFlavors[0];
         }
         break;
     case 3:
@@ -150,7 +150,7 @@ int Poffin_MakePoffin(Poffin *poffin, u8 *flavors, u8 smoothness, BOOL isFoul)
         flavor = POFFIN_FLAVOR_MILD;
     }
 
-    for (i = 0; i < FLAVOR_MAX; i++) {
+    for (i = 0; i < FLAVOR_COUNT; i++) {
         poffin->attributes[i + 1] = flavors[i];
     }
 

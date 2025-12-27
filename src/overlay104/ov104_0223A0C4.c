@@ -814,9 +814,9 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
         monDataDTO->item = monData.item;
     }
 
-    u8 friendship = MAX_FRIENDSHIP_VALUE;
+    u8 friendship = MAX_FRIENDSHIP;
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         monDataDTO->moves[v0] = monData.moves[v0];
 
         if (monData.moves[v0] == MOVE_FRUSTRATION) {
@@ -829,7 +829,7 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
     if (givenPersonality == 0) {
         do {
             randomPersonality = BattleTower_GetRandom(battleTower) | BattleTower_GetRandom(battleTower) << 16;
-        } while (monData.nature != Pokemon_GetNatureOf(randomPersonality) || Pokemon_IsPersonalityShiny(otID, randomPersonality) == 1);
+        } while (monData.nature != Personality_GetNature(randomPersonality) || Personality_IsShiny(otID, randomPersonality) == 1);
 
         monDataDTO->personality = randomPersonality;
     } else {
@@ -867,16 +867,16 @@ static u32 BattleTower_CopySetToPokemonDataDTO(BattleTower *battleTower, Frontie
     monDataDTO->combinedPPUps = 0;
     monDataDTO->language = gGameLanguage;
 
-    v0 = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_2);
+    v0 = Species_GetValue(monDataDTO->species, SPECIES_DATA_ABILITY_2);
 
     if (v0) {
         if (monDataDTO->personality & 1) {
             monDataDTO->ability = v0;
         } else {
-            monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
+            monDataDTO->ability = Species_GetValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
         }
     } else {
-        monDataDTO->ability = SpeciesData_GetSpeciesValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
+        monDataDTO->ability = Species_GetValue(monDataDTO->species, SPECIES_DATA_ABILITY_1);
     }
 
     monDataDTO->friendship = friendship;
@@ -906,10 +906,10 @@ FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE
     for (v0 = 0; v0 < battleTower->partySize; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(party, battleTower->unk_2A[v0]), mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > level) {
-            u32 v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), level);
+        if (Pokemon_GetData(mon, MON_DATA_LEVEL, NULL) > level) {
+            u32 v2 = Species_GetExpAtLevel(Pokemon_GetData(mon, MON_DATA_SPECIES, NULL), level);
 
-            Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &v2);
+            Pokemon_SetData(mon, MON_DATA_EXPERIENCE, &v2);
             Pokemon_CalcLevelAndStats(mon);
         }
 

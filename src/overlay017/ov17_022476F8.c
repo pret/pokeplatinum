@@ -187,7 +187,7 @@ static void ov17_0224792C(UnkStruct_ov17_02247A48 *param0, int param1, const Unk
         break;
     case 1:
         StringTemplate_SetString(param0->unk_0C.unk_3C, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        StringTemplate_SetNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxPokemon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
+        StringTemplate_SetNickname(param0->unk_0C.unk_3C, 1, Pokemon_GetBoxMon(param0->unk_0C.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);

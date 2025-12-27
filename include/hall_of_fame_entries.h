@@ -19,7 +19,7 @@ typedef struct HallOfFamePokemon {
     u32 OTID;
     u16 nickname[MON_NAME_LEN + 1];
     u16 OTName[TRAINER_NAME_LEN + 1];
-    u16 moves[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
     u8 padding_3A[2];
 } HallOfFamePokemon;
 
@@ -44,7 +44,7 @@ typedef struct PCHallOfFamePokemon {
     u16 species;
     u8 level;
     u8 form;
-    u16 moves[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
 } PCHallOfFamePokemon;
 
 int HallOfFame_SaveSize(void);

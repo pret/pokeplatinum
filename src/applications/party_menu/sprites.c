@@ -84,7 +84,7 @@ void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot,
         0,
         4 + slot);
 
-    u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    u32 isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
 
     SpriteTemplateFromResourceHeader template;
     template.resourceHeaderID = 4 + slot;
@@ -108,8 +108,8 @@ void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot,
 void PartyMenu_LoadMemberSpeciesIcon(PartyMenuApplication *application, u8 slot)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
-    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    int species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);
     u32 offset = NNS_G2dGetImageLocation(Sprite_GetImageProxy(application->partyMembers[slot].sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
     void *ncgr = LoadMemberFromOpenNARC(iconNarc, Pokemon_IconSpriteIndex(mon), FALSE, HEAP_ID_PARTY_MENU, TRUE);

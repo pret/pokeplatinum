@@ -101,8 +101,8 @@ EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Optio
 
     v0->unk_24 = param0;
     v0->unk_28 = param1;
-    v0->unk_60 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    v0->unk_86 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    v0->unk_60 = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
+    v0->unk_86 = Pokemon_GetData(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
     v0->heapID = heapID;
     v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
@@ -284,7 +284,7 @@ static void sub_0207B180(EvolutionData *param0)
             }
 
             Sound_PlayDelayedPokemonCry(param0->unk_60, param0->unk_84, param0->unk_86);
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
                 param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00917);
@@ -393,11 +393,11 @@ static void sub_0207B180(EvolutionData *param0)
         break;
     case 11:
         if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
-            Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
-            Pokemon_CalcAbility(param0->unk_28);
+            Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
+            Pokemon_UpdateAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-            StringTemplate_SetSpeciesName(param0->unk_0C, 1, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
+            StringTemplate_SetSpeciesName(param0->unk_0C, 1, Pokemon_GetBoxMon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00918);
             param0->unk_66 = 40;
             param0->unk_64++;
@@ -409,10 +409,10 @@ static void sub_0207B180(EvolutionData *param0)
                 Pokedex_Capture(param0->unk_48, param0->unk_28);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(param0->unk_28));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxMon(param0->unk_28));
 
-                if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
-                    Pokemon_SetValue(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
+                if (Pokemon_GetData(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
+                    Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES_NAME, NULL);
                 }
 
                 param0->unk_64++;
@@ -422,7 +422,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 13: {
         u16 v3;
 
-        switch (Pokemon_LevelUpMove(param0->unk_28, &param0->unk_68, &v3)) {
+        switch (Pokemon_TryLevelUpMove(param0->unk_28, &param0->unk_68, &v3)) {
         case 0xfffe:
             break;
         case 0x0:
@@ -433,7 +433,7 @@ static void sub_0207B180(EvolutionData *param0)
             param0->unk_64 = 14;
             break;
         default:
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, v3);
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00004);
             param0->unk_66 = 30;
@@ -442,14 +442,14 @@ static void sub_0207B180(EvolutionData *param0)
         }
     } break;
     case 14:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01193);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01194);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -528,7 +528,7 @@ static void sub_0207B180(EvolutionData *param0)
         ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            if (param0->unk_3C->selectedMoveSlot == LEARNED_MOVES_MAX) {
+            if (param0->unk_3C->selectedMoveSlot == MAX_MON_MOVES) {
                 param0->unk_64 = 32;
             } else {
                 param0->unk_6E = param0->unk_3C->selectedMoveSlot;
@@ -549,7 +549,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 35:
         switch (Menu_ProcessInputAndHandleExit(param0->unk_40, param0->heapID)) {
         case 0:
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01198);
             param0->unk_66 = 30;
@@ -574,8 +574,8 @@ static void sub_0207B180(EvolutionData *param0)
         param0->unk_64++;
         break;
     case 27:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-        StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
+        StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetData(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01200);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -586,12 +586,12 @@ static void sub_0207B180(EvolutionData *param0)
         param0->unk_64++;
         break;
     case 31:
-        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01202);
         param0->unk_66 = 0;
-        Pokemon_SetValue(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
-        Pokemon_SetMoveSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
+        Pokemon_SetData(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
+        Pokemon_SetMoveInSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
         param0->unk_66 = 30;
         param0->unk_64 = 37;
         break;
@@ -655,7 +655,7 @@ static void sub_0207B180(EvolutionData *param0)
         break;
     case 43:
         if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
-            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00919);
             param0->unk_66 = 20;
             param0->unk_64++;
@@ -695,60 +695,60 @@ static void sub_0207C028(EvolutionData *param0)
                 Pokemon_Copy(param0->unk_28, shedinja);
 
                 value = SPECIES_SHEDINJA;
-                Pokemon_SetValue(shedinja, MON_DATA_SPECIES, &value);
+                Pokemon_SetData(shedinja, MON_DATA_SPECIES, &value);
 
                 value = ITEM_POKE_BALL;
-                Pokemon_SetValue(shedinja, MON_DATA_POKEBALL, &value);
+                Pokemon_SetData(shedinja, MON_DATA_POKEBALL, &value);
 
                 value = 0;
-                Pokemon_SetValue(shedinja, MON_DATA_HELD_ITEM, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_MARKINGS, &value);
+                Pokemon_SetData(shedinja, MON_DATA_HELD_ITEM, &value);
+                Pokemon_SetData(shedinja, MON_DATA_MARKINGS, &value);
 
                 for (i = MON_DATA_SINNOH_CHAMP_RIBBON; i < MON_DATA_UNUSED_RIBBON_53 + 1; i++) {
-                    Pokemon_SetValue(shedinja, i, &value);
+                    Pokemon_SetData(shedinja, i, &value);
                 }
 
                 for (i = MON_DATA_COOL_RIBBON; i < MON_DATA_WORLD_RIBBON + 1; i++) {
-                    Pokemon_SetValue(shedinja, i, &value);
+                    Pokemon_SetData(shedinja, i, &value);
                 }
 
                 for (i = MON_DATA_SUPER_COOL_RIBBON; i < MON_DATA_UNUSED_RIBBON_143 + 1; i++) {
-                    Pokemon_SetValue(shedinja, i, &value);
+                    Pokemon_SetData(shedinja, i, &value);
                 }
 
-                Pokemon_SetValue(shedinja, MON_DATA_SPECIES_NAME, NULL);
-                Pokemon_SetValue(shedinja, MON_DATA_HAS_NICKNAME, &value);
-                Pokemon_SetValue(shedinja, MON_DATA_STATUS, &value);
+                Pokemon_SetData(shedinja, MON_DATA_SPECIES_NAME, NULL);
+                Pokemon_SetData(shedinja, MON_DATA_HAS_NICKNAME, &value);
+                Pokemon_SetData(shedinja, MON_DATA_STATUS, &value);
 
                 mail = Mail_New(param0->heapID);
-                Pokemon_SetValue(shedinja, MON_DATA_MAIL, mail);
+                Pokemon_SetData(shedinja, MON_DATA_MAIL, mail);
                 Heap_Free(mail);
-                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
+                Pokemon_SetData(shedinja, MON_DATA_BALL_CAPSULE_ID, &value);
 
                 MI_CpuClearFast(&v4, sizeof(BallCapsule));
 
-                Pokemon_SetValue(shedinja, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
-                Pokemon_CalcAbility(shedinja);
+                Pokemon_SetData(shedinja, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
+                Pokemon_UpdateAbility(shedinja);
 
                 i = Pokemon_GetGender(shedinja);
-                Pokemon_SetValue(shedinja, MON_DATA_GENDER, &i);
+                Pokemon_SetData(shedinja, MON_DATA_GENDER, &i);
 
                 Pokemon_CalcLevelAndStats(shedinja);
                 Party_AddPokemon(param0->unk_24, shedinja);
                 Pokedex_Capture(param0->unk_48, shedinja);
                 GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_012);
                 GameRecords_IncrementTrainerScore(param0->records, TRAINER_SCORE_EVENT_CAUGHT_SPECIES);
-                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxPokemon(shedinja));
+                Poketch_PokemonHistoryEnqueue(param0->poketch, Pokemon_GetBoxMon(shedinja));
                 Heap_Free(shedinja);
                 Bag_TryRemoveItem(param0->unk_4C, ITEM_POKE_BALL, 1, param0->heapID);
             }
         }
         break;
-    case EVO_TRADE_WITH_HELD_ITEM:
-    case EVO_LEVEL_WITH_HELD_ITEM_DAY:
-    case EVO_LEVEL_WITH_HELD_ITEM_NIGHT:
+    case EVO_TRADE_HELD_ITEM:
+    case EVO_LEVEL_HELD_ITEM_DAY:
+    case EVO_LEVEL_HELD_ITEM_NIGHT:
         i = 0;
-        Pokemon_SetValue(param0->unk_28, MON_DATA_HELD_ITEM, &i);
+        Pokemon_SetData(param0->unk_28, MON_DATA_HELD_ITEM, &i);
         break;
     }
 }
@@ -937,7 +937,7 @@ static void sub_0207C498(EvolutionData *param0)
     v1 = Pokemon_New(param0->heapID);
 
     Pokemon_Copy(param0->unk_28, v1);
-    Pokemon_SetValue(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
+    Pokemon_SetData(v1, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
     Pokemon_CalcLevelAndStats(v1);
     Pokemon_BuildSpriteTemplate(&v0, v1, 2);
     Heap_Free(v1);

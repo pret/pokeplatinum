@@ -556,7 +556,7 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int compareMonSlot)
         int i;
 
         if (compareMon->isEgg == FALSE) {
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 0; i < MAX_MON_MOVES; i++) {
                 if (compareMon->moves[i]) {
                     MessageLoader_GetString(param0->unk_70, compareMon->moves[i], param0->boxDisplayText);
                     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->boxDisplayText, inline_ov19_021DF3AC(v0, 0, param0->boxDisplayText), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);

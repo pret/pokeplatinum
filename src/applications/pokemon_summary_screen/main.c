@@ -705,7 +705,7 @@ static int HandleInput_MoveDetails(PokemonSummaryScreen *summaryScreen)
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        if (summaryScreen->cursor == LEARNED_MOVES_MAX) {
+        if (summaryScreen->cursor == MAX_MON_MOVES) {
             Sound_PlayEffect(SEQ_SE_DP_SYU01);
             summaryScreen->pageState = PAGE_STATE_INITIAL;
 
@@ -759,7 +759,7 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
     if (JOY_NEW(PAD_BUTTON_A)) {
         Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_2], FALSE);
 
-        if (summaryScreen->cursor != LEARNED_MOVES_MAX && summaryScreen->cursor != summaryScreen->cursorTmp) {
+        if (summaryScreen->cursor != MAX_MON_MOVES && summaryScreen->cursor != summaryScreen->cursorTmp) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             SwapSelectedMoves(summaryScreen);
             PokemonSummaryScreen_SwapMoveTypeIcons(summaryScreen, summaryScreen->cursor, summaryScreen->cursorTmp);
@@ -814,7 +814,7 @@ static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen)
     if (JOY_NEW(PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
-        if (summaryScreen->cursor != LEARNED_MOVES_MAX) {
+        if (summaryScreen->cursor != MAX_MON_MOVES) {
             if (Item_IsHMMove(summaryScreen->monData.moves[summaryScreen->cursor]) == TRUE && summaryScreen->data->move != MOVE_NONE) {
                 Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
                 DrawEmptyHearts(summaryScreen);
@@ -830,7 +830,7 @@ static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen)
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-        summaryScreen->data->selectedMoveSlot = LEARNED_MOVES_MAX;
+        summaryScreen->data->selectedMoveSlot = MAX_MON_MOVES;
         summaryScreen->data->returnMode = SUMMARY_RETURN_CANCEL;
         return SUMMARY_STATE_TRANSITION_OUT;
     }
@@ -931,7 +931,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
             boxMon = PokemonSummaryScreen_MonData(summaryScreen);
             mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-            Pokemon_FromBoxPokemon(boxMon, mon);
+            BoxPokemon_CopyToPokemon(boxMon, mon);
         } else {
             mon = PokemonSummaryScreen_MonData(summaryScreen);
         }
@@ -941,41 +941,41 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
         summaryScreen->pageState = STAT_INCREASE_NONE;
 
         u8 monValue = summaryScreen->monData.cool;
-        summaryScreen->monData.cool = Pokemon_GetValue(mon, MON_DATA_COOL, NULL);
+        summaryScreen->monData.cool = Pokemon_GetData(mon, MON_DATA_COOL, NULL);
 
         if (monValue != summaryScreen->monData.cool) {
             summaryScreen->pageState |= COOL_INCREASED;
         }
 
         monValue = summaryScreen->monData.beauty;
-        summaryScreen->monData.beauty = Pokemon_GetValue(mon, MON_DATA_BEAUTY, NULL);
+        summaryScreen->monData.beauty = Pokemon_GetData(mon, MON_DATA_BEAUTY, NULL);
 
         if (monValue != summaryScreen->monData.beauty) {
             summaryScreen->pageState |= BEAUTY_INCREASED;
         }
 
         monValue = summaryScreen->monData.cute;
-        summaryScreen->monData.cute = Pokemon_GetValue(mon, MON_DATA_CUTE, NULL);
+        summaryScreen->monData.cute = Pokemon_GetData(mon, MON_DATA_CUTE, NULL);
 
         if (monValue != summaryScreen->monData.cute) {
             summaryScreen->pageState |= CUTE_INCREASED;
         }
 
         monValue = summaryScreen->monData.smart;
-        summaryScreen->monData.smart = Pokemon_GetValue(mon, MON_DATA_SMART, NULL);
+        summaryScreen->monData.smart = Pokemon_GetData(mon, MON_DATA_SMART, NULL);
 
         if (monValue != summaryScreen->monData.smart) {
             summaryScreen->pageState |= SMART_INCREASED;
         }
 
         monValue = summaryScreen->monData.tough;
-        summaryScreen->monData.tough = Pokemon_GetValue(mon, MON_DATA_TOUGH, NULL);
+        summaryScreen->monData.tough = Pokemon_GetData(mon, MON_DATA_TOUGH, NULL);
 
         if (monValue != summaryScreen->monData.tough) {
             summaryScreen->pageState |= TOUGH_INCREASED;
         }
 
-        summaryScreen->monData.sheen = Pokemon_GetValue(mon, MON_DATA_SHEEN, NULL);
+        summaryScreen->monData.sheen = Pokemon_GetData(mon, MON_DATA_SHEEN, NULL);
 
         if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
             Heap_Free(mon);
@@ -1052,16 +1052,16 @@ static void SetMonDataFromBoxMon(PokemonSummaryScreen *summaryScreen, BoxPokemon
 {
     Pokemon *mon = Pokemon_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    Pokemon_FromBoxPokemon(boxMon, mon);
+    BoxPokemon_CopyToPokemon(boxMon, mon);
     SetMonDataFromMon(summaryScreen, mon, monData);
     Heap_Free(mon);
 }
 
 static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon, PokemonSummaryMonData *monData)
 {
-    BOOL reencrypt = Pokemon_EnterDecryptionContext(mon);
-    monData->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
+    BOOL reencrypt = Pokemon_UnlockEncryption(mon);
+    monData->species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    BoxPokemon *boxMon = Pokemon_GetBoxMon(mon);
 
     MessageLoader_GetString(summaryScreen->msgLoader, PokemonSummary_Text_SpeciesNameTemplate, summaryScreen->string);
     StringTemplate_SetSpeciesName(summaryScreen->strFormatter, 0, boxMon);
@@ -1075,72 +1075,72 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     StringTemplate_SetOTName(summaryScreen->strFormatter, 0, boxMon);
     StringTemplate_Format(summaryScreen->strFormatter, summaryScreen->monData.OTName, summaryScreen->string);
 
-    monData->heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
-    monData->level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    monData->isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    monData->heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
+    monData->level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    monData->isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE && monData->isEgg == FALSE) {
+    if (Pokemon_GetData(mon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE && monData->isEgg == FALSE) {
         monData->hideGender = FALSE;
     } else {
         monData->hideGender = TRUE;
     }
 
     monData->gender = Pokemon_GetGender(mon);
-    monData->caughtBall = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
-    monData->type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
-    monData->type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
-    monData->OTID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
-    monData->curExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
-    monData->OTGender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
-    monData->curLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level);
+    monData->caughtBall = Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL);
+    monData->type1 = Pokemon_GetData(mon, MON_DATA_TYPE_1, NULL);
+    monData->type2 = Pokemon_GetData(mon, MON_DATA_TYPE_2, NULL);
+    monData->OTID = Pokemon_GetData(mon, MON_DATA_OT_ID, NULL);
+    monData->curExp = Pokemon_GetData(mon, MON_DATA_EXPERIENCE, NULL);
+    monData->OTGender = Pokemon_GetData(mon, MON_DATA_OT_GENDER, NULL);
+    monData->curLevelExp = Species_GetExpAtLevel(monData->species, monData->level);
 
-    if (monData->level == MAX_POKEMON_LEVEL) {
+    if (monData->level == MAX_MON_LEVEL) {
         monData->nextLevelExp = monData->curLevelExp;
     } else {
-        monData->nextLevelExp = Pokemon_GetSpeciesBaseExpAt(monData->species, monData->level + 1);
+        monData->nextLevelExp = Species_GetExpAtLevel(monData->species, monData->level + 1);
     }
 
-    monData->curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
-    monData->maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-    monData->attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
-    monData->defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
-    monData->spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL);
-    monData->spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
-    monData->speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
-    monData->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+    monData->curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
+    monData->maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+    monData->attack = Pokemon_GetData(mon, MON_DATA_ATK, NULL);
+    monData->defense = Pokemon_GetData(mon, MON_DATA_DEF, NULL);
+    monData->spAttack = Pokemon_GetData(mon, MON_DATA_SP_ATK, NULL);
+    monData->spDefense = Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL);
+    monData->speed = Pokemon_GetData(mon, MON_DATA_SPEED, NULL);
+    monData->ability = Pokemon_GetData(mon, MON_DATA_ABILITY, NULL);
     monData->nature = Pokemon_GetNature(mon);
 
     u16 i;
     u8 maxPP;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        monData->moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
-        monData->curPP[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + i, NULL);
-        maxPP = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        monData->moves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
+        monData->curPP[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP + i, NULL);
+        maxPP = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
         monData->maxPP[i] = MoveTable_CalcMaxPP(monData->moves[i], maxPP);
     }
 
-    monData->cool = Pokemon_GetValue(mon, MON_DATA_COOL, NULL);
-    monData->beauty = Pokemon_GetValue(mon, MON_DATA_BEAUTY, NULL);
-    monData->cute = Pokemon_GetValue(mon, MON_DATA_CUTE, NULL);
-    monData->smart = Pokemon_GetValue(mon, MON_DATA_SMART, NULL);
-    monData->tough = Pokemon_GetValue(mon, MON_DATA_TOUGH, NULL);
-    monData->sheen = Pokemon_GetValue(mon, MON_DATA_SHEEN, NULL);
-    monData->preferredFlavor = FLAVOR_MAX;
+    monData->cool = Pokemon_GetData(mon, MON_DATA_COOL, NULL);
+    monData->beauty = Pokemon_GetData(mon, MON_DATA_BEAUTY, NULL);
+    monData->cute = Pokemon_GetData(mon, MON_DATA_CUTE, NULL);
+    monData->smart = Pokemon_GetData(mon, MON_DATA_SMART, NULL);
+    monData->tough = Pokemon_GetData(mon, MON_DATA_TOUGH, NULL);
+    monData->sheen = Pokemon_GetData(mon, MON_DATA_SHEEN, NULL);
+    monData->preferredFlavor = FLAVOR_COUNT;
 
-    for (i = 0; i < FLAVOR_MAX; i++) {
+    for (i = 0; i < FLAVOR_COUNT; i++) {
         if (Pokemon_GetFlavorAffinity(mon, i) == 1) {
             monData->preferredFlavor = i;
             break;
         }
     }
 
-    monData->markings = Pokemon_GetValue(mon, MON_DATA_MARKINGS, NULL);
-    monData->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    monData->markings = Pokemon_GetData(mon, MON_DATA_MARKINGS, NULL);
+    monData->form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     monData->status = PokemonSummaryScreen_StatusIconAnimIdx(mon);
 
-    if (Pokemon_HasCuredPokerus(mon) == TRUE) {
+    if (Pokemon_IsImmuneToPokerus(mon) == TRUE) {
         monData->pokerus = SUMMARY_POKERUS_CURED;
-    } else if (Pokemon_InfectedWithPokerus(mon) == TRUE) {
+    } else if (Pokemon_HasPokerus(mon) == TRUE) {
         monData->pokerus = SUMMARY_POKERUS_INFECTED;
 
         if (monData->status == SUMMARY_CONDITION_NONE) {
@@ -1163,13 +1163,13 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     summaryScreen->ribbonMax = 0;
 
     for (i = 0; i < RIBBON_MAX; i++) {
-        if (Pokemon_GetValue(mon, Ribbon_GetData(i, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
+        if (Pokemon_GetData(mon, Ribbon_GetData(i, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
             monData->ribbons[i / 32] |= (1 << (i & 0x1F));
             summaryScreen->ribbonMax++;
         }
     }
 
-    Pokemon_ExitDecryptionContext(mon, reencrypt);
+    Pokemon_LockEncryption(mon, reencrypt);
 }
 
 static void PlayMonCry(PokemonSummaryScreen *summaryScreen)
@@ -1439,7 +1439,7 @@ static void DrawExperienceProgressBar(PokemonSummaryScreen *summaryScreen)
     u32 maxExp;
     u32 curExp;
 
-    if (summaryScreen->monData.level < MAX_POKEMON_LEVEL) {
+    if (summaryScreen->monData.level < MAX_MON_LEVEL) {
         maxExp = summaryScreen->monData.nextLevelExp - summaryScreen->monData.curLevelExp;
         curExp = summaryScreen->monData.curExp - summaryScreen->monData.curLevelExp;
     } else {
@@ -1547,10 +1547,10 @@ static s8 TryAdvanceMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
             return -1;
         }
 
-        mon = (Pokemon *)((u32)summaryScreen->data->monData + Pokemon_GetStructSize() * monIndex);
+        mon = (Pokemon *)((u32)summaryScreen->data->monData + Pokemon_Size2() * monIndex);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
-            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
                 if (CanAdvanceToEgg(summaryScreen) == TRUE) {
                     break;
                 }
@@ -1576,8 +1576,8 @@ static s8 TryAdvancePartyMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
 
         Pokemon *mon = Party_GetPokemonBySlotIndex(summaryScreen->data->monData, monIndex);
 
-        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
-            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
                 if (CanAdvanceToEgg(summaryScreen) == TRUE) {
                     break;
                 }
@@ -1602,10 +1602,10 @@ static s8 TryAdvanceBoxMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
             return -1;
         }
 
-        boxMon = (BoxPokemon *)(summaryScreen->data->monData + BoxPokemon_GetStructSize() * monIndex);
+        boxMon = (BoxPokemon *)(summaryScreen->data->monData + BoxPokemon_Size() * monIndex);
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
-            && (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE || CanAdvanceToEgg(summaryScreen) == TRUE)) {
+        if (BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+            && (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE || CanAdvanceToEgg(summaryScreen) == TRUE)) {
             break;
         }
     }
@@ -1617,11 +1617,11 @@ void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->data->dataType) {
     case SUMMARY_DATA_MON:
-        return summaryScreen->data->monData + (Pokemon_GetStructSize() * summaryScreen->data->monIndex);
+        return summaryScreen->data->monData + (Pokemon_Size2() * summaryScreen->data->monIndex);
     case SUMMARY_DATA_PARTY_MON:
         return Party_GetPokemonBySlotIndex(summaryScreen->data->monData, summaryScreen->data->monIndex);
     case SUMMARY_DATA_BOX_MON:
-        return summaryScreen->data->monData + (BoxPokemon_GetStructSize() * summaryScreen->data->monIndex);
+        return summaryScreen->data->monData + (BoxPokemon_Size() * summaryScreen->data->monIndex);
     }
 
     return NULL;
@@ -1722,12 +1722,12 @@ static u8 TryChangeSelectedMove(PokemonSummaryScreen *summaryScreen, s8 delta)
         moveIndex += delta;
 
         if (moveIndex < 0) {
-            moveIndex = LEARNED_MOVES_MAX;
-        } else if (moveIndex == LEARNED_MOVES_MAX + 1) {
+            moveIndex = MAX_MON_MOVES;
+        } else if (moveIndex == MAX_MON_MOVES + 1) {
             moveIndex = 0;
         }
 
-        if (summaryScreen->monData.moves[moveIndex] != 0 || moveIndex == LEARNED_MOVES_MAX) {
+        if (summaryScreen->monData.moves[moveIndex] != 0 || moveIndex == MAX_MON_MOVES) {
             break;
         }
     }
@@ -1744,7 +1744,7 @@ static void UpdateMoveAttributes(PokemonSummaryScreen *summaryScreen)
 {
     PokemonSummaryScreen_UpdateMoveSelectorPos(summaryScreen);
 
-    if (summaryScreen->cursor == LEARNED_MOVES_MAX) {
+    if (summaryScreen->cursor == MAX_MON_MOVES) {
         if (summaryScreen->data->move != MOVE_NONE) {
             if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
                 UpdateBattleMoveAttributes(summaryScreen, summaryScreen->data->move);
@@ -2207,9 +2207,9 @@ u32 PokemonSummaryScreen_StatusIconAnim(void)
 
 u32 PokemonSummaryScreen_StatusIconAnimIdx(Pokemon *mon)
 {
-    u32 statusCondition = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
+    u32 statusCondition = Pokemon_GetData(mon, MON_DATA_STATUS, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+    if (Pokemon_GetData(mon, MON_DATA_HP, NULL) == 0) {
         return SUMMARY_CONDITION_FAINTED;
     } else if ((statusCondition & (MON_CONDITION_POISON | MON_CONDITION_TOXIC)) != MON_CONDITION_NONE) {
         return SUMMARY_CONDITION_POISON;

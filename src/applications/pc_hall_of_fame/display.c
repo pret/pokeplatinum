@@ -399,7 +399,7 @@ static void PCHallOfFame_PrintCurrentTextState(PCHallOfFameApp *pcHallOfFameApp)
         MessageLoader_GetString(pcHallOfFameApp->msgLoaderSpeciesNames, pcHallOfFameMon->species, pcHallOfFameApp->unk_1F4);
         Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, 94, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
-        switch (Pokemon_GetGenderOf(pcHallOfFameMon->species, pcHallOfFameMon->personality)) {
+        switch (Species_GetGenderFromPersonality(pcHallOfFameMon->species, pcHallOfFameMon->personality)) {
         case GENDER_MALE:
             MessageLoader_GetString(pcHallOfFameApp->msgLoaderHallOfFame, PCHallOfFame_Text_MaleSign, pcHallOfFameApp->unk_1F4);
             break;
@@ -423,7 +423,7 @@ static void PCHallOfFame_PrintCurrentTextState(PCHallOfFameApp *pcHallOfFameApp)
     case PC_HALL_OF_FAME_TEXT_MOVES: {
         int i;
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (pcHallOfFameMon->moves[i]) {
                 MessageLoader_GetString(pcHallOfFameApp->msgLoaderMoveNames, pcHallOfFameMon->moves[i], pcHallOfFameApp->unk_1F4);
                 Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, (i & 1) * 96, (i / 2) * 16, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -535,8 +535,8 @@ static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
     pcHallOfFameScreen = pcHallOfFameApp->pcHallOfFameScreen;
 
     for (i = 0; i < pcHallOfFameScreen->pokemonCount; i++) {
-        Pokemon_InitWith(pcHallOfFameApp->mon, pcHallOfFameScreen->pokemon[i].species, pcHallOfFameScreen->pokemon[i].level, INIT_IVS_RANDOM, TRUE, pcHallOfFameScreen->pokemon[i].personality, OTID_SET, pcHallOfFameScreen->pokemon[i].OTID);
-        Pokemon_SetValue(pcHallOfFameApp->mon, MON_DATA_FORM, (void *)(&(pcHallOfFameScreen->pokemon[i].form)));
+        Pokemon_InitWithParams(pcHallOfFameApp->mon, pcHallOfFameScreen->pokemon[i].species, pcHallOfFameScreen->pokemon[i].level, INIT_IVS_RANDOM, TRUE, pcHallOfFameScreen->pokemon[i].personality, OTID_SET, pcHallOfFameScreen->pokemon[i].OTID);
+        Pokemon_SetData(pcHallOfFameApp->mon, MON_DATA_FORM, (void *)(&(pcHallOfFameScreen->pokemon[i].form)));
         Pokemon_BuildSpriteTemplate(&spriteTemplate, pcHallOfFameApp->mon, FACE_FRONT);
         CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_PC_HALL_OF_FAME, &tileRegion, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, FALSE, FACE_FRONT, pcHallOfFameScreen->pokemon[i].species);
 

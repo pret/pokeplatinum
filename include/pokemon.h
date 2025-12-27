@@ -33,13 +33,20 @@
 
 #define INIT_IVS_RANDOM 32
 
-#define BATTLE_FRONTIER_BANLIST_SIZE 18
+#define BATTLE_FACILITY_BANLIST_SIZE 18
 
-enum EvolutionClass {
-    EVO_CLASS_BY_LEVEL = 0,
-    EVO_CLASS_BY_TRADE,
-    EVO_CLASS_UNUSED_02,
-    EVO_CLASS_BY_ITEM,
+#define CALC_UNOWN_LETTER(personality) ((                                          \
+                                            (((personality) & 0x03000000) >> 18)   \
+                                            | (((personality) & 0x00030000) >> 12) \
+                                            | (((personality) & 0x00000300) >> 6)  \
+                                            | (((personality) & 0x00000003) >> 0)) \
+    % UNOWN_FORM_COUNT)
+
+enum EvolutionContext {
+    EVO_CONTEXT_LEVEL_UP = 0,
+    EVO_CONTEXT_TRADE,
+    EVO_CONTEXT_ITEM_CHECK,
+    EVO_CONTEXT_ITEM_USE,
 };
 
 /**
@@ -61,7 +68,7 @@ void BoxPokemon_Init(BoxPokemon *boxMon);
  *
  * @return Size in bytes of a Pokemon struct
  */
-int Pokemon_StructSize(void);
+int Pokemon_Size(void);
 
 /**
  * @brief Allocates a Pokemon struct on the given heap, then calls ZeroMonData() on it
@@ -69,7 +76,7 @@ int Pokemon_StructSize(void);
  * @param heapID
  * @return A new empty but encrypted Pokemon struct
  */
-Pokemon *Pokemon_New(u32 heapID);
+Pokemon *Pokemon_New(enum HeapID heapID);
 
 /**
  * @brief Decrypts a Pokemon data structure. PartyPokemon data is encrypted using the pokemons personality value, BoxPokemon data using a checksum value
@@ -77,7 +84,7 @@ Pokemon *Pokemon_New(u32 heapID);
  * @param mon
  * @return Whether the pokemons data was decrypted by this call. Passed to EncryptMon() to decide whether to reencrypt the data or not
  */
-BOOL Pokemon_EnterDecryptionContext(Pokemon *mon);
+BOOL Pokemon_UnlockEncryption(Pokemon *mon);
 
 /**
  * @brief Encrypts a Pokemon data structure. PartyPokemon data is encrypted using the pokemons personality value, BoxPokemon data using a checksum value
@@ -86,7 +93,7 @@ BOOL Pokemon_EnterDecryptionContext(Pokemon *mon);
  * @param encrypt Whether to encrypt the data or not. If this is false, the function does nothing and returns false.
  * @return Whether the pokemons data was encrypted by this call.
  */
-BOOL Pokemon_ExitDecryptionContext(Pokemon *mon, BOOL encrypt);
+BOOL Pokemon_LockEncryption(Pokemon *mon, BOOL encrypt);
 
 /**
  * @brief Decrypts a BoxPokemon data structure
@@ -94,7 +101,7 @@ BOOL Pokemon_ExitDecryptionContext(Pokemon *mon, BOOL encrypt);
  * @param boxMon
  * @return Whether the pokemons data was decrypted by this call. Passed to EncryptBoxMon() to decide whether to reencrypt the data or not
  */
-BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon);
+BOOL BoxPokemon_UnlockEncryption(BoxPokemon *boxMon);
 
 /**
  * @brief Encrypts a BoxPokemon data structure
@@ -103,12 +110,12 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon);
  * @param encrypt Whether to encrypt the data or not. If this is false, the function does nothing and returns false.
  * @return Whether the pokemons data was encrypted by this call.
  */
-BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
+BOOL BoxPokemon_LockEncryption(BoxPokemon *boxMon, BOOL encrypt);
 
-void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
-void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
-u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
+void Pokemon_InitWithParams(Pokemon *mon, int species, int level, int ivs, BOOL hasFixedPersonality, int personality, int otIDType, int otID);
+void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 nature);
+void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 gender, u8 nature, u8 letter);
+u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature);
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality);
 
 /**
@@ -133,7 +140,7 @@ void Pokemon_CalcStats(Pokemon *mon);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest);
+u32 Pokemon_GetData(Pokemon *mon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Gets a value from a Pokemon, storing it in dest if neccessary
@@ -143,7 +150,7 @@ u32 Pokemon_GetValue(Pokemon *mon, enum PokemonDataParam param, void *dest);
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
+u32 BoxPokemon_GetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Sets a value in a Pokemon, reading it from value if neccessary
@@ -152,7 +159,7 @@ u32 BoxPokemon_GetValue(BoxPokemon *boxMon, enum PokemonDataParam param, void *d
  * @param param
  * @param value
  */
-void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *value);
+void Pokemon_SetData(Pokemon *mon, enum PokemonDataParam param, void *value);
 
 /**
  * @brief Sets a value in a BoxPokemon, reading it from value if neccessary
@@ -161,7 +168,7 @@ void Pokemon_SetValue(Pokemon *mon, enum PokemonDataParam param, const void *val
  * @param param
  * @param value
  */
-void BoxPokemon_SetValue(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
+void BoxPokemon_SetData(BoxPokemon *boxMon, enum PokemonDataParam param, void *value);
 
 /**
  * @brief Increases some numerical fields in a Pokemon by the given value. Does nothing if the field is not supported
@@ -172,26 +179,26 @@ void BoxPokemon_SetValue(BoxPokemon *boxMon, enum PokemonDataParam param, const 
  * @param param
  * @param value
  */
-void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value);
+void Pokemon_IncreaseData(Pokemon *mon, enum PokemonDataParam param, int value);
 
 /**
  * @brief Gets a SpeciesData based on a pokemon species and form
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
+SpeciesData *SpeciesData_NewFromForm(int species, int form, enum HeapID heapID);
 
 /**
  * @brief Gets a SpeciesData based on a pokemon species
  *
- * @param monSpecies
+ * @param species
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID);
+SpeciesData *SpeciesData_NewFromSpecies(int species, enum HeapID heapID);
 
 /**
  * @brief Gets a value from a SpeciesData structure
@@ -200,7 +207,7 @@ SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID);
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param);
+int SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param);
 
 /**
  * @brief Frees a SpeciesData structure from the heap
@@ -212,21 +219,21 @@ void SpeciesData_Free(SpeciesData *speciesData);
 /**
  * @brief Loads a SpeciesData based on its species and form and gets a value from it
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetFormValue(int monSpecies, int monForm, enum SpeciesDataParam param);
+u32 Species_GetFormValue(int species, int form, enum SpeciesDataParam param);
 
 /**
  * @brief Loads a SpeciesData based on its species and gets a value from it
  *
- * @param monSpecies
+ * @param species
  * @param param What value to get
  * @return The requested value
  */
-u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param);
+int Species_GetValue(int species, enum SpeciesDataParam param);
 
 /**
  * @brief Gets how much progress a Pokemon has made towards its next level as a percentage
@@ -234,7 +241,7 @@ u32 SpeciesData_GetSpeciesValue(int monSpecies, enum SpeciesDataParam param);
  * @param mon
  * @return how much progress a Pokemon has made towards its next level as a percentage
  */
-u8 Pokemon_GetPercentToNextLevel(Pokemon *mon);
+u8 Pokemon_CalcPercentToNextLevel(Pokemon *mon);
 
 /**
  * @brief Gets how much experience is needed for the given Pokemon to level up
@@ -242,7 +249,7 @@ u8 Pokemon_GetPercentToNextLevel(Pokemon *mon);
  * @param boxMon
  * @return The amount of exp. needed for the given Pokemon to level up
  */
-u32 Pokemon_GetExpToNextLevel(Pokemon *mon);
+u32 Pokemon_CalcExpToNextLevel(Pokemon *mon);
 
 /**
  * @brief Gets the amount of expeirence needed for the given Pokemon to reach its current level
@@ -255,11 +262,11 @@ u32 Pokemon_GetCurrentLevelBaseExp(Pokemon *mon);
 /**
  * @brief Gets the amount of expeirence needed for a pokemon species to reach a specified level
  *
- * @param monSpecies
- * @param monLevel
+ * @param species
+ * @param level
  * @return The amount of exp. needed for the given pokemon species to reach the specified level
  */
-u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel);
+u32 Species_GetExpAtLevel(int species, int level);
 
 /**
  * @copybrief GetMonSpeciesLevel()
@@ -267,7 +274,7 @@ u32 Pokemon_GetSpeciesBaseExpAt(int monSpecies, int monLevel);
  * @param mon
  * @return The pokemons level
  */
-u32 Pokemon_GetLevel(Pokemon *mon);
+int Pokemon_CalcLevel(Pokemon *mon);
 
 /**
  * @copybrief GetMonSpeciesLevel()
@@ -275,26 +282,26 @@ u32 Pokemon_GetLevel(Pokemon *mon);
  * @param boxMon
  * @return The pokemons level
  */
-u32 BoxPokemon_GetLevel(BoxPokemon *boxMon);
+int BoxPokemon_CalcLevel(BoxPokemon *boxMon);
 
 /**
  * @brief Gets the level of a pokemon based on its species and exp
  *
- * @param monSpecies
- * @param monExp
+ * @param species
+ * @param exp
  * @return The pokemons level
  */
-u32 Pokemon_GetSpeciesLevelAt(u16 monSpecies, u32 monExp);
+int Species_CalcLevelByExp(u16 species, u32 exp);
 
 /**
  * @brief Gets the level of a pokemon based on its personal data and exp
  *
  * @param speciesData
- * @param unused_monSpecies unused
- * @param monExp
+ * @param unused_species unused
+ * @param exp
  * @return The pokemons level
  */
-u32 SpeciesData_GetLevelAt(SpeciesData *speciesData, u16 unused_monSpecies, u32 monExp);
+int SpeciesData_CalcLevelByExp(SpeciesData *speciesData, u16 unused_species, u32 exp);
 
 /**
  * @brief Gets the nature of a Pokemon based on its personality value
@@ -315,21 +322,21 @@ u8 BoxPokemon_GetNature(BoxPokemon *boxMon);
 /**
  * @brief Gets the nature of a pokemon based on its personality value
  *
- * @param monPersonality
+ * @param personality
  * @return The pokemons nature
  */
-u8 Pokemon_GetNatureOf(u32 monPersonality);
+u8 Personality_GetNature(u32 personality);
 
 /**
  * @brief Gets the affinitiy of a given pokemon nature to a given stat
  *
- * @param monNature
- * @param statType
+ * @param nature
+ * @param stat
  * @return 1 if stat is increased, -1 if stat is decreased, else 0
  */
-s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType);
+s8 Nature_GetStatModifier(u8 nature, u8 stat);
 
-void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2);
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location);
 
 /**
  * @brief Gets the gender of a Pokemon based on its species and personality value
@@ -354,17 +361,17 @@ u8 BoxPokemon_GetGender(BoxPokemon *boxMon);
  * @param monPersonality
  * @return The pokemons gender
  */
-u8 Pokemon_GetGenderOf(u16 monSpecies, u32 monPersonality);
+u8 Species_GetGenderFromPersonality(u16 monSpecies, u32 monPersonality);
 
 /**
  * @brief Gets the gender of a pokemon based on its SpeciesData and personality value
  *
  * @param speciesData
- * @param unused_monSpecies unused
- * @param monPersonality
+ * @param unused_species unused
+ * @param personality
  * @return The pokemons gender
  */
-u8 SpeciesData_GetGenderOf(SpeciesData *speciesData, u16 unused_monSpecies, u32 monPersonality);
+u8 SpeciesData_GetGenderFromPersonality(SpeciesData *speciesData, u16 unused_species, u32 personality);
 
 /**
  * @brief Gets whether a BoxPokemon is shiny based on its Original Trainer ID and its personality value
@@ -377,20 +384,20 @@ u8 Pokemon_IsShiny(Pokemon *mon);
 /**
  * @brief Gets whether a pokemon is shiny based on its Original Trainer ID and its personality value
  *
- * @param monOTID
- * @param monPersonality
+ * @param otID
+ * @param personality
  * @return Whether the pokemon is shiny or not
  */
-u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
+u8 Personality_IsShiny(u32 otID, u32 personality);
 
 /**
  * @brief Computes a personality value which, when applied to the given trainer ID, will result
  * in a shiny Pokemon.
  *
- * @param monOTID
+ * @param otID
  * @return The computed personality value
  */
-u32 Pokemon_FindShinyPersonality(u32 monOTID);
+u32 Personality_GenerateShiny(u32 otID);
 
 /**
  * @brief Build a PokemonSpriteTemplate for a Pokemon.
@@ -405,27 +412,27 @@ void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, Pokemon 
  * @brief Build a PokemonSpriteTemplate for a Pokemon, preferring sprites from
  * Diamond/Pearl where possible.
  *
- * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param template       Pointer to the sprite template to be populated
  * @param mon            The Pokemon whose data will be used to build the sprite
  * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
+void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *template, Pokemon *mon, u8 face);
 
 /**
  * @brief Build a PokemonSpriteTemplate for a BoxPokemon.
  *
- * @param spriteTemplate Pointer to the sprite template to be populated
- * @param mon            The Pokemon whose data will be used to build the sprite
+ * @param template        Pointer to the sprite template to be populated
+ * @param boxMon         The Pokemon whose data will be used to build the sprite
  * @param face           Which face of the Pokemon the player sees
  * @param preferDP       If TRUE, prefer sprites from Diamond/Pearl over Platinum
  */
-void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *template, BoxPokemon *boxMon, u8 face, BOOL preferDP);
 
 /**
  * @brief Build a PokemonSpriteTemplate for a Pokemon sprite according to the input
  * species, form, and gender.
  *
- * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param template       Pointer to the sprite template to be populated
  * @param species        The Pokemon's species
  * @param gender         The Pokemon's gender
  * @param face           Which face of the Pokemon the player sees
@@ -433,16 +440,16 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
  * @param form           The Pokemon's form
  * @param personality    The Pokemon's personality value
  */
-void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality);
+void Species_BuildSpriteTemplate(PokemonSpriteTemplate *template, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
  *
- * @param monSpecies
- * @param monForm
+ * @param species
+ * @param form
  * @return The sanitized pokemon form
  */
-u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm);
+u8 Species_SanitizeFormId(u16 species, u8 form);
 
 /**
  * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
@@ -482,8 +489,8 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  * @param personality   The Pokemon's personality value
  * @return Y-offset applied to the sprite-face on display
  */
-u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
-void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1);
+u8 Species_LoadSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
+void sub_0207697C(PokemonSpriteTemplate *template, u16 param1);
 ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
@@ -492,14 +499,14 @@ void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
  *
  * @return Size in bytes of a Pokemon struct
  */
-u32 Pokemon_GetStructSize(void);
+u32 Pokemon_Size2(void);
 
 /**
  * @brief Returns the size in bytes of a BoxPokemon struct as a u32
  *
  * @return Size in bytes of a BoxPokemon struct
  */
-u32 BoxPokemon_GetStructSize(void);
+u32 BoxPokemon_Size(void);
 
 /**
  * @brief Gets the form of a Pokemon
@@ -523,10 +530,10 @@ u8 BoxPokemon_GetForm(BoxPokemon *boxMon);
  * @param mon
  * @return The BoxPokemon data for a given Pokemon
  */
-BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon);
+BoxPokemon *Pokemon_GetBoxMon(Pokemon *mon);
 
-BOOL Pokemon_ShouldLevelUp(Pokemon *mon);
-u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u16 evoParam, int *evoTypeResult);
+BOOL Pokemon_TryLevelUp(Pokemon *mon);
+u16 Pokemon_GetEvolutionTarget(Party *party, Pokemon *mon, u8 context, u16 evoParam, int *methodRet);
 u16 Pokemon_GetBaseSpeciesFromPersonalData(const u16 species);
 u16 Pokemon_GetBaseSpeciesForBattle(const u16 species);
 
@@ -537,7 +544,7 @@ u16 Pokemon_GetBaseSpeciesForBattle(const u16 species);
  * @param moveID
  * @return The given moveID if successful, 0xfffe if already known, 0xffff if there is no room for the move
  */
-u16 Pokemon_AddMove(Pokemon *mon, u16 moveID);
+u16 Pokemon_TryAppendMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Deletes the first move of a Pokemon and adds the given move to the end of its moveset
@@ -545,16 +552,16 @@ u16 Pokemon_AddMove(Pokemon *mon, u16 moveID);
  * @param mon
  * @param moveID
  */
-void Pokemon_ReplaceMove(Pokemon *mon, u16 moveID);
+void Pokemon_ForceAppendMove(Pokemon *mon, u16 move);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, removing its PP Ups
  *
  * @param mon
- * @param moveID
- * @param moveSlot
+ * @param move
+ * @param slot
  */
-void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
+void Pokemon_SetMoveInSlot_ResetPPUp(Pokemon *mon, u16 move, u8 slot);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, retaining the PP Ups for that slot
@@ -563,37 +570,37 @@ void Pokemon_ResetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
  * @param moveID
  * @param moveSlot
  */
-void Pokemon_SetMoveSlot(Pokemon *mon, u16 moveID, u8 moveSlot);
+void Pokemon_SetMoveInSlot(Pokemon *mon, u16 move, u8 slot);
 
-u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID);
+u16 Pokemon_TryLevelUpMove(Pokemon *mon, int *index, u16 *moveID);
 
 /**
  * @brief Swaps the places of two moves on a Pokemon
  *
  * @param mon
- * @param moveSlot1
- * @param moveSlot2
+ * @param slot1
+ * @param slot2
  */
-void Pokemon_SwapMoveSlots(Pokemon *mon, int moveSlot1, int moveSlot2);
+void Pokemon_SwapMoveSlots(Pokemon *mon, int slot1, int slot2);
 
 /**
  * @brief Swaps the places of two moves on a BoxPokemon
  *
  * @param boxMon
- * @param moveSlot1
- * @param moveSlot2
+ * @param slot1
+ * @param slot2
  */
-void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int moveSlot1, int moveSlot2);
+void BoxPokemon_SwapMoveSlots(BoxPokemon *boxMon, int slot1, int slot2);
 
 /**
  * @brief Deletes the given moveSlot of a Pokemon, shifting the ones above it down
  *
  * @param mon
- * @param moveSlot
+ * @param slot
  */
-void Pokemon_ClearMoveSlot(Pokemon *mon, u32 moveSlot);
+void Pokemon_ClearMoveSlot(Pokemon *mon, u32 slot);
 
-void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon);
+void BoxPokemon_CopyToPokemon(BoxPokemon *src, Pokemon *dest);
 
 /**
  * @brief Gets the level of the highest level pokemon in the Party
@@ -622,7 +629,7 @@ u16 Pokemon_NationalDexNumber(u16 sinnohDexNumber);
 
 void Pokemon_Copy(Pokemon *src, Pokemon *dest);
 void BoxPokemon_Copy(BoxPokemon *src, BoxPokemon *dest);
-void BoxPokemon_FromPokemon(Pokemon *src, BoxPokemon *dest);
+void Pokemon_CopyToBoxPokemon(Pokemon *src, BoxPokemon *dest);
 
 /**
  * @brief Gets the affinitiy of a given Pokemon to a given flavor
@@ -636,11 +643,11 @@ s8 Pokemon_GetFlavorAffinity(Pokemon *mon, enum Flavor flavor);
 /**
  * @brief Gets the affinitiy of a given Pokemon personality to a given flavor
  *
- * @param monPersonality
+ * @param personality
  * @param flavor
  * @return 1 if liked flavor, -1 if disliked flavor, else 0
  */
-s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor);
+s8 Personality_GetFlavorAffinity(u32 personality, enum Flavor flavor);
 
 /**
  * @brief Gets all moves that the given pokemon species and form can learn by leveling up
@@ -652,34 +659,34 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor);
  */
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs);
 
-void Pokemon_ApplyPokerus(Party *party);
-u8 Pokemon_HasPokerus(Party *party, u8 param1);
-void Party_UpdatePokerusStatus(Party *party, s32 param1);
-void Pokemon_ValidatePokerus(Party *party);
-BOOL Pokemon_InfectedWithPokerus(Pokemon *mon);
-BOOL Pokemon_HasCuredPokerus(Pokemon *mon);
+void Party_GivePokerusAtRandom(Party *party);
+u8 Party_MaskHasPokerus(Party *party, u8 partyMask);
+void Party_UpdatePokerus(Party *party, int daysPassed);
+void Party_SpreadPokerus(Party *party);
+BOOL Pokemon_HasPokerus(Pokemon *mon);
+BOOL Pokemon_IsImmuneToPokerus(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
  *
  * @param mon
  */
-void Pokemon_SetArceusForm(Pokemon *mon);
+void Pokemon_UpdateArceusForm(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
  *
  * @param boxMon
  */
-void BoxPokemon_SetArceusForm(BoxPokemon *boxMon);
+void BoxPokemon_UpdateArceusForm(BoxPokemon *boxMon);
 
 /**
  * @brief Get Arceus' form given an items hold effect
  *
- * @param itemHoldEffect
+ * @param holdEffect
  * @return The form arceus should be in
  */
-u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect);
+u8 HoldEffect_GetArceusType(u16 holdEffect);
 
 /**
  * @brief Sets Giratina's form based on its held item. Has no effect if the given Pokemon is not a Giratina
@@ -687,7 +694,7 @@ u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect);
  * @param mon
  * @return The form Giratina was set to, or -1 if the given BoxPokemon was not a Giratina
  */
-int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon);
+s32 Pokemon_UpdateGiratinaForm(Pokemon *mon);
 
 /**
  * @brief Sets Giratina's form based on its held item. Has no effect if the given BoxPokemon is not a Giratina
@@ -695,23 +702,23 @@ int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon);
  * @param boxMon
  * @return The form Giratina was set to, or -1 if the given BoxPokemon was not a Giratina
  */
-int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon);
+s32 BoxPokemon_UpdateGiratinaForm(BoxPokemon *boxMon);
 
 /**
  * @brief Set Giratina to its Origin form. Has no effect if the given Pokemon is not a Giratina
  *
  * @param mon
  */
-void Pokemon_SetGiratinaOriginForm(Pokemon *mon);
+void Pokemon_ForceSetGiratinaOriginForm(Pokemon *mon);
 
 /**
  * @brief Iterates over all the Pokemon in Party, setting the form of any Giratina.
- *        If form is GIRATINA_FORM_ORIGIN, always sets Giratina into Origin form, otherwise its form is based on held item
+ *        If forceOrigin is TRUE, always sets Giratina into Origin form, otherwise its form is based on held item.
  *
  * @param party
- * @param form
+ * @param forceOrigin
  */
-void Party_SetGiratinaForm(Party *party, int form);
+void Party_UpdateGiratinaForms(Party *party, BOOL forceOrigin);
 
 /**
  * @brief Sets Shaymin to the given form. Has no effect if the given Pokemon is not a Shaymin
@@ -719,7 +726,7 @@ void Party_SetGiratinaForm(Party *party, int form);
  * @param mon
  * @param form
  */
-void Pokemon_SetShayminForm(Pokemon *mon, int form);
+void Pokemon_UpdateShayminForm(Pokemon *mon, int form);
 
 /**
  * @brief Sets Shaymin to the given form. Has no effect if the given BoxPokemon is not a Shaymin
@@ -727,7 +734,7 @@ void Pokemon_SetShayminForm(Pokemon *mon, int form);
  * @param boxMon
  * @param form
  */
-void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int form);
+void BoxPokemon_UpdateShayminForm(BoxPokemon *boxMon, int form);
 
 /**
  * @brief Checks whether Shaymin is allowed to change into Sky Form. Always returns false if the given Pokemon is not a Shaymin
@@ -742,7 +749,7 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon);
  *
  * @param party
  */
-void Party_SetShayminLandForm(Party *party);
+void Party_SetShayminLandForms(Party *party);
 
 /**
  * @brief Sets all Shaymin in the party to Land form at night
@@ -751,10 +758,10 @@ void Party_SetShayminLandForm(Party *party);
  *
  * @param party
  * @param param1
- * @param rtcTime
+ * @param time
  * @return Whether Shaymin should be set to Land form
  */
-BOOL Party_SetShayminForm(Party *party, int param1, const RTCTime *rtcTime);
+BOOL Party_UpdateShayminForms(Party *party, int minutesDiff, const RTCTime *time);
 
 /**
  * @brief Sets Rotom to the given form. Has no effect if the given Pokemon is not a Rotom
@@ -765,7 +772,7 @@ BOOL Party_SetShayminForm(Party *party, int param1, const RTCTime *rtcTime);
  * @param moveSlot
  * @return Whether the given pokemon was a Rotom
  */
-BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot);
+BOOL Pokemon_UpdateRotomForm(Pokemon *mon, int form, int moveSlot);
 
 /**
  * @brief Loads a Level-Up move table based on a pokemon species and form into the pointed to array
@@ -774,7 +781,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot);
  * @param monForm
  * @param[out] monLevelUpMoves Pointer to a u16 array to store the move table
  */
-void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
+void Species_LoadLevelUpLearnset(int monSpecies, int monForm, u16 *monLevelUpMoves);
 
 /**
  * @brief Play a Pokemon's cry, according to the given species and form number.
@@ -809,23 +816,23 @@ void Species_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16
 BOOL Pokemon_PlayCry(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
-void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates);
-BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);
-BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
+void Pokemon_GiveWildHeldItem(Pokemon *mon, u32 battleType, int itemRates);
+BOOL Pokemon_CanLearnTMHM(Pokemon *mon, u8 tmHM);
+BOOL Species_CanLearnTMHM(u16 species, int form, u8 tmHM);
 
 /**
  * @brief Sets the ability of a Pokemon based on its species, form and peronsality value
  *
  * @param mon
  */
-void Pokemon_CalcAbility(Pokemon *mon);
+void Pokemon_UpdateAbility(Pokemon *mon);
 
-void sub_020780C4(Pokemon *mon, u32 monPersonality);
+void Pokemon_SetPersonality(Pokemon *mon, u32 personality);
 
-BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species);
-u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index);
-BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *pokemon);
-BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
+BOOL Species_IsBattleFacilityBanned(u16 species);
+u16 BattleFacility_GetBanlistEntry(u8 index);
+BOOL Pokemon_IsBattleFacilityBanned(Pokemon *mon);
+BOOL BoxPokemon_BelongsToPlayer(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID);
 int sub_020788D0(int param0);
 void Pokemon_ClearBallCapsuleData(Pokemon *mon);
 void BoxPokemon_RestorePP(BoxPokemon *boxMon);

@@ -36,7 +36,7 @@ BOOL ScrCmd_GetSelectedPartyMonMove(ScriptContext *ctx)
     GF_ASSERT(*partyData != NULL);
     *destVar = PokemonSummary_GetSelectedMoveSlot(*partyData);
 
-    if (*destVar == LEARNED_MOVES_MAX) {
+    if (*destVar == MAX_MON_MOVES) {
         *destVar = MOVE_NOT_SELECTED;
     }
 

@@ -452,12 +452,12 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
     Pokemon *targetPokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), selectedIndex);
 
     u32 pokemonIVs[6];
-    pokemonIVs[0] = Pokemon_GetValue(targetPokemon, MON_DATA_HP_IV, NULL);
-    pokemonIVs[1] = Pokemon_GetValue(targetPokemon, MON_DATA_ATK_IV, NULL);
-    pokemonIVs[2] = Pokemon_GetValue(targetPokemon, MON_DATA_DEF_IV, NULL);
-    pokemonIVs[3] = Pokemon_GetValue(targetPokemon, MON_DATA_SPEED_IV, NULL);
-    pokemonIVs[4] = Pokemon_GetValue(targetPokemon, MON_DATA_SPATK_IV, NULL);
-    pokemonIVs[5] = Pokemon_GetValue(targetPokemon, MON_DATA_SPDEF_IV, NULL);
+    pokemonIVs[0] = Pokemon_GetData(targetPokemon, MON_DATA_HP_IV, NULL);
+    pokemonIVs[1] = Pokemon_GetData(targetPokemon, MON_DATA_ATK_IV, NULL);
+    pokemonIVs[2] = Pokemon_GetData(targetPokemon, MON_DATA_DEF_IV, NULL);
+    pokemonIVs[3] = Pokemon_GetData(targetPokemon, MON_DATA_SPEED_IV, NULL);
+    pokemonIVs[4] = Pokemon_GetData(targetPokemon, MON_DATA_SPATK_IV, NULL);
+    pokemonIVs[5] = Pokemon_GetData(targetPokemon, MON_DATA_SPDEF_IV, NULL);
 
     *totalIVs = 0;
     u8 i;
@@ -503,7 +503,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
 
     for (v3 = 0; v3 < v2; v3++) {
         v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v8[v3] = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+        v8[v3] = Pokemon_GetData(v0, MON_DATA_HELD_ITEM, NULL);
 
         if (v8[v3] == ITEM_GRISEOUS_ORB) {
             v9++;
@@ -523,27 +523,27 @@ BOOL ScrCmd_31D(ScriptContext *param0)
         for (v3 = 0; v3 < v2; v3++) {
             if (v8[v3] == ITEM_GRISEOUS_ORB) {
                 v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &v7);
+                Pokemon_SetData(v0, MON_DATA_HELD_ITEM, &v7);
             }
         }
     }
 
     for (v3 = 0; v3 < v2; v3++) {
         v0 = Party_GetPokemonBySlotIndex(v1, v3);
-        v6 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        v6 = Pokemon_GetData(v0, MON_DATA_FORM, NULL);
 
         if (v6 > 0) {
-            v5 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+            v5 = Pokemon_GetData(v0, MON_DATA_SPECIES, NULL);
 
             switch (v5) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaFormByHeldItem(v0);
+                Pokemon_UpdateGiratinaForm(v0);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
+                Pokemon_UpdateRotomForm(v0, ROTOM_FORM_NORMAL, 0);
                 break;
             case SPECIES_SHAYMIN:
-                Pokemon_SetShayminForm(v0, SHAYMIN_FORM_LAND);
+                Pokemon_UpdateShayminForm(v0, SHAYMIN_FORM_LAND);
                 break;
             }
         }
@@ -573,7 +573,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         return 0;
     }
 
-    currentHeldItem = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
+    currentHeldItem = Pokemon_GetData(pokemon, MON_DATA_HELD_ITEM, NULL);
 
     if (currentHeldItem == ITEM_GRISEOUS_ORB) {
         bagNotFull = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD1);
@@ -584,23 +584,23 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         }
 
         emptyHeldItem = 0;
-        Pokemon_SetValue(pokemon, MON_DATA_HELD_ITEM, &emptyHeldItem);
+        Pokemon_SetData(pokemon, MON_DATA_HELD_ITEM, &emptyHeldItem);
     }
 
-    pokemonForm = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+    pokemonForm = Pokemon_GetData(pokemon, MON_DATA_FORM, NULL);
 
     if (pokemonForm > 0) {
-        pokemonSpecies = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+        pokemonSpecies = Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
 
         switch (pokemonSpecies) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaFormByHeldItem(pokemon);
+            Pokemon_UpdateGiratinaForm(pokemon);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(pokemon, ROTOM_FORM_BASE, 0);
+            Pokemon_UpdateRotomForm(pokemon, ROTOM_FORM_NORMAL, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(pokemon, SHAYMIN_FORM_LAND);
+            Pokemon_UpdateShayminForm(pokemon, SHAYMIN_FORM_LAND);
             break;
         }
     }
@@ -616,7 +616,7 @@ BOOL ScrCmd_2F1(ScriptContext *param0)
     u16 v3 = ScriptContext_GetVar(param0);
 
     v0 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v2);
-    Pokemon_SetValue(v0, MON_DATA_FORM, &v3);
+    Pokemon_SetData(v0, MON_DATA_FORM, &v3);
 
     return 0;
 }
@@ -635,11 +635,11 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
 
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-        u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-        u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-        u32 isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+        u32 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+        u32 form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+        u32 isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
 
-        if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
+        if (species == SPECIES_ROTOM && form != ROTOM_FORM_NORMAL && isEgg == FALSE) {
             if (*destVarPartySlot == 0xff) {
                 *destVarPartySlot = i;
             }
@@ -663,7 +663,7 @@ BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    Pokemon_SetRotomForm(mon, form, moveSlot);
+    Pokemon_UpdateRotomForm(mon, form, moveSlot);
     Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
 
     return FALSE;
@@ -679,9 +679,9 @@ BOOL ScrCmd_2FF(ScriptContext *param0)
     u16 *v6 = ScriptContext_GetVarPointer(param0);
 
     v3 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v5);
-    v0 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
+    v0 = Pokemon_GetData(v3, MON_DATA_SPECIES, NULL);
 
-    if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
+    if (Pokemon_GetData(v3, MON_DATA_IS_EGG, NULL) == 0) {
         switch (v0) {
         case SPECIES_CATERPIE:
         case SPECIES_METAPOD:
@@ -719,12 +719,12 @@ static void ov5_021F70CC(Pokemon *param0, int *param1, int *param2)
     int v4;
     int v5;
 
-    v0 = Pokemon_GetValue(param0, MON_DATA_HP_IV, NULL);
-    v1 = Pokemon_GetValue(param0, MON_DATA_ATK_IV, NULL);
-    v2 = Pokemon_GetValue(param0, MON_DATA_DEF_IV, NULL);
-    v3 = Pokemon_GetValue(param0, MON_DATA_SPEED_IV, NULL);
-    v4 = Pokemon_GetValue(param0, MON_DATA_SPATK_IV, NULL);
-    v5 = Pokemon_GetValue(param0, MON_DATA_SPDEF_IV, NULL);
+    v0 = Pokemon_GetData(param0, MON_DATA_HP_IV, NULL);
+    v1 = Pokemon_GetData(param0, MON_DATA_ATK_IV, NULL);
+    v2 = Pokemon_GetData(param0, MON_DATA_DEF_IV, NULL);
+    v3 = Pokemon_GetData(param0, MON_DATA_SPEED_IV, NULL);
+    v4 = Pokemon_GetData(param0, MON_DATA_SPATK_IV, NULL);
+    v5 = Pokemon_GetData(param0, MON_DATA_SPDEF_IV, NULL);
 
     if (param1 != NULL) {
         *param1 = ((v0 & 2) >> 1) | ((v1 & 2) >> 0) | ((v2 & 2) << 1) | ((v3 & 2) << 2) | ((v4 & 2) << 3) | ((v5 & 2) << 4);
@@ -750,7 +750,7 @@ BOOL ScrCmd_300(ScriptContext *param0)
     v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
     v0 = SaveData_MiscSaveBlock(fieldSystem->saveData);
 
-    MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v1, MON_DATA_FORM, NULL), Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL));
+    MiscSaveBlock_SetFavoriteMon(v0, Pokemon_GetData(v1, MON_DATA_SPECIES, NULL), Pokemon_GetData(v1, MON_DATA_FORM, NULL), Pokemon_GetData(v1, MON_DATA_IS_EGG, NULL));
     return 0;
 }
 
@@ -782,7 +782,7 @@ BOOL ScrCmd_GetPartyMonForm2(ScriptContext *ctx)
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    *destVar = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    *destVar = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
 
     return FALSE;
 }

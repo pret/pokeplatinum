@@ -27,19 +27,19 @@ u16 *MoveReminderData_GetMoves(Pokemon *mon, u32 heapID)
 {
     u8 h, i, j;
 
-    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    u8 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    u8 level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    u8 form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+    u8 level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
 
-    u16 currentMoves[LEARNED_MOVES_MAX];
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        currentMoves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
+    u16 currentMoves[MAX_MON_MOVES];
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        currentMoves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
     }
 
     u16 *levelUpMoves = Heap_Alloc(heapID, MAX_NUMBER_REMINDER_MOVES * sizeof(u16));
     u16 *reminderMoves = Heap_Alloc(heapID, MAX_NUMBER_REMINDER_MOVES * sizeof(u16));
 
-    Pokemon_LoadLevelUpMovesOf(species, form, levelUpMoves);
+    Species_LoadLevelUpLearnset(species, form, levelUpMoves);
 
     j = 0;
 
@@ -52,13 +52,13 @@ u16 *MoveReminderData_GetMoves(Pokemon *mon, u32 heapID)
         } else {
             levelUpMoves[i] = GET_MOVE(levelUpMoves[i]);
 
-            for (h = 0; h < LEARNED_MOVES_MAX; h++) {
+            for (h = 0; h < MAX_MON_MOVES; h++) {
                 if (levelUpMoves[i] == currentMoves[h]) {
                     break;
                 }
             }
 
-            if (h == LEARNED_MOVES_MAX) {
+            if (h == MAX_MON_MOVES) {
                 for (h = 0; h < j; h++) {
                     if (reminderMoves[h] == levelUpMoves[i]) {
                         break;

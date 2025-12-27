@@ -47,7 +47,7 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
     resources->unk_1CC = 0;
 
     int gender;
-    u8 genderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
+    u8 genderRatio = Species_GetValue(species, SPECIES_DATA_GENDER_RATIO);
 
     switch (genderRatio) {
     case GENDER_RATIO_MALE_ONLY:
@@ -56,7 +56,7 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
     case GENDER_RATIO_FEMALE_ONLY:
         gender = GENDER_FEMALE;
         break;
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         gender = GENDER_NONE;
         break;
     default:
@@ -67,7 +67,7 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
         }
     }
 
-    BuildPokemonSpriteTemplate(&resources->unk_28, species, gender, 2, 0, NULL, NULL);
+    Species_BuildSpriteTemplate(&resources->unk_28, species, gender, 2, 0, NULL, NULL);
 
     resources->unk_38 = SpriteList_InitRendering(1, &resources->unk_3C, HEAP_ID_FIELD1);
     v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD1);

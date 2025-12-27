@@ -622,27 +622,27 @@ static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1)
     Pokemon *v2 = BattleSystem_PartyPokemon(battleSys, param1->battler, v0->unk_01_0);
 
     if ((v0->unk_18 & 0x200000) == 0) {
-        for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
+        for (v1 = 0; v1 < MAX_MON_MOVES; v1++) {
             if ((v0->unk_01_4 & FlagIndex(v1)) == 0) {
-                Pokemon_SetValue(v2, MON_DATA_MOVE1 + v1, (u8 *)&v0->unk_0E[v1]);
-                Pokemon_SetValue(v2, MON_DATA_MOVE1_PP + v1, (u8 *)&v0->unk_12[v1]);
+                Pokemon_SetData(v2, MON_DATA_MOVE1 + v1, (u8 *)&v0->unk_0E[v1]);
+                Pokemon_SetData(v2, MON_DATA_MOVE1_PP + v1, (u8 *)&v0->unk_12[v1]);
             }
         }
     }
 
     if ((v0->unk_08 & FlagIndex(v0->unk_01_0)) == 0) {
-        Pokemon_SetValue(v2, MON_DATA_HELD_ITEM, (u8 *)&v0->unk_0C);
+        Pokemon_SetData(v2, MON_DATA_HELD_ITEM, (u8 *)&v0->unk_0C);
     }
 
-    Pokemon_SetValue(v2, MON_DATA_HP, (u8 *)&v0->unk_02);
-    Pokemon_SetValue(v2, MON_DATA_STATUS, (u8 *)&v0->unk_04);
+    Pokemon_SetData(v2, MON_DATA_HP, (u8 *)&v0->unk_02);
+    Pokemon_SetData(v2, MON_DATA_STATUS, (u8 *)&v0->unk_04);
 
     if (v0->unk_26) {
-        Pokemon_SetValue(v2, MON_DATA_FORM, (u8 *)&v0->unk_1C);
+        Pokemon_SetData(v2, MON_DATA_FORM, (u8 *)&v0->unk_1C);
     }
 
     if (v0->unk_24) {
-        Pokemon_SetValue(v2, MON_DATA_ABILITY, (u8 *)&v0->unk_20);
+        Pokemon_SetData(v2, MON_DATA_ABILITY, (u8 *)&v0->unk_20);
         Pokemon_CalcLevelAndStats(v2);
     }
 
@@ -690,11 +690,11 @@ static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
         if (v0->unk_01 == 104) {
             v4 = ABILITY_NONE;
         } else {
-            v4 = Pokemon_GetValue(v1, MON_DATA_ABILITY, NULL);
+            v4 = Pokemon_GetData(v1, MON_DATA_ABILITY, NULL);
         }
 
         if ((v0->unk_02 != 215) || ((v0->unk_02 == 215) && (v4 != ABILITY_SOUNDPROOF))) {
-            Pokemon_SetValue(v1, MON_DATA_STATUS, (u8 *)&v5);
+            Pokemon_SetData(v1, MON_DATA_STATUS, (u8 *)&v5);
         }
     }
 
@@ -732,18 +732,18 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
         v4 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
+    Species_BuildSpriteTemplate(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
 
     v2 = PokemonSprite_GetTemplate(param1->unk_20);
     *v2 = v1;
 
     PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
-    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, FALSE, v4, v2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, FALSE, v4, v2->species);
 
     PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
     PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
 
-    v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
+    v3 = Species_LoadSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
     PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param1->battler, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;
@@ -976,11 +976,11 @@ static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
             for (v3 = 0; v3 < Party_GetCurrentCount(v1); v3++) {
                 v2 = Party_GetPokemonBySlotIndex(v1, v3);
 
-                if ((Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
+                if ((Pokemon_GetData(v2, MON_DATA_SPECIES, NULL)) && (Pokemon_GetData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     if (Battler_Side(battleSys, v4)) {
-                        v6 += Pokemon_GetValue(v2, MON_DATA_HP, NULL);
+                        v6 += Pokemon_GetData(v2, MON_DATA_HP, NULL);
                     } else {
-                        v5 += Pokemon_GetValue(v2, MON_DATA_HP, NULL);
+                        v5 += Pokemon_GetData(v2, MON_DATA_HP, NULL);
                     }
                 }
             }

@@ -1183,19 +1183,19 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
         if (species == SPECIES_MANAPHY) {
             form = EGG_FORM_MANAPHY;
         } else {
-            form = EGG_FORM_BASE;
+            form = EGG_FORM_NORMAL;
         }
 
         species = SPECIES_EGG;
     }
 
-    speciesData = SpeciesData_FromMonSpecies(species, HEAP_ID_102);
-    gender = Pokemon_GetGenderOf(species, personality);
-    isShiny = Pokemon_IsPersonalityShiny(otID, personality);
-    v9 = LoadPokemonSpriteYOffset(species, gender, v10, form, personality);
+    speciesData = SpeciesData_NewFromSpecies(species, HEAP_ID_102);
+    gender = Species_GetGenderFromPersonality(species, personality);
+    isShiny = Personality_IsShiny(otID, personality);
+    v9 = Species_LoadSpriteYOffset(species, gender, v10, form, personality);
     v9 = 0;
 
-    BuildPokemonSpriteTemplate(&v2, species, gender, v10, isShiny, form, personality);
+    Species_BuildSpriteTemplate(&v2, species, gender, v10, isShiny, form, personality);
     v0->unk_32C = PokemonSpriteManager_CreateSprite(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
     SpeciesData_Free(speciesData);
 }

@@ -265,7 +265,7 @@ static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
     Party *v0 = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *v1 = Party_FindFirstHatchedMon(v0);
 
-    StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxPokemon(v1));
+    StringTemplate_SetSpeciesName(param1, 0, Pokemon_GetBoxMon(v1));
 }
 
 static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)

@@ -96,7 +96,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
         Party *v0;
 
         v0 = SaveData_GetParty(fieldSystem->saveData);
-        Party_UpdatePokerusStatus(v0, daysPassed);
+        Party_UpdatePokerus(v0, daysPassed);
     }
 
     {
@@ -137,7 +137,7 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rt
     TVBroadcast_UpdateProgramTimeSlot(broadcast, param1, rtcTime->minute);
 
     Party *party = SaveData_GetParty(fieldSystem->saveData);
-    Party_SetShayminForm(party, param1, rtcTime);
+    Party_UpdateShayminForms(party, param1, rtcTime);
 }
 
 enum TimeOfDay FieldSystem_GetTimeOfDay(const FieldSystem *fieldSystem)

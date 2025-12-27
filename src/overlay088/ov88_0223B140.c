@@ -495,7 +495,7 @@ static void ov88_0223B710(StringTemplate *param0, Party *param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param1); v0++) {
-        StringTemplate_SetNickname(param0, v0 + param2, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param1, v0)));
+        StringTemplate_SetNickname(param0, v0 + param2, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param1, v0)));
     }
 }
 
@@ -563,13 +563,13 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         for (i = 0; i < Party_GetCurrentCount(param0->unk_08->unk_08); i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, i);
 
-            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+            species = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if (species == SPECIES_SHAYMIN) {
-                form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+                form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
 
                 if (form != SHAYMIN_FORM_LAND) {
-                    Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
+                    Pokemon_UpdateShayminForm(mon, SHAYMIN_FORM_LAND);
                 }
             }
         }
@@ -743,21 +743,21 @@ static void ov88_0223BD18(Pokemon *param0, UnkStruct_ov88_0223C8AC *param1)
 {
     int v0, v1;
 
-    v0 = Pokemon_EnterDecryptionContext(param0);
+    v0 = Pokemon_UnlockEncryption(param0);
 
-    param1->unk_04 = Pokemon_GetValue(param0, MON_DATA_POKEBALL, NULL);
-    param1->unk_00 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
-    param1->unk_06 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
-    param1->unk_05 = Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL);
-    param1->unk_08 = Pokemon_GetValue(param0, MON_DATA_GENDER, NULL);
-    param1->unk_0C = Pokemon_GetValue(param0, MON_DATA_BALL_CAPSULE_ID, NULL);
+    param1->unk_04 = Pokemon_GetData(param0, MON_DATA_POKEBALL, NULL);
+    param1->unk_00 = Pokemon_GetData(param0, MON_DATA_SPECIES, NULL);
+    param1->unk_06 = Pokemon_GetData(param0, MON_DATA_FORM, NULL);
+    param1->unk_05 = Pokemon_GetData(param0, MON_DATA_IS_EGG, NULL);
+    param1->unk_08 = Pokemon_GetData(param0, MON_DATA_GENDER, NULL);
+    param1->unk_0C = Pokemon_GetData(param0, MON_DATA_BALL_CAPSULE_ID, NULL);
 
-    v1 = Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
+    v1 = Pokemon_GetData(param0, MON_DATA_HELD_ITEM, NULL);
 
-    Pokemon_ExitDecryptionContext(param0, v0);
+    Pokemon_LockEncryption(param0, v0);
 
     if (param1->unk_00 != 0) {
-        param1->unk_0A = SpeciesData_GetFormValue(param1->unk_00, param1->unk_06, 28);
+        param1->unk_0A = Species_GetFormValue(param1->unk_00, param1->unk_06, 28);
     }
 
     if (v1 != 0) {
@@ -1253,8 +1253,8 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteT
     Pokemon_BuildSpriteTemplate(param3, param1, 2);
 
     {
-        int personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-        enum Species species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+        int personality = Pokemon_GetData(param1, MON_DATA_PERSONALITY, NULL);
+        enum Species species = Pokemon_GetData(param1, MON_DATA_SPECIES, NULL);
 
         CharacterSprite_LoadPokemonSpriteRect(param3->narcID, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, personality, FALSE, FACE_FRONT, species);
     }
@@ -1268,7 +1268,7 @@ static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3,
 {
     String *v0 = String_Init(20, HEAP_ID_26);
 
-    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRING, v0);
+    Pokemon_GetData(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRING, v0);
     Window_FillTilemap(param0, 0);
     ov88_0223EC78(param0, v0, param3, TEXT_SPEED_INSTANT, param4, 1);
     String_Free(v0);
@@ -1278,7 +1278,7 @@ static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC *param0, Party *param1, int par
 {
     if ((param0->unk_00 == 29) || (param0->unk_00 == 32)) {
         Pokemon *v0 = Party_GetPokemonBySlotIndex(param1, param2);
-        int v1 = Pokemon_GetValue(v0, MON_DATA_HAS_NICKNAME, NULL);
+        int v1 = Pokemon_GetData(v0, MON_DATA_HAS_NICKNAME, NULL);
 
         if (v1 == 0) {
             return 2;
@@ -1337,7 +1337,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
         MessageLoader_GetString(param4->unk_184, 41, v0);
         ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
 
-        v3 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_LEVEL, NULL);
+        v3 = Pokemon_GetData(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_LEVEL, NULL);
         String_FormatInt(v0, v3, 3, 0, 1);
         ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_INSTANT, 24 + 6, 0);
         String_Free(v0);
@@ -1347,7 +1347,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
 
     ov88_0223EC78(&param0[30 + param1], param4->unk_190, 7, TEXT_SPEED_INSTANT, 3, 0);
 
-    item = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
+    item = Pokemon_GetData(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
     Window_FillTilemap(&param0[32 + param1], 0);
 
     v1 = String_Init(20, HEAP_ID_26);
@@ -2060,7 +2060,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
@@ -2271,8 +2271,8 @@ static void ov88_0223DFF4(UnkStruct_02095E80 *param0)
 static int ov88_0223E110(UnkStruct_02095E80 *param0)
 {
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
-    StringTemplate_SetNickname(param0->unk_17C, 1, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2270, param0->unk_88[0])));
+    StringTemplate_SetNickname(param0->unk_17C, 1, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[1] - 6)));
 
     ov88_0223ECBC(&param0->unk_49C[23], 21, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
     param0->unk_226C = ov88_0223E20C;
@@ -2409,7 +2409,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
+    StringTemplate_SetNickname(param0->unk_17C, 0, Pokemon_GetBoxMon(Party_GetPokemonBySlotIndex(param0->unk_2274, param0->unk_88[0] - 6)));
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
@@ -2464,8 +2464,8 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, param2), v0);
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);
 
-    if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+    if (Pokemon_GetData(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetData(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetData(v1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetData(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v2 = SaveData_GetVarsFlags(param4->saveData);
 
             if (SystemVars_GetArceusEventState(v2) == 0) {
@@ -2474,11 +2474,11 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         }
     }
 
-    Pokemon_SetValue(v1, MON_DATA_GENDER, NULL);
+    Pokemon_SetData(v1, MON_DATA_GENDER, NULL);
 
-    if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
+    if (Pokemon_GetData(v1, MON_DATA_IS_EGG, NULL) == 0) {
         u8 v3 = 70;
-        Pokemon_SetValue(v1, MON_DATA_FRIENDSHIP, &v3);
+        Pokemon_SetData(v1, MON_DATA_FRIENDSHIP, &v3);
     }
 
     UpdateMonStatusAndTrainerInfo(v1, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELD2);
@@ -2509,7 +2509,7 @@ static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)
     TrainerInfo *trainerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     u16 nickname[MON_NAME_LEN + 1];
 
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    Pokemon_GetData(mon, MON_DATA_NICKNAME, nickname);
     journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonFromTrade((u16 *)TrainerInfo_Name(trainerInfo), TrainerInfo_Gender(trainerInfo), nickname, Pokemon_GetGender(mon), 26);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }
@@ -2573,7 +2573,7 @@ static int ov88_0223E914(UnkStruct_02095E80 *param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
+        if (Pokemon_GetData(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 1;
         }
     }
@@ -2583,7 +2583,7 @@ static int ov88_0223E914(UnkStruct_02095E80 *param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
+        if (Pokemon_GetData(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 2;
         }
     }

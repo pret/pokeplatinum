@@ -21,7 +21,7 @@ typedef struct FrontierPokemonDataDTO {
         u16 form : 5;
     };
     u16 item;
-    u16 moves[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
     u32 otID;
     u32 personality;
     union {

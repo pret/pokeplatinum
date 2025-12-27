@@ -1097,7 +1097,7 @@ u8 PartyMenu_LoadMember(PartyMenuApplication *application, u8 slot)
     }
 
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
-    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
     if (species == SPECIES_NONE) {
         return FALSE;
     }
@@ -1105,15 +1105,15 @@ u8 PartyMenu_LoadMember(PartyMenuApplication *application, u8 slot)
     PartyMenu_SetMemberName(application, mon, slot);
 
     application->partyMembers[slot].species = species;
-    application->partyMembers[slot].curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
-    application->partyMembers[slot].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
-    application->partyMembers[slot].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
-    application->partyMembers[slot].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
-    application->partyMembers[slot].ballSeal = Pokemon_GetValue(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
-    application->partyMembers[slot].isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
-    application->partyMembers[slot].form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    application->partyMembers[slot].curHP = Pokemon_GetData(mon, MON_DATA_HP, NULL);
+    application->partyMembers[slot].maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
+    application->partyMembers[slot].level = Pokemon_GetData(mon, MON_DATA_LEVEL, NULL);
+    application->partyMembers[slot].heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
+    application->partyMembers[slot].ballSeal = Pokemon_GetData(mon, MON_DATA_BALL_CAPSULE_ID, NULL);
+    application->partyMembers[slot].isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
+    application->partyMembers[slot].form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE) {
+    if (Pokemon_GetData(mon, MON_DATA_NO_PRINT_GENDER, NULL) == TRUE) {
         application->partyMembers[slot].hideGenderMarker = FALSE;
     } else {
         application->partyMembers[slot].hideGenderMarker = TRUE;
@@ -1142,8 +1142,8 @@ static void CheckContestEligibility(PartyMenuApplication *application, Pokemon *
     }
 
     countRibbons = CountEarnedRibbonsForContestType(mon, application->partyMenu->contestType);
-    for (countMoves = 0; countMoves < LEARNED_MOVES_MAX; countMoves++) {
-        if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + countMoves, NULL) == MOVE_NONE) {
+    for (countMoves = 0; countMoves < MAX_MON_MOVES; countMoves++) {
+        if (Pokemon_GetData(mon, MON_DATA_MOVE1 + countMoves, NULL) == MOVE_NONE) {
             break;
         }
     }
@@ -1161,34 +1161,34 @@ static u32 CountEarnedRibbonsForContestType(Pokemon *mon, u8 contestType)
 
     switch (contestType) {
     case CONTEST_TYPE_COOL:
-        count = Pokemon_GetValue(mon, MON_DATA_SUPER_COOL_RIBBON, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_COOL_RIBBON_GREAT, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_COOL_RIBBON_ULTRA, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_COOL_RIBBON_MASTER, NULL);
+        count = Pokemon_GetData(mon, MON_DATA_SUPER_COOL_RIBBON, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_COOL_RIBBON_GREAT, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_COOL_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_COOL_RIBBON_MASTER, NULL);
         break;
     case CONTEST_TYPE_BEAUTY:
-        count = Pokemon_GetValue(mon, MON_DATA_SUPER_BEAUTY_RIBBON, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_BEAUTY_RIBBON_GREAT, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_BEAUTY_RIBBON_ULTRA, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_BEAUTY_RIBBON_MASTER, NULL);
+        count = Pokemon_GetData(mon, MON_DATA_SUPER_BEAUTY_RIBBON, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_BEAUTY_RIBBON_GREAT, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_BEAUTY_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_BEAUTY_RIBBON_MASTER, NULL);
         break;
     case CONTEST_TYPE_CUTE:
-        count = Pokemon_GetValue(mon, MON_DATA_SUPER_CUTE_RIBBON, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_CUTE_RIBBON_GREAT, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_CUTE_RIBBON_ULTRA, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_CUTE_RIBBON_MASTER, NULL);
+        count = Pokemon_GetData(mon, MON_DATA_SUPER_CUTE_RIBBON, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_CUTE_RIBBON_GREAT, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_CUTE_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_CUTE_RIBBON_MASTER, NULL);
         break;
     case CONTEST_TYPE_SMART:
-        count = Pokemon_GetValue(mon, MON_DATA_SUPER_SMART_RIBBON, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_SMART_RIBBON_GREAT, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_SMART_RIBBON_ULTRA, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_SMART_RIBBON_MASTER, NULL);
+        count = Pokemon_GetData(mon, MON_DATA_SUPER_SMART_RIBBON, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_SMART_RIBBON_GREAT, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_SMART_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_SMART_RIBBON_MASTER, NULL);
         break;
     case CONTEST_TYPE_TOUGH:
-        count = Pokemon_GetValue(mon, MON_DATA_SUPER_TOUGH_RIBBON, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_TOUGH_RIBBON_GREAT, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_TOUGH_RIBBON_ULTRA, NULL);
-        count += Pokemon_GetValue(mon, MON_DATA_SUPER_TOUGH_RIBBON_MASTER, NULL);
+        count = Pokemon_GetData(mon, MON_DATA_SUPER_TOUGH_RIBBON, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_TOUGH_RIBBON_GREAT, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_TOUGH_RIBBON_ULTRA, NULL);
+        count += Pokemon_GetData(mon, MON_DATA_SUPER_TOUGH_RIBBON_MASTER, NULL);
         break;
     }
 
@@ -1428,7 +1428,7 @@ void PartyMenu_UpdateSlotPalette(PartyMenuApplication *application, u8 slot)
             palette = 0;
         }
 
-        if (Pokemon_GetValue(mon, MON_DATA_HP, 0) == 0) {
+        if (Pokemon_GetData(mon, MON_DATA_HP, 0) == 0) {
             palette += 2;
         } else if (sub_0207F984(application, slot) == 1) {
             palette += 1;
@@ -1803,7 +1803,7 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
     if (FieldSystem_IsInBattleTowerSalon(application->partyMenu->fieldSystem) == FALSE) {
         if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
             for (i = 0; i < 4; i++) {
-                move = (u16)Pokemon_GetValue(pokemon, MON_DATA_MOVE1 + i, NULL);
+                move = (u16)Pokemon_GetData(pokemon, MON_DATA_MOVE1 + i, NULL);
 
                 if (move == 0) {
                     break;
@@ -1972,7 +1972,7 @@ u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
     }
 
     if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
-        && Pokemon_IsOnBattleFrontierBanlist(application->partyMembers[partySlot].species) == TRUE) {
+        && Species_IsBattleFacilityBanned(application->partyMembers[partySlot].species) == TRUE) {
         return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
@@ -1992,7 +1992,7 @@ u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
 u8 PartyMenu_CheckBattleHallEligibility(PartyMenuApplication *application, u8 slot)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL
-        && Pokemon_IsOnBattleFrontierBanlist(application->partyMembers[slot].species) == TRUE) {
+        && Species_IsBattleFacilityBanned(application->partyMembers[slot].species) == TRUE) {
         return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
@@ -2012,7 +2012,7 @@ u8 PartyMenu_CheckBattleHallEligibility(PartyMenuApplication *application, u8 sl
 u8 PartyMenu_CheckBattleCastleEligibility(PartyMenuApplication *application, u8 partySlot)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
-        && Pokemon_IsOnBattleFrontierBanlist(application->partyMembers[partySlot].species) == TRUE) {
+        && Species_IsBattleFacilityBanned(application->partyMembers[partySlot].species) == TRUE) {
         return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
@@ -2512,7 +2512,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
             mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
             v1 = MessageLoader_GetNewString(application->messageLoader, 64);
 
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(mon));
             StringTemplate_SetNumber(application->template, 1, application->monStats[2], 3, 0, 1);
             StringTemplate_Format(application->template, application->tmpString, v1);
             String_Free(v1);
@@ -2575,7 +2575,7 @@ static BOOL UpdatePokemonStatus(PartyMenuApplication *application, u8 slot, s8 p
 
         mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
         v1 = application->partyMembers[slot].curHP;
-        Pokemon_SetValue(mon, MON_DATA_HP, &v1);
+        Pokemon_SetData(mon, MON_DATA_HP, &v1);
         return 1;
     }
 
@@ -2655,7 +2655,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *application)
         if (Item_Get(v0, 26) != 0) {
             Pokemon *v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
 
-            application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, application->partyMenu->usedItemID, &application->partyMenu->evoType);
+            application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTarget(NULL, v1, EVO_CONTEXT_ITEM_USE, application->partyMenu->usedItemID, &application->partyMenu->evoType);
             application->partyMenu->menuSelectionResult = 8;
             Heap_Free(v0);
             return 32;
@@ -2700,9 +2700,9 @@ static int ProcessItemApplication(PartyMenuApplication *application)
     fieldSystem = application->partyMenu->fieldSystem;
 
     if (application->partyMenu->usedItemID == 112) {
-        if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
+        if (Pokemon_GetData(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00203, application->tmpFormat);
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
             StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMenu->usedItemID);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = 11;
@@ -2727,13 +2727,13 @@ static int ProcessItemApplication(PartyMenuApplication *application)
             v2 = UpdatePokemonWithItem(application, v0, &v3);
 
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
             StringTemplate_SetItemName(application->template, 1, application->partyMenu->usedItemID);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             break;
         case 1:
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00078, application->tmpFormat);
-            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+            StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
             StringTemplate_SetItemNameWithArticle(application->template, 1, application->partyMembers[application->currPartySlot].heldItem);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
             v2 = 9;
@@ -2758,11 +2758,11 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *mon
     FieldSystem *fieldSystem = application->partyMenu->fieldSystem;
 
     Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
-    Pokemon_SetArceusForm(mon);
+    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
+    Pokemon_UpdateArceusForm(mon);
 
     if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
-        *param2 = Pokemon_SetGiratinaFormByHeldItem(mon);
+        *param2 = Pokemon_UpdateGiratinaForm(mon);
     } else {
         *param2 = -1;
     }
@@ -2780,9 +2780,9 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *mon
 static void SwapPokemonItem(PartyMenuApplication *application, Pokemon *mon, u32 param2, u32 param3)
 {
     Bag_TryAddItem(application->partyMenu->bag, (u16)param2, 1, HEAP_ID_PARTY_MENU);
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &param3);
-    Pokemon_SetArceusForm(mon);
-    Pokemon_SetGiratinaFormByHeldItem(mon);
+    Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &param3);
+    Pokemon_UpdateArceusForm(mon);
+    Pokemon_UpdateGiratinaForm(mon);
     application->partyMembers[application->currPartySlot].heldItem = (u16)param3;
     PartyMenu_DrawMemberHeldItem(application, application->currPartySlot, application->partyMembers[application->currPartySlot].heldItem);
 }
@@ -2918,7 +2918,7 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
 
     if (item == ITEM_NONE) {
         MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00118, application->tmpFormat);
-        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
+        StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxMon(v0));
         StringTemplate_SetItemName(application->template, 1, application->partyMenu->usedItemID);
         StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
     } else {

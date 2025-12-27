@@ -315,7 +315,7 @@ BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
 
         for (v8 = 0; v8 < 3; v8++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_24[v8]);
-            Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v3->unk_36A[v8]);
+            Pokemon_SetData(v1, MON_DATA_HELD_ITEM, &v3->unk_36A[v8]);
         }
         break;
     case 19:

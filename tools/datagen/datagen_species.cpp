@@ -72,7 +72,7 @@
 // manual alignment, the NARC packing routine would instead pad the virtual files
 // with `FF FF`, which obviously breaks matching.
 struct SpeciesEvolutionList {
-    ALIGN_4 SpeciesEvolution entries[MAX_EVOLUTIONS];
+    ALIGN_4 Evolution entries[MAX_MON_EVOLUTIONS];
 };
 
 // Entries in `wotbl.narc` are dynamically-sized with a terminating sentinel value
@@ -178,9 +178,9 @@ static SpeciesEvolutionList ParseEvolutions(rapidjson::Document &root)
         int speciesIdx = 2;
         switch (method) {
         case EVO_NONE:
-        case EVO_LEVEL_HAPPINESS:
-        case EVO_LEVEL_HAPPINESS_DAY:
-        case EVO_LEVEL_HAPPINESS_NIGHT:
+        case EVO_LEVEL_FRIENDSHIP:
+        case EVO_LEVEL_FRIENDSHIP_DAY:
+        case EVO_LEVEL_FRIENDSHIP_NIGHT:
         case EVO_TRADE:
         case EVO_LEVEL_MAGNETIC_FIELD:
         case EVO_LEVEL_MOSS_ROCK:
@@ -203,12 +203,12 @@ static SpeciesEvolutionList ParseEvolutions(rapidjson::Document &root)
             param = evoEntry[1].GetUint();
             break;
 
-        case EVO_TRADE_WITH_HELD_ITEM:
+        case EVO_TRADE_HELD_ITEM:
         case EVO_USE_ITEM:
         case EVO_USE_ITEM_MALE:
         case EVO_USE_ITEM_FEMALE:
-        case EVO_LEVEL_WITH_HELD_ITEM_DAY:
-        case EVO_LEVEL_WITH_HELD_ITEM_NIGHT:
+        case EVO_LEVEL_HELD_ITEM_DAY:
+        case EVO_LEVEL_HELD_ITEM_NIGHT:
             param = LookupConst(evoEntry[1].GetString(), Item);
             break;
 
@@ -222,10 +222,10 @@ static SpeciesEvolutionList ParseEvolutions(rapidjson::Document &root)
         }
 
         u16 target = LookupConst(evoEntry[speciesIdx].GetString(), Species);
-        evos.entries[i++] = SpeciesEvolution {
+        evos.entries[i++] = Evolution {
             .method = static_cast<u16>(method),
             .param = param,
-            .targetSpecies = target,
+            .target = target,
         };
     }
 
@@ -471,7 +471,7 @@ static void PackHeights(vfs_pack_ctx *vfs, rapidjson::Document &root, u8 genderR
         *frontMale = frontOffsets["male"].GetUint();
     }
 
-    if (genderRatio == GENDER_RATIO_MALE_ONLY || genderRatio == GENDER_RATIO_NO_GENDER) {
+    if (genderRatio == GENDER_RATIO_MALE_ONLY || genderRatio == GENDER_RATIO_UNKNOWN) {
         backFemale = static_cast<u8 *>(malloc(0));
         frontFemale = static_cast<u8 *>(malloc(0));
         femaleSize = 0;

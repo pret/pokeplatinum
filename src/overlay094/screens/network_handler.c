@@ -773,7 +773,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
                 GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
-                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
+                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxMon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00002;
                 appState->currentScreenInstruction = 34;
@@ -793,7 +793,7 @@ static int GTSApplication_NetworkHandler_GetListingStatusResponse(GTSApplication
                 Pokemon *tempPokemon = Pokemon_New(HEAP_ID_62);
 
                 GlobalTrade_CopyStoredPokemon(appState->playerData->globalTrade, tempPokemon);
-                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxPokemon(tempPokemon));
+                StringTemplate_SetNickname(appState->stringTemplate, 0, Pokemon_GetBoxMon(tempPokemon));
 
                 appState->depositReturnError = pl_msg_00000671_00003;
                 appState->currentScreenInstruction = 34;
@@ -1220,7 +1220,7 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
     if (param0->selectedBoxId != MAX_PC_BOXES) {
         Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
+        BoxPokemon_CopyToPokemon(PCBoxes_GetBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112), v0);
         sub_0202DA7C(param0->playerData->globalTrade, v0, param0->selectedBoxId);
         PCBoxes_InitBoxMonAt(param0->playerData->pcBoxes, param0->selectedBoxId, param0->unk_112);
         Heap_Free(v0);
@@ -1244,7 +1244,7 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
 
 static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicationState *appState, Pokemon *pokemon, int boxIndex, int exchangedFromRemote)
 {
-    int unused = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
+    int unused = Pokemon_GetData(pokemon, MON_DATA_HELD_ITEM, NULL);
 
     SaveData_UpdateCatchRecords(appState->playerData->saveData, pokemon);
     boxIndex = MAX_PC_BOXES;
@@ -1257,8 +1257,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
     if (exchangedFromRemote) {
         u8 friendship = BASE_FRIENDSHIP_VALUE;
 
-        if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-            if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+        if (Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+            if (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetData(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
                 VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
                 if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1267,8 +1267,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
             }
         }
 
-        Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
-        Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
+        Pokemon_SetData(pokemon, MON_DATA_FRIENDSHIP, &friendship);
+        Pokemon_SetData(pokemon, MON_DATA_GENDER, NULL);
 
         GTS_SetTradedTimestamp(appState->playerData->globalTrade, GTS_TIMESTAMPS_TRADE_BY_DEPOSITING);
     }
@@ -1283,7 +1283,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
         int boxPosition = 0;
 
         PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIndex, &boxPosition);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(pokemon));
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxMon(pokemon));
 
         appState->tradedPokemonLocation.boxIndex = boxIndex;
         appState->tradedPokemonLocation.index = boxPosition;
@@ -1302,8 +1302,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         boxIndex = 0;
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+    if (Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetData(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetData(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
             VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
             if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1313,9 +1313,9 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
     }
 
     u8 friendship = BASE_FRIENDSHIP_VALUE;
-    Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
+    Pokemon_SetData(pokemon, MON_DATA_FRIENDSHIP, &friendship);
 
-    Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
+    Pokemon_SetData(pokemon, MON_DATA_GENDER, NULL);
 
     if (boxIndex == MAX_PC_BOXES) {
         Party_AddPokemon(appState->playerData->party, pokemon);
@@ -1327,7 +1327,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         int boxPosition = 0;
 
         PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIndex, &boxPosition);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(pokemon));
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxMon(pokemon));
 
         appState->tradedPokemonLocation.boxIndex = boxIndex;
         appState->tradedPokemonLocation.index = boxPosition;
@@ -1364,7 +1364,7 @@ static void GTS_LogTradeInJournal(JournalEntry *journalEntry, GTSPokemonListing 
     u16 nickname[MON_NAME_LEN + 1];
     Pokemon *mon = (Pokemon *)listing->pokemon.bytes;
 
-    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    Pokemon_GetData(mon, MON_DATA_NICKNAME, nickname);
     journalEntryOnlineEvent = JournalEntry_CreateEventGotPokemonGTS(listing->unk_10C, listing->unk_F6, nickname, Pokemon_GetGender(mon), 62);
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
 }

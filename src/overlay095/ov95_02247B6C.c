@@ -345,7 +345,7 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
             {
                 const BoxPokemon *v6 = TradeSequence_GetSendingPokemon(param0->unk_00);
 
-                if (BoxPokemon_GetValue((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
+                if (BoxPokemon_GetData((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
                     u8 delay;
 
                     PokemonSprite_InitAnim(param0->unk_10, 1);

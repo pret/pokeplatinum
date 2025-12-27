@@ -4763,9 +4763,9 @@
     .short \width
     .endm
 
-    .macro SetPartyGiratinaForm form
+    .macro UpdatePartyGiratinaForm forceOrigin
     .short 808
-    .short \form
+    .short \forceOrigin
     .endm
 
     .macro ScrCmd_329 arg0, arg1, arg2, arg3

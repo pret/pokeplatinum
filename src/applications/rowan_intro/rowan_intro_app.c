@@ -1558,7 +1558,7 @@ static void RowanIntro_LoadBunearySprite(RowanIntro *manager)
     int mainPalette = 8;
     int subPalette = 10;
 
-    BuildPokemonSpriteTemplate(
+    Species_BuildSpriteTemplate(
         &spriteTemplate,
         SPECIES_BUNEARY,
         GENDER_MALE,

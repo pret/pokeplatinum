@@ -89,8 +89,8 @@ void Daycare_SetStepCounter(Daycare *daycare, int steps)
 
 BOOL Daycare_AreParentLanguagesDifferent(Daycare *daycare)
 {
-    int language1 = BoxPokemon_GetValue(&daycare->mons[0].boxMon, MON_DATA_LANGUAGE, NULL);
-    int language2 = BoxPokemon_GetValue(&daycare->mons[1].boxMon, MON_DATA_LANGUAGE, NULL);
+    int language1 = BoxPokemon_GetData(&daycare->mons[0].boxMon, MON_DATA_LANGUAGE, NULL);
+    int language2 = BoxPokemon_GetData(&daycare->mons[1].boxMon, MON_DATA_LANGUAGE, NULL);
 
     if (language1 != language2) {
         return TRUE;

@@ -624,8 +624,8 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     int type1, type2;
     int v6 = PokedexSort_DefaultForm(param2->unk_04, species);
 
-    type1 = SpeciesData_GetFormValue(species, v6, SPECIES_DATA_TYPE_1);
-    type2 = SpeciesData_GetFormValue(species, v6, SPECIES_DATA_TYPE_2);
+    type1 = Species_GetFormValue(species, v6, SPECIES_DATA_TYPE_1);
+    type2 = Species_GetFormValue(species, v6, SPECIES_DATA_TYPE_2);
     type1 = PokedexGraphics_GetAnimIDfromType(type1);
     type2 = PokedexGraphics_GetAnimIDfromType(type2);
 

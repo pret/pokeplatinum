@@ -261,7 +261,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
     if (!SpecialEncounter_RepelStepsEmpty(SaveData_GetSpecialEncounters(fieldSystem->saveData))) {
         Pokemon *firstLiveMon = Party_FindFirstEligibleBattler(party);
         encounterFieldParams.repelActive = TRUE;
-        encounterFieldParams.firstBattlerLevel = Pokemon_GetValue(firstLiveMon, MON_DATA_LEVEL, NULL);
+        encounterFieldParams.firstBattlerLevel = Pokemon_GetData(firstLiveMon, MON_DATA_LEVEL, NULL);
     }
 
     encounterRate = ModifyEncounterRateWithFieldParams(FALSE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
@@ -590,7 +590,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         Pokemon *v15 = Party_FindFirstEligibleBattler(party);
 
         encounterFieldParams.repelActive = TRUE;
-        encounterFieldParams.firstBattlerLevel = Pokemon_GetValue(v15, MON_DATA_LEVEL, NULL);
+        encounterFieldParams.firstBattlerLevel = Pokemon_GetData(v15, MON_DATA_LEVEL, NULL);
     }
 
     encounterRate = ModifyEncounterRateWithFieldParams(FALSE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
@@ -920,7 +920,7 @@ static u8 GetRodEncounterSlot(const int fishingRodType)
 
 static void ModifyEncounterRateWithHeldItem(Pokemon *mon, u8 *encounterRate)
 {
-    u16 heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+    u16 heldItem = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
 
     if (heldItem == ITEM_CLEANSE_TAG || heldItem == ITEM_PURE_INCENSE) {
         *encounterRate = (*encounterRate * 2) / 3;
@@ -942,7 +942,7 @@ static void ModifyEncounterRateWithFlute(FieldSystem *fieldSystem, u8 *encounter
 static u8 GetNatureForWildMon(Pokemon *firstMon, const WildEncounters_FieldParams *encounterFieldParams)
 {
     if (!encounterFieldParams->isFirstMonEgg && encounterFieldParams->firstMonAbility == ABILITY_SYNCHRONIZE && LCRNG_RandMod(2) == 0) {
-        u32 leadPersonality = Pokemon_GetValue(firstMon, MON_DATA_PERSONALITY, NULL);
+        u32 leadPersonality = Pokemon_GetData(firstMon, MON_DATA_PERSONALITY, NULL);
         return (u8)(leadPersonality % 25);
     }
 
@@ -992,16 +992,16 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
 
     if (!encounterFieldParams->isFirstMonEgg) {
         if (encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM) {
-            u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
+            u32 speciesGenderRatio = Species_GetValue(species, SPECIES_DATA_GENDER_RATIO);
 
             switch (speciesGenderRatio) {
             case GENDER_RATIO_MALE_ONLY:
             case GENDER_RATIO_FEMALE_ONLY:
-            case GENDER_RATIO_NO_GENDER:
+            case GENDER_RATIO_UNKNOWN:
                 break;
             default:
                 if (LCRNG_RandMod(3) > 0) {
-                    firstMonGender = Pokemon_GetValue(firstPartyMon, MON_DATA_GENDER, NULL);
+                    firstMonGender = Pokemon_GetData(firstPartyMon, MON_DATA_GENDER, NULL);
                     abilityInEffect = TRUE;
                 }
             }
@@ -1013,32 +1013,32 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
         }
     }
 
-    u32 newEncounterPersonality = Pokemon_FindShinyPersonality(param3);
+    u32 newEncounterPersonality = Personality_GenerateShiny(param3);
 
     if (abilityInEffect) {
         do {
             if (encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM) {
-                u8 newEncounterGender = Pokemon_GetGenderOf(species, newEncounterPersonality);
+                u8 newEncounterGender = Species_GetGenderFromPersonality(species, newEncounterPersonality);
                 GF_ASSERT(newEncounterGender != GENDER_NONE);
 
                 if (newEncounterGender != firstMonGender) {
                     break;
                 } else {
-                    newEncounterPersonality = Pokemon_FindShinyPersonality(param3);
+                    newEncounterPersonality = Personality_GenerateShiny(param3);
                 }
             } else if (encounterFieldParams->firstMonAbility == ABILITY_SYNCHRONIZE) {
-                u8 newEncounterNature = Pokemon_GetNatureOf(newEncounterPersonality);
+                u8 newEncounterNature = Personality_GetNature(newEncounterPersonality);
 
                 if (newEncounterNature == firstMonNature) {
                     break;
                 } else {
-                    newEncounterPersonality = Pokemon_FindShinyPersonality(param3);
+                    newEncounterPersonality = Personality_GenerateShiny(param3);
                 }
             }
         } while (TRUE);
     }
 
-    Pokemon_InitWith(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
+    Pokemon_InitWithParams(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partySlot, encounterFieldParams, newEncounter, battleParams));
     Heap_Free(newEncounter);
@@ -1050,18 +1050,18 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
     Pokemon_Init(newEncounter);
     BOOL hasRandomGender = TRUE;
 
-    u32 speciesGenderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
+    u32 speciesGenderRatio = Species_GetValue(species, SPECIES_DATA_GENDER_RATIO);
 
     switch (speciesGenderRatio) {
     case GENDER_RATIO_MALE_ONLY:
     case GENDER_RATIO_FEMALE_ONLY:
-    case GENDER_RATIO_NO_GENDER:
+    case GENDER_RATIO_UNKNOWN:
         hasRandomGender = FALSE;
     }
 
     // 2/3 chance for Cute Charm to force the encounter to be the opposite gender of the lead, if possible.
     if (hasRandomGender && !encounterFieldParams->isFirstMonEgg && encounterFieldParams->firstMonAbility == ABILITY_CUTE_CHARM && LCRNG_RandMod(3) > 0) {
-        u8 gender = Pokemon_GetValue(firstPartyMon, MON_DATA_GENDER, NULL);
+        u8 gender = Pokemon_GetData(firstPartyMon, MON_DATA_GENDER, NULL);
 
         if (gender == GENDER_FEMALE) {
             gender = GENDER_MALE;
@@ -1071,16 +1071,16 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
             GF_ASSERT(FALSE);
         }
 
-        sub_02074088(newEncounter, species, level, 32, gender, GetNatureForWildMon(firstPartyMon, encounterFieldParams), 0);
-        Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
+        Pokemon_InitWithGenderNatureLetter(newEncounter, species, level, 32, gender, GetNatureForWildMon(firstPartyMon, encounterFieldParams), 0);
+        Pokemon_SetData(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
         GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
         Heap_Free(newEncounter);
         return;
     }
 
-    sub_02074044(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
-    Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
+    Pokemon_InitWithNature(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
+    Pokemon_SetData(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
     Heap_Free(newEncounter);
@@ -1297,8 +1297,8 @@ static BOOL ForceMatchingTypeEncounterSlot(const EncounterSlot *encounterTable, 
     u8 numMonsOfType = 0;
 
     for (i = 0; i < maxEncounters; i++) {
-        u8 type1 = SpeciesData_GetSpeciesValue(encounterTable[i].species, SPECIES_DATA_TYPE_1);
-        u8 type2 = SpeciesData_GetSpeciesValue(encounterTable[i].species, SPECIES_DATA_TYPE_2);
+        u8 type1 = Species_GetValue(encounterTable[i].species, SPECIES_DATA_TYPE_1);
+        u8 type2 = Species_GetValue(encounterTable[i].species, SPECIES_DATA_TYPE_2);
 
         if (type1 == type || type2 == type) {
             typeMatchingSlots[numMonsOfType++] = i;
@@ -1363,7 +1363,7 @@ static BOOL FirstMonAbilityPreventsEncounter(const WildEncounters_FieldParams *e
     }
 
     if (!encounterFieldParams->isFirstMonEgg && (encounterFieldParams->firstMonAbility == ABILITY_KEEN_EYE || encounterFieldParams->firstMonAbility == ABILITY_INTIMIDATE)) {
-        u8 leadLevel = Pokemon_GetValue(firstMon, MON_DATA_LEVEL, NULL);
+        u8 leadLevel = Pokemon_GetData(firstMon, MON_DATA_LEVEL, NULL);
 
         if (leadLevel <= 5) {
             return FALSE;
@@ -1410,9 +1410,9 @@ static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBatt
     u16 roamerCurrentHP = Roamer_GetData(roamer, ROAMER_DATA_CURRENT_HP);
 
     Pokemon_InitAndCalcStats(mon, roamerSpecies, roamerLevel, roamerCombinedIVs, roamerPersonality);
-    Pokemon_SetValue(mon, MON_DATA_OT_ID, &trainerID);
-    Pokemon_SetValue(mon, MON_DATA_STATUS, &roamerStatusCondition);
-    Pokemon_SetValue(mon, MON_DATA_HP, &roamerCurrentHP);
+    Pokemon_SetData(mon, MON_DATA_OT_ID, &trainerID);
+    Pokemon_SetData(mon, MON_DATA_STATUS, &roamerStatusCondition);
+    Pokemon_SetData(mon, MON_DATA_HP, &roamerCurrentHP);
 
     GF_ASSERT(Party_AddPokemon(battle->parties[1], mon));
     Heap_Free(mon);
@@ -1459,12 +1459,12 @@ static BOOL AddWildMonToParty(const int partySlot, const WildEncounters_FieldPar
         hasCompoundEyes = 1;
     }
 
-    Pokemon_GiveHeldItem(mon, battleParams->battleType, hasCompoundEyes);
+    Pokemon_GiveWildHeldItem(mon, battleParams->battleType, hasCompoundEyes);
 
     u8 form;
 
     BOOL setForm = FALSE;
-    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
 
     if (species == SPECIES_SHELLOS) {
         setForm = TRUE;
@@ -1490,7 +1490,7 @@ static BOOL AddWildMonToParty(const int partySlot, const WildEncounters_FieldPar
     }
 
     if (setForm) {
-        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_SetData(mon, MON_DATA_FORM, &form);
     }
 
     return Party_AddPokemon(battleParams->parties[partySlot], mon);
@@ -1519,9 +1519,9 @@ static u8 TryFindHigherLevelSlot(const EncounterSlot *encounterTable, const Wild
 
 static void InitEncounterFieldParams(FieldSystem *fieldSystem, Pokemon *firstPartyMon, WildEncounters *encounterData, WildEncounters_FieldParams *encounterFieldParams)
 {
-    if (Pokemon_GetValue(firstPartyMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+    if (Pokemon_GetData(firstPartyMon, MON_DATA_IS_EGG, NULL) == FALSE) {
         encounterFieldParams->isFirstMonEgg = FALSE;
-        encounterFieldParams->firstMonAbility = Pokemon_GetValue(firstPartyMon, MON_DATA_ABILITY, NULL);
+        encounterFieldParams->firstMonAbility = Pokemon_GetData(firstPartyMon, MON_DATA_ABILITY, NULL);
     } else {
         encounterFieldParams->isFirstMonEgg = TRUE;
         encounterFieldParams->firstMonAbility = ABILITY_BAD_DREAMS; // ABILITY_BAD_DREAMS seemingly standing in for ABILITY_NONE. Bad Dreams doesn't have a field effect anyway.

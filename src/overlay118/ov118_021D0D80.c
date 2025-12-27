@@ -73,16 +73,16 @@ int ov118_021D0DBC(PartyMenuApplication *param0)
 
     switch (v0->unk_00) {
     case 0: {
-        v0->unk_0C = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+        v0->unk_0C = Pokemon_GetData(v1, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaFormByHeldItem(v1);
+            Pokemon_UpdateGiratinaForm(v1);
             v0->unk_08 = 65;
             v0->unk_10 = 0;
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(v1, SHAYMIN_FORM_SKY);
+            Pokemon_UpdateShayminForm(v1, SHAYMIN_FORM_SKY);
             v0->unk_08 = 35;
             v0->unk_10 = 1;
             break;
@@ -140,7 +140,7 @@ int ov118_021D0DBC(PartyMenuApplication *param0)
 
         v2 = MessageLoader_GetNewString(param0->messageLoader, 202);
 
-        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxPokemon(v1));
+        StringTemplate_SetNickname(param0->template, 0, Pokemon_GetBoxMon(v1));
         StringTemplate_Format(param0->template, param0->tmpString, v2);
         String_Free(v2);
         PartyMenu_PrintLongMessage(param0, PRINT_MESSAGE_PRELOADED, TRUE);

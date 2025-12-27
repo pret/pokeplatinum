@@ -423,7 +423,7 @@ BOOL ScrCmd_BufferPartyMoveName(ScriptContext *ctx)
     u16 partySlot = ScriptContext_GetVar(ctx);
     u16 moveSlot = ScriptContext_GetVar(ctx);
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), partySlot);
-    u16 move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
+    u16 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
     StringTemplate_SetMoveName(*strTemplate, templateArg, move);
     return FALSE;
