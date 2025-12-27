@@ -423,7 +423,7 @@ static void PCHallOfFame_PrintCurrentTextState(PCHallOfFameApp *pcHallOfFameApp)
     case PC_HALL_OF_FAME_TEXT_MOVES: {
         int i;
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (pcHallOfFameMon->moves[i]) {
                 MessageLoader_GetString(pcHallOfFameApp->msgLoaderMoveNames, pcHallOfFameMon->moves[i], pcHallOfFameApp->unk_1F4);
                 Text_AddPrinterWithParams(window, FONT_SYSTEM, pcHallOfFameApp->unk_1F4, (i & 1) * 96, (i / 2) * 16, TEXT_SPEED_NO_TRANSFER, NULL);

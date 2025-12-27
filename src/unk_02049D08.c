@@ -997,7 +997,7 @@ static void sub_0204ACFC(FrontierPokemonDataDTO *param0, Pokemon *mon)
     param0->form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     param0->item = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         param0->moves[v0] = Pokemon_GetData(mon, MON_DATA_MOVE1 + v0, NULL);
         param0->combinedPPUps |= ((Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + v0, NULL)) << (v0 * 2));
     }

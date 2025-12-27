@@ -327,7 +327,7 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
         adrs[i] = 0;
     }
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (initScore & 1) {
             AI_CONTEXT.moveScore[i] = 100;
         } else {
@@ -339,7 +339,7 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
 
     // pick damage rolls for moves and score invalid moves to 0
     invalidMoves = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (invalidMoves & FlagIndex(i)) {
             AI_CONTEXT.moveScore[i] = 0;
         }
@@ -425,7 +425,7 @@ static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCt
         maxScoreMoves[0] = AI_CONTEXT.moveScore[0];
         maxScoreMoveSlots[0] = AI_ENEMY_ATTACK_1;
 
-        for (i = 1; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 1; i < MAX_MON_MOVES; i++) {
             if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]) { // Attacker has a move in this slot
                 // Append to the list of max-score moves if equal score to the current max
                 if (maxScoreMoves[0] == AI_CONTEXT.moveScore[i]) {
@@ -514,7 +514,7 @@ static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCt
             tmpMaxScoreMoveSlots[0] = 0;
             numMaxScoreMoves = 1;
 
-            for (i = 1; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 1; i < MAX_MON_MOVES; i++) {
                 if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]) {
                     // Same score as max: append to list of possible max-score moves
                     if (tmpMaxScores[0] == AI_CONTEXT.moveScore[i]) {
@@ -614,7 +614,7 @@ static void TrainerAI_EvalMoves(BattleSystem *battleSys, BattleContext *battleCt
             if (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_DONE) {
                 // If we haven't gone through all the moves, loop back to INIT state and evaluate the next move
                 AI_CONTEXT.moveSlot++;
-                if (AI_CONTEXT.moveSlot < LEARNED_MOVES_MAX
+                if (AI_CONTEXT.moveSlot < MAX_MON_MOVES
                     && (AI_CONTEXT.stateFlags & AI_STATUS_FLAG_BREAK) == FALSE) {
                     AI_CONTEXT.evalStep = AI_EVAL_STEP_INIT;
                 } else {
@@ -1005,14 +1005,14 @@ static void AICmd_IfAttackerHasDamagingMoves(BattleSystem *battleSys, BattleCont
     int jump = AIScript_Read(battleCtx);
 
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i] != MOVE_NONE
             && MOVE_DATA(battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]).power) {
             break;
         }
     }
 
-    if (i < LEARNED_MOVES_MAX) {
+    if (i < MAX_MON_MOVES) {
         AIScript_Iter(battleCtx, jump);
     }
 }
@@ -1023,14 +1023,14 @@ static void AICmd_IfAttackerHasNoDamagingMoves(BattleSystem *battleSys, BattleCo
     int jump = AIScript_Read(battleCtx);
 
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (battleCtx->battleMons[AI_CONTEXT.attacker].moves[i] != MOVE_NONE
             && MOVE_DATA(battleCtx->battleMons[AI_CONTEXT.attacker].moves[i]).power) {
             break;
         }
     }
 
-    if (i == LEARNED_MOVES_MAX) {
+    if (i == MAX_MON_MOVES) {
         AIScript_Iter(battleCtx, jump);
     }
 }
@@ -1119,7 +1119,7 @@ static void AICmd_LoadMovePower(BattleSystem *battleSys, BattleContext *battleCt
 static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i = 0, riskyIdx, altPowerIdx;
-    s32 moveDamage[LEARNED_MOVES_MAX];
+    s32 moveDamage[MAX_MON_MOVES];
     BOOL varyDamage;
     u8 ivs[STAT_MAX];
 
@@ -1156,13 +1156,13 @@ static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *ba
             battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
             varyDamage);
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (moveDamage[i] > moveDamage[AI_CONTEXT.moveSlot]) {
                 break;
             }
         }
 
-        if (i == LEARNED_MOVES_MAX) {
+        if (i == MAX_MON_MOVES) {
             AI_CONTEXT.calcTemp = AI_MOVE_IS_HIGHEST_DAMAGE;
         } else {
             AI_CONTEXT.calcTemp = AI_NOT_HIGHEST_DAMAGE;
@@ -1378,7 +1378,7 @@ static void AICmd_CalcMaxEffectiveness(BattleSystem *battleSys, BattleContext *b
 
     AI_CONTEXT.calcTemp = TYPE_MULTI_IMMUNE;
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         u32 damage = TYPE_MULTI_BASE_DAMAGE;
         u32 effectiveness = 0;
         u16 move = battleCtx->battleMons[AI_CONTEXT.attacker].moves[i];
@@ -1743,13 +1743,13 @@ static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx)
 
     switch (inBattler) {
     case AI_BATTLER_ATTACKER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleCtx->battleMons[battler].moves[i] == move) {
                 break;
             }
         }
 
-        if (i < LEARNED_MOVES_MAX) {
+        if (i < MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
@@ -1759,25 +1759,25 @@ static void AICmd_IfMoveKnown(BattleSystem *battleSys, BattleContext *battleCtx)
             break;
         }
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleCtx->battleMons[battler].moves[i] == move) {
                 break;
             }
         }
 
-        if (i < LEARNED_MOVES_MAX) {
+        if (i < MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
 
     case AI_BATTLER_DEFENDER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (AI_CONTEXT.battlerMoves[battler][i] == move) {
                 break;
             }
         }
 
-        if (i < LEARNED_MOVES_MAX) {
+        if (i < MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
@@ -1799,13 +1799,13 @@ static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleC
 
     switch (inBattler) {
     case AI_BATTLER_ATTACKER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleCtx->battleMons[battler].moves[i] == move) {
                 break;
             }
         }
 
-        if (i == LEARNED_MOVES_MAX) {
+        if (i == MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
@@ -1815,25 +1815,25 @@ static void AICmd_IfMoveNotKnown(BattleSystem *battleSys, BattleContext *battleC
             break;
         }
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleCtx->battleMons[battler].moves[i] == move) {
                 break;
             }
         }
 
-        if (i == LEARNED_MOVES_MAX) {
+        if (i == MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
 
     case AI_BATTLER_DEFENDER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (AI_CONTEXT.battlerMoves[battler][i] == move) {
                 break;
             }
         }
 
-        if (i == LEARNED_MOVES_MAX) {
+        if (i == MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
@@ -1855,27 +1855,27 @@ static void AICmd_IfMoveEffectKnown(BattleSystem *battleSys, BattleContext *batt
 
     switch (inBattler) {
     case AI_BATTLER_ATTACKER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleCtx->battleMons[battler].moves[i]
                 && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == effect) {
                 break;
             }
         }
 
-        if (i < LEARNED_MOVES_MAX) {
+        if (i < MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
 
     case AI_BATTLER_DEFENDER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (AI_CONTEXT.battlerMoves[battler][i]
                 && MOVE_DATA(AI_CONTEXT.battlerMoves[battler][i]).effect == effect) {
                 break;
             }
         }
 
-        if (i < LEARNED_MOVES_MAX) {
+        if (i < MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
@@ -1897,27 +1897,27 @@ static void AICmd_IfMoveEffectNotKnown(BattleSystem *battleSys, BattleContext *b
 
     switch (inBattler) {
     case AI_BATTLER_ATTACKER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleCtx->battleMons[battler].moves[i]
                 && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == effect) {
                 break;
             }
         }
 
-        if (i == LEARNED_MOVES_MAX) {
+        if (i == MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
 
     case AI_BATTLER_DEFENDER:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (AI_CONTEXT.battlerMoves[battler][i]
                 && MOVE_DATA(AI_CONTEXT.battlerMoves[battler][i]).effect == effect) {
                 break;
             }
         }
 
-        if (i == LEARNED_MOVES_MAX) {
+        if (i == MAX_MON_MOVES) {
             AIScript_Iter(battleCtx, jump);
         }
         break;
@@ -2104,14 +2104,14 @@ static void AICmd_IfAnyPartyMemberUsedPP(BattleSystem *battleSys, BattleContext 
         Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
 
         if (partySlot != battleCtx->selectedPartySlot[battler]) {
-            for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
+            for (moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++) {
                 if (Pokemon_GetData(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetData(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
                     AIScript_Iter(battleCtx, jump);
                     break;
                 }
             }
 
-            if (moveSlot != LEARNED_MOVES_MAX) {
+            if (moveSlot != MAX_MON_MOVES) {
                 break;
             }
         }
@@ -2219,8 +2219,8 @@ static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleCo
     int battler;
     s32 activeMonDamage;
     s32 partyMonDamage;
-    s32 allDamageVals[LEARNED_MOVES_MAX];
-    u16 partyMonMoves[LEARNED_MOVES_MAX];
+    s32 allDamageVals[MAX_MON_MOVES];
+    u16 partyMonMoves[MAX_MON_MOVES];
     u8 ivs[STAT_MAX];
     Pokemon *partyMon;
 
@@ -2252,7 +2252,7 @@ static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleCo
             if (Pokemon_GetData(partyMon, MON_DATA_HP, NULL) != 0
                 && Pokemon_GetData(partyMon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
                 && Pokemon_GetData(partyMon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+                for (j = 0; j < MAX_MON_MOVES; j++) {
                     partyMonMoves[j] = Pokemon_GetData(partyMon, MON_DATA_MOVE1 + j, NULL);
                 }
 
@@ -2301,7 +2301,7 @@ static void AICmd_IfBattlerDealsMoreDamage(BattleSystem *battleSys, BattleContex
     int roll;
     s32 aiDamage;
     s32 battlerDamage;
-    s32 damageVals[LEARNED_MOVES_MAX];
+    s32 damageVals[MAX_MON_MOVES];
     u8 ivs[STAT_MAX];
 
     AIScript_Iter(battleCtx, 1);
@@ -2477,7 +2477,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
 {
     int i = 0, j, k;
     s32 moveDamage;
-    s32 damageVals[LEARNED_MOVES_MAX];
+    s32 damageVals[MAX_MON_MOVES];
     BOOL varyDamage;
     u8 ivs[STAT_MAX];
     int battler;
@@ -2524,13 +2524,13 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
                 moveDamage = damageVals[AI_CONTEXT.moveSlot];
             }
 
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 0; i < MAX_MON_MOVES; i++) {
                 if (damageVals[i] > moveDamage) {
                     break;
                 }
             }
 
-            if (i == LEARNED_MOVES_MAX) {
+            if (i == MAX_MON_MOVES) {
                 AI_CONTEXT.calcTemp = AI_MOVE_IS_HIGHEST_DAMAGE;
             } else {
                 AI_CONTEXT.calcTemp = AI_NOT_HIGHEST_DAMAGE;
@@ -2811,7 +2811,7 @@ static BOOL AIScript_PopCursor(BattleSystem *battleSys, BattleContext *battleCtx
  */
 static void TrainerAI_RecordLastMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         if (AI_CONTEXT.battlerMoves[AI_CONTEXT.defender][i] == battleCtx->movePrevByBattler[AI_CONTEXT.defender]) {
             break;
         }
@@ -2912,7 +2912,7 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
     maxDamage = 0;
 
     // Step 1: Compute the true damage of a given move.
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         riskyScanIdx = 0;
         while (sRiskyMoves[riskyScanIdx] != 0xFFFF) {
             if (MOVE_DATA(moves[i]).effect == sRiskyMoves[riskyScanIdx]) {
@@ -2946,7 +2946,7 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
     }
 
     // Step 2: Determine the maximum-damage of all moves.
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (maxDamage < damageVals[i]) {
             maxDamage = damageVals[i];
         }
@@ -3404,7 +3404,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
 
     if (battleCtx->battleMons[BATTLER_OPP(battler)].ability == ABILITY_WONDER_GUARD) {
         // Check if we have a super-effective move against the opponent
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             move = battleCtx->battleMons[battler].moves[i];
             moveType = TrainerAI_MoveType(battleSys, battleCtx, battler, move);
 
@@ -3426,7 +3426,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
                 && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
                 && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
                 && i != battleCtx->selectedPartySlot[battler]) {
-                for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+                for (j = 0; j < MAX_MON_MOVES; j++) {
                     move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                     moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
@@ -3489,7 +3489,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
     // Check all of this mon's attacking moves for immunities. If any of our moves can deal damage to
     // either of the opponents' battlers, do not switch.
     numMoves = 0;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         move = battleCtx->battleMons[battler].moves[i];
         type = TrainerAI_MoveType(battleSys, battleCtx, battler, move);
 
@@ -3545,7 +3545,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
             && i != battleCtx->selectedPartySlot[aiSlot2]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot1]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot2]) {
-            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            for (j = 0; j < MAX_MON_MOVES; j++) {
                 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                 type = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
@@ -3604,7 +3604,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
             && i != battleCtx->selectedPartySlot[aiSlot2]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot1]
             && i != battleCtx->aiSwitchedPartySlot[aiSlot2]) {
-            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            for (j = 0; j < MAX_MON_MOVES; j++) {
                 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                 type = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
@@ -3680,7 +3680,7 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
 
     if ((battleCtx->battlersSwitchingMask & FlagIndex(defender)) == FALSE) {
         // Check if the player's battler is weak to any of our moves
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             move = battleCtx->battleMons[battler].moves[i];
             type = TrainerAI_MoveType(battleSys, battleCtx, battler, move);
 
@@ -3707,7 +3707,7 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
     defender = BattleSystem_Partner(battleSys, defender);
 
     if ((battleCtx->battlersSwitchingMask & FlagIndex(defender)) == FALSE) {
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             move = battleCtx->battleMons[battler].moves[i];
             type = TrainerAI_MoveType(battleSys, battleCtx, battler, move);
 
@@ -3884,7 +3884,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
                 &effectiveness);
 
             if (effectiveness & checkEffectiveness) {
-                for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+                for (j = 0; j < MAX_MON_MOVES; j++) {
                     move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                     moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 

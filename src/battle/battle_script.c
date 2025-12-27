@@ -4758,12 +4758,12 @@ static BOOL BtlCmd_Metronome(BattleSystem *battleSys, BattleContext *battleCtx)
         u16 move = (BattleSystem_RandNext(battleSys) % NUM_VALID_MOVES) + 1;
 
         // Do not try to invoke a move that we already know.
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (ATTACKING_MON.moves[i] == move) {
                 break;
             }
         }
-        if (i != LEARNED_MOVES_MAX) {
+        if (i != MAX_MON_MOVES) {
             continue;
         }
 
@@ -4804,7 +4804,7 @@ static BOOL BtlCmd_TryDisable(BattleSystem *battleSys, BattleContext *battleCtx)
     int moveSlot = Battler_SlotForMove(&DEFENDING_MON, DEFENDER_LAST_MOVE);
 
     if (DEFENDING_MON.moveEffectsData.disabledMove == MOVE_NONE
-        && moveSlot != LEARNED_MOVES_MAX
+        && moveSlot != MAX_MON_MOVES
         && DEFENDING_MON.ppCur[moveSlot]
         && DEFENDER_LAST_MOVE) {
         battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
@@ -4947,11 +4947,11 @@ static BOOL BtlCmd_TryEncore(BattleSystem *battleSys, BattleContext *battleCtx)
 
     int moveSlot = Battler_SlotForMove(&DEFENDING_MON, DEFENDER_LAST_MOVE);
     if (Move_CanBeEncored(battleCtx, DEFENDER_LAST_MOVE) == FALSE) {
-        moveSlot = LEARNED_MOVES_MAX;
+        moveSlot = MAX_MON_MOVES;
     }
 
     if (DEFENDING_MON.moveEffectsData.encoredMove == MOVE_NONE
-        && moveSlot != LEARNED_MOVES_MAX
+        && moveSlot != MAX_MON_MOVES
         && DEFENDING_MON.ppCur[moveSlot]
         && DEFENDER_LAST_MOVE) {
         battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
@@ -5070,7 +5070,7 @@ static BOOL BtlCmd_TrySketch(BattleSystem *battleSys, BattleContext *battleCtx)
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
         int i;
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             // Don't allow Sketching a move that we already know
             if (ATTACKING_MON.moves[i] != MOVE_SKETCH
                 && ATTACKING_MON.moves[i] == battleCtx->moveSketched[battleCtx->defender]) {
@@ -5083,7 +5083,7 @@ static BOOL BtlCmd_TrySketch(BattleSystem *battleSys, BattleContext *battleCtx)
             }
         }
 
-        if (i == LEARNED_MOVES_MAX) {
+        if (i == MAX_MON_MOVES) {
             // Teach the attacker the Sketched move with default PP
             ATTACKING_MON.moves[moveSlot] = battleCtx->moveSketched[battleCtx->defender];
             ATTACKING_MON.ppCur[moveSlot] = MOVE_DATA(battleCtx->moveSketched[battleCtx->defender]).pp;
@@ -5147,7 +5147,7 @@ static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCt
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
         do {
-            i = BattleSystem_RandNext(battleSys) % LEARNED_MOVES_MAX;
+            i = BattleSystem_RandNext(battleSys) % MAX_MON_MOVES;
         } while (invalidMovesMask & FlagIndex(i));
 
         battleCtx->msgMoveTemp = ATTACKING_MON.moves[i];
@@ -5212,7 +5212,7 @@ static BOOL BtlCmd_TrySpite(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (DEFENDER_LAST_MOVE) {
         int moveSlot = Battler_SlotForMove(&DEFENDING_MON, DEFENDER_LAST_MOVE);
-        if (moveSlot == LEARNED_MOVES_MAX || DEFENDING_MON.ppCur[moveSlot] == 0) {
+        if (moveSlot == MAX_MON_MOVES || DEFENDING_MON.ppCur[moveSlot] == 0) {
             BattleScript_Iter(battleCtx, jumpOnFail);
         } else {
             int dec = 4;
@@ -5579,7 +5579,7 @@ static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
     ATTACKING_MON.slowStartAnnounced = FALSE;
     ATTACKING_MON.slowStartFinished = FALSE;
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (MOVE_DATA(ATTACKING_MON.moves[i]).pp < 5) {
             ATTACKING_MON.ppCur[i] = MOVE_DATA(ATTACKING_MON.moves[i]).pp;
         } else {
@@ -6624,7 +6624,7 @@ static BOOL BtlCmd_TryAssist(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     // must declare C89-style to match
     int jumpOnFail;
-    u16 moves[MAX_PARTY_SIZE * LEARNED_MOVES_MAX], move;
+    u16 moves[MAX_PARTY_SIZE * MAX_MON_MOVES], move;
     int i, j;
     int partyCount;
     int numMoves;
@@ -6643,7 +6643,7 @@ static BOOL BtlCmd_TryAssist(BattleSystem *battleSys, BattleContext *battleCtx)
         mon = BattleSystem_PartyPokemon(battleSys, battleCtx->attacker, i);
         if (Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
             && Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            for (j = 0; j < MAX_MON_MOVES; j++) {
                 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                 if (Move_IsInvoker(move) == FALSE && Move_CanBeMetronomed(battleSys, battleCtx, battleCtx->attacker, move) == TRUE) {
                     moves[numMoves] = move;
@@ -6916,8 +6916,8 @@ static BOOL BtlCmd_TryImprison(BattleSystem *battleSys, BattleContext *battleCtx
         // Check that the Imprisoning mon knows at least 1 move that the active defenders know
         for (battler = 0; battler < maxBattlers; battler++) {
             if (attackingSide != Battler_Side(battleSys, battler)) {
-                for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-                    for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+                for (i = 0; i < MAX_MON_MOVES; i++) {
+                    for (j = 0; j < MAX_MON_MOVES; j++) {
                         if (ATTACKING_MON.moves[i] == battleCtx->battleMons[battler].moves[j]
                             && ATTACKING_MON.moves[i]
                             && battleCtx->battleMons[battler].moves[j]) {
@@ -6925,12 +6925,12 @@ static BOOL BtlCmd_TryImprison(BattleSystem *battleSys, BattleContext *battleCtx
                         }
                     }
 
-                    if (j != LEARNED_MOVES_MAX) {
+                    if (j != MAX_MON_MOVES) {
                         break;
                     }
                 }
 
-                if (j != LEARNED_MOVES_MAX) {
+                if (j != MAX_MON_MOVES) {
                     break;
                 }
             }
@@ -10961,7 +10961,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
 
                         PCBoxes_SetCurrentBox(pcBoxes, v26);
 
-                        for (v27 = 0; v27 < LEARNED_MOVES_MAX; v27++) {
+                        for (v27 = 0; v27 < MAX_MON_MOVES; v27++) {
                             v28 = Pokemon_GetData(v3, MON_DATA_MOVE1_MAX_PP + v27, NULL);
                             Pokemon_SetData(v3, MON_DATA_MOVE1_PP + v27, &v28);
                         }

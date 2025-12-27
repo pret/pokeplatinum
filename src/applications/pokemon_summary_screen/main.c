@@ -705,7 +705,7 @@ static int HandleInput_MoveDetails(PokemonSummaryScreen *summaryScreen)
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        if (summaryScreen->cursor == LEARNED_MOVES_MAX) {
+        if (summaryScreen->cursor == MAX_MON_MOVES) {
             Sound_PlayEffect(SEQ_SE_DP_SYU01);
             summaryScreen->pageState = PAGE_STATE_INITIAL;
 
@@ -759,7 +759,7 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
     if (JOY_NEW(PAD_BUTTON_A)) {
         Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_2], FALSE);
 
-        if (summaryScreen->cursor != LEARNED_MOVES_MAX && summaryScreen->cursor != summaryScreen->cursorTmp) {
+        if (summaryScreen->cursor != MAX_MON_MOVES && summaryScreen->cursor != summaryScreen->cursorTmp) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             SwapSelectedMoves(summaryScreen);
             PokemonSummaryScreen_SwapMoveTypeIcons(summaryScreen, summaryScreen->cursor, summaryScreen->cursorTmp);
@@ -814,7 +814,7 @@ static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen)
     if (JOY_NEW(PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
-        if (summaryScreen->cursor != LEARNED_MOVES_MAX) {
+        if (summaryScreen->cursor != MAX_MON_MOVES) {
             if (Item_IsHMMove(summaryScreen->monData.moves[summaryScreen->cursor]) == TRUE && summaryScreen->data->move != MOVE_NONE) {
                 Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
                 DrawEmptyHearts(summaryScreen);
@@ -830,7 +830,7 @@ static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen)
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-        summaryScreen->data->selectedMoveSlot = LEARNED_MOVES_MAX;
+        summaryScreen->data->selectedMoveSlot = MAX_MON_MOVES;
         summaryScreen->data->returnMode = SUMMARY_RETURN_CANCEL;
         return SUMMARY_STATE_TRANSITION_OUT;
     }
@@ -1112,7 +1112,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
 
     u16 i;
     u8 maxPP;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         monData->moves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
         monData->curPP[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP + i, NULL);
         maxPP = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
@@ -1722,12 +1722,12 @@ static u8 TryChangeSelectedMove(PokemonSummaryScreen *summaryScreen, s8 delta)
         moveIndex += delta;
 
         if (moveIndex < 0) {
-            moveIndex = LEARNED_MOVES_MAX;
-        } else if (moveIndex == LEARNED_MOVES_MAX + 1) {
+            moveIndex = MAX_MON_MOVES;
+        } else if (moveIndex == MAX_MON_MOVES + 1) {
             moveIndex = 0;
         }
 
-        if (summaryScreen->monData.moves[moveIndex] != 0 || moveIndex == LEARNED_MOVES_MAX) {
+        if (summaryScreen->monData.moves[moveIndex] != 0 || moveIndex == MAX_MON_MOVES) {
             break;
         }
     }
@@ -1744,7 +1744,7 @@ static void UpdateMoveAttributes(PokemonSummaryScreen *summaryScreen)
 {
     PokemonSummaryScreen_UpdateMoveSelectorPos(summaryScreen);
 
-    if (summaryScreen->cursor == LEARNED_MOVES_MAX) {
+    if (summaryScreen->cursor == MAX_MON_MOVES) {
         if (summaryScreen->data->move != MOVE_NONE) {
             if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
                 UpdateBattleMoveAttributes(summaryScreen, summaryScreen->data->move);

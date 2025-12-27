@@ -2849,7 +2849,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         MoveDisplayInfo v7;
         int i;
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             v7.move[i] = v0->unk_24[i];
             v7.curPP[i] = v0->unk_2C[i];
             v7.maxPP[i] = v0->unk_30[i];

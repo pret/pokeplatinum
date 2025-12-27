@@ -1999,7 +1999,7 @@ static void RenderPokemonMovesScreen(BattleParty *battleParty)
 
     PrintPokemonNameHeader(battleParty, 0 + windowIndexOffset, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
 
-    for (u16 i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (u16 i = 0; i < MAX_MON_MOVES; i++) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[i];
 
         if (move->move == MOVE_NONE) {
@@ -2112,7 +2112,7 @@ static void RenderLearnMoveScreen(BattleParty *battleParty)
 
     PrintPokemonNameHeader(battleParty, BATTLE_LEARN_MOVE_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
 
-    for (u32 i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (u32 i = 0; i < MAX_MON_MOVES; i++) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[i];
 
         if (move->move == MOVE_NONE) {
@@ -2191,7 +2191,7 @@ static void RenderRestoreMovePPScreen(BattleParty *battleParty)
 
     PrintPokemonNameHeader(battleParty, BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_POKEMON_NAME, FONT_SYSTEM, battleParty->context->selectedPartyIndex, 0, 0);
 
-    for (u32 i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (u32 i = 0; i < MAX_MON_MOVES; i++) {
         BattlePartyPokemonMove *move = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[i];
 
         if (move->move == MOVE_NONE) {

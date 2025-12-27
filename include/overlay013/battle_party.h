@@ -143,7 +143,7 @@ typedef struct BattlePartyPokemon {
     u8 tough;
     u8 mail;
     u8 form;
-    BattlePartyPokemonMove moves[LEARNED_MOVES_MAX];
+    BattlePartyPokemonMove moves[MAX_MON_MOVES];
 } BattlePartyPokemon;
 
 typedef struct BattlePartyContext {
@@ -215,7 +215,7 @@ typedef struct BattleParty {
     u8 useItemState;
     u8 unk_2079;
     u16 selectedPokemonCurrentHP;
-    u16 selectedPokemonCurrentMovePPs[LEARNED_MOVES_MAX];
+    u16 selectedPokemonCurrentMovePPs[MAX_MON_MOVES];
     BattleSubMenuCursor *cursor;
     u8 selectPokemonPreviousScreenButton;
     u8 learnMovePreviousScreenButton;
@@ -226,7 +226,7 @@ typedef struct BattleParty {
 #define PARTY_SLOT_SELECTABLE_IN_BATTLE     1
 #define PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE 2
 
-#define MOVE_TO_LEARN_SLOT LEARNED_MOVES_MAX
+#define MOVE_TO_LEARN_SLOT MAX_MON_MOVES
 
 void BattlePartyTask_Start(BattlePartyContext *context);
 u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 partySlot);

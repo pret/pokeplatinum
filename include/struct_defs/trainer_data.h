@@ -42,7 +42,7 @@ typedef struct TrainerMonWithMoves {
     u16 dv;
     u16 level;
     u16 species;
-    u16 moves[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
     u16 cbSeal;
 } TrainerMonWithMoves;
 
@@ -59,7 +59,7 @@ typedef struct TrainerMonWithMovesAndItem {
     u16 level;
     u16 species;
     u16 item;
-    u16 moves[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
     u16 cbSeal;
 } TrainerMonWithMovesAndItem;
 

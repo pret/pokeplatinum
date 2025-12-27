@@ -1112,7 +1112,7 @@ static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen)
 {
     PokemonSummaryScreen_SetMonTypeIcons(summaryScreen);
 
-    for (u16 i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (u16 i = 0; i < MAX_MON_MOVES; i++) {
         if (summaryScreen->monData.moves[i] == MOVE_NONE) {
             continue;
         }
@@ -1143,7 +1143,7 @@ void PokemonSummaryScreen_UpdateTypeIcons(PokemonSummaryScreen *summaryScreen)
         }
         break;
     case SUMMARY_PAGE_BATTLE_MOVES:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (summaryScreen->monData.moves[i] == MOVE_NONE) {
                 continue;
             }
@@ -1156,7 +1156,7 @@ void PokemonSummaryScreen_UpdateTypeIcons(PokemonSummaryScreen *summaryScreen)
         if (summaryScreen->data->move != MOVE_NONE) {
             SetTypeIcon(summaryScreen, SUMMARY_SPRITE_MOVE_TYPE_ICON_5, 5 + 4, MoveTable_LoadParam(summaryScreen->data->move, MOVEATTRIBUTE_TYPE));
             Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_TYPE_ICON_5], TRUE);
-            Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_TYPE_ICON_5], MOVE_TYPE_ICON_X, MOVE_TYPE_ICON_BASE_Y + LEARNED_MOVES_MAX * PIXELS_BETWEEN_MOVES);
+            Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_TYPE_ICON_5], MOVE_TYPE_ICON_X, MOVE_TYPE_ICON_BASE_Y + MAX_MON_MOVES * PIXELS_BETWEEN_MOVES);
         }
 
         Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], MOVES_MON_TYPE_ICON_1_X, MOVES_MON_TYPE_ICON_Y);
@@ -1164,7 +1164,7 @@ void PokemonSummaryScreen_UpdateTypeIcons(PokemonSummaryScreen *summaryScreen)
         Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], MOVE_CATEGORY_ICON_X, MOVE_CATEGORY_ICON_Y);
         break;
     case SUMMARY_PAGE_CONTEST_MOVES:
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (summaryScreen->monData.moves[i] == MOVE_NONE) {
                 continue;
             }
@@ -1177,7 +1177,7 @@ void PokemonSummaryScreen_UpdateTypeIcons(PokemonSummaryScreen *summaryScreen)
         if (summaryScreen->data->move != MOVE_NONE) {
             SetTypeIcon(summaryScreen, SUMMARY_SPRITE_MOVE_TYPE_ICON_5, 5 + 4, MoveTable_LoadParam(summaryScreen->data->move, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_TYPE_ICON_5], 1);
-            Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_TYPE_ICON_5], MOVE_TYPE_ICON_X, MOVE_TYPE_ICON_BASE_Y + LEARNED_MOVES_MAX * PIXELS_BETWEEN_MOVES);
+            Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_TYPE_ICON_5], MOVE_TYPE_ICON_X, MOVE_TYPE_ICON_BASE_Y + MAX_MON_MOVES * PIXELS_BETWEEN_MOVES);
         }
 
         Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], MOVES_MON_TYPE_ICON_1_X, MOVES_MON_TYPE_ICON_Y);
@@ -1203,7 +1203,7 @@ static void GetMoveTypeIconPos(PokemonSummaryScreen *summaryScreen, u8 *moveInde
 {
     s16 newYPos = MOVE_TYPE_ICON_BASE_Y + *moveIndex * PIXELS_BETWEEN_MOVES;
 
-    for (s16 i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (s16 i = 0; i < MAX_MON_MOVES; i++) {
         Sprite_GetPositionXY(summaryScreen->sprites[SUMMARY_MOVE_TYPE_ICON_SPRITE_START + i], outX, outY);
 
         if (newYPos == *outY) {

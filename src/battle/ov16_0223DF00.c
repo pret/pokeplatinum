@@ -774,7 +774,7 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     if (Item_LoadParam(item, ITEM_PARAM_PP_RESTORE_ALL, HEAP_ID_BATTLE)) {
         param = Item_LoadParam(item, ITEM_PARAM_PP_RESTORED, HEAP_ID_BATTLE);
 
-        for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
+        for (moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++) {
             if (Pokemon_GetData(mon, MON_DATA_MOVE1_PP + moveSlot, NULL) != Pokemon_GetData(mon, MON_DATA_MOVE1_MAX_PP + moveSlot, NULL)) {
                 Pokemon_IncreaseData(mon, MON_DATA_MOVE1_PP + moveSlot, param);
 

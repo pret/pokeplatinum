@@ -1373,7 +1373,7 @@ static void PrintMoveNameAndPP(PokemonSummaryScreen *summaryScreen, u32 moveInde
 
     Window *window = &summaryScreen->extraWindows[moveIndex];
 
-    if (moveIndex != LEARNED_MOVES_MAX) {
+    if (moveIndex != MAX_MON_MOVES) {
         moveName = summaryScreen->monData.moves[moveIndex];
         curPP = summaryScreen->monData.curPP[moveIndex];
         maxPP = summaryScreen->monData.maxPP[moveIndex];
@@ -1452,7 +1452,7 @@ void PokemonSummaryScreen_ShowMove5OrCancel(PokemonSummaryScreen *summaryScreen)
 {
     if (summaryScreen->data->move != MOVE_NONE) {
         Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_5], 0);
-        PrintMoveNameAndPP(summaryScreen, LEARNED_MOVES_MAX);
+        PrintMoveNameAndPP(summaryScreen, MAX_MON_MOVES);
         Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_BATTLE_MOVE_5]);
     } else {
         Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_MOVE_CANCEL]);

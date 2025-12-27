@@ -4,9 +4,9 @@
 #include "constants/moves.h"
 
 typedef struct MoveDisplayInfo {
-    u16 move[LEARNED_MOVES_MAX];
-    u16 curPP[LEARNED_MOVES_MAX];
-    u16 maxPP[LEARNED_MOVES_MAX];
+    u16 move[MAX_MON_MOVES];
+    u16 curPP[MAX_MON_MOVES];
+    u16 maxPP[MAX_MON_MOVES];
 } MoveDisplayInfo;
 
 #endif // POKEPLATINUM_MOVE_DISPLAY_INFO

@@ -165,7 +165,7 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
 
     u8 friendship = MAX_FRIENDSHIP;
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         param0->moves[v0] = v4.moves[v0];
 
         if (v4.moves[v0] == MOVE_FRUSTRATION) {
@@ -263,7 +263,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
     Pokemon_SetData(param1, MON_DATA_FORM, &v2);
     Pokemon_SetData(param1, MON_DATA_HELD_ITEM, &param0->item);
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         v5 = param0->moves[v0];
         Pokemon_SetData(param1, MON_DATA_MOVE1 + v0, &v5);
 

@@ -3362,7 +3362,7 @@ static u16 BoxPokemon_TryAppendMove(BoxPokemon *boxMon, u16 move)
     u16 ret = LEARNSET_ALL_SLOTS_FILLED;
     BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         u16 slotMove = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i, NULL);
         if (slotMove == MOVE_NONE) {
             BoxPokemon_SetMoveInSlot(boxMon, move, i);
@@ -3386,22 +3386,22 @@ void Pokemon_ForceAppendMove(Pokemon *mon, u16 move)
 static void BoxPokemon_ForceAppendMove(BoxPokemon *boxMon, u16 move)
 {
     BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
-    u16 moves[LEARNED_MOVES_MAX];
-    u8 pp[LEARNED_MOVES_MAX];
-    u8 ppUp[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
+    u8 pp[MAX_MON_MOVES];
+    u8 ppUp[MAX_MON_MOVES];
 
     // Bubble move slots 2 through 4 upwards
-    for (int i = 0; i < LEARNED_MOVES_MAX - 1; i++) {
+    for (int i = 0; i < MAX_MON_MOVES - 1; i++) {
         moves[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i + 1, NULL);
         pp[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_PP + i + 1, NULL);
         ppUp[i] = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_PP_UPS + i + 1, NULL);
     }
 
-    moves[LEARNED_MOVES_MAX - 1] = move;
-    pp[LEARNED_MOVES_MAX - 1] = MoveTable_LoadParam(move, MOVEATTRIBUTE_PP);
-    ppUp[LEARNED_MOVES_MAX - 1] = 0;
+    moves[MAX_MON_MOVES - 1] = move;
+    pp[MAX_MON_MOVES - 1] = MoveTable_LoadParam(move, MOVEATTRIBUTE_PP);
+    ppUp[MAX_MON_MOVES - 1] = 0;
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         BoxPokemon_SetData(boxMon, MON_DATA_MOVE1 + i, &moves[i]);
         BoxPokemon_SetData(boxMon, MON_DATA_MOVE1_PP + i, &pp[i]);
         BoxPokemon_SetData(boxMon, MON_DATA_MOVE1_PP_UPS + i, &ppUp[i]);
@@ -3496,7 +3496,7 @@ void Pokemon_ClearMoveSlot(Pokemon *mon, u32 slot)
     u8 pp;
     u8 ppUp;
 
-    for (u32 i = slot; i < LEARNED_MOVES_MAX - 1; i++) {
+    for (u32 i = slot; i < MAX_MON_MOVES - 1; i++) {
         move = Pokemon_GetData(mon, MON_DATA_MOVE1 + i + 1, NULL);
         pp = Pokemon_GetData(mon, MON_DATA_MOVE1_PP + i + 1, NULL);
         ppUp = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + i + 1, NULL);
@@ -3508,20 +3508,20 @@ void Pokemon_ClearMoveSlot(Pokemon *mon, u32 slot)
     move = MOVE_NONE;
     pp = 0;
     ppUp = 0;
-    Pokemon_SetData(mon, MON_DATA_MOVE1 + LEARNED_MOVES_MAX - 1, &move);
-    Pokemon_SetData(mon, MON_DATA_MOVE1_PP + LEARNED_MOVES_MAX - 1, &pp);
-    Pokemon_SetData(mon, MON_DATA_MOVE1_PP_UPS + LEARNED_MOVES_MAX - 1, &ppUp);
+    Pokemon_SetData(mon, MON_DATA_MOVE1 + MAX_MON_MOVES - 1, &move);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_PP + MAX_MON_MOVES - 1, &pp);
+    Pokemon_SetData(mon, MON_DATA_MOVE1_PP_UPS + MAX_MON_MOVES - 1, &ppUp);
 }
 
 static BOOL Pokemon_HasMove(Pokemon *mon, u16 move)
 {
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL) == move) {
             break;
         }
     }
-    return i != LEARNED_MOVES_MAX;
+    return i != MAX_MON_MOVES;
 }
 
 void BoxPokemon_CopyToPokemon(BoxPokemon *src, Pokemon *dest)
@@ -3975,7 +3975,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
     int newFormMoveID = rotomFormMoves[form];
 
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         int j;
         int moveID = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
 
@@ -3995,7 +3995,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
     }
 
     if (newFormMoveID != MOVE_NONE) {
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
                 Pokemon_SetMoveInSlot_ResetPPUp(mon, newFormMoveID, i);
                 break;
@@ -4543,7 +4543,7 @@ void BoxPokemon_RestorePP(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         if (BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i, NULL)) {
             u8 moveMaxPP = BoxPokemon_GetData(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
 

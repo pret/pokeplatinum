@@ -2423,7 +2423,7 @@ static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
     BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
 
     if (BoxPokemon_GetData(boxMon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE) {
-        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (int i = 0; i < MAX_MON_MOVES; i++) {
             if (BoxPokemon_GetData(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
                 hasMove = TRUE;
                 break;

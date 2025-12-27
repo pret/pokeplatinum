@@ -993,7 +993,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_INTIALISING:
         battleParty->partyPokemon[context->selectedPartyIndex].pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleParty->partyPokemon[context->selectedPartyIndex].moves[i].move == MOVE_NONE) {
                 continue;
             }
@@ -1008,7 +1008,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_RESTORING_PP: {
         u32 restoredMoves = 0;
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (battleParty->partyPokemon[context->selectedPartyIndex].moves[i].move == MOVE_NONE) {
                 restoredMoves++;
                 continue;
@@ -1022,7 +1022,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
             }
         }
 
-        if (restoredMoves == LEARNED_MOVES_MAX) {
+        if (restoredMoves == MAX_MON_MOVES) {
             battleParty->useItemState = BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_FINISHING;
         }
     } break;
@@ -1279,7 +1279,7 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].mail = (u16)Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_BALL_CAPSULE_ID, NULL);
         battleParty->partyPokemon[i].form = (u8)Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_FORM, NULL);
 
-        for (l = 0; l < LEARNED_MOVES_MAX; l++) {
+        for (l = 0; l < MAX_MON_MOVES; l++) {
             BattlePartyPokemonMove *move = &battleParty->partyPokemon[i].moves[l];
 
             move->move = Pokemon_GetData(battleParty->partyPokemon[i].pokemon, MON_DATA_MOVE1 + l, NULL);

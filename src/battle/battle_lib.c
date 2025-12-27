@@ -77,7 +77,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].spDefense = Pokemon_GetData(mon, MON_DATA_SP_DEF, NULL);
 
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         battleCtx->battleMons[battler].moves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
         battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP + i, NULL);
         battleCtx->battleMons[battler].ppUps[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
@@ -179,7 +179,7 @@ void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].maxHP = Pokemon_GetData(mon, MON_DATA_MAX_HP, NULL);
 
     if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
-        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (int i = 0; i < MAX_MON_MOVES; i++) {
             if ((battleCtx->battleMons[battler].moveEffectsData.mimickedMoveSlot & FlagIndex(i)) == FALSE) {
                 battleCtx->battleMons[battler].moves[i] = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
                 battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetData(mon, MON_DATA_MOVE1_PP + i, NULL);
@@ -2254,7 +2254,7 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
 {
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         if (battleCtx->battleMons[battler].moves[i] == MOVE_NONE
             && (opMask & CHECK_INVALID_NO_MOVE)) {
             invalidMoves |= FlagIndex(i);
@@ -2304,7 +2304,7 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
 
         if ((itemEffect == HOLD_EFFECT_CHOICE_ATK || itemEffect == HOLD_EFFECT_CHOICE_SPEED || itemEffect == HOLD_EFFECT_CHOICE_SPATK)
             && (opMask & CHECK_INVALID_CHOICE_ITEM)) {
-            if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == LEARNED_MOVES_MAX) {
+            if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == MAX_MON_MOVES) {
                 battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove = MOVE_NONE;
             } else if (battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove
                 && battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove != battleCtx->battleMons[battler].moves[i]) {
@@ -2375,7 +2375,7 @@ int Battler_SlotForMove(BattleMon *mon, u16 move)
 {
     int i;
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (mon->moves[i] == move) {
             break;
         }
@@ -3322,13 +3322,13 @@ BOOL Move_Imprisoned(BattleSystem *battleSys, BattleContext *battleCtx, int batt
     for (i = 0; i < maxBattlers; i++) {
         if (side != Battler_Side(battleSys, i)
             && (battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_IMPRISON)) {
-            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            for (j = 0; j < MAX_MON_MOVES; j++) {
                 if (move == battleCtx->battleMons[i].moves[j]) {
                     break;
                 }
             }
 
-            if (j != LEARNED_MOVES_MAX) {
+            if (j != MAX_MON_MOVES) {
                 result = TRUE;
             }
         }
@@ -3459,7 +3459,7 @@ void BattleSystem_UpdateLastResort(BattleSystem *battleSys, BattleContext *battl
 int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (battleCtx->battleMons[battler].moves[i] == MOVE_NONE) {
             break;
         }
@@ -4630,13 +4630,13 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
 
         case HOLD_EFFECT_PP_RESTORE: {
             int i;
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 0; i < MAX_MON_MOVES; i++) {
                 if (battleCtx->battleMons[battler].moves[i] && battleCtx->battleMons[battler].ppCur[i] == 0) {
                     break;
                 }
             }
 
-            if (i != LEARNED_MOVES_MAX) {
+            if (i != MAX_MON_MOVES) {
                 BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
@@ -5020,13 +5020,13 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
 
         case HOLD_EFFECT_PP_RESTORE: {
             int i;
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 0; i < MAX_MON_MOVES; i++) {
                 if (battleCtx->battleMons[battler].moves[i] && battleCtx->battleMons[battler].ppCur[i] == 0) {
                     break;
                 }
             }
 
-            if (i != LEARNED_MOVES_MAX) {
+            if (i != MAX_MON_MOVES) {
                 BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
@@ -5607,7 +5607,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         // Find the move that has the highest difference between its current
         // and maximum PP.
         maxDiff = 0;
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (ATTACKING_MON.moves[i]) {
                 diff = MoveTable_CalcMaxPP(ATTACKING_MON.moves[i], ATTACKING_MON.ppUps[i]) - ATTACKING_MON.ppCur[i];
 
@@ -5906,7 +5906,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         // Find the move that has the highest difference between its current
         // and maximum PP.
         maxDiff = 0;
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (DEFENDING_MON.moves[i]) {
                 diff = MoveTable_CalcMaxPP(DEFENDING_MON.moves[i], DEFENDING_MON.ppUps[i]) - DEFENDING_MON.ppCur[i];
 
@@ -7705,7 +7705,7 @@ static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonP
  */
 static void BattleAI_ClearKnownMoves(BattleContext *battleCtx, u8 battler)
 {
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         battleCtx->aiContext.battlerMoves[battler][i] = MOVE_NONE;
     }
 }
@@ -7988,7 +7988,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
             // Determine if this mon has any super-effective moves against the defender
             mon = BattleSystem_PartyPokemon(battleSys, battler, picked);
 
-            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            for (i = 0; i < MAX_MON_MOVES; i++) {
                 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
                 moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 
@@ -8012,7 +8012,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
             // If this mon has no moves which would be super-effective against the
             // defender, mark it as disregarded and move to the next in priority.
-            if (i == LEARNED_MOVES_MAX) {
+            if (i == MAX_MON_MOVES) {
                 battlersDisregarded |= FlagIndex(picked);
             } else {
                 return picked;
@@ -8041,7 +8041,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
             && battleCtx->selectedPartySlot[slot2] != i
             && i != battleCtx->aiSwitchedPartySlot[slot1]
             && i != battleCtx->aiSwitchedPartySlot[slot2]) {
-            for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+            for (j = 0; j < MAX_MON_MOVES; j++) {
                 move = Pokemon_GetData(mon, MON_DATA_MOVE1 + j, NULL);
                 moveType = Move_CalcVariableType(battleSys, battleCtx, mon, move);
 

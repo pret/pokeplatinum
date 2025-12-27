@@ -36,9 +36,9 @@
 #include "res/pokemon/species_egg_moves.h"
 
 typedef struct {
-    int fatherMoves[LEARNED_MOVES_MAX];
-    int sharedMoves[LEARNED_MOVES_MAX];
-    int motherMoves[LEARNED_MOVES_MAX];
+    int fatherMoves[MAX_MON_MOVES];
+    int sharedMoves[MAX_MON_MOVES];
+    int motherMoves[MAX_MON_MOVES];
     u16 eggSpeciesLevelUpMoves[50];
     u16 eggSpeciesEggMoves[MAX_EGG_MOVES];
 } EggMoveBuilder;
@@ -482,7 +482,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
     form = Pokemon_GetData(egg, MON_DATA_FORM, NULL);
     levelUpMoveCount = Pokemon_LoadLevelUpMoveIdsOf(species, form, builder->eggSpeciesLevelUpMoves);
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         builder->fatherMoves[i] = BoxPokemon_GetData(father, MON_DATA_MOVE1 + i, NULL);
         builder->motherMoves[i] = BoxPokemon_GetData(mother, MON_DATA_MOVE1 + i, NULL);
     }
@@ -490,7 +490,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
     eggMoveCount = LoadSpeciesEggMoves(egg, builder->eggSpeciesEggMoves);
 
     // Egg moves from the father
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (builder->fatherMoves[i] != MOVE_NONE) {
             for (j = 0; j < eggMoveCount; j++) {
                 if (builder->fatherMoves[i] == builder->eggSpeciesEggMoves[j]) {
@@ -506,7 +506,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
     }
 
     // TM/HM moves from the father
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (builder->fatherMoves[i] != MOVE_NONE) {
             for (j = 0; j < NUM_TMHMS; j++) {
                 if (builder->fatherMoves[i] == Item_MoveForTMHM(ITEM_TM01 + j)) {
@@ -521,19 +521,19 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
     }
 
     // Level-up moves that both parents know
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (builder->fatherMoves[i] == MOVE_NONE) {
             break;
         }
 
-        for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+        for (j = 0; j < MAX_MON_MOVES; j++) {
             if (builder->fatherMoves[i] == builder->motherMoves[j] && builder->fatherMoves[i] != MOVE_NONE) {
                 builder->sharedMoves[v2++] = builder->fatherMoves[i];
             }
         }
     }
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (builder->sharedMoves[i] == MOVE_NONE) {
             break;
         }
@@ -1092,8 +1092,8 @@ extern u32 Daycare_GetCompatibilityLevel(Daycare *daycare)
 static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
 {
     u16 species;
-    u16 moves[LEARNED_MOVES_MAX];
-    u8 movesPP[LEARNED_MOVES_MAX];
+    u16 moves[MAX_MON_MOVES];
+    u8 movesPP[MAX_MON_MOVES];
     u32 personality, otID;
     u8 ivs[STAT_MAX], pokerus;
     u8 i, language, metGame, marks, friendship, fatefulEncounter, form, gender;
@@ -1102,7 +1102,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
 
     species = Pokemon_GetData(egg, MON_DATA_SPECIES, NULL);
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         moves[i] = Pokemon_GetData(egg, MON_DATA_MOVE1 + i, NULL);
         movesPP[i] = Pokemon_GetData(egg, MON_DATA_MOVE1_PP + i, NULL);
     }
@@ -1135,7 +1135,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
 
     Pokemon_InitWithParams(mon, species, 1, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         Pokemon_SetData(mon, MON_DATA_MOVE1 + i, &(moves[i]));
         Pokemon_SetData(mon, MON_DATA_MOVE1_PP + i, &(movesPP[i]));
     }

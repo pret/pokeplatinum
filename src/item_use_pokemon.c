@@ -198,7 +198,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapID 
     }
 
     if (Item_Get(item, ITEM_PARAM_PP_RESTORE_ALL)) {
-        for (vCheckMoveIndex = 0; vCheckMoveIndex < LEARNED_MOVES_MAX; vCheckMoveIndex++) {
+        for (vCheckMoveIndex = 0; vCheckMoveIndex < MAX_MON_MOVES; vCheckMoveIndex++) {
             if (IsMoveMissingPP(mon, vCheckMoveIndex) == TRUE) {
                 Heap_Free(item);
                 return TRUE;
@@ -329,7 +329,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
 
         effectFound = TRUE;
     } else if (Item_Get(item, ITEM_PARAM_PP_RESTORE_ALL)) {
-        for (vApplyMoveIndex = 0; vApplyMoveIndex < LEARNED_MOVES_MAX; vApplyMoveIndex++) {
+        for (vApplyMoveIndex = 0; vApplyMoveIndex < MAX_MON_MOVES; vApplyMoveIndex++) {
             if (RestorePokemonMovePP(mon, vApplyMoveIndex, Item_Get(item, ITEM_PARAM_PP_RESTORED)) == TRUE) {
                 effectApplied = TRUE;
             }
@@ -619,7 +619,7 @@ void Party_HealAllMembers(Party *party)
         tmp = MON_CONDITION_NONE;
         Pokemon_SetData(mon, MON_DATA_STATUS, &tmp);
 
-        for (j = 0; j < LEARNED_MOVES_MAX; j++) {
+        for (j = 0; j < MAX_MON_MOVES; j++) {
             if (IsMoveMissingPP(mon, j) == TRUE) {
                 RestorePokemonMovePP(mon, j, HEAL_FULL_PP);
             }

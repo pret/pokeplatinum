@@ -886,7 +886,7 @@ static BOOL BoxMonGBAHasHM(GBAMigrator *migrator, int boxPosition)
     int i, j, move;
     GBABoxPokemon *boxMon = &migrator->pokemonStorage->boxes[migrator->currentBox][boxPosition];
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         move = GBABoxPokemon_GetData(boxMon, GBA_MON_DATA_MOVE1 + i, NULL);
 
         for (j = 0; j < sizeof(sGBAHMMoves) / sizeof(int); j++) {

@@ -1275,7 +1275,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
     TypeIcon_LoadAnim(spriteSys, spriteMan, 20017, 20017);
     TypeIcon_LoadPltt(BattleSystem_PaletteSys(param0->battleSys), PLTTBUF_SUB_OBJ, spriteSys, spriteMan, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         TypeIcon_LoadChar(spriteSys, spriteMan, NNS_G2D_VRAM_TYPE_2DSUB, TYPE_NORMAL, 20025 + i);
     }
 
@@ -1930,7 +1930,7 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
     }
 
     {
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             textColor = ov16_0226B924(v0->unk_08[i], v0->unk_0C[i]);
             ov16_0226A98C(param0, &param0->unk_4CC[9 + i], NULL, FONT_SYSTEM, textColor, 4, 20023, Unk_ov16_022702D4[i][0], Unk_ov16_022702D4[i][1], 0, &v3->unk_78[i]);
             ov16_0226A98C(param0, &param0->unk_4CC[5 + i], NULL, FONT_SYSTEM, textColor, 4, 20023, Unk_ov16_02270284[i][0], Unk_ov16_02270284[i][1], 0, &v3->unk_C8[i]);
@@ -1948,7 +1948,7 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
     {
         int moveType;
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (i = 0; i < MAX_MON_MOVES; i++) {
             if (v0->moveIDs[i] != 0) {
                 moveType = MoveTable_LoadParam(v0->moveIDs[i], MOVEATTRIBUTE_TYPE);
                 LoadMoveSelectPlttSlot(param0, moveType, i);
@@ -2814,7 +2814,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
     v7 = String_Init((2 + 2 + 1 + 2) * 2 + 2, HEAP_ID_BATTLE);
     v8 = MessageLoader_GetNewString(v12, 937);
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if ((param2->move[i] != v0->unk_00.move[i]) && (param2->move[i] != 0)) {
             v5 = MoveTable_LoadParam(param2->move[i], MOVEATTRIBUTE_TYPE);
             v1 = Graphics_GetCharData(TypeIcon_GetNARC(), TypeIcon_GetChar(v5), 1, &v2, HEAP_ID_BATTLE);
@@ -2887,7 +2887,7 @@ static void DrawMoveTypeIcons(UnkStruct_ov16_02268A14 *param0)
     v7 = ov16_0226ABD4(param0, param0->unk_66A);
     spriteTemplate = Unk_ov16_0227047C;
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         GF_ASSERT(param0->moveSelectSprites[i] == NULL);
 
         if (v4->moveIDs[i] != 0) {

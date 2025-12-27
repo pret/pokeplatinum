@@ -328,7 +328,7 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
 
     u8 friendship = MAX_FRIENDSHIP;
 
-    for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
+    for (v0 = 0; v0 < MAX_MON_MOVES; v0++) {
         param1->moves[v0] = v4.moves[v0];
 
         if (v4.moves[v0] == MOVE_FRUSTRATION) {

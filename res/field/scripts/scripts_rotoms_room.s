@@ -274,7 +274,7 @@ _0473:
     GoToIfEq VAR_RESULT, TRUE, RotomsRoom_SetVarMoveNone
     GetPartyMonMoveCount VAR_RESULT, LOCALID_PARTY_SLOT
     SetVar VAR_0x8002, VAR_RESULT
-    GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, RotomsRoom_Text_PokemonTryingToLearnMove
+    GoToIfEq VAR_RESULT, MAX_MON_MOVES, RotomsRoom_Text_PokemonTryingToLearnMove
     GoTo RotomsRoom_PokemonEnteredMotor
     End
 
@@ -307,7 +307,7 @@ RotomsRoom_LearnMove:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8002, LEARNED_MOVES_MAX, RotomsRoom_GiveUpLearningMove
+    GoToIfEq VAR_0x8002, MAX_MON_MOVES, RotomsRoom_GiveUpLearningMove
     GetPartyMonMove VAR_RESULT, LOCALID_PARTY_SLOT, VAR_0x8002
     BufferMoveName 1, VAR_RESULT
     Message RotomsRoom_Text_TheMoveWillBeForgotten

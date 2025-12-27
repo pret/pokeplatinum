@@ -63,7 +63,7 @@ static void PackFrontierTrainer(const rapidjson::Document &doc, vfs_pack_ctx *pl
 
 static void ParseMoves(const rapidjson::Value &moves, BattleFrontierPokemonData &data)
 {
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         data.moves[i] = LookupConst(moves.GetArray()[i].GetString(), Move);
     }
 }

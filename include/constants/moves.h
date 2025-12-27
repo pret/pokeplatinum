@@ -5,7 +5,7 @@
 #include "generated/move_classes.h"
 #include "generated/moves.h"
 
-#define LEARNED_MOVES_MAX 4
+#define MAX_MON_MOVES 4
 #define MOVE_NOT_SELECTED 0xFF
 
 #define GBA_NUM_VALID_MOVES MOVE_PSYCHO_BOOST

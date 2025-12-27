@@ -1142,7 +1142,7 @@ static void CheckContestEligibility(PartyMenuApplication *application, Pokemon *
     }
 
     countRibbons = CountEarnedRibbonsForContestType(mon, application->partyMenu->contestType);
-    for (countMoves = 0; countMoves < LEARNED_MOVES_MAX; countMoves++) {
+    for (countMoves = 0; countMoves < MAX_MON_MOVES; countMoves++) {
         if (Pokemon_GetData(mon, MON_DATA_MOVE1 + countMoves, NULL) == MOVE_NONE) {
             break;
         }

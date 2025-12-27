@@ -622,7 +622,7 @@ static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1)
     Pokemon *v2 = BattleSystem_PartyPokemon(battleSys, param1->battler, v0->unk_01_0);
 
     if ((v0->unk_18 & 0x200000) == 0) {
-        for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
+        for (v1 = 0; v1 < MAX_MON_MOVES; v1++) {
             if ((v0->unk_01_4 & FlagIndex(v1)) == 0) {
                 Pokemon_SetData(v2, MON_DATA_MOVE1 + v1, (u8 *)&v0->unk_0E[v1]);
                 Pokemon_SetData(v2, MON_DATA_MOVE1_PP + v1, (u8 *)&v0->unk_12[v1]);

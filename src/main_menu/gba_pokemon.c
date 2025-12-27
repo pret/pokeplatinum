@@ -865,7 +865,7 @@ void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon)
     value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SHEEN, NULL);
     BoxPokemon_SetData(boxMon, MON_DATA_SHEEN, (u8 *)&value);
 
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         value = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_MOVE1 + i, NULL);
         if (value > GBA_NUM_VALID_MOVES) {
             (void)0;

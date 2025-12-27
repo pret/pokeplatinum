@@ -264,11 +264,11 @@ static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation loc
     int movesetMaskByteOffset, movesetMaskBitOffset, knownMovesIndex;
     u8 movesetMask, canLearn;
     u32 species;
-    u16 knownMoves[LEARNED_MOVES_MAX];
+    u16 knownMoves[MAX_MON_MOVES];
 
     species = Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
 
-    for (knownMovesIndex = 0; knownMovesIndex < LEARNED_MOVES_MAX; knownMovesIndex++) {
+    for (knownMovesIndex = 0; knownMovesIndex < MAX_MON_MOVES; knownMovesIndex++) {
         knownMoves[knownMovesIndex] = Pokemon_GetData(pokemon, MON_DATA_MOVE1 + knownMovesIndex, NULL);
     }
 
@@ -279,13 +279,13 @@ static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation loc
             canLearn = ((movesetMask >> movesetMaskBitOffset) & 0x1);
 
             if ((canLearn == TRUE) && (location == sTeachableMoves[movesetMaskByteOffset * 8 + movesetMaskBitOffset].location)) {
-                for (knownMovesIndex = 0; knownMovesIndex < LEARNED_MOVES_MAX; knownMovesIndex++) {
+                for (knownMovesIndex = 0; knownMovesIndex < MAX_MON_MOVES; knownMovesIndex++) {
                     if (knownMoves[knownMovesIndex] == sTeachableMoves[movesetMaskByteOffset * 8 + movesetMaskBitOffset].moveID) {
                         break;
                     }
                 }
 
-                if (knownMovesIndex == LEARNED_MOVES_MAX) {
+                if (knownMovesIndex == MAX_MON_MOVES) {
                     return TRUE;
                 }
             }
@@ -304,7 +304,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     MessageLoader *miscMessageLoader;
     FieldSystem *fieldSystem = scriptContext->fieldSystem;
     MoveTutorManager *moveTutorManager;
-    u16 knownMoves[LEARNED_MOVES_MAX];
+    u16 knownMoves[MAX_MON_MOVES];
     u16 learnableMoves[NELEMS(sTeachableMoves)];
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 partySlot = ScriptContext_GetVar(scriptContext);
@@ -327,7 +327,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     int learnableMovesCount = 0;
 
     if (partySlot != 0xff) {
-        for (knownMoveIndex = 0; knownMoveIndex < LEARNED_MOVES_MAX; knownMoveIndex++) {
+        for (knownMoveIndex = 0; knownMoveIndex < MAX_MON_MOVES; knownMoveIndex++) {
             knownMoves[knownMoveIndex] = Pokemon_GetData(pokemon, (MON_DATA_MOVE1 + knownMoveIndex), NULL);
         }
 
@@ -338,13 +338,13 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
                 canLearn = ((movesetMaskByte >> j) & 0x1);
 
                 if ((canLearn == TRUE) && (location == sTeachableMoves[i * 8 + j].location)) {
-                    for (knownMoveIndex = 0; knownMoveIndex < LEARNED_MOVES_MAX; knownMoveIndex++) {
+                    for (knownMoveIndex = 0; knownMoveIndex < MAX_MON_MOVES; knownMoveIndex++) {
                         if (knownMoves[knownMoveIndex] == sTeachableMoves[i * 8 + j].moveID) {
                             break;
                         }
                     }
 
-                    if (knownMoveIndex == LEARNED_MOVES_MAX) {
+                    if (knownMoveIndex == MAX_MON_MOVES) {
                         learnableMoves[learnableMovesCount] = sTeachableMoves[i * 8 + j].moveID;
                         learnableMovesCount++;
                     }

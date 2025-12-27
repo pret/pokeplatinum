@@ -528,7 +528,7 @@ static void sub_0207B180(EvolutionData *param0)
         ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            if (param0->unk_3C->selectedMoveSlot == LEARNED_MOVES_MAX) {
+            if (param0->unk_3C->selectedMoveSlot == MAX_MON_MOVES) {
                 param0->unk_64 = 32;
             } else {
                 param0->unk_6E = param0->unk_3C->selectedMoveSlot;

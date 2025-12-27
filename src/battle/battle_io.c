@@ -675,7 +675,7 @@ void BattleIO_ShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battl
     v0.unk_00 = 15;
     v0.unk_01 = battleCtx->selectedPartySlot[battler];
 
-    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (int i = 0; i < MAX_MON_MOVES; i++) {
         v0.unk_04[i] = battleCtx->battleMons[battler].moves[i];
         v0.unk_0C[i] = battleCtx->battleMons[battler].ppCur[i];
         v0.unk_10[i] = MoveTable_CalcMaxPP(battleCtx->battleMons[battler].moves[i], battleCtx->battleMons[battler].ppUps[i]);

@@ -921,7 +921,7 @@ u8 PartyMenu_CanMonLearnMove(PartyMenuApplication *application, Pokemon *mon)
 {
     u8 moveSlot;
 
-    for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
+    for (moveSlot = 0; moveSlot < MAX_MON_MOVES; moveSlot++) {
         u16 moveID = Pokemon_GetData(mon, MON_DATA_MOVE1 + moveSlot, NULL);
 
         if (moveID == application->partyMenu->learnedMove) {
@@ -937,7 +937,7 @@ u8 PartyMenu_CanMonLearnMove(PartyMenuApplication *application, Pokemon *mon)
         return MON_MOVE_RESULT_CANNOT_LEARN;
     }
 
-    if (moveSlot == LEARNED_MOVES_MAX) {
+    if (moveSlot == MAX_MON_MOVES) {
         return MON_MOVE_RESULT_MUST_FORGET_FIRST;
     }
 

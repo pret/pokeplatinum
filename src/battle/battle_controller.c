@@ -2273,7 +2273,7 @@ static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext 
     if (ATTACKER_TURN_FLAGS.ppDecremented == FALSE && ATTACKER_TURN_FLAGS.struggling == FALSE) {
         ATTACKER_TURN_FLAGS.ppDecremented = 1;
 
-        if (ATTACKING_MON.ppCur[moveSlot] && moveSlot < LEARNED_MOVES_MAX) {
+        if (ATTACKING_MON.ppCur[moveSlot] && moveSlot < MAX_MON_MOVES) {
             if (ATTACKING_MON.ppCur[moveSlot] > ppCost) {
                 ATTACKING_MON.ppCur[moveSlot] -= ppCost;
             } else {
@@ -2289,7 +2289,7 @@ static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext 
         && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED) == FALSE
         && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_THRASH) == FALSE
         && MON_IS_UPROARING(battleCtx->attacker) == FALSE
-        && moveSlot < LEARNED_MOVES_MAX) {
+        && moveSlot < MAX_MON_MOVES) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_NO_PP;
     }
 

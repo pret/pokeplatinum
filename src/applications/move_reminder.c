@@ -884,7 +884,7 @@ static int MoveReminder_State_ProcessMainInput(MoveReminderController *controlle
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         MoveReminder_DrawMoveSelector(controller, controller->data->cursorPos, 1);
         MoveReminder_HideScrollArrows(controller);
-        if (MoveReminder_GetEmptyMoveSlot(controller) < LEARNED_MOVES_MAX) {
+        if (MoveReminder_GetEmptyMoveSlot(controller) < MAX_MON_MOVES) {
             MoveReminder_SetMessageBoxText(controller, MOVE_REMINDER_STR_ASK_SHOULD_TEACH_MOVE);
             controller->yesNoCallback = MOVE_REMINDER_YES_NO_SHOULD_TEACH_MOVE;
             controller->nextState = MOVE_REMINDER_STATE_DRAW_YES_NO_MENU;
@@ -951,7 +951,7 @@ static int MoveReminder_State_PlayFanfare(MoveReminderController *controller)
 
 static int MoveReminder_State_ConfirmSelection(MoveReminderController *controller)
 {
-    if (controller->data->moveSlot < LEARNED_MOVES_MAX) {
+    if (controller->data->moveSlot < MAX_MON_MOVES) {
         MoveReminder_SetMessageBoxText(controller, MOVE_REMINDER_STR_ASK_FORGET_THIS_MOVE);
         controller->yesNoCallback = MOVE_REMINDER_YES_NO_FORGET_THIS_MOVE;
     } else {
@@ -1349,7 +1349,7 @@ static BOOL MoveReminder_TextPrinterCallback(TextPrinterTemplate *printer, u16 p
 static u8 MoveReminder_GetEmptyMoveSlot(MoveReminderController *controller)
 {
     u8 i;
-    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+    for (i = 0; i < MAX_MON_MOVES; i++) {
         if (Pokemon_GetData(controller->data->mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
             break;
         }

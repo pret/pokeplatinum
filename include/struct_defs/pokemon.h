@@ -43,9 +43,9 @@ typedef struct PokemonDataBlockA {
  * @brief Block B of the BoxPokemon data structure
  */
 typedef struct PokemonDataBlockB {
-    /* 0x00 */ u16 moves[LEARNED_MOVES_MAX];
-    /* 0x08 */ u8 moveCurrentPPs[LEARNED_MOVES_MAX];
-    /* 0x0C */ u8 movePPUps[LEARNED_MOVES_MAX];
+    /* 0x00 */ u16 moves[MAX_MON_MOVES];
+    /* 0x08 */ u8 moveCurrentPPs[MAX_MON_MOVES];
+    /* 0x0C */ u8 movePPUps[MAX_MON_MOVES];
 
     /* 0x10 */ u32 hpIV : 5;
                u32 atkIV : 5;
