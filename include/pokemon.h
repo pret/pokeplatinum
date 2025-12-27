@@ -827,7 +827,7 @@ BOOL Species_CanLearnTMHM(u16 species, int form, u8 tmHM);
  */
 void Pokemon_UpdateAbility(Pokemon *mon);
 
-void sub_020780C4(Pokemon *mon, u32 monPersonality);
+void Pokemon_SetPersonality(Pokemon *mon, u32 personality);
 
 BOOL Species_IsBattleFacilityBanned(u16 species);
 u16 BattleFacility_GetBanlistEntry(u8 index);

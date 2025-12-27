@@ -4191,36 +4191,35 @@ static void BoxPokemon_UpdateAbility(BoxPokemon *boxMon)
     BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 
-void sub_020780C4(Pokemon *mon, u32 monPersonality)
+void Pokemon_SetPersonality(Pokemon *mon, u32 personality)
 {
-    Pokemon *newMon = Pokemon_New(HEAP_ID_SYSTEM);
+    Pokemon *tmpMon = Pokemon_New(HEAP_ID_SYSTEM);
+    Pokemon_Copy(mon, tmpMon);
 
-    Pokemon_Copy(mon, newMon);
+    PokemonDataBlockA *tmpBlockA = BoxPokemon_GetDataBlock(&tmpMon->box, mon->box.personality, DATA_BLOCK_A);
+    PokemonDataBlockB *tmpBlockB = BoxPokemon_GetDataBlock(&tmpMon->box, mon->box.personality, DATA_BLOCK_B);
+    PokemonDataBlockC *tmpBlockC = BoxPokemon_GetDataBlock(&tmpMon->box, mon->box.personality, DATA_BLOCK_C);
+    PokemonDataBlockD *tmpBlockD = BoxPokemon_GetDataBlock(&tmpMon->box, mon->box.personality, DATA_BLOCK_D);
+    PokemonDataBlockA *blockA = BoxPokemon_GetDataBlock(&mon->box, personality, DATA_BLOCK_A);
+    PokemonDataBlockB *blockB = BoxPokemon_GetDataBlock(&mon->box, personality, DATA_BLOCK_B);
+    PokemonDataBlockC *blockC = BoxPokemon_GetDataBlock(&mon->box, personality, DATA_BLOCK_C);
+    PokemonDataBlockD *blockD = BoxPokemon_GetDataBlock(&mon->box, personality, DATA_BLOCK_D);
 
-    PokemonDataBlockA *newMonBlockA = BoxPokemon_GetDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_A);
-    PokemonDataBlockB *newMonBlockB = BoxPokemon_GetDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_B);
-    PokemonDataBlockC *newMonBlockC = BoxPokemon_GetDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_C);
-    PokemonDataBlockD *newMonBlockD = BoxPokemon_GetDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_D);
-    PokemonDataBlockA *monBlockA = BoxPokemon_GetDataBlock(&mon->box, monPersonality, DATA_BLOCK_A);
-    PokemonDataBlockB *monBlockB = BoxPokemon_GetDataBlock(&mon->box, monPersonality, DATA_BLOCK_B);
-    PokemonDataBlockC *monBlockC = BoxPokemon_GetDataBlock(&mon->box, monPersonality, DATA_BLOCK_C);
-    PokemonDataBlockD *monBlockD = BoxPokemon_GetDataBlock(&mon->box, monPersonality, DATA_BLOCK_D);
+    DECRYPT_BOX(&tmpMon->box);
+    DECRYPT_PARTY(mon);
+    DECRYPT_BOX(&mon->box);
 
-    MonDecryptSegment(&newMon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, newMon->box.checksum);
-    MonDecryptSegment(&mon->party, sizeof(PartyPokemon), mon->box.personality);
-    MonDecryptSegment(&mon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, mon->box.checksum);
+    mon->box.personality = personality;
 
-    mon->box.personality = monPersonality;
-
-    *monBlockA = *newMonBlockA;
-    *monBlockB = *newMonBlockB;
-    *monBlockC = *newMonBlockC;
-    *monBlockD = *newMonBlockD;
+    *blockA = *tmpBlockA;
+    *blockB = *tmpBlockB;
+    *blockC = *tmpBlockC;
+    *blockD = *tmpBlockD;
 
     mon->box.checksum = CHECKSUM(&mon->box);
     ENCRYPT_BOX(&mon->box);
     ENCRYPT_PARTY(mon);
-    Heap_Free(newMon);
+    Heap_Free(tmpMon);
 }
 
 static void SpeciesData_LoadSpecies(int species, SpeciesData *speciesData)
