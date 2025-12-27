@@ -671,22 +671,22 @@ BOOL Pokemon_IsImmuneToPokerus(Pokemon *mon);
  *
  * @param mon
  */
-void Pokemon_SetArceusForm(Pokemon *mon);
+void Pokemon_UpdateArceusForm(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
  *
  * @param boxMon
  */
-void BoxPokemon_SetArceusForm(BoxPokemon *boxMon);
+void BoxPokemon_UpdateArceusForm(BoxPokemon *boxMon);
 
 /**
  * @brief Get Arceus' form given an items hold effect
  *
- * @param itemHoldEffect
+ * @param holdEffect
  * @return The form arceus should be in
  */
-u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect);
+u8 HoldEffect_GetArceusType(u16 holdEffect);
 
 /**
  * @brief Sets Giratina's form based on its held item. Has no effect if the given Pokemon is not a Giratina

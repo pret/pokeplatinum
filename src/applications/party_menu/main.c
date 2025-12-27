@@ -2759,7 +2759,7 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *mon
 
     Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
     Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item);
-    Pokemon_SetArceusForm(mon);
+    Pokemon_UpdateArceusForm(mon);
 
     if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
         *param2 = Pokemon_SetGiratinaFormByHeldItem(mon);
@@ -2781,7 +2781,7 @@ static void SwapPokemonItem(PartyMenuApplication *application, Pokemon *mon, u32
 {
     Bag_TryAddItem(application->partyMenu->bag, (u16)param2, 1, HEAP_ID_PARTY_MENU);
     Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &param3);
-    Pokemon_SetArceusForm(mon);
+    Pokemon_UpdateArceusForm(mon);
     Pokemon_SetGiratinaFormByHeldItem(mon);
     application->partyMembers[application->currPartySlot].heldItem = (u16)param3;
     PartyMenu_DrawMemberHeldItem(application, application->currPartySlot, application->partyMembers[application->currPartySlot].heldItem);

@@ -4240,7 +4240,7 @@ static void BoxApp_GiveItemToSelectedMon(BoxApplication *boxApp, u16 item, BoxAp
     int species = BoxPokemon_GetData(preview->mon, MON_DATA_SPECIES, NULL);
 
     if (species == SPECIES_ARCEUS) {
-        BoxPokemon_SetArceusForm(preview->mon);
+        BoxPokemon_UpdateArceusForm(preview->mon);
         preview->type1 = BoxPokemon_GetData(preview->mon, MON_DATA_TYPE_1, NULL);
         preview->type2 = BoxPokemon_GetData(preview->mon, MON_DATA_TYPE_2, NULL);
     } else if (species == SPECIES_GIRATINA) {

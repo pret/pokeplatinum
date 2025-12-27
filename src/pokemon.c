@@ -1076,7 +1076,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
         if (blockA->species == SPECIES_ARCEUS && blockA->ability == ABILITY_MULTITYPE) {
-            ret = Pokemon_GetArceusTypeOf(Item_LoadParam(blockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
+            ret = HoldEffect_GetArceusType(Item_LoadParam(blockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         } else {
             ret = Species_GetFormValue(blockA->species, blockB->form, SPECIES_DATA_TYPE_1 + (param - MON_DATA_TYPE_1));
         }
@@ -3771,82 +3771,60 @@ static BOOL BoxPokemon_IsImmuneToPokerus(BoxPokemon *boxMon)
     return FALSE;
 }
 
-void Pokemon_SetArceusForm(Pokemon *mon)
+void Pokemon_UpdateArceusForm(Pokemon *mon)
 {
-    BoxPokemon_SetArceusForm(&mon->box);
+    BoxPokemon_UpdateArceusForm(&mon->box);
 }
 
-void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
+void BoxPokemon_UpdateArceusForm(BoxPokemon *boxMon)
 {
-    int monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-    int monAbility = BoxPokemon_GetData(boxMon, MON_DATA_ABILITY, NULL);
-    int monHeldItem = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
-
-    if (monSpecies == SPECIES_ARCEUS && monAbility == ABILITY_MULTITYPE) {
-        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
-        BoxPokemon_SetData(boxMon, MON_DATA_FORM, &monForm);
+    u32 species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    u32 ability = BoxPokemon_GetData(boxMon, MON_DATA_ABILITY, NULL);
+    u32 heldItem = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
+    if (species == SPECIES_ARCEUS && ability == ABILITY_MULTITYPE) {
+        u32 form = HoldEffect_GetArceusType(Item_LoadParam(heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
+        BoxPokemon_SetData(boxMon, MON_DATA_FORM, &form);
     }
 }
 
-u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect)
+u8 HoldEffect_GetArceusType(u16 holdEffect)
 {
-    u8 type;
-
-    switch (itemHoldEffect) {
+    switch (holdEffect) {
     case HOLD_EFFECT_ARCEUS_FIRE:
-        type = TYPE_FIRE;
-        break;
+        return TYPE_FIRE;
     case HOLD_EFFECT_ARCEUS_WATER:
-        type = TYPE_WATER;
-        break;
+        return TYPE_WATER;
     case HOLD_EFFECT_ARCEUS_ELECTRIC:
-        type = TYPE_ELECTRIC;
-        break;
+        return TYPE_ELECTRIC;
     case HOLD_EFFECT_ARCEUS_GRASS:
-        type = TYPE_GRASS;
-        break;
+        return TYPE_GRASS;
     case HOLD_EFFECT_ARCEUS_ICE:
-        type = TYPE_ICE;
-        break;
+        return TYPE_ICE;
     case HOLD_EFFECT_ARCEUS_FIGHTING:
-        type = TYPE_FIGHTING;
-        break;
+        return TYPE_FIGHTING;
     case HOLD_EFFECT_ARCEUS_POISON:
-        type = TYPE_POISON;
-        break;
+        return TYPE_POISON;
     case HOLD_EFFECT_ARCEUS_GROUND:
-        type = TYPE_GROUND;
-        break;
+        return TYPE_GROUND;
     case HOLD_EFFECT_ARCEUS_FLYING:
-        type = TYPE_FLYING;
-        break;
+        return TYPE_FLYING;
     case HOLD_EFFECT_ARCEUS_PSYCHIC:
-        type = TYPE_PSYCHIC;
-        break;
+        return TYPE_PSYCHIC;
     case HOLD_EFFECT_ARCEUS_BUG:
-        type = TYPE_BUG;
-        break;
+        return TYPE_BUG;
     case HOLD_EFFECT_ARCEUS_ROCK:
-        type = TYPE_ROCK;
-        break;
+        return TYPE_ROCK;
     case HOLD_EFFECT_ARCEUS_GHOST:
-        type = TYPE_GHOST;
-        break;
+        return TYPE_GHOST;
     case HOLD_EFFECT_ARCEUS_DRAGON:
-        type = TYPE_DRAGON;
-        break;
+        return TYPE_DRAGON;
     case HOLD_EFFECT_ARCEUS_DARK:
-        type = TYPE_DARK;
-        break;
+        return TYPE_DARK;
     case HOLD_EFFECT_ARCEUS_STEEL:
-        type = TYPE_STEEL;
-        break;
+        return TYPE_STEEL;
     default:
-        type = TYPE_NORMAL;
-        break;
+        return TYPE_NORMAL;
     }
-
-    return type;
 }
 
 int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon)
