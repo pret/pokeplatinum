@@ -981,7 +981,7 @@ void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *
     CreateWildMon_Scripted(fieldSystem, species, level, dto);
 
     Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
-    Pokemon_SetGiratinaOriginForm(wildMon);
+    Pokemon_ForceSetGiratinaOriginForm(wildMon);
 
     if (isLegendary) {
         dto->battleStatusMask |= BATTLE_STATUS_LEGENDARY;

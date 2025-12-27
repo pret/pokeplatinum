@@ -741,7 +741,7 @@ static BOOL ScrCmd_320(ScriptContext *ctx);
 static BOOL ScrCmd_321(ScriptContext *ctx);
 static BOOL ScrCmd_322(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
-static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
+static BOOL ScrCmd_UpdatePartyGiratinaForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForMovement(ScriptContext *ctx);
 static void sub_02040F28(FieldSystem *fieldSystem, SysTask *param1, MapObjectAnimCmd *param2);
@@ -1577,7 +1577,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_325,
     ScrCmd_326,
     ScrCmd_ShowListMenuSetWidth,
-    ScrCmd_SetPartyGiratinaForm,
+    ScrCmd_UpdatePartyGiratinaForm,
     ScrCmd_329,
     ScrCmd_32A,
     ScrCmd_CheckPartyHasFatefulEncounterRegigigas,
@@ -7944,13 +7944,13 @@ static BOOL ScrCmd_323(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx)
+static BOOL ScrCmd_UpdatePartyGiratinaForm(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 form = ScriptContext_GetVar(ctx);
+    u16 forceOrigin = ScriptContext_GetVar(ctx);
     Party *party = SaveData_GetParty(ctx->fieldSystem->saveData);
 
-    Party_SetGiratinaForm(party, form);
+    Party_UpdateGiratinaForms(party, forceOrigin);
 
     int partyCount = Party_GetCurrentCount(party);
 

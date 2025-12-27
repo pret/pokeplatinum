@@ -25,7 +25,7 @@ _002E:
     Message 1
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
-    SetPartyGiratinaForm GIRATINA_FORM_ALTERED
+    UpdatePartyGiratinaForm FALSE
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_TURNBACK_CAVE_GIRATINA_ROOM, 0, 11, 15, 1

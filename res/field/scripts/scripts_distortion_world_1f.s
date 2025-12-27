@@ -28,7 +28,7 @@ _003A:
     Message 8
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
-    SetPartyGiratinaForm GIRATINA_FORM_ALTERED
+    UpdatePartyGiratinaForm FALSE
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 31, 33, 1

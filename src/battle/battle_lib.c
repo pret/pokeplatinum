@@ -6429,7 +6429,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 // Force Giratina-Altered form
                 tmp = GIRATINA_FORM_ALTERED;
                 Pokemon_SetData(mon, MON_DATA_FORM, &tmp);
-                Pokemon_SetGiratinaFormByHeldItem(mon);
+                Pokemon_UpdateGiratinaForm(mon);
 
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].attack = Pokemon_GetData(mon, MON_DATA_ATK, 0);
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].defense = Pokemon_GetData(mon, MON_DATA_DEF, 0);

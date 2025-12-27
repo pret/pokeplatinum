@@ -537,7 +537,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
 
             switch (v5) {
             case SPECIES_GIRATINA:
-                Pokemon_SetGiratinaFormByHeldItem(v0);
+                Pokemon_UpdateGiratinaForm(v0);
                 break;
             case SPECIES_ROTOM:
                 Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
@@ -594,7 +594,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
 
         switch (pokemonSpecies) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaFormByHeldItem(pokemon);
+            Pokemon_UpdateGiratinaForm(pokemon);
             break;
         case SPECIES_ROTOM:
             Pokemon_SetRotomForm(pokemon, ROTOM_FORM_BASE, 0);

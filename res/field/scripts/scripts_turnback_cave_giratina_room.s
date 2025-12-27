@@ -111,7 +111,7 @@ _0149:
     Message 3
     CloseMessage
     PlayFanfare SEQ_SE_PL_SYUWA
-    SetPartyGiratinaForm GIRATINA_FORM_ORIGIN
+    UpdatePartyGiratinaForm TRUE
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, 0, 116, 75, 1

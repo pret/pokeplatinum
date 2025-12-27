@@ -3827,38 +3827,36 @@ u8 HoldEffect_GetArceusType(u16 holdEffect)
     }
 }
 
-int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon)
+s32 Pokemon_UpdateGiratinaForm(Pokemon *mon)
 {
-    int result = BoxPokemon_SetGiratinaForm(&mon->box);
-
-    if (result != -1) {
+    s32 ret = BoxPokemon_UpdateGiratinaForm(&mon->box);
+    if (ret != -1) {
         Pokemon_CalcLevelAndStats(mon);
     }
-
-    return result;
+    return ret;
 }
 
-int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon)
+s32 BoxPokemon_UpdateGiratinaForm(BoxPokemon *boxMon)
 {
     int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     int item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
-
     if (species == SPECIES_GIRATINA) {
-        int form = (item == ITEM_GRISEOUS_ORB) ? GIRATINA_FORM_ORIGIN : GIRATINA_FORM_ALTERED;
-
+    	int form;
+        if (item == ITEM_GRISEOUS_ORB) {
+            form = GIRATINA_FORM_ORIGIN;
+        } else {
+            form = GIRATINA_FORM_ALTERED;
+        }
         BoxPokemon_SetData(boxMon, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(boxMon);
-
         return form;
     }
-
     return -1;
 }
 
-void Pokemon_SetGiratinaOriginForm(Pokemon *mon)
+void Pokemon_ForceSetGiratinaOriginForm(Pokemon *mon)
 {
-    int form = GIRATINA_FORM_ORIGIN;
-
+    s32 form = GIRATINA_FORM_ORIGIN;
     if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA) {
         BoxPokemon_SetData(&mon->box, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(&mon->box);
@@ -3866,17 +3864,15 @@ void Pokemon_SetGiratinaOriginForm(Pokemon *mon)
     }
 }
 
-void Party_SetGiratinaForm(Party *party, int form)
+void Party_UpdateGiratinaForms(Party *party, BOOL forceOrigin)
 {
-    int currentPartyCount = Party_GetCurrentCount(party);
-
-    for (int i = 0; i < currentPartyCount; i++) {
+    int count = Party_GetCurrentCount(party);
+    for (int i = 0; i < count; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-
-        if (form) {
-            Pokemon_SetGiratinaOriginForm(mon);
+        if (forceOrigin) {
+            Pokemon_ForceSetGiratinaOriginForm(mon);
         } else {
-            Pokemon_SetGiratinaFormByHeldItem(mon);
+            Pokemon_UpdateGiratinaForm(mon);
         }
     }
 }

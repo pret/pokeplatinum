@@ -694,7 +694,7 @@ u8 HoldEffect_GetArceusType(u16 holdEffect);
  * @param mon
  * @return The form Giratina was set to, or -1 if the given BoxPokemon was not a Giratina
  */
-int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon);
+s32 Pokemon_UpdateGiratinaForm(Pokemon *mon);
 
 /**
  * @brief Sets Giratina's form based on its held item. Has no effect if the given BoxPokemon is not a Giratina
@@ -702,23 +702,23 @@ int Pokemon_SetGiratinaFormByHeldItem(Pokemon *mon);
  * @param boxMon
  * @return The form Giratina was set to, or -1 if the given BoxPokemon was not a Giratina
  */
-int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon);
+s32 BoxPokemon_UpdateGiratinaForm(BoxPokemon *boxMon);
 
 /**
  * @brief Set Giratina to its Origin form. Has no effect if the given Pokemon is not a Giratina
  *
  * @param mon
  */
-void Pokemon_SetGiratinaOriginForm(Pokemon *mon);
+void Pokemon_ForceSetGiratinaOriginForm(Pokemon *mon);
 
 /**
  * @brief Iterates over all the Pokemon in Party, setting the form of any Giratina.
- *        If form is GIRATINA_FORM_ORIGIN, always sets Giratina into Origin form, otherwise its form is based on held item
+ *        If forceOrigin is TRUE, always sets Giratina into Origin form, otherwise its form is based on held item.
  *
  * @param party
- * @param form
+ * @param forceOrigin
  */
-void Party_SetGiratinaForm(Party *party, int form);
+void Party_UpdateGiratinaForms(Party *party, BOOL forceOrigin);
 
 /**
  * @brief Sets Shaymin to the given form. Has no effect if the given Pokemon is not a Shaymin
