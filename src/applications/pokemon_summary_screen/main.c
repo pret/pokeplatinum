@@ -1125,9 +1125,9 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->smart = Pokemon_GetData(mon, MON_DATA_SMART, NULL);
     monData->tough = Pokemon_GetData(mon, MON_DATA_TOUGH, NULL);
     monData->sheen = Pokemon_GetData(mon, MON_DATA_SHEEN, NULL);
-    monData->preferredFlavor = FLAVOR_MAX;
+    monData->preferredFlavor = FLAVOR_COUNT;
 
-    for (i = 0; i < FLAVOR_MAX; i++) {
+    for (i = 0; i < FLAVOR_COUNT; i++) {
         if (Pokemon_GetFlavorAffinity(mon, i) == 1) {
             monData->preferredFlavor = i;
             break;

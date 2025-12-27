@@ -2603,7 +2603,7 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     if ((v0 % 2) == 0) {
         for (v1 = 0; v1 < 5; v1++) {
-            if (Pokemon_GetFlavorAffinityOf(v0, v1) == 1) {
+            if (Personality_GetFlavorAffinity(v0, v1) == 1) {
                 v5 = v1;
                 break;
             }

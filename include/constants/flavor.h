@@ -8,7 +8,7 @@ enum Flavor {
     FLAVOR_BITTER,
     FLAVOR_SOUR,
 
-    FLAVOR_MAX,
+    FLAVOR_COUNT,
 };
 
 #endif // POKEPLATINUM_CONSTANTS_FLAVOR_H

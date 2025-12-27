@@ -7052,10 +7052,10 @@ static BOOL ScrCmd_GetUndergroundTrapsSet(ScriptContext *ctx)
 
 static BOOL ScrCmd_GivePoffin(ScriptContext *ctx)
 {
-    u8 flavors[FLAVOR_MAX];
+    u8 flavors[FLAVOR_COUNT];
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    for (int i = 0; i < FLAVOR_MAX; i++) {
+    for (int i = 0; i < FLAVOR_COUNT; i++) {
         flavors[i] = ScriptContext_GetVar(ctx);
     }
 

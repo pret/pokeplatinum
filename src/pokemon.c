@@ -61,184 +61,6 @@
 
 #define FATEFUL_ENCOUNTER_LOCATION 3002
 
-static const s8 sNatureFlavorAffinities[][5] = {
-    [NATURE_HARDY] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_LONELY] = {
-        [FLAVOR_SPICY] = 1,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = -1,
-    },
-    [NATURE_BRAVE] = {
-        [FLAVOR_SPICY] = 1,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = -1,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_ADAMANT] = {
-        [FLAVOR_SPICY] = 1,
-        [FLAVOR_DRY] = -1,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_NAUGHTY] = {
-        [FLAVOR_SPICY] = 1,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = -1,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_BOLD] = {
-        [FLAVOR_SPICY] = -1,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 1,
-    },
-    [NATURE_DOCILE] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_RELAXED] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = -1,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 1,
-    },
-    [NATURE_IMPISH] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = -1,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 1,
-    },
-    [NATURE_LAX] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = -1,
-        [FLAVOR_SOUR] = 1,
-    },
-    [NATURE_TIMID] = {
-        [FLAVOR_SPICY] = -1,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 1,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_HASTY] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 1,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = -1,
-    },
-    [NATURE_SERIOUS] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_JOLLY] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = -1,
-        [FLAVOR_SWEET] = 1,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_NAIVE] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 1,
-        [FLAVOR_BITTER] = -1,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_MODEST] = {
-        [FLAVOR_SPICY] = -1,
-        [FLAVOR_DRY] = 1,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_MILD] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 1,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = -1,
-    },
-    [NATURE_QUIET] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 1,
-        [FLAVOR_SWEET] = -1,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_BASHFUL] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_RASH] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 1,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = -1,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_CALM] = {
-        [FLAVOR_SPICY] = -1,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 1,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_GENTLE] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 1,
-        [FLAVOR_SOUR] = -1,
-    },
-    [NATURE_SASSY] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = -1,
-        [FLAVOR_BITTER] = 1,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_CAREFUL] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = -1,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 1,
-        [FLAVOR_SOUR] = 0,
-    },
-    [NATURE_QUIRKY] = {
-        [FLAVOR_SPICY] = 0,
-        [FLAVOR_DRY] = 0,
-        [FLAVOR_SWEET] = 0,
-        [FLAVOR_BITTER] = 0,
-        [FLAVOR_SOUR] = 0,
-    },
-};
-
 enum PokemonDataBlockID {
     DATA_BLOCK_A = 0,
     DATA_BLOCK_B,
@@ -290,6 +112,37 @@ static inline int Pokemon_Face(int num);
 #define DECRYPT_PARTY(mon)     MonDecryptSegment(ENCRY_ARGS_PARTY(mon))
 #define DECRYPT_BOX(boxMon)    MonDecryptSegment(ENCRY_ARGS_BOX(boxMon))
 #define CHECKSUM(boxMon)       Pokemon_GetDataChecksum((u16 *)(boxMon)->dataBlocks, sizeof((boxMon)->dataBlocks))
+
+// clang-format off
+static const s8 sNatureFlavorAffinities[NATURE_COUNT][FLAVOR_COUNT] = {
+                    // Spicy  Dry Sweet Bitter Sour
+    [NATURE_HARDY]   = {  0,   0,   0,    0,    0 },
+    [NATURE_LONELY]  = { +1,   0,   0,    0,   -1 },
+    [NATURE_BRAVE]   = { +1,   0,  -1,    0,    0 },
+    [NATURE_ADAMANT] = { +1,  -1,   0,    0,    0 },
+    [NATURE_NAUGHTY] = { +1,   0,   0,   -1,    0 },
+    [NATURE_BOLD]    = { -1,   0,   0,    0,    1 },
+    [NATURE_DOCILE]  = {  0,   0,   0,    0,    0 },
+    [NATURE_RELAXED] = {  0,   0,  -1,    0,    1 },
+    [NATURE_IMPISH]  = {  0,  -1,   0,    0,    1 },
+    [NATURE_LAX]     = {  0,   0,   0,   -1,    1 },
+    [NATURE_TIMID]   = { -1,   0,  +1,    0,    0 },
+    [NATURE_HASTY]   = {  0,   0,  +1,    0,   -1 },
+    [NATURE_SERIOUS] = {  0,   0,   0,    0,    0 },
+    [NATURE_JOLLY]   = {  0,  -1,  +1,    0,    0 },
+    [NATURE_NAIVE]   = {  0,   0,  +1,   -1,    0 },
+    [NATURE_MODEST]  = { -1,  +1,   0,    0,    0 },
+    [NATURE_MILD]    = {  0,  +1,   0,    0,   -1 },
+    [NATURE_QUIET]   = {  0,  +1,  -1,    0,    0 },
+    [NATURE_BASHFUL] = {  0,   0,   0,    0,    0 },
+    [NATURE_RASH]    = {  0,  +1,   0,   -1,    0 },
+    [NATURE_CALM]    = { -1,   0,   0,   +1,    0 },
+    [NATURE_GENTLE]  = {  0,   0,   0,   +1,   -1 },
+    [NATURE_SASSY]   = {  0,   0,  -1,   +1,    0 },
+    [NATURE_CAREFUL] = {  0,  -1,   0,   +1,    0 },
+    [NATURE_QUIRKY]  = {  0,   0,   0,    0,    0 },
+};
+// clang-format on
 
 void Pokemon_Init(Pokemon *mon)
 {
@@ -3609,13 +3462,12 @@ s8 Pokemon_GetFlavorAffinity(Pokemon *mon, enum Flavor flavor)
 
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, enum Flavor flavor)
 {
-    return Pokemon_GetFlavorAffinityOf(BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL), flavor);
+    return Personality_GetFlavorAffinity(BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL), flavor);
 }
 
-s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor)
+s8 Personality_GetFlavorAffinity(u32 personality, enum Flavor flavor)
 {
-    u8 monNature = Personality_GetNature(monPersonality);
-    return sNatureFlavorAffinities[monNature][flavor];
+    return sNatureFlavorAffinities[Personality_GetNature(personality)][flavor];
 }
 
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs)
