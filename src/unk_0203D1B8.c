@@ -947,8 +947,8 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_1C = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecords(fieldSystem->saveData);
     param0->unk_38 = Heap_Alloc(HEAP_ID_FIELD3, TrainerInfo_Size());
-    param0->unk_3C = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_Size());
-    param0->unk_40 = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_Size());
+    param0->unk_3C = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_Size2());
+    param0->unk_40 = Heap_Alloc(HEAP_ID_FIELD3, Pokemon_Size2());
     param0->fieldSystem = fieldSystem;
     param0->unk_34 = 0;
 }

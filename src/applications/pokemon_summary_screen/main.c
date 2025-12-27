@@ -1547,7 +1547,7 @@ static s8 TryAdvanceMonIndex(PokemonSummaryScreen *summaryScreen, s8 delta)
             return -1;
         }
 
-        mon = (Pokemon *)((u32)summaryScreen->data->monData + Pokemon_Size() * monIndex);
+        mon = (Pokemon *)((u32)summaryScreen->data->monData + Pokemon_Size2() * monIndex);
 
         if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
             if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) != FALSE) {
@@ -1617,7 +1617,7 @@ void *PokemonSummaryScreen_MonData(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->data->dataType) {
     case SUMMARY_DATA_MON:
-        return summaryScreen->data->monData + (Pokemon_Size() * summaryScreen->data->monIndex);
+        return summaryScreen->data->monData + (Pokemon_Size2() * summaryScreen->data->monIndex);
     case SUMMARY_DATA_PARTY_MON:
         return Party_GetPokemonBySlotIndex(summaryScreen->data->monData, summaryScreen->data->monIndex);
     case SUMMARY_DATA_BOX_MON:

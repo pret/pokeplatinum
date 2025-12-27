@@ -3307,7 +3307,7 @@ static void BoxAppMan_Load(BoxApplicationManager *boxAppMan, PokemonStorageSessi
     boxAppMan->natureNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
     boxAppMan->abilityNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
     boxAppMan->MessageVariableBuffer = StringTemplate_Default(HEAP_ID_BOX_DATA);
-    boxAppMan->mon = Heap_Alloc(HEAP_ID_BOX_DATA, Pokemon_StructSize());
+    boxAppMan->mon = Heap_Alloc(HEAP_ID_BOX_DATA, Pokemon_Size());
 
     GF_ASSERT(boxAppMan->MessageVariableBuffer);
     boxAppMan->namingScreenArgs = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, BOX_NAME_LEN, boxAppMan->options);
@@ -3866,7 +3866,7 @@ static void BoxAppMan_PickUpMon(BoxApplicationManager *boxAppMan, BoxApplication
         PCBoxes_InitBoxMonAt(boxAppMan->pcBoxes, USE_CURRENT_BOX, cursor->posInBox);
         selection->cursorMonIsPartyMon = FALSE;
     } else {
-        MI_CpuCopy32(cursor->mon, selection->boxMon, Pokemon_Size());
+        MI_CpuCopy32(cursor->mon, selection->boxMon, Pokemon_Size2());
         Party_RemovePokemonBySlotIndex(boxAppMan->party, cursor->posInParty);
         selection->cursorMonIsPartyMon = TRUE;
     }
@@ -4007,7 +4007,7 @@ static void BoxAppMan_PutDownSelectedMons(BoxApplicationManager *boxAppMan, BoxA
 static void BoxAppMan_SwapMonInCursor(BoxApplicationManager *boxAppMan, BoxApplication *boxApp)
 {
     BoxMonSelection *selection = &boxApp->selection;
-    u32 monStructSize = Pokemon_Size();
+    u32 monStructSize = Pokemon_Size2();
     void *monBuffer = (u8 *)selection->boxMon + monStructSize;
     BoxCursor *cursor = &boxApp->cursor;
 

@@ -1009,7 +1009,7 @@ void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *appState)
     if (GTSApplication_IsBoxIDParty(appState->selectedBoxId)) {
         Pokemon_UpdateShayminForm((Pokemon *)(appState->unk_114), SHAYMIN_FORM_LAND);
 
-        MI_CpuCopyFast(appState->unk_114, listing->pokemon.bytes, Pokemon_StructSize());
+        MI_CpuCopyFast(appState->unk_114, listing->pokemon.bytes, Pokemon_Size());
     } else {
         BoxPokemon_UpdateShayminForm(appState->unk_114, SHAYMIN_FORM_LAND);
         BoxPokemon_CopyToPokemon(appState->unk_114, (Pokemon *)listing->pokemon.bytes);

@@ -157,7 +157,7 @@ void BoxPokemon_Init(BoxPokemon *boxMon)
     ENCRYPT_BOX(boxMon);
 }
 
-int Pokemon_StructSize(void)
+int Pokemon_Size(void)
 {
     return sizeof(Pokemon);
 }
@@ -2843,7 +2843,7 @@ void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2)
     }
 }
 
-u32 Pokemon_Size(void)
+u32 Pokemon_Size2(void)
 {
     return sizeof(Pokemon);
 }
