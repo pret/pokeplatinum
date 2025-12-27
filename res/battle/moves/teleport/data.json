@@ -13,7 +13,7 @@
     "priority": 0,
     "flags": [],
     "contest": {
-        "effect": 1,
+        "effect": "CONTEST_EFFECT_FIRST_NEXT_TURN",
         "type": "CONTEST_TYPE_COOL"
     }
 }

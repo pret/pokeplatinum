@@ -13,7 +13,7 @@
     "priority": 0,
     "flags": [],
     "contest": {
-        "effect": 9,
+        "effect": "CONTEST_EFFECT_ALL_SAME_JUDGE",
         "type": "CONTEST_TYPE_SMART"
     }
 }

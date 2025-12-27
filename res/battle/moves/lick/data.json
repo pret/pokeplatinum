@@ -18,7 +18,7 @@
         "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
-        "effect": 16,
+        "effect": "CONTEST_EFFECT_LOW_VOLTAGE_ADVANTAGE",
         "type": "CONTEST_TYPE_TOUGH"
     }
 }

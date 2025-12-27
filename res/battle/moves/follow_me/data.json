@@ -13,7 +13,7 @@
     "priority": 3,
     "flags": [],
     "contest": {
-        "effect": 14,
+        "effect": "CONTEST_EFFECT_RANDOM_ORDER",
         "type": "CONTEST_TYPE_CUTE"
     }
 }

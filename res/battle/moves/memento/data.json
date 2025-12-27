@@ -16,7 +16,7 @@
         "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
-        "effect": 9,
+        "effect": "CONTEST_EFFECT_ALL_SAME_JUDGE",
         "type": "CONTEST_TYPE_TOUGH"
     }
 }

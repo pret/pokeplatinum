@@ -333,8 +333,8 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     v1 = StringTemplate_Default(HEAP_ID_13);
     v2 = String_Init(200, HEAP_ID_13);
 
-    StringTemplate_SetContestTypeName(v1, 0, sub_020958B8(param0->unk_08));
-    StringTemplate_SetContestRankName(v1, 1, sub_02095888(v0));
+    StringTemplate_SetContestTypeName(v1, 0, Contest_GetContestTypeMessageID(param0->unk_08));
+    StringTemplate_SetContestRankName(v1, 1, Contest_GetRankMessageID(v0));
 
     v4 = sub_0202A544(param0->unk_04);
     sub_0202A524(param0->unk_04, v2);

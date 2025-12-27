@@ -13,7 +13,7 @@
     "priority": 0,
     "flags": [],
     "contest": {
-        "effect": 17,
+        "effect": "CONTEST_EFFECT_FIRST_PERFORMANCE_ADVANTAGE",
         "type": "CONTEST_TYPE_SMART"
     }
 }

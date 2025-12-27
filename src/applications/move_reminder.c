@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/contests.h"
 #include "constants/pokemon.h"
 #include "generated/pokemon_types.h"
 
@@ -1234,9 +1235,9 @@ static void MoveReminder_DrawAppealPointHearts(MoveReminderController *controlle
     MoveReminder_DrawEmptyHearts(controller);
 
     if (move != LEVEL_UP_MOVESET_TERMINATOR) {
-        s8 appealPoints = sub_02095734(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT)) / 10;
+        s8 numHearts = sub_02095734(MoveTable_LoadParam(move, MOVEATTRIBUTE_CONTEST_EFFECT)) / POINTS_PER_APPEAL_HEART;
 
-        for (u16 i = 0; i < appealPoints; i++) {
+        for (u16 i = 0; i < numHearts; i++) {
             MoveReminder_DrawHeart(controller, 14, i);
         }
     }

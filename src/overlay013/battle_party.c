@@ -1,5 +1,6 @@
 #include "overlay013/battle_party.h"
 
+#include "constants/contests.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 
@@ -80,9 +81,6 @@
 #define EXP_BAR_NUM_SEGMENTS   8
 #define EXP_BAR_SEGMENT_PIXELS 8
 #define EXP_BAR_MAX_PIXELS     EXP_BAR_NUM_SEGMENTS *EXP_BAR_SEGMENT_PIXELS
-
-#define CONTEST_EFFECT_PER_APPEAL_PT 10
-#define MAX_APPEAL_PTS               6
 
 enum BattlePartyUseRestorationItemState {
     BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_INITIALISING = 0,
@@ -1538,7 +1536,7 @@ static void DrawAppealPt(BattleParty *battleParty, u16 fillVal, u8 pointSlot)
 
 static void DrawEmptyAppealPts(BattleParty *battleParty)
 {
-    for (u16 i = 0; i < MAX_APPEAL_PTS; i++) {
+    for (u16 i = 0; i < MAX_APPEAL_HEARTS; i++) {
         DrawAppealPt(battleParty, 293, i);
     }
 }
@@ -1565,7 +1563,7 @@ static void DrawMoveContestStats(BattleParty *battleParty, u8 screen)
     }
 
     contestEffect = MoveTable_LoadParam(selectedMove, MOVEATTRIBUTE_CONTEST_EFFECT);
-    appealPts = sub_02095734(contestEffect) / CONTEST_EFFECT_PER_APPEAL_PT;
+    appealPts = sub_02095734(contestEffect) / POINTS_PER_APPEAL_HEART;
 
     for (i = 0; i < appealPts; i++) {
         DrawAppealPt(battleParty, 320, i);

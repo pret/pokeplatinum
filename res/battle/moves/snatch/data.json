@@ -13,7 +13,7 @@
     "priority": 4,
     "flags": [],
     "contest": {
-        "effect": 12,
+        "effect": "CONTEST_EFFECT_STEAL_VOLTAGE",
         "type": "CONTEST_TYPE_SMART"
     }
 }

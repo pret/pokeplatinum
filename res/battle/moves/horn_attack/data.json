@@ -18,7 +18,7 @@
         "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {
-        "effect": 5,
+        "effect": "CONTEST_EFFECT_BASIC",
         "type": "CONTEST_TYPE_COOL"
     }
 }

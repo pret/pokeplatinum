@@ -2,187 +2,187 @@
   "key": 38210,
   "messages": [
     {
-      "id": "pl_msg_00000210_00000",
+      "id": "ContestEffects_Text_PerformFirst",
       "en_US": "Perform first"
     },
     {
-      "id": "pl_msg_00000210_00001",
+      "id": "ContestEffects_Text_NextTurn1",
       "en_US": "next turn."
     },
     {
-      "id": "pl_msg_00000210_00002",
+      "id": "ContestEffects_Text_PerformLast",
       "en_US": "Perform last"
     },
     {
-      "id": "pl_msg_00000210_00003",
+      "id": "ContestEffects_Text_NextTurn2",
       "en_US": "next turn."
     },
     {
-      "id": "pl_msg_00000210_00004",
+      "id": "ContestEffects_Text_EachDoubled",
       "en_US": "Each doubled"
     },
     {
-      "id": "pl_msg_00000210_00005",
+      "id": "ContestEffects_Text_JudgePlusTwo",
       "en_US": "Judge: +2"
     },
     {
-      "id": "pl_msg_00000210_00006",
+      "id": "ContestEffects_Text_IfTheVoltage",
       "en_US": "If the Voltage"
     },
     {
-      "id": "pl_msg_00000210_00007",
+      "id": "ContestEffects_Text_GoesUpPlusTwo",
       "en_US": "goes up: +2"
     },
     {
-      "id": "pl_msg_00000210_00008",
+      "id": "ContestEffects_Text_BasicAct",
       "en_US": "A basic act."
     },
     {
-      "id": "pl_msg_00000210_00009",
+      "id": "ContestEffects_Text_Unused",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000210_00010",
+      "id": "ContestEffects_Text_IfJudgesAre",
       "en_US": "If Judges are"
     },
     {
-      "id": "pl_msg_00000210_00011",
+      "id": "ContestEffects_Text_NotDoubledPlusThree",
       "en_US": "not doubled: +3"
     },
     {
-      "id": "pl_msg_00000210_00012",
+      "id": "ContestEffects_Text_PerformableTwo",
       "en_US": "Performable two"
     },
     {
-      "id": "pl_msg_00000210_00013",
+      "id": "ContestEffects_Text_TurnsInARow",
       "en_US": "turns in a row."
     },
     {
-      "id": "pl_msg_00000210_00014",
+      "id": "ContestEffects_Text_VoltagePts",
       "en_US": "Voltage pts."
     },
     {
-      "id": "pl_msg_00000210_00015",
+      "id": "ContestEffects_Text_AreAdded",
       "en_US": "are added."
     },
     {
-      "id": "pl_msg_00000210_00016",
+      "id": "ContestEffects_Text_IfAllChoose",
       "en_US": "If all choose"
     },
     {
-      "id": "pl_msg_00000210_00017",
+      "id": "ContestEffects_Text_SameJudgePlusFifteen",
       "en_US": "same Judge: +15"
     },
     {
-      "id": "pl_msg_00000210_00018",
+      "id": "ContestEffects_Text_LowersVoltage",
       "en_US": "Lowers Voltage"
     },
     {
-      "id": "pl_msg_00000210_00019",
+      "id": "ContestEffects_Text_OfJudgesByOne",
       "en_US": "of Judges by 1."
     },
     {
-      "id": "pl_msg_00000210_00020",
+      "id": "ContestEffects_Text_DoubleScoreIn",
       "en_US": "Double score in"
     },
     {
-      "id": "pl_msg_00000210_00021",
+      "id": "ContestEffects_Text_NextTurn3",
       "en_US": "next turn."
     },
     {
-      "id": "pl_msg_00000210_00022",
+      "id": "ContestEffects_Text_GetVoltage",
       "en_US": "Get Voltage"
     },
     {
-      "id": "pl_msg_00000210_00023",
+      "id": "ContestEffects_Text_FromOneAhead",
       "en_US": "from one ahead."
     },
     {
-      "id": "pl_msg_00000210_00024",
+      "id": "ContestEffects_Text_NoVoltageUp",
       "en_US": "No Voltage up"
     },
     {
-      "id": "pl_msg_00000210_00025",
+      "id": "ContestEffects_Text_ThisTurn1",
       "en_US": "this turn."
     },
     {
-      "id": "pl_msg_00000210_00026",
+      "id": "ContestEffects_Text_RandomOrder",
       "en_US": "Random order"
     },
     {
-      "id": "pl_msg_00000210_00027",
+      "id": "ContestEffects_Text_NextTurn4",
       "en_US": "next turn."
     },
     {
-      "id": "pl_msg_00000210_00028",
+      "id": "ContestEffects_Text_DoubleScore",
       "en_US": "Double score"
     },
     {
-      "id": "pl_msg_00000210_00029",
+      "id": "ContestEffects_Text_ForFinalAct",
       "en_US": "for final act."
     },
     {
-      "id": "pl_msg_00000210_00030",
+      "id": "ContestEffects_Text_HighScoreFor1",
       "en_US": "High score for"
     },
     {
-      "id": "pl_msg_00000210_00031",
+      "id": "ContestEffects_Text_LowVoltage",
       "en_US": "low Voltage."
     },
     {
-      "id": "pl_msg_00000210_00032",
+      "id": "ContestEffects_Text_IfFirst",
       "en_US": "If first"
     },
     {
-      "id": "pl_msg_00000210_00033",
+      "id": "ContestEffects_Text_PerformancePlusTwo1",
       "en_US": "performance: +2"
     },
     {
-      "id": "pl_msg_00000210_00034",
+      "id": "ContestEffects_Text_IfFinal",
       "en_US": "If final"
     },
     {
-      "id": "pl_msg_00000210_00035",
+      "id": "ContestEffects_Text_PerformancePlusTwo2",
       "en_US": "performance: +2"
     },
     {
-      "id": "pl_msg_00000210_00036",
+      "id": "ContestEffects_Text_NoVoltageDown",
       "en_US": "No Voltage down"
     },
     {
-      "id": "pl_msg_00000210_00037",
+      "id": "ContestEffects_Text_ThisTurn2",
       "en_US": "this turn."
     },
     {
-      "id": "pl_msg_00000210_00038",
+      "id": "ContestEffects_Text_IfVoltageGoes",
       "en_US": "If Voltage goes"
     },
     {
-      "id": "pl_msg_00000210_00039",
+      "id": "ContestEffects_Text_UpInARowPlusThree",
       "en_US": "up in a row: +3"
     },
     {
-      "id": "pl_msg_00000210_00040",
+      "id": "ContestEffects_Text_HighScoreFor2",
       "en_US": "High score for"
     },
     {
-      "id": "pl_msg_00000210_00041",
+      "id": "ContestEffects_Text_ALaterTurn",
       "en_US": "a later turn."
     },
     {
-      "id": "pl_msg_00000210_00042",
+      "id": "ContestEffects_Text_AfterVoltage",
       "en_US": "After Voltage"
     },
     {
-      "id": "pl_msg_00000210_00043",
+      "id": "ContestEffects_Text_HitsMaxPlusThree",
       "en_US": "hits max: +3"
     },
     {
-      "id": "pl_msg_00000210_00044",
+      "id": "ContestEffects_Text_IfRatedThe",
       "en_US": "If rated the"
     },
     {
-      "id": "pl_msg_00000210_00045",
+      "id": "ContestEffects_Text_WorstPlusThree",
       "en_US": "worst: +3"
     },
     {

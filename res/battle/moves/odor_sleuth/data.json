@@ -17,7 +17,7 @@
         "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
-        "effect": 20,
+        "effect": "CONTEST_EFFECT_TWO_VOLTAGE_IN_A_ROW_ADVANTAGE",
         "type": "CONTEST_TYPE_SMART"
     }
 }

@@ -13,7 +13,7 @@
     "priority": 4,
     "flags": [],
     "contest": {
-        "effect": 15,
+        "effect": "CONTEST_EFFECT_DOUBLE_FINAL_ACT",
         "type": "CONTEST_TYPE_BEAUTY"
     }
 }

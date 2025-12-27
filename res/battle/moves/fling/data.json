@@ -16,7 +16,7 @@
         "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
-        "effect": 23,
+        "effect": "CONTEST_EFFECT_PITY_POINTS",
         "type": "CONTEST_TYPE_TOUGH"
     }
 }

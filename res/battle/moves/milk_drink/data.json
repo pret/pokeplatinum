@@ -15,7 +15,7 @@
         "MOVE_FLAG_CAN_SNATCH"
     ],
     "contest": {
-        "effect": 8,
+        "effect": "CONTEST_EFFECT_VOLTAGE",
         "type": "CONTEST_TYPE_CUTE"
     }
 }
