@@ -100,7 +100,7 @@ static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speci
 static void Species_LoadEvolutions(int monSpecies, Evolution speciesEvolution[MAX_MON_EVOLUTIONS]);
 static void MonEncryptSegment(void *data, u32 bytes, u32 seed);
 static void MonDecryptSegment(void *data, u32 bytes, u32 seed);
-static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
+static u16 Pokemon_GetDataChecksum(void *data, u32 size);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
 static inline int Pokemon_Face(int num);
@@ -4065,21 +4065,18 @@ static void MonDecryptSegment(void *data, u32 bytes, u32 seed)
     DecodeData(data, bytes, seed);
 }
 
-static u16 Pokemon_GetDataChecksum(void *data, u32 bytes)
+static u16 Pokemon_GetDataChecksum(void *data, u32 size)
 {
     int i;
-    u16 checksum = 0;
-
     u16 *dataWords = data;
-
-    for (i = 0; i < bytes / 2; i++) {
-        checksum += dataWords[i];
+    u16 ret = 0;
+    for (i = 0; i < size / 2; i++) {
+        ret += dataWords[i];
     }
-
-    return checksum;
+    return ret;
 }
 
-#define DATA_BLOCK_SHUFFLE_CASE(v1, v2, v3, v4)            \
+#define SUBSTRUCT_CASE(v1, v2, v3, v4)                     \
     {                                                      \
         PokemonDataBlock *dataBlocks = boxMon->dataBlocks; \
         switch (dataBlockID) {                             \
@@ -4103,67 +4100,65 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
 {
     personality = (personality & 0x3e000) >> 13;
     GF_ASSERT(personality <= 31);
-
     void *result;
     switch (personality) {
     case 0:
     case 24:
-        DATA_BLOCK_SHUFFLE_CASE(0, 1, 2, 3)
+        SUBSTRUCT_CASE(0, 1, 2, 3)
     case 1:
     case 25:
-        DATA_BLOCK_SHUFFLE_CASE(0, 1, 3, 2)
+        SUBSTRUCT_CASE(0, 1, 3, 2)
     case 2:
     case 26:
-        DATA_BLOCK_SHUFFLE_CASE(0, 2, 1, 3)
+        SUBSTRUCT_CASE(0, 2, 1, 3)
     case 3:
     case 27:
-        DATA_BLOCK_SHUFFLE_CASE(0, 3, 1, 2)
+        SUBSTRUCT_CASE(0, 3, 1, 2)
     case 4:
     case 28:
-        DATA_BLOCK_SHUFFLE_CASE(0, 2, 3, 1)
+        SUBSTRUCT_CASE(0, 2, 3, 1)
     case 5:
     case 29:
-        DATA_BLOCK_SHUFFLE_CASE(0, 3, 2, 1)
+        SUBSTRUCT_CASE(0, 3, 2, 1)
     case 6:
     case 30:
-        DATA_BLOCK_SHUFFLE_CASE(1, 0, 2, 3)
+        SUBSTRUCT_CASE(1, 0, 2, 3)
     case 7:
     case 31:
-        DATA_BLOCK_SHUFFLE_CASE(1, 0, 3, 2)
+        SUBSTRUCT_CASE(1, 0, 3, 2)
     case 8:
-        DATA_BLOCK_SHUFFLE_CASE(2, 0, 1, 3)
+        SUBSTRUCT_CASE(2, 0, 1, 3)
     case 9:
-        DATA_BLOCK_SHUFFLE_CASE(3, 0, 1, 2)
+        SUBSTRUCT_CASE(3, 0, 1, 2)
     case 10:
-        DATA_BLOCK_SHUFFLE_CASE(2, 0, 3, 1)
+        SUBSTRUCT_CASE(2, 0, 3, 1)
     case 11:
-        DATA_BLOCK_SHUFFLE_CASE(3, 0, 2, 1)
+        SUBSTRUCT_CASE(3, 0, 2, 1)
     case 12:
-        DATA_BLOCK_SHUFFLE_CASE(1, 2, 0, 3)
+        SUBSTRUCT_CASE(1, 2, 0, 3)
     case 13:
-        DATA_BLOCK_SHUFFLE_CASE(1, 3, 0, 2)
+        SUBSTRUCT_CASE(1, 3, 0, 2)
     case 14:
-        DATA_BLOCK_SHUFFLE_CASE(2, 1, 0, 3)
+        SUBSTRUCT_CASE(2, 1, 0, 3)
     case 15:
-        DATA_BLOCK_SHUFFLE_CASE(3, 1, 0, 2)
+        SUBSTRUCT_CASE(3, 1, 0, 2)
     case 16:
-        DATA_BLOCK_SHUFFLE_CASE(2, 3, 0, 1)
+        SUBSTRUCT_CASE(2, 3, 0, 1)
     case 17:
-        DATA_BLOCK_SHUFFLE_CASE(3, 2, 0, 1)
+        SUBSTRUCT_CASE(3, 2, 0, 1)
     case 18:
-        DATA_BLOCK_SHUFFLE_CASE(1, 2, 3, 0)
+        SUBSTRUCT_CASE(1, 2, 3, 0)
     case 19:
-        DATA_BLOCK_SHUFFLE_CASE(1, 3, 2, 0)
+        SUBSTRUCT_CASE(1, 3, 2, 0)
     case 20:
-        DATA_BLOCK_SHUFFLE_CASE(2, 1, 3, 0)
+        SUBSTRUCT_CASE(2, 1, 3, 0)
     case 21:
-        DATA_BLOCK_SHUFFLE_CASE(3, 1, 2, 0)
+        SUBSTRUCT_CASE(3, 1, 2, 0)
     case 22:
-        DATA_BLOCK_SHUFFLE_CASE(2, 3, 1, 0)
+        SUBSTRUCT_CASE(2, 3, 1, 0)
     case 23:
-        DATA_BLOCK_SHUFFLE_CASE(3, 2, 1, 0)
+        SUBSTRUCT_CASE(3, 2, 1, 0)
     }
-
     return result;
 }
 
