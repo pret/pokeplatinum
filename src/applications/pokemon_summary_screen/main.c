@@ -1138,9 +1138,9 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
     monData->status = PokemonSummaryScreen_StatusIconAnimIdx(mon);
 
-    if (Pokemon_HasCuredPokerus(mon) == TRUE) {
+    if (Pokemon_IsImmuneToPokerus(mon) == TRUE) {
         monData->pokerus = SUMMARY_POKERUS_CURED;
-    } else if (Pokemon_InfectedWithPokerus(mon) == TRUE) {
+    } else if (Pokemon_HasPokerus(mon) == TRUE) {
         monData->pokerus = SUMMARY_POKERUS_INFECTED;
 
         if (monData->status == SUMMARY_CONDITION_NONE) {

@@ -267,8 +267,8 @@ static void BoxPokemon_ForceAppendMove(BoxPokemon *boxMon, u16 moveID);
 static void BoxPokemon_SetMoveInSlot(BoxPokemon *boxMon, u16 move, u8 slot);
 static BOOL Pokemon_HasMove(Pokemon *mon, u16 move);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, enum Flavor flavor);
-static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
-static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
+static BOOL BoxPokemon_HasPokerus(BoxPokemon *boxMon);
+static BOOL BoxPokemon_IsImmuneToPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL BoxPokemon_CanLearnTMHM(BoxPokemon *boxMon, u8 tmHM);
@@ -3635,128 +3635,107 @@ int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMov
     return result;
 }
 
-void Pokemon_ApplyPokerus(Party *party)
+void Party_GivePokerusAtRandom(Party *party)
 {
-    int currentPartyCount = Party_GetCurrentCount(party);
-    u16 rand = LCRNG_Next();
-
-    if (rand == 16384 || rand == 32768 || rand == 49152) {
-        int partySlot;
-        Pokemon *mon;
+    int count = Party_GetCurrentCount(party);
+    int slot;
+    Pokemon *mon;
+    u8 pokerus;
+    switch (LCRNG_Next()) {
+    case 0x4000:
+    case 0x8000:
+    case 0xC000:
         do {
-            partySlot = LCRNG_Next() % currentPartyCount;
-            mon = Party_GetPokemonBySlotIndex(party, partySlot);
+            slot = LCRNG_Next() % count;
+            mon = Party_GetPokemonBySlotIndex(party, slot);
+        } while (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE || Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL));
 
-            if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
-                break;
-            } else {
-                partySlot = currentPartyCount;
-            }
-        } while (partySlot == currentPartyCount);
-
-        if (Pokemon_HasPokerus(party, FlagIndex(partySlot)) == 0) {
-            u8 monPokerus;
+        if (!Party_MaskHasPokerus(party, FlagIndex(slot))) {
             do {
-                monPokerus = LCRNG_Next() & 0xff;
-            } while ((monPokerus & 0x7) == 0);
-
-            if (monPokerus & 0xf0) {
-                monPokerus &= 0x7;
+                pokerus = LCRNG_Next();
+            } while (!(pokerus & 0x7));
+            if (pokerus & 0xf0) {
+                pokerus &= 0x7;
             }
-
-            monPokerus |= (monPokerus << 4);
-            monPokerus &= 0xf3;
-            monPokerus++;
-
-            Pokemon_SetData(mon, MON_DATA_POKERUS, &monPokerus);
+            pokerus |= pokerus << 4;
+            pokerus &= 0xf3;
+            pokerus++;
+            Pokemon_SetData(mon, MON_DATA_POKERUS, &pokerus);
         }
     }
 }
 
-u8 Pokemon_HasPokerus(Party *party, u8 param1)
+u8 Party_MaskHasPokerus(Party *party, u8 partyMask)
 {
-    int partySlot = 0;
-    int v1 = 1;
-
-    u8 result = 0;
-    if (param1) {
+    int slot = 0;
+    u32 flag = 1;
+    u8 ret = 0;
+    Pokemon *mon;
+    if (partyMask != 0) {
         do {
-            if (param1 & 1) {
-                Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
-
+            if (partyMask & 1) {
+                mon = Party_GetPokemonBySlotIndex(party, slot);
                 if (Pokemon_GetData(mon, MON_DATA_POKERUS, NULL)) {
-                    result |= v1;
+                    ret |= flag;
                 }
             }
-
-            partySlot++;
-            v1 = v1 << 1;
-            param1 = param1 >> 1;
-        } while (param1 != 0);
+            slot++;
+            flag <<= 1;
+            partyMask >>= 1;
+        } while (partyMask != 0);
     } else {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
-
+        mon = Party_GetPokemonBySlotIndex(party, slot);
         if (Pokemon_GetData(mon, MON_DATA_POKERUS, NULL)) {
-            result++;
+            ret++;
         }
     }
-
-    return result;
+    return ret;
 }
 
-void Party_UpdatePokerusStatus(Party *party, s32 daysPassed)
+void Party_UpdatePokerus(Party *party, int daysPassed)
 {
-    int currentPartyCount = Party_GetCurrentCount(party);
-
-    for (int i = 0; i < currentPartyCount; i++) {
+    int count = Party_GetCurrentCount(party);
+    for (int i = 0; i < count; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-
-        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL)) {
-            u8 monPokerus = Pokemon_GetData(mon, MON_DATA_POKERUS, NULL);
-
-            if (monPokerus & 0xf) {
-                if (((monPokerus & 0xf) < daysPassed) || (daysPassed > 4)) {
-                    monPokerus &= 0xf0;
+        if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+            u8 pokerus = Pokemon_GetData(mon, MON_DATA_POKERUS, NULL);
+            if (pokerus & 0xf) {
+                if ((pokerus & 0xf) < daysPassed || daysPassed > 4) {
+                    pokerus &= 0xf0;
                 } else {
-                    monPokerus -= daysPassed;
+                    pokerus -= daysPassed;
                 }
 
-                if (monPokerus == 0) {
-                    monPokerus = 0x10;
+                if (pokerus == 0) {
+                    pokerus = 0x10; // immune
                 }
-
-                Pokemon_SetData(mon, MON_DATA_POKERUS, &monPokerus);
+                Pokemon_SetData(mon, MON_DATA_POKERUS, &pokerus);
             }
         }
     }
 }
 
-void Pokemon_ValidatePokerus(Party *party)
+void Party_SpreadPokerus(Party *party)
 {
-    int currentPartyCount = Party_GetCurrentCount(party);
-
-    if (LCRNG_Next() % 3 == 0) {
-        for (int i = 0; i < currentPartyCount; i++) {
+    int count = Party_GetCurrentCount(party);
+    if ((LCRNG_Next() % 3) == 0) {
+        for (int i = 0; i < count; i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-
-            if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL)) {
-                u8 monPokerus = Pokemon_GetData(mon, MON_DATA_POKERUS, NULL);
-
-                if (monPokerus & 0xf) {
+            if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE) {
+                u8 pokerus = Pokemon_GetData(mon, MON_DATA_POKERUS, NULL);
+                if (pokerus & 0xf) {
                     if (i != 0) {
                         mon = Party_GetPokemonBySlotIndex(party, i - 1);
-
-                        if ((Pokemon_GetData(mon, MON_DATA_POKERUS, NULL) & 0xf0) == 0) {
-                            Pokemon_SetData(mon, MON_DATA_POKERUS, &monPokerus);
+                        if (!(Pokemon_GetData(mon, MON_DATA_POKERUS, NULL) & 0xf0)) {
+                            Pokemon_SetData(mon, MON_DATA_POKERUS, &pokerus);
                         }
                     }
 
-                    if (i < currentPartyCount - 1) {
+                    if (i < count - 1) {
                         mon = Party_GetPokemonBySlotIndex(party, i + 1);
-
-                        if ((Pokemon_GetData(mon, MON_DATA_POKERUS, NULL) & 0xf0) == 0) {
-                            Pokemon_SetData(mon, MON_DATA_POKERUS, &monPokerus);
-                            i++;
+                        if (!(Pokemon_GetData(mon, MON_DATA_POKERUS, NULL) & 0xf0)) {
+                            Pokemon_SetData(mon, MON_DATA_POKERUS, &pokerus);
+                            i++; // don't infect the rest of the party
                         }
                     }
                 }
@@ -3765,30 +3744,31 @@ void Pokemon_ValidatePokerus(Party *party)
     }
 }
 
-BOOL Pokemon_InfectedWithPokerus(Pokemon *mon)
+BOOL Pokemon_HasPokerus(Pokemon *mon)
 {
-    return IsBoxPokemonInfectedWithPokerus(&mon->box);
+    return BoxPokemon_HasPokerus(&mon->box);
 }
 
-static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon)
+static BOOL BoxPokemon_HasPokerus(BoxPokemon *boxMon)
 {
     return (BoxPokemon_GetData(boxMon, MON_DATA_POKERUS, NULL) & 0xf) != 0;
 }
 
-BOOL Pokemon_HasCuredPokerus(Pokemon *mon)
+BOOL Pokemon_IsImmuneToPokerus(Pokemon *mon)
 {
-    return BoxPokemonHasCuredPokerus(&mon->box);
+    return BoxPokemon_IsImmuneToPokerus(&mon->box);
 }
 
-static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon)
+static BOOL BoxPokemon_IsImmuneToPokerus(BoxPokemon *boxMon)
 {
-    u8 monPokerus = BoxPokemon_GetData(boxMon, MON_DATA_POKERUS, NULL);
-
-    if (monPokerus & 0xF) {
+    u8 pokerus = BoxPokemon_GetData(boxMon, MON_DATA_POKERUS, NULL);
+    if (pokerus & 0xF) {
         return FALSE;
     }
-
-    return (monPokerus & 0xF0) != 0;
+    if (pokerus & 0xF0) {
+        return TRUE;
+    }
+    return FALSE;
 }
 
 void Pokemon_SetArceusForm(Pokemon *mon)

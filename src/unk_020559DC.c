@@ -96,7 +96,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 daysPassed)
         Party *v0;
 
         v0 = SaveData_GetParty(fieldSystem->saveData);
-        Party_UpdatePokerusStatus(v0, daysPassed);
+        Party_UpdatePokerus(v0, daysPassed);
     }
 
     {

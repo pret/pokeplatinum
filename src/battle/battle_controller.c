@@ -4044,8 +4044,8 @@ static void BattleController_EndFight(BattleSystem *battleSys, BattleContext *ba
 
     if ((battleType & BATTLE_TYPE_LINK) == FALSE) {
         Party *playerParty = BattleSystem_Party(battleSys, BATTLER_US);
-        Pokemon_ApplyPokerus(playerParty);
-        Pokemon_ValidatePokerus(playerParty);
+        Party_GivePokerusAtRandom(playerParty);
+        Party_SpreadPokerus(playerParty);
     }
 
     if (battleType & BATTLE_TYPE_LINK) {

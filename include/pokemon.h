@@ -659,12 +659,12 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, enum Flavor flavor);
  */
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs);
 
-void Pokemon_ApplyPokerus(Party *party);
-u8 Pokemon_HasPokerus(Party *party, u8 param1);
-void Party_UpdatePokerusStatus(Party *party, s32 param1);
-void Pokemon_ValidatePokerus(Party *party);
-BOOL Pokemon_InfectedWithPokerus(Pokemon *mon);
-BOOL Pokemon_HasCuredPokerus(Pokemon *mon);
+void Party_GivePokerusAtRandom(Party *party);
+u8 Party_MaskHasPokerus(Party *party, u8 partyMask);
+void Party_UpdatePokerus(Party *party, int daysPassed);
+void Party_SpreadPokerus(Party *party);
+BOOL Pokemon_HasPokerus(Pokemon *mon);
+BOOL Pokemon_IsImmuneToPokerus(Pokemon *mon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus

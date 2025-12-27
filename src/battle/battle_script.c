@@ -10507,7 +10507,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
             break;
         }
 
-        if (Pokemon_HasPokerus(party, FlagIndex(slot))) {
+        if (Party_MaskHasPokerus(party, FlagIndex(slot))) {
             tmp *= 2;
         }
 
