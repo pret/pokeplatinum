@@ -394,7 +394,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 11:
         if ((Sound_IsPokemonCryPlaying() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (PokemonSprite_IsAnimActive(param0->unk_1C[1]) == 0)) {
             Pokemon_SetData(param0->unk_28, MON_DATA_SPECIES, (u8 *)&param0->unk_62);
-            Pokemon_CalcAbility(param0->unk_28);
+            Pokemon_UpdateAbility(param0->unk_28);
             Pokemon_CalcLevelAndStats(param0->unk_28);
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxMon(param0->unk_28));
             StringTemplate_SetSpeciesName(param0->unk_0C, 1, Pokemon_GetBoxMon(param0->unk_28));
@@ -728,7 +728,7 @@ static void sub_0207C028(EvolutionData *param0)
                 MI_CpuClearFast(&v4, sizeof(BallCapsule));
 
                 Pokemon_SetData(shedinja, MON_DATA_BALL_CAPSULE, (BallCapsule *)&v4);
-                Pokemon_CalcAbility(shedinja);
+                Pokemon_UpdateAbility(shedinja);
 
                 i = Pokemon_GetGender(shedinja);
                 Pokemon_SetData(shedinja, MON_DATA_GENDER, &i);

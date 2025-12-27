@@ -272,7 +272,7 @@ static BOOL BoxPokemon_IsImmuneToPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL BoxPokemon_CanLearnTMHM(BoxPokemon *boxMon, u8 tmHM);
-static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
+static void BoxPokemon_UpdateAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
 static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
 static void LoadSpeciesEvolutions(int monSpecies, SpeciesEvolution speciesEvolution[MAX_EVOLUTIONS]);
@@ -3848,7 +3848,7 @@ s32 BoxPokemon_UpdateGiratinaForm(BoxPokemon *boxMon)
             form = GIRATINA_FORM_ALTERED;
         }
         BoxPokemon_SetData(boxMon, MON_DATA_FORM, &form);
-        BoxPokemon_CalcAbility(boxMon);
+        BoxPokemon_UpdateAbility(boxMon);
         return form;
     }
     return -1;
@@ -3859,7 +3859,7 @@ void Pokemon_ForceSetGiratinaOriginForm(Pokemon *mon)
     s32 form = GIRATINA_FORM_ORIGIN;
     if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) == SPECIES_GIRATINA) {
         BoxPokemon_SetData(&mon->box, MON_DATA_FORM, &form);
-        BoxPokemon_CalcAbility(&mon->box);
+        BoxPokemon_UpdateAbility(&mon->box);
         Pokemon_CalcLevelAndStats(mon);
     }
 }
@@ -3891,7 +3891,7 @@ void BoxPokemon_SetShayminForm(BoxPokemon *boxMon, int form)
         GF_ASSERT(form <= SHAYMIN_FORM_COUNT - 1);
 
         BoxPokemon_SetData(boxMon, MON_DATA_FORM, &form);
-        BoxPokemon_CalcAbility(boxMon);
+        BoxPokemon_UpdateAbility(boxMon);
     }
 }
 
@@ -4022,7 +4022,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
     }
 
     Pokemon_SetData(mon, MON_DATA_FORM, &form);
-    Pokemon_CalcAbility(mon);
+    Pokemon_UpdateAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
 
     return TRUE;
@@ -4184,30 +4184,29 @@ BOOL Species_CanLearnTMHM(u16 species, int form, u8 tmHM)
     return (Species_GetFormValue(species, form, param) & mask) != 0;
 }
 
-void Pokemon_CalcAbility(Pokemon *mon)
+void Pokemon_UpdateAbility(Pokemon *mon)
 {
-    BoxPokemon_CalcAbility(&mon->box);
+    BoxPokemon_UpdateAbility(&mon->box);
 }
 
-static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
+static void BoxPokemon_UpdateAbility(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
-    int monSpecies = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
-    u32 monPersonality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
-    int monForm = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
-    int monAbility1 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_1);
-    int monAbility2 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_2);
+    int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
+    int personality = BoxPokemon_GetData(boxMon, MON_DATA_PERSONALITY, NULL);
+    int form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
+    int ability1 = Species_GetFormValue(species, form, SPECIES_DATA_ABILITY_1);
+    int ability2 = Species_GetFormValue(species, form, SPECIES_DATA_ABILITY_2);
 
-    if (monAbility2 != ABILITY_NONE) {
-        if (monPersonality & 1) {
-            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &monAbility2);
+    if (ability2 != ABILITY_NONE) {
+        if (personality & 1) {
+            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &ability2);
         } else {
-            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &monAbility1);
+            BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &ability1);
         }
     } else {
-        BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &monAbility1);
+        BoxPokemon_SetData(boxMon, MON_DATA_ABILITY, &ability1);
     }
-
     BoxPokemon_LockEncryption(boxMon, reencrypt);
 }
 

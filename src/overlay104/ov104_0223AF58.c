@@ -1621,7 +1621,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
         ov104_0222DF40(&param0->unk_290[v6], v9, ov104_0223B57C(param0, v7));
 
-        Pokemon_CalcAbility(v9);
+        Pokemon_UpdateAbility(v9);
         FieldBattleDTO_AddPokemonToBattler(v8, v9, 1);
     }
 
@@ -1649,7 +1649,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
         ov104_0222DF40(&param0->unk_290[v6], v9, ov104_0223B57C(param0, v7));
 
-        Pokemon_CalcAbility(v9);
+        Pokemon_UpdateAbility(v9);
         FieldBattleDTO_AddPokemonToBattler(v8, v9, 3);
         Heap_Free(v9);
         break;

@@ -825,7 +825,7 @@ BOOL Species_CanLearnTMHM(u16 species, int form, u8 tmHM);
  *
  * @param mon
  */
-void Pokemon_CalcAbility(Pokemon *mon);
+void Pokemon_UpdateAbility(Pokemon *mon);
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality);
 
