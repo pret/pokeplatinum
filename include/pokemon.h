@@ -33,7 +33,7 @@
 
 #define INIT_IVS_RANDOM 32
 
-#define BATTLE_FRONTIER_BANLIST_SIZE 18
+#define BATTLE_FACILITY_BANLIST_SIZE 18
 
 #define CALC_UNOWN_LETTER(personality) ((                                          \
                                             (((personality) & 0x03000000) >> 18)   \
@@ -829,9 +829,9 @@ void Pokemon_UpdateAbility(Pokemon *mon);
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality);
 
-BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species);
-u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index);
-BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *pokemon);
+BOOL Species_IsBattleFacilityBanned(u16 species);
+u16 BattleFacility_GetBanlistEntry(u8 index);
+BOOL Pokemon_IsBattleFacilityBanned(Pokemon *mon);
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
 int sub_020788D0(int param0);
 void Pokemon_ClearBallCapsuleData(Pokemon *mon);

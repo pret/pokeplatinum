@@ -188,7 +188,7 @@ BOOL sub_02049EC4(u16 param0, SaveData *saveData, u8 param2)
             continue;
         }
 
-        if (Pokemon_IsOnBattleFrontierBanlist(v4) == 1) {
+        if (Species_IsBattleFacilityBanned(v4) == 1) {
             continue;
         }
 

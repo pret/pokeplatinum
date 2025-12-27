@@ -120,12 +120,12 @@ StringTemplate *BattleFrontier_MakeSeenBanlistSpeciesMsg(SaveData *saveData, u16
     unused = String_Init(2, HEAP_ID_FIELD1);
     pokedex = SaveData_GetPokedex(saveData);
     speciesNameLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD1);
-    bannedSpeciesList = StringTemplate_New(BATTLE_FRONTIER_BANLIST_SIZE + 1, 14, HEAP_ID_FIELD1);
+    bannedSpeciesList = StringTemplate_New(BATTLE_FACILITY_BANLIST_SIZE + 1, 14, HEAP_ID_FIELD1);
 
     StringTemplate_SetNumber(bannedSpeciesList, 0, numPokemonRequired, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
-    for (i = 0; i < BATTLE_FRONTIER_BANLIST_SIZE; i++) {
-        bannedSpecies = Pokemon_GetBattleFrontierBanlistEntry(i);
+    for (i = 0; i < BATTLE_FACILITY_BANLIST_SIZE; i++) {
+        bannedSpecies = BattleFacility_GetBanlistEntry(i);
 
         if (Pokedex_HasSeenSpecies(pokedex, bannedSpecies)) {
             MessageLoader_GetString(speciesNameLoader, bannedSpecies, speciesName);

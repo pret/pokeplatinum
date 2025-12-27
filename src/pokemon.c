@@ -4418,7 +4418,7 @@ int LowestBit(u32 flag)
     return i;
 }
 
-static const u16 sBattleFrontierBanlist[BATTLE_FRONTIER_BANLIST_SIZE] = {
+static const u16 sBattleFacilityBanlist[BATTLE_FACILITY_BANLIST_SIZE] = {
     SPECIES_MEWTWO,
     SPECIES_MEW,
     SPECIES_LUGIA,
@@ -4439,30 +4439,28 @@ static const u16 sBattleFrontierBanlist[BATTLE_FRONTIER_BANLIST_SIZE] = {
     SPECIES_ARCEUS,
 };
 
-BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species)
+BOOL Species_IsBattleFacilityBanned(u16 species)
 {
-    for (u32 i = 0; i < BATTLE_FRONTIER_BANLIST_SIZE; i++) {
-        if (species == sBattleFrontierBanlist[i]) {
+    for (u32 i = 0; i < BATTLE_FACILITY_BANLIST_SIZE; i++) {
+        if (species == sBattleFacilityBanlist[i]) {
             return TRUE;
         }
     }
-
     return FALSE;
 }
 
-u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index)
+u16 BattleFacility_GetBanlistEntry(u8 index)
 {
-    if (index >= BATTLE_FRONTIER_BANLIST_SIZE) {
+    if (index >= BATTLE_FACILITY_BANLIST_SIZE) {
         index = 0;
     }
-
-    return sBattleFrontierBanlist[index];
+    return sBattleFacilityBanlist[index];
 }
 
-BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *pokemon)
+BOOL Pokemon_IsBattleFacilityBanned(Pokemon *mon)
 {
-    u16 species = (u16)Pokemon_GetData(pokemon, MON_DATA_SPECIES, NULL);
-    return Pokemon_IsOnBattleFrontierBanlist(species);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    return Species_IsBattleFacilityBanned(species);
 }
 
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
