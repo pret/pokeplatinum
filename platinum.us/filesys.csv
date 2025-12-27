@@ -314,7 +314,7 @@ res/field/encounters/zukan_enc_platinum.narc,/application/zukanlist/zkn_data/zuk
 res/pokemon/pl_poke_data.narc,/poketool/poke_edit/pl_poke_data.narc
 res/prebuilt/debug/cb_edit/d_test.narc,/debug/cb_edit/d_test.narc
 res/trainers/trainer_ball_capsules.narc,/application/custom_ball/edit/pl_cb_data.narc
-res/prebuilt/frontier/script/fr_script.narc,/frontier/script/fr_script.narc
+res/field/frontier_scripts/fr_script.narc,/frontier/script/fr_script.narc
 res/prebuilt/particledata/pl_frontier/frontier_particle.narc,/particledata/pl_frontier/frontier_particle.narc
 res/prebuilt/application/balloon/graphic/balloon_gra.narc,/application/balloon/graphic/balloon_gra.narc
 res/prebuilt/application/wifi_lobby/map_conv/wflby_map.narc,/application/wifi_lobby/map_conv/wflby_map.narc
