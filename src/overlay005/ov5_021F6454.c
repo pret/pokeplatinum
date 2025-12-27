@@ -540,7 +540,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
                 Pokemon_UpdateGiratinaForm(v0);
                 break;
             case SPECIES_ROTOM:
-                Pokemon_SetRotomForm(v0, ROTOM_FORM_BASE, 0);
+                Pokemon_UpdateRotomForm(v0, ROTOM_FORM_NORMAL, 0);
                 break;
             case SPECIES_SHAYMIN:
                 Pokemon_UpdateShayminForm(v0, SHAYMIN_FORM_LAND);
@@ -597,7 +597,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
             Pokemon_UpdateGiratinaForm(pokemon);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(pokemon, ROTOM_FORM_BASE, 0);
+            Pokemon_UpdateRotomForm(pokemon, ROTOM_FORM_NORMAL, 0);
             break;
         case SPECIES_SHAYMIN:
             Pokemon_UpdateShayminForm(pokemon, SHAYMIN_FORM_LAND);
@@ -639,7 +639,7 @@ BOOL ScrCmd_GetPartyRotomCountAndFirst(ScriptContext *ctx)
         u32 form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
         u32 isEgg = Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL);
 
-        if (species == SPECIES_ROTOM && form != ROTOM_FORM_BASE && isEgg == FALSE) {
+        if (species == SPECIES_ROTOM && form != ROTOM_FORM_NORMAL && isEgg == FALSE) {
             if (*destVarPartySlot == 0xff) {
                 *destVarPartySlot = i;
             }
@@ -663,7 +663,7 @@ BOOL ScrCmd_SetRotomForm(ScriptContext *ctx)
     Party *party = SaveData_GetParty(fieldSystem->saveData);
     Pokemon *mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
-    Pokemon_SetRotomForm(mon, form, moveSlot);
+    Pokemon_UpdateRotomForm(mon, form, moveSlot);
     Pokedex_Capture(SaveData_GetPokedex(fieldSystem->saveData), mon);
 
     return FALSE;

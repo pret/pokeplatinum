@@ -772,7 +772,7 @@ BOOL Party_UpdateShayminForms(Party *party, int minutesDiff, const RTCTime *time
  * @param moveSlot
  * @return Whether the given pokemon was a Rotom
  */
-BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot);
+BOOL Pokemon_UpdateRotomForm(Pokemon *mon, int form, int moveSlot);
 
 /**
  * @brief Loads a Level-Up move table based on a pokemon species and form into the pointed to array

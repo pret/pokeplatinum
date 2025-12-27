@@ -3841,7 +3841,7 @@ s32 BoxPokemon_UpdateGiratinaForm(BoxPokemon *boxMon)
     int species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
     int item = BoxPokemon_GetData(boxMon, MON_DATA_HELD_ITEM, NULL);
     if (species == SPECIES_GIRATINA) {
-    	int form;
+        int form;
         if (item == ITEM_GRISEOUS_ORB) {
             form = GIRATINA_FORM_ORIGIN;
         } else {
@@ -3953,68 +3953,61 @@ BOOL Party_UpdateShayminForms(Party *party, int minutesDiff, const RTCTime *time
     }
 }
 
-BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
+BOOL Pokemon_UpdateRotomForm(Pokemon *mon, int form, int moveSlot)
 {
-    int monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    static const u16 rotomFormMoves[ROTOM_FORM_COUNT] = {
+        [ROTOM_FORM_NORMAL] = MOVE_NONE,
+        [ROTOM_FORM_HEAT] = MOVE_OVERHEAT,
+        [ROTOM_FORM_WASH] = MOVE_HYDRO_PUMP,
+        [ROTOM_FORM_FROST] = MOVE_BLIZZARD,
+        [ROTOM_FORM_FAN] = MOVE_AIR_SLASH,
+        [ROTOM_FORM_MOW] = MOVE_LEAF_STORM,
+    };
 
-    if (monSpecies != SPECIES_ROTOM) {
+    if (Pokemon_GetData(mon, MON_DATA_SPECIES, NULL) != SPECIES_ROTOM) {
         return FALSE;
     }
 
-    int currentMonForm = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+    // Unused call
+    Pokemon_GetData(mon, MON_DATA_FORM, NULL);
 
-    static const u16 rotomFormMoves[] = {
-        MOVE_NONE,
-        MOVE_OVERHEAT,
-        MOVE_HYDRO_PUMP,
-        MOVE_BLIZZARD,
-        MOVE_AIR_SLASH,
-        MOVE_LEAF_STORM
-    };
-
-    int newFormMoveID = rotomFormMoves[form];
-
-    int i;
+    int newMove = rotomFormMoves[form];
+    int i, j;
     for (i = 0; i < MAX_MON_MOVES; i++) {
-        int j;
-        int moveID = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
-
-        for (j = 1; j < NELEMS(rotomFormMoves); j++) {
-            if (moveID != MOVE_NONE && moveID == rotomFormMoves[j]) {
-                if (newFormMoveID != MOVE_NONE) {
-                    Pokemon_SetMoveInSlot_ResetPPUp(mon, newFormMoveID, i);
-                    newFormMoveID = MOVE_NONE;
-                    break;
+        int curMove = Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL);
+        for (j = ROTOM_FORM_HEAT; j < NELEMS(rotomFormMoves); j++) {
+            if (curMove != MOVE_NONE && curMove == rotomFormMoves[j]) {
+                if (newMove != MOVE_NONE) {
+                    Pokemon_SetMoveInSlot_ResetPPUp(mon, newMove, i);
+                    newMove = MOVE_NONE;
                 } else {
                     Pokemon_ClearMoveSlot(mon, i);
                     i--;
-                    break;
                 }
+                break;
             }
         }
     }
 
-    if (newFormMoveID != MOVE_NONE) {
+    if (newMove != MOVE_NONE) {
         for (i = 0; i < MAX_MON_MOVES; i++) {
             if (Pokemon_GetData(mon, MON_DATA_MOVE1 + i, NULL) == MOVE_NONE) {
-                Pokemon_SetMoveInSlot_ResetPPUp(mon, newFormMoveID, i);
+                Pokemon_SetMoveInSlot_ResetPPUp(mon, newMove, i);
                 break;
             }
         }
 
-        if (i == 4) {
-            Pokemon_SetMoveInSlot_ResetPPUp(mon, newFormMoveID, moveSlot);
+        if (i == MAX_MON_MOVES) {
+            Pokemon_SetMoveInSlot_ResetPPUp(mon, newMove, moveSlot);
         }
     }
 
     if (Pokemon_GetData(mon, MON_DATA_MOVE1, NULL) == MOVE_NONE) {
         Pokemon_SetMoveInSlot_ResetPPUp(mon, MOVE_THUNDER_SHOCK, 0);
     }
-
     Pokemon_SetData(mon, MON_DATA_FORM, &form);
     Pokemon_UpdateAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
-
     return TRUE;
 }
 
