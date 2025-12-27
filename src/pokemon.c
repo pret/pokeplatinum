@@ -4463,27 +4463,22 @@ BOOL Pokemon_IsBattleFacilityBanned(Pokemon *mon)
     return Species_IsBattleFacilityBanned(species);
 }
 
-BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
+BOOL BoxPokemon_BelongsToPlayer(BoxPokemon *boxMon, TrainerInfo *player, enum HeapID heapID)
 {
-    u32 v0 = TrainerInfo_ID(param1);
-    u32 monOTID = BoxPokemon_GetData(boxMon, MON_DATA_OT_ID, NULL);
-    u32 v2 = TrainerInfo_Gender(param1);
-    u32 monOtGender = BoxPokemon_GetData(boxMon, MON_DATA_OT_GENDER, NULL);
-    String *v4 = TrainerInfo_NameNewString(param1, heapID);
-    // TODO enum/const value?
-    String *v5 = String_Init(8, heapID);
-    BOOL v6 = FALSE;
-
-    BoxPokemon_GetData(boxMon, MON_DATA_OT_NAME_STRING, v5);
-
-    if (v0 == monOTID && v2 == monOtGender && String_Compare(v4, v5) == 0) {
-        v6 = TRUE;
+    u32 playerID = TrainerInfo_ID(player);
+    u32 otID = BoxPokemon_GetData(boxMon, MON_DATA_OT_ID, NULL);
+    u32 playerGender = TrainerInfo_Gender(player);
+    u32 otGender = BoxPokemon_GetData(boxMon, MON_DATA_OT_GENDER, NULL);
+    String *playerName = TrainerInfo_NameNewString(player, heapID);
+    String *otName = String_Init(TRAINER_NAME_LEN + 1, heapID);
+    BOOL ret = FALSE;
+    BoxPokemon_GetData(boxMon, MON_DATA_OT_NAME_STRING, otName);
+    if (playerID == otID && playerGender == otGender && String_Compare(playerName, otName) == 0) {
+        ret = TRUE;
     }
-
-    String_Free(v5);
-    String_Free(v4);
-
-    return v6;
+    String_Free(otName);
+    String_Free(playerName);
+    return ret;
 }
 
 int sub_020788D0(int param0)

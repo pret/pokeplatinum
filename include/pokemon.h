@@ -832,7 +832,7 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality);
 BOOL Species_IsBattleFacilityBanned(u16 species);
 u16 BattleFacility_GetBanlistEntry(u8 index);
 BOOL Pokemon_IsBattleFacilityBanned(Pokemon *mon);
-BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
+BOOL BoxPokemon_BelongsToPlayer(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID);
 int sub_020788D0(int param0);
 void Pokemon_ClearBallCapsuleData(Pokemon *mon);
 void BoxPokemon_RestorePP(BoxPokemon *boxMon);

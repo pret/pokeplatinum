@@ -792,7 +792,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
         AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     case 4:
-        if (sub_0207884C(boxMon, trainerInfo, heapID) == 1) {
+        if (BoxPokemon_BelongsToPlayer(boxMon, trainerInfo, heapID) == 1) {
             if (BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
                 BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
                 BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
@@ -826,7 +826,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
             metLocation = (SpecialMetLoc_GetId(2, 2));
         }
 
-        if (sub_0207884C(boxMon, trainerInfo, heapID) == 0) {
+        if (BoxPokemon_BelongsToPlayer(boxMon, trainerInfo, heapID) == 0) {
             {
                 int v0;
 
