@@ -1459,7 +1459,7 @@ static BOOL AddWildMonToParty(const int partySlot, const WildEncounters_FieldPar
         hasCompoundEyes = 1;
     }
 
-    Pokemon_GiveHeldItem(mon, battleParams->battleType, hasCompoundEyes);
+    Pokemon_GiveWildHeldItem(mon, battleParams->battleType, hasCompoundEyes);
 
     u8 form;
 

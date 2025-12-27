@@ -4096,36 +4096,34 @@ static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *par
     InitializeBoxPokemonAfterCapture(boxMon, param1, monPokeball, param3, param4, param5);
 }
 
-static const u16 sHeldItemChance[][2] = {
-    { 45, 95 },
-    { 20, 80 }
+static const u16 sHeldItemOdds[][2] = {
+    { 45, 95 }, // Without CompoundEyes (itemRates == 0) 45% no item, 50% common item, 5% rare item
+    { 20, 80 }, // With CompoundEyes (itemRates == 1) 20% no item, 60% common item, 20% rare item
 };
 
-void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates)
+void Pokemon_GiveWildHeldItem(Pokemon *mon, u32 battleType, int itemRates)
 {
     if (battleType & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER)) {
         return;
     }
 
     u32 rand = LCRNG_Next() % 100;
-    u16 monSpecies = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
-    u16 monForm = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
-    u16 monItem1 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_COMMON);
-    u16 monItem2 = Species_GetFormValue(monSpecies, monForm, SPECIES_DATA_HELD_ITEM_RARE);
+    u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
+    u16 form = Pokemon_GetData(mon, MON_DATA_FORM, NULL);
+    u16 item1 = Species_GetFormValue(species, form, SPECIES_DATA_HELD_ITEM_COMMON);
+    u16 item2 = Species_GetFormValue(species, form, SPECIES_DATA_HELD_ITEM_RARE);
 
-    if (monItem1 == monItem2 && monItem1 != ITEM_NONE) {
-        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &monItem1);
+    if (item1 == item2 && item1 != ITEM_NONE) {
+        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item1);
         return;
     }
 
-    // Without CompoundEyes (itemRates == 0) 45% no item, 50% common item, 5% rare item
-    // With CompoundEyes (itemRates == 1) 20% no item, 60% common item, 20% rare item
-    if (rand < sHeldItemChance[itemRates][0]) {
+    if (rand < sHeldItemOdds[itemRates][0]) {
         return;
-    } else if (rand < sHeldItemChance[itemRates][1]) {
-        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &monItem1);
+    } else if (rand < sHeldItemOdds[itemRates][1]) {
+        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item1);
     } else {
-        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &monItem2);
+        Pokemon_SetData(mon, MON_DATA_HELD_ITEM, &item2);
     }
 }
 
