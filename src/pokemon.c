@@ -102,7 +102,7 @@ static void MonEncryptSegment(void *data, u32 bytes, u32 seed);
 static void MonDecryptSegment(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 size);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
-static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
+static int Species_GetFormNarcIndex(int monSpecies, int monForm);
 static inline int Pokemon_Face(int num);
 
 #define ENCRY_ARGS_PARTY(mon)  (u16 *)&(mon)->party, sizeof((mon)->party), (mon)->box.personality
@@ -1881,7 +1881,7 @@ void SpeciesData_Free(SpeciesData *speciesData)
 
 u32 Species_GetFormValue(int species, int form, enum SpeciesDataParam param)
 {
-    SpeciesData *speciesData = SpeciesData_NewFromSpecies(Pokemon_GetFormNarcIndex(species, form), HEAP_ID_SYSTEM);
+    SpeciesData *speciesData = SpeciesData_NewFromSpecies(Species_GetFormNarcIndex(species, form), HEAP_ID_SYSTEM);
     u32 result = SpeciesData_GetValue(speciesData, param);
     SpeciesData_Free(speciesData);
     return result;
@@ -3830,7 +3830,7 @@ BOOL Pokemon_UpdateRotomForm(Pokemon *mon, int form, int moveSlot)
 
 void Species_LoadLevelUpLearnset(int monSpecies, int monForm, u16 *monLevelUpMoves)
 {
-    monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
+    monSpecies = Species_GetFormNarcIndex(monSpecies, monForm);
     NARC_ReadWholeMemberByIndexPair(monLevelUpMoves, NARC_INDEX_POKETOOL__PERSONAL__WOTBL, monSpecies);
 }
 
@@ -4046,7 +4046,7 @@ static void SpeciesData_LoadSpecies(int species, SpeciesData *speciesData)
 
 static void SpeciesData_LoadForm(int species, int form, SpeciesData *speciesData)
 {
-    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, Pokemon_GetFormNarcIndex(species, form));
+    NARC_ReadWholeMemberByIndexPair(speciesData, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, Species_GetFormNarcIndex(species, form));
 }
 
 static void Species_LoadEvolutions(int monSpecies, Evolution speciesEvolutions[MAX_MON_EVOLUTIONS])
@@ -4161,7 +4161,7 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
     return result;
 }
 
-static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
+static int Species_GetFormNarcIndex(int monSpecies, int monForm)
 {
     // TODO enum values?
     switch (monSpecies) {
