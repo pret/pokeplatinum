@@ -6342,7 +6342,7 @@ static BOOL BtlCmd_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCt
     int defender = BattleScript_Battler(battleSys, battleCtx, inDefender);
     int move = BattleMessage_MoveTag(battleCtx, inMoveSrc);
 
-    BattleController_CheckMoveHit(battleSys, battleCtx, attacker, defender, move);
+    BattleControllerPlayer_CheckMoveHit(battleSys, battleCtx, attacker, defender, move);
     if (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) {
         BattleScript_Iter(battleCtx, jumpOnMiss);
     }
