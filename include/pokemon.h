@@ -24,9 +24,9 @@
 #include "sprite_system.h"
 #include "trainer_info.h"
 
-#define OTID_NOT_SET   0
-#define OTID_SET       1
-#define OTID_NOT_SHINY 2
+#define OT_ID_PLAYER_ID       0
+#define OT_ID_PRESET          1
+#define OT_ID_RANDOM_NO_SHINY 2
 
 #define FACE_BACK  0
 #define FACE_FRONT 2

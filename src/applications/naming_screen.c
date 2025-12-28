@@ -1758,7 +1758,7 @@ static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, Applic
         if (namingScreen->textCursorPos == 0 || NamingScreen_IsRawStringAllSpaces(namingScreen->entryBuf)) {
             Pokemon *mon = Pokemon_New(HEAP_ID_NAMING_SCREEN_APP);
 
-            Pokemon_InitWithParams(mon, namingScreen->playerGenderOrMonSpecies, 1, 0, FALSE, 0, OTID_NOT_SET, 0);
+            Pokemon_InitWithParams(mon, namingScreen->playerGenderOrMonSpecies, 1, 0, FALSE, 0, OT_ID_PLAYER_ID, 0);
             StringTemplate_SetSpeciesName(namingScreen->strTemplate, 0, Pokemon_GetBoxMon(mon));
             Heap_Free(mon);
         } else {

@@ -252,17 +252,16 @@ static void BoxPokemon_InitWithParams(BoxPokemon *boxMon, int species, int level
     u32 var1, var2;
     BoxPokemon_Init(boxMon);
     BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
-
     if (!hasFixedPersonality) {
         personality = (LCRNG_Next() | (LCRNG_Next() << 16));
     }
     BoxPokemon_SetData(boxMon, MON_DATA_PERSONALITY, &personality);
 
-    if (otIDType == OTID_NOT_SHINY) {
+    if (otIDType == OT_ID_RANDOM_NO_SHINY) {
         do {
             otID = (LCRNG_Next() | (LCRNG_Next() << 16));
         } while (Pokemon_InlineIsPersonalityShiny(otID, personality));
-    } else if (otIDType != OTID_SET) {
+    } else if (otIDType != OT_ID_PRESET) {
         otID = 0;
     }
     BoxPokemon_SetData(boxMon, MON_DATA_OT_ID, &otID);
@@ -335,7 +334,7 @@ void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 natu
     do {
         personality = (LCRNG_Next() | (LCRNG_Next() << 16));
     } while (nature != Personality_GetNature(personality));
-    Pokemon_InitWithParams(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, level, ivs, TRUE, personality, OT_ID_PLAYER_ID, 0);
 }
 
 void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 gender, u8 nature, u8 letter)
@@ -351,7 +350,7 @@ void Pokemon_InitWithGenderNatureLetter(Pokemon *mon, u16 species, u8 level, u8 
     } else {
         personality = Personality_CreateFromGenderAndNature(species, gender, nature);
     }
-    Pokemon_InitWithParams(mon, species, level, ivs, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, level, ivs, TRUE, personality, OT_ID_PLAYER_ID, 0);
 }
 
 u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
@@ -377,7 +376,7 @@ u32 Personality_CreateFromGenderAndNature(u16 species, u8 gender, u8 nature)
 
 void Pokemon_InitAndCalcStats(Pokemon *mon, u16 species, u8 level, u32 combinedIVs, u32 personality)
 {
-    Pokemon_InitWithParams(mon, species, level, 0, TRUE, personality, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, level, 0, TRUE, personality, OT_ID_PLAYER_ID, 0);
     Pokemon_SetData(mon, MON_DATA_COMBINED_IVS, &combinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }

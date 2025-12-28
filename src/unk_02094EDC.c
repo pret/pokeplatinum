@@ -617,7 +617,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     int v0;
     u16 v1;
     u32 v2 = Personality_CreateFromGenderAndNature(param0->unk_14, param0->unk_20_12, 0);
-    Pokemon_InitWithParams(param1, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SHINY, 0xf0f0f0f);
+    Pokemon_InitWithParams(param1, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, v2, OT_ID_RANDOM_NO_SHINY, 0xf0f0f0f);
 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = param0->unk_0C[v0];

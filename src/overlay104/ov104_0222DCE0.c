@@ -254,7 +254,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
 
     v1 = (param0->combinedIVs & 0x3FFFFFFF);
 
-    Pokemon_InitWithParams(param1, param0->species, v4, v1, TRUE, param0->personality, OTID_NOT_SHINY, 0);
+    Pokemon_InitWithParams(param1, param0->species, v4, v1, TRUE, param0->personality, OT_ID_RANDOM_NO_SHINY, 0);
     Pokemon_SetData(param1, MON_DATA_COMBINED_IVS, &v1);
     Pokemon_CalcLevelAndStats(param1);
 

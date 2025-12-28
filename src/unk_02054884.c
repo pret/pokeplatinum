@@ -41,7 +41,7 @@ BOOL Pokemon_GiveMonFromScript(enum HeapID heapID, SaveData *saveData, u16 speci
     mon = Pokemon_New(heapID);
 
     Pokemon_Init(mon);
-    Pokemon_InitWithParams(mon, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_InitWithParams(mon, species, level, INIT_IVS_RANDOM, FALSE, 0, OT_ID_PLAYER_ID, 0);
     Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
 
     item = heldItem;
