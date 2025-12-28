@@ -1,4 +1,4 @@
-#include "battle/battle_controller.h"
+#include "battle/battle_controller_player.h"
 
 #include "nitro/types.h"
 #include <nitro.h>
@@ -128,51 +128,51 @@ static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *b
 extern u32 gTrainerAITable[];
 
 static const BattleControlFunc sBattleControlCommands[] = {
-    BattleController_InitBattleMons,
-    BattleController_StartEncounter,
-    BattleController_TrainerMessage,
-    BattleController_ShowBattleMon,
-    BattleController_InitCommandSelection,
-    BattleController_CommandSelectionInput,
-    BattleController_CalcTurnOrder,
-    BattleController_CheckPreMoveActions,
-    BattleController_BranchActions,
-    BattleController_CheckFieldConditions,
-    BattleController_CheckMonConditions,
-    BattleController_CheckSideConditions,
-    BattleController_TurnEnd,
-    BattleController_FightCommand,
-    BattleController_ItemCommand,
-    BattleController_SwitchCommand,
-    BattleController_FleeCommand,
-    BattleController_SafariBallCommand,
-    BattleController_SafariBaitCommand,
-    BattleController_SafariRockCommand,
-    BattleController_SafariFleeCommand,
-    BattleController_ExecScript,
-    BattleController_BeforeMove,
-    BattleController_TryMove,
-    BattleController_PrimaryEffect,
-    BattleController_CheckMoveFailure,
-    BattleController_UseMove,
-    BattleController_UpdateHP,
-    BattleController_AfterMoveMessage,
-    BattleController_LeftoverState29,
-    BattleController_AfterMoveEffects,
-    BattleController_LoopMultiHit,
-    BattleController_LeftoverState32,
-    BattleController_LoopWhileFainted,
-    BattleController_LoopSpreadMoves,
-    BattleController_FaintAfterSelfdestruct,
-    BattleController_TriggerAfterHitEffects,
-    BattleController_LeftoverState37,
-    BattleController_UpdateMoveBuffers,
-    BattleController_MoveEnd,
-    BattleController_CheckAnyFainted,
-    BattleController_HandleResult,
-    BattleController_ScreenWipe,
-    BattleController_EndFight,
-    BattleController_EndWait
+    [BATTLE_CONTROL_GET_BATTLE_MON] = BattleController_InitBattleMons,
+    [BATTLE_CONTROL_START_ENCOUNTER] = BattleController_StartEncounter,
+    [BATTLE_CONTROL_TRAINER_MESSAGE] = BattleController_TrainerMessage,
+    [BATTLE_CONTROL_SHOW_BATTLE_MON] = BattleController_ShowBattleMon,
+    [BATTLE_CONTROL_INIT_COMMAND_SELECTION] = BattleController_InitCommandSelection,
+    [BATTLE_CONTROL_COMMAND_SELECTION_INPUT] = BattleController_CommandSelectionInput,
+    [BATTLE_CONTROL_CALC_TURN_ORDER] = BattleController_CalcTurnOrder,
+    [BATTLE_CONTROL_CHECK_PRE_MOVE_ACTIONS] = BattleController_CheckPreMoveActions,
+    [BATTLE_CONTROL_BRANCH_ACTIONS] = BattleController_BranchActions,
+    [BATTLE_CONTROL_CHECK_FIELD_CONDITIONS] = BattleController_CheckFieldConditions,
+    [BATTLE_CONTROL_CHECK_MON_CONDITIONS] = BattleController_CheckMonConditions,
+    [BATTLE_CONTROL_CHECK_SIDE_CONDITIONS] = BattleController_CheckSideConditions,
+    [BATTLE_CONTROL_TURN_END] = BattleController_TurnEnd,
+    [BATTLE_CONTROL_FIGHT] = BattleController_FightCommand,
+    [BATTLE_CONTROL_ITEM] = BattleController_ItemCommand,
+    [BATTLE_CONTROL_PARTY] = BattleController_SwitchCommand,
+    [BATTLE_CONTROL_RUN] = BattleController_FleeCommand,
+    [BATTLE_CONTROL_SAFARI_BALL] = BattleController_SafariBallCommand,
+    [BATTLE_CONTROL_SAFARI_BAIT] = BattleController_SafariBaitCommand,
+    [BATTLE_CONTROL_SAFARI_ROCK] = BattleController_SafariRockCommand,
+    [BATTLE_CONTROL_SAFARI_WAIT] = BattleController_SafariFleeCommand,
+    [BATTLE_CONTROL_EXEC_SCRIPT] = BattleController_ExecScript,
+    [BATTLE_CONTROL_BEFORE_MOVE] = BattleController_BeforeMove,
+    [BATTLE_CONTROL_TRY_MOVE] = BattleController_TryMove,
+    [BATTLE_CONTROL_PRIMARY_EFFECT] = BattleController_PrimaryEffect,
+    [BATTLE_CONTROL_MOVE_FAILED] = BattleController_CheckMoveFailure,
+    [BATTLE_CONTROL_USE_MOVE] = BattleController_UseMove,
+    [BATTLE_CONTROL_UPDATE_HP] = BattleController_UpdateHP,
+    [BATTLE_CONTROL_AFTER_MOVE_MESSAGE] = BattleController_AfterMoveMessage,
+    [BATTLE_CONTROL_29] = BattleController_LeftoverState29,
+    [BATTLE_CONTROL_AFTER_MOVE_EFFECT] = BattleController_AfterMoveEffects,
+    [BATTLE_CONTROL_LOOP_MULTI_HIT] = BattleController_LoopMultiHit,
+    [BATTLE_CONTROL_32] = BattleController_LeftoverState32,
+    [BATTLE_CONTROL_LOOP_FAINTED] = BattleController_LoopWhileFainted,
+    [BATTLE_CONTROL_LOOP_SPREAD_MOVES] = BattleController_LoopSpreadMoves,
+    [BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT] = BattleController_FaintAfterSelfdestruct,
+    [BATTLE_CONTROL_TRIGGER_AFTER_HIT_EFFECTS] = BattleController_TriggerAfterHitEffects,
+    [BATTLE_CONTROL_37] = BattleController_LeftoverState37,
+    [BATTLE_CONTROL_UPDATE_MOVE_BUFFERS] = BattleController_UpdateMoveBuffers,
+    [BATTLE_CONTROL_MOVE_END] = BattleController_MoveEnd,
+    [BATTLE_CONTROL_CHECK_ANY_FAINTED] = BattleController_CheckAnyFainted,
+    [BATTLE_CONTROL_RESULT] = BattleController_HandleResult,
+    [BATTLE_CONTROL_SCREEN_WIPE] = BattleController_ScreenWipe,
+    [BATTLE_CONTROL_FIGHT_END] = BattleController_EndFight,
+    [BATTLE_CONTROL_END_WAIT] = BattleController_EndWait
 };
 
 void *BattleContext_New(BattleSystem *battleSys)
@@ -4818,43 +4818,41 @@ static void BattleController_InitAI(BattleSystem *battleSys, BattleContext *batt
 
 static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    u8 v2;
+    int battler;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);;
+    u8 recordedAction;
 
-    v1 = BattleSystem_MaxBattlers(battleSys);
-
-    for (v0 = 0; v0 < v1; v0++) {
-        if (battleCtx->battlerActions[v0][0] != 39) {
-            if (battleCtx->recordedCommandFlags[v0] & 0x1) {
-                v2 = (battleCtx->battlerActions[v0][0] - 13) + 1;
-                BattleSystem_Record(battleSys, v0, v2);
+    for (battler = 0; battler < maxBattlers; battler++) {
+        if (battleCtx->battlerActions[battler][0] != BATTLE_CONTROL_MOVE_END) {
+            if (battleCtx->recordedCommandFlags[battler] & 0x1) {
+                recordedAction = (battleCtx->battlerActions[battler][0] - BATTLE_CONTROL_FIGHT) + 1;
+                BattleSystem_Record(battleSys, battler, recordedAction);
             }
 
-            switch (battleCtx->battlerActions[v0][0]) {
-            case 13:
-                if (battleCtx->recordedCommandFlags[v0] & 0x2) {
-                    v2 = battleCtx->battlerActions[v0][2];
-                    BattleSystem_Record(battleSys, v0, v2);
+            switch (battleCtx->battlerActions[battler][0]) {
+            case BATTLE_CONTROL_FIGHT:
+                if (battleCtx->recordedCommandFlags[battler] & 0x2) {
+                    recordedAction = battleCtx->battlerActions[battler][2];
+                    BattleSystem_Record(battleSys, battler, recordedAction);
                 }
 
-                if (battleCtx->recordedCommandFlags[v0] & 0x4) {
-                    v2 = battleCtx->battlerActions[v0][1] + 1;
-                    BattleSystem_Record(battleSys, v0, v2);
+                if (battleCtx->recordedCommandFlags[battler] & 0x4) {
+                    recordedAction = battleCtx->battlerActions[battler][1] + 1;
+                    BattleSystem_Record(battleSys, battler, recordedAction);
                 }
                 break;
-            case 14:
-                v2 = battleCtx->battlerActions[v0][2] & 0xff;
-                BattleSystem_Record(battleSys, v0, v2);
-                v2 = (battleCtx->battlerActions[v0][2] & 0xff00) >> 16;
-                BattleSystem_Record(battleSys, v0, v2);
+            case BATTLE_CONTROL_ITEM:
+                recordedAction = battleCtx->battlerActions[battler][2] & 0xff;
+                BattleSystem_Record(battleSys, battler, recordedAction);
+                recordedAction = (battleCtx->battlerActions[battler][2] & 0xff00) >> 16;
+                BattleSystem_Record(battleSys, battler, recordedAction);
                 break;
-            case 15:
-                v2 = battleCtx->battlerActions[v0][2] + 1;
-                BattleSystem_Record(battleSys, v0, v2);
+            case BATTLE_CONTROL_PARTY:
+                recordedAction = battleCtx->battlerActions[battler][2] + 1;
+                BattleSystem_Record(battleSys, battler, recordedAction);
                 break;
-            case 16:
-                BattleSystem_Record(battleSys, v0, 1);
+            case BATTLE_CONTROL_RUN:
+                BattleSystem_Record(battleSys, battler, 1);
                 break;
             default:
                 break;

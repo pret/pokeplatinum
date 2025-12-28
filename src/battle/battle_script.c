@@ -23,7 +23,7 @@
 #include "applications/pokedex/ov21_021E8D48.h"
 #include "applications/pokedex/struct_ov21_021E8E0C.h"
 #include "battle/battle_context.h"
-#include "battle/battle_controller.h"
+#include "battle/battle_controller_player.h"
 #include "battle/battle_display.h"
 #include "battle/battle_io.h"
 #include "battle/battle_lib.h"
