@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "message.h"
 #include "string_gf.h"

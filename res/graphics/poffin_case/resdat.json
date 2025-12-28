@@ -1,0 +1,79 @@
+{
+  "characters": [
+    {
+      "id": "PoffinCase_Chars_TopScreen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PORU_GRA",
+      "from_file": "main_sprites_NCGR",
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": false
+    },
+    {
+      "id": "PoffinCase_Chars_BottomScreen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PORU_GRA",
+      "from_file": "sub_sprites_NCGR",
+      "compressed": false,
+      "on_main_screen": false,
+      "on_sub_screen": true
+    }
+  ],
+  "palettes": [
+    {
+      "id": "PoffinCase_Palette_Shareds",
+      "from_narc": "NARC_INDEX_GRAPHIC__PORU_GRA",
+      "from_file": "sprites_NCLR",
+      "load_in_slot": 10,
+      "compressed": false,
+      "on_main_screen": true,
+      "on_sub_screen": true
+    }
+  ],
+  "cells": [
+    {
+      "id": "PoffinCase_Cells_TopScreen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PORU_GRA",
+      "from_file": "main_sprites_cell_NCER",
+      "compressed": false
+    },
+    {
+      "id": "PoffinCase_Cells_BottomScreen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PORU_GRA",
+      "from_file": "sub_sprites_cell_NCER",
+      "compressed": false
+    }
+  ],
+  "animations": [
+    {
+      "id": "PoffinCase_Anims_TopScreen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PORU_GRA",
+      "from_file": "main_sprites_anim_NANR",
+      "compressed": false
+    },
+    {
+      "id": "PoffinCase_Anims_BottomScreen",
+      "from_narc": "NARC_INDEX_GRAPHIC__PORU_GRA",
+      "from_file": "sub_sprites_anim_NANR",
+      "compressed": false
+    }
+  ],
+  "templates": [
+    {
+      "id": "PoffinCase_Template_TopScreen",
+      "characters": "PoffinCase_Chars_TopScreen",
+      "palette": "PoffinCase_Palette_Shareds",
+      "cells": "PoffinCase_Cells_TopScreen",
+      "animations": "PoffinCase_Anims_TopScreen",
+      "vram_transfer": false,
+      "priority": 3
+    },
+    {
+      "id": "PoffinCase_Template_BottomScreen",
+      "characters": "PoffinCase_Chars_BottomScreen",
+      "palette": "PoffinCase_Palette_Shareds",
+      "cells": "PoffinCase_Cells_BottomScreen",
+      "animations": "PoffinCase_Anims_BottomScreen",
+      "vram_transfer": false,
+      "priority": 1
+    }
+  ]
+}

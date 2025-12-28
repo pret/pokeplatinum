@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
 #include "constants/scrcmd.h"
 #include "generated/map_headers.h"
+#include "generated/narc.h"
 
 #include "field/field_system.h"
 

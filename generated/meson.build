@@ -74,6 +74,7 @@ metang_generators = {
     'movement_actions': { 'type': 'enum', 'tag': 'MovementAction' },
     'movement_types': { 'type': 'enum', 'tag': 'MovementType' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
+    'narc': { 'type': 'enum', 'tag': 'NarcID' },
     'natures': { 'type': 'enum', 'tag': 'Nature' },
     'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
     'object_events': { 'type': 'enum', 'tag': 'ObjectEventGfx' },

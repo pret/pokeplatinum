@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #include "bg_window.h"
 #include "font.h"

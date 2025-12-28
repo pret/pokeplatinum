@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/narc.h"
+#include "generated/narc.h"
 #include "generated/signpost_types.h"
 
 #include "overlay005/sprite_resource_manager.h"

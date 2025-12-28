@@ -9,7 +9,6 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
-#include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 #include "generated/abilities.h"
@@ -17,6 +16,7 @@
 #include "generated/exp_rates.h"
 #include "generated/gender_ratios.h"
 #include "generated/genders.h"
+#include "generated/narc.h"
 #include "generated/natures.h"
 #include "generated/species_data_params.h"
 

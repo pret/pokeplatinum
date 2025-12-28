@@ -66,5 +66,32 @@ shop_gra_narc = custom_target('shop_gra.narc',
     ]
 )
 
+shop_menu_resdat = custom_target(
+    output: [
+        'ncgrs.resdat',
+        'nclrs.resdat',
+        'ncers.resdat',
+        'nanrs.resdat',
+        'templates.cldat',
+        'templates.h',
+    ],
+
+    input: [
+        shop_gra_narc[1],
+        item_icon_narc[1],
+    ],
+
+    command: [
+        dataproc_resdat_exe,
+        '--gen-header',
+        '--prefix', meson.current_build_dir(),
+        '-D', 'NARC_INDEX_GRAPHIC__SHOP_GRA:@INPUT0@',
+        '-D', 'NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON:@INPUT1@',
+        files('resdat.json'),
+    ],
+)
+
 nitrofs_files += shop_gra_narc
+nitrofs_files += shop_menu_resdat
 naix_headers += shop_gra_narc[1]
+naix_headers += shop_menu_resdat[5]

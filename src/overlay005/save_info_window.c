@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/field/window.h"
-#include "constants/narc.h"
 #include "generated/map_headers.h"
+#include "generated/narc.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 

@@ -3,7 +3,7 @@
 
 #include "constants/colors.h"
 #include "constants/heap.h"
-#include "constants/narc.h"
+#include "generated/narc.h"
 
 #define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))
 
