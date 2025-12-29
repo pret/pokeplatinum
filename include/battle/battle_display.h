@@ -29,7 +29,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265050.h"
-#include "battle/struct_ov16_02265124.h"
 #include "battle/struct_ov16_02265154.h"
 #include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
@@ -42,11 +41,11 @@
 
 void ov16_0225CBB8(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, MonEncounterMessage *message);
-void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, MonShowMessage *param2);
-void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, MonShowMessage *param2);
-void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, MonReturnMessage *param2);
+void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, MonShowMessage *message);
+void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, MonShowMessage *message);
+void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, MonReturnMessage *message);
 void ov16_0225D1C4(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265050 *param2);
-void ov16_0225D228(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265124 *param2);
+void ov16_0225D228(BattleSystem *battleSys, BattlerData *param1, TrainerEncounterMessage *message);
 void ov16_0225D360(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265154 *param2);
 void ov16_0225D3CC(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022651A8 *param2);

@@ -926,7 +926,7 @@ static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleC
     int battlerIn = BattleScript_Read(battleCtx);
     int battler = BattleScript_Battler(battleSys, battleCtx, battlerIn);
 
-    BattleIO_DeletePokemon(battleSys, battler);
+    BattleController_DeletePokemon(battleSys, battler);
 
     return FALSE;
 }
@@ -958,7 +958,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
             for (i = 0; i < maxBattlers; i++) {
                 battlerData = BattleSystem_BattlerData(battleSys, i);
                 if (battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
-                    BattleIO_SetTrainerEncounter(battleSys, i);
+                    BattleController_SetTrainerEncounter(battleSys, i);
                 }
             }
         } else {
@@ -969,7 +969,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
                     break;
                 }
 
-                BattleIO_SetTrainerEncounter(battleSys, i);
+                BattleController_SetTrainerEncounter(battleSys, i);
             }
         }
         break;
@@ -979,7 +979,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_SetTrainerEncounter(battleSys, i);
+                BattleController_SetTrainerEncounter(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
@@ -994,7 +994,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_SetTrainerEncounter(battleSys, i);
+                BattleController_SetTrainerEncounter(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE

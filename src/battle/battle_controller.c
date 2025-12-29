@@ -46,7 +46,6 @@
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02264A8C.h"
 #include "battle/struct_ov16_02265050.h"
-#include "battle/struct_ov16_02265124.h"
 #include "battle/struct_ov16_02265154.h"
 #include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
@@ -405,21 +404,21 @@ void ov16_02265050(BattleSystem *battleSys, int param1, int param2)
     SendMessage(battleSys, 1, param1, &v0, sizeof(UnkStruct_ov16_02265050));
 }
 
-void BattleIO_DeletePokemon(BattleSystem *battleSys, int param1)
+void BattleController_DeletePokemon(BattleSystem *battleSys, int param1)
 {
-    int v0 = 7;
-    SendMessage(battleSys, 1, param1, &v0, 4);
+    int commandNext = BATTLE_CONTROL_CHECK_PRE_MOVE_ACTIONS;
+    SendMessage(battleSys, 1, param1, &commandNext, 4);
 }
 
-void BattleIO_SetTrainerEncounter(BattleSystem *battleSys, int param1)
+void BattleController_SetTrainerEncounter(BattleSystem *battleSys, int param1)
 {
-    UnkStruct_ov16_02265124 v0;
+    TrainerEncounterMessage message;
 
-    v0.unk_00 = 8;
-    v0.unk_02 = battleSys->trainers[param1].header.trainerType;
-    v0.unk_01 = battleSys->unk_A8[param1];
+    message.commandNext = BATTLE_CONTROL_BRANCH_ACTIONS;
+    message.trainerType = battleSys->trainers[param1].header.trainerType;
+    message.unk_01 = battleSys->unk_A8[param1];
 
-    SendMessage(battleSys, 1, param1, &v0, sizeof(UnkStruct_ov16_02265124));
+    SendMessage(battleSys, 1, param1, &message, sizeof(TrainerEncounterMessage));
 }
 
 void BattleIO_ThrowTrainerBall(BattleSystem *battleSys, int param1, int param2)

@@ -139,4 +139,10 @@ typedef struct {
     u32 battleMonPersonalities[4];
 } MonReturnMessage;
 
+typedef struct {
+    u8 commandNext;
+    u8 unk_01;
+    u16 trainerType;
+} TrainerEncounterMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
