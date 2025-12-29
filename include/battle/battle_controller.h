@@ -19,7 +19,7 @@ void BattleController_EmitDeletePokemon(BattleSystem *battleSys, int param1);
 void BattleController_EmitSetTrainerEncounter(BattleSystem *battleSys, int param1);
 void BattleController_EmitThrowTrainerBall(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitSlideTrainerOut(BattleSystem *battleSys, int param1);
-void BattleIO_SlideTrainerIn(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int param1, int param2);
 
 /**
  * @brief Slide the healthbar into the screen for a given battler.

@@ -1231,7 +1231,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
                 break;
             }
 
-            BattleIO_SlideTrainerIn(battleSys, i, posIn);
+            BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
         }
         break;
 
@@ -1240,7 +1240,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+                BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
 
                 if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                     break;
@@ -1254,7 +1254,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+                BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
 
                 if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                     break;
@@ -1269,7 +1269,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER
                 || battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+                BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }
@@ -1281,7 +1281,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY
                 || battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
-                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+                BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }
@@ -1292,7 +1292,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
-                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+                BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }
@@ -1303,7 +1303,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
-                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+                BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }

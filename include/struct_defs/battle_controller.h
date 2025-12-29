@@ -104,4 +104,11 @@ typedef struct {
     u16 selectedPartySlot;
 } TrainerThrowBallMessage;
 
+typedef struct {
+    u8 command;
+    u8 unk_01;
+    u16 trainerType;
+    int posIn;
+} TrainerSlideInMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

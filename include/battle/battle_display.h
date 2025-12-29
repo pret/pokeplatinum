@@ -29,7 +29,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265050.h"
-#include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022664F8.h"
@@ -47,7 +46,7 @@ void ov16_0225D1C4(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 void ov16_0225D228(BattleSystem *battleSys, BattlerData *param1, TrainerEncounterMessage *message);
 void ov16_0225D360(BattleSystem *battleSys, BattlerData *param1, TrainerThrowBallMessage *param2);
 void ov16_0225D3CC(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022651A8 *param2);
+void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, TrainerSlideInMessage *param2);
 
 /**
  * @brief Slide the healthbar into the screen.

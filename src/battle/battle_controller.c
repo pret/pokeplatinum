@@ -45,7 +45,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265050.h"
-#include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022662FC.h"
@@ -64,7 +63,7 @@
 #include "unk_0207A6DC.h"
 
 static void ov16_0226485C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4);
-static void SendMessage(BattleSystem *battleSys, int recipient, int message, void *body, u8 bodySize);
+static void SendMessage(BattleSystem *battleSys, int recipient, int battlerId, void *body, u8 bodySize);
 static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler);
 
 static void ov16_0226485C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4)
@@ -196,35 +195,35 @@ void ov16_02264988(BattleSystem *battleSys, int param1)
     }
 }
 
-static void SendMessage(BattleSystem *battleSys, int recipient, int message, void *body, u8 bodySize)
+static void SendMessage(BattleSystem *battleSys, int recipient, int battlerId, void *body, u8 bodySize)
 {
     u8 *data = body;
 
     if ((battleSys->battleType & BATTLE_TYPE_LINK) && (battleSys->battleStatusMask & BATTLE_TYPE_TAG) == FALSE) {
         if (recipient == 1) {
             for (int i = 0; i < CommSys_ConnectedCount(); i++) {
-                BattleIO_EnqueueVal(battleSys->battleCtx, i, message, *data);
+                BattleIO_EnqueueVal(battleSys->battleCtx, i, battlerId, *data);
             }
         }
 
-        sub_0207A81C(battleSys, recipient, message, body, bodySize);
+        sub_0207A81C(battleSys, recipient, battlerId, body, bodySize);
     } else {
         if (recipient == 1) {
-            BattleIO_EnqueueVal(battleSys->battleCtx, 0, message, *data);
+            BattleIO_EnqueueVal(battleSys->battleCtx, 0, battlerId, *data);
         }
 
-        ov16_0226485C(battleSys, recipient, message, body, bodySize);
+        ov16_0226485C(battleSys, recipient, battlerId, body, bodySize);
     }
 }
 
-void BattleController_EmitSetupBattleUI(BattleSystem *battleSys, int param1)
+void BattleController_EmitSetupBattleUI(BattleSystem *battleSys, int battlerId)
 {
     UISetupMessage message;
 
     message.command = BATTLE_COMMAND_SETUP_UI;
-    v0.unk_04 = ov16_0223F4E8(battleSys);
+    message.unk_04 = ov16_0223F4E8(battleSys);
 
-    SendMessage(battleSys, 1, param1, &message, sizeof(UISetupMessage));
+    SendMessage(battleSys, 1, battlerId, &message, sizeof(UISetupMessage));
 }
 
 void BattleController_EmitSetEncounter(BattleSystem *battleSys, int battlerId)
@@ -437,16 +436,16 @@ void BattleController_EmitSlideTrainerOut(BattleSystem *battleSys, int param1)
     SendMessage(battleSys, 1, param1, &command, 4);
 }
 
-void BattleIO_SlideTrainerIn(BattleSystem *battleSys, int param1, int param2)
+void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int battlerId, int posIn)
 {
-    UnkStruct_ov16_022651A8 v0;
+    TrainerSlideInMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_SLIDE_TRAINER_IN;
-    v0.unk_02 = battleSys->trainers[param1].header.trainerType;
-    v0.unk_01 = battleSys->unk_A8[param1];
-    v0.unk_04 = param2;
+    message.command = BATTLE_COMMAND_SLIDE_TRAINER_IN;
+    message.trainerType = battleSys->trainers[battlerId].header.trainerType;
+    message.unk_01 = battleSys->unk_A8[battlerId];
+    message.posIn = posIn;
 
-    SendMessage(battleSys, 1, param1, &v0, sizeof(UnkStruct_ov16_022651A8));
+    SendMessage(battleSys, 1, battlerId, &message, sizeof(TrainerSlideInMessage));
 }
 
 void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay)

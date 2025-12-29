@@ -80,7 +80,6 @@
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
 #include "battle/struct_ov16_02265050.h"
-#include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022664F8.h"
@@ -555,7 +554,7 @@ void ov16_0225D3CC(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(ov16_02260284, v0, 0);
 }
 
-void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022651A8 *param2)
+void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, TrainerSlideInMessage *message)
 {
     int v0;
     PokemonSpriteTemplate v1;
@@ -573,10 +572,10 @@ void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v3->unk_0B = 0;
     }
 
-    v3->unk_04 = param1->unk_18 = ov16_022643B8(battleSys, param1->battlerType & 1, param2->unk_02, param1->battlerType, Unk_ov12_0223B0DC[param1->battlerType & 1][0], Unk_ov12_0223B0DC[param1->battlerType & 1][1]);
-    v3->unk_0C = Unk_ov12_0223B0A0[param1->battlerType & 1][param2->unk_04];
+    v3->unk_04 = param1->unk_18 = ov16_022643B8(battleSys, param1->battlerType & 1, message->trainerType, param1->battlerType, Unk_ov12_0223B0DC[param1->battlerType & 1][0], Unk_ov12_0223B0DC[param1->battlerType & 1][1]);
+    v3->unk_0C = Unk_ov12_0223B0A0[param1->battlerType & 1][message->posIn];
     v3->unk_00 = battleSys;
-    v3->unk_08 = param2->unk_00;
+    v3->unk_08 = message->command;
     v3->unk_09 = param1->battler;
 
     SysTask_Start(ov16_02260384, v3, 0);
