@@ -9,16 +9,16 @@
 #include "battle/struct_ov16_02265BBC.h"
 
 void ov16_02264988(BattleSystem *battleSys, int param1);
-void BattleController_SetupBattleUI(BattleSystem *battleSys, int param1);
-void BattleController_SetEncounter(BattleSystem *battleSys, int param1);
-void BattleController_ShowEncounter(BattleSystem *battleSys, int param1);
-void BattleController_ShowPokemon(BattleSystem *battleSys, int param1, int param2, int param3);
-void BattleController_ReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int param2);
+void BattleController_EmitSetupBattleUI(BattleSystem *battleSys, int param1);
+void BattleController_EmitSetEncounter(BattleSystem *battleSys, int param1);
+void BattleController_EmitShowEncounter(BattleSystem *battleSys, int param1);
+void BattleController_EmitShowPokemon(BattleSystem *battleSys, int param1, int param2, int param3);
+void BattleController_EmitReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int param2);
 void ov16_02265050(BattleSystem *battleSys, int param1, int param2);
-void BattleController_DeletePokemon(BattleSystem *battleSys, int param1);
-void BattleController_SetTrainerEncounter(BattleSystem *battleSys, int param1);
-void BattleController_ThrowTrainerBall(BattleSystem *battleSys, int param1, int param2);
-void BattleController_SlideTrainerOut(BattleSystem *battleSys, int param1);
+void BattleController_EmitDeletePokemon(BattleSystem *battleSys, int param1);
+void BattleController_EmitSetTrainerEncounter(BattleSystem *battleSys, int param1);
+void BattleController_EmitThrowTrainerBall(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitSlideTrainerOut(BattleSystem *battleSys, int param1);
 void BattleIO_SlideTrainerIn(BattleSystem *battleSys, int param1, int param2);
 
 /**

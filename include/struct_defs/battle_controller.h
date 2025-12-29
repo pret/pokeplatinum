@@ -35,6 +35,11 @@ typedef struct HealthbarData {
 // The following are message structs used by the battle controller to send smaller packets of information to the rest of the battle files
 
 typedef struct {
+    int command;
+    u32 unk_04;
+} UISetupMessage;
+
+typedef struct {
     u8 command;
     u8 gender : 2;
     u8 isShiny : 1;

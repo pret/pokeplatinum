@@ -44,7 +44,6 @@
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
-#include "battle/struct_ov16_02264A8C.h"
 #include "battle/struct_ov16_02265050.h"
 #include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
@@ -295,9 +294,9 @@ static void ov16_0225C138(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C13C(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_02264A8C *v0 = (UnkStruct_ov16_02264A8C *)&param1->data[0];
+    UISetupMessage *message = (UISetupMessage *)&param1->data[0];
 
-    ov16_0223F4F4(battleSys, v0->unk_04);
+    ov16_0223F4F4(battleSys, message->unk_04);
     ov16_0225CBB8(battleSys, param1);
     ClearCommand(battleSys, param1->battler, 1);
     ZeroDataBuffer(param1);

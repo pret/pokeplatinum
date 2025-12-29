@@ -44,7 +44,6 @@
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
-#include "battle/struct_ov16_02264A8C.h"
 #include "battle/struct_ov16_02265050.h"
 #include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
@@ -218,17 +217,17 @@ static void SendMessage(BattleSystem *battleSys, int recipient, int message, voi
     }
 }
 
-void BattleController_SetupBattleUI(BattleSystem *battleSys, int param1)
+void BattleController_EmitSetupBattleUI(BattleSystem *battleSys, int param1)
 {
-    UnkStruct_ov16_02264A8C v0;
+    UISetupMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_SETUP_UI;
+    message.command = BATTLE_COMMAND_SETUP_UI;
     v0.unk_04 = ov16_0223F4E8(battleSys);
 
-    SendMessage(battleSys, 1, param1, &v0, sizeof(UnkStruct_ov16_02264A8C));
+    SendMessage(battleSys, 1, param1, &message, sizeof(UISetupMessage));
 }
 
-void BattleController_SetEncounter(BattleSystem *battleSys, int battlerId)
+void BattleController_EmitSetEncounter(BattleSystem *battleSys, int battlerId)
 {
     MonEncounterMessage message;
     int i;
@@ -251,7 +250,7 @@ void BattleController_SetEncounter(BattleSystem *battleSys, int battlerId)
     SendMessage(battleSys, 1, battlerId, &message, sizeof(MonEncounterMessage));
 }
 
-void BattleController_ShowEncounter(BattleSystem *battleSys, int battlerId)
+void BattleController_EmitShowEncounter(BattleSystem *battleSys, int battlerId)
 {
     MonShowMessage message;
     int i;
@@ -279,7 +278,7 @@ void BattleController_ShowEncounter(BattleSystem *battleSys, int battlerId)
     SendMessage(battleSys, 1, battlerId, &message, sizeof(MonShowMessage));
 }
 
-void BattleController_ShowPokemon(BattleSystem *battleSys, int battlerId, int capturedBall, int param3)
+void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battlerId, int capturedBall, int param3)
 {
     MonShowMessage message;
     int i;
@@ -336,7 +335,7 @@ void BattleController_ShowPokemon(BattleSystem *battleSys, int battlerId, int ca
     SendMessage(battleSys, 1, battlerId, &message, sizeof(MonShowMessage));
 }
 
-void BattleController_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battlerId)
+void BattleController_EmitReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battlerId)
 {
     MonReturnMessage message;
     int v1;
@@ -403,13 +402,13 @@ void ov16_02265050(BattleSystem *battleSys, int param1, int param2)
     SendMessage(battleSys, 1, param1, &v0, sizeof(UnkStruct_ov16_02265050));
 }
 
-void BattleController_DeletePokemon(BattleSystem *battleSys, int param1)
+void BattleController_EmitDeletePokemon(BattleSystem *battleSys, int param1)
 {
     int command = BATTLE_COMMAND_DELETE_POKEMON;
     SendMessage(battleSys, 1, param1, &command, 4);
 }
 
-void BattleController_SetTrainerEncounter(BattleSystem *battleSys, int param1)
+void BattleController_EmitSetTrainerEncounter(BattleSystem *battleSys, int param1)
 {
     TrainerEncounterMessage message;
 
@@ -420,7 +419,7 @@ void BattleController_SetTrainerEncounter(BattleSystem *battleSys, int param1)
     SendMessage(battleSys, 1, param1, &message, sizeof(TrainerEncounterMessage));
 }
 
-void BattleController_ThrowTrainerBall(BattleSystem *battleSys, int param1, int param2)
+void BattleController_EmitThrowTrainerBall(BattleSystem *battleSys, int param1, int param2)
 {
     TrainerThrowBallMessage message;
 
@@ -431,7 +430,7 @@ void BattleController_ThrowTrainerBall(BattleSystem *battleSys, int param1, int 
     SendMessage(battleSys, 1, param1, &message, sizeof(TrainerThrowBallMessage));
 }
 
-void BattleController_SlideTrainerOut(BattleSystem *battleSys, int param1)
+void BattleController_EmitSlideTrainerOut(BattleSystem *battleSys, int param1)
 {
     int command = BATTLE_COMMAND_SLIDE_TRAINER_OUT;
 

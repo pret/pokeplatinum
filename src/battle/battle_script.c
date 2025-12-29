@@ -590,7 +590,7 @@ BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx)
 static BOOL BtlCmd_PlayEncounterAnimation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleController_SetupBattleUI(battleSys, BATTLER_US);
+    BattleController_EmitSetupBattleUI(battleSys, BATTLER_US);
 
     return FALSE;
 }
@@ -619,7 +619,7 @@ static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *b
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleController_SetEncounter(battleSys, i);
+            BattleController_EmitSetEncounter(battleSys, i);
             BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
@@ -632,7 +632,7 @@ static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *b
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleController_SetEncounter(battleSys, i);
+                BattleController_EmitSetEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -667,7 +667,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleController_ShowEncounter(battleSys, i);
+            BattleController_EmitShowEncounter(battleSys, i);
             BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
@@ -677,7 +677,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleController_ShowEncounter(battleSys, i);
+                BattleController_EmitShowEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -693,7 +693,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleSystem_ClearSideExpGain(battleCtx, i);
                 BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, i);
-                BattleController_ShowEncounter(battleSys, i);
+                BattleController_EmitShowEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -711,7 +711,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
-        BattleController_ShowEncounter(battleSys, battleCtx->attacker);
+        BattleController_EmitShowEncounter(battleSys, battleCtx->attacker);
         break;
 
     case BTLSCR_DEFENDER:
@@ -726,7 +726,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
-        BattleController_ShowEncounter(battleSys, battleCtx->defender);
+        BattleController_EmitShowEncounter(battleSys, battleCtx->defender);
         break;
 
     case BTLSCR_SWITCHED_MON:
@@ -741,7 +741,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
-        BattleController_ShowEncounter(battleSys, battleCtx->switchedMon);
+        BattleController_EmitShowEncounter(battleSys, battleCtx->switchedMon);
         break;
     }
 
@@ -773,7 +773,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleController_ShowPokemon(battleSys, i, NULL, 0);
+            BattleController_EmitShowPokemon(battleSys, i, NULL, 0);
             BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
@@ -783,7 +783,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & 0x1) == 0) {
-                BattleController_ShowPokemon(battleSys, i, NULL, 0);
+                BattleController_EmitShowPokemon(battleSys, i, NULL, 0);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -799,7 +799,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
             if (battlerData->battlerType & 0x1) {
                 BattleSystem_ClearSideExpGain(battleCtx, i);
                 BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, i);
-                BattleController_ShowPokemon(battleSys, i, NULL, 0);
+                BattleController_EmitShowPokemon(battleSys, i, NULL, 0);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -817,7 +817,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
-        BattleController_ShowPokemon(battleSys, battleCtx->attacker, NULL, 0);
+        BattleController_EmitShowPokemon(battleSys, battleCtx->attacker, NULL, 0);
         break;
 
     case BTLSCR_DEFENDER:
@@ -832,7 +832,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
-        BattleController_ShowPokemon(battleSys, battleCtx->defender, NULL, 0);
+        BattleController_EmitShowPokemon(battleSys, battleCtx->defender, NULL, 0);
         break;
 
     case BTLSCR_SWITCHED_MON:
@@ -847,7 +847,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
-        BattleController_ShowPokemon(battleSys, battleCtx->switchedMon, NULL, 0);
+        BattleController_EmitShowPokemon(battleSys, battleCtx->switchedMon, NULL, 0);
         break;
     }
 
@@ -876,7 +876,7 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleController_ReturnPokemon(battleSys, battleCtx, i);
+            BattleController_EmitReturnPokemon(battleSys, battleCtx, i);
         }
         break;
 
@@ -885,7 +885,7 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleController_ReturnPokemon(battleSys, battleCtx, i);
+                BattleController_EmitReturnPokemon(battleSys, battleCtx, i);
             }
         }
         break;
@@ -895,14 +895,14 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
-                BattleController_ReturnPokemon(battleSys, battleCtx, i);
+                BattleController_EmitReturnPokemon(battleSys, battleCtx, i);
             }
         }
         break;
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleController_ReturnPokemon(battleSys, battleCtx, i);
+        BattleController_EmitReturnPokemon(battleSys, battleCtx, i);
         break;
     }
 
@@ -926,7 +926,7 @@ static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleC
     int battlerIn = BattleScript_Read(battleCtx);
     int battler = BattleScript_Battler(battleSys, battleCtx, battlerIn);
 
-    BattleController_DeletePokemon(battleSys, battler);
+    BattleController_EmitDeletePokemon(battleSys, battler);
 
     return FALSE;
 }
@@ -958,7 +958,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
             for (i = 0; i < maxBattlers; i++) {
                 battlerData = BattleSystem_BattlerData(battleSys, i);
                 if (battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
-                    BattleController_SetTrainerEncounter(battleSys, i);
+                    BattleController_EmitSetTrainerEncounter(battleSys, i);
                 }
             }
         } else {
@@ -969,7 +969,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
                     break;
                 }
 
-                BattleController_SetTrainerEncounter(battleSys, i);
+                BattleController_EmitSetTrainerEncounter(battleSys, i);
             }
         }
         break;
@@ -979,7 +979,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleController_SetTrainerEncounter(battleSys, i);
+                BattleController_EmitSetTrainerEncounter(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
@@ -994,7 +994,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleController_SetTrainerEncounter(battleSys, i);
+                BattleController_EmitSetTrainerEncounter(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
@@ -1044,7 +1044,7 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
                 break;
             }
 
-            BattleController_ThrowTrainerBall(battleSys, i, ballTypeIn);
+            BattleController_EmitThrowTrainerBall(battleSys, i, ballTypeIn);
         }
         break;
 
@@ -1053,7 +1053,7 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleController_ThrowTrainerBall(battleSys, i, ballTypeIn);
+                BattleController_EmitThrowTrainerBall(battleSys, i, ballTypeIn);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
@@ -1068,7 +1068,7 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleController_ThrowTrainerBall(battleSys, i, ballTypeIn);
+                BattleController_EmitThrowTrainerBall(battleSys, i, ballTypeIn);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
@@ -1114,7 +1114,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
                 break;
             }
 
-            BattleController_SlideTrainerOut(battleSys, i);
+            BattleController_EmitSlideTrainerOut(battleSys, i);
         }
         break;
 
@@ -1123,7 +1123,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleController_SlideTrainerOut(battleSys, i);
+                BattleController_EmitSlideTrainerOut(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
@@ -1138,7 +1138,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleController_SlideTrainerOut(battleSys, i);
+                BattleController_EmitSlideTrainerOut(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
@@ -1155,7 +1155,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER
                 || battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                BattleController_SlideTrainerOut(battleSys, i);
+                BattleController_EmitSlideTrainerOut(battleSys, i);
                 break;
             }
         }
@@ -1167,7 +1167,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY
                 || battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
-                BattleController_SlideTrainerOut(battleSys, i);
+                BattleController_EmitSlideTrainerOut(battleSys, i);
                 break;
             }
         }
@@ -1178,7 +1178,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
-                BattleController_SlideTrainerOut(battleSys, i);
+                BattleController_EmitSlideTrainerOut(battleSys, i);
                 break;
             }
         }
@@ -1189,7 +1189,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
-                BattleController_SlideTrainerOut(battleSys, i);
+                BattleController_EmitSlideTrainerOut(battleSys, i);
                 break;
             }
         }
@@ -11051,7 +11051,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 28:
-        BattleController_ShowPokemon(v2->battleSys, v1, v2->ball, 1);
+        BattleController_EmitShowPokemon(v2->battleSys, v1, v2->ball, 1);
         v2->seqNum = 29;
         v2->tmpData[1] = 2;
         break;
