@@ -87,7 +87,7 @@ typedef struct HealthbarData {
 // The following are message structs used by the battle controller to send smaller packets of information to the rest of the battle files
 
 typedef struct {
-    u8 command; //commandNext?
+    u8 commandNext;
     u8 gender : 2;
     u8 isShiny : 1;
     u8 formNum : 5;
@@ -101,5 +101,30 @@ typedef struct {
     u16 nickname[11];
     u8 padding_3A[2];
 } MonEncounterMessage;
+
+typedef struct {
+    u8 commandNext;
+    u8 gender : 2;
+    u8 isShiny : 1;
+    u8 formNum : 5;
+    u16 species;
+    u32 personality;
+    int cryModulation;
+    int selectedPartySlot;
+    int capturedBall;
+    int unk_14;
+    u16 moves[4];
+    u16 curPP[4];
+    u16 maxPP[4];
+    u16 nickname[10 + 1];
+    u8 padding_46[2];
+    int unk_48;
+    int notSubstitute;
+    u16 battleMonSpecies[4];
+    u8 battleMonGenders[4];
+    u8 battleMonIsShiny[4];
+    u8 battleMonFormNums[4];
+    u32 battleMonPersonalities[4];
+} MonShowMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

@@ -667,7 +667,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleIO_ShowEncounter(battleSys, i);
+            BattleController_ShowEncounter(battleSys, i);
             BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
@@ -677,7 +677,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_ShowEncounter(battleSys, i);
+                BattleController_ShowEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -693,7 +693,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleSystem_ClearSideExpGain(battleCtx, i);
                 BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, i);
-                BattleIO_ShowEncounter(battleSys, i);
+                BattleController_ShowEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -711,7 +711,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
-        BattleIO_ShowEncounter(battleSys, battleCtx->attacker);
+        BattleController_ShowEncounter(battleSys, battleCtx->attacker);
         break;
 
     case BTLSCR_DEFENDER:
@@ -726,7 +726,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
-        BattleIO_ShowEncounter(battleSys, battleCtx->defender);
+        BattleController_ShowEncounter(battleSys, battleCtx->defender);
         break;
 
     case BTLSCR_SWITCHED_MON:
@@ -741,7 +741,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
-        BattleIO_ShowEncounter(battleSys, battleCtx->switchedMon);
+        BattleController_ShowEncounter(battleSys, battleCtx->switchedMon);
         break;
     }
 
@@ -773,7 +773,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleIO_ShowPokemon(battleSys, i, NULL, 0);
+            BattleController_ShowPokemon(battleSys, i, NULL, 0);
             BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
@@ -783,7 +783,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & 0x1) == 0) {
-                BattleIO_ShowPokemon(battleSys, i, NULL, 0);
+                BattleController_ShowPokemon(battleSys, i, NULL, 0);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -799,7 +799,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
             if (battlerData->battlerType & 0x1) {
                 BattleSystem_ClearSideExpGain(battleCtx, i);
                 BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, i);
-                BattleIO_ShowPokemon(battleSys, i, NULL, 0);
+                BattleController_ShowPokemon(battleSys, i, NULL, 0);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
@@ -817,7 +817,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
-        BattleIO_ShowPokemon(battleSys, battleCtx->attacker, NULL, 0);
+        BattleController_ShowPokemon(battleSys, battleCtx->attacker, NULL, 0);
         break;
 
     case BTLSCR_DEFENDER:
@@ -832,7 +832,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
-        BattleIO_ShowPokemon(battleSys, battleCtx->defender, NULL, 0);
+        BattleController_ShowPokemon(battleSys, battleCtx->defender, NULL, 0);
         break;
 
     case BTLSCR_SWITCHED_MON:
@@ -847,7 +847,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         }
 
         BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
-        BattleIO_ShowPokemon(battleSys, battleCtx->switchedMon, NULL, 0);
+        BattleController_ShowPokemon(battleSys, battleCtx->switchedMon, NULL, 0);
         break;
     }
 
@@ -11051,7 +11051,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 28:
-        BattleIO_ShowPokemon(v2->battleSys, v1, v2->ball, 1);
+        BattleController_ShowPokemon(v2->battleSys, v1, v2->ball, 1);
         v2->seqNum = 29;
         v2->tmpData[1] = 2;
         break;

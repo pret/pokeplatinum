@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C17C.h"
 #include "battle/struct_ov16_0225C260.h"
 #include "battle/struct_ov16_0225C29C.h"
 #include "battle/struct_ov16_0225C2B0.h"
@@ -307,7 +306,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, MonEncounterMes
 
     v4->unk_00 = battleSys;
     v4->unk_04 = param1;
-    v4->unk_10 = message->command;
+    v4->unk_10 = message->commandNext;
     v4->unk_11 = param1->battler;
     v4->unk_16 = message->species;
     v4->unk_2C = message->formNum;
@@ -325,7 +324,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, MonEncounterMes
     Sound_Set2PokemonCriesAllowed(1);
 }
 
-void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C17C *param2)
+void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, MonShowMessage *message)
 {
     int v0;
     UnkStruct_ov16_0225EA80 *v1;
@@ -338,42 +337,42 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v1->unk_84 = 0;
     }
 
-    if (param2->unk_01_2) {
+    if (message->isShiny) {
         v0 = 1;
     } else {
         v0 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1->unk_14, param2->unk_02, param2->unk_01_0, v1->unk_84, v0, param2->unk_01_3, param2->unk_04);
+    BuildPokemonSpriteTemplate(&v1->unk_14, message->species, message->gender, v1->unk_84, v0, message->formNum, message->personality);
 
-    v1->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v1->unk_84, param2->unk_01_3, param2->unk_04);
+    v1->unk_85 = LoadPokemonSpriteYOffset(message->species, message->gender, v1->unk_84, message->formNum, message->personality);
 
-    PokemonSprite_LoadYOffset(param1->unk_1A0, &v1->unk_90, param2->unk_02);
-    PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v1->unk_91, param2->unk_02);
-    PokemonSprite_LoadShadowSize(param1->unk_1A0, &v1->unk_93, param2->unk_02);
+    PokemonSprite_LoadYOffset(param1->unk_1A0, &v1->unk_90, message->species);
+    PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v1->unk_91, message->species);
+    PokemonSprite_LoadShadowSize(param1->unk_1A0, &v1->unk_93, message->species);
     ov16_02263B10(param1);
 
     v1->unk_00 = battleSys;
     v1->unk_04 = param1;
     v1->unk_83 = 0;
     v1->unk_96 = 0;
-    v1->unk_80 = param2->unk_00;
+    v1->unk_80 = message->commandNext;
     v1->unk_81 = param1->battler;
-    v1->unk_86 = param2->unk_02;
-    v1->unk_97 = param2->unk_01_3;
+    v1->unk_86 = message->species;
+    v1->unk_97 = message->formNum;
     v1->unk_82 = param1->battlerType;
-    v1->unk_88 = param2->unk_08;
-    v1->unk_8C = param2->unk_0C;
-    v1->unk_8D = Pokemon_GetNatureOf(param2->unk_04);
-    v1->unk_8E = param2->unk_10;
-    v1->unk_92 = param2->unk_01_2;
+    v1->unk_88 = message->cryModulation;
+    v1->unk_8C = message->selectedPartySlot;
+    v1->unk_8D = Pokemon_GetNatureOf(message->personality);
+    v1->unk_8E = message->capturedBall;
+    v1->unk_92 = message->isShiny;
     v1->unk_94 = 0;
 
     Sound_Set2PokemonCriesAllowed(1);
     SysTask_Start(ov16_0225EA80, v1, 0);
 }
 
-void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C17C *param2)
+void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, MonShowMessage *message)
 {
     int i;
     int v1;
@@ -388,43 +387,43 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v2->unk_84 = 0;
     }
 
-    if (param2->unk_01_2) {
+    if (message->isShiny) {
         v1 = 1;
     } else {
         v1 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v2->unk_14, param2->unk_02, param2->unk_01_0, v2->unk_84, v1, param2->unk_01_3, param2->unk_04);
+    BuildPokemonSpriteTemplate(&v2->unk_14, message->species, message->gender, v2->unk_84, v1, message->formNum, message->personality);
 
-    v2->unk_85 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v2->unk_84, param2->unk_01_3, param2->unk_04);
+    v2->unk_85 = LoadPokemonSpriteYOffset(message->species, message->gender, v2->unk_84, message->formNum, message->personality);
 
-    PokemonSprite_LoadYOffset(param1->unk_1A0, &v2->unk_90, param2->unk_02);
-    PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v2->unk_91, param2->unk_02);
-    PokemonSprite_LoadShadowSize(param1->unk_1A0, &v2->unk_93, param2->unk_02);
+    PokemonSprite_LoadYOffset(param1->unk_1A0, &v2->unk_90, message->species);
+    PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v2->unk_91, message->species);
+    PokemonSprite_LoadShadowSize(param1->unk_1A0, &v2->unk_93, message->species);
     ov16_02263B10(param1);
 
     v2->unk_00 = battleSys;
     v2->unk_04 = param1;
-    v2->unk_80 = param2->unk_00;
+    v2->unk_80 = message->commandNext;
     v2->unk_81 = param1->battler;
-    v2->unk_86 = param2->unk_02;
-    v2->unk_97 = param2->unk_01_3;
+    v2->unk_86 = message->species;
+    v2->unk_97 = message->formNum;
     v2->unk_82 = param1->battlerType;
-    v2->unk_88 = param2->unk_08;
-    v2->unk_8C = param2->unk_0C;
-    v2->unk_8D = Pokemon_GetNatureOf(param2->unk_04);
-    v2->unk_8E = param2->unk_10;
-    v2->unk_92 = param2->unk_01_2;
-    v2->unk_94 = param2->unk_14;
+    v2->unk_88 = message->cryModulation;
+    v2->unk_8C = message->selectedPartySlot;
+    v2->unk_8D = Pokemon_GetNatureOf(message->personality);
+    v2->unk_8E = message->capturedBall;
+    v2->unk_92 = message->isShiny;
+    v2->unk_94 = message->unk_14;
     v2->unk_96 = 0;
-    v2->unk_98 = param2->unk_4C;
+    v2->unk_98 = message->notSubstitute;
 
     for (i = 0; i < 4; i++) {
-        v2->unk_28.unk_18[i] = param2->unk_50[i];
-        v2->unk_28.unk_20[i] = param2->unk_58[i];
-        v2->unk_28.unk_24[i] = param2->unk_5C[i];
-        v2->unk_28.unk_28[i] = param2->unk_60[i];
-        v2->unk_28.unk_2C[i] = param2->unk_64[i];
+        v2->unk_28.unk_18[i] = message->battleMonSpecies[i];
+        v2->unk_28.unk_20[i] = message->battleMonGenders[i];
+        v2->unk_28.unk_24[i] = message->battleMonIsShiny[i];
+        v2->unk_28.unk_28[i] = message->battleMonFormNums[i];
+        v2->unk_28.unk_2C[i] = message->battleMonPersonalities[i];
     }
 
     SysTask_Start(ov16_0225F0C0, v2, 0);
