@@ -4819,7 +4819,7 @@ static void BattleControllerPlayer_InitAI(BattleSystem *battleSys, BattleContext
 static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int battler;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
     u8 recordedAction;
 
     for (battler = 0; battler < maxBattlers; battler++) {
