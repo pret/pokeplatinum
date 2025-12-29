@@ -45,7 +45,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02264A8C.h"
-#include "battle/struct_ov16_02264EF8.h"
 #include "battle/struct_ov16_02265050.h"
 #include "battle/struct_ov16_02265124.h"
 #include "battle/struct_ov16_02265154.h"
@@ -339,46 +338,46 @@ void BattleController_ShowPokemon(BattleSystem *battleSys, int battlerId, int ca
     SendMessage(battleSys, 1, battlerId, &message, sizeof(MonShowMessage));
 }
 
-void BattleIO_ReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int param2)
+void BattleController_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battlerId)
 {
-    UnkStruct_ov16_02264EF8 v0;
+    MonReturnMessage message;
     int v1;
-    int v2;
-    int v3;
+    int formNum;
+    int i;
 
-    if (battleSys->battlers[param2]->battlerType & 0x1) {
+    if (battleSys->battlers[battlerId]->battlerType & 0x1) {
         v1 = 2;
     } else {
         v1 = 0;
     }
 
-    v2 = battleSys->battleCtx->battleMons[param2].formNum;
-    v0.unk_00 = 5;
+    formNum = battleSys->battleCtx->battleMons[battlerId].formNum;
+    message.commandNext = BATTLE_CONTROL_COMMAND_SELECTION_INPUT;
 
-    if (battleSys->battleCtx->battleMons[param2].statusVolatile & 0x200000) {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, battleSys->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
+    if (battleSys->battleCtx->battleMons[battlerId].statusVolatile & 0x200000) {
+        message.yOffset = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[battlerId].species, battleSys->battleCtx->battleMons[battlerId].moveEffectsData.transformedGender, v1, formNum, battleSys->battleCtx->battleMons[battlerId].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[param2].species, battleSys->battleCtx->battleMons[param2].gender, v1, v2, battleSys->battleCtx->battleMons[param2].personality);
+        message.yOffset = LoadPokemonSpriteYOffset(battleSys->battleCtx->battleMons[battlerId].species, battleSys->battleCtx->battleMons[battlerId].gender, v1, formNum, battleSys->battleCtx->battleMons[battlerId].personality);
     }
 
-    v0.unk_02 = battleSys->battleCtx->battleMons[param2].capturedBall;
-    v0.unk_04 = ((battleSys->battleCtx->battleMons[param2].statusVolatile & 0x1000000) != 0);
+    message.capturedBall = battleSys->battleCtx->battleMons[battlerId].capturedBall;
+    message.notSubstitute = ((battleSys->battleCtx->battleMons[battlerId].statusVolatile & 0x1000000) != 0);
 
-    for (v3 = 0; v3 < 4; v3++) {
-        v0.unk_08[v3] = param1->battleMons[v3].species;
-        v0.unk_14[v3] = param1->battleMons[v3].isShiny;
-        v0.unk_18[v3] = param1->battleMons[v3].formNum;
+    for (i = 0; i < 4; i++) {
+        message.battleMonSpecies[i] = battleCtx->battleMons[i].species;
+        message.battleMonIsShiny[i] = battleCtx->battleMons[i].isShiny;
+        message.battleMonFormNums[i] = battleCtx->battleMons[i].formNum;
 
-        if (param1->battleMons[v3].statusVolatile & 0x200000) {
-            v0.unk_10[v3] = param1->battleMons[v3].moveEffectsData.transformedGender;
-            v0.unk_1C[v3] = param1->battleMons[v3].moveEffectsData.transformedPID;
+        if (battleCtx->battleMons[i].statusVolatile & 0x200000) {
+            message.battleMonGenders[i] = battleCtx->battleMons[i].moveEffectsData.transformedGender;
+            message.battleMonPersonalities[i] = battleCtx->battleMons[i].moveEffectsData.transformedPID;
         } else {
-            v0.unk_10[v3] = param1->battleMons[v3].gender;
-            v0.unk_1C[v3] = param1->battleMons[v3].personality;
+            message.battleMonGenders[i] = battleCtx->battleMons[i].gender;
+            message.battleMonPersonalities[i] = battleCtx->battleMons[i].personality;
         }
     }
 
-    SendMessage(battleSys, 1, param2, &v0, sizeof(UnkStruct_ov16_02264EF8));
+    SendMessage(battleSys, 1, battlerId, &message, sizeof(MonReturnMessage));
 }
 
 void ov16_02265050(BattleSystem *battleSys, int param1, int param2)

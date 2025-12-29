@@ -127,4 +127,16 @@ typedef struct {
     u32 battleMonPersonalities[4];
 } MonShowMessage;
 
+typedef struct {
+    u8 commandNext;
+    u8 yOffset;
+    u16 capturedBall;
+    int notSubstitute;
+    u16 battleMonSpecies[4];
+    u8 battleMonGenders[4];
+    u8 battleMonIsShiny[4];
+    u8 battleMonFormNums[4];
+    u32 battleMonPersonalities[4];
+} MonReturnMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

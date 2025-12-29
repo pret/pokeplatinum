@@ -79,7 +79,6 @@
 #include "battle/struct_ov16_022623F0.h"
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
-#include "battle/struct_ov16_02264EF8.h"
 #include "battle/struct_ov16_02265050.h"
 #include "battle/struct_ov16_02265124.h"
 #include "battle/struct_ov16_02265154.h"
@@ -429,27 +428,27 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, MonShowMessage 
     SysTask_Start(ov16_0225F0C0, v2, 0);
 }
 
-void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02264EF8 *param2)
+void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, MonReturnMessage *message)
 {
     int i;
     UnkStruct_ov16_0225F764 *v1 = (UnkStruct_ov16_0225F764 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225F764));
     v1->unk_00 = battleSys;
     v1->unk_04 = param1;
     v1->unk_08 = param1->unk_20;
-    v1->unk_68 = param2->unk_00;
+    v1->unk_68 = message->commandNext;
     v1->unk_69 = param1->battler;
     v1->unk_6A = param1->battlerType;
     v1->unk_6B = 0;
-    v1->unk_6C = param2->unk_01;
-    v1->unk_6E = param2->unk_02;
-    v1->unk_70 = param2->unk_04;
+    v1->unk_6C = message->yOffset;
+    v1->unk_6E = message->capturedBall;
+    v1->unk_70 = message->notSubstitute;
 
     for (i = 0; i < 4; i++) {
-        v1->unk_10.unk_18[i] = param2->unk_08[i];
-        v1->unk_10.unk_20[i] = param2->unk_10[i];
-        v1->unk_10.unk_24[i] = param2->unk_14[i];
-        v1->unk_10.unk_28[i] = param2->unk_18[i];
-        v1->unk_10.unk_2C[i] = param2->unk_1C[i];
+        v1->unk_10.unk_18[i] = message->battleMonSpecies[i];
+        v1->unk_10.unk_20[i] = message->battleMonGenders[i];
+        v1->unk_10.unk_24[i] = message->battleMonIsShiny[i];
+        v1->unk_10.unk_28[i] = message->battleMonFormNums[i];
+        v1->unk_10.unk_2C[i] = message->battleMonPersonalities[i];
     }
 
     SysTask_Start(ov16_0225F764, v1, 0);

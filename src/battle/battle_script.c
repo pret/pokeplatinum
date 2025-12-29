@@ -876,7 +876,7 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
     switch (battlerIn) {
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleIO_ReturnPokemon(battleSys, battleCtx, i);
+            BattleController_ReturnPokemon(battleSys, battleCtx, i);
         }
         break;
 
@@ -885,7 +885,7 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_ReturnPokemon(battleSys, battleCtx, i);
+                BattleController_ReturnPokemon(battleSys, battleCtx, i);
             }
         }
         break;
@@ -895,14 +895,14 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
-                BattleIO_ReturnPokemon(battleSys, battleCtx, i);
+                BattleController_ReturnPokemon(battleSys, battleCtx, i);
             }
         }
         break;
 
     default:
         i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
-        BattleIO_ReturnPokemon(battleSys, battleCtx, i);
+        BattleController_ReturnPokemon(battleSys, battleCtx, i);
         break;
     }
 

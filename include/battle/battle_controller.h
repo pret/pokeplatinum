@@ -13,7 +13,7 @@ void BattleController_SetupBattleUI(BattleSystem *battleSys, int param1);
 void BattleController_SetEncounter(BattleSystem *battleSys, int param1);
 void BattleController_ShowEncounter(BattleSystem *battleSys, int param1);
 void BattleController_ShowPokemon(BattleSystem *battleSys, int param1, int param2, int param3);
-void BattleIO_ReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int param2);
+void BattleController_ReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int param2);
 void ov16_02265050(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_DeletePokemon(BattleSystem *battleSys, int param1);
 void BattleIO_SetTrainerEncounter(BattleSystem *battleSys, int param1);
