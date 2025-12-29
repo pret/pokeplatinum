@@ -6,7 +6,6 @@
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225C168.h"
 #include "battle/struct_ov16_0225C17C.h"
 #include "battle/struct_ov16_0225C260.h"
 #include "battle/struct_ov16_0225C29C.h"
@@ -44,7 +43,7 @@
 #include "pokemon_sprite.h"
 
 void ov16_0225CBB8(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C168 *param2);
+void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, MonEncounterMessage *message);
 void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C17C *param2);
 void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C17C *param2);
 void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02264EF8 *param2);

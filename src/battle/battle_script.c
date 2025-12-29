@@ -590,7 +590,7 @@ BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx)
 static BOOL BtlCmd_PlayEncounterAnimation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_SetupBattleUI(battleSys, BATTLER_US);
+    BattleController_SetupBattleUI(battleSys, BATTLER_US);
 
     return FALSE;
 }
@@ -619,7 +619,7 @@ static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *b
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            BattleIO_SetEncounter(battleSys, i);
+            BattleController_SetEncounter(battleSys, i);
             BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
@@ -632,7 +632,7 @@ static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *b
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_SetEncounter(battleSys, i);
+                BattleController_SetEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
         }

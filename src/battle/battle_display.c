@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C168.h"
 #include "battle/struct_ov16_0225C17C.h"
 #include "battle/struct_ov16_0225C260.h"
 #include "battle/struct_ov16_0225C29C.h"
@@ -241,7 +240,7 @@ void ov16_0225CBB8(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(ov16_02263014, v0, 0);
 }
 
-void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C168 *param2)
+void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, MonEncounterMessage *message)
 {
     int v0;
     PokemonSpriteTemplate v1;
@@ -270,20 +269,20 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 128 + 8);
     }
 
-    if (param2->unk_01_2) {
+    if (message->isShiny) {
         v0 = 1;
     } else {
         v0 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1, param2->unk_02, param2->unk_01_0, v4->unk_13, v0, param2->unk_01_3, param2->unk_04);
+    BuildPokemonSpriteTemplate(&v1, message->species, message->gender, v4->unk_13, v0, message->formNum, message->personality);
 
-    v6 = LoadPokemonSpriteYOffset(param2->unk_02, param2->unk_01_0, v4->unk_13, param2->unk_01_3, param2->unk_04);
+    v6 = LoadPokemonSpriteYOffset(message->species, message->gender, v4->unk_13, message->formNum, message->personality);
 
-    PokemonSprite_LoadYOffset(param1->unk_1A0, &v7, param2->unk_02);
-    PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v8, param2->unk_02);
-    PokemonSprite_LoadShadowSize(param1->unk_1A0, &v9, param2->unk_02);
-    PokemonSprite_LoadAnimFrames(param1->unk_1A0, &v3[0], param2->unk_02, param1->battlerType);
+    PokemonSprite_LoadYOffset(param1->unk_1A0, &v7, message->species);
+    PokemonSprite_LoadXOffsetShadow(param1->unk_1A0, &v8, message->species);
+    PokemonSprite_LoadShadowSize(param1->unk_1A0, &v9, message->species);
+    PokemonSprite_LoadAnimFrames(param1->unk_1A0, &v3[0], message->species, param1->battlerType);
 
     v4->unk_08 = param1->unk_20 = ov16_02263B30(battleSys, v2, &v1, Unk_ov12_0223B0B8[param1->battlerType][0], Unk_ov12_0223B0B8[param1->battlerType][1], Unk_ov12_0223B0B8[param1->battlerType][2], v6, v7, v8, v9, param1->battler, &v3[0], NULL);
 
@@ -308,14 +307,14 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 
     v4->unk_00 = battleSys;
     v4->unk_04 = param1;
-    v4->unk_10 = param2->unk_00;
+    v4->unk_10 = message->command;
     v4->unk_11 = param1->battler;
-    v4->unk_16 = param2->unk_02;
-    v4->unk_2C = param2->unk_01_3;
-    v4->unk_18 = param2->unk_08;
+    v4->unk_16 = message->species;
+    v4->unk_2C = message->formNum;
+    v4->unk_18 = message->cryModulation;
     v4->unk_1C = param1->battlerType;
-    v4->unk_24 = Pokemon_GetNatureOf(param2->unk_04);
-    v4->unk_28 = param2->unk_01_2;
+    v4->unk_24 = Pokemon_GetNatureOf(message->personality);
+    v4->unk_28 = message->isShiny;
 
     if ((v4->unk_13 == 2) && (BattleSystem_BattleStatus(battleSys) & 0x40)) {
         SysTask_Start(ov16_0225E894, v4, 0);

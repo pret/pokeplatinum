@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C168.h"
 #include "battle/struct_ov16_0225C17C.h"
 #include "battle/struct_ov16_0225C260.h"
 #include "battle/struct_ov16_0225C29C.h"
@@ -223,7 +222,7 @@ static void SendMessage(BattleSystem *battleSys, int recipient, int message, voi
     }
 }
 
-void BattleIO_SetupBattleUI(BattleSystem *battleSys, int param1)
+void BattleController_SetupBattleUI(BattleSystem *battleSys, int param1)
 {
     UnkStruct_ov16_02264A8C v0;
 
@@ -233,27 +232,27 @@ void BattleIO_SetupBattleUI(BattleSystem *battleSys, int param1)
     SendMessage(battleSys, 1, param1, &v0, sizeof(UnkStruct_ov16_02264A8C));
 }
 
-void BattleIO_SetEncounter(BattleSystem *battleSys, int param1)
+void BattleController_SetEncounter(BattleSystem *battleSys, int param1)
 {
-    UnkStruct_ov16_0225C168 v0;
-    int v1;
+    MonEncounterMessage message;
+    int i;
 
-    v0.unk_00 = 2;
-    v0.unk_01_0 = battleSys->battleCtx->battleMons[param1].gender;
-    v0.unk_01_2 = battleSys->battleCtx->battleMons[param1].isShiny;
-    v0.unk_02 = battleSys->battleCtx->battleMons[param1].species;
-    v0.unk_04 = battleSys->battleCtx->battleMons[param1].personality;
-    v0.unk_08 = Battler_CryModulation(battleSys->battleCtx, param1, BattleSystem_BattlerSlot(battleSys, param1), 1);
-    v0.unk_01_3 = battleSys->battleCtx->battleMons[param1].formNum;
+    message.command = BATTLE_CONTROL_TRAINER_MESSAGE;
+    message.gender = battleSys->battleCtx->battleMons[param1].gender;
+    message.isShiny = battleSys->battleCtx->battleMons[param1].isShiny;
+    message.species = battleSys->battleCtx->battleMons[param1].species;
+    message.personality = battleSys->battleCtx->battleMons[param1].personality;
+    message.cryModulation = Battler_CryModulation(battleSys->battleCtx, param1, BattleSystem_BattlerSlot(battleSys, param1), 1);
+    message.formNum = battleSys->battleCtx->battleMons[param1].formNum;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_0C[v1] = BattleMon_Get(battleSys->battleCtx, param1, 6 + v1, NULL);
-        v0.unk_14[v1] = BattleMon_Get(battleSys->battleCtx, param1, 31 + v1, NULL);
-        v0.unk_1C[v1] = BattleMon_Get(battleSys->battleCtx, param1, 39 + v1, NULL);
+    for (i = 0; i < 4; i++) {
+        message.moves[i] = BattleMon_Get(battleSys->battleCtx, param1, BATTLEMON_MOVE_1 + i, NULL);
+        message.curPP[i] = BattleMon_Get(battleSys->battleCtx, param1, BATTLEMON_CUR_PP_1 + i, NULL);
+        message.maxPP[i] = BattleMon_Get(battleSys->battleCtx, param1, BATTLEMON_MAX_PP_1 + i, NULL);
     }
 
-    BattleMon_Get(battleSys->battleCtx, param1, 45, &v0.unk_24);
-    SendMessage(battleSys, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C168));
+    BattleMon_Get(battleSys->battleCtx, param1, BATTLEMON_NICKNAME, &message.nickname);
+    SendMessage(battleSys, 1, param1, &message, sizeof(MonEncounterMessage));
 }
 
 void BattleIO_ShowEncounter(BattleSystem *battleSys, int param1)
