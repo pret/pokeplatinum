@@ -232,7 +232,7 @@ _0377:
     WaitMovement
     RemoveObject CANALAVE_CITY_RIVAL_BRIDGE
     SetVar VAR_CANALAVE_STATE, 3
-    SetVar VAR_UNK_0x40B2, 1
+    SetVar VAR_CANALAVE_LIBRARY_STATE, 1
     ReleaseAll
     End
 

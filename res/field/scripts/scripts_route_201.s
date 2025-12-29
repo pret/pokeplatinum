@@ -399,7 +399,7 @@ _05F5:
 _0618:
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 2
-    SetVar VAR_UNK_0x40A4, 3
+    SetVar VAR_PLAYER_HOUSE_STATE, 3
     WaitTime 30, VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen

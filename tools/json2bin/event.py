@@ -14,6 +14,7 @@ from convert import (
     pad,
     u16,
     u32,
+    vars_flags,
 )
 
 ANSI_BOLD_WHITE = "\033[1;37m"
@@ -44,6 +45,8 @@ def parse_bg_events(bg_events: list[dict]) -> bytes:
         ]
     )
 
+def from_var_flag_or_map_header(v: str) -> int:
+    return from_var_flag(v) if v == "0" or v in vars_flags.VarFlag.__members__ else from_map_header(v)
 
 # separate function to enable throwing value errors in a list comprehension
 def parse_object_event(obj: dict, i: int) -> bytes:
@@ -57,7 +60,7 @@ def parse_object_event(obj: dict, i: int) -> bytes:
             u16(from_object_event_gfx(obj["graphics_id"])),
             u16(from_movement_type(obj["movement_type"])),
             u16(from_trainer_type(obj["trainer_type"])),
-            u16(from_var_flag(obj["hidden_flag"])),
+            u16(from_var_flag_or_map_header(obj["hidden_flag"])),
             u16(from_script(str(obj["script"]), obj.get("double_battle_id", 1))),
             u16(obj["initial_dir"]),
             u16(obj_data[0]),
