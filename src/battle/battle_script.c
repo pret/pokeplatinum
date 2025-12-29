@@ -1044,7 +1044,7 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
                 break;
             }
 
-            BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
+            BattleController_ThrowTrainerBall(battleSys, i, ballTypeIn);
         }
         break;
 
@@ -1053,7 +1053,7 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
+                BattleController_ThrowTrainerBall(battleSys, i, ballTypeIn);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
@@ -1068,7 +1068,7 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
+                BattleController_ThrowTrainerBall(battleSys, i, ballTypeIn);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
@@ -1114,7 +1114,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
                 break;
             }
 
-            BattleIO_SlideTrainerOut(battleSys, i);
+            BattleController_SlideTrainerOut(battleSys, i);
         }
         break;
 
@@ -1123,7 +1123,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
-                BattleIO_SlideTrainerOut(battleSys, i);
+                BattleController_SlideTrainerOut(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
@@ -1138,7 +1138,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
-                BattleIO_SlideTrainerOut(battleSys, i);
+                BattleController_SlideTrainerOut(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
                     && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
@@ -1155,7 +1155,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER
                 || battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
-                BattleIO_SlideTrainerOut(battleSys, i);
+                BattleController_SlideTrainerOut(battleSys, i);
                 break;
             }
         }
@@ -1167,7 +1167,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY
                 || battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
-                BattleIO_SlideTrainerOut(battleSys, i);
+                BattleController_SlideTrainerOut(battleSys, i);
                 break;
             }
         }
@@ -1178,7 +1178,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
-                BattleIO_SlideTrainerOut(battleSys, i);
+                BattleController_SlideTrainerOut(battleSys, i);
                 break;
             }
         }
@@ -1189,7 +1189,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
-                BattleIO_SlideTrainerOut(battleSys, i);
+                BattleController_SlideTrainerOut(battleSys, i);
                 break;
             }
         }

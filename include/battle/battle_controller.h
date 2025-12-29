@@ -17,8 +17,8 @@ void BattleController_ReturnPokemon(BattleSystem *battleSys, BattleContext *para
 void ov16_02265050(BattleSystem *battleSys, int param1, int param2);
 void BattleController_DeletePokemon(BattleSystem *battleSys, int param1);
 void BattleController_SetTrainerEncounter(BattleSystem *battleSys, int param1);
-void BattleIO_ThrowTrainerBall(BattleSystem *battleSys, int param1, int param2);
-void BattleIO_SlideTrainerOut(BattleSystem *battleSys, int param1);
+void BattleController_ThrowTrainerBall(BattleSystem *battleSys, int param1, int param2);
+void BattleController_SlideTrainerOut(BattleSystem *battleSys, int param1);
 void BattleIO_SlideTrainerIn(BattleSystem *battleSys, int param1, int param2);
 
 /**

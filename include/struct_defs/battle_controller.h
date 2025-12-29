@@ -3,58 +3,6 @@
 
 #include "constants/pokemon.h"
 
-
-enum BattleControlSequence {
-    BATTLE_CONTROL_GET_BATTLE_MON = 0,
-    BATTLE_CONTROL_START_ENCOUNTER,
-    BATTLE_CONTROL_TRAINER_MESSAGE,
-    BATTLE_CONTROL_SHOW_BATTLE_MON,
-    BATTLE_CONTROL_INIT_COMMAND_SELECTION,
-    BATTLE_CONTROL_COMMAND_SELECTION_INPUT,
-    BATTLE_CONTROL_CALC_TURN_ORDER,
-    BATTLE_CONTROL_CHECK_PRE_MOVE_ACTIONS,
-    BATTLE_CONTROL_BRANCH_ACTIONS,
-    BATTLE_CONTROL_CHECK_FIELD_CONDITIONS,
-    BATTLE_CONTROL_CHECK_MON_CONDITIONS,
-    BATTLE_CONTROL_CHECK_SIDE_CONDITIONS,
-    BATTLE_CONTROL_TURN_END,
-
-    BATTLE_CONTROL_FIGHT,
-    BATTLE_CONTROL_ITEM,
-    BATTLE_CONTROL_PARTY,
-    BATTLE_CONTROL_RUN,
-
-    BATTLE_CONTROL_SAFARI_BALL,
-    BATTLE_CONTROL_SAFARI_BAIT,
-    BATTLE_CONTROL_SAFARI_ROCK,
-    BATTLE_CONTROL_SAFARI_WAIT,
-
-    BATTLE_CONTROL_EXEC_SCRIPT,
-    BATTLE_CONTROL_BEFORE_MOVE,
-    BATTLE_CONTROL_TRY_MOVE,
-    BATTLE_CONTROL_PRIMARY_EFFECT,
-    BATTLE_CONTROL_MOVE_FAILED,
-    BATTLE_CONTROL_USE_MOVE,
-    BATTLE_CONTROL_UPDATE_HP,
-    BATTLE_CONTROL_AFTER_MOVE_MESSAGE,
-    BATTLE_CONTROL_29, // unused state
-    BATTLE_CONTROL_AFTER_MOVE_EFFECT,
-    BATTLE_CONTROL_LOOP_MULTI_HIT,
-    BATTLE_CONTROL_32, // unused state
-    BATTLE_CONTROL_LOOP_FAINTED,
-    BATTLE_CONTROL_LOOP_SPREAD_MOVES,
-    BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT,
-    BATTLE_CONTROL_TRIGGER_AFTER_HIT_EFFECTS,
-    BATTLE_CONTROL_37, // unused state
-    BATTLE_CONTROL_UPDATE_MOVE_BUFFERS,
-    BATTLE_CONTROL_MOVE_END,
-    BATTLE_CONTROL_CHECK_ANY_FAINTED,
-    BATTLE_CONTROL_RESULT,
-    BATTLE_CONTROL_SCREEN_WIPE,
-    BATTLE_CONTROL_FIGHT_END,
-    BATTLE_CONTROL_END_WAIT,
-};
-
 enum PartyGaugeBallStatus {
     BALL_STATUS_NO_MON = 0,
     BALL_STATUS_MON_ALIVE,
@@ -87,7 +35,7 @@ typedef struct HealthbarData {
 // The following are message structs used by the battle controller to send smaller packets of information to the rest of the battle files
 
 typedef struct {
-    u8 commandNext;
+    u8 command;
     u8 gender : 2;
     u8 isShiny : 1;
     u8 formNum : 5;
@@ -103,7 +51,7 @@ typedef struct {
 } MonEncounterMessage;
 
 typedef struct {
-    u8 commandNext;
+    u8 command;
     u8 gender : 2;
     u8 isShiny : 1;
     u8 formNum : 5;
@@ -128,7 +76,7 @@ typedef struct {
 } MonShowMessage;
 
 typedef struct {
-    u8 commandNext;
+    u8 command;
     u8 yOffset;
     u16 capturedBall;
     int notSubstitute;
@@ -140,9 +88,15 @@ typedef struct {
 } MonReturnMessage;
 
 typedef struct {
-    u8 commandNext;
+    u8 command;
     u8 unk_01;
     u16 trainerType;
 } TrainerEncounterMessage;
+
+typedef struct {
+    u8 command;
+    u8 unk_01;
+    u16 selectedPartySlot;
+} TrainerThrowBallMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

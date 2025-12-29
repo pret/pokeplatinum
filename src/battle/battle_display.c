@@ -80,7 +80,6 @@
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
 #include "battle/struct_ov16_02265050.h"
-#include "battle/struct_ov16_02265154.h"
 #include "battle/struct_ov16_022651A8.h"
 #include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -304,7 +303,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, MonEncounterMes
 
     v4->unk_00 = battleSys;
     v4->unk_04 = param1;
-    v4->unk_10 = message->commandNext;
+    v4->unk_10 = message->command;
     v4->unk_11 = param1->battler;
     v4->unk_16 = message->species;
     v4->unk_2C = message->formNum;
@@ -354,7 +353,7 @@ void ov16_0225CE1C(BattleSystem *battleSys, BattlerData *param1, MonShowMessage 
     v1->unk_04 = param1;
     v1->unk_83 = 0;
     v1->unk_96 = 0;
-    v1->unk_80 = message->commandNext;
+    v1->unk_80 = message->command;
     v1->unk_81 = param1->battler;
     v1->unk_86 = message->species;
     v1->unk_97 = message->formNum;
@@ -402,7 +401,7 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, MonShowMessage 
 
     v2->unk_00 = battleSys;
     v2->unk_04 = param1;
-    v2->unk_80 = message->commandNext;
+    v2->unk_80 = message->command;
     v2->unk_81 = param1->battler;
     v2->unk_86 = message->species;
     v2->unk_97 = message->formNum;
@@ -434,7 +433,7 @@ void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, MonReturnMessag
     v1->unk_00 = battleSys;
     v1->unk_04 = param1;
     v1->unk_08 = param1->unk_20;
-    v1->unk_68 = message->commandNext;
+    v1->unk_68 = message->command;
     v1->unk_69 = param1->battler;
     v1->unk_6A = param1->battlerType;
     v1->unk_6B = 0;
@@ -500,7 +499,7 @@ void ov16_0225D228(BattleSystem *battleSys, BattlerData *param1, TrainerEncounte
     v1->unk_08 = param1->unk_18 = ov16_022643B8(battleSys, v2, message->trainerType, param1->battlerType, Unk_ov12_0223B0B8[v2][0], Unk_ov12_0223B0B8[v2][1]);
     v1->unk_10 = Unk_ov12_0223B0A0[v2][0];
     v1->unk_00 = battleSys;
-    v1->unk_0C = message->commandNext;
+    v1->unk_0C = message->command;
     v1->unk_0D = param1->battler;
     v1->unk_14 = param1->battlerType;
     v1->unk_1C = 0;
@@ -512,14 +511,14 @@ void ov16_0225D228(BattleSystem *battleSys, BattlerData *param1, TrainerEncounte
     SysTask_Start(ov16_0225FA70, v1, 0);
 }
 
-void ov16_0225D360(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265154 *param2)
+void ov16_0225D360(BattleSystem *battleSys, BattlerData *param1, TrainerThrowBallMessage *message)
 {
     UnkStruct_ov16_0225D360 *v0 = (UnkStruct_ov16_0225D360 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225D360));
 
     v0->unk_0A = 0;
     v0->unk_00 = battleSys;
-    v0->unk_08 = param2->unk_00;
-    v0->unk_10 = param2->unk_01;
+    v0->unk_08 = message->command;
+    v0->unk_10 = message->unk_01;
     v0->unk_09 = param1->battler;
     v0->unk_04 = param1;
 
