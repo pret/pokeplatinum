@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_BATTLE_IO_H
-#define POKEPLATINUM_STRUCT_BATTLE_IO_H
+#ifndef POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
+#define POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
 
 #include "constants/pokemon.h"
 
@@ -32,4 +32,4 @@ typedef struct HealthbarData {
     u8 delay;
 } HealthbarData;
 
-#endif // POKEPLATINUM_STRUCT_BATTLE_IO_H
+#endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV16_0226485C_H
-#define POKEPLATINUM_OV16_0226485C_H
+#ifndef POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_H
+#define POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_H
 
 #include "struct_decls/battle_system.h"
 
@@ -154,4 +154,4 @@ void ClearCommand(BattleSystem *battleSys, int param1, int param2);
 BOOL ov16_02266AE4(BattleSystem *battleSys, void *param1);
 void ov16_02266B78(BattleSystem *battleSys, BattleContext *param1, UnkStruct_ov16_02265BBC *param2, int param3, int param4, int param5, int param6, u16 param7);
 
-#endif // POKEPLATINUM_OV16_0226485C_H
+#endif // POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_H

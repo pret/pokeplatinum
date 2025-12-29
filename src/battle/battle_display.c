@@ -8,14 +8,14 @@
 #include "generated/items.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/battle_io.h"
+#include "struct_defs/battle_controller.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_context.h"
 #include "battle/battle_cursor.h"
-#include "battle/battle_io.h"
+#include "battle/battle_controller.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/healthbar.h"

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV16_0225CBB8_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/battle_io.h"
+#include "struct_defs/battle_controller.h"
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"

@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_defs/battle_io.h"
+#include "struct_defs/battle_controller.h"
 
 #include "battle/ov16_0223DF00.h"
 

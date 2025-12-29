@@ -21,7 +21,7 @@
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
 #include "battle/battle_display.h"
-#include "battle/battle_io.h"
+#include "battle/battle_controller.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/battle_script.h"

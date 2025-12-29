@@ -18,7 +18,7 @@
 #include "battle/battle_controller_player.h"
 #include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
-#include "battle/battle_io.h"
+#include "battle/battle_controller.h"
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
