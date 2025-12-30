@@ -40,7 +40,7 @@ String *BattleRegulation_GetNameString(const BattleRegulation *regulation, int h
 {
     String *string = String_New(BATTLE_REGULATION_NAME_LENGTH * 2, heapID);
 
-    String_CopyChars(string, regulation->name);
+    String_CopyFromChars(string, regulation->name);
     return string;
 }
 

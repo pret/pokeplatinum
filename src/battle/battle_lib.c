@@ -406,7 +406,7 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
     } break;
 
     case BATTLEMON_NICKNAME_STRING:
-        String_CopyChars((String *)buf, battleMon->nickname);
+        String_CopyFromChars((String *)buf, battleMon->nickname);
         break;
 
     case BATTLEMON_CUR_HP:

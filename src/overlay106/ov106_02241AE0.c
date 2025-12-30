@@ -1127,7 +1127,7 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
     Window_FillTilemap(param1, param6);
 
     v4 = String_New(10 + 1, HEAP_ID_98);
-    String_CopyChars(v4, v6);
+    String_CopyFromChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, TEXT_SPEED_INSTANT, TEXT_COLOR(param4, param5, param6), NULL);
     String_Free(v4);
     Window_CopyToVRAM(param1);

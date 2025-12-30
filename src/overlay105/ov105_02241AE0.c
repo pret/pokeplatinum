@@ -2626,7 +2626,7 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     String *v2 = String_New(7 + 1, HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
-    String_CopyChars(v2, TrainerInfo_Name(v1));
+    String_CopyFromChars(v2, TrainerInfo_Name(v1));
 
     if (TrainerInfo_Gender(v1) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);
@@ -2677,7 +2677,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     Window_FillTilemap(param1, param7);
 
     v4 = String_New(10 + 1, HEAP_ID_93);
-    String_CopyChars(v4, v6);
+    String_CopyFromChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param5, param6, param7), NULL);
 
     v0 = Window_GetWidth(param1) - 1;

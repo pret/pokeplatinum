@@ -888,7 +888,7 @@ static void JournalPrinter_SetPlayerOrPokemonName(JournalManager *journalManager
 {
     String *string = String_New(32, HEAP_ID_JOURNAL);
 
-    String_CopyChars(string, name);
+    String_CopyFromChars(string, name);
     StringTemplate_SetString(journalManager->template, idx, string, unused, TRUE, GAME_LANGUAGE);
     String_Free(string);
 }

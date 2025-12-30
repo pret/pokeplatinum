@@ -765,7 +765,7 @@ static String *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
 
             v1 = String_New(10, HEAP_ID_89);
 
-            String_CopyChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
+            String_CopyFromChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
             StringTemplate_SetString(param2, 0, v1, 0, 0, PalPad_GetTrainerRegionCode(param0, v3));
             String_Free(v1);
         }
@@ -796,7 +796,7 @@ static void ov56_02256EE8(UnkStruct_ov56_02256468 *param0, u32 param1, Sentence 
         String_Free(v0->unk_00[*v2].unk_08);
     }
 
-    String_CopyChars(v0->unk_00[*v2].unk_00, TrainerInfo_Name(param3));
+    String_CopyFromChars(v0->unk_00[*v2].unk_00, TrainerInfo_Name(param3));
 
     v0->unk_00[*v2].unk_14 = *param2;
     v0->unk_00[*v2].unk_0C = param1;

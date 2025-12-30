@@ -260,7 +260,7 @@ void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 boxID, String *dest)
     }
 
     if (boxID < MAX_PC_BOXES) {
-        String_CopyChars(dest, pcBoxes->names[boxID]);
+        String_CopyFromChars(dest, pcBoxes->names[boxID]);
     } else {
         GF_ASSERT(0);
     }

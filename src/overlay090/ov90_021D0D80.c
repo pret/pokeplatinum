@@ -723,7 +723,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
         if (v2->unk_07) {
             String_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
         } else {
-            String_CopyChars(v2->unk_00, v1[v0].unk_00);
+            String_CopyFromChars(v2->unk_00, v1[v0].unk_00);
         }
     }
 

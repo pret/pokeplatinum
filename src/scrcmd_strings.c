@@ -408,7 +408,7 @@ BOOL ScrCmd_BufferTabletName(ScriptContext *ctx)
 
     tabletName = String_New(11, HEAP_ID_FIELD2);
 
-    String_CopyChars(tabletName, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(ctx->fieldSystem->saveData)));
+    String_CopyFromChars(tabletName, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(ctx->fieldSystem->saveData)));
     StringTemplate_SetString(*strTemplate, templateArg, tabletName, 0, 0, gGameLanguage);
     String_Free(tabletName);
 

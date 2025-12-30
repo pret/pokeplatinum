@@ -488,7 +488,7 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
             sp1c = String_New(0xff, 0x66);
             charcode_t sp2c[0xff];
             MessageLoader_GetSpeciesName(sp10, 0x66, sp2c);
-            String_CopyChars(sp1c, sp2c);
+            String_CopyFromChars(sp1c, sp2c);
         } else {
             sp1c = MessageLoader_GetNewString(r5->unk_14.unk_34, 0x15);
         }

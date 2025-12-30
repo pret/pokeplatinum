@@ -55,7 +55,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
         }
 
         String_Clear(v6);
-        String_CopyChars(v6, param1->trainer[v4].name);
+        String_CopyFromChars(v6, param1->trainer[v4].name);
 
         if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
             ov62_0224856C(v7, heapID);
@@ -78,7 +78,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
 
             Pokemon_GetValue(v13, MON_DATA_NICKNAME, v8);
             String_Clear(v6);
-            String_CopyChars(v6, v8);
+            String_CopyFromChars(v6, v8);
 
             if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
                 Pokemon_SetValue(v13, MON_DATA_SPECIES_NAME, NULL);

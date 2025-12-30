@@ -1890,7 +1890,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
 
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(param0->unk_36EC, v5)) {
-                String_CopyChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
+                String_CopyFromChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
                 StringList_AddFromString(param0->unk_36D4, v4, v5);
             }
         }

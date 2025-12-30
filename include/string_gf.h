@@ -169,7 +169,7 @@ void String_CopyLine(String *dest, const String *src, u32 lineNum);
  * @param[out] dest Destination buffer.
  * @param src Raw character source buffer.
  */
-void String_CopyChars(String *dest, const charcode_t *src);
+void String_CopyFromChars(String *dest, const charcode_t *src);
 
 /**
  * @brief Copies a specific number of values from a raw character buffer into

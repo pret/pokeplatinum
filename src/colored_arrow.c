@@ -22,7 +22,7 @@ ColoredArrow *ColoredArrow_New(u32 heapID)
     if (arrow) {
         arrow->color = TEXT_COLOR(1, 2, 15);
         arrow->string = String_New(4, heapID);
-        String_CopyChars(arrow->string, chars);
+        String_CopyFromChars(arrow->string, chars);
     }
 
     return arrow;

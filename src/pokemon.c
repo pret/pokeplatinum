@@ -1077,7 +1077,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
             String_Copy(dest, string);
             String_Free(string);
         } else {
-            String_CopyChars(dest, monDataBlockC->nickname);
+            String_CopyFromChars(dest, monDataBlockC->nickname);
         }
         break;
 
@@ -1124,7 +1124,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_OT_NAME_STRING:
-        String_CopyChars(dest, monDataBlockD->otName);
+        String_CopyFromChars(dest, monDataBlockD->otName);
         break;
 
     case MON_DATA_EGG_YEAR:

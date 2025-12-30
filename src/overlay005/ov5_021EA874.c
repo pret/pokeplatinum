@@ -268,7 +268,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(v0, v5)) {
-                String_CopyChars(param0->unk_08, sub_0202AEF0(v0, v5));
+                String_CopyFromChars(param0->unk_08, sub_0202AEF0(v0, v5));
                 StringList_AddFromString(param0->unk_00, param0->unk_08, v5);
             }
         }

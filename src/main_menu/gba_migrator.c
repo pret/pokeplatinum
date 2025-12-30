@@ -214,7 +214,7 @@ static void ov97_02234ECC(GBAMigrator *migrator);
 static void ov97_02235310(GBAMigrator *migrator);
 static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator);
 void String_CopyNumChars(String *param0, const u16 *param1, u32 param2);
-void String_CopyChars(String *param0, const u16 *param1);
+void String_CopyFromChars(String *param0, const u16 *param1);
 void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon);
 
 UnkStruct_ov97_0223F434 *Unk_ov97_0223F434;
@@ -1662,7 +1662,7 @@ static void ov97_02235344(GBAMigrator *migrator)
     strTemplate = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
     string = String_New(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
 
-    String_CopyChars(string, playerName);
+    String_CopyFromChars(string, playerName);
     StringTemplate_SetString(strTemplate, 1, string, 0, 1, GAME_LANGUAGE);
 
     ov97_02234ECC(migrator);

@@ -477,7 +477,7 @@ static void sub_0206CD94(StringTemplate *template, int idx, const u16 *param2, i
 {
     String *string = String_New(64, HEAP_ID_FIELD1);
 
-    String_CopyChars(string, param2);
+    String_CopyFromChars(string, param2);
     StringTemplate_SetString(template, idx, string, unused3, unused5, unused4);
     String_Free(string);
 }
@@ -2017,7 +2017,7 @@ static int TVEpisodeSegment_LoadMessage_BattleFrontierFrontlineNews_Multi(FieldS
     String *v2 = String_New(64, HEAP_ID_FIELD1);
 
     TVEpisodeSegment_SetTemplateTrainerName(template, 0, param2);
-    String_CopyChars(v2, battleFrontierFrontlineNewsMulti->unk_00.unk_06);
+    String_CopyFromChars(v2, battleFrontierFrontlineNewsMulti->unk_00.unk_06);
     StringTemplate_SetString(template, 1, v2, battleFrontierFrontlineNewsMulti->unk_00.unk_02, 0, battleFrontierFrontlineNewsMulti->unk_00.unk_03);
     String_Free(v2);
     StringTemplate_SetCustomMessageWord(template, 2, battleFrontierFrontlineNewsMulti->customWordMessage);

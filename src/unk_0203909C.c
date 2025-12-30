@@ -139,7 +139,7 @@ void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int pa
 
     v4 = String_New(120, heapID);
 
-    String_CopyChars(v4, sub_02032F54(param1));
+    String_CopyFromChars(v4, sub_02032F54(param1));
     sub_0202AF50(v0, param2, v4);
     String_Free(v4);
     sub_0202AE2C(v0, param2, 7, TrainerInfo_Appearance(v2));

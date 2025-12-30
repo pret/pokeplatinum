@@ -2264,7 +2264,7 @@ static void ov65_0222FD70(UnkStruct_ov65_0222EBE0 *param0)
                 v0 = TEXT_COLOR(3, 4, 0);
             }
 
-            String_CopyChars(param0->unk_170, sub_0202AEF0(param0->unk_00, ov4_021D2388()));
+            String_CopyFromChars(param0->unk_170, sub_0202AEF0(param0->unk_00, ov4_021D2388()));
         }
     } else {
         MessageLoader_GetString(param0->unk_168, v3, param0->unk_170);

@@ -2647,7 +2647,7 @@ static void ov107_02244AB4(UnkStruct_ov107_02241D6C *param0, Window *param1, u32
     v1 = SaveData_GetTrainerInfo(param0->saveData);
     v2 = String_New(7 + 1, HEAP_ID_100);
 
-    String_CopyChars(v2, TrainerInfo_Name(v1));
+    String_CopyFromChars(v2, TrainerInfo_Name(v1));
 
     if (TrainerInfo_Gender(v1) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);

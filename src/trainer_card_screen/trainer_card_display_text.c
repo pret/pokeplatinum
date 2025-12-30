@@ -188,7 +188,7 @@ void TrainerCard_DrawFrontText(Window *windows, const TrainerCard *trainerCard)
     StringTemplate *template = StringTemplate_New(6, 32, HEAP_ID_TRAINER_CARD_SCREEN);
 
     TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_ID], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCard->id, 5, PADDING_MODE_ZEROES);
-    String_CopyChars(string, trainerCard->name);
+    String_CopyFromChars(string, trainerCard->name);
     TrainerCard_DrawString(&windows[TRAINER_CARD_WINDOW_NAME], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string);
 
     StringTemplate_SetNumber(template, 5, trainerCard->money, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);

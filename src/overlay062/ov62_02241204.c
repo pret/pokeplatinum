@@ -685,7 +685,7 @@ static void ov62_02241954(UnkStruct_0208C06C *param0, int param1)
     } else {
         v2 = String_New(255, HEAP_ID_102);
         MessageLoader_GetSpeciesName(param1, 102, v3);
-        String_CopyChars(v2, v3);
+        String_CopyFromChars(v2, v3);
     }
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);

@@ -326,7 +326,7 @@ void String_CopyLine(String *dest, const String *src, u32 lineNum)
     }
 }
 
-void String_CopyChars(String *dest, const charcode_t *src)
+void String_CopyFromChars(String *dest, const charcode_t *src)
 {
     String_Assert(dest);
 

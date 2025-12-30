@@ -891,7 +891,7 @@ void ov62_02232594(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
             v6 = MessageLoader_GetNewString(param1->unk_14.unk_34, 99);
 
             String_FormatInt(v5, (v0 + 1), 2, 1, 1);
-            String_CopyChars(v4, param1->unk_8B4.unk_1D58[v0]->unk_00.unk_00);
+            String_CopyFromChars(v4, param1->unk_8B4.unk_1D58[v0]->unk_00.unk_00);
             ov62_022349A8(param1, v4);
 
             v7 = Font_CalcStringWidth(FONT_SYSTEM, v5, 0);
@@ -994,7 +994,7 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
             int v18 = param0->unk_28->unk_00[v0].unk_04;
             v5 = String_New(255, HEAP_ID_102);
             MessageLoader_GetSpeciesName(v18, 102, v17);
-            String_CopyChars(v5, v17);
+            String_CopyFromChars(v5, v17);
             StringTemplate_SetString(v7, 1, v5, 0, 1, 2);
             break;
         }
@@ -1178,7 +1178,7 @@ int ov62_02232C78(UnkStruct_ov62_02233310 *a0, UnkStruct_0208C06C *a1, int a2, i
             int sp2c = a0->unk_28->unk_00[i].unk_04;
             sp4c = String_New(255, HEAP_ID_102);
             MessageLoader_GetSpeciesName(sp2c, HEAP_ID_102, sp6c);
-            String_CopyChars(sp4c, sp6c);
+            String_CopyFromChars(sp4c, sp6c);
             StringTemplate_SetString(r5, 1, sp4c, 0, 1, 2);
             break;
         }
@@ -1304,7 +1304,7 @@ int ov62_02233064(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1)
             v9 = MessageLoader_GetNewString(param1->unk_14.unk_34, 99);
 
             String_FormatInt(v8, (v5 + v4 + 1), 2, 1, 1);
-            String_CopyChars(v7, param1->unk_8B4.unk_1D58[v5 + v4]->unk_00.unk_00);
+            String_CopyFromChars(v7, param1->unk_8B4.unk_1D58[v5 + v4]->unk_00.unk_00);
             ov62_022349A8(param1, v7);
 
             v10 = Font_CalcStringWidth(FONT_SYSTEM, v8, 0);

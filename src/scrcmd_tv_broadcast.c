@@ -255,7 +255,7 @@ static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, 
 {
     String *v0 = String_New(64, HEAP_ID_FIELD1);
 
-    String_CopyChars(v0, param2);
+    String_CopyFromChars(v0, param2);
     StringTemplate_SetString(param0, param1, v0, param3, param5, param4);
     String_Free(v0);
 }
@@ -302,7 +302,7 @@ static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
 
     v0 = String_New(64, HEAP_ID_FIELD1);
 
-    String_CopyChars(v0, v2->unk_06);
+    String_CopyFromChars(v0, v2->unk_06);
     StringTemplate_SetString(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
     String_Free(v0);
 }

@@ -250,7 +250,7 @@ void ov6_02248CBC(int param0, int param1, void *param2, void *param3)
     v5 = (u16 *)(&v4[v3]);
 
     String_Clear(v0->unk_00.unk_D8[v1]);
-    String_CopyChars(v0->unk_00.unk_D8[v1], v5);
+    String_CopyFromChars(v0->unk_00.unk_D8[v1], v5);
 
     v0->unk_568++;
 }

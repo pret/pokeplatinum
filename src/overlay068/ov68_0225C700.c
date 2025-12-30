@@ -1434,12 +1434,12 @@ static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, u32 heap
     if (param0->unk_0C == 1) {
         v2 = ov66_02233538(v1 + UnkEnum_ov66_02233538_00);
         GF_ASSERT(v2);
-        String_CopyChars(param0->unk_10, v2);
+        String_CopyFromChars(param0->unk_10, v2);
 
         for (v3 = 0; v3 < 3; v3++) {
             v2 = ov66_02233538(v1 + UnkEnum_ov66_02233538_01 + v3);
             GF_ASSERT(v2);
-            String_CopyChars(param0->unk_14[v3], v2);
+            String_CopyFromChars(param0->unk_14[v3], v2);
         }
     }
 }

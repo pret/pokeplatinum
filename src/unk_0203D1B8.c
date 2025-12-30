@@ -1243,15 +1243,15 @@ void sub_0203DFE8(
         v2->unk_0C->monForm = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
-            String_CopyChars(v2->unk_10, param5);
+            String_CopyFromChars(v2->unk_10, param5);
         }
         break;
     case NAMING_SCREEN_TYPE_GROUP:
-        String_CopyChars(v2->unk_10, param5);
+        String_CopyFromChars(v2->unk_10, param5);
         break;
     default:
         if (param5 != NULL) {
-            String_CopyChars(v2->unk_0C->textInputStr, param5);
+            String_CopyFromChars(v2->unk_0C->textInputStr, param5);
         }
         break;
     }

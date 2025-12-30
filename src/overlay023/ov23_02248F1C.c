@@ -544,8 +544,8 @@ static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, String *param1)
         return 1;
     } else {
         param0->unk_94[v2] = 0xffff;
-        String_CopyChars(param0->unk_84[0], param0->unk_94);
-        String_CopyChars(param0->unk_84[1], &param0->unk_94[v2 + 1]);
+        String_CopyFromChars(param0->unk_84[0], param0->unk_94);
+        String_CopyFromChars(param0->unk_84[1], &param0->unk_94[v2 + 1]);
     }
 
     return 2;

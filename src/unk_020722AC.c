@@ -926,7 +926,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int hea
         v7->mailType = Mail_GetMailType(mail);
         v7->item = Item_ForMailNumber(v7->mailType);
 
-        String_CopyChars(v7->unk_08, Mail_GetTrainerName(mail));
+        String_CopyFromChars(v7->unk_08, Mail_GetTrainerName(mail));
 
         v7->unk_02 = param0->unk_19;
         v8->unk_03 = v7->unk_00;

@@ -842,7 +842,7 @@ u16 sub_0202A5E8(const UnkStruct_0202A138 *param0)
 
 void sub_0202A5EC(const UnkStruct_0202A138 *param0, String *param1)
 {
-    String_CopyChars(param1, param0->unk_20);
+    String_CopyFromChars(param1, param0->unk_20);
 }
 
 u32 sub_0202A5FC(const UnkStruct_0202A138 *param0)

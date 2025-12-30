@@ -544,7 +544,7 @@ static void InitializeStringsAndCopyOTName(PokemonSummaryScreen *summaryScreen)
     summaryScreen->playerName = String_New(TRAINER_NAME_LEN + 1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     if (summaryScreen->data->OTName != NULL) {
-        String_CopyChars(summaryScreen->playerName, summaryScreen->data->OTName);
+        String_CopyFromChars(summaryScreen->playerName, summaryScreen->data->OTName);
     }
 }
 

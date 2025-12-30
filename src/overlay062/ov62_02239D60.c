@@ -970,7 +970,7 @@ static void ov62_0223AC58(UnkStruct_0208C06C *param0, int param1)
     v4 = String_New(255, HEAP_ID_102);
     v5 = ov62_02231690(HEAP_ID_102);
 
-    String_CopyChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
+    String_CopyFromChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
     ov62_022349A8(param0, v3);
     StringTemplate_SetString(v5, 0, v3, 0, 1, GAME_LANGUAGE);
     StringTemplate_Format(v5, v4, v2);
@@ -993,7 +993,7 @@ static void ov62_0223AD20(UnkStruct_0208C06C *param0)
     v1 = &v0->unk_1B4[1];
     v2 = String_New(255, HEAP_ID_102);
 
-    String_CopyChars(v2, v0->unk_04.unk_00);
+    String_CopyFromChars(v2, v0->unk_04.unk_00);
     Window_FillTilemap(v1, Unk_ov62_02248D78[1]);
 
     v3 = ov62_0223429C(v1, v2);
@@ -1047,7 +1047,7 @@ static void ov62_0223ADC0(UnkStruct_0208C06C *param0, int param1)
     }
 
     MessageLoader_GetSpeciesName(v4, 102, v5);
-    String_CopyChars(v2, v5);
+    String_CopyFromChars(v2, v5);
 
     v3 = ov62_0223429C(v1, v2);
 
@@ -1785,11 +1785,11 @@ static void ov62_0223BE7C(UnkStruct_0208C06C *param0)
 
     for (v0 = 0; v0 < v1->unk_380.unk_08; v0++) {
         v1->unk_2E0C[v0][1] = String_New(20, HEAP_ID_102);
-        String_CopyChars(v1->unk_2E0C[v0][1], v1->unk_38C[v0]->unk_00.unk_00);
+        String_CopyFromChars(v1->unk_2E0C[v0][1], v1->unk_38C[v0]->unk_00.unk_00);
         ov62_022349A8(param0, v1->unk_2E0C[v0][1]);
 
         v1->unk_2E0C[v0][0] = String_New(30, HEAP_ID_102);
-        String_CopyChars(v1->unk_2E0C[v0][0], v1->unk_38C[v0]->unk_80.unk_00);
+        String_CopyFromChars(v1->unk_2E0C[v0][0], v1->unk_38C[v0]->unk_80.unk_00);
     }
 }
 

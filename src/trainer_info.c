@@ -68,7 +68,7 @@ const charcode_t *TrainerInfo_Name(const TrainerInfo *info)
 
 void TrainerInfo_NameString(const TrainerInfo *info, String *name)
 {
-    String_CopyChars(name, info->name);
+    String_CopyFromChars(name, info->name);
 }
 
 String *TrainerInfo_NameNewString(const TrainerInfo *info, int heapID)

@@ -143,13 +143,13 @@ void StringTemplate_SetString(StringTemplate *template, u32 idx, const String *a
 
 void StringTemplate_SetPlayerName(StringTemplate *template, u32 idx, const TrainerInfo *playerInfo)
 {
-    String_CopyChars(template->templateBuf, TrainerInfo_Name(playerInfo));
+    String_CopyFromChars(template->templateBuf, TrainerInfo_Name(playerInfo));
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
 void StringTemplate_SetRivalName(StringTemplate *template, u32 idx, const SaveData *saveData)
 {
-    String_CopyChars(template->templateBuf, MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData)));
+    String_CopyFromChars(template->templateBuf, MiscSaveBlock_RivalName(SaveData_MiscSaveBlockConst(saveData)));
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
@@ -340,7 +340,7 @@ void StringTemplate_SetFrontierTrainerName(StringTemplate *template, u32 idx, u3
 
 void StringTemplate_SetTrainerNameBattle(StringTemplate *template, u32 idx, Trainer *trainer)
 {
-    String_CopyChars(template->templateBuf, trainer->name);
+    String_CopyFromChars(template->templateBuf, trainer->name);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 
@@ -530,7 +530,7 @@ void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveDa
     countryCode = RecordMixedRNG_GetEntryCountryCode(group, groupID);
     groupName = String_New(64, HEAP_ID_FIELD1);
 
-    String_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
+    String_CopyFromChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
     StringTemplate_SetString(template, idx, groupName, gender, 1, countryCode);
     String_Free(groupName);
 }

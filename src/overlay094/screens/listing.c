@@ -555,7 +555,7 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     v3 = String_New((7 + 1) * 2, HEAP_ID_62);
 
     v1 = MessageLoader_GetNewString(param0, pl_msg_00000671_00048);
-    String_CopyChars(v0, param2);
+    String_CopyFromChars(v0, param2);
 
     v2 = MessageLoader_GetNewString(param0, pl_msg_00000671_00172);
     Pokemon_GetValue(param3, MON_DATA_OT_NAME_STRING, v3);

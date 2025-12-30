@@ -148,8 +148,8 @@ void HallOfFame_GetEntryPokemonData(const HallOfFame *hallOfFame, int entryIndex
     pcHallOfFameMon->OTID = hallOfFameMon->OTID;
     pcHallOfFameMon->form = hallOfFameMon->form;
 
-    String_CopyChars(pcHallOfFameMon->nickname, hallOfFameMon->nickname);
-    String_CopyChars(pcHallOfFameMon->OTName, hallOfFameMon->OTName);
+    String_CopyFromChars(pcHallOfFameMon->nickname, hallOfFameMon->nickname);
+    String_CopyFromChars(pcHallOfFameMon->OTName, hallOfFameMon->OTName);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         pcHallOfFameMon->moves[i] = hallOfFameMon->moves[i];

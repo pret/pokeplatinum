@@ -1414,7 +1414,7 @@ static BOOL NamingScreen_Exit(ApplicationManager *appMan, int *unusedState)
     } else {
         CharCode_Copy(namingScreen->entryBufBak, namingScreen->entryBuf);
         CharCode_Copy(namingScreenArgs->nameInputRaw, namingScreen->entryBuf);
-        String_CopyChars(namingScreenArgs->textInputStr, namingScreen->entryBuf);
+        String_CopyFromChars(namingScreenArgs->textInputStr, namingScreen->entryBuf);
     }
 
     String_Free(namingScreen->groupTextString);
@@ -1763,7 +1763,7 @@ static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, Applic
             Heap_Free(mon);
         } else {
             namingScreen->entryBuf[namingScreen->textCursorPos] = CHAR_EOS;
-            String_CopyChars(string, namingScreen->entryBuf);
+            String_CopyFromChars(string, namingScreen->entryBuf);
             StringTemplate_SetString(namingScreen->strTemplate, 0, string, 0, 0, 0);
         }
 
@@ -2684,7 +2684,7 @@ static void NamingScreen_PrintChars(
             charWidth = Font_CalcCharArrayWidth(FONT_SYSTEM, charBuffer, 0);
             charXOffset = baseXOffset + i * charSpacing + ((charSpacing - charWidth) / 2);
 
-            String_CopyChars(string, charBuffer);
+            String_CopyFromChars(string, charBuffer);
             Text_AddPrinterWithParamsAndColor(
                 window,
                 FONT_SYSTEM,
@@ -2747,7 +2747,7 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(
         curCharBuf[1] = CHAR_EOS;
 
         Window_FillTilemap(&windows[i], 0);
-        String_CopyChars(string2, curCharBuf);
+        String_CopyFromChars(string2, curCharBuf);
 
         ptr = NamingScreen_PrintStringOnWindowAndGetPixelBuffer(
             &windows[i],

@@ -2441,7 +2441,7 @@ static void ov64_022302EC(UnkStruct_ov64_02230074 *param0, UnkStruct_ov63_0222AE
     v5 = ((Unk_ov64_02232324[param4].unk_00.unk_02) * 8) + -24;
     v3 = String_New(128, heapID);
 
-    String_CopyChars(v3, sub_0202AEF0(param5, param6));
+    String_CopyFromChars(v3, sub_0202AEF0(param5, param6));
     Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_SYSTEM, v3, v4, v5, TEXT_SPEED_NO_TRANSFER, v6[v0], NULL);
     String_Free(v3);
 }
@@ -2560,7 +2560,7 @@ static NamingScreenArgs *ov64_022305DC(UnkStruct_ov64_02230444 *param0, UnkStruc
     if (param1->unk_34.unk_04 == 1) {
         {
             if (IsFullWidthChar(*param1->unk_34.unk_00) == 0) {
-                String_CopyChars(v0->textInputStr, param1->unk_34.unk_00);
+                String_CopyFromChars(v0->textInputStr, param1->unk_34.unk_00);
             } else {
                 String_Clear(v0->textInputStr);
             }
