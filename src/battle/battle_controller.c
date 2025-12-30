@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C29C.h"
 #include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
@@ -634,12 +633,12 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
         if ((monSpeciesOrEgg) && (monSpeciesOrEgg != SPECIES_EGG)) {
             if (Pokemon_GetValue(pokemon, MON_DATA_HP, NULL)) {
                 if (Pokemon_GetValue(pokemon, MON_DATA_STATUS, NULL)) {
-                    message.ballStatus[PARTY_GAUGE_OURS][cnt] = 3;
+                    message.ballStatus[PARTY_GAUGE_OURS][cnt] = STOCK_STATUS_HAS_STATUS_CONDITION;
                 } else {
-                    message.ballStatus[PARTY_GAUGE_OURS][cnt] = 1;
+                    message.ballStatus[PARTY_GAUGE_OURS][cnt] = STOCK_STATUS_MON_ALIVE;
                 }
             } else {
-                message.ballStatus[PARTY_GAUGE_OURS][cnt] = 2;
+                message.ballStatus[PARTY_GAUGE_OURS][cnt] = STOCK_STATUS_MON_FAINTED;
             }
 
             if (battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PAL_PARK)) {
@@ -672,12 +671,12 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
             if ((monSpeciesOrEgg) && (monSpeciesOrEgg != SPECIES_EGG)) {
                 if (Pokemon_GetValue(pokemon, MON_DATA_HP, NULL)) {
                     if (Pokemon_GetValue(pokemon, MON_DATA_STATUS, NULL)) {
-                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 3;
+                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_HAS_STATUS_CONDITION;
                     } else {
-                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 1;
+                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_MON_ALIVE;
                     }
                 } else {
-                    message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 2;
+                    message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_MON_FAINTED;
                 }
 
                 cnt++;
@@ -700,12 +699,12 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
             if ((monSpeciesOrEgg) && (monSpeciesOrEgg != SPECIES_EGG)) {
                 if (Pokemon_GetValue(pokemon, MON_DATA_HP, NULL)) {
                     if (Pokemon_GetValue(pokemon, MON_DATA_STATUS, NULL)) {
-                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 3;
+                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_HAS_STATUS_CONDITION;
                     } else {
-                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 1;
+                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_MON_ALIVE;
                     }
                 } else {
-                    message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 2;
+                    message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_MON_FAINTED;
                 }
 
                 cnt++;
@@ -723,12 +722,12 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
             if ((monSpeciesOrEgg) && (monSpeciesOrEgg != SPECIES_EGG)) {
                 if (Pokemon_GetValue(pokemon, MON_DATA_HP, NULL)) {
                     if (Pokemon_GetValue(pokemon, MON_DATA_STATUS, NULL)) {
-                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 3;
+                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_HAS_STATUS_CONDITION;
                     } else {
-                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 1;
+                        message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_MON_ALIVE;
                     }
                 } else {
-                    message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = 2;
+                    message.ballStatus[PARTY_GAUGE_THEIRS][cnt] = STOCK_STATUS_MON_FAINTED;
                 }
 
                 cnt++;
@@ -764,18 +763,18 @@ void ov16_022656D4(BattleSystem *battleSys, int battlerId, int param2)
 }
 
 /**
- * @brief Emits a message to show the move selection screen
+ * @brief Emits a message to show the move selection menu
  *
  * @param battleSys
  * @param battleCtx
  * @param battler
  */
-void BattleController_EmitShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battler);
 
-    MoveSelectShowMessage message;
-    message.command = BATTLE_COMMAND_SHOW_MOVE_SELECT_SCREEN;
+    MoveSelectMenuMessage message;
+    message.command = BATTLE_COMMAND_SHOW_MOVE_SELECT_MENU;
     message.partySlot = battleCtx->selectedPartySlot[battler];
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -786,7 +785,7 @@ void BattleController_EmitShowMoveSelectScreen(BattleSystem *battleSys, BattleCo
 
     message.invalidMoves = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveSelectShowMessage));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveSelectMenuMessage));
 }
 
 void ov16_02265790(BattleSystem *battleSys, int battlerId, int param2)
@@ -794,51 +793,59 @@ void ov16_02265790(BattleSystem *battleSys, int battlerId, int param2)
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
 }
 
-void BattleIO_ShowTargetSelection(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler)
+/**
+ * @brief Emits a message to show the target selection menu
+ * 
+ * @param battleSys
+ * @param battleCtx
+ * @param range
+ * @param battler
+ */
+void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler)
 {
-    UnkStruct_ov16_0225C29C v0;
-    int v1;
+    TargetSelectMenuMessage message;
+    int i;
     u32 battleType;
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
     battleType = BattleSystem_BattleType(battleSys);
 
-    v0.unk_00 = BATTLE_COMMAND_SHOW_TARGET_SELECTION;
-    v0.unk_02 = range;
+    message.command = BATTLE_COMMAND_SHOW_TARGET_SELECT_MENU;
+    message.range = range;
 
     if (((battleType & BATTLE_TYPE_DOUBLES) == FALSE) || (battleType & BATTLE_TYPE_2vs2) || ((battleType & BATTLE_TYPE_DOUBLES) && (battler >= 2))) {
-        v0.unk_01 = 1;
+        message.unk_01 = 1;
     } else {
-        v0.unk_01 = 0;
+        message.unk_01 = 0;
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (battleCtx->battleMons[v1].curHP) {
-            v0.unk_04[v1].unk_04 = battleCtx->battleMons[v1].curHP;
-            v0.unk_04[v1].unk_06 = battleCtx->battleMons[v1].maxHP;
-            v0.unk_04[v1].unk_01_2 = 1;
+    for (i = 0; i < 4; i++) {
+        if (battleCtx->battleMons[i].curHP) {
+            message.targetMon[i].curHP = battleCtx->battleMons[i].curHP;
+            message.targetMon[i].maxHP = battleCtx->battleMons[i].maxHP;
+            message.targetMon[i].unk_01_2 = 1;
 
-            if (((battleCtx->battleMons[v1].species == SPECIES_NIDORAN_F) || (battleCtx->battleMons[v1].species == SPECIES_NIDORAN_M)) && (battleCtx->battleMons[v1].hasNickname == 0)) {
-                v0.unk_04[v1].unk_01_0 = 2;
+            if (((battleCtx->battleMons[i].species == SPECIES_NIDORAN_F) || (battleCtx->battleMons[i].species == SPECIES_NIDORAN_M)) && (battleCtx->battleMons[i].hasNickname == 0)) {
+                message.targetMon[i].gender = GENDER_NONE;
             } else {
-                v0.unk_04[v1].unk_01_0 = battleCtx->battleMons[v1].gender;
+                message.targetMon[i].gender = battleCtx->battleMons[i].gender;
             }
 
-            v0.unk_04[v1].unk_00 = battleCtx->selectedPartySlot[v1];
+            message.targetMon[i].partySlot = battleCtx->selectedPartySlot[i];
 
-            if (battleCtx->battleMons[v1].status) {
-                v0.unk_04[v1].unk_02 = 3;
+            if (battleCtx->battleMons[i].status) {
+                message.targetMon[i].unk_02 = 3;
             } else {
-                v0.unk_04[v1].unk_02 = 1;
+                message.targetMon[i].unk_02 = 1;
             }
         } else {
-            v0.unk_04[v1].unk_01_2 = 0;
-            v0.unk_04[v1].unk_02 = 2;
+            message.targetMon[i].unk_01_2 = 0;
+            message.targetMon[i].unk_02 = 2;
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, sizeof(UnkStruct_ov16_0225C29C));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(TargetSelectMenuMessage));
 }
 
 void ov16_022658CC(BattleSystem *battleSys, int battlerId, int param2)

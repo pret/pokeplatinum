@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C29C.h"
 #include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
@@ -205,8 +204,8 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     [BATTLE_COMMAND_SLIDE_HEALTHBAR_IN] = BtlIOCmd_SlideHealthbarIn,
     [BATTLE_COMMAND_SLIDE_HEALTHBAR_OUT] = BtlIOCmd_SlideHealthbarOut,
     [BATTLE_COMMAND_SET_COMMAND_SELECTION] = ov16_0225C260,
-    [BATTLE_COMMAND_SHOW_MOVE_SELECT_SCREEN] = ov16_0225C288,
-    [BATTLE_COMMAND_SHOW_TARGET_SELECTION] = ov16_0225C29C,
+    [BATTLE_COMMAND_SHOW_MOVE_SELECT_MENU] = ov16_0225C288,
+    [BATTLE_COMMAND_SHOW_TARGET_SELECT_MENU] = ov16_0225C29C,
     [BATTLE_COMMAND_SHOW_BAG_SCREEN] = ov16_0225C2B0,
     [BATTLE_COMMAND_SHOW_PARTY_SCREEN] = ov16_0225C2C4,
     [BATTLE_COMMAND_SHOW_YES_NO_SCREEN] = ov16_0225C2D8,
@@ -412,7 +411,7 @@ static void ov16_0225C260(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C288(BattleSystem *battleSys, BattlerData *param1)
 {
-    MoveSelectShowMessage *message = (MoveSelectShowMessage *)&param1->data[0];
+    MoveSelectMenuMessage *message = (MoveSelectMenuMessage *)&param1->data[0];
 
     ov16_0225D698(battleSys, param1, message);
     ZeroDataBuffer(param1);
@@ -420,9 +419,9 @@ static void ov16_0225C288(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C29C(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_0225C29C *v0 = (UnkStruct_ov16_0225C29C *)&param1->data[0];
+    TargetSelectMenuMessage *message = (TargetSelectMenuMessage *)&param1->data[0];
 
-    ov16_0225D708(battleSys, param1, v0);
+    ov16_0225D708(battleSys, param1, message);
     ZeroDataBuffer(param1);
 }
 

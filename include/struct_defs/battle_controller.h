@@ -4,6 +4,8 @@
 #include "constants/pokemon.h"
 #include "constants/moves.h"
 
+#include "battle/struct_ov16_0225C29C_sub1.h"
+
 typedef struct PartyGaugeData {
     u8 command;
     u8 padding_01;
@@ -132,7 +134,14 @@ typedef struct {
     u16 moves[LEARNED_MOVES_MAX];
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppMax[LEARNED_MOVES_MAX];
-} MoveSelectShowMessage;
+} MoveSelectMenuMessage;
+
+typedef struct {
+    u8 command;
+    u8 unk_01;
+    u16 range;
+    UnkStruct_ov16_0225C29C_sub1 targetMon[4];
+} TargetSelectMenuMessage;
 
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

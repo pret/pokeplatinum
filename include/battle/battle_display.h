@@ -6,7 +6,6 @@
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225C29C.h"
 #include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
@@ -62,8 +61,8 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
  */
 void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
 void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, CommandSetMessage *param2);
-void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectShowMessage *param2);
-void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C29C *param2);
+void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectMenuMessage *param2);
+void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, TargetSelectMenuMessage *param2);
 void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2B0 *param2);
 void ov16_0225D840(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2C4 *param2);
 void ov16_0225D8AC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2D8 *param2);

@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C29C.h"
 #include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
@@ -668,7 +667,7 @@ void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, CommandSetMessa
     SysTask_Start(param1->unk_00.unk_00, v0, 0);
 }
 
-void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectShowMessage *message)
+void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectMenuMessage *message)
 {
     UnkStruct_ov16_0225D698 *v0;
     int i;
@@ -694,7 +693,7 @@ void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectShowM
     SysTask_Start(param1->unk_00.unk_04, v0, 0);
 }
 
-void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C29C *param2)
+void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, TargetSelectMenuMessage *message)
 {
     UnkStruct_ov16_0225D708 *v0;
     int i, v2;
@@ -708,9 +707,9 @@ void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_0C = param1->data[0];
     v0->unk_0D = param1->battler;
     v0->unk_0E = param1->battlerType;
-    v0->unk_30 = param2->unk_02;
+    v0->unk_30 = message->range;
     v0->unk_04 = &param1->healthbar;
-    v0->unk_32 = param2->unk_01;
+    v0->unk_32 = message->unk_01;
 
     ov16_0223F87C(battleSys, &v4[0]);
 
@@ -718,7 +717,7 @@ void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     battleType = BattleSystem_BattleType(battleSys);
 
     for (i = 0; i < v2; i++) {
-        v0->unk_10[i] = param2->unk_04[i];
+        v0->unk_10[i] = message->targetMon[i];
     }
 
     SysTask_Start(param1->unk_00.unk_08, v0, 0);

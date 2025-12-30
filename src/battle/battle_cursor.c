@@ -2171,15 +2171,15 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
         v12 = v11[2 + i];
 
         if ((v0->unk_00[v12].unk_01_2 == 1) && (v3[i] == 1)) {
-            if (v0->unk_00[v12].unk_01_0 == 0) {
+            if (v0->unk_00[v12].gender == 0) {
                 v5 = MessageLoader_GetNewString(v2, 962);
-            } else if (v0->unk_00[v12].unk_01_0 == 1) {
+            } else if (v0->unk_00[v12].gender == 1) {
                 v5 = MessageLoader_GetNewString(v2, 963);
             } else {
                 v5 = MessageLoader_GetNewString(v2, 964);
             }
 
-            v6 = BattleSystem_PartyPokemon(param0->battleSys, v12, v0->unk_00[v12].unk_00);
+            v6 = BattleSystem_PartyPokemon(param0->battleSys, v12, v0->unk_00[v12].partySlot);
             v7 = Pokemon_GetBoxPokemon(v6);
 
             StringTemplate_SetNickname(v8, 0, v7);
@@ -2197,10 +2197,10 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
             {
                 switch (i) {
                 case 1:
-                    ov16_0226A7A4(param0, v6, 3, v0->unk_00[v12].unk_04, v0->unk_00[v12].unk_06, v0->unk_00[v12].unk_02);
+                    ov16_0226A7A4(param0, v6, 3, v0->unk_00[v12].curHP, v0->unk_00[v12].maxHP, v0->unk_00[v12].unk_02);
                     break;
                 case 3:
-                    ov16_0226A7A4(param0, v6, 5, v0->unk_00[v12].unk_04, v0->unk_00[v12].unk_06, v0->unk_00[v12].unk_02);
+                    ov16_0226A7A4(param0, v6, 5, v0->unk_00[v12].curHP, v0->unk_00[v12].maxHP, v0->unk_00[v12].unk_02);
                     break;
                 }
             }
