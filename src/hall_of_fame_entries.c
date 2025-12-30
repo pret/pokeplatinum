@@ -45,7 +45,7 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
 
     for (i = 0, pokemonIndex = 0; i < currentPartyCount; i++) {
         mon = Party_GetPokemonBySlotIndex(party, i);
-        reencrypt = Pokemon_UnlockEncryption(mon);
+        reencrypt = Pokemon_DecryptData(mon);
 
         if (Pokemon_GetData(mon, MON_DATA_IS_EGG, NULL) == 0) {
             hallOfFameEntry->pokemon[pokemonIndex].species = Pokemon_GetData(mon, MON_DATA_SPECIES, NULL);
@@ -72,7 +72,7 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
             pokemonIndex++;
         }
 
-        Pokemon_LockEncryption(mon, reencrypt);
+        Pokemon_EncryptData(mon, reencrypt);
     }
 
     hallOfFameEntry->year = date->year;

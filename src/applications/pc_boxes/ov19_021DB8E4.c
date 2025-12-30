@@ -247,7 +247,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
     for (v3 = 0, v4 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
             boxMon = PCBoxes_GetBoxMonAt(pcBoxes, param1, v4++);
-            v7 = BoxPokemon_UnlockEncryption(boxMon);
+            v7 = BoxPokemon_DecryptData(boxMon);
             species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
 
             if (species) {
@@ -279,7 +279,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
                 Bitmap_FillRect8bpp(&(param0->unk_3C), 10 + v2 * 2, 11 + v3 * 2, 2, 2, color);
             }
 
-            BoxPokemon_LockEncryption(boxMon, v7);
+            BoxPokemon_EncryptData(boxMon, v7);
         }
     }
 

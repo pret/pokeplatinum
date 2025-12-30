@@ -84,7 +84,7 @@ Pokemon *Pokemon_New(enum HeapID heapID);
  * @param mon
  * @return Whether the pokemons data was decrypted by this call. Passed to EncryptMon() to decide whether to reencrypt the data or not
  */
-BOOL Pokemon_UnlockEncryption(Pokemon *mon);
+BOOL Pokemon_DecryptData(Pokemon *mon);
 
 /**
  * @brief Encrypts a Pokemon data structure. PartyPokemon data is encrypted using the pokemons personality value, BoxPokemon data using a checksum value
@@ -93,7 +93,7 @@ BOOL Pokemon_UnlockEncryption(Pokemon *mon);
  * @param encrypt Whether to encrypt the data or not. If this is false, the function does nothing and returns false.
  * @return Whether the pokemons data was encrypted by this call.
  */
-BOOL Pokemon_LockEncryption(Pokemon *mon, BOOL encrypt);
+BOOL Pokemon_EncryptData(Pokemon *mon, BOOL encrypt);
 
 /**
  * @brief Decrypts a BoxPokemon data structure
@@ -101,7 +101,7 @@ BOOL Pokemon_LockEncryption(Pokemon *mon, BOOL encrypt);
  * @param boxMon
  * @return Whether the pokemons data was decrypted by this call. Passed to EncryptBoxMon() to decide whether to reencrypt the data or not
  */
-BOOL BoxPokemon_UnlockEncryption(BoxPokemon *boxMon);
+BOOL BoxPokemon_DecryptData(BoxPokemon *boxMon);
 
 /**
  * @brief Encrypts a BoxPokemon data structure
@@ -110,7 +110,7 @@ BOOL BoxPokemon_UnlockEncryption(BoxPokemon *boxMon);
  * @param encrypt Whether to encrypt the data or not. If this is false, the function does nothing and returns false.
  * @return Whether the pokemons data was encrypted by this call.
  */
-BOOL BoxPokemon_LockEncryption(BoxPokemon *boxMon, BOOL encrypt);
+BOOL BoxPokemon_EncryptData(BoxPokemon *boxMon, BOOL encrypt);
 
 void Pokemon_InitWithParams(Pokemon *mon, int species, int level, int ivs, BOOL hasFixedPersonality, int personality, int otIDType, int otID);
 void Pokemon_InitWithNature(Pokemon *mon, u16 species, u8 level, u8 ivs, u8 nature);

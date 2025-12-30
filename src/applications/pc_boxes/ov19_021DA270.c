@@ -123,7 +123,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
     u16 species;
     u8 isEgg;
     u8 form;
-    u8 reencrypt = BoxPokemon_UnlockEncryption(boxMon);
+    u8 reencrypt = BoxPokemon_DecryptData(boxMon);
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param4);
 
     species = BoxPokemon_GetData(boxMon, MON_DATA_SPECIES, NULL);
@@ -150,7 +150,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
 
     Sprite_SetExplicitPalette(param7->unk_00, 2 + param7->unk_2C);
     ov19_021DA63C(param0, param7, BoxApp_GetMonSpriteTransparencyMask(param0->unk_40));
-    BoxPokemon_LockEncryption(boxMon, reencrypt);
+    BoxPokemon_EncryptData(boxMon, reencrypt);
 }
 
 void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 param2, u32 param3, u8 *param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 *param10)
@@ -158,7 +158,7 @@ void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 para
     NNSG2dCharacterData *v0;
     SpriteResourcesHeader v1;
 
-    BOOL reencrypt = BoxPokemon_UnlockEncryption(boxMon);
+    BOOL reencrypt = BoxPokemon_DecryptData(boxMon);
     u8 isEgg = BoxPokemon_GetData(boxMon, MON_DATA_IS_EGG, NULL);
     u8 form = BoxPokemon_GetData(boxMon, MON_DATA_FORM, NULL);
 
@@ -184,7 +184,7 @@ void ov19_021DA548(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, u32 para
 
     Sprite_SetExplicitPalette(param10->unk_00, 2 + param10->unk_2C);
     ov19_021DA63C(param0, param10, BoxApp_GetMonSpriteTransparencyMask(param0->unk_40));
-    BoxPokemon_LockEncryption(boxMon, reencrypt);
+    BoxPokemon_EncryptData(boxMon, reencrypt);
 }
 
 void ov19_021DA63C(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021DCD18 *param1, u32 param2)
