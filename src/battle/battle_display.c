@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
 #include "battle/struct_ov16_0225C384.h"
@@ -804,7 +803,7 @@ typedef struct BattleMessageWaitTask {
     u8 msgIdx;
 } BattleMessageWaitTask;
 
-void ov16_0225D8F0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2EC *param2)
+void ov16_0225D8F0(BattleSystem *battleSys, BattlerData *param1, AttackMsgMessage *message)
 {
     BattleMessageWaitTask *v0;
     MessageLoader *v1;
@@ -814,12 +813,12 @@ void ov16_0225D8F0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
-    v0->command = param2->unk_00;
+    v0->command = message->command;
     v0->battler = param1->battler;
 
-    v2.id = 0 + param2->unk_02 * 3;
+    v2.id = 0 + message->move * 3;
     v2.tags = 2;
-    v2.params[0] = param1->battler | (param2->unk_01 << 8);
+    v2.params[0] = param1->battler | (message->partySlot << 8);
 
     v0->msgIdx = BattleMessage_Print(battleSys, v1, &v2, BattleSystem_TextSpeed(battleSys));
 

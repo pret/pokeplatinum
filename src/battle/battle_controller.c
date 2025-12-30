@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
 #include "battle/struct_ov16_0225C384.h"
@@ -1001,15 +1000,21 @@ void BattleController_EmitShowYesNoMenu(BattleSystem *battleSys, BattleContext *
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(YesNoMenuMessage));
 }
 
-void BattleIO_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+/**
+ * @brief Emits a message to print a text message related to the current move
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+void BattleController_EmitPrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    UnkStruct_ov16_0225C2EC v0;
+    AttackMsgMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_PRINT_ATTACK_MESSAGE;
-    v0.unk_01 = battleCtx->selectedPartySlot[battleCtx->attacker];
-    v0.unk_02 = battleCtx->moveCur;
+    message.command = BATTLE_COMMAND_PRINT_ATTACK_MESSAGE;
+    message.partySlot = battleCtx->selectedPartySlot[battleCtx->attacker];
+    message.move = battleCtx->moveCur;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &v0, sizeof(UnkStruct_ov16_0225C2EC));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &message, sizeof(AttackMsgMessage));
 }
 
 void BattleIO_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg)

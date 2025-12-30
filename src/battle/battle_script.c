@@ -1645,7 +1645,7 @@ static BOOL BtlCmd_PrintAttackMessage(BattleSystem *battleSys, BattleContext *ba
     BattleScript_Iter(battleCtx, 1);
 
     if ((battleCtx->battleStatusMask & SYSCTL_SKIP_ATTACK_MESSAGE) == FALSE) {
-        BattleIO_PrintAttackMessage(battleSys, battleCtx);
+        BattleController_EmitPrintAttackMessage(battleSys, battleCtx);
     }
 
     battleCtx->battleStatusMask |= SYSCTL_SKIP_ATTACK_MESSAGE; // don't show on future hits

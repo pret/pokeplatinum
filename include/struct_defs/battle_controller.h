@@ -173,4 +173,11 @@ typedef struct {
     int nickname;
 } YesNoMenuMessage;
 
+typedef struct {
+    u8 command;
+    u8 partySlot;
+    u16 move;
+} AttackMsgMessage;
+
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
