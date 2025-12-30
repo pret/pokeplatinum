@@ -40,7 +40,7 @@ void ov61_0222AE88(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStr
 
     v0 = String_New(20 * 3, heapID);
     PCBoxes_BufferBoxName(pcBoxes, boxID, v0);
-    String_ToChars(v0, param3->unk_00, 20);
+    String_CopyToChars(v0, param3->unk_00, 20);
     String_Free(v0);
 
     for (v1 = 0; v1 < 30; v1++) {

@@ -60,10 +60,10 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
 
             if (string) {
                 Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
-                String_ToChars(string, hallOfFameEntry->pokemon[pokemonIndex].nickname, MON_NAME_LEN + 1);
+                String_CopyToChars(string, hallOfFameEntry->pokemon[pokemonIndex].nickname, MON_NAME_LEN + 1);
 
                 Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, string);
-                String_ToChars(string, hallOfFameEntry->pokemon[pokemonIndex].OTName, TRAINER_NAME_LEN + 1);
+                String_CopyToChars(string, hallOfFameEntry->pokemon[pokemonIndex].OTName, TRAINER_NAME_LEN + 1);
             } else {
                 hallOfFameEntry->pokemon[pokemonIndex].nickname[0] = 0xffff;
                 hallOfFameEntry->pokemon[pokemonIndex].OTName[0] = 0xffff;

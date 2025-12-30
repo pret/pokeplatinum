@@ -40,7 +40,7 @@ void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID
             CharCode_Copy(dto->trainer[i].name, rivalName);
         } else {
             String *trainerName = MessageLoader_GetNewString(msgLoader, dto->trainerIDs[i]);
-            String_ToChars(trainerName, dto->trainer[i].name, TRAINER_NAME_LEN + 1);
+            String_CopyToChars(trainerName, dto->trainer[i].name, TRAINER_NAME_LEN + 1);
             String_Free(trainerName);
         }
 

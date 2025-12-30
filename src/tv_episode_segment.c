@@ -492,7 +492,7 @@ static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
     String *string = String_New(64, heapID);
 
     Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
-    String_ToChars(string, param1, TEMPLATE_NAME_SIZE);
+    String_CopyToChars(string, param1, TEMPLATE_NAME_SIZE);
     String_Free(string);
 }
 
@@ -528,7 +528,7 @@ static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
         String *string = String_New(64, heapID);
 
         Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
-        String_ToChars(string, param3, TEMPLATE_NAME_SIZE);
+        String_CopyToChars(string, param3, TEMPLATE_NAME_SIZE);
         String_Free(string);
     }
 }

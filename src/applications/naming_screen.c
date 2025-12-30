@@ -1355,7 +1355,7 @@ static void NamingScreen_UseDefaultName(NamingScreen *namingScreen, NamingScreen
 
         String_Copy(args->textInputStr, string);
         String_Free(string);
-        String_ToChars(args->textInputStr, args->nameInputRaw, 10);
+        String_CopyToChars(args->textInputStr, args->nameInputRaw, 10);
     } else if (namingScreen->type == NAMING_SCREEN_TYPE_RIVAL) {
         String *string;
 
@@ -1365,7 +1365,7 @@ static void NamingScreen_UseDefaultName(NamingScreen *namingScreen, NamingScreen
 
         String_Copy(args->textInputStr, string);
         String_Free(string);
-        String_ToChars(args->textInputStr, args->nameInputRaw, 10);
+        String_CopyToChars(args->textInputStr, args->nameInputRaw, 10);
     } else {
         args->returnCode = NAMING_SCREEN_CODE_NO_INPUT;
     }
@@ -1677,7 +1677,7 @@ static void NamingScreen_InitCursorsAndChars(NamingScreen *namingScreen, Applica
     namingScreen->entryBufBak[0] = CHAR_EOS;
 
     if (namingScreenArgs->textInputStr) {
-        String_ToChars(namingScreenArgs->textInputStr, namingScreen->entryBufBak, 32);
+        String_CopyToChars(namingScreenArgs->textInputStr, namingScreen->entryBufBak, 32);
     }
 
     MI_CpuFill16(namingScreen->entryBuf, 1, 32 * 2);

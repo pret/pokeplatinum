@@ -50,7 +50,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
 
         if (v10 == -1) {
             ov62_0224856C(v7, heapID);
-            String_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
+            String_CopyToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }
 
@@ -59,7 +59,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
 
         if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
             ov62_0224856C(v7, heapID);
-            String_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
+            String_CopyToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }
     }

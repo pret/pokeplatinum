@@ -39,7 +39,7 @@ void ov98_022499C8(String *param0, char *param1, int heapID)
     }
 
     v1 = Heap_Alloc(heapID, sizeof(charcode_t) * 100);
-    String_ToChars(param0, v1, 100);
+    String_CopyToChars(param0, v1, 100);
 
     v0 = 0;
     while (1) {
@@ -72,7 +72,7 @@ int ov98_02249A80(String *param0, int heapID)
     int v2;
 
     v0 = Heap_Alloc(heapID, sizeof(charcode_t) * 100);
-    String_ToChars(param0, v0, 100);
+    String_CopyToChars(param0, v0, 100);
 
     for (v2 = 0; v0[v2] != CHAR_EOS; v2++) {
         if (v0[v2] != CHAR_0) {

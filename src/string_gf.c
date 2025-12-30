@@ -369,7 +369,7 @@ void String_CopyNumChars(String *dest, const charcode_t *src, u32 num)
     GF_ASSERT(FALSE);
 }
 
-void String_ToChars(const String *src, charcode_t *dest, u32 dstSize)
+void String_CopyToChars(const String *src, charcode_t *dest, u32 dstSize)
 {
     String_Assert(src);
 

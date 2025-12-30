@@ -190,7 +190,7 @@ void String_CopyNumChars(String *dest, const charcode_t *src, u32 num);
  * @param[out] dest Destination buffer.
  * @param dstSize Size of `dest`.
  */
-void String_ToChars(const String *src, charcode_t *dest, u32 dstSize);
+void String_CopyToChars(const String *src, charcode_t *dest, u32 dstSize);
 
 /**
  * @brief Accessor for the underlying data buffer of a managed string.

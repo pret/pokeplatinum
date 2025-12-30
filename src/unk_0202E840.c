@@ -203,7 +203,7 @@ void *sub_0202E9FC(SaveData *saveData, int heapID)
         v2 = 0;
 
         v3->unk_00[v0].unk_00 = v1;
-        String_ToChars(v4, v3->unk_00[v0].unk_08, 7 + 1);
+        String_CopyToChars(v4, v3->unk_00[v0].unk_08, 7 + 1);
         v3->unk_00[v0].unk_04 = v6[v0];
     }
 

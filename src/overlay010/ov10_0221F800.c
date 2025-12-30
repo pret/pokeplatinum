@@ -2369,7 +2369,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
         opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
         opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-        String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+        String_CopyToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
         journalEntryOnlineEvent = JournalEntry_CreateEventUnionBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
         Heap_Free(opponentName1);
     } else {
@@ -2378,7 +2378,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_CopyToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
             Heap_Free(opponentName1);
@@ -2387,7 +2387,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_CopyToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventDoubleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
             Heap_Free(opponentName1);
@@ -2396,7 +2396,7 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
             opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[v6 ^ 1].header.trainerType);
             opponentName1 = Heap_Alloc(param0->heapID, sizeof(u16) * (TRAINER_NAME_LEN + 1));
 
-            String_ToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
+            String_CopyToChars(param0->unk_14[sub_020362F4(v6 ^ 1)], opponentName1, TRAINER_NAME_LEN + 1);
 
             journalEntryOnlineEvent = JournalEntry_CreateEventMixSingleBattle(opponentName1, opponentGender1, battleResult, param0->heapID);
             Heap_Free(opponentName1);
@@ -2409,14 +2409,14 @@ static void ov10_022227A4(UnkStruct_ov10_0221F800 *param0)
                 opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[1].header.trainerType);
                 opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[3].header.trainerType);
 
-                String_ToChars(param0->unk_14[1], opponentName1, TRAINER_NAME_LEN + 1);
-                String_ToChars(param0->unk_14[3], opponentName2, TRAINER_NAME_LEN + 1);
+                String_CopyToChars(param0->unk_14[1], opponentName1, TRAINER_NAME_LEN + 1);
+                String_CopyToChars(param0->unk_14[3], opponentName2, TRAINER_NAME_LEN + 1);
             } else {
                 opponentGender1 = TrainerClass_Gender(param0->unk_00->trainer[0].header.trainerType);
                 opponentGender2 = TrainerClass_Gender(param0->unk_00->trainer[2].header.trainerType);
 
-                String_ToChars(param0->unk_14[0], opponentName1, TRAINER_NAME_LEN + 1);
-                String_ToChars(param0->unk_14[2], opponentName2, TRAINER_NAME_LEN + 1);
+                String_CopyToChars(param0->unk_14[0], opponentName1, TRAINER_NAME_LEN + 1);
+                String_CopyToChars(param0->unk_14[2], opponentName2, TRAINER_NAME_LEN + 1);
             }
 
             journalEntryOnlineEvent = JournalEntry_CreateEventMultiBattle(opponentName1, opponentName2, opponentGender1, opponentGender2, battleResult, param0->heapID);

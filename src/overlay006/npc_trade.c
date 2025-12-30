@@ -42,7 +42,7 @@ NpcTradeData *NpcTrade_Init(u32 heapID, u32 npcTradeID)
     String *string = NpcTrade_GetOtName(heapID, npcTradeID);
 
     u16 otName[128];
-    String_ToChars(string, otName, NELEMS(otName));
+    String_CopyToChars(string, otName, NELEMS(otName));
     String_Free(string);
     TrainerInfo_SetName(data->trainerInfo, otName);
     TrainerInfo_SetGender(data->trainerInfo, data->npcTradeMon->otGender);

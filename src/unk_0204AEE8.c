@@ -294,7 +294,7 @@ static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 para
 
     String *v2 = MessageLoader_GetNewString(v1, param1);
 
-    String_ToChars(v2, &param0->trDataDTO.trainerName[0], TRAINER_NAME_LEN + 1);
+    String_CopyToChars(v2, &param0->trDataDTO.trainerName[0], TRAINER_NAME_LEN + 1);
     String_Free(v2);
     MessageLoader_Free(v1);
 

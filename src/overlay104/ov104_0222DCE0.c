@@ -126,7 +126,7 @@ BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *tr
 
     String *string = MessageLoader_GetNewString(msgLoader, battleTowerTrainerID);
 
-    String_ToChars(string, &trDataDTO->trainerName[0], TRAINER_NAME_LEN + 1);
+    String_CopyToChars(string, &trDataDTO->trainerName[0], TRAINER_NAME_LEN + 1);
     String_Free(string);
     MessageLoader_Free(msgLoader);
 

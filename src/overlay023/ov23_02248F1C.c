@@ -523,7 +523,7 @@ static int ov23_022497B0(UnkStruct_ov23_02249724 *param0, String *param1)
 {
     int v0, v1, v2;
 
-    String_ToChars(param1, param0->unk_94, 20 * 2 * 2);
+    String_CopyToChars(param1, param0->unk_94, 20 * 2 * 2);
 
     v1 = 0;
     v0 = 0;

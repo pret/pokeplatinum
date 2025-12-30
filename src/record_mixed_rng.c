@@ -73,10 +73,10 @@ void RecordMixedRNG_GetEntryNameAsString(RecordMixedRNG *rngCollection, enum Rec
     charcode_t *name;
     if (nameChoice == RECORD_MIXED_RNG_GROUP_NAME) {
         name = rngCollection[entry].groupName;
-        String_ToChars(outString, name, UNION_GROUP_NAME_LEN + 1);
+        String_CopyToChars(outString, name, UNION_GROUP_NAME_LEN + 1);
     } else {
         name = rngCollection[entry].playerName;
-        String_ToChars(outString, name, TRAINER_NAME_LEN + 1);
+        String_CopyToChars(outString, name, TRAINER_NAME_LEN + 1);
     }
 }
 

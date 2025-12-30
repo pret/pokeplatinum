@@ -2294,8 +2294,8 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
 
         v5 = TrainerInfo_NameNewString(v0, heapID);
 
-        String_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
-        String_ToChars(v5, param0->unk_00, 7 + 1);
+        String_CopyToChars(v5, param0->unk_20.unk_08, 7 + 1);
+        String_CopyToChars(v5, param0->unk_00, 7 + 1);
         String_Free(v5);
     }
 

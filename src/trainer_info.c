@@ -58,7 +58,7 @@ void TrainerInfo_SetName(TrainerInfo *info, const charcode_t *name)
 
 void TrainerInfo_SetNameFromString(TrainerInfo *info, const String *name)
 {
-    String_ToChars(name, info->name, TRAINER_NAME_LEN + 1);
+    String_CopyToChars(name, info->name, TRAINER_NAME_LEN + 1);
 }
 
 const charcode_t *TrainerInfo_Name(const TrainerInfo *info)

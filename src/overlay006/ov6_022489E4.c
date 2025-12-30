@@ -265,7 +265,7 @@ BOOL ov6_02248CE8(UnkStruct_02095C48 *param0, int param1, const String *param2)
     v0 = 8 * sizeof(u16);
     v1 = 4;
 
-    String_ToChars(param2, v4, 8); // Possibly TRAINER_NAME_LEN + 1
+    String_CopyToChars(param2, v4, 8); // Possibly TRAINER_NAME_LEN + 1
 
     v2 = Heap_Alloc(HEAP_ID_20, v0 + v1);
     MI_CpuCopy8(v4, &v2[v1], v0);

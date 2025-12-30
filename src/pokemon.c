@@ -1630,13 +1630,13 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         charcode_t nickname[MON_NAME_LEN + 1];
 
         MessageLoader_GetSpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM, baseName);
-        String_ToChars(value, nickname, NELEMS(nickname));
+        String_CopyToChars(value, nickname, NELEMS(nickname));
 
         monDataBlockB->hasNickname = CharCode_Compare(baseName, nickname);
     }
         // fall-through
     case MON_DATA_NICKNAME_STRING:
-        String_ToChars(value, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
+        String_CopyToChars(value, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
         break;
 
     case MON_DATA_UNUSED_121:
@@ -1686,7 +1686,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_OT_NAME_STRING:
-        String_ToChars(value, monDataBlockD->otName, NELEMS(monDataBlockD->otName));
+        String_CopyToChars(value, monDataBlockD->otName, NELEMS(monDataBlockD->otName));
         break;
 
     case MON_DATA_EGG_YEAR:
@@ -1776,7 +1776,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_SPECIES_NAME: {
         String *string = MessageUtil_SpeciesName(monDataBlockA->species, HEAP_ID_SYSTEM);
 
-        String_ToChars(string, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
+        String_CopyToChars(string, monDataBlockC->nickname, NELEMS(monDataBlockC->nickname));
         String_Free(string);
 
         break;

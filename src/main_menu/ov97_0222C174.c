@@ -798,7 +798,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     v4->pgt.type = 7;
     v1 = MessageUtil_ExpandedString(v2, v3, 76, param0->heapID);
 
-    String_ToChars((const String *)v1, v4->eventHeader.title, 36);
+    String_CopyToChars((const String *)v1, v4->eventHeader.title, 36);
     String_Free(v1);
 
     v4->eventHeader.validGames = (MainMenuUtil_CalcMysteryGiftVersionBit(10) | MainMenuUtil_CalcMysteryGiftVersionBit(11) | MainMenuUtil_CalcMysteryGiftVersionBit(12));
@@ -811,7 +811,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
 
     v1 = MessageUtil_ExpandedString(v2, v3, 75, param0->heapID);
 
-    String_ToChars((const String *)v1, v4->description, 250);
+    String_CopyToChars((const String *)v1, v4->description, 250);
     String_Free(v1);
 
     v4->sharesLeft = 0;

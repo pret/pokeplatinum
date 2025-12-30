@@ -273,7 +273,7 @@ void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 boxID, const String *newName)
     }
 
     if (boxID < MAX_PC_BOXES) {
-        String_ToChars(newName, pcBoxes->names[boxID], 20);
+        String_CopyToChars(newName, pcBoxes->names[boxID], 20);
         SaveData_SetFullSaveRequired();
     }
 }

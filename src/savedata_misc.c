@@ -68,7 +68,7 @@ const u16 *MiscSaveBlock_RivalName(const MiscSaveBlock *miscSave)
 
 void MiscSaveBlock_SetRivalName(MiscSaveBlock *miscSave, String *name)
 {
-    String_ToChars(name, miscSave->rivalName, TRAINER_NAME_LEN + 1);
+    String_CopyToChars(name, miscSave->rivalName, TRAINER_NAME_LEN + 1);
 }
 
 const u16 *MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave)
@@ -78,7 +78,7 @@ const u16 *MiscSaveBlock_TabletName(const MiscSaveBlock *miscSave)
 
 void MiscSaveBlock_SetTabletName(MiscSaveBlock *miscSave, String *name)
 {
-    String_ToChars(name, miscSave->tabletName, TABLET_NAME_LEN + 1);
+    String_CopyToChars(name, miscSave->tabletName, TABLET_NAME_LEN + 1);
 }
 
 void MiscSaveBlock_SetInitFlag(MiscSaveBlock *miscSave)

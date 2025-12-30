@@ -144,7 +144,7 @@ static void sub_02029990(UnkStruct_0202A138 *param0, Pokemon *param1, UnkStruct_
 
 static void sub_020299C0(UnkStruct_0202A138 *param0, const String *param1, int param2)
 {
-    String_ToChars(param1, param0->unk_20, 8); // Possibly TRAINER_NAME_LEN + 1
+    String_CopyToChars(param1, param0->unk_20, 8); // Possibly TRAINER_NAME_LEN + 1
     param0->unk_34 = param2;
 }
 
