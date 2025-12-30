@@ -1169,7 +1169,7 @@ static BOOL RowanIntro_DisplayTextBlock(
             windowTemplate = sAdventureInfoTextWindow;
 
             {
-                u32 numLines = String_NumLines(manager->string);
+                u32 numLines = String_CountLines(manager->string);
 
                 windowTemplate.tilemapTop = 12 - numLines;
                 windowTemplate.height = numLines * 2;
@@ -1199,7 +1199,7 @@ static BOOL RowanIntro_DisplayTextBlock(
             windowTemplate = sControlInfoTextWindow;
 
             if (whichCase == DTBC_CONTROL_INFO_1) {
-                u32 numLines = String_NumLines(manager->string);
+                u32 numLines = String_CountLines(manager->string);
 
                 windowTemplate.tilemapTop = param3 + param4 / 2 - numLines;
                 windowTemplate.height = numLines * 2;

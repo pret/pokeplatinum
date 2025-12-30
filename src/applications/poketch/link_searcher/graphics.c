@@ -309,7 +309,7 @@ static void PrintIntroMessage(LinkSearcherGraphics *graphics)
     xOffset = (192 - Font_CalcMaxLineWidth(FONT_SYSTEM, graphics->string, 0)) / 2;
 
     u32 yOffset = 64;
-    yOffset -= String_NumLines(graphics->string) * 8;
+    yOffset -= String_CountLines(graphics->string) * 8;
     Text_AddPrinterWithParamsAndColor(&graphics->window, FONT_SYSTEM, graphics->string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 8, 4), NULL);
 
     Window_LoadTiles(&graphics->window);

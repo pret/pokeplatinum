@@ -446,7 +446,7 @@ static BOOL RowanIntroTv_Run(RowanIntroTv *tv, int msgEntryID, int unused0, int 
         Window_AddFromTemplate(tv->bgConfig, &tv->window, &sMessageWindowTemplate);
         Window_FillRectWithColor(&tv->window, 0, 0, 0, 0x100, 0xc0);
         u32 xOffset = (0x100 - Font_CalcMaxLineWidth(FONT_SYSTEM, tmpString, 0)) / 2;
-        u32 yOffset = (0xc0 - String_NumLines(tmpString) * 16) / 2;
+        u32 yOffset = (0xc0 - String_CountLines(tmpString) * 16) / 2;
         Text_AddPrinterWithParamsAndColor(
             &tv->window,
             FONT_SYSTEM,

@@ -1388,7 +1388,7 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     StringTemplate_SetCustomMessageWord(v4, 1, v6);
     StringTemplate_Format(v4, v3, v2);
 
-    v7 = String_NumLines(v3);
+    v7 = String_CountLines(v3);
     for (v8 = 0; v8 < v7; v8++) {
         String_CopyLineNum(v1, v3, v8);
         v9 = (128 - Font_CalcStringWidth(0, v1, 0)) / 2;
@@ -1437,7 +1437,7 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     StringTemplate_SetCustomMessageWord(v4, 1, v6);
     StringTemplate_Format(v4, v3, v2);
 
-    v7 = String_NumLines(v3);
+    v7 = String_CountLines(v3);
     for (v8 = 0; v8 < v7; v8++) {
         String_CopyLineNum(v1, v3, v8);
         v9 = (128 - Font_CalcStringWidth(0, v1, 0)) / 2;

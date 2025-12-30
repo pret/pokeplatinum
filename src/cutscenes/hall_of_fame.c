@@ -1268,7 +1268,7 @@ static void HallOfFame_PrintTextAtRow(HallOfFamePokemonTextAdder *textAdder, int
 {
     int i, numLines, xOffset;
 
-    numLines = String_NumLines(textAdder->string_1C);
+    numLines = String_CountLines(textAdder->string_1C);
 
     for (i = 0; i < numLines; i++) {
         String_CopyLineNum(textAdder->string_18, textAdder->string_1C, i);

@@ -984,7 +984,7 @@ static int ov98_02248350(UnkStruct_ov98_02247704 *param0)
         int i;
 
         String *string1 = MessageLoader_GetNewString(param0->unk_34, 44);
-        u32 lineCount = String_NumLines(string1);
+        u32 lineCount = String_CountLines(string1);
         param0->unk_AC = 0;
         param0->unk_B0 = 0;
         param0->unk_B8 = 0;

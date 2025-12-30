@@ -149,7 +149,7 @@ u32 String_Length(const String *string);
  * @param string
  * @return The number of lines in `string`.
  */
-u32 String_NumLines(const String *string);
+u32 String_CountLines(const String *string);
 
 /**
  * @brief Copies a particular line number from `src` into `dest`.

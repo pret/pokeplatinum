@@ -285,7 +285,7 @@ u32 String_Length(const String *string)
     return string->size;
 }
 
-u32 String_NumLines(const String *string)
+u32 String_CountLines(const String *string)
 {
     String_Assert(string);
 

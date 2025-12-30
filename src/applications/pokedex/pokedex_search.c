@@ -681,7 +681,7 @@ static void DescriptionMessage(PokedexGraphicData **param0, int filterMethod, en
     String *descriptionMessage = PokedexMain_GetMessage(entryID, heapID);
 
     u32 xOffset = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, descriptionMessage, 0)) / 2;
-    u32 yOffset = 8 + (32 - String_NumLines(descriptionMessage) * 16) / 2;
+    u32 yOffset = 8 + (32 - String_CountLines(descriptionMessage) * 16) / 2;
     Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, descriptionMessage, xOffset, yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     String_Free(descriptionMessage);
@@ -697,7 +697,7 @@ static void EmptyDexMessage(PokedexGraphicData **param0, enum HeapID heapID)
 
     {
         u32 xOffset = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, noneMessage, 0)) / 2;
-        u32 yOffset = 8 + (32 - String_NumLines(noneMessage) * 16) / 2;
+        u32 yOffset = 8 + (32 - String_CountLines(noneMessage) * 16) / 2;
         Text_AddPrinterWithParamsAndColor(&v0->window, FONT_SYSTEM, noneMessage, xOffset, yOffset, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
