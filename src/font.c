@@ -177,7 +177,7 @@ u32 Font_CalcCharArrayWidth(enum Font font, const charcode_t *str, u32 letterSpa
 u32 Font_CalcStringWidth(enum Font font, const String *string, u32 letterSpacing)
 {
     GF_ASSERT(sFontWork->fontManagers[font] != NULL);
-    return FontManager_CalcStringWidth(sFontWork->fontManagers[font], String_GetData(string), letterSpacing);
+    return FontManager_CalcStringWidth(sFontWork->fontManagers[font], String_GetChars(string), letterSpacing);
 }
 
 u32 Font_AreAllCharsValid(enum Font font, String *string, String *tmpbuf)
@@ -187,7 +187,7 @@ u32 Font_AreAllCharsValid(enum Font font, String *string, String *tmpbuf)
     String_Clear(tmpbuf);
     String_ConcatTrainerName(tmpbuf, string);
 
-    return FontManager_AreAllCharsValid(sFontWork->fontManagers[font], String_GetData(tmpbuf));
+    return FontManager_AreAllCharsValid(sFontWork->fontManagers[font], String_GetChars(tmpbuf));
 }
 
 u8 Font_GetAttribute(u8 font, u8 attribute)
@@ -254,7 +254,7 @@ void Font_LoadScreenIndicatorsPalette(enum PaletteLoadLocation palLocation, u32 
 u32 Font_CalcMaxLineWidth(enum Font font, const String *string, u32 letterSpacing)
 {
     GF_ASSERT(sFontWork->fontManagers[font] != NULL);
-    return FontManager_CalcMaxLineWidth(sFontWork->fontManagers[font], String_GetData(string), letterSpacing);
+    return FontManager_CalcMaxLineWidth(sFontWork->fontManagers[font], String_GetChars(string), letterSpacing);
 }
 
 u32 Font_CalcCenterAlignment(enum Font font, const String *string, u32 letterSpacing, u32 windowWidth)
@@ -267,5 +267,5 @@ u32 Font_CalcCenterAlignment(enum Font font, const String *string, u32 letterSpa
 u32 Font_CalcStringWidthWithCursorControl(enum Font font, const String *string)
 {
     GF_ASSERT(sFontWork->fontManagers[font] != NULL);
-    return FontManager_CalcStringWidthWithCursorControl(sFontWork->fontManagers[font], String_GetData(string));
+    return FontManager_CalcStringWidthWithCursorControl(sFontWork->fontManagers[font], String_GetChars(string));
 }

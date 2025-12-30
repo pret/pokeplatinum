@@ -155,7 +155,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapID heapID, const Fie
     Pokemon *mon;
 
     MessageLoader_GetString(msgLoader, TrainerInfo_Gender(trainerInfo) ^ 1, string);
-    TrainerInfo_SetName(dto->trainerInfo[BATTLER_PLAYER_1], String_GetData(string));
+    TrainerInfo_SetName(dto->trainerInfo[BATTLER_PLAYER_1], String_GetChars(string));
     String_Free(string);
     MessageLoader_Free(msgLoader);
 

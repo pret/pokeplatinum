@@ -630,7 +630,7 @@ void StringTemplate_SetFloorNumber(StringTemplate *template, u32 idx, u32 floor)
 
 void StringTemplate_Format(const StringTemplate *template, String *dst, const String *fmtString)
 {
-    const charcode_t *c = String_GetData(fmtString);
+    const charcode_t *c = String_GetChars(fmtString);
     String_Clear(dst);
 
     while (*c != CHAR_EOS) {

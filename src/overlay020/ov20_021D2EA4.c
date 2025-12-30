@@ -309,7 +309,7 @@ static u32 ov20_021D32D0(UnkStruct_ov20_021D30F8 *param0)
 static void ov20_021D33C8(UnkStruct_ov20_021D33C8 *param0, UnkStruct_ov20_021D30F8 *param1)
 {
     param0->unk_00 = ov20_021D1FC0(param1->unk_04, 35);
-    param0->unk_04 = String_GetData(param0->unk_00);
+    param0->unk_04 = String_GetChars(param0->unk_00);
 
     if (*(param0->unk_04) == 0xfffe) {
         param0->unk_08 = 1;

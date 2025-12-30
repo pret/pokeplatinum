@@ -1282,7 +1282,7 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
 
             v2 = TrainerInfo_New(heapID);
 
-            TrainerInfo_SetName(v2, String_GetData(param1->unk_2C.unk_00));
+            TrainerInfo_SetName(v2, String_GetChars(param1->unk_2C.unk_00));
             StringTemplate_SetPlayerName(param2->unk_214, 0, v2);
             Heap_Free(v2);
 

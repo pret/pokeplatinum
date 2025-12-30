@@ -188,7 +188,7 @@ u8 Text_AddPrinter(const TextPrinterTemplate *template, u32 renderDelay, TextPri
     }
 
     printer->template = *template;
-    printer->template.toPrint.raw = String_GetData(printer->template.toPrint.string);
+    printer->template.toPrint.raw = String_GetChars(printer->template.toPrint.string);
     printer->callback = callback;
 
     sPausePrinter = FALSE;

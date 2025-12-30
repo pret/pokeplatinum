@@ -146,7 +146,7 @@ static u32 sub_02014C00(u32 param0, u32 param1)
     GF_ASSERT(param1 < sub_02014CD4(param0));
 
     v0 = MessageBank_GetNewStringFromNARC(26, Unk_020E5498[param0], param1, 0);
-    v1 = String_GetData(v0);
+    v1 = String_GetChars(v0);
     v2 = 0;
 
     while (*v1 != 0xffff) {

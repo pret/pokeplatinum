@@ -381,7 +381,7 @@ void String_CopyToChars(const String *src, charcode_t *dest, u32 dstSize)
     GF_ASSERT(FALSE);
 }
 
-const charcode_t *String_GetData(const String *src)
+const charcode_t *String_GetChars(const String *src)
 {
     String_Assert(src);
 

@@ -198,7 +198,7 @@ void String_CopyToChars(const String *src, charcode_t *dest, u32 dstSize);
  * @param string
  * @return Underlying data buffer for `string`.
  */
-const charcode_t *String_GetData(const String *string);
+const charcode_t *String_GetChars(const String *string);
 
 /**
  * @brief Concatenates `src` onto the end of `dest`, if allocation permits.

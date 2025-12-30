@@ -1159,7 +1159,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
                 v2->unk_0C->returnCode = 1;
             }
         } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
-            const u16 *v3 = String_GetData(v2->unk_0C->textInputStr);
+            const u16 *v3 = String_GetChars(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
