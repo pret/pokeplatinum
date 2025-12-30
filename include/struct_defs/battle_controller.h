@@ -165,4 +165,12 @@ typedef struct {
     u8 padding_25[3];
 } PartyMenuMessage;
 
+typedef struct {
+    u8 command;
+    u8 yesnoType;
+    u16 promptMsg;
+    int move;
+    int nickname;
+} YesNoMenuMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

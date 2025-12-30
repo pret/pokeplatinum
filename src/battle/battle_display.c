@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
@@ -781,19 +780,19 @@ void ov16_0225D840(BattleSystem *battleSys, BattlerData *param1, PartyMenuMessag
     SysTask_Start(param1->unk_00.unk_10, v0, 0);
 }
 
-void ov16_0225D8AC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2D8 *param2)
+void ov16_0225D8AC(BattleSystem *battleSys, BattlerData *param1, YesNoMenuMessage *message)
 {
     UnkStruct_ov16_0225D8AC *v0 = (UnkStruct_ov16_0225D8AC *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225D8AC));
 
     v0->unk_0E = 0;
     v0->unk_00 = battleSys;
-    v0->unk_0C = param2->unk_00;
+    v0->unk_0C = message->command;
     v0->unk_0D = param1->battler;
     v0->unk_04 = &param1->healthbar;
-    v0->unk_10 = param2->unk_02;
-    v0->unk_0F = param2->unk_01;
-    v0->unk_18 = param2->unk_04;
-    v0->unk_14 = param2->unk_08;
+    v0->unk_10 = message->promptMsg;
+    v0->unk_0F = message->yesnoType;
+    v0->unk_18 = message->move;
+    v0->unk_14 = message->nickname;
 
     SysTask_Start(param1->unk_00.unk_14, v0, 0);
 }

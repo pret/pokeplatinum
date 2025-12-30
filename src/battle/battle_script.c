@@ -8387,7 +8387,7 @@ static BOOL BtlCmd_YesNoMenu(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
     int type = BattleScript_Read(battleCtx);
 
-    BattleIO_ShowYesNoScreen(battleSys, battleCtx, BATTLER_US, NULL, type, NULL, NULL);
+    BattleController_EmitShowYesNoMenu(battleSys, battleCtx, BATTLER_US, NULL, type, NULL, NULL);
 
     return FALSE;
 }
@@ -10293,7 +10293,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_MAKE_IT_FORGET_PROMPT:
         // "Make it forget another move?"
-        BattleIO_ShowYesNoScreen(data->battleSys, data->battleCtx, expBattler, 1180, 1, NULL, NULL);
+        BattleController_EmitShowYesNoMenu(data->battleSys, data->battleCtx, expBattler, 1180, 1, NULL, NULL);
         data->seqNum++;
         break;
 
@@ -10335,7 +10335,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_GIVE_UP_LEARNING_PROMPT:
         // "Should this Pokémon give up on learning this new move?"
-        BattleIO_ShowYesNoScreen(data->battleSys, data->battleCtx, expBattler, 1185, 2, data->tmpData[4], NULL);
+        BattleController_EmitShowYesNoMenu(data->battleSys, data->battleCtx, expBattler, 1185, 2, data->tmpData[4], NULL);
         data->seqNum++;
         break;
 
@@ -10834,7 +10834,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         int v15;
 
         v15 = v1 | (v2->battleCtx->selectedPartySlot[v1]);
-        BattleIO_ShowYesNoScreen(v2->battleSys, v2->battleCtx, 0, 868, 5, NULL, v15);
+        BattleController_EmitShowYesNoMenu(v2->battleSys, v2->battleCtx, 0, 868, 5, NULL, v15);
         v2->seqNum++;
     } break;
     case 19:

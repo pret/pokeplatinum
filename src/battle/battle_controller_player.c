@@ -601,7 +601,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
         case COMMAND_SELECTION_RUN_SELECT_INIT:
             if (battleType & BATTLE_TYPE_FRONTIER) {
                 // "Would you like to forfeit the match and quit now?"
-                BattleIO_ShowYesNoScreen(battleSys, battleCtx, i, 955, 0, NULL, NULL);
+                BattleController_EmitShowYesNoMenu(battleSys, battleCtx, i, 955, 0, NULL, NULL);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT;
             } else if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE) {
                 if (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) {

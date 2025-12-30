@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
@@ -206,7 +205,7 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     [BATTLE_COMMAND_SHOW_TARGET_SELECT_MENU] = ov16_0225C29C,
     [BATTLE_COMMAND_SHOW_BAG_MENU] = ov16_0225C2B0,
     [BATTLE_COMMAND_SHOW_PARTY_MENU] = ov16_0225C2C4,
-    [BATTLE_COMMAND_SHOW_YES_NO_SCREEN] = ov16_0225C2D8,
+    [BATTLE_COMMAND_SHOW_YES_NO_MENU] = ov16_0225C2D8,
     [BATTLE_COMMAND_PRINT_ATTACK_MESSAGE] = ov16_0225C2EC,
     [BATTLE_COMMAND_PRINT_MESSAGE] = BtlIOCmd_PrintBattleMessage,
     [BATTLE_COMMAND_22] = ov16_0225C314,
@@ -441,9 +440,9 @@ static void ov16_0225C2C4(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C2D8(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_0225C2D8 *v0 = (UnkStruct_ov16_0225C2D8 *)&param1->data[0];
+    YesNoMenuMessage *message = (YesNoMenuMessage *)&param1->data[0];
 
-    ov16_0225D8AC(battleSys, param1, v0);
+    ov16_0225D8AC(battleSys, param1, message);
     ZeroDataBuffer(param1);
 }
 

@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
@@ -976,19 +975,30 @@ void ov16_02265B10(BattleSystem *battleSys, int battlerId, int param2)
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
 }
 
-void BattleIO_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname)
+/**
+ * @brief Emits a message to show the yes/no menu 
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @param promptMsg
+ * @param tesnoType
+ * @param move
+ * @param nickname
+ */
+void BattleController_EmitShowYesNoMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname)
 {
-    UnkStruct_ov16_0225C2D8 v0;
+    YesNoMenuMessage message;
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
-    v0.unk_00 = BATTLE_COMMAND_SHOW_YES_NO_SCREEN;
-    v0.unk_02 = promptMsg;
-    v0.unk_01 = yesnoType;
-    v0.unk_04 = move;
-    v0.unk_08 = nickname;
+    message.command = BATTLE_COMMAND_SHOW_YES_NO_MENU;
+    message.promptMsg = promptMsg;
+    message.yesnoType = yesnoType;
+    message.move = move;
+    message.nickname = nickname;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, sizeof(UnkStruct_ov16_0225C2D8));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(YesNoMenuMessage));
 }
 
 void BattleIO_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx)

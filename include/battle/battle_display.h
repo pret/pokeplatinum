@@ -6,7 +6,6 @@
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
@@ -63,7 +62,7 @@ void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectMenuM
 void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, TargetSelectMenuMessage *message);
 void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, BagMenuMessage *message);
 void ov16_0225D840(BattleSystem *battleSys, BattlerData *param1, PartyMenuMessage *message);
-void ov16_0225D8AC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2D8 *param2);
+void ov16_0225D8AC(BattleSystem *battleSys, BattlerData *param1, YesNoMenuMessage *message);
 void ov16_0225D8F0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2EC *param2);
 
 /**
