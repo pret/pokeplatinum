@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C260.h"
 #include "battle/struct_ov16_0225C29C.h"
 #include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
@@ -516,7 +515,7 @@ void ov16_0225D360(BattleSystem *battleSys, BattlerData *param1, TrainerThrowBal
     v0->unk_0A = 0;
     v0->unk_00 = battleSys;
     v0->unk_08 = message->command;
-    v0->unk_10 = message->unk_01;
+    v0->unk_10 = message->ballTypeIn;
     v0->unk_09 = param1->battler;
     v0->unk_04 = param1;
 
@@ -622,7 +621,7 @@ void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battl
     healthbar->unk_10 = SysTask_Start(SlideHealthbarOutTask, healthbar, 1000);
 }
 
-void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C260 *param2)
+void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, CommandSetMessage *message)
 {
     UnkStruct_ov16_0225D5B8 *v0;
     int i, j;
@@ -633,27 +632,27 @@ void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_0A = 0;
     v0->unk_0B = 0;
     v0->unk_00 = battleSys;
-    v0->unk_08 = param2->unk_00;
+    v0->unk_08 = message->command;
     v0->unk_09 = param1->battler;
     v0->unk_34 = param1->battlerType;
     v0->unk_04 = &param1->healthbar;
-    v0->unk_23 = param2->unk_01;
-    v0->unk_36 = param2->unk_24;
-    v0->unk_38 = param2->unk_26;
-    v0->unk_3A = param2->unk_28;
-    v0->unk_3B = param2->unk_29;
+    v0->unk_23 = message->partySlot;
+    v0->unk_36 = message->curHP;
+    v0->unk_38 = message->maxHP;
+    v0->unk_3A = message->ballStatusBattler;
+    v0->unk_3B = message->unk_29;
 
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 6; j++) {
-            v0->unk_10[i][j] = param2->unk_08[i][j];
+            v0->unk_10[i][j] = message->ballStatus[i][j];
         }
     }
 
     for (i = 0; i < 6; i++) {
-        if (param2->unk_08[0][i] == 2) {
+        if (message->ballStatus[0][i] == STOCK_STATUS_MON_FAINTED) {
             v0->unk_1C[i] = 0;
         } else {
-            v0->unk_1C[i] = param2->unk_02[i];
+            v0->unk_1C[i] = message->expPercents[i];
         }
     }
 
@@ -661,9 +660,9 @@ void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         int v3;
 
         for (v3 = 0; v3 < 4; v3++) {
-            v0->unk_24[v3] = param2->unk_14[v3];
-            v0->unk_2C[v3] = param2->unk_1C[v3];
-            v0->unk_30[v3] = param2->unk_20[v3];
+            v0->unk_24[v3] = message->moves[v3];
+            v0->unk_2C[v3] = message->curPP[v3];
+            v0->unk_30[v3] = message->maxPP[v3];
         }
     }
 

@@ -340,7 +340,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
 
             // Don't let slow AI processing delay the player from picking their action for the turn
             if (Battler_BootState(BattleSystem_BattlerData(battleSys, i)) == BATTLER_BOOT_STATE_AI || battleCtx->totalTurns) {
-                BattleIO_SetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
+                BattleController_EmitSetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT;
             } else {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT2;
@@ -361,7 +361,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             }
 
             if (j == maxBattlers) {
-                BattleIO_SetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
+                BattleController_EmitSetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT;
             } else {
                 break;

@@ -2,18 +2,11 @@
 #define POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
 
 #include "constants/pokemon.h"
-
-enum PartyGaugeBallStatus {
-    BALL_STATUS_NO_MON = 0,
-    BALL_STATUS_MON_ALIVE,
-    BALL_STATUS_MON_FAINTED,
-    BALL_STATUS_HAS_STATUS_CONDITION,
-};
+#include "constants/moves.h"
 
 typedef struct PartyGaugeData {
     u8 command;
     u8 padding_01;
-
     u8 status[MAX_PARTY_SIZE];
 } PartyGaugeData;
 
@@ -48,9 +41,9 @@ typedef struct {
     u32 personality;
     int cryModulation;
     //These arrays are set but never used
-    u16 moves[4];
-    u16 curPP[4];
-    u16 maxPP[4];
+    u16 moves[LEARNED_MOVES_MAX];
+    u16 curPP[LEARNED_MOVES_MAX];
+    u16 maxPP[LEARNED_MOVES_MAX];
     u16 nickname[11];
     u8 padding_3A[2];
 } MonEncounterMessage;
@@ -106,7 +99,7 @@ typedef struct {
 
 typedef struct {
     u8 command;
-    u8 unk_01;
+    u8 ballTypeIn;
     u16 selectedPartySlot;
 } TrainerThrowBallMessage;
 
@@ -116,5 +109,20 @@ typedef struct {
     u16 trainerType;
     int posIn;
 } TrainerSlideInMessage;
+
+typedef struct {
+    u8 command;
+    u8 partySlot;
+    u8 expPercents[6];
+    u8 ballStatus[2][6];
+    u16 moves[LEARNED_MOVES_MAX];
+    u8 curPP[LEARNED_MOVES_MAX];
+    u8 maxPP[LEARNED_MOVES_MAX];
+    s16 curHP;
+    u16 maxHP;
+    u8 ballStatusBattler;
+    u8 unk_29;
+    u16 padding_2A;
+} CommandSetMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

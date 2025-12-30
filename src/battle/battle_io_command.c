@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C260.h"
 #include "battle/struct_ov16_0225C29C.h"
 #include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
@@ -405,10 +404,10 @@ static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *bat
 
 static void ov16_0225C260(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_0225C260 *v0 = (UnkStruct_ov16_0225C260 *)&param1->data[0];
+    CommandSetMessage *message = (CommandSetMessage *)&param1->data[0];
 
-    ov16_0223F290(battleSys, v0->unk_29);
-    ov16_0225D5B8(battleSys, param1, v0);
+    ov16_0223F290(battleSys, message->unk_29);
+    ov16_0225D5B8(battleSys, param1, message);
     ZeroDataBuffer(param1);
 }
 

@@ -29,7 +29,7 @@ void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int param1, in
  * @param battler
  * @param delay     Optional frame-delay to wait until execution.
  */
-void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay);
+void BattleController_EmitSlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int delay);
 
 /**
  * @brief Slide the healthbar out of the screen for a given battler.
@@ -37,8 +37,8 @@ void BattleIO_SlideHealthbarIn(BattleSystem *battleSys, BattleContext *battleCtx
  * @param battleSys
  * @param battler
  */
-void BattleIO_SlideHealthbarOut(BattleSystem *battleSys, int battler);
-void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
+void BattleController_EmitSlideHealthbarOut(BattleSystem *battleSys, int battler);
+void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void ov16_022656D4(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_ShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void ov16_02265790(BattleSystem *battleSys, int param1, int param2);
