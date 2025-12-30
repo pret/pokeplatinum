@@ -46,14 +46,14 @@ void String_Clear(String *string)
     string->data[0] = CHAR_EOS;
 }
 
-void String_Copy(String *dst, const String *src)
+void String_Copy(String *dest, const String *src)
 {
-    String_Check(dst);
+    String_Check(dest);
     String_Check(src);
 
-    if (dst->maxSize > src->size) {
-        memcpy(dst->data, src->data, (src->size + 1) * sizeof(charcode_t));
-        dst->size = src->size;
+    if (dest->maxSize > src->size) {
+        memcpy(dest->data, src->data, (src->size + 1) * sizeof(charcode_t));
+        dest->size = src->size;
         return;
     }
 
@@ -73,7 +73,7 @@ String *String_Clone(const String *src, u32 heapID)
     return string;
 }
 
-void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
+void String_FormatInt(String *dest, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
 {
     static const u32 sPowersOfTen[] = {
         1,
@@ -112,18 +112,18 @@ void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode padd
         CHAR_9,
     };
 
-    String_Check(dst);
+    String_Check(dest);
 
     BOOL negative = (num < 0);
 
-    if (dst->maxSize > (maxDigits + negative)) {
+    if (dest->maxSize > (maxDigits + negative)) {
         const charcode_t *digitSet = (charsetMode == CHARSET_MODE_JP) ? sDigits_JP : sDigits_EN;
 
-        String_Clear(dst);
+        String_Clear(dest);
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_MINUS : CHAR_MINUS;
+            dest->data[dest->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_MINUS : CHAR_MINUS;
         }
 
         u32 div = sPowersOfTen[maxDigits - 1];
@@ -132,26 +132,26 @@ void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode padd
             num -= div * digit;
 
             if (paddingMode == PADDING_MODE_ZEROES) {
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dest->data[dest->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
                 // If we hit a non-zero digit, flip the padding mode off
             } else if (digit != 0 || div == 1) {
                 paddingMode = PADDING_MODE_ZEROES;
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dest->data[dest->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
             } else if (paddingMode == PADDING_MODE_SPACES) {
-                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_SPACE : CHAR_NUM_SPACE;
+                dest->data[dest->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_SPACE : CHAR_NUM_SPACE;
             }
 
             div /= 10;
         }
 
-        dst->data[dst->size] = CHAR_EOS;
+        dest->data[dest->size] = CHAR_EOS;
         return;
     }
 
     GF_ASSERT(FALSE);
 }
 
-void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
+void String_FormatU64(String *dest, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
 {
     static const u64 sPowersOfTen[] = {
         1,
@@ -200,18 +200,18 @@ void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode padd
         CHAR_9,
     };
 
-    String_Check(dst);
+    String_Check(dest);
 
     BOOL negative = (num < 0);
 
-    if (dst->maxSize > (maxDigits + negative)) {
+    if (dest->maxSize > (maxDigits + negative)) {
         const charcode_t *digitSet = (charsetMode == CHARSET_MODE_JP) ? sDigits_JP : sDigits_EN;
 
-        String_Clear(dst);
+        String_Clear(dest);
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_MINUS : CHAR_MINUS;
+            dest->data[dest->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_MINUS : CHAR_MINUS;
         }
 
         u64 div = sPowersOfTen[maxDigits - 1];
@@ -220,18 +220,18 @@ void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode padd
             num -= div * digit;
 
             if (paddingMode == PADDING_MODE_ZEROES) {
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dest->data[dest->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
             } else if ((digit != 0) || (div == 1)) {
                 paddingMode = PADDING_MODE_ZEROES;
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dest->data[dest->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
             } else if (paddingMode == PADDING_MODE_SPACES) {
-                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_SPACE : CHAR_SPACE;
+                dest->data[dest->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_SPACE : CHAR_SPACE;
             }
 
             div /= 10;
         }
 
-        dst->data[dst->size] = CHAR_EOS;
+        dest->data[dest->size] = CHAR_EOS;
         return;
     }
 
@@ -299,10 +299,10 @@ u32 String_NumLines(const String *string)
     return count;
 }
 
-void String_CopyLineNum(String *dst, const String *src, u32 lineNum)
+void String_CopyLineNum(String *dest, const String *src, u32 lineNum)
 {
     String_Check(src);
-    String_Check(dst);
+    String_Check(dest);
 
     int i = 0;
 
@@ -315,52 +315,52 @@ void String_CopyLineNum(String *dst, const String *src, u32 lineNum)
         }
     }
 
-    String_Clear(dst);
+    String_Clear(dest);
 
     for (; i < src->size; i++) {
         if (src->data[i] == CHAR_CR) {
             break;
         }
 
-        String_AppendChar(dst, src->data[i]);
+        String_AppendChar(dest, src->data[i]);
     }
 }
 
-void String_CopyChars(String *dst, const charcode_t *src)
+void String_CopyChars(String *dest, const charcode_t *src)
 {
-    String_Check(dst);
+    String_Check(dest);
 
-    dst->size = 0;
+    dest->size = 0;
 
     while (*src != CHAR_EOS) {
-        if (dst->size >= (dst->maxSize - 1)) {
+        if (dest->size >= (dest->maxSize - 1)) {
             GF_ASSERT(FALSE);
             break;
         }
 
-        dst->data[dst->size++] = *src++;
+        dest->data[dest->size++] = *src++;
     }
 
-    dst->data[dst->size] = CHAR_EOS;
+    dest->data[dest->size] = CHAR_EOS;
 }
 
-void String_CopyNumChars(String *dst, const charcode_t *src, u32 num)
+void String_CopyNumChars(String *dest, const charcode_t *src, u32 num)
 {
-    String_Check(dst);
+    String_Check(dest);
 
-    if (num <= dst->maxSize) {
-        memcpy(dst->data, src, num * sizeof(charcode_t));
+    if (num <= dest->maxSize) {
+        memcpy(dest->data, src, num * sizeof(charcode_t));
 
         u32 i;
         for (i = 0; i < num; i++) {
-            if (dst->data[i] == CHAR_EOS) {
+            if (dest->data[i] == CHAR_EOS) {
                 break;
             }
         }
 
-        dst->size = i;
+        dest->size = i;
         if (i == num) {
-            dst->data[num - 1] = CHAR_EOS;
+            dest->data[num - 1] = CHAR_EOS;
         }
 
         return;
@@ -369,12 +369,12 @@ void String_CopyNumChars(String *dst, const charcode_t *src, u32 num)
     GF_ASSERT(FALSE);
 }
 
-void String_ToChars(const String *src, charcode_t *dst, u32 dstSize)
+void String_ToChars(const String *src, charcode_t *dest, u32 dstSize)
 {
     String_Check(src);
 
     if ((src->size + 1) <= dstSize) {
-        memcpy(dst, src->data, (src->size + 1) * sizeof(charcode_t));
+        memcpy(dest, src->data, (src->size + 1) * sizeof(charcode_t));
         return;
     }
 
@@ -388,27 +388,27 @@ const charcode_t *String_GetData(const String *src)
     return src->data;
 }
 
-void String_Concat(String *dst, const String *src)
+void String_Concat(String *dest, const String *src)
 {
-    String_Check(dst);
+    String_Check(dest);
     String_Check(src);
 
-    if ((dst->size + src->size + 1) <= dst->maxSize) {
-        memcpy(dst->data + dst->size, src->data, (src->size + 1) * sizeof(charcode_t));
-        dst->size += src->size;
+    if ((dest->size + src->size + 1) <= dest->maxSize) {
+        memcpy(dest->data + dest->size, src->data, (src->size + 1) * sizeof(charcode_t));
+        dest->size += src->size;
         return;
     }
 
     GF_ASSERT(FALSE);
 }
 
-void String_AppendChar(String *dst, charcode_t c)
+void String_AppendChar(String *dest, charcode_t c)
 {
-    String_Check(dst);
+    String_Check(dest);
 
-    if ((dst->size + 1) < dst->maxSize) {
-        dst->data[dst->size++] = c;
-        dst->data[dst->size] = CHAR_EOS;
+    if ((dest->size + 1) < dest->maxSize) {
+        dest->data[dest->size++] = c;
+        dest->data[dest->size] = CHAR_EOS;
         return;
     }
 
@@ -423,7 +423,7 @@ BOOL String_IsTrainerName(String *string)
     return string->size > 0 && string->data[0] == CHAR_COMPRESSED_MARK;
 }
 
-void String_ConcatTrainerName(String *dst, String *src)
+void String_ConcatTrainerName(String *dest, String *src)
 {
     // Trainer names are expressed using a format with a designating leader
     // code followed by compression algorithm that trims individual characters
@@ -432,7 +432,7 @@ void String_ConcatTrainerName(String *dst, String *src)
     // TODO: This process could do with some more documentation, i.e. why this
     // is done.
     if (String_IsTrainerName(src)) {
-        charcode_t *dstChar = &dst->data[dst->size];
+        charcode_t *dstChar = &dest->data[dest->size];
         charcode_t *srcChar = &src->data[1];
         s32 shift = 0;
         s32 charsAdded = 0;
@@ -460,9 +460,9 @@ void String_ConcatTrainerName(String *dst, String *src)
         }
 
         *dstChar = CHAR_EOS;
-        dst->size += charsAdded;
+        dest->size += charsAdded;
     } else {
-        String_Concat(dst, src);
+        String_Concat(dest, src);
     }
 }
 

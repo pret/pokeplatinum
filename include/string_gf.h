@@ -66,13 +66,13 @@ void String_Clear(String *string);
 
 /**
  * @brief Copies the contents of the data buffer in `src` to the data buffer
- * in `dst`. Fails if the contents of `src` will not fit into `dst`'s
+ * in `dest`. Fails if the contents of `src` will not fit into `dest`'s
  * allocated memory.
  *
- * @param dst Destination buffer. `dst->size` and `dst->data` will be modified.
+ * @param dest Destination buffer. `dest->size` and `dest->data` will be modified.
  * @param src Source buffer. `src->size` and `src->data` will be accessed.
  */
-void String_Copy(String *dst, const String *src);
+void String_Copy(String *dest, const String *src);
 
 /**
  * @brief Clones the contents of a given String into a new String and returns
@@ -81,8 +81,8 @@ void String_Copy(String *dst, const String *src);
  * This is effectively a nice wrapper around the following code:
  *
  * ```c
- * String *dst = String_Init(src->size + 1, heapID);
- * String_Copy(dst, src);
+ * String *dest = String_Init(src->size + 1, heapID);
+ * String_Copy(dest, src);
  * ```
  *
  * @param src Source buffer to clone.
@@ -96,26 +96,26 @@ String *String_Clone(const String *src, u32 heapID);
  *
  * The destination buffer must already be initialized.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param num Number to be formatted.
  * @param maxDigits Maximum number of digits to format, right-justified.
  * @param paddingMode Padding mode to use when formatting the number.
  * @param charsetMode Charset mode to use when formatting the number.
  */
-void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
+void String_FormatInt(String *dest, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
 
 /**
  * @brief Format a number into a destination buffer.
  *
  * The destination buffer must already be initialized.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param num Number to be formatted.
  * @param maxDigits Maximum number of digits to format, right-justified.
  * @param paddingMode Padding mode to use when formatting the number.
  * @param charsetMode Charset mode to use when formatting the number.
  */
-void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
+void String_FormatU64(String *dest, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode);
 
 /**
  * @brief Parses a numeric string into a number.
@@ -152,34 +152,34 @@ u32 String_Length(const String *string);
 u32 String_NumLines(const String *string);
 
 /**
- * @brief Copies a particular line number from `src` into `dst`.
+ * @brief Copies a particular line number from `src` into `dest`.
  *
  * Lines are zero-indexed, e.g. `lineNum == 0` will copy the first line,
  * `lineNum == 1` will copy the second line, etc.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param src Source buffer.
  * @param lineNum Number of the line to copy, zero-indexed.
  */
-void String_CopyLineNum(String *dst, const String *src, u32 lineNum);
+void String_CopyLineNum(String *dest, const String *src, u32 lineNum);
 
 /**
  * @brief Copies data from a raw character buffer into a managed String.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param src Raw character source buffer.
  */
-void String_CopyChars(String *dst, const charcode_t *src);
+void String_CopyChars(String *dest, const charcode_t *src);
 
 /**
  * @brief Copies a specific number of values from a raw character buffer into
  * a managed String.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param src Raw character source buffer.
  * @param num Number of values to copy.
  */
-void String_CopyNumChars(String *dst, const charcode_t *src, u32 num);
+void String_CopyNumChars(String *dest, const charcode_t *src, u32 num);
 
 /**
  * @brief Dumps the contents of a String into a raw character buffer.
@@ -187,10 +187,10 @@ void String_CopyNumChars(String *dst, const charcode_t *src, u32 num);
  * Fails if `src->size + 1 > dstSize`.
  *
  * @param src Source buffer.
- * @param[out] dst Destination buffer.
- * @param dstSize Size of `dst`.
+ * @param[out] dest Destination buffer.
+ * @param dstSize Size of `dest`.
  */
-void String_ToChars(const String *src, charcode_t *dst, u32 dstSize);
+void String_ToChars(const String *src, charcode_t *dest, u32 dstSize);
 
 /**
  * @brief Accessor for the underlying data buffer of a managed string.
@@ -201,24 +201,24 @@ void String_ToChars(const String *src, charcode_t *dst, u32 dstSize);
 const charcode_t *String_GetData(const String *string);
 
 /**
- * @brief Concatenates `src` onto the end of `dst`, if allocation permits.
+ * @brief Concatenates `src` onto the end of `dest`, if allocation permits.
  *
- * Fails if `dst->maxSize < dst->size + src->size + 1`.
+ * Fails if `dest->maxSize < dest->size + src->size + 1`.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param src Source buffer.
  */
-void String_Concat(String *dst, const String *src);
+void String_Concat(String *dest, const String *src);
 
 /**
- * @brief Appends a single character onto `dst`, if allocation permits.
+ * @brief Appends a single character onto `dest`, if allocation permits.
  *
- * Fails if `dst->maxSize >= dst->size + 1`.
+ * Fails if `dest->maxSize >= dest->size + 1`.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param c Character to append.
  */
-void String_AppendChar(String *dst, charcode_t c);
+void String_AppendChar(String *dest, charcode_t c);
 
 /**
  * @brief Checks if a given string is a trainer name.
@@ -232,15 +232,15 @@ void String_AppendChar(String *dst, charcode_t c);
 BOOL String_IsTrainerName(String *string);
 
 /**
- * @brief Concatenates `src` onto the end of `dst`, accounting for trainer
+ * @brief Concatenates `src` onto the end of `dest`, accounting for trainer
  * name compression.
  *
  * If `src` is not a trainer name, then this falls back to `String_Concat`.
  *
- * @param[out] dst Destination buffer.
+ * @param[out] dest Destination buffer.
  * @param src Source buffer.
  */
-void String_ConcatTrainerName(String *dst, String *src);
+void String_ConcatTrainerName(String *dest, String *src);
 
 /**
  * @brief Converts a particular character to uppercase.
