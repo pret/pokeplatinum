@@ -186,7 +186,7 @@ static void ov20_021D498C(Window *param0, BgConfig *param1, const String *param2
     param3 += ((2 - v4) * 16) / 2;
 
     for (v1 = 0; v1 < v4; v1++) {
-        String_CopyLineNum(v5, param2, v1);
+        String_CopyLine(v5, param2, v1);
         v2 = Font_CalcCenterAlignment(2, v5, 0, 88);
         for (v0 = 0; v0 < NELEMS(Unk_ov20_021D52EC); v0++) {
             v3 = Unk_ov20_021D52EC[v0] + param3;

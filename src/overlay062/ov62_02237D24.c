@@ -1390,7 +1390,7 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
 
     v7 = String_CountLines(v3);
     for (v8 = 0; v8 < v7; v8++) {
-        String_CopyLineNum(v1, v3, v8);
+        String_CopyLine(v1, v3, v8);
         v9 = (128 - Font_CalcStringWidth(0, v1, 0)) / 2;
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, v9, 16 * v8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     }
@@ -1439,7 +1439,7 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
 
     v7 = String_CountLines(v3);
     for (v8 = 0; v8 < v7; v8++) {
-        String_CopyLineNum(v1, v3, v8);
+        String_CopyLine(v1, v3, v8);
         v9 = (128 - Font_CalcStringWidth(0, v1, 0)) / 2;
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, v9, 16 * v8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     }

@@ -161,7 +161,7 @@ u32 String_CountLines(const String *string);
  * @param src Source buffer.
  * @param lineNum Number of the line to copy, zero-indexed.
  */
-void String_CopyLineNum(String *dest, const String *src, u32 lineNum);
+void String_CopyLine(String *dest, const String *src, u32 lineNum);
 
 /**
  * @brief Copies data from a raw character buffer into a managed String.

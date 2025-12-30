@@ -299,7 +299,7 @@ u32 String_CountLines(const String *string)
     return count;
 }
 
-void String_CopyLineNum(String *dest, const String *src, u32 lineNum)
+void String_CopyLine(String *dest, const String *src, u32 lineNum)
 {
     String_Assert(src);
     String_Assert(dest);

@@ -1271,7 +1271,7 @@ static void HallOfFame_PrintTextAtRow(HallOfFamePokemonTextAdder *textAdder, int
     numLines = String_CountLines(textAdder->string_1C);
 
     for (i = 0; i < numLines; i++) {
-        String_CopyLineNum(textAdder->string_18, textAdder->string_1C, i);
+        String_CopyLine(textAdder->string_18, textAdder->string_1C, i);
         xOffset = (136 - Font_CalcStringWidth(FONT_SYSTEM, textAdder->string_18, 0)) / 2;
         Text_AddPrinterWithParamsAndColor(textAdder->window, FONT_SYSTEM, textAdder->string_18, textAdder->xPosition + xOffset, yOffset + i * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     }
