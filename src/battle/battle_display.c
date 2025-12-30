@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
@@ -754,7 +753,7 @@ void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, BagMenuMessage 
     SysTask_Start(param1->unk_00.unk_0C, v0, 0);
 }
 
-void ov16_0225D840(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2C4 *param2)
+void ov16_0225D840(BattleSystem *battleSys, BattlerData *param1, PartyMenuMessage *message)
 {
     UnkStruct_ov16_0225D840 *v0;
     int i, j;
@@ -763,19 +762,19 @@ void ov16_0225D840(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 
     v0->unk_0A = 0;
     v0->unk_00 = battleSys;
-    v0->unk_08 = param2->unk_00;
-    v0->unk_09 = param2->unk_01;
-    v0->unk_0B = param2->unk_02;
-    v0->unk_10 = param2->unk_20;
-    v0->unk_16 = param2->unk_03;
+    v0->unk_08 = message->command;
+    v0->unk_09 = message->battler;
+    v0->unk_0B = message->listMode;
+    v0->unk_10 = message->canSwitch;
+    v0->unk_16 = message->doubles;
     v0->unk_14 = 0;
-    v0->unk_18 = param2->unk_24;
+    v0->unk_18 = message->battlersSwitchingMask;
 
     for (i = 0; i < 4; i++) {
-        v0->unk_0C[i] = param2->unk_04[i];
+        v0->unk_0C[i] = message->selectedPartySlot[i];
 
         for (j = 0; j < 6; j++) {
-            v0->unk_1C[i][j] = param2->unk_08[i][j];
+            v0->unk_1C[i][j] = message->partyOrder[i][j];
         }
     }
 

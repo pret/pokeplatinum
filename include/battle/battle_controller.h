@@ -46,7 +46,7 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
 void ov16_022658CC(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void ov16_02265A70(BattleSystem *battleSys, int param1, BattleItemUse param2);
-void BattleIO_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles);
+void BattleController_EmitShowPartyMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles);
 void ov16_02265B10(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname);
 void BattleIO_PrintAttackMessage(BattleSystem *battleSys, BattleContext *param1);

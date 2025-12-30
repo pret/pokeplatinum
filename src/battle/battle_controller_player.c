@@ -584,7 +584,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 }
             }
 
-            BattleIO_ShowPartyScreen(battleSys, battleCtx, i, 0, canSwitch, doublesSelection);
+            BattleController_EmitShowPartyMenu(battleSys, battleCtx, i, 0, canSwitch, doublesSelection);
             battleCtx->curCommandState[i] = COMMAND_SELECTION_PARTY_SELECT;
             // fall-through
 

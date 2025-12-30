@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
 #include "battle/struct_ov16_0225C35C.h"
@@ -852,23 +851,30 @@ void ov16_022658CC(BattleSystem *battleSys, int battlerId, int param2)
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
 }
 
+/**
+ * @brief Emits a message to bring up the bag menu
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
 void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BagMenuMessage message;
-    int v1, v2;
+    int i, j;
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
     message.command = BATTLE_COMMAND_SHOW_BAG_MENU;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        message.partySlots[v1] = battleCtx->selectedPartySlot[v1];
+    for (i = 0; i < 4; i++) {
+        message.partySlots[i] = battleCtx->selectedPartySlot[i];
 
-        for (v2 = 0; v2 < 6; v2++) {
-            message.partyOrder[v1][v2] = battleCtx->partyOrder[v1][v2];
+        for (j = 0; j < 6; j++) {
+            message.partyOrder[i][j] = battleCtx->partyOrder[i][j];
         }
 
-        message.embargoTurns[v1] = battleCtx->battleMons[v1].moveEffectsData.embargoTurns;
+        message.embargoTurns[i] = battleCtx->battleMons[i].moveEffectsData.embargoTurns;
     }
 
     if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
@@ -930,29 +936,39 @@ void ov16_02265A70(BattleSystem *battleSys, int battlerId, BattleItemUse param2)
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, sizeof(BattleItemUse));
 }
 
-void BattleIO_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles)
+/**
+ * @brief Emits a message to show the party menu
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @param listMode
+ * @param canSwitch
+ * @param doubles
+ */
+void BattleController_EmitShowPartyMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles)
 {
-    UnkStruct_ov16_0225C2C4 v0;
-    int v1, v2;
+    PartyMenuMessage message;
+    int i, j;
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
-    v0.unk_00 = BATTLE_COMMAND_SHOW_PARTY_SCREEN;
-    v0.unk_01 = battler;
-    v0.unk_02 = listMode;
-    v0.unk_20 = canSwitch;
-    v0.unk_03 = doubles;
-    v0.unk_24 = battleCtx->battlersSwitchingMask;
+    message.command = BATTLE_COMMAND_SHOW_PARTY_MENU;
+    message.battler = battler;
+    message.listMode = listMode;
+    message.canSwitch = canSwitch;
+    message.doubles = doubles;
+    message.battlersSwitchingMask = battleCtx->battlersSwitchingMask;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_04[v1] = battleCtx->selectedPartySlot[v1];
+    for (i = 0; i < 4; i++) {
+        message.selectedPartySlot[i] = battleCtx->selectedPartySlot[i];
 
-        for (v2 = 0; v2 < 6; v2++) {
-            v0.unk_08[v1][v2] = battleCtx->partyOrder[v1][v2];
+        for (j = 0; j < 6; j++) {
+            message.partyOrder[i][j] = battleCtx->partyOrder[i][j];
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, sizeof(UnkStruct_ov16_0225C2C4));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(PartyMenuMessage));
 }
 
 void ov16_02265B10(BattleSystem *battleSys, int battlerId, int param2)

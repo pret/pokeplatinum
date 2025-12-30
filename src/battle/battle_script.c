@@ -2607,7 +2607,7 @@ static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx)
     for (battler = 0; battler < maxBattlers; battler++) {
         if (battleCtx->battlerStatusFlags[battler] & BATTLER_STATUS_SWITCHING) {
             switchingMask |= FlagIndex(battler);
-            BattleIO_ShowPartyScreen(battleSys, battleCtx, battler, 1, 0, 6);
+            BattleController_EmitShowPartyMenu(battleSys, battleCtx, battler, 1, 0, 6);
         }
     }
 
@@ -8442,7 +8442,7 @@ static BOOL BtlCmd_ChoosePokemonMenu(BattleSystem *battleSys, BattleContext *bat
     BattleSystem_MaxBattlers(battleSys); // must stay to match
     BattleScript_Iter(battleCtx, 1);
 
-    BattleIO_ShowPartyScreen(battleSys, battleCtx, BATTLER_US, 0, 0, 6);
+    BattleController_EmitShowPartyMenu(battleSys, battleCtx, BATTLER_US, 0, 0, 6);
     battleCtx->switchedMon = BATTLER_US;
 
     return FALSE;

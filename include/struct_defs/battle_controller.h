@@ -153,4 +153,16 @@ typedef struct {
     u8 embargoTurns[4];
 } BagMenuMessage;
 
+typedef struct {
+    u8 command;
+    u8 battler;
+    u8 listMode;
+    u8 doubles;
+    u8 selectedPartySlot[4];
+    u8 partyOrder[4][6];
+    int canSwitch;
+    u8 battlersSwitchingMask;
+    u8 padding_25[3];
+} PartyMenuMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
