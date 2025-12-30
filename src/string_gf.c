@@ -10,7 +10,7 @@
 #define SIZEOF_STRING_HEADER (sizeof(String) - sizeof(charcode_t))
 #define STRING_MAGIC_NUMBER  (0xB6F8D2EC)
 
-static inline void String_Check(const String *string)
+static inline void String_Assert(const String *string)
 {
     GF_ASSERT(string != NULL);
     GF_ASSERT(string->integrity == STRING_MAGIC_NUMBER);
@@ -32,7 +32,7 @@ String *String_Init(u32 size, u32 heapID)
 
 void String_Free(String *string)
 {
-    String_Check(string);
+    String_Assert(string);
 
     string->integrity = STRING_MAGIC_NUMBER + 1;
     Heap_Free(string);
@@ -40,7 +40,7 @@ void String_Free(String *string)
 
 void String_Clear(String *string)
 {
-    String_Check(string);
+    String_Assert(string);
 
     string->size = 0;
     string->data[0] = CHAR_EOS;
@@ -48,8 +48,8 @@ void String_Clear(String *string)
 
 void String_Copy(String *dest, const String *src)
 {
-    String_Check(dest);
-    String_Check(src);
+    String_Assert(dest);
+    String_Assert(src);
 
     if (dest->maxSize > src->size) {
         memcpy(dest->data, src->data, (src->size + 1) * sizeof(charcode_t));
@@ -62,7 +62,7 @@ void String_Copy(String *dest, const String *src)
 
 String *String_Clone(const String *src, u32 heapID)
 {
-    String_Check(src);
+    String_Assert(src);
 
     String *string = String_Init(src->size + 1, heapID);
 
@@ -112,7 +112,7 @@ void String_FormatInt(String *dest, int num, u32 maxDigits, enum PaddingMode pad
         CHAR_9,
     };
 
-    String_Check(dest);
+    String_Assert(dest);
 
     BOOL negative = (num < 0);
 
@@ -200,7 +200,7 @@ void String_FormatU64(String *dest, u64 num, u32 maxDigits, enum PaddingMode pad
         CHAR_9,
     };
 
-    String_Check(dest);
+    String_Assert(dest);
 
     BOOL negative = (num < 0);
 
@@ -267,8 +267,8 @@ u64 String_AtoI(const String *src, BOOL *success)
 
 int String_Compare(const String *str1, const String *str2)
 {
-    String_Check(str1);
-    String_Check(str2);
+    String_Assert(str1);
+    String_Assert(str2);
 
     for (int i = 0; str1->data[i] == str2->data[i]; i++) {
         if (str1->data[i] == CHAR_EOS) {
@@ -281,13 +281,13 @@ int String_Compare(const String *str1, const String *str2)
 
 u32 String_Length(const String *string)
 {
-    String_Check(string);
+    String_Assert(string);
     return string->size;
 }
 
 u32 String_NumLines(const String *string)
 {
-    String_Check(string);
+    String_Assert(string);
 
     int i, count;
     for (i = 0, count = 1; i < string->size; i++) {
@@ -301,8 +301,8 @@ u32 String_NumLines(const String *string)
 
 void String_CopyLineNum(String *dest, const String *src, u32 lineNum)
 {
-    String_Check(src);
-    String_Check(dest);
+    String_Assert(src);
+    String_Assert(dest);
 
     int i = 0;
 
@@ -328,7 +328,7 @@ void String_CopyLineNum(String *dest, const String *src, u32 lineNum)
 
 void String_CopyChars(String *dest, const charcode_t *src)
 {
-    String_Check(dest);
+    String_Assert(dest);
 
     dest->size = 0;
 
@@ -346,7 +346,7 @@ void String_CopyChars(String *dest, const charcode_t *src)
 
 void String_CopyNumChars(String *dest, const charcode_t *src, u32 num)
 {
-    String_Check(dest);
+    String_Assert(dest);
 
     if (num <= dest->maxSize) {
         memcpy(dest->data, src, num * sizeof(charcode_t));
@@ -371,7 +371,7 @@ void String_CopyNumChars(String *dest, const charcode_t *src, u32 num)
 
 void String_ToChars(const String *src, charcode_t *dest, u32 dstSize)
 {
-    String_Check(src);
+    String_Assert(src);
 
     if ((src->size + 1) <= dstSize) {
         memcpy(dest, src->data, (src->size + 1) * sizeof(charcode_t));
@@ -383,15 +383,15 @@ void String_ToChars(const String *src, charcode_t *dest, u32 dstSize)
 
 const charcode_t *String_GetData(const String *src)
 {
-    String_Check(src);
+    String_Assert(src);
 
     return src->data;
 }
 
 void String_Concat(String *dest, const String *src)
 {
-    String_Check(dest);
-    String_Check(src);
+    String_Assert(dest);
+    String_Assert(src);
 
     if ((dest->size + src->size + 1) <= dest->maxSize) {
         memcpy(dest->data + dest->size, src->data, (src->size + 1) * sizeof(charcode_t));
@@ -404,7 +404,7 @@ void String_Concat(String *dest, const String *src)
 
 void String_AppendChar(String *dest, charcode_t c)
 {
-    String_Check(dest);
+    String_Assert(dest);
 
     if ((dest->size + 1) < dest->maxSize) {
         dest->data[dest->size++] = c;
@@ -468,7 +468,7 @@ void String_ConcatTrainerName(String *dest, String *src)
 
 void String_UpperChar(String *string, int i)
 {
-    String_Check(string);
+    String_Assert(string);
 
     if (string->size > i) {
         if (string->data[i] >= CHAR_a && string->data[i] <= CHAR_z) {
