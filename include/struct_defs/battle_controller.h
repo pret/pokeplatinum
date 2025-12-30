@@ -125,4 +125,14 @@ typedef struct {
     u16 padding_2A;
 } CommandSetMessage;
 
+typedef struct {
+    u8 command;
+    u8 partySlot;
+    u16 invalidMoves;
+    u16 moves[LEARNED_MOVES_MAX];
+    u8 ppCur[LEARNED_MOVES_MAX];
+    u8 ppMax[LEARNED_MOVES_MAX];
+} MoveSelectShowMessage;
+
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

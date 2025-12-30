@@ -78,7 +78,6 @@
 #include "battle/struct_ov16_022623F0.h"
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
-#include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022674C4.h"
@@ -669,7 +668,7 @@ void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, CommandSetMessa
     SysTask_Start(param1->unk_00.unk_00, v0, 0);
 }
 
-void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022656F0 *param2)
+void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectShowMessage *message)
 {
     UnkStruct_ov16_0225D698 *v0;
     int i;
@@ -682,15 +681,15 @@ void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_1D = param1->battler;
     v0->unk_1E = param1->battlerType;
     v0->unk_04 = &param1->healthbar;
-    v0->unk_1F = param2->unk_01;
+    v0->unk_1F = message->partySlot;
 
     for (i = 0; i < 4; i++) {
-        v0->unk_0C[i] = param2->unk_04[i];
-        v0->unk_14[i] = param2->unk_0C[i];
-        v0->unk_18[i] = param2->unk_10[i];
+        v0->unk_0C[i] = message->moves[i];
+        v0->unk_14[i] = message->ppCur[i];
+        v0->unk_18[i] = message->ppMax[i];
     }
 
-    v0->unk_22 = param2->unk_02;
+    v0->unk_22 = message->invalidMoves;
 
     SysTask_Start(param1->unk_00.unk_04, v0, 0);
 }

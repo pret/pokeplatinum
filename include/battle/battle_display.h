@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
-#include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022674C4.h"
@@ -63,7 +62,7 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
  */
 void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
 void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, CommandSetMessage *param2);
-void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022656F0 *param2);
+void ov16_0225D698(BattleSystem *battleSys, BattlerData *param1, MoveSelectShowMessage *param2);
 void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C29C *param2);
 void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2B0 *param2);
 void ov16_0225D840(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2C4 *param2);

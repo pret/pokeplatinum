@@ -43,7 +43,6 @@
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
-#include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022662FC.h"
 #include "battle/struct_ov16_02266498.h"
@@ -764,23 +763,30 @@ void ov16_022656D4(BattleSystem *battleSys, int battlerId, int param2)
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
 }
 
-void BattleIO_ShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+/**
+ * @brief Emits a message to show the move selection screen
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battler);
 
-    UnkStruct_ov16_022656F0 v0;
-    v0.unk_00 = BATTLE_COMMAND_SHOW_MOVE_SELECT_SCREEN;
-    v0.unk_01 = battleCtx->selectedPartySlot[battler];
+    MoveSelectShowMessage message;
+    message.command = BATTLE_COMMAND_SHOW_MOVE_SELECT_SCREEN;
+    message.partySlot = battleCtx->selectedPartySlot[battler];
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
-        v0.unk_04[i] = battleCtx->battleMons[battler].moves[i];
-        v0.unk_0C[i] = battleCtx->battleMons[battler].ppCur[i];
-        v0.unk_10[i] = MoveTable_CalcMaxPP(battleCtx->battleMons[battler].moves[i], battleCtx->battleMons[battler].ppUps[i]);
+        message.moves[i] = battleCtx->battleMons[battler].moves[i];
+        message.ppCur[i] = battleCtx->battleMons[battler].ppCur[i];
+        message.ppMax[i] = MoveTable_CalcMaxPP(battleCtx->battleMons[battler].moves[i], battleCtx->battleMons[battler].ppUps[i]);
     }
 
-    v0.unk_02 = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
+    message.invalidMoves = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, sizeof(UnkStruct_ov16_022656F0));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveSelectShowMessage));
 }
 
 void ov16_02265790(BattleSystem *battleSys, int battlerId, int param2)

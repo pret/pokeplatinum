@@ -500,7 +500,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             break;
 
         case COMMAND_SELECTION_MOVE_SELECT_INIT:
-            BattleIO_ShowMoveSelectScreen(battleSys, battleCtx, i);
+            BattleController_EmitShowMoveSelectScreen(battleSys, battleCtx, i);
             battleCtx->curCommandState[i] = COMMAND_SELECTION_MOVE_SELECT;
             // fall-through
 

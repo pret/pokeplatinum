@@ -43,7 +43,6 @@
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
-#include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022662FC.h"
 #include "battle/struct_ov16_02266498.h"
@@ -413,9 +412,9 @@ static void ov16_0225C260(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C288(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_022656F0 *v0 = (UnkStruct_ov16_022656F0 *)&param1->data[0];
+    MoveSelectShowMessage *message = (MoveSelectShowMessage *)&param1->data[0];
 
-    ov16_0225D698(battleSys, param1, v0);
+    ov16_0225D698(battleSys, param1, message);
     ZeroDataBuffer(param1);
 }
 

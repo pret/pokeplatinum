@@ -40,7 +40,7 @@ void BattleController_EmitSlideHealthbarIn(BattleSystem *battleSys, BattleContex
 void BattleController_EmitSlideHealthbarOut(BattleSystem *battleSys, int battler);
 void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void ov16_022656D4(BattleSystem *battleSys, int param1, int param2);
-void BattleIO_ShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+void BattleController_EmitShowMoveSelectScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void ov16_02265790(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_ShowTargetSelection(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler);
 void ov16_022658CC(BattleSystem *battleSys, int param1, int param2);
