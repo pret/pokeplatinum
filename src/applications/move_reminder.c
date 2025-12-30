@@ -827,7 +827,7 @@ static void MoveReminder_InitText(MoveReminderController *controller)
 {
     controller->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_REMINDER, HEAP_ID_MOVE_REMINDER);
     controller->stringTemplate = StringTemplate_Default(HEAP_ID_MOVE_REMINDER);
-    controller->string = String_Init(256, HEAP_ID_MOVE_REMINDER);
+    controller->string = String_New(256, HEAP_ID_MOVE_REMINDER);
 }
 
 static void MoveReminder_FreeText(MoveReminderController *controller)

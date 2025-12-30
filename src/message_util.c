@@ -13,7 +13,7 @@
 String *MessageUtil_ExpandedString(StringTemplate *template, MessageLoader *loader, u32 entryID, u32 heapID)
 {
     String *ret = NULL;
-    String *buf = String_Init(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
+    String *buf = String_New(EXPANDED_STRING_SIZE, HEAP_ID_SYSTEM);
 
     if (buf) {
         String *entry = MessageLoader_GetNewString(loader, entryID);
@@ -35,7 +35,7 @@ String *MessageUtil_MoveName(u32 moveID, u32 heapID)
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, heapID);
 
     if (loader) {
-        String *moveName = String_Init(MOVE_NAME_LEN, heapID);
+        String *moveName = String_New(MOVE_NAME_LEN, heapID);
 
         if (moveName) {
             MessageLoader_GetString(loader, moveID, moveName);

@@ -386,14 +386,14 @@ static void ov72_0223DB98(UnkStruct_ov72_0223DB98 *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_18[v0] = String_Init(7 + 1, HEAP_ID_39);
+        param0->unk_18[v0] = String_New(7 + 1, HEAP_ID_39);
         param0->unk_4391[v0].unk_10_4 = 0;
         param0->unk_43E6[v0].unk_02 = 0;
     }
 
-    param0->unk_2C = String_Init(10 * 2, HEAP_ID_39);
-    param0->unk_30 = String_Init(20 * 2, HEAP_ID_39);
-    param0->unk_34 = String_Init(40 * 2, HEAP_ID_39);
+    param0->unk_2C = String_New(10 * 2, HEAP_ID_39);
+    param0->unk_30 = String_New(20 * 2, HEAP_ID_39);
+    param0->unk_34 = String_New(40 * 2, HEAP_ID_39);
     param0->unk_437E = 0;
     param0->unk_370 = 1;
 
@@ -1090,7 +1090,7 @@ static void ov72_0223E914(UnkStruct_ov72_0223DB98 *param0)
 
 static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
-    String *v0 = String_Init(40 * 2, HEAP_ID_39);
+    String *v0 = String_New(40 * 2, HEAP_ID_39);
 
     MessageLoader_GetString(param0->unk_14, param1, v0);
     StringTemplate_Format(param0->unk_10, param0->unk_34, v0);

@@ -820,7 +820,7 @@ static BOOL DoNothing(WonderCardsAppData *appData, Window *window, TextColor col
 
 static BOOL PrintWondercardTitle(WonderCardsAppData *appData, Window *windwow, TextColor color)
 {
-    String *string = String_Init(WONDERCARD_TITLE_LENGTH + 1, appData->heapID);
+    String *string = String_New(WONDERCARD_TITLE_LENGTH + 1, appData->heapID);
 
     String_CopyNumChars(string, appData->wonderCards[appData->selectedWondercardSlot]->eventHeader.title, WONDERCARD_TITLE_LENGTH);
     Text_AddPrinterWithParamsAndColor(windwow, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
@@ -867,7 +867,7 @@ static BOOL SetupDateString(WonderCardsAppData *appData, Window *window, TextCol
 
 static BOOL PrintWondercardDescription(WonderCardsAppData *appData, Window *window, TextColor color)
 {
-    String *string = String_Init(WONDERCARD_DESCRIPTION_LENGTH + 1, HEAP_ID_WONDER_CARDS_APP);
+    String *string = String_New(WONDERCARD_DESCRIPTION_LENGTH + 1, HEAP_ID_WONDER_CARDS_APP);
 
     String_CopyNumChars(string, appData->wonderCards[appData->selectedWondercardSlot]->description, WONDERCARD_DESCRIPTION_LENGTH);
     Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);

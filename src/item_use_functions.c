@@ -864,7 +864,7 @@ static BOOL UseBagMessageItem(ItemFieldUseContext *usageContext)
     UnkStruct_02068EFC *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = String_Init(128, HEAP_ID_FIELD2);
+    v0->unk_10 = String_New(128, HEAP_ID_FIELD2);
 
     BagContext_FormatUsageMessage(usageContext->fieldSystem->saveData, v0->unk_10, Bag_GetRegisteredItem(SaveData_GetBag(usageContext->fieldSystem->saveData)), HEAP_ID_FIELD2);
     FieldSystem_CreateTask(usageContext->fieldSystem, PrintRegisteredKeyItemUseMessage, v0);
@@ -1106,7 +1106,7 @@ static void PrintRegisteredKeyItemError(ItemFieldUseContext *usageContext, u32 e
     UnkStruct_02068EFC *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = String_Init(128, HEAP_ID_FIELD2);
+    v0->unk_10 = String_New(128, HEAP_ID_FIELD2);
 
     BagContext_FormatErrorMessage(SaveData_GetTrainerInfo(usageContext->fieldSystem->saveData), v0->unk_10, usageContext->unk_28, error, HEAP_ID_FIELD2);
     FieldSystem_CreateTask(usageContext->fieldSystem, PrintRegisteredKeyItemUseMessage, v0);

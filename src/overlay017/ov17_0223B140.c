@@ -209,7 +209,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_0C.unk_44 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_ACTING_COMPETITION, HEAP_ID_21);
     v0->unk_0C.unk_54 = sub_02012744(2 * 4, HEAP_ID_21);
     v0->unk_0C.unk_48 = StringTemplate_Default(HEAP_ID_21);
-    v0->unk_0C.unk_4C = String_Init(3 * 160, HEAP_ID_21);
+    v0->unk_0C.unk_4C = String_New(3 * 160, HEAP_ID_21);
 
     {
         NARC *v1;

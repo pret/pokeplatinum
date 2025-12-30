@@ -113,7 +113,7 @@ void sub_0209AA74(int heapID, int param1)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0006, heapID);
-    v3 = String_Init(0x180, heapID);
+    v3 = String_New(0x180, heapID);
 
     Text_ResetAllPrinters();
     Window_AddFromTemplate(v0, &v1, &Unk_020F8B20);

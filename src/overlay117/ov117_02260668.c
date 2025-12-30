@@ -228,7 +228,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
 
     v0->unk_80 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0009, HEAP_ID_110);
     v0->unk_84 = StringTemplate_Default(HEAP_ID_110);
-    v0->unk_88 = String_Init(2 * 160, HEAP_ID_110);
+    v0->unk_88 = String_New(2 * 160, HEAP_ID_110);
     v0->unk_90 = sub_02012744(2 * 6 + 6 + 1, HEAP_ID_110);
 
     ov117_02265210(v0, &v0->unk_1468);

@@ -171,8 +171,8 @@ int ov61_0222BF44(ApplicationManager *appMan, int *param1)
     v0->unk_24 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_GTS, HEAP_ID_117);
     v0->unk_28 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, HEAP_ID_117);
     v0->unk_2C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, HEAP_ID_117);
-    v0->unk_34 = String_Init(90 * 2, HEAP_ID_117);
-    v0->unk_3C = String_Init(16 * 8 * 2, HEAP_ID_117);
+    v0->unk_34 = String_New(90 * 2, HEAP_ID_117);
+    v0->unk_3C = String_New(16 * 8 * 2, HEAP_ID_117);
     v0->unk_38 = MessageLoader_GetNewString(v0->unk_24, 31);
 
     ov61_0222C3B0(v0);
@@ -490,7 +490,7 @@ void ov61_0222C760(Window *param0, String *param1, int param2, int param3, int p
 
 static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
 {
-    String *v0 = String_Init(16 * 8 * 2, HEAP_ID_117);
+    String *v0 = String_New(16 * 8 * 2, HEAP_ID_117);
 
     MessageLoader_GetString(param0->unk_2C, param1, v0);
     StringTemplate_Format(param0->unk_20, param0->unk_3C, v0);

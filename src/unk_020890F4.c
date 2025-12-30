@@ -159,7 +159,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
-    v1->unk_1C = String_Init(param1 + 1, heapID);
+    v1->unk_1C = String_New(param1 + 1, heapID);
     v1->options = options;
 
     for (i = 0; i < 4; i++) {

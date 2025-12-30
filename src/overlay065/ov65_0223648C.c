@@ -784,8 +784,8 @@ static void ov65_02236C10(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
 {
     param0->unk_04 = StringTemplate_Default(heapID);
     param0->unk_08 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0674, heapID);
-    param0->unk_0C = String_Init(256, heapID);
-    param0->unk_10 = String_Init(256, heapID);
+    param0->unk_0C = String_New(256, heapID);
+    param0->unk_10 = String_New(256, heapID);
     param0->unk_14 = 0xff;
     param0->unk_16 = Options_TextFrameDelay(SaveData_GetOptions(param1->saveData));
 }
@@ -893,7 +893,7 @@ static void ov65_02236E50(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207D
     }
 
     Window_FillTilemap(&param0->unk_1F0, 15);
-    v0 = String_Init(256, heapID);
+    v0 = String_New(256, heapID);
 
     MessageLoader_GetString(param0->unk_08, param2, v0);
     StringTemplate_Format(param0->unk_04, param0->unk_0C, v0);
@@ -950,8 +950,8 @@ static void ov65_02236F38(UnkStruct_ov65_02236840 *param0)
 
 static void ov65_02236F70(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, int param2, u32 heapID)
 {
-    String *v0 = String_Init(256, heapID);
-    String *v1 = String_Init(256, heapID);
+    String *v0 = String_New(256, heapID);
+    String *v1 = String_New(256, heapID);
 
     ov65_0223726C(param0, param1, param2, 0, heapID);
     ov65_02237284(param0, param1, param2, 1, heapID);
@@ -1003,8 +1003,8 @@ static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_022368
     u8 v2;
     u8 v3;
 
-    v0 = String_Init(256, heapID);
-    v1 = String_Init(256, heapID);
+    v0 = String_New(256, heapID);
+    v1 = String_New(256, heapID);
 
     ov65_0223726C(param1, param2, param3, 0, heapID);
 

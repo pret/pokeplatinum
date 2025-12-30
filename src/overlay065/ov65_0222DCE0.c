@@ -1399,10 +1399,10 @@ static void ov65_0222EBE0(UnkStruct_ov65_0222EBE0 *param0)
     int v0;
     int v1;
 
-    param0->unk_174 = String_Init(190 * 2, HEAP_ID_54);
-    param0->unk_17C = String_Init(190 * 2, HEAP_ID_54);
-    param0->unk_170 = String_Init(190 * 2, HEAP_ID_54);
-    param0->unk_178 = String_Init(90 * 2, HEAP_ID_54);
+    param0->unk_174 = String_New(190 * 2, HEAP_ID_54);
+    param0->unk_17C = String_New(190 * 2, HEAP_ID_54);
+    param0->unk_170 = String_New(190 * 2, HEAP_ID_54);
+    param0->unk_178 = String_New(90 * 2, HEAP_ID_54);
     param0->unk_3A8 = 0;
 }
 
@@ -5916,7 +5916,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 hea
     Window_Init(&v3);
     Window_AddToTopLeftCorner(param0->unk_15C, &v3, 8, 2, 0, 0);
 
-    v4 = String_Init(64, heapID);
+    v4 = String_New(64, heapID);
     MessageLoader_GetString(param0->unk_168, 73, v4);
 
     {

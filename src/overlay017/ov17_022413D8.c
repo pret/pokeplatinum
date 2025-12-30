@@ -1558,7 +1558,7 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
     String *v0;
     TextColor v1;
 
-    v0 = String_Init(12, HEAP_ID_21);
+    v0 = String_New(12, HEAP_ID_21);
 
     Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRING, v0);
 

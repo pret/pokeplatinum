@@ -142,7 +142,7 @@ void *ov6_02247A90(void *param0)
     Window_DrawStandardFrame(&v0->unk_00, 1, 1, 11);
     Window_FillTilemap(&v0->unk_00, 15);
 
-    v3 = String_Init(100, HEAP_ID_FIELD2);
+    v3 = String_New(100, HEAP_ID_FIELD2);
     v2 = MessageLoader_GetNewString(v0->unk_10, 0);
 
     StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(saveData));

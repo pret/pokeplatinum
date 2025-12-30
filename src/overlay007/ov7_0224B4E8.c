@@ -325,8 +325,8 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     const int v13 = (24 * 8) - 1;
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD1);
-    v2 = String_Init((90 * 2), HEAP_ID_FIELD1);
-    v3 = String_Init((90 * 2), HEAP_ID_FIELD1);
+    v2 = String_New((90 * 2), HEAP_ID_FIELD1);
+    v3 = String_New((90 * 2), HEAP_ID_FIELD1);
     v4 = &param0->unk_24;
 
     Window_Add(param0->fieldSystem->bgConfig, v4, 3, 4, 2, 24, 19, 13, 1);
@@ -558,10 +558,10 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->fieldSystem->unk_B0 = NULL;
     v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD1);
     v0->unk_68 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD1);
-    v0->unk_14 = String_Init((90 * 2), HEAP_ID_FIELD1);
-    v0->unk_18 = String_Init((90 * 2), HEAP_ID_FIELD1);
-    v0->unk_1C = String_Init((90 * 2), HEAP_ID_FIELD1);
-    v0->unk_20 = String_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_14 = String_New((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_18 = String_New((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_1C = String_New((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_20 = String_New((90 * 2), HEAP_ID_FIELD1);
     v0->unk_6C = HeightWeightData_Load(HEAP_ID_FIELD2);
 
     return v0;

@@ -473,7 +473,7 @@ void sub_02089F80(UnkStruct_02089688 *param0)
 {
     int v0;
     u32 v1 = 0;
-    String *v2 = String_Init(100, HEAP_ID_101);
+    String *v2 = String_New(100, HEAP_ID_101);
 
     param0->unk_268[1].unk_00 = 1;
     param0->unk_268[1].unk_14.unk_04 = 0;

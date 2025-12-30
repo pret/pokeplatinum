@@ -322,15 +322,15 @@ static void InitializeNatureRelatedString(PokemonInfoDisplayStruct *param0)
         return;
     }
 
-    param0->unk_14.unk_04 = String_Init(((2 * 18) * 2), param0->heapID);
+    param0->unk_14.unk_04 = String_New(((2 * 18) * 2), param0->heapID);
     MessageLoader_GetString(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
 static void InitializePokemonMetInfoString(PokemonInfoDisplayStruct *param0, int param1)
 {
-    String *v0 = String_Init((((2 * 18) * 2) * 8), param0->heapID);
+    String *v0 = String_New((((2 * 18) * 2) * 8), param0->heapID);
 
-    param0->unk_1C.unk_04 = String_Init((((2 * 18) * 2) * 8), param0->heapID);
+    param0->unk_1C.unk_04 = String_New((((2 * 18) * 2) * 8), param0->heapID);
 
     MessageLoader_GetString(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
@@ -348,9 +348,9 @@ static void InitializePokemonMetInfoString(PokemonInfoDisplayStruct *param0, int
 
 static void InitializeAlternateMetInfoString(PokemonInfoDisplayStruct *param0, int param1)
 {
-    String *v0 = String_Init((((2 * 18) * 2) * 4), param0->heapID);
+    String *v0 = String_New((((2 * 18) * 2) * 4), param0->heapID);
 
-    param0->unk_1C.unk_04 = String_Init((((2 * 18) * 2) * 4), param0->heapID);
+    param0->unk_1C.unk_04 = String_New((((2 * 18) * 2) * 4), param0->heapID);
 
     MessageLoader_GetString(param0->unk_04, param1, v0);
     StringTemplate_SetNumber(param0->unk_08, 0, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_YEAR, NULL), 2, 2, 1);
@@ -391,9 +391,9 @@ static void InitializeAlternateMetInfoString(PokemonInfoDisplayStruct *param0, i
 
 static void InitializeSpecialMetInfoString(PokemonInfoDisplayStruct *param0, int param1, int param2)
 {
-    String *v0 = String_Init((((2 * 18) * 2) * 5), param0->heapID);
+    String *v0 = String_New((((2 * 18) * 2) * 5), param0->heapID);
 
-    param0->unk_1C.unk_04 = String_Init((((2 * 18) * 2) * 5), param0->heapID);
+    param0->unk_1C.unk_04 = String_New((((2 * 18) * 2) * 5), param0->heapID);
 
     MessageLoader_GetString(param0->unk_04, param1, v0);
 
@@ -427,7 +427,7 @@ static void InitializeIVsString(PokemonInfoDisplayStruct *param0)
     int v0[6], v1, v2;
     int v3, v4;
 
-    param0->unk_24.unk_04 = String_Init(((2 * 18) * 2), param0->heapID);
+    param0->unk_24.unk_04 = String_New(((2 * 18) * 2), param0->heapID);
 
     v0[0] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_HP_IV, NULL));
     v0[1] = (Pokemon_GetValue(param0->unk_0C, MON_DATA_ATK_IV, NULL));
@@ -631,7 +631,7 @@ static void InitializeFlavorAffinityString(PokemonInfoDisplayStruct *param0)
 {
     int v0, v1, v2;
 
-    param0->unk_2C.unk_04 = String_Init(((2 * 18) * 2), param0->heapID);
+    param0->unk_2C.unk_04 = String_New(((2 * 18) * 2), param0->heapID);
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -649,7 +649,7 @@ static void InitializeFriendshipLevelString(PokemonInfoDisplayStruct *param0)
     int v0 = Pokemon_GetValue(param0->unk_0C, MON_DATA_FRIENDSHIP, NULL);
     int v1;
 
-    param0->unk_34.unk_04 = String_Init((((2 * 18) * 2) * 4), param0->heapID);
+    param0->unk_34.unk_04 = String_New((((2 * 18) * 2) * 4), param0->heapID);
 
     if (v0 <= 5) {
         v1 = 105;

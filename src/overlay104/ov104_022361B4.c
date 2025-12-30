@@ -773,8 +773,8 @@ void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3)
 {
     MessageLoader *v0;
-    String *v1 = String_Init((10 * 2), param0->heapID);
-    String *v2 = String_Init((10 * 2), param0->heapID);
+    String *v1 = String_New((10 * 2), param0->heapID);
+    String *v2 = String_New((10 * 2), param0->heapID);
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELD2);
 

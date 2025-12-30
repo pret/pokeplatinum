@@ -124,8 +124,8 @@ int ov110_021D0D80(ApplicationManager *appMan, int *param1)
 
     v1->unk_110 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0016, HEAP_ID_114);
     v1->unk_114 = StringTemplate_Default(HEAP_ID_114);
-    v1->unk_118 = String_Init(800, HEAP_ID_114);
-    v1->unk_11C = String_Init(800, HEAP_ID_114);
+    v1->unk_118 = String_New(800, HEAP_ID_114);
+    v1->unk_11C = String_New(800, HEAP_ID_114);
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_114);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_114);

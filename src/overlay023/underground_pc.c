@@ -852,8 +852,8 @@ static void UndergroundPC_OpenPCMenu(FieldSystem *fieldSystem)
     UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_PC, MSG_LOADER_LOAD_ON_DEMAND);
 
     menu->state = UG_PC_MENU_STATE_INIT;
-    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_New(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_New(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->scrollPrompts = ScrollPrompts_New(HEAP_ID_FIELD1);
 

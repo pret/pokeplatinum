@@ -722,8 +722,8 @@ static void ov64_0222DFD0(UnkStruct_ov64_0222DFD0 *param0)
 static void ov64_0222E040(UnkStruct_ov64_0222E060 *param0, void *param1, u32 heapID)
 {
     param0->saveData = param1;
-    param0->unk_2C.unk_00 = String_Init(128, heapID);
-    param0->unk_2C.unk_04 = String_Init(128, heapID);
+    param0->unk_2C.unk_00 = String_New(128, heapID);
+    param0->unk_2C.unk_04 = String_New(128, heapID);
 }
 
 static void ov64_0222E060(UnkStruct_ov64_0222E060 *param0)
@@ -1030,8 +1030,8 @@ static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_
     Window_Init(&param0->unk_220);
     Window_Add(param0->unk_00, &param0->unk_220, Unk_ov64_02232258[1], 1, 0, 24, 3, 7, (1 + 9) + (18 + 12));
 
-    param0->unk_230 = String_Init(128, heapID);
-    param0->unk_234 = String_Init(128, heapID);
+    param0->unk_230 = String_New(128, heapID);
+    param0->unk_234 = String_New(128, heapID);
 }
 
 static void ov64_0222E6B4(UnkStruct_ov64_0222E21C *param0)
@@ -1390,11 +1390,11 @@ static void ov64_0222EC94(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E0
     Window_FillTilemap(&param0->unk_04, 0);
     Window_FillTilemap(&param0->unk_1C, 0);
 
-    param0->unk_38 = String_Init(128, heapID);
+    param0->unk_38 = String_New(128, heapID);
     param0->unk_34 = Options_TextFrameDelay(SaveData_GetOptions(param1->saveData));
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     StringTemplate_SetPlayerName(param2->unk_214, 0, SaveData_GetTrainerInfo(param1->saveData));
 
@@ -1514,7 +1514,7 @@ static void ov64_0222EF64(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E2
 
 static void ov64_0222EFBC(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E21C *param1, u32 param2, u32 heapID)
 {
-    String *v0 = String_Init(128, heapID);
+    String *v0 = String_New(128, heapID);
 
     Window_FillTilemap(&param0->unk_1C, 15);
     MessageLoader_GetString(param1->unk_218, param2, v0);
@@ -1797,7 +1797,7 @@ static void ov64_0222F414(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E0
     Window_Add(param2->unk_00, &param0->unk_B4, BG_LAYER_MAIN_1, 13, 21, 8, 3, 7, 112);
     Window_FillTilemap(&param0->unk_B4, 0);
 
-    String *string = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
     MessageLoader_GetString(param2->unk_218, 7, string);
     Text_AddPrinterWithParamsAndColor(&param0->unk_B4, FONT_SYSTEM, string, Font_CalcCenterAlignment(FONT_SYSTEM, string, 0, 64), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     String_Free(string);
@@ -1817,7 +1817,7 @@ static void ov64_0222F414(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E0
     Window_Add(param2->unk_00, &param0->unk_C4, BG_LAYER_MAIN_1, 2, 19, 27, 4, 7, 256);
     Window_FillTilemap(&param0->unk_C4, 15);
 
-    param0->unk_D4 = String_Init(128, heapID);
+    param0->unk_D4 = String_New(128, heapID);
 
     Unk_ov64_022322B4.list = param2->unk_04;
     Unk_ov64_022322B4.resourceData = &param2->unk_23C;
@@ -2232,7 +2232,7 @@ static void ov64_0222FE70(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E2
 
     Window_FillTilemap(&param0->unk_C4, 15);
 
-    v0 = String_Init(128, heapID);
+    v0 = String_New(128, heapID);
 
     MessageLoader_GetString(param1->unk_218, param2, v0);
     StringTemplate_Format(param1->unk_214, param0->unk_D4, v0);
@@ -2439,7 +2439,7 @@ static void ov64_022302EC(UnkStruct_ov64_02230074 *param0, UnkStruct_ov63_0222AE
 
     v4 = ((Unk_ov64_02232324[param4].unk_00.unk_00) * 8) + 0;
     v5 = ((Unk_ov64_02232324[param4].unk_00.unk_02) * 8) + -24;
-    v3 = String_Init(128, heapID);
+    v3 = String_New(128, heapID);
 
     String_CopyChars(v3, sub_0202AEF0(param5, param6));
     Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_SYSTEM, v3, v4, v5, TEXT_SPEED_NO_TRANSFER, v6[v0], NULL);
@@ -2613,8 +2613,8 @@ static void ov64_02230680(UnkStruct_ov64_02230620 *param0, UnkStruct_ov64_0222E0
     Window_FillTilemap(&param0->unk_00, 0);
     Window_FillTilemap(&param0->unk_10, 0);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     u64 friendCode = DWC_CreateFriendKey(WiFiList_GetUserData(SaveData_GetWiFiList(param1->saveData)));
     if (friendCode) {
@@ -3111,8 +3111,8 @@ static void ov64_02231164(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 {
     WiFiList *wifiList = SaveData_GetWiFiList(param1->saveData);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     ov64_022320B8(param0, 0, 0, param1, param2, 14, 0, 4, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
@@ -3183,8 +3183,8 @@ static void ov64_02231528(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 {
     BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     ov64_022320B8(param0, 2, 0, param1, param2, 25, 0, 8, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
@@ -3213,8 +3213,8 @@ static void ov64_02231664(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 {
     BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     ov64_022320B8(param0, 3, 0, param1, param2, 26, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
@@ -3279,8 +3279,8 @@ static void ov64_02231A00(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 {
     BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     ov64_022320B8(param0, 4, 0, param1, param2, 27, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
     ov64_022320B8(param0, 4, 0, param1, param2, 36, 224, 20, TEXT_COLOR(1, 2, 0), string, fmtString, 2);
@@ -3318,8 +3318,8 @@ static void ov64_02231BE0(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 {
     BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     ov64_022320B8(param0, 5, 0, param1, param2, 28, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
@@ -3354,8 +3354,8 @@ static void ov64_02231D58(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
 {
     BattleFrontier *frontier = SaveData_GetBattleFrontier(param1->saveData);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     ov64_022320B8(param0, 6, 0, param1, param2, 29, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 
@@ -3387,8 +3387,8 @@ static void ov64_02231E94(UnkStruct_ov64_02230F98 *param0, UnkStruct_ov64_0222E0
     BattleFrontier *unused = SaveData_GetBattleFrontier(param1->saveData);
     WiFiList *wifiList = SaveData_GetWiFiList(param1->saveData);
 
-    String *string = String_Init(128, heapID);
-    String *fmtString = String_Init(128, heapID);
+    String *string = String_New(128, heapID);
+    String *fmtString = String_New(128, heapID);
 
     ov64_022320B8(param0, 1, 0, param1, param2, 43, 0, 0, TEXT_COLOR(1, 2, 0), string, fmtString, 0);
 

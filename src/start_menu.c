@@ -553,7 +553,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
             String *v8;
 
             v6 = StringTemplate_Default(HEAP_ID_FIELD2);
-            v7 = String_Init(8, HEAP_ID_FIELD2);
+            v7 = String_New(8, HEAP_ID_FIELD2);
             v8 = MessageLoader_GetNewString(v2, sStartMenuActions[menu->options[i]].text);
 
             StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
@@ -695,7 +695,7 @@ static void sub_0203B094(FieldTask *taskMan)
     String_Free(v5);
 
     v3 = StringTemplate_Default(HEAP_ID_FIELD2);
-    v4 = String_Init(32, HEAP_ID_FIELD2);
+    v4 = String_New(32, HEAP_ID_FIELD2);
     v5 = MessageLoader_GetNewString(v2, 11);
 
     if (v6 == 0) {

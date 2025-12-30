@@ -1097,7 +1097,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     u32 personality, otID;
     u8 ivs[STAT_MAX], pokerus;
     u8 i, language, metGame, marks, friendship, fatefulEncounter, form, gender;
-    String *string = String_Init(7 + 1, heapID);
+    String *string = String_New(7 + 1, heapID);
     Pokemon *mon = Pokemon_New(heapID);
 
     species = Pokemon_GetValue(egg, MON_DATA_SPECIES, NULL);

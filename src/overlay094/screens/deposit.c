@@ -480,7 +480,7 @@ static void ov94_02241880(GTSApplicationState *appState)
 
 static void ov94_022418B8(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    appState->genericMessageBuffer = String_New(90 * 2, HEAP_ID_62);
     appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_DepositPokemon);
     appState->unk_10E4 = Heap_Alloc(HEAP_ID_62, sizeof(GTSApplicationState_sub3));
 
@@ -936,8 +936,8 @@ void ov94_02242368(MessageLoader *gtsMessageLoader, MessageLoader *speciesMessag
 static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *template, Window windows[], BoxPokemon *boxMon, GTSPokemonCriteria *criteria)
 {
     String *offerString, *levelString; // compiler
-    String *nicknameString = String_Init(10 + 1, HEAP_ID_62);
-    String *genderString = String_Init(10 + 1, HEAP_ID_62);
+    String *nicknameString = String_New(10 + 1, HEAP_ID_62);
+    String *genderString = String_New(10 + 1, HEAP_ID_62);
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, nicknameString);
 

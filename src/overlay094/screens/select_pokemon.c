@@ -461,8 +461,8 @@ static void ov94_02240190(GTSApplicationState *param0)
 
 static void ov94_022401E0(GTSApplicationState *param0)
 {
-    param0->selectPokemonBoxName = String_Init(9 * 2, HEAP_ID_62);
-    param0->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    param0->selectPokemonBoxName = String_New(9 * 2, HEAP_ID_62);
+    param0->genericMessageBuffer = String_New(90 * 2, HEAP_ID_62);
 
     if (param0->screenArgument == SCREEN_ARGUMENT_5) {
         param0->title = MessageLoader_GetNewString(param0->gtsMessageLoader, GTS_Text_ChooseYourOfferPokemon);

@@ -37,8 +37,8 @@ BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_20 = optionsFrame;
     param0->unk_10 = boxMessagesLoader;
     param0->unk_14 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_30 = String_Init(64, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_34 = String_Init(64, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_30 = String_New(64, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_34 = String_New(64, HEAP_ID_BOX_GRAPHICS);
     param0->unk_1C = 0;
     param0->unk_1E = 0;
     param0->unk_18 = NULL;

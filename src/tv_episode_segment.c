@@ -475,7 +475,7 @@ static void SaveData_SaveTVEpisodeSegment(SaveData *saveData, int programTypeID,
 
 static void sub_0206CD94(StringTemplate *template, int idx, const u16 *param2, int unused3, int unused4, int unused5)
 {
-    String *string = String_Init(64, HEAP_ID_FIELD1);
+    String *string = String_New(64, HEAP_ID_FIELD1);
 
     String_CopyChars(string, param2);
     StringTemplate_SetString(template, idx, string, unused3, unused5, unused4);
@@ -489,7 +489,7 @@ static void TVEpisodeSegment_SetTemplateTrainerName(StringTemplate *template, in
 
 static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
 {
-    String *string = String_Init(64, heapID);
+    String *string = String_New(64, heapID);
 
     Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
     String_ToChars(string, param1, TEMPLATE_NAME_SIZE);
@@ -525,7 +525,7 @@ static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
     *param2 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     if (*param2) {
-        String *string = String_Init(64, heapID);
+        String *string = String_New(64, heapID);
 
         Pokemon_GetValue(mon, MON_DATA_NICKNAME_STRING, string);
         String_ToChars(string, param3, TEMPLATE_NAME_SIZE);
@@ -2014,7 +2014,7 @@ static int TVEpisodeSegment_LoadMessage_BattleFrontierFrontlineNews_Multi(FieldS
 {
     int messageID;
     TVEpisodeSegment_BattleFrontierFrontlineNews_Multi *battleFrontierFrontlineNewsMulti = ov6_02246498(param2);
-    String *v2 = String_Init(64, HEAP_ID_FIELD1);
+    String *v2 = String_New(64, HEAP_ID_FIELD1);
 
     TVEpisodeSegment_SetTemplateTrainerName(template, 0, param2);
     String_CopyChars(v2, battleFrontierFrontlineNewsMulti->unk_00.unk_06);
@@ -2630,7 +2630,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     SpecialEncounter *v1;
     u16 v2, v3;
     u32 v4, v5;
-    String *v6 = String_Init(22, HEAP_ID_FIELD1);
+    String *v6 = String_New(22, HEAP_ID_FIELD1);
     TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
 
     v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
@@ -2712,7 +2712,7 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     {
         u16 v6;
-        String *v7 = String_Init(7 + 1, HEAP_ID_FIELD1);
+        String *v7 = String_New(7 + 1, HEAP_ID_FIELD1);
         int v8 = sub_0202A1C0(v0);
 
         sub_0202A1A0(v0, v7);

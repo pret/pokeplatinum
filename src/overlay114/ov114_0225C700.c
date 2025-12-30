@@ -1403,8 +1403,8 @@ static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 heapID)
 {
     param0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0411, heapID);
     param0->unk_04 = StringTemplate_New(8, 64, heapID);
-    param0->unk_08 = String_Init(128, heapID);
-    param0->unk_0C = String_Init(128, heapID);
+    param0->unk_08 = String_New(128, heapID);
+    param0->unk_0C = String_New(128, heapID);
 
     Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, heapID);
     Font_LoadScreenIndicatorsPalette(4, 12 * 0x20, heapID);
@@ -1525,7 +1525,7 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
         Window_Add(param1->unk_00, &param0->unk_00[v2], v1, 2, v3, 27, 4, 12, 1 + (18 + 12));
         Window_FillTilemap(&param0->unk_00[v2], 0);
 
-        param0->unk_24[v2] = String_Init(128, heapID);
+        param0->unk_24[v2] = String_New(128, heapID);
     }
 
     param0->unk_34 = param3;
@@ -2269,7 +2269,7 @@ static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
     Window_Add(param1->unk_00, &param0->unk_00, 1, 6, 11, 20, 10, 8, 513);
     Window_FillTilemap(&param0->unk_00, 0);
 
-    param0->unk_14 = String_Init(128, heapID);
+    param0->unk_14 = String_New(128, heapID);
     ov114_0225D180(param2, param3);
     ov114_0225D190(param2, param0->unk_14, 16);
     param0->unk_10 = param3;

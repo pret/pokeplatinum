@@ -352,7 +352,7 @@ BOOL ScrCmd_BufferUndergroundItemName(ScriptContext *ctx)
 
 BOOL ScrCmd_BufferMapName(ScriptContext *ctx)
 {
-    String *mapName = String_Init(22, HEAP_ID_FIELD1);
+    String *mapName = String_New(22, HEAP_ID_FIELD1);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
     u16 mapHeaderID = ScriptContext_GetVar(ctx);
@@ -406,7 +406,7 @@ BOOL ScrCmd_BufferTabletName(ScriptContext *ctx)
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
 
-    tabletName = String_Init(11, HEAP_ID_FIELD2);
+    tabletName = String_New(11, HEAP_ID_FIELD2);
 
     String_CopyChars(tabletName, MiscSaveBlock_TabletName(SaveData_MiscSaveBlock(ctx->fieldSystem->saveData)));
     StringTemplate_SetString(*strTemplate, templateArg, tabletName, 0, 0, gGameLanguage);

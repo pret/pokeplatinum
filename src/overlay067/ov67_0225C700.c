@@ -612,8 +612,8 @@ static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32
 {
     param0->unk_00 = StringTemplate_Default(heapID);
     param0->unk_04 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
-    param0->unk_18 = String_Init(256, heapID);
-    param0->unk_1C = String_Init(256, heapID);
+    param0->unk_18 = String_New(256, heapID);
+    param0->unk_1C = String_New(256, heapID);
     param0->unk_20 = param2;
     param0->unk_28 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
     param0->unk_2C = 0;

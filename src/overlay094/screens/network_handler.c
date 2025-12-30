@@ -340,7 +340,7 @@ static void GTSApplication_NetworkHandler_CleanupWindows(GTSApplicationState *ap
 
 static void GTSApplication_NetworkHandler_InitStrings(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    appState->genericMessageBuffer = String_New(90 * 2, HEAP_ID_62);
 }
 
 static void GTSApplication_NetworkHandler_CleanupStrings(GTSApplicationState *appState)

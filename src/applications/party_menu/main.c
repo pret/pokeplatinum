@@ -1018,14 +1018,14 @@ static PartyMenuApplication *NewPartyMenuApplication(ApplicationManager *appMan)
     application->template = StringTemplate_Default(HEAP_ID_PARTY_MENU);
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
-        application->partyMembers[i].name = String_Init(MON_NAME_LEN + 1, HEAP_ID_PARTY_MENU);
+        application->partyMembers[i].name = String_New(MON_NAME_LEN + 1, HEAP_ID_PARTY_MENU);
     }
 
-    application->tmpString = String_Init(256, HEAP_ID_PARTY_MENU);
-    application->tmpFormat = String_Init(256, HEAP_ID_PARTY_MENU);
+    application->tmpString = String_New(256, HEAP_ID_PARTY_MENU);
+    application->tmpFormat = String_New(256, HEAP_ID_PARTY_MENU);
 
     for (i = 0; i < NUM_PARTY_MENU_STRS; i++) {
-        application->menuStrings[i] = String_Init(32, HEAP_ID_PARTY_MENU);
+        application->menuStrings[i] = String_New(32, HEAP_ID_PARTY_MENU);
     }
 
     application->currPartySlot = application->partyMenu->selectedMonSlot;

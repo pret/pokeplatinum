@@ -302,7 +302,7 @@ static void JournalController_InitStringUtil(JournalManager *journalManager)
 {
     journalManager->loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_JOURNAL_ENTRIES, HEAP_ID_JOURNAL);
     journalManager->template = StringTemplate_Default(HEAP_ID_JOURNAL);
-    journalManager->string = String_Init(128, HEAP_ID_JOURNAL);
+    journalManager->string = String_New(128, HEAP_ID_JOURNAL);
 }
 
 static void JournalController_FreeStringUtil(JournalManager *journalManager)

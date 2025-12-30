@@ -103,7 +103,7 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_374 = Graphics_GetScrnDataFromOpenNARC(param6, 8, 1, &(v0->unk_36C), HEAP_ID_BOX_GRAPHICS);
             v0->unk_6C = param5;
             v0->unk_70 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BOX_GRAPHICS);
-            v0->boxDisplayText = String_Init(32, HEAP_ID_BOX_GRAPHICS);
+            v0->boxDisplayText = String_New(32, HEAP_ID_BOX_GRAPHICS);
             v0->unk_380 = NULL;
             *param0 = v0;
             return 1;

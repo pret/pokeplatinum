@@ -994,8 +994,8 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
             String *v2;
             String *v3;
 
-            v3 = String_Init((7 + 1) * 4, heapID);
-            v2 = String_Init((7 + 1) * 4, heapID);
+            v3 = String_New((7 + 1) * 4, heapID);
+            v2 = String_New((7 + 1) * 4, heapID);
             TrainerInfo_NameString(param1, v2);
             v0 = Font_AreAllCharsValid(FONT_SYSTEM, v2, v3);
 

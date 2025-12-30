@@ -39,7 +39,7 @@ void HallOfFame_AddEntry(HallOfFame *hallOfFame, const Party *party, const RTCDa
 
     hallOfFameEntry = &hallOfFame->entries[hallOfFame->nextEntryIndex];
     currentPartyCount = Party_GetCurrentCount(party);
-    string = String_Init(MON_NAME_LEN + 1, HEAP_ID_SYSTEM);
+    string = String_New(MON_NAME_LEN + 1, HEAP_ID_SYSTEM);
 
     MI_CpuClear16(hallOfFameEntry->pokemon, sizeof(HallOfFamePokemon) * MAX_PARTY_SIZE);
 

@@ -446,7 +446,7 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
     String *r7;
     String *sp1c;
     String *sp18;
-    String *sp14 = String_Init(0xff, 0x66);
+    String *sp14 = String_New(0xff, 0x66);
     StringTemplate *r6 = ov62_02231690(0x66);
     Window_FillTilemap(&r4->unk_24[0], 0);
     r7 = (r4->unk_1C == 0)
@@ -474,7 +474,7 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
     case 1:
         int sp24 = sub_02030CCC(r5->unk_88C[0]);
         r7 = MessageLoader_GetNewString(r5->unk_14.unk_34, 0x56);
-        sp1c = String_Init(0xff, 0x66);
+        sp1c = String_New(0xff, 0x66);
         StringTemplate_SetMonthName(r6, 0, sp24);
         break;
     case 2:
@@ -485,7 +485,7 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
             sp10 = 0x1ee;
         }
         if (sp10) {
-            sp1c = String_Init(0xff, 0x66);
+            sp1c = String_New(0xff, 0x66);
             charcode_t sp2c[0xff];
             MessageLoader_GetSpeciesName(sp10, 0x66, sp2c);
             String_CopyChars(sp1c, sp2c);

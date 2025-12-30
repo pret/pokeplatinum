@@ -102,8 +102,8 @@ PCHallOfFameApp *PCHallOfFame_InitApp(PCHallOfFameMan *pcHallOfFameMan, const PC
         pcHallOfFameApp->msgLoaderSpeciesNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_PC_HALL_OF_FAME);
         pcHallOfFameApp->msgLoaderMoveNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_PC_HALL_OF_FAME);
         pcHallOfFameApp->strTemplate = StringTemplate_Default(HEAP_ID_PC_HALL_OF_FAME);
-        pcHallOfFameApp->unk_1F4 = String_Init(256, HEAP_ID_PC_HALL_OF_FAME);
-        pcHallOfFameApp->unk_1F8 = String_Init(256, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->unk_1F4 = String_New(256, HEAP_ID_PC_HALL_OF_FAME);
+        pcHallOfFameApp->unk_1F8 = String_New(256, HEAP_ID_PC_HALL_OF_FAME);
         pcHallOfFameApp->mon = Pokemon_New(HEAP_ID_PC_HALL_OF_FAME);
 
         SetVBlankCallback(ov87_021D11AC, pcHallOfFameApp);

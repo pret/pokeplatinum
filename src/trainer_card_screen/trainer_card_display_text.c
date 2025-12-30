@@ -175,7 +175,7 @@ void TrainerCard_DrawFrontText(Window *windows, const TrainerCard *trainerCard)
     Window_FillRectWithColor(&windows[TRAINER_CARD_WINDOW_ADVENTURE_STARTED], 0, 0, 0, TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, TRAINER_CARD_WINDOW_HEIGHT * TILE_HEIGHT_PIXELS);
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRAINER_CARD, HEAP_ID_TRAINER_CARD_SCREEN);
-    String *string = String_Init(32, HEAP_ID_TRAINER_CARD_SCREEN);
+    String *string = String_New(32, HEAP_ID_TRAINER_CARD_SCREEN);
 
     for (i = TRAINER_CARD_WINDOW_ID; i < TRAINER_CARD_WINDOW_HOF_DEBUT; i++) {
         if (i != TRAINER_CARD_WINDOW_POKEDEX || i == TRAINER_CARD_WINDOW_POKEDEX && trainerCard->pokedexObtained) {
@@ -184,7 +184,7 @@ void TrainerCard_DrawFrontText(Window *windows, const TrainerCard *trainerCard)
         }
     }
 
-    String *fmtString = String_Init(32, HEAP_ID_TRAINER_CARD_SCREEN);
+    String *fmtString = String_New(32, HEAP_ID_TRAINER_CARD_SCREEN);
     StringTemplate *template = StringTemplate_New(6, 32, HEAP_ID_TRAINER_CARD_SCREEN);
 
     TrainerCard_DrawNumber(&windows[TRAINER_CARD_WINDOW_ID], TRAINER_CARD_WINDOW_PARTIAL_WIDTH * TILE_WIDTH_PIXELS, 0, 0, string, trainerCard->id, 5, PADDING_MODE_ZEROES);
@@ -252,14 +252,14 @@ void TrainerCard_DrawBackText(Window *windows, const TrainerCard *trainerCard)
     Window_FillRectWithColor(&windows[TRAINER_CARD_WINDOW_LINK_TRADES], 0, 0, 0, TRAINER_CARD_WINDOW_FULL_WIDTH * TILE_WIDTH_PIXELS, TRAINER_CARD_WINDOW_HEIGHT * TILE_HEIGHT_PIXELS);
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRAINER_CARD, HEAP_ID_TRAINER_CARD_SCREEN);
-    String *string = String_Init(32, HEAP_ID_TRAINER_CARD_SCREEN);
+    String *string = String_New(32, HEAP_ID_TRAINER_CARD_SCREEN);
 
     for (i = TRAINER_CARD_WINDOW_HOF_DEBUT; i < TRAINER_CARD_WINDOW_COUNT; i++) {
         MessageLoader_GetString(messageLoader, sTrainerCardTextFields[i], string);
         Text_AddPrinterWithParamsAndColor(&windows[i], FONT_SYSTEM, string, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     }
 
-    String *fmtString = String_Init(32, HEAP_ID_TRAINER_CARD_SCREEN);
+    String *fmtString = String_New(32, HEAP_ID_TRAINER_CARD_SCREEN);
     StringTemplate *template = StringTemplate_New(6, 32, HEAP_ID_TRAINER_CARD_SCREEN);
 
     if (trainerCard->hofDebutMonth != 0) {
@@ -342,8 +342,8 @@ void TrainerCard_DrawUpdatedTime(Window *windows, const TrainerCard *trainerCard
     Window_FillRectWithColor(&windows[TRAINER_CARD_WINDOW_TIME], 0, 184, 0, 5 * TILE_WIDTH_PIXELS, TRAINER_CARD_WINDOW_HEIGHT * TILE_HEIGHT_PIXELS);
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_TRAINER_CARD, HEAP_ID_TRAINER_CARD_SCREEN);
-    String *string = String_Init(32, HEAP_ID_TRAINER_CARD_SCREEN);
-    String *fmtString = String_Init(32, HEAP_ID_TRAINER_CARD_SCREEN);
+    String *string = String_New(32, HEAP_ID_TRAINER_CARD_SCREEN);
+    String *fmtString = String_New(32, HEAP_ID_TRAINER_CARD_SCREEN);
     StringTemplate *template = StringTemplate_New(2, 32, HEAP_ID_TRAINER_CARD_SCREEN);
 
     StringTemplate_SetNumber(template, 0, PlayTime_GetHours(trainerCard->playTime), 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);

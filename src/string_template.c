@@ -57,7 +57,7 @@ StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
 
     tmp->maxArgs = maxArgs;
     tmp->heapID = heapID;
-    tmp->templateBuf = String_Init(maxLen, heapID);
+    tmp->templateBuf = String_New(maxLen, heapID);
     if (tmp->templateBuf == NULL) {
         goto cleanup;
     }
@@ -70,7 +70,7 @@ StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID)
     u32 arg;
     for (arg = 0; arg < maxArgs; arg++) {
         InitStringTemplateArgHeader(&tmp->args[arg].header);
-        tmp->args[arg].string = String_Init(maxLen, heapID);
+        tmp->args[arg].string = String_New(maxLen, heapID);
 
         if (tmp->args[arg].string == NULL) {
             break;
@@ -528,7 +528,7 @@ void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveDa
 
     gender = RecordMixedRNG_GetEntryGender(group, groupID);
     countryCode = RecordMixedRNG_GetEntryCountryCode(group, groupID);
-    groupName = String_Init(64, HEAP_ID_FIELD1);
+    groupName = String_New(64, HEAP_ID_FIELD1);
 
     String_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
     StringTemplate_SetString(template, idx, groupName, gender, 1, countryCode);

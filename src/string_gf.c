@@ -16,7 +16,7 @@ static inline void String_Assert(const String *string)
     GF_ASSERT(string->integrity == STRING_MAGIC_NUMBER);
 }
 
-String *String_Init(u32 size, u32 heapID)
+String *String_New(u32 size, u32 heapID)
 {
     String *string = Heap_Alloc(heapID, SIZEOF_STRING_HEADER + (size * sizeof(charcode_t)));
 
@@ -64,7 +64,7 @@ String *String_Clone(const String *src, u32 heapID)
 {
     String_Assert(src);
 
-    String *string = String_Init(src->size + 1, heapID);
+    String *string = String_New(src->size + 1, heapID);
 
     if (string) {
         String_Copy(string, src);

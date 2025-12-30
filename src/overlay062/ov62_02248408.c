@@ -37,8 +37,8 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
     Pokemon *v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
-    v6 = String_Init(v9, heapID);
-    v7 = String_Init(v9, heapID);
+    v6 = String_New(v9, heapID);
+    v7 = String_New(v9, heapID);
     v8 = Heap_Alloc(heapID, sizeof(u16) * v9);
 
     for (v4 = 0; v4 < v2; v4++) {

@@ -20,7 +20,7 @@ UnkStruct_020158A8 *sub_020158A8(int heapID)
     v0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_NAMES, heapID);
 
     for (v1 = 0; v1 < 29; v1++) {
-        v0->unk_04[v1] = String_Init(22, heapID);
+        v0->unk_04[v1] = String_New(22, heapID);
         MessageLoader_GetString(v0->unk_00, v1, v0->unk_04[v1]);
     }
 

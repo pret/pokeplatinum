@@ -720,7 +720,7 @@ static void ov21_021D63C0(UnkStruct_ov21_021D71A8 *param0)
 
 static void ov21_021D63DC(PokedexGraphicData *param0, int heapID, int param2, int param3)
 {
-    String *v0 = String_Init(32, heapID);
+    String *v0 = String_New(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_seen, v0);
@@ -742,7 +742,7 @@ static void ov21_021D63DC(PokedexGraphicData *param0, int heapID, int param2, in
 
 static void ov21_021D64B0(PokedexGraphicData *param0, int heapID, int param2)
 {
-    String *v0 = String_Init(32, heapID);
+    String *v0 = String_New(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_results, v0);
@@ -1266,7 +1266,7 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
 {
     PokedexDisplayBox displayBox;
     Window *v1;
-    String *v2 = String_Init(32, heapID);
+    String *v2 = String_New(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     displayBox.textMan = param1->textMan;

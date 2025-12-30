@@ -360,7 +360,7 @@ static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox
 {
     String *fmtString, *string;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
-    string = String_Init(200, heapID);
+    string = String_New(200, heapID);
     fmtString = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_ConfirmPurchase);
 
     if (items[idx].totalAmount == 1) {
@@ -384,7 +384,7 @@ static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msg
 {
     String *fmtString, *string;
     StringTemplate *strTemplate = StringTemplate_Default(heapID);
-    string = String_Init(200, heapID);
+    string = String_New(200, heapID);
     fmtString = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_PurchasePostSuccess);
 
     if (items[idx].totalAmount == 1) {
@@ -418,7 +418,7 @@ static void AccessoryShop_ShowDescBox(AccessoryShopDescBox *descBox, BgConfig *b
         descBox->fmtString[i] = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_BerryNameFormat + i);
     }
 
-    descBox->string = String_Init(32, heapID);
+    descBox->string = String_New(32, heapID);
     Window_FillTilemap(descBox->window, 15);
     descBox->active = TRUE;
 }
@@ -501,7 +501,7 @@ static void AccessoryShop_ShowItemList(AccessoryShopItemList *itemList, BgConfig
     Window_Add(bgConfig, itemList->window, BG_LAYER_MAIN_3, 17, 1, 14, 16, FIELD_MESSAGE_PALETTE_INDEX, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (14 * 6)));
 
     itemList->strTemplate = StringTemplate_Default(heapID);
-    itemList->tempString = String_Init(32, heapID);
+    itemList->tempString = String_New(32, heapID);
 
     fmtString = MessageLoader_GetNewString(msgLoader, FlowerShop_Text_BerryNameFormat);
 

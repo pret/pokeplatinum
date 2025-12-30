@@ -145,8 +145,8 @@ void NetworkError_DisplayNetworkError(int heapID, int networkErrorId, int errorC
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, heapID);
-    v3 = String_Init(0x180, heapID);
-    v4 = String_Init(0x180, heapID);
+    v3 = String_New(0x180, heapID);
+    v4 = String_New(0x180, heapID);
     Text_ResetAllPrinters();
     v5 = StringTemplate_Default(heapID);
 

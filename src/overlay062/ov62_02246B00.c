@@ -30,7 +30,7 @@ UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Opt
     v1 = Heap_Alloc(heapID, sizeof(UnkStruct_ov62_02246B00));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov62_02246B00));
     v1->unk_00 = param1;
-    v1->unk_18 = String_Init(param1 + 1, heapID);
+    v1->unk_18 = String_New(param1 + 1, heapID);
     v1->options = options;
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -313,7 +313,7 @@ void ov62_022470A8(UnkStruct_ov62_02246BF4 *param0)
 {
     int v0;
     u32 v1 = 0;
-    String *v2 = String_Init(100, HEAP_ID_102);
+    String *v2 = String_New(100, HEAP_ID_102);
 
     param0->unk_2C8 = 1;
     param0->unk_2CC = 0;

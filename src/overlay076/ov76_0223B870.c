@@ -986,7 +986,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
 
         Window_FillTilemap(v5, 0x0);
 
-        v4 = String_Init(100, HEAP_ID_53);
+        v4 = String_New(100, HEAP_ID_53);
         v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
         String_FormatInt(v4, v3, 3, 1, 1);
@@ -1015,7 +1015,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
 
     Window_FillTilemap(v5, 0x0);
 
-    v4 = String_Init(100, HEAP_ID_53);
+    v4 = String_New(100, HEAP_ID_53);
     v3 = SealCase_GetSealCount(param0->unk_64, v2 - 1);
 
     String_FormatInt(v4, v3, 3, 1, 1);

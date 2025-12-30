@@ -139,7 +139,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     errorMsgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, heapID);
-    errorString = String_Init(0x180, heapID);
+    errorString = String_New(0x180, heapID);
 
     Text_ResetAllPrinters();
 

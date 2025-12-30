@@ -1153,7 +1153,7 @@ static void PrintPokemonNameHeader(BattleParty *battleParty, u32 windowIndex, en
 {
     Window *window = &battleParty->windows[windowIndex];
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    String *formattedString = String_Init(12, battleParty->context->heapID);
+    String *formattedString = String_New(12, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, sPartyPokemonNameTextIDs[partyIndex]);
 
     StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
@@ -1247,7 +1247,7 @@ static void DrawPokemonHealthBar(BattleParty *battleParty, u32 windowIndex, u16 
 static void PrintPokemonAbilityName(BattleParty *battleParty, u32 windowIndex, u32 partyIndex)
 {
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    String *formattedString = String_Init(16, battleParty->context->heapID);
+    String *formattedString = String_New(16, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonAbilityName);
 
     StringTemplate_SetAbilityName(battleParty->stringTemplate, 0, pokemon->ability);
@@ -1267,7 +1267,7 @@ static void PrintPokemonHeldItem(BattleParty *battleParty, u32 windowIndex, u32 
     if (pokemon->heldItem == ITEM_NONE) {
         formattedString = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonNoItemHeld);
     } else {
-        formattedString = String_Init(18, battleParty->context->heapID);
+        formattedString = String_New(18, battleParty->context->heapID);
         string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonHeldItemName);
 
         StringTemplate_SetItemName(battleParty->stringTemplate, 0, pokemon->heldItem);
@@ -1283,7 +1283,7 @@ static void PrintPokemonHeldItem(BattleParty *battleParty, u32 windowIndex, u32 
 static void PrintMoveName(BattleParty *battleParty, enum Move move, u32 windowIndex, u32 textID, u16 font, u16 yOffset, TextColor color)
 {
     Window *window = &battleParty->windows[windowIndex];
-    String *formattedString = String_Init(16, battleParty->context->heapID);
+    String *formattedString = String_New(16, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, textID);
     u32 xOffset;
 
@@ -1348,7 +1348,7 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonLevelValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->level, POKEMON_LEVEL_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1362,7 +1362,7 @@ static void PrintSelectedPokemonLevel(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonExpToNextLevelValue);
-    formattedString = String_Init(14, battleParty->context->heapID);
+    formattedString = String_New(14, battleParty->context->heapID);
 
     if (pokemon->level < MAX_POKEMON_LEVEL) {
         StringTemplate_SetNumber(
@@ -1398,7 +1398,7 @@ static void PrintPokemonAttackStat(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonAttackStatValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->attack, POKEMON_ATTACK_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1426,7 +1426,7 @@ static void PrintPokemonDefenseStat(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonDefenseStatValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->defence, POKEMON_DEFENSE_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1454,7 +1454,7 @@ static void PrintPokemonSpeedStat(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonSpeedStatValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->speed, POKEMON_SPEED_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1482,7 +1482,7 @@ static void PrintPokemonSpAtkStat(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonSpAtkStatValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->spAtk, POKEMON_SP_ATK_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1510,7 +1510,7 @@ static void PrintPokemonSpDefStat(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonSpDefStatValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->spDef, POKEMON_SP_DEF_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1545,7 +1545,7 @@ static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonHPStatValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->curHP, POKEMON_HP_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1557,7 +1557,7 @@ static void PrintPokemonHPStat(BattleParty *battleParty, u32 partyIndex)
     String_Free(formattedString);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_PokemonMaxHPStatValue);
-    formattedString = String_Init(8, battleParty->context->heapID);
+    formattedString = String_New(8, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, pokemon->maxHP, POKEMON_HP_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1608,7 +1608,7 @@ static void PrintMoveAccuracyValue(BattleParty *battleParty, u32 windowIndex, u3
         String_Free(string);
     } else {
         string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveAccuracyValue);
-        formattedString = String_Init(8, battleParty->context->heapID);
+        formattedString = String_New(8, battleParty->context->heapID);
 
         StringTemplate_SetNumber(battleParty->stringTemplate, 0, moveAccuracyStat, MOVE_ACCURACY_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1653,7 +1653,7 @@ static void PrintMovePowerValue(BattleParty *battleParty, u32 windowIndex, u32 m
         String_Free(string);
     } else {
         string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MovePowerValue);
-        formattedString = String_Init(8, battleParty->context->heapID);
+        formattedString = String_New(8, battleParty->context->heapID);
 
         StringTemplate_SetNumber(battleParty->stringTemplate, 0, movePowerStat, MOVE_POWER_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1746,7 +1746,7 @@ static void PrintSummaryScreenMovePPStats(BattleParty *battleParty, u32 windowIn
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveCurrentPP);
-    formattedString = String_Init(6, battleParty->context->heapID);
+    formattedString = String_New(6, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, currentPP, SUMMARY_SCREEN_MOVE_PP_STAT_DIGIT, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1758,7 +1758,7 @@ static void PrintSummaryScreenMovePPStats(BattleParty *battleParty, u32 windowIn
     String_Free(formattedString);
 
     string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MoveMaxPP);
-    formattedString = String_Init(6, battleParty->context->heapID);
+    formattedString = String_New(6, battleParty->context->heapID);
 
     StringTemplate_SetNumber(battleParty->stringTemplate, 0, maxPP, SUMMARY_SCREEN_MOVE_PP_STAT_DIGIT, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
@@ -1810,7 +1810,7 @@ void BattlePartyText_PrintHMMovesCantBeForgottenText(BattleParty *battleParty)
 static void PrintMovesScreenMovePPStats(BattleParty *battleParty, BattlePartyPokemonMove *move, u32 windowIndex)
 {
     Window *window = &battleParty->windows[windowIndex];
-    String *formattedString = String_Init(6, battleParty->context->heapID);
+    String *formattedString = String_New(6, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MovePPLabel);
     u32 stringWidth;
 
@@ -1846,7 +1846,7 @@ static void PrintMovesScreenMovePPStats(BattleParty *battleParty, BattlePartyPok
 static void PrintMoveCurrentPP(BattleParty *battleParty, BattlePartyPokemonMove *move, u32 windowIndex)
 {
     Window *window = &battleParty->windows[windowIndex];
-    String *formattedString = String_Init(6, battleParty->context->heapID);
+    String *formattedString = String_New(6, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_MovePPLabel);
     u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
 
@@ -1935,7 +1935,7 @@ static void PrintSelectedPokemonName(BattleParty *battleParty, u32 partyIndex)
 {
     Window *window = &battleParty->windows[BATTLE_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME];
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[partyIndex];
-    String *string = String_Init(12, battleParty->context->heapID);
+    String *string = String_New(12, battleParty->context->heapID);
     String *formattedString = MessageLoader_GetNewString(battleParty->messageLoader, sPartyPokemonNameTextIDs[partyIndex]);
     u8 stringWidth;
     u8 formattedStringWidth;

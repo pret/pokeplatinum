@@ -3404,7 +3404,7 @@ static void BoxMonSelection_Free(BoxMonSelection *selection)
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)
 {
     customization->boxID = PCBoxes_GetCurrentBoxID(pcBoxes);
-    customization->name = String_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_BOX_DATA);
+    customization->name = String_New(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_BOX_DATA);
     PCBoxes_LoadCustomization(pcBoxes, customization);
 }
 
@@ -3415,11 +3415,11 @@ static void Customization_Free(BoxCustomization *customization)
 
 static void PCMonPreview_Init(PCMonPreview *preview)
 {
-    preview->nickname = String_Init(12, HEAP_ID_BOX_DATA);
-    preview->speciesName = String_Init(12, HEAP_ID_BOX_DATA);
-    preview->heldItemName = String_Init(18, HEAP_ID_BOX_DATA);
-    preview->nature = String_Init(12, HEAP_ID_BOX_DATA);
-    preview->ability = String_Init(16, HEAP_ID_BOX_DATA);
+    preview->nickname = String_New(12, HEAP_ID_BOX_DATA);
+    preview->speciesName = String_New(12, HEAP_ID_BOX_DATA);
+    preview->heldItemName = String_New(18, HEAP_ID_BOX_DATA);
+    preview->nature = String_New(12, HEAP_ID_BOX_DATA);
+    preview->ability = String_New(16, HEAP_ID_BOX_DATA);
 }
 
 static void PCMonPreview_Free(PCMonPreview *preview)
@@ -3439,8 +3439,8 @@ static void PCCompareHelper_Init(CompareModeHelper *compareHelper)
 
     for (int i = 0; i < 2; i++) {
         compareHelper->compareSlotHasMon[i] = FALSE;
-        compareHelper->compareMons[i].monName = String_Init(12, HEAP_ID_BOX_DATA);
-        compareHelper->compareMons[i].nature = String_Init(12, HEAP_ID_BOX_DATA);
+        compareHelper->compareMons[i].monName = String_New(12, HEAP_ID_BOX_DATA);
+        compareHelper->compareMons[i].nature = String_New(12, HEAP_ID_BOX_DATA);
     }
 }
 

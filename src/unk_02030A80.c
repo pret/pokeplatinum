@@ -75,7 +75,7 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
 
 String *sub_02030B94(const UnkStruct_02030A80 *param0, int heapID)
 {
-    String *v0 = String_Init((7 * 2) + 1, heapID);
+    String *v0 = String_New((7 * 2) + 1, heapID);
 
     String_CopyNumChars(v0, param0->unk_00, (7 * 2) + 1);
     return v0;
@@ -167,7 +167,7 @@ String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int hea
 
         return NULL;
     } else {
-        String *v3 = String_Init(40, heapID);
+        String *v3 = String_New(40, heapID);
 
         String_CopyNumChars(v3, param0->unk_20_val2, 40);
         return v3;

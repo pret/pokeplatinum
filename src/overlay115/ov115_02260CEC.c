@@ -1417,7 +1417,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
     Window_Add(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, 1 + 9);
     Window_FillRectWithColor(&param0->unk_0C, 15, 0, 0, 28 * 8, 4 * 8);
 
-    v0 = String_Init(128, heapID);
+    v0 = String_New(128, heapID);
 
     MessageLoader_GetString(param1->unk_08, 0, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_0C, FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
@@ -1440,7 +1440,7 @@ static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
         Window_Add(param1->unk_00, &v5, 2, 0, 0, 8, 2, 5, 256);
 
         v6 = 256;
-        v7 = String_Init(128, heapID);
+        v7 = String_New(128, heapID);
 
         for (v2 = 0; v2 < param3; v2++) {
             if (v2 != param4) {
@@ -3224,8 +3224,8 @@ static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 {
     param0->unk_04 = StringTemplate_Default(heapID);
     param0->unk_08 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0407, heapID);
-    param0->unk_0C = String_Init(128, heapID);
-    param0->unk_10 = String_Init(128, heapID);
+    param0->unk_0C = String_New(128, heapID);
+    param0->unk_10 = String_New(128, heapID);
 }
 
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0)
@@ -4400,7 +4400,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         BOOL v3;
         UnkStruct_020127E8 v4;
 
-        param0->unk_5C = String_Init(16, heapID);
+        param0->unk_5C = String_New(16, heapID);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         param0->unk_4C = sub_02012B20(&param0->unk_38, heapID);
 

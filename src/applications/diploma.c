@@ -386,8 +386,8 @@ static void Diploma_LoadGraphics(Diploma *data)
 
 static void Diploma_LoadText(Diploma *data)
 {
-    String *string = String_Init(512, data->heapID);
-    String *formatString = String_Init(512, data->heapID);
+    String *string = String_New(512, data->heapID);
+    String *formatString = String_New(512, data->heapID);
 
     MessageLoader_GetString(data->messageLoader, Diploma_Text_Player, formatString);
     StringTemplate_SetPlayerName(data->stringTemplate, 0, data->trainerInfo);

@@ -611,7 +611,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->unk_0C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
-    battleSys->msgBuffer = String_Init(2 * 160, HEAP_ID_BATTLE);
+    battleSys->msgBuffer = String_New(2 * 160, HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 0), &battleSys->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 2), &battleSys->unk_2304[0], 0x20 * 7);
@@ -1729,7 +1729,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
         String *v6;
 
         v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
-        v6 = String_Init(0x100, HEAP_ID_BATTLE);
+        v6 = String_New(0x100, HEAP_ID_BATTLE);
 
         MessageLoader_GetString(v5, 923, v6);
         Text_AddPrinterWithParams(v0->unk_08, FONT_MESSAGE, v6, 0, 0, NULL, NULL);

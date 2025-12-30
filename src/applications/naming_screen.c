@@ -1485,7 +1485,7 @@ NamingScreenArgs *NamingScreenArgs_Init(
     args->maxChars = maxChars;
     args->returnCode = NAMING_SCREEN_CODE_OK;
     args->nameInputRaw[0] = CHAR_EOS;
-    args->textInputStr = String_Init(32, heapID);
+    args->textInputStr = String_New(32, heapID);
     args->battleMsgID = 0;
     args->pcBoxes = NULL;
     args->monGender = GENDER_MALE;
@@ -1741,7 +1741,7 @@ static void NamingScreen_PrepareBattleMessage(NamingScreen *namingScreen, Applic
     if (args->battleMsgID != 0) {
         int boxID, nextBoxID;
 
-        string = String_Init(200, HEAP_ID_NAMING_SCREEN_APP);
+        string = String_New(200, HEAP_ID_NAMING_SCREEN_APP);
         namingScreen->battleMessageString = NULL;
         boxID = PCBoxes_GetCurrentBoxID(args->pcBoxes);
         nextBoxID = PCBoxes_FirstEmptyBox(args->pcBoxes);
@@ -2654,7 +2654,7 @@ static void NamingScreen_PrintChars(
 {
     int i = 0, charWidth, charXOffset;
     u16 charBuffer[2];
-    String *string = String_Init(2, HEAP_ID_NAMING_SCREEN_APP);
+    String *string = String_New(2, HEAP_ID_NAMING_SCREEN_APP);
 
     while (charCodes[i] != CHAR_EOS) {
         if (charCodes[i] == NMS_CONTROL_DAKU
@@ -2740,7 +2740,7 @@ static void NamingScreen_PrintCharOnWindowAndOBJ(
         GXS_LoadOBJ(pixelBuf, sUnkGXObjOffsets1[i] * 0x20, 0x20 * 4 * 2);
     }
 
-    string2 = String_Init(20 + 1, HEAP_ID_NAMING_SCREEN_APP);
+    string2 = String_New(20 + 1, HEAP_ID_NAMING_SCREEN_APP);
 
     for (i = 0; i < 3; i++) {
         curCharBuf[0] = tmpBuf[i];

@@ -73,7 +73,7 @@ void TrainerInfo_NameString(const TrainerInfo *info, String *name)
 
 String *TrainerInfo_NameNewString(const TrainerInfo *info, int heapID)
 {
-    String *name = String_Init(TRAINER_NAME_LEN + 1, heapID);
+    String *name = String_New(TRAINER_NAME_LEN + 1, heapID);
 
     TrainerInfo_NameString(info, name);
     return name;

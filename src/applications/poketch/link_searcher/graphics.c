@@ -55,7 +55,7 @@ BOOL PoketchLinkSearcherGraphics_New(LinkSearcherGraphics **dest, const LinkResu
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
         graphics->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKETCH_LINK_SEARCHER, HEAP_ID_POKETCH_APP);
-        graphics->string = String_Init(96, HEAP_ID_POKETCH_APP);
+        graphics->string = String_New(96, HEAP_ID_POKETCH_APP);
         SetupSprites(graphics, results);
         *dest = graphics;
 

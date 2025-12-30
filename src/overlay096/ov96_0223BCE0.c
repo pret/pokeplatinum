@@ -393,11 +393,11 @@ static void ov96_0223C314(UnkStruct_ov96_0223BF40 *param0)
 
 static void ov96_0223C358(UnkStruct_ov96_0223BF40 *param0)
 {
-    param0->unk_BDC = String_Init(90 * 2, HEAP_ID_68);
-    param0->unk_BE4 = String_Init(4, HEAP_ID_68);
-    param0->unk_BE8 = String_Init(3, HEAP_ID_68);
+    param0->unk_BDC = String_New(90 * 2, HEAP_ID_68);
+    param0->unk_BE4 = String_New(4, HEAP_ID_68);
+    param0->unk_BE8 = String_New(3, HEAP_ID_68);
     param0->unk_BE0 = MessageLoader_GetNewString(param0->unk_BD0, 10);
-    param0->unk_BEC = String_Init(16 * 8 * 2, HEAP_ID_68);
+    param0->unk_BEC = String_New(16 * 8 * 2, HEAP_ID_68);
 }
 
 static void ov96_0223C3B0(UnkStruct_ov96_0223BF40 *param0)
@@ -1658,7 +1658,7 @@ static void ov96_0223D99C(UnkStruct_ov96_0223BF40 *param0)
 
 static void ov96_0223D9B8(UnkStruct_ov96_0223BF40 *param0, int param1)
 {
-    String *v0 = String_Init(16 * 8 * 2, HEAP_ID_68);
+    String *v0 = String_New(16 * 8 * 2, HEAP_ID_68);
 
     MessageLoader_GetString(param0->unk_BD8, param1, v0);
     StringTemplate_Format(param0->unk_BCC, param0->unk_BEC, v0);

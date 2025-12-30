@@ -105,7 +105,7 @@ void sub_0209A74C(int heapID)
     Bg_MaskPalette(BG_LAYER_SUB_0, 27681);
 
     v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0005, heapID);
-    v3 = String_Init(384, heapID);
+    v3 = String_New(384, heapID);
 
     Text_ResetAllPrinters();
     Window_AddFromTemplate(v0, &v1, &Unk_020F8AC4);
@@ -179,7 +179,7 @@ void sub_0209A8E0(int heapID)
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
     v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0005, heapID);
-    v3 = String_Init(0x180, heapID);
+    v3 = String_New(0x180, heapID);
 
     Text_ResetAllPrinters();
     Window_AddFromTemplate(v0, &v1, &Unk_020F8AC4);

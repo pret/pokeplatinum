@@ -179,8 +179,8 @@ static BOOL sub_020529C4(FieldTask *task)
 
 static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3)
 {
-    String *v0 = String_Init(1024, HEAP_ID_FIELD2);
-    String *v1 = String_Init(1024, HEAP_ID_FIELD2);
+    String *v0 = String_New(1024, HEAP_ID_FIELD2);
+    String *v1 = String_New(1024, HEAP_ID_FIELD2);
 
     Window_FillTilemap(&param0->unk_0C, 0);
     MessageLoader_GetString(param0->unk_1C, param1, v0);

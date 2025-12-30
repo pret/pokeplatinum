@@ -811,11 +811,11 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
 
     param0->unk_68 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_DUMMY_0536, HEAP_ID_103);
     param0->unk_6C = StringTemplate_Default(HEAP_ID_103);
-    param0->unk_70 = String_Init(600, HEAP_ID_103);
-    param0->unk_74 = String_Init(600, HEAP_ID_103);
+    param0->unk_70 = String_New(600, HEAP_ID_103);
+    param0->unk_74 = String_New(600, HEAP_ID_103);
 
     for (v5 = 0; v5 < 2; v5++) {
-        param0->unk_78[v5] = String_Init(32, HEAP_ID_103);
+        param0->unk_78[v5] = String_New(32, HEAP_ID_103);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_103);

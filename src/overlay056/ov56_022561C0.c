@@ -763,7 +763,7 @@ static String *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 
-            v1 = String_Init(10, HEAP_ID_89);
+            v1 = String_New(10, HEAP_ID_89);
 
             String_CopyChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
             StringTemplate_SetString(param2, 0, v1, 0, 0, PalPad_GetTrainerRegionCode(param0, v3));

@@ -31,7 +31,7 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
     int v0;
     MessageLoader *v1;
     String *v2;
-    String *v3 = String_Init(511, HEAP_ID_111);
+    String *v3 = String_New(511, HEAP_ID_111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;

@@ -1323,7 +1323,7 @@ static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapID heapID, TitleS
         TEXT_BANK_TITLE_SCREEN,
         heapID);
 
-    String *buffer = String_Init(64, heapID);
+    String *buffer = String_New(64, heapID);
 
     Window_AddFromTemplate(bgConfig, &titleScreen->pressStartWindow, &sPressStartWindowTemplate);
     Window_FillRectWithColor(&titleScreen->pressStartWindow, 0, 0, 0, TILES_TO_PIXELS(28), TILES_TO_PIXELS(2));

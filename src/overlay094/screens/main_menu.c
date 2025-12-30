@@ -326,7 +326,7 @@ static void GTSApplication_MainMenu_CleanupWindows(GTSApplicationState *appState
 
 static void GTS_MainMenu_LoadTitle(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    appState->genericMessageBuffer = String_New(90 * 2, HEAP_ID_62);
     appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_MainMenu_Title);
 }
 

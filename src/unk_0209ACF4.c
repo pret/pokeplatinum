@@ -66,8 +66,8 @@ void sub_0209ACF4(FieldTask *param0)
     UnkStruct_0209AD84 *v1 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0209AD84));
 
     v1->fieldSystem = fieldSystem;
-    v1->unk_04 = String_Init(400, HEAP_ID_FIELD3);
-    v1->unk_08 = String_Init(400, HEAP_ID_FIELD3);
+    v1->unk_04 = String_New(400, HEAP_ID_FIELD3);
+    v1->unk_08 = String_New(400, HEAP_ID_FIELD3);
     v1->unk_0C = StringTemplate_Default(HEAP_ID_FIELD3);
     v1->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0420, HEAP_ID_FIELD3);
     v1->unk_14 = ColoredArrow_New(HEAP_ID_FIELD3);

@@ -483,8 +483,8 @@ void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem)
     menu->fieldSystem = fieldSystem;
     menu->exitCallback = exitCallback;
     menu->state = UNDERGROUND_MENU_STATE_INIT;
-    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_New(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_New(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
     menu->sysTask = SysTask_Start(UndergroundMenu_Main, menu, 10000);
 
@@ -1415,8 +1415,8 @@ void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fi
     menu->fieldSystem = fieldSystem;
     menu->exitCallback = exitCallback;
     menu->state = UNDERGROUND_MENU_STATE_INIT;
-    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_New(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_New(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
 
     CommPlayerMan_PauseFieldSystem();
@@ -1825,8 +1825,8 @@ void *UndergroundMenu_StartGiftMenu(ExitCallback exitCallback, FieldSystem *fiel
     menu->spriteCount = 0;
     menu->unk_48 = NULL;
     menu->cursorCallback = NULL;
-    menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
-    menu->fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
+    menu->string = String_New(50 * 2, HEAP_ID_FIELD1);
+    menu->fmtString = String_New(50 * 2, HEAP_ID_FIELD1);
     menu->template = StringTemplate_Default(HEAP_ID_FIELD1);
 
     UndergroundMenu_OpenGoodsMenu(menu);

@@ -214,7 +214,7 @@ BOOL CommManUnderground_FormatStringWith2TrainerNames(TrainerInfo *trainerInfo1,
 {
     if (trainerInfo1 && trainerInfo2) {
         StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD1);
-        String *fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
+        String *fmtString = String_New(50 * 2, HEAP_ID_FIELD1);
 
         StringTemplate_SetPlayerName(template, 0, trainerInfo1);
         StringTemplate_SetPlayerName(template, 1, trainerInfo2);
@@ -233,7 +233,7 @@ BOOL CommManUnderground_FormatStringWithTrainerName(TrainerInfo *trainerInfo, in
 {
     if (trainerInfo) {
         StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD1);
-        String *fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
+        String *fmtString = String_New(50 * 2, HEAP_ID_FIELD1);
 
         StringTemplate_SetPlayerName(template, index, trainerInfo);
         MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), bankEntry, fmtString);
@@ -1034,10 +1034,10 @@ void UndergroundMan_SetReturnLog(int param0)
 
     if (sCommManUnderground) {
         if (sCommManUnderground->unk_DC[param0] == NULL) {
-            sCommManUnderground->unk_DC[param0] = String_Init((50 * 2), HEAP_ID_COMMUNICATION);
+            sCommManUnderground->unk_DC[param0] = String_New((50 * 2), HEAP_ID_COMMUNICATION);
 
             v0 = StringTemplate_Default(HEAP_ID_FIELD2);
-            v1 = String_Init((50 * 2), HEAP_ID_FIELD2);
+            v1 = String_New((50 * 2), HEAP_ID_FIELD2);
 
             StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
             MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), 115, v1);

@@ -105,8 +105,8 @@ void *ov95_02247B6C(TradeSequenceData *param0)
         v0->unk_54 = ov95_02247628(param0);
         v0->unk_0C = PokemonSpriteManager_New(HEAP_ID_58);
         v0->unk_10 = NULL;
-        v0->unk_68 = String_Init(300, HEAP_ID_58);
-        v0->unk_6C = String_Init(300, HEAP_ID_58);
+        v0->unk_68 = String_New(300, HEAP_ID_58);
+        v0->unk_6C = String_New(300, HEAP_ID_58);
         v0->unk_78 = NULL;
         v0->unk_7C = NULL;
         v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_58);

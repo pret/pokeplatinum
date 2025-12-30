@@ -1234,7 +1234,7 @@ void sub_0203DFE8(
     v2->unk_04 = param4;
     v2->unk_08 = param6;
     v2->unk_0C = NamingScreenArgs_Init(HEAP_ID_FIELD2, type, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
-    v2->unk_10 = String_Init(12, HEAP_ID_FIELD2);
+    v2->unk_10 = String_New(12, HEAP_ID_FIELD2);
 
     switch (type) {
     case NAMING_SCREEN_TYPE_POKEMON:

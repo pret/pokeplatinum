@@ -275,7 +275,7 @@ static void ov94_0223DFDC(GTSApplicationState *appState)
 {
     GTSPokemonListing *listing = &appState->searchResults[appState->selectedSearchResult];
 
-    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    appState->genericMessageBuffer = String_New(90 * 2, HEAP_ID_62);
 
     StringTemplate_ClearArgs(appState->stringTemplate);
 

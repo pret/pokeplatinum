@@ -993,9 +993,9 @@ static BOOL RowanIntro_DisplayMessage(RowanIntro *manager, u32 textID, BOOL endE
         RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
         {
-            String *tmpString = String_Init(0x400, manager->heapID);
+            String *tmpString = String_New(0x400, manager->heapID);
 
-            manager->string = String_Init(0x400, manager->heapID);
+            manager->string = String_New(0x400, manager->heapID);
 
             MessageLoader_GetString(manager->msgLoader, textID, tmpString);
             StringTemplate_SetString(
@@ -1162,7 +1162,7 @@ static BOOL RowanIntro_DisplayTextBlock(
     switch (manager->displayTextBlockState) {
     case DTB_STATE_INIT:
         Bg_ToggleLayer(BG_LAYER_MAIN_0, FALSE);
-        manager->string = String_Init(0x400, manager->heapID);
+        manager->string = String_New(0x400, manager->heapID);
         MessageLoader_GetString(manager->msgLoader, textID, manager->string);
 
         if (whichCase == DTBC_ADVENTURE_INFO) {

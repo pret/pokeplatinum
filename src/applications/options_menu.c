@@ -694,7 +694,7 @@ static void PrintTitleAndEntries(OptionsMenuData *menuData)
     TextColor transparentBg = TEXT_COLOR(1, 2, 0);
     TextColor whiteBg = TEXT_COLOR(1, 2, 15);
 
-    String *string = String_Init(256, menuData->heapID);
+    String *string = String_New(256, menuData->heapID);
     MessageLoader_GetString(menuData->msgLoader, OptionsMenu_Text_Title, string);
     Text_AddPrinterWithParamsAndColor(&menuData->windows.title,
         FONT_SYSTEM,
@@ -853,7 +853,7 @@ static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BO
     Window_FillTilemap(&menuData->windows.description, 15);
 
     TextColor color = TEXT_COLOR(1, 2, 15);
-    String *string = String_Init(256, menuData->heapID);
+    String *string = String_New(256, menuData->heapID);
     MessageLoader_GetString(menuData->msgLoader, entry, string);
 
     if (scheduleVRAMCopy == FALSE) {

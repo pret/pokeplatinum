@@ -60,8 +60,8 @@ UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgCon
         size = 230;
     }
 
-    textPrinter->mainString = String_Init(size, heapID);
-    textPrinter->formatString = String_Init(size, heapID);
+    textPrinter->mainString = String_New(size, heapID);
+    textPrinter->formatString = String_New(size, heapID);
     textPrinter->template = StringTemplate_Default(heapID);
     textPrinter->bankID = bankID;
     textPrinter->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);

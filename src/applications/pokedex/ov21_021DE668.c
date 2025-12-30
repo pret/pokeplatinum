@@ -419,7 +419,7 @@ static void ov21_021DEB58(PokedexGraphicData **param0, const UnkStruct_ov21_021D
 
 void ov21_021DEB8C(Window *param0, int param1, enum HeapID heapID, int param3, u32 param4)
 {
-    String *v0 = String_Init(64, heapID);
+    String *v0 = String_New(64, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_ht, v0);
@@ -437,7 +437,7 @@ void ov21_021DEB8C(Window *param0, int param1, enum HeapID heapID, int param3, u
 
 static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3)
 {
-    String *v0 = String_Init(64, heapID);
+    String *v0 = String_New(64, heapID);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
     MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
@@ -450,7 +450,7 @@ static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3)
 
 static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3)
 {
-    String *v0 = String_Init(64, heapID);
+    String *v0 = String_New(64, heapID);
 
     int weightMessageBankIndex = Weight_Message_Bank_Index();
     MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, heapID);

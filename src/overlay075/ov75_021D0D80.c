@@ -258,7 +258,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), (15 << 4) | 15);
 
-        v0 = String_Init(19 * 2 * 2, param0->heapID);
+        v0 = String_New(19 * 2 * 2, param0->heapID);
 
         MessageLoader_GetString(param0->unk_20, 2, v0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -316,7 +316,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), (15 << 4) | 15);
 
-        v1 = String_Init(19 * 2 * 2, param0->heapID);
+        v1 = String_New(19 * 2 * 2, param0->heapID);
         MessageLoader_GetString(param0->unk_20, 3, v1);
         param0->unk_0F = Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], FONT_MESSAGE, v1, 0, 0, param0->unk_10, TEXT_COLOR(1, 2, 15), NULL);
 
@@ -821,7 +821,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
 
         param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0409, param0->heapID);
 
-        v2 = String_Init(8 * 2, param0->heapID);
+        v2 = String_New(8 * 2, param0->heapID);
 
         for (v0 = 0; v0 < 2; v0++) {
             String_Clear(v2);

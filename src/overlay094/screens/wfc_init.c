@@ -305,8 +305,8 @@ static void GTSApplication_WFCInit_CleanupWindows(GTSApplicationState *appState)
 
 static void GTSApplication_WFCInit_InitTitle(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
-    appState->shortErrorBuffer = String_Init(16 * 8 * 2, HEAP_ID_62);
+    appState->genericMessageBuffer = String_New(90 * 2, HEAP_ID_62);
+    appState->shortErrorBuffer = String_New(16 * 8 * 2, HEAP_ID_62);
     appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_NintendoWifiConnection);
 }
 
@@ -935,7 +935,7 @@ void ov94_02245934(GTSApplicationState *appState)
 
 static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId)
 {
-    String *fmtString = String_Init(16 * 8 * 2, HEAP_ID_62);
+    String *fmtString = String_New(16 * 8 * 2, HEAP_ID_62);
 
     MessageLoader_GetString(appState->unk0695MessageLoader, messageId, fmtString);
     StringTemplate_Format(appState->stringTemplate, appState->shortErrorBuffer, fmtString);

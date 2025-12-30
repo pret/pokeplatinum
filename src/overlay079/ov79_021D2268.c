@@ -480,7 +480,7 @@ static void ov79_021D2768(UnkStruct_ov79_021D2928 *param0)
 
     param0->unk_18 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0462, param0->heapID);
     param0->unk_1C.unk_00 = StringTemplate_New(1, 64, param0->heapID);
-    param0->unk_1C.unk_04 = String_Init(64, param0->heapID);
+    param0->unk_1C.unk_04 = String_New(64, param0->heapID);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_1C.unk_08[v0] = MessageLoader_GetNewString(param0->unk_18, v0);
@@ -507,7 +507,7 @@ static void ov79_021D27D8(UnkStruct_ov79_021D2928 *param0)
     param0->unk_30.unk_07 = Pokemon_GetGender(param0->unk_10->unk_00);
     param0->unk_30.unk_06 = Pokemon_GetNature(param0->unk_10->unk_00);
     param0->unk_30.unk_08 = SpeciesData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
-    param0->unk_30.unk_0C = String_Init(12, param0->heapID);
+    param0->unk_30.unk_0C = String_New(12, param0->heapID);
 
     Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRING, param0->unk_30.unk_0C);
 

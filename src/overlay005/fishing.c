@@ -514,8 +514,8 @@ static int TryPressAOrB(void)
 static void FishingTask_Init(FishingTask *fishingTask)
 {
     fishingTask->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
-    fishingTask->formattedFishingMessage = String_Init(0x400, HEAP_ID_FIELD1);
-    fishingTask->fishingMessage = String_Init(0x400, HEAP_ID_FIELD1);
+    fishingTask->formattedFishingMessage = String_New(0x400, HEAP_ID_FIELD1);
+    fishingTask->fishingMessage = String_New(0x400, HEAP_ID_FIELD1);
     fishingTask->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD1);
 }
 

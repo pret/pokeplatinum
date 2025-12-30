@@ -556,8 +556,8 @@ static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DF
     }
 
     param0->unk_24 = StringTemplate_Default(heapID);
-    param0->unk_28 = String_Init(256, heapID);
-    param0->unk_2C = String_Init(256, heapID);
+    param0->unk_28 = String_New(256, heapID);
+    param0->unk_2C = String_New(256, heapID);
 }
 
 static void ov68_0225CBC0(UnkStruct_ov68_0225CB70 *param0)
@@ -880,7 +880,7 @@ static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C9
     Window_Add(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&param0->unk_08, 15);
 
-    param0->unk_18 = String_Init(256, heapID);
+    param0->unk_18 = String_New(256, heapID);
     param0->unk_04 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
 }
 
@@ -1412,10 +1412,10 @@ static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, u32 heap
     u16 *v2;
     int v3;
 
-    param0->unk_10 = String_Init(256, heapID);
+    param0->unk_10 = String_New(256, heapID);
 
     for (v3 = 0; v3 < 3; v3++) {
-        param0->unk_14[v3] = String_Init(256, heapID);
+        param0->unk_14[v3] = String_New(256, heapID);
     }
 
     if (param1 == 1) {

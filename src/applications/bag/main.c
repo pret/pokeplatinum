@@ -850,7 +850,7 @@ static void SetupTextLoaders(BagController *controller)
     controller->strTemplate = StringTemplate_Default(HEAP_ID_BAG);
     controller->itemNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BAG);
     controller->moveNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_BAG);
-    controller->stringBuffer = String_Init(256, HEAP_ID_BAG);
+    controller->stringBuffer = String_New(256, HEAP_ID_BAG);
 }
 
 static void CountAccessiblePockets(BagController *controller)
@@ -1007,7 +1007,7 @@ static void LoadCurrentPocketItemNames(BagController *controller)
 static void InitItemNameBuffers(BagController *controller)
 {
     for (u32 i = 0; i < LARGEST_POCKET_SIZE; i++) {
-        controller->itemNames[i] = String_Init(18, HEAP_ID_BAG);
+        controller->itemNames[i] = String_New(18, HEAP_ID_BAG);
     }
 }
 

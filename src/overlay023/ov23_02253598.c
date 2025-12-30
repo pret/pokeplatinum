@@ -129,8 +129,8 @@ static void ov23_0225360C(Window *param0, MessageLoader *param1, TrainerInfo *pa
     const int v12 = 146;
 
     v0 = StringTemplate_Default(HEAP_ID_FIELD1);
-    v1 = String_Init(30, HEAP_ID_FIELD1);
-    v2 = String_Init(30, HEAP_ID_FIELD1);
+    v1 = String_New(30, HEAP_ID_FIELD1);
+    v2 = String_New(30, HEAP_ID_FIELD1);
 
     MessageLoader_GetString(param1, 0, v1);
     Text_AddPrinterWithParams(param0, FONT_SYSTEM, v1, v7, 1, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -343,8 +343,8 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     const int v12 = 100;
 
     v0 = StringTemplate_Default(HEAP_ID_FIELD1);
-    v1 = String_Init(40, HEAP_ID_FIELD1);
-    v2 = String_Init(40, HEAP_ID_FIELD1);
+    v1 = String_New(40, HEAP_ID_FIELD1);
+    v2 = String_New(40, HEAP_ID_FIELD1);
 
     StringTemplate_SetPlayerName(v0, 1, param2);
     MessageLoader_GetString(param1, 12, v1);

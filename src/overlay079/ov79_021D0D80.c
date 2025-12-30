@@ -678,7 +678,7 @@ static void ov79_021D1568(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_2C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0463, param0->heapID);
     param0->unk_28 = sub_020158A8(param0->heapID);
     param0->unk_30.unk_00 = StringTemplate_New(2, 64, param0->heapID);
-    param0->unk_30.unk_04 = String_Init(64, param0->heapID);
+    param0->unk_30.unk_04 = String_New(64, param0->heapID);
     param0->unk_30.unk_08 = MessageLoader_GetNewString(param0->unk_2C, 6);
     param0->unk_30.unk_0C = MessageLoader_GetNewString(param0->unk_2C, 22);
     param0->unk_30.unk_10 = MessageLoader_GetNewString(param0->unk_2C, 4);

@@ -483,7 +483,7 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(String *string)
     for (netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         if (buriedSpheresEnv->retrievedSpheres[netID] != SPHERE_NONE) {
             template = StringTemplate_Default(HEAP_ID_FIELD1);
-            fmtString = String_Init(100, HEAP_ID_FIELD1);
+            fmtString = String_New(100, HEAP_ID_FIELD1);
 
             StringTemplate_SetUndergroundItemNameWithArticle(template, 2, buriedSpheresEnv->retrievedSpheres[netID]);
             StringTemplate_CapitalizeArgAtIndex(template, 2);

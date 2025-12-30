@@ -2867,8 +2867,8 @@ static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
 
     messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0359, heapID);
     template = StringTemplate_Default(heapID);
-    result = String_Init(128, heapID);
-    message = String_Init(128, heapID);
+    result = String_New(128, heapID);
+    message = String_New(128, heapID);
     MessageLoader_GetString(messageLoader, 0, message);
     StringTemplate_SetTrainerName(template, 0, trainerClass);
     StringTemplate_Format(template, result, message);

@@ -959,7 +959,7 @@ static void ShowWonderCardTitle(ApplicationManager *appMann, Window *window, cha
 {
     MysteryGiftAppData *appData = ApplicationManager_Data(appMann);
 
-    String *string = String_Init(WONDERCARD_TITLE_LENGTH + 1, HEAP_ID_MYSTERY_GIFT_APP);
+    String *string = String_New(WONDERCARD_TITLE_LENGTH + 1, HEAP_ID_MYSTERY_GIFT_APP);
 
     String_CopyNumChars(string, title, WONDERCARD_TITLE_LENGTH);
     Window_FillTilemap(window, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));

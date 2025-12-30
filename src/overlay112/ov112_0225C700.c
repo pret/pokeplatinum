@@ -949,7 +949,7 @@ static void ov112_0225D1EC(UnkStruct_ov112_0225D2D0 *param0, UnkStruct_ov112_022
         Window_ScheduleCopyToVRAM(&param0->unk_60[v0]);
     }
 
-    param0->unk_90 = String_Init(256, heapID);
+    param0->unk_90 = String_New(256, heapID);
     param0->unk_94 = Graphics_GetPlttDataFromOpenNARC(param1->unk_1A4, 0, &param0->unk_98, heapID);
 
     Bg_LoadPalette(0, &((u8 *)param0->unk_98->pRawData)[(7 * 0x20) + (7 * 2)], 0x4, (7 * 0x20) + (13 * 2));
@@ -1028,7 +1028,7 @@ static void ov112_0225D408(UnkStruct_ov112_0225D44C *param0, UnkStruct_ov112_022
 {
     param0->unk_00 = 0;
     param0->unk_02 = 0;
-    param0->unk_08 = String_Init(256, heapID);
+    param0->unk_08 = String_New(256, heapID);
     param0->unk_01 = 7 + param2;
 
     Window_Add(param1->unk_00, &param0->unk_0C, 3, 0, 0, 180, 2, 7, 0);
@@ -1118,7 +1118,7 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
     memset(param0, 0, sizeof(UnkStruct_ov112_0225D6DC));
 
     v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0653, heapID);
-    v2 = String_Init(128, heapID);
+    v2 = String_New(128, heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov112_0225D73C(&param0->unk_40[v0], Unk_ov112_0225D960[v0], Unk_ov112_0225D968[v0]);
@@ -1131,7 +1131,7 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
 
         v3 = String_NumLines(v2);
         v7 = Unk_ov112_0225D880[v0].unk_08;
-        v4 = String_Init(String_Length(v2) + 1, heapID);
+        v4 = String_New(String_Length(v2) + 1, heapID);
         for (v5 = 0; v5 < v3; v5++) {
             String_CopyLineNum(v4, v2, v5);
             switch (Unk_ov112_0225D880[v0].unk_09) {

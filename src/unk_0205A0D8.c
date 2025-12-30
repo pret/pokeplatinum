@@ -665,8 +665,8 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     v0->unk_08 = param1;
     v0->unk_28 = StringTemplate_Default(HEAP_ID_FIELD2);
     v0->unk_2C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELD2);
-    v0->unk_0C = String_Init(100 * 2, HEAP_ID_FIELD2);
-    v0->unk_10 = String_Init(100 * 2, HEAP_ID_FIELD2);
+    v0->unk_0C = String_New(100 * 2, HEAP_ID_FIELD2);
+    v0->unk_10 = String_New(100 * 2, HEAP_ID_FIELD2);
 
     Window_Init(&v0->unk_14);
     Window_Init(&v0->unk_54);
@@ -1008,8 +1008,8 @@ static BOOL sub_0205B140(FieldTask *param0)
     case 0:
         v1->unk_18 = StringTemplate_Default(HEAP_ID_FIELD1);
         v1->unk_1C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0011, HEAP_ID_FIELD1);
-        v1->unk_00 = String_Init(100 * 2, HEAP_ID_FIELD1);
-        v1->unk_04 = String_Init(100 * 2, HEAP_ID_FIELD1);
+        v1->unk_00 = String_New(100 * 2, HEAP_ID_FIELD1);
+        v1->unk_04 = String_New(100 * 2, HEAP_ID_FIELD1);
 
         MessageLoader_GetString(v1->unk_1C, 2 + v2->level, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));

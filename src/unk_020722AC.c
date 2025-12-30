@@ -876,7 +876,7 @@ static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID)
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        param0[v0].unk_08 = String_Init(8, heapID);
+        param0[v0].unk_08 = String_New(8, heapID);
         sub_02072EB8(param0, v0);
     }
 }
@@ -1009,7 +1009,7 @@ static void sub_02073130(UnkStruct_02072334 *param0)
 
     param0->unk_10C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAILBOX, param0->heapID);
     param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->heapID);
-    param0->unk_110.unk_04 = String_Init(128, param0->heapID);
+    param0->unk_110.unk_04 = String_New(128, param0->heapID);
     param0->unk_110.unk_08 = MessageLoader_GetNewString(param0->unk_10C, 4);
     param0->unk_110.unk_0C = MessageLoader_GetNewString(param0->unk_10C, 0);
 

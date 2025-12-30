@@ -1265,7 +1265,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
 
     ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
 
-    string = String_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
+    string = String_New(64, HEAP_ID_MIGRATE_FROM_GBA);
     msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_MIGRATE_FROM_GBA);
     species = GBAPokemon_ConvertSpeciesToDS(GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPECIES, NULL));
 
@@ -1285,7 +1285,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
 
     if (gbaItemID) {
         itemID = Item_FromGBAID(gbaItemID);
-        string = String_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
+        string = String_New(64, HEAP_ID_MIGRATE_FROM_GBA);
 
         Item_LoadName(string, itemID, HEAP_ID_MIGRATE_FROM_GBA);
 
@@ -1299,7 +1299,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     }
 
     level = GBABoxPokemon_GetLevel(gbaBoxMon);
-    string = String_Init(10, HEAP_ID_MIGRATE_FROM_GBA);
+    string = String_New(10, HEAP_ID_MIGRATE_FROM_GBA);
 
     String_FormatInt(string, level, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
 
@@ -1660,7 +1660,7 @@ static void ov97_02235344(GBAMigrator *migrator)
     GBA_ConvertStringToDS(GetGBAPlayerName(), playerName, GBA_PLAYER_NAME_LEN + 1, GBACart_GetLanguage());
 
     strTemplate = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
-    string = String_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
+    string = String_New(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     String_CopyChars(string, playerName);
     StringTemplate_SetString(strTemplate, 1, string, 0, 1, GAME_LANGUAGE);
@@ -1833,8 +1833,8 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     migrator->trainerInfo = SaveData_GetTrainerInfo(migrator->saveData);
     migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
-    migrator->unk_12668 = String_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1266C = String_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_12668 = String_New(256, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1266C = String_New(256, HEAP_ID_MIGRATE_FROM_GBA);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT, 1);
 

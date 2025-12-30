@@ -1903,7 +1903,7 @@ static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D3
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
     param0->unk_08 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
-    param0->unk_0C = String_Init(128, heapID);
+    param0->unk_0C = String_New(128, heapID);
 
     Window_Add(param1->unk_00, &param0->unk_10, 1, 2, 1, 27, 4, 1, ((1 + (18 + 12)) + 9) + (6 * 2));
     Window_FillTilemap(&param0->unk_10, 15);
@@ -2859,8 +2859,8 @@ static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, u32 heapID)
 {
     param0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0696, heapID);
     param0->unk_04 = StringTemplate_New(8, 64, heapID);
-    param0->unk_08 = String_Init(128, heapID);
-    param0->unk_0C = String_Init(128, heapID);
+    param0->unk_08 = String_New(128, heapID);
+    param0->unk_0C = String_New(128, heapID);
 }
 
 static void ov69_0225EF54(UnkStruct_ov69_0225EF54 *param0)

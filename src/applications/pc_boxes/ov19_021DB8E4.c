@@ -117,7 +117,7 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_34 = Graphics_GetScrnDataFromOpenNARC(param5, 2, 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
     param0->unk_2C = Graphics_GetScrnDataFromOpenNARC(param5, 3, 1, &(param0->unk_30), HEAP_ID_BOX_GRAPHICS);
     param0->unk_44 = FontSpecialChars_Init(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
-    param0->unk_4BFC = String_Init(500, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_4BFC = String_New(500, HEAP_ID_BOX_GRAPHICS);
     param0->unk_10 = NULL;
     param0->unk_3C.pixels = param0->unk_18->pRawData;
     param0->unk_3C.width = 32;

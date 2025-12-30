@@ -299,7 +299,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     v5 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_71);
     v3 = StringTemplate_Default(HEAP_ID_71);
     v1 = MessageLoader_GetNewString(v5, param1);
-    v2 = String_Init(255, HEAP_ID_71);
+    v2 = String_New(255, HEAP_ID_71);
     v4 = Pokemon_GetBoxPokemon(param2);
 
     StringTemplate_SetSpeciesName(v3, 0, v4);

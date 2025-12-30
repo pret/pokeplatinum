@@ -676,7 +676,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
         param0->unk_B68 = 12;
         param0->unk_BA0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_VIDEO, param0->unk_00->heapID);
         param0->unk_BA4 = StringTemplate_Default(param0->unk_00->heapID);
-        param0->unk_BA8 = String_Init(2 * 160, param0->unk_00->heapID);
+        param0->unk_BA8 = String_New(2 * 160, param0->unk_00->heapID);
         param0->unk_BB0 = 1;
 
         return 1;
@@ -2332,7 +2332,7 @@ static void ov10_02222720(UnkStruct_ov10_0221FB28 *param0)
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_PARTY_MENU, param0->unk_00->heapID);
     v1 = FontSpecialChars_Init(15, 14, 0, param0->unk_00->heapID);
     v2 = StringTemplate_Default(param0->unk_00->heapID);
-    v3 = String_Init(32, param0->unk_00->heapID);
+    v3 = String_New(32, param0->unk_00->heapID);
 
     for (v4 = 0; v4 < 6; v4++) {
         if (param0->unk_214[v4].unk_04 == 0) {

@@ -928,8 +928,8 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     v4->fieldSystem = fieldSystem;
     v4->unk_2AC = v7;
     v4->unk_288 = v6;
-    v4->string = String_Init((50 * 2), HEAP_ID_FIELD1);
-    v4->fmtString = String_Init((50 * 2), HEAP_ID_FIELD1);
+    v4->string = String_New((50 * 2), HEAP_ID_FIELD1);
+    v4->fmtString = String_New((50 * 2), HEAP_ID_FIELD1);
     v4->template = StringTemplate_Default(HEAP_ID_FIELD1);
     v4->state = 0;
 

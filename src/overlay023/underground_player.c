@@ -535,7 +535,7 @@ void UndergroundPlayer_SendHeldFlagOwnerInfo(void)
         CommSys_SendDataFixedSize(91, commPlayerMan->heldFlagOwnerInfo[CommSys_CurNetId()]);
     } else {
         TrainerInfo *trainerInfo = TrainerInfo_New(HEAP_ID_COMMUNICATION);
-        String *name = String_Init(20, HEAP_ID_COMMUNICATION);
+        String *name = String_New(20, HEAP_ID_COMMUNICATION);
 
         GF_ASSERT(trainerInfo);
         GF_ASSERT(name);

@@ -380,7 +380,7 @@ static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0)
 
     param0->unk_15E0.unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_MAKING, param0->heapID);
     param0->unk_15E0.unk_04 = StringTemplate_New(4, 64, param0->heapID);
-    param0->unk_15E0.unk_08 = String_Init(64, param0->heapID);
+    param0->unk_15E0.unk_08 = String_New(64, param0->heapID);
     param0->unk_15E0.unk_0C = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 0);
     param0->unk_15E0.unk_10 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 1);
     param0->unk_15E0.unk_14 = MessageLoader_GetNewString(param0->unk_15E0.unk_00, 2);

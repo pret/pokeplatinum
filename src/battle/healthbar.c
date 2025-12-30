@@ -1157,7 +1157,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     msgLoader = BattleSystem_MessageLoader(healthbar->battleSys);
     strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
 
-    nickname = String_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
+    nickname = String_New(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
     template = MessageLoader_GetNewString(msgLoader, pl_msg_00000368_00964);
 
     mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
@@ -1415,7 +1415,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
     v7 = BattleSystem_StringTemplate(param0->battleSys);
-    v5 = String_Init(30, HEAP_ID_BATTLE);
+    v5 = String_New(30, HEAP_ID_BATTLE);
 
     if (param1 & (1 << 10)) {
         v6 = MessageLoader_GetNewString(v4, 951);

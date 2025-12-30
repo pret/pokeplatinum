@@ -296,7 +296,7 @@ static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int
         Window_FillRectWithColor(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_20, 0, 512 - (18 + 12), 2);
 
-        param0->unk_14 = String_Init(0x400, param0->heapID);
+        param0->unk_14 = String_New(0x400, param0->heapID);
         MessageLoader_GetString(param0->unk_1C, param1, param0->unk_14);
         param0->unk_10 = Text_AddPrinterWithParams(&param0->unk_20, FONT_MESSAGE, param0->unk_14, 0, 0, param3, NULL);
 

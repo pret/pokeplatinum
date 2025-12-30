@@ -230,7 +230,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        sCommClubMan->stringBuffer[v0] = String_Init((70 * 2), HEAP_ID_FIELD1);
+        sCommClubMan->stringBuffer[v0] = String_New((70 * 2), HEAP_ID_FIELD1);
     }
 }
 

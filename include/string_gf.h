@@ -45,7 +45,7 @@ enum CharsetMode {
  * @param heapID ID of the heap to own the new String.
  * @return Address to the new String.
  */
-String *String_Init(u32 size, u32 heapID);
+String *String_New(u32 size, u32 heapID);
 
 /**
  * @brief Free routine. Destroys an existing String and returns its memory
@@ -81,7 +81,7 @@ void String_Copy(String *dest, const String *src);
  * This is effectively a nice wrapper around the following code:
  *
  * ```c
- * String *dest = String_Init(src->size + 1, heapID);
+ * String *dest = String_New(src->size + 1, heapID);
  * String_Copy(dest, src);
  * ```
  *

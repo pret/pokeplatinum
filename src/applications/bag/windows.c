@@ -223,7 +223,7 @@ void BagUI_PrintItemDescription(BagController *controller, u16 item)
     String *string;
 
     if (item != 0xffff) {
-        string = String_Init(130, HEAP_ID_BAG);
+        string = String_New(130, HEAP_ID_BAG);
         Item_LoadDescription(string, item, HEAP_ID_BAG);
     } else {
         string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_CloseBagDescription);
@@ -311,7 +311,7 @@ void BagUI_PrintItemCount(BagController *controller, u16 count, u16 yOffset, u32
         Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, controller->itemCountX, ITEM_COUNT_START_POS, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     }
 
-    String *string = String_Init(10, HEAP_ID_BAG);
+    String *string = String_New(10, HEAP_ID_BAG);
 
     StringTemplate_SetNumber(controller->strTemplate, 0, count, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_Format(controller->strTemplate, string, controller->itemCountNumberFmt);
@@ -444,7 +444,7 @@ void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numAct
         Window_FillTilemap(&controller->windows[msgBoxWindowIdx], 15);
 
         String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ItemIsSelected);
-        String *formatted = String_Init(28 * 2, HEAP_ID_BAG);
+        String *formatted = String_New(28 * 2, HEAP_ID_BAG);
         BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
         BufferPocketSlotItemName(controller, pocket->cursorScroll + pocket->cursorPos - 1, 0);
@@ -489,7 +489,7 @@ void BagUI_PrintMovingItemMsg(BagController *controller)
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], 0);
 
     String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_MoveItemWhere);
-    String *formatted = String_Init(130, HEAP_ID_BAG);
+    String *formatted = String_New(130, HEAP_ID_BAG);
 
     BufferPocketSlotItemName(controller, controller->movedItemPos - 1, 0);
 
@@ -508,7 +508,7 @@ void BagUI_ShowItemTrashWindows(BagController *controller)
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX], 15);
 
     String *template = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrowAwayHowMany);
-    String *formatted = String_Init(14 * 2 * 2, HEAP_ID_BAG);
+    String *formatted = String_New(14 * 2 * 2, HEAP_ID_BAG);
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
     BufferPocketSlotItemName(controller, pocket->cursorScroll + pocket->cursorPos - 1, 0);

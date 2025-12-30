@@ -137,7 +137,7 @@ void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int pa
         }
     }
 
-    v4 = String_Init(120, heapID);
+    v4 = String_New(120, heapID);
 
     String_CopyChars(v4, sub_02032F54(param1));
     sub_0202AF50(v0, param2, v4);

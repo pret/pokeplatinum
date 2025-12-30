@@ -309,8 +309,8 @@ BOOL HallOfFameManager_Init(ApplicationManager *appMan, int *state)
 
     hallOfFameMan->displayData = ApplicationManager_Args(appMan);
     hallOfFameMan->msgLoaderHallOfFame = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_HALL_OF_FAME, HEAP_ID_HALL_OF_FAME);
-    hallOfFameMan->string_1C30 = String_Init(500, HEAP_ID_HALL_OF_FAME);
-    hallOfFameMan->string_1C4C = String_Init(500, HEAP_ID_HALL_OF_FAME);
+    hallOfFameMan->string_1C30 = String_New(500, HEAP_ID_HALL_OF_FAME);
+    hallOfFameMan->string_1C4C = String_New(500, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->strTemplate = StringTemplate_Default(HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->narc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_HALL_OF_FAME);
 

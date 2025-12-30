@@ -38,7 +38,7 @@ void ov61_0222AE88(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStr
 
     MI_CpuClear8(param3, sizeof(UnkStruct_ov62_02239DA4));
 
-    v0 = String_Init(20 * 3, heapID);
+    v0 = String_New(20 * 3, heapID);
     PCBoxes_BufferBoxName(pcBoxes, boxID, v0);
     String_ToChars(v0, param3->unk_00, 20);
     String_Free(v0);

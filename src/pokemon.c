@@ -5048,7 +5048,7 @@ BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
     u32 monOtGender = BoxPokemon_GetValue(boxMon, MON_DATA_OT_GENDER, NULL);
     String *v4 = TrainerInfo_NameNewString(param1, heapID);
     // TODO enum/const value?
-    String *v5 = String_Init(8, heapID);
+    String *v5 = String_New(8, heapID);
     BOOL v6 = FALSE;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_OT_NAME_STRING, v5);

@@ -886,7 +886,7 @@ static void JournalPrinter_PrintPokemonDefeated(JournalManager *journalManager, 
 
 static void JournalPrinter_SetPlayerOrPokemonName(JournalManager *journalManager, u16 *name, u8 unused, u8 idx)
 {
-    String *string = String_Init(32, HEAP_ID_JOURNAL);
+    String *string = String_New(32, HEAP_ID_JOURNAL);
 
     String_CopyChars(string, name);
     StringTemplate_SetString(journalManager->template, idx, string, unused, TRUE, GAME_LANGUAGE);

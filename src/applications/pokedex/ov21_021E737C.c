@@ -691,7 +691,7 @@ static void ov21_021E7CF4(UnkStruct_ov21_021E7714 *param0)
 
 static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, enum HeapID heapID)
 {
-    String *v0 = String_Init(32, heapID);
+    String *v0 = String_New(32, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_weightcheck_topscreen, v0);
@@ -711,7 +711,7 @@ static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, enum HeapID heapID)
 
 static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, enum HeapID heapID)
 {
-    String *v0 = String_Init(32, heapID);
+    String *v0 = String_New(32, heapID);
     int species = PokedexSort_CurrentSpecies(param1->unk_00);
     String *v3 = MessageUtil_SpeciesName(species, heapID);
 

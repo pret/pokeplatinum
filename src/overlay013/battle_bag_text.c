@@ -604,7 +604,7 @@ static void PrintUseItemName(BattleBag *battleBag, u32 slot)
 static void PrintUseItemDesc(BattleBag *battleBag, u32 slot)
 {
     Window *window = &battleBag->windows[BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_DESC];
-    String *string = String_Init(130, battleBag->context->heapID);
+    String *string = String_New(130, battleBag->context->heapID);
 
     Item_LoadDescription(string, battleBag->items[battleBag->currentBattlePocket][slot].item, battleBag->context->heapID);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

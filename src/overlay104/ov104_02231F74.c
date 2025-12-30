@@ -253,7 +253,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C[v0] = String_Init(40 * 2, param0->heapID);
+        param1->unk_1C[v0] = String_New(40 * 2, param0->heapID);
     }
 
     *param1->unk_A0 = 0xeeee;
@@ -318,7 +318,7 @@ static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
+        String *v2 = String_New(40 * 2, param0->unk_00->heapID);
 
         MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -500,7 +500,7 @@ static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
+        String *v2 = String_New(40 * 2, param0->unk_00->heapID);
 
         MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -674,8 +674,8 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
 
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2)
 {
-    String *v0 = String_Init(40 * 2, param0->unk_00->heapID);
-    String *v1 = String_Init(40 * 2, param0->unk_00->heapID);
+    String *v0 = String_New(40 * 2, param0->unk_00->heapID);
+    String *v1 = String_New(40 * 2, param0->unk_00->heapID);
 
     Window_FillTilemap(param0->unk_18, 15);
 

@@ -1376,10 +1376,10 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(HEAP_ID_102);
-    v3 = String_Init(255, HEAP_ID_102);
+    v3 = String_New(255, HEAP_ID_102);
     v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 56);
 
-    v1 = String_Init(255, HEAP_ID_102);
+    v1 = String_New(255, HEAP_ID_102);
     sub_0202A1A0(v5->unk_22C, v1);
     ov62_022349A8(param0, v1);
     v6 = sub_0202A1F4(v5->unk_22C);
@@ -1425,10 +1425,10 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(HEAP_ID_102);
-    v3 = String_Init(255, HEAP_ID_102);
+    v3 = String_New(255, HEAP_ID_102);
     v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 56);
 
-    v1 = String_Init(255, HEAP_ID_102);
+    v1 = String_New(255, HEAP_ID_102);
     sub_0202A1A0(v5->unk_230.unk_08, v1);
     ov62_022349A8(param0, v1);
     v6 = sub_0202A1F4(v5->unk_230.unk_08);

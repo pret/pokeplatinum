@@ -2032,8 +2032,8 @@ static void ov16_02269DB0(UnkStruct_ov16_02268A14 *param0, int param1, int param
     v5 = BattleSystem_StringTemplate(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1186);
     v2 = MessageLoader_GetNewString(v0, 1187);
-    v3 = String_Init(100, HEAP_ID_BATTLE);
-    v4 = String_Init(100, HEAP_ID_BATTLE);
+    v3 = String_New(100, HEAP_ID_BATTLE);
+    v4 = String_New(100, HEAP_ID_BATTLE);
 
     StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
@@ -2094,8 +2094,8 @@ static void ov16_02269F68(UnkStruct_ov16_02268A14 *param0, int param1, int param
     v5 = BattleSystem_StringTemplate(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1217);
     v2 = MessageLoader_GetNewString(v0, 1218);
-    v3 = String_Init(100, HEAP_ID_BATTLE);
-    v4 = String_Init(100, HEAP_ID_BATTLE);
+    v3 = String_New(100, HEAP_ID_BATTLE);
+    v4 = String_New(100, HEAP_ID_BATTLE);
 
     StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
@@ -2120,8 +2120,8 @@ static void ov16_0226A04C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     v5 = BattleSystem_StringTemplate(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1215);
     v2 = MessageLoader_GetNewString(v0, 1216);
-    v3 = String_Init(100, HEAP_ID_BATTLE);
-    v4 = String_Init(100, HEAP_ID_BATTLE);
+    v3 = String_New(100, HEAP_ID_BATTLE);
+    v4 = String_New(100, HEAP_ID_BATTLE);
 
     StringTemplate_SetMoveName(v5, 0, v6->unk_00);
     StringTemplate_Format(v5, v3, v1);
@@ -2165,7 +2165,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     ov16_0223F87C(param0->battleSys, v10);
     ov16_0223F858(param0->battleSys, v11);
 
-    v4 = String_Init(12 + 2 + (5 * 2), HEAP_ID_BATTLE);
+    v4 = String_New(12 + 2 + (5 * 2), HEAP_ID_BATTLE);
 
     for (i = 0; i < 4; i++) {
         v12 = v11[2 + i];
@@ -2811,7 +2811,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
     v3 = sub_0208C098(6);
     v9 = MessageLoader_GetNewString(v12, 938);
     v10 = BattleSystem_StringTemplate(param0->battleSys);
-    v7 = String_Init((2 + 2 + 1 + 2) * 2 + 2, HEAP_ID_BATTLE);
+    v7 = String_New((2 + 2 + 1 + 2) * 2 + 2, HEAP_ID_BATTLE);
     v8 = MessageLoader_GetNewString(v12, 937);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {

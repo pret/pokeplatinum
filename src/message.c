@@ -130,7 +130,7 @@ String *MessageBank_GetNewString(const MessageBank *bank, u32 entryID, u32 heapI
             MI_CpuCopy16(EntryOffsetAddress(bank, entry.offset), cstr, size);
             DecodeString(cstr, entry.length, entryID, bank->seed);
 
-            String *string = String_Init(entry.length, heapID);
+            String *string = String_New(entry.length, heapID);
             if (string) {
                 String_CopyNumChars(string, cstr, entry.length);
             }
@@ -143,7 +143,7 @@ String *MessageBank_GetNewString(const MessageBank *bank, u32 entryID, u32 heapI
     }
 
     GF_ASSERT(FALSE);
-    return String_Init(4, heapID);
+    return String_New(4, heapID);
 }
 
 void MessageBank_GetStringFromNARC(enum NarcID narcID, u32 bankID, u32 entryID, u32 heapID, String *string)
@@ -193,7 +193,7 @@ String *MessageBank_GetNewStringFromNARC(enum NarcID narcID, u32 bankID, u32 ent
         string = MessageBank_GetNewStringFromHandle(narc, bankID, entryID, heapID);
         NARC_dtor(narc);
     } else {
-        string = String_Init(4, heapID);
+        string = String_New(4, heapID);
     }
 
     return string;
@@ -209,7 +209,7 @@ String *MessageBank_GetNewStringFromHandle(NARC *narc, u32 bankID, u32 entryID, 
         NARC_ReadFromMember(narc, bankID, EntryOffset(entryID), sizeof(MessageBankEntry), &entry);
         DecodeEntry(&entry, entryID, bank.seed);
 
-        String *string = String_Init(entry.length, heapID);
+        String *string = String_New(entry.length, heapID);
         if (string) {
             u32 size = entry.length * sizeof(charcode_t);
             charcode_t *cstr = Heap_AllocAtEnd(heapID, size);
@@ -228,7 +228,7 @@ String *MessageBank_GetNewStringFromHandle(NARC *narc, u32 bankID, u32 entryID, 
     }
 
     GF_ASSERT(FALSE);
-    return String_Init(4, heapID);
+    return String_New(4, heapID);
 }
 
 u32 MessageBank_EntryCount(const MessageBank *bank)

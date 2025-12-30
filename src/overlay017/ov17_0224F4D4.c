@@ -191,7 +191,7 @@ int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
 
     v0->unk_10.unk_B4 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_RESULTS, HEAP_ID_24);
     v0->unk_10.unk_B8 = StringTemplate_Default(HEAP_ID_24);
-    v0->unk_10.unk_BC = String_Init(2 * 160, HEAP_ID_24);
+    v0->unk_10.unk_BC = String_New(2 * 160, HEAP_ID_24);
     v0->unk_10.unk_C4 = sub_02012744(10, HEAP_ID_24);
 
     ov17_0224FE60(v0);

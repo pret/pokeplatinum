@@ -39,8 +39,8 @@ UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, int heapID,
     ov104_0222E830(&v0->unk_40, &v0->unk_3C, param2, heapID);
 
     v0->unk_44 = StringTemplate_New(8, 64, heapID);
-    v0->unk_48 = String_Init(1024, heapID);
-    v0->unk_4C = String_Init(1024, heapID);
+    v0->unk_48 = String_New(1024, heapID);
+    v0->unk_4C = String_New(1024, heapID);
 
     ov104_0222E82C(v0, param2, NULL, NULL);
 

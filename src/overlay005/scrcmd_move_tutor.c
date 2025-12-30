@@ -420,7 +420,7 @@ static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *mo
     }
 
     for (moveIndex = 0; moveIndex < (NELEMS(sTeachableMoves) + 1); moveIndex++) {
-        moveTutorManager->moveNames[moveIndex] = String_Init((40 * 2), HEAP_ID_FIELD1);
+        moveTutorManager->moveNames[moveIndex] = String_New((40 * 2), HEAP_ID_FIELD1);
     }
 
     *moveTutorManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
@@ -464,7 +464,7 @@ static void MoveTutorManager_ShowMoveSelectionMenu(MoveTutorManager *moveTutorMa
 static void _MoveTutorManager_AddMenuEntry(MoveTutorManager *moveTutorManager, u32 stringEntryID, u32 param2, u32 index)
 {
     {
-        String *string = String_Init((40 * 2), HEAP_ID_FIELD1);
+        String *string = String_New((40 * 2), HEAP_ID_FIELD1);
 
         MessageLoader_GetString(moveTutorManager->messageLoader, stringEntryID, string);
         StringTemplate_Format(moveTutorManager->stringTemplate, moveTutorManager->moveNames[moveTutorManager->menuOptionsCount], string);

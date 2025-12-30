@@ -597,7 +597,7 @@ static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
 
     param0->unk_28.unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, param0->heapID);
     param0->unk_28.unk_04 = StringTemplate_New(2, (18 + 1) * 4, param0->heapID);
-    param0->unk_28.unk_08 = String_Init((18 + 1) * 4, param0->heapID);
+    param0->unk_28.unk_08 = String_New((18 + 1) * 4, param0->heapID);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_28.unk_24[v0] = MessageLoader_GetNewString(param0->unk_28.unk_00, 9 + v0);
@@ -718,7 +718,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
 
         MI_CpuCopy8(v1[v0].unk_18, &v2->unk_08, 8);
 
-        v2->unk_00 = String_Init(8, param0->heapID);
+        v2->unk_00 = String_New(8, param0->heapID);
 
         if (v2->unk_07) {
             String_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);

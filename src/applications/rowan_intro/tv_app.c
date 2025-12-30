@@ -441,7 +441,7 @@ static BOOL RowanIntroTv_Run(RowanIntroTv *tv, int msgEntryID, int unused0, int 
     switch (tv->state) {
     case RIT_STATE_INIT:
         Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
-        String *tmpString = String_Init(0x400, tv->heapID);
+        String *tmpString = String_New(0x400, tv->heapID);
         MessageLoader_GetString(tv->msgLoader, msgEntryID, tmpString);
         Window_AddFromTemplate(tv->bgConfig, &tv->window, &sMessageWindowTemplate);
         Window_FillRectWithColor(&tv->window, 0, 0, 0, 0x100, 0xc0);

@@ -182,7 +182,7 @@ static void ov20_021D498C(Window *param0, BgConfig *param1, const String *param2
     String *v5;
 
     v4 = String_NumLines(param2);
-    v5 = String_Init(32, HEAP_ID_35);
+    v5 = String_New(32, HEAP_ID_35);
     param3 += ((2 - v4) * 16) / 2;
 
     for (v1 = 0; v1 < v4; v1++) {

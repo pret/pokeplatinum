@@ -442,8 +442,8 @@ static void ov5_021EAEE0(UnkStruct_ov5_021EAE78 *param0)
 
     param0->unk_38 = StringTemplate_Default(HEAP_ID_FIELD1);
     param0->unk_3C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_FIELD1);
-    param0->unk_0C = String_Init(110, HEAP_ID_FIELD1);
-    param0->unk_08 = String_Init(110, HEAP_ID_FIELD1);
+    param0->unk_0C = String_New(110, HEAP_ID_FIELD1);
+    param0->unk_08 = String_New(110, HEAP_ID_FIELD1);
 }
 
 static void ov5_021EAF1C(UnkStruct_ov5_021EAE78 *param0)

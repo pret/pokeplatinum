@@ -67,7 +67,7 @@ static void ov62_02247DD8(UnkStruct_0208C06C *param0, int param1, int param2)
         UnkStruct_02030A80 *v5 = param0->unk_88C[param2];
 
         v2 = ov62_02231690(HEAP_ID_102);
-        v0 = String_Init(255, HEAP_ID_102);
+        v0 = String_New(255, HEAP_ID_102);
         v3 = sub_02030B94(v5, HEAP_ID_102);
 
         ov62_022349A8(param0, v3);

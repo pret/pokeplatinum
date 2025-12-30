@@ -683,7 +683,7 @@ static void ov62_02241954(UnkStruct_0208C06C *param0, int param1)
     if (param1 == 0xffff) {
         v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 125);
     } else {
-        v2 = String_Init(255, HEAP_ID_102);
+        v2 = String_New(255, HEAP_ID_102);
         MessageLoader_GetSpeciesName(param1, 102, v3);
         String_CopyChars(v2, v3);
     }
@@ -710,12 +710,12 @@ static void ov62_022419D4(UnkStruct_0208C06C *param0, int param1, int param2)
         v4 = ov62_02231690(HEAP_ID_102);
 
         if (param2 != 0) {
-            v2 = String_Init(255, HEAP_ID_102);
+            v2 = String_New(255, HEAP_ID_102);
             v3 = MessageLoader_GetNewString(param0->unk_14.unk_34, 23);
             StringTemplate_SetCityName(v4, 0, param1, param2);
             StringTemplate_Format(v4, v2, v3);
         } else {
-            v2 = String_Init(255, HEAP_ID_102);
+            v2 = String_New(255, HEAP_ID_102);
             v3 = MessageLoader_GetNewString(param0->unk_14.unk_34, 22);
             StringTemplate_SetCountryName(v4, 0, param1);
             StringTemplate_Format(v4, v2, v3);
@@ -3021,7 +3021,7 @@ static void ov62_022448E0(UnkStruct_ov62_022312B0 *param0, UnkStruct_0208C06C *p
         v4 = MessageLoader_GetNewString(param1->unk_14.unk_34, 7);
         v5 = sub_02030B94(param1->unk_88C[param2], HEAP_ID_102);
         ov62_022349A8(param1, v5);
-        v0 = String_Init(255, HEAP_ID_102);
+        v0 = String_New(255, HEAP_ID_102);
         StringTemplate_SetString(v3, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v4);
         String_Free(v4);
@@ -3055,7 +3055,7 @@ static void ov62_022449B8(UnkStruct_0208C06C *param0, int param1, BOOL param2)
         UnkStruct_02030A80 *v6 = v2->unk_80.unk_00;
 
         v3 = ov62_02231690(HEAP_ID_102);
-        v0 = String_Init(255, HEAP_ID_102);
+        v0 = String_New(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, HEAP_ID_102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
@@ -3087,7 +3087,7 @@ static void ov62_02244AB4(UnkStruct_0208C06C *param0, int param1, int param2)
         UnkStruct_02030A80 *v6 = v2->unk_80.unk_00;
 
         v3 = ov62_02231690(HEAP_ID_102);
-        v0 = String_Init(255, HEAP_ID_102);
+        v0 = String_New(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, HEAP_ID_102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
@@ -3103,7 +3103,7 @@ static void ov62_02244AB4(UnkStruct_0208C06C *param0, int param1, int param2)
         UnkStruct_02030A80 *v10 = param0->unk_88C[param2];
 
         v7 = ov62_02231690(HEAP_ID_102);
-        v0 = String_Init(255, HEAP_ID_102);
+        v0 = String_New(255, HEAP_ID_102);
         v8 = sub_02030B94(v10, HEAP_ID_102);
         ov62_022349A8(param0, v8);
         v9 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
@@ -4592,9 +4592,9 @@ static void ov62_022469A0(UnkStruct_ov62_02241204 *param0, UnkStruct_0208C06C *p
         u64 v5 = param0->unk_4B0;
         u64 v6 = v5;
         u32 v7[3];
-        String *v8 = String_Init(255, HEAP_ID_102);
-        String *v9 = String_Init(255, HEAP_ID_102);
-        String *v10 = String_Init(255, HEAP_ID_102);
+        String *v8 = String_New(255, HEAP_ID_102);
+        String *v9 = String_New(255, HEAP_ID_102);
+        String *v10 = String_New(255, HEAP_ID_102);
 
         v4 = &param1->unk_8A4;
         v7[0] = v6 % 100000;
@@ -4603,7 +4603,7 @@ static void ov62_022469A0(UnkStruct_ov62_02241204 *param0, UnkStruct_0208C06C *p
         v6 /= 100000;
         v7[2] = v6;
         v1 = MessageLoader_GetNewString(param1->unk_14.unk_34, 295);
-        v2 = String_Init(255, HEAP_ID_102);
+        v2 = String_New(255, HEAP_ID_102);
 
         String_FormatInt(v8, v7[0], 5, 2, 1);
         String_FormatInt(v9, v7[1], 5, 2, 1);

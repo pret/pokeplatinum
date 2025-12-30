@@ -240,7 +240,7 @@ static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param
     }
 
     for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_1C[v0] = String_Init(40 * 2, HEAP_ID_FIELD1);
+        param1->unk_1C[v0] = String_New(40 * 2, HEAP_ID_FIELD1);
     }
 
     *param1->unk_210 = 0xeeee;
@@ -294,7 +294,7 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
     void *v1;
 
     {
-        String *v2 = String_Init(40 * 2, HEAP_ID_FIELD1);
+        String *v2 = String_New(40 * 2, HEAP_ID_FIELD1);
 
         MessageLoader_GetString(param0->unk_1FC, param1, v2);
         StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);
