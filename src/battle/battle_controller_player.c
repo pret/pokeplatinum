@@ -553,7 +553,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             break;
 
         case COMMAND_SELECTION_ITEM_SELECT_INIT:
-            BattleIO_ShowBagScreen(battleSys, battleCtx, i);
+            BattleController_EmitShowBagMenu(battleSys, battleCtx, i);
             battleCtx->curCommandState[i] = COMMAND_SELECTION_ITEM_SELECT;
             // fall-through
 

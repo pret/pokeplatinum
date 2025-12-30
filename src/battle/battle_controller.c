@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
@@ -853,77 +852,77 @@ void ov16_022658CC(BattleSystem *battleSys, int battlerId, int param2)
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
 }
 
-void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    UnkStruct_ov16_0225C2B0 v0;
+    BagMenuMessage message;
     int v1, v2;
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
-    v0.unk_00 = BATTLE_COMMAND_SHOW_BAG_SCREEN;
+    message.command = BATTLE_COMMAND_SHOW_BAG_MENU;
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_04[v1] = battleCtx->selectedPartySlot[v1];
+        message.partySlots[v1] = battleCtx->selectedPartySlot[v1];
 
         for (v2 = 0; v2 < 6; v2++) {
-            v0.unk_08[v1][v2] = battleCtx->partyOrder[v1][v2];
+            message.partyOrder[v1][v2] = battleCtx->partyOrder[v1][v2];
         }
 
-        v0.unk_20[v1] = battleCtx->battleMons[v1].moveEffectsData.embargoTurns;
+        message.embargoTurns[v1] = battleCtx->battleMons[v1].moveEffectsData.embargoTurns;
     }
 
     if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
         if (((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) && ((battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0)) {
-            v0.unk_01 = 1;
-            v0.unk_02 = 0;
-            v0.unk_03 = 0;
+            message.unk_01 = 1;
+            message.semiInvulnerable = 0;
+            message.substitute = 0;
         } else if ((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) {
-            v0.unk_01 = 0;
+            message.unk_01 = 0;
 
-            if (battleCtx->battleMons[1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
-                v0.unk_02 = 1;
-                v0.unk_03 = 0;
+            if (battleCtx->battleMons[1].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
+                message.semiInvulnerable = 1;
+                message.substitute = 0;
             } else if (battleCtx->battleMons[1].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
-                v0.unk_02 = 0;
-                v0.unk_03 = 1;
+                message.semiInvulnerable = 0;
+                message.substitute = 1;
             } else {
-                v0.unk_02 = 0;
-                v0.unk_03 = 0;
+                message.semiInvulnerable = 0;
+                message.substitute = 0;
             }
         } else {
-            v0.unk_01 = 0;
+            message.unk_01 = 0;
 
-            if (battleCtx->battleMons[3].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
-                v0.unk_02 = 1;
-                v0.unk_03 = 0;
+            if (battleCtx->battleMons[3].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
+                message.semiInvulnerable = 1;
+                message.substitute = 0;
             } else if (battleCtx->battleMons[3].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
-                v0.unk_02 = 0;
-                v0.unk_03 = 1;
+                message.semiInvulnerable = 0;
+                message.substitute = 1;
             } else {
-                v0.unk_02 = 0;
-                v0.unk_03 = 0;
+                message.semiInvulnerable = 0;
+                message.substitute = 0;
             }
         }
     } else if (BattleSystem_BattleType(battleSys) == (BATTLE_TYPE_SINGLES | BATTLE_TYPE_WILD_MON)) { // Was (0x0 | 0x0). Is this what they intended?
-        v0.unk_01 = 0;
+        message.unk_01 = 0;
 
-        if (battleCtx->battleMons[1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
-            v0.unk_02 = 1;
-            v0.unk_03 = 0;
+        if (battleCtx->battleMons[1].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
+            message.semiInvulnerable = 1;
+            message.substitute = 0;
         } else if (battleCtx->battleMons[1].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
-            v0.unk_02 = 0;
-            v0.unk_03 = 1;
+            message.semiInvulnerable = 0;
+            message.substitute = 1;
         } else {
-            v0.unk_02 = 0;
-            v0.unk_03 = 0;
+            message.semiInvulnerable = 0;
+            message.substitute = 0;
         }
     } else {
-        v0.unk_01 = 0;
-        v0.unk_02 = 0;
-        v0.unk_03 = 0;
+        message.unk_01 = 0;
+        message.semiInvulnerable = 0;
+        message.substitute = 0;
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, sizeof(UnkStruct_ov16_0225C2B0));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(BagMenuMessage));
 }
 
 void ov16_02265A70(BattleSystem *battleSys, int battlerId, BattleItemUse param2)

@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C2B0.h"
 #include "battle/struct_ov16_0225C2C4.h"
 #include "battle/struct_ov16_0225C2D8.h"
 #include "battle/struct_ov16_0225C2EC.h"
@@ -723,7 +722,7 @@ void ov16_0225D708(BattleSystem *battleSys, BattlerData *param1, TargetSelectMen
     SysTask_Start(param1->unk_00.unk_08, v0, 0);
 }
 
-void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C2B0 *param2)
+void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, BagMenuMessage *message)
 {
     UnkStruct_ov16_0225D794 *v0;
     int i, j;
@@ -735,21 +734,21 @@ void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_08->unk_04->party = Party_New(HEAP_ID_BATTLE);
     v0->unk_0E = 0;
     v0->unk_00 = battleSys;
-    v0->unk_0C = param2->unk_00;
+    v0->unk_0C = message->command;
     v0->unk_0D = param1->battler;
     v0->unk_0F = param1->battlerType;
-    v0->unk_14 = param2->unk_01;
-    v0->unk_15 = param2->unk_02;
-    v0->unk_16 = param2->unk_03;
+    v0->unk_14 = message->unk_01;
+    v0->unk_15 = message->semiInvulnerable;
+    v0->unk_16 = message->substitute;
 
     for (i = 0; i < 4; i++) {
-        v0->unk_08->unk_0C[i] = param2->unk_04[i];
+        v0->unk_08->unk_0C[i] = message->partySlots[i];
 
         for (j = 0; j < 6; j++) {
-            v0->unk_18[i][j] = param2->unk_08[i][j];
+            v0->unk_18[i][j] = message->partyOrder[i][j];
         }
 
-        v0->unk_30[i] = param2->unk_20[i];
+        v0->unk_30[i] = message->embargoTurns[i];
     }
 
     SysTask_Start(param1->unk_00.unk_0C, v0, 0);

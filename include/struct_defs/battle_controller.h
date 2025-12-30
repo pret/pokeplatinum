@@ -143,5 +143,14 @@ typedef struct {
     UnkStruct_ov16_0225C29C_sub1 targetMon[4];
 } TargetSelectMenuMessage;
 
+typedef struct {
+    u8 command;
+    u8 unk_01;
+    u8 semiInvulnerable;
+    u8 substitute;
+    u8 partySlots[4];
+    u8 partyOrder[4][6];
+    u8 embargoTurns[4];
+} BagMenuMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
