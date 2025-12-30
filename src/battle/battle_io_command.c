@@ -44,7 +44,6 @@
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
-#include "battle/struct_ov16_02265050.h"
 #include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022662FC.h"
@@ -199,7 +198,7 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     [BATTLE_COMMAND_SHOW_ENCOUNTER] = ov16_0225C17C,
     [BATTLE_COMMAND_SHOW_POKEMON] = ov16_0225C190,
     [BATTLE_COMMAND_RETURN_POKEMON] = ov16_0225C1A4,
-    [BATTLE_COMMAND_6] = ov16_0225C1B8,
+    [BATTLE_COMMAND_OPEN_CAPTURE_BALL] = ov16_0225C1B8,
     [BATTLE_COMMAND_DELETE_POKEMON] = ov16_0225C1CC,
     [BATTLE_COMMAND_SET_TRAINER_ENCOUNTER] = ov16_0225C1F0,
     [BATTLE_COMMAND_THROW_TRAINER_BALL] = ov16_0225C204,
@@ -335,9 +334,9 @@ static void ov16_0225C1A4(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C1B8(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_02265050 *v0 = (UnkStruct_ov16_02265050 *)&param1->data[0];
+    CaptureOpenBallMessage *message = (CaptureOpenBallMessage *)&param1->data[0];
 
-    ov16_0225D1C4(battleSys, param1, v0);
+    ov16_0225D1C4(battleSys, param1, message);
     ZeroDataBuffer(param1);
 }
 

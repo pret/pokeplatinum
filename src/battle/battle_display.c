@@ -79,7 +79,6 @@
 #include "battle/struct_ov16_022623F0.h"
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
-#include "battle/struct_ov16_02265050.h"
 #include "battle/struct_ov16_022656F0.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022664F8.h"
@@ -451,19 +450,19 @@ void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, MonReturnMessag
     SysTask_Start(ov16_0225F764, v1, 0);
 }
 
-void ov16_0225D1C4(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265050 *param2)
+void ov16_0225D1C4(BattleSystem *battleSys, BattlerData *param1, CaptureOpenBallMessage *message)
 {
     UnkStruct_ov16_0225D1C4 *v0 = (UnkStruct_ov16_0225D1C4 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225D1C4));
 
     v0->unk_00 = battleSys;
     v0->unk_04 = param1->unk_20;
-    v0->unk_08 = param2->unk_00;
+    v0->unk_08 = message->command;
     v0->unk_09 = param1->battler;
     v0->unk_0A = param1->battlerType;
     v0->unk_0B = 0;
-    v0->unk_0C = param2->unk_01;
+    v0->unk_0C = message->yOffset;
 
-    PokemonSprite_StartFade(v0->unk_04, 0, 16, 0, Unk_ov16_0226F1AE[param2->unk_02]);
+    PokemonSprite_StartFade(v0->unk_04, 0, 16, 0, Unk_ov16_0226F1AE[message->ball]);
     PokemonSprite_SetAttribute(v0->unk_04, MON_SPRITE_SHADOW_IS_AFFINE, 1);
     SysTask_Start(ov16_0225FA00, v0, 0);
 }

@@ -14,7 +14,7 @@ void BattleController_EmitSetEncounter(BattleSystem *battleSys, int param1);
 void BattleController_EmitShowEncounter(BattleSystem *battleSys, int param1);
 void BattleController_EmitShowPokemon(BattleSystem *battleSys, int param1, int param2, int param3);
 void BattleController_EmitReturnPokemon(BattleSystem *battleSys, BattleContext *param1, int param2);
-void ov16_02265050(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitOpenCaptureBall(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitDeletePokemon(BattleSystem *battleSys, int param1);
 void BattleController_EmitSetTrainerEncounter(BattleSystem *battleSys, int param1);
 void BattleController_EmitThrowTrainerBall(BattleSystem *battleSys, int param1, int param2);

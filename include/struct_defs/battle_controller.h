@@ -71,7 +71,7 @@ typedef struct {
     u16 maxPP[4];
     u16 nickname[10 + 1];
     u8 padding_46[2];
-    int unk_48;
+    int partnerPartySlot;
     int notSubstitute;
     u16 battleMonSpecies[4];
     u8 battleMonGenders[4];
@@ -91,6 +91,12 @@ typedef struct {
     u8 battleMonFormNums[4];
     u32 battleMonPersonalities[4];
 } MonReturnMessage;
+
+typedef struct {
+    u8 command;
+    u8 yOffset;
+    u16 ball;
+} CaptureOpenBallMessage;
 
 typedef struct {
     u8 command;

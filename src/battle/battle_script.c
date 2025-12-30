@@ -10554,29 +10554,29 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 0:
         if (v2->flag == 0) {
             {
-                BallThrow v7;
+                BallThrow ballThrow;
 
-                v7.mode = 3;
-                v7.heapID = HEAP_ID_BATTLE;
-                v7.target = v1 + 20000;
-                v7.ballID = v2->ball;
-                v7.cellActorSys = BattleSystem_GetSpriteSystem(v2->battleSys);
-                v7.paletteSys = BattleSystem_PaletteSys(v2->battleSys);
-                v7.bgPrio = 1;
-                v7.surface = 0;
-                v7.battleSys = v2->battleSys;
+                ballThrow.mode = 3;
+                ballThrow.heapID = HEAP_ID_BATTLE;
+                ballThrow.target = v1 + 20000;
+                ballThrow.ballID = v2->ball;
+                ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(v2->battleSys);
+                ballThrow.paletteSys = BattleSystem_PaletteSys(v2->battleSys);
+                ballThrow.bgPrio = 1;
+                ballThrow.surface = 0;
+                ballThrow.battleSys = v2->battleSys;
 
                 if (BattleSystem_BattleType(v2->battleSys) & BATTLE_TYPE_DOUBLES) {
                     if (v1 == 1) {
-                        v7.type = 16;
+                        ballThrow.type = 16;
                     } else {
-                        v7.type = 17;
+                        ballThrow.type = 17;
                     }
                 } else {
-                    v7.type = 15;
+                    ballThrow.type = 15;
                 }
 
-                v2->ballRotation = ov12_02237728(&v7);
+                v2->ballRotation = ov12_02237728(&ballThrow);
                 v2->seqNum = 1;
 
                 Sound_PlayEffect(SEQ_SE_DP_NAGERU);
@@ -10622,7 +10622,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         break;
     case 2:
         if (--v2->tmpData[1] == 0) {
-            ov16_02265050(v2->battleSys, v1, v2->ball);
+            BattleController_EmitOpenCaptureBall(v2->battleSys, v1, v2->ball);
             v2->tmpData[2] = BattleScript_CalcCatchShakes(v2->battleSys, v2->battleCtx);
 
             if (v2->tmpData[2] < 4) {
