@@ -1131,7 +1131,7 @@ static void ov112_0225D57C(UnkStruct_ov112_0225D6DC *param0, UnkStruct_ov112_022
 
         v3 = String_CountLines(v2);
         v7 = Unk_ov112_0225D880[v0].unk_08;
-        v4 = String_New(String_Length(v2) + 1, heapID);
+        v4 = String_New(String_GetLength(v2) + 1, heapID);
         for (v5 = 0; v5 < v3; v5++) {
             String_CopyLineNum(v4, v2, v5);
             switch (Unk_ov112_0225D880[v0].unk_09) {

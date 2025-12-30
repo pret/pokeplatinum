@@ -563,7 +563,7 @@ void UndergroundPlayer_ProcessHeldFlagOwnerInfo(int flagOwnerNetID, int unused1,
 
         String *name = TrainerInfo_NameNewString(flagOwnerInfo, HEAP_ID_COMMUNICATION);
 
-        if (String_Length(name) != 0) {
+        if (String_GetLength(name) != 0) {
             commPlayerMan->heldFlagInfo[flagOwnerNetID].netID = flagOwnerNetID;
         }
 

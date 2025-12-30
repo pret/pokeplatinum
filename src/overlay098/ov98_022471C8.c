@@ -966,7 +966,7 @@ static void ov98_022482CC(UnkStruct_ov98_02247704 *param0)
 
     Window_FillTilemap(&param0->unk_C4, 0x0f0f);
     v2 = MessageLoader_GetNewString(param0->unk_34, 44);
-    v3 = String_New(String_Length(v2), HEAP_ID_109);
+    v3 = String_New(String_GetLength(v2), HEAP_ID_109);
     for (v0 = param0->unk_AC; v0 < param0->unk_AC + 6; v0++) {
         String_CopyLineNum(v3, v2, v0);
         Text_AddPrinterWithParams(&param0->unk_C4, FONT_SYSTEM, v3, 4, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -994,7 +994,7 @@ static int ov98_02248350(UnkStruct_ov98_02247704 *param0)
         Window_Add(param0->unk_04, &param0->unk_D4, BG_LAYER_MAIN_2, 1, 19, 30, 4, 13, 508);
 
         Window_FillTilemap(&param0->unk_C4, 15);
-        String *string2 = String_New(String_Length(string1), HEAP_ID_109);
+        String *string2 = String_New(String_GetLength(string1), HEAP_ID_109);
         for (i = 0; i < 6; i++) {
             String_CopyLineNum(string2, string1, i);
             Text_AddPrinterWithParams(&param0->unk_C4, FONT_SYSTEM, string2, 4, i * 16, 0xFF, NULL);

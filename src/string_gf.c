@@ -279,7 +279,7 @@ int String_Compare(const String *str1, const String *str2)
     return 1;
 }
 
-u32 String_Length(const String *string)
+u32 String_GetLength(const String *string)
 {
     String_Assert(string);
     return string->size;

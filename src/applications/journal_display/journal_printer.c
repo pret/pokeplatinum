@@ -341,18 +341,18 @@ static void JournalPrinter_PrintTrainerEvent(JournalManager *journalManager, Win
     }
 
     String *name = MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, MapHeader_GetMapLabelTextID(journalEntryTrainer.mapID), HEAP_ID_JOURNAL);
-    strLength = String_Length(name);
+    strLength = String_GetLength(name);
     String_Free(name);
 
     if (Trainer_LoadParam(journalEntryTrainer.trainerID, TRDATA_CLASS) == TRAINER_CLASS_RIVAL) {
         name = MessageLoader_GetNewString(journalManager->loader, JournalEntries_Text_RivalName);
         StringTemplate_SetRivalName(journalManager->template, 1, journalManager->saveData);
         StringTemplate_Format(journalManager->template, journalManager->string, name);
-        strLength += String_Length(journalManager->string);
+        strLength += String_GetLength(journalManager->string);
         String_Free(name);
     } else {
         name = MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, journalEntryTrainer.trainerID, HEAP_ID_JOURNAL);
-        strLength += String_Length(name);
+        strLength += String_GetLength(name);
         String_Free(name);
         StringTemplate_SetTrainerName(journalManager->template, 1, journalEntryTrainer.trainerID);
     }
