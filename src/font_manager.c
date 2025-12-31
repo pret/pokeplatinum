@@ -156,7 +156,7 @@ void FontManager_TryLoadGlyph(const FontManager *fontManager, charcode_t c, Text
     if (c <= fontManager->header.numGlyphs) {
         c--;
     } else {
-        c = CHAR_QUESTION - 1;
+        c = CHAR_QMARK - 1;
     }
 
     fontManager->glyphBitmapFunc(fontManager, c, outGlyph);
@@ -229,7 +229,7 @@ u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t
     u32 len = 0;
 
     while (*str != CHAR_EOS) {
-        if (*str == CHAR_FORMAT_ARG) {
+        if (*str == CHAR_CONTROL_CODE_ARG) {
             str = CharCode_SkipFormatArg(str);
             if (*str == CHAR_EOS) {
                 break;
@@ -246,7 +246,7 @@ u32 FontManager_CalcStringWidth(const FontManager *fontManager, const charcode_t
 BOOL FontManager_AreAllCharsValid(const FontManager *fontManager, const charcode_t *str)
 {
     while (*str != CHAR_EOS) {
-        if (*str == CHAR_FORMAT_ARG) {
+        if (*str == CHAR_CONTROL_CODE_ARG) {
             str = CharCode_SkipFormatArg(str);
             if (*str == CHAR_EOS) {
                 return TRUE;
@@ -268,7 +268,7 @@ static u8 GlyphWidthFunc_VariableWidth(const FontManager *fontManager, u32 glyph
     if (glyphIdx < fontManager->header.numGlyphs) {
         return fontManager->glyphWidths[glyphIdx];
     } else {
-        return fontManager->glyphWidths[CHAR_QUESTION - 1];
+        return fontManager->glyphWidths[CHAR_QMARK - 1];
     }
 }
 
@@ -282,9 +282,9 @@ u32 FontManager_CalcMaxLineWidth(const FontManager *fontManager, const charcode_
     u32 maxLen = 0, lineLen = 0;
 
     while (*str != CHAR_EOS) {
-        if (*str == CHAR_FORMAT_ARG) {
+        if (*str == CHAR_CONTROL_CODE_ARG) {
             str = CharCode_SkipFormatArg(str);
-        } else if (*str == CHAR_CR) {
+        } else if (*str == CHAR_LINE_BREAK) {
             if (maxLen < lineLen - letterSpacing) {
                 maxLen = lineLen - letterSpacing;
             }
@@ -309,7 +309,7 @@ u32 FontManager_CalcStringWidthWithCursorControl(const FontManager *fontManager,
     u32 len = 0;
 
     while (*str != CHAR_EOS) {
-        if (*str == CHAR_FORMAT_ARG) {
+        if (*str == CHAR_CONTROL_CODE_ARG) {
             if (CharCode_FormatArgType(str) == CHAR_CONTROL_CURSOR_X) {
                 len = CharCode_FormatArgParam(str, 0) - 12;
             }

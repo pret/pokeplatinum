@@ -88,16 +88,16 @@ void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode padd
         1000000000
     };
     static const charcode_t sDigits_JP[] = {
-        CHAR_WIDE_0,
-        CHAR_WIDE_1,
-        CHAR_WIDE_2,
-        CHAR_WIDE_3,
-        CHAR_WIDE_4,
-        CHAR_WIDE_5,
-        CHAR_WIDE_6,
-        CHAR_WIDE_7,
-        CHAR_WIDE_8,
-        CHAR_WIDE_9,
+        CHAR_JP_0,
+        CHAR_JP_1,
+        CHAR_JP_2,
+        CHAR_JP_3,
+        CHAR_JP_4,
+        CHAR_JP_5,
+        CHAR_JP_6,
+        CHAR_JP_7,
+        CHAR_JP_8,
+        CHAR_JP_9,
     };
     static const charcode_t sDigits_EN[] = {
         CHAR_0,
@@ -123,7 +123,7 @@ void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode padd
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_MINUS : CHAR_MINUS;
+            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_MINUS : CHAR_MINUS;
         }
 
         u32 div = sPowersOfTen[maxDigits - 1];
@@ -132,13 +132,13 @@ void String_FormatInt(String *dst, int num, u32 maxDigits, enum PaddingMode padd
             num -= div * digit;
 
             if (paddingMode == PADDING_MODE_ZEROES) {
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QMARK;
                 // If we hit a non-zero digit, flip the padding mode off
             } else if (digit != 0 || div == 1) {
                 paddingMode = PADDING_MODE_ZEROES;
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QMARK;
             } else if (paddingMode == PADDING_MODE_SPACES) {
-                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_SPACE : CHAR_NUM_SPACE;
+                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_SPACE : CHAR_NUM_SPACE;
             }
 
             div /= 10;
@@ -176,16 +176,16 @@ void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode padd
         10000000000000000000
     };
     static const charcode_t sDigits_JP[] = {
-        CHAR_WIDE_0,
-        CHAR_WIDE_1,
-        CHAR_WIDE_2,
-        CHAR_WIDE_3,
-        CHAR_WIDE_4,
-        CHAR_WIDE_5,
-        CHAR_WIDE_6,
-        CHAR_WIDE_7,
-        CHAR_WIDE_8,
-        CHAR_WIDE_9,
+        CHAR_JP_0,
+        CHAR_JP_1,
+        CHAR_JP_2,
+        CHAR_JP_3,
+        CHAR_JP_4,
+        CHAR_JP_5,
+        CHAR_JP_6,
+        CHAR_JP_7,
+        CHAR_JP_8,
+        CHAR_JP_9,
     };
     static const charcode_t sDigits_EN[] = {
         CHAR_0,
@@ -211,7 +211,7 @@ void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode padd
 
         if (negative) {
             num *= -1;
-            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_MINUS : CHAR_MINUS;
+            dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_MINUS : CHAR_MINUS;
         }
 
         u64 div = sPowersOfTen[maxDigits - 1];
@@ -220,12 +220,12 @@ void String_FormatU64(String *dst, u64 num, u32 maxDigits, enum PaddingMode padd
             num -= div * digit;
 
             if (paddingMode == PADDING_MODE_ZEROES) {
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QMARK;
             } else if ((digit != 0) || (div == 1)) {
                 paddingMode = PADDING_MODE_ZEROES;
-                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_WIDE_QUESTION;
+                dst->data[dst->size++] = (digit < 10) ? digitSet[digit] : CHAR_JP_QMARK;
             } else if (paddingMode == PADDING_MODE_SPACES) {
-                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_WIDE_SPACE : CHAR_SPACE;
+                dst->data[dst->size++] = (charsetMode == CHARSET_MODE_JP) ? CHAR_JP_SPACE : CHAR_SPACE;
             }
 
             div /= 10;
@@ -246,7 +246,7 @@ u64 String_AtoI(const String *src, BOOL *success)
     }
 
     for (int i = (src->size - 1); i >= 0; i--) {
-        u64 digit = src->data[i] - CHAR_WIDE_0;
+        u64 digit = src->data[i] - CHAR_JP_0;
         if (digit >= 10) {
             digit = src->data[i] - CHAR_0;
 
@@ -291,7 +291,7 @@ u32 String_NumLines(const String *string)
 
     int i, count;
     for (i = 0, count = 1; i < string->size; i++) {
-        if (string->data[i] == CHAR_CR) {
+        if (string->data[i] == CHAR_LINE_BREAK) {
             count++;
         }
     }
@@ -308,7 +308,7 @@ void String_CopyLineNum(String *dst, const String *src, u32 lineNum)
 
     if (lineNum) {
         for (i = 0; i < src->size; i++) {
-            if (src->data[i] == CHAR_CR && --lineNum == 0) {
+            if (src->data[i] == CHAR_LINE_BREAK && --lineNum == 0) {
                 i++;
                 break;
             }
@@ -318,7 +318,7 @@ void String_CopyLineNum(String *dst, const String *src, u32 lineNum)
     String_Clear(dst);
 
     for (; i < src->size; i++) {
-        if (src->data[i] == CHAR_CR) {
+        if (src->data[i] == CHAR_LINE_BREAK) {
             break;
         }
 

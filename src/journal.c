@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/charcode.h"
 #include "generated/badges.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
@@ -24,8 +25,6 @@
 #define LOCATION_EVENT_TRAINER_ID(locationEvent)  ((locationEvent >> 6) & 0x3ff)
 #define LOCATION_EVENT_LOCATION_ID(locationEvent) ((locationEvent >> 16) & 0xffff)
 #define LOCATION_EVENT_ITEM(locationEvent)        ((locationEvent >> 16) & 0xffff)
-
-#define CHAR_NONE 0xffff
 
 #define GYM_NONE 0xff
 
@@ -875,11 +874,11 @@ static void JournalEntry_StringCopy(const u16 *src, u16 *dst, u32 strLength)
     u32 i;
 
     for (i = 0; i < strLength; i++) {
-        dst[i] = CHAR_NONE;
+        dst[i] = CHAR_EOS;
     }
 
     for (i = 0; i < strLength; i++) {
-        if (src[i] == CHAR_NONE) {
+        if (src[i] == CHAR_EOS) {
             break;
         }
 

@@ -634,7 +634,7 @@ void StringTemplate_Format(const StringTemplate *template, String *dst, const St
     String_Clear(dst);
 
     while (*c != CHAR_EOS) {
-        if (*c == CHAR_FORMAT_ARG) {
+        if (*c == CHAR_CONTROL_CODE_ARG) {
             if (CharCode_IsFormatArg(c)) {
                 u32 idx = CharCode_FormatArgParam(c, 0);
                 GF_ASSERT(idx < template->maxArgs);

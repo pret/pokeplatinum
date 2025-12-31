@@ -116,10 +116,10 @@ void FontSpecialChars_DrawPartyScreenHPText(FontSpecialCharsContext *context, s3
     CharCode_FromInt(context->charcodes, displayValue, paddingMode, digits);
 
     for (idx = 0; context->charcodes[idx] != CHAR_EOS; idx++) {
-        if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
+        if ((context->charcodes[idx] >= CHAR_JP_0) && (context->charcodes[idx] <= CHAR_JP_9)) {
             Window_BlitBitmapRect(
                 window,
-                (u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * TILE_SIZE_4BPP),
+                (u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_JP_0) * TILE_SIZE_4BPP),
                 0,
                 0,
                 TILE_WIDTH_PIXELS,
@@ -153,8 +153,8 @@ void FontSpecialChars_DrawBattleScreenText(FontSpecialCharsContext *context, s32
     CharCode_FromInt(context->charcodes, displayNum, paddingMode, numDigits);
 
     for (idx = 0; context->charcodes[idx] != CHAR_EOS; idx++) {
-        if ((context->charcodes[idx] >= CHAR_WIDE_0) && (context->charcodes[idx] <= CHAR_WIDE_9)) {
-            MI_CpuCopy32((u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_WIDE_0) * TILE_SIZE_4BPP), &displayPtrBytes[idx * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
+        if ((context->charcodes[idx] >= CHAR_JP_0) && (context->charcodes[idx] <= CHAR_JP_9)) {
+            MI_CpuCopy32((u8 *)(context->charData->pRawData) + ((context->charcodes[idx] - CHAR_JP_0) * TILE_SIZE_4BPP), &displayPtrBytes[idx * TILE_SIZE_4BPP], TILE_SIZE_4BPP);
         } else {
             MI_CpuFill8(&displayPtrBytes[idx * TILE_SIZE_4BPP], bgColor, TILE_SIZE_4BPP);
         }

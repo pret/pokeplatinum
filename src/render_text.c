@@ -76,7 +76,7 @@ enum RenderResult RenderText(TextPrinter *printer)
         case CHAR_EOS:
             return RENDER_FINISH;
 
-        case CHAR_CR:
+        case CHAR_LINE_BREAK:
             printer->template.currX = printer->template.x;
             printer->template.currY += Font_GetAttribute(printer->template.fontID, 1) + printer->template.lineSpacing;
             return RENDER_REPEAT;
@@ -85,7 +85,7 @@ enum RenderResult RenderText(TextPrinter *printer)
             printer->template.toPrint.raw++;
             return RENDER_REPEAT;
 
-        case CHAR_FORMAT_ARG:
+        case CHAR_CONTROL_CODE_ARG:
             printer->template.toPrint.raw--;
             currChar = CharCode_FormatArgType(printer->template.toPrint.raw);
 

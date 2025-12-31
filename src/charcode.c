@@ -6,9 +6,9 @@
 
 charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr)
 {
-    GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
+    GF_ASSERT(*cstr == CHAR_CONTROL_CODE_ARG);
 
-    if (*cstr == CHAR_FORMAT_ARG) {
+    if (*cstr == CHAR_CONTROL_CODE_ARG) {
         cstr += 2;
         u32 skip = *cstr++;
         cstr += skip;
@@ -19,7 +19,7 @@ charcode_t *CharCode_SkipFormatArg(const charcode_t *cstr)
 
 u32 CharCode_FormatArgType(const charcode_t *cstr)
 {
-    GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
+    GF_ASSERT(*cstr == CHAR_CONTROL_CODE_ARG);
     return *(cstr + 1);
 }
 
@@ -38,7 +38,7 @@ BOOL CharCode_IsFormatArg(const charcode_t *cstr)
 
 u32 CharCode_FormatArgParam(const charcode_t *cstr, u32 paramIdx)
 {
-    GF_ASSERT(*cstr == CHAR_FORMAT_ARG);
+    GF_ASSERT(*cstr == CHAR_CONTROL_CODE_ARG);
 
     cstr += 2;
     u32 skip = *cstr++;
