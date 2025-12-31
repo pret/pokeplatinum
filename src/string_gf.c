@@ -16,7 +16,7 @@ static inline void String_Assert(const String *string)
     GF_ASSERT(string->integrity == STRING_MAGIC_NUMBER);
 }
 
-String *String_New(u32 size, u32 heapID)
+String *String_New(u32 size, enum HeapID heapID)
 {
     String *string = Heap_Alloc(heapID, SIZEOF_STRING_HEADER + (size * sizeof(charcode_t)));
 

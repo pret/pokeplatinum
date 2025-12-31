@@ -608,8 +608,9 @@ static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0)
     Bg_RunScheduledUpdates(param0->unk_0C);
 }
 
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 heapID)
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 _heapID)
 {
+    enum HeapID heapID = _heapID; // For matching
     param0->unk_00 = StringTemplate_Default(heapID);
     param0->unk_04 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);
     param0->unk_18 = String_New(256, heapID);

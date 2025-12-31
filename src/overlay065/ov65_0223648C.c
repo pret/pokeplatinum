@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/journal_online_events.h"
 
 #include "struct_defs/struct_0207DE04.h"
@@ -996,12 +997,14 @@ static void ov65_02237034(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
     }
 }
 
-static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_02236840 *param1, const UnkStruct_0207DE04 *param2, int param3, u32 heapID)
+static void ov65_0223709C(UnkStruct_ov65_022367A8 *param0, UnkStruct_ov65_02236840 *param1, const UnkStruct_0207DE04 *param2, int param3, u32 _heapID)
 {
     String *v0;
     String *v1;
     u8 v2;
     u8 v3;
+
+    enum HeapID heapID = _heapID; // For matching
 
     v0 = String_New(256, heapID);
     v1 = String_New(256, heapID);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -137,7 +139,7 @@ static void ov21_021D6BB0(UnkStruct_ov21_021D71A8 *param0, const UnkStruct_ov21_
 static void ov21_021D6C44(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, const UnkStruct_ov21_021D5B68 *param2, int param3);
 static void ov21_021D6CC8(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, const UnkStruct_ov21_021D5B68 *param2, int param3);
 static void ov21_021D6D78(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, const UnkStruct_ov21_021D5B68 *param2, int param3, int param4, int dexIndex);
-static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, int param2, int param3, int param4);
+static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, enum HeapID heapID, int param3, int param4);
 static void ov21_021D6CA4(Sprite *param0, int *param1, int *param2);
 static fx32 ov21_021D6BF8(fx32 param0, fx32 param1, int param2, int param3);
 static void ov21_021D6F20(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, const UnkStruct_ov21_021D5B68 *param2);
@@ -1262,11 +1264,11 @@ static void ov21_021D6D78(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
     PokedexTextManager_FreeWindow(v1);
 }
 
-static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, int heapID, int param3, int param4)
+static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *param1, enum HeapID heapID, int param3, int param4)
 {
     PokedexDisplayBox displayBox;
     Window *v1;
-    String *v2 = String_New(32, heapID);
+    String *v2 = String_New(32, (u32)heapID); // For matching
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     displayBox.textMan = param1->textMan;

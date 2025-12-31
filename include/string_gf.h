@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_STRING_H
 #define POKEPLATINUM_STRING_H
 
+#include "constants/heap.h"
+
 #include "charcode.h"
 
 /**
@@ -45,7 +47,7 @@ enum CharsetMode {
  * @param heapID ID of the heap to own the new String.
  * @return Address to the new String.
  */
-String *String_New(u32 size, u32 heapID);
+String *String_New(u32 size, enum HeapID heapID);
 
 /**
  * @brief Free routine. Destroys an existing String and returns its memory

@@ -294,7 +294,7 @@ static void ov114_0225D1AC(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
 static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4);
 static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, String *param3, u32 param4);
 static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5);
-static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, u32 param4);
+static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, enum HeapID heapID);
 static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0);
 static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225D084 *param1, u32 param2, u32 param3);
 static void ov114_0225D400(UnkStruct_ov114_0225D338 *param0, u32 param1);
@@ -322,7 +322,7 @@ static void ov114_0225E0AC(void *param0);
 static void ov114_0225E0F8(UnkStruct_ov114_0225E0F8 *param0, const UnkStruct_ov114_0225C76C *param1);
 static BOOL ov114_0225E14C(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225E0F8 *param1);
 u32 ov114_0225E180(u32 param0);
-static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, UnkStruct_ov114_0225D084 *param2, u32 param3, NARC *param4, u32 param5);
+static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, UnkStruct_ov114_0225D084 *param2, u32 param3, NARC *param4, u32 heapID);
 static void ov114_0225E234(UnkStruct_ov114_0225E1A4 *param0);
 static void ov114_0225E244(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, u32 heapID);
 static void ov114_0225E2D4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1);
@@ -1502,7 +1502,7 @@ static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
     Text_AddPrinterWithParamsAndColor(param2, FONT_SYSTEM, param0->unk_08, param3, param4, TEXT_SPEED_NO_TRANSFER, param5, NULL);
 }
 
-static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, u32 heapID)
+static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, enum HeapID heapID)
 {
     u32 v0 = Options_Frame(SaveData_GetOptions(saveData));
     u32 v1;
