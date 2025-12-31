@@ -71,7 +71,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_ITEM_RESTRICT);
 
     if (ruleValue == 0) {
-        if (Pokemon_IsBattleFacilityBanned(pokemon)) {
+        if (Pokemon_IsBattleFrontierBanned(pokemon)) {
             return FALSE;
         }
     }

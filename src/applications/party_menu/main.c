@@ -1972,7 +1972,7 @@ u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
     }
 
     if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER
-        && Species_IsBattleFacilityBanned(application->partyMembers[partySlot].species) == TRUE) {
+        && Species_IsBattleFrontierBanned(application->partyMembers[partySlot].species) == TRUE) {
         return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
@@ -1992,7 +1992,7 @@ u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
 u8 PartyMenu_CheckBattleHallEligibility(PartyMenuApplication *application, u8 slot)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL
-        && Species_IsBattleFacilityBanned(application->partyMembers[slot].species) == TRUE) {
+        && Species_IsBattleFrontierBanned(application->partyMembers[slot].species) == TRUE) {
         return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 
@@ -2012,7 +2012,7 @@ u8 PartyMenu_CheckBattleHallEligibility(PartyMenuApplication *application, u8 sl
 u8 PartyMenu_CheckBattleCastleEligibility(PartyMenuApplication *application, u8 partySlot)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE
-        && Species_IsBattleFacilityBanned(application->partyMembers[partySlot].species) == TRUE) {
+        && Species_IsBattleFrontierBanned(application->partyMembers[partySlot].species) == TRUE) {
         return PARTY_MENU_SELECTION_INELIGIBLE;
     }
 

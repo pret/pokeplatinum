@@ -179,7 +179,7 @@ static BOOL sub_0204F268(u16 param0, SaveData *saveData)
             continue;
         }
 
-        if (Species_IsBattleFacilityBanned(v4) == 1) {
+        if (Species_IsBattleFrontierBanned(v4) == 1) {
             continue;
         }
 
