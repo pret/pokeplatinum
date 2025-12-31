@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
 #include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
@@ -876,7 +875,7 @@ void ov16_0225DA44(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(ov16_0226292C, v0, 0);
 }
 
-void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C35C *param2)
+void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMessage *message)
 {
     Healthbar *v0;
 
@@ -886,15 +885,15 @@ void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     MI_CpuClear8(&v0->state, sizeof(u8));
 
     v0->battleSys = battleSys;
-    v0->unk_4C = param2->unk_00;
+    v0->unk_4C = message->command;
     v0->battler = param1->battler;
     v0->type = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(battleSys));
-    v0->curHP = param2->unk_02;
-    v0->maxHP = param2->unk_04;
-    v0->damage = param2->unk_08;
-    v0->unk_48 = param2->unk_01;
+    v0->curHP = message->curHP;
+    v0->maxHP = message->maxHP;
+    v0->damage = message->hpCalcTemp;
+    v0->unk_48 = message->level;
 
-    if (param2->unk_08 == 0x7fff) {
+    if (message->hpCalcTemp == 0x7fff) {
         v0->curHP = 0;
         v0->damage = 0;
     }

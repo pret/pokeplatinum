@@ -54,7 +54,7 @@ void BattleController_EmitPrintMessage(BattleSystem *battleSys, BattleContext *b
 void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleContext *param1, u16 param2);
 void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *param1, u16 param2, int param3, int param4);
 void BattleController_EmitFlickerBattlerSprite(BattleSystem *battleSys, int param1, u32 param2);
-void BattleIO_UpdateHPGauge(BattleSystem *battleSys, BattleContext *param1, int param2);
+void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_UpdateExpGauge(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleIO_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_PlaySound(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);

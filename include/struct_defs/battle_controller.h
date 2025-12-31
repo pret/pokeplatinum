@@ -179,5 +179,16 @@ typedef struct {
     u16 move;
 } AttackMsgMessage;
 
+typedef struct {
+    u8 command;
+    u8 level;
+    s16 curHP;
+    u16 maxHP;
+    u8 padding_06;
+    u8 gender;
+    int hpCalcTemp;
+    u32 exp;
+    u32 expToNextLevel;
+} HPGaugeUpdateMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

@@ -1958,7 +1958,7 @@ static BOOL BtlCmd_UpdateHealthBar(BattleSystem *battleSys, BattleContext *battl
     int inBattler = BattleScript_Read(battleCtx);
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    BattleIO_UpdateHPGauge(battleSys, battleCtx, battler);
+    BattleController_EmitUpdateHPGauge(battleSys, battleCtx, battler);
 
     return FALSE;
 }

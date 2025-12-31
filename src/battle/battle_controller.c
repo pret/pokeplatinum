@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C35C.h"
 #include "battle/struct_ov16_0225C370.h"
 #include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
@@ -1075,33 +1074,40 @@ void BattleController_EmitFlickerBattlerSprite(BattleSystem *battleSys, int batt
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
-void BattleIO_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to update the HP Gauge
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    UnkStruct_ov16_0225C35C v0;
-    Pokemon *v1;
-    int v2;
-    int v3;
+    HPGaugeUpdateMessage message;
+    Pokemon *pokemon;
+    int species;
+    int level;
 
-    v1 = BattleSystem_PartyPokemon(battleSys, param2, battleCtx->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    pokemon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    level = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
 
-    v0.unk_00 = BATTLE_COMMAND_UPDATE_HP_GAUGE;
-    v0.unk_01 = battleCtx->battleMons[param2].level;
-    v0.unk_02 = battleCtx->battleMons[param2].curHP;
-    v0.unk_04 = battleCtx->battleMons[param2].maxHP;
-    v0.unk_08 = battleCtx->hpCalcTemp;
+    message.command = BATTLE_COMMAND_UPDATE_HP_GAUGE;
+    message.level = battleCtx->battleMons[battler].level;
+    message.curHP = battleCtx->battleMons[battler].curHP;
+    message.maxHP = battleCtx->battleMons[battler].maxHP;
+    message.hpCalcTemp = battleCtx->hpCalcTemp;
 
-    if (((battleCtx->battleMons[param2].species == 29) || (battleCtx->battleMons[param2].species == 32)) && (battleCtx->battleMons[param2].hasNickname == 0)) {
-        v0.unk_07 = 2;
+    if (((battleCtx->battleMons[battler].species == 29) || (battleCtx->battleMons[battler].species == 32)) && (battleCtx->battleMons[battler].hasNickname == 0)) {
+        message.gender = 2;
     } else {
-        v0.unk_07 = battleCtx->battleMons[param2].gender;
+        message.gender = battleCtx->battleMons[battler].gender;
     }
 
-    v0.unk_0C = battleCtx->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_10 = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    message.exp = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
+    message.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(HPGaugeUpdateMessage));
 }
 
 void BattleIO_UpdateExpGauge(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
