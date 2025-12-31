@@ -1017,32 +1017,62 @@ void BattleController_EmitPrintAttackMessage(BattleSystem *battleSys, BattleCont
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &message, sizeof(AttackMsgMessage));
 }
 
-void BattleIO_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg)
+/**
+ * @brief Emits a BattleMessage to the I/O queue for display on the screen.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battleMsg
+ */
+void BattleController_EmitPrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg)
 {
     battleMsg->commandCode = BATTLE_COMMAND_PRINT_MESSAGE;
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, battleMsg, sizeof(BattleMessage));
 }
 
-void BattleIO_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2)
+/**
+ * @brief Emits a message to play a move animation for the current move
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param param2
+ */
+void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2)
 {
-    UnkStruct_ov16_02265BBC v0;
+    MoveAnimation animation;
 
-    ov16_02266B78(battleSys, battleCtx, &v0, 0, NULL, battleCtx->attacker, battleCtx->defender, param2);
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, battleCtx->attacker, battleCtx->defender, param2);
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &animation, sizeof(MoveAnimation));
 }
 
-void BattleIO_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2, int param3, int param4)
+/**
+ * @brief Emits a message to play a move animation for the current move, using the given attacker and defender
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param param2
+ * @param attacker
+ * @param defender
+ */
+void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx, u16 param2, int attacker, int defender)
 {
-    UnkStruct_ov16_02265BBC v0;
+    MoveAnimation animation;
 
-    ov16_02266B78(battleSys, battleCtx, &v0, 0, NULL, param3, param4, param2);
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param3, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 0, NULL, attacker, defender, param2);
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, attacker, &animation, sizeof(MoveAnimation));
 }
 
-void BattleIO_FlickerBattler(BattleSystem *battleSys, int battlerId, u32 param2)
+/**
+ * @brief Emits a message to flicker the specified battler's sprite
+ *
+ * @param battleSys
+ * @param battlerId
+ * @param unused
+ */
+void BattleController_EmitFlickerBattlerSprite(BattleSystem *battleSys, int battlerId, u32 unused)
 {
-    int v0 = BATTLE_COMMAND_FLCIKER_BATTLER;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, 4);
+    int command = BATTLE_COMMAND_FLCIKER_BATTLER;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
 void BattleIO_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
@@ -1192,20 +1222,37 @@ void BattleIO_TrainerMessage(BattleSystem *battleSys, int battlerId, int param2)
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_0225C3E4));
 }
 
-void BattleIO_PlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
+/**
+ * @brief Emits a message to play a status effect's animation
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @param param3
+ */
+void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int param3)
 {
-    UnkStruct_ov16_02265BBC v0;
+    MoveAnimation animation;
 
-    ov16_02266B78(battleSys, battleCtx, &v0, 1, param3, param2, param2, NULL);
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param3, battler, battler, NULL);
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &animation, sizeof(MoveAnimation));
 }
 
-void BattleIO_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3, int param4)
+/**
+ * @brief Emits a message to play a status effect's animation, with a specified attacker and defender
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param attacker
+ * @param defender
+ * @param param4
+ */
+void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int param4)
 {
-    UnkStruct_ov16_02265BBC v0;
+    MoveAnimation animation;
 
-    ov16_02266B78(battleSys, battleCtx, &v0, 1, param4, param2, param3, NULL);
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    BattleController_SetMoveAnimation(battleSys, battleCtx, &animation, 1, param4, attacker, defender, NULL);
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, attacker, &animation, sizeof(MoveAnimation));
 }
 
 void BattleIO_PrintRecallMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
@@ -1505,26 +1552,26 @@ void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler)
 
 void BattleIO_RestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
 {
-    int v0;
-    UnkStruct_ov16_02265BBC v1;
+    int i;
+    MoveAnimation animation;
 
-    v1.unk_00 = BATTLE_COMMAND_RESTORE_SPRITE;
+    animation.command = BATTLE_COMMAND_RESTORE_SPRITE;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1.unk_18[v0] = battleCtx->battleMons[v0].species;
-        v1.unk_24[v0] = battleCtx->battleMons[v0].isShiny;
-        v1.unk_28[v0] = battleCtx->battleMons[v0].formNum;
+    for (i = 0; i < 4; i++) {
+        animation.species[i] = battleCtx->battleMons[i].species;
+        animation.isShiny[i] = battleCtx->battleMons[i].isShiny;
+        animation.formNums[i] = battleCtx->battleMons[i].formNum;
 
-        if (battleCtx->battleMons[v0].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
-            v1.unk_20[v0] = battleCtx->battleMons[v0].moveEffectsData.transformedGender;
-            v1.unk_2C[v0] = battleCtx->battleMons[v0].moveEffectsData.transformedPID;
+        if (battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
+            animation.genders[i] = battleCtx->battleMons[i].moveEffectsData.transformedGender;
+            animation.personalities[i] = battleCtx->battleMons[i].moveEffectsData.transformedPID;
         } else {
-            v1.unk_20[v0] = battleCtx->battleMons[v0].gender;
-            v1.unk_2C[v0] = battleCtx->battleMons[v0].personality;
+            animation.genders[i] = battleCtx->battleMons[i].gender;
+            animation.personalities[i] = battleCtx->battleMons[i].personality;
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &animation, sizeof(MoveAnimation));
 }
 
 void BattleIO_SpriteToOAM(BattleSystem *battleSys, int battlerId)
@@ -1587,26 +1634,26 @@ void BattleIO_ForfeitMessage(BattleSystem *battleSys)
 
 void BattleIO_RefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
 {
-    int v0;
-    UnkStruct_ov16_02265BBC v1;
+    int i;
+    MoveAnimation animation;
 
-    v1.unk_00 = BATTLE_COMMAND_REFRESH_SPRITE;
+    animation.command = BATTLE_COMMAND_REFRESH_SPRITE;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1.unk_18[v0] = battleCtx->battleMons[v0].species;
-        v1.unk_24[v0] = battleCtx->battleMons[v0].isShiny;
-        v1.unk_28[v0] = battleCtx->battleMons[v0].formNum;
+    for (i = 0; i < 4; i++) {
+        animation.species[i] = battleCtx->battleMons[i].species;
+        animation.isShiny[i] = battleCtx->battleMons[i].isShiny;
+        animation.formNums[i] = battleCtx->battleMons[i].formNum;
 
-        if (battleCtx->battleMons[v0].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
-            v1.unk_20[v0] = battleCtx->battleMons[v0].moveEffectsData.transformedGender;
-            v1.unk_2C[v0] = battleCtx->battleMons[v0].moveEffectsData.transformedPID;
+        if (battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
+            animation.genders[i] = battleCtx->battleMons[i].moveEffectsData.transformedGender;
+            animation.personalities[i] = battleCtx->battleMons[i].moveEffectsData.transformedPID;
         } else {
-            v1.unk_20[v0] = battleCtx->battleMons[v0].gender;
-            v1.unk_2C[v0] = battleCtx->battleMons[v0].personality;
+            animation.genders[i] = battleCtx->battleMons[i].gender;
+            animation.personalities[i] = battleCtx->battleMons[i].personality;
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &animation, sizeof(MoveAnimation));
 }
 
 void BattleIO_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
@@ -1717,51 +1764,63 @@ BOOL ov16_02266AE4(BattleSystem *battleSys, void *param1)
     return v5;
 }
 
-void ov16_02266B78(BattleSystem *battleSys, BattleContext *battleCtx, UnkStruct_ov16_02265BBC *param2, int param3, int param4, int param5, int param6, u16 param7)
+/**
+ * @brief Initializes MoveAnimation structs, output to the animation parameter 
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param animation
+ * @param param3
+ * @param param4
+ * @param attacker
+ * @param defender
+ * @param move
+ */
+void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx, MoveAnimation *animation, int param3, int param4, int attacker, int defender, u16 move)
 {
-    int v0;
+    int i;
 
-    param2->unk_00 = BATTLE_COMMAND_22;
-    param2->unk_02 = param7;
-    param2->unk_14 = param5;
-    param2->unk_16 = param6;
-    param2->unk_4C = param3;
-    param2->unk_50 = param4;
-    param2->unk_54 = BattleSystem_Terrain(battleSys);
+    animation->command = BATTLE_COMMAND_22;
+    animation->move = move;
+    animation->attacker = attacker;
+    animation->defender = defender;
+    animation->unk_4C = param3;
+    animation->unk_50 = param4;
+    animation->terrain = BattleSystem_Terrain(battleSys);
 
     if (battleCtx != NULL) {
-        param2->unk_04 = battleCtx->damage;
+        animation->damage = battleCtx->damage;
 
         if (battleCtx->movePower) {
-            param2->unk_08 = battleCtx->movePower;
+            animation->power = battleCtx->movePower;
         } else {
-            param2->unk_08 = battleCtx->aiContext.moveTable[param7].power;
+            animation->power = battleCtx->aiContext.moveTable[move].power;
         }
 
-        param2->friendship = battleCtx->battleMons[param5].friendship;
+        animation->friendship = battleCtx->battleMons[attacker].friendship;
 
         if ((BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_CLOUD_NINE) == 0) && (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_AIR_LOCK) == 0)) {
-            param2->fieldConditions = battleCtx->fieldConditionsMask;
+            animation->fieldConditions = battleCtx->fieldConditionsMask;
         } else {
-            param2->fieldConditions = 0;
+            animation->fieldConditions = 0;
         }
 
-        param2->unk_0A = battleCtx->moveEffectChance;
-        param2->unk_0E_0 = ((battleCtx->battleMons[param5].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0);
-        param2->unk_0E_1 = ((battleCtx->battleMons[param5].statusVolatile & VOLATILE_CONDITION_TRANSFORM) != 0);
+        animation->effectChance = battleCtx->moveEffectChance;
+        animation->isSubstitute = ((battleCtx->battleMons[attacker].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0);
+        animation->transformed = ((battleCtx->battleMons[attacker].statusVolatile & VOLATILE_CONDITION_TRANSFORM) != 0);
 
-        for (v0 = 0; v0 < 4; v0++) {
-            param2->unk_18[v0] = battleCtx->battleMons[v0].species;
-            param2->unk_24[v0] = battleCtx->battleMons[v0].isShiny;
-            param2->unk_28[v0] = battleCtx->battleMons[v0].formNum;
-            param2->unk_3C[v0] = battleCtx->battleMons[v0].moveEffectsMask;
+        for (i = 0; i < 4; i++) {
+            animation->species[i] = battleCtx->battleMons[i].species;
+            animation->isShiny[i] = battleCtx->battleMons[i].isShiny;
+            animation->formNums[i] = battleCtx->battleMons[i].formNum;
+            animation->moveEffectMasks[i] = battleCtx->battleMons[i].moveEffectsMask;
 
-            if (battleCtx->battleMons[v0].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
-                param2->unk_20[v0] = battleCtx->battleMons[v0].moveEffectsData.transformedGender;
-                param2->unk_2C[v0] = battleCtx->battleMons[v0].moveEffectsData.transformedPID;
+            if (battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
+                animation->genders[i] = battleCtx->battleMons[i].moveEffectsData.transformedGender;
+                animation->personalities[i] = battleCtx->battleMons[i].moveEffectsData.transformedPID;
             } else {
-                param2->unk_20[v0] = battleCtx->battleMons[v0].gender;
-                param2->unk_2C[v0] = battleCtx->battleMons[v0].personality;
+                animation->genders[i] = battleCtx->battleMons[i].gender;
+                animation->personalities[i] = battleCtx->battleMons[i].personality;
             }
         }
     }

@@ -469,7 +469,7 @@ static void BtlIOCmd_PrintBattleMessage(BattleSystem *battleSys, BattlerData *ba
 
 static void ov16_0225C314(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_02265BBC *v0 = (UnkStruct_ov16_02265BBC *)&param1->data[0];
+    MoveAnimation *v0 = (MoveAnimation *)&param1->data[0];
 
     ov16_0225D9A8(battleSys, param1, v0);
     ZeroDataBuffer(param1);
@@ -873,7 +873,7 @@ static void ov16_0225C988(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C9AC(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_02265BBC *v0 = (UnkStruct_ov16_02265BBC *)&param1->data[0];
+    MoveAnimation *v0 = (MoveAnimation *)&param1->data[0];
 
     ov16_0225E294(battleSys, param1, v0);
     ZeroDataBuffer(param1);
@@ -917,7 +917,7 @@ static void ov16_0225CA14(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225CA38(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_02265BBC *v0 = (UnkStruct_ov16_02265BBC *)&param1->data[0];
+    MoveAnimation *v0 = (MoveAnimation *)&param1->data[0];
 
     ov16_0225E434(battleSys, param1, v0);
     ZeroDataBuffer(param1);

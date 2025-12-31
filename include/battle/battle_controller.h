@@ -50,18 +50,10 @@ void BattleController_EmitShowPartyMenu(BattleSystem *battleSys, BattleContext *
 void ov16_02265B10(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitShowYesNoMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname);
 void BattleController_EmitPrintAttackMessage(BattleSystem *battleSys, BattleContext *param1);
-
-/**
- * @brief Submit a BattleMessage to the I/O queue for display on the screen.
- *
- * @param battleSys
- * @param battleCtx
- * @param battleMsg
- */
-void BattleIO_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg);
-void BattleIO_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *param1, u16 param2);
-void BattleIO_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *param1, u16 param2, int param3, int param4);
-void BattleIO_FlickerBattler(BattleSystem *battleSys, int param1, u32 param2);
+void BattleController_EmitPrintMessage(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessage *battleMsg);
+void BattleController_EmitPlayMoveAnimation(BattleSystem *battleSys, BattleContext *param1, u16 param2);
+void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *param1, u16 param2, int param3, int param4);
+void BattleController_EmitFlickerBattlerSprite(BattleSystem *battleSys, int param1, u32 param2);
 void BattleIO_UpdateHPGauge(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_UpdateExpGauge(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleIO_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *param1, int param2);
@@ -70,8 +62,8 @@ void BattleIO_FadeOut(BattleSystem *battleSys, BattleContext *param1);
 void BattleIO_ToggleVanish(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_SetStatusIcon(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_TrainerMessage(BattleSystem *battleSys, int param1, int param2);
-void BattleIO_PlayStatusEffect(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
-void BattleIO_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *param1, int param2, int param3, int param4);
+void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
+void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *param1, int param2, int param3, int param4);
 void BattleIO_PrintRecallMessage(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleIO_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleIO_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *param1, int param2);
@@ -152,6 +144,6 @@ void BattleIO_SubmitResult(BattleSystem *battleSys);
 void BattleIO_ClearMessageBox(BattleSystem *battleSys);
 void ClearCommand(BattleSystem *battleSys, int param1, int param2);
 BOOL ov16_02266AE4(BattleSystem *battleSys, void *param1);
-void ov16_02266B78(BattleSystem *battleSys, BattleContext *param1, UnkStruct_ov16_02265BBC *param2, int param3, int param4, int param5, int param6, u16 param7);
+void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *param1, MoveAnimation *param2, int param3, int param4, int param5, int param6, u16 param7);
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_H

@@ -1676,7 +1676,7 @@ static BOOL BtlCmd_PrintMessage(BattleSystem *battleSys, BattleContext *battleCt
     BattleMessage msg;
     BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
-    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
+    BattleController_EmitPrintMessage(battleSys, battleCtx, &msg);
 
     return FALSE;
 }
@@ -1708,7 +1708,7 @@ static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *ba
     BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
     msg.tags |= TAG_GLOBAL_MESSAGE;
-    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
+    BattleController_EmitPrintMessage(battleSys, battleCtx, &msg);
 
     return FALSE;
 }
@@ -1725,7 +1725,7 @@ static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_PrintBufferedMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_PrintMessage(battleSys, battleCtx, &battleCtx->msgBuffer);
+    BattleController_EmitPrintMessage(battleSys, battleCtx, &battleCtx->msgBuffer);
 
     return FALSE;
 }
@@ -1783,7 +1783,7 @@ static BOOL BtlCmd_BufferLocalMessage(BattleSystem *battleSys, BattleContext *ba
 
     msg.tags |= TAG_SIDE_LOCAL_MESSAGE;
     msg.battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
+    BattleController_EmitPrintMessage(battleSys, battleCtx, &msg);
 
     return FALSE;
 }
@@ -1815,7 +1815,7 @@ static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *bat
     if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
         || move == MOVE_TRANSFORM) {
         battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
-        BattleIO_PlayMoveAnimation(battleSys, battleCtx, move);
+        BattleController_EmitPlayMoveAnimation(battleSys, battleCtx, move);
     }
 
     if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
@@ -1860,7 +1860,7 @@ static BOOL BtlCmd_PlayMoveAnimationOnMons(BattleSystem *battleSys, BattleContex
     if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
         || move == MOVE_TRANSFORM) {
         battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
-        BattleIO_PlayMoveAnimationA2D(battleSys, battleCtx, move, attacker, defender);
+        BattleController_EmitPlayMoveAnimationA2D(battleSys, battleCtx, move, attacker, defender);
     }
 
     if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
@@ -1884,7 +1884,7 @@ static BOOL BtlCmd_FlickerMon(BattleSystem *battleSys, BattleContext *battleCtx)
     int inBattler = BattleScript_Read(battleCtx);
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    BattleIO_FlickerBattler(battleSys, battler, battleCtx->moveStatusFlags);
+    BattleController_EmitFlickerBattlerSprite(battleSys, battler, battleCtx->moveStatusFlags);
 
     return FALSE;
 }
@@ -3975,7 +3975,7 @@ static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *b
         || effect == BATTLE_ANIMATION_SUBSTITUTE_IN) {
         int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
         if (BattleSystem_ShouldShowStatusEffect(battleCtx, battler, effect) == TRUE) {
-            BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, effect);
+            BattleController_EmitPlayStatusEffect(battleSys, battleCtx, battler, effect);
         }
     }
 
@@ -4014,7 +4014,7 @@ static BOOL BtlCmd_PlayBattleAnimationOnMons(BattleSystem *battleSys, BattleCont
 
         if (BattleSystem_ShouldShowStatusEffect(battleCtx, attacker, effect) == TRUE
             && BattleSystem_ShouldShowStatusEffect(battleCtx, defender, effect) == TRUE) {
-            BattleIO_PlayStatusEffectAToD(battleSys, battleCtx, attacker, defender, effect);
+            BattleController_EmitPlayStatusEffectAToD(battleSys, battleCtx, attacker, defender, effect);
         }
     }
 
@@ -4047,7 +4047,7 @@ static BOOL BtlCmd_PlayBattleAnimationFromVar(BattleSystem *battleSys, BattleCon
             || *effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
             || *effect == BATTLE_ANIMATION_SUBSTITUTE_IN)
         && BattleSystem_ShouldShowStatusEffect(battleCtx, battler, *effect) == TRUE) {
-        BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, *effect);
+        BattleController_EmitPlayStatusEffect(battleSys, battleCtx, battler, *effect);
     }
 
     return FALSE;
@@ -10049,7 +10049,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         if (Pokemon_ShouldLevelUp(mon)) {
             // Only play the special level-up animation for an active battler
             if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
-                BattleIO_PlayStatusEffect(data->battleSys, data->battleCtx, expBattler, BATTLE_ANIMATION_LEVEL_UP);
+                BattleController_EmitPlayStatusEffect(data->battleSys, data->battleCtx, expBattler, BATTLE_ANIMATION_LEVEL_UP);
                 BattleIO_PlayLevelUpAnimation(data->battleSys, expBattler);
             }
 

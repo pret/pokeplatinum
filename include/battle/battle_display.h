@@ -72,7 +72,7 @@ void ov16_0225D8F0(BattleSystem *battleSys, BattlerData *param1, AttackMsgMessag
  * @param battleMsg
  */
 void BattleDisplay_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg);
-void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265BBC *param2);
+void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *param2);
 void ov16_0225DA44(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C35C *param2);
 void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C370 *param2);
@@ -128,13 +128,13 @@ void BattleDisplay_ShowPartyGauge(BattleSystem *battleSys, BattlerData *battlerD
  */
 void BattleDisplay_HidePartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge);
 void ov16_0225E23C(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265BBC *param2);
+void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *param2);
 void ov16_0225E2C8(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E300(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E338(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2);
 void ov16_0225E3E0(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265BBC *param2);
+void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *param2);
 void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225CA4C *param2);
 void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225CA60 *param2);
 void ov16_02263730(BattleSystem *battleSys, BattlerData *param1);

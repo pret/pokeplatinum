@@ -187,8 +187,8 @@ static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMe
 static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2, BattleMessage *param3);
 static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int param2, int param3, s16 param4, s16 param5);
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3);
-static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3);
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, MoveAnimation *param3);
+static void ov16_02264530(BattleSystem *battleSys, MoveAnimation *param1, UnkStruct_ov12_022380DC *param2, int param3);
 static void ov16_022645B8(u8 *param0, u8 *param1, int param2, int param3, u16 param4);
 static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, ManagedSprite *param1);
 static void ov16_022646C8(SysTask *param0, void *param1);
@@ -407,11 +407,11 @@ void ov16_0225CF70(BattleSystem *battleSys, BattlerData *param1, MonShowMessage 
     v2->unk_98 = message->notSubstitute;
 
     for (i = 0; i < 4; i++) {
-        v2->unk_28.unk_18[i] = message->battleMonSpecies[i];
-        v2->unk_28.unk_20[i] = message->battleMonGenders[i];
-        v2->unk_28.unk_24[i] = message->battleMonIsShiny[i];
-        v2->unk_28.unk_28[i] = message->battleMonFormNums[i];
-        v2->unk_28.unk_2C[i] = message->battleMonPersonalities[i];
+        v2->unk_28.species[i] = message->battleMonSpecies[i];
+        v2->unk_28.genders[i] = message->battleMonGenders[i];
+        v2->unk_28.isShiny[i] = message->battleMonIsShiny[i];
+        v2->unk_28.formNums[i] = message->battleMonFormNums[i];
+        v2->unk_28.personalities[i] = message->battleMonPersonalities[i];
     }
 
     SysTask_Start(ov16_0225F0C0, v2, 0);
@@ -433,11 +433,11 @@ void ov16_0225D118(BattleSystem *battleSys, BattlerData *param1, MonReturnMessag
     v1->unk_70 = message->notSubstitute;
 
     for (i = 0; i < 4; i++) {
-        v1->unk_10.unk_18[i] = message->battleMonSpecies[i];
-        v1->unk_10.unk_20[i] = message->battleMonGenders[i];
-        v1->unk_10.unk_24[i] = message->battleMonIsShiny[i];
-        v1->unk_10.unk_28[i] = message->battleMonFormNums[i];
-        v1->unk_10.unk_2C[i] = message->battleMonPersonalities[i];
+        v1->unk_10.species[i] = message->battleMonSpecies[i];
+        v1->unk_10.genders[i] = message->battleMonGenders[i];
+        v1->unk_10.isShiny[i] = message->battleMonIsShiny[i];
+        v1->unk_10.formNums[i] = message->battleMonFormNums[i];
+        v1->unk_10.personalities[i] = message->battleMonPersonalities[i];
     }
 
     SysTask_Start(ov16_0225F764, v1, 0);
@@ -838,7 +838,7 @@ void BattleDisplay_PrintMessage(BattleSystem *battleSys, BattlerData *battlerDat
     SysTask_Start(WaitForBattleMessagePrint, taskData, 0);
 }
 
-void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265BBC *param2)
+void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *animation)
 {
     UnkStruct_ov16_0225D9A8 *v0 = (UnkStruct_ov16_0225D9A8 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225D9A8));
 
@@ -848,18 +848,18 @@ void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_68 = param1->data[0];
     v0->unk_69 = param1->battler;
     v0->unk_0C = ov16_0223E008(battleSys);
-    v0->unk_10 = *param2;
+    v0->unk_10 = *animation;
     v0->unk_08 = param1->unk_20;
 
-    if ((param2->unk_4C == 1) && (param2->unk_50 == 25)) {
+    if ((animation->unk_4C == 1) && (animation->unk_50 == 25)) {
         param1->unk_19C = 1;
     }
 
-    if ((param2->unk_4C == 1) && (param2->unk_50 == 26)) {
+    if ((animation->unk_4C == 1) && (animation->unk_50 == 26)) {
         param1->unk_19C = 0;
     }
 
-    ov16_022645B8(&v0->unk_6B, &v0->unk_6C, param2->unk_4C, param2->unk_50, param2->unk_02);
+    ov16_022645B8(&v0->unk_6B, &v0->unk_6C, animation->unk_4C, animation->unk_50, animation->move);
     SysTask_Start(ov16_022626C0, v0, 0);
 }
 
@@ -954,11 +954,11 @@ void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_72 = param2->unk_0A;
 
     for (i = 0; i < 4; i++) {
-        v0->unk_0C.unk_18[i] = param2->unk_0C[i];
-        v0->unk_0C.unk_20[i] = param2->unk_14[i];
-        v0->unk_0C.unk_24[i] = param2->unk_18[i];
-        v0->unk_0C.unk_28[i] = param2->unk_1C[i];
-        v0->unk_0C.unk_2C[i] = param2->unk_20[i];
+        v0->unk_0C.species[i] = param2->unk_0C[i];
+        v0->unk_0C.genders[i] = param2->unk_14[i];
+        v0->unk_0C.isShiny[i] = param2->unk_18[i];
+        v0->unk_0C.formNums[i] = param2->unk_1C[i];
+        v0->unk_0C.personalities[i] = param2->unk_20[i];
     }
 
     SysTask_Start(ov16_02262A9C, v0, 0);
@@ -1006,11 +1006,11 @@ void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_64 = param2->unk_02;
 
     for (i = 0; i < 4; i++) {
-        v0->unk_08.unk_18[i] = param2->unk_04[i];
-        v0->unk_08.unk_20[i] = param2->unk_0C[i];
-        v0->unk_08.unk_24[i] = param2->unk_10[i];
-        v0->unk_08.unk_28[i] = param2->unk_14[i];
-        v0->unk_08.unk_2C[i] = param2->unk_18[i];
+        v0->unk_08.species[i] = param2->unk_04[i];
+        v0->unk_08.genders[i] = param2->unk_0C[i];
+        v0->unk_08.isShiny[i] = param2->unk_10[i];
+        v0->unk_08.formNums[i] = param2->unk_14[i];
+        v0->unk_08.personalities[i] = param2->unk_18[i];
     }
 
     SysTask_Start(ov16_02262DC4, v0, 0);
@@ -1305,13 +1305,13 @@ void ov16_0225E23C(BattleSystem *battleSys, BattlerData *param1)
     ClearCommand(battleSys, param1->battler, 55);
 }
 
-void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265BBC *param2)
+void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *animation)
 {
     UnkStruct_ov12_022380DC v0;
 
-    ov16_02264530(battleSys, param2, &v0, param1->battler);
+    ov16_02264530(battleSys, animation, &v0, param1->battler);
     ov12_022382BC(&v0, HEAP_ID_BATTLE);
-    ClearCommand(battleSys, param1->battler, param2->unk_00);
+    ClearCommand(battleSys, param1->battler, animation->command);
 }
 
 void ov16_0225E2C8(BattleSystem *battleSys, BattlerData *param1)
@@ -1399,13 +1399,13 @@ void ov16_0225E3E0(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
-void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_02265BBC *param2)
+void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *animation)
 {
     UnkStruct_ov12_022380DC v0;
 
-    ov16_02264530(battleSys, param2, &v0, param1->battler);
+    ov16_02264530(battleSys, animation, &v0, param1->battler);
     ov12_02238390(&v0, HEAP_ID_BATTLE);
-    ClearCommand(battleSys, param1->battler, param2->unk_00);
+    ClearCommand(battleSys, param1->battler, animation->command);
 }
 
 void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225CA4C *param2)
@@ -1551,9 +1551,9 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
-                    UnkStruct_ov16_02265BBC v6;
+                    MoveAnimation v6;
 
-                    ov16_02266B78(v0->unk_00, NULL, &v6, 1, 11, v0->unk_11, v0->unk_11, NULL);
+                    BattleController_SetMoveAnimation(v0->unk_00, NULL, &v6, 1, 11, v0->unk_11, v0->unk_11, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v1, &v6);
                 }
                 v0->unk_12 = 4;
@@ -1633,9 +1633,9 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         if ((sub_020160F4(BattleSystem_GetPokemonAnimationSystem(v0->unk_00), v0->unk_11) == 1) && (PokemonSprite_IsAnimActive(v0->unk_08) == 0)) {
             if (v0->unk_28) {
                 {
-                    UnkStruct_ov16_02265BBC v5;
+                    MoveAnimation v5;
 
-                    ov16_02266B78(v0->unk_00, NULL, &v5, 1, 11, v0->unk_11, v0->unk_11, NULL);
+                    BattleController_SetMoveAnimation(v0->unk_00, NULL, &v5, 1, 11, v0->unk_11, v0->unk_11, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v1, &v5);
                 }
                 v0->unk_12 = 4;
@@ -1845,10 +1845,10 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
 
             if (v0->unk_92) {
                 {
-                    UnkStruct_ov16_02265BBC v8;
+                    MoveAnimation v8;
 
                     v0->unk_24 = BattleAnimSystem_New(HEAP_ID_BATTLE);
-                    ov16_02266B78(v0->unk_00, NULL, &v8, 1, 11, v0->unk_81, v0->unk_81, NULL);
+                    BattleController_SetMoveAnimation(v0->unk_00, NULL, &v8, 1, 11, v0->unk_81, v0->unk_81, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_24, &v8);
                 }
                 v0->unk_83 = 7;
@@ -2036,9 +2036,9 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
 
             if (v0->unk_92) {
                 {
-                    UnkStruct_ov16_02265BBC v10;
+                    MoveAnimation v10;
 
-                    ov16_02266B78(v0->unk_00, NULL, &v10, 1, 11, v0->unk_81, v0->unk_81, NULL);
+                    BattleController_SetMoveAnimation(v0->unk_00, NULL, &v10, 1, 11, v0->unk_81, v0->unk_81, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v1, &v10);
                 }
                 v0->unk_83 = 7;
@@ -2060,9 +2060,9 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
     case 8:
         if (v0->unk_98) {
             {
-                UnkStruct_ov16_02265BBC v11;
+                MoveAnimation v11;
 
-                ov16_02266B78(v0->unk_00, NULL, &v11, 1, 15, v0->unk_81, v0->unk_81, NULL);
+                BattleController_SetMoveAnimation(v0->unk_00, NULL, &v11, 1, 15, v0->unk_81, v0->unk_81, NULL);
                 ov16_02264408(v0->unk_00, v0->unk_04, v1, &v11);
             }
             v0->unk_83++;
@@ -2072,11 +2072,11 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         break;
     case 10: {
         UnkStruct_ov12_022380DC v12;
-        UnkStruct_ov16_02265BBC v13;
+        MoveAnimation v13;
 
         ov16_02264530(v0->unk_00, &v0->unk_28, &v12, v0->unk_81);
         ov12_02238390(&v12, HEAP_ID_BATTLE);
-        ov16_02266B78(v0->unk_00, NULL, &v13, 1, 16, v0->unk_81, v0->unk_81, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v13, 1, 16, v0->unk_81, v0->unk_81, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v13);
 
         v0->unk_04->unk_19C = 1;
@@ -2100,9 +2100,9 @@ static void ov16_0225F764(SysTask *param0, void *param1)
     case 0:
         if (v0->unk_70) {
             {
-                UnkStruct_ov16_02265BBC v2;
+                MoveAnimation v2;
 
-                ov16_02266B78(v0->unk_00, NULL, &v2, 1, 15, v0->unk_69, v0->unk_69, NULL);
+                BattleController_SetMoveAnimation(v0->unk_00, NULL, &v2, 1, 15, v0->unk_69, v0->unk_69, NULL);
                 ov16_02264408(v0->unk_00, v0->unk_04, v1, &v2);
             }
             v0->unk_6B++;
@@ -2112,11 +2112,11 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         break;
     case 2: {
         UnkStruct_ov12_022380DC v3;
-        UnkStruct_ov16_02265BBC v4;
+        MoveAnimation v4;
 
         ov16_02264530(v0->unk_00, &v0->unk_10, &v3, v0->unk_69);
         ov12_022382BC(&v3, HEAP_ID_BATTLE);
-        ov16_02266B78(v0->unk_00, NULL, &v4, 1, 16, v0->unk_69, v0->unk_69, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v4, 1, 16, v0->unk_69, v0->unk_69, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v4);
         v0->unk_04->unk_19C = 0;
     }
@@ -3759,35 +3759,35 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         }
         break;
     case 11: {
-        UnkStruct_ov16_02265BBC v10;
+        MoveAnimation v10;
 
-        ov16_02266B78(v0->unk_00, NULL, &v10, 1, 9, v0->unk_0D, v0->unk_0D, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v10, 1, 9, v0->unk_0D, v0->unk_0D, NULL);
         ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v0->unk_0D), ov16_0223E008(v0->unk_00), &v10);
     }
         v0->unk_0E++;
         break;
     case 17:
     case 25: {
-        UnkStruct_ov16_02265BBC v11;
+        MoveAnimation v11;
         int v12;
 
         v12 = v0->unk_08->unk_04->selectedPartyIndex * 2;
-        ov16_02266B78(v0->unk_00, NULL, &v11, 1, 9, v12, v12, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v11, 1, 9, v12, v12, NULL);
         ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v12), ov16_0223E008(v0->unk_00), &v11);
     }
         v0->unk_0E++;
         break;
     case 13: {
-        UnkStruct_ov16_02265BBC v13;
+        MoveAnimation v13;
 
         if (v0->unk_04->selectedBattleBagItem == ITEM_GUARD_SPEC) {
-            ov16_02266B78(v0->unk_00, NULL, &v13, 0, NULL, v0->unk_0D, v0->unk_0D, 54);
+            BattleController_SetMoveAnimation(v0->unk_00, NULL, &v13, 0, NULL, v0->unk_0D, v0->unk_0D, 54);
             ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v0->unk_0D), ov16_0223E008(v0->unk_00), &v13);
         } else if (v0->unk_04->selectedBattleBagItem == ITEM_DIRE_HIT) {
-            ov16_02266B78(v0->unk_00, NULL, &v13, 0, NULL, v0->unk_0D, v0->unk_0D, 116);
+            BattleController_SetMoveAnimation(v0->unk_00, NULL, &v13, 0, NULL, v0->unk_0D, v0->unk_0D, 116);
             ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v0->unk_0D), ov16_0223E008(v0->unk_00), &v13);
         } else {
-            ov16_02266B78(v0->unk_00, NULL, &v13, 1, 12, v0->unk_0D, v0->unk_0D, NULL);
+            BattleController_SetMoveAnimation(v0->unk_00, NULL, &v13, 1, 12, v0->unk_0D, v0->unk_0D, NULL);
             ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v0->unk_0D), ov16_0223E008(v0->unk_00), &v13);
         }
 
@@ -3838,11 +3838,11 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         break;
     case 19:
     case 27: {
-        UnkStruct_ov16_02265BBC v16;
+        MoveAnimation v16;
         int v17;
 
         v17 = v0->unk_08->unk_04->selectedPartyIndex * 2;
-        ov16_02266B78(v0->unk_00, NULL, &v16, 1, 14, v17, v17, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v16, 1, 14, v17, v17, NULL);
         ov16_02264408(v0->unk_00, BattleSystem_BattlerData(v0->unk_00, v17), ov16_0223E008(v0->unk_00), &v16);
     }
         v0->unk_0E++;
@@ -4513,11 +4513,11 @@ static void ov16_022626C0(SysTask *param0, void *param1)
 
     switch (v0->unk_6A) {
     case 0:
-        if ((v0->unk_10.unk_0E_0) && (v0->unk_10.unk_4C == 0) && (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_HIDE) == 0)) {
+        if ((v0->unk_10.isSubstitute) && (v0->unk_10.unk_4C == 0) && (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_HIDE) == 0)) {
             {
-                UnkStruct_ov16_02265BBC v1;
+                MoveAnimation v1;
 
-                ov16_02266B78(v0->unk_00, NULL, &v1, 1, 15, v0->unk_69, v0->unk_69, NULL);
+                BattleController_SetMoveAnimation(v0->unk_00, NULL, &v1, 1, 15, v0->unk_69, v0->unk_69, NULL);
                 ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v1);
             }
             v0->unk_6A = 1;
@@ -4527,12 +4527,12 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         break;
     case 2: {
         UnkStruct_ov12_022380DC v2;
-        UnkStruct_ov16_02265BBC v3;
+        MoveAnimation v3;
 
         ov16_02264530(v0->unk_00, &v0->unk_10, &v2, v0->unk_69);
         ov12_022382BC(&v2, HEAP_ID_BATTLE);
 
-        ov16_02266B78(v0->unk_00, NULL, &v3, 1, 16, v0->unk_69, v0->unk_69, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v3, 1, 16, v0->unk_69, v0->unk_69, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v3);
         v0->unk_04->unk_19C = 0;
     }
@@ -4563,11 +4563,11 @@ static void ov16_022626C0(SysTask *param0, void *param1)
             PokemonSpriteManager_ShowShadows(ov16_0223E000(v0->unk_00));
         }
 
-        if ((v0->unk_10.unk_0E_0) && (v0->unk_10.unk_4C == 0) && (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_HIDE) == 0)) {
+        if ((v0->unk_10.isSubstitute) && (v0->unk_10.unk_4C == 0) && (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_HIDE) == 0)) {
             {
-                UnkStruct_ov16_02265BBC v4;
+                MoveAnimation v4;
 
-                ov16_02266B78(v0->unk_00, NULL, &v4, 1, 15, v0->unk_69, v0->unk_69, NULL);
+                BattleController_SetMoveAnimation(v0->unk_00, NULL, &v4, 1, 15, v0->unk_69, v0->unk_69, NULL);
                 ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v4);
             }
             v0->unk_6A = 7;
@@ -4577,12 +4577,12 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         break;
     case 8: {
         UnkStruct_ov12_022380DC v5;
-        UnkStruct_ov16_02265BBC v6;
+        MoveAnimation v6;
 
         ov16_02264530(v0->unk_00, &v0->unk_10, &v5, v0->unk_69);
         ov12_02238390(&v5, HEAP_ID_BATTLE);
 
-        ov16_02266B78(v0->unk_00, NULL, &v6, 1, 16, v0->unk_69, v0->unk_69, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v6, 1, 16, v0->unk_69, v0->unk_69, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v6);
         v0->unk_04->unk_19C = 1;
     }
@@ -4710,9 +4710,9 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
     case 0:
         if (v0->unk_70) {
             {
-                UnkStruct_ov16_02265BBC v4;
+                MoveAnimation v4;
 
-                ov16_02266B78(v0->unk_00, NULL, &v4, 1, 15, v0->unk_65, v0->unk_65, NULL);
+                BattleController_SetMoveAnimation(v0->unk_00, NULL, &v4, 1, 15, v0->unk_65, v0->unk_65, NULL);
                 ov16_02264408(v0->unk_00, v0->unk_04, v1, &v4);
             }
             v0->unk_66++;
@@ -4722,12 +4722,12 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         break;
     case 2: {
         UnkStruct_ov12_022380DC v5;
-        UnkStruct_ov16_02265BBC v6;
+        MoveAnimation v6;
 
         ov16_02264530(v0->unk_00, &v0->unk_0C, &v5, v0->unk_65);
         ov12_022382BC(&v5, HEAP_ID_BATTLE);
 
-        ov16_02266B78(v0->unk_00, NULL, &v6, 1, 16, v0->unk_65, v0->unk_65, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v6, 1, 16, v0->unk_65, v0->unk_65, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v6);
         v0->unk_04->unk_19C = 0;
     }
@@ -4867,9 +4867,9 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
     case 1:
         if ((v0->unk_64) && (v0->unk_04->unk_19C == 0)) {
             {
-                UnkStruct_ov16_02265BBC v2;
+                MoveAnimation v2;
 
-                ov16_02266B78(v0->unk_00, NULL, &v2, 1, 15, v0->unk_61, v0->unk_61, NULL);
+                BattleController_SetMoveAnimation(v0->unk_00, NULL, &v2, 1, 15, v0->unk_61, v0->unk_61, NULL);
                 ov16_02264408(v0->unk_00, v0->unk_04, v1, &v2);
             }
             v0->unk_62++;
@@ -4879,12 +4879,12 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
         break;
     case 3: {
         UnkStruct_ov12_022380DC v3;
-        UnkStruct_ov16_02265BBC v4;
+        MoveAnimation v4;
 
         ov16_02264530(v0->unk_00, &v0->unk_08, &v3, v0->unk_61);
         ov12_02238390(&v3, HEAP_ID_BATTLE);
 
-        ov16_02266B78(v0->unk_00, NULL, &v4, 1, 16, v0->unk_61, v0->unk_61, NULL);
+        BattleController_SetMoveAnimation(v0->unk_00, NULL, &v4, 1, 16, v0->unk_61, v0->unk_61, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v4);
         v0->unk_04->unk_19C = 1;
     }
@@ -6067,18 +6067,18 @@ static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int par
     return v3;
 }
 
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *battleAnimSystem, UnkStruct_ov16_02265BBC *param3)
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *battleAnimSystem, MoveAnimation *animation)
 {
     BattleAnimBattlerContext battlerContext;
     int i;
     int move;
 
-    if (param3->unk_4C == 0) {
+    if (animation->unk_4C == 0) {
         battlerContext.moveArcID = 8;
-        move = param3->unk_02;
+        move = animation->move;
     } else {
         battlerContext.moveArcID = 63;
-        move = param3->unk_50;
+        move = animation->unk_50;
     }
 
     battlerContext.bgConfig = BattleSystem_BGL(battleSys);
@@ -6087,12 +6087,12 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAn
 
     for (i = 0; i < 4; i++) {
         battlerContext.pokemonSpriteData[i] = ov16_0223F2AC(battleSys, i);
-        battlerContext.battlerSpecies[i] = param3->unk_18[i];
-        battlerContext.battlerGenders[i] = param3->unk_20[i];
-        battlerContext.battlerShinyFlags[i] = param3->unk_24[i];
-        battlerContext.battlerForms[i] = param3->unk_28[i];
-        battlerContext.battlerPersonalities[i] = param3->unk_2C[i];
-        battlerContext.battlerMoveEffects[i] = param3->unk_3C[i];
+        battlerContext.battlerSpecies[i] = animation->species[i];
+        battlerContext.battlerGenders[i] = animation->genders[i];
+        battlerContext.battlerShinyFlags[i] = animation->isShiny[i];
+        battlerContext.battlerForms[i] = animation->formNums[i];
+        battlerContext.battlerPersonalities[i] = animation->personalities[i];
+        battlerContext.battlerMoveEffects[i] = animation->moveEffectMasks[i];
     }
 
     ov16_0223F87C(battleSys, &(battlerContext.battlerTypes[0]));
@@ -6109,10 +6109,10 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAn
     battlerContext.battleBgRef.paletteDestStart = 0;
     battlerContext.battleBgRef.paletteSrcSize = 8;
 
-    BattleAnimSystem_StartMove(battleAnimSystem, param3, move, &battlerContext);
+    BattleAnimSystem_StartMove(battleAnimSystem, animation, move, &battlerContext);
 }
 
-static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3)
+static void ov16_02264530(BattleSystem *battleSys, MoveAnimation *animation, UnkStruct_ov12_022380DC *param2, int param3)
 {
     int i;
 
@@ -6121,11 +6121,11 @@ static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *para
 
     for (i = 0; i < 4; i++) {
         param2->pokemonSpriteData[i] = ov16_0223F2AC(battleSys, i);
-        param2->species[i] = param1->unk_18[i];
-        param2->genders[i] = param1->unk_20[i];
-        param2->shinyFlags[i] = param1->unk_24[i];
-        param2->forms[i] = param1->unk_28[i];
-        param2->personalities[i] = param1->unk_2C[i];
+        param2->species[i] = animation->species[i];
+        param2->genders[i] = animation->genders[i];
+        param2->shinyFlags[i] = animation->isShiny[i];
+        param2->forms[i] = animation->formNums[i];
+        param2->personalities[i] = animation->personalities[i];
     }
 
     ov16_0223F87C(battleSys, &(param2->types[0]));
