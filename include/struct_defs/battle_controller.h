@@ -257,4 +257,10 @@ typedef struct {
     u16 hpPercent; //out of 1000
 } SendOutMsgMessage;
 
+typedef struct {
+    u8 command;
+    u8 padding_01[3];
+    u8 partySlot[4];
+} LeadMonMsgMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

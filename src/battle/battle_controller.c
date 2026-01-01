@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C430.h"
 #include "battle/struct_ov16_0225C454.h"
 #include "battle/struct_ov16_0225C468.h"
 #include "battle/struct_ov16_0225C65C.h"
@@ -1346,25 +1345,35 @@ void BattleController_EmitSendOutMessage(BattleSystem *battleSys, BattleContext 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(SendOutMsgMessage));
 }
 
-void BattleIO_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to print a battle start (text) message
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    int v0 = BATTLE_COMMAND_PRINT_BATTLE_START_MESSAGE;
+    int command = BATTLE_COMMAND_PRINT_BATTLE_START_MESSAGE;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, 4);
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &command, 4);
 }
 
-void BattleIO_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message ot print a lead mon (text) message
+ */
+void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
 {
-    UnkStruct_ov16_0225C430 v0;
-    int v1;
+    LeadMonMsgMessage message;
+    int i;
 
-    v0.unk_00 = BATTLE_COMMAND_PRINT_LEAD_MON_MESSAGE;
+    message.command = BATTLE_COMMAND_PRINT_LEAD_MON_MESSAGE;
 
-    for (v1 = 0; v1 < BattleSystem_MaxBattlers(battleSys); v1++) {
-        v0.unk_04[v1] = battleCtx->selectedPartySlot[v1];
+    for (i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+        message.partySlot[i] = battleCtx->selectedPartySlot[i];
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225C430));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &message, sizeof(LeadMonMsgMessage));
 }
 
 void BattleIO_PlayLevelUpAnimation(BattleSystem *battleSys, int battlerId)

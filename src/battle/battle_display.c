@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C430.h"
 #include "battle/struct_ov16_0225C454.h"
 #include "battle/struct_ov16_0225C468.h"
 #include "battle/struct_ov16_0225C65C.h"
@@ -173,7 +172,7 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManage
 static void ov16_02263C1C(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessage *message, BattleMessage *param3);
 static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessage *message, BattleMessage *param3);
 static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
-static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C430 *param2, BattleMessage *param3);
+static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *message, BattleMessage *param3);
 static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2, BattleMessage *param3);
 static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
@@ -1088,19 +1087,19 @@ void ov16_0225DE88(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
-void ov16_0225DEDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C430 *param2)
+void ov16_0225DEDC(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *message)
 {
     BattleMessageWaitTask *v0;
     MessageLoader *v1;
     BattleMessage v2;
 
-    ov16_02263E7C(battleSys, param1, param2, &v2);
+    ov16_02263E7C(battleSys, param1, message, &v2);
 
     v1 = BattleSystem_MessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
-    v0->command = param2->unk_00;
+    v0->command = message->command;
     v0->battler = param1->battler;
     v0->msgIdx = BattleMessage_Print(battleSys, v1, &v2, BattleSystem_TextSpeed(battleSys));
 
@@ -5768,7 +5767,7 @@ static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *unused, BattleMe
     }
 }
 
-static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C430 *param2, BattleMessage *param3)
+static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *message, BattleMessage *param3)
 {
     u32 battleType;
     int v1;
@@ -5791,28 +5790,28 @@ static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, UnkStruc
                 param3->tags = 60;
                 param3->params[0] = v1;
                 param3->params[1] = v1;
-                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[2] = v1 | (message->partySlot[v1] << 8);
                 param3->params[3] = v2;
                 param3->params[4] = v2;
-                param3->params[5] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[5] = v2 | (message->partySlot[v2] << 8);
             } else if (battleType & BATTLE_TYPE_2vs2) {
                 param3->id = 976;
                 param3->tags = 56;
                 param3->params[0] = v1;
-                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[1] = v1 | (message->partySlot[v1] << 8);
                 param3->params[2] = v2;
-                param3->params[3] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[3] = v2 | (message->partySlot[v2] << 8);
             } else if (battleType & BATTLE_TYPE_DOUBLES) {
                 param3->id = 975;
                 param3->tags = 49;
                 param3->params[0] = v1;
-                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
-                param3->params[2] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[1] = v1 | (message->partySlot[v1] << 8);
+                param3->params[2] = v2 | (message->partySlot[v2] << 8);
             } else {
                 param3->id = 974;
                 param3->tags = 27;
                 param3->params[0] = v1;
-                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[1] = v1 | (message->partySlot[v1] << 8);
             }
         } else {
             if ((battleType & BATTLE_TYPE_TAG) || (battleType & BATTLE_TYPE_2vs2)) {
@@ -5820,23 +5819,23 @@ static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, UnkStruc
                 param3->tags = 60;
                 param3->params[0] = v1;
                 param3->params[1] = v1;
-                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[2] = v1 | (message->partySlot[v1] << 8);
                 param3->params[3] = v2;
                 param3->params[4] = v2;
-                param3->params[5] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[5] = v2 | (message->partySlot[v2] << 8);
             } else if (battleType & BATTLE_TYPE_DOUBLES) {
                 param3->id = 973;
                 param3->tags = 57;
                 param3->params[0] = v1;
                 param3->params[1] = v1;
-                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
-                param3->params[3] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[2] = v1 | (message->partySlot[v1] << 8);
+                param3->params[3] = v2 | (message->partySlot[v2] << 8);
             } else {
                 param3->id = 972;
                 param3->tags = 50;
                 param3->params[0] = v1;
                 param3->params[1] = v1;
-                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[2] = v1 | (message->partySlot[v1] << 8);
             }
         }
     } else {
@@ -5881,17 +5880,17 @@ static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, UnkStruc
                 param3->id = 977;
                 param3->tags = 49;
                 param3->params[0] = v1;
-                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
-                param3->params[2] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[1] = v1 | (message->partySlot[v1] << 8);
+                param3->params[2] = v2 | (message->partySlot[v2] << 8);
             } else if (battleType & BATTLE_TYPE_DOUBLES) {
                 param3->id = 978;
                 param3->tags = 9;
-                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
-                param3->params[1] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[0] = v1 | (message->partySlot[v1] << 8);
+                param3->params[1] = v2 | (message->partySlot[v2] << 8);
             } else {
                 param3->id = 979;
                 param3->tags = 2;
-                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[0] = v1 | (message->partySlot[v1] << 8);
             }
         } else {
             if (battleType & BATTLE_TYPE_2vs2) {
@@ -5899,17 +5898,17 @@ static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, UnkStruc
                 param3->tags = 57;
                 param3->params[0] = v1;
                 param3->params[1] = v1;
-                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
-                param3->params[3] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[2] = v1 | (message->partySlot[v1] << 8);
+                param3->params[3] = v2 | (message->partySlot[v2] << 8);
             } else if (battleType & BATTLE_TYPE_DOUBLES) {
                 param3->id = 978;
                 param3->tags = 9;
-                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
-                param3->params[1] = v2 | (param2->unk_04[v2] << 8);
+                param3->params[0] = v1 | (message->partySlot[v1] << 8);
+                param3->params[1] = v2 | (message->partySlot[v2] << 8);
             } else {
                 param3->id = 979;
                 param3->tags = 2;
-                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[0] = v1 | (message->partySlot[v1] << 8);
             }
         }
     }

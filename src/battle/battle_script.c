@@ -4112,7 +4112,7 @@ static BOOL BtlCmd_PrintEncounterMessage(BattleSystem *battleSys, BattleContext 
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_PrintBattleStartMessage(battleSys, battleCtx, battler);
+    BattleController_EmitBattleStartMessage(battleSys, battleCtx, battler);
 
     return FALSE;
 }
@@ -4133,7 +4133,7 @@ static BOOL BtlCmd_PrintFirstSendOutMessage(BattleSystem *battleSys, BattleConte
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_PrintLeadMonMessage(battleSys, battleCtx, battler);
+    BattleController_EmitLeadMonMessage(battleSys, battleCtx, battler);
 
     return FALSE;
 }
