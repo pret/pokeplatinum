@@ -11,12 +11,14 @@
 #define STRING_MAGIC_NUMBER (0xB6F8D2EC)
 #define STRING_INVAL        (STRING_MAGIC_NUMBER + 1)
 
-static inline void String_Assert(const String *string) {
+static inline void String_Assert(const String *string)
+{
     GF_ASSERT(string != NULL);
     GF_ASSERT(string->integrity == STRING_MAGIC_NUMBER);
 }
 
-String *String_New(u32 maxSize, enum HeapID heapID) {
+String *String_New(u32 maxSize, enum HeapID heapID)
+{
     String *string = Heap_Alloc(heapID, STRING_HEADER_SIZE + (maxSize * sizeof(charcode_t)));
     if (string != NULL) {
         string->integrity = STRING_MAGIC_NUMBER;
@@ -27,19 +29,22 @@ String *String_New(u32 maxSize, enum HeapID heapID) {
     return string;
 }
 
-void String_Free(String *string) {
+void String_Free(String *string)
+{
     String_Assert(string);
     string->integrity = STRING_INVAL;
     Heap_Free(string);
 }
 
-void String_Clear(String *string) {
+void String_Clear(String *string)
+{
     String_Assert(string);
     string->size = 0;
     string->data[0] = CHAR_EOS;
 }
 
-void String_Copy(String *dest, String *src) {
+void String_Copy(String *dest, String *src)
+{
     String_Assert(dest);
     String_Assert(src);
     if (dest->maxSize > src->size) {
@@ -50,7 +55,8 @@ void String_Copy(String *dest, String *src) {
     GF_ASSERT(FALSE);
 }
 
-String *String_Clone(String *src, enum HeapID heapID) {
+String *String_Clone(String *src, enum HeapID heapID)
+{
     String_Assert(src);
     String *ret = String_New(src->size + 1, heapID);
     if (ret != NULL) {
@@ -59,7 +65,8 @@ String *String_Clone(String *src, enum HeapID heapID) {
     return ret;
 }
 
-void String_FormatInt(String *dest, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode) {
+void String_FormatInt(String *dest, int num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
+{
     static const u32 sPowersOfTen[] = {
         1,
         10,
@@ -135,7 +142,8 @@ void String_FormatInt(String *dest, int num, u32 maxDigits, enum PaddingMode pad
     GF_ASSERT(FALSE);
 }
 
-void String_FormatU64(String *dest, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode) {
+void String_FormatU64(String *dest, u64 num, u32 maxDigits, enum PaddingMode paddingMode, enum CharsetMode charsetMode)
+{
     static const u64 sPowersOfTen[] = {
         1ll,
         10ll,
@@ -220,7 +228,8 @@ void String_FormatU64(String *dest, u64 num, u32 maxDigits, enum PaddingMode pad
     GF_ASSERT(FALSE);
 }
 
-u64 String_AtoI(String *string, BOOL *success) {
+u64 String_AtoI(String *string, BOOL *success)
+{
     s64 ret = 0ll;
     s64 pow = 1ll;
     if (string->size > 18) {
@@ -244,7 +253,8 @@ u64 String_AtoI(String *string, BOOL *success) {
     return ret;
 }
 
-BOOL String_Compare(String *str1, String *str2) {
+BOOL String_Compare(String *str1, String *str2)
+{
     String_Assert(str1);
     String_Assert(str2);
 
@@ -256,12 +266,14 @@ BOOL String_Compare(String *str1, String *str2) {
     return TRUE;
 }
 
-u16 String_GetLength(String *string) {
+u16 String_GetLength(String *string)
+{
     String_Assert(string);
     return string->size;
 }
 
-u32 String_CountLines(const String *string) {
+u32 String_CountLines(const String *string)
+{
     String_Assert(string);
 
     int i, count;
@@ -273,7 +285,8 @@ u32 String_CountLines(const String *string) {
     return count;
 }
 
-void String_CopyLine(String *dest, const String *src, u32 lineNum) {
+void String_CopyLine(String *dest, const String *src, u32 lineNum)
+{
     String_Assert(src);
     String_Assert(dest);
 
@@ -295,7 +308,8 @@ void String_CopyLine(String *dest, const String *src, u32 lineNum) {
     }
 }
 
-void String_CopyFromChars(String *dest, const charcode_t *src) {
+void String_CopyFromChars(String *dest, const charcode_t *src)
+{
     String_Assert(dest);
 
     for (dest->size = 0; *src != CHAR_EOS;) {
@@ -308,7 +322,8 @@ void String_CopyFromChars(String *dest, const charcode_t *src) {
     dest->data[dest->size] = CHAR_EOS;
 }
 
-void String_CopyNumChars(String *dest, const charcode_t *src, u32 num) {
+void String_CopyNumChars(String *dest, const charcode_t *src, u32 num)
+{
     String_Assert(dest);
 
     if (num <= dest->maxSize) {
@@ -329,7 +344,8 @@ void String_CopyNumChars(String *dest, const charcode_t *src, u32 num) {
     GF_ASSERT(FALSE);
 }
 
-void String_CopyToChars(String *src, charcode_t *dest, u32 destSize) {
+void String_CopyToChars(String *src, charcode_t *dest, u32 destSize)
+{
     String_Assert(src);
 
     if (src->size + 1 <= destSize) {
@@ -339,13 +355,15 @@ void String_CopyToChars(String *src, charcode_t *dest, u32 destSize) {
     GF_ASSERT(FALSE);
 }
 
-charcode_t *String_GetChars(String *string) {
+charcode_t *String_GetChars(String *string)
+{
     String_Assert(string);
 
     return string->data;
 }
 
-void String_Concat(String *dest, String *src) {
+void String_Concat(String *dest, String *src)
+{
     String_Assert(dest);
     String_Assert(src);
 
@@ -357,7 +375,8 @@ void String_Concat(String *dest, String *src) {
     GF_ASSERT(FALSE);
 }
 
-void String_AppendChar(String *string, charcode_t c) {
+void String_AppendChar(String *string, charcode_t c)
+{
     String_Assert(string);
 
     if (string->size + 1 < string->maxSize) {
@@ -371,11 +390,13 @@ void String_AppendChar(String *string, charcode_t c) {
 #define COMPRESSED_MASK (0x01FF)
 #define COMPRESSED_EOS  (0x01FF) // 0xFFFF & 0x01FF
 
-BOOL String_IsTrainerName(String *string) {
+BOOL String_IsTrainerName(String *string)
+{
     return string->size > 0 && string->data[0] == CHAR_COMPRESSED_MARK;
 }
 
-void String_ConcatTrainerName(String *dest, String *src) {
+void String_ConcatTrainerName(String *dest, String *src)
+{
     // Trainer names are expressed using a format with a designating leader
     // code followed by compression algorithm that trims individual characters
     // from 16 bits to 10 bits.
@@ -413,7 +434,8 @@ void String_ConcatTrainerName(String *dest, String *src) {
     }
 }
 
-void String_UpperChar(String *string, int index) {
+void String_UpperChar(String *string, int index)
+{
     String_Assert(string);
 
     if (string->size > index) {
