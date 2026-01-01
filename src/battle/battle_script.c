@@ -10312,7 +10312,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_MAKE_IT_FORGET_WAIT:
         if (Text_IsPrinterActive(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
-            BattleIO_ForgetMove(data->battleSys, expBattler, data->tmpData[GET_EXP_MOVE], slot);
+            BattleController_EmitForgetMove(data->battleSys, expBattler, data->tmpData[GET_EXP_MOVE], slot);
             data->seqNum++;
         }
         break;

@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C65C.h"
 #include "battle/struct_ov16_0225C684.h"
 #include "battle/struct_ov16_0225C988.h"
 #include "battle/struct_ov16_0225C9F0.h"
@@ -1541,17 +1540,25 @@ void BattleController_EmitRefreshPartyStatus(BattleSystem *battleSys, BattleCont
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RefreshPartyStatusMessage));
 }
 
-void BattleIO_ForgetMove(BattleSystem *battleSys, int battlerId, int param2, int param3)
+/**
+ * @brief Emits a message to forget a move to learn a new one
+ *
+ * @param battleSys
+ * @param battler
+ * @param move
+ * @param slot
+ */
+void BattleController_EmitForgetMove(BattleSystem *battleSys, int battlerId, int move, int slot)
 {
-    UnkStruct_ov16_0225C65C v0;
+    ForgetMoveMessage message;
 
     BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battlerId);
 
-    v0.unk_00 = BATTLE_COMMAND_FORGET_MOVE;
-    v0.unk_02 = param2;
-    v0.unk_01 = param3;
+    message.command = BATTLE_COMMAND_FORGET_MOVE;
+    message.move = move;
+    message.slot = slot;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(RefreshPartyStatusMessage));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(RefreshPartyStatusMessage));
 }
 
 void BattleIO_SetMosaic(BattleSystem *battleSys, int battlerId, int param2, int param3)

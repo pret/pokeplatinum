@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C65C.h"
 #include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
@@ -1171,16 +1170,16 @@ void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeM
     ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
 }
 
-void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C65C *param2)
+void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, ForgetMoveMessage *message)
 {
     UnkStruct_ov16_0225E0BC *v0 = (UnkStruct_ov16_0225E0BC *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225E0BC));
 
     v0->unk_0A = 0;
     v0->unk_00 = battleSys;
-    v0->unk_08 = param2->unk_00;
+    v0->unk_08 = message->command;
     v0->unk_09 = param1->battler;
-    v0->unk_0C = param2->unk_02;
-    v0->unk_0E = param2->unk_01;
+    v0->unk_0C = message->move;
+    v0->unk_0E = message->slot;
 
     SysTask_Start(ov16_022633A4, v0, 0);
 }

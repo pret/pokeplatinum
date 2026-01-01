@@ -76,7 +76,7 @@ void BattleController_EmitUpdatePartyMon(BattleSystem *battleSys, BattleContext 
 void ov16_02266460(BattleSystem *battleSys, int param1);
 void BattleController_EmitStopGaugeAnimation(BattleSystem *battleSys, int battler);
 void BattleController_EmitRefreshPartyStatus(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
-void BattleIO_ForgetMove(BattleSystem *battleSys, int param1, int param2, int param3);
+void BattleController_EmitForgetMove(BattleSystem *battleSys, int param1, int param2, int param3);
 void BattleIO_SetMosaic(BattleSystem *battleSys, int param1, int param2, int param3);
 void BattleIO_ChangeWeatherForm(BattleSystem *battleSys, int param1);
 void BattleIO_UpdateBG(BattleSystem *battleSys, int param1);

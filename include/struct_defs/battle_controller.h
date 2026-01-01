@@ -309,4 +309,10 @@ typedef struct {
     u16 move;
 } RefreshPartyStatusMessage;
 
+typedef struct {
+    u8 command;
+    u8 slot;
+    u16 move;
+} ForgetMoveMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
