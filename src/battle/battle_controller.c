@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C370.h"
 #include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
@@ -1110,23 +1109,31 @@ void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(HPGaugeUpdateMessage));
 }
 
-void BattleIO_UpdateExpGauge(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
+/**
+ * @brief Emits a message to update the EXP Gauge
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @param param3
+ */
+void BattleController_EmitUpdateExpGauge(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int param3)
 {
-    UnkStruct_ov16_0225C370 v0;
-    Pokemon *v1;
-    int v2;
-    int v3;
+    ExpGaugeUpdateMessage message;
+    Pokemon *pokemon;
+    int species;
+    int level;
 
-    v1 = BattleSystem_PartyPokemon(battleSys, param2, battleCtx->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    pokemon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    level = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
 
-    v0.unk_00 = BATTLE_COMMAND_UPDATE_EXP_GAUGE;
-    v0.unk_04 = param3;
-    v0.unk_08 = battleCtx->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    message.command = BATTLE_COMMAND_UPDATE_EXP_GAUGE;
+    message.curExp = param3;
+    message.gainedExp = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
+    message.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225C370));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(ExpGaugeUpdateMessage));
 }
 
 void BattleIO_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx, int param2)

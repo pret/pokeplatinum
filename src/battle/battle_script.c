@@ -10031,7 +10031,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_GAUGE:
         // Only animate the gauge for an active battler
         if (slot == data->battleCtx->selectedPartySlot[expBattler]) {
-            BattleIO_UpdateExpGauge(data->battleSys, data->battleCtx, expBattler, data->tmpData[3]);
+            BattleController_EmitUpdateExpGauge(data->battleSys, data->battleCtx, expBattler, data->tmpData[3]);
             data->tmpData[GET_EXP_NEW_EXP] = 0;
             data->seqNum++;
         } else {

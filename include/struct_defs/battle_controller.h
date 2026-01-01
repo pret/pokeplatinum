@@ -187,8 +187,16 @@ typedef struct {
     u8 padding_06;
     u8 gender;
     int hpCalcTemp;
-    u32 exp;
-    u32 expToNextLevel;
+    u32 exp; //set but unused
+    u32 expToNextLevel; //set but unused
 } HPGaugeUpdateMessage;
+
+typedef struct {
+    u8 command;
+    u8 padding_01[3];
+    u32 curExp;
+    u32 gainedExp;
+    u32 expToNextLevel;
+} ExpGaugeUpdateMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

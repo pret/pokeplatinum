@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C370.h"
 #include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
@@ -495,9 +494,9 @@ static void ov16_0225C35C(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C370(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_0225C370 *v0 = (UnkStruct_ov16_0225C370 *)&param1->data[0];
+    ExpGaugeUpdateMessage *message = (ExpGaugeUpdateMessage *)&param1->data[0];
 
-    ov16_0225DB00(battleSys, param1, v0);
+    ov16_0225DB00(battleSys, param1, message);
     ZeroDataBuffer(param1);
 }
 

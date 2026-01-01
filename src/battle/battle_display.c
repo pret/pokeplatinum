@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C370.h"
 #include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
@@ -901,7 +900,7 @@ void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMe
     v0->unk_10 = SysTask_Start(ov16_02262988, v0, 1000);
 }
 
-void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C370 *param2)
+void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateMessage *message)
 {
     Healthbar *v0;
 
@@ -912,11 +911,11 @@ void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     MI_CpuClear8(&v0->state, sizeof(u8));
 
     v0->battleSys = battleSys;
-    v0->unk_4C = param2->unk_00;
+    v0->unk_4C = message->command;
     v0->battler = param1->battler;
-    v0->curExp = param2->unk_04;
-    v0->maxExp = param2->unk_0C;
-    v0->expReward = param2->unk_08 - v0->curExp;
+    v0->curExp = message->curExp;
+    v0->maxExp = message->expToNextLevel;
+    v0->expReward = message->gainedExp - v0->curExp;
 
     if (param1->battlerType == 0) {
         v0->unk_10 = SysTask_Start(ov16_022629DC, v0, 1000);
