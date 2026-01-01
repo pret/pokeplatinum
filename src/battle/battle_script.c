@@ -2265,7 +2265,7 @@ static BOOL BtlCmd_CompareMonDataToValue(BattleSystem *battleSys, BattleContext 
 static BOOL BtlCmd_FadeOutBattle(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_FadeOut(battleSys, battleCtx);
+    BattleController_EmitFadeOut(battleSys, battleCtx);
 
     return FALSE;
 }
@@ -3336,7 +3336,7 @@ static BOOL BtlCmd_ToggleVanish(BattleSystem *battleSys, BattleContext *battleCt
     int toggle = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_ToggleVanish(battleSys, battler, toggle);
+    BattleController_EmitToggleVanish(battleSys, battler, toggle);
 
     return FALSE;
 }

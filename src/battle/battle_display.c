@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
 #include "battle/struct_ov16_0225C3E4.h"
 #include "battle/struct_ov16_0225C3F8.h"
@@ -986,7 +985,7 @@ void ov16_0225DC7C(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(ov16_02262D28, v0, 0);
 }
 
-void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3BC *param2)
+void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, ToggleVanishMessage *message)
 {
     UnkStruct_ov16_0225DCB0 *v0;
     int i;
@@ -995,18 +994,18 @@ void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 
     v0->unk_00 = battleSys;
     v0->unk_04 = param1;
-    v0->unk_60 = param2->unk_00;
+    v0->unk_60 = message->command;
     v0->unk_61 = param1->battler;
     v0->unk_62 = 0;
-    v0->unk_63 = param2->unk_01;
-    v0->unk_64 = param2->unk_02;
+    v0->unk_63 = message->toggle;
+    v0->unk_64 = message->notSubstitute;
 
     for (i = 0; i < 4; i++) {
-        v0->unk_08.species[i] = param2->unk_04[i];
-        v0->unk_08.genders[i] = param2->unk_0C[i];
-        v0->unk_08.isShiny[i] = param2->unk_10[i];
-        v0->unk_08.formNums[i] = param2->unk_14[i];
-        v0->unk_08.personalities[i] = param2->unk_18[i];
+        v0->unk_08.species[i] = message->species[i];
+        v0->unk_08.genders[i] = message->gender[i];
+        v0->unk_08.isShiny[i] = message->isShiny[i];
+        v0->unk_08.formNums[i] = message->formNum[i];
+        v0->unk_08.personalities[i] = message->personality[i];
     }
 
     SysTask_Start(ov16_02262DC4, v0, 0);

@@ -58,8 +58,8 @@ void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *
 void BattleController_EmitUpdateExpGauge(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleController_EmitPlayFaintingSequence(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleController_EmitPlaySound(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
-void BattleIO_FadeOut(BattleSystem *battleSys, BattleContext *param1);
-void BattleIO_ToggleVanish(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitFadeOut(BattleSystem *battleSys, BattleContext *param1);
+void BattleController_EmitToggleVanish(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_SetStatusIcon(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_TrainerMessage(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);

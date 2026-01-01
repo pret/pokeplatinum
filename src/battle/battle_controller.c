@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
 #include "battle/struct_ov16_0225C3E4.h"
 #include "battle/struct_ov16_0225C3F8.h"
@@ -1195,37 +1194,50 @@ void BattleController_EmitPlaySound(BattleSystem *battleSys, BattleContext *batt
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(PlaySoundMessage));
 }
 
-void BattleIO_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
+/**
+ * @brief Emits a message to fade out the screen
+ * 
+ * @param battleSys
+ * @param battleCtx
+ */
+void BattleController_EmitFadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int v0 = BATTLE_COMMAND_FADE_OUT;
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &v0, 4);
 }
 
-void BattleIO_ToggleVanish(BattleSystem *battleSys, int battlerId, int param2)
+/**
+ * @brief Emits a message to fade out the screen
+ * 
+ * @param battleSys
+ * @param battlerId
+ * @param toggle
+ */
+void BattleController_EmitToggleVanish(BattleSystem *battleSys, int battlerId, int toggle)
 {
-    UnkStruct_ov16_0225C3BC v0;
-    int v1;
+    ToggleVanishMessage message;
+    int i;
 
-    v0.unk_00 = BATTLE_COMMAND_TOGGLE_VANISH;
-    v0.unk_01 = param2;
-    v0.unk_02 = ((battleSys->battleCtx->battleMons[battlerId].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0);
+    message.command = BATTLE_COMMAND_TOGGLE_VANISH;
+    message.toggle = toggle;
+    message.notSubstitute = ((battleSys->battleCtx->battleMons[battlerId].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_04[v1] = battleSys->battleCtx->battleMons[v1].species;
-        v0.unk_10[v1] = battleSys->battleCtx->battleMons[v1].isShiny;
-        v0.unk_14[v1] = battleSys->battleCtx->battleMons[v1].formNum;
+    for (i = 0; i < 4; i++) {
+        message.species[i] = battleSys->battleCtx->battleMons[i].species;
+        message.isShiny[i] = battleSys->battleCtx->battleMons[i].isShiny;
+        message.formNum[i] = battleSys->battleCtx->battleMons[i].formNum;
 
-        if (battleSys->battleCtx->battleMons[v1].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
-            v0.unk_0C[v1] = battleSys->battleCtx->battleMons[v1].moveEffectsData.transformedGender;
-            v0.unk_18[v1] = battleSys->battleCtx->battleMons[v1].moveEffectsData.transformedPID;
+        if (battleSys->battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
+            message.gender[i] = battleSys->battleCtx->battleMons[i].moveEffectsData.transformedGender;
+            message.personality[i] = battleSys->battleCtx->battleMons[i].moveEffectsData.transformedPID;
         } else {
-            v0.unk_0C[v1] = battleSys->battleCtx->battleMons[v1].gender;
-            v0.unk_18[v1] = battleSys->battleCtx->battleMons[v1].personality;
+            message.gender[i] = battleSys->battleCtx->battleMons[i].gender;
+            message.personality[i] = battleSys->battleCtx->battleMons[i].personality;
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_0225C3BC));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(ToggleVanishMessage));
 }
 
 void BattleIO_SetStatusIcon(BattleSystem *battleSys, int battlerId, int param2)

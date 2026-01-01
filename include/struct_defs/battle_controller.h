@@ -221,4 +221,16 @@ typedef struct {
     u16 sdatID;
 } PlaySoundMessage;
 
+typedef struct {
+    u8 command;
+    u8 toggle;
+    u8 notSubstitute;
+    u8 padding_03;
+    u16 species[4];
+    u8 gender[4];
+    u8 isShiny[4];
+    u8 formNum[4];
+    u32 personality[4];
+} ToggleVanishMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
