@@ -6,7 +6,6 @@
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
@@ -74,7 +73,7 @@ void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *
 void ov16_0225DA44(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMessage *param2);
 void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateMessage *param2);
-void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C384 *param2);
+void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, FaintingSequenceMessage *param2);
 void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C398 *param2);
 void ov16_0225DC7C(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3BC *param2);

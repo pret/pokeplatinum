@@ -199,4 +199,21 @@ typedef struct {
     u32 expToNextLevel;
 } ExpGaugeUpdateMessage;
 
+typedef struct {
+    u8 command;
+    u8 gender;
+    u16 species;
+    u32 personality;
+    u8 form;
+    u8 notSubstitute;
+    u8 notTransformed;
+    u8 unk_0B;
+    u16 monSpecies[4];
+    u8 monGenders[4];
+    u8 monShiny[4];
+    u8 monFormNums[4];
+    u32 monPersonalities[4];
+} FaintingSequenceMessage;
+
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

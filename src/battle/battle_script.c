@@ -2015,7 +2015,7 @@ static BOOL BtlCmd_PlayFaintAnimation(BattleSystem *battleSys, BattleContext *ba
 {
     BattleScript_Iter(battleCtx, 1);
 
-    BattleIO_PlayFaintingSequence(battleSys, battleCtx, battleCtx->faintedMon);
+    BattleController_EmitPlayFaintingSequence(battleSys, battleCtx, battleCtx->faintedMon);
     battleCtx->battleStatusMask &= (FlagIndex(battleCtx->faintedMon) << SYSCTL_MON_FAINTED_SHIFT) ^ 0xFFFFFFFF;
     battleCtx->battleStatusMask2 |= FlagIndex(battleCtx->faintedMon) << SYSCTL_PAYOUT_EXP_SHIFT;
     battleCtx->battlerActions[battleCtx->faintedMon][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;

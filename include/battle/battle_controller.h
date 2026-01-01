@@ -56,7 +56,7 @@ void BattleController_EmitPlayMoveAnimationA2D(BattleSystem *battleSys, BattleCo
 void BattleController_EmitFlickerBattlerSprite(BattleSystem *battleSys, int param1, u32 param2);
 void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleController_EmitUpdateExpGauge(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
-void BattleIO_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *param1, int param2);
+void BattleController_EmitPlayFaintingSequence(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_PlaySound(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleIO_FadeOut(BattleSystem *battleSys, BattleContext *param1);
 void BattleIO_ToggleVanish(BattleSystem *battleSys, int param1, int param2);

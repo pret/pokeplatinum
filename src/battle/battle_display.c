@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
@@ -925,7 +924,7 @@ void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateM
     }
 }
 
-void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C384 *param2)
+void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, FaintingSequenceMessage *message)
 {
     UnkStruct_ov16_0225DB74 *v0;
     int i;
@@ -941,22 +940,22 @@ void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->unk_66 = 0;
     v0->unk_00 = battleSys;
     v0->unk_04 = param1;
-    v0->unk_64 = param2->unk_00;
+    v0->unk_64 = message->command;
     v0->unk_65 = param1->battler;
     v0->unk_08 = param1->unk_20;
-    v0->unk_68 = param2->unk_02;
-    v0->unk_6A = param2->unk_01;
-    v0->unk_6B = param2->unk_08;
-    v0->unk_6C = param2->unk_04;
-    v0->unk_70 = param2->unk_09;
-    v0->unk_72 = param2->unk_0A;
+    v0->unk_68 = message->species;
+    v0->unk_6A = message->gender;
+    v0->unk_6B = message->form;
+    v0->unk_6C = message->personality;
+    v0->unk_70 = message->notSubstitute;
+    v0->unk_72 = message->notTransformed;
 
     for (i = 0; i < 4; i++) {
-        v0->unk_0C.species[i] = param2->unk_0C[i];
-        v0->unk_0C.genders[i] = param2->unk_14[i];
-        v0->unk_0C.isShiny[i] = param2->unk_18[i];
-        v0->unk_0C.formNums[i] = param2->unk_1C[i];
-        v0->unk_0C.personalities[i] = param2->unk_20[i];
+        v0->unk_0C.species[i] = message->monSpecies[i];
+        v0->unk_0C.genders[i] = message->monGenders[i];
+        v0->unk_0C.isShiny[i] = message->monShiny[i];
+        v0->unk_0C.formNums[i] = message->monFormNums[i];
+        v0->unk_0C.personalities[i] = message->monPersonalities[i];
     }
 
     SysTask_Start(ov16_02262A9C, v0, 0);

@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C384.h"
 #include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
@@ -1136,40 +1135,47 @@ void BattleController_EmitUpdateExpGauge(BattleSystem *battleSys, BattleContext 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(ExpGaugeUpdateMessage));
 }
 
-void BattleIO_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to play the Pokemon fainting animation
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitPlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    UnkStruct_ov16_0225C384 v0;
-    int v1;
+    FaintingSequenceMessage message;
+    int i;
 
-    v0.unk_00 = BATTLE_COMMAND_PLAY_FAINTING_SEQUENCE;
-    v0.unk_02 = battleCtx->battleMons[param2].species;
-    v0.unk_08 = battleCtx->battleMons[param2].formNum;
-    v0.unk_09 = ((battleCtx->battleMons[param2].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0);
-    v0.unk_0A = ((battleCtx->battleMons[param2].statusVolatile & VOLATILE_CONDITION_TRANSFORM) != 0);
+    message.command = BATTLE_COMMAND_PLAY_FAINTING_SEQUENCE;
+    message.species = battleCtx->battleMons[battler].species;
+    message.form = battleCtx->battleMons[battler].formNum;
+    message.notSubstitute = ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0);
+    message.notTransformed = ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) != 0);
 
-    if (battleCtx->battleMons[param2].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
-        v0.unk_01 = battleCtx->battleMons[param2].moveEffectsData.transformedGender;
-        v0.unk_04 = battleCtx->battleMons[param2].moveEffectsData.transformedPID;
+    if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
+        message.gender = battleCtx->battleMons[battler].moveEffectsData.transformedGender;
+        message.personality = battleCtx->battleMons[battler].moveEffectsData.transformedPID;
     } else {
-        v0.unk_01 = battleCtx->battleMons[param2].gender;
-        v0.unk_04 = battleCtx->battleMons[param2].personality;
+        message.gender = battleCtx->battleMons[battler].gender;
+        message.personality = battleCtx->battleMons[battler].personality;
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_0C[v1] = battleCtx->battleMons[v1].species;
-        v0.unk_18[v1] = battleCtx->battleMons[v1].isShiny;
-        v0.unk_1C[v1] = battleCtx->battleMons[v1].formNum;
+    for (i = 0; i < 4; i++) {
+        message.monSpecies[i] = battleCtx->battleMons[i].species;
+        message.monShiny[i] = battleCtx->battleMons[i].isShiny;
+        message.monFormNums[i] = battleCtx->battleMons[i].formNum;
 
-        if (battleCtx->battleMons[v1].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
-            v0.unk_14[v1] = battleCtx->battleMons[v1].moveEffectsData.transformedGender;
-            v0.unk_20[v1] = battleCtx->battleMons[v1].moveEffectsData.transformedPID;
+        if (battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
+            message.monGenders[i] = battleCtx->battleMons[i].moveEffectsData.transformedGender;
+            message.monPersonalities[i] = battleCtx->battleMons[i].moveEffectsData.transformedPID;
         } else {
-            v0.unk_14[v1] = battleCtx->battleMons[v1].gender;
-            v0.unk_20[v1] = battleCtx->battleMons[v1].personality;
+            message.monGenders[i] = battleCtx->battleMons[i].gender;
+            message.monPersonalities[i] = battleCtx->battleMons[i].personality;
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225C384));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(FaintingSequenceMessage));
 }
 
 void BattleIO_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
