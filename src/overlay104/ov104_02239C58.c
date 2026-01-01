@@ -206,7 +206,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_AC->monMax = (u8)Party_GetCurrentCount(param1->unk_AC->monData);
     param1->unk_AC->move = 0;
     param1->unk_AC->mode = SUMMARY_MODE_NORMAL;
-    param1->unk_AC->specialRibbons = sub_0202D79C(param1->saveData);
+    param1->unk_AC->specialRibbons = SaveData_GetRibbons(param1->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(param1->unk_AC, v0);
     PokemonSummaryScreen_SetPlayerProfile(param1->unk_AC, SaveData_GetTrainerInfo(param1->saveData));

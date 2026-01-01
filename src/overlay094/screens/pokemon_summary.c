@@ -37,7 +37,7 @@ int GTSApplication_PokemonSummary_Init(GTSApplicationState *appState, int unused
     appState->pokemonSummary.showContest = PokemonSummaryScreen_ShowContestData(appState->playerData->saveData);
     appState->pokemonSummary.dexMode = appState->playerData->dexMode;
     appState->pokemonSummary.options = appState->playerData->options;
-    appState->pokemonSummary.specialRibbons = sub_0202D79C(appState->playerData->saveData);
+    appState->pokemonSummary.specialRibbons = SaveData_GetRibbons(appState->playerData->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&appState->pokemonSummary, sGTSPokemonSummaryPages);
     PokemonSummaryScreen_SetPlayerProfile(&appState->pokemonSummary, appState->playerData->trainerInfo);

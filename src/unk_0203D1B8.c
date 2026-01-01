@@ -526,7 +526,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    v0->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
     v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
@@ -569,7 +569,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
     v0->mode = mode;
     v0->dexMode = SaveData_GetDexMode(saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
-    v0->specialRibbons = sub_0202D79C(saveData);
+    v0->specialRibbons = SaveData_GetRibbons(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
@@ -1753,7 +1753,7 @@ void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSyste
     summary->monMax = 1;
     summary->move = move;
     summary->mode = SUMMARY_MODE_SELECT_MOVE;
-    summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    summary->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
     summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     summary->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     summary->chatotCry = NULL;

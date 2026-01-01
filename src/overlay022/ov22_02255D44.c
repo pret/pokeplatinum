@@ -463,7 +463,7 @@ int ov22_02256174(ApplicationManager *appMan, int *param1)
     v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
-    sub_020959F4(v0->unk_734->unk_16);
+    SetLockTextWithAutoScroll(v0->unk_734->unk_16);
 
     return 1;
 }
@@ -660,7 +660,7 @@ int ov22_02256600(ApplicationManager *appMan, int *param1)
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_13);
     Heap_Destroy(HEAP_ID_14);
-    sub_02095A24();
+    LockTextSpeed();
     NetworkIcon_Destroy();
 
     return 1;

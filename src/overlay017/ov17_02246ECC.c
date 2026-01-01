@@ -1414,7 +1414,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
 
         v15 = v11;
 
-        if (param0->unk_00->unk_155 == 0) {
+        if (param0->unk_00->isLinkContest == FALSE) {
             int v16, v17, v18, v19;
 
             v16 = 0;
