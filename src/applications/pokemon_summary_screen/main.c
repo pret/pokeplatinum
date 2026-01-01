@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle/condition.h"
+#include "constants/contests.h"
 #include "constants/flavor.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
@@ -104,11 +105,9 @@ enum SummaryPageState {
 
 #define SUMMARY_MOVE_NONE -1
 
-#define POINTS_PER_APPEAL_HEART 10
-#define MAX_APPEAL_HEARTS       6
-#define EMPTY_HEART_BASE_TILE   0x12E
-#define FILLED_HEART_BASE_TILE  0x12C
-#define APPEAL_HEARTS_Y         47
+#define EMPTY_HEART_BASE_TILE  0x12E
+#define FILLED_HEART_BASE_TILE 0x12C
+#define APPEAL_HEARTS_Y        47
 
 #define HEALTHBAR_BASE_X           24
 #define HEALTHBAR_Y                6

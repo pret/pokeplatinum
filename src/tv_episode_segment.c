@@ -1746,8 +1746,8 @@ static int TVEpisodeSegment_LoadMessage_ContestHall(FieldSystem *fieldSystem, St
     TVEpisodeSegment_ContestHall *contestHall = ov6_02246498(param2);
 
     TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, contestHall->unk_00.unk_02, contestHall->unk_00.unk_04, contestHall->unk_00.unk_05, contestHall->unk_00.unk_06);
-    StringTemplate_SetContestTypeName(template, 1, sub_020958B8(contestHall->unk_00.unk_08));
-    StringTemplate_SetContestRankName(template, 2, sub_02095888(contestHall->unk_00.unk_07));
+    StringTemplate_SetContestTypeName(template, 1, Contest_GetContestTypeMessageID(contestHall->unk_00.unk_08));
+    StringTemplate_SetContestRankName(template, 2, Contest_GetRankMessageID(contestHall->unk_00.unk_07));
     StringTemplate_SetNumber(template, 3, contestHall->unk_00.unk_09, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
     TVEpisodeSegment_SetTemplateTrainerName(template, 4, param2);
     StringTemplate_SetCustomMessageWord(template, 5, contestHall->customMessageWord);
