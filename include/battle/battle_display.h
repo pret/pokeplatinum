@@ -6,7 +6,6 @@
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225C468.h"
 #include "battle/struct_ov16_0225C65C.h"
 #include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA4C.h"
@@ -77,7 +76,7 @@ void ov16_0225DE88(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DEDC(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *param2);
 void ov16_0225DF34(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage *param2);
-void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C468 *param2);
+void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeMessage *param2);
 void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C65C *param2);
 void ov16_0225E0F4(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022664F8 *param2);
 

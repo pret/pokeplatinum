@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C468.h"
 #include "battle/struct_ov16_0225C65C.h"
 #include "battle/struct_ov16_0225C684.h"
 #include "battle/struct_ov16_0225C988.h"
@@ -1392,6 +1391,13 @@ void BattleController_EmitPlayLevelUpAnimation(BattleSystem *battleSys, int batt
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
+/**
+ * @brief Emits a message to print an alert (text) message
+ *
+ * @param battleSys
+ * @param battler
+ * @param msg
+ */
 void BattleController_EmitSetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg)
 {
     BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battler);
@@ -1409,36 +1415,43 @@ void ov16_022661B0(BattleSystem *battleSys, int battlerId)
     SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &v0, 4);
 }
 
-void BattleIO_RefreshHPGauge(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to refresh the HP Gauge
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    UnkStruct_ov16_0225C468 v0;
-    Pokemon *v1;
-    int v2;
-    int v3;
+    RefreshHPGaugeMessage message;
+    Pokemon *pokemon;
+    int species;
+    int level;
 
-    v1 = BattleSystem_PartyPokemon(battleSys, param2, battleCtx->selectedPartySlot[param2]);
-    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
-    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+    pokemon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    level = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
 
-    v0.unk_00 = BATTLE_COMMAND_REFRESH_HP_GAUGE;
-    v0.unk_01 = battleCtx->battleMons[param2].level;
-    v0.unk_02 = battleCtx->battleMons[param2].curHP;
-    v0.unk_04 = battleCtx->battleMons[param2].maxHP;
-    v0.unk_06 = battleCtx->selectedPartySlot[param2];
-    v0.unk_07_0 = Battler_StatusCondition(battleCtx, param2);
+    message.command = BATTLE_COMMAND_REFRESH_HP_GAUGE;
+    message.level = battleCtx->battleMons[battler].level;
+    message.curHP = battleCtx->battleMons[battler].curHP;
+    message.maxHP = battleCtx->battleMons[battler].maxHP;
+    message.partySlot = battleCtx->selectedPartySlot[battler];
+    message.status = Battler_StatusCondition(battleCtx, battler);
 
-    if (((battleCtx->battleMons[param2].species == 29) || (battleCtx->battleMons[param2].species == 32)) && (battleCtx->battleMons[param2].hasNickname == 0)) {
-        v0.unk_07_5 = 2;
+    if (((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F) || (battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)) && (battleCtx->battleMons[battler].hasNickname == 0)) {
+        message.gender = 2;
     } else {
-        v0.unk_07_5 = battleCtx->battleMons[param2].gender;
+        message.gender = battleCtx->battleMons[battler].gender;
     }
 
-    v0.unk_08 = battleCtx->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_07_7 = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[param2].species);
-    v0.unk_10 = BattleSystem_NumSafariBalls(battleSys);
+    message.curExp = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
+    message.maxExp = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
+    message.caughtSpecies = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
+    message.numSafariBalls = BattleSystem_NumSafariBalls(battleSys);
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225C468));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RefreshHPGaugeMessage));
 }
 
 void BattleIO_UpdatePartyMon(BattleSystem *battleSys, BattleContext *battleCtx, int param2)

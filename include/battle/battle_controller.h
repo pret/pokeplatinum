@@ -71,7 +71,7 @@ void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext 
 void BattleController_EmitPlayLevelUpAnimation(BattleSystem *battleSys, int param1);
 void BattleController_EmitSetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
 void ov16_022661B0(BattleSystem *battleSys, int param1);
-void BattleIO_RefreshHPGauge(BattleSystem *battleSys, BattleContext *param1, int param2);
+void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_UpdatePartyMon(BattleSystem *battleSys, BattleContext *param1, int param2);
 void ov16_02266460(BattleSystem *battleSys, int param1);
 void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);

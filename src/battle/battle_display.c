@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C468.h"
 #include "battle/struct_ov16_0225C65C.h"
 #include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA4C.h"
@@ -1146,7 +1145,7 @@ void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage
     }
 }
 
-void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C468 *param2)
+void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeMessage *message)
 {
     Healthbar *v0 = &param1->healthbar;
 
@@ -1155,18 +1154,18 @@ void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     v0->battleSys = battleSys;
     v0->battler = param1->battler;
     v0->type = Healthbar_Type(param1->battlerType, BattleSystem_BattleType(battleSys));
-    v0->unk_4C = param2->unk_00;
-    v0->curHP = param2->unk_02;
-    v0->maxHP = param2->unk_04;
-    v0->unk_48 = param2->unk_01;
-    v0->unk_49 = param2->unk_07_5;
+    v0->unk_4C = message->command;
+    v0->curHP = message->curHP;
+    v0->maxHP = message->maxHP;
+    v0->unk_48 = message->level;
+    v0->unk_49 = message->gender;
     v0->damage = 0;
-    v0->curExp = param2->unk_08;
-    v0->maxExp = param2->unk_0C;
-    v0->selectedPartySlot = param2->unk_06;
-    v0->status = param2->unk_07_0;
-    v0->unk_4B = param2->unk_07_7;
-    v0->unk_27 = param2->unk_10;
+    v0->curExp = message->curExp;
+    v0->maxExp = message->maxExp;
+    v0->selectedPartySlot = message->partySlot;
+    v0->status = message->status;
+    v0->unk_4B = message->caughtSpecies;
+    v0->unk_27 = message->numSafariBalls;
 
     Healthbar_DrawInfo(v0, v0->curHP, ~HEALTHBAR_INFO_EXP_GAUGE);
     ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);

@@ -10089,7 +10089,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             }
 
             data->battleCtx->levelUpMons |= FlagIndex(slot);
-            BattleIO_RefreshHPGauge(data->battleSys, data->battleCtx, expBattler);
+            BattleController_EmitRefreshHPGauge(data->battleSys, data->battleCtx, expBattler);
 
             msg.id = 3; // "{0} grew to Lv. {1}!"
             msg.tags = TAG_NICKNAME_NUM;

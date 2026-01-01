@@ -2029,7 +2029,7 @@ static void BattleControllerPlayer_SafariBallCommand(BattleSystem *battleSys, Ba
 
     int balls = BattleSystem_NumSafariBalls(battleSys) - 1;
     BattleSystem_SetSafariBalls(battleSys, balls);
-    BattleIO_RefreshHPGauge(battleSys, battleCtx, BATTLER_US);
+    BattleController_EmitRefreshHPGauge(battleSys, battleCtx, BATTLER_US);
 }
 
 static void BattleControllerPlayer_SafariBaitCommand(BattleSystem *battleSys, BattleContext *battleCtx)

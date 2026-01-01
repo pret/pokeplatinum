@@ -270,4 +270,18 @@ typedef struct {
     BattleMessage msg;
 } AlertMsgMessage;
 
+typedef struct {
+    u8 command;
+    u8 level;
+    s16 curHP;
+    u16 maxHP;
+    u8 partySlot;
+    u8 status : 5;
+    u8 gender : 2;
+    u8 caughtSpecies : 1;
+    u32 curExp;
+    u32 maxExp;
+    int numSafariBalls;
+} RefreshHPGaugeMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
