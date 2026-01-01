@@ -384,7 +384,7 @@ enum CharCode {
     CHAR_U_DIERESIS,
     CHAR_Y_ACUTE,
     CHAR_THORN,
-    CHAR_Y_DIERESIS,
+    CHAR_ESZETT,
     CHAR_a_GRAVE,
     CHAR_a_ACUTE,
     CHAR_a_CIRCUMFLEX,
