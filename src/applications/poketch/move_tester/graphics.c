@@ -4,7 +4,6 @@
 #include <nitro.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 #include "constants/narc.h"
 #include "generated/pokemon_types.h"
 #include "generated/sdat.h"

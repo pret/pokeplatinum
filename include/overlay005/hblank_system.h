@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_HBLANK_SYSTEM_H
 #define POKEPLATINUM_HBLANK_SYSTEM_H
 
-#include "constants/heap.h"
-
 #define MAX_HBLANK_TASKS 2
 
 typedef struct HBlankTask HBlankTask;

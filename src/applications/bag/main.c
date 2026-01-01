@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
-#include "constants/heap.h"
 #include "constants/items.h"
 
 #include "struct_defs/special_encounter.h"

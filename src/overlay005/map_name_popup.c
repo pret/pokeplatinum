@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 

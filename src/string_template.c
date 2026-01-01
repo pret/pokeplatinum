@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/charcode.h"
-#include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "generated/abilities.h"

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "functypes/funcptr_0209B988.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0223C2D4.h"

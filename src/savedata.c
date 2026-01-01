@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "savedata/save_table.h"
 
 #include "heap.h"

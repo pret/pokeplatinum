@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "constants/heap.h"
-
 #include "pokedex_heightweight.h"
 
 HeightWeightData *HeightWeightData_Load(enum HeapID heapID)

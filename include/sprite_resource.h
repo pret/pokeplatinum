@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "constants/heap.h"
-
 #include "narc.h"
 #include "resource_collection.h"
 

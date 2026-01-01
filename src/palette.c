@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "graphics.h"
 #include "hardware_palette.h"
 #include "heap.h"

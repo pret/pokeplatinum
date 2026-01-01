@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
 #include "generated/game_records.h"
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"

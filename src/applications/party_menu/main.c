@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"

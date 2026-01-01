@@ -1,7 +1,5 @@
 #include "applications/poketch/calculator/value.h"
 
-#include "constants/heap.h"
-
 #include "heap.h"
 
 static const u64 powersOfTen[] = {

@@ -6,7 +6,6 @@
 #include "constants/charcode.h"
 #include "constants/flavor.h"
 #include "constants/forms.h"
-#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"

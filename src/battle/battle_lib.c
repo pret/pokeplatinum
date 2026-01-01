@@ -5,7 +5,6 @@
 
 #include "constants/battle.h"
 #include "constants/flavor.h"
-#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/sound.h"
 #include "constants/species.h"

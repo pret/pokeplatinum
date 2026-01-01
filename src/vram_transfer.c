@@ -4,8 +4,6 @@
 #include <nnsys.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "heap.h"
 
 typedef struct VramTransferTaskManager {

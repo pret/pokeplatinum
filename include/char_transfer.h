@@ -4,8 +4,6 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "constants/heap.h"
-
 typedef struct CharTransferTemplate {
     int maxTasks;
     int sizeMain;

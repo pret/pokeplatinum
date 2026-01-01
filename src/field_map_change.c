@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
-#include "constants/heap.h"
 #include "constants/overworld_weather.h"
 
 #include "struct_decls/struct_0203A790_decl.h"

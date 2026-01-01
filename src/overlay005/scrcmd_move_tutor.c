@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/forms.h"
-#include "constants/heap.h"
 #include "constants/species.h"
 #include "generated/items.h"
 #include "generated/moves.h"

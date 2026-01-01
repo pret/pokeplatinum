@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "nnsys/g2d/g2d_Image.h"
 
 #include "graphics.h"

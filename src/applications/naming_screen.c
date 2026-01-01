@@ -5,7 +5,6 @@
 
 #include "constants/charcode.h"
 #include "constants/graphics.h"
-#include "constants/heap.h"
 
 #include "struct_defs/struct_02099F80.h"
 

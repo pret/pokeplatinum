@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_POKEDEXSORT_H
 #define POKEPLATINUM_POKEDEXSORT_H
 
-#include "constants/heap.h"
-
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "applications/pokedex/pokedex_sort_data.h"

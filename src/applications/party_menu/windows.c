@@ -1,7 +1,6 @@
 #include "applications/party_menu/windows.h"
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "generated/genders.h"
 #include "generated/species.h"

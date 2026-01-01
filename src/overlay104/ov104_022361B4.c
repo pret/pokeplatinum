@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_020302DC_decl.h"

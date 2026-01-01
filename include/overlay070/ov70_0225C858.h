@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV70_0225C858_H
 #define POKEPLATINUM_OV70_0225C858_H
 
-#include "constants/heap.h"
-
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay070/struct_ov70_0225C894_decl.h"
 

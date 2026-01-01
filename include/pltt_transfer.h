@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "constants/heap.h"
-
 typedef struct PlttTransferTaskTemplate {
     NNSG2dPaletteData *data;
     NNS_G2D_VRAM_TYPE vramType;

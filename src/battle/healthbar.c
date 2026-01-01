@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_022674C4.h"

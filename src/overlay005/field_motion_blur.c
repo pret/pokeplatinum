@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "overlay005/motion_blur.h"
 
 #include "gx_layers.h"

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "field/field_system.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 

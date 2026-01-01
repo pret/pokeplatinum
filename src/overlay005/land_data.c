@@ -5,7 +5,6 @@
 
 #include "constants/battle.h"
 #include "constants/field/map.h"
-#include "constants/heap.h"
 #include "constants/quadrant.h"
 
 #include "field/field_system.h"

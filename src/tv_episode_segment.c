@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/flavor.h"
-#include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
 #include "constants/tv_broadcast.h"

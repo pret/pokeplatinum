@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_CHARACTER_SPRITE_H
 #define POKEPLATINUM_CHARACTER_SPRITE_H
 
-#include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/species.h"
 

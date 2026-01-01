@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "struct_decls/struct_020998EC_decl.h"
 
 #include "overlay020/ov20_021D0D80.h"

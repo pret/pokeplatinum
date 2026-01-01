@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
 #include "generated/trainer_message_types.h"
 
 #include "struct_decls/struct_0205E884_decl.h"

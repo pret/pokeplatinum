@@ -3,7 +3,6 @@
 #include <nnsys.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 
 #include "heap.h"
 #include "render_view.h"

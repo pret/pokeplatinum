@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "heap.h"
 
 MapPropMaterialShape *MapPropMaterialShape_Alloc(void)

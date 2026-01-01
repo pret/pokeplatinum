@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "buffer_manager.h"
 #include "heap.h"
 #include "sys_task.h"

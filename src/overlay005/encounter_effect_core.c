@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
 #include "generated/trainer_classes.h"
 
 #include "field/field_system.h"

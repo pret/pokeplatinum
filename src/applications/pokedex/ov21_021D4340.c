@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "applications/pokedex/ov21_021D423C.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_main.h"

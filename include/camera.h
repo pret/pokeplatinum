@@ -3,8 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "constants/heap.h"
-
 #define CAMERA_DELAY_NONE 0
 #define CAMERA_DELAY_X    1
 #define CAMERA_DELAY_Y    2

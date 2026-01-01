@@ -2,7 +2,6 @@
 #define POKEPLATINUM_PALETTE_H
 
 #include "constants/colors.h"
-#include "constants/heap.h"
 #include "constants/narc.h"
 
 #define BlendColor(source, target, fraction) ((source) + (((target) - (source)) * (fraction) >> 4))

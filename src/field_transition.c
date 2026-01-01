@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "field/field_system.h"
 #include "overlay005/encounter_effect.h"
 #include "overlay005/map_name_popup.h"

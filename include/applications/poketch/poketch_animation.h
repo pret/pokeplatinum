@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "constants/heap.h"
 #include "constants/narc.h"
 
 typedef struct PoketchAnimation_AnimationManager PoketchAnimation_AnimationManager;

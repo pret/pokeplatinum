@@ -1,7 +1,5 @@
 #include "applications/poketch/unavailable/graphics.h"
 
-#include "constants/heap.h"
-
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"

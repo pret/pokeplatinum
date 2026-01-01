@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "heap.h"
 #include "narc.h"
 #include "sound_playback.h"

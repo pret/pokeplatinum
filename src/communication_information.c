@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/wi_fi_history.h"
 

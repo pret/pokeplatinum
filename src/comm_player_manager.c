@@ -6,7 +6,6 @@
 #include <string.h>
 
 #include "constants/communication/comm_packets.h"
-#include "constants/heap.h"
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 

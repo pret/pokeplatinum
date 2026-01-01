@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "constants/heap.h"
-
 #include "bg_window.h"
 #include "narc.h"
 

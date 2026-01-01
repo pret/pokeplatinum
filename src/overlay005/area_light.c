@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 #include "constants/narc.h"
 
 #include "overlay005/model_attributes.h"

@@ -3,7 +3,6 @@
 #include <string.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 
 #include "brightness_controller.h"
 #include "enums.h"

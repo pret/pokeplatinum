@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/heap.h"
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 

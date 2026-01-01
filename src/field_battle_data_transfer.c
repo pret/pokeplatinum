@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"

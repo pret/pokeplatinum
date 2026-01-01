@@ -4,7 +4,6 @@
 #include <nitro/types.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 #include "constants/species.h"
 
 #include "struct_defs/struct_02099F80.h"

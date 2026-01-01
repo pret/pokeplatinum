@@ -1,6 +1,5 @@
 #include "overlay006/great_marsh_daily_encounters.h"
 
-#include "constants/heap.h"
 #include "generated/map_headers.h"
 
 #include "heap.h"

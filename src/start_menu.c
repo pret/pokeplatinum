@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
-#include "constants/heap.h"
 #include "generated/genders.h"
 #include "generated/journal_location_events.h"
 #include "generated/pokemon_data_params.h"

@@ -3,7 +3,6 @@
 #include <dwc.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 
 #include "assert.h"
 #include "brightness_controller.h"

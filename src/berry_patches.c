@@ -1,6 +1,5 @@
 #include "berry_patches.h"
 
-#include "constants/heap.h"
 #include "constants/items.h"
 
 #include "berry_data.h"

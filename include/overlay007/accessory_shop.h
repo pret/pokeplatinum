@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_ACCESSORY_SHOP_H
 #define POKEPLATINUM_ACCESSORY_SHOP_H
 
-#include "constants/heap.h"
-
 #include "struct_decls/struct_02029D04_decl.h"
 
 #include "bag.h"

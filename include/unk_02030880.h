@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_UNK_02030880_H
 #define POKEPLATINUM_UNK_02030880_H
 
-#include "constants/heap.h"
-
 #include "struct_decls/struct_020308A0_decl.h"
 
 #include "savedata.h"

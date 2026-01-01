@@ -3,8 +3,6 @@
 
 #include <nitro/gx.h>
 
-#include "constants/heap.h"
-
 #include "char_transfer.h"
 #include "narc.h"
 #include "palette.h"

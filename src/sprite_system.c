@@ -3,8 +3,6 @@
 #include "nitro/fx/fx.h"
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "nnsys/g2d/g2d_Image.h"
 
 #include "cell_transfer.h"

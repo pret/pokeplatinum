@@ -4,7 +4,6 @@
 #include <nnsys.h>
 
 #include "constants/graphics.h"
-#include "constants/heap.h"
 
 typedef struct RenderOamTemplate {
     int mainOamStart;
