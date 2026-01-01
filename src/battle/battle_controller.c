@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3F8.h"
 #include "battle/struct_ov16_0225C40C.h"
 #include "battle/struct_ov16_0225C430.h"
 #include "battle/struct_ov16_0225C454.h"
@@ -1305,15 +1304,23 @@ void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleCo
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, attacker, &animation, sizeof(MoveAnimation));
 }
 
-void BattleIO_PrintRecallMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
+/**
+ * @brief Emits a message to play a status effect's animation, with a specified attacker and defender
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @param partySlot
+ */
+void BattleController_EmitRecallMessage(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
-    UnkStruct_ov16_0225C3F8 v0;
+    RecallMsgMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_PRINT_RECALL_MESSAGE;
-    v0.unk_01 = param3;
-    v0.unk_02 = (battleCtx->hpTemp - battleCtx->battleMons[1].curHP) * 100 / battleCtx->hpTemp;
+    message.command = BATTLE_COMMAND_PRINT_RECALL_MESSAGE;
+    message.partySlot = partySlot;
+    message.hpPercent = (battleCtx->hpTemp - battleCtx->battleMons[1].curHP) * 100 / battleCtx->hpTemp;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225C3F8));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RecallMsgMessage));
 }
 
 void BattleIO_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)

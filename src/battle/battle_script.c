@@ -4069,7 +4069,7 @@ static BOOL BtlCmd_PrintRecallMessage(BattleSystem *battleSys, BattleContext *ba
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_PrintRecallMessage(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
+    BattleController_EmitRecallMessage(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
 
     return FALSE;
 }

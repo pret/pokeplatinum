@@ -64,7 +64,7 @@ void BattleController_EmitSetStatusIcon(BattleSystem *battleSys, int param1, int
 void BattleController_EmitTrainerMessage(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *param1, int param2, int param3, int param4);
-void BattleIO_PrintRecallMessage(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
+void BattleController_EmitRecallMessage(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleIO_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleIO_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *param1, int param2);

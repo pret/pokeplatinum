@@ -245,4 +245,10 @@ typedef struct {
     u16 padding_02;
 } TrainerMsgMessage;
 
+typedef struct {
+    u8 command;
+    u8 partySlot;
+    u16 hpPercent;
+} RecallMsgMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
