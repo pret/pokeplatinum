@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3E4.h"
 #include "battle/struct_ov16_0225C3F8.h"
 #include "battle/struct_ov16_0225C40C.h"
 #include "battle/struct_ov16_0225C430.h"
@@ -1256,14 +1255,21 @@ void BattleController_EmitSetStatusIcon(BattleSystem *battleSys, int battlerId, 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(SetStatusIconMessage));
 }
 
-void BattleIO_TrainerMessage(BattleSystem *battleSys, int battlerId, int param2)
+/**
+ * @brief Emits a message to print a trainer's (text) message
+ *
+ * @param battleSys
+ * @param battlerId
+ * @param msg
+ */
+void BattleController_EmitTrainerMessage(BattleSystem *battleSys, int battlerId, int msg)
 {
-    UnkStruct_ov16_0225C3E4 v0;
+    TrainerMsgMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_TRAINER_MESSAGE;
-    v0.unk_01 = param2;
+    message.command = BATTLE_COMMAND_TRAINER_MESSAGE;
+    message.msg = msg;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_0225C3E4));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(TrainerMsgMessage));
 }
 
 /**

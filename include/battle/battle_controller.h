@@ -61,7 +61,7 @@ void BattleController_EmitPlaySound(BattleSystem *battleSys, BattleContext *para
 void BattleController_EmitFadeOut(BattleSystem *battleSys, BattleContext *param1);
 void BattleController_EmitToggleVanish(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitSetStatusIcon(BattleSystem *battleSys, int param1, int param2);
-void BattleIO_TrainerMessage(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitTrainerMessage(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *param1, int param2, int param3, int param4);
 void BattleIO_PrintRecallMessage(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);

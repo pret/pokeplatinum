@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3E4.h"
 #include "battle/struct_ov16_0225C3F8.h"
 #include "battle/struct_ov16_0225C40C.h"
 #include "battle/struct_ov16_0225C430.h"
@@ -536,7 +535,7 @@ static void ov16_0225C3D0(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C3E4(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_0225C3E4 *v0 = (UnkStruct_ov16_0225C3E4 *)&param1->data[0];
+    TrainerMsgMessage *v0 = (TrainerMsgMessage *)&param1->data[0];
 
     ov16_0225DD7C(battleSys, param1, v0);
     ZeroDataBuffer(param1);

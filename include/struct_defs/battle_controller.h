@@ -239,4 +239,10 @@ typedef struct {
     u16 padding_02;
 } SetStatusIconMessage;
 
+typedef struct {
+    u8 command;
+    u8 msg;
+    u16 padding_02;
+} TrainerMsgMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

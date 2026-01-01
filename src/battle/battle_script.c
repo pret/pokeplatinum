@@ -3853,7 +3853,7 @@ static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *b
     int msgType = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_TrainerMessage(battleSys, battler, msgType);
+    BattleController_EmitTrainerMessage(battleSys, battler, msgType);
 
     return FALSE;
 }
@@ -4154,7 +4154,7 @@ static BOOL BtlCmd_PrintBufferedTrainerMessage(BattleSystem *battleSys, BattleCo
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_TrainerMessage(battleSys, battler, battleCtx->msgTemp);
+    BattleController_EmitTrainerMessage(battleSys, battler, battleCtx->msgTemp);
 
     return FALSE;
 }

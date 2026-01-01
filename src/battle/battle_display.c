@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3E4.h"
 #include "battle/struct_ov16_0225C3F8.h"
 #include "battle/struct_ov16_0225C40C.h"
 #include "battle/struct_ov16_0225C430.h"
@@ -1020,16 +1019,16 @@ void ov16_0225DD44(BattleSystem *battleSys, BattlerData *param1, SetStatusIconMe
     ClearCommand(battleSys, param1->battler, message->command);
 }
 
-void ov16_0225DD7C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3E4 *param2)
+void ov16_0225DD7C(BattleSystem *battleSys, BattlerData *param1, TrainerMsgMessage *message)
 {
     BattleMessageWaitTask *v0;
     int v1 = Battler_TrainerID(battleSys, param1->battler);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
-    v0->command = param2->unk_00;
+    v0->command = message->command;
     v0->battler = param1->battler;
-    v0->msgIdx = ov16_0223F9FC(battleSys, v1, param1->battler, param2->unk_01, BattleSystem_TextSpeed(battleSys));
+    v0->msgIdx = ov16_0223F9FC(battleSys, v1, param1->battler, message->msg, BattleSystem_TextSpeed(battleSys));
 
     SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
