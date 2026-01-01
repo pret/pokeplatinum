@@ -43,11 +43,11 @@ enum CharsetMode {
  * @brief Init routine. Allocates memory for a new String, initializes it
  * with an integrity-check value, and exposes its address.
  *
- * @param size The size of the new String to allocate from the heap.
+ * @param maxSize The maximum size of the new String to allocate from the heap.
  * @param heapID ID of the heap to own the new String.
  * @return Address to the new String.
  */
-String *String_New(u32 size, enum HeapID heapID);
+String *String_New(u32 maxSize, enum HeapID heapID);
 
 /**
  * @brief Free routine. Destroys an existing String and returns its memory
@@ -74,7 +74,7 @@ void String_Clear(String *string);
  * @param dest Destination buffer. `dest->size` and `dest->data` will be modified.
  * @param src Source buffer. `src->size` and `src->data` will be accessed.
  */
-void String_Copy(String *dest, const String *src);
+void String_Copy(String *dest, String *src);
 
 /**
  * @brief Clones the contents of a given String into a new String and returns
@@ -91,7 +91,7 @@ void String_Copy(String *dest, const String *src);
  * @param heapID ID of the heap which will own the new String.
  * @return Address to the cloned String.
  */
-String *String_Clone(const String *src, u32 heapID);
+String *String_Clone(String *src, u32 heapID);
 
 /**
  * @brief Format a number into a destination buffer.
@@ -122,20 +122,20 @@ void String_FormatU64(String *dest, u64 num, u32 maxDigits, enum PaddingMode pad
 /**
  * @brief Parses a numeric string into a number.
  *
- * @param src Numeric string.
+ * @param string Numeric string.
  * @param[out] success Flag denoting if the result string was fully processed.
  * @return Parsed result.
  */
-u64 String_AtoI(const String *src, BOOL *success);
+u64 String_AtoI(String *string, BOOL *success);
 
 /**
- * @brief Compares two strings. Follows the `strcmp` standard.
+ * @brief Compares two strings. Similar to the `strcmp` standard, but without returning -1. Essentially a BOOL.
  *
  * @param str1 First string.
  * @param str2 Second string.
- * @return 0 if the strings match, 1 if they do not.
+ * @return FALSE if the strings match, TRUE if they do not.
  */
-int String_Compare(const String *str1, const String *str2);
+BOOL String_Compare(String *str1, String *str2);
 
 /**
  * @brief Accessor for the length of a string.
@@ -143,7 +143,7 @@ int String_Compare(const String *str1, const String *str2);
  * @param string
  * @return `string->size`
  */
-u32 String_GetLength(const String *string);
+u32 String_GetLength(String *string);
 
 /**
  * @brief Counts the number of lines in a string.
@@ -186,13 +186,13 @@ void String_CopyNumChars(String *dest, const charcode_t *src, u32 num);
 /**
  * @brief Dumps the contents of a String into a raw character buffer.
  *
- * Fails if `src->size + 1 > dstSize`.
+ * Fails if `src->size + 1 > destSize`.
  *
  * @param src Source buffer.
  * @param[out] dest Destination buffer.
- * @param dstSize Size of `dest`.
+ * @param destSize Size of `dest`.
  */
-void String_CopyToChars(const String *src, charcode_t *dest, u32 dstSize);
+void String_CopyToChars(String *src, charcode_t *dest, u32 destSize);
 
 /**
  * @brief Accessor for the underlying data buffer of a managed string.
@@ -200,7 +200,7 @@ void String_CopyToChars(const String *src, charcode_t *dest, u32 dstSize);
  * @param string
  * @return Underlying data buffer for `string`.
  */
-const charcode_t *String_GetChars(const String *string);
+charcode_t *String_GetChars(String *string);
 
 /**
  * @brief Concatenates `src` onto the end of `dest`, if allocation permits.
@@ -210,17 +210,17 @@ const charcode_t *String_GetChars(const String *string);
  * @param[out] dest Destination buffer.
  * @param src Source buffer.
  */
-void String_Concat(String *dest, const String *src);
+void String_Concat(String *dest, String *src);
 
 /**
- * @brief Appends a single character onto `dest`, if allocation permits.
+ * @brief Appends a single character onto `string`, if allocation permits.
  *
- * Fails if `dest->maxSize >= dest->size + 1`.
+ * Fails if `string->maxSize >= string->size + 1`.
  *
- * @param[out] dest Destination buffer.
+ * @param[out] string Destination buffer.
  * @param c Character to append.
  */
-void String_AppendChar(String *dest, charcode_t c);
+void String_AppendChar(String *string, charcode_t c);
 
 /**
  * @brief Checks if a given string is a trainer name.
@@ -248,8 +248,8 @@ void String_ConcatTrainerName(String *dest, String *src);
  * @brief Converts a particular character to uppercase.
  *
  * @param string
- * @param i Index of the character to capitalize, zero-indexed.
+ * @param index Index of the character to capitalize, zero-indexed.
  */
-void String_UpperChar(String *string, int i);
+void String_UpperChar(String *string, int index);
 
 #endif // POKEPLATINUM_STRING_H
