@@ -284,4 +284,23 @@ typedef struct {
     int numSafariBalls;
 } RefreshHPGaugeMessage;
 
+typedef struct {
+    u8 command;
+    u8 partySlot : 4;
+    u8 mimickedMoveSlot : 4;
+    s16 curHP;
+    u32 status;
+    u32 knockedOffItemsMask;
+    u16 heldItem;
+    u16 moves[4];
+    u8 ppCur[4];
+    u8 padding_16[2];
+    u32 statusVolatile;
+    u16 formNum;
+    u8 padding_1E[2];
+    int ability;
+    u16 updateStats;
+    u16 updateForm;
+} UpdatePartyMonMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

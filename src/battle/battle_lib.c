@@ -1820,7 +1820,7 @@ void BattleMon_CopyToParty(BattleSystem *battleSys, BattleContext *battleCtx, in
         BattleAI_ClearKnownItem(battleCtx, battler);
     }
 
-    BattleIO_UpdatePartyMon(battleSys, battleCtx, battler);
+    BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battler);
 }
 
 void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -6440,7 +6440,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = GIRATINA_FORM_ALTERED;
                 battleCtx->battleStatusMask2 |= SYSCTL_FORM_CHANGE;
 
-                BattleIO_UpdatePartyMon(battleSys, battleCtx, battleCtx->msgBattlerTemp);
+                BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battleCtx->msgBattlerTemp);
                 Heap_Free(mon);
 
                 *subscript = subscript_form_change;

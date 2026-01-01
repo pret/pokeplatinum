@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022662FC.h"
 #include "battle/struct_ov16_02266498.h"
 #include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022666BC.h"
@@ -1454,49 +1453,56 @@ void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RefreshHPGaugeMessage));
 }
 
-void BattleIO_UpdatePartyMon(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to update a BattleMon struct, usually after a form change, level up, or item change
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitUpdatePartyMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    UnkStruct_ov16_022662FC v0;
-    int v1;
+    UpdatePartyMonMessage message;
+    int i;
 
-    v0.unk_00 = BATTLE_COMMAND_UPDATE_PARTY_MON;
-    v0.unk_01_0 = battleCtx->selectedPartySlot[param2];
-    v0.unk_01_4 = battleCtx->battleMons[param2].moveEffectsData.mimickedMoveSlot;
-    v0.unk_02 = battleCtx->battleMons[param2].curHP;
-    v0.unk_0C = battleCtx->battleMons[param2].heldItem;
-    v0.unk_08 = battleCtx->sideConditions[Battler_Side(battleSys, param2)].knockedOffItemsMask;
-    v0.unk_1C = battleCtx->battleMons[param2].formNum;
-    v0.unk_20 = battleCtx->battleMons[param2].ability;
+    message.command = BATTLE_COMMAND_UPDATE_PARTY_MON;
+    message.partySlot = battleCtx->selectedPartySlot[battler];
+    message.mimickedMoveSlot = battleCtx->battleMons[battler].moveEffectsData.mimickedMoveSlot;
+    message.curHP = battleCtx->battleMons[battler].curHP;
+    message.heldItem = battleCtx->battleMons[battler].heldItem;
+    message.knockedOffItemsMask = battleCtx->sideConditions[Battler_Side(battleSys, battler)].knockedOffItemsMask;
+    message.formNum = battleCtx->battleMons[battler].formNum;
+    message.ability = battleCtx->battleMons[battler].ability;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_0E[v1] = battleCtx->battleMons[param2].moves[v1];
-        v0.unk_12[v1] = battleCtx->battleMons[param2].ppCur[v1];
+    for (i = 0; i < 4; i++) {
+        message.moves[i] = battleCtx->battleMons[battler].moves[i];
+        message.ppCur[i] = battleCtx->battleMons[battler].ppCur[i];
     }
 
-    if (v0.unk_02) {
-        v0.unk_04 = (battleCtx->battleMons[param2].status & (0xf00 ^ 0xffffffff));
-        v0.unk_18 = battleCtx->battleMons[param2].statusVolatile;
+    if (message.curHP) {
+        message.status = (battleCtx->battleMons[battler].status & ~MON_CONDITION_TOXIC_COUNTER);
+        message.statusVolatile = battleCtx->battleMons[battler].statusVolatile;
     } else {
-        v0.unk_04 = 0;
-        v0.unk_18 = battleCtx->battleMons[param2].statusVolatile;
+        message.status = 0;
+        message.statusVolatile = battleCtx->battleMons[battler].statusVolatile;
     }
 
-    if (battleCtx->battleStatusMask2 & 0x4000000) {
-        v0.unk_26 = 1;
-        battleCtx->battleStatusMask2 &= (0x4000000 ^ 0xffffffff);
+    if (battleCtx->battleStatusMask2 & SYSCTL_FORM_CHANGE) {
+        message.updateForm = 1;
+        battleCtx->battleStatusMask2 &= ~SYSCTL_FORM_CHANGE;
     } else {
-        v0.unk_26 = 0;
+        message.updateForm = 0;
     }
 
-    if (battleCtx->battleStatusMask2 & 0x8000000) {
-        v0.unk_24 = 1;
-        v0.unk_26 = 1;
-        battleCtx->battleStatusMask2 &= (0x8000000 ^ 0xffffffff);
+    if (battleCtx->battleStatusMask2 & SYSCTL_RECALC_MON_STATS) {
+        message.updateStats = 1;
+        message.updateForm = 1;
+        battleCtx->battleStatusMask2 &= ~SYSCTL_RECALC_MON_STATS;
     } else {
-        v0.unk_24 = 0;
+        message.updateStats = 0;
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_022662FC));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(UpdatePartyMonMessage));
 }
 
 void ov16_02266460(BattleSystem *battleSys, int battlerId)

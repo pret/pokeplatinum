@@ -5088,7 +5088,7 @@ static BOOL BtlCmd_TrySketch(BattleSystem *battleSys, BattleContext *battleCtx)
             ATTACKING_MON.moves[moveSlot] = battleCtx->moveSketched[battleCtx->defender];
             ATTACKING_MON.ppCur[moveSlot] = MOVE_DATA(battleCtx->moveSketched[battleCtx->defender]).pp;
 
-            BattleIO_UpdatePartyMon(battleSys, battleCtx, battleCtx->attacker);
+            BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battleCtx->attacker);
             battleCtx->msgMoveTemp = battleCtx->moveSketched[battleCtx->defender];
 
             if (battleCtx->msgMoveTemp == MOVE_LAST_RESORT) {
