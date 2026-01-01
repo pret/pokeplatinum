@@ -91,7 +91,7 @@ void String_Copy(String *dest, String *src);
  * @param heapID ID of the heap which will own the new String.
  * @return Address to the cloned String.
  */
-String *String_Clone(String *src, u32 heapID);
+String *String_Clone(String *src, enum HeapID heapID);
 
 /**
  * @brief Format a number into a destination buffer.

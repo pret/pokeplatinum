@@ -50,7 +50,7 @@ void String_Copy(String *dest, String *src) {
     GF_ASSERT(FALSE);
 }
 
-String *String_Clone(String *src, u32 heapID) {
+String *String_Clone(String *src, enum HeapID heapID) {
     String_Assert(src);
     String *ret = String_New(src->size + 1, heapID);
     if (ret != NULL) {
