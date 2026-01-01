@@ -60,7 +60,7 @@ Static main
 	Object main.nef.p/src_unk_02014D38.c.o
 	Object main.nef.p/src_software_sprite.c.o
 	Object main.nef.p/src_unk_0201567C.c.o
-	Object main.nef.p/src_unk_020158A8.c.o
+	Object main.nef.p/src_poffin_types.c.o
 	Object main.nef.p/src_unk_02015920.c.o
 	Object main.nef.p/src_pokemon_anim.c.o
 	Object main.nef.p/src_unk_02017038.c.o
@@ -344,8 +344,8 @@ Static main
 	Object main.nef.p/src_pokedex_heightweight.c.o
 	Object main.nef.p/src_pokedex_data_index.c.o
 	Object main.nef.p/src_rowan_intro_app_template.c.o
-	Object main.nef.p/src_unk_020989DC.c.o
-	Object main.nef.p/src_unk_02098FFC.c.o
+	Object main.nef.p/src_applications_poffin_case_main.c.o
+	Object main.nef.p/src_poffin_sprite.c.o
 	Object main.nef.p/src_unk_02099500.c.o
 	Object main.nef.p/src_unk_02099550.c.o
 	Object main.nef.p/src_unk_02099604.c.o
@@ -1302,14 +1302,14 @@ Overlay choose_starter
 	Object main.nef.p/src_choose_starter_choose_starter_app.c.o
 }
 
-Overlay overlay79
+Overlay poffin_case
 {
 	After main
-	Object main.nef.p/src_overlay079_ov79_021D0D80.c.o
-	Object main.nef.p/src_overlay079_ov79_021D183C.c.o
-	Object main.nef.p/src_overlay079_ov79_021D20F4.c.o
-	Object main.nef.p/src_overlay079_ov79_021D2268.c.o
-	Object main.nef.p/src_overlay079_ov79_021D3768.c.o
+	Object main.nef.p/src_applications_poffin_case_manager.c.o
+	Object main.nef.p/src_applications_poffin_case_menus.c.o
+	Object main.nef.p/src_applications_poffin_case_sprites.c.o
+	Object main.nef.p/src_applications_poffin_case_ov79_021D2268.c.o
+	Object main.nef.p/src_applications_poffin_case_ov79_021D3768.c.o
 }
 
 Overlay town_map

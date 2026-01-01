@@ -47,7 +47,7 @@
 #include "math_util.h"
 #include "message.h"
 #include "party.h"
-#include "poffin.h"
+#include "poffin_types.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "record_mixed_rng.h"
@@ -1838,13 +1838,13 @@ static int TVEpisodeSegment_LoadMessage_ThreeCheersForPoffinCorner(FieldSystem *
     StringTemplate_SetCustomMessageWord(template, 2, threeCheersForPoffinCorner->customMessageWord);
 
     switch (poffin) {
-    case POFFIN_FLAVOR_RICH:
+    case POFFIN_TYPE_RICH:
         return TVProgramInterviews_Text_ThreeCheersForPoffinCorner_RichPoffin;
-    case POFFIN_FLAVOR_OVERRIPE:
+    case POFFIN_TYPE_OVERRIPE:
         return TVProgramInterviews_Text_ThreeCheersForPoffinCorner_OverripePoffin;
-    case POFFIN_FLAVOR_FOUL:
+    case POFFIN_TYPE_FOUL:
         return TVProgramInterviews_Text_ThreeCheersForPoffinCorner_FoulPoffin;
-    case POFFIN_FLAVOR_MILD:
+    case POFFIN_TYPE_MILD:
         return TVProgramInterviews_Text_ThreeCheersForPoffinCorner_MildPoffin;
     default:
         return TVProgramInterviews_Text_ThreeCheersForPoffinCorner_RegularPoffin;
