@@ -315,4 +315,21 @@ typedef struct {
     u16 move;
 } ForgetMoveMessage;
 
+typedef struct {
+    u8 command;
+    u8 unk_01;
+    u8 wait;
+    u8 padding_03;
+} MosaicSetMessage;
+
+typedef struct {
+    u8 command;
+    u8 formNum;
+    u16 species;
+    u8 gender;
+    u8 isShiny;
+    u8 padding_06[2];
+    u32 personality;
+} MonChangeFormMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

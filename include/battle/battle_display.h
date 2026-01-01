@@ -10,7 +10,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_0226C378.h"
 
@@ -77,7 +76,7 @@ void ov16_0225DF34(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage *param2);
 void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeMessage *param2);
 void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, ForgetMoveMessage *param2);
-void ov16_0225E0F4(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022664F8 *param2);
+void ov16_0225E0F4(BattleSystem *battleSys, BattlerData *param1, MosaicSetMessage *param2);
 
 /**
  * @brief Show the start-of-battle party gauge.

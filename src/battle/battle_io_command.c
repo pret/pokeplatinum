@@ -19,14 +19,12 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C684.h"
 #include "battle/struct_ov16_0225C988.h"
 #include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022666BC.h"
 #include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_022674C4.h"
@@ -682,7 +680,7 @@ static void ov16_0225C65C(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C670(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_022664F8 *v0 = (UnkStruct_ov16_022664F8 *)&param1->data[0];
+    MosaicSetMessage *v0 = (MosaicSetMessage *)&param1->data[0];
 
     ov16_0225E0F4(battleSys, param1, v0);
     ZeroDataBuffer(param1);
@@ -690,7 +688,7 @@ static void ov16_0225C670(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_0225C684 *v0 = (UnkStruct_ov16_0225C684 *)&param1->data[0];
+    MonChangeFormMessage *message = (MonChangeFormMessage *)&param1->data[0];
     PokemonSpriteTemplate v1;
     PokemonSpriteTemplate *v2;
     int v3;
@@ -702,24 +700,24 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
         v4 = 0;
     }
 
-    BuildPokemonSpriteTemplate(&v1, v0->unk_02, v0->unk_04, v4, v0->unk_05, v0->unk_01, v0->unk_08);
+    BuildPokemonSpriteTemplate(&v1, message->species, message->gender, v4, message->isShiny, message->formNum, message->personality);
 
     v2 = PokemonSprite_GetTemplate(param1->unk_20);
     *v2 = v1;
 
     PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
-    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, FALSE, v4, v2->spindaSpots);
+    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), message->personality, FALSE, v4, v2->spindaSpots);
 
     PokemonSpriteData_SetNarcID(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
     PokemonSpriteData_SetPalette(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
 
-    v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
+    v3 = LoadPokemonSpriteYOffset(message->species, message->gender, v4, message->formNum, message->personality);
     PokemonSpriteData_SetYOffset(ov16_0223E0C8(battleSys), param1->battler, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;
     PokemonSprite_SetAttribute(param1->unk_20, MON_SPRITE_Y_CENTER, v3);
 
-    ClearCommand(battleSys, param1->battler, v0->unk_00);
+    ClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 

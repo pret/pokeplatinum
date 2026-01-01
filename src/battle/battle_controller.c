@@ -19,14 +19,12 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C684.h"
 #include "battle/struct_ov16_0225C988.h"
 #include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022666BC.h"
 #include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_02266ABC.h"
@@ -1561,36 +1559,50 @@ void BattleController_EmitForgetMove(BattleSystem *battleSys, int battlerId, int
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(RefreshPartyStatusMessage));
 }
 
-void BattleIO_SetMosaic(BattleSystem *battleSys, int battlerId, int param2, int param3)
+/**
+ * @brief Emits a message to set a Pokemon's sprite to play the mosaic animation
+ *
+ * @param battleSys
+ * @param battler
+ * @param param2
+ * @param wait
+ */
+void BattleController_EmitSetMosaic(BattleSystem *battleSys, int battlerId, int param2, int wait)
 {
-    UnkStruct_ov16_022664F8 v0;
+    MosaicSetMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_SET_MOSAIC;
-    v0.unk_01 = param2;
-    v0.unk_02 = param3;
+    message.command = BATTLE_COMMAND_SET_MOSAIC;
+    message.unk_01 = param2;
+    message.wait = wait;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_022664F8));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(MosaicSetMessage));
 }
 
-void BattleIO_ChangeWeatherForm(BattleSystem *battleSys, int battlerId)
+/**
+ * @brief Emits a message to change a Pokemon's form based on the weath
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitChangeWeatherForm(BattleSystem *battleSys, int battlerId)
 {
-    UnkStruct_ov16_0225C684 v0;
+    MonChangeFormMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_CHANGE_WEATHER_FORM;
-    v0.unk_02 = battleSys->battleCtx->battleMons[battlerId].species;
-    v0.unk_05 = battleSys->battleCtx->battleMons[battlerId].isShiny;
+    message.command = BATTLE_COMMAND_CHANGE_WEATHER_FORM;
+    message.species = battleSys->battleCtx->battleMons[battlerId].species;
+    message.isShiny = battleSys->battleCtx->battleMons[battlerId].isShiny;
 
     if (battleSys->battleCtx->battleMons[battlerId].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
-        v0.unk_04 = battleSys->battleCtx->battleMons[battlerId].moveEffectsData.transformedGender;
-        v0.unk_08 = battleSys->battleCtx->battleMons[battlerId].moveEffectsData.transformedPID;
+        message.gender = battleSys->battleCtx->battleMons[battlerId].moveEffectsData.transformedGender;
+        message.personality = battleSys->battleCtx->battleMons[battlerId].moveEffectsData.transformedPID;
     } else {
-        v0.unk_04 = battleSys->battleCtx->battleMons[battlerId].gender;
-        v0.unk_08 = battleSys->battleCtx->battleMons[battlerId].personality;
+        message.gender = battleSys->battleCtx->battleMons[battlerId].gender;
+        message.personality = battleSys->battleCtx->battleMons[battlerId].personality;
     }
 
-    v0.unk_01 = battleSys->battleCtx->battleMons[battlerId].formNum;
+    message.formNum = battleSys->battleCtx->battleMons[battlerId].formNum;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_0225C684));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(MonChangeFormMessage));
 }
 
 void BattleIO_UpdateBG(BattleSystem *battleSys, int battlerId)

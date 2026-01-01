@@ -61,7 +61,6 @@
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_02269668.h"
@@ -1184,18 +1183,18 @@ void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, ForgetMoveMessa
     SysTask_Start(ov16_022633A4, v0, 0);
 }
 
-void ov16_0225E0F4(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_022664F8 *param2)
+void ov16_0225E0F4(BattleSystem *battleSys, BattlerData *param1, MosaicSetMessage *message)
 {
     UnkStruct_ov16_0225E0F4 *v0 = (UnkStruct_ov16_0225E0F4 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225E0F4));
 
     v0->unk_0A = 0;
     v0->unk_00 = battleSys;
     v0->unk_04 = param1->unk_20;
-    v0->unk_08 = param2->unk_00;
+    v0->unk_08 = message->command;
     v0->unk_09 = param1->battler;
-    v0->unk_0B = param2->unk_01;
+    v0->unk_0B = message->unk_01;
     v0->unk_0C = 0;
-    v0->unk_0D = param2->unk_02;
+    v0->unk_0D = message->wait;
 
     SysTask_Start(ov16_022634DC, v0, 0);
 }

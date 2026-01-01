@@ -8697,7 +8697,7 @@ static BOOL BtlCmd_SetMosaic(BattleSystem *battleSys, BattleContext *battleCtx)
     int wait = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_SetMosaic(battleSys, battler, param, wait);
+    BattleController_EmitSetMosaic(battleSys, battler, param, wait);
 
     return FALSE;
 }
@@ -8718,7 +8718,7 @@ static BOOL BtlCmd_ChangeForm(BattleSystem *battleSys, BattleContext *battleCtx)
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_ChangeWeatherForm(battleSys, battler);
+    BattleController_EmitChangeWeatherForm(battleSys, battler);
 
     return FALSE;
 }
