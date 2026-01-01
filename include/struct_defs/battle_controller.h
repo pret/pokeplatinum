@@ -251,4 +251,10 @@ typedef struct {
     u16 hpPercent;
 } RecallMsgMessage;
 
+typedef struct {
+    u8 command;
+    u8 partySlot;
+    u16 hpPercent; //out of 1000
+} SendOutMsgMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

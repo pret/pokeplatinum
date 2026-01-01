@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C40C.h"
 #include "battle/struct_ov16_0225C430.h"
 #include "battle/struct_ov16_0225C454.h"
 #include "battle/struct_ov16_0225C468.h"
@@ -171,8 +170,8 @@ static void HidePartyGaugeTask(SysTask *param0, void *param1);
 static void ov16_02263688(SysTask *param0, void *param1);
 static void ov16_022636D4(SysTask *param0, void *param1);
 static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManager *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimFrame *param11, PokemonSpriteCallback *param12);
-static void ov16_02263C1C(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessage *param2, BattleMessage *param3);
-static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C40C *param2, BattleMessage *param3);
+static void ov16_02263C1C(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessage *message, BattleMessage *param3);
+static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessage *message, BattleMessage *param3);
 static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C430 *param2, BattleMessage *param3);
 static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
@@ -1051,19 +1050,19 @@ void ov16_0225DDD8(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessag
     SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
-void ov16_0225DE30(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C40C *param2)
+void ov16_0225DE30(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessage *message)
 {
     BattleMessageWaitTask *v0;
     MessageLoader *v1;
     BattleMessage v2;
 
-    ov16_02263CF0(battleSys, param1, param2, &v2);
+    ov16_02263CF0(battleSys, param1, message, &v2);
 
     v1 = BattleSystem_MessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
-    v0->command = param2->unk_00;
+    v0->command = message->command;
     v0->battler = param1->battler;
     v0->msgIdx = BattleMessage_Print(battleSys, v1, &v2, BattleSystem_TextSpeed(battleSys));
 
@@ -5681,7 +5680,7 @@ static void ov16_02263C1C(BattleSystem *battleSys, BattlerData *param1, RecallMs
     }
 }
 
-static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C40C *param2, BattleMessage *param3)
+static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessage *message, BattleMessage *param3)
 {
     if (param1->battlerType & 0x1) {
         if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == 0) {
@@ -5689,22 +5688,22 @@ static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, UnkStruc
             param3->tags = 50;
             param3->params[0] = param1->battler;
             param3->params[1] = param1->battler;
-            param3->params[2] = param1->battler | (param2->unk_01 << 8);
+            param3->params[2] = param1->battler | (message->partySlot << 8);
         } else {
             param3->id = 974;
             param3->tags = 27;
             param3->params[0] = param1->battler;
-            param3->params[1] = param1->battler | (param2->unk_01 << 8);
+            param3->params[1] = param1->battler | (message->partySlot << 8);
         }
     } else {
         if (((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) == 0) && ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE)) {
-            if (param2->unk_02 < 100) {
+            if (message->hpPercent < 100) {
                 param3->id = 982;
-            } else if (param2->unk_02 < 325) {
+            } else if (message->hpPercent < 325) {
                 param3->id = 983;
-            } else if (param2->unk_02 < 550) {
+            } else if (message->hpPercent < 550) {
                 param3->id = 981;
-            } else if (param2->unk_02 < 775) {
+            } else if (message->hpPercent < 775) {
                 param3->id = 980;
             } else {
                 param3->id = 979;
@@ -5714,7 +5713,7 @@ static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, UnkStruc
         }
 
         param3->tags = 2;
-        param3->params[0] = param1->battler | (param2->unk_01 << 8);
+        param3->params[0] = param1->battler | (message->partySlot << 8);
     }
 }
 

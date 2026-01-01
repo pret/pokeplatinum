@@ -4090,7 +4090,7 @@ static BOOL BtlCmd_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *b
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_PrintSendOutMessage(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
+    BattleController_EmitSendOutMessage(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
 
     return FALSE;
 }

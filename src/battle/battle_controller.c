@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C40C.h"
 #include "battle/struct_ov16_0225C430.h"
 #include "battle/struct_ov16_0225C454.h"
 #include "battle/struct_ov16_0225C468.h"
@@ -1305,7 +1304,7 @@ void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleCo
 }
 
 /**
- * @brief Emits a message to play a status effect's animation, with a specified attacker and defender
+ * @brief Emits a message to print a recall (text) message
  *
  * @param battleSys
  * @param battleCtx
@@ -1323,20 +1322,28 @@ void BattleController_EmitRecallMessage(BattleSystem *battleSys, BattleContext *
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RecallMsgMessage));
 }
 
-void BattleIO_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
+/**
+ * @brief Emits a message to print a send out (text) message
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @param partySlot
+ */
+void BattleController_EmitSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
-    UnkStruct_ov16_0225C40C v0;
+    SendOutMsgMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_PRINT_SEND_OUT_MESSAGE;
-    v0.unk_01 = param3;
+    message.command = BATTLE_COMMAND_PRINT_SEND_OUT_MESSAGE;
+    message.partySlot = partySlot;
 
     if (battleCtx->battleMons[1].curHP == 0) {
-        v0.unk_02 = 1000;
+        message.hpPercent = 1000;
     } else {
-        v0.unk_02 = battleCtx->battleMons[1].curHP * 1000 / battleCtx->battleMons[1].maxHP;
+        message.hpPercent = battleCtx->battleMons[1].curHP * 1000 / battleCtx->battleMons[1].maxHP;
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225C40C));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(SendOutMsgMessage));
 }
 
 void BattleIO_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
