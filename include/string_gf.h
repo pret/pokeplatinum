@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRING_H
-#define POKEPLATINUM_STRING_H
+#ifndef POKEPLATINUM_STRING_GF_H
+#define POKEPLATINUM_STRING_GF_H
 
 #include "constants/heap.h"
 
@@ -252,4 +252,4 @@ void String_ConcatTrainerName(String *dest, String *src);
  */
 void String_UpperChar(String *string, int index);
 
-#endif // POKEPLATINUM_STRING_H
+#endif // POKEPLATINUM_STRING_GF_H
