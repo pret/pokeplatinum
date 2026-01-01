@@ -126,7 +126,7 @@ _01B6:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 2
     CloseMessage
-    CallCommonScript 0x7FA
+    SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
     Message 3
@@ -176,7 +176,7 @@ _026D:
 _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     SetVar VAR_OREBURGH_STATE, 3
     ReleaseAll
     End
@@ -368,7 +368,7 @@ _047D:
 _0497:
     Message 6
     CloseMessage
-    CallCommonScript 0x800
+    SetFollowMeBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2EC, _04DC
     GoToIfEq VAR_0x8005, 0x2ED, _04F6
@@ -408,7 +408,7 @@ _0544:
     Message 7
     WaitABXPadPress
     CloseMessage
-    CallCommonScript 0x801
+    FadeToDefaultMusic3
     SetVar VAR_OREBURGH_STATE, 1
     ReleaseAll
     End

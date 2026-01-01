@@ -55,7 +55,7 @@
     ScriptEntry CommonScript_ObtainContestBackdrop @ 0x7FD
     ScriptEntry CommonScript_SendToUndergroundPCWithLinefeed @ 0x7FE
     ScriptEntry CommonScript_ObtainAccessory @ 0x7FF
-    ScriptEntry _15BF @ 0x800
+    ScriptEntry CommonScript_SetFollowMeBGM @ 0x800
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x801
     ScriptEntry _15E7 @ 0x802
     ScriptEntry _1636 @ 0x803
@@ -64,7 +64,7 @@
     ScriptEntry CommonScript_Frontier_CheckAllFrontierGoldPrintsObtained @ 0x806
     ScriptEntry CommonScript_SetLookerBGM @ 0x807
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x808
-    ScriptEntry _170A @ 0x809
+    ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntryEnd
 
 CommonScript_EmptyScript1:
@@ -1599,7 +1599,7 @@ CommonScript_SetRivalBGM:
     ReturnCommonScript
     End
 
-_15BF:
+CommonScript_SetFollowMeBGM:
     StopMusic 0
     SetBGM SEQ_TSURETEKE
     ReturnCommonScript
@@ -1691,8 +1691,8 @@ CommonScript_Frontier_End:
     ReturnCommonScript
     End
 
-_170A:
-    Message pl_msg_00000213_00130
+CommonScript_GriseousOrbCouldNotBeRemoved:
+    Message CommonStrings_Text_GriseousOrbCouldNotBeRemoved
     WaitABXPadPress
     CloseMessage
     ReleaseAll

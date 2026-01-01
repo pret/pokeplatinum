@@ -370,7 +370,7 @@ AmitySquare_FollowerMon_PickUp_GiveItem:
     WaitCry
     ScrCmd_27C 1, LOCALID_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
