@@ -29,6 +29,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "screen_fade.h"
@@ -42,7 +43,6 @@
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_02015F84.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 #include "vram_transfer.h"
@@ -900,7 +900,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 break;
             }
 
-            if (sub_020160F4(param0->unk_D4.unk_188, 0) != 1) {
+            if (PokemonAnimManager_HasAnimCompleted(param0->unk_D4.unk_188, 0) != TRUE) {
                 break;
             }
 

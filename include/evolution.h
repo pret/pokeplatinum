@@ -2,7 +2,6 @@
 #define POKEPLATINUM_EVOLUTION_H
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_defs/struct_0207C8C4.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -15,6 +14,7 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "poketch.h"
 #include "string_template.h"
 #include "unk_0201567C.h"
@@ -36,7 +36,7 @@ typedef struct EvolutionData {
     ApplicationManager *appMan;
     PokemonSummary *unk_3C;
     void *unk_40;
-    PokemonAnimationSys *unk_44;
+    PokemonAnimManager *unk_44;
     Pokedex *unk_48;
     Bag *unk_4C;
     GameRecords *records;

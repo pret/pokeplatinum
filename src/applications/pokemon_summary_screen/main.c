@@ -33,6 +33,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "ribbon.h"
@@ -49,7 +50,6 @@
 #include "system_flags.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_02015F84.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
@@ -229,7 +229,7 @@ static int PokemonSummaryScreen_Init(ApplicationManager *appMan, int *state)
 
     summaryScreen->data = ApplicationManager_Args(appMan);
     summaryScreen->bgConfig = BgConfig_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->monSprite.animationSys = sub_02015F84(HEAP_ID_POKEMON_SUMMARY_SCREEN, 1, 1);
+    summaryScreen->monSprite.monAnimMan = PokemonAnimManager_New(HEAP_ID_POKEMON_SUMMARY_SCREEN, 1, TRUE);
     summaryScreen->narcPlPokeData = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     Font_UseImmediateGlyphAccess(FONT_SYSTEM, HEAP_ID_POKEMON_SUMMARY_SCREEN);
