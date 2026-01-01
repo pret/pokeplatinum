@@ -2090,7 +2090,7 @@ static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
     int battler = BattleScript_Read(battleCtx);
     int sdatID = BattleScript_Read(battleCtx);
 
-    BattleIO_PlaySound(battleSys, battleCtx, sdatID, BattleScript_Battler(battleSys, battleCtx, battler));
+    BattleController_EmitPlaySound(battleSys, battleCtx, sdatID, BattleScript_Battler(battleSys, battleCtx, battler));
 
     return FALSE;
 }

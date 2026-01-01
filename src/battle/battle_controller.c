@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
 #include "battle/struct_ov16_0225C3E4.h"
@@ -1178,14 +1177,22 @@ void BattleController_EmitPlayFaintingSequence(BattleSystem *battleSys, BattleCo
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(FaintingSequenceMessage));
 }
 
-void BattleIO_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
+/**
+ * @brief Emits a message to play a sound with the given ID
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param sdatID
+ * @param battler
+ */
+void BattleController_EmitPlaySound(BattleSystem *battleSys, BattleContext *battleCtx, int sdatID, int battler)
 {
-    UnkStruct_ov16_0225C398 v0;
+    PlaySoundMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_PLAY_SOUND;
-    v0.unk_04 = param2;
+    message.command = BATTLE_COMMAND_PLAY_SOUND;
+    message.sdatID = sdatID;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param3, &v0, sizeof(UnkStruct_ov16_0225C398));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(PlaySoundMessage));
 }
 
 void BattleIO_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx)

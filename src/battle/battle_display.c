@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C398.h"
 #include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
 #include "battle/struct_ov16_0225C3E4.h"
@@ -961,7 +960,7 @@ void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, FaintingSequenc
     SysTask_Start(ov16_02262A9C, v0, 0);
 }
 
-void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C398 *param2)
+void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, PlaySoundMessage *message)
 {
     int v0;
 
@@ -971,8 +970,8 @@ void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v0 = -117;
     }
 
-    ClearCommand(battleSys, param1->battler, param2->unk_00);
-    Sound_PlayPannedEffect(param2->unk_04, v0);
+    ClearCommand(battleSys, param1->battler, message->command);
+    Sound_PlayPannedEffect(message->sdatID, v0);
 }
 
 void ov16_0225DC7C(BattleSystem *battleSys, BattlerData *param1)

@@ -5,8 +5,7 @@
 #include "struct_defs/battle_controller.h"
 
 #include "battle/battle_message.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225C398.h"
+#include "battle/struct_ov16_0225BFFC_decl.h"\
 #include "battle/struct_ov16_0225C3BC.h"
 #include "battle/struct_ov16_0225C3D0.h"
 #include "battle/struct_ov16_0225C3E4.h"
@@ -74,7 +73,7 @@ void ov16_0225DA44(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMessage *param2);
 void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateMessage *param2);
 void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, FaintingSequenceMessage *param2);
-void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C398 *param2);
+void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, PlaySoundMessage *param2);
 void ov16_0225DC7C(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3BC *param2);
 void ov16_0225DD44(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3D0 *param2);
