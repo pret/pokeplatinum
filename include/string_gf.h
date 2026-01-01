@@ -2,6 +2,7 @@
 #define POKEPLATINUM_STRING_GF_H
 
 #include "constants/heap.h"
+#include "generated/string_padding_mode.h"
 
 #include "charcode.h"
 
@@ -11,13 +12,10 @@
 typedef struct String {
     /// Maximum allocated size of the buffer.
     u16 maxSize;
-
     /// Size of the buffer, at present; the length of the underlying string.
     u16 size;
-
     /// Integrity value specified at allocation time.
     u32 integrity;
-
     /// The underlying character buffer.
     ///
     /// UB: This is meant to be a flexible array, but is purposely defined
@@ -26,15 +24,12 @@ typedef struct String {
     charcode_t data[1];
 } String;
 
-#include "generated/string_padding_mode.h"
-
 /**
  * Control codes for which charset to use when formatting a string.
  */
 enum CharsetMode {
     /// Use the Japanese character set (i.e., full-width characters).
     CHARSET_MODE_JP,
-
     /// Use the English character set (i.e., half-width characters).
     CHARSET_MODE_EN,
 };
@@ -143,7 +138,7 @@ BOOL String_Compare(String *str1, String *str2);
  * @param string
  * @return `string->size`
  */
-u32 String_GetLength(String *string);
+u16 String_GetLength(String *string);
 
 /**
  * @brief Counts the number of lines in a string.

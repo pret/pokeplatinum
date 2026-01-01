@@ -256,7 +256,7 @@ BOOL String_Compare(String *str1, String *str2) {
     return TRUE;
 }
 
-u32 String_GetLength(String *string) {
+u16 String_GetLength(String *string) {
     String_Assert(string);
     return string->size;
 }
