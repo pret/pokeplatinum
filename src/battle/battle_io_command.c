@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_02266498.h"
 #include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022666BC.h"
 #include "battle/struct_ov16_02266A38.h"
@@ -650,7 +649,7 @@ static void ov16_0225C5B0(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_02266498 *v0 = (UnkStruct_ov16_02266498 *)&param1->data[0];
+    RefreshPartyStatusMessage *message = (RefreshPartyStatusMessage *)&param1->data[0];
     Pokemon *v1;
     int v2, v3, v4;
     u32 v5 = 0;
@@ -659,18 +658,18 @@ static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
     for (v2 = 0; v2 < v3; v2++) {
         v1 = BattleSystem_PartyPokemon(battleSys, param1->battler, v2);
 
-        if (v0->unk_01 == 104) {
+        if (message->ability == 104) {
             v4 = ABILITY_NONE;
         } else {
             v4 = Pokemon_GetValue(v1, MON_DATA_ABILITY, NULL);
         }
 
-        if ((v0->unk_02 != 215) || ((v0->unk_02 == 215) && (v4 != ABILITY_SOUNDPROOF))) {
+        if ((message->move != 215) || ((message->move == 215) && (v4 != ABILITY_SOUNDPROOF))) {
             Pokemon_SetValue(v1, MON_DATA_STATUS, (u8 *)&v5);
         }
     }
 
-    ClearCommand(battleSys, param1->battler, v0->unk_00);
+    ClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 

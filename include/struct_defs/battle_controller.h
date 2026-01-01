@@ -303,4 +303,10 @@ typedef struct {
     u16 updateForm;
 } UpdatePartyMonMessage;
 
+typedef struct {
+    u8 command;
+    u8 ability;
+    u16 move;
+} RefreshPartyStatusMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

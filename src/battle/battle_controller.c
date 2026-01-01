@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_02266498.h"
 #include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022666BC.h"
 #include "battle/struct_ov16_02266A38.h"
@@ -1507,25 +1506,39 @@ void BattleController_EmitUpdatePartyMon(BattleSystem *battleSys, BattleContext 
 
 void ov16_02266460(BattleSystem *battleSys, int battlerId)
 {
-    int v0 = BATTLE_COMMAND_40;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, 4);
+    int command = BATTLE_COMMAND_40;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
-void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler)
+/**
+ * @brief Emits a message to stop gauge animations
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitStopGaugeAnimation(BattleSystem *battleSys, int battler)
 {
-    int v0 = BATTLE_COMMAND_STOP_GAUGE_ANIMATION;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, 4);
+    int command = BATTLE_COMMAND_STOP_GAUGE_ANIMATION;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &command, 4);
 }
 
-void BattleIO_RefreshPartyStatus(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3)
+/**
+ * @brief Emits a message to refresh the whole party's status
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ * @param move
+ */
+void BattleController_EmitRefreshPartyStatus(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
 {
-    UnkStruct_ov16_02266498 v0;
+    RefreshPartyStatusMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_REFRESH_PARTY_STATUS;
-    v0.unk_02 = param3;
-    v0.unk_01 = battleCtx->battleMons[param2].ability;
+    message.command = BATTLE_COMMAND_REFRESH_PARTY_STATUS;
+    message.move = move;
+    message.ability = battleCtx->battleMons[battler].ability;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_02266498));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RefreshPartyStatusMessage));
 }
 
 void BattleIO_ForgetMove(BattleSystem *battleSys, int battlerId, int param2, int param3)
@@ -1538,7 +1551,7 @@ void BattleIO_ForgetMove(BattleSystem *battleSys, int battlerId, int param2, int
     v0.unk_02 = param2;
     v0.unk_01 = param3;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_02266498));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(RefreshPartyStatusMessage));
 }
 
 void BattleIO_SetMosaic(BattleSystem *battleSys, int battlerId, int param2, int param3)

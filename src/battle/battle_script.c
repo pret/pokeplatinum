@@ -5292,7 +5292,7 @@ static BOOL BtlCmd_TryPartyStatusRefresh(BattleSystem *battleSys, BattleContext 
         }
     }
 
-    BattleIO_RefreshPartyStatus(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);
+    BattleController_EmitRefreshPartyStatus(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);
     return FALSE;
 }
 

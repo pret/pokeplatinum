@@ -485,11 +485,11 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
 
                 case PLAYER_INPUT_CANCEL:
                     if (battleType & BATTLE_TYPE_LINK) {
-                        BattleIO_StopGaugeAnimation(battleSys, i);
+                        BattleController_EmitStopGaugeAnimation(battleSys, i);
                         battleCtx->curCommandState[i] = BATTLE_CONTROL_GET_BATTLE_MON;
                         battleCtx->curCommandState[BattleSystem_Partner(battleSys, i)] = BATTLE_CONTROL_GET_BATTLE_MON;
                     } else if ((battleType & BATTLE_TYPE_DOUBLES) && i == BATTLER_PLAYER_2) {
-                        BattleIO_StopGaugeAnimation(battleSys, i);
+                        BattleController_EmitStopGaugeAnimation(battleSys, i);
                         battleCtx->curCommandState[BATTLER_PLAYER_1] = BATTLE_CONTROL_GET_BATTLE_MON;
                         battleCtx->curCommandState[BATTLER_PLAYER_2] = BATTLE_CONTROL_GET_BATTLE_MON;
                     }
@@ -650,7 +650,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             break;
 
         case COMMAND_SELECTION_WAIT:
-            BattleIO_StopGaugeAnimation(battleSys, i);
+            BattleController_EmitStopGaugeAnimation(battleSys, i);
 
             if (battleType == BATTLE_TYPE_LINK_DOUBLES) {
                 if (battleCtx->curCommandState[BattleSystem_Partner(battleSys, i)] == COMMAND_SELECTION_END) {
