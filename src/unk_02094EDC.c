@@ -394,7 +394,7 @@ int sub_02094EDC(UnkStruct_02095C48 *param0)
     return 0;
 }
 
-void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int contestType, int contestRank, int param5, int isGameCompleted, int isNatDexObtained)
+void sub_02094F04(UnkStruct_02095C48 *param0, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int param5, BOOL isGameCompleted, BOOL isNatDexObtained)
 {
     int v0, v1;
     u8 *v2;
@@ -460,11 +460,11 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int contes
             }
         }
 
-        if (((contestType == CONTEST_TYPE_COOL) && v9[v0].unk_20_3)
-            || ((contestType == CONTEST_TYPE_BEAUTY) && v9[v0].unk_20_4)
-            || ((contestType == CONTEST_TYPE_CUTE) && v9[v0].unk_20_5)
-            || ((contestType == CONTEST_TYPE_SMART) && v9[v0].unk_20_6)
-            || ((contestType == CONTEST_TYPE_TOUGH) && v9[v0].unk_20_7)) {
+        if (contestType == CONTEST_TYPE_COOL && v9[v0].unk_20_3
+            || contestType == CONTEST_TYPE_BEAUTY && v9[v0].unk_20_4
+            || contestType == CONTEST_TYPE_CUTE && v9[v0].unk_20_5
+            || contestType == CONTEST_TYPE_SMART && v9[v0].unk_20_6
+            || contestType == CONTEST_TYPE_TOUGH && v9[v0].unk_20_7) {
             v2[v3++] = v0;
         }
     }
@@ -531,7 +531,7 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int contes
     Heap_Free(v9);
 }
 
-void sub_020951B0(UnkStruct_02095C48 *param0, int heapID)
+void sub_020951B0(UnkStruct_02095C48 *param0, enum HeapID heapID)
 {
     int v0, v1;
     UnkStruct_020951B0 *v2;
@@ -692,7 +692,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
     return v1;
 }
 
-void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int contestType, int contestRank)
+void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
 {
     int v0, v1;
     u8 v2 = 0, v3 = 0;
@@ -771,7 +771,7 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int contes
     Heap_Free(v6);
 }
 
-s8 sub_02095734(int contestEffect)
+s8 sub_02095734(enum ContestEffects contestEffect)
 {
     GF_ASSERT(contestEffect < (NELEMS(Unk_020F568C)));
     return Unk_020F568C[contestEffect].unk_04;
@@ -820,7 +820,7 @@ void sub_02095790(int param0, int param1, u32 *destMessageID, u32 *param3)
     }
 }
 
-u32 sub_02095848(int contestRank, int param1, BOOL isLinkContest)
+u32 sub_02095848(enum PokemonContestRank contestRank, int param1, BOOL isLinkContest)
 {
     u32 messageID;
 
@@ -854,7 +854,7 @@ u32 sub_02095848(int contestRank, int param1, BOOL isLinkContest)
     return messageID;
 }
 
-u32 Contest_GetRankMessageID(int contestRank)
+u32 Contest_GetRankMessageID(enum PokemonContestRank contestRank)
 {
     u32 messageID;
 
@@ -885,7 +885,7 @@ u32 Contest_GetContestTypeMessageID(int contestType)
     return sub_020958C4(contestType, 2);
 }
 
-u32 sub_020958C4(int contestType, int param1)
+u32 sub_020958C4(enum PokemonContestType contestType, int param1)
 {
     u32 messageID;
 
@@ -1027,7 +1027,7 @@ void sub_02095A24(void)
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 }
 
-u32 CalcMonDataRibbon(int contestRank, int contestType)
+u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestType contestType)
 {
     u32 monDataRibbon;
 
