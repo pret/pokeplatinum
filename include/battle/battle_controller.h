@@ -68,8 +68,8 @@ void BattleController_EmitRecallMessage(BattleSystem *battleSys, BattleContext *
 void BattleController_EmitSendOutMessage(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleController_EmitBattleStartMessage(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext *param1, int param2);
-void BattleIO_PlayLevelUpAnimation(BattleSystem *battleSys, int param1);
-void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
+void BattleController_EmitPlayLevelUpAnimation(BattleSystem *battleSys, int param1);
+void BattleController_EmitSetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
 void ov16_022661B0(BattleSystem *battleSys, int param1);
 void BattleIO_RefreshHPGauge(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_UpdatePartyMon(BattleSystem *battleSys, BattleContext *param1, int param2);

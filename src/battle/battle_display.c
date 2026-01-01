@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C454.h"
 #include "battle/struct_ov16_0225C468.h"
 #include "battle/struct_ov16_0225C65C.h"
 #include "battle/struct_ov16_0225C9F0.h"
@@ -1119,7 +1118,7 @@ void ov16_0225DF34(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(ov16_02262F30, v0, 0);
 }
 
-void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C454 *param2)
+void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage *message)
 {
     UnkStruct_ov16_0225DF6C *v0;
     MessageLoader *v1;
@@ -1129,21 +1128,21 @@ void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v0 = (UnkStruct_ov16_0225DF6C *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225DF6C));
 
         v0->unk_00 = battleSys;
-        v0->unk_04 = param2->unk_00;
+        v0->unk_04 = message->command;
         v0->unk_05 = param1->battler;
         v0->unk_07 = 0;
-        v0->unk_06 = BattleMessage_Print(battleSys, v1, &param2->unk_04, BattleSystem_TextSpeed(battleSys));
+        v0->unk_06 = BattleMessage_Print(battleSys, v1, &message->msg, BattleSystem_TextSpeed(battleSys));
 
         SysTask_Start(ov16_02262FC0, v0, 0);
     } else if (param1->bootState == 0x1) {
         ov16_022661B0(battleSys, param1->battler);
-        ClearCommand(battleSys, param1->battler, param2->unk_00);
+        ClearCommand(battleSys, param1->battler, message->command);
     } else {
         if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == 0) {
             ov16_022661B0(battleSys, param1->battler);
         }
 
-        ClearCommand(battleSys, param1->battler, param2->unk_00);
+        ClearCommand(battleSys, param1->battler, message->command);
     }
 }
 

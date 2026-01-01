@@ -463,7 +463,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ITEMS) {
                         msg.id = 593; // "Items can’t be used here."
                         msg.tags = TAG_NONE;
-                        BattleIO_SetAlertMessage(battleSys, i, msg);
+                        BattleController_EmitSetAlertMessage(battleSys, i, msg);
 
                         battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                         battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
@@ -517,7 +517,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                         BattleSystem_SetStopRecording(battleSys, 1);
                         Battle_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
                     } else {
-                        BattleIO_SetAlertMessage(battleSys, i, msg);
+                        BattleController_EmitSetAlertMessage(battleSys, i, msg);
                         battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                         battleCtx->nextCommandState[i] = COMMAND_SELECTION_MOVE_SELECT_INIT;
                     }
@@ -610,7 +610,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 } else {
                     msg.tags = 0;
                     msg.id = 793;
-                    BattleIO_SetAlertMessage(battleSys, i, msg);
+                    BattleController_EmitSetAlertMessage(battleSys, i, msg);
 
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                     battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
@@ -620,7 +620,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     BattleSystem_SetStopRecording(battleSys, 1);
                     Battle_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
                 } else {
-                    BattleIO_SetAlertMessage(battleSys, i, msg);
+                    BattleController_EmitSetAlertMessage(battleSys, i, msg);
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                     battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
                 }
@@ -678,7 +678,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             msg.tags = TAG_NICKNAME;
             msg.id = 608; // "{0} has no moves left!"
             msg.params[0] = BattleSystem_NicknameTag(battleCtx, i);
-            BattleIO_SetAlertMessage(battleSys, i, msg);
+            BattleController_EmitSetAlertMessage(battleSys, i, msg);
 
             battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
             battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;

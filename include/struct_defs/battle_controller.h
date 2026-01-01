@@ -4,6 +4,7 @@
 #include "constants/pokemon.h"
 #include "constants/moves.h"
 
+#include "battle/battle_message.h"
 #include "battle/struct_ov16_0225C29C_sub1.h"
 
 typedef struct PartyGaugeData {
@@ -262,5 +263,11 @@ typedef struct {
     u8 padding_01[3];
     u8 partySlot[4];
 } LeadMonMsgMessage;
+
+typedef struct {
+    u8 command;
+    u8 padding_01[3];
+    BattleMessage msg;
+} AlertMsgMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

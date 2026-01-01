@@ -10050,7 +10050,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             // Only play the special level-up animation for an active battler
             if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
                 BattleController_EmitPlayStatusEffect(data->battleSys, data->battleCtx, expBattler, BATTLE_ANIMATION_LEVEL_UP);
-                BattleIO_PlayLevelUpAnimation(data->battleSys, expBattler);
+                BattleController_EmitPlayLevelUpAnimation(data->battleSys, expBattler);
             }
 
             data->seqNum = SEQ_GET_EXP_WAIT_LEVEL_UP_EFFECT;

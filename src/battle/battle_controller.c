@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C454.h"
 #include "battle/struct_ov16_0225C468.h"
 #include "battle/struct_ov16_0225C65C.h"
 #include "battle/struct_ov16_0225C684.h"
@@ -1361,8 +1360,12 @@ void BattleController_EmitBattleStartMessage(BattleSystem *battleSys, BattleCont
 
 /**
  * @brief Emits a message ot print a lead mon (text) message
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
  */
-void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     LeadMonMsgMessage message;
     int i;
@@ -1373,25 +1376,31 @@ void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext 
         message.partySlot[i] = battleCtx->selectedPartySlot[i];
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &message, sizeof(LeadMonMsgMessage));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(LeadMonMsgMessage));
 }
 
-void BattleIO_PlayLevelUpAnimation(BattleSystem *battleSys, int battlerId)
+/**
+ * @brief Emits a message to play the level up animation 
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitPlayLevelUpAnimation(BattleSystem *battleSys, int battlerId)
 {
-    int v0 = BATTLE_COMMAND_PLAY_LEVEL_UP_ANIMATION;
+    int command = BATTLE_COMMAND_PLAY_LEVEL_UP_ANIMATION;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, 4);
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
-void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg)
+void BattleController_EmitSetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg)
 {
     BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battler);
 
-    UnkStruct_ov16_0225C454 v0;
-    v0.unk_00 = BATTLE_COMMAND_SET_ALERT_MESSAGE;
-    v0.unk_04 = msg;
+    AlertMsgMessage message;
+    message.command = BATTLE_COMMAND_SET_ALERT_MESSAGE;
+    message.msg = msg;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, sizeof(UnkStruct_ov16_0225C454));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(AlertMsgMessage));
 }
 
 void ov16_022661B0(BattleSystem *battleSys, int battlerId)
