@@ -276,7 +276,7 @@ enum CharCode {
     CHAR_JP_ARROW_CURVE_UP,
     CHAR_JP_ARROW_CURVE_DOWN,
     CHAR_JP_ZZZ,
-    CHAR_JP_YEN,
+    CHAR_JP_CURRENCY,
     CHAR_POCKET_ICON_ITEMS,
     CHAR_POCKET_ICON_KEY_ITEMS,
     CHAR_POCKET_ICON_TMS_HMS,
@@ -426,7 +426,7 @@ enum CharCode {
     CHAR_er_SUPER,
     CHAR_re_SUPER,
     CHAR_r_SUPER,
-    CHAR_YEN, // Displayed as the "Poké Dollar" symbol in international versions
+    CHAR_CURRENCY, // "Poké Dollar" symbol in international versions
     CHAR_EMARK_INVERTED,
     CHAR_QMARK_INVERTED,
     CHAR_EMARK,
