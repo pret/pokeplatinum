@@ -60,7 +60,7 @@ void BattleController_EmitPlayFaintingSequence(BattleSystem *battleSys, BattleCo
 void BattleController_EmitPlaySound(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleController_EmitFadeOut(BattleSystem *battleSys, BattleContext *param1);
 void BattleController_EmitToggleVanish(BattleSystem *battleSys, int param1, int param2);
-void BattleIO_SetStatusIcon(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitSetStatusIcon(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_TrainerMessage(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitPlayStatusEffect(BattleSystem *battleSys, BattleContext *param1, int param2, int param3);
 void BattleController_EmitPlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *param1, int param2, int param3, int param4);

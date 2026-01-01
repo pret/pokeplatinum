@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3D0.h"
 #include "battle/struct_ov16_0225C3E4.h"
 #include "battle/struct_ov16_0225C3F8.h"
 #include "battle/struct_ov16_0225C40C.h"
@@ -1240,14 +1239,21 @@ void BattleController_EmitToggleVanish(BattleSystem *battleSys, int battlerId, i
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(ToggleVanishMessage));
 }
 
-void BattleIO_SetStatusIcon(BattleSystem *battleSys, int battlerId, int param2)
+/**
+ * @brief Emits a message to set the status icon on the battler's Healthbar
+ *
+ * @param battleSys
+ * @param battlerId
+ * @param status
+ */
+void BattleController_EmitSetStatusIcon(BattleSystem *battleSys, int battlerId, int status)
 {
-    UnkStruct_ov16_0225C3D0 v0;
+    SetStatusIconMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_SET_STATUS_ICON;
-    v0.unk_01 = param2;
+    message.command = BATTLE_COMMAND_SET_STATUS_ICON;
+    message.status = status;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_0225C3D0));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(SetStatusIconMessage));
 }
 
 void BattleIO_TrainerMessage(BattleSystem *battleSys, int battlerId, int param2)

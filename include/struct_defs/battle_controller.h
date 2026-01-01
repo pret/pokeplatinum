@@ -233,4 +233,10 @@ typedef struct {
     u32 personality[4];
 } ToggleVanishMessage;
 
+typedef struct {
+    u8 command;
+    u8 status;
+    u16 padding_02;
+} SetStatusIconMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

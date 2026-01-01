@@ -3830,7 +3830,7 @@ static BOOL BtlCmd_SetHealthbarStatus(BattleSystem *battleSys, BattleContext *ba
     int status = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_SetStatusIcon(battleSys, battler, status);
+    BattleController_EmitSetStatusIcon(battleSys, battler, status);
 
     return FALSE;
 }

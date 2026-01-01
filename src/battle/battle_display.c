@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C3D0.h"
 #include "battle/struct_ov16_0225C3E4.h"
 #include "battle/struct_ov16_0225C3F8.h"
 #include "battle/struct_ov16_0225C40C.h"
@@ -1011,14 +1010,14 @@ void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, ToggleVanishMes
     SysTask_Start(ov16_02262DC4, v0, 0);
 }
 
-void ov16_0225DD44(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3D0 *param2)
+void ov16_0225DD44(BattleSystem *battleSys, BattlerData *param1, SetStatusIconMessage *message)
 {
     GF_ASSERT(param1->healthbar.mainSprite != NULL);
 
-    param1->healthbar.status = param2->unk_01;
+    param1->healthbar.status = message->status;
 
     Healthbar_DrawInfo(&param1->healthbar, param1->healthbar.curHP, HEALTHBAR_INFO_STATUS);
-    ClearCommand(battleSys, param1->battler, param2->unk_00);
+    ClearCommand(battleSys, param1->battler, message->command);
 }
 
 void ov16_0225DD7C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3E4 *param2)
