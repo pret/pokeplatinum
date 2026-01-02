@@ -332,4 +332,10 @@ typedef struct {
     u32 personality;
 } MonChangeFormMessage;
 
+typedef struct {
+    u8 command;
+    u8 battlerType;
+    u16 record;
+} RecordIncrementMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

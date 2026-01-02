@@ -25,7 +25,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022666BC.h"
 #include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_02266ABC.h"
 
@@ -1605,67 +1604,121 @@ void BattleController_EmitChangeWeatherForm(BattleSystem *battleSys, int battler
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(MonChangeFormMessage));
 }
 
-void BattleIO_UpdateBG(BattleSystem *battleSys, int battlerId)
+/**
+ * @brief Emits a message to update the BG layer
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitUpdateBG(BattleSystem *battleSys, int battlerId)
 {
-    int v0 = BATTLE_COMMAND_UPDATE_BG;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, 4);
+    int command = BATTLE_COMMAND_UPDATE_BG;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
-void BattleIO_ClearTouchScreen(BattleSystem *battleSys, int battler)
+/**
+ * @brief Emits a message to clear the touchscreen
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitClearTouchScreen(BattleSystem *battleSys, int battler)
 {
-    int v0 = BATTLE_COMMAND_CLEAR_TOUCH_SCREEN;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, 4);
+    int command = BATTLE_COMMAND_CLEAR_TOUCH_SCREEN;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &command, 4);
 }
 
-void BattleIO_ShowBattleStartPartyGauge(BattleSystem *battleSys, int battler)
+/**
+ * @brief Emits a message to show the party gauge at the start of the battle
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitShowBattleStartPartyGauge(BattleSystem *battleSys, int battler)
 {
     PartyGaugeData gauge;
     PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BATTLE_COMMAND_SHOW_BATTLE_START_PARTY_GAUGE, battler);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_HideBattleStartPartyGauge(BattleSystem *battleSys, int battler)
+/**
+ * @brief Emits a message to hide the party gauge at the start of the battle
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitHideBattleStartPartyGauge(BattleSystem *battleSys, int battler)
 {
     PartyGaugeData gauge;
     PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BATTLE_COMMAND_HIDE_BATTLE_START_PARTY_GAUGE, battler);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_ShowPartyGauge(BattleSystem *battleSys, int battler)
+/**
+ * @brief Emits a message to show the party gauge when a Pokemon is sent in
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitShowPartyGauge(BattleSystem *battleSys, int battler)
 {
     PartyGaugeData gauge;
     PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BATTLE_COMMAND_SHOW_PARTY_GAUGE, battler);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_HidePartyGauge(BattleSystem *battleSys, int battler)
+/**
+ * @brief Emits a message to hide the party gauge after a Pokemon is sent in
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitHidePartyGauge(BattleSystem *battleSys, int battler)
 {
     PartyGaugeData gauge;
     PartyGaugeData_New(battleSys, battleSys->battleCtx, &gauge, BATTLE_COMMAND_HIDE_PARTY_GAUGE, battler);
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &gauge, sizeof(PartyGaugeData));
 }
 
-void BattleIO_LoadPartyGaugeGraphics(BattleSystem *battleSys)
+/**
+ * @brief Emits a message to load the party gauge graphics
+ *
+ * @param battleSys
+ */
+void BattleController_EmitLoadPartyGaugeGraphics(BattleSystem *battleSys)
 {
     int command = BATTLE_COMMAND_LOAD_PARTY_GAUGE_GRAPHICS;
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, NULL, &command, sizeof(int));
 }
 
-void BattleIO_FreePartyGaugeGraphics(BattleSystem *battleSys)
+/**
+ * @brief Emits a message to free the party gauge graphics
+ *
+ * @param battleSys
+ */
+void BattleController_EmitFreePartyGaugeGraphics(BattleSystem *battleSys)
 {
     int command = BATTLE_COMMAND_FREE_PARTY_GAUGE_GRAPHICS;
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, NULL, &command, sizeof(int));
 }
 
-void BattleIO_IncrementRecord(BattleSystem *battleSys, int battlerId, int param2, int param3)
+/**
+ * @brief Emits a message to increment the given record
+ *
+ * @param battleSys
+ * @param battler
+ * @param battlerType
+ * @param record
+ */
+void BattleController_EmitIncrementRecord(BattleSystem *battleSys, int battlerId, int battlerType, int record)
 {
-    UnkStruct_ov16_022666BC v0;
+    RecordIncrementMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_INCREMENT_RECORD;
-    v0.unk_01 = param2;
-    v0.unk_02 = param3;
+    message.command = BATTLE_COMMAND_INCREMENT_RECORD;
+    message.battlerType = battlerType;
+    message.record = record;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_022666BC));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(RecordIncrementMessage));
 }
 
 void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler)

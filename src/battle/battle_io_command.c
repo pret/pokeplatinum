@@ -25,7 +25,6 @@
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022666BC.h"
 #include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
@@ -829,19 +828,19 @@ static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C940(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_022666BC *v0 = (UnkStruct_ov16_022666BC *)&param1->data[0];
+    RecordIncrementMessage *message = (RecordIncrementMessage *)&param1->data[0];
 
-    if (v0->unk_01 == 0) {
+    if (message->battlerType == 0) {
         if (param1->bootState == 0x0) {
-            ov16_0223F24C(battleSys, v0->unk_02);
+            ov16_0223F24C(battleSys, message->record);
         }
     } else {
         if (param1->bootState != 0x0) {
-            ov16_0223F24C(battleSys, v0->unk_02);
+            ov16_0223F24C(battleSys, message->record);
         }
     }
 
-    ClearCommand(battleSys, param1->battler, v0->unk_00);
+    ClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 

@@ -685,7 +685,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             break;
 
         case COMMAND_SELECTION_CLEAR_TOUCH_SCREEN:
-            BattleIO_ClearTouchScreen(battleSys, i);
+            BattleController_EmitClearTouchScreen(battleSys, i);
             battleCtx->curCommandState[i] = battleCtx->nextCommandState[i];
             break;
         }
@@ -3351,7 +3351,7 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
         GF_ASSERT(battleCtx->damage < 0);
 
         if (Battler_Side(battleSys, battleCtx->attacker) == Battler_Side(battleSys, battleCtx->defender)) {
-            BattleIO_IncrementRecord(battleSys, battleCtx->attacker, 0, RECORD_ATTACKED_ALLY);
+            BattleController_EmitIncrementRecord(battleSys, battleCtx->attacker, 0, RECORD_ATTACKED_ALLY);
         }
 
         battleCtx->lastHitByBattler[battleCtx->defender] = battleCtx->attacker;

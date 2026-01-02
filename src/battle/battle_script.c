@@ -8734,7 +8734,7 @@ static BOOL BtlCmd_SetBattleBackground(BattleSystem *battleSys, BattleContext *b
 {
     BattleScript_Iter(battleCtx, 1);
 
-    BattleIO_UpdateBG(battleSys, BATTLER_US);
+    BattleController_EmitUpdateBG(battleSys, BATTLER_US);
 
     return FALSE;
 }
@@ -8802,7 +8802,7 @@ static BOOL BtlCmd_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattleCont
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_ShowBattleStartPartyGauge(battleSys, battler);
+    BattleController_EmitShowBattleStartPartyGauge(battleSys, battler);
 
     return FALSE;
 }
@@ -8823,7 +8823,7 @@ static BOOL BtlCmd_HideBattleStartPartyGauge(BattleSystem *battleSys, BattleCont
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_HideBattleStartPartyGauge(battleSys, battler);
+    BattleController_EmitHideBattleStartPartyGauge(battleSys, battler);
 
     return FALSE;
 }
@@ -8844,7 +8844,7 @@ static BOOL BtlCmd_ShowPartyGauge(BattleSystem *battleSys, BattleContext *battle
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_ShowPartyGauge(battleSys, battler);
+    BattleController_EmitShowPartyGauge(battleSys, battler);
 
     return FALSE;
 }
@@ -8865,7 +8865,7 @@ static BOOL BtlCmd_HidePartyGauge(BattleSystem *battleSys, BattleContext *battle
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_HidePartyGauge(battleSys, battler);
+    BattleController_EmitHidePartyGauge(battleSys, battler);
 
     return FALSE;
 }
@@ -8880,7 +8880,7 @@ static BOOL BtlCmd_HidePartyGauge(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_LoadPartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_LoadPartyGaugeGraphics(battleSys);
+    BattleController_EmitLoadPartyGaugeGraphics(battleSys);
 
     return FALSE;
 }
@@ -8895,7 +8895,7 @@ static BOOL BtlCmd_LoadPartyGaugeGraphics(BattleSystem *battleSys, BattleContext
 static BOOL BtlCmd_FreePartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_FreePartyGaugeGraphics(battleSys);
+    BattleController_EmitFreePartyGaugeGraphics(battleSys);
 
     return FALSE;
 }
@@ -8908,7 +8908,7 @@ static BOOL BtlCmd_IncrementGameRecord(BattleSystem *battleSys, BattleContext *b
     int record = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_IncrementRecord(battleSys, battler, battlerType, record);
+    BattleController_EmitIncrementRecord(battleSys, battler, battlerType, record);
 
     return FALSE;
 }
@@ -10936,7 +10936,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                 ov16_0223EF48(v2->battleSys, v3);
                 ov16_0223EF68(v2->battleSys, v3);
-                BattleIO_IncrementRecord(v2->battleSys, 0, 0, 1 + 8);
+                BattleController_EmitIncrementRecord(v2->battleSys, 0, 0, 1 + 8);
 
                 if (Party_AddPokemon(v22, v3) == 1) {
                     if (v2->seqNum == 22) {

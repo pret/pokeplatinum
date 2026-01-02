@@ -3290,7 +3290,7 @@ BOOL Battler_CanEscape(BattleSystem *battleSys, BattleContext *battleCtx, int ba
         }
 
         if (result == FALSE) {
-            BattleIO_IncrementRecord(battleSys, battler, 0, RECORD_FAILED_ESCAPE);
+            BattleController_EmitIncrementRecord(battleSys, battler, 0, RECORD_FAILED_ESCAPE);
         }
 
         battleCtx->runAttempts++;
