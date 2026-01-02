@@ -1308,8 +1308,8 @@ Overlay poffin_case
 	Object main.nef.p/src_applications_poffin_case_manager.c.o
 	Object main.nef.p/src_applications_poffin_case_menus.c.o
 	Object main.nef.p/src_applications_poffin_case_sprites.c.o
-	Object main.nef.p/src_applications_poffin_case_ov79_021D2268.c.o
-	Object main.nef.p/src_applications_poffin_case_ov79_021D3768.c.o
+	Object main.nef.p/src_applications_poffin_case_cutscene.c.o
+	Object main.nef.p/src_applications_poffin_case_cutscene_sprite.c.o
 }
 
 Overlay town_map

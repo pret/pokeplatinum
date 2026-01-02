@@ -92,3 +92,5 @@ poffin_case_narc = custom_target('poru_gra.narc',
 )
 nitrofs_files += poffin_case_narc
 naix_headers += poffin_case_narc[1]
+
+subdir('feeding_cutscene')
