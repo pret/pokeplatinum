@@ -56,7 +56,7 @@ void UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundTextPrinter *t
 void UndergroundTextPrinter_SetNumber(UndergroundTextPrinter *textPrinter, int num);
 void UndergroundTextPrinter_SetUndergroundItemName(UndergroundTextPrinter *textPrinter, int idx, int item);
 void UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int trap);
-void UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goods);
+void UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goods);
 void UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(UndergroundTextPrinter *textPrinter, int idx, int item);
 void UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(UndergroundTextPrinter *textPrinter, int idx, int trap);
 void UndergroundTextPrinter_CapitalizeArgAtIndex(UndergroundTextPrinter *textPrinter, int idx);

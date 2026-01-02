@@ -55,70 +55,70 @@
       "en_US": "{STRVAR_1 51, 0, 0}/{STRVAR_1 51, 1, 0}"
     },
     {
-      "id": "pl_msg_00000637_00011",
+      "id": "UndergroundDecorateBase_Text_GoodWasPlaced",
       "en_US": "The {STRVAR_1 10, 0, 0} was placed."
     },
     {
-      "id": "pl_msg_00000637_00012",
+      "id": "UndergroundDecorateBase_Text_CantPlaceHere",
       "en_US": "It can’t be placed here."
     },
     {
-      "id": "pl_msg_00000637_00013",
+      "id": "UndergroundDecorateBase_Text_GoodReturnedToPC",
       "en_US": [
         "The {STRVAR_1 10, 0, 0} was\n",
         "returned to the PC."
       ]
     },
     {
-      "id": "pl_msg_00000637_00014",
+      "id": "UndergroundDecorateBase_Text_BigBoulderRemoved",
       "en_US": "The Big Boulder was removed."
     },
     {
-      "id": "pl_msg_00000637_00015",
+      "id": "UndergroundDecorateBase_Text_CantRemoveBigBoulder",
       "en_US": "You can’t remove a Big Boulder."
     },
     {
-      "id": "pl_msg_00000637_00016",
+      "id": "UndergroundDecorateBase_Text_CantMoveBigBoulder",
       "en_US": "You can’t move a Big Boulder."
     },
     {
-      "id": "pl_msg_00000637_00017",
+      "id": "UndergroundDecorateBase_Text_CanRemove1MoreBoulder",
       "en_US": [
         "You are able to remove {STRVAR_1 51, 0, 0} more\n",
         "Big Boulder."
       ]
     },
     {
-      "id": "pl_msg_00000637_00018",
+      "id": "UndergroundDecorateBase_Text_CantRemoveMoreBoulders",
       "en_US": "No more Big Boulders can be removed."
     },
     {
-      "id": "pl_msg_00000637_00019",
+      "id": "UndergroundDecorateBase_Text_NoGoodsInPC",
       "en_US": [
         "There are no decoration goods stored\n",
         "on your PC."
       ]
     },
     {
-      "id": "pl_msg_00000637_00020",
+      "id": "UndergroundDecorateBase_Text_DisplayLimitReached",
       "en_US": [
         "No more decoration goods can be\n",
         "displayed."
       ]
     },
     {
-      "id": "pl_msg_00000637_00021",
+      "id": "UndergroundDecorateBase_Text_GoodAlreadyDisplayed",
       "en_US": [
         "That decoration good is already out\n",
         "on display."
       ]
     },
     {
-      "id": "pl_msg_00000637_00022",
+      "id": "UndergroundDecorateBase_Text_CantPutAwayPC",
       "en_US": "The PC cannot be put away."
     },
     {
-      "id": "pl_msg_00000637_00023",
+      "id": "UndergroundDecorateBase_Text_CantMovePC",
       "en_US": "The PC cannot be moved."
     },
     {
@@ -126,7 +126,7 @@
       "en_US": "Quit decorating."
     },
     {
-      "id": "pl_msg_00000637_00025",
+      "id": "UndergroundDecorateBase_Text_CanRemoveXMoreBoulders",
       "en_US": [
         "You are able to remove {STRVAR_1 51, 0, 0} more\n",
         "Big Boulders."

@@ -21,7 +21,7 @@
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_022499E4.h"
-#include "overlay023/ov23_0224B05C.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_status.h"
 #include "overlay023/underground_traps.h"
@@ -498,7 +498,7 @@ static void Task_CommPlayerManagerRun(SysTask *task, void *data)
         if (sCommPlayerManager->isUnderground) {
             if (CommSys_CurNetId() == 0) {
                 if (NULL == CommInfo_TrainerInfo(netId)) {
-                    ov23_0224B5CC(netId);
+                    SecretBases_ResetBaseEntranceData(netId);
                 }
             }
         }
@@ -511,7 +511,7 @@ static void sub_02057EF8(void *unused)
         if (!CommSys_IsPlayerConnected(netId)) {
             if (!(CommSys_IsAlone() && (netId == 0))) {
                 if ((CommSys_CurNetId() == 0) && (sCommPlayerManager->isUnderground)) {
-                    Underground_SecretBaseRemovePlayer(netId);
+                    SecretBases_HandleDisconnectedPlayers(netId);
                 }
             }
         }
@@ -646,7 +646,7 @@ static BOOL CommPlayer_CheckCollision(int x, int z, int netIdTarget)
                 continue;
             }
 
-            if (x == CommPlayer_GetXServer(netId) && z == CommPlayer_GetZServer(netId)) {
+            if (x == CommPlayer_GetXServerIfActive(netId) && z == CommPlayer_GetZServerIfActive(netId)) {
                 return TRUE;
             }
         }
@@ -656,7 +656,7 @@ static BOOL CommPlayer_CheckCollision(int x, int z, int netIdTarget)
         }
 
         if (sCommPlayerManager->isUnderground) {
-            if (!ov23_0224D1A0(x, z)) {
+            if (!SecretBases_AreCoordinatesWalkable(x, z)) {
                 return TRUE;
             }
         }
@@ -700,7 +700,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
             }
 
             if (sCommPlayerManager->isUnderground) {
-                if (ov23_0224C1C8(netId)) {
+                if (SecretBases_IsPlayerMidBaseTransition(netId)) {
                     continue;
                 }
             }
@@ -716,7 +716,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
                     }
 
                     if (!UndergroundPlayer_IsAffectedByTrap(netId)) {
-                        if (ov23_0224D7C8(netId)) {
+                        if (SecretBases_CheckPlayerTriggeredTool(netId)) {
                             continue;
                         }
                     }
@@ -779,7 +779,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
                     }
                 } else if (sCommPlayerManager->holeMovementsLeft[netId] != 0) {
                     continue;
-                } else if (sCommPlayerManager->isUnderground && (ov23_0224B8E0(netId, x, z) == 1)) {
+                } else if (sCommPlayerManager->isUnderground && (SecretBases_CheckForEnterExit(netId, x, z) == 1)) {
                     continue;
                 } else if (CommPlayer_CheckCollision(x, z, netId)) {
                     playerLocation->collisionFlag = 1;
@@ -914,7 +914,7 @@ void CommPlayer_RecvLocationAndInit(int netId, int size, void *src, void *unused
 static void sub_02058644(int netId)
 {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
-    SaveData_UndergroundRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
+    SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(sCommPlayerManager->fieldSystem));
 
     if (sCommPlayerManager->isUnderground) {
         if (netId == CommSys_CurNetId()) {
@@ -1121,8 +1121,8 @@ static BOOL CommPlayer_MoveSlide(int netId, int speed)
         return TRUE;
     }
 
-    int x = CommPlayer_GetXServer(netId);
-    int z = CommPlayer_GetZServer(netId);
+    int x = CommPlayer_GetXServerIfActive(netId);
+    int z = CommPlayer_GetZServerIfActive(netId);
     x += MapObject_GetDxFromDir(sCommPlayerManager->slideDir[netId]);
     z += MapObject_GetDzFromDir(sCommPlayerManager->slideDir[netId]);
 
@@ -1312,7 +1312,7 @@ int CommPlayer_GetZInFrontOfPlayer(int netId)
     return sCommPlayerManager->playerLocation[netId].z + MapObject_GetDzFromDir(sCommPlayerManager->playerLocation[netId].dir);
 }
 
-int CommPlayer_GetXServer(int netId)
+int CommPlayer_GetXServerIfActive(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1325,7 +1325,7 @@ int CommPlayer_GetXServer(int netId)
     return sCommPlayerManager->playerLocationServer[netId].x;
 }
 
-int CommPlayer_GetZServer(int netId)
+int CommPlayer_GetZServerIfActive(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1338,7 +1338,7 @@ int CommPlayer_GetZServer(int netId)
     return sCommPlayerManager->playerLocationServer[netId].z;
 }
 
-int sub_02058EA0(int netId)
+int CommPlayer_GetXServer(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1347,7 +1347,7 @@ int sub_02058EA0(int netId)
     return sCommPlayerManager->playerLocationServer[netId].x;
 }
 
-int sub_02058EC0(int netId)
+int CommPlayer_GetZServer(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1358,7 +1358,7 @@ int sub_02058EC0(int netId)
 
 int CommPlayer_GetXInFrontOfPlayerServer(int netId)
 {
-    if (CommPlayer_GetXServer(netId) == 0xffff) {
+    if (CommPlayer_GetXServerIfActive(netId) == 0xffff) {
         return 0xffff;
     }
 
@@ -1367,7 +1367,7 @@ int CommPlayer_GetXInFrontOfPlayerServer(int netId)
 
 int CommPlayer_GetZInFrontOfPlayerServer(int netId)
 {
-    if (CommPlayer_GetZServer(netId) == 0xffff) {
+    if (CommPlayer_GetZServerIfActive(netId) == 0xffff) {
         return 0xffff;
     }
 
@@ -1539,7 +1539,7 @@ static void sub_020591A8(void)
         }
 
         for (netJd = 0; netJd < connectedPlayers; netJd++) {
-            if ((CommPlayer_GetXServer(netId) == v6[netJd].unk_00) && (CommPlayer_GetZServer(netId) == v6[netJd].unk_02)) {
+            if ((CommPlayer_GetXServerIfActive(netId) == v6[netJd].unk_00) && (CommPlayer_GetZServerIfActive(netId) == v6[netJd].unk_02)) {
                 sCommPlayerManager->unk_F2[netId] = 1;
                 CommSys_SendDataFixedSizeServer(95, &netId);
             }
@@ -1693,7 +1693,7 @@ void CommPlayerMan_ResumeFieldSystemWithContextBit(int contextBit)
     }
 }
 
-void sub_020594EC(void)
+void CommPlayerMan_ClearPauseContextBits(void)
 {
     sCommPlayerManager->pauseBits = 0;
 }

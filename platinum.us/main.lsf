@@ -664,7 +664,7 @@ Overlay overlay13
 	Object main.nef.p/src_overlay013_battle_party.c.o
 	Object main.nef.p/src_overlay013_battle_party_text.c.o
 	Object main.nef.p/src_overlay013_ov13_02224500.c.o
-	Object main.nef.p/src_overlay013_ov13_02225710.c.o
+	Object main.nef.p/src_overlay013_battle_party_buttons.c.o
 	Object main.nef.p/src_overlay013_battle_bag.c.o
 	Object main.nef.p/src_overlay013_battle_bag_text.c.o
 	Object main.nef.p/src_overlay013_battle_bag_utils.c.o
@@ -692,7 +692,7 @@ Overlay battle
 	Object main.nef.p/src_battle_ov16_0223B140.c.o
 	Object main.nef.p/src_battle_ov16_0223DF00.c.o
 	Object main.nef.p/src_battle_battle_script.c.o
-	Object main.nef.p/src_battle_battle_controller.c.o
+	Object main.nef.p/src_battle_battle_controller_player.c.o
 	Object main.nef.p/src_battle_battle_lib.c.o
 	Object main.nef.p/src_battle_battle_io_command.c.o
 	Object main.nef.p/src_battle_battle_display.c.o
@@ -848,7 +848,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_underground_player_status.c.o
 	Object main.nef.p/src_overlay023_ov23_022499E4.c.o
 	Object main.nef.p/src_overlay023_underground_player.c.o
-	Object main.nef.p/src_overlay023_ov23_0224B05C.c.o
+	Object main.nef.p/src_overlay023_secret_bases.c.o
 	Object main.nef.p/src_overlay023_underground_player_talk.c.o
 	Object main.nef.p/src_overlay023_underground_menu.c.o
 	Object main.nef.p/src_overlay023_underground_pc.c.o
