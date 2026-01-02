@@ -11,7 +11,7 @@
 #include "functypes/funcptr_020598EC.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224B05C.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_traps.h"
 
@@ -117,7 +117,7 @@ void ov23_02249A74(void)
 static void ov23_02249A88(void)
 {
     if (!CommServerClient_IsInClosedSecretBase()) {
-        ov23_0224C198();
+        SecretBases_RequestClearTransitioningStatus();
         ov23_02249C24(ov23_02249C34, 0);
     }
 }
@@ -271,7 +271,7 @@ static void ov23_02249C34(void)
     CommPlayer_SendPos(0);
 
     UndergroundTraps_SendPlacedTraps();
-    ov23_0224C21C();
+    SecretBases_SendBaseInfo();
 
     if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
         ov23_02249C24(ov23_02249C98, 0);
@@ -314,7 +314,7 @@ static void ov23_02249CE4(void)
 
     if (sub_02036834()) {
         if (CommSys_CurNetId() == 0) {
-            ov23_0224B598();
+            SecretBases_ClearAllBaseInfo();
             ov23_02249C24(ov23_02249DBC, 60);
         } else {
             ov23_02249C24(ov23_02249D20, 120);
@@ -377,7 +377,7 @@ static void ov23_02249DBC(void)
         CommPlayer_SendPos(0);
 
         UndergroundPlayer_SendHeldFlagOwnerInfo();
-        ov23_0224C21C();
+        SecretBases_SendBaseInfo();
         ov23_02243360();
         ov23_02249C24(ov23_02249E18, 0);
 
@@ -396,11 +396,11 @@ static void ov23_02249E18(void)
     }
 
     if (CommSys_CheckError() || !CommServerClient_IsClientConnecting() || (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone())) {
-        ov23_0224B5CC(0);
+        SecretBases_ResetBaseEntranceData(0);
         UndergroundPlayer_ClearHeldFlagInfo();
-        ov23_0224DA8C();
+        SecretBases_AbortBaseEnterEarly();
 
-        Link_Message(43);
+        CommSys_SendMessage(43);
 
         UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 1);
         ov23_0224321C();
@@ -425,7 +425,7 @@ static void ov23_02249EA0(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    ov23_0224C198();
+    SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
     ov23_02249C24(ov23_02249E18, 0);
 }
@@ -481,7 +481,7 @@ static void ov23_02249F4C(void)
     if (UndergroundTraps_GetLinkReceivedPlacedTraps()) {
         ov23_022499E4("\u0090\u0065\u008B\u0040\u00E3\u00A9\u0083\u0066\u0081\u005B\u0083\u005E\u0093\u00CD\u0082\u00A2\u0082\u00BD\u0082\u00E7\u0082\u00B5\u0082\u00A2");
         UndergroundTraps_SetLinkReceivedPlacedTrapsToFalse();
-        ov23_0224C21C();
+        SecretBases_SendBaseInfo();
         ov23_02249C24(ov23_02249F7C, 0);
         return;
     }
@@ -491,11 +491,11 @@ static void ov23_02249F4C(void)
 
 static void ov23_02249F7C(void)
 {
-    if (ov23_0224C420()) {
+    if (SecretBases_AreBaseEntranceLocationsReceived()) {
         ov23_022499E4("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD");
-        ov23_0224C434();
+        SecretBases_ClearBaseEntranceLocationsReceived();
         CommPlayer_SendPos(1);
-        Link_Message(31);
+        CommSys_SendMessage(31);
         ov23_02249C24(ov23_0224A09C, 0);
         return;
     }
@@ -555,7 +555,7 @@ static void ov23_0224A02C(void)
         CommInfo_SendBattleRegulation();
         CommPlayer_SendPos(0);
         UndergroundTraps_SendPlacedTraps();
-        ov23_0224C21C();
+        SecretBases_SendBaseInfo();
         ov23_02249C24(ov23_0224A024, 0);
     }
 }
@@ -563,7 +563,7 @@ static void ov23_0224A02C(void)
 static void ov23_0224A064(void)
 {
     UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 1);
-    ov23_0224D9AC(CommSys_CurNetId(), 1);
+    SecretBases_RemovePlayerFromBase(CommSys_CurNetId(), 1);
     ov23_0224160C();
     CommPlayerMan_Stop();
     ov23_0224321C();
@@ -596,18 +596,18 @@ static void ov23_0224A0CC(void)
 
 static void ov23_0224A0E0(void)
 {
-    ov23_0224DAB4();
+    SecretBases_AbortBaseEnterLate();
 }
 
 static void ov23_0224A0E8(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    ov23_0224C198();
+    SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
 
     if (sub_02033E68() || CommSys_CheckError()) {
-        ov23_0224B518();
+        SecretBases_ResetAllBaseInfo();
         CommPlayerMan_Stop();
         ov23_0224321C();
         sub_020367F0();
@@ -633,7 +633,7 @@ static void ov23_0224A150(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    ov23_0224C198();
+    SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
     ov23_02249C24(ov23_02249CE4, 0);
 }
@@ -653,7 +653,7 @@ static void ov23_0224A184(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    ov23_0224C198();
+    SecretBases_RequestClearTransitioningStatus();
     CommPlayerMan_Restart();
     ov23_02249C24(ov23_0224A024, 0);
 }

@@ -60,7 +60,7 @@ BOOL ov83_0223D508(int param0, const void *param1, int param2, UnkStruct_ov83_02
         if (sub_0203895C() == 29) {
             BOOL v0 = 1;
 
-            if (sub_0203626C(param0)) {
+            if (CommSys_IsCmdQueued(param0)) {
                 v0 = 0;
             }
 

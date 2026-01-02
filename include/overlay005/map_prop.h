@@ -12,6 +12,8 @@
 
 #define MAX_LOADED_MAP_PROPS 32
 
+#define PROP_NONE 0xFF
+
 typedef struct MapProp {
     int modelID;
     BOOL loaded;
