@@ -502,7 +502,7 @@ void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 lo
 
 void StringTemplate_SetPoffinName(StringTemplate *template, u32 idx, u32 poffin)
 {
-    SetArgFromArchive(template, idx, poffin, TEXT_BANK_POFFIN_NAMES);
+    SetArgFromArchive(template, idx, poffin, TEXT_BANK_POFFIN_TYPES);
 }
 
 void StringTemplate_SetContestAccessoryName(StringTemplate *template, u32 idx, u32 accessory)

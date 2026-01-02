@@ -1297,7 +1297,7 @@ void sub_02094860(UnkStruct_02095C48 *param0)
 
 BOOL sub_02094868(UnkStruct_02095C48 *param0)
 {
-    u32 v0 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
+    u32 v0 = CalcMonDataRibbon(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
     if (Pokemon_GetValue(param0->unk_1974, v0, NULL) == 0) {
         return 0;
@@ -1587,7 +1587,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
 
         if (sub_02094790(param0) == 0) {
             u8 v3 = 1;
-            int v2 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
+            int v2 = CalcMonDataRibbon(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
             if (Pokemon_GetValue(param0->unk_1974, v2, NULL) == 0) {
                 v0 = 1;
@@ -1645,7 +1645,7 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
     }
 
     if (sub_02094790(param0) == 0) {
-        Pokemon_UpdateFriendship(param0->unk_1974, 9, param2);
+        Pokemon_UpdateFriendship(param0->unk_1974, FRIENDSHIP_EVENT_CONTEST_WIN, param2);
     }
 }
 

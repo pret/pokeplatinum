@@ -3,6 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/contests.h"
+#include "generated/contest_effects.h"
+#include "generated/pokemon_contest_ranks.h"
+#include "generated/pokemon_contest_types.h"
+
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
@@ -24,15 +29,18 @@
 #include "unk_020298BC.h"
 #include "unk_020933F8.h"
 
-const UnkStruct_020F568C Unk_020F568C[] = {
-    {
+#include "res/text/bank/contest_effects.h"
+#include "res/text/bank/contest_text.h"
+
+const UnkStruct_020F568C Unk_020F568C[CONTEST_EFFECT_MAX] = {
+    [CONTEST_EFFECT_NONE] = {
         0x0,
         0x0,
         0x0,
     },
-    {
-        0x0,
-        0x1,
+    [CONTEST_EFFECT_FIRST_NEXT_TURN] = {
+        ContestEffects_Text_PerformFirst,
+        ContestEffects_Text_NextTurn1,
         0x14,
         0x0,
         0x2,
@@ -45,9 +53,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x2,
-        0x3,
+    [CONTEST_EFFECT_LAST_NEXT_TURN] = {
+        ContestEffects_Text_PerformLast,
+        ContestEffects_Text_NextTurn2,
         0x14,
         0x2,
         0x2,
@@ -60,9 +68,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x4,
-        0x5,
+    [CONTEST_EFFECT_DOUBLED_JUDGE] = {
+        ContestEffects_Text_EachDoubled,
+        ContestEffects_Text_JudgePlusTwo,
         0x0,
         0x4,
         0x2,
@@ -75,9 +83,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x6,
-        0x7,
+    [CONTEST_EFFECT_2_HEARTS_WHEN_VOLTAGE_UP] = {
+        ContestEffects_Text_IfTheVoltage,
+        ContestEffects_Text_GoesUpPlusTwo,
         0x14,
         0x8,
         0x8,
@@ -90,9 +98,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x8,
-        0x9,
+    [CONTEST_EFFECT_BASIC] = {
+        ContestEffects_Text_BasicAct,
+        ContestEffects_Text_Unused,
         0x1E,
         0xffff,
         0x0,
@@ -105,9 +113,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0xA,
-        0xB,
+    [CONTEST_EFFECT_UNIQUE_JUDGE] = {
+        ContestEffects_Text_IfJudgesAre,
+        ContestEffects_Text_NotDoubledPlusThree,
         0xA,
         0x9,
         0x2,
@@ -120,9 +128,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xB,
         0x2,
     },
-    {
-        0xC,
-        0xD,
+    [CONTEST_EFFECT_CONSECUTIVE_USE] = {
+        ContestEffects_Text_PerformableTwo,
+        ContestEffects_Text_TurnsInARow,
         0x14,
         0xC,
         0x2,
@@ -135,9 +143,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0xE,
-        0xF,
+    [CONTEST_EFFECT_VOLTAGE] = {
+        ContestEffects_Text_VoltagePts,
+        ContestEffects_Text_AreAdded,
         0x0,
         0xD,
         0x5,
@@ -150,9 +158,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x10,
-        0x11,
+    [CONTEST_EFFECT_ALL_SAME_JUDGE] = {
+        ContestEffects_Text_IfAllChoose,
+        ContestEffects_Text_SameJudgePlusFifteen,
         0x0,
         0xE,
         0x2,
@@ -165,9 +173,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0x10,
         0x2,
     },
-    {
-        0x12,
-        0x13,
+    [CONTEST_EFFECT_LOWERS_VOLTAGE] = {
+        ContestEffects_Text_LowersVoltage,
+        ContestEffects_Text_OfJudgesByOne,
         0x14,
         0x11,
         0x0,
@@ -180,9 +188,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x14,
-        0x15,
+    [CONTEST_EFFECT_DOUBLE_NEXT_TURN] = {
+        ContestEffects_Text_DoubleScoreIn,
+        ContestEffects_Text_NextTurn3,
         0x0,
         0x12,
         0x9,
@@ -195,9 +203,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x16,
-        0x17,
+    [CONTEST_EFFECT_STEAL_VOLTAGE] = {
+        ContestEffects_Text_GetVoltage,
+        ContestEffects_Text_FromOneAhead,
         0x0,
         0x13,
         0x7,
@@ -210,9 +218,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x18,
-        0x19,
+    [CONTEST_EFFECT_SUPPRESS_VOLTAGE] = {
+        ContestEffects_Text_NoVoltageUp,
+        ContestEffects_Text_ThisTurn1,
         0x14,
         0x14,
         0x0,
@@ -225,9 +233,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x1A,
-        0x1B,
+    [CONTEST_EFFECT_RANDOM_ORDER] = {
+        ContestEffects_Text_RandomOrder,
+        ContestEffects_Text_NextTurn4,
         0x14,
         0x15,
         0x0,
@@ -240,9 +248,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x1C,
-        0x1D,
+    [CONTEST_EFFECT_DOUBLE_FINAL_ACT] = {
+        ContestEffects_Text_DoubleScore,
+        ContestEffects_Text_ForFinalAct,
         0x14,
         0x16,
         0x9,
@@ -255,9 +263,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x1E,
-        0x1F,
+    [CONTEST_EFFECT_LOW_VOLTAGE_ADVANTAGE] = {
+        ContestEffects_Text_HighScoreFor1,
+        ContestEffects_Text_LowVoltage,
         0x0,
         0x17,
         0x5,
@@ -270,9 +278,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x20,
-        0x21,
+    [CONTEST_EFFECT_FIRST_PERFORMANCE_ADVANTAGE] = {
+        ContestEffects_Text_IfFirst,
+        ContestEffects_Text_PerformancePlusTwo1,
         0x14,
         0x18,
         0x0,
@@ -285,9 +293,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x22,
-        0x23,
+    [CONTEST_EFFECT_FINAL_PERFORMANCE_ADVANTAGE] = {
+        ContestEffects_Text_IfFinal,
+        ContestEffects_Text_PerformancePlusTwo2,
         0x14,
         0x19,
         0x0,
@@ -300,9 +308,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x24,
-        0x25,
+    [CONTEST_EFFECT_NO_VOLTAGE_DOWN] = {
+        ContestEffects_Text_NoVoltageDown,
+        ContestEffects_Text_ThisTurn2,
         0x14,
         0x1A,
         0x0,
@@ -315,9 +323,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x26,
-        0x27,
+    [CONTEST_EFFECT_TWO_VOLTAGE_IN_A_ROW_ADVANTAGE] = {
+        ContestEffects_Text_IfVoltageGoes,
+        ContestEffects_Text_UpInARowPlusThree,
         0xA,
         0x1B,
         0x0,
@@ -330,9 +338,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x28,
-        0x29,
+    [CONTEST_EFFECT_HIGH_SCORE_LATER_TURN] = {
+        ContestEffects_Text_HighScoreFor2,
+        ContestEffects_Text_ALaterTurn,
         0x0,
         0x1C,
         0x2,
@@ -345,9 +353,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x2A,
-        0x2B,
+    [CONTEST_EFFECT_MAX_VOLTAGE_ADVANTAGE] = {
+        ContestEffects_Text_AfterVoltage,
+        ContestEffects_Text_HitsMaxPlusThree,
         0x14,
         0x20,
         0x0,
@@ -360,9 +368,9 @@ const UnkStruct_020F568C Unk_020F568C[] = {
         0xffff,
         0x0,
     },
-    {
-        0x2C,
-        0x2D,
+    [CONTEST_EFFECT_PITY_POINTS] = {
+        ContestEffects_Text_IfRatedThe,
+        ContestEffects_Text_WorstPlusThree,
         0xA,
         0x21,
         0x2,
@@ -386,7 +394,7 @@ int sub_02094EDC(UnkStruct_02095C48 *param0)
     return 0;
 }
 
-void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4, int param5, int param6, int param7)
+void sub_02094F04(UnkStruct_02095C48 *param0, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int param5, BOOL isGameCompleted, BOOL isNatDexObtained)
 {
     int v0, v1;
     u8 *v2;
@@ -419,12 +427,12 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
     v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
     v2 = Heap_AllocAtEnd(heapID, v6 + 1);
 
-    if ((param6 == 1) && (param7 == 1)) {
+    if (isGameCompleted == TRUE && isNatDexObtained == TRUE) {
         v5 = 1;
     }
 
     for (v0 = 0; v0 < v6; v0++) {
-        if (param4 != v9[v0].unk_20_0) {
+        if (contestRank != v9[v0].unk_20_0) {
             continue;
         }
 
@@ -452,7 +460,11 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
             }
         }
 
-        if (((param3 == 0) && v9[v0].unk_20_3) || ((param3 == 1) && v9[v0].unk_20_4) || ((param3 == 2) && v9[v0].unk_20_5) || ((param3 == 3) && v9[v0].unk_20_6) || ((param3 == 4) && v9[v0].unk_20_7)) {
+        if (contestType == CONTEST_TYPE_COOL && v9[v0].unk_20_3
+            || contestType == CONTEST_TYPE_BEAUTY && v9[v0].unk_20_4
+            || contestType == CONTEST_TYPE_CUTE && v9[v0].unk_20_5
+            || contestType == CONTEST_TYPE_SMART && v9[v0].unk_20_6
+            || contestType == CONTEST_TYPE_TOUGH && v9[v0].unk_20_7) {
             v2[v3++] = v0;
         }
     }
@@ -519,7 +531,7 @@ void sub_02094F04(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
     Heap_Free(v9);
 }
 
-void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
+void sub_020951B0(UnkStruct_02095C48 *param0, enum HeapID heapID)
 {
     int v0, v1;
     UnkStruct_020951B0 *v2;
@@ -527,7 +539,7 @@ void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
     int v4;
     int v5;
 
-    v2 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 2, 0, param1, 1);
+    v2 = LoadMemberFromNARC(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 2, FALSE, heapID, 1);
 
     switch (param0->unk_00.unk_111) {
     case 4:
@@ -602,60 +614,60 @@ void sub_020951B0(UnkStruct_02095C48 *param0, int param1)
 
 void sub_02095338(UnkStruct_02095C48 *param0)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        sub_0202A25C(param0->unk_00.unk_E8[v0]);
-        sub_0202A3B0(param0->unk_00.unk_E8[v0], param0->unk_00.unk_00[v0], -1);
-        sub_0202A35C(param0->unk_00.unk_E8[v0], 0);
-        sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.unk_110);
+    for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
+        sub_0202A25C(param0->unk_00.unk_E8[i]);
+        sub_0202A3B0(param0->unk_00.unk_E8[i], param0->unk_00.unk_00[i], -1);
+        sub_0202A35C(param0->unk_00.unk_E8[i], 0);
+        sub_0202A378(param0->unk_00.unk_E8[i], param0->unk_00.unk_110);
     }
 }
 
 void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int heapID)
 {
-    int v0;
+    int i;
     u16 v1;
     u32 v2 = sub_02074128(param0->unk_14, param0->unk_20_12, 0);
     Pokemon_InitWith(param1, param0->unk_14, 10, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SHINY, 0xf0f0f0f);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1 = param0->unk_0C[v0];
-        Pokemon_SetValue(param1, MON_DATA_MOVE1 + v0, &v1);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        v1 = param0->unk_0C[i];
+        Pokemon_SetValue(param1, MON_DATA_MOVE1 + i, &v1);
     }
 
     {
         String *v3, *v4;
-        MessageLoader *v5;
+        MessageLoader *contestOpponentNames;
 
-        v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, heapID);
-        v3 = MessageLoader_GetNewString(v5, param0->unk_16);
-        v4 = MessageLoader_GetNewString(v5, param0->unk_18);
+        contestOpponentNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, heapID);
+        v3 = MessageLoader_GetNewString(contestOpponentNames, param0->unk_16);
+        v4 = MessageLoader_GetNewString(contestOpponentNames, param0->unk_18);
 
         Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRING, v3);
         Pokemon_SetValue(param1, MON_DATA_OT_NAME_STRING, v4);
 
         String_Free(v3);
         String_Free(v4);
-        MessageLoader_Free(v5);
+        MessageLoader_Free(contestOpponentNames);
     }
 
     {
-        u8 v6, v7, v8, v9, v10, v11;
+        u8 cool, beauty, cute, smart, tough, sheen;
 
-        v6 = param0->unk_1A;
-        v7 = param0->unk_1B;
-        v8 = param0->unk_1C;
-        v9 = param0->unk_1D;
-        v10 = param0->unk_1E;
-        v11 = param0->unk_1F;
+        cool = param0->unk_1A;
+        beauty = param0->unk_1B;
+        cute = param0->unk_1C;
+        smart = param0->unk_1D;
+        tough = param0->unk_1E;
+        sheen = param0->unk_1F;
 
-        Pokemon_SetValue(param1, MON_DATA_COOL, &v6);
-        Pokemon_SetValue(param1, MON_DATA_BEAUTY, &v7);
-        Pokemon_SetValue(param1, MON_DATA_CUTE, &v8);
-        Pokemon_SetValue(param1, MON_DATA_SMART, &v9);
-        Pokemon_SetValue(param1, MON_DATA_TOUGH, &v10);
-        Pokemon_SetValue(param1, MON_DATA_SHEEN, &v11);
+        Pokemon_SetValue(param1, MON_DATA_COOL, &cool);
+        Pokemon_SetValue(param1, MON_DATA_BEAUTY, &beauty);
+        Pokemon_SetValue(param1, MON_DATA_CUTE, &cute);
+        Pokemon_SetValue(param1, MON_DATA_SMART, &smart);
+        Pokemon_SetValue(param1, MON_DATA_TOUGH, &tough);
+        Pokemon_SetValue(param1, MON_DATA_SHEEN, &sheen);
     }
 }
 
@@ -680,7 +692,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
     return v1;
 }
 
-void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3, int param4)
+void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
 {
     int v0, v1;
     u8 v2 = 0, v3 = 0;
@@ -695,35 +707,35 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
     v8 = Heap_AllocAtEnd(heapID, v5 + 1);
 
     for (v0 = 0; v0 < v5; v0++) {
-        if (param4 != v6[v0].unk_04_10) {
+        if (contestRank != v6[v0].unk_04_10) {
             continue;
         }
 
-        if ((param3 == 0) && v6[v0].unk_04_0) {
+        if (contestType == CONTEST_TYPE_COOL && v6[v0].unk_04_0) {
             if (v6[v0].unk_04_0 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((param3 == 1) && v6[v0].unk_04_2) {
+        } else if (contestType == CONTEST_TYPE_BEAUTY && v6[v0].unk_04_2) {
             if (v6[v0].unk_04_2 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((param3 == 2) && v6[v0].unk_04_4) {
+        } else if (contestType == CONTEST_TYPE_CUTE && v6[v0].unk_04_4) {
             if (v6[v0].unk_04_4 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((param3 == 3) && v6[v0].unk_04_6) {
+        } else if (contestType == CONTEST_TYPE_SMART && v6[v0].unk_04_6) {
             if (v6[v0].unk_04_6 > 1) {
                 v8[v3++] = v0;
             } else {
                 v7[v2++] = v0;
             }
-        } else if ((param3 == 4) && v6[v0].unk_04_8) {
+        } else if (contestType == CONTEST_TYPE_TOUGH && v6[v0].unk_04_8) {
             if (v6[v0].unk_04_8 > 1) {
                 v8[v3++] = v0;
             } else {
@@ -759,18 +771,18 @@ void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, int param3
     Heap_Free(v6);
 }
 
-s8 sub_02095734(int param0)
+s8 sub_02095734(enum ContestEffects contestEffect)
 {
-    GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
-    return Unk_020F568C[param0].unk_04;
+    GF_ASSERT(contestEffect < (NELEMS(Unk_020F568C)));
+    return Unk_020F568C[contestEffect].unk_04;
 }
 
-void sub_02095750(int param0, u32 *param1, u32 *param2)
+void LoadTwoLineContestEffectMessages(int moveContestEffectID, u32 *lineOneEffectMessageID, u32 *lineTwoEffectMessageID)
 {
-    GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
+    GF_ASSERT(moveContestEffectID < (NELEMS(Unk_020F568C)));
 
-    *param1 = Unk_020F568C[param0].unk_00;
-    *param2 = Unk_020F568C[param0].unk_02;
+    *lineOneEffectMessageID = Unk_020F568C[moveContestEffectID].lineOneEffectMessageID;
+    *lineTwoEffectMessageID = Unk_020F568C[moveContestEffectID].lineTwoEffectMessageID;
 }
 
 u32 sub_0209577C(int param0)
@@ -779,128 +791,128 @@ u32 sub_0209577C(int param0)
     return 46 + (param0 - 1);
 }
 
-void sub_02095790(int param0, int param1, u32 *param2, u32 *param3)
+void sub_02095790(int param0, int param1, u32 *destMessageID, u32 *param3)
 {
     GF_ASSERT(param0 < (NELEMS(Unk_020F568C)));
 
     switch (param1) {
     case 0:
     default:
-        *param2 = Unk_020F568C[param0].unk_06;
+        *destMessageID = Unk_020F568C[param0].unk_06;
         *param3 = Unk_020F568C[param0].unk_08;
         break;
     case 1:
-        *param2 = Unk_020F568C[param0].unk_0A;
+        *destMessageID = Unk_020F568C[param0].unk_0A;
         *param3 = Unk_020F568C[param0].unk_0C;
         break;
     case 2:
-        *param2 = Unk_020F568C[param0].unk_0E;
+        *destMessageID = Unk_020F568C[param0].unk_0E;
         *param3 = Unk_020F568C[param0].unk_10;
         break;
     case 3:
-        *param2 = Unk_020F568C[param0].unk_12;
+        *destMessageID = Unk_020F568C[param0].unk_12;
         *param3 = Unk_020F568C[param0].unk_14;
         break;
     case 4:
-        *param2 = Unk_020F568C[param0].unk_16;
+        *destMessageID = Unk_020F568C[param0].unk_16;
         *param3 = Unk_020F568C[param0].unk_18;
         break;
     }
 }
 
-u32 sub_02095848(int param0, int param1, int param2)
+u32 sub_02095848(enum PokemonContestRank contestRank, int param1, BOOL isLinkContest)
 {
-    u32 v0;
+    u32 messageID;
 
-    if (param2 == 1) {
-        return 51;
+    if (isLinkContest == TRUE) {
+        return Contest_Text_Link;
     }
 
     switch (param1) {
     case 3:
     case 5:
     case 7:
-        return 50;
+        return Contest_Text_Practice;
     }
 
-    switch (param0) {
-    case 0:
-        v0 = 46;
+    switch (contestRank) {
+    case CONTEST_RANK_NORMAL:
+        messageID = Contest_Text_NormalRank;
         break;
-    case 1:
-        v0 = 47;
+    case CONTEST_RANK_GREAT:
+        messageID = Contest_Text_GreatRank;
         break;
-    case 2:
-        v0 = 48;
+    case CONTEST_RANK_ULTRA:
+        messageID = Contest_Text_UltraRank;
         break;
-    case 3:
+    case CONTEST_RANK_MASTER:
     default:
-        v0 = 49;
+        messageID = Contest_Text_MasterRank;
         break;
     }
 
-    return v0;
+    return messageID;
 }
 
-u32 sub_02095888(int param0)
+u32 Contest_GetRankMessageID(enum PokemonContestRank contestRank)
 {
-    u32 v0;
+    u32 messageID;
 
-    switch (param0) {
-    case 0:
-        v0 = 46;
+    switch (contestRank) {
+    case CONTEST_RANK_NORMAL:
+        messageID = Contest_Text_NormalRank;
         break;
-    case 1:
-        v0 = 47;
+    case CONTEST_RANK_GREAT:
+        messageID = Contest_Text_GreatRank;
         break;
-    case 2:
-        v0 = 48;
+    case CONTEST_RANK_ULTRA:
+        messageID = Contest_Text_UltraRank;
         break;
-    case 3:
-        v0 = 49;
+    case CONTEST_RANK_MASTER:
+        messageID = Contest_Text_MasterRank;
         break;
-    case (3 + 1):
+    case CONTEST_RANK_LINK:
     default:
-        v0 = 51;
+        messageID = Contest_Text_Link;
         break;
     }
 
-    return v0;
+    return messageID;
 }
 
-u32 sub_020958B8(int param0)
+u32 Contest_GetContestTypeMessageID(int contestType)
 {
-    return sub_020958C4(param0, 2);
+    return sub_020958C4(contestType, 2);
 }
 
-u32 sub_020958C4(int param0, int param1)
+u32 sub_020958C4(enum PokemonContestType contestType, int param1)
 {
-    u32 v0;
+    u32 messageID;
 
     if (param1 == 5) {
-        return 52;
+        return Contest_Text_Contest;
     }
 
-    switch (param0) {
-    case 0:
-        v0 = 41;
+    switch (contestType) {
+    case CONTEST_TYPE_COOL:
+        messageID = Contest_Text_CoolContest;
         break;
-    case 1:
-        v0 = 42;
+    case CONTEST_TYPE_BEAUTY:
+        messageID = Contest_Text_BeautyContest;
         break;
-    case 2:
-        v0 = 43;
+    case CONTEST_TYPE_CUTE:
+        messageID = Contest_Text_CuteContest;
         break;
-    case 3:
-        v0 = 44;
+    case CONTEST_TYPE_SMART:
+        messageID = Contest_Text_SmartContest;
         break;
-    case 4:
+    case CONTEST_TYPE_TOUGH:
     default:
-        v0 = 45;
+        messageID = Contest_Text_ToughContest;
         break;
     }
 
-    return v0;
+    return messageID;
 }
 
 int sub_020958FC(int param0)
@@ -1015,32 +1027,32 @@ void sub_02095A24(void)
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
 }
 
-u32 sub_02095A3C(int param0, int param1)
+u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestType contestType)
 {
-    u32 v0;
+    u32 monDataRibbon;
 
-    switch (param1) {
-    case 0:
-        v0 = MON_DATA_SUPER_COOL_RIBBON + param0;
+    switch (contestType) {
+    case CONTEST_TYPE_COOL:
+        monDataRibbon = MON_DATA_SUPER_COOL_RIBBON + contestRank;
         break;
-    case 1:
-        v0 = MON_DATA_SUPER_BEAUTY_RIBBON + param0;
+    case CONTEST_TYPE_BEAUTY:
+        monDataRibbon = MON_DATA_SUPER_BEAUTY_RIBBON + contestRank;
         break;
-    case 2:
-        v0 = MON_DATA_SUPER_CUTE_RIBBON + param0;
+    case CONTEST_TYPE_CUTE:
+        monDataRibbon = MON_DATA_SUPER_CUTE_RIBBON + contestRank;
         break;
-    case 3:
-        v0 = MON_DATA_SUPER_SMART_RIBBON + param0;
+    case CONTEST_TYPE_SMART:
+        monDataRibbon = MON_DATA_SUPER_SMART_RIBBON + contestRank;
         break;
-    case 4:
-        v0 = MON_DATA_SUPER_TOUGH_RIBBON + param0;
+    case CONTEST_TYPE_TOUGH:
+        monDataRibbon = MON_DATA_SUPER_TOUGH_RIBBON + contestRank;
         break;
     default:
         GF_ASSERT(0);
         return MON_DATA_SUPER_COOL_RIBBON;
     }
 
-    return v0;
+    return monDataRibbon;
 }
 
 u32 sub_02095A74(int param0, int param1)

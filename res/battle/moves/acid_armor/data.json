@@ -16,7 +16,7 @@
         "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
-        "effect": 11,
+        "effect": "CONTEST_EFFECT_DOUBLE_NEXT_TURN",
         "type": "CONTEST_TYPE_TOUGH"
     }
 }
