@@ -14,7 +14,7 @@ PoffinTypeList *PoffinTypeList_New(enum HeapID heapID)
     types->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_TYPES, heapID);
 
     for (int i = 0; i < NUM_POFFIN_TYPES; i++) {
-        types->names[i] = String_Init(22, heapID);
+        types->names[i] = String_New(22, heapID);
         MessageLoader_GetString(types->msgLoader, i, types->names[i]);
     }
 

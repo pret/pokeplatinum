@@ -661,7 +661,7 @@ static void InitMessages(PoffinManager *app)
     app->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POFFIN_CASE, app->heapID);
     app->poffinTypes = PoffinTypeList_New(app->heapID);
     app->messages.template = StringTemplate_New(2, 64, app->heapID);
-    app->messages.string = String_Init(64, app->heapID);
+    app->messages.string = String_New(64, app->heapID);
     app->messages.closeStr = MessageLoader_GetNewString(app->msgLoader, PoffinCase_Text_Close);
     app->messages.listItemStr = MessageLoader_GetNewString(app->msgLoader, PoffinCase_Text_ListItem);
     app->messages.smoothStr = MessageLoader_GetNewString(app->msgLoader, PoffinCase_Text_Smooth);
