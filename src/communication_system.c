@@ -1752,7 +1752,7 @@ BOOL CommSys_SendDataFixedSize(int cmd, const void *data)
     return CommSys_SendData(cmd, data, 0);
 }
 
-BOOL Link_Message(int cmd)
+BOOL CommSys_SendMessage(int cmd)
 {
     return CommSys_SendData(cmd, NULL, 0);
 }

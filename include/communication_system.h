@@ -50,7 +50,7 @@ void sub_02036030(int unused0, int unused1, void *param2, void *unused3);
 void sub_02036058(int unused0, int unused1, void *param2, void *unused3);
 u16 CommSys_CurNetId(void);
 BOOL CommSys_SendDataFixedSize(int cmd, const void *data);
-BOOL Link_Message(int cmd);
+BOOL CommSys_SendMessage(int cmd);
 BOOL sub_020360E8(void);
 BOOL CommSys_CheckError(void);
 u16 sub_02036128(u16 param0);

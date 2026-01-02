@@ -400,7 +400,7 @@ static void ov23_02249E18(void)
         UndergroundPlayer_ClearHeldFlagInfo();
         SecretBases_AbortBaseEnterEarly();
 
-        Link_Message(43);
+        CommSys_SendMessage(43);
 
         UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 1);
         ov23_0224321C();
@@ -495,7 +495,7 @@ static void ov23_02249F7C(void)
         ov23_022499E4("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD");
         SecretBases_ClearBaseEntranceLocationsReceived();
         CommPlayer_SendPos(1);
-        Link_Message(31);
+        CommSys_SendMessage(31);
         ov23_02249C24(ov23_0224A09C, 0);
         return;
     }

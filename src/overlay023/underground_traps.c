@@ -2497,7 +2497,7 @@ static void UndergroundTraps_SmokeTrapClientTask(SysTask *sysTask, void *data)
                 if (ctx->isTool) {
                     ctx->state = SMOKE_TRAP_STATE_TOOL_STEP_BACK;
                 } else {
-                    Link_Message(41);
+                    CommSys_SendMessage(41);
                     ctx->state = SMOKE_TRAP_STATE_WAIT_FOR_END;
                 }
             }
@@ -2530,7 +2530,7 @@ static void UndergroundTraps_SmokeTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = SMOKE_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -2732,7 +2732,7 @@ void TrapRadar_Start(void)
 
     TrapRadarContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(TrapRadarContext));
     MI_CpuFill8(ctx, 0, sizeof(TrapRadarContext));
-    Link_Message(46);
+    CommSys_SendMessage(46);
 
     trapsEnv->trapRadarContext = ctx;
     trapsEnv->baseRadarTask = SysTask_Start(TrapRadar_TimerTask, ctx, 100);
@@ -3068,7 +3068,7 @@ static void UndergroundTraps_HoleTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (UndergroundTraps_CheckPlayerPosRelativeToTrap(ctx->toolInitialDir, PLAYER_TILE_BACK_FROM_TRAP) || ctx->timer > 60) {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = HOLE_TRAP_STATE_WAIT_FOR_FORCE_END;
         }
         break;
@@ -3086,7 +3086,7 @@ static void UndergroundTraps_HoleTrapClientTask(SysTask *sysTask, void *data)
                 if (ctx->isTool) {
                     ctx->state = HOLE_TRAP_STATE_TOOL_STEP_BACK;
                 } else {
-                    Link_Message(41);
+                    CommSys_SendMessage(41);
                     ctx->state = HOLE_TRAP_STATE_END;
                 }
             }
@@ -3242,7 +3242,7 @@ static void UndergroundTraps_LeafTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = LEAF_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                Link_Message(41);
+                CommSys_SendMessage(41);
                 ctx->state = LEAF_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -3273,7 +3273,7 @@ static void UndergroundTraps_LeafTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = LEAF_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -3651,7 +3651,7 @@ static void UndergroundTraps_BubbleTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = BUBBLE_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                Link_Message(41);
+                CommSys_SendMessage(41);
                 ctx->state = BUBBLE_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -3685,7 +3685,7 @@ static void UndergroundTraps_BubbleTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = BUBBLE_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4235,7 +4235,7 @@ static void UndergroundTraps_RockTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = ROCK_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                Link_Message(41);
+                CommSys_SendMessage(41);
                 ctx->state = ROCK_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -4265,7 +4265,7 @@ static void UndergroundTraps_RockTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = ROCK_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4523,7 +4523,7 @@ static void UndergroundTraps_FireTrapClientTask(SysTask *sysTask, void *data)
             if (ctx->isTool) {
                 ctx->state = FIRE_TRAP_STATE_TOOL_STEP_BACK;
             } else {
-                Link_Message(41);
+                CommSys_SendMessage(41);
                 ctx->state = FIRE_TRAP_STATE_WAIT_FOR_END;
             }
         }
@@ -4553,7 +4553,7 @@ static void UndergroundTraps_FireTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = FIRE_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4649,7 +4649,7 @@ static void UndergroundTraps_AlertTrapClientTask(SysTask *sysTask, void *data)
         if (ctx->isTool) {
             ctx->state = ALERT_TRAP_STATE_TOOL_STEP_BACK;
         } else {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = ALERT_TRAP_STATE_WAIT_FOR_END;
         }
         break;
@@ -4671,7 +4671,7 @@ static void UndergroundTraps_AlertTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 8) {
-            Link_Message(41);
+            CommSys_SendMessage(41);
             ctx->state = ALERT_TRAP_STATE_WAIT_FOR_END;
         }
         break;

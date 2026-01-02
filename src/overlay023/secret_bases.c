@@ -78,6 +78,9 @@
 
 #define SECRET_BASE_COUNT 17
 
+#define DEFAULT_BASE_RETURN_X 72
+#define DEFAULT_BASE_RETURN_Z 437
+
 enum BaseCreateRequest {
     BASE_CREATE_REQ_USE_DIGGER_DRILL = 0,
     BASE_CREATE_REQ_CLOSE_BASE,
@@ -411,7 +414,7 @@ void SecretBasesEnv_Init(void *dest, FieldSystem *fieldSystem)
 
     GF_ASSERT(SecretBase_Size() == sizeof(SecretBase));
 
-    secretBasesEnv = (SecretBasesEnv *)dest;
+    secretBasesEnv = dest;
     MI_CpuFill8(secretBasesEnv, 0, sizeof(SecretBasesEnv));
     secretBasesEnv->fieldSystem = fieldSystem;
 
@@ -430,8 +433,8 @@ void SecretBasesEnv_Init(void *dest, FieldSystem *fieldSystem)
         secretBasesEnv->flagStealVictimNetIDs[netID] = NETID_NONE;
         secretBasesEnv->tookBackFlagMessageQueued[netID] = 0xff;
 
-        secretBasesEnv->baseReturnXCoords[netID] = 72;
-        secretBasesEnv->baseReturnZCoords[netID] = 437;
+        secretBasesEnv->baseReturnXCoords[netID] = DEFAULT_BASE_RETURN_X;
+        secretBasesEnv->baseReturnZCoords[netID] = DEFAULT_BASE_RETURN_Z;
         secretBasesEnv->baseReturnDirs[netID] = DIR_SOUTH;
     }
 
@@ -447,8 +450,8 @@ void SecretBasesEnv_Init(void *dest, FieldSystem *fieldSystem)
     MI_CpuFill8(secretBasesEnv->baseCollisions, 0xFF, SECRET_BASE_COUNT * SECRET_BASE_DEPTH * sizeof(u32));
     SecretBases_LoadCurrentPlayerBase(fieldSystem);
 
-    secretBasesEnv->currentBaseReturnXCoord = 72;
-    secretBasesEnv->currentBaseReturnZCoord = 437;
+    secretBasesEnv->currentBaseReturnXCoord = DEFAULT_BASE_RETURN_X;
+    secretBasesEnv->currentBaseReturnZCoord = DEFAULT_BASE_RETURN_Z;
     secretBasesEnv->currentBaseReturnDir = DIR_SOUTH;
     secretBasesEnv->sysTask = SysTask_Start(SecretBases_DrawBaseEntrancesTask, NULL, 100);
 }
@@ -1276,7 +1279,7 @@ void SecretBases_ProcessBaseExitEvent(int unused0, int unused1, void *data, void
         ov23_0224321C();
         UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), FALSE);
 
-        Link_Message(43);
+        CommSys_SendMessage(43);
         secretBasesEnv->currentPlayerInBase = FALSE;
         sub_02059638(TRUE);
 
@@ -1290,7 +1293,7 @@ void SecretBases_ProcessBaseExitEvent(int unused0, int unused1, void *data, void
 
 void SecretBases_RequestClearTransitioningStatus(void)
 {
-    Link_Message(56);
+    CommSys_SendMessage(56);
 }
 
 void SecretBases_ClearTransitioningStatus(int netID, int unused1, void *unused2, void *unused3)
@@ -1347,7 +1350,7 @@ void SecretBases_ProcessBaseEnter(int unused0, int unused1, void *data, void *un
         secretBasesEnv->moveStatus = MOVE_STATUS_NONE;
 
         CommPlayerMan_ResumeFieldSystem();
-        Link_Message(56);
+        CommSys_SendMessage(56);
         CommPlayer_SendPos(FALSE);
 
         ov23_0224DC24();
@@ -2708,7 +2711,7 @@ int SecretBases_GetCurrentBaseReturnXCoord(void)
         return secretBasesEnv->currentBaseReturnXCoord;
     }
 
-    return 72;
+    return DEFAULT_BASE_RETURN_X;
 }
 
 int SecretBases_GetCurrentBaseReturnZCoord(void)
@@ -2717,7 +2720,7 @@ int SecretBases_GetCurrentBaseReturnZCoord(void)
         return secretBasesEnv->currentBaseReturnZCoord;
     }
 
-    return 437;
+    return DEFAULT_BASE_RETURN_Z;
 }
 
 int SecretBases_GetCurrentBaseReturnDir(void)

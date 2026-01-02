@@ -541,7 +541,7 @@ void Underground_InitCoordinatesOrderingState(int orderedArrayLength, Coordinate
 void ov23_022427F8(void)
 {
     if (0 == CommPlayer_GetMovementTimer(CommSys_CurNetId())) {
-        Link_Message(27);
+        CommSys_SendMessage(27);
         sub_0203572C();
     }
 }
@@ -1121,7 +1121,7 @@ void ov23_022431C4(int param0, int param1, void *param2, void *param3)
 
     if (v1 == CommSys_CurNetId()) {
         ov23_022534A0(sCommManUnderground->fieldSystem);
-        Link_Message(25);
+        CommSys_SendMessage(25);
         CommPlayerMan_PauseFieldSystem();
     }
 }

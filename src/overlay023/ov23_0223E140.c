@@ -2913,7 +2913,7 @@ void ov23_022412F0(void)
     v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_022412CC));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022412CC));
-    Link_Message(71);
+    CommSys_SendMessage(71);
 
     v0->unk_4E4 = 250 / 3 - 10;
 
