@@ -156,7 +156,7 @@ _0295:
 _02B6:
     BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
     Message RotomsRoom_Text_PokemonEmergedFromTheMotor
-    SetRotomForm LOCALID_PARTY_SLOT, 0, 0, ROTOM_FORM_NORMAL
+    SetRotomForm LOCALID_PARTY_SLOT, 0, 0, ROTOM_FORM_BASE
     FadeScreenOut
     WaitFadeScreen
     CloseMessage

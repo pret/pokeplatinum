@@ -82,7 +82,7 @@
 #define GASTRODON_FORM_EAST  1
 #define GASTRODON_FORM_COUNT 2
 
-#define ROTOM_FORM_NORMAL 0
+#define ROTOM_FORM_BASE   0
 #define ROTOM_FORM_HEAT   1
 #define ROTOM_FORM_WASH   2
 #define ROTOM_FORM_FROST  3
@@ -100,7 +100,7 @@
 
 #define ARCEUS_FORM_COUNT 18
 
-#define EGG_FORM_NORMAL  0
+#define EGG_FORM_BASE    0
 #define EGG_FORM_MANAPHY 1
 #define EGG_FORM_COUNT   2
 
