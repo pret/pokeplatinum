@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -1836,20 +1835,25 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(EscapeMsgMessage));
 }
 
-void BattleIO_ForfeitMessage(BattleSystem *battleSys)
+/**
+ * @brief Emits a message to print the flee (text) message
+ *
+ * @param battleSys
+ */
+void BattleController_EmitForfeitMessage(BattleSystem *battleSys)
 {
-    UnkStruct_ov16_0225CA14 v0;
+    ForfeitMsgMessage message;
     u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0.unk_00 = BATTLE_COMMAND_FORFEIT_MESSAGE;
-    v0.unk_02 = 0;
+    message.command = BATTLE_COMMAND_FORFEIT_MESSAGE;
+    message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
-        v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
-        GF_ASSERT(v0.unk_02 < 28);
+        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        GF_ASSERT(message.unk_02 < 28);
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &v0, sizeof(UnkStruct_ov16_0225CA14));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(ForfeitMsgMessage));
 }
 
 void BattleIO_RefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx, int param2)

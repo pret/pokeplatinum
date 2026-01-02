@@ -9293,7 +9293,7 @@ static BOOL BtlCmd_PrintEscapeMessage(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_PrintForfeitMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_ForfeitMessage(battleSys);
+    BattleController_EmitForfeitMessage(battleSys);
 
     return FALSE;
 }

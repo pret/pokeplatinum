@@ -136,7 +136,7 @@ void BattleController_EmitSpriteToOAM(BattleSystem *battleSys, int param1);
 void BattleController_EmitOAMToSprite(BattleSystem *battleSys, int param1);
 void BattleController_EmitResultMessage(BattleSystem *battleSys);
 void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *param1);
-void BattleIO_ForfeitMessage(BattleSystem *battleSys);
+void BattleController_EmitForfeitMessage(BattleSystem *battleSys);
 void BattleIO_RefreshSprite(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_PlayMusic(BattleSystem *battleSys, int param1, int param2);
