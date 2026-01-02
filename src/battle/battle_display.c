@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_0225CBB8.h"
@@ -170,7 +169,7 @@ static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, SendOutM
 static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *message, BattleMessage *param3);
 static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
-static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2, BattleMessage *param3);
+static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessage *message, BattleMessage *param3);
 static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int param2, int param3, s16 param4, s16 param5);
 static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, MoveAnimation *param3);
@@ -1347,13 +1346,13 @@ void ov16_0225E338(BattleSystem *battleSys, BattlerData *param1)
     SysTask_Start(WaitForBattleMessagePrint, v0, 0);
 }
 
-void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2)
+void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessage *message)
 {
     BattleMessageWaitTask *v0;
     MessageLoader *v1;
     BattleMessage v2;
 
-    ov16_02264270(battleSys, param1, param2, &v2);
+    ov16_02264270(battleSys, param1, message, &v2);
 
     v1 = BattleSystem_MessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
@@ -5968,14 +5967,14 @@ static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMe
     }
 }
 
-static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2, BattleMessage *param3)
+static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessage *message, BattleMessage *param3)
 {
     int i;
     int v1 = 0;
     int v2 = 0;
 
     for (i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
-        if (param2->unk_01 & FlagIndex(i)) {
+        if (message->unk_01 & FlagIndex(i)) {
             if (Battler_Side(battleSys, i)) {
                 v2++;
             } else {

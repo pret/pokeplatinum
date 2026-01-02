@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
@@ -1741,7 +1740,14 @@ void BattleController_EmitLinkWaitMessage(BattleSystem *battleSys, int battler)
     }
 }
 
-void BattleIO_RestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to restore a move animation's sprite
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitRestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int i;
     MoveAnimation animation;
@@ -1762,49 +1768,72 @@ void BattleIO_RestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx, i
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &animation, sizeof(MoveAnimation));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &animation, sizeof(MoveAnimation));
 }
 
-void BattleIO_SpriteToOAM(BattleSystem *battleSys, int battlerId)
+/**
+ * @brief Emits a message to convert a sprite to an OAM
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitSpriteToOAM(BattleSystem *battleSys, int battlerId)
 {
-    int v0 = BATTLE_COMMAND_SPRITE_TO_OAM;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, 4);
+    int command = BATTLE_COMMAND_SPRITE_TO_OAM;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
-void BattleIO_OAMToSprite(BattleSystem *battleSys, int battlerId)
+/**
+ * @brief Emits a message to convert an OAM to a sprite
+ *
+ * @param battleSys
+ * @param battler
+ */
+void BattleController_EmitOAMToSprite(BattleSystem *battleSys, int battlerId)
 {
-    int v0 = BATTLE_COMMAND_OAM_TO_SPRITE;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, 4);
+    int command = BATTLE_COMMAND_OAM_TO_SPRITE;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &command, 4);
 }
 
-void BattleIO_ResultMessage(BattleSystem *battleSys)
+/**
+ * @brief Emits a message to print the results (text) message
+ *
+ * @param battleSys
+ */
+void BattleController_EmitResultMessage(BattleSystem *battleSys)
 {
-    int v0 = BATTLE_COMMAND_RESULT_MESSAGE;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &v0, 4);
+    int command = BATTLE_COMMAND_RESULT_MESSAGE;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &command, 4);
 }
 
-void BattleIO_EscapeMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+/**
+ * @brief Emits a message to print the flee (text) message
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    UnkStruct_ov16_0225C9F0 v0;
-    int v1;
+    EscapeMsgMessage message;
+    int i;
     u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0.unk_00 = BATTLE_COMMAND_ESCAPE_MESSAGE;
-    v0.unk_01 = 0;
-    v0.unk_02 = 0;
+    message.command = BATTLE_COMMAND_ESCAPE_MESSAGE;
+    message.unk_01 = 0;
+    message.unk_02 = 0;
 
-    for (v1 = 0; v1 < BattleSystem_MaxBattlers(battleSys); v1++) {
-        if (battleCtx->battlerActions[v1][0] == 16) {
-            v0.unk_01 |= FlagIndex(v1);
+    for (i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+        if (battleCtx->battlerActions[i][0] == 16) {
+            message.unk_01 |= FlagIndex(i);
         }
     }
 
     if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
-        v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
-        GF_ASSERT(v0.unk_02 < 28);
+        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        GF_ASSERT(message.unk_02 < 28);
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &v0, sizeof(UnkStruct_ov16_0225C9F0));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(EscapeMsgMessage));
 }
 
 void BattleIO_ForfeitMessage(BattleSystem *battleSys)

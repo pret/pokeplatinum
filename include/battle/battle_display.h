@@ -6,7 +6,6 @@
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -118,7 +117,7 @@ void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *
 void ov16_0225E2C8(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E300(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E338(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2);
+void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessage *param2);
 void ov16_0225E3E0(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *param2);
 void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225CA4C *param2);

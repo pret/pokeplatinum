@@ -8930,7 +8930,7 @@ static BOOL BtlCmd_RestoreSprite(BattleSystem *battleSys, BattleContext *battleC
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_RestoreSprite(battleSys, battleCtx, battler);
+    BattleController_EmitRestoreSprite(battleSys, battleCtx, battler);
 
     return FALSE;
 }
@@ -8983,7 +8983,7 @@ static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx
         for (int i = 0; i < maxBattlers; i++) {
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
             if ((battlerData->battlerType & BATTLER_THEM) == FALSE) {
-                BattleIO_SpriteToOAM(battleSys, i);
+                BattleController_EmitSpriteToOAM(battleSys, i);
             }
         }
         break;
@@ -8992,14 +8992,14 @@ static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx
         for (int i = 0; i < maxBattlers; i++) {
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
             if (battlerData->battlerType & BATTLER_THEM) {
-                BattleIO_SpriteToOAM(battleSys, i);
+                BattleController_EmitSpriteToOAM(battleSys, i);
             }
         }
         break;
 
     default:
         int i = BattleScript_Battler(battleSys, battleCtx, battler);
-        BattleIO_SpriteToOAM(battleSys, i);
+        BattleController_EmitSpriteToOAM(battleSys, i);
         break;
     }
 
@@ -9028,7 +9028,7 @@ static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx
         for (int i = 0; i < maxBattlers; i++) {
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
             if ((battlerData->battlerType & BATTLER_THEM) == FALSE) {
-                BattleIO_OAMToSprite(battleSys, i);
+                BattleController_EmitOAMToSprite(battleSys, i);
             }
         }
         break;
@@ -9037,14 +9037,14 @@ static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx
         for (int i = 0; i < maxBattlers; i++) {
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
             if (battlerData->battlerType & BATTLER_THEM) {
-                BattleIO_OAMToSprite(battleSys, i);
+                BattleController_EmitOAMToSprite(battleSys, i);
             }
         }
         break;
 
     default:
         int i = BattleScript_Battler(battleSys, battleCtx, battler);
-        BattleIO_OAMToSprite(battleSys, i);
+        BattleController_EmitOAMToSprite(battleSys, i);
         break;
     }
 
@@ -9263,7 +9263,7 @@ static BOOL BtlCmd_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *
 static BOOL BtlCmd_PrintBattleResultMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_ResultMessage(battleSys);
+    BattleController_EmitResultMessage(battleSys);
 
     return FALSE;
 }
@@ -9278,7 +9278,7 @@ static BOOL BtlCmd_PrintBattleResultMessage(BattleSystem *battleSys, BattleConte
 static BOOL BtlCmd_PrintEscapeMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
-    BattleIO_EscapeMessage(battleSys, battleCtx);
+    BattleController_EmitEscapeMessage(battleSys, battleCtx);
 
     return FALSE;
 }
