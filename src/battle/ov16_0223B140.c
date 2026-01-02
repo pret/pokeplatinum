@@ -16,7 +16,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_controller.h"
+#include "battle/battle_controller_player.h"
 #include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
 #include "battle/battle_io.h"
@@ -658,7 +658,7 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
 
     if ((battleSys->battleType & BATTLE_TYPE_LINK) && ((battleSys->battleStatusMask & 0x10) == 0)) {
         if (battleSys->unk_23F8) {
-            BattleController_Main(battleSys, battleSys->battleCtx);
+            BattleContext_Main(battleSys, battleSys->battleCtx);
         }
 
         for (v1 = 0; v1 < battleSys->maxBattlers; v1++) {
@@ -666,7 +666,7 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
         }
     } else {
         if (battleSys->unk_23F8) {
-            battleSys->unk_23FA = BattleController_Main(battleSys, battleSys->battleCtx);
+            battleSys->unk_23FA = BattleContext_Main(battleSys, battleSys->battleCtx);
             ov16_02264988(battleSys, 1);
         }
 
@@ -677,7 +677,7 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
 
         if (battleSys->unk_23FA == 0) {
             if (battleSys->unk_23F8) {
-                battleSys->unk_23FA = BattleController_Main(battleSys, battleSys->battleCtx);
+                battleSys->unk_23FA = BattleContext_Main(battleSys, battleSys->battleCtx);
                 ov16_02264988(battleSys, 1);
             }
 
