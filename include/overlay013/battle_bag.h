@@ -82,7 +82,7 @@ typedef struct BattleBagContext {
     u8 pocketCurrentPages[BATTLE_POCKET_MAX];
 } BattleBagContext;
 
-#define NUM_BATTLE_BAG_SPRITES 6
+#define NUM_BATTLE_BAG_SPRITES BATTLE_POCKET_ITEMS_PER_PAGE
 
 typedef struct BattleBag {
     BattleBagContext *context;
