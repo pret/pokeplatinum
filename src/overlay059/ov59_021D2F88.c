@@ -26,7 +26,7 @@
 #include "unk_02073700.h"
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     SaveData *saveData;
     int unk_08;
     int unk_0C;
@@ -35,7 +35,7 @@ typedef struct {
 } UnkStruct_ov59_021D2FBC;
 
 typedef u32 (*UnkFuncPtr_ov59_021D33FC)(SaveData *);
-typedef void *(*UnkFuncPtr_ov59_021D33FC_1)(SaveData *, int heapID, u32);
+typedef void *(*UnkFuncPtr_ov59_021D33FC_1)(SaveData *, enum HeapID heapID, u32);
 typedef void (*UnkFuncPtr_ov59_021D33FC_2)(const UnkStruct_ov59_021D2FBC *);
 
 typedef struct {
@@ -50,7 +50,7 @@ static u32 ov59_021D2F88(SaveData *saveData)
     return ov59_021D2A2C(v0);
 }
 
-static void *ov59_021D2F94(SaveData *saveData, int heapID, u32 param2)
+static void *ov59_021D2F94(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
     RecordMixedRNG *v0 = SaveData_GetRecordMixedRNG(saveData);
     void *v1 = Heap_AllocAtEnd(heapID, param2);
@@ -72,7 +72,7 @@ static u32 ov59_021D2FD4(SaveData *saveData)
     return sub_02029C60();
 }
 
-static void *ov59_021D2FE0(SaveData *saveData, int heapID, u32 param2)
+static void *ov59_021D2FE0(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
     UnkStruct_02029C68 *v0;
     UnkStruct_0202A750 *v1 = sub_0202A750(saveData);
@@ -108,7 +108,7 @@ static void ov59_021D3068(const UnkStruct_ov59_021D2FBC *param0)
     ov59_021D2F60(broadcast, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
-static void *ov59_021D3088(SaveData *saveData, int heapID, u32 param2)
+static void *ov59_021D3088(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
     return sub_0202E9FC(saveData, heapID);
 }
@@ -120,7 +120,7 @@ static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
     sub_0202ED0C(param0->saveData, param0->unk_0C, param0->unk_08, param0->unk_10, param0->heapID);
 }
 
-static void *ov59_021D30B4(SaveData *saveData, int heapID, u32 param2)
+static void *ov59_021D30B4(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
     UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocAtEnd(heapID, param2);
     MI_CpuClear8(v0, param2);

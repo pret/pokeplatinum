@@ -49,7 +49,7 @@ const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void)
     return &sListMenuTemplate;
 }
 
-UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int stringSize)
+UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, enum HeapID heapID, BgConfig *bgConfig, int renderDelay, int stringSize)
 {
     int size = stringSize;
     UndergroundTextPrinter *textPrinter = Heap_Alloc(heapID, sizeof(UndergroundTextPrinter));

@@ -299,7 +299,7 @@ UnkStruct_ov22_02259560 *ov22_02257C20(UnkStruct_ov22_02257964 *param0, int *par
     return NULL;
 }
 
-void ov22_02257C88(UnkStruct_ov22_02257964 *param0, int param1, int heapID)
+void ov22_02257C88(UnkStruct_ov22_02257964 *param0, int param1, enum HeapID heapID)
 {
     UnkStruct_ov22_022599A0 v0;
 

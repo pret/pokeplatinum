@@ -7,7 +7,7 @@ typedef struct {
     BgConfig *unk_00;
     int unk_04;
     int unk_08;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_ov22_0225AF8C;
 
 #endif // POKEPLATINUM_STRUCT_OV22_0225AF8C_H

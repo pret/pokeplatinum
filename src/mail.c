@@ -73,7 +73,7 @@ BOOL Mail_IsEmpty(Mail *mail)
     return FALSE;
 }
 
-Mail *Mail_New(int heapID)
+Mail *Mail_New(enum HeapID heapID)
 {
     Mail *mail = Heap_AllocAtEnd(heapID, sizeof(Mail));
     Mail_Init(mail);
@@ -292,7 +292,7 @@ int sub_02028494(Mailbox *mailbox, int param1)
     return 0;
 }
 
-Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID)
+Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, enum HeapID heapID)
 {
     Mail *v0 = Mailbox_GetMailFromSlot(mailbox, param1, slot);
     Mail *v1 = Mail_New(heapID);

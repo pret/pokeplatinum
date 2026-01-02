@@ -12,7 +12,7 @@
 
 typedef struct PokedexApp {
     BOOL unk_00;
-    int heapID;
+    enum HeapID heapID;
     PokedexMemory *pokedexMemory;
     PokedexSortData sortData;
     PokedexGraphicData graphicData;

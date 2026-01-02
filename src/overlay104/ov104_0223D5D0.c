@@ -17,7 +17,7 @@ static u32 ov104_0223D720(u32 param0, BOOL param1);
 static u32 ov104_0223D744(u32 param0, BOOL param1);
 static void ov104_0223D708(ParticleSystem *param0);
 
-UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID)
+UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(enum HeapID heapID)
 {
     UnkStruct_ov104_0223D5F0 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0223D5F0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223D5F0));

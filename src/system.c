@@ -190,7 +190,7 @@ void InitVRAM(void)
     MI_CpuClearFast((void *)HW_DB_PLTT, HW_DB_PLTT_SIZE);
 }
 
-void *ReadFileToHeap(int heapID, const char *filename)
+void *ReadFileToHeap(enum HeapID heapID, const char *filename)
 {
     FSFile file;
     FS_InitFile(&file);

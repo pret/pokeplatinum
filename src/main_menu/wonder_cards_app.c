@@ -221,7 +221,7 @@ typedef struct StateTransitionMenuOptionTemplate {
 } StateTransitionMenuOptionTemplate;
 
 struct WonderCardsAppData {
-    int heapID;
+    enum HeapID heapID;
     MysteryGiftAppData mysteryGiftAppData;
     BgConfig *bgConfig;
     StringTemplate *strTemplate;

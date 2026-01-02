@@ -21,7 +21,7 @@
 #define LIBRARY_TV_DURATION 90 + 150
 
 typedef struct LibraryTV {
-    int heapID;
+    enum HeapID heapID;
     BgConfig *bgl;
     MessageLoader *msgLdr;
     int tvState;

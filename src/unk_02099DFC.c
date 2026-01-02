@@ -23,7 +23,7 @@
 FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int unk_04;
     int unk_08;
     int unk_0C;

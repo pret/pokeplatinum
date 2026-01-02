@@ -1043,7 +1043,7 @@ int SaveDataExtra_SaveMirror(SaveData *saveData, int extraSaveID, void *data)
     }
 }
 
-void *SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *loadResult)
+void *SaveDataExtra_Get(SaveData *saveData, enum HeapID heapID, int extraSaveID, int *loadResult)
 {
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
 
@@ -1101,7 +1101,7 @@ void *SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *lo
     return ret;
 }
 
-void *SaveDataExtra_Mirror(SaveData *saveData, int heapID, int extraSaveID, int *loadResult, BOOL *isOld)
+void *SaveDataExtra_Mirror(SaveData *saveData, enum HeapID heapID, int extraSaveID, int *loadResult, BOOL *isOld)
 {
     const SaveTableEntry *saveTable;
     void *ret;

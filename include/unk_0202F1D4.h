@@ -11,7 +11,7 @@
 
 int BattleRecording_SaveSize(void);
 void BattleRecording_Init(BattleRecording *param0);
-void sub_0202F1F8(SaveData *saveData, int heapID, int *param2);
+void sub_0202F1F8(SaveData *saveData, enum HeapID heapID, int *param2);
 void sub_0202F22C(void);
 BOOL sub_0202F250(void);
 BattleRecording *sub_0202F264(void);
@@ -28,13 +28,13 @@ void sub_0202F8AC(FieldBattleDTO *param0);
 void sub_0202FAA8(int param0, u32 param1);
 BOOL sub_0202FAC0(void);
 void sub_0202FAFC(FieldBattleDTO *param0, SaveData *saveData);
-UnkStruct_0202F41C *sub_0202FD88(int heapID);
-UnkStruct_02030A80 *sub_0202FDB8(int heapID);
+UnkStruct_0202F41C *sub_0202FD88(enum HeapID heapID);
+UnkStruct_02030A80 *sub_0202FDB8(enum HeapID heapID);
 UnkStruct_02030A80 *sub_0202FDE8(void);
 UnkStruct_0202F41C *sub_0202FE04(void);
 void sub_0202FE20(UnkStruct_02030A80 *param0, UnkStruct_0202F41C *param1, UnkStruct_0202F298 *param2, FieldBattleDTO *param3, SaveData *saveData);
 u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2);
-UnkStruct_0202F41C *sub_0202FF2C(int heapID);
+UnkStruct_0202F41C *sub_0202FF2C(enum HeapID heapID);
 void sub_0202FF44(UnkStruct_0202F41C *param0);
 
 #endif // POKEPLATINUM_UNK_0202F1D4_H

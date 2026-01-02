@@ -490,7 +490,7 @@ static void TVEpisodeSegment_SetTemplateTrainerName(StringTemplate *template, in
     sub_0206CD94(template, idx, ov6_02246494(param2), ov6_0224648C(param2), ov6_02246490(param2), 1);
 }
 
-static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
+static void sub_0206CE08(enum HeapID heapID, u16 *param1, Pokemon *mon)
 {
     String *string = String_Init(64, heapID);
 
@@ -523,7 +523,7 @@ static void TVEpisodeSegment_SetTemplateOwnPokemonSpecies(StringTemplate *templa
     sub_0206CD94(template, idx, speciesName, 0, GAME_LANGUAGE, 1);
 }
 
-static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
+static void sub_0206CED0(enum HeapID heapID, Pokemon *mon, u8 *param2, u16 *param3)
 {
     *param2 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
@@ -549,7 +549,7 @@ void sub_0206CF14(TVBroadcast *broadcast, Pokemon *param1, int param2, int param
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, int heapID)
+void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, enum HeapID heapID)
 {
     UnkStruct_0202E7E4 *v0 = sub_0202E7E4(broadcast);
 
@@ -699,7 +699,7 @@ void sub_0206D12C(TVBroadcast *broadcast)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-CaptureAttempt *CaptureAttempt_New(int heapID)
+CaptureAttempt *CaptureAttempt_New(enum HeapID heapID)
 {
     CaptureAttempt *captureAttempt = Heap_Alloc(heapID, sizeof(CaptureAttempt));
     MI_CpuClearFast(captureAttempt, sizeof(CaptureAttempt));

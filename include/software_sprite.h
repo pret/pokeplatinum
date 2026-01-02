@@ -13,7 +13,7 @@ typedef struct SoftwareSpriteManagerTemplate {
     int numSprites;
     int numChars;
     int numPalettes;
-    int heapID;
+    enum HeapID heapID;
 } SoftwareSpriteManagerTemplate;
 
 typedef struct SoftwareSpriteCharsTemplate {

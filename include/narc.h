@@ -35,8 +35,8 @@ void NARC_ReadWholeMemberByIndexPair(void *dest, enum NarcID narcID, int memberI
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void *NARC_AllocAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID);
-void *NARC_AllocAtEndAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID);
+void *NARC_AllocAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID);
+void *NARC_AllocAtEndAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID);
 
 /*
  * Reads a portion of an archive member into an existing buffer
@@ -61,8 +61,8 @@ void NARC_ReadFromMemberByIndexPair(void *dest, enum NarcID narcID, int memberIn
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void *NARC_AllocAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead);
-void *NARC_AllocAtEndAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead);
+void *NARC_AllocAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID, int offset, int bytesToRead);
+void *NARC_AllocAtEndAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID, int offset, int bytesToRead);
 
 /*
  * Gets the size of a NARC member. Useful when managing the read buffer yourself and the NARC has variable

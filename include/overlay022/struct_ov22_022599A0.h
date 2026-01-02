@@ -17,7 +17,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     int unk_28;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_ov22_022599A0;
 
 #endif // POKEPLATINUM_STRUCT_OV22_022599A0_H

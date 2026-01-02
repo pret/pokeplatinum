@@ -102,7 +102,7 @@ void TrainerInfo_NameString(const TrainerInfo *info, String *name);
  * @param heapID    Heap on which to allocate the new String struct.
  * @return The trainer's name, as a String struct.
  */
-String *TrainerInfo_NameNewString(const TrainerInfo *info, int heapID);
+String *TrainerInfo_NameNewString(const TrainerInfo *info, enum HeapID heapID);
 
 /**
  * @brief Set the trainer's ID.

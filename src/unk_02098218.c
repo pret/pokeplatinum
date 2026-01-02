@@ -211,11 +211,10 @@ static BOOL sub_0209843C(FieldTask *param0)
             TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
             int v4 = 6;
             int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
-            int heapID = HEAP_ID_FIELD2;
             int isEgg = FALSE;
 
             Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
-            UpdateMonStatusAndTrainerInfo(mon, trainerInfo, v4, location, heapID);
+            UpdateMonStatusAndTrainerInfo(mon, trainerInfo, v4, location, HEAP_ID_FIELD2);
             Pokemon_SetValue(mon, MON_DATA_SPECIES_NAME, NULL);
         }
 
