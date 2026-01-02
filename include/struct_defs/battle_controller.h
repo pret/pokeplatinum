@@ -338,4 +338,11 @@ typedef struct {
     u16 record;
 } RecordIncrementMessage;
 
+typedef struct {
+    u8 command;
+    u8 padding_01;
+    u16 unk_02;
+    u8 unk_04[28];
+} LinkWaitMsgMessage;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

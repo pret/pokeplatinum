@@ -130,7 +130,7 @@ void BattleController_EmitLoadPartyGaugeGraphics(BattleSystem *battleSys);
  */
 void BattleController_EmitFreePartyGaugeGraphics(BattleSystem *battleSys);
 void BattleController_EmitIncrementRecord(BattleSystem *battleSys, int param1, int param2, int param3);
-void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler);
+void BattleController_EmitLinkWaitMessage(BattleSystem *battleSys, int battler);
 void BattleIO_RestoreSprite(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_SpriteToOAM(BattleSystem *battleSys, int param1);
 void BattleIO_OAMToSprite(BattleSystem *battleSys, int param1);

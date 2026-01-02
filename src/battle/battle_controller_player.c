@@ -654,10 +654,10 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
 
             if (battleType == BATTLE_TYPE_LINK_DOUBLES) {
                 if (battleCtx->curCommandState[BattleSystem_Partner(battleSys, i)] == COMMAND_SELECTION_END) {
-                    BattleIO_LinkWaitMessage(battleSys, i);
+                    BattleController_EmitLinkWaitMessage(battleSys, i);
                 }
             } else {
-                BattleIO_LinkWaitMessage(battleSys, i);
+                BattleController_EmitLinkWaitMessage(battleSys, i);
             }
 
             battleCtx->curCommandState[i] = COMMAND_SELECTION_END;

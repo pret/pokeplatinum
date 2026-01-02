@@ -2618,10 +2618,10 @@ static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx)
             if ((switchingMask & FlagIndex(battler)) == FALSE
                 && (switchingMask & FlagIndex(partner)) == FALSE) {
                 switchingMask |= FlagIndex(battler);
-                BattleIO_LinkWaitMessage(battleSys, battler);
+                BattleController_EmitLinkWaitMessage(battleSys, battler);
             }
         } else if ((switchingMask & FlagIndex(battler)) == FALSE) {
-            BattleIO_LinkWaitMessage(battleSys, battler);
+            BattleController_EmitLinkWaitMessage(battleSys, battler);
         }
     }
 
@@ -2666,7 +2666,7 @@ static BOOL BtlCmd_WaitMonSelection(BattleSystem *battleSys, BattleContext *batt
 
             if ((battleCtx->battleStatusMask2 & (FlagIndex(battler) << SYSCTL_LINK_WAITING_SHIFT)) == FALSE) {
                 battleCtx->battleStatusMask2 |= (FlagIndex(battler) << SYSCTL_LINK_WAITING_SHIFT);
-                BattleIO_LinkWaitMessage(battleSys, battler);
+                BattleController_EmitLinkWaitMessage(battleSys, battler);
             }
         }
     }

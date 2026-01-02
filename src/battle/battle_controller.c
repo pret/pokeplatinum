@@ -19,7 +19,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225C988.h"
 #include "battle/struct_ov16_0225C9F0.h"
 #include "battle/struct_ov16_0225CA14.h"
 #include "battle/struct_ov16_0225CA4C.h"
@@ -1721,18 +1720,24 @@ void BattleController_EmitIncrementRecord(BattleSystem *battleSys, int battlerId
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(RecordIncrementMessage));
 }
 
-void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler)
+/**
+ * @brief Emits a message to print the wait (text) message when in a link battle
+ *
+ * @param battleSys
+ * @param battelr
+ */
+void BattleController_EmitLinkWaitMessage(BattleSystem *battleSys, int battler)
 {
-    UnkStruct_ov16_0225C988 v0;
+    LinkWaitMsgMessage message;
     u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0.unk_00 = BATTLE_COMMAND_LINK_WAIT_MESSAGE;
-    v0.unk_02 = 0;
+    message.command = BATTLE_COMMAND_LINK_WAIT_MESSAGE;
+    message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
-        v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
-        GF_ASSERT(v0.unk_02 < 28);
-        SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &v0, sizeof(UnkStruct_ov16_0225C988));
+        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_04[0]);
+        GF_ASSERT(message.unk_02 < 28);
+        SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(LinkWaitMsgMessage));
     }
 }
 
