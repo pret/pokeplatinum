@@ -82,6 +82,8 @@ typedef struct BattleBagContext {
     u8 pocketCurrentPages[BATTLE_POCKET_MAX];
 } BattleBagContext;
 
+#define NUM_BATTLE_BAG_SPRITES 6
+
 typedef struct BattleBag {
     BattleBagContext *context;
     BgConfig *background;
@@ -99,7 +101,7 @@ typedef struct BattleBag {
     UnkStruct_ov16_0226DEEC *catchTutorialCursor;
     BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
-    ManagedSprite *pocketItemSprites[BATTLE_POCKET_ITEMS_PER_PAGE];
+    ManagedSprite *sprites[NUM_BATTLE_BAG_SPRITES];
     u16 menuPocketButtonData[BATTLE_SUB_MENU_BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_BUTTON_SIZE_TILES];
     u16 useItemButtonData[BATTLE_SUB_MENU_BUTTON_STATE_MAX][BATTLE_SUB_MENU_CONFIRM_BUTTON_SIZE_TILES];
     u16 cancelButtonData[BATTLE_SUB_MENU_BUTTON_STATE_MAX_CANNOT_DISABLE][BATTLE_SUB_MENU_CANCEL_BUTTON_SIZE_TILES];

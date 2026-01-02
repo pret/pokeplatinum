@@ -414,10 +414,10 @@ static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonStat
     u8 i;
 
     if (button >= BUTTON_POCKET_MENU_SCREEN_ITEM_1 && button <= BUTTON_POCKET_MENU_SCREEN_ITEM_6) {
-        sprite = battleBag->pocketItemSprites[button - BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET];
+        sprite = battleBag->sprites[button - BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET];
     } else if (button == BUTTON_MENU_SCREEN_LAST_USED_ITEM) {
         for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
-            sprite = battleBag->pocketItemSprites[i];
+            sprite = battleBag->sprites[i];
 
             if (ManagedSprite_GetDrawFlag(sprite) != FALSE) {
                 break;

@@ -3,6 +3,7 @@
 #include "constants/contests.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
+#include "generated/contest_effects.h"
 
 #include "struct_decls/battle_system.h"
 
@@ -10,8 +11,8 @@
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/battle_party.h"
 #include "overlay013/battle_party_buttons.h"
+#include "overlay013/battle_party_sprites.h"
 #include "overlay013/battle_party_text.h"
-#include "overlay013/ov13_02224500.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -335,7 +336,7 @@ static void BattlePartyTask_Tick(SysTask *task, void *taskParam)
         }
     }
 
-    ov13_0222537C(battleParty);
+    BattlePartySprites_TickPartyPokemonSpriteAnimations(battleParty);
     SpriteSystem_DrawSprites(battleParty->spriteMan);
     BattlePartyButtons_Tick(battleParty);
 }
@@ -366,8 +367,8 @@ static u8 BattlePartyTask_Initialize(BattleParty *battleParty)
     DrawScreenBackground(battleParty, battleParty->currentScreen);
     BattlePartyButtons_InitializeButtons(battleParty, battleParty->currentScreen);
     BattlePartyButtons_LoadScreenPaletteData(battleParty, battleParty->currentScreen);
-    ov13_02224500(battleParty);
-    ov13_02224B7C(battleParty, battleParty->currentScreen);
+    BattlePartySprites_InitializeSprites(battleParty);
+    BattlePartySprites_SetupScreen(battleParty, battleParty->currentScreen);
     BattlePartyText_InitializeWindows(battleParty);
     BattlePartyText_ChangeScreen(battleParty, battleParty->currentScreen);
 
@@ -379,7 +380,7 @@ static u8 BattlePartyTask_Initialize(BattleParty *battleParty)
         battleParty->context->selectedPartyIndex = 1;
     }
 
-    ov13_0222563C(battleParty, battleParty->currentScreen);
+    BattlePartySprites_SetupCursor(battleParty, battleParty->currentScreen);
     DrawXPBar(battleParty, battleParty->currentScreen);
 
     PaletteData_StartFade(battleParty->palette, PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F, 0xffff, -8, 16, 0, 0);
@@ -652,7 +653,7 @@ static u8 BattlePartyTask_LearnMoveScreen(BattleParty *battleParty)
             learnMoveScreenButtonPressed = BATTLE_LEARN_MOVE_SCREEN_BUTTON_CANCEL;
         }
     } else {
-        DisableBattlePartyCursor(battleParty);
+        BattlePartySprites_DisableCursor(battleParty);
     }
 
     switch (learnMoveScreenButtonPressed) {
@@ -700,7 +701,7 @@ static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty)
             confirmLearnMovesScreenButtonPressed = BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_CANCEL;
         }
     } else {
-        DisableBattlePartyCursor(battleParty);
+        BattlePartySprites_DisableCursor(battleParty);
     }
 
     switch (confirmLearnMovesScreenButtonPressed) {
@@ -762,7 +763,7 @@ static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
             restoreMovePPScreenButtonPressed = BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_CANCEL;
         }
     } else {
-        DisableBattlePartyCursor(battleParty);
+        BattlePartySprites_DisableCursor(battleParty);
     }
 
     switch (restoreMovePPScreenButtonPressed) {
@@ -843,7 +844,7 @@ static u8 BattlePartyTask_SetupLearnMoveScreen(BattleParty *battleParty)
 
 static u8 BattlePartyTask_SetupConfirmLearnMoveScreen(BattleParty *battleParty)
 {
-    ov13_022252E8(battleParty);
+    BattlePartySprites_DrawMovesSprites(battleParty);
 
     if (battleParty->displayingContestStats == FALSE) {
         ChangeBattlePartyScreen(battleParty, BATTLE_PARTY_SCREEN_CONFIRM_LEARN_MOVE);
@@ -867,7 +868,7 @@ static u8 BattlePartyTask_SetupRestoreMovePPScreen(BattleParty *battleParty)
 
 static u8 BattlePartyTask_RefreshPokemonDetailsScreens(BattleParty *battleParty)
 {
-    ov13_02224B7C(battleParty, battleParty->currentScreen);
+    BattlePartySprites_SetupScreen(battleParty, battleParty->currentScreen);
     BattlePartyText_ChangeScreen(battleParty, battleParty->currentScreen);
     BattlePartyButtons_InitializeButtons(battleParty, battleParty->currentScreen);
     DrawXPBar(battleParty, battleParty->currentScreen);
@@ -935,7 +936,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
             battleParty->partyPokemon[context->selectedPartyIndex].summaryStatus = PokemonSummaryScreen_StatusIconAnimIdx(battleParty->partyPokemon[context->selectedPartyIndex].pokemon);
 
             if (battleParty->partyPokemon[context->selectedPartyIndex].summaryStatus == SUMMARY_CONDITION_NONE) {
-                ManagedSprite_SetDrawFlag(battleParty->unk_1FB4[13 + context->selectedPartyIndex], FALSE);
+                ManagedSprite_SetDrawFlag(battleParty->sprites[13 + context->selectedPartyIndex], FALSE);
                 BattlePartyText_PrintPartyPokemonLevel(battleParty, context->selectedPartyIndex);
             }
 
@@ -1047,7 +1048,7 @@ static BOOL BattlePartyTask_FinishTask(SysTask *task, BattleParty *battleParty)
     }
 
     CleanupMessageLoader(battleParty);
-    ov13_02224970(battleParty);
+    BattlePartySprites_CleanupSprites(battleParty);
     BattlePartyText_ClearWindows(battleParty);
     CleanupBackground(battleParty->background);
 
@@ -1318,7 +1319,7 @@ static BOOL CheckPartyPokemonScreenButtonPressed(BattleParty *battleParty)
         if (buttonPressed == BATTLE_POKEMON_PARTY_SCREEN_BUTTON_CANCEL || BattlePartyTask_CheckCanPartySlotBeSelected(battleParty, buttonPressed) != FALSE) {
             battleParty->context->selectedPartyIndex = (u8)buttonPressed;
 
-            DisableBattlePartyCursor(battleParty);
+            BattlePartySprites_DisableCursor(battleParty);
             return TRUE;
         }
     }
@@ -1339,7 +1340,7 @@ static enum BattleSelectPokemonScreenButton CheckSelectPokemonScreenButtonsPress
             return NO_BUTTON_PRESSED;
         }
     } else {
-        DisableBattlePartyCursor(battleParty);
+        BattlePartySprites_DisableCursor(battleParty);
     }
 
     return (u8)buttonPressed;
@@ -1358,7 +1359,7 @@ static enum BattlePokemonSummaryScreenButton CheckPokemonSummaryScreenButtonsPre
             return NO_BUTTON_PRESSED;
         }
     } else {
-        DisableBattlePartyCursor(battleParty);
+        BattlePartySprites_DisableCursor(battleParty);
     }
 
     return (u8)buttonPressed;
@@ -1377,7 +1378,7 @@ static enum BattlePokemonMovesScreenButton CheckPokemonMovesScreenButtonsPressed
             return NO_BUTTON_PRESSED;
         }
     } else {
-        DisableBattlePartyCursor(battleParty);
+        BattlePartySprites_DisableCursor(battleParty);
     }
 
     return (u8)buttonPressed;
@@ -1396,7 +1397,7 @@ static enum BattleMoveSummaryScreenButton CheckMoveSummaryScreenButtonsPressed(B
             return NO_BUTTON_PRESSED;
         }
     } else {
-        DisableBattlePartyCursor(battleParty);
+        BattlePartySprites_DisableCursor(battleParty);
     }
 
     return (u8)buttonPressed;
@@ -1543,7 +1544,7 @@ static void DrawEmptyAppealPts(BattleParty *battleParty)
 
 static void DrawMoveContestStats(BattleParty *battleParty, u8 screen)
 {
-    u32 contestEffect;
+    enum ContestEffects contestEffect;
     u16 i;
     u16 selectedMove;
     s8 appealPts;
@@ -1579,13 +1580,13 @@ static void ChangeBattlePartyScreen(BattleParty *battleParty, u8 screen)
     Bg_ScheduleFillTilemap(battleParty->background, BG_LAYER_SUB_0, 0);
     Bg_ScheduleFillTilemap(battleParty->background, BG_LAYER_SUB_1, 0);
 
-    ov13_02224B7C(battleParty, screen);
+    BattlePartySprites_SetupScreen(battleParty, screen);
     BattlePartyText_ClearScreenWindows(battleParty);
     BattlePartyText_InitializeScreenWindows(battleParty, screen);
     BattlePartyText_ChangeScreen(battleParty, screen);
     DrawXPBar(battleParty, screen);
     DrawMoveContestStats(battleParty, screen);
-    ov13_0222563C(battleParty, screen);
+    BattlePartySprites_SetupCursor(battleParty, screen);
     BattlePartyButtons_InitializeButtons(battleParty, screen);
     BattlePartyButtons_LoadScreenPaletteData(battleParty, screen);
 
@@ -1741,7 +1742,7 @@ static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty)
 
 static void ClearMoveStats(BattleParty *battleParty)
 {
-    ManagedSprite_SetDrawFlag(battleParty->unk_1FB4[26], FALSE);
+    ManagedSprite_SetDrawFlag(battleParty->sprites[26], FALSE);
     Window_ClearAndScheduleCopyToVRAM(&battleParty->windows[10]);
     Window_ClearAndScheduleCopyToVRAM(&battleParty->windows[6]);
     Window_ClearAndScheduleCopyToVRAM(&battleParty->windows[7]);
