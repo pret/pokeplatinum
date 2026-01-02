@@ -11,8 +11,6 @@ typedef unsigned short wchar_t;
 #include <stddef.h>
 #include <string.h>
 
-#include "constants/heap.h"
-
 #include "global/assert.h"
 #include "global/config.h" // MUST COME BEFORE ANY OTHER GAMEFREAK HEADERS
 #include "global/pm_version.h"

@@ -3,6 +3,8 @@
 
 #include <nitro/fs.h>
 
+#include "constants/heap.h"
+
 #define FS_OVERLAY_ID_NONE -1
 
 typedef struct ApplicationManager ApplicationManager;

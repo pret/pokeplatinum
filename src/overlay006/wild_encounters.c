@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/forms.h"
+#include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
 #include "generated/abilities.h"

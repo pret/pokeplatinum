@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_PARTY_H
 #define POKEPLATINUM_PARTY_H
 
+#include "constants/heap.h"
 #include "constants/pokemon.h"
 
 #include "struct_defs/pokemon.h"

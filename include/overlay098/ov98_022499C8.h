@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV98_022499C8_H
 #define POKEPLATINUM_OV98_022499C8_H
 
+#include "constants/heap.h"
+
 #include "string_gf.h"
 
 void ov98_022499C8(String *param0, char *param1, enum HeapID heapID);

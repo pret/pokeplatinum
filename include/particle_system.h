@@ -4,6 +4,7 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
+#include "constants/heap.h"
 #include "constants/narc.h"
 
 #include "camera.h"

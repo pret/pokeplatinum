@@ -2,6 +2,8 @@
 
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "applications/pokedex/pokedex_sort_data.h"

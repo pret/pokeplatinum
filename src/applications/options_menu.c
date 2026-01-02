@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/narc.h"
 
 #include "struct_defs/struct_02099F80.h"

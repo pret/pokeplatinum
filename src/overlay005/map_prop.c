@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/map_prop_material_shape.h"

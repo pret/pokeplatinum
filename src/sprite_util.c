@@ -1,5 +1,7 @@
 #include "sprite_util.h"
 
+#include "constants/heap.h"
+
 #include "bg_window.h"
 #include "char_transfer.h"
 #include "heap.h"

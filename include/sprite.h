@@ -6,6 +6,7 @@
 #include <nnsys.h>
 
 #include "constants/graphics.h"
+#include "constants/heap.h"
 
 enum CellAnimType {
     CELL_ANIM_TYPE_NONE = 0,

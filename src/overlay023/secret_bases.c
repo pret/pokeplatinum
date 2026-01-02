@@ -6,6 +6,7 @@
 #include "constants/field/map_prop.h"
 #include "constants/field_base_tiles.h"
 #include "constants/goods.h"
+#include "constants/heap.h"
 #include "constants/map_object.h"
 #include "constants/traps.h"
 #include "generated/movement_actions.h"

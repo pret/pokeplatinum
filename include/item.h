@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_ITEM_DATA_H
 #define POKEPLATINUM_ITEM_DATA_H
 
+#include "constants/heap.h"
+
 #include "string_gf.h"
 
 typedef struct ItemPartyParam {

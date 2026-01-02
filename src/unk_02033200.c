@@ -2,6 +2,7 @@
 
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/net.h"
 
 #include "struct_defs/sentence.h"

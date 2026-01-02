@@ -3,6 +3,8 @@
 
 #include <nitro/fx/fx.h>
 
+#include "constants/heap.h"
+
 #define LCRNG_MULTIPLIER 1103515245L
 #define LCRNG_INCREMENT  24691
 

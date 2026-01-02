@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <nitro/sinit.h>
 
+#include "constants/heap.h"
 #include "generated/pokemon_types.h"
 
 #include "applications/poketch/move_tester/graphics.h"

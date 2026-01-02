@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_defs/battle_io.h"
 
 #include "battle/ov16_0223DF00.h"

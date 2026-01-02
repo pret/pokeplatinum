@@ -4,6 +4,8 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_defs/struct_020217F4.h"

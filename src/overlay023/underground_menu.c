@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/traps.h"
 
 #include "struct_defs/underground.h"

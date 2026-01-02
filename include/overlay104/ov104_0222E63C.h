@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV104_0222E63C_H
 #define POKEPLATINUM_OV104_0222E63C_H
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay104/struct_ov104_0222E8C8.h"

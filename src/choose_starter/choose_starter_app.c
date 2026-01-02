@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/species.h"
 

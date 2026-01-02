@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/narc.h"
 
 #include "struct_defs/sprite_animation_frame.h"

@@ -8,6 +8,7 @@
 #include "constants/daycare.h"
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/window.h"
+#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"

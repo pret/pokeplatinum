@@ -3,6 +3,8 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 // In TEX_RESOURCE_MODE_SEPARATED, texture data is stripped from the resource and stored in a separate buffer.
 // The main purpose of this is to allow freeing the texture data after the texture has been uploaded to VRAM,
 // while still keeping the resource itself around.

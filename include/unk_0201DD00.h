@@ -3,6 +3,8 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_0201DD00_decl.h"
 #include "struct_decls/struct_0201DDF4_decl.h"
 #include "struct_defs/struct_02024184.h"

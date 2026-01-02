@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_matrix.h"
+#include "constants/heap.h"
 
 #include "heap.h"
 #include "map_header.h"

@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/heap.h"
 #include "generated/game_records.h"
 #include "generated/trainer_classes.h"
 

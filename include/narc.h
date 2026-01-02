@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_NARC_H
 #define POKEPLATINUM_NARC_H
 
+#include "constants/heap.h"
 #include "constants/narc.h"
 
 /*

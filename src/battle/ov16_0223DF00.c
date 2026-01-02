@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/game_options.h"
+#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/rtc.h"
 #include "generated/battle_backgrounds.h"

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_Pokedex_HeightWeight_H
 #define POKEPLATINUM_Pokedex_HeightWeight_H
 
+#include "constants/heap.h"
+
 typedef struct HeightWeightData {
     int *height;
     int *weight;

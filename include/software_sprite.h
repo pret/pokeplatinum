@@ -4,6 +4,8 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 typedef struct SoftwareSpriteChars SoftwareSpriteChars;
 typedef struct SoftwareSpritePalette SoftwareSpritePalette;
 typedef struct SoftwareSprite SoftwareSprite;

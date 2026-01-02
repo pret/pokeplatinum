@@ -1,5 +1,7 @@
 #include "applications/poketch/unused/4/graphics.h"
 
+#include "constants/heap.h"
+
 #include "applications/poketch/poketch_graphics.h"
 #include "applications/poketch/poketch_task.h"
 

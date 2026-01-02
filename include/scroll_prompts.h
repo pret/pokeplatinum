@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0206A780_H
 #define POKEPLATINUM_UNK_0206A780_H
 
+#include "constants/heap.h"
+
 #include "overlay005/sprite_resource_manager.h"
 
 #include "sprite_system.h"

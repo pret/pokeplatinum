@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_0225AF8C_H
 #define POKEPLATINUM_STRUCT_OV22_0225AF8C_H
 
+#include "constants/heap.h"
+
 #include "bg_window.h"
 
 typedef struct {

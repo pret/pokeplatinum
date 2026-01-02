@@ -6,6 +6,7 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
 #include "constants/field/map_prop.h"
+#include "constants/heap.h"
 #include "generated/map_headers.h"
 
 #include "field/field_system.h"

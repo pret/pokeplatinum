@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_SAVEDATA_H
 #define POKEPLATINUM_SAVEDATA_H
 
+#include "constants/heap.h"
 #include "constants/savedata/save_table.h"
 #include "constants/savedata/savedata.h"
 

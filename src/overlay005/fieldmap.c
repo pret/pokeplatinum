@@ -6,6 +6,7 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
 #include "constants/field/map_load.h"
+#include "constants/heap.h"
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"

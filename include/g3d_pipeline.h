@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_G3D_PIPELINE_H
 #define POKEPLATINUM_G3D_PIPELINE_H
 
+#include "constants/heap.h"
+
 typedef struct G3DPipelineBuffers {
     enum HeapID heapID;
     void *paletteBuffer;

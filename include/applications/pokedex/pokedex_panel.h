@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POKEDEX_PANEL_H
 #define POKEPLATINUM_POKEDEX_PANEL_H
 
+#include "constants/heap.h"
+
 enum PanelMovementType {
     PANEL_MOVEMENT_MULTICOL = 0,
     PANEL_MOVEMENT_MULTIROW,

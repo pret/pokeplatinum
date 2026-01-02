@@ -2,6 +2,8 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 #include "heap.h"
 #include "vram_transfer.h"
 

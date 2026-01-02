@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"

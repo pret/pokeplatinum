@@ -5,6 +5,7 @@
 
 #include "constants/battle/condition.h"
 #include "constants/field_poison.h"
+#include "constants/heap.h"
 #include "constants/items.h"
 
 #include "overlay005/daycare.h"

@@ -4,6 +4,8 @@
 #include <nitro/fx/fx_const.h>
 #include <nitro/types.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"

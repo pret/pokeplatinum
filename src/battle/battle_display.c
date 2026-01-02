@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/species.h"
 #include "generated/items.h"
 

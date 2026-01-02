@@ -1,5 +1,6 @@
 #include "applications/pokedex/pokedex_text.h"
 
+#include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/species.h"
 

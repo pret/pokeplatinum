@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_0205C22C_H
 #define POKEPLATINUM_UNK_0205C22C_H
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205C95C_decl.h"

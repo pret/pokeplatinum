@@ -8,6 +8,7 @@
 
 #include "constants/colors.h"
 #include "constants/graphics.h"
+#include "constants/heap.h"
 
 #include "heap.h"
 

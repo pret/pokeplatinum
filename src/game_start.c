@@ -1,6 +1,7 @@
 #include "game_start.h"
 
 #include "constants/game_options.h"
+#include "constants/heap.h"
 
 #include "berry_patches.h"
 #include "game_options.h"

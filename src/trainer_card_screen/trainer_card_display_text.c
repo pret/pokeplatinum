@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "trainer_card_screen/trainer_card_screen_defs.h"
 
 #include "bg_window.h"

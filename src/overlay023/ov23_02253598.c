@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 

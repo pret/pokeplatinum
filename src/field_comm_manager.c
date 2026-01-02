@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/heap.h"
 
 #include "struct_defs/struct_0205964C.h"
 #include "struct_defs/underground.h"

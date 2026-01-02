@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/string.h"
 #include "generated/object_events.h"

@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/heap.h"
 
 #include "struct_defs/struct_02099F80.h"
 

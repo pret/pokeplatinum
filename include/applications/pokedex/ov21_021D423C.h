@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV21_021D423C_H
 #define POKEPLATINUM_OV21_021D423C_H
 
+#include "constants/heap.h"
+
 #include "applications/pokedex/struct_ov21_021D423C_decl.h"
 #include "applications/pokedex/struct_ov21_021D4660.h"
 

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV5_021D1A94_H
 #define POKEPLATINUM_OV5_021D1A94_H
 
+#include "constants/heap.h"
+
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021D1A94_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"

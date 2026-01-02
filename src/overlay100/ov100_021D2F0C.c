@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/ov100_021D4E04.h"
 #include "overlay100/struct_ov100_021D3084.h"

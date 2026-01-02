@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_OV4_021D2808_H
 #define POKEPLATINUM_OV4_021D2808_H
 
+#include "constants/heap.h"
+
 void ov4_021D2B28();
 BOOL ov4_021D2C70(int param0, void *param1, int param2);
 void ov4_021D2CC0(enum HeapID heapID, int param1, int param2);

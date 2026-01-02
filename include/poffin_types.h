@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POFFIN_TYPES_H
 #define POKEPLATINUM_POFFIN_TYPES_H
 
+#include "constants/heap.h"
+
 #include "message.h"
 #include "string_gf.h"
 

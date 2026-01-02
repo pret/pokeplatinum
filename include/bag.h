@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_BAG_H
 #define POKEPLATINUM_BAG_H
 
+#include "constants/heap.h"
 #include "constants/items.h"
 
 #include "savedata.h"

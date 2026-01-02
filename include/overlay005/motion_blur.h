@@ -3,6 +3,8 @@
 
 #include <nitro/gx.h>
 
+#include "constants/heap.h"
+
 #include "sys_task_manager.h"
 
 typedef struct MotionBlurParams {

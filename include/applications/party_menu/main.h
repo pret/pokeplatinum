@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_PARTY_MENU_MAIN_H
 #define POKEPLATINUM_PARTY_MENU_MAIN_H
 
+#include "constants/heap.h"
+
 #include "applications/party_menu/defs.h"
 
 #include "overlay_manager.h"
