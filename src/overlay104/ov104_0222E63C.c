@@ -155,11 +155,11 @@ static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *pa
 
 static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int heapID)
 {
-    int v0 = ov104_0222EA90(param2, 1);
-    int v1 = ov104_0222EA90(param2, 2);
+    int scriptID = GetFronierSceneValue(param2, FR_SCENE_SCRIPT_ID);
+    int bankID = GetFronierSceneValue(param2, FR_SCENE_BANK_ID);
 
-    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, heapID);
-    *param1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, v1, heapID);
+    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, scriptID, heapID);
+    *param1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 }
 
 void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
@@ -169,8 +169,8 @@ void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
     int v2, v3;
     MessageLoader *v4;
 
-    v2 = ov104_0222EA90(param0->unk_52, 2);
-    v3 = ov104_0222EA90(param1, 2);
+    v2 = GetFronierSceneValue(param0->unk_52, FR_SCENE_BANK_ID);
+    v3 = GetFronierSceneValue(param1, FR_SCENE_BANK_ID);
 
     if (v2 == v3) {
         return;
