@@ -1503,7 +1503,7 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 
         ov17_02240BF4(param0, v2, FONT_SUBSCREEN, &v0->unk_00[v1], TEXT_COLOR(1, 7, 8));
         String_Free(v2);
-        sub_02095750(v0->unk_12C[v1], &v6, &v7);
+        LoadTwoLineContestEffectMessages(v0->unk_12C[v1], &v6, &v7);
 
         v3 = MessageLoader_GetNewString(param0->unk_04->unk_40, v6);
         v4 = MessageLoader_GetNewString(param0->unk_04->unk_40, v7);

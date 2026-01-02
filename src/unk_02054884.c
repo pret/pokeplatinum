@@ -196,7 +196,7 @@ int Pokemon_DoPoisonDamage(Party *party, u16 mapLabelTextID)
 
             if (hp == 1) {
                 numFainted++;
-                Pokemon_UpdateFriendship(mon, 7, mapLabelTextID);
+                Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_POISON_SURVIVE, mapLabelTextID);
             }
 
             numPoisoned++;

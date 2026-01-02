@@ -20,11 +20,9 @@
 #include "generated/natures.h"
 #include "generated/species_data_params.h"
 
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/mail.h"
-#include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -45,6 +43,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "rtc.h"
 #include "sound_chatot.h"
@@ -54,7 +53,6 @@
 #include "string_gf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
-#include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "unk_0202C9F4.h"
 #include "unk_02092494.h"
@@ -2071,50 +2069,55 @@ s8 Nature_GetStatModifier(u8 nature, u8 stat)
 }
 
 // clang-format off
-static const s8 sFriendshipModifiers[FRIENDSHIP_EVENT_NUM][FRIENDSHIP_TIER_NUM] = {
-    [FRIENDSHIP_EVENT_GROW_LEVEL] =     {  5,  3,   2 },
-    [FRIENDSHIP_EVENT_VITAMIN] =        {  5,  3,   2 },
-    [FRIENDSHIP_EVENT_BATTLE_ITEM] =    {  1,  1,   0 },
-    [FRIENDSHIP_EVENT_LEAGUE_BATTLE] =  {  3,  2,   1 },
-    [FRIENDSHIP_EVENT_LEARN_TMHM] =     {  1,  1,   0 },
-    [FRIENDSHIP_EVENT_WALKING] =        {  1,  1,   1 },
-    [FRIENDSHIP_EVENT_FAINT_SMALL] =    { -1, -1,  -1 },
-    [FRIENDSHIP_EVENT_HEAL_FIELD_PSN] = { -5, -5, -10 },
-    [FRIENDSHIP_EVENT_FAINT_LARGE] =    { -5, -5, -10 },
-    [FRIENDHSIP_EVENT_CONTEST_WIN] =    {  3,  2,   1 },
+static const s8 sFriendshipModifiers[FRIENDSHIP_EVENT_COUNT][FRIENDSHIP_TIER_NUM] = {
+    [FRIENDSHIP_EVENT_LEVEL_UP] =                       {  5,  3,   2 },
+    [FRIENDSHIP_EVENT_UNK_1] =                          {  5,  3,   2 },
+    [FRIENDSHIP_EVENT_UNK_2] =                          {  1,  1,   0 },
+    [FRIENDSHIP_EVENT_BEAT_GYM_LEADER_E4_OR_CHAMPION] = {  3,  2,   1 },
+    [FRIENDSHIP_EVENT_LEARN_TMHM] =                     {  1,  1,   0 },
+    [FRIENDSHIP_EVENT_WALK_CYCLE] =                     {  1,  1,   1 },
+    [FRIENDSHIP_EVENT_BATTLE_FAINT] =                   { -1, -1,  -1 },
+    [FRIENDSHIP_EVENT_POISON_SURVIVE] =                 { -5, -5, -10 },
+    [FRIENDSHIP_EVENT_BATTLE_FAINT_HIGH_LVL_DIFF] =     { -5, -5, -10 },
+    [FRIENDSHIP_EVENT_CONTEST_WIN] =                    {  3,  2,   1 },
 };
 // clang-format on
 
-void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location)
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 friendshipEvent, u16 mapID)
 {
-    if (kind == FRIENDSHIP_EVENT_WALKING && (LCRNG_Next() & 1)) {
+    if (friendshipEvent == FRIENDSHIP_EVENT_WALK_CYCLE && (LCRNG_Next() & 1)) {
         return;
     }
 
     u16 species = Pokemon_GetData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
+
     if (species == SPECIES_NONE || species == SPECIES_EGG) {
         return;
     }
 
     u16 item = Pokemon_GetData(mon, MON_DATA_HELD_ITEM, NULL);
-    u8 effect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
-    u8 tier = 0;
+    u8 holdEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM);
+    u8 friendshipTier = 0;
     s16 friendship = Pokemon_GetData(mon, MON_DATA_FRIENDSHIP, NULL);
+
     if (friendship >= LOW_FRIENDSHIP_LIMIT) {
-        tier++;
-    }
-    if (friendship >= MED_FRIENDSHIP_LIMIT) {
-        tier++;
+        friendshipTier++;
     }
 
-    s8 modifier = sFriendshipModifiers[kind][tier];
+    if (friendship >= MED_FRIENDSHIP_LIMIT) {
+        friendshipTier++;
+    }
+
+    s8 modifier = sFriendshipModifiers[friendshipEvent][friendshipTier];
     if (modifier > 0 && Pokemon_GetData(mon, MON_DATA_POKEBALL, NULL) == ITEM_LUXURY_BALL) {
         modifier++;
     }
-    if (modifier > 0 && Pokemon_GetData(mon, MON_DATA_EGG_LOCATION, NULL) == location) {
+
+    if (modifier > 0 && Pokemon_GetData(mon, MON_DATA_EGG_LOCATION, NULL) == mapID) {
         modifier++;
     }
-    if (modifier > 0 && effect == HOLD_EFFECT_FRIENDSHIP_UP) {
+
+    if (modifier > 0 && holdEffect == HOLD_EFFECT_FRIENDSHIP_UP) {
         modifier = modifier * 150 / 100;
     }
 
@@ -2122,9 +2125,11 @@ void Pokemon_UpdateFriendship(Pokemon *mon, u8 kind, u16 location)
     if (friendship < 0) {
         friendship = 0;
     }
+
     if (friendship > MAX_FRIENDSHIP) {
         friendship = MAX_FRIENDSHIP;
     }
+
     Pokemon_SetData(mon, MON_DATA_FRIENDSHIP, &friendship);
 }
 
@@ -4360,19 +4365,19 @@ void PokemonSprite_LoadAnimFrames(NARC *narc, SpriteAnimFrame *frames, u16 speci
     MI_CpuCopy8(data.faceAnims[face].frames, frames, sizeof(SpriteAnimFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
+void PokemonSprite_LoadAnim(NARC *narc, PokemonAnimManager *monAnimMan, PokemonSprite *sprite, u16 species, int face, int flipSprite, int frame)
 {
     int faceType = (face == FACE_FRONT) ? 0 : 1;
 
     SpeciesSpriteData spriteData;
     NARC_ReadFromMember(narc, 0, species * sizeof(SpeciesSpriteData), sizeof(SpeciesSpriteData), &spriteData);
 
-    PokeAnimationSettings settings;
-    settings.animation = spriteData.faceAnims[faceType].animation;
-    settings.startDelay = spriteData.faceAnims[faceType].startDelay;
-    settings.reverse = reverse;
+    PokemonAnimTemplate animTemplate;
+    animTemplate.animation = spriteData.faceAnims[faceType].animation;
+    animTemplate.startDelay = spriteData.faceAnims[faceType].startDelay;
+    animTemplate.flipSprite = flipSprite;
 
-    PokeAnimation_Init(animationSys, sprite, &settings, frame);
+    PokemonAnimManager_InitAnim(monAnimMan, sprite, &animTemplate, frame);
 }
 
 void PokemonSprite_LoadCryDelay(NARC *narc, u8 *cryDelay, u16 species, u16 clientType)

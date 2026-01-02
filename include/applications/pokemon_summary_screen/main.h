@@ -5,7 +5,6 @@
 
 #include "constants/moves.h"
 
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -17,6 +16,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "savedata.h"
 #include "sprite.h"
@@ -411,7 +411,7 @@ typedef struct PokemonSummaryMonSpriteData {
     Camera *camera;
     void *spriteManager;
     SpriteAnimFrame frames[MAX_ANIMATION_FRAMES];
-    PokemonAnimationSys *animationSys;
+    PokemonAnimManager *monAnimMan;
     PokemonSprite *sprite;
     BOOL flip;
 } PokemonSummaryMonSpriteData;

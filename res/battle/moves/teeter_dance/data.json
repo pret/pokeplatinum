@@ -16,7 +16,7 @@
         "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
-        "effect": 14,
+        "effect": "CONTEST_EFFECT_RANDOM_ORDER",
         "type": "CONTEST_TYPE_CUTE"
     }
 }

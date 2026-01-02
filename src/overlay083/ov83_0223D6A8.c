@@ -38,6 +38,7 @@
 #include "int_distance.h"
 #include "math_util.h"
 #include "narc.h"
+#include "poffin_sprite.h"
 #include "render_window.h"
 #include "software_sprite.h"
 #include "sound_playback.h"
@@ -51,7 +52,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02015920.h"
-#include "unk_02098FFC.h"
 
 typedef struct {
     fx32 unk_00;
@@ -390,7 +390,7 @@ void ov83_0223DB4C(UnkStruct_ov83_0223DB30 *param0, UnkStruct_ov83_0223DB4C *par
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param1->unk_00[v0].unk_00 != 0) {
-            ov83_0223D7A8(param2, &param0->unk_28[v1], v2, (70 + ((param1->unk_00[v0].unk_00) - 149)), 1, (6 + ((param1->unk_00[v0].unk_00) - 149)), 5, 4, 1000 + v0, heapID);
+            ov83_0223D7A8(param2, &param0->unk_28[v1], v2, 70 + ((param1->unk_00[v0].unk_00) - 149), 1, 6 + ((param1->unk_00[v0].unk_00) - 149), 5, 4, 1000 + v0, heapID);
 
             param0->unk_08[v1] = ov83_0223D9A8(param2, &param0->unk_28[v1], 0, 0, 0, 0, heapID);
             Sprite_SetDrawFlag(param0->unk_08[v1], FALSE);
@@ -680,7 +680,7 @@ void ov83_0223E260(UnkStruct_ov83_0223E244 *param0)
 
 void ov83_0223E28C(UnkStruct_ov83_0223E244 *param0, UnkStruct_ov83_0223D784 *param1, UnkStruct_ov83_0223D95C *param2, u32 param3, u32 param4, u32 param5)
 {
-    param0->unk_08 = ov83_0223D9A8(param1, &param2[param4], (128 * FX32_ONE), (96 * FX32_ONE), 0, 0, param3);
+    param0->unk_08 = ov83_0223D9A8(param1, &param2[param4], 128 * FX32_ONE , 96 * FX32_ONE , 0, 0, param3);
     Sprite_SetDrawFlag(param0->unk_08, FALSE);
     Sprite_SetAnim(param0->unk_08, param5);
     param0->unk_00 = 1;
@@ -1049,7 +1049,7 @@ static void ov83_0223E77C(UnkStruct_ov83_0223E824 *param0, u32 heapID)
 
     LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_2, 1, 0, param0->unk_18, heapID);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, heapID);
-    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_2, (1 + (18 + 12)), 1, 0, heapID);
+    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_2, 1 + (18 + 12), 1, 0, heapID);
     Font_LoadTextPalette(0, 3 * 32, heapID);
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1164,10 +1164,10 @@ static void ov83_0223E9E4(UnkStruct_ov83_0223E824 *param0)
         Text_AddPrinterWithParamsAndColor(param0->unk_08[1], FONT_SYSTEM, param0->unk_1C->unk_34, v0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
     }
 
-    Window_DrawStandardFrame(param0->unk_08[1], 0, (1 + (18 + 12)), 1);
+    Window_DrawStandardFrame(param0->unk_08[1], 0, 1 + (18 + 12), 1);
     Window_FillTilemap(param0->unk_08[2], 15);
     Text_AddPrinterWithParamsAndColor(param0->unk_08[2], FONT_SYSTEM, param0->unk_1C->unk_4C[6], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Window_DrawStandardFrame(param0->unk_08[2], 0, (1 + (18 + 12)), 1);
+    Window_DrawStandardFrame(param0->unk_08[2], 0, 1 + (18 + 12), 1);
     Window_ScheduleCopyToVRAM(param0->unk_08[1]);
     Window_ScheduleCopyToVRAM(param0->unk_08[2]);
 }
@@ -1557,7 +1557,7 @@ void ov83_0223F2C4(UnkStruct_ov83_0223F29C *param0, UnkStruct_ov83_0223D784 *par
     ov83_0223D7A8(param1, &param0->unk_04, param3, 33, 2, 32, 31, 30, 7000, param2);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_3C[v0].unk_00 = ov83_0223D9A8(param1, &param0->unk_04, (128 * FX32_ONE), (96 * FX32_ONE), 0, 0, param2);
+        param0->unk_3C[v0].unk_00 = ov83_0223D9A8(param1, &param0->unk_04, 128 * FX32_ONE , 96 * FX32_ONE , 0, 0, param2);
 
         if (v0 >= 2) {
             Sprite_SetAnim(param0->unk_3C[v0].unk_00, 1);
@@ -1731,10 +1731,10 @@ void ov83_0223F544(UnkStruct_ov83_0223F4AC *param0, int param1, int param2)
     int v6;
 
     v1 = FX_Atan2Idx(param1 - 128, param2 - 96);
-    v2 = FX_Mul(FX_CosIdx(v1), (FX32_CONST(16)));
-    v3 = FX_Mul(FX_SinIdx(v1), (FX32_CONST(16)));
-    v4 = FX_Mul(FX_CosIdx(v1), (FX32_CONST(1)));
-    v5 = FX_Mul(FX_SinIdx(v1), (FX32_CONST(1)));
+    v2 = FX_Mul(FX_CosIdx(v1), FX32_CONST(16));
+    v3 = FX_Mul(FX_SinIdx(v1), FX32_CONST(16));
+    v4 = FX_Mul(FX_CosIdx(v1), FX32_CONST(1));
+    v5 = FX_Mul(FX_SinIdx(v1), FX32_CONST(1));
     v0 = ov83_0223F650(param0);
 
     if (v0) {
@@ -1814,19 +1814,19 @@ static void ov83_0223F6CC(UnkStruct_ov83_0223F670 *param0, int param1, fx32 para
 
 void ov83_0223F730(UnkStruct_ov83_0223F770 *param0, int param1, int param2, int param3, int param4)
 {
-    param0->unk_00 = sub_02098FFC(param4, 1, 1, (NNS_G2D_VRAM_TYPE_2DMAIN), 2);
-    param0->unk_04 = sub_0209916C(param0->unk_00, param3, param1, param2, 0, 0, 0, 0);
+    param0->unk_00 = PoffinSpriteManager_New(param4, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2);
+    param0->unk_04 = PoffinSprite_New(param0->unk_00, param3, param1, param2, 0, 0, 0, 0);
 }
 
 void ov83_0223F770(UnkStruct_ov83_0223F770 *param0)
 {
-    sub_02099370(param0->unk_00, param0->unk_04);
-    sub_0209903C(param0->unk_00);
+    PoffinSprite_Free(param0->unk_00, param0->unk_04);
+    PoffinSpriteManager_Free(param0->unk_00);
 }
 
 void ov83_0223F784(UnkStruct_ov83_0223F770 *param0)
 {
-    sub_02099160(param0->unk_00);
+    PoffinSpriteManager_DrawSprites(param0->unk_00);
 }
 
 void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int heapID, BgConfig *param2)

@@ -85,7 +85,7 @@ static const struct {
     FSOverlayID overlayID;
 } sAppOverlayIDs[] = {
     { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_watch) },
-    { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(poketch_stopwatch) },
+    { POKETCH_APPID_STOPWATCH, FS_OVERLAY_ID(poketch_stopwatch) },
     { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(poketch_calculator) },
     { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(poketch_memo_pad) },
     { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(poketch_analog_watch) },
@@ -100,7 +100,7 @@ static const struct {
     { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(poketch_coin_toss) },
     { POKETCH_APPID_MOVETESTER, FS_OVERLAY_ID(poketch_move_tester) },
     { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(poketch_matchup_checker) },
-    { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(poketch_alarm_clock) },
+    { POKETCH_APPID_ALARMCLOCK, FS_OVERLAY_ID(poketch_alarm_clock) },
     { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(poketch_kitchen_timer) },
     { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(poketch_marking_map) },
     { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(poketch_berry_searcher) },

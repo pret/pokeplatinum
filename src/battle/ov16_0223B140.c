@@ -8,6 +8,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "generated/game_records.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
@@ -58,6 +59,7 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "render_text.h"
 #include "render_window.h"
@@ -74,7 +76,6 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_02015F84.h"
 #include "unk_0202419C.h"
 #include "unk_0202F1D4.h"
 #include "unk_02033200.h"
@@ -128,7 +129,7 @@ static void ov16_0223CE20(G3DPipelineBuffers *param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem *battleSys);
 static void ov16_0223D0C4(SysTask *param0, void *param1);
-static BOOL ov16_0223CD3C(u16 param0);
+static BOOL TrainerIsGymLeaderE4OrChampion(u16 param0);
 static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *param1);
 static void ov16_0223DECC(void);
 
@@ -640,7 +641,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     ov16_0223DD4C(battleSys);
     BagCursor_ResetBattle(BattleSystem_BagCursor(battleSys));
 
-    battleSys->pokemonAnimationSys = sub_02015F84(HEAP_ID_BATTLE, 4, 0);
+    battleSys->monAnimMan = PokemonAnimManager_New(HEAP_ID_BATTLE, 4, FALSE);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {
@@ -755,7 +756,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     MessageLoader_Free(battleSystem->unk_0C);
     MessageLoader_Free(battleSystem->unk_10);
     StringTemplate_Free(battleSystem->strFormatter);
-    sub_02015FB8(battleSystem->pokemonAnimationSys);
+    PokemonAnimManager_Free(battleSystem->monAnimMan);
     ParticleSystem_FreeAll();
 
     BattleAnimSystem_Delete(battleSystem->unk_8C);
@@ -1377,41 +1378,41 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     }
 
     if (battleSys->battleType & BATTLE_TYPE_TRAINER) {
-        if ((ov16_0223CD3C(battleSys->trainers[1].header.trainerType) == 1) || (ov16_0223CD3C(battleSys->trainers[3].header.trainerType) == 1)) {
+        if (TrainerIsGymLeaderE4OrChampion(battleSys->trainers[1].header.trainerType) == TRUE || TrainerIsGymLeaderE4OrChampion(battleSys->trainers[3].header.trainerType) == TRUE) {
             for (i = 0; i < Party_GetCurrentCount(battleSys->parties[0]); i++) {
                 v3 = Party_GetPokemonBySlotIndex(battleSys->parties[0], i);
-                Pokemon_UpdateFriendship(v3, 3, battleSys->mapHeader);
+                Pokemon_UpdateFriendship(v3, FRIENDSHIP_EVENT_BEAT_GYM_LEADER_E4_OR_CHAMPION, battleSys->mapHeader);
             }
 
             for (i = 0; i < Party_GetCurrentCount(battleSys->parties[2]); i++) {
                 v3 = Party_GetPokemonBySlotIndex(battleSys->parties[2], i);
-                Pokemon_UpdateFriendship(v3, 3, battleSys->mapHeader);
+                Pokemon_UpdateFriendship(v3, FRIENDSHIP_EVENT_BEAT_GYM_LEADER_E4_OR_CHAMPION, battleSys->mapHeader);
             }
         }
     }
 }
 
-static BOOL ov16_0223CD3C(u16 param0)
+static BOOL TrainerIsGymLeaderE4OrChampion(u16 trainerClass)
 {
-    switch (param0) {
-    case 62:
-    case 74:
-    case 75:
-    case 76:
-    case 77:
-    case 78:
-    case 64:
-    case 79:
-    case 65:
-    case 66:
-    case 67:
-    case 68:
-    case 69:
-        return 1;
+    switch (trainerClass) {
+    case TRAINER_CLASS_LEADER_ROARK:
+    case TRAINER_CLASS_LEADER_GARDENIA:
+    case TRAINER_CLASS_LEADER_WAKE:
+    case TRAINER_CLASS_LEADER_MAYLENE:
+    case TRAINER_CLASS_LEADER_FANTINA:
+    case TRAINER_CLASS_LEADER_CANDICE:
+    case TRAINER_CLASS_LEADER_BYRON:
+    case TRAINER_CLASS_LEADER_VOLKNER:
+    case TRAINER_CLASS_ELITE_FOUR_AARON:
+    case TRAINER_CLASS_ELITE_FOUR_BERTHA:
+    case TRAINER_CLASS_ELITE_FOUR_FLINT:
+    case TRAINER_CLASS_ELITE_FOUR_LUCIAN:
+    case TRAINER_CLASS_CHAMPION_CYNTHIA:
+        return TRUE;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static G3DPipelineBuffers *ov16_0223CD7C(void)

@@ -120,7 +120,7 @@ _0154:
     LockAll
     ClearFlag FLAG_UNK_0x021D
     AddObject 5
-    CallCommonScript 0x7FA
+    SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 10, _0191
     GoToIfEq VAR_0x8004, 11, _01A1

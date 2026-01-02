@@ -343,14 +343,14 @@ const void *OverworldAnimManager_GetUserData(const OverworldAnimManager *manager
     return manager->userData;
 }
 
-void sub_020715C0(OverworldAnimManager *manager, int param1)
+void OverworldAnimManager_SetDistWorldGhostPropKind(OverworldAnimManager *manager, int kind)
 {
-    manager->unk_08 = param1;
+    manager->distWorldGhostPropKind = kind;
 }
 
-int sub_020715C4(const OverworldAnimManager *manager)
+int OverworldAnimManager_GetDistWorldGhostPropKind(const OverworldAnimManager *manager)
 {
-    return manager->unk_08;
+    return manager->distWorldGhostPropKind;
 }
 
 static void OverworldAnimManager_SetTickSysTask(OverworldAnimManager *manager, SysTask *sysTask)
