@@ -906,7 +906,7 @@ void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateM
         v0->unk_10 = SysTask_Start(ov16_022629DC, v0, 1000);
         return;
     } else {
-        ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
+        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
     }
 }
 
@@ -957,7 +957,7 @@ void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, PlaySoundMessag
         v0 = -117;
     }
 
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     Sound_PlayPannedEffect(message->sdatID, v0);
 }
 
@@ -1006,7 +1006,7 @@ void ov16_0225DD44(BattleSystem *battleSys, BattlerData *param1, SetStatusIconMe
     param1->healthbar.status = message->status;
 
     Healthbar_DrawInfo(&param1->healthbar, param1->healthbar.curHP, HEALTHBAR_INFO_STATUS);
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
 }
 
 void ov16_0225DD7C(BattleSystem *battleSys, BattlerData *param1, TrainerMsgMessage *message)
@@ -1130,13 +1130,13 @@ void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage
         SysTask_Start(ov16_02262FC0, v0, 0);
     } else if (param1->bootState == 0x1) {
         ov16_022661B0(battleSys, param1->battler);
-        ClearCommand(battleSys, param1->battler, message->command);
+        BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     } else {
         if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == 0) {
             ov16_022661B0(battleSys, param1->battler);
         }
 
-        ClearCommand(battleSys, param1->battler, message->command);
+        BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     }
 }
 
@@ -1163,7 +1163,7 @@ void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeM
     v0->unk_27 = message->numSafariBalls;
 
     Healthbar_DrawInfo(v0, v0->curHP, ~HEALTHBAR_INFO_EXP_GAUGE);
-    ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
+    BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
 }
 
 void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, ForgetMoveMessage *message)
@@ -1285,7 +1285,7 @@ void ov16_0225E23C(BattleSystem *battleSys, BattlerData *param1)
         Battle_SetWaitDial(battleSys, Window_AddWaitDial(BattleSystem_Window(battleSys, 0), 1));
     }
 
-    ClearCommand(battleSys, param1->battler, 55);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 55);
 }
 
 void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *animation)
@@ -1294,7 +1294,7 @@ void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *
 
     ov16_02264530(battleSys, animation, &v0, param1->battler);
     ov12_022382BC(&v0, HEAP_ID_BATTLE);
-    ClearCommand(battleSys, param1->battler, animation->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, animation->command);
 }
 
 void ov16_0225E2C8(BattleSystem *battleSys, BattlerData *param1)
@@ -1388,7 +1388,7 @@ void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *
 
     ov16_02264530(battleSys, animation, &v0, param1->battler);
     ov12_02238390(&v0, HEAP_ID_BATTLE);
-    ClearCommand(battleSys, param1->battler, animation->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, animation->command);
 }
 
 void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, MoveHitSoundMessage *message)
@@ -1413,13 +1413,13 @@ void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, MoveHitSoundMes
         break;
     }
 
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
 }
 
 void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, MusicPlayMessage *message)
 {
     Sound_PlayBGM(message->bgmID);
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
 }
 
 static void ov16_0225E4E8(SysTask *param0, void *param1)
@@ -1555,7 +1555,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         break;
     default:
         Sound_Set2PokemonCriesAllowed(0);
-        ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -1637,7 +1637,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         break;
     default:
         Sound_Set2PokemonCriesAllowed(0);
-        ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -1851,7 +1851,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         break;
     default:
         Sound_Set2PokemonCriesAllowed(0);
-        ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2067,7 +2067,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         v0->unk_83++;
         break;
     default:
-        ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2192,7 +2192,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         }
         break;
     case 8:
-        ClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2219,7 +2219,7 @@ static void ov16_0225FA00(SysTask *param0, void *param1)
         }
         break;
     case 1:
-        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2346,7 +2346,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
 
         v0->unk_0E = 4;
     case 4:
-        ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2630,7 +2630,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
         v0->unk_0A = 6;
         break;
     case 6:
-        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2673,7 +2673,7 @@ static void ov16_02260284(SysTask *param0, void *param1)
         SpriteManager_UnloadCellObjById(v3, 20007 + v0->unk_04->battlerType);
         SpriteManager_UnloadAnimObjById(v3, 20007 + v0->unk_04->battlerType);
     }
-        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2708,7 +2708,7 @@ static void ov16_02260384(SysTask *param0, void *param1)
         ManagedSprite_SetPositionXY(v0->unk_04, v1, v2);
         break;
     case 1:
-        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -2750,7 +2750,7 @@ static void SlideHealthbarInTask(SysTask *task, void *data)
         break;
 
     default:
-        ClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
+        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
         healthbar->unk_10 = NULL;
         SysTask_Done(task);
         break;
@@ -2780,7 +2780,7 @@ static void SlideHealthbarOutTask(SysTask *task, void *data)
         break;
 
     default:
-        ClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
+        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
         healthbar->unk_10 = NULL;
         SysTask_Done(task);
         Healthbar_Enable(healthbar, FALSE);
@@ -3038,7 +3038,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
     case 8:
         if (ov16_0226BCD0(v2) == 1) {
             ov16_022656D4(v0->unk_00, v0->unk_09, v0->unk_0C);
-            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+            BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
             Heap_Free(param1);
             SysTask_Done(param0);
         }
@@ -3052,7 +3052,7 @@ static void ov16_02260AB4(SysTask *param0, void *param1)
     int v1 = TrainerAI_PickCommand(v0->unk_00, v0->unk_09);
 
     ov16_022656D4(v0->unk_00, v0->unk_09, v1);
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3062,7 +3062,7 @@ static void ov16_02260AE4(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D5B8 *v0 = (UnkStruct_ov16_0225D5B8 *)param1;
 
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
     Heap_Free(param1);
     SysTask_Done(param0);
 }
@@ -3099,7 +3099,7 @@ static void ov16_02260B04(SysTask *param0, void *param1)
         ov16_022656D4(v0->unk_00, v0->unk_09, 5);
     }
 
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3110,7 +3110,7 @@ static void ov16_02260B84(SysTask *param0, void *param1)
     UnkStruct_ov16_0225D5B8 *v0 = (UnkStruct_ov16_0225D5B8 *)param1;
 
     ov16_022656D4(v0->unk_00, v0->unk_09, 4);
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3130,7 +3130,7 @@ static void ov16_02260BAC(SysTask *param0, void *param1)
     }
 
     ov16_022656D4(v0->unk_00, v0->unk_09, v1);
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3223,7 +3223,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
     default:
         if (ov16_0226BCD0(v2) == 1) {
             ov16_0223F234(v0->unk_00, 1);
-            ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
+            BattleController_EmitClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
             Heap_Free(param1);
             SysTask_Done(param0);
         }
@@ -3272,7 +3272,7 @@ static void ov16_02260DB0(SysTask *param0, void *param1)
     }
 
     ov16_02265790(v0->unk_00, v0->unk_1D, v2);
-    ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3282,7 +3282,7 @@ static void ov16_02260E78(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D698 *v0 = (UnkStruct_ov16_0225D698 *)param1;
 
-    ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
     Heap_Free(param1);
     SysTask_Done(param0);
 }
@@ -3311,7 +3311,7 @@ static void ov16_02260E98(SysTask *param0, void *param1)
     }
 
     ov16_02265790(v0->unk_00, v0->unk_1D, v1);
-    ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3406,7 +3406,7 @@ static void ov16_02260F14(SysTask *param0, void *param1)
                 }
 
                 ov16_022658CC(v0->unk_00, v0->unk_0D, v12);
-                ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+                BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
                 Heap_Free(param1);
                 SysTask_Done(param0);
             }
@@ -3427,7 +3427,7 @@ static void ov16_022610A8(SysTask *param0, void *param1)
     GF_ASSERT(v2 < 5);
 
     ov16_022658CC(v0->unk_00, v0->unk_0D, v2);
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3437,7 +3437,7 @@ static void ov16_022610EC(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D708 *v0 = (UnkStruct_ov16_0225D708 *)param1;
 
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3487,7 +3487,7 @@ static void ov16_0226110C(SysTask *param0, void *param1)
     }
 
     ov16_022658CC(v0->unk_00, v0->unk_0D, v1);
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -3711,7 +3711,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         }
 
         ov16_02265A70(v0->unk_00, v0->unk_0D, v7);
-        ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
         Heap_Free(v0->unk_08->unk_04->party);
         Heap_Free(v0->unk_08->unk_04);
@@ -4020,7 +4020,7 @@ static void ov16_02261D50(SysTask *param0, void *param1)
     v1.item = 1;
 
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(v0->unk_08->unk_04->party);
     Heap_Free(v0->unk_08->unk_04);
@@ -4033,7 +4033,7 @@ static void ov16_02261DA8(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D794 *v0 = (UnkStruct_ov16_0225D794 *)param1;
 
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(v0->unk_08->unk_04->party);
     Heap_Free(v0->unk_08->unk_04);
@@ -4068,7 +4068,7 @@ static void ov16_02261DE0(SysTask *param0, void *param1)
     v1.target = (v2 & 0xf0) >> 8;
 
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(v0->unk_08->unk_04->party);
     Heap_Free(v0->unk_08->unk_04);
@@ -4219,7 +4219,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                 ov16_02265B10(v0->unk_00, v0->unk_09, 1 + v0->unk_04->pokemonPartySlots[v0->unk_04->selectedPartyIndex]);
             }
 
-            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+            BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
             Heap_Free(v0->unk_04->party);
             Heap_Free(v0->unk_04);
             Heap_Free(param1);
@@ -4264,7 +4264,7 @@ static void ov16_02262258(SysTask *param0, void *param1)
     }
 
     ov16_02265B10(v0->unk_00, v0->unk_09, 1 + v1);
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -4274,7 +4274,7 @@ static void ov16_0226230C(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D840 *v0 = (UnkStruct_ov16_0225D840 *)param1;
 
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -4318,7 +4318,7 @@ static void ov16_0226232C(SysTask *param0, void *param1)
     }
 
     ov16_02265B10(v0->unk_00, v0->unk_09, v1);
-    ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -4442,7 +4442,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
     case 4:
         if (ov16_0226BCD0(v2) == 1) {
             ov16_022656D4(v0->unk_00, v0->unk_0D, v0->unk_08);
-            ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+            BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
             Heap_Free(param1);
             SysTask_Done(param0);
         }
@@ -4454,7 +4454,7 @@ static void ov16_0226262C(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D8AC *v0 = (UnkStruct_ov16_0225D8AC *)param1;
 
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -4464,7 +4464,7 @@ static void ov16_0226264C(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225D8AC *v0 = (UnkStruct_ov16_0225D8AC *)param1;
 
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -4484,7 +4484,7 @@ static void ov16_0226266C(SysTask *param0, void *param1)
     }
 
     ov16_022656D4(v0->unk_00, v0->unk_0D, v1);
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(param1);
     SysTask_Done(param0);
@@ -4572,7 +4572,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         v0->unk_6A++;
         break;
     case 10:
-        ClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -4609,7 +4609,7 @@ static void ov16_0226292C(SysTask *param0, void *param1)
     } else {
         v1 = 0;
         PokemonSprite_SetAttribute(v0->unk_04, MON_SPRITE_HIDE, v1);
-        ClearCommand(v0->unk_00, v0->unk_08, 23);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_08, 23);
         Heap_Free(param1);
         SysTask_Done(param0);
     }
@@ -4632,7 +4632,7 @@ static void ov16_02262988(SysTask *param0, void *param1)
         }
         break;
     default:
-        ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
+        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         return;
@@ -4675,7 +4675,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
         }
         break;
     default:
-        ClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
+        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
         v0->unk_10 = NULL;
         SysTask_Done(param0);
         break;
@@ -4795,7 +4795,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         }
         break;
     case 10:
-        ClearCommand(v0->unk_00, v0->unk_65, v0->unk_64);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_65, v0->unk_64);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -4821,7 +4821,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -4883,7 +4883,7 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
         }
         break;
     default:
-        ClearCommand(v0->unk_00, v0->unk_61, v0->unk_60);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_61, v0->unk_60);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -4902,7 +4902,7 @@ static void ov16_02262F30(SysTask *param0, void *param1)
         break;
     case 1:
         if (v0->unk_0B == 1) {
-            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+            BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
             Heap_Free(param1);
             SysTask_Done(param0);
         }
@@ -4920,7 +4920,7 @@ static void WaitForBattleMessagePrint(SysTask *task, void *data)
     }
 
     if (Text_IsPrinterActive(waitTask->msgIdx) == FALSE) {
-        ClearCommand(waitTask->battleSys, waitTask->battler, waitTask->command);
+        BattleController_EmitClearCommand(waitTask->battleSys, waitTask->battler, waitTask->command);
         Heap_Free(data);
         SysTask_Done(task);
     }
@@ -4940,7 +4940,7 @@ static void ov16_02262FC0(SysTask *param0, void *param1)
     case 1:
         if (++v0->unk_08 == 40) {
             ov16_022661B0(v0->unk_00, v0->unk_05);
-            ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
+            BattleController_EmitClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
             Heap_Free(param1);
             SysTask_Done(param0);
         }
@@ -5176,7 +5176,7 @@ static void ov16_022633A4(SysTask *param0, void *param1)
                 ov16_02265B10(v0->unk_00, v0->unk_09, v0->unk_04->selectedMoveSlot + 1);
             }
 
-            ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+            BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
             Heap_Free(v0->unk_04);
             Heap_Free(param1);
@@ -5213,7 +5213,7 @@ static void ov16_022634DC(SysTask *param0, void *param1)
         }
         break;
     case 1:
-        ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -5268,7 +5268,7 @@ static void ShowPartyGaugeTask(SysTask *param0, void *param1)
         }
         break;
     default:
-        ClearCommand(v0->battleSys, v0->battler, v0->command);
+        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->command);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -5312,7 +5312,7 @@ static void HidePartyGaugeTask(SysTask *param0, void *param1)
         }
         break;
     default:
-        ClearCommand(v0->battleSys, v0->battler, v0->command);
+        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->command);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -5330,7 +5330,7 @@ static void ov16_02263688(SysTask *param0, void *param1)
         v0->unk_0E++;
         break;
     default:
-        ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+        BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
         Heap_Free(param1);
         SysTask_Done(param0);
         break;
@@ -5352,7 +5352,7 @@ static void ov16_022636D4(SysTask *param0, void *param1)
 
     ov12_022237A4(v0->unk_04->unk_88, v0->unk_0D);
     v0->unk_04->unk_88 = NULL;
-    ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
+    BattleController_EmitClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
     Heap_Free(param1);
     SysTask_Done(param0);

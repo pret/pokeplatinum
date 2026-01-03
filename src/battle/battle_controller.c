@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_02266ABC.h"
 
 #include "communication_system.h"
 #include "flags.h"
@@ -1963,20 +1962,32 @@ void BattleController_EmitSubmitResult(BattleSystem *battleSys)
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(ResultSubmitMessage));
 }
 
-void BattleIO_ClearMessageBox(BattleSystem *battleSys)
+/**
+ * @brief Emits a message to clear the (text) message box
+ *
+ * @param battleSys
+ */
+void BattleController_EmitClearMessageBox(BattleSystem *battleSys)
 {
     int command = BATTLE_COMMAND_CLEAR_MESSAGE_BOX;
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &command, 4);
 }
 
-void ClearCommand(BattleSystem *battleSys, int battlerId, int param2)
+/**
+ * @brief Emits a message to clear the given command in the server queue in a multiplayer game
+ *
+ * @param battleSys
+ * @param battlerId
+ * @param command
+ */
+void BattleController_EmitClearCommand(BattleSystem *battleSys, int battlerId, int command)
 {
-    UnkStruct_ov16_02266ABC message;
+    CommandClearMsg message;
 
-    message.unk_00 = param2;
-    message.unk_01 = CommSys_CurNetId();
+    message.command = command;
+    message.netID = CommSys_CurNetId();
 
-    SendMessage(battleSys, 2, battlerId, &message, sizeof(UnkStruct_ov16_02266ABC));
+    SendMessage(battleSys, 2, battlerId, &message, sizeof(CommandClearMsg));
 }
 
 /**

@@ -823,7 +823,7 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
                     && Battler_SelectedMove(battleCtx, battler) == MOVE_FOCUS_PUNCH
                     && Battler_CheckTruant(battleCtx, battler) == FALSE
                     && battleCtx->turnFlags[battler].struggling == FALSE) {
-                    BattleIO_ClearMessageBox(battleSys);
+                    BattleController_EmitClearMessageBox(battleSys);
                     battleCtx->msgBattlerTemp = battler;
 
                     LOAD_SUBSEQ(subscript_tighten_focus);
@@ -1243,7 +1243,7 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
     } while (state == STATE_PROCESSING);
 
     if (state == STATE_BREAK_OUT) {
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     }
 
     if (state == STATE_DONE) {
@@ -1722,7 +1722,7 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
         }
 
         if (state) {
-            BattleIO_ClearMessageBox(battleSys);
+            BattleController_EmitClearMessageBox(battleSys);
             return;
         }
     }
@@ -1750,7 +1750,7 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
         return;
     }
 
-    BattleIO_ClearMessageBox(battleSys);
+    BattleController_EmitClearMessageBox(battleSys);
 
     int battler;
     switch (battleCtx->sideConditionCheckState) {
@@ -1898,7 +1898,7 @@ static void BattleControllerPlayer_FightCommand(BattleSystem *battleSys, BattleC
     battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
     battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, randomizeTarget, 0);
 
-    BattleIO_ClearMessageBox(battleSys);
+    BattleController_EmitClearMessageBox(battleSys);
 }
 
 static void BattleControllerPlayer_ItemCommand(BattleSystem *battleSys, BattleContext *battleCtx)
@@ -3811,7 +3811,7 @@ static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleC
             battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
         }
 
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     } else {
         battleCtx->command = BATTLE_CONTROL_LOOP_FAINTED;
     }
@@ -3861,7 +3861,7 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
             }
         } while (battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys));
 
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     } else if (CURRENT_MOVE_DATA.range == RANGE_ALL_ADJACENT
         && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
         && battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys)) {
@@ -3880,7 +3880,7 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
             }
         } while (battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys));
 
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     } else {
         battleCtx->command = BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT;
     }

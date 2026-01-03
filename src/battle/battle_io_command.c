@@ -265,7 +265,7 @@ static void ov16_0225C13C(BattleSystem *battleSys, BattlerData *param1)
 
     ov16_0223F4F4(battleSys, message->unk_04);
     ov16_0225CBB8(battleSys, param1);
-    ClearCommand(battleSys, param1->battler, 1);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 1);
     ZeroDataBuffer(param1);
 }
 
@@ -312,7 +312,7 @@ static void ov16_0225C1B8(BattleSystem *battleSys, BattlerData *param1)
 static void ov16_0225C1CC(BattleSystem *battleSys, BattlerData *param1)
 {
     PokemonSprite_Delete(param1->unk_20);
-    ClearCommand(battleSys, param1->battler, 7);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 7);
     ZeroDataBuffer(param1);
 }
 
@@ -454,7 +454,7 @@ static void ov16_0225C314(BattleSystem *battleSys, BattlerData *param1)
 static void ov16_0225C328(BattleSystem *battleSys, BattlerData *param1)
 {
     if (PokemonSprite_GetAttribute(param1->unk_20, MON_SPRITE_HIDE) == 1) {
-        ClearCommand(battleSys, param1->battler, 23);
+        BattleController_EmitClearCommand(battleSys, param1->battler, 23);
     } else {
         ov16_0225DA44(battleSys, param1);
     }
@@ -607,7 +607,7 @@ static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1)
         Pokemon_CalcLevelAndStats(v2);
     }
 
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 
@@ -625,7 +625,7 @@ static void ov16_0225C558(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    ClearCommand(battleSys, param1->battler, param1->data[0]);
+    BattleController_EmitClearCommand(battleSys, param1->battler, param1->data[0]);
     ZeroDataBuffer(param1);
 }
 
@@ -633,7 +633,7 @@ static void ov16_0225C5B0(BattleSystem *battleSys, BattlerData *param1)
 {
     ov16_022675AC(&param1->healthbar);
     ov16_022647D8(param1);
-    ClearCommand(battleSys, param1->battler, param1->data[0]);
+    BattleController_EmitClearCommand(battleSys, param1->battler, param1->data[0]);
     ZeroDataBuffer(param1);
 }
 
@@ -659,7 +659,7 @@ static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 
@@ -710,14 +710,14 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;
     PokemonSprite_SetAttribute(param1->unk_20, MON_SPRITE_Y_CENTER, v3);
 
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 
 static void ov16_0225C77C(BattleSystem *battleSys, BattlerData *param1)
 {
     ov16_0223EF8C(battleSys);
-    ClearCommand(battleSys, param1->battler, 46);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 46);
     ZeroDataBuffer(param1);
 }
 
@@ -754,7 +754,7 @@ static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    ClearCommand(battleSys, param1->battler, 47);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 47);
     ZeroDataBuffer(param1);
 }
 
@@ -781,7 +781,7 @@ static void ov16_0225C868(BattleSystem *battleSys, BattlerData *param1)
     if (Battler_Side(battleSys, param1->battler)) {
         BattleDisplay_ShowPartyGauge(battleSys, param1, v0);
     } else {
-        ClearCommand(battleSys, param1->battler, 50);
+        BattleController_EmitClearCommand(battleSys, param1->battler, 50);
     }
 
     ZeroDataBuffer(param1);
@@ -794,7 +794,7 @@ static void ov16_0225C8A4(BattleSystem *battleSys, BattlerData *param1)
     if (Battler_Side(battleSys, param1->battler)) {
         BattleDisplay_HidePartyGauge(battleSys, param1, v0);
     } else {
-        ClearCommand(battleSys, param1->battler, 51);
+        BattleController_EmitClearCommand(battleSys, param1->battler, 51);
     }
 
     ZeroDataBuffer(param1);
@@ -807,7 +807,7 @@ static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *param1)
     PaletteData *v2 = BattleSystem_PaletteSys(battleSys);
 
     PartyGauge_LoadGraphics(v0, v1, v2);
-    ClearCommand(battleSys, param1->battler, 52);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 52);
     ZeroDataBuffer(param1);
 }
 
@@ -816,7 +816,7 @@ static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *param1)
     SpriteManager *v0 = BattleSystem_GetSpriteManager(battleSys);
 
     PartyGauge_FreeGraphics(v0);
-    ClearCommand(battleSys, param1->battler, 53);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 53);
     ZeroDataBuffer(param1);
 }
 
@@ -834,7 +834,7 @@ static void ov16_0225C940(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 
@@ -956,7 +956,7 @@ static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    ClearCommand(battleSys, param1->battler, message->command);
+    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 
@@ -967,7 +967,7 @@ static void ov16_0225CB80(BattleSystem *battleSys, BattlerData *param1)
     Window_FillTilemap(v0, 0xff);
     Window_LoadTiles(v0);
 
-    ClearCommand(battleSys, param1->battler, 66);
+    BattleController_EmitClearCommand(battleSys, param1->battler, 66);
     ZeroDataBuffer(param1);
 }
 

@@ -385,4 +385,10 @@ typedef struct {
     u8 unk_08[28];
 } ResultSubmitMessage;
 
+typedef struct {
+    u8 command;
+    u8 netID;
+    u16 padding_02;
+} CommandClearMsg;
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

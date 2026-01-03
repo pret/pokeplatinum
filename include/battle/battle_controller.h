@@ -141,8 +141,8 @@ void BattleController_EmitRefreshSprite(BattleSystem *battleSys, BattleContext *
 void BattleController_EmitPlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleController_EmitPlayMusic(BattleSystem *battleSys, int param1, int param2);
 void BattleController_EmitSubmitResult(BattleSystem *battleSys);
-void BattleIO_ClearMessageBox(BattleSystem *battleSys);
-void ClearCommand(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitClearMessageBox(BattleSystem *battleSys);
+void BattleController_EmitClearCommand(BattleSystem *battleSys, int param1, int param2);
 BOOL BattleController_RecvCommMessage(BattleSystem *battleSys, void *param1);
 void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *param1, MoveAnimation *param2, int param3, int param4, int param5, int param6, u16 param7);
 
