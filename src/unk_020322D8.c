@@ -305,7 +305,7 @@ void CommQueueMan_Delete(CommQueueMan *param0)
     Heap_Free(param0->unk_18);
 }
 
-BOOL CommQueue_CompareCmd(CommQueueMan *param0, int param1)
+BOOL CommQueueMan_IsCmdInQueue(CommQueueMan *param0, int param1)
 {
     int v0;
     UnkStruct_020322D8 *v1 = param0->unk_18;

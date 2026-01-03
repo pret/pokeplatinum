@@ -7,12 +7,17 @@
 #define MAX_GOODS_BAG_SLOTS 40
 #define MAX_GOODS_PC_SLOTS  200
 
-#define MAX_PLACED_GOODS   15
+#define MAX_PLACED_GOODS  15
+#define MAX_BASE_BOULDERS 16
+
 #define MAX_BURIED_SPHERES 100
 #define MAX_PLACED_TRAPS   16
 #define MAX_SPAWNED_TRAPS  64
 
 #define MAX_SPHERE_SIZE 99
+
+#define PC_COORDINATE_X 15
+#define PC_COORDINATE_Z 12
 
 enum SphereTypes {
     SPHERE_NONE = 0,

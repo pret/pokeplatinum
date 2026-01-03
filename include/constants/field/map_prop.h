@@ -64,12 +64,30 @@ enum MapPropModelID {
     MAP_PROP_MODEL_BLUE_DOOR = 312,
     // Model name: c3_door2
     MAP_PROP_MODEL_IRON_DOOR_2 = 313,
+    // Model name: ug_table_l01
+    MAP_PROP_MODEL_SECRET_BASE_PC_NORMAL_FLAG = 316,
+    // Model name: ug_table_l02
+    MAP_PROP_MODEL_SECRET_BASE_PC_BRONZE_FLAG = 317,
+    // Model name: ug_table_l03
+    MAP_PROP_MODEL_SECRET_BASE_PC_SILVER_FLAG = 318,
+    // Model name: ug_table_l04
+    MAP_PROP_MODEL_SECRET_BASE_PC_GOLD_FLAG = 319,
+    // Model name: ug_table_l05
+    MAP_PROP_MODEL_SECRET_BASE_PC_PLATINUM_FLAG = 320,
     // Model name: stair_pc_u02
     MAP_PROP_MODEL_POKECENTER_STAIR_UP_RIGHT = 425,
     // Model name: stair_pc_d02
     MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_RIGHT = 426,
     // Model name: door_pc01
     MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR = 427,
+    // Model name: ug_hole_b
+    MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_NORTH = 429,
+    // Model name: ug_hole_f
+    MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_SOUTH = 430,
+    // Model name: ug_hole_l
+    MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_WEST = 431,
+    // Model name: ug_hole_r
+    MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_EAST = 432,
     // Model name: t3_door1
     MAP_PROP_MODEL_YELLOW_WOODEN_DOOR = 438,
     // Model name: d3_door1

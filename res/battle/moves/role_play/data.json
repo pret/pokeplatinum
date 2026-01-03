@@ -13,7 +13,7 @@
     "priority": 0,
     "flags": [],
     "contest": {
-        "effect": 23,
+        "effect": "CONTEST_EFFECT_PITY_POINTS",
         "type": "CONTEST_TYPE_CUTE"
     }
 }

@@ -1752,7 +1752,7 @@ BOOL CommSys_SendDataFixedSize(int cmd, const void *data)
     return CommSys_SendData(cmd, data, 0);
 }
 
-BOOL Link_Message(int cmd)
+BOOL CommSys_SendMessage(int cmd)
 {
     return CommSys_SendData(cmd, NULL, 0);
 }
@@ -1837,14 +1837,14 @@ void CommSys_Seed(MATHRandContext32 *rand)
     MATH_InitRand32(rand, seed);
 }
 
-BOOL sub_02036254(int param0)
+BOOL CommSys_IsCmdQueuedServer(int cmd)
 {
-    return CommQueue_CompareCmd(&sCommunicationSystem->commQueueManSendServer, param0);
+    return CommQueueMan_IsCmdInQueue(&sCommunicationSystem->commQueueManSendServer, cmd);
 }
 
-BOOL sub_0203626C(int param0)
+BOOL CommSys_IsCmdQueued(int cmd)
 {
-    return CommQueue_CompareCmd(&sCommunicationSystem->commQueueManSend, param0);
+    return CommQueueMan_IsCmdInQueue(&sCommunicationSystem->commQueueManSend, cmd);
 }
 
 BOOL sub_02036284(void)

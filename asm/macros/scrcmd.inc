@@ -346,7 +346,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    HandleSignpostInput
     .endm
 
     .macro ShowArrowSign messageID
@@ -354,7 +354,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    HandleSignpostInput
     .endm
 
     .macro ShowLandmarkSign messageID
@@ -362,7 +362,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    CallCommonScript 0x7D0
+    HandleSignpostInput
     .endm
 
     .macro ShowScrollingSign messageID
@@ -370,7 +370,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     DrawSignpostScrollingMessage \messageID, VAR_RESULT
-    CallCommonScript 0x7D0
+    HandleSignpostInput
     .endm
 
     .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_RESULT
@@ -2672,22 +2672,6 @@
     .short \destVarID
     .endm
 
-    .macro GivePoketchApp
-    CallCommonScript 0x7D9
-    .endm
-
-    .macro GiveAccessoryWaitForConfirm
-    CallCommonScript 0x7DF
-    .endm
-
-    .macro MessageBagIsFull
-    CallCommonScript 0x7E1
-    .endm
-
-    .macro GiveItemQuantity
-    CallCommonScript 0x7FC
-    .endm
-
     .macro ScrCmd_Unused_1D4 arg0, arg1, arg2
     .short 468
     .short \arg0
@@ -3343,15 +3327,6 @@
     .macro PlayPokecenterHealingAnimation pokeballCount
     .short 571
     .short \pokeballCount
-    .endm
-
-    .macro CallPokecenterNurse nurseLocalID
-    SetVar VAR_0x8007, \nurseLocalID
-    CallCommonScript 0x7D2
-    .endm
-
-    .macro VendorGreeting
-    CallCommonScript 0x7E3
     .endm
 
     .macro PlayElevatorAnimation elevatorDir, loopCount
@@ -5138,6 +5113,121 @@
     .macro GoToIfCannotFitItem item, count, destVarID, offset
     CanFitItem \item, \count, \destVarID
     GoToIfEq \destVarID, FALSE, \offset
+    .endm
+
+    /* CallCommonScript aliases below */
+
+    .macro HandleSignpostInput
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro CheckBagPocketForItem
+    CallCommonScript 0x7D1
+    .endm
+
+    .macro CallPokecenterNurse nurseLocalID
+    SetVar VAR_0x8007, \nurseLocalID
+    CallCommonScript 0x7D2
+    .endm
+
+    .macro SaveGame
+    CallCommonScript 0x7D6
+    .endm
+
+    .macro GivePoketchApp
+    CallCommonScript 0x7D9
+    .endm
+
+    .macro SendToUndergroundPC
+    CallCommonScript 0x7DC
+    .endm
+
+    .macro ObtainUndergroundTrap
+    CallCommonScript 0x7DD
+    .endm
+
+    .macro ObtainUndergroundSphere
+    CallCommonScript 0x7DE
+    .endm
+
+    .macro GiveAccessoryWaitForConfirm
+    CallCommonScript 0x7DF
+    .endm
+
+    .macro GiveItemQuantityNoLineFeed
+    CallCommonScript 0x7E0
+    .endm
+
+    .macro MessageBagIsFull
+    CallCommonScript 0x7E1
+    .endm
+
+    .macro VendorGreeting
+    CallCommonScript 0x7E3
+    .endm
+
+    .macro ObtainContestBackdropWaitForConfirm
+    CallCommonScript 0x7F4
+    .endm
+
+    .macro PrintPlateObtainedMessage
+    CallCommonScript 0x7F6
+    .endm
+
+    .macro SetCounterpartBGM
+    CallCommonScript 0x7F8
+    .endm
+
+    .macro FadeToDefaultMusic
+    CallCommonScript 0x7F9
+    .endm
+
+    .macro SetRivalBGM
+    CallCommonScript 0x7FA
+    .endm
+
+    .macro FadeToDefaultMusic2
+    CallCommonScript 0x7FB
+    .endm
+
+    .macro GiveItemQuantity
+    CallCommonScript 0x7FC
+    .endm
+
+    .macro ObtainContestBackdrop
+    CallCommonScript 0x7FD
+    .endm
+
+    .macro SendToUndergroundPCWithLinefeed
+    CallCommonScript 0x7FE
+    .endm
+
+    .macro GiveAccessory
+    CallCommonScript 0x7FF
+    .endm
+
+    .macro SetFollowMeBGM
+    CallCommonScript 0x800
+    .endm
+
+    .macro FadeToDefaultMusic3
+    CallCommonScript 0x801
+    .endm
+
+    .macro CheckAllFrontierGoldPrintsObtained
+    CallCommonScript 0x806
+    .endm
+
+    .macro SetLookerBGM
+    CallCommonScript 0x807
+    .endm
+
+    .macro FadeToDefaultMusic4
+    CallCommonScript 0x808
+    .endm
+
+    .macro GriseousOrbCouldNotBeRemoved
+    CallCommonScript 0x809
     .endm
 
     .text

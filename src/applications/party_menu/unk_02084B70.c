@@ -1126,7 +1126,7 @@ static void TeachMove(PartyMenuApplication *application, Pokemon *mon, u32 moveS
             Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
         }
 
-        Pokemon_UpdateFriendship(mon, 4, (u16)GetCurrentMapLabel(application));
+        Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM, (u16)GetCurrentMapLabel(application));
     }
 }
 

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_02241F74_H
 #define POKEPLATINUM_OV23_02241F74_H
 
-#include "struct_decls/struct_02029894_decl.h"
+#include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
 #include "overlay023/underground_defs.h"
@@ -51,8 +51,8 @@ UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void);
 void ov23_022421EC(void);
-BOOL CommManUnderground_FormatStringWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, String *dest);
-BOOL CommManUnderground_FormatStringWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, String *dest);
+BOOL CommManUnderground_FormatCommonStringWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, String *dest);
+BOOL CommManUnderground_FormatCommonStringWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, String *dest);
 BOOL ov23_0224240C(int x, int z);
 BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void *param2, void *param3);
@@ -73,7 +73,7 @@ void ov23_02242CB4(void);
 void ov23_02242D08(void);
 void ov23_02242D44(FieldSystem *fieldSystem);
 BOOL ov23_02242D60(String *param0);
-UnkStruct_02029894 *ov23_02242E10(SaveData *saveData);
+SecretBase *ov23_02242E10(SaveData *saveData);
 int ov23_02242E28(void);
 int ov23_02242E40(void);
 BOOL Underground_AreCoordinatesInSecretBase(int x, int z);
