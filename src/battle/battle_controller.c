@@ -123,14 +123,14 @@ static BOOL BattleController_RecvLocalMessage(BattleSystem *battleSys, void *mes
 
             success = TRUE;
         }
-    } else if (recipient == 2) { 
+    } else if (recipient == 2) {
         int val = src[0];
         int id = src[1];
 
         if (ov16_0223ED60(battleSys)) {
             BattleIO_DequeueVal(battleSys->battleCtx, id, battler, val);
         }
-        
+
         success = TRUE;
     }
 
@@ -518,7 +518,7 @@ void BattleController_EmitSlideTrainerIn(BattleSystem *battleSys, int battlerId,
 
 /**
  * @brief Emits a message to slide the healthbar in
- * 
+ *
  * @param battleSys
  * @param battleCtx
  * @param battler
@@ -782,7 +782,7 @@ void ov16_02265790(BattleSystem *battleSys, int battlerId, int command)
 
 /**
  * @brief Emits a message to show the target selection menu
- * 
+ *
  * @param battleSys
  * @param battleCtx
  * @param range
@@ -966,7 +966,7 @@ void ov16_02265B10(BattleSystem *battleSys, int battlerId, int command)
 }
 
 /**
- * @brief Emits a message to show the yes/no menu 
+ * @brief Emits a message to show the yes/no menu
  *
  * @param battleSys
  * @param battleCtx
@@ -1192,7 +1192,7 @@ void BattleController_EmitPlaySound(BattleSystem *battleSys, BattleContext *batt
 
 /**
  * @brief Emits a message to fade out the screen
- * 
+ *
  * @param battleSys
  * @param battleCtx
  */
@@ -1205,7 +1205,7 @@ void BattleController_EmitFadeOut(BattleSystem *battleSys, BattleContext *battle
 
 /**
  * @brief Emits a message to fade out the screen
- * 
+ *
  * @param battleSys
  * @param battlerId
  * @param toggle
@@ -1382,7 +1382,7 @@ void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext 
 }
 
 /**
- * @brief Emits a message to play the level up animation 
+ * @brief Emits a message to play the level up animation
  *
  * @param battleSys
  * @param battler
@@ -2040,7 +2040,7 @@ BOOL BattleController_RecvCommMessage(BattleSystem *battleSys, void *data)
 }
 
 /**
- * @brief Initializes MoveAnimation structs, output to the animation parameter 
+ * @brief Initializes MoveAnimation structs, output to the animation parameter
  *
  * @param battleSys
  * @param battleCtx

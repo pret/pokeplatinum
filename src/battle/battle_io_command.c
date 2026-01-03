@@ -8,9 +8,9 @@
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_controller.h"
 
+#include "battle/battle_controller.h"
 #include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
-#include "battle/battle_controller.h"
 #include "battle/battle_message.h"
 #include "battle/healthbar.h"
 #include "battle/ov16_0223DF00.h"

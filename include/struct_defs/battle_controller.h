@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
 #define POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
 
-#include "constants/pokemon.h"
 #include "constants/moves.h"
+#include "constants/pokemon.h"
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225C29C_sub1.h"
@@ -49,7 +49,7 @@ typedef struct {
     u16 species;
     u32 personality;
     int cryModulation;
-    //These arrays are set but never used
+    // These arrays are set but never used
     u16 moves[LEARNED_MOVES_MAX];
     u16 curPP[LEARNED_MOVES_MAX];
     u16 maxPP[LEARNED_MOVES_MAX];
@@ -194,8 +194,8 @@ typedef struct {
     u8 padding_06;
     u8 gender;
     int hpCalcTemp;
-    u32 exp; //set but unused
-    u32 expToNextLevel; //set but unused
+    u32 exp; // set but unused
+    u32 expToNextLevel; // set but unused
 } HPGaugeUpdateMessage;
 
 typedef struct {
@@ -261,7 +261,7 @@ typedef struct {
 typedef struct {
     u8 command;
     u8 partySlot;
-    u16 hpPercent; //out of 1000
+    u16 hpPercent; // out of 1000
 } SendOutMsgMessage;
 
 typedef struct {

@@ -14,8 +14,8 @@
 
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_context.h"
-#include "battle/battle_cursor.h"
 #include "battle/battle_controller.h"
+#include "battle/battle_cursor.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/healthbar.h"

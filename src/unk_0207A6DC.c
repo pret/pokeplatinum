@@ -6,9 +6,9 @@
 #include "constants/battle.h"
 
 #include "struct_decls/battle_system.h"
+#include "struct_defs/battle_controller.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02039A58.h"
-#include "struct_defs/battle_controller.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_0207ACB4.h"
 #include "struct_defs/struct_0207AD40.h"
