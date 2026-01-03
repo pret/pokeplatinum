@@ -3,13 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "generated/game_records.h"
 #include "generated/text_banks.h"
 
+#include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -46,10 +47,12 @@
 #include "unk_020559DC.h"
 #include "vars_flags.h"
 
+#include "res/text/bank/common_strings.h"
+
 typedef struct ClearGameStruct {
     BOOL gameCompleted;
     HallOfFameDisplayData displayData;
-    UnkStruct_0203E274 unk_10;
+    ClearGamePlayerInfo playerInfo;
     Window window;
     String *string;
     void *dial;
@@ -150,7 +153,7 @@ static BOOL FieldTask_DoClearGameSequence(FieldTask *task)
     case 8:
         if (IsScreenFadeDone()) {
             ClearGame_FreeStringRemoveWindowFreeTilemapBuffer(fieldSystem, clearGameStruct);
-            sub_0203E274(fieldSystem, &(clearGameStruct->unk_10));
+            sub_0203E274(fieldSystem, &(clearGameStruct->playerInfo));
             (*state)++;
         }
         break;
@@ -186,9 +189,9 @@ void ClearGame(FieldTask *task)
     clearGameStruct->displayData.trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     clearGameStruct->displayData.party = SaveData_GetParty(fieldSystem->saveData);
     clearGameStruct->displayData.playTime = SaveData_GetPlayTime(fieldSystem->saveData);
-    clearGameStruct->unk_10.gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
-    clearGameStruct->unk_10.gameCompleted = SystemFlag_CheckGameCompleted(varsFlags);
-    clearGameStruct->unk_10.pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    clearGameStruct->playerInfo.gender = TrainerInfo_Gender(SaveData_GetTrainerInfo(fieldSystem->saveData));
+    clearGameStruct->playerInfo.gameCompleted = SystemFlag_CheckGameCompleted(varsFlags);
+    clearGameStruct->playerInfo.pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
     if (SystemFlag_CheckGameCompleted(varsFlags) == FALSE) {
         FieldSystem_RecordFirstCompletion(fieldSystem);
@@ -256,7 +259,7 @@ static void sub_02052F28(FieldSystem *fieldSystem, ClearGameStruct *clearGameStr
     Bg_MaskPalette(BG_LAYER_MAIN_3, 0x0);
     Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_3, &v2, 0);
     Bg_ClearTilesRange(BG_LAYER_MAIN_3, 0x20, 0, HEAP_ID_FIELD3);
-    Bg_FillTilemapRect(fieldSystem->bgConfig, 3, 0x0, 0, 0, 32, 32, 17);
+    Bg_FillTilemapRect(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 0x0, 0, 0, 32, 32, TILEMAP_FILL_VAL_INCLUDES_PALETTE);
     Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
 }
 
@@ -264,13 +267,13 @@ static void sub_02052FA8(FieldSystem *fieldSystem, ClearGameStruct *clearGameStr
 {
     Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
-    clearGameStruct->string = MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, 15, HEAP_ID_FIELD3);
+    clearGameStruct->string = MessageBank_GetNewStringFromNARC(NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, CommonStrings_Text_SavingDontTurnOffThePower, HEAP_ID_FIELD3);
 
     FieldMessage_AddWindow(fieldSystem->bgConfig, &clearGameStruct->window, BG_LAYER_MAIN_3);
     FieldMessage_DrawWindow(&clearGameStruct->window, options);
 
     clearGameStruct->printerID = FieldMessage_Print(&clearGameStruct->window, clearGameStruct->string, options, 1);
-    clearGameStruct->dial = Window_AddWaitDial(&clearGameStruct->window, 1024 - (18 + 12));
+    clearGameStruct->dial = Window_AddWaitDial(&clearGameStruct->window, BASE_TILE_SCROLLING_MESSAGE_BOX);
 }
 
 static BOOL ClearGame_FieldMessageFinishedPrinting(ClearGameStruct *clearGameStruct)
@@ -292,10 +295,10 @@ static void sub_02053028(FieldSystem *fieldSystem, ClearGameStruct *clearGameStr
     if (saveResult == SAVE_RESULT_OK) {
         StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
         StringTemplate_SetPlayerName(strTemplate, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        clearGameStruct->string = MessageUtil_ExpandedString(strTemplate, msgLoader, 16, HEAP_ID_FIELD1);
+        clearGameStruct->string = MessageUtil_ExpandedString(strTemplate, msgLoader, CommonStrings_Text_PlayerSavedTheGame, HEAP_ID_FIELD1);
         StringTemplate_Free(strTemplate);
     } else {
-        clearGameStruct->string = MessageLoader_GetNewString(msgLoader, 18);
+        clearGameStruct->string = MessageLoader_GetNewString(msgLoader, CommonStrings_Text_SaveError);
     }
 
     MessageLoader_Free(msgLoader);

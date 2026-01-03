@@ -21,7 +21,7 @@ PokemonLeagueBerthaRoom_Bertha:
     GoToIfEq VAR_RESULT, FALSE, PokemonLeagueBerthaRoom_BlackOut
     SetFlag FLAG_DEFEATED_BERTHA
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    RemoveObject POKEMON_LEAGUE_BERTHA_ROOM_EXIT_DOOR
+    RemoveObject LOCALID_EXIT_DOOR
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueBerthaRoom_CreateJournalEventDefeatedBertha
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueBerthaRoom_CreateJournalEventDefeatedRematchBertha
     Message PokemonLeagueBerthaRoom_Text_BerthaDefeat
@@ -64,7 +64,7 @@ PokemonLeagueBerthaRoom_OnFrame:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_BERTHA_ROOM_ENTRANCE_DOOR
-    AddObject POKEMON_LEAGUE_BERTHA_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End

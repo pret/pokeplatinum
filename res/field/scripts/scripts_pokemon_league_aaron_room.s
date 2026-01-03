@@ -21,7 +21,7 @@ PokemonLeagueAaronRoom_Aaron:
     GoToIfEq VAR_RESULT, FALSE, PokemonLeagueAaronRoom_BlackOut
     SetFlag FLAG_DEFEATED_AARON
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    RemoveObject POKEMON_LEAGUE_AARON_ROOM_EXIT_DOOR
+    RemoveObject LOCALID_EXIT_DOOR
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedAaron
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedRematchAaron
     Message PokemonLeagueAaronRoom_Text_AaronDefeat
@@ -64,7 +64,7 @@ PokemonLeagueAaronRoom_OnFrame:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_AARON_ROOM_ENTRANCE_DOOR
-    AddObject POKEMON_LEAGUE_AARON_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End

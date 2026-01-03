@@ -11,14 +11,14 @@ PokemonLeagueHallOfFame_OnFrame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeague_HallOfFame_Movement_WalkUp
     WaitMovement
-    ApplyMovement POKEMON_LEAGUE_HALL_OF_FAME_PROF_ROWAN, PokemonLeague_HallOfFame_Movement_TurnAroundInPlace
+    ApplyMovement LOCALID_PROF_ROWAN, PokemonLeague_HallOfFame_Movement_TurnAroundInPlace
     WaitMovement
     GetLeagueVictories VAR_RESULT
     CallIfEq VAR_RESULT, 0, PokemonLeagueHallOfFame_FirstVictoryMessages
     CallIfNe VAR_RESULT, 0, PokemonLeagueHallOfFame_RepeatVictoryMessages
     CloseMessage
-    ApplyMovement POKEMON_LEAGUE_HALL_OF_FAME_PROF_ROWAN, PokemonLeagueHallOfFame_Movement_RowanFacePlayer
-    ApplyMovement POKEMON_LEAGUE_HALL_OF_FAME_CYNTHIA, PokemonLeagueHallOfFame_Movement_CynthiaFacePlayer
+    ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallOfFame_Movement_RowanFacePlayer
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallOfFame_Movement_CynthiaFacePlayer
     WaitMovement
     WaitTime 15, VAR_RESULT
     GetPlayerGender VAR_RESULT
@@ -39,8 +39,8 @@ PokemonLeagueHallOfFame_WelcomeToTheHallOfFameFemale:
 PokemonLeagueHallOfFame_EnterHallOfFame:
     CloseMessage
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallOfFame_Movement_PlayerApproachMachine
-    ApplyMovement POKEMON_LEAGUE_HALL_OF_FAME_PROF_ROWAN, PokemonLeagueHallOfFame_Movement_RowanFaceMachine
-    ApplyMovement POKEMON_LEAGUE_HALL_OF_FAME_CYNTHIA, PokemonLeagueHallOfFame_Movement_CynthiaFaceMachine
+    ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallOfFame_Movement_RowanFaceMachine
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallOfFame_Movement_CynthiaFaceMachine
     WaitMovement
     Message PokemonLeagueHallOfFame_Text_TimeToRecordYourNameAndYourPokemon
     CloseMessage

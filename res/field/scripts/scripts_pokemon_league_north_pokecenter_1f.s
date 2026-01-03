@@ -50,17 +50,17 @@ PokemonLeagueNorthPokecenter1F_DoorGuard:
     End
 
 PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayEastSouth:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastSouth
+    ApplyMovement LOCALID_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastSouth
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway
 
 PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayWest:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayWest
+    ApplyMovement LOCALID_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayWest
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway
 
 PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayEastWest:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastWest
+    ApplyMovement LOCALID_ACE_TRAINER_M, PokemonLeagueNorthPokecenter1F_Movement_DoorGuardMoveAwayEastWest
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway
 
@@ -120,7 +120,7 @@ PokemonLeagueNorthPokecenter1F_VendorSpecial:
 PokemonLeagueNorthPokecenter1F_RivalTrigger:
     LockAll
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY
-    AddObject POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY
+    AddObject LOCALID_BARRY
     CallCommonScript 0x7FA
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 10, PokemonLeagueNorthPokecenter1F_RivalEnterWest
@@ -129,17 +129,17 @@ PokemonLeagueNorthPokecenter1F_RivalTrigger:
     End
 
 PokemonLeagueNorthPokecenter1F_RivalEnterWest:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalEnterWest
+    ApplyMovement LOCALID_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalEnterWest
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_RivalIntro
 
 PokemonLeagueNorthPokecenter1F_RivalEnterNorth:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalEnterNorth
+    ApplyMovement LOCALID_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalEnterNorth
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_RivalIntro
 
 PokemonLeagueNorthPokecenter1F_RivalEnterEast:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalEnterEast
+    ApplyMovement LOCALID_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalEnterEast
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_RivalIntro
 
@@ -180,23 +180,23 @@ PokemonLeagueNorthPokecenter1F_RivalPostBattle:
     End
 
 PokemonLeagueNorthPokecenter1F_RivalLeaveEast:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalLeaveEast
+    ApplyMovement LOCALID_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalLeaveEast
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_RemoveRival
 
 PokemonLeagueNorthPokecenter1F_RivalLeaveSouth:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalLeaveSouth
+    ApplyMovement LOCALID_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalLeaveSouth
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_RemoveRival
 
 PokemonLeagueNorthPokecenter1F_RivalLeaveWest:
-    ApplyMovement POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalLeaveWest
+    ApplyMovement LOCALID_BARRY, PokemonLeagueNorthPokecenter1F_Movement_RivalLeaveWest
     WaitMovement
     GoTo PokemonLeagueNorthPokecenter1F_RemoveRival
 
 PokemonLeagueNorthPokecenter1F_RemoveRival:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY
+    RemoveObject LOCALID_BARRY
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar VAR_RIVAL_BEAT_SUNYSHORE_GYM, 1
     ReleaseAll

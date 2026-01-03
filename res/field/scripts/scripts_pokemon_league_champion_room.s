@@ -29,11 +29,11 @@ PokemonLeagueChampionRoom_OnFrame:
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_CreateJournalEventDefeatedRematchCynthia
     Message PokemonLeagueChampionRoom_Text_ComeWithMe
     CloseMessage
-    ApplyMovement POKEMON_LEAGUE_CHAMPION_ROOM_CYNTHIA, PokemonLeagueChampionRoom_CynthiaMoveAwayFromElevator
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_CynthiaMoveAwayFromElevator
     WaitMovement
     ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_PlayerEnterElevator
     WaitMovement
-    ApplyMovement POKEMON_LEAGUE_CHAMPION_ROOM_CYNTHIA, PokemonLeagueChampionRoom_CynthiaFacePlayer
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_CynthiaFacePlayer
     WaitMovement
     WaitTime 30, VAR_RESULT
     TriggerPlatformLift

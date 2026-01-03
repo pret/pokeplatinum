@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_LEAGUE_AARON_ROOM_AARON",
+            "id": "LOCALID_AARON",
             "graphics_id": "OBJ_EVENT_GFX_AARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_AARON_ROOM_ENTRANCE_DOOR",
+            "id": "LOCALID_ENTRANCE_DOOR",
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_AARON_ROOM_EXIT_DOOR",
+            "id": "LOCALID_EXIT_DOOR",
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

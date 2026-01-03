@@ -22,7 +22,7 @@ PokemonLeagueFlintRoom_Flint:
     GoToIfEq VAR_RESULT, FALSE, PokemonLeagueFlintRoom_BlackOut
     SetFlag FLAG_DEFEATED_FLINT
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    RemoveObject POKEMON_LEAGUE_FLINT_ROOM_EXIT_DOOR
+    RemoveObject LOCALID_EXIT_DOOR
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_CreateJournalEventDefeatedFlint
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_CreateJournalEventDefeatedRematchFlint
     CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintDefeat
@@ -64,7 +64,7 @@ PokemonLeagueFlintRoom_PostBattle:
 PokemonLeagueFlintRoom_FlintIntro:
     Message PokemonLeagueFlintRoom_Text_FlintIntroPart1
     CloseMessage
-    ApplyMovement POKEMON_LEAGUE_FLINT_ROOM_FLINT, PokemonLeagueFlintRoom_Movement_WalkFastInPlace
+    ApplyMovement LOCALID_FLINT, PokemonLeagueFlintRoom_Movement_WalkFastInPlace
     WaitMovement
     Message PokemonLeagueFlintRoom_Text_FlintIntroPart2
     Return
@@ -104,7 +104,7 @@ PokemonLeagueFlintRoom_OnFrame:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_FLINT_ROOM_ENTRANCE_DOOR
-    AddObject POKEMON_LEAGUE_FLINT_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End

@@ -13,13 +13,13 @@
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/gts_player_data.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_0203E564.h"
@@ -1431,7 +1431,7 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
     }
 }
 
-void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1)
+void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1)
 {
     FS_EXTERN_OVERLAY(overlay99);
 

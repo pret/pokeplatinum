@@ -21,7 +21,7 @@ PokemonLeagueLucianRoom_Lucian:
     GoToIfEq VAR_RESULT, FALSE, PokemonLeagueLucianRoom_BlackOut
     SetFlag FLAG_DEFEATED_LUCIAN
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    RemoveObject POKEMON_LEAGUE_LUCIAN_ROOM_EXIT_DOOR
+    RemoveObject LOCALID_EXIT_DOOR
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian
     Message PokemonLeagueLucianRoom_Text_LucianDefeat
@@ -64,7 +64,7 @@ PokemonLeagueLucianRoom_OnFrame:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_LUCIAN_ROOM_ENTRANCE_DOOR
-    AddObject POKEMON_LEAGUE_LUCIAN_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End

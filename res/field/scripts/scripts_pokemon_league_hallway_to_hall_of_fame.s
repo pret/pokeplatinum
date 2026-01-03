@@ -11,32 +11,32 @@ PokemonLeagueHallwayToHallOfFame_OnFrame:
     LockAll
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerEnterHallway
     WaitMovement
-    SetObjectEventPos POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA, 6, 14
+    SetObjectEventPos LOCALID_CYNTHIA, 6, 14
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA
-    AddObject POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA
-    LockObject POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA
-    ApplyMovement POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_CynthiaApproachPlayer
+    AddObject LOCALID_CYNTHIA
+    LockObject LOCALID_CYNTHIA
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_CynthiaApproachPlayer
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerFaceCynthia
     WaitMovement
     Message PokemonLeagueHallwayToHallOfFame_Text_TheRoomAheadIsTheHallOfFame
     CloseMessage
-    SetObjectEventPos POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN, 4, 14
+    SetObjectEventPos LOCALID_PROF_ROWAN, 4, 14
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
-    AddObject POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
-    LockObject POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
-    ApplyMovement POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN, PokemonLeagueHallwayToHallOfFame_Movement_RowanApproachPlayer
+    AddObject LOCALID_PROF_ROWAN
+    LockObject LOCALID_PROF_ROWAN
+    ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallwayToHallOfFame_Movement_RowanApproachPlayer
     WaitMovement
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerFaceRowan
     WaitMovement
     BufferPlayerName 0
     Message PokemonLeagueHallwayToHallOfFame_Text_YourLastBattleWasSplendid
     CloseMessage
-    ApplyMovement POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_ExclamationMark
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_ExclamationMark
     WaitMovement
     Message PokemonLeagueHallwayToHallOfFame_Text_HelloProfessorRowan
     BufferPlayerName 0
     Message PokemonLeagueHallwayToHallOfFame_Text_YouveGrownIntoARealChampion
-    ApplyMovement POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_WalkInPlaceWest
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_WalkInPlaceWest
     WaitMovement
     Message PokemonLeagueHallwayToHallOfFame_Text_ProfessorYouStillEnjoyEnthusiasm
     GetPlayerGender VAR_RESULT
@@ -57,8 +57,8 @@ PokemonLeagueHallwayToHallOfFame_StepThisWayPleaseFemale:
 PokemonLeagueHallwayToHallOfFame_EnterHallOfFameRoom:
     Message PokemonLeagueHallwayToHallOfFame_Text_ProfessorRowanPleaseJoinUs
     CloseMessage
-    ApplyMovement POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_CynthiaEnterHallOfFameRoom
-    ApplyMovement POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN, PokemonLeagueHallwayToHallOfFame_Movement_RowanEnterHallOfFameRoom
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueHallwayToHallOfFame_Movement_CynthiaEnterHallOfFameRoom
+    ApplyMovement LOCALID_PROF_ROWAN, PokemonLeagueHallwayToHallOfFame_Movement_RowanEnterHallOfFameRoom
     ApplyMovement LOCALID_PLAYER, PokemonLeagueHallwayToHallOfFame_Movement_PlayerEnterHallOfFameRoom
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
