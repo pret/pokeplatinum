@@ -63,7 +63,7 @@ _0070:
     End
 
 _0084:
-    FrontierScrCmd_11 0
+    Message 0
     FrontierScrCmd_1B 31, 5, 0, 1, 0x8008
     FrontierScrCmd_CA 1
     FrontierScrCmd_1C 26, 255, 1
@@ -96,7 +96,7 @@ _012F:
     End
 
 _0143:
-    FrontierScrCmd_11 14
+    Message 14
     FrontierScrCmd_16 31, 11, 0, 1, 0x8008
     FrontierScrCmd_CA 1
     FrontierScrCmd_17 32, 0
@@ -158,7 +158,7 @@ _023F:
     End
 
 _0254:
-    FrontierScrCmd_10 4
+    MessageNoSkip 4
     GoTo _0260
     End
 
@@ -190,7 +190,7 @@ _02C0:
     FrontierScrCmd_36
     FrontierScrCmd_AE 0x8009, 0x8008
     GoToIfEq 0x8008, 1, _0302
-    FrontierScrCmd_11 3
+    Message 3
     GoTo _0084
     End
 
@@ -204,7 +204,7 @@ _0302:
     End
 
 _0345:
-    FrontierScrCmd_11 2
+    Message 2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_12
@@ -231,7 +231,7 @@ _037E:
     End
 
 _03C1:
-    FrontierScrCmd_10 4
+    MessageNoSkip 4
     GoTo _03CD
     End
 
@@ -253,7 +253,7 @@ _03CD:
 
 _044E:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 1
+    Message 1
     GoTo _0084
     End
 
@@ -269,14 +269,14 @@ _045D:
 _0499:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 6
+    Message 6
     GoTo _0084
     End
 
 _04B4:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 6
+    Message 6
     GoTo _0084
     End
 
@@ -285,7 +285,7 @@ _04CF:
     FrontierScrCmd_7E 0, 0x8008, 0, 0
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 1, 0x8008, 0, 0
-    FrontierScrCmd_11 7
+    Message 7
     GoTo _0084
     End
 
@@ -305,12 +305,12 @@ _04F9:
     End
 
 _0567:
-    FrontierScrCmd_11 15
+    Message 15
     FrontierScrCmd_16 25, 13, 1, 1, 0x8008
     FrontierScrCmd_17 16, 0
     FrontierScrCmd_17 17, 1
     FrontierScrCmd_19
-    FrontierScrCmd_10 24
+    MessageNoSkip 24
     SetVar 0x800B, 0x8008
     GoTo _0593
     End
@@ -330,7 +330,7 @@ _0593:
     End
 
 _05F9:
-    FrontierScrCmd_11 18
+    Message 18
     GoTo _0084
     End
 
@@ -340,7 +340,7 @@ _0605:
     End
 
 _0614:
-    FrontierScrCmd_11 11
+    Message 11
     GoTo _0084
     End
 
@@ -356,14 +356,14 @@ _0620:
 _065C:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     GoTo _0084
     End
 
 _0677:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     GoTo _0084
     End
 
@@ -372,7 +372,7 @@ _0692:
     FrontierScrCmd_7E 0, 0x8008, 0, 0
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 1, 0x8008, 0, 0
-    FrontierScrCmd_11 10
+    Message 10
     GoTo _0084
     End
 
@@ -388,14 +388,14 @@ _06BC:
 _06F8:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     GoTo _0084
     End
 
 _0713:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     GoTo _0084
     End
 
@@ -404,7 +404,7 @@ _072E:
     FrontierScrCmd_7E 0, 0x8008, 0, 0
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 1, 0x8008, 0, 0
-    FrontierScrCmd_11 10
+    Message 10
     GoTo _0084
     End
 
@@ -419,13 +419,13 @@ _0766:
     FrontierScrCmd_36
     FrontierScrCmd_35 175
     FrontierScrCmd_36
-    FrontierScrCmd_0F 19
+    MessageInstant 19
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_57 0x61B
-    FrontierScrCmd_10 20
+    MessageNoSkip 20
     WaitTime 10, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 171
@@ -454,8 +454,8 @@ _081C:
     Return
 
 _0838:
-    FrontierScrCmd_11 5
-    FrontierScrCmd_10 4
+    Message 5
+    MessageNoSkip 4
     Return
 
 _0842:
@@ -530,20 +530,20 @@ _08DD:
     FrontierScrCmd_13 6, 1, 1, 0
     FrontierScrCmd_14
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 21
+    Message 21
     ShowYesNoMenu 0x8008, MENU_YES
     GoToIfEq 0x8008, 0, _0939
     GoTo _094B
     End
 
 _0939:
-    FrontierScrCmd_10 24
+    MessageNoSkip 24
     SetVar 0x800B, 0
     GoTo _095D
     End
 
 _094B:
-    FrontierScrCmd_10 24
+    MessageNoSkip 24
     SetVar 0x800B, 1
     GoTo _095D
     End
@@ -563,8 +563,8 @@ _095D:
 
 _09AD:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_10 25
-    FrontierScrCmd_10 4
+    MessageNoSkip 25
+    MessageNoSkip 4
     GoTo _09C0
     End
 

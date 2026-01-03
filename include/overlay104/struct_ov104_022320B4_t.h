@@ -21,10 +21,10 @@ struct UnkStruct_ov104_022320B4_t {
     u8 unk_38;
     MessageLoader *unk_3C;
     u8 *unk_40;
-    StringTemplate *unk_44;
-    String *unk_48;
-    String *unk_4C;
-    u8 unk_50;
+    StringTemplate *strTemplate;
+    String *strBuf;
+    String *string;
+    u8 printerID;
     s8 unk_51;
     u16 unk_52;
     int unk_54;
@@ -33,7 +33,7 @@ struct UnkStruct_ov104_022320B4_t {
     u8 unk_5A;
     BOOL unk_5C;
     UnkStruct_ov104_02232B5C *unk_60;
-    Window unk_64;
+    Window msgWindow;
     Menu *menu;
     u16 *unk_78;
     void *savingIcon;
