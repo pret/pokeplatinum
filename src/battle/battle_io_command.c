@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_02266A38.h"
@@ -904,7 +903,7 @@ static void ov16_0225CA38(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225CA4C(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_0225CA4C *v0 = (UnkStruct_ov16_0225CA4C *)&param1->data[0];
+    MoveHitSoundMessage *v0 = (MoveHitSoundMessage *)&param1->data[0];
 
     ov16_0225E468(battleSys, param1, v0);
     ZeroDataBuffer(param1);

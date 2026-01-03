@@ -10,7 +10,6 @@
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_controller.h"
 #include "struct_defs/battle_system.h"
-#include "struct_defs/struct_0207A81C.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
@@ -19,7 +18,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_02266A38.h"
@@ -33,136 +31,153 @@
 #include "unk_0202F1D4.h"
 #include "unk_0207A6DC.h"
 
-static void ov16_0226485C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4);
+static void BattleController_SendLocalMessage(BattleSystem *battleSys, int recipient, int battler, void *param3, u8 param4);
 static void SendMessage(BattleSystem *battleSys, int recipient, int battlerId, void *message, u8 size);
 static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler);
 
-static void ov16_0226485C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4)
+/**
+ * @brief Sends a message in a single player battle
+ *
+ * @param battleSys
+ * @param recipient
+ * @param battler
+ * @param message
+ * @param size
+ */
+static void BattleController_SendLocalMessage(BattleSystem *battleSys, int recipient, int battler, void *message, u8 size)
 {
-    int v0;
-    UnkStruct_0207A81C v1;
-    u8 *v2;
-    u8 *v3;
-    u16 *v4;
-    u16 *v5;
+    int i;
+    BattleMessageInfo info;
+    u8 *src;
+    u8 *dest;
+    u16 *writeIndex;
+    u16 *endIndex;
 
-    if (param1 == 1) {
-        v3 = ov16_0223E074(battleSys);
-        v4 = ov16_0223E0B0(battleSys);
-        v5 = ov16_0223E0BC(battleSys);
+    if (recipient == COMM_RECIPIENT_CLIENT) {
+        dest = ov16_0223E074(battleSys);
+        writeIndex = ov16_0223E0B0(battleSys);
+        endIndex = ov16_0223E0BC(battleSys);
     } else {
-        v3 = ov16_0223E06C(battleSys);
-        v4 = ov16_0223E08C(battleSys);
-        v5 = ov16_0223E098(battleSys);
+        dest = ov16_0223E06C(battleSys);
+        writeIndex = ov16_0223E08C(battleSys);
+        endIndex = ov16_0223E098(battleSys);
     }
 
-    if (v4[0] + sizeof(UnkStruct_0207A81C) + param4 + 1 > 0x1000) {
-        v5[0] = v4[0];
-        v4[0] = 0;
+    if (writeIndex[0] + sizeof(BattleMessageInfo) + size + 1 > 0x1000) {
+        endIndex[0] = writeIndex[0];
+        writeIndex[0] = 0;
     }
 
-    v1.unk_00 = param1;
-    v1.unk_01 = param2;
-    v1.unk_02 = param4;
+    info.recipient = recipient;
+    info.battler = battler;
+    info.size = size;
 
-    v2 = (u8 *)&v1;
+    src = (u8 *)&info;
 
-    for (v0 = 0; v0 < sizeof(UnkStruct_0207A81C); v0++) {
-        v3[v4[0]] = v2[v0];
-        v4[0]++;
+    for (i = 0; i < sizeof(BattleMessageInfo); i++) {
+        dest[writeIndex[0]] = src[i];
+        writeIndex[0]++;
     }
 
-    v2 = (u8 *)param3;
+    src = (u8 *)message;
 
-    for (v0 = 0; v0 < param4; v0++) {
-        v3[v4[0]] = v2[v0];
-        v4[0]++;
+    for (i = 0; i < size; i++) {
+        dest[writeIndex[0]] = src[i];
+        writeIndex[0]++;
     }
 }
 
-static BOOL ov16_022648F4(BattleSystem *battleSys, void *param1)
+/**
+ * @brief Recieves a message in a single player battle
+ *
+ * @param battleSys
+ * @param data
+ *
+ * @return Whether or not the message was successfully recieved
+ */
+static BOOL BattleController_RecvLocalMessage(BattleSystem *battleSys, void *message)
 {
-    u8 *v0 = (u8 *)param1;
-    u8 v1;
-    u8 v2;
-    int v3;
-    int v4;
-    BOOL v5 = 0;
+    u8 *src = (u8 *)message;
+    u8 recipient;
+    u8 battler;
+    int size;
+    int i;
+    BOOL success = FALSE;
 
-    v1 = v0[0];
-    v2 = v0[1];
-    v3 = v0[2] | (v0[3] << 8);
+    recipient = src[0];
+    battler = src[1];
+    size = src[2] | (src[3] << 8);
 
-    v0 += sizeof(UnkStruct_0207A81C);
+    src += sizeof(BattleMessageInfo);
 
-    if (v1 == 0) {
-        if (battleSys->battleCtx->ioBuffer[v2][0] == 0) {
-            for (v4 = 0; v4 < v3; v4++) {
-                battleSys->battleCtx->ioBuffer[v2][v4] = v0[v4];
+    if (recipient == COMM_RECIPIENT_SERVER) {
+        if (battleSys->battleCtx->ioBuffer[battler][0] == 0) {
+            for (i = 0; i < size; i++) {
+                battleSys->battleCtx->ioBuffer[battler][i] = src[i];
             }
 
-            v5 = 1;
+            success = TRUE;
         }
-    } else if (v1 == 1) {
-        if (battleSys->battlers[v2]->data[0] == 0) {
-            for (v4 = 0; v4 < v3; v4++) {
-                battleSys->battlers[v2]->data[v4] = v0[v4];
+    } else if (recipient == COMM_RECIPIENT_CLIENT) {
+        if (battleSys->battlers[battler]->data[0] == 0) {
+            for (i = 0; i < size; i++) {
+                battleSys->battlers[battler]->data[i] = src[i];
             }
 
-            v5 = 1;
+            success = TRUE;
         }
-    } else if (v1 == 2) {
-        {
-            int v6;
-            int v7;
+    } else if (recipient == 2) { 
+        int val = src[0];
+        int id = src[1];
 
-            v6 = v0[0];
-            v7 = v0[1];
-
-            if (ov16_0223ED60(battleSys)) {
-                BattleIO_DequeueVal(battleSys->battleCtx, v7, v2, v6);
-            }
+        if (ov16_0223ED60(battleSys)) {
+            BattleIO_DequeueVal(battleSys->battleCtx, id, battler, val);
         }
-        v5 = 1;
-    } else {
-        (void)0;
+        
+        success = TRUE;
     }
 
-    return v5;
+    return success;
 }
 
-void ov16_02264988(BattleSystem *battleSys, int param1)
+/**
+ * @brief Tries to recieve a message in a single player battle, exits with no response if the read index is caught up to the write index
+ *
+ * @param battleSys
+ * @param recipient
+ */
+void BattleController_TryRecvLocalMessage(BattleSystem *battleSys, int recipient)
 {
-    u8 *v0;
-    u16 *v1;
-    u16 *v2;
-    u16 *v3;
-    int v4;
+    u8 *src;
+    u16 *readIndex;
+    u16 *writeIndex;
+    u16 *endIndex;
+    int size;
 
-    if (param1 == 1) {
-        v0 = ov16_0223E074(battleSys);
-        v1 = ov16_0223E0A4(battleSys);
-        v2 = ov16_0223E0B0(battleSys);
-        v3 = ov16_0223E0BC(battleSys);
+    if (recipient == COMM_RECIPIENT_CLIENT) {
+        src = ov16_0223E074(battleSys);
+        readIndex = ov16_0223E0A4(battleSys);
+        writeIndex = ov16_0223E0B0(battleSys);
+        endIndex = ov16_0223E0BC(battleSys);
     } else {
-        v0 = ov16_0223E06C(battleSys);
-        v1 = ov16_0223E080(battleSys);
-        v2 = ov16_0223E08C(battleSys);
-        v3 = ov16_0223E098(battleSys);
+        src = ov16_0223E06C(battleSys);
+        readIndex = ov16_0223E080(battleSys);
+        writeIndex = ov16_0223E08C(battleSys);
+        endIndex = ov16_0223E098(battleSys);
     }
 
-    if (v1[0] == v2[0]) {
+    if (readIndex[0] == writeIndex[0]) {
         return;
     }
 
-    if (v1[0] == v3[0]) {
-        v1[0] = 0;
-        v3[0] = 0;
+    if (readIndex[0] == endIndex[0]) {
+        readIndex[0] = 0;
+        endIndex[0] = 0;
     }
 
-    if (ov16_022648F4(battleSys, (void *)&v0[v1[0]]) == 1) {
-        v4 = sizeof(UnkStruct_0207A81C) + (v0[v1[0] + 2] | (v0[v1[0] + 3] << 8));
-        v1[0] += v4;
+    if (BattleController_RecvLocalMessage(battleSys, (void *)&src[readIndex[0]]) == 1) {
+        size = sizeof(BattleMessageInfo) + (src[readIndex[0] + 2] | (src[readIndex[0] + 3] << 8));
+        readIndex[0] += size;
     }
 }
 
@@ -196,7 +211,7 @@ static void SendMessage(BattleSystem *battleSys, int recipient, int battlerId, v
             BattleIO_EnqueueVal(battleSys->battleCtx, 0, battlerId, *data);
         }
 
-        ov16_0226485C(battleSys, recipient, battlerId, message, size);
+        BattleController_SendLocalMessage(battleSys, recipient, battlerId, message, size);
     }
 }
 
@@ -732,9 +747,9 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(CommandSetMessage));
 }
 
-void ov16_022656D4(BattleSystem *battleSys, int battlerId, int param2)
+void ov16_022656D4(BattleSystem *battleSys, int battlerId, int command)
 {
-    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
+    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &command, 4);
 }
 
 /**
@@ -763,9 +778,9 @@ void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleCont
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveSelectMenuMessage));
 }
 
-void ov16_02265790(BattleSystem *battleSys, int battlerId, int param2)
+void ov16_02265790(BattleSystem *battleSys, int battlerId, int command)
 {
-    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
+    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &command, 4);
 }
 
 /**
@@ -823,9 +838,9 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(TargetSelectMenuMessage));
 }
 
-void ov16_022658CC(BattleSystem *battleSys, int battlerId, int param2)
+void ov16_022658CC(BattleSystem *battleSys, int battlerId, int command)
 {
-    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
+    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &command, 4);
 }
 
 /**
@@ -908,9 +923,9 @@ void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *ba
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(BagMenuMessage));
 }
 
-void ov16_02265A70(BattleSystem *battleSys, int battlerId, BattleItemUse param2)
+void ov16_02265A70(BattleSystem *battleSys, int battlerId, BattleItemUse message)
 {
-    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, sizeof(BattleItemUse));
+    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &message, sizeof(BattleItemUse));
 }
 
 /**
@@ -948,9 +963,9 @@ void BattleController_EmitShowPartyMenu(BattleSystem *battleSys, BattleContext *
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(PartyMenuMessage));
 }
 
-void ov16_02265B10(BattleSystem *battleSys, int battlerId, int param2)
+void ov16_02265B10(BattleSystem *battleSys, int battlerId, int command)
 {
-    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &param2, 4);
+    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &command, 4);
 }
 
 /**
@@ -1186,9 +1201,9 @@ void BattleController_EmitPlaySound(BattleSystem *battleSys, BattleContext *batt
  */
 void BattleController_EmitFadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0 = BATTLE_COMMAND_FADE_OUT;
+    int command = BATTLE_COMMAND_FADE_OUT;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &v0, 4);
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &command, 4);
 }
 
 /**
@@ -1402,8 +1417,8 @@ void BattleController_EmitSetAlertMessage(BattleSystem *battleSys, int battler, 
 
 void ov16_022661B0(BattleSystem *battleSys, int battlerId)
 {
-    int v0 = 1;
-    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &v0, 4);
+    int command = 1;
+    SendMessage(battleSys, COMM_RECIPIENT_SERVER, battlerId, &command, 4);
 }
 
 /**
@@ -1836,7 +1851,7 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
 }
 
 /**
- * @brief Emits a message to print the flee (text) message
+ * @brief Emits a message to print the forfeir (text) message
  *
  * @param battleSys
  */
@@ -1856,7 +1871,14 @@ void BattleController_EmitForfeitMessage(BattleSystem *battleSys)
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(ForfeitMsgMessage));
 }
 
-void BattleIO_RefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to print the refresh a sprite
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitRefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int i;
     MoveAnimation animation;
@@ -1877,115 +1899,123 @@ void BattleIO_RefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx, i
         }
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &animation, sizeof(MoveAnimation));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &animation, sizeof(MoveAnimation));
 }
 
-void BattleIO_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *battleCtx, int param2)
+/**
+ * @brief Emits a message to print the play the hit sound effect for a second turn move
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @param battler
+ */
+void BattleController_EmitPlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    UnkStruct_ov16_0225CA4C v0;
+    MoveHitSoundMessage message;
 
-    v0.unk_00 = BATTLE_COMMAND_FLY_MOVE_HIT_SOUND_EFFECT;
+    message.command = BATTLE_COMMAND_FLY_MOVE_HIT_SOUND_EFFECT;
 
-    if (battleCtx->moveStatusFlags & 0x2) {
-        v0.unk_01 = 2;
-    } else if (battleCtx->moveStatusFlags & 0x4) {
-        v0.unk_01 = 1;
+    if (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE) {
+        message.effectiveness = 2;
+    } else if (battleCtx->moveStatusFlags & MOVE_STATUS_NOT_VERY_EFFECTIVE) {
+        message.effectiveness = 1;
     } else {
-        v0.unk_01 = 0;
+        message.effectiveness = 0;
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, param2, &v0, sizeof(UnkStruct_ov16_0225CA4C));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveHitSoundMessage));
 }
 
 void BattleIO_PlayMusic(BattleSystem *battleSys, int battlerId, int param2)
 {
-    UnkStruct_ov16_0225CA60 v0;
+    UnkStruct_ov16_0225CA60 message;
 
-    v0.unk_00 = BATTLE_COMMAND_PLAY_MUSIC;
-    v0.unk_02 = param2;
+    message.unk_00 = BATTLE_COMMAND_PLAY_MUSIC;
+    message.unk_02 = param2;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &v0, sizeof(UnkStruct_ov16_0225CA60));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(UnkStruct_ov16_0225CA60));
 }
 
 void BattleIO_SubmitResult(BattleSystem *battleSys)
 {
-    UnkStruct_ov16_02266A38 v0;
+    UnkStruct_ov16_02266A38 message;
     u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0.unk_00 = BATTLE_COMMAND_SUBMIT_RESULT;
-    v0.unk_04 = BattleSystem_ResultMask(battleSys);
-    v0.unk_02 = 0;
+    message.unk_00 = BATTLE_COMMAND_SUBMIT_RESULT;
+    message.unk_04 = BattleSystem_ResultMask(battleSys);
+    message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
-        v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_08[0]);
-        GF_ASSERT(v0.unk_02 <= 28);
+        message.unk_02 = ov16_0223F58C(battleSys, &message.unk_08[0]);
+        GF_ASSERT(message.unk_02 <= 28);
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &v0, sizeof(UnkStruct_ov16_02266A38));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(UnkStruct_ov16_02266A38));
 }
 
 void BattleIO_ClearMessageBox(BattleSystem *battleSys)
 {
-    int v0 = BATTLE_COMMAND_CLEAR_MESSAGE_BOX;
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &v0, 4);
+    int command = BATTLE_COMMAND_CLEAR_MESSAGE_BOX;
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &command, 4);
 }
 
 void ClearCommand(BattleSystem *battleSys, int battlerId, int param2)
 {
-    UnkStruct_ov16_02266ABC v0;
+    UnkStruct_ov16_02266ABC message;
 
-    v0.unk_00 = param2;
-    v0.unk_01 = CommSys_CurNetId();
+    message.unk_00 = param2;
+    message.unk_01 = CommSys_CurNetId();
 
-    SendMessage(battleSys, 2, battlerId, &v0, sizeof(UnkStruct_ov16_02266ABC));
+    SendMessage(battleSys, 2, battlerId, &message, sizeof(UnkStruct_ov16_02266ABC));
 }
 
-BOOL ov16_02266AE4(BattleSystem *battleSys, void *param1)
+/**
+ * @brief Recieves a message in a link battle
+ *
+ * @param battleSys
+ * @param data
+ *
+ * @return Whether or not the message was successfully recieved
+ */
+BOOL BattleController_RecvCommMessage(BattleSystem *battleSys, void *data)
 {
-    u8 *v0 = (u8 *)param1;
-    u8 v1;
-    u8 v2;
-    int v3;
-    int v4;
-    BOOL v5 = 1;
+    u8 *src = (u8 *)data;
+    u8 recipient;
+    u8 battler;
+    int size;
+    int i;
+    BOOL success = TRUE;
 
-    v1 = v0[0];
-    v2 = v0[1];
-    v3 = v0[2] | (v0[3] << 8);
+    recipient = src[0];
+    battler = src[1];
+    size = src[2] | (src[3] << 8);
 
-    v0 += sizeof(UnkStruct_0207A81C);
+    src += sizeof(BattleMessageInfo);
 
-    if (v1 == 0) {
-        for (v4 = 0; v4 < v3; v4++) {
-            battleSys->battleCtx->ioBuffer[v2][v4] = v0[v4];
+    if (recipient == COMM_RECIPIENT_SERVER) {
+        for (i = 0; i < size; i++) {
+            battleSys->battleCtx->ioBuffer[battler][i] = src[i];
         }
-    } else if (v1 == 1) {
-        if (battleSys->battlers[v2]->unk_1A4 == 0) {
-            battleSys->battlers[v2]->unk_1A4 = 1;
+    } else if (recipient == COMM_RECIPIENT_CLIENT) {
+        if (battleSys->battlers[battler]->unk_1A4 == 0) {
+            battleSys->battlers[battler]->unk_1A4 = 1;
 
-            for (v4 = 0; v4 < v3; v4++) {
-                battleSys->battlers[v2]->data[v4] = v0[v4];
+            for (i = 0; i < size; i++) {
+                battleSys->battlers[battler]->data[i] = src[i];
             }
         } else {
-            v5 = 0;
+            success = FALSE;
         }
-    } else if (v1 == 2) {
-        {
-            int v6;
-            int party;
+    } else if (recipient == 2) {
+        int val = src[0];
+        int id = src[1];
 
-            v6 = v0[0];
-            party = v0[1];
-
-            if (ov16_0223ED60(battleSys)) {
-                BattleIO_DequeueVal(battleSys->battleCtx, party, v2, v6);
-            }
+        if (ov16_0223ED60(battleSys)) {
+            BattleIO_DequeueVal(battleSys->battleCtx, id, battler, val);
         }
-    } else {
-        (void)0;
     }
 
-    return v5;
+    return success;
 }
 
 /**

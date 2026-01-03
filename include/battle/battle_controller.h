@@ -8,7 +8,7 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_02265BBC.h"
 
-void ov16_02264988(BattleSystem *battleSys, int param1);
+void BattleController_TryRecvLocalMessage(BattleSystem *battleSys, int param1);
 void BattleController_EmitSetupBattleUI(BattleSystem *battleSys, int param1);
 void BattleController_EmitSetEncounter(BattleSystem *battleSys, int param1);
 void BattleController_EmitShowEncounter(BattleSystem *battleSys, int param1);
@@ -137,13 +137,13 @@ void BattleController_EmitOAMToSprite(BattleSystem *battleSys, int param1);
 void BattleController_EmitResultMessage(BattleSystem *battleSys);
 void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *param1);
 void BattleController_EmitForfeitMessage(BattleSystem *battleSys);
-void BattleIO_RefreshSprite(BattleSystem *battleSys, BattleContext *param1, int param2);
-void BattleIO_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *param1, int param2);
+void BattleController_EmitRefreshSprite(BattleSystem *battleSys, BattleContext *param1, int param2);
+void BattleController_EmitPlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleIO_PlayMusic(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_SubmitResult(BattleSystem *battleSys);
 void BattleIO_ClearMessageBox(BattleSystem *battleSys);
 void ClearCommand(BattleSystem *battleSys, int param1, int param2);
-BOOL ov16_02266AE4(BattleSystem *battleSys, void *param1);
+BOOL BattleController_RecvCommMessage(BattleSystem *battleSys, void *param1);
 void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *param1, MoveAnimation *param2, int param3, int param4, int param5, int param6, u16 param7);
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTROLLER_H

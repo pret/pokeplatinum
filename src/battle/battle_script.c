@@ -9484,7 +9484,7 @@ static BOOL BtlCmd_RefreshSprite(BattleSystem *battleSys, BattleContext *battleC
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_RefreshSprite(battleSys, battleCtx, battler);
+    BattleController_EmitRefreshSprite(battleSys, battleCtx, battler);
 
     return FALSE;
 }
@@ -9505,7 +9505,7 @@ static BOOL BtlCmd_PlayMoveHitSound(BattleSystem *battleSys, BattleContext *batt
     int inBattler = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_PlayMoveHitSoundEffect(battleSys, battleCtx, battler);
+    BattleController_EmitPlayMoveHitSoundEffect(battleSys, battleCtx, battler);
 
     return FALSE;
 }

@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225CA4C.h"
 #include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_0225CBB8.h"
 #include "battle/struct_ov16_0225D1C4.h"
@@ -1393,7 +1392,7 @@ void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *
     ClearCommand(battleSys, param1->battler, animation->command);
 }
 
-void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225CA4C *param2)
+void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, MoveHitSoundMessage *message)
 {
     int v0;
 
@@ -1403,7 +1402,7 @@ void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v0 = -117;
     }
 
-    switch (param2->unk_01) {
+    switch (message->effectiveness) {
     case 0:
         Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_M, v0);
         break;
@@ -1415,7 +1414,7 @@ void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         break;
     }
 
-    ClearCommand(battleSys, param1->battler, param2->unk_00);
+    ClearCommand(battleSys, param1->battler, message->command);
 }
 
 void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225CA60 *param2)

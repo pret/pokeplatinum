@@ -28,6 +28,12 @@ typedef struct HealthbarData {
     u8 delay;
 } HealthbarData;
 
+typedef struct {
+    u8 recipient;
+    u8 battler;
+    u16 size;
+} BattleMessageInfo;
+
 // The following are message structs used by the battle controller to send smaller packets of information to the rest of the battle files
 
 typedef struct {
@@ -358,5 +364,11 @@ typedef struct {
     u16 unk_02;
     u8 unk_04[28];
 } ForfeitMsgMessage;
+
+typedef struct {
+    u8 command;
+    u8 effectiveness;
+    u8 padding_02[2];
+} MoveHitSoundMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
