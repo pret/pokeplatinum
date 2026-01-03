@@ -63,7 +63,7 @@ _0070:
     FrontierScrCmd_01
 
 _0084:
-    FrontierScrCmd_11 0
+    Message 0
     FrontierScrCmd_1B 31, 5, 0, 1, 0x8008
     FrontierScrCmd_CA 1
     FrontierScrCmd_1C 26, 255, 1
@@ -101,7 +101,7 @@ _012F:
     FrontierScrCmd_01
 
 _0143:
-    FrontierScrCmd_11 14
+    Message 14
     FrontierScrCmd_16 31, 11, 0, 1, 0x8008
     FrontierScrCmd_CA 1
     FrontierScrCmd_17 32, 0
@@ -165,7 +165,7 @@ _023F:
     FrontierScrCmd_01
 
 _0254:
-    FrontierScrCmd_10 4
+    MessageNoSkip 4
     FrontierScrCmd_0A _0260
     FrontierScrCmd_01
 
@@ -202,7 +202,7 @@ _02C0:
     FrontierScrCmd_AE 0x8009, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _0302
-    FrontierScrCmd_11 3
+    Message 3
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -220,7 +220,7 @@ _0302:
     FrontierScrCmd_01
 
 _0345:
-    FrontierScrCmd_11 2
+    Message 2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_12
@@ -248,7 +248,7 @@ _037E:
     FrontierScrCmd_01
 
 _03C1:
-    FrontierScrCmd_10 4
+    MessageNoSkip 4
     FrontierScrCmd_0A _03CD
     FrontierScrCmd_01
 
@@ -277,7 +277,7 @@ _03CD:
 
 _044E:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 1
+    Message 1
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -296,14 +296,14 @@ _045D:
 _0499:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 6
+    Message 6
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
 _04B4:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 6
+    Message 6
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -312,7 +312,7 @@ _04CF:
     FrontierScrCmd_7E 0, 0x8008, 0, 0
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 1, 0x8008, 0, 0
-    FrontierScrCmd_11 7
+    Message 7
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -336,12 +336,12 @@ _04F9:
     FrontierScrCmd_01
 
 _0567:
-    FrontierScrCmd_11 15
+    Message 15
     FrontierScrCmd_16 25, 13, 1, 1, 0x8008
     FrontierScrCmd_17 16, 0
     FrontierScrCmd_17 17, 1
     FrontierScrCmd_19
-    FrontierScrCmd_10 24
+    MessageNoSkip 24
     FrontierScrCmd_07 0x800B, 0x8008
     FrontierScrCmd_0A _0593
     FrontierScrCmd_01
@@ -366,7 +366,7 @@ _0593:
     FrontierScrCmd_01
 
 _05F9:
-    FrontierScrCmd_11 18
+    Message 18
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -376,7 +376,7 @@ _0605:
     FrontierScrCmd_01
 
 _0614:
-    FrontierScrCmd_11 11
+    Message 11
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -395,14 +395,14 @@ _0620:
 _065C:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
 _0677:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -411,7 +411,7 @@ _0692:
     FrontierScrCmd_7E 0, 0x8008, 0, 0
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 1, 0x8008, 0, 0
-    FrontierScrCmd_11 10
+    Message 10
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -430,14 +430,14 @@ _06BC:
 _06F8:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
 _0713:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 9
+    Message 9
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -446,7 +446,7 @@ _072E:
     FrontierScrCmd_7E 0, 0x8008, 0, 0
     FrontierScrCmd_B2 5, 1, 0, 0x8008
     FrontierScrCmd_7E 1, 0x8008, 0, 0
-    FrontierScrCmd_11 10
+    Message 10
     FrontierScrCmd_0A _0084
     FrontierScrCmd_01
 
@@ -461,13 +461,13 @@ _0766:
     FrontierScrCmd_36
     FrontierScrCmd_35 175
     FrontierScrCmd_36
-    FrontierScrCmd_0F 19
+    MessageInstant 19
     FrontierScrCmd_77
     FrontierScrCmd_73 0x8008
     FrontierScrCmd_78
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_57 0x61B
-    FrontierScrCmd_10 20
+    MessageNoSkip 20
     FrontierScrCmd_05 10, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 171
@@ -503,8 +503,8 @@ _081C:
     FrontierScrCmd_0D
 
 _0838:
-    FrontierScrCmd_11 5
-    FrontierScrCmd_10 4
+    Message 5
+    MessageNoSkip 4
     FrontierScrCmd_0D
 
 _0842:
@@ -578,7 +578,7 @@ _08D9:
     FrontierScrCmd_13 6, 1, 1, 0
     FrontierScrCmd_14
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 21
+    Message 21
     FrontierScrCmd_1F 0x8008, 0
     FrontierScrCmd_20 0x8008, 0
     FrontierScrCmd_0B 1, _0939
@@ -586,13 +586,13 @@ _08D9:
     FrontierScrCmd_01
 
 _0939:
-    FrontierScrCmd_10 24
+    MessageNoSkip 24
     FrontierScrCmd_06 0x800B, 0
     FrontierScrCmd_0A _095D
     FrontierScrCmd_01
 
 _094B:
-    FrontierScrCmd_10 24
+    MessageNoSkip 24
     FrontierScrCmd_06 0x800B, 1
     FrontierScrCmd_0A _095D
     FrontierScrCmd_01
@@ -615,8 +615,8 @@ _095D:
 
 _09AD:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_10 25
-    FrontierScrCmd_10 4
+    MessageNoSkip 25
+    MessageNoSkip 4
     FrontierScrCmd_0A _09C0
     FrontierScrCmd_01
 

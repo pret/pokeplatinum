@@ -371,7 +371,7 @@ BOOL FrontierScrCmd_67(FrontierScriptContext *param0)
 
         for (v10 = 0; v10 < v6; v10++) {
             v3 = Party_GetPokemonBySlotIndex(v4->unk_4D4, v10);
-            StringTemplate_SetSpeciesName(param0->unk_00->unk_44, v10, Pokemon_GetBoxPokemon(v3));
+            StringTemplate_SetSpeciesName(param0->unk_00->strTemplate, v10, Pokemon_GetBoxPokemon(v3));
         }
         break;
     case 35:

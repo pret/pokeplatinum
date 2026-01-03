@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "res/text/bank/battle_arcade_script.h"
 
     .data
 
@@ -1323,7 +1324,7 @@ _0A46:
 _0A8F:
     FrontierScrCmd_28 3, _05E8
     FrontierScrCmd_29
-    FrontierScrCmd_11 19
+    Message BattleArcadeScript_Text_Welcome
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_BF 23, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 0
@@ -1335,7 +1336,7 @@ _0A8F:
     FrontierScrCmd_01
 
 _0AD5:
-    FrontierScrCmd_10 1
+    MessageNoSkip BattleArcadeScript_Text_PleaseWait
     FrontierScrCmd_0A _0AE1
     FrontierScrCmd_01
 
@@ -1354,7 +1355,7 @@ _0AE1:
     FrontierScrCmd_0D
 
 _0B1A:
-    FrontierScrCmd_11 0
+    Message BattleArcadeScript_Text_TakingItems
     FrontierScrCmd_0D
 
 _0B20:
@@ -1371,13 +1372,13 @@ _0B50:
     FrontierScrCmd_BF 23, 0, 0, 0x8008
     FrontierScrCmd_08 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 20
+    Message BattleArcadeScript_Text_GameStart
     FrontierScrCmd_3A
     FrontierScrCmd_12
     FrontierScrCmd_0C _2229
     FrontierScrCmd_28 3, _05AC
     FrontierScrCmd_29
-    FrontierScrCmd_11 21
+    Message BattleArcadeScript_Text_ActivateBoard
     FrontierScrCmd_3A
     FrontierScrCmd_0A _0BD4
     FrontierScrCmd_01
@@ -1386,13 +1387,13 @@ _0B8A:
     FrontierScrCmd_BF 23, 0, 0, 0x8008
     FrontierScrCmd_08 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_10 20
+    MessageNoSkip BattleArcadeScript_Text_GameStart
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_12
     FrontierScrCmd_0C _2229
     FrontierScrCmd_28 3, _05AC
     FrontierScrCmd_29
-    FrontierScrCmd_10 21
+    MessageNoSkip BattleArcadeScript_Text_ActivateBoard
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 143
@@ -1535,7 +1536,7 @@ _0CD6:
     FrontierScrCmd_01
 
 _0E93:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3288
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -1576,15 +1577,15 @@ _0F39:
     FrontierScrCmd_01
 
 _0F53:
-    FrontierScrCmd_11 23
+    Message BattleArcadeScript_Text_SoloNonFullHP
     FrontierScrCmd_0D
 
 _0F59:
-    FrontierScrCmd_11 24
+    Message BattleArcadeScript_Text_MultiNonFullHP
     FrontierScrCmd_0D
 
 _0F5F:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3288
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_0C _32D6
@@ -1606,26 +1607,26 @@ _0FC8:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1000
-    FrontierScrCmd_11 27
+    Message BattleArcadeScript_Text_SoloPoisoned
     FrontierScrCmd_0D
 
 _0FE4:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1006
-    FrontierScrCmd_11 28
+    Message BattleArcadeScript_Text_MultiPoisoned
     FrontierScrCmd_0D
 
 _1000:
-    FrontierScrCmd_11 56
+    Message BattleArcadeScript_Text_SoloImmuneToPoison
     FrontierScrCmd_0D
 
 _1006:
-    FrontierScrCmd_11 57
+    Message BattleArcadeScript_Text_MultiImmuneToPoison
     FrontierScrCmd_0D
 
 _100C:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3288
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_0C _32D6
@@ -1649,26 +1650,26 @@ _107F:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _10B7
-    FrontierScrCmd_11 29
+    Message BattleArcadeScript_Text_SoloParalyzed
     FrontierScrCmd_0D
 
 _109B:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _10BD
-    FrontierScrCmd_11 30
+    Message BattleArcadeScript_Text_MultiParalyzed
     FrontierScrCmd_0D
 
 _10B7:
-    FrontierScrCmd_11 58
+    Message BattleArcadeScript_Text_SoloImmuneToParalysis
     FrontierScrCmd_0D
 
 _10BD:
-    FrontierScrCmd_11 59
+    Message BattleArcadeScript_Text_MultiImmuneToParalysis
     FrontierScrCmd_0D
 
 _10C3:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3288
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_0C _32D6
@@ -1690,26 +1691,26 @@ _112C:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1164
-    FrontierScrCmd_11 31
+    Message BattleArcadeScript_Text_SoloBurned
     FrontierScrCmd_0D
 
 _1148:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _116A
-    FrontierScrCmd_11 32
+    Message BattleArcadeScript_Text_MultiBurned
     FrontierScrCmd_0D
 
 _1164:
-    FrontierScrCmd_11 60
+    Message BattleArcadeScript_Text_SoloImmuneToBurn
     FrontierScrCmd_0D
 
 _116A:
-    FrontierScrCmd_11 61
+    Message BattleArcadeScript_Text_MultiImmuneToBurn
     FrontierScrCmd_0D
 
 _1170:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3288
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_0C _32D6
@@ -1733,26 +1734,26 @@ _11E3:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _121B
-    FrontierScrCmd_11 33
+    Message BattleArcadeScript_Text_SoloAsleep
     FrontierScrCmd_0D
 
 _11FF:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1221
-    FrontierScrCmd_11 34
+    Message BattleArcadeScript_Text_MultiAsleep
     FrontierScrCmd_0D
 
 _121B:
-    FrontierScrCmd_11 62
+    Message BattleArcadeScript_Text_SoloImmuneToSleep
     FrontierScrCmd_0D
 
 _1221:
-    FrontierScrCmd_11 63
+    Message BattleArcadeScript_Text_MultiImmuneToSleep
     FrontierScrCmd_0D
 
 _1227:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3288
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_0C _32D6
@@ -1774,26 +1775,26 @@ _1290:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _12C8
-    FrontierScrCmd_11 35
+    Message BattleArcadeScript_Text_SoloFrozen
     FrontierScrCmd_0D
 
 _12AC:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _12CE
-    FrontierScrCmd_11 36
+    Message BattleArcadeScript_Text_MultiFrozen
     FrontierScrCmd_0D
 
 _12C8:
-    FrontierScrCmd_11 64
+    Message BattleArcadeScript_Text_SoloImmuneToFreeze
     FrontierScrCmd_0D
 
 _12CE:
-    FrontierScrCmd_11 65
+    Message BattleArcadeScript_Text_MultiImmuneToFreeze
     FrontierScrCmd_0D
 
 _12D4:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_12
     FrontierScrCmd_0C _2211
@@ -1804,7 +1805,7 @@ _12D4:
     FrontierScrCmd_C6 1, 1, 1
     FrontierScrCmd_C6 1, 2, 1
     FrontierScrCmd_C6 1, 3, 1
-    FrontierScrCmd_11 39
+    Message BattleArcadeScript_Text_HereYouGo
     FrontierScrCmd_12
     FrontierScrCmd_0C _221D
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -1817,16 +1818,16 @@ _12D4:
     FrontierScrCmd_01
 
 _1358:
-    FrontierScrCmd_11 37
+    Message BattleArcadeScript_Text_SoloLoanItem
     FrontierScrCmd_0D
 
 _135E:
     FrontierScrCmd_BF 38, 1, 1, 0x8008
-    FrontierScrCmd_11 38
+    Message BattleArcadeScript_Text_MultiLoanItem
     FrontierScrCmd_0D
 
 _136D:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_12
     FrontierScrCmd_0C _2211
@@ -1837,7 +1838,7 @@ _136D:
     FrontierScrCmd_C6 1, 1, 1
     FrontierScrCmd_C6 1, 2, 1
     FrontierScrCmd_C6 1, 3, 1
-    FrontierScrCmd_11 39
+    Message BattleArcadeScript_Text_HereYouGo
     FrontierScrCmd_12
     FrontierScrCmd_0C _221D
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -1850,16 +1851,16 @@ _136D:
     FrontierScrCmd_01
 
 _13F1:
-    FrontierScrCmd_11 37
+    Message BattleArcadeScript_Text_SoloLoanItem
     FrontierScrCmd_0D
 
 _13F7:
     FrontierScrCmd_BF 38, 1, 1, 0x8008
-    FrontierScrCmd_11 38
+    Message BattleArcadeScript_Text_MultiLoanItem
     FrontierScrCmd_0D
 
 _1406:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3288
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -1898,15 +1899,15 @@ _14A2:
     FrontierScrCmd_01
 
 _14BC:
-    FrontierScrCmd_11 25
+    Message BattleArcadeScript_Text_SoloLeveledUp
     FrontierScrCmd_0D
 
 _14C2:
-    FrontierScrCmd_11 26
+    Message BattleArcadeScript_Text_MultiLeveledUp
     FrontierScrCmd_0D
 
 _14C8:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3294
     FrontierScrCmd_0C _2092
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -1945,15 +1946,15 @@ _1564:
     FrontierScrCmd_01
 
 _157E:
-    FrontierScrCmd_11 23
+    Message BattleArcadeScript_Text_SoloNonFullHP
     FrontierScrCmd_0D
 
 _1584:
-    FrontierScrCmd_11 24
+    Message BattleArcadeScript_Text_MultiNonFullHP
     FrontierScrCmd_0D
 
 _158A:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3294
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _32D6
@@ -1977,26 +1978,26 @@ _15FD:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1635
-    FrontierScrCmd_11 27
+    Message BattleArcadeScript_Text_SoloPoisoned
     FrontierScrCmd_0D
 
 _1619:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _163B
-    FrontierScrCmd_11 28
+    Message BattleArcadeScript_Text_MultiPoisoned
     FrontierScrCmd_0D
 
 _1635:
-    FrontierScrCmd_11 56
+    Message BattleArcadeScript_Text_SoloImmuneToPoison
     FrontierScrCmd_0D
 
 _163B:
-    FrontierScrCmd_11 57
+    Message BattleArcadeScript_Text_MultiImmuneToPoison
     FrontierScrCmd_0D
 
 _1641:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3294
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _32D6
@@ -2018,26 +2019,26 @@ _16AA:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _16E2
-    FrontierScrCmd_11 29
+    Message BattleArcadeScript_Text_SoloParalyzed
     FrontierScrCmd_0D
 
 _16C6:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _16E8
-    FrontierScrCmd_11 30
+    Message BattleArcadeScript_Text_MultiParalyzed
     FrontierScrCmd_0D
 
 _16E2:
-    FrontierScrCmd_11 58
+    Message BattleArcadeScript_Text_SoloImmuneToParalysis
     FrontierScrCmd_0D
 
 _16E8:
-    FrontierScrCmd_11 59
+    Message BattleArcadeScript_Text_MultiImmuneToParalysis
     FrontierScrCmd_0D
 
 _16EE:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3294
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _32D6
@@ -2061,26 +2062,26 @@ _1761:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1799
-    FrontierScrCmd_11 31
+    Message BattleArcadeScript_Text_SoloBurned
     FrontierScrCmd_0D
 
 _177D:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _179F
-    FrontierScrCmd_11 32
+    Message BattleArcadeScript_Text_MultiBurned
     FrontierScrCmd_0D
 
 _1799:
-    FrontierScrCmd_11 60
+    Message BattleArcadeScript_Text_SoloImmuneToBurn
     FrontierScrCmd_0D
 
 _179F:
-    FrontierScrCmd_11 61
+    Message BattleArcadeScript_Text_MultiImmuneToBurn
     FrontierScrCmd_0D
 
 _17A5:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3294
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _32D6
@@ -2102,26 +2103,26 @@ _180E:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1846
-    FrontierScrCmd_11 33
+    Message BattleArcadeScript_Text_SoloAsleep
     FrontierScrCmd_0D
 
 _182A:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _184C
-    FrontierScrCmd_11 34
+    Message BattleArcadeScript_Text_MultiAsleep
     FrontierScrCmd_0D
 
 _1846:
-    FrontierScrCmd_11 62
+    Message BattleArcadeScript_Text_SoloImmuneToSleep
     FrontierScrCmd_0D
 
 _184C:
-    FrontierScrCmd_11 63
+    Message BattleArcadeScript_Text_MultiImmuneToSleep
     FrontierScrCmd_0D
 
 _1852:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3294
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _32D6
@@ -2145,26 +2146,26 @@ _18C5:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _18FD
-    FrontierScrCmd_11 35
+    Message BattleArcadeScript_Text_SoloFrozen
     FrontierScrCmd_0D
 
 _18E1:
     FrontierScrCmd_BF 47, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1903
-    FrontierScrCmd_11 36
+    Message BattleArcadeScript_Text_MultiFrozen
     FrontierScrCmd_0D
 
 _18FD:
-    FrontierScrCmd_11 64
+    Message BattleArcadeScript_Text_SoloImmuneToFreeze
     FrontierScrCmd_0D
 
 _1903:
-    FrontierScrCmd_11 65
+    Message BattleArcadeScript_Text_MultiImmuneToFreeze
     FrontierScrCmd_0D
 
 _1909:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _2092
     FrontierScrCmd_12
     FrontierScrCmd_0C _21ED
@@ -2175,7 +2176,7 @@ _1909:
     FrontierScrCmd_C6 0, 1, 1
     FrontierScrCmd_C6 0, 2, 1
     FrontierScrCmd_C6 0, 3, 1
-    FrontierScrCmd_11 39
+    Message BattleArcadeScript_Text_HereYouGo
     FrontierScrCmd_12
     FrontierScrCmd_0C _21F9
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -2188,16 +2189,16 @@ _1909:
     FrontierScrCmd_01
 
 _198D:
-    FrontierScrCmd_11 37
+    Message BattleArcadeScript_Text_SoloLoanItem
     FrontierScrCmd_0D
 
 _1993:
     FrontierScrCmd_BF 38, 1, 1, 0x8008
-    FrontierScrCmd_11 38
+    Message BattleArcadeScript_Text_MultiLoanItem
     FrontierScrCmd_0D
 
 _19A2:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _2092
     FrontierScrCmd_12
     FrontierScrCmd_0C _21ED
@@ -2208,7 +2209,7 @@ _19A2:
     FrontierScrCmd_C6 0, 1, 1
     FrontierScrCmd_C6 0, 2, 1
     FrontierScrCmd_C6 0, 3, 1
-    FrontierScrCmd_11 39
+    Message BattleArcadeScript_Text_HereYouGo
     FrontierScrCmd_12
     FrontierScrCmd_0C _21F9
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -2221,16 +2222,16 @@ _19A2:
     FrontierScrCmd_01
 
 _1A26:
-    FrontierScrCmd_11 37
+    Message BattleArcadeScript_Text_SoloLoanItem
     FrontierScrCmd_0D
 
 _1A2C:
     FrontierScrCmd_BF 38, 1, 1, 0x8008
-    FrontierScrCmd_11 38
+    Message BattleArcadeScript_Text_MultiLoanItem
     FrontierScrCmd_0D
 
 _1A3B:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _3294
     FrontierScrCmd_0C _2092
     FrontierScrCmd_BF 28, 0, 0, 0x8006
@@ -2271,84 +2272,84 @@ _1AE1:
     FrontierScrCmd_01
 
 _1AFB:
-    FrontierScrCmd_11 25
+    Message BattleArcadeScript_Text_SoloLeveledUp
     FrontierScrCmd_0D
 
 _1B01:
-    FrontierScrCmd_11 26
+    Message BattleArcadeScript_Text_MultiLeveledUp
     FrontierScrCmd_0D
 
 _1B07:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20D4
     FrontierScrCmd_0C _32D6
     FrontierScrCmd_0C _211D
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 40
+    Message BattleArcadeScript_Text_SunnyCondition
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1B37:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20D4
     FrontierScrCmd_0C _32D6
     FrontierScrCmd_0C _2101
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 41
+    Message BattleArcadeScript_Text_RainCondition
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1B67:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20D4
     FrontierScrCmd_0C _2155
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 42
+    Message BattleArcadeScript_Text_SandyCondition
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1B91:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20D4
     FrontierScrCmd_0C _32D6
     FrontierScrCmd_0C _2139
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 43
+    Message BattleArcadeScript_Text_HailCondition
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1BC1:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20D4
     FrontierScrCmd_0C _2171
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 44
+    Message BattleArcadeScript_Text_FoggyCondition
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1BEB:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20D4
     FrontierScrCmd_0C _218D
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 45
+    Message BattleArcadeScript_Text_TrickRoomCondition
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1C15:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20D4
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     FrontierScrCmd_20 0x8006, 0
@@ -2404,7 +2405,7 @@ _1C15:
     FrontierScrCmd_05 14, 0x8008
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 46
+    Message BattleArcadeScript_Text_PokemonSwap
     FrontierScrCmd_56 0x5FF
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     FrontierScrCmd_20 0x8006, 0
@@ -2444,40 +2445,40 @@ _1E38:
     FrontierScrCmd_0D
 
 _1E5C:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _21E7
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 47
+    Message BattleArcadeScript_Text_SpeedUpBoard
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1E86:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _21E7
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 48
+    Message BattleArcadeScript_Text_SlowDownBoard
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1EB0:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _2092
     FrontierScrCmd_0C _21E7
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 49
+    Message BattleArcadeScript_Text_RandomizeBoard
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1EDA:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _2092
     FrontierScrCmd_12
     FrontierScrCmd_0C _21ED
@@ -2499,21 +2500,21 @@ _1EDA:
     FrontierScrCmd_0C _2205
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 52
+    Message BattleArcadeScript_Text_AreYouReady2
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1F65:
-    FrontierScrCmd_11 50
+    Message BattleArcadeScript_Text_SoloFreeBP
     FrontierScrCmd_0D
 
 _1F6B:
-    FrontierScrCmd_11 51
+    Message BattleArcadeScript_Text_MultiFreeBP
     FrontierScrCmd_0D
 
 _1F71:
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _2092
     FrontierScrCmd_12
     FrontierScrCmd_0C _21ED
@@ -2535,20 +2536,20 @@ _1F71:
     FrontierScrCmd_0C _2205
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
-    FrontierScrCmd_11 52
+    Message BattleArcadeScript_Text_AreYouReady2
     FrontierScrCmd_55 0x60F
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
 _1FFC:
     FrontierScrCmd_06 0x800D, 1
-    FrontierScrCmd_11 22
+    Message BattleArcadeScript_Text_CurrentEvent
     FrontierScrCmd_0C _20AA
     FrontierScrCmd_12
     FrontierScrCmd_0C _2F72
     FrontierScrCmd_0C _2668
     FrontierScrCmd_0C _3288
-    FrontierScrCmd_11 53
+    Message BattleArcadeScript_Text_SkipBattle
     FrontierScrCmd_BF 28, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 0
     FrontierScrCmd_0B 1, _2049
@@ -2578,7 +2579,7 @@ _2069:
     FrontierScrCmd_01
 
 _2086:
-    FrontierScrCmd_11 54
+    Message BattleArcadeScript_Text_NoEvent
     FrontierScrCmd_0A _2357
     FrontierScrCmd_01
 
@@ -2794,7 +2795,7 @@ _237C:
     FrontierScrCmd_12
     FrontierScrCmd_28 3, _05B4
     FrontierScrCmd_29
-    FrontierScrCmd_11 55
+    Message BattleArcadeScript_Text_BattleStart
     FrontierScrCmd_3A
     FrontierScrCmd_12
     FrontierScrCmd_05 15, 0x8008
@@ -2812,14 +2813,14 @@ _237C:
 
 _23CC:
     FrontierScrCmd_3A
-    FrontierScrCmd_10 1
+    MessageNoSkip 1
     FrontierScrCmd_36
     FrontierScrCmd_35 149
     FrontierScrCmd_36
     FrontierScrCmd_12
     FrontierScrCmd_28 3, _05B4
     FrontierScrCmd_29
-    FrontierScrCmd_10 55
+    MessageNoSkip 55
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_12
     FrontierScrCmd_05 15, 0x8008
@@ -2840,7 +2841,7 @@ _23CC:
     FrontierScrCmd_28 98, _0318
     FrontierScrCmd_28 99, _0318
     FrontierScrCmd_29
-    FrontierScrCmd_10 1
+    MessageNoSkip 1
     FrontierScrCmd_0A _24AD
     FrontierScrCmd_01
 
@@ -3031,7 +3032,7 @@ _272A:
     FrontierScrCmd_01
 
 _2780:
-    FrontierScrCmd_10 1
+    MessageNoSkip 1
     FrontierScrCmd_0A _279A
     FrontierScrCmd_01
 
@@ -3043,12 +3044,12 @@ _278C:
 _279A:
     FrontierScrCmd_BF 22, 0, 0, 0x8008
     FrontierScrCmd_3D 0x40BF, 1
-    FrontierScrCmd_11 66
+    Message BattleArcadeScript_Text_BPEarned
     FrontierScrCmd_7B 0
     FrontierScrCmd_BF 45, 0, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
-    FrontierScrCmd_11 67
+    Message BattleArcadeScript_Text_ReceiveBP
     FrontierScrCmd_58 0x4C5
     FrontierScrCmd_59
     FrontierScrCmd_0A _27D4
@@ -3080,7 +3081,7 @@ _2821:
     FrontierScrCmd_01
 
 _283B:
-    FrontierScrCmd_11 3
+    Message BattleArcadeScript_Text_HealingMons
     FrontierScrCmd_58 0x48E
     FrontierScrCmd_59
     FrontierScrCmd_12
@@ -3133,7 +3134,7 @@ _28F1:
     FrontierScrCmd_BF 23, 0, 0, 0x8008
     FrontierScrCmd_08 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 4
+    Message BattleArcadeScript_Text_AreYouReady
     FrontierScrCmd_0A _291C
     FrontierScrCmd_01
 
@@ -3250,7 +3251,7 @@ _2ACF:
 
 _2AF3:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 16
+    Message BattleArcadeScript_Text_OpponentIsChoosing
     FrontierScrCmd_0A _2B02
     FrontierScrCmd_01
 
@@ -3272,7 +3273,7 @@ _2B02:
 
 _2B49:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_10 18
+    MessageNoSkip 18
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_0A _2D19
     FrontierScrCmd_01
@@ -3329,32 +3330,32 @@ _2C05:
 
 _2C0D:
     FrontierScrCmd_06 0x8003, 1
-    FrontierScrCmd_0F 9
+    MessageInstant 9
     FrontierScrCmd_BF 17, 0, 0, 0x8008
     FrontierScrCmd_77
     FrontierScrCmd_6D 6, 0x8008, 0x8009, 0x8009
     FrontierScrCmd_78
     FrontierScrCmd_20 0x8009, 1
     FrontierScrCmd_0B 1, _2C41
-    FrontierScrCmd_11 7
+    Message BattleArcadeScript_Text_VideoSaveFailed
     FrontierScrCmd_0D
 
 _2C41:
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 6
+    Message BattleArcadeScript_Text_BattleSaved
     FrontierScrCmd_0D
 
 _2C4E:
-    FrontierScrCmd_11 5
+    Message BattleArcadeScript_Text_SaveAsVideo
     FrontierScrCmd_0D
 
 _2C54:
-    FrontierScrCmd_11 8
+    Message BattleArcadeScript_Text_OverwriteVideo
     FrontierScrCmd_0D
 
 _2C5A:
-    FrontierScrCmd_11 10
+    Message BattleArcadeScript_Text_BreakQuestion
     FrontierScrCmd_1F 0x8008, 0
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _2CAA
@@ -3378,19 +3379,19 @@ _2CAA:
     FrontierScrCmd_01
 
 _2CB2:
-    FrontierScrCmd_11 13
+    Message BattleArcadeScript_Text_RetireQuestion
     FrontierScrCmd_1F 0x8008, 1
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _2D4A
     FrontierScrCmd_BF 28, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _2CEA
-    FrontierScrCmd_11 69
+    Message BattleArcadeScript_Text_ReturnItems
     FrontierScrCmd_0A _2D31
     FrontierScrCmd_01
 
 _2CEA:
-    FrontierScrCmd_10 1
+    MessageNoSkip 1
     FrontierScrCmd_0A _2CF6
     FrontierScrCmd_01
 
@@ -3403,8 +3404,8 @@ _2CF6:
     FrontierScrCmd_01
 
 _2D19:
-    FrontierScrCmd_11 69
-    FrontierScrCmd_10 1
+    Message BattleArcadeScript_Text_ReturnItems
+    MessageNoSkip 1
     FrontierScrCmd_36
     FrontierScrCmd_35 144
     FrontierScrCmd_36
@@ -3438,7 +3439,7 @@ _2D52:
     FrontierScrCmd_01
 
 _2D9B:
-    FrontierScrCmd_10 1
+    MessageNoSkip 1
     FrontierScrCmd_0A _2DBD
     FrontierScrCmd_01
 
@@ -3458,7 +3459,7 @@ _2DBD:
     FrontierScrCmd_01
 
 _2DD4:
-    FrontierScrCmd_11 69
+    Message BattleArcadeScript_Text_ReturnItems
     FrontierScrCmd_BF 28, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _2DF6
@@ -3466,7 +3467,7 @@ _2DD4:
     FrontierScrCmd_01
 
 _2DF6:
-    FrontierScrCmd_10 1
+    MessageNoSkip 1
     FrontierScrCmd_36
     FrontierScrCmd_35 148
     FrontierScrCmd_36
@@ -3515,7 +3516,7 @@ _2E90:
     FrontierScrCmd_01
 
 _2E9C:
-    FrontierScrCmd_0F 70
+    MessageInstant 70
     FrontierScrCmd_77
     FrontierScrCmd_73 0x8008
     FrontierScrCmd_78
@@ -3574,7 +3575,7 @@ _2F86:
     FrontierScrCmd_0B 1, _28DE
     FrontierScrCmd_0C _32A0
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 76
+    Message BattleArcadeScript_Text_ArcadeStarApproaching
     FrontierScrCmd_0A _28F1
     FrontierScrCmd_01
 
@@ -3582,7 +3583,7 @@ _2FC0:
     FrontierScrCmd_0C _32A0
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_0C _2FF2
-    FrontierScrCmd_11 77
+    Message BattleArcadeScript_Text_DahliaIntro
     FrontierScrCmd_12
     FrontierScrCmd_0D
 
@@ -3590,7 +3591,7 @@ _2FD9:
     FrontierScrCmd_0C _32A0
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_0C _2FF2
-    FrontierScrCmd_11 78
+    Message BattleArcadeScript_Text_DahliaIntroGold
     FrontierScrCmd_12
     FrontierScrCmd_0D
 
@@ -3683,7 +3684,7 @@ _31DE:
     FrontierScrCmd_3E 0x4053, 0x8008
     FrontierScrCmd_20 0x8008, 0
     FrontierScrCmd_0E 1, _320A
-    FrontierScrCmd_11 79
+    Message BattleArcadeScript_Text_BeatDahlia
     FrontierScrCmd_12
     FrontierScrCmd_0A _25EE
     FrontierScrCmd_01
@@ -3698,7 +3699,7 @@ _3212:
     FrontierScrCmd_3E 0x4053, 0x8008
     FrontierScrCmd_20 0x8008, 2
     FrontierScrCmd_0E 1, _323E
-    FrontierScrCmd_11 80
+    Message BattleArcadeScript_Text_BeatDahliaGold
     FrontierScrCmd_12
     FrontierScrCmd_0A _25EE
     FrontierScrCmd_01
