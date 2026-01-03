@@ -10078,7 +10078,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
                 oldStats->stat[i] = Pokemon_GetValue(mon, statParams[i], NULL);
             }
 
-            Pokemon_UpdateFriendship(mon, 0, BattleSystem_MapHeader(data->battleSys));
+            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_LEVEL_UP, BattleSystem_MapHeader(data->battleSys));
             Pokemon_CalcStats(mon);
 
             if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
@@ -12323,12 +12323,12 @@ static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext
 
     if (battleCtx->battleMons[battler].level > battleCtx->battleMons[faintingBattler].level) {
         if (battleCtx->battleMons[battler].level - battleCtx->battleMons[faintingBattler].level >= 30) {
-            Pokemon_UpdateFriendship(mon, 8, BattleSystem_MapHeader(battleSys));
+            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT_HIGH_LVL_DIFF, BattleSystem_MapHeader(battleSys));
         } else {
-            Pokemon_UpdateFriendship(mon, 6, BattleSystem_MapHeader(battleSys));
+            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT, BattleSystem_MapHeader(battleSys));
         }
     } else {
-        Pokemon_UpdateFriendship(mon, 6, BattleSystem_MapHeader(battleSys));
+        Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT, BattleSystem_MapHeader(battleSys));
     }
 }
 

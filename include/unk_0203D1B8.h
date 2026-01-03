@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
@@ -16,6 +15,7 @@
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
+#include "applications/poffin_case/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
 #include "field/field_system_decl.h"
@@ -64,7 +64,7 @@ void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem);
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID);
 UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID);
 UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID);
-UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int heapID);
+PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, int heapID);
 void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1);
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3, u16 param4);
 BOOL sub_0203DB10(FieldSystem *fieldSystem, void *param1);

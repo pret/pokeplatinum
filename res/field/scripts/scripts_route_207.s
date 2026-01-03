@@ -32,7 +32,7 @@ _004E:
     Call _008E
     ApplyMovement 18, _0194
     WaitMovement
-    CallCommonScript 0x7F8
+    SetCounterpartBGM
     ApplyMovement 18, _01A0
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0174
@@ -99,7 +99,7 @@ _0156:
     ApplyMovement 18, _01A8
     WaitMovement
     RemoveObject 18
-    CallCommonScript 0x7F9
+    FadeToDefaultMusic
     SetVar VAR_UNK_0x408C, 1
     ReleaseAll
     End

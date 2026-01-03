@@ -15,7 +15,7 @@
 #include "overlay005/hblank_system.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248F1C.h"
-#include "overlay023/ov23_0224B05C.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
@@ -1382,15 +1382,15 @@ static void ov23_0223F118(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        ov23_0224DBF4(0);
+        SecretBases_SetEntranceGraphicsEnabled(0);
         UndergroundSpheres_DisableBuriedSphereSparkles();
         CommPlayerMan_Reset();
-        ov23_0224B430();
+        SecretBases_DisableBaseEntranceGraphics();
         (v0->state)++;
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         (v0->state)++;
         break;
     case 2:
@@ -1417,7 +1417,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1532,7 +1532,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         SpriteList_Update(Unk_ov23_02257740->spriteList);
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
         (v0->state)++;
         break;
     case 19:
@@ -1551,7 +1551,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             sub_02039734();
             CommPlayerMan_PauseFieldSystem();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
+            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_TOP_HALF_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
             (v0->state)++;
             break;
         }
@@ -1567,7 +1567,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
             CommPlayerMan_Restart();
 
-            ov23_0224B460();
+            SecretBases_EnableBaseEntranceGraphics();
             UndergroundSpheres_EnableBuriedSphereSparkles();
 
             CommSys_SendDataFixedSize(67, &v0->unk_50);
@@ -1578,7 +1578,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             Heap_Free(v0);
             SysTask_Done(param0);
 
-            ov23_0224DBF4(1);
+            SecretBases_SetEntranceGraphicsEnabled(1);
         }
         break;
     case 22:
@@ -2470,7 +2470,7 @@ static int Mining_GenerateSizeOfMinedSphere(int itemID)
 static void Mining_AddItem(int itemID, int sphereSize)
 {
     int id = itemID;
-    UndergroundRecord *unused = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundRecord *unused = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (UndergroundSpheres_IsMiningItemSphere(id)) {
@@ -2563,7 +2563,7 @@ static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 {
     int i, itemID;
-    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
     Underground *unused = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
 
     for (i = 0; i < param0->itemCount; i++) {
@@ -2913,7 +2913,7 @@ void ov23_022412F0(void)
     v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_022412CC));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022412CC));
-    Link_Message(71);
+    CommSys_SendMessage(71);
 
     v0->unk_4E4 = 250 / 3 - 10;
 
@@ -3032,7 +3032,7 @@ static void ov23_022414D4(void)
             continue;
         }
 
-        v2 = ov23_0223E8CC(CommPlayer_GetXServer(v1), CommPlayer_GetZServer(v1));
+        v2 = ov23_0223E8CC(CommPlayer_GetXServerIfActive(v1), CommPlayer_GetZServerIfActive(v1));
 
         if (v2 != -1) {
             v0 = &Unk_ov23_02257740->unk_26C[v2];
@@ -3073,7 +3073,7 @@ BOOL ov23_022415B8(String *param0)
             v1 = CommInfo_TrainerInfo(v0);
             Unk_ov23_02257740->unk_908[v0] = 0;
 
-            if (CommManUnderground_FormatStringWithTrainerName(v1, 0, 105, param0)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(v1, 0, 105, param0)) {
                 return 1;
             }
         }

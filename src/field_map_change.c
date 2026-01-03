@@ -20,7 +20,7 @@
 #include "overlay006/ov6_02247100.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
-#include "overlay023/ov23_0224B05C.h"
+#include "overlay023/secret_bases.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -1244,7 +1244,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         break;
     case 12:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
-            ov23_0224DBF4(1);
+            SecretBases_SetEntranceGraphicsEnabled(TRUE);
             Heap_Free(mapChangeUndergroundData);
             return 1;
         }
@@ -1262,7 +1262,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
 
     switch (mapChangeUndergroundData->state) {
     case 0:
-        ov23_0224DBF4(0);
+        SecretBases_SetEntranceGraphicsEnabled(FALSE);
         ov23_02249A5C();
         ov23_0224942C(fieldSystem->unk_6C);
         BrightnessController_StartTransition(30, -16, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_SUB_SCREEN);

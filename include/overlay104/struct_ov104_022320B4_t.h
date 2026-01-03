@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_0209B75C_decl.h"
 
+#include "overlay104/frontier_script_context.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
-#include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_02232B5C_decl.h"
 
 #include "bg_window.h"
@@ -15,7 +15,7 @@
 
 struct UnkStruct_ov104_022320B4_t {
     UnkStruct_0209B75C *unk_00;
-    UnkStruct_ov104_0222E930 *unk_04[8];
+    FrontierScriptContext *unk_04[8];
     UnkStruct_ov104_0222E8C8 unk_24;
     int heapID;
     u8 unk_38;

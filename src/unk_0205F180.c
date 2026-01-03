@@ -107,7 +107,7 @@ static BOOL IsMovementWalkOnSpotSlow(enum MovementAction pamovementActionram0);
 static void sub_020615C8(PlayerAvatar *playerAvatar);
 static int sub_020615E0(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2);
 static int PlayerAvatar_IsUnderCyclingRoad(PlayerAvatar *playerAvatar, u32 param1, int param2);
-static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 param2, int param3);
+static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction movementAction, int param3);
 
 static const UnkStruct_020EDB04 Unk_020EDB04[4] = {
     { 0x0, 0x0, -1 },
@@ -1666,10 +1666,10 @@ static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     sub_02060B64(playerAvatar, mapObj, v2, v1);
 }
 
-static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 param2, int param3)
+static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, enum MovementAction movementAction, int param3)
 {
-    sub_0205EC20(playerAvatar, param2, param3);
-    LocalMapObj_SetAnimationCode(mapObj, param2);
+    sub_0205EC20(playerAvatar, movementAction, param3);
+    LocalMapObj_SetAnimationCode(mapObj, movementAction);
 }
 
 u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
@@ -2316,10 +2316,10 @@ int sub_02061544(PlayerAvatar *playerAvatar)
     return LocalMapObj_IsAnimationSet(v0);
 }
 
-void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, u32 param1, int param2)
+void PlayerAvatar_SetAnimationCode(PlayerAvatar *playerAvatar, enum MovementAction movementAction, int param2)
 {
     MapObject *v0 = Player_MapObject(playerAvatar);
-    sub_02060B64(playerAvatar, v0, param1, param2);
+    sub_02060B64(playerAvatar, v0, movementAction, param2);
 }
 
 u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1)

@@ -2350,24 +2350,6 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
-    [UG_GOOD_BASE_ENTRANCE_SOUTH] = {
-        .width = 1,
-        .depth = 1,
-        .collision = {
-            1, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-        },
-        .spherePrice = {
-            .sphereType = SPHERE_NONE,
-            .minSize = 0,
-            .maxSize = 0,
-        },
-        .moneyPrice = 0,
-        .interactMessageID = 0,
-        .natDexRequired = FALSE,
-        .ungiftable = FALSE,
-    },
     [UG_GOOD_BASE_ENTRANCE_NORTH] = {
         .width = 1,
         .depth = 1,
@@ -2386,7 +2368,7 @@ static const Good sGoods[] = {
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
-    [UG_GOOD_BASE_ENTRANCE_EAST] = {
+    [UG_GOOD_BASE_ENTRANCE_SOUTH] = {
         .width = 1,
         .depth = 1,
         .collision = {
@@ -2405,6 +2387,24 @@ static const Good sGoods[] = {
         .ungiftable = FALSE,
     },
     [UG_GOOD_BASE_ENTRANCE_WEST] = {
+        .width = 1,
+        .depth = 1,
+        .collision = {
+            1, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+        },
+        .spherePrice = {
+            .sphereType = SPHERE_NONE,
+            .minSize = 0,
+            .maxSize = 0,
+        },
+        .moneyPrice = 0,
+        .interactMessageID = 0,
+        .natDexRequired = FALSE,
+        .ungiftable = FALSE,
+    },
+    [UG_GOOD_BASE_ENTRANCE_EAST] = {
         .width = 1,
         .depth = 1,
         .collision = {

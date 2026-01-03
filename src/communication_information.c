@@ -225,7 +225,7 @@ BOOL CommInfo_ServerSendArray(void)
         return FALSE;
     }
 
-    if (!sub_02036254(5)) {
+    if (!CommSys_IsCmdQueuedServer(5)) {
         for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
             if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
                 sCommInfo->playerInfo[netId].netId = netId;

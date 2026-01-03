@@ -4049,7 +4049,7 @@ static void BattleControllerPlayer_EndFight(BattleSystem *battleSys, BattleConte
     }
 
     if (battleType & BATTLE_TYPE_LINK) {
-        Link_Message(22);
+        CommSys_SendMessage(22);
     }
 
     battleCtx->command = BATTLE_CONTROL_END_WAIT;

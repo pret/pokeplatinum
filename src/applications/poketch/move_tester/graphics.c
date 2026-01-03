@@ -25,6 +25,7 @@
 #include "text.h"
 
 #include "res/graphics/poketch/poketch.naix.h"
+#include "res/text/bank/poketch_move_tester.h"
 
 static const PoketchAnimation_AnimationData sPoketchMoveTester_AnimDataButtons[] = {
     {
@@ -128,7 +129,7 @@ BOOL PoketchMoveTesterGraphics_New(PoketchMoveTesterGraphics **dest, const MoveT
         graphics->bgConfig = PoketchGraphics_GetBgConfig();
         graphics->animMan = PoketchGraphics_GetAnimationManager();
         graphics->msgLoaderTypes = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_POKETCH_APP);
-        graphics->msgLoaderEffectiveness = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0456, HEAP_ID_POKETCH_APP);
+        graphics->msgLoaderEffectiveness = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKETCH_MOVE_TESTER, HEAP_ID_POKETCH_APP);
         graphics->string = String_Init(128, HEAP_ID_POKETCH_APP); // Possibly TRAINER_NAME_LEN + 1
         SetupSprites(graphics);
         *dest = graphics;
@@ -328,7 +329,7 @@ static void AddTypeText(PoketchMoveTesterGraphics *graphics, Window *window, enu
     Window_FillTilemap(window, 4);
 
     if (type == MOVE_TESTER_NONE_SELECTED) {
-        MessageLoader_GetString(graphics->msgLoaderEffectiveness, 6, graphics->string); // "None"
+        MessageLoader_GetString(graphics->msgLoaderEffectiveness, MoveTester_Text_None, graphics->string);
     } else {
         MessageLoader_GetString(graphics->msgLoaderTypes, type, graphics->string);
     }

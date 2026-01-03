@@ -356,7 +356,7 @@ Unk501_Unused:
 
 _04EF:
     HideMoney
-    CallCommonScript 0x809
+    GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
