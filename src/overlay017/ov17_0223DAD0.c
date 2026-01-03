@@ -311,7 +311,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     ov17_0224B59C(v0);
 
     sub_02039734();
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, HEAP_ID_23);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, HEAP_ID_23);
 
     v0->unk_04 = SysTask_Start(ov17_0223E1FC, v0, 80000);
     v0->unk_1098 = 1;

@@ -109,7 +109,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     UndergroundRecord_GetGiftsReceived,
     UndergroundRecord_GetTimesFlagTaken,
     UndergroundRecord_GetFlagsRecovered,
-    sub_0202981C,
+    UndergroundRecord_GetTimesBaseMoved,
     UndergroundRecord_GetCapturedFlagCount
 };
 

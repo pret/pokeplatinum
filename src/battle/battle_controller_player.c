@@ -1,4 +1,4 @@
-#include "battle/battle_controller.h"
+#include "battle/battle_controller_player.h"
 
 #include "nitro/types.h"
 #include <nitro.h>
@@ -53,126 +53,126 @@ enum BattleControllerState {
 
 typedef void (*BattleControlFunc)(BattleSystem *, BattleContext *);
 
-static void BattleController_InitBattleMons(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_StartEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_InitCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CheckSideConditions(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_FightCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_SwitchCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_FleeCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_SafariBallCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_SafariBaitCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_SafariRockCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_SafariFleeCommand(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_UseMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_LeftoverState29(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_LeftoverState32(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_LoopWhileFainted(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_LoopSpreadMoves(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_TriggerAfterHitEffects(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_LeftoverState37(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_UpdateMoveBuffers(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_CheckAnyFainted(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_EndFight(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_EndWait(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_InitBattleMons(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_StartEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_InitCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_TurnEnd(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_FightCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_ItemCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_SwitchCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_FleeCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_SafariBallCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_SafariBaitCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_SafariRockCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_SafariFleeCommand(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_TryMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_UseMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_LeftoverState29(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_LeftoverState32(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_LoopWhileFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_TriggerAfterHitEffects(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_LeftoverState37(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_CheckAnyFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_HandleResult(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_EndFight(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_EndWait(BattleSystem *battleSys, BattleContext *battleCtx);
 
-static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
-static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_HasNoTarget(BattleSystem *battleSys, BattleContext *battleCtx);
-static int BattleController_CheckTypeChart(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_TriggerImmunityAbilities(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_LoadQuickClawCheck(BattleSystem *battleSys, BattleContext *battleCtx);
-static int BattleController_CheckMoveHitAccuracy(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
-static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
-static BOOL BattleController_MoveStolen(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_MustSelectTarget(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target);
-static void BattleController_ClearFlags(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_AnyFainted(BattleContext *battleCtx, int nextCmd, int nextCmdNoFainted, BOOL onlyFaint);
-static BOOL BattleController_AnyExpPayout(BattleContext *battleCtx, int nextCmd, int nextCmdNoExp);
-static void BattleController_UpdateFlagsWhenHit(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_TriggerAfterMoveHitEffects(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_CriticalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_FollowupMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_RageBuilding(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_CheckExtraFlinch(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BattleController_ToggleSemiInvulnMons(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_InitAI(BattleSystem *battleSys, BattleContext *battleCtx);
+static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
+static BOOL BattleControllerPlayer_DecrementPP(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_HasNoTarget(BattleSystem *battleSys, BattleContext *battleCtx);
+static int BattleControllerPlayer_CheckTypeChart(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_LoadQuickClawCheck(BattleSystem *battleSys, BattleContext *battleCtx);
+static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
+static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
+static BOOL BattleControllerPlayer_MoveStolen(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_MustSelectTarget(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target);
+static void BattleControllerPlayer_ClearFlags(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_AnyFainted(BattleContext *battleCtx, int nextCmd, int nextCmdNoFainted, BOOL onlyFaint);
+static BOOL BattleControllerPlayer_AnyExpPayout(BattleContext *battleCtx, int nextCmd, int nextCmdNoExp);
+static void BattleControllerPlayer_UpdateFlagsWhenHit(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_CriticalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_FollowupMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_RageBuilding(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_CheckExtraFlinch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleControllerPlayer_ToggleSemiInvulnMons(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleControllerPlayer_InitAI(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *battleCtx);
 
 extern u32 gTrainerAITable[];
 
 static const BattleControlFunc sBattleControlCommands[] = {
-    BattleController_InitBattleMons,
-    BattleController_StartEncounter,
-    BattleController_TrainerMessage,
-    BattleController_ShowBattleMon,
-    BattleController_InitCommandSelection,
-    BattleController_CommandSelectionInput,
-    BattleController_CalcTurnOrder,
-    BattleController_CheckPreMoveActions,
-    BattleController_BranchActions,
-    BattleController_CheckFieldConditions,
-    BattleController_CheckMonConditions,
-    BattleController_CheckSideConditions,
-    BattleController_TurnEnd,
-    BattleController_FightCommand,
-    BattleController_ItemCommand,
-    BattleController_SwitchCommand,
-    BattleController_FleeCommand,
-    BattleController_SafariBallCommand,
-    BattleController_SafariBaitCommand,
-    BattleController_SafariRockCommand,
-    BattleController_SafariFleeCommand,
-    BattleController_ExecScript,
-    BattleController_BeforeMove,
-    BattleController_TryMove,
-    BattleController_PrimaryEffect,
-    BattleController_CheckMoveFailure,
-    BattleController_UseMove,
-    BattleController_UpdateHP,
-    BattleController_AfterMoveMessage,
-    BattleController_LeftoverState29,
-    BattleController_AfterMoveEffects,
-    BattleController_LoopMultiHit,
-    BattleController_LeftoverState32,
-    BattleController_LoopWhileFainted,
-    BattleController_LoopSpreadMoves,
-    BattleController_FaintAfterSelfdestruct,
-    BattleController_TriggerAfterHitEffects,
-    BattleController_LeftoverState37,
-    BattleController_UpdateMoveBuffers,
-    BattleController_MoveEnd,
-    BattleController_CheckAnyFainted,
-    BattleController_HandleResult,
-    BattleController_ScreenWipe,
-    BattleController_EndFight,
-    BattleController_EndWait
+    [BATTLE_CONTROL_GET_BATTLE_MON] = BattleControllerPlayer_InitBattleMons,
+    [BATTLE_CONTROL_START_ENCOUNTER] = BattleControllerPlayer_StartEncounter,
+    [BATTLE_CONTROL_TRAINER_MESSAGE] = BattleControllerPlayer_TrainerMessage,
+    [BATTLE_CONTROL_SHOW_BATTLE_MON] = BattleControllerPlayer_ShowBattleMon,
+    [BATTLE_CONTROL_INIT_COMMAND_SELECTION] = BattleControllerPlayer_InitCommandSelection,
+    [BATTLE_CONTROL_COMMAND_SELECTION_INPUT] = BattleControllerPlayer_CommandSelectionInput,
+    [BATTLE_CONTROL_CALC_TURN_ORDER] = BattleControllerPlayer_CalcTurnOrder,
+    [BATTLE_CONTROL_CHECK_PRE_MOVE_ACTIONS] = BattleControllerPlayer_CheckPreMoveActions,
+    [BATTLE_CONTROL_BRANCH_ACTIONS] = BattleControllerPlayer_BranchActions,
+    [BATTLE_CONTROL_CHECK_FIELD_CONDITIONS] = BattleControllerPlayer_CheckFieldConditions,
+    [BATTLE_CONTROL_CHECK_MON_CONDITIONS] = BattleControllerPlayer_CheckMonConditions,
+    [BATTLE_CONTROL_CHECK_SIDE_CONDITIONS] = BattleControllerPlayer_CheckSideConditions,
+    [BATTLE_CONTROL_TURN_END] = BattleControllerPlayer_TurnEnd,
+    [BATTLE_CONTROL_FIGHT] = BattleControllerPlayer_FightCommand,
+    [BATTLE_CONTROL_ITEM] = BattleControllerPlayer_ItemCommand,
+    [BATTLE_CONTROL_PARTY] = BattleControllerPlayer_SwitchCommand,
+    [BATTLE_CONTROL_RUN] = BattleControllerPlayer_FleeCommand,
+    [BATTLE_CONTROL_SAFARI_BALL] = BattleControllerPlayer_SafariBallCommand,
+    [BATTLE_CONTROL_SAFARI_BAIT] = BattleControllerPlayer_SafariBaitCommand,
+    [BATTLE_CONTROL_SAFARI_ROCK] = BattleControllerPlayer_SafariRockCommand,
+    [BATTLE_CONTROL_SAFARI_WAIT] = BattleControllerPlayer_SafariFleeCommand,
+    [BATTLE_CONTROL_EXEC_SCRIPT] = BattleControllerPlayer_ExecScript,
+    [BATTLE_CONTROL_BEFORE_MOVE] = BattleControllerPlayer_BeforeMove,
+    [BATTLE_CONTROL_TRY_MOVE] = BattleControllerPlayer_TryMove,
+    [BATTLE_CONTROL_PRIMARY_EFFECT] = BattleControllerPlayer_PrimaryEffect,
+    [BATTLE_CONTROL_MOVE_FAILED] = BattleControllerPlayer_CheckMoveFailure,
+    [BATTLE_CONTROL_USE_MOVE] = BattleControllerPlayer_UseMove,
+    [BATTLE_CONTROL_UPDATE_HP] = BattleControllerPlayer_UpdateHP,
+    [BATTLE_CONTROL_AFTER_MOVE_MESSAGE] = BattleControllerPlayer_AfterMoveMessage,
+    [BATTLE_CONTROL_UNUSED_29] = BattleControllerPlayer_LeftoverState29,
+    [BATTLE_CONTROL_AFTER_MOVE_EFFECT] = BattleControllerPlayer_AfterMoveEffects,
+    [BATTLE_CONTROL_LOOP_MULTI_HIT] = BattleControllerPlayer_LoopMultiHit,
+    [BATTLE_CONTROL_UNUSED_32] = BattleControllerPlayer_LeftoverState32,
+    [BATTLE_CONTROL_LOOP_FAINTED] = BattleControllerPlayer_LoopWhileFainted,
+    [BATTLE_CONTROL_LOOP_SPREAD_MOVES] = BattleControllerPlayer_LoopSpreadMoves,
+    [BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT] = BattleControllerPlayer_FaintAfterSelfdestruct,
+    [BATTLE_CONTROL_TRIGGER_AFTER_HIT_EFFECTS] = BattleControllerPlayer_TriggerAfterHitEffects,
+    [BATTLE_CONTROL_UNUSED_37] = BattleControllerPlayer_LeftoverState37,
+    [BATTLE_CONTROL_UPDATE_MOVE_BUFFERS] = BattleControllerPlayer_UpdateMoveBuffers,
+    [BATTLE_CONTROL_MOVE_END] = BattleControllerPlayer_MoveEnd,
+    [BATTLE_CONTROL_CHECK_ANY_FAINTED] = BattleControllerPlayer_CheckAnyFainted,
+    [BATTLE_CONTROL_RESULT] = BattleControllerPlayer_HandleResult,
+    [BATTLE_CONTROL_SCREEN_WIPE] = BattleControllerPlayer_ScreenWipe,
+    [BATTLE_CONTROL_FIGHT_END] = BattleControllerPlayer_EndFight,
+    [BATTLE_CONTROL_END_WAIT] = BattleControllerPlayer_EndWait
 };
 
 void *BattleContext_New(BattleSystem *battleSys)
@@ -183,7 +183,7 @@ void *BattleContext_New(BattleSystem *battleSys)
 
     BattleContext_Init(battleContext);
     BattleContext_InitCounters(battleSys, battleContext);
-    BattleController_InitAI(battleSys, battleContext);
+    BattleControllerPlayer_InitAI(battleSys, battleContext);
 
     MoveTable_Load(&battleContext->aiContext.moveTable);
     battleContext->aiContext.itemTable = ItemTable_Load(HEAP_ID_BATTLE);
@@ -191,7 +191,7 @@ void *BattleContext_New(BattleSystem *battleSys)
     return battleContext;
 }
 
-BOOL BattleController_Main(BattleSystem *battleSys, BattleContext *battleCtx)
+BOOL BattleContext_Main(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->battleEndFlag == FALSE
         && BattleSystem_ResultMask(battleSys)
@@ -214,13 +214,13 @@ void BattleContext_Free(BattleContext *battleCtx)
     Heap_Free(battleCtx);
 }
 
-void BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
+void BattleControllerPlayer_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
-    BattleController_CheckMoveHitAccuracy(battleSys, battleCtx, attacker, defender, move);
-    BattleController_CheckMoveHitOverrides(battleSys, battleCtx, attacker, defender, move);
+    BattleControllerPlayer_CheckMoveHitAccuracy(battleSys, battleCtx, attacker, defender, move);
+    BattleControllerPlayer_CheckMoveHitOverrides(battleSys, battleCtx, attacker, defender, move);
 }
 
-static void BattleController_InitBattleMons(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_InitBattleMons(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
     for (int i = 0; i < maxBattlers; i++) {
@@ -231,14 +231,14 @@ static void BattleController_InitBattleMons(BattleSystem *battleSys, BattleConte
     battleCtx->command = BATTLE_CONTROL_START_ENCOUNTER;
 }
 
-static void BattleController_StartEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_StartEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_start_encounter);
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
     battleCtx->commandNext = BATTLE_CONTROL_TRAINER_MESSAGE;
 }
 
-static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (BattleSystem_CheckTrainerMessage(battleSys, battleCtx)) {
         LOAD_SUBSEQ(subscript_trainer_message);
@@ -251,7 +251,7 @@ static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleConte
     BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);
 }
 
-static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int nextSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
 
@@ -266,7 +266,7 @@ static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContex
     }
 }
 
-static void BattleController_InitCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_InitCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i; // this has to be declared up here to match
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -309,7 +309,7 @@ static inline BOOL SingleControllerForSide(BattleContext *battleCtx, int battler
     return battler == side + 2 && battleCtx->curCommandState[side] != COMMAND_SELECTION_END;
 }
 
-static void BattleController_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
     int battleType = BattleSystem_BattleType(battleSys);
@@ -533,7 +533,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
 
         case COMMAND_SELECTION_TARGET_SELECT_INIT:
             int target;
-            if (BattleController_MustSelectTarget(battleSys, battleCtx, i, battleType, &target, battleCtx->moveSlot[i], &battleCtx->battlerActions[i][1])) {
+            if (BattleControllerPlayer_MustSelectTarget(battleSys, battleCtx, i, battleType, &target, battleCtx->moveSlot[i], &battleCtx->battlerActions[i][1])) {
                 BattleIO_ShowTargetSelection(battleSys, battleCtx, target, i);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_TARGET_SELECT;
             } else {
@@ -704,7 +704,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
     }
 }
 
-static void BattleController_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int battler, i, j; // Must declare these here to match.
 
@@ -800,7 +800,7 @@ enum PreMoveActionState {
     PRE_MOVE_ACTION_END
 };
 
-static void BattleController_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int state = STATE_PROCESSING;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -869,7 +869,7 @@ static void BattleController_CheckPreMoveActions(BattleSystem *battleSys, Battle
     }
 }
 
-static void BattleController_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
@@ -928,7 +928,7 @@ static inline void StepFieldConditionCheck(BattleContext *battleCtx, int state)
     }
 }
 
-static void BattleController_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int state = STATE_PROCESSING;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -936,9 +936,9 @@ static void BattleController_CheckFieldConditions(BattleSystem *battleSys, Battl
 
     do {
         // Explicit `== TRUE` is needed to match on these
-        if (BattleController_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE
-            || BattleController_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
-            || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE) {
+        if (BattleControllerPlayer_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE
+            || BattleControllerPlayer_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+            || BattleControllerPlayer_CheckBattleOver(battleSys, battleCtx) == TRUE) {
             return;
         }
 
@@ -1285,15 +1285,15 @@ enum MonCondCheckState {
     MON_COND_CHECK_END
 };
 
-static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     u8 state = STATE_PROCESSING;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
     // Explicit `== TRUE` is needed to match on these.
-    if (BattleController_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE
-        || BattleController_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
-        || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE) {
+    if (BattleControllerPlayer_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE
+        || BattleControllerPlayer_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+        || BattleControllerPlayer_CheckBattleOver(battleSys, battleCtx) == TRUE) {
         return;
     }
 
@@ -1742,11 +1742,11 @@ enum SideCondCheckState {
     SIDE_COND_CHECK_END
 };
 
-static void BattleController_CheckSideConditions(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    if (BattleController_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE) {
+    if (BattleControllerPlayer_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE) {
         return;
     }
 
@@ -1840,11 +1840,11 @@ static void BattleController_CheckSideConditions(BattleSystem *battleSys, Battle
     battleCtx->command = BATTLE_CONTROL_TURN_END;
 }
 
-static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_TurnEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleController_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
-        || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE
-        || BattleController_ReplaceFainted(battleSys, battleCtx) == TRUE) {
+    if (BattleControllerPlayer_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+        || BattleControllerPlayer_CheckBattleOver(battleSys, battleCtx) == TRUE
+        || BattleControllerPlayer_ReplaceFainted(battleSys, battleCtx) == TRUE) {
         return;
     }
 
@@ -1857,7 +1857,7 @@ static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *bat
     battleCtx->command = BATTLE_CONTROL_TRAINER_MESSAGE;
 }
 
-static void BattleController_FightCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_FightCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL randomizeTarget = FALSE;
     battleCtx->attacker = battleCtx->battlerActionOrder[battleCtx->turnOrderCounter];
@@ -1901,7 +1901,7 @@ static void BattleController_FightCommand(BattleSystem *battleSys, BattleContext
     BattleIO_ClearMessageBox(battleSys);
 }
 
-static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_ItemCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     battleCtx->attacker = battleCtx->battlerActionOrder[battleCtx->turnOrderCounter];
     battleCtx->defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battleCtx->attacker);
@@ -1973,7 +1973,7 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
     battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
 }
 
-static void BattleController_SwitchCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_SwitchCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_switch_pokemon);
 
@@ -1985,7 +1985,7 @@ static void BattleController_SwitchCommand(BattleSystem *battleSys, BattleContex
     battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
 }
 
-static void BattleController_FleeCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_FleeCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     battleCtx->attacker = battleCtx->battlerActionOrder[battleCtx->turnOrderCounter];
 
@@ -2017,7 +2017,7 @@ static void BattleController_FleeCommand(BattleSystem *battleSys, BattleContext 
     }
 }
 
-static void BattleController_SafariBallCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_SafariBallCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_throw_safari_ball);
 
@@ -2032,7 +2032,7 @@ static void BattleController_SafariBallCommand(BattleSystem *battleSys, BattleCo
     BattleIO_RefreshHPGauge(battleSys, battleCtx, BATTLER_US);
 }
 
-static void BattleController_SafariBaitCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_SafariBaitCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_safari_throw_bait);
 
@@ -2054,7 +2054,7 @@ static void BattleController_SafariBaitCommand(BattleSystem *battleSys, BattleCo
     }
 }
 
-static void BattleController_SafariRockCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_SafariRockCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_safari_throw_rock);
 
@@ -2077,7 +2077,7 @@ static void BattleController_SafariRockCommand(BattleSystem *battleSys, BattleCo
     }
 }
 
-static void BattleController_SafariFleeCommand(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_SafariFleeCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_safari_escape);
 
@@ -2106,7 +2106,7 @@ enum ObedienceCheckResult {
  * @param[out] nextSeq  A subroutine sequence to override the chosen move
  * @return A value from enum ObedienceCheckResult describing the check result
  */
-static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq)
+static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq)
 {
     int rand1, rand2; // must be defined up here to match
     u8 maxLevel = 0;
@@ -2232,7 +2232,7 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
  * @param battleCtx
  * @return Always FALSE.
  */
-static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_DecrementPP(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int ppCost = 1;
     if (ATTACKER_SELF_TURN_FLAGS.skipPressureCheck == FALSE && battleCtx->defender != BATTLER_NONE) {
@@ -2303,7 +2303,7 @@ static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext 
  * @param battleCtx
  * @return TRUE if the move should now fail due to having no target; FALSE otherwise.
  */
-static BOOL BattleController_HasNoTarget(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_HasNoTarget(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL result = FALSE;
     BOOL solarMove = FALSE;
@@ -2347,7 +2347,7 @@ static BOOL BattleController_HasNoTarget(BattleSystem *battleSys, BattleContext 
  * @param battleCtx
  * @return Always 0.
  */
-static int BattleController_CheckTypeChart(BattleSystem *battleSys, BattleContext *battleCtx)
+static int BattleControllerPlayer_CheckTypeChart(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if ((CURRENT_MOVE_DATA.range != RANGE_USER
             && CURRENT_MOVE_DATA.range != RANGE_USER_SIDE
@@ -2414,7 +2414,7 @@ enum CheckStatusAction {
  * @return TRUE if there is a disruption effect to apply or an interjecting
  * script to invoke before the attacker executes its move for turn.
  */
-static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int moveEffect = battleCtx->aiContext.moveTable[battleCtx->moveCur].effect;
     int result = CHECK_STATUS_LOOP_BACK;
@@ -2779,7 +2779,7 @@ enum ImmunityAbilityState {
  * @return TRUE if there is an interjecting subroutine to execute instead of
  * the rest of the user's move.
  */
-static BOOL BattleController_TriggerImmunityAbilities(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int result = STATE_PROCESSING;
 
@@ -2820,7 +2820,7 @@ static BOOL BattleController_TriggerImmunityAbilities(BattleSystem *battleSys, B
  * @param battleCtx
  * @return Always TRUE.
  */
-static BOOL BattleController_LoadQuickClawCheck(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_LoadQuickClawCheck(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_check_quick_claw);
 
@@ -2862,7 +2862,7 @@ static inline int CalcMoveType(BattleContext *battleCtx, int attacker, int move)
  * @param move      The attacker's move
  * @return Always 0.
  */
-static int BattleController_CheckMoveHitAccuracy(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
+static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
         return 0;
@@ -2998,7 +2998,7 @@ static int BattleController_CheckMoveHitAccuracy(BattleSystem *battleSys, Battle
  * @param move      The attacker's move
  * @return Always 0.
  */
-static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
+static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
     if (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) {
         return 0;
@@ -3056,7 +3056,7 @@ static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, Battl
  * @return TRUE if the move should be stolen and its targets updated, FALSE
  * otherwise.
  */
-static BOOL BattleController_MoveStolen(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_MoveStolen(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i, battler; // must declare up here to match
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -3112,7 +3112,7 @@ static BOOL BattleController_MoveStolen(BattleSystem *battleSys, BattleContext *
     return FALSE;
 }
 
-static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (BattleScript_Exec(battleSys, battleCtx) == TRUE) {
         battleCtx->scriptCursor = 0;
@@ -3134,17 +3134,17 @@ enum BeforeMoveState {
     BEFORE_MOVE_END,
 };
 
-static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     switch (battleCtx->beforeMoveCheckState) {
     case BEFORE_MOVE_STATE_QUICK_CLAW:
-        BattleController_LoadQuickClawCheck(battleSys, battleCtx);
+        BattleControllerPlayer_LoadQuickClawCheck(battleSys, battleCtx);
         battleCtx->beforeMoveCheckState++;
         return;
 
     case BEFORE_MOVE_STATE_STATUS_DISRUPTION:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_STATUS_CHECK) == FALSE
-            && BattleController_CheckStatusDisruption(battleSys, battleCtx) == TRUE) {
+            && BattleControllerPlayer_CheckStatusDisruption(battleSys, battleCtx) == TRUE) {
             return;
         }
         battleCtx->beforeMoveCheckState++;
@@ -3154,7 +3154,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
         int nextSeq;
 
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_OBEDIENCE_CHECK) == FALSE) {
-            result = BattleController_CheckObedience(battleSys, battleCtx, &nextSeq);
+            result = BattleControllerPlayer_CheckObedience(battleSys, battleCtx, &nextSeq);
 
             if (result) {
                 switch (result) {
@@ -3180,14 +3180,14 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
 
     case BEFORE_MOVE_STATE_DECREMENT_PP:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_PP_DECREMENT) == FALSE
-            && BattleController_DecrementPP(battleSys, battleCtx) == TRUE) {
+            && BattleControllerPlayer_DecrementPP(battleSys, battleCtx) == TRUE) {
             return;
         }
 
         battleCtx->beforeMoveCheckState++;
 
     case BEFORE_MOVE_STATE_CHECK_TARGET_EXISTS:
-        if (BattleController_HasNoTarget(battleSys, battleCtx) == TRUE) {
+        if (BattleControllerPlayer_HasNoTarget(battleSys, battleCtx) == TRUE) {
             return;
         }
 
@@ -3195,7 +3195,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
 
     case BEFORE_MOVE_STATE_CHECK_STOLEN:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_STOLEN_CHECK) == FALSE
-            && BattleController_MoveStolen(battleSys, battleCtx) == 1) {
+            && BattleControllerPlayer_MoveStolen(battleSys, battleCtx) == 1) {
             return;
         }
 
@@ -3234,13 +3234,13 @@ enum TryMoveState {
     TRY_MOVE_END,
 };
 
-static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_TryMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     switch (battleCtx->tryMoveCheckState) {
     case TRY_MOVE_STATE_CHECK_VALID_TARGET:
         battleCtx->tryMoveCheckState++;
 
-        if (BattleController_HasNoTarget(battleSys, battleCtx) == TRUE) {
+        if (BattleControllerPlayer_HasNoTarget(battleSys, battleCtx) == TRUE) {
             return;
         }
 
@@ -3254,7 +3254,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
     case TRY_MOVE_STATE_CHECK_MOVE_HITS:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_ACCURACY_CHECK) == FALSE
             && battleCtx->defender != BATTLER_NONE
-            && BattleController_CheckMoveHitAccuracy(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender, battleCtx->moveCur) == 1) {
+            && BattleControllerPlayer_CheckMoveHitAccuracy(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender, battleCtx->moveCur) == 1) {
             return;
         }
 
@@ -3263,7 +3263,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
     case TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_ACCURACY_OVERRIDES) == FALSE
             && battleCtx->defender != BATTLER_NONE
-            && BattleController_CheckMoveHitOverrides(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender, battleCtx->moveCur) == 1) {
+            && BattleControllerPlayer_CheckMoveHitOverrides(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender, battleCtx->moveCur) == 1) {
             return;
         }
 
@@ -3272,7 +3272,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
     case TRY_MOVE_STATE_CHECK_TYPE_CHART:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_TYPE_CHART_CHECK) == FALSE
             && battleCtx->defender != BATTLER_NONE
-            && BattleController_CheckTypeChart(battleSys, battleCtx) == 1) {
+            && BattleControllerPlayer_CheckTypeChart(battleSys, battleCtx) == 1) {
             return;
         }
 
@@ -3281,7 +3281,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
     case TRY_MOVE_STATE_TRIGGER_IMMUNITY_ABILITIES:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_IMMUNITY_TRIGGERS) == FALSE
             && battleCtx->defender != BATTLER_NONE
-            && BattleController_TriggerImmunityAbilities(battleSys, battleCtx) == 1) {
+            && BattleControllerPlayer_TriggerImmunityAbilities(battleSys, battleCtx) == 1) {
             return;
         }
 
@@ -3295,7 +3295,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
     battleCtx->command = BATTLE_CONTROL_PRIMARY_EFFECT;
 }
 
-static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int nextSeq;
     if (BattleSystem_TriggerPrimaryEffect(battleSys, battleCtx, &nextSeq) == TRUE) {
@@ -3309,7 +3309,7 @@ static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContex
     battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
 }
 
-static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_MORE_WORK) {
         battleCtx->command = BATTLE_CONTROL_LOOP_SPREAD_MOVES;
@@ -3331,14 +3331,14 @@ static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleCon
     }
 }
 
-static void BattleController_UseMove(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_UseMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_use_move);
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
     battleCtx->commandNext = BATTLE_CONTROL_UPDATE_HP;
 }
 
-static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->moveStatusFlags & MOVE_STATUS_ONE_HIT_KO) {
         battleCtx->damage = DEFENDING_MON.maxHP * -1;
@@ -3464,20 +3464,20 @@ enum AfterMoveMessageState {
     MULTI_HIT_EXTRA_FLINCH,
 };
 
-static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     switch (battleCtx->afterMoveMessageType) {
     case AFTER_MOVE_MESSAGE_ONE_HIT:
         switch (battleCtx->afterMoveMessageState) {
         case ONE_HIT_CRITICAL:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_CriticalMessage(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_CriticalMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
         case ONE_HIT_STATUS:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_FollowupMessage(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_FollowupMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
@@ -3506,7 +3506,7 @@ static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleCon
 
         case ONE_HIT_RAGE:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_RageBuilding(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_RageBuilding(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
@@ -3524,7 +3524,7 @@ static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleCon
 
         case ONE_HIT_EXTRA_FLINCH:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
@@ -3537,7 +3537,7 @@ static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleCon
         switch (battleCtx->afterMoveMessageState) {
         case MULTI_HIT_CRITICAL:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_CriticalMessage(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_CriticalMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
@@ -3566,7 +3566,7 @@ static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleCon
 
         case MULTI_HIT_RAGE:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_RageBuilding(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_RageBuilding(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
@@ -3584,13 +3584,13 @@ static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleCon
 
         case MULTI_HIT_STATUS:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_FollowupMessage(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_FollowupMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
         case MULTI_HIT_EXTRA_FLINCH:
             battleCtx->afterMoveMessageState++;
-            if (BattleController_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
+            if (BattleControllerPlayer_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
                 return;
             }
 
@@ -3604,7 +3604,7 @@ static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleCon
     battleCtx->command = BATTLE_CONTROL_AFTER_MOVE_EFFECT;
 }
 
-static void BattleController_LeftoverState29(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_LeftoverState29(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
@@ -3635,7 +3635,7 @@ enum AfterMoveEffectState {
     AFTER_MOVE_EFFECT_END
 };
 
-static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     switch (battleCtx->afterMoveEffectState) {
     case AFTER_MOVE_EFFECT_TOGGLE_VANISH_FLAG:
@@ -3769,12 +3769,12 @@ static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleCon
     battleCtx->command = BATTLE_CONTROL_LOOP_MULTI_HIT;
 }
 
-static void BattleController_LeftoverState32(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_LeftoverState32(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
 
-static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->multiHitNumHits) {
         if (battleCtx->faintedMon == BATTLER_NONE
@@ -3817,16 +3817,16 @@ static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext
     }
 }
 
-static void BattleController_LoopWhileFainted(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_LoopWhileFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->battleStatusMask & SYSCTL_MON_FAINTED) {
-        BattleController_AnyFainted(battleCtx, BATTLE_CONTROL_LOOP_FAINTED, BATTLE_CONTROL_LOOP_FAINTED, FALSE);
+        BattleControllerPlayer_AnyFainted(battleCtx, BATTLE_CONTROL_LOOP_FAINTED, BATTLE_CONTROL_LOOP_FAINTED, FALSE);
     } else {
         battleCtx->command = BATTLE_CONTROL_LOOP_SPREAD_MOVES;
     }
 }
 
-static void BattleController_LoopSpreadMoves(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->battleStatusMask2 & SYSCTL_MAGIC_COAT_REFLECTED) {
         battleCtx->battleStatusMask2 &= ~SYSCTL_MAGIC_COAT_REFLECTED;
@@ -3834,7 +3834,7 @@ static void BattleController_LoopSpreadMoves(BattleSystem *battleSys, BattleCont
         battleCtx->attacker = battleCtx->magicCoatMon;
     }
 
-    BattleController_UpdateFlagsWhenHit(battleSys, battleCtx);
+    BattleControllerPlayer_UpdateFlagsWhenHit(battleSys, battleCtx);
 
     if (CURRENT_MOVE_DATA.range == RANGE_ADJACENT_OPPONENTS
         && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
@@ -3886,7 +3886,7 @@ static void BattleController_LoopSpreadMoves(BattleSystem *battleSys, BattleCont
     }
 }
 
-static void BattleController_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) {
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
@@ -3900,21 +3900,21 @@ static void BattleController_FaintAfterSelfdestruct(BattleSystem *battleSys, Bat
     }
 }
 
-static void BattleController_TriggerAfterHitEffects(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_TriggerAfterHitEffects(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleController_TriggerAfterMoveHitEffects(battleSys, battleCtx) == TRUE) {
+    if (BattleControllerPlayer_TriggerAfterMoveHitEffects(battleSys, battleCtx) == TRUE) {
         return;
     }
 
     battleCtx->command = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
 }
 
-static void BattleController_LeftoverState37(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_LeftoverState37(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
 
-static void BattleController_UpdateMoveBuffers(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     u8 itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
 
@@ -3953,20 +3953,20 @@ static void BattleController_UpdateMoveBuffers(BattleSystem *battleSys, BattleCo
         battleCtx->moveSketched[battleCtx->attacker] = battleCtx->moveTemp;
     }
 
-    BattleController_UpdateFlagsWhenHit(battleSys, battleCtx);
+    BattleControllerPlayer_UpdateFlagsWhenHit(battleSys, battleCtx);
     BattleSystem_VerifyMetronomeCount(battleSys, battleCtx);
 
     battleCtx->command = BATTLE_CONTROL_MOVE_END;
 }
 
-static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_MOVES) == FALSE) {
         if (BattleSystem_RecoverStatusByAbility(battleSys, battleCtx, battleCtx->attacker, FALSE) == TRUE
             || (battleCtx->defender != BATTLER_NONE
                 && BattleSystem_RecoverStatusByAbility(battleSys, battleCtx, battleCtx->defender, FALSE) == TRUE)
-            || BattleController_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
-            || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE) {
+            || BattleControllerPlayer_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+            || BattleControllerPlayer_CheckBattleOver(battleSys, battleCtx) == TRUE) {
             return;
         }
 
@@ -3979,11 +3979,11 @@ static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *bat
             return;
         }
 
-        if (BattleController_ToggleSemiInvulnMons(battleSys, battleCtx) == TRUE) {
+        if (BattleControllerPlayer_ToggleSemiInvulnMons(battleSys, battleCtx) == TRUE) {
             return;
         }
 
-        BattleController_ClearFlags(battleSys, battleCtx);
+        BattleControllerPlayer_ClearFlags(battleSys, battleCtx);
     }
 
     battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
@@ -3999,16 +3999,16 @@ static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *bat
     battleCtx->command = BATTLE_CONTROL_BRANCH_ACTIONS;
 }
 
-static void BattleController_CheckAnyFainted(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_CheckAnyFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleController_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, TRUE) == TRUE) {
+    if (BattleControllerPlayer_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, TRUE) == TRUE) {
         return;
     }
 
     battleCtx->command = BATTLE_CONTROL_MOVE_END;
 }
 
-static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_HandleResult(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (BattleSystem_ResultMask(battleSys) & BATTLE_RESULT_TRY_FLEE) {
         battleCtx->command = BATTLE_CONTROL_FIGHT_END;
@@ -4031,14 +4031,14 @@ static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext
     battleCtx->battleEndFlag = TRUE;
 }
 
-static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (IsScreenFadeDone() == TRUE) {
         battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 }
 
-static void BattleController_EndFight(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_EndFight(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     u32 battleType = BattleSystem_BattleType(battleSys);
 
@@ -4049,13 +4049,13 @@ static void BattleController_EndFight(BattleSystem *battleSys, BattleContext *ba
     }
 
     if (battleType & BATTLE_TYPE_LINK) {
-        Link_Message(22);
+        CommSys_SendMessage(22);
     }
 
     battleCtx->command = BATTLE_CONTROL_END_WAIT;
 }
 
-static void BattleController_EndWait(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_EndWait(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
@@ -4067,7 +4067,7 @@ static void BattleController_EndWait(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx
  * @return TRUE if an interjecting subroutine should be executed.
  */
-static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL result = FALSE;
     int i; // must be declared here to match
@@ -4178,7 +4178,7 @@ static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleConte
  * @return TRUE if the battle is over (regardless of the result); FALSE if the
  * battle is still in-progress.
  */
-static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -4339,7 +4339,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
  * @param[out] target   Outputs where to initialize the target selection cursor.
  * @return TRUE if the user must select a target for its move; FALSE otherwise.
  */
-static BOOL BattleController_MustSelectTarget(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target)
+static BOOL BattleControllerPlayer_MustSelectTarget(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target)
 {
     if (battleCtx->battleMons[battler].moves[moveSlot] == MOVE_CURSE
         && Move_IsGhostCurse(battleCtx, battleCtx->battleMons[battler].moves[moveSlot], battler) == FALSE) {
@@ -4376,7 +4376,7 @@ static BOOL BattleController_MustSelectTarget(BattleSystem *battleSys, BattleCon
  * @param battleSys
  * @param battleCtx
  */
-static void BattleController_ClearFlags(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_ClearFlags(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
@@ -4406,7 +4406,7 @@ static void BattleController_ClearFlags(BattleSystem *battleSys, BattleContext *
  *                          loaded instead (e.g., Destiny Bond, Grudge).
  * @return TRUE if any battler has fainted; FALSE if none have fainted.
  */
-static BOOL BattleController_AnyFainted(BattleContext *battleCtx, int nextCmd, int nextCmdNoFainted, BOOL onlyFaint)
+static BOOL BattleControllerPlayer_AnyFainted(BattleContext *battleCtx, int nextCmd, int nextCmdNoFainted, BOOL onlyFaint)
 {
     int i = 0;
     int battlerBit = FlagIndex(battleCtx->monSpeedOrder[i]) << SYSCTL_MON_FAINTED_SHIFT;
@@ -4446,7 +4446,7 @@ static BOOL BattleController_AnyFainted(BattleContext *battleCtx, int nextCmd, i
  * @param nextCmdNoExp  The next command to queue if no battler has fainted.
  * @return TRUE if the exp payout subroutine should be invoked; FALSE otherwise.
  */
-static BOOL BattleController_AnyExpPayout(BattleContext *battleCtx, int nextCmd, int nextCmdNoExp)
+static BOOL BattleControllerPlayer_AnyExpPayout(BattleContext *battleCtx, int nextCmd, int nextCmdNoExp)
 {
     if (battleCtx->battleStatusMask2 & SYSCTL_PAYOUT_EXP) {
         int battler = 1 << SYSCTL_PAYOUT_EXP_SHIFT;
@@ -4474,7 +4474,7 @@ static BOOL BattleController_AnyExpPayout(BattleContext *battleCtx, int nextCmd,
  * @param battleSys
  * @param battleCtx
  */
-static void BattleController_UpdateFlagsWhenHit(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_UpdateFlagsWhenHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int moveType = CalcCurrentMoveType(battleCtx);
     if ((MOVE_DATA(battleCtx->moveTemp).flags & MOVE_FLAG_CAN_MIRROR_MOVE)
@@ -4544,7 +4544,7 @@ static void BattleController_UpdateFlagsWhenHit(BattleSystem *battleSys, BattleC
  * @param battleCtx
  * @return Always TRUE.
  */
-static BOOL BattleController_CriticalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_CriticalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     LOAD_SUBSEQ(subscript_critical_hit);
     battleCtx->commandNext = battleCtx->command;
@@ -4564,7 +4564,7 @@ static BOOL BattleController_CriticalMessage(BattleSystem *battleSys, BattleCont
  * @param battleCtx
  * @return TRUE if the follow-up subroutine should be executed; FALSE otherwise.
  */
-static BOOL BattleController_FollowupMessage(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_FollowupMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL result = FALSE;
     if (battleCtx->moveStatusFlags) {
@@ -4595,7 +4595,7 @@ static BOOL BattleController_FollowupMessage(BattleSystem *battleSys, BattleCont
  * @param battleCtx
  * @return TRUE if the subroutine was loaded for execution; FALSE otherwise.
  */
-static BOOL BattleController_RageBuilding(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_RageBuilding(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL result = FALSE;
     if (battleCtx->defender == BATTLER_NONE) {
@@ -4627,7 +4627,7 @@ static BOOL BattleController_RageBuilding(BattleSystem *battleSys, BattleContext
  * @param battleCtx
  * @return TRUE if the flinch should be applied; FALSE otherwise.
  */
-static BOOL BattleController_CheckExtraFlinch(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_CheckExtraFlinch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL result = FALSE;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
@@ -4661,7 +4661,7 @@ static BOOL BattleController_CheckExtraFlinch(BattleSystem *battleSys, BattleCon
  * @return TRUE if a semi-invulnerable battler should be made visible; FALSE
  * otherwise.
  */
-static BOOL BattleController_ToggleSemiInvulnMons(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_ToggleSemiInvulnMons(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BOOL result = FALSE;
     while (battleCtx->vanishedCheckTemp < BattleSystem_MaxBattlers(battleSys)) {
@@ -4712,14 +4712,14 @@ enum AfterMoveHitState {
  * @param battleCtx
  * @return TRUE if any interjecting subroutine must be executed; FALSE otherwise.
  */
-static BOOL BattleController_TriggerAfterMoveHitEffects(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int machineState = STATE_PROCESSING;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys); // unused, but must remain to match
     int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
 
-    if (BattleController_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, TRUE) == TRUE) {
+    if (BattleControllerPlayer_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, TRUE) == TRUE) {
         return TRUE;
     }
 
@@ -4793,7 +4793,7 @@ static BOOL BattleController_TriggerAfterMoveHitEffects(BattleSystem *battleSys,
  * @param battleSys
  * @param battleCtx
  */
-static void BattleController_InitAI(BattleSystem *battleSys, BattleContext *battleCtx)
+static void BattleControllerPlayer_InitAI(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     u32 battleType = BattleSystem_BattleType(battleSys);
     MI_CpuClear32(&battleCtx->aiContext, sizeof(AIContext));
@@ -4818,43 +4818,41 @@ static void BattleController_InitAI(BattleSystem *battleSys, BattleContext *batt
 
 static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    u8 v2;
+    int battler;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    u8 recordedAction;
 
-    v1 = BattleSystem_MaxBattlers(battleSys);
-
-    for (v0 = 0; v0 < v1; v0++) {
-        if (battleCtx->battlerActions[v0][0] != 39) {
-            if (battleCtx->recordedCommandFlags[v0] & 0x1) {
-                v2 = (battleCtx->battlerActions[v0][0] - 13) + 1;
-                BattleSystem_Record(battleSys, v0, v2);
+    for (battler = 0; battler < maxBattlers; battler++) {
+        if (battleCtx->battlerActions[battler][0] != BATTLE_CONTROL_MOVE_END) {
+            if (battleCtx->recordedCommandFlags[battler] & 0x1) {
+                recordedAction = (battleCtx->battlerActions[battler][0] - BATTLE_CONTROL_FIGHT) + 1;
+                BattleSystem_Record(battleSys, battler, recordedAction);
             }
 
-            switch (battleCtx->battlerActions[v0][0]) {
-            case 13:
-                if (battleCtx->recordedCommandFlags[v0] & 0x2) {
-                    v2 = battleCtx->battlerActions[v0][2];
-                    BattleSystem_Record(battleSys, v0, v2);
+            switch (battleCtx->battlerActions[battler][0]) {
+            case BATTLE_CONTROL_FIGHT:
+                if (battleCtx->recordedCommandFlags[battler] & 0x2) {
+                    recordedAction = battleCtx->battlerActions[battler][2];
+                    BattleSystem_Record(battleSys, battler, recordedAction);
                 }
 
-                if (battleCtx->recordedCommandFlags[v0] & 0x4) {
-                    v2 = battleCtx->battlerActions[v0][1] + 1;
-                    BattleSystem_Record(battleSys, v0, v2);
+                if (battleCtx->recordedCommandFlags[battler] & 0x4) {
+                    recordedAction = battleCtx->battlerActions[battler][1] + 1;
+                    BattleSystem_Record(battleSys, battler, recordedAction);
                 }
                 break;
-            case 14:
-                v2 = battleCtx->battlerActions[v0][2] & 0xff;
-                BattleSystem_Record(battleSys, v0, v2);
-                v2 = (battleCtx->battlerActions[v0][2] & 0xff00) >> 16;
-                BattleSystem_Record(battleSys, v0, v2);
+            case BATTLE_CONTROL_ITEM:
+                recordedAction = battleCtx->battlerActions[battler][2] & 0xff;
+                BattleSystem_Record(battleSys, battler, recordedAction);
+                recordedAction = (battleCtx->battlerActions[battler][2] & 0xff00) >> 16;
+                BattleSystem_Record(battleSys, battler, recordedAction);
                 break;
-            case 15:
-                v2 = battleCtx->battlerActions[v0][2] + 1;
-                BattleSystem_Record(battleSys, v0, v2);
+            case BATTLE_CONTROL_PARTY:
+                recordedAction = battleCtx->battlerActions[battler][2] + 1;
+                BattleSystem_Record(battleSys, battler, recordedAction);
                 break;
-            case 16:
-                BattleSystem_Record(battleSys, v0, 1);
+            case BATTLE_CONTROL_RUN:
+                BattleSystem_Record(battleSys, battler, 1);
                 break;
             default:
                 break;

@@ -130,7 +130,7 @@ u8 sub_02071F28(FieldSystem *fieldSystem)
     saveData = FieldSystem_GetSaveData(fieldSystem);
     gameRecords = SaveData_GetGameRecords(saveData);
     varsFlags = SaveData_GetVarsFlags(saveData);
-    undergroundRecord = SaveData_UndergroundRecord(saveData);
+    undergroundRecord = SaveData_GetUndergroundRecord(saveData);
     frontier = SaveData_GetBattleFrontier(saveData);
     trainerCardLevel = 0;
 

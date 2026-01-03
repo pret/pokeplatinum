@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000638_00001",
+      "id": "UndergroundCaptureFlag_Text_Dummy_00001",
       "garbage": 32
     },
     {
@@ -19,11 +19,11 @@
       "en_US": "Discarded the Flag."
     },
     {
-      "id": "pl_msg_00000638_00003",
+      "id": "UndergroundCaptureFlag_Text_Dummy_00003",
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000638_00004",
+      "id": "UndergroundCaptureFlag_Text_Dummy_00004",
       "garbage": 18
     },
     {
@@ -75,7 +75,7 @@
       "en_US": "Took back the Flag!"
     },
     {
-      "id": "pl_msg_00000638_00014",
+      "id": "UndergroundCaptureFlag_Text_FlagBecameBronze",
       "en_US": [
         "...\r",
         "One Flag has been registered,\n",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000638_00015",
+      "id": "UndergroundCaptureFlag_Text_FlagBecameSilver",
       "en_US": [
         "...\r",
         "Three Flags have been registered,\n",
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000638_00016",
+      "id": "UndergroundCaptureFlag_Text_FlagBecameGold",
       "en_US": [
         "...\r",
         "Ten Flags have been registered,\n",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000638_00017",
+      "id": "UndergroundCaptureFlag_Text_FlagBecamePlatinum",
       "en_US": [
         "...\r",
         "Fifty Flags have been registered,\n",
