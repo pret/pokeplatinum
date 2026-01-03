@@ -57,7 +57,7 @@
 
 typedef void (*UnkFuncPtr_ov104_0223F394)(UnkStruct_ov104_0223C4CC *, void **);
 
-typedef struct {
+typedef struct FrontierScene {
     GXBGMode bgMode;
     UnkFuncPtr_ov104_0223F394 unk_04;
     UnkFuncPtr_ov104_0223F394 unk_08;
@@ -403,7 +403,7 @@ static const FrontierScene sFrontierScenes[] = {
     },
 };
 
-int GetFronierSceneValue(int scene, enum FrontierSceneParam sceneParam)
+int GetFrontierSceneValue(int scene, enum FrontierSceneParam sceneParam)
 {
     switch (sceneParam) {
     case FR_SCENE_BGMODE:

@@ -179,7 +179,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, GetFronierSceneValue(v2, FR_SCENE_BGM_ID), 1);
+    Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, GetFrontierSceneValue(v2, FR_SCENE_BGM_ID), 1);
 
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
@@ -384,7 +384,7 @@ static void ov104_0223C798(UnkStruct_ov104_0223C4CC *param0)
     int v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_08);
 
-    v0 = GetFronierSceneValue(v1->unk_24, FR_SCENE_FLAG_1);
+    v0 = GetFrontierSceneValue(v1->unk_24, FR_SCENE_FLAG_1);
 
     switch (v0) {
     case 0:
@@ -393,7 +393,7 @@ static void ov104_0223C798(UnkStruct_ov104_0223C4CC *param0)
             ov63_0222D228(param0->unk_24, &param0->unk_1C);
         }
 
-        if ((param0->unk_28 != NULL) && (GetFronierSceneValue(v1->unk_24, FR_SCENE_FLAG_2) == 1)) {
+        if ((param0->unk_28 != NULL) && (GetFrontierSceneValue(v1->unk_24, FR_SCENE_FLAG_2) == 1)) {
             ov63_0222D228(param0->unk_28, &param0->unk_1C);
         }
         break;
@@ -416,7 +416,7 @@ static void ov104_0223C7EC(UnkStruct_ov104_0223C4CC *param0)
     Bg_ScheduleScroll(param0->unk_00, 3, 0, v0);
     Bg_ScheduleScroll(param0->unk_00, 3, 3, v1);
 
-    if ((GetFronierSceneValue(v2->unk_24, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) && (GetFronierSceneValue(v2->unk_24, FR_SCENE_FLAG_2) == 1)) {
+    if ((GetFrontierSceneValue(v2->unk_24, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) && (GetFrontierSceneValue(v2->unk_24, FR_SCENE_FLAG_2) == 1)) {
         Bg_ScheduleScroll(param0->unk_00, 2, 0, v0);
         Bg_ScheduleScroll(param0->unk_00, 2, 3, v1);
     }
@@ -443,7 +443,7 @@ static void ov104_0223C8E8(UnkStruct_ov104_0223C4CC *param0)
 
 static void ov104_0223C948(BgConfig *param0, int param1)
 {
-    GXBGMode bgMode = GetFronierSceneValue(param1, FR_SCENE_BGMODE);
+    GXBGMode bgMode = GetFrontierSceneValue(param1, FR_SCENE_BGMODE);
     GXLayers_DisableEngineALayers();
 
     {
@@ -533,10 +533,10 @@ static void ov104_0223C948(BgConfig *param0, int param1)
             v3[2].bgExtPltt = GX_BG_EXTPLTT_01;
         }
 
-        u16 screenSize = GetFronierSceneValue(param1, FR_SCENE_SCREEN_SIZE);
+        u16 screenSize = GetFrontierSceneValue(param1, FR_SCENE_SCREEN_SIZE);
         v3[2].screenSize = screenSize;
 
-        if (GetFronierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
+        if (GetFrontierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
             v3[1].screenSize = screenSize;
         }
 
@@ -650,16 +650,16 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
         };
         int v1;
 
-        v0.narcID = GetFronierSceneValue(param1, FR_SCENE_NARC_ID);
-        v0.unk_09 = GetFronierSceneValue(param1, FR_SCENE_TILEMAP_IDX);
-        v1 = GetFronierSceneValue(param1, FR_SCENE_FLAG_1);
+        v0.narcID = GetFrontierSceneValue(param1, FR_SCENE_NARC_ID);
+        v0.unk_09 = GetFrontierSceneValue(param1, FR_SCENE_TILEMAP_IDX);
+        v1 = GetFrontierSceneValue(param1, FR_SCENE_FLAG_1);
 
         if (v1 == 0) {
             param0->unk_24 = ov63_0222D1C0(SpriteSystem_GetRenderer(param0->unk_34.unk_00), param0->unk_00, &v0, HEAP_ID_94);
         }
 
-        if (GetFronierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
-            v0.unk_09 = GetFronierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX);
+        if (GetFrontierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
+            v0.unk_09 = GetFrontierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX);
             v0.unk_01 = 2;
             v0.unk_03 = (GX_BG_SCRBASE_0x0800);
             v0.unk_04 = (GX_BG_CHARBASE_0x20000);
@@ -677,19 +677,19 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
     ov63_0222BD50(param0->unk_18, Unk_ov104_022413D8);
 
     {
-        GXBGMode bgMode = GetFronierSceneValue(param1, FR_SCENE_BGMODE);
+        GXBGMode bgMode = GetFrontierSceneValue(param1, FR_SCENE_BGMODE);
 
-        u32 narcID = GetFronierSceneValue(param1, FR_SCENE_NARC_ID);
+        u32 narcID = GetFrontierSceneValue(param1, FR_SCENE_NARC_ID);
         NARC *narc = NARC_ctor(narcID, HEAP_ID_94);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(narc, GetFronierSceneValue(param1, FR_SCENE_TILES_IDX), param0->unk_00, 3, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(param1, FR_SCENE_TILES_IDX), param0->unk_00, 3, 0, 0, 1, HEAP_ID_94);
 
         if (bgMode == GX_BGMODE_0) {
-            PaletteData_LoadBufferFromFileStart(param0->unk_04, narcID, GetFronierSceneValue(param1, FR_SCENE_PLTT_IDX), 94, 0, (10 - 0 + 1) * 0x20, 0 * 16);
+            PaletteData_LoadBufferFromFileStart(param0->unk_04, narcID, GetFrontierSceneValue(param1, FR_SCENE_PLTT_IDX), 94, 0, (10 - 0 + 1) * 0x20, 0 * 16);
         } else {
             NNSG2dPaletteData *plttData;
 
-            void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, GetFronierSceneValue(param1, FR_SCENE_PLTT_IDX), &plttData, HEAP_ID_94);
+            void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, GetFrontierSceneValue(param1, FR_SCENE_PLTT_IDX), &plttData, HEAP_ID_94);
             DC_FlushRange(plttData->pRawData, plttData->szByte);
 
             GX_BeginLoadBGExtPltt();
@@ -700,18 +700,16 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
         }
 
         PaletteData_FillBufferRange(param0->unk_04, 0, 2, 0x0, 0, 1);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, GetFronierSceneValue(param1, FR_SCENE_TILEMAP_IDX), param0->unk_00, 3, 0, 0, 1, HEAP_ID_94);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(param1, FR_SCENE_TILEMAP_IDX), param0->unk_00, 3, 0, 0, 1, HEAP_ID_94);
 
-        if (GetFronierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
-            Graphics_LoadTilesToBgLayerFromOpenNARC(narc, GetFronierSceneValue(param1, FR_SCENE_SUB_TILES_IDX), param0->unk_00, 2, 0, 0, 1, HEAP_ID_94);
-            Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, GetFronierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX), param0->unk_00, 2, 0, 0, 1, HEAP_ID_94);
+        if (GetFrontierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX) != 0xffff) {
+            Graphics_LoadTilesToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(param1, FR_SCENE_SUB_TILES_IDX), param0->unk_00, 2, 0, 0, 1, HEAP_ID_94);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, GetFrontierSceneValue(param1, FR_SCENE_SUB_TILEMAP_IDX), param0->unk_00, 2, 0, 0, 1, HEAP_ID_94);
 
-            if (bgMode == GX_BGMODE_0) {
-                (void)0;
-            } else {
+            if (bgMode != GX_BGMODE_0) {
                 NNSG2dPaletteData *plttData;
 
-                void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, GetFronierSceneValue(param1, FR_SCENE_SUB_PLTT_IDX), &plttData, HEAP_ID_94);
+                void *pltt = Graphics_GetPlttDataFromOpenNARC(narc, GetFrontierSceneValue(param1, FR_SCENE_SUB_PLTT_IDX), &plttData, HEAP_ID_94);
                 DC_FlushRange(plttData->pRawData, plttData->szByte);
 
                 GX_BeginLoadBGExtPltt();

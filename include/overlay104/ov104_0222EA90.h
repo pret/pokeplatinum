@@ -20,7 +20,7 @@ enum FrontierSceneParam {
     FR_SCENE_FLAG_2,
 };
 
-int GetFronierSceneValue(int scene, enum FrontierSceneParam sceneParam);
+int GetFrontierSceneValue(int scene, enum FrontierSceneParam sceneParam);
 void ov104_0222EB8C(UnkStruct_ov104_0223C4CC *param0, void **param1, int param2);
 void ov104_0222EBA4(UnkStruct_ov104_0223C4CC *param0, void **param1, int param2);
 
