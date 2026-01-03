@@ -339,7 +339,7 @@ for file in args.src_files:
                 dungeon_morning[Species[species].value].add(map_num)
 
                 if ((i == 2) or (i == 3)):
-                    species = enc_data['morning'][i - 2]
+                    species = enc_data['day'][i - 2]
                     dungeon_day[Species[species].value].add(map_num)
 
                     species = enc_data['night'][i - 2]
@@ -392,7 +392,7 @@ for file in args.src_files:
                 field_morning[Species[species].value].add(map_num)
 
                 if ((i == 2) or (i == 3)):
-                    species = enc_data['morning'][i - 2]
+                    species = enc_data['day'][i - 2]
                     field_day[Species[species].value].add(map_num)
 
                     species = enc_data['night'][i - 2]

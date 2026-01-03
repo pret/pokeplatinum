@@ -197,7 +197,7 @@ _0248:
     SetObjectEventDir 10, DIR_NORTH
     SetObjectEventMovementType 10, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 10
-    CallCommonScript 0x7FA
+    SetRivalBGM
     CallIfEq VAR_0x8000, 0, _046C
     CallIfEq VAR_0x8000, 1, _0480
     CallIfEq VAR_0x8000, 2, _0494
@@ -219,7 +219,7 @@ _0248:
     ApplyMovement 10, _058C
     WaitMovement
     RemoveObject 10
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     Message 8
     CloseMessage
     CallIfEq VAR_0x8000, 0, _0414
