@@ -19,7 +19,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_02266ABC.h"
 
 #include "communication_system.h"
@@ -1942,13 +1941,18 @@ void BattleController_EmitPlayMusic(BattleSystem *battleSys, int battlerId, int 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(MusicPlayMessage));
 }
 
-void BattleIO_SubmitResult(BattleSystem *battleSys)
+/**
+ * @brief Emits a message to submit a battle result
+ *
+ * @param battleSys
+ */
+void BattleController_EmitSubmitResult(BattleSystem *battleSys)
 {
-    UnkStruct_ov16_02266A38 message;
+    ResultSubmitMessage message;
     u32 battleType = BattleSystem_BattleType(battleSys);
 
-    message.unk_00 = BATTLE_COMMAND_SUBMIT_RESULT;
-    message.unk_04 = BattleSystem_ResultMask(battleSys);
+    message.command = BATTLE_COMMAND_SUBMIT_RESULT;
+    message.resultMask = BattleSystem_ResultMask(battleSys);
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
@@ -1956,7 +1960,7 @@ void BattleIO_SubmitResult(BattleSystem *battleSys)
         GF_ASSERT(message.unk_02 <= 28);
     }
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(UnkStruct_ov16_02266A38));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, 0, &message, sizeof(ResultSubmitMessage));
 }
 
 void BattleIO_ClearMessageBox(BattleSystem *battleSys)

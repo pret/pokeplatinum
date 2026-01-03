@@ -377,5 +377,12 @@ typedef struct {
     u16 bgmID;
 } MusicPlayMessage;
 
+typedef struct {
+    u8 command;
+    u8 padding_01;
+    u16 unk_02;
+    u32 resultMask;
+    u8 unk_08[28];
+} ResultSubmitMessage;
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

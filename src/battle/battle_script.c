@@ -8497,7 +8497,7 @@ static BOOL BtlCmd_SetLinkBattleResult(BattleSystem *battleSys, BattleContext *b
     BattleScript_Iter(battleCtx, 1);
 
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) {
-        BattleIO_SubmitResult(battleSys);
+        BattleController_EmitSubmitResult(battleSys);
     }
 
     return FALSE;

@@ -20,7 +20,6 @@
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle_anim/ov12_02235E94.h"
@@ -918,7 +917,7 @@ static void ov16_0225CA60(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
 {
-    UnkStruct_ov16_02266A38 *v0 = (UnkStruct_ov16_02266A38 *)&param1->data[0];
+    ResultSubmitMessage *message = (ResultSubmitMessage *)&param1->data[0];
     Party *v1;
     Pokemon *v2;
     int v3;
@@ -927,10 +926,10 @@ static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
     int v6 = 0;
     u8 v7;
 
-    ov16_0223F638(battleSys, v0->unk_02, v0->unk_08);
+    ov16_0223F638(battleSys, message->unk_02, message->unk_08);
 
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
-        BattleSystem_SetResultFlag(battleSys, v0->unk_04);
+        BattleSystem_SetResultFlag(battleSys, message->resultMask);
     } else {
         for (v4 = 0; v4 < BattleSystem_MaxBattlers(battleSys); v4++) {
             v1 = BattleSystem_Party(battleSys, v4);
@@ -957,7 +956,7 @@ static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    ClearCommand(battleSys, param1->battler, v0->unk_00);
+    ClearCommand(battleSys, param1->battler, message->command);
     ZeroDataBuffer(param1);
 }
 
