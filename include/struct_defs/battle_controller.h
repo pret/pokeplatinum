@@ -371,4 +371,11 @@ typedef struct {
     u8 padding_02[2];
 } MoveHitSoundMessage;
 
+typedef struct {
+    u8 command;
+    u8 padding_01;
+    u16 bgmID;
+} MusicPlayMessage;
+
+
 #endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H

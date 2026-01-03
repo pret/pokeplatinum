@@ -139,7 +139,7 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
 void BattleController_EmitForfeitMessage(BattleSystem *battleSys);
 void BattleController_EmitRefreshSprite(BattleSystem *battleSys, BattleContext *param1, int param2);
 void BattleController_EmitPlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *param1, int param2);
-void BattleIO_PlayMusic(BattleSystem *battleSys, int param1, int param2);
+void BattleController_EmitPlayMusic(BattleSystem *battleSys, int param1, int param2);
 void BattleIO_SubmitResult(BattleSystem *battleSys);
 void BattleIO_ClearMessageBox(BattleSystem *battleSys);
 void ClearCommand(BattleSystem *battleSys, int param1, int param2);

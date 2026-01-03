@@ -27,7 +27,6 @@
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_0225CBB8.h"
 #include "battle/struct_ov16_0225D1C4.h"
 #include "battle/struct_ov16_0225D360.h"
@@ -1417,10 +1416,10 @@ void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, MoveHitSoundMes
     ClearCommand(battleSys, param1->battler, message->command);
 }
 
-void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225CA60 *param2)
+void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, MusicPlayMessage *message)
 {
-    Sound_PlayBGM(param2->unk_02);
-    ClearCommand(battleSys, param1->battler, param2->unk_00);
+    Sound_PlayBGM(message->bgmID);
+    ClearCommand(battleSys, param1->battler, message->command);
 }
 
 static void ov16_0225E4E8(SysTask *param0, void *param1)

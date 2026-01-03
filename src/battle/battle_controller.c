@@ -18,7 +18,6 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
-#include "battle/struct_ov16_0225CA60.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_02266A38.h"
 #include "battle/struct_ov16_02266ABC.h"
@@ -1926,14 +1925,21 @@ void BattleController_EmitPlayMoveHitSoundEffect(BattleSystem *battleSys, Battle
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveHitSoundMessage));
 }
 
-void BattleIO_PlayMusic(BattleSystem *battleSys, int battlerId, int param2)
+/**
+ * @brief Emits a message to play a given background music
+ *
+ * @param battleSys
+ * @param battler
+ * @param bgmID
+ */
+void BattleController_EmitPlayMusic(BattleSystem *battleSys, int battlerId, int bgmID)
 {
-    UnkStruct_ov16_0225CA60 message;
+    MusicPlayMessage message;
 
-    message.unk_00 = BATTLE_COMMAND_PLAY_MUSIC;
-    message.unk_02 = param2;
+    message.command = BATTLE_COMMAND_PLAY_MUSIC;
+    message.bgmID = bgmID;
 
-    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(UnkStruct_ov16_0225CA60));
+    SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(MusicPlayMessage));
 }
 
 void BattleIO_SubmitResult(BattleSystem *battleSys)

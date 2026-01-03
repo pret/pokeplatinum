@@ -9528,7 +9528,7 @@ static BOOL BtlCmd_PlayBGM(BattleSystem *battleSys, BattleContext *battleCtx)
     int bgmID = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    BattleIO_PlayMusic(battleSys, battler, bgmID);
+    BattleController_EmitPlayMusic(battleSys, battler, bgmID);
 
     return FALSE;
 }
