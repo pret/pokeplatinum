@@ -13,7 +13,7 @@
 
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
-#include "battle/battle_controller.h"
+#include "battle/battle_controller_player.h"
 #include "battle/battle_lib.h"
 #include "battle/common.h"
 #include "battle/ov16_0223DF00.h"

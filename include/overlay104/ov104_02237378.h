@@ -1,22 +1,22 @@
 #ifndef POKEPLATINUM_OV104_02237378_H
 #define POKEPLATINUM_OV104_02237378_H
 
-#include "overlay104/struct_ov104_0222E930_decl.h"
+#include "overlay104/frontier_script_context.h"
 
-BOOL ov104_02237378(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_022373DC(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_022373F8(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_0223740C(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237460(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_022375F8(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237720(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237734(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237748(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237CAC(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237CC8(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237CF8(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237D48(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237D84(UnkStruct_ov104_0222E930 *param0);
-BOOL ov104_02237D98(UnkStruct_ov104_0222E930 *param0);
+BOOL FrontierScrCmd_B8(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_B9(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_BA(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_C3(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_BB(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_BC(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_BD(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_BE(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_BF(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_C0(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_C1(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_C2(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_C4(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_C5(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_C6(FrontierScriptContext *param0);
 
 #endif // POKEPLATINUM_OV104_02237378_H

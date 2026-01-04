@@ -17,7 +17,7 @@
         "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {
-        "effect": 21,
+        "effect": "CONTEST_EFFECT_HIGH_SCORE_LATER_TURN",
         "type": "CONTEST_TYPE_TOUGH"
     }
 }

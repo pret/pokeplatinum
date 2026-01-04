@@ -48,7 +48,7 @@ enum OverworldAnimManagerFlags {
 struct OverworldAnimManager {
     u32 flags;
     int id;
-    int unk_08;
+    int distWorldGhostPropKind;
     const void *userData;
     SysTask *tickSysTask;
     const OverworldAnimManagerList *list;
@@ -88,8 +88,8 @@ void *OverworldAnimManager_GetFuncsContext(OverworldAnimManager *manager);
 void OverworldAnimManager_ResetFuncsContext(OverworldAnimManager *manager, int ctxSize);
 int OverworldAnimManager_GetID(const OverworldAnimManager *manager);
 const void *OverworldAnimManager_GetUserData(const OverworldAnimManager *manager);
-void sub_020715C0(OverworldAnimManager *param0, int param1);
-int sub_020715C4(const OverworldAnimManager *param0);
+void OverworldAnimManager_SetDistWorldGhostPropKind(OverworldAnimManager *manager, int kind);
+int OverworldAnimManager_GetDistWorldGhostPropKind(const OverworldAnimManager *manager);
 void OverworldAnimManager_SetPosition(OverworldAnimManager *manager, const VecFx32 *position);
 void OverworldAnimManager_GetPosition(OverworldAnimManager *manager, VecFx32 *position);
 int OverworldAnimManager_DummyInitFunc(OverworldAnimManager *manager, void *ctx);

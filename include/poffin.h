@@ -6,42 +6,10 @@
 #define POFFIN_NONE 0xFFFF
 #define MAX_POFFINS 100
 
-enum PoffinFlavors {
-    POFFIN_FLAVOR_SPICY = 0,
-    POFFIN_FLAVOR_SPICY_DRY,
-    POFFIN_FLAVOR_SPICY_SWEET,
-    POFFIN_FLAVOR_SPICY_BITTER,
-    POFFIN_FLAVOR_SPICY_SOUR,
-    POFFIN_FLAVOR_DRY_SPICY,
-    POFFIN_FLAVOR_DRY,
-    POFFIN_FLAVOR_DRY_SWEET,
-    POFFIN_FLAVOR_DRY_BITTER,
-    POFFIN_FLAVOR_DRY_SOUR,
-    POFFIN_FLAVOR_SWEET_SPICY,
-    POFFIN_FLAVOR_SWEET_DRY,
-    POFFIN_FLAVOR_SWEET,
-    POFFIN_FLAVOR_SWEET_BITTER,
-    POFFIN_FLAVOR_SWEET_SOUR,
-    POFFIN_FLAVOR_BITTER_SPICY,
-    POFFIN_FLAVOR_BITTER_DRY,
-    POFFIN_FLAVOR_BITTER_SWEET,
-    POFFIN_FLAVOR_BITTER,
-    POFFIN_FLAVOR_BITTER_SOUR,
-    POFFIN_FLAVOR_SOUR_SPICY,
-    POFFIN_FLAVOR_SOUR_DRY,
-    POFFIN_FLAVOR_SOUR_SWEET,
-    POFFIN_FLAVOR_SOUR_BITTER,
-    POFFIN_FLAVOR_SOUR,
-    POFFIN_FLAVOR_RICH,
-    POFFIN_FLAVOR_OVERRIPE,
-    POFFIN_FLAVOR_FOUL,
-    POFFIN_FLAVOR_MILD,
-};
-
 typedef struct {
     union {
         struct PoffinInner {
-            u8 flavor;
+            u8 type;
             u8 spiciness;
             u8 dryness;
             u8 sweetness;
@@ -59,7 +27,7 @@ typedef struct PoffinCase {
 } PoffinCase;
 
 enum PoffinAttributeID {
-    POFFIN_ATTRIBUTEID_FLAVOR,
+    POFFIN_ATTRIBUTEID_TYPE,
     POFFIN_ATTRIBUTEID_SPICINESS,
     POFFIN_ATTRIBUTEID_DRYNESS,
     POFFIN_ATTRIBUTEID_SWEETNESS,
@@ -85,7 +53,7 @@ u16 PoffinCase_GetEmptySlot(PoffinCase *poffinCase);
 u16 PoffinCase_AddPoffin(PoffinCase *poffinCase, Poffin *poffin);
 BOOL PoffinCase_ClearSlot(PoffinCase *poffinCase, u16 slot);
 void PoffinCase_Compact(PoffinCase *poffinCase);
-void PoffinCase_CopyPoffinToSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin);
+void PoffinCase_CopyPoffinFromSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin);
 Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, int heapID);
 u16 PoffinCase_CountFilledSlots(PoffinCase *poffinCase);
 u16 PoffinCase_CountEmptySlots(PoffinCase *poffinCase);

@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_020F568C_H
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
+    u16 lineOneEffectMessageID;
+    u16 lineTwoEffectMessageID;
     s8 unk_04;
     u16 unk_06;
     u8 unk_08;

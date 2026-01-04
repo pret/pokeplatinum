@@ -121,7 +121,7 @@ PokemonLeagueNorthPokecenter1F_RivalTrigger:
     LockAll
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY
     AddObject LOCALID_BARRY
-    CallCommonScript 0x7FA
+    SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 10, PokemonLeagueNorthPokecenter1F_RivalEnterWest
     GoToIfEq VAR_0x8004, 11, PokemonLeagueNorthPokecenter1F_RivalEnterNorth

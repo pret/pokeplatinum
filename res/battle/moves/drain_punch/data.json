@@ -18,7 +18,7 @@
         "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {
-        "effect": 20,
+        "effect": "CONTEST_EFFECT_TWO_VOLTAGE_IN_A_ROW_ADVANTAGE",
         "type": "CONTEST_TYPE_BEAUTY"
     }
 }
