@@ -3,10 +3,10 @@
 
 #include "savedata.h"
 
-void sub_02099550(void);
-void sub_02099560(void);
-void sub_02099570(void);
-void sub_02099580(void);
+void Overlay_LoadWFCOverlay(void);
+void Overlay_UnloadWFCOverlay(void);
+void Overlay_LoadWFCSettingsOverlay(void);
+void Overlay_UnloadWFCSettingsOverlay(void);
 void Overlay_LoadHttpOverlay(void);
 void Overlay_UnloadHttpOverlay(void);
 

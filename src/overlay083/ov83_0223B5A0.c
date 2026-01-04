@@ -214,7 +214,7 @@ int ov83_0223B710(ApplicationManager *appMan, int *param1)
 
     if (v1->unk_26) {
         if (CommSys_CurNetId() == 0) {
-            ov4_021D25FC();
+            NintendoWFC_ResetMatchmakingCancelState();
         }
     }
 

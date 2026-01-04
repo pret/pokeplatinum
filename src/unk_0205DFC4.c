@@ -703,7 +703,7 @@ int sub_0205E6A8(u32 param0)
         return 0xff;
     }
 
-    return ov4_021D2388();
+    return NintendoWFC_GetHostFriendIdx();
 }
 
 u8 sub_0205E6B8(void)
