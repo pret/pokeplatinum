@@ -320,7 +320,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         }
 
         if (v1->unk_38) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         if (v0->unk_44 == 0) {
@@ -560,7 +560,7 @@ static void ov115_02260B44(UnkStruct_ov115_0226095C *param0, UnkStruct_ov115_022
     }
 
     if (param1->unk_38) {
-        ov4_021D1F18();
+        NintendoWFC_TerminateVoiceChat();
     }
 
     if (param0->unk_04 != NULL) {

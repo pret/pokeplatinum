@@ -1640,7 +1640,7 @@ BOOL sub_02037DB0(void)
     }
 
     if ((Unk_021C07D4->unk_4A == 24) || (Unk_021C07D4->unk_4A == 25) || (Unk_021C07D4->unk_4A == 36)) {
-        ov4_021D2184();
+        NintendoWFC_Stop();
         return 1;
     } else if (CommMan_IsConnectedToWifi()) {
         if (Unk_021C07D4->unk_4A == 33) {
@@ -1889,7 +1889,7 @@ static void sub_02038164(void)
         return;
     }
 
-    v1 = ov4_021D1B5C();
+    v1 = NintendoWFC_HandleError();
 
     if (v1 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -2168,7 +2168,7 @@ BOOL sub_020385D0(void)
 
 static void sub_0203862C(void)
 {
-    int v0 = ov4_021D0FEC();
+    int v0 = NintendoWFC_PreMatch();
 
     Unk_021C07D4->unk_40--;
 
@@ -2212,8 +2212,8 @@ static void sub_020386B4(void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->saveData, HEAP_ID_49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
-        ov4_021D2170(sub_020389FC);
+        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         sub_02036C94(sub_0203862C, (30 * 60 * 2));
     }
@@ -2540,10 +2540,10 @@ static void sub_02038BA8(void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->saveData, HEAP_ID_49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
-        ov4_021D2170(sub_020389FC);
+        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
-        ov4_021D2584(0);
+        NintendoWFC_SetUpdateVoiceClients(0);
         sub_0203632C(0);
         sub_02036C94(sub_0203862C, (30 * 60 * 2));
     }

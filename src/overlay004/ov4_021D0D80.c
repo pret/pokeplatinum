@@ -8,11 +8,7 @@
 
 #include "constants/net.h"
 
-#include "overlay004/funcptr_ov4_021D1104.h"
-#include "overlay004/funcptr_ov4_021D1120.h"
-#include "overlay004/funcptr_ov4_021D113C.h"
-#include "overlay004/funcptr_ov4_021D1150.h"
-#include "overlay004/ov4_021D2808.h"
+#include "overlay004/voice_chat.h"
 
 #include "communication_system.h"
 #include "heap.h"
@@ -22,195 +18,204 @@
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 
-typedef struct {
-    u8 unk_00[256];
-    DWCFriendData *unk_100;
+#define RECEIVE_BUFFER_SIZE 4096
+
+#define PPW_MATCH_KEY_LENGTH 128
+
+typedef struct NintendoWFCManager {
+    u8 sendBuffer[256];
+    DWCFriendData *friends;
     DWCFriendsMatchControl unk_104;
-    DWCUserData *unk_F08;
+    DWCUserData *userData;
     DWCInetControl unk_F0C;
     SaveData *saveData;
-    void *unk_F70;
-    void *unk_F74[4];
-    void *unk_F84;
-    NNSFndHeapHandle unk_F88;
-    void *unk_F8C;
-    NNSFndHeapHandle unk_F90;
-    u32 unk_F94;
-    UnkFuncPtr_ov4_021D1104 unk_F98;
-    UnkFuncPtr_ov4_021D1104 unk_F9C;
-    UnkFuncPtr_ov4_021D1120 unk_FA0;
-    void *unk_FA4;
-    UnkFuncPtr_ov4_021D1150 unk_FA8;
-    void *unk_FAC;
-    UnkFuncPtr_ov4_021D113C unk_FB0;
-    void (*unk_FB4)(int param0);
-    u8 unk_FB8[128];
-    u8 unk_1038[32];
-    void *unk_1058;
-    int unk_105C;
-    u32 unk_1060;
-    int unk_1064;
+    void *allocStartPtr;
+    void *receiveBuffers[4];
+    void *heap1AllocPtr;
+    NNSFndHeapHandle heap1;
+    void *heap2AllocPtr;
+    NNSFndHeapHandle heap2;
+    u32 heap2Size;
+    UnkFuncPtr_ov4_021D1104 serverClientSendCallback;
+    UnkFuncPtr_ov4_021D1104 serverServerSendCallback;
+    NintendoWFCConnectionClosedCB connectionClosedCallback;
+    void *connectionClosedCBArg;
+    UnkFuncPtr_ov4_021D1150 unkCallback1;
+    void *unkCallback1Arg;
+    UnkFuncPtr_ov4_021D113C unkCallback0;
+    void (*fatalErrorCallback)(int param0);
+    u8 ppwMatchKey[PPW_MATCH_KEY_LENGTH];
+    u8 friendConnStatus[32];
+    void *friendStatusesBuffer;
+    int friendStatusSize;
+    u32 nextFriendIdx;
+    int state;
     int unk_1068;
-    int unk_106C;
-    int unk_1070;
-    u32 unk_1074;
-    int unk_1078;
-    int unk_107C;
-    int unk_1080;
-    int unk_1084;
+    int dataSent;
+    int maxPlayers;
+    u32 voiceConnectedIDs;
+    int primaryHeapID;
+    int secondaryHeapID;
+    int heapSize;
+    BOOL voiceChatEnabled;
     int unk_1088;
     int unk_108C;
-    BOOL unk_1090;
+    BOOL updateVoiceClients;
     BOOL unk_1094;
-    int unk_1098;
+    int voiceChatCodec;
     int unk_109C;
     int unk_10A0[8];
     int unk_10C0;
-    int unk_10C4;
-    u16 unk_10C8;
-    u16 unk_10CA;
+    int voiceChatEnabled2;
+    u16 voiceChatEnabled1;
+    u16 voiceChatEnabled3;
     u32 unk_10CC;
-    u8 unk_10D0;
+    u8 packetsSent;
     u8 unk_10D1;
     u8 unk_10D2;
-    u8 unk_10D3;
+    u8 dummy_10D3;
     u8 unk_10D4;
-    u8 unk_10D5[4];
-    u8 unk_10D9;
+    u8 receiveBuffersOnGlobalHeap[4];
+    u8 disconnectIfAlone;
     u8 unk_10DA;
-} UnkStruct_ov4_0221A400;
+} NintendoWFCManager;
 
-static void ov4_021D1650(DWCError param0, int param1, void *param2);
+static void NintendoWFC_Cleanup(void);
+static void WFCLoginCallback(DWCError param0, int param1, void *param2);
 static void ov4_021D171C(DWCError param0, BOOL param1, void *param2);
-static void ov4_021D1740(int param0, u8 param1, const char *param2, void *param3);
+static void DummyFriendStatusCallback(int param0, u8 param1, const char *param2, void *param3);
 static void ov4_021D1744(int param0, int param1, void *param2);
-static void ov4_021D17A0(int param0, void *param1);
+static void DummyWFCBuddyFriendCB(int param0, void *param1);
 static void ov4_021D1898(DWCError param0, BOOL param1, void *param2);
-static void ov4_021D18F4(int param0, u8 param1);
-static void ov4_021D1950(u8 param0, u8 *param1, int param2);
-static void ov4_021D1A20(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void *param5);
-static int ov4_021D18F0(int param0, void *param1);
+static void UserSendCallback(int param0, u8 param1);
+static void UserReceiveCallback(u8 param0, u8 *param1, int param2);
+static void ConnectionClosedCallback(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void *param5);
+static int DummyPlayerEvalCallback(int param0, void *param1);
 static int ov4_021D1D1C(void);
-static void ov4_021D16E8(u8 param0);
-static BOOL ov4_021D1C5C(void);
-static void ov4_021D2700(int param0);
-static void ov4_021D27CC(void);
-static void ov4_021D2748(int param0);
-static void ov4_021D21B4(void);
+static void UserReceiveTimeoutCallback(u8 param0);
+static BOOL CanSendToAll(void);
+static void FreeReceiveBuffer(int param0);
+static void FreeAllReceiveBuffers(void);
+static void CreateReceiveBuffer(int param0);
+static void GetNextFriendStatus(void);
 static void ov4_021D23A4(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void *param5);
 static void ov4_021D2488(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void *param5);
 static void ov4_021D24AC(int param0, void *param1);
+static void ov4_021D24D8(void);
 
-static UnkStruct_ov4_0221A400 *Unk_ov4_0221A400 = NULL;
+static void *NintendoWFCAlloc(DWCAllocType param0, u32 param1, int param2);
+static void NintendoWFCFree(DWCAllocType param0, void *param1, u32 param2);
 
-int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
+static NintendoWFCManager *sNintendoWFCManager = NULL;
+
+int NintendoWFC_Init(SaveData *saveData, int heapID, int heapSize, int maxPlayers)
 {
-    void *v0;
+    void *wfcManAllocPtr;
 
-    GF_ASSERT(Unk_ov4_0221A400 == NULL);
+    GF_ASSERT(sNintendoWFCManager == NULL);
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov4_0221A400) + 32);
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov4_0221A400) + 32);
+    wfcManAllocPtr = Heap_Alloc(heapID, sizeof(NintendoWFCManager) + 32);
+    MI_CpuClear8(wfcManAllocPtr, sizeof(NintendoWFCManager) + 32);
 
-    Unk_ov4_0221A400 = (UnkStruct_ov4_0221A400 *)(((u32)v0 + 31) / 32 * 32);
-    Unk_ov4_0221A400->unk_F70 = v0;
-    Unk_ov4_0221A400->saveData = saveData;
-    Unk_ov4_0221A400->unk_F98 = NULL;
-    Unk_ov4_0221A400->unk_F9C = NULL;
-    Unk_ov4_0221A400->unk_FB4 = NULL;
-    Unk_ov4_0221A400->unk_1064 = 0;
-    Unk_ov4_0221A400->unk_1078 = heapID;
-    Unk_ov4_0221A400->unk_107C = heapID;
-    Unk_ov4_0221A400->unk_1080 = param2;
-    Unk_ov4_0221A400->unk_F84 = Heap_Alloc(heapID, param2 + ((4 * 1024) * 3) + 32);
-    Unk_ov4_0221A400->unk_F8C = NULL;
-    Unk_ov4_0221A400->unk_F88 = NNS_FndCreateExpHeap((void *)(((u32)Unk_ov4_0221A400->unk_F84 + 31) / 32 * 32), param2);
-    Unk_ov4_0221A400->unk_F90 = NULL;
-    Unk_ov4_0221A400->unk_1098 = 0;
-    Unk_ov4_0221A400->unk_1088 = -1;
-    Unk_ov4_0221A400->unk_1060 = 0;
-    Unk_ov4_0221A400->unk_1070 = param3;
-    Unk_ov4_0221A400->unk_1074 = 0;
-    Unk_ov4_0221A400->unk_10CC = 0;
-    Unk_ov4_0221A400->unk_108C = -1;
-    Unk_ov4_0221A400->unk_1090 = 1;
-    Unk_ov4_0221A400->unk_10D2 = 0;
-    Unk_ov4_0221A400->unk_10C0 = 0;
-    Unk_ov4_0221A400->unk_10D0 = 0;
-    Unk_ov4_0221A400->unk_10D1 = 0;
-    Unk_ov4_0221A400->unk_10C8 = 1;
-    Unk_ov4_0221A400->unk_10C4 = 1;
-    Unk_ov4_0221A400->unk_10CA = 1;
+    sNintendoWFCManager = (NintendoWFCManager *)(((u32)wfcManAllocPtr + 31) / 32 * 32);
+    sNintendoWFCManager->allocStartPtr = wfcManAllocPtr;
+    sNintendoWFCManager->saveData = saveData;
+    sNintendoWFCManager->serverClientSendCallback = NULL;
+    sNintendoWFCManager->serverServerSendCallback = NULL;
+    sNintendoWFCManager->fatalErrorCallback = NULL;
+    sNintendoWFCManager->state = 0;
+    sNintendoWFCManager->primaryHeapID = heapID;
+    sNintendoWFCManager->secondaryHeapID = heapID;
+    sNintendoWFCManager->heapSize = heapSize;
+    sNintendoWFCManager->heap1AllocPtr = Heap_Alloc(heapID, heapSize + (RECEIVE_BUFFER_SIZE * 3) + 32);
+    sNintendoWFCManager->heap2AllocPtr = NULL;
+    sNintendoWFCManager->heap1 = NNS_FndCreateExpHeap((void *)(((u32)sNintendoWFCManager->heap1AllocPtr + 31) / 32 * 32), heapSize);
+    sNintendoWFCManager->heap2 = NULL;
+    sNintendoWFCManager->voiceChatCodec = 0;
+    sNintendoWFCManager->unk_1088 = -1;
+    sNintendoWFCManager->nextFriendIdx = 0;
+    sNintendoWFCManager->maxPlayers = maxPlayers;
+    sNintendoWFCManager->voiceConnectedIDs = 0;
+    sNintendoWFCManager->unk_10CC = 0;
+    sNintendoWFCManager->unk_108C = -1;
+    sNintendoWFCManager->updateVoiceClients = TRUE;
+    sNintendoWFCManager->unk_10D2 = 0;
+    sNintendoWFCManager->unk_10C0 = 0;
+    sNintendoWFCManager->packetsSent = 0;
+    sNintendoWFCManager->unk_10D1 = 0;
+    sNintendoWFCManager->voiceChatEnabled1 = 1;
+    sNintendoWFCManager->voiceChatEnabled2 = 1;
+    sNintendoWFCManager->voiceChatEnabled3 = 1;
 
     if (saveData != NULL) {
-        Unk_ov4_0221A400->unk_F08 = WiFiList_GetUserData(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData));
-        Unk_ov4_0221A400->unk_100 = (DWCFriendData *)sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData), 0);
+        sNintendoWFCManager->userData = WiFiList_GetUserData(SaveData_GetWiFiList(sNintendoWFCManager->saveData));
+        sNintendoWFCManager->friends = sub_0202AED8(SaveData_GetWiFiList(sNintendoWFCManager->saveData), 0);
     }
 
-    Unk_ov4_0221A400->unk_10D9 = 1;
-    Unk_ov4_0221A400->unk_1058 = NULL;
+    sNintendoWFCManager->disconnectIfAlone = TRUE;
+    sNintendoWFCManager->friendStatusesBuffer = NULL;
 
     {
         int v1;
 
-        for (v1 = 0; v1 < 32; v1++) {
-            Unk_ov4_0221A400->unk_1038[v1] = DWC_STATUS_OFFLINE;
+        for (v1 = 0; v1 < MAX_FRIENDS; v1++) {
+            sNintendoWFCManager->friendConnStatus[v1] = DWC_STATUS_OFFLINE;
         }
     }
 
     ov4_021D24D8();
 
-    if (!DWC_CheckHasProfile(Unk_ov4_0221A400->unk_F08)) {
+    if (!DWC_CheckHasProfile(sNintendoWFCManager->userData)) {
         return 1;
     }
 
-    if (!DWC_CheckValidConsole(Unk_ov4_0221A400->unk_F08)) {
+    if (!DWC_CheckValidConsole(sNintendoWFCManager->userData)) {
         return 2;
     }
 
     return 0;
 }
 
-void ov4_021D0F68()
+static void NintendoWFC_Cleanup(void)
 {
-    if (Unk_ov4_0221A400) {
-        ov4_021D27CC();
+    if (sNintendoWFCManager) {
+        FreeAllReceiveBuffers();
 
-        if (Unk_ov4_0221A400->unk_F8C != NULL) {
-            NNS_FndDestroyExpHeap(Unk_ov4_0221A400->unk_F90);
-            Heap_Free(Unk_ov4_0221A400->unk_F8C);
-            Unk_ov4_0221A400->unk_F8C = NULL;
+        if (sNintendoWFCManager->heap2AllocPtr != NULL) {
+            NNS_FndDestroyExpHeap(sNintendoWFCManager->heap2);
+            Heap_Free(sNintendoWFCManager->heap2AllocPtr);
+            sNintendoWFCManager->heap2AllocPtr = NULL;
         }
 
-        NNS_FndDestroyExpHeap(Unk_ov4_0221A400->unk_F88);
+        NNS_FndDestroyExpHeap(sNintendoWFCManager->heap1);
 
-        Heap_FreeExplicit(Unk_ov4_0221A400->unk_1078, Unk_ov4_0221A400->unk_F84);
-        Heap_FreeExplicit(Unk_ov4_0221A400->unk_1078, Unk_ov4_0221A400->unk_F70);
+        Heap_FreeExplicit(sNintendoWFCManager->primaryHeapID, sNintendoWFCManager->heap1AllocPtr);
+        Heap_FreeExplicit(sNintendoWFCManager->primaryHeapID, sNintendoWFCManager->allocStartPtr);
 
-        Unk_ov4_0221A400 = NULL;
+        sNintendoWFCManager = NULL;
     }
 
     DWC_ClearError();
 }
 
-int ov4_021D0FEC()
+int NintendoWFC_PreMatch()
 {
-    switch (Unk_ov4_0221A400->unk_1064) {
+    switch (sNintendoWFCManager->state) {
     case 0: {
-        DWC_SetMemFunc(ov4_021D1AA0, ov4_021D1B04);
-        DWC_InitInetEx(&Unk_ov4_0221A400->unk_F0C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
+        DWC_SetMemFunc(NintendoWFCAlloc, NintendoWFCFree);
+        DWC_InitInetEx(&sNintendoWFCManager->unk_F0C, DEFAULT_DWC_DMA_NUMBER, DEFAULT_DWC_POWER_MODE, DEFAULT_DWC_SSL_PRIORITY);
         DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
         DWC_ConnectInetAsync();
 
-        Unk_ov4_0221A400->unk_1064 = 1;
-        Unk_ov4_0221A400->unk_1084 = 0;
+        sNintendoWFCManager->state = 1;
+        sNintendoWFCManager->voiceChatEnabled = FALSE;
     }
     case 1: {
         if (DWC_CheckInet()) {
             if (DWC_GetInetStatus() == DWC_CONNECTINET_STATE_CONNECTED) {
-                Unk_ov4_0221A400->unk_1064 = 2;
+                sNintendoWFCManager->state = 2;
             } else {
-                Unk_ov4_0221A400->unk_1064 = 12;
+                sNintendoWFCManager->state = 12;
             }
         } else {
             DWC_ProcessInet();
@@ -218,22 +223,20 @@ int ov4_021D0FEC()
         }
     }
     case 2: {
-        int v0 = ov4_021D1B5C();
+        int v0 = NintendoWFC_HandleError();
 
         if (v0 != 0) {
             return v0;
         }
     }
 
-        DWC_InitFriendsMatch(&(Unk_ov4_0221A400->unk_104), (Unk_ov4_0221A400->unk_F08), 10727, "pokemondpds", "1vTlwb", 0, 0, Unk_ov4_0221A400->unk_100, 32);
+        DWC_InitFriendsMatch(&(sNintendoWFCManager->unk_104), (sNintendoWFCManager->userData), 10727, "pokemondpds", "1vTlwb", 0, 0, sNintendoWFCManager->friends, MAX_FRIENDS);
 
-        {
-            OSOwnerInfo v1;
-            OS_GetOwnerInfo(&v1);
-            DWC_LoginAsync(&(v1.nickName[0]), NULL, ov4_021D1650, NULL);
-        }
+        OSOwnerInfo ownerInfo;
+        OS_GetOwnerInfo(&ownerInfo);
+        DWC_LoginAsync(&(ownerInfo.nickName[0]), NULL, WFCLoginCallback, NULL);
 
-        Unk_ov4_0221A400->unk_1064 = 3;
+        sNintendoWFCManager->state = 3;
     case 3:
         DWC_ProcessFriendsMatch();
         break;
@@ -242,110 +245,106 @@ int ov4_021D0FEC()
         return (DWC_ERROR_NUM) + 7;
     }
 
-    return ov4_021D1B5C();
+    return NintendoWFC_HandleError();
 }
 
-void ov4_021D1104(UnkFuncPtr_ov4_021D1104 param0, UnkFuncPtr_ov4_021D1104 param1)
+void ov4_021D1104(UnkFuncPtr_ov4_021D1104 serverCallback, UnkFuncPtr_ov4_021D1104 clientCallback)
 {
-    Unk_ov4_0221A400->unk_F98 = param0;
-    Unk_ov4_0221A400->unk_F9C = param1;
+    sNintendoWFCManager->serverClientSendCallback = serverCallback;
+    sNintendoWFCManager->serverServerSendCallback = clientCallback;
 }
 
-void ov4_021D1120(UnkFuncPtr_ov4_021D1120 param0, void *param1)
+void NintendoWFC_SetConnectionClosedCB(NintendoWFCConnectionClosedCB callback, void *callbackArg)
 {
-    Unk_ov4_0221A400->unk_FA0 = param0;
-    Unk_ov4_0221A400->unk_FA4 = param1;
+    sNintendoWFCManager->connectionClosedCallback = callback;
+    sNintendoWFCManager->connectionClosedCBArg = callbackArg;
 }
 
-void ov4_021D113C(UnkFuncPtr_ov4_021D113C param0)
+void ov4_021D113C(UnkFuncPtr_ov4_021D113C callback)
 {
-    Unk_ov4_0221A400->unk_FB0 = param0;
+    sNintendoWFCManager->unkCallback0 = callback;
 }
 
-void ov4_021D1150(UnkFuncPtr_ov4_021D1150 param0, void *param1)
+void ov4_021D1150(UnkFuncPtr_ov4_021D1150 callback, void *callbackArg)
 {
-    Unk_ov4_0221A400->unk_FA8 = param0;
-    Unk_ov4_0221A400->unk_FAC = param1;
+    sNintendoWFCManager->unkCallback1 = callback;
+    sNintendoWFCManager->unkCallback1Arg = callbackArg;
 }
 
-const static char Unk_ov4_02215870[] = "%s = \'%s\'";
+const static char sPPWMatchKeyFmt[] = "%s = \'%s\'";
 
-int ov4_021D116C(u8 *param0, int param1, BOOL param2, u32 param3)
+BOOL ov4_021D116C(u8 *matchmakingString, int maxPlayers, BOOL param2, u32 timeout)
 {
-    GF_ASSERT(Unk_ov4_0221A400 != NULL);
+    GF_ASSERT(sNintendoWFCManager != NULL);
 
-    if (Unk_ov4_0221A400->unk_1064 != 4) {
-        return 0;
+    if (sNintendoWFCManager->state != 4) {
+        return FALSE;
     }
 
-    ov4_021D27CC();
+    FreeAllReceiveBuffers();
 
-    {
-        int v0;
-        DWCMatchOptMinComplete v1 = { 1, 2, { 0, 0 }, 0 };
+    int result; // actually of an untagged enum type
+    DWCMatchOptMinComplete matchOpts = { .valid = TRUE, .minEntry = 2, .timeout = 0 };
 
-        v1.timeout = param3 * 1000;
-        v0 = DWC_SetMatchingOption(DWC_MATCH_OPTION_MIN_COMPLETE, &v1, sizeof(v1));
+    matchOpts.timeout = timeout * 1000;
+    result = DWC_SetMatchingOption(DWC_MATCH_OPTION_MIN_COMPLETE, &matchOpts, sizeof(matchOpts));
 
-        GF_ASSERT(v0 == DWC_SET_MATCH_OPT_RESULT_SUCCESS);
-    }
+    GF_ASSERT(result == DWC_SET_MATCH_OPT_RESULT_SUCCESS);
 
-    GF_ASSERT(DWC_AddMatchKeyString(0, PPW_LOBBY_MATCHMAKING_KEY, (const char *)param0) != 0);
+    GF_ASSERT(DWC_AddMatchKeyString(0, PPW_LOBBY_MATCHMAKING_KEY, (const char *)matchmakingString) != 0);
 
-    {
-        MI_CpuClear8(Unk_ov4_0221A400->unk_FB8, 128);
-        sprintf((char *)Unk_ov4_0221A400->unk_FB8, Unk_ov4_02215870, PPW_LOBBY_MATCHMAKING_KEY, param0);
-        GF_ASSERT(strlen((const char *)Unk_ov4_0221A400->unk_FB8) < 128);
-    }
+    MI_CpuClear8(sNintendoWFCManager->ppwMatchKey, PPW_MATCH_KEY_LENGTH);
+    sprintf((char *)sNintendoWFCManager->ppwMatchKey, sPPWMatchKeyFmt, PPW_LOBBY_MATCHMAKING_KEY, matchmakingString);
+    GF_ASSERT(strlen((const char *)sNintendoWFCManager->ppwMatchKey) < PPW_MATCH_KEY_LENGTH);
 
     if (param2) {
-        DWC_AddMatchKeyString(1, (const char *)Unk_ov4_0221A400->unk_FB8, (const char *)Unk_ov4_0221A400->unk_FB8);
+        DWC_AddMatchKeyString(1, (const char *)sNintendoWFCManager->ppwMatchKey, (const char *)sNintendoWFCManager->ppwMatchKey);
     }
 
-    Unk_ov4_0221A400->unk_1064 = 5;
-    Unk_ov4_0221A400->unk_1070 = param1;
-    DWC_ConnectToAnybodyAsync(param1, (const char *)Unk_ov4_0221A400->unk_FB8, ov4_021D1898, NULL, ov4_021D18F0, NULL);
-    Unk_ov4_0221A400->unk_1068 = 0;
+    sNintendoWFCManager->state = 5;
+    sNintendoWFCManager->maxPlayers = maxPlayers;
+    DWC_ConnectToAnybodyAsync(maxPlayers, (const char *)sNintendoWFCManager->ppwMatchKey, ov4_021D1898, NULL, DummyPlayerEvalCallback, NULL);
+    sNintendoWFCManager->unk_1068 = 0;
 
-    DWC_SetUserSendCallback(ov4_021D18F4);
-    DWC_SetUserRecvCallback(ov4_021D1950);
-    DWC_SetConnectionClosedCallback(ov4_021D1A20, NULL);
-    DWC_SetUserRecvTimeoutCallback(ov4_021D16E8);
+    DWC_SetUserSendCallback(UserSendCallback);
+    DWC_SetUserRecvCallback(UserReceiveCallback);
+    DWC_SetConnectionClosedCallback(ConnectionClosedCallback, NULL);
+    DWC_SetUserRecvTimeoutCallback(UserReceiveTimeoutCallback);
 
-    Unk_ov4_0221A400->unk_106C = 0;
-    Unk_ov4_0221A400->unk_10D9 = 1;
+    sNintendoWFCManager->dataSent = 0;
+    sNintendoWFCManager->disconnectIfAlone = TRUE;
 
-    return 1;
+    return TRUE;
 }
 
 static void ov4_021D12B4()
 {
-    if (Unk_ov4_0221A400->unk_1064 == 10) {
-        Unk_ov4_0221A400->unk_1064 = 11;
+    if (sNintendoWFCManager->state == 10) {
+        sNintendoWFCManager->state = 11;
     } else {
-        Unk_ov4_0221A400->unk_1064 = 9;
+        sNintendoWFCManager->state = 9;
     }
 }
 
 int ov4_021D12D4(int param0)
 {
-    switch (Unk_ov4_0221A400->unk_1064) {
+    switch (sNintendoWFCManager->state) {
     case 5:
         if (param0) {
-            Unk_ov4_0221A400->unk_1064 = 6;
+            sNintendoWFCManager->state = 6;
         }
 
-        if (Unk_ov4_0221A400->unk_1068 == 2) {
-            if (Unk_ov4_0221A400->unk_1088 >= 0) {
-                if (Unk_ov4_0221A400->unk_1038[Unk_ov4_0221A400->unk_1088] != DWC_STATUS_MATCH_SC_SV) {
-                    Unk_ov4_0221A400->unk_1064 = 10;
+        if (sNintendoWFCManager->unk_1068 == 2) {
+            if (sNintendoWFCManager->unk_1088 >= 0) {
+                if (sNintendoWFCManager->friendConnStatus[sNintendoWFCManager->unk_1088] != DWC_STATUS_MATCH_SC_SV) {
+                    sNintendoWFCManager->state = 10;
                 }
             }
         }
         break;
     case 6:
     case 10:
-        if (Unk_ov4_0221A400->unk_1068 == 0) {
+        if (sNintendoWFCManager->unk_1068 == 0) {
             if (!DWC_CancelMatching()) {
                 (void)0;
             }
@@ -359,34 +358,34 @@ int ov4_021D12D4(int param0)
         break;
     case 7: {
         if (!sub_0203272C(sub_0203895C())) {
-            ov4_021D1E74(Unk_ov4_0221A400->unk_1078);
+            ov4_021D1E74(sNintendoWFCManager->primaryHeapID);
         }
 
-        if (Unk_ov4_0221A400->unk_1090) {
-            Unk_ov4_0221A400->unk_10C8 = 1;
+        if (sNintendoWFCManager->updateVoiceClients) {
+            sNintendoWFCManager->voiceChatEnabled1 = 1;
         } else {
-            Unk_ov4_0221A400->unk_10C8 = 0;
+            sNintendoWFCManager->voiceChatEnabled1 = 0;
         }
 
-        Unk_ov4_0221A400->unk_1064 = 8;
+        sNintendoWFCManager->state = 8;
         return DWC_ERROR_NUM;
     } break;
     case 9:
-        Unk_ov4_0221A400->unk_1064 = 4;
-        Unk_ov4_0221A400->unk_106C = 0;
-        Unk_ov4_0221A400->unk_108C = -1;
+        sNintendoWFCManager->state = 4;
+        sNintendoWFCManager->dataSent = 0;
+        sNintendoWFCManager->unk_108C = -1;
         return (DWC_ERROR_NUM) + 1;
     case 11:
-        Unk_ov4_0221A400->unk_1064 = 4;
-        Unk_ov4_0221A400->unk_106C = 0;
-        Unk_ov4_0221A400->unk_108C = -1;
+        sNintendoWFCManager->state = 4;
+        sNintendoWFCManager->dataSent = 0;
+        sNintendoWFCManager->unk_108C = -1;
         return (DWC_ERROR_NUM) + 2;
     case 12:
-        return ov4_021D1B5C();
+        return NintendoWFC_HandleError();
     case 16:
-        if (Unk_ov4_0221A400->unk_1084 == 0) {
+        if (sNintendoWFCManager->voiceChatEnabled == FALSE) {
             DWC_CloseAllConnectionsHard();
-            Unk_ov4_0221A400->unk_1064 = 17;
+            sNintendoWFCManager->state = 17;
             break;
         }
     default:
@@ -398,137 +397,131 @@ int ov4_021D12D4(int param0)
 
 BOOL ov4_021D1404()
 {
-    return (Unk_ov4_0221A400->unk_106C == 0) && ov4_021D1C5C();
+    return (sNintendoWFCManager->dataSent == 0) && CanSendToAll();
 }
 
-int ov4_021D142C(void *param0, int param1)
+BOOL NintendoWFC_SendData_Client(void *data, int size)
 {
-    if (!(param1 < 256)) {
-        return 0;
+    if (!(size < 256)) {
+        return FALSE;
     }
 
     if (DWC_GetMyAID() == 0) {
-        if (Unk_ov4_0221A400->unk_F98 != NULL) {
-            Unk_ov4_0221A400->unk_F98(0, param0, param1);
+        if (sNintendoWFCManager->serverClientSendCallback != NULL) {
+            sNintendoWFCManager->serverClientSendCallback(0, data, size);
         }
 
-        return 1;
+        return TRUE;
     } else {
-        if (Unk_ov4_0221A400->unk_106C || !ov4_021D1C5C()) {
-            return 0;
+        if (sNintendoWFCManager->dataSent || !CanSendToAll()) {
+            return FALSE;
         }
 
-        *((u32 *)&(Unk_ov4_0221A400->unk_00[0])) = 0x1 | (Unk_ov4_0221A400->unk_10C8 << 8);
-        Unk_ov4_0221A400->unk_00[2] = ++Unk_ov4_0221A400->unk_10D0;
+        *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+        sNintendoWFCManager->sendBuffer[2] = ++sNintendoWFCManager->packetsSent;
 
-        MI_CpuCopy8(param0, &(Unk_ov4_0221A400->unk_00[4]), param1);
-        Unk_ov4_0221A400->unk_106C = 1;
+        MI_CpuCopy8(data, &(sNintendoWFCManager->sendBuffer[4]), size);
+        sNintendoWFCManager->dataSent = 1;
 
-        DWC_SendReliableBitmap(0x1, &(Unk_ov4_0221A400->unk_00[0]), param1 + 4);
+        DWC_SendReliableBitmap(0x1, sNintendoWFCManager->sendBuffer, size + 4);
 
-        return 1;
+        return TRUE;
     }
 }
 
-int ov4_021D14D4(void *param0, int param1)
+int NintendoWFC_SendData_Server(void *data, int size)
 {
-    if (!(param1 < 256)) {
-        return 0;
+    if (!(size < 256)) {
+        return FALSE;
     }
 
     if (!(DWC_GetMyAID() == 0)) {
-        return 0;
+        return FALSE;
     }
 
-    {
-        if (Unk_ov4_0221A400->unk_106C || !ov4_021D1C5C()) {
-            return 0;
-        }
-
-        *((u32 *)&(Unk_ov4_0221A400->unk_00[0])) = 0x1 | (Unk_ov4_0221A400->unk_10C8 << 8);
-        Unk_ov4_0221A400->unk_00[2] = ++Unk_ov4_0221A400->unk_10D0;
-        MI_CpuCopy8(param0, &(Unk_ov4_0221A400->unk_00[4]), param1);
-        Unk_ov4_0221A400->unk_106C = 1;
-
-        if (!DWC_SendReliableBitmap(DWC_GetAIDBitmap(), &(Unk_ov4_0221A400->unk_00[0]), param1 + 4)) {
-            Unk_ov4_0221A400->unk_106C = 0;
-            return 0;
-        }
+    if (sNintendoWFCManager->dataSent || !CanSendToAll()) {
+        return FALSE;
     }
 
-    if (Unk_ov4_0221A400->unk_F9C != NULL) {
-        Unk_ov4_0221A400->unk_F9C(0, param0, param1);
+    *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+    sNintendoWFCManager->sendBuffer[2] = ++sNintendoWFCManager->packetsSent;
+    MI_CpuCopy8(data, &(sNintendoWFCManager->sendBuffer[4]), size);
+    sNintendoWFCManager->dataSent = TRUE;
+
+    if (!DWC_SendReliableBitmap(DWC_GetAIDBitmap(), sNintendoWFCManager->sendBuffer, size + 4)) {
+        sNintendoWFCManager->dataSent = FALSE;
+        return FALSE;
     }
 
-    return 1;
+    if (sNintendoWFCManager->serverServerSendCallback != NULL) {
+        sNintendoWFCManager->serverServerSendCallback(0, data, size);
+    }
+
+    return TRUE;
 }
 
-int ov4_021D1590(void *param0, int param1)
+BOOL NintendoWFC_SendData(void *param0, int param1)
 {
     u16 v0;
 
     if (!(param1 < 256)) {
-        return 0;
+        return FALSE;
     }
 
-    {
-        if (Unk_ov4_0221A400->unk_106C || !ov4_021D1C5C()) {
-            return 0;
-        }
-
-        *((u32 *)&(Unk_ov4_0221A400->unk_00[0])) = 0x1 | (Unk_ov4_0221A400->unk_10C8 << 8);
-        Unk_ov4_0221A400->unk_00[2] = ++Unk_ov4_0221A400->unk_10D0;
-        MI_CpuCopy8(param0, &(Unk_ov4_0221A400->unk_00[4]), param1);
-        Unk_ov4_0221A400->unk_106C = 1;
-
-        v0 = DWC_GetAIDBitmap();
-
-        if (v0 != DWC_SendReliableBitmap(v0, &(Unk_ov4_0221A400->unk_00[0]), param1 + 4)) {
-            Unk_ov4_0221A400->unk_106C = 0;
-            return 0;
-        }
+    if (sNintendoWFCManager->dataSent || !CanSendToAll()) {
+        return FALSE;
     }
 
-    {
-        if (Unk_ov4_0221A400->unk_F9C != NULL) {
-            Unk_ov4_0221A400->unk_F9C(DWC_GetMyAID(), param0, param1);
-        }
+    *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+    sNintendoWFCManager->sendBuffer[2] = ++sNintendoWFCManager->packetsSent;
+    MI_CpuCopy8(param0, &(sNintendoWFCManager->sendBuffer[4]), param1);
+    sNintendoWFCManager->dataSent = 1;
+
+    v0 = DWC_GetAIDBitmap();
+
+    if (v0 != DWC_SendReliableBitmap(v0, sNintendoWFCManager->sendBuffer, param1 + 4)) {
+        sNintendoWFCManager->dataSent = 0;
+        return FALSE;
     }
 
-    return 1;
+    if (sNintendoWFCManager->serverServerSendCallback != NULL) {
+        sNintendoWFCManager->serverServerSendCallback(DWC_GetMyAID(), param0, param1);
+    }
+
+    return TRUE;
 }
 
-static void ov4_021D1650(DWCError param0, int param1, void *param2)
+static void WFCLoginCallback(DWCError param0, int param1, void *param2)
 {
     BOOL v0;
 
-    if (DWC_CheckDirtyFlag(Unk_ov4_0221A400->unk_F08)) {
+    if (DWC_CheckDirtyFlag(sNintendoWFCManager->userData)) {
         DWCUserData *v1 = NULL;
 
-        DWC_ClearDirtyFlag(Unk_ov4_0221A400->unk_F08);
-        Unk_ov4_0221A400->unk_10DA = 1;
+        DWC_ClearDirtyFlag(sNintendoWFCManager->userData);
+        sNintendoWFCManager->unk_10DA = 1;
     }
 
     if (param0 == DWC_ERROR_NONE) {
-        v0 = DWC_UpdateServersAsync(NULL, ov4_021D171C, Unk_ov4_0221A400->unk_F08, ov4_021D1740, param2, ov4_021D1744, param2);
+        v0 = DWC_UpdateServersAsync(NULL, ov4_021D171C, sNintendoWFCManager->userData, DummyFriendStatusCallback, param2, ov4_021D1744, param2);
 
         if (v0 == 0) {
             Link_SetErrorState(1);
             return;
         }
 
-        DWC_SetBuddyFriendCallback(ov4_021D17A0, NULL);
+        DWC_SetBuddyFriendCallback(DummyWFCBuddyFriendCB, NULL);
     } else {
-        Unk_ov4_0221A400->unk_1064 = 12;
+        sNintendoWFCManager->state = 12;
     }
 }
 
-static void ov4_021D16E8(u8 param0)
+static void UserReceiveTimeoutCallback(u8 param0)
 {
-    if (Unk_ov4_0221A400->unk_109C) {
+    if (sNintendoWFCManager->unk_109C) {
         DWC_CloseAllConnectionsHard();
-        Unk_ov4_0221A400->unk_108C = -1;
-        Unk_ov4_0221A400->unk_1064 = 18;
+        sNintendoWFCManager->unk_108C = -1;
+        sNintendoWFCManager->state = 18;
     }
 }
 
@@ -536,17 +529,13 @@ static void ov4_021D171C(DWCError param0, BOOL param1, void *param2)
 {
 #pragma unused(param2)
     if (param0 == DWC_ERROR_NONE) {
-        if (param1) {
-            (void)0;
-        }
-
-        Unk_ov4_0221A400->unk_1064 = 4;
+        sNintendoWFCManager->state = 4;
     } else {
-        Unk_ov4_0221A400->unk_1064 = 12;
+        sNintendoWFCManager->state = 12;
     }
 }
 
-static void ov4_021D1740(int param0, u8 param1, const char *param2, void *param3)
+static void DummyFriendStatusCallback(int param0, u8 param1, const char *param2, void *param3)
 {
 #pragma unused(param3)
     return;
@@ -556,13 +545,13 @@ static void ov4_021D1744(int param0, int param1, void *param2)
 {
 #pragma unused(param2)
 
-    MI_CpuCopy8(Unk_ov4_0221A400->unk_100, sub_0202AED8(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData), 0), 32 * sizeof(DWCFriendData));
+    MI_CpuCopy8(sNintendoWFCManager->friends, sub_0202AED8(SaveData_GetWiFiList(sNintendoWFCManager->saveData), 0), MAX_FRIENDS * sizeof(DWCFriendData));
 
-    sub_0202B270(SaveData_GetWiFiList(Unk_ov4_0221A400->saveData), param0, param1);
-    sub_020307F0(SaveData_GetBattleFrontier(Unk_ov4_0221A400->saveData), param0, param1);
+    sub_0202B270(SaveData_GetWiFiList(sNintendoWFCManager->saveData), param0, param1);
+    sub_020307F0(SaveData_GetBattleFrontier(sNintendoWFCManager->saveData), param0, param1);
 }
 
-static void ov4_021D17A0(int param0, void *param1)
+static void DummyWFCBuddyFriendCB(int param0, void *param1)
 {
 #pragma unused(param1)
     return;
@@ -570,7 +559,7 @@ static void ov4_021D17A0(int param0, void *param1)
 
 static void ov4_021D17A4(void)
 {
-    MI_CpuClear8(Unk_ov4_0221A400->unk_10A0, sizeof(Unk_ov4_0221A400->unk_10A0));
+    MI_CpuClear8(sNintendoWFCManager->unk_10A0, sizeof(sNintendoWFCManager->unk_10A0));
 }
 
 static void ov4_021D17C0(void)
@@ -582,7 +571,7 @@ static void ov4_021D17C0(void)
     }
 
     if (DWC_GetMyAID() == 0) {
-        for (v0 = 0; v0 < Unk_ov4_0221A400->unk_1070; v0++) {
+        for (v0 = 0; v0 < sNintendoWFCManager->maxPlayers; v0++) {
             if (DWC_GetMyAID() != v0) {
                 if (DWC_GetAIDBitmap() & (0x1 << v0)) {
                     GF_ASSERT(DWC_SetRecvTimeoutTime(v0, 10 * 1000));
@@ -593,7 +582,7 @@ static void ov4_021D17C0(void)
         GF_ASSERT(DWC_SetRecvTimeoutTime(0, 10 * 1000));
     }
 
-    Unk_ov4_0221A400->unk_109C = 1;
+    sNintendoWFCManager->unk_109C = 1;
     ov4_021D17A4();
 }
 
@@ -601,11 +590,11 @@ static void ov4_021D1854(int param0)
 {
     int v0, v1;
 
-    Unk_ov4_0221A400->unk_1064 = 7;
+    sNintendoWFCManager->state = 7;
 
-    for (v0 = 0, v1 = 0; v0 < Unk_ov4_0221A400->unk_1070; v0++) {
+    for (v0 = 0, v1 = 0; v0 < sNintendoWFCManager->maxPlayers; v0++) {
         if (DWC_GetMyAID() != v0) {
-            ov4_021D2748(v0);
+            CreateReceiveBuffer(v0);
         }
     }
 
@@ -623,52 +612,52 @@ static void ov4_021D1898(DWCError param0, BOOL param1, void *param2)
             ov4_021D12B4();
         }
     } else {
-        Unk_ov4_0221A400->unk_1064 = 12;
+        sNintendoWFCManager->state = 12;
     }
 
-    if (Unk_ov4_0221A400->unk_FA8) {
-        Unk_ov4_0221A400->unk_FA8(DWC_GetMyAID(), Unk_ov4_0221A400->unk_FAC);
+    if (sNintendoWFCManager->unkCallback1) {
+        sNintendoWFCManager->unkCallback1(DWC_GetMyAID(), sNintendoWFCManager->unkCallback1Arg);
     }
 }
 
-static int ov4_021D18F0(int param0, void *param1)
+static BOOL DummyPlayerEvalCallback(int param0, void *param1)
 {
 #pragma unused(param0, param1)
-    return 1;
+    return TRUE;
 }
 
-static void ov4_021D18F4(int param0, u8 param1)
+static void UserSendCallback(int param0, u8 param1)
 {
 #pragma unused(param0)
-    Unk_ov4_0221A400->unk_106C = 0;
-    Unk_ov4_0221A400->unk_10A0[param1] = 0;
+    sNintendoWFCManager->dataSent = 0;
+    sNintendoWFCManager->unk_10A0[param1] = 0;
 }
 
 static void ov4_021D1918(u32 param0)
 {
     if (!sub_0203272C(sub_0203895C())) {
         if (param0 & 0x100) {
-            Unk_ov4_0221A400->unk_10C4 = 1;
+            sNintendoWFCManager->voiceChatEnabled2 = 1;
         } else {
-            Unk_ov4_0221A400->unk_10C4 = 0;
+            sNintendoWFCManager->voiceChatEnabled2 = 0;
         }
     }
 }
 
-static void ov4_021D1950(u8 param0, u8 *param1, int param2)
+static void UserReceiveCallback(u8 param0, u8 *param1, int param2)
 {
 #pragma unused(param0, param1, param2)
 
     u32 v0;
     v0 = (param1[3] << 24) | (param1[2] << 16) | (param1[1] << 8) | param1[0];
 
-    Unk_ov4_0221A400->unk_109C = 1;
+    sNintendoWFCManager->unk_109C = 1;
 
     if ((v0 & 0xff) == 0x1) {
         ov4_021D1918(v0);
-        Unk_ov4_0221A400->unk_10D1 = param1[2];
+        sNintendoWFCManager->unk_10D1 = param1[2];
     } else {
-        if (ov4_021D2C70(param0, param1, param2)) {
+        if (VoiceChat_ProcessReceivedData(param0, param1, param2)) {
             return;
         }
 
@@ -677,7 +666,7 @@ static void ov4_021D1950(u8 param0, u8 *param1, int param2)
     }
 
     {
-        u16 *v1 = (u16 *)ov4_021D1AA0(NULL, param2 - 4, 4);
+        u16 *v1 = (u16 *)NintendoWFCAlloc(NULL, param2 - 4, 4);
 
         if (v1 == NULL) {
             return;
@@ -686,67 +675,55 @@ static void ov4_021D1950(u8 param0, u8 *param1, int param2)
         MI_CpuCopy8(param1 + 4, (void *)v1, param2 - 4);
 
         if (DWC_GetMyAID() == 0) {
-            if (Unk_ov4_0221A400->unk_F98 != NULL) {
-                Unk_ov4_0221A400->unk_F98(param0, v1, param2 - 4);
+            if (sNintendoWFCManager->serverClientSendCallback != NULL) {
+                sNintendoWFCManager->serverClientSendCallback(param0, v1, param2 - 4);
             }
         } else {
-            if (Unk_ov4_0221A400->unk_F9C != NULL) {
-                Unk_ov4_0221A400->unk_F9C(param0, v1, param2 - 4);
+            if (sNintendoWFCManager->serverServerSendCallback != NULL) {
+                sNintendoWFCManager->serverServerSendCallback(param0, v1, param2 - 4);
             }
         }
 
-        ov4_021D1B04(NULL, v1, param2 - 4);
+        NintendoWFCFree(NULL, v1, param2 - 4);
     }
 }
 
-static void ov4_021D1A20(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void *param5)
+static void ConnectionClosedCallback(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void *param5)
 {
 #pragma unused(param5, param4)
 
-    Unk_ov4_0221A400->unk_106C = 0;
-    Unk_ov4_0221A400->unk_10C0 = 0;
-    Unk_ov4_0221A400->unk_1094 = 0;
+    sNintendoWFCManager->dataSent = 0;
+    sNintendoWFCManager->unk_10C0 = 0;
+    sNintendoWFCManager->unk_1094 = 0;
 
     if (param0 == DWC_ERROR_NONE) {
-        if ((Unk_ov4_0221A400->unk_10D9 == 1) && (DWC_GetNumConnectionHost() == 1)) {
-            if (Unk_ov4_0221A400->unk_1064 == 6) {
-                (void)0;
-            } else {
-                Unk_ov4_0221A400->unk_1064 = 16;
+        if (sNintendoWFCManager->disconnectIfAlone == TRUE && DWC_GetNumConnectionHost() == 1) {
+            if (sNintendoWFCManager->state != 6) {
+                sNintendoWFCManager->state = 16;
             }
 
-            if (Unk_ov4_0221A400->unk_1084) {
-                ov4_021D1F18();
+            if (sNintendoWFCManager->voiceChatEnabled) {
+                NintendoWFC_TerminateVoiceChat();
             }
         }
-
-        if (param1) {
-            (void)0;
-        } else {
-            (void)0;
-        }
-    } else {
-        (void)0;
     }
 
-    if (Unk_ov4_0221A400->unk_FA0) {
-        Unk_ov4_0221A400->unk_FA0(param3, Unk_ov4_0221A400->unk_FA4);
+    if (sNintendoWFCManager->connectionClosedCallback) {
+        sNintendoWFCManager->connectionClosedCallback(param3, sNintendoWFCManager->connectionClosedCBArg);
     }
 }
 
-void *ov4_021D1AA0(DWCAllocType param0, u32 param1, int param2)
+static void *NintendoWFCAlloc(DWCAllocType allocType, u32 size, int alignment)
 {
-#pragma unused(param0)
+#pragma unused(allocType)
     void *v0;
     OSIntrMode v1;
 
     v1 = OS_DisableInterrupts();
-    v0 = NNS_FndAllocFromExpHeapEx(Unk_ov4_0221A400->unk_F88, param1, param2);
+    v0 = NNS_FndAllocFromExpHeapEx(sNintendoWFCManager->heap1, size, alignment);
 
-    if (v0 == NULL) {
-        if (Unk_ov4_0221A400->unk_F8C != NULL) {
-            v0 = NNS_FndAllocFromExpHeapEx(Unk_ov4_0221A400->unk_F90, param1, param2);
-        }
+    if (v0 == NULL && sNintendoWFCManager->heap2AllocPtr != NULL) {
+        v0 = NNS_FndAllocFromExpHeapEx(sNintendoWFCManager->heap2, size, alignment);
     }
 
     if (v0 == NULL) {
@@ -761,34 +738,34 @@ void *ov4_021D1AA0(DWCAllocType param0, u32 param1, int param2)
     return v0;
 }
 
-void ov4_021D1B04(DWCAllocType param0, void *param1, u32 param2)
+static void NintendoWFCFree(DWCAllocType allocType, void *ptr, u32 unused)
 {
-#pragma unused(param0, param2)
+#pragma unused(allocType, unused)
     OSIntrMode v0;
     u16 v1;
 
-    if (!param1) {
+    if (!ptr) {
         return;
     }
 
     v0 = OS_DisableInterrupts();
-    v1 = NNS_FndGetGroupIDForMBlockExpHeap(param1);
+    v1 = NNS_FndGetGroupIDForMBlockExpHeap(ptr);
 
     if (v1 == 16) {
-        if (Unk_ov4_0221A400->unk_F8C == NULL) {
+        if (sNintendoWFCManager->heap2AllocPtr == NULL) {
             Link_SetErrorState(1);
             return;
         }
 
-        NNS_FndFreeToExpHeap(Unk_ov4_0221A400->unk_F90, param1);
+        NNS_FndFreeToExpHeap(sNintendoWFCManager->heap2, ptr);
     } else {
-        NNS_FndFreeToExpHeap(Unk_ov4_0221A400->unk_F88, param1);
+        NNS_FndFreeToExpHeap(sNintendoWFCManager->heap1, ptr);
     }
 
     OS_RestoreInterrupts(v0);
 }
 
-int ov4_021D1B5C(void)
+int NintendoWFC_HandleError(void)
 {
     int v0;
     DWCErrorType v1;
@@ -815,8 +792,8 @@ int ov4_021D1B5C(void)
         case DWC_ETYPE_SHUTDOWN_GHTTP:
         case DWC_ETYPE_SHUTDOWN_ND:
         case DWC_ETYPE_DISCONNECT:
-            if (Unk_ov4_0221A400) {
-                switch (Unk_ov4_0221A400->unk_1064) {
+            if (sNintendoWFCManager) {
+                switch (sNintendoWFCManager->state) {
                 case 3:
                 case 4:
                 case 5:
@@ -840,23 +817,23 @@ int ov4_021D1B5C(void)
                 DWC_ClearError();
             }
 
-            if (Unk_ov4_0221A400) {
-                Unk_ov4_0221A400->unk_1064 = 14;
+            if (sNintendoWFCManager) {
+                sNintendoWFCManager->state = 14;
             }
             break;
         case DWC_ETYPE_FATAL:
-            if (Unk_ov4_0221A400) {
-                Unk_ov4_0221A400->unk_1064 = 15;
+            if (sNintendoWFCManager) {
+                sNintendoWFCManager->state = 15;
 
-                if (Unk_ov4_0221A400->unk_FB4 != NULL) {
-                    Unk_ov4_0221A400->unk_FB4(-v0);
+                if (sNintendoWFCManager->fatalErrorCallback != NULL) {
+                    sNintendoWFCManager->fatalErrorCallback(-v0);
                 }
             }
             break;
         }
     }
 
-    if (Unk_ov4_0221A400->unk_10D2) {
+    if (sNintendoWFCManager->unk_10D2) {
         v3 = ((DWC_ERROR_NUM) + 6);
     }
 
@@ -867,42 +844,42 @@ int ov4_021D1B5C(void)
     return v3;
 }
 
-static BOOL ov4_021D1C5C(void)
+static BOOL CanSendToAll(void)
 {
-    int v0;
-    BOOL v1 = 0;
+    int i;
+    BOOL ret = FALSE;
 
-    for (v0 = 0; v0 < Unk_ov4_0221A400->unk_1070; v0++) {
-        if (DWC_GetMyAID() == v0) {
+    for (i = 0; i < sNintendoWFCManager->maxPlayers; i++) {
+        if (DWC_GetMyAID() == i) {
             continue;
         }
 
-        if (DWC_IsValidAID(v0)) {
-            v1 = 1;
+        if (DWC_IsValidAID(i)) {
+            ret = TRUE;
 
-            if (!DWC_IsSendableReliable(v0)) {
-                return 0;
+            if (!DWC_IsSendableReliable(i)) {
+                return FALSE;
             }
         }
     }
 
-    return v1;
+    return ret;
 }
 
-static BOOL ov4_021D1CAC(int param0)
+static BOOL SendHeaderIfConnectedClients(int param0)
 {
-    if ((Unk_ov4_0221A400->unk_106C == 0) && ov4_021D1C5C() && (0xfffe & DWC_GetAIDBitmap())) {
-        Unk_ov4_0221A400->unk_106C = 1;
-        *((u32 *)&(Unk_ov4_0221A400->unk_00[0])) = 0x2 | (Unk_ov4_0221A400->unk_10C8 << 8);
+    if ((sNintendoWFCManager->dataSent == 0) && CanSendToAll() && ((u16)~1 & DWC_GetAIDBitmap())) {
+        sNintendoWFCManager->dataSent = 1;
+        *((u32 *)sNintendoWFCManager->sendBuffer) = 0x2 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
 
-        DWC_SendReliableBitmap(DWC_GetAIDBitmap(), &(Unk_ov4_0221A400->unk_00[0]), 4);
+        DWC_SendReliableBitmap(DWC_GetAIDBitmap(), sNintendoWFCManager->sendBuffer, 4);
 
-        Unk_ov4_0221A400->unk_10A0[param0] = 0;
+        sNintendoWFCManager->unk_10A0[param0] = 0;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static int ov4_021D1D1C(void)
@@ -910,28 +887,28 @@ static int ov4_021D1D1C(void)
     int v0, v1;
 
     DWC_ProcessFriendsMatch();
-    ov4_021D21B4();
+    GetNextFriendStatus();
 
-    if (Unk_ov4_0221A400->unk_1084) {
-        if ((Unk_ov4_0221A400->unk_10C8 == 1) && (Unk_ov4_0221A400->unk_10C4 == 1) && (Unk_ov4_0221A400->unk_10CA == 1)) {
-            ov4_021D2FB8();
+    if (sNintendoWFCManager->voiceChatEnabled) {
+        if ((sNintendoWFCManager->voiceChatEnabled1 == 1) && (sNintendoWFCManager->voiceChatEnabled2 == 1) && (sNintendoWFCManager->voiceChatEnabled3 == 1)) {
+            VoiceChat_Enable();
         } else {
-            ov4_021D2FA4();
+            VoiceChat_Disable();
         }
 
-        ov4_021D2B28();
+        VoiceChat_Main();
 
-        if (Unk_ov4_0221A400->unk_1074 != DWC_GetAIDBitmap()) {
-            if (!Unk_ov4_0221A400->unk_10D3 && Unk_ov4_0221A400->unk_1090) {
-                if (ov4_021D2FCC(DWC_GetAIDBitmap(), DWC_GetMyAID())) {
-                    Unk_ov4_0221A400->unk_1074 = DWC_GetAIDBitmap();
+        if (sNintendoWFCManager->voiceConnectedIDs != DWC_GetAIDBitmap()) {
+            if (!sNintendoWFCManager->dummy_10D3 && sNintendoWFCManager->updateVoiceClients) {
+                if (VoiceChat_AddConferenceClients(DWC_GetAIDBitmap(), DWC_GetMyAID())) {
+                    sNintendoWFCManager->voiceConnectedIDs = DWC_GetAIDBitmap();
                 }
             }
         }
     }
 
-    if (Unk_ov4_0221A400->unk_1064 == 18) {
-        v1 = ov4_021D1B5C();
+    if (sNintendoWFCManager->state == 18) {
+        v1 = NintendoWFC_HandleError();
 
         if (v1 != 0) {
             return v1;
@@ -940,14 +917,14 @@ static int ov4_021D1D1C(void)
         return (DWC_ERROR_NUM) + 3;
     }
 
-    if (Unk_ov4_0221A400->unk_1064 == 17) {
+    if (sNintendoWFCManager->state == 17) {
         return (DWC_ERROR_NUM) + 4;
     }
 
-    if ((Unk_ov4_0221A400->unk_1064 == 7) || (Unk_ov4_0221A400->unk_1064 == 8)) {
-        for (v0 = 0; v0 < Unk_ov4_0221A400->unk_1070; v0++) {
-            if ((Unk_ov4_0221A400->unk_10A0[v0]++ >= 120) && (Unk_ov4_0221A400->unk_106C == 0)) {
-                if (ov4_021D1CAC(v0)) {
+    if ((sNintendoWFCManager->state == 7) || (sNintendoWFCManager->state == 8)) {
+        for (v0 = 0; v0 < sNintendoWFCManager->maxPlayers; v0++) {
+            if (sNintendoWFCManager->unk_10A0[v0]++ >= 120 && sNintendoWFCManager->dataSent == FALSE) {
+                if (SendHeaderIfConnectedClients(v0)) {
                     ov4_021D17A4();
                     break;
                 }
@@ -955,13 +932,13 @@ static int ov4_021D1D1C(void)
         }
     }
 
-    return ov4_021D1B5C();
+    return NintendoWFC_HandleError();
 }
 
 int ov4_021D1E30()
 {
-    if (Unk_ov4_0221A400) {
-        if ((Unk_ov4_0221A400->unk_1064 == 7) || (Unk_ov4_0221A400->unk_1064 == 8) || (Unk_ov4_0221A400->unk_1064 == 16)) {
+    if (sNintendoWFCManager) {
+        if ((sNintendoWFCManager->state == 7) || (sNintendoWFCManager->state == 8) || (sNintendoWFCManager->state == 16)) {
             return DWC_GetMyAID();
         }
     }
@@ -971,7 +948,7 @@ int ov4_021D1E30()
 
 static void ov4_021D1E60()
 {
-    Unk_ov4_0221A400->unk_1084 = 0;
+    sNintendoWFCManager->voiceChatEnabled = FALSE;
 }
 
 void ov4_021D1E74(int heapID)
@@ -987,13 +964,13 @@ void ov4_021D1E74(int heapID)
             v1 = 1;
         }
 
-        Unk_ov4_0221A400->unk_10C8 = 1;
-        Unk_ov4_0221A400->unk_10C4 = 1;
-        Unk_ov4_0221A400->unk_10CA = 1;
+        sNintendoWFCManager->voiceChatEnabled1 = 1;
+        sNintendoWFCManager->voiceChatEnabled2 = 1;
+        sNintendoWFCManager->voiceChatEnabled3 = 1;
     }
 
-    if (Unk_ov4_0221A400->unk_1084 == 0) {
-        switch (Unk_ov4_0221A400->unk_1098) {
+    if (sNintendoWFCManager->voiceChatEnabled == FALSE) {
+        switch (sNintendoWFCManager->voiceChatCodec) {
         case 2:
             v0 = VCT_CODEC_G711_ULAW;
             break;
@@ -1015,20 +992,20 @@ void ov4_021D1E74(int heapID)
             break;
         }
 
-        ov4_021D2CC0(heapID, v0, v1);
-        ov4_021D2EF4(ov4_021D1E60);
+        VoiceChat_Start(heapID, v0, v1);
+        VoiceChat_SetCleanupCallback(ov4_021D1E60);
 
-        Unk_ov4_0221A400->unk_1084 = 1;
+        sNintendoWFCManager->voiceChatEnabled = TRUE;
     }
 }
 
-void ov4_021D1F18(void)
+void NintendoWFC_TerminateVoiceChat(void)
 {
-    ov4_021D2F08();
+    VoiceChat_Stop();
 
-    if (Unk_ov4_0221A400 != NULL) {
-        Unk_ov4_0221A400->unk_1084 = 0;
-        Unk_ov4_0221A400->unk_1074 = 0;
+    if (sNintendoWFCManager != NULL) {
+        sNintendoWFCManager->voiceChatEnabled = FALSE;
+        sNintendoWFCManager->voiceConnectedIDs = 0;
     }
 }
 
@@ -1156,15 +1133,15 @@ int NintendoWFC_GetErrorCode(int param0, int param1)
 int ov4_021D20B0(int param0)
 {
     if (param0 == 0) {
-        switch (Unk_ov4_0221A400->unk_1064) {
+        switch (sNintendoWFCManager->state) {
         case 5:
         case 7:
         case 8:
-            if (Unk_ov4_0221A400->unk_1084) {
-                ov4_021D2EA4();
+            if (sNintendoWFCManager->voiceChatEnabled) {
+                VoiceChat_RequestEnd();
             }
 
-            Unk_ov4_0221A400->unk_1064 = 16;
+            sNintendoWFCManager->state = 16;
             break;
         case 4:
         case 14:
@@ -1173,7 +1150,7 @@ int ov4_021D20B0(int param0)
             return 1;
         }
     } else {
-        switch (Unk_ov4_0221A400->unk_1064) {
+        switch (sNintendoWFCManager->state) {
         case 4:
         case 17:
         case 18:
@@ -1186,9 +1163,9 @@ int ov4_021D20B0(int param0)
 
 int ov4_021D2134()
 {
-    if ((Unk_ov4_0221A400->unk_1064 == 17) || (Unk_ov4_0221A400->unk_1064 == 18) || (Unk_ov4_0221A400->unk_1064 == 4)) {
-        Unk_ov4_0221A400->unk_1064 = 4;
-        Unk_ov4_0221A400->unk_108C = -1;
+    if ((sNintendoWFCManager->state == 17) || (sNintendoWFCManager->state == 18) || (sNintendoWFCManager->state == 4)) {
+        sNintendoWFCManager->state = 4;
+        sNintendoWFCManager->unk_108C = -1;
         ov4_021D25FC();
         return 1;
     }
@@ -1196,60 +1173,52 @@ int ov4_021D2134()
     return 0;
 }
 
-void ov4_021D2170(void (*func)(int))
+void NintendoWFC_SetFatalErrorCallback(void (*func)(int))
 {
-    if (Unk_ov4_0221A400) {
-        Unk_ov4_0221A400->unk_FB4 = func;
+    if (sNintendoWFCManager) {
+        sNintendoWFCManager->fatalErrorCallback = func;
     }
 }
 
-void ov4_021D2184(void)
+void NintendoWFC_Stop(void)
 {
     DWC_ShutdownFriendsMatch();
     DWC_CleanupInet();
 
-    ov4_021D1F18();
-    ov4_021D0F68();
+    NintendoWFC_TerminateVoiceChat();
+    NintendoWFC_Cleanup();
 }
 
-void ov4_021D2198(void *param0, int param1)
+void NintendoWFC_SetFriendStatusesBuffer(void *buffer, int friendStatusSize)
 {
-    Unk_ov4_0221A400->unk_1058 = param0;
-    Unk_ov4_0221A400->unk_105C = param1;
+    sNintendoWFCManager->friendStatusesBuffer = buffer;
+    sNintendoWFCManager->friendStatusSize = friendStatusSize;
 }
 
-static void ov4_021D21B4(void)
+static void GetNextFriendStatus(void)
 {
-    int v0;
-
-    if (Unk_ov4_0221A400->unk_1058 == NULL) {
+    if (sNintendoWFCManager->friendStatusesBuffer == NULL) {
         return;
     }
 
-    for (v0 = 0; v0 < 1; v0++) {
-        int v1 = Unk_ov4_0221A400->unk_1060 % 32;
-        int v2;
+    int currentFriendIdx = sNintendoWFCManager->nextFriendIdx % MAX_FRIENDS;
+    int dummy;
 
-        if (DWC_IsBuddyFriendData(&(Unk_ov4_0221A400->unk_100[v1]))) {
-            Unk_ov4_0221A400->unk_1038[v1] = DWC_GetFriendStatusData(&Unk_ov4_0221A400->unk_100[v1], (void *)(((u32)Unk_ov4_0221A400->unk_1058) + Unk_ov4_0221A400->unk_105C * v1), &v2);
-
-            if (v2 > Unk_ov4_0221A400->unk_105C) {
-                (void)0;
-            }
-        }
-
-        Unk_ov4_0221A400->unk_1060 = (Unk_ov4_0221A400->unk_1060 + 1) % 32;
+    if (DWC_IsBuddyFriendData(&(sNintendoWFCManager->friends[currentFriendIdx]))) {
+        sNintendoWFCManager->friendConnStatus[currentFriendIdx] = DWC_GetFriendStatusData(&sNintendoWFCManager->friends[currentFriendIdx], (void *)(((u32)sNintendoWFCManager->friendStatusesBuffer) + sNintendoWFCManager->friendStatusSize * currentFriendIdx), &dummy);
     }
+
+    sNintendoWFCManager->nextFriendIdx = (sNintendoWFCManager->nextFriendIdx + 1) % MAX_FRIENDS;
 }
 
-BOOL ov4_021D222C(const void *param0, int param1)
+BOOL NintendoWFC_SetStatusData(const void *param0, int size)
 {
-    return DWC_SetOwnStatusData(param0, param1);
+    return DWC_SetOwnStatusData(param0, size);
 }
 
-u8 ov4_021D2234(int param0)
+u8 NintendoWFC_GetFriendStatus(int friendIdx)
 {
-    return Unk_ov4_0221A400->unk_1038[param0];
+    return sNintendoWFCManager->friendConnStatus[friendIdx];
 }
 
 int ov4_021D2248(int param0, int param1, BOOL param2)
@@ -1260,64 +1229,64 @@ int ov4_021D2248(int param0, int param1, BOOL param2)
         return -4;
     }
 
-    if (Unk_ov4_0221A400->unk_1064 != 4) {
-        Unk_ov4_0221A400->unk_10C0++;
+    if (sNintendoWFCManager->state != 4) {
+        sNintendoWFCManager->unk_10C0++;
 
-        if (Unk_ov4_0221A400->unk_10C0 > 120) {
+        if (sNintendoWFCManager->unk_10C0 > 120) {
             return -3;
         }
 
         return -1;
     }
 
-    ov4_021D27CC();
+    FreeAllReceiveBuffers();
 
-    Unk_ov4_0221A400->unk_10CC = 0;
-    Unk_ov4_0221A400->unk_10D9 = 1;
-    Unk_ov4_0221A400->unk_1088 = param0;
-    Unk_ov4_0221A400->unk_1070 = param1;
+    sNintendoWFCManager->unk_10CC = 0;
+    sNintendoWFCManager->disconnectIfAlone = TRUE;
+    sNintendoWFCManager->unk_1088 = param0;
+    sNintendoWFCManager->maxPlayers = param1;
 
     if (param2) {
         v1 = 2;
     }
 
-    Unk_ov4_0221A400->unk_1094 = 1;
+    sNintendoWFCManager->unk_1094 = 1;
 
     if (param0 < 0) {
         v0 = DWC_SetupGameServer((u8)v1, ov4_021D23A4, NULL, ov4_021D24AC, NULL);
-        Unk_ov4_0221A400->unk_1068 = 1;
+        sNintendoWFCManager->unk_1068 = 1;
     } else {
         v0 = DWC_ConnectToGameServerAsync(param0, ov4_021D2488, NULL, ov4_021D24AC, NULL);
-        Unk_ov4_0221A400->unk_1068 = 2;
+        sNintendoWFCManager->unk_1068 = 2;
     }
 
     if (!v0) {
-        Unk_ov4_0221A400->unk_10C0++;
+        sNintendoWFCManager->unk_10C0++;
 
-        if (Unk_ov4_0221A400->unk_10C0 > 120) {
+        if (sNintendoWFCManager->unk_10C0 > 120) {
             return -3;
         }
 
         return -2;
     }
 
-    Unk_ov4_0221A400->unk_10C0 = 0;
-    Unk_ov4_0221A400->unk_1064 = 5;
+    sNintendoWFCManager->unk_10C0 = 0;
+    sNintendoWFCManager->state = 5;
 
-    DWC_SetUserSendCallback(ov4_021D18F4);
-    DWC_SetUserRecvCallback(ov4_021D1950);
-    DWC_SetConnectionClosedCallback(ov4_021D1A20, NULL);
-    DWC_SetUserRecvTimeoutCallback(ov4_021D16E8);
+    DWC_SetUserSendCallback(UserSendCallback);
+    DWC_SetUserRecvCallback(UserReceiveCallback);
+    DWC_SetConnectionClosedCallback(ConnectionClosedCallback, NULL);
+    DWC_SetUserRecvTimeoutCallback(UserReceiveTimeoutCallback);
 
-    Unk_ov4_0221A400->unk_106C = 0;
+    sNintendoWFCManager->dataSent = 0;
 
     return 0;
 }
 
 int ov4_021D2388()
 {
-    if (Unk_ov4_0221A400) {
-        return Unk_ov4_0221A400->unk_1088;
+    if (sNintendoWFCManager) {
+        return sNintendoWFCManager->unk_1088;
     }
 
     return -1;
@@ -1328,7 +1297,7 @@ static void ov4_021D23A4(DWCError param0, BOOL param1, BOOL param2, BOOL param3,
 #pragma unused(param3, param5)
     BOOL v0 = 0;
 
-    Unk_ov4_0221A400->unk_1094 = 0;
+    sNintendoWFCManager->unk_1094 = 0;
 
     if (param0 == DWC_ERROR_NONE) {
         if (!param1) {
@@ -1336,72 +1305,50 @@ static void ov4_021D23A4(DWCError param0, BOOL param1, BOOL param2, BOOL param3,
                 v0 = 1;
             }
 
-            if (Unk_ov4_0221A400->unk_FB0) {
-                if (0 == Unk_ov4_0221A400->unk_FB0(param4)) {
+            if (sNintendoWFCManager->unkCallback0) {
+                if (0 == sNintendoWFCManager->unkCallback0(param4)) {
                     v0 = 1;
                 }
             }
 
-            if (Unk_ov4_0221A400->unk_10D4 || v0) {
-                u32 v1 = ~Unk_ov4_0221A400->unk_10CC & DWC_GetAIDBitmap();
+            if (sNintendoWFCManager->unk_10D4 || v0) {
+                u32 v1 = ~sNintendoWFCManager->unk_10CC & DWC_GetAIDBitmap();
                 u32 v2 = DWC_GetAIDBitmap();
 
                 if (v1) {
                     DWC_CloseConnectionHardBitmap(&v1);
 
                     if ((v1 ^ v2) == 0x1) {
-                        Unk_ov4_0221A400->unk_1064 = 6;
+                        sNintendoWFCManager->state = 6;
                     }
 
                     return;
                 }
             }
 
-            Unk_ov4_0221A400->unk_1088 = param4;
-            Unk_ov4_0221A400->unk_10CC = DWC_GetAIDBitmap();
+            sNintendoWFCManager->unk_1088 = param4;
+            sNintendoWFCManager->unk_10CC = DWC_GetAIDBitmap();
 
-            if (Unk_ov4_0221A400->unk_10CC == 0x1) {
-                Unk_ov4_0221A400->unk_1064 = 6;
+            if (sNintendoWFCManager->unk_10CC == 0x1) {
+                sNintendoWFCManager->state = 6;
             } else {
                 ov4_021D1854(param4);
             }
         } else {
-            if (param2) {
-                (void)0;
-            } else {
-                Unk_ov4_0221A400->unk_108C = -1;
+            if (!param2) {
+                sNintendoWFCManager->unk_108C = -1;
             }
         }
-    } else {
-        (void)0;
     }
 }
 
 static void ov4_021D2488(DWCError param0, BOOL param1, BOOL param2, BOOL param3, int param4, void *param5)
 {
 #pragma unused(param5)
-    Unk_ov4_0221A400->unk_1094 = 0;
+    sNintendoWFCManager->unk_1094 = 0;
 
-    if (param0 == DWC_ERROR_NONE) {
-        if (!param1) {
-            if (param2) {
-                (void)0;
-            } else {
-                (void)0;
-            }
-
-            ov4_021D1854(param4);
-        } else {
-            if (param2) {
-                (void)0;
-            } else {
-                if (param3) {
-                    (void)0;
-                } else {
-                    (void)0;
-                }
-            }
-        }
+    if (param0 == DWC_ERROR_NONE && !param1) {
+        ov4_021D1854(param4);
     }
 }
 
@@ -1409,206 +1356,176 @@ static void ov4_021D24AC(int param0, void *param1)
 {
 #pragma unused(param1)
 
-    Unk_ov4_0221A400->unk_108C = param0;
+    sNintendoWFCManager->unk_108C = param0;
 
-    if (param0 != -1) {
-        (void)0;
+    if (sNintendoWFCManager->unkCallback1) {
+        sNintendoWFCManager->unkCallback1(param0, sNintendoWFCManager->unkCallback1Arg);
+    }
+}
+
+static void ov4_021D24D8(void)
+{
+    if (!DWC_CheckHasProfile(sNintendoWFCManager->userData)) {
+        DWCFriendData friendData;
+        DWC_CreateExchangeToken(sNintendoWFCManager->userData, &friendData);
     } else {
-        (void)0;
+        DWCFriendData friendData;
+        DWC_CreateExchangeToken(sNintendoWFCManager->userData, &friendData);
     }
 
-    if (Unk_ov4_0221A400->unk_FA8) {
-        Unk_ov4_0221A400->unk_FA8(param0, Unk_ov4_0221A400->unk_FAC);
-    }
-}
-
-void ov4_021D24D8()
-{
-    int v0;
-
-    if (!DWC_CheckHasProfile(Unk_ov4_0221A400->unk_F08)) {
-        DWCFriendData v1;
-        u32 *v2;
-
-        DWC_CreateExchangeToken(Unk_ov4_0221A400->unk_F08, &v1);
-        v2 = (u32 *)&v1;
-    } else {
-        DWCFriendData v3;
-
-        DWC_CreateExchangeToken(Unk_ov4_0221A400->unk_F08, &v3);
-    }
-
-    for (v0 = 0; v0 < 32; v0++) {
-        int v4 = DWC_GetFriendDataType(&(Unk_ov4_0221A400->unk_100[v0]));
-        u32 *v5 = (u32 *)(&Unk_ov4_0221A400->unk_100[v0]);
-
-        switch (v4) {
-        case DWC_FRIENDDATA_LOGIN_ID:
-            break;
-        case DWC_FRIENDDATA_FRIEND_KEY:
-            break;
-        case DWC_FRIENDDATA_GS_PROFILE_ID:
-            break;
-        case DWC_FRIENDDATA_NODATA:
-        default:
-            break;
-        }
-
-        if (DWC_IsBuddyFriendData(&(Unk_ov4_0221A400->unk_100[v0]))) {
-            (void)0;
-        }
+    for (int i = 0; i < MAX_FRIENDS; i++) {
+        DWC_GetFriendDataType(&sNintendoWFCManager->friends[i]);
+        DWC_IsBuddyFriendData(&sNintendoWFCManager->friends[i]);
     }
 }
 
-BOOL ov4_021D2544(void)
+BOOL NintendoWFC_IsPlayerSpeaking(void)
 {
-    return ov4_021D2F7C();
+    return VoiceChat_DetectVoice();
 }
 
-BOOL ov4_021D254C(void)
+BOOL NintendoWFC_GetUpdateVoiceClients(void)
 {
-    if (Unk_ov4_0221A400) {
-        return Unk_ov4_0221A400->unk_1090;
+    if (sNintendoWFCManager) {
+        return sNintendoWFCManager->updateVoiceClients;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov4_021D2568(void)
 {
-    if (Unk_ov4_0221A400) {
-        return Unk_ov4_0221A400->unk_108C;
+    if (sNintendoWFCManager) {
+        return sNintendoWFCManager->unk_108C;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov4_021D2584(BOOL param0)
+void NintendoWFC_SetUpdateVoiceClients(BOOL param0)
 {
-    Unk_ov4_0221A400->unk_1090 = param0;
+    sNintendoWFCManager->updateVoiceClients = param0;
 }
 
-static void sendPacket()
+static void SendHeader()
 {
-    int v0;
+    if (sNintendoWFCManager->dataSent || !CanSendToAll()) {
+        sNintendoWFCManager->dataSent = 1;
+        *((u32 *)sNintendoWFCManager->sendBuffer) = 0x2 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
 
-    if (Unk_ov4_0221A400->unk_106C || !ov4_021D1C5C()) {
-        Unk_ov4_0221A400->unk_106C = 1;
-        *((u32 *)&(Unk_ov4_0221A400->unk_00[0])) = 0x2 | (Unk_ov4_0221A400->unk_10C8 << 8);
-
-        DWC_SendReliableBitmap(DWC_GetAIDBitmap(), &(Unk_ov4_0221A400->unk_00[0]), 4);
+        DWC_SendReliableBitmap(DWC_GetAIDBitmap(), sNintendoWFCManager->sendBuffer, 4);
         ov4_021D17A4();
     }
 }
 
 void ov4_021D2598(BOOL param0)
 {
-    Unk_ov4_0221A400->unk_10CA = param0;
+    sNintendoWFCManager->voiceChatEnabled3 = param0;
 }
 
 static void ov4_021D25AC(void *param0)
 {
-    Unk_ov4_0221A400->unk_10D4 = 2;
+    sNintendoWFCManager->unk_10D4 = 2;
 }
 
 int ov4_021D25C0(void)
 {
-    if (Unk_ov4_0221A400->unk_10D4 == 0) {
-        Unk_ov4_0221A400->unk_10D4 = 1;
+    if (sNintendoWFCManager->unk_10D4 == 0) {
+        sNintendoWFCManager->unk_10D4 = 1;
         DWC_StopSCMatchingAsync(ov4_021D25AC, NULL);
     }
 
-    return Unk_ov4_0221A400->unk_10D4 == 2;
+    return sNintendoWFCManager->unk_10D4 == 2;
 }
 
 void ov4_021D25FC(void)
 {
-    Unk_ov4_0221A400->unk_10D4 = 0;
+    sNintendoWFCManager->unk_10D4 = 0;
 }
 
-int ov4_021D2610(void)
+int NintendoWFC_GetNumConnections(void)
 {
     return DWC_GetNumConnectionHost();
 }
 
-void ov4_021D2618(BOOL param0, int heapID)
+void ov4_021D2618(BOOL create, int heapID)
 {
-    if (param0) {
-        Unk_ov4_0221A400->unk_107C = 11;
+    if (create) {
+        sNintendoWFCManager->secondaryHeapID = HEAP_ID_FIELD2;
 
-        if (Unk_ov4_0221A400->unk_F8C == NULL) {
-            Unk_ov4_0221A400->unk_F8C = Heap_Alloc(heapID, 0xf000 + 32);
-            Unk_ov4_0221A400->unk_F90 = NNS_FndCreateExpHeap((void *)(((u32)Unk_ov4_0221A400->unk_F8C + 31) / 32 * 32), 0xf000);
-            NNS_FndSetGroupIDForExpHeap(Unk_ov4_0221A400->unk_F90, 16);
-            Unk_ov4_0221A400->unk_F94 = NNS_FndGetTotalFreeSizeForExpHeap(Unk_ov4_0221A400->unk_F90);
+        if (sNintendoWFCManager->heap2AllocPtr == NULL) {
+            sNintendoWFCManager->heap2AllocPtr = Heap_Alloc(heapID, 0xf000 + 32);
+            sNintendoWFCManager->heap2 = NNS_FndCreateExpHeap((void *)(((u32)sNintendoWFCManager->heap2AllocPtr + 31) / 32 * 32), 0xf000);
+            NNS_FndSetGroupIDForExpHeap(sNintendoWFCManager->heap2, 16);
+            sNintendoWFCManager->heap2Size = NNS_FndGetTotalFreeSizeForExpHeap(sNintendoWFCManager->heap2);
         }
     } else {
-        Unk_ov4_0221A400->unk_107C = Unk_ov4_0221A400->unk_1078;
+        sNintendoWFCManager->secondaryHeapID = sNintendoWFCManager->primaryHeapID;
 
-        if (Unk_ov4_0221A400->unk_F8C != NULL) {
-            if (NNS_FndGetTotalFreeSizeForExpHeap(Unk_ov4_0221A400->unk_F90) != Unk_ov4_0221A400->unk_F94) {
+        if (sNintendoWFCManager->heap2AllocPtr != NULL) {
+            if (NNS_FndGetTotalFreeSizeForExpHeap(sNintendoWFCManager->heap2) != sNintendoWFCManager->heap2Size) {
                 Link_SetErrorState(1);
                 return;
             }
 
-            NNS_FndDestroyExpHeap(Unk_ov4_0221A400->unk_F90);
-            Heap_Free(Unk_ov4_0221A400->unk_F8C);
+            NNS_FndDestroyExpHeap(sNintendoWFCManager->heap2);
+            Heap_Free(sNintendoWFCManager->heap2AllocPtr);
 
-            Unk_ov4_0221A400->unk_F8C = NULL;
+            sNintendoWFCManager->heap2AllocPtr = NULL;
         }
     }
 }
 
-void ov4_021D26EC(BOOL param0)
+void NintendoWFC_SetDisconnectIfAlone(BOOL param0)
 {
-    Unk_ov4_0221A400->unk_10D9 = param0;
+    sNintendoWFCManager->disconnectIfAlone = param0;
 }
 
-void ov4_021D2700(int param0)
+static void FreeReceiveBuffer(int index)
 {
-    if (Unk_ov4_0221A400->unk_F74[param0] != NULL) {
-        if (Unk_ov4_0221A400->unk_10D5[param0] == 1) {
-            Heap_Free(Unk_ov4_0221A400->unk_F74[param0]);
+    if (sNintendoWFCManager->receiveBuffers[index] != NULL) {
+        if (sNintendoWFCManager->receiveBuffersOnGlobalHeap[index] == TRUE) {
+            Heap_Free(sNintendoWFCManager->receiveBuffers[index]);
         } else {
-            ov4_021D1B04(0, Unk_ov4_0221A400->unk_F74[param0], 0);
+            NintendoWFCFree(0, sNintendoWFCManager->receiveBuffers[index], 0);
         }
 
-        Unk_ov4_0221A400->unk_F74[param0] = NULL;
+        sNintendoWFCManager->receiveBuffers[index] = NULL;
     }
 }
 
-void ov4_021D2748(int param0)
+static void CreateReceiveBuffer(int index)
 {
-    ov4_021D2700(param0);
+    FreeReceiveBuffer(index);
 
-    if (Unk_ov4_0221A400->unk_F74[param0] == NULL) {
-        if (Unk_ov4_0221A400->unk_107C == 11) {
-            Unk_ov4_0221A400->unk_F74[param0] = Heap_Alloc(Unk_ov4_0221A400->unk_107C, (4 * 1024) + 32);
-            Unk_ov4_0221A400->unk_10D5[param0] = 1;
+    if (sNintendoWFCManager->receiveBuffers[index] == NULL) {
+        if (sNintendoWFCManager->secondaryHeapID == HEAP_ID_FIELD2) {
+            sNintendoWFCManager->receiveBuffers[index] = Heap_Alloc(sNintendoWFCManager->secondaryHeapID, RECEIVE_BUFFER_SIZE + 32);
+            sNintendoWFCManager->receiveBuffersOnGlobalHeap[index] = TRUE;
         } else {
-            Unk_ov4_0221A400->unk_F74[param0] = ov4_021D1AA0(0, (4 * 1024), 32);
-            Unk_ov4_0221A400->unk_10D5[param0] = 0;
+            sNintendoWFCManager->receiveBuffers[index] = NintendoWFCAlloc(0, RECEIVE_BUFFER_SIZE, 32);
+            sNintendoWFCManager->receiveBuffersOnGlobalHeap[index] = FALSE;
         }
 
-        DWC_SetRecvBuffer(param0, (u8 *)(((u32)Unk_ov4_0221A400->unk_F74[param0] + 31) / 32 * 32), (4 * 1024));
+        DWC_SetRecvBuffer(index, (u8 *)(((u32)sNintendoWFCManager->receiveBuffers[index] + 31) / 32 * 32), RECEIVE_BUFFER_SIZE);
     }
 }
 
-void ov4_021D27CC(void)
+static void FreeAllReceiveBuffers(void)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 3 + 1; v0++) {
-        ov4_021D2700(v0);
+    for (i = 0; i < 4; i++) {
+        FreeReceiveBuffer(i);
     }
 }
 
 u8 ov4_021D27E0(void)
 {
-    return Unk_ov4_0221A400->unk_10DA;
+    return sNintendoWFCManager->unk_10DA;
 }
 
 void ov4_021D27F4(void)
 {
-    Unk_ov4_0221A400->unk_10DA = 0;
+    sNintendoWFCManager->unk_10DA = 0;
 }

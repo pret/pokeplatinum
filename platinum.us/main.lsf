@@ -443,7 +443,7 @@ Overlay overlay4
 {
 	After main
 	Object main.nef.p/src_overlay004_ov4_021D0D80.c.o
-	Object main.nef.p/src_overlay004_ov4_021D2808.c.o
+	Object main.nef.p/src_overlay004_voice_chat.c.o
 	Library	libdwcauth.a
 	Library libdwcbase.a
 	Library libdwcac.a
@@ -740,7 +740,7 @@ Overlay overlay17
 Overlay overlay18
 {
 	After overlay4
-	Object main.nef.p/src_overlay018_ov18_0221F800.c.o
+	Object main.nef.p/src_overlay018_wfc_settings.c.o
 	Library	libmb.a
 	Library libdwcutil.a
 }
@@ -1119,7 +1119,7 @@ Overlay overlay59
 Overlay overlay60
 {
 	After overlay4
-	Object main.nef.p/src_overlay060_ov60_0221F800.c.o
+	Object main.nef.p/src_overlay060_http_b64.c.o
 	Object main.nef.p/src_overlay060_http.c.o
 	Library	libdwcgsghttp.a
 	Library libdwcnd.a

@@ -148,7 +148,7 @@ static void sub_0201767C(UnkStruct_02017498 *param0)
         param0->unk_18 = Heap_Alloc(HEAP_ID_116, 0x20000 + 32);
         param0->unk_1C = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_18 + 31) / 32 * 32), 0x20000);
 
-        sub_02099550();
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
     }
@@ -161,7 +161,7 @@ static void sub_020176B4(UnkStruct_02017498 *param0)
 
         Heap_Free(param0->unk_18);
         Overlay_UnloadHttpOverlay();
-        sub_02099560();
+        Overlay_UnloadWFCOverlay();
         WirelessDriver_Shutdown();
 
         param0->unk_88 = 0;

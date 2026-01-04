@@ -629,7 +629,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
                 ov116_0226178C(v0, v1, 0, param1);
 
                 if (v0->unk_80->unk_3C) {
-                    ov4_021D1F18();
+                    NintendoWFC_TerminateVoiceChat();
                 }
                 break;
             }
@@ -641,7 +641,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
         CommTiming_StartSync(27);
 
         if (v0->unk_80->unk_3C) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         ov116_0226178C(v0, v1, 20, param1);

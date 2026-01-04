@@ -85,7 +85,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
         break;
     case 4:
         if (v1->unk_38) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         v0->unk_31 = 2;

@@ -103,7 +103,7 @@ int ov82_0223B24C(ApplicationManager *appMan, int *param1)
         ApplicationManager_FreeData(appMan);
 
         if ((v2->unk_20) && (v2->unk_24)) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         Heap_Destroy(heapID);

@@ -768,7 +768,7 @@ BOOL ov66_02232F38(UnkEnum_ov66_02232F38 param0, u32 param1)
     }
 
     ov4_021D1150(ov66_022342A0, Unk_ov66_0225B6C0);
-    ov4_021D1120(ov66_022342A4, Unk_ov66_0225B6C0);
+    NintendoWFC_SetConnectionClosedCB(ov66_022342A4, Unk_ov66_0225B6C0);
 
     return 1;
 }
@@ -912,7 +912,7 @@ BOOL ov66_02233260(UnkEnum_ov66_02232F38 param0)
     }
 
     ov4_021D1150(ov66_022342A0, Unk_ov66_0225B6C0);
-    ov4_021D1120(ov66_022342A4, Unk_ov66_0225B6C0);
+    NintendoWFC_SetConnectionClosedCB(ov66_022342A4, Unk_ov66_0225B6C0);
 
     return 1;
 }
@@ -1098,7 +1098,7 @@ void ov66_0223361C(void)
     GF_ASSERT(Unk_ov66_0225B6C0 != NULL);
 
     ov4_021D1150(NULL, NULL);
-    ov4_021D1120(NULL, NULL);
+    NintendoWFC_SetConnectionClosedCB(NULL, NULL);
 
     Unk_ov66_0225B6C0->unk_69C = UnkEnum_ov66_02232F38_03;
     Unk_ov66_0225B6C0->unk_69E = 0;
@@ -1806,7 +1806,7 @@ static void ov66_022341F4(UnkStruct_ov66_022336C4 *param0)
         UnkStruct_ov66_022336C4_sub4 *v2;
         u32 v3;
 
-        v3 = ov4_021D2610();
+        v3 = NintendoWFC_GetNumConnections();
         GF_ASSERT(v3 <= 4);
         v2 = &Unk_ov66_0225B6C0->unk_5B8[Unk_ov66_0225B6C0->unk_69C];
 
