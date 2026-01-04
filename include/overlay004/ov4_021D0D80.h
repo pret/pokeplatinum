@@ -3,54 +3,64 @@
 
 #include <dwc.h>
 
-#include "overlay004/funcptr_ov4_021D1104.h"
-#include "overlay004/funcptr_ov4_021D1120.h"
-#include "overlay004/funcptr_ov4_021D113C.h"
-#include "overlay004/funcptr_ov4_021D1150.h"
-
 #include "savedata.h"
 
-int ov4_021D0D80(SaveData *saveData, enum HeapID heapID, int param2, int param3);
-void ov4_021D0F68();
-int ov4_021D0FEC();
-void ov4_021D1104(UnkFuncPtr_ov4_021D1104 param0, UnkFuncPtr_ov4_021D1104 param1);
-void ov4_021D1120(UnkFuncPtr_ov4_021D1120 param0, void *param1);
-void ov4_021D113C(UnkFuncPtr_ov4_021D113C param0);
-void ov4_021D1150(UnkFuncPtr_ov4_021D1150 param0, void *param1);
-int ov4_021D116C(u8 *param0, int param1, BOOL param2, u32 param3);
-int ov4_021D12D4(int param0);
-BOOL ov4_021D1404();
-int ov4_021D142C(void *param0, int param1);
-int ov4_021D14D4(void *param0, int param1);
-int ov4_021D1590(void *param0, int param1);
-void *ov4_021D1AA0(DWCAllocType param0, u32 param1, int param2);
-void ov4_021D1B04(DWCAllocType param0, void *param1, u32 param2);
-int ov4_021D1B5C(void);
-int ov4_021D1E30();
-void ov4_021D1E74(enum HeapID heapID);
-void ov4_021D1F18(void);
-int NintendoWFC_GetErrorCode(int param0, int param1);
-int ov4_021D20B0(int param0);
-int ov4_021D2134();
-void ov4_021D2170(void (*func)(int));
-void ov4_021D2184(void);
-void ov4_021D2198(void *param0, int param1);
-BOOL ov4_021D222C(const void *param0, int param1);
-u8 ov4_021D2234(int param0);
-int ov4_021D2248(int param0, int param1, BOOL param2);
-int ov4_021D2388();
-void ov4_021D24D8();
-BOOL ov4_021D2544(void);
-BOOL ov4_021D254C(void);
-int ov4_021D2568(void);
-void ov4_021D2584(BOOL param0);
-void ov4_021D2598(BOOL param0);
-int ov4_021D25C0(void);
-void ov4_021D25FC(void);
-int ov4_021D2610(void);
-void ov4_021D2618(BOOL param0, enum HeapID heapID);
-void ov4_021D26EC(BOOL param0);
-u8 ov4_021D27E0(void);
-void ov4_021D27F4(void);
+#define WFC_NOT_A_FRIEND (-1)
+
+enum NintendoWFCResult {
+    NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS = DWC_ERROR_NUM,
+    NINTENDO_WFC_RESULT_CONN_RESET,
+    NINTENDO_WFC_RESULT_CONN_RESET_AFTER_HOST_LEFT,
+    NINTENDO_WFC_RESULT_RECEIVE_TIMED_OUT,
+    NINTENDO_WFC_RESULT_CONNECTION_CLOSED,
+    NINTENDO_WFC_RESULT_UNUSED_5,
+    NINTENDO_WFC_RESULT_DUMMY_6,
+    NINTENDO_WFC_RESULT_CONNECTED_TO_SERVER,
+};
+
+typedef void (*NintendoWFCDataTransferCallback)(u16 aid, u16 *data, u16 length);
+typedef void (*NintendoWFCConnectionClosedCB)(u16 aid, void *userParam);
+typedef BOOL (*NintendoWFCHostMatchCallback)(int hostFriendIdx);
+typedef void (*NintendoWFCNewClientCallback)(u16 id, void *userParam);
+typedef void (*NintendoWFCFatalErrorCallback)(int errorCode);
+
+int NintendoWFC_Init(SaveData *saveData, enum HeapID heapID, int heapSize, int maxPlayers);
+int NintendoWFC_ConnectToDWCServer(void);
+void NintendoDWC_SetDataTransferCallbacks(NintendoWFCDataTransferCallback serverCallback, NintendoWFCDataTransferCallback clientCallback);
+void NintendoWFC_SetConnectionClosedCB(NintendoWFCConnectionClosedCB callback, void *callbackArg);
+void NintendoWFC_SetHostMatchCallback(NintendoWFCHostMatchCallback callback);
+void NintendoWFC_SetNewClientCallback(NintendoWFCNewClientCallback callback, void *callbackArg);
+int NintendoWFC_StartPublicMatchmaking(u8 *matchmakingString, int maxPlayers, BOOL addSecondKey, u32 timeout);
+int NintendoWFC_Process(BOOL cancelConnection);
+BOOL NintendoWFC_HasDataQueued(void);
+int NintendoWFC_SendData_Server(void *data, int size);
+int NintendoWFC_SendData_Client(void *data, int size);
+int NintendoWFC_SendData(void *data, int size);
+int NintendoWFC_HandleError(void);
+int NintendoWFC_GetNetID(void);
+void NintendoWFC_StartVoiceChat(enum HeapID heapID);
+void NintendoWFC_TerminateVoiceChat(void);
+int NintendoWFC_GetErrorCode(int errorCode, int errorType);
+BOOL NintendoWFC_EndConnection(BOOL isClient);
+BOOL NintendoWFC_ReturnToReadyState(void);
+void NintendoWFC_SetFatalErrorCallback(NintendoWFCFatalErrorCallback func);
+void NintendoWFC_Stop(void);
+void NintendoWFC_SetFriendStatusesBuffer(void *buffer, int friendStatusSize);
+BOOL NintendoWFC_SetStatusData(const void *statusData, int size);
+u8 NintendoWFC_GetFriendStatus(int friendIdx);
+int NintendoWFC_StartConnectionWithFriends(int hostFriendIdx, int maxParties, BOOL isTwoPlayersOnly);
+int NintendoWFC_GetHostFriendIdx(void);
+BOOL NintendoWFC_IsPlayerSpeaking(void);
+BOOL NintendoWFC_GetVoiceChatEnabled(void);
+int NintendoWFC_GetLatestNewClientFriendIdx(void);
+void NintendoWFC_SetVoiceChatEnabled(BOOL enabled);
+void NintendoWFC_SetVoiceChatEnabled_Battle(BOOL enabled);
+int NintendoWFC_CancelMatchmaking(void);
+void NintendoWFC_ResetMatchmakingCancelState(void);
+int NintendoWFC_GetNumConnections(void);
+void NintendoWFC_ManageSecondaryHeap(BOOL create, enum HeapID heapID);
+void NintendoWFC_SetDisconnectIfAlone(BOOL disconnect);
+u8 NintendoWFC_GetNeedsGameSave(void);
+void NintendoWFC_ResetNeedsGameSave(void);
 
 #endif // POKEPLATINUM_OV4_021D0D80_H

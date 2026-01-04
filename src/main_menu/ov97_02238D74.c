@@ -180,7 +180,7 @@ static void ov97_02238E94(void)
     NetworkIcon_Destroy();
     sub_02038514();
     Overlay_UnloadHttpOverlay();
-    sub_02099560();
+    Overlay_UnloadWFCOverlay();
     WirelessDriver_Shutdown();
 }
 
@@ -199,7 +199,7 @@ int ov97_02238EAC(ApplicationManager *appMan, int *param1)
     switch (*param1) {
     case 4096:
         WirelessDriver_Init();
-        sub_02099550();
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         *param1 = 4097;
         break;

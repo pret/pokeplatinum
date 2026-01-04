@@ -64,7 +64,7 @@ BOOL ov83_0223D508(int param0, const void *param1, int param2, UnkStruct_ov83_02
                 v0 = 0;
             }
 
-            if (!ov4_021D1404()) {
+            if (!NintendoWFC_HasDataQueued()) {
                 v0 = 0;
             }
 

@@ -11,320 +11,277 @@
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 
-typedef struct {
-    u8 unk_00[2176];
-    void *unk_880;
-    u8 *unk_884;
-    u8 *unk_888;
-    u8 unk_88C[2176];
-    u8 unk_110C[2176];
-    void (*unk_198C)(void);
-    VCTSession unk_1990[3];
-    BOOL unk_19D8[4];
-    int unk_19E8;
-    int unk_19EC;
-    int unk_19F0;
-    int unk_19F4;
-    struct NNSSndStrm unk_19F8;
-    VCTSession *unk_1A54;
-    u8 unk_1A58;
-    u8 unk_1A59;
-    u16 unk_1A5A;
-    MICAutoParam unk_1A5C;
-    int unk_1A78;
-    int unk_1A7C;
-    int unk_1A80;
-    int unk_1A84;
-    int unk_1A88;
-    u16 unk_1A8C[16];
-    int unk_1AAC;
-} UnkStruct_ov4_0221A408;
+#define VOICE_CHAT_BUFFER_SIZE    ((8000 * VCT_AUDIO_FRAME_LENGTH * 2 * 2) / 1000)
+#define FRAME_LENGTH_MICROSECONDS (1000000 / 60)
 
-static void ov4_021D2E8C(void);
-static void ov4_021D2B04(VCTSession *param0);
+enum VoiceChatState {
+    VOICE_CHAT_STATE_INIT,
+    VOICE_CHAT_STATE_CONNECTING,
+    VOICE_CHAT_STATE_CONNECTED,
+};
 
-static UnkStruct_ov4_0221A408 *Unk_ov4_0221A408 = NULL;
-static OSTick Unk_ov4_0221A40C;
-static int Unk_ov4_0221A404 = 0;
+typedef struct VoiceChatManager {
+    u8 sendBuffer[VOICE_CHAT_BUFFER_SIZE];
+    void *allocStartPtr;
+    u8 *audioBuffer;
+    u8 *audioBufferAllocStartPtr;
+    u8 receiveBuffer[VOICE_CHAT_BUFFER_SIZE];
+    u8 emptyVoiceBuffer[VOICE_CHAT_BUFFER_SIZE];
+    VoiceChatCleanupCallback cleanupCallback;
+    VCTSession otherConfMembersSessions[VCT_MAX_CONFERENCE_CLIENT - 1]; // Excludes this console's session
+    BOOL occupiedConfSeats[VCT_MAX_CONFERENCE_CLIENT];
+    VCTMode mode;
+    enum VoiceChatState state;
+    int disabled;
+    enum HeapID heapID;
+    struct NNSSndStrm soundStream;
+    VCTSession *session;
+    u8 unused_1A58;
+    u8 shouldStartSampling;
+    u16 timeout;
+    MICAutoParam microphone;
+    int unused_1A78;
+    int gain;
+    BOOL shouldUpdateGain;
+    int unused_1A84;
+    int unused_1A88;
+    u16 unused_1A8C[16];
+    int unused_1AAC;
+} VoiceChatManager;
 
-static void ov4_021D2808(void)
+static void StartSoundStream(void);
+static void EndVoiceChatSession(VCTSession *session);
+
+static VoiceChatManager *sVoiceChatManager = NULL;
+static OSTick sPreviousTick;
+static int sTimeToProcess = 0;
+
+static void InitVoiceChat(void)
 {
     MIC_Init();
     PM_Init();
 
-    {
-        u32 v0;
+    PM_SetAmp(PM_AMP_ON);
+    PM_SetAmpGain(PM_AMPGAIN_160);
 
-        v0 = PM_SetAmp(PM_AMP_ON);
+    sVoiceChatManager->unused_1A78 = 0;
+    sVoiceChatManager->unused_1A84 = 0;
+    sVoiceChatManager->gain = 0;
+    sVoiceChatManager->shouldUpdateGain = FALSE;
+    sVoiceChatManager->unused_1A88 = 0;
 
-        if (v0 == PM_RESULT_SUCCESS) {
-            (void)0;
-        } else {
-            (void)0;
-        }
+    for (int i = 0; i < 16; i++) {
+        sVoiceChatManager->unused_1A8C[i] = 0;
     }
 
-    {
-        u32 v1;
+    sVoiceChatManager->unused_1AAC = 0;
 
-        v1 = PM_SetAmpGain(PM_AMPGAIN_160);
-
-        if (v1 == PM_RESULT_SUCCESS) {
-            (void)0;
-        } else {
-            (void)0;
-        }
-    }
-
-    Unk_ov4_0221A408->unk_1A78 = 0;
-    Unk_ov4_0221A408->unk_1A84 = 0;
-    Unk_ov4_0221A408->unk_1A7C = 0;
-    Unk_ov4_0221A408->unk_1A80 = 0;
-    Unk_ov4_0221A408->unk_1A88 = 0;
-
-    {
-        int v2;
-
-        for (v2 = 0; v2 < 16; v2++) {
-            Unk_ov4_0221A408->unk_1A8C[v2] = 0;
-        }
-
-        Unk_ov4_0221A408->unk_1AAC = 0;
-    }
-
-    VCT_EnableVAD(1);
+    VCT_EnableVAD(TRUE);
 
     NNS_SndInit();
-    NNS_SndStrmInit(&Unk_ov4_0221A408->unk_19F8);
-    MI_CpuClearFast(Unk_ov4_0221A408->unk_110C, sizeof(Unk_ov4_0221A408->unk_110C));
+    NNS_SndStrmInit(&sVoiceChatManager->soundStream);
+    MI_CpuClearFast(sVoiceChatManager->emptyVoiceBuffer, sizeof(sVoiceChatManager->emptyVoiceBuffer));
 
-    Unk_ov4_0221A404 = 0;
+    sTimeToProcess = 0;
 
-    VCT_EnableEchoCancel(1);
+    VCT_EnableEchoCancel(TRUE);
 }
 
-static void ov4_021D28B0(MICResult param0, void *param1)
+static void DummyMicCallback(MICResult unused0, void *unused1)
 {
-#pragma unused(param0, param1)
     return;
 }
 
-static void ov4_021D28B4(NNSSndStrmCallbackStatus param0, int param1, void *param2[], u32 param3, NNSSndStrmFormat param4, void *param5)
+static void SoundStreamCallback(NNSSndStrmCallbackStatus status, int numOtherClients, void *receiveBuffers[], u32 bufferSize, NNSSndStrmFormat unused, void *_sendBuffer)
 {
-#pragma unused(param4)
 
-    OSTick v0;
-    const void *v1;
-    u32 v2;
-    u8 *v3;
-    u32 v4;
+    const void *lastSamplingAddr;
+    u32 lastSamplingPos;
+    u8 *sendBuffer;
+    u32 clientIdx;
 
-    v3 = (u8 *)param5;
+    sendBuffer = (u8 *)_sendBuffer;
 
-    if (param0 == NNS_SND_STRM_CALLBACK_SETUP) {
-        for (v4 = 0; v4 < param1; ++v4) {
-            MI_CpuClear8(param2[v4], param3);
+    if (status == NNS_SND_STRM_CALLBACK_SETUP) {
+        for (clientIdx = 0; clientIdx < numOtherClients; ++clientIdx) {
+            MI_CpuClear8(receiveBuffers[clientIdx], bufferSize);
         }
 
         return;
     }
 
-    if (Unk_ov4_0221A408->unk_1A59) {
-        MIC_StartAutoSamplingAsync(&(Unk_ov4_0221A408->unk_1A5C), ov4_021D28B0, NULL);
-        Unk_ov4_0221A408->unk_1A59 = 0;
+    if (sVoiceChatManager->shouldStartSampling) {
+        MIC_StartAutoSamplingAsync(&(sVoiceChatManager->microphone), DummyMicCallback, NULL);
+        sVoiceChatManager->shouldStartSampling = FALSE;
     }
 
-    v1 = MIC_GetLastSamplingAddress();
-    v2 = (u32)((u8 *)v1 - v3);
+    lastSamplingAddr = MIC_GetLastSamplingAddress();
+    lastSamplingPos = (u8 *)lastSamplingAddr - sendBuffer;
 
-    if (v2 < param3) {
-        v3 = v3 + param3;
+    if (lastSamplingPos < bufferSize) {
+        sendBuffer = sendBuffer + bufferSize;
     }
 
     if (PAD_DetectFold()) {
-        v3 = Unk_ov4_0221A408->unk_110C;
+        sendBuffer = sVoiceChatManager->emptyVoiceBuffer;
     }
 
-    if (Unk_ov4_0221A408->unk_19F0 == 0) {
-        VCT_SendAudio(v3, param3);
-    } else {
-        (void)0;
+    if (sVoiceChatManager->disabled == FALSE) {
+        VCT_SendAudio(sendBuffer, bufferSize);
     }
 
-    for (v4 = 0; v4 < param1; ++v4) {
-        if (!VCT_ReceiveAudio(param2[v4], param3, NULL)) {
-            (void)0;
-        }
+    for (clientIdx = 0; clientIdx < numOtherClients; ++clientIdx) {
+        VCT_ReceiveAudio(receiveBuffers[clientIdx], bufferSize, NULL);
     }
 
-    Unk_ov4_0221A408->unk_1A58 = 2;
-    return;
+    sVoiceChatManager->unused_1A58 = 2;
 }
 
-static int ov4_021D2974(u8 param0)
+static BOOL RequestVoiceChat(u8 id)
 {
-    BOOL v0;
-    VCTSession *v1;
+    BOOL requestResult;
+    VCTSession *session;
 
-    if (Unk_ov4_0221A408->unk_1A54 == NULL) {
-        v1 = VCT_CreateSession(param0);
+    if (sVoiceChatManager->session == NULL) {
+        session = VCT_CreateSession(id);
 
-        if (v1 == NULL) {
-            return 0;
+        if (session == NULL) {
+            return FALSE;
         }
 
-        v0 = VCT_Request(v1, VCT_REQUEST_INVITE);
+        requestResult = VCT_Request(session, VCT_REQUEST_INVITE);
     } else {
-        v1 = Unk_ov4_0221A408->unk_1A54;
-        v0 = VCT_Request(v1, VCT_REQUEST_INVITE);
+        session = sVoiceChatManager->session;
+        requestResult = VCT_Request(session, VCT_REQUEST_INVITE);
     }
 
-    if (v0 != VCT_ERROR_NONE) {
-        VCT_DeleteSession(v1);
-        Unk_ov4_0221A408->unk_1A54 = NULL;
-        return 0;
+    if (requestResult != VCT_ERROR_NONE) {
+        VCT_DeleteSession(session);
+        sVoiceChatManager->session = NULL;
+        return FALSE;
     } else {
-        Unk_ov4_0221A408->unk_1A54 = v1;
+        sVoiceChatManager->session = session;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static int ov4_021D29C8(u8 param0)
+static int AcceptIncomingCall(u8 unused)
 {
-    BOOL v0;
+    BOOL result;
 
-    if ((Unk_ov4_0221A408->unk_1A54 != NULL) && (Unk_ov4_0221A408->unk_1A54->state == VCT_STATE_INCOMING)) {
-        v0 = VCT_Response(Unk_ov4_0221A408->unk_1A54, VCT_RESPONSE_OK);
+    if (sVoiceChatManager->session != NULL
+        && sVoiceChatManager->session->state == VCT_STATE_INCOMING) {
+        result = VCT_Response(sVoiceChatManager->session, VCT_RESPONSE_OK);
 
-        if (v0 != VCT_ERROR_NONE) {
-            return 0;
+        if (result != VCT_ERROR_NONE) {
+            return FALSE;
         }
 
-        if (!VCT_StartStreaming(Unk_ov4_0221A408->unk_1A54)) {
-            return 0;
-        } else {
-            (void)0;
+        if (!VCT_StartStreaming(sVoiceChatManager->session)) {
+            return FALSE;
         }
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov4_021D2A10(u8 param0, VCTEvent param1, VCTSession *param2, void *param3)
+static void VoiceChatConferenceCallback(u8 unused0, VCTEvent event, VCTSession *session, void *unused3)
 {
-#pragma unused(param0, param3)
-
-    switch (param1) {
+    switch (event) {
     case VCT_EVENT_DISCONNECTED:
-        ov4_021D2B04(param2);
+        EndVoiceChatSession(session);
         break;
     case VCT_EVENT_CONNECTED:
-        VCT_StartStreaming(param2);
+        VCT_StartStreaming(session);
         break;
     case VCT_EVENT_ABORT:
-        ov4_021D2B04(param2);
+        EndVoiceChatSession(session);
         break;
     default:
         break;
     }
 }
 
-static void ov4_021D2A38(u8 param0, VCTEvent param1, VCTSession *param2, void *param3)
+static void VoiceChatPhoneCallback(u8 unused0, VCTEvent event, VCTSession *session, void *unused3)
 {
-#pragma unused(param0, param3)
-
-    int v0;
-
-    switch (param1) {
+    switch (event) {
     case VCT_EVENT_INCOMING:
-        if (Unk_ov4_0221A408->unk_1A54) {
-            v0 = VCT_Response(param2, VCT_RESPONSE_BUSY_HERE);
-            VCT_DeleteSession(param2);
+        if (sVoiceChatManager->session) {
+            VCT_Response(session, VCT_RESPONSE_BUSY_HERE);
+            VCT_DeleteSession(session);
             break;
         }
 
-        Unk_ov4_0221A408->unk_1A54 = param2;
+        sVoiceChatManager->session = session;
         break;
     case VCT_EVENT_RESPONDBYE:
-        v0 = VCT_Response(param2, VCT_RESPONSE_OK);
+        VCT_Response(session, VCT_RESPONSE_OK);
 
-        if (v0 != VCT_ERROR_NONE) {
-            (void)0;
-        }
-
-        ov4_021D2B04(param2);
-        ov4_021D1F18();
+        EndVoiceChatSession(session);
+        NintendoWFC_TerminateVoiceChat();
         break;
     case VCT_EVENT_DISCONNECTED:
-        ov4_021D2B04(param2);
-        ov4_021D1F18();
+        EndVoiceChatSession(session);
+        NintendoWFC_TerminateVoiceChat();
         break;
     case VCT_EVENT_CANCEL:
-        v0 = VCT_Response(param2, VCT_RESPONSE_TERMINATED);
+        VCT_Response(session, VCT_RESPONSE_TERMINATED);
 
-        if (v0 != VCT_ERROR_NONE) {
-            (void)0;
-        }
-
-        ov4_021D2B04(param2);
+        EndVoiceChatSession(session);
         break;
     case VCT_EVENT_CONNECTED:
-        if (param2->mode != Unk_ov4_0221A408->unk_19E8) {
-            ov4_021D2B04(param2);
+        if (session->mode != sVoiceChatManager->mode) {
+            EndVoiceChatSession(session);
             return;
         }
 
-        if (VCT_StartStreaming(param2)) {
-            Unk_ov4_0221A408->unk_19EC = 2;
-        } else {
-            (void)0;
+        if (VCT_StartStreaming(session)) {
+            sVoiceChatManager->state = VOICE_CHAT_STATE_CONNECTED;
         }
         break;
     case VCT_EVENT_REJECT:
-        ov4_021D2B04(param2);
+        EndVoiceChatSession(session);
         break;
     case VCT_EVENT_BUSY:
     case VCT_EVENT_TIMEOUT:
     case VCT_EVENT_ABORT:
-        ov4_021D2B04(param2);
+        EndVoiceChatSession(session);
         break;
     default:
         break;
     }
 }
 
-static void ov4_021D2B04(VCTSession *param0)
+static void EndVoiceChatSession(VCTSession *session)
 {
-    VCT_StopStreaming(param0);
-    VCT_DeleteSession(param0);
-    Unk_ov4_0221A408->unk_1A54 = NULL;
+    VCT_StopStreaming(session);
+    VCT_DeleteSession(session);
+    sVoiceChatManager->session = NULL;
 }
 
-void ov4_021D2B28(void)
+void VoiceChat_Main(void)
 {
-    OSTick v0;
+    OSTick currentTick = OS_GetTick();
 
-    v0 = OS_GetTick();
+    sTimeToProcess += OS_TicksToMicroSeconds32(currentTick - sPreviousTick) - FRAME_LENGTH_MICROSECONDS;
 
-    Unk_ov4_0221A404 += OS_TicksToMicroSeconds32(v0 - Unk_ov4_0221A40C) - 1000 * 1000 / 60;
-
-    if (Unk_ov4_0221A404 < -10000) {
-        Unk_ov4_0221A404 = 0;
+    if (sTimeToProcess < -10000) {
+        sTimeToProcess = 0;
     }
 
-    Unk_ov4_0221A40C = v0;
+    sPreviousTick = currentTick;
     VCT_Main();
 
-    while (Unk_ov4_0221A404 >= 1000 * 1000 / 60) {
+    while (sTimeToProcess >= FRAME_LENGTH_MICROSECONDS) {
         VCT_Main();
-        Unk_ov4_0221A404 -= 1000 * 1000 / 60;
+        sTimeToProcess -= FRAME_LENGTH_MICROSECONDS;
     }
 
-    if (Unk_ov4_0221A408->unk_1A80) {
-        switch (Unk_ov4_0221A408->unk_1A7C) {
+    if (sVoiceChatManager->shouldUpdateGain) {
+        switch (sVoiceChatManager->gain) {
         case 0:
             PM_SetAmpGain(PM_AMPGAIN_160);
             break;
@@ -339,252 +296,237 @@ void ov4_021D2B28(void)
             break;
         }
 
-        Unk_ov4_0221A408->unk_1A80 = 0;
+        sVoiceChatManager->shouldUpdateGain = FALSE;
     }
 
-    if (Unk_ov4_0221A408->unk_19E8 != VCT_MODE_CONFERENCE) {
-        switch (Unk_ov4_0221A408->unk_19EC) {
-        case 0: {
-            if (ov4_021D1E30() == 0) {
-                if (ov4_021D2974(1)) {
-                    Unk_ov4_0221A408->unk_19EC = 1;
-                    Unk_ov4_0221A408->unk_1A5A = 60;
+    if (sVoiceChatManager->mode != VCT_MODE_CONFERENCE) {
+        switch (sVoiceChatManager->state) {
+        case VOICE_CHAT_STATE_INIT: {
+            if (NintendoWFC_GetNetID() == 0) {
+                if (RequestVoiceChat(1)) {
+                    sVoiceChatManager->state = VOICE_CHAT_STATE_CONNECTING;
+                    sVoiceChatManager->timeout = 60;
                 }
-            } else if (ov4_021D1E30() == 1) {
-                if (ov4_021D29C8(0)) {
-                    Unk_ov4_0221A408->unk_19EC = 2;
+            } else if (NintendoWFC_GetNetID() == 1) {
+                if (AcceptIncomingCall(0)) {
+                    sVoiceChatManager->state = VOICE_CHAT_STATE_CONNECTED;
                 }
             }
             break;
         }
-        case 1:
-            Unk_ov4_0221A408->unk_1A5A--;
+        case VOICE_CHAT_STATE_CONNECTING:
+            sVoiceChatManager->timeout--;
 
-            if (Unk_ov4_0221A408->unk_1A5A == 0) {
-                Unk_ov4_0221A408->unk_19EC = 0;
+            if (sVoiceChatManager->timeout == 0) {
+                sVoiceChatManager->state = VOICE_CHAT_STATE_INIT;
             }
             break;
-        case 2:
+        case VOICE_CHAT_STATE_CONNECTED:
             break;
         }
     }
 }
 
-BOOL ov4_021D2C70(int param0, void *param1, int param2)
+BOOL VoiceChat_ProcessReceivedData(int id, void *buffer, int size)
 {
-    if (Unk_ov4_0221A408 == NULL) {
-        return 0;
+    if (sVoiceChatManager == NULL) {
+        return FALSE;
     }
 
-    if (VCT_HandleData(param0, param1, param2)) {
-        return 1;
+    if (VCT_HandleData(id, buffer, size)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov4_021D2C98(void **param0, void **param1, int param2, enum HeapID heapID)
+static void Alloc32ByteAligned(void **allocStartPtr, void **alignedPtr, int size, enum HeapID heapID)
 {
-    *param0 = Heap_Alloc(heapID, param2 + 32);
-    MI_CpuClear8(*param0, param2 + 32);
-    *param1 = (UnkStruct_ov4_0221A408 *)(((u32)*param0 + 31) / 32 * 32);
+    *allocStartPtr = Heap_Alloc(heapID, size + 32);
+    MI_CpuClear8(*allocStartPtr, size + 32);
+    *alignedPtr = ALIGN_PTR(*allocStartPtr, 32);
 }
 
-void ov4_021D2CC0(enum HeapID heapID, int param1, int param2)
+void VoiceChat_Start(enum HeapID heapID, int codec, int numConferenceSessions)
 {
-    u8 v0[3] = { 13, 13, 13 };
-    u32 v1;
-    BOOL v2;
-    int v3;
+    u8 voiceSoundChannels[3] = { 13, 13, 13 };
 
-    if (Unk_ov4_0221A408 == NULL) {
-        void *v4 = NULL;
+    if (sVoiceChatManager == NULL) {
+        void *voiceChatManAllocPtr = NULL;
 
-        ov4_021D2C98(&v4, (void **)&Unk_ov4_0221A408, sizeof(UnkStruct_ov4_0221A408), heapID);
-        Unk_ov4_0221A408->unk_880 = v4;
-        ov4_021D2C98((void **)&Unk_ov4_0221A408->unk_888, (void **)&Unk_ov4_0221A408->unk_884, VCT_AUDIO_BUFFER_SIZE * param2 * VCT_DEFAULT_AUDIO_BUFFER_COUNT + 32, heapID);
+        Alloc32ByteAligned(&voiceChatManAllocPtr, (void **)&sVoiceChatManager, sizeof(VoiceChatManager), heapID);
+        sVoiceChatManager->allocStartPtr = voiceChatManAllocPtr;
+        Alloc32ByteAligned((void **)&sVoiceChatManager->audioBufferAllocStartPtr, (void **)&sVoiceChatManager->audioBuffer, VCT_AUDIO_BUFFER_SIZE * numConferenceSessions * VCT_DEFAULT_AUDIO_BUFFER_COUNT + 32, heapID);
 
-        Unk_ov4_0221A408->unk_19F4 = heapID;
-        Unk_ov4_0221A408->unk_198C = NULL;
+        sVoiceChatManager->heapID = heapID;
+        sVoiceChatManager->cleanupCallback = NULL;
 
-        ov4_021D2808();
+        InitVoiceChat();
     }
 
-    v1 = (u32)(8000 * VCT_AUDIO_FRAME_LENGTH * 2) / 1000;
+    sVoiceChatManager->microphone.type = MIC_SAMPLING_TYPE_SIGNED_12BIT;
+    sVoiceChatManager->microphone.buffer = sVoiceChatManager->sendBuffer;
+    sVoiceChatManager->microphone.size = VOICE_CHAT_BUFFER_SIZE;
+    sVoiceChatManager->microphone.rate = (NNS_SND_STRM_TIMER_CLOCK / 8000) * 64;
+    sVoiceChatManager->microphone.loop_enable = TRUE;
+    sVoiceChatManager->microphone.full_callback = NULL;
+    sVoiceChatManager->microphone.full_arg = NULL;
+    sVoiceChatManager->shouldStartSampling = TRUE;
 
-    {
-        Unk_ov4_0221A408->unk_1A5C.type = MIC_SAMPLING_TYPE_SIGNED_12BIT;
-        Unk_ov4_0221A408->unk_1A5C.buffer = Unk_ov4_0221A408->unk_00;
-        Unk_ov4_0221A408->unk_1A5C.size = v1 * 2;
-        Unk_ov4_0221A408->unk_1A5C.rate = (u32)((NNS_SND_STRM_TIMER_CLOCK / 8000) * 64);
-        Unk_ov4_0221A408->unk_1A5C.loop_enable = 1;
-        Unk_ov4_0221A408->unk_1A5C.full_callback = NULL;
-        Unk_ov4_0221A408->unk_1A5C.full_arg = NULL;
-        Unk_ov4_0221A408->unk_1A59 = 1;
+    NNS_SndStrmAllocChannel(&sVoiceChatManager->soundStream, 1, voiceSoundChannels);
+    NNS_SndStrmSetVolume(&sVoiceChatManager->soundStream, 0);
+
+    NNS_SndStrmSetup(&sVoiceChatManager->soundStream, NNS_SND_STRM_FORMAT_PCM16, sVoiceChatManager->receiveBuffer, VOICE_CHAT_BUFFER_SIZE, NNS_SND_STRM_TIMER_CLOCK / 8000, 2, SoundStreamCallback, sVoiceChatManager->sendBuffer);
+
+    sVoiceChatManager->state = VOICE_CHAT_STATE_INIT;
+    sVoiceChatManager->session = NULL;
+
+    VCTConfig voiceChatConfig;
+
+    if (!sub_0203272C(sub_0203895C())) {
+        voiceChatConfig.mode = VCT_MODE_PHONE;
+    } else {
+        voiceChatConfig.mode = VCT_MODE_CONFERENCE;
     }
 
-    NNS_SndStrmAllocChannel(&Unk_ov4_0221A408->unk_19F8, 1, v0);
-    NNS_SndStrmSetVolume(&Unk_ov4_0221A408->unk_19F8, 0);
+    sVoiceChatManager->mode = voiceChatConfig.mode;
 
-    v2 = NNS_SndStrmSetup(&Unk_ov4_0221A408->unk_19F8, NNS_SND_STRM_FORMAT_PCM16, Unk_ov4_0221A408->unk_88C, v1 * 2 * 1, NNS_SND_STRM_TIMER_CLOCK / 8000, 2, ov4_021D28B4, Unk_ov4_0221A408->unk_00);
+    voiceChatConfig.session = sVoiceChatManager->otherConfMembersSessions;
+    voiceChatConfig.numSession = numConferenceSessions;
+    voiceChatConfig.aid = DWC_GetMyAID();
 
-    Unk_ov4_0221A408->unk_19EC = 0;
-    Unk_ov4_0221A408->unk_1A54 = NULL;
+    GF_ASSERT(voiceChatConfig.aid != -1);
 
-    {
-        VCTConfig v5;
-
-        if (!sub_0203272C(sub_0203895C())) {
-            v5.mode = VCT_MODE_PHONE;
-        } else {
-            v5.mode = VCT_MODE_CONFERENCE;
-        }
-
-        Unk_ov4_0221A408->unk_19E8 = v5.mode;
-
-        v5.session = Unk_ov4_0221A408->unk_1990;
-        v5.numSession = param2;
-        v5.aid = DWC_GetMyAID();
-
-        GF_ASSERT(v5.aid != -1);
-
-        if (Unk_ov4_0221A408->unk_19E8 == VCT_MODE_CONFERENCE) {
-            v5.callback = ov4_021D2A10;
-        } else {
-            v5.callback = ov4_021D2A38;
-        }
-
-        v5.userData = NULL;
-        v5.audioBuffer = Unk_ov4_0221A408->unk_884;
-        v5.audioBufferSize = VCT_AUDIO_BUFFER_SIZE * param2 * VCT_DEFAULT_AUDIO_BUFFER_COUNT + 32;
-
-        if (!VCT_Init(&v5)) {
-            (void)0;
-        }
+    if (sVoiceChatManager->mode == VCT_MODE_CONFERENCE) {
+        voiceChatConfig.callback = VoiceChatConferenceCallback;
+    } else {
+        voiceChatConfig.callback = VoiceChatPhoneCallback;
     }
 
-    Unk_ov4_0221A408->unk_19F0 = 0;
+    voiceChatConfig.userData = NULL;
+    voiceChatConfig.audioBuffer = sVoiceChatManager->audioBuffer;
+    voiceChatConfig.audioBufferSize = VCT_AUDIO_BUFFER_SIZE * numConferenceSessions * VCT_DEFAULT_AUDIO_BUFFER_COUNT + 32;
 
-    VCT_SetCodec(param1);
-    ov4_021D2E8C();
-    VCT_EnableEchoCancel(1);
+    VCT_Init(&voiceChatConfig);
 
-    return;
+    sVoiceChatManager->disabled = FALSE;
+
+    VCT_SetCodec(codec);
+    StartSoundStream();
+    VCT_EnableEchoCancel(TRUE);
 }
 
-static void ov4_021D2E8C(void)
+static void StartSoundStream(void)
 {
-    NNS_SndStrmStart(&Unk_ov4_0221A408->unk_19F8);
+    NNS_SndStrmStart(&sVoiceChatManager->soundStream);
 }
 
-void ov4_021D2EA4(void)
+void VoiceChat_RequestEnd(void)
 {
-    int v0;
+    int result;
 
-    if ((Unk_ov4_0221A408->unk_1A54 == NULL) || (Unk_ov4_0221A408->unk_19EC == 0)) {
-        ov4_021D1F18();
+    if (sVoiceChatManager->session == NULL
+        || sVoiceChatManager->state == VOICE_CHAT_STATE_INIT) {
+        NintendoWFC_TerminateVoiceChat();
         return;
     }
 
-    if (Unk_ov4_0221A408->unk_19EC == 1) {
-        v0 = VCT_Request(Unk_ov4_0221A408->unk_1A54, VCT_REQUEST_CANCEL);
+    if (sVoiceChatManager->state == VOICE_CHAT_STATE_CONNECTING) {
+        result = VCT_Request(sVoiceChatManager->session, VCT_REQUEST_CANCEL);
 
-        if (v0 != VCT_ERROR_NONE) {
-            ov4_021D1F18();
+        if (result != VCT_ERROR_NONE) {
+            NintendoWFC_TerminateVoiceChat();
             return;
         }
     }
 
-    v0 = VCT_Request(Unk_ov4_0221A408->unk_1A54, VCT_REQUEST_BYE);
+    result = VCT_Request(sVoiceChatManager->session, VCT_REQUEST_BYE);
 
-    if (v0 != VCT_ERROR_NONE) {
-        ov4_021D1F18();
-        return;
+    if (result != VCT_ERROR_NONE) {
+        NintendoWFC_TerminateVoiceChat();
     }
-
-    return;
 }
 
-void ov4_021D2EF4(void (*func)())
+void VoiceChat_SetCleanupCallback(VoiceChatCleanupCallback func)
 {
-    Unk_ov4_0221A408->unk_198C = func;
+    sVoiceChatManager->cleanupCallback = func;
 }
 
-void ov4_021D2F08(void)
+void VoiceChat_Stop(void)
 {
-    void (*v0)(void);
+    void (*callback)(void);
 
-    if (Unk_ov4_0221A408 != NULL) {
-        v0 = Unk_ov4_0221A408->unk_198C;
+    if (sVoiceChatManager != NULL) {
+        callback = sVoiceChatManager->cleanupCallback;
 
         (void)MIC_StopAutoSampling();
-        NNS_SndStrmStop(&Unk_ov4_0221A408->unk_19F8);
-        NNS_SndStrmFreeChannel(&Unk_ov4_0221A408->unk_19F8);
+        NNS_SndStrmStop(&sVoiceChatManager->soundStream);
+        NNS_SndStrmFreeChannel(&sVoiceChatManager->soundStream);
 
         VCT_Cleanup();
 
-        Heap_FreeExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_888);
-        Heap_FreeExplicit(Unk_ov4_0221A408->unk_19F4, Unk_ov4_0221A408->unk_880);
-        Unk_ov4_0221A408 = NULL;
+        Heap_FreeExplicit(sVoiceChatManager->heapID, sVoiceChatManager->audioBufferAllocStartPtr);
+        Heap_FreeExplicit(sVoiceChatManager->heapID, sVoiceChatManager->allocStartPtr);
+        sVoiceChatManager = NULL;
 
-        if (v0 != NULL) {
-            v0();
+        if (callback != NULL) {
+            callback();
         }
     }
 }
 
-BOOL ov4_021D2F7C(void)
+BOOL VoiceChat_DetectVoice(void)
 {
-    if (Unk_ov4_0221A408) {
-        VCTVADInfo v0;
+    if (sVoiceChatManager) {
+        VCTVADInfo vadInfo;
 
-        VCT_GetVADInfo(&v0);
+        VCT_GetVADInfo(&vadInfo);
 
-        if (v0.scale > 2) {
-            return v0.activity;
+        if (vadInfo.scale > 2) {
+            return vadInfo.activity;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov4_021D2FA4(void)
+void VoiceChat_Disable(void)
 {
-    Unk_ov4_0221A408->unk_19F0 = 1;
+    sVoiceChatManager->disabled = TRUE;
 }
 
-void ov4_021D2FB8(void)
+void VoiceChat_Enable(void)
 {
-    Unk_ov4_0221A408->unk_19F0 = 0;
+    sVoiceChatManager->disabled = FALSE;
 }
 
-BOOL ov4_021D2FCC(int param0, int param1)
+BOOL VoiceChat_AddConferenceClients(int newClientsBitmap, int currentClientID)
 {
-    int v0, v1;
+    int i, clientAddError;
 
-    if (!(Unk_ov4_0221A408) || (Unk_ov4_0221A408->unk_19E8 != VCT_MODE_CONFERENCE)) {
-        return 0;
+    if (!(sVoiceChatManager) || (sVoiceChatManager->mode != VCT_MODE_CONFERENCE)) {
+        return FALSE;
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (v0 == param1) {
+    for (i = 0; i < 4; i++) {
+        if (i == currentClientID) {
             continue;
         }
 
-        if (param0 & (1 << v0)) {
-            if (Unk_ov4_0221A408->unk_19D8[v0] == 1) {
+        if (newClientsBitmap & (1 << i)) {
+            if (sVoiceChatManager->occupiedConfSeats[i] == TRUE) {
                 continue;
             }
 
-            v1 = VCT_AddConferenceClient(v0);
+            clientAddError = VCT_AddConferenceClient(i);
 
-            if (v1 != VCT_ERROR_NONE) {
-                return 0;
+            if (clientAddError != VCT_ERROR_NONE) {
+                return FALSE;
             } else {
-                Unk_ov4_0221A408->unk_19D8[v0] = 1;
+                sVoiceChatManager->occupiedConfSeats[i] = TRUE;
             }
         }
     }
 
-    return 1;
+    return TRUE;
 }

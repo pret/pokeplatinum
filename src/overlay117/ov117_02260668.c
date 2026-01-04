@@ -280,7 +280,7 @@ int ov117_02260668(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(ov117_02260DA0, v0);
 
     if (v0->unk_00->unk_3C) {
-        ov4_021D1E74(HEAP_ID_110);
+        NintendoWFC_StartVoiceChat(HEAP_ID_110);
     }
 
     return 1;

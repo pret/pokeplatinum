@@ -1,77 +1,78 @@
 #include "overlay060/ov60_0221F800.h"
 
 #include <dwc.h>
-#include <gs/nonport.h>
 #include <nitro.h>
 #include <string.h>
 
-static int Unk_ov60_02229E20;
+#define ENC_SEED_ENC_MAGIC 0x4A3B2C1D
 
-static void ov60_0221F800(unsigned long param0)
+static int sEncryptStreamState;
+
+static void SeedKeyStream(u32 seed)
 {
-    Unk_ov60_02229E20 = (int)(param0 | (param0 << 16));
+    sEncryptStreamState = seed | (seed << 16);
 }
 
-static unsigned char ov60_0221F810(void)
+static u8 KeyStreamNext(void)
 {
-    Unk_ov60_02229E20 = (int)((69 * Unk_ov60_02229E20 + 4369) % 0x80000000);
-    return (unsigned char)((Unk_ov60_02229E20 >> 16) & 0xff);
+    sEncryptStreamState = (69 * sEncryptStreamState + 4369) % 0x80000000;
+    return (sEncryptStreamState >> 16) & 0xff;
 }
 
-int ov60_0221F838(u32 param0, const u8 *param1, int param2, u8 *param3, int param4)
+enum HTTPB64EncodeResult HTTPB64_EncryptAndEncodeB64(u32 dwcProfileID, const u8 *in, int length, u8 *out, int outSize)
 {
-    unsigned char *v0;
-    u32 v1 = 0;
-    int v2;
+    u8 *buffer;
+    u32 encryptionSeed = 0;
+    int i;
 
-    if (param4 < (int)ov60_0221F944((u32)(param2 + 4 + 4)) + 1) {
-        return 2;
+    if (outSize < (int)HTTPB64_CalcEncodedSize(length + 8) + 1) {
+        return HTTP_B64_ENCORE_ERROR_INSUFFICIENT_BUFFER_SIZE;
     }
 
-    v0 = (unsigned char *)DWC_Alloc((DWCAllocType)10, (unsigned long)(param2 + 4 + 4));
+    buffer = DWC_Alloc(10, length + 8);
 
-    if (v0 == NULL) {
-        return 1;
+    if (buffer == NULL) {
+        return HTTP_B64_ENCODE_ERROR_ALLOC_FAIL;
     }
 
-    v1 += (u8)((param0 >> 24) & 0xff);
-    v1 += (u8)((param0 >> 16) & 0xff);
-    v1 += (u8)((param0 >> 8) & 0xff);
-    v1 += (u8)((param0) & 0xff);
+    encryptionSeed += (u8)((dwcProfileID >> 24) & 0xff);
+    encryptionSeed += (u8)((dwcProfileID >> 16) & 0xff);
+    encryptionSeed += (u8)((dwcProfileID >> 8) & 0xff);
+    encryptionSeed += (u8)((dwcProfileID >> 0) & 0xff);
 
-    for (v2 = 0; v2 < param2; v2++) {
-        v1 += param1[v2];
+    for (i = 0; i < length; i++) {
+        encryptionSeed += in[i];
     }
 
-    ov60_0221F800(v1);
+    SeedKeyStream(encryptionSeed);
 
-    v0[4] = (u8)(((param0) & 0xff) ^ ov60_0221F810());
-    v0[5] = (u8)(((param0 >> 8) & 0xff) ^ ov60_0221F810());
-    v0[6] = (u8)(((param0 >> 16) & 0xff) ^ ov60_0221F810());
-    v0[7] = (u8)(((param0 >> 24) & 0xff) ^ ov60_0221F810());
+    buffer[4] = ((dwcProfileID >> 0) & 0xff) ^ KeyStreamNext();
+    buffer[5] = ((dwcProfileID >> 8) & 0xff) ^ KeyStreamNext();
+    buffer[6] = ((dwcProfileID >> 16) & 0xff) ^ KeyStreamNext();
+    buffer[7] = ((dwcProfileID >> 24) & 0xff) ^ KeyStreamNext();
 
-    for (v2 = 0; v2 < param2; v2++) {
-        v0[4 + 4 + v2] = (u8)(param1[v2] ^ ov60_0221F810());
+    for (i = 0; i < length; i++) {
+        buffer[8 + i] = in[i] ^ KeyStreamNext();
     }
 
-    v1 ^= 0x4a3b2c1d;
+    encryptionSeed ^= ENC_SEED_ENC_MAGIC;
 
-    v0[0] = (u8)((v1 >> 24) & 0xff);
-    v0[1] = (u8)((v1 >> 16) & 0xff);
-    v0[2] = (u8)((v1 >> 8) & 0xff);
-    v0[3] = (u8)((v1) & 0xff);
+    buffer[0] = (encryptionSeed >> 24) & 0xff;
+    buffer[1] = (encryptionSeed >> 16) & 0xff;
+    buffer[2] = (encryptionSeed >> 8) & 0xff;
+    buffer[3] = (encryptionSeed >> 0) & 0xff;
 
-    B64Encode((const char *)v0, (char *)param3, (int)(param2 + 4 + 4), 2);
+    B64Encode(buffer, out, length + 8, 2);
 
-    ((char *)param3)[ov60_0221F944((u32)(param2 + 4 + 4))] = '\0';
+    out[HTTPB64_CalcEncodedSize(length + 8)] = '\0';
 
-    DWC_Free((DWCAllocType)10, v0, (u32)0);
+    DWC_Free(10, buffer, 0);
 
-    return 0;
+    return HTTP_B64_ENCODE_SUCCESS;
 }
 
-u32 ov60_0221F944(u32 param0)
+u32 HTTPB64_CalcEncodedSize(u32 decodedSize)
 {
-    u32 v0 = ((param0) % 3 != 0) ? (u32)1 : (u32)0;
-    return (((u32)(param0 / 3)) + v0) * 4;
+    u32 padding = (decodedSize % 3 != 0) ? 1 : 0;
+    return (decodedSize / 3 + padding) * 4;
 }

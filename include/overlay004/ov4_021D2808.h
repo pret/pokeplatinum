@@ -3,15 +3,17 @@
 
 #include "constants/heap.h"
 
-void ov4_021D2B28();
-BOOL ov4_021D2C70(int param0, void *param1, int param2);
-void ov4_021D2CC0(enum HeapID heapID, int param1, int param2);
-void ov4_021D2EA4();
-void ov4_021D2EF4(void (*func)());
-void ov4_021D2F08(void);
-BOOL ov4_021D2F7C(void);
-void ov4_021D2FA4();
-void ov4_021D2FB8();
-BOOL ov4_021D2FCC(int param0, int param1);
+typedef void (*VoiceChatCleanupCallback)(void);
+
+void VoiceChat_Start(enum HeapID heapID, int codec, int numConferenceSessions);
+void VoiceChat_Main(void);
+void VoiceChat_Stop(void);
+void VoiceChat_SetCleanupCallback(VoiceChatCleanupCallback func);
+void VoiceChat_Enable(void);
+void VoiceChat_Disable(void);
+BOOL VoiceChat_DetectVoice(void);
+BOOL VoiceChat_ProcessReceivedData(int id, void *buffer, int size);
+void VoiceChat_RequestEnd(void);
+BOOL VoiceChat_AddConferenceClients(int newClientsBitmap, int currentClientID);
 
 #endif // POKEPLATINUM_OV4_021D2808_H

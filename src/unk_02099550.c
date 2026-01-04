@@ -16,37 +16,37 @@ FS_EXTERN_OVERLAY(overlay18);
 FS_EXTERN_OVERLAY(overlay60);
 FS_EXTERN_OVERLAY(overlay89);
 
-void sub_02099550(void)
+void Overlay_LoadWFCOverlay(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay4), 2);
 }
 
-void sub_02099560(void)
+void Overlay_UnloadWFCOverlay(void)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay4));
 }
 
-void sub_02099570(void)
+void Overlay_LoadWFCSettingsOverlay(void)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay18), 2);
 }
 
-void sub_02099580(void)
+void Overlay_UnloadWFCSettingsOverlay(void)
 {
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay18));
 }
 
-static void sub_02099590(SaveData *saveData, enum HeapID heapID)
+static void StartWFCSettings(SaveData *saveData, enum HeapID heapID)
 {
-    sub_02099550();
-    sub_02099570();
+    Overlay_LoadWFCOverlay();
+    Overlay_LoadWFCSettingsOverlay();
 
-    ov18_0221F800(heapID);
+    WFCSettings_StartApplication(heapID);
 
-    sub_02099580();
-    sub_02099560();
+    Overlay_UnloadWFCSettingsOverlay();
+    Overlay_UnloadWFCOverlay();
 
-    OS_ResetSystem(0);
+    OS_ResetSystem(RESET_CLEAN);
 }
 
 void Overlay_LoadHttpOverlay(void)
@@ -59,19 +59,19 @@ void Overlay_UnloadHttpOverlay(void)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay60));
 }
 
-static int sub_020995D4(ApplicationManager *appMan, int *param1)
+static BOOL RebootIntoWFCSettings(ApplicationManager *appMan, int *unused)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_49, 0x41000);
-    sub_02099590(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData, HEAP_ID_49);
+    StartWFCSettings(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData, HEAP_ID_49);
     Heap_Destroy(HEAP_ID_49);
 
-    OS_ResetSystem(0);
-    return 1;
+    OS_ResetSystem(RESET_CLEAN);
+    return TRUE;
 }
 
 const ApplicationManagerTemplate gRebootIntoWFCSettingsAppTemplate = {
-    sub_020995D4,
+    RebootIntoWFCSettings,
     NULL,
     NULL,
-    0xffffffff,
+    FS_OVERLAY_ID_NONE,
 };

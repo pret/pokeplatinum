@@ -105,7 +105,7 @@ int ov96_0223B6A0(ApplicationManager *appMan, int *param1)
         *param1 = 1;
         break;
     case 1:
-        sub_02099550();
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*param1) = 0;
@@ -168,7 +168,7 @@ int ov96_0223B8CC(ApplicationManager *appMan, int *param1)
 
     Heap_Free(v0->unk_24);
     Overlay_UnloadHttpOverlay();
-    sub_02099560();
+    Overlay_UnloadWFCOverlay();
 
     ov96_0223BC8C(v0);
 

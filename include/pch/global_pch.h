@@ -25,6 +25,8 @@ typedef unsigned short wchar_t;
 
 #define ALIGN_4 __attribute__((aligned(4)))
 
+#define ALIGN_PTR(ptr, alignment) ((void *)(((u32)(ptr) + (alignment - 1)) / (alignment) * (alignment)))
+
 typedef struct {
     int x;
     int y;

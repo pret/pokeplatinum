@@ -7,24 +7,21 @@
 #include "heap.h"
 #include "unk_02033200.h"
 
-void ov18_0221F800(enum HeapID heapID)
+void WFCSettings_StartApplication(enum HeapID heapID)
 {
-    OSIntrMode v0;
-    void *v1;
-
     WirelessDriver_Init();
 
     OS_InitTick();
     OS_InitAlarm();
 
-    v0 = OS_DisableInterrupts();
+    OSIntrMode intrMode = OS_DisableInterrupts();
     DWC_SetAuthServer(DWC_CONNECTINET_AUTH_RELEASE);
-    v1 = Heap_Alloc(heapID, DWC_UTILITY_WORK_SIZE);
+    void *dwcUtilityWorkObj = Heap_Alloc(heapID, DWC_UTILITY_WORK_SIZE);
 
-    (void)DWC_StartUtility(v1, DWC_LANGUAGE_ENGLISH, DWC_UTILITY_TOP_MENU_COMMON);
+    DWC_StartUtility(dwcUtilityWorkObj, DWC_LANGUAGE_ENGLISH, DWC_UTILITY_TOP_MENU_COMMON);
 
-    Heap_Free(v1);
+    Heap_Free(dwcUtilityWorkObj);
 
-    OS_RestoreInterrupts(v0);
+    OS_RestoreInterrupts(intrMode);
     OS_EnableIrq();
 }

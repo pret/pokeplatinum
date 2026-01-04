@@ -1,7 +1,13 @@
 #ifndef POKEPLATINUM_OV60_0221F800_H
 #define POKEPLATINUM_OV60_0221F800_H
 
-int ov60_0221F838(u32 param0, const u8 *param1, int param2, u8 *param3, int param4);
-u32 ov60_0221F944(u32 param0);
+enum HTTPB64EncodeResult {
+    HTTP_B64_ENCODE_SUCCESS = 0,
+    HTTP_B64_ENCODE_ERROR_ALLOC_FAIL,
+    HTTP_B64_ENCORE_ERROR_INSUFFICIENT_BUFFER_SIZE,
+};
+
+enum HTTPB64EncodeResult HTTPB64_EncryptAndEncodeB64(u32 dwcProfileID, const u8 *in, int length, u8 *out, int outSize);
+u32 HTTPB64_CalcEncodedSize(u32 decodedSize);
 
 #endif // POKEPLATINUM_OV60_0221F800_H

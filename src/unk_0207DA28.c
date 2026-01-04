@@ -51,7 +51,6 @@ typedef struct {
     u32 unk_14;
 } UnkStruct_0207DE40;
 
-void sub_02099570(void);
 static BOOL sub_0207DA28(FieldTask *param0);
 static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, enum HeapID heapID, u32 param3);
 static u32 sub_0207DE40(UnkStruct_0207DE40 *param0);
@@ -189,8 +188,8 @@ static BOOL sub_0207DA28(FieldTask *task)
         break;
     case 8:
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_54, DWC_UTILITY_WORK_SIZE + 0x100);
-        sub_02099570();
-        ov18_0221F800(HEAP_ID_54);
+        Overlay_LoadWFCSettingsOverlay();
+        WFCSettings_StartApplication(HEAP_ID_54);
         OS_ResetSystem(0);
         break;
     case 9:

@@ -2710,7 +2710,7 @@ static BOOL FrontierScrCmd_B7(FrontierScriptContext *param0)
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     WiFiList *v0 = SaveData_GetWiFiList(v1->saveData);
 
-    sub_0202B13C(v0, ov4_021D2388());
+    sub_0202B13C(v0, NintendoWFC_GetHostFriendIdx());
     return 0;
 }
 
