@@ -89,9 +89,9 @@ TwinleafTownPlayerHouse2F_RivalTriggerSouth:
 
 TwinleafTownPlayerHouse2F_Rival:
     LockAll
-    ClearFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY
-    AddObject TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalEnterRoom
+    ClearFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalEnterRoom
     WaitMovement
     CallCommonScript 0x7FA
     BufferRivalName 0
@@ -104,7 +104,7 @@ TwinleafTownPlayerHouse2F_Rival:
     BufferPlayerName 1
     Message TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGiveUsPokemon
     CloseMessage
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalExclamationMark
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalExclamationMark
     WaitMovement
     CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalApproachPCNorth
     CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalApproachPCWest
@@ -131,122 +131,122 @@ TwinleafTownPlayerHouse2F_Rival:
     CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalLeaveEast
     CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalLeaveSouth
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY
+    RemoveObject LOCALID_RIVAL
     CallCommonScript 0x7FB
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY
+    SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
     SetVar VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE, 1
     ReleaseAll
     End
 
 TwinleafTownPlayerHouse2F_RivalApproachPlayerNorth:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalLongDelay
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerNorth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerNorth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalApproachPlayerWest:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalShortDelay
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerWest
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerWest
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalApproachPlayerEast:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerEast
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerEast
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalApproachPlayerSouth:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalShortDelay
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerSouth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerSouth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalApproachPCNorth:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCNorth
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCNorth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCNorth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalApproachPCWest:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCWest
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCWest
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCWest
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalApproachPCEast:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCEast
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCEast
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCEast
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalApproachPCSouth:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCSouth
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCSouth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCSouth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalTurnBackNorth:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackNorth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackNorth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalTurnBackWest:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackWest
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackWest
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalTurnBackEast:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackEast
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackEast
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalTurnBackSouth:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackSouth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackSouth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerNorth:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerNorth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerNorth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerWest:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerWest
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerWest
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerEast:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerEast
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerEast
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerSouth:
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerSouth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerSouth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalLeaveNorth:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalLeaveNorth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveNorth
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalLeaveWest:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalLeaveWest
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveWest
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalLeaveEast:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalLeaveEast
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveEast
     WaitMovement
     Return
 
 TwinleafTownPlayerHouse2F_RivalLeaveSouth:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
-    ApplyMovement TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY, TwinleafTownPlayerHouse2F_Movement_RivalLeaveSouth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveSouth
     WaitMovement
     Return
 

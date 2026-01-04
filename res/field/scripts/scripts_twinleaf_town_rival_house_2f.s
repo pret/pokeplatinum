@@ -13,17 +13,17 @@ TwinleafTownRivalHouse2F_RivalNoticesPlayerAndLeaves:
     BufferRivalName 0
     Message TwinleafTownRivalHouse2F_Text_IdBetterTakeBagAndJournal
     CloseMessage
-    ApplyMovement TWINLEAF_TOWN_RIVAL_HOUSE_2F_BARRY, TwinleafTownRivalHouse2F_Movement_RivalNoticePlayer
+    ApplyMovement LOCALID_RIVAL, TwinleafTownRivalHouse2F_Movement_RivalNoticePlayer
     WaitMovement
     CallCommonScript 0x7FA
     BufferPlayerName 0
     Message TwinleafTownRivalHouse2F_Text_IllBeWaitingOnTheRoad
     CloseMessage
-    ApplyMovement TWINLEAF_TOWN_RIVAL_HOUSE_2F_BARRY, TwinleafTownRivalHouse2F_Movement_RivalLeave
+    ApplyMovement LOCALID_RIVAL, TwinleafTownRivalHouse2F_Movement_RivalLeave
     ApplyMovement LOCALID_PLAYER, TwinleafTownRivalHouse2F_Movement_PlayerMoveAwayFromStairs
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject TWINLEAF_TOWN_RIVAL_HOUSE_2F_BARRY
+    RemoveObject LOCALID_RIVAL
     CallCommonScript 0x7FB
     SetFlag FLAG_RIVAL_LEFT_HOME
     SetVar VAR_RIVAL_HOUSE_STATE, 1

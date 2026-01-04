@@ -73,7 +73,7 @@ TwinleafTown_RivalWentTearingOff:
 
 TwinleafTown_RivalWasLookingForYouTrigger:
     LockAll
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristNoticePlayer
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristNoticePlayer
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 108, TwinleafTown_GuitaristStopPlayerX108
@@ -87,49 +87,49 @@ TwinleafTown_RivalWasLookingForYouTrigger:
 
 TwinleafTown_GuitaristStopPlayerX108:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX108
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX108
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX108
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
 TwinleafTown_GuitaristStopPlayerX109:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX109
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX109
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX109
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
 TwinleafTown_GuitaristStopPlayerX110:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX110
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX110
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX110
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
 TwinleafTown_GuitaristStopPlayerX111:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX111
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX111
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX111
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
 TwinleafTown_GuitaristStopPlayerX112:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX112
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX112
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX112
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
 TwinleafTown_GuitaristStopPlayerX113:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX113
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX113
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX113
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
 TwinleafTown_GuitaristStopPlayerX114:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX114
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX114
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX114
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
 TwinleafTown_GuitaristStopPlayerX115:
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX115
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX115
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX115
     WaitMovement
     GoTo TwinleafTown_RivalWasLookingForYou
 
@@ -148,42 +148,42 @@ TwinleafTown_RivalWasLookingForYou:
     GoTo TwinleafTown_GuitaristWalkBackX115
 
 TwinleafTown_GuitaristWalkBackX108:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX108
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX108
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
 TwinleafTown_GuitaristWalkBackX109:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX109
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX109
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
 TwinleafTown_GuitaristWalkBackX110:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX110
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX110
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
 TwinleafTown_GuitaristWalkBackX111:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX111
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX111
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
 TwinleafTown_GuitaristWalkBackX112:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX112
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX112
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
 TwinleafTown_GuitaristWalkBackX113:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX113
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX113
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
 TwinleafTown_GuitaristWalkBackX114:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX114
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX114
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
 TwinleafTown_GuitaristWalkBackX115:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX115
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX115
     WaitMovement
     GoTo TwinleafTown_GuitaristRelease
 
@@ -392,33 +392,33 @@ TwinleafTown_RivalThudTrigger:
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     ClearFlag FLAG_HIDE_TWINLEAF_TOWN_RIVAL
-    AddObject TWINLEAF_TOWN_RIVAL
-    ApplyMovement TWINLEAF_TOWN_RIVAL, TwinleafTown_Movement_RivalExitHouse
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalExitHouse
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackByRival
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
     CallCommonScript 0x7FA
-    ApplyMovement TWINLEAF_TOWN_RIVAL, TwinleafTown_Movement_RivalNoticePlayer
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
     Message TwinleafTown_Text_GoingToSeeProfRowan
     CloseMessage
     ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerWatchRival
-    ApplyMovement TWINLEAF_TOWN_RIVAL, TwinleafTown_Movement_RivalWalkAwayAndWalkBack
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalWalkAwayAndWalkBack
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 0
     Message TwinleafTown_Text_OhJeezForgotSomething
     CloseMessage
-    ApplyMovement TWINLEAF_TOWN_RIVAL, TwinleafTown_Movement_RivalEnterHouse
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalEnterHouse
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject TWINLEAF_TOWN_RIVAL
+    RemoveObject LOCALID_RIVAL
     CallCommonScript 0x7FB
     SetVar VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, 1
     SetVar VAR_TWINLEAF_TOWN_RIVAL_TRIGGER_STATE, 1

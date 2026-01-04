@@ -67,7 +67,7 @@
     ],
     "object_events": [
         {
-            "id": "TWINLEAF_TOWN_PLAYER_HOUSE_1F_MOM",
+            "id": "LOCALID_MOM",
             "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -82,11 +82,11 @@
             "y": 1
         },
         {
-            "id": "TWINLEAF_TOWN_PLAYER_HOUSE_1F_BARRY_MOM",
+            "id": "LOCALID_RIVAL_MOM",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_1F_BARRY_MOM",
+            "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_1F_RIVAL_MOM",
             "script": 6,
             "initial_dir": 0,
             "data": [],
