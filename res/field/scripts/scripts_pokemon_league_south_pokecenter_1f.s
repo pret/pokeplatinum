@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag FLAG_UNK_0x09C0
+    SetFlag FLAG_FIRST_ARRIVAL_OUTSIDE_VICTORY_ROAD
     End
 
 _0020:

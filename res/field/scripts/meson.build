@@ -356,7 +356,7 @@ scr_seq_files = files(
     'scripts_ruin_maniac_cave_short.s',
     'scripts_ruin_maniac_cave_long.s',
     'scripts_maniac_tunnel.s',
-    'scripts_unk_0323.s',
+    'scripts_trophy_garden.s',
     'scripts_iron_island.s',
     'scripts_iron_island_1f.s',
     'scripts_unk_0326.s',

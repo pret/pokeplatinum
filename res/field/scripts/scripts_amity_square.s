@@ -57,7 +57,7 @@
     ScriptEntryEnd
 
 _00B6:
-    SetFlag FLAG_UNK_0x09CC
+    SetFlag FLAG_FIRST_ARRIVAL_AMITY_SQUARE
     SetFlag FLAG_UNK_0x02A1
     CalcAmitySquareBerryAndAccessoryManOptionID VAR_AMITY_SQUARE_GIFT_ID
     GetRandom VAR_MAP_LOCAL_2, 5

@@ -15,7 +15,7 @@ _0006:
     End
 
 _0027:
-    GoToIfUnset FLAG_UNK_0x09BE, _003A
+    GoToIfUnset FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY, _003A
     GoTo _006C
     End
 

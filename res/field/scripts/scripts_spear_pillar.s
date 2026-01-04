@@ -15,7 +15,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag FLAG_UNK_0x09C7
+    SetFlag FLAG_FIRST_ARRIVAL_SPEAR_PILLAR
     Call _00C7
     Call _0062
     GetPlayerGender VAR_MAP_LOCAL_0

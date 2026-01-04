@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09CA
+    SetFlag FLAG_FIRST_ARRIVAL_VICTORY_ROAD
     GoToIfUnset FLAG_GAME_COMPLETED, _002F
     GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _002F

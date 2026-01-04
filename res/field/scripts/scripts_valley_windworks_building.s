@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag FLAG_UNK_0x09C3
+    SetFlag FLAG_FIRST_ARRIVAL_VALLEY_WINDWORKS
     GoToIfGe VAR_UNK_0x4089, 2, _0035
     End
 

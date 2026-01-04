@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag FLAG_UNK_0x09F4
+    SetFlag FLAG_FIRST_ARRIVAL_POKEMON_LEAGUE
     SetFlag FLAG_UNK_0x0282
     SetFlag FLAG_UNK_0x0283
     SetFlag FLAG_UNK_0x0284

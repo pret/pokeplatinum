@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 Route222EastHouse_OnLoad:
-    SetFlag FLAG_UNK_0x09F0
+    SetFlag FLAG_FIRST_ARRIVAL_POKEMON_SIZE_JUDGE
     End
 
 Route222EastHouse_Fisherman:

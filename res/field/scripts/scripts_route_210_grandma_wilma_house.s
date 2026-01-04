@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09EA
+    SetFlag FLAG_FIRST_ARRIVAL_DRAGON_MASTERS_HOUSE
     End
 
 _0010:
