@@ -10,7 +10,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
 #include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -598,7 +597,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
 
     v0->unk_10 = param0->unk_00.unk_111;
     v0->unk_14 = param0->unk_00.unk_10F;
-    v0->unk_18 = sub_02029D04(param0->imageClips);
+    v0->fashionCase = ImageClips_GetFashionCase(param0->imageClips);
     v0->unk_1C = &param0->unk_1984;
     v0->options = param0->options;
     v0->unk_24 = param0->unk_1978;
@@ -1429,9 +1428,9 @@ u32 sub_02094904(UnkStruct_02095C48 *param0)
     GF_ASSERT(v0 != 100);
 
     ImageClips *imageClips = SaveData_GetImageClips(param0->saveData);
-    UnkStruct_02029D04 *v2 = sub_02029D04(imageClips);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    if (sub_02029D50(v2, v0, 1) == 0) {
+    if (sub_02029D50(fashionCase, v0, 1) == 0) {
         return 0xffff;
     }
 

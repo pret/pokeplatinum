@@ -237,14 +237,14 @@ static inline u8 Accessory_ToUniqueID(u32 accessory)
     return accessory - NON_UNIQUE_ACCESSORY_COUNT;
 }
 
-static void sub_02029BB0(UnkStruct_02029D04 *param0)
+static void sub_02029BB0(FashionCase *fashionCase)
 {
     int v0;
 
-    memset(param0, 0, sizeof(UnkStruct_02029D04));
+    memset(fashionCase, 0, sizeof(FashionCase));
 
     for (v0 = 0; v0 < 18; v0++) {
-        sub_02029B18(param0->unk_28, 18, v0);
+        sub_02029B18(fashionCase->unk_28, 18, v0);
     }
 }
 
@@ -319,7 +319,7 @@ UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int param1)
     return &imageClips->unk_4C8[param1];
 }
 
-UnkStruct_02029D04 *sub_02029D04(ImageClips *imageClips)
+FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips)
 {
     return &imageClips->unk_7A4;
 }
@@ -336,12 +336,12 @@ BOOL sub_02029D2C(const ImageClips *imageClips, int param1)
     return sub_0202A218(&imageClips->unk_4C8[param1]);
 }
 
-BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 count)
+BOOL sub_02029D50(const FashionCase *fashionCase, u32 accessory, u32 count)
 {
     u32 currentCount;
     BOOL canFit = TRUE;
 
-    currentCount = sub_02029D94(param0, accessory);
+    currentCount = FashionCase_GetAccessoryCount(fashionCase, accessory);
 
     if (Accesory_CanHaveMultiple(accessory)) {
         currentCount += count;
@@ -360,9 +360,9 @@ BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 count)
     return canFit;
 }
 
-BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1)
+BOOL sub_02029D80(const FashionCase *fashionCase, u32 param1)
 {
-    u32 v0 = sub_02029DD4(param0, param1);
+    u32 v0 = sub_02029DD4(fashionCase, param1);
 
     if (v0 != 18) {
         return 1;
@@ -371,51 +371,51 @@ BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1)
     return 0;
 }
 
-u32 sub_02029D94(const UnkStruct_02029D04 *param0, u32 accessory)
+u32 FashionCase_GetAccessoryCount(const FashionCase *fashionCase, u32 accessory)
 {
     u32 v0;
 
     GF_ASSERT(accessory < ACCESSORY_COUNT);
 
     if (Accesory_CanHaveMultiple(accessory)) {
-        v0 = sub_02029A70(param0->unk_00, accessory);
+        v0 = sub_02029A70(fashionCase->unk_00, accessory);
     } else {
         accessory = Accessory_ToUniqueID(accessory);
-        v0 = sub_02029AF0(param0->unk_20, accessory);
+        v0 = sub_02029AF0(fashionCase->unk_20, accessory);
     }
 
     return v0;
 }
 
-u32 sub_02029DD4(const UnkStruct_02029D04 *param0, u32 param1)
+u32 sub_02029DD4(const FashionCase *fashionCase, u32 param1)
 {
     BOOL v0;
 
     GF_ASSERT(param1 < 18);
-    v0 = sub_02029B5C(param0->unk_28, param1);
+    v0 = sub_02029B5C(fashionCase->unk_28, param1);
 
     return v0;
 }
 
-u32 sub_02029DF0(const UnkStruct_02029D04 *param0)
+u32 sub_02029DF0(const FashionCase *fashionCase)
 {
     int i;
     int v1 = 0;
 
     for (i = 0; i < ACCESSORY_COUNT; i++) {
-        v1 += sub_02029D94(param0, i);
+        v1 += FashionCase_GetAccessoryCount(fashionCase, i);
     }
 
     return v1;
 }
 
-u32 sub_02029E0C(const UnkStruct_02029D04 *param0)
+u32 sub_02029E0C(const FashionCase *fashionCase)
 {
     int v0;
     int v1 = 0;
 
     for (v0 = 0; v0 < 18; v0++) {
-        if (sub_02029DD4(param0, v0) != 18) {
+        if (sub_02029DD4(fashionCase, v0) != 18) {
             v1++;
         }
     }
@@ -423,23 +423,23 @@ u32 sub_02029E0C(const UnkStruct_02029D04 *param0)
     return v1;
 }
 
-void sub_02029E2C(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
+void sub_02029E2C(FashionCase *fashionCase, u32 accessory, u32 param2)
 {
     u8 v0;
 
     GF_ASSERT(accessory < ACCESSORY_COUNT);
 
     if (Accesory_CanHaveMultiple(accessory)) {
-        v0 = sub_02029A70(param0->unk_00, accessory);
+        v0 = sub_02029A70(fashionCase->unk_00, accessory);
         v0 += param2;
 
         if (v0 > MAX_ACCESORIES_PER_TYPE) {
             v0 = MAX_ACCESORIES_PER_TYPE;
         }
 
-        sub_02029A2C(param0->unk_00, v0, accessory);
+        sub_02029A2C(fashionCase->unk_00, v0, accessory);
     } else {
-        v0 = sub_02029AF0(param0->unk_20, accessory);
+        v0 = sub_02029AF0(fashionCase->unk_20, accessory);
         v0 += param2;
 
         if (v0 > 1) {
@@ -447,18 +447,18 @@ void sub_02029E2C(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
         }
 
         accessory = Accessory_ToUniqueID(accessory);
-        sub_02029AB0(param0->unk_20, v0, accessory);
+        sub_02029AB0(fashionCase->unk_20, v0, accessory);
     }
 }
 
-void sub_02029EA0(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
+void sub_02029EA0(FashionCase *fashionCase, u32 accessory, u32 param2)
 {
     u8 v0;
 
     GF_ASSERT(accessory < ACCESSORY_COUNT);
 
     if (Accesory_CanHaveMultiple(accessory)) {
-        v0 = sub_02029A70(param0->unk_00, accessory);
+        v0 = sub_02029A70(fashionCase->unk_00, accessory);
 
         if (v0 > param2) {
             v0 -= param2;
@@ -466,25 +466,25 @@ void sub_02029EA0(UnkStruct_02029D04 *param0, u32 accessory, u32 param2)
             v0 = 0;
         }
 
-        sub_02029A2C(param0->unk_00, v0, accessory);
+        sub_02029A2C(fashionCase->unk_00, v0, accessory);
     } else {
         v0 = 0;
         accessory = Accessory_ToUniqueID(accessory);
 
-        sub_02029AB0(param0->unk_20, v0, accessory);
+        sub_02029AB0(fashionCase->unk_20, v0, accessory);
     }
 }
 
-void sub_02029EFC(UnkStruct_02029D04 *param0, u32 param1)
+void sub_02029EFC(FashionCase *fashionCase, u32 param1)
 {
     u8 v0;
 
     GF_ASSERT(param1 < 18);
 
-    if (sub_02029B5C(param0->unk_28, param1) == 18) {
-        v0 = sub_02029B80(param0->unk_28);
+    if (sub_02029B5C(fashionCase->unk_28, param1) == 18) {
+        v0 = sub_02029B80(fashionCase->unk_28);
 
-        sub_02029B18(param0->unk_28, v0, param1);
+        sub_02029B18(fashionCase->unk_28, v0, param1);
     }
 }
 

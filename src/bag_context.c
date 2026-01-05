@@ -6,8 +6,8 @@
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_02029D04_decl.h"
 #include "struct_defs/seal_case.h"
+#include "struct_defs/struct_0202A750.h"
 
 #include "bag.h"
 #include "coins.h"
@@ -122,14 +122,16 @@ static u32 CalcTotalBallSeals(SaveData *saveData)
 
 static u32 GetNumAccessories(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(saveData));
-    return sub_02029DF0(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    return sub_02029DF0(fashionCase);
 }
 
 static u32 GetNumBackdrops(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(SaveData_GetImageClips(saveData));
-    return sub_02029E0C(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    return sub_02029E0C(fashionCase);
 }
 
 static u32 GetNumBattlePoints(SaveData *saveData)

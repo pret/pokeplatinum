@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
 #include "struct_defs/struct_0202A750.h"
@@ -24,18 +23,18 @@ UnkStruct_02029C68 *sub_02029C68(u32 heapID);
 UnkStruct_02029C88 *sub_02029C88(u32 heapID);
 UnkStruct_02029C68 *sub_02029CA8(ImageClips *imageClips, int param1);
 UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int param1);
-UnkStruct_02029D04 *sub_02029D04(ImageClips *imageClips);
+FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips);
 BOOL sub_02029D10(const ImageClips *imageClips, int param1);
 BOOL sub_02029D2C(const ImageClips *imageClips, int param1);
-BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 accessory, u32 count);
-BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1);
-u32 sub_02029D94(const UnkStruct_02029D04 *param0, u32 param1);
-u32 sub_02029DD4(const UnkStruct_02029D04 *param0, u32 param1);
-u32 sub_02029DF0(const UnkStruct_02029D04 *param0);
-u32 sub_02029E0C(const UnkStruct_02029D04 *param0);
-void sub_02029E2C(UnkStruct_02029D04 *param0, u32 accessory, u32 param2);
-void sub_02029EA0(UnkStruct_02029D04 *param0, u32 accessory, u32 param2);
-void sub_02029EFC(UnkStruct_02029D04 *param0, u32 param1);
+BOOL sub_02029D50(const FashionCase *fashionCase, u32 accessory, u32 count);
+BOOL sub_02029D80(const FashionCase *fashionCase, u32 param1);
+u32 FashionCase_GetAccessoryCount(const FashionCase *fashionCase, u32 param1);
+u32 sub_02029DD4(const FashionCase *fashionCase, u32 param1);
+u32 sub_02029DF0(const FashionCase *fashionCase);
+u32 sub_02029E0C(const FashionCase *fashionCase);
+void sub_02029E2C(FashionCase *fashionCase, u32 accessory, u32 param2);
+void sub_02029EA0(FashionCase *fashionCase, u32 accessory, u32 param2);
+void sub_02029EFC(FashionCase *fashionCase, u32 param1);
 BOOL sub_02029F34(const UnkStruct_02029C68 *param0);
 void sub_02029F5C(UnkStruct_02029C68 *param0);
 void sub_02029F84(UnkStruct_02029C68 *param0);

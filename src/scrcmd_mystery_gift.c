@@ -484,10 +484,10 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
         GiveOrTakeSeal(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
         break;
     case MG_COSMETICS_ACCESSORY:
-        sub_02029E2C(sub_02029D04(SaveData_GetImageClips(fieldSystem->saveData)), id, 1);
+        sub_02029E2C(ImageClips_GetFashionCase(SaveData_GetImageClips(fieldSystem->saveData)), id, 1);
         break;
     case MG_COSMETICS_BACKDROP:
-        sub_02029EFC(sub_02029D04(SaveData_GetImageClips(fieldSystem->saveData)), id);
+        sub_02029EFC(ImageClips_GetFashionCase(SaveData_GetImageClips(fieldSystem->saveData)), id);
         break;
     }
 }

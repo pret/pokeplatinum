@@ -212,7 +212,7 @@ int ov22_02255D44(ApplicationManager *appMan, int *param1)
         (void)0;
     }
 
-    ov22_0225894C(v2->unk_08, &v0->unk_1E8);
+    ov22_0225894C(v2->fashionCase, &v0->unk_1E8);
     ov22_022566C0(v0);
     ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
 
@@ -433,7 +433,7 @@ int ov22_02256174(ApplicationManager *appMan, int *param1)
         (void)0;
     }
 
-    ov22_0225894C(v2->unk_18, &v0->unk_1E8);
+    ov22_0225894C(v2->fashionCase, &v0->unk_1E8);
     ov22_022566C0(v0);
 
     SpriteList_SetActive(v0->unk_00.unk_44, 0);
