@@ -69,7 +69,7 @@ static void ov59_021D2FBC(const UnkStruct_ov59_021D2FBC *param0)
 static u32 ov59_021D2FD4(SaveData *saveData)
 {
     ImageClips *imageClips = SaveData_GetImageClips(saveData);
-    return sub_02029C60();
+    return DressUpPhoto_Size();
 }
 
 static void *ov59_021D2FE0(SaveData *saveData, int heapID, u32 param2)

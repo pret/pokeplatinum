@@ -6,7 +6,7 @@ typedef struct {
     u32 otID;
     u16 species;
     u16 trainerName[8];
-    s8 zPos;
+    s8 priority;
     u8 xPos;
     u8 yPos;
     u8 form;

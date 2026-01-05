@@ -1053,7 +1053,7 @@ static BOOL ov20_021D1BB0(UnkStruct_ov20_021D16E8 *param0)
         param0->unk_10[param0->unk_4E] = v1;
         break;
     case 2:
-        sub_02014CF8(&param0->unk_08, param0->unk_4E, v1);
+        Sentence_SetWord(&param0->unk_08, param0->unk_4E, v1);
         break;
     }
 

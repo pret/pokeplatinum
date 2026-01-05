@@ -53,7 +53,7 @@ typedef struct UnkStruct_ov22_0225B1BC_t {
 
 typedef struct {
     const PhotoPokemon *photoMon;
-    const UnkStruct_0202A150 *unk_04[20];
+    const PhotoAccessory *unk_04[20];
     int unk_54;
     BgConfig *unk_58;
     int unk_5C;
@@ -360,9 +360,9 @@ static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
 
         for (v5 = 0; v5 < param1->unk_54; v5++) {
             v8 = sub_0202A624(param1->unk_04[v5]);
-            v6 = sub_0202A628(param1->unk_04[v5]);
-            v7 = sub_0202A62C(param1->unk_04[v5]);
-            v9 = sub_0202A630(param1->unk_04[v5]);
+            v6 = PhotoAccessory_GetXPos(param1->unk_04[v5]);
+            v7 = PhotoAccessory_GetYPos(param1->unk_04[v5]);
+            v9 = PhotoAccessory_GetPriority(param1->unk_04[v5]);
 
             ov22_022579FC(&param0->unk_1F4, v8, v6, v7, v9);
         }

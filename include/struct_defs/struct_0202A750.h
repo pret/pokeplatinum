@@ -5,7 +5,8 @@
 #include "struct_defs/fashion_case.h"
 #include "struct_defs/sentence.h"
 
-#define SAVED_PHOTOS_COUNT 11
+#define SAVED_PHOTOS_COUNT    11
+#define PHOTO_ACCESSORY_COUNT 10
 
 typedef struct UnkStruct_0202A138_t {
     u32 personality;
@@ -13,7 +14,7 @@ typedef struct UnkStruct_0202A138_t {
     u16 species;
     u16 nickname[MON_NAME_LEN + 1];
     u16 trainerName[8];
-    s8 zPos;
+    s8 priority;
     u8 xPos;
     u8 yPos;
     u8 form;
@@ -22,27 +23,27 @@ typedef struct UnkStruct_0202A138_t {
 
 typedef struct UnkStruct_0202A150_t {
     u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    s8 unk_03;
-} UnkStruct_0202A150;
+    u8 xPos;
+    u8 yPos;
+    s8 priority;
+} PhotoAccessory;
 
 typedef struct DressUpPhoto_t {
     u32 integrity;
     PhotoPokemon photoMon;
     u32 unk_3C;
     Sentence title;
-    UnkStruct_0202A150 unk_48[10];
+    PhotoAccessory accessories[PHOTO_ACCESSORY_COUNT];
     u8 unk_70;
     u8 language;
 } DressUpPhoto;
 
 typedef struct UnkStruct_02029C88_t {
-    u32 unk_00;
+    u32 integrity;
     u32 unk_04;
     PhotoPokemon photoMon;
     u32 unk_40;
-    UnkStruct_0202A150 unk_44[20];
+    PhotoAccessory accessories[20];
     u8 unk_94;
 } UnkStruct_02029C88;
 

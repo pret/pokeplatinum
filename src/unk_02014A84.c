@@ -219,7 +219,7 @@ void sub_02014CE0(Sentence *sentence, u32 param1, u32 param2)
     sentence->id = param2;
 }
 
-void sub_02014CF8(Sentence *sentence, u32 index, u16 word)
+void Sentence_SetWord(Sentence *sentence, u32 index, u16 word)
 {
     GF_ASSERT(index < 2);
     sentence->words[index] = word;
