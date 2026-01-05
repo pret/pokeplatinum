@@ -114,15 +114,15 @@ static void sub_02029A18(UnkStruct_0202A150 *param0, u8 param1, u8 param2, u8 pa
     param0->unk_03 = param4;
 }
 
-static void sub_02029A2C(u32 *param0, u8 param1, u8 param2)
+static void sub_02029A2C(u32 *param0, u8 param1, u8 accessoryID)
 {
     u8 v0;
     u8 v1;
 
-    GF_ASSERT(param2 < NON_UNIQUE_ACCESSORY_COUNT);
+    GF_ASSERT(accessoryID < NON_UNIQUE_ACCESSORY_COUNT);
 
-    v0 = param2 / 8;
-    v1 = param2 % 8;
+    v0 = accessoryID / 8;
+    v1 = accessoryID % 8;
 
     v1 *= 4;
 
@@ -130,16 +130,16 @@ static void sub_02029A2C(u32 *param0, u8 param1, u8 param2)
     param0[v0] |= (param1 << v1);
 }
 
-static u8 sub_02029A70(const u32 *param0, u8 param1)
+static u8 sub_02029A70(const u32 *param0, u8 accessoryID)
 {
     u8 v0;
     u8 v1;
     u8 v2;
 
-    GF_ASSERT(param1 < NON_UNIQUE_ACCESSORY_COUNT);
+    GF_ASSERT(accessoryID < NON_UNIQUE_ACCESSORY_COUNT);
 
-    v1 = param1 / 8;
-    v2 = param1 % 8;
+    v1 = accessoryID / 8;
+    v2 = accessoryID % 8;
     v2 *= 4;
     v0 = (param0[v1] >> v2) & 0xf;
 
@@ -150,15 +150,15 @@ static u8 sub_02029A70(const u32 *param0, u8 param1)
     return v0;
 }
 
-static void sub_02029AB0(u32 *param0, u8 param1, u8 param2)
+static void sub_02029AB0(u32 *param0, u8 param1, u8 accessoryID)
 {
     u8 v0;
     u8 v1;
 
     GF_ASSERT(param1 < 2);
 
-    v0 = param2 / 32;
-    v1 = param2 % 32;
+    v0 = accessoryID / 32;
+    v1 = accessoryID % 32;
 
     v1 *= 1;
 
@@ -166,13 +166,13 @@ static void sub_02029AB0(u32 *param0, u8 param1, u8 param2)
     param0[v0] |= (param1 << v1);
 }
 
-static u8 sub_02029AF0(const u32 *param0, u8 param1)
+static u8 sub_02029AF0(const u32 *param0, u8 accessoryID)
 {
     u8 v0;
     u8 v1;
 
-    v0 = param1 / 32;
-    v1 = param1 % 32;
+    v0 = accessoryID / 32;
+    v1 = accessoryID % 32;
 
     v1 *= 1;
 
@@ -222,19 +222,19 @@ static u8 sub_02029B80(const u32 *param0)
     return v1;
 }
 
-static BOOL Accesory_CanHaveMultiple(u32 accessory)
+static BOOL Accesory_CanHaveMultiple(u32 accessoryID)
 {
-    if (accessory < NON_UNIQUE_ACCESSORY_COUNT) {
+    if (accessoryID < NON_UNIQUE_ACCESSORY_COUNT) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-static inline u8 Accessory_ToUniqueID(u32 accessory)
+static inline u8 Accessory_ToUniqueID(u32 accessoryID)
 {
-    GF_ASSERT(accessory >= NON_UNIQUE_ACCESSORY_COUNT);
-    return accessory - NON_UNIQUE_ACCESSORY_COUNT;
+    GF_ASSERT(accessoryID >= NON_UNIQUE_ACCESSORY_COUNT);
+    return accessoryID - NON_UNIQUE_ACCESSORY_COUNT;
 }
 
 static void sub_02029BB0(FashionCase *fashionCase)
@@ -336,14 +336,14 @@ BOOL sub_02029D2C(const ImageClips *imageClips, int param1)
     return sub_0202A218(&imageClips->unk_4C8[param1]);
 }
 
-BOOL sub_02029D50(const FashionCase *fashionCase, u32 accessory, u32 count)
+BOOL sub_02029D50(const FashionCase *fashionCase, u32 accessoryID, u32 count)
 {
     u32 currentCount;
     BOOL canFit = TRUE;
 
-    currentCount = FashionCase_GetAccessoryCount(fashionCase, accessory);
+    currentCount = FashionCase_GetAccessoryCount(fashionCase, accessoryID);
 
-    if (Accesory_CanHaveMultiple(accessory)) {
+    if (Accesory_CanHaveMultiple(accessoryID)) {
         currentCount += count;
 
         if (currentCount > MAX_ACCESORIES_PER_TYPE) {
@@ -371,17 +371,17 @@ BOOL sub_02029D80(const FashionCase *fashionCase, u32 param1)
     return 0;
 }
 
-u32 FashionCase_GetAccessoryCount(const FashionCase *fashionCase, u32 accessory)
+u32 FashionCase_GetAccessoryCount(const FashionCase *fashionCase, u32 accessoryID)
 {
     u32 v0;
 
-    GF_ASSERT(accessory < ACCESSORY_COUNT);
+    GF_ASSERT(accessoryID < ACCESSORY_COUNT);
 
-    if (Accesory_CanHaveMultiple(accessory)) {
-        v0 = sub_02029A70(fashionCase->unk_00, accessory);
+    if (Accesory_CanHaveMultiple(accessoryID)) {
+        v0 = sub_02029A70(fashionCase->unk_00, accessoryID);
     } else {
-        accessory = Accessory_ToUniqueID(accessory);
-        v0 = sub_02029AF0(fashionCase->unk_20, accessory);
+        accessoryID = Accessory_ToUniqueID(accessoryID);
+        v0 = sub_02029AF0(fashionCase->unk_20, accessoryID);
     }
 
     return v0;
@@ -423,42 +423,42 @@ u32 sub_02029E0C(const FashionCase *fashionCase)
     return v1;
 }
 
-void sub_02029E2C(FashionCase *fashionCase, u32 accessory, u32 param2)
+void sub_02029E2C(FashionCase *fashionCase, u32 accessoryID, u32 param2)
 {
     u8 v0;
 
-    GF_ASSERT(accessory < ACCESSORY_COUNT);
+    GF_ASSERT(accessoryID < ACCESSORY_COUNT);
 
-    if (Accesory_CanHaveMultiple(accessory)) {
-        v0 = sub_02029A70(fashionCase->unk_00, accessory);
+    if (Accesory_CanHaveMultiple(accessoryID)) {
+        v0 = sub_02029A70(fashionCase->unk_00, accessoryID);
         v0 += param2;
 
         if (v0 > MAX_ACCESORIES_PER_TYPE) {
             v0 = MAX_ACCESORIES_PER_TYPE;
         }
 
-        sub_02029A2C(fashionCase->unk_00, v0, accessory);
+        sub_02029A2C(fashionCase->unk_00, v0, accessoryID);
     } else {
-        v0 = sub_02029AF0(fashionCase->unk_20, accessory);
+        v0 = sub_02029AF0(fashionCase->unk_20, accessoryID);
         v0 += param2;
 
         if (v0 > 1) {
             v0 = 1;
         }
 
-        accessory = Accessory_ToUniqueID(accessory);
-        sub_02029AB0(fashionCase->unk_20, v0, accessory);
+        accessoryID = Accessory_ToUniqueID(accessoryID);
+        sub_02029AB0(fashionCase->unk_20, v0, accessoryID);
     }
 }
 
-void sub_02029EA0(FashionCase *fashionCase, u32 accessory, u32 param2)
+void sub_02029EA0(FashionCase *fashionCase, u32 accessoryID, u32 param2)
 {
     u8 v0;
 
-    GF_ASSERT(accessory < ACCESSORY_COUNT);
+    GF_ASSERT(accessoryID < ACCESSORY_COUNT);
 
-    if (Accesory_CanHaveMultiple(accessory)) {
-        v0 = sub_02029A70(fashionCase->unk_00, accessory);
+    if (Accesory_CanHaveMultiple(accessoryID)) {
+        v0 = sub_02029A70(fashionCase->unk_00, accessoryID);
 
         if (v0 > param2) {
             v0 -= param2;
@@ -466,12 +466,12 @@ void sub_02029EA0(FashionCase *fashionCase, u32 accessory, u32 param2)
             v0 = 0;
         }
 
-        sub_02029A2C(fashionCase->unk_00, v0, accessory);
+        sub_02029A2C(fashionCase->unk_00, v0, accessoryID);
     } else {
         v0 = 0;
-        accessory = Accessory_ToUniqueID(accessory);
+        accessoryID = Accessory_ToUniqueID(accessoryID);
 
-        sub_02029AB0(fashionCase->unk_20, v0, accessory);
+        sub_02029AB0(fashionCase->unk_20, v0, accessoryID);
     }
 }
 

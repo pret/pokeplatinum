@@ -6834,13 +6834,13 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
 
 static BOOL ScrCmd_Unused_279(ScriptContext *ctx)
 {
-    u16 accessory = ScriptContext_GetVar(ctx);
+    u16 accessoryID = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029EA0(fashionCase, accessory, v3);
+    sub_02029EA0(fashionCase, accessoryID, v3);
     return FALSE;
 }
 
