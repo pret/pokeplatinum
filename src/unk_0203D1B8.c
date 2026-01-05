@@ -8,9 +8,9 @@
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/gts_player_data.h"
 #include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_0203DA00.h"

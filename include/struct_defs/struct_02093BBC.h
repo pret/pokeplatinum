@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_02093BBC_H
 #define POKEPLATINUM_STRUCT_02093BBC_H
 
-#include "struct_decls/struct_02029C88_decl.h"
 #include "struct_defs/fashion_case.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02095C60.h"
 
 #include "game_options.h"

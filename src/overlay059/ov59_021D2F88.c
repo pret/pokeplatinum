@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_0202A750.h"
 
 #include "overlay059/ov59_021D2A2C.h"

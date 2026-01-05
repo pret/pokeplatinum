@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/dress_up_photo.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "struct_defs/struct_02099F80.h"

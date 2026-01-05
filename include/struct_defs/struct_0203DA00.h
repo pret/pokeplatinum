@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0203DA00_H
 #define POKEPLATINUM_STRUCT_0203DA00_H
 
-#include "struct_decls/dress_up_photo.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/fashion_case.h"
 
 #include "game_options.h"

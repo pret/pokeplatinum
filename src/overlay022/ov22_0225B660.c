@@ -5,8 +5,8 @@
 
 #include "constants/graphics.h"
 
-#include "struct_decls/dress_up_photo.h"
-#include "struct_decls/struct_02029C88_decl.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02041DC8.h"
 
 #include "overlay022/ov22_02255094.h"
