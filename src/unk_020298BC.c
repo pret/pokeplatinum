@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"
 #include "struct_defs/struct_0202A750.h"
 
@@ -14,7 +15,6 @@
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"
 #include "overlay061/struct_ov61_0222AE80_sub2.h"
-#include "overlay061/struct_ov61_0222BED8_sub2_sub1_sub1_sub1.h"
 
 #include "heap.h"
 #include "inlines.h"
@@ -943,7 +943,7 @@ void sub_0202A75C(const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param1)
     param1->unk_04.form = photo->photoMon.form;
 
     param1->unk_24 = photo->unk_3C;
-    param1->unk_28 = *((UnkStruct_ov61_0222BED8_sub2_sub1_sub1_sub1 *)(&photo->title));
+    param1->title = photo->title;
 
     for (i = 0; i < (11 - 1); i++) {
         param1->unk_30[i] = *((UnkStruct_ov61_0222AE80_sub2 *)(&photo->unk_48[i]));
@@ -977,7 +977,7 @@ void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo)
     photo->photoMon.form = param0->unk_04.form;
 
     photo->unk_3C = param0->unk_24;
-    photo->title = *((Sentence *)(&param0->unk_28));
+    photo->title = *((Sentence *)(&param0->title));
 
     for (i = 0; i < (11 - 1); i++) {
         photo->unk_48[i] = *((UnkStruct_0202A150 *)(&param0->unk_30[i]));
