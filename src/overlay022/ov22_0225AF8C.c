@@ -328,7 +328,7 @@ static void ov22_0225B35C(UnkStruct_ov22_0225B1BC *param0)
 static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_0225B4E4 *param1)
 {
     UnkStruct_ov22_0225B388 v0;
-    int xPos, yPos, zPos;
+    int xPos, yPos, priority;
 
     memset(&v0, 0, sizeof(UnkStruct_ov22_0225B388));
 
@@ -348,9 +348,9 @@ static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
 
     xPos = PhotoPokemon_GetXPos(param1->photoMon);
     yPos = PhotoPokemon_GetYPos(param1->photoMon);
-    zPos = PhotoPokemon_GetZPos(param1->photoMon);
+    priority = PhotoPokemon_GetPriority(param1->photoMon);
 
-    ov22_02257964(&param0->unk_1F4, param0->unk_298, &v4, xPos, yPos, zPos, param1->heapID);
+    ov22_02257964(&param0->unk_1F4, param0->unk_298, &v4, xPos, yPos, priority, param1->heapID);
 
     {
         int v5;

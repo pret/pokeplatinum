@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV61_0222B008_H
 #define POKEPLATINUM_OV61_0222B008_H
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/dress_up_photo.h"
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
 
 #include "overlay061/struct_ov61_0222B2D8.h"

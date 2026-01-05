@@ -2,6 +2,7 @@
 
 #include <nitro.h>
 #include <string.h>
+
 #include "generated/accessories.h"
 #include "generated/backdrops.h"
 

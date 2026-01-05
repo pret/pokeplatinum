@@ -12,9 +12,9 @@
 #include "generated/natures.h"
 #include "generated/pokemon_stats.h"
 
+#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/dress_up_photo.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_0202E7D8.h"

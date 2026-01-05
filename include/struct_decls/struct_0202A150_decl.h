@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202A150_DECL_H
 #define POKEPLATINUM_STRUCT_0202A150_DECL_H
 
-typedef struct UnkStruct_0202A150_t PhotoAccessory;
+typedef struct PhotoAccessory_t PhotoAccessory;
 
 #endif // POKEPLATINUM_STRUCT_0202A150_DECL_H

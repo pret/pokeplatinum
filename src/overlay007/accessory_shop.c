@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/accessories.h"
 #include "constants/field/window.h"
 #include "constants/scrcmd.h"
-#include "constants/accessories.h"
 
 #include "overlay007/shop_menu.h"
 

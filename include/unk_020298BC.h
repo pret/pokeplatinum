@@ -5,8 +5,8 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
-#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_020298D8.h"
+#include "struct_defs/struct_0202A750.h"
 
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -76,7 +76,7 @@ u32 sub_0202A5D0(const UnkStruct_02029C88 *param0);
 u16 PhotoPokemon_GetSpecies(const PhotoPokemon *photoMon);
 void PhotoPokemon_SetTrainerName(const PhotoPokemon *photoMon, String *name);
 u32 PhotoPokemon_GetTrainerGender(const PhotoPokemon *photoMon);
-s8 PhotoPokemon_GetZPos(const PhotoPokemon *photoMon);
+s8 PhotoPokemon_GetPriority(const PhotoPokemon *photoMon);
 u8 PhotoPokemon_GetXPos(const PhotoPokemon *photoMon);
 u8 PhotoPokemon_GetYPos(const PhotoPokemon *photoMon);
 void PhotoPokemon_CopyToPokemon(const PhotoPokemon *photoMon, Pokemon *mon);
