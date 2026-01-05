@@ -23,8 +23,8 @@ typedef struct {
     u8 unk_10C;
     u8 unk_10D;
     u8 unk_10E;
-    u8 unk_10F;
-    u8 unk_110;
+    u8 contestType;
+    u8 contestRank;
     u8 unk_111;
     u8 unk_112;
     u8 unk_113;

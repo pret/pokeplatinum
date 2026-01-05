@@ -5931,7 +5931,7 @@ static BOOL ScrCmd_AddAccessory(ScriptContext *ctx)
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029E2C(fashionCase, accessoryID, amount);
+    FashionCase_AddAccessory(fashionCase, accessoryID, amount);
     return FALSE;
 }
 
@@ -5943,7 +5943,7 @@ static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
 
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
-    *destVar = sub_02029D50(fashionCase, accessory, count);
+    *destVar = FashionCase_CanFitAccessoryCount(fashionCase, accessory, count);
 
     return FALSE;
 }
@@ -6742,7 +6742,7 @@ static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx)
     int unobtainedAccessoryCount = 0;
 
     for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
-        if (sub_02029D50(fashionCase, ACCESSORY_PRETTY_DEWDROP + i, 1) == TRUE) {
+        if (FashionCase_CanFitAccessoryCount(fashionCase, ACCESSORY_PRETTY_DEWDROP + i, 1) == TRUE) {
             hasAccessory[i] = TRUE;
             unobtainedAccessoryCount++;
         }

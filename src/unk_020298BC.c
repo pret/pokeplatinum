@@ -336,7 +336,7 @@ BOOL sub_02029D2C(const ImageClips *imageClips, int param1)
     return sub_0202A218(&imageClips->unk_4C8[param1]);
 }
 
-BOOL sub_02029D50(const FashionCase *fashionCase, u32 accessoryID, u32 count)
+BOOL FashionCase_CanFitAccessoryCount(const FashionCase *fashionCase, u32 accessoryID, u32 count)
 {
     u32 currentCount;
     BOOL canFit = TRUE;
@@ -423,7 +423,7 @@ u32 sub_02029E0C(const FashionCase *fashionCase)
     return v1;
 }
 
-void sub_02029E2C(FashionCase *fashionCase, u32 accessoryID, u32 param2)
+void FashionCase_AddAccessory(FashionCase *fashionCase, u32 accessoryID, u32 amount)
 {
     u8 v0;
 
@@ -431,7 +431,7 @@ void sub_02029E2C(FashionCase *fashionCase, u32 accessoryID, u32 param2)
 
     if (Accesory_CanHaveMultiple(accessoryID)) {
         v0 = sub_02029A70(fashionCase->unk_00, accessoryID);
-        v0 += param2;
+        v0 += amount;
 
         if (v0 > MAX_ACCESORIES_PER_TYPE) {
             v0 = MAX_ACCESORIES_PER_TYPE;
@@ -440,7 +440,7 @@ void sub_02029E2C(FashionCase *fashionCase, u32 accessoryID, u32 param2)
         sub_02029A2C(fashionCase->unk_00, v0, accessoryID);
     } else {
         v0 = sub_02029AF0(fashionCase->unk_20, accessoryID);
-        v0 += param2;
+        v0 += amount;
 
         if (v0 > 1) {
             v0 = 1;

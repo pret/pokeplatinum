@@ -721,7 +721,7 @@ static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice
 static BOOL AccessoryShop_HasAllAccessories(const FashionCase *fashionCase, const AccessoryShopItem *items, u32 maxItems)
 {
     for (int i = 0; i < maxItems; i++) {
-        if (sub_02029D50(fashionCase, items[i].accessoryID, 1) == TRUE) {
+        if (FashionCase_CanFitAccessoryCount(fashionCase, items[i].accessoryID, 1) == TRUE) {
             return FALSE;
         }
     }
@@ -742,7 +742,7 @@ static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *it
 
 static BOOL ov7_0224CCE4(const FashionCase *fashionCase, const AccessoryShopItem *items, u32 idx)
 {
-    return sub_02029D50(fashionCase, items[idx].accessoryID, 1);
+    return FashionCase_CanFitAccessoryCount(fashionCase, items[idx].accessoryID, 1);
 }
 
 static void AccessoryShop_DoPurchase(FashionCase *fashionCase, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID)
@@ -752,7 +752,7 @@ static void AccessoryShop_DoPurchase(FashionCase *fashionCase, Bag *bag, const A
     u32 count = items[idx].totalAmount;
     BOOL res;
 
-    sub_02029E2C(fashionCase, accessoryID, 1);
+    FashionCase_AddAccessory(fashionCase, accessoryID, 1);
     res = Bag_TryRemoveItem(bag, itemId, count, heapID);
 
     GF_ASSERT(res == TRUE);
