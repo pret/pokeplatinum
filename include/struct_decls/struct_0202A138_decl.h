@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_0202A138_DECL_H
-#define POKEPLATINUM_STRUCT_0202A138_DECL_H
-
-typedef struct PhotoPokemon_t PhotoPokemon;
-
-#endif // POKEPLATINUM_STRUCT_0202A138_DECL_H

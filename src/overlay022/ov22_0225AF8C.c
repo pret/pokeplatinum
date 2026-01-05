@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "struct_decls/dress_up_photo.h"
+#include "struct_decls/photo_pokemon.h"
+#include "struct_decls/phoyo_accessory.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_0202A138_decl.h"
-#include "struct_decls/struct_0202A150_decl.h"
 
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"

@@ -2,9 +2,9 @@
 #define POKEPLATINUM_UNK_020298BC_H
 
 #include "struct_decls/dress_up_photo.h"
+#include "struct_decls/photo_pokemon.h"
+#include "struct_decls/phoyo_accessory.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_0202A138_decl.h"
-#include "struct_decls/struct_0202A150_decl.h"
 #include "struct_defs/struct_020298D8.h"
 #include "struct_defs/struct_0202A750.h"
 
