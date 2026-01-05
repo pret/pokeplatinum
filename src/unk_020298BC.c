@@ -145,8 +145,8 @@ static u8 NonUniqueAccessoryFlags_GetCount(const u32 *flags, u8 accessoryID)
     v2 *= 4;
     v0 = (flags[v1] >> v2) & 0xf;
 
-    if (v0 > MAX_NON_UNIQUE_ACCESORIES_PER_TYPE) {
-        v0 = MAX_NON_UNIQUE_ACCESORIES_PER_TYPE;
+    if (v0 > MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE) {
+        v0 = MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE;
     }
 
     return v0;
@@ -154,7 +154,7 @@ static u8 NonUniqueAccessoryFlags_GetCount(const u32 *flags, u8 accessoryID)
 
 static void UniqueAccessoryFlags_SetCount(u32 *flags, u8 count, u8 accessoryID)
 {
-    GF_ASSERT(count < MAX_UNIQUE_ACCESORIES_PER_TYPE + 1);
+    GF_ASSERT(count < MAX_UNIQUE_ACCESSORIES_PER_TYPE + 1);
 
     u8 v0 = accessoryID / 32;
     u8 v1 = accessoryID % 32;
@@ -221,7 +221,7 @@ static u8 BackdropFlags_GetTotalCount(const u32 *flags)
     return count;
 }
 
-static BOOL Accesory_CanHaveMultiple(u32 accessoryID)
+static BOOL Accessory_CanHaveMultiple(u32 accessoryID)
 {
     if (accessoryID < NON_UNIQUE_ACCESSORY_COUNT) {
         return TRUE;
@@ -342,16 +342,16 @@ BOOL FashionCase_CanFitAccessoryCount(const FashionCase *fashionCase, u32 access
 
     currentCount = FashionCase_GetAccessoryCount(fashionCase, accessoryID);
 
-    if (Accesory_CanHaveMultiple(accessoryID)) {
+    if (Accessory_CanHaveMultiple(accessoryID)) {
         currentCount += count;
 
-        if (currentCount > MAX_NON_UNIQUE_ACCESORIES_PER_TYPE) {
+        if (currentCount > MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE) {
             canFit = FALSE;
         }
     } else {
         currentCount += count;
 
-        if (currentCount > MAX_UNIQUE_ACCESORIES_PER_TYPE) {
+        if (currentCount > MAX_UNIQUE_ACCESSORIES_PER_TYPE) {
             canFit = FALSE;
         }
     }
@@ -376,7 +376,7 @@ u32 FashionCase_GetAccessoryCount(const FashionCase *fashionCase, u32 accessoryI
 
     GF_ASSERT(accessoryID < ACCESSORY_COUNT);
 
-    if (Accesory_CanHaveMultiple(accessoryID)) {
+    if (Accessory_CanHaveMultiple(accessoryID)) {
         count = NonUniqueAccessoryFlags_GetCount(fashionCase->nonUniqueAccessoryFlags, accessoryID);
     } else {
         accessoryID = Accessory_ToUniqueID(accessoryID);
@@ -424,12 +424,12 @@ void FashionCase_AddAccessory(FashionCase *fashionCase, u32 accessoryID, u32 amo
 
     GF_ASSERT(accessoryID < ACCESSORY_COUNT);
 
-    if (Accesory_CanHaveMultiple(accessoryID)) {
+    if (Accessory_CanHaveMultiple(accessoryID)) {
         count = NonUniqueAccessoryFlags_GetCount(fashionCase->nonUniqueAccessoryFlags, accessoryID);
         count += amount;
 
-        if (count > MAX_NON_UNIQUE_ACCESORIES_PER_TYPE) {
-            count = MAX_NON_UNIQUE_ACCESORIES_PER_TYPE;
+        if (count > MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE) {
+            count = MAX_NON_UNIQUE_ACCESSORIES_PER_TYPE;
         }
 
         NonUniqueAccessoryFlags_SetCount(fashionCase->nonUniqueAccessoryFlags, count, accessoryID);
@@ -437,8 +437,8 @@ void FashionCase_AddAccessory(FashionCase *fashionCase, u32 accessoryID, u32 amo
         count = UniqueAccessoryFlags_GetCount(fashionCase->uniqueAccessoryFlags, accessoryID);
         count += amount;
 
-        if (count > MAX_UNIQUE_ACCESORIES_PER_TYPE) {
-            count = MAX_UNIQUE_ACCESORIES_PER_TYPE;
+        if (count > MAX_UNIQUE_ACCESSORIES_PER_TYPE) {
+            count = MAX_UNIQUE_ACCESSORIES_PER_TYPE;
         }
 
         accessoryID = Accessory_ToUniqueID(accessoryID);
@@ -452,7 +452,7 @@ void FashionCase_RemoveAccessory(FashionCase *fashionCase, u32 accessoryID, u32 
 
     GF_ASSERT(accessoryID < ACCESSORY_COUNT);
 
-    if (Accesory_CanHaveMultiple(accessoryID)) {
+    if (Accessory_CanHaveMultiple(accessoryID)) {
         count = NonUniqueAccessoryFlags_GetCount(fashionCase->nonUniqueAccessoryFlags, accessoryID);
 
         if (count > amount) {
