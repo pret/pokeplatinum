@@ -3,6 +3,7 @@
 
 #include "generated/accessories.h"
 
-#define MAX_ACCESORIES_PER_TYPE 9
+#define MAX_NON_UNIQUE_ACCESORIES_PER_TYPE 9
+#define MAX_UNIQUE_ACCESORIES_PER_TYPE     1
 
 #endif // POKEPLATINUM_CONSTANTS_ACCESSORIES_H

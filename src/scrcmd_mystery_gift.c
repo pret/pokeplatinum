@@ -487,7 +487,7 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
         FashionCase_AddAccessory(ImageClips_GetFashionCase(SaveData_GetImageClips(fieldSystem->saveData)), id, 1);
         break;
     case MG_COSMETICS_BACKDROP:
-        sub_02029EFC(ImageClips_GetFashionCase(SaveData_GetImageClips(fieldSystem->saveData)), id);
+        FashionCase_AddBackdrop(ImageClips_GetFashionCase(SaveData_GetImageClips(fieldSystem->saveData)), id);
         break;
     }
 }

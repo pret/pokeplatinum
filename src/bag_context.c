@@ -124,14 +124,14 @@ static u32 GetNumAccessories(SaveData *saveData)
 {
     ImageClips *imageClips = SaveData_GetImageClips(saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
-    return sub_02029DF0(fashionCase);
+    return FashionCase_GetTotalAccessories(fashionCase);
 }
 
 static u32 GetNumBackdrops(SaveData *saveData)
 {
     ImageClips *imageClips = SaveData_GetImageClips(saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
-    return sub_02029E0C(fashionCase);
+    return FashionCase_GetTotalBackdrops(fashionCase);
 }
 
 static u32 GetNumBattlePoints(SaveData *saveData)

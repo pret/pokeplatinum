@@ -2,9 +2,9 @@
 #define POKEPLATINUM_STRUCT_FASHION_CASE_H
 
 typedef struct FashionCase {
-    u32 unk_00[8];
-    u32 unk_20[2];
-    u32 unk_28[6];
+    u32 nonUniqueAccessoryFlags[8];
+    u32 uniqueAccessoryFlags[2];
+    u32 backdropFlags[6];
 } FashionCase;
 
 #endif // POKEPLATINUM_STRUCT_FASHION_CASE_H

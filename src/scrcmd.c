@@ -5968,12 +5968,12 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
 
 static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 backdropID = ScriptContext_GetVar(ctx);
 
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029EFC(fashionCase, v2);
+    FashionCase_AddBackdrop(fashionCase, backdropID);
     return FALSE;
 }
 
