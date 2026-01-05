@@ -23,7 +23,7 @@ void ov22_0225894C(const FashionCase *fashionCase, UnkStruct_ov22_0225899C *para
     }
 
     for (i = 0; i < BACKDROP_COUNT; i++) {
-        v1 = FashionCase_HasBackdrop(fashionCase, i);
+        v1 = FashionCase_GetBackdropCount(fashionCase, i);
 
         if (v1 != BACKDROP_COUNT) {
             param1->backdropCounts[v1] = i;

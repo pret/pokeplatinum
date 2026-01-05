@@ -174,12 +174,12 @@ static u8 UniqueAccessoryFlags_GetCount(const u32 *flags, u8 accessoryID)
     return (flags[v0] >> v1) & 0x1;
 }
 
-static void sub_02029B18(u32 *flags, u8 param1, u8 backdropID)
+static void BackdropFlags_SetCount(u32 *flags, u8 count, u8 backdropID)
 {
     u8 v0;
     u8 v1;
 
-    GF_ASSERT(param1 <= BACKDROP_COUNT);
+    GF_ASSERT(count <= BACKDROP_COUNT);
 
     v0 = backdropID / 4;
     v1 = backdropID % 4;
@@ -187,10 +187,10 @@ static void sub_02029B18(u32 *flags, u8 param1, u8 backdropID)
     v1 *= 8;
 
     flags[v0] &= ~(0xff << v1);
-    flags[v0] |= (param1 << v1);
+    flags[v0] |= (count << v1);
 }
 
-static u8 sub_02029B5C(const u32 *flags, u8 backdropID)
+static u8 BackdropFlags_GetCount(const u32 *flags, u8 backdropID)
 {
     u8 v0;
     u8 v1;
@@ -203,18 +203,18 @@ static u8 sub_02029B5C(const u32 *flags, u8 backdropID)
     return (flags[v0] >> v1) & 0xff;
 }
 
-static u8 sub_02029B80(const u32 *param0)
+static u8 BackdropFlags_GetTotalCount(const u32 *flags)
 {
     int i;
-    int v1 = 0;
+    int count = 0;
 
     for (i = 0; i < BACKDROP_COUNT; i++) {
-        if (sub_02029B5C(param0, i) != BACKDROP_COUNT) {
-            v1++;
+        if (BackdropFlags_GetCount(flags, i) != BACKDROP_COUNT) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }
 
 static BOOL Accesory_CanHaveMultiple(u32 accessoryID)
@@ -232,14 +232,14 @@ static inline u8 Accessory_ToUniqueID(u32 accessoryID)
     return accessoryID - NON_UNIQUE_ACCESSORY_COUNT;
 }
 
-static void sub_02029BB0(FashionCase *fashionCase)
+static void FashionCase_Init(FashionCase *fashionCase)
 {
     int i;
 
     memset(fashionCase, 0, sizeof(FashionCase));
 
     for (i = 0; i < BACKDROP_COUNT; i++) {
-        sub_02029B18(fashionCase->backdropFlags, BACKDROP_COUNT, i);
+        BackdropFlags_SetCount(fashionCase->backdropFlags, BACKDROP_COUNT, i);
     }
 }
 
@@ -264,7 +264,7 @@ void ImageClips_Init(ImageClips *imageClips)
         inline_02029BFC_1(&imageClips->unk_4C8[v0]);
     }
 
-    sub_02029BB0(&imageClips->unk_7A4);
+    FashionCase_Init(&imageClips->fashionCase);
 }
 
 int ImageClips_SaveSize(void)
@@ -316,7 +316,7 @@ UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int param1)
 
 FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips)
 {
-    return &imageClips->unk_7A4;
+    return &imageClips->fashionCase;
 }
 
 BOOL sub_02029D10(const ImageClips *imageClips, int param1)
@@ -355,11 +355,11 @@ BOOL FashionCase_CanFitAccessoryCount(const FashionCase *fashionCase, u32 access
     return canFit;
 }
 
-BOOL sub_02029D80(const FashionCase *fashionCase, u32 backdropID)
+BOOL FashionCase_HasBackdrop(const FashionCase *fashionCase, u32 backdropID)
 {
-    u32 v0 = FashionCase_HasBackdrop(fashionCase, backdropID);
+    u32 count = FashionCase_GetBackdropCount(fashionCase, backdropID);
 
-    if (v0 != BACKDROP_COUNT) {
+    if (count != BACKDROP_COUNT) {
         return TRUE;
     }
 
@@ -382,10 +382,10 @@ u32 FashionCase_GetAccessoryCount(const FashionCase *fashionCase, u32 accessoryI
     return count;
 }
 
-u32 FashionCase_HasBackdrop(const FashionCase *fashionCase, u32 backdropID)
+u32 FashionCase_GetBackdropCount(const FashionCase *fashionCase, u32 backdropID)
 {
     GF_ASSERT(backdropID < BACKDROP_COUNT);
-    return sub_02029B5C(fashionCase->backdropFlags, backdropID);
+    return BackdropFlags_GetCount(fashionCase->backdropFlags, backdropID);
 }
 
 u32 FashionCase_GetTotalAccessories(const FashionCase *fashionCase)
@@ -406,7 +406,7 @@ u32 FashionCase_GetTotalBackdrops(const FashionCase *fashionCase)
     int count = 0;
 
     for (i = 0; i < BACKDROP_COUNT; i++) {
-        if (FashionCase_HasBackdrop(fashionCase, i) != BACKDROP_COUNT) {
+        if (FashionCase_GetBackdropCount(fashionCase, i) != BACKDROP_COUNT) {
             count++;
         }
     }
@@ -442,40 +442,40 @@ void FashionCase_AddAccessory(FashionCase *fashionCase, u32 accessoryID, u32 amo
     }
 }
 
-void sub_02029EA0(FashionCase *fashionCase, u32 accessoryID, u32 param2)
+void FashionCase_RemoveAccessory(FashionCase *fashionCase, u32 accessoryID, u32 amount)
 {
-    u8 v0;
+    u8 count;
 
     GF_ASSERT(accessoryID < ACCESSORY_COUNT);
 
     if (Accesory_CanHaveMultiple(accessoryID)) {
-        v0 = NonUniqueAccessoryFlags_GetCount(fashionCase->nonUniqueAccessoryFlags, accessoryID);
+        count = NonUniqueAccessoryFlags_GetCount(fashionCase->nonUniqueAccessoryFlags, accessoryID);
 
-        if (v0 > param2) {
-            v0 -= param2;
+        if (count > amount) {
+            count -= amount;
         } else {
-            v0 = 0;
+            count = 0;
         }
 
-        NonUniqueAccessoryFlags_SetCount(fashionCase->nonUniqueAccessoryFlags, v0, accessoryID);
+        NonUniqueAccessoryFlags_SetCount(fashionCase->nonUniqueAccessoryFlags, count, accessoryID);
     } else {
-        v0 = 0;
+        count = 0;
         accessoryID = Accessory_ToUniqueID(accessoryID);
 
-        UniqueAccessoryFlags_SetCount(fashionCase->uniqueAccessoryFlags, v0, accessoryID);
+        UniqueAccessoryFlags_SetCount(fashionCase->uniqueAccessoryFlags, count, accessoryID);
     }
 }
 
 void FashionCase_AddBackdrop(FashionCase *fashionCase, u32 backdropID)
 {
-    u8 v0;
+    u8 count;
 
     GF_ASSERT(backdropID < BACKDROP_COUNT);
 
-    if (sub_02029B5C(fashionCase->backdropFlags, backdropID) == BACKDROP_COUNT) {
-        v0 = sub_02029B80(fashionCase->backdropFlags);
+    if (BackdropFlags_GetCount(fashionCase->backdropFlags, backdropID) == BACKDROP_COUNT) {
+        count = BackdropFlags_GetTotalCount(fashionCase->backdropFlags);
 
-        sub_02029B18(fashionCase->backdropFlags, v0, backdropID);
+        BackdropFlags_SetCount(fashionCase->backdropFlags, count, backdropID);
     }
 }
 

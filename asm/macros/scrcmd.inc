@@ -3742,10 +3742,11 @@
     .short \slot
     .endm
 
-    .macro ScrCmd_Unused_279 arg0, arg1
+    /* Unused */
+    .macro ScrCmd_RemoveAccessory accessoryID, amount
     .short 633
-    .short \arg0
-    .short \arg1
+    .short \accessoryID
+    .short \amount
     .endm
 
     .macro ScrCmd_27A

@@ -656,7 +656,7 @@ static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
 static BOOL ScrCmd_BufferContestBackdropName(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx);
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_279(ScriptContext *ctx);
+static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_27A(ScriptContext *ctx);
 static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_27D(ScriptContext *ctx);
@@ -1401,7 +1401,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CanAddCoins,
     ScrCmd_GetDailyRandomLevel,
     ScrCmd_GetPartyMonLevel,
-    ScrCmd_Unused_279,
+    ScrCmd_RemoveAccessory,
     ScrCmd_27A,
     ScrCmd_InitDailyRandomLevel,
     ScrCmd_27C,
@@ -5984,7 +5984,7 @@ static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
 
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
-    *destVar = sub_02029D80(fashionCase, backdrop);
+    *destVar = FashionCase_HasBackdrop(fashionCase, backdrop);
 
     return FALSE;
 }
@@ -6832,15 +6832,15 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_279(ScriptContext *ctx)
+static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx)
 {
     u16 accessoryID = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 amount = ScriptContext_GetVar(ctx);
 
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029EA0(fashionCase, accessoryID, v3);
+    FashionCase_RemoveAccessory(fashionCase, accessoryID, amount);
     return FALSE;
 }
 
