@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02093800_H
 #define POKEPLATINUM_STRUCT_02093800_H
 
-#include "struct_defs/struct_0202A750.h"
+#include "struct_defs/image_clips.h"
 
 #include "game_options.h"
 #include "pokemon.h"

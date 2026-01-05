@@ -10,8 +10,8 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_02029C88.h"
-#include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_02093800.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02094A58.h"

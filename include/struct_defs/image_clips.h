@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0202A750_DEF_H
-#define POKEPLATINUM_STRUCT_0202A750_DEF_H
+#ifndef POKEPLATINUM_STRUCT_IMAGE_CLIPS_H
+#define POKEPLATINUM_STRUCT_IMAGE_CLIPS_H
 
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/fashion_case.h"
@@ -13,4 +13,4 @@ typedef struct ImageClips {
     FashionCase fashionCase;
 } ImageClips;
 
-#endif // POKEPLATINUM_STRUCT_0202A750_DEF_H
+#endif // POKEPLATINUM_STRUCT_IMAGE_CLIPS_H

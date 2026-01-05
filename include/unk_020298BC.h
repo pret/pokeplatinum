@@ -2,11 +2,11 @@
 #define POKEPLATINUM_UNK_020298BC_H
 
 #include "struct_defs/dress_up_photo.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/photo_accessory.h"
 #include "struct_defs/photo_pokemon.h"
 #include "struct_defs/struct_020298D8.h"
 #include "struct_defs/struct_02029C88.h"
-#include "struct_defs/struct_0202A750.h"
 
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02041DC8_H
 #define POKEPLATINUM_STRUCT_02041DC8_H
 
-#include "struct_defs/struct_0202A750.h"
+#include "struct_defs/image_clips.h"
 
 typedef struct {
     ImageClips *imageClips;

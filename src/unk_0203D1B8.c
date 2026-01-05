@@ -12,7 +12,7 @@
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/gts_player_data.h"
-#include "struct_defs/struct_0202A750.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"

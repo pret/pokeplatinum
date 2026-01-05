@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02095C48_H
 #define POKEPLATINUM_STRUCT_02095C48_H
 
-#include "struct_defs/struct_0202A750.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"

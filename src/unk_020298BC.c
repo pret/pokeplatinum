@@ -7,9 +7,9 @@
 #include "constants/charcode.h"
 #include "generated/backdrops.h"
 
+#include "struct_defs/image_clips.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"
-#include "struct_defs/struct_0202A750.h"
 
 #include "overlay022/ov22_02259098.h"
 #include "overlay022/struct_ov22_02255040.h"

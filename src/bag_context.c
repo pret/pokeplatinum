@@ -6,8 +6,8 @@
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 
+#include "struct_defs/image_clips.h"
 #include "struct_defs/seal_case.h"
-#include "struct_defs/struct_0202A750.h"
 
 #include "bag.h"
 #include "coins.h"
