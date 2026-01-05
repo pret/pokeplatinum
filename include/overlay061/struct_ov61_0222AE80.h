@@ -7,7 +7,7 @@
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
 typedef struct {
-    u32 unk_00;
+    u32 integrity;
     UnkStruct_ov61_0222AE80_sub1 unk_04;
     u32 unk_24;
     UnkStruct_ov61_0222BED8_sub2_sub1_sub1_sub1 unk_28;

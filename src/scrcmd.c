@@ -383,7 +383,7 @@ static BOOL ScrCmd_0A7(ScriptContext *ctx);
 static BOOL ScrCmd_0A8(ScriptContext *ctx);
 static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
-static BOOL ScrCmd_130(ScriptContext *ctx);
+static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
@@ -1072,7 +1072,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TrySaveGame,
     ScrCmd_12E,
     ScrCmd_12F,
-    ScrCmd_130,
+    ScrCmd_SetDressUpPhotoTitle,
     ScrCmd_131,
     ScrCmd_132,
     ScrCmd_RegisterPoketchApp,
@@ -3782,7 +3782,7 @@ static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (param1 == 0) {
-        if (!sub_02029D10(imageClips, param2)) {
+        if (!ImageClips_DressUpPhotoHasData(imageClips, param2)) {
             return FALSE;
         }
     } else {
@@ -4038,13 +4038,13 @@ static BOOL ScrCmd_12F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_130(ScriptContext *ctx)
+static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 word = ScriptContext_GetVar(ctx);
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
     DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
 
-    sub_0202A0A0(photo, v0);
+    DressUpPhoto_SetTitle(photo, word);
 
     return TRUE;
 }

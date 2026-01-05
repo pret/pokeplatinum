@@ -8,17 +8,17 @@
 #define SAVED_PHOTOS_COUNT 11
 
 typedef struct UnkStruct_0202A138_t {
-    u32 unk_00;
-    u32 unk_04;
-    u16 unk_08;
-    u16 unk_0A[MON_NAME_LEN + 1];
-    u16 unk_20[8];
-    s8 unk_30;
-    u8 unk_31;
-    u8 unk_32;
-    u8 unk_33;
-    u8 unk_34;
-} UnkStruct_0202A138;
+    u32 personality;
+    u32 otID;
+    u16 species;
+    u16 nickname[MON_NAME_LEN + 1];
+    u16 trainerName[8];
+    s8 zPos;
+    u8 xPos;
+    u8 yPos;
+    u8 form;
+    u8 trainerGender;
+} PhotoPokemon;
 
 typedef struct UnkStruct_0202A150_t {
     u8 unk_00;
@@ -29,9 +29,9 @@ typedef struct UnkStruct_0202A150_t {
 
 typedef struct DressUpPhoto_t {
     u32 integrity;
-    UnkStruct_0202A138 unk_04;
+    PhotoPokemon photoMon;
     u32 unk_3C;
-    Sentence unk_40;
+    Sentence title;
     UnkStruct_0202A150 unk_48[10];
     u8 unk_70;
     u8 language;
@@ -40,7 +40,7 @@ typedef struct DressUpPhoto_t {
 typedef struct UnkStruct_02029C88_t {
     u32 unk_00;
     u32 unk_04;
-    UnkStruct_0202A138 unk_08;
+    PhotoPokemon photoMon;
     u32 unk_40;
     UnkStruct_0202A150 unk_44[20];
     u8 unk_94;

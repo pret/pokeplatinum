@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202A138_DECL_H
 #define POKEPLATINUM_STRUCT_0202A138_DECL_H
 
-typedef struct UnkStruct_0202A138_t UnkStruct_0202A138;
+typedef struct UnkStruct_0202A138_t PhotoPokemon;
 
 #endif // POKEPLATINUM_STRUCT_0202A138_DECL_H

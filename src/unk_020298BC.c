@@ -7,6 +7,7 @@
 #include "struct_defs/struct_0202A750.h"
 
 #include "constants/accessories.h"
+#include "constants/charcode.h"
 #include "generated/backdrops.h"
 
 #include "overlay022/ov22_02259098.h"
@@ -57,57 +58,57 @@ static inline void inline_02029BFC_1(UnkStruct_02029C88 *param0)
     param0->unk_00 = PHOTO_EMPTY_MAGIC;
 }
 
-static void sub_020298D8(UnkStruct_020298D8 *param0, u8 *param1, u8 *param2, s8 *param3)
+static void sub_020298D8(UnkStruct_020298D8 *param0, u8 *xPos, u8 *yPos, s8 *zPos)
 {
-    int v0, v1;
-    int v2;
+    int xCenter, yCenter;
+    int zCenter;
 
-    ov22_02259250(param0, &v0, &v1);
-    v2 = ov22_022591E0(param0);
+    ov22_02259250(param0, &xCenter, &yCenter);
+    zCenter = ov22_022591E0(param0);
 
-    GF_ASSERT(v0 < 256);
-    GF_ASSERT(v1 < 256);
-    GF_ASSERT(v2 > -128);
+    GF_ASSERT(xCenter < 256);
+    GF_ASSERT(yCenter < 256);
+    GF_ASSERT(zCenter > -128);
 
-    *param1 = v0;
-    *param2 = v1;
-    *param3 = v2;
+    *xPos = xCenter;
+    *yPos = yCenter;
+    *zPos = zCenter;
 }
 
-static void sub_0202992C(UnkStruct_0202A138 *param0, Pokemon *param1, u8 param2, u8 param3, s8 param4)
+static void PhotoPokemon_SetDataFromMon(PhotoPokemon *photoMon, Pokemon *mon, u8 xPos, u8 yPos, s8 zPos)
 {
-    param0->unk_08 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_0A);
+    photoMon->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, photoMon->nickname);
 
-    param0->unk_00 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_04 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_33 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    photoMon->personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    photoMon->otID = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
+    photoMon->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    param0->unk_31 = param2;
-    param0->unk_32 = param3;
-    param0->unk_30 = param4;
+    photoMon->xPos = xPos;
+    photoMon->yPos = yPos;
+    photoMon->zPos = zPos;
 }
 
-static void sub_02029990(UnkStruct_0202A138 *param0, Pokemon *mon, UnkStruct_020298D8 *param2)
+static void sub_02029990(PhotoPokemon *photoMon, Pokemon *mon, UnkStruct_020298D8 *param2)
 {
-    u8 v0, v1;
-    s8 v2;
+    u8 xPos, yPos;
+    s8 zPos;
 
-    sub_020298D8(param2, &v0, &v1, &v2);
-    sub_0202992C(param0, mon, v0, v1, v2);
+    sub_020298D8(param2, &xPos, &yPos, &zPos);
+    PhotoPokemon_SetDataFromMon(photoMon, mon, xPos, yPos, zPos);
 }
 
-static void sub_020299C0(UnkStruct_0202A138 *param0, const String *param1, int param2)
+static void PhotoPokemon_SetTrainerNameAndGender(PhotoPokemon *photoMon, const String *name, int gender)
 {
-    String_ToChars(param1, param0->unk_20, 8); // Possibly TRAINER_NAME_LEN + 1
-    param0->unk_34 = param2;
+    String_ToChars(name, photoMon->trainerName, TRAINER_NAME_LEN + 1);
+    photoMon->trainerGender = gender;
 }
 
-static void sub_020299D8(const UnkStruct_0202A138 *param0, Pokemon *param1)
+static void PhotoPokemon_CopyToPokemonInternal(const PhotoPokemon *photoMon, Pokemon *mon)
 {
-    Pokemon_InitWith(param1, param0->unk_08, 0, 0, TRUE, param0->unk_00, OTID_SET, param0->unk_04);
-    Pokemon_SetValue(param1, MON_DATA_NICKNAME, param0->unk_0A);
-    Pokemon_SetValue(param1, MON_DATA_FORM, &param0->unk_33);
+    Pokemon_InitWith(mon, photoMon->species, 0, 0, TRUE, photoMon->personality, OTID_SET, photoMon->otID);
+    Pokemon_SetValue(mon, MON_DATA_NICKNAME, photoMon->nickname);
+    Pokemon_SetValue(mon, MON_DATA_FORM, &photoMon->form);
 }
 
 static void sub_02029A18(UnkStruct_0202A150 *param0, u8 param1, u8 param2, u8 param3, u8 param4)
@@ -246,13 +247,13 @@ static void FashionCase_Init(FashionCase *fashionCase)
     }
 }
 
-static void sub_02029BD8(Pokemon *param0, u8 *param1, u8 *param2)
+static void GetMonXYPositions(Pokemon *mon, u8 *xPos, u8 *yPos)
 {
-    u8 v0 = Pokemon_DPSpriteYOffset(param0, 2);
+    u8 yOffset = Pokemon_DPSpriteYOffset(mon, FACE_FRONT);
 
-    *param1 = 192 - (8 * 8);
-    *param2 = (16 + 129) - ((80 / 2) - v0) + -4;
-    *param2 += (5 * 8);
+    *xPos = 192 - (8 * 8);
+    *yPos = (16 + 129) - ((80 / 2) - yOffset) + -4;
+    *yPos += (5 * 8);
 }
 
 void ImageClips_Init(ImageClips *imageClips)
@@ -322,10 +323,10 @@ FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips)
     return &imageClips->fashionCase;
 }
 
-BOOL sub_02029D10(const ImageClips *imageClips, int slot)
+BOOL ImageClips_DressUpPhotoHasData(const ImageClips *imageClips, int slot)
 {
     GF_ASSERT(slot < SAVED_PHOTOS_COUNT);
-    return sub_02029F34(&imageClips->savedPhotos[slot]);
+    return DressUpPhoto_HasData(&imageClips->savedPhotos[slot]);
 }
 
 BOOL sub_02029D2C(const ImageClips *imageClips, int param1)
@@ -482,7 +483,7 @@ void FashionCase_AddBackdrop(FashionCase *fashionCase, u32 backdropID)
     }
 }
 
-BOOL sub_02029F34(const DressUpPhoto *photo)
+BOOL DressUpPhoto_HasData(const DressUpPhoto *photo)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
 
@@ -493,7 +494,7 @@ BOOL sub_02029F34(const DressUpPhoto *photo)
     return FALSE;
 }
 
-void sub_02029F5C(DressUpPhoto *photo)
+void DressUpPhoto_SetLanguageAndMagic(DressUpPhoto *photo)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
 
@@ -510,7 +511,7 @@ void DressUpPhoto_Init(DressUpPhoto *photo)
 void sub_02029FAC(DressUpPhoto *photo, Pokemon *mon, UnkStruct_020298D8 *param2)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
-    sub_02029990(&photo->unk_04, mon, param2);
+    sub_02029990(&photo->photoMon, mon, param2);
 }
 
 void sub_02029FD0(DressUpPhoto *photo, const UnkStruct_ov22_02255040 *param1, int param2)
@@ -536,12 +537,12 @@ void sub_0202A084(DressUpPhoto *photo, u8 param1)
     photo->unk_70 = param1;
 }
 
-void sub_0202A0A0(DressUpPhoto *photo, u16 param1)
+void DressUpPhoto_SetTitle(DressUpPhoto *photo, u16 word)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
 
-    sub_02014A84(&photo->unk_40);
-    sub_02014CF8(&photo->unk_40, 0, param1);
+    sub_02014A84(&photo->title);
+    sub_02014CF8(&photo->title, 0, word);
 }
 
 void DressUpPhoto_Copy(DressUpPhoto *dest, const DressUpPhoto *src)
@@ -550,10 +551,10 @@ void DressUpPhoto_Copy(DressUpPhoto *dest, const DressUpPhoto *src)
     memcpy(dest, src, sizeof(DressUpPhoto));
 }
 
-void sub_0202A0EC(DressUpPhoto *photo, const String *param1, int param2)
+void DressUpPhoto_SetTrainerNameAndGender(DressUpPhoto *photo, const String *name, int gender)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
-    sub_020299C0(&photo->unk_04, param1, param2);
+    PhotoPokemon_SetTrainerNameAndGender(&photo->photoMon, name, gender);
 }
 
 BOOL sub_0202A110(const DressUpPhoto *photo, int param1)
@@ -564,10 +565,10 @@ BOOL sub_0202A110(const DressUpPhoto *photo, int param1)
     return photo->unk_3C & (1 << param1);
 }
 
-const UnkStruct_0202A138 *sub_0202A138(const DressUpPhoto *photo)
+const PhotoPokemon *DressUpPhoto_GetPhotoMon(const DressUpPhoto *photo)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return &photo->unk_04;
+    return &photo->photoMon;
 }
 
 const UnkStruct_0202A150 *sub_0202A150(const DressUpPhoto *photo, int param1)
@@ -579,22 +580,22 @@ const UnkStruct_0202A150 *sub_0202A150(const DressUpPhoto *photo, int param1)
     return &photo->unk_48[param1];
 }
 
-u16 sub_0202A184(const DressUpPhoto *photo)
+u16 DressUpPhoto_GetMonSpecies(const DressUpPhoto *photo)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return sub_0202A5E8(&photo->unk_04);
+    return PhotoPokemon_GetSpecies(&photo->photoMon);
 }
 
-void sub_0202A1A0(const DressUpPhoto *photo, String *param1)
+void DressUpPhoto_SetTrainerName(const DressUpPhoto *photo, String *name)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
-    sub_0202A5EC(&photo->unk_04, param1);
+    PhotoPokemon_SetTrainerName(&photo->photoMon, name);
 }
 
-u32 sub_0202A1C0(const DressUpPhoto *photo)
+u32 DressUpPhoto_GetTrainerGender(const DressUpPhoto *photo)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
-    return sub_0202A5FC(&photo->unk_04);
+    return PhotoPokemon_GetTrainerGender(&photo->photoMon);
 }
 
 u8 sub_0202A1DC(const DressUpPhoto *photo)
@@ -603,13 +604,12 @@ u8 sub_0202A1DC(const DressUpPhoto *photo)
     return photo->unk_70;
 }
 
-u16 sub_0202A1F4(const DressUpPhoto *photo)
+u16 DressUpPhoto_GetTitleWord(const DressUpPhoto *photo)
 {
-    u16 v0 = sub_02014C78(&photo->unk_40, 0);
-    return v0;
+    return Sentence_GetWord(&photo->title, 0);
 }
 
-u8 sub_0202A200(const DressUpPhoto *photo)
+u8 DressUpPhoto_GetLanguage(const DressUpPhoto *photo)
 {
     GF_ASSERT(DressUpPhoto_IsValid(photo));
     return photo->language;
@@ -641,7 +641,7 @@ void sub_0202A25C(UnkStruct_02029C88 *param0)
 void sub_0202A284(UnkStruct_02029C88 *param0, Pokemon *param1, UnkStruct_020298D8 *param2)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    sub_02029990(&param0->unk_08, param1, param2);
+    sub_02029990(&param0->photoMon, param1, param2);
 }
 
 void sub_0202A2A8(UnkStruct_02029C88 *param0, const UnkStruct_ov22_02255040 *param1, int param2)
@@ -679,15 +679,15 @@ void sub_0202A390(UnkStruct_02029C88 *param0, const UnkStruct_02029C88 *param1)
     memcpy(param0, param1, sizeof(UnkStruct_02029C88));
 }
 
-void sub_0202A3B0(UnkStruct_02029C88 *param0, Pokemon *param1, s8 param2)
+void sub_0202A3B0(UnkStruct_02029C88 *param0, Pokemon *mon, s8 zPos)
 {
-    u8 v0;
-    u8 v1;
+    u8 xPos;
+    u8 yPos;
 
     GF_ASSERT(inline_02029CD0(param0));
 
-    sub_02029BD8(param1, &v0, &v1);
-    sub_0202992C(&param0->unk_08, param1, v0, v1, param2);
+    GetMonXYPositions(mon, &xPos, &yPos);
+    PhotoPokemon_SetDataFromMon(&param0->photoMon, mon, xPos, yPos, zPos);
 }
 
 void sub_0202A3EC(UnkStruct_02029C88 *param0, u32 param1, u8 param2, u8 param3, u8 param4, s8 param5)
@@ -700,8 +700,8 @@ void sub_0202A3EC(UnkStruct_02029C88 *param0, u32 param1, u8 param2, u8 param3, 
     GF_ASSERT(!(param0->unk_40 & (1 << param1)));
     GF_ASSERT(inline_02029CD0(param0));
 
-    if (param0->unk_08.unk_30 >= param5) {
-        param5 = param0->unk_08.unk_30 + 1;
+    if (param0->photoMon.zPos >= param5) {
+        param5 = param0->photoMon.zPos + 1;
     }
 
     sub_02029A18(&param0->unk_44[param1], param2, param3, param4, param5);
@@ -720,16 +720,16 @@ BOOL sub_0202A488(const UnkStruct_02029C88 *param0, int param1)
     return 0;
 }
 
-void sub_0202A4B4(UnkStruct_02029C88 *param0, const String *param1, int param2)
+void sub_0202A4B4(UnkStruct_02029C88 *param0, const String *name, int gender)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    sub_020299C0(&param0->unk_08, param1, param2);
+    PhotoPokemon_SetTrainerNameAndGender(&param0->photoMon, name, gender);
 }
 
-const UnkStruct_0202A138 *sub_0202A4D8(const UnkStruct_02029C88 *param0)
+const PhotoPokemon *sub_0202A4D8(const UnkStruct_02029C88 *param0)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    return &param0->unk_08;
+    return &param0->photoMon;
 }
 
 const UnkStruct_0202A150 *sub_0202A4F0(const UnkStruct_02029C88 *param0, int param1)
@@ -744,19 +744,19 @@ const UnkStruct_0202A150 *sub_0202A4F0(const UnkStruct_02029C88 *param0, int par
 void sub_0202A524(const UnkStruct_02029C88 *param0, String *param1)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    sub_0202A5EC(&param0->unk_08, param1);
+    PhotoPokemon_SetTrainerName(&param0->photoMon, param1);
 }
 
 u32 sub_0202A544(const UnkStruct_02029C88 *param0)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    return sub_0202A5FC(&param0->unk_08);
+    return PhotoPokemon_GetTrainerGender(&param0->photoMon);
 }
 
 void sub_0202A560(const UnkStruct_02029C88 *param0, Pokemon *param1)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    sub_020299D8(&param0->unk_08, param1);
+    PhotoPokemon_CopyToPokemonInternal(&param0->photoMon, param1);
 }
 
 u8 sub_0202A580(const UnkStruct_02029C88 *param0, int param1)
@@ -780,39 +780,39 @@ u32 sub_0202A5D0(const UnkStruct_02029C88 *param0)
     return param0->unk_04;
 }
 
-u16 sub_0202A5E8(const UnkStruct_0202A138 *param0)
+u16 PhotoPokemon_GetSpecies(const PhotoPokemon *photoMon)
 {
-    return param0->unk_08;
+    return photoMon->species;
 }
 
-void sub_0202A5EC(const UnkStruct_0202A138 *param0, String *param1)
+void PhotoPokemon_SetTrainerName(const PhotoPokemon *photoMon, String *name)
 {
-    String_CopyChars(param1, param0->unk_20);
+    String_CopyChars(name, photoMon->trainerName);
 }
 
-u32 sub_0202A5FC(const UnkStruct_0202A138 *param0)
+u32 PhotoPokemon_GetTrainerGender(const PhotoPokemon *photoMon)
 {
-    return param0->unk_34;
+    return photoMon->trainerGender;
 }
 
-s8 sub_0202A604(const UnkStruct_0202A138 *param0)
+s8 PhotoPokemon_GetZPos(const PhotoPokemon *photoMon)
 {
-    return param0->unk_30;
+    return photoMon->zPos;
 }
 
-u8 sub_0202A60C(const UnkStruct_0202A138 *param0)
+u8 PhotoPokemon_GetXPos(const PhotoPokemon *photoMon)
 {
-    return param0->unk_31;
+    return photoMon->xPos;
 }
 
-u8 sub_0202A614(const UnkStruct_0202A138 *param0)
+u8 PhotoPokemon_GetYPos(const PhotoPokemon *photoMon)
 {
-    return param0->unk_32;
+    return photoMon->yPos;
 }
 
-void sub_0202A61C(const UnkStruct_0202A138 *param0, Pokemon *param1)
+void PhotoPokemon_CopyToPokemon(const PhotoPokemon *photoMon, Pokemon *mon)
 {
-    sub_020299D8(param0, param1);
+    PhotoPokemon_CopyToPokemonInternal(photoMon, mon);
 }
 
 u8 sub_0202A624(const UnkStruct_0202A150 *param0)
@@ -843,7 +843,7 @@ static BOOL sub_0202A638(ImageClips *imageClips, const DressUpPhoto *photo)
     MATHCRC32Table v4;
     BOOL v5 = 1;
 
-    if (sub_02029F34(photo) == 1) {
+    if (DressUpPhoto_HasData(photo) == TRUE) {
         MATH_CRC32InitTable(&v4);
         v2 = MATH_CalcCRC32(&v4, photo, sizeof(DressUpPhoto));
 
@@ -923,32 +923,30 @@ ImageClips *SaveData_GetImageClips(SaveData *saveData)
 
 void sub_0202A75C(const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param1)
 {
-    int v0;
+    int i;
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov61_0222AE80));
 
-    param1->unk_00 = photo->integrity;
+    param1->integrity = photo->integrity;
 
-    {
-        param1->unk_04.unk_00 = photo->unk_04.unk_00;
-        param1->unk_04.unk_04 = photo->unk_04.unk_04;
-        param1->unk_04.unk_08 = photo->unk_04.unk_08;
+    param1->unk_04.personality = photo->photoMon.personality;
+    param1->unk_04.otID = photo->photoMon.otID;
+    param1->unk_04.species = photo->photoMon.species;
 
-        for (v0 = 0; v0 < 8; v0++) {
-            param1->unk_04.unk_0A[v0] = photo->unk_04.unk_20[v0];
-        }
-
-        param1->unk_04.unk_1A = photo->unk_04.unk_30;
-        param1->unk_04.unk_1B = photo->unk_04.unk_31;
-        param1->unk_04.unk_1C = photo->unk_04.unk_32;
-        param1->unk_04.unk_1D = photo->unk_04.unk_33;
+    for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
+        param1->unk_04.trainerName[i] = photo->photoMon.trainerName[i];
     }
 
-    param1->unk_24 = photo->unk_3C;
-    param1->unk_28 = *((UnkStruct_ov61_0222BED8_sub2_sub1_sub1_sub1 *)(&photo->unk_40));
+    param1->unk_04.zPos = photo->photoMon.zPos;
+    param1->unk_04.xPos = photo->photoMon.xPos;
+    param1->unk_04.yPos = photo->photoMon.yPos;
+    param1->unk_04.form = photo->photoMon.form;
 
-    for (v0 = 0; v0 < (11 - 1); v0++) {
-        param1->unk_30[v0] = *((UnkStruct_ov61_0222AE80_sub2 *)(&photo->unk_48[v0]));
+    param1->unk_24 = photo->unk_3C;
+    param1->unk_28 = *((UnkStruct_ov61_0222BED8_sub2_sub1_sub1_sub1 *)(&photo->title));
+
+    for (i = 0; i < (11 - 1); i++) {
+        param1->unk_30[i] = *((UnkStruct_ov61_0222AE80_sub2 *)(&photo->unk_48[i]));
     }
 
     param1->unk_58 = photo->unk_70;
@@ -958,41 +956,39 @@ void sub_0202A75C(const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param1)
 void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo)
 {
     int v0;
-    int v1;
+    int i;
 
     v0 = sub_02029C60();
     MI_CpuClear8(photo, v0);
 
-    photo->integrity = param0->unk_00;
+    photo->integrity = param0->integrity;
 
-    {
-        photo->unk_04.unk_00 = param0->unk_04.unk_00;
-        photo->unk_04.unk_04 = param0->unk_04.unk_04;
-        photo->unk_04.unk_08 = param0->unk_04.unk_08;
+    photo->photoMon.personality = param0->unk_04.personality;
+    photo->photoMon.otID = param0->unk_04.otID;
+    photo->photoMon.species = param0->unk_04.species;
 
-        for (v1 = 0; v1 < 8; v1++) {
-            photo->unk_04.unk_20[v1] = param0->unk_04.unk_0A[v1];
-        }
-
-        photo->unk_04.unk_30 = param0->unk_04.unk_1A;
-        photo->unk_04.unk_31 = param0->unk_04.unk_1B;
-        photo->unk_04.unk_32 = param0->unk_04.unk_1C;
-        photo->unk_04.unk_33 = param0->unk_04.unk_1D;
+    for (i = 0; i < TRAINER_NAME_LEN + 1; i++) {
+        photo->photoMon.trainerName[i] = param0->unk_04.trainerName[i];
     }
 
-    photo->unk_3C = param0->unk_24;
-    photo->unk_40 = *((Sentence *)(&param0->unk_28));
+    photo->photoMon.zPos = param0->unk_04.zPos;
+    photo->photoMon.xPos = param0->unk_04.xPos;
+    photo->photoMon.yPos = param0->unk_04.yPos;
+    photo->photoMon.form = param0->unk_04.form;
 
-    for (v1 = 0; v1 < (11 - 1); v1++) {
-        photo->unk_48[v1] = *((UnkStruct_0202A150 *)(&param0->unk_30[v1]));
+    photo->unk_3C = param0->unk_24;
+    photo->title = *((Sentence *)(&param0->unk_28));
+
+    for (i = 0; i < (11 - 1); i++) {
+        photo->unk_48[i] = *((UnkStruct_0202A150 *)(&param0->unk_30[i]));
     }
 
     photo->unk_70 = param0->unk_58;
     photo->language = param0->unk_59;
 
-    for (v1 = 0; v1 < 11; v1++) {
-        photo->unk_04.unk_0A[v1] = 0xffff;
+    for (i = 0; i < MON_NAME_LEN + 1; i++) {
+        photo->photoMon.nickname[i] = CHAR_EOS;
     }
 
-    photo->unk_04.unk_34 = 0;
+    photo->photoMon.trainerGender = 0;
 }

@@ -1362,7 +1362,7 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     String *v3;
     StringTemplate *v4;
     UnkStruct_ov62_02237D24 *v5 = param0->unk_860;
-    u16 v6;
+    u16 word;
     u32 v7;
     int v8, v9;
 
@@ -1380,12 +1380,12 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 56);
 
     v1 = String_Init(255, HEAP_ID_102);
-    sub_0202A1A0(v5->photo, v1);
+    DressUpPhoto_SetTrainerName(v5->photo, v1);
     ov62_022349A8(param0, v1);
-    v6 = sub_0202A1F4(v5->photo);
+    word = DressUpPhoto_GetTitleWord(v5->photo);
 
     StringTemplate_SetString(v4, 0, v1, 0, 1, 2);
-    StringTemplate_SetCustomMessageWord(v4, 1, v6);
+    StringTemplate_SetCustomMessageWord(v4, 1, word);
     StringTemplate_Format(v4, v3, v2);
 
     v7 = String_NumLines(v3);
@@ -1411,7 +1411,7 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     String *v3;
     StringTemplate *v4;
     UnkStruct_ov62_02237D24 *v5 = param0->unk_860;
-    u16 v6;
+    u16 word;
     u32 v7;
     int v8, v9;
 
@@ -1429,12 +1429,12 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 56);
 
     v1 = String_Init(255, HEAP_ID_102);
-    sub_0202A1A0(v5->unk_230.photo, v1);
+    DressUpPhoto_SetTrainerName(v5->unk_230.photo, v1);
     ov62_022349A8(param0, v1);
-    v6 = sub_0202A1F4(v5->unk_230.photo);
+    word = DressUpPhoto_GetTitleWord(v5->unk_230.photo);
 
     StringTemplate_SetString(v4, 0, v1, 0, 1, 2);
-    StringTemplate_SetCustomMessageWord(v4, 1, v6);
+    StringTemplate_SetCustomMessageWord(v4, 1, word);
     StringTemplate_Format(v4, v3, v2);
 
     v7 = String_NumLines(v3);

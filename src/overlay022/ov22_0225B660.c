@@ -272,7 +272,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     VecFx32 v0;
     int v1, v2;
     int v3;
-    u16 v4;
+    u16 word;
     StringTemplate *v5;
     String *v6;
     String *v7;
@@ -287,7 +287,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     Sprite_SetPosition(param0->unk_1FC, &v0);
 
     v7 = String_Init(12, HEAP_ID_13);
-    sub_0202A1A0(param0->photo, v7);
+    DressUpPhoto_SetTrainerName(param0->photo, v7);
 
     v3 = Font_CalcStringWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
@@ -296,8 +296,8 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     String_Free(v7);
 
-    v4 = sub_0202A1F4(param0->photo);
-    StringTemplate_SetCustomMessageWord(v5, 0, v4);
+    word = DressUpPhoto_GetTitleWord(param0->photo);
+    StringTemplate_SetCustomMessageWord(v5, 0, word);
 
     v7 = String_Init(200, HEAP_ID_13);
     v6 = MessageLoader_GetNewString(v8, 45);

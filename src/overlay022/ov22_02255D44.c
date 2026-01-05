@@ -155,7 +155,7 @@ static void ov22_02256C70(SysTask *param0, void *param1);
 static void ov22_02256DB8(UnkStruct_ov22_02255D44 *param0, BOOL *param1);
 static void ov22_02256DE0(SysTask *param0, void *param1);
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param2, int param3);
-static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2);
+static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *info);
 static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, int param2, const TrainerInfo *param3);
 static void ov22_02257104(UnkStruct_ov22_02255D44 *param0);
 static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0);
@@ -1124,21 +1124,21 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
     }
 }
 
-static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2)
+static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *info)
 {
     UnkStruct_ov22_02259560 *v0;
     int v1;
-    String *v2;
-    int v3;
+    String *name;
+    int gender;
 
     DressUpPhoto_Init(photo);
     sub_02029FAC(photo, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
-    if (param2) {
-        v2 = TrainerInfo_NameNewString(param2, 13);
-        v3 = TrainerInfo_Gender(param2);
-        sub_0202A0EC(photo, v2, v3);
-        String_Free(v2);
+    if (info != NULL) {
+        name = TrainerInfo_NameNewString(info, HEAP_ID_13);
+        gender = TrainerInfo_Gender(info);
+        DressUpPhoto_SetTrainerNameAndGender(photo, name, gender);
+        String_Free(name);
     }
 
     v1 = 0;
@@ -1165,7 +1165,7 @@ static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, 
     }
 
     sub_0202A084(photo, param1->unk_2C.unk_48);
-    sub_02029F5C(photo);
+    DressUpPhoto_SetLanguageAndMagic(photo);
 }
 
 static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, int param2, const TrainerInfo *param3)

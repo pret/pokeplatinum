@@ -698,9 +698,9 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
     case 5:
         if (v0 == 0) {
             DressUpPhoto *photo = ImageClips_GetDressUpPhoto(SaveData_GetImageClips(param0->saveData), v0);
-            v1 = sub_02029F34(photo);
+            v1 = DressUpPhoto_HasData(photo);
 
-            if (v1 == 0) {
+            if (v1 == FALSE) {
                 ov62_0223197C(param0, 290);
             }
         }

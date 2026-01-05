@@ -13,7 +13,7 @@ String *sub_02014B34(const Sentence *sentence, u32 heapID);
 String *sub_02014BA0(const Sentence *sentence, u32 param1);
 BOOL sub_02014BBC(const Sentence *sentence);
 BOOL sub_02014BD0(const Sentence *sentence);
-u16 sub_02014C78(const Sentence *sentence, int param1);
+u16 Sentence_GetWord(const Sentence *sentence, int slot);
 u32 sub_02014C80(const Sentence *sentence);
 u32 sub_02014C84(const Sentence *sentence);
 BOOL sub_02014C88(const Sentence *param0, const Sentence *param1);

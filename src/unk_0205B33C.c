@@ -1226,7 +1226,7 @@ int sub_0205BF44(UnkStruct_0205B43C *param0, StringTemplate *param1)
         v2 = 0;
     }
 
-    if ((v3 = sub_02014C78(&param0->unk_178, 0)) != 0xffff) {
+    if ((v3 = Sentence_GetWord(&param0->unk_178, 0)) != 0xffff) {
         StringTemplate_SetCustomMessageWord(param1, 0, v3);
     }
 

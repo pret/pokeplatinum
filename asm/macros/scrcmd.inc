@@ -1788,9 +1788,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_130 arg0
+    .macro SetDressUpPhotoTitle word
     .short 304
-    .short \arg0
+    .short \word
     .endm
 
     .macro ScrCmd_131

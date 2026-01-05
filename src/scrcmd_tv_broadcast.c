@@ -328,7 +328,7 @@ static BOOL sub_02049368(FieldSystem *fieldSystem)
 static BOOL sub_02049378(FieldSystem *fieldSystem)
 {
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
-    return sub_02029D10(imageClips, 0);
+    return ImageClips_DressUpPhotoHasData(imageClips, 0);
 }
 
 static BOOL sub_02049388(FieldSystem *fieldSystem)

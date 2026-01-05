@@ -1775,7 +1775,7 @@ void FieldSystem_SaveTVEpisodeSegment_RightOnPhotoCorner(FieldSystem *fieldSyste
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
     DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
 
-    rightOnPhotoCorner->species = sub_0202A184(photo);
+    rightOnPhotoCorner->species = DressUpPhoto_GetMonSpecies(photo);
 
     FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_INTERVIEWS, TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, rightOnPhotoCorner);
 }
@@ -2583,35 +2583,35 @@ static BOOL TVEpisodeSegment_IsEligible_RoamerNewsFlash(FieldSystem *fieldSystem
     return FALSE;
 }
 
-static int sub_0206EE9C(ImageClips *imageClips)
+static int ImageClips_CountDressUpPhotosWithData(ImageClips *imageClips)
 {
-    int v0, v1;
+    int i, count;
 
-    for (v0 = 0, v1 = 0; v0 < SAVED_PHOTOS_COUNT; v0++) {
-        if (sub_02029D10(imageClips, v0) == 1) {
-            v1++;
+    for (i = 0, count = 0; i < SAVED_PHOTOS_COUNT; i++) {
+        if (ImageClips_DressUpPhotoHasData(imageClips, i) == TRUE) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }
 
 static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     DressUpPhoto *photo;
-    int i, v2, v3, v4;
+    int i, count, v3, v4;
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
-    v2 = sub_0206EE9C(imageClips);
+    count = ImageClips_CountDressUpPhotosWithData(imageClips);
 
-    if (v2 > 1) {
-        v3 = MTRNG_Next() % v2;
+    if (count > 1) {
+        v3 = MTRNG_Next() % count;
     } else {
         v3 = 0;
     }
 
     for (i = 0; i < SAVED_PHOTOS_COUNT; i++) {
-        if (sub_02029D10(imageClips, i) == 1) {
+        if (ImageClips_DressUpPhotoHasData(imageClips, i) == TRUE) {
             if (v3 == 0) {
                 v4 = i;
                 break;
@@ -2624,18 +2624,16 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     GF_ASSERT(i < SAVED_PHOTOS_COUNT);
     photo = ImageClips_GetDressUpPhoto(imageClips, v4);
 
-    {
-        u16 v6;
-        String *v7 = String_Init(7 + 1, HEAP_ID_FIELD1);
-        int v8 = sub_0202A1C0(photo);
+    u16 word;
+    String *v7 = String_Init(7 + 1, HEAP_ID_FIELD1);
+    int gender = DressUpPhoto_GetTrainerGender(photo);
 
-        sub_0202A1A0(photo, v7);
-        StringTemplate_SetString(param1, 0, v7, v8, 1, sub_0202A200(photo));
-        String_Free(v7);
+    DressUpPhoto_SetTrainerName(photo, v7);
+    StringTemplate_SetString(param1, 0, v7, gender, 1, DressUpPhoto_GetLanguage(photo));
+    String_Free(v7);
 
-        v6 = sub_0202A1F4(photo);
-        StringTemplate_SetCustomMessageWord(param1, 1, v6);
-    }
+    word = DressUpPhoto_GetTitleWord(photo);
+    StringTemplate_SetCustomMessageWord(param1, 1, word);
 
     return 52;
 }
@@ -2644,7 +2642,7 @@ static BOOL sub_0206EF64(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 {
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
-    if (sub_0206EE9C(imageClips) != 0) {
+    if (ImageClips_CountDressUpPhotosWithData(imageClips) != 0) {
         return 1;
     } else {
         return 0;
