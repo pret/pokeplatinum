@@ -1053,7 +1053,7 @@ static BOOL ov20_021D1BB0(UnkStruct_ov20_021D16E8 *param0)
         param0->unk_10[param0->unk_4E] = v1;
         break;
     case 2:
-        sub_02014CF8(&param0->unk_08, param0->unk_4E, v1);
+        Sentence_SetWord(&param0->unk_08, param0->unk_4E, v1);
         break;
     }
 
@@ -1302,7 +1302,7 @@ u32 ov20_021D1F9C(const UnkStruct_ov20_021D16E8 *param0)
 u16 ov20_021D1FA8(const UnkStruct_ov20_021D16E8 *param0, int param1)
 {
     if (param0->unk_04 == 2) {
-        return sub_02014C78(&param0->unk_08, param1);
+        return Sentence_GetWord(&param0->unk_08, param1);
     } else {
         return param0->unk_10[param1];
     }

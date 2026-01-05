@@ -212,7 +212,7 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
         v5 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_HELD_ITEM, NULL);
         v6 = 100;
 
-        switch (param0->unk_00.unk_10F) {
+        switch (param0->unk_00.contestType) {
         case 0:
             v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
             v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);

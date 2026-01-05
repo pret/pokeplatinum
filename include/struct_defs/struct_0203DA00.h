@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_0203DA00_H
 #define POKEPLATINUM_STRUCT_0203DA00_H
 
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/fashion_case.h"
 
 #include "game_options.h"
 #include "game_records.h"
@@ -11,8 +11,8 @@
 
 typedef struct {
     Pokemon *unk_00;
-    UnkStruct_02029C68 *unk_04;
-    const UnkStruct_02029D04 *unk_08;
+    DressUpPhoto *photo;
+    const FashionCase *fashionCase;
     const Options *options;
     GameRecords *records;
     const TrainerInfo *unk_14;

@@ -60,7 +60,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_FIELD_OVERWORLD_STATE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOverworldSave_Size, (SaveEntryInitFunc)FieldOverworldSave_Init },
     { SAVE_TABLE_ENTRY_UNDERGROUND, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Underground_SaveSize, (SaveEntryInitFunc)Underground_Init },
     { SAVE_TABLE_ENTRY_REGULATION_BATTLES, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleRegulation_SaveSize, (SaveEntryInitFunc)RegulationBattles_Init },
-    { SAVE_TABLE_ENTRY_IMAGE_CLIPS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClip_SaveSize, (SaveEntryInitFunc)ImageClip_Init },
+    { SAVE_TABLE_ENTRY_IMAGE_CLIPS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClips_SaveSize, (SaveEntryInitFunc)ImageClips_Init },
     { SAVE_TABLE_ENTRY_MAILBOX, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Mailbox_SaveSize, (SaveEntryInitFunc)Mailbox_Init },
     { SAVE_TABLE_ENTRY_POFFINS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PoffinCase_SaveSize, (SaveEntryInitFunc)PoffinCase_Init },
     { SAVE_TABLE_ENTRY_RECORD_MIXED_RNG, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RecordMixedRNG_SaveSize, (SaveEntryInitFunc)RecordMixedRNG_Init },

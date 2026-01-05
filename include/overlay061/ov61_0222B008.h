@@ -2,8 +2,8 @@
 #define POKEPLATINUM_OV61_0222B008_H
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
+#include "struct_defs/dress_up_photo.h"
 
 #include "overlay061/struct_ov61_0222B2D8.h"
 #include "overlay062/struct_ov62_022349A8.h"
@@ -12,7 +12,7 @@
 
 int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130 *param1);
 void ov61_0222B0F0(UnkStruct_ov62_022349A8 *param0);
-int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, UnkStruct_02029C68 *param2);
+int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, DressUpPhoto *photo);
 int ov61_0222B1FC(UnkStruct_ov62_022349A8 *param0, int param1);
 int ov61_0222B224(UnkStruct_ov62_022349A8 *param0, int param1, UnkStruct_02030A80 *param2, const PCBoxes *pcBoxes, int param4);
 int ov61_0222B290(UnkStruct_ov62_022349A8 *param0, int param1);

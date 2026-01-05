@@ -205,8 +205,8 @@ static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u
 
     sub_02014A84(&v0);
     sub_02014CE0(&v0, param1, param2);
-    sub_02014CF8(&v0, 0, param3);
-    sub_02014CF8(&v0, 1, param4);
+    Sentence_SetWord(&v0, 0, param3);
+    Sentence_SetWord(&v0, 1, param4);
 
     v1 = sub_02014B34(&v0, HEAP_ID_FIELD3);
     String_Copy(param0, v1);

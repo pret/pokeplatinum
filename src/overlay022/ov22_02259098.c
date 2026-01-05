@@ -121,10 +121,10 @@ BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2)
     return TouchScreen_IsTouchInHitTable(&param0->unk_04, param1, param2);
 }
 
-void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2)
+void ov22_02259250(UnkStruct_020298D8 *param0, int *xCenter, int *yCenter)
 {
-    *param1 = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_X_CENTER);
-    *param2 = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_Y_CENTER);
+    *xCenter = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_X_CENTER);
+    *yCenter = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_Y_CENTER);
 }
 
 void ov22_02259270(UnkStruct_020298D8 *param0, int *param1, int *param2)
