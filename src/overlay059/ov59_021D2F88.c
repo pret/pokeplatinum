@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_defs/struct_0202A750.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
 
@@ -74,12 +74,12 @@ static u32 ov59_021D2FD4(SaveData *saveData)
 
 static void *ov59_021D2FE0(SaveData *saveData, int heapID, u32 param2)
 {
-    UnkStruct_02029C68 *v0;
+    DressUpPhoto *photo;
     ImageClips *imageClips = SaveData_GetImageClips(saveData);
     void *v2 = Heap_AllocAtEnd(heapID, param2);
 
-    v0 = sub_02029CA8(imageClips, 0);
-    MI_CpuCopyFast(v0, v2, param2);
+    photo = ImageClips_GetDressUpPhoto(imageClips, 0);
+    MI_CpuCopyFast(photo, v2, param2);
 
     return v2;
 }

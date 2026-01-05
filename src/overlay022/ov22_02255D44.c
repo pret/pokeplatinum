@@ -6,7 +6,7 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DA00.h"
@@ -155,7 +155,7 @@ static void ov22_02256C70(SysTask *param0, void *param1);
 static void ov22_02256DB8(UnkStruct_ov22_02255D44 *param0, BOOL *param1);
 static void ov22_02256DE0(SysTask *param0, void *param1);
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param2, int param3);
-static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2);
+static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2);
 static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, int param2, const TrainerInfo *param3);
 static void ov22_02257104(UnkStruct_ov22_02255D44 *param0);
 static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0);
@@ -363,7 +363,7 @@ int ov22_02256098(ApplicationManager *appMan, int *param1)
 
     if (v0->unk_71C == 1) {
         GameRecords_IncrementTrainerScore(v2->records, TRAINER_SCORE_EVENT_UNK_07);
-        ov22_02256F38(v2->unk_04, &v0->unk_458, v2->unk_14);
+        ov22_02256F38(v2->photo, &v0->unk_458, v2->unk_14);
     }
 
     if (v2->unk_18 != NULL) {
@@ -1124,20 +1124,20 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
     }
 }
 
-static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2)
+static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2)
 {
     UnkStruct_ov22_02259560 *v0;
     int v1;
     String *v2;
     int v3;
 
-    sub_02029F84(param0);
-    sub_02029FAC(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
+    DressUpPhoto_Init(photo);
+    sub_02029FAC(photo, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param2) {
         v2 = TrainerInfo_NameNewString(param2, 13);
         v3 = TrainerInfo_Gender(param2);
-        sub_0202A0EC(param0, v2, v3);
+        sub_0202A0EC(photo, v2, v3);
         String_Free(v2);
     }
 
@@ -1146,7 +1146,7 @@ static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *p
 
     while (v0 != &param1->unk_00.unk_14) {
         if (v0->unk_04 == 0) {
-            sub_02029FD0(param0, v0->unk_00, v1);
+            sub_02029FD0(photo, v0->unk_00, v1);
             v1++;
         }
 
@@ -1157,15 +1157,15 @@ static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *p
 
     while (v0 != &param1->unk_00.unk_04) {
         if (v0->unk_04 == 0) {
-            sub_02029FD0(param0, v0->unk_00, v1);
+            sub_02029FD0(photo, v0->unk_00, v1);
             v1++;
         }
 
         v0 = v0->unk_08;
     }
 
-    sub_0202A084(param0, param1->unk_2C.unk_48);
-    sub_02029F5C(param0);
+    sub_0202A084(photo, param1->unk_2C.unk_48);
+    sub_02029F5C(photo);
 }
 
 static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, int param2, const TrainerInfo *param3)

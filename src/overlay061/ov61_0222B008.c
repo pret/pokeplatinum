@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -163,14 +163,14 @@ static int ov61_0222B190(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
     return 0;
 }
 
-int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, UnkStruct_02029C68 *param2)
+int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, DressUpPhoto *photo)
 {
     if (ov61_0222BBBC(param0) == 0) {
         return 0;
     }
 
     ov61_0222AFA4(param0->saveData, param1, &param0->unk_190.unk_00_val1.unk_00);
-    ov61_0222AE60(param0->saveData, param2, &param0->unk_190.unk_00_val1.unk_80);
+    ov61_0222AE60(param0->saveData, photo, &param0->unk_190.unk_00_val1.unk_80);
 
     param0->unk_40E = 60;
     param0->unk_3E8 = 20000;

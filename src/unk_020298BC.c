@@ -23,35 +23,38 @@
 #include "string_gf.h"
 #include "unk_02014A84.h"
 
-static BOOL sub_020298BC(u32 param0)
+#define PHOTO_EMPTY_MAGIC (0x1234) // Photo is initialized but without proper data.
+#define PHOTO_FULL_MAGIC  (0x2345) // Photo has data written to it
+
+static BOOL IsValidMagic(u32 value)
 {
-    if ((param0 == 0x1234) || (param0 == 0x2345)) {
-        return 1;
+    if (value == PHOTO_EMPTY_MAGIC || value == PHOTO_FULL_MAGIC) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static inline BOOL inline_02029CA8(const UnkStruct_02029C68 *param0)
+static inline BOOL DressUpPhoto_IsValid(const DressUpPhoto *photo)
 {
-    return sub_020298BC(param0->unk_00);
+    return IsValidMagic(photo->integrity);
 }
 
 static inline BOOL inline_02029CD0(const UnkStruct_02029C88 *param0)
 {
-    return sub_020298BC(param0->unk_00);
+    return IsValidMagic(param0->unk_00);
 }
 
-static inline void inline_02029BFC(UnkStruct_02029C68 *param0)
+static inline void DressUpPhoto_InitInternal(DressUpPhoto *photo)
 {
-    memset(param0, 0, sizeof(UnkStruct_02029C68));
-    param0->unk_00 = 0x1234;
+    memset(photo, 0, sizeof(DressUpPhoto));
+    photo->integrity = PHOTO_EMPTY_MAGIC;
 }
 
 static inline void inline_02029BFC_1(UnkStruct_02029C88 *param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02029C88));
-    param0->unk_00 = 0x1234;
+    param0->unk_00 = PHOTO_EMPTY_MAGIC;
 }
 
 static void sub_020298D8(UnkStruct_020298D8 *param0, u8 *param1, u8 *param2, s8 *param3)
@@ -85,13 +88,13 @@ static void sub_0202992C(UnkStruct_0202A138 *param0, Pokemon *param1, u8 param2,
     param0->unk_30 = param4;
 }
 
-static void sub_02029990(UnkStruct_0202A138 *param0, Pokemon *param1, UnkStruct_020298D8 *param2)
+static void sub_02029990(UnkStruct_0202A138 *param0, Pokemon *mon, UnkStruct_020298D8 *param2)
 {
     u8 v0, v1;
     s8 v2;
 
     sub_020298D8(param2, &v0, &v1, &v2);
-    sub_0202992C(param0, param1, v0, v1, v2);
+    sub_0202992C(param0, mon, v0, v1, v2);
 }
 
 static void sub_020299C0(UnkStruct_0202A138 *param0, const String *param1, int param2)
@@ -254,14 +257,14 @@ static void sub_02029BD8(Pokemon *param0, u8 *param1, u8 *param2)
 
 void ImageClips_Init(ImageClips *imageClips)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 11; v0++) {
-        inline_02029BFC(&imageClips->unk_00[v0]);
+    for (i = 0; i < SAVED_PHOTOS_COUNT; i++) {
+        DressUpPhoto_InitInternal(&imageClips->savedPhotos[i]);
     }
 
-    for (v0 = 0; v0 < 5; v0++) {
-        inline_02029BFC_1(&imageClips->unk_4C8[v0]);
+    for (i = 0; i < 5; i++) {
+        inline_02029BFC_1(&imageClips->unk_4C8[i]);
     }
 
     FashionCase_Init(&imageClips->fashionCase);
@@ -274,7 +277,7 @@ int ImageClips_SaveSize(void)
 
 int sub_02029C60(void)
 {
-    return sizeof(UnkStruct_02029C68);
+    return sizeof(DressUpPhoto);
 }
 
 int sub_02029C64(void)
@@ -282,12 +285,12 @@ int sub_02029C64(void)
     return sizeof(UnkStruct_02029C88);
 }
 
-UnkStruct_02029C68 *sub_02029C68(u32 heapID)
+DressUpPhoto *DressUpPhoto_New(u32 heapID)
 {
-    UnkStruct_02029C68 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02029C68));
-    inline_02029BFC(v0);
+    DressUpPhoto *photo = Heap_Alloc(heapID, sizeof(DressUpPhoto));
+    DressUpPhoto_InitInternal(photo);
 
-    return v0;
+    return photo;
 }
 
 UnkStruct_02029C88 *sub_02029C88(u32 heapID)
@@ -298,12 +301,12 @@ UnkStruct_02029C88 *sub_02029C88(u32 heapID)
     return v0;
 }
 
-UnkStruct_02029C68 *sub_02029CA8(ImageClips *imageClips, int param1)
+DressUpPhoto *ImageClips_GetDressUpPhoto(ImageClips *imageClips, int slot)
 {
-    GF_ASSERT(param1 < 11);
-    GF_ASSERT(inline_02029CA8(&imageClips->unk_00[param1]));
+    GF_ASSERT(slot < SAVED_PHOTOS_COUNT);
+    GF_ASSERT(DressUpPhoto_IsValid(&imageClips->savedPhotos[slot]));
 
-    return &imageClips->unk_00[param1];
+    return &imageClips->savedPhotos[slot];
 }
 
 UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int param1)
@@ -319,10 +322,10 @@ FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips)
     return &imageClips->fashionCase;
 }
 
-BOOL sub_02029D10(const ImageClips *imageClips, int param1)
+BOOL sub_02029D10(const ImageClips *imageClips, int slot)
 {
-    GF_ASSERT(param1 < 11);
-    return sub_02029F34(&imageClips->unk_00[param1]);
+    GF_ASSERT(slot < SAVED_PHOTOS_COUNT);
+    return sub_02029F34(&imageClips->savedPhotos[slot]);
 }
 
 BOOL sub_02029D2C(const ImageClips *imageClips, int param1)
@@ -479,38 +482,38 @@ void FashionCase_AddBackdrop(FashionCase *fashionCase, u32 backdropID)
     }
 }
 
-BOOL sub_02029F34(const UnkStruct_02029C68 *param0)
+BOOL sub_02029F34(const DressUpPhoto *photo)
 {
-    GF_ASSERT(inline_02029CA8(param0));
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
 
-    if (param0->unk_00 == 0x2345) {
-        return 1;
+    if (photo->integrity == PHOTO_FULL_MAGIC) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_02029F5C(UnkStruct_02029C68 *param0)
+void sub_02029F5C(DressUpPhoto *photo)
 {
-    GF_ASSERT(inline_02029CA8(param0));
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
 
-    param0->unk_00 = 0x2345;
-    param0->unk_71 = gGameLanguage;
+    photo->integrity = PHOTO_FULL_MAGIC;
+    photo->language = gGameLanguage;
 }
 
-void sub_02029F84(UnkStruct_02029C68 *param0)
+void DressUpPhoto_Init(DressUpPhoto *photo)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    inline_02029BFC(param0);
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    DressUpPhoto_InitInternal(photo);
 }
 
-void sub_02029FAC(UnkStruct_02029C68 *param0, Pokemon *param1, UnkStruct_020298D8 *param2)
+void sub_02029FAC(DressUpPhoto *photo, Pokemon *mon, UnkStruct_020298D8 *param2)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    sub_02029990(&param0->unk_04, param1, param2);
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    sub_02029990(&photo->unk_04, mon, param2);
 }
 
-void sub_02029FD0(UnkStruct_02029C68 *param0, const UnkStruct_ov22_02255040 *param1, int param2)
+void sub_02029FD0(DressUpPhoto *photo, const UnkStruct_ov22_02255040 *param1, int param2)
 {
     NNSG2dSVec2 v0 = SoftwareSprite_GetPosition(param1->unk_04);
     int v1 = SoftwareSprite_GetPriority(param1->unk_04);
@@ -519,114 +522,114 @@ void sub_02029FD0(UnkStruct_02029C68 *param0, const UnkStruct_ov22_02255040 *par
     GF_ASSERT(v0.x < 256);
     GF_ASSERT(v0.y < 256);
     GF_ASSERT(v1 > -128);
-    GF_ASSERT(!(param0->unk_3C & (1 << param2)));
-    GF_ASSERT(inline_02029CA8(param0));
+    GF_ASSERT(!(photo->unk_3C & (1 << param2)));
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
 
-    sub_02029A18(&param0->unk_48[param2], param1->unk_00, v0.x, v0.y, v1);
+    sub_02029A18(&photo->unk_48[param2], param1->unk_00, v0.x, v0.y, v1);
 
-    param0->unk_3C |= 1 << param2;
+    photo->unk_3C |= 1 << param2;
 }
 
-void sub_0202A084(UnkStruct_02029C68 *param0, u8 param1)
+void sub_0202A084(DressUpPhoto *photo, u8 param1)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    param0->unk_70 = param1;
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    photo->unk_70 = param1;
 }
 
-void sub_0202A0A0(UnkStruct_02029C68 *param0, u16 param1)
+void sub_0202A0A0(DressUpPhoto *photo, u16 param1)
 {
-    GF_ASSERT(inline_02029CA8(param0));
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
 
-    sub_02014A84(&param0->unk_40);
-    sub_02014CF8(&param0->unk_40, 0, param1);
+    sub_02014A84(&photo->unk_40);
+    sub_02014CF8(&photo->unk_40, 0, param1);
 }
 
-void sub_0202A0CC(UnkStruct_02029C68 *param0, const UnkStruct_02029C68 *param1)
+void DressUpPhoto_Copy(DressUpPhoto *dest, const DressUpPhoto *src)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    memcpy(param0, param1, sizeof(UnkStruct_02029C68));
+    GF_ASSERT(DressUpPhoto_IsValid(dest));
+    memcpy(dest, src, sizeof(DressUpPhoto));
 }
 
-void sub_0202A0EC(UnkStruct_02029C68 *param0, const String *param1, int param2)
+void sub_0202A0EC(DressUpPhoto *photo, const String *param1, int param2)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    sub_020299C0(&param0->unk_04, param1, param2);
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    sub_020299C0(&photo->unk_04, param1, param2);
 }
 
-BOOL sub_0202A110(const UnkStruct_02029C68 *param0, int param1)
-{
-    GF_ASSERT(param1 < (11 - 1));
-    GF_ASSERT(inline_02029CA8(param0));
-
-    return param0->unk_3C & (1 << param1);
-}
-
-const UnkStruct_0202A138 *sub_0202A138(const UnkStruct_02029C68 *param0)
-{
-    GF_ASSERT(inline_02029CA8(param0));
-    return &param0->unk_04;
-}
-
-const UnkStruct_0202A150 *sub_0202A150(const UnkStruct_02029C68 *param0, int param1)
+BOOL sub_0202A110(const DressUpPhoto *photo, int param1)
 {
     GF_ASSERT(param1 < (11 - 1));
-    GF_ASSERT(param0->unk_3C & (1 << param1));
-    GF_ASSERT(inline_02029CA8(param0));
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
 
-    return &param0->unk_48[param1];
+    return photo->unk_3C & (1 << param1);
 }
 
-u16 sub_0202A184(const UnkStruct_02029C68 *param0)
+const UnkStruct_0202A138 *sub_0202A138(const DressUpPhoto *photo)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    return sub_0202A5E8(&param0->unk_04);
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    return &photo->unk_04;
 }
 
-void sub_0202A1A0(const UnkStruct_02029C68 *param0, String *param1)
+const UnkStruct_0202A150 *sub_0202A150(const DressUpPhoto *photo, int param1)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    sub_0202A5EC(&param0->unk_04, param1);
+    GF_ASSERT(param1 < (11 - 1));
+    GF_ASSERT(photo->unk_3C & (1 << param1));
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+
+    return &photo->unk_48[param1];
 }
 
-u32 sub_0202A1C0(const UnkStruct_02029C68 *param0)
+u16 sub_0202A184(const DressUpPhoto *photo)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    return sub_0202A5FC(&param0->unk_04);
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    return sub_0202A5E8(&photo->unk_04);
 }
 
-u8 sub_0202A1DC(const UnkStruct_02029C68 *param0)
+void sub_0202A1A0(const DressUpPhoto *photo, String *param1)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    return param0->unk_70;
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    sub_0202A5EC(&photo->unk_04, param1);
 }
 
-u16 sub_0202A1F4(const UnkStruct_02029C68 *param0)
+u32 sub_0202A1C0(const DressUpPhoto *photo)
 {
-    u16 v0 = sub_02014C78(&param0->unk_40, 0);
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    return sub_0202A5FC(&photo->unk_04);
+}
+
+u8 sub_0202A1DC(const DressUpPhoto *photo)
+{
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    return photo->unk_70;
+}
+
+u16 sub_0202A1F4(const DressUpPhoto *photo)
+{
+    u16 v0 = sub_02014C78(&photo->unk_40, 0);
     return v0;
 }
 
-u8 sub_0202A200(const UnkStruct_02029C68 *param0)
+u8 sub_0202A200(const DressUpPhoto *photo)
 {
-    GF_ASSERT(inline_02029CA8(param0));
-    return param0->unk_71;
+    GF_ASSERT(DressUpPhoto_IsValid(photo));
+    return photo->language;
 }
 
 BOOL sub_0202A218(const UnkStruct_02029C88 *param0)
 {
     GF_ASSERT(inline_02029CD0(param0));
 
-    if (param0->unk_00 == 0x2345) {
-        return 1;
+    if (param0->unk_00 == PHOTO_FULL_MAGIC) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0202A240(UnkStruct_02029C88 *param0)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    param0->unk_00 = 0x2345;
+    param0->unk_00 = PHOTO_FULL_MAGIC;
 }
 
 void sub_0202A25C(UnkStruct_02029C88 *param0)
@@ -832,22 +835,22 @@ s8 sub_0202A630(const UnkStruct_0202A150 *param0)
     return param0->unk_03;
 }
 
-static BOOL sub_0202A638(ImageClips *imageClips, const UnkStruct_02029C68 *param1)
+static BOOL sub_0202A638(ImageClips *imageClips, const DressUpPhoto *photo)
 {
-    int v0;
+    int i;
     const void *v1;
     u32 v2, v3;
     MATHCRC32Table v4;
     BOOL v5 = 1;
 
-    if (sub_02029F34(param1) == 1) {
+    if (sub_02029F34(photo) == 1) {
         MATH_CRC32InitTable(&v4);
-        v2 = MATH_CalcCRC32(&v4, param1, sizeof(UnkStruct_02029C68));
+        v2 = MATH_CalcCRC32(&v4, photo, sizeof(DressUpPhoto));
 
-        for (v0 = 0; v0 < 11; v0++) {
-            v1 = sub_02029CA8(imageClips, v0);
+        for (i = 0; i < SAVED_PHOTOS_COUNT; i++) {
+            v1 = ImageClips_GetDressUpPhoto(imageClips, i);
             MATH_CRC32InitTable(&v4);
-            v3 = MATH_CalcCRC32(&v4, v1, sizeof(UnkStruct_02029C68));
+            v3 = MATH_CalcCRC32(&v4, v1, sizeof(DressUpPhoto));
 
             if (v3 == v2) {
                 v5 = 0;
@@ -864,8 +867,8 @@ static BOOL sub_0202A638(ImageClips *imageClips, const UnkStruct_02029C68 *param
 void sub_0202A6A8(u8 param0, int param1, ImageClips *imageClips, const void **param3)
 {
     int v0;
-    UnkStruct_02029C68 *v1;
-    const UnkStruct_02029C68 *v2;
+    DressUpPhoto *v1;
+    const DressUpPhoto *v2;
     int v3;
     int v4;
 
@@ -887,10 +890,10 @@ void sub_0202A6A8(u8 param0, int param1, ImageClips *imageClips, const void **pa
 
     for (v3 = 11 - 1; v3 >= 1; v3--) {
         if (v3 + v0 < 11) {
-            v1 = sub_02029CA8(imageClips, v3 + v0);
-            v2 = sub_02029CA8(imageClips, v3);
+            v1 = ImageClips_GetDressUpPhoto(imageClips, v3 + v0);
+            v2 = ImageClips_GetDressUpPhoto(imageClips, v3);
 
-            sub_0202A0CC(v1, v2);
+            DressUpPhoto_Copy(v1, v2);
         }
     }
 
@@ -905,9 +908,9 @@ void sub_0202A6A8(u8 param0, int param1, ImageClips *imageClips, const void **pa
             v2 = param3[v3];
 
             if (sub_0202A638(imageClips, v2) == 1) {
-                v1 = sub_02029CA8(imageClips, v4);
+                v1 = ImageClips_GetDressUpPhoto(imageClips, v4);
                 v4++;
-                sub_0202A0CC(v1, v2);
+                DressUpPhoto_Copy(v1, v2);
             }
         }
     }
@@ -918,78 +921,78 @@ ImageClips *SaveData_GetImageClips(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_IMAGE_CLIPS);
 }
 
-void sub_0202A75C(const UnkStruct_02029C68 *param0, UnkStruct_ov61_0222AE80 *param1)
+void sub_0202A75C(const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param1)
 {
     int v0;
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov61_0222AE80));
 
-    param1->unk_00 = param0->unk_00;
+    param1->unk_00 = photo->integrity;
 
     {
-        param1->unk_04.unk_00 = param0->unk_04.unk_00;
-        param1->unk_04.unk_04 = param0->unk_04.unk_04;
-        param1->unk_04.unk_08 = param0->unk_04.unk_08;
+        param1->unk_04.unk_00 = photo->unk_04.unk_00;
+        param1->unk_04.unk_04 = photo->unk_04.unk_04;
+        param1->unk_04.unk_08 = photo->unk_04.unk_08;
 
         for (v0 = 0; v0 < 8; v0++) {
-            param1->unk_04.unk_0A[v0] = param0->unk_04.unk_20[v0];
+            param1->unk_04.unk_0A[v0] = photo->unk_04.unk_20[v0];
         }
 
-        param1->unk_04.unk_1A = param0->unk_04.unk_30;
-        param1->unk_04.unk_1B = param0->unk_04.unk_31;
-        param1->unk_04.unk_1C = param0->unk_04.unk_32;
-        param1->unk_04.unk_1D = param0->unk_04.unk_33;
+        param1->unk_04.unk_1A = photo->unk_04.unk_30;
+        param1->unk_04.unk_1B = photo->unk_04.unk_31;
+        param1->unk_04.unk_1C = photo->unk_04.unk_32;
+        param1->unk_04.unk_1D = photo->unk_04.unk_33;
     }
 
-    param1->unk_24 = param0->unk_3C;
-    param1->unk_28 = *((UnkStruct_ov61_0222BED8_sub2_sub1_sub1_sub1 *)(&param0->unk_40));
+    param1->unk_24 = photo->unk_3C;
+    param1->unk_28 = *((UnkStruct_ov61_0222BED8_sub2_sub1_sub1_sub1 *)(&photo->unk_40));
 
     for (v0 = 0; v0 < (11 - 1); v0++) {
-        param1->unk_30[v0] = *((UnkStruct_ov61_0222AE80_sub2 *)(&param0->unk_48[v0]));
+        param1->unk_30[v0] = *((UnkStruct_ov61_0222AE80_sub2 *)(&photo->unk_48[v0]));
     }
 
-    param1->unk_58 = param0->unk_70;
-    param1->unk_59 = param0->unk_71;
+    param1->unk_58 = photo->unk_70;
+    param1->unk_59 = photo->language;
 }
 
-void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *param1)
+void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo)
 {
     int v0;
     int v1;
 
     v0 = sub_02029C60();
-    MI_CpuClear8(param1, v0);
+    MI_CpuClear8(photo, v0);
 
-    param1->unk_00 = param0->unk_00;
+    photo->integrity = param0->unk_00;
 
     {
-        param1->unk_04.unk_00 = param0->unk_04.unk_00;
-        param1->unk_04.unk_04 = param0->unk_04.unk_04;
-        param1->unk_04.unk_08 = param0->unk_04.unk_08;
+        photo->unk_04.unk_00 = param0->unk_04.unk_00;
+        photo->unk_04.unk_04 = param0->unk_04.unk_04;
+        photo->unk_04.unk_08 = param0->unk_04.unk_08;
 
         for (v1 = 0; v1 < 8; v1++) {
-            param1->unk_04.unk_20[v1] = param0->unk_04.unk_0A[v1];
+            photo->unk_04.unk_20[v1] = param0->unk_04.unk_0A[v1];
         }
 
-        param1->unk_04.unk_30 = param0->unk_04.unk_1A;
-        param1->unk_04.unk_31 = param0->unk_04.unk_1B;
-        param1->unk_04.unk_32 = param0->unk_04.unk_1C;
-        param1->unk_04.unk_33 = param0->unk_04.unk_1D;
+        photo->unk_04.unk_30 = param0->unk_04.unk_1A;
+        photo->unk_04.unk_31 = param0->unk_04.unk_1B;
+        photo->unk_04.unk_32 = param0->unk_04.unk_1C;
+        photo->unk_04.unk_33 = param0->unk_04.unk_1D;
     }
 
-    param1->unk_3C = param0->unk_24;
-    param1->unk_40 = *((Sentence *)(&param0->unk_28));
+    photo->unk_3C = param0->unk_24;
+    photo->unk_40 = *((Sentence *)(&param0->unk_28));
 
     for (v1 = 0; v1 < (11 - 1); v1++) {
-        param1->unk_48[v1] = *((UnkStruct_0202A150 *)(&param0->unk_30[v1]));
+        photo->unk_48[v1] = *((UnkStruct_0202A150 *)(&param0->unk_30[v1]));
     }
 
-    param1->unk_70 = param0->unk_58;
-    param1->unk_71 = param0->unk_59;
+    photo->unk_70 = param0->unk_58;
+    photo->language = param0->unk_59;
 
     for (v1 = 0; v1 < 11; v1++) {
-        param1->unk_04.unk_0A[v1] = 0xffff;
+        photo->unk_04.unk_0A[v1] = 0xffff;
     }
 
-    param1->unk_04.unk_34 = 0;
+    photo->unk_04.unk_34 = 0;
 }

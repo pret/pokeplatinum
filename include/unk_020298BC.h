@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_020298BC_H
 #define POKEPLATINUM_UNK_020298BC_H
 
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
@@ -19,12 +19,12 @@ void ImageClips_Init(ImageClips *imageClips);
 int ImageClips_SaveSize(void);
 int sub_02029C60(void);
 int sub_02029C64(void);
-UnkStruct_02029C68 *sub_02029C68(u32 heapID);
+DressUpPhoto *DressUpPhoto_New(u32 heapID);
 UnkStruct_02029C88 *sub_02029C88(u32 heapID);
-UnkStruct_02029C68 *sub_02029CA8(ImageClips *imageClips, int param1);
+DressUpPhoto *ImageClips_GetDressUpPhoto(ImageClips *imageClips, int slot);
 UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int param1);
 FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips);
-BOOL sub_02029D10(const ImageClips *imageClips, int param1);
+BOOL sub_02029D10(const ImageClips *imageClips, int slot);
 BOOL sub_02029D2C(const ImageClips *imageClips, int param1);
 BOOL FashionCase_CanFitAccessoryCount(const FashionCase *fashionCase, u32 accessoryID, u32 count);
 BOOL FashionCase_HasBackdrop(const FashionCase *fashionCase, u32 backdropID);
@@ -35,24 +35,24 @@ u32 FashionCase_GetTotalBackdrops(const FashionCase *fashionCase);
 void FashionCase_AddAccessory(FashionCase *fashionCase, u32 accessoryID, u32 amount);
 void FashionCase_RemoveAccessory(FashionCase *fashionCase, u32 accessoryID, u32 amount);
 void FashionCase_AddBackdrop(FashionCase *fashionCase, u32 backdropID);
-BOOL sub_02029F34(const UnkStruct_02029C68 *param0);
-void sub_02029F5C(UnkStruct_02029C68 *param0);
-void sub_02029F84(UnkStruct_02029C68 *param0);
-void sub_02029FAC(UnkStruct_02029C68 *param0, Pokemon *param1, UnkStruct_020298D8 *param2);
-void sub_02029FD0(UnkStruct_02029C68 *param0, const UnkStruct_ov22_02255040 *param1, int param2);
-void sub_0202A084(UnkStruct_02029C68 *param0, u8 param1);
-void sub_0202A0A0(UnkStruct_02029C68 *param0, u16 param1);
-void sub_0202A0CC(UnkStruct_02029C68 *param0, const UnkStruct_02029C68 *param1);
-void sub_0202A0EC(UnkStruct_02029C68 *param0, const String *param1, int param2);
-BOOL sub_0202A110(const UnkStruct_02029C68 *param0, int param1);
-const UnkStruct_0202A138 *sub_0202A138(const UnkStruct_02029C68 *param0);
-const UnkStruct_0202A150 *sub_0202A150(const UnkStruct_02029C68 *param0, int param1);
-u16 sub_0202A184(const UnkStruct_02029C68 *param0);
-void sub_0202A1A0(const UnkStruct_02029C68 *param0, String *param1);
-u32 sub_0202A1C0(const UnkStruct_02029C68 *param0);
-u8 sub_0202A1DC(const UnkStruct_02029C68 *param0);
-u16 sub_0202A1F4(const UnkStruct_02029C68 *param0);
-u8 sub_0202A200(const UnkStruct_02029C68 *param0);
+BOOL sub_02029F34(const DressUpPhoto *photo);
+void sub_02029F5C(DressUpPhoto *photo);
+void DressUpPhoto_Init(DressUpPhoto *photo);
+void sub_02029FAC(DressUpPhoto *photo, Pokemon *mon, UnkStruct_020298D8 *param2);
+void sub_02029FD0(DressUpPhoto *photo, const UnkStruct_ov22_02255040 *param1, int param2);
+void sub_0202A084(DressUpPhoto *photo, u8 param1);
+void sub_0202A0A0(DressUpPhoto *photo, u16 param1);
+void DressUpPhoto_Copy(DressUpPhoto *dest, const DressUpPhoto *src);
+void sub_0202A0EC(DressUpPhoto *photo, const String *param1, int param2);
+BOOL sub_0202A110(const DressUpPhoto *photo, int param1);
+const UnkStruct_0202A138 *sub_0202A138(const DressUpPhoto *photo);
+const UnkStruct_0202A150 *sub_0202A150(const DressUpPhoto *photo, int param1);
+u16 sub_0202A184(const DressUpPhoto *photo);
+void sub_0202A1A0(const DressUpPhoto *photo, String *param1);
+u32 sub_0202A1C0(const DressUpPhoto *photo);
+u8 sub_0202A1DC(const DressUpPhoto *photo);
+u16 sub_0202A1F4(const DressUpPhoto *photo);
+u8 sub_0202A200(const DressUpPhoto *photo);
 BOOL sub_0202A218(const UnkStruct_02029C88 *param0);
 void sub_0202A240(UnkStruct_02029C88 *param0);
 void sub_0202A25C(UnkStruct_02029C88 *param0);
@@ -86,7 +86,7 @@ u8 sub_0202A62C(const UnkStruct_0202A150 *param0);
 s8 sub_0202A630(const UnkStruct_0202A150 *param0);
 void sub_0202A6A8(u8 param0, int param1, ImageClips *imageClips, const void **param3);
 ImageClips *SaveData_GetImageClips(SaveData *saveData);
-void sub_0202A75C(const UnkStruct_02029C68 *param0, UnkStruct_ov61_0222AE80 *param1);
-void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *param1);
+void sub_0202A75C(const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param1);
+void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo);
 
 #endif // POKEPLATINUM_UNK_020298BC_H

@@ -8,7 +8,7 @@
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/gts_player_data.h"
@@ -822,7 +822,7 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
     Pokemon *v1;
     int v2;
     ImageClips *imageClips;
-    UnkStruct_02029C68 *v4;
+    DressUpPhoto *photo;
     FashionCase *fashionCase;
 
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
@@ -832,10 +832,10 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
     v0->unk_00 = v1;
 
     imageClips = SaveData_GetImageClips(saveData);
-    v4 = sub_02029CA8(imageClips, 0);
+    photo = ImageClips_GetDressUpPhoto(imageClips, 0);
     fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    v0->unk_04 = v4;
+    v0->photo = photo;
     v0->fashionCase = fashionCase;
     v0->options = SaveData_GetOptions(saveData);
     v0->records = SaveData_GetGameRecords(saveData);

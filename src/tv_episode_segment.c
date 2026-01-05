@@ -14,7 +14,7 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202A750.h"
 #include "struct_defs/struct_0202E7D8.h"
@@ -1773,9 +1773,9 @@ void FieldSystem_SaveTVEpisodeSegment_RightOnPhotoCorner(FieldSystem *fieldSyste
     rightOnPhotoCorner->customMessageWord = customMessageWord;
 
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
-    UnkStruct_02029C68 *v3 = sub_02029CA8(imageClips, 0);
+    DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
 
-    rightOnPhotoCorner->species = sub_0202A184(v3);
+    rightOnPhotoCorner->species = sub_0202A184(photo);
 
     FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_INTERVIEWS, TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, rightOnPhotoCorner);
 }
@@ -2587,7 +2587,7 @@ static int sub_0206EE9C(ImageClips *imageClips)
 {
     int v0, v1;
 
-    for (v0 = 0, v1 = 0; v0 < 11; v0++) {
+    for (v0 = 0, v1 = 0; v0 < SAVED_PHOTOS_COUNT; v0++) {
         if (sub_02029D10(imageClips, v0) == 1) {
             v1++;
         }
@@ -2598,8 +2598,8 @@ static int sub_0206EE9C(ImageClips *imageClips)
 
 static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    UnkStruct_02029C68 *v0;
-    int v1, v2, v3, v4;
+    DressUpPhoto *photo;
+    int i, v2, v3, v4;
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     v2 = sub_0206EE9C(imageClips);
@@ -2610,10 +2610,10 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
         v3 = 0;
     }
 
-    for (v1 = 0; v1 < 11; v1++) {
-        if (sub_02029D10(imageClips, v1) == 1) {
+    for (i = 0; i < SAVED_PHOTOS_COUNT; i++) {
+        if (sub_02029D10(imageClips, i) == 1) {
             if (v3 == 0) {
-                v4 = v1;
+                v4 = i;
                 break;
             } else {
                 v3--;
@@ -2621,19 +2621,19 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
         }
     }
 
-    GF_ASSERT(v1 < 11);
-    v0 = sub_02029CA8(imageClips, v4);
+    GF_ASSERT(i < SAVED_PHOTOS_COUNT);
+    photo = ImageClips_GetDressUpPhoto(imageClips, v4);
 
     {
         u16 v6;
         String *v7 = String_Init(7 + 1, HEAP_ID_FIELD1);
-        int v8 = sub_0202A1C0(v0);
+        int v8 = sub_0202A1C0(photo);
 
-        sub_0202A1A0(v0, v7);
-        StringTemplate_SetString(param1, 0, v7, v8, 1, sub_0202A200(v0));
+        sub_0202A1A0(photo, v7);
+        StringTemplate_SetString(param1, 0, v7, v8, 1, sub_0202A200(photo));
         String_Free(v7);
 
-        v6 = sub_0202A1F4(v0);
+        v6 = sub_0202A1F4(photo);
         StringTemplate_SetCustomMessageWord(param1, 1, v6);
     }
 

@@ -27,7 +27,7 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -4042,9 +4042,9 @@ static BOOL ScrCmd_130(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
     ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
-    UnkStruct_02029C68 *v2 = sub_02029CA8(imageClips, 0);
+    DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
 
-    sub_0202A0A0(v2, v0);
+    sub_0202A0A0(photo, v0);
 
     return TRUE;
 }

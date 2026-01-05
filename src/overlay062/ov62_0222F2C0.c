@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -697,8 +697,8 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
         break;
     case 5:
         if (v0 == 0) {
-            UnkStruct_02029C68 *v2 = sub_02029CA8(SaveData_GetImageClips(param0->saveData), v0);
-            v1 = sub_02029F34(v2);
+            DressUpPhoto *photo = ImageClips_GetDressUpPhoto(SaveData_GetImageClips(param0->saveData), v0);
+            v1 = sub_02029F34(photo);
 
             if (v1 == 0) {
                 ov62_0223197C(param0, 290);

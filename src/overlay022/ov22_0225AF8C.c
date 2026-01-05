@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_decls/dress_up_photo.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_0202A138_decl.h"
 #include "struct_decls/struct_0202A150_decl.h"
@@ -73,17 +73,17 @@ static void ov22_0225B464(UnkStruct_ov22_0225B1BC *param0);
 static void ov22_0225B480(UnkStruct_ov22_0225B1BC *param0);
 static void ov22_0225B490(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_0225B4E4 *param1);
 static void ov22_0225B4E4(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_ov22_0225AF8C *param1);
-static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C68 *param1);
+static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const DressUpPhoto *photo);
 static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C88 *param1);
 static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID);
 static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID);
 
-UnkStruct_ov22_0225B1BC *ov22_0225AF8C(const UnkStruct_ov22_0225AF8C *param0, const UnkStruct_02029C68 *param1)
+UnkStruct_ov22_0225B1BC *ov22_0225AF8C(const UnkStruct_ov22_0225AF8C *param0, const DressUpPhoto *photo)
 {
     UnkStruct_ov22_0225B4E4 v0;
 
     ov22_0225B4E4(&v0, param0);
-    ov22_0225B4F8(&v0, param1);
+    ov22_0225B4F8(&v0, photo);
 
     return ov22_0225B1BC(&v0);
 }
@@ -411,21 +411,21 @@ static void ov22_0225B4E4(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_ov22_
     param0->heapID = param1->heapID;
 }
 
-static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C68 *param1)
+static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const DressUpPhoto *photo)
 {
     int v0;
 
-    param0->unk_00 = sub_0202A138(param1);
+    param0->unk_00 = sub_0202A138(photo);
     param0->unk_54 = 0;
 
     for (v0 = 0; v0 < (11 - 1); v0++) {
-        if (sub_0202A110(param1, v0)) {
-            param0->unk_04[param0->unk_54] = sub_0202A150(param1, v0);
+        if (sub_0202A110(photo, v0)) {
+            param0->unk_04[param0->unk_54] = sub_0202A150(photo, v0);
             param0->unk_54++;
         }
     }
 
-    param0->unk_5C = sub_0202A1DC(param1);
+    param0->unk_5C = sub_0202A1DC(photo);
 }
 
 static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C88 *param1)
