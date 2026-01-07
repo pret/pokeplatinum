@@ -12,6 +12,14 @@
 #define SECRET_BASE_WIDTH 32
 #define SECRET_BASE_DEPTH 32
 
+#define SECRET_BASE_PLAYABLE_AREA_START_X 10
+#define SECRET_BASE_PLAYABLE_AREA_MAX_X   21
+#define SECRET_BASE_PLAYABLE_AREA_START_Z 12
+#define SECRET_BASE_PLAYABLE_AREA_MAX_Z   23
+
+#define BASE_EXIT_X 15
+#define BASE_EXIT_Z 24
+
 void SecretBasesEnv_Init(void *dest, FieldSystem *fieldSystem);
 void SecretBases_LoadCurrentPlayerBase(FieldSystem *fieldSystem);
 void SecretBases_DisableBaseEntranceGraphics(void);
@@ -51,8 +59,8 @@ SecretBase *SecretBases_GetCurrentOccupiedBase(SaveData *saveData);
 int SecretBases_GetBaseXCoordinate(void);
 int SecretBases_GetBaseZCoordinate(void);
 BOOL SecretBases_AreCoordinatesWalkable(int x, int z);
-int SecretBases_PrintDecorateBaseMessage(int bankEntry);
-void SecretBases_EraseDecorateBaseMessageBox(void);
+int SecretBases_PrintBaseDecorationMessage(int bankEntry);
+void SecretBases_EraseBaseDecorationMessageBox(void);
 void SecretBases_SetGoodNameForPrinter(int goodID);
 void SecretBases_SetTwoDigitNumberWithIndexForPrinter(int num, int index);
 BOOL SecretBases_CheckForInteractableGood(int netID, Coordinates *coordinates);

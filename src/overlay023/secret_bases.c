@@ -198,7 +198,7 @@ typedef struct SecretBasesEnv {
     BaseEntrance baseEntrances[MAX_CONNECTED_PLAYERS];
     BaseEntrance baseEntrancesServer[MAX_CONNECTED_PLAYERS];
     u8 moveStatus;
-    u8 baseEntrancePropIDs[SECRET_BASE_COUNT];
+    u8 baseEntrancePropIdxs[SECRET_BASE_COUNT];
     u16 baseEntrancePropXCoords[SECRET_BASE_COUNT];
     u16 baseEntrancePropZCoords[SECRET_BASE_COUNT];
     u8 baseEntrancePropDirs[SECRET_BASE_COUNT];
@@ -361,8 +361,8 @@ static int SecretBases_GetOwnerNetIDFromCoordinates(int x, int z)
 static BOOL SecretBases_AreCoordinatesOnBaseExit(int x, int z)
 {
     const BaseEntrance entrance = {
-        .x = 15,
-        .z = 24,
+        .x = BASE_EXIT_X,
+        .z = BASE_EXIT_Z,
         .dir = DIR_NORTH,
     };
     const int baseWidth = SECRET_BASE_WIDTH;
@@ -379,8 +379,8 @@ static BOOL SecretBases_AreCoordinatesOnBaseExit(int x, int z)
 static void SecretBases_GetBaseExitCoordinates(int netID, BaseEntrance *out)
 {
     const BaseEntrance entrance = {
-        .x = 15,
-        .z = 24,
+        .x = BASE_EXIT_X,
+        .z = BASE_EXIT_Z,
         .dir = DIR_NORTH,
     };
     const int baseWidth = SECRET_BASE_WIDTH;
@@ -443,7 +443,7 @@ void SecretBasesEnv_Init(void *dest, FieldSystem *fieldSystem)
 
         SecretBase_Init(secretBase);
 
-        secretBasesEnv->baseEntrancePropIDs[netID] = PROP_NONE;
+        secretBasesEnv->baseEntrancePropIdxs[netID] = (u8)PROP_NONE;
         secretBasesEnv->baseEntrancePropDirs[netID] = DIR_NONE;
     }
 
@@ -1536,8 +1536,8 @@ static void SecretBases_DrawBaseEntrancesTask(SysTask *unused, void *unused1)
             entranceX = secretBasesEnv->baseEntrancePropXCoords[netID];
             entranceZ = secretBasesEnv->baseEntrancePropZCoords[netID];
 
-            if (secretBasesEnv->baseEntrancePropIDs[netID] != PROP_NONE) {
-                MapPropManager_InitOne(secretBasesEnv->baseEntrancePropIDs[netID], secretBasesEnv->fieldSystem->mapPropManager);
+            if (secretBasesEnv->baseEntrancePropIdxs[netID] != (u8)PROP_NONE) {
+                MapPropManager_ClearOne(secretBasesEnv->baseEntrancePropIdxs[netID], secretBasesEnv->fieldSystem->mapPropManager);
             }
 
             VecFx32 position;
@@ -1545,17 +1545,17 @@ static void SecretBases_DrawBaseEntrancesTask(SysTask *unused, void *unused1)
             position.y = 0;
             position.z = entranceZ * (FX32_ONE * 16) + (FX32_ONE * 8);
 
-            secretBasesEnv->baseEntrancePropIDs[netID] = MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_NORTH + dir, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
+            secretBasesEnv->baseEntrancePropIdxs[netID] = MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_NORTH + dir, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
         }
     }
 }
 
 static void SecretBases_ClearBaseEntranceProp(int netID)
 {
-    if (secretBasesEnv->baseEntrancePropIDs[netID] != PROP_NONE) {
-        MapPropManager_InitOne(secretBasesEnv->baseEntrancePropIDs[netID], secretBasesEnv->fieldSystem->mapPropManager);
+    if (secretBasesEnv->baseEntrancePropIdxs[netID] != (u8)PROP_NONE) {
+        MapPropManager_ClearOne(secretBasesEnv->baseEntrancePropIdxs[netID], secretBasesEnv->fieldSystem->mapPropManager);
 
-        secretBasesEnv->baseEntrancePropIDs[netID] = PROP_NONE;
+        secretBasesEnv->baseEntrancePropIdxs[netID] = (u8)PROP_NONE;
         secretBasesEnv->baseEntrancePropDirs[netID] = DIR_NONE;
     }
 }
@@ -1687,7 +1687,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         CommPlayerMan_PauseFieldSystem();
 
         Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(10), PALETTE_SIZE_BYTES * 4, HEAP_ID_FIELD1);
-        LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, 2, HEAP_ID_FIELD1);
+        LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_STANDARD_WINDOW_FRAME, 11, STANDARD_WINDOW_UNDERGROUND, HEAP_ID_FIELD1);
 
         if (ctx->forceExit) {
             CommPlayerMan_ClearPauseContextBits();
@@ -2194,7 +2194,7 @@ static void SecretBases_CreateBase(void)
     int x = CommPlayer_GetXInFrontOfPlayerServer(0);
     int z = CommPlayer_GetZInFrontOfPlayerServer(0);
     int dir = CommPlayer_DirServer(0);
-    const int minX = 10, xAdjustRightOfPC = 18, minZ = 12, xRange = 5, zRange = 6;
+    const int minX = SECRET_BASE_PLAYABLE_AREA_START_X, xAdjustRightOfPC = 18, minZ = SECRET_BASE_PLAYABLE_AREA_START_Z, xRange = 5, zRange = 6;
 
     int occupiedCoords[MAX_BASE_BOULDERS + 1][2];
     occupiedCoords[0][0] = PC_COORDINATE_X + 1;
@@ -2245,24 +2245,24 @@ static void SecretBases_CreateBase(void)
     SecretBases_CalculateBaseCollision(secretBase, secretBasesEnv->baseCollisions[NETID_CURRENT_PLAYER_BASE]);
 }
 
-int SecretBases_PrintDecorateBaseMessage(int bankEntry)
+int SecretBases_PrintBaseDecorationMessage(int bankEntry)
 {
-    return UndergroundTextPrinter_PrintText(CommManUnderground_GetDecorateBaseTextPrinter(), bankEntry, FALSE, NULL);
+    return UndergroundTextPrinter_PrintText(CommManUnderground_GetBaseDecorationTextPrinter(), bankEntry, FALSE, NULL);
 }
 
-void SecretBases_EraseDecorateBaseMessageBox(void)
+void SecretBases_EraseBaseDecorationMessageBox(void)
 {
-    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetDecorateBaseTextPrinter());
+    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetBaseDecorationTextPrinter());
 }
 
 void SecretBases_SetGoodNameForPrinter(int goodID)
 {
-    UndergroundTextPrinter_SetGoodNameWithIndex(CommManUnderground_GetDecorateBaseTextPrinter(), 0, goodID);
+    UndergroundTextPrinter_SetGoodNameWithIndex(CommManUnderground_GetBaseDecorationTextPrinter(), 0, goodID);
 }
 
 void SecretBases_SetTwoDigitNumberWithIndexForPrinter(int num, int index)
 {
-    UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetDecorateBaseTextPrinter(), index, num);
+    UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetBaseDecorationTextPrinter(), index, num);
 }
 
 static int SecretBases_GetGoodWithCollisionAtCoordinates(SecretBase *secretBase, int xWithinBase, int zWithinBase)
@@ -2376,7 +2376,7 @@ static void SecretBases_UpdatePCMapProp(FlagRankUpContext *ctx)
 
     position = MapProp_GetPosition(mapProp);
 
-    MapPropManager_InitOne(0, secretBasesEnv->fieldSystem->mapPropManager);
+    MapPropManager_ClearOne(0, secretBasesEnv->fieldSystem->mapPropManager);
     MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_PC_BRONZE_FLAG + ctx->prevFlagRank, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
 }
 

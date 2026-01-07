@@ -441,13 +441,13 @@ void Underground_MoveGoodPC(Underground *underground, int origSlot, int slotToMo
     }
 }
 
-int sub_02028ACC(Underground *underground, int param1, int param2)
+int Underground_AddPlacedGood(Underground *underground, int slot, int index)
 {
-    GF_ASSERT(param2 >= 1);
-    GF_ASSERT(param2 <= MAX_PLACED_GOODS);
+    GF_ASSERT(index >= 1);
+    GF_ASSERT(index <= MAX_PLACED_GOODS);
 
-    underground->placedGoodSlots[param2 - 1] = param1 + 1;
-    return underground->goodsPC[param1];
+    underground->placedGoodSlots[index - 1] = slot + 1;
+    return underground->goodsPC[slot];
 }
 
 BOOL Underground_IsGoodAtSlotPlacedInBase(Underground *underground, int slot)
@@ -461,13 +461,13 @@ BOOL Underground_IsGoodAtSlotPlacedInBase(Underground *underground, int slot)
     return FALSE;
 }
 
-void sub_02028B20(Underground *underground, int param1)
+void Underground_RemovePlacedGood(Underground *underground, int index)
 {
-    if (param1 - 1 >= MAX_PLACED_GOODS) {
+    if (index - 1 >= MAX_PLACED_GOODS) {
         return;
     }
 
-    underground->placedGoodSlots[param1 - 1] = 0;
+    underground->placedGoodSlots[index - 1] = 0;
 }
 
 void Underground_InitPlacedGoodSlots(Underground *underground)

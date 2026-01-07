@@ -22,11 +22,11 @@ typedef struct UndergroundItemListMenu {
     u16 cursorPos;
     u8 movingItems;
     u8 heapID;
-    u8 isGoodsPC;
+    u8 isDecorationMenu;
     u16 trueCursorPos;
 } UndergroundItemListMenu;
 
-UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID, MoveItemCallback moveItemCallback, Underground *underground, BOOL isGoodsPC);
+UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID, MoveItemCallback moveItemCallback, Underground *underground, BOOL isDecorationMenu);
 u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu);
 void UndergroundItemListMenu_Free(UndergroundItemListMenu *menu, u16 *outListPos, u16 *outCursorPos);
 

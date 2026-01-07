@@ -57,7 +57,7 @@ void MapPropManager_Init(MapPropManager *mapPropManager)
     }
 }
 
-void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager)
+void MapPropManager_ClearOne(int index, MapPropManager *mapPropManager)
 {
     GF_ASSERT(index < MAX_LOADED_MAP_PROPS);
     VecFx32 nullVector = { 0, 0, 0 };
