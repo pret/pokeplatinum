@@ -857,8 +857,8 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_underground_text_printer.c.o
 	Object main.nef.p/src_overlay023_ov23_0225426C.c.o
 	Object main.nef.p/src_overlay023_ov23_0225429C.c.o
-	Object main.nef.p/src_overlay023_ov23_022542CC.c.o
-	Object main.nef.p/src_overlay023_ov23_02254A14.c.o
+	Object main.nef.p/src_overlay023_decoration_menu.c.o
+	Object main.nef.p/src_overlay023_base_decoration.c.o
 }
 
 Overlay poketch_unavailable
