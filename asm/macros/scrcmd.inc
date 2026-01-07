@@ -4846,7 +4846,7 @@
     .endm
 
     .macro SetMenuYOriginSide bottomSide
-    .short 826
+    .short 827
     .byte \bottomSide
     .endm
 
