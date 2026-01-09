@@ -1,9 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021EDDAC_H
 #define POKEPLATINUM_STRUCT_OV5_021EDDAC_H
 
+#include "constants/heap.h"
+
 typedef struct {
     int unk_00;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_ov5_021EDDAC;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021EDDAC_H

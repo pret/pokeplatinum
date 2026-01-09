@@ -21,11 +21,11 @@
 #include "system.h"
 #include "unk_0202F1D4.h"
 
-static void ov62_0224856C(String *param0, int param1);
+static void ov62_0224856C(String *param0, enum HeapID heapID);
 
 extern BattleRecording *Unk_021C07A4;
 
-void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
+void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, enum HeapID heapID)
 {
     UnkStruct_0202F298 *v0 = &param0->unk_E8;
     UnkStruct_0202F41C *v1 = &param0->unk_84;
@@ -92,7 +92,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
     Heap_Free(v8);
 }
 
-static void ov62_0224856C(String *param0, int heapID)
+static void ov62_0224856C(String *param0, enum HeapID heapID)
 {
     MessageLoader *v0;
 

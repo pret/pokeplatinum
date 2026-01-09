@@ -24,13 +24,13 @@ static void InitializeSpecialMetInfoString(PokemonInfoDisplayStruct *param0, int
 static void InitializeIVsString(PokemonInfoDisplayStruct *param0);
 static void InitializeFlavorAffinityString(PokemonInfoDisplayStruct *param0);
 static void InitializeFriendshipLevelString(PokemonInfoDisplayStruct *param0);
-static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *param1, int param2);
+static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID);
 static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch);
 static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch);
 static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon);
 static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 
-PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
+PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, enum HeapID heapID)
 {
     PokemonInfoDisplayStruct *v0 = Heap_Alloc(heapID, sizeof(PokemonInfoDisplayStruct));
     v0->heapID = heapID;
@@ -747,12 +747,12 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
     return v0;
 }
 
-void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)
+void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, enum HeapID heapID)
 {
     UpdateBoxMonStatusAndTrainerInfo(&mon->box, trainerInfo, sel, metLocation, heapID);
 }
 
-void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)
+void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, enum HeapID heapID)
 {
     switch (sel) {
     case 0:
@@ -850,7 +850,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
     }
 }
 
-static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int heapID)
+static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *trainerInfo, enum HeapID heapID)
 {
     int v0 = TrainerInfo_ID(trainerInfo);
     int v1 = TrainerInfo_Gender(trainerInfo);

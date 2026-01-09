@@ -4,6 +4,8 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_defs/struct_020217F4.h"
@@ -15,7 +17,7 @@
 #include "overlay005/struct_ov5_021EDDAC.h"
 
 void sub_02020B14(UnkStruct_020216E0 *param0);
-void sub_02020B90(int param0, int heapIDs);
+void sub_02020B90(int param0, enum HeapID heapID);
 void sub_02020BD0(void);
 void sub_02020C08(void);
 UnkStruct_02020C44 *sub_02020C44(const UnkStruct_ov5_021EDDAC *param0);

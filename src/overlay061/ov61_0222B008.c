@@ -49,7 +49,7 @@ static int ov61_0222BBE8(UnkStruct_ov62_022349A8 *param0);
 static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, String *param1);
 static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param2);
 static int ov61_0222B960(UnkStruct_ov62_022349A8 *param0);
-static void *ov61_0222BBF0(int heapID);
+static void *ov61_0222BBF0(enum HeapID heapID);
 static void ov61_0222BC40(void);
 static BOOL ov61_0222B920(void *param0, void *param1);
 static BOOL ov61_0222B924(void *param0, void *param1);
@@ -778,7 +778,7 @@ static int ov61_0222BBE8(UnkStruct_ov62_022349A8 *param0)
 
 static OSHeapHandle Unk_ov61_0222E760;
 
-static void *ov61_0222BBF0(int heapID)
+static void *ov61_0222BBF0(enum HeapID heapID)
 {
     void *v0;
     void *v1;

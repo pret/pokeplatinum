@@ -49,7 +49,7 @@ BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second)
     return FALSE;
 }
 
-void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID)
+void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, enum HeapID heapID)
 {
     int i;
     int diffs[5];

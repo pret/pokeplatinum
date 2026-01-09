@@ -51,7 +51,7 @@ typedef struct {
     u16 unk_10;
     int unk_14;
     int unk_18;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_02056B30;
 
 static BOOL sub_02056B70(FieldTask *taskMan);
@@ -100,7 +100,7 @@ static const UnkFuncPtr_020EC57C Unk_020EC57C[7] = {
     NULL
 };
 
-void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, int heapID)
+void sub_02056B30(FieldTask *taskMan, int param1, int param2, int param3, u16 param4, int param5, int param6, enum HeapID heapID)
 {
     UnkStruct_02056B30 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02056B30));
 

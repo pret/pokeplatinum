@@ -36,7 +36,7 @@ void sub_02099580(void)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay18));
 }
 
-static void sub_02099590(SaveData *saveData, int heapID)
+static void sub_02099590(SaveData *saveData, enum HeapID heapID)
 {
     sub_02099550();
     sub_02099570();

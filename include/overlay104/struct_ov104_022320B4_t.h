@@ -17,7 +17,7 @@ struct UnkStruct_ov104_022320B4_t {
     UnkStruct_0209B75C *unk_00;
     FrontierScriptContext *unk_04[8];
     UnkStruct_ov104_0222E8C8 unk_24;
-    int heapID;
+    enum HeapID heapID;
     u8 unk_38;
     MessageLoader *unk_3C;
     u8 *unk_40;

@@ -143,7 +143,7 @@ static u8 CheckDuplicateValues(PartyMenuApplication *application);
 static u8 CheckUniqueValues(PartyMenuApplication *application);
 static u8 CheckEqualityInArray(PartyMenuApplication *application);
 static BOOL ShouldShowSubscreen(PartyMenuApplication *application);
-static G3DPipelineBuffers *sub_0207EAD4(int heapID);
+static G3DPipelineBuffers *sub_0207EAD4(enum HeapID heapID);
 static void sub_0207EAF4(void);
 static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(PartyMenuApplication *application);
@@ -888,7 +888,7 @@ void sub_0207EA74(PartyMenuApplication *application, int param1)
     }
 }
 
-static G3DPipelineBuffers *sub_0207EAD4(int heapID)
+static G3DPipelineBuffers *sub_0207EAD4(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }

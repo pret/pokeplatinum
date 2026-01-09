@@ -54,7 +54,7 @@ enum {
 } UnkEnum_ov75_021D0E80;
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int unk_04;
     u16 unk_08;
     u16 unk_0A;

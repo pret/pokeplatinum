@@ -55,7 +55,7 @@ typedef void (*MainMenuUtilVBlankFuncPtr)(MainMenuUtilManager *utilMan);
 struct MainMenuUtilManager {
     BgConfig *bgConfig;
     BOOL initialized;
-    int heapID;
+    enum HeapID heapID;
     int screenFadeQueuedState;
     BOOL fadeToWhite;
     int savingStatus;

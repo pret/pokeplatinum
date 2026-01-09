@@ -974,7 +974,7 @@ static void ov94_022423FC(MessageLoader *gtsMessageLoader, StringTemplate *templ
     String_Free(offerString);
 }
 
-u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
+u16 *ov94_Pokedex_Alphabetical(enum HeapID heapID, int unused, int *pokedexLength)
 {
     u32 pokedexSize;
     u16 *pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
@@ -983,7 +983,7 @@ u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
     return pokedexAlphabetical;
 }
 
-u8 *ov94_02242548(int heapID)
+u8 *ov94_02242548(enum HeapID heapID)
 {
     u32 nationalDexSize, nationalDexLength;
     u8 *nationalDex = Heap_Alloc(HEAP_ID_62, NATIONAL_DEX_COUNT + 1);

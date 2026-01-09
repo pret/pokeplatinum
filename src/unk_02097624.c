@@ -28,7 +28,7 @@ FS_EXTERN_OVERLAY(overlay20);
 FS_EXTERN_OVERLAY(overlay75);
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     u16 unk_04;
     u16 unk_06;
     void *unk_08;
@@ -54,7 +54,7 @@ const ApplicationManagerTemplate Unk_020F64B0 = {
     0xFFFFFFFF
 };
 
-UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, int heapID)
+UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 param3, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0;
     int v2;
@@ -79,7 +79,7 @@ UnkStruct_02097728 *sub_02097624(SaveData *saveData, int param1, u8 param2, u8 p
     return v0;
 }
 
-UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int heapID)
+UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
@@ -97,7 +97,7 @@ UnkStruct_02097728 *sub_0209767C(SaveData *saveData, int param1, u16 param2, int
     return v0;
 }
 
-UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID)
+UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
@@ -110,7 +110,7 @@ UnkStruct_02097728 *sub_020976BC(SaveData *saveData, Pokemon *param1, int heapID
     return v0;
 }
 
-UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, int heapID)
+UnkStruct_02097728 *sub_020976F4(SaveData *saveData, u8 param1, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
@@ -157,7 +157,7 @@ void sub_02097770(UnkStruct_02097728 *param0)
     Heap_Free(param0);
 }
 
-int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
+int sub_02097788(Mailbox *mailbox, Pokemon *mon, enum HeapID heapID)
 {
     int item = ITEM_NONE;
     int slot = Mail_GetEmptySlotInArray(mailbox, 0);
@@ -178,7 +178,7 @@ int sub_02097788(Mailbox *mailbox, Pokemon *mon, int heapID)
     return slot;
 }
 
-int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID)
+int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, enum HeapID heapID)
 {
     int item = 0;
     Mail *mail = sub_020284A8(mailbox, 0, param1, heapID);
@@ -197,7 +197,7 @@ int sub_020977E4(Mailbox *mailbox, u16 param1, Pokemon *mon, int heapID)
     return param1;
 }
 
-UnkStruct_020978D8 *sub_02097834(const Mail *mail, int heapID)
+static UnkStruct_020978D8 *sub_02097834(const Mail *mail, enum HeapID heapID)
 {
     u16 i;
     UnkStruct_020978D8 *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_020978D8));

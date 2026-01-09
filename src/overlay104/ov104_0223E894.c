@@ -592,7 +592,7 @@ static void ov104_0223F1AC(void *param0)
     ov104_0223F174(v0);
 }
 
-UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, int heapID)
+UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, enum HeapID heapID)
 {
     UnkStruct_ov104_0223F174 *v0;
     int v1;

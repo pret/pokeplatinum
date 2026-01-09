@@ -93,7 +93,7 @@ static void LoadingScreenTransition(PokedexSearchDisplay *searchDisplay, Pokedex
 static void LoadingScreenAnimation(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, enum HeapID heapID);
 static void SearchingMessage(PokedexGraphicData **param0, enum HeapID heapID);
 static void ReturnSearchDisplay(PokedexGraphicData **param0, PokedexSearchDisplay *searchDisplay, enum HeapID heapID);
-static void DefaultDisplay(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, const int *param3, int heapID);
+static void DefaultDisplay(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, const int *param3, enum HeapID heapID);
 static void ClearScreen(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1);
 static void ov21_021D8B8C(PokedexGraphicData **param0, const PokedexSearchSettings *searchSettings, enum HeapID heapID);
 static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, enum HeapID heapID);
@@ -513,7 +513,7 @@ static int ExitPokedexSearch(void *graphics, PokedexGraphicsManager *graphicsMan
     return 0;
 }
 
-static void DefaultDisplay(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, const int *param3, int heapID)
+static void DefaultDisplay(PokedexSearchDisplay *searchDisplay, PokedexGraphicData **param1, const PokedexSearchSettings *searchSettings, const int *param3, enum HeapID heapID)
 {
     Bg_ClearTilemap((*param1)->bgConfig, 2);
     Bg_ClearTilemap((*param1)->bgConfig, 1);

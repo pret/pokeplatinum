@@ -30,7 +30,7 @@ void sub_020287F8(SaveData *saveData);
 BOOL sub_02028810(SaveData *saveData);
 void Underground_SetUnusedField(Underground *underground);
 void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const TrainerInfo *info);
-TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, int heapID, int param2);
+TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, enum HeapID heapID, int param2);
 u32 Underground_GetRandomSeed(Underground *underground);
 int Underground_ConvertTreasureToBagItem(int treasureID);
 BOOL Underground_TryAddGoodPC(Underground *underground, int goodID);

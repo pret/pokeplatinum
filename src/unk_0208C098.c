@@ -149,7 +149,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
     return 0;
 }
 
-void App_LoadGraphicMember(BgConfig *bgConfig, int heapID, NARC *narc, int unused, int memberIndex, int bgLayer, enum GraphicMemberType memberType, u16 memberSize, u16 offset)
+void App_LoadGraphicMember(BgConfig *bgConfig, enum HeapID heapID, NARC *narc, int unused, int memberIndex, int bgLayer, enum GraphicMemberType memberType, u16 memberSize, u16 offset)
 {
     u32 narcSize;
     void *dest;

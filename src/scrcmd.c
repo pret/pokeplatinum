@@ -3795,7 +3795,7 @@ static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
     return TRUE;
 }
 
-static UnkStruct_02041DC8 *sub_02041DC8(int heapID, FieldSystem *fieldSystem, int param2, int param3)
+static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
     UnkStruct_0202A750 *v3 = sub_0202A750(fieldSystem->saveData);
 

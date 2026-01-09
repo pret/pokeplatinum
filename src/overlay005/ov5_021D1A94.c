@@ -16,7 +16,7 @@
 
 struct UnkStruct_ov5_021D1A94_t {
     FieldSystem *fieldSystem;
-    int heapID;
+    enum HeapID heapID;
     int unk_08;
     UnkStruct_ov5_021D1BEC *unk_0C;
     SysTaskManager *unk_10;
@@ -30,7 +30,7 @@ struct UnkStruct_ov5_021D1BEC_t {
     void *unk_10;
 };
 
-UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int heapID, int param2)
+UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, enum HeapID heapID, int param2)
 {
     UnkStruct_ov5_021D1A94 *v0;
     u32 v1;
