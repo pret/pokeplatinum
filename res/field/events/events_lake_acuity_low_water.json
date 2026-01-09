@@ -2,8 +2,8 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "LAKE_ACUITY_LOW_WATER_BARRY_0",
-            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "id": "LAKE_ACUITY_LOW_WATER_RIVAL_0",
+            "graphics_id": "OBJ_EVENT_GFX_RIVAL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x0293",
