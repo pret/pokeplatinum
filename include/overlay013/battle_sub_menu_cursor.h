@@ -21,8 +21,8 @@ typedef struct BattleSubMenuCursor {
 BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID);
 void DeleteBattleSubMenuCursor(BattleSubMenuCursor *cursor);
 UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor);
-u8 IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor);
-void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, u8 isVisible);
+BOOL IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor);
+void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, BOOL isVisible);
 void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, UnkStruct_ov16_0226DC24 *sprites);
 void SetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor, u8 positionIndex);
 void ResetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor);

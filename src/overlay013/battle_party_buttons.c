@@ -2,8 +2,15 @@
 
 #include "generated/species.h"
 
+#include "overlay013/battle_party.h"
 #include "overlay013/battle_party_sprites.h"
 #include "overlay013/battle_party_text.h"
+#include "overlay013/battle_sub_menu_buttons_defs.h"
+
+#include "bg_window.h"
+#include "heap.h"
+#include "palette.h"
+#include "sprite_system.h"
 
 #define ALT_PARTY_POKEMON_BUTTON_DATA_X_OFFSET        16
 #define SUMMARY_CHECK_MOVES_BUTTON_DATA_Y_OFFSET      39
@@ -100,172 +107,172 @@ static const BattleSubMenuButtonDimensions sButtonDimensions[] = {
     [BUTTON_MOVE_SUMMARY_SCREEN_MOVE_4] = { .xCoord = 16, .yCoord = 21, .width = MOVE_SUMMARY_SCREEN_MOVE_BUTTON_WIDTH_TILES, .height = MOVE_SUMMARY_SCREEN_MOVE_BUTTON_HEIGHT_TILES }
 };
 
-static const u8 PartyPokemon1ButtonWindows[] = {
+static const u8 sPartyPokemon1ButtonWindows[] = {
     BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_1,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PartyPokemon2ButtonWindows[] = {
+static const u8 sPartyPokemon2ButtonWindows[] = {
     BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_2,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PartyPokemon3ButtonWindows[] = {
+static const u8 sPartyPokemon3ButtonWindows[] = {
     BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_3,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PartyPokemon4ButtonWindows[] = {
+static const u8 sPartyPokemon4ButtonWindows[] = {
     BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_4,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PartyPokemon5ButtonWindows[] = {
+static const u8 sPartyPokemon5ButtonWindows[] = {
     BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_5,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PartyPokemon6ButtonWindows[] = {
+static const u8 sPartyPokemon6ButtonWindows[] = {
     BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_6,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 ShiftPokemonButtonWindows[] = {
+static const u8 sShiftPokemonButtonWindows[] = {
     BATTLE_SELECT_POKEMON_SCREEN_WINDOW_POKEMON_NAME,
     BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SHIFT,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 SelectPokemonScreenSummaryButtonWindows[] = {
+static const u8 sSelectPokemonScreenSummaryButtonWindows[] = {
     BATTLE_SELECT_POKEMON_SCREEN_WINDOW_SUMMARY,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 SelectPokemonScreenCheckMovesButtonWindows[] = {
+static const u8 sSelectPokemonScreenCheckMovesButtonWindows[] = {
     BATTLE_SELECT_POKEMON_SCREEN_WINDOW_CHECK_MOVES,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PokemonSummaryScreenCheckMovesButtonWindows[] = {
+static const u8 sPokemonSummaryScreenCheckMovesButtonWindows[] = {
     BATTLE_POKEMON_SUMMARY_SCREEN_WINDOW_CHECK_MOVES,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PokemonMovesScreenSummaryButtonWindows[] = {
+static const u8 sPokemonMovesScreenSummaryButtonWindows[] = {
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_SUMMARY,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PokemonMovesScreenMove1ButtonWindows[] = {
+static const u8 sPokemonMovesScreenMove1ButtonWindows[] = {
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_1,
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_1,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PokemonMovesScreenMove2ButtonWindows[] = {
+static const u8 sPokemonMovesScreenMove2ButtonWindows[] = {
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_2,
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_2,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PokemonMovesScreenMove3ButtonWindows[] = {
+static const u8 sPokemonMovesScreenMove3ButtonWindows[] = {
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_3,
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_3,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 PokemonMovesScreenMove4ButtonWindows[] = {
+static const u8 sPokemonMovesScreenMove4ButtonWindows[] = {
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_ALT_MOVE_4,
     BATTLE_POKEMON_MOVES_SCREEN_WINDOW_MOVE_4,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 RestoreMovePPScreenMove1ButtonWindows[] = {
+static const u8 sRestoreMovePPScreenMove1ButtonWindows[] = {
     BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_1,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 RestoreMovePPScreenMove2ButtonWindows[] = {
+static const u8 sRestoreMovePPScreenMove2ButtonWindows[] = {
     BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_2,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 RestoreMovePPScreenMove3ButtonWindows[] = {
+static const u8 sRestoreMovePPScreenMove3ButtonWindows[] = {
     BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_3,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 RestoreMovePPScreenMove4ButtonWindows[] = {
+static const u8 sRestoreMovePPScreenMove4ButtonWindows[] = {
     BATTLE_RESTORE_MOVE_PP_SCREEN_WINDOW_MOVE_4,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 LearnMoveScreenMove1ButtonWindows[] = {
+static const u8 sLearnMoveScreenMove1ButtonWindows[] = {
     BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_1,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 LearnMoveScreenMove2ButtonWindows[] = {
+static const u8 sLearnMoveScreenMove2ButtonWindows[] = {
     BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_2,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 LearnMoveScreenMove3ButtonWindows[] = {
+static const u8 sLearnMoveScreenMove3ButtonWindows[] = {
     BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_3,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 LearnMoveScreenMove4ButtonWindows[] = {
+static const u8 sLearnMoveScreenMove4ButtonWindows[] = {
     BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_4,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 LearnMoveScreenMoveToLearnButtonWindows[] = {
+static const u8 sLearnMoveScreenMoveToLearnButtonWindows[] = {
     BATTLE_LEARN_MOVE_SCREEN_WINDOW_MOVE_TO_LEARN,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 LearnMoveConfirmButtonWindows[] = {
+static const u8 sLearnMoveConfirmButtonWindows[] = {
     BATTLE_CONFIRM_LEARN_MOVE_SCREEN_WINDOW_CONFIRM,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
-static const u8 LearnMoveContestStatsConfirmButtonWindows[] = {
+static const u8 sLearnMoveContestStatsConfirmButtonWindows[] = {
     BATTLE_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_WINDOW_CONFIRM,
     BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR
 };
 
 static const u8 *const sScrollableWindows[] = {
-    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_1] = PartyPokemon1ButtonWindows,
-    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_2] = PartyPokemon2ButtonWindows,
-    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_3] = PartyPokemon3ButtonWindows,
-    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_4] = PartyPokemon4ButtonWindows,
-    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_5] = PartyPokemon5ButtonWindows,
-    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_6] = PartyPokemon6ButtonWindows,
+    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_1] = sPartyPokemon1ButtonWindows,
+    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_2] = sPartyPokemon2ButtonWindows,
+    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_3] = sPartyPokemon3ButtonWindows,
+    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_4] = sPartyPokemon4ButtonWindows,
+    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_5] = sPartyPokemon5ButtonWindows,
+    [BUTTON_POKEMON_PARTY_SCREEN_POKEMON_6] = sPartyPokemon6ButtonWindows,
     [BUTTON_CANCEL] = NULL,
-    [BUTTON_SELECT_POKEMON_SCREEN_SHIFT] = ShiftPokemonButtonWindows,
-    [BUTTON_SELECT_POKEMON_SCREEN_SUMMARY] = SelectPokemonScreenSummaryButtonWindows,
-    [BUTTON_POKEMON_MOVES_SCREEN_SUMMARY] = PokemonMovesScreenSummaryButtonWindows,
-    [BUTTON_SELECT_POKEMON_SCREEN_CHECK_MOVES] = SelectPokemonScreenCheckMovesButtonWindows,
-    [BUTTON_POKEMON_SUMMARY_SCREEN_CHECK_MOVES] = PokemonSummaryScreenCheckMovesButtonWindows,
+    [BUTTON_SELECT_POKEMON_SCREEN_SHIFT] = sShiftPokemonButtonWindows,
+    [BUTTON_SELECT_POKEMON_SCREEN_SUMMARY] = sSelectPokemonScreenSummaryButtonWindows,
+    [BUTTON_POKEMON_MOVES_SCREEN_SUMMARY] = sPokemonMovesScreenSummaryButtonWindows,
+    [BUTTON_SELECT_POKEMON_SCREEN_CHECK_MOVES] = sSelectPokemonScreenCheckMovesButtonWindows,
+    [BUTTON_POKEMON_SUMMARY_SCREEN_CHECK_MOVES] = sPokemonSummaryScreenCheckMovesButtonWindows,
     [BUTTON_PREV_POKEMON] = NULL,
     [BUTTON_NEXT_POKEMON] = NULL,
-    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_1] = PokemonMovesScreenMove1ButtonWindows,
-    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_2] = PokemonMovesScreenMove2ButtonWindows,
-    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_3] = PokemonMovesScreenMove3ButtonWindows,
-    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_4] = PokemonMovesScreenMove4ButtonWindows,
+    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_1] = sPokemonMovesScreenMove1ButtonWindows,
+    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_2] = sPokemonMovesScreenMove2ButtonWindows,
+    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_3] = sPokemonMovesScreenMove3ButtonWindows,
+    [BUTTON_POKEMON_MOVES_SCREEN_MOVE_4] = sPokemonMovesScreenMove4ButtonWindows,
     [BUTTON_CONTEST_STATS] = NULL,
-    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_1] = RestoreMovePPScreenMove1ButtonWindows,
-    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_2] = RestoreMovePPScreenMove2ButtonWindows,
-    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_3] = RestoreMovePPScreenMove3ButtonWindows,
-    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_4] = RestoreMovePPScreenMove4ButtonWindows,
-    [BUTTON_LEARN_MOVE_SCREEN_MOVE_1] = LearnMoveScreenMove1ButtonWindows,
-    [BUTTON_LEARN_MOVE_SCREEN_MOVE_2] = LearnMoveScreenMove2ButtonWindows,
-    [BUTTON_LEARN_MOVE_SCREEN_MOVE_3] = LearnMoveScreenMove3ButtonWindows,
-    [BUTTON_LEARN_MOVE_SCREEN_MOVE_4] = LearnMoveScreenMove4ButtonWindows,
-    [BUTTON_LEARN_MOVE_SCREEN_MOVE_TO_LEARN] = LearnMoveScreenMoveToLearnButtonWindows,
-    [BUTTON_CONFIRM_LEARN_MOVE_SCREEN_CONFIRM] = LearnMoveConfirmButtonWindows,
-    [BUTTON_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_CONFIRM] = LearnMoveContestStatsConfirmButtonWindows,
+    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_1] = sRestoreMovePPScreenMove1ButtonWindows,
+    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_2] = sRestoreMovePPScreenMove2ButtonWindows,
+    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_3] = sRestoreMovePPScreenMove3ButtonWindows,
+    [BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_4] = sRestoreMovePPScreenMove4ButtonWindows,
+    [BUTTON_LEARN_MOVE_SCREEN_MOVE_1] = sLearnMoveScreenMove1ButtonWindows,
+    [BUTTON_LEARN_MOVE_SCREEN_MOVE_2] = sLearnMoveScreenMove2ButtonWindows,
+    [BUTTON_LEARN_MOVE_SCREEN_MOVE_3] = sLearnMoveScreenMove3ButtonWindows,
+    [BUTTON_LEARN_MOVE_SCREEN_MOVE_4] = sLearnMoveScreenMove4ButtonWindows,
+    [BUTTON_LEARN_MOVE_SCREEN_MOVE_TO_LEARN] = sLearnMoveScreenMoveToLearnButtonWindows,
+    [BUTTON_CONFIRM_LEARN_MOVE_SCREEN_CONFIRM] = sLearnMoveConfirmButtonWindows,
+    [BUTTON_CONFIRM_LEARN_MOVE_CONTEST_STATS_SCREEN_CONFIRM] = sLearnMoveContestStatsConfirmButtonWindows,
     [BUTTON_MOVE_SUMMARY_SCREEN_MOVE_1] = NULL,
     [BUTTON_MOVE_SUMMARY_SCREEN_MOVE_2] = NULL,
     [BUTTON_MOVE_SUMMARY_SCREEN_MOVE_3] = NULL,
@@ -362,7 +369,7 @@ static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOff
     }
 }
 
-static u16 *RetrieveRawButtonData(BattleParty *battleParty, u8 button, u8 buttonState, u8 isAltButton)
+static u16 *RetrieveRawButtonData(BattleParty *battleParty, u8 button, enum BattleSubMenuButtonState buttonState, BOOL isAltButton)
 {
     switch (button) {
     case BUTTON_POKEMON_PARTY_SCREEN_POKEMON_1:
@@ -418,7 +425,7 @@ static u16 *RetrieveRawButtonData(BattleParty *battleParty, u8 button, u8 button
     return NULL;
 }
 
-static void RetrieveButtonData(BattleParty *battleParty, u16 *buttonData, u8 button, u8 buttonState, u8 isAltButton)
+static void RetrieveButtonData(BattleParty *battleParty, u16 *buttonData, u8 button, enum BattleSubMenuButtonState buttonState, u8 isAltButton)
 {
     u16 *rawButtonData = RetrieveRawButtonData(battleParty, button, buttonState, isAltButton);
     u8 width = sButtonDimensions[button].width;
@@ -479,7 +486,7 @@ static void DrawButton(BattleParty *battleParty, u8 button, u8 buttonState, u8 i
     Heap_Free(buttonData);
 }
 
-static void UpdateWindowScroll(BattleParty *battleParty, u8 button, u8 buttonState)
+static void UpdateWindowScroll(BattleParty *battleParty, u8 button, enum BattleSubMenuButtonState buttonState)
 {
     const u8 *windowsToScroll = sScrollableWindows[button];
     u8 scrollDirection, scrollDistance;
@@ -521,7 +528,7 @@ static void UpdateWindowScroll(BattleParty *battleParty, u8 button, u8 buttonSta
     }
 }
 
-static void UpdateSpritePositions(BattleParty *battleParty, u8 button, u8 buttonState)
+static void UpdateSpritePositions(BattleParty *battleParty, enum Button button, enum BattleSubMenuButtonState buttonState)
 {
     switch (button) {
     case BUTTON_POKEMON_PARTY_SCREEN_POKEMON_1:
@@ -607,7 +614,7 @@ void BattlePartyButtons_Tick(BattleParty *battleParty)
     }
 }
 
-void BattlePartyButtons_InitializeButtons(BattleParty *battleParty, u8 screen)
+void BattlePartyButtons_InitializeButtons(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
     switch (screen) {
     case BATTLE_PARTY_SCREEN_POKEMON_PARTY:
@@ -727,7 +734,7 @@ void BattlePartyButtons_InitializeButtons(BattleParty *battleParty, u8 screen)
     }
 }
 
-void BattlePartyButtons_LoadScreenPaletteData(BattleParty *battleParty, u8 screen)
+void BattlePartyButtons_LoadScreenPaletteData(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
     if (screen == BATTLE_PARTY_SCREEN_POKEMON_MOVES) {
         PaletteData_LoadBuffer(battleParty->palette, &battleParty->screenPaletteData[PALETTE_SIZE], PLTTBUF_SUB_BG, 192, PALETTE_SIZE_BYTES);

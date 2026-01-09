@@ -3,6 +3,7 @@
 #include "overlay013/battle_bag.h"
 #include "overlay013/battle_bag_text.h"
 #include "overlay013/battle_bag_utils.h"
+#include "overlay013/battle_sub_menu_buttons_defs.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -243,16 +244,14 @@ void BattleBagButtons_InitializeButtonData(BattleBag *battleBag, u16 *screenData
 
 static void LoadButtonData(u16 *buttonData, u16 *screenData, u8 xOffset, u8 yOffset, u8 width, u8 height)
 {
-    u16 i, l;
-
-    for (i = 0; i < height; i++) {
-        for (l = 0; l < width; l++) {
+    for (u16 i = 0; i < height; i++) {
+        for (u16 l = 0; l < width; l++) {
             buttonData[i * width + l] = screenData[(yOffset + i) * TILE_SIZE_4BPP + xOffset + l];
         }
     }
 }
 
-static u16 *RetrieveRawButtonData(BattleBag *battleBag, u8 button, u8 buttonState)
+static u16 *RetrieveRawButtonData(BattleBag *battleBag, enum Button button, enum BattleSubMenuButtonState buttonState)
 {
     switch (button) {
     case BUTTON_MENU_SCREEN_RECOVER_HP_POCKET:
@@ -284,7 +283,7 @@ static u16 *RetrieveRawButtonData(BattleBag *battleBag, u8 button, u8 buttonStat
     return NULL;
 }
 
-static u16 GetButtonColor(BattleBag *battleBag, u8 button, u8 buttonState, u8 screen)
+static u16 GetButtonColor(BattleBag *battleBag, enum Button button, enum BattleSubMenuButtonState buttonState, enum BattleBagScreen screen)
 {
     if (buttonState == BATTLE_SUB_MENU_BUTTON_STATE_DISABLED) {
         return 5;
@@ -322,10 +321,9 @@ static u16 GetButtonColor(BattleBag *battleBag, u8 button, u8 buttonState, u8 sc
     return 0;
 }
 
-static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState)
+static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, enum Button button, enum BattleSubMenuButtonState buttonState)
 {
     u16 *iconData;
-    u16 i, l;
 
     if (button == BUTTON_MENU_SCREEN_RECOVER_HP_POCKET) {
         iconData = battleBag->menuScreenRecoverHPPocketIconData[buttonState];
@@ -339,8 +337,8 @@ static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, u8 bu
         return;
     }
 
-    for (i = 0; i < MENU_POCKET_ICON_HEIGHT_TILES; i++) {
-        for (l = 0; l < MENU_POCKET_ICON_WIDTH_TILES; l++) {
+    for (u16 i = 0; i < MENU_POCKET_ICON_HEIGHT_TILES; i++) {
+        for (u16 l = 0; l < MENU_POCKET_ICON_WIDTH_TILES; l++) {
             buttonData[MENU_POCKET_BUTTON_WIDTH_TILES * i + ((MENU_POCKET_BUTTON_WIDTH_TILES - MENU_POCKET_ICON_WIDTH_TILES) / 2) + l] = iconData[MENU_POCKET_ICON_WIDTH_TILES * i + l];
         }
     }
@@ -348,11 +346,10 @@ static void AddIconDataToButtonData(BattleBag *battleBag, u16 *buttonData, u8 bu
 
 static void RetrieveButtonData(BattleBag *battleBag, u16 *buttonData, u8 button, u8 buttonState, u8 screen)
 {
-    u16 i;
     u16 *rawButtonData = RetrieveRawButtonData(battleBag, button, buttonState);
     u16 colorData = GetButtonColor(battleBag, button, buttonState, screen) << 12;
 
-    for (i = 0; i < sButtonDimensions[button].width * sButtonDimensions[button].height; i++) {
+    for (u16 i = 0; i < sButtonDimensions[button].width * sButtonDimensions[button].height; i++) {
         buttonData[i] = colorData | (rawButtonData[i] & 0xfff);
     }
 
@@ -370,10 +367,9 @@ static void DrawButton(BattleBag *battleBag, u8 button, u8 buttonState, u8 scree
     Heap_Free(buttonData);
 }
 
-static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)
+static void UpdateWindowScroll(BattleBag *battleBag, u8 button, enum BattleSubMenuButtonState buttonState)
 {
     const u8 *windowsToScroll;
-    u16 i;
     u8 scrollDirection, scrollDistance;
 
     if (button >= BUTTON_POCKET_MENU_SCREEN_ITEM_1 && button <= BUTTON_POCKET_MENU_SCREEN_ITEM_6 && battleBag->useAltPocketMenuWindows == FALSE) {
@@ -398,7 +394,7 @@ static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)
         break;
     }
 
-    for (i = 0; i < BATTLE_SUB_MENU_MAX_SCROLLABLE_WINDOWS; i++) {
+    for (u16 i = 0; i < BATTLE_SUB_MENU_MAX_SCROLLABLE_WINDOWS; i++) {
         if (windowsToScroll[i] == BATTLE_SUB_MENU_WINDOWS_ARRAY_TERMINATOR) {
             break;
         }
@@ -408,15 +404,14 @@ static void UpdateWindowScroll(BattleBag *battleBag, u8 button, u8 buttonState)
     }
 }
 
-static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonState)
+static void UpdateSpritePositions(BattleBag *battleBag, u8 button, enum BattleSubMenuButtonState buttonState)
 {
     ManagedSprite *sprite;
-    u8 i;
 
     if (button >= BUTTON_POCKET_MENU_SCREEN_ITEM_1 && button <= BUTTON_POCKET_MENU_SCREEN_ITEM_6) {
         sprite = battleBag->sprites[button - BATTLE_BAG_POCKET_MENU_SCREEN_BUTTON_OFFSET];
     } else if (button == BUTTON_MENU_SCREEN_LAST_USED_ITEM) {
-        for (i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+        for (u8 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
             sprite = battleBag->sprites[i];
 
             if (ManagedSprite_GetDrawFlag(sprite) != FALSE) {
@@ -441,9 +436,9 @@ static void UpdateSpritePositions(BattleBag *battleBag, u8 button, u8 buttonStat
 void BattleBagButtons_PressButton(BattleBag *battleBag, u8 pressedButton, u8 unused)
 {
     battleBag->pressedButtonState = BATTLE_SUB_MENU_BUTTON_STATE_UNPRESSED;
-    battleBag->Unused1 = 0;
+    battleBag->unused2 = 0;
     battleBag->pressedButton = pressedButton;
-    battleBag->Unused2 = unused;
+    battleBag->unused3 = unused;
     battleBag->isAButtonPressed = TRUE;
 }
 
@@ -458,21 +453,21 @@ void BattleBagButtons_Tick(BattleBag *battleBag)
         DrawButton(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_PRESSING, battleBag->currentScreen);
         UpdateWindowScroll(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_PRESSING);
         UpdateSpritePositions(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_PRESSING);
-        battleBag->Unused1 = 0;
+        battleBag->unused2 = 0;
         battleBag->pressedButtonState = BATTLE_SUB_MENU_BUTTON_STATE_PRESSING;
         break;
     case BATTLE_SUB_MENU_BUTTON_STATE_PRESSING:
         DrawButton(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_PRESSED, battleBag->currentScreen);
         UpdateWindowScroll(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_PRESSED);
         UpdateSpritePositions(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_PRESSED);
-        battleBag->Unused1 = 0;
+        battleBag->unused2 = 0;
         battleBag->pressedButtonState = BATTLE_SUB_MENU_BUTTON_STATE_PRESSED;
         break;
     case BATTLE_SUB_MENU_BUTTON_STATE_PRESSED:
         DrawButton(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_UNPRESSED, battleBag->currentScreen);
         UpdateWindowScroll(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_UNPRESSED);
         UpdateSpritePositions(battleBag, battleBag->pressedButton, BATTLE_SUB_MENU_BUTTON_STATE_UNPRESSED);
-        battleBag->Unused1 = 0;
+        battleBag->unused2 = 0;
         battleBag->pressedButtonState = BATTLE_SUB_MENU_BUTTON_STATE_UNPRESSED;
         battleBag->isAButtonPressed = FALSE;
         break;
