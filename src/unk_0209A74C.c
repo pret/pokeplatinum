@@ -65,7 +65,7 @@ static const WindowTemplate Unk_020F8AC4 = {
     0x23
 };
 
-void sub_0209A74C(int heapID)
+void sub_0209A74C(enum HeapID heapID)
 {
     BgConfig *v0;
     Window v1;
@@ -140,7 +140,7 @@ void sub_0209A74C(int heapID)
     PM_ForceToPowerOff();
 }
 
-void sub_0209A8E0(int heapID)
+void sub_0209A8E0(enum HeapID heapID)
 {
     BgConfig *v0;
     Window v1;

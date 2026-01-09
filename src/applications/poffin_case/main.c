@@ -100,7 +100,7 @@ const ApplicationManagerTemplate gPoffinCaseAppTemplate = {
     FS_OVERLAY_ID_NONE
 };
 
-PoffinCaseAppData *PoffinCaseAppData_New(SaveData *saveData, int heapID)
+PoffinCaseAppData *PoffinCaseAppData_New(SaveData *saveData, enum HeapID heapID)
 {
     StringTemplate *unused;
     u8 count = 0, j = 0;

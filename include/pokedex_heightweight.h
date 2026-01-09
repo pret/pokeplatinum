@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_Pokedex_HeightWeight_H
 #define POKEPLATINUM_Pokedex_HeightWeight_H
 
+#include "constants/heap.h"
+
 typedef struct HeightWeightData {
     int *height;
     int *weight;
@@ -10,9 +12,9 @@ typedef struct HeightWeightData {
     short *pokemonScale;
 } HeightWeightData;
 
-HeightWeightData *Pokedex_HeightWeightData(int heapID);
+HeightWeightData *Pokedex_HeightWeightData(enum HeapID heapID);
 void Pokedex_HeightWeightData_Free(HeightWeightData *HWData);
-void Pokedex_HeightWeightData_Load(HeightWeightData *HWData, int trainerIsGirl, int heapID);
+void Pokedex_HeightWeightData_Load(HeightWeightData *HWData, int trainerIsGirl, enum HeapID heapID);
 void Pokedex_HeightWeightData_Release(HeightWeightData *HWData);
 int Pokedex_HeightWeightData_Height(const HeightWeightData *HWData, int species);
 int Pokedex_HeightWeightData_Weight(const HeightWeightData *HWData, int species);

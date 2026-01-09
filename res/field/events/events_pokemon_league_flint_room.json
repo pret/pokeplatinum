@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_LEAGUE_FLINT_ROOM_FLINT_0",
+            "id": "LOCALID_FLINT",
             "graphics_id": "OBJ_EVENT_GFX_FLINT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_FLINT_ROOM_ELITE_FOUR_ROOM_DOOR_1",
+            "id": "LOCALID_EXIT_DOOR",
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0288",
+            "hidden_flag": "FLAG_HIDE_POKEMON_LEAGUE_FLINT_ROOM_EXIT_DOOR",
             "script": 2037,
             "initial_dir": 0,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_FLINT_ROOM_ELITE_FOUR_ROOM_DOOR_2",
+            "id": "LOCALID_ENTRANCE_DOOR",
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0284",
+            "hidden_flag": "FLAG_HIDE_POKEMON_LEAGUE_FLINT_ROOM_ENTRANCE_DOOR",
             "script": 2037,
             "initial_dir": 0,
             "data": [],

@@ -13,7 +13,7 @@
 
 typedef struct BattleTower {
     int unk_00;
-    int heapID;
+    enum HeapID heapID;
     u32 unk_08;
     u8 nextOpponentNum;
     u8 unk_0D;

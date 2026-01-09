@@ -29,7 +29,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 
-void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int heapID);
+void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, enum HeapID heapID);
 void ov83_0223D784(UnkStruct_ov83_0223D784 *param0);
 void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9);
 void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, SpriteResource *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
@@ -113,7 +113,7 @@ void ov83_0223F544(UnkStruct_ov83_0223F4AC *param0, int param1, int param2);
 void ov83_0223F730(UnkStruct_ov83_0223F770 *param0, int param1, int param2, int param3, int param4);
 void ov83_0223F770(UnkStruct_ov83_0223F770 *param0);
 void ov83_0223F784(UnkStruct_ov83_0223F770 *param0);
-void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int heapID, BgConfig *param2);
+void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, enum HeapID heapID, BgConfig *param2);
 void ov83_0223F7A4(UnkStruct_ov83_0223F7A4 *param0);
 void ov83_0223F7B0(UnkStruct_ov83_0223F7A4 *param0);
 u32 ov83_0223F7DC(UnkStruct_ov83_0223F7A4 *param0);

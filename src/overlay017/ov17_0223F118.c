@@ -77,7 +77,7 @@ static void NitroStaticInit(void)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-G3DPipelineBuffers *ov17_0223F140(int heapID)
+G3DPipelineBuffers *ov17_0223F140(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov17_0223F15C);
 }
@@ -102,7 +102,7 @@ void ov17_0223F1E0(G3DPipelineBuffers *param0)
     G3DPipelineBuffers_Free(param0);
 }
 
-void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const String *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(enum HeapID heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const String *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -391,7 +391,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
     }
 }
 
-UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
+UnkStruct_ov17_0223F744 *ov17_0223F70C(enum HeapID heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
 {
     UnkStruct_ov17_0223F744 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));

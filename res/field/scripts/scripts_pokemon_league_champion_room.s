@@ -1,107 +1,108 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_champion_room.h"
+#include "res/field/events/events_pokemon_league_champion_room.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _000E
+    ScriptEntry PokemonLeagueChampionRoom_OnTransition
+    ScriptEntry PokemonLeagueChampionRoom_OnFrame
     ScriptEntryEnd
 
-_000A:
+PokemonLeagueChampionRoom_OnTransition:
     InitPersistedMapFeaturesForPlatformLift
     End
 
-_000E:
-    ApplyMovement LOCALID_PLAYER, _012C
+PokemonLeagueChampionRoom_OnFrame:
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_Movement_PlayerApproachCynthia
     WaitMovement
     PlayTrainerEncounterBGM TRAINER_CHAMPION_CYNTHIA
-    CallIfUnset FLAG_GAME_COMPLETED, _00EB
-    CallIfSet FLAG_GAME_COMPLETED, _00F0
+    CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueChampionRoom_CynthiaIntro
+    CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueChampionRoom_CynthiaGameCompletedIntro
     CloseMessage
     SetFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
-    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00F5
-    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00FD
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_StartCynthiaBattle
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_StartCynthiaRematchBattle
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _0121
-    Message 1
-    SetFlag FLAG_UNK_0x00B4
-    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0105
-    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0113
-    Message 2
+    GoToIfEq VAR_RESULT, FALSE, PokemonLeagueChampionRoom_BlackOut
+    Message PokemonLeagueChampionRoom_Text_CynthiaDefeat
+    SetFlag FLAG_DEFEATED_CYNTHIA
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_CreateJournalEventDefeatedCynthia
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_CreateJournalEventDefeatedRematchCynthia
+    Message PokemonLeagueChampionRoom_Text_ComeWithMe
     CloseMessage
-    ApplyMovement 0, _0144
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_CynthiaMoveAwayFromElevator
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0134
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_PlayerEnterElevator
     WaitMovement
-    ApplyMovement 0, _0150
+    ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_CynthiaFacePlayer
     WaitMovement
     WaitTime 30, VAR_RESULT
     TriggerPlatformLift
     WaitTime 30, VAR_RESULT
-    SetFlag FLAG_UNK_0x023A
-    SetFlag FLAG_UNK_0x023B
-    ApplyMovement LOCALID_PLAYER, _013C
+    SetFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA
+    SetFlag FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueChampionRoom_EnterHallwayToHallOfFame
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreenOut
     WaitFadeScreen
-    Warp MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_HALL_OF_FAME, 0, 5, 23, 0
+    Warp MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME, 0, 5, 23, 0
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_00EB:
-    Message 0
+PokemonLeagueChampionRoom_CynthiaIntro:
+    Message PokemonLeagueChampionRoom_Text_CynthiaIntro
     Return
 
-_00F0:
-    Message 3
+PokemonLeagueChampionRoom_CynthiaGameCompletedIntro:
+    Message PokemonLeagueChampionRoom_Text_CynthiaGameCompletedIntro
     Return
 
-_00F5:
+PokemonLeagueChampionRoom_StartCynthiaBattle:
     StartTrainerBattle TRAINER_CHAMPION_CYNTHIA
     Return
 
-_00FD:
+PokemonLeagueChampionRoom_StartCynthiaRematchBattle:
     StartTrainerBattle TRAINER_CHAMPION_CYNTHIA_REMATCH
     Return
 
-_0105:
+PokemonLeagueChampionRoom_CreateJournalEventDefeatedCynthia:
     CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA, 0, 0, 0
     Return
 
-_0113:
+PokemonLeagueChampionRoom_CreateJournalEventDefeatedRematchCynthia:
     CreateJournalEvent LOCATION_EVENT_BEAT_CHAMPION, TRAINER_CHAMPION_CYNTHIA_REMATCH, 0, 0, 0
     Return
 
-_0121:
+PokemonLeagueChampionRoom_BlackOut:
     ClearFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     BlackOutFromBattle
     ReleaseAll
     End
 
     .balign 4, 0
-_012C:
+PokemonLeagueChampionRoom_Movement_PlayerApproachCynthia:
     WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
-_0134:
+PokemonLeagueChampionRoom_PlayerEnterElevator:
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-_013C:
+PokemonLeagueChampionRoom_EnterHallwayToHallOfFame:
     WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
-_0144:
+PokemonLeagueChampionRoom_CynthiaMoveAwayFromElevator:
     WalkNormalWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0150:
+PokemonLeagueChampionRoom_CynthiaFacePlayer:
     WalkOnSpotNormalNorth
     EndMovement

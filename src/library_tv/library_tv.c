@@ -21,7 +21,7 @@
 #define LIBRARY_TV_DURATION 90 + 150
 
 typedef struct LibraryTV {
-    int heapID;
+    enum HeapID heapID;
     BgConfig *bgl;
     MessageLoader *msgLdr;
     int tvState;
@@ -40,14 +40,12 @@ static void LibraryTV_UpdateScanLines(LibraryTV *ltv);
 
 BOOL LibraryTV_Init(ApplicationManager *appMan, int *state)
 {
-    int heapID = HEAP_ID_LIBRARY_TV;
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_LIBRARY_TV, HEAP_SIZE_LIBRARY_TV);
 
-    Heap_Create(HEAP_ID_APPLICATION, heapID, HEAP_SIZE_LIBRARY_TV);
-
-    LibraryTV *ltv = ApplicationManager_NewData(appMan, sizeof(LibraryTV), heapID);
+    LibraryTV *ltv = ApplicationManager_NewData(appMan, sizeof(LibraryTV), HEAP_ID_LIBRARY_TV);
     memset(ltv, 0, sizeof(LibraryTV));
 
-    ltv->heapID = heapID;
+    ltv->heapID = HEAP_ID_LIBRARY_TV;
     ltv->waitTiming = 0;
 
     return TRUE;

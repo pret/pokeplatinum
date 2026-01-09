@@ -667,7 +667,7 @@ static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 script
     return TRUE;
 }
 
-HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, int heapID)
+HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     HiddenItemTilePosition *hiddenItems;
     const BgEvent *bgEvents;

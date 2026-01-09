@@ -223,7 +223,7 @@ Static main
 	Object main.nef.p/src_enc_effects.c.o
 	Object main.nef.p/src_field_battle_data_transfer.c.o
 	Object main.nef.p/src_unk_020528D0.c.o
-	Object main.nef.p/src_unk_02052C6C.c.o
+	Object main.nef.p/src_clear_game.c.o
 	Object main.nef.p/src_field_map_change.c.o
 	Object main.nef.p/src_unk_02054884.c.o
 	Object main.nef.p/src_terrain_attributes.c.o
@@ -663,7 +663,7 @@ Overlay overlay13
 	After overlay11
 	Object main.nef.p/src_overlay013_battle_party.c.o
 	Object main.nef.p/src_overlay013_battle_party_text.c.o
-	Object main.nef.p/src_overlay013_ov13_02224500.c.o
+	Object main.nef.p/src_overlay013_battle_party_sprites.c.o
 	Object main.nef.p/src_overlay013_battle_party_buttons.c.o
 	Object main.nef.p/src_overlay013_battle_bag.c.o
 	Object main.nef.p/src_overlay013_battle_bag_text.c.o

@@ -37,7 +37,7 @@ AcuityCavern_Uxie:
     GoToIfEq VAR_RESULT, FALSE, AcuityCavern_LostBattle
     CheckDidNotCapture VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, AcuityCavern_UxieDisappeared
-    SetFlag FLAG_UXIE_CAUGHT
+    SetFlag FLAG_CAUGHT_UXIE
     ReleaseAll
     End
 

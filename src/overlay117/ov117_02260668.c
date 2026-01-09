@@ -57,7 +57,7 @@
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
-static G3DPipelineBuffers *ov117_02260E14(int heapID);
+static G3DPipelineBuffers *ov117_02260E14(enum HeapID heapID);
 static void ov117_02260E34(void);
 static void ov117_02260EB8(G3DPipelineBuffers *param0);
 static void ov117_02260F7C(SysTask *param0, void *param1);
@@ -507,7 +507,7 @@ static void ov117_02260DA0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static G3DPipelineBuffers *ov117_02260E14(int heapID)
+static G3DPipelineBuffers *ov117_02260E14(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, ov117_02260E34);
 }

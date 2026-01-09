@@ -307,7 +307,7 @@ _044D:
     ApplyMovement 3, _04D8
     WaitMovement
     RemoveObject 3
-    ClearFlag FLAG_UNK_0x0177
+    ClearFlag FLAG_HIDE_SANDGEM_TOWN_COUNTERPART
     SetVar VAR_UNK_0x40A6, 1
     ReleaseAll
     End

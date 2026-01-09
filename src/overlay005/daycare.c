@@ -1089,7 +1089,7 @@ extern u32 Daycare_GetCompatibilityLevel(Daycare *daycare)
     return v1;
 }
 
-static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
+static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
 {
     u16 species;
     u16 moves[LEARNED_MOVES_MAX];
@@ -1183,7 +1183,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, int heapID)
     Heap_Free(mon);
 }
 
-void Egg_CreateHatchedMon(Pokemon *egg, int heapID)
+void Egg_CreateHatchedMon(Pokemon *egg, enum HeapID heapID)
 {
     u8 isEgg, hasNickname;
     u8 ball, metLevel;

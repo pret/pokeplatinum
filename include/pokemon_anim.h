@@ -72,7 +72,7 @@ typedef struct PokemonAnim {
 
 typedef struct PokemonAnimManager {
     PokemonAnim *anims;
-    int heapID;
+    enum HeapID heapID;
     u8 flipSprite;
     u8 animCount;
 } PokemonAnimManager;

@@ -34,13 +34,13 @@ static void Sound_Impl_ResetBGM(void);
 void Sound_StopAll(void);
 static void Sound_Impl_SetPokemonCryVolume(u16 param0, enum SoundHandleType param1, int param2);
 void Sound_StopPokemonCries(int param0);
-void Sound_SetPokemonCryDuration(int param0, int heapID);
+void Sound_SetPokemonCryDuration(int param0, enum HeapID heapID);
 static void Sound_Impl_CryDurationTask(SysTask *param0, void *param1);
 void Sound_Impl_DestroyCryDurationTask(void);
 static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form);
 void Sound_ClearPokemonCryParams(void);
 static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form);
-static BOOL Sound_PlayPokemonCryReversedEcho(u16 param0, s8 param1, int param2, int param3, int heapID);
+static BOOL Sound_PlayPokemonCryReversedEcho(u16 param0, s8 param1, int param2, int param3, enum HeapID heapID);
 BOOL Sound_UpdateFanfareDelay(void);
 static void Sound_Impl_StopFanfare(int param0);
 BOOL Sound_IsBGMPausedByFanfare(void);
@@ -411,7 +411,7 @@ BOOL Sound_IsPokemonCryPlaying(void)
     return Sound_GetNumberOfPlayingSequencesForPlayer(PLAYER_PV);
 }
 
-BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 form)
+BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, enum HeapID heapID, u8 form)
 {
     int waveOutPan, echoVolume; // Need to be declared up here to match
     u8 *wavePrimaryAllocated = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_PRIMARY_ALLOCATED);
@@ -599,7 +599,7 @@ static void Sound_Impl_SetPokemonCryVolume(u16 species, enum SoundHandleType han
     Sound_AdjustVolumeForVoiceChatEx(species, handleType);
 }
 
-void Sound_SetPokemonCryDuration(int duration, int heapID)
+void Sound_SetPokemonCryDuration(int duration, enum HeapID heapID)
 {
     PokemonCryDurationParam *param = NULL;
     SysTask **task = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CRY_DURATION_TASK);
@@ -666,7 +666,7 @@ void Sound_Impl_DestroyCryDurationTask()
     *task = NULL;
 }
 
-void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, int heapID, u8 delay, u8 form)
+void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int volume, enum HeapID heapID, u8 delay, u8 form)
 {
     int *paramMod;
     u16 *paramWaveID;
@@ -777,7 +777,7 @@ static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form)
     return success;
 }
 
-static BOOL Sound_PlayPokemonCryReversedEcho(u16 species, s8 unused, int volume, int pan, int heapID)
+static BOOL Sound_PlayPokemonCryReversedEcho(u16 species, s8 unused, int volume, int pan, enum HeapID heapID)
 {
     u8 *echoEnabled = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_ECHO_ENABLED);
     *echoEnabled = TRUE;

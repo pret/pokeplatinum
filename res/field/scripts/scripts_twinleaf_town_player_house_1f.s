@@ -73,7 +73,7 @@ _00CC:
 
 _00E0:
     LockAll
-    SetVar VAR_UNK_0x410F, 2
+    SetVar VAR_TWINLEAF_TOWN_PLAYER_HOUSE_STATE, 2
     GoToIfSet FLAG_UNK_0x015C, _014B
     GoToIfUnset FLAG_UNK_0x015D, _0110
     GetNationalDexEnabled VAR_RESULT

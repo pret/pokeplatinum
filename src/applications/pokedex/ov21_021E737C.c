@@ -150,7 +150,7 @@ static void ov21_021E7CF0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 static void ov21_021E7CF4(UnkStruct_ov21_021E7714 *param0);
 static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, enum HeapID heapID);
 static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, enum HeapID heapID);
-static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID);
+static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, enum HeapID heapID);
 static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0);
 static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1);
 static void ov21_021E7F7C(UnkStruct_ov21_021E747C *param0);
@@ -748,7 +748,7 @@ static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
     MessageLoader_Free(v1);
 }
 
-static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID)
+static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, enum HeapID heapID)
 {
     SoftwareSpriteCharsTemplate v0;
     SoftwareSpritePaletteTemplate v1;

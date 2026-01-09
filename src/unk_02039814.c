@@ -73,7 +73,7 @@ static void sub_02039814(void)
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void NetworkError_DisplayNetworkError(int heapID, int networkErrorId, int errorCode)
+void NetworkError_DisplayNetworkError(enum HeapID heapID, int networkErrorId, int errorCode)
 {
     BgConfig *v0;
     Window v1;

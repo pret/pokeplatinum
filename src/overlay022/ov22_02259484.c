@@ -8,7 +8,7 @@
 
 #include "heap.h"
 
-void ov22_02259484(UnkStruct_ov22_02259484 *param0, int param1, int heapID)
+void ov22_02259484(UnkStruct_ov22_02259484 *param0, int param1, enum HeapID heapID)
 {
     param0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02259560) * param1);
     GF_ASSERT(param0->unk_00);

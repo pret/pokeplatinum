@@ -2,7 +2,7 @@
   "key": 2963,
   "messages": [
     {
-      "id": "pl_msg_00000183_00000",
+      "id": "PokemonLeagueSouthPokecenter1F_Text_TheObjectiveIsToReachThePokemonLeague",
       "en_US": [
         "The objective is to reach the Pokémon\n",
         "League.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000183_00001",
+      "id": "PokemonLeagueSouthPokecenter1F_Text_VictoryRoadConfusesMe",
       "en_US": [
         "Victory Road confuses me.\n",
         "I should draw up a map."

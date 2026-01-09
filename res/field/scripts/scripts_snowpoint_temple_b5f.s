@@ -11,7 +11,7 @@ _000A:
     End
 
 _0017:
-    SetFlag FLAG_UNK_0x0243
+    SetFlag FLAG_HIDE_SNOWPOINT_TEMPLE_B5F_REGIGIGAS
     RemoveObject 0
     ClearFlag FLAG_MAP_LOCAL
     End
@@ -53,7 +53,7 @@ _0081:
     GoToIfEq VAR_RESULT, FALSE, _00D1
     CheckDidNotCapture VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, _00C6
-    SetFlag FLAG_UNK_0x011B
+    SetFlag FLAG_CAUGHT_REGIGIGAS
     ReleaseAll
     End
 

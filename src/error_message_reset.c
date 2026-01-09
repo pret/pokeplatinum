@@ -88,7 +88,6 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     MessageLoader *errorMsgData;
     String *errorString;
     int v4;
-    int heapID = HEAP_ID_SYSTEM;
 
     if (sErrorMessagePrinterLock == TRUE) {
         return;
@@ -127,19 +126,19 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     GXLayers_SetBanks(&sErrorMessageBanksConfig);
-    bgConfig = BgConfig_New(heapID);
+    bgConfig = BgConfig_New(HEAP_ID_SYSTEM);
 
     SetAllGraphicsModes(&sErrorMessageBgModeSet);
     Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &sErrorMessageBgTemplate, 0);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 512 - 9, 2, 0, heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), heapID);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 512 - 9, 2, 0, HEAP_ID_SYSTEM);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), HEAP_ID_SYSTEM);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_SYSTEM);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
-    errorMsgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, heapID);
-    errorString = String_Init(0x180, heapID);
+    errorMsgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, HEAP_ID_SYSTEM);
+    errorString = String_Init(0x180, HEAP_ID_SYSTEM);
 
     Text_ResetAllPrinters();
 

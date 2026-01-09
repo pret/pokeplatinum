@@ -47,8 +47,8 @@ void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
 static u32 ov119_021D13D0(u32 param0, BOOL param1);
-static ParticleSystem *ov119_021D13EC(int heapID);
-static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2);
+static ParticleSystem *ov119_021D13EC(enum HeapID heapID);
+static ParticleSystem *ov119_021D1434(enum HeapID heapID, int param1, int param2);
 static void ov119_021D1474(SPLEmitter *param0);
 
 void ov119_021D0D80(void)
@@ -404,7 +404,7 @@ static u32 ov119_021D13D0(u32 param0, BOOL param1)
     return v1;
 }
 
-static ParticleSystem *ov119_021D13EC(int heapID)
+static ParticleSystem *ov119_021D13EC(enum HeapID heapID)
 {
     ParticleSystem *v0;
     void *v1;
@@ -421,7 +421,7 @@ static ParticleSystem *ov119_021D13EC(int heapID)
     return v0;
 }
 
-static ParticleSystem *ov119_021D1434(int heapID, int param1, int param2)
+static ParticleSystem *ov119_021D1434(enum HeapID heapID, int param1, int param2)
 {
     ParticleSystem *v0 = ov119_021D13EC(heapID);
     void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);

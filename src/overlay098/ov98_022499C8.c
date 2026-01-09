@@ -26,7 +26,7 @@ static const struct {
     { 0x12a, '9' },
 };
 
-void ov98_022499C8(String *param0, char *param1, int heapID)
+void ov98_022499C8(String *param0, char *param1, enum HeapID heapID)
 {
     static const char Unk_ov98_02249D1C[] = "w";
     static const char Unk_ov98_02249D20[] = "@wii.com";
@@ -65,7 +65,7 @@ void ov98_022499C8(String *param0, char *param1, int heapID)
     Heap_Free(v1);
 }
 
-int ov98_02249A80(String *param0, int heapID)
+int ov98_02249A80(String *param0, enum HeapID heapID)
 {
     charcode_t *v0;
     BOOL v1 = TRUE;

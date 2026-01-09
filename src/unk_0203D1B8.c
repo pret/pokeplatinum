@@ -13,12 +13,12 @@
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/gts_player_data.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_0203E564.h"
@@ -172,7 +172,7 @@ FS_EXTERN_OVERLAY(dw_warp);
 #include <nitro/code16.h>
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     PartyMenu *unk_04;
     PokemonSummary *unk_08;
 } UnkStruct_0203D444;
@@ -362,7 +362,7 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, appArgs);
 }
 
-static PartyMenu *PartyMenu_New(int heapID, FieldSystem *fieldSystem, int type, int mode)
+static PartyMenu *PartyMenu_New(enum HeapID heapID, FieldSystem *fieldSystem, int type, int mode)
 {
     PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
 
@@ -547,7 +547,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem
     return partyMenu;
 }
 
-PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
+PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode)
 {
     PokemonSummary *v0;
     SaveData *saveData;
@@ -767,7 +767,7 @@ UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID)
+UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0;
 
@@ -782,7 +782,7 @@ UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID)
+UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, heapID);
     sub_0203D910(fieldSystem, v0);
@@ -795,7 +795,7 @@ static void OpenPoffinCaseApp(FieldSystem *fieldSystem, PoffinCaseAppData *poffi
     FieldSystem_StartChildProcess(fieldSystem, &gPoffinCaseAppTemplate, poffinCaseAppData);
 }
 
-PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, int heapID)
+PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     PoffinCaseAppData *appData = PoffinCaseAppData_New(FieldSystem_GetSaveData(fieldSystem), heapID);
     OpenPoffinCaseApp(fieldSystem, appData);
@@ -817,7 +817,7 @@ void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int param2, BOOL *param3, BOOL param4)
+static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, int param2, BOOL *param3, BOOL param4)
 {
     UnkStruct_0203DA00 *v0;
     Pokemon *v1;
@@ -1430,7 +1430,7 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
     }
 }
 
-void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1)
+void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1)
 {
     FS_EXTERN_OVERLAY(overlay99);
 
@@ -1648,7 +1648,7 @@ void AccessoryShop_Init(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_AccessoryShop, shop);
 }
 
-void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, int heapID, BOOL isNatDex)
+void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL isNatDex)
 {
     FS_EXTERN_OVERLAY(diploma);
 
@@ -1668,7 +1668,7 @@ void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, int heapID, BOOL isNatDe
     return diplomaData;
 }
 
-void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, int heapID)
+void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID)
 {
     UnkStruct_0203E564 *v0;
 
@@ -1714,7 +1714,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem
     return partyMenu;
 }
 
-void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
+void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     UnkStruct_0203E608 *v0;
 

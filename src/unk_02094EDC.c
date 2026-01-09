@@ -624,7 +624,7 @@ void sub_02095338(UnkStruct_02095C48 *param0)
     }
 }
 
-void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int heapID)
+void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, enum HeapID heapID)
 {
     int i;
     u16 v1;
@@ -671,7 +671,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     }
 }
 
-PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, int heapID, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, enum HeapID heapID, int param6, int param7, int param8)
 {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;
@@ -692,7 +692,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
     return v1;
 }
 
-void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
+void sub_020954F0(UnkStruct_02095C48 *param0, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
 {
     int v0, v1;
     u8 v2 = 0, v3 = 0;

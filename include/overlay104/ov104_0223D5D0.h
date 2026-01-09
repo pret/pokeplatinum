@@ -5,7 +5,7 @@
 
 #include "particle_system.h"
 
-UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID);
+UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(enum HeapID heapID);
 void ov104_0223D5F0(UnkStruct_ov104_0223D5F0 *param0);
 ParticleSystem *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int param2, int param3);
 void ov104_0223D68C(UnkStruct_ov104_0223D5F0 *param0, int param1);

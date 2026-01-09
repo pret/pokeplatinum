@@ -22,7 +22,7 @@
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int param1, s16 param2, s16 param3);
 
-UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *options)
+UnkStruct_ov62_02246B00 *ov62_02246B00(enum HeapID heapID, int param1, int param2[], Options *options)
 {
     int v0;
     UnkStruct_ov62_02246B00 *v1 = NULL;

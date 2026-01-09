@@ -194,6 +194,8 @@ typedef struct BattlePartyContext {
     u8 battlePartyExited;
 } BattlePartyContext;
 
+#define NUM_BATTLE_PARTY_SPRITES 38
+
 #define NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS 2
 
 typedef struct BattleParty {
@@ -224,7 +226,7 @@ typedef struct BattleParty {
     StringTemplate *stringTemplate;
     String *string;
     SpriteManager *spriteMan;
-    ManagedSprite *unk_1FB4[38];
+    ManagedSprite *sprites[NUM_BATTLE_PARTY_SPRITES];
     Window messageBoxWindows[NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS];
     Window *windows;
     u8 numWindows;
@@ -251,6 +253,8 @@ typedef struct BattleParty {
 #define PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE 2
 
 #define MOVE_TO_LEARN_SLOT LEARNED_MOVES_MAX
+
+#define HEALTH_BAR_MAX_PIXELS 48
 
 void BattlePartyTask_Start(BattlePartyContext *context);
 u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 partySlot);

@@ -603,7 +603,7 @@ BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
     return TRUE;
 }
 
-void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID)
+void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, enum HeapID heapID)
 {
     String *numStr;
     String *nameNumber;
@@ -624,7 +624,7 @@ void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int specie
     PokedexText_Free(nameNumber);
 }
 
-Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, int heapID, int species)
+Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, enum HeapID heapID, int species)
 {
     Window *window;
 
@@ -637,7 +637,7 @@ Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, co
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int heapID, int species)
+Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, enum HeapID heapID, int species)
 {
     Window *window = PokedexTextManager_NewWindow(textMan, 15, 2);
     PokedexMain_DisplayNameNumberText(window, species, species, heapID);
@@ -645,7 +645,7 @@ Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int h
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species)
+Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, enum HeapID heapID, int species)
 {
     int dexNumber = Pokemon_SinnohDexNumber(species);
 
@@ -659,7 +659,7 @@ Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heap
     return window;
 }
 
-void PokedexMain_EntryNameNumber(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y)
+void PokedexMain_EntryNameNumber(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, enum HeapID heapID, int statusIndex, fx32 x, fx32 y)
 {
     PokedexDisplayBox displayBox;
     VecFx32 position;

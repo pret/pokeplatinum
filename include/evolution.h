@@ -42,7 +42,7 @@ typedef struct EvolutionData {
     GameRecords *records;
     Poketch *poketch;
     UnkStruct_020157E4 *unk_58;
-    int heapID;
+    enum HeapID heapID;
     u16 unk_60;
     u16 unk_62;
     u8 unk_64;
@@ -67,7 +67,7 @@ typedef struct EvolutionData {
     u8 unk_86;
 } EvolutionData;
 
-EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID);
+EvolutionData *Evolution_Begin(Party *param0, Pokemon *param1, int param2, Options *options, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, enum HeapID heapID);
 BOOL Evolution_IsDone(EvolutionData *param0);
 void sub_0207B0E0(EvolutionData *param0);
 
