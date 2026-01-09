@@ -87,8 +87,8 @@
             "y": 1
         },
         {
-            "id": "ROUTE_203_BARRY_5",
-            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "id": "ROUTE_203_RIVAL_5",
+            "graphics_id": "OBJ_EVENT_GFX_RIVAL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x017B",

@@ -34,8 +34,8 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_BARRY_1",
-            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "id": "TRAINERS_SCHOOL_RIVAL_1",
+            "graphics_id": "OBJ_EVENT_GFX_RIVAL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01F4",
