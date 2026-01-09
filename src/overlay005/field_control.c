@@ -890,7 +890,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
 
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-        Pokemon_UpdateFriendship(mon, 5, mapID);
+        Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_WALK_CYCLE, mapID);
     }
 }
 

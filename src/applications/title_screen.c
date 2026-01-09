@@ -199,7 +199,7 @@ typedef struct TitleScreen {
 } TitleScreen;
 
 typedef struct TitleScreenAppData {
-    int heapID;
+    enum HeapID heapID;
     BgConfig *bgConfig;
     G3DPipelineBuffers *buffers;
     TitleScreenUnusedStruct unused0;

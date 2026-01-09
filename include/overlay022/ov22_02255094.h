@@ -34,9 +34,9 @@ NNSG2dCharacterData *ov22_02255340(UnkStruct_ov22_0225A0E4 *param0, void *param1
 void ov22_02255360(void);
 void ov22_02255390(void);
 void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0);
-void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int heapID);
+void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, enum HeapID heapID);
 int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param3);
-void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1, int heapID);
+void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1, enum HeapID heapID);
 void ov22_022554A8(UnkStruct_ov22_0225A0E4 *param0, BgConfig *param1, int param2);
 void ov22_022554F8(UnkStruct_ov22_0225A0E4 *param0);
 void ov22_02255524(UnkStruct_ov22_0225A0E4 *param0);

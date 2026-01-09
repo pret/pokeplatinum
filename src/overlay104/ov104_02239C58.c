@@ -29,7 +29,7 @@ BOOL ov104_02239C88(UnkStruct_0209BBA4 *param0, u16 param1, u16 param2, u16 para
 void ov104_02239CD0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, u16 param2);
 static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
 static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID);
+static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID);
 static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3);
 
 UnkStruct_0209BBA4 *ov104_02239C58(SaveData *saveData)
@@ -188,7 +188,7 @@ static void ov104_02239F38(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     return;
 }
 
-static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int heapID)
+static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     static const u8 v0[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8

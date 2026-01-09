@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_SAVEDATA_H
 #define POKEPLATINUM_SAVEDATA_H
 
+#include "constants/heap.h"
 #include "constants/savedata/save_table.h"
 #include "constants/savedata/savedata.h"
 
@@ -101,8 +102,8 @@ int SaveTableEntry_BodySize(int saveTableID);
 void SaveDataExtra_Init(SaveData *saveData);
 int SaveDataExtra_Save(const SaveData *saveData, int extraSaveID, void *data);
 int SaveDataExtra_SaveMirror(SaveData *saveData, int extraSaveID, void *data);
-void *SaveDataExtra_Get(SaveData *saveData, int heapID, int extraSaveID, int *loadResult);
-void *SaveDataExtra_Mirror(SaveData *saveData, int heapID, int extraSaveID, int *loadResult, BOOL *isOld);
+void *SaveDataExtra_Get(SaveData *saveData, enum HeapID heapID, int extraSaveID, int *loadResult);
+void *SaveDataExtra_Mirror(SaveData *saveData, enum HeapID heapID, int extraSaveID, int *loadResult, BOOL *isOld);
 BOOL SaveData_CardBackupType(void);
 BOOL SaveData_CardSave(u32 address, void *data, u32 size);
 BOOL SaveData_CardLoad(u32 address, void *data, u32 size);

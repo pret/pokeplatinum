@@ -5,7 +5,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag FLAG_UNK_0x09C6
+    SetFlag FLAG_FIRST_ARRIVAL_MYSTERY_ZONE_D05
     End
 
 Unk222_Unused:

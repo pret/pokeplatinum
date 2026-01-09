@@ -109,9 +109,9 @@ static BOOL ov21_021E2EC0(int param0);
 static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param2);
 static void ov21_021E2E10(UnkStruct_ov21_021E2BA8 *param0);
 static void ov21_021E2E00(UnkStruct_ov21_021E2BA8 *param0);
-static void ov21_021E3080(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1, const UnkStruct_ov21_021E2BA8 *param2, int heapID);
+static void ov21_021E3080(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1, const UnkStruct_ov21_021E2BA8 *param2, enum HeapID heapID);
 static void ov21_021E30BC(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1);
-static void ov21_021E30E4(PokedexGraphicData **param0, const UnkStruct_ov21_021E2BA8 *param1, int heapID);
+static void ov21_021E30E4(PokedexGraphicData **param0, const UnkStruct_ov21_021E2BA8 *param1, enum HeapID heapID);
 static void ov21_021E3178(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1, int param2);
 static void ov21_021E3224(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1);
 static void ov21_021E3268(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1, int param2);
@@ -153,9 +153,9 @@ static BOOL ov21_021E3F98(PokedexGraphicData **param0, BOOL param1);
 static void ov21_021E3C2C(UnkStruct_ov21_021E342C *param0);
 static void ov21_021E3C34(UnkStruct_ov21_021E342C *param0);
 static void ov21_021E3C64(UnkStruct_ov21_021E342C *param0);
-static void ov21_021E3900(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E342C *param2, int heapID);
+static void ov21_021E3900(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E342C *param2, enum HeapID heapID);
 static void ov21_021E393C(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1);
-static void ov21_021E3960(PokedexGraphicData **param0, const UnkStruct_ov21_021E342C *param1, int heapID);
+static void ov21_021E3960(PokedexGraphicData **param0, const UnkStruct_ov21_021E342C *param1, enum HeapID heapID);
 static void ov21_021E39FC(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1, int param2);
 static void ov21_021E3AAC(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1);
 static void ov21_021E3AF0(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1, int param2);
@@ -605,7 +605,7 @@ static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param
     return v2;
 }
 
-static void ov21_021E3080(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1, const UnkStruct_ov21_021E2BA8 *param2, int heapID)
+static void ov21_021E3080(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *param1, const UnkStruct_ov21_021E2BA8 *param2, enum HeapID heapID)
 {
     ov21_021E30E4(param0, param2, heapID);
     ov21_021E3178(param0, param1, heapID);
@@ -623,7 +623,7 @@ static void ov21_021E30BC(PokedexGraphicData **param0, UnkStruct_ov21_021E326C *
     Bg_ClearTilemap((*param0)->bgConfig, 2);
 }
 
-static void ov21_021E30E4(PokedexGraphicData **param0, const UnkStruct_ov21_021E2BA8 *param1, int heapID)
+static void ov21_021E30E4(PokedexGraphicData **param0, const UnkStruct_ov21_021E2BA8 *param1, enum HeapID heapID)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -1175,7 +1175,7 @@ static void ov21_021E37CC(u32 param0, enum TouchScreenButtonState param1, void *
     }
 }
 
-static void ov21_021E3900(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E342C *param2, int heapID)
+static void ov21_021E3900(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021E342C *param2, enum HeapID heapID)
 {
     ov21_021E3960(param1, param2, heapID);
     ov21_021E39FC(param0, param1, heapID);
@@ -1192,7 +1192,7 @@ static void ov21_021E393C(UnkStruct_ov21_021E3900 *param0, PokedexGraphicData **
     Bg_ClearTilemap((*param1)->bgConfig, 5);
 }
 
-static void ov21_021E3960(PokedexGraphicData **param0, const UnkStruct_ov21_021E342C *param1, int heapID)
+static void ov21_021E3960(PokedexGraphicData **param0, const UnkStruct_ov21_021E342C *param1, enum HeapID heapID)
 {
     void *v0;
     NNSG2dScreenData *v1;

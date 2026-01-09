@@ -312,28 +312,27 @@ static const ApplicationManagerTemplate sTvApplicationTemplate = {
 BOOL RowanIntro_Init(ApplicationManager *appMan, int *unusedState)
 {
     RowanIntro *manager;
-    int heapID = HEAP_ID_ROWAN_INTRO;
 
-    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_ROWAN_INTRO, 0x40000);
 
-    manager = ApplicationManager_NewData(appMan, sizeof(RowanIntro), heapID);
+    manager = ApplicationManager_NewData(appMan, sizeof(RowanIntro), HEAP_ID_ROWAN_INTRO);
     memset(manager, 0, sizeof(RowanIntro));
 
-    manager->heapID = heapID;
+    manager->heapID = HEAP_ID_ROWAN_INTRO;
     manager->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     manager->options = SaveData_GetOptions(manager->saveData);
     manager->state = RI_STATE_FIRST_FADE_BLACK_START;
     manager->bufferedState = RI_STATE_FIRST_FADE_BLACK_START;
     manager->appMan = NULL;
-    manager->playerNamingScreenArgs = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, manager->options);
-    manager->rivalNamingScreenArgs = NamingScreenArgs_Init(heapID, NAMING_SCREEN_TYPE_RIVAL, 0, TRAINER_NAME_LEN, manager->options);
+    manager->playerNamingScreenArgs = NamingScreenArgs_Init(HEAP_ID_ROWAN_INTRO, NAMING_SCREEN_TYPE_PLAYER, 0, TRAINER_NAME_LEN, manager->options);
+    manager->rivalNamingScreenArgs = NamingScreenArgs_Init(HEAP_ID_ROWAN_INTRO, NAMING_SCREEN_TYPE_RIVAL, 0, TRAINER_NAME_LEN, manager->options);
     manager->bgLayer3TilemapIndex = 0;
     manager->bgLayer1TilemapIndex = 0;
     manager->bgLayer2TilemapIndex = 0;
     manager->bgSubLayer3TilemapIndex = 0;
     manager->delayUpdateCounter = 0;
-    manager->bunearyPalette = Heap_Alloc(heapID, 0x20);
-    manager->bunearyBlendedPalette = Heap_Alloc(heapID, 0x20);
+    manager->bunearyPalette = Heap_Alloc(HEAP_ID_ROWAN_INTRO, 0x20);
+    manager->bunearyBlendedPalette = Heap_Alloc(HEAP_ID_ROWAN_INTRO, 0x20);
 
     return TRUE;
 }

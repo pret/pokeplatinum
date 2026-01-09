@@ -167,7 +167,7 @@ _025F:
 _0272:
     Message BattleTower_Text_CongratulationsOnAchievingWinStreak
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    SendToUndergroundPCWithLinefeed
     Message BattleTower_Text_WeHopeToSeeYouAgain2
     GoTo _020B
     End
@@ -275,7 +275,7 @@ BattleTower_HealAndSaveBeforeEnteringBattleRoom:
     End
 
 BattleTower_SaveGame:
-    CallCommonScript 0x7D6 @ CommonScript_SaveGame
+    SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     Return
 
@@ -1025,7 +1025,7 @@ _114C:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
-    CallCommonScript 0x806
+    CheckAllFrontierGoldPrintsObtained
     Return
 
 _1167:
@@ -1256,7 +1256,7 @@ BattleTower_Pikachu2:
 _13CE:
     Call _07B5
     Call _07B9
-    CallCommonScript 0x809
+    GriseousOrbCouldNotBeRemoved
     End
 
 BattleTower_StatsJudge:

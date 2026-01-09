@@ -1228,7 +1228,7 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
     switch (param1->unk_04) {
     case 0:
         ov64_0222EE20(param0, param1, param2);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 6, 1, heapID);
         param1->unk_04 = 1;
         break;
     case 1:
@@ -1262,7 +1262,7 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
         }
         break;
     case 4:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 6, 1, heapID);
         param1->unk_04++;
         break;
     case 5:
@@ -1272,7 +1272,7 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
         break;
     case 6:
         ov64_0222EE20(param0, param1, param2);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 6, 1, heapID);
         param1->unk_04 = 7;
         break;
     case 7:
@@ -1652,7 +1652,7 @@ static int ov64_0222F0C4(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E06
         param1->unk_04 = 1;
         break;
     case 10:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 6, 1, heapID);
 
         v2 = ov64_0222FF38(param0);
         v1 = SaveData_GetWiFiList(param1->saveData);
@@ -1673,7 +1673,7 @@ static int ov64_0222F0C4(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E06
         sub_0202AF0C(v1, param1->unk_08.unk_04[v2], param1->unk_2C.unk_00);
     case 13:
         ov64_0222F668(param0, param1, param2, heapID);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 6, 1, heapID);
         param1->unk_04 = 14;
         break;
     case 14:

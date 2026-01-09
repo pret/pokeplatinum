@@ -134,7 +134,7 @@ static void ov113_0225D12C(BgConfig *param0);
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0);
-static G3DPipelineBuffers *ov113_0225DC6C(int heapID);
+static G3DPipelineBuffers *ov113_0225DC6C(enum HeapID heapID);
 static void ov113_0225DC88(void);
 static void ov113_0225DD0C(G3DPipelineBuffers *param0);
 static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0);
@@ -1253,7 +1253,7 @@ static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static G3DPipelineBuffers *ov113_0225DC6C(int heapID)
+static G3DPipelineBuffers *ov113_0225DC6C(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov113_0225DC88);
 }

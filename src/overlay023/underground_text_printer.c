@@ -49,7 +49,7 @@ const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void)
     return &sListMenuTemplate;
 }
 
-UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int stringSize)
+UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, enum HeapID heapID, BgConfig *bgConfig, int renderDelay, int stringSize)
 {
     int size = stringSize;
     UndergroundTextPrinter *textPrinter = Heap_Alloc(heapID, sizeof(UndergroundTextPrinter));
@@ -324,9 +324,9 @@ void UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundTextPrint
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goods)
+void UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goodID)
 {
-    StringTemplate_SetUndergroundGoodsName(textPrinter->template, idx, goods);
+    StringTemplate_SetUndergroundGoodsName(textPrinter->template, idx, goodID);
     textPrinter->formattingNeeded = TRUE;
 }
 

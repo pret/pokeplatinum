@@ -18,7 +18,7 @@
 #include "struct_defs/fraction.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_controller.h"
+#include "battle/battle_controller_player.h"
 #include "battle/battle_display.h"
 #include "battle/battle_io.h"
 #include "battle/battle_message.h"

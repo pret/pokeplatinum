@@ -19,7 +19,7 @@ void sub_0204B060(BattleTower *battleTower, SaveData *saveData);
 void sub_0204B0BC(BattleTower *battleTower);
 void sub_0204B0D4(BattleTower *battleTower, u16 param1);
 u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 roomNum, u8 opponentNum, int challengeMode);
-BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID);
-void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, BOOL param3, const UnkStruct_0204B404 *param4, int heapID);
+BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, enum HeapID heapID);
+void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, BOOL param3, const UnkStruct_0204B404 *param4, enum HeapID heapID);
 
 #endif // POKEPLATINUM_UNK_0204AEE8_H

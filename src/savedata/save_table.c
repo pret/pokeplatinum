@@ -121,7 +121,7 @@ const SaveTableEntry gExtraSaveTable[] = {
 
 const int gExtraSaveTableSize = NELEMS(gExtraSaveTable);
 
-HallOfFame *SaveData_HallOfFame(SaveData *saveData, int heapID, int *resultCode)
+HallOfFame *SaveData_HallOfFame(SaveData *saveData, enum HeapID heapID, int *resultCode)
 {
     return SaveDataExtra_Get(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, resultCode);
 }
@@ -131,7 +131,7 @@ int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof)
     return SaveDataExtra_Save(saveData, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
 }
 
-BattleRecording *SaveData_BattleRecording(SaveData *saveData, int heapID, int *resultCode, int recNum)
+BattleRecording *SaveData_BattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);
@@ -142,7 +142,7 @@ int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int r
     return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
 }
 
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, int heapID, int *resultCode)
+BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, enum HeapID heapID, int *resultCode)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);

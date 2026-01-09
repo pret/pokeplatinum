@@ -49,7 +49,7 @@ void ov17_02252B20(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u3
     SpriteManager_UnloadAnimObjById(param0, param4);
 }
 
-UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *param1, int heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *param1, enum HeapID heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov17_02252B48 *v0;
     SpriteTemplate v1;

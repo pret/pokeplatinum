@@ -150,7 +150,7 @@ _028A:
     AddObject CANALAVE_CITY_RIVAL_BRIDGE
     ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _0340
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     ApplyMovement CANALAVE_CITY_RIVAL_BRIDGE, _0354
     WaitMovement
     BufferRivalName 0

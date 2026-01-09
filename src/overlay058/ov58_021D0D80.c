@@ -181,7 +181,7 @@ int ov58_021D0D80(ApplicationManager *appMan, int *param1)
 
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 16, 1, HEAP_ID_39);
 
         {
             UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)ApplicationManager_Args(appMan);
@@ -1145,7 +1145,7 @@ static int ov58_021D20C8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 {
     if (++param0->unk_374 > 60) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 
@@ -1235,7 +1235,7 @@ static int ov58_021D2270(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2298(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 16, 1, HEAP_ID_39);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 

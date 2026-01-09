@@ -12,9 +12,9 @@
 #include "overlay005/sprite_resource_manager.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224B05C.h"
 #include "overlay023/ov23_022521F0.h"
 #include "overlay023/ov23_02253598.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
@@ -923,7 +923,7 @@ static BOOL UndergroundMenu_HandleTrapsMenu(SysTask *sysTask, void *data)
         ctx->selectedID = UndergroundMenu_GetTrapAtSlot(input, menu);
 
         if (ctx->selectedID == TRAP_DIGGER_DRILL) {
-            ov23_0224CD68();
+            SecretBases_UseDiggerDrill();
             menu->state = UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED;
         } else {
             UndergroundMenu_EraseCurrentMenu(menu);
@@ -1660,7 +1660,7 @@ static BOOL UndergroundMenu_HandleGoodsMenu(SysTask *sysTask, void *data)
         ctx->selectedID = UndergroundMenu_GetGoodAtSlotBag(input, menu);
 
         UndergroundMenu_InitItemSelectedMenu(menu, UNDERGROUND_MENU_SELECTED_GOOD);
-        UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(CommManUnderground_GetCommonTextPrinter(), 2, ctx->selectedID);
+        UndergroundTextPrinter_SetGoodNameWithIndex(CommManUnderground_GetCommonTextPrinter(), 2, ctx->selectedID);
         UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_WhatWouldYouLikeToDo, FALSE, NULL);
 
         menu->state = UNDERGROUND_MENU_STATE_GOOD_SELECTED;
@@ -1701,7 +1701,7 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
         if (input == UNDERGROUND_MENU_OPTION_TRASH) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             Underground_RemoveGoodAtSlotBag(ctx->underground, ctx->selectedSlot);
-            UndergroundTextPrinter_SetUndergroundGoodsNameWithIndex(CommManUnderground_GetCommonTextPrinter(), 2, ctx->selectedID);
+            UndergroundTextPrinter_SetGoodNameWithIndex(CommManUnderground_GetCommonTextPrinter(), 2, ctx->selectedID);
             UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_ThrewAwayTheItem, FALSE, NULL);
         }
 

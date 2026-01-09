@@ -15,7 +15,7 @@ _0006:
     End
 
 _0027:
-    GoToIfUnset FLAG_UNK_0x09BE, _003A
+    GoToIfUnset FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY, _003A
     GoTo _006C
     End
 
@@ -341,8 +341,8 @@ _0494:
     EndMovement
 
 _04A4:
-    GoToIfEq VAR_UNK_0x40C4, 1, _04C6
-    GoToIfEq VAR_UNK_0x40C5, 1, _04C6
+    GoToIfEq VAR_SPEAR_PILLAR_DIALGA_STATE, 1, _04C6
+    GoToIfEq VAR_SPEAR_PILLAR_PALKIA_STATE, 1, _04C6
     SetVar VAR_RESULT, 1
     Return
 

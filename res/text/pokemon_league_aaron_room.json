@@ -2,7 +2,7 @@
   "key": 54314,
   "messages": [
     {
-      "id": "pl_msg_00000185_00000",
+      "id": "PokemonLeagueAaronRoom_Text_AaronIntro",
       "en_US": [
         "Hello!\n",
         "Welcome to the Pokémon League!\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000185_00001",
+      "id": "PokemonLeagueAaronRoom_Text_AaronDefeat",
       "en_US": [
         "I lost with the most beautiful and\n",
         "toughest of the bug Pokémon...\r",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000185_00002",
+      "id": "PokemonLeagueAaronRoom_Text_AaronPostBattle",
       "en_US": [
         "Go on, go to the next room.\r",
         "I’m going to become a top-level\n",

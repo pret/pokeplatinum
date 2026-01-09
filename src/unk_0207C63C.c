@@ -24,8 +24,8 @@ BOOL sub_0207C8E0(UnkStruct_0207C8C4 *param0);
 void sub_0207C8F4(UnkStruct_0207C8C4 *param0);
 static u32 sub_0207C794(u32 param0, BOOL param1);
 static u32 sub_0207C7B0(u32 param0, BOOL param1);
-static ParticleSystem *sub_0207C7CC(int heapID);
-static ParticleSystem *sub_0207C814(int heapID, int param1, int param2);
+static ParticleSystem *sub_0207C7CC(enum HeapID heapID);
+static ParticleSystem *sub_0207C814(enum HeapID heapID, int param1, int param2);
 static void sub_0207C83C(ParticleSystem *param0);
 static void sub_0207C854(SPLEmitter *param0);
 
@@ -43,7 +43,7 @@ void sub_0207C664(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-G3DPipelineBuffers *sub_0207C690(int heapID)
+G3DPipelineBuffers *sub_0207C690(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, sub_0207C6AC);
 }
@@ -124,7 +124,7 @@ static u32 sub_0207C7B0(u32 param0, BOOL param1)
     return v1;
 }
 
-static ParticleSystem *sub_0207C7CC(int heapID)
+static ParticleSystem *sub_0207C7CC(enum HeapID heapID)
 {
     ParticleSystem *v0;
     void *v1;
@@ -141,7 +141,7 @@ static ParticleSystem *sub_0207C7CC(int heapID)
     return v0;
 }
 
-static ParticleSystem *sub_0207C814(int heapID, int param1, int param2)
+static ParticleSystem *sub_0207C814(enum HeapID heapID, int param1, int param2)
 {
     ParticleSystem *v0 = sub_0207C7CC(heapID);
     void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);

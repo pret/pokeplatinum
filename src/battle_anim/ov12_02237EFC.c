@@ -16,7 +16,7 @@
 
 typedef struct UnkStruct_ov12_02238004_t {
     int unk_00;
-    int heapID;
+    enum HeapID heapID;
     UnkStruct_ov12_02237F38 unk_08;
     ParticleSystem *unk_10;
     SPLEmitter *unk_14;
@@ -26,7 +26,7 @@ typedef struct UnkStruct_ov12_02238004_t {
 } UnkStruct_ov12_02238004;
 
 typedef struct UnkStruct_ov12_02237F98_t {
-    int heapID;
+    enum HeapID heapID;
     UnkStruct_ov12_02237EFC unk_04;
     UnkStruct_ov12_02238004 *unk_08[16];
 } UnkStruct_ov12_02237F98;
@@ -36,7 +36,7 @@ static void ov12_02238054(UnkStruct_ov12_02238004 *param0, SPLEmitterCallback pa
 static void ov12_02238080(SPLEmitter *param0);
 static int ov12_02238088(int param0);
 
-UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapID, UnkStruct_ov12_02237EFC *param1)
+UnkStruct_ov12_02237F98 *ov12_02237EFC(enum HeapID heapID, UnkStruct_ov12_02237EFC *param1)
 {
     UnkStruct_ov12_02237F98 *v0 = NULL;
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov12_02237F98));
@@ -129,7 +129,7 @@ void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
     }
 }
 
-UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *param1)
+UnkStruct_ov12_02238004 *ov12_02237FC8(enum HeapID heapID, UnkStruct_ov12_02237F38 *param1)
 {
     UnkStruct_ov12_02238004 *v0;
 

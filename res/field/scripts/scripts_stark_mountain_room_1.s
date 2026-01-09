@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09D2
+    SetFlag FLAG_FIRST_ARRIVAL_STARK_MOUNTAIN_INTERIOR
     SetFlag FLAG_UNK_0x028E
     End
 

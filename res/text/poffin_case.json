@@ -1,0 +1,103 @@
+{
+  "key": 9471,
+  "messages": [
+    {
+      "id": "PoffinCase_Text_PoffinCase",
+      "en_US": "POFFIN CASE"
+    },
+    {
+      "id": "PoffinCase_Text_Give",
+      "en_US": "GIVE"
+    },
+    {
+      "id": "PoffinCase_Text_Trash",
+      "en_US": "TRASH"
+    },
+    {
+      "id": "PoffinCase_Text_Back",
+      "en_US": "BACK"
+    },
+    {
+      "id": "PoffinCase_Text_Smooth",
+      "en_US": "SMOOTH / {STRVAR_1 51, 0, 0}"
+    },
+    {
+      "id": "PoffinCase_Text_Dummy",
+      "garbage": 8
+    },
+    {
+      "id": "PoffinCase_Text_Close",
+      "en_US": "CLOSE"
+    },
+    {
+      "id": "PoffinCase_Text_Discard",
+      "en_US": [
+        "Discard this\n",
+        "{STRVAR_1 9, 0, 0}?"
+      ]
+    },
+    {
+      "id": "PoffinCase_Text_ThrownOut",
+      "en_US": [
+        "The {STRVAR_1 9, 0, 0} was\n",
+        "thrown out."
+      ]
+    },
+    {
+      "id": "PoffinCase_Text_Yes",
+      "en_US": "YES"
+    },
+    {
+      "id": "PoffinCase_Text_No",
+      "en_US": "NO"
+    },
+    {
+      "id": "PoffinCase_Text_Spicy",
+      "en_US": "SPICY"
+    },
+    {
+      "id": "PoffinCase_Text_Dry",
+      "en_US": "DRY"
+    },
+    {
+      "id": "PoffinCase_Text_Sweet",
+      "en_US": "SWEET"
+    },
+    {
+      "id": "PoffinCase_Text_Bitter",
+      "en_US": "BITTER"
+    },
+    {
+      "id": "PoffinCase_Text_Sour",
+      "en_US": "SOUR"
+    },
+    {
+      "id": "PoffinCase_Text_All",
+      "en_US": "ALL"
+    },
+    {
+      "id": "PoffinCase_Text_RaiseCoolness",
+      "en_US": "Raises coolness."
+    },
+    {
+      "id": "PoffinCase_Text_RaiseBeauty",
+      "en_US": "Raises beauty."
+    },
+    {
+      "id": "PoffinCase_Text_RaiseCuteness",
+      "en_US": "Raises cuteness."
+    },
+    {
+      "id": "PoffinCase_Text_RaiseSmartness",
+      "en_US": "Raises smartness."
+    },
+    {
+      "id": "PoffinCase_Text_RaiseToughness",
+      "en_US": "Raises toughness."
+    },
+    {
+      "id": "PoffinCase_Text_ListItem",
+      "en_US": "{STRVAR_1 9, 0, 0}{CURSOR_X 138}Lv. {STRVAR_1 51, 1, 0}"
+    }
+  ]
+}

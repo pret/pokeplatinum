@@ -167,7 +167,7 @@ static BOOL FrontierScrCmd_23(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_24(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_25(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_28(FrontierScriptContext *param0);
-static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const UnkStruct_ov104_02232B78_sub1 *param2, UnkStruct_ov63_0222D77C *param3, u8 *param4, int heapID);
+static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const UnkStruct_ov104_02232B78_sub1 *param2, UnkStruct_ov63_0222D77C *param3, u8 *param4, enum HeapID heapID);
 static BOOL FrontierScrCmd_29(FrontierScriptContext *param0);
 static BOOL ov104_022305C8(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_6C(FrontierScriptContext *param0);
@@ -1185,7 +1185,7 @@ static BOOL FrontierScrCmd_28(FrontierScriptContext *param0)
     return 0;
 }
 
-static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const UnkStruct_ov104_02232B78_sub1 *param2, UnkStruct_ov63_0222D77C *param3, u8 *param4, int heapID)
+static void ov104_0223056C(u16 param0, UnkStruct_ov104_0223C634 *param1, const UnkStruct_ov104_02232B78_sub1 *param2, UnkStruct_ov63_0222D77C *param3, u8 *param4, enum HeapID heapID)
 {
     UnkStruct_ov104_02232B78 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_02232B78));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_02232B78));

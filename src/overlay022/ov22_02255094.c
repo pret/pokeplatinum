@@ -36,9 +36,9 @@ static void ov22_02255738(void);
 static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1);
 static void ov22_02255784(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255794(UnkStruct_ov22_0225A0E4 *param0);
-static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int heapID, int param2, int param3);
+static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, enum HeapID heapID, int param2, int param3);
 static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0);
-static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int heapID);
+static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, enum HeapID heapID);
 static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0);
@@ -49,7 +49,7 @@ static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpriteCharsTe
 static void ov22_02255800(UnkStruct_ov22_0225A0E4 *param0, SoftwareSpritePaletteTemplate *param1, int param2);
 static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0);
-static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int heapID);
+static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, enum HeapID heapID);
 static void ov22_02255D0C(UnkStruct_ov22_02255CB8 *param0);
 static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1);
 static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1);
@@ -256,7 +256,7 @@ void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0)
     RenderOam_Transfer();
 }
 
-void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int heapID)
+void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, enum HeapID heapID)
 {
     ov22_02255CB8(param0, 100 + 18, 1 + 18, heapID);
 }
@@ -289,7 +289,7 @@ int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param
     return 0;
 }
 
-void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1, int heapID)
+void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1, enum HeapID heapID)
 {
     ov22_02255748(param0, param1);
     ov22_02255C24(param0, heapID, 0x2800, 0x20);
@@ -770,7 +770,7 @@ static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255C
     }
 }
 
-static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int heapID)
+static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, enum HeapID heapID)
 {
     param0->unk_30 = LoadMemberFromOpenNARC(param0->unk_5C, 235, 0, heapID, 0);
 }
@@ -781,7 +781,7 @@ static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)
     param0->unk_30 = NULL;
 }
 
-static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int heapID, int param2, int param3)
+static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, enum HeapID heapID, int param2, int param3)
 {
     param0->unk_20 = PokemonSpriteManager_New(heapID);
     param0->unk_24 = NNS_GfdAllocTexVram(param2, 0, 0);
@@ -803,7 +803,7 @@ static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0)
     param0->unk_2C = 0;
 }
 
-static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int heapID)
+static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, enum HeapID heapID)
 {
     param0->unk_00 = Heap_Alloc(heapID, sizeof(SoftwareSpriteCharsTemplate) * param1);
     memset(param0->unk_00, 0, sizeof(SoftwareSpriteCharsTemplate) * param1);

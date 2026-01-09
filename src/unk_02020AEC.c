@@ -141,7 +141,7 @@ void sub_02020B14(UnkStruct_020216E0 *param0)
     param0->unk_20 = NULL;
 }
 
-void sub_02020B90(int param0, int heapID)
+void sub_02020B90(int param0, enum HeapID heapID)
 {
     int v0;
 

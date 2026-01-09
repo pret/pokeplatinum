@@ -13,7 +13,7 @@
     "priority": 0,
     "flags": [],
     "contest": {
-        "effect": 10,
+        "effect": "CONTEST_EFFECT_LOWERS_VOLTAGE",
         "type": "CONTEST_TYPE_TOUGH"
     }
 }

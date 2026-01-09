@@ -523,7 +523,7 @@ struct JsonToAnimationOptions *ParseNANRJson(char *path)
     cJSON_ArrayForEach(animationResult, animationResults)
     {
         if (i > options->resultCount - 1)
-            FATAL_ERROR("Frame count is incorrect.\n");
+            FATAL_ERROR("Animation result count is incorrect.\n");
 
         cJSON *resultType = cJSON_GetObjectItemCaseSensitive(animationResult, "resultType");
         options->animationResults[i]->resultType = GetInt(resultType);

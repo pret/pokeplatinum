@@ -36,7 +36,7 @@ void BattleRegulation_GetName(const BattleRegulation *regulation, String *string
     String_CopyNumChars(string, regulation->name, BATTLE_REGULATION_NAME_LENGTH);
 }
 
-String *BattleRegulation_GetNameString(const BattleRegulation *regulation, int heapID)
+String *BattleRegulation_GetNameString(const BattleRegulation *regulation, enum HeapID heapID)
 {
     String *string = String_Init(BATTLE_REGULATION_NAME_LENGTH * 2, heapID);
 
@@ -210,7 +210,7 @@ const BattleRegulation *BattleRegulation_GetByIndex(SaveData *saveData, int inde
     return &regulationData->regulations[0];
 }
 
-void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, String *string, int heapID)
+void BattleRegulation_GetNameByIndex(SaveData *saveData, int index, String *string, enum HeapID heapID)
 {
     MessageLoader *messageLoader;
     BattleRegulationData *regulationData = NULL;

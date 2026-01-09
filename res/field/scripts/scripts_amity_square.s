@@ -57,7 +57,7 @@
     ScriptEntryEnd
 
 _00B6:
-    SetFlag FLAG_UNK_0x09CC
+    SetFlag FLAG_FIRST_ARRIVAL_AMITY_SQUARE
     SetFlag FLAG_UNK_0x02A1
     CalcAmitySquareBerryAndAccessoryManOptionID VAR_AMITY_SQUARE_GIFT_ID
     GetRandom VAR_MAP_LOCAL_2, 5
@@ -370,7 +370,7 @@ AmitySquare_FollowerMon_PickUp_GiveItem:
     WaitCry
     ScrCmd_27C 1, LOCALID_ITEM_OR_ACCESSORY_ID
     IncrementGameRecord RECORD_UNK_051
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

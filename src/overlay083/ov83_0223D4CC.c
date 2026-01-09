@@ -34,12 +34,12 @@ typedef struct UnkStruct_ov83_0223D4CC_t {
     void *unk_04;
 } UnkStruct_ov83_0223D4CC;
 
-static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int heapID);
+static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, enum HeapID heapID);
 static void ov83_0223D5CC(SysTask *param0, void *param1);
 static void ov83_0223D620(UnkStruct_ov83_0223D584 *param0);
 static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 *param0, int param1, const void *param2, int param3);
 
-UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, void *param2, int param3, int heapID)
+UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, void *param2, int param3, enum HeapID heapID)
 {
     UnkStruct_ov83_0223D4CC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov83_0223D4CC));
     v0->unk_00 = param3;
@@ -60,7 +60,7 @@ BOOL ov83_0223D508(int param0, const void *param1, int param2, UnkStruct_ov83_02
         if (sub_0203895C() == 29) {
             BOOL v0 = 1;
 
-            if (sub_0203626C(param0)) {
+            if (CommSys_IsCmdQueued(param0)) {
                 v0 = 0;
             }
 
@@ -97,7 +97,7 @@ int ov83_0223D570(UnkStruct_ov83_0223D4CC *param0)
     }
 }
 
-static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int heapID)
+static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, enum HeapID heapID)
 {
     UnkStruct_ov83_0223D584 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov83_0223D584));
     memset(v0, 0, sizeof(UnkStruct_ov83_0223D584));

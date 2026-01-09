@@ -14,7 +14,7 @@
 #include "overlay005/ov5_021F5428.h"
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224B05C.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player_status.h"
 #include "overlay023/underground_player_talk.h"
@@ -233,7 +233,7 @@ void UndergroundPlayer_ProcessTalkEvent(int unused0, int unused1, void *data, vo
         commPlayerMan->dummy.field3 = 0;
 
         if (commPlayerMan->talkCount[event->talkTargetNetID] == 0) {
-            UndergroundRecord_IncrementPeopleMet(SaveData_UndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), event->talkTargetNetID);
+            UndergroundRecord_IncrementPeopleMet(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), event->talkTargetNetID);
             SystemVars_SetSpiritombCounter(varsFlags, SystemVars_GetSpiritombCounter(varsFlags) + 1);
             SystemVars_SetUndergroundTalkCounter(varsFlags, SystemVars_GetUndergroundTalkCounter(varsFlags) + 1);
 
@@ -399,7 +399,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     FlagEvent *event = data;
-    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
+    UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
 
     switch (event->type) {
     case FLAG_EVENT_DISCARD:
@@ -440,7 +440,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
                 UndergroundPlayer_HandleCurrentPlayerLosingFlag(event, FALSE, undergroundRecord);
             }
 
-            ov23_0224D530(event->netID);
+            SecretBases_QueueTookBackFlagMessage(event->netID);
         } else if (UndergroundPlayer_TryTransferFlag(event->netID, event->targetNetID)) {
             if (event->netID == CommSys_CurNetId()) {
                 UndergroundRecord_IncrementFlagsStolen(undergroundRecord);
@@ -453,7 +453,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
                 UndergroundPlayer_HandleCurrentPlayerLosingFlag(event, TRUE, undergroundRecord);
             }
 
-            ov23_0224D518(event->netID, event->targetNetID);
+            SecretBases_QueueTookFlagMessage(event->netID, event->targetNetID);
         }
         break;
     case FLAG_EVENT_TALK:
@@ -473,8 +473,8 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
         UndergroundPlayer_RemoveEmote(event->netID);
 
         if (event->netID == CommSys_CurNetId()) {
-            UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
-            u8 flagRank = UndergroundRecord_GetFlagRank(undergroundRecord);
+            UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem));
+            u8 prevFlagRank = UndergroundRecord_GetFlagRank(undergroundRecord);
 
             UndergroundRecord_IncrementCapturedFlagCount(undergroundRecord);
             SystemFlag_SetDeliveredStolenFlag(SaveData_GetVarsFlags(commPlayerMan->fieldSystem->saveData));
@@ -490,10 +490,10 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
             CommPlayerMan_PauseFieldSystem();
             Sound_PlayEffect(SEQ_SE_DP_UG_027);
 
-            if (flagRank == UndergroundRecord_GetFlagRank(undergroundRecord)) {
+            if (prevFlagRank == UndergroundRecord_GetFlagRank(undergroundRecord)) {
                 UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
             } else {
-                CommSys_SendDataFixedSize(96, &flagRank);
+                CommSys_SendDataFixedSize(96, &prevFlagRank);
             }
 
             Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xFF, NULL);
@@ -799,7 +799,7 @@ BOOL UndergroundPlayer_TryTakeFlagFromBase(int flagTakerNetID, int flagOwnerNetI
             TrainerInfo_Copy(trainerInfo, (TrainerInfo *)&commPlayerMan->heldFlagInfo[flagTakerNetID].ownerInfo);
 
             if (flagOwnerNetID == CommSys_CurNetId()) {
-                UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(commPlayerMan->fieldSystem->saveData);
+                UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(commPlayerMan->fieldSystem->saveData);
                 UndergroundRecord_IncrementTimesFlagTaken(undergroundRecord);
             }
 

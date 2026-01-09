@@ -19,7 +19,7 @@ typedef struct {
     UnkFuncPtr_ov62_022349A8 unk_04;
     void *unk_08;
     UnkStruct_ov62_022349A8_sub1 unk_0C;
-    int heapID;
+    enum HeapID heapID;
     int unk_148;
     int unk_14C;
     UnkStruct_ov62_022349A8_sub2 unk_150;

@@ -15,7 +15,7 @@
         "MOVE_FLAG_CAN_PROTECT"
     ],
     "contest": {
-        "effect": 12,
+        "effect": "CONTEST_EFFECT_STEAL_VOLTAGE",
         "type": "CONTEST_TYPE_CUTE"
     }
 }

@@ -16,7 +16,7 @@
         "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
-        "effect": 8,
+        "effect": "CONTEST_EFFECT_VOLTAGE",
         "type": "CONTEST_TYPE_BEAUTY"
     }
 }

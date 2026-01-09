@@ -71,7 +71,7 @@ void TrainerInfo_NameString(const TrainerInfo *info, String *name)
     String_CopyChars(name, info->name);
 }
 
-String *TrainerInfo_NameNewString(const TrainerInfo *info, int heapID)
+String *TrainerInfo_NameNewString(const TrainerInfo *info, enum HeapID heapID)
 {
     String *name = String_Init(TRAINER_NAME_LEN + 1, heapID);
 

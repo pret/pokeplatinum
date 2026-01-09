@@ -8,7 +8,7 @@
 
 void sub_0207C63C(void);
 void sub_0207C664(void);
-G3DPipelineBuffers *sub_0207C690(int heapID);
+G3DPipelineBuffers *sub_0207C690(enum HeapID heapID);
 void sub_0207C6AC(void);
 void sub_0207C730(void);
 void sub_0207C770(void);
