@@ -48,9 +48,9 @@ static int sub_02099508(void)
 static const CommCmdTable Unk_020F68A4[] = {
     { CommPlayer_RecvLocation, CommPacketSizeOf_RecvLocation, NULL },
     { CommPlayer_RecvLocationAndInit, CommPacketSizeOf_RecvLocationAndInit, NULL },
-    { ov23_022431C4, CommPacketSizeOf_NetId, NULL },
-    { ov23_0224ACE8, CommPacketSizeOf_Nothing, NULL }, // 25
-    { ov23_0224ACF8, CommPacketSizeOf_NetId, NULL },
+    { CommManUnderground_ProcessVendorTalkRequest, CommPacketSizeOf_NetId, NULL },
+    { UndergroundPlayer_ProcessVendorTalk, CommPacketSizeOf_Nothing, NULL }, // 25
+    { UndergroundPlayer_ProcessVendorTalkServer, CommPacketSizeOf_NetId, NULL },
     { UndergroundPlayer_ProcessOpenMenuRequest, CommPacketSizeOf_Nothing, NULL },
     { ov23_022428D8, ov23_022428D4, NULL },
     { UndergroundPlayer_ProcessOpenMenuEvent, CommPacketSizeOf_Variable, NULL },

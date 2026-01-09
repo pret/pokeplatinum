@@ -35,5 +35,6 @@
 #define TRAP_FIRE          31
 #define TRAP_RADAR_DUMMY   32
 #define TRAP_DIGGER_DRILL  33
+#define TRAP_MAX           34
 
 #endif // POKEPLATINUM_CONSTANTS_TRAPS_H
