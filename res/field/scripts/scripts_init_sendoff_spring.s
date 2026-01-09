@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40AA, 1, 1
+    InitScriptGoToIfEqual VAR_EXITED_DISTORTION_WORLD_STATE, 1, 1
     InitScriptFrameTableEnd
 
     InitScriptEnd

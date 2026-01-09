@@ -28,6 +28,7 @@
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/string_padding_mode.h"
+#include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/animation_tags.h"

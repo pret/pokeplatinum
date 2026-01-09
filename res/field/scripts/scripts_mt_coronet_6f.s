@@ -21,7 +21,7 @@ _0040:
     End
 
 _004A:
-    GoToIfGe VAR_UNK_0x40AA, 2, _0069
+    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, _0069
     GoTo _005F
     End
 

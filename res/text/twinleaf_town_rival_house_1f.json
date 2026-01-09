@@ -2,7 +2,7 @@
   "key": 9222,
   "messages": [
     {
-      "id": "pl_msg_00000555_00000",
+      "id": "TwinleafTownRivalHouse1F_Text_AreYouLookingForRival",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Oh, hi,\n",
         "{STRVAR_1 3, 0, 0}.\r",
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000555_00001",
+      "id": "TwinleafTownRivalHouse1F_Text_DidYouComeCallingOnRival",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Oh, hi,\n",
         "{STRVAR_1 3, 0, 0}.\r",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000555_00002",
+      "id": "TwinleafTownRivalHouse1F_Text_ThatKidRocketedOffAgainLikeUsual",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: That kid rocketed\n",
         "off again like usual.\r",
@@ -37,7 +37,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000555_00003",
+      "id": "TwinleafTownRivalHouse1F_Text_HeShouldBeOutOnRoute201ByNow",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: My {STRVAR_1 3, 1, 0}\n",
         "should be out on Route 201 by now.\r",
@@ -46,14 +46,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000555_00004",
+      "id": "TwinleafTownRivalHouse1F_Text_YouveBecomeFriendsWithAPokemonToo",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Oh, you’ve\n",
         "become friends with a Pokémon, too."
       ]
     },
     {
-      "id": "pl_msg_00000555_00005",
+      "id": "TwinleafTownRivalHouse1F_Text_RivalTookOffLikeARocketAsUsual",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: My {STRVAR_1 3, 1, 0}\n",
         "took off like a rocket as usual.\r",

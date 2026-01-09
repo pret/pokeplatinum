@@ -180,7 +180,7 @@ _0184:
     RemoveObject 2
     StopFanfare SEQ_SE_DP_KAIDAN2
     SetVar VAR_CANALAVE_STATE, 4
-    SetVar VAR_UNK_0x40B2, 2
+    SetVar VAR_CANALAVE_LIBRARY_STATE, 2
     SetFlag FLAG_UNK_0x00A8
     SetFlag FLAG_UNK_0x01AE
     ClearFlag FLAG_UNK_0x01B3

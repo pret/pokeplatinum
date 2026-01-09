@@ -3,42 +3,42 @@
 #include "res/field/events/events_twinleaf_town.h"
 
 
-    ScriptEntry _0026
-    ScriptEntry _04D0
-    ScriptEntry _0067
-    ScriptEntry _00CD
-    ScriptEntry _05D4
-    ScriptEntry _05E7
-    ScriptEntry _0628
-    ScriptEntry _063F
-    ScriptEntry _0659
+    ScriptEntry TwinleafTown_OnTransition
+    ScriptEntry TwinleafTown_RivalThudTrigger
+    ScriptEntry TwinleafTown_Guitarist
+    ScriptEntry TwinleafTown_RivalWasLookingForYouTrigger
+    ScriptEntry TwinleafTown_Collector
+    ScriptEntry TwinleafTown_BreederF
+    ScriptEntry TwinleafTown_MapSign
+    ScriptEntry TwinleafTown_PlayerMailbox
+    ScriptEntry TwinleafTown_RivalMailbox
     ScriptEntryEnd
 
-_0026:
+TwinleafTown_OnTransition:
     CallIfEq VAR_UNK_0x40F4, 1, _004F
-    CallIfEq VAR_UNK_0x40A4, 4, _005F
-    CallIfEq VAR_UNK_0x40A4, 6, _0057
+    CallIfEq VAR_PLAYER_HOUSE_STATE, 4, TwinleafTown_SetPlayerHouseState5
+    CallIfEq VAR_PLAYER_HOUSE_STATE, 6, TwinleafTown_SetPlayerHouseState7
     End
 
 _004F:
     SetVar VAR_UNK_0x40F4, 2
     Return
 
-_0057:
-    SetVar VAR_UNK_0x40A4, 7
+TwinleafTown_SetPlayerHouseState7:
+    SetVar VAR_PLAYER_HOUSE_STATE, 7
     Return
 
-_005F:
-    SetVar VAR_UNK_0x40A4, 5
+TwinleafTown_SetPlayerHouseState5:
+    SetVar VAR_PLAYER_HOUSE_STATE, 5
     Return
 
-_0067:
+TwinleafTown_Guitarist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, _00A3
-    GoToIfGe VAR_UNK_0x4095, 1, _00AE
-    GoToIfSet FLAG_UNK_0x00EA, _00BC
+    GoToIfSet FLAG_HAS_POKEDEX, TwinleafTown_EveryoneGoesOnAdventures
+    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTown_RivalWentTearingOffOuch
+    GoToIfSet FLAG_RIVAL_LEFT_HOME, TwinleafTown_RivalWentTearingOff
     BufferPlayerName 0
     BufferRivalName 1
     Message TwinleafTown_Text_RivalWasLookingForYou2
@@ -47,14 +47,14 @@ _0067:
     ReleaseAll
     End
 
-_00A3:
+TwinleafTown_EveryoneGoesOnAdventures:
     Message TwinleafTown_Text_EveryoneGoesOnAdventures
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00AE:
+TwinleafTown_RivalWentTearingOffOuch:
     BufferRivalName 0
     Message TwinleafTown_Text_RivalWentTearingOffOuch
     WaitABXPadPress
@@ -62,7 +62,7 @@ _00AE:
     ReleaseAll
     End
 
-_00BC:
+TwinleafTown_RivalWentTearingOff:
     BufferPlayerName 0
     BufferRivalName 1
     Message TwinleafTown_Text_RivalWentTearingOff
@@ -71,128 +71,128 @@ _00BC:
     ReleaseAll
     End
 
-_00CD:
+TwinleafTown_RivalWasLookingForYouTrigger:
     LockAll
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03B0
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristNoticePlayer
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 108, _0140
-    GoToIfEq VAR_0x8004, 109, _0158
-    GoToIfEq VAR_0x8004, 110, _0170
-    GoToIfEq VAR_0x8004, 111, _0188
-    GoToIfEq VAR_0x8004, 112, _01A0
-    GoToIfEq VAR_0x8004, 113, _01B8
-    GoToIfEq VAR_0x8004, 114, _01D0
-    GoTo _01E8
+    GoToIfEq VAR_0x8004, 108, TwinleafTown_GuitaristStopPlayerX108
+    GoToIfEq VAR_0x8004, 109, TwinleafTown_GuitaristStopPlayerX109
+    GoToIfEq VAR_0x8004, 110, TwinleafTown_GuitaristStopPlayerX110
+    GoToIfEq VAR_0x8004, 111, TwinleafTown_GuitaristStopPlayerX111
+    GoToIfEq VAR_0x8004, 112, TwinleafTown_GuitaristStopPlayerX112
+    GoToIfEq VAR_0x8004, 113, TwinleafTown_GuitaristStopPlayerX113
+    GoToIfEq VAR_0x8004, 114, TwinleafTown_GuitaristStopPlayerX114
+    GoTo TwinleafTown_GuitaristStopPlayerX115
 
-_0140:
-    ApplyMovement LOCALID_PLAYER, _02F0
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03C4
+TwinleafTown_GuitaristStopPlayerX108:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX108
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX108
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_0158:
-    ApplyMovement LOCALID_PLAYER, _0308
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03E0
+TwinleafTown_GuitaristStopPlayerX109:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX109
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX109
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_0170:
-    ApplyMovement LOCALID_PLAYER, _0320
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _03F4
+TwinleafTown_GuitaristStopPlayerX110:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX110
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX110
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_0188:
-    ApplyMovement LOCALID_PLAYER, _0338
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0408
+TwinleafTown_GuitaristStopPlayerX111:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX111
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX111
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_01A0:
-    ApplyMovement LOCALID_PLAYER, _0350
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _041C
+TwinleafTown_GuitaristStopPlayerX112:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX112
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX112
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_01B8:
-    ApplyMovement LOCALID_PLAYER, _0368
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0430
+TwinleafTown_GuitaristStopPlayerX113:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX113
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX113
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_01D0:
-    ApplyMovement LOCALID_PLAYER, _0380
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0444
+TwinleafTown_GuitaristStopPlayerX114:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX114
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX114
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_01E8:
-    ApplyMovement LOCALID_PLAYER, _0398
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0458
+TwinleafTown_GuitaristStopPlayerX115:
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackX115
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristStopPlayerX115
     WaitMovement
-    GoTo _0200
+    GoTo TwinleafTown_RivalWasLookingForYou
 
-_0200:
+TwinleafTown_RivalWasLookingForYou:
     BufferPlayerName 0
     BufferRivalName 1
     Message TwinleafTown_Text_RivalWasLookingForYou1
     CloseMessage
-    GoToIfEq VAR_0x8004, 108, _026C
-    GoToIfEq VAR_0x8004, 109, _027C
-    GoToIfEq VAR_0x8004, 110, _028C
-    GoToIfEq VAR_0x8004, 111, _029C
-    GoToIfEq VAR_0x8004, 112, _02AC
-    GoToIfEq VAR_0x8004, 113, _02BC
-    GoToIfEq VAR_0x8004, 114, _02CC
-    GoTo _02DC
+    GoToIfEq VAR_0x8004, 108, TwinleafTown_GuitaristWalkBackX108
+    GoToIfEq VAR_0x8004, 109, TwinleafTown_GuitaristWalkBackX109
+    GoToIfEq VAR_0x8004, 110, TwinleafTown_GuitaristWalkBackX110
+    GoToIfEq VAR_0x8004, 111, TwinleafTown_GuitaristWalkBackX111
+    GoToIfEq VAR_0x8004, 112, TwinleafTown_GuitaristWalkBackX112
+    GoToIfEq VAR_0x8004, 113, TwinleafTown_GuitaristWalkBackX113
+    GoToIfEq VAR_0x8004, 114, TwinleafTown_GuitaristWalkBackX114
+    GoTo TwinleafTown_GuitaristWalkBackX115
 
-_026C:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _046C
+TwinleafTown_GuitaristWalkBackX108:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX108
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_027C:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _047C
+TwinleafTown_GuitaristWalkBackX109:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX109
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_028C:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0488
+TwinleafTown_GuitaristWalkBackX110:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX110
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_029C:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _0494
+TwinleafTown_GuitaristWalkBackX111:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX111
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_02AC:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04A0
+TwinleafTown_GuitaristWalkBackX112:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX112
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_02BC:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04AC
+TwinleafTown_GuitaristWalkBackX113:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX113
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_02CC:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04B8
+TwinleafTown_GuitaristWalkBackX114:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX114
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_02DC:
-    ApplyMovement TWINLEAF_TOWN_GUITARIST, _04C4
+TwinleafTown_GuitaristWalkBackX115:
+    ApplyMovement LOCALID_GUITARIST, TwinleafTown_Movement_GuitaristWalkBackX115
     WaitMovement
-    GoTo _02EC
+    GoTo TwinleafTown_GuitaristRelease
 
-_02EC:
+TwinleafTown_GuitaristRelease:
     ReleaseAll
     End
 
     .balign 4, 0
-_02F0:
+TwinleafTown_Movement_PlayerGetPushedBackX108:
     Delay4 6
     LockDir
     WalkNormalSouth
@@ -201,7 +201,7 @@ _02F0:
     EndMovement
 
     .balign 4, 0
-_0308:
+TwinleafTown_Movement_PlayerGetPushedBackX109:
     Delay4 5
     LockDir
     WalkNormalSouth
@@ -210,7 +210,7 @@ _0308:
     EndMovement
 
     .balign 4, 0
-_0320:
+TwinleafTown_Movement_PlayerGetPushedBackX110:
     Delay4 6
     LockDir
     WalkNormalSouth
@@ -219,7 +219,7 @@ _0320:
     EndMovement
 
     .balign 4, 0
-_0338:
+TwinleafTown_Movement_PlayerGetPushedBackX111:
     Delay4 7
     LockDir
     WalkNormalSouth
@@ -228,7 +228,7 @@ _0338:
     EndMovement
 
     .balign 4, 0
-_0350:
+TwinleafTown_Movement_PlayerGetPushedBackX112:
     Delay4 8
     LockDir
     WalkNormalSouth
@@ -237,7 +237,7 @@ _0350:
     EndMovement
 
     .balign 4, 0
-_0368:
+TwinleafTown_Movement_PlayerGetPushedBackX113:
     Delay4 9
     LockDir
     WalkNormalSouth
@@ -246,7 +246,7 @@ _0368:
     EndMovement
 
     .balign 4, 0
-_0380:
+TwinleafTown_Movement_PlayerGetPushedBackX114:
     Delay4 10
     LockDir
     WalkNormalSouth
@@ -255,7 +255,7 @@ _0380:
     EndMovement
 
     .balign 4, 0
-_0398:
+TwinleafTown_Movement_PlayerGetPushedBackX115:
     Delay4 11
     LockDir
     WalkNormalSouth
@@ -264,7 +264,7 @@ _0398:
     EndMovement
 
     .balign 4, 0
-_03B0:
+TwinleafTown_Movement_GuitaristNoticePlayer:
     WalkOnSpotFastNorth
     EmoteExclamationMark
     Delay8
@@ -272,7 +272,7 @@ _03B0:
     EndMovement
 
     .balign 4, 0
-_03C4:
+TwinleafTown_Movement_GuitaristStopPlayerX108:
     WalkFastNorth
     WalkFastEast
     WalkFastNorth 2
@@ -282,7 +282,7 @@ _03C4:
     EndMovement
 
     .balign 4, 0
-_03E0:
+TwinleafTown_Movement_GuitaristStopPlayerX109:
     WalkFastNorth 3
     WalkFastEast
     WalkOnSpotFastSouth
@@ -290,7 +290,7 @@ _03E0:
     EndMovement
 
     .balign 4, 0
-_03F4:
+TwinleafTown_Movement_GuitaristStopPlayerX110:
     WalkFastNorth 3
     WalkFastEast 2
     WalkOnSpotFastSouth
@@ -298,7 +298,7 @@ _03F4:
     EndMovement
 
     .balign 4, 0
-_0408:
+TwinleafTown_Movement_GuitaristStopPlayerX111:
     WalkFastNorth 3
     WalkFastEast 3
     WalkOnSpotFastSouth
@@ -306,7 +306,7 @@ _0408:
     EndMovement
 
     .balign 4, 0
-_041C:
+TwinleafTown_Movement_GuitaristStopPlayerX112:
     WalkFastNorth 3
     WalkFastEast 4
     WalkOnSpotFastSouth
@@ -314,7 +314,7 @@ _041C:
     EndMovement
 
     .balign 4, 0
-_0430:
+TwinleafTown_Movement_GuitaristStopPlayerX113:
     WalkFastNorth 3
     WalkFastEast 5
     WalkOnSpotFastSouth
@@ -322,7 +322,7 @@ _0430:
     EndMovement
 
     .balign 4, 0
-_0444:
+TwinleafTown_Movement_GuitaristStopPlayerX114:
     WalkFastNorth 3
     WalkFastEast 6
     WalkOnSpotFastSouth
@@ -330,7 +330,7 @@ _0444:
     EndMovement
 
     .balign 4, 0
-_0458:
+TwinleafTown_Movement_GuitaristStopPlayerX115:
     WalkFastNorth 3
     WalkFastEast 7
     WalkOnSpotFastSouth
@@ -338,95 +338,95 @@ _0458:
     EndMovement
 
     .balign 4, 0
-_046C:
+TwinleafTown_Movement_GuitaristWalkBackX108:
     WalkNormalEast
     WalkNormalSouth 2
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_047C:
+TwinleafTown_Movement_GuitaristWalkBackX109:
     WalkNormalWest
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_0488:
+TwinleafTown_Movement_GuitaristWalkBackX110:
     WalkNormalWest 2
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_0494:
+TwinleafTown_Movement_GuitaristWalkBackX111:
     WalkNormalWest 3
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_04A0:
+TwinleafTown_Movement_GuitaristWalkBackX112:
     WalkNormalWest 4
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_04AC:
+TwinleafTown_Movement_GuitaristWalkBackX113:
     WalkNormalWest 5
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_04B8:
+TwinleafTown_Movement_GuitaristWalkBackX114:
     WalkNormalWest 6
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-_04C4:
+TwinleafTown_Movement_GuitaristWalkBackX115:
     WalkNormalWest 7
     WalkNormalSouth 2
     EndMovement
 
-_04D0:
+TwinleafTown_RivalThudTrigger:
     LockAll
     LoadDoorAnimation 3, 27, 9, 11, ANIMATION_TAG_DOOR_1
     PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
-    ClearFlag FLAG_UNK_0x0174
-    AddObject TWINLEAF_TOWN_RIVAL
-    ApplyMovement TWINLEAF_TOWN_RIVAL, _05A4
-    ApplyMovement LOCALID_PLAYER, _0588
+    ClearFlag FLAG_HIDE_TWINLEAF_TOWN_RIVAL
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalExitHouse
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerGetPushedBackByRival
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
     SetRivalBGM
-    ApplyMovement TWINLEAF_TOWN_RIVAL, _059C
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
     Message TwinleafTown_Text_GoingToSeeProfRowan
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0570
-    ApplyMovement TWINLEAF_TOWN_RIVAL, _05B0
+    ApplyMovement LOCALID_PLAYER, TwinleafTown_Movement_PlayerWatchRival
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalWalkAwayAndWalkBack
     WaitMovement
     WaitTime 15, VAR_RESULT
     BufferRivalName 0
     Message TwinleafTown_Text_OhJeezForgotSomething
     CloseMessage
-    ApplyMovement TWINLEAF_TOWN_RIVAL, _05C8
+    ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalEnterHouse
     WaitMovement
     PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
-    RemoveObject TWINLEAF_TOWN_RIVAL
+    RemoveObject LOCALID_RIVAL
     FadeToDefaultMusic2
-    SetVar VAR_UNK_0x4070, 1
-    SetVar VAR_UNK_0x40E6, 1
+    SetVar VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, 1
+    SetVar VAR_TWINLEAF_TOWN_RIVAL_TRIGGER_STATE, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_0570:
+TwinleafTown_Movement_PlayerWatchRival:
     Delay8
     Delay4
     WalkOnSpotNormalEast
@@ -435,7 +435,7 @@ _0570:
     EndMovement
 
     .balign 4, 0
-_0588:
+TwinleafTown_Movement_PlayerGetPushedBackByRival:
     FaceNorth
     LockDir
     WalkNormalSouth
@@ -443,18 +443,18 @@ _0588:
     EndMovement
 
     .balign 4, 0
-_059C:
+TwinleafTown_Movement_RivalNoticePlayer:
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_05A4:
+TwinleafTown_Movement_RivalExitHouse:
     WalkFastSouth
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_05B0:
+TwinleafTown_Movement_RivalWalkAwayAndWalkBack:
     WalkFastEast 4
     EmoteExclamationMark
     Delay8
@@ -463,12 +463,12 @@ _05B0:
     EndMovement
 
     .balign 4, 0
-_05C8:
+TwinleafTown_Movement_RivalEnterHouse:
     WalkNormalNorth
     SetInvisible
     EndMovement
 
-_05D4:
+TwinleafTown_Collector:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -478,42 +478,42 @@ _05D4:
     ReleaseAll
     End
 
-_05E7:
+TwinleafTown_BreederF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, _0612
-    GoToIfGe VAR_UNK_0x4095, 1, _061D
+    GoToIfSet FLAG_HAS_POKEDEX, TwinleafTown_HelpingPutTogetherPokedex
+    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTown_PokemonYouLookGoodTogether
     Message TwinleafTown_Text_WildPokemonAttack
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0612:
+TwinleafTown_HelpingPutTogetherPokedex:
     Message TwinleafTown_Text_HelpingPutTogetherPokedex
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_061D:
+TwinleafTown_PokemonYouLookGoodTogether:
     Message TwinleafTown_Text_PokemonYouLookGoodTogether
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0628:
+TwinleafTown_MapSign:
     ShowMapSign TwinleafTown_Text_MapSign
     End
 
-_063F:
+TwinleafTown_PlayerMailbox:
     BufferPlayerName 0
     ShowLandmarkSign TwinleafTown_Text_PlayerMailbox
     End
 
-_0659:
+TwinleafTown_RivalMailbox:
     BufferRivalName 0
     ShowLandmarkSign TwinleafTown_Text_RivalMailbox
     End

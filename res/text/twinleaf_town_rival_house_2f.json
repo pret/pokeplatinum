@@ -2,14 +2,14 @@
   "key": 9226,
   "messages": [
     {
-      "id": "pl_msg_00000556_00000",
+      "id": "TwinleafTownRivalHouse2F_Text_IdBetterTakeBagAndJournal",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...I’d better take\n",
         "my Bag and Journal, too...\r"
       ]
     },
     {
-      "id": "pl_msg_00000556_00001",
+      "id": "TwinleafTownRivalHouse2F_Text_IllBeWaitingOnTheRoad",
       "en_US": [
         "Oh, hey, {STRVAR_1 3, 0, 0}!\r",
         "I’ll be waiting on the road!\n",
@@ -17,14 +17,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000556_00002",
+      "id": "TwinleafTownRivalHouse2F_Text_ItsAWii",
       "en_US": [
         "It’s a Wii!\n",
         "It’s controlled by a Wii Remote!"
       ]
     },
     {
-      "id": "pl_msg_00000556_00003",
+      "id": "TwinleafTownRivalHouse2F_Text_PCAdventureRules",
       "en_US": [
         "{STRVAR_1 3, 0, 0} checked the PC screen.\r",
         "Adventure Rule No. 1\n",

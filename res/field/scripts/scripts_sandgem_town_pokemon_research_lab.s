@@ -45,7 +45,7 @@ _008C:
     End
 
 _00AF:
-    SetVar VAR_UNK_0x40AA, 3
+    SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 3
     Return
 
 _00B7:
@@ -77,7 +77,7 @@ _0106:
 
 _0114:
     LockAll
-    CallIfEq VAR_UNK_0x40AA, 2, _00AF
+    CallIfEq VAR_EXITED_DISTORTION_WORLD_STATE, 2, _00AF
     BufferPlayerName 1
     Message 51
     CloseMessage

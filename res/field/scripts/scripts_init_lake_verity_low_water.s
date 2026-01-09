@@ -7,7 +7,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x4095, 0, 3
+    InitScriptGoToIfEqual VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 0, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

@@ -5,7 +5,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40A3, 0, 1
+    InitScriptGoToIfEqual VAR_RIVAL_HOUSE_STATE, 0, 1
     InitScriptFrameTableEnd
 
     InitScriptEnd

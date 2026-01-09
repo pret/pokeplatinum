@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "TWINLEAF_TOWN_SOUTHWEST_HOUSE_EXPERT_F_0",
+            "id": "LOCALID_EXPERT_F",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "TWINLEAF_TOWN_SOUTHWEST_HOUSE_TWIN_1",
+            "id": "LOCALID_TWIN",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",

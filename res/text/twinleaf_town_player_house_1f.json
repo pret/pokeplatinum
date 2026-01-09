@@ -2,7 +2,7 @@
   "key": 9246,
   "messages": [
     {
-      "id": "pl_msg_00000557_00000",
+      "id": "TwinleafTownPlayerHouse1F_Text_RivalAlreadyLeft",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}!\r",
         "{STRVAR_1 3, 1, 0} already left.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00001",
+      "id": "TwinleafTownPlayerHouse1F_Text_YouKnowHowImpatientRivalIs",
       "en_US": [
         "Mom: You know how impatient\n",
         "{STRVAR_1 3, 0, 0} is.\r",
@@ -20,21 +20,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00002",
+      "id": "TwinleafTownPlayerHouse1F_Text_YouTakeCareNow",
       "en_US": [
         "Mom: Bye-bye, {STRVAR_1 3, 0, 0}!\n",
         "You take care now!"
       ]
     },
     {
-      "id": "pl_msg_00000557_00003",
+      "id": "TwinleafTownPlayerHouse1F_Text_RivalAlwaysInvitesYouAlong",
       "en_US": [
         "Mom: But that {STRVAR_1 3, 0, 0}...\n",
         "He always invites you along."
       ]
     },
     {
-      "id": "pl_msg_00000557_00004",
+      "id": "TwinleafTownPlayerHouse1F_Text_DontGoIntoTheTallGrass",
       "en_US": [
         "Mom: Oh, yes!\n",
         "{STRVAR_1 3, 0, 0}!\r",
@@ -46,14 +46,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00005",
+      "id": "TwinleafTownPlayerHouse1F_Text_IsntRivalWaitingForYou",
       "en_US": [
         "Mom: What is it, dear?\n",
         "Isn’t {STRVAR_1 3, 0, 0} waiting for you?"
       ]
     },
     {
-      "id": "pl_msg_00000557_00006",
+      "id": "TwinleafTownPlayerHouse1F_Text_WowThatsWhatHappenedToYou",
       "en_US": [
         "Mom: What’s the matter, dear?\r",
         "...\r",
@@ -72,21 +72,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00007",
+      "id": "TwinleafTownPlayerHouse1F_Text_PutTheseOn",
       "en_US": [
         "Oh, I know!\n",
         "{STRVAR_1 3, 0, 0}, put these on.\r"
       ]
     },
     {
-      "id": "pl_msg_00000557_00008",
+      "id": "TwinleafTownPlayerHouse1F_Text_PlayerReceivedRunningShoes",
       "en_US": [
         "{STRVAR_1 3, 0, 0} received a pair of\n",
         "{COLOR 1}Running Shoes{COLOR 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000557_00009",
+      "id": "TwinleafTownPlayerHouse1F_Text_LetMeReadTheInstructions",
       "en_US": [
         "Going to Sandgem Town is like an\n",
         "adventure in itself, right?\r",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00010",
+      "id": "TwinleafTownPlayerHouse1F_Text_IllReadTheInstructions",
       "en_US": [
         "Mom: I’ll read you the instructions\n",
         "for the Running Shoes...\r",
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00011",
+      "id": "TwinleafTownPlayerHouse1F_Text_EarlyMorningTakeAQuickRest",
       "en_US": [
         "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
         "Are you and your Pokémon healthy?\r",
@@ -123,7 +123,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00012",
+      "id": "TwinleafTownPlayerHouse1F_Text_TakeAQuickRest",
       "en_US": [
         "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
         "Are you and your Pokémon healthy?\f",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00013",
+      "id": "TwinleafTownPlayerHouse1F_Text_JustMadeDinnerTakeAQuickRest",
       "en_US": [
         "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
         "Are you and your Pokémon healthy?\r",
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00014",
+      "id": "TwinleafTownPlayerHouse1F_Text_SoLateRightNowTakeAQuickRest",
       "en_US": [
         "Mom: Welcome home, {STRVAR_1 3, 0, 0}.\n",
         "Are you and your Pokémon healthy?\r",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00015",
+      "id": "TwinleafTownPlayerHouse1F_Text_YourMomsGotYourBack",
       "en_US": [
         "Mom: What is it, {STRVAR_1 3, 0, 0}?\r",
         "...\r",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00016",
+      "id": "TwinleafTownPlayerHouse1F_Text_ThatsAJournal",
       "en_US": [
         "That’s a Journal. It keeps a record\n",
         "of your daily events.\r",
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00017",
+      "id": "TwinleafTownPlayerHouse1F_Text_IWishICouldGoInstead",
       "en_US": [
         "Gee, a journey full of adventure...\n",
         "I envy you, kiddo.\r",
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00018",
+      "id": "TwinleafTownPlayerHouse1F_Text_GoEnjoyYourAdventure",
       "en_US": [
         "I’m just joking, dear!\n",
         "Yup, {STRVAR_1 3, 0, 0}!\r",
@@ -196,21 +196,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00019",
+      "id": "TwinleafTownPlayerHouse1F_Text_AskIsRivalHere",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Excuse me.\n",
         "Is my little {STRVAR_1 3, 1, 0} here?\r"
       ]
     },
     {
-      "id": "pl_msg_00000557_00020",
+      "id": "TwinleafTownPlayerHouse1F_Text_NoHesNot",
       "en_US": [
         "Mom: Oh?\n",
         "No, he’s not...\r"
       ]
     },
     {
-      "id": "pl_msg_00000557_00021",
+      "id": "TwinleafTownPlayerHouse1F_Text_HeMustHaveLeftAlready",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Oh...\n",
         "Then, he must have left already...\f",
@@ -222,18 +222,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00022",
+      "id": "TwinleafTownPlayerHouse1F_Text_PlayerWillDeliverThat",
       "en_US": [
         "Mom: Not to worry, {STRVAR_1 3, 0, 0} will\n",
         "deliver that to him.\r"
       ]
     },
     {
-      "id": "pl_msg_00000557_00023",
+      "id": "TwinleafTownPlayerHouse1F_Text_WontYouPlayer",
       "en_US": "Won’t you, {STRVAR_1 3, 0, 0}?\r"
     },
     {
-      "id": "pl_msg_00000557_00024",
+      "id": "TwinleafTownPlayerHouse1F_Text_PleaseTakeThisToRivalForMeMale",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Oh, really?\n",
         "You’d do that for me?\r",
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00025",
+      "id": "TwinleafTownPlayerHouse1F_Text_PleaseTakeThisToRivalForMeFemale",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Oh, really?\n",
         "You’d do that for me?\r",
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00026",
+      "id": "TwinleafTownPlayerHouse1F_Text_HedProbablyHeadStraightToJubilife",
       "en_US": [
         "{STRVAR_1 3, 1, 0}’s mom: Let me think...\r",
         "Knowing my boy, he would probably\n",
@@ -261,21 +261,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00027",
+      "id": "TwinleafTownPlayerHouse1F_Text_EnjoyYourAdventure",
       "en_US": [
         "Mom: Bye-bye, {STRVAR_1 3, 0, 0}!\n",
         "Enjoy your adventure!\r"
       ]
     },
     {
-      "id": "pl_msg_00000557_00028",
+      "id": "TwinleafTownPlayerHouse1F_Text_EnjoyYourAdventure2",
       "en_US": [
         "Mom: Bye-bye, {STRVAR_1 3, 0, 0}!\n",
         "Enjoy your adventure!"
       ]
     },
     {
-      "id": "pl_msg_00000557_00029",
+      "id": "TwinleafTownPlayerHouse1F_Text_CuteContestDigest",
       "en_US": [
         "MC: Here we are!\n",
         "It’s the Contest Digest!\r",
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00030",
+      "id": "TwinleafTownPlayerHouse1F_Text_SmartContestDigest",
       "en_US": [
         "MC: Here we are!\n",
         "It’s the Contest Digest!\r",
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00031",
+      "id": "TwinleafTownPlayerHouse1F_Text_ToughContestDigest",
       "en_US": [
         "MC: Here we are!\n",
         "It’s the Contest Digest!\r",
@@ -314,28 +314,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00032",
+      "id": "TwinleafTownPlayerHouse1F_Text_MomsFavoriteDessertIsInRefrigerator",
       "en_US": [
         "Mom’s favorite dessert is in\n",
         "the refrigerator."
       ]
     },
     {
-      "id": "pl_msg_00000557_00033",
+      "id": "TwinleafTownPlayerHouse1F_Text_MomsKitchenIsSpotless",
       "en_US": [
         "Mom’s kitchen is spotless!\n",
         "You can see your face on the floor!"
       ]
     },
     {
-      "id": "pl_msg_00000557_00034",
+      "id": "TwinleafTownPlayerHouse1F_Text_ThisIsWhereMomDoesHerDeliciousCooking",
       "en_US": [
         "This is where Mom does all her\n",
         "delicious cooking."
       ]
     },
     {
-      "id": "pl_msg_00000557_00035",
+      "id": "TwinleafTownPlayerHouse1F_Text_RivalCameLookingForYou",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}!\r",
         "{STRVAR_1 3, 1, 0} came looking for you\n",
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00036",
+      "id": "TwinleafTownPlayerHouse1F_Text_IsYourProjectComingAlong",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}!\r",
         "{STRVAR_1 3, 1, 0} came looking for you\n",
@@ -364,7 +364,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00037",
+      "id": "TwinleafTownPlayerHouse1F_Text_YouAndYourPokemonAreLookingGood",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}!\r",
         "You and your Pokémon are looking good!\n",
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00038",
+      "id": "TwinleafTownPlayerHouse1F_Text_AlwaysTreatYourPokemonWithKindness",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}.\r",
         "Listen. Always treat your Pokémon\n",
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00039",
+      "id": "TwinleafTownPlayerHouse1F_Text_SeeingYouRemindsMeOfYourFather",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}.\r",
         "Seeing you reminds me so much of your\n",
@@ -391,7 +391,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00040",
+      "id": "TwinleafTownPlayerHouse1F_Text_WhileYoureGoneIVisitRivalsMom",
       "en_US": [
         "Mom: While you’re gone, I go and\n",
         "visit {STRVAR_1 3, 1, 0}’s mom.\r",
@@ -401,7 +401,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000557_00041",
+      "id": "TwinleafTownPlayerHouse1F_Text_AskIsEverythingAllRight",
       "en_US": [
         "Mom: {STRVAR_1 3, 0, 0}, is everything all\n",
         "right?\r",

@@ -2,14 +2,14 @@
   "key": 42007,
   "messages": [
     {
-      "id": "pl_msg_00000559_00000",
+      "id": "TwinleafTownNortheastHouse_Text_YoureOffToHangWithRivalAgainRight",
       "en_US": [
         "You’re off to hang with {STRVAR_1 3, 0, 0}\n",
         "again, right? You two sure are tight!"
       ]
     },
     {
-      "id": "pl_msg_00000559_00001",
+      "id": "TwinleafTownNortheastHouse_Text_IWentOnAnAdventureALongTimeAgo",
       "en_US": [
         "I went on an adventure with some\n",
         "Pokémon a long time ago.\r",
