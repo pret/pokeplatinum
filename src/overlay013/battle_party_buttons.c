@@ -2,6 +2,7 @@
 
 #include "generated/species.h"
 
+#include "overlay013/battle_party_sprites.h"
 #include "overlay013/battle_party_text.h"
 
 #define ALT_PARTY_POKEMON_BUTTON_DATA_X_OFFSET        16
@@ -529,32 +530,32 @@ static void UpdateSpritePositions(BattleParty *battleParty, u8 button, u8 button
     case BUTTON_POKEMON_PARTY_SCREEN_POKEMON_4:
     case BUTTON_POKEMON_PARTY_SCREEN_POKEMON_5:
     case BUTTON_POKEMON_PARTY_SCREEN_POKEMON_6:
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[13 + button], 0, sPartyPokemonSpriteYPositions[buttonState]);
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[button], 0, sPartyPokemonSpriteYPositions[buttonState]);
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[7 + button], 0, sPartyPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[PARTY_POKEMON_SUMMARY_STATUSES_SPRITES_OFFSET + button], 0, sPartyPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[PARTY_POKEMON_HELD_ITEMS_SPRITES_OFFSET + button], 0, sPartyPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[PARTY_POKEMON_SPRITES_OFFSET + button], 0, sPartyPokemonSpriteYPositions[buttonState]);
         break;
     case BUTTON_SELECT_POKEMON_SCREEN_SHIFT:
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[battleParty->context->selectedPartyIndex], 0, sSelectedPokemonSpriteYPositions[buttonState]);
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[7 + battleParty->context->selectedPartyIndex], 0, sSelectedPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[PARTY_POKEMON_HELD_ITEMS_SPRITES_OFFSET + battleParty->context->selectedPartyIndex], 0, sSelectedPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[PARTY_POKEMON_SPRITES_OFFSET + battleParty->context->selectedPartyIndex], 0, sSelectedPokemonSpriteYPositions[buttonState]);
         break;
     case BUTTON_POKEMON_MOVES_SCREEN_MOVE_1:
     case BUTTON_POKEMON_MOVES_SCREEN_MOVE_2:
     case BUTTON_POKEMON_MOVES_SCREEN_MOVE_3:
     case BUTTON_POKEMON_MOVES_SCREEN_MOVE_4:
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[7 + button], 0, sSelectedPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[MOVE_TYPES_SPRITES_OFFSET + (button - BUTTON_POKEMON_MOVES_SCREEN_MOVE_1)], 0, sSelectedPokemonSpriteYPositions[buttonState]);
         break;
     case BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_1:
     case BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_2:
     case BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_3:
     case BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_4:
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[2 + button], 0, sSelectedPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[MOVE_TYPES_SPRITES_OFFSET + (button - BUTTON_RESTORE_MOVE_PP_SCREEN_MOVE_1)], 0, sSelectedPokemonSpriteYPositions[buttonState]);
         break;
     case BUTTON_LEARN_MOVE_SCREEN_MOVE_1:
     case BUTTON_LEARN_MOVE_SCREEN_MOVE_2:
     case BUTTON_LEARN_MOVE_SCREEN_MOVE_3:
     case BUTTON_LEARN_MOVE_SCREEN_MOVE_4:
     case BUTTON_LEARN_MOVE_SCREEN_MOVE_TO_LEARN:
-        ManagedSprite_OffsetPositionXY(battleParty->unk_1FB4[button - 2], 0, sSelectedPokemonSpriteYPositions[buttonState]);
+        ManagedSprite_OffsetPositionXY(battleParty->sprites[MOVE_TYPES_SPRITES_OFFSET + (button - BUTTON_LEARN_MOVE_SCREEN_MOVE_1)], 0, sSelectedPokemonSpriteYPositions[buttonState]);
         break;
     }
 }
