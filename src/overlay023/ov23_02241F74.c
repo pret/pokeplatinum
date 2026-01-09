@@ -82,7 +82,7 @@ typedef struct {
     UndergroundTextPrinter *commonTextPrinter;
     UndergroundTextPrinter *captureFlagTextPrinter;
     UndergroundTextPrinter *miscTextPrinter;
-    UndergroundTextPrinter *decorateBaseTextPrinter;
+    UndergroundTextPrinter *baseDecorationTextPrinter;
     UndergroundTextPrinter *itemNameTextPrinter;
     int orderedArrayLength;
     int unk_130;
@@ -133,7 +133,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 500);
     sCommManUnderground->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
     sCommManUnderground->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 1000);
-    sCommManUnderground->decorateBaseTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
+    sCommManUnderground->baseDecorationTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_BASE_DECORATION, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
     sCommManUnderground->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
@@ -167,7 +167,7 @@ static void ov23_02242108(void)
     UndergroundTextPrinter_Free(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_Free(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_Free(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_Free(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_Free(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_Free(sCommManUnderground->itemNameTextPrinter);
 
     sCommManUnderground->fieldSystem->menuCursorPos = 0;
@@ -190,9 +190,9 @@ UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void)
     return sCommManUnderground->miscTextPrinter;
 }
 
-UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void)
+UndergroundTextPrinter *CommManUnderground_GetBaseDecorationTextPrinter(void)
 {
-    return sCommManUnderground->decorateBaseTextPrinter;
+    return sCommManUnderground->baseDecorationTextPrinter;
 }
 
 UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void)
@@ -205,7 +205,7 @@ void ov23_022421EC(void)
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->itemNameTextPrinter);
 }
 
@@ -1154,7 +1154,7 @@ BOOL ov23_0224321C(void)
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->itemNameTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->commonTextPrinter);
 
@@ -1200,7 +1200,7 @@ static void ov23_02243310(SysTask *param0, void *param1)
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->itemNameTextPrinter);
 }
 

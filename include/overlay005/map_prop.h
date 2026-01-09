@@ -12,7 +12,7 @@
 
 #define MAX_LOADED_MAP_PROPS 32
 
-#define PROP_NONE 0xFF
+#define PROP_NONE -1
 
 typedef struct MapProp {
     int modelID;
@@ -33,7 +33,7 @@ typedef struct MapPropManager {
 MapPropManager *MapPropManager_New(const u8 heapID);
 void MapPropManager_Free(MapPropManager *mapPropManager);
 void MapPropManager_Init(MapPropManager *mapPropManager);
-void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager);
+void MapPropManager_ClearOne(int index, MapPropManager *mapPropManager);
 void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDataManager *const areaDataManager, MapPropManager *mapPropManager, MapPropAnimationManager *mapPropAnimMan);
 void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL applyAttrsToModel, ModelAttributes *const modelAttrs, MapPropManager *mapPropManager);
 VecFx32 *MapProp_GetRotation(MapProp *mapProp);

@@ -118,8 +118,8 @@ static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
     [FADE_TYPE_UNK_37] = sub_0200FFE8,
     [FADE_TYPE_UNK_38] = sub_02010014,
     [FADE_TYPE_UNK_39] = sub_02010040,
-    [FADE_TYPE_UNK_40] = sub_0201006C,
-    [FADE_TYPE_UNK_41] = sub_020100A8,
+    [FADE_TYPE_CLAMP_OUT] = sub_0201006C,
+    [FADE_TYPE_CLAMP_IN] = sub_020100A8,
 };
 
 static ScreenFadeManager sScreenFadeManager;
