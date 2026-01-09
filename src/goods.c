@@ -9,12 +9,6 @@
 
 #include "res/text/bank/underground_records.h"
 
-typedef struct SpherePrice {
-    u8 sphereType;
-    u8 minSize;
-    u8 maxSize;
-} SpherePrice;
-
 typedef struct Good {
     u8 width;
     u8 depth;
