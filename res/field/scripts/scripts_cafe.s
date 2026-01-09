@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag FLAG_UNK_0x09E9
+    SetFlag FLAG_FIRST_ARRIVAL_ROUTE_210_COFFEE_SHOP
     End
 
 _0018:

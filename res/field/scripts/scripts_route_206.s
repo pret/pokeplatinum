@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetFlag FLAG_UNK_0x09E6
+    SetFlag FLAG_FIRST_ARRIVAL_CYCLING_ROAD_UNUSED
     End
 
 _001C:

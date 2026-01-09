@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag FLAG_UNK_0x09E3
+    SetFlag FLAG_FIRST_ARRIVAL_ACUITY_CAVERN
     End
 
 AcuityCavern_CheckShouldUxieBeRemoved:

@@ -1089,7 +1089,7 @@ void *sub_02053FAC(FieldSystem *fieldSystem)
         mapChangeUndergroundData->unk_14 = location->z;
     } else {
         Location_SetToPlayerLocation(location, fieldSystem);
-        mapChangeUndergroundData->mapId = 2;
+        mapChangeUndergroundData->mapId = MAP_HEADER_UNDERGROUND;
         mapChangeUndergroundData->unk_0C = -1;
 
         {

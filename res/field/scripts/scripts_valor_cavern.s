@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag FLAG_UNK_0x09E1
+    SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater
     End
@@ -26,7 +26,7 @@ ValorCavern_SetWarpEventPosLakeWithWater:
     End
 
 _0042:
-    SetFlag FLAG_UNK_0x09E1
+    SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
     CallIfSet FLAG_MAP_LOCAL, ValorCavern_RemoveAzelf
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater

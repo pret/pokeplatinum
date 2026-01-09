@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag FLAG_UNK_0x09DD
+    SetFlag FLAG_FIRST_ARRIVAL_GALACTIC_HQ
     End
 
 _0028:

@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09D8
+    SetFlag FLAG_FIRST_ARRIVAL_RUIN_MANIAC_CAVE
     End
 
 _0010:

@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09C9
+    SetFlag FLAG_FIRST_ARRIVAL_SOLACEON_RUINS
     End
 
 _0010:

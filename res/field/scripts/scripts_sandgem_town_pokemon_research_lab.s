@@ -731,7 +731,7 @@ _08A0:
     Return
 
 _08B5:
-    GoToIfUnset FLAG_UNK_0x09BE, _08C2
+    GoToIfUnset FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY, _08C2
     Return
 
 _08C2:

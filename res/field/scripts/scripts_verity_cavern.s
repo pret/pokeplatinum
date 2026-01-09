@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09DF
+    SetFlag FLAG_FIRST_ARRIVAL_VERITY_CAVERN
     End
 
 VerityCavern_Mesprit:
