@@ -1,74 +1,75 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_aaron_room.h"
+#include "res/field/events/events_pokemon_league_aaron_room.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _00B7
+    ScriptEntry PokemonLeagueAaronRoom_Aaron
+    ScriptEntry PokemonLeagueAaronRoom_OnFrame
     ScriptEntryEnd
 
-_000A:
+PokemonLeagueAaronRoom_Aaron:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00B0, _00AC
+    GoToIfSet FLAG_DEFEATED_AARON, PokemonLeagueAaronRoom_AaronPostBattle
     PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_AARON
-    Message 0
+    Message PokemonLeagueAaronRoom_Text_AaronIntro
     CloseMessage
-    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _007A
-    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0082
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_StartAaronBattle
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_StartAaronRematchBattle
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00A6
-    SetFlag FLAG_UNK_0x00B0
+    GoToIfEq VAR_RESULT, FALSE, PokemonLeagueAaronRoom_BlackOut
+    SetFlag FLAG_DEFEATED_AARON
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    RemoveObject 2
-    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _008A
-    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0098
-    Message 1
+    RemoveObject LOCALID_EXIT_DOOR
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedAaron
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueAaronRoom_CreateJournalEventDefeatedRematchAaron
+    Message PokemonLeagueAaronRoom_Text_AaronDefeat
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_007A:
+PokemonLeagueAaronRoom_StartAaronBattle:
     StartTrainerBattle TRAINER_ELITE_FOUR_AARON
     Return
 
-_0082:
+PokemonLeagueAaronRoom_StartAaronRematchBattle:
     StartTrainerBattle TRAINER_ELITE_FOUR_AARON_REMATCH
     Return
 
-_008A:
+PokemonLeagueAaronRoom_CreateJournalEventDefeatedAaron:
     CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON, 0, 0, 0
     Return
 
-_0098:
+PokemonLeagueAaronRoom_CreateJournalEventDefeatedRematchAaron:
     CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_AARON_REMATCH, 0, 0, 0
     Return
 
-_00A6:
+PokemonLeagueAaronRoom_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_00AC:
-    Message 2
+PokemonLeagueAaronRoom_AaronPostBattle:
+    Message PokemonLeagueAaronRoom_Text_AaronPostBattle
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00B7:
+PokemonLeagueAaronRoom_OnFrame:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _00DC
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueAaronRoom_Movement_PlayerEnterRoom
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ClearFlag FLAG_UNK_0x0282
-    AddObject 1
+    ClearFlag FLAG_HIDE_POKEMON_LEAGUE_AARON_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_00DC:
+PokemonLeagueAaronRoom_Movement_PlayerEnterRoom:
     WalkNormalNorth 2
     EndMovement

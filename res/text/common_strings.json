@@ -112,14 +112,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00015",
+      "id": "CommonStrings_Text_SavingDontTurnOffThePower",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "pl_msg_00000213_00016",
+      "id": "CommonStrings_Text_PlayerSavedTheGame",
       "en_US": "{STRVAR_1 3, 0, 0} saved the game."
     },
     {
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000213_00018",
+      "id": "CommonStrings_Text_SaveError",
       "en_US": "Save error."
     },
     {

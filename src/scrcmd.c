@@ -100,6 +100,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "clear_game.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "daycare_save.h"
@@ -203,7 +204,6 @@
 #include "unk_0205003C.h"
 #include "unk_02050568.h"
 #include "unk_020528D0.h"
-#include "unk_02052C6C.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205749C.h"
@@ -395,7 +395,7 @@ static BOOL ScrCmd_0AC(ScriptContext *ctx);
 static BOOL ScrCmd_0AD(ScriptContext *ctx);
 static BOOL ScrCmd_0AE(ScriptContext *ctx);
 static BOOL ScrCmd_0AF(ScriptContext *ctx);
-static BOOL ScrCmd_0B0(ScriptContext *ctx);
+static BOOL ScrCmd_ClearGame(ScriptContext *ctx);
 static BOOL ScrCmd_0B1(ScriptContext *ctx);
 static BOOL ScrCmd_336(ScriptContext *ctx);
 static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx);
@@ -677,7 +677,7 @@ static BOOL ScrCmd_DrawPokemonPreviewFromPartySlot(ScriptContext *ctx);
 static BOOL ScrCmd_28D(ScriptContext *ctx);
 static BOOL ScrCmd_28E(ScriptContext *ctx);
 static BOOL sub_02041FF8(ScriptContext *ctx);
-static BOOL ScrCmd_28F(ScriptContext *ctx);
+static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx);
 static BOOL ScrCmd_292(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx);
 static BOOL ScrCmd_291(ScriptContext *ctx);
@@ -945,7 +945,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0AD,
     ScrCmd_0AE,
     ScrCmd_0AF,
-    ScrCmd_0B0,
+    ScrCmd_ClearGame,
     ScrCmd_0B1,
     ScrCmd_TryStartGTSApp,
     ScrCmd_0B3,
@@ -1424,7 +1424,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_DrawPokemonPreviewFromPartySlot,
     ScrCmd_28D,
     ScrCmd_28E,
-    ScrCmd_28F,
+    ScrCmd_GetLeagueVictories,
     ScrCmd_OpenPartyMenuForDaycare,
     ScrCmd_291,
     ScrCmd_292,
@@ -4182,9 +4182,9 @@ static BOOL ScrCmd_0AF(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0B0(ScriptContext *ctx)
+static BOOL ScrCmd_ClearGame(ScriptContext *ctx)
 {
-    sub_02052E58(ctx->fieldSystem->task);
+    ClearGame(ctx->fieldSystem->task);
     return TRUE;
 }
 
@@ -7110,28 +7110,28 @@ static BOOL ScrCmd_CheckDistributionEvent(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_28F(ScriptContext *ctx)
+static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx)
 {
-    int v0;
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    int resultCode;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    const HallOfFame *v1 = SaveData_HallOfFame(ctx->fieldSystem->saveData, 32, &v0);
+    const HallOfFame *hallOfFame = SaveData_HallOfFame(ctx->fieldSystem->saveData, 32, &resultCode);
 
-    if (v0 == 0) {
-        *v2 = 0;
-        Heap_Free((void *)v1);
+    if (resultCode == LOAD_RESULT_EMPTY) {
+        *destVar = 0;
+        Heap_Free((void *)hallOfFame);
         return TRUE;
-    } else if (v0 == 1) {
-        *v2 = HallOfFame_GetEntryNum(v1, 0);
-        Heap_Free((void *)v1);
+    } else if (resultCode == LOAD_RESULT_OK) {
+        *destVar = HallOfFame_GetEntryNum(hallOfFame, 0);
+        Heap_Free((void *)hallOfFame);
         return TRUE;
-    } else if (v0 == 2) {
-        *v2 = 0;
-        Heap_Free((void *)v1);
+    } else if (resultCode == LOAD_RESULT_CORRUPT) {
+        *destVar = 0;
+        Heap_Free((void *)hallOfFame);
         return TRUE;
     }
 
-    *v2 = 0;
+    *destVar = 0;
     return TRUE;
 }
 

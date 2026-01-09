@@ -18,7 +18,7 @@ _001C:
     Return
 
 _002A:
-    GoToIfSet FLAG_UNK_0x0121, _0046
+    GoToIfSet FLAG_CAUGHT_GIRATINA, _0046
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0

@@ -1,74 +1,75 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_lucian_room.h"
+#include "res/field/events/events_pokemon_league_lucian_room.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _00B7
+    ScriptEntry PokemonLeagueLucianRoom_Lucian
+    ScriptEntry PokemonLeagueLucianRoom_OnFrame
     ScriptEntryEnd
 
-_000A:
+PokemonLeagueLucianRoom_Lucian:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00B3, _00AC
+    GoToIfSet FLAG_DEFEATED_LUCIAN, PokemonLeagueLucianRoom_LucianPostBattle
     PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_LUCIAN
-    Message 0
+    Message PokemonLeagueLucianRoom_Text_LucianIntro
     CloseMessage
-    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _007A
-    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0082
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_StartLucianBattle
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_StartLucianRematchBattle
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _00A6
-    SetFlag FLAG_UNK_0x00B3
+    GoToIfEq VAR_RESULT, FALSE, PokemonLeagueLucianRoom_BlackOut
+    SetFlag FLAG_DEFEATED_LUCIAN
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    RemoveObject 1
-    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _008A
-    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0098
-    Message 1
+    RemoveObject LOCALID_EXIT_DOOR
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian
+    Message PokemonLeagueLucianRoom_Text_LucianDefeat
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_007A:
+PokemonLeagueLucianRoom_StartLucianBattle:
     StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN
     Return
 
-_0082:
+PokemonLeagueLucianRoom_StartLucianRematchBattle:
     StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN_REMATCH
     Return
 
-_008A:
+PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian:
     CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN, 0, 0, 0
     Return
 
-_0098:
+PokemonLeagueLucianRoom_CreateJournalEventDefeatedRematchLucian:
     CreateJournalEvent LOCATION_EVENT_BEAT_ELITE_FOUR_MEMBER, TRAINER_ELITE_FOUR_LUCIAN_REMATCH, 0, 0, 0
     Return
 
-_00A6:
+PokemonLeagueLucianRoom_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
 
-_00AC:
-    Message 2
+PokemonLeagueLucianRoom_LucianPostBattle:
+    Message PokemonLeagueLucianRoom_Text_LucianPostBattle
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00B7:
+PokemonLeagueLucianRoom_OnFrame:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _00DC
+    ApplyMovement LOCALID_PLAYER, PokemonLeagueLucianRoom_Movement_PlayerEnterRoom
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ClearFlag FLAG_UNK_0x0285
-    AddObject 2
+    ClearFlag FLAG_HIDE_POKEMON_LEAGUE_LUCIAN_ROOM_ENTRANCE_DOOR
+    AddObject LOCALID_ENTRANCE_DOOR
     SetVar VAR_MAP_LOCAL_1, 1
     ReleaseAll
     End
 
     .balign 4, 0
-_00DC:
+PokemonLeagueLucianRoom_Movement_PlayerEnterRoom:
     WalkNormalNorth 2
     EndMovement

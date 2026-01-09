@@ -7,8 +7,8 @@
 
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02097728.h"
 
@@ -93,7 +93,7 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E224(FieldSystem *fieldSystem);
 void FieldTask_StartHallOfFame(FieldSystem *fieldSystem, HallOfFameDisplayData *displayData);
 void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem);
-void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1);
+void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1);
 void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData);
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
 void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);

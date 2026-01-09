@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    CallIfSet FLAG_UNK_0x0121, _001B
+    CallIfSet FLAG_CAUGHT_GIRATINA, _001B
     End
 
 _001B:

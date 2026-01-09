@@ -52,7 +52,7 @@ ValorCavern_Azelf:
     GoToIfEq VAR_RESULT, FALSE, ValorCavern_LostBattleAzelf
     CheckDidNotCapture VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, ValorCavern_AzelfDisappeared
-    SetFlag FLAG_AZELF_CAUGHT
+    SetFlag FLAG_CAUGHT_AZELF
     ReleaseAll
     End
 
