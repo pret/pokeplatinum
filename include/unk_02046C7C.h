@@ -28,13 +28,13 @@ BOOL ScrCmd_110(ScriptContext *param0);
 BOOL ScrCmd_10D(ScriptContext *param0);
 BOOL ScrCmd_10E(ScriptContext *param0);
 BOOL ScrCmd_10F(ScriptContext *param0);
-BOOL ScrCmd_117(ScriptContext *param0);
+BOOL ScrCmd_LockAutoScrollForLinkContests(ScriptContext *ctx);
 BOOL ScrCmd_118(ScriptContext *param0);
 BOOL ScrCmd_111(ScriptContext *param0);
 BOOL ScrCmd_112(ScriptContext *param0);
 BOOL ScrCmd_113(ScriptContext *param0);
 BOOL ScrCmd_114(ScriptContext *param0);
 BOOL ScrCmd_115(ScriptContext *param0);
-BOOL ScrCmd_116(ScriptContext *param0);
+BOOL ScrCmd_ShowLinkContestRecords(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_UNK_02046C7C_H

@@ -134,7 +134,7 @@ void sub_02095DCC(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     int v1;
-    u8 *v2 = sub_0202D79C(fieldSystem->saveData);
+    u8 *v2 = SaveData_GetRibbons(fieldSystem->saveData);
     u8 *v3 = (u8 *)param2;
 
     if (CommSys_CurNetId() == param0) {

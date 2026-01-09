@@ -5,6 +5,6 @@
 
 int Ribbons_SaveSize(void);
 void Ribbons_Init(u8 *param0);
-u8 *sub_0202D79C(SaveData *saveData);
+u8 *SaveData_GetRibbons(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_0202D778_H

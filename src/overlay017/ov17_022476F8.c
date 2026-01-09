@@ -200,7 +200,7 @@ static void ov17_02247990(UnkStruct_ov17_02247A48 *param0, MessageLoader *param1
     String *v0;
     int v1;
 
-    if (param0->unk_00->unk_155 == 0) {
+    if (param0->unk_00->isLinkContest == FALSE) {
         v1 = Options_TextFrameDelay(param0->unk_00->options);
     } else {
         v1 = TEXT_SPEED_FAST;

@@ -1025,7 +1025,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monMax = Party_GetCurrentCount(summary->monData);
         summary->move = 0;
         summary->mode = SUMMARY_MODE_NORMAL;
-        summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+        summary->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
         summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         summary->chatotCry = NULL;

@@ -211,7 +211,7 @@ int ov17_0224F4D4(ApplicationManager *appMan, int *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
-    sub_020959F4(v0->unk_00->unk_155);
+    SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
     SetVBlankCallback(ov17_0224FA24, v0);
 
     v0->unk_08 = SysTask_ExecuteOnVBlank(ov17_0224FAE4, v0, 10);
@@ -330,7 +330,7 @@ int ov17_0224F86C(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_24);
-    sub_02095A24();
+    LockTextSpeed();
 
     MI_CpuFill16((void *)HW_BG_PLTT, 0x7fff, 0x200);
     MI_CpuFill16((void *)HW_OBJ_PLTT, 0x7fff, 0x200);

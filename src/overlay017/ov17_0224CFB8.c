@@ -136,7 +136,7 @@ void ov17_0224CFB8(UnkStruct_ov17_0224DF54 *param0)
     v0.unk_04 = NELEMS(Unk_ov17_022549E4);
     v0.unk_06 = param0->unk_00->unk_00.unk_113;
     v0.unk_08 = param0->unk_00->unk_00.unk_10C;
-    v0.unk_07 = param0->unk_00->unk_155;
+    v0.unk_07 = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_109C, &v0);
 }
@@ -446,7 +446,7 @@ static void ov17_0224D500(UnkStruct_ov17_0224F30C *param0, void *param1, const U
         v0->unk_00->unk_156[v2] = v1->unk_00[v2];
     }
 
-    if (sub_02094EDC(v0->unk_00) == 0) {
+    if (sub_02094EDC(v0->unk_00) == FALSE) {
         ov17_0224F26C(param0, param2, NULL, 0);
     }
 }
@@ -539,7 +539,7 @@ static void ov17_0224D6CC(SysTask *param0, void *param1)
         return;
     }
 
-    if ((v0->unk_04->unk_00->unk_155 == 0) || (v0->unk_11 == 1)) {
+    if (v0->unk_04->unk_00->isLinkContest == FALSE || v0->unk_11 == 1) {
         ov17_0224B20C(v0->unk_04, &v0->unk_08);
         v0->unk_12 = 0;
     } else {

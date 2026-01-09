@@ -33,9 +33,9 @@ int sub_02095904(int param0);
 BOOL sub_0209590C(UnkStruct_02095C48 *param0);
 int sub_02095928(UnkStruct_02095C48 *param0, int param1);
 int sub_0209598C(UnkStruct_02095C48 *param0, int param1);
-void sub_020959F4(int param0);
-void sub_02095A24(void);
+void SetLockTextWithAutoScroll(BOOL lockTextWithAutoScroll);
+void LockTextSpeed();
 u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestType contestType);
-u32 sub_02095A74(int param0, int param1);
+u32 sub_02095A74(enum PokemonContestRank contestRank, BOOL isLinkContest);
 
 #endif // POKEPLATINUM_UNK_02094EDC_H
