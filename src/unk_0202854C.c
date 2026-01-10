@@ -96,7 +96,7 @@ int UndergroundRecord_Size(void)
     return sizeof(UndergroundRecord);
 }
 
-UndergroundRecord *UndergroundRecord_Init(u32 heapID)
+UndergroundRecord *UndergroundRecord_Init(enum HeapID heapID)
 {
     UndergroundRecord *undergroundRecord = Heap_Alloc(heapID, sizeof(UndergroundRecord));
     MI_CpuFill8(undergroundRecord, 0, sizeof(UndergroundRecord));

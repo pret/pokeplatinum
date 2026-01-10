@@ -44,7 +44,7 @@ static void UpdateBgAffineRotationCenterWithVal(Background *bg, enum BgAffineUpd
 static void RunScheduledScrolls(BgConfig *bgConfig);
 static void RunScheduledTilemapTransfers(BgConfig *bgConfig);
 
-BgConfig *BgConfig_New(u32 heapID)
+BgConfig *BgConfig_New(enum HeapID heapID)
 {
     BgConfig *bgConfig = Heap_Alloc(heapID, sizeof(BgConfig));
 
@@ -912,7 +912,7 @@ static void LoadBgVRAMChar(u8 bgLayer, void *src, u32 offset, u32 size)
     }
 }
 
-void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID)
+void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, enum HeapID heapID)
 {
     u32 *buf = (u32 *)Heap_AllocAtEnd(heapID, size);
 
@@ -1582,7 +1582,7 @@ void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 heig
     }
 }
 
-Window *Window_New(u32 heapID, u8 winCount)
+Window *Window_New(enum HeapID heapID, u8 winCount)
 {
     Window *windows = (Window *)Heap_Alloc(heapID, sizeof(Window) * winCount);
 

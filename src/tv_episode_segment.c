@@ -75,7 +75,7 @@
 static void FieldSystem_SaveTVEpisodeSegment(FieldSystem *fieldSystem, int programTypeID, int segmentID, const void *segment);
 static void SaveData_SaveTVEpisodeSegment(SaveData *saveData, int programTypeID, int segmentID, const void *segment);
 static u8 sub_0206DE4C(Pokemon *param0);
-static String *sub_0206F0D8(u16 param0, u32 heapID);
+static String *sub_0206F0D8(u16 param0, enum HeapID heapID);
 
 #define TV_EPISODE_SEGMENT_SIZE 40
 #define TEMPLATE_NAME_SIZE      MON_NAME_LEN + 1
@@ -713,7 +713,7 @@ void CaptureAttempt_Free(CaptureAttempt *captureAttempt)
     Heap_Free(captureAttempt);
 }
 
-void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, u32 heapID)
+void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, enum HeapID heapID)
 {
     MI_CpuClear32(captureAttempt, sizeof(CaptureAttempt));
 
@@ -2707,7 +2707,7 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 }
 
-static String *sub_0206F0D8(u16 param0, u32 heapID)
+static String *sub_0206F0D8(u16 param0, enum HeapID heapID)
 {
     MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     String *v1 = MessageLoader_GetNewString(v0, param0);

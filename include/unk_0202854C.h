@@ -20,7 +20,7 @@ enum BaseFlagType {
 int Underground_SaveSize(void);
 int SecretBase_Size(void);
 int UndergroundRecord_Size(void);
-UndergroundRecord *UndergroundRecord_Init(u32 heapID);
+UndergroundRecord *UndergroundRecord_Init(enum HeapID heapID);
 void Underground_Init(Underground *underground);
 void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed);
 void sub_02028758(SaveData *saveData, s32 param1, BOOL param2);

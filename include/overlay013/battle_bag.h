@@ -65,7 +65,7 @@ typedef struct BattleBagContext {
     BattleSystem *battleSystem;
     TrainerInfo *trainerInfo;
     Bag *bag;
-    u32 heapID;
+    enum HeapID heapID;
     s32 battler;
     BOOL isInCatchTutorial;
     u32 embargoRemainingTurns;

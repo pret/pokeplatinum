@@ -39,11 +39,11 @@ typedef struct Easy3DObject {
     u8 padding_76[2];
 } Easy3DObject;
 
-void Easy3DModel_Load(Easy3DModel *model, enum NarcID narcID, u32 memberIndex, u32 heapID);
+void Easy3DModel_Load(Easy3DModel *model, enum NarcID narcID, u32 memberIndex, enum HeapID heapID);
 void Easy3DModel_LoadFrom(Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID);
 void Easy3DModel_Release(Easy3DModel *model);
 
-void Easy3DAnim_LoadFrom(Easy3DAnim *anim, const Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID, NNSFndAllocator *allocator);
+void Easy3DAnim_LoadFrom(Easy3DAnim *anim, const Easy3DModel *model, NARC *narc, u32 memberIndex, enum HeapID heapID, NNSFndAllocator *allocator);
 void Easy3DAnim_LoadFromData(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator);
 void Easy3DAnim_Release(Easy3DAnim *anim, NNSFndAllocator *allocator);
 void Easy3DAnim_UpdateLooped(Easy3DAnim *anim, fx32 frameDelta);

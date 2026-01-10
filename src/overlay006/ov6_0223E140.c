@@ -211,7 +211,7 @@ typedef struct UnkStruct_ov6_022401B8_t {
     UnkStruct_ov6_02240240 unk_08;
     UnkStruct_ov6_02240260 unk_34;
     NNSFndAllocator unk_10C;
-    u32 heapID;
+    enum HeapID heapID;
 } UnkStruct_ov6_022401B8;
 
 typedef struct {
@@ -283,13 +283,13 @@ static void ov6_0223FDC4(Easy3DObject *param0, BOOL param1);
 static void ov6_0223FDCC(Easy3DObject *param0, fx32 param1, fx32 param2, fx32 param3);
 static void ov6_0223FDD4(Easy3DObject *param0, fx32 param1, fx32 param2, fx32 param3);
 static void ov6_0223FDDC(Easy3DObject *param0, u16 param1, u32 param2);
-static UnkStruct_ov6_0223FDE4 *ov6_0223FDE4(u32 heapID);
+static UnkStruct_ov6_0223FDE4 *ov6_0223FDE4(enum HeapID heapID);
 static void ov6_0223FF7C(UnkStruct_ov6_0223FDE4 *param0);
 static BOOL ov6_0223FFC8(UnkStruct_ov6_0223FDE4 *param0);
 static void ov6_0223FFE4(UnkStruct_ov6_0223FDE4 *param0, fx32 param1, fx32 param2);
 static void ov6_02240064(SysTask *param0, void *param1);
 static void ov6_02240240(UnkStruct_ov6_02240240 *param0, FieldSystem *fieldSystem, u32 param2);
-static void ov6_02240260(UnkStruct_ov6_02240260 *param0, u32 heapID, NNSFndAllocator *param2);
+static void ov6_02240260(UnkStruct_ov6_02240260 *param0, enum HeapID heapID, NNSFndAllocator *param2);
 static void ov6_022402E4(UnkStruct_ov6_02240260 *param0, fx32 param1, fx32 param2, fx32 param3);
 static void ov6_02240340(UnkStruct_ov6_02240260 *param0, NNSFndAllocator *param1);
 static void ov6_02240600(UnkStruct_ov6_02240260 *param0);
@@ -303,7 +303,7 @@ static void ov6_022407E8(UnkStruct_ov6_022407B8 *param0, fx32 param1, fx32 param
 static void ov6_0224085C(UnkStruct_ov6_022407B8 *param0);
 static void ov6_0224089C(UnkStruct_ov6_022407B8 *param0);
 static UnkStruct_ov6_022407B8 *ov6_022408A8(UnkStruct_ov6_02240774 *param0);
-static UnkStruct_ov6_02240A00 *ov6_022408C8(u32 heapID, u32 param1);
+static UnkStruct_ov6_02240A00 *ov6_022408C8(enum HeapID heapID, u32 param1);
 static void ov6_02240968(UnkStruct_ov6_02240A00 *param0);
 static void ov6_02240994(UnkStruct_ov6_02240A00 *param0, fx32 param1, fx32 param2, fx32 param3, u16 param4, u16 param5, u16 param6);
 static void ov6_022409D4(UnkStruct_ov6_02240A00 *param0);
@@ -1747,7 +1747,7 @@ static void ov6_0223FD58(Easy3DModel *param0, u32 param1, u32 param2, u32 param3
     Easy3DModel_Load(param0, param1, param2, param3);
 }
 
-static void ov6_0223FD60(Easy3DModel *param0, NARC *param1, u32 param2, u32 heapID)
+static void ov6_0223FD60(Easy3DModel *param0, NARC *param1, u32 param2, enum HeapID heapID)
 {
     Easy3DModel_LoadFrom(param0, param1, param2, heapID);
 }
@@ -1817,7 +1817,7 @@ static void ov6_0223FDDC(Easy3DObject *param0, u16 param1, u32 param2)
     Easy3DObject_SetRotation(param0, param1, param2);
 }
 
-UnkStruct_ov6_0223FDE4 *ov6_0223FDE4(u32 heapID)
+UnkStruct_ov6_0223FDE4 *ov6_0223FDE4(enum HeapID heapID)
 {
     UnkStruct_ov6_0223FDE4 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov6_0223FDE4));
     memset(v0, 0, sizeof(UnkStruct_ov6_0223FDE4));
@@ -2029,7 +2029,7 @@ void ov6_022400C4(UnkStruct_ov6_022400A8 *param0)
     NNS_G3dGePopMtx(1);
 }
 
-UnkStruct_ov6_022401B8 *ov6_02240104(u32 heapID, FieldSystem *fieldSystem)
+UnkStruct_ov6_022401B8 *ov6_02240104(enum HeapID heapID, FieldSystem *fieldSystem)
 {
     UnkStruct_ov6_022401B8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov6_022401B8));
     memset(v0, 0, sizeof(UnkStruct_ov6_022401B8));
@@ -2102,7 +2102,7 @@ static void ov6_02240240(UnkStruct_ov6_02240240 *param0, FieldSystem *fieldSyste
     param0->unk_28 = 0;
 }
 
-static void ov6_02240260(UnkStruct_ov6_02240260 *param0, u32 heapID, NNSFndAllocator *param2)
+static void ov6_02240260(UnkStruct_ov6_02240260 *param0, enum HeapID heapID, NNSFndAllocator *param2)
 {
     int v0;
     NARC *v1 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, heapID);
@@ -2383,7 +2383,7 @@ static void ov6_02240600(UnkStruct_ov6_02240260 *param0)
     ov6_0223FDBC(&param0->unk_08);
 }
 
-static UnkStruct_ov6_02240774 *ov6_0224060C(u32 heapID, u32 param1)
+static UnkStruct_ov6_02240774 *ov6_0224060C(enum HeapID heapID, u32 param1)
 {
     UnkStruct_ov6_02240774 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov6_02240774));
     memset(v0, 0, sizeof(UnkStruct_ov6_02240774));
@@ -2456,7 +2456,7 @@ static void ov6_02240750(UnkStruct_ov6_02240774 *param0)
     }
 }
 
-UnkStruct_ov6_02240774 *ov6_02240768(u32 heapID)
+UnkStruct_ov6_02240774 *ov6_02240768(enum HeapID heapID)
 {
     return ov6_0224060C(heapID, 6);
 }
@@ -2548,7 +2548,7 @@ static UnkStruct_ov6_022407B8 *ov6_022408A8(UnkStruct_ov6_02240774 *param0)
     return NULL;
 }
 
-static UnkStruct_ov6_02240A00 *ov6_022408C8(u32 heapID, u32 param1)
+static UnkStruct_ov6_02240A00 *ov6_022408C8(enum HeapID heapID, u32 param1)
 {
     UnkStruct_ov6_02240A00 *v0;
     int v1;
@@ -2613,7 +2613,7 @@ static void ov6_022409EC(UnkStruct_ov6_02240A00 *param0)
     ov6_0223FDBC(&param0->unk_00);
 }
 
-UnkStruct_ov6_02240A00 *ov6_022409F4(u32 heapID)
+UnkStruct_ov6_02240A00 *ov6_022409F4(enum HeapID heapID)
 {
     return ov6_022408C8(heapID, 0);
 }
@@ -2649,7 +2649,7 @@ void ov6_02240A8C(UnkStruct_ov6_02240A00 *param0, fx32 param1, fx32 param2, fx32
     ov6_02240994(param0, param1 + -811008, param2 + 356351, param3 + -2162696, 59165, 21301, 31122);
 }
 
-UnkStruct_ov6_02240774 *ov6_02240AC8(u32 heapID)
+UnkStruct_ov6_02240774 *ov6_02240AC8(enum HeapID heapID)
 {
     return ov6_0224060C(heapID, 6);
 }
@@ -2752,7 +2752,7 @@ void include_unk_ov6_02248F30(void)
     Unk_ov6_02248F30[0];
 }
 
-UnkStruct_ov6_02240C44 *ov6_02240B9C(u32 heapID, FieldSystem *fieldSystem)
+UnkStruct_ov6_02240C44 *ov6_02240B9C(enum HeapID heapID, FieldSystem *fieldSystem)
 {
     UnkStruct_ov6_02240C44 *v0;
     int v1;

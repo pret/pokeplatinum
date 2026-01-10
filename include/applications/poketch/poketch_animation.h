@@ -23,7 +23,7 @@ typedef struct PoketchAnimation_SpriteData {
     void *compressedAnim;
     NNSG2dCellDataBank *cell;
     NNSG2dAnimBankData *anim;
-    u32 heapID;
+    enum HeapID heapID;
 } PoketchAnimation_SpriteData;
 
 PoketchAnimation_AnimationManager *PoketchAnimation_SetupAnimationManager(NNSG2dOamManagerInstance *oamMan, u32 heapID);

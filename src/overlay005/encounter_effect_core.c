@@ -2858,7 +2858,7 @@ static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
     return v2;
 }
 
-static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
+static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, enum HeapID heapID)
 {
     StringTemplate *template;
     MessageLoader *messageLoader;

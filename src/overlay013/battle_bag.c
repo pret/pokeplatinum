@@ -87,7 +87,7 @@ static u8 TryUseItem(BattleBag *battleBag);
 static void SetupBackgroundScroll(BattleBag *battleBag, enum BattleBagScreen screen);
 static void ChangeBattleBagScreen(BattleBag *battleBag, u8 screen);
 static int CheckTouchRectIsPressed(BattleBag *battleBag, const TouchScreenRect *rect);
-static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID);
+static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, enum HeapID heapID);
 
 static const TouchScreenRect sMenuTouchRects[] = {
     [BATTLE_BAG_MENU_SCREEN_BUTTON_RECOVER_HP_POCKET] = { 8, 79, 0, 127 },
@@ -811,7 +811,7 @@ int BattleBagTask_GetSelectedPartySlot(BattleBag *battleBag)
     return BattleContext_Get(battleBag->context->battleSystem, BattleSystem_Context(battleBag->context->battleSystem), BATTLECTX_SELECTED_PARTY_SLOT, battleBag->context->battler);
 }
 
-static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID)
+static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, enum HeapID heapID)
 {
     Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
     Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), item, category);
