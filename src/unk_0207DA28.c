@@ -55,11 +55,11 @@ void sub_02099570(void);
 static BOOL sub_0207DA28(FieldTask *param0);
 static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 heapID, u32 param3);
 static u32 sub_0207DE40(UnkStruct_0207DE40 *param0);
-static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 param1, u32 param2);
+static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 heapID, u32 param2);
 static void sub_0207DED8(UnkStruct_ov115_02260440 *param0);
-static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 param1, u32 param2);
+static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 heapID, u32 param2);
 static void sub_0207DF2C(UnkStruct_ov66_02231134 *param0);
-static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 param1, u32 param2);
+static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 heapID, u32 param2);
 static void sub_0207DF88(UnkStruct_ov115_02260440 *param0);
 static void sub_0207DF9C(FieldSystem *fieldSystem);
 

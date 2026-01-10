@@ -70,7 +70,7 @@ static BOOL ov66_02231E30(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static UnkEnum_ov66_02231E54 ov66_02231E54(const UnkStruct_ov66_02231D38 *param0, u32 param1);
 static UnkEnum_ov66_02231E6C ov66_02231E6C(const UnkStruct_ov66_02231D38 *param0);
 static BOOL ov66_02231E74(const UnkStruct_ov66_02231D38 *param0, u32 param1);
-static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 param1);
+static void ov66_02231E94(UnkStruct_ov66_02231E94 *param0, u32 heapID);
 static void ov66_02231EEC(UnkStruct_ov66_02231E94 *param0);
 static void ov66_02231F1C(UnkStruct_ov66_02231E94 *param0);
 static void ov66_02231F58(UnkStruct_ov66_02231E94 *param0);

@@ -23,7 +23,7 @@ BOOL sub_02014F48(UnkStruct_02014EC4 *param0);
 u16 sub_02014F64(u32 param0);
 BOOL sub_02014F8C(const UnkStruct_02014EC4 *param0, int param1);
 void sub_02014F98(UnkStruct_02014EC4 *param0, int param1);
-UnkStruct_02014FB0 *sub_02014FB0(u32 param0);
+UnkStruct_02014FB0 *sub_02014FB0(u32 heapID);
 void sub_02014FF0(UnkStruct_02014FB0 *param0);
 u32 sub_02015004(const UnkStruct_02014FB0 *param0);
 u16 sub_02015008(const UnkStruct_02014FB0 *param0, u32 param1);

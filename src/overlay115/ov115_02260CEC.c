@@ -427,7 +427,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263954(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0);
-static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 param1);
+static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 param3);
 static void ov115_02263CC0(UnkStruct_ov115_02261ADC *param0);
