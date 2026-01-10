@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/amity_square.h"
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 
 #define LOCALID_HAS_NATIONAL_DEX     VAR_MAP_LOCAL_0
 #define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004

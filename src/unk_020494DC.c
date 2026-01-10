@@ -7,7 +7,7 @@
 #include "generated/battle_tower_functions.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/game_records.h"
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/struct_02049A68.h"

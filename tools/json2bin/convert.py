@@ -11,7 +11,7 @@ from generated import (
     maps,
     moves,
     movement_types,
-    object_events,
+    object_events_gfx,
     species,
     trainers,
     trainer_classes,
@@ -56,7 +56,7 @@ def from_bg_event_dir(s: str) -> int:
     return bg_event_dirs.BgEventDir[s].value
 
 def from_object_event_gfx(s: str) -> int:
-    return object_events.ObjectEventGfx[s].value
+    return object_events_gfx.ObjectEventGfx[s].value
 
 def from_movement_type(s: str) -> int:
     return movement_types.MovementType[s].value
