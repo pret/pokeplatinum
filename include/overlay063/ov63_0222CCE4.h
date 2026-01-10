@@ -12,12 +12,12 @@
 UnkStruct_ov63_0222CD2C *ov63_0222CCE4(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, u32 heapID);
 UnkStruct_ov63_0222CD2C *ov63_0222CD2C(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, int param4, u32 param5, u32 heapID);
 void ov63_0222CD9C(UnkStruct_ov63_0222CD2C *param0);
-void ov63_0222CDE8(UnkStruct_ov63_0222CD2C *param0, u32 param1, int param2, u32 param3);
+void ov63_0222CDE8(UnkStruct_ov63_0222CD2C *param0, u32 param1, int param2, u32 heapID);
 void ov63_0222CE0C(UnkStruct_ov63_0222CD2C *param0, u32 param1);
 BOOL ov63_0222CE18(const UnkStruct_ov63_0222CD2C *param0, u32 param1);
 void ov63_0222CE24(UnkStruct_ov63_0222CD2C *param0);
-void ov63_0222CE30(UnkStruct_ov63_0222CD2C *param0, int param1, u32 param2);
-UnkStruct_ov63_0222CE44 *ov63_0222CE44(UnkStruct_ov63_0222CD2C *param0, const UnkStruct_ov63_0222BEC0 *param1, BOOL param2, u32 param3);
+void ov63_0222CE30(UnkStruct_ov63_0222CD2C *param0, int param1, u32 heapID);
+UnkStruct_ov63_0222CE44 *ov63_0222CE44(UnkStruct_ov63_0222CD2C *param0, const UnkStruct_ov63_0222BEC0 *param1, BOOL param2, u32 heapID);
 void ov63_0222CECC(UnkStruct_ov63_0222CE44 *param0);
 void ov63_0222CEE4(UnkStruct_ov63_0222CD2C *param0);
 void ov63_0222CF14(UnkStruct_ov63_0222CE44 *param0);

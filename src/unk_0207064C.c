@@ -25,7 +25,7 @@ typedef struct {
     SysTask *cutInTask;
 } FlyTaskEnv;
 
-void *sub_0207064C(u32 heapID, FieldSystem *fieldSystem, Pokemon *mon, u16 mapID, s16 param4, s16 param5)
+void *sub_0207064C(enum HeapID heapID, FieldSystem *fieldSystem, Pokemon *mon, u16 mapID, s16 param4, s16 param5)
 {
     FlyTaskEnv *v0 = Heap_AllocAtEnd(heapID, sizeof(FlyTaskEnv));
 

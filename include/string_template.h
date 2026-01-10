@@ -30,7 +30,7 @@ typedef struct StringTemplateArg {
 
 typedef struct StringTemplate {
     u32 maxArgs;
-    u32 heapID;
+    enum HeapID heapID;
     StringTemplateArg *args;
     String *templateBuf;
 } StringTemplate;

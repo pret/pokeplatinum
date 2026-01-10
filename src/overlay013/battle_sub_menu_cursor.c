@@ -10,7 +10,7 @@
 #define NULL_POSITION_INDEX        0xff
 #define ALL_POSITIONS_ENABLED_MASK 0xffffffff
 
-BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID)
+BattleSubMenuCursor *MakeBattleSubMenuCursor(enum HeapID heapID)
 {
     BattleSubMenuCursor *cursor = Heap_Alloc(heapID, sizeof(BattleSubMenuCursor));
     memset(cursor, 0, sizeof(BattleSubMenuCursor));

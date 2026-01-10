@@ -15,7 +15,7 @@ u32 MapHeader_LoadString(MessageLoader *msgLoader, u32 entryID, String *string)
     return width;
 }
 
-void MapHeader_LoadName(enum MapHeader headerID, u32 heapID, String *string)
+void MapHeader_LoadName(enum MapHeader headerID, enum HeapID heapID, String *string)
 {
     u32 mapLabelTextID;
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, heapID);

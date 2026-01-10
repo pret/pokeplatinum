@@ -54,7 +54,7 @@ static SpriteResource *SpriteResourceCollection_AllocResource(SpriteResourceColl
 static void SpriteResourceCollection_InitResFromFile(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, const char *filename, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapID heapID);
 static void SpriteResourceCollection_InitRes(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, enum NarcID narcID, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapID heapID, BOOL allocAtEnd);
 static void SpriteResourceCollection_InitResFromNARC(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum SpriteResourceType type, enum HeapID heapID, BOOL allocAtEnd);
-static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd);
+static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, enum HeapID heapID, BOOL allocAtEnd);
 static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteResourceType type, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapID heapID);
 static TileResourceData *SpriteUtil_UnpackTileResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, enum HeapID heapID);
 static PaletteResourceData *SpriteUtil_UnpackPaletteResource(void *rawData, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapID heapID);
@@ -852,7 +852,7 @@ static int SpriteResourceTableEntryNARC_GetEntryCount(const SpriteResourceTableE
     return i;
 }
 
-static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, u32 heapID, BOOL allocAtEnd)
+static void *SpriteUtil_ReadNARCMember(NARC *narc, u32 memberIdx, BOOL compressed, enum HeapID heapID, BOOL allocAtEnd)
 {
     void *data = NARC_AllocAndReadWholeMember(narc, memberIdx, heapID);
 

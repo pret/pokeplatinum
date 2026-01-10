@@ -1,10 +1,12 @@
 #ifndef POKEPLATINUM_OV63_0222BCE8_H
 #define POKEPLATINUM_OV63_0222BCE8_H
 
+#include "constants/heap.h"
+
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay063/union_ov63_0222BDAC.h"
 
-UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, u32 heapID);
+UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, enum HeapID heapID);
 void ov63_0222BD30(UnkStruct_ov63_0222BCE8 *param0);
 u16 ov63_0222BD48(const UnkStruct_ov63_0222BCE8 *param0);
 u16 ov63_0222BD4C(const UnkStruct_ov63_0222BCE8 *param0);

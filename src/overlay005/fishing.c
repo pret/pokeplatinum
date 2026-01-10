@@ -105,7 +105,7 @@ static int HasCaughtFish(SysTask *task);
 BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *);
 const int sRodTypeHookTimingWindow[];
 
-void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum EncounterFishingRodType rodType)
+void *FishingContext_Init(FieldSystem *fieldSystem, enum HeapID heapID, enum EncounterFishingRodType rodType)
 {
     FishingContext *fishingContext = Heap_AllocAtEnd(heapID, sizeof(FishingContext));
 

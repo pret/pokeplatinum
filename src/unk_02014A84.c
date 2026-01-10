@@ -85,7 +85,7 @@ void sub_02014AC4(Sentence *sentence, int param1)
     }
 }
 
-String *sub_02014B34(const Sentence *sentence, u32 heapID)
+String *sub_02014B34(const Sentence *sentence, enum HeapID heapID)
 {
     String *v0;
     StringTemplate *v1;

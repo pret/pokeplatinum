@@ -62,7 +62,7 @@
 
 static void ov62_022349E4(String *param0, enum HeapID heapID);
 
-StringTemplate *ov62_02231690(u32 heapID)
+StringTemplate *ov62_02231690(enum HeapID heapID)
 {
     return StringTemplate_New(4, 64, heapID);
 }

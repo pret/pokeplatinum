@@ -16,7 +16,7 @@ static BOOL SpriteResourceList_AddResource(SpriteResourceList *resourceList, Spr
 static void SpriteResourceManager_AddResourceByType(SpriteResourceManager *spriteManager, int data, int size, int offset, int resourceType, int id);
 static void SpriteResourceManager_LoadResourceByType(SpriteResourceManager *spriteManager, NARC *narc, int memberIdx, BOOL compressed, enum SpriteResourceType type, int id);
 
-void SpriteResourceManager_Init(SpriteResourceManager *spriteManager, const SpriteResourceDataPaths *resourcePaths, u32 maxSprites, u32 heapID)
+void SpriteResourceManager_Init(SpriteResourceManager *spriteManager, const SpriteResourceDataPaths *resourcePaths, u32 maxSprites, enum HeapID heapID)
 {
     SpriteResourceTable *resourceTable;
     void *fileData;
@@ -111,7 +111,7 @@ Sprite *SpriteResourceManager_CreateSprite(SpriteResourceManager *spriteManager,
     return sprite;
 }
 
-void SpriteResourceManager_SetCapacities(SpriteResourceManager *spriteManager, SpriteResourceCapacities *capacities, u32 maxElements, u32 heapID)
+void SpriteResourceManager_SetCapacities(SpriteResourceManager *spriteManager, SpriteResourceCapacities *capacities, u32 maxElements, enum HeapID heapID)
 {
     u32 resourceTypeIndex;
 

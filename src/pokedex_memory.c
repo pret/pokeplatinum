@@ -5,7 +5,7 @@
 
 #include "heap.h"
 
-PokedexMemory *PokedexMemory_New(u32 heapID)
+PokedexMemory *PokedexMemory_New(enum HeapID heapID)
 {
     PokedexMemory *pokedexMemory = Heap_Alloc(heapID, sizeof(PokedexMemory));
     memset(pokedexMemory, 0, sizeof(PokedexMemory));

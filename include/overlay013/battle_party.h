@@ -174,7 +174,7 @@ typedef struct BattlePartyContext {
     Party *party;
     void *unk_04;
     BattleSystem *battleSystem;
-    u32 heapID;
+    enum HeapID heapID;
     u8 unk_10;
     u8 selectedPartyIndex;
     u8 doubleBattleFirstSelectedPartySlot;

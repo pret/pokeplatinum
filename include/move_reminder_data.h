@@ -18,9 +18,9 @@ typedef struct MoveReminderData {
     u8 moveSlot;
 } MoveReminderData;
 
-MoveReminderData *MoveReminderData_Alloc(u32 heapID);
+MoveReminderData *MoveReminderData_Alloc(enum HeapID heapID);
 void MoveReminderData_Free(MoveReminderData *data);
-u16 *MoveReminderData_GetMoves(Pokemon *mon, u32 heapID);
+u16 *MoveReminderData_GetMoves(Pokemon *mon, enum HeapID heapID);
 BOOL MoveReminderData_HasMoves(u16 *moves);
 
 #endif // POKEPLATINUM_MOVE_REMINDER_DATA_H

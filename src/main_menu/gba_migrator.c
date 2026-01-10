@@ -625,7 +625,7 @@ static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int par
     rect->rect.right = param1 + param3 / 2;
 }
 
-static void *ov97_022341B4(u32 narcID, u32 memberIndex, NNSG2dCharacterData **param2, u32 heapID)
+static void *ov97_022341B4(u32 narcID, u32 memberIndex, NNSG2dCharacterData **param2, enum HeapID heapID)
 {
     void *v0 = Heap_AllocAtEnd(heapID, 4096);
 

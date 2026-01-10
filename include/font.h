@@ -46,8 +46,8 @@ typedef struct FontAttributes {
 } FontAttributes;
 
 void Fonts_Init(void);
-void Font_InitManager(enum Font font, u32 heapID);
-void Font_UseImmediateGlyphAccess(enum Font font, u32 heapID);
+void Font_InitManager(enum Font font, enum HeapID heapID);
+void Font_UseImmediateGlyphAccess(enum Font font, enum HeapID heapID);
 void Font_UseLazyGlyphAccess(enum Font font);
 void Font_Free(enum Font font);
 const TextGlyph *Font_TryLoadGlyph(enum Font font, charcode_t c);
@@ -56,8 +56,8 @@ u32 Font_CalcCharArrayWidth(enum Font font, const charcode_t *str, u32 letterSpa
 u32 Font_CalcStringWidth(enum Font font, const String *string, u32 letterSpacing);
 u32 Font_AreAllCharsValid(enum Font font, String *string, String *tmpbuf);
 u8 Font_GetAttribute(u8 font, u8 attribute);
-void Font_LoadTextPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID);
-void Font_LoadScreenIndicatorsPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, u32 heapID);
+void Font_LoadTextPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, enum HeapID heapID);
+void Font_LoadScreenIndicatorsPalette(enum PaletteLoadLocation palLocation, u32 palSlotOffset, enum HeapID heapID);
 u32 Font_CalcMaxLineWidth(enum Font font, const String *string, u32 letterSpacing);
 u32 Font_CalcCenterAlignment(enum Font font, const String *string, u32 letterSpacing, u32 windowWidth);
 u32 Font_CalcStringWidthWithCursorControl(enum Font font, const String *string);

@@ -22,7 +22,7 @@ typedef struct UnkStruct_ov63_0222D848_t {
     u16 unk_0A;
 } UnkStruct_ov63_0222D848;
 
-UnkStruct_ov63_0222D77C *ov63_0222D77C(u32 param0, u32 heapID)
+UnkStruct_ov63_0222D77C *ov63_0222D77C(u32 param0, enum HeapID heapID)
 {
     UnkStruct_ov63_0222D77C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222D77C));
     GF_ASSERT(v0);
@@ -67,7 +67,7 @@ BOOL ov63_0222D810(UnkStruct_ov63_0222D77C *param0, UnkStruct_ov63_0222CCB8 *par
     return 1;
 }
 
-UnkStruct_ov63_0222D848 *ov63_0222D848(u32 param0, u32 heapID)
+UnkStruct_ov63_0222D848 *ov63_0222D848(u32 param0, enum HeapID heapID)
 {
     UnkStruct_ov63_0222D848 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222D848));
     GF_ASSERT(v0);

@@ -43,7 +43,7 @@ enum MessageLoaderMode {
  * @param heapID    Which heap will own the allocation.
  * @return Allocated message data.
  */
-MessageBank *MessageBank_Load(enum NarcID narcID, u32 param1, u32 param2);
+MessageBank *MessageBank_Load(enum NarcID narcID, u32 param1, u32 heapID);
 
 /**
  * @brief Free allocated message data back to the heap.

@@ -87,7 +87,7 @@ BOOL PoketchTask_NoActiveTasks(u32 *activeList)
     return TRUE;
 }
 
-void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapID)
+void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, enum HeapID heapID)
 {
     for (u32 slot = 0; appTasks[slot].taskId != POKETCH_EMPTY_TASK; slot++) {
         if (appTasks[slot].taskId == taskId) {

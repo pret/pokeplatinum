@@ -258,8 +258,8 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc);
 static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate);
 static SpriteResource *CutIn_GetParticleCharResource(HMCutIn *cutIn, NARC *narc);
 static SpriteResource *CutIn_GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc);
-static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID);
-static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID);
+static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID);
+static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID);
 static Sprite *CutIn_InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position);
 static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **paletteData);
 static void CutIn_LoadBgPatternChar(BgConfig *bgConfig, NARC *narc, u32 memberIndex, NNSG2dCharacterData **charData);
@@ -330,7 +330,7 @@ static void CutIn_SetTaskUnk_254Done(HMCutIn *cutIn);
 
 // Utilities
 static Sprite *CreateSprite(HMCutIn *cutIn, const VecFx32 *position, u32 charResourceID, u32 plttResourceID, u32 cellResourceID, u32 animResourceID, int headerPriority, int listPriority);
-static void *FlyLanding_AllocFromHeapAtEnd(u32 heapID, int size);
+static void *FlyLanding_AllocFromHeapAtEnd(enum HeapID heapID, int size);
 
 typedef int (*CutInTaskFunc)(HMCutIn *);
 static const CutInTaskFunc sCutInTaskFuncs[];
@@ -2085,7 +2085,7 @@ static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTempla
     Pokemon_BuildSpriteTemplate(spriteTemplate, cutIn->pokemon, 2);
 }
 
-static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, u32 heapID)
+static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID)
 {
     void *spriteSource = Heap_Alloc(HEAP_ID_FIELD1, (32 * 10) * 10);
 
@@ -2097,7 +2097,7 @@ static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplat
     return spriteSource;
 }
 
-static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, u32 heapID)
+static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID)
 {
     void *paletteSource = CharacterSprite_LoadPalette(spriteTemplate->narcID, spriteTemplate->palette, heapID);
     return paletteSource;
@@ -3037,7 +3037,7 @@ static BOOL (*const sFlyLandingFuncs[])(FlyLandingEnv *) = {
     FlyLanding_DoNothing
 };
 
-static void *FlyLanding_AllocFromHeapAtEnd(u32 heapID, int size)
+static void *FlyLanding_AllocFromHeapAtEnd(enum HeapID heapID, int size)
 {
     void *ptr = Heap_AllocAtEnd(heapID, size);
 

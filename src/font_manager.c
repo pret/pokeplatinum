@@ -11,9 +11,9 @@
 #include "render_text.h"
 #include "text.h"
 
-static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID);
+static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, enum HeapID heapID);
 static void FontManager_FreeWidthsAndNARC(FontManager *fontManager);
-static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID);
+static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, enum HeapID heapID);
 static void FontManager_LoadGlyphImmediate(FontManager *fontManager, u32 heapID);
 static void FontManager_LoadGlyphLazy(FontManager *fontManager, u32 heapID);
 static void FontManager_FreeGlyphs(FontManager *fontManager);
@@ -45,7 +45,7 @@ static void (*const sFreeGlyphFuncs[])(FontManager *fontManager) = {
     [GLYPH_ACCESS_MODE_LAZY] = FontManager_FreeGlyphLazy
 };
 
-FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, u32 heapID)
+FontManager *FontManager_New(enum NarcID narcID, u32 arcFileIdx, enum GlyphAccessMode glyphAccessMode, BOOL isMonospace, enum HeapID heapID)
 {
     FontManager *fontManager = Heap_Alloc(heapID, sizeof(FontManager));
 
@@ -72,7 +72,7 @@ void FontManager_SwitchGlyphAccessMode(FontManager *fontManager, enum GlyphAcces
     }
 }
 
-static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, u32 heapID)
+static void FontManager_Init(FontManager *fontManager, enum NarcID narcID, u32 arcFileIdx, BOOL isMonospace, enum HeapID heapID)
 {
     fontManager->narc = NARC_ctor(narcID, heapID);
 
@@ -115,7 +115,7 @@ static void FontManager_FreeWidthsAndNARC(FontManager *fontManager)
     }
 }
 
-static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, u32 heapID)
+static void FontManager_LoadGlyphs(FontManager *fontManager, enum GlyphAccessMode glyphAccessMode, enum HeapID heapID)
 {
     fontManager->glyphAccessMode = glyphAccessMode;
     sLoadGlyphFuncs[glyphAccessMode](fontManager, heapID);

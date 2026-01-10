@@ -15,7 +15,7 @@
 
 static void ov66_02234F2C(NARC *param0, u32 param1, u16 param2, u8 param3, fx32 *param4);
 
-UnkStruct_ov66_02231428 ov66_02234EA8(u16 param0, u8 param1, UnkStruct_ov66_02231428 param2, u32 heapID)
+UnkStruct_ov66_02231428 ov66_02234EA8(u16 param0, u8 param1, UnkStruct_ov66_02231428 param2, enum HeapID heapID)
 {
     fx32 v0;
     fx32 v1;

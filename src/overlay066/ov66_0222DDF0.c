@@ -244,7 +244,7 @@ typedef struct UnkStruct_ov66_0222DFF8_t {
     UnkStruct_ov66_02230A6C unk_4BC;
     UnkStruct_ov66_0222FBF0 unk_508;
     UnkStruct_ov66_0222DFF8_sub3 unk_510;
-    u32 heapID;
+    enum HeapID heapID;
     u32 unk_52C;
 } UnkStruct_ov66_0222DFF8;
 
@@ -266,7 +266,7 @@ static void ov66_0222F4C8(PPW_LOBBY_TIME_EVENT param0, void *param1);
 static void ov66_0222F684(const void *param0, u32 param1, void *param2);
 static void ov66_0222F6C4(UnkStruct_ov66_0222F6C4 *param0, UnkStruct_ov66_02231560 *param1);
 static void ov66_0222F768(UnkStruct_ov66_0222DFF8 *param0);
-static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u32 heapID);
+static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, enum HeapID heapID);
 static void ov66_0222F964(UnkStruct_ov66_0222DFF8 *param0);
 static void ov66_0222F9EC(UnkStruct_ov66_0222F6C4 *param0, const SaveData *saveData);
 static BOOL ov66_0222FA04(const UnkStruct_ov66_0222F6C4 *param0, const SaveData *saveData);
@@ -278,9 +278,9 @@ static void ov66_0222FBAC(const UnkStruct_ov66_0222FB64 *param0);
 static void ov66_0222FBC8(UnkStruct_ov66_0222FBC8 *param0);
 static BOOL ov66_0222FBD0(const UnkStruct_ov66_0222FBC8 *param0);
 static void ov66_0222FBE0(UnkStruct_ov66_0222FBC8 *param0);
-static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 heapID);
+static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, enum HeapID heapID);
 static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0);
-static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, u32 heapID);
+static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, enum HeapID heapID);
 static void ov66_0222FC4C(UnkStruct_ov66_0222FBC8 *param0);
 static BOOL ov66_0222FC54(const UnkStruct_ov66_0222FBC8 *param0);
 static void ov66_0222FC58(UnkStruct_ov66_0222FC58 *param0);
@@ -411,7 +411,7 @@ static const UnkStruct_ov66_022589B4 Unk_ov66_022589B4[8] = {
     { ov66_022307B4, sizeof(u32) }
 };
 
-UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, u32 heapID)
+UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, enum HeapID heapID)
 {
     UnkStruct_ov66_0222DFF8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0222DFF8));
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DFF8));
@@ -979,7 +979,7 @@ void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 *param0, u32 param1, u32 param2)
     ov66_0222F964(param0);
 }
 
-void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u32 heapID)
+void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, enum HeapID heapID)
 {
     BOOL v0;
     BOOL v1;
@@ -2273,7 +2273,7 @@ static void ov66_0222F768(UnkStruct_ov66_0222DFF8 *param0)
     }
 }
 
-static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u32 heapID)
+static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, enum HeapID heapID)
 {
     TrainerInfo *v0;
     Party *v1;
@@ -2509,7 +2509,7 @@ static void ov66_0222FBE0(UnkStruct_ov66_0222FBC8 *param0)
     }
 }
 
-static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 heapID)
+static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, enum HeapID heapID)
 {
     param0->unk_00 = TrainerInfo_New(heapID);
 }
@@ -2519,7 +2519,7 @@ static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0)
     Heap_Free(param0->unk_00);
 }
 
-static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, u32 heapID)
+static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, enum HeapID heapID)
 {
     UnkStruct_ov66_0222E71C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0222E71C));
 

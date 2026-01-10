@@ -32,7 +32,7 @@ typedef struct UnkStruct_ov70_022630A4_t {
 } UnkStruct_ov70_022630A4;
 
 static void ov70_02262F14(UnkStruct_ov70_022630A4 *param0, u32 param1);
-static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, u32 heapID);
+static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, enum HeapID heapID);
 static void ov70_02262F70(UnkStruct_ov70_02263344 *param0);
 static void ov70_02262F94(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_022630A4 *param1, u32 param2, u32 param3);
 static void ov70_02262FD4(UnkStruct_ov70_02263344 *param0, const UnkStruct_ov70_0226DA18 *param1, void *param2);
@@ -44,7 +44,7 @@ static BOOL ov70_0226307C(const UnkStruct_ov70_02263344 *param0);
 static void ov70_0226308C(UnkStruct_ov70_0226308C *param0, const UnkStruct_ov70_0226DA18 *param1, void *param2, u32 param3, void *param4);
 static void ov70_02263098(UnkStruct_ov70_0226308C *param0);
 
-UnkStruct_ov70_022630A4 *ov70_02262DA8(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
+UnkStruct_ov70_022630A4 *ov70_02262DA8(UnkStruct_ov70_0225DEE8 *param0, enum HeapID heapID)
 {
     UnkStruct_ov70_022630A4 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov70_022630A4));
     memset(v0, 0, sizeof(UnkStruct_ov70_022630A4));
@@ -173,7 +173,7 @@ static void ov70_02262F14(UnkStruct_ov70_022630A4 *param0, u32 param1)
     }
 }
 
-static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, u32 heapID)
+static void ov70_02262F64(UnkStruct_ov70_02263344 *param0, u32 param1, enum HeapID heapID)
 {
     param0->heapID = heapID;
     param0->unk_02 = 1;

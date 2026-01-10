@@ -3,12 +3,14 @@
 
 #include <nitro/fx/fx.h>
 
+#include "constants/heap.h"
+
 #include "overlay070/struct_ov70_0225C894_decl.h"
 #include "overlay070/struct_ov70_02261E10_decl.h"
 
 #include "enums.h"
 
-UnkStruct_ov70_02261E10 *ov70_02261E10(int param0, int param1, const UnkStruct_ov70_0225C894 *param2, u32 heapID, u32 heapID2);
+UnkStruct_ov70_02261E10 *ov70_02261E10(int param0, int param1, const UnkStruct_ov70_0225C894 *param2, enum HeapID heapID, u32 heapID2);
 void ov70_022621AC(UnkStruct_ov70_02261E10 *param0);
 void ov70_02262210(UnkStruct_ov70_02261E10 *param0);
 void ov70_02262298(UnkStruct_ov70_02261E10 *param0);

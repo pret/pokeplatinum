@@ -4,6 +4,8 @@
 #include <nitro/fx/fx.h>
 #include <nitro/gx.h>
 
+#include "constants/heap.h"
+
 #define TILEMAP_COPY_SRC_FLAT 0 // source dimensions are equal to dest dimensions
 #define TILEMAP_COPY_SRC_RECT 1 // dest dimensions carve a window from source
 
@@ -129,7 +131,7 @@ typedef struct Background {
 } Background;
 
 typedef struct BgConfig {
-    u32 heapID;
+    enum HeapID heapID;
     u16 scrollScheduled;
     u16 bufferTransferScheduled;
     Background bgs[8];
@@ -168,7 +170,7 @@ typedef struct GraphicsModes {
 void SetAllGraphicsModes(const GraphicsModes *graphicsModes);
 void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen);
 
-BgConfig *BgConfig_New(u32 heapID);
+BgConfig *BgConfig_New(enum HeapID heapID);
 u32 BgConfig_GetHeapID(BgConfig *bgConfig);
 void Bg_InitFromTemplate(BgConfig *bgConfig, u8 bgLayer, const BgTemplate *bgTemplate, u8 bgType);
 void Bg_SetControlParam(BgConfig *bgConfig, u8 bgLayer, enum BgControlParam bgControlParam, u8 val);
@@ -184,7 +186,7 @@ void Bg_CopyTilemapBufferRangeToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, 
 void Bg_LoadTilemapBuffer(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size);
 void Bg_LoadTiles(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 tileStart);
 void Bg_LoadTilesToVRAM(BgConfig *bgConfig, u8 bgLayer, void *src, u32 size, u32 offset);
-void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, u32 heapID);
+void Bg_ClearTilesRange(u8 bgLayer, u32 size, u32 offset, enum HeapID heapID);
 void Bg_FillTilesRange(BgConfig *bgConfig, u32 bgLayer, u32 fillVal, u32 numTiles, u32 offset);
 void Bg_LoadPalette(u8 bgLayer, void *src, u16 size, u16 offset);
 void Bg_MaskPalette(u8 bgLayer, u16 mask);
@@ -214,7 +216,7 @@ void Bitmap_BlitRect8bpp(const Bitmap *src, const Bitmap *dest, u16 srcX, u16 sr
 void Bitmap_FillRect4bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal);
 void Bitmap_FillRect8bpp(const Bitmap *bitmap, u16 x, u16 y, u16 width, u16 height, u8 fillVal);
 
-Window *Window_New(u32 heapID, u8 numWindows);
+Window *Window_New(enum HeapID heapID, u8 numWindows);
 void Window_Init(Window *window);
 u8 Window_IsInUse(Window *window);
 void Window_Add(BgConfig *bgConfig, Window *window, u8 bgLayer, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 palette, u16 baseTile);

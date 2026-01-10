@@ -14,7 +14,7 @@ static void Easy3DModel_BindTexture(SysTask *task, void *param);
 static void Easy3DModel_LoadInternal(Easy3DModel *model);
 static void Easy3DAnim_LoadInternal(Easy3DAnim *anim, const Easy3DModel *model, void *data, NNSFndAllocator *allocator);
 
-void Easy3DModel_Load(Easy3DModel *model, enum NarcID narcID, u32 memberIndex, u32 heapID)
+void Easy3DModel_Load(Easy3DModel *model, enum NarcID narcID, u32 memberIndex, enum HeapID heapID)
 {
     model->data = LoadMemberFromNARC(narcID, memberIndex, FALSE, heapID, 0);
     Easy3DModel_LoadInternal(model);
@@ -57,7 +57,7 @@ void Easy3DModel_Release(Easy3DModel *model)
     memset(model, 0, sizeof(Easy3DModel));
 }
 
-void Easy3DAnim_LoadFrom(Easy3DAnim *anim, const Easy3DModel *model, NARC *narc, u32 memberIndex, u32 heapID, NNSFndAllocator *allocator)
+void Easy3DAnim_LoadFrom(Easy3DAnim *anim, const Easy3DModel *model, NARC *narc, u32 memberIndex, enum HeapID heapID, NNSFndAllocator *allocator)
 {
     void *data = LoadMemberFromOpenNARC(narc, memberIndex, FALSE, heapID, 0);
 

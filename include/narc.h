@@ -85,7 +85,7 @@ u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex);
  *
  * @returns: Pointer to the newly-allocated NARC
  */
-NARC *NARC_ctor(enum NarcID narcID, u32 heapID);
+NARC *NARC_ctor(enum NarcID narcID, enum HeapID heapID);
 
 /*
  * Closes the wrapped FSFile and returns the NARC allocation to the heap from whence it came.
@@ -103,7 +103,7 @@ void NARC_dtor(NARC *narc);
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID);
+void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, enum HeapID heapID);
 
 /*
  * Reads NARC member to preallocated buffer dest, which should be large enough to hold the data.

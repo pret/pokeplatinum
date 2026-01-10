@@ -39,7 +39,7 @@ typedef struct {
     Pokemon *unk_20;
 } UnkStruct_ov6_02247100;
 
-static void *ov6_02247590(u32 heapID, u32 param1);
+static void *ov6_02247590(enum HeapID heapID, u32 param1);
 static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param1);
 
 int (*const Unk_ov6_022495CC[])(FieldTask *, FieldSystem *, UnkStruct_ov6_02247100 *);
@@ -50,7 +50,7 @@ const MapObjectAnimCmd Unk_ov6_02249608[];
 const MapObjectAnimCmd Unk_ov6_022495DC[];
 const MapObjectAnimCmd Unk_ov6_0224966C[];
 
-void *ov6_02247100(FieldSystem *fieldSystem, u32 heapID)
+void *ov6_02247100(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
@@ -170,7 +170,7 @@ static int (*const Unk_ov6_022495CC[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247288
 };
 
-void *ov6_022472C8(FieldSystem *fieldSystem, u32 heapID, int param2)
+void *ov6_022472C8(FieldSystem *fieldSystem, enum HeapID heapID, int param2)
 {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
@@ -289,7 +289,7 @@ static int (*const Unk_ov6_022495BC[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247458
 };
 
-void *ov6_02247488(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
+void *ov6_02247488(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID)
 {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
@@ -348,7 +348,7 @@ static int (*const Unk_ov6_022495F0[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247288
 };
 
-void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
+void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID)
 {
     UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
@@ -377,7 +377,7 @@ BOOL ov6_02247554(FieldTask *task)
     return 0;
 }
 
-static void *ov6_02247590(u32 heapID, u32 param1)
+static void *ov6_02247590(enum HeapID heapID, u32 param1)
 {
     void *v0 = Heap_AllocAtEnd(heapID, param1);
 

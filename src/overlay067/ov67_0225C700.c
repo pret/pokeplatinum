@@ -67,10 +67,10 @@ typedef struct {
 } UnkStruct_ov67_0225D154;
 
 static void ov67_0225CE28(void *param0);
-static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 param1);
+static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, enum HeapID heapID);
 static void ov67_0225D154(UnkStruct_ov67_0225D154 *param0);
 static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0);
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 param10);
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, enum HeapID heapID);
 static void ov67_0225D210(UnkStruct_ov67_0225D210 *param0, u32 param1);
 static void ov67_0225D294(UnkStruct_ov67_0225D210 *param0);
 static void ov67_0225D2EC(UnkStruct_ov67_0225D210 *param0);
@@ -534,7 +534,7 @@ static void ov67_0225CE28(void *param0)
     inline_ov61_0222C1FC(&v0->unk_D4);
 }
 
-static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, u32 heapID)
+static void ov67_0225CE30(UnkStruct_ov67_0225D154 *param0, enum HeapID heapID)
 {
     G2_BlendNone();
     G2S_BlendNone();
@@ -608,7 +608,7 @@ static void ov67_0225D17C(UnkStruct_ov67_0225D154 *param0)
     Bg_RunScheduledUpdates(param0->unk_0C);
 }
 
-static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, u32 heapID)
+static void ov67_0225D188(UnkStruct_ov67_0225D210 *param0, BgConfig *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, SaveData *saveData, enum HeapID heapID)
 {
     param0->unk_00 = StringTemplate_Default(heapID);
     param0->unk_04 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, param3, heapID);

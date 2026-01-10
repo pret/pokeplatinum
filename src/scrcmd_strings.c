@@ -33,7 +33,7 @@
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
-static String *GetSpeciesNameString(u16 speciesId, u32 heapID);
+static String *GetSpeciesNameString(u16 speciesId, enum HeapID heapID);
 
 BOOL ScrCmd_BufferStatName(ScriptContext *ctx)
 {
@@ -269,7 +269,7 @@ BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
     return FALSE;
 }
 
-static String *GetSpeciesNameString(u16 speciesId, u32 heapID)
+static String *GetSpeciesNameString(u16 speciesId, enum HeapID heapID)
 {
     MessageLoader *speciesNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     String *buffer = MessageLoader_GetNewString(speciesNames, speciesId);

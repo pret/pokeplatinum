@@ -28,7 +28,7 @@ static const struct {
     [SPECIAL_CHAR_LEVEL_UNUSED] = { .offset = 21 * TILE_SIZE_4BPP, .width = TILES_TO_PIXELS(2) }
 };
 
-FontSpecialCharsContext *FontSpecialChars_Init(u32 fgColor, u32 shadowColor, u32 bgColor, u32 heapID)
+FontSpecialCharsContext *FontSpecialChars_Init(u32 fgColor, u32 shadowColor, u32 bgColor, enum HeapID heapID)
 {
     FontSpecialCharsContext *context = Heap_Alloc(heapID, sizeof(FontSpecialCharsContext));
 

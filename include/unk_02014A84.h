@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_02014A84_H
 #define POKEPLATINUM_UNK_02014A84_H
 
+#include "constants/heap.h"
+
 #include "struct_defs/sentence.h"
 
 #include "string_gf.h"
@@ -9,7 +11,7 @@ void sub_02014A84(Sentence *sentence);
 void sub_02014A9C(Sentence *sentence, u32 param1);
 void sub_02014AB4(Sentence *sentence);
 void sub_02014AC4(Sentence *sentence, int param1);
-String *sub_02014B34(const Sentence *sentence, u32 heapID);
+String *sub_02014B34(const Sentence *sentence, enum HeapID heapID);
 String *sub_02014BA0(const Sentence *sentence, u32 param1);
 BOOL sub_02014BBC(const Sentence *sentence);
 BOOL sub_02014BD0(const Sentence *sentence);

@@ -70,7 +70,7 @@ typedef struct UnkStruct_02015920_t {
     UnkStruct_02015C38 unk_0C[2];
     BgConfig *unk_7C;
     u32 unk_80;
-    u32 heapID;
+    enum HeapID heapID;
     fx32 unk_88[4];
     u8 unk_98;
     u8 unk_99;
@@ -79,7 +79,7 @@ typedef struct UnkStruct_02015920_t {
     u8 unk_9B_4 : 4;
 } UnkStruct_02015920;
 
-static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID);
+static void sub_02015A80(UnkStruct_02015920 *param0, enum HeapID heapID);
 static void sub_02015AC0(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
 static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
 static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
@@ -92,15 +92,15 @@ static void sub_02015D60(UnkStruct_02015C38 *param0);
 static void sub_02015D8C(UnkStruct_02015D8C *param0, const fx32 *param1, u32 param2);
 static void sub_02015D98(UnkStruct_02015D8C *param0, fx32 param1);
 static u32 sub_02015DA0(const UnkStruct_02015D8C *param0);
-static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID);
-static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID);
+static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, enum HeapID heapID);
+static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, enum HeapID heapID);
 static void sub_02015E64(SysTask *param0, void *param1);
 static void sub_02015EA0(SysTask *param0, void *param1);
 static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4);
 static void sub_02015F34(const NNSG2dScreenData *param0, int param1);
 static void sub_02015F54(const NNSG2dScreenData *param0, int param1);
 
-UnkStruct_02015920 *sub_02015920(u32 heapID)
+UnkStruct_02015920 *sub_02015920(enum HeapID heapID)
 {
     UnkStruct_02015920 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02015920));
     sub_02015A80(v0, heapID);
@@ -194,7 +194,7 @@ void sub_02015A54(UnkStruct_02015920 *param0)
     sub_02015A80(param0, param0->heapID);
 }
 
-static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID)
+static void sub_02015A80(UnkStruct_02015920 *param0, enum HeapID heapID)
 {
     memset(param0, 0, sizeof(UnkStruct_02015920));
 
@@ -364,7 +364,7 @@ static u32 sub_02015DA0(const UnkStruct_02015D8C *param0)
     return param0->unk_04 - 1;
 }
 
-static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID)
+static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, enum HeapID heapID)
 {
     UnkStruct_02015DCC *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02015DCC));
     memset(v0, 0, sizeof(UnkStruct_02015DCC));
@@ -377,7 +377,7 @@ static void sub_02015DCC(enum NarcID narcID, u32 param1, BgConfig *param2, u32 p
     SysTask_ExecuteAfterVBlank(sub_02015E64, v0, 128);
 }
 
-static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
+static void sub_02015E1C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, enum HeapID heapID)
 {
     UnkStruct_02015E1C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));

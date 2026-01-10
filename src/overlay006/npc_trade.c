@@ -21,11 +21,11 @@
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 
-static inline String *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID);
-static String *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID);
-static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTrade, u32 level, u32 npcTradeID, u32 heapID, u32 mapID);
+static inline String *NpcTrade_GetOtName(enum HeapID heapID, u32 npcTradeID);
+static String *NpcTrade_GetNickname(enum HeapID heapID, u32 npcTradeID);
+static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTrade, u32 level, u32 npcTradeID, enum HeapID heapID, u32 mapID);
 
-NpcTradeData *NpcTrade_Init(u32 heapID, u32 npcTradeID)
+NpcTradeData *NpcTrade_Init(enum HeapID heapID, u32 npcTradeID)
 {
     GF_ASSERT(npcTradeID < MAX_NPC_TRADES);
 
@@ -101,12 +101,12 @@ void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, TradeA
     }
 }
 
-static inline String *NpcTrade_GetOtName(u32 heapID, u32 npcTradeID)
+static inline String *NpcTrade_GetOtName(enum HeapID heapID, u32 npcTradeID)
 {
     return NpcTrade_GetNickname(heapID, MAX_NPC_TRADES + npcTradeID);
 }
 
-static String *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID)
+static String *NpcTrade_GetNickname(enum HeapID heapID, u32 npcTradeID)
 {
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRADE_NAMES, heapID);
     String *string = MessageLoader_GetNewString(loader, npcTradeID);
@@ -114,7 +114,7 @@ static String *NpcTrade_GetNickname(u32 heapID, u32 npcTradeID)
     return string;
 }
 
-static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level, u32 npcTradeID, u32 heapID, u32 mapID)
+static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level, u32 npcTradeID, enum HeapID heapID, u32 mapID)
 {
     Pokemon_InitWith(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
 

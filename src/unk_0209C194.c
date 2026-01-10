@@ -39,7 +39,7 @@ static BOOL (*const Unk_020F951C[6])(UnkStruct_0209C1EC *);
 static const ApplicationManagerTemplate Unk_020F94FC;
 static const ApplicationManagerTemplate Unk_020F950C;
 
-UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID)
+UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, enum HeapID heapID)
 {
     UnkStruct_0209C194 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0209C194));
     memset(v0, 0, sizeof(UnkStruct_0209C194));
