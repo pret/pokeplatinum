@@ -140,5 +140,6 @@
 #define UG_GOOD_LOVELY_FLOWERS        136
 #define UG_GOOD_PRETTY_FLOWERS        137
 #define UG_GOOD_LAVISH_FLOWERS        138
+#define UG_GOOD_MAX                   139
 
 #endif // POKEPLATINUM_CONSTANTS_GOODS_H
