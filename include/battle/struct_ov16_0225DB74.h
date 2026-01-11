@@ -12,7 +12,7 @@ typedef struct {
     BattleSystem *unk_00;
     BattlerData *unk_04;
     PokemonSprite *unk_08;
-    UnkStruct_ov16_02265BBC unk_0C;
+    MoveAnimation unk_0C;
     u8 unk_64;
     u8 unk_65;
     u8 unk_66;
