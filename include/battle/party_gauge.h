@@ -16,6 +16,7 @@ enum PartyStockStatus {
 enum PartyGaugeSide {
     PARTY_GAUGE_OURS,
     PARTY_GAUGE_THEIRS,
+    PARTY_GAUGE_COUNT
 };
 
 enum ShowPartyGaugeType {
