@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/scrcmd.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
@@ -125,11 +126,11 @@ typedef struct {
 void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteManager *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
 u16 ov104_0222FC8C(FrontierScriptContext *param0, u16 param1);
 u16 *ov104_0222FC14(FrontierScriptContext *param0, u16 param1);
-static BOOL FrontierScrCmd_00(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_01(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_Noop(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_End(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_02(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_05(FrontierScriptContext *param0);
-static BOOL ov104_0222FD4C(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_WaitTime(FrontierScriptContext *ctx);
+static BOOL DecrementTimer(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_0F(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_10(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_11(FrontierScriptContext *param0);
@@ -149,19 +150,17 @@ static BOOL FrontierScrCmd_1C(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_1D(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_1E(FrontierScriptContext *param0);
 static BOOL ov104_02230124(FrontierScriptContext *param0);
-static BOOL ov104_0222FDD4(u16 param0, u16 param1);
-static BOOL FrontierScrCmd_20(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_21(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_06(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_07(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_08(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_09(FrontierScriptContext *param0);
-static void ov104_0222FE2C(FrontierScriptContext *param0, u8 *param1);
-static BOOL FrontierScrCmd_0A(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_0B(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_CompareVarToValue(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_CompareVarToVar(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_SetVarFromValue(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_SetVarFromVar(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_AddVar(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_SubVar(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_GoTo(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_GoToIf(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_34(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_1F(FrontierScriptContext *param0);
-static BOOL ov104_022302B4(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_ShowYesNoMenu(FrontierScriptContext *ctx);
+static BOOL WaitForYesNoResult(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_22(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_23(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_24(FrontierScriptContext *param0);
@@ -182,8 +181,8 @@ static BOOL ov104_02230C3C(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_73(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_74(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_75(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_77(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_78(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_ShowSavingIcon(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_HideSavingIcon(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_79(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_7A(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_7B(FrontierScriptContext *param0);
@@ -199,9 +198,9 @@ static BOOL FrontierScrCmd_83(FrontierScriptContext *param0);
 static u16 ov104_02230D28(u32 param0);
 u16 *ov104_0222FBE4(FrontierScriptContext *param0);
 u16 ov104_0222FC00(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_0C(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_0D(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_0E(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_Call(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_Return(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_CallIf(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_03(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_04(FrontierScriptContext *param0);
 static BOOL ov104_0222FCEC(FrontierScriptContext *param0);
@@ -283,31 +282,32 @@ static const WindowTemplate Unk_ov104_0223F640 = {
     0x355
 };
 
-static const u8 Unk_ov104_0223F648[6][3] = {
-    { 0x1, 0x0, 0x0 },
-    { 0x0, 0x1, 0x0 },
-    { 0x0, 0x0, 0x1 },
-    { 0x1, 0x1, 0x0 },
-    { 0x0, 0x1, 0x1 },
-    { 0x1, 0x0, 0x1 }
+static const u8 sConditionTable[6][3] = {
+    //   <     ==      >
+    { TRUE, FALSE, FALSE }, //  <
+    { FALSE, TRUE, FALSE }, //  ==
+    { FALSE, FALSE, TRUE }, //  >
+    { TRUE, TRUE, FALSE }, //  <=
+    { FALSE, TRUE, TRUE }, //  >=
+    { TRUE, FALSE, TRUE }, //  !=
 };
 
 const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
-    FrontierScrCmd_00,
-    FrontierScrCmd_01,
+    FrontierScrCmd_Noop,
+    FrontierScrCmd_End,
     FrontierScrCmd_02,
     FrontierScrCmd_03,
     FrontierScrCmd_04,
-    FrontierScrCmd_05,
-    FrontierScrCmd_06,
-    FrontierScrCmd_07,
-    FrontierScrCmd_08,
-    FrontierScrCmd_09,
-    FrontierScrCmd_0A,
-    FrontierScrCmd_0B,
-    FrontierScrCmd_0C,
-    FrontierScrCmd_0D,
-    FrontierScrCmd_0E,
+    FrontierScrCmd_WaitTime,
+    FrontierScrCmd_SetVarFromValue,
+    FrontierScrCmd_SetVarFromVar,
+    FrontierScrCmd_AddVar,
+    FrontierScrCmd_SubVar,
+    FrontierScrCmd_GoTo,
+    FrontierScrCmd_GoToIf,
+    FrontierScrCmd_Call,
+    FrontierScrCmd_Return,
+    FrontierScrCmd_CallIf,
     FrontierScrCmd_0F,
     FrontierScrCmd_10,
     FrontierScrCmd_11,
@@ -324,9 +324,9 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_1C,
     FrontierScrCmd_1D,
     FrontierScrCmd_1E,
-    FrontierScrCmd_1F,
-    FrontierScrCmd_20,
-    FrontierScrCmd_21,
+    FrontierScrCmd_ShowYesNoMenu,
+    FrontierScrCmd_CompareVarToValue,
+    FrontierScrCmd_CompareVarToVar,
     FrontierScrCmd_22,
     FrontierScrCmd_23,
     FrontierScrCmd_24,
@@ -412,8 +412,8 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_74,
     FrontierScrCmd_75,
     FrontierScrCmd_76,
-    FrontierScrCmd_77,
-    FrontierScrCmd_78,
+    FrontierScrCmd_ShowSavingIcon,
+    FrontierScrCmd_HideSavingIcon,
     FrontierScrCmd_79,
     FrontierScrCmd_7A,
     FrontierScrCmd_7B,
@@ -496,7 +496,7 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_C8,
     FrontierScrCmd_C9,
     FrontierScrCmd_CA,
-    FrontierScrCmd_CB
+    FrontierScrCmd_CB,
 };
 
 const u32 Unk_ov104_0223F63C = NELEMS(Unk_ov104_0223F674);
@@ -554,15 +554,15 @@ u16 ov104_0222FC8C(FrontierScriptContext *param0, u16 param1)
     return *v0;
 }
 
-static BOOL FrontierScrCmd_00(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_Noop(FrontierScriptContext *ctx)
 {
-    return 0;
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_01(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_End(FrontierScriptContext *ctx)
 {
-    FrontierScriptContext_Stop(param0);
-    return 0;
+    FrontierScriptContext_Stop(ctx);
+    return FALSE;
 }
 
 static BOOL FrontierScrCmd_02(FrontierScriptContext *param0)
@@ -601,163 +601,124 @@ static BOOL FrontierScrCmd_04(FrontierScriptContext *param0)
     return 0;
 }
 
-static BOOL FrontierScrCmd_05(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_WaitTime(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
-    u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
-    u16 *v2 = ov104_0222FC14(param0, v1);
+    u16 frames = FrontierScriptContext_ReadHalfWord(ctx);
+    u16 countdownVarID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    *v2 = v0;
-    param0->data[0] = v1;
-
-    FrontierScriptContext_Pause(param0, ov104_0222FD4C);
-    return 1;
+    u16 *countdownVar = ov104_0222FC14(ctx, countdownVarID);
+    *countdownVar = frames;
+    ctx->data[0] = countdownVarID;
+    FrontierScriptContext_Pause(ctx, DecrementTimer);
+    return TRUE;
 }
 
-static BOOL ov104_0222FD4C(FrontierScriptContext *param0)
+static BOOL DecrementTimer(FrontierScriptContext *ctx)
 {
-    u16 *v0 = ov104_0222FC14(param0, param0->data[0]);
-
-    (*v0)--;
-
-    if (*v0 == 0) {
-        return 1;
-    }
-
-    return 0;
+    u16 *frames = ov104_0222FC14(ctx, ctx->data[0]);
+    (*frames)--;
+    return *frames == 0;
 }
 
-static BOOL FrontierScrCmd_06(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_SetVarFromValue(FrontierScriptContext *ctx)
 {
-    u16 *v0 = ov104_0222FBE4(param0);
-    *v0 = FrontierScriptContext_ReadHalfWord(param0);
-
-    return 0;
+    u16 *destVar = ov104_0222FBE4(ctx);
+    *destVar = FrontierScriptContext_ReadHalfWord(ctx);
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_07(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_SetVarFromVar(FrontierScriptContext *ctx)
 {
-    u16 *v0 = ov104_0222FBE4(param0);
-    u16 *v1 = ov104_0222FBE4(param0);
-
-    *v0 = *v1;
-
-    return 0;
+    u16 *destVar = ov104_0222FBE4(ctx);
+    u16 *srcVar = ov104_0222FBE4(ctx);
+    *destVar = *srcVar;
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_08(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_AddVar(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    u16 v1;
-
-    v0 = ov104_0222FBE4(param0);
-    *v0 += ov104_0222FC00(param0);
-
-    return 0;
+    u16 *destVar = ov104_0222FBE4(ctx);
+    *destVar += ov104_0222FC00(ctx);
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_09(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_SubVar(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    u16 v1;
-
-    v0 = ov104_0222FBE4(param0);
-    *v0 -= ov104_0222FC00(param0);
-
-    return 0;
+    u16 *destVar = ov104_0222FBE4(ctx);
+    *destVar -= ov104_0222FC00(ctx);
+    return FALSE;
 }
 
-static BOOL ov104_0222FDD4(u16 param0, u16 param1)
+static BOOL Compare(u16 value0, u16 value1)
 {
-    if (param0 < param1) {
+    if (value0 < value1) {
         return 0;
-    } else if (param0 == param1) {
+    } else if (value0 == value1) {
         return 1;
     }
 
     return 2;
 }
 
-static BOOL FrontierScrCmd_20(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_CompareVarToValue(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    u16 v1 = ov104_0222FC00(param0);
-    u16 v2 = FrontierScriptContext_ReadHalfWord(param0);
-
-    param0->unk_8C = ov104_0222FDD4(v1, v2);
-
-    return 0;
+    u16 value0 = ov104_0222FC00(ctx);
+    u16 value1 = FrontierScriptContext_ReadHalfWord(ctx);
+    ctx->comparisonResult = Compare(value0, value1);
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_21(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_CompareVarToVar(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    u16 *v1;
-    u16 v2, v3;
-
-    v0 = ov104_0222FBE4(param0);
-    v1 = ov104_0222FBE4(param0);
-
-    param0->unk_8C = ov104_0222FDD4(*v0, *v1);
-
-    return 0;
+    u16 *var0 = ov104_0222FBE4(ctx);
+    u16 *var1 = ov104_0222FBE4(ctx);
+    ctx->comparisonResult = Compare(*var0, *var1);
+    return FALSE;
 }
 
-static void ov104_0222FE2C(FrontierScriptContext *param0, u8 *param1)
+static void FrontierScriptContext_Jump(FrontierScriptContext *ctx, u8 *ptr)
 {
-    param0->scriptPtr = param1;
+    ctx->scriptPtr = ptr;
 }
 
-static BOOL FrontierScrCmd_0A(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_GoTo(FrontierScriptContext *ctx)
 {
-    s32 v0 = (s32)FrontierScriptContext_ReadWord(param0);
-    ov104_0222FE2C(param0, (u8 *)(param0->scriptPtr + v0));
-
-    return 0;
+    s32 offset = FrontierScriptContext_ReadWord(ctx);
+    FrontierScriptContext_Jump(ctx, ctx->scriptPtr + offset);
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_0B(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_GoToIf(FrontierScriptContext *ctx)
 {
-    u8 v0;
-    s32 v1;
-
-    v0 = FrontierScriptContext_ReadByte(param0);
-    v1 = (s32)FrontierScriptContext_ReadWord(param0);
-
-    if (Unk_ov104_0223F648[v0][param0->unk_8C] == 1) {
-        ov104_0222FE2C(param0, (u8 *)(param0->scriptPtr + v1));
+    u8 condition = FrontierScriptContext_ReadByte(ctx);
+    s32 offset = FrontierScriptContext_ReadWord(ctx);
+    if (sConditionTable[condition][ctx->comparisonResult] == TRUE) {
+        FrontierScriptContext_Jump(ctx, ctx->scriptPtr + offset);
     }
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_0C(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_Call(FrontierScriptContext *ctx)
 {
-    s32 v0 = (s32)FrontierScriptContext_ReadWord(param0);
-
-    FrontierScriptContext_Call(param0, (u8 *)(param0->scriptPtr + v0));
-    return 0;
+    s32 offset = FrontierScriptContext_ReadWord(ctx);
+    FrontierScriptContext_Call(ctx, ctx->scriptPtr + offset);
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_0D(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_Return(FrontierScriptContext *ctx)
 {
-    FrontierScriptContext_Return(param0);
-    return 0;
+    FrontierScriptContext_Return(ctx);
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_0E(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_CallIf(FrontierScriptContext *ctx)
 {
-    u8 v0;
-    s32 v1;
-
-    v0 = FrontierScriptContext_ReadByte(param0);
-    v1 = (s32)FrontierScriptContext_ReadWord(param0);
-
-    if (Unk_ov104_0223F648[v0][param0->unk_8C] == 1) {
-        FrontierScriptContext_Call(param0, (u8 *)(param0->scriptPtr + v1));
+    u8 condition = FrontierScriptContext_ReadByte(ctx);
+    s32 offset = FrontierScriptContext_ReadWord(ctx);
+    if (sConditionTable[condition][ctx->comparisonResult] == TRUE) {
+        FrontierScriptContext_Call(ctx, ctx->scriptPtr + offset);
     }
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL FrontierScrCmd_0F(FrontierScriptContext *param0)
@@ -977,40 +938,33 @@ static BOOL FrontierScrCmd_1E(FrontierScriptContext *param0)
     return 1;
 }
 
-static BOOL FrontierScrCmd_1F(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_ShowYesNoMenu(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(v0);
-    u16 v2 = FrontierScriptContext_ReadHalfWord(param0);
-    u8 v3 = FrontierScriptContext_ReadByte(param0);
+    u16 destVarID = FrontierScriptContext_ReadHalfWord(ctx);
+    u8 cursorStart = FrontierScriptContext_ReadByte(ctx);
 
-    v0->unk_74 = Menu_MakeYesNoChoiceWithCursorAt(v1->unk_00, &Unk_ov104_0223F640, 1024 - (18 + 12) - 9, 12, v3, v0->heapID);
-    param0->data[0] = v2;
-
-    FrontierScriptContext_Pause(param0, ov104_022302B4);
-
-    return 1;
+    v0->menu = Menu_MakeYesNoChoiceWithCursorAt(v1->unk_00, &Unk_ov104_0223F640, 1024 - (18 + 12) - 9, 12, cursorStart, v0->heapID);
+    ctx->data[0] = destVarID;
+    FrontierScriptContext_Pause(ctx, WaitForYesNoResult);
+    return TRUE;
 }
 
-static BOOL ov104_022302B4(FrontierScriptContext *param0)
+static BOOL WaitForYesNoResult(FrontierScriptContext *ctx)
 {
-    u32 v0;
-    UnkStruct_ov104_022320B4 *v1 = param0->unk_00;
-    u16 *v2 = ov104_0222FC14(param0, param0->data[0]);
-
-    v0 = Menu_ProcessInputAndHandleExit(v1->unk_74, v1->heapID);
-
-    if (v0 == 0xffffffff) {
-        return 0;
+    UnkStruct_ov104_022320B4 *v1 = ctx->unk_00;
+    u16 *destVar = ov104_0222FC14(ctx, ctx->data[0]);
+    u32 result = Menu_ProcessInputAndHandleExit(v1->menu, v1->heapID);
+    if (result == MENU_NOTHING_CHOSEN) {
+        return FALSE;
     }
-
-    if (v0 == 0) {
-        *v2 = 0;
+    if (result == 0) {
+        *destVar = MENU_YES;
     } else {
-        *v2 = 1;
+        *destVar = MENU_NO;
     }
-
-    return 1;
+    return TRUE;
 }
 
 static BOOL FrontierScrCmd_22(FrontierScriptContext *param0)
@@ -1653,18 +1607,12 @@ static BOOL FrontierScrCmd_70(FrontierScriptContext *param0)
     return 0;
 }
 
-static BOOL FrontierScrCmd_72(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_72(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
-    u16 *v1 = ov104_0222FBE4(param0);
-
-    if (SaveData_Save(v0->saveData) == 2) {
-        (void)0;
-    } else {
-        (void)0;
-    }
-
-    return 0;
+    UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->unk_00->unk_00);
+    u16 *unused = ov104_0222FBE4(ctx);
+    SaveData_Save(v0->saveData);
+    return FALSE;
 }
 
 static BOOL FrontierScrCmd_73(FrontierScriptContext *param0)
@@ -1720,20 +1668,18 @@ static BOOL FrontierScrCmd_75(FrontierScriptContext *param0)
     return 0;
 }
 
-static BOOL FrontierScrCmd_77(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_ShowSavingIcon(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-
-    v0->unk_7C = Window_AddWaitDial(&v0->unk_64, 1024 - (18 + 12));
-    return 0;
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    v0->savingIcon = Window_AddWaitDial(&v0->unk_64, 1024 - (18 + 12));
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_78(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_HideSavingIcon(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-
-    DestroyWaitDial(v0->unk_7C);
-    return 0;
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    DestroyWaitDial(v0->savingIcon);
+    return FALSE;
 }
 
 static BOOL FrontierScrCmd_79(FrontierScriptContext *param0)

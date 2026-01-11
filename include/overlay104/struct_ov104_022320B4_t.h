@@ -34,9 +34,9 @@ struct UnkStruct_ov104_022320B4_t {
     BOOL unk_5C;
     UnkStruct_ov104_02232B5C *unk_60;
     Window unk_64;
-    Menu *unk_74;
+    Menu *menu;
     u16 *unk_78;
-    void *unk_7C;
+    void *savingIcon;
     void *unk_80;
     void *unk_84;
     Window unk_88;
