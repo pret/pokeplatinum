@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "res/text/bank/battle_castle_script.h"
 
     .data
 
@@ -828,13 +829,13 @@ _0679:
     FrontierScrCmd_01
 
 _0695:
-    FrontierScrCmd_11 0
+    Message BattleCastleScript_Text_TakingItemsFirstTime
     FrontierScrCmd_0A _06B0
     FrontierScrCmd_01
 
 _06A1:
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 1
+    Message BattleCastleScript_Text_TakingItems
     FrontierScrCmd_0A _06B0
     FrontierScrCmd_01
 
@@ -842,7 +843,7 @@ _06B0:
     FrontierScrCmd_A0 19, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 3
     FrontierScrCmd_0E 1, _06E4
-    FrontierScrCmd_11 20
+    Message BattleCastleScript_Text_Choose
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _06EA
@@ -850,11 +851,11 @@ _06B0:
     FrontierScrCmd_01
 
 _06E4:
-    FrontierScrCmd_11 29
+    Message BattleCastleScript_Text_PassInstruction
     FrontierScrCmd_0D
 
 _06EA:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _06F6
     FrontierScrCmd_01
 
@@ -866,7 +867,7 @@ _06F6:
     FrontierScrCmd_01
 
 _0706:
-    FrontierScrCmd_0F 21
+    MessageInstant BattleCastleScript_Text_HealOrRentItem
     FrontierScrCmd_50
     FrontierScrCmd_0A _0714
     FrontierScrCmd_01
@@ -930,7 +931,7 @@ _0804:
     FrontierScrCmd_01
 
 _0827:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _1974
     FrontierScrCmd_01
 
@@ -956,7 +957,7 @@ _0833:
     FrontierScrCmd_0A _0706
     FrontierScrCmd_01
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 29
+    Message BattleCastleScript_Text_PassInstruction
     FrontierScrCmd_0D
 
 _08AC:
@@ -974,7 +975,7 @@ _08B6:
     FrontierScrCmd_01
 
 _08D9:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _1974
     FrontierScrCmd_01
 
@@ -1023,7 +1024,7 @@ _0987:
     FrontierScrCmd_01
 
 _099C:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _1974
     FrontierScrCmd_01
 
@@ -1065,7 +1066,7 @@ _09FF:
 
 _0A1C:
     FrontierScrCmd_7A 0, 50
-    FrontierScrCmd_11 25
+    Message BattleCastleScript_Text_ConfirmPurchase
     FrontierScrCmd_1F 0x8008, 0
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _0714
@@ -1080,7 +1081,7 @@ _0A1C:
     FrontierScrCmd_01
 
 _0A6D:
-    FrontierScrCmd_11 28
+    Message BattleCastleScript_Text_NotEnoughCP
     FrontierScrCmd_0A _0714
     FrontierScrCmd_01
 
@@ -1191,7 +1192,7 @@ _0C47:
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _0C7F
-    FrontierScrCmd_11 3
+    Message BattleCastleScript_Text_Proceed
     FrontierScrCmd_3A
     FrontierScrCmd_12
     FrontierScrCmd_28 0, _0228
@@ -1201,7 +1202,7 @@ _0C47:
     FrontierScrCmd_01
 
 _0C7F:
-    FrontierScrCmd_10 3
+    MessageNoSkip BattleCastleScript_Text_Proceed
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_12
     FrontierScrCmd_28 0, _0228
@@ -1296,7 +1297,7 @@ _0DA3:
     FrontierScrCmd_A9 1
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_12
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _0F2E
     FrontierScrCmd_01
 
@@ -1316,16 +1317,16 @@ _0E89:
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _0EAD
-    FrontierScrCmd_11 44
+    Message BattleCastleScript_Text_UsingPass
     FrontierScrCmd_3A
     FrontierScrCmd_12
     FrontierScrCmd_0A _1084
     FrontierScrCmd_01
 
 _0EAD:
-    FrontierScrCmd_10 44
+    MessageNoSkip BattleCastleScript_Text_UsingPass
     FrontierScrCmd_05 30, 0x8008
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0C _10CA
     FrontierScrCmd_0C _122A
     FrontierScrCmd_12
@@ -1541,7 +1542,7 @@ _11EC:
     FrontierScrCmd_0D
 
 _121C:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0C _04C5
     FrontierScrCmd_12
     FrontierScrCmd_0D
@@ -1578,7 +1579,7 @@ _1263:
     FrontierScrCmd_01
 
 _12B9:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _12D3
     FrontierScrCmd_01
 
@@ -1591,12 +1592,12 @@ _12D3:
     FrontierScrCmd_A0 22, 0, 0, 0x8008
     FrontierScrCmd_3D 0x40BC, 1
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 40
+    Message BattleCastleScript_Text_BPEarned
     FrontierScrCmd_7B 0
     FrontierScrCmd_A0 38, 0, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
-    FrontierScrCmd_11 41
+    Message BattleCastleScript_Text_ReceiveBP
     FrontierScrCmd_58 0x4C5
     FrontierScrCmd_59
     FrontierScrCmd_0A _130C
@@ -1612,7 +1613,7 @@ _1314:
     FrontierScrCmd_A0 25, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 0
     FrontierScrCmd_0B 1, _1349
-    FrontierScrCmd_11 4
+    Message BattleCastleScript_Text_RevivePokemon
     FrontierScrCmd_55 0x624
     FrontierScrCmd_57 0x624
     FrontierScrCmd_0A _1349
@@ -1636,12 +1637,12 @@ _1372:
     FrontierScrCmd_A0 23, 0, 0, 0x8008
     FrontierScrCmd_08 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 5
+    Message BattleCastleScript_Text_AreYouReady
     FrontierScrCmd_0A _13E4
     FrontierScrCmd_01
 
 _13AF:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 127
     FrontierScrCmd_36
@@ -1650,7 +1651,7 @@ _13AF:
     FrontierScrCmd_A0 23, 0, 0, 0x8008
     FrontierScrCmd_08 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_0F 5
+    MessageInstant BattleCastleScript_Text_AreYouReady
     FrontierScrCmd_0A _13E4
     FrontierScrCmd_01
 
@@ -1770,7 +1771,7 @@ _159D:
 
 _15B9:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 17
+    Message BattleCastleScript_Text_OpponentIsChoosing
     FrontierScrCmd_0A _15C8
     FrontierScrCmd_01
 
@@ -1792,7 +1793,7 @@ _15C8:
 
 _160D:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_10 19
+    MessageNoSkip BattleCastleScript_Text_OpponentRetired
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_0A _17D9
     FrontierScrCmd_01
@@ -1849,7 +1850,7 @@ _16BF:
 _16C7:
     FrontierScrCmd_06 0x8003, 1
     FrontierScrCmd_A0 44, 0, 0, 0x8008
-    FrontierScrCmd_0F 10
+    MessageInstant BattleCastleScript_Text_Saving
     FrontierScrCmd_A0 17, 0, 0, 0x8008
     FrontierScrCmd_77
     FrontierScrCmd_6D 4, 0x8008, 0x8009, 0x8009
@@ -1857,25 +1858,25 @@ _16C7:
     FrontierScrCmd_A0 44, 1, 0, 0x8008
     FrontierScrCmd_20 0x8009, 1
     FrontierScrCmd_0B 1, _1707
-    FrontierScrCmd_11 8
+    Message BattleCastleScript_Text_VideoSaveFailed
     FrontierScrCmd_0D
 
 _1707:
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 7
+    Message BattleCastleScript_Text_BattleSaved
     FrontierScrCmd_0D
 
 _1714:
-    FrontierScrCmd_11 6
+    Message BattleCastleScript_Text_SaveAsVideo
     FrontierScrCmd_0D
 
 _171A:
-    FrontierScrCmd_11 9
+    Message BattleCastleScript_Text_OverwriteVideo
     FrontierScrCmd_0D
 
 _1720:
-    FrontierScrCmd_11 11
+    Message BattleCastleScript_Text_BreakQuestion
     FrontierScrCmd_1F 0x8008, 0
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _176C
@@ -1899,19 +1900,19 @@ _176C:
     FrontierScrCmd_01
 
 _1774:
-    FrontierScrCmd_11 14
+    Message BattleCastleScript_Text_RetireQuestion
     FrontierScrCmd_1F 0x8008, 1
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _1806
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _17AA
-    FrontierScrCmd_11 42
+    Message BattleCastleScript_Text_ReturnItems
     FrontierScrCmd_0A _17F1
     FrontierScrCmd_01
 
 _17AA:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _17B6
     FrontierScrCmd_01
 
@@ -1924,8 +1925,8 @@ _17B6:
     FrontierScrCmd_01
 
 _17D9:
-    FrontierScrCmd_11 42
-    FrontierScrCmd_10 2
+    Message BattleCastleScript_Text_ReturnItems
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 124
     FrontierScrCmd_36
@@ -1965,7 +1966,7 @@ _180E:
     FrontierScrCmd_01
 
 _1879:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_0A _189B
     FrontierScrCmd_01
 
@@ -1985,7 +1986,7 @@ _189B:
     FrontierScrCmd_01
 
 _18B0:
-    FrontierScrCmd_11 42
+    Message BattleCastleScript_Text_ReturnItems
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _18D0
@@ -1993,7 +1994,7 @@ _18B0:
     FrontierScrCmd_01
 
 _18D0:
-    FrontierScrCmd_10 2
+    MessageNoSkip BattleCastleScript_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 128
     FrontierScrCmd_36
@@ -2039,7 +2040,7 @@ _1952:
     FrontierScrCmd_01
 
 _195E:
-    FrontierScrCmd_0F 43
+    MessageInstant BattleCastleScript_Text_Saving2
     FrontierScrCmd_77
     FrontierScrCmd_73 0x8008
     FrontierScrCmd_78
@@ -2110,7 +2111,7 @@ _1A60:
     FrontierScrCmd_0C _1B75
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 53
+    Message BattleCastleScript_Text_CastleValetApproaching
     FrontierScrCmd_0A _13E4
     FrontierScrCmd_01
 
@@ -2118,7 +2119,7 @@ _1A9B:
     FrontierScrCmd_0C _1B75
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_0C _1ADC
-    FrontierScrCmd_11 54
+    Message BattleCastleScript_Text_DarachIntro
     FrontierScrCmd_12
     FrontierScrCmd_0A _0D9B
     FrontierScrCmd_01
@@ -2128,7 +2129,7 @@ _1ABA:
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_0C _1ADC
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 55
+    Message BattleCastleScript_Text_DarachIntroGold
     FrontierScrCmd_12
     FrontierScrCmd_0A _0D9B
     FrontierScrCmd_01
@@ -2148,7 +2149,7 @@ _1AF8:
     FrontierScrCmd_20 0x8008, 0
     FrontierScrCmd_0E 1, _1B27
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 56
+    Message BattleCastleScript_Text_BeatDarach
     FrontierScrCmd_12
     FrontierScrCmd_0A _1B63
     FrontierScrCmd_01
@@ -2163,7 +2164,7 @@ _1B2F:
     FrontierScrCmd_3E 0x4052, 0x8008
     FrontierScrCmd_20 0x8008, 2
     FrontierScrCmd_0E 1, _1B5B
-    FrontierScrCmd_11 57
+    Message BattleCastleScript_Text_BeatDarachGold
     FrontierScrCmd_12
     FrontierScrCmd_0A _1B63
     FrontierScrCmd_01
@@ -2189,68 +2190,68 @@ _1B91:
     FrontierScrCmd_0D
 
 _1B93:
-    FrontierScrCmd_11 30
+    Message BattleCastleScript_Text_GiveCP
     FrontierScrCmd_3A
     FrontierScrCmd_0A _110F
     FrontierScrCmd_01
 
 _1BA1:
-    FrontierScrCmd_10 30
+    MessageNoSkip BattleCastleScript_Text_GiveCP
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_0A _110F
     FrontierScrCmd_01
 
 _1BB3:
-    FrontierScrCmd_11 35
+    Message BattleCastleScript_Text_FantasticWin2
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1BBF:
-    FrontierScrCmd_10 31
+    MessageNoSkip BattleCastleScript_Text_FantasticWin
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1BD1:
-    FrontierScrCmd_11 36
+    Message BattleCastleScript_Text_RemarkableWin2
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1BDD:
-    FrontierScrCmd_10 32
+    MessageNoSkip BattleCastleScript_Text_RemarkableWin
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1BEF:
-    FrontierScrCmd_11 37
+    Message BattleCastleScript_Text_HardFoughtWin2
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1BFB:
-    FrontierScrCmd_10 33
+    MessageNoSkip BattleCastleScript_Text_HardFoughtWin
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1C0D:
-    FrontierScrCmd_11 38
+    Message BattleCastleScript_Text_GoodEffort2
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1C19:
-    FrontierScrCmd_10 34
+    MessageNoSkip BattleCastleScript_Text_GoodEffort
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_0A _11D0
     FrontierScrCmd_01
 
 _1C2B:
-    FrontierScrCmd_11 39
+    Message BattleCastleScript_Text_CPEarned
     FrontierScrCmd_0A _11EC
     FrontierScrCmd_01
 
 _1C37:
-    FrontierScrCmd_10 39
+    MessageNoSkip BattleCastleScript_Text_CPEarned
     FrontierScrCmd_0A _11EC
     FrontierScrCmd_01
 

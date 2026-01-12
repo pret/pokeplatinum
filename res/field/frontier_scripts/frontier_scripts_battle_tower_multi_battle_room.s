@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "res/text/bank/battle_tower_multi_battle_room.h"
 
     .data
 
@@ -324,7 +325,7 @@ _0270:
 _02B0:
     FrontierScrCmd_84 33, 0, 0x8008
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 3
+    Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     FrontierScrCmd_20 0x8006, 0
     FrontierScrCmd_0B 1, _02E9
     FrontierScrCmd_1A 31, 13, 0, 0, 0x8008
@@ -368,7 +369,7 @@ _034B:
 
 _037F:
     FrontierScrCmd_06 0x8006, 0
-    FrontierScrCmd_11 12
+    Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     FrontierScrCmd_36
     FrontierScrCmd_35 5
     FrontierScrCmd_84 58, 0, 0x8008
@@ -452,7 +453,7 @@ _04D5:
     FrontierScrCmd_01
 
 _04DF:
-    FrontierScrCmd_0F 15
+    MessageInstant BattleTowerMultiBattleRoom_Text_SavingDontTurnOffPower2
     FrontierScrCmd_77
     FrontierScrCmd_73 0x8008
     FrontierScrCmd_78
@@ -484,7 +485,7 @@ _051B:
 _053F:
     FrontierScrCmd_84 33, 0, 0x8008
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 3
+    Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     FrontierScrCmd_20 0x8006, 0
     FrontierScrCmd_0B 1, _0578
     FrontierScrCmd_1A 31, 11, 0, 0, 0x8008
@@ -566,32 +567,32 @@ _0693:
 
 _069B:
     FrontierScrCmd_06 0x8006, 1
-    FrontierScrCmd_0F 10
+    MessageInstant BattleTowerMultiBattleRoom_Text_SavingDontTurnOffPower
     FrontierScrCmd_84 43, 0, 0x8008
     FrontierScrCmd_77
     FrontierScrCmd_6D 1, 0x8008, 0x8005, 0x8005
     FrontierScrCmd_78
     FrontierScrCmd_20 0x8005, 1
     FrontierScrCmd_0B 1, _06CE
-    FrontierScrCmd_11 8
+    Message BattleTowerMultiBattleRoom_Text_BattleVideoCouldntBeSaved
     FrontierScrCmd_0D
 
 _06CE:
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 7
+    Message BattleTowerMultiBattleRoom_Text_BattleHasBeenSaved
     FrontierScrCmd_0D
 
 _06DB:
-    FrontierScrCmd_11 6
+    Message BattleTowerMultiBattleRoom_Text_AskSaveBattleVideo
     FrontierScrCmd_0D
 
 _06E1:
-    FrontierScrCmd_11 9
+    Message BattleTowerMultiBattleRoom_Text_AskDeleteExistingBattleVideo
     FrontierScrCmd_0D
 
 _06E7:
-    FrontierScrCmd_11 4
+    Message BattleTowerMultiBattleRoom_Text_AskSaveAndQuit
     FrontierScrCmd_1F 0x8008, 0
     FrontierScrCmd_12
     FrontierScrCmd_20 0x8008, 0
@@ -603,7 +604,7 @@ _0707:
     FrontierScrCmd_3D 0x40D8, 2
     FrontierScrCmd_84 39, 0, 0x8008
     FrontierScrCmd_86
-    FrontierScrCmd_11 0
+    Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
     FrontierScrCmd_77
     FrontierScrCmd_72 0x8008
     FrontierScrCmd_78
@@ -617,7 +618,7 @@ _0707:
     FrontierScrCmd_01
 
 _0745:
-    FrontierScrCmd_11 5
+    Message BattleTowerMultiBattleRoom_Text_AskCancelChallenge
     FrontierScrCmd_1F 0x8008, 1
     FrontierScrCmd_12
     FrontierScrCmd_20 0x8008, 0
@@ -669,11 +670,11 @@ _07DF:
 
 _0817:
     FrontierScrCmd_84 38, 0, 0x8008
-    FrontierScrCmd_11 13
+    Message BattleTowerMultiBattleRoom_Text_YouHaveClearedYourSeventhMatch
     FrontierScrCmd_84 46, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 14
+    Message BattleTowerMultiBattleRoom_Text_PlayerReceivedBP
     FrontierScrCmd_58 0x4C5
     FrontierScrCmd_59
     FrontierScrCmd_84 43, 0, 0x8008
@@ -687,7 +688,7 @@ _0817:
 
 _0869:
     FrontierScrCmd_06 0x8004, 100
-    FrontierScrCmd_10 16
+    MessageNoSkip BattleTowerMultiBattleRoom_Text_PleaseWait
     FrontierScrCmd_0A _03DD
     FrontierScrCmd_01
 
@@ -713,7 +714,7 @@ _08AB:
 
 _08D7:
     FrontierScrCmd_06 0x8004, 100
-    FrontierScrCmd_10 16
+    MessageNoSkip BattleTowerMultiBattleRoom_Text_PleaseWait
     FrontierScrCmd_0A _0945
     FrontierScrCmd_01
 
@@ -790,7 +791,7 @@ _09E9:
     FrontierScrCmd_0D
 
 _0A0D:
-    FrontierScrCmd_11 2
+    Message BattleTowerMultiBattleRoom_Text_YourPokemonWillBeRestored
     FrontierScrCmd_58 0x48E
     FrontierScrCmd_59
     FrontierScrCmd_39
@@ -855,7 +856,7 @@ _0ACD:
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_12
     FrontierScrCmd_0C _0A91
-    FrontierScrCmd_10 16
+    MessageNoSkip BattleTowerMultiBattleRoom_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 4
     FrontierScrCmd_12
@@ -867,7 +868,7 @@ _0ACD:
     FrontierScrCmd_0D
 
 _0B27:
-    FrontierScrCmd_11 5
+    Message BattleTowerMultiBattleRoom_Text_AskCancelChallenge
     FrontierScrCmd_1F 0x8008, 1
     FrontierScrCmd_20 0x8008, 1
     FrontierScrCmd_0B 1, _02B0
@@ -876,7 +877,7 @@ _0B27:
     FrontierScrCmd_01
 
 _0B4B:
-    FrontierScrCmd_11 11
+    Message BattleTowerMultiBattleRoom_Text_YouHaveChosenToRetire
     FrontierScrCmd_05 30, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 7

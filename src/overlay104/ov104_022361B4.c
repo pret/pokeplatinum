@@ -778,16 +778,16 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
 
     v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELD2);
 
-    StringTemplate_SetNumber(param0->unk_44, 0, param3, 4, 1, 1);
+    StringTemplate_SetNumber(param0->strTemplate, 0, param3, 4, 1, 1);
     MessageLoader_GetString(v0, 2, v1);
 
-    StringTemplate_Format(param0->unk_44, v2, v1);
+    StringTemplate_Format(param0->strTemplate, v2, v1);
     Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 16, 2 * 8, TEXT_SPEED_NO_TRANSFER, NULL);
-    StringTemplate_SetPlayerName(param0->unk_44, 0, param2);
+    StringTemplate_SetPlayerName(param0->strTemplate, 0, param2);
 
     MessageLoader_GetString(v0, 0, v1);
 
-    StringTemplate_Format(param0->unk_44, v2, v1);
+    StringTemplate_Format(param0->strTemplate, v2, v1);
     Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
     String_Free(v1);
