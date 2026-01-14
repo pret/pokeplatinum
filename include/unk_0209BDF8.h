@@ -2,6 +2,7 @@
 #define POKEPLATINUM_UNK_0209BDF8_H
 
 #include "constants/heap.h"
+
 #include "struct_decls/struct_0209C194_decl.h"
 #include "struct_defs/struct_0209BDF8.h"
 

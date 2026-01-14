@@ -2,6 +2,7 @@
 #define POKEPLATINUM_OV70_02262DA8_H
 
 #include "constants/heap.h"
+
 #include "overlay070/struct_ov70_0225DEE8_decl.h"
 #include "overlay070/struct_ov70_022630A4_decl.h"
 #include "overlay070/struct_ov70_02263344_decl.h"
