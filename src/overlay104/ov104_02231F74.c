@@ -95,7 +95,7 @@ typedef struct {
 
 static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0);
 static void GetMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u32 entryID);
-static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, BOOL canSpeedUp, int param4);
+static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll);
 static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8);
 static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
 static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0);
@@ -159,8 +159,8 @@ static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
 
 static void GetMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u32 entryID)
 {
-    MessageLoader_GetString(msgLoader, entryID, param0->string);
-    StringTemplate_Format(param0->strTemplate, param0->strBuf, param0->string);
+    MessageLoader_GetString(msgLoader, entryID, param0->fmtString);
+    StringTemplate_Format(param0->strTemplate, param0->string, param0->fmtString);
 }
 
 static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll)
@@ -168,7 +168,7 @@ static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int r
     RenderControlFlags_SetCanABSpeedUpPrint(canSpeedUp);
     RenderControlFlags_SetAutoScrollFlags(autoScroll);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
-    param0->printerID = Text_AddPrinterWithParams(&param0->msgWindow, font, param0->strBuf, 0, 0, renderDelay, NULL);
+    param0->printerID = Text_AddPrinterWithParams(&param0->msgWindow, font, param0->string, 0, 0, renderDelay, NULL);
 }
 
 void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
@@ -185,12 +185,12 @@ static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16
 {
     ov104_02231FC4(param0);
 
-    ov104_022320FC(param0->strBuf, param2, param3, param4, param5);
+    ov104_022320FC(param0->string, param2, param3, param4, param5);
 
     if (canSpeedUp != 0xFF) {
-        PrintMessage(param0, FONT_MESSAGE, renderDelay, canSpeedUp, 0);
+        PrintMessage(param0, FONT_MESSAGE, renderDelay, canSpeedUp, AUTO_SCROLL_DISABLED);
     } else {
-        PrintMessage(param0, FONT_MESSAGE, TEXT_SPEED_INSTANT, canSpeedUp, 0);
+        PrintMessage(param0, FONT_MESSAGE, TEXT_SPEED_INSTANT, canSpeedUp, AUTO_SCROLL_DISABLED);
     }
 }
 

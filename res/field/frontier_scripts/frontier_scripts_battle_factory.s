@@ -1,5 +1,5 @@
 # include "macros/frscrcmd.inc"
-# include "res/text/bank/battle_factory_script.h"
+# include "res/text/bank/battle_factory_scene.h"
 
     .data
 
@@ -632,7 +632,7 @@ _0555:
     FrontierScrCmd_7E 3, 0x8008, 0, 0
     FrontierScrCmd_67 15, 3, 0, 0x8008
     FrontierScrCmd_7E 4, 0x8008, 0, 0
-    Message BattleFactoryScript_Text_MultiOpponentInfo4Mon
+    Message BattleFactoryScene_Text_MultiOpponentInfo4Mon
     Return
 
 _0597:
@@ -640,7 +640,7 @@ _0597:
     FrontierScrCmd_7E 1, 0x8008, 0, 0
     FrontierScrCmd_67 15, 2, 0, 0x8008
     FrontierScrCmd_7E 2, 0x8008, 0, 0
-    Message BattleFactoryScript_Text_MultiOpponentInfo2Mon
+    Message BattleFactoryScene_Text_MultiOpponentInfo2Mon
     Return
 
 _05BB:
@@ -648,13 +648,13 @@ _05BB:
     FrontierScrCmd_7D 0, 0x8008
     FrontierScrCmd_67 16, 2, 0, 0x8008
     FrontierScrCmd_7D 1, 0x8008
-    Message BattleFactoryScript_Text_MultiOpponentInfoFirstMoves
+    Message BattleFactoryScene_Text_MultiOpponentInfoFirstMoves
     Return
 
 _05D9:
     FrontierScrCmd_67 16, 0, 0, 0x8008
     FrontierScrCmd_7D 0, 0x8008
-    Message BattleFactoryScript_Text_MultiOpponentInfoCommonType
+    Message BattleFactoryScene_Text_MultiOpponentInfoCommonType
     Return
 
 _05EB:
@@ -678,7 +678,7 @@ _0643:
     FrontierScrCmd_7E 3, 0x8008, 0, 0
     FrontierScrCmd_67 15, 2, 0, 0x8008
     FrontierScrCmd_7E 5, 0x8008, 0, 0
-    Message BattleFactoryScript_Text_OpponentInfo3Mon
+    Message BattleFactoryScene_Text_OpponentInfo3Mon
     Return
 
 _0676:
@@ -686,7 +686,7 @@ _0676:
     FrontierScrCmd_7E 1, 0x8008, 0, 0
     FrontierScrCmd_67 15, 1, 0, 0x8008
     FrontierScrCmd_7E 3, 0x8008, 0, 0
-    Message BattleFactoryScript_Text_OpponentInfo2Mon
+    Message BattleFactoryScene_Text_OpponentInfo2Mon
     Return
 
 _069A:
@@ -694,13 +694,13 @@ _069A:
     FrontierScrCmd_7D 0, 0x8008
     FrontierScrCmd_67 15, 0, 0, 0x8008
     FrontierScrCmd_7E 1, 0x8008, 0, 0
-    Message BattleFactoryScript_Text_OpponentInfo1Mon
+    Message BattleFactoryScene_Text_OpponentInfo1Mon
     Return
 
 _06BB:
     FrontierScrCmd_67 16, 0, 0, 0x8008
     FrontierScrCmd_7D 0, 0x8008
-    Message BattleFactoryScript_Text_OpponentInfoFirstMove
+    Message BattleFactoryScene_Text_OpponentInfoFirstMove
     Return
 
 _06CD:
@@ -711,22 +711,22 @@ _06CD:
 
 _06F0:
     FrontierScrCmd_7F 0, 0x8008
-    Message BattleFactoryScript_Text_OpponentInfoCommonType
+    Message BattleFactoryScene_Text_OpponentInfoCommonType
     Return
 
 _06FB:
-    Message BattleFactoryScript_Text_OpponentInfoVariedTypes
+    Message BattleFactoryScene_Text_OpponentInfoVariedTypes
     Return
 
 _0701:
-    Message BattleFactoryScript_Text_ChoosePokemon
+    Message BattleFactoryScene_Text_ChoosePokemon
     FrontierScrCmd_67 28, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _0721
     GoTo _0765
     End
 
 _0721:
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     GoTo _072D
     End
 
@@ -776,7 +776,7 @@ _07D2:
 _07DC:
     FrontierScrCmd_67 28, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _0812
-    Message BattleFactoryScript_Text_GoIn
+    Message BattleFactoryScene_Text_GoIn
     FrontierScrCmd_3A
     FrontierScrCmd_12
     FrontierScrCmd_28 3, _01E0
@@ -786,7 +786,7 @@ _07DC:
     End
 
 _0812:
-    MessageNoSkip BattleFactoryScript_Text_GoIn
+    MessageNoSkip BattleFactoryScene_Text_GoIn
     WaitTime 30, 0x8008
     FrontierScrCmd_12
     Call _164D
@@ -876,7 +876,7 @@ _0927:
     FrontierScrCmd_6B 1
     WaitTime 30, 0x8008
     FrontierScrCmd_12
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     GoTo _0A41
     End
 
@@ -981,7 +981,7 @@ _0B76:
     End
 
 _0BBF:
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     GoTo _0BD9
     End
 
@@ -993,12 +993,12 @@ _0BCB:
 _0BD9:
     FrontierScrCmd_67 22, 0, 0, 0x8008
     FrontierScrCmd_3D 0x40B7, 1
-    Message BattleFactoryScript_Text_BPEarned
+    Message BattleFactoryScene_Text_BPEarned
     FrontierScrCmd_7B 0
     FrontierScrCmd_67 35, 0, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
-    Message BattleFactoryScript_Text_ReceiveBP
+    Message BattleFactoryScene_Text_ReceiveBP
     FrontierScrCmd_58 0x4C5
     FrontierScrCmd_59
     GoTo _0C0F
@@ -1009,7 +1009,7 @@ _0C0F:
     End
 
 _0C17:
-    Message BattleFactoryScript_Text_WellDone
+    Message BattleFactoryScene_Text_WellDone
     FrontierScrCmd_58 0x48E
     FrontierScrCmd_59
     GoTo _0C29
@@ -1032,7 +1032,7 @@ _0C65:
     FrontierScrCmd_67 23, 0, 0, 0x8008
     AddVar 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    Message BattleFactoryScript_Text_AreYouReady
+    Message BattleFactoryScene_Text_AreYouReady
     GoTo _0C83
     End
 
@@ -1131,7 +1131,7 @@ _0E1A:
 
 _0E36:
     FrontierScrCmd_7C 0
-    Message BattleFactoryScript_Text_OpponentIsChoosing
+    Message BattleFactoryScene_Text_OpponentIsChoosing
     GoTo _0E45
     End
 
@@ -1151,7 +1151,7 @@ _0E45:
 
 _0E8A:
     FrontierScrCmd_7C 0
-    MessageNoSkip BattleFactoryScript_Text_OpponentRetired
+    MessageNoSkip BattleFactoryScene_Text_OpponentRetired
     WaitTime 30, 0x8008
     GoTo _11FE
     End
@@ -1161,7 +1161,7 @@ _0E9F:
     FrontierScrCmd_64
     Call _04A9
     FrontierScrCmd_67 0, 1, 0, 0x8008
-    Message BattleFactoryScript_Text_TradeQuestion
+    Message BattleFactoryScene_Text_TradeQuestion
     ShowYesNoMenu 0x8008, MENU_YES
     GoToIfEq 0x8008, 1, _0FBF
     GoTo _0ED2
@@ -1174,7 +1174,7 @@ _0ED2:
     End
 
 _0EEE:
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     GoTo _0EFA
     End
 
@@ -1236,7 +1236,7 @@ _0FBF:
     End
 
 _0FDB:
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     GoTo _0FE5
 
 _0FE5:
@@ -1299,7 +1299,7 @@ _10AF:
 
 _10B7:
     SetVar 0x8003, 1
-    MessageInstant BattleFactoryScript_Text_Saving
+    MessageInstant BattleFactoryScene_Text_Saving
     ShowSavingIcon
     FrontierScrCmd_3E 0x40B9, 0x8008
     GoToIfEq 0x8008, 0, _10DE
@@ -1321,25 +1321,25 @@ _10F7:
 _1110:
     HideSavingIcon
     GoToIfEq 0x8005, 1, _1125
-    Message BattleFactoryScript_Text_VideoSaveFailed
+    Message BattleFactoryScene_Text_VideoSaveFailed
     Return
 
 _1125:
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_7B 0
-    Message BattleFactoryScript_Text_BattleSaved
+    Message BattleFactoryScene_Text_BattleSaved
     Return
 
 _1132:
-    Message BattleFactoryScript_Text_SaveAsVideo
+    Message BattleFactoryScene_Text_SaveAsVideo
     Return
 
 _1138:
-    Message BattleFactoryScript_Text_OverwriteVideo
+    Message BattleFactoryScene_Text_OverwriteVideo
     Return
 
 _113E:
-    Message BattleFactoryScript_Text_BreakQuestion
+    Message BattleFactoryScene_Text_BreakQuestion
     ShowYesNoMenu 0x8008, MENU_YES
     GoToIfEq 0x8008, 1, _1191
     GoTo _115C
@@ -1363,17 +1363,17 @@ _1191:
     End
 
 _1199:
-    Message BattleFactoryScript_Text_RetireQuestion
+    Message BattleFactoryScene_Text_RetireQuestion
     ShowYesNoMenu 0x8008, MENU_NO
     GoToIfEq 0x8008, 1, _122B
     FrontierScrCmd_67 28, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _11CF
-    Message BattleFactoryScript_Text_ReturnPokemon
+    Message BattleFactoryScene_Text_ReturnPokemon
     GoTo _1216
     End
 
 _11CF:
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     GoTo _11DB
     End
 
@@ -1385,8 +1385,8 @@ _11DB:
     End
 
 _11FE:
-    Message BattleFactoryScript_Text_ReturnPokemon
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    Message BattleFactoryScene_Text_ReturnPokemon
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 168
     FrontierScrCmd_36
@@ -1417,7 +1417,7 @@ _1233:
     End
 
 _1288:
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     GoTo _12AA
     End
 
@@ -1437,14 +1437,14 @@ _12AA:
     End
 
 _12BF:
-    Message BattleFactoryScript_Text_ReturnPokemon
+    Message BattleFactoryScene_Text_ReturnPokemon
     FrontierScrCmd_67 28, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _12DF
     GoTo _12F3
     End
 
 _12DF:
-    MessageNoSkip BattleFactoryScript_Text_PleaseWait
+    MessageNoSkip BattleFactoryScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 166
     FrontierScrCmd_36
@@ -1489,7 +1489,7 @@ _1368:
     End
 
 _137B:
-    MessageInstant BattleFactoryScript_Text_Saving2
+    MessageInstant BattleFactoryScene_Text_Saving2
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
@@ -1566,7 +1566,7 @@ _14AE:
     GoToIfEq 0x8008, 1, _0C52
     Call _1612
     FrontierScrCmd_7A 0, 0x8008
-    Message BattleFactoryScript_Text_FactoryHeadApproaching
+    Message BattleFactoryScene_Text_FactoryHeadApproaching
     GoTo _0C65
     End
 
@@ -1575,7 +1575,7 @@ _14E6:
     FrontierScrCmd_7A 0, 0x8008
     Call _154A
     Call _1530
-    Message BattleFactoryScript_Text_ThortonIntro
+    Message BattleFactoryScene_Text_ThortonIntro
     FrontierScrCmd_12
     GoTo _091F
     End
@@ -1585,7 +1585,7 @@ _150B:
     FrontierScrCmd_7A 0, 0x8008
     Call _154A
     Call _1530
-    Message BattleFactoryScript_Text_ThortonIntroGold
+    Message BattleFactoryScene_Text_ThortonIntroGold
     FrontierScrCmd_12
     GoTo _091F
     End
@@ -1622,7 +1622,7 @@ _15AA:
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_3E 0x4050, 0x8008
     CallIfEq 0x8008, 0, _15D6
-    Message BattleFactoryScript_Text_BeatThorton
+    Message BattleFactoryScene_Text_BeatThorton
     FrontierScrCmd_12
     GoTo _0B30
     End
@@ -1636,7 +1636,7 @@ _15DE:
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_3E 0x4050, 0x8008
     CallIfEq 0x8008, 2, _160A
-    Message BattleFactoryScript_Text_BeatThortonGold
+    Message BattleFactoryScene_Text_BeatThortonGold
     FrontierScrCmd_12
     GoTo _0B30
     End

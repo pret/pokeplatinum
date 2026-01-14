@@ -22,8 +22,8 @@ struct UnkStruct_ov104_022320B4_t {
     MessageLoader *unk_3C;
     u8 *unk_40;
     StringTemplate *strTemplate;
-    String *strBuf;
     String *string;
+    String *fmtString;
     u8 printerID;
     s8 unk_51;
     u16 unk_52;

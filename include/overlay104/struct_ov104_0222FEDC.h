@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_0222FEDC_H
 #define POKEPLATINUM_STRUCT_OV104_0222FEDC_H
 
-typedef struct {
+typedef struct FrontierMessageOptions {
     u8 renderDelay;
     u8 scrollFlags;
     u8 font;

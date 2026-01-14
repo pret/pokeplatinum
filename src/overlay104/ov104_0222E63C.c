@@ -39,8 +39,8 @@ UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, enum HeapID
     ov104_0222E830(&v0->unk_40, &v0->unk_3C, param2, heapID);
 
     v0->strTemplate = StringTemplate_New(8, 64, heapID);
-    v0->strBuf = String_Init(1024, heapID);
     v0->string = String_Init(1024, heapID);
+    v0->fmtString = String_Init(1024, heapID);
 
     ov104_0222E82C(v0, param2, NULL, NULL);
 
@@ -88,8 +88,8 @@ void ov104_0222E710(UnkStruct_ov104_022320B4 *param0)
     GF_ASSERT(param0->unk_51 == 0);
 
     StringTemplate_Free(param0->strTemplate);
-    String_Free(param0->strBuf);
     String_Free(param0->string);
+    String_Free(param0->fmtString);
     Heap_Free(param0->unk_40);
     MessageLoader_Free(param0->unk_3C);
 

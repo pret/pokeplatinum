@@ -1,5 +1,5 @@
 # include "macros/frscrcmd.inc"
-# include "res/text/bank/battle_castle_script.h"
+# include "res/text/bank/battle_castle_scene.h"
 
     .data
 
@@ -816,31 +816,31 @@ _0679:
     End
 
 _0695:
-    Message BattleCastleScript_Text_TakingItemsFirstTime
+    Message BattleCastleScene_Text_TakingItemsFirstTime
     GoTo _06B0
     End
 
 _06A1:
     FrontierScrCmd_7B 0
-    Message BattleCastleScript_Text_TakingItems
+    Message BattleCastleScene_Text_TakingItems
     GoTo _06B0
     End
 
 _06B0:
     FrontierScrCmd_A0 19, 0, 0, 0x8008
     CallIfEq 0x8008, 3, _06E4
-    Message BattleCastleScript_Text_Choose
+    Message BattleCastleScene_Text_Choose
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _06EA
     GoTo _0706
     End
 
 _06E4:
-    Message BattleCastleScript_Text_PassInstruction
+    Message BattleCastleScene_Text_PassInstruction
     Return
 
 _06EA:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _06F6
     End
 
@@ -852,7 +852,7 @@ _06F6:
     End
 
 _0706:
-    MessageInstant BattleCastleScript_Text_HealOrRentItem
+    MessageInstant BattleCastleScene_Text_HealOrRentItem
     FrontierScrCmd_50
     GoTo _0714
     End
@@ -904,7 +904,7 @@ _0804:
     End
 
 _0827:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _1974
     End
 
@@ -929,7 +929,7 @@ _0833:
 
 _08A3:
     FrontierScrCmd_7C 0
-    Message BattleCastleScript_Text_PassInstruction
+    Message BattleCastleScene_Text_PassInstruction
     Return
 
 _08AC:
@@ -946,7 +946,7 @@ _08B6:
     End
 
 _08D9:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _1974
     End
 
@@ -993,7 +993,7 @@ _0987:
     End
 
 _099C:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _1974
     End
 
@@ -1035,7 +1035,7 @@ _09FF:
 
 _0A1C:
     FrontierScrCmd_7A 0, 50
-    Message BattleCastleScript_Text_ConfirmPurchase
+    Message BattleCastleScene_Text_ConfirmPurchase
     ShowYesNoMenu 0x8008, MENU_YES
     GoToIfEq 0x8008, 1, _0714
     FrontierScrCmd_A6 0x8001, 0x8008
@@ -1047,7 +1047,7 @@ _0A1C:
     End
 
 _0A6D:
-    Message BattleCastleScript_Text_NotEnoughCP
+    Message BattleCastleScene_Text_NotEnoughCP
     GoTo _0714
     End
 
@@ -1157,7 +1157,7 @@ _0C47:
     FrontierScrCmd_51
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _0C7F
-    Message BattleCastleScript_Text_Proceed
+    Message BattleCastleScene_Text_Proceed
     FrontierScrCmd_3A
     FrontierScrCmd_12
     FrontierScrCmd_28 0, _0228
@@ -1167,7 +1167,7 @@ _0C47:
     End
 
 _0C7F:
-    MessageNoSkip BattleCastleScript_Text_Proceed
+    MessageNoSkip BattleCastleScene_Text_Proceed
     WaitTime 30, 0x8008
     FrontierScrCmd_12
     FrontierScrCmd_28 0, _0228
@@ -1256,7 +1256,7 @@ _0DA3:
     FrontierScrCmd_A9 1
     WaitTime 30, 0x8008
     FrontierScrCmd_12
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _0F2E
     End
 
@@ -1275,16 +1275,16 @@ _0E74:
 _0E89:
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _0EAD
-    Message BattleCastleScript_Text_UsingPass
+    Message BattleCastleScene_Text_UsingPass
     FrontierScrCmd_3A
     FrontierScrCmd_12
     GoTo _1084
     End
 
 _0EAD:
-    MessageNoSkip BattleCastleScript_Text_UsingPass
+    MessageNoSkip BattleCastleScene_Text_UsingPass
     WaitTime 30, 0x8008
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     Call _10CA
     Call _122A
     FrontierScrCmd_12
@@ -1483,7 +1483,7 @@ _11EC:
     Return
 
 _121C:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     Call _04C5
     FrontierScrCmd_12
     Return
@@ -1513,7 +1513,7 @@ _1263:
     End
 
 _12B9:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _12D3
     End
 
@@ -1526,12 +1526,12 @@ _12D3:
     FrontierScrCmd_A0 22, 0, 0, 0x8008
     FrontierScrCmd_3D 0x40BC, 1
     FrontierScrCmd_7B 0
-    Message BattleCastleScript_Text_BPEarned
+    Message BattleCastleScene_Text_BPEarned
     FrontierScrCmd_7B 0
     FrontierScrCmd_A0 38, 0, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
-    Message BattleCastleScript_Text_ReceiveBP
+    Message BattleCastleScene_Text_ReceiveBP
     FrontierScrCmd_58 0x4C5
     FrontierScrCmd_59
     GoTo _130C
@@ -1545,7 +1545,7 @@ _1314:
     GoToIfEq 0x8005, 1, _1349
     FrontierScrCmd_A0 25, 0, 0, 0x8008
     GoToIfEq 0x8008, 0, _1349
-    Message BattleCastleScript_Text_RevivePokemon
+    Message BattleCastleScene_Text_RevivePokemon
     FrontierScrCmd_55 0x624
     FrontierScrCmd_57 0x624
     GoTo _1349
@@ -1566,12 +1566,12 @@ _1372:
     FrontierScrCmd_A0 23, 0, 0, 0x8008
     AddVar 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    Message BattleCastleScript_Text_AreYouReady
+    Message BattleCastleScene_Text_AreYouReady
     GoTo _13E4
     End
 
 _13AF:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 127
     FrontierScrCmd_36
@@ -1580,7 +1580,7 @@ _13AF:
     FrontierScrCmd_A0 23, 0, 0, 0x8008
     AddVar 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    MessageInstant BattleCastleScript_Text_AreYouReady
+    MessageInstant BattleCastleScene_Text_AreYouReady
     GoTo _13E4
     End
 
@@ -1685,7 +1685,7 @@ _159D:
 
 _15B9:
     FrontierScrCmd_7C 0
-    Message BattleCastleScript_Text_OpponentIsChoosing
+    Message BattleCastleScene_Text_OpponentIsChoosing
     GoTo _15C8
     End
 
@@ -1705,7 +1705,7 @@ _15C8:
 
 _160D:
     FrontierScrCmd_7C 0
-    MessageNoSkip BattleCastleScript_Text_OpponentRetired
+    MessageNoSkip BattleCastleScene_Text_OpponentRetired
     WaitTime 30, 0x8008
     GoTo _17D9
     End
@@ -1758,32 +1758,32 @@ _16BF:
 _16C7:
     SetVar 0x8003, 1
     FrontierScrCmd_A0 44, 0, 0, 0x8008
-    MessageInstant BattleCastleScript_Text_Saving
+    MessageInstant BattleCastleScene_Text_Saving
     FrontierScrCmd_A0 17, 0, 0, 0x8008
     ShowSavingIcon
     FrontierScrCmd_6D 4, 0x8008, 0x8009, 0x8009
     HideSavingIcon
     FrontierScrCmd_A0 44, 1, 0, 0x8008
     GoToIfEq 0x8009, 1, _1707
-    Message BattleCastleScript_Text_VideoSaveFailed
+    Message BattleCastleScene_Text_VideoSaveFailed
     Return
 
 _1707:
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_7B 0
-    Message BattleCastleScript_Text_BattleSaved
+    Message BattleCastleScene_Text_BattleSaved
     Return
 
 _1714:
-    Message BattleCastleScript_Text_SaveAsVideo
+    Message BattleCastleScene_Text_SaveAsVideo
     Return
 
 _171A:
-    Message BattleCastleScript_Text_OverwriteVideo
+    Message BattleCastleScene_Text_OverwriteVideo
     Return
 
 _1720:
-    Message BattleCastleScript_Text_BreakQuestion
+    Message BattleCastleScene_Text_BreakQuestion
     ShowYesNoMenu 0x8008, MENU_YES
     GoToIfEq 0x8008, 1, _176C
     GoTo _173E
@@ -1806,17 +1806,17 @@ _176C:
     End
 
 _1774:
-    Message BattleCastleScript_Text_RetireQuestion
+    Message BattleCastleScene_Text_RetireQuestion
     ShowYesNoMenu 0x8008, MENU_NO
     GoToIfEq 0x8008, 1, _1806
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _17AA
-    Message BattleCastleScript_Text_ReturnItems
+    Message BattleCastleScene_Text_ReturnItems
     GoTo _17F1
     End
 
 _17AA:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _17B6
     End
 
@@ -1828,8 +1828,8 @@ _17B6:
     End
 
 _17D9:
-    Message BattleCastleScript_Text_ReturnItems
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    Message BattleCastleScene_Text_ReturnItems
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 124
     FrontierScrCmd_36
@@ -1865,7 +1865,7 @@ _180E:
     End
 
 _1879:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     GoTo _189B
     End
 
@@ -1885,14 +1885,14 @@ _189B:
     End
 
 _18B0:
-    Message BattleCastleScript_Text_ReturnItems
+    Message BattleCastleScene_Text_ReturnItems
     FrontierScrCmd_A0 35, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _18D0
     GoTo _18E4
     End
 
 _18D0:
-    MessageNoSkip BattleCastleScript_Text_PleaseWait
+    MessageNoSkip BattleCastleScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 128
     FrontierScrCmd_36
@@ -1935,7 +1935,7 @@ _1952:
     End
 
 _195E:
-    MessageInstant BattleCastleScript_Text_Saving2
+    MessageInstant BattleCastleScene_Text_Saving2
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
@@ -1998,7 +1998,7 @@ _1A60:
     Call _1B75
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_7B 0
-    Message BattleCastleScript_Text_CastleValetApproaching
+    Message BattleCastleScene_Text_CastleValetApproaching
     GoTo _13E4
     End
 
@@ -2006,7 +2006,7 @@ _1A9B:
     Call _1B75
     FrontierScrCmd_7A 0, 0x8008
     Call _1ADC
-    Message BattleCastleScript_Text_DarachIntro
+    Message BattleCastleScene_Text_DarachIntro
     FrontierScrCmd_12
     GoTo _0D9B
     End
@@ -2016,7 +2016,7 @@ _1ABA:
     FrontierScrCmd_7A 0, 0x8008
     Call _1ADC
     FrontierScrCmd_7B 0
-    Message BattleCastleScript_Text_DarachIntroGold
+    Message BattleCastleScene_Text_DarachIntroGold
     FrontierScrCmd_12
     GoTo _0D9B
     End
@@ -2035,7 +2035,7 @@ _1AF8:
     FrontierScrCmd_3E 0x4052, 0x8008
     CallIfEq 0x8008, 0, _1B27
     FrontierScrCmd_7B 0
-    Message BattleCastleScript_Text_BeatDarach
+    Message BattleCastleScene_Text_BeatDarach
     FrontierScrCmd_12
     GoTo _1B63
     End
@@ -2049,7 +2049,7 @@ _1B2F:
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_3E 0x4052, 0x8008
     CallIfEq 0x8008, 2, _1B5B
-    Message BattleCastleScript_Text_BeatDarachGold
+    Message BattleCastleScene_Text_BeatDarachGold
     FrontierScrCmd_12
     GoTo _1B63
     End
@@ -2074,68 +2074,68 @@ _1B91:
     Return
 
 _1B93:
-    Message BattleCastleScript_Text_GiveCP
+    Message BattleCastleScene_Text_GiveCP
     FrontierScrCmd_3A
     GoTo _110F
     End
 
 _1BA1:
-    MessageNoSkip BattleCastleScript_Text_GiveCP
+    MessageNoSkip BattleCastleScene_Text_GiveCP
     WaitTime 30, 0x8008
     GoTo _110F
     End
 
 _1BB3:
-    Message BattleCastleScript_Text_FantasticWin2
+    Message BattleCastleScene_Text_FantasticWin2
     GoTo _11D0
     End
 
 _1BBF:
-    MessageNoSkip BattleCastleScript_Text_FantasticWin
+    MessageNoSkip BattleCastleScene_Text_FantasticWin
     WaitTime 30, 0x8008
     GoTo _11D0
     End
 
 _1BD1:
-    Message BattleCastleScript_Text_RemarkableWin2
+    Message BattleCastleScene_Text_RemarkableWin2
     GoTo _11D0
     End
 
 _1BDD:
-    MessageNoSkip BattleCastleScript_Text_RemarkableWin
+    MessageNoSkip BattleCastleScene_Text_RemarkableWin
     WaitTime 30, 0x8008
     GoTo _11D0
     End
 
 _1BEF:
-    Message BattleCastleScript_Text_HardFoughtWin2
+    Message BattleCastleScene_Text_HardFoughtWin2
     GoTo _11D0
     End
 
 _1BFB:
-    MessageNoSkip BattleCastleScript_Text_HardFoughtWin
+    MessageNoSkip BattleCastleScene_Text_HardFoughtWin
     WaitTime 30, 0x8008
     GoTo _11D0
     End
 
 _1C0D:
-    Message BattleCastleScript_Text_GoodEffort2
+    Message BattleCastleScene_Text_GoodEffort2
     GoTo _11D0
     End
 
 _1C19:
-    MessageNoSkip BattleCastleScript_Text_GoodEffort
+    MessageNoSkip BattleCastleScene_Text_GoodEffort
     WaitTime 30, 0x8008
     GoTo _11D0
     End
 
 _1C2B:
-    Message BattleCastleScript_Text_CPEarned
+    Message BattleCastleScene_Text_CPEarned
     GoTo _11EC
     End
 
 _1C37:
-    MessageNoSkip BattleCastleScript_Text_CPEarned
+    MessageNoSkip BattleCastleScene_Text_CPEarned
     GoTo _11EC
     End
 

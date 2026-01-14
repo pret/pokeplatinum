@@ -2,145 +2,145 @@
   "key": 42947,
   "messages": [
     {
-      "id": "BattleArcadeScript_Text_TakingItems",
+      "id": "BattleArcadeScene_Text_TakingItems",
       "en_US": [
         "First, I’ll need to hold on to any\n",
         "items held by your Pokémon.\r"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_PleaseWait",
+      "id": "BattleArcadeScene_Text_PleaseWait",
       "en_US": "Please wait a moment."
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy1",
+      "id": "BattleArcadeScene_Text_Dummy1",
       "garbage": 13
     },
     {
-      "id": "BattleArcadeScript_Text_HealingMons",
+      "id": "BattleArcadeScene_Text_HealingMons",
       "en_US": [
         "Good going!\n",
         "We’ll heal your Pokémon now."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_AreYouReady",
+      "id": "BattleArcadeScene_Text_AreYouReady",
       "en_US": [
         "Next up, game no. {STRVAR_1 53, 0, 0}!\n",
         "Are you ready?"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SaveAsVideo",
+      "id": "BattleArcadeScene_Text_SaveAsVideo",
       "en_US": [
         "Would you like to save the last battle\n",
         "as your Battle Video?"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_BattleSaved",
+      "id": "BattleArcadeScene_Text_BattleSaved",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s battle has been saved\n",
         "as a Battle Video.\r"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_VideoSaveFailed",
+      "id": "BattleArcadeScene_Text_VideoSaveFailed",
       "en_US": [
         "There was an error.\n",
         "The Battle Video couldn’t be saved.\r"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_OverwriteVideo",
+      "id": "BattleArcadeScene_Text_OverwriteVideo",
       "en_US": [
         "Delete your existing Battle Video and\n",
         "save the last battle?"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_Saving",
+      "id": "BattleArcadeScene_Text_Saving",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_BreakQuestion",
+      "id": "BattleArcadeScene_Text_BreakQuestion",
       "en_US": [
         "Would you like to save and take a break\n",
         "from playing?"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy2",
+      "id": "BattleArcadeScene_Text_Dummy2",
       "garbage": 2
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy3",
+      "id": "BattleArcadeScene_Text_Dummy3",
       "garbage": 3
     },
     {
-      "id": "BattleArcadeScript_Text_RetireQuestion",
+      "id": "BattleArcadeScene_Text_RetireQuestion",
       "en_US": [
         "Would you like to retire from this\n",
         "challenge?"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy4",
+      "id": "BattleArcadeScene_Text_Dummy4",
       "garbage": 2
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy5",
+      "id": "BattleArcadeScene_Text_Dummy5",
       "garbage": 3
     },
     {
-      "id": "BattleArcadeScript_Text_OpponentIsChoosing",
+      "id": "BattleArcadeScene_Text_OpponentIsChoosing",
       "en_US": [
         "{STRVAR_1 3, 0, 0} is choosing.\n",
         "Please wait."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy6",
+      "id": "BattleArcadeScene_Text_Dummy6",
       "garbage": 20
     },
     {
-      "id": "BattleArcadeScript_Text_OpponentRetired",
+      "id": "BattleArcadeScene_Text_OpponentRetired",
       "en_US": "{STRVAR_1 3, 0, 0} chose to retire."
     },
     {
-      "id": "BattleArcadeScript_Text_Welcome",
+      "id": "BattleArcadeScene_Text_Welcome",
       "en_US": "Welcome to the Battle Arcade!\r"
     },
     {
-      "id": "BattleArcadeScript_Text_GameStart",
+      "id": "BattleArcadeScene_Text_GameStart",
       "en_US": [
         "Game no. {STRVAR_1 53, 0, 0}!\n",
         "Come on!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_ActivateBoard",
+      "id": "BattleArcadeScene_Text_ActivateBoard",
       "en_US": [
         "Without further ado...\n",
         "Let’s activate the game board!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_CurrentEvent",
+      "id": "BattleArcadeScene_Text_CurrentEvent",
       "en_US": "This is our current event!"
     },
     {
-      "id": "BattleArcadeScript_Text_SoloNonFullHP",
+      "id": "BattleArcadeScene_Text_SoloNonFullHP",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s Pokémon without full HP!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiNonFullHP",
+      "id": "BattleArcadeScene_Text_MultiNonFullHP",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s and {STRVAR_1 3, 1, 0}’s\f",
@@ -148,14 +148,14 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloLeveledUp",
+      "id": "BattleArcadeScene_Text_SoloLeveledUp",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s Pokémon leveled up!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiLeveledUp",
+      "id": "BattleArcadeScene_Text_MultiLeveledUp",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s and {STRVAR_1 3, 1, 0}’s\f",
@@ -163,14 +163,14 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloPoisoned",
+      "id": "BattleArcadeScene_Text_SoloPoisoned",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s Pokémon poisoned!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiPoisoned",
+      "id": "BattleArcadeScene_Text_MultiPoisoned",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0} and {STRVAR_1 3, 1, 0}’s\f",
@@ -178,14 +178,14 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloParalyzed",
+      "id": "BattleArcadeScene_Text_SoloParalyzed",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s Pokémon paralyzed!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiParalyzed",
+      "id": "BattleArcadeScene_Text_MultiParalyzed",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0} and {STRVAR_1 3, 1, 0}’s\f",
@@ -193,14 +193,14 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloBurned",
+      "id": "BattleArcadeScene_Text_SoloBurned",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s Pokémon burned!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiBurned",
+      "id": "BattleArcadeScene_Text_MultiBurned",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0} and {STRVAR_1 3, 1, 0}’s\f",
@@ -208,14 +208,14 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloAsleep",
+      "id": "BattleArcadeScene_Text_SoloAsleep",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s Pokémon asleep!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiAsleep",
+      "id": "BattleArcadeScene_Text_MultiAsleep",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0} and {STRVAR_1 3, 1, 0}’s\f",
@@ -223,14 +223,14 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloFrozen",
+      "id": "BattleArcadeScene_Text_SoloFrozen",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0}’s Pokémon frozen!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiFrozen",
+      "id": "BattleArcadeScene_Text_MultiFrozen",
       "en_US": [
         "The match will commence with\n",
         "{STRVAR_1 3, 0, 0} and {STRVAR_1 3, 1, 0}’s\f",
@@ -238,14 +238,14 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloLoanItem",
+      "id": "BattleArcadeScene_Text_SoloLoanItem",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Pokémon will be loaned\n",
         "the {STRVAR_1 8, 2, 0}."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiLoanItem",
+      "id": "BattleArcadeScene_Text_MultiLoanItem",
       "en_US": [
         "{STRVAR_1 3, 0, 0} and {STRVAR_1 3, 1, 0}’s\n",
         "Pokémon will be loaned the\f",
@@ -253,114 +253,114 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_HereYouGo",
+      "id": "BattleArcadeScene_Text_HereYouGo",
       "en_US": "Here you go!\r"
     },
     {
-      "id": "BattleArcadeScript_Text_SunnyCondition",
+      "id": "BattleArcadeScene_Text_SunnyCondition",
       "en_US": [
         "This match will be conducted under\n",
         "harsh sunlight."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_RainCondition",
+      "id": "BattleArcadeScene_Text_RainCondition",
       "en_US": [
         "This match will be conducted under a\n",
         "steady rainfall."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SandyCondition",
+      "id": "BattleArcadeScene_Text_SandyCondition",
       "en_US": [
         "This match will be conducted under\n",
         "a raging sandstorm."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_HailCondition",
+      "id": "BattleArcadeScene_Text_HailCondition",
       "en_US": [
         "This match will be conducted under\n",
         "pelting hail."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_FoggyCondition",
+      "id": "BattleArcadeScene_Text_FoggyCondition",
       "en_US": [
         "This match will be conducted in a\n",
         "dense fog."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_TrickRoomCondition",
+      "id": "BattleArcadeScene_Text_TrickRoomCondition",
       "en_US": [
         "This match will be conducted on a floor\n",
         "where time and space are distorted."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_PokemonSwap",
+      "id": "BattleArcadeScene_Text_PokemonSwap",
       "en_US": [
         "Your Pokémon will be switched with the\n",
         "other Trainer’s for this match."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SpeedUpBoard",
+      "id": "BattleArcadeScene_Text_SpeedUpBoard",
       "en_US": [
         "From the next game on, the\n",
         "game board’s speed will be increased."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SlowDownBoard",
+      "id": "BattleArcadeScene_Text_SlowDownBoard",
       "en_US": [
         "From the next game on, the\n",
         "game board’s speed will be decreased."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_RandomizeBoard",
+      "id": "BattleArcadeScene_Text_RandomizeBoard",
       "en_US": [
         "For the next game, the game board’s\n",
         "motion will become random."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloFreeBP",
+      "id": "BattleArcadeScene_Text_SoloFreeBP",
       "en_US": "{STRVAR_1 3, 0, 0} received {STRVAR_1 51, 2, 0} BP!"
     },
     {
-      "id": "BattleArcadeScript_Text_MultiFreeBP",
+      "id": "BattleArcadeScene_Text_MultiFreeBP",
       "en_US": [
         "{STRVAR_1 3, 0, 0} and {STRVAR_1 3, 1, 0} received\n",
         "{STRVAR_1 51, 2, 0} BP!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_AreYouReady2",
+      "id": "BattleArcadeScene_Text_AreYouReady2",
       "en_US": "Are you ready?"
     },
     {
-      "id": "BattleArcadeScript_Text_SkipBattle",
+      "id": "BattleArcadeScene_Text_SkipBattle",
       "en_US": [
         "Oh! Lucky!\n",
         "You can skip the battle!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_NoEvent",
+      "id": "BattleArcadeScene_Text_NoEvent",
       "en_US": [
         "Too bad!\n",
         "There is no event this time!"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_BattleStart",
+      "id": "BattleArcadeScene_Text_BattleStart",
       "en_US": "OK! Let the battle commence!"
     },
     {
-      "id": "BattleArcadeScript_Text_SoloImmuneToPoison",
+      "id": "BattleArcadeScene_Text_SoloImmuneToPoison",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Pokémon will enter the\n",
         "match poisoned...\r",
@@ -370,7 +370,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiImmuneToPoison",
+      "id": "BattleArcadeScene_Text_MultiImmuneToPoison",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s and {STRVAR_1 3, 1, 0}’s\n",
         "Pokémon will begin poisoned...\r",
@@ -380,7 +380,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloImmuneToParalysis",
+      "id": "BattleArcadeScene_Text_SoloImmuneToParalysis",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Pokémon will enter the\n",
         "match paralyzed...\r",
@@ -390,7 +390,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiImmuneToParalysis",
+      "id": "BattleArcadeScene_Text_MultiImmuneToParalysis",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s and {STRVAR_1 3, 1, 0}’s\n",
         "Pokémon will begin paralyzed...\r",
@@ -400,7 +400,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloImmuneToBurn",
+      "id": "BattleArcadeScene_Text_SoloImmuneToBurn",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Pokémon will enter the\n",
         "match burned...\r",
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiImmuneToBurn",
+      "id": "BattleArcadeScene_Text_MultiImmuneToBurn",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s and {STRVAR_1 3, 1, 0}’s\n",
         "Pokémon will begin burned...\r",
@@ -420,7 +420,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloImmuneToSleep",
+      "id": "BattleArcadeScene_Text_SoloImmuneToSleep",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Pokémon will enter the\n",
         "match asleep...\r",
@@ -430,7 +430,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiImmuneToSleep",
+      "id": "BattleArcadeScene_Text_MultiImmuneToSleep",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s and {STRVAR_1 3, 1, 0}’s\n",
         "Pokémon will begin asleep...\r",
@@ -440,7 +440,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_SoloImmuneToFreeze",
+      "id": "BattleArcadeScene_Text_SoloImmuneToFreeze",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Pokémon will enter the\n",
         "match frozen...\r",
@@ -450,7 +450,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_MultiImmuneToFreeze",
+      "id": "BattleArcadeScene_Text_MultiImmuneToFreeze",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s and {STRVAR_1 3, 1, 0}’s\n",
         "Pokémon will begin frozen...\r",
@@ -460,7 +460,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_BPEarned",
+      "id": "BattleArcadeScene_Text_BPEarned",
       "en_US": [
         "You have cleared your seventh battle!\n",
         "Congratulations!\r",
@@ -468,49 +468,49 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_ReceiveBP",
+      "id": "BattleArcadeScene_Text_ReceiveBP",
       "en_US": "{STRVAR_1 3, 0, 0} received {STRVAR_1 51, 1, 0} BP!\r"
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy7",
+      "id": "BattleArcadeScene_Text_Dummy7",
       "garbage": 33
     },
     {
-      "id": "BattleArcadeScript_Text_ReturnItems",
+      "id": "BattleArcadeScene_Text_ReturnItems",
       "en_US": [
         "We will return any items we were holding\n",
         "for you.\r"
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_Saving2",
+      "id": "BattleArcadeScene_Text_Saving2",
       "en_US": [
         "Saving...\n",
         "Don’t turn off the power."
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_Dummy8",
+      "id": "BattleArcadeScene_Text_Dummy8",
       "garbage": 26
     },
     {
-      "id": "BattleArcadeScript_Text_ContinueOption",
+      "id": "BattleArcadeScene_Text_ContinueOption",
       "en_US": "CONTINUE"
     },
     {
-      "id": "BattleArcadeScript_Text_RecordOption",
+      "id": "BattleArcadeScene_Text_RecordOption",
       "en_US": "RECORD"
     },
     {
-      "id": "BattleArcadeScript_Text_RestOption",
+      "id": "BattleArcadeScene_Text_RestOption",
       "en_US": "REST"
     },
     {
-      "id": "BattleArcadeScript_Text_RetireOption",
+      "id": "BattleArcadeScene_Text_RetireOption",
       "en_US": "RETIRE"
     },
     {
-      "id": "BattleArcadeScript_Text_ArcadeStarApproaching",
+      "id": "BattleArcadeScene_Text_ArcadeStarApproaching",
       "en_US": [
         "Congratulations, Trainer!\r",
         "In recognition of your outstanding\n",
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_DahliaIntro",
+      "id": "BattleArcadeScene_Text_DahliaIntro",
       "en_US": [
         "Dahlia: No need to worry. ♫\n",
         "Let chance do what it does.\r",
@@ -539,7 +539,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_DahliaIntroGold",
+      "id": "BattleArcadeScene_Text_DahliaIntroGold",
       "en_US": [
         "Dahlia: No need to worry. ♫\n",
         "Let chance do what it does.\r",
@@ -558,7 +558,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_BeatDahlia",
+      "id": "BattleArcadeScene_Text_BeatDahlia",
       "en_US": [
         "Dahlia: How fabulous of you!\r",
         "Your love of Pokémon shone through,\n",
@@ -570,7 +570,7 @@
       ]
     },
     {
-      "id": "BattleArcadeScript_Text_BeatDahliaGold",
+      "id": "BattleArcadeScene_Text_BeatDahliaGold",
       "en_US": [
         "Dahlia: Truly, it was so very fabulous\n",
         "of all of you!\r",
