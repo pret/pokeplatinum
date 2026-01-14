@@ -1,8 +1,8 @@
 6b61f25c1542f05dbdab54cf2dfaad9914555d07 *main.sbin
-de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay0.sbin
+de8a847bff8c343d69b853a215e6ee775ef2ef96 *dummy1.sbin
 906b5d19e6478a795eda151c771ff3a47fb1a8d5 *overlay1.sbin
-de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay2.sbin
-de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay3.sbin
+de8a847bff8c343d69b853a215e6ee775ef2ef96 *dummy2.sbin
+de8a847bff8c343d69b853a215e6ee775ef2ef96 *dummy3.sbin
 2527b3e0bbc7cf76e9125c8215043faf84ef0af2 *nintendo_wfc.sbin
 0456f78ac3e294722f669c793fc9727b23b66fba *overlay5.sbin
 6e5ed74d5bdb94d2ce78d8990c364b4766eab772 *overlay6.sbin
@@ -14,7 +14,7 @@ a6dc7a7e32c14081b5db5a0a5e1e5120bebe52a9 *overlay11.sbin
 fa28629441497607e072a3aceebfb6d167457020 *battle_anim.sbin
 8b64b97469bff5dc372b5178baa4676f7b2bcfc2 *battle_sub_menus.sbin
 d9b09c1e37088d6aaeb73143ecec98ab3327ec67 *trainer_ai.sbin
-de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay15.sbin
+de8a847bff8c343d69b853a215e6ee775ef2ef96 *dummy4.sbin
 b058a62fb8e4d646bb7508f5a21e406591f809c1 *battle.sbin
 543c0afabc3d90310f1bc8d4902743461dfdc1e5 *overlay17.sbin
 111fe69ca18026aa8574b8f79a6b94ef73715267 *wfc_settings.sbin
@@ -88,7 +88,7 @@ c197c9edb988d64dec0a56427dfc6960646dc1f7 *overlay85.sbin
 a563e0430b460ee5a39442667561e0bd5428dcdb *hall_of_fame.sbin
 8c7f762ebf90f08b09b9efd49946176bb6ed1c69 *pc_hall_of_fame.sbin
 ca9016bf18dc6efc3490bfb893f7cbf12920af00 *overlay88.sbin
-de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay89.sbin
+de8a847bff8c343d69b853a215e6ee775ef2ef96 *dummy5.sbin
 84ce4bc9949f697c12ae6598ef74a7e3f60b1531 *overlay90.sbin
 2c26cf42ca34629dfc7cc491820e2a309e57eeeb *move_reminder.sbin
 87c3ffad8da5d31174a542832d80bf1855c3225c *overlay92.sbin
@@ -100,7 +100,7 @@ e93f9eb3382856feb76c8b0ba400b7d2593db5c5 *overlay99.sbin
 0033be85ba8a9f1eac53e0d97090911298c7de82 *overlay100.sbin
 31b95069ac95b7e75df9d29ab410dc72c14ea3b5 *overlay101.sbin
 20e1299cf7365fe4e84445238d3fd3712279b1a3 *diploma.sbin
-de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay103.sbin
+de8a847bff8c343d69b853a215e6ee775ef2ef96 *dummy6.sbin
 a3f4dcf6634992ff3367fe5a377825fb913a39f6 *overlay104.sbin
 0e6e923a1a359b9482646b3dd0a7a2562e140672 *overlay105.sbin
 c3a66997e55fb3e761d521136a42f07f4761f5da *battle_hall_app.sbin
