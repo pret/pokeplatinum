@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "res/text/bank/battle_tower_battle_room.h"
 
     .data
 
@@ -238,7 +239,7 @@ _0227:
     ShowYesNoMenu 0x8008, MENU_NO
     CallIfEq 0x8008, 0, _0328
     FrontierScrCmd_84 38, 0, 0x8008
-    FrontierScrCmd_11 20
+    Message BattleTowerBattleRoom_Text_BPFromTycoon
     Call _0330
     FrontierScrCmd_12
     GoTo _03EF
@@ -253,7 +254,7 @@ _0273:
     FrontierScrCmd_84 38, 0, 0x8008
     FrontierScrCmd_84 43, 0, 0x8008
     GoToIfEq 0x8008, 5, _02D4
-    FrontierScrCmd_11 19
+    Message BattleTowerBattleRoom_Text_BPEarned
     Call _0330
     FrontierScrCmd_12
     GoTo _03EF
@@ -287,7 +288,7 @@ _0330:
     FrontierScrCmd_84 46, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 21
+    Message BattleTowerBattleRoom_Text_ReceiveBP
     FrontierScrCmd_58 0x4C5
     FrontierScrCmd_59
     Return
@@ -306,7 +307,7 @@ _0360:
     Return
 
 _0374:
-    FrontierScrCmd_11 0
+    Message BattleTowerBattleRoom_Text_HealPokemon
     FrontierScrCmd_58 0x48E
     FrontierScrCmd_59
     FrontierScrCmd_39
@@ -400,7 +401,7 @@ _04C8:
 _04DC:
     FrontierScrCmd_84 33, 0, 0x800C
     FrontierScrCmd_7A 0, 0x800C
-    FrontierScrCmd_11 1
+    Message BattleTowerBattleRoom_Text_AreYouReady
     FrontierScrCmd_84 43, 0, 0x8008
     GoToIfNe 0x8008, 0, _052C
     FrontierScrCmd_84 36, 0, 0x8008
@@ -481,31 +482,31 @@ _065F:
 
 _0667:
     SetVar 0x8003, 1
-    FrontierScrCmd_0F 13
+    MessageInstant BattleTowerBattleRoom_Text_Saving2
     FrontierScrCmd_84 43, 0, 0x8008
     ShowSavingIcon
     FrontierScrCmd_6D 1, 0x8008, 0x8005, 0x8005
     HideSavingIcon
     GoToIfEq 0x8005, 1, _069A
-    FrontierScrCmd_11 11
+    Message BattleTowerBattleRoom_Text_VideoSaveFailed
     Return
 
 _069A:
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 10
+    Message BattleTowerBattleRoom_Text_BattleSaved
     Return
 
 _06A7:
-    FrontierScrCmd_11 9
+    Message BattleTowerBattleRoom_Text_SaveAsVideo
     Return
 
 _06AD:
-    FrontierScrCmd_11 12
+    Message BattleTowerBattleRoom_Text_OverwriteVideo
     Return
 
 _06B3:
-    FrontierScrCmd_11 2
+    Message BattleTowerBattleRoom_Text_SaveAndQuit
     ShowYesNoMenu 0x8008, MENU_YES
     FrontierScrCmd_12
     GoToIfEq 0x8008, 0, _06D3
@@ -516,7 +517,7 @@ _06D3:
     FrontierScrCmd_3D 0x40D8, 2
     FrontierScrCmd_84 39, 0, 0x8008
     FrontierScrCmd_86
-    FrontierScrCmd_11 4
+    Message BattleTowerBattleRoom_Text_Saving
     ShowSavingIcon
     FrontierScrCmd_72 0x8008
     HideSavingIcon
@@ -530,7 +531,7 @@ _06D3:
     End
 
 _0711:
-    FrontierScrCmd_11 3
+    Message BattleTowerBattleRoom_Text_CancelQuestion
     ShowYesNoMenu 0x8008, MENU_NO
     FrontierScrCmd_12
     GoToIfEq 0x8008, 0, _0731
@@ -552,7 +553,7 @@ _0741:
     End
 
 _0780:
-    FrontierScrCmd_11 14
+    Message BattleTowerBattleRoom_Text_TowerTycoonApproaching
     GoTo _078C
     End
 
@@ -594,7 +595,7 @@ _082D:
     GoToIfEq 0x8008, 48, _08F1
     FrontierScrCmd_7B 0
     FrontierScrCmd_80 1
-    FrontierScrCmd_11 15
+    Message BattleTowerBattleRoom_Text_PalmerIntro
     GoTo _086E
     End
 
@@ -612,7 +613,7 @@ _086E:
     GoToIfEq 0x8008, 48, _08FD
     FrontierScrCmd_3E 0x404F, 0x8008
     CallIfEq 0x8008, 0, _08D9
-    FrontierScrCmd_11 17
+    Message BattleTowerBattleRoom_Text_BeatPalmer
     FrontierScrCmd_84 44, 1, 0x8008
     GoTo _08E1
     End
@@ -628,14 +629,14 @@ _08E1:
     End
 
 _08F1:
-    FrontierScrCmd_11 16
+    Message BattleTowerBattleRoom_Text_PalmerIntroGold
     GoTo _086E
     End
 
 _08FD:
     FrontierScrCmd_3E 0x404F, 0x8008
     CallIfEq 0x8008, 2, _0924
-    FrontierScrCmd_11 18
+    Message BattleTowerBattleRoom_Text_BeatPalmerGold
     FrontierScrCmd_84 44, 2, 0x8008
     GoTo _08E1
     End

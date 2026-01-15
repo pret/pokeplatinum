@@ -801,7 +801,7 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
     ov106_0224262C(param0);
     ov106_02242688(param0);
 
-    param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0549, HEAP_ID_98);
+    param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_HALL_SCENE, HEAP_ID_98);
     param0->unk_24 = StringTemplate_Default(HEAP_ID_98);
     param0->unk_28 = String_Init(600, HEAP_ID_98);
     param0->unk_2C = String_Init(600, HEAP_ID_98);

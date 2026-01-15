@@ -80,19 +80,19 @@
     .long \offset-.-4
     .endm
 
-    .macro FrontierScrCmd_0F arg0
+    .macro MessageInstant messageID
     .short 0x00F
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro FrontierScrCmd_10 arg0
+    .macro MessageNoSkip messageID
     .short 0x010
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro FrontierScrCmd_11 arg0
+    .macro Message messageID
     .short 0x011
-    .short \arg0
+    .short \messageID
     .endm
 
     .macro FrontierScrCmd_12

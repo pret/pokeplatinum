@@ -131,10 +131,10 @@ static BOOL FrontierScrCmd_End(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_02(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_WaitTime(FrontierScriptContext *ctx);
 static BOOL DecrementTimer(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_0F(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_10(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_11(FrontierScriptContext *param0);
-static BOOL ov104_0222FF6C(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_MessageInstant(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_MessageNoSkip(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_Message(FrontierScriptContext *param0);
+static BOOL WaitForPrinter(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_12(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_13(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_14(FrontierScriptContext *param0);
@@ -308,9 +308,9 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_Call,
     FrontierScrCmd_Return,
     FrontierScrCmd_CallIf,
-    FrontierScrCmd_0F,
-    FrontierScrCmd_10,
-    FrontierScrCmd_11,
+    FrontierScrCmd_MessageInstant,
+    FrontierScrCmd_MessageNoSkip,
+    FrontierScrCmd_Message,
     FrontierScrCmd_12,
     FrontierScrCmd_13,
     FrontierScrCmd_14,
@@ -721,46 +721,42 @@ static BOOL FrontierScrCmd_CallIf(FrontierScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_0F(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_MessageInstant(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_0222FEDC v0;
-    u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
+    FrontierMessageOptions printParams;
+    u16 messageID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0.unk_00 = 0;
-    v0.unk_01 = 0;
-    v0.unk_02 = 1;
-    v0.unk_03 = 0;
+    printParams.renderDelay = TEXT_SPEED_INSTANT;
+    printParams.scrollFlags = AUTO_SCROLL_DISABLED;
+    printParams.font = FONT_MESSAGE;
+    printParams.unused = 0;
 
-    ov104_02231F74(param0->unk_00, param0->msgLoader, v1, 0, &v0);
+    FrontierShowMessage(ctx->unk_00, ctx->msgLoader, messageID, FALSE, &printParams);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_10(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_MessageNoSkip(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
+    u16 messageID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    ov104_02231F74(param0->unk_00, param0->msgLoader, v0, 0, NULL);
-    FrontierScriptContext_Pause(param0, ov104_0222FF6C);
-    return 1;
+    FrontierShowMessage(ctx->unk_00, ctx->msgLoader, messageID, FALSE, NULL);
+    FrontierScriptContext_Pause(ctx, WaitForPrinter);
+    return TRUE;
 }
 
-static BOOL FrontierScrCmd_11(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_Message(FrontierScriptContext *ctx)
 {
-    u16 v0 = FrontierScriptContext_ReadHalfWord(param0);
+    u16 messageID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    ov104_02231F74(param0->unk_00, param0->msgLoader, v0, 1, NULL);
-    FrontierScriptContext_Pause(param0, ov104_0222FF6C);
-    return 1;
+    FrontierShowMessage(ctx->unk_00, ctx->msgLoader, messageID, TRUE, NULL);
+    FrontierScriptContext_Pause(ctx, WaitForPrinter);
+    return TRUE;
 }
 
-static BOOL ov104_0222FF6C(FrontierScriptContext *param0)
+static BOOL WaitForPrinter(FrontierScriptContext *ctx)
 {
-    if (Text_IsPrinterActive(param0->unk_00->unk_50) == 0) {
-        return 1;
-    }
-
-    return 0;
+    return !Text_IsPrinterActive(ctx->unk_00->printerID);
 }
 
 static BOOL FrontierScrCmd_12(FrontierScriptContext *param0)
@@ -807,7 +803,7 @@ static BOOL FrontierScrCmd_15(FrontierScriptContext *param0)
     u8 v4 = FrontierScriptContext_ReadByte(param0);
     u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
 
-    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, NULL);
+    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, NULL);
     param0->data[0] = v5;
 
     return 1;
@@ -822,7 +818,7 @@ static BOOL FrontierScrCmd_16(FrontierScriptContext *param0)
     u8 v4 = FrontierScriptContext_ReadByte(param0);
     u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
 
-    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, param0->msgLoader);
+    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, param0->msgLoader);
     param0->data[0] = v5;
 
     return 1;
@@ -886,7 +882,7 @@ static BOOL FrontierScrCmd_1A(FrontierScriptContext *param0)
     u8 v4 = FrontierScriptContext_ReadByte(param0);
     u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
 
-    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, NULL);
+    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, NULL);
     param0->data[0] = v5;
 
     return 1;
@@ -901,7 +897,7 @@ static BOOL FrontierScrCmd_1B(FrontierScriptContext *param0)
     u8 v4 = FrontierScriptContext_ReadByte(param0);
     u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
 
-    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->unk_44, param0->msgLoader);
+    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, param0->msgLoader);
     param0->data[0] = v5;
 
     return 1;
@@ -1671,7 +1667,7 @@ static BOOL FrontierScrCmd_75(FrontierScriptContext *param0)
 static BOOL FrontierScrCmd_ShowSavingIcon(FrontierScriptContext *ctx)
 {
     UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
-    v0->savingIcon = Window_AddWaitDial(&v0->unk_64, 1024 - (18 + 12));
+    v0->savingIcon = Window_AddWaitDial(&v0->msgWindow, 1024 - (18 + 12));
     return FALSE;
 }
 
@@ -1687,7 +1683,7 @@ static BOOL FrontierScrCmd_79(FrontierScriptContext *param0)
     u8 v0 = FrontierScriptContext_ReadByte(param0);
     u16 v1 = ov104_0222FC00(param0);
 
-    StringTemplate_SetItemName(param0->unk_00->unk_44, v0, v1);
+    StringTemplate_SetItemName(param0->unk_00->strTemplate, v0, v1);
     return 0;
 }
 
@@ -1696,7 +1692,7 @@ static BOOL FrontierScrCmd_7A(FrontierScriptContext *param0)
     u8 v0 = FrontierScriptContext_ReadByte(param0);
     u16 v1 = ov104_0222FC00(param0);
 
-    StringTemplate_SetNumber(param0->unk_00->unk_44, v0, v1, ov104_02230D28(v1), 1, 1);
+    StringTemplate_SetNumber(param0->unk_00->strTemplate, v0, v1, ov104_02230D28(v1), 1, 1);
     return 0;
 }
 
@@ -1728,7 +1724,7 @@ static BOOL FrontierScrCmd_7B(FrontierScriptContext *param0)
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = FrontierScriptContext_ReadByte(param0);
 
-    StringTemplate_SetPlayerName(param0->unk_00->unk_44, v1, SaveData_GetTrainerInfo(v0->saveData));
+    StringTemplate_SetPlayerName(param0->unk_00->strTemplate, v1, SaveData_GetTrainerInfo(v0->saveData));
     return 0;
 }
 
@@ -1737,7 +1733,7 @@ static BOOL FrontierScrCmd_7C(FrontierScriptContext *param0)
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = FrontierScriptContext_ReadByte(param0);
 
-    StringTemplate_SetPlayerName(param0->unk_00->unk_44, v1, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
+    StringTemplate_SetPlayerName(param0->unk_00->strTemplate, v1, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     return 0;
 }
 
@@ -1746,7 +1742,7 @@ BOOL FrontierScrCmd_7D(FrontierScriptContext *param0)
     u8 v0 = FrontierScriptContext_ReadByte(param0);
     u16 v1 = ov104_0222FC00(param0);
 
-    StringTemplate_SetMoveName(param0->unk_00->unk_44, v0, v1);
+    StringTemplate_SetMoveName(param0->unk_00->strTemplate, v0, v1);
     return 0;
 }
 
@@ -1758,7 +1754,7 @@ BOOL FrontierScrCmd_7E(FrontierScriptContext *param0)
     u8 v3 = FrontierScriptContext_ReadByte(param0);
     String *v4 = ov104_02230E90(v1, HEAP_ID_FIELD2);
 
-    StringTemplate_SetString(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
+    StringTemplate_SetString(param0->unk_00->strTemplate, v0, v4, v2, v3, GAME_LANGUAGE);
     String_Free(v4);
 
     return 0;
@@ -1778,7 +1774,7 @@ static BOOL FrontierScrCmd_7F(FrontierScriptContext *param0)
     u8 v0 = FrontierScriptContext_ReadByte(param0);
     u16 v1 = ov104_0222FC00(param0);
 
-    StringTemplate_SetPokemonTypeName(param0->unk_00->unk_44, v0, v1);
+    StringTemplate_SetPokemonTypeName(param0->unk_00->strTemplate, v0, v1);
     return 0;
 }
 
@@ -1787,7 +1783,7 @@ static BOOL FrontierScrCmd_80(FrontierScriptContext *param0)
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
     u8 v1 = FrontierScriptContext_ReadByte(param0);
 
-    StringTemplate_SetRivalName(param0->unk_00->unk_44, v1, v0->saveData);
+    StringTemplate_SetRivalName(param0->unk_00->strTemplate, v1, v0->saveData);
     return 0;
 }
 

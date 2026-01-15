@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "res/text/bank/battle_hall_scene.h"
 
     .data
 
@@ -675,7 +676,7 @@ _0532:
     End
 
 _0595:
-    FrontierScrCmd_11 23
+    Message BattleHallScene_Text_ChooseType
     FrontierScrCmd_91 35, 0, 0, 0x8008
     FrontierScrCmd_91 30, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _05BC
@@ -683,7 +684,7 @@ _0595:
     End
 
 _05BC:
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 220
     FrontierScrCmd_36
@@ -810,7 +811,7 @@ _0762:
     FrontierScrCmd_28 98, _0224
     FrontierScrCmd_28 99, _0224
     FrontierScrCmd_29
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     GoTo _08A0
     End
 
@@ -962,7 +963,7 @@ _0A73:
     End
 
 _0ABC:
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     GoTo _0AD6
     End
 
@@ -976,12 +977,12 @@ _0AD6:
     FrontierScrCmd_3D 0x40BA, 1
     FrontierScrCmd_91 15, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 14
+    Message BattleHallScene_Text_BPEarned
     FrontierScrCmd_7B 0
     FrontierScrCmd_91 34, 0, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
-    FrontierScrCmd_11 15
+    Message BattleHallScene_Text_ReceiveBP
     FrontierScrCmd_58 0x4C5
     FrontierScrCmd_59
     FrontierScrCmd_C7
@@ -995,7 +996,7 @@ _0B1D:
 _0B25:
     FrontierScrCmd_91 15, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 2
+    Message BattleHallScene_Text_FullRestore
     FrontierScrCmd_58 0x48E
     FrontierScrCmd_59
     FrontierScrCmd_39
@@ -1012,7 +1013,7 @@ _0B5B:
     FrontierScrCmd_91 23, 0, 0, 0x8008
     AddVar 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 3
+    Message BattleHallScene_Text_AreYouReady
     GoTo _0B79
     End
 
@@ -1111,7 +1112,7 @@ _0D10:
 
 _0D2C:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 11
+    Message BattleHallScene_Text_OpponentIsChoosing
     GoTo _0D3B
     End
 
@@ -1131,9 +1132,9 @@ _0D3B:
 
 _0D80:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_10 13
+    MessageNoSkip BattleHallScene_Text_OpponentRetired
     WaitTime 30, 0x8008
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     GoTo _0F30
     End
 
@@ -1185,31 +1186,31 @@ _0E28:
 
 _0E30:
     SetVar 0x8003, 1
-    FrontierScrCmd_0F 8
+    MessageInstant BattleHallScene_Text_Saving
     FrontierScrCmd_91 17, 0, 0, 0x8008
     ShowSavingIcon
     FrontierScrCmd_6D 5, 0x8008, 0x8005, 0x8005
     HideSavingIcon
     GoToIfEq 0x8005, 1, _0E62
-    FrontierScrCmd_11 6
+    Message BattleHallScene_Text_VideoSaveFailed
     Return
 
 _0E62:
     FrontierScrCmd_55 0x61B
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 5
+    Message BattleHallScene_Text_BattleSaved
     Return
 
 _0E6F:
-    FrontierScrCmd_11 4
+    Message BattleHallScene_Text_SaveAsVideo
     Return
 
 _0E75:
-    FrontierScrCmd_11 7
+    Message BattleHallScene_Text_OverwriteVideo
     Return
 
 _0E7B:
-    FrontierScrCmd_11 9
+    Message BattleHallScene_Text_BreakQuestion
     ShowYesNoMenu 0x8008, MENU_YES
     GoToIfEq 0x8008, 1, _0EC7
     GoTo _0E99
@@ -1232,7 +1233,7 @@ _0EC7:
     End
 
 _0ECF:
-    FrontierScrCmd_11 10
+    Message BattleHallScene_Text_RetireQuestion
     ShowYesNoMenu 0x8008, MENU_NO
     GoToIfEq 0x8008, 1, _0F55
     FrontierScrCmd_91 30, 0, 0, 0x8008
@@ -1241,7 +1242,7 @@ _0ECF:
     End
 
 _0F01:
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     GoTo _0F0D
     End
 
@@ -1281,7 +1282,7 @@ _0F5D:
     End
 
 _0FA6:
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     GoTo _0FC8
     End
 
@@ -1307,7 +1308,7 @@ _0FDD:
     End
 
 _0FF9:
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 105
     FrontierScrCmd_36
@@ -1350,7 +1351,7 @@ _107B:
     End
 
 _1087:
-    FrontierScrCmd_0F 17
+    MessageInstant BattleHallScene_Text_Saving2
     ShowSavingIcon
     Call _10C2
     HideSavingIcon
@@ -1359,7 +1360,7 @@ _1087:
     Return
 
 _109F:
-    FrontierScrCmd_0F 17
+    MessageInstant BattleHallScene_Text_Saving2
     ShowSavingIcon
     FrontierScrCmd_76 0x8008
     CallIfEq 0x8008, 0, _10C2
@@ -1429,7 +1430,7 @@ _1199:
     Call _13C3
     FrontierScrCmd_7A 0, 0x8008
     Call _1207
-    FrontierScrCmd_11 33
+    Message BattleHallScene_Text_ArgentaIntro
     FrontierScrCmd_12
     Call _11E3
     GoTo _0700
@@ -1439,7 +1440,7 @@ _11BE:
     Call _13C3
     FrontierScrCmd_7A 0, 0x8008
     Call _1207
-    FrontierScrCmd_11 34
+    Message BattleHallScene_Text_ArgentaIntroGold
     FrontierScrCmd_12
     Call _11E3
     GoTo _0700
@@ -1513,7 +1514,7 @@ _1333:
     FrontierScrCmd_42 0
     FrontierScrCmd_3E 0x4051, 0x8008
     CallIfEq 0x8008, 0, _1373
-    FrontierScrCmd_11 35
+    Message BattleHallScene_Text_BeatArgenta
     FrontierScrCmd_12
     GoTo _09B7
     End
@@ -1531,7 +1532,7 @@ _137B:
     FrontierScrCmd_42 0
     FrontierScrCmd_3E 0x4051, 0x8008
     CallIfEq 0x8008, 2, _13BB
-    FrontierScrCmd_11 36
+    Message BattleHallScene_Text_BeatArgentaGold
     FrontierScrCmd_12
     GoTo _09B7
     End
