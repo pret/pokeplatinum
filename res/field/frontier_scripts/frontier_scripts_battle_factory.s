@@ -799,8 +799,8 @@ _0812:
     End
 
 _084E:
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_67 28, 0, 0, 0x8008
@@ -999,8 +999,8 @@ _0BD9:
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
     Message BattleFactoryScene_Text_ReceiveBP
-    FrontierScrCmd_58 0x4C5
-    FrontierScrCmd_59
+    PlayFanfare SEQ_PL_POINTGET3
+    WaitFanfare
     GoTo _0C0F
     End
 
@@ -1010,8 +1010,8 @@ _0C0F:
 
 _0C17:
     Message BattleFactoryScene_Text_WellDone
-    FrontierScrCmd_58 0x48E
-    FrontierScrCmd_59
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     GoTo _0C29
     End
 
@@ -1325,7 +1325,7 @@ _1110:
     Return
 
 _1125:
-    FrontierScrCmd_55 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_7B 0
     Message BattleFactoryScene_Text_BattleSaved
     Return
@@ -1493,13 +1493,13 @@ _137B:
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     Return
 
 _1391:
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_67 28, 0, 0, 0x8008
@@ -1607,7 +1607,7 @@ _154A:
     FrontierScrCmd_43 0, 0
     FrontierScrCmd_43 0, 1
     FrontierScrCmd_43 0, 2
-    FrontierScrCmd_55 0x584
+    PlaySoundEffect SEQ_SE_PL_FAC01
     WaitTime 36, 0x8008
     FrontierScrCmd_4C 0, 3, 2, 10
     WaitTime 11, 0x8008

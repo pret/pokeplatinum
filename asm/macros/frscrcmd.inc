@@ -1,3 +1,4 @@
+#include "generated/sdat.h"
 #include "constants/scrcmd.h"
 
     .set FALSE, 0
@@ -461,38 +462,38 @@
     .short 0x054
     .endm
 
-    .macro FrontierScrCmd_55 arg0
+    .macro PlaySoundEffect seqID
     .short 0x055
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_56 arg0
+    .macro StopSoundEffect seqID
     .short 0x056
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_57 arg0
+    .macro WaitSoundEffect seqID
     .short 0x057
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_58 arg0
+    .macro PlayFanfare seqID
     .short 0x058
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_59
+    .macro WaitFanfare
     .short 0x059
     .endm
 
-    .macro FrontierScrCmd_5A arg0
+    .macro PlayBGM seqID
     .short 0x05A
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_5B arg0
+    .macro StopBGM seqID
     .short 0x05B
-    .short \arg0
+    .short \seqID
     .endm
 
     .macro FrontierScrCmd_5C arg0, arg1, arg2
