@@ -59,27 +59,27 @@
       "en_US": "Switch off the PC."
     },
     {
-      "id": "pl_msg_00000639_00012",
+      "id": "UndergroundPC_Text_PlayersBase",
       "en_US": "{STRVAR_1 1, 1, 0}’s Base"
     },
     {
-      "id": "pl_msg_00000639_00013",
+      "id": "UndergroundPC_Text_FlagsObtained",
       "en_US": "Flags obtained:"
     },
     {
-      "id": "pl_msg_00000639_00014",
+      "id": "UndergroundPC_Text_FlagsObtainedTemplate",
       "en_US": "{STRVAR_1 55, 6, 0}"
     },
     {
-      "id": "pl_msg_00000639_00015",
+      "id": "UndergroundPC_Text_MostRecentFlag",
       "en_US": "Most recent Flag:"
     },
     {
-      "id": "pl_msg_00000639_00016",
+      "id": "UndergroundPC_Text_PlayersFlag",
       "en_US": "{STRVAR_1 1, 0, 0}’s Flag"
     },
     {
-      "id": "pl_msg_00000639_00017",
+      "id": "UndergroundPC_Text_IDTemplate",
       "en_US": "ID: {STRVAR_1 54, 5, 0}"
     },
     {
@@ -272,11 +272,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00051",
+      "id": "UndergroundPC_Text_Blank",
       "en_US": "-------"
     },
     {
-      "id": "pl_msg_00000639_00052",
+      "id": "UndergroundPC_Text_IDBlank",
       "en_US": "ID:-------"
     },
     {

@@ -215,7 +215,7 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetScene(SOUND_SCENE_NONE);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
-    sub_020959F4(v0->unk_00->unk_155);
+    SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
     SetVBlankCallback(ov17_0223D0C8, v0);
     Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN);
 
@@ -337,7 +337,7 @@ int ov17_0223CF8C(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_22);
-    sub_02095A24();
+    LockTextSpeed();
     NetworkIcon_Destroy();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));

@@ -139,7 +139,7 @@ Static main
 	Object main.nef.p/src_unk_0202E2CC.c.o
 	Object main.nef.p/src_unk_0202E840.c.o
 	Object main.nef.p/src_unk_0202EEC0.c.o
-	Object main.nef.p/src_unk_0202F108.c.o
+	Object main.nef.p/src_link_contest_records.c.o
 	Object main.nef.p/src_unk_0202F180.c.o
 	Object main.nef.p/src_unk_0202F1D4.c.o
 	Object main.nef.p/src_unk_0202FF4C.c.o
@@ -588,7 +588,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_feebas_fishing.c.o
 	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02247830.c.o
-	Object main.nef.p/src_overlay006_ov6_02247A0C.c.o
+	Object main.nef.p/src_overlay006_link_contest_record_display.c.o
 	Object main.nef.p/src_overlay006_healing_machine_animation_hall_of_fame.c.o
 	Object main.nef.p/src_overlay006_ov6_02247F5C.c.o
 	Object main.nef.p/src_overlay006_ov6_02248050.c.o
@@ -853,7 +853,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_underground_menu.c.o
 	Object main.nef.p/src_overlay023_underground_pc.c.o
 	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
-	Object main.nef.p/src_overlay023_ov23_02253598.c.o
+	Object main.nef.p/src_overlay023_underground_records.c.o
 	Object main.nef.p/src_overlay023_underground_text_printer.c.o
 	Object main.nef.p/src_overlay023_ov23_0225426C.c.o
 	Object main.nef.p/src_overlay023_ov23_0225429C.c.o
@@ -1556,7 +1556,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_ov104_022361B4.c.o
 	Object main.nef.p/src_overlay104_ov104_02237378.c.o
 	Object main.nef.p/src_overlay104_ov104_02237DD8.c.o
-	Object main.nef.p/src_overlay104_ov104_02239080.c.o
+	Object main.nef.p/src_overlay104_frscrcmd_sound.c.o
 	Object main.nef.p/src_overlay104_ov104_02239130.c.o
 	Object main.nef.p/src_overlay104_ov104_022394A4.c.o
 	Object main.nef.p/src_overlay104_ov104_022395F0.c.o

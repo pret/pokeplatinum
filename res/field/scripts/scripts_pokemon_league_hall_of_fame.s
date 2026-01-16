@@ -135,7 +135,7 @@ PokemonLeagueHallOfFame_SetHallOfFameVictoryFlagsAndVars:
     CallIfEq VAR_ROAMING_MOLTRES_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingMoltres
     CallIfEq VAR_ROAMING_ZAPDOS_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingZapdos
     CallIfEq VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingArticuno
-    CallIfEq VAR_TWINLEAF_TOWN_PLAYER_HOUSE_STATE, 0, PokemonLeagueHallOfFame_IncreaseTwinleafTownPlayerHouseState
+    CallIfEq VAR_PLAYER_HOUSE_POSTGAME_STATE, 0, PokemonLeagueHallOfFame_IncreasePlayerHousePostgameState
     ClearFlag FLAG_HIDE_SANDGEM_TOWN_COUNTERPART
     CallIfUnset FLAG_VEILSTONE_STORE_B1F_SPOKEN_TO_PROF_ROWAN, PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_1F_LUCIAN
@@ -143,8 +143,8 @@ PokemonLeagueHallOfFame_SetHallOfFameVictoryFlagsAndVars:
     SetFlag FLAG_HIDE_SENDOFF_SPRING_CYNTHIA
     Return
 
-PokemonLeagueHallOfFame_IncreaseTwinleafTownPlayerHouseState:
-    SetVar VAR_TWINLEAF_TOWN_PLAYER_HOUSE_STATE, 1
+PokemonLeagueHallOfFame_IncreasePlayerHousePostgameState:
+    SetVar VAR_PLAYER_HOUSE_POSTGAME_STATE, 1
     Return
 
 PokemonLeagueHallOfFame_ResetSpearPillarDialgaState:

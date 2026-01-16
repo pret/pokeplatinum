@@ -22,10 +22,10 @@
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
-#include "overlay023/ov23_02253598.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_talk.h"
+#include "overlay023/underground_records.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -1274,7 +1274,7 @@ void SecretBases_ProcessBaseExitEvent(int unused0, int unused1, void *data, void
     secretBasesEnv->occupiedBaseOwnerIDs[event->netID] = NETID_NONE;
 
     if (CommSys_CurNetId() == event->netID) {
-        ov23_022535EC();
+        UndergroundRecords_ForceExitTrainerCase();
         UndergroundTalk_ExitConversation();
         ov23_0224321C();
         UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), FALSE);
@@ -2339,7 +2339,7 @@ void SecretBases_ProcessGoodInteractionEvent(int unused0, int unused1, void *dat
     UndergroundRecord *undergroundRecord = SecretBase_GetUndergroundRecord(secretBase);
 
     if (event->netID == CommSys_CurNetId()) {
-        ov23_02253A00(undergroundRecord, event->bankEntry);
+        UndergroundRecords_PrintEntryForDecoration(undergroundRecord, event->bankEntry);
     }
 }
 
@@ -2641,7 +2641,7 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
         return FALSE;
     }
 
-    ov23_022535EC();
+    UndergroundRecords_ForceExitTrainerCase();
     UndergroundTalk_ExitConversation();
     ov23_0224321C();
     UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), FALSE);

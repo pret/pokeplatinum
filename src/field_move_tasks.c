@@ -7,7 +7,7 @@
 #include "constants/field/map_load.h"
 #include "generated/badges.h"
 #include "generated/journal_location_events.h"
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020708E0.h"

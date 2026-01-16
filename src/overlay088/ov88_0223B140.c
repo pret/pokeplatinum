@@ -1632,7 +1632,7 @@ void ov88_0223D098(int param0, Party *param1, int param2)
 
 static void ov88_0223D0C0(SaveData *saveData)
 {
-    u8 *v0 = sub_0202D79C(saveData);
+    u8 *v0 = SaveData_GetRibbons(saveData);
     int v1;
 
     CommSys_SendData(32, v0, 14);
@@ -1725,7 +1725,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->options;
-    param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->saveData);
+    param0->unk_0C.specialRibbons = SaveData_GetRibbons(param0->unk_08->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 

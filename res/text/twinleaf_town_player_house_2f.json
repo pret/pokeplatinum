@@ -2,7 +2,7 @@
   "key": 9234,
   "messages": [
     {
-      "id": "pl_msg_00000558_00000",
+      "id": "TwinleafTownPlayerHouse2F_Text_ThatConcludesOurSpecialProgram",
       "en_US": [
         "That concludes our special program,\n",
         "“Let’s Ask Prof. Rowan!”\r",
@@ -11,32 +11,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000558_00001",
+      "id": "TwinleafTownPlayerHouse2F_Text_SeeYouNextWeek",
       "en_US": [
         "See you next week, same time,\n",
         "same channel!"
       ]
     },
     {
-      "id": "pl_msg_00000558_00002",
+      "id": "TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift",
       "en_US": "Mom bought this TV as a gift."
     },
     {
-      "id": "pl_msg_00000558_00003",
+      "id": "TwinleafTownPlayerHouse2F_Text_TheXButtonOpensTheMenu",
       "en_US": [
         "The X Button\n",
         "opens the menu!"
       ]
     },
     {
-      "id": "pl_msg_00000558_00004",
+      "id": "TwinleafTownPlayerHouse2F_Text_ItsAWii",
       "en_US": [
         "It’s a Wii!\n",
         "It’s controlled by a Wii Remote!"
       ]
     },
     {
-      "id": "pl_msg_00000558_00005",
+      "id": "TwinleafTownPlayerHouse2F_Text_PCPokemonBasics",
       "en_US": [
         "{STRVAR_1 3, 0, 0} checked the PC.\r",
         "Pokémon Basics...\r",
@@ -47,11 +47,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000558_00006",
+      "id": "TwinleafTownPlayerHouse2F_Text_ThereYouAre",
       "en_US": "{STRVAR_1 3, 0, 0}: There you are!\r"
     },
     {
-      "id": "pl_msg_00000558_00007",
+      "id": "TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGiveUsPokemon",
       "en_US": [
         "Hey, {STRVAR_1 3, 1, 0}!\n",
         "Did you just see the TV? Sure you did!\r",
@@ -64,21 +64,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000558_00008",
+      "id": "TwinleafTownPlayerHouse2F_Text_IsThisANewPC",
       "en_US": [
         "Oh, hey!\n",
         "Is this a new PC?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000558_00009",
+      "id": "TwinleafTownPlayerHouse2F_Text_WhereWasI",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Uh...\n",
         "Where was I?\r"
       ]
     },
     {
-      "id": "pl_msg_00000558_00010",
+      "id": "TwinleafTownPlayerHouse2F_Text_WereGoingToSeeProfRowanAndGetPokemon",
       "en_US": [
         "Oh, right, right! We’re going to go see\n",
         "Prof. Rowan and get some Pokémon.\r",

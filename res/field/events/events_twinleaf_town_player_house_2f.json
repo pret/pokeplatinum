@@ -43,11 +43,11 @@
     ],
     "object_events": [
         {
-            "id": "TWINLEAF_TOWN_PLAYER_HOUSE_2F_BARRY_0",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0173",
+            "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -74,7 +74,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40A5",
+            "var": "VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE",
             "value": 0
         },
         {
@@ -84,7 +84,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40A5",
+            "var": "VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE",
             "value": 0
         },
         {
@@ -94,7 +94,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40A5",
+            "var": "VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE",
             "value": 0
         },
         {
@@ -104,7 +104,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40A5",
+            "var": "VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE",
             "value": 0
         }
     ]

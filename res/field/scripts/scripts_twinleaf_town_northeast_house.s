@@ -2,26 +2,26 @@
 #include "res/text/bank/twinleaf_town_northeast_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry TwinleafTownNortheastHouse_Guitarist
     ScriptEntryEnd
 
-_0006:
+TwinleafTownNortheastHouse_Guitarist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x4095, 1, _002F
-    GoTo _0021
+    GoToIfGe VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1, TwinleafTownNortheastHouse_IWentOnAnAdventureALongTimeAgo
+    GoTo TwinleafTownNortheastHouse_YoureOffToHangWithRivalAgainRight
 
-_0021:
+TwinleafTownNortheastHouse_YoureOffToHangWithRivalAgainRight:
     BufferRivalName 0
-    Message 0
+    Message TwinleafTownNortheastHouse_Text_YoureOffToHangWithRivalAgainRight
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_002F:
-    Message 1
+TwinleafTownNortheastHouse_IWentOnAnAdventureALongTimeAgo:
+    Message TwinleafTownNortheastHouse_Text_IWentOnAnAdventureALongTimeAgo
     WaitABXPadPress
     CloseMessage
     ReleaseAll

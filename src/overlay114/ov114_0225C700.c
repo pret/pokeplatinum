@@ -1508,7 +1508,7 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
     int v2;
     u8 v3;
 
-    sub_020959F4(1);
+    SetLockTextWithAutoScroll(TRUE);
     LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_MAIN_2, 1, 13, v0, heapID);
     LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_SUB_0, 1, 13, v0, heapID);
 
@@ -1540,7 +1540,7 @@ static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0)
         Window_Remove(&param0->unk_00[v0]);
     }
 
-    sub_02095A24();
+    LockTextSpeed();
 }
 
 static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225D084 *param1, u32 param2, u32 param3)

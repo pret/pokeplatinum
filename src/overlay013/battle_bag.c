@@ -12,13 +12,17 @@
 #include "overlay013/battle_bag_sprites.h"
 #include "overlay013/battle_bag_text.h"
 #include "overlay013/battle_bag_utils.h"
+#include "overlay013/battle_sub_menu_cursor.h"
 
+#include "bag.h"
+#include "bg_window.h"
 #include "font.h"
 #include "font_special_chars.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "item.h"
+#include "message.h"
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
@@ -26,6 +30,9 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "sound_playback.h"
+#include "sprite_system.h"
+#include "string_gf.h"
+#include "string_template.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
@@ -128,10 +135,9 @@ void BattleBagTask_Start(BattleBagContext *context)
     battleBagTask->palette = BattleSystem_PaletteSys(context->battleSystem);
     battleBagTask->currentState = TASK_STATE_INITIALIZE;
 
-    u8 i;
     BagCursor *cursor = BattleSystem_BagCursor(context->battleSystem);
 
-    for (i = 0; i < BATTLE_POCKET_MAX; i++) {
+    for (u8 i = 0; i < BATTLE_POCKET_MAX; i++) {
         BagCursor_GetBattleCategoryPosition(cursor, i, &battleBagTask->context->pocketCurrentPagePositions[i], &battleBagTask->context->pocketCurrentPages[i]);
     }
 
@@ -555,10 +561,9 @@ static BOOL BattleBagTask_FinishTask(SysTask *task, BattleBag *battleBag)
     Font_Free(FONT_SUBSCREEN);
 
     if (battleBag->context->selectedBattleBagItem != ITEM_NONE) {
-        u8 i;
         BagCursor *cursor = BattleSystem_BagCursor(battleBag->context->battleSystem);
 
-        for (i = 0; i < BATTLE_POCKET_MAX; i++) {
+        for (u8 i = 0; i < BATTLE_POCKET_MAX; i++) {
             BagCursor_SetBattleCategoryPosition(cursor, i, battleBag->context->pocketCurrentPagePositions[i], battleBag->context->pocketCurrentPages[i]);
         }
 
@@ -740,7 +745,7 @@ static void LoadGraphicsData(BattleBag *battleBag)
 static void InitializeMessageLoader(BattleBag *battleBagTask)
 {
     battleBagTask->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_BAG, battleBagTask->context->heapID);
-    battleBagTask->unk_0C = FontSpecialChars_Init(15, 14, 0, battleBagTask->context->heapID);
+    battleBagTask->unused1 = FontSpecialChars_Init(15, 14, 0, battleBagTask->context->heapID);
     battleBagTask->stringTemplate = StringTemplate_Default(battleBagTask->context->heapID);
     battleBagTask->string = String_Init(512, battleBagTask->context->heapID);
 }
@@ -748,7 +753,7 @@ static void InitializeMessageLoader(BattleBag *battleBagTask)
 static void CleanupMessageLoader(BattleBag *battleBag)
 {
     MessageLoader_Free(battleBag->messageLoader);
-    FontSpecialChars_Free(battleBag->unk_0C);
+    FontSpecialChars_Free(battleBag->unused1);
     StringTemplate_Free(battleBag->stringTemplate);
     String_Free(battleBag->string);
 }

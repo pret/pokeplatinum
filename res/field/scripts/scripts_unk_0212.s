@@ -16,7 +16,7 @@
     ScriptEntry _0E74
     ScriptEntry _0E74
     ScriptEntry _0E74
-    ScriptEntry _1399
+    ScriptEntry ContestRegistration_LinkContestRecordsDisplay
     ScriptEntryEnd
 
 _0036:
@@ -642,7 +642,7 @@ _0947:
     FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_CONTEST_HALL_STAGE_ONGOING_CONTEST, 0, 29, 7, 0
-    ScrCmd_117
+    LockAutoScrollForLinkContests
     ScrCmd_10C VAR_MAP_LOCAL_3
     ScrCmd_113
     FadeScreenIn
@@ -711,7 +711,7 @@ _0947:
     ScrCmd_114
     ScrCmd_2B1
     ScrCmd_101
-    ScrCmd_117
+    LockAutoScrollForLinkContests
     ScrCmd_110 VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     ScrCmd_10C VAR_MAP_LOCAL_3
     Call _0D3A
@@ -1319,10 +1319,10 @@ _1393:
     ReleaseAll
     End
 
-_1399:
+ContestRegistration_LinkContestRecordsDisplay:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_116
+    ShowLinkContestRecords
     ReleaseAll
     End
 

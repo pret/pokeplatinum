@@ -172,13 +172,13 @@ typedef struct BattlePartyPokemon {
 
 typedef struct BattlePartyContext {
     Party *party;
-    void *unk_04;
+    void *unused1;
     BattleSystem *battleSystem;
     enum HeapID heapID;
-    u8 unk_10;
+    u8 unused2;
     u8 selectedPartyIndex;
     u8 doubleBattleFirstSelectedPartySlot;
-    u8 unk_13;
+    u8 unused3;
     u8 playerPokemonPartySlot;
     u8 partnerPokemonPartySlot;
     u32 embargoRemainingTurns[2];
@@ -218,14 +218,14 @@ typedef struct BattleParty {
     u8 pressedButtonState;
     u8 unused1;
     u8 pressedButton;
-    u8 unk_1F9F_0 : 4;
+    u8 unused2 : 4;
     u8 useAltButtons : 3;
     u8 isAButtonPressed : 1;
-    FontSpecialCharsContext *unk_1FA0;
+    FontSpecialCharsContext *unused3;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     String *string;
-    SpriteManager *spriteMan;
+    SpriteManager *spriteManager;
     ManagedSprite *sprites[NUM_BATTLE_PARTY_SPRITES];
     Window messageBoxWindows[NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS];
     Window *windows;
@@ -239,7 +239,6 @@ typedef struct BattleParty {
     u8 currentScreen;
     u8 textPrinterID;
     u8 useItemState;
-    u8 unk_2079;
     u16 selectedPokemonCurrentHP;
     u16 selectedPokemonCurrentMovePPs[LEARNED_MOVES_MAX];
     BattleSubMenuCursor *cursor;

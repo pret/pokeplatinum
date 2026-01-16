@@ -21,6 +21,7 @@
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
+#include "generated/object_events_gfx.h"
 #include "generated/poketch_apps.h"
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
@@ -28,6 +29,7 @@
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/string_padding_mode.h"
+#include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/animation_tags.h"
@@ -1643,11 +1645,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_116
+    .macro ShowLinkContestRecords
     .short 278
     .endm
 
-    .macro ScrCmd_117
+    .macro LockAutoScrollForLinkContests
     .short 279
     .endm
 
