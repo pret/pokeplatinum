@@ -13,6 +13,7 @@
 #include "overlay013/battle_party_buttons.h"
 #include "overlay013/battle_party_sprites.h"
 #include "overlay013/battle_party_text.h"
+#include "overlay013/battle_sub_menu_cursor.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -138,13 +139,13 @@ static enum BattlePokemonSummaryScreenButton CheckPokemonSummaryScreenButtonsPre
 static enum BattleMoveSummaryScreenButton CheckMoveSummaryScreenButtonsPressed(BattleParty *battleParty);
 static enum BattlePokemonMovesScreenButton CheckPokemonMovesScreenButtonsPressed(BattleParty *battleParty);
 static int CheckTouchRectIsPressed(BattleParty *battleParty, const TouchScreenRect *rect);
-static void ChangeBattlePartyScreen(BattleParty *battleParty, u8 screen);
+static void ChangeBattlePartyScreen(BattleParty *battleParty, enum BattlePartyScreen screen);
 static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScreen screen);
 static BOOL CheckCanSwitchPokemon(BattleParty *battleParty);
 static u8 UpdateSelectedPartyIndex(BattleParty *battleParty, s32 selectedPartyIndex, s32 indexChange);
-static void DrawXPBar(BattleParty *battleParty, u8 screen);
+static void DrawXPBar(BattleParty *battleParty, enum BattlePartyScreen screen);
 static void DrawXPBarSegment(BattleParty *battleParty, u16 fillVal, u16 x, u16 y);
-static void DrawMoveContestStats(BattleParty *battleParty, u8 screen);
+static void DrawMoveContestStats(BattleParty *battleParty, enum BattlePartyScreen screen);
 static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty);
 static void ClearMoveStats(BattleParty *battleParty);
 static void ClearMoveContestStats(BattleParty *battleParty);
@@ -248,7 +249,7 @@ void BattlePartyTask_Start(BattlePartyContext *context)
 
 static void BattlePartyTask_Tick(SysTask *task, void *taskParam)
 {
-    BattleParty *battleParty = (BattleParty *)taskParam;
+    BattleParty *battleParty = taskParam;
 
     switch (battleParty->currentState) {
     case TASK_STATE_INITIALIZE:
@@ -337,7 +338,7 @@ static void BattlePartyTask_Tick(SysTask *task, void *taskParam)
     }
 
     BattlePartySprites_TickPartyPokemonSpriteAnimations(battleParty);
-    SpriteSystem_DrawSprites(battleParty->spriteMan);
+    SpriteSystem_DrawSprites(battleParty->spriteManager);
     BattlePartyButtons_Tick(battleParty);
 }
 
@@ -986,13 +987,12 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
 static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
 {
     BattlePartyContext *context = battleParty->context;
-    u32 i;
 
     switch (battleParty->useItemState) {
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_INTIALISING:
         battleParty->partyPokemon[context->selectedPartyIndex].pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (u32 i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (battleParty->partyPokemon[context->selectedPartyIndex].moves[i].move == MOVE_NONE) {
                 continue;
             }
@@ -1007,7 +1007,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_RESTORING_PP: {
         u32 restoredMoves = 0;
 
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        for (u32 i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (battleParty->partyPokemon[context->selectedPartyIndex].moves[i].move == MOVE_NONE) {
                 restoredMoves++;
                 continue;
@@ -1214,7 +1214,7 @@ static void LoadGraphicsData(BattleParty *battleParty)
 static void InitializeMessageLoader(BattleParty *battleParty)
 {
     battleParty->messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_PARTY, battleParty->context->heapID);
-    battleParty->unk_1FA0 = FontSpecialChars_Init(15, 14, 0, battleParty->context->heapID);
+    battleParty->unused3 = FontSpecialChars_Init(15, 14, 0, battleParty->context->heapID);
     battleParty->stringTemplate = StringTemplate_Default(battleParty->context->heapID);
     battleParty->string = String_Init(512, battleParty->context->heapID);
 }
@@ -1222,16 +1222,14 @@ static void InitializeMessageLoader(BattleParty *battleParty)
 static void CleanupMessageLoader(BattleParty *battleParty)
 {
     MessageLoader_Free(battleParty->messageLoader);
-    FontSpecialChars_Free(battleParty->unk_1FA0);
+    FontSpecialChars_Free(battleParty->unused3);
     StringTemplate_Free(battleParty->stringTemplate);
     String_Free(battleParty->string);
 }
 
 static void InitialisePartyPokemon(BattleParty *battleParty)
 {
-    u16 i, l;
-
-    for (i = 0; i < Party_GetCurrentCount(battleParty->context->party); i++) {
+    for (u16 i = 0; i < Party_GetCurrentCount(battleParty->context->party); i++) {
         battleParty->partyPokemon[i].pokemon = Party_GetPokemonBySlotIndex(battleParty->context->party, i);
         battleParty->partyPokemon[i].species = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_SPECIES, NULL);
 
@@ -1278,7 +1276,7 @@ static void InitialisePartyPokemon(BattleParty *battleParty)
         battleParty->partyPokemon[i].mail = (u16)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_BALL_CAPSULE_ID, NULL);
         battleParty->partyPokemon[i].form = (u8)Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_FORM, NULL);
 
-        for (l = 0; l < LEARNED_MOVES_MAX; l++) {
+        for (u16 l = 0; l < LEARNED_MOVES_MAX; l++) {
             BattlePartyPokemonMove *move = &battleParty->partyPokemon[i].moves[l];
 
             move->move = Pokemon_GetValue(battleParty->partyPokemon[i].pokemon, MON_DATA_MOVE1 + l, NULL);
@@ -1478,7 +1476,7 @@ static u8 UpdateSelectedPartyIndex(BattleParty *battleParty, s32 selectedPartyIn
     return NO_PARTY_INDEX_CHANGE;
 }
 
-static void DrawXPBar(BattleParty *battleParty, u8 screen)
+static void DrawXPBar(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
     BattlePartyPokemon *pokemon;
     u32 expFromCurrentToNextLevel;
@@ -1542,10 +1540,9 @@ static void DrawEmptyAppealPts(BattleParty *battleParty)
     }
 }
 
-static void DrawMoveContestStats(BattleParty *battleParty, u8 screen)
+static void DrawMoveContestStats(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
     enum ContestEffects contestEffect;
-    u16 i;
     u16 selectedMove;
     s8 appealPts;
 
@@ -1566,14 +1563,14 @@ static void DrawMoveContestStats(BattleParty *battleParty, u8 screen)
     contestEffect = MoveTable_LoadParam(selectedMove, MOVEATTRIBUTE_CONTEST_EFFECT);
     appealPts = sub_02095734(contestEffect) / POINTS_PER_APPEAL_HEART;
 
-    for (i = 0; i < appealPts; i++) {
+    for (u16 i = 0; i < appealPts; i++) {
         DrawAppealPt(battleParty, 320, i);
     }
 
     Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_3);
 }
 
-static void ChangeBattlePartyScreen(BattleParty *battleParty, u8 screen)
+static void ChangeBattlePartyScreen(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
     DrawScreenBackground(battleParty, screen);
 
@@ -1608,11 +1605,9 @@ static const u32 ScreenBackgroundDataMemberIndexes[][2] = {
 
 static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScreen screen)
 {
-    NNSG2dScreenData *screenData;
-    void *buffer;
-
     for (u32 i = 0; i < 2; i++) {
-        buffer = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, ScreenBackgroundDataMemberIndexes[screen][i], battleParty->context->heapID);
+        void *buffer = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, ScreenBackgroundDataMemberIndexes[screen][i], battleParty->context->heapID);
+        NNSG2dScreenData *screenData;
         NNS_G2dGetUnpackedScreenData(buffer, &screenData);
         Bg_LoadToTilemapRect(battleParty->background, BG_LAYER_SUB_2 + i, (u16 *)screenData->rawData, 0, 0, 32, 24);
         Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_2 + i);
@@ -1622,11 +1617,10 @@ static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScree
 
 static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
 {
-    String *string;
     BattlePartyPokemon *pokemon = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex];
 
     if (BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(battleParty, battleParty->context->selectedPartyIndex) == TRUE) {
-        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPartnersPokemon);
+        String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPartnersPokemon);
 
         int trainerSlot = BattleSystem_Partner(battleParty->context->battleSystem, battleParty->context->battler);
         StringTemplate_SetTrainerNameBattle(battleParty->stringTemplate, 0, BattleSystem_GetTrainer(battleParty->context->battleSystem, trainerSlot));
@@ -1636,7 +1630,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
     }
 
     if (pokemon->curHP == 0) {
-        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithFaintedPokemon);
+        String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithFaintedPokemon);
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
@@ -1644,7 +1638,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
     }
 
     if (battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->playerPokemonPartySlot || battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->partnerPokemonPartySlot) {
-        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPokemonAlreadyInBattle);
+        String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPokemonAlreadyInBattle);
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
@@ -1658,7 +1652,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
 
     if (battleParty->context->doubleBattleFirstSelectedPartySlot != NO_SELECTION_PARTY_SLOT && battleParty->context->pokemonPartySlots[battleParty->context->selectedPartyIndex] == battleParty->context->doubleBattleFirstSelectedPartySlot) {
         pokemon = &battleParty->partyPokemon[battleParty->context->selectedPartyIndex];
-        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithAlreadySelectedPokemon);
+        String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithAlreadySelectedPokemon);
 
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
@@ -1668,7 +1662,7 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
 
     if (battleParty->context->moveToLearn != MOVE_NONE) {
         pokemon = &battleParty->partyPokemon[battleParty->partySlotLearningMove];
-        string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchPokemon);
+        String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchPokemon);
 
         StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
