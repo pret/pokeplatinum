@@ -653,7 +653,7 @@ pokeplatinum_c = files(
     'overlay023/underground_menu.c',
     'overlay023/underground_pc.c',
     'overlay023/ov23_022521F0.c',
-    'overlay023/ov23_02253598.c',
+    'overlay023/underground_records.c',
     'overlay023/underground_text_printer.c',
     'overlay023/ov23_0225426C.c',
     'overlay023/ov23_0225429C.c',

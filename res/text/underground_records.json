@@ -2,135 +2,135 @@
   "key": 45992,
   "messages": [
     {
-      "id": "pl_msg_00000640_00000",
+      "id": "UndergroundRecords_Text_Name",
       "en_US": "NAME"
     },
     {
-      "id": "pl_msg_00000640_00001",
+      "id": "UndergroundRecords_Text_BaseFlag",
       "en_US": "BASE FLAG"
     },
     {
-      "id": "pl_msg_00000640_00002",
+      "id": "UndergroundRecords_Text_ID",
       "en_US": "ID"
     },
     {
-      "id": "pl_msg_00000640_00003",
+      "id": "UndergroundRecords_Text_Colon_Unused",
       "en_US": ":"
     },
     {
-      "id": "pl_msg_00000640_00004",
+      "id": "UndergroundRecords_Text_NameTemplate",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
-      "id": "pl_msg_00000640_00005",
+      "id": "UndergroundRecords_Text_IDTemplate",
       "en_US": "{STRVAR_1 54, 6, 0}"
     },
     {
-      "id": "pl_msg_00000640_00006",
+      "id": "UndergroundRecords_Text_Score",
       "en_US": "SCORE"
     },
     {
-      "id": "pl_msg_00000640_00007",
+      "id": "UndergroundRecords_Text_PeopleMet",
       "en_US": "No. of people met:"
     },
     {
-      "id": "pl_msg_00000640_00008",
+      "id": "UndergroundRecords_Text_GiftsGiven",
       "en_US": "No. of gifts given:"
     },
     {
-      "id": "pl_msg_00000640_00009",
+      "id": "UndergroundRecords_Text_FlagsObtained",
       "en_US": "No. of Flags obtained:"
     },
     {
-      "id": "pl_msg_00000640_00010",
+      "id": "UndergroundRecords_Text_SpheresDug",
       "en_US": "No. of Spheres dug:"
     },
     {
-      "id": "pl_msg_00000640_00011",
+      "id": "UndergroundRecords_Text_FossilsDug",
       "en_US": "No. of Fossils dug:"
     },
     {
-      "id": "pl_msg_00000640_00012",
+      "id": "UndergroundRecords_Text_TrapHits",
       "en_US": "No. of Trap hits:"
     },
     {
-      "id": "pl_msg_00000640_00013",
+      "id": "UndergroundRecords_Text_EntryTemplate",
       "en_US": "{STRVAR_1 57, 6, 0}"
     },
     {
-      "id": "pl_msg_00000640_00014",
+      "id": "UndergroundRecords_Text_Dummy_00014",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000640_00015",
+      "id": "UndergroundRecords_Text_Dummy_00015",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000640_00016",
+      "id": "UndergroundRecords_Text_Dummy_00016",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000640_00017",
+      "id": "UndergroundRecords_Text_Dummy_00017",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000640_00018",
+      "id": "UndergroundRecords_Text_Dummy_00018",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000640_00019",
+      "id": "UndergroundRecords_Text_Dummy_00019",
       "garbage": 1
     },
     {
-      "id": "pl_msg_00000640_00020",
+      "id": "UndergroundRecords_Text_NormalFlag",
       "en_US": "Normal Flag"
     },
     {
-      "id": "pl_msg_00000640_00021",
+      "id": "UndergroundRecords_Text_BronzeFlag",
       "en_US": "Bronze Flag"
     },
     {
-      "id": "pl_msg_00000640_00022",
+      "id": "UndergroundRecords_Text_SilverFlag",
       "en_US": "Silver Flag"
     },
     {
-      "id": "pl_msg_00000640_00023",
+      "id": "UndergroundRecords_Text_GoldFlag",
       "en_US": "Gold Flag"
     },
     {
-      "id": "pl_msg_00000640_00024",
+      "id": "UndergroundRecords_Text_PlatinumFlag",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00025",
+      "id": "UndergroundRecords_Text_PlatinumFlag2_Unused",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00026",
+      "id": "UndergroundRecords_Text_PlatinumFlag3_Unused",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00027",
+      "id": "UndergroundRecords_Text_PlatinumFlag4_Unused",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00028",
+      "id": "UndergroundRecords_Text_PlatinumFlag5_Unused",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00029",
+      "id": "UndergroundRecords_Text_PlatinumFlag6_Unused",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00030",
+      "id": "UndergroundRecords_Text_PlatinumFlag7_Unused",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00031",
+      "id": "UndergroundRecords_Text_PlatinumFlag8_Unused",
       "en_US": "Platinum Flag"
     },
     {
-      "id": "pl_msg_00000640_00032",
+      "id": "UndergroundRecords_Text_SomethingWrittenTotalScore",
       "en_US": [
         "There’s something written here...\r",
         "The total score so far:\n",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00033",
+      "id": "UndergroundRecords_Text_SomethingWrittenPeopleMet",
       "en_US": [
         "There’s something written here...\r",
         "Number of people met\n",
@@ -146,7 +146,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00034",
+      "id": "UndergroundRecords_Text_SomethingWrittenGiftsGiven",
       "en_US": [
         "There’s something written here...\r",
         "Number of goods given away as\n",
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00035",
+      "id": "UndergroundRecords_Text_SomethingWrittenFlagsObtained",
       "en_US": [
         "There’s something written here...\r",
         "Number of Secret Base Flags\n",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00036",
+      "id": "UndergroundRecords_Text_SomethingWrittenSpheresDug",
       "en_US": [
         "There’s something written here...\r",
         "Number of Spheres dug so far:\n",
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00037",
+      "id": "UndergroundRecords_Text_SomethingWrittenFossilsDug",
       "en_US": [
         "There’s something written here...\r",
         "Number of Fossils dug so far:\n",
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00038",
+      "id": "UndergroundRecords_Text_SomethingWrittenTrapHits",
       "en_US": [
         "There’s something written here...\r",
         "Number of times other people\n",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00039",
+      "id": "UndergroundRecords_Text_SomethingWrittenTrapsHit",
       "en_US": [
         "There’s something written here...\r",
         "Number of times I triggered\n",
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00040",
+      "id": "UndergroundRecords_Text_SomethingWrittenOthersHelped",
       "en_US": [
         "There’s something written here...\r",
         "Number of times others were helped\n",
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00041",
+      "id": "UndergroundRecords_Text_SomethingWrittenGiftsReceived",
       "en_US": [
         "There’s something written here...\r",
         "Number of gifts received while\n",
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00042",
+      "id": "UndergroundRecords_Text_SomethingWrittenOwnFlagsTaken",
       "en_US": [
         "There’s something written here...\r",
         "Number of times my own Flag was\n",
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00043",
+      "id": "UndergroundRecords_Text_SomethingWrittenRecoveredFlags",
       "en_US": [
         "There’s something written here...\r",
         "Number of recovered Flags:\n",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00044",
+      "id": "UndergroundRecords_Text_SomethingWrittenTimesBaseMoved",
       "en_US": [
         "There’s something written here...\r",
         "Number of times the Secret Base\n",
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000640_00045",
+      "id": "UndergroundRecords_Text_SomethingWrittenFlagsRegistered",
       "en_US": [
         "There’s something written here...\r",
         "Number of captured Flags registered\n",

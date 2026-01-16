@@ -7,11 +7,11 @@
 
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02253598.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_pc.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_talk.h"
+#include "overlay023/underground_records.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_traps.h"
 
@@ -105,8 +105,8 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundTalkResponse_ReceiveGiftOffer, CommPacketSizeOf_Gift, NULL },
     { UndergroundTalk_SendTalkMessageServer, CommPacketSizeOf_TalkMessage, NULL },
     { UndergroundTalk_ReceiveTalkMessage, CommPacketSizeOf_TalkMessage, NULL },
-    { ov23_SendRecordServer, CommPacketSizeOf_Variable, NULL },
-    { ov23_ReceiveRecord, CommPacketSizeOf_Variable, NULL },
+    { UndergroundRecords_SendRecordServer, CommPacketSizeOf_Variable, NULL },
+    { UndergroundRecords_ProcessLinkRecord, CommPacketSizeOf_Variable, NULL },
     { UndergroundPC_ProcessPCInteraction, CommPacketSizeOf_PCInteraction, NULL }, // 83
     { UndergroundPlayer_ProcessFlagEventType, CommPacketSizeOf_NetId, NULL },
     { UndergroundPlayer_ProcessFlagEvent, CommPacketSizeOf_FlagEvent, NULL },
