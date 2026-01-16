@@ -1,4 +1,4 @@
-#include "generated/accessories.h"
+#include "constants/accessories.h"
 #include "generated/badges.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/battle_tower_functions.h"
@@ -1791,9 +1791,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_130 arg0
+    .macro SetDressUpPhotoTitle word
     .short 304
-    .short \arg0
+    .short \word
     .endm
 
     .macro ScrCmd_131
@@ -3745,10 +3745,11 @@
     .short \slot
     .endm
 
-    .macro ScrCmd_Unused_279 arg0, arg1
+    /* Unused */
+    .macro ScrCmd_RemoveAccessory accessoryID, amount
     .short 633
-    .short \arg0
-    .short \arg1
+    .short \accessoryID
+    .short \amount
     .endm
 
     .macro ScrCmd_27A
@@ -4329,8 +4330,8 @@
     .short \destBerryAndAccessoryManOptionID
     .endm
 
-    .macro GoToIfAmitySquareManGiftIsNotAccesory giftID, offset
-    .short 736 /* CheckAmitySquareManGiftIsAccesory */
+    .macro GoToIfAmitySquareManGiftIsNotAccessory giftID, offset
+    .short 736 /* CheckAmitySquareManGiftIsAccessory */
     .short \giftID
     .short VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, \offset

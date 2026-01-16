@@ -5,8 +5,8 @@
 
 #include "constants/graphics.h"
 
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029C88_decl.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02041DC8.h"
 
 #include "overlay022/ov22_02255094.h"
@@ -34,7 +34,7 @@
 #include "unk_02094EDC.h"
 
 typedef struct {
-    const UnkStruct_02029C68 *unk_00;
+    const DressUpPhoto *photo;
     const UnkStruct_02029C88 *unk_04;
     u32 unk_08;
     u32 unk_0C;
@@ -72,9 +72,9 @@ int ov22_0225B660(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Args(appMan);
 
     if (v1->unk_08 == 0) {
-        v0->unk_00 = sub_02029CA8(v1->unk_00, v1->unk_04);
+        v0->photo = ImageClips_GetDressUpPhoto(v1->imageClips, v1->unk_04);
     } else {
-        v0->unk_04 = sub_02029CD0(v1->unk_00, v1->unk_04);
+        v0->unk_04 = sub_02029CD0(v1->imageClips, v1->unk_04);
     }
 
     v0->unk_08 = v1->unk_04;
@@ -94,7 +94,7 @@ int ov22_0225B660(ApplicationManager *appMan, int *param1)
         v2.heapID = HEAP_ID_14;
 
         if (v0->unk_0C == 0) {
-            v0->unk_10 = ov22_0225AF8C(&v2, v0->unk_00);
+            v0->unk_10 = ov22_0225AF8C(&v2, v0->photo);
         } else {
             v0->unk_10 = ov22_0225AFB0(&v2, v0->unk_04);
         }
@@ -272,7 +272,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     VecFx32 v0;
     int v1, v2;
     int v3;
-    u16 v4;
+    u16 word;
     StringTemplate *v5;
     String *v6;
     String *v7;
@@ -287,7 +287,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     Sprite_SetPosition(param0->unk_1FC, &v0);
 
     v7 = String_Init(12, HEAP_ID_13);
-    sub_0202A1A0(param0->unk_00, v7);
+    DressUpPhoto_SetTrainerName(param0->photo, v7);
 
     v3 = Font_CalcStringWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
@@ -296,8 +296,8 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
     String_Free(v7);
 
-    v4 = sub_0202A1F4(param0->unk_00);
-    StringTemplate_SetCustomMessageWord(v5, 0, v4);
+    word = DressUpPhoto_GetTitleWord(param0->photo);
+    StringTemplate_SetCustomMessageWord(v5, 0, word);
 
     v7 = String_Init(200, HEAP_ID_13);
     v6 = MessageLoader_GetNewString(v8, 45);

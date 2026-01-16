@@ -755,7 +755,7 @@ static int ov17_0223BDCC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BCE
         if (sub_0209590C(param0->unk_00) == 1) {
             param0->unk_304.unk_C6.unk_0C = 45;
         } else {
-            param0->unk_304.unk_C6.unk_0C = ov17_02243944(param0->unk_00->unk_00.unk_10F);
+            param0->unk_304.unk_C6.unk_0C = ov17_02243944(param0->unk_00->unk_00.contestType);
         }
 
         param0->unk_304.unk_C6.unk_0E = 0;

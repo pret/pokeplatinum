@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02095C48_SUB1_H
 #define POKEPLATINUM_STRUCT_02095C48_SUB1_H
 
-#include "struct_decls/struct_02029C88_decl.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48_sub1_sub1.h"
 
@@ -23,8 +23,8 @@ typedef struct {
     u8 unk_10C;
     u8 unk_10D;
     u8 unk_10E;
-    u8 unk_10F;
-    u8 unk_110;
+    u8 contestType;
+    u8 contestRank;
     u8 unk_111;
     u8 unk_112;
     u8 unk_113;

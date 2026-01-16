@@ -19,7 +19,7 @@ int ov22_022591E0(UnkStruct_020298D8 *param0);
 void ov22_022591EC(UnkStruct_020298D8 *param0, int param1, int param2);
 BOOL ov22_02259238(UnkStruct_020298D8 *param0);
 BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2);
-void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2);
+void ov22_02259250(UnkStruct_020298D8 *param0, int *xCenter, int *yCenter);
 void ov22_02259270(UnkStruct_020298D8 *param0, int *param1, int *param2);
 BOOL ov22_02259278(UnkStruct_020298D8 *param0, int *param1, int *param2, NNSG2dCharacterData *param3);
 BOOL ov22_022592F0(UnkStruct_020298D8 *param0, int param1, int param2, NNSG2dCharacterData *param3);

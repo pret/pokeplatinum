@@ -8,13 +8,12 @@
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/clear_game_player_info.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/gts_player_data.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
@@ -822,9 +821,9 @@ static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, 
     UnkStruct_0203DA00 *v0;
     Pokemon *v1;
     int v2;
-    UnkStruct_0202A750 *v3;
-    UnkStruct_02029C68 *v4;
-    UnkStruct_02029D04 *v5;
+    ImageClips *imageClips;
+    DressUpPhoto *photo;
+    FashionCase *fashionCase;
 
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
     memset(v0, 0, sizeof(UnkStruct_0203DA00));
@@ -832,12 +831,12 @@ static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, 
 
     v0->unk_00 = v1;
 
-    v3 = sub_0202A750(saveData);
-    v4 = sub_02029CA8(v3, 0);
-    v5 = sub_02029D04(v3);
+    imageClips = SaveData_GetImageClips(saveData);
+    photo = ImageClips_GetDressUpPhoto(imageClips, 0);
+    fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    v0->unk_04 = v4;
-    v0->unk_08 = v5;
+    v0->photo = photo;
+    v0->fashionCase = fashionCase;
     v0->options = SaveData_GetOptions(saveData);
     v0->records = SaveData_GetGameRecords(saveData);
     v0->unk_14 = SaveData_GetTrainerInfo(saveData);

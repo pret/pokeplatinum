@@ -606,7 +606,7 @@ void sub_020951B0(UnkStruct_02095C48 *param0, enum HeapID heapID)
         }
 
         sub_0202A35C(param0->unk_00.unk_E8[v0], v3->unk_52);
-        sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.unk_110);
+        sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.contestRank);
     }
 
     Heap_Free(v2);
@@ -620,7 +620,7 @@ void sub_02095338(UnkStruct_02095C48 *param0)
         sub_0202A25C(param0->unk_00.unk_E8[i]);
         sub_0202A3B0(param0->unk_00.unk_E8[i], param0->unk_00.unk_00[i], -1);
         sub_0202A35C(param0->unk_00.unk_E8[i], 0);
-        sub_0202A378(param0->unk_00.unk_E8[i], param0->unk_00.unk_110);
+        sub_0202A378(param0->unk_00.unk_E8[i], param0->unk_00.contestRank);
     }
 }
 
@@ -955,7 +955,7 @@ int sub_02095928(UnkStruct_02095C48 *param0, int param1)
     if (param0->isLinkContest == TRUE) {
         v3 = v4[CONTEST_RANK_LINK];
     } else {
-        v3 = v4[param0->unk_00.unk_110];
+        v3 = v4[param0->unk_00.contestRank];
     }
 
     for (v2 = 0; v2 < 8; v2++) {
@@ -991,7 +991,7 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
     if (param0->isLinkContest == TRUE) {
         v3 = v4[CONTEST_RANK_LINK];
     } else {
-        v3 = v4[param0->unk_00.unk_110];
+        v3 = v4[param0->unk_00.contestRank];
     }
 
     v0 = 1;
