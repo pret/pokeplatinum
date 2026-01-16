@@ -1097,8 +1097,8 @@ _0B0C:
     End
 
 _0B36:
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_A0 35, 0, 0, 0x8008
@@ -1115,8 +1115,8 @@ _0B36:
     FrontierScrCmd_14
     FrontierScrCmd_28 4, _02D8
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     Call _19E8
@@ -1137,8 +1137,8 @@ _0BBA:
     FrontierScrCmd_28 1, _02D8
     FrontierScrCmd_28 2, _02EC
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     Call _19E8
@@ -1178,8 +1178,8 @@ _0C7F:
     End
 
 _0CAD:
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     CallIfEq 0x800E, 0, _0E64
@@ -1396,8 +1396,8 @@ _1084:
     End
 
 _1098:
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 5
@@ -1471,8 +1471,8 @@ _11D0:
     End
 
 _11EC:
-    FrontierScrCmd_58 0x4C4
-    FrontierScrCmd_59
+    PlayFanfare SEQ_PL_FRO
+    WaitFanfare
     FrontierScrCmd_12
     FrontierScrCmd_28 6, _03B0
     FrontierScrCmd_29
@@ -1532,8 +1532,8 @@ _12D3:
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
     Message BattleCastleScene_Text_ReceiveBP
-    FrontierScrCmd_58 0x4C5
-    FrontierScrCmd_59
+    PlayFanfare SEQ_PL_POINTGET3
+    WaitFanfare
     GoTo _130C
     End
 
@@ -1546,8 +1546,8 @@ _1314:
     FrontierScrCmd_A0 25, 0, 0, 0x8008
     GoToIfEq 0x8008, 0, _1349
     Message BattleCastleScene_Text_RevivePokemon
-    FrontierScrCmd_55 0x624
-    FrontierScrCmd_57 0x624
+    PlaySoundEffect SEQ_SE_DP_UG_020
+    WaitSoundEffect SEQ_SE_DP_UG_020
     GoTo _1349
     End
 
@@ -1769,7 +1769,7 @@ _16C7:
     Return
 
 _1707:
-    FrontierScrCmd_55 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_7B 0
     Message BattleCastleScene_Text_BattleSaved
     Return
@@ -1847,8 +1847,8 @@ _1806:
     End
 
 _180E:
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 5
@@ -1939,8 +1939,8 @@ _195E:
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     Return
 
 _1974:

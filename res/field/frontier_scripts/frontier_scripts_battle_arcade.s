@@ -1111,8 +1111,8 @@ _06DC:
     FrontierScrCmd_28 20, _0274
     FrontierScrCmd_28 4, _0238
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 0
@@ -1127,8 +1127,8 @@ _0742:
     FrontierScrCmd_28 1, _0238
     FrontierScrCmd_28 2, _0254
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 1
@@ -1312,7 +1312,7 @@ _0A8F:
     FrontierScrCmd_28 3, _05E8
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_Welcome
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_BF 23, 0, 0, 0x8008
     CallIfEq 0x8008, 0, _0B1A
     FrontierScrCmd_BF 28, 0, 0, 0x8008
@@ -1447,7 +1447,7 @@ _0CD0:
 _0CD6:
     FrontierScrCmd_41 0, 3, 1
     FrontierScrCmd_BF 16, 0, 0, 0x8008
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 0, _0E93
     GoToIfEq 0x8010, 1, _0F5F
@@ -1502,7 +1502,7 @@ _0EC8:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _0F53
     CallIfEq 0x8006, 1, _0F59
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1541,7 +1541,7 @@ _0F5F:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _0FC8
     CallIfEq 0x8006, 1, _0FE4
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1580,7 +1580,7 @@ _100C:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _107F
     CallIfEq 0x8006, 1, _109B
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1617,7 +1617,7 @@ _10C3:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _112C
     CallIfEq 0x8006, 1, _1148
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1656,7 +1656,7 @@ _1170:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _11E3
     CallIfEq 0x8006, 1, _11FF
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1693,7 +1693,7 @@ _1227:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1290
     CallIfEq 0x8006, 1, _12AC
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1735,7 +1735,7 @@ _12D4:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1358
     CallIfEq 0x8006, 1, _135E
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1766,7 +1766,7 @@ _136D:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _13F1
     CallIfEq 0x8006, 1, _13F7
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1796,7 +1796,7 @@ _143B:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _14BC
     CallIfEq 0x8006, 1, _14C2
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1839,7 +1839,7 @@ _14FD:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _157E
     CallIfEq 0x8006, 1, _1584
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1880,7 +1880,7 @@ _158A:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _15FD
     CallIfEq 0x8006, 1, _1619
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1917,7 +1917,7 @@ _1641:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _16AA
     CallIfEq 0x8006, 1, _16C6
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1956,7 +1956,7 @@ _16EE:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1761
     CallIfEq 0x8006, 1, _177D
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -1993,7 +1993,7 @@ _17A5:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _180E
     CallIfEq 0x8006, 1, _182A
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2032,7 +2032,7 @@ _1852:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _18C5
     CallIfEq 0x8006, 1, _18E1
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2074,7 +2074,7 @@ _1909:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _198D
     CallIfEq 0x8006, 1, _1993
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2105,7 +2105,7 @@ _19A2:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1A26
     CallIfEq 0x8006, 1, _1A2C
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2137,7 +2137,7 @@ _1A70:
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1AFB
     CallIfEq 0x8006, 1, _1B01
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2171,7 +2171,7 @@ _1B07:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_SunnyCondition
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2183,7 +2183,7 @@ _1B37:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_RainCondition
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2194,7 +2194,7 @@ _1B67:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_SandyCondition
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2206,7 +2206,7 @@ _1B91:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_HailCondition
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2217,7 +2217,7 @@ _1BC1:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_FoggyCondition
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2228,7 +2228,7 @@ _1BEB:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_TrickRoomCondition
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2242,7 +2242,7 @@ _1C15:
     FrontierScrCmd_31 5, 6
     FrontierScrCmd_31 6, 3
     FrontierScrCmd_31 7, 7
-    FrontierScrCmd_55 0x5FF
+    PlaySoundEffect SEQ_SE_DP_Z_SEARCH
     FrontierScrCmd_BF 41, 0, 3, 0x8008
     FrontierScrCmd_BF 42, 0, 3, 0x8008
     FrontierScrCmd_C6 0, 3, 0
@@ -2264,7 +2264,7 @@ _1C15:
     FrontierScrCmd_C6 1, 0, 0
     WaitTime 14, 0x8008
     FrontierScrCmd_BF 25, 0, 0, 0x8008
-    FrontierScrCmd_55 0x5FF
+    PlaySoundEffect SEQ_SE_DP_Z_SEARCH
     FrontierScrCmd_BF 41, 1, 0, 0x8008
     FrontierScrCmd_BF 42, 1, 0, 0x8008
     FrontierScrCmd_C6 0, 0, 1
@@ -2288,11 +2288,11 @@ _1C15:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_PokemonSwap
-    FrontierScrCmd_56 0x5FF
+    StopSoundEffect SEQ_SE_DP_Z_SEARCH
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1E24
     CallIfEq 0x8006, 1, _1E38
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2331,7 +2331,7 @@ _1E5C:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_SpeedUpBoard
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2342,7 +2342,7 @@ _1E86:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_SlowDownBoard
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2353,7 +2353,7 @@ _1EB0:
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_RandomizeBoard
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2368,18 +2368,18 @@ _1EDA:
     FrontierScrCmd_49 67, 0x8008
     FrontierScrCmd_82 0x8008
     FrontierScrCmd_7A 2, 0x8008
-    FrontierScrCmd_56 0x60F
-    FrontierScrCmd_58 0x4C3
+    StopSoundEffect SEQ_SE_DP_DENDOU
+    PlayFanfare SEQ_PL_DON2
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1F65
     CallIfEq 0x8006, 1, _1F6B
-    FrontierScrCmd_59
+    WaitFanfare
     FrontierScrCmd_12
     Call _2205
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_AreYouReady2
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2402,18 +2402,18 @@ _1F71:
     FrontierScrCmd_49 67, 0x8008
     FrontierScrCmd_82 0x8008
     FrontierScrCmd_7A 2, 0x8008
-    FrontierScrCmd_56 0x60F
-    FrontierScrCmd_58 0x4C3
+    StopSoundEffect SEQ_SE_DP_DENDOU
+    PlayFanfare SEQ_PL_DON2
     FrontierScrCmd_BF 28, 0, 0, 0x8006
     CallIfEq 0x8006, 0, _1F65
     CallIfEq 0x8006, 1, _1F6B
-    FrontierScrCmd_59
+    WaitFanfare
     FrontierScrCmd_12
     Call _2205
     FrontierScrCmd_28 3, _05E0
     FrontierScrCmd_29
     Message BattleArcadeScene_Text_AreYouReady2
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     GoTo _2357
     End
 
@@ -2459,7 +2459,7 @@ _2086:
 
 _2092:
     Call _0CAE
-    FrontierScrCmd_55 0x583
+    PlaySoundEffect SEQ_SE_PL_FR05
     WaitTime 45, 0x8008
     Call _0CCA
     Return
@@ -2467,7 +2467,7 @@ _2092:
 _20AA:
     FrontierScrCmd_BF 28, 0, 0, 0x8005
     Call _0CBC
-    FrontierScrCmd_55 0x583
+    PlaySoundEffect SEQ_SE_PL_FR05
     WaitTime 45, 0x8008
     FrontierScrCmd_BF 28, 0, 0, 0x8005
     Call _0CD0
@@ -2477,79 +2477,79 @@ _20D4:
     FrontierScrCmd_BF 28, 0, 0, 0x8005
     Call _0CAE
     Call _0CBC
-    FrontierScrCmd_55 0x583
+    PlaySoundEffect SEQ_SE_PL_FR05
     WaitTime 45, 0x8008
     Call _0CCA
     Call _0CD0
     Return
 
 _2101:
-    FrontierScrCmd_55 0x582
+    PlaySoundEffect SEQ_SE_PL_FR04
     FrontierScrCmd_43 0, 6
     FrontierScrCmd_43 0, 7
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x582
+    WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _211D:
-    FrontierScrCmd_55 0x582
+    PlaySoundEffect SEQ_SE_PL_FR04
     FrontierScrCmd_43 0, 8
     FrontierScrCmd_43 0, 9
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x582
+    WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _2139:
-    FrontierScrCmd_55 0x582
+    PlaySoundEffect SEQ_SE_PL_FR04
     FrontierScrCmd_43 0, 10
     FrontierScrCmd_43 0, 11
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x582
+    WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _2155:
-    FrontierScrCmd_55 0x581
+    PlaySoundEffect SEQ_SE_PL_FR03
     FrontierScrCmd_43 0, 0
     FrontierScrCmd_43 0, 1
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x581
+    WaitSoundEffect SEQ_SE_PL_FR03
     Return
 
 _2171:
-    FrontierScrCmd_55 0x581
+    PlaySoundEffect SEQ_SE_PL_FR03
     FrontierScrCmd_43 0, 2
     FrontierScrCmd_43 0, 3
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x581
+    WaitSoundEffect SEQ_SE_PL_FR03
     Return
 
 _218D:
-    FrontierScrCmd_55 0x581
+    PlaySoundEffect SEQ_SE_PL_FR03
     FrontierScrCmd_43 0, 4
     FrontierScrCmd_43 0, 5
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x581
+    WaitSoundEffect SEQ_SE_PL_FR03
     Return
 
 _21A9:
-    FrontierScrCmd_55 0x582
+    PlaySoundEffect SEQ_SE_PL_FR04
     FrontierScrCmd_43 0, 0x8005
     FrontierScrCmd_43 0, 0x8006
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x582
+    WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _21C5:
-    FrontierScrCmd_55 0x582
+    PlaySoundEffect SEQ_SE_PL_FR04
     FrontierScrCmd_43 0, 0x8005
     FrontierScrCmd_43 0, 0x8006
     FrontierScrCmd_43 0, 0x800E
     WaitTime 60, 0x8008
-    FrontierScrCmd_57 0x582
+    WaitSoundEffect SEQ_SE_PL_FR04
     Return
 
 _21E7:
-    FrontierScrCmd_55 0x583
+    PlaySoundEffect SEQ_SE_PL_FR05
     Return
 
 _21ED:
@@ -2903,8 +2903,8 @@ _279A:
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
     Message BattleArcadeScene_Text_ReceiveBP
-    FrontierScrCmd_58 0x4C5
-    FrontierScrCmd_59
+    PlayFanfare SEQ_PL_POINTGET3
+    WaitFanfare
     GoTo _27D4
     End
 
@@ -2933,8 +2933,8 @@ _2821:
 
 _283B:
     Message BattleArcadeScene_Text_HealingMons
-    FrontierScrCmd_58 0x48E
-    FrontierScrCmd_59
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     FrontierScrCmd_12
     FrontierScrCmd_39
     FrontierScrCmd_BF 28, 0, 0, 0x8008
@@ -3167,7 +3167,7 @@ _2C0D:
     Return
 
 _2C41:
-    FrontierScrCmd_55 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_7B 0
     Message BattleArcadeScene_Text_BattleSaved
     Return
@@ -3336,8 +3336,8 @@ _2E9C:
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     Return
 
 _2EB2:
@@ -3428,7 +3428,7 @@ _2FF2:
     Call _249F
     FrontierScrCmd_28 98, _0320
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x582
+    PlaySoundEffect SEQ_SE_PL_FR04
     FrontierScrCmd_41 3, 4, 1
     FrontierScrCmd_43 3, 0
     FrontierScrCmd_43 3, 1
@@ -3448,10 +3448,10 @@ _2FF2:
     FrontierScrCmd_28 17, _04DC
     FrontierScrCmd_28 18, _04E8
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_28 98, _0330
     FrontierScrCmd_29
-    FrontierScrCmd_57 0x60F
+    WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_28 98, _0344
     FrontierScrCmd_28 4, _03D8
     FrontierScrCmd_28 0, _03BC

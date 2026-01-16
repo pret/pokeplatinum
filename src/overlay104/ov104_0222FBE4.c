@@ -17,6 +17,7 @@
 #include "overlay063/struct_ov63_0222CE44.h"
 #include "overlay063/struct_ov63_0222D77C_decl.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frscrcmd_sound.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_02231F74.h"
@@ -24,7 +25,6 @@
 #include "overlay104/ov104_02234838.h"
 #include "overlay104/ov104_022358E8.h"
 #include "overlay104/ov104_02237378.h"
-#include "overlay104/ov104_02239080.h"
 #include "overlay104/ov104_02239130.h"
 #include "overlay104/ov104_022395F0.h"
 #include "overlay104/ov104_0223C2D4.h"
@@ -378,13 +378,13 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_52,
     FrontierScrCmd_53,
     FrontierScrCmd_54,
-    FrontierScrCmd_55,
-    FrontierScrCmd_56,
-    FrontierScrCmd_57,
-    FrontierScrCmd_58,
-    FrontierScrCmd_59,
-    FrontierScrCmd_5A,
-    FrontierScrCmd_5B,
+    FrontierScrCmd_PlaySoundEffect,
+    FrontierScrCmd_StopSoundEffect,
+    FrontierScrCmd_WaitSoundEffect,
+    FrontierScrCmd_PlayFanfare,
+    FrontierScrCmd_WaitFanfare,
+    FrontierScrCmd_PlayBGM,
+    FrontierScrCmd_StopBGM,
     FrontierScrCmd_5C,
     FrontierScrCmd_5D,
     FrontierScrCmd_5E,

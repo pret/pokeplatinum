@@ -43,7 +43,7 @@ _0014:
 
 _0039:
     FrontierScrCmd_39
-    FrontierScrCmd_5A 0x444
+    PlayBGM SEQ_BF_TOWWER
     FrontierScrCmd_AA
     WaitTime 1, 0x8008
     FrontierScrCmd_B2 0, 0, 0, 0x8008
@@ -423,8 +423,8 @@ _0766:
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     MessageNoSkip 20
     WaitTime 10, 0x8008
     FrontierScrCmd_36
@@ -475,28 +475,28 @@ _0858:
 
 _0879:
     FrontierScrCmd_AB
-    FrontierScrCmd_5A 0x4AB
+    PlayBGM SEQ_PL_BF_FACTORY
     Call _08C9
     FrontierScrCmd_04 3, 0
     End
 
 _088D:
     FrontierScrCmd_AB
-    FrontierScrCmd_5A 0x4A8
+    PlayBGM SEQ_PL_BF_STAGE
     Call _08C9
     FrontierScrCmd_04 9, 0
     End
 
 _08A1:
     FrontierScrCmd_AB
-    FrontierScrCmd_5A 0x4AA
+    PlayBGM SEQ_PL_BF_CASTLE02
     Call _08C9
     FrontierScrCmd_04 11, 0
     End
 
 _08B5:
     FrontierScrCmd_AB
-    FrontierScrCmd_5A 0x4A7
+    PlayBGM SEQ_PL_BF_ROULETTE
     Call _08C9
     FrontierScrCmd_04 15, 0
     End
@@ -526,7 +526,7 @@ _08DD:
     FrontierScrCmd_36
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
-    FrontierScrCmd_5A 0x444
+    PlayBGM SEQ_BF_TOWWER
     FrontierScrCmd_13 6, 1, 1, 0
     FrontierScrCmd_14
     FrontierScrCmd_7C 0

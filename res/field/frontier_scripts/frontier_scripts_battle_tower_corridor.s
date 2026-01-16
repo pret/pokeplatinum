@@ -191,7 +191,7 @@ _0161:
     End
 
 _01A2:
-    FrontierScrCmd_55 0x608
+    PlaySoundEffect SEQ_SE_DP_DOOR10
     FrontierScrCmd_31 0, 0
     FrontierScrCmd_33 0
     FrontierScrCmd_32 0

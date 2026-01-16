@@ -582,8 +582,8 @@ _03A6:
     FrontierScrCmd_28 3, _0188
     FrontierScrCmd_28 10, _0144
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 0
@@ -598,8 +598,8 @@ _0404:
     FrontierScrCmd_28 1, _0144
     FrontierScrCmd_28 2, _0164
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 1
@@ -983,8 +983,8 @@ _0AD6:
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
     Message BattleHallScene_Text_ReceiveBP
-    FrontierScrCmd_58 0x4C5
-    FrontierScrCmd_59
+    PlayFanfare SEQ_PL_POINTGET3
+    WaitFanfare
     FrontierScrCmd_C7
     GoTo _0B1D
     End
@@ -997,8 +997,8 @@ _0B25:
     FrontierScrCmd_91 15, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
     Message BattleHallScene_Text_FullRestore
-    FrontierScrCmd_58 0x48E
-    FrontierScrCmd_59
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     FrontierScrCmd_39
     GoTo _0B48
     End
@@ -1196,7 +1196,7 @@ _0E30:
     Return
 
 _0E62:
-    FrontierScrCmd_55 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_7B 0
     Message BattleHallScene_Text_BattleSaved
     Return
@@ -1355,8 +1355,8 @@ _1087:
     ShowSavingIcon
     Call _10C2
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     Return
 
 _109F:
@@ -1365,8 +1365,8 @@ _109F:
     FrontierScrCmd_76 0x8008
     CallIfEq 0x8008, 0, _10C2
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     Return
 
 _10C2:
@@ -1374,7 +1374,7 @@ _10C2:
     Return
 
 _10C8:
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_91 19, 0, 0, 0x8008
     GoToIfLt 0x8008, 2, _10F5
     GoToIfLt 0x8008, 5, _1109
@@ -1401,29 +1401,29 @@ _1125:
     FrontierScrCmd_91 23, 0, 0, 0x8008
     AddVar 0x8008, 1
     GoToIfEq 0x8008, 10, _1159
-    FrontierScrCmd_55 0x626
+    PlaySoundEffect SEQ_SE_DP_UG_022
     FrontierScrCmd_43 0, 2
     FrontierScrCmd_43 0, 3
-    FrontierScrCmd_57 0x626
-    FrontierScrCmd_55 0x60F
+    WaitSoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     Return
 
 _1159:
-    FrontierScrCmd_55 0x626
+    PlaySoundEffect SEQ_SE_DP_UG_022
     FrontierScrCmd_43 0, 4
     FrontierScrCmd_43 0, 6
-    FrontierScrCmd_57 0x626
-    FrontierScrCmd_55 0x60F
+    WaitSoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     Return
 
 _1173:
-    FrontierScrCmd_55 0x626
+    PlaySoundEffect SEQ_SE_DP_UG_022
     FrontierScrCmd_43 0, 4
     FrontierScrCmd_43 0, 6
     FrontierScrCmd_43 0, 0
     FrontierScrCmd_43 0, 1
-    FrontierScrCmd_57 0x626
-    FrontierScrCmd_55 0x60F
+    WaitSoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     Return
 
 _1199:
@@ -1472,23 +1472,23 @@ _1207:
     FrontierScrCmd_43 0, 18
     FrontierScrCmd_28 98, _02C0
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x60F
-    FrontierScrCmd_57 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_28 0, _01B4
     FrontierScrCmd_28 98, _0298
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_43 0, 11
     FrontierScrCmd_43 0, 12
-    FrontierScrCmd_57 0x60F
+    WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_4E 10, 160, 230, 192, 10, 0
     FrontierScrCmd_28 0, _01BC
     FrontierScrCmd_28 98, _02A4
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_43 0, 11
     FrontierScrCmd_43 0, 12
-    FrontierScrCmd_57 0x60F
+    WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_28 0, _01C4
     FrontierScrCmd_28 98, _02B0
     FrontierScrCmd_29

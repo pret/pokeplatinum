@@ -289,8 +289,8 @@ _0330:
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_7B 0
     Message BattleTowerBattleRoom_Text_ReceiveBP
-    FrontierScrCmd_58 0x4C5
-    FrontierScrCmd_59
+    PlayFanfare SEQ_PL_POINTGET3
+    WaitFanfare
     Return
 
 _034C:
@@ -308,8 +308,8 @@ _0360:
 
 _0374:
     Message BattleTowerBattleRoom_Text_HealPokemon
-    FrontierScrCmd_58 0x48E
-    FrontierScrCmd_59
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     FrontierScrCmd_39
     Return
 
@@ -492,7 +492,7 @@ _0667:
     Return
 
 _069A:
-    FrontierScrCmd_55 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_7B 0
     Message BattleTowerBattleRoom_Text_BattleSaved
     Return
@@ -521,8 +521,8 @@ _06D3:
     ShowSavingIcon
     FrontierScrCmd_72 0x8008
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_12

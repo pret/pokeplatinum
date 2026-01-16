@@ -436,8 +436,8 @@ _04DF:
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_12
     Return
 
@@ -548,7 +548,7 @@ _069B:
     Return
 
 _06CE:
-    FrontierScrCmd_55 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_7B 0
     Message BattleTowerMultiBattleRoom_Text_BattleHasBeenSaved
     Return
@@ -577,8 +577,8 @@ _0707:
     ShowSavingIcon
     FrontierScrCmd_72 0x8008
     HideSavingIcon
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_12
@@ -636,8 +636,8 @@ _0817:
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_7B 0
     Message BattleTowerMultiBattleRoom_Text_PlayerReceivedBP
-    FrontierScrCmd_58 0x4C5
-    FrontierScrCmd_59
+    PlayFanfare SEQ_PL_POINTGET3
+    WaitFanfare
     FrontierScrCmd_84 43, 0, 0x8008
     GoToIfEq 0x8008, 3, _0869
     GoToIfEq 0x8008, 6, _0869
@@ -740,8 +740,8 @@ _09E9:
 
 _0A0D:
     Message BattleTowerMultiBattleRoom_Text_YourPokemonWillBeRestored
-    FrontierScrCmd_58 0x48E
-    FrontierScrCmd_59
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     FrontierScrCmd_39
     Return
 
