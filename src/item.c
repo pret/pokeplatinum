@@ -3110,7 +3110,7 @@ u16 Item_IconNANRFile(void)
     return 0; // TODO: Use NAIX generated from item_icon.narc
 }
 
-void *Item_Load(u16 item, enum ItemFileType type, u32 heapID)
+void *Item_Load(u16 item, enum ItemFileType type, enum HeapID heapID)
 {
     if (item > NUM_ITEMS) {
         item = ITEM_NONE;
@@ -3128,7 +3128,7 @@ void *Item_Load(u16 item, enum ItemFileType type, u32 heapID)
     return NULL;
 }
 
-void Item_LoadName(String *dst, u16 item, u32 heapID)
+void Item_LoadName(String *dst, u16 item, enum HeapID heapID)
 {
     MessageLoader *msgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, heapID);
 
@@ -3144,7 +3144,7 @@ void Item_LoadDescription(String *dst, u16 item, u16 heapID)
     MessageLoader_Free(msgData);
 }
 
-s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID)
+s32 Item_LoadParam(u16 item, enum ItemDataParam param, enum HeapID heapID)
 {
     ItemData *itemData = (ItemData *)Item_Load(item, 0, heapID);
     s32 val = Item_Get(itemData, param);

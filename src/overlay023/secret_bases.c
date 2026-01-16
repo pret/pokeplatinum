@@ -1083,7 +1083,7 @@ static int SecretBases_CountPlayersInBase(int ownerNetID, BOOL useServerLocation
     return count;
 }
 
-static Menu *SecretBases_MakeLeaveOpenOrCloseMenu(BgConfig *bgConfig, const WindowTemplate *windowTemplate, u16 tile, u8 palette, u32 heapID)
+static Menu *SecretBases_MakeLeaveOpenOrCloseMenu(BgConfig *bgConfig, const WindowTemplate *windowTemplate, u16 tile, u8 palette, enum HeapID heapID)
 {
     MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter());
     StringList *choices = StringList_New(2, heapID);

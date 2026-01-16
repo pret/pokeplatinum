@@ -137,7 +137,7 @@ static u32 GetNumBattlePoints(SaveData *saveData)
     return sub_0202D230(sub_0202D750(saveData), 0, 0);
 }
 
-BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, u32 heapID)
+BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, enum HeapID heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;
@@ -174,7 +174,7 @@ BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 it
     return TRUE;
 }
 
-void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID)
+void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, enum HeapID heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;

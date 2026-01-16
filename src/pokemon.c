@@ -299,7 +299,7 @@ int Pokemon_StructSize(void)
     return sizeof(Pokemon);
 }
 
-Pokemon *Pokemon_New(u32 heapID)
+Pokemon *Pokemon_New(enum HeapID heapID)
 {
     Pokemon *mon = Heap_Alloc(heapID, sizeof(Pokemon));
     Pokemon_Init(mon);

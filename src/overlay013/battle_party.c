@@ -150,7 +150,7 @@ static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty);
 static void ClearMoveStats(BattleParty *battleParty);
 static void ClearMoveContestStats(BattleParty *battleParty);
 static u8 CheckSelectedPokemonIsEgg(BattleParty *battleParty);
-static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID);
+static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, enum HeapID heapID);
 
 static const TouchScreenRect sPartyPokemonScreenTouchRects[] = {
     [BATTLE_POKEMON_PARTY_SCREEN_BUTTON_POKEMON_1] = { .rect.top = 0, .rect.bottom = 47, .rect.left = 0, .rect.right = 127 },
@@ -1748,7 +1748,7 @@ static void ClearMoveContestStats(BattleParty *battleParty)
     Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_3);
 }
 
-static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, u32 heapID)
+static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, enum HeapID heapID)
 {
     if (item != ITEM_BLUE_FLUTE && item != ITEM_RED_FLUTE && item != ITEM_YELLOW_FLUTE) {
         Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
