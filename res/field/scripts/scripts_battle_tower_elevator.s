@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 
 
     ScriptEntry BattleTowerElevator_Init
