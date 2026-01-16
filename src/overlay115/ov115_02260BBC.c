@@ -24,7 +24,7 @@ typedef struct UnkStruct_ov115_02260BE4_t {
 
 static u32 ov115_02260CCC(const UnkStruct_ov115_02260BE4 *param0);
 
-UnkStruct_ov115_02260BE4 *ov115_02260BBC(u32 heapID, u32 param1, u32 param2, const UnkStruct_ov115_02262F50 *param3)
+UnkStruct_ov115_02260BE4 *ov115_02260BBC(enum HeapID heapID, u32 param1, u32 param2, const UnkStruct_ov115_02262F50 *param3)
 {
     UnkStruct_ov115_02260BE4 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov115_02260BE4));
     memset(v0, 0, sizeof(UnkStruct_ov115_02260BE4));

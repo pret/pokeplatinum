@@ -11,7 +11,7 @@
 #include "unk_0202ACE0.h"
 #include "unk_02099550.h"
 
-int sub_02038FFC(int heapID)
+int sub_02038FFC(enum HeapID heapID)
 {
     int v0;
     u8 *v1;

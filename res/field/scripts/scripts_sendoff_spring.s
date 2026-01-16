@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    CallIfSet FLAG_UNK_0x0121, _001B
+    CallIfSet FLAG_CAUGHT_GIRATINA, _001B
     End
 
 _001B:
@@ -33,7 +33,7 @@ _0021:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar VAR_UNK_0x40AA, 2
+    SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 2
     SetVar VAR_UNK_0x40A6, 2
     SetFlag FLAG_UNK_0x01C7
     ClearFlag FLAG_UNK_0x0132
@@ -70,7 +70,7 @@ _00C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe VAR_UNK_0x40AA, 3, _00E0
+    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 3, _00E0
     Message 3
     GoTo _00EB
     End

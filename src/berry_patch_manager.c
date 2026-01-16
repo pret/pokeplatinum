@@ -33,7 +33,7 @@
 #include "unk_020655F4.h"
 
 struct BerryPatchManager {
-    int heapID;
+    enum HeapID heapID;
     BerryGrowthData *growthData;
     NNSG3dRenderObj renderObj;
     NNSG3dResMdl *model;

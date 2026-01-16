@@ -2,18 +2,18 @@
   "key": 17303,
   "messages": [
     {
-      "id": "pl_msg_00000182_00000",
+      "id": "PokemonLeague_Text_PokemonLeagueThePinnacleOfTrainerdom",
       "en_US": [
         "Pokémon League\n",
         "The Pinnacle of Trainerdom!"
       ]
     },
     {
-      "id": "pl_msg_00000182_00001",
+      "id": "PokemonLeague_Text_PokemonLeagueAhead",
       "en_US": "Pokémon League Ahead"
     },
     {
-      "id": "pl_msg_00000182_00002",
+      "id": "PokemonLeague_Text_VictoryRoadAhead",
       "en_US": "Victory Road Ahead"
     }
   ]

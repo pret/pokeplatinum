@@ -103,7 +103,7 @@ static void ov4_021D24AC(int param0, void *param1);
 
 static UnkStruct_ov4_0221A400 *Unk_ov4_0221A400 = NULL;
 
-int ov4_021D0D80(SaveData *saveData, int heapID, int param2, int param3)
+int ov4_021D0D80(SaveData *saveData, enum HeapID heapID, int param2, int param3)
 {
     void *v0;
 
@@ -974,7 +974,7 @@ static void ov4_021D1E60()
     Unk_ov4_0221A400->unk_1084 = 0;
 }
 
-void ov4_021D1E74(int heapID)
+void ov4_021D1E74(enum HeapID heapID)
 {
     int v0;
     int v1 = 1;
@@ -1531,7 +1531,7 @@ int ov4_021D2610(void)
     return DWC_GetNumConnectionHost();
 }
 
-void ov4_021D2618(BOOL param0, int heapID)
+void ov4_021D2618(BOOL param0, enum HeapID heapID)
 {
     if (param0) {
         Unk_ov4_0221A400->unk_107C = 11;

@@ -1,6 +1,7 @@
 #include "overlay013/battle_sub_menu_cursor.h"
 
 #include "battle/ov16_0226DB7C.h"
+#include "battle/struct_ov16_0226DC24_decl.h"
 
 #include "heap.h"
 #include "sound_playback.h"
@@ -10,7 +11,7 @@
 #define NULL_POSITION_INDEX        0xff
 #define ALL_POSITIONS_ENABLED_MASK 0xffffffff
 
-BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID)
+BattleSubMenuCursor *MakeBattleSubMenuCursor(enum HeapID heapID)
 {
     BattleSubMenuCursor *cursor = Heap_Alloc(heapID, sizeof(BattleSubMenuCursor));
     memset(cursor, 0, sizeof(BattleSubMenuCursor));
@@ -27,12 +28,12 @@ UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *curs
     return cursor->sprites;
 }
 
-u8 IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor)
+BOOL IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor)
 {
     return cursor->isVisible;
 }
 
-void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, u8 isVisible)
+void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, BOOL isVisible)
 {
     cursor->isVisible = isVisible;
 }

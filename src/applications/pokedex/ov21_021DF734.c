@@ -86,9 +86,9 @@ static BOOL ov21_021E015C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
 static int ov21_021E01CC(int species, const UnkStruct_ov21_021DF844 *param1);
 static int ov21_021E0268(int species, const UnkStruct_ov21_021DF844 *param1);
 static int ov21_021E02F0(int species, const UnkStruct_ov21_021DF844 *param1);
-static void ov21_021DFA84(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int heapID);
+static void ov21_021DFA84(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, enum HeapID heapID);
 static void ov21_021DFACC(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1);
-static void ov21_021DFAE8(UnkStruct_ov21_021DF858 *param0, int heapID);
+static void ov21_021DFAE8(UnkStruct_ov21_021DF858 *param0, enum HeapID heapID);
 static void ov21_021DFD1C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, int param2);
 static void ov21_021DFDC8(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1);
 static void ov21_021DFE0C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int param3);
@@ -403,7 +403,7 @@ static int ov21_021DFA18(void *graphics, PokedexGraphicsManager *graphicsMan, co
     return 0;
 }
 
-static void ov21_021DFA84(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int heapID)
+static void ov21_021DFA84(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, enum HeapID heapID)
 {
     ov21_021DFB50(param0, param1, param2);
     ov21_021DFD1C(param0, param1, heapID);
@@ -419,7 +419,7 @@ static void ov21_021DFACC(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     ov21_021DFDC8(param0, param1);
 }
 
-static void ov21_021DFAE8(UnkStruct_ov21_021DF858 *param0, int heapID)
+static void ov21_021DFAE8(UnkStruct_ov21_021DF858 *param0, enum HeapID heapID)
 {
     void *v0;
     NNSG2dScreenData *v1;

@@ -13,14 +13,13 @@
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_022521F0.h"
-#include "overlay023/ov23_02253598.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
-#include "overlay023/struct_ov23_02253598_decl.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_pc.h"
 #include "overlay023/underground_player.h"
+#include "overlay023/underground_records.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -65,7 +64,7 @@ typedef struct {
     SysTask *currentSysTask;
     EndSysTaskFunc endCurrentSysTask;
     FieldSystem *fieldSystem;
-    UnkStruct_ov23_02253598 *unk_10;
+    u8 padding[4];
     SysTask *unk_14;
     Coordinates unk_18;
     Coordinates unk_1C;
@@ -769,8 +768,8 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
         v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_0223E2E8());
         ov23_0223E1E4(v0, fieldSystem);
 
-        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_02253608());
-        ov23_02253598(v0, SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, RecordsEnv_Size());
+        RecordsEnv_Init(v0, SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
         UndergroundMenuContext_Init(SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
@@ -778,7 +777,7 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
 void ov23_02242C78(void)
 {
     if (sCommManUnderground) {
-        ov23_022535EC();
+        UndergroundRecords_ForceExitTrainerCase();
         UndergroundSpheres_DisableBuriedSphereSparkles();
         SecretBases_DisableBaseEntranceGraphics();
         UndergroundTraps_DisableTrapGraphics();
@@ -794,7 +793,7 @@ void ov23_02242CB4(void)
 {
     if (sCommManUnderground) {
         CommPlayerMan_Restart();
-        ov23_02253604();
+        UndergroundRecords_Dummy();
         UndergroundSpheres_EnableBuriedSphereSparkles();
         SecretBases_EnableBaseEntranceGraphics();
         UndergroundTraps_EnableTrapGraphics();
@@ -814,7 +813,7 @@ void ov23_02242D08(void)
         BuriedSpheresEnv_Free();
         ov23_0223E2F8();
         UndergroundMenuContext_Free();
-        ov23_022535CC();
+        RecordsEnv_Free();
         ov23_02242108();
     }
 }

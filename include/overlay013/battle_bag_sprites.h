@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_BAG_SPRITES
-#define POKEPLATINUM_BATTLE_BAG_SPRITES
+#ifndef POKEPLATINUM_BATTLE_BAG_SPRITES_H
+#define POKEPLATINUM_BATTLE_BAG_SPRITES_H
 
 #include "overlay013/battle_bag.h"
 
@@ -10,4 +10,4 @@ void BattleBagSprites_SetupCursor(BattleBag *battleBag, enum BattleBagScreen scr
 void BattleBagSprites_DisableCursor(BattleBag *battleBag);
 void BattleBagSprites_SetupCatchTutorialCursor(BattleBag *battleBag, enum BattleBagScreen screen);
 
-#endif // POKEPLATINUM_BATTLE_BAG_SPRITES
+#endif // POKEPLATINUM_BATTLE_BAG_SPRITES_H

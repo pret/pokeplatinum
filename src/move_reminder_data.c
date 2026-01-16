@@ -11,7 +11,7 @@
 #define GET_LEVEL(move) ((move & 0xfe00) >> 9)
 #define GET_MOVE(move)  ((move & 0x1ff) >> 0)
 
-MoveReminderData *MoveReminderData_Alloc(u32 heapID)
+MoveReminderData *MoveReminderData_Alloc(enum HeapID heapID)
 {
     MoveReminderData *data = Heap_Alloc(heapID, sizeof(MoveReminderData));
     memset(data, 0, sizeof(MoveReminderData));
@@ -23,7 +23,7 @@ void MoveReminderData_Free(MoveReminderData *data)
     Heap_Free(data);
 }
 
-u16 *MoveReminderData_GetMoves(Pokemon *mon, u32 heapID)
+u16 *MoveReminderData_GetMoves(Pokemon *mon, enum HeapID heapID)
 {
     u8 h, i, j;
 

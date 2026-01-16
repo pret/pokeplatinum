@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "TWINLEAF_TOWN_POKEMON_BREEDER_F_0",
+            "id": "LOCALID_BREEDER_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 1
         },
         {
-            "id": "TWINLEAF_TOWN_COLLECTOR_1",
+            "id": "LOCALID_COLLECTOR",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,11 +41,11 @@
             "y": 1
         },
         {
-            "id": "TWINLEAF_TOWN_RIVAL",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0174",
+            "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_RIVAL",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -56,7 +56,7 @@
             "y": 0
         },
         {
-            "id": "TWINLEAF_TOWN_GUITARIST",
+            "id": "LOCALID_GUITARIST",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -71,7 +71,7 @@
             "y": 0
         },
         {
-            "id": "TWINLEAF_TOWN_MAP_SIGNPOST_4",
+            "id": "LOCALID_MAP_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,7 +88,7 @@
             "y": 0
         },
         {
-            "id": "TWINLEAF_TOWN_MAILBOX_5",
+            "id": "LOCALID_MAILBOX_PLAYER",
             "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -103,7 +103,7 @@
             "y": 0
         },
         {
-            "id": "TWINLEAF_TOWN_MAILBOX_6",
+            "id": "LOCALID_MAILBOX_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -118,12 +118,12 @@
             "y": 0
         },
         {
-            "id": "TWINLEAF_TOWN_ARROW_SIGNPOST_7",
+            "id": "LOCALID_ARROW_SIGNPOST",
             "clone_id": 3,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0156",
+            "hidden_flag": "MAP_HEADER_ROUTE_201",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -170,7 +170,7 @@
             "y": 0,
             "width": 8,
             "length": 1,
-            "var": "VAR_UNK_0x4070",
+            "var": "VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE",
             "value": 1
         },
         {
@@ -180,7 +180,7 @@
             "y": 0,
             "width": 1,
             "length": 1,
-            "var": "VAR_UNK_0x40E6",
+            "var": "VAR_TWINLEAF_TOWN_RIVAL_TRIGGER_STATE",
             "value": 0
         }
     ]

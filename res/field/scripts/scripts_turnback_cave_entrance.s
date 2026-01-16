@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09D4
+    SetFlag FLAG_FIRST_ARRIVAL_TURNBACK_CAVE
     Call _001C
     InitTurnbackCave VAR_TURNBACK_CAVE_PILLARS_SEEN, VAR_TURNBACK_CAVE_ROOMS_VISITED
     End
@@ -18,7 +18,7 @@ _001C:
     Return
 
 _002A:
-    GoToIfSet FLAG_UNK_0x0121, _0046
+    GoToIfSet FLAG_CAUGHT_GIRATINA, _0046
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0

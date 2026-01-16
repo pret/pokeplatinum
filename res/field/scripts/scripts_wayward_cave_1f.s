@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag FLAG_UNK_0x09D7
+    SetFlag FLAG_FIRST_ARRIVAL_WAYWARD_CAVE
     GoToIfUnset FLAG_TRAVELED_WITH_MIRA, _0023
     End
 

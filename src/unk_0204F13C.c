@@ -73,7 +73,7 @@ void sub_0204F470(FieldTask *param0, void **param1, u8 param2);
 static BOOL sub_0204F4A4(FieldTask *param0);
 static int sub_0204F50C(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int param2);
 static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem);
-static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID);
+static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, enum HeapID heapID);
 static int sub_0204F6B0(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem);
 
 BOOL ScrCmd_2CC(ScriptContext *param0)
@@ -391,7 +391,7 @@ static int sub_0204F5D8(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem)
     return UnkEnum_0204F13C_3;
 }
 
-static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, int heapID)
+static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     PokemonSummary *v0;
     SaveData *saveData;
@@ -422,7 +422,7 @@ static int sub_0204F628(UnkStruct_0204F470 *param0, FieldSystem *fieldSystem, in
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(saveData);
+    v0->specialRibbons = SaveData_GetRibbons(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
@@ -534,7 +534,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
         return 0;
     }
 
-    v2 = sub_020308A0(fieldSystem->saveData, 32, &v0);
+    v2 = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD3, &v0);
     if (v0 != 1) {
         v4 = 0;
     } else {
@@ -613,7 +613,7 @@ BOOL ScrCmd_325(ScriptContext *param0)
         return 0;
     }
 
-    v1 = sub_020308A0(fieldSystem->saveData, 32, &v0);
+    v1 = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD3, &v0);
     if (v0 != 1) {
         v4 = 0;
     } else {
@@ -662,7 +662,7 @@ BOOL ScrCmd_326(ScriptContext *param0)
         return 0;
     }
 
-    v2 = sub_020308A0(fieldSystem->saveData, 32, &v0);
+    v2 = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD3, &v0);
     if (v0 != 1) {
         v4 = 0;
     } else {

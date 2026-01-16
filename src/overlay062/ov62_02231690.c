@@ -60,9 +60,9 @@
 #include "unk_020393C8.h"
 #include "unk_0208B284.h"
 
-static void ov62_022349E4(String *param0, int heapID);
+static void ov62_022349E4(String *param0, enum HeapID heapID);
 
-StringTemplate *ov62_02231690(u32 heapID)
+StringTemplate *ov62_02231690(enum HeapID heapID)
 {
     return StringTemplate_New(4, 64, heapID);
 }
@@ -184,7 +184,7 @@ void ov62_022318E8(UnkStruct_0208C06C *param0)
     PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0xFFFF, 0, param0->unk_14.unk_44);
 }
 
-u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
+u16 *ov62_Pokedex_Alphabetical(enum HeapID heapID, int unused, int *pokedexLength)
 {
     u32 pokedexSize;
     u16 *pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
@@ -2916,7 +2916,7 @@ void ov62_022349A8(UnkStruct_0208C06C *param0, String *param1)
     String_Free(v1);
 }
 
-static void ov62_022349E4(String *param0, int heapID)
+static void ov62_022349E4(String *param0, enum HeapID heapID)
 {
     MessageLoader *v0;
 

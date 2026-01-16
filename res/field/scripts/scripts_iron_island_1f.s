@@ -5,7 +5,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag FLAG_UNK_0x09DB
+    SetFlag FLAG_FIRST_ARRIVAL_IRON_ISLAND_INTERIOR
     End
 
 IronIsland1F_Unused:

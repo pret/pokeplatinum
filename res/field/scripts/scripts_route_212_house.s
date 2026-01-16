@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetFlag FLAG_UNK_0x09EC
+    SetFlag FLAG_FIRST_ARRIVAL_ROUTE_212_MOVE_TUTOR
     End
 
 _001C:

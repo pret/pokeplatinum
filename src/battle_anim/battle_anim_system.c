@@ -3927,7 +3927,7 @@ int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type)
     return sBgNarcIndices[bgID][type];
 }
 
-UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2)
+UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heapID, int param2)
 {
     int v0;
     int v1[] = { 0, 0, 20, 10, 10, 20 };
@@ -4075,7 +4075,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
     return v2;
 }
 
-UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID)
+UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, enum HeapID heapID)
 {
     return ov12_022234F8(battleSys, heapID, 0xFF);
 }

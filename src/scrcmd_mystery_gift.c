@@ -228,7 +228,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
         Pokemon_SetValue(pokemon, MON_DATA_SPDEF_IV, &personality);
     }
 
-    u8 *specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    u8 *specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
 
     if (Pokemon_GetValue(pokemon, MON_DATA_RED_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_RED)] = giftSpecialRibbons[0];

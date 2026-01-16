@@ -93,7 +93,7 @@ struct UnkStruct_ov5_021F6704_t {
     u16 unk_6F4;
 };
 
-static u16 *ov5_021F65FC(int param0, int param1, int *param2);
+static u16 *ov5_021F65FC(enum HeapID heapID, int fileIndex, int *pokedexLength);
 BOOL ScrCmd_2DE(ScriptContext *ctx);
 static BOOL ov5_021F65D4(ScriptContext *ctx);
 static void ov5_021F70CC(Pokemon *param0, int *param1, int *param2);
@@ -147,7 +147,7 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
 
     v6 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
     v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
-    v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
+    v1 = sub_020308A0(fieldSystem->saveData, HEAP_ID_FIELD2, &v0);
 
     if (v0 == 1) {
         v3 = ov5_021F65FC(32, Unk_ov5_0220210C[v12], &v5);
@@ -195,7 +195,7 @@ static BOOL ov5_021F65D4(ScriptContext *ctx)
     return 1;
 }
 
-static u16 *ov5_021F65FC(int heapID, int fileIndex, int *pokedexLength)
+static u16 *ov5_021F65FC(enum HeapID heapID, int fileIndex, int *pokedexLength)
 {
     u32 pokedexSize;
     u16 *pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
@@ -845,7 +845,7 @@ BOOL ScrCmd_30F(ScriptContext *param0)
         }
         break;
     case 15:
-        if (GameRecords_GetRecordValue(v1, RECORD_UNK_073) < 10) {
+        if (GameRecords_GetRecordValue(v1, RECORD_TIMES_ENTERED_HALL_OF_FAME) < 10) {
             *v4 = 0;
         }
         break;

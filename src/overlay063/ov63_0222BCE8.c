@@ -13,7 +13,7 @@ typedef struct UnkStruct_ov63_0222BCE8_t {
     UnkUnion_ov63_0222BDAC *unk_04;
 } UnkStruct_ov63_0222BCE8;
 
-UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, u32 heapID)
+UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, enum HeapID heapID)
 {
     UnkStruct_ov63_0222BCE8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222BCE8));
     GF_ASSERT(v0);

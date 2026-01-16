@@ -96,7 +96,7 @@ int UndergroundRecord_Size(void)
     return sizeof(UndergroundRecord);
 }
 
-UndergroundRecord *UndergroundRecord_Init(u32 heapID)
+UndergroundRecord *UndergroundRecord_Init(enum HeapID heapID)
 {
     UndergroundRecord *undergroundRecord = Heap_Alloc(heapID, sizeof(UndergroundRecord));
     MI_CpuFill8(undergroundRecord, 0, sizeof(UndergroundRecord));
@@ -306,7 +306,7 @@ void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const Tr
     }
 }
 
-TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, int heapID, int offset)
+TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, enum HeapID heapID, int offset)
 {
     int index = underground->registeredFlagOwnerIndex - offset - 1;
 

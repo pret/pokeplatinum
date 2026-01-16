@@ -16,7 +16,7 @@ static void Signpost_Remove(FieldSystem *fieldSystem);
 static BOOL Signpost_ScrollIn(FieldSystem *fieldSystem);
 static BOOL Signpost_ScrollOut(FieldSystem *fieldSystem);
 
-void *Signpost_Init(u32 heapID)
+void *Signpost_Init(enum HeapID heapID)
 {
     void *signpost = Heap_Alloc(heapID, sizeof(Signpost));
 

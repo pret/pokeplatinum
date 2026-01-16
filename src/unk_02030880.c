@@ -39,7 +39,7 @@ void Frontier_Extra_Init(BattleFrontierStage *param0)
     param0->unk_00 = 0xffffffff;
 }
 
-BattleFrontierStage *sub_020308A0(SaveData *saveData, int heapID, int *param2)
+BattleFrontierStage *sub_020308A0(SaveData *saveData, enum HeapID heapID, int *param2)
 {
     BattleFrontierStage *v0 = SaveData_BattleFrontierStage(saveData, heapID, param2);
     return v0;

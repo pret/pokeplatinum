@@ -25,7 +25,7 @@
 #include "system.h"
 #include "unk_0202419C.h"
 
-static void ov83_0223CC30(BgConfig **param0, int heapID);
+static void ov83_0223CC30(BgConfig **param0, enum HeapID heapID);
 static void ov83_0223CCCC(BgConfig **param0);
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0);
@@ -160,7 +160,7 @@ static void ov83_0223CC10(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30(BgConfig **param0, int heapID)
+static void ov83_0223CC30(BgConfig **param0, enum HeapID heapID)
 {
     int v0 = 0, v1;
 

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_BATTLE_BAG_UTILS
-#define POKEPLATINUM_BATTLE_BAG_UTILS
+#ifndef POKEPLATINUM_BATTLE_BAG_UTILS_H
+#define POKEPLATINUM_BATTLE_BAG_UTILS_H
 
 #include "overlay013/battle_bag.h"
 
@@ -16,4 +16,4 @@ void BattleBag_SetLastUsedPocket(BattleBag *battleBag);
 void BattleBag_Init(BattleBag *battleBag);
 u16 BattleBag_GetItem(BattleBag *battleBag, u32 pagePosition);
 
-#endif // POKEPLATINUM_BATTLE_BAG_UTILS
+#endif // POKEPLATINUM_BATTLE_BAG_UTILS_H

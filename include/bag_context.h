@@ -150,7 +150,7 @@ u8 BagContext_GetSoldAmount(BagContext *bagContext);
  * @param heapID
  * @return Whether a string was loaded into dstString.
  */
-BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, u32 heapID);
+BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, enum HeapID heapID);
 
 /**
  * @brief Loads the message describing the reason an item couldn't be used.
@@ -161,6 +161,6 @@ BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 it
  * @param error The reason the item couldn't be used. Member of `enum ItemUseCheckResult`
  * @param heapID
  */
-void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID);
+void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, enum HeapID heapID);
 
 #endif // POKEPLATINUM_BAG_CONTEXT_H

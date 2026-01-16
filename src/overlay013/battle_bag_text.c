@@ -1,5 +1,7 @@
 #include "overlay013/battle_bag_text.h"
 
+#include "constants/graphics.h"
+
 #include "battle/ov16_0223DF00.h"
 #include "overlay013/battle_bag.h"
 
@@ -18,6 +20,9 @@
 #define BATTLE_BAG_MENU_WINDOW_NUM               5
 #define BATTLE_BAG_MENU_POCKET_SCREEN_WINDOW_NUM 26
 #define BATTLE_BAG_USE_ITEM_SCREEN_WINDOW_NUM    4
+
+#define ITEM_AMOUNT_DIGITS        3
+#define POCKET_PAGE_NUMBER_DIGITS 2
 
 static void RenderMenuScreen(BattleBag *battleBag);
 static void RenderPocketMenuScreen(BattleBag *battleBag);
@@ -432,7 +437,7 @@ static void PrintTextToWindow(BattleBag *battleBag, u8 windowIndex, u32 textID, 
     Window *window = &battleBag->windows[windowIndex];
     String *string = MessageLoader_GetNewString(battleBag->messageLoader, textID);
     u32 stringWidth = Font_CalcStringWidth(font, string, 0);
-    u32 xOffset = (Window_GetWidth(window) * 8 - stringWidth) / 2;
+    u32 xOffset = (Window_GetWidth(window) * TILE_WIDTH_PIXELS - stringWidth) / 2;
 
     Text_AddPrinterWithParamsAndColor(window, font, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     String_Free(string);
@@ -463,21 +468,20 @@ static void RenderMenuScreen(BattleBag *battleBag)
 
 static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, TextColor color)
 {
-    String *string;
-    u32 width;
-    u32 xOffset;
     Window *window = &battleBag->windows[windowIndex];
 
     Window_FillTilemap(window, 0);
 
     if (battleBag->items[battleBag->currentBattlePocket][itemIndex].item != ITEM_NONE) {
-        string = MessageLoader_GetNewString(battleBag->messageLoader, sPocketSlotTextIDs[slot].name);
+        String *string = MessageLoader_GetNewString(battleBag->messageLoader, sPocketSlotTextIDs[slot].name);
+        u32 width;
+        u32 xOffset;
 
         StringTemplate_SetItemName(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][itemIndex].item);
         StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
 
         width = Font_CalcStringWidth(font, battleBag->string, 0);
-        xOffset = (Window_GetWidth(window) * 8 - width) / 2;
+        xOffset = (Window_GetWidth(window) * TILE_WIDTH_PIXELS - width) / 2;
 
         Text_AddPrinterWithParamsAndColor(window, font, battleBag->string, xOffset, 8, TEXT_SPEED_NO_TRANSFER, color, NULL);
         String_Free(string);
@@ -488,15 +492,14 @@ static void PrintPocketItemNameToWindow(BattleBag *battleBag, u32 itemIndex, u32
 
 static void PrintPocketItemAmountToWindow(BattleBag *battleBag, u32 itemIndex, u32 slot, u32 windowIndex, enum Font font, u32 yOffset, TextColor color)
 {
-    String *string;
     Window *window = &battleBag->windows[windowIndex];
 
     Window_FillTilemap(window, 0);
 
     if (battleBag->items[battleBag->currentBattlePocket][itemIndex].quantity != ITEM_NONE) {
-        string = MessageLoader_GetNewString(battleBag->messageLoader, sPocketSlotTextIDs[slot].amount);
+        String *string = MessageLoader_GetNewString(battleBag->messageLoader, sPocketSlotTextIDs[slot].amount);
 
-        StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][itemIndex].quantity, 3, 0, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->items[battleBag->currentBattlePocket][itemIndex].quantity, ITEM_AMOUNT_DIGITS, 0, CHARSET_MODE_EN);
         StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
         Text_AddPrinterWithParamsAndColor(window, font, battleBag->string, 0, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
         String_Free(string);
@@ -507,8 +510,8 @@ static void PrintPocketItemAmountToWindow(BattleBag *battleBag, u32 itemIndex, u
 
 static void PrintPocketItemInfo(BattleBag *battleBag, u32 slot_index)
 {
-    u32 first_window_index;
     u32 itemIndex = battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + slot_index;
+    u32 first_window_index;
 
     if (battleBag->useAltPocketMenuWindows == FALSE) {
         first_window_index = BATTLE_BAG_POCKET_MENU_WINDOW_ITEM_SLOT_1_NAME;
@@ -538,19 +541,19 @@ void BattleBagText_PrintPocketPageNums(BattleBag *battleBag)
     Window *window = &battleBag->windows[BATTLE_BAG_POCKET_MENU_WINDOW_PAGE_NUMS];
     String *string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_PocketPageDivider);
     u32 width = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
-    u32 xOffset = (Window_GetWidth(window) * 8 - width) / 2;
+    u32 xOffset = (Window_GetWidth(window) * TILE_WIDTH_PIXELS - width) / 2;
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_PocketCurrentPage);
-    StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->numBattlePocketPages[battleBag->currentBattlePocket] + 1, 2, 0, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->numBattlePocketPages[battleBag->currentBattlePocket] + 1, POCKET_PAGE_NUMBER_DIGITS, 0, CHARSET_MODE_EN);
     StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, battleBag->string, xOffset + width, 4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     String_Free(string);
 
     string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_PocketPageNum);
-    StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] + 1, 2, 0, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(battleBag->stringTemplate, 0, battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] + 1, POCKET_PAGE_NUMBER_DIGITS, 0, CHARSET_MODE_EN);
     StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
 
     width = Font_CalcStringWidth(FONT_SYSTEM, battleBag->string, 0);
@@ -620,7 +623,7 @@ static void RenderUseItemScreen(BattleBag *battleBag)
         Window_FillTilemap(&battleBag->windows[i], 0);
     }
 
-    slot = battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * 6 + battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket];
+    slot = battleBag->context->pocketCurrentPages[battleBag->currentBattlePocket] * BATTLE_POCKET_ITEMS_PER_PAGE + battleBag->context->pocketCurrentPagePositions[battleBag->currentBattlePocket];
 
     PrintUseItemName(battleBag, slot);
     PrintPocketItemAmountToWindow(battleBag, slot, 0, BATTLE_BAG_USE_ITEM_MENU_WINDOW_ITEM_AMOUNT, FONT_SYSTEM, 0, TEXT_COLOR(1, 2, 0));

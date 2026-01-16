@@ -23,7 +23,7 @@
 #include "unk_0205C980.h"
 #include "unk_020996D0.h"
 
-UnkStruct_02030A80 *sub_02030A80(int heapID)
+UnkStruct_02030A80 *sub_02030A80(enum HeapID heapID)
 {
     UnkStruct_02030A80 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02030A80));
     MI_CpuClear8(v0, sizeof(UnkStruct_02030A80));
@@ -73,7 +73,7 @@ void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *saveData)
     param0->unk_7C.unk_00 = SaveData_CalculateChecksum(saveData, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
 }
 
-String *sub_02030B94(const UnkStruct_02030A80 *param0, int heapID)
+String *sub_02030B94(const UnkStruct_02030A80 *param0, enum HeapID heapID)
 {
     String *v0 = String_Init((7 * 2) + 1, heapID);
 
@@ -139,7 +139,7 @@ int sub_02030C08(const UnkStruct_02030A80 *param0)
     return param0->unk_18;
 }
 
-String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, int heapID)
+String *sub_02030C28(const UnkStruct_02030A80 *param0, Sentence *param1, enum HeapID heapID)
 {
     int v0 = 0;
 

@@ -13,7 +13,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 
-static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID);
+static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, enum HeapID heapID);
 
 const s16 Unk_ov12_0223B0B8[][3] = {
     { 0x150, 0x70, 0xFFFFFFFFFFFFFE00 },
@@ -42,17 +42,17 @@ const s16 Unk_ov12_0223B0DC[][3] = {
     { 0x150, 0x32, 0xFFFFFFFFFFFFFE00 }
 };
 
-void ov12_022380BC(UnkStruct_ov12_022380DC *param0, int heapID)
+void ov12_022380BC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID)
 {
     ov12_022380DC(param0, param0->unk_00, 0, heapID);
 }
 
-void ov12_022380CC(UnkStruct_ov12_022380DC *param0, int heapID)
+void ov12_022380CC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID)
 {
     ov12_022380DC(param0, param0->unk_04, 1, heapID);
 }
 
-static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID)
+static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, enum HeapID heapID)
 {
     PokemonSpriteTemplate v0;
     PokemonSpriteTemplate *v1;
@@ -122,7 +122,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     }
 }
 
-void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
+void ov12_022382BC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID)
 {
     PokemonSpriteTemplate *v0;
     int v1;
@@ -157,7 +157,7 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
     PokemonSprite_SetAttribute(param0->sprites[param0->unk_00], MON_SPRITE_Y_CENTER, v6);
 }
 
-void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
+void ov12_02238390(UnkStruct_ov12_022380DC *param0, enum HeapID heapID)
 {
     PokemonSpriteTemplate v0;
     PokemonSpriteTemplate *v1;

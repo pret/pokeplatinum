@@ -59,7 +59,7 @@ typedef struct {
     int unk_5C;
     int unk_60;
     int unk_64;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_ov22_0225B4E4;
 
 static UnkStruct_ov22_0225B1BC *ov22_0225B1BC(const UnkStruct_ov22_0225B4E4 *param0);
@@ -75,8 +75,8 @@ static void ov22_0225B490(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
 static void ov22_0225B4E4(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_ov22_0225AF8C *param1);
 static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const DressUpPhoto *photo);
 static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C88 *param1);
-static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID);
-static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID);
+static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, enum HeapID heapID);
+static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, enum HeapID heapID);
 
 UnkStruct_ov22_0225B1BC *ov22_0225AF8C(const UnkStruct_ov22_0225AF8C *param0, const DressUpPhoto *photo)
 {
@@ -443,13 +443,13 @@ static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029
     param0->unk_5C = sub_0202A5B8(param1);
 }
 
-static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID)
+static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, enum HeapID heapID)
 {
     ov22_02255410(param1, heapID);
     ov22_0225B5A8(param0, param1, param2, heapID);
 }
 
-static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID)
+static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, enum HeapID heapID)
 {
     int v0;
     int v1;

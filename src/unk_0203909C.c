@@ -72,7 +72,7 @@ int sub_02039140(SaveData *saveData, u64 param1, int *param2)
     return 2;
 }
 
-BOOL sub_020391DC(SaveData *saveData, int *param1, int heapID)
+BOOL sub_020391DC(SaveData *saveData, int *param1, enum HeapID heapID)
 {
     int v0, v1 = 0, v2;
     DWCFriendData *v3 = sub_0202AED8(SaveData_GetWiFiList(saveData), 0);
@@ -111,7 +111,7 @@ BOOL sub_020391DC(SaveData *saveData, int *param1, int heapID)
     return v1;
 }
 
-void sub_02039298(SaveData *saveData, int param1, int param2, int heapID, int param4)
+void sub_02039298(SaveData *saveData, int param1, int param2, enum HeapID heapID, int param4)
 {
     WiFiList *v0 = SaveData_GetWiFiList(saveData);
     DWCFriendData *v1 = sub_0202AED8(v0, param2);

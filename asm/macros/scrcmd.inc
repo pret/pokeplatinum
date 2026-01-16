@@ -21,6 +21,7 @@
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
+#include "generated/object_events_gfx.h"
 #include "generated/poketch_apps.h"
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
@@ -28,6 +29,7 @@
 #include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/string_padding_mode.h"
+#include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
 #include "constants/animation_tags.h"
@@ -41,6 +43,7 @@
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
+#include "constants/roamer_states.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 #include "constants/tv_broadcast.h"
@@ -1087,7 +1090,7 @@
     .short 175
     .endm
 
-    .macro ScrCmd_0B0
+    .macro ClearGame
     .short 176
     .endm
 
@@ -1642,11 +1645,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_116
+    .macro ShowLinkContestRecords
     .short 278
     .endm
 
-    .macro ScrCmd_117
+    .macro LockAutoScrollForLinkContests
     .short 279
     .endm
 
@@ -3869,7 +3872,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_28F arg0
+    .macro GetLeagueVictories arg0
     .short 655
     .short \arg0
     .endm
@@ -4847,7 +4850,7 @@
     .endm
 
     .macro SetMenuYOriginSide bottomSide
-    .short 826
+    .short 827
     .byte \bottomSide
     .endm
 

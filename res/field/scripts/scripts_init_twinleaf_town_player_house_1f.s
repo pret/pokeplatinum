@@ -6,9 +6,9 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40A4, 0, 2
-    InitScriptGoToIfEqual VAR_UNK_0x410F, 1, 11
-    InitScriptGoToIfEqual VAR_UNK_0x40A4, 3, 3
+    InitScriptGoToIfEqual VAR_PLAYER_HOUSE_STATE, 0, 2
+    InitScriptGoToIfEqual VAR_PLAYER_HOUSE_POSTGAME_STATE, 1, 11
+    InitScriptGoToIfEqual VAR_PLAYER_HOUSE_STATE, 3, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_BATTLE_SUB_MENU_CURSOR_H
 #define POKEPLATINUM_BATTLE_SUB_MENU_CURSOR_H
 
+#include "constants/heap.h"
+
 #include "battle/struct_ov16_0226DC24_decl.h"
 
 #include "grid_menu_cursor_position.h"
@@ -18,11 +20,11 @@ typedef struct BattleSubMenuCursor {
     u32 enabledPositionsMask;
 } BattleSubMenuCursor;
 
-BattleSubMenuCursor *MakeBattleSubMenuCursor(u32 heapID);
+BattleSubMenuCursor *MakeBattleSubMenuCursor(enum HeapID heapID);
 void DeleteBattleSubMenuCursor(BattleSubMenuCursor *cursor);
 UnkStruct_ov16_0226DC24 *GetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor);
-u8 IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor);
-void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, u8 isVisible);
+BOOL IsBattleSubMenuCursorVisible(BattleSubMenuCursor *cursor);
+void SetBattleSubMenuCursorVisibility(BattleSubMenuCursor *cursor, BOOL isVisible);
 void SetBattleSubMenuCursorSprites(BattleSubMenuCursor *cursor, UnkStruct_ov16_0226DC24 *sprites);
 void SetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor, u8 positionIndex);
 void ResetBattleSubMenuCursorCurrentPosition(BattleSubMenuCursor *cursor);

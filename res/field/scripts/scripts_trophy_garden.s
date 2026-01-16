@@ -5,7 +5,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag FLAG_UNK_0x09D9
+    SetFlag FLAG_FIRST_ARRIVAL_TROPHY_GARDEN
     End
 
 Unk323_Unused:

@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09ED
+    SetFlag FLAG_FIRST_ARRIVAL_DOCTOR_FOOTSTEPS_HOUSE
     End
 
 FootstepHouse_DrFootstep:

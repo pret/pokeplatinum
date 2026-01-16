@@ -143,7 +143,7 @@ static u8 CheckDuplicateValues(PartyMenuApplication *application);
 static u8 CheckUniqueValues(PartyMenuApplication *application);
 static u8 CheckEqualityInArray(PartyMenuApplication *application);
 static BOOL ShouldShowSubscreen(PartyMenuApplication *application);
-static G3DPipelineBuffers *sub_0207EAD4(int heapID);
+static G3DPipelineBuffers *sub_0207EAD4(enum HeapID heapID);
 static void sub_0207EAF4(void);
 static void sub_0207EB64(G3DPipelineBuffers *param0);
 static int ProcessMessageResult(PartyMenuApplication *application);
@@ -888,7 +888,7 @@ void sub_0207EA74(PartyMenuApplication *application, int param1)
     }
 }
 
-static G3DPipelineBuffers *sub_0207EAD4(int heapID)
+static G3DPipelineBuffers *sub_0207EAD4(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
 }
@@ -2626,54 +2626,55 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
     return v0;
 }
 
-static int ApplyItemEffectOnPokemon(PartyMenuApplication *application)
+static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
 {
-    ItemData *v0 = Item_Load(application->partyMenu->usedItemID, 0, 12);
+    ItemData *itemData = Item_Load(app->partyMenu->usedItemID, 0, HEAP_ID_PARTY_MENU);
 
-    if ((application->partyMenu->usedItemID == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot)) == 1)) {
-        application->partyMenu->evoTargetSpecies = 1;
-        Heap_Free(v0);
-        LoadOverlay118(application);
+    if (app->partyMenu->usedItemID == ITEM_GRACIDEA
+        && Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot)) == TRUE) {
+        app->partyMenu->evoTargetSpecies = 1;
+        Heap_Free(itemData);
+        LoadOverlay118(app);
         return 31;
     }
 
-    if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
-        Heap_Free(v0);
-        sub_020866A0(application, 0);
+    if (Item_Get(itemData, ITEM_PARAM_PP_UP) != 0 || Item_Get(itemData, ITEM_PARAM_PP_MAX) != 0) {
+        Heap_Free(itemData);
+        sub_020866A0(app, 0);
         return 6;
     }
 
-    if ((Item_Get(v0, 36) != 0) && (Item_Get(v0, 37) == 0)) {
-        Heap_Free(v0);
-        sub_020866A0(application, 1);
+    if (Item_Get(itemData, ITEM_PARAM_PP_RESTORE) != 0 && Item_Get(itemData, ITEM_PARAM_PP_RESTORE_ALL) == 0) {
+        Heap_Free(itemData);
+        sub_020866A0(app, 1);
         return 6;
     }
 
-    if (Party_CheckItemEffectsOnMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, 0, 12) == 1) {
-        Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
+    if (Party_CheckItemEffectsOnMember(app->partyMenu->party, app->partyMenu->usedItemID, app->currPartySlot, 0, HEAP_ID_PARTY_MENU) == 1) {
+        Bag_TryRemoveItem(app->partyMenu->bag, app->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
 
-        if (Item_Get(v0, 26) != 0) {
-            Pokemon *v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        if (Item_Get(itemData, ITEM_PARAM_EVOLVE) != 0) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
 
-            application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, application->partyMenu->usedItemID, &application->partyMenu->evoType);
-            application->partyMenu->menuSelectionResult = 8;
-            Heap_Free(v0);
+            app->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, app->partyMenu->usedItemID, &app->partyMenu->evoType);
+            app->partyMenu->menuSelectionResult = 8;
+            Heap_Free(itemData);
             return 32;
         }
 
-        if ((Item_IsHerbalMedicine(application->partyMenu->usedItemID) == 1) && (application->partyMenu->broadcast != NULL)) {
-            Pokemon *v2 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-            FieldSystem_SaveTVEpisodeSegment_HerbalMedicineTrainerSightingDummy(application->partyMenu->broadcast, v2, application->partyMenu->usedItemID);
+        if ((Item_IsHerbalMedicine(app->partyMenu->usedItemID) == 1) && (app->partyMenu->broadcast != NULL)) {
+            Pokemon *v2 = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
+            FieldSystem_SaveTVEpisodeSegment_HerbalMedicineTrainerSightingDummy(app->partyMenu->broadcast, v2, app->partyMenu->usedItemID);
         }
 
-        sub_020852B8(application);
+        sub_020852B8(app);
     } else {
-        PartyMenu_PrintLongMessage(application, pl_msg_00000453_00105, TRUE);
-        application->currPartySlot = 7;
-        application->unk_B00 = sub_02085348;
+        PartyMenu_PrintLongMessage(app, pl_msg_00000453_00105, TRUE);
+        app->currPartySlot = 7;
+        app->unk_B00 = sub_02085348;
     }
 
-    Heap_Free(v0);
+    Heap_Free(itemData);
     return 5;
 }
 
@@ -2699,7 +2700,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
     v1 = &application->windows[34];
     fieldSystem = application->partyMenu->fieldSystem;
 
-    if (application->partyMenu->usedItemID == 112) {
+    if (application->partyMenu->usedItemID == ITEM_GRISEOUS_ORB) {
         if (Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00203, application->tmpFormat);
             StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(v0));
@@ -2719,7 +2720,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
     if (v2 == -1) {
         switch (CheckItemUsageValidity(application)) {
         case 0:
-            if (Item_IsMail(application->partyMenu->usedItemID) == 1) {
+            if (Item_IsMail(application->partyMenu->usedItemID) == TRUE) {
                 application->partyMenu->menuSelectionResult = 6;
                 return 32;
             }
@@ -2761,7 +2762,9 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *mon
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
     Pokemon_SetArceusForm(mon);
 
-    if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
+    if (fieldSystem == NULL
+        || fieldSystem->location->mapId < MAP_HEADER_DISTORTION_WORLD_1F
+        || (fieldSystem->location->mapId > MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM)) {
         *param2 = Pokemon_SetGiratinaFormByHeldItem(mon);
     } else {
         *param2 = -1;
@@ -2777,13 +2780,13 @@ static int UpdatePokemonWithItem(PartyMenuApplication *application, Pokemon *mon
     return 11;
 }
 
-static void SwapPokemonItem(PartyMenuApplication *application, Pokemon *mon, u32 param2, u32 param3)
+static void SwapPokemonItem(PartyMenuApplication *application, Pokemon *mon, u32 oldItem, u32 newItem)
 {
-    Bag_TryAddItem(application->partyMenu->bag, (u16)param2, 1, HEAP_ID_PARTY_MENU);
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &param3);
+    Bag_TryAddItem(application->partyMenu->bag, (u16)oldItem, 1, HEAP_ID_PARTY_MENU);
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &newItem);
     Pokemon_SetArceusForm(mon);
     Pokemon_SetGiratinaFormByHeldItem(mon);
-    application->partyMembers[application->currPartySlot].heldItem = (u16)param3;
+    application->partyMembers[application->currPartySlot].heldItem = (u16)newItem;
     PartyMenu_DrawMemberHeldItem(application, application->currPartySlot, application->partyMembers[application->currPartySlot].heldItem);
 }
 
@@ -2838,25 +2841,21 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
 
     switch (Menu_ProcessInputAndHandleExit(application->contextMenu, 12)) {
     case 0: {
-        Pokemon *v2;
-        Window *v3;
-        u32 v4;
-        u32 v5;
+        Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        Window *v3 = &application->windows[34];
+        u32 v4 = application->partyMenu->usedItemID;
+        u32 v5 = application->partyMembers[application->currPartySlot].heldItem;
 
-        v2 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
-        v3 = &application->windows[34];
-        v4 = application->partyMenu->usedItemID;
-        v5 = application->partyMembers[application->currPartySlot].heldItem;
-        v0 = UpdatePokemonWithItem(application, v2, &v1);
+        v0 = UpdatePokemonWithItem(application, mon, &v1);
 
         if (Bag_TryAddItem(application->partyMenu->bag, (u16)v5, 1, HEAP_ID_PARTY_MENU) == FALSE) {
-            SwapPokemonItem(application, v2, v4, v5);
+            SwapPokemonItem(application, mon, v4, v5);
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00083, application->tmpString);
             v0 = 11;
         } else {
             if (Item_IsMail(application->partyMenu->usedItemID) == 1) {
                 Bag_TryRemoveItem(application->partyMenu->bag, (u16)v5, 1, HEAP_ID_PARTY_MENU);
-                SwapPokemonItem(application, v2, v4, v5);
+                SwapPokemonItem(application, mon, v4, v5);
                 application->partyMenu->menuSelectionResult = 6;
                 return 32;
             }
@@ -2866,9 +2865,9 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
             StringTemplate_SetItemName(application->template, 2, v4);
             StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
 
-            if ((v4 != 112) && (v5 == 112) && (v1 != -1)) {
+            if ((v4 != ITEM_GRISEOUS_ORB) && (v5 == ITEM_GRISEOUS_ORB) && (v1 != -1)) {
                 v0 = 12;
-            } else if ((v4 == 112) && (v5 == 112)) {
+            } else if ((v4 == ITEM_GRISEOUS_ORB) && (v5 == ITEM_GRISEOUS_ORB)) {
                 v0 = 11;
             }
         }

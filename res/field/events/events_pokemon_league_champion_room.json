@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_LEAGUE_CHAMPION_ROOM_CYNTHIA_0",
+            "id": "LOCALID_CYNTHIA",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -21,7 +21,7 @@
         {
             "x": 8,
             "z": 2,
-            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_HALL_OF_FAME",
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME",
             "dest_warp_id": 1
         },
         {

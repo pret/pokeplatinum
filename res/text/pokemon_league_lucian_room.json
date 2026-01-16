@@ -2,7 +2,7 @@
   "key": 54274,
   "messages": [
     {
-      "id": "pl_msg_00000188_00000",
+      "id": "PokemonLeagueLucianRoom_Text_LucianIntro",
       "en_US": [
         "Ah, you timed your arrival well.\r",
         "I’ve just finished reading a book,\n",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000188_00001",
+      "id": "PokemonLeagueLucianRoom_Text_LucianDefeat",
       "en_US": [
         "Congratulations.\n",
         "You’ve now beaten the Elite Four.\r",
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000188_00002",
+      "id": "PokemonLeagueLucianRoom_Text_LucianPostBattle",
       "en_US": [
         "I’ll be reading books until the next\n",
         "challenger arrives.\r",

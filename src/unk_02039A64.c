@@ -63,7 +63,7 @@ static const WindowTemplate Unk_020E5F48 = {
     0x23
 };
 
-void sub_02039A64(int heapID, int unused)
+void sub_02039A64(enum HeapID heapID, int unused)
 {
     BgConfig *v0;
     Window v1;

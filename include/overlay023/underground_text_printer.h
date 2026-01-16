@@ -21,7 +21,7 @@ typedef struct UndergroundTextPrinter {
     StringTemplate *template;
     int bankID;
     int printerID;
-    int heapID;
+    enum HeapID heapID;
     int renderDelay;
     int callbackParam;
     u16 windowBaseTile;
@@ -32,7 +32,7 @@ typedef struct UndergroundTextPrinter {
 } UndergroundTextPrinter;
 
 const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void);
-UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, int heapID, BgConfig *bgConfig, int renderDelay, int stringSize);
+UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, enum HeapID heapID, BgConfig *bgConfig, int renderDelay, int stringSize);
 void UndergroundTextPrinter_Free(UndergroundTextPrinter *textPrinter);
 void UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundTextPrinter *textPrinter, int bankID, enum MessageLoaderMode loaderMode);
 void UndergroundTextPrinter_SetBackground(UndergroundTextPrinter *textPrinter, BgConfig *bgConfig, u16 messageBoxBaseTile, u16 windowBaseTile);

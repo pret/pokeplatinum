@@ -19,7 +19,7 @@ typedef struct {
     void *unk_14C[4];
     void *unk_150;
     u8 unk_154;
-    u8 unk_155;
+    u8 isLinkContest;
     u8 unk_156[4];
     u8 unk_15A;
     u8 unk_15B;
@@ -36,8 +36,8 @@ typedef struct {
     Pokemon *unk_1974;
     const TrainerInfo *unk_1978;
     u8 unk_197C;
-    u8 unk_197D;
-    u8 unk_197E;
+    u8 isGameCompleted;
+    u8 isNatDexObtained;
     u8 padding_197F;
     ImageClips *imageClips;
     UnkStruct_02095C60 unk_1984;

@@ -85,13 +85,13 @@ static void ov21_021E98F8(PaletteData *param0, PokemonSprite *param1, int param2
 static BOOL ov21_021E9948(PaletteData *param0, PokemonSprite *param1);
 static void ov21_021E8E0C(UnkStruct_ov21_021E8D48 *param0, const UnkStruct_ov21_021E8E0C *param1);
 static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0);
-static void ov21_021E90B0(BgConfig *param0, int heapID);
+static void ov21_021E90B0(BgConfig *param0, enum HeapID heapID);
 static void ov21_021E9194(BgConfig *param0);
-static Window *ov21_021E91B0(BgConfig *param0, int heapID);
+static Window *ov21_021E91B0(BgConfig *param0, enum HeapID heapID);
 static void ov21_021E91F0(Window *param0);
-static void ov21_021E9208(SpriteResourceCollection **param0, int heapID);
+static void ov21_021E9208(SpriteResourceCollection **param0, enum HeapID heapID);
 static void ov21_021E9228(SpriteResourceCollection **param0);
-static void ov21_021E9240(PokedexSpeciesLabel *param0, PokedexTextManager *textMan, int param2, int param3, int param4);
+static void ov21_021E9240(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexTextManager *textMan, enum HeapID heapID, int species, int isNatDex);
 static void ov21_021E92B0(PokedexSpeciesLabel *param0);
 static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param1, int param2, int param3, int param4);
 static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
@@ -116,7 +116,7 @@ static void ov21_021E9968(Window *param0, int param1, int param2);
 static void ov21_021E998C(Window *param0, enum HeapID heapID);
 static void ov21_021E9A0C(int param0);
 static void ov21_021E9A38(void);
-static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int param1, int param2, NARC *param3);
+static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, enum HeapID heapID, int param2, NARC *param3);
 static void ov21_021E9A9C(UnkStruct_ov21_021E9A9C *param0);
 static void ov21_021E9AC8(UnkStruct_ov21_021E9A9C *param0);
 static void ov21_021E9AE8(UnkStruct_ov21_021E9A9C *param0, int param1);
@@ -264,7 +264,7 @@ static void ov21_021E900C(UnkStruct_ov21_021E8D48 *param0)
     ov21_021E9A38();
 }
 
-static void ov21_021E90B0(BgConfig *param0, int heapID)
+static void ov21_021E90B0(BgConfig *param0, enum HeapID heapID)
 {
     {
         BgTemplate v0 = {
@@ -344,7 +344,7 @@ static void ov21_021E9194(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
 }
 
-static Window *ov21_021E91B0(BgConfig *param0, int heapID)
+static Window *ov21_021E91B0(BgConfig *param0, enum HeapID heapID)
 {
     Window *v0 = Window_New(heapID, 1);
 
@@ -362,7 +362,7 @@ static void ov21_021E91F0(Window *param0)
     Windows_Delete(param0, 1);
 }
 
-static void ov21_021E9208(SpriteResourceCollection **param0, int heapID)
+static void ov21_021E9208(SpriteResourceCollection **param0, enum HeapID heapID)
 {
     int i;
 
@@ -381,7 +381,7 @@ static void ov21_021E9228(SpriteResourceCollection **param0)
     }
 }
 
-static void ov21_021E9240(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexTextManager *textMan, int heapID, int species, int isNatDex)
+static void ov21_021E9240(PokedexSpeciesLabel *pokedexSpeciesLabel, PokedexTextManager *textMan, enum HeapID heapID, int species, int isNatDex)
 {
     PokedexDisplayBox displayBox;
     Window *window;
@@ -763,7 +763,7 @@ static void ov21_021E9A38(void)
     CharTransfer_Free();
 }
 
-static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int heapID, int param2, NARC *param3)
+static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, enum HeapID heapID, int param2, NARC *param3)
 {
     int v0;
 

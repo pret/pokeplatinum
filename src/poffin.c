@@ -38,7 +38,7 @@ void Poffin_Clear(Poffin *poffin)
     poffin->dummy = 0;
 }
 
-Poffin *Poffin_New(int heapID)
+Poffin *Poffin_New(enum HeapID heapID)
 {
     Poffin *poffin = Heap_AllocAtEnd(heapID, sizeof(Poffin));
     Poffin_Clear(poffin);
@@ -334,7 +334,7 @@ void PoffinCase_CopyPoffinFromSlot(PoffinCase *poffinCase, u16 srcSlot, Poffin *
     return;
 }
 
-Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, int heapID)
+Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, enum HeapID heapID)
 {
     Poffin *poffin = Poffin_New(heapID);
 

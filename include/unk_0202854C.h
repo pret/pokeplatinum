@@ -20,7 +20,7 @@ enum BaseFlagType {
 int Underground_SaveSize(void);
 int SecretBase_Size(void);
 int UndergroundRecord_Size(void);
-UndergroundRecord *UndergroundRecord_Init(u32 heapID);
+UndergroundRecord *UndergroundRecord_Init(enum HeapID heapID);
 void Underground_Init(Underground *underground);
 void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed);
 void sub_02028758(SaveData *saveData, s32 param1, BOOL param2);
@@ -30,7 +30,7 @@ void sub_020287F8(SaveData *saveData);
 BOOL sub_02028810(SaveData *saveData);
 void Underground_SetUnusedField(Underground *underground);
 void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const TrainerInfo *info);
-TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, int heapID, int param2);
+TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, enum HeapID heapID, int param2);
 u32 Underground_GetRandomSeed(Underground *underground);
 int Underground_ConvertTreasureToBagItem(int treasureID);
 BOOL Underground_TryAddGoodPC(Underground *underground, int goodID);

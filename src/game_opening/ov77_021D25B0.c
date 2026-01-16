@@ -123,7 +123,7 @@ typedef struct {
 } UnkStruct_ov77_021D5308;
 
 typedef struct {
-    int unk_00;
+    enum HeapID heapID;
     int unk_04;
     BOOL unk_08;
     BgConfig *unk_0C;
@@ -287,7 +287,7 @@ static void ov77_021D25F0(void)
 
 static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 {
-    param0->unk_0C = BgConfig_New(param0->unk_00);
+    param0->unk_0C = BgConfig_New(param0->heapID);
 
     {
         GraphicsModes v0 = {
@@ -420,7 +420,7 @@ static void ov77_021D2610(UnkStruct_ov77_021D2E9C *param0)
 
 static void ov77_021D2724(UnkStruct_ov77_021D2E9C *param0)
 {
-    param0->unk_0C = BgConfig_New(param0->unk_00);
+    param0->unk_0C = BgConfig_New(param0->heapID);
 
     {
         GraphicsModes v0 = {
@@ -758,7 +758,7 @@ static void ov77_021D2900(UnkStruct_ov77_021D2E9C *param0)
 
 static void ov77_021D2A00(UnkStruct_ov77_021D2E9C *param0)
 {
-    param0->unk_0C = BgConfig_New(param0->unk_00);
+    param0->unk_0C = BgConfig_New(param0->heapID);
 
     {
         GraphicsModes v0 = {
@@ -799,7 +799,7 @@ static void ov77_021D2A58(UnkStruct_ov77_021D2E9C *param0)
     NNSGfdPlttKey v1;
     u32 v2, v3;
 
-    param0->unk_10 = G3DPipeline_Init(param0->unk_00, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov77_021D2AA0);
+    param0->unk_10 = G3DPipeline_Init(param0->heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov77_021D2AA0);
 
     v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x20 * 4, 0, NNS_GFD_ALLOC_FROM_LOW);
@@ -904,7 +904,6 @@ static void ov77_021D2CE8(void)
 static int ov77_021D2D08(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov77_021D2E9C *v0;
-    int heapID = HEAP_ID_76;
 
     BrightnessController_ResetAllControllers();
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_WHITE);
@@ -914,12 +913,12 @@ static int ov77_021D2D08(ApplicationManager *appMan, int *param1)
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     SetAutorepeat(4, 8);
-    Heap_Create(HEAP_ID_APPLICATION, heapID, 0xa0000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_76, 0xa0000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov77_021D2E9C), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov77_021D2E9C), HEAP_ID_76);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D2E9C));
 
-    v0->unk_00 = heapID;
+    v0->heapID = HEAP_ID_76;
     v0->unk_08 = 0;
     v0->unk_2A8 = 0;
 
