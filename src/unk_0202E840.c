@@ -155,8 +155,8 @@ static u32 *sub_0202E924(SaveData *saveData, enum HeapID heapID)
             v4[v0] = v1;
             break;
         case 10:
-            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_092);
-            v1 += GameRecords_GetRecordValue(v2, RECORD_UNK_093);
+            v1 = GameRecords_GetRecordValue(v2, RECORD_SUPER_CONTEST_WINS);
+            v1 += GameRecords_GetRecordValue(v2, RECORD_LINK_CONTEST_WINS);
             v4[v0] = v1;
             break;
         case 11:

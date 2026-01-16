@@ -1644,11 +1644,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_116
+    .macro ShowLinkContestRecords
     .short 278
     .endm
 
-    .macro ScrCmd_117
+    .macro LockAutoScrollForLinkContests
     .short 279
     .endm
 

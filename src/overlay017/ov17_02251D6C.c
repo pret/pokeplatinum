@@ -111,7 +111,7 @@ void ov17_02251D6C(UnkStruct_ov17_0224FCA0 *param0)
     v0.unk_04 = NELEMS(Unk_ov17_02254D18);
     v0.unk_06 = param0->unk_00->unk_00.unk_113;
     v0.unk_08 = param0->unk_00->unk_00.unk_10C;
-    v0.unk_07 = param0->unk_00->unk_155;
+    v0.unk_07 = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_85C, &v0);
 }
