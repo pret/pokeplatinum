@@ -206,8 +206,6 @@ static void DecorationMenu_HandleInput(DecorationMenu *menu)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     }
-
-    return;
 }
 
 static void DecorationMenu_Clear(DecorationMenu *menu)
@@ -316,8 +314,6 @@ static void DecorationGoodsMenu_HandleInput(DecorationGoodsMenu *menu)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     }
-
-    return;
 }
 
 static void DecorationGoodsMenu_PrintGoodDescription(ListMenu *listMenu, u32 value, u8 unused)
@@ -463,6 +459,4 @@ static void DecorationMenu_UpdateCursorPos(DecorationMenu *menu)
     if (prevPos != menu->cursorPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
-
-    return;
 }

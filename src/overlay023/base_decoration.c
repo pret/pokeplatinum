@@ -357,7 +357,6 @@ static BOOL BaseDecoration_MenuTask(FieldTask *task)
             BaseDecoration_SaveBaseGoods(fieldSystem, ctx->goodSlots);
             BaseDecoration_UpdateState(DECORATION_STATE_FADE_OUT, ctx);
             return TRUE;
-            break;
         }
     }
 
