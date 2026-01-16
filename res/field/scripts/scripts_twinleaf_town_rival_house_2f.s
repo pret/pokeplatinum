@@ -1,43 +1,44 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_rival_house_2f.h"
+#include "res/field/events/events_twinleaf_town_rival_house_2f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0090
-    ScriptEntry _00A1
+    ScriptEntry TwinleafTownRivalHouse2F_RivalNoticesPlayerAndLeaves
+    ScriptEntry TwinleafTownRivalHouse2F_Wii
+    ScriptEntry TwinleafTownRivalHouse2F_PC
     ScriptEntryEnd
 
-_000E:
+TwinleafTownRivalHouse2F_RivalNoticesPlayerAndLeaves:
     LockAll
     BufferRivalName 0
-    Message 0
+    Message TwinleafTownRivalHouse2F_Text_IdBetterTakeBagAndJournal
     CloseMessage
-    ApplyMovement 0, _0060
+    ApplyMovement LOCALID_RIVAL, TwinleafTownRivalHouse2F_Movement_RivalNoticePlayer
     WaitMovement
     SetRivalBGM
     BufferPlayerName 0
-    Message 1
+    Message TwinleafTownRivalHouse2F_Text_IllBeWaitingOnTheRoad
     CloseMessage
-    ApplyMovement 0, _006C
-    ApplyMovement LOCALID_PLAYER, _0080
+    ApplyMovement LOCALID_RIVAL, TwinleafTownRivalHouse2F_Movement_RivalLeave
+    ApplyMovement LOCALID_PLAYER, TwinleafTownRivalHouse2F_Movement_PlayerMoveAwayFromStairs
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject 0
+    RemoveObject LOCALID_RIVAL
     FadeToDefaultMusic2
-    SetFlag FLAG_UNK_0x00EA
-    SetVar VAR_UNK_0x40A3, 1
-    SetVar VAR_UNK_0x4070, 2
+    SetFlag FLAG_RIVAL_LEFT_HOME
+    SetVar VAR_RIVAL_HOUSE_STATE, 1
+    SetVar VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, 2
     ReleaseAll
     End
 
     .balign 4, 0
-_0060:
+TwinleafTownRivalHouse2F_Movement_RivalNoticePlayer:
     WalkOnSpotNormalWest
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_006C:
+TwinleafTownRivalHouse2F_Movement_RivalLeave:
     WalkFastWest 4
     WalkFastNorth
     WalkFastWest 3
@@ -45,26 +46,26 @@ _006C:
     EndMovement
 
     .balign 4, 0
-_0080:
+TwinleafTownRivalHouse2F_Movement_PlayerMoveAwayFromStairs:
     Delay8 2
     WalkNormalSouth
     WalkOnSpotNormalNorth
     EndMovement
 
-_0090:
+TwinleafTownRivalHouse2F_Wii:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 2
+    Message TwinleafTownRivalHouse2F_Text_ItsAWii
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A1:
+TwinleafTownRivalHouse2F_PC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
-    Message 3
+    Message TwinleafTownRivalHouse2F_Text_PCAdventureRules
     WaitABXPadPress
     CloseMessage
     ReleaseAll
