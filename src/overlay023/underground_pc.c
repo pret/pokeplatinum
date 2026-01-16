@@ -9,10 +9,10 @@
 #include "struct_defs/underground.h"
 
 #include "field/field_system.h"
+#include "overlay023/base_decoration.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_022521F0.h"
-#include "overlay023/ov23_02254A14.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_menu.h"
@@ -631,7 +631,7 @@ static BOOL UndergroundPC_DecorateTask(FieldTask *task)
         }
         break;
     case DECORATE_STATE_START:
-        ov23_02254D98(fieldSystem, task);
+        BaseDecoration_StartDecorationTask(fieldSystem, task);
         ctx->state = DECORATE_STATE_MAIN;
         break;
     case DECORATE_STATE_MAIN:

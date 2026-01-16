@@ -129,7 +129,7 @@ static BOOL FieldTask_PlayHealingAnimation_HallOfFame(FieldTask *param0)
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_POKEBALL_TAG);
 
             for (pokeballIndex = 0; pokeballIndex < animation->pokeballCount; pokeballIndex++) {
-                MapPropManager_InitOne(animation->pokeballLoadedPropIDs[pokeballIndex], fieldSystem->mapPropManager);
+                MapPropManager_ClearOne(animation->pokeballLoadedPropIDs[pokeballIndex], fieldSystem->mapPropManager);
             }
 
             (animation->state)++;
