@@ -4966,6 +4966,14 @@
     GoToIf 5, \offset
     .endm
 
+   .macro GoToIfInRange varID, lower, upper, offset
+    CompareVar \varID, \lower
+    GoToIf 1, \offset
+    .if \lower < \upper
+        GoToIfInRange \varID, \lower + 1, \upper, \offset
+    .endif
+    .endm
+
     .macro GoToIfUnset flagID, offset
     CheckFlag \flagID
     GoToIf 0, \offset

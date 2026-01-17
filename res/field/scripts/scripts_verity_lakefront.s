@@ -37,12 +37,7 @@ VerityLakefront_TriggerWereAtTheLake:
     Message VerityLakefront_Text_WereAtTheLake
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 80, VerityLakefront_WalkToLakeValor
-    GoToIfEq VAR_0x8004, 81, VerityLakefront_WalkToLakeValor
-    GoToIfEq VAR_0x8004, 82, VerityLakefront_WalkToLakeValor
-    GoToIfEq VAR_0x8004, 83, VerityLakefront_WalkToLakeValor
-    GoToIfEq VAR_0x8004, 84, VerityLakefront_WalkToLakeValor
-    GoToIfEq VAR_0x8004, 85, VerityLakefront_WalkToLakeValor
+    GoToIfInRange VAR_0x8004, 80, 85, VerityLakefront_WalkToLakeValor
     End
 
 VerityLakefront_WalkToLakeValor:

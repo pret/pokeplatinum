@@ -832,10 +832,7 @@ Route201_TriggerFollowingRivalStopPlayerSouth:
     Message Route201_Text_TheLakesNotThatWay
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 110, Route201_PlayerAndRivalWalkBackNorth
-    GoToIfEq VAR_0x8004, 111, Route201_PlayerAndRivalWalkBackNorth
-    GoToIfEq VAR_0x8004, 112, Route201_PlayerAndRivalWalkBackNorth
-    GoToIfEq VAR_0x8004, 113, Route201_PlayerAndRivalWalkBackNorth
+    GoToIfInRange VAR_0x8004, 110, 113, Route201_PlayerAndRivalWalkBackNorth
     End
 
 Route201_PlayerAndRivalWalkBackNorth:
