@@ -1,9 +1,9 @@
-#include "overlay013/battle_bag_buttons.h"
+#include "battle_sub_menus/battle_bag_buttons.h"
 
-#include "overlay013/battle_bag.h"
-#include "overlay013/battle_bag_text.h"
-#include "overlay013/battle_bag_utils.h"
-#include "overlay013/battle_sub_menu_buttons_defs.h"
+#include "battle_sub_menus/battle_bag.h"
+#include "battle_sub_menus/battle_bag_text.h"
+#include "battle_sub_menus/battle_bag_utils.h"
+#include "battle_sub_menus/battle_sub_menu_buttons_defs.h"
 
 #include "bg_window.h"
 #include "heap.h"

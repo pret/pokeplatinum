@@ -658,19 +658,19 @@ Overlay battle_anim
 	Object main.nef.p/src_battle_anim_is_form_symmetrical.c.o
 }
 
-Overlay overlay13
+Overlay battle_sub_menus
 {
 	After overlay11
-	Object main.nef.p/src_overlay013_battle_party.c.o
-	Object main.nef.p/src_overlay013_battle_party_text.c.o
-	Object main.nef.p/src_overlay013_battle_party_sprites.c.o
-	Object main.nef.p/src_overlay013_battle_party_buttons.c.o
-	Object main.nef.p/src_overlay013_battle_bag.c.o
-	Object main.nef.p/src_overlay013_battle_bag_text.c.o
-	Object main.nef.p/src_overlay013_battle_bag_utils.c.o
-	Object main.nef.p/src_overlay013_battle_bag_sprites.c.o
-	Object main.nef.p/src_overlay013_battle_bag_buttons.c.o
-	Object main.nef.p/src_overlay013_battle_sub_menu_cursor.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party_text.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party_sprites.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party_buttons.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_text.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_utils.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_sprites.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_buttons.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_sub_menu_cursor.c.o
 }
 
 Overlay trainer_ai

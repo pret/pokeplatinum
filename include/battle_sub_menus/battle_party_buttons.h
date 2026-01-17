@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_BUTTONS_H
 #define POKEPLATINUM_BATTLE_PARTY_BUTTONS_H
 
-#include "overlay013/battle_party.h"
+#include "battle_sub_menus/battle_party.h"
 
 #define BATTLE_PARTY_CANCEL_BUTTON_OFFSET              6
 #define BATTLE_SELECT_POKEMON_SCREEN_BUTTON_OFFSET     7

@@ -1,11 +1,11 @@
-#include "overlay013/battle_party_buttons.h"
+#include "battle_sub_menus/battle_party_buttons.h"
 
 #include "generated/species.h"
 
-#include "overlay013/battle_party.h"
-#include "overlay013/battle_party_sprites.h"
-#include "overlay013/battle_party_text.h"
-#include "overlay013/battle_sub_menu_buttons_defs.h"
+#include "battle_sub_menus/battle_party.h"
+#include "battle_sub_menus/battle_party_sprites.h"
+#include "battle_sub_menus/battle_party_text.h"
+#include "battle_sub_menus/battle_sub_menu_buttons_defs.h"
 
 #include "bg_window.h"
 #include "heap.h"
