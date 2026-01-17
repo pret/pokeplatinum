@@ -2112,7 +2112,7 @@ static int TVEpisodeSegment_LoadMessage_DiscoveringGroups(FieldSystem *fieldSyst
     StringTemplate_SetUnionGroupName(template, fieldSystem->saveData, entry, 1, 0);
     StringTemplate_SetPokemonTypeName(template, 2, type);
 
-    return TVPrograms_Text_SinnohNow_DiscoveringGroups;
+    return TVProgramSinnohNow_Text_DiscoveringGroups;
 }
 
 static BOOL TVEpisodeSegment_IsEligible_DiscoveringGroups(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2144,35 +2144,35 @@ static int TVEpisodeSegment_LoadMessage_OnTheSpotWeather(FieldSystem *fieldSyste
     case OVERWORLD_WEATHER_CLEAR:
         switch (LCRNG_RandMod(4)) {
         case 0:
-            return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear1;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear1;
         case 1:
-            return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear2;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear2;
         case 2:
-            return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear3;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear3;
         case 3:
-            return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear4;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear4;
         }
     case OVERWORLD_WEATHER_CLOUDY:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Cloudy;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Cloudy;
     case OVERWORLD_WEATHER_RAINING:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Raining;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Raining;
     case OVERWORLD_WEATHER_HEAVY_RAIN:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_HeavyRain;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_HeavyRain;
     case OVERWORLD_WEATHER_SNOWING:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Snowing;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Snowing;
     case OVERWORLD_WEATHER_HEAVY_SNOW:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_HeavySnow;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_HeavySnow;
     case OVERWORLD_WEATHER_BLIZZARD:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Blizzard;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Blizzard;
     case OVERWORLD_WEATHER_THUNDERSTORM:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Thunderstorm;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Thunderstorm;
     case OVERWORLD_WEATHER_HAILING:
-        return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Hailing;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Hailing;
     default:
         GF_ASSERT(FALSE);
     }
 
-    return TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear1;
+    return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear1;
 }
 
 static BOOL FieldSystem_AlwaysTrue(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2189,66 +2189,66 @@ static int TVEpisodeSegment_LoadMessage_YourTownsBestThree(FieldSystem *fieldSys
     if (mapID == MAP_HEADER_TWINLEAF_TOWN || (mapID >= MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F && mapID <= MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE)) {
         StringTemplate_SetPlayerName(template, 0, trainerInfo);
         StringTemplate_SetRivalName(template, 1, fieldSystem->saveData);
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_TwinleafTown;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_TwinleafTown;
     }
 
     if (mapID == MAP_HEADER_SANDGEM_TOWN || (mapID >= MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB && mapID <= MAP_HEADER_SANDGEM_TOWN_HOUSE)) {
         StringTemplate_SetCounterpartName(template, 1, fieldSystem->saveData);
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_SandgemTown;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SandgemTown;
     }
 
     if (mapID == MAP_HEADER_FLOAROMA_TOWN || (mapID >= MAP_HEADER_FLOWER_SHOP && mapID <= MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE) || mapID == MAP_HEADER_FLOAROMA_MEADOW_HOUSE) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_FloaromaTown;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_FloaromaTown;
     }
 
     if (mapID == MAP_HEADER_SOLACEON_TOWN || (mapID >= MAP_HEADER_POKEMON_DAY_CARE && mapID <= MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_SolaceonTown;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SolaceonTown;
     }
 
     if (mapID == MAP_HEADER_CELESTIC_TOWN || (mapID >= MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE && mapID <= MAP_HEADER_CELESTIC_TOWN_CAVE)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_CelesticTown;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_CelesticTown;
     }
 
     if (mapID == MAP_HEADER_JUBILIFE_CITY || (mapID >= MAP_HEADER_POKETCH_CO_1F && mapID <= MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_JubilifeCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_JubilifeCity;
     }
 
     if (mapID == MAP_HEADER_CANALAVE_CITY || (mapID >= MAP_HEADER_CANALAVE_LIBRARY_1F && mapID <= MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE) || mapID == MAP_HEADER_CANALAVE_CITY_WEST_HOUSE) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_CanalaveCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_CanalaveCity;
     }
 
     if (mapID == MAP_HEADER_OREBURGH_CITY || (mapID >= MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F && mapID <= MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_OreburghCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_OreburghCity;
     }
 
     if (mapID == MAP_HEADER_ETERNA_CITY || (mapID >= MAP_HEADER_CYCLE_SHOP && mapID <= MAP_HEADER_ETERNA_CITY_UNKNOWN_HOUSE)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_EternaCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_EternaCity;
     }
 
     if (mapID == MAP_HEADER_HEARTHOME_CITY || (mapID >= MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F && mapID <= MAP_HEADER_FOREIGN_BUILDING)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_HearthomeCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_HearthomeCity;
     }
 
     if (mapID == MAP_HEADER_PASTORIA_CITY || (mapID >= MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F && mapID <= MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_PastoriaCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_PastoriaCity;
     }
 
     if (mapID == MAP_HEADER_VEILSTONE_CITY || (mapID >= MAP_HEADER_GAME_CORNER && mapID <= MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY) || (mapID >= MAP_HEADER_GALACTIC_HQ_1F && mapID <= MAP_HEADER_GALACTIC_HQ_B2F)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_VeilstoneCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_VeilstoneCity;
     }
 
     if (mapID == MAP_HEADER_SUNYSHORE_CITY || (mapID >= MAP_HEADER_SUNYSHORE_MARKET && mapID <= MAP_HEADER_VISTA_LIGHTHOUSE) || mapID == MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_SunyshoreCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SunyshoreCity;
     }
 
     if (mapID == MAP_HEADER_SNOWPOINT_CITY || (mapID >= MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE && mapID <= MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE)) {
-        return TVPrograms_Text_SinnohNow_YourTownsBestThree_SnowpointCity;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SnowpointCity;
     }
 
     StringTemplate_SetPlayerName(template, 0, trainerInfo);
     StringTemplate_SetRivalName(template, 1, fieldSystem->saveData);
 
-    return TVPrograms_Text_SinnohNow_YourTownsBestThree_WhereWillWeGo;
+    return TVProgramSinnohNow_Text_YourTownsBestThree_WhereWillWeGo;
 }
 
 static int TVEpisodeSegment_LoadMessage_SwarmNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
@@ -2260,7 +2260,7 @@ static int TVEpisodeSegment_LoadMessage_SwarmNewsFlash(FieldSystem *fieldSystem,
     StringTemplate_SetLocationName(template, 0, MapHeader_GetMapLabelTextID(mapID));
     TVEpisodeSegment_SetTemplateOwnPokemonSpecies(template, 1, species);
 
-    return TVPrograms_Text_SinnohNow_SwarmNewsFlash;
+    return TVProgramSinnohNow_Text_SwarmNewsFlash;
 }
 
 static BOOL TVEpisodeSegment_IsEligible_SwarmNewsFlash(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *unused)
@@ -2471,17 +2471,17 @@ static int TVEpisodeSegment_LoadMessage_BerryLookout(FieldSystem *fieldSystem, S
 
     switch (BerryPatches_GetPatchGrowthStage(berryPatches, patchID)) {
     case BERRY_GROWTH_STAGE_FRUIT:
-        return TVPrograms_Text_SinnohNow_BerryLookout_Fruit;
+        return TVProgramSinnohNow_Text_BerryLookout_Fruit;
     case BERRY_GROWTH_STAGE_BLOOMING:
-        return TVPrograms_Text_SinnohNow_BerryLookout_Blooming;
+        return TVProgramSinnohNow_Text_BerryLookout_Blooming;
     case BERRY_GROWTH_STAGE_GROWING:
-        return TVPrograms_Text_SinnohNow_BerryLookout_Growing;
+        return TVProgramSinnohNow_Text_BerryLookout_Growing;
     case BERRY_GROWTH_STAGE_SPROUTED:
-        return TVPrograms_Text_SinnohNow_BerryLookout_Sprouted;
+        return TVProgramSinnohNow_Text_BerryLookout_Sprouted;
     case BERRY_GROWTH_STAGE_NONE:
     case BERRY_GROWTH_STAGE_PLANTED:
     default:
-        return TVPrograms_Text_SinnohNow_BerryLookout_None;
+        return TVProgramSinnohNow_Text_BerryLookout_None;
     }
 }
 
@@ -2512,7 +2512,7 @@ static int TVEpisodeSegment_LoadMessage_RichBoyNatureCorner(FieldSystem *fieldSy
         || nature == NATURE_SERIOUS
         || nature == NATURE_BASHFUL
         || nature == NATURE_QUIRKY) {
-        return TVPrograms_Text_SinnohNow_RichBoyNatureCorner_NeutralNature;
+        return TVProgramSinnohNow_Text_RichBoyNatureCorner_NeutralNature;
     }
 
     if ((personality % 2) == 0) {
@@ -2524,7 +2524,7 @@ static int TVEpisodeSegment_LoadMessage_RichBoyNatureCorner(FieldSystem *fieldSy
         }
 
         StringTemplate_SetFlavorName(template, 2, flavor);
-        return TVPrograms_Text_SinnohNow_RichBoyNatureCorner_FlavorAffinity;
+        return TVProgramSinnohNow_Text_RichBoyNatureCorner_FlavorAffinity;
     }
 
     for (i = 0; i < STAT_MAX - 1; i++) {
@@ -2535,7 +2535,7 @@ static int TVEpisodeSegment_LoadMessage_RichBoyNatureCorner(FieldSystem *fieldSy
     }
 
     StringTemplate_SetPokemonStatName(template, 1, 1 + stat);
-    return TVPrograms_Text_SinnohNow_RichBoyNatureCorner_StatAffinity;
+    return TVProgramSinnohNow_Text_RichBoyNatureCorner_StatAffinity;
 }
 
 static int TVEpisodeSegment_LoadMessage_RoamerNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
@@ -2566,7 +2566,7 @@ static int TVEpisodeSegment_LoadMessage_RoamerNewsFlash(FieldSystem *fieldSystem
         }
     }
 
-    return TVPrograms_Text_SinnohNow_RoamerNewsFlash;
+    return TVProgramSinnohNow_Text_RoamerNewsFlash;
 }
 
 static BOOL TVEpisodeSegment_IsEligible_RoamerNewsFlash(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2635,7 +2635,7 @@ static int TVEpisodeSegment_LoadMessage_PokemonPhotoRating(FieldSystem *fieldSys
     word = DressUpPhoto_GetTitleWord(photo);
     StringTemplate_SetCustomMessageWord(template, 1, word);
 
-    return TVPrograms_Text_SinnohNow_PokemonPhotoRating;
+    return TVProgramSinnohNow_Text_PokemonPhotoRating;
 }
 
 static BOOL TVEpisodeSegment_IsEligible_PokemonPhotoRating(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)

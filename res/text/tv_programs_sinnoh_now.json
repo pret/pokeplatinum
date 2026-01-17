@@ -2,7 +2,7 @@
   "key": 33015,
   "messages": [
     {
-      "id": "TVPrograms_Text_SinnohNow_DiscoveringGroups",
+      "id": "TVProgramSinnohNow_Text_DiscoveringGroups",
       "en_US": [
         "Reporter: Hello! The time for\n",
         "Discovering Groups is upon us.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear1",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Clear1",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear2",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Clear2",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear3",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Clear3",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Clear4",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Clear4",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Cloudy",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Cloudy",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Raining",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Raining",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_HeavyRain",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_HeavyRain",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Snowing",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Snowing",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_HeavySnow",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_HeavySnow",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Blizzard",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Blizzard",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Thunderstorm",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Thunderstorm",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weath...\r",
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_OnTheSpotWeather_Hailing",
+      "id": "TVProgramSinnohNow_Text_OnTheSpotWeather_Hailing",
       "en_US": [
         "Helena: This is Helena bringing you\n",
         "on-the-spot weather!\r",
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_TwinleafTown",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_TwinleafTown",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_SandgemTown",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_SandgemTown",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_FloaromaTown",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_FloaromaTown",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_SolaceonTown",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_SolaceonTown",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -324,7 +324,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_CelesticTown",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_CelesticTown",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -348,7 +348,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_JubilifeCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_JubilifeCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_CanalaveCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_CanalaveCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_OreburghCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_OreburghCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -423,7 +423,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_EternaCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_EternaCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -450,7 +450,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_HearthomeCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_HearthomeCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -476,7 +476,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_PastoriaCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_PastoriaCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -500,7 +500,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_VeilstoneCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_VeilstoneCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -526,7 +526,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_SunyshoreCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_SunyshoreCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -550,7 +550,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_SnowpointCity",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_SnowpointCity",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -573,7 +573,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_YourTownsBestThree_WhereWillWeGo",
+      "id": "TVProgramSinnohNow_Text_YourTownsBestThree_WhereWillWeGo",
       "en_US": [
         "MC: It’s time!\n",
         "Your Town’s Best Three!\r",
@@ -585,11 +585,11 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy1",
+      "id": "TVProgramSinnohNow_Text_Dummy1",
       "garbage": 180
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_SwarmNewsFlash",
+      "id": "TVProgramSinnohNow_Text_SwarmNewsFlash",
       "en_US": [
         "Newscaster: We bring you this\n",
         "news flash.\r",
@@ -610,11 +610,11 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy2",
+      "id": "TVProgramSinnohNow_Text_Dummy2",
       "garbage": 159
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_MatchupChannel_SuperEffective",
+      "id": "TVProgramSinnohNow_Text_MatchupChannel_SuperEffective",
       "en_US": [
         "Ace Trainer: Hey, how are y’all doing,\n",
         "Poké fans?\r",
@@ -636,7 +636,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_MatchupChannel_RegularDamage",
+      "id": "TVProgramSinnohNow_Text_MatchupChannel_RegularDamage",
       "en_US": [
         "Ace Trainer: Hey, how are y’all doing,\n",
         "Poké fans?\r",
@@ -658,7 +658,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_MatchupChannel_NotVeryEffective",
+      "id": "TVProgramSinnohNow_Text_MatchupChannel_NotVeryEffective",
       "en_US": [
         "Ace Trainer: Hey, how are y’all doing,\n",
         "Poké fans?\r",
@@ -680,7 +680,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_MatchupChannel_NoEffect",
+      "id": "TVProgramSinnohNow_Text_MatchupChannel_NoEffect",
       "en_US": [
         "Ace Trainer: Hey, how are y’all doing,\n",
         "Poké fans?\r",
@@ -703,11 +703,11 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy3",
+      "id": "TVProgramSinnohNow_Text_Dummy3",
       "garbage": 241
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_BerryLookout_Fruit",
+      "id": "TVProgramSinnohNow_Text_BerryLookout_Fruit",
       "en_US": [
         "Berry Prof: Say hey, hey, how are\n",
         "your Berries growing today?\r",
@@ -728,7 +728,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_BerryLookout_Blooming",
+      "id": "TVProgramSinnohNow_Text_BerryLookout_Blooming",
       "en_US": [
         "Berry Prof: Say hey, hey, how do\n",
         "your Berries grow today?\r",
@@ -753,7 +753,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_BerryLookout_Growing",
+      "id": "TVProgramSinnohNow_Text_BerryLookout_Growing",
       "en_US": [
         "Berry Prof: Say hey, hey, how do\n",
         "your Berries grow today?\r",
@@ -775,7 +775,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_BerryLookout_Sprouted",
+      "id": "TVProgramSinnohNow_Text_BerryLookout_Sprouted",
       "en_US": [
         "Berry Prof: Say hey, hey, how do\n",
         "your Berries grow today?\r",
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_BerryLookout_None",
+      "id": "TVProgramSinnohNow_Text_BerryLookout_None",
       "en_US": [
         "Berry Prof: Say hey, hey, how do\n",
         "your Berries grow today?\r",
@@ -820,15 +820,15 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy4",
+      "id": "TVProgramSinnohNow_Text_Dummy4",
       "garbage": 172
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy5",
+      "id": "TVProgramSinnohNow_Text_Dummy5",
       "garbage": 181
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy6",
+      "id": "TVProgramSinnohNow_Text_Dummy6",
       "en_US": [
         "Scientist: It’s the Pokémon\n",
         "Research Corner!\r",
@@ -856,7 +856,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_RichBoyNatureCorner_StatAffinity",
+      "id": "TVProgramSinnohNow_Text_RichBoyNatureCorner_StatAffinity",
       "en_US": [
         "Rich Boy: My daddy’s a big shot at the\n",
         "TV station, so I get to be on TV.\r",
@@ -872,7 +872,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_RichBoyNatureCorner_FlavorAffinity",
+      "id": "TVProgramSinnohNow_Text_RichBoyNatureCorner_FlavorAffinity",
       "en_US": [
         "Rich Boy: My daddy’s a big shot at the\n",
         "TV station, so I get to be on TV.\r",
@@ -888,7 +888,7 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_RichBoyNatureCorner_NeutralNature",
+      "id": "TVProgramSinnohNow_Text_RichBoyNatureCorner_NeutralNature",
       "en_US": [
         "Rich Boy: My daddy’s a big shot at the\n",
         "TV station, so I get to be on TV.\r",
@@ -905,15 +905,15 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy7",
+      "id": "TVProgramSinnohNow_Text_Dummy7",
       "garbage": 177
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy8",
+      "id": "TVProgramSinnohNow_Text_Dummy8",
       "garbage": 471
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_RoamerNewsFlash",
+      "id": "TVProgramSinnohNow_Text_RoamerNewsFlash",
       "en_US": [
         "Newscaster: We bring you this\n",
         "news flash.\r",
@@ -933,15 +933,15 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy9",
+      "id": "TVProgramSinnohNow_Text_Dummy9",
       "garbage": 286
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy10",
+      "id": "TVProgramSinnohNow_Text_Dummy10",
       "garbage": 307
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_PokemonPhotoRating",
+      "id": "TVProgramSinnohNow_Text_PokemonPhotoRating",
       "en_US": [
         "Reporter: I’m bringing you this report\n",
         "from the second floor of Jubilife TV.\r",
@@ -959,15 +959,15 @@
       ]
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy11",
+      "id": "TVProgramSinnohNow_Text_Dummy11",
       "garbage": 205
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy12",
+      "id": "TVProgramSinnohNow_Text_Dummy12",
       "garbage": 201
     },
     {
-      "id": "TVPrograms_Text_SinnohNow_Dummy13",
+      "id": "TVProgramSinnohNow_Text_Dummy13",
       "garbage": 264
     }
   ]
