@@ -794,8 +794,8 @@ BOOL ov17_0223FBC0(UnkStruct_ov17_0223F7E4 *param0)
 static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
 {
     String *v0, *v1;
-    u32 v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
-    u32 v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
+    u32 v2 = sub_02095848(param0->unk_04->unk_00->contestRank, param0->unk_04->unk_00->unk_111, param0->unk_00->isLinkContest);
+    u32 v3 = sub_020958C4(param0->unk_04->unk_00->contestType, param0->unk_04->unk_00->unk_111);
     v0 = MessageLoader_GetNewString(param0->unk_04->unk_38, v2);
     v1 = MessageLoader_GetNewString(param0->unk_04->unk_38, v3);
 
@@ -804,7 +804,7 @@ static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
 
     String_Free(v0);
     String_Free(v1);
-    PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, 45, 38, 21, 1, 0x20, 2 * 16, 16 * param0->unk_04->unk_00->unk_10F);
+    PaletteData_LoadBufferFromFile(param0->unk_04->unk_50, 45, 38, 21, 1, 0x20, 2 * 16, 16 * param0->unk_04->unk_00->contestType);
 }
 
 static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)

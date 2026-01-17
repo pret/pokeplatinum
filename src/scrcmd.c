@@ -4,6 +4,7 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/accessories.h"
 #include "constants/battle.h"
 #include "constants/daycare.h"
 #include "constants/field/dynamic_map_features.h"
@@ -14,7 +15,6 @@
 #include "constants/scrcmd.h"
 #include "constants/species.h"
 #include "constants/string.h"
-#include "generated/accessories.h"
 #include "generated/comm_club_ret_codes.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
@@ -27,10 +27,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -39,9 +35,12 @@
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/underground.h"
@@ -384,7 +383,7 @@ static BOOL ScrCmd_0A7(ScriptContext *ctx);
 static BOOL ScrCmd_0A8(ScriptContext *ctx);
 static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
-static BOOL ScrCmd_130(ScriptContext *ctx);
+static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
@@ -657,7 +656,7 @@ static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
 static BOOL ScrCmd_BufferContestBackdropName(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx);
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_279(ScriptContext *ctx);
+static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_27A(ScriptContext *ctx);
 static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_27D(ScriptContext *ctx);
@@ -1047,8 +1046,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_113,
     ScrCmd_114,
     ScrCmd_115,
-    ScrCmd_116,
-    ScrCmd_117,
+    ScrCmd_ShowLinkContestRecords,
+    ScrCmd_LockAutoScrollForLinkContests,
     ScrCmd_118,
     ScrCmd_CheckPartyPokerus,
     ScrCmd_GetPartyMonGender_Unused,
@@ -1073,7 +1072,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TrySaveGame,
     ScrCmd_12E,
     ScrCmd_12F,
-    ScrCmd_130,
+    ScrCmd_SetDressUpPhotoTitle,
     ScrCmd_131,
     ScrCmd_132,
     ScrCmd_RegisterPoketchApp,
@@ -1402,7 +1401,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CanAddCoins,
     ScrCmd_GetDailyRandomLevel,
     ScrCmd_GetPartyMonLevel,
-    ScrCmd_Unused_279,
+    ScrCmd_RemoveAccessory,
     ScrCmd_27A,
     ScrCmd_InitDailyRandomLevel,
     ScrCmd_27C,
@@ -1505,7 +1504,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FindPartySlotWithSpecies,
     ScrCmd_2DE,
     ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
-    ScrCmd_CheckAmitySquareManGiftIsAccesory,
+    ScrCmd_CheckAmitySquareManGiftIsAccessory,
     ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
     ScrCmd_2E2,
     ScrCmd_2E3,
@@ -3780,14 +3779,14 @@ static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx)
 
 static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (param1 == 0) {
-        if (!sub_02029D10(v0, param2)) {
+        if (!ImageClips_DressUpPhotoHasData(imageClips, param2)) {
             return FALSE;
         }
     } else {
-        if (!sub_02029D2C(v0, param2)) {
+        if (!sub_02029D2C(imageClips, param2)) {
             return FALSE;
         }
     }
@@ -3797,7 +3796,7 @@ static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
 
 static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    UnkStruct_0202A750 *v3 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (!sub_02041D98(fieldSystem, param2, param3)) {
         return NULL;
@@ -3806,7 +3805,7 @@ static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSy
     UnkStruct_02041DC8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02041DC8));
     memset(v0, 0, sizeof(UnkStruct_02041DC8));
 
-    v0->unk_00 = v3;
+    v0->imageClips = imageClips;
     v0->unk_08 = param2;
     v0->unk_04 = param3;
 
@@ -4039,13 +4038,13 @@ static BOOL ScrCmd_12F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_130(ScriptContext *ctx)
+static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    UnkStruct_0202A750 *v1 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029C68 *v2 = sub_02029CA8(v1, 0);
+    u16 word = ScriptContext_GetVar(ctx);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
 
-    sub_0202A0A0(v2, v0);
+    DressUpPhoto_SetTitle(photo, word);
 
     return TRUE;
 }
@@ -5929,10 +5928,10 @@ static BOOL ScrCmd_AddAccessory(ScriptContext *ctx)
     u16 accessoryID = ScriptContext_GetVar(ctx);
     u16 amount = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029E2C(v1, accessoryID, amount);
+    FashionCase_AddAccessory(fashionCase, accessoryID, amount);
     return FALSE;
 }
 
@@ -5942,9 +5941,9 @@ static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
     u16 count = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
-    *destVar = sub_02029D50(v1, accessory, count);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    *destVar = FashionCase_CanFitAccessoryCount(fashionCase, accessory, count);
 
     return FALSE;
 }
@@ -5955,10 +5954,10 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    if (v3 <= sub_02029D94(v1, v2)) {
+    if (v3 <= FashionCase_GetAccessoryCount(fashionCase, v2)) {
         *v4 = 1;
     } else {
         *v4 = 0;
@@ -5969,12 +5968,12 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
 
 static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 backdropID = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029EFC(v1, v2);
+    FashionCase_AddBackdrop(fashionCase, backdropID);
     return FALSE;
 }
 
@@ -5983,9 +5982,9 @@ static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
     u16 backdrop = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
-    *destVar = sub_02029D80(v1, backdrop);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    *destVar = FashionCase_HasBackdrop(fashionCase, backdrop);
 
     return FALSE;
 }
@@ -6737,13 +6736,13 @@ static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx)
     int i;
     u16 *destAccessoryID = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
     int unobtainedAccessoryCount = 0;
 
     for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
-        if (sub_02029D50(v1, ACCESSORY_PRETTY_DEWDROP + i, 1) == TRUE) {
+        if (FashionCase_CanFitAccessoryCount(fashionCase, ACCESSORY_PRETTY_DEWDROP + i, 1) == TRUE) {
             hasAccessory[i] = TRUE;
             unobtainedAccessoryCount++;
         }
@@ -6833,15 +6832,15 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_279(ScriptContext *ctx)
+static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 accessoryID = ScriptContext_GetVar(ctx);
+    u16 amount = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029EA0(v1, v2, v3);
+    FashionCase_RemoveAccessory(fashionCase, accessoryID, amount);
     return FALSE;
 }
 

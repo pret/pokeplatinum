@@ -87,7 +87,7 @@ static BOOL sub_0206C680(FieldTask *param0)
     return 0;
 }
 
-void sub_0206C740(FieldTask *param0, NpcTradeData *param1, int param2, u32 heapID)
+void sub_0206C740(FieldTask *param0, NpcTradeData *param1, int param2, enum HeapID heapID)
 {
     UnkStruct_0206C660 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0206C660));
 

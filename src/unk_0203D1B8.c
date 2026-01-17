@@ -8,13 +8,12 @@
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/clear_game_player_info.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/gts_player_data.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
@@ -526,7 +525,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    v0->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
     v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
@@ -569,7 +568,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int m
     v0->mode = mode;
     v0->dexMode = SaveData_GetDexMode(saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
-    v0->specialRibbons = sub_0202D79C(saveData);
+    v0->specialRibbons = SaveData_GetRibbons(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
@@ -822,9 +821,9 @@ static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, 
     UnkStruct_0203DA00 *v0;
     Pokemon *v1;
     int v2;
-    UnkStruct_0202A750 *v3;
-    UnkStruct_02029C68 *v4;
-    UnkStruct_02029D04 *v5;
+    ImageClips *imageClips;
+    DressUpPhoto *photo;
+    FashionCase *fashionCase;
 
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
     memset(v0, 0, sizeof(UnkStruct_0203DA00));
@@ -832,12 +831,12 @@ static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, 
 
     v0->unk_00 = v1;
 
-    v3 = sub_0202A750(saveData);
-    v4 = sub_02029CA8(v3, 0);
-    v5 = sub_02029D04(v3);
+    imageClips = SaveData_GetImageClips(saveData);
+    photo = ImageClips_GetDressUpPhoto(imageClips, 0);
+    fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    v0->unk_04 = v4;
-    v0->unk_08 = v5;
+    v0->photo = photo;
+    v0->fashionCase = fashionCase;
     v0->options = SaveData_GetOptions(saveData);
     v0->records = SaveData_GetGameRecords(saveData);
     v0->unk_14 = SaveData_GetTrainerInfo(saveData);
@@ -1753,7 +1752,7 @@ void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSyste
     summary->monMax = 1;
     summary->move = move;
     summary->mode = SUMMARY_MODE_SELECT_MOVE;
-    summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    summary->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
     summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     summary->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     summary->chatotCry = NULL;

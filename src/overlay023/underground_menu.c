@@ -13,10 +13,10 @@
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_022521F0.h"
-#include "overlay023/ov23_02253598.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_player.h"
+#include "overlay023/underground_records.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -1401,8 +1401,8 @@ static void UndergroundMenu_ReturnToStartMenuCallback(void *data)
 static void UndergroundMenu_OpenTrainerRecords(UndergroundMenu *menu)
 {
     UndergroundMenu_EraseCurrentMenu(menu);
-    ov23_02253968();
-    ov23_ShowTrainerRecord(menu->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem)), UndergroundMenu_ReturnToStartMenuCallback, menu, TRUE);
+    UndergroundRecords_RetrieveTrainerScore();
+    UndergroundRecords_ShowTrainerCase(menu->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem)), UndergroundMenu_ReturnToStartMenuCallback, menu, TRUE);
     menu->state = UNDERGROUND_MENU_STATE_TRAINER_RECORDS;
 }
 
@@ -1721,13 +1721,13 @@ void UndergroundMenu_Exit(void *data, u32 input)
 
     UndergroundMenu_EraseCurrentMenu(menu);
     ov23_02242FBC();
-    ov23_022535EC();
+    UndergroundRecords_ForceExitTrainerCase();
     TrapRadar_Exit();
     ov23_02241364();
     SphereRadar_Exit();
 
-    if (menu->unk_270) {
-        ov23_02253D10(menu->unk_270);
+    if (menu->checkFlagsCtx) {
+        UndergroundRecords_ExitCheckFlagsScreen(menu->checkFlagsCtx);
     }
 
     if (menu->yesNoMenu) {

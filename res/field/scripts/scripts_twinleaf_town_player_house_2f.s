@@ -1,370 +1,371 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town_player_house_2f.h"
+#include "res/field/events/events_twinleaf_town_player_house_2f.h"
 
 
-    ScriptEntry _005D
-    ScriptEntry _006E
-    ScriptEntry _0041
-    ScriptEntry _0082
-    ScriptEntry _002A
-    ScriptEntry _0097
-    ScriptEntry _00A8
-    ScriptEntry _00B6
-    ScriptEntry _00C4
-    ScriptEntry _00D2
+    ScriptEntry TwinleafTownPlayerHouse2F_Wii
+    ScriptEntry TwinleafTownPlayerHouse2F_PC
+    ScriptEntry TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram
+    ScriptEntry TwinleafTownPlayerHouse2F_ScrollingSign
+    ScriptEntry TwinleafTownPlayerHouse2F_OnTransition
+    ScriptEntry TwinleafTownPlayerHouse2F_TV
+    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerNorth
+    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerWest
+    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerEast
+    ScriptEntry TwinleafTownPlayerHouse2F_RivalTriggerSouth
     ScriptEntryEnd
 
-_002A:
-    GoToIfEq VAR_UNK_0x40F9, 0, _0039
+TwinleafTownPlayerHouse2F_OnTransition:
+    GoToIfEq VAR_PLAYER_HOUSE_SPECIAL_PROGRAM_STATE, 0, TwinleafTownPlayerHouse2F_SetVolumeForTV
     End
 
-_0039:
+TwinleafTownPlayerHouse2F_SetVolumeForTV:
     SetInitialVolumeForSequence SEQ_TV_HOUSOU, 50
     End
 
-_0041:
+TwinleafTownPlayerHouse2F_OnFrame_ConcludeSpecialProgram:
     LockAll
-    SetVar VAR_UNK_0x40F9, 1
-    Message 0
+    SetVar VAR_PLAYER_HOUSE_SPECIAL_PROGRAM_STATE, 1
+    Message TwinleafTownPlayerHouse2F_Text_ThatConcludesOurSpecialProgram
     PlaySound SEQ_TV_END
-    Message 1
+    Message TwinleafTownPlayerHouse2F_Text_SeeYouNextWeek
     WaitSound
     CloseMessage
     PlayDefaultMusic
     ReleaseAll
     End
 
-_005D:
+TwinleafTownPlayerHouse2F_Wii:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 4
+    Message TwinleafTownPlayerHouse2F_Text_ItsAWii
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_006E:
+TwinleafTownPlayerHouse2F_PC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     BufferPlayerName 0
-    Message 5
+    Message TwinleafTownPlayerHouse2F_Text_PCPokemonBasics
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0082:
-    ShowScrollingSign 3
+TwinleafTownPlayerHouse2F_ScrollingSign:
+    ShowScrollingSign TwinleafTownPlayerHouse2F_Text_TheXButtonOpensTheMenu
     End
 
-_0097:
+TwinleafTownPlayerHouse2F_TV:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 2
+    Message TwinleafTownPlayerHouse2F_Text_MomBoughThisTVAsAGift
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A8:
+TwinleafTownPlayerHouse2F_RivalTriggerNorth:
     SetVar VAR_MAP_LOCAL_0, 0
-    GoTo _00E0
+    GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-_00B6:
+TwinleafTownPlayerHouse2F_RivalTriggerWest:
     SetVar VAR_MAP_LOCAL_0, 1
-    GoTo _00E0
+    GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-_00C4:
+TwinleafTownPlayerHouse2F_RivalTriggerEast:
     SetVar VAR_MAP_LOCAL_0, 2
-    GoTo _00E0
+    GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-_00D2:
+TwinleafTownPlayerHouse2F_RivalTriggerSouth:
     SetVar VAR_MAP_LOCAL_0, 3
-    GoTo _00E0
+    GoTo TwinleafTownPlayerHouse2F_Rival
     End
 
-_00E0:
+TwinleafTownPlayerHouse2F_Rival:
     LockAll
-    ClearFlag FLAG_UNK_0x0173
-    AddObject 0
-    ApplyMovement 0, _0394
+    ClearFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalEnterRoom
     WaitMovement
     SetRivalBGM
     BufferRivalName 0
-    Message 6
+    Message TwinleafTownPlayerHouse2F_Text_ThereYouAre
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, _0249
-    CallIfEq VAR_MAP_LOCAL_0, 1, _025D
-    CallIfEq VAR_MAP_LOCAL_0, 2, _0271
-    CallIfEq VAR_MAP_LOCAL_0, 3, _027D
+    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalApproachPlayerNorth
+    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalApproachPlayerWest
+    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalApproachPlayerEast
+    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalApproachPlayerSouth
     BufferPlayerName 1
-    Message 7
+    Message TwinleafTownPlayerHouse2F_Text_ProfRowanWouldGiveUsPokemon
     CloseMessage
-    ApplyMovement 0, _03E0
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalExclamationMark
     WaitMovement
-    CallIfEq VAR_MAP_LOCAL_0, 0, _0291
-    CallIfEq VAR_MAP_LOCAL_0, 1, _02A5
-    CallIfEq VAR_MAP_LOCAL_0, 2, _02B9
-    CallIfEq VAR_MAP_LOCAL_0, 3, _02CD
-    Message 8
+    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalApproachPCNorth
+    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalApproachPCWest
+    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalApproachPCEast
+    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalApproachPCSouth
+    Message TwinleafTownPlayerHouse2F_Text_IsThisANewPC
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, _02E1
-    CallIfEq VAR_MAP_LOCAL_0, 1, _02ED
-    CallIfEq VAR_MAP_LOCAL_0, 2, _02F9
-    CallIfEq VAR_MAP_LOCAL_0, 3, _0305
+    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalTurnBackNorth
+    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalTurnBackWest
+    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalTurnBackEast
+    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalTurnBackSouth
     BufferRivalName 0
-    Message 9
+    Message TwinleafTownPlayerHouse2F_Text_WhereWasI
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, _0311
-    CallIfEq VAR_MAP_LOCAL_0, 1, _031D
-    CallIfEq VAR_MAP_LOCAL_0, 2, _0329
-    CallIfEq VAR_MAP_LOCAL_0, 3, _0335
+    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerNorth
+    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerWest
+    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerEast
+    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerSouth
     BufferPlayerName 1
-    Message 10
+    Message TwinleafTownPlayerHouse2F_Text_WereGoingToSeeProfRowanAndGetPokemon
     CloseMessage
-    CallIfEq VAR_MAP_LOCAL_0, 0, _0341
-    CallIfEq VAR_MAP_LOCAL_0, 1, _0355
-    CallIfEq VAR_MAP_LOCAL_0, 2, _0369
-    CallIfEq VAR_MAP_LOCAL_0, 3, _037D
+    CallIfEq VAR_MAP_LOCAL_0, 0, TwinleafTownPlayerHouse2F_RivalLeaveNorth
+    CallIfEq VAR_MAP_LOCAL_0, 1, TwinleafTownPlayerHouse2F_RivalLeaveWest
+    CallIfEq VAR_MAP_LOCAL_0, 2, TwinleafTownPlayerHouse2F_RivalLeaveEast
+    CallIfEq VAR_MAP_LOCAL_0, 3, TwinleafTownPlayerHouse2F_RivalLeaveSouth
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject 0
+    RemoveObject LOCALID_RIVAL
     FadeToDefaultMusic2
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag FLAG_UNK_0x0173
-    SetVar VAR_UNK_0x40A5, 1
+    SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
+    SetVar VAR_PLAYER_HOUSE_RIVAL_TRIGGER_STATE, 1
     ReleaseAll
     End
 
-_0249:
-    ApplyMovement LOCALID_PLAYER, _04D4
-    ApplyMovement 0, _03A4
+TwinleafTownPlayerHouse2F_RivalApproachPlayerNorth:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalLongDelay
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerNorth
     WaitMovement
     Return
 
-_025D:
-    ApplyMovement LOCALID_PLAYER, _04E4
-    ApplyMovement 0, _03B4
+TwinleafTownPlayerHouse2F_RivalApproachPlayerWest:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalShortDelay
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerWest
     WaitMovement
     Return
 
-_0271:
-    ApplyMovement 0, _03C4
+TwinleafTownPlayerHouse2F_RivalApproachPlayerEast:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerEast
     WaitMovement
     Return
 
-_027D:
-    ApplyMovement LOCALID_PLAYER, _04E4
-    ApplyMovement 0, _03D0
+TwinleafTownPlayerHouse2F_RivalApproachPlayerSouth:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalShortDelay
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerSouth
     WaitMovement
     Return
 
-_0291:
-    ApplyMovement LOCALID_PLAYER, _04F0
-    ApplyMovement 0, _03EC
+TwinleafTownPlayerHouse2F_RivalApproachPCNorth:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCNorth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCNorth
     WaitMovement
     Return
 
-_02A5:
-    ApplyMovement LOCALID_PLAYER, _04FC
-    ApplyMovement 0, _03FC
+TwinleafTownPlayerHouse2F_RivalApproachPCWest:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCWest
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCWest
     WaitMovement
     Return
 
-_02B9:
-    ApplyMovement LOCALID_PLAYER, _0508
-    ApplyMovement 0, _040C
+TwinleafTownPlayerHouse2F_RivalApproachPCEast:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCEast
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCEast
     WaitMovement
     Return
 
-_02CD:
-    ApplyMovement LOCALID_PLAYER, _0514
-    ApplyMovement 0, _041C
+TwinleafTownPlayerHouse2F_RivalApproachPCSouth:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCSouth
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalApproachPCSouth
     WaitMovement
     Return
 
-_02E1:
-    ApplyMovement 0, _042C
+TwinleafTownPlayerHouse2F_RivalTurnBackNorth:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackNorth
     WaitMovement
     Return
 
-_02ED:
-    ApplyMovement 0, _0434
+TwinleafTownPlayerHouse2F_RivalTurnBackWest:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackWest
     WaitMovement
     Return
 
-_02F9:
-    ApplyMovement 0, _043C
+TwinleafTownPlayerHouse2F_RivalTurnBackEast:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackEast
     WaitMovement
     Return
 
-_0305:
-    ApplyMovement 0, _0444
+TwinleafTownPlayerHouse2F_RivalTurnBackSouth:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalTurnBackSouth
     WaitMovement
     Return
 
-_0311:
-    ApplyMovement 0, _044C
+TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerNorth:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerNorth
     WaitMovement
     Return
 
-_031D:
-    ApplyMovement 0, _0454
+TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerWest:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerWest
     WaitMovement
     Return
 
-_0329:
-    ApplyMovement 0, _0464
+TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerEast:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerEast
     WaitMovement
     Return
 
-_0335:
-    ApplyMovement 0, _0474
+TwinleafTownPlayerHouse2F_RivalWalkBackToPlayerSouth:
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerSouth
     WaitMovement
     Return
 
-_0341:
-    ApplyMovement LOCALID_PLAYER, _0520
-    ApplyMovement 0, _0484
+TwinleafTownPlayerHouse2F_RivalLeaveNorth:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveNorth
     WaitMovement
     Return
 
-_0355:
-    ApplyMovement LOCALID_PLAYER, _0520
-    ApplyMovement 0, _0498
+TwinleafTownPlayerHouse2F_RivalLeaveWest:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveWest
     WaitMovement
     Return
 
-_0369:
-    ApplyMovement LOCALID_PLAYER, _0520
-    ApplyMovement 0, _04AC
+TwinleafTownPlayerHouse2F_RivalLeaveEast:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveEast
     WaitMovement
     Return
 
-_037D:
-    ApplyMovement LOCALID_PLAYER, _0520
-    ApplyMovement 0, _04C0
+TwinleafTownPlayerHouse2F_RivalLeaveSouth:
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave
+    ApplyMovement LOCALID_RIVAL, TwinleafTownPlayerHouse2F_Movement_RivalLeaveSouth
     WaitMovement
     Return
 
     .balign 4, 0
-_0394:
+TwinleafTownPlayerHouse2F_Movement_RivalEnterRoom:
     WalkFastWest 2
     EmoteExclamationMark
     Delay8
     EndMovement
 
     .balign 4, 0
-_03A4:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerNorth:
     WalkFastWest
     WalkFastSouth
     WalkFastWest 2
     EndMovement
 
     .balign 4, 0
-_03B4:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerWest:
     WalkFastWest
     WalkFastSouth 2
     WalkFastWest 3
     EndMovement
 
     .balign 4, 0
-_03C4:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerEast:
     WalkFastSouth 2
     WalkFastWest 2
     EndMovement
 
     .balign 4, 0
-_03D0:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPlayerSouth:
     WalkFastWest
     WalkFastSouth 3
     WalkFastWest 2
     EndMovement
 
     .balign 4, 0
-_03E0:
+TwinleafTownPlayerHouse2F_Movement_RivalExclamationMark:
     EmoteExclamationMark
     Delay8
     EndMovement
 
     .balign 4, 0
-_03EC:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPCNorth:
     WalkFastSouth
     WalkFastWest 4
     WalkFastNorth
     EndMovement
 
     .balign 4, 0
-_03FC:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPCWest:
     WalkFastNorth
     WalkFastWest 3
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_040C:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPCEast:
     WalkFastNorth
     WalkFastWest 5
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_041C:
+TwinleafTownPlayerHouse2F_Movement_RivalApproachPCSouth:
     WalkFastNorth
     WalkFastWest 4
     WalkFastNorth
     EndMovement
 
     .balign 4, 0
-_042C:
+TwinleafTownPlayerHouse2F_Movement_RivalTurnBackNorth:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0434:
+TwinleafTownPlayerHouse2F_Movement_RivalTurnBackWest:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_043C:
+TwinleafTownPlayerHouse2F_Movement_RivalTurnBackEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0444:
+TwinleafTownPlayerHouse2F_Movement_RivalTurnBackSouth:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_044C:
+TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerNorth:
     WalkFastEast 2
     EndMovement
 
     .balign 4, 0
-_0454:
+TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerWest:
     WalkFastEast
     WalkFastSouth
     WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
-_0464:
+TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerEast:
     WalkFastEast
     WalkFastSouth
     WalkFastEast 2
     EndMovement
 
     .balign 4, 0
-_0474:
+TwinleafTownPlayerHouse2F_Movement_RivalWalkBackToPlayerSouth:
     WalkFastEast
     WalkFastSouth 2
     WalkFastEast
     EndMovement
 
     .balign 4, 0
-_0484:
+TwinleafTownPlayerHouse2F_Movement_RivalLeaveNorth:
     WalkFastSouth
     WalkFastEast 3
     WalkFastNorth 2
@@ -372,7 +373,7 @@ _0484:
     EndMovement
 
     .balign 4, 0
-_0498:
+TwinleafTownPlayerHouse2F_Movement_RivalLeaveWest:
     WalkFastNorth
     WalkFastEast 4
     WalkFastNorth
@@ -380,7 +381,7 @@ _0498:
     EndMovement
 
     .balign 4, 0
-_04AC:
+TwinleafTownPlayerHouse2F_Movement_RivalLeaveEast:
     WalkFastNorth
     WalkFastEast 2
     WalkFastNorth
@@ -388,7 +389,7 @@ _04AC:
     EndMovement
 
     .balign 4, 0
-_04C0:
+TwinleafTownPlayerHouse2F_Movement_RivalLeaveSouth:
     WalkFastNorth
     WalkFastEast 3
     WalkFastNorth 2
@@ -396,44 +397,44 @@ _04C0:
     EndMovement
 
     .balign 4, 0
-_04D4:
+TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalLongDelay:
     Delay8
     Delay4
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04E4:
+TwinleafTownPlayerHouse2F_Movement_PlayerFaceRivalShortDelay:
     Delay8 2
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_04F0:
+TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCNorth:
     Delay8 2
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_04FC:
+TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCWest:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0508:
+TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCEast:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0514:
+TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalApproachPCSouth:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0520:
+TwinleafTownPlayerHouse2F_Movement_PlayerWatchRivalLeave:
     Delay8 2
     WalkOnSpotNormalEast
     EndMovement

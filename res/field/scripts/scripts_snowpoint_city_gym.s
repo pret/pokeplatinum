@@ -20,7 +20,7 @@ SnowpointGym_Candice:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_ICICLE SnowpointGym_CandiceAfterBadge
+    GoToIfBadgeAcquired BADGE_ID_ICICLE, SnowpointGym_CandiceAfterBadge
     CreateJournalEvent LOCATION_EVENT_GYM_WAS_TOO_TOUGH, 167, 0, 0, 0
     Message SnowpointGym_Text_CandiceIntro
     CloseMessage

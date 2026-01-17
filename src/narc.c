@@ -385,7 +385,7 @@ u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex)
     return chunkSize;
 }
 
-NARC *NARC_ctor(enum NarcID narcID, u32 heapID)
+NARC *NARC_ctor(enum NarcID narcID, enum HeapID heapID)
 {
     NARC *narc = Heap_Alloc(heapID, sizeof(NARC));
 
@@ -420,7 +420,7 @@ void NARC_dtor(NARC *param0)
     Heap_Free(param0);
 }
 
-void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID)
+void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, enum HeapID heapID)
 {
     u32 fileStart;
     u32 fileEnd;

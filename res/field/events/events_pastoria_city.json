@@ -326,7 +326,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0173",
+            "hidden_flag": "MAP_HEADER_ROUTE_212_SOUTH",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -359,7 +359,7 @@
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0173",
+            "hidden_flag": "MAP_HEADER_ROUTE_212_SOUTH",
             "script": 65535,
             "initial_dir": 1,
             "data": [],

@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202E8C0_decl.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/image_clips.h"
 
 #include "overlay059/ov59_021D2A2C.h"
 #include "overlay059/ov59_021D2B44.h"
@@ -68,26 +68,26 @@ static void ov59_021D2FBC(const UnkStruct_ov59_021D2FBC *param0)
 
 static u32 ov59_021D2FD4(SaveData *saveData)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(saveData);
-    return sub_02029C60();
+    ImageClips *imageClips = SaveData_GetImageClips(saveData);
+    return DressUpPhoto_Size();
 }
 
 static void *ov59_021D2FE0(SaveData *saveData, enum HeapID heapID, u32 param2)
 {
-    UnkStruct_02029C68 *v0;
-    UnkStruct_0202A750 *v1 = sub_0202A750(saveData);
+    DressUpPhoto *photo;
+    ImageClips *imageClips = SaveData_GetImageClips(saveData);
     void *v2 = Heap_AllocAtEnd(heapID, param2);
 
-    v0 = sub_02029CA8(v1, 0);
-    MI_CpuCopyFast(v0, v2, param2);
+    photo = ImageClips_GetDressUpPhoto(imageClips, 0);
+    MI_CpuCopyFast(photo, v2, param2);
 
     return v2;
 }
 
 static void ov59_021D300C(const UnkStruct_ov59_021D2FBC *param0)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(param0->saveData);
-    sub_0202A6A8(param0->unk_08, param0->unk_0C, v0, param0->unk_10);
+    ImageClips *imageClips = SaveData_GetImageClips(param0->saveData);
+    sub_0202A6A8(param0->unk_08, param0->unk_0C, imageClips, param0->unk_10);
 }
 
 static void ov59_021D3028(const UnkStruct_ov59_021D2FBC *param0)

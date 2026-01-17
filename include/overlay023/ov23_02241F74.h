@@ -48,7 +48,7 @@ typedef Coordinates *(*CoordinatesGetter)(Coordinates *, int);
 UndergroundTextPrinter *CommManUnderground_GetCommonTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetCaptureFlagTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void);
-UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void);
+UndergroundTextPrinter *CommManUnderground_GetBaseDecorationTextPrinter(void);
 UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void);
 void ov23_022421EC(void);
 BOOL CommManUnderground_FormatCommonStringWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, String *dest);

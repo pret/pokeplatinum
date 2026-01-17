@@ -120,7 +120,7 @@ static const struct {
 };
 
 typedef struct UnkStruct_02014D38_t {
-    u32 heapID;
+    enum HeapID heapID;
     MessageLoader *unk_04[11];
 } UnkStruct_02014D38;
 
@@ -142,7 +142,7 @@ void include_unk_020E5538(void)
     Unk_020E5538[0];
 }
 
-UnkStruct_02014D38 *sub_02014D38(u32 heapID)
+UnkStruct_02014D38 *sub_02014D38(enum HeapID heapID)
 {
     int v0;
     UnkStruct_02014D38 *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02014D38));
@@ -341,7 +341,7 @@ void sub_02014F98(UnkStruct_02014EC4 *param0, int param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
-UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
+UnkStruct_02014FB0 *sub_02014FB0(enum HeapID heapID)
 {
     UnkStruct_02014FB0 *v0;
     u32 fileSize;

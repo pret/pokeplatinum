@@ -372,7 +372,7 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     Heap_Free(v2);
 
     LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 31, HEAP_ID_23, 0x200, 0, param0->unk_E0[0]);
-    LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 38, HEAP_ID_23, 32, 16 * param0->unk_04->unk_00->unk_10F, &param0->unk_E0[0][2 * 16]);
+    LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 38, HEAP_ID_23, 32, 16 * param0->unk_04->unk_00->contestType, &param0->unk_E0[0][2 * 16]);
     LoadPaletteFromFile(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 33, HEAP_ID_23, 0x200, 0, param0->unk_E0[1]);
 }
 
@@ -515,8 +515,8 @@ static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
     String *v0, *v1;
     u32 v2, v3;
     MessageLoader *v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_23);
-    v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
-    v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
+    v2 = sub_02095848(param0->unk_04->unk_00->contestRank, param0->unk_04->unk_00->unk_111, param0->unk_00->isLinkContest);
+    v3 = sub_020958C4(param0->unk_04->unk_00->contestType, param0->unk_04->unk_00->unk_111);
     v0 = MessageLoader_GetNewString(v4, v2);
     v1 = MessageLoader_GetNewString(v4, v3);
 

@@ -218,7 +218,7 @@ static BOOL sub_0209AE14(FieldTask *param0)
                 break;
             case 1:
             default: {
-                u16 v1 = sub_02014C78(&v0->unk_48, 0);
+                u16 v1 = Sentence_GetWord(&v0->unk_48, 0);
                 sub_0209B27C(v0);
 
                 if (v1 != 0xffff) {

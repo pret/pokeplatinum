@@ -6,7 +6,7 @@
 #include "generated/string_padding_mode.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_02029D04_decl.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/seal_case.h"
 
 #include "bag.h"
@@ -122,14 +122,16 @@ static u32 CalcTotalBallSeals(SaveData *saveData)
 
 static u32 GetNumAccessories(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(saveData));
-    return sub_02029DF0(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    return FashionCase_GetTotalAccessories(fashionCase);
 }
 
 static u32 GetNumBackdrops(SaveData *saveData)
 {
-    UnkStruct_02029D04 *v0 = sub_02029D04(sub_0202A750(saveData));
-    return sub_02029E0C(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    return FashionCase_GetTotalBackdrops(fashionCase);
 }
 
 static u32 GetNumBattlePoints(SaveData *saveData)
@@ -137,7 +139,7 @@ static u32 GetNumBattlePoints(SaveData *saveData)
     return sub_0202D230(sub_0202D750(saveData), 0, 0);
 }
 
-BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, u32 heapID)
+BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, enum HeapID heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;
@@ -174,7 +176,7 @@ BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 it
     return TRUE;
 }
 
-void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, u32 heapID)
+void BagContext_FormatErrorMessage(TrainerInfo *playerInfo, String *dstString, u16 unused, enum ItemUseCheckResult error, enum HeapID heapID)
 {
     MessageLoader *msgLoader;
     StringTemplate *template;

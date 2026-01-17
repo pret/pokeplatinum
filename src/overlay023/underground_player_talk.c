@@ -8,8 +8,8 @@
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02253598.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_records.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -641,7 +641,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
     if (menu->state != TALK_MENU_STATE_SELECT_GIFT) {
         if (!CommSys_IsPlayerConnected(menu->linkNetID)) {
             menu->giftMenu = NULL;
-            ov23_022535EC();
+            UndergroundRecords_ForceExitTrainerCase();
             menu->state = TALK_MENU_STATE_EXIT;
         }
     }
@@ -665,7 +665,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
             if (menu->linkRequestedState == TALK_MENU_STATE_START_CASE_EXCHANGE) {
                 menu->state = TALK_MENU_STATE_START_CASE_EXCHANGE;
-                ov23_SendRecord(menu->linkNetID);
+                UndergroundRecords_SendRecord(menu->linkNetID);
             }
 
             if (menu->linkRequestedState == TALK_MENU_STATE_CASE_EXCHANGE_DECLINED) {
@@ -689,9 +689,9 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         }
         break;
     case TALK_MENU_STATE_START_CASE_EXCHANGE:
-        if (ov23_IsLinkRecordReceived()) {
+        if (UndergroundRecords_IsLinkRecordReceived()) {
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
-            ov23_ShowTrainerRecord(menu->fieldSystem->bgConfig, CommInfo_TrainerInfo(menu->linkNetID), UndergroundTalk_ExitCaseExchangeCallback, menu, FALSE);
+            UndergroundRecords_ShowTrainerCase(menu->fieldSystem->bgConfig, CommInfo_TrainerInfo(menu->linkNetID), UndergroundTalk_ExitCaseExchangeCallback, menu, FALSE);
             menu->state = TALK_MENU_STATE_VIEW_LINK_CASE;
         }
         break;
@@ -699,7 +699,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         break;
     case TALK_MENU_STATE_END_CASE_EXCHANGE:
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(menu->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_GREET_PLAYER);
-        ov23_ClearLinkRecordReceived();
+        UndergroundRecords_ClearLinkRecordReceived();
         UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_DontBeAStranger);
         menu->state = TALK_MENU_STATE_NOTIFY_LINK_CASE_EXCHANGE_ENDED;
         break;
@@ -939,7 +939,7 @@ static void UndergroundTalkResponse_HandleConfirmTrainerCaseMenu(SysTask *unused
 
     if (input == 0) {
         UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_MENU_STATE_START_CASE_EXCHANGE);
-        ov23_SendRecord(menu->linkNetID);
+        UndergroundRecords_SendRecord(menu->linkNetID);
         menu->state = RESPONSE_MENU_STATE_START_CASE_EXCHANGE;
     } else {
         UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_MENU_STATE_CASE_EXCHANGE_DECLINED);
@@ -1121,7 +1121,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
     ResponseMenu *menu = data;
 
     if (!CommSys_IsPlayerConnected(menu->linkNetID)) {
-        ov23_022535EC();
+        UndergroundRecords_ForceExitTrainerCase();
         menu->state = TALK_MENU_STATE_EXIT;
     }
 
@@ -1167,16 +1167,16 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         }
         break;
     case RESPONSE_MENU_STATE_START_CASE_EXCHANGE:
-        if (ov23_IsLinkRecordReceived()) {
+        if (UndergroundRecords_IsLinkRecordReceived()) {
             UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
-            ov23_ShowTrainerRecord(menu->fieldSystem->bgConfig, CommInfo_TrainerInfo(menu->linkNetID), UndergroundTalkResponse_ExitCaseExchangeCallback, menu, FALSE);
+            UndergroundRecords_ShowTrainerCase(menu->fieldSystem->bgConfig, CommInfo_TrainerInfo(menu->linkNetID), UndergroundTalkResponse_ExitCaseExchangeCallback, menu, FALSE);
             menu->state = RESPONSE_MENU_STATE_VIEW_LINK_CASE;
         }
         break;
     case RESPONSE_MENU_STATE_VIEW_LINK_CASE:
         break;
     case RESPONSE_MENU_STATE_END_CASE_EXCHANGE:
-        ov23_ClearLinkRecordReceived();
+        UndergroundRecords_ClearLinkRecordReceived();
         UndergroundTalkResponse_PrintTextWithLinkName(menu, menu->linkNetID, UndergroundCommon_Text_GladToHaveMetYou);
         menu->state = RESPONSE_MENU_STATE_NOTIFY_LINK_CASE_EXCHANGE_ENDED;
         break;

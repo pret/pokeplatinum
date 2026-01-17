@@ -152,7 +152,7 @@ void ov17_02247A48(UnkStruct_ov17_02247A48 *param0)
     v0.unk_04 = NELEMS(Unk_ov17_02254488);
     v0.unk_06 = param0->unk_00->unk_00.unk_113;
     v0.unk_08 = param0->unk_00->unk_00.unk_10C;
-    v0.unk_07 = param0->unk_00->unk_155;
+    v0.unk_07 = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_4F8, &v0);
 }
@@ -1211,7 +1211,7 @@ static void ov17_02248EC4(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        if (v0->unk_00->unk_00->unk_155 == 1) {
+        if (v0->unk_00->unk_00->isLinkContest == TRUE) {
             G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
             G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
             GX_SetVisibleWnd(GX_WNDMASK_W1);
@@ -1274,7 +1274,7 @@ static void ov17_02249014(SysTask *param0, void *param1)
         v0->unk_15 = 1;
     }
 
-    if ((v0->unk_00->unk_00->unk_155 == 0) && (v0->unk_18 < 30) && ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.touchPressed))) {
+    if (v0->unk_00->unk_00->isLinkContest == FALSE && v0->unk_18 < 30 && (JOY_NEW(PAD_BUTTON_A) || gSystem.touchPressed)) {
         v0->unk_18 = 30;
         v1 = 0;
         v0->unk_13 = 0;

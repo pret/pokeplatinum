@@ -24,7 +24,7 @@ struct FrontierScriptContext {
     MessageLoader *msgLoader;
     u8 *scripts;
     FrontierShouldResumeScriptFunc shouldResume;
-    u8 unk_8C;
+    u8 comparisonResult;
 };
 
 #define FrontierScriptContext_ReadByte(ctx) (*(ctx->scriptPtr++))

@@ -181,7 +181,7 @@ _02C7:
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _0328
-    ScrCmd_130 VAR_0x8004
+    SetDressUpPhotoTitle VAR_0x8004
     IncrementGameRecord RECORD_UNK_054
     ScrCmd_316
     ScrCmd_245 0, VAR_0x8004

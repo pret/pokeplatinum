@@ -406,7 +406,7 @@ Bag *SaveData_GetBag(SaveData *saveData)
     return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_BAG);
 }
 
-BagCursor *BagCursor_New(u32 heapID)
+BagCursor *BagCursor_New(enum HeapID heapID)
 {
     BagCursor *cursor = Heap_Alloc(heapID, sizeof(BagCursor));
     MI_CpuClear16(cursor, sizeof(BagCursor));

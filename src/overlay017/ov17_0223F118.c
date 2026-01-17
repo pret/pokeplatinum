@@ -179,7 +179,7 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
     FontOAM_SetXY(param0->unk_00, param1, param2);
 }
 
-String *ov17_0223F310(u32 param0, u32 heapID)
+String *ov17_0223F310(u32 param0, enum HeapID heapID)
 {
     MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
     String *v1 = MessageLoader_GetNewString(v0, param0);
@@ -212,7 +212,7 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
         v5 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_HELD_ITEM, NULL);
         v6 = 100;
 
-        switch (param0->unk_00.unk_10F) {
+        switch (param0->unk_00.contestType) {
         case 0:
             v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
             v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);

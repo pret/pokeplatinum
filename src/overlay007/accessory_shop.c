@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/accessories.h"
 #include "constants/field/window.h"
 #include "constants/scrcmd.h"
-#include "generated/accessories.h"
 
 #include "overlay007/shop_menu.h"
 
@@ -81,10 +81,10 @@ static void AccessoryShop_DeleteYesNoChoice(AccessoryShopYesNoChoice *yesNoChoic
 static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice);
 static void AccessoryShop_SetDataPointers(AccessoryShopDataPtrs *dataPtr, AccessoryShopDescBox *descBox, const AccessoryShopItem *items, Bag *bag, enum HeapID heapID, BgConfig *bgConfig);
 static void AccessoryShop_Update(void *ptr, u32 cursorPos);
-static BOOL AccessoryShop_HasAllAccessories(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 maxItems);
+static BOOL AccessoryShop_HasAllAccessories(const FashionCase *fashionCase, const AccessoryShopItem *items, u32 maxItems);
 static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID);
-static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 idx);
-static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID);
+static BOOL ov7_0224CCE4(const FashionCase *fashionCase, const AccessoryShopItem *items, u32 idx);
+static void AccessoryShop_DoPurchase(FashionCase *fashionCase, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID);
 
 AccessoryShop *AccessoryShop_New(enum HeapID heapID, SaveData *saveData, BgConfig *bgConfig)
 {
@@ -95,7 +95,7 @@ AccessoryShop *AccessoryShop_New(enum HeapID heapID, SaveData *saveData, BgConfi
     shop->heapID = heapID;
     shop->bgConfig = bgConfig;
     shop->saveData = saveData;
-    shop->unk_0C = sub_02029D04(sub_0202A750(shop->saveData));
+    shop->fashionCase = ImageClips_GetFashionCase(SaveData_GetImageClips(shop->saveData));
     shop->bag = SaveData_GetBag(saveData);
     shop->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FLOWER_SHOP, shop->heapID);
 
@@ -132,7 +132,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
         shop->nextState = ACCESSORY_SHOP_STATE_INIT_ITEM_LIST;
         break;
     case ACCESSORY_SHOP_STATE_INIT_ITEM_LIST:
-        if (AccessoryShop_HasAllAccessories(shop->unk_0C, sAccessoryShop_ItemLists, ACCESSORY_SHOP_ITEM_LIST_COUNT)) {
+        if (AccessoryShop_HasAllAccessories(shop->fashionCase, sAccessoryShop_ItemLists, ACCESSORY_SHOP_ITEM_LIST_COUNT)) {
             string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_Thanks);
             AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
             String_Free(string);
@@ -195,7 +195,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
                 break;
             }
 
-            if (ov7_0224CCE4(shop->unk_0C, sAccessoryShop_ItemLists, shop->itemList.cursorPos) == FALSE) {
+            if (ov7_0224CCE4(shop->fashionCase, sAccessoryShop_ItemLists, shop->itemList.cursorPos) == FALSE) {
                 string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_CantCarryMoreAccessories);
                 AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
                 String_Free(string);
@@ -218,10 +218,10 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
         }
         break;
     case ACCESSORY_SHOP_STATE_CONFIRM_PURCHASE:
-        AccessoryShop_DoPurchase(shop->unk_0C, shop->bag, sAccessoryShop_ItemLists, shop->itemList.cursorPos, shop->heapID);
+        AccessoryShop_DoPurchase(shop->fashionCase, shop->bag, sAccessoryShop_ItemLists, shop->itemList.cursorPos, shop->heapID);
         AccessoryShop_LoadSuccessfulPurchaseMsg(&shop->msgbox, shop->msgLoader, shop->heapID, sAccessoryShop_ItemLists, shop->itemList.cursorPos);
 
-        if (AccessoryShop_HasAllAccessories(shop->unk_0C, sAccessoryShop_ItemLists, ACCESSORY_SHOP_ITEM_LIST_COUNT)) {
+        if (AccessoryShop_HasAllAccessories(shop->fashionCase, sAccessoryShop_ItemLists, ACCESSORY_SHOP_ITEM_LIST_COUNT)) {
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
             shop->nextState = ACCESSORY_SHOP_STATE_LOAD_SHOCKED_MSG;
         } else {
@@ -718,10 +718,10 @@ static u32 AccessoryShop_SelectYesNoChoice(AccessoryShopYesNoChoice *yesNoChoice
     return Menu_ProcessInputAndHandleExit(yesNoChoice->menu, yesNoChoice->heapID);
 }
 
-static BOOL AccessoryShop_HasAllAccessories(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 maxItems)
+static BOOL AccessoryShop_HasAllAccessories(const FashionCase *fashionCase, const AccessoryShopItem *items, u32 maxItems)
 {
     for (int i = 0; i < maxItems; i++) {
-        if (sub_02029D50(param0, items[i].accessoryID, 1) == TRUE) {
+        if (FashionCase_CanFitAccessoryCount(fashionCase, items[i].accessoryID, 1) == TRUE) {
             return FALSE;
         }
     }
@@ -740,19 +740,19 @@ static BOOL AccessoryShop_HasEnoughBerries(Bag *bag, const AccessoryShopItem *it
     return FALSE;
 }
 
-static BOOL ov7_0224CCE4(const UnkStruct_02029D04 *param0, const AccessoryShopItem *items, u32 idx)
+static BOOL ov7_0224CCE4(const FashionCase *fashionCase, const AccessoryShopItem *items, u32 idx)
 {
-    return sub_02029D50(param0, items[idx].accessoryID, 1);
+    return FashionCase_CanFitAccessoryCount(fashionCase, items[idx].accessoryID, 1);
 }
 
-static void AccessoryShop_DoPurchase(UnkStruct_02029D04 *param0, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID)
+static void AccessoryShop_DoPurchase(FashionCase *fashionCase, Bag *bag, const AccessoryShopItem *items, u32 idx, enum HeapID heapID)
 {
     u32 accessoryID = items[idx].accessoryID;
     u32 itemId = items[idx].itemBerryID + FIRST_BERRY_IDX;
     u32 count = items[idx].totalAmount;
     BOOL res;
 
-    sub_02029E2C(param0, accessoryID, 1);
+    FashionCase_AddAccessory(fashionCase, accessoryID, 1);
     res = Bag_TryRemoveItem(bag, itemId, count, heapID);
 
     GF_ASSERT(res == TRUE);

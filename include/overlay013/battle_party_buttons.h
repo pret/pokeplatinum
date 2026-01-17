@@ -19,8 +19,8 @@ void BattlePartyButtons_InitializeButtonData(BattleParty *battleParty, u16 *scre
 void BattlePartyButtons_InitializeAdditionalButtonData(BattleParty *battleParty, u16 *screenData);
 void BattlePartyButtons_PressButton(BattleParty *battleParty, u8 button);
 void BattlePartyButtons_Tick(BattleParty *battleParty);
-void BattlePartyButtons_InitializeButtons(BattleParty *battleParty, u8 screen);
-void BattlePartyButtons_LoadScreenPaletteData(BattleParty *battleParty, u8 screen);
+void BattlePartyButtons_InitializeButtons(BattleParty *battleParty, enum BattlePartyScreen screen);
+void BattlePartyButtons_LoadScreenPaletteData(BattleParty *battleParty, enum BattlePartyScreen screen);
 void BattlePartyButtons_DrawSelectedPartyPokemonButton(BattleParty *battleParty);
 
 #endif // POKEPLATINUM_BATTLE_PARTY_BUTTONS_H

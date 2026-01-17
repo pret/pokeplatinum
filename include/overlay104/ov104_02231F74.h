@@ -15,7 +15,7 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 
-void ov104_02231F74(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u16 param2, u8 param3, UnkStruct_ov104_0222FEDC *param4);
+void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions);
 void ov104_02232088(UnkStruct_ov104_022320B4 *param0);
 UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
 void ov104_022322A8(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
