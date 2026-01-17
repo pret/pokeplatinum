@@ -128,7 +128,7 @@
         {
             "id": "WAYWARD_CAVE_1F_CAMPER_DIEGO",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_CAMPER_DIEGO",
@@ -145,7 +145,7 @@
         {
             "id": "WAYWARD_CAVE_1F_PICNICKER_TORI",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PICNICKER_TORI",
@@ -162,7 +162,7 @@
         {
             "id": "WAYWARD_CAVE_1F_LASS_CASSIDY",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_LASS_CASSIDY",
@@ -179,7 +179,7 @@
         {
             "id": "WAYWARD_CAVE_1F_YOUNGSTER_WAYNE",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNGSTER_WAYNE",
@@ -196,7 +196,7 @@
         {
             "id": "WAYWARD_CAVE_1F_HIKER_REGINALD",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_HIKER_REGINALD",
@@ -213,7 +213,7 @@
         {
             "id": "WAYWARD_CAVE_1F_COLLECTOR_TERRY",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_COLLECTOR_TERRY",
@@ -230,7 +230,7 @@
         {
             "id": "WAYWARD_CAVE_1F_PICNICKER_ANA",
             "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PICNICKER_ANA",
@@ -247,7 +247,7 @@
         {
             "id": "WAYWARD_CAVE_1F_CAMPER_PARKER",
             "graphics_id": "OBJ_EVENT_GFX_CAMPER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_CAMPER_PARKER",
@@ -264,7 +264,7 @@
         {
             "id": "WAYWARD_CAVE_1F_RUIN_MANIAC_GERALD",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_RUIN_MANIAC_GERALD",
@@ -281,7 +281,7 @@
         {
             "id": "WAYWARD_CAVE_1F_HIKER_LORENZO",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_HIKER_LORENZO",

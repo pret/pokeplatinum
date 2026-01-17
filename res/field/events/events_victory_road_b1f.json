@@ -89,7 +89,7 @@
         {
             "id": "VICTORY_ROAD_B1F_PSYCHIC_VALENCIA",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_VALENCIA",

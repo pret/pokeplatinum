@@ -303,7 +303,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_KASSANDRA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_KASSANDRA",
@@ -320,7 +320,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_SKYLAR",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_SKYLAR",
@@ -337,7 +337,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_NATASHA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_NATASHA",
@@ -354,7 +354,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_PSYCHIC_CHELSEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_CHELSEY",
@@ -371,7 +371,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_PSYCHIC_STERLING",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_STERLING",
@@ -422,7 +422,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_STEFAN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_STEFAN",
@@ -439,7 +439,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_ACE_TRAINER_JASMIN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_JASMIN",
@@ -456,7 +456,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_DRAGON_TAMER_DRAKE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_DRAGON_TAMER_DRAKE",
@@ -473,7 +473,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_BLACK_BELT_JARRETT",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BLACK_BELT_JARRETT",
@@ -524,7 +524,7 @@
         {
             "id": "STARK_MOUNTAIN_ROOM_2_VETERAN_HARLAN",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_VETERAN_HARLAN",

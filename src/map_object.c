@@ -186,7 +186,7 @@ void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEve
 
             switch (v0) {
             case 0:
-                if (sub_02062918(mapObj) != param2 && !MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_10)) {
+                if (sub_02062918(mapObj) != param2 && !MapObject_CheckStatusFlag(mapObj, MAP_OBJ_STATUS_PERSISTENT)) {
                     MapObject_Delete(mapObj);
                 }
                 break;
@@ -678,7 +678,7 @@ static void MapObjectMan_AddMoveTask(const MapObjectManager *mapObjMan, MapObjec
     int movementType = MapObject_GetMovementType(mapObj);
     SysTask *task;
 
-    if (movementType == MOVEMENT_TYPE_048
+    if (movementType == MOVEMENT_TYPE_FOLLOW_PLAYER
         || movementType == MOVEMENT_TYPE_FOLLOW_PARTNER_TRAINER) {
         v0 += 2;
     }
@@ -848,7 +848,7 @@ MapObject *MapObjMan_LocalMapObjByIndex(const MapObjectManager *mapObjMan, int i
     return NULL;
 }
 
-MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType)
+MapObject *MapObjMan_GetLocalMapObjByMovementType(const MapObjectManager *mapObjMan, int movementType)
 {
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
     MapObject *mapObj = MapObjectMan_GetMapObjectStatic(mapObjMan);
@@ -1851,12 +1851,12 @@ int MapObject_IsHeightCalculationDisabled(const MapObject *mapObj)
     return FALSE;
 }
 
-void sub_02062E5C(MapObject *mapObj, int param1)
+void MapObject_SetFlagPersistent(MapObject *mapObj, BOOL flag)
 {
-    if (param1 == TRUE) {
-        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_10);
+    if (flag == TRUE) {
+        MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_PERSISTENT);
     } else {
-        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_10);
+        MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_PERSISTENT);
     }
 }
 

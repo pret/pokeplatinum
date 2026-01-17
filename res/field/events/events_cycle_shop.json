@@ -52,7 +52,7 @@
         {
             "id": "CYCLE_SHOP_YOUNGSTER_1",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 3,
@@ -67,7 +67,7 @@
         {
             "id": "CYCLE_SHOP_CLEFAIRY_2",
             "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x0200",
             "script": 2,

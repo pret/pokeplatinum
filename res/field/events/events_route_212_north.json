@@ -21,7 +21,7 @@
         {
             "id": "ROUTE_212_NORTH_RICH_BOY_JASON",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_RICH_BOY_JASON",
@@ -38,7 +38,7 @@
         {
             "id": "ROUTE_212_NORTH_LADY_MELISSA",
             "graphics_id": "OBJ_EVENT_GFX_LADY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_LADY_MELISSA",

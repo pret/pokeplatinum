@@ -81,7 +81,7 @@
         {
             "id": "ROUTE_214_RUIN_MANIAC_BRYAN",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_RUIN_MANIAC_BRYAN",
@@ -132,7 +132,7 @@
         {
             "id": "ROUTE_214_BEAUTY_DEVON",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BEAUTY_DEVON",
@@ -167,7 +167,7 @@
         {
             "id": "ROUTE_214_PSYCHIC_ABIGAIL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_ABIGAIL",

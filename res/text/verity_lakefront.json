@@ -2,7 +2,7 @@
   "key": 18411,
   "messages": [
     {
-      "id": "pl_msg_00000399_00000",
+      "id": "VerityLakefront_Text_WereAtTheLake",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: All right!\n",
         "We’re at the lake!\r",
@@ -13,15 +13,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000399_00001",
+      "id": "VerityLakefront_Text_Dummy1",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000399_00002",
+      "id": "VerityLakefront_Text_Dummy2",
       "garbage": 42
     },
     {
-      "id": "pl_msg_00000399_00003",
+      "id": "VerityLakefront_Text_LakeVerityAhead",
       "en_US": [
         "Lake Verity Ahead\r",
         "According to legend, this lake is home\n",

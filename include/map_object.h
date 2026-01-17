@@ -72,7 +72,7 @@ void MapObjectMan_SaveAll(FieldSystem *fieldSystem, const MapObjectManager *mapO
 void MapObjectMan_LoadAllObjects(const MapObjectManager *mapObjMan, MapObjectSave *mapObjSave, int size);
 void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, const ObjectEvent *objectEvent);
 MapObject *MapObjMan_LocalMapObjByIndex(const MapObjectManager *mapObjMan, int index);
-MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType);
+MapObject *MapObjMan_GetLocalMapObjByMovementType(const MapObjectManager *mapObjMan, int movementType);
 int sub_020625B0(const MapObjectManager *mapObjMan, MapObject **mapObj, int *param2, u32 status);
 int MapObject_HasNoScript(const MapObject *mapObj);
 int sub_02062758(const MapObject *mapObj, int param1);
@@ -206,7 +206,7 @@ int MapObject_IsMovementPaused(const MapObject *mapObj);
 int sub_02062DFC(const MapObject *mapObj);
 void MapObject_SetHeightCalculationDisabled(MapObject *mapObj, BOOL heightCalculationDisabled);
 int MapObject_IsHeightCalculationDisabled(const MapObject *mapObj);
-void sub_02062E5C(MapObject *mapObj, int param1);
+void MapObject_SetFlagPersistent(MapObject *mapObj, BOOL flag);
 void sub_02062E78(MapObject *mapObj, int param1);
 int sub_02062E94(const MapObject *mapObj);
 void sub_02062EAC(MapObject *mapObj, int param1);

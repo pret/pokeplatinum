@@ -81,7 +81,7 @@
         {
             "id": "ROUTE_209_LOST_TOWER_4F_PA_BOB",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",
@@ -99,7 +99,7 @@
         {
             "id": "ROUTE_209_LOST_TOWER_4F_BELLE_BETH",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BELLE_AND_PA_BETH_AND_BOB",

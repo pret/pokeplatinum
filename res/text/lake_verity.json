@@ -2,7 +2,7 @@
   "key": 50255,
   "messages": [
     {
-      "id": "pl_msg_00000292_00000",
+      "id": "LakeVerity_Text_WhatTimingYouveGotToHelpDawn",
       "en_US": [
         "Rowan: Ah, {STRVAR_1 3, 0, 0}!\n",
         "What timing!\r",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00001",
+      "id": "LakeVerity_Text_WhatTimingYouveGotToHelpLucas",
       "en_US": [
         "Rowan: Ah, {STRVAR_1 3, 0, 0}!\n",
         "What timing!\r",
@@ -23,42 +23,42 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00002",
+      "id": "LakeVerity_Text_HowDareYouMisguidedThugs",
       "en_US": [
         "Rowan: How dare you!\n",
         "You misguided thugs!\r"
       ]
     },
     {
-      "id": "pl_msg_00000292_00003",
+      "id": "LakeVerity_Text_DawnNeedsYourHelp",
       "en_US": [
         "{STRVAR_1 3, 0, 0}!\n",
         "Dawn needs your help!"
       ]
     },
     {
-      "id": "pl_msg_00000292_00004",
+      "id": "LakeVerity_Text_HowDareYouMisguidedThugsUnused",
       "en_US": [
         "Rowan: How dare you!\n",
         "You misguided thugs!\r"
       ]
     },
     {
-      "id": "pl_msg_00000292_00005",
+      "id": "LakeVerity_Text_LucasNeedsYourHelp",
       "en_US": [
         "{STRVAR_1 3, 0, 0}!\n",
         "Lucas needs your help!"
       ]
     },
     {
-      "id": "pl_msg_00000292_00006",
+      "id": "LakeVerity_Text_OuchWhatsWithThisOldTimer",
       "en_US": [
         "Ow! Ouch!\n",
         "What’s with this old-timer?"
       ]
     },
     {
-      "id": "pl_msg_00000292_00007",
+      "id": "LakeVerity_Text_DawnICouldntBeatThisPerson",
       "en_US": [
         "Dawn: {STRVAR_1 3, 0, 0}!\n",
         "It’s T-Team Galactic!\r",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00008",
+      "id": "LakeVerity_Text_LucasILostToHerButJustBarely",
       "en_US": [
         "Lucas: It’s Team Galactic!\n",
         "They took the Pokémon of the lake...\r",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00009",
+      "id": "LakeVerity_Text_MarsIntro",
       "en_US": [
         "Mars: That face...!\n",
         "It brings back bad memories!\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00010",
+      "id": "LakeVerity_Text_MarsDefeat",
       "en_US": [
         "I lost again...\r",
         "So, first the windworks, and now\n",
@@ -114,14 +114,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00011",
+      "id": "LakeVerity_Text_WerePullingOut",
       "en_US": [
         "Team! We’re pulling out!\n",
         "The boss is waiting at the HQ!\r"
       ]
     },
     {
-      "id": "pl_msg_00000292_00012",
+      "id": "LakeVerity_Text_NowWeveGotAllLakePokemon",
       "en_US": [
         "The Pokémon of the three lakes are\n",
         "connected somehow.\r",
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00013",
+      "id": "LakeVerity_Text_WhatIsHappeningAtLakeAcuity",
       "en_US": [
         "Rowan: I see...\n",
         "This also occurred at Lake Valor...\r",
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00014",
+      "id": "LakeVerity_Text_INeedYouToGoToLakeAcuity",
       "en_US": [
         "Rowan: {STRVAR_1 3, 0, 0}, I need you to\n",
         "go to Lake Acuity right away.\r",
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00015",
+      "id": "LakeVerity_Text_DawnWhatIsTeamGalacticUpTo",
       "en_US": [
         "Dawn: {STRVAR_1 3, 0, 0}, what is Team\n",
         "Galactic up to?\r",
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000292_00016",
+      "id": "LakeVerity_Text_LucasWhatsTeamGalacticUpTo",
       "en_US": [
         "Lucas: {STRVAR_1 3, 0, 0}, what’s Team\n",
         "Galactic up to?\r",

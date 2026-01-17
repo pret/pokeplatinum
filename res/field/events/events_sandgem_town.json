@@ -64,7 +64,7 @@
         {
             "id": "SANDGEM_TOWN_COUNTERPART_4",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_COUNTERPART",
             "script": 10300,
@@ -181,7 +181,7 @@
             "id": "SANDGEM_TOWN_SCHOOL_KID_M_11",
             "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x0156",
             "script": 65535,

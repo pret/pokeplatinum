@@ -20,7 +20,7 @@ _0022:
 _0035:
     SetObjectEventPos 5, 21, 5
     SetObjectEventDir 5, DIR_WEST
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_WEST
     SetObjectEventPos 2, 18, 4
     SetObjectEventDir 2, DIR_SOUTH
     SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_SOUTH
@@ -139,7 +139,7 @@ _01DB:
     CloseMessage
     SetFlag FLAG_UNK_0x01F8
     ClearFlag FLAG_UNK_0x01F9
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_WEST
     AddObject 5
     LockObject 5
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
