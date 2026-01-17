@@ -294,7 +294,7 @@
             "y": 0
         },
         {
-            "id": "SOLACEON_TOWN_BARRY_18",
+            "id": "SOLACEON_TOWN_RIVAL_18",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
