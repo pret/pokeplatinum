@@ -14,6 +14,8 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/trainer.h"
 
+#include "global/utility.h"
+
 #include "charcode.h"
 #include "enums.h"
 #include "heap.h"
@@ -136,8 +138,9 @@ static inline MessageLoader *InitMessageLoader(u32 bankID, u32 heapID)
     return MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 }
 
-void StringTemplate_SetString(StringTemplate *template, u32 idx, const String *argVal, u32 unused_gender, BOOL unused4, u32 unused_language)
+void StringTemplate_SetString(StringTemplate *template, u32 idx, const String *argVal, u32 unused_gender, BOOL unused4, u32 language)
 {
+    UNUSED(language);
     SetStringTemplateArg(template, idx, argVal, NULL);
 }
 
@@ -522,16 +525,16 @@ void StringTemplate_SetContestBackdropName(StringTemplate *template, u32 idx, u3
 
 void StringTemplate_SetUnionGroupName(StringTemplate *template, SaveData *saveData, int groupID, int idx, int nameType)
 {
-    int gender, countryCode;
+    int gender, language;
     String *groupName;
     RecordMixedRNG *group = SaveData_GetRecordMixedRNG(saveData);
 
     gender = RecordMixedRNG_GetEntryGender(group, groupID);
-    countryCode = RecordMixedRNG_GetEntryCountryCode(group, groupID);
+    language = RecordMixedRNG_GetEntryLanguage(group, groupID);
     groupName = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(groupName, RecordMixedRNG_GetEntryName(group, groupID, nameType));
-    StringTemplate_SetString(template, idx, groupName, gender, 1, countryCode);
+    StringTemplate_SetString(template, idx, groupName, gender, 1, language);
     String_Free(groupName);
 }
 

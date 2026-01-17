@@ -418,7 +418,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
         v7 = MessageLoader_GetNewString(param1->unk_14.unk_34, 13);
         v8 = String_Init(255, HEAP_ID_102);
 
-        StringTemplate_SetString(v9, 0, v6, 0, 1, 2);
+        StringTemplate_SetString(v9, 0, v6, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v9, v8, v7);
 
         Window_FillTilemap(v10, 0x00);
@@ -982,7 +982,7 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
         case 0:
             int v15 = param0->unk_28->unk_00[v0].unk_04;
             v5 = MessageLoader_GetNewString(param0->unk_34, v15);
-            StringTemplate_SetString(v7, 1, v5, 0, 1, 2);
+            StringTemplate_SetString(v7, 1, v5, 0, 1, GAME_LANGUAGE);
             break;
         case 1:
             int v16 = param0->unk_28->unk_00[v0].unk_04;
@@ -995,7 +995,7 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
             v5 = String_Init(255, HEAP_ID_102);
             MessageLoader_GetSpeciesName(v18, 102, v17);
             String_CopyChars(v5, v17);
-            StringTemplate_SetString(v7, 1, v5, 0, 1, 2);
+            StringTemplate_SetString(v7, 1, v5, 0, 1, GAME_LANGUAGE);
             break;
         }
 
@@ -1004,13 +1004,13 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
         String_FormatU64(v11, v19, ov62_0223438C(v19), 0, 1);
 
         String_FormatInt(v4, v10[v0] + 1, 2, 1, 1);
-        StringTemplate_SetString(v7, 0, v4, 0, 1, 2);
+        StringTemplate_SetString(v7, 0, v4, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v7, v6, v3);
 
         Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v6, 0, v0 * (16 * param0->unk_28->unk_08), TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
         if (param0->unk_28->unk_08 == 2) {
             if (param6) {
-                StringTemplate_SetString(v7, 2, v11, 0, 1, 2);
+                StringTemplate_SetString(v7, 2, v11, 0, 1, GAME_LANGUAGE);
                 StringTemplate_Format(v7, v6, param6);
                 Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v6, 16, (v0 * (16 * param0->unk_28->unk_08)) + 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
             }
@@ -1166,7 +1166,7 @@ int ov62_02232C78(UnkStruct_ov62_02233310 *a0, UnkStruct_0208C06C *a1, int a2, i
         case 0:
             int r1 = a0->unk_28->unk_00[i].unk_04;
             sp4c = MessageLoader_GetNewString(a0->unk_34, r1);
-            StringTemplate_SetString(r5, 1, sp4c, 0, 1, 2);
+            StringTemplate_SetString(r5, 1, sp4c, 0, 1, GAME_LANGUAGE);
             break;
         case 1:
             int sp30 = a0->unk_28->unk_00[i].unk_04;
@@ -1179,18 +1179,18 @@ int ov62_02232C78(UnkStruct_ov62_02233310 *a0, UnkStruct_0208C06C *a1, int a2, i
             sp4c = String_Init(255, HEAP_ID_102);
             MessageLoader_GetSpeciesName(sp2c, HEAP_ID_102, sp6c);
             String_CopyChars(sp4c, sp6c);
-            StringTemplate_SetString(r5, 1, sp4c, 0, 1, 2);
+            StringTemplate_SetString(r5, 1, sp4c, 0, 1, GAME_LANGUAGE);
             break;
         }
         u64 sp24 = a0->unk_28->unk_00[i].unk_08;
         String_FormatU64(sp48, sp24, ov62_0223438C(sp24), PADDING_MODE_NONE, 1);
         String_FormatInt(sp50, sp26c[i] + 1, 2, PADDING_MODE_SPACES, 1);
-        StringTemplate_SetString(r5, 0, sp50, 0, TRUE, 2);
+        StringTemplate_SetString(r5, 0, sp50, 0, TRUE, GAME_LANGUAGE);
         StringTemplate_Format(r5, r7, sp54);
         int yOffset = 16 * a0->unk_28->unk_08 * sp44;
         Text_AddPrinterWithParamsAndColor(sp58, FONT_SYSTEM, r7, 0, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
         if (a0->unk_28->unk_08 == 2 && a4) {
-            StringTemplate_SetString(r5, 2, sp48, 0, 1, 2);
+            StringTemplate_SetString(r5, 2, sp48, 0, 1, GAME_LANGUAGE);
             StringTemplate_Format(r5, r7, a4);
             yOffset = (16 * a0->unk_28->unk_08 * sp44) + 16;
             Text_AddPrinterWithParamsAndColor(sp58, FONT_SYSTEM, r7, 0x10, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);

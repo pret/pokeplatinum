@@ -23,7 +23,7 @@
 struct UnkStruct_ov6_022465F4_t {
     u8 unk_00;
     u8 unk_01;
-    u8 unk_02;
+    u8 language;
     u8 unk_03;
     u16 unk_04[8];
     UnkStruct_0202E4D4 *unk_14;
@@ -39,9 +39,9 @@ static void ov6_02246450(UnkStruct_ov6_022465F4 *param0, int param1)
     param0->unk_03 = param1;
 }
 
-static void ov6_02246454(UnkStruct_ov6_022465F4 *param0, int param1)
+static void ov6_02246454(UnkStruct_ov6_022465F4 *param0, int language)
 {
-    param0->unk_02 = param1;
+    param0->language = language;
 }
 
 static void ov6_02246458(UnkStruct_ov6_022465F4 *param0, int param1)
@@ -74,7 +74,7 @@ int ov6_0224648C(const UnkStruct_ov6_022465F4 *param0)
 
 int ov6_02246490(const UnkStruct_ov6_022465F4 *param0)
 {
-    return param0->unk_02;
+    return param0->language;
 }
 
 const u16 *ov6_02246494(const UnkStruct_ov6_022465F4 *param0)

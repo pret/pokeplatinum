@@ -469,7 +469,7 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
         int sp20 = sub_02030CDC(r5->unk_88C[0]);
         r7 = MessageLoader_GetNewString(r5->unk_14.unk_34, 0x55);
         sp1c = MessageLoader_GetNewString(r4->unk_744, ov62_02232234(sp20, 4));
-        StringTemplate_SetString(r6, 0, sp1c, 0, 1, 2);
+        StringTemplate_SetString(r6, 0, sp1c, 0, 1, GAME_LANGUAGE);
         break;
     case 1:
         int sp24 = sub_02030CCC(r5->unk_88C[0]);
@@ -492,10 +492,10 @@ static void ov62_0223D160(UnkStruct_0208C06C *a0)
         } else {
             sp1c = MessageLoader_GetNewString(r5->unk_14.unk_34, 0x15);
         }
-        StringTemplate_SetString(r6, 0, sp1c, 0, 1, 2);
+        StringTemplate_SetString(r6, 0, sp1c, 0, 1, GAME_LANGUAGE);
         break;
     }
-    StringTemplate_SetString(r6, 1, sp18, 0, 1, 2);
+    StringTemplate_SetString(r6, 1, sp18, 0, 1, GAME_LANGUAGE);
     StringTemplate_Format(r6, sp14, r7);
     Text_AddPrinterWithParamsAndColor(&r4->unk_24[1], 0, sp14, 0, 0x10, 0xff, 0x000f0d00, 0);
     Window_ScheduleCopyToVRAM(&r4->unk_24[1]);

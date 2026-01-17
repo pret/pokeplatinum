@@ -7,7 +7,7 @@ typedef struct {
     UnkStruct_0202D314 unk_00[3];
     u16 unk_A8[8];
     u8 unk_B8;
-    u8 unk_B9;
+    u8 language;
     u8 unk_BA;
     u8 unk_BB;
     u8 unk_BC[4];

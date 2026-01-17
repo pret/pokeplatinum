@@ -38,7 +38,7 @@ typedef struct StringTemplate {
 StringTemplate *StringTemplate_Default(u32 heapID);
 StringTemplate *StringTemplate_New(u32 maxArgs, u32 maxLen, u32 heapID);
 void StringTemplate_Free(StringTemplate *template);
-void StringTemplate_SetString(StringTemplate *template, u32 idx, const String *argVal, u32 unused_gender, BOOL unused4, u32 unused_language);
+void StringTemplate_SetString(StringTemplate *template, u32 idx, const String *argVal, u32 unused_gender, BOOL unused4, u32 language);
 void StringTemplate_SetPlayerName(StringTemplate *template, u32 idx, const TrainerInfo *playerInfo);
 void StringTemplate_SetRivalName(StringTemplate *template, u32 idx, const SaveData *saveData);
 void StringTemplate_SetCounterpartName(StringTemplate *template, u32 idx, const SaveData *saveData);

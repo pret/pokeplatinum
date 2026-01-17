@@ -33,9 +33,9 @@ const u16 *PalPad_GetTrainerNamePointer(const PalPad *palPad, int trainerIndex)
     return palPad[trainerIndex].trainerName;
 }
 
-u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex)
+u8 PalPad_GetTrainerLanguage(const PalPad *palPad, int trainerIndex)
 {
-    return palPad->associatedTrainerRegionCodes[trainerIndex];
+    return palPad->associatedTrainerLanguages[trainerIndex];
 }
 
 BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second)

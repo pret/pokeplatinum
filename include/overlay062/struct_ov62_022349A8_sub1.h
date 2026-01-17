@@ -4,7 +4,7 @@
 typedef struct {
     s32 unk_00;
     u8 unk_04;
-    u8 unk_05;
+    u8 language;
     u8 padding_06[306];
 } UnkStruct_ov62_022349A8_sub1;
 

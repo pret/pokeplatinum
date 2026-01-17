@@ -1068,26 +1068,26 @@ u16 *ov66_02233538(UnkEnum_ov66_02233538 param0)
     return v0;
 }
 
-BOOL ov66_022335C0(UnkEnum_ov66_022335C0 param0, u32 param1)
+BOOL ov66_022335C0(UnkEnum_ov66_022335C0 param0, u32 language)
 {
     BOOL v0;
 
     GF_ASSERT(Unk_ov66_0225B6C0 != NULL);
     GF_ASSERT(param0 < UnkEnum_ov66_022335C0_02);
-    GF_ASSERT(param1 < 12);
+    GF_ASSERT(language < 12);
 
     if (param0 >= UnkEnum_ov66_022335C0_02) {
         return 0;
     }
 
-    if (param1 >= 12) {
+    if (language >= 12) {
         return 0;
     }
 
     if (param0 == UnkEnum_ov66_022335C0_00) {
-        v0 = Unk_ov66_0225B6C0->unk_6A8.unk_00.currentQuestionnaireRecord.multiLanguageSummarizeFlags[param1];
+        v0 = Unk_ov66_0225B6C0->unk_6A8.unk_00.currentQuestionnaireRecord.multiLanguageSummarizeFlags[language];
     } else {
-        v0 = Unk_ov66_0225B6C0->unk_6A8.unk_00.lastQuestionnaireRecord.multiLanguageSummarizeFlags[param1];
+        v0 = Unk_ov66_0225B6C0->unk_6A8.unk_00.lastQuestionnaireRecord.multiLanguageSummarizeFlags[language];
     }
 
     return v0;

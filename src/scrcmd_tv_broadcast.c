@@ -251,12 +251,12 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
     return isEligibleFn(fieldSystem);
 }
 
-static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
+static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int language, int param5)
 {
     String *v0 = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(v0, param2);
-    StringTemplate_SetString(param0, param1, v0, param3, param5, param4);
+    StringTemplate_SetString(param0, param1, v0, param3, param5, language);
     String_Free(v0);
 }
 

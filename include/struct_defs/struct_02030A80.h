@@ -13,7 +13,7 @@ typedef struct UnkStruct_02030A80_t {
     u8 unk_17;
     u8 unk_18;
     u8 unk_19;
-    u8 unk_1A;
+    u8 language;
     u8 unk_1B_0 : 1;
     u8 unk_1B_1 : 7;
     u16 unk_1C;

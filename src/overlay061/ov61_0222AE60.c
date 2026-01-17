@@ -84,7 +84,7 @@ void ov61_0222AFCC(SaveData *saveData, const UnkStruct_02030A80 *param1, UnkStru
     MI_CpuClear8(param2, sizeof(UnkStruct_ov61_0222AFCC));
 
     param2->unk_00 = param1->unk_19;
-    param2->unk_01 = param1->unk_1A;
+    param2->language = param1->language;
     param2->unk_02 = param1->unk_15;
     param2->unk_03 = param1->unk_16;
     param2->unk_04 = param1->unk_1C;

@@ -1502,7 +1502,7 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
     const UnkStruct_ov66_0222E71C *v0;
     UnkStruct_ov66_0222E908 v1;
     int v2;
-    u32 v3;
+    u32 language;
     BOOL v4;
 
     memset(param0, 0, sizeof(UnkStruct_ov68_0225DC74));
@@ -1511,9 +1511,9 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
         v0 = ov66_0222E374(param1, v2);
 
         if (v0 != NULL) {
-            v3 = ov66_0222E850(v0);
+            language = ov66_0222E850(v0);
             ov66_0222E908(v0, &v1);
-            v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, v3);
+            v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, language);
 
             if ((v4 == 1) && (v1.unk_04 < 3)) {
                 param0->unk_00[v1.unk_04]++;
