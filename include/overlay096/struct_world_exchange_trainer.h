@@ -5,7 +5,7 @@
 
 typedef struct WorldExchangeTrainer {
     u8 gameCode;
-    u8 languageCode;
+    u8 language;
     u8 country;
     u8 unk_03;
     u32 trainerId;

@@ -158,7 +158,7 @@ static void ov59_021D2B90(SaveData *saveData, UnkStruct_0202E794 *param1, UnkStr
         param1->unk_00 = TrainerInfo_ID(v1);
         param1->unk_04 = TrainerInfo_Gender(v1);
         param1->unk_05 = GAME_VERSION;
-        param1->unk_06 = GAME_LANGUAGE;
+        param1->language = GAME_LANGUAGE;
 
         CharCode_CopyNumChars(param1->unk_08, TrainerInfo_Name(v1), 7 + 1);
 

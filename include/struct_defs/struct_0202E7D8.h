@@ -6,7 +6,7 @@ typedef struct {
     u8 padding_01;
     u16 unk_02;
     u8 unk_04;
-    u8 unk_05;
+    u8 language;
     u8 unk_06;
     u8 unk_07;
     u8 unk_08;

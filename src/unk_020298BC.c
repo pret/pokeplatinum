@@ -950,7 +950,7 @@ void sub_0202A75C(const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param1)
     }
 
     param1->unk_58 = photo->unk_70;
-    param1->unk_59 = photo->language;
+    param1->language = photo->language;
 }
 
 void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo)
@@ -984,7 +984,7 @@ void sub_0202A824(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo)
     }
 
     photo->unk_70 = param0->unk_58;
-    photo->language = param0->unk_59;
+    photo->language = param0->language;
 
     for (i = 0; i < MON_NAME_LEN + 1; i++) {
         photo->photoMon.nickname[i] = CHAR_EOS;
