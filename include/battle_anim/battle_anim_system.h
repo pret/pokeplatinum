@@ -230,7 +230,7 @@ void BattleAnimSystem_SetIsContest(BattleAnimSystem *system, BOOL isContest);
 BOOL BattleAnimSystem_IsContest(BattleAnimSystem *system);
 enum HeapID BattleAnimSystem_GetHeapID(BattleAnimSystem *system);
 BOOL BattleAnimSystem_Delete(BattleAnimSystem *system);
-BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, UnkStruct_ov16_02265BBC *param1, u16 move, BattleAnimBattlerContext *param3);
+BOOL BattleAnimSystem_StartMove(BattleAnimSystem *system, MoveAnimation *param1, u16 move, BattleAnimBattlerContext *param3);
 BOOL BattleAnimSystem_ExecuteScript(BattleAnimSystem *system);
 BOOL BattleAnimSystem_IsMoveActive(BattleAnimSystem *system);
 BOOL BattleAnimSystem_FreeScriptData(BattleAnimSystem *system);
