@@ -37,7 +37,7 @@
         {
             "id": "VALOR_LAKEFRONT_CYNTHIA_0",
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01AD",
             "script": 0,
@@ -52,7 +52,7 @@
         {
             "id": "VALOR_LAKEFRONT_CAMERAMAN_1",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01AE",
             "script": 6,
@@ -67,7 +67,7 @@
         {
             "id": "VALOR_LAKEFRONT_CAMERAMAN_2",
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01AE",
             "script": 4,
@@ -130,7 +130,7 @@
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0175",
+            "hidden_flag": "MAP_HEADER_ROUTE_213",
             "script": 65535,
             "initial_dir": 2,
             "data": [],

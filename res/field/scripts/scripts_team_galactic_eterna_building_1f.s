@@ -65,7 +65,7 @@ _006A:
     WaitMovement
     ClearFlag FLAG_UNK_0x01BB
     SetObjectEventPos 5, 12, 15
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_WEST
     SetObjectEventDir 5, DIR_WEST
     AddObject 5
     RemoveObject 4
@@ -77,7 +77,7 @@ _006A:
     WaitMovement
     ClearFlag FLAG_UNK_0x01C2
     SetObjectEventPos 4, 12, 15
-    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_WEST
     SetObjectEventDir 4, DIR_WEST
     AddObject 4
     RemoveObject 5

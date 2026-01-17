@@ -85,7 +85,7 @@
         {
             "id": "PASTORIA_CITY_GYM_TUBER_CAITLYN",
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_TUBER_CAITLYN",
@@ -102,7 +102,7 @@
         {
             "id": "PASTORIA_CITY_GYM_SAILOR_SAMSON",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_SAILOR_SAMSON",
@@ -119,7 +119,7 @@
         {
             "id": "PASTORIA_CITY_GYM_FISHERMAN_ERICK",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_FISHERMAN_ERICK",

@@ -2,18 +2,18 @@
   "key": 40604,
   "messages": [
     {
-      "id": "pl_msg_00000466_00000",
+      "id": "Route201_Text_TooSlow",
       "en_US": "Too slow!\r"
     },
     {
-      "id": "pl_msg_00000466_00001",
+      "id": "Route201_Text_LetsGetMovingToProfRowansLab",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: All right!\n",
         "Let’s get moving to Prof. Rowan’s lab.\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00002",
+      "id": "Route201_Text_TrustMeIveGotAnIdea",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...\n",
         "...\r",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00003",
+      "id": "Route201_Text_ScootOverBeforeWildPokemonCanAppear",
       "en_US": [
         "So, what you do is, you scoot over to\n",
         "the next patch of grass before any\f",
@@ -41,18 +41,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00004",
+      "id": "Route201_Text_HereGoes",
       "en_US": [
         "OK, here goes!\r",
         "On your marks...\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00005",
+      "id": "Route201_Text_HoldIt",
       "en_US": "{SIZE 200}Hold it!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000466_00006",
+      "id": "Route201_Text_YouTwoDontHaveAnyPokemon",
       "en_US": [
         "Professor: You two don’t seem to have\n",
         "any Pokémon between you?\r",
@@ -61,14 +61,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00007",
+      "id": "Route201_Text_RivalEllipsis",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...\n",
         "...\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00008",
+      "id": "Route201_Text_ProfessorEllipsis",
       "en_US": [
         "Professor: ...\n",
         "...\r",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00009",
+      "id": "Route201_Text_ThisIsProfRowanIsntIt",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}.\n",
         "This old guy...\r",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00010",
+      "id": "Route201_Text_HmmWhatToDo",
       "en_US": [
         "Professor: ...\n",
         "...\r",
@@ -103,21 +103,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00011",
+      "id": "Route201_Text_YouTrulyLovePokemonDoYou",
       "en_US": [
         "You two.\n",
         "You truly love Pokémon, do you?"
       ]
     },
     {
-      "id": "pl_msg_00000466_00012",
+      "id": "Route201_Text_YoureNotMakingAnySense",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Whoa, hold up!\n",
         "You’re not making any sense here!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00013",
+      "id": "Route201_Text_IDidntQuiteCatchThat",
       "en_US": [
         "Professor: Er-hem!\r",
         "I didn’t quite catch that, so I will\n",
@@ -127,14 +127,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00014",
+      "id": "Route201_Text_ILovePokemonToo",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Me, too!\n",
         "I love Pokémon, too!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00015",
+      "id": "Route201_Text_IWillAskOnceAgain",
       "en_US": [
         "Professor: I will ask you once again.\r",
         "You two.\n",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00016",
+      "id": "Route201_Text_TheAnswerWillNeverChange",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What?!\n",
         "You can ask a hundred times!\f",
@@ -152,18 +152,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00017",
+      "id": "Route201_Text_RightPlayer",
       "en_US": "Right, {STRVAR_1 3, 1, 0}?"
     },
     {
-      "id": "pl_msg_00000466_00018",
+      "id": "Route201_Text_ThatJokesGettingOld",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...\n",
         "That joke’s getting old!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00019",
+      "id": "Route201_Text_ItWorriesMeWhatPeopleWouldDo",
       "en_US": [
         "Professor: ...A pair of reckless kids\n",
         "who foolishly try to enter tall grass\f",
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00020",
+      "id": "Route201_Text_GiveAPokemonToMyFriendHere",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: ...Uh...\n",
         "Well, I, uh...\r",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00021",
+      "id": "Route201_Text_IWillEntrustYouWithPokemon",
       "en_US": [
         "Professor: !\r",
         "How big of you...\r",
@@ -203,21 +203,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00022",
+      "id": "Route201_Text_DawnYouLeftYourBriefcaseAtTheLake",
       "en_US": [
         "Dawn: Professor Rowan.\r",
         "You left your briefcase at the lake!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00023",
+      "id": "Route201_Text_OhIsSomethingWrongHere",
       "en_US": [
         "Oh?\n",
         "Is something wrong here?\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00024",
+      "id": "Route201_Text_LucasYouLeftYourBriefcaseAtTheLake",
       "en_US": [
         "Lucas: Professor Rowan!\r",
         "You left your briefcase behind at\n",
@@ -225,11 +225,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00025",
+      "id": "Route201_Text_IsSomethingWrongHere",
       "en_US": "Is something wrong here?\r"
     },
     {
-      "id": "pl_msg_00000466_00026",
+      "id": "Route201_Text_ThereItIsNiceWorkDawn",
       "en_US": [
         "Rowan: Ah! There it is!\n",
         "Dawn, nice work.\r",
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00027",
+      "id": "Route201_Text_ThereItIsNiceWorkLucas",
       "en_US": [
         "Rowan: Ah! There it is!\n",
         "Lucas, nice work.\r",
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00028",
+      "id": "Route201_Text_DawnThosePokemonAreHardToReplace",
       "en_US": [
         "Dawn: Pardon?!\r",
         "Those Pokémon are hard to replace.\n",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00029",
+      "id": "Route201_Text_LucasThosePokemonAreCrucial",
       "en_US": [
         "Lucas: Wha...?!\r",
         "Those Pokémon are crucial.\n",
@@ -263,7 +263,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00030",
+      "id": "Route201_Text_PeopleShouldMeetPokemon",
       "en_US": [
         "Rowan: Hm!\r",
         "We exist side by side with Pokémon.\r",
@@ -276,21 +276,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00031",
+      "id": "Route201_Text_GoOnChooseAPokemon",
       "en_US": [
         "Go on! Open the briefcase and choose\n",
         "a Pokémon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00032",
+      "id": "Route201_Text_RowanGoOnChooseAPokemon",
       "en_US": [
         "Rowan: Go on! Open the briefcase and\n",
         "choose a Pokémon!"
       ]
     },
     {
-      "id": "pl_msg_00000466_00033",
+      "id": "Route201_Text_ICantBelieveIt",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Really?!\n",
         "Prof. Rowan!\r",
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00034",
+      "id": "Route201_Text_YouCanChooseFirst",
       "en_US": [
         "Hey, {STRVAR_1 3, 1, 0}.\n",
         "You can choose first.\r",
@@ -308,21 +308,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00035",
+      "id": "Route201_Text_PickAPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What’s up with you?\n",
         "Open the briefcase and pick a Pokémon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00036",
+      "id": "Route201_Text_ImPickingThisStarter",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Then, I choose you!\n",
         "I’m picking this {STRVAR_1 0, 2, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00037",
+      "id": "Route201_Text_IHopeYoullDoWellTogether",
       "en_US": [
         "Rowan: Very well! Both of you have\n",
         "chosen a good Pokémon, it seems.\r",
@@ -336,7 +336,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00038",
+      "id": "Route201_Text_ComeSeeMeInSandgemTown",
       "en_US": [
         "If you have any trouble, come see me\n",
         "at my lab in Sandgem Town.\r",
@@ -344,32 +344,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00039",
+      "id": "Route201_Text_DawnWaitForMe",
       "en_US": [
         "Dawn: Professor!\n",
         "Wait for me, please!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00040",
+      "id": "Route201_Text_DawnPleaseLetMePass",
       "en_US": [
         "I’m sorry...\n",
         "Please let me pass.\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00041",
+      "id": "Route201_Text_LucasWaitForMe",
       "en_US": [
         "Lucas: Professor!\n",
         "Wait for me!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00042",
+      "id": "Route201_Text_LucasSorryFolks",
       "en_US": "Uh, sorry, folks.\r"
     },
     {
-      "id": "pl_msg_00000466_00043",
+      "id": "Route201_Text_ProfRowansReallyNice",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: How do you like that?\n",
         "Prof. Rowan’s really nice.\r",
@@ -377,7 +377,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00044",
+      "id": "Route201_Text_OnlyOneThingToDo",
       "en_US": [
         "Heheh, {STRVAR_1 3, 1, 0}!\n",
         "We’ve both got Pokémon now.\r",
@@ -386,18 +386,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00045",
+      "id": "Route201_Text_DontBeThatWay",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What’s with that attitude?\n",
         "Don’t be that way!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00046",
+      "id": "Route201_Text_Dummy6",
       "garbage": 41
     },
     {
-      "id": "pl_msg_00000466_00047",
+      "id": "Route201_Text_IChallengeYouToABattle",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: I’ve always wanted to\n",
         "say this...\r",
@@ -407,7 +407,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00048",
+      "id": "Route201_Text_WhewLetsGoHome",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Whew!\n",
         "Let’s go home.\r",
@@ -417,7 +417,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00049",
+      "id": "Route201_Text_IWonLetsGoHome",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Aha...\n",
         "Ahaha... I won? I won!\r",
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00050",
+      "id": "Route201_Text_LetsCatchThatLegendaryPokemon",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Too slow!\n",
         "{STRVAR_1 3, 1, 0}, I’m sick of waiting!\r",
@@ -451,28 +451,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00051",
+      "id": "Route201_Text_TogetherWeveGotNothingToFear",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Me and you together,\n",
         "we’ve got nothing to fear!"
       ]
     },
     {
-      "id": "pl_msg_00000466_00052",
+      "id": "Route201_Text_TheLakesNotThatWay",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Heheh, {STRVAR_1 3, 1, 0}.\n",
         "The lake’s not that way!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00053",
+      "id": "Route201_Text_ISaidTheLakesNotThatWay",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\n",
         "I said, the lake’s not that way!\r"
       ]
     },
     {
-      "id": "pl_msg_00000466_00054",
+      "id": "Route201_Text_WildPokemonLurkInTallGrass",
       "en_US": [
         "Wild Pokémon lurk in tall grass. They\n",
         "can come bursting out at any time.\r",
@@ -483,7 +483,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00055",
+      "id": "Route201_Text_HereAPotionAsAFreeSample",
       "en_US": [
         "Hi!\n",
         "I work at a Pokémon Mart.\r",
@@ -500,21 +500,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00056",
+      "id": "Route201_Text_YouCanFindMartsInCitiesAndMajorTowns",
       "en_US": [
         "You can find a Pokémon Mart in cities\n",
         "and most major towns."
       ]
     },
     {
-      "id": "pl_msg_00000466_00057",
+      "id": "Route201_Text_ThatLedgeIsOneWay",
       "en_US": [
         "That ledge is one way. Jump down\n",
         "for a shortcut to Twinleaf Town!"
       ]
     },
     {
-      "id": "pl_msg_00000466_00058",
+      "id": "Route201_Text_IfYourPokemonsHPIsLowGoHome",
       "en_US": [
         "If your Pokémon’s health--that’s its\n",
         "HP--is getting low, you should go\f",
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00059",
+      "id": "Route201_Text_IfYourPokemonsHPIsLowGoToAPokemonCenter",
       "en_US": [
         "If your Pokémon’s health--that’s its\n",
         "HP--is getting low, you should go\f",
@@ -530,21 +530,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000466_00060",
+      "id": "Route201_Text_Rt201TwinleafTown",
       "en_US": [
         "Rt. 201\n",
         "Twinleaf Town"
       ]
     },
     {
-      "id": "pl_msg_00000466_00061",
+      "id": "Route201_Text_Rt201SandgemTown",
       "en_US": [
         "Rt. 201\n",
         "Sandgem Town"
       ]
     },
     {
-      "id": "pl_msg_00000466_00062",
+      "id": "Route201_Text_TrainerTipsTalkToAnyone",
       "en_US": [
         "Trainer Tips!\r",
         "Don’t be shy! Talk to anyone and\n",

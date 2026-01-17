@@ -43,7 +43,7 @@
         {
             "id": "ETERNA_FOREST_BUG_CATCHER_JACK",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BUG_CATCHER_JACK",
@@ -77,7 +77,7 @@
         {
             "id": "ETERNA_FOREST_PSYCHIC_KODY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_KODY",
@@ -94,7 +94,7 @@
         {
             "id": "ETERNA_FOREST_PSYCHIC_LINDSEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_LINDSEY",
@@ -111,7 +111,7 @@
         {
             "id": "ETERNA_FOREST_LASS_BRIANA",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_LASS_BRIANA",
@@ -235,7 +235,7 @@
         {
             "id": "ETERNA_FOREST_PSYCHIC_ELIJAH",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_ELIJAH",
@@ -252,7 +252,7 @@
         {
             "id": "ETERNA_FOREST_PSYCHIC_RACHAEL",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_RACHAEL",

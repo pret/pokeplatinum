@@ -233,7 +233,7 @@
         {
             "id": "CANALAVE_CITY_SAILOR_14",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01B4",
             "script": 0,
@@ -263,7 +263,7 @@
         {
             "id": "CANALAVE_CITY_SAILOR_16",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 20,
