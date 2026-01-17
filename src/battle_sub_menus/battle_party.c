@@ -1,4 +1,4 @@
-#include "overlay013/battle_party.h"
+#include "battle_sub_menus/battle_party.h"
 
 #include "constants/contests.h"
 #include "constants/moves.h"
@@ -9,11 +9,11 @@
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
-#include "overlay013/battle_party.h"
-#include "overlay013/battle_party_buttons.h"
-#include "overlay013/battle_party_sprites.h"
-#include "overlay013/battle_party_text.h"
-#include "overlay013/battle_sub_menu_cursor.h"
+#include "battle_sub_menus/battle_party.h"
+#include "battle_sub_menus/battle_party_buttons.h"
+#include "battle_sub_menus/battle_party_sprites.h"
+#include "battle_sub_menus/battle_party_text.h"
+#include "battle_sub_menus/battle_sub_menu_cursor.h"
 
 #include "bag.h"
 #include "bg_window.h"

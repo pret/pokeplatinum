@@ -1,10 +1,10 @@
-#include "overlay013/battle_party_text.h"
+#include "battle_sub_menus/battle_party_text.h"
 
 #include "constants/graphics.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "battle/ov16_0223DF00.h"
-#include "overlay013/battle_party.h"
+#include "battle_sub_menus/battle_party.h"
 
 #include "bg_window.h"
 #include "font.h"

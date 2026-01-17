@@ -5,8 +5,8 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "overlay013/battle_sub_menu_buttons_defs.h"
-#include "overlay013/battle_sub_menu_cursor.h"
+#include "battle_sub_menus/battle_sub_menu_buttons_defs.h"
+#include "battle_sub_menus/battle_sub_menu_cursor.h"
 
 #include "bg_window.h"
 #include "font_special_chars.h"

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_0225D794_H
 
 #include "battle/struct_ov16_0225D840.h"
-#include "overlay013/battle_bag.h"
+#include "battle_sub_menus/battle_bag.h"
 
 typedef struct {
     BattleSystem *unk_00;

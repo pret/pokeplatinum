@@ -90,7 +90,7 @@
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(battle_anim);
-FS_EXTERN_OVERLAY(overlay13);
+FS_EXTERN_OVERLAY(battle_sub_menus);
 FS_EXTERN_OVERLAY(trainer_ai);
 FS_EXTERN_OVERLAY(pokedex);
 
@@ -302,7 +302,7 @@ void ov16_0223B384(BattleSystem *battleSys)
         Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
     }
 
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay13), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(battle_sub_menus), 2);
 }
 
 void ov16_0223B3E4(BattleSystem *battleSys)
@@ -325,7 +325,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     NARC *v0;
     NARC *v1;
 
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay13));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_sub_menus));
 
     if (battleSys->overlayFlags == 0) {
         Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);

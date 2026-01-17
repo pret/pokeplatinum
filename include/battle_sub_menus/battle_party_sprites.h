@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_SPRITES_H
 #define POKEPLATINUM_BATTLE_PARTY_SPRITES_H
 
-#include "overlay013/battle_party.h"
+#include "battle_sub_menus/battle_party.h"
 
 #define PARTY_POKEMON_HELD_ITEMS_SPRITES_OFFSET       0
 #define SELECTED_POKEMON_HELD_ITEMS_SPRITE_INDEX      6

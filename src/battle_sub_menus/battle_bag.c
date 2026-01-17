@@ -1,4 +1,4 @@
-#include "overlay013/battle_bag.h"
+#include "battle_sub_menus/battle_bag.h"
 
 #include "generated/text_banks.h"
 
@@ -8,11 +8,11 @@
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DE44.h"
-#include "overlay013/battle_bag_buttons.h"
-#include "overlay013/battle_bag_sprites.h"
-#include "overlay013/battle_bag_text.h"
-#include "overlay013/battle_bag_utils.h"
-#include "overlay013/battle_sub_menu_cursor.h"
+#include "battle_sub_menus/battle_bag_buttons.h"
+#include "battle_sub_menus/battle_bag_sprites.h"
+#include "battle_sub_menus/battle_bag_text.h"
+#include "battle_sub_menus/battle_bag_utils.h"
+#include "battle_sub_menus/battle_sub_menu_cursor.h"
 
 #include "bag.h"
 #include "bg_window.h"

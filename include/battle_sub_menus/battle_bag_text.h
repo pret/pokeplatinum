@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_BAG_TEXT_H
 #define POKEPLATINUM_BATTLE_BAG_TEXT_H
 
-#include "overlay013/battle_bag.h"
+#include "battle_sub_menus/battle_bag.h"
 
 enum BattleBagMenuWindow {
     BATTLE_BAG_MENU_WINDOW_HP_PP_RESTORE = 0,

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_TEXT_H
 #define POKEPLATINUM_BATTLE_PARTY_TEXT_H
 
-#include "overlay013/battle_party.h"
+#include "battle_sub_menus/battle_party.h"
 
 enum BattlePokemonPartyScreenWindow {
     BATTLE_POKEMON_PARTY_SCREEN_WINDOW_PARTY_SLOT_1 = 0,

@@ -1,9 +1,9 @@
-#include "overlay013/battle_bag_text.h"
+#include "battle_sub_menus/battle_bag_text.h"
 
 #include "constants/graphics.h"
 
 #include "battle/ov16_0223DF00.h"
-#include "overlay013/battle_bag.h"
+#include "battle_sub_menus/battle_bag.h"
 
 #include "bg_window.h"
 #include "font.h"

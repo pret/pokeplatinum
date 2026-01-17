@@ -1,6 +1,6 @@
-#include "overlay013/battle_bag_utils.h"
+#include "battle_sub_menus/battle_bag_utils.h"
 
-#include "overlay013/battle_bag.h"
+#include "battle_sub_menus/battle_bag.h"
 
 #include "bag.h"
 #include "item.h"
