@@ -58,7 +58,7 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
         u8 v3;
 
         v3 = sub_02071F28(fieldSystem);
-        sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(trainerInfo), param5);
+        sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_Language(trainerInfo), param5);
     }
 
     sub_02072038(TrainerInfo_ID_LowHalf(trainerInfo), TrainerInfo_Gender(trainerInfo), TrainerInfo_Name(trainerInfo), TrainerInfo_Money(trainerInfo), Pokedex_CountSeen(SaveData_GetPokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(gameRecords), param5);

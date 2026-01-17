@@ -23,9 +23,9 @@ void WiFiHistory_FlagGeonetLinkInfo(WiFiHistory *wiFiHistory)
             int country = CommInfo_PlayerCountry(i);
             int region = CommInfo_PlayerRegion(i);
             TrainerInfo *trainerInfo = CommInfo_TrainerInfo(i);
-            int regionCode = TrainerInfo_RegionCode(trainerInfo);
+            int language = TrainerInfo_Language(trainerInfo);
 
-            WiFiHistory_FlagGeonetCommunicatedWith(wiFiHistory, country, region, regionCode);
+            WiFiHistory_FlagGeonetCommunicatedWith(wiFiHistory, country, region, language);
         }
     }
 }

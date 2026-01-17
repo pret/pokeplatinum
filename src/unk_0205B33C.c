@@ -1286,7 +1286,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
     StringTemplate_SetPlayerName(param0, 0, v0);
     StringTemplate_SetPlayerName(param0, 1, param3);
 
-    v3 = TrainerInfo_RegionCode(v0);
+    v3 = TrainerInfo_Language(v0);
 
     if ((v3 >= 1) && (v3 <= 7)) {
         static const int v5[] = {

@@ -1025,7 +1025,7 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, e
     TrainerInfo_SetID(param1, ov66_0222E79C(param0));
     TrainerInfo_SetGender(param1, ov66_0222E7C8(param0));
     TrainerInfo_SetAppearance(param1, ov66_0222E858(param0));
-    TrainerInfo_SetRegionCode(param1, ov66_0222E80C(param0));
+    TrainerInfo_SetLanguage(param1, ov66_0222E80C(param0));
     TrainerInfo_SetMainStoryCleared(param1);
 }
 
@@ -1140,15 +1140,15 @@ u32 ov66_0222E7C8(const UnkStruct_ov66_0222E71C *param0)
 
 u32 ov66_0222E80C(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0;
+    u32 language;
 
     if (ov66_0222E824(param0) == 1) {
-        v0 = param0->unk_39;
+        language = param0->unk_39;
     } else {
-        v0 = 2;
+        language = 2;
     }
 
-    return v0;
+    return language;
 }
 
 BOOL ov66_0222E824(const UnkStruct_ov66_0222E71C *param0)
@@ -2322,7 +2322,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, e
     }
 
     param0->unk_20.unk_38 = TrainerInfo_Gender(v0);
-    param0->unk_20.unk_39 = TrainerInfo_RegionCode(v0);
+    param0->unk_20.unk_39 = TrainerInfo_Language(v0);
     param0->unk_20.unk_3A = TrainerInfo_Appearance(v0);
     param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
     param0->unk_20.unk_3C = WiFiHistory_GetCountry(wiFiHistory);

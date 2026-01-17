@@ -649,7 +649,7 @@ void sub_0206D088(TVBroadcast *broadcast, u8 param1, const TrainerInfo *param2)
 
     CharCode_Copy(v0->unk_06, TrainerInfo_Name(param2));
 
-    v0->unk_03 = TrainerInfo_RegionCode(param2);
+    v0->unk_03 = TrainerInfo_Language(param2);
     v0->unk_04 = TrainerInfo_GameCode(param2);
     v0->unk_02 = TrainerInfo_Gender(param2);
 
@@ -2561,7 +2561,7 @@ static int TVEpisodeSegment_LoadMessage_RoamerNewsFlash(FieldSystem *fieldSystem
             species = Roamer_GetData(roamer, ROAMER_DATA_SPECIES);
             personality = Roamer_GetData(roamer, ROAMER_DATA_PERSONALITY);
 
-            TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, species, Pokemon_GetGenderOf(species, personality), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
+            TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, species, Pokemon_GetGenderOf(species, personality), TrainerInfo_Language(trainerInfo), TrainerInfo_GameCode(trainerInfo));
             break;
         }
     }
@@ -2763,7 +2763,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     party = SaveData_GetParty(fieldSystem->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
-    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
+    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_Language(trainerInfo), TrainerInfo_GameCode(trainerInfo));
     StringTemplate_SetContestAccessoryName(param1, 1, LCRNG_Next() % 100);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
