@@ -6,7 +6,7 @@
 #include "constants/species.h"
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -20,18 +20,18 @@
 #include "string_gf.h"
 #include "unk_020298BC.h"
 
-void ov61_0222AE60(SaveData *saveData, const UnkStruct_02029C68 *param1, UnkStruct_ov61_0222AE80 *param2)
+void ov61_0222AE60(SaveData *saveData, const DressUpPhoto *photo, UnkStruct_ov61_0222AE80 *param2)
 {
-    sub_0202A75C(param1, param2);
+    sub_0202A75C(photo, param2);
     param2->unk_5C.unk_00 = SaveData_CalculateChecksum(saveData, param2, sizeof(UnkStruct_ov61_0222AE80) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }
 
-void ov61_0222AE80(const UnkStruct_ov61_0222AE80 *param0, UnkStruct_02029C68 *param1)
+void ov61_0222AE80(const UnkStruct_ov61_0222AE80 *param0, DressUpPhoto *photo)
 {
-    sub_0202A824(param0, param1);
+    sub_0202A824(param0, photo);
 }
 
-void ov61_0222AE88(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStruct_ov62_02239DA4 *param3, int heapID)
+void ov61_0222AE88(SaveData *saveData, const PCBoxes *pcBoxes, int boxID, UnkStruct_ov62_02239DA4 *param3, enum HeapID heapID)
 {
     String *v0;
     int v1;

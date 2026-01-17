@@ -83,7 +83,7 @@ int Pokemon_StructSize(void);
  * @param heapID
  * @return A new empty but encrypted Pokemon struct
  */
-Pokemon *Pokemon_New(u32 heapID);
+Pokemon *Pokemon_New(enum HeapID heapID);
 
 /**
  * @brief Decrypts a Pokemon data structure. PartyPokemon data is encrypted using the pokemons personality value, BoxPokemon data using a checksum value
@@ -196,7 +196,7 @@ void Pokemon_IncreaseValue(Pokemon *mon, enum PokemonDataParam param, int value)
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
+SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, enum HeapID heapID);
 
 /**
  * @brief Gets a SpeciesData based on a pokemon species
@@ -205,7 +205,7 @@ SpeciesData *SpeciesData_FromMonForm(int monSpecies, int monForm, int heapID);
  * @param heapID The index of the heap that the SpeciesData should be loaded into
  * @return SpeciesData*
  */
-SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, int heapID);
+SpeciesData *SpeciesData_FromMonSpecies(int monSpecies, enum HeapID heapID);
 
 /**
  * @brief Gets a value from a SpeciesData structure
@@ -498,7 +498,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1);
-ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
+ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, enum HeapID heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
 /**
@@ -803,7 +803,7 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
  * @param forceDefaultChatot    If TRUE, force usage of Chatot's default cry.
  * @param heapID
  */
-void PlayCryWithParams(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID);
+void PlayCryWithParams(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, enum HeapID heapID);
 
 /**
  * @brief Play a Pokemon's cry, according to the given species and form number.
@@ -819,7 +819,7 @@ void PlayCryWithParams(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 spec
  * @param heapID
  * @param delay                 Number of frames until playback will begin.
  */
-void Species_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
+void Species_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, enum HeapID heapID, u8 delay);
 BOOL Pokemon_PlayCry(Pokemon *mon);
 void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
@@ -839,7 +839,7 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality);
 BOOL Pokemon_IsOnBattleFrontierBanlist(u16 species);
 u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index);
 BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *pokemon);
-BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
+BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, enum HeapID heapID);
 int sub_020788D0(int param0);
 void Pokemon_ClearBallCapsuleData(Pokemon *mon);
 void BoxPokemon_RestorePP(BoxPokemon *boxMon);
@@ -907,7 +907,7 @@ void PokemonSprite_LoadXOffsetShadow(NARC *narc, s8 *xOffsetShadow, u16 species)
  * @param clientType        Client-type of who made the load request
  */
 void PokemonSprite_LoadShadowSize(NARC *narc, u8 *shadowSize, u16 species);
-BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID);
+BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, enum HeapID heapID);
 void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1);
 void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon);
 

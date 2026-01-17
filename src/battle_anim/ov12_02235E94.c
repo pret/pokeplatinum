@@ -42,7 +42,7 @@ typedef struct {
 } UnkStruct_02236430;
 
 typedef struct UnkStruct_ov12_02235FE0_t {
-    int heapID;
+    enum HeapID heapID;
     UnkStruct_ov12_02236030 unk_04;
     int unk_10;
     ParticleSystem *unk_14[9];
@@ -322,7 +322,7 @@ static int ov12_02235FC8(int param0, int param1)
     return Unk_ov12_0223AF00[v0][param1];
 }
 
-UnkStruct_ov12_02235FE0 *ov12_02235FE0(int heapID)
+UnkStruct_ov12_02235FE0 *ov12_02235FE0(enum HeapID heapID)
 {
     UnkStruct_ov12_02235FE0 *v0 = NULL;
 
@@ -339,7 +339,7 @@ UnkStruct_ov12_02235FE0 *ov12_02235FE0(int heapID)
     return v0;
 }
 
-UnkStruct_ov12_02235FE0 *ov12_02236004(int heapID, const UnkStruct_ov12_02236030 *param1)
+UnkStruct_ov12_02235FE0 *ov12_02236004(enum HeapID heapID, const UnkStruct_ov12_02236030 *param1)
 {
     UnkStruct_ov12_02235FE0 *v0 = NULL;
 

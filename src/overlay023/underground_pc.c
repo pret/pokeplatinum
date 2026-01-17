@@ -9,15 +9,15 @@
 #include "struct_defs/underground.h"
 
 #include "field/field_system.h"
+#include "overlay023/base_decoration.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_022521F0.h"
-#include "overlay023/ov23_02253598.h"
-#include "overlay023/ov23_02254A14.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
+#include "overlay023/underground_records.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
@@ -631,7 +631,7 @@ static BOOL UndergroundPC_DecorateTask(FieldTask *task)
         }
         break;
     case DECORATE_STATE_START:
-        ov23_02254D98(fieldSystem, task);
+        BaseDecoration_StartDecorationTask(fieldSystem, task);
         ctx->state = DECORATE_STATE_MAIN;
         break;
     case DECORATE_STATE_MAIN:
@@ -704,13 +704,13 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
     case UG_PC_MENU_STATE_INIT_CHECK_FLAGS:
         UndergroundMenu_EraseCurrentMenu(menu);
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
-        menu->unk_270 = ov23_02253C64(menu->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem)), SaveData_GetUnderground(FieldSystem_GetSaveData(menu->fieldSystem)), NULL, NULL);
+        menu->checkFlagsCtx = UndergroundRecords_ShowCheckFlagsScreen(menu->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem)), SaveData_GetUnderground(FieldSystem_GetSaveData(menu->fieldSystem)), NULL, NULL);
         menu->state = UG_PC_MENU_STATE_CHECK_FLAGS;
         break;
     case UG_PC_MENU_STATE_CHECK_FLAGS:
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            ov23_02253D10(menu->unk_270);
-            menu->unk_270 = NULL;
+            UndergroundRecords_ExitCheckFlagsScreen(menu->checkFlagsCtx);
+            menu->checkFlagsCtx = NULL;
             menu->state = UG_PC_MENU_STATE_INIT;
         }
         break;

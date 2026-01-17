@@ -20,9 +20,9 @@
 #include "savedata_misc.h"
 #include "string_gf.h"
 
-static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID);
+static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID heapID);
 
-void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID)
+void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, enum HeapID heapID)
 {
     Trainer trdata;
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NPC_TRAINER_NAMES, heapID);
@@ -95,7 +95,7 @@ u32 Trainer_LoadParam(int trainerID, enum TrainerDataParam paramID)
     return result;
 }
 
-BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID)
+BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, enum HeapID heapID)
 {
     NARC *narc; // must declare up here to match
     u16 offset, data[2];
@@ -124,7 +124,7 @@ BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int 
     return result;
 }
 
-void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, String *string, int heapID)
+void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, String *string, enum HeapID heapID)
 {
     NARC *narc; // must declare up here to match
     u16 offset, data[2];
@@ -173,7 +173,7 @@ u8 TrainerClass_Gender(int trclass)
  * @param battler       Which battler's party is to be loaded.
  * @param heapID        Heap on which to perform any allocations.
  */
-static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, int heapID)
+static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID heapID)
 {
     // must make declarations C89-style to match
     void *buf;

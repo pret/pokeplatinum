@@ -217,7 +217,7 @@ static void ov17_022507F0(UnkStruct_ov17_0224FCA0 *param0, int param1, const Unk
     case 0:
         break;
     case 1:
-        v0 = sub_02095848(param0->unk_00->unk_00.unk_110, param0->unk_00->unk_00.unk_111, param0->unk_00->unk_155);
+        v0 = sub_02095848(param0->unk_00->unk_00.contestRank, param0->unk_00->unk_00.unk_111, param0->unk_00->isLinkContest);
         StringTemplate_SetContestRankName(param0->unk_10.unk_B8, 0, v0);
         break;
     case 2:
@@ -240,7 +240,7 @@ static void ov17_022508E4(UnkStruct_ov17_0224FCA0 *param0, MessageLoader *param1
     String *v0;
     int v1;
 
-    if (param0->unk_00->unk_155 == 0) {
+    if (param0->unk_00->isLinkContest == FALSE) {
         v1 = Options_TextFrameDelay(param0->unk_00->options);
     } else {
         v1 = TEXT_SPEED_FAST;

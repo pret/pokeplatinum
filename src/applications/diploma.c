@@ -26,7 +26,7 @@
 #include "res/text/bank/diploma.h"
 
 typedef struct Diploma {
-    int heapID;
+    enum HeapID heapID;
     BOOL isNatDex;
     SaveData *saveData;
     TrainerInfo *trainerInfo;

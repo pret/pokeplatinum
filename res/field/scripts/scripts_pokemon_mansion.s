@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag FLAG_UNK_0x09EB
+    SetFlag FLAG_FIRST_ARRIVAL_POKEMON_MANSION
     SetFlag FLAG_UNK_0x0257
     SetFlag FLAG_UNK_0x0258
     GoToIfUnset FLAG_UNK_0x0AB6, _0033

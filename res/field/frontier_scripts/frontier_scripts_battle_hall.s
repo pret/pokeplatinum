@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "res/text/bank/battle_hall_scene.h"
 
     .data
 
@@ -553,118 +554,114 @@ _0326:
     FrontierScrCmd_3E 0x4002, 0x8002
     FrontierScrCmd_3E 0x4005, 0x8000
     FrontierScrCmd_40 0x800A
-    FrontierScrCmd_06 0x800E, 0
+    SetVar 0x800E, 0
     FrontierScrCmd_6C
     FrontierScrCmd_8B 0x8003, 0x8001, 0x8002, 0x8000
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0382
-    FrontierScrCmd_06 0x800F, 231
+    GoToIfEq 0x8008, 1, _0382
+    SetVar 0x800F, 231
     FrontierScrCmd_22 _0008
     FrontierScrCmd_24 _0038
-    FrontierScrCmd_0A _03A6
-    FrontierScrCmd_01
+    GoTo _03A6
+    End
 
 _0382:
-    FrontierScrCmd_0C _13E1
+    Call _13E1
     FrontierScrCmd_4A 43
-    FrontierScrCmd_06 0x800F, 232
+    SetVar 0x800F, 232
     FrontierScrCmd_22 _0010
     FrontierScrCmd_24 _005C
-    FrontierScrCmd_0A _03A6
-    FrontierScrCmd_01
+    GoTo _03A6
+    End
 
 _03A6:
     FrontierScrCmd_13 6, 1, 1, 0
     FrontierScrCmd_14
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0404
+    GoToIfEq 0x8008, 1, _0404
     FrontierScrCmd_28 3, _0188
     FrontierScrCmd_28 10, _0144
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 0
     FrontierScrCmd_25 3
     FrontierScrCmd_25 10
     FrontierScrCmd_23 0x800F
-    FrontierScrCmd_0A _044A
-    FrontierScrCmd_01
+    GoTo _044A
+    End
 
 _0404:
     FrontierScrCmd_28 3, _0188
     FrontierScrCmd_28 1, _0144
     FrontierScrCmd_28 2, _0164
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x603
-    FrontierScrCmd_57 0x603
+    PlaySoundEffect SEQ_SE_DP_KAIDAN2
+    WaitSoundEffect SEQ_SE_DP_KAIDAN2
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
     FrontierScrCmd_23 0x800F
-    FrontierScrCmd_0A _044A
-    FrontierScrCmd_01
+    GoTo _044A
+    End
 
 _044A:
     FrontierScrCmd_03 10
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0476
+    GoToIfEq 0x8008, 1, _0476
     FrontierScrCmd_22 _0024
     FrontierScrCmd_24 _008C
-    FrontierScrCmd_0A _048A
-    FrontierScrCmd_01
+    GoTo _048A
+    End
 
 _0476:
     FrontierScrCmd_22 _002C
     FrontierScrCmd_24 _00B0
-    FrontierScrCmd_0A _048A
-    FrontierScrCmd_01
+    GoTo _048A
+    End
 
 _048A:
     FrontierScrCmd_45 0x8002, 128, 56, 0xC350, 0, 0
     FrontierScrCmd_41 0, 2, 1
     FrontierScrCmd_43 0, 18
     FrontierScrCmd_43 0, 19
-    FrontierScrCmd_0C _10C8
+    Call _10C8
     FrontierScrCmd_13 6, 1, 1, 0
     FrontierScrCmd_14
     FrontierScrCmd_4E 72, 160, 230, 192, 0, 1
-    FrontierScrCmd_0A _04D4
-    FrontierScrCmd_01
+    GoTo _04D4
+    End
 
 _04D4:
-    FrontierScrCmd_0A _04DC
-    FrontierScrCmd_01
+    GoTo _04DC
+    End
 
 _04DC:
-    FrontierScrCmd_06 0x8003, 0
+    SetVar 0x8003, 0
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0510
+    GoToIfEq 0x8008, 1, _0510
     FrontierScrCmd_28 0, _01AC
     FrontierScrCmd_28 10, _01CC
     FrontierScrCmd_29
-    FrontierScrCmd_0A _0532
-    FrontierScrCmd_01
+    GoTo _0532
+    End
 
 _0510:
     FrontierScrCmd_28 0, _01AC
     FrontierScrCmd_28 1, _01DC
     FrontierScrCmd_28 2, _01EC
     FrontierScrCmd_29
-    FrontierScrCmd_0A _0532
-    FrontierScrCmd_01
+    GoTo _0532
+    End
 
 _0532:
     FrontierScrCmd_4E 10, 160, 230, 192, 0, 0
     FrontierScrCmd_43 0, 20
-    FrontierScrCmd_05 30, 0x8008
+    WaitTime 30, 0x8008
     FrontierScrCmd_13 6, 1, 0, 0x7FFF
     FrontierScrCmd_14
     FrontierScrCmd_91 31, 0, 0, 0x8008
@@ -673,35 +670,32 @@ _0532:
     FrontierScrCmd_14
     FrontierScrCmd_46 0xC350
     FrontierScrCmd_91 23, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0595
-    FrontierScrCmd_06 0x8003, 1
-    FrontierScrCmd_0A _0B48
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 0, _0595
+    SetVar 0x8003, 1
+    GoTo _0B48
+    End
 
 _0595:
-    FrontierScrCmd_11 23
+    Message BattleHallScene_Text_ChooseType
     FrontierScrCmd_91 35, 0, 0, 0x8008
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _05BC
-    FrontierScrCmd_0A _0611
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 1, _05BC
+    GoTo _0611
+    End
 
 _05BC:
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 220
     FrontierScrCmd_36
     FrontierScrCmd_C9 1
-    FrontierScrCmd_0A _05D4
-    FrontierScrCmd_01
+    GoTo _05D4
+    End
 
 _05D4:
-    FrontierScrCmd_06 0x8006, 7
+    SetVar 0x8006, 7
     FrontierScrCmd_93 0x8006, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _05D4
+    GoToIfEq 0x8008, 0, _05D4
     FrontierScrCmd_94 0x8006
     FrontierScrCmd_36
     FrontierScrCmd_36
@@ -711,49 +705,44 @@ _05D4:
     FrontierScrCmd_36
     FrontierScrCmd_35 100
     FrontierScrCmd_36
-    FrontierScrCmd_0A _0611
-    FrontierScrCmd_01
+    GoTo _0611
+    End
 
 _0611:
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_12
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0E 1, _065B
+    CallIfEq 0x8008, 1, _065B
     FrontierScrCmd_8E
     FrontierScrCmd_91 31, 0, 0, 0x8008
     FrontierScrCmd_91 36, 0, 0, 0x8008
     FrontierScrCmd_13 6, 1, 1, 0
     FrontierScrCmd_14
     FrontierScrCmd_8C 0x8003
-    FrontierScrCmd_0A _0665
-    FrontierScrCmd_01
+    GoTo _0665
+    End
 
 _065B:
     FrontierScrCmd_36
     FrontierScrCmd_35 224
     FrontierScrCmd_36
-    FrontierScrCmd_0D
+    Return
 
 _0665:
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0708
-    FrontierScrCmd_20 0x800E, 0
-    FrontierScrCmd_0E 5, _080D
-    FrontierScrCmd_06 0x800E, 1
+    GoToIfEq 0x8008, 1, _0708
+    CallIfNe 0x800E, 0, _080D
+    SetVar 0x800E, 1
     FrontierScrCmd_91 37, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _1199
-    FrontierScrCmd_20 0x8008, 2
-    FrontierScrCmd_0B 1, _11BE
-    FrontierScrCmd_0C _13C3
+    GoToIfEq 0x8008, 1, _1199
+    GoToIfEq 0x8008, 2, _11BE
+    Call _13C3
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_0C _083D
+    Call _083D
     FrontierScrCmd_28 98, _0240
     FrontierScrCmd_29
-    FrontierScrCmd_05 15, 0x8008
+    WaitTime 15, 0x8008
     FrontierScrCmd_28 98, _01A4
     FrontierScrCmd_29
     FrontierScrCmd_91 32, 0, 0, 0x8008
@@ -763,127 +752,121 @@ _0665:
     FrontierScrCmd_28 10, _0214
     FrontierScrCmd_28 98, _0224
     FrontierScrCmd_29
-    FrontierScrCmd_0A _0700
-    FrontierScrCmd_01
+    GoTo _0700
+    End
 
 _0700:
-    FrontierScrCmd_0A _08A0
-    FrontierScrCmd_01
+    GoTo _08A0
+    End
 
 _0708:
-    FrontierScrCmd_20 0x800E, 0
-    FrontierScrCmd_0E 5, _0821
-    FrontierScrCmd_06 0x800E, 1
+    CallIfNe 0x800E, 0, _0821
+    SetVar 0x800E, 1
     FrontierScrCmd_36
     FrontierScrCmd_35 223
     FrontierScrCmd_36
-    FrontierScrCmd_0C _13FE
-    FrontierScrCmd_0A _0731
-    FrontierScrCmd_01
+    Call _13FE
+    GoTo _0731
+    End
 
 _0731:
-    FrontierScrCmd_06 0x8006, 1
+    SetVar 0x8006, 1
     FrontierScrCmd_93 0x8006, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0731
+    GoToIfEq 0x8008, 0, _0731
     FrontierScrCmd_94 0x8006
     FrontierScrCmd_36
     FrontierScrCmd_36
     FrontierScrCmd_35 222
     FrontierScrCmd_36
-    FrontierScrCmd_0A _0762
-    FrontierScrCmd_01
+    GoTo _0762
+    End
 
 _0762:
-    FrontierScrCmd_06 0x8006, 2
+    SetVar 0x8006, 2
     FrontierScrCmd_93 0x8006, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0762
+    GoToIfEq 0x8008, 0, _0762
     FrontierScrCmd_94 0x8006
     FrontierScrCmd_36
     FrontierScrCmd_36
     FrontierScrCmd_35 103
-    FrontierScrCmd_0C _0858
+    Call _0858
     FrontierScrCmd_28 98, _0254
     FrontierScrCmd_28 99, _026C
     FrontierScrCmd_29
-    FrontierScrCmd_05 15, 0x8008
+    WaitTime 15, 0x8008
     FrontierScrCmd_28 98, _01A4
     FrontierScrCmd_29
     FrontierScrCmd_91 32, 0, 0, 0x8008
     FrontierScrCmd_95 0
-    FrontierScrCmd_05 30, 0x8008
+    WaitTime 30, 0x8008
     FrontierScrCmd_12
     FrontierScrCmd_28 99, _01A4
     FrontierScrCmd_29
     FrontierScrCmd_91 32, 0, 0, 0x8008
     FrontierScrCmd_95 1
-    FrontierScrCmd_05 30, 0x8008
+    WaitTime 30, 0x8008
     FrontierScrCmd_12
     FrontierScrCmd_28 1, _0214
     FrontierScrCmd_28 2, _021C
     FrontierScrCmd_28 98, _0224
     FrontierScrCmd_28 99, _0224
     FrontierScrCmd_29
-    FrontierScrCmd_10 0
-    FrontierScrCmd_0A _08A0
-    FrontierScrCmd_01
+    MessageNoSkip BattleHallScene_Text_PleaseWait
+    GoTo _08A0
+    End
 
 _080D:
     FrontierScrCmd_28 10, _0320
     FrontierScrCmd_28 11, _030C
     FrontierScrCmd_29
-    FrontierScrCmd_0D
+    Return
 
 _0821:
     FrontierScrCmd_28 1, _0320
     FrontierScrCmd_28 2, _0320
     FrontierScrCmd_28 11, _030C
     FrontierScrCmd_29
-    FrontierScrCmd_0D
+    Return
 
 _083D:
     FrontierScrCmd_91 20, 0, 0, 0x8008
-    FrontierScrCmd_07 0x800B, 0x8008
+    SetVar 0x800B, 0x8008
     FrontierScrCmd_22 _0114
     FrontierScrCmd_24 _0124
-    FrontierScrCmd_0D
+    Return
 
 _0858:
     FrontierScrCmd_91 20, 0, 0, 0x8008
-    FrontierScrCmd_07 0x800B, 0x8008
+    SetVar 0x800B, 0x8008
     FrontierScrCmd_22 _0114
     FrontierScrCmd_24 _0124
     FrontierScrCmd_91 20, 1, 0, 0x8008
-    FrontierScrCmd_07 0x800C, 0x8008
+    SetVar 0x800C, 0x8008
     FrontierScrCmd_22 _011C
     FrontierScrCmd_24 _0134
-    FrontierScrCmd_0D
+    Return
 
 _088C:
-    FrontierScrCmd_06 0x800B, 216
+    SetVar 0x800B, 216
     FrontierScrCmd_22 _0114
     FrontierScrCmd_24 _0124
-    FrontierScrCmd_0D
+    Return
 
 _08A0:
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _08F1
+    GoToIfEq 0x8008, 1, _08F1
     FrontierScrCmd_91 37, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _08E1
-    FrontierScrCmd_20 0x8008, 2
-    FrontierScrCmd_0B 1, _08E1
+    GoToIfEq 0x8008, 1, _08E1
+    GoToIfEq 0x8008, 2, _08E1
     FrontierScrCmd_3F 1
-    FrontierScrCmd_0A _0907
-    FrontierScrCmd_01
+    GoTo _0907
+    End
 
 _08E1:
     FrontierScrCmd_48 59
     FrontierScrCmd_47 5
-    FrontierScrCmd_0A _0907
-    FrontierScrCmd_01
+    GoTo _0907
+    End
 
 _08F1:
     FrontierScrCmd_36
@@ -891,8 +874,8 @@ _08F1:
     FrontierScrCmd_36
     FrontierScrCmd_12
     FrontierScrCmd_3F 1
-    FrontierScrCmd_0A _0907
-    FrontierScrCmd_01
+    GoTo _0907
+    End
 
 _0907:
     FrontierScrCmd_90
@@ -902,33 +885,28 @@ _0907:
     FrontierScrCmd_13 6, 1, 1, 0
     FrontierScrCmd_14
     FrontierScrCmd_92 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0F5D
+    GoToIfEq 0x8008, 0, _0F5D
     FrontierScrCmd_48 62
     FrontierScrCmd_91 28, 0, 0, 0x8008
     FrontierScrCmd_91 33, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 10
-    FrontierScrCmd_0E 1, _09B1
+    CallIfEq 0x8008, 10, _09B1
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _09E3
+    GoToIfEq 0x8008, 1, _09E3
     FrontierScrCmd_91 37, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _1333
-    FrontierScrCmd_20 0x8008, 2
-    FrontierScrCmd_0B 1, _137B
-    FrontierScrCmd_0C _13C3
+    GoToIfEq 0x8008, 1, _1333
+    GoToIfEq 0x8008, 2, _137B
+    Call _13C3
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_41 0, 2, 1
-    FrontierScrCmd_0C _1125
+    Call _1125
     FrontierScrCmd_44
     FrontierScrCmd_42 0
-    FrontierScrCmd_0A _09B7
-    FrontierScrCmd_01
+    GoTo _09B7
+    End
 
 _09B1:
     FrontierScrCmd_48 66
-    FrontierScrCmd_0D
+    Return
 
 _09B7:
     FrontierScrCmd_28 98, _02C8
@@ -938,15 +916,15 @@ _09B7:
     FrontierScrCmd_28 11, _02FC
     FrontierScrCmd_28 10, _0304
     FrontierScrCmd_29
-    FrontierScrCmd_0A _0A41
-    FrontierScrCmd_01
+    GoTo _0A41
+    End
 
 _09E3:
     FrontierScrCmd_41 0, 2, 1
-    FrontierScrCmd_0C _1125
+    Call _1125
     FrontierScrCmd_44
     FrontierScrCmd_42 0
-    FrontierScrCmd_0C _141B
+    Call _141B
     FrontierScrCmd_28 98, _02D8
     FrontierScrCmd_28 99, _02EC
     FrontierScrCmd_29
@@ -958,163 +936,150 @@ _09E3:
     FrontierScrCmd_28 1, _0304
     FrontierScrCmd_28 2, _0304
     FrontierScrCmd_29
-    FrontierScrCmd_0A _0A41
-    FrontierScrCmd_01
+    GoTo _0A41
+    End
 
 _0A41:
-    FrontierScrCmd_0A _0A49
-    FrontierScrCmd_01
+    GoTo _0A49
+    End
 
 _0A49:
     FrontierScrCmd_91 14, 1, 0, 0x8008
     FrontierScrCmd_91 5, 0, 0, 0x8008
     FrontierScrCmd_91 23, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 10
-    FrontierScrCmd_0B 5, _0B25
-    FrontierScrCmd_0A _0A73
-    FrontierScrCmd_01
+    GoToIfNe 0x8008, 10, _0B25
+    GoTo _0A73
+    End
 
 _0A73:
     FrontierScrCmd_71 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0ABC
+    GoToIfEq 0x8008, 0, _0ABC
     FrontierScrCmd_70 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0E 1, _0E6F
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0E 1, _0E75
-    FrontierScrCmd_1F 0x8008, 1
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0AD6
-    FrontierScrCmd_0A _0AC8
-    FrontierScrCmd_01
+    CallIfEq 0x8008, 0, _0E6F
+    CallIfEq 0x8008, 1, _0E75
+    ShowYesNoMenu 0x8008, MENU_NO
+    GoToIfEq 0x8008, 1, _0AD6
+    GoTo _0AC8
+    End
 
 _0ABC:
-    FrontierScrCmd_10 0
-    FrontierScrCmd_0A _0AD6
-    FrontierScrCmd_01
+    MessageNoSkip BattleHallScene_Text_PleaseWait
+    GoTo _0AD6
+    End
 
 _0AC8:
-    FrontierScrCmd_0C _0DFD
-    FrontierScrCmd_0A _0AD6
-    FrontierScrCmd_01
+    Call _0DFD
+    GoTo _0AD6
+    End
 
 _0AD6:
     FrontierScrCmd_91 22, 0, 0, 0x8008
     FrontierScrCmd_3D 0x40BA, 1
     FrontierScrCmd_91 15, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 14
+    Message BattleHallScene_Text_BPEarned
     FrontierScrCmd_7B 0
     FrontierScrCmd_91 34, 0, 0, 0x8008
     FrontierScrCmd_7A 1, 0x8008
     FrontierScrCmd_82 0x8008
-    FrontierScrCmd_11 15
-    FrontierScrCmd_58 0x4C5
-    FrontierScrCmd_59
+    Message BattleHallScene_Text_ReceiveBP
+    PlayFanfare SEQ_PL_POINTGET3
+    WaitFanfare
     FrontierScrCmd_C7
-    FrontierScrCmd_0A _0B1D
-    FrontierScrCmd_01
+    GoTo _0B1D
+    End
 
 _0B1D:
-    FrontierScrCmd_0A _0FDD
-    FrontierScrCmd_01
+    GoTo _0FDD
+    End
 
 _0B25:
     FrontierScrCmd_91 15, 0, 0, 0x8008
     FrontierScrCmd_7E 0, 0x8008, 0, 0
-    FrontierScrCmd_11 2
-    FrontierScrCmd_58 0x48E
-    FrontierScrCmd_59
+    Message BattleHallScene_Text_FullRestore
+    PlayFanfare SEQ_ASA
+    WaitFanfare
     FrontierScrCmd_39
-    FrontierScrCmd_0A _0B48
-    FrontierScrCmd_01
+    GoTo _0B48
+    End
 
 _0B48:
-    FrontierScrCmd_0C _13C3
+    Call _13C3
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_0A _0B5B
-    FrontierScrCmd_01
+    GoTo _0B5B
+    End
 
 _0B5B:
     FrontierScrCmd_91 23, 0, 0, 0x8008
-    FrontierScrCmd_08 0x8008, 1
+    AddVar 0x8008, 1
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_11 3
-    FrontierScrCmd_0A _0B79
-    FrontierScrCmd_01
+    Message BattleHallScene_Text_AreYouReady
+    GoTo _0B79
+    End
 
 _0B79:
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0BA2
-    FrontierScrCmd_20 0x8003, 0
-    FrontierScrCmd_0B 1, _0BF2
-    FrontierScrCmd_0A _0BE4
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 1, _0BA2
+    GoToIfEq 0x8003, 0, _0BF2
+    GoTo _0BE4
+    End
 
 _0BA2:
     FrontierScrCmd_71 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0BC8
-    FrontierScrCmd_20 0x8003, 0
-    FrontierScrCmd_0B 1, _0BD6
-    FrontierScrCmd_0A _0BC8
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 0, _0BC8
+    GoToIfEq 0x8003, 0, _0BD6
+    GoTo _0BC8
+    End
 
 _0BC8:
-    FrontierScrCmd_06 0x8008, 1
-    FrontierScrCmd_0A _0C00
-    FrontierScrCmd_01
+    SetVar 0x8008, 1
+    GoTo _0C00
+    End
 
 _0BD6:
-    FrontierScrCmd_06 0x8008, 2
-    FrontierScrCmd_0A _0C00
-    FrontierScrCmd_01
+    SetVar 0x8008, 2
+    GoTo _0C00
+    End
 
 _0BE4:
-    FrontierScrCmd_06 0x8008, 3
-    FrontierScrCmd_0A _0C00
-    FrontierScrCmd_01
+    SetVar 0x8008, 3
+    GoTo _0C00
+    End
 
 _0BF2:
-    FrontierScrCmd_06 0x8008, 4
-    FrontierScrCmd_0A _0C00
-    FrontierScrCmd_01
+    SetVar 0x8008, 4
+    GoTo _0C00
+    End
 
 _0C00:
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0C36
-    FrontierScrCmd_20 0x8008, 2
-    FrontierScrCmd_0B 1, _0C51
-    FrontierScrCmd_20 0x8008, 3
-    FrontierScrCmd_0B 1, _0C74
-    FrontierScrCmd_20 0x8008, 4
-    FrontierScrCmd_0B 1, _0C97
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 1, _0C36
+    GoToIfEq 0x8008, 2, _0C51
+    GoToIfEq 0x8008, 3, _0C74
+    GoToIfEq 0x8008, 4, _0C97
+    End
 
 _0C36:
     FrontierScrCmd_1B 31, 13, 0, 0, 0x8009
     FrontierScrCmd_CA 1
     FrontierScrCmd_1C 19, 255, 0
-    FrontierScrCmd_0A _0CC2
-    FrontierScrCmd_01
+    GoTo _0CC2
+    End
 
 _0C51:
     FrontierScrCmd_1B 31, 11, 0, 0, 0x8009
     FrontierScrCmd_CA 1
     FrontierScrCmd_1C 19, 255, 0
     FrontierScrCmd_1C 20, 255, 1
-    FrontierScrCmd_0A _0CC2
-    FrontierScrCmd_01
+    GoTo _0CC2
+    End
 
 _0C74:
     FrontierScrCmd_1B 31, 11, 0, 0, 0x8009
     FrontierScrCmd_CA 1
     FrontierScrCmd_1C 19, 255, 0
     FrontierScrCmd_1C 21, 255, 2
-    FrontierScrCmd_0A _0CC2
-    FrontierScrCmd_01
+    GoTo _0CC2
+    End
 
 _0C97:
     FrontierScrCmd_1B 31, 9, 0, 0, 0x8009
@@ -1122,407 +1087,380 @@ _0C97:
     FrontierScrCmd_1C 19, 255, 0
     FrontierScrCmd_1C 20, 255, 1
     FrontierScrCmd_1C 21, 255, 2
-    FrontierScrCmd_0A _0CC2
-    FrontierScrCmd_01
+    GoTo _0CC2
+    End
 
 _0CC2:
     FrontierScrCmd_1C 22, 255, 3
     FrontierScrCmd_1D
-    FrontierScrCmd_0A _0CD4
-    FrontierScrCmd_01
+    GoTo _0CD4
+    End
 
 _0CD4:
-    FrontierScrCmd_20 0x8009, 0
-    FrontierScrCmd_0B 1, _0D10
-    FrontierScrCmd_20 0x8009, 1
-    FrontierScrCmd_0B 1, _0DAF
-    FrontierScrCmd_20 0x8009, 2
-    FrontierScrCmd_0B 1, _0E7B
-    FrontierScrCmd_20 0x8009, 3
-    FrontierScrCmd_0B 1, _0ECF
-    FrontierScrCmd_0A _0ECF
-    FrontierScrCmd_01
+    GoToIfEq 0x8009, 0, _0D10
+    GoToIfEq 0x8009, 1, _0DAF
+    GoToIfEq 0x8009, 2, _0E7B
+    GoToIfEq 0x8009, 3, _0ECF
+    GoTo _0ECF
+    End
 
 _0D10:
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0D2C
-    FrontierScrCmd_0A _0D99
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 1, _0D2C
+    GoTo _0D99
+    End
 
 _0D2C:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_11 11
-    FrontierScrCmd_0A _0D3B
-    FrontierScrCmd_01
+    Message BattleHallScene_Text_OpponentIsChoosing
+    GoTo _0D3B
+    End
 
 _0D3B:
-    FrontierScrCmd_06 0x8006, 3
+    SetVar 0x8006, 3
     FrontierScrCmd_93 0x8006, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0D3B
+    GoToIfEq 0x8008, 0, _0D3B
     FrontierScrCmd_94 0x8006
     FrontierScrCmd_36
     FrontierScrCmd_91 24, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0D80
+    GoToIfEq 0x8008, 1, _0D80
     FrontierScrCmd_36
     FrontierScrCmd_35 102
     FrontierScrCmd_36
-    FrontierScrCmd_0A _0D99
-    FrontierScrCmd_01
+    GoTo _0D99
+    End
 
 _0D80:
     FrontierScrCmd_7C 0
-    FrontierScrCmd_10 13
-    FrontierScrCmd_05 30, 0x8008
-    FrontierScrCmd_10 0
-    FrontierScrCmd_0A _0F30
-    FrontierScrCmd_01
+    MessageNoSkip BattleHallScene_Text_OpponentRetired
+    WaitTime 30, 0x8008
+    MessageNoSkip BattleHallScene_Text_PleaseWait
+    GoTo _0F30
+    End
 
 _0D99:
-    FrontierScrCmd_06 0x8003, 0
-    FrontierScrCmd_0A _0DA7
-    FrontierScrCmd_01
+    SetVar 0x8003, 0
+    GoTo _0DA7
+    End
 
 _0DA7:
-    FrontierScrCmd_0A _0595
-    FrontierScrCmd_01
+    GoTo _0595
+    End
 
 _0DAF:
     FrontierScrCmd_70 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0E 1, _0E6F
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0E 1, _0E75
-    FrontierScrCmd_1F 0x8008, 1
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0DF5
-    FrontierScrCmd_0A _0DE7
-    FrontierScrCmd_01
+    CallIfEq 0x8008, 0, _0E6F
+    CallIfEq 0x8008, 1, _0E75
+    ShowYesNoMenu 0x8008, MENU_NO
+    GoToIfEq 0x8008, 1, _0DF5
+    GoTo _0DE7
+    End
 
 _0DE7:
-    FrontierScrCmd_0C _0DFD
-    FrontierScrCmd_0A _0B48
-    FrontierScrCmd_01
+    Call _0DFD
+    GoTo _0B48
+    End
 
 _0DF5:
-    FrontierScrCmd_0A _0B48
-    FrontierScrCmd_01
+    GoTo _0B48
+    End
 
 _0DFD:
-    FrontierScrCmd_0C _0E1F
-    FrontierScrCmd_0A _0E28
-    FrontierScrCmd_01
+    Call _0E1F
+    GoTo _0E28
+    End
 
 _0E0B:
-    FrontierScrCmd_0C _0E1F
-    FrontierScrCmd_08 0x8005, 1
-    FrontierScrCmd_0A _0E28
-    FrontierScrCmd_01
+    Call _0E1F
+    AddVar 0x8005, 1
+    GoTo _0E28
+    End
 
 _0E1F:
     FrontierScrCmd_91 4, 0, 0, 0x8005
-    FrontierScrCmd_0D
+    Return
 
 _0E28:
-    FrontierScrCmd_0A _0E30
-    FrontierScrCmd_01
+    GoTo _0E30
+    End
 
 _0E30:
-    FrontierScrCmd_06 0x8003, 1
-    FrontierScrCmd_0F 8
+    SetVar 0x8003, 1
+    MessageInstant BattleHallScene_Text_Saving
     FrontierScrCmd_91 17, 0, 0, 0x8008
-    FrontierScrCmd_77
+    ShowSavingIcon
     FrontierScrCmd_6D 5, 0x8008, 0x8005, 0x8005
-    FrontierScrCmd_78
-    FrontierScrCmd_20 0x8005, 1
-    FrontierScrCmd_0B 1, _0E62
-    FrontierScrCmd_11 6
-    FrontierScrCmd_0D
+    HideSavingIcon
+    GoToIfEq 0x8005, 1, _0E62
+    Message BattleHallScene_Text_VideoSaveFailed
+    Return
 
 _0E62:
-    FrontierScrCmd_55 0x61B
+    PlaySoundEffect SEQ_SE_DP_SAVE
     FrontierScrCmd_7B 0
-    FrontierScrCmd_11 5
-    FrontierScrCmd_0D
+    Message BattleHallScene_Text_BattleSaved
+    Return
 
 _0E6F:
-    FrontierScrCmd_11 4
-    FrontierScrCmd_0D
+    Message BattleHallScene_Text_SaveAsVideo
+    Return
 
 _0E75:
-    FrontierScrCmd_11 7
-    FrontierScrCmd_0D
+    Message BattleHallScene_Text_OverwriteVideo
+    Return
 
 _0E7B:
-    FrontierScrCmd_11 9
-    FrontierScrCmd_1F 0x8008, 0
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0EC7
-    FrontierScrCmd_0A _0E99
-    FrontierScrCmd_01
+    Message BattleHallScene_Text_BreakQuestion
+    ShowYesNoMenu 0x8008, MENU_YES
+    GoToIfEq 0x8008, 1, _0EC7
+    GoTo _0E99
+    End
 
 _0E99:
     FrontierScrCmd_3D 0x40BA, 2
     FrontierScrCmd_91 10, 0, 0, 0x8008
-    FrontierScrCmd_0C _1087
+    Call _1087
     FrontierScrCmd_6F
     FrontierScrCmd_8D
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_12
     FrontierScrCmd_91 7, 0, 0, 0x8008
-    FrontierScrCmd_01
+    End
 
 _0EC7:
-    FrontierScrCmd_0A _0B48
-    FrontierScrCmd_01
+    GoTo _0B48
+    End
 
 _0ECF:
-    FrontierScrCmd_11 10
-    FrontierScrCmd_1F 0x8008, 1
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0F55
+    Message BattleHallScene_Text_RetireQuestion
+    ShowYesNoMenu 0x8008, MENU_NO
+    GoToIfEq 0x8008, 1, _0F55
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0F01
-    FrontierScrCmd_0A _0F40
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 1, _0F01
+    GoTo _0F40
+    End
 
 _0F01:
-    FrontierScrCmd_10 0
-    FrontierScrCmd_0A _0F0D
-    FrontierScrCmd_01
+    MessageNoSkip BattleHallScene_Text_PleaseWait
+    GoTo _0F0D
+    End
 
 _0F0D:
-    FrontierScrCmd_06 0x8006, 3
+    SetVar 0x8006, 3
     FrontierScrCmd_93 0x8006, 1, 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0F0D
-    FrontierScrCmd_0A _0F30
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 0, _0F0D
+    GoTo _0F30
+    End
 
 _0F30:
     FrontierScrCmd_36
     FrontierScrCmd_35 107
     FrontierScrCmd_36
-    FrontierScrCmd_0A _0F40
-    FrontierScrCmd_01
+    GoTo _0F40
+    End
 
 _0F40:
     FrontierScrCmd_91 21, 0, 0, 0x8008
     FrontierScrCmd_3D 0x40BA, 3
-    FrontierScrCmd_0A _100D
-    FrontierScrCmd_01
+    GoTo _100D
+    End
 
 _0F55:
-    FrontierScrCmd_0A _0B48
-    FrontierScrCmd_01
+    GoTo _0B48
+    End
 
 _0F5D:
     FrontierScrCmd_71 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0B 1, _0FA6
+    GoToIfEq 0x8008, 0, _0FA6
     FrontierScrCmd_70 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0E 1, _0E6F
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0E 1, _0E75
-    FrontierScrCmd_1F 0x8008, 1
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0FC0
-    FrontierScrCmd_0A _0FB2
-    FrontierScrCmd_01
+    CallIfEq 0x8008, 0, _0E6F
+    CallIfEq 0x8008, 1, _0E75
+    ShowYesNoMenu 0x8008, MENU_NO
+    GoToIfEq 0x8008, 1, _0FC0
+    GoTo _0FB2
+    End
 
 _0FA6:
-    FrontierScrCmd_10 0
-    FrontierScrCmd_0A _0FC8
-    FrontierScrCmd_01
+    MessageNoSkip BattleHallScene_Text_PleaseWait
+    GoTo _0FC8
+    End
 
 _0FB2:
-    FrontierScrCmd_0C _0E0B
-    FrontierScrCmd_0A _0FC8
-    FrontierScrCmd_01
+    Call _0E0B
+    GoTo _0FC8
+    End
 
 _0FC0:
-    FrontierScrCmd_0A _0FC8
-    FrontierScrCmd_01
+    GoTo _0FC8
+    End
 
 _0FC8:
     FrontierScrCmd_91 21, 0, 0, 0x8008
     FrontierScrCmd_3D 0x40BA, 3
-    FrontierScrCmd_0A _0FDD
-    FrontierScrCmd_01
+    GoTo _0FDD
+    End
 
 _0FDD:
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0B 1, _0FF9
-    FrontierScrCmd_0A _100D
-    FrontierScrCmd_01
+    GoToIfEq 0x8008, 1, _0FF9
+    GoTo _100D
+    End
 
 _0FF9:
-    FrontierScrCmd_10 0
+    MessageNoSkip BattleHallScene_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 105
     FrontierScrCmd_36
-    FrontierScrCmd_0A _100D
-    FrontierScrCmd_01
+    GoTo _100D
+    End
 
 _100D:
-    FrontierScrCmd_0C _109F
+    Call _109F
     FrontierScrCmd_12
-    FrontierScrCmd_0A _101D
-    FrontierScrCmd_01
+    GoTo _101D
+    End
 
 _101D:
     FrontierScrCmd_91 30, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 1
-    FrontierScrCmd_0E 1, _1071
+    CallIfEq 0x8008, 1, _1071
     FrontierScrCmd_13 6, 1, 0, 0
     FrontierScrCmd_14
     FrontierScrCmd_91 17, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 2
-    FrontierScrCmd_0E 1, _106B
+    CallIfEq 0x8008, 2, _106B
     FrontierScrCmd_91 17, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 3
-    FrontierScrCmd_0B 1, _107B
+    GoToIfEq 0x8008, 3, _107B
     FrontierScrCmd_6F
     FrontierScrCmd_8D
     FrontierScrCmd_02
 
 _106B:
     FrontierScrCmd_C8 5
-    FrontierScrCmd_0D
+    Return
 
 _1071:
     FrontierScrCmd_36
     FrontierScrCmd_35 106
     FrontierScrCmd_36
-    FrontierScrCmd_0D
+    Return
 
 _107B:
     FrontierScrCmd_6F
     FrontierScrCmd_8D
     FrontierScrCmd_04 14, 1
-    FrontierScrCmd_01
+    End
 
 _1087:
-    FrontierScrCmd_0F 17
-    FrontierScrCmd_77
-    FrontierScrCmd_0C _10C2
-    FrontierScrCmd_78
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
-    FrontierScrCmd_0D
+    MessageInstant BattleHallScene_Text_Saving2
+    ShowSavingIcon
+    Call _10C2
+    HideSavingIcon
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
+    Return
 
 _109F:
-    FrontierScrCmd_0F 17
-    FrontierScrCmd_77
+    MessageInstant BattleHallScene_Text_Saving2
+    ShowSavingIcon
     FrontierScrCmd_76 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0E 1, _10C2
-    FrontierScrCmd_78
-    FrontierScrCmd_55 0x61B
-    FrontierScrCmd_57 0x61B
-    FrontierScrCmd_0D
+    CallIfEq 0x8008, 0, _10C2
+    HideSavingIcon
+    PlaySoundEffect SEQ_SE_DP_SAVE
+    WaitSoundEffect SEQ_SE_DP_SAVE
+    Return
 
 _10C2:
     FrontierScrCmd_73 0x8008
-    FrontierScrCmd_0D
+    Return
 
 _10C8:
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_91 19, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 2
-    FrontierScrCmd_0B 0, _10F5
-    FrontierScrCmd_20 0x8008, 5
-    FrontierScrCmd_0B 0, _1109
-    FrontierScrCmd_0A _1117
-    FrontierScrCmd_01
+    GoToIfLt 0x8008, 2, _10F5
+    GoToIfLt 0x8008, 5, _1109
+    GoTo _1117
+    End
 
 _10F5:
     FrontierScrCmd_43 0, 13
     FrontierScrCmd_43 0, 14
     FrontierScrCmd_43 0, 8
-    FrontierScrCmd_0D
+    Return
 
 _1109:
     FrontierScrCmd_43 0, 9
     FrontierScrCmd_43 0, 10
-    FrontierScrCmd_0D
+    Return
 
 _1117:
     FrontierScrCmd_43 0, 11
     FrontierScrCmd_43 0, 12
-    FrontierScrCmd_0D
+    Return
 
 _1125:
     FrontierScrCmd_91 23, 0, 0, 0x8008
-    FrontierScrCmd_08 0x8008, 1
-    FrontierScrCmd_20 0x8008, 10
-    FrontierScrCmd_0B 1, _1159
-    FrontierScrCmd_55 0x626
+    AddVar 0x8008, 1
+    GoToIfEq 0x8008, 10, _1159
+    PlaySoundEffect SEQ_SE_DP_UG_022
     FrontierScrCmd_43 0, 2
     FrontierScrCmd_43 0, 3
-    FrontierScrCmd_57 0x626
-    FrontierScrCmd_55 0x60F
-    FrontierScrCmd_0D
+    WaitSoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_DENDOU
+    Return
 
 _1159:
-    FrontierScrCmd_55 0x626
+    PlaySoundEffect SEQ_SE_DP_UG_022
     FrontierScrCmd_43 0, 4
     FrontierScrCmd_43 0, 6
-    FrontierScrCmd_57 0x626
-    FrontierScrCmd_55 0x60F
-    FrontierScrCmd_0D
+    WaitSoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_DENDOU
+    Return
 
 _1173:
-    FrontierScrCmd_55 0x626
+    PlaySoundEffect SEQ_SE_DP_UG_022
     FrontierScrCmd_43 0, 4
     FrontierScrCmd_43 0, 6
     FrontierScrCmd_43 0, 0
     FrontierScrCmd_43 0, 1
-    FrontierScrCmd_57 0x626
-    FrontierScrCmd_55 0x60F
-    FrontierScrCmd_0D
+    WaitSoundEffect SEQ_SE_DP_UG_022
+    PlaySoundEffect SEQ_SE_DP_DENDOU
+    Return
 
 _1199:
-    FrontierScrCmd_0C _13C3
+    Call _13C3
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_0C _1207
-    FrontierScrCmd_11 33
+    Call _1207
+    Message BattleHallScene_Text_ArgentaIntro
     FrontierScrCmd_12
-    FrontierScrCmd_0C _11E3
-    FrontierScrCmd_0A _0700
-    FrontierScrCmd_01
+    Call _11E3
+    GoTo _0700
+    End
 
 _11BE:
-    FrontierScrCmd_0C _13C3
+    Call _13C3
     FrontierScrCmd_7A 0, 0x8008
-    FrontierScrCmd_0C _1207
-    FrontierScrCmd_11 34
+    Call _1207
+    Message BattleHallScene_Text_ArgentaIntroGold
     FrontierScrCmd_12
-    FrontierScrCmd_0C _11E3
-    FrontierScrCmd_0A _0700
-    FrontierScrCmd_01
+    Call _11E3
+    GoTo _0700
+    End
 
 _11E3:
     FrontierScrCmd_28 98, _0234
     FrontierScrCmd_29
-    FrontierScrCmd_05 30, 0x8008
+    WaitTime 30, 0x8008
     FrontierScrCmd_28 10, _0214
     FrontierScrCmd_28 98, _0224
     FrontierScrCmd_29
-    FrontierScrCmd_0D
+    Return
 
 _1207:
-    FrontierScrCmd_0C _088C
+    Call _088C
     FrontierScrCmd_91 31, 1, 0, 0x8008
     FrontierScrCmd_45 0x8002, 128, 56, 0xC350, 0, 0
     FrontierScrCmd_4E 10, 160, 230, 192, 0, 0
-    FrontierScrCmd_05 10, 0x8008
+    WaitTime 10, 0x8008
     FrontierScrCmd_4E 10, 160, 230, 192, 54, 1
     FrontierScrCmd_28 98, _0280
     FrontierScrCmd_28 0, _0318
@@ -1530,33 +1468,33 @@ _1207:
     FrontierScrCmd_41 0, 2, 1
     FrontierScrCmd_43 0, 16
     FrontierScrCmd_43 0, 17
-    FrontierScrCmd_05 90, 0x8008
+    WaitTime 90, 0x8008
     FrontierScrCmd_43 0, 18
     FrontierScrCmd_28 98, _02C0
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x60F
-    FrontierScrCmd_57 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
+    WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_28 0, _01B4
     FrontierScrCmd_28 98, _0298
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_43 0, 11
     FrontierScrCmd_43 0, 12
-    FrontierScrCmd_57 0x60F
+    WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_4E 10, 160, 230, 192, 10, 0
     FrontierScrCmd_28 0, _01BC
     FrontierScrCmd_28 98, _02A4
     FrontierScrCmd_29
-    FrontierScrCmd_55 0x60F
+    PlaySoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_43 0, 11
     FrontierScrCmd_43 0, 12
-    FrontierScrCmd_57 0x60F
+    WaitSoundEffect SEQ_SE_DP_DENDOU
     FrontierScrCmd_28 0, _01C4
     FrontierScrCmd_28 98, _02B0
     FrontierScrCmd_29
     FrontierScrCmd_46 0xC350
     FrontierScrCmd_43 0, 20
-    FrontierScrCmd_05 30, 0x8008
+    WaitTime 30, 0x8008
     FrontierScrCmd_13 6, 1, 0, 0x7FFF
     FrontierScrCmd_14
     FrontierScrCmd_91 31, 0, 0, 0x8008
@@ -1565,81 +1503,78 @@ _1207:
     FrontierScrCmd_14
     FrontierScrCmd_28 98, _022C
     FrontierScrCmd_29
-    FrontierScrCmd_0D
+    Return
 
 _1333:
-    FrontierScrCmd_0C _13C3
+    Call _13C3
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_41 0, 2, 1
-    FrontierScrCmd_0C _1173
+    Call _1173
     FrontierScrCmd_44
     FrontierScrCmd_42 0
     FrontierScrCmd_3E 0x4051, 0x8008
-    FrontierScrCmd_20 0x8008, 0
-    FrontierScrCmd_0E 1, _1373
-    FrontierScrCmd_11 35
+    CallIfEq 0x8008, 0, _1373
+    Message BattleHallScene_Text_BeatArgenta
     FrontierScrCmd_12
-    FrontierScrCmd_0A _09B7
-    FrontierScrCmd_01
+    GoTo _09B7
+    End
 
 _1373:
     FrontierScrCmd_3D 0x4051, 1
-    FrontierScrCmd_0D
+    Return
 
 _137B:
-    FrontierScrCmd_0C _13C3
+    Call _13C3
     FrontierScrCmd_7A 0, 0x8008
     FrontierScrCmd_41 0, 2, 1
-    FrontierScrCmd_0C _1173
+    Call _1173
     FrontierScrCmd_44
     FrontierScrCmd_42 0
     FrontierScrCmd_3E 0x4051, 0x8008
-    FrontierScrCmd_20 0x8008, 2
-    FrontierScrCmd_0E 1, _13BB
-    FrontierScrCmd_11 36
+    CallIfEq 0x8008, 2, _13BB
+    Message BattleHallScene_Text_BeatArgentaGold
     FrontierScrCmd_12
-    FrontierScrCmd_0A _09B7
-    FrontierScrCmd_01
+    GoTo _09B7
+    End
 
 _13BB:
     FrontierScrCmd_3D 0x4051, 3
-    FrontierScrCmd_0D
+    Return
 
 _13C3:
     FrontierScrCmd_91 4, 0, 0, 0x8008
-    FrontierScrCmd_20 0x8008, 0x270F
-    FrontierScrCmd_0B 4, _13DF
-    FrontierScrCmd_08 0x8008, 1
-    FrontierScrCmd_0D
+    GoToIfGe 0x8008, 9999, _13DF
+    AddVar 0x8008, 1
+    Return
 
 _13DF:
-    FrontierScrCmd_0D
+    Return
 
 _13E1:
-    FrontierScrCmd_05 1, 0x8008
+    WaitTime 1, 0x8008
     FrontierScrCmd_91 29, 0, 0, 0x8008
-    FrontierScrCmd_05 1, 0x8008
+    WaitTime 1, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 185
     FrontierScrCmd_36
-    FrontierScrCmd_0D
+    Return
 
 _13FE:
-    FrontierScrCmd_05 1, 0x8008
+    WaitTime 1, 0x8008
     FrontierScrCmd_91 29, 0, 0, 0x8008
-    FrontierScrCmd_05 1, 0x8008
+    WaitTime 1, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 186
     FrontierScrCmd_36
-    FrontierScrCmd_0D
+    Return
 
 _141B:
-    FrontierScrCmd_05 1, 0x8008
+    WaitTime 1, 0x8008
     FrontierScrCmd_91 29, 0, 0, 0x8008
-    FrontierScrCmd_05 1, 0x8008
+    WaitTime 1, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 187
     FrontierScrCmd_36
-    FrontierScrCmd_0D
+    Return
 
     .balign 4, 0

@@ -24,8 +24,8 @@ void ov94_0224226C(Window *window, MessageLoader *gtsMessageLoader, int messageI
 void ov94_022422B8(Window *window, MessageLoader *gtsMessageLoader, int messageIndex, int centered, int y, TextColor textColor, BOOL isRange);
 void ov94_022422D4(MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, StringTemplate *param2, Window windows[], int species, int gender, int levelRange);
 void ov94_02242368(MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, StringTemplate *param2, Window windows[], int species, int gender, int levelRange);
-u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength);
-u8 *ov94_02242548(int heapID);
+u16 *ov94_Pokedex_Alphabetical(enum HeapID heapID, int unused, int *pokedexLength);
+u8 *ov94_02242548(enum HeapID heapID);
 void ov94_022425A8(GTSPokemonListing *listing, GTSApplicationState *appState);
 ListMenu *ov94_022426A8(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader);
 ListMenu *ov94_022427C0(GTSApplicationState *appState, StringList **stringList, Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSApplicationState_sub3 *appSubState, Pokedex *pokedex);

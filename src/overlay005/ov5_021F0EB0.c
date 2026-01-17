@@ -11,7 +11,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    u32 heapID;
+    enum HeapID heapID;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -34,7 +34,7 @@ static int ov5_021F0FF8(UnkStruct_ov5_021F0FB8 *param0);
 
 static void (*const Unk_ov5_0220020C[4])(UnkStruct_ov5_021F0FB8 *);
 
-SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, u32 heapID)
+SysTask *ov5_021F0EB0(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     SysTask *task;
     UnkStruct_ov5_021F0FB8 *v1 = Heap_AllocAtEnd(heapID, (sizeof(UnkStruct_ov5_021F0FB8)));

@@ -2,7 +2,7 @@
   "key": 54330,
   "messages": [
     {
-      "id": "pl_msg_00000187_00000",
+      "id": "PokemonLeagueFlintRoom_Text_FlintIntroPart1",
       "en_US": [
         "Yo, Trainer!\r",
         "You had me counting the days on my\n",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000187_00001",
+      "id": "PokemonLeagueFlintRoom_Text_FlintIntroPart2",
       "en_US": [
         "You’re facing a Fire-type Pokémon\n",
         "user with me.\r",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000187_00002",
+      "id": "PokemonLeagueFlintRoom_Text_FlintDefeat",
       "en_US": [
         "...\n",
         "...\r",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000187_00003",
+      "id": "PokemonLeagueFlintRoom_Text_FlintPostBattle",
       "en_US": [
         "...\n",
         "...\r",
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000187_00004",
+      "id": "PokemonLeagueFlintRoom_Text_FlintGameCompletedIntro",
       "en_US": [
         "I was waiting for you, challenger!\r",
         "Flint, the master of the Fire type,\n",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000187_00005",
+      "id": "PokemonLeagueFlintRoom_Text_FlintGameCompletedDefeat",
       "en_US": [
         "...\n",
         "...\r",
@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000187_00006",
+      "id": "PokemonLeagueFlintRoom_Text_FlintGameCompletedPostBattle",
       "en_US": [
         "...\n",
         "...\r",

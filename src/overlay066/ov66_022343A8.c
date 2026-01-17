@@ -70,7 +70,7 @@ typedef struct UnkStruct_ov66_02234548_t {
 static const UnkStruct_ov66_02258B38 *ov66_022348B0(u32 param0);
 static u32 ov66_022348D8(BOOL param0, u32 param1);
 static fx32 ov66_022348E4(u16 param0, u16 param1, u32 param2);
-static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 heapID);
+static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, enum HeapID heapID);
 static void ov66_02234958(UnkStruct_ov66_02234958 *param0);
 static void ov66_02234960(UnkStruct_ov66_02234958 *param0, u32 param1);
 static u32 ov66_0223496C(const UnkStruct_ov66_02234958 *param0);
@@ -141,7 +141,7 @@ static const UnkStruct_ov66_02258B38 Unk_ov66_02258B38[20] = {
     { 0xEA, 0x18D, 0x0 }
 };
 
-UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 heapID2)
+UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, enum HeapID heapID, u32 heapID2)
 {
     UnkStruct_ov66_02234548 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_02234548));
     memset(v0, 0, sizeof(UnkStruct_ov66_02234548));
@@ -501,7 +501,7 @@ static fx32 ov66_022348E4(u16 param0, u16 param1, u32 param2)
     return v0;
 }
 
-static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 heapID)
+static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, enum HeapID heapID)
 {
     void *v0;
 

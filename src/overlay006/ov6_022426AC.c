@@ -29,7 +29,7 @@ static const u8 Unk_ov6_02249030[] = {
     0x1
 };
 
-GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const int heapID)
+GreatMarshLookout_SpriteResources *GreatMarshLookout_AllocSpriteResources(const enum HeapID heapID)
 {
     return Heap_AllocAtEnd(heapID, sizeof(GreatMarshLookout_SpriteResources));
 }

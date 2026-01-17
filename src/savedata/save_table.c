@@ -11,6 +11,7 @@
 #include "global_trade.h"
 #include "hall_of_fame_entries.h"
 #include "journal.h"
+#include "link_contest_records.h"
 #include "mail.h"
 #include "mystery_gift.h"
 #include "pal_pad.h"
@@ -37,7 +38,6 @@
 #include "unk_0202E2CC.h"
 #include "unk_0202E840.h"
 #include "unk_0202EEC0.h"
-#include "unk_0202F108.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
@@ -60,7 +60,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_FIELD_OVERWORLD_STATE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOverworldSave_Size, (SaveEntryInitFunc)FieldOverworldSave_Init },
     { SAVE_TABLE_ENTRY_UNDERGROUND, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Underground_SaveSize, (SaveEntryInitFunc)Underground_Init },
     { SAVE_TABLE_ENTRY_REGULATION_BATTLES, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BattleRegulation_SaveSize, (SaveEntryInitFunc)RegulationBattles_Init },
-    { SAVE_TABLE_ENTRY_IMAGE_CLIPS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClip_SaveSize, (SaveEntryInitFunc)ImageClip_Init },
+    { SAVE_TABLE_ENTRY_IMAGE_CLIPS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClips_SaveSize, (SaveEntryInitFunc)ImageClips_Init },
     { SAVE_TABLE_ENTRY_MAILBOX, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Mailbox_SaveSize, (SaveEntryInitFunc)Mailbox_Init },
     { SAVE_TABLE_ENTRY_POFFINS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PoffinCase_SaveSize, (SaveEntryInitFunc)PoffinCase_Init },
     { SAVE_TABLE_ENTRY_RECORD_MIXED_RNG, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RecordMixedRNG_SaveSize, (SaveEntryInitFunc)RecordMixedRNG_Init },
@@ -79,7 +79,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_WIFI_HISTORY, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiHistory_SaveSize, (SaveEntryInitFunc)WiFiHistory_Init },
     { SAVE_TABLE_ENTRY_MYSTERY_GIFT, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MysteryGift_SaveSize, (SaveEntryInitFunc)MysteryGift_Init },
     { SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MigratedPokemon_SaveSize, (SaveEntryInitFunc)PalParkTransfer_Init },
-    { SAVE_TABLE_ENTRY_CONTESTS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Contest_SaveSize, (SaveEntryInitFunc)Contest_Init },
+    { SAVE_TABLE_ENTRY_LINK_CONTEST_RECORDS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)LinkContestRecords_SaveSize, (SaveEntryInitFunc)LinkContestRecords_Init },
     { SAVE_TABLE_ENTRY_SENTENCE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Sentence_SaveSize, (SaveEntryInitFunc)Sentence_Init },
     { SAVE_TABLE_ENTRY_EMAIL, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Email_SaveSize, (SaveEntryInitFunc)Email_Init },
     { SAVE_TABLE_ENTRY_WIFI_QUESTIONS, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiQuestion_SaveSize, (SaveEntryInitFunc)WiFiQuestion_Init },
@@ -121,7 +121,7 @@ const SaveTableEntry gExtraSaveTable[] = {
 
 const int gExtraSaveTableSize = NELEMS(gExtraSaveTable);
 
-HallOfFame *SaveData_HallOfFame(SaveData *saveData, int heapID, int *resultCode)
+HallOfFame *SaveData_HallOfFame(SaveData *saveData, enum HeapID heapID, int *resultCode)
 {
     return SaveDataExtra_Get(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, resultCode);
 }
@@ -131,7 +131,7 @@ int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof)
     return SaveDataExtra_Save(saveData, EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, hof);
 }
 
-BattleRecording *SaveData_BattleRecording(SaveData *saveData, int heapID, int *resultCode, int recNum)
+BattleRecording *SaveData_BattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, resultCode, &tmp);
@@ -142,7 +142,7 @@ int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int r
     return SaveDataExtra_SaveMirror(saveData, EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS + recNum, rec);
 }
 
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, int heapID, int *resultCode)
+BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, enum HeapID heapID, int *resultCode)
 {
     BOOL tmp;
     return SaveDataExtra_Mirror(saveData, heapID, EXTRA_SAVE_TABLE_ENTRY_FRONTIER, resultCode, &tmp);

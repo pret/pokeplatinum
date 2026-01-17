@@ -344,7 +344,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 };
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     BgConfig *unk_04;
     SaveData *saveData;
     Pokedex *unk_0C;

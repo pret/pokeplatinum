@@ -13,9 +13,9 @@
 #include "unk_0202419C.h"
 
 static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1);
-static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapIDs);
+static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, enum HeapID heapID);
 
-void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
+void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, enum HeapID heapID)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov79_021D3820));
 
@@ -77,7 +77,7 @@ static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
     Camera_SetAsActive(param0->camera);
 }
 
-static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
+static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, enum HeapID heapID)
 {
     PokemonSpriteTemplate spriteTemplate;
     PokemonSprite *sprite;

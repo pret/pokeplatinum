@@ -65,7 +65,7 @@ typedef struct BattleBagContext {
     BattleSystem *battleSystem;
     TrainerInfo *trainerInfo;
     Bag *bag;
-    u32 heapID;
+    enum HeapID heapID;
     s32 battler;
     BOOL isInCatchTutorial;
     u32 embargoRemainingTurns;
@@ -82,11 +82,13 @@ typedef struct BattleBagContext {
     u8 pocketCurrentPages[BATTLE_POCKET_MAX];
 } BattleBagContext;
 
+#define NUM_BATTLE_BAG_SPRITES BATTLE_POCKET_ITEMS_PER_PAGE
+
 typedef struct BattleBag {
     BattleBagContext *context;
     BgConfig *background;
     PaletteData *palette;
-    FontSpecialCharsContext *unk_0C;
+    FontSpecialCharsContext *unused1;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     String *string;
@@ -99,7 +101,7 @@ typedef struct BattleBag {
     UnkStruct_ov16_0226DEEC *catchTutorialCursor;
     BagItem items[BATTLE_POCKET_MAX][BATTLE_POCKET_SIZE];
     SpriteManager *spriteManager;
-    ManagedSprite *pocketItemSprites[BATTLE_POCKET_ITEMS_PER_PAGE];
+    ManagedSprite *sprites[NUM_BATTLE_BAG_SPRITES];
     u16 menuPocketButtonData[BATTLE_SUB_MENU_BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_BUTTON_SIZE_TILES];
     u16 useItemButtonData[BATTLE_SUB_MENU_BUTTON_STATE_MAX][BATTLE_SUB_MENU_CONFIRM_BUTTON_SIZE_TILES];
     u16 cancelButtonData[BATTLE_SUB_MENU_BUTTON_STATE_MAX_CANNOT_DISABLE][BATTLE_SUB_MENU_CANCEL_BUTTON_SIZE_TILES];
@@ -111,11 +113,11 @@ typedef struct BattleBag {
     u16 menuScreenPokeBallsPocketIconData[BATTLE_SUB_MENU_BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE_TILES];
     u16 menuScreenBattleItemsIconData[BATTLE_SUB_MENU_BUTTON_STATE_MAX_CANNOT_DISABLE][MENU_POCKET_ICON_SIZE_TILES];
     u8 pressedButtonState;
-    u8 Unused1;
+    u8 unused2;
     u8 pressedButton;
     u8 isAButtonPressed : 4;
-    u8 Unused2 : 4;
-    u8 Unused3[8];
+    u8 unused3 : 4;
+    u8 unused4[8];
     u8 currentState;
     u8 queuedState;
     u8 currentScreen;

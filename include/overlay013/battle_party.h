@@ -172,13 +172,13 @@ typedef struct BattlePartyPokemon {
 
 typedef struct BattlePartyContext {
     Party *party;
-    void *unk_04;
+    void *unused1;
     BattleSystem *battleSystem;
-    u32 heapID;
-    u8 unk_10;
+    enum HeapID heapID;
+    u8 unused2;
     u8 selectedPartyIndex;
     u8 doubleBattleFirstSelectedPartySlot;
-    u8 unk_13;
+    u8 unused3;
     u8 playerPokemonPartySlot;
     u8 partnerPokemonPartySlot;
     u32 embargoRemainingTurns[2];
@@ -193,6 +193,8 @@ typedef struct BattlePartyContext {
     u8 battlePartyMode;
     u8 battlePartyExited;
 } BattlePartyContext;
+
+#define NUM_BATTLE_PARTY_SPRITES 38
 
 #define NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS 2
 
@@ -216,15 +218,15 @@ typedef struct BattleParty {
     u8 pressedButtonState;
     u8 unused1;
     u8 pressedButton;
-    u8 unk_1F9F_0 : 4;
+    u8 unused2 : 4;
     u8 useAltButtons : 3;
     u8 isAButtonPressed : 1;
-    FontSpecialCharsContext *unk_1FA0;
+    FontSpecialCharsContext *unused3;
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     String *string;
-    SpriteManager *spriteMan;
-    ManagedSprite *unk_1FB4[38];
+    SpriteManager *spriteManager;
+    ManagedSprite *sprites[NUM_BATTLE_PARTY_SPRITES];
     Window messageBoxWindows[NUM_BATTLE_PARTY_MESSAGE_BOX_WINDOWS];
     Window *windows;
     u8 numWindows;
@@ -237,7 +239,6 @@ typedef struct BattleParty {
     u8 currentScreen;
     u8 textPrinterID;
     u8 useItemState;
-    u8 unk_2079;
     u16 selectedPokemonCurrentHP;
     u16 selectedPokemonCurrentMovePPs[LEARNED_MOVES_MAX];
     BattleSubMenuCursor *cursor;
@@ -251,6 +252,8 @@ typedef struct BattleParty {
 #define PARTY_SLOT_SELECTABLE_NOT_IN_BATTLE 2
 
 #define MOVE_TO_LEARN_SLOT LEARNED_MOVES_MAX
+
+#define HEALTH_BAR_MAX_PIXELS 48
 
 void BattlePartyTask_Start(BattlePartyContext *context);
 u8 BattlePartyTask_CheckCanPartySlotBeSelected(BattleParty *battleParty, s32 partySlot);

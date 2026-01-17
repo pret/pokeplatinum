@@ -51,7 +51,7 @@ static void sub_0204FDB4(FieldTask *param0, void **param1, u8 param2);
 static BOOL sub_0204FDE8(FieldTask *param0);
 static int sub_0204FE50(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int param2);
 static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem);
-static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int heapID);
+static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, enum HeapID heapID);
 static int sub_0204FFF4(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem);
 BOOL ScrCmd_2D3(ScriptContext *param0);
 static void sub_0204FCF8(FieldTask *param0, u16 param1, u16 param2, u16 *param3);
@@ -311,7 +311,7 @@ static int sub_0204FF1C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, int heapID)
+static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     PokemonSummary *v0;
     SaveData *saveData;
@@ -333,7 +333,7 @@ static int sub_0204FF6C(UnkStruct_0204FE50 *param0, FieldSystem *fieldSystem, in
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(saveData);
+    v0->specialRibbons = SaveData_GetRibbons(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));

@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag FLAG_UNK_0x09F1
+    SetFlag FLAG_FIRST_ARRIVAL_THE_MEISTERS_HOUSE
     End
 
 _0014:

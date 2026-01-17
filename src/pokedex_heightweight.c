@@ -8,14 +8,14 @@
 #include "narc.h"
 #include "pokedex_data_index.h"
 
-static int *Pokedex_Height_Array(NARC *pokedexDataNARC, int heapID);
-static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, int heapID);
-static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int heapID);
-static void Pokedex_Comparison_Pos_F_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int heapID);
-static void Pokedex_Comparison_Scale_M_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int heapID);
-static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int heapID);
+static int *Pokedex_Height_Array(NARC *pokedexDataNARC, enum HeapID heapID);
+static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, enum HeapID heapID);
+static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, enum HeapID heapID);
+static void Pokedex_Comparison_Pos_F_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, enum HeapID heapID);
+static void Pokedex_Comparison_Scale_M_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, enum HeapID heapID);
+static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, enum HeapID heapID);
 
-HeightWeightData *Pokedex_HeightWeightData(int heapID)
+HeightWeightData *Pokedex_HeightWeightData(enum HeapID heapID)
 {
     HeightWeightData *HWData = Heap_Alloc(heapID, sizeof(HeightWeightData));
     memset(HWData, 0, sizeof(HeightWeightData));
@@ -31,7 +31,7 @@ void Pokedex_HeightWeightData_Free(HeightWeightData *HWData)
     HWData = NULL;
 }
 
-void Pokedex_HeightWeightData_Load(HeightWeightData *HWData, int trainerIsGirl, int heapID)
+void Pokedex_HeightWeightData_Load(HeightWeightData *HWData, int trainerIsGirl, enum HeapID heapID)
 {
     GF_ASSERT(HWData);
     GF_ASSERT(HWData->height == NULL);
@@ -117,37 +117,37 @@ short Pokedex_HeightWeightData_PokemonScale(const HeightWeightData *HWData, int 
     return HWData->pokemonScale[species];
 }
 
-static int *Pokedex_Height_Array(NARC *pokedexDataNARC, int heapID)
+static int *Pokedex_Height_Array(NARC *pokedexDataNARC, enum HeapID heapID)
 {
     void *height = LoadMemberFromOpenNARC(pokedexDataNARC, 0, 0, heapID, 0);
     return (int *)height;
 }
 
-static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, int heapID)
+static int *Pokedex_Weight_Array(NARC *pokedexDataNARC, enum HeapID heapID)
 {
     void *weight = LoadMemberFromOpenNARC(pokedexDataNARC, 1, 0, heapID, 0);
     return (int *)weight;
 }
 
-static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int heapID)
+static void Pokedex_Comparison_Pos_M_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, enum HeapID heapID)
 {
     *trainerPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 9, 0, heapID, 0);
     *pokemonPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 10, 0, heapID, 0);
 }
 
-static void Pokedex_Comparison_Pos_F_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, int heapID)
+static void Pokedex_Comparison_Pos_F_Array(NARC *pokedexDataNARC, short **trainerPos, short **pokemonPos, enum HeapID heapID)
 {
     *trainerPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 7, 0, heapID, 0);
     *pokemonPos = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 8, 0, heapID, 0);
 }
 
-static void Pokedex_Comparison_Scale_M_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int heapID)
+static void Pokedex_Comparison_Scale_M_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, enum HeapID heapID)
 {
     *trainerScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 5, 0, heapID, 0);
     *pokemonScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 6, 0, heapID, 0);
 }
 
-static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, int heapID)
+static void Pokedex_Comparison_Scale_F_Array(NARC *pokedexDataNARC, short **trainerScale, short **pokemonScale, enum HeapID heapID)
 {
     *trainerScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 3, 0, heapID, 0);
     *pokemonScale = (short *)LoadMemberFromOpenNARC(pokedexDataNARC, 4, 0, heapID, 0);

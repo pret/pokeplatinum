@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09D6
+    SetFlag FLAG_FIRST_ARRIVAL_SNOWPOINT_TEMPLE
     End
 
 _0010:

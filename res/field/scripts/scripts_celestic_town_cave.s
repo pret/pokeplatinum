@@ -444,8 +444,8 @@ _0585:
     End
 
 _0596:
-    GoToIfSet FLAG_UNK_0x0124, _0027
-    SetFlag FLAG_UNK_0x0124
+    GoToIfSet FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA, _0027
+    SetFlag FLAG_TALKED_TO_CELESTIC_TOWN_CAVE_CYNTHIA
     ClearFlag FLAG_UNK_0x01A6
     SetObjectEventPos 2, 4, 11
     AddObject 2

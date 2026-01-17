@@ -399,7 +399,7 @@ CommonScript_SaveGame_DoSave:
 CommonScript_SaveGame_SaveComplete:
     GoToIfEq VAR_RESULT, 0, CommonScript_SaveGame_SaveError
     BufferPlayerName 0
-    Message pl_msg_00000213_00016
+    Message CommonStrings_Text_PlayerSavedTheGame
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     WaitABPressTime 30
@@ -412,7 +412,7 @@ CommonScript_SaveGame_Cancel:
     Return
 
 CommonScript_SaveGame_SaveError:
-    Message pl_msg_00000213_00018
+    Message CommonStrings_Text_SaveError
     WaitABPress
     CloseSaveInfo
     Return
@@ -428,7 +428,7 @@ CommonScript_SaveGame_SaveExtraBlock:
     Return
 
 CommonScript_QuickSave_Save:
-    Message pl_msg_00000213_00015
+    Message CommonStrings_Text_SavingDontTurnOffThePower
     GoTo CommonScript_SaveGame_StartSave
     End
 

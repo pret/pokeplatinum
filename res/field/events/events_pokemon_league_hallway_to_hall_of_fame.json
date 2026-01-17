@@ -1,0 +1,50 @@
+{
+    "bg_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_CYNTHIA",
+            "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_CYNTHIA",
+            "script": 0,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 5,
+            "z": 22,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_PROF_ROWAN",
+            "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_HIDE_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME_PROF_ROWAN",
+            "script": 0,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 22,
+            "y": 0
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 5,
+            "z": 2,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME",
+            "dest_warp_id": 0
+        },
+        {
+            "x": 5,
+            "z": 23,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM",
+            "dest_warp_id": 0
+        }
+    ],
+    "coord_events": []
+}

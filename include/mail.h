@@ -7,7 +7,7 @@
 
 void Mail_Init(Mail *mail);
 BOOL Mail_IsEmpty(Mail *mail);
-Mail *Mail_New(int heapID);
+Mail *Mail_New(enum HeapID heapID);
 void Mail_Copy(Mail *src, Mail *dest);
 void sub_020281AC(Mail *mail, u8 mailType, u8 param2, SaveData *saveData);
 u32 Mail_GetTrainerID(const Mail *mail);
@@ -28,7 +28,7 @@ int Mail_GetEmptySlotInArray(Mailbox *mailbox, int param1);
 void sub_02028470(Mailbox *mailbox, int param1, int slot);
 void Mailbox_CopyMailToSlot(Mailbox *mailbox, int param1, int slot, Mail *src);
 int sub_02028494(Mailbox *mailbox, int param1);
-Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, int heapID);
+Mail *sub_020284A8(Mailbox *mailbox, int param1, int slot, enum HeapID heapID);
 void sub_020284CC(Mailbox *mailbox, int param1, int param2, Mail *param3);
 
 #endif // POKEPLATINUM_MAIL_H

@@ -32,7 +32,7 @@ enum TrainerDataParam {
  * @param save          Save data; used to pull out the rival's name, if needed.
  * @param heapID        Heap on which to allocate message bank access.
  */
-void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID);
+void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, enum HeapID heapID);
 
 /**
  * @brief Get a parameter for the given trainer ID from the data archive.
@@ -51,7 +51,7 @@ u32 Trainer_LoadParam(int trainerID, enum TrainerDataParam paramID);
  * @param heapID        Heap on which to allocate archive access.
  * @return TRUE if the trainer has a message of the given type; FALSE if not.
  */
-BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID);
+BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, enum HeapID heapID);
 
 /**
  * @brief Load the trainer's message of a given type into the provided String.
@@ -63,7 +63,7 @@ BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int 
  * @param[out] string   String which will contain the result message.
  * @param heapID        Heap on which to allocate archive access.
  */
-void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, String *string, int heapID);
+void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, String *string, enum HeapID heapID);
 
 /**
  * @brief Load data for the requested trainer.

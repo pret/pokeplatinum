@@ -24,7 +24,7 @@
 #include "software_sprite.h"
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     BOOL unk_04;
     int unk_08;
     int unk_0C;

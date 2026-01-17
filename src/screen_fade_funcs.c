@@ -82,7 +82,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     int unk_24;
-    int heapID;
+    enum HeapID heapID;
     int unk_2C;
     HardwareWindowSettings *unk_30;
     ScreenFadeHBlanks *unk_34;
@@ -109,7 +109,7 @@ typedef struct {
     int unk_20;
     HardwareWindowSettings *unk_24;
     ScreenFadeHBlanks *unk_28;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_02011360;
 
 typedef struct {
@@ -132,7 +132,7 @@ typedef struct {
     int unk_24;
     HardwareWindowSettings *unk_28;
     ScreenFadeHBlanks *unk_2C;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_02011568;
 
 typedef struct {
@@ -160,7 +160,7 @@ typedef struct {
     int unk_20;
     HardwareWindowSettings *unk_24;
     ScreenFadeHBlanks *unk_28;
-    int heapID;
+    enum HeapID heapID;
 } UnkStruct_0201184C;
 
 typedef struct {
@@ -187,7 +187,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     int unk_28;
-    int heapID;
+    enum HeapID heapID;
     HardwareWindowSettings *unk_30;
     ScreenFadeHBlanks *unk_34;
 } UnkStruct_02011AFC;
@@ -214,7 +214,7 @@ typedef struct {
     int unk_20;
     int unk_24;
     int unk_28;
-    int heapID;
+    enum HeapID heapID;
     HardwareWindowSettings *unk_30;
     ScreenFadeHBlanks *unk_34;
 } UnkStruct_02011E04;
@@ -254,7 +254,7 @@ typedef struct {
     int unk_31C;
     int unk_320;
     int unk_324;
-    int heapID;
+    enum HeapID heapID;
     HardwareWindowSettings *unk_32C;
     ScreenFadeHBlanks *unk_330;
 } UnkStruct_020120D4;
@@ -291,7 +291,7 @@ static void sub_020101B0(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1)
 static void sub_020101D4(UnkStruct_020101B0 *param0, UnkStruct_020101B0 *param1, UnkStruct_020101B0 *param2, const UnkStruct_0200FD8C *param3, const UnkStruct_0200FD8C *param4, int param5);
 static void sub_02010658(int param0, HardwareWindowSettings *param1, int param2);
 static void sub_0201035C(void *param0);
-static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int heapID);
+static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, enum HeapID heapID);
 static void sub_020105EC(UnkStruct_02010588 *param0);
 static void sub_020105F4(UnkStruct_02010588 *param0);
 static UnkStruct_02010FC0 *sub_02010604(UnkStruct_02010588 *param0, int param1);
@@ -315,44 +315,44 @@ static void sub_02010E48(UnkStruct_02010EA4 *param0, const UnkStruct_0200F980 *p
 static BOOL sub_02010EA4(UnkStruct_02010EA4 *param0);
 static void sub_02010F2C(ScreenFade *param0, const UnkStruct_0200FB7C *param1);
 static BOOL sub_02010F64(ScreenFade *param0);
-static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static BOOL sub_0201109C(UnkStruct_0201109C *param0);
 static void sub_02011180(UnkStruct_0201109C *param0);
 static void sub_02011204(ScreenFade *param0, const UnkStruct_0200FC2C *param1);
 static BOOL sub_0201123C(ScreenFade *param0);
-static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static BOOL sub_02011360(UnkStruct_02011360 *param0);
 static void sub_020113B0(UnkStruct_02011360 *param0);
 static void sub_02011408(ScreenFade *param0, const UnkStruct_0200FD34 *param1);
 static BOOL sub_02011440(ScreenFade *param0);
-static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static BOOL sub_02011568(UnkStruct_02011568 *param0);
 static void sub_020115B8(UnkStruct_02011568 *param0);
 static void sub_020116A0(ScreenFade *param0, const UnkStruct_02011738 *param1);
 static BOOL sub_020116D8(ScreenFade *param0);
 static BOOL sub_0201184C(UnkStruct_0201184C *param0);
-static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static void sub_0201189C(UnkStruct_0201184C *param0);
 static void sub_020118AC(UnkStruct_0201184C *param0);
 static void sub_02011938(UnkStruct_0201184C *param0);
 static void sub_020118E0(UnkStruct_02010588 *param0, UnkStruct_020101B0 *param1);
 static void sub_02011960(ScreenFade *param0, UnkStruct_0200FEA4 *param1);
 static BOOL sub_020119A0(ScreenFade *param0);
-static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static BOOL sub_02011AFC(UnkStruct_02011AFC *param0);
 static void sub_02011B54(UnkStruct_02011AFC *param0);
 static void sub_02011B58(UnkStruct_02011AFC *param0);
 static void sub_02011C7C(UnkStruct_02011C7C *param0, int param1, int param2);
 static void sub_02011C94(ScreenFade *param0, UnkStruct_0200FF30 *param1);
 static BOOL sub_02011CD4(ScreenFade *param0);
-static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static BOOL sub_02011E04(UnkStruct_02011E04 *param0);
 static void sub_02011E5C(UnkStruct_02011E04 *param0);
 static void sub_02011E60(UnkStruct_02011E04 *param0);
 static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2);
 static void sub_02011F44(ScreenFade *param0, UnkStruct_0200FE6C *param1);
 static BOOL sub_02011F88(ScreenFade *param0);
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static BOOL sub_020120D4(UnkStruct_020120D4 *param0);
 static void sub_02012134(UnkStruct_020120D4 *param0);
 static void sub_02012138(UnkStruct_020120D4 *param0);
@@ -361,7 +361,7 @@ static void sub_020121C4(ScreenFade *param0, UnkStruct_0201006C *param1);
 static BOOL sub_02012228(ScreenFade *param0);
 static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int param7);
 static BOOL sub_02012310(UnkStruct_02012290 *param0, ScreenFade *param1);
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID);
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID);
 static BOOL sub_020123F4(UnkStruct_02012290 *param0, ScreenFade *param1);
 
 BOOL sub_0200F85C(ScreenFade *param0)
@@ -1628,7 +1628,7 @@ static void sub_0201035C(void *param0)
     }
 }
 
-static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, int heapID)
+static void sub_02010588(UnkStruct_02010588 *param0, int param1, int param2, enum HeapID heapID)
 {
     switch (param1) {
     case 0:
@@ -2023,7 +2023,7 @@ static BOOL sub_02010F64(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02010FC0(UnkStruct_0201109C *param0, const UnkStruct_0200FB7C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2187,7 +2187,7 @@ static BOOL sub_0201123C(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02011298(UnkStruct_02011360 *param0, const UnkStruct_0200FC2C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     UnkStruct_02010FC0 *v0;
 
@@ -2296,7 +2296,7 @@ static BOOL sub_02011440(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02011494(UnkStruct_02011568 *param0, const UnkStruct_0200FD34 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2448,7 +2448,7 @@ static BOOL sub_020116D8(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02011738(UnkStruct_0201184C *param0, const UnkStruct_02011738 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     int v0;
     UnkStruct_02010FC0 *v1;
@@ -2601,7 +2601,7 @@ static BOOL sub_020119A0(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02011A00(UnkStruct_02011AFC *param0, UnkStruct_0200FEA4 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
@@ -2776,7 +2776,7 @@ static BOOL sub_02011CD4(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02011D34(UnkStruct_02011E04 *param0, UnkStruct_0200FF30 *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     UnkStruct_02010FC0 *v0;
     UnkStruct_02010FC0 *v1;
@@ -2929,7 +2929,7 @@ static BOOL sub_02011F88(ScreenFade *param0)
     return v2;
 }
 
-static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02011FE8(UnkStruct_020120D4 *param0, UnkStruct_0200FE6C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     sub_02010728(&param0->unk_00, param4, 1, 0, 0);
 
@@ -3151,7 +3151,7 @@ static BOOL sub_02012310(UnkStruct_02012290 *param0, ScreenFade *param1)
     return v1;
 }
 
-static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, int heapID)
+static void sub_02012384(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, HardwareWindowSettings *param5, ScreenFadeHBlanks *param6, enum HeapID heapID)
 {
     int v0;
 

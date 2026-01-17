@@ -114,7 +114,7 @@ static void sub_0205AAA0(UnkStruct_0205A0D8 *param0, BOOL param1);
 static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1);
 static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0);
 
-static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, Party *param2, int param3, int param4, int heapID)
+static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, Party *param2, int param3, int param4, enum HeapID heapID)
 {
     PokemonSummary *v0;
     SaveData *saveData;
@@ -137,7 +137,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param4;
-    v0->specialRibbons = sub_0202D79C(saveData);
+    v0->specialRibbons = SaveData_GetRibbons(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
@@ -145,7 +145,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     param0->unk_00 = v0;
 }
 
-static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
+static void sub_0205A164(UnkStruct_0205A0D8 *param0, enum HeapID heapID)
 {
     int v0;
     PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));

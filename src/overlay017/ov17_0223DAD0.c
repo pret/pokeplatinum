@@ -320,7 +320,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
-    sub_020959F4(v0->unk_00->unk_155);
+    SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
 
     G2_SetBlendBrightness(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, -6);
 
@@ -444,7 +444,7 @@ int ov17_0223DF0C(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_23);
-    sub_02095A24();
+    LockTextSpeed();
     NetworkIcon_Destroy();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
@@ -675,7 +675,7 @@ static void ov17_0223E380(UnkStruct_ov17_0224DF54 *param0)
 
 static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *param2)
 {
-    if ((param0->unk_00->unk_155 == 1) && (param0->unk_00->unk_15B > 0)) {
+    if ((param0->unk_00->isLinkContest == TRUE) && (param0->unk_00->unk_15B > 0)) {
         param0->unk_1B26 = 1;
     } else {
         param0->unk_1B26 = 0;
@@ -686,8 +686,8 @@ static BOOL ov17_0223E3CC(UnkStruct_ov17_0224DF54 *param0, int *param1, int *par
         *param2 = 0;
         return 1;
     } else {
-        *param1 = Unk_ov17_0225312C[param0->unk_00->unk_00.unk_110][param0->unk_00->unk_00.unk_10F].unk_00;
-        *param2 = Unk_ov17_0225312C[param0->unk_00->unk_00.unk_110][param0->unk_00->unk_00.unk_10F].unk_04;
+        *param1 = Unk_ov17_0225312C[param0->unk_00->unk_00.contestRank][param0->unk_00->unk_00.contestType].unk_00;
+        *param2 = Unk_ov17_0225312C[param0->unk_00->unk_00.contestRank][param0->unk_00->unk_00.contestType].unk_04;
         return 0;
     }
 }
@@ -905,7 +905,7 @@ static int ov17_0223E8AC(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         param0->unk_A6C.unk_37 = 0;
         param0->unk_A6C.unk_38 = 0;
         param0->unk_A6C.unk_30.unk_00 = param0->unk_00->unk_00.unk_113;
-        param0->unk_A6C.unk_30.unk_04 = ov17_0224C57C(param0->unk_00->unk_00.unk_110);
+        param0->unk_A6C.unk_30.unk_04 = ov17_0224C57C(param0->unk_00->unk_00.contestRank);
 
         if (sub_0209590C(param0->unk_00) == 1) {
             param0->unk_A6C.unk_36 = 2;
@@ -1093,7 +1093,7 @@ static int ov17_0223ED1C(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
 
         param0->unk_A6C.unk_30.unk_00 = param0->unk_A3C.unk_05[1];
-        param0->unk_A6C.unk_30.unk_04 = ov17_0224C57C(param0->unk_00->unk_00.unk_110);
+        param0->unk_A6C.unk_30.unk_04 = ov17_0224C57C(param0->unk_00->unk_00.contestRank);
         param0->unk_A6C.unk_36 = 0;
 
         if (ov17_0224F30C(&param0->unk_109C, param0, 6, &param0->unk_A6C) == 1) {

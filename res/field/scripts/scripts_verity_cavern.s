@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09DF
+    SetFlag FLAG_FIRST_ARRIVAL_VERITY_CAVERN
     End
 
 VerityCavern_Mesprit:
@@ -46,7 +46,7 @@ VerityCavern_Mesprit:
     ActivateRoamingPokemon ROAMING_SLOT_MESPRIT
     Message VerityCavern_Text_MespritFlewOff
     CloseMessage
-    GoToIfEq VAR_ROAMING_MESPRIT_STATE, 3, VerityCavern_ResetRoamingMespritState
+    GoToIfEq VAR_ROAMING_MESPRIT_STATE, ROAMER_STATE_RESET, VerityCavern_ResetRoamingMespritState
     WaitTime 30, VAR_RESULT
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_NORTH, VerityCavern_EnterProfessorRowanNorth
@@ -105,7 +105,7 @@ VerityCavern_ProfessorRowanNoMarkingMap:
     Return
 
 VerityCavern_ResetRoamingMespritState:
-    SetVar VAR_ROAMING_MESPRIT_STATE, 0
+    SetVar VAR_ROAMING_MESPRIT_STATE, ROAMER_STATE_ROAMING
     ReleaseAll
     End
 

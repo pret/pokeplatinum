@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag FLAG_UNK_0x09CF
+    SetFlag FLAG_FIRST_ARRIVAL_OREBURGH_GATE
     End
 
 _0014:

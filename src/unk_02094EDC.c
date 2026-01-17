@@ -385,13 +385,13 @@ const UnkStruct_020F568C Unk_020F568C[CONTEST_EFFECT_MAX] = {
     },
 };
 
-int sub_02094EDC(UnkStruct_02095C48 *param0)
+BOOL sub_02094EDC(UnkStruct_02095C48 *param0)
 {
-    if ((param0->unk_155 == 0) || ((param0->unk_155 == 1) && (param0->unk_00.unk_10C == param0->unk_00.unk_113))) {
-        return 1;
+    if (param0->isLinkContest == FALSE || (param0->isLinkContest == TRUE && param0->unk_00.unk_10C == param0->unk_00.unk_113)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_02094F04(UnkStruct_02095C48 *param0, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank, int param5, BOOL isGameCompleted, BOOL isNatDexObtained)
@@ -606,7 +606,7 @@ void sub_020951B0(UnkStruct_02095C48 *param0, enum HeapID heapID)
         }
 
         sub_0202A35C(param0->unk_00.unk_E8[v0], v3->unk_52);
-        sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.unk_110);
+        sub_0202A378(param0->unk_00.unk_E8[v0], param0->unk_00.contestRank);
     }
 
     Heap_Free(v2);
@@ -620,11 +620,11 @@ void sub_02095338(UnkStruct_02095C48 *param0)
         sub_0202A25C(param0->unk_00.unk_E8[i]);
         sub_0202A3B0(param0->unk_00.unk_E8[i], param0->unk_00.unk_00[i], -1);
         sub_0202A35C(param0->unk_00.unk_E8[i], 0);
-        sub_0202A378(param0->unk_00.unk_E8[i], param0->unk_00.unk_110);
+        sub_0202A378(param0->unk_00.unk_E8[i], param0->unk_00.contestRank);
     }
 }
 
-void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int heapID)
+void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, enum HeapID heapID)
 {
     int i;
     u16 v1;
@@ -671,7 +671,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int hea
     }
 }
 
-PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, int heapID, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, PokemonSpriteData *pokemonSpriteData, enum HeapID heapID, int param6, int param7, int param8)
 {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;
@@ -692,7 +692,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
     return v1;
 }
 
-void sub_020954F0(UnkStruct_02095C48 *param0, int heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
+void sub_020954F0(UnkStruct_02095C48 *param0, enum HeapID heapID, int param2, enum PokemonContestType contestType, enum PokemonContestRank contestRank)
 {
     int v0, v1;
     u8 v2 = 0, v3 = 0;
@@ -952,10 +952,10 @@ int sub_02095928(UnkStruct_02095C48 *param0, int param1)
     v0 = 0;
     v1 = param0->unk_00.unk_118[param1].unk_00;
 
-    if (param0->unk_155 == 1) {
-        v3 = v4[3 + 1];
+    if (param0->isLinkContest == TRUE) {
+        v3 = v4[CONTEST_RANK_LINK];
     } else {
-        v3 = v4[param0->unk_00.unk_110];
+        v3 = v4[param0->unk_00.contestRank];
     }
 
     for (v2 = 0; v2 < 8; v2++) {
@@ -988,10 +988,10 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
         return 0;
     }
 
-    if (param0->unk_155 == 1) {
-        v3 = v4[3 + 1];
+    if (param0->isLinkContest == TRUE) {
+        v3 = v4[CONTEST_RANK_LINK];
     } else {
-        v3 = v4[param0->unk_00.unk_110];
+        v3 = v4[param0->unk_00.contestRank];
     }
 
     v0 = 1;
@@ -1007,9 +1007,9 @@ int sub_0209598C(UnkStruct_02095C48 *param0, int param1)
     return v0;
 }
 
-void sub_020959F4(int param0)
+void SetLockTextWithAutoScroll(BOOL lockTextWithAutoScroll)
 {
-    if (param0 == 0) {
+    if (lockTextWithAutoScroll == FALSE) {
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
         RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_NO_WAIT);
         RenderControlFlags_SetSpeedUpOnTouch(TRUE);
@@ -1020,7 +1020,7 @@ void sub_020959F4(int param0)
     }
 }
 
-void sub_02095A24(void)
+void LockTextSpeed()
 {
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
@@ -1055,33 +1055,32 @@ u32 CalcMonDataRibbon(enum PokemonContestRank contestRank, enum PokemonContestTy
     return monDataRibbon;
 }
 
-u32 sub_02095A74(int param0, int param1)
+u32 sub_02095A74(enum PokemonContestRank contestRank, BOOL isLinkContest)
 {
     u8 v0[12];
-    int v1 = 0;
-    u32 v2;
+    int arrayLength = 0;
 
-    if ((param0 == 3) || (param1 == 1)) {
+    if (contestRank == CONTEST_RANK_MASTER || isLinkContest == TRUE) {
         return LCRNG_Next() % 12;
     }
 
     MI_CpuClear8(v0, 12);
 
-    v0[v1++] = 2;
-    v0[v1++] = 3;
-    v0[v1++] = 4;
+    v0[arrayLength++] = 2;
+    v0[arrayLength++] = 3;
+    v0[arrayLength++] = 4;
 
-    if (param0 >= 1) {
-        v0[v1++] = 0;
-        v0[v1++] = 1;
-        v0[v1++] = 5;
+    if (contestRank >= CONTEST_RANK_GREAT) {
+        v0[arrayLength++] = 0;
+        v0[arrayLength++] = 1;
+        v0[arrayLength++] = 5;
     }
 
-    if (param0 >= 2) {
-        v0[v1++] = 6;
-        v0[v1++] = 7;
-        v0[v1++] = 8;
+    if (contestRank >= CONTEST_RANK_ULTRA) {
+        v0[arrayLength++] = 6;
+        v0[arrayLength++] = 7;
+        v0[arrayLength++] = 8;
     }
 
-    return v0[LCRNG_Next() % v1];
+    return v0[LCRNG_Next() % arrayLength];
 }

@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag FLAG_UNK_0x09C4
+    SetFlag FLAG_FIRST_ARRIVAL_ETERNA_FOREST
     End
 
 _0018:

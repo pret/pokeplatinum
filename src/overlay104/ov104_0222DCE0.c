@@ -6,7 +6,7 @@
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/string.h"
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 #include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"
 
@@ -406,14 +406,14 @@ u8 ov104_0222E240(u16 param0, u16 param1)
     return 1;
 }
 
-void ov104_0222E278(FrontierDataDTO *param0, u16 param1, int heapID, int param3)
+void ov104_0222E278(FrontierDataDTO *param0, u16 param1, enum HeapID heapID, int param3)
 {
     Heap_Free(BattleTower_GetTrainerData(&param0->trDataDTO, param1, heapID, param3));
 
     return;
 }
 
-void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapID)
+void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, enum HeapID heapID)
 {
     Sentence *v0;
 

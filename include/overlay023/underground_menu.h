@@ -6,6 +6,7 @@
 #include "field/field_system_decl.h"
 #include "overlay005/sprite_resource_manager.h"
 #include "overlay023/underground_item_list_menu.h"
+#include "overlay023/underground_records.h"
 
 #include "bg_window.h"
 #include "list_menu.h"
@@ -61,7 +62,7 @@ typedef struct UndergroundMenu {
     GetItemCountFunc getItemCount;
     GetItemFunc getItem;
     GetSphereSizeFunc getSphereSize;
-    void *unk_270;
+    RecordScreenContext *checkFlagsCtx;
     u8 unk_274[5];
     u8 unk_279[5];
     u8 unk_27E[5];

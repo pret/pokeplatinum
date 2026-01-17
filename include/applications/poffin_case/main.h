@@ -49,7 +49,7 @@ typedef struct PoffinCaseAppData {
     PoffinCaseAppItem poffins[MAX_POFFINS];
 } PoffinCaseAppData;
 
-PoffinCaseAppData *PoffinCaseAppData_New(SaveData *saveData, int heapID);
+PoffinCaseAppData *PoffinCaseAppData_New(SaveData *saveData, enum HeapID heapID);
 void PoffinCaseAppData_Free(PoffinCaseAppData *appData);
 UnkEnum_02098EAC sub_02098EAC(Poffin *param0, u8 param1);
 void sub_02098EF8(Poffin *param0, Pokemon *param1);

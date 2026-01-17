@@ -5,7 +5,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag FLAG_UNK_0x09CD
+    SetFlag FLAG_FIRST_ARRIVAL_RAVAGED_PATH
     End
 
 RavagedPath_Unused:

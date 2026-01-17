@@ -228,7 +228,7 @@ static void GivePokemon(FieldSystem *fieldSystem, GiftData *dummy)
         Pokemon_SetValue(pokemon, MON_DATA_SPDEF_IV, &personality);
     }
 
-    u8 *specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    u8 *specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
 
     if (Pokemon_GetValue(pokemon, MON_DATA_RED_RIBBON, NULL)) {
         specialRibbons[Ribbon_TryGetSpecialDescriptionID(RIBBON_RED)] = giftSpecialRibbons[0];
@@ -484,10 +484,10 @@ static void GiveCosmetic(FieldSystem *fieldSystem, GiftData *dummy)
         GiveOrTakeSeal(SaveData_GetSealCase(fieldSystem->saveData), id, 1);
         break;
     case MG_COSMETICS_ACCESSORY:
-        sub_02029E2C(sub_02029D04(sub_0202A750(fieldSystem->saveData)), id, 1);
+        FashionCase_AddAccessory(ImageClips_GetFashionCase(SaveData_GetImageClips(fieldSystem->saveData)), id, 1);
         break;
     case MG_COSMETICS_BACKDROP:
-        sub_02029EFC(sub_02029D04(sub_0202A750(fieldSystem->saveData)), id);
+        FashionCase_AddBackdrop(ImageClips_GetFashionCase(SaveData_GetImageClips(fieldSystem->saveData)), id);
         break;
     }
 }

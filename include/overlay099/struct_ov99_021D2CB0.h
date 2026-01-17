@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 #define POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 
-#include "struct_defs/struct_0203E274.h"
+#include "struct_defs/clear_game_player_info.h"
 
 #include "overlay099/struct_ov99_021D2CB0_sub1.h"
 #include "overlay099/struct_ov99_021D2CB0_sub2.h"
@@ -19,7 +19,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    UnkStruct_0203E274 *unk_00;
+    ClearGamePlayerInfo *unk_00;
     BOOL unk_04;
     BgConfig *unk_08;
     PaletteData *unk_0C;

@@ -272,7 +272,6 @@ static UnkStruct_ov114_0225CDB4 *ov114_0225CD54(UnkStruct_ov114_0225CCD0 *param0
 static Sprite *ov114_0225CDB4(UnkStruct_ov114_0225CDB4 *param0, SpriteList *param1, s16 param2, s16 param3, u16 param4, u32 param5);
 static void ov114_0225CDE0(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_0225CDB4 *param1, NARC *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9);
 static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_0225CDB4 *param1);
-static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes *param1, const UnkStruct_ov114_02260284 *param2, u32 param3, u32 heapID);
 static void ov114_0225CF84(UnkStruct_ov114_0225CEF0 *param0);
 static void ov114_0225CFC0(UnkStruct_ov114_0225CEF0 *param0);
 static void ov114_0225CFCC(UnkStruct_ov114_0225CFCC *param0, u32 param1, u32 param2, u32 param3, u32 param4);
@@ -294,7 +293,7 @@ static void ov114_0225D1AC(UnkStruct_ov114_0225D084 *param0, u32 param1, Window 
 static void ov114_0225D1C8(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4);
 static u32 ov114_0225D218(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, String *param3, u32 param4);
 static void ov114_0225D254(UnkStruct_ov114_0225D084 *param0, u32 param1, Window *param2, u8 param3, u8 param4, TextColor param5);
-static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, u32 param4);
+static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225CEF0 *param1, SaveData *saveData, BOOL param3, u32 heapID);
 static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0);
 static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225D084 *param1, u32 param2, u32 param3);
 static void ov114_0225D400(UnkStruct_ov114_0225D338 *param0, u32 param1);
@@ -322,7 +321,7 @@ static void ov114_0225E0AC(void *param0);
 static void ov114_0225E0F8(UnkStruct_ov114_0225E0F8 *param0, const UnkStruct_ov114_0225C76C *param1);
 static BOOL ov114_0225E14C(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225E0F8 *param1);
 u32 ov114_0225E180(u32 param0);
-static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, UnkStruct_ov114_0225D084 *param2, u32 param3, NARC *param4, u32 param5);
+static void ov114_0225E1A4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, UnkStruct_ov114_0225D084 *param2, u32 param3, NARC *param4, u32 heapID);
 static void ov114_0225E234(UnkStruct_ov114_0225E1A4 *param0);
 static void ov114_0225E244(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, u32 heapID);
 static void ov114_0225E2D4(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1);
@@ -332,14 +331,14 @@ static void ov114_0225E4B0(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
 static void ov114_0225E500(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_0225CEF0 *param1, s32 param2);
 static void ov114_0225E550(NARC *param0, u32 param1, u32 param2);
 static UnkStruct_ov114_0225D678 *ov114_0225D48C(const UnkStruct_ov114_0225C76C *param0, u32 param1, u32 heapID);
-static void ov114_0225D5BC(UnkStruct_ov114_0225D678 *param0, u32 param1);
+static void ov114_0225D5BC(UnkStruct_ov114_0225D678 *param0, u32 heapID);
 static void ov114_0225D678(UnkStruct_ov114_0225D678 *param0);
 static void ov114_0225D688(SysTask *param0, void *param1);
 static void ov114_0225DA0C(SysTask *param0, void *param1);
 static int ov114_0225DA2C(const u8 *param0, u32 param1);
 static BOOL ov114_0225DA5C(UnkStruct_ov114_0225D678 *param0);
 static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 param2, u32 heapID);
-static void ov114_0225E744(UnkStruct_ov114_0225E854 *param0, u32 param1);
+static void ov114_0225E744(UnkStruct_ov114_0225E854 *param0, u32 heapID);
 static void ov114_0225E854(UnkStruct_ov114_0225E854 *param0);
 static void ov114_0225E874(SysTask *param0, void *param1);
 static void ov114_0225ED40(SysTask *param0, void *param1);
@@ -1308,7 +1307,7 @@ static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
     }
 }
 
-static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes *param1, const UnkStruct_ov114_02260284 *param2, u32 param3, u32 heapID)
+static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes *param1, const UnkStruct_ov114_02260284 *param2, u32 param3, enum HeapID heapID)
 {
     SetAllGraphicsModes(param1);
 
@@ -1509,7 +1508,7 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
     int v2;
     u8 v3;
 
-    sub_020959F4(1);
+    SetLockTextWithAutoScroll(TRUE);
     LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_MAIN_2, 1, 13, v0, heapID);
     LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_SUB_0, 1, 13, v0, heapID);
 
@@ -1541,7 +1540,7 @@ static void ov114_0225D338(UnkStruct_ov114_0225D338 *param0)
         Window_Remove(&param0->unk_00[v0]);
     }
 
-    sub_02095A24();
+    LockTextSpeed();
 }
 
 static void ov114_0225D368(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_0225D084 *param1, u32 param2, u32 param3)

@@ -5,7 +5,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag FLAG_UNK_0x09D3
+    SetFlag FLAG_FIRST_ARRIVAL_SENDOFF_SPRING_UNUSED
     End
 
 Unk287_Unused:

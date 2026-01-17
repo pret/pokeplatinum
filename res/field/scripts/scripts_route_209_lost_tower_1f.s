@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag FLAG_UNK_0x09E8
+    SetFlag FLAG_FIRST_ARRIVAL_LOST_TOWER
     End
 
 _0014:

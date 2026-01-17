@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    SetFlag FLAG_UNK_0x09E7
+    SetFlag FLAG_FIRST_ARRIVAL_BERRY_MASTERS_HOUSE
     End
 
 _001C:

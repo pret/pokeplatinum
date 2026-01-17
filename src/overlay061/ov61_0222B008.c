@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -49,7 +49,7 @@ static int ov61_0222BBE8(UnkStruct_ov62_022349A8 *param0);
 static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, String *param1);
 static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param2);
 static int ov61_0222B960(UnkStruct_ov62_022349A8 *param0);
-static void *ov61_0222BBF0(int heapID);
+static void *ov61_0222BBF0(enum HeapID heapID);
 static void ov61_0222BC40(void);
 static BOOL ov61_0222B920(void *param0, void *param1);
 static BOOL ov61_0222B924(void *param0, void *param1);
@@ -163,14 +163,14 @@ static int ov61_0222B190(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
     return 0;
 }
 
-int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, UnkStruct_02029C68 *param2)
+int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, DressUpPhoto *photo)
 {
     if (ov61_0222BBBC(param0) == 0) {
         return 0;
     }
 
     ov61_0222AFA4(param0->saveData, param1, &param0->unk_190.unk_00_val1.unk_00);
-    ov61_0222AE60(param0->saveData, param2, &param0->unk_190.unk_00_val1.unk_80);
+    ov61_0222AE60(param0->saveData, photo, &param0->unk_190.unk_00_val1.unk_80);
 
     param0->unk_40E = 60;
     param0->unk_3E8 = 20000;
@@ -778,7 +778,7 @@ static int ov61_0222BBE8(UnkStruct_ov62_022349A8 *param0)
 
 static OSHeapHandle Unk_ov61_0222E760;
 
-static void *ov61_0222BBF0(int heapID)
+static void *ov61_0222BBF0(enum HeapID heapID)
 {
     void *v0;
     void *v1;

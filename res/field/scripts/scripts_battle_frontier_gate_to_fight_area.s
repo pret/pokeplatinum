@@ -17,7 +17,7 @@
     ScriptEntryEnd
 
 _0032:
-    SetFlag FLAG_UNK_0x09E5
+    SetFlag FLAG_FIRST_ARRIVAL_BATTLE_PARK
     End
 
 _0038:

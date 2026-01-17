@@ -42,7 +42,7 @@ UnkStruct_0208B878 *sub_0208B284(UnkStruct_0208B284 param0, SpriteSystem *param1
 {
     UnkStruct_0208B878 *v0 = Heap_Alloc(param0.heapID, sizeof(UnkStruct_0208B878));
     v0->unk_10.unk_00 = param0.unk_00;
-    v0->unk_10.heapID = param0.heapID;
+    v0->unk_10.heapID = (enum HeapID)param0.heapID; // Needed for matching.
     v0->unk_10.unk_08 = param0.unk_08;
     v0->unk_10.unk_0C = param0.unk_0C;
     v0->unk_10.unk_10 = param0.unk_10;

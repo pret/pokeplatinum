@@ -63,7 +63,7 @@ BOOL PalPad_AreTrainersEqual(const PalPad *first, const PalPad *second);
  * @param numberToCopy  The number of elements to take from {source}
  * @param heapID        Heap area for pointer operations
  */
-void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, int heapID);
+void PalPad_PushEntries(PalPad *destination, PalPad *source, int numberToCopy, enum HeapID heapID);
 
 /**
  * @brief Determine whether a given trainer ID is a known friend or not

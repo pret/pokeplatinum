@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag FLAG_UNK_0x09D5
+    SetFlag FLAG_FIRST_ARRIVAL_FLOWER_PARADISE
     GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _005C
     CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0

@@ -5,7 +5,7 @@ typedef struct {
     s16 unk_00;
     s16 unk_02;
     int unk_04;
-    int heapID;
+    enum HeapID heapID;
     int unk_0C;
     int unk_10;
 } UnkStruct_ov12_02236690;

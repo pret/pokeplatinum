@@ -6,7 +6,7 @@
 #include "constants/battle_tower.h"
 #include "generated/battle_tower_modes.h"
 #include "generated/frontier_trainers.h"
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 #include "generated/species_data_params.h"
 #include "generated/trainer_classes.h"
 
@@ -36,7 +36,7 @@
 #include "unk_0202D05C.h"
 #include "unk_02049D08.h"
 
-static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *trainerData, u16 partnerBattleTowerID, FrontierPokemonDataDTO *param3, u8 partySize, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8);
+static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *trainerData, u16 partnerBattleTowerID, FrontierPokemonDataDTO *param3, u8 partySize, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, enum HeapID heapID);
 static void *sub_0204B630(u16 param0, int param1);
 static void sub_0204B640(BattleFrontierPokemonData *param0, int param1);
 
@@ -279,7 +279,7 @@ u16 BattleTower_GetTrainerIDForRoomAndOpponentNum(BattleTower *battleTower, u8 r
     return trainerID;
 }
 
-static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 param1, int heapID)
+static BattleFrontierTrainerData *sub_0204B184(FrontierDataDTO *param0, u16 param1, enum HeapID heapID)
 {
     MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
@@ -308,7 +308,7 @@ static const u16 Unk_020EBD50[] = {
     ITEM_QUICK_CLAW
 };
 
-static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 ivs, u8 param6, BOOL param7, int param8)
+static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1, u16 param2, u32 param3, u32 param4, u8 ivs, u8 param6, BOOL param7, enum HeapID heapID)
 {
     int v0;
     u32 v2;
@@ -392,12 +392,12 @@ static u32 sub_0204B1E8(BattleTower *battleTower, FrontierPokemonDataDTO *param1
     }
 
     param1->friendship = friendship;
-    MessageLoader_GetSpeciesName(param1->species, param8, &(param1->nickname[0]));
+    MessageLoader_GetSpeciesName(param1->species, heapID, &(param1->nickname[0]));
 
     return v2;
 }
 
-BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int heapID)
+BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, int partysize, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, enum HeapID heapID)
 {
     BOOL v0 = FALSE;
     BattleFrontierTrainerData *trainerData = sub_0204B184(param1, partnerBattleTowerID, heapID);
@@ -408,7 +408,7 @@ BOOL sub_0204B3B8(BattleTower *battleTower, FrontierDataDTO *param1, u16 partner
     return v0;
 }
 
-void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, BOOL param3, const UnkStruct_0204B404 *param4, int heapID)
+void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partnerBattleTowerID, BOOL param3, const UnkStruct_0204B404 *param4, enum HeapID heapID)
 {
     u8 ivs = 0;
     BattleFrontierTrainerData *v2 = sub_0204B184(param1, partnerBattleTowerID, heapID);
@@ -421,7 +421,7 @@ void sub_0204B404(BattleTower *battleTower, FrontierDataDTO *param1, u16 partner
     Heap_Free(v2);
 }
 
-static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *trainerData, u16 partnerBattleTowerID, FrontierPokemonDataDTO *param3, u8 partySize, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, int param8)
+static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *trainerData, u16 partnerBattleTowerID, FrontierPokemonDataDTO *param3, u8 partySize, u16 *param5, u16 *param6, UnkStruct_0204B404 *param7, enum HeapID heapID)
 {
     int v0, v1;
     u8 ivs;
@@ -511,7 +511,7 @@ static BOOL sub_0204B470(BattleTower *battleTower, BattleFrontierTrainerData *tr
     }
 
     for (v0 = 0; v0 < v8; v0++) {
-        v7[v0] = sub_0204B1E8(battleTower, &(param3[v0]), v6[v0], v4, 0, ivs, v0, v10, param8);
+        v7[v0] = sub_0204B1E8(battleTower, &(param3[v0]), v6[v0], v4, 0, ivs, v0, v10, heapID);
     }
 
     if (param7 == NULL) {

@@ -151,7 +151,7 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
+static UnkStruct_02089438 *sub_020893B4(enum HeapID heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
     int i;
     UnkStruct_02089438 *v1 = NULL;
@@ -173,7 +173,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     return v1;
 }
 
-UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
+UnkStruct_02089438 *sub_02089400(enum HeapID heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
     UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
@@ -182,7 +182,7 @@ UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *
     return v0;
 }
 
-UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7)
+UnkStruct_02089438 *sub_0208941C(enum HeapID heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7)
 {
     UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 

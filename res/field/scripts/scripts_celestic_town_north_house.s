@@ -40,7 +40,7 @@ _0056:
     LockAll
     FacePlayer
     GoToIfSet FLAG_GAME_COMPLETED, _007F
-    GoToIfSet FLAG_UNK_0x09B8, _008E
+    GoToIfSet FLAG_FIRST_ARRIVAL_CANALAVE_CITY, _008E
     Message 3
     GoTo _0099
     End

@@ -10,7 +10,7 @@
 #include "field_battle_data_transfer.h"
 #include "savedata.h"
 
-BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param6, int heapID);
+BOOL BattleTower_CreateTrainerParty(BattleTower *battleTower, FrontierDataDTO *opponentDataDTO, u16 battleTowerTrainerID, int partySize, u16 *species, u16 *items, UnkStruct_0204B404 *param6, enum HeapID heapID);
 void ov104_0223A30C(SaveData *saveData, FrontierDataDTO *param1, const u8 param2);
 FieldBattleDTO *ov104_0223A580(BattleTower *battleTower, UnkStruct_ov104_02230BE4 *param1);
 void ov104_0223A734(BattleTower *battleTower, u16 param1);

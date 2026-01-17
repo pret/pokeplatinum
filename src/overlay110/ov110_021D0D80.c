@@ -659,7 +659,7 @@ static void ov110_021D1808(UnkStruct_ov110_021D0F78 *param0)
     Window_ScheduleCopyToVRAM(&param0->unk_10[2]);
 
     ov110_021D13CC(param0, &param0->unk_10[3], 31, 1);
-    frontierStage = sub_020308A0(param0->saveData, 11, &v4);
+    frontierStage = sub_020308A0(param0->saveData, HEAP_ID_FIELD2, &v4);
 
     if (v4 != 1) {
         v3 = 0;

@@ -5,7 +5,7 @@
 
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
-#include "overlay006/ov6_02247A0C.h"
+#include "overlay006/link_contest_record_display.h"
 
 #include "field_script_context.h"
 #include "field_system.h"
@@ -28,39 +28,6 @@
 static BOOL sub_02046CE0(ScriptContext *param0);
 static BOOL sub_02046FDC(ScriptContext *param0);
 static BOOL sub_02047404(ScriptContext *param0);
-BOOL ScrCmd_0F8(ScriptContext *param0);
-BOOL ScrCmd_0F9(ScriptContext *param0);
-BOOL ScrCmd_0FA(ScriptContext *param0);
-BOOL ScrCmd_0FB(ScriptContext *param0);
-BOOL ScrCmd_0FC(ScriptContext *param0);
-BOOL ScrCmd_0FD(ScriptContext *param0);
-BOOL ScrCmd_0FE(ScriptContext *param0);
-BOOL ScrCmd_100(ScriptContext *param0);
-BOOL ScrCmd_101(ScriptContext *param0);
-BOOL ScrCmd_102(ScriptContext *param0);
-BOOL ScrCmd_103(ScriptContext *param0);
-BOOL ScrCmd_104(ScriptContext *param0);
-BOOL ScrCmd_105(ScriptContext *param0);
-BOOL ScrCmd_106(ScriptContext *param0);
-BOOL ScrCmd_107(ScriptContext *param0);
-BOOL ScrCmd_108(ScriptContext *param0);
-BOOL ScrCmd_109(ScriptContext *param0);
-BOOL ScrCmd_10A(ScriptContext *param0);
-BOOL ScrCmd_10B(ScriptContext *param0);
-BOOL ScrCmd_111(ScriptContext *param0);
-BOOL ScrCmd_112(ScriptContext *param0);
-BOOL ScrCmd_113(ScriptContext *param0);
-BOOL ScrCmd_114(ScriptContext *param0);
-BOOL ScrCmd_115(ScriptContext *param0);
-BOOL ScrCmd_116(ScriptContext *param0);
-BOOL ScrCmd_117(ScriptContext *param0);
-BOOL ScrCmd_118(ScriptContext *param0);
-BOOL ScrCmd_0FF(ScriptContext *param0);
-BOOL ScrCmd_10C(ScriptContext *param0);
-BOOL ScrCmd_110(ScriptContext *param0);
-BOOL ScrCmd_10D(ScriptContext *param0);
-BOOL ScrCmd_10E(ScriptContext *param0);
-BOOL ScrCmd_10F(ScriptContext *param0);
 
 BOOL ScrCmd_0F8(ScriptContext *param0)
 {
@@ -112,7 +79,7 @@ BOOL ScrCmd_0FA(ScriptContext *param0)
     v8.unk_08 = v1;
     v8.unk_0C = v0;
     v8.unk_10 = v3;
-    v8.unk_14 = sub_0202A750(param0->fieldSystem->saveData);
+    v8.imageClips = SaveData_GetImageClips(param0->fieldSystem->saveData);
     v8.options = SaveData_GetOptions(param0->fieldSystem->saveData);
     v8.saveData = param0->fieldSystem->saveData;
     v8.unk_20 = SaveData_GetChatotCry(param0->fieldSystem->saveData);
@@ -353,12 +320,12 @@ BOOL ScrCmd_10F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_117(ScriptContext *param0)
+BOOL ScrCmd_LockAutoScrollForLinkContests(ScriptContext *param0)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    sub_02094850(*v0);
-    return 0;
+    LockAutoScrollForLinkContests(*v0);
+    return FALSE;
 }
 
 BOOL ScrCmd_118(ScriptContext *param0)
@@ -413,11 +380,11 @@ BOOL ScrCmd_115(ScriptContext *param0)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *v1 = ScriptContext_GetVarPointer(param0);
-    int v2, v3, v4, v5, v6;
+    int v2, isLinkContest, v4, v5, v6;
 
-    sub_02094BB4(*v0, &v2, &v3, &v4, &v5, &v6);
+    sub_02094BB4(*v0, &v2, &isLinkContest, &v4, &v5, &v6);
 
-    if ((v3 == 1) || (v4 == 1) || (v5 == 1) || (v6 == 1)) {
+    if (isLinkContest == TRUE || v4 == 1 || v5 == 1 || v6 == 1) {
         *v1 = 1;
     } else {
         *v1 = 0;
@@ -426,8 +393,8 @@ BOOL ScrCmd_115(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_116(ScriptContext *param0)
+BOOL ScrCmd_ShowLinkContestRecords(ScriptContext *ctx)
 {
-    ov6_02247A0C(param0->task);
-    return 1;
+    FieldTask_LinkContestRecordDisplayInit(ctx->task);
+    return TRUE;
 }

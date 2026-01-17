@@ -14,8 +14,8 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
@@ -75,7 +75,7 @@
 static void FieldSystem_SaveTVEpisodeSegment(FieldSystem *fieldSystem, int programTypeID, int segmentID, const void *segment);
 static void SaveData_SaveTVEpisodeSegment(SaveData *saveData, int programTypeID, int segmentID, const void *segment);
 static u8 sub_0206DE4C(Pokemon *param0);
-static String *sub_0206F0D8(u16 param0, u32 heapID);
+static String *sub_0206F0D8(u16 param0, enum HeapID heapID);
 
 #define TV_EPISODE_SEGMENT_SIZE 40
 #define TEMPLATE_NAME_SIZE      MON_NAME_LEN + 1
@@ -491,7 +491,7 @@ static void TVEpisodeSegment_SetTemplateTrainerName(StringTemplate *template, in
     sub_0206CD94(template, idx, ov6_02246494(param2), ov6_0224648C(param2), ov6_02246490(param2), 1);
 }
 
-static void sub_0206CE08(int heapID, u16 *param1, Pokemon *mon)
+static void sub_0206CE08(enum HeapID heapID, u16 *param1, Pokemon *mon)
 {
     String *string = String_Init(64, heapID);
 
@@ -524,7 +524,7 @@ static void TVEpisodeSegment_SetTemplateOwnPokemonSpecies(StringTemplate *templa
     sub_0206CD94(template, idx, speciesName, 0, GAME_LANGUAGE, 1);
 }
 
-static void sub_0206CED0(int heapID, Pokemon *mon, u8 *param2, u16 *param3)
+static void sub_0206CED0(enum HeapID heapID, Pokemon *mon, u8 *param2, u16 *param3)
 {
     *param2 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
@@ -550,7 +550,7 @@ void sub_0206CF14(TVBroadcast *broadcast, Pokemon *param1, int param2, int param
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, int heapID)
+void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, enum HeapID heapID)
 {
     UnkStruct_0202E7E4 *v0 = sub_0202E7E4(broadcast);
 
@@ -700,7 +700,7 @@ void sub_0206D12C(TVBroadcast *broadcast)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-CaptureAttempt *CaptureAttempt_New(int heapID)
+CaptureAttempt *CaptureAttempt_New(enum HeapID heapID)
 {
     CaptureAttempt *captureAttempt = Heap_Alloc(heapID, sizeof(CaptureAttempt));
     MI_CpuClearFast(captureAttempt, sizeof(CaptureAttempt));
@@ -713,7 +713,7 @@ void CaptureAttempt_Free(CaptureAttempt *captureAttempt)
     Heap_Free(captureAttempt);
 }
 
-void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, u32 heapID)
+void CaptureAttempt_Init(CaptureAttempt *captureAttempt, Pokemon *mon, int resultMask, int ballsThrown, enum HeapID heapID)
 {
     MI_CpuClear32(captureAttempt, sizeof(CaptureAttempt));
 
@@ -1772,10 +1772,10 @@ void FieldSystem_SaveTVEpisodeSegment_RightOnPhotoCorner(FieldSystem *fieldSyste
 
     rightOnPhotoCorner->customMessageWord = customMessageWord;
 
-    UnkStruct_0202A750 *v2 = sub_0202A750(fieldSystem->saveData);
-    UnkStruct_02029C68 *v3 = sub_02029CA8(v2, 0);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
+    DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
 
-    rightOnPhotoCorner->species = sub_0202A184(v3);
+    rightOnPhotoCorner->species = DressUpPhoto_GetMonSpecies(photo);
 
     FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_INTERVIEWS, TV_PROGRAM_SEGMENT_RIGHT_ON_PHOTO_CORNER, rightOnPhotoCorner);
 }
@@ -2583,37 +2583,37 @@ static BOOL TVEpisodeSegment_IsEligible_RoamerNewsFlash(FieldSystem *fieldSystem
     return FALSE;
 }
 
-static int sub_0206EE9C(UnkStruct_0202A750 *param0)
+static int ImageClips_CountDressUpPhotosWithData(ImageClips *imageClips)
 {
-    int v0, v1;
+    int i, count;
 
-    for (v0 = 0, v1 = 0; v0 < 11; v0++) {
-        if (sub_02029D10(param0, v0) == 1) {
-            v1++;
+    for (i = 0, count = 0; i < SAVED_PHOTOS_COUNT; i++) {
+        if (ImageClips_DressUpPhotoHasData(imageClips, i) == TRUE) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }
 
 static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    UnkStruct_02029C68 *v0;
-    int v1, v2, v3, v4;
-    UnkStruct_0202A750 *v5 = sub_0202A750(fieldSystem->saveData);
+    DressUpPhoto *photo;
+    int i, count, v3, v4;
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
-    v2 = sub_0206EE9C(v5);
+    count = ImageClips_CountDressUpPhotosWithData(imageClips);
 
-    if (v2 > 1) {
-        v3 = MTRNG_Next() % v2;
+    if (count > 1) {
+        v3 = MTRNG_Next() % count;
     } else {
         v3 = 0;
     }
 
-    for (v1 = 0; v1 < 11; v1++) {
-        if (sub_02029D10(v5, v1) == 1) {
+    for (i = 0; i < SAVED_PHOTOS_COUNT; i++) {
+        if (ImageClips_DressUpPhotoHasData(imageClips, i) == TRUE) {
             if (v3 == 0) {
-                v4 = v1;
+                v4 = i;
                 break;
             } else {
                 v3--;
@@ -2621,30 +2621,28 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
         }
     }
 
-    GF_ASSERT(v1 < 11);
-    v0 = sub_02029CA8(v5, v4);
+    GF_ASSERT(i < SAVED_PHOTOS_COUNT);
+    photo = ImageClips_GetDressUpPhoto(imageClips, v4);
 
-    {
-        u16 v6;
-        String *v7 = String_Init(7 + 1, HEAP_ID_FIELD1);
-        int v8 = sub_0202A1C0(v0);
+    u16 word;
+    String *v7 = String_Init(7 + 1, HEAP_ID_FIELD1);
+    int gender = DressUpPhoto_GetTrainerGender(photo);
 
-        sub_0202A1A0(v0, v7);
-        StringTemplate_SetString(param1, 0, v7, v8, 1, sub_0202A200(v0));
-        String_Free(v7);
+    DressUpPhoto_SetTrainerName(photo, v7);
+    StringTemplate_SetString(param1, 0, v7, gender, 1, DressUpPhoto_GetLanguage(photo));
+    String_Free(v7);
 
-        v6 = sub_0202A1F4(v0);
-        StringTemplate_SetCustomMessageWord(param1, 1, v6);
-    }
+    word = DressUpPhoto_GetTitleWord(photo);
+    StringTemplate_SetCustomMessageWord(param1, 1, word);
 
     return 52;
 }
 
 static BOOL sub_0206EF64(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
-    if (sub_0206EE9C(v0) != 0) {
+    if (ImageClips_CountDressUpPhotosWithData(imageClips) != 0) {
         return 1;
     } else {
         return 0;
@@ -2707,7 +2705,7 @@ static int sub_0206F01C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 }
 
-static String *sub_0206F0D8(u16 param0, u32 heapID)
+static String *sub_0206F0D8(u16 param0, enum HeapID heapID)
 {
     MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     String *v1 = MessageLoader_GetNewString(v0, param0);

@@ -7,6 +7,7 @@
 #include "overlay013/battle_bag.h"
 #include "overlay013/battle_bag_utils.h"
 #include "overlay013/battle_sub_menu_cursor.h"
+#include "overlay013/battle_sub_menu_sprites_defs.h"
 
 #include "grid_menu_cursor_position.h"
 #include "gx_layers.h"
@@ -15,8 +16,11 @@
 #include "palette.h"
 #include "sprite_system.h"
 
-#define SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY      8
+#define SPRITE_MANAGER_CHAR_RESOURCE_CAPACITY       8
+#define SPRITE_MANAGER_PLTT_RESOURCE_CAPACITY       8
+#define SPRITE_MANAGER_CELL_RESOURCE_CAPACITY       3
 #define SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY       3
+#define SPRITE_MANAGER_MULTI_CELL_RESOURCE_CAPACITY 0
 #define SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY 0
 #define SPRITE_MANAGER_MAX_SPRITES                  12
 
@@ -27,17 +31,21 @@
 #define POCKET_SLOT_5_RESOURCE_ID 46267
 #define POCKET_SLOT_6_RESOURCE_ID 46268
 
-#define CURSOR_IMAGE_RESOURCE_ID 46270
-#define CURSOR_ANIM_RESOURCE_ID  46265
+#define CURSOR_CHAR_RESOURCE_ID 46270
+#define CURSOR_PLTT_RESOURCE_ID 46270
+#define CURSOR_CELL_RESOURCE_ID 46265
+#define CURSOR_ANIM_RESOURCE_ID 46265
 
-#define CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID 46269
-#define CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID  46264
+#define CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID 46269
+#define CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID 46269
+#define CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID 46264
+#define CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID 46264
 
 static void InitializeSpriteManager(BattleBag *battleBag);
 static void LoadSpriteData(BattleBag *battleBag);
 static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID);
 static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u32 resourceID);
-static void InitializePocketItemSprites(BattleBag *battleBag);
+static void InitializeSprites(BattleBag *battleBag);
 static void DrawLastUsedItem(BattleBag *battleBag);
 static void DrawPocketItems(BattleBag *battleBag);
 static void DrawSelectedItem(BattleBag *battleBag);
@@ -45,11 +53,6 @@ static void InitializeCursor(BattleBag *battleBag);
 static void CleanupCursor(BattleBag *battleBag);
 static void InitializeCatchTutorialCursor(BattleBag *battleBag);
 static void CleanupCatchTutorialCursor(BattleBag *battleBag);
-
-typedef struct SpritePosition {
-    int x;
-    int y;
-} SpritePosition;
 
 static const SpritePosition sLastUsedItemSpritePosition = {
     .x = 24,
@@ -70,13 +73,7 @@ static const SpritePosition sSelectedItemSpritePosition = {
     .y = 44
 };
 
-static const struct {
-    int charResID;
-    int plttResID;
-    int cellResID;
-    int animResID;
-    int priority;
-} sPocketItemSpriteResourcesAndPriority[] = {
+static const SpriteResourcesAndPriority sPocketItemSpriteResourcesAndPriority[] = {
     { .charResID = POCKET_SLOT_1_RESOURCE_ID, .plttResID = POCKET_SLOT_1_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
     { .charResID = POCKET_SLOT_2_RESOURCE_ID, .plttResID = POCKET_SLOT_2_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
     { .charResID = POCKET_SLOT_3_RESOURCE_ID, .plttResID = POCKET_SLOT_3_RESOURCE_ID, .cellResID = POCKET_SLOT_1_RESOURCE_ID, .animResID = POCKET_SLOT_1_RESOURCE_ID, .priority = 1 },
@@ -89,7 +86,7 @@ void BattleBagSprites_InitializeSprites(BattleBag *battleBag)
 {
     InitializeSpriteManager(battleBag);
     LoadSpriteData(battleBag);
-    InitializePocketItemSprites(battleBag);
+    InitializeSprites(battleBag);
     InitializeCursor(battleBag);
     InitializeCatchTutorialCursor(battleBag);
 
@@ -98,7 +95,7 @@ void BattleBagSprites_InitializeSprites(BattleBag *battleBag)
 
 static void InitializeSpriteManager(BattleBag *battleBag)
 {
-    SpriteResourceCapacities capacities = { .asArray[SPRITE_RESOURCE_CHAR] = SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_PLTT] = SPRITE_MANAGER_IMAGE_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_CELL] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_ANIM] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY };
+    SpriteResourceCapacities capacities = { .asArray[SPRITE_RESOURCE_CHAR] = SPRITE_MANAGER_CHAR_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_PLTT] = SPRITE_MANAGER_PLTT_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_CELL] = SPRITE_MANAGER_CELL_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_ANIM] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_MANAGER_MULTI_CELL_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY };
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
     battleBag->spriteManager = SpriteManager_New(spriteSystem);
@@ -112,7 +109,7 @@ static void LoadSpriteData(BattleBag *battleBag)
     NARC *narc = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, battleBag->context->heapID);
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
-    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+    for (u32 i = 0; i < NUM_BATTLE_BAG_SPRITES; i++) {
         SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(battleBag->palette, PLTTBUF_SUB_OBJ, spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_PALETTE), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
     }
@@ -133,32 +130,32 @@ static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), battleBag->context->heapID, PLTTBUF_SUB_OBJ, PALETTE_SIZE_BYTES, slotIndex * 16);
 }
 
-static ManagedSprite *CreatePocketItemSprite(BattleBag *battleBag, u32 slotIndex)
+static ManagedSprite *CreateSprite(BattleBag *battleBag, u32 spriteIndex)
 {
-    SpriteTemplate template;
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteTemplate template;
 
     template.x = 0;
     template.y = 0;
     template.z = 0;
     template.animIdx = 0;
-    template.priority = sPocketItemSpriteResourcesAndPriority[slotIndex].priority;
+    template.priority = sPocketItemSpriteResourcesAndPriority[spriteIndex].priority;
     template.plttIdx = 0;
     template.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-    template.resources[SPRITE_RESOURCE_CHAR] = sPocketItemSpriteResourcesAndPriority[slotIndex].charResID;
-    template.resources[SPRITE_RESOURCE_PLTT] = sPocketItemSpriteResourcesAndPriority[slotIndex].plttResID;
-    template.resources[SPRITE_RESOURCE_CELL] = sPocketItemSpriteResourcesAndPriority[slotIndex].cellResID;
-    template.resources[SPRITE_RESOURCE_ANIM] = sPocketItemSpriteResourcesAndPriority[slotIndex].animResID;
+    template.resources[SPRITE_RESOURCE_CHAR] = sPocketItemSpriteResourcesAndPriority[spriteIndex].charResID;
+    template.resources[SPRITE_RESOURCE_PLTT] = sPocketItemSpriteResourcesAndPriority[spriteIndex].plttResID;
+    template.resources[SPRITE_RESOURCE_CELL] = sPocketItemSpriteResourcesAndPriority[spriteIndex].cellResID;
+    template.resources[SPRITE_RESOURCE_ANIM] = sPocketItemSpriteResourcesAndPriority[spriteIndex].animResID;
     template.bgPriority = 1;
     template.vramTransfer = FALSE;
 
     return SpriteSystem_NewSprite(spriteSystem, battleBag->spriteManager, &template);
 }
 
-static void InitializePocketItemSprites(BattleBag *battleBag)
+static void InitializeSprites(BattleBag *battleBag)
 {
-    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
-        battleBag->pocketItemSprites[i] = CreatePocketItemSprite(battleBag, i);
+    for (u32 i = 0; i < NUM_BATTLE_BAG_SPRITES; i++) {
+        battleBag->sprites[i] = CreateSprite(battleBag, i);
     }
 }
 
@@ -166,8 +163,8 @@ void BattleBagSprites_CleanupSprites(BattleBag *battleBag)
 {
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
-    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
-        Sprite_DeleteAndFreeResources(battleBag->pocketItemSprites[i]);
+    for (u32 i = 0; i < NUM_BATTLE_BAG_SPRITES; i++) {
+        Sprite_DeleteAndFreeResources(battleBag->sprites[i]);
     }
 
     CleanupCursor(battleBag);
@@ -183,8 +180,8 @@ static void DrawSprite(ManagedSprite *sprite, const int x, const int y)
 
 void BattleBagSprites_SetupScreen(BattleBag *battleBag, enum BattleBagScreen screen)
 {
-    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
-        ManagedSprite_SetDrawFlag(battleBag->pocketItemSprites[i], FALSE);
+    for (u32 i = 0; i < NUM_BATTLE_BAG_SPRITES; i++) {
+        ManagedSprite_SetDrawFlag(battleBag->sprites[i], FALSE);
     }
 
     switch (screen) {
@@ -205,13 +202,13 @@ static void DrawLastUsedItem(BattleBag *battleBag)
     if (battleBag->context->lastUsedItem != ITEM_NONE) {
         LoadItemIcon(battleBag, battleBag->context->lastUsedItem, POCKET_SLOT_1_RESOURCE_ID);
         LoadItemPaletteData(battleBag, battleBag->context->lastUsedItem, 0, POCKET_SLOT_1_RESOURCE_ID);
-        DrawSprite(battleBag->pocketItemSprites[0], sLastUsedItemSpritePosition.x, sLastUsedItemSpritePosition.y);
+        DrawSprite(battleBag->sprites[0], sLastUsedItemSpritePosition.x, sLastUsedItemSpritePosition.y);
     }
 }
 
 static void DrawPocketItems(BattleBag *battleBag)
 {
-    for (u32 i = 0; i < BATTLE_POCKET_ITEMS_PER_PAGE; i++) {
+    for (u32 i = 0; i < NUM_BATTLE_BAG_SPRITES; i++) {
         u16 item = BattleBag_GetItem(battleBag, i);
 
         if (item == ITEM_NONE) {
@@ -220,7 +217,7 @@ static void DrawPocketItems(BattleBag *battleBag)
 
         LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID + i);
         LoadItemPaletteData(battleBag, item, i, POCKET_SLOT_1_RESOURCE_ID + i);
-        DrawSprite(battleBag->pocketItemSprites[i], sPocketItemSpritePositions[i].x, sPocketItemSpritePositions[i].y);
+        DrawSprite(battleBag->sprites[i], sPocketItemSpritePositions[i].x, sPocketItemSpritePositions[i].y);
     }
 }
 
@@ -230,16 +227,16 @@ static void DrawSelectedItem(BattleBag *battleBag)
 
     LoadItemIcon(battleBag, item, POCKET_SLOT_1_RESOURCE_ID);
     LoadItemPaletteData(battleBag, item, 0, POCKET_SLOT_1_RESOURCE_ID);
-    DrawSprite(battleBag->pocketItemSprites[0], sSelectedItemSpritePosition.x, sSelectedItemSpritePosition.y);
+    DrawSprite(battleBag->sprites[0], sSelectedItemSpritePosition.x, sSelectedItemSpritePosition.y);
 }
 
 static void InitializeCursor(BattleBag *battleBag)
 {
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
     UnkStruct_ov16_0226DC24 *cursorSprites;
 
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
-    ov16_0226DB7C(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
-    cursorSprites = ov16_0226DC24(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
+    ov16_0226DB7C(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
+    cursorSprites = ov16_0226DC24(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, 0, 1);
 
     SetBattleSubMenuCursorSprites(battleBag->cursor, cursorSprites);
 }
@@ -247,7 +244,7 @@ static void InitializeCursor(BattleBag *battleBag)
 static void CleanupCursor(BattleBag *battleBag)
 {
     ov16_0226DCA8(GetBattleSubMenuCursorSprites(battleBag->cursor));
-    ov16_0226DBFC(battleBag->spriteManager, CURSOR_IMAGE_RESOURCE_ID, CURSOR_IMAGE_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
+    ov16_0226DBFC(battleBag->spriteManager, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
 }
 
 static const GridMenuCursorPosition menuScreenCursorPositions[] = {
@@ -462,14 +459,14 @@ static void InitializeCatchTutorialCursor(BattleBag *battleBag)
 {
     SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
 
-    ov16_0226DE44(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, battleBag->palette, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
-    battleBag->catchTutorialCursor = ov16_0226DEEC(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, 0, 0);
+    ov16_0226DE44(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, battleBag->palette, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
+    battleBag->catchTutorialCursor = ov16_0226DEEC(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, 0, 0);
 }
 
 static void CleanupCatchTutorialCursor(BattleBag *battleBag)
 {
     ov16_0226DF68(battleBag->catchTutorialCursor);
-    ov16_0226DEC4(battleBag->spriteManager, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_IMAGE_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
+    ov16_0226DEC4(battleBag->spriteManager, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
 }
 
 static const SpritePosition catchTutorialCursorPositions[3] = {

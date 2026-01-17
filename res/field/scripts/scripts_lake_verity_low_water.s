@@ -110,7 +110,7 @@ _006F:
 
 _01A1:
     SetVar VAR_FOLLOWER_RIVAL_STATE, 4
-    SetVar VAR_UNK_0x4095, 1
+    SetVar VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1
     ReleaseAll
     End
 

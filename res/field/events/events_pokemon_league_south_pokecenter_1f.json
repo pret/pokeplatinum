@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_LEAGUE_SOUTH_POKECENTER_1F_POKECENTER_NURSE_0",
+            "id": "LOCALID_POKECENTER_NURSE",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_SOUTH_POKECENTER_1F_POKEFAN_M_1",
+            "id": "LOCALID_POKEFAN_M",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_SOUTH_POKECENTER_1F_ACE_TRAINER_F_2",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

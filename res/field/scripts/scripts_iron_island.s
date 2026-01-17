@@ -8,7 +8,7 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag FLAG_UNK_0x09DA
+    SetFlag FLAG_FIRST_ARRIVAL_IRON_ISLAND_EXTERIOR
     End
 
 _0014:

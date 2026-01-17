@@ -17,7 +17,7 @@ static UnkStruct_ov22_02255040 *ov22_02254FE0(UnkStruct_ov22_02254DE0 *param0);
 static SoftwareSprite *ov22_0225500C(UnkStruct_ov22_0225500C *param0);
 static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *hitTable);
 
-UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int heapID)
+UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, enum HeapID heapID)
 {
     UnkStruct_ov22_02254DE0 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02254DE0));
     v0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02255040) * param0);
