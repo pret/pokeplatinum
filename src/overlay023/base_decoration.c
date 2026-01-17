@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/goods.h"
+#include "generated/goods.h"
 
 #include "struct_defs/underground.h"
 

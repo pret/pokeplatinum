@@ -12,7 +12,6 @@
 #include "overlay005/land_data.h"
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_022521F0.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
@@ -23,6 +22,7 @@
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
+#include "overlay023/underground_vendors.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -49,6 +49,7 @@
 #include "vars_flags.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix.h"
+#include "res/text/bank/underground_common.h"
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);
 
@@ -72,7 +73,7 @@ typedef struct {
     u16 storedPositionKey;
     u8 unk_C2[8];
     u8 unk_CA[8];
-    u8 unk_D2[8];
+    u8 talkedToVendorMessagesQueued[MAX_CONNECTED_PLAYERS];
     String *unk_DC[8];
     u8 unk_FC[8];
     u8 unk_104[8];
@@ -139,9 +140,9 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
     LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 
-    for (i = 0; i < (7 + 1); i++) {
+    for (i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
         sCommManUnderground->unk_C2[i] = 0xff;
-        sCommManUnderground->unk_D2[i] = 0xff;
+        sCommManUnderground->talkedToVendorMessagesQueued[i] = 0xff;
         sCommManUnderground->unk_DC[i] = NULL;
     }
 
@@ -278,11 +279,11 @@ static BOOL ov23_02242308(String *param0)
             }
         }
 
-        if (sCommManUnderground->unk_D2[i] != 0xff) {
+        if (sCommManUnderground->talkedToVendorMessagesQueued[i] != 0xff) {
             v3 = CommInfo_TrainerInfo(i);
-            sCommManUnderground->unk_D2[i] = 0xff;
+            sCommManUnderground->talkedToVendorMessagesQueued[i] = 0xff;
 
-            if (CommManUnderground_FormatCommonStringWithTrainerName(v3, 0, 112, param0)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(v3, 0, UndergroundCommon_Text_PlayerTalkedWithSomeone, param0)) {
                 return 1;
             }
         }
@@ -1018,10 +1019,10 @@ void ov23_0224300C(int param0, int param1)
     }
 }
 
-void ov23_02243020(int param0)
+void CommManUnderground_QueueTalkedToVendorMessage(int netID)
 {
     if (sCommManUnderground) {
-        sCommManUnderground->unk_D2[param0] = 1;
+        sCommManUnderground->talkedToVendorMessagesQueued[netID] = TRUE;
     }
 }
 
@@ -1113,13 +1114,13 @@ u16 CommManUnderground_GetStoredCursorPos(u16 menuKey)
     return 0;
 }
 
-void ov23_022431C4(int param0, int param1, void *param2, void *param3)
+void CommManUnderground_ProcessVendorTalkRequest(int unused0, int unused1, void *data, void *unused3)
 {
-    u8 *v0 = param2;
-    int v1 = v0[0];
+    u8 *buffer = data;
+    int netID = *buffer;
 
-    if (v1 == CommSys_CurNetId()) {
-        ov23_022534A0(sCommManUnderground->fieldSystem);
+    if (netID == CommSys_CurNetId()) {
+        UndergroundVendors_StartShopMenuTask(sCommManUnderground->fieldSystem);
         CommSys_SendMessage(25);
         CommPlayerMan_PauseFieldSystem();
     }

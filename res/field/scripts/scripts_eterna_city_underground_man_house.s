@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
-#include "constants/goods.h"
-#include "constants/traps.h"
+#include "generated/goods.h"
+#include "generated/traps.h"
 
 
     ScriptEntry _001A

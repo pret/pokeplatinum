@@ -26,6 +26,7 @@ enum SphereTypes {
     RED_SPHERE,
     BLUE_SPHERE,
     GREEN_SPHERE,
+    SPHERE_TYPE_MAX,
 };
 
 typedef struct Coordinates {
@@ -37,5 +38,11 @@ typedef struct Coordinates2D {
     u16 x;
     u16 y;
 } Coordinates2D;
+
+typedef struct SpherePrice {
+    u8 sphereType;
+    u8 minSize;
+    u8 maxSize;
+} SpherePrice;
 
 #endif // POKEPLATINUM_UNDERGROUND_TYPES_H

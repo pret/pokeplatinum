@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/map_object.h"
-#include "constants/traps.h"
 #include "generated/trainer_score_events.h"
+#include "generated/traps.h"
 
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"

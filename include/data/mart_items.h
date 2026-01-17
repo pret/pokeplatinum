@@ -1,5 +1,5 @@
-#include "constants/goods.h"
 #include "constants/items.h"
+#include "generated/goods.h"
 #include "generated/mart_decor_id.h"
 #include "generated/mart_frontier_id.h"
 #include "generated/mart_seal_id.h"

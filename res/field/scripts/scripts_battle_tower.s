@@ -1,7 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower.h"
 #include "res/text/bank/menu_entries.h"
-#include "constants/goods.h"
+#include "generated/goods.h"
 
 
     ScriptEntry BattleTower_SingleDoubleBattleRoomAttendant

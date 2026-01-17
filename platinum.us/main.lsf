@@ -852,11 +852,11 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_underground_player_talk.c.o
 	Object main.nef.p/src_overlay023_underground_menu.c.o
 	Object main.nef.p/src_overlay023_underground_pc.c.o
-	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
+	Object main.nef.p/src_overlay023_underground_vendors.c.o
 	Object main.nef.p/src_overlay023_underground_records.c.o
 	Object main.nef.p/src_overlay023_underground_text_printer.c.o
-	Object main.nef.p/src_overlay023_ov23_0225426C.c.o
-	Object main.nef.p/src_overlay023_ov23_0225429C.c.o
+	Object main.nef.p/src_overlay023_treasure_prices.c.o
+	Object main.nef.p/src_overlay023_trap_prices.c.o
 	Object main.nef.p/src_overlay023_decoration_menu.c.o
 	Object main.nef.p/src_overlay023_base_decoration.c.o
 }

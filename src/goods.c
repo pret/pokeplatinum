@@ -3,19 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/goods.h"
+#include "generated/goods.h"
 
 #include "overlay023/underground_defs.h"
 
 #include "res/text/bank/underground_records.h"
 
-typedef struct SpherePrice {
-    u8 sphereType;
-    u8 minSize;
-    u8 maxSize;
-} SpherePrice;
-
-typedef struct Good {
+typedef struct GoodData {
     u8 width;
     u8 depth;
     u8 collision[9];
@@ -24,10 +18,10 @@ typedef struct Good {
     int interactMessageID;
     u8 natDexRequired;
     u8 ungiftable;
-} Good;
+} GoodData;
 
 // clang-format off
-static const Good sGoods[] = {
+static const GoodData sGoodData[] = {
     [UG_GOOD_NONE] = {
         .width = 0,
         .depth = 0,
@@ -2533,52 +2527,52 @@ static const Good sGoods[] = {
 };
 // clang-format on
 
-u8 Good_GetWidth(int goodID)
+u8 Good_GetWidth(enum Good goodID)
 {
-    return sGoods[goodID].width;
+    return sGoodData[goodID].width;
 }
 
-u8 Good_GetDepth(int goodID)
+u8 Good_GetDepth(enum Good goodID)
 {
-    return sGoods[goodID].depth;
+    return sGoodData[goodID].depth;
 }
 
-const u8 *Good_GetCollision(int goodID)
+const u8 *Good_GetCollision(enum Good goodID)
 {
-    return sGoods[goodID].collision;
+    return sGoodData[goodID].collision;
 }
 
-u8 Good_GetSpherePriceType(int goodID)
+u8 Good_GetSpherePriceType(enum Good goodID)
 {
-    return sGoods[goodID].spherePrice.sphereType;
+    return sGoodData[goodID].spherePrice.sphereType;
 }
 
-u8 Good_GetSpherePriceMinSize(int goodID)
+u8 Good_GetSpherePriceMinSize(enum Good goodID)
 {
-    return sGoods[goodID].spherePrice.minSize;
+    return sGoodData[goodID].spherePrice.minSize;
 }
 
-u8 Good_GetSpherePriceMaxSize(int goodID)
+u8 Good_GetSpherePriceMaxSize(enum Good goodID)
 {
-    return sGoods[goodID].spherePrice.maxSize;
+    return sGoodData[goodID].spherePrice.maxSize;
 }
 
-int Good_GetMoneyPrice(int goodID)
+int Good_GetMoneyPrice(enum Good goodID)
 {
-    return sGoods[goodID].moneyPrice;
+    return sGoodData[goodID].moneyPrice;
 }
 
-int Good_GetInteractMessageID(int goodID)
+int Good_GetInteractMessageID(enum Good goodID)
 {
-    return sGoods[goodID].interactMessageID;
+    return sGoodData[goodID].interactMessageID;
 }
 
-BOOL Good_IsNatDexRequired(int goodID)
+BOOL Good_IsNatDexRequired(enum Good goodID)
 {
-    return sGoods[goodID].natDexRequired;
+    return sGoodData[goodID].natDexRequired;
 }
 
-BOOL Good_IsUngiftable(int goodID)
+BOOL Good_IsUngiftable(enum Good goodID)
 {
-    return sGoods[goodID].ungiftable;
+    return sGoodData[goodID].ungiftable;
 }

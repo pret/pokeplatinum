@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city.h"
-#include "constants/goods.h"
+#include "generated/goods.h"
 
 
     ScriptEntry _0082
