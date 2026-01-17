@@ -6,6 +6,7 @@
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/underground_defs.h"
 
+// TODO: make this error if it doesn't contain an entry for every treasure
 static const SpherePrice sTreasurePrices[] = {
     [MINING_TREASURE_NONE] = { .sphereType = SPHERE_NONE, .minSize = 0, .maxSize = 0 },
     [MINING_SMALL_PRISM_SPHERE] = { .sphereType = SPHERE_NONE, .minSize = 0, .maxSize = 0 },

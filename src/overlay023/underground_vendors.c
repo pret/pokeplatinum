@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
-#include "constants/goods.h"
-#include "constants/traps.h"
+#include "generated/goods.h"
+#include "generated/traps.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/underground.h"

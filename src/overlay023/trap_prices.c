@@ -3,10 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/traps.h"
+#include "generated/traps.h"
 
 #include "overlay023/underground_defs.h"
 
+// TODO: make this error if it doesn't contain an entry for every trap
 static const SpherePrice sTrapPrices[] = {
     [TRAP_NONE] = { .sphereType = SPHERE_NONE, .minSize = 0, .maxSize = 0 },
     [TRAP_MOVE_UP] = { .sphereType = BLUE_SPHERE, .minSize = 3, .maxSize = 6 },
