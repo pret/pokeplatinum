@@ -114,7 +114,7 @@
         },
         {
             "id": "FIGHT_AREA_RIVAL_7",
-            "graphics_id": "OBJ_EVENT_GFX_RIVAL",
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01D3",
