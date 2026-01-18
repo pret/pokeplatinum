@@ -8,6 +8,8 @@
 #include "savedata.h"
 #include "string_gf.h"
 
+#define MAX_FRIENDS 32
+
 int WiFiList_SaveSize(void);
 void WiFiList_Init(WiFiList *param0);
 DWCUserData *WiFiList_GetUserData(WiFiList *param0);

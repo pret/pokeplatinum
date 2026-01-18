@@ -1091,8 +1091,8 @@ static BOOL ov65_0223731C(UnkStruct_ov65_022367A8 *param0, u32 heapID)
     param0->unk_00.unk_00->unk_00.unk_22 = 1 - param0->unk_00.unk_00->unk_00.unk_22;
     param0->unk_00.unk_00->unk_00.unk_21 = param0->unk_00.unk_00->unk_00.unk_22;
 
-    ov4_021D2584(param0->unk_00.unk_00->unk_00.unk_21);
-    ov4_021D222C(&(param0->unk_00.unk_00->unk_00), sizeof(UnkStruct_0207E060));
+    NintendoWFC_SetUpdateVoiceClients(param0->unk_00.unk_00->unk_00.unk_21);
+    NintendoWFC_SetStatusData(&(param0->unk_00.unk_00->unk_00), sizeof(UnkStruct_0207E060));
 
     if (param0->unk_00.unk_00->unk_00.unk_21 == 1) {
         ov65_02237520(param0);
@@ -1196,7 +1196,7 @@ static void ov65_02237498(UnkStruct_ov65_022367A8 *param0, const UnkStruct_0207D
         break;
     }
 
-    ov4_021D222C(&(param0->unk_00.unk_00->unk_00), sizeof(UnkStruct_0207E060));
+    NintendoWFC_SetStatusData(&(param0->unk_00.unk_00->unk_00), sizeof(UnkStruct_0207E060));
 }
 
 static BOOL ov65_022374DC(UnkStruct_ov65_022367A8 *param0)
@@ -1206,7 +1206,7 @@ static BOOL ov65_022374DC(UnkStruct_ov65_022367A8 *param0)
     }
 
     if (ov65_02237450(param0) == 1) {
-        ov4_021D1E74(HEAP_ID_97);
+        NintendoWFC_StartVoiceChat(HEAP_ID_97);
         param0->unk_00.unk_11 = 1;
         return 1;
     }
@@ -1220,7 +1220,7 @@ static BOOL ov65_02237504(UnkStruct_ov65_022367A8 *param0)
         return 0;
     }
 
-    ov4_021D1F18();
+    NintendoWFC_TerminateVoiceChat();
     param0->unk_00.unk_11 = 0;
 
     return 1;
@@ -1307,12 +1307,12 @@ static void ov65_022375CC(UnkStruct_ov65_022367A8 *param0)
 
 static void ov65_0223760C(UnkStruct_ov65_022367A8 *param0)
 {
-    ov4_021D1120(ov65_02237654, param0);
+    NintendoWFC_SetConnectionClosedCB(ov65_02237654, param0);
 }
 
 static void ov65_0223761C(UnkStruct_ov65_022367A8 *param0)
 {
-    ov4_021D1120(NULL, NULL);
+    NintendoWFC_SetConnectionClosedCB(NULL, NULL);
 }
 
 static BOOL ov65_02237628(UnkStruct_ov65_022367A8 *param0)
@@ -1623,7 +1623,7 @@ static BOOL ov65_02237A70(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
         ov65_02237520(param0);
     }
 
-    ov4_021D26EC(0);
+    NintendoWFC_SetDisconnectIfAlone(0);
     CommMan_SetErrorHandling(0, 1);
     ov65_022376D0(param0, CommSys_CurNetId(), heapID);
 
@@ -1854,7 +1854,7 @@ static BOOL ov65_02237D60(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     ov65_02237A44(param0);
 
     param0->unk_00.unk_05 = 12;
-    ov4_021D25FC();
+    NintendoWFC_ResetMatchmakingCancelState();
 
     return 0;
 }
@@ -1868,13 +1868,13 @@ static BOOL ov65_02237D98(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
         return 0;
     }
 
-    v0 = ov4_021D25C0();
+    v0 = NintendoWFC_CancelMatchmaking();
 
     if (v0 == 0) {
         return 0;
     }
 
-    ov4_021D26EC(1);
+    NintendoWFC_SetDisconnectIfAlone(1);
     param0->unk_00.unk_05 = 13;
 
     return 0;
