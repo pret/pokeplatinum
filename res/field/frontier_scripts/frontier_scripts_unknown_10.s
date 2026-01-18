@@ -1,4 +1,5 @@
 # include "macros/frscrcmd.inc"
+# include "res/text/bank/unk_0015.h"
 
     .data
 
@@ -42,7 +43,7 @@ _0014:
     .short 0xFD13
 
 _0039:
-    FrontierScrCmd_39
+    HealParty
     PlayBGM SEQ_BF_TOWWER
     FrontierScrCmd_AA
     WaitTime 1, 0x8008
@@ -57,13 +58,13 @@ _0039:
     End
 
 _0070:
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
+    FadeScreenIn
+    WaitFadeScreen
     GoTo _0084
     End
 
 _0084:
-    Message 0
+    Message pl_msg_00000015_00000
     FrontierScrCmd_1B 31, 5, 0, 1, 0x8008
     FrontierScrCmd_CA 1
     FrontierScrCmd_1C 26, 255, 1
@@ -96,12 +97,12 @@ _012F:
     End
 
 _0143:
-    Message 14
+    Message pl_msg_00000015_00014
     FrontierScrCmd_16 31, 11, 0, 1, 0x8008
     FrontierScrCmd_CA 1
-    FrontierScrCmd_17 32, 0
-    FrontierScrCmd_17 33, 1
-    FrontierScrCmd_17 31, 2
+    FrontierScrCmd_17 pl_msg_00000015_00032, 0
+    FrontierScrCmd_17 pl_msg_00000015_00033, 1
+    FrontierScrCmd_17 pl_msg_00000015_00031, 2
     FrontierScrCmd_19
     GoToIfEq 0x8008, 0, _0188
     GoToIfEq 0x8008, 1, _01A9
@@ -158,7 +159,7 @@ _023F:
     End
 
 _0254:
-    MessageNoSkip 4
+    MessageNoSkip pl_msg_00000015_00004
     GoTo _0260
     End
 
@@ -190,7 +191,7 @@ _02C0:
     FrontierScrCmd_36
     FrontierScrCmd_AE 0x8009, 0x8008
     GoToIfEq 0x8008, 1, _0302
-    Message 3
+    Message pl_msg_00000015_00003
     GoTo _0084
     End
 
@@ -204,10 +205,10 @@ _0302:
     End
 
 _0345:
-    Message 2
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
-    FrontierScrCmd_12
+    Message pl_msg_00000015_00002
+    FadeScreenOut
+    WaitFadeScreen
+    CloseMessage
     FrontierScrCmd_B2 13, 0, 0, 0x8008
     GoTo _037E
     End
@@ -225,13 +226,13 @@ _037E:
     FrontierScrCmd_B0 0x8002, 0x8005
     FrontierScrCmd_3D 0x4002, 0x8002
     FrontierScrCmd_3D 0x4005, 0x8005
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
+    FadeScreenIn
+    WaitFadeScreen
     GoTo _03C1
     End
 
 _03C1:
-    MessageNoSkip 4
+    MessageNoSkip pl_msg_00000015_00004
     GoTo _03CD
     End
 
@@ -252,8 +253,8 @@ _03CD:
     End
 
 _044E:
-    FrontierScrCmd_7C 0
-    Message 1
+    BufferPartnerName 0
+    Message pl_msg_00000015_00001
     GoTo _0084
     End
 
@@ -268,24 +269,24 @@ _045D:
 
 _0499:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
-    Message 6
+    BufferSpeciesName 0, 0x8008
+    Message pl_msg_00000015_00006
     GoTo _0084
     End
 
 _04B4:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
-    Message 6
+    BufferSpeciesName 0, 0x8008
+    Message pl_msg_00000015_00006
     GoTo _0084
     End
 
 _04CF:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
+    BufferSpeciesName 0, 0x8008
     FrontierScrCmd_B2 5, 1, 0, 0x8008
-    FrontierScrCmd_7E 1, 0x8008, 0, 0
-    Message 7
+    BufferSpeciesName 1, 0x8008
+    Message pl_msg_00000015_00007
     GoTo _0084
     End
 
@@ -297,20 +298,20 @@ _04F9:
     FrontierScrCmd_B2 3, 0, 0, 0x8008
     GoToIfEq 0x8008, 0, _0758
     FrontierScrCmd_B2 4, 0, 0, 0x800B
-    FrontierScrCmd_7E 0, 0x800B, 0, 0
+    BufferSpeciesName 0, 0x800B
     FrontierScrCmd_B2 5, 0, 0, 0x8008
-    FrontierScrCmd_7E 1, 0x8008, 0, 0
+    BufferSpeciesName 1, 0x8008
     GoToIfEq 0x8008, 0x800B, _0758
     GoTo _0567
     End
 
 _0567:
-    Message 15
+    Message pl_msg_00000015_00015
     FrontierScrCmd_16 25, 13, 1, 1, 0x8008
-    FrontierScrCmd_17 16, 0
-    FrontierScrCmd_17 17, 1
+    FrontierScrCmd_17 pl_msg_00000015_00016, 0
+    FrontierScrCmd_17 pl_msg_00000015_00017, 1
     FrontierScrCmd_19
-    MessageNoSkip 24
+    MessageNoSkip pl_msg_00000015_00024
     SetVar 0x800B, 0x8008
     GoTo _0593
     End
@@ -330,7 +331,7 @@ _0593:
     End
 
 _05F9:
-    Message 18
+    Message pl_msg_00000015_00018
     GoTo _0084
     End
 
@@ -340,7 +341,7 @@ _0605:
     End
 
 _0614:
-    Message 11
+    Message pl_msg_00000015_00011
     GoTo _0084
     End
 
@@ -355,24 +356,24 @@ _0620:
 
 _065C:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
-    Message 9
+    BufferSpeciesName 0, 0x8008
+    Message pl_msg_00000015_00009
     GoTo _0084
     End
 
 _0677:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
-    Message 9
+    BufferSpeciesName 0, 0x8008
+    Message pl_msg_00000015_00009
     GoTo _0084
     End
 
 _0692:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
+    BufferSpeciesName 0, 0x8008
     FrontierScrCmd_B2 5, 1, 0, 0x8008
-    FrontierScrCmd_7E 1, 0x8008, 0, 0
-    Message 10
+    BufferSpeciesName 1, 0x8008
+    Message pl_msg_00000015_00010
     GoTo _0084
     End
 
@@ -387,24 +388,24 @@ _06BC:
 
 _06F8:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
-    Message 9
+    BufferSpeciesName 0, 0x8008
+    Message pl_msg_00000015_00009
     GoTo _0084
     End
 
 _0713:
     FrontierScrCmd_B2 5, 1, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
-    Message 9
+    BufferSpeciesName 0, 0x8008
+    Message pl_msg_00000015_00009
     GoTo _0084
     End
 
 _072E:
     FrontierScrCmd_B2 5, 0, 0, 0x8008
-    FrontierScrCmd_7E 0, 0x8008, 0, 0
+    BufferSpeciesName 0, 0x8008
     FrontierScrCmd_B2 5, 1, 0, 0x8008
-    FrontierScrCmd_7E 1, 0x8008, 0, 0
-    Message 10
+    BufferSpeciesName 1, 0x8008
+    Message pl_msg_00000015_00010
     GoTo _0084
     End
 
@@ -419,20 +420,20 @@ _0766:
     FrontierScrCmd_36
     FrontierScrCmd_35 175
     FrontierScrCmd_36
-    MessageInstant 19
+    MessageInstant pl_msg_00000015_00019
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
     HideSavingIcon
     PlaySoundEffect SEQ_SE_DP_SAVE
     WaitSoundEffect SEQ_SE_DP_SAVE
-    MessageNoSkip 20
+    MessageNoSkip pl_msg_00000015_00020
     WaitTime 10, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 171
     FrontierScrCmd_36
-    FrontierScrCmd_12
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
     FrontierScrCmd_25 0
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
@@ -454,8 +455,8 @@ _081C:
     Return
 
 _0838:
-    Message 5
-    MessageNoSkip 4
+    Message pl_msg_00000015_00005
+    MessageNoSkip pl_msg_00000015_00004
     Return
 
 _0842:
@@ -527,23 +528,23 @@ _08DD:
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
     PlayBGM SEQ_BF_TOWWER
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
-    FrontierScrCmd_7C 0
-    Message 21
+    FadeScreenIn
+    WaitFadeScreen
+    BufferPartnerName 0
+    Message pl_msg_00000015_00021
     ShowYesNoMenu 0x8008, MENU_YES
     GoToIfEq 0x8008, 0, _0939
     GoTo _094B
     End
 
 _0939:
-    MessageNoSkip 24
+    MessageNoSkip pl_msg_00000015_00024
     SetVar 0x800B, 0
     GoTo _095D
     End
 
 _094B:
-    MessageNoSkip 24
+    MessageNoSkip pl_msg_00000015_00024
     SetVar 0x800B, 1
     GoTo _095D
     End
@@ -562,9 +563,9 @@ _095D:
     End
 
 _09AD:
-    FrontierScrCmd_7C 0
-    MessageNoSkip 25
-    MessageNoSkip 4
+    BufferPartnerName 0
+    MessageNoSkip pl_msg_00000015_00025
+    MessageNoSkip pl_msg_00000015_00004
     GoTo _09C0
     End
 
@@ -572,13 +573,13 @@ _09C0:
     FrontierScrCmd_36
     FrontierScrCmd_35 172
     FrontierScrCmd_36
-    FrontierScrCmd_12
+    CloseMessage
     GoTo _09D2
     End
 
 _09D2:
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
+    FadeScreenOut
+    WaitFadeScreen
     FrontierScrCmd_AB
     FrontierScrCmd_36
     FrontierScrCmd_35 178
