@@ -12,13 +12,13 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHIMCHAR",
+            "species": "SPECIES_PIPLUP",
             "form": 0,
             "level": 13,
             "item": null,
             "moves": [
-                "MOVE_EMBER",
-                "MOVE_SCRATCH"
+                "MOVE_BUBBLE",
+                "MOVE_POUND"
             ],
             "power": 30,
             "ball_seal": 0
