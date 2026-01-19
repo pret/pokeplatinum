@@ -1,4 +1,4 @@
-top_nclr = nclr_gen.process('top_screen.png',
+top_nclr = nclr_gen.process('top_screen_tiles.png',
     extra_args: [
         '-bitdepth', '4',
         '-pcmp',
@@ -7,7 +7,7 @@ top_nclr = nclr_gen.process('top_screen.png',
     ],
 )
 
-bottom_nclr = nclr_gen.process('bottom_screen.png',
+bottom_nclr = nclr_gen.process('bottom_screen_tiles.png',
     extra_args: [
         '-bitdepth', '4',
         '-pcmp',
@@ -16,14 +16,14 @@ bottom_nclr = nclr_gen.process('bottom_screen.png',
     ],
 )
 
-top_ncgr = ncgr_gen.process('top_screen.png',
+top_ncgr = ncgr_gen.process('top_screen_tiles.png',
     extra_args: [
         '-version101',
         '-sopc',
     ],
 )
 
-bottom_ncgr = ncgr_gen.process('bottom_screen.png',
+bottom_ncgr = ncgr_gen.process('bottom_screen_tiles.png',
     extra_args: [
         '-version101',
         '-sopc',

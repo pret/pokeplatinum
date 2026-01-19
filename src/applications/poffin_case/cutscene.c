@@ -37,12 +37,14 @@
 
 #include "res/graphics/poffin_case/feeding_cutscene/cutscene.naix.h"
 
-#define MON_SPRITE_FAR_SIZE   0x1000
-#define MON_SPRITE_FAR_X      128
-#define MON_SPRITE_FAR_Y      96
-#define MON_SPRITE_CLOSE_SIZE 0x1800
-#define MON_SPRITE_CLOSE_X    128
-#define MON_SPRITE_CLOSE_Y    112
+#define MON_SPRITE_FAR_SIZE      0x1000
+#define MON_SPRITE_FAR_X         128
+#define MON_SPRITE_FAR_Y         96
+#define MON_SPRITE_CLOSE_SIZE    0x1800
+#define MON_SPRITE_CLOSE_X       128
+#define MON_SPRITE_CLOSE_Y       112
+#define POFFIN_SPRITE_START_SIZE 0x1000
+#define POFFIN_SPRITE_END_SIZE   0x800
 
 enum PoffinCutsceneState {
     STATE_FEED_POFFIN = 0,
@@ -448,11 +450,11 @@ static void LoadGraphics(PoffinCutscene *app)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__PORUDEMO, app->heapID);
 
-    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, top_screen_NCGR, BG_LAYER_MAIN_2, GRAPHICSMEMBER_TILES, 0, 0);
-    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, bottom_screen_NCGR, BG_LAYER_SUB_0, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, top_screen_tiles_NCGR, BG_LAYER_MAIN_2, GRAPHICSMEMBER_TILES, 0, 0);
+    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, bottom_screen_tiles_NCGR, BG_LAYER_SUB_0, GRAPHICSMEMBER_TILES, 0, 0);
 
-    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, top_screen_NCLR, BG_LAYER_MAIN_2, GRAPHICSMEMBER_PALETTE, PALETTE_SIZE_BYTES, 0);
-    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, bottom_screen_NCLR, BG_LAYER_SUB_0, GRAPHICSMEMBER_PALETTE, PALETTE_SIZE_BYTES * 5, 0);
+    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, top_screen_tiles_NCLR, BG_LAYER_MAIN_2, GRAPHICSMEMBER_PALETTE, PALETTE_SIZE_BYTES, 0);
+    App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, bottom_screen_tiles_NCLR, BG_LAYER_SUB_0, GRAPHICSMEMBER_PALETTE, PALETTE_SIZE_BYTES * 5, 0);
 
     App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, top_screen_tilemap_NSCR, BG_LAYER_MAIN_2, GRAPHICSMEMBER_TILEMAP, 0, 0);
     App_LoadGraphicMember(app->bgConfig, app->heapID, narc, NARC_INDEX_GRAPHIC__PORUDEMO, bottom_screen_tilemap_NSCR, BG_LAYER_SUB_0, GRAPHICSMEMBER_TILEMAP, 0, 0);
@@ -466,7 +468,13 @@ static void LoadGraphics(PoffinCutscene *app)
 static void InitWindow(PoffinCutscene *app)
 {
     static const WindowTemplate winTemplate = {
-        1, 2, 19, 27, 4, 15, 31
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = 4,
+        .palette = 15,
+        .baseTile = 31
     };
 
     Window_AddFromTemplate(app->bgConfig, &app->window, &winTemplate);
@@ -529,21 +537,21 @@ static void InitSpriteSystem(PoffinCutscene *app)
     app->spriteSys = SpriteSystem_Alloc(app->heapID);
 
     RenderOamTemplate oamTemplates = {
-        0,
-        128,
-        0,
-        31,
-        0,
-        1,
-        0,
-        31,
+        .mainOamStart = 0,
+        .mainOamCount = 128,
+        .mainAffineOamStart = 0,
+        .mainAffineOamCount = 31,
+        .subOamStart = 0,
+        .subOamCount = 1,
+        .subAffineOamStart = 0,
+        .subAffineOamCount = 31,
     };
     CharTransferTemplateWithModes charTransferTemplates = {
-        3,
-        0,
-        0,
-        GX_OBJVRAMMODE_CHAR_1D_32K,
-        GX_OBJVRAMMODE_CHAR_1D_32K,
+        .maxTasks = 3,
+        .sizeMain = 0,
+        .sizeSub = 0,
+        .modeMain = GX_OBJVRAMMODE_CHAR_1D_32K,
+        .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K,
     };
 
     SpriteSystem_Init(app->spriteSys, &oamTemplates, &charTransferTemplates, 32);
@@ -641,10 +649,10 @@ static enum PoffinCutsceneState PlayFeedingAnimation(PoffinCutscene *app, Poffin
     man->poffinSpriteState.startPos.y = FX32_CONST(192 + 32);
     man->poffinSpriteState.endPos.x = FX32_CONST(128);
     man->poffinSpriteState.endPos.y = FX32_CONST(96);
-    man->poffinSpriteState.startSize.x = 0x1000;
-    man->poffinSpriteState.startSize.y = 0x1000;
-    man->poffinSpriteState.endSize.x = 0x800;
-    man->poffinSpriteState.endSize.y = 0x800;
+    man->poffinSpriteState.startSize.x = POFFIN_SPRITE_START_SIZE;
+    man->poffinSpriteState.startSize.y = POFFIN_SPRITE_START_SIZE;
+    man->poffinSpriteState.endSize.x = POFFIN_SPRITE_END_SIZE;
+    man->poffinSpriteState.endSize.y = POFFIN_SPRITE_END_SIZE;
     man->poffinSpriteState.unused4 = 24;
     man->poffinSpriteState.unused3 = 0;
 
@@ -755,10 +763,10 @@ static void Task_SetPoffinSizeInitial(SysTask *task, void *taskData)
 
     pTask->remainingCycles = 24;
 
-    data->startSize.x = 0x1000;
-    data->startSize.y = 0x1000;
-    data->endSize.x = 0x800;
-    data->endSize.y = 0x800;
+    data->startSize.x = POFFIN_SPRITE_START_SIZE;
+    data->startSize.y = POFFIN_SPRITE_START_SIZE;
+    data->endSize.x = POFFIN_SPRITE_END_SIZE;
+    data->endSize.y = POFFIN_SPRITE_END_SIZE;
 
     VEC_Subtract(&data->startSize, &data->endSize, &totalSizeChange);
 
@@ -974,8 +982,8 @@ static void Task_SetMonSizeAfterEating(SysTask *task, void *taskData)
     VEC_Subtract(&data->endSize, &data->startSize, &totalSizeChange);
     DivideVector(&data->sizeStep, &totalSizeChange, FX32_CONST(pTask->remainingCycles));
 
-    PokemonSprite_SetAttribute(taskMan->monSprite, MON_SPRITE_SCALE_X, 0x1800 >> 4);
-    PokemonSprite_SetAttribute(taskMan->monSprite, MON_SPRITE_SCALE_Y, 0x1800 >> 4);
+    PokemonSprite_SetAttribute(taskMan->monSprite, MON_SPRITE_SCALE_X, MON_SPRITE_CLOSE_SIZE >> 4);
+    PokemonSprite_SetAttribute(taskMan->monSprite, MON_SPRITE_SCALE_Y, MON_SPRITE_CLOSE_SIZE >> 4);
     SysTask_SetCallback(task, Task_UpdateMonSizeRetreat);
 }
 
