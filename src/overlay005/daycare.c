@@ -919,7 +919,7 @@ BOOL Daycare_Update(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
 {
     u32 i, eggCycles, monCount, compatibilityScore, rand;
     u32 v5 = 0, steps;
-    int toSubstract;
+    int toSubtract;
     BoxPokemon *boxMon[NUM_DAYCARE_MONS];
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
@@ -950,7 +950,7 @@ BOOL Daycare_Update(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
 
     if (steps == Daycare_GetEggCycleLength(fieldSystem)) {
         Daycare_SetStepCounter(daycare, 0);
-        toSubstract = Party_GetEggCyclesToSubtract(party);
+        toSubtract = Party_GetEggCyclesToSubtract(party);
 
         for (i = 0; i < Party_GetCurrentCount(party); i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
@@ -963,8 +963,8 @@ BOOL Daycare_Update(Daycare *daycare, Party *party, FieldSystem *fieldSystem)
                 eggCycles = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
                 if (eggCycles != 0) {
-                    if (eggCycles >= toSubstract) {
-                        eggCycles -= toSubstract;
+                    if (eggCycles >= toSubtract) {
+                        eggCycles -= toSubtract;
                     } else {
                         eggCycles--;
                     }

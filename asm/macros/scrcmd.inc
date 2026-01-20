@@ -150,14 +150,24 @@
     .long \arg1
     .endm
 
+    .macro CompareVarToValue varID, value
+    .short 17
+    .short \varID
+    .short \value
+    .endm
+
+    .macro CompareVarToVar varID1, varID2
+    .short 18
+    .short \varID1
+    .short \varID2
+    .endm
+
     .macro CompareVar varID, valueOrVarID
     .if \valueOrVarID < VARS_START
-        .short 17 /* CompareVarToValue */
+        CompareVarToValue \varID, \valueOrVarID
     .else
-        .short 18 /* CompareVarToVar */
+        CompareVarToVar \varID, \valueOrVarID
     .endif
-    .short \varID
-    .short \valueOrVarID
     .endm
 
     .macro ScrCmd_Unused_013 arg0
@@ -271,14 +281,24 @@
     .short \valueOrVarID
     .endm
 
+    .macro SetVarFromValue destVarID, value
+    .short 40
+    .short \destVarID
+    .short \value
+    .endm
+
+    .macro SetVarFromVar destVarID, srcVarID
+    .short 41
+    .short \destVarID
+    .short \srcVarID
+    .endm
+
     .macro SetVar destVarID, valueOrVarID
     .if \valueOrVarID < VARS_START
-        .short 40 /* SetVarFromValue */
+        SetVarFromValue \destVarID, \valueOrVarID
     .else
-        .short 41 /* SetVarFromVar */
+        SetVarFromVar \destVarID, \valueOrVarID
     .endif
-    .short \destVarID
-    .short \valueOrVarID
     .endm
 
     .macro ScrCmd_Unused_02A arg0, arg1
@@ -776,7 +796,10 @@
     .short \coins
     .endm
 
-    /* See SubtractCoins for 122 */
+    .macro SubtractCoinsFromValue value
+    .short 122
+    .short \value
+    .endm
 
     // If the player has no space left in the bag, destVarID will be set to FALSE
     .macro AddItem item, count, destVarID
@@ -975,7 +998,7 @@
     .short \eggGiverTextId
     .endm
 
-    .macro ResetPartyMonMoveSlot_Unused partySlot, moveSlot, moveID 
+    .macro ResetPartyMonMoveSlot_Unused partySlot, moveSlot, moveID
     .short 152
     .short \partySlot
     .short \moveSlot
@@ -3547,9 +3570,13 @@
     SetClearInCatchingShowFlag 1
     .endm
 
+    .macro CheckHasEnoughMonForCatchingShow destVar
+    .short 596
+    .short \destVar
+    .endm
+
     .macro GoToIfNotEnoughMonForCatchingShow offset
-    .short 596 /* CheckHasEnoughMonForCatchingShow */
-    .short VAR_RESULT
+    CheckHasEnoughMonForCatchingShow VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, \offset
     .endm
 
@@ -3688,18 +3715,20 @@
     .short 623
     .endm
 
+    .macro SetHiddenLocation hiddenLocation, enable
+    .short 624
+    .short \hiddenLocation
+    .byte \enable
+    .endm
+
     /* Enable a given hidden location */
     .macro EnableHiddenLocation hiddenLocation
-    .short 624 /* SetHiddenLocation */
-    .short \hiddenLocation /* Refer to generated/hidden_locations.txt */
-    .byte TRUE /* Enable */
+    SetHiddenLocation \hiddenLocation, TRUE
     .endm
 
     /* Disable a given hidden location */
     .macro DisableHiddenLocation hiddenLocation
-    .short 624 /* SetHiddenLocation */
-    .short \hiddenLocation /* Refer to generated/hidden_locations.txt */
-    .byte FALSE /* Disable */
+    SetHiddenLocation \hiddenLocation, FALSE
     .endm
 
     .macro ScrCmd_271 arg0
@@ -3718,7 +3747,11 @@
     .short \arg1
     .endm
 
-    /* See HasCoins for 628 */
+    .macro HasCoinsFromValue varID, value
+    .short 628
+    .short \varID
+    .long \value
+    .endm
 
     /* Returns TRUE in destVarID if the player has won at least 10 consecutive bonus rounds */
     .macro CheckBonusRoundStreak destVarID
@@ -3726,10 +3759,14 @@
     .short \destVarID
     .endm
 
-    .macro GoToIfCannotAddCoins amount, offset
+    .macro CheckCanAddCoins destVar, value
     .short 630
-    .short VAR_RESULT
-    .short \amount
+    .short \destVar
+    .short \value
+    .endm
+
+    .macro GoToIfCannotAddCoins amount, offset
+    CheckCanAddCoins VAR_RESULT, \amount
     Noop
     GoToIfEq VAR_RESULT, FALSE, \offset
     .endm
@@ -4017,25 +4054,30 @@
     .short \destVar
     .endm
 
+    .macro SubtractCoinsFromVar valueVar
+    .short 680
+    .short \valueVar
+    .endm
+
     .macro SubtractCoins valueOrVarID
     .if \valueOrVarID < VARS_START
-        .short 122 /* SubstractCoinsFromValue */
-        .short \valueOrVarID
+        SubtractCoinsFromValue \valueOrVarID
     .else
-        .short 680 /* SubstractCoinsFromVar */
-        .short \valueOrVarID
+        SubtractCoinsFromVar \valueOrVarID
     .endif
+    .endm
+
+    .macro HasCoinsFromVar varID, valueVar
+    .short 681
+    .short \varID
+    .short \valueVar
     .endm
 
     .macro HasCoins varID, valueOrVarID
     .if \valueOrVarID < VARS_START
-        .short 628 /* HasCoinsFromValue */
-        .short \varID
-        .long \valueOrVarID
+        HasCoinsFromValue \varID, \valueOrVarID
     .else
-        .short 681 /* HasCoinsFromVar */
-        .short \varID
-        .short \valueOrVarID
+        HasCoinsFromVar \varID, \valueOrVarID
     .endif
     .endm
 
@@ -4330,10 +4372,14 @@
     .short \destBerryAndAccessoryManOptionID
     .endm
 
-    .macro GoToIfAmitySquareManGiftIsNotAccessory giftID, offset
-    .short 736 /* CheckAmitySquareManGiftIsAccessory */
+    .macro CheckAmitySquareManGiftIsAccessory giftID, destVar
+    .short 736
     .short \giftID
-    .short VAR_RESULT
+    .short \destVar
+    .endm
+
+    .macro GoToIfAmitySquareManGiftIsNotAccessory giftID, offset
+    CheckAmitySquareManGiftIsAccessory \giftID, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, \offset
     .endm
 
@@ -5045,7 +5091,7 @@
     .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
     .short 0xFD13
     .endm
-    
+
     .set F_INIT_SCRIPT_FRAME_TABLE_OPENED, FALSE
     .set F_INIT_SCRIPT_FRAME_TABLE_CLOSED, FALSE
 
