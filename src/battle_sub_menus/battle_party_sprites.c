@@ -1,4 +1,4 @@
-#include "overlay013/battle_party_sprites.h"
+#include "battle_sub_menus/battle_party_sprites.h"
 
 #include "generated/move_classes.h"
 #include "generated/pokemon_types.h"
@@ -8,9 +8,9 @@
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
-#include "overlay013/battle_party.h"
-#include "overlay013/battle_sub_menu_cursor.h"
-#include "overlay013/battle_sub_menu_sprites_defs.h"
+#include "battle_sub_menus/battle_party.h"
+#include "battle_sub_menus/battle_sub_menu_cursor.h"
+#include "battle_sub_menus/battle_sub_menu_sprites_defs.h"
 
 #include "grid_menu_cursor_position.h"
 #include "gx_layers.h"

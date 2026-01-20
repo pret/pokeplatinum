@@ -1,13 +1,13 @@
-#include "overlay013/battle_bag_sprites.h"
+#include "battle_sub_menus/battle_bag_sprites.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
-#include "overlay013/battle_bag.h"
-#include "overlay013/battle_bag_utils.h"
-#include "overlay013/battle_sub_menu_cursor.h"
-#include "overlay013/battle_sub_menu_sprites_defs.h"
+#include "battle_sub_menus/battle_bag.h"
+#include "battle_sub_menus/battle_bag_utils.h"
+#include "battle_sub_menus/battle_sub_menu_cursor.h"
+#include "battle_sub_menus/battle_sub_menu_sprites_defs.h"
 
 #include "grid_menu_cursor_position.h"
 #include "gx_layers.h"

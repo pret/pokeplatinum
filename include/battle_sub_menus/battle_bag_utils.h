@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_BAG_UTILS_H
 #define POKEPLATINUM_BATTLE_BAG_UTILS_H
 
-#include "overlay013/battle_bag.h"
+#include "battle_sub_menus/battle_bag.h"
 
 enum BattlePocketIndex {
     BATTLE_POCKET_INDEX_RECOVER_HP_PP = 0,
