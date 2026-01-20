@@ -985,10 +985,10 @@ void VecFx32_StepDirection(int dir, VecFx32 *vec, fx32 val)
     }
 }
 
-void sub_02064450(int x, int z, VecFx32 *pos)
+void VecFx32_SetPosFromMapCoords(int x, int z, VecFx32 *outVec)
 {
-    pos->x = ((x << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
-    pos->z = ((z << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
+    outVec->x = MAP_OBJECT_COORD_TO_FX32(x);
+    outVec->z = MAP_OBJECT_COORD_TO_FX32(z);
 }
 
 void sub_02064464(MapObject *mapObj)

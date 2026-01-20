@@ -155,7 +155,7 @@ static void ov5_021F62A0(OverworldAnimManager *param0, void *param1)
         int v6 = MapObject_GetX(v3) + MapObject_GetDxFromDir(v1->unk_04);
         int v7 = MapObject_GetZ(v3) + MapObject_GetDzFromDir(v1->unk_04);
 
-        sub_02064450(v6, v7, &v5);
+        VecFx32_SetPosFromMapCoords(v6, v7, &v5);
         MapObject_GetPosPtr(v3, &v4);
         v5.y = v4.y;
         OverworldAnimManager_SetPosition(param0, &v5);
