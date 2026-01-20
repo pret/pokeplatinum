@@ -90,7 +90,7 @@
 #include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay023/ov23_022521F0.h"
+#include "overlay023/underground_vendors.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay104/struct_ov104_02230BE4.h"
@@ -5663,7 +5663,7 @@ static BOOL ScrCmd_19E(ScriptContext *ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
     ctx->data[0] = v3;
-    *v0 = ov23_02252C98(v2, ctx->fieldSystem, MapObject_GetLocalID(*v1));
+    *v0 = UndergroundVendors_ReturnNull(v2, ctx->fieldSystem, MapObject_GetLocalID(*v1));
 
     ScriptContext_Pause(ctx, sub_020441C8);
     return TRUE;
@@ -5674,9 +5674,9 @@ static BOOL sub_020441C8(ScriptContext *ctx)
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
-    *v1 = ov23_02252C70(*v0);
+    *v1 = UndergroundVendors_ReturnFFFE(*v0);
 
-    if ((*v1) == 0xfffe) {
+    if (*v1 == 0xFFFE) {
         return FALSE;
     }
 
@@ -5687,7 +5687,7 @@ static BOOL ScrCmd_19F(ScriptContext *ctx)
 {
     u8 *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 
-    *v0 = ov23_02252C9C(ScriptContext_GetVar(ctx));
+    *v0 = UndergroundVendors_PrintNPCMessage(ScriptContext_GetVar(ctx));
     ScriptContext_Pause(ctx, sub_02044240);
 
     return TRUE;
@@ -5701,7 +5701,7 @@ static BOOL sub_02044240(ScriptContext *ctx)
 
 static BOOL ScrCmd_1A0(ScriptContext *ctx)
 {
-    ov23_02252CD4();
+    UndergroundVendors_EraseMessageBoxWindow();
     return FALSE;
 }
 
@@ -5710,7 +5710,7 @@ static BOOL ScrCmd_Unused_1A1(ScriptContext *ctx)
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    ov23_02252CE0(v0, v1);
+    UndergroundVendors_SetTreasureNameForPrinter(v0, v1);
     return FALSE;
 }
 
@@ -5719,7 +5719,7 @@ static BOOL ScrCmd_Unused_1A2(ScriptContext *ctx)
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    ov23_02252CF4(v0, v1);
+    UndergroundVendors_SetTrapNameForPrinter(v0, v1);
     return FALSE;
 }
 
