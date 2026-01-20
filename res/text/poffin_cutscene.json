@@ -2,21 +2,21 @@
   "key": 35804,
   "messages": [
     {
-      "id": "pl_msg_00000462_00000",
+      "id": "PoffinCutscene_Text_LikedPoffin",
       "en_US": [
         "{STRVAR_1 0, 0, 0} happily ate\n",
         "the Poffin!"
       ]
     },
     {
-      "id": "pl_msg_00000462_00001",
+      "id": "PoffinCutscene_Text_DislikedPoffin",
       "en_US": [
         "{STRVAR_1 0, 0, 0} disdainfully\n",
         "ate the Poffin..."
       ]
     },
     {
-      "id": "pl_msg_00000462_00002",
+      "id": "PoffinCutscene_Text_NeutralToPoffin",
       "en_US": "{STRVAR_1 0, 0, 0} ate the Poffin."
     }
   ]
