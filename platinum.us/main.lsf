@@ -658,19 +658,19 @@ Overlay battle_anim
 	Object main.nef.p/src_battle_anim_is_form_symmetrical.c.o
 }
 
-Overlay overlay13
+Overlay battle_sub_menus
 {
 	After overlay11
-	Object main.nef.p/src_overlay013_battle_party.c.o
-	Object main.nef.p/src_overlay013_battle_party_text.c.o
-	Object main.nef.p/src_overlay013_battle_party_sprites.c.o
-	Object main.nef.p/src_overlay013_battle_party_buttons.c.o
-	Object main.nef.p/src_overlay013_battle_bag.c.o
-	Object main.nef.p/src_overlay013_battle_bag_text.c.o
-	Object main.nef.p/src_overlay013_battle_bag_utils.c.o
-	Object main.nef.p/src_overlay013_battle_bag_sprites.c.o
-	Object main.nef.p/src_overlay013_battle_bag_buttons.c.o
-	Object main.nef.p/src_overlay013_battle_sub_menu_cursor.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party_text.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party_sprites.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_party_buttons.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_text.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_utils.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_sprites.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_bag_buttons.c.o
+	Object main.nef.p/src_battle_sub_menus_battle_sub_menu_cursor.c.o
 }
 
 Overlay trainer_ai
@@ -852,11 +852,11 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_underground_player_talk.c.o
 	Object main.nef.p/src_overlay023_underground_menu.c.o
 	Object main.nef.p/src_overlay023_underground_pc.c.o
-	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
+	Object main.nef.p/src_overlay023_underground_vendors.c.o
 	Object main.nef.p/src_overlay023_underground_records.c.o
 	Object main.nef.p/src_overlay023_underground_text_printer.c.o
-	Object main.nef.p/src_overlay023_ov23_0225426C.c.o
-	Object main.nef.p/src_overlay023_ov23_0225429C.c.o
+	Object main.nef.p/src_overlay023_treasure_prices.c.o
+	Object main.nef.p/src_overlay023_trap_prices.c.o
 	Object main.nef.p/src_overlay023_decoration_menu.c.o
 	Object main.nef.p/src_overlay023_base_decoration.c.o
 }
@@ -1308,8 +1308,8 @@ Overlay poffin_case
 	Object main.nef.p/src_applications_poffin_case_manager.c.o
 	Object main.nef.p/src_applications_poffin_case_menus.c.o
 	Object main.nef.p/src_applications_poffin_case_sprites.c.o
-	Object main.nef.p/src_applications_poffin_case_ov79_021D2268.c.o
-	Object main.nef.p/src_applications_poffin_case_ov79_021D3768.c.o
+	Object main.nef.p/src_applications_poffin_case_cutscene.c.o
+	Object main.nef.p/src_applications_poffin_case_cutscene_sprite.c.o
 }
 
 Overlay town_map

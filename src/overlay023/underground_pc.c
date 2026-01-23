@@ -12,7 +12,6 @@
 #include "overlay023/base_decoration.h"
 #include "overlay023/ov23_0223E140.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_022521F0.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_menu.h"
@@ -21,6 +20,7 @@
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
+#include "overlay023/underground_vendors.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -308,9 +308,9 @@ static BOOL UndergroundPC_HandleMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
-    u32 input = ListMenu_ProcessInput(menu->unk_48);
+    u32 input = ListMenu_ProcessInput(menu->listMenu);
     u16 listPos, cursorPos;
-    ListMenu_GetListAndCursorPos(menu->unk_48, &listPos, &cursorPos);
+    ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
 
     CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PC, cursorPos, listPos);
     UndergroundPC_UpdateCursorPos(menu);
@@ -402,7 +402,7 @@ static void UndergroundPC_InitMenu(UndergroundMenu *menu, int startBankEntry, in
 
     template.parent = menu;
     UndergroundMenu_MoveListCursorPosInBounds(menu, trueOptionCount, template.count);
-    menu->unk_48 = ListMenu_New(&template, menu->listMenuListPos, menu->listMenuCursorPos, HEAP_ID_FIELD1);
+    menu->listMenu = ListMenu_New(&template, menu->listMenuListPos, menu->listMenuCursorPos, HEAP_ID_FIELD1);
 }
 
 static void UndergroundPC_InitRadarMenu(UndergroundMenu *menu, int startBankEntry, int optionCount, CursorCallback cursorCallback, int unused)
@@ -442,17 +442,17 @@ static void UndergroundPC_InitRadarMenu(UndergroundMenu *menu, int startBankEntr
 
     template.parent = menu;
     UndergroundMenu_MoveListCursorPosInBounds(menu, trueOptionCount, template.count);
-    menu->unk_48 = ListMenu_New(&template, menu->listMenuListPos, menu->listMenuCursorPos, HEAP_ID_FIELD1);
+    menu->listMenu = ListMenu_New(&template, menu->listMenuListPos, menu->listMenuCursorPos, HEAP_ID_FIELD1);
 }
 
 static BOOL UndergroundPC_HandleRadarMenu(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
-    u32 input = ListMenu_ProcessInput(menu->unk_48);
+    u32 input = ListMenu_ProcessInput(menu->listMenu);
 
     u16 listPos, cursorPos;
-    ListMenu_GetListAndCursorPos(menu->unk_48, &listPos, &cursorPos);
+    ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
 
     CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PC_RADAR, cursorPos, listPos);
     UndergroundPC_UpdateCursorPos(menu);
@@ -689,7 +689,7 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
         UndergroundMenu_RemoveDescriptionWindowInstant(menu);
         menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PC);
         menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_PC);
-        menu->unk_2AE = menu->listMenuCursorPos;
+        menu->listMenuPos = menu->listMenuCursorPos;
         UndergroundPC_InitMenu(menu, UndergroundPC_Text_Decorate, 5, UndergroundPC_PrintMenuItemDescription, 0);
         menu->state = UG_PC_MENU_STATE_MAIN;
         break;
@@ -718,7 +718,7 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
         menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PC_RADAR);
         menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_PC_RADAR);
-        menu->unk_2AE = menu->listMenuCursorPos;
+        menu->listMenuPos = menu->listMenuCursorPos;
         UndergroundPC_InitRadarMenu(menu, UndergroundPC_Text_TreasureSearch, 3, UndergroundPC_PrintRadarMenuItemDescription, 1);
         menu->state = UG_PC_MENU_STATE_RADAR_MENU_MAIN;
         break;
@@ -951,10 +951,10 @@ void UndergroundPC_ProcessTakenFlag(int unused0, int unused1, void *data, void *
 
 static void UndergroundPC_UpdateCursorPos(UndergroundMenu *menu)
 {
-    u16 prevPos = menu->unk_2AE;
-    ListMenu_CalcTrueCursorPos(menu->unk_48, &menu->unk_2AE);
+    u16 prevPos = menu->listMenuPos;
+    ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->listMenuPos);
 
-    if (prevPos != menu->unk_2AE) {
+    if (prevPos != menu->listMenuPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }

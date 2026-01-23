@@ -27,7 +27,6 @@ prebuilt_files = [
     'plist_gra.narc',
     'pmsi.narc',
     'poruact.narc',
-    'porudemo.narc',
     'pst_gra.narc',
     'ranking.narc',
     'record.narc',

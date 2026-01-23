@@ -106,9 +106,9 @@
 #include "battle_anim/struct_ov12_02237728.h"
 #include "battle_anim/struct_ov12_02237F38.h"
 #include "battle_anim/struct_ov12_022380DC.h"
-#include "overlay013/battle_bag.h"
-#include "overlay013/battle_bag_utils.h"
-#include "overlay013/battle_party.h"
+#include "battle_sub_menus/battle_bag.h"
+#include "battle_sub_menus/battle_bag_utils.h"
+#include "battle_sub_menus/battle_party.h"
 
 #include "assert.h"
 #include "bg_window.h"

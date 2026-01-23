@@ -935,7 +935,7 @@ static int SetupPoffinFeedConditionPage(PokemonSummaryScreen *summaryScreen)
             mon = PokemonSummaryScreen_MonData(summaryScreen);
         }
 
-        sub_02098EF8(summaryScreen->data->poffin, mon);
+        PoffinCase_UpdateMonContestStats(summaryScreen->data->poffin, mon);
 
         summaryScreen->pageState = STAT_INCREASE_NONE;
 

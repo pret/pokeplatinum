@@ -321,7 +321,7 @@
             "y": 0
         },
         {
-            "id": "SUNYSHORE_CITY_BARRY_20",
+            "id": "SUNYSHORE_CITY_RIVAL_20",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

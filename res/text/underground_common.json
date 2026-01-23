@@ -654,7 +654,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00112",
+      "id": "UndergroundCommon_Text_PlayerTalkedWithSomeone",
       "en_US": [
         "{STRVAR_1 3, 0, 0} talked with\n",
         "someone."

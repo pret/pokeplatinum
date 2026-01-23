@@ -1,0 +1,23 @@
+{
+  "key": 35804,
+  "messages": [
+    {
+      "id": "PoffinCutscene_Text_LikedPoffin",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} happily ate\n",
+        "the Poffin!"
+      ]
+    },
+    {
+      "id": "PoffinCutscene_Text_DislikedPoffin",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} disdainfully\n",
+        "ate the Poffin..."
+      ]
+    },
+    {
+      "id": "PoffinCutscene_Text_NeutralToPoffin",
+      "en_US": "{STRVAR_1 0, 0, 0} ate the Poffin."
+    }
+  ]
+}

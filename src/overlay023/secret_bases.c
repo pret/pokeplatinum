@@ -5,12 +5,12 @@
 
 #include "constants/field/map_prop.h"
 #include "constants/field_base_tiles.h"
-#include "constants/goods.h"
 #include "constants/heap.h"
 #include "constants/map_object.h"
-#include "constants/traps.h"
+#include "generated/goods.h"
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
+#include "generated/traps.h"
 
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
