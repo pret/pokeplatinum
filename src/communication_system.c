@@ -1889,7 +1889,7 @@ BOOL sub_02036314(void)
         return FALSE;
     }
 
-    return NintendoWFC_GetUpdateVoiceClients();
+    return NintendoWFC_GetVoiceChatEnabled();
 }
 
 void sub_0203632C(BOOL param0)
@@ -1919,9 +1919,9 @@ void sub_02036378(BOOL param0)
 
     if (CommLocal_IsWifiGroup(sub_0203895C())) {
         if (param0) {
-            ov4_021D2598(0);
+            NintendoWFC_SetVoiceChatEnabled_Battle(0);
         } else {
-            ov4_021D2598(1);
+            NintendoWFC_SetVoiceChatEnabled_Battle(1);
         }
     }
 }

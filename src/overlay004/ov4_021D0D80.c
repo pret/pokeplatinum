@@ -30,20 +30,20 @@ enum NintendoWFCState {
     WFC_STATE_INIT_LOGIN,
     WFC_STATE_WAIT_FOR_LOGIN,
     WFC_STATE_READY,
-    WFC_STATE_5,
-    WFC_STATE_6,
-    WFC_STATE_7,
-    WFC_STATE_8,
-    WFC_STATE_9,
-    WFC_STATE_10,
-    WFC_STATE_11,
+    WFC_STATE_WAIT_MATCHMAKING,
+    WFC_STATE_FORCE_CANCEL,
+    WFC_STATE_MATCHMAKING_SUCCESS,
+    WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS,
+    WFC_STATE_RESET_AFTER_DISCONNECT,
+    WFC_STATE_HOST_DISCONNECTED,
+    WFC_STATE_RESET_AFTER_HOST_LEFT,
     WFC_STATE_CONNECTION_ERROR,
-    WFC_STATE_13,
-    WFC_STATE_14,
-    WFC_STATE_15,
-    WFC_STATE_16,
-    WFC_STATE_17,
-    WFC_STATE_18,
+    WFC_STATE_UNUSED_13,
+    WFC_STATE_ERROR_DISCONNECTED,
+    WFC_STATE_FATAL_ERROR,
+    WFC_STATE_CLOSE_CONNECTION,
+    WFC_STATE_CONNECTION_CLOSED,
+    WFC_STATE_RECEIVE_TIMED_OUT,
 };
 
 enum NintendoWFCConnectionRole {
@@ -93,18 +93,18 @@ typedef struct NintendoWFCManager {
     int primaryHeapID;
     int secondaryHeapID;
     int heapSize;
-    BOOL voiceChatEnabled;
+    BOOL voiceChatActive;
     int hostFriendIdx;
     int latestNewClientFriendIdx;
-    BOOL updateVoiceClients;
+    BOOL voiceChatEnabled;
     BOOL unused_1094;
     int voiceChatCodec;
     int unk_109C;
     int clientUpdateTimers[8];
     int timer;
     int otherPlayersEnabledVoiceChat;
-    u16 voiceChatEnabled1;
-    u16 voiceChatEnabled3;
+    u16 inVoiceChatLobby;
+    u16 voiceChatEnabled_Battles;
     u32 matchmakingAIDBitmap;
     u8 packetsSent;
     u8 unused_10D1;
@@ -128,7 +128,7 @@ static void ReceiveCallback(u8 param0, u8 *param1, int param2);
 static void ConnectionClosedCallback(DWCError param0, BOOL param1, BOOL param2, u8 param3, int param4, void *param5);
 static int DummyPlayerEvalCallback(int param0, void *param1);
 static int ProcessConnectionForFrame(void);
-static void UserReceiveTimeoutCallback(u8 param0);
+static void ReceiveTimeoutCallback(u8 param0);
 static BOOL CanSendToAll(void);
 static void FreeReceiveBuffer(int param0);
 static void FreeAllReceiveBuffers(void);
@@ -174,14 +174,14 @@ int NintendoWFC_Init(SaveData *saveData, enum HeapID heapID, int heapSize, int m
     sNintendoWFCManager->voiceConnectedIDs = 0;
     sNintendoWFCManager->matchmakingAIDBitmap = 0;
     sNintendoWFCManager->latestNewClientFriendIdx = -1;
-    sNintendoWFCManager->updateVoiceClients = TRUE;
+    sNintendoWFCManager->voiceChatEnabled = TRUE;
     sNintendoWFCManager->dummy_10D2 = 0;
     sNintendoWFCManager->timer = 0;
     sNintendoWFCManager->packetsSent = 0;
     sNintendoWFCManager->unused_10D1 = 0;
-    sNintendoWFCManager->voiceChatEnabled1 = 1;
+    sNintendoWFCManager->inVoiceChatLobby = 1;
     sNintendoWFCManager->otherPlayersEnabledVoiceChat = 1;
-    sNintendoWFCManager->voiceChatEnabled3 = 1;
+    sNintendoWFCManager->voiceChatEnabled_Battles = 1;
 
     if (saveData != NULL) {
         sNintendoWFCManager->userData = WiFiList_GetUserData(SaveData_GetWiFiList(sNintendoWFCManager->saveData));
@@ -244,7 +244,7 @@ int NintendoWFC_ConnectToDWCServer()
         DWC_ConnectInetAsync();
 
         sNintendoWFCManager->state = WFC_STATE_WAIT_CONNECTION;
-        sNintendoWFCManager->voiceChatEnabled = FALSE;
+        sNintendoWFCManager->voiceChatActive = FALSE;
     }
     case WFC_STATE_WAIT_CONNECTION: {
         if (DWC_CheckInet()) {
@@ -340,7 +340,7 @@ BOOL NintendoWFC_StartPublicMatchmaking(u8 *matchmakingString, int maxPlayers, B
         DWC_AddMatchKeyString(1, (const char *)sNintendoWFCManager->ppwMatchKey, (const char *)sNintendoWFCManager->ppwMatchKey);
     }
 
-    sNintendoWFCManager->state = WFC_STATE_5;
+    sNintendoWFCManager->state = WFC_STATE_WAIT_MATCHMAKING;
     sNintendoWFCManager->maxPlayers = maxPlayers;
     DWC_ConnectToAnybodyAsync(maxPlayers, (const char *)sNintendoWFCManager->ppwMatchKey, MatchmakingLobbyMatchedCallback, NULL, DummyPlayerEvalCallback, NULL);
     sNintendoWFCManager->connectionRole = 0;
@@ -348,7 +348,7 @@ BOOL NintendoWFC_StartPublicMatchmaking(u8 *matchmakingString, int maxPlayers, B
     DWC_SetUserSendCallback(SendCallback);
     DWC_SetUserRecvCallback(ReceiveCallback);
     DWC_SetConnectionClosedCallback(ConnectionClosedCallback, NULL);
-    DWC_SetUserRecvTimeoutCallback(UserReceiveTimeoutCallback);
+    DWC_SetUserRecvTimeoutCallback(ReceiveTimeoutCallback);
 
     sNintendoWFCManager->dataSent = 0;
     sNintendoWFCManager->disconnectIfAlone = TRUE;
@@ -356,69 +356,68 @@ BOOL NintendoWFC_StartPublicMatchmaking(u8 *matchmakingString, int maxPlayers, B
     return TRUE;
 }
 
-static void ov4_021D12B4()
+static void SetWFCStateToReset()
 {
-    if (sNintendoWFCManager->state == WFC_STATE_10) {
-        sNintendoWFCManager->state = WFC_STATE_11;
+    if (sNintendoWFCManager->state == WFC_STATE_HOST_DISCONNECTED) {
+        sNintendoWFCManager->state = WFC_STATE_RESET_AFTER_HOST_LEFT;
     } else {
-        sNintendoWFCManager->state = WFC_STATE_9;
+        sNintendoWFCManager->state = WFC_STATE_RESET_AFTER_DISCONNECT;
     }
 }
 
-int NintendoWFC_Main(BOOL param0)
+int NintendoWFC_Process(BOOL cancelConnection)
 {
     switch (sNintendoWFCManager->state) {
-    case WFC_STATE_5:
-        if (param0) {
-            sNintendoWFCManager->state = WFC_STATE_6;
+    case WFC_STATE_WAIT_MATCHMAKING:
+        if (cancelConnection) {
+            sNintendoWFCManager->state = WFC_STATE_FORCE_CANCEL;
         }
 
         if (sNintendoWFCManager->connectionRole == WFC_CONNECTION_CLIENT
             && sNintendoWFCManager->hostFriendIdx >= 0
             && sNintendoWFCManager->friendConnStatus[sNintendoWFCManager->hostFriendIdx] != DWC_STATUS_MATCH_SC_SV) {
-            sNintendoWFCManager->state = WFC_STATE_10;
+            sNintendoWFCManager->state = WFC_STATE_HOST_DISCONNECTED;
         }
 
         break;
-    case WFC_STATE_6:
-    case WFC_STATE_10:
+    case WFC_STATE_FORCE_CANCEL:
+    case WFC_STATE_HOST_DISCONNECTED:
         if (sNintendoWFCManager->connectionRole == WFC_CONNECTION_NONE) {
             DWC_CancelMatching();
         } else {
             DWC_CloseAllConnectionsHard();
-            ov4_021D12B4();
+            SetWFCStateToReset();
         }
         break;
-    case WFC_STATE_7: {
+    case WFC_STATE_MATCHMAKING_SUCCESS:
         if (!sub_0203272C(sub_0203895C())) {
             NintendoWFC_StartVoiceChat(sNintendoWFCManager->primaryHeapID);
         }
 
-        if (sNintendoWFCManager->updateVoiceClients) {
-            sNintendoWFCManager->voiceChatEnabled1 = TRUE;
+        if (sNintendoWFCManager->voiceChatEnabled) {
+            sNintendoWFCManager->inVoiceChatLobby = TRUE;
         } else {
-            sNintendoWFCManager->voiceChatEnabled1 = FALSE;
+            sNintendoWFCManager->inVoiceChatLobby = FALSE;
         }
 
-        sNintendoWFCManager->state = WFC_STATE_8;
+        sNintendoWFCManager->state = WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS;
         return NINTENDO_WFC_RESULT_0;
-    } break;
-    case WFC_STATE_9:
+    case WFC_STATE_RESET_AFTER_DISCONNECT:
         sNintendoWFCManager->state = WFC_STATE_READY;
         sNintendoWFCManager->dataSent = FALSE;
         sNintendoWFCManager->latestNewClientFriendIdx = -1;
         return NINTENDO_WFC_RESULT_1;
-    case WFC_STATE_11:
+    case WFC_STATE_RESET_AFTER_HOST_LEFT:
         sNintendoWFCManager->state = WFC_STATE_READY;
         sNintendoWFCManager->dataSent = FALSE;
         sNintendoWFCManager->latestNewClientFriendIdx = -1;
         return NINTENDO_WFC_RESULT_2;
     case WFC_STATE_CONNECTION_ERROR:
         return NintendoWFC_HandleError();
-    case WFC_STATE_16:
-        if (sNintendoWFCManager->voiceChatEnabled == FALSE) {
+    case WFC_STATE_CLOSE_CONNECTION:
+        if (sNintendoWFCManager->voiceChatActive == FALSE) {
             DWC_CloseAllConnectionsHard();
-            sNintendoWFCManager->state = WFC_STATE_17;
+            sNintendoWFCManager->state = WFC_STATE_CONNECTION_CLOSED;
             break;
         }
     default:
@@ -450,7 +449,7 @@ BOOL NintendoWFC_SendData_Server(void *data, int size)
             return FALSE;
         }
 
-        *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+        *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->inVoiceChatLobby << 8);
         sNintendoWFCManager->sendBuffer[2] = ++sNintendoWFCManager->packetsSent;
 
         MI_CpuCopy8(data, &(sNintendoWFCManager->sendBuffer[4]), size);
@@ -476,7 +475,7 @@ int NintendoWFC_SendData_Client(void *data, int size)
         return FALSE;
     }
 
-    *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+    *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->inVoiceChatLobby << 8);
     sNintendoWFCManager->sendBuffer[2] = ++sNintendoWFCManager->packetsSent;
     MI_CpuCopy8(data, &(sNintendoWFCManager->sendBuffer[4]), size);
     sNintendoWFCManager->dataSent = TRUE;
@@ -505,7 +504,7 @@ BOOL NintendoWFC_SendData(void *param0, int param1)
         return FALSE;
     }
 
-    *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+    *((u32 *)sNintendoWFCManager->sendBuffer) = 0x1 | (sNintendoWFCManager->inVoiceChatLobby << 8);
     sNintendoWFCManager->sendBuffer[2] = ++sNintendoWFCManager->packetsSent;
     MI_CpuCopy8(param0, &(sNintendoWFCManager->sendBuffer[4]), param1);
     sNintendoWFCManager->dataSent = 1;
@@ -547,12 +546,12 @@ static void LoginCompleteCallback(DWCError error, int profileID, void *extraPara
     }
 }
 
-static void UserReceiveTimeoutCallback(u8 param0)
+static void ReceiveTimeoutCallback(u8 param0)
 {
     if (sNintendoWFCManager->unk_109C) {
         DWC_CloseAllConnectionsHard();
         sNintendoWFCManager->latestNewClientFriendIdx = -1;
-        sNintendoWFCManager->state = WFC_STATE_18;
+        sNintendoWFCManager->state = WFC_STATE_RECEIVE_TIMED_OUT;
     }
 }
 
@@ -588,19 +587,19 @@ static void ClearAllClientUpdateTimers(void)
     MI_CpuClear8(sNintendoWFCManager->clientUpdateTimers, sizeof(sNintendoWFCManager->clientUpdateTimers));
 }
 
-static void ov4_021D17C0(void)
+static void ResetTimeoutTimers(void)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        DWC_SetRecvTimeoutTime(v0, 0);
+    for (i = 0; i < 4; i++) {
+        DWC_SetRecvTimeoutTime(i, 0);
     }
 
     if (DWC_GetMyAID() == 0) {
-        for (v0 = 0; v0 < sNintendoWFCManager->maxPlayers; v0++) {
-            if (DWC_GetMyAID() != v0) {
-                if (DWC_GetAIDBitmap() & (0x1 << v0)) {
-                    GF_ASSERT(DWC_SetRecvTimeoutTime(v0, 10 * 1000));
+        for (i = 0; i < sNintendoWFCManager->maxPlayers; i++) {
+            if (DWC_GetMyAID() != i) {
+                if (DWC_GetAIDBitmap() & (0x1 << i)) {
+                    GF_ASSERT(DWC_SetRecvTimeoutTime(i, 10 * 1000));
                 }
             }
         }
@@ -612,11 +611,11 @@ static void ov4_021D17C0(void)
     ClearAllClientUpdateTimers();
 }
 
-static void ov4_021D1854(int unused)
+static void CreateAllReceiveBuffers(int unused)
 {
     int v0, v1;
 
-    sNintendoWFCManager->state = WFC_STATE_7;
+    sNintendoWFCManager->state = WFC_STATE_MATCHMAKING_SUCCESS;
 
     for (v0 = 0, v1 = 0; v0 < sNintendoWFCManager->maxPlayers; v0++) {
         if (DWC_GetMyAID() != v0) {
@@ -624,16 +623,16 @@ static void ov4_021D1854(int unused)
         }
     }
 
-    ov4_021D17C0();
+    ResetTimeoutTimers();
 }
 
-static void MatchmakingLobbyMatchedCallback(DWCError param0, BOOL param1, void *param2)
+static void MatchmakingLobbyMatchedCallback(DWCError error, BOOL canceled, void *extraParam)
 {
-    if (param0 == DWC_ERROR_NONE) {
-        if (!param1) {
-            ov4_021D1854(1 - DWC_GetMyAID());
+    if (error == DWC_ERROR_NONE) {
+        if (!canceled) {
+            CreateAllReceiveBuffers(1 - DWC_GetMyAID());
         } else {
-            ov4_021D12B4();
+            SetWFCStateToReset();
         }
     } else {
         sNintendoWFCManager->state = WFC_STATE_CONNECTION_ERROR;
@@ -718,11 +717,11 @@ static void ConnectionClosedCallback(DWCError param0, BOOL param1, BOOL param2, 
 
     if (param0 == DWC_ERROR_NONE) {
         if (sNintendoWFCManager->disconnectIfAlone == TRUE && DWC_GetNumConnectionHost() == 1) {
-            if (sNintendoWFCManager->state != WFC_STATE_6) {
-                sNintendoWFCManager->state = WFC_STATE_16;
+            if (sNintendoWFCManager->state != WFC_STATE_FORCE_CANCEL) {
+                sNintendoWFCManager->state = WFC_STATE_CLOSE_CONNECTION;
             }
 
-            if (sNintendoWFCManager->voiceChatEnabled) {
+            if (sNintendoWFCManager->voiceChatActive) {
                 NintendoWFC_TerminateVoiceChat();
             }
         }
@@ -816,15 +815,15 @@ int NintendoWFC_HandleError(void)
                 switch (sNintendoWFCManager->state) {
                 case WFC_STATE_WAIT_FOR_LOGIN:
                 case WFC_STATE_READY:
-                case WFC_STATE_5:
-                case WFC_STATE_6:
-                case WFC_STATE_7:
-                case WFC_STATE_8:
-                case WFC_STATE_9:
+                case WFC_STATE_WAIT_MATCHMAKING:
+                case WFC_STATE_FORCE_CANCEL:
+                case WFC_STATE_MATCHMAKING_SUCCESS:
+                case WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS:
+                case WFC_STATE_RESET_AFTER_DISCONNECT:
                 case WFC_STATE_CONNECTION_ERROR:
-                case WFC_STATE_18:
-                case WFC_STATE_16:
-                case WFC_STATE_17:
+                case WFC_STATE_RECEIVE_TIMED_OUT:
+                case WFC_STATE_CLOSE_CONNECTION:
+                case WFC_STATE_CONNECTION_CLOSED:
                     DWC_ShutdownFriendsMatch();
                 case WFC_STATE_INIT:
                 case WFC_STATE_WAIT_CONNECTION:
@@ -840,12 +839,12 @@ int NintendoWFC_HandleError(void)
             }
 
             if (sNintendoWFCManager) {
-                sNintendoWFCManager->state = WFC_STATE_14;
+                sNintendoWFCManager->state = WFC_STATE_ERROR_DISCONNECTED;
             }
             break;
         case DWC_ETYPE_FATAL:
             if (sNintendoWFCManager) {
-                sNintendoWFCManager->state = WFC_STATE_15;
+                sNintendoWFCManager->state = WFC_STATE_FATAL_ERROR;
 
                 if (sNintendoWFCManager->fatalErrorCallback != NULL) {
                     sNintendoWFCManager->fatalErrorCallback(-errorCode);
@@ -892,7 +891,7 @@ static BOOL SendHeaderToConnectedClients(int timerIDx)
 {
     if (sNintendoWFCManager->dataSent == 0 && CanSendToAll() && ((u16)~1 & DWC_GetAIDBitmap())) {
         sNintendoWFCManager->dataSent = 1;
-        *(u32 *)sNintendoWFCManager->sendBuffer = 0x2 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+        *(u32 *)sNintendoWFCManager->sendBuffer = 0x2 | (sNintendoWFCManager->inVoiceChatLobby << 8);
 
         DWC_SendReliableBitmap(DWC_GetAIDBitmap(), sNintendoWFCManager->sendBuffer, 4);
 
@@ -911,8 +910,8 @@ static int ProcessConnectionForFrame(void)
     DWC_ProcessFriendsMatch();
     GetNextFriendStatus();
 
-    if (sNintendoWFCManager->voiceChatEnabled) {
-        if ((sNintendoWFCManager->voiceChatEnabled1 == 1) && (sNintendoWFCManager->otherPlayersEnabledVoiceChat == 1) && (sNintendoWFCManager->voiceChatEnabled3 == 1)) {
+    if (sNintendoWFCManager->voiceChatActive) {
+        if ((sNintendoWFCManager->inVoiceChatLobby == 1) && (sNintendoWFCManager->otherPlayersEnabledVoiceChat == 1) && (sNintendoWFCManager->voiceChatEnabled_Battles == 1)) {
             VoiceChat_Enable();
         } else {
             VoiceChat_Disable();
@@ -921,7 +920,7 @@ static int ProcessConnectionForFrame(void)
         VoiceChat_Main();
 
         if (sNintendoWFCManager->voiceConnectedIDs != DWC_GetAIDBitmap()) {
-            if (!sNintendoWFCManager->dummy_10D3 && sNintendoWFCManager->updateVoiceClients) {
+            if (!sNintendoWFCManager->dummy_10D3 && sNintendoWFCManager->voiceChatEnabled) {
                 if (VoiceChat_AddConferenceClients(DWC_GetAIDBitmap(), DWC_GetMyAID())) {
                     sNintendoWFCManager->voiceConnectedIDs = DWC_GetAIDBitmap();
                 }
@@ -929,7 +928,7 @@ static int ProcessConnectionForFrame(void)
         }
     }
 
-    if (sNintendoWFCManager->state == WFC_STATE_18) {
+    if (sNintendoWFCManager->state == WFC_STATE_RECEIVE_TIMED_OUT) {
         error = NintendoWFC_HandleError();
 
         if (error != 0) {
@@ -939,11 +938,11 @@ static int ProcessConnectionForFrame(void)
         return NINTENDO_WFC_RESULT_3;
     }
 
-    if (sNintendoWFCManager->state == WFC_STATE_17) {
+    if (sNintendoWFCManager->state == WFC_STATE_CONNECTION_CLOSED) {
         return NINTENDO_WFC_RESULT_4;
     }
 
-    if ((sNintendoWFCManager->state == WFC_STATE_7) || (sNintendoWFCManager->state == WFC_STATE_8)) {
+    if ((sNintendoWFCManager->state == WFC_STATE_MATCHMAKING_SUCCESS) || (sNintendoWFCManager->state == WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS)) {
         for (i = 0; i < sNintendoWFCManager->maxPlayers; i++) {
             if (sNintendoWFCManager->clientUpdateTimers[i]++ >= 120 && sNintendoWFCManager->dataSent == FALSE) {
                 if (SendHeaderToConnectedClients(i)) {
@@ -960,7 +959,7 @@ static int ProcessConnectionForFrame(void)
 int NintendoWFC_GetNetID()
 {
     if (sNintendoWFCManager) {
-        if ((sNintendoWFCManager->state == WFC_STATE_7) || (sNintendoWFCManager->state == WFC_STATE_8) || (sNintendoWFCManager->state == WFC_STATE_16)) {
+        if ((sNintendoWFCManager->state == WFC_STATE_MATCHMAKING_SUCCESS) || (sNintendoWFCManager->state == WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS) || (sNintendoWFCManager->state == WFC_STATE_CLOSE_CONNECTION)) {
             return DWC_GetMyAID();
         }
     }
@@ -970,7 +969,7 @@ int NintendoWFC_GetNetID()
 
 static void DisableVoiceChat()
 {
-    sNintendoWFCManager->voiceChatEnabled = FALSE;
+    sNintendoWFCManager->voiceChatActive = FALSE;
 }
 
 void NintendoWFC_StartVoiceChat(enum HeapID heapID)
@@ -986,12 +985,12 @@ void NintendoWFC_StartVoiceChat(enum HeapID heapID)
             v1 = 1;
         }
 
-        sNintendoWFCManager->voiceChatEnabled1 = TRUE;
+        sNintendoWFCManager->inVoiceChatLobby = TRUE;
         sNintendoWFCManager->otherPlayersEnabledVoiceChat = TRUE;
-        sNintendoWFCManager->voiceChatEnabled3 = TRUE;
+        sNintendoWFCManager->voiceChatEnabled_Battles = TRUE;
     }
 
-    if (sNintendoWFCManager->voiceChatEnabled == FALSE) {
+    if (sNintendoWFCManager->voiceChatActive == FALSE) {
         switch (sNintendoWFCManager->voiceChatCodec) {
         case 2:
             v0 = VCT_CODEC_G711_ULAW;
@@ -1017,7 +1016,7 @@ void NintendoWFC_StartVoiceChat(enum HeapID heapID)
         VoiceChat_Start(heapID, v0, v1);
         VoiceChat_SetCleanupCallback(DisableVoiceChat);
 
-        sNintendoWFCManager->voiceChatEnabled = TRUE;
+        sNintendoWFCManager->voiceChatActive = TRUE;
     }
 }
 
@@ -1026,7 +1025,7 @@ void NintendoWFC_TerminateVoiceChat(void)
     VoiceChat_Stop();
 
     if (sNintendoWFCManager != NULL) {
-        sNintendoWFCManager->voiceChatEnabled = FALSE;
+        sNintendoWFCManager->voiceChatActive = FALSE;
         sNintendoWFCManager->voiceConnectedIDs = 0;
     }
 }
@@ -1152,23 +1151,23 @@ int NintendoWFC_GetErrorCode(int param0, int param1)
     return -1;
 }
 
-BOOL ov4_021D20B0(BOOL param0)
+BOOL NintendoWFC_EndConnection(BOOL isClient)
 {
-    if (param0 == FALSE) {
+    if (isClient == FALSE) {
         switch (sNintendoWFCManager->state) {
-        case WFC_STATE_5:
-        case WFC_STATE_7:
-        case WFC_STATE_8:
-            if (sNintendoWFCManager->voiceChatEnabled) {
+        case WFC_STATE_WAIT_MATCHMAKING:
+        case WFC_STATE_MATCHMAKING_SUCCESS:
+        case WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS:
+            if (sNintendoWFCManager->voiceChatActive) {
                 VoiceChat_RequestEnd();
             }
 
-            sNintendoWFCManager->state = WFC_STATE_16;
+            sNintendoWFCManager->state = WFC_STATE_CLOSE_CONNECTION;
             break;
         case WFC_STATE_READY:
-        case WFC_STATE_14:
-        case WFC_STATE_17:
-        case WFC_STATE_18:
+        case WFC_STATE_ERROR_DISCONNECTED:
+        case WFC_STATE_CONNECTION_CLOSED:
+        case WFC_STATE_RECEIVE_TIMED_OUT:
             return TRUE;
         default:
             break;
@@ -1176,8 +1175,8 @@ BOOL ov4_021D20B0(BOOL param0)
     } else {
         switch (sNintendoWFCManager->state) {
         case WFC_STATE_READY:
-        case WFC_STATE_17:
-        case WFC_STATE_18:
+        case WFC_STATE_CONNECTION_CLOSED:
+        case WFC_STATE_RECEIVE_TIMED_OUT:
             return TRUE;
         default:
             break;
@@ -1187,9 +1186,9 @@ BOOL ov4_021D20B0(BOOL param0)
     return FALSE;
 }
 
-BOOL ov4_021D2134()
+BOOL NintendoWFC_ReturnToReadyState(void)
 {
-    if ((sNintendoWFCManager->state == WFC_STATE_17) || (sNintendoWFCManager->state == WFC_STATE_18) || (sNintendoWFCManager->state == WFC_STATE_READY)) {
+    if ((sNintendoWFCManager->state == WFC_STATE_CONNECTION_CLOSED) || (sNintendoWFCManager->state == WFC_STATE_RECEIVE_TIMED_OUT) || (sNintendoWFCManager->state == WFC_STATE_READY)) {
         sNintendoWFCManager->state = WFC_STATE_READY;
         sNintendoWFCManager->latestNewClientFriendIdx = -1;
         NintendoWFC_ResetMatchmakingCancelState();
@@ -1297,12 +1296,12 @@ int NintendoWFC_StartConnectionWithFriends(int hostFriendIdx, int maxParties, BO
     }
 
     sNintendoWFCManager->timer = 0;
-    sNintendoWFCManager->state = WFC_STATE_5;
+    sNintendoWFCManager->state = WFC_STATE_WAIT_MATCHMAKING;
 
     DWC_SetUserSendCallback(SendCallback);
     DWC_SetUserRecvCallback(ReceiveCallback);
     DWC_SetConnectionClosedCallback(ConnectionClosedCallback, NULL);
-    DWC_SetUserRecvTimeoutCallback(UserReceiveTimeoutCallback);
+    DWC_SetUserRecvTimeoutCallback(ReceiveTimeoutCallback);
 
     sNintendoWFCManager->dataSent = FALSE;
 
@@ -1345,7 +1344,7 @@ static void MatchmakingHostMatchedCallback(DWCError error, BOOL cancelled, BOOL 
 
                     // Only this host console is still connected
                     if ((newConnections ^ connections) == 0x1) {
-                        sNintendoWFCManager->state = WFC_STATE_6;
+                        sNintendoWFCManager->state = WFC_STATE_FORCE_CANCEL;
                     }
 
                     return;
@@ -1356,9 +1355,9 @@ static void MatchmakingHostMatchedCallback(DWCError error, BOOL cancelled, BOOL 
             sNintendoWFCManager->matchmakingAIDBitmap = DWC_GetAIDBitmap();
 
             if (sNintendoWFCManager->matchmakingAIDBitmap == 0x1) {
-                sNintendoWFCManager->state = WFC_STATE_6;
+                sNintendoWFCManager->state = WFC_STATE_FORCE_CANCEL;
             } else {
-                ov4_021D1854(hostFriendIdx);
+                CreateAllReceiveBuffers(hostFriendIdx);
             }
         } else if (!isThisConsole) {
             sNintendoWFCManager->latestNewClientFriendIdx = WFC_NOT_A_FRIEND;
@@ -1372,7 +1371,7 @@ static void MatchmakingClientMatchedCallback(DWCError error, BOOL cancelled, BOO
     sNintendoWFCManager->unused_1094 = 0;
 
     if (error == DWC_ERROR_NONE && !cancelled) {
-        ov4_021D1854(hostFriendIdx);
+        CreateAllReceiveBuffers(hostFriendIdx);
     }
 }
 
@@ -1408,10 +1407,10 @@ BOOL NintendoWFC_IsPlayerSpeaking(void)
     return VoiceChat_DetectVoice();
 }
 
-BOOL NintendoWFC_GetUpdateVoiceClients(void)
+BOOL NintendoWFC_GetVoiceChatEnabled(void)
 {
     if (sNintendoWFCManager) {
-        return sNintendoWFCManager->updateVoiceClients;
+        return sNintendoWFCManager->voiceChatEnabled;
     }
 
     return FALSE;
@@ -1426,25 +1425,25 @@ int NintendoWFC_GetLatestNewClientFriendIdx(void)
     return 0;
 }
 
-void NintendoWFC_SetUpdateVoiceClients(BOOL param0)
+void NintendoWFC_SetVoiceChatEnabled(BOOL param0)
 {
-    sNintendoWFCManager->updateVoiceClients = param0;
+    sNintendoWFCManager->voiceChatEnabled = param0;
 }
 
 static void SendHeader()
 {
     if (sNintendoWFCManager->dataSent || !CanSendToAll()) {
         sNintendoWFCManager->dataSent = 1;
-        *((u32 *)sNintendoWFCManager->sendBuffer) = 0x2 | (sNintendoWFCManager->voiceChatEnabled1 << 8);
+        *((u32 *)sNintendoWFCManager->sendBuffer) = 0x2 | (sNintendoWFCManager->inVoiceChatLobby << 8);
 
         DWC_SendReliableBitmap(DWC_GetAIDBitmap(), sNintendoWFCManager->sendBuffer, 4);
         ClearAllClientUpdateTimers();
     }
 }
 
-void ov4_021D2598(BOOL param0)
+void NintendoWFC_SetVoiceChatEnabled_Battle(BOOL param0)
 {
-    sNintendoWFCManager->voiceChatEnabled3 = param0;
+    sNintendoWFCManager->voiceChatEnabled_Battles = param0;
 }
 
 static void MatchmakingCancelCallback(void *param0)
@@ -1472,7 +1471,7 @@ int NintendoWFC_GetNumConnections(void)
     return DWC_GetNumConnectionHost();
 }
 
-void ov4_021D2618(BOOL create, enum HeapID heapID)
+void NintendoWFC_ManageSecondaryHeap(BOOL create, enum HeapID heapID)
 {
     if (create) {
         sNintendoWFCManager->secondaryHeapID = HEAP_ID_FIELD2;

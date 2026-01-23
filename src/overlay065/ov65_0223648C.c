@@ -1095,7 +1095,7 @@ static BOOL ov65_0223731C(UnkStruct_ov65_022367A8 *param0, u32 param1)
     param0->unk_00.unk_00->unk_00.unk_22 = 1 - param0->unk_00.unk_00->unk_00.unk_22;
     param0->unk_00.unk_00->unk_00.unk_21 = param0->unk_00.unk_00->unk_00.unk_22;
 
-    NintendoWFC_SetUpdateVoiceClients(param0->unk_00.unk_00->unk_00.unk_21);
+    NintendoWFC_SetVoiceChatEnabled(param0->unk_00.unk_00->unk_00.unk_21);
     NintendoWFC_SetStatusData(&(param0->unk_00.unk_00->unk_00), sizeof(UnkStruct_0207E060));
 
     if (param0->unk_00.unk_00->unk_00.unk_21 == 1) {

@@ -2393,7 +2393,7 @@ static int ov65_0223012C(UnkStruct_ov65_0222EBE0 *param0)
 static BOOL ov65_02230140(UnkStruct_ov65_0222EBE0 *param0)
 {
     if (NintendoWFC_GetLatestNewClientFriendIdx() != WFC_NOT_A_FRIEND) {
-        NintendoWFC_SetUpdateVoiceClients(param0->unk_04->unk_00.unk_21);
+        NintendoWFC_SetVoiceChatEnabled(param0->unk_04->unk_00.unk_21);
         return 1;
     }
 
@@ -2566,10 +2566,10 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         param0->unk_3D0 = NintendoWFC_GetLatestNewClientFriendIdx();
         ov65_02232DC0(param0, param0->unk_3D0);
         ov65_02232B58(param0, 76, 0);
-        NintendoWFC_SetUpdateVoiceClients(param0->unk_04->unk_00.unk_21);
+        NintendoWFC_SetVoiceChatEnabled(param0->unk_04->unk_00.unk_21);
         param0->unk_3A4 = 0;
     } else if ((param0->unk_3D0 != -1) && (NintendoWFC_GetLatestNewClientFriendIdx() == WFC_NOT_A_FRIEND)) {
-        NintendoWFC_SetUpdateVoiceClients(0);
+        NintendoWFC_SetVoiceChatEnabled(0);
         ov65_02232DC0(param0, param0->unk_3D0);
         ov65_02232B58(param0, 18, 0);
         sub_02038378();
@@ -2577,8 +2577,8 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if ((NintendoWFC_GetUpdateVoiceClients() == 1) && (NintendoWFC_GetLatestNewClientFriendIdx() == WFC_NOT_A_FRIEND)) {
-        NintendoWFC_SetUpdateVoiceClients(0);
+    if ((NintendoWFC_GetVoiceChatEnabled() == 1) && (NintendoWFC_GetLatestNewClientFriendIdx() == WFC_NOT_A_FRIEND)) {
+        NintendoWFC_SetVoiceChatEnabled(0);
     }
 
     v4 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
@@ -3027,7 +3027,7 @@ static int ov65_02230D6C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     ov65_022355FC(&param0->unk_3EC);
 
     if ((param0->unk_3D0 == -1) && (NintendoWFC_GetLatestNewClientFriendIdx() != WFC_NOT_A_FRIEND)) {
-        NintendoWFC_SetUpdateVoiceClients(param0->unk_04->unk_00.unk_21);
+        NintendoWFC_SetVoiceChatEnabled(param0->unk_04->unk_00.unk_21);
 
         if (v1 == 0xffffffff) {
             Menu_DestroyForExit(param0->unk_184, 54);
@@ -3736,7 +3736,7 @@ static void ov65_02231A0C(void)
 {
     u32 bgmID;
 
-    NintendoWFC_SetUpdateVoiceClients(0);
+    NintendoWFC_SetVoiceChatEnabled(0);
 
     if (ov65_02231A54() == 0) {
         if (IsNight() == FALSE) {
@@ -4778,7 +4778,7 @@ static void ov65_02232E70(UnkStruct_ov65_0222EBE0 *param0, int param1)
         } else if (param1 == 1) {
             Sound_FadeOutBGM(0, 30);
         } else if (param1 == 16) {
-            NintendoWFC_SetUpdateVoiceClients(0);
+            NintendoWFC_SetVoiceChatEnabled(0);
 
             if (ov65_02231A54() == 1) {
                 Sound_FadeInBGM(120, 30, BGM_FADE_IN_TYPE_FROM_CURRENT);
@@ -6118,12 +6118,12 @@ static u8 ov65_02234FC4(int param0)
 static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param2)
 {
     CommTool_Init(15);
-    NintendoWFC_SetUpdateVoiceClients(param0->unk_04->unk_00.unk_21);
+    NintendoWFC_SetVoiceChatEnabled(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {
-        ov4_021D2618(1, HEAP_ID_PARTY_MENU1);
+        NintendoWFC_ManageSecondaryHeap(1, HEAP_ID_PARTY_MENU1);
     } else {
-        ov4_021D2618(0, HEAP_ID_PARTY_MENU1);
+        NintendoWFC_ManageSecondaryHeap(0, HEAP_ID_PARTY_MENU1);
     }
 
     sub_0209C3AC();

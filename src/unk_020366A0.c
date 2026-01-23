@@ -1694,7 +1694,7 @@ static void sub_02037EB0(void)
 
 static void sub_02037EB4(void)
 {
-    int v0 = NintendoWFC_Main(0);
+    int v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -1719,7 +1719,7 @@ static void sub_02037ED8(void)
 
     CommSys_SetWifiConnected(1);
 
-    v0 = NintendoWFC_Main(0);
+    v0 = NintendoWFC_Process(0);
 
     if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
         sub_02036C94(sub_02037ED4, 0);
@@ -1767,7 +1767,7 @@ void sub_02037F94(int param0, int param1, int param2)
 
 static void sub_02037FBC(void)
 {
-    int v0 = NintendoWFC_Main(0);
+    int v0 = NintendoWFC_Process(0);
 
     if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
         sub_02036C94(sub_02037ED4, 0);
@@ -1786,7 +1786,7 @@ static void sub_02037FBC(void)
 
 static void sub_0203802C(void)
 {
-    int v0 = NintendoWFC_Main(1);
+    int v0 = NintendoWFC_Process(1);
 
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -1898,8 +1898,8 @@ static void sub_020381F0(void)
 
     CommSys_SetWifiConnected(0);
 
-    if (ov4_021D20B0(Unk_021C07D4->unk_4C)) {
-        if (ov4_021D2134()) {
+    if (NintendoWFC_EndConnection(Unk_021C07D4->unk_4C)) {
+        if (NintendoWFC_ReturnToReadyState()) {
             CommInfo_Delete();
 
             sub_02036C94(sub_02038164, 0);
@@ -1907,7 +1907,7 @@ static void sub_020381F0(void)
         }
     }
 
-    v0 = NintendoWFC_Main(0);
+    v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -1978,12 +1978,12 @@ static void sub_02038314(void)
 
     CommSys_SetWifiConnected(0);
 
-    if (ov4_021D20B0(0)) {
-        ov4_021D2134();
+    if (NintendoWFC_EndConnection(0)) {
+        NintendoWFC_ReturnToReadyState();
         sub_02036C94(sub_020373B8, 0);
     }
 
-    v0 = NintendoWFC_Main(0);
+    v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -2537,7 +2537,7 @@ static void sub_02038BA8(void)
         NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
-        NintendoWFC_SetUpdateVoiceClients(0);
+        NintendoWFC_SetVoiceChatEnabled(0);
         sub_0203632C(0);
         sub_02036C94(sub_0203862C, (30 * 60 * 2));
     }
@@ -2639,7 +2639,7 @@ static BOOL sub_02038D44(void)
     int v0;
     BOOL v1;
 
-    v0 = NintendoWFC_Main(0);
+    v0 = NintendoWFC_Process(0);
 
     v1 = sub_02038C74(v0);
 
@@ -2656,7 +2656,7 @@ static BOOL sub_02038D5C(u32 *param0)
     int v0;
     BOOL v1;
 
-    v0 = NintendoWFC_Main(0);
+    v0 = NintendoWFC_Process(0);
 
     if (v0 >= NINTENDO_WFC_RESULT_0) {
         *param0 = v0;
@@ -2684,7 +2684,7 @@ static void sub_02038D94(void)
 {
     BOOL v0;
 
-    NintendoWFC_Main(0);
+    NintendoWFC_Process(0);
     sub_02038D10();
 
     v0 = ov66_02232854();
@@ -2747,7 +2747,7 @@ static void sub_02038DEC(void)
 static void sub_02038E38(void)
 {
     BOOL v0;
-    int v1 = NintendoWFC_Main(1);
+    int v1 = NintendoWFC_Process(1);
 
     if (v1 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -2760,8 +2760,8 @@ static void sub_02038E38(void)
         return;
     }
 
-    if (ov4_021D20B0(0)) {
-        v1 = ov4_021D2134();
+    if (NintendoWFC_EndConnection(0)) {
+        v1 = NintendoWFC_ReturnToReadyState();
 
         if (v1) {
             CommSys_Reset();
@@ -2773,7 +2773,7 @@ static void sub_02038E38(void)
 
 static void sub_02038E84(void)
 {
-    int v0 = NintendoWFC_Main(0);
+    int v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
