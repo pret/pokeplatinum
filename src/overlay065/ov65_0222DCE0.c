@@ -2326,7 +2326,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
         }
     }
 
-    NintendoWFC_SetHostMAtchCallback(sub_0207DFAC);
+    NintendoWFC_SetHostMatchCallback(sub_0207DFAC);
 
     inline_ov96_0223BDEC(&param0->unk_E2C, 0);
 
