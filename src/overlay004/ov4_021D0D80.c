@@ -401,17 +401,17 @@ int NintendoWFC_Process(BOOL cancelConnection)
         }
 
         sNintendoWFCManager->state = WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS;
-        return NINTENDO_WFC_RESULT_0;
+        return NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS;
     case WFC_STATE_RESET_AFTER_DISCONNECT:
         sNintendoWFCManager->state = WFC_STATE_READY;
         sNintendoWFCManager->dataSent = FALSE;
         sNintendoWFCManager->latestNewClientFriendIdx = -1;
-        return NINTENDO_WFC_RESULT_1;
+        return NINTENDO_WFC_RESULT_CONN_RESET;
     case WFC_STATE_RESET_AFTER_HOST_LEFT:
         sNintendoWFCManager->state = WFC_STATE_READY;
         sNintendoWFCManager->dataSent = FALSE;
         sNintendoWFCManager->latestNewClientFriendIdx = -1;
-        return NINTENDO_WFC_RESULT_2;
+        return NINTENDO_WFC_RESULT_CONN_RESET_AFTER_HOST_LEFT;
     case WFC_STATE_CONNECTION_ERROR:
         return NintendoWFC_HandleError();
     case WFC_STATE_CLOSE_CONNECTION:
@@ -855,7 +855,7 @@ int NintendoWFC_HandleError(void)
     }
 
     if (sNintendoWFCManager->dummy_10D2) {
-        ret = NINTENDO_WFC_RESULT_6;
+        ret = NINTENDO_WFC_RESULT_DUMMY_6;
     }
 
     if (error != 0) {
@@ -935,11 +935,11 @@ static int ProcessConnectionForFrame(void)
             return error;
         }
 
-        return NINTENDO_WFC_RESULT_3;
+        return NINTENDO_WFC_RESULT_RECEIVE_TIMED_OUT;
     }
 
     if (sNintendoWFCManager->state == WFC_STATE_CONNECTION_CLOSED) {
-        return NINTENDO_WFC_RESULT_4;
+        return NINTENDO_WFC_RESULT_CONNECTION_CLOSED;
     }
 
     if ((sNintendoWFCManager->state == WFC_STATE_MATCHMAKING_SUCCESS) || (sNintendoWFCManager->state == WFC_STATE_WAIT_AFTER_MATCHMAKING_SUCCESS)) {

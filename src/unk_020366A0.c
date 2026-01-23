@@ -1773,13 +1773,13 @@ static void sub_02037FBC(void)
         sub_02036C94(sub_02037ED4, 0);
     } else if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_0) {
+    } else if (v0 == NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
         sub_02036C94(sub_02037ED8, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_1) {
+    } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET) {
         sub_02036C94(sub_02037ED0, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_2) {
+    } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET_AFTER_HOST_LEFT) {
         sub_02036C94(sub_02037ED4, 0);
-    } else if (v0 == NINTENDO_WFC_RESULT_4) {
+    } else if (v0 == NINTENDO_WFC_RESULT_CONNECTION_CLOSED) {
         sub_02036C94(sub_02037ED0, 0);
     }
 }
@@ -2658,7 +2658,7 @@ static BOOL sub_02038D5C(u32 *param0)
 
     v0 = NintendoWFC_Process(0);
 
-    if (v0 >= NINTENDO_WFC_RESULT_0) {
+    if (v0 >= NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
         *param0 = v0;
     } else {
         *param0 = 0;
