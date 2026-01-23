@@ -8,7 +8,7 @@
 
 #include "struct_defs/struct_02049A68.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay096/ov96_0223B140.h"
 #include "overlay096/ov96_0223B6A0.h"
 #include "overlay096/struct_ov96_0223B450.h"

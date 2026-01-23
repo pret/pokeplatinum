@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay066/struct_ov66_02232B20.h"
 #include "overlay066/struct_ov66_022589B4.h"
 

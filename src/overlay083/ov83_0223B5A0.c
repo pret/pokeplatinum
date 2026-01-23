@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay083/ov83_0223C958.h"
 #include "overlay083/ov83_0223D150.h"
 #include "overlay083/ov83_0223D4CC.h"

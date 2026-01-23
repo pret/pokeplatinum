@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_022324F0.h"
 

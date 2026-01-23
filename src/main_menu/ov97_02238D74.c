@@ -7,7 +7,7 @@
 #include "constants/net.h"
 
 #include "main_menu/mystery_gift_app.h"
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "heap.h"
 #include "overlay_manager.h"

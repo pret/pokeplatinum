@@ -439,11 +439,11 @@ Overlay overlay3
 	Object main.nef.p/src_overlay003_ov3_dummy.c.o
 }
 
-Overlay overlay4
+Overlay nintendo_wfc
 {
 	After main
-	Object main.nef.p/src_overlay004_ov4_021D0D80.c.o
-	Object main.nef.p/src_overlay004_voice_chat.c.o
+	Object main.nef.p/src_nintendo_wfc_main.c.o
+	Object main.nef.p/src_nintendo_wfc_voice_chat.c.o
 	Library	libdwcauth.a
 	Library libdwcbase.a
 	Library libdwcac.a
@@ -619,13 +619,13 @@ Overlay overlay9
 
 Overlay overlay10
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay010_ov10_0221F800.c.o
 }
 
 Overlay overlay11
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay011_move_palettes.c.o
 	Object main.nef.p/src_overlay011_particle_helper.c.o
 }
@@ -739,7 +739,7 @@ Overlay overlay17
 
 Overlay overlay18
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay018_wfc_settings.c.o
 	Library	libmb.a
 	Library libdwcutil.a
@@ -1118,7 +1118,7 @@ Overlay overlay59
 
 Overlay overlay60
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay060_http_b64.c.o
 	Object main.nef.p/src_overlay060_http.c.o
 	Library	libdwcgsghttp.a

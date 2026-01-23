@@ -11,19 +11,19 @@
 #include "overlay_manager.h"
 #include "savedata.h"
 
-FS_EXTERN_OVERLAY(overlay4);
+FS_EXTERN_OVERLAY(nintendo_wfc);
 FS_EXTERN_OVERLAY(overlay18);
 FS_EXTERN_OVERLAY(overlay60);
 FS_EXTERN_OVERLAY(overlay89);
 
 void Overlay_LoadWFCOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay4), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(nintendo_wfc), 2);
 }
 
 void Overlay_UnloadWFCOverlay(void)
 {
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay4));
+    Overlay_UnloadByID(FS_OVERLAY_ID(nintendo_wfc));
 }
 
 void Overlay_LoadWFCSettingsOverlay(void)

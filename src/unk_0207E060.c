@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_0207E060.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "heap.h"
 #include "trainer_info.h"

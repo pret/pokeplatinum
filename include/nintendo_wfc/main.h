@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV4_021D0D80_H
-#define POKEPLATINUM_OV4_021D0D80_H
+#ifndef POKEPLATINUM_NINTENDO_WFC_MAIN_H
+#define POKEPLATINUM_NINTENDO_WFC_MAIN_H
 
 #include <dwc.h>
 
@@ -63,4 +63,4 @@ void NintendoWFC_SetDisconnectIfAlone(BOOL disconnect);
 u8 NintendoWFC_GetNeedsGameSave(void);
 void NintendoWFC_ResetNeedsGameSave(void);
 
-#endif // POKEPLATINUM_OV4_021D0D80_H
+#endif // POKEPLATINUM_NINTENDO_WFC_MAIN_H

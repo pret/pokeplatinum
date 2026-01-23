@@ -133,7 +133,7 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         *loopState = 1;
         break;
     case 1:
-        Overlay_LoadWFCOverlay(); // load overlay4
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*loopState) = 0;

@@ -16,7 +16,7 @@
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay065/ov65_02235060.h"
 #include "overlay065/struct_ov65_0222E99C.h"
 #include "overlay065/struct_ov65_0222EBE0_decl.h"
