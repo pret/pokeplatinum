@@ -347,7 +347,7 @@ Static main
 	Object main.nef.p/src_applications_poffin_case_main.c.o
 	Object main.nef.p/src_poffin_sprite.c.o
 	Object main.nef.p/src_unk_02099500.c.o
-	Object main.nef.p/src_unk_02099550.c.o
+	Object main.nef.p/src_wifi_overlays.c.o
 	Object main.nef.p/src_unk_02099604.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
 	Object main.nef.p/src_move_reminder_data.c.o

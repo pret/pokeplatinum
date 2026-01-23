@@ -329,7 +329,7 @@ pokeplatinum_c = files(
     'applications/poffin_case/main.c',
     'poffin_sprite.c',
     'unk_02099500.c',
-    'unk_02099550.c',
+    'wifi_overlays.c',
     'unk_02099604.c',
     'unk_020996D0.c',
     'move_reminder_data.c',

@@ -30,10 +30,10 @@
 #include "system_flags.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_02099550.h"
 #include "unk_02099604.h"
 #include "unk_0209BA18.h"
 #include "vars_flags.h"
+#include "wifi_overlays.h"
 
 FS_EXTERN_OVERLAY(overlay65);
 FS_EXTERN_OVERLAY(overlay114);

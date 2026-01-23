@@ -87,10 +87,10 @@
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
 #include "unk_0207DFAC.h"
-#include "unk_02099550.h"
 #include "unk_0209C390.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
+#include "wifi_overlays.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 

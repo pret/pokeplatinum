@@ -16,7 +16,7 @@
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_0208BA78.h"
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 static NNSFndHeapHandle Unk_021BF678;
 

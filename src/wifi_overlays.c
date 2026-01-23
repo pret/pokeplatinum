@@ -1,4 +1,4 @@
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -14,11 +14,10 @@
 FS_EXTERN_OVERLAY(nintendo_wfc);
 FS_EXTERN_OVERLAY(wfc_settings);
 FS_EXTERN_OVERLAY(http);
-FS_EXTERN_OVERLAY(overlay89);
 
 void Overlay_LoadWFCOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(nintendo_wfc), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(nintendo_wfc), OVERLAY_LOAD_ASYNC);
 }
 
 void Overlay_UnloadWFCOverlay(void)
@@ -28,7 +27,7 @@ void Overlay_UnloadWFCOverlay(void)
 
 void Overlay_LoadWFCSettingsOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(wfc_settings), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(wfc_settings), OVERLAY_LOAD_ASYNC);
 }
 
 void Overlay_UnloadWFCSettingsOverlay(void)
@@ -51,7 +50,7 @@ static void StartWFCSettings(SaveData *saveData, enum HeapID heapID)
 
 void Overlay_LoadHttpOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(http), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(http), OVERLAY_LOAD_ASYNC);
 }
 
 void Overlay_UnloadHttpOverlay(void)
@@ -61,9 +60,9 @@ void Overlay_UnloadHttpOverlay(void)
 
 static BOOL RebootIntoWFCSettings(ApplicationManager *appMan, int *unused)
 {
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_49, 0x41000);
-    StartWFCSettings(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData, HEAP_ID_49);
-    Heap_Destroy(HEAP_ID_49);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, 0x41000);
+    StartWFCSettings(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData, HEAP_ID_NINTENDO_WFC);
+    Heap_Destroy(HEAP_ID_NINTENDO_WFC);
 
     OS_ResetSystem(RESET_CLEAN);
     return TRUE;
