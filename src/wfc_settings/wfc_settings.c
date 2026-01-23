@@ -1,4 +1,4 @@
-#include "overlay018/wfc_settings.h"
+#include "wfc_settings/wfc_settings.h"
 
 #include <dwc.h>
 #include <nitro.h>

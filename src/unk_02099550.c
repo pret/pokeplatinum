@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay018/wfc_settings.h"
+#include "wfc_settings/wfc_settings.h"
 
 #include "game_overlay.h"
 #include "heap.h"
@@ -12,7 +12,7 @@
 #include "savedata.h"
 
 FS_EXTERN_OVERLAY(nintendo_wfc);
-FS_EXTERN_OVERLAY(overlay18);
+FS_EXTERN_OVERLAY(wfc_settings);
 FS_EXTERN_OVERLAY(overlay60);
 FS_EXTERN_OVERLAY(overlay89);
 
@@ -28,12 +28,12 @@ void Overlay_UnloadWFCOverlay(void)
 
 void Overlay_LoadWFCSettingsOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay18), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(wfc_settings), 2);
 }
 
 void Overlay_UnloadWFCSettingsOverlay(void)
 {
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay18));
+    Overlay_UnloadByID(FS_OVERLAY_ID(wfc_settings));
 }
 
 static void StartWFCSettings(SaveData *saveData, enum HeapID heapID)

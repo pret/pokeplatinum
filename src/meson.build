@@ -567,7 +567,7 @@ pokeplatinum_c = files(
     'overlay017/ov17_02252A70.c',
     'overlay017/ov17_02252AB0.c',
     'overlay017/ov17_02252CEC.c',
-    'overlay018/wfc_settings.c',
+    'wfc_settings/wfc_settings.c',
     'applications/pc_boxes/box_app_manager.c',
     'applications/pc_boxes/touch_dial.c',
     'applications/pc_boxes/ov19_021D61B0.c',
