@@ -559,12 +559,12 @@ void SphereRadar_Exit(void)
     }
 }
 
-int SphereRadar_GetXCoordOfBuriedSphere(int param0)
+int SphereRadar_GetXCoordOfBuriedSphere(int radarIndex)
 {
     if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarTimer) {
         // bug: only the first 66 buried spheres can show up on the radar
         int index = buriedSpheresEnv->sphereRadarTimer->timer / 2;
-        index = (index + param0) % 100;
+        index = (index + radarIndex) % 100;
 
         return UndergroundSpheres_GetBuriedSphereXCoordAtIndex(index);
     }
@@ -572,12 +572,12 @@ int SphereRadar_GetXCoordOfBuriedSphere(int param0)
     return 0;
 }
 
-int SphereRadar_GetZCoordOfBuriedSphere(int param0)
+int SphereRadar_GetZCoordOfBuriedSphere(int radarIndex)
 {
     if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarTimer) {
         // bug: only the first 66 buried spheres can show up on the radar
         int index = buriedSpheresEnv->sphereRadarTimer->timer / 2;
-        index = (index + param0) % 100;
+        index = (index + radarIndex) % 100;
 
         return UndergroundSpheres_GetBuriedSphereZCoordAtIndex(index);
     }
