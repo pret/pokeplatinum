@@ -2076,7 +2076,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_310 = NULL;
         }
 
-        ov104_0222E5D0(param0->unk_20, 0);
+        BattleFrontier_SetPartnerInStrTemplate(param0->unk_20, 0);
 
         v1 = Party_GetPokemonBySlotIndex(param0->unk_31C, 2 + param0->unk_324[0]);
         v2 = Pokemon_GetBoxPokemon(v1);

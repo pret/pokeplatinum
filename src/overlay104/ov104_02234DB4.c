@@ -129,7 +129,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
         }
     }
 
-    if (ov104_0223B5B0(v10->unk_04) == 1) {
+    if (BattleFrontier_IsMultiPlayerChallenge(v10->unk_04) == 1) {
         ov104_0222E630(v10->saveData);
     }
 
@@ -160,7 +160,7 @@ static void ov104_022350B8(UnkStruct_ov104_0223B5C0 *param0)
         v1 = 2;
     }
 
-    v0 = sub_020301E0(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
+    v0 = BattleHall_GetRankOfType(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
     param0->unk_07 = ov104_02235704(param0);
 
     ov104_0223AF58(param0->unk_6F5, v1, v0, param0->unk_05, param0->unk_18);
@@ -215,7 +215,7 @@ void ov104_022351CC(UnkStruct_ov104_0223B5C0 *param0, void *param1)
 
     param0->unk_6F2 = ov104_02235208(param1, 0);
     param0->unk_6F5 = param0->unk_6F2;
-    param0->unk_6F4 = ov104_0223B5A4(param0->unk_6F2);
+    param0->unk_6F4 = BattleHall_CursorPosToType(param0->unk_6F2);
 
     if (param0->unk_6F5 >= 17) {
         param0->unk_6F5 = 18 - 1;
@@ -300,7 +300,7 @@ void ov104_0223526C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     }
 
     for (v0 = 0; v0 < 18; v0++) {
-        v1[0] = sub_020301E0(v0, &param0->unk_704[param0->unk_04][0]);
+        v1[0] = BattleHall_GetRankOfType(v0, &param0->unk_704[param0->unk_04][0]);
         ov104_02235620(param0->saveData, param0->unk_04, v0, v1[0]);
     }
 
@@ -464,7 +464,7 @@ void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0)
 
     if (param0->unk_04 != 2) {
         for (v1 = 0; v1 < (18 - 1); v1++) {
-            v0 = sub_020301E0(v1, &param0->unk_704[param0->unk_04][0]);
+            v0 = BattleHall_GetRankOfType(v1, &param0->unk_704[param0->unk_04][0]);
 
             if (v0 < 10) {
                 break;
@@ -497,7 +497,7 @@ static u16 ov104_02235704(UnkStruct_ov104_0223B5C0 *param0)
     u8 v5;
     float v6, v7;
 
-    v5 = sub_020301E0(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
+    v5 = BattleHall_GetRankOfType(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
     v2 = ov104_0223B64C(param0);
 
     if (param0->unk_04 == 2) {
@@ -521,7 +521,7 @@ static u16 ov104_02235704(UnkStruct_ov104_0223B5C0 *param0)
         if (v3 == param0->unk_6F5) {
             v7 += 1.0;
         } else {
-            if (sub_020301E0(v3, &param0->unk_704[param0->unk_04][0]) > 0) {
+            if (BattleHall_GetRankOfType(v3, &param0->unk_704[param0->unk_04][0]) > 0) {
                 v7 += 1.0;
             }
         }

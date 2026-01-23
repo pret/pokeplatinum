@@ -1588,13 +1588,13 @@ Overlay overlay105
 	Object main.nef.p/src_overlay105_ov105_02246214.c.o
 }
 
-Overlay overlay106
+Overlay battle_hall_app
 {
 	After overlay104
-	Object main.nef.p/src_overlay106_ov106_02241AE0.c.o
-	Object main.nef.p/src_overlay106_ov106_02243310.c.o
-	Object main.nef.p/src_overlay106_ov106_022435FC.c.o
-	Object main.nef.p/src_overlay106_ov106_022436E0.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_main.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_sprite_manager.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_sprites.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_windows.c.o
 }
 
 Overlay overlay107
