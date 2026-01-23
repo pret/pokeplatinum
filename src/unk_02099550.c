@@ -13,7 +13,7 @@
 
 FS_EXTERN_OVERLAY(nintendo_wfc);
 FS_EXTERN_OVERLAY(wfc_settings);
-FS_EXTERN_OVERLAY(overlay60);
+FS_EXTERN_OVERLAY(http);
 FS_EXTERN_OVERLAY(overlay89);
 
 void Overlay_LoadWFCOverlay(void)
@@ -51,12 +51,12 @@ static void StartWFCSettings(SaveData *saveData, enum HeapID heapID)
 
 void Overlay_LoadHttpOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay60), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(http), 2);
 }
 
 void Overlay_UnloadHttpOverlay(void)
 {
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay60));
+    Overlay_UnloadByID(FS_OVERLAY_ID(http));
 }
 
 static BOOL RebootIntoWFCSettings(ApplicationManager *appMan, int *unused)

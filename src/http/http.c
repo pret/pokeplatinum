@@ -1,8 +1,8 @@
-#include "overlay060/http.h"
+#include "http/http.h"
 
 #include <dwc.h>
 
-#include "overlay060/http_b64.h"
+#include "http/http_b64.h"
 
 struct {
     int readyState;
