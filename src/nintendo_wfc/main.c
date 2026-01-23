@@ -1,4 +1,4 @@
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include <dwc.h>
 #include <nitro.h>
@@ -9,7 +9,7 @@
 #include "constants/net.h"
 
 #include "global/assert.h"
-#include "overlay004/ov4_021D2808.h"
+#include "nintendo_wfc/voice_chat.h"
 
 #include "communication_system.h"
 #include "dwc_error.h"

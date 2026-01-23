@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02039A58.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "communication_system.h"
 #include "heap.h"

@@ -17,7 +17,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 

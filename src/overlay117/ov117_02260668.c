@@ -6,7 +6,7 @@
 
 #include "constants/graphics.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay117/ov117_022626B0.h"
 #include "overlay117/ov117_02263AF0.h"

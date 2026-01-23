@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV4_021D2808_H
-#define POKEPLATINUM_OV4_021D2808_H
+#ifndef POKEPLATINUM_NINTENDO_WFC_VOICE_CHAT_H
+#define POKEPLATINUM_NINTENDO_WFC_VOICE_CHAT_H
 
 #include "constants/heap.h"
 
@@ -16,4 +16,4 @@ BOOL VoiceChat_ProcessReceivedData(int id, void *buffer, int size);
 void VoiceChat_RequestEnd(void);
 BOOL VoiceChat_AddConferenceClients(int newClientsBitmap, int currentClientID);
 
-#endif // POKEPLATINUM_OV4_021D2808_H
+#endif // POKEPLATINUM_NINTENDO_WFC_VOICE_CHAT_H

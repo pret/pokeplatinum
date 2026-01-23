@@ -15,7 +15,7 @@
 #include "struct_defs/struct_0207E060.h"
 #include "struct_defs/wi_fi_history.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay065/ov65_02235060.h"
 #include "overlay065/struct_ov65_0222E99C.h"
 #include "overlay065/struct_ov65_0222EBE0_decl.h"
@@ -86,10 +86,10 @@
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
 #include "unk_0207DFAC.h"
-#include "unk_02099550.h"
 #include "unk_0209C390.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
+#include "wifi_overlays.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 

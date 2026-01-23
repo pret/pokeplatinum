@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0207DE04.h"
 
 #include "field/field_system.h"
-#include "overlay018/ov18_0221F800.h"
 #include "overlay065/ov65_0222DCE0.h"
 #include "overlay065/ov65_0223648C.h"
 #include "overlay066/struct_ov66_02231134.h"
@@ -19,6 +18,7 @@
 #include "overlay116/ov116_022604C4.h"
 #include "overlay117/ov117_02260440.h"
 #include "overlay117/struct_ov117_02260440.h"
+#include "wfc_settings/wfc_settings.h"
 
 #include "communication_system.h"
 #include "encounter.h"
@@ -30,10 +30,10 @@
 #include "system_flags.h"
 #include "unk_02038FFC.h"
 #include "unk_0203D1B8.h"
-#include "unk_02099550.h"
 #include "unk_02099604.h"
 #include "unk_0209BA18.h"
 #include "vars_flags.h"
+#include "wifi_overlays.h"
 
 FS_EXTERN_OVERLAY(overlay65);
 FS_EXTERN_OVERLAY(overlay114);

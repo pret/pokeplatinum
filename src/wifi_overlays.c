@@ -1,9 +1,9 @@
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay018/ov18_0221F800.h"
+#include "wfc_settings/wfc_settings.h"
 
 #include "game_overlay.h"
 #include "heap.h"
@@ -11,29 +11,28 @@
 #include "overlay_manager.h"
 #include "savedata.h"
 
-FS_EXTERN_OVERLAY(overlay4);
-FS_EXTERN_OVERLAY(overlay18);
-FS_EXTERN_OVERLAY(overlay60);
-FS_EXTERN_OVERLAY(overlay89);
+FS_EXTERN_OVERLAY(nintendo_wfc);
+FS_EXTERN_OVERLAY(wfc_settings);
+FS_EXTERN_OVERLAY(http);
 
 void Overlay_LoadWFCOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay4), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(nintendo_wfc), OVERLAY_LOAD_ASYNC);
 }
 
 void Overlay_UnloadWFCOverlay(void)
 {
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay4));
+    Overlay_UnloadByID(FS_OVERLAY_ID(nintendo_wfc));
 }
 
 void Overlay_LoadWFCSettingsOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay18), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(wfc_settings), OVERLAY_LOAD_ASYNC);
 }
 
 void Overlay_UnloadWFCSettingsOverlay(void)
 {
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay18));
+    Overlay_UnloadByID(FS_OVERLAY_ID(wfc_settings));
 }
 
 static void StartWFCSettings(SaveData *saveData, enum HeapID heapID)
@@ -51,19 +50,19 @@ static void StartWFCSettings(SaveData *saveData, enum HeapID heapID)
 
 void Overlay_LoadHttpOverlay(void)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay60), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(http), OVERLAY_LOAD_ASYNC);
 }
 
 void Overlay_UnloadHttpOverlay(void)
 {
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay60));
+    Overlay_UnloadByID(FS_OVERLAY_ID(http));
 }
 
 static BOOL RebootIntoWFCSettings(ApplicationManager *appMan, int *unused)
 {
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_49, 0x41000);
-    StartWFCSettings(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData, HEAP_ID_49);
-    Heap_Destroy(HEAP_ID_49);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, 0x41000);
+    StartWFCSettings(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData, HEAP_ID_NINTENDO_WFC);
+    Heap_Destroy(HEAP_ID_NINTENDO_WFC);
 
     OS_ResetSystem(RESET_CLEAN);
     return TRUE;

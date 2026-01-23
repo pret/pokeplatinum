@@ -1,4 +1,4 @@
-#include "overlay018/ov18_0221F800.h"
+#include "wfc_settings/wfc_settings.h"
 
 #include <dwc.h>
 #include <nitro.h>

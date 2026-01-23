@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_0203233C.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "comm_ring.h"
 #include "communication_information.h"

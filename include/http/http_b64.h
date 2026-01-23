@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV60_0221F800_H
-#define POKEPLATINUM_OV60_0221F800_H
+#ifndef POKEPLATINUM_HTTP_HTTP_B64_H
+#define POKEPLATINUM_HTTP_HTTP_B64_H
 
 enum HTTPB64EncodeResult {
     HTTP_B64_ENCODE_SUCCESS = 0,
@@ -10,4 +10,4 @@ enum HTTPB64EncodeResult {
 enum HTTPB64EncodeResult HTTPB64_EncryptAndEncodeB64(u32 dwcProfileID, const u8 *in, int length, u8 *out, int outSize);
 u32 HTTPB64_CalcEncodedSize(u32 decodedSize);
 
-#endif // POKEPLATINUM_OV60_0221F800_H
+#endif // POKEPLATINUM_HTTP_HTTP_B64_H

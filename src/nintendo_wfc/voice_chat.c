@@ -1,11 +1,11 @@
-#include "overlay004/ov4_021D2808.h"
+#include "nintendo_wfc/voice_chat.h"
 
 #include <dwc.h>
 #include <nitro.h>
 #include <string.h>
 #include <vct.h>
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "heap.h"
 #include "unk_0203266C.h"

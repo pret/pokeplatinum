@@ -9,7 +9,7 @@
 #include "heap.h"
 #include "savedata.h"
 #include "unk_0202ACE0.h"
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 int sub_02038FFC(enum HeapID heapID)
 {

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay082/ov82_0223B2E0.h"
 #include "overlay082/struct_ov82_0223B164.h"
 #include "overlay083/struct_ov83_0223C344.h"

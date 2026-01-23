@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_022324F0.h"
 
@@ -187,7 +187,7 @@ static void sub_02036734(void)
     }
 
     if (CommMan_IsConnectedToWifi()) {
-        Heap_Destroy(HEAP_ID_49);
+        Heap_Destroy(HEAP_ID_NINTENDO_WFC);
     }
 
     NetworkIcon_Destroy();
@@ -2202,11 +2202,11 @@ static void sub_020386B4(void)
     }
 
     {
-        Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_49, (0x2A000 + 0xA000 + 0x1400));
+        Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, (0x2A000 + 0xA000 + 0x1400));
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         sub_02036C94(sub_0203862C, (30 * 60 * 2));
@@ -2530,11 +2530,11 @@ static void sub_02038BA8(void)
     }
 
     {
-        Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_49, 0x60000);
+        Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_NINTENDO_WFC, 0x60000);
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_NINTENDO_WFC, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         NintendoWFC_SetVoiceChatEnabled(0);

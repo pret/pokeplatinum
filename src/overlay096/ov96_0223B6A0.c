@@ -32,8 +32,8 @@
 #include "system.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
-#include "unk_02099550.h"
 #include "vram_transfer.h"
+#include "wifi_overlays.h"
 
 static void ov96_0223B940(void *param0);
 static void ov96_0223B960(void);

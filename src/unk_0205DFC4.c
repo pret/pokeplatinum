@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "communication_information.h"
 #include "communication_system.h"

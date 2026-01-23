@@ -7,7 +7,7 @@
 #include "constants/net.h"
 
 #include "main_menu/mystery_gift_app.h"
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "heap.h"
 #include "overlay_manager.h"
@@ -15,7 +15,7 @@
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 static BOOL Unk_ov97_02240400;
 static int Unk_ov97_0224040C;
