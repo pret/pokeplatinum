@@ -6,7 +6,7 @@
 
 #include "constants/net.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay094/application.h"
 #include "overlay094/gts_application_state.h"
 #include "overlay094/networking.h"

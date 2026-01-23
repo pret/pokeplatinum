@@ -3,7 +3,7 @@ de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay0.sbin
 906b5d19e6478a795eda151c771ff3a47fb1a8d5 *overlay1.sbin
 de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay2.sbin
 de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay3.sbin
-2527b3e0bbc7cf76e9125c8215043faf84ef0af2 *overlay4.sbin
+2527b3e0bbc7cf76e9125c8215043faf84ef0af2 *nintendo_wfc.sbin
 0456f78ac3e294722f669c793fc9727b23b66fba *overlay5.sbin
 6e5ed74d5bdb94d2ce78d8990c364b4766eab772 *overlay6.sbin
 fef29cf33d4dfd1f068a7b67798e7b5950fce749 *overlay7.sbin
@@ -17,7 +17,7 @@ d9b09c1e37088d6aaeb73143ecec98ab3327ec67 *trainer_ai.sbin
 de8a847bff8c343d69b853a215e6ee775ef2ef96 *overlay15.sbin
 b058a62fb8e4d646bb7508f5a21e406591f809c1 *battle.sbin
 543c0afabc3d90310f1bc8d4902743461dfdc1e5 *overlay17.sbin
-111fe69ca18026aa8574b8f79a6b94ef73715267 *overlay18.sbin
+111fe69ca18026aa8574b8f79a6b94ef73715267 *wfc_settings.sbin
 d414d37a9b80f1d346666ad9ef5ba635d5ebb552 *pc_boxes.sbin
 7534ad61985affc27e8b121a6645b825ffae48c7 *overlay20.sbin
 6dd9a720fe069aedd9107398c16ba93e57769c64 *pokedex.sbin
@@ -59,7 +59,7 @@ ea68f11d110d5929d18eeaad9cf3f1792986ab7f *poketch_unused_4.sbin
 88b06ba661770c8feef9ec96bcee6942819fbda4 *game_start.sbin
 9b7c8c69b165a8a4f1da4ff4fc73bdc0af52def8 *overlay58.sbin
 43b9d869fc580cb7e6af6ef95cbbc015b5542d50 *overlay59.sbin
-0a0cfedfb93a08ff8fd187d6e62a5c9a1e3056cc *overlay60.sbin
+0a0cfedfb93a08ff8fd187d6e62a5c9a1e3056cc *http.sbin
 a5f5fb58639672291dc9328f8659fdea0a1329ee *overlay61.sbin
 d073752e86af2a435978fed11ce5557c5dc3b3ac *overlay62.sbin
 75595fd5704b4ffdce5e32160e35506e166d2122 *overlay63.sbin

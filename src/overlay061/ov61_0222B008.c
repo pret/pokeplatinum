@@ -8,7 +8,7 @@
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay061/ov61_0222AE60.h"
 #include "overlay061/ov61_0222BC4C.h"
 #include "overlay061/struct_ov61_0222AFC0.h"

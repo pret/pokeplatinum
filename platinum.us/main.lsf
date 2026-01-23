@@ -347,7 +347,7 @@ Static main
 	Object main.nef.p/src_applications_poffin_case_main.c.o
 	Object main.nef.p/src_poffin_sprite.c.o
 	Object main.nef.p/src_unk_02099500.c.o
-	Object main.nef.p/src_unk_02099550.c.o
+	Object main.nef.p/src_wifi_overlays.c.o
 	Object main.nef.p/src_unk_02099604.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
 	Object main.nef.p/src_move_reminder_data.c.o
@@ -439,11 +439,11 @@ Overlay overlay3
 	Object main.nef.p/src_overlay003_ov3_dummy.c.o
 }
 
-Overlay overlay4
+Overlay nintendo_wfc
 {
 	After main
-	Object main.nef.p/src_overlay004_ov4_021D0D80.c.o
-	Object main.nef.p/src_overlay004_ov4_021D2808.c.o
+	Object main.nef.p/src_nintendo_wfc_main.c.o
+	Object main.nef.p/src_nintendo_wfc_voice_chat.c.o
 	Library	libdwcauth.a
 	Library libdwcbase.a
 	Library libdwcac.a
@@ -619,13 +619,13 @@ Overlay overlay9
 
 Overlay overlay10
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay010_ov10_0221F800.c.o
 }
 
 Overlay overlay11
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay011_move_palettes.c.o
 	Object main.nef.p/src_overlay011_particle_helper.c.o
 }
@@ -737,10 +737,10 @@ Overlay overlay17
 	Object main.nef.p/src_overlay017_ov17_02252CEC.c.o
 }
 
-Overlay overlay18
+Overlay wfc_settings
 {
-	After overlay4
-	Object main.nef.p/src_overlay018_ov18_0221F800.c.o
+	After nintendo_wfc
+	Object main.nef.p/src_wfc_settings_wfc_settings.c.o
 	Library	libmb.a
 	Library libdwcutil.a
 }
@@ -1116,11 +1116,11 @@ Overlay overlay59
 	Object main.nef.p/src_overlay059_ov59_021D2F88.c.o
 }
 
-Overlay overlay60
+Overlay http
 {
-	After overlay4
-	Object main.nef.p/src_overlay060_ov60_0221F800.c.o
-	Object main.nef.p/src_overlay060_http.c.o
+	After nintendo_wfc
+	Object main.nef.p/src_http_http_b64.c.o
+	Object main.nef.p/src_http_http.c.o
 	Library	libdwcgsghttp.a
 	Library libdwcnd.a
 	Library libdwcnhttp.a
@@ -1128,7 +1128,7 @@ Overlay overlay60
 
 Overlay overlay61
 {
-	After overlay60
+	After http
 	Object main.nef.p/src_overlay061_ov61_0222AE60.c.o
 	Object main.nef.p/src_overlay061_ov61_0222B008.c.o
 	Object main.nef.p/src_overlay061_ov61_0222BC4C.c.o
@@ -1159,7 +1159,7 @@ Overlay overlay62
 
 Overlay overlay63
 {
-	After overlay60
+	After http
 	Object main.nef.p/src_overlay063_ov63_0222AE60.c.o
 	Object main.nef.p/src_overlay063_ov63_0222BCE8.c.o
 	Object main.nef.p/src_overlay063_ov63_0222BE18.c.o
@@ -1455,7 +1455,7 @@ Overlay overlay96
 
 Overlay main_menu
 {
-	After overlay60
+	After http
 	Object main.nef.p/src_main_menu_main_menu.c.o
 	Object main.nef.p/src_main_menu_ov97_0222C174.c.o
 	Object main.nef.p/src_main_menu_ov97_0222D04C.c.o

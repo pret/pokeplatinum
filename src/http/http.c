@@ -1,8 +1,8 @@
-#include "overlay060/http.h"
+#include "http/http.h"
 
 #include <dwc.h>
 
-#include "overlay060/ov60_0221F800.h"
+#include "http/http_b64.h"
 
 struct {
     int readyState;
@@ -82,13 +82,13 @@ static void HTTP_RequestCompletedCallback(const char *responseText, int length, 
 
                 sHttpData.unk_28[40] = '\0';
                 strcat(sHttpData.unk_24, "&data=");
-                v3 = ov60_0221F838((u32)sHttpData.unk_10, (u8 *)sHttpData.unk_14, sHttpData.unk_18, (u8 *)sHttpData.unk_2C, sHttpData.unk_30);
+                v3 = HTTPB64_EncryptAndEncodeB64((u32)sHttpData.unk_10, (u8 *)sHttpData.unk_14, sHttpData.unk_18, (u8 *)sHttpData.unk_2C, sHttpData.unk_30);
 
                 switch (v3) {
-                case 0:
+                case HTTP_ENCODE_SUCCESS:
                     break;
-                case 1:
-                case 2:
+                case HTTP_ENCODE_ERROR_ALLOC_FAIL:
+                case HTTP_ENCORE_ERROR_INSUFFICIENT_BUFFER_SIZE:
                     sHttpData.readyState = 1;
                     return;
                 }
@@ -216,7 +216,7 @@ int HTTP_PrepareRequest(const u8 *param0, int param1, const void *param2, int pa
     sHttpData.unk_18 = param3;
     sHttpData.unk_1C = param4;
     sHttpData.maxResponseLength = maxResponseLength;
-    sHttpData.unk_24 = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)param0) + 68 + ov60_0221F944(8 + (u32)param3) + 1);
+    sHttpData.unk_24 = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)param0) + 68 + HTTPB64_CalcEncodedSize(8 + (u32)param3) + 1);
 
     if (sHttpData.unk_24 == NULL) {
         return 2;
@@ -226,7 +226,7 @@ int HTTP_PrepareRequest(const u8 *param0, int param1, const void *param2, int pa
 
     sHttpData.unk_28 = sHttpData.unk_24 + strlen(sHttpData.unk_24) + strlen("&hash=");
     sHttpData.unk_2C = sHttpData.unk_28 + 40 + strlen("&data=");
-    sHttpData.unk_30 = (int)(ov60_0221F944(8 + (u32)param3) + 1);
+    sHttpData.unk_30 = (int)(HTTPB64_CalcEncodedSize(8 + (u32)param3) + 1);
     sHttpData.readyState = 3;
 
     return 0;

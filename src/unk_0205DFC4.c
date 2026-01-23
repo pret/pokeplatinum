@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -703,7 +703,7 @@ int sub_0205E6A8(u32 param0)
         return 0xff;
     }
 
-    return ov4_021D2388();
+    return NintendoWFC_GetHostFriendIdx();
 }
 
 u8 sub_0205E6B8(void)

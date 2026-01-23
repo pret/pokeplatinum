@@ -51,8 +51,8 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02033200.h"
-#include "unk_02099550.h"
 #include "vram_transfer.h"
+#include "wifi_overlays.h"
 
 static void GTSApplication_VBlankCallback(void *appStatePtr);
 static void GTSApplication_SetVRAMBanks(void);
@@ -133,7 +133,7 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         *loopState = 1;
         break;
     case 1:
-        sub_02099550(); // load overlay4
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*loopState) = 0;
@@ -205,7 +205,7 @@ BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused)
 
     Heap_Free(appState->dwcHeapPointer);
     Overlay_UnloadHttpOverlay();
-    sub_02099560();
+    Overlay_UnloadWFCOverlay();
 
     GTSApplication_CleanupGraphics(appState);
 

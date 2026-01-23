@@ -29,8 +29,8 @@
 #include "unk_02038FFC.h"
 #include "unk_020393C8.h"
 #include "unk_020890F4.h"
-#include "unk_02099550.h"
 #include "vars_flags.h"
+#include "wifi_overlays.h"
 
 #include "constdata/const_020F2DBC.h"
 
@@ -193,7 +193,7 @@ static void ov98_02246E08(UnkStruct_ov98_02246E88 *param0)
         param0->unk_0C = Heap_Alloc(HEAP_ID_108, 0x20000 + 32);
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
 
-        sub_02099550();
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         SleepUnlock(4);
@@ -207,7 +207,7 @@ static void ov98_02246E54(UnkStruct_ov98_02246E88 *param0)
 
         Heap_Free(param0->unk_0C);
         Overlay_UnloadHttpOverlay();
-        sub_02099560();
+        Overlay_UnloadWFCOverlay();
         WirelessDriver_Shutdown();
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay94));
 

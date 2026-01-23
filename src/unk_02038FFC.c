@@ -9,7 +9,7 @@
 #include "heap.h"
 #include "savedata.h"
 #include "unk_0202ACE0.h"
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 int sub_02038FFC(enum HeapID heapID)
 {
@@ -17,7 +17,7 @@ int sub_02038FFC(enum HeapID heapID)
     u8 *v1;
     u8 *v2;
 
-    sub_02099550();
+    Overlay_LoadWFCOverlay();
     Overlay_LoadHttpOverlay();
 
     v1 = Heap_Alloc(heapID, DWC_INIT_WORK_SIZE + 32);
@@ -25,7 +25,7 @@ int sub_02038FFC(enum HeapID heapID)
     v0 = DWC_Init(v2);
 
     Heap_Free(v1);
-    sub_02099560();
+    Overlay_UnloadWFCOverlay();
     Overlay_UnloadHttpOverlay();
 
     return v0;
