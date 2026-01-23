@@ -707,7 +707,7 @@ _0611:
     CloseMessage
     FrontierScrCmd_91 30, 0, 0, 0x8008
     CallIfEq 0x8008, 1, _065B
-    FrontierScrCmd_8E
+    OpenBattleHallApp
     FrontierScrCmd_91 31, 0, 0, 0x8008
     FrontierScrCmd_91 36, 0, 0, 0x8008
     FadeScreenIn

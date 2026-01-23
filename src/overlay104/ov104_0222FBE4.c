@@ -436,7 +436,7 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_8B,
     FrontierScrCmd_8C,
     FrontierScrCmd_8D,
-    FrontierScrCmd_8E,
+    FrontierScrCmd_OpenBattleHallApp,
     FrontierScrCmd_8F,
     FrontierScrCmd_90,
     FrontierScrCmd_91,
