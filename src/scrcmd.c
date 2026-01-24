@@ -145,6 +145,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "scrcmd_amity_square.h"
+#include "scrcmd_battle_hall.h"
 #include "scrcmd_berry.h"
 #include "scrcmd_catching_show.h"
 #include "scrcmd_coins.h"
@@ -198,7 +199,6 @@
 #include "unk_020494DC.h"
 #include "unk_0204AEE8.h"
 #include "unk_0204F04C.h"
-#include "unk_0204F13C.h"
 #include "unk_0204FAB4.h"
 #include "unk_0205003C.h"
 #include "unk_02050568.h"
@@ -531,7 +531,7 @@ static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx);
 static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx);
 static BOOL ScrCmd_SelectMoveTutorPokemon(ScriptContext *ctx);
 static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx);
-static BOOL ScrCmd_2D0(ScriptContext *ctx);
+static BOOL ScrCmd_GetBattleHallSelectedSlots(ScriptContext *ctx);
 static BOOL ScrCmd_2D4(ScriptContext *ctx);
 static BOOL ScrCmd_2DB(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForTrade(ScriptContext *ctx);
@@ -1487,8 +1487,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2CC,
     ScrCmd_2CD,
     ScrCmd_Unused_2CE,
-    ScrCmd_2CF,
-    ScrCmd_2D0,
+    ScrCmd_BattleHallCheckUsingSameSpeciesAsPartner,
+    ScrCmd_GetBattleHallSelectedSlots,
     ScrCmd_2D1,
     ScrCmd_2D2,
     ScrCmd_2D3,
@@ -1572,9 +1572,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartDistortionWorldGiratinaShadowEvent,
     ScrCmd_FinishDistortionWorldGiratinaShadowEvent,
     ScrCmd_323,
-    ScrCmd_324,
-    ScrCmd_325,
-    ScrCmd_326,
+    ScrCmd_GetBattleHallRecordKeeperStats,
+    ScrCmd_GetNumSpeciesWithBattleHallRecords,
+    ScrCmd_GetBattleHallTotalSinglesRecord,
     ScrCmd_ShowListMenuSetWidth,
     ScrCmd_SetPartyGiratinaForm,
     ScrCmd_329,
@@ -3470,33 +3470,31 @@ static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2D0(ScriptContext *ctx)
+static BOOL ScrCmd_GetBattleHallSelectedSlots(ScriptContext *ctx)
 {
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
-    void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    PartyMenu *partyMenu = *v2;
+    u16 *selectedSlot1 = ScriptContext_GetVarPointer(ctx);
+    u16 *selectedSlot2 = ScriptContext_GetVarPointer(ctx);
+    void **partySelect = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    PartyMenu *partyMenu = *partySelect;
 
-    GF_ASSERT(*v2 != 0);
+    GF_ASSERT(*partySelect != NULL);
 
-    int v1 = PartyMenu_GetSelectedSlot(*v2);
+    int slot = PartyMenu_GetSelectedSlot(*partySelect);
 
-    if (v1 == MAX_PARTY_SIZE + 1) {
-        *v3 = 0xff;
-    } else if (v1 == MAX_PARTY_SIZE) {
-        u16 v0 = partyMenu->selectionOrder[0];
-        *v3 = v0;
-        *v3 -= 1;
-        v0 = partyMenu->selectionOrder[1];
-        *v4 = v0;
+    if (slot == MAX_PARTY_SIZE + 1) {
+        *selectedSlot1 = 0xff;
+    } else if (slot == MAX_PARTY_SIZE) {
+        *selectedSlot1 = partyMenu->selectionOrder[0];
+        *selectedSlot1 -= 1;
 
-        if (*v4 > 0) {
-            *v4 -= 1;
+        *selectedSlot2 = partyMenu->selectionOrder[1];
+        if (*selectedSlot2 > 0) {
+            *selectedSlot2 -= 1;
         }
     }
 
-    Heap_Free(*v2);
-    *v2 = NULL;
+    Heap_Free(*partySelect);
+    *partySelect = NULL;
 
     return FALSE;
 }

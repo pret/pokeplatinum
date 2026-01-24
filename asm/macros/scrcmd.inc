@@ -4271,16 +4271,16 @@
     .short 718
     .endm
 
-    .macro ScrCmd_2CF arg0, arg1
+    .macro BattleHallCheckUsingSameSpeciesAsPartner species, speciesAreDifferent
     .short 719
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \speciesAreDifferent
     .endm
 
-    .macro ScrCmd_2D0 arg0, arg1
+    .macro GetBattleHallSelectedSlots slot1, slot2
     .short 720
-    .short \arg0
-    .short \arg1
+    .short \slot1
+    .short \slot2
     .endm
 
     .macro ScrCmd_2D1 arg0
@@ -4765,24 +4765,24 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_324 arg0, arg1, arg2, arg3, arg4, arg5
+    .macro GetBattleHallRecordKeeperStats curStreakIdx, passedMilestoneIdx, nextMilestoneIdx, earnedBPIdx, nextMilestone, response
     .short 804
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
-    .short \arg5
+    .byte \curStreakIdx
+    .byte \passedMilestoneIdx
+    .byte \nextMilestoneIdx
+    .byte \earnedBPIdx
+    .short \nextMilestone
+    .short \response
     .endm
 
-    .macro ScrCmd_325 arg0
+    .macro GetNumSpeciesWithBattleHallRecords result
     .short 805
-    .short \arg0
+    .short \result
     .endm
 
-    .macro ScrCmd_326 arg0
+    .macro GetBattleHallTotalSinglesRecord result
     .short 806
-    .short \arg0
+    .short \result
     .endm
 
     .macro ShowListMenuSetWidth width
