@@ -8,7 +8,6 @@
 #include "constants/species.h"
 
 #include "struct_defs/gts_player_data.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "global/utility.h"
 #include "overlay094/gts_application_state.h"
@@ -245,7 +244,7 @@ static void GTSApplication_VBlankCallback(void *appStatePtr)
 
 static void GTSApplication_SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

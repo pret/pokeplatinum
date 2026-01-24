@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00004",
+      "id": "BattleStrings_Text_PokemonLearnedMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}!{WAIT 5}{WAIT 2}\r"
@@ -6248,29 +6248,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00915",
+      "id": "BattleStrings_Text_WhatPokemonIsEvolving",
       "en_US": [
         "What?\n",
         "{STRVAR_1 1, 0, 0} is evolving!"
       ]
     },
     {
-      "id": "pl_msg_00000368_00916",
+      "id": "BattleStrings_Text_EvolutionWhat",
       "en_US": "What?{YESNO 2}\r"
     },
     {
-      "id": "pl_msg_00000368_00917",
+      "id": "BattleStrings_Text_PokemonIsEvolving",
       "en_US": "{STRVAR_1 1, 0, 0} is evolving!"
     },
     {
-      "id": "pl_msg_00000368_00918",
+      "id": "BattleStrings_Text_CongratulationsYourPokemonEvolvedIntoPokemon",
       "en_US": [
         "{WAIT 3}Congratulations! Your {STRVAR_1 1, 0, 0}\n",
         "evolved into {STRVAR_1 1, 1, 0}!{WAIT 2}\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00919",
+      "id": "BattleStrings_Text_HuhPokemonStoppedEvolving",
       "en_US": [
         "Huh? {STRVAR_1 1, 0, 0}\n",
         "stopped evolving!\r"
@@ -8051,58 +8051,58 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_01193",
+      "id": "BattleStrings_Text_EvolvedPokemonWantsToLearnMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} wants to learn\n",
         "the move {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01194",
+      "id": "BattleStrings_Text_EvolvedPokemonAlreadyKnowsFourMoves",
       "en_US": [
         "However, {STRVAR_1 1, 0, 0} already\n",
         "knows four moves.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01195",
+      "id": "BattleStrings_Text_ShouldAMoveBeDeleted",
       "en_US": "Should a move be deleted?"
     },
     {
-      "id": "pl_msg_00000368_01196",
+      "id": "BattleStrings_Text_WhichMoveShouldBeForgotten",
       "en_US": "Which move should be forgotten?\r"
     },
     {
-      "id": "pl_msg_00000368_01197",
+      "id": "BattleStrings_Text_StopTryingToTeachMove",
       "en_US": [
         "Stop trying to teach\n",
         "{STRVAR_1 6, 0, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000368_01198",
+      "id": "BattleStrings_Text_EvolvedPokemonDidNotLearnMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} did not learn the\n",
         "move {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01199",
+      "id": "BattleStrings_Text_OneTwoThreePoof",
       "en_US": "1, {PAUSE 20}2, and{PAUSE 20}... {PAUSE 20}... {PAUSE 20}{WAIT 4}Poof!\r"
     },
     {
-      "id": "pl_msg_00000368_01200",
+      "id": "BattleStrings_Text_EvolvedPokemonForgotHowToUseMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} forgot how to\n",
         "use {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01201",
+      "id": "BattleStrings_Text_AndDotDotDot",
       "en_US": "And...\r"
     },
     {
-      "id": "pl_msg_00000368_01202",
+      "id": "BattleStrings_Text_EvolvedPokemonLearnedMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}!{WAIT 5}{WAIT 2}\r"

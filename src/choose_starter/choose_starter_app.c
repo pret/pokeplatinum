@@ -10,7 +10,6 @@
 #include "constants/species.h"
 
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -496,7 +495,7 @@ static void ov78_021D10DC(void)
 
 static void SetupVRAMBank(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

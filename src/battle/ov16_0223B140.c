@@ -13,7 +13,6 @@
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller_player.h"
@@ -274,7 +273,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         EvolutionData *v5 = (EvolutionData *)v0->unk_170;
 
         if (Evolution_IsDone(v5) == 1) {
-            sub_0207B0E0(v5);
+            Evolution_Free(v5);
             Heap_Destroy(HEAP_ID_73);
             *param1 = 13;
         }
@@ -819,7 +818,7 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,
@@ -1475,7 +1474,7 @@ static void ov16_0223CE68(void *param0)
     if (v0->unk_23FB_1) {
         v0->unk_23FB_1 = 0;
         {
-            UnkStruct_02099F80 v1 = {
+            GXBanks v1 = {
                 GX_VRAM_BG_128_A,
                 GX_VRAM_BGEXTPLTT_NONE,
                 GX_VRAM_SUB_BG_32_H,
@@ -1495,7 +1494,7 @@ static void ov16_0223CE68(void *param0)
     if (v0->unk_23FB_2) {
         v0->unk_23FB_2 = 0;
         {
-            UnkStruct_02099F80 v2 = {
+            GXBanks v2 = {
                 GX_VRAM_BG_128_A,
                 GX_VRAM_BGEXTPLTT_NONE,
                 GX_VRAM_SUB_BG_128_C,
@@ -1655,7 +1654,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v1 = {
+        GXBanks v1 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/box_application.h"
 #include "applications/pc_boxes/funcptr_ov19_021D79B8.h"
@@ -1529,7 +1527,7 @@ static void BoxGraphics_ScreenFadeBothToBlackLogOff(SysTask *task, void *param1)
 
 static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const BoxApplication *param1)
 {
-    static const UnkStruct_02099F80 v0 = {
+    static const GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
