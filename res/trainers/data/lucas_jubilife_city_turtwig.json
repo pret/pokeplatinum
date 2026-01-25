@@ -12,13 +12,13 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TURTWIG",
+            "species": "SPECIES_PIPLUP",
             "form": 0,
             "level": 13,
             "item": null,
             "moves": [
-                "MOVE_ABSORB",
-                "MOVE_TACKLE"
+                "MOVE_BUBBLE",
+                "MOVE_POUND"
             ],
             "power": 30,
             "ball_seal": 0

@@ -12,13 +12,13 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHIMCHAR",
+            "species": "SPECIES_TURTWIG",
             "form": 0,
             "level": 13,
             "item": null,
             "moves": [
-                "MOVE_EMBER",
-                "MOVE_SCRATCH"
+                "MOVE_ABSORB",
+                "MOVE_TACKLE"
             ],
             "power": 30,
             "ball_seal": 0
