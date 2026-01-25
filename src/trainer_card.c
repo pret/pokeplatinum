@@ -39,7 +39,7 @@ typedef struct {
     TrainerCard *unk_04;
 } UnkStruct_02072204;
 
-static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 level, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard);
+static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 level, u8 gymLeadersToHide, u8 language, TrainerCard *trainerCard);
 static void TrainerCard_SetTrainerInfo(u16 id, u8 gender, const u16 *name, u32 money, u32 seenPokemon, BOOL pokedexObtained, u32 score, TrainerCard *trainerCard);
 static void TrainerCard_SetDates(u8 gameCompleted, const PlayTime *playTime, const RTCDate *adventureStartedDate, const RTCDate *hofDebutDate, const RTCTime *hofDebutTime, u8 param5, TrainerCard *trainerCard);
 static void TrainerCard_SetLinkDataAndSignature(u32 timesLinked, u32 linkBattleWins, u32 linkBattleLosses, u32 linkTrades, const u8 *signature, TrainerCard *trainerCard);
@@ -54,7 +54,7 @@ void TrainerCard_Init(u8 badgesInteractable, u8 liveTimeDisplay, u8 gymLeadersTo
 
     trainerCard->trainerAppearance = trainerAppearance;
 
-    TrainerCard_SetFields(badgesInteractable, GAME_VERSION, TrainerCard_CalculateLevel(fieldSystem), gymLeadersToHide, TrainerInfo_RegionCode(trainerInfo), trainerCard);
+    TrainerCard_SetFields(badgesInteractable, GAME_VERSION, TrainerCard_CalculateLevel(fieldSystem), gymLeadersToHide, TrainerInfo_Language(trainerInfo), trainerCard);
 
     TrainerCard_SetTrainerInfo(TrainerInfo_ID_LowHalf(trainerInfo), TrainerInfo_Gender(trainerInfo), TrainerInfo_Name(trainerInfo), TrainerInfo_Money(trainerInfo), Pokedex_CountSeen(SaveData_GetPokedex(fieldSystem->saveData)), Pokedex_IsObtained(SaveData_GetPokedex(fieldSystem->saveData)), GameRecords_GetTrainerScore(gameRecords), trainerCard);
 
@@ -136,12 +136,12 @@ u8 TrainerCard_CalculateLevel(FieldSystem *fieldSystem)
     return trainerCardLevel;
 }
 
-static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 level, u8 gymLeadersToHide, u8 regionCode, TrainerCard *trainerCard)
+static void TrainerCard_SetFields(u8 badgesInteractable, u8 gameVersion, u8 level, u8 gymLeadersToHide, u8 language, TrainerCard *trainerCard)
 {
     trainerCard->badgesInteractable = badgesInteractable;
     trainerCard->gameVersion = gameVersion;
     trainerCard->level = level;
-    trainerCard->regionCode = regionCode;
+    trainerCard->language = language;
     trainerCard->gymLeadersToHide_Unused = gymLeadersToHide;
 }
 

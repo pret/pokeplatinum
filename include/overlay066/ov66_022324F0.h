@@ -71,7 +71,7 @@ void ov66_022333E4(s32 param0);
 UnkEnum_ov66_02233434 ov66_02233434(void);
 s32 ov66_02233454(UnkEnum_ov66_02233454 param0);
 u16 *ov66_02233538(UnkEnum_ov66_02233538 param0);
-BOOL ov66_022335C0(UnkEnum_ov66_022335C0 param0, u32 param1);
+BOOL ov66_022335C0(UnkEnum_ov66_022335C0 param0, u32 language);
 void ov66_0223361C(void);
 
 #endif // POKEPLATINUM_OV66_022324F0_H

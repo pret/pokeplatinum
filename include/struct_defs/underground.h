@@ -40,7 +40,7 @@ typedef struct Underground {
     u8 unused; // Set but never read
     u32 registeredFlagOwnerIDs[MAX_CAPTURED_FLAG_RECORDS];
     charcode_t registeredFlagOwnerNames[MAX_CAPTURED_FLAG_RECORDS][TRAINER_NAME_LEN + 1];
-    u8 registeredFlagOwnerRegionCodes[MAX_CAPTURED_FLAG_RECORDS];
+    u8 registeredFlagOwnerLanguages[MAX_CAPTURED_FLAG_RECORDS];
     u8 registeredFlagOwnerGameCodes[MAX_CAPTURED_FLAG_RECORDS];
     u8 registeredFlagOwnerIndex;
     u8 spawnedTrapIDs[MAX_SPAWNED_TRAPS];

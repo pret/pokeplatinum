@@ -263,7 +263,7 @@ BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
     u8 unused2 = ScriptContext_ReadByte(ctx);
     String *buffer = GetSpeciesNameString(species, HEAP_ID_FIELD1);
 
-    StringTemplate_SetString(*template, bufferId, buffer, unused1, unused2, 2);
+    StringTemplate_SetString(*template, bufferId, buffer, unused1, unused2, GAME_LANGUAGE);
     String_Free(buffer);
 
     return FALSE;
@@ -358,7 +358,7 @@ BOOL ScrCmd_BufferMapName(ScriptContext *ctx)
     u16 mapHeaderID = ScriptContext_GetVar(ctx);
 
     MapHeader_LoadName(mapHeaderID, HEAP_ID_FIELD1, mapName);
-    StringTemplate_SetString(*strTemplate, templateArg, mapName, 0, 1, 2);
+    StringTemplate_SetString(*strTemplate, templateArg, mapName, 0, 1, GAME_LANGUAGE);
     String_Free(mapName);
 
     return FALSE;
@@ -372,7 +372,7 @@ BOOL ScrCmd_BufferBerryName(ScriptContext *ctx)
     u16 unused = ScriptContext_GetVar(ctx);
     String *berryName = BerryData_AllocAndGetName(item - FIRST_BERRY_IDX, HEAP_ID_FIELD3);
 
-    StringTemplate_SetString(*strTemplate, templateArg, berryName, 0, (unused < 2 ? 1 : 0), 2);
+    StringTemplate_SetString(*strTemplate, templateArg, berryName, 0, (unused < 2 ? 1 : 0), GAME_LANGUAGE);
     String_Free(berryName);
 
     return FALSE;

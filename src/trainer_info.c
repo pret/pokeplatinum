@@ -32,7 +32,7 @@ void TrainerInfo_Copy(const TrainerInfo *src, TrainerInfo *dst)
 void TrainerInfo_Init(TrainerInfo *info)
 {
     memset(info, 0, sizeof(TrainerInfo));
-    info->regionCode = GAME_LANGUAGE;
+    info->language = GAME_LANGUAGE;
 
     TrainerInfo_SetGameCode(info, GAME_VERSION);
 }
@@ -196,14 +196,14 @@ u8 TrainerInfo_DPGameCode(void)
     return 0;
 }
 
-u8 TrainerInfo_RegionCode(const TrainerInfo *info)
+u8 TrainerInfo_Language(const TrainerInfo *info)
 {
-    return info->regionCode;
+    return info->language;
 }
 
-void TrainerInfo_SetRegionCode(TrainerInfo *info, u8 regionCode)
+void TrainerInfo_SetLanguage(TrainerInfo *info, u8 language)
 {
-    info->regionCode = regionCode;
+    info->language = language;
 }
 
 void TrainerInfo_SetMainStoryCleared(TrainerInfo *info)

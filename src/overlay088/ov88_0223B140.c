@@ -1646,14 +1646,14 @@ static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
     CharCode_Copy(param2->trainerName, TrainerInfo_Name(param0));
 
     param2->trainerId = TrainerInfo_ID(param0);
-    param2->regionCode = TrainerInfo_RegionCode(param0);
+    param2->language = TrainerInfo_Language(param0);
     param2->gameCode = TrainerInfo_GameCode(param0);
     param2->gender = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
         param2->associatedTrainerIds[v0] = param1[v0].trainerId;
         param2->associatedTrainerGameCodes[v0] = param1[v0].gameCode;
-        param2->associatedTrainerRegionCodes[v0] = param1[v0].regionCode;
+        param2->associatedTrainerLanguages[v0] = param1[v0].language;
         param2->associatedTrainerGenders[v0] = param1[v0].gender;
     }
 

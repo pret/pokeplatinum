@@ -12,7 +12,7 @@
 typedef struct PalPad {
     u16 trainerName[TRAINER_NAME_LEN + 1];
     u32 trainerId;
-    u8 regionCode;
+    u8 language;
     u8 gameCode;
     u8 gender;
     u8 padding_17;
@@ -20,7 +20,7 @@ typedef struct PalPad {
     // these are the 16 trainers inside the owners' pal pad
     u32 associatedTrainerIds[PAL_PAD_ENTRIES];
     u8 associatedTrainerGameCodes[PAL_PAD_ENTRIES];
-    u8 associatedTrainerRegionCodes[PAL_PAD_ENTRIES];
+    u8 associatedTrainerLanguages[PAL_PAD_ENTRIES];
     u8 associatedTrainerGenders[PAL_PAD_ENTRIES];
 } PalPad;
 
@@ -38,13 +38,13 @@ void PalPad_Init(PalPad *palPad);
 const u16 *PalPad_GetTrainerNamePointer(const PalPad *palPad, int trainerIndex);
 
 /**
- * @brief Get the region code for a friend of friend
+ * @brief Get the language for a friend of friend
  *
  * @param palPad
  * @param trainerIndex
- * @return A region code value returned by TrainerInfo_RegionCode
+ * @return A language value returned by TrainerInfo_Language
  */
-u8 PalPad_GetTrainerRegionCode(const PalPad *palPad, int trainerIndex);
+u8 PalPad_GetTrainerLanguage(const PalPad *palPad, int trainerIndex);
 
 /**
  * @brief Compare two Pal Pads by their trainer name & ID

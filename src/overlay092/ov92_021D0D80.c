@@ -314,10 +314,10 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->heapID = heapID;
 
-    if (gGameLanguage == 1) {
-        v0->unk_BAF0 = 1;
+    if (gGameLanguage == JAPANESE) {
+        v0->unk_BAF0 = TRUE;
     } else {
-        v0->unk_BAF0 = 0;
+        v0->unk_BAF0 = FALSE;
     }
 
     SaveData *saveData = ApplicationManager_Args(appMan);
