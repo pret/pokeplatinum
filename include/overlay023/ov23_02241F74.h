@@ -18,7 +18,9 @@ enum UndergroundStoredPosKeys {
     UNDERGROUND_STORED_POS_NONE = 0,
     UNDERGROUND_STORED_POS_KEY_PC,
     UNDERGROUND_STORED_POS_KEY_START_MENU,
-    UNDERGROUND_STORED_POS_KEY_3,
+    UNDERGROUND_STORED_POS_KEY_GOODS_VENDOR,
+    UNDERGROUND_STORED_POS_KEY_TRAPS_VENDOR,
+    UNDERGROUND_STORED_POS_KEY_TREASURES_VENDOR,
 };
 
 enum UndergroundMenuKeys {
@@ -28,16 +30,16 @@ enum UndergroundMenuKeys {
     UNDERGROUND_MENU_KEY_SPHERES,
     UNDERGROUND_MENU_KEY_GOODS,
     UNDERGROUND_MENU_KEY_TREASURES,
-    UNDERGROUND_MENU_KEY_12,
-    UNDERGROUND_MENU_KEY_13,
-    UNDERGROUND_MENU_KEY_14,
-    UNDERGROUND_MENU_KEY_15,
-    UNDERGROUND_MENU_KEY_16,
-    UNDERGROUND_MENU_KEY_17,
-    UNDERGROUND_MENU_KEY_18,
-    UNDERGROUND_MENU_KEY_19,
+    UNDERGROUND_MENU_KEY_PAY_WITH_SPHERES,
+    UNDERGROUND_MENU_KEY_BUY_GOODS,
+    UNDERGROUND_MENU_KEY_BUY_TRAPS,
+    UNDERGROUND_MENU_KEY_BUY_TREASURES_UNUSED,
+    UNDERGROUND_MENU_KEY_SELL_GOODS,
+    UNDERGROUND_MENU_KEY_SELL_TRAPS,
+    UNDERGROUND_MENU_KEY_SELL_TREASURES,
+    UNDERGROUND_MENU_KEY_VENDOR_OPTIONS,
     UNDERGROUND_MENU_KEY_PC_RADAR = 22,
-    UNDERGROUND_MENU_KEY_PC
+    UNDERGROUND_MENU_KEY_PC,
 };
 
 #define BIT_TRAPS_FULL             1 << 4
@@ -86,14 +88,14 @@ void CommManUnderground_SetSphereRadarActive(void);
 void CommManUnderground_SetTrapRadarActive(void);
 void CommManUnderground_SetTreasureRadarActive(void);
 void ov23_0224300C(int param0, int param1);
-void ov23_02243020(int param0);
+void CommManUnderground_QueueTalkedToVendorMessage(int param0);
 void UndergroundMan_SetReturnLog(int param0);
 void ov23_022430B8(int param0);
 void CommManUnderground_SetStoredPosKey(u16 menuKey);
 void CommManUnderground_StoreCursorAndListPos(u16 menuKey, u16 cursorPos, u16 listPos);
 u16 CommManUnderground_GetStoredListPos(u16 menuKey);
 u16 CommManUnderground_GetStoredCursorPos(u16 menuKey);
-void ov23_022431C4(int param0, int param1, void *param2, void *param3);
+void CommManUnderground_ProcessVendorTalkRequest(int param0, int param1, void *param2, void *param3);
 void CommManUnderground_SetCurrentSysTask(void *ctx, SysTask *sysTask, EndSysTaskFunc endFunc);
 void CommManUnderground_ClearCurrentSysTaskInfo(void);
 BOOL ov23_0224321C(void);

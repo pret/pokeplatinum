@@ -663,16 +663,16 @@ BOOL UndergroundPlayer_IsAffectedByTrap(int netID)
     return FALSE;
 }
 
-void ov23_0224ACE8(int netID, int unused1, void *unused2, void *unused3)
+void UndergroundPlayer_ProcessVendorTalk(int netID, int unused1, void *unused2, void *unused3)
 {
     u8 data = netID;
     CommSys_SendDataFixedSizeServer(26, &data);
 }
 
-void ov23_0224ACF8(int unused0, int unused1, void *data, void *unused3)
+void UndergroundPlayer_ProcessVendorTalkServer(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
-    ov23_02243020(*netID);
+    CommManUnderground_QueueTalkedToVendorMessage(*netID);
 }
 
 int UndergroundPlayer_GetXPos(int netID)

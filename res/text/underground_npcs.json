@@ -2,165 +2,165 @@
   "key": 10232,
   "messages": [
     {
-      "id": "pl_msg_00000636_00000",
+      "id": "UndergroundNPCs_Text_IllTradeYouSomething",
       "en_US": [
         "You’ve got a Sphere or two?\n",
         "If you do, I’ll trade you something."
       ]
     },
     {
-      "id": "pl_msg_00000636_00001",
+      "id": "UndergroundNPCs_Text_PickSpherePrompt",
       "en_US": [
         "Which Sphere will you trade me for\n",
         "my {STRVAR_1 25, 2, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000636_00002",
+      "id": "UndergroundNPCs_Text_LetsDoThisTrade",
       "en_US": [
         "All right!\n",
         "Let’s do this trade!"
       ]
     },
     {
-      "id": "pl_msg_00000636_00003",
+      "id": "UndergroundNPCs_Text_YouDontHaveRoom",
       "en_US": [
         "Oh, now wait a second!\n",
         "You don’t have any room for this!"
       ]
     },
     {
-      "id": "pl_msg_00000636_00004",
+      "id": "UndergroundNPCs_Text_WrongKindOfSphere",
       "en_US": "That’s not the right kind of Sphere!"
     },
     {
-      "id": "pl_msg_00000636_00005",
+      "id": "UndergroundNPCs_Text_SphereTooSmall",
       "en_US": [
         "Hmm...\n",
         "No, this Sphere’s not big enough."
       ]
     },
     {
-      "id": "pl_msg_00000636_00006",
+      "id": "UndergroundNPCs_Text_ItemWasObtained",
       "en_US": [
         "The {STRVAR_1 25, 2, 0}\n",
         "was obtained!"
       ]
     },
     {
-      "id": "pl_msg_00000636_00007",
+      "id": "UndergroundNPCs_Text_YouObtainedSphere",
       "en_US": [
         "You obtained a {STRVAR_1 25, 2, 0},\n",
         "size {STRVAR_1 51, 6, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000636_00008",
+      "id": "UndergroundNPCs_Text_DoYouNeedAnythingElse",
       "en_US": "Do you need anything else?"
     },
     {
-      "id": "pl_msg_00000636_00009",
+      "id": "UndergroundNPCs_Text_BeSeeingYouThen",
       "en_US": "I’ll be seeing you, then!"
     },
     {
-      "id": "pl_msg_00000636_00010",
+      "id": "UndergroundNPCs_Text_ConfirmTradePrompt",
       "en_US": [
         "You’ll trade your {STRVAR_1 25, 2, 0}\n",
         "for my {STRVAR_1 25, 4, 0}?"
       ]
     },
     {
-      "id": "pl_msg_00000636_00011",
+      "id": "UndergroundNPCs_Text_AllRightLetsTrade",
       "en_US": [
         "All right!\n",
         "Let’s trade!"
       ]
     },
     {
-      "id": "pl_msg_00000636_00012",
+      "id": "UndergroundNPCs_Text_YouDontHaveRoomForSphere_Unused",
       "en_US": [
         "Oh, now wait a second! You don’t\n",
         "have room for another Sphere!"
       ]
     },
     {
-      "id": "pl_msg_00000636_00013",
+      "id": "UndergroundNPCs_Text_GetTrap",
       "en_US": "GET TRAP"
     },
     {
-      "id": "pl_msg_00000636_00014",
+      "id": "UndergroundNPCs_Text_GiveTrap",
       "en_US": "GIVE TRAP"
     },
     {
-      "id": "pl_msg_00000636_00015",
+      "id": "UndergroundNPCs_Text_Exit_Trap",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000636_00016",
+      "id": "UndergroundNPCs_Text_GetGoods",
       "en_US": "GET GOODS"
     },
     {
-      "id": "pl_msg_00000636_00017",
+      "id": "UndergroundNPCs_Text_GiveGoods",
       "en_US": "GIVE GOODS"
     },
     {
-      "id": "pl_msg_00000636_00018",
+      "id": "UndergroundNPCs_Text_Exit_Goods",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000636_00019",
+      "id": "UndergroundNPCs_Text_SpheresOnHand",
       "en_US": [
         "Spheres\n",
         " on hand"
       ]
     },
     {
-      "id": "pl_msg_00000636_00020",
+      "id": "UndergroundNPCs_Text_TrapsOnHand",
       "en_US": [
         "Traps on\n",
         " hand"
       ]
     },
     {
-      "id": "pl_msg_00000636_00021",
+      "id": "UndergroundNPCs_Text_GoodsOnHand",
       "en_US": [
         "Goods on\n",
         " hand"
       ]
     },
     {
-      "id": "pl_msg_00000636_00022",
+      "id": "UndergroundNPCs_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000636_00023",
+      "id": "UndergroundNPCs_Text_RequiredSphere",
       "en_US": "Required Sphere"
     },
     {
-      "id": "pl_msg_00000636_00024",
+      "id": "UndergroundNPCs_Text_OfferedSphere",
       "en_US": "Offered Sphere"
     },
     {
-      "id": "pl_msg_00000636_00025",
+      "id": "UndergroundNPCs_Text_SphereTemplate",
       "en_US": "{STRVAR_1 25, 2, 0} {STRVAR_1 51, 6, 0}"
     },
     {
-      "id": "pl_msg_00000636_00026",
+      "id": "UndergroundNPCs_Text_NotForSale",
       "en_US": "NOT FOR SALE"
     },
     {
-      "id": "pl_msg_00000636_00027",
+      "id": "UndergroundNPCs_Text_IllTradeSpheresForTreasures",
       "en_US": [
         "You have any treasures? I’ll trade\n",
         "you some Spheres for them."
       ]
     },
     {
-      "id": "pl_msg_00000636_00028",
+      "id": "UndergroundNPCs_Text_GiveTreasures",
       "en_US": "GIVE TREASURES"
     },
     {
-      "id": "pl_msg_00000636_00029",
+      "id": "UndergroundNPCs_Text_TreasuresOnHand",
       "en_US": [
         "Treasures\n",
         " on hand"

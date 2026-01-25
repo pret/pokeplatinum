@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "constants/charcode.h"
-#include "constants/goods.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
-#include "constants/traps.h"
+#include "generated/goods.h"
+#include "generated/traps.h"
 
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
