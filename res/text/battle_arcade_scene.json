@@ -96,7 +96,7 @@
       "garbage": 3
     },
     {
-      "id": "BattleArcadeScene_Text_OpponentIsChoosing",
+      "id": "BattleArcadeScene_Text_PartnerIsChoosing",
       "en_US": [
         "{STRVAR_1 3, 0, 0} is choosing.\n",
         "Please wait."
@@ -107,7 +107,7 @@
       "garbage": 20
     },
     {
-      "id": "BattleArcadeScene_Text_OpponentRetired",
+      "id": "BattleArcadeScene_Text_PartnerRetired",
       "en_US": "{STRVAR_1 3, 0, 0} chose to retire."
     },
     {

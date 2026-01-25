@@ -1,4 +1,7 @@
+#include "generated/fade_types.h"
 #include "generated/sdat.h"
+#include "constants/colors.h"
+#include "constants/fade_screen.h"
 #include "constants/scrcmd.h"
 
     .set FALSE, 0
@@ -96,20 +99,30 @@
     .short \messageID
     .endm
 
-    .macro FrontierScrCmd_12
+    .macro CloseMessage
     .short 0x012
     .endm
 
-    .macro FrontierScrCmd_13 arg0, arg1, arg2, arg3
+    .macro FadeScreen transition, frames, type, color
     .short 0x013
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \transition
+    .short \frames
+    .short \type
+    .short \color
     .endm
 
-    .macro FrontierScrCmd_14
+    .macro WaitFadeScreen
     .short 0x014
+    .endm
+
+    .macro FadeScreenOut color=COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_BRIGHTNESS_OUT, \color
+    WaitFadeScreen
+    .endm
+
+    .macro FadeScreenIn color=COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_BRIGHTNESS_IN, \color
+    WaitFadeScreen
     .endm
 
     .macro FrontierScrCmd_15 arg0, arg1, arg2, arg3, arg4
@@ -306,23 +319,23 @@
     .short 0x037
     .endm
 
-    .macro FrontierScrCmd_38 arg0, arg1
+    .macro GetRandom destVarID, upperBound
     .short 0x038
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \upperBound
     .endm
 
-    .macro FrontierScrCmd_39
+    .macro HealParty
     .short 0x039
     .endm
 
-    .macro FrontierScrCmd_3A
+    .macro WaitABPress
     .short 0x03A
     .endm
 
-    .macro FrontierScrCmd_3B arg0
+    .macro WaitABPressTime frames
     .short 0x03B
-    .short \arg0
+    .short \frames
     .endm
 
     .macro FrontierScrCmd_3C arg0
@@ -636,51 +649,51 @@
     .short 0x078
     .endm
 
-    .macro FrontierScrCmd_79 arg0, arg1
+    .macro BufferItemName templateArg, item
     .short 0x079
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
-    .macro FrontierScrCmd_7A arg0, arg1
+    .macro BufferNumber templateArg, number
     .short 0x07A
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \number
     .endm
 
-    .macro FrontierScrCmd_7B arg0
+    .macro BufferPlayerName templateArg
     .short 0x07B
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro FrontierScrCmd_7C arg0
+    .macro BufferPartnerName templateArg
     .short 0x07C
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro FrontierScrCmd_7D arg0, arg1
+    .macro BufferMoveName templateArg, move
     .short 0x07D
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \move
     .endm
 
-    .macro FrontierScrCmd_7E arg0, arg1, arg2, arg3
+    .macro BufferSpeciesName templateArg, species, unused1=0, unused2=0
     .short 0x07E
-    .byte \arg0
-    .short \arg1
-    .short \arg2
-    .byte \arg3
+    .byte \templateArg
+    .short \species
+    .short \unused1
+    .byte \unused2
     .endm
 
-    .macro FrontierScrCmd_7F arg0, arg1
+    .macro BufferTypeName templateArg, type
     .short 0x07F
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \type
     .endm
 
-    .macro FrontierScrCmd_80 arg0
+    .macro BufferRivalName templateArg
     .short 0x080
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro FrontierScrCmd_81 arg0
