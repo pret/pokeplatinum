@@ -34,7 +34,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0203A7D8.h"
+#include "spawn_locations.h"
 #include "unk_020553DC.h"
 #include "unk_02070428.h"
 

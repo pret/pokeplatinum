@@ -13,7 +13,7 @@
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sys_task_manager.h"
-#include "unk_0203A7D8.h"
+#include "spawn_locations.h"
 
 typedef struct {
     FieldSystem *fieldSystem;
@@ -60,7 +60,7 @@ BOOL sub_02070680(FieldTask *task)
         u16 destination;
         Location location;
 
-        destination = sub_0203A8A0(taskEnv->mapID, taskEnv->unk_0A, taskEnv->unk_0C);
+        destination = GetSpawnIdByMapAndCoords(taskEnv->mapID, taskEnv->unk_0A, taskEnv->unk_0C);
         GF_ASSERT(destination != 0);
 
         Location_InitFly(destination, &location);
