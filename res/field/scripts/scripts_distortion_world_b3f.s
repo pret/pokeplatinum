@@ -12,7 +12,7 @@ _000A:
 
 _000E:
     LockAll
-    ScrCmd_311 128
+    AddDistortionWorldMapObject 128
     ApplyMovement 128, _0060
     WaitMovement
     Message 0
@@ -29,7 +29,7 @@ _003E:
     CloseMessage
     ApplyMovement 128, _0068
     WaitMovement
-    ScrCmd_312 128
+    DeleteDistortionWorldMapObject 128
     SetVar VAR_DISTORTION_WORLD_PROGRESS, 6
     ReleaseAll
     End

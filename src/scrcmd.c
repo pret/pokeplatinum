@@ -727,8 +727,8 @@ static BOOL ScrCmd_2FB(ScriptContext *ctx);
 static BOOL ScrCmd_2FC(ScriptContext *ctx);
 static BOOL ScrCmd_GetRotomFormsInSave(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx);
-static BOOL ScrCmd_311(ScriptContext *ctx);
-static BOOL ScrCmd_312(ScriptContext *ctx);
+static BOOL ScrCmd_AddDistortionWorldMapObject(ScriptContext *ctx);
+static BOOL ScrCmd_DeleteDistortionWorldMapObject(ScriptContext *ctx);
 static BOOL ScrCmd_ResetDistortionWorldPersistedCameraAngles(ScriptContext *ctx);
 static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
@@ -1550,8 +1550,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_30E,
     ScrCmd_30F,
     ScrCmd_310,
-    ScrCmd_311,
-    ScrCmd_312,
+    ScrCmd_AddDistortionWorldMapObject,
+    ScrCmd_DeleteDistortionWorldMapObject,
     ScrCmd_CheckHeapMemory,
     ScrCmd_GetBattleResult,
     ScrCmd_315,
@@ -7841,21 +7841,21 @@ static BOOL ScrCmd_IncrementTrainerScore(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_311(ScriptContext *ctx)
+static BOOL ScrCmd_AddDistortionWorldMapObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 mapObjLocalID = ScriptContext_GetVar(ctx);
 
-    ov9_0224F158(fieldSystem, v1);
+    DistWorld_AddMapObjectWithLocalID(fieldSystem, mapObjLocalID);
     return FALSE;
 }
 
-static BOOL ScrCmd_312(ScriptContext *ctx)
+static BOOL ScrCmd_DeleteDistortionWorldMapObject(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 mapObjLocalID = ScriptContext_GetVar(ctx);
 
-    ov9_0224F16C(fieldSystem, v1);
+    DistWorld_DeleteMapObjectWithLocalID(fieldSystem, mapObjLocalID);
     return FALSE;
 }
 
