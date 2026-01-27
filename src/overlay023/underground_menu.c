@@ -1720,7 +1720,7 @@ void UndergroundMenu_Exit(void *data, u32 input)
     UndergroundMenu *menu = data;
 
     UndergroundMenu_EraseCurrentMenu(menu);
-    ov23_02242FBC();
+    CommManUnderground_SetNormalRadarActive();
     UndergroundRecords_ForceExitTrainerCase();
     TrapRadar_Exit();
     ov23_02241364();

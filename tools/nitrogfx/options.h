@@ -43,6 +43,7 @@ struct PngToNtrOptions {
     int mappingType;
     bool convertTo4Bpp;
     int rotate;
+    bool noSkip;
 };
 
 struct NtrToPngOptions {

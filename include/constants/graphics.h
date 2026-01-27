@@ -66,4 +66,7 @@ enum DSScreen {
 
 #define RGB_TO_GRAYSCALE(r, g, b) (((r) * 76 + (g) * 151 + (b) * 29) >> 8)
 
+#define SCREEN_WIDTH_TILES  32
+#define SCREEN_HEIGHT_TILES 24
+
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H

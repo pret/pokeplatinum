@@ -20,7 +20,6 @@
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay005/ov5_021F5894.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02248F1C.h"
 #include "overlay023/ov23_022499E4.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
@@ -28,6 +27,7 @@
 #include "overlay023/underground_records.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_top_screen.h"
 #include "overlay023/underground_traps.h"
 
 #include "bg_window.h"
@@ -1635,13 +1635,13 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
     case BASE_MOVE_STATE_FADE_OUT:
         FinishScreenFade();
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
-        ov23_0224942C(fieldSystem->unk_6C);
+        UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         ctx->state++;
         break;
     case BASE_MOVE_STATE_WAIT_FOR_FADE_OUT:
         if (IsScreenFadeDone()) {
-            if (fieldSystem->unk_6C == NULL) {
+            if (fieldSystem->ugTopScreenCtx == NULL) {
                 ctx->state++;
             }
         }
@@ -1667,7 +1667,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         }
         break;
     case BASE_MOVE_STATE_FADE_IN:
-        fieldSystem->unk_6C = ov23_02249404(fieldSystem);
+        fieldSystem->ugTopScreenCtx = UndergroundTopScreen_StartTask(fieldSystem);
         FinishScreenFade();
         StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_TOP_HALF_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ctx->state++;
@@ -1745,9 +1745,9 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         Heap_Free(ctx);
 
         if (CommServerClient_IsInClosedSecretBase() && Underground_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
-            ov23_02242FA8();
+            CommManUnderground_DeactivateRadar();
         } else {
-            ov23_02242FBC();
+            CommManUnderground_SetNormalRadarActive();
         }
 
         if (secretBasesEnv->moveStatus == MOVE_STATUS_ERROR_WHILE_ENTERING_2 && secretBasesEnv->currentPlayerInBase) {
