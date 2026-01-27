@@ -9,7 +9,7 @@
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
-#include "overlay023/ov23_02241F74.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -305,7 +305,7 @@ void UndergroundRecords_PrintEntryForDecoration(UndergroundRecord *undergroundRe
     GF_ASSERT(bankEntry <= DECORATION_MESSAGES_MAX);
 
     CommPlayerMan_PauseFieldSystem();
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_RECORDS, MSG_LOADER_LOAD_ON_DEMAND);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundMan_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_RECORDS, MSG_LOADER_LOAD_ON_DEMAND);
 
     UndergroundRecord *undergroundRecordCopy = UndergroundRecord_Init(HEAP_ID_FIELD1);
     MI_CpuCopy8(undergroundRecord, undergroundRecordCopy, UndergroundRecord_Size());
@@ -313,8 +313,8 @@ void UndergroundRecords_PrintEntryForDecoration(UndergroundRecord *undergroundRe
     int entry = getEntry(undergroundRecordCopy);
     Heap_Free(undergroundRecordCopy);
 
-    UndergroundTextPrinter_SetNumber(CommManUnderground_GetMiscTextPrinter(), entry);
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), bankEntry, TRUE, UndergroundRecords_ResumeFieldSystem);
+    UndergroundTextPrinter_SetNumber(UndergroundMan_GetMiscTextPrinter(), entry);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), bankEntry, TRUE, UndergroundRecords_ResumeFieldSystem);
 }
 
 static void UndergroundRecords_DrawCheckFlagsScreen(Window *window, MessageLoader *loader, TrainerInfo *trainerInfo, const UndergroundRecord *undergroundRecord, const Underground *underground)

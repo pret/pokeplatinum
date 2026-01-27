@@ -1082,7 +1082,7 @@ void sub_0205B2D4(FieldSystem *fieldSystem)
             continue;
         }
 
-        if ((v2 == CommPlayer_XPos(v0)) && (v3 == CommPlayer_ZPos(v0))) {
+        if ((v2 == CommPlayer_GetXIfActive(v0)) && (v3 == CommPlayer_GetZIfActive(v0))) {
             UnkStruct_0205B2D4 *v4 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0205B2D4));
 
             v4->unk_24 = v0;

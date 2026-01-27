@@ -7,7 +7,7 @@
 #include "generated/trainer_score_events.h"
 
 #include "field/field_system.h"
-#include "overlay023/ov23_02241F74.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_records.h"
 #include "overlay023/underground_text_printer.h"
@@ -284,7 +284,7 @@ static void UndergroundTalk_PrintMessage(TalkMenu *menu, int bankEntry)
         }
     }
 
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
 }
 
 static void UndergroundTalkResponse_PrintMessage(ResponseMenu *menu, int bankEntry)
@@ -297,7 +297,7 @@ static void UndergroundTalkResponse_PrintMessage(ResponseMenu *menu, int bankEnt
         }
     }
 
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
 }
 
 void UndergroundTalk_Start(int linkNetID, ExitCallback exitCallback, FieldSystem *fieldSystem)
@@ -361,7 +361,7 @@ static void UndergroundTalk_Exit(SysTask *sysTask, TalkMenu *menu)
 
     if (menu->giftMenu) {
         UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
-        CommManUnderground_ClearCurrentSysTaskInfo();
+        UndergroundMan_ClearCurrentSysTaskInfo();
     }
 
     UndergroundTalk_CloseTalkMenu(sysTask, menu);
@@ -507,8 +507,8 @@ static BOOL UndergroundTalk_HandleAnswersMenu(SysTask *sysTask, void *data)
         message.recipientNetID = menu->linkNetID;
         message.type = MESSAGE_TYPE_TALK_ANSWER;
         CommSys_SendDataFixedSize(79, &message);
-        UndergroundTextPrinter_SetUndergroundAnswer(CommManUnderground_GetCommonTextPrinter(), message.index);
-        UndergroundTextPrinter_SetUndergroundAnswerWithIndex(CommManUnderground_GetCommonTextPrinter(), 6, menu->linkAnswerIndex);
+        UndergroundTextPrinter_SetUndergroundAnswer(UndergroundMan_GetCommonTextPrinter(), message.index);
+        UndergroundTextPrinter_SetUndergroundAnswerWithIndex(UndergroundMan_GetCommonTextPrinter(), 6, menu->linkAnswerIndex);
 
         if (menu->linkAnswerIndex == message.index) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_ResponseSameAnswer_Male);
@@ -526,9 +526,9 @@ static BOOL UndergroundTalk_HandleAnswersMenu(SysTask *sysTask, void *data)
 
 static void UndergroundTalk_RemoveGiftedGood(TalkMenu *menu)
 {
-    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCommonTextPrinter(), CommInfo_TrainerInfo(menu->linkNetID));
-    UndergroundTextPrinter_SetUndergroundGoodsName(CommManUnderground_GetCommonTextPrinter(), menu->sentGift.goodID);
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_GiftWasGiven, FALSE, NULL);
+    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCommonTextPrinter(), CommInfo_TrainerInfo(menu->linkNetID));
+    UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetCommonTextPrinter(), menu->sentGift.goodID);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_GiftWasGiven, FALSE, NULL);
 
     UndergroundRecord_IncrementGiftsGiven(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
     UndergroundMenu_RemoveSelectedGoodBag(menu->sentGift.goodID);
@@ -537,8 +537,8 @@ static void UndergroundTalk_RemoveGiftedGood(TalkMenu *menu)
 
 static void UndergroundTalk_PrintGiftConfirmPrompt(TalkMenu *unused, int goodID)
 {
-    UndergroundTextPrinter_SetUndergroundGoodsName(CommManUnderground_GetCommonTextPrinter(), goodID);
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_YouWantToGiveMeGiftPrompt, FALSE, NULL);
+    UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetCommonTextPrinter(), goodID);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_YouWantToGiveMeGiftPrompt, FALSE, NULL);
 }
 
 static void UndergroundTalk_HandleGiftConfirmMenu(SysTask *unused, TalkMenu *menu)
@@ -648,7 +648,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
 
     switch (menu->state) {
     case TALK_MENU_STATE_INIT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalk_InitTalkMenu(menu);
             menu->state++;
         }
@@ -658,11 +658,11 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         break;
     case TALK_MENU_STATE_COMM_ERROR:
     case TALK_MENU_STATE_EXIT:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         UndergroundTalk_Exit(sysTask, menu);
         break;
     case TALK_MENU_STATE_CASE_EXCHANGE_OFFERED:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (menu->linkRequestedState == TALK_MENU_STATE_START_CASE_EXCHANGE) {
                 menu->state = TALK_MENU_STATE_START_CASE_EXCHANGE;
                 UndergroundRecords_SendRecord(menu->linkNetID);
@@ -682,7 +682,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         menu->state = TALK_MENU_STATE_EXIT_AFTER_TEXT;
         break;
     case TALK_MENU_STATE_EXIT_AFTER_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 menu->state = TALK_MENU_STATE_EXIT;
             }
@@ -690,7 +690,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         break;
     case TALK_MENU_STATE_START_CASE_EXCHANGE:
         if (UndergroundRecords_IsLinkRecordReceived()) {
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             UndergroundRecords_ShowTrainerCase(menu->fieldSystem->bgConfig, CommInfo_TrainerInfo(menu->linkNetID), UndergroundTalk_ExitCaseExchangeCallback, menu, FALSE);
             menu->state = TALK_MENU_STATE_VIEW_LINK_CASE;
         }
@@ -704,7 +704,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         menu->state = TALK_MENU_STATE_NOTIFY_LINK_CASE_EXCHANGE_ENDED;
         break;
     case TALK_MENU_STATE_NOTIFY_LINK_CASE_EXCHANGE_ENDED:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalk_RequestLinkTalkStateUpdate(menu, RESPONSE_RETURN_TO_MAIN_AFTER_CASE_EXCHANGE);
             menu->state = TALK_MENU_STATE_WAIT_FOR_LINK_CASE_EXCHANGE_END;
         }
@@ -719,7 +719,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         menu->state = TALK_MENU_STATE_INIT;
         break;
     case TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT;
             }
@@ -752,7 +752,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         }
         break;
     case TALK_MENU_STATE_OPEN_CONFIRM_GIFT_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             menu->state = TALK_MENU_STATE_CONFIRM_GIFT;
 
@@ -765,7 +765,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         UndergroundTalk_HandleGiftConfirmMenu(sysTask, menu);
         break;
     case TALK_MENU_STATE_GIFT_OFFERED:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (menu->linkRequestedState == TALK_MENU_STATE_GIFT_ACCEPTED) {
                 menu->state = TALK_MENU_STATE_GIFT_ACCEPTED;
             }
@@ -799,7 +799,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         menu->state = TALK_MENU_STATE_WAIT_FOR_LINK_CONFIRM;
         break;
     case TALK_MENU_STATE_WAIT_FOR_LINK_CONFIRM:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (menu->linkRequestedState == TALK_RETURN_TO_MAIN_AFTER_GIFT) {
                 menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT;
             }
@@ -810,7 +810,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         menu->state = TALK_MENU_STATE_INIT_QUESTIONS_MENU;
         break;
     case TALK_MENU_STATE_INIT_QUESTIONS_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalk_InitQuestionsMenu(menu);
             menu->state = TALK_MENU_STATE_SELECT_QUESTION;
         }
@@ -819,12 +819,12 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         UndergroundTalk_HandleQuestionsMenu(sysTask, menu);
         break;
     case TALK_MENU_STATE_PRINT_SELECTED_QUESTION:
-        UndergroundTextPrinter_SetUndergroundQuestion(CommManUnderground_GetCommonTextPrinter(), menu->questionIndex);
+        UndergroundTextPrinter_SetUndergroundQuestion(UndergroundMan_GetCommonTextPrinter(), menu->questionIndex);
         UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_LetMeThink_Male);
         menu->state = TALK_MENU_STATE_WAIT_FOR_LINK_ANSWER;
         break;
     case TALK_MENU_STATE_WAIT_FOR_LINK_ANSWER:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (menu->linkRequestedState == TALK_MENU_STATE_LINK_ANSWERED) {
                 menu->state = TALK_MENU_STATE_LINK_ANSWERED;
             }
@@ -836,13 +836,13 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
             menu->linkRequestedState = 0;
             menu->state = TALK_MENU_STATE_WAIT_FOR_LINK_TEXT;
         } else {
-            UndergroundTextPrinter_SetUndergroundAnswer(CommManUnderground_GetCommonTextPrinter(), menu->linkAnswerIndex);
+            UndergroundTextPrinter_SetUndergroundAnswer(UndergroundMan_GetCommonTextPrinter(), menu->linkAnswerIndex);
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_IHaveAnswerWhatsYours_Male);
             menu->state = TALK_MENU_STATE_INIT_ANSWERS_MENU;
         }
         break;
     case TALK_MENU_STATE_WAIT_FOR_LINK_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (menu->linkRequestedState == TALK_RETURN_TO_MAIN_AFTER_REJECTED_QUESTION) {
                 menu->linkRequestedState = 0;
                 menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT;
@@ -850,7 +850,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         }
         break;
     case TALK_MENU_STATE_INIT_ANSWERS_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalk_InitAnswersMenu(menu);
             menu->state = TALK_MENU_STATE_SELECT_ANSWER;
         }
@@ -859,14 +859,14 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         UndergroundTalk_HandleAnswersMenu(sysTask, menu);
         break;
     case TALK_MENU_STATE_ANSWER_SELECTED:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(menu->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_ASK_PLAYER_QUESTION);
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_ISee_Male);
             menu->state = TALK_MENU_STATE_WAIT_FOR_CONFIRM;
         }
         break;
     case TALK_MENU_STATE_WAIT_FOR_CONFIRM:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 menu->state = TALK_MENU_STATE_WAIT_FOR_LINK_RECEIVE_ANSWER;
             }
@@ -885,7 +885,7 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         }
         break;
     case TALK_MENU_STATE_REQUEST_RETURN_TO_MAIN:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalk_RequestLinkTalkStateUpdate(menu, RETURN_TO_MAIN_AFTER_QUESTIONS);
             menu->state = TALK_MENU_STATE_WAIT_FOR_LINK_RETURN_TO_MAIN;
         }
@@ -909,8 +909,8 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
 
         if (menu->giftMenu) {
             UndergroundMenu_Exit(menu->giftMenu, LIST_CANCEL);
-            CommManUnderground_ClearCurrentSysTaskInfo();
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+            UndergroundMan_ClearCurrentSysTaskInfo();
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
             menu->giftMenu = NULL;
         }
 
@@ -1014,15 +1014,15 @@ static void UndergroundTalkResponse_CloseTalkMenu(SysTask *unused, ResponseMenu 
 
 static void UndergroundTalkResponse_PrintTextWithLinkName(ResponseMenu *menu, int linkNetID, int bankEntry)
 {
-    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCommonTextPrinter(), CommInfo_TrainerInfo(linkNetID));
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
+    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCommonTextPrinter(), CommInfo_TrainerInfo(linkNetID));
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
 }
 
 static void UndergroundTalkResponse_PrintReceivedGift(ResponseMenu *menu)
 {
-    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCommonTextPrinter(), CommInfo_TrainerInfo(menu->linkNetID));
-    UndergroundTextPrinter_SetUndergroundGoodsName(CommManUnderground_GetCommonTextPrinter(), menu->receivedGift.goodID);
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_YouReceivedGift, FALSE, NULL);
+    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCommonTextPrinter(), CommInfo_TrainerInfo(menu->linkNetID));
+    UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetCommonTextPrinter(), menu->receivedGift.goodID);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_YouReceivedGift, FALSE, NULL);
 }
 
 static void UndergroundTalkResponse_InitAnswersMenu(ResponseMenu *menu)
@@ -1087,7 +1087,7 @@ static BOOL UndergroundTalkResponse_HandleAnswersMenu(SysTask *sysTask, void *da
             menu->answerIndex = menu->linkQuestionIndex * ANSWERS_PER_QUESTION + input;
             menu->state = RESPONSE_MENU_STATE_WAIT_FOR_LINK_ANSWER;
 
-            UndergroundTextPrinter_SetUndergroundAnswer(CommManUnderground_GetCommonTextPrinter(), menu->answerIndex);
+            UndergroundTextPrinter_SetUndergroundAnswer(UndergroundMan_GetCommonTextPrinter(), menu->answerIndex);
             UndergroundTalkResponse_PrintMessage(menu, UndergroundCommon_Text_YouveDecidedLetMeThink_Male);
         } else {
             menu->answerIndex = ANSWER_INDEX_CANCEL;
@@ -1127,7 +1127,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
 
     switch (menu->state) {
     case RESPONSE_MENU_STATE_EXIT:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         UndergroundTalkResponse_Exit(sysTask, menu);
         break;
     case RESPONSE_MENU_STATE_MAIN:
@@ -1147,7 +1147,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         menu->state = RESPONSE_MENU_STATE_OPEN_CONFIRM_EXCHANGE_MENU;
         break;
     case RESPONSE_MENU_STATE_OPEN_CONFIRM_EXCHANGE_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             menu->state = RESPONSE_MENU_STATE_CONFIRM_EXCHANGE;
             menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
         }
@@ -1160,7 +1160,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         menu->state = RESPONSE_MENU_STATE_EXIT_AFTER_TEXT;
         break;
     case RESPONSE_MENU_STATE_EXIT_AFTER_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 menu->state = RESPONSE_MENU_STATE_EXIT;
             }
@@ -1168,7 +1168,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         break;
     case RESPONSE_MENU_STATE_START_CASE_EXCHANGE:
         if (UndergroundRecords_IsLinkRecordReceived()) {
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             UndergroundRecords_ShowTrainerCase(menu->fieldSystem->bgConfig, CommInfo_TrainerInfo(menu->linkNetID), UndergroundTalkResponse_ExitCaseExchangeCallback, menu, FALSE);
             menu->state = RESPONSE_MENU_STATE_VIEW_LINK_CASE;
         }
@@ -1181,7 +1181,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         menu->state = RESPONSE_MENU_STATE_NOTIFY_LINK_CASE_EXCHANGE_ENDED;
         break;
     case RESPONSE_MENU_STATE_NOTIFY_LINK_CASE_EXCHANGE_ENDED:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_RETURN_TO_MAIN_AFTER_CASE_EXCHANGE);
             menu->state = RESPONSE_MENU_STATE_WAIT_FOR_LINK_CASE_EXCHANGE_END;
         }
@@ -1196,13 +1196,13 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         menu->state = RESPONSE_MENU_STATE_MAIN;
         break;
     case RESPONSE_MENU_STATE_REFUSE_TO_ANSWER:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             menu->state = RESPONSE_MENU_STATE_RETURN_TO_MAIN;
             UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_RETURN_TO_MAIN_AFTER_REJECTED_QUESTION);
         }
         break;
     case RESPONSE_MENU_STATE_RECEIVE_GIFT_OFFER:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             menu->state = RESPONSE_MENU_STATE_GIFT_OFFERED;
             menu->menu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
         }
@@ -1218,7 +1218,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         menu->state = RESPONSE_MENU_STATE_END_GIFT;
         break;
     case RESPONSE_MENU_STATE_END_GIFT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_RETURN_TO_MAIN_AFTER_GIFT);
                 menu->state = RESPONSE_MENU_STATE_RETURN_TO_MAIN;
@@ -1230,16 +1230,16 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         menu->state++;
         break;
     case RESPONSE_MENU_STATE_WAIT_FOR_LINK_QUESTION:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (menu->linkQuestionIndex != MAX_QUESTION) {
-                UndergroundTextPrinter_SetUndergroundQuestion(CommManUnderground_GetCommonTextPrinter(), menu->linkQuestionIndex);
+                UndergroundTextPrinter_SetUndergroundQuestion(UndergroundMan_GetCommonTextPrinter(), menu->linkQuestionIndex);
                 UndergroundTalkResponse_PrintMessage(menu, UndergroundCommon_Text_WhatsYourChoice_Male);
                 menu->state = RESPONSE_MENU_STATE_INIT_ANSWERS_MENU;
             }
         }
         break;
     case RESPONSE_MENU_STATE_INIT_ANSWERS_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalkResponse_InitAnswersMenu(menu);
             menu->state = RESPONSE_MENU_STATE_SELECT_ANSWER;
         }
@@ -1248,7 +1248,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         UndergroundTalkResponse_HandleAnswersMenu(sysTask, menu);
         break;
     case RESPONSE_MENU_STATE_WAIT_FOR_LINK_ANSWER:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (menu->linkRequestedState == RESPONSE_MENU_STATE_LINK_ANSWERED) {
                 UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_ANSWER_RECEIVED);
                 menu->state = RESPONSE_MENU_STATE_LINK_ANSWERED;
@@ -1256,8 +1256,8 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         }
         break;
     case RESPONSE_MENU_STATE_LINK_ANSWERED:
-        UndergroundTextPrinter_SetUndergroundAnswer(CommManUnderground_GetCommonTextPrinter(), menu->linkAnswerIndex);
-        UndergroundTextPrinter_SetUndergroundAnswerWithIndex(CommManUnderground_GetCommonTextPrinter(), 6, menu->answerIndex);
+        UndergroundTextPrinter_SetUndergroundAnswer(UndergroundMan_GetCommonTextPrinter(), menu->linkAnswerIndex);
+        UndergroundTextPrinter_SetUndergroundAnswerWithIndex(UndergroundMan_GetCommonTextPrinter(), 6, menu->answerIndex);
 
         if (menu->answerIndex == menu->linkAnswerIndex) {
             UndergroundTalkResponse_PrintMessage(menu, UndergroundCommon_Text_SameAnswer_Male);
@@ -1268,13 +1268,13 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         menu->state = RESPONSE_MENU_STATE_PRINT_I_SEE;
         break;
     case RESPONSE_MENU_STATE_PRINT_I_SEE:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTalkResponse_PrintMessage(menu, UndergroundCommon_Text_ISee2_Male);
             menu->state = RESPONSE_MENU_STATE_WAIT_FOR_PRINT;
         }
         break;
     case RESPONSE_MENU_STATE_WAIT_FOR_PRINT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             menu->state = RESPONSE_MENU_STATE_WAIT_FOR_LINK_END_QUESTIONS;
         }
         break;
@@ -1286,7 +1286,7 @@ static void UndergroundTalkResponse_Main(SysTask *sysTask, void *data)
         }
         break;
     case RESPONSE_MENU_STATE_WAIT_FOR_PRINT_2:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             menu->state = RESPONSE_MENU_STATE_WAIT_FOR_LINK_RETURN_TO_MAIN;
         }
         break;
@@ -1333,7 +1333,7 @@ void UndergroundTalkResponse_Start(int unused, int linkNetID, FieldSystem *field
     menu->linkRequestedState = 0;
     menu->linkQuestionIndex = MAX_QUESTION;
 
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_Hello, FALSE, NULL);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_Hello, FALSE, NULL);
     CommPlayerMan_ForceDir();
 
     menu->sysTask = SysTask_Start(UndergroundTalkResponse_Main, menu, 10000);
@@ -1403,8 +1403,8 @@ void UndergroundTalkResponse_ReceiveGiftOffer(int unused0, int unused1, void *da
     menu->receivedGift.goodID = gift->goodID;
     menu->state = RESPONSE_MENU_STATE_RECEIVE_GIFT_OFFER;
 
-    UndergroundTextPrinter_SetUndergroundGoodsName(CommManUnderground_GetCommonTextPrinter(), gift->goodID);
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_YouCanHaveThisGift, FALSE, NULL);
+    UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetCommonTextPrinter(), gift->goodID);
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_YouCanHaveThisGift, FALSE, NULL);
 }
 
 int CommPacketSizeOf_Gift(void)

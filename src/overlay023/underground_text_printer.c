@@ -143,7 +143,7 @@ static String *UndergroundTextPrinter_GetString(UndergroundTextPrinter *textPrin
 static int UndergroundTextPrinter_AddPrinter(UndergroundTextPrinter *textPrinter, BOOL sysTaskManaged, UndergroundTextPrinterCallback callback, int callbackParam)
 {
     UndergroundTextPrinter_EraseMessageBox(textPrinter, CLEAR_MESSAGE_BOX);
-    ov23_022421EC();
+    UndergroundMan_RemovePrinters();
 
     if (!Window_IsInUse(&textPrinter->window)) {
         Window_Add(textPrinter->bgConfig, &textPrinter->window, BG_LAYER_MAIN_3, 2, 19, 27, 4, 12, textPrinter->windowBaseTile);

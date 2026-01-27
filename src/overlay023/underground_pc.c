@@ -11,9 +11,9 @@
 #include "field/field_system.h"
 #include "overlay023/base_decoration.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_records.h"
@@ -238,7 +238,7 @@ void UndergroundPC_ProcessPCInteraction(int unused0, int unused1, void *data, vo
             if (pcInteraction->canTakeFlag) {
                 UndergroundPC_StartTakeFlagPromptTask(fieldSystem, pcInteraction);
             } else {
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_YouAlreadyHaveFlag, TRUE, UndergroundPC_ResumeFieldSystem);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_YouAlreadyHaveFlag, TRUE, UndergroundPC_ResumeFieldSystem);
             }
         }
     }
@@ -289,7 +289,7 @@ static void UndergroundPC_PrintMenuItemDescription(ListMenu *listMenu, u32 menuI
         index = UndergroundPC_Text_ExitDescription - UndergroundPC_Text_DecorateDescription;
     }
 
-    UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_DecorateDescription + index, FALSE, NULL);
+    UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_DecorateDescription + index, FALSE, NULL);
 }
 
 static void UndergroundPC_PrintRadarMenuItemDescription(ListMenu *listMenu, u32 menuItemIdx, u8 unused)
@@ -301,7 +301,7 @@ static void UndergroundPC_PrintRadarMenuItemDescription(ListMenu *listMenu, u32 
         index = UndergroundPC_Text_CancelDescription - UndergroundPC_Text_TreasureSearchDescription;
     }
 
-    UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_TreasureSearchDescription + index, FALSE, NULL);
+    UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_TreasureSearchDescription + index, FALSE, NULL);
 }
 
 static BOOL UndergroundPC_HandleMenu(SysTask *sysTask, void *data)
@@ -312,7 +312,7 @@ static BOOL UndergroundPC_HandleMenu(SysTask *sysTask, void *data)
     u16 listPos, cursorPos;
     ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
 
-    CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PC, cursorPos, listPos);
+    UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PC, cursorPos, listPos);
     UndergroundPC_UpdateCursorPos(menu);
 
     switch (input) {
@@ -326,13 +326,13 @@ static BOOL UndergroundPC_HandleMenu(SysTask *sysTask, void *data)
         Underground *underground = SaveData_GetUnderground(menu->fieldSystem->saveData);
 
         if (Underground_GetGoodsCountPC(underground) == 0) {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_StoreGoodsBeforeDecorating, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_StoreGoodsBeforeDecorating, FALSE, NULL);
             menu->state = UG_PC_MENU_STATE_WAIT_FOR_MESSAGE;
         } else if (CommServerClient_IsInClosedSecretBase()) {
-            CommManUnderground_ClearCurrentSysTaskInfo();
+            UndergroundMan_ClearCurrentSysTaskInfo();
             menu->state = UG_PC_MENU_STATE_DECORATE;
         } else {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_CantDecorateWithEntranceOpen, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_CantDecorateWithEntranceOpen, FALSE, NULL);
             menu->state = UG_PC_MENU_STATE_WAIT_FOR_MESSAGE;
         }
         break;
@@ -454,7 +454,7 @@ static BOOL UndergroundPC_HandleRadarMenu(SysTask *sysTask, void *data)
     u16 listPos, cursorPos;
     ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
 
-    CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PC_RADAR, cursorPos, listPos);
+    UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PC_RADAR, cursorPos, listPos);
     UndergroundPC_UpdateCursorPos(menu);
 
     switch (input) {
@@ -501,7 +501,7 @@ static BOOL UndergroundPC_HandleStoreGoodsMenu(SysTask *sysTask, void *data)
 
     u16 listPos, cursorPos;
     ListMenu_GetListAndCursorPos(menu->itemListMenu->listMenu, &listPos, &cursorPos);
-    CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_STORE_GOODS, cursorPos, listPos);
+    UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_STORE_GOODS, cursorPos, listPos);
 
     // make sure we have the right type of -2
     if (input == MENU_CANCELED) {
@@ -513,18 +513,18 @@ static BOOL UndergroundPC_HandleStoreGoodsMenu(SysTask *sysTask, void *data)
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), 6);
         return FALSE;
     case LIST_CANCEL:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
         menu->state = UG_PC_MENU_STATE_INIT;
         break;
     default:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
         u32 goodID = UndergroundMenu_GetGoodAtSlotBag(input, menu);
 
         if (UndergroundPC_TryDepositGood(input, menu)) {
-            UndergroundTextPrinter_SetUndergroundGoodsName(CommManUnderground_GetMiscTextPrinter(), goodID);
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_GoodWasStored, FALSE, NULL);
+            UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetMiscTextPrinter(), goodID);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_GoodWasStored, FALSE, NULL);
         } else {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_PCIsFull, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_PCIsFull, FALSE, NULL);
         }
 
         menu->state = UG_PC_MENU_STATE_STORE_GOODS_WAIT_FOR_MESSAGE;
@@ -543,7 +543,7 @@ static BOOL UndergroundPC_HandleWithdrawGoodsMenu(SysTask *sysTask, void *data)
 
     u16 listPos, cursorPos;
     ListMenu_GetListAndCursorPos(menu->itemListMenu->listMenu, &listPos, &cursorPos);
-    CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS, cursorPos, listPos);
+    UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS, cursorPos, listPos);
 
     // make sure we have the right type of -2
     if (input == MENU_CANCELED) {
@@ -555,21 +555,21 @@ static BOOL UndergroundPC_HandleWithdrawGoodsMenu(SysTask *sysTask, void *data)
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), 6);
         return FALSE;
     case LIST_CANCEL:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
         menu->state = UG_PC_MENU_STATE_INIT;
         break;
     default:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
         u32 goodID = UndergroundMenu_GetGoodAtSlotPC(input, menu);
         int withdrawResult = UndergroundPC_TryWithdrawGood(input, menu);
 
         if (withdrawResult == 1) {
-            UndergroundTextPrinter_SetUndergroundGoodsName(CommManUnderground_GetMiscTextPrinter(), goodID);
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_GoodWasWithdrawn, FALSE, NULL);
+            UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetMiscTextPrinter(), goodID);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_GoodWasWithdrawn, FALSE, NULL);
         } else if (withdrawResult == -1) {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_CantWithdrawDisplayedGood, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_CantWithdrawDisplayedGood, FALSE, NULL);
         } else {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_BagIsFull, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_BagIsFull, FALSE, NULL);
         }
 
         menu->state = 22;
@@ -585,9 +585,9 @@ static BOOL UndergroundPC_HandleWithdrawGoodsMenu(SysTask *sysTask, void *data)
 
 static BOOL UndergroundPC_IsMessageClosed(UndergroundMenu *unused)
 {
-    if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+    if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
         if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetMiscTextPrinter());
             return TRUE;
         }
     }
@@ -673,7 +673,7 @@ static void UndergroundPC_ExitPCMenu(SysTask *sysTask, UndergroundMenu *menu)
     }
 
     UndergroundMenu_EraseCurrentMenu(menu);
-    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
+    UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetMiscTextPrinter());
 
     SysTask_Done(sysTask);
     Heap_Free(menu);
@@ -687,8 +687,8 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
     switch (menu->state) {
     case UG_PC_MENU_STATE_INIT:
         UndergroundMenu_RemoveDescriptionWindowInstant(menu);
-        menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PC);
-        menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_PC);
+        menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PC);
+        menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_PC);
         menu->listMenuPos = menu->listMenuCursorPos;
         UndergroundPC_InitMenu(menu, UndergroundPC_Text_Decorate, 5, UndergroundPC_PrintMenuItemDescription, 0);
         menu->state = UG_PC_MENU_STATE_MAIN;
@@ -698,12 +698,12 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
         break;
     case UG_PC_MENU_STATE_EXIT:
         CommPlayerMan_ResumeFieldSystem();
-        CommManUnderground_ClearCurrentSysTaskInfo();
+        UndergroundMan_ClearCurrentSysTaskInfo();
         UndergroundPC_ExitPCMenu(sysTask, menu);
         break;
     case UG_PC_MENU_STATE_INIT_CHECK_FLAGS:
         UndergroundMenu_EraseCurrentMenu(menu);
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetMiscTextPrinter());
         menu->checkFlagsCtx = UndergroundRecords_ShowCheckFlagsScreen(menu->fieldSystem->bgConfig, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(menu->fieldSystem)), SaveData_GetUnderground(FieldSystem_GetSaveData(menu->fieldSystem)), NULL, NULL);
         menu->state = UG_PC_MENU_STATE_CHECK_FLAGS;
         break;
@@ -715,9 +715,9 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
         }
         break;
     case UG_PC_MENU_STATE_INIT_RADAR_MENU:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
-        menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PC_RADAR);
-        menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_PC_RADAR);
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetMiscTextPrinter());
+        menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PC_RADAR);
+        menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_PC_RADAR);
         menu->listMenuPos = menu->listMenuCursorPos;
         UndergroundPC_InitRadarMenu(menu, UndergroundPC_Text_TreasureSearch, 3, UndergroundPC_PrintRadarMenuItemDescription, 1);
         menu->state = UG_PC_MENU_STATE_RADAR_MENU_MAIN;
@@ -727,53 +727,53 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
         break;
     case UG_PC_MENU_STATE_START_TREASURE_RADAR:
         UndergroundMenu_EraseCurrentMenu(menu);
-        CommManUnderground_SetTreasureRadarActive();
+        UndergroundMan_SetTreasureRadarActive();
         ov23_022412F0();
         BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_TreasureRadarBootedUp, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_TreasureRadarBootedUp, FALSE, NULL);
         menu->state = UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS;
         break;
     case UG_PC_MENU_STATE_TREASURE_RADAR_NOT_AVAILABLE:
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_TreasureRadarEntranceClosed, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_TreasureRadarEntranceClosed, FALSE, NULL);
         menu->state = UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS;
         break;
     case UG_PC_MENU_STATE_START_SPHERE_RADAR:
         UndergroundMenu_EraseCurrentMenu(menu);
-        CommManUnderground_SetSphereRadarActive();
+        UndergroundMan_SetSphereRadarActive();
         SphereRadar_Start();
         BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_SphereRadarBootedUp, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_SphereRadarBootedUp, FALSE, NULL);
         menu->state = UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS;
         break;
     case UG_PC_MENU_STATE_SPHERE_RADAR_NOT_AVAILABLE:
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_SphereRadarEntranceClosed, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_SphereRadarEntranceClosed, FALSE, NULL);
         menu->state = UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS;
         break;
     case UG_PC_MENU_STATE_START_TRAP_RADAR:
         UndergroundMenu_EraseCurrentMenu(menu);
-        CommManUnderground_SetTrapRadarActive();
+        UndergroundMan_SetTrapRadarActive();
         TrapRadar_Start();
         BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_TrapRadarBootedUp, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_TrapRadarBootedUp, FALSE, NULL);
         menu->state = UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS;
         break;
     case UG_PC_MENU_STATE_TRAP_RADAR_NOT_AVAILABLE:
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), UndergroundPC_Text_TrapRadarEntranceClosed, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_TrapRadarEntranceClosed, FALSE, NULL);
         menu->state = UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS;
         break;
     case UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 if (!CommServerClient_IsInClosedSecretBase()) {
                     BrightnessController_StartTransition(1, 0, -6, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
                 }
 
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetMiscTextPrinter());
 
                 if (CommServerClient_IsInClosedSecretBase()) {
-                    CommManUnderground_DeactivateRadar();
+                    UndergroundMan_DeactivateRadar();
                 } else {
-                    CommManUnderground_SetNormalRadarActive();
+                    UndergroundMan_SetNormalRadarActive();
                 }
 
                 TrapRadar_Exit();
@@ -796,8 +796,8 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
         UndergroundPC_ExitPCMenu(sysTask, menu);
         break;
     case UG_PC_MENU_STATE_INIT_STORE_GOODS:
-        menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_STORE_GOODS);
-        menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_STORE_GOODS);
+        menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_STORE_GOODS);
+        menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_STORE_GOODS);
         UndergroundMenu_OpenStoreGoodsMenu(menu);
         UndergroundMenu_PrintMenuDescription(menu, UndergroundPC_Text_GoodsOnHand);
         menu->state = UG_PC_MENU_STATE_STORE_GOODS;
@@ -811,8 +811,8 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
         }
         break;
     case UG_PC_MENU_STATE_INIT_WITHDRAW_GOODS:
-        menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS);
-        menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS);
+        menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS);
+        menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS);
         UndergroundMenu_OpenWithdrawGoodsMenu(menu);
         UndergroundMenu_PrintMenuDescription(menu, UndergroundPC_Text_GoodsInPC);
         menu->state = UG_PC_MENU_STATE_WITHDRAW_GOODS;
@@ -837,13 +837,13 @@ static void UndergroundPC_OpenPCMenu(FieldSystem *fieldSystem)
 {
     const int unused = 6;
 
-    CommManUnderground_SetStoredPosKey(UNDERGROUND_STORED_POS_KEY_PC);
+    UndergroundMan_SetStoredPosKey(UNDERGROUND_STORED_POS_KEY_PC);
 
     UndergroundMenu *menu = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UndergroundMenu));
     MI_CpuFill8(menu, 0, sizeof(UndergroundMenu));
     menu->fieldSystem = fieldSystem;
 
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_PC, MSG_LOADER_LOAD_ON_DEMAND);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundMan_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_PC, MSG_LOADER_LOAD_ON_DEMAND);
 
     menu->state = UG_PC_MENU_STATE_INIT;
     menu->string = String_Init(50 * 2, HEAP_ID_FIELD1);
@@ -857,7 +857,7 @@ static void UndergroundPC_OpenPCMenu(FieldSystem *fieldSystem)
 
     menu->sysTask = SysTask_Start(UndergroundPC_Main, menu, 10000);
 
-    CommManUnderground_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
+    UndergroundMan_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 }
 
 static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
@@ -866,7 +866,7 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
 
     switch (ctx->state) {
     case TAKE_FLAG_PROMPT_STATE_INIT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = Menu_MakeYesNoChoice(ctx->fieldSystem->bgConfig, &sWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = TAKE_FLAG_PROMPT_STATE_MAIN;
         }
@@ -880,7 +880,7 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
             CommSys_SendDataFixedSize(89, &ctx->pcInteraction);
         } else {
             CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_LINK_PC);
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         }
 
         ctx->state = TAKE_FLAG_PROMPT_STATE_EXIT;
@@ -888,7 +888,7 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
         break;
     case TAKE_FLAG_PROMPT_STATE_EXIT:
         Heap_Free(ctx);
-        CommManUnderground_ClearCurrentSysTaskInfo();
+        UndergroundMan_ClearCurrentSysTaskInfo();
         SysTask_Done(sysTask);
         break;
     }
@@ -916,14 +916,14 @@ static void UndergroundPC_StartTakeFlagPromptTask(FieldSystem *fieldSystem, PCIn
     ctx->fieldSystem = fieldSystem;
     ctx->sysTask = SysTask_Start(UndergroundPC_TakeFlagPromptTask, ctx, 10000);
 
-    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCommonTextPrinter(), CommInfo_TrainerInfo(pcInteraction->pcNetID));
-    UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_TakeFlagPrompt, FALSE, NULL);
+    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCommonTextPrinter(), CommInfo_TrainerInfo(pcInteraction->pcNetID));
+    UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_TakeFlagPrompt, FALSE, NULL);
 
     ctx->pcInteraction.playerNetID = pcInteraction->playerNetID;
     ctx->pcInteraction.pcNetID = pcInteraction->pcNetID;
     ctx->pcInteraction.canTakeFlag = pcInteraction->canTakeFlag;
 
-    CommManUnderground_SetCurrentSysTask(ctx, ctx->sysTask, UndergroundPC_EndFlagPromptTask);
+    UndergroundMan_SetCurrentSysTask(ctx, ctx->sysTask, UndergroundPC_EndFlagPromptTask);
 }
 
 void UndergroundPC_ProcessTakeFlagAttempt(int unused0, int unused1, void *data, void *unused3)
@@ -940,8 +940,8 @@ void UndergroundPC_ProcessTakenFlag(int unused0, int unused1, void *data, void *
     PCInteraction *pcInteraction = data;
 
     if (CommSys_CurNetId() == pcInteraction->playerNetID) {
-        UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(pcInteraction->pcNetID));
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_YouObtainedFlag, TRUE, UndergroundPC_ResumeFieldSystem);
+        UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(pcInteraction->pcNetID));
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_YouObtainedFlag, TRUE, UndergroundPC_ResumeFieldSystem);
         Sound_PlayBGM(SEQ_HATANIGE);
     }
 

@@ -1178,7 +1178,7 @@ static BOOL sub_020356A0(u8 *param0, int param1)
     return TRUE;
 }
 
-void sub_0203572C(void)
+void CommSys_Dummy(void)
 {
     return;
 }

@@ -26,7 +26,7 @@ void sub_020352C0(u16 param0, u16 *param1, u16 param2);
 void CommSys_RandomizePlayerMovement(void);
 void CommSys_ReversePlayerMovement(void);
 void CommSys_RevertPlayerMovementToNormal(void);
-void sub_0203572C(void);
+void CommSys_Dummy(void);
 void sub_02035938(u8 param0);
 BOOL CommSys_SendDataHuge(int cmd, const void *data, int size);
 BOOL CommSys_SendData(int cmd, const void *data, int size);

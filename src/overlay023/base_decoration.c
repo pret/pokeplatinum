@@ -14,7 +14,6 @@
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay023/decoration_menu.h"
 #include "overlay023/secret_bases.h"
@@ -213,9 +212,9 @@ static void BaseDecoration_CreateHeldGood(FieldSystem *fieldSystem, int goodID, 
     good->depth = Good_GetDepth(goodID);
 
     VecFx32 propPosition;
-    propPosition.x = (FX32_ONE * 16) * DEFAULT_GOOD_POSITION_X + (FX32_ONE * 8) * good->width;
+    propPosition.x = MAP_OBJECT_TILE_SIZE * DEFAULT_GOOD_POSITION_X + MAP_OBJECT_TILE_SIZE / 2 * good->width;
     propPosition.y = FX32_ONE;
-    propPosition.z = (FX32_ONE * 16) * DEFAULT_GOOD_POSITION_Z + (FX32_ONE * 8) * good->depth;
+    propPosition.z = MAP_OBJECT_TILE_SIZE * DEFAULT_GOOD_POSITION_Z + MAP_OBJECT_TILE_SIZE / 2 * good->depth;
 
     good->propIndex = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, BaseDecoration_GetGoodMapPropModelID(fieldSystem, goodID), &propPosition, NULL, fieldSystem->mapPropAnimMan);
     good->position.minX = DEFAULT_GOOD_POSITION_X;
@@ -428,23 +427,23 @@ static BOOL BaseDecoration_DecorateTask(FieldTask *task)
             PositionRect goodPosition = ctx->heldGood.position;
 
             if (JOY_REPEAT(PAD_KEY_LEFT)) {
-                dX = -FX32_ONE * 16;
+                dX = -MAP_OBJECT_TILE_SIZE;
                 dZ = 0;
                 goodPosition.minX--;
                 goodPosition.maxX--;
             } else if (JOY_REPEAT(PAD_KEY_RIGHT)) {
-                dX = FX32_ONE * 16;
+                dX = MAP_OBJECT_TILE_SIZE;
                 dZ = 0;
                 goodPosition.minX++;
                 goodPosition.maxX++;
             } else if (JOY_REPEAT(PAD_KEY_UP)) {
                 dX = 0;
-                dZ = -FX32_ONE * 16;
+                dZ = -MAP_OBJECT_TILE_SIZE;
                 goodPosition.minZ--;
                 goodPosition.maxZ--;
             } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
                 dX = 0;
-                dZ = FX32_ONE * 16;
+                dZ = MAP_OBJECT_TILE_SIZE;
                 goodPosition.minZ++;
                 goodPosition.maxZ++;
             } else {
@@ -569,22 +568,22 @@ static BOOL BaseDecoration_PutAwayTask(FieldTask *task)
         if (!touchInput) {
             if (JOY_REPEAT(PAD_KEY_LEFT)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelX -= FX32_ONE * 16;
+                cursorModelX -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX--;
                 cursorPosition.maxX--;
             } else if (JOY_REPEAT(PAD_KEY_RIGHT)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelX += FX32_ONE * 16;
+                cursorModelX += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX++;
                 cursorPosition.maxX++;
             } else if (JOY_REPEAT(PAD_KEY_UP)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelZ -= FX32_ONE * 16;
+                cursorModelZ -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ--;
                 cursorPosition.maxZ--;
             } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelZ += FX32_ONE * 16;
+                cursorModelZ += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ++;
                 cursorPosition.maxZ++;
             } else {
@@ -786,22 +785,22 @@ static BOOL BaseDecoration_SelectGoodToMoveTask(FieldTask *task)
         if (!touchInput) {
             if (JOY_REPEAT(PAD_KEY_LEFT)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelX -= FX32_ONE * 16;
+                cursorModelX -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX--;
                 cursorPosition.maxX--;
             } else if (JOY_REPEAT(PAD_KEY_RIGHT)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelX += FX32_ONE * 16;
+                cursorModelX += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minX++;
                 cursorPosition.maxX++;
             } else if (JOY_REPEAT(PAD_KEY_UP)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelZ -= FX32_ONE * 16;
+                cursorModelZ -= MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ--;
                 cursorPosition.maxZ--;
             } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
                 Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
-                cursorModelZ += FX32_ONE * 16;
+                cursorModelZ += MAP_OBJECT_TILE_SIZE;
                 cursorPosition.minZ++;
                 cursorPosition.maxZ++;
             } else {
@@ -909,23 +908,23 @@ static BOOL BaseDecoration_MoveSelectedGoodTask(FieldTask *task)
             PositionRect goodPosition = ctx->heldGood.position;
 
             if (JOY_REPEAT(PAD_KEY_LEFT)) {
-                dX = -FX32_ONE * 16;
+                dX = -MAP_OBJECT_TILE_SIZE;
                 dZ = 0;
                 goodPosition.minX--;
                 goodPosition.maxX--;
             } else if (JOY_REPEAT(PAD_KEY_RIGHT)) {
-                dX = FX32_ONE * 16;
+                dX = MAP_OBJECT_TILE_SIZE;
                 dZ = 0;
                 goodPosition.minX++;
                 goodPosition.maxX++;
             } else if (JOY_REPEAT(PAD_KEY_UP)) {
                 dX = 0;
-                dZ = -FX32_ONE * 16;
+                dZ = -MAP_OBJECT_TILE_SIZE;
                 goodPosition.minZ--;
                 goodPosition.maxZ--;
             } else if (JOY_REPEAT(PAD_KEY_DOWN)) {
                 dX = 0;
-                dZ = FX32_ONE * 16;
+                dZ = MAP_OBJECT_TILE_SIZE;
                 goodPosition.minZ++;
                 goodPosition.maxZ++;
             } else {
@@ -1159,8 +1158,8 @@ static void BaseDecoration_LoadGoodMapProp(FieldSystem *fieldSystem, BaseGoodSlo
         int depth = good->depth;
 
         VecFx32 position;
-        position.x = (FX32_ONE * 16) * good->position.minX + (FX32_ONE * 8) * width;
-        position.z = (FX32_ONE * 16) * good->position.minZ + (FX32_ONE * 8) * depth;
+        position.x = MAP_OBJECT_TILE_SIZE * good->position.minX + MAP_OBJECT_TILE_SIZE / 2 * width;
+        position.z = MAP_OBJECT_TILE_SIZE * good->position.minZ + MAP_OBJECT_TILE_SIZE / 2 * depth;
         position.y = FX32_ONE;
 
         good->propIndex = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, modelID, &position, NULL, fieldSystem->mapPropAnimMan);
@@ -1250,9 +1249,9 @@ static void DecorateCursor_SetPosition(int x, int z, DecorateCursor *cursor)
 {
     cursor->x = x;
     cursor->z = z;
-    cursor->modelPosition.x = (FX32_ONE * 16) * x + (FX32_ONE * 8);
+    cursor->modelPosition.x = MAP_OBJECT_TILE_SIZE * x + MAP_OBJECT_TILE_SIZE / 2;
     cursor->modelPosition.y = FX32_ONE;
-    cursor->modelPosition.z = (FX32_ONE * 16) * z + (FX32_ONE * 8);
+    cursor->modelPosition.z = MAP_OBJECT_TILE_SIZE * z + MAP_OBJECT_TILE_SIZE / 2;
 }
 
 static void DecorateCursor_Hide(DecorateCursor *cursor)
@@ -1279,9 +1278,9 @@ static void BaseDecoration_UpdatePropPositionFromTouchInput(FieldSystem *fieldSy
 
     BaseDecoration_StoreTouchCoordinates(gSystem.touchX, gSystem.touchY, touchInput);
 
-    propPosition = ov5_021EAFA4(touchInput->x, touchInput->z, v6);
-    int x = propPosition.x / (FX32_ONE * 16);
-    int z = propPosition.z / (FX32_ONE * 16);
+    propPosition = ov5_GetPositionFromTouchCoordinates(touchInput->x, touchInput->z, v6);
+    int x = propPosition.x / MAP_OBJECT_TILE_SIZE;
+    int z = propPosition.z / MAP_OBJECT_TILE_SIZE;
 
     int width = good->width;
     int depth = good->depth;
@@ -1294,11 +1293,11 @@ static void BaseDecoration_UpdatePropPositionFromTouchInput(FieldSystem *fieldSy
     if (!BaseDecoration_IsPositionOutOfBounds(&goodPosition)) {
         good->position = goodPosition;
 
-        propPosition.x = x * (FX32_ONE * 16);
-        propPosition.z = z * (FX32_ONE * 16);
+        propPosition.x = x * MAP_OBJECT_TILE_SIZE;
+        propPosition.z = z * MAP_OBJECT_TILE_SIZE;
 
-        propPosition.x += (FX32_ONE * 8) * width;
-        propPosition.z += (FX32_ONE * 8) * depth;
+        propPosition.x += MAP_OBJECT_TILE_SIZE / 2 * width;
+        propPosition.z += MAP_OBJECT_TILE_SIZE / 2 * depth;
         propPosition.y = FX32_ONE;
 
         MapProp *mapProp = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, good->propIndex);
@@ -1314,9 +1313,9 @@ static void BaseDecoration_UpdateCursorPositionFromTouchInput(FieldSystem *field
 
     BaseDecoration_StoreTouchCoordinates(gSystem.touchX, gSystem.touchY, touchInput);
 
-    modelPosition = ov5_021EAFA4(touchInput->x, touchInput->z, v4);
-    int x = modelPosition.x / (FX32_ONE * 16);
-    int z = modelPosition.z / (FX32_ONE * 16);
+    modelPosition = ov5_GetPositionFromTouchCoordinates(touchInput->x, touchInput->z, v4);
+    int x = modelPosition.x / MAP_OBJECT_TILE_SIZE;
+    int z = modelPosition.z / MAP_OBJECT_TILE_SIZE;
 
     position.minX = x % SECRET_BASE_WIDTH;
     position.minZ = z % SECRET_BASE_DEPTH;
@@ -1324,8 +1323,8 @@ static void BaseDecoration_UpdateCursorPositionFromTouchInput(FieldSystem *field
     position.maxZ = position.minZ;
 
     if (!BaseDecoration_IsPositionOutOfBounds(&position)) {
-        modelPosition.x = x * (FX32_ONE * 16) + (FX32_ONE * 8);
-        modelPosition.z = z * (FX32_ONE * 16) + (FX32_ONE * 8);
+        modelPosition.x = x * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
+        modelPosition.z = z * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
         modelPosition.y = FX32_ONE;
 
         cursor->modelPosition = modelPosition;

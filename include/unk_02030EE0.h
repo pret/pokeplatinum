@@ -39,7 +39,7 @@ BOOL sub_0203208C(BOOL param0);
 BOOL sub_020320C4(void);
 void sub_020320E8(void);
 void sub_020320FC(UnkFuncPtr_020320FC param0);
-void sub_02032110(UnkFuncPtr_02032110 param0);
+void sub_SetDisconnectCallback(UnkFuncPtr_02032110 param0);
 void sub_02032124(UnkFuncPtr_02032110 param0);
 void sub_02032138(BOOL param0);
 BOOL sub_0203214C(void);

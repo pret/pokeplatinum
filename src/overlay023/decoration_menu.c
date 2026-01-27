@@ -8,8 +8,8 @@
 #include "struct_defs/underground.h"
 
 #include "field/field_system.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/underground_item_list_menu.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -127,7 +127,7 @@ static void DecorationMenu_PrintOptionDescription(ListMenu *unused, u32 index, u
         UndergroundBaseDecoration_Text_CancelDescription,
     };
 
-    UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetBaseDecorationTextPrinter(), descriptionBankEntries[index], FALSE, NULL);
+    UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetBaseDecorationTextPrinter(), descriptionBankEntries[index], FALSE, NULL);
 }
 
 static void DecorationMenu_InitMenu(DecorationMenu *menu)
@@ -210,7 +210,7 @@ static void DecorationMenu_HandleInput(DecorationMenu *menu)
 
 static void DecorationMenu_Clear(DecorationMenu *menu)
 {
-    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetBaseDecorationTextPrinter());
+    UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetBaseDecorationTextPrinter());
 
     Window_EraseStandardFrame(&menu->secondaryWindow, TRUE);
     ListMenu_Free(menu->listMenu, menu->startListPos, menu->startCursorPos);
@@ -330,7 +330,7 @@ static void DecorationGoodsMenu_PrintGoodDescription(ListMenu *listMenu, u32 val
         bankEntry = UNDERGROUND_GOOD_DESCRIPTIONS_START + Underground_GetGoodAtSlotPC(underground, index) - 1;
     }
 
-    UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetItemNameTextPrinter(), bankEntry, FALSE, NULL);
+    UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetItemNameTextPrinter(), bankEntry, FALSE, NULL);
 }
 
 static void DecorationGoodsMenu_InitMenu(DecorationGoodsMenu *menu)
@@ -393,7 +393,7 @@ static void DecorationGoodsMenu_InitMenu(DecorationGoodsMenu *menu)
     StringList_AddFromMessageBank(menu->menuOptions, goodsLoader, UndergroundGoods_Text_Exit, option);
     MessageLoader_Free(goodsLoader);
 
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
+    UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundMan_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
 
     ListMenuTemplate listTemplate = sListMenuTemplate;
     listTemplate.printCallback = DecorationGoodsMenu_ColorPlacedGoods;
@@ -420,7 +420,7 @@ static void DecorationGoodsMenu_InitMenu(DecorationGoodsMenu *menu)
 
 static void DecorationGoodsMenu_Clear(DecorationGoodsMenu *menu)
 {
-    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+    UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
     Window_EraseStandardFrame(&menu->secondaryWindow, TRUE);
     UndergroundItemListMenu_Free(menu->itemListMenu, menu->startListPos, menu->startCursorPos);
 

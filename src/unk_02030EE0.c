@@ -37,7 +37,7 @@ typedef struct {
     // clang-format on
 
     UnkFuncPtr_020320FC unk_1394;
-    UnkFuncPtr_02032110 unk_1398;
+    UnkFuncPtr_02032110 disconnectCallback;
     UnkFuncPtr_02032110 unk_139C;
     u16 unk_13A0;
     u16 unk_13A2;
@@ -213,8 +213,8 @@ static void sub_02030FD0(void *param0)
     case WM_STATECODE_DISCONNECTED: {
         Unk_021C07AC->unk_13A2 &= ~v1;
 
-        if (Unk_021C07AC->unk_1398) {
-            Unk_021C07AC->unk_1398(v0->aid);
+        if (Unk_021C07AC->disconnectCallback) {
+            Unk_021C07AC->disconnectCallback(v0->aid);
         }
     } break;
     case WM_STATECODE_DISCONNECTED_FROM_MYSELF:
@@ -1391,9 +1391,9 @@ void sub_020320FC(UnkFuncPtr_020320FC param0)
     Unk_021C07AC->unk_1394 = param0;
 }
 
-void sub_02032110(UnkFuncPtr_02032110 param0)
+void sub_SetDisconnectCallback(UnkFuncPtr_02032110 callback)
 {
-    Unk_021C07AC->unk_1398 = param0;
+    Unk_021C07AC->disconnectCallback = callback;
 }
 
 void sub_02032124(UnkFuncPtr_02032110 param0)

@@ -13,8 +13,8 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
@@ -153,7 +153,7 @@ typedef struct {
     u8 unk_8BC[8];
     SysTask *unk_8C4;
     SysTask *unk_8C8;
-    SysTask *unk_8CC;
+    SysTask *miningGameTask;
     UnkStruct_ov23_022412CC *unk_8D0;
     UnkStruct_ov23_0224142C unk_8D4[8];
     u8 unk_8FC[8];
@@ -681,7 +681,7 @@ void ov23_0223E2F8(void)
         if (Unk_ov23_02257740->unk_8C8) {
             SysTask_Done(Unk_ov23_02257740->unk_8C8);
             Unk_ov23_02257740->unk_8C8 = NULL;
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
 
             if (Unk_ov23_02257740->unk_848) {
                 Menu_DestroyForExit(Unk_ov23_02257740->unk_848, 4);
@@ -717,7 +717,7 @@ BOOL ov23_0223E354(int param0, Coordinates *param1)
 
 static BOOL ov23_0223E3AC(FieldSystem *fieldSystem, int param1, int param2)
 {
-    if (Underground_AreCoordinatesInSecretBase(param1, param2)) {
+    if (UndergroundMan_AreCoordinatesInSecretBase(param1, param2)) {
         return 0;
     }
 
@@ -932,7 +932,7 @@ static int ov23_0223E8CC(u16 param0, u16 param1)
     int v0, v1 = param1 - 80, v2 = param1 + 80, v3 = param0 - 80, v4 = param0 + 80;
     int v5 = 0, v6;
 
-    if (Underground_AreCoordinatesInSecretBase(param0, param1)) {
+    if (UndergroundMan_AreCoordinatesInSecretBase(param0, param1)) {
         return -1;
     }
 
@@ -1003,10 +1003,10 @@ void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
     u8 *v0 = param2;
 
     if ((v0[0] == CommSys_CurNetId()) && CommSys_IsSendingMovementData()) {
-        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_WallIsBulging, FALSE, NULL);
+        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_WallIsBulging, FALSE, NULL);
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
-        CommManUnderground_SetCurrentSysTask(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
+        UndergroundMan_SetCurrentSysTask(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
         CommPlayerMan_PauseFieldSystem();
     }
 }
@@ -1035,9 +1035,9 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
         CommSys_SendDataFixedSize(65, &v0);
         Unk_ov23_02257740->unk_848 = NULL;
 
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         SysTask_Done(param0);
-        CommManUnderground_ClearCurrentSysTaskInfo();
+        UndergroundMan_ClearCurrentSysTaskInfo();
 
         Unk_ov23_02257740->unk_8C8 = NULL;
     }
@@ -1292,7 +1292,7 @@ static void Mining_InitGame(UnkStruct_ov23_0223EE80 *param0)
 
     SetVBlankCallback(ov23_022411E8, bgConfig);
 
-    UndergroundTextPrinter_SetBackground(CommManUnderground_GetCommonTextPrinter(), bgConfig, 512 - (18 + 12), ((512 - (18 + 12)) - 73) - (27 * 4));
+    UndergroundTextPrinter_SetBackground(UndergroundMan_GetCommonTextPrinter(), bgConfig, 512 - (18 + 12), ((512 - (18 + 12)) - 73) - (27 * 4));
     ov23_0223EC34(bgConfig);
 
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
@@ -1372,7 +1372,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     Unk_ov23_02257740->bgConfig = NULL;
 
     Heap_Destroy(HEAP_ID_MINING);
-    UndergroundTextPrinter_SetBackground(CommManUnderground_GetCommonTextPrinter(), Unk_ov23_02257740->fieldSystem->bgConfig, 1024 - (18 + 12), ((1024 - (18 + 12)) - 73) - (27 * 4));
+    UndergroundTextPrinter_SetBackground(UndergroundMan_GetCommonTextPrinter(), Unk_ov23_02257740->fieldSystem->bgConfig, 1024 - (18 + 12), ((1024 - (18 + 12)) - 73) - (27 * 4));
 }
 
 static void ov23_0223F118(SysTask *param0, void *param1)
@@ -1384,7 +1384,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 0:
         SecretBases_SetEntranceGraphicsEnabled(0);
         UndergroundSpheres_DisableBuriedSphereSparkles();
-        CommPlayerMan_Reset();
+        CommPlayerMan_Disable();
         SecretBases_DisableBaseEntranceGraphics();
         (v0->state)++;
         break;
@@ -1439,8 +1439,8 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         }
         break;
     case 9:
-        UndergroundTextPrinter_SetSingleDigitNumber(CommManUnderground_GetCommonTextPrinter(), 0, v0->itemCount);
-        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_SomethingPingedInWall, FALSE, NULL);
+        UndergroundTextPrinter_SetSingleDigitNumber(UndergroundMan_GetCommonTextPrinter(), 0, v0->itemCount);
+        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_SomethingPingedInWall, FALSE, NULL);
         v0->timer = 0;
         (v0->state)++;
         break;
@@ -1450,7 +1450,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         if (v0->timer > 80) {
             Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
 
             if (Underground_HasNeverMined(underground)) {
                 v0->state++;
@@ -1460,14 +1460,14 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         }
         break;
     case 11:
-        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_MiningTutorial, FALSE, NULL);
+        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_MiningTutorial, FALSE, NULL);
         v0->timer = 0;
         (v0->state)++;
         break;
     case 12:
         if (Text_IsPrinterActive(Unk_ov23_02257740->unk_A24) == 0) {
             if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A)) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 v0->state++;
             }
         }
@@ -1485,7 +1485,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         v0->timer--;
 
         if (v0->timer == 0) {
-            Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_EverythingDugUp, FALSE, NULL);
+            Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_EverythingDugUp, FALSE, NULL);
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             v0->textTimer = 60;
             v0->state = 15;
@@ -1498,7 +1498,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             v0->textTimer--;
 
             if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->textTimer == 0)) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 v0->state = 16;
             }
         }
@@ -1531,7 +1531,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 18:
         SpriteList_Update(Unk_ov23_02257740->spriteList);
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
         (v0->state)++;
         break;
@@ -1573,7 +1573,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             CommSys_SendDataFixedSize(67, &v0->unk_50);
             CommPlayerMan_ResumeFieldSystem();
 
-            Unk_ov23_02257740->unk_8CC = NULL;
+            Unk_ov23_02257740->miningGameTask = NULL;
 
             Heap_Free(v0);
             SysTask_Done(param0);
@@ -1620,7 +1620,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 26:
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetScreenMasterBrightness(DS_SCREEN_MAIN);
-        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_WallCollapsed, FALSE, NULL);
+        Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_WallCollapsed, FALSE, NULL);
         v0->textTimer = 60;
         v0->state = 15;
         break;
@@ -1629,7 +1629,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             v0->textTimer--;
 
             if (gSystem.touchPressed || (gSystem.pressedKeys & PAD_BUTTON_A) || (v0->textTimer == 0)) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 v0->state = 19;
             }
         }
@@ -1651,7 +1651,7 @@ static void ov23_0223F70C(FieldSystem *fieldSystem)
     HBlankSystem_Stop(fieldSystem->unk_04->hBlankSystem);
     SystemFlag_SetDiggingForFossils(SaveData_GetVarsFlags(fieldSystem->saveData));
 
-    Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
+    Unk_ov23_02257740->miningGameTask = SysTask_Start(ov23_0223F118, v0, 100);
 }
 
 static BOOL Mining_IsBuriedObjectSlotAvailable(void)
@@ -2418,8 +2418,8 @@ static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
 
     for (netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         if ((Unk_ov23_02257740->linkTouchX[netID] != (u8)TOUCHSCREEN_INPUT_NONE) && (Unk_ov23_02257740->linkTouchY[netID] != (u8)TOUCHSCREEN_INPUT_NONE)) {
-            int playerXPos = CommPlayer_XPos(CommSys_CurNetId());
-            int playerZPos = CommPlayer_ZPos(CommSys_CurNetId());
+            int playerXPos = CommPlayer_GetXIfActive(CommSys_CurNetId());
+            int playerZPos = CommPlayer_GetZIfActive(CommSys_CurNetId());
             int linkXPos = UndergroundPlayer_GetXPos(netID);
             int linkZPos = UndergroundPlayer_GetZPos(netID);
 
@@ -2542,17 +2542,17 @@ static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
         if (Unk_ov23_02257740->buriedObjects[i].isDugUp == TRUE) {
             param0->sizeOfCurrentSphere = Mining_GenerateSizeOfMinedSphere(Unk_ov23_02257740->buriedObjects[i].itemID);
 
-            UndergroundTextPrinter_SetUndergroundItemNameWithArticle(CommManUnderground_GetCommonTextPrinter(), Unk_ov23_02257740->buriedObjects[i].itemID);
+            UndergroundTextPrinter_SetUndergroundItemNameWithArticle(UndergroundMan_GetCommonTextPrinter(), Unk_ov23_02257740->buriedObjects[i].itemID);
 
             if (UndergroundSpheres_IsMiningItemSphere(Unk_ov23_02257740->buriedObjects[i].itemID)) {
                 entryID = UndergroundCommon_Text_YouObtainedSphere;
-                UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, param0->sizeOfCurrentSphere);
+                UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundMan_GetCommonTextPrinter(), 1, param0->sizeOfCurrentSphere);
             } else {
                 entryID = UndergroundCommon_Text_ItemWasObtained;
-                UndergroundTextPrinter_CapitalizeArgAtIndex(CommManUnderground_GetCommonTextPrinter(), 2);
+                UndergroundTextPrinter_CapitalizeArgAtIndex(UndergroundMan_GetCommonTextPrinter(), 2);
             }
 
-            Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), entryID, FALSE, NULL);
+            Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), entryID, FALSE, NULL);
             return TRUE;
         }
     }
@@ -2594,7 +2594,7 @@ static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
                 Mining_AddItem(itemID, param0->sizeOfCurrentSphere);
                 break;
             } else {
-                Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_TooBadBagIsFull3, FALSE, NULL);
+                Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_TooBadBagIsFull3, FALSE, NULL);
                 return TRUE;
             }
         }
@@ -3073,7 +3073,7 @@ BOOL ov23_022415B8(String *param0)
             v1 = CommInfo_TrainerInfo(v0);
             Unk_ov23_02257740->unk_908[v0] = 0;
 
-            if (CommManUnderground_FormatCommonStringWithTrainerName(v1, 0, 105, param0)) {
+            if (UndergroundMan_FormatCommonStringWithTrainerName(v1, 0, 105, param0)) {
                 return 1;
             }
         }
@@ -3106,20 +3106,18 @@ void ov23_02241648(int param0)
     }
 }
 
-BOOL ov23_02241670(void)
+BOOL Mining_IsMiningGameTaskActive(void)
 {
-    if (Unk_ov23_02257740) {
-        if (Unk_ov23_02257740->unk_8CC) {
-            return 1;
-        }
+    if (Unk_ov23_02257740 && Unk_ov23_02257740->miningGameTask) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void ov23_02241690(int param0, int param1)
+void Mining_SetPlayerMiningStatus(int netID, int isMining)
 {
     if (Unk_ov23_02257740) {
-        Unk_ov23_02257740->isPlayerMining[param0] = param1;
+        Unk_ov23_02257740->isPlayerMining[netID] = isMining;
     }
 }

@@ -27,7 +27,7 @@
 #include "overlay006/wild_encounters.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay023/ov23_02241F74.h"
+#include "overlay023/underground_manager.h"
 
 #include "catching_show.h"
 #include "comm_player_manager.h"
@@ -367,19 +367,19 @@ BOOL FieldInput_Process_Underground(FieldInput *input, FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    ov23_02242814();
+    UndergroundMan_ProgressInteractCooldown();
 
     if (input->interact) {
-        ov23_02242830(0);
+        UndergroundMan_ProcessInteract(0);
         return FALSE;
     }
 
     if (input->menu) {
-        ov23_022427F8();
+        UndergroundMan_OpenMenu();
         return FALSE;
     }
 
-    if (ov23_02242458()) {
+    if (UndergroundMan_CheckForTouchInput()) {
         return FALSE;
     }
 

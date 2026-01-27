@@ -12,7 +12,7 @@
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
 #include "overlay007/communication_club.h"
-#include "overlay023/ov23_02241F74.h"
+#include "overlay023/underground_manager.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -721,19 +721,19 @@ SecretBase *sub_0205A080(SaveData *saveData)
         return NULL;
     }
 
-    return ov23_02242E10(saveData);
+    return UndergroundMan_GetCurrentOccupiedSecretBase(saveData);
 }
 
 void sub_0205A0A0(void)
 {
     if (sFieldCommMan && sFieldCommMan->unk_41) {
-        ov23_02242C78();
+        UndergroundMan_PauseResources();
     }
 }
 
 void sub_0205A0BC(void)
 {
     if (sFieldCommMan && sFieldCommMan->unk_41) {
-        ov23_02242CB4();
+        UndergroundMan_UnpauseResources();
     }
 }

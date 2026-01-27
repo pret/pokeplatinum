@@ -6,8 +6,8 @@
 #include "struct_defs/struct_02039A58.h"
 
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_pc.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_talk.h"
@@ -48,11 +48,11 @@ static int sub_02099508(void)
 static const CommCmdTable Unk_020F68A4[] = {
     { CommPlayer_RecvLocation, CommPacketSizeOf_RecvLocation, NULL },
     { CommPlayer_RecvLocationAndInit, CommPacketSizeOf_RecvLocationAndInit, NULL },
-    { CommManUnderground_ProcessVendorTalkRequest, CommPacketSizeOf_NetId, NULL },
+    { UndergroundMan_ProcessVendorTalkRequest, CommPacketSizeOf_NetId, NULL },
     { UndergroundPlayer_ProcessVendorTalk, CommPacketSizeOf_Nothing, NULL }, // 25
     { UndergroundPlayer_ProcessVendorTalkServer, CommPacketSizeOf_NetId, NULL },
     { UndergroundPlayer_ProcessOpenMenuRequest, CommPacketSizeOf_Nothing, NULL },
-    { ov23_022428D8, ov23_022428D4, NULL },
+    { UndergroundMan_ProcessInteractEvent, CommPacketSizeOf_InteractEvent, NULL },
     { UndergroundPlayer_ProcessOpenMenuEvent, CommPacketSizeOf_Variable, NULL },
     { UndergroundPlayer_ProcessTalkEvent, CommPacketSizeOf_Variable, NULL },
     { ov23_022433BC, CommPacketSizeOf_Nothing, NULL },
@@ -72,9 +72,9 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundTraps_ProcessTriggeredTrapBits, CommPacketSizeOf_NetId, NULL },
     { UndergroundTraps_QueueSendTrapRadarResults, CommPacketSizeOf_Nothing, NULL },
     { UndergroundTraps_ReceiveTrapRadarResults, CommPacketSizeOf_TrapRadarResult, NULL },
-    { ov23_022425F8, CommPacketSizeOf_Coordinates, NULL },
-    { ov23_02242624, CommPacketSizeOf_Variable, NULL },
-    { ov23_02242654, CommPacketSizeOf_Variable, NULL }, // 50
+    { UndergroundMan_ProcessTouchInput, CommPacketSizeOf_Coordinates, NULL },
+    { UndergroundMan_ProcessTouchRadarTrapResults, CommPacketSizeOf_Variable, NULL },
+    { UndergroundMan_ProcessTouchRadarMiningSpotResults, CommPacketSizeOf_Variable, NULL }, // 50
     { UndergroundTraps_ProcessDisengagedTrap, CommPacketSizeOf_TriggeredTrap, NULL },
     { CommPlayer_RecvDelete, CommPacketSizeOf_NetId, NULL },
     { SecretBases_ProcessBaseInfo, CommPacketSizeOf_SecretBaseInfo, NULL },
@@ -94,7 +94,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { ov23_0223EBC0, CommPacketSizeOf_NetId, NULL },
     { ov23_0223EBE4, ov23_0223EBFC, NULL },
     { Mining_TakeLinkInput, ov23_0223EC30, NULL },
-    { ov23_02243390, ov23_022433B8, NULL },
+    { UndergroundMan_ProcessPlayerState, CommPacketSizeOf_UndergroundPlayerState, NULL },
     { ov23_022413A0, CommPacketSizeOf_Nothing, NULL },
     { ov23_0224142C, ov23_022414D0, NULL },
     { UndergroundTalk_RequestLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
