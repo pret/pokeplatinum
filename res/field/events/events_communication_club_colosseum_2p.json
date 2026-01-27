@@ -4,7 +4,7 @@
         {
             "id": "COMMUNICATION_CLUB_COLOSSEUM_2P_WAITRESS_0",
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 9100,

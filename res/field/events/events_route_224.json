@@ -197,7 +197,7 @@
         {
             "id": "ROUTE_224_ACE_TRAINER_RUBEN",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_RUBEN",
@@ -265,7 +265,7 @@
         {
             "id": "ROUTE_224_PSYCHIC_BRITTNEY",
             "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_PSYCHIC_BRITTNEY",
@@ -282,7 +282,7 @@
         {
             "id": "ROUTE_224_ACE_TRAINER_JAMIE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_JAMIE",
@@ -299,7 +299,7 @@
         {
             "id": "ROUTE_224_RUIN_MANIAC_LARRY",
             "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_RUIN_MANIAC_LARRY",

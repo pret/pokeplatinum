@@ -1,233 +1,236 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/lake_verity.h"
+#include "res/field/events/events_lake_verity.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _00C7
-    ScriptEntry _00CB
-    ScriptEntry _013B
-    ScriptEntry _01D0
-    ScriptEntry _0230
-    ScriptEntry _030C
+    ScriptEntry LakeVerity_OnTransition
+    ScriptEntry LakeVerity_OnLoad
+    ScriptEntry LakeVerity_ProfRowan
+    ScriptEntry LakeVerity_Counterpart
+    ScriptEntry LakeVerity_OnFrameProfRowanNoticePlayer
+    ScriptEntry LakeVerity_Mars
+    ScriptEntry LakeVerity_GruntM
     ScriptEntryEnd
 
-_001E:
-    CallIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _009D
-    CallIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _0087
-    CallIfEq VAR_UNK_0x4097, 0, _0071
+LakeVerity_OnTransition:
+    CallIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_SetPositionsAfterTeamGalactic
+    CallIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_SetPositionsDuringTeamGalactic
+    CallIfEq VAR_LAKE_VERITY_PROF_ROWAN_STATE, 0, LakeVerity_SetProfRowanStartPosition
     GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0061
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0069
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, LakeVerity_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, LakeVerity_SetCounterpartGraphicsLucas
     End
 
-_0061:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+LakeVerity_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
-_0069:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+LakeVerity_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-_0071:
-    SetObjectEventPos 5, 46, 50
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_NORTH
-    SetObjectEventDir 5, DIR_NORTH
+LakeVerity_SetProfRowanStartPosition:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 46, 50
+    SetObjectEventMovementType LOCALID_PROF_ROWAN, MOVEMENT_TYPE_LOOK_NORTH
+    SetObjectEventDir LOCALID_PROF_ROWAN, DIR_NORTH
     Return
 
-_0087:
-    SetObjectEventPos 5, 46, 51
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_SOUTH
-    SetObjectEventDir 5, DIR_SOUTH
+LakeVerity_SetPositionsDuringTeamGalactic:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 46, 51
+    SetObjectEventMovementType LOCALID_PROF_ROWAN, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir LOCALID_PROF_ROWAN, DIR_SOUTH
     Return
 
-_009D:
-    SetObjectEventPos 5, 50, 37
-    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
-    SetObjectEventDir 5, DIR_WEST
-    SetObjectEventPos 6, 50, 39
-    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_LEFT
-    SetObjectEventDir 6, DIR_WEST
+LakeVerity_SetPositionsAfterTeamGalactic:
+    SetObjectEventPos LOCALID_PROF_ROWAN, 50, 37
+    SetObjectEventMovementType LOCALID_PROF_ROWAN, MOVEMENT_TYPE_LOOK_WEST
+    SetObjectEventDir LOCALID_PROF_ROWAN, DIR_WEST
+    SetObjectEventPos LOCALID_COUNTERPART, 50, 39
+    SetObjectEventMovementType LOCALID_COUNTERPART, MOVEMENT_TYPE_LOOK_WEST
+    SetObjectEventDir LOCALID_COUNTERPART, DIR_WEST
     Return
 
-_00C7:
-    End
+LakeVerity_OnLoad:
     End
 
-_00CB:
+LakeVerity_Unused:
+    End
+
+LakeVerity_ProfRowan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _0128
-    ApplyMovement 5, _01C8
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_INeedYouToGoToLakeAcuity
+    ApplyMovement LOCALID_PROF_ROWAN, LakeVerity_Movement_RowanWalkOnSpotEast
     WaitMovement
-    Message 2
+    Message LakeVerity_Text_HowDareYouMisguidedThugs
     FacePlayer
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _0104
-    GoTo _0112
+    GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_DawnNeedsYourHelp
+    GoTo LakeVerity_LucasNeedsYourHelp
     End
 
-_0104:
+LakeVerity_DawnNeedsYourHelp:
     BufferPlayerName 0
-    Message 3
-    GoTo _0120
+    Message LakeVerity_Text_DawnNeedsYourHelp
+    GoTo LakeVerity_CloseMessageCounterpartNeedsYourHelp
     End
 
-_0112:
+LakeVerity_LucasNeedsYourHelp:
     BufferPlayerName 0
-    Message 5
-    GoTo _0120
+    Message LakeVerity_Text_LucasNeedsYourHelp
+    GoTo LakeVerity_CloseMessageCounterpartNeedsYourHelp
     End
 
-_0120:
+LakeVerity_CloseMessageCounterpartNeedsYourHelp:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0128:
+LakeVerity_INeedYouToGoToLakeAcuity:
     FacePlayer
     BufferPlayerName 0
     BufferRivalName 1
-    Message 14
+    Message LakeVerity_Text_INeedYouToGoToLakeAcuity
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_013B:
+LakeVerity_Counterpart:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _018B
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, LakeVerity_CounterpartWhatsTeamGalacticUpTo
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _0167
-    GoTo _0175
+    GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_DawnICouldntBeatThisPerson
+    GoTo LakeVerity_LucasILostToHerButJustBarely
     End
 
-_0167:
+LakeVerity_DawnICouldntBeatThisPerson:
     BufferPlayerName 0
-    Message 7
-    GoTo _0183
+    Message LakeVerity_Text_DawnICouldntBeatThisPerson
+    GoTo LakeVerity_CloseMessageCounterpartLostToMars
     End
 
-_0175:
+LakeVerity_LucasILostToHerButJustBarely:
     BufferPlayerName 0
-    Message 8
-    GoTo _0183
+    Message LakeVerity_Text_LucasILostToHerButJustBarely
+    GoTo LakeVerity_CloseMessageCounterpartLostToMars
     End
 
-_0183:
+LakeVerity_CloseMessageCounterpartLostToMars:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_018B:
+LakeVerity_CounterpartWhatsTeamGalacticUpTo:
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _01A4
-    GoTo _01B2
+    GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_DawnWhatIsTeamGalacticUpTo
+    GoTo LakeVerity_LucasWhatsTeamGalacticUpTo
     End
 
-_01A4:
+LakeVerity_DawnWhatIsTeamGalacticUpTo:
     BufferPlayerName 0
-    Message 15
-    GoTo _01C0
+    Message LakeVerity_Text_DawnWhatIsTeamGalacticUpTo
+    GoTo LakeVerity_CloseMessageWhatsTeamGalacticUpTo
     End
 
-_01B2:
+LakeVerity_LucasWhatsTeamGalacticUpTo:
     BufferPlayerName 0
-    Message 16
-    GoTo _01C0
+    Message LakeVerity_Text_LucasWhatsTeamGalacticUpTo
+    GoTo LakeVerity_CloseMessageWhatsTeamGalacticUpTo
     End
 
-_01C0:
+LakeVerity_CloseMessageWhatsTeamGalacticUpTo:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_01C8:
+LakeVerity_Movement_RowanWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
-_01D0:
+LakeVerity_OnFrameProfRowanNoticePlayer:
     LockAll
-    ApplyMovement 5, _0220
+    ApplyMovement LOCALID_PROF_ROWAN, LakeVerity_Movement_RowanNoticePlayer
     WaitMovement
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _01F5
-    GoTo _0203
+    GoToIfEq VAR_RESULT, GENDER_MALE, LakeVerity_WhatTimingYouveGotToHelpDawn
+    GoTo LakeVerity_WhatTimingYouveGotToHelpLucas
     End
 
-_01F5:
+LakeVerity_WhatTimingYouveGotToHelpDawn:
     BufferPlayerName 0
-    Message 0
-    GoTo _0211
+    Message LakeVerity_Text_WhatTimingYouveGotToHelpDawn
+    GoTo LakeVerity_CloseMessageYouveGotToHelpCounterpart
     End
 
-_0203:
+LakeVerity_WhatTimingYouveGotToHelpLucas:
     BufferPlayerName 0
-    Message 1
-    GoTo _0211
+    Message LakeVerity_Text_WhatTimingYouveGotToHelpLucas
+    GoTo LakeVerity_CloseMessageYouveGotToHelpCounterpart
     End
 
-_0211:
-    SetVar VAR_UNK_0x4097, 1
+LakeVerity_CloseMessageYouveGotToHelpCounterpart:
+    SetVar VAR_LAKE_VERITY_PROF_ROWAN_STATE, 1
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0220:
+LakeVerity_Movement_RowanNoticePlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     WalkNormalSouth
     EndMovement
 
-_0230:
+LakeVerity_Mars:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ApplyMovement 6, _02F4
+    ApplyMovement LOCALID_COUNTERPART, LakeVerity_Movement_CounterpartWalkOnSpotEast
     WaitMovement
-    Message 9
+    Message LakeVerity_Text_MarsIntro
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_LAKE_VERITY
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _02DB
-    Message 10
-    Message 11
-    Message 12
+    GoToIfEq VAR_RESULT, FALSE, LakeVerity_BlackOut
+    Message LakeVerity_Text_MarsDefeat
+    Message LakeVerity_Text_WerePullingOut
+    Message LakeVerity_Text_NowWeveGotAllLakePokemon
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    RemoveObject 7
-    RemoveObject 8
-    RemoveObject 0
-    RemoveObject 1
-    RemoveObject 2
-    RemoveObject 3
+    RemoveObject LOCALID_MARS
+    RemoveObject LOCALID_GRUNT_M
+    RemoveObject LOCALID_GALACTIC_GRUNT_1
+    RemoveObject LOCALID_GALACTIC_GRUNT_3
+    RemoveObject LOCALID_GALACTIC_GRUNT_2
+    RemoveObject LOCALID_GALACTIC_GRUNT_4
     SetFlag FLAG_ALT_MUSIC_LAKE_VERITY
-    ApplyMovement 6, _02FC
-    ApplyMovement LOCALID_PLAYER, _0304
+    ApplyMovement LOCALID_COUNTERPART, LakeVerity_Movement_CounterpartFaceSouth
+    ApplyMovement LOCALID_PLAYER, LakeVerity_Movement_PlayerFaceWest
     WaitMovement
-    SetPosition 5, 53, 1, 39, 3
+    SetPosition LOCALID_PROF_ROWAN, 53, 1, 39, DIR_EAST
     FadeScreenIn
     WaitFadeScreen
     SetFlag FLAG_UNK_0x029A
     SetFlag FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY
-    ClearFlag FLAG_UNK_0x01BA
-    SetVar VAR_UNK_0x40D3, 1
+    ClearFlag FLAG_HIDE_LAKE_ACUITY_JUPITER
+    SetVar VAR_LAKE_ACUITY_STATE, 1
     BufferRivalName 0
-    Message 13
+    Message LakeVerity_Text_WhatIsHappeningAtLakeAcuity
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_02DB:
+LakeVerity_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
@@ -242,24 +245,24 @@ LakeVerity_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_02F4:
+LakeVerity_Movement_CounterpartWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_02FC:
+LakeVerity_Movement_CounterpartFaceSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0304:
+LakeVerity_Movement_PlayerFaceWest:
     WalkOnSpotNormalWest
     EndMovement
 
-_030C:
+LakeVerity_GruntM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    Message 6
+    Message LakeVerity_Text_OuchWhatsWithThisOldTimer
     WaitABXPadPress
     CloseMessage
     ReleaseAll

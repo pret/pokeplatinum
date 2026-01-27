@@ -19,7 +19,7 @@
         {
             "id": "ROUTE_209_LOST_TOWER_3F_POKEFAN_LEONARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_POKEFAN_LEONARD",

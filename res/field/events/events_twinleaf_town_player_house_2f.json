@@ -45,7 +45,7 @@
         {
             "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL",
             "script": 0,

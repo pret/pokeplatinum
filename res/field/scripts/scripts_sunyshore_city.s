@@ -36,7 +36,7 @@ _0077:
 
 _0083:
     SetObjectEventPos 18, 0x349, 0x316
-    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_WEST
     SetObjectEventDir 18, DIR_WEST
     End
 

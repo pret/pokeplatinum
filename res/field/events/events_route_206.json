@@ -21,7 +21,7 @@
         {
             "id": "ROUTE_206_CYCLIST_AXEL",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_CYCLIST_AXEL",
@@ -55,7 +55,7 @@
         {
             "id": "ROUTE_206_CYCLIST_JAMES",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_CYCLIST_JAMES",
@@ -89,7 +89,7 @@
         {
             "id": "ROUTE_206_CYCLIST_JOHN",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_CYCLIST_JOHN",
@@ -140,7 +140,7 @@
         {
             "id": "ROUTE_206_CYCLIST_RACHEL",
             "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_CYCLIST_RACHEL",

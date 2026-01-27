@@ -51,7 +51,7 @@
         {
             "id": "ETERNA_CITY_GYM_LASS_CAROLINE",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 5,

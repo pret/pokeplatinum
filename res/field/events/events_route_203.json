@@ -4,7 +4,7 @@
         {
             "id": "ROUTE_203_YOUNGSTER_SEBASTIAN",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNGSTER_SEBASTIAN",
@@ -21,7 +21,7 @@
         {
             "id": "ROUTE_203_YOUNGSTER_MICHAEL",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_YOUNGSTER_MICHAEL",
@@ -89,7 +89,7 @@
         {
             "id": "ROUTE_203_RIVAL_5",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x017B",
             "script": 0,

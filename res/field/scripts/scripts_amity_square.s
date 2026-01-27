@@ -206,7 +206,7 @@ _02C9:
     ApplyMovement VAR_0x8002, _03C8
     WaitMovement
     SetHasPartner
-    ScrCmd_06D VAR_0x8002, 48
+    SetMovementType VAR_0x8002, 48
     ReleaseAll
     End
 

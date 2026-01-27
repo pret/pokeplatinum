@@ -75,7 +75,7 @@ _00EC:
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MARLEY_VICTORY_ROAD
     SetHasPartner
-    ScrCmd_06D 28, 48
+    SetMovementType 28, 48
     ReleaseAll
     End
 
@@ -137,7 +137,7 @@ _0190:
     CloseMessage
     SetVar VAR_UNK_0x4090, 0
     ClearHasPartner
-    ScrCmd_06D 28, 14
+    SetMovementType 28, 14
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 55, _020D
     GoToIfEq VAR_0x8005, 56, _021D
@@ -238,7 +238,7 @@ _02DC:
 _02E4:
     LockAll
     ClearHasPartner
-    ScrCmd_06D 28, 14
+    SetMovementType 28, 14
     ApplyMovement LOCALID_PLAYER, _03B4
     ApplyMovement 28, _03E0
     WaitMovement

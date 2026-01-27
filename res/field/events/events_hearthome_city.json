@@ -43,7 +43,7 @@
         {
             "id": "HEARTHOME_CITY_POKEMON_BREEDER_F_2",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 12,
@@ -58,7 +58,7 @@
         {
             "id": "HEARTHOME_CITY_BABY_IN_PRAM_3",
             "graphics_id": "OBJ_EVENT_GFX_BABY_IN_PRAM",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 14,
@@ -304,7 +304,7 @@
         {
             "id": "HEARTHOME_CITY_POKEFAN_M_19",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_HEARTHOME_ROUTE_209_ROADBLOCK",
             "script": 2,
@@ -319,7 +319,7 @@
         {
             "id": "HEARTHOME_CITY_HIKER_20",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_HEARTHOME_ROUTE_209_ROADBLOCK",
             "script": 3,
@@ -439,7 +439,7 @@
         {
             "id": "HEARTHOME_CITY_BABY_IN_PRAM_28",
             "graphics_id": "OBJ_EVENT_GFX_BABY_IN_PRAM",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 18,
@@ -454,7 +454,7 @@
         {
             "id": "HEARTHOME_CITY_POKEMON_BREEDER_M_29",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 17,
@@ -484,7 +484,7 @@
         {
             "id": "HEARTHOME_CITY_BUNEARY_31",
             "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x023D",
             "script": 0,
@@ -499,7 +499,7 @@
         {
             "id": "HEARTHOME_CITY_IDOL_32",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x023C",
             "script": 0,

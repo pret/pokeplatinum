@@ -115,7 +115,7 @@
         {
             "id": "FIGHT_AREA_RIVAL_7",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01D3",
             "script": 14,
@@ -130,7 +130,7 @@
         {
             "id": "FIGHT_AREA_BUCK_8",
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01D4",
             "script": 25,
@@ -423,7 +423,7 @@
         {
             "id": "FIGHT_AREA_BLACK_BELT_27",
             "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01E2",
             "script": 22,
@@ -438,7 +438,7 @@
         {
             "id": "FIGHT_AREA_ACE_TRAINER_F_28",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01E2",
             "script": 21,
@@ -453,7 +453,7 @@
         {
             "id": "FIGHT_AREA_ACE_TRAINER_M_29",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01E2",
             "script": 20,
@@ -468,7 +468,7 @@
         {
             "id": "FIGHT_AREA_BATTLE_GIRL_30",
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01E2",
             "script": 23,
@@ -483,7 +483,7 @@
         {
             "id": "FIGHT_AREA_SAILOR_31",
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01E2",
             "script": 24,

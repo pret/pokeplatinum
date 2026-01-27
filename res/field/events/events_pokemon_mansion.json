@@ -64,7 +64,7 @@
         {
             "id": "POKEMON_MANSION_COUNTERPART_4",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x0258",
             "script": 0,
@@ -79,7 +79,7 @@
         {
             "id": "POKEMON_MANSION_MAID_5",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x0257",
             "script": 0,

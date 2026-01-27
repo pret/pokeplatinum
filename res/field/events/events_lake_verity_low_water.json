@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "LAKE_VERITY_LOW_WATER_PROF_ROWAN_0",
+            "id": "LOCALID_PROF_ROWAN",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0175",
+            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN",
             "script": 4,
             "initial_dir": 0,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "LAKE_VERITY_LOW_WATER_COUNTERPART_1",
+            "id": "LOCALID_COUNTERPART",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0194",
+            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART",
             "script": 5,
             "initial_dir": 0,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "LAKE_VERITY_LOW_WATER_STARLY_2",
+            "id": "LOCALID_STARLY_EAST",
             "graphics_id": "OBJ_EVENT_GFX_STARLY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x018F",
+            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_STARLY",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "LAKE_VERITY_LOW_WATER_STARLY_3",
+            "id": "LOCALID_STARLY_SOUTH",
             "graphics_id": "OBJ_EVENT_GFX_STARLY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x018F",
+            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_STARLY",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "LAKE_VERITY_LOW_WATER_CYRUS_4",
+            "id": "LOCALID_CYRUS",
             "graphics_id": "OBJ_EVENT_GFX_CYRUS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0176",
+            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_CYRUS",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "LAKE_VERITY_LOW_WATER_RIVAL_5",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0196",
+            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_RIVAL",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -92,11 +92,11 @@
             "y": 0
         },
         {
-            "id": "LAKE_VERITY_LOW_WATER_POKEBALL_6",
+            "id": "LOCALID_POKEBALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04E5",
+            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_POKEBALL",
             "script": 7239,
             "initial_dir": 0,
             "data": [],

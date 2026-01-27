@@ -1029,19 +1029,19 @@ _0FE7:
     Return
 
 _102B:
-    ScrCmd_06D VAR_LAST_TALKED, 15
+    SetMovementType VAR_LAST_TALKED, 15
     Return
 
 _1033:
-    ScrCmd_06D VAR_LAST_TALKED, 14
+    SetMovementType VAR_LAST_TALKED, 14
     Return
 
 _103B:
-    ScrCmd_06D VAR_LAST_TALKED, 17
+    SetMovementType VAR_LAST_TALKED, 17
     Return
 
 _1043:
-    ScrCmd_06D VAR_LAST_TALKED, 16
+    SetMovementType VAR_LAST_TALKED, 16
     Return
 
     .balign 4, 0

@@ -128,7 +128,7 @@
         {
             "id": "CONTEST_HALL_LOBBY_MOM_5",
             "graphics_id": "OBJ_EVENT_GFX_MOM",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x0208",
             "script": 0,
@@ -143,7 +143,7 @@
         {
             "id": "CONTEST_HALL_LOBBY_IDOL_6",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x0209",
             "script": 0,

@@ -285,7 +285,7 @@
         {
             "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_M_16",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x029A",
             "script": 2,
@@ -300,7 +300,7 @@
         {
             "id": "MT_CORONET_1F_NORTH_ROOM_1_GRUNT_M_17",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x029A",
             "script": 2,

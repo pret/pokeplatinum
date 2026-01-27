@@ -13,7 +13,7 @@
         {
             "id": "BATTLE_CASTLE_FRONTIER_SINGLE_ATTENDANT_0",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,
@@ -28,7 +28,7 @@
         {
             "id": "BATTLE_CASTLE_FRONTIER_MULTI_ATTENDANT_1",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 6,
