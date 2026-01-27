@@ -119,6 +119,27 @@
 #define MAP_OBJECT_MANAGER_OBJECT_COUNT 19
 #define MAP_OBJECT_BASE_LOCAL_ID        128
 
+#define UXIE_BOULDER_TUTO_ASCEND_Y_DELTA            (FX32_ONE * 2)
+#define UXIE_BOULDER_TUTO_ASCEND_Y_TARGET           17
+#define UXIE_BOULDER_TUTO_MOVE_TO_BOULDER_Z_DELTA   (FX32_ONE * 1)
+#define UXIE_BOULDER_TUTO_MOVE_TO_BOULDER_Z_TARGET  -2
+#define UXIE_BOULDER_TUTO_HOVER_STEP_COUNT          8
+#define UXIE_BOULDER_TUTO_HOVER_REPEAT_COUNT        3
+#define UXIE_BOULDER_TUTO_MOVE_AWAY_Z_DELTA         (FX32_ONE * 1)
+#define UXIE_BOULDER_TUTO_MOVE_AWAY_Z_TARGET        1
+#define UXIE_BOULDER_TUTO_DESCEND_Y_DELTA_INCREMENT 0x200
+#define UXIE_BOULDER_TUTO_DESCEND_Y_DELTA_TARGET    (FX32_ONE * 2)
+
+#define AZELF_BOULDER_TUTO_ASCEND_Y_DELTA            (FX32_ONE * 2)
+#define AZELF_BOULDER_TUTO_ASCEND_Y_TARGET           13
+#define AZELF_BOULDER_TUTO_DESCEND_Y_DELTA_INCREMENT 0x200
+#define AZELF_BOULDER_TUTO_DESCEND_Y_DELTA_TARGET    (FX32_ONE * 2)
+
+#define MESPRIT_BOULDER_TUTO_ASCEND_Y_DELTA            (FX32_ONE * 2)
+#define MESPRIT_BOULDER_TUTO_ASCEND_Y_TARGET           9
+#define MESPRIT_BOULDER_TUTO_DESCEND_Y_DELTA_INCREMENT 0x200
+#define MESPRIT_BOULDER_TUTO_DESCEND_Y_DELTA_TARGET    (FX32_ONE * 2)
+
 enum FloatingPlatformKind {
     FLOATING_PLATFORM_KIND_FLOOR = 0,
     FLOATING_PLATFORM_KIND_WEST_WALL,
@@ -198,8 +219,8 @@ enum GiratinaShadowPropSoundEffectKind {
 
 enum FlagCondition {
     FLAG_COND_NONE = 0,
-    FLAG_COND_1,
-    FLAG_COND_2,
+    FLAG_COND_BOULDER_PUZZLE_FALSE,
+    FLAG_COND_BOULDER_PUZZLE_TRUE,
     FLAG_COND_WORLD_PROGRESS_EQ,
     FLAG_COND_WORLD_PROGRESS_LEQ,
     FLAG_COND_WORLD_PROGRESS_GEQ,
@@ -251,9 +272,9 @@ enum EventCmdKind {
     EVENT_CMD_KIND_09,
     EVENT_CMD_KIND_0A,
     EVENT_CMD_KIND_0B,
-    EVENT_CMD_KIND_0C,
-    EVENT_CMD_KIND_0D,
-    EVENT_CMD_KIND_0E,
+    EVENT_CMD_SHOW_UXIE_BOULDER_TUTO,
+    EVENT_CMD_SHOW_AZELF_BOULDER_TUTO,
+    EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO,
     EVENT_CMD_KIND_0F,
     EVENT_CMD_KIND_10,
     EVENT_CMD_KIND_11,
@@ -359,6 +380,29 @@ enum EventCmdMovePlatformState {
 enum EventCmdShowGiratinaShadowState {
     EVENT_CMD_SHOW_GIRATINA_SHADOW_STATE_LOAD = 0,
     EVENT_CMD_SHOW_GIRATINA_SHADOW_STATE_FINISH,
+};
+
+enum EventCmdShowUxieBoulderTutoState {
+    EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_INIT = 0,
+    EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_ASCEND,
+    EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_MOVE_TO_BOULDER,
+    EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_HOVER,
+    EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_MOVE_AWAY,
+    EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_DESCEND,
+};
+
+enum EventCmdShowAzelfBoulderTutoState {
+    EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_INIT = 0,
+    EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_ASCEND,
+    EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_WAIT_FOR_ANIMATION,
+    EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_DESCEND,
+};
+
+enum EventCmdShowMespritBoulderTutoState {
+    EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_INIT = 0,
+    EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_ASCEND,
+    EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_WAIT_FOR_ANIMATION,
+    EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_DESCEND,
 };
 
 typedef struct DistWorldSystem DistWorldSystem;
@@ -1125,30 +1169,30 @@ typedef struct {
     u16 unk_1C[16];
 } UnkStruct_ov9_0225074C;
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    fx32 unk_0C;
-    fx32 unk_10;
-    VecFx32 unk_14;
-    MapObject *unk_20;
-} UnkStruct_ov9_02250918;
+typedef struct CmdRunDataShowUxieBoulderTuto {
+    int hoverStep;
+    int hoverStepDelta;
+    int hoverRepeat;
+    fx32 finalUxieY;
+    fx32 descendYDelta;
+    VecFx32 uxieSpritePosOffset;
+    MapObject *uxieMapObj;
+} CmdRunDataShowUxieBoulderTuto;
 
-typedef struct {
-    fx32 unk_00;
-    VecFx32 unk_04;
-    SysTask *unk_10;
-    MapObject *unk_14;
-} UnkStruct_ov9_02250AFC;
+typedef struct CmdRunDataShowAzelfBoulderTuto {
+    fx32 descendYDelta;
+    VecFx32 azelfSpritePosOffset;
+    SysTask *azelfAnimTask;
+    MapObject *azelfMapObj;
+} CmdRunDataShowAzelfBoulderTuto;
 
-typedef struct {
-    fx32 unk_00;
-    VecFx32 unk_04;
-    SysTask *unk_10;
-    SysTask *unk_14;
-    MapObject *unk_18;
-} UnkStruct_ov9_02250C14;
+typedef struct CmdRunDataShowMespritBoulderTuto {
+    fx32 descendYDelta;
+    VecFx32 mespritSpritePosOffset;
+    SysTask *mespritAnimTask;
+    SysTask *playerAnimTask;
+    MapObject *mespritMapObj;
+} CmdRunDataShowMespritBoulderTuto;
 
 typedef struct {
     s16 unk_00;
@@ -1177,9 +1221,9 @@ static void SetPersistedMovingPlatformFlags(DistWorldSystem *system, u32 movingP
 static void SetPersistedMovingPlatformFlag(DistWorldSystem *system, u32 index);
 static void ClearPersistedMovingPlatformFlag(DistWorldSystem *system, u32 index);
 static BOOL CheckPersistedMovingPlatformFlag(DistWorldSystem *system, u32 index);
-static void ov9_02249DC8(DistWorldSystem *param0, u32 param1);
-static void ov9_02249DE4(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_02249E00(DistWorldSystem *param0, u32 param1);
+static void SetPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index);
+static void ClearPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index);
+static BOOL CheckPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index);
 static void SetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system, u32 floatingPlatformIndex);
 static u32 GetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system);
 static void ov9_02249E94(DistWorldSystem *param0);
@@ -1639,7 +1683,7 @@ static void ov9_02249CC4(DistWorldSystem *param0)
     DistWorldPersistedData *v0 = param0->persistedData;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-    v0->unk_0C = 0;
+    v0->boulderPuzzleFlags = 0;
 
     {
         u32 v2 = 1 << DIST_WORLD_PERSISTED_MOVING_PLATFORM_FLAG_B4F_1
@@ -1660,9 +1704,16 @@ static void ov9_02249CC4(DistWorldSystem *param0)
     }
 
     if (!SystemFlag_HandleDistortionWorldPuzzleFinished(v1, HANDLE_FLAG_CHECK)) {
-        v0->unk_0C |= ((1 << 0) | (1 << 1) | (1 << 2));
+        v0->boulderPuzzleFlags |= 1 << DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F
+            | 1 << DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B5F
+            | 1 << DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B5F;
     } else {
-        v0->unk_0C |= ((1 << 10) | (1 << 11) | (1 << 12) | (1 << 6) | (1 << 7) | (1 << 8));
+        v0->boulderPuzzleFlags |= 1 << DIST_WORLD_PUZZLE_FLAG_UXIE_TUTO_SEEN
+            | 1 << DIST_WORLD_PUZZLE_FLAG_AZELF_TUTO_SEEN
+            | 1 << DIST_WORLD_PUZZLE_FLAG_MESPRIT_TUTO_SEEN
+            | 1 << DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT
+            | 1 << DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT
+            | 1 << DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT;
     }
 }
 
@@ -1729,28 +1780,28 @@ static BOOL CheckPersistedMovingPlatformFlag(DistWorldSystem *system, u32 index)
     return persistedData->movingPlatformFlags & (1 << index) ? TRUE : FALSE;
 }
 
-static void ov9_02249DC8(DistWorldSystem *param0, u32 param1)
-{
-    DistWorldPersistedData *v0 = param0->persistedData;
-
-    GF_ASSERT(param1 < 17);
-    v0->unk_0C |= (1 << param1);
-}
-
-static void ov9_02249DE4(DistWorldSystem *param0, u32 param1)
-{
-    DistWorldPersistedData *v0 = param0->persistedData;
-
-    GF_ASSERT(param1 < 17);
-    v0->unk_0C &= ~(1 << param1);
-}
-
-static BOOL ov9_02249E00(DistWorldSystem *system, u32 val)
+static void SetPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index)
 {
     DistWorldPersistedData *persistedData = system->persistedData;
 
-    GF_ASSERT(val < 17);
-    return persistedData->unk_0C & (1 << val) ? TRUE : FALSE;
+    GF_ASSERT(index < DIST_WORLD_PUZZLE_FLAG_COUNT);
+    persistedData->boulderPuzzleFlags |= (1 << index);
+}
+
+static void ClearPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index)
+{
+    DistWorldPersistedData *persistedData = system->persistedData;
+
+    GF_ASSERT(index < DIST_WORLD_PUZZLE_FLAG_COUNT);
+    persistedData->boulderPuzzleFlags &= ~(1 << index);
+}
+
+static BOOL CheckPersistedBoulderPuzzleFlag(DistWorldSystem *system, u32 index)
+{
+    DistWorldPersistedData *persistedData = system->persistedData;
+
+    GF_ASSERT(index < DIST_WORLD_PUZZLE_FLAG_COUNT);
+    return persistedData->boulderPuzzleFlags & (1 << index) ? TRUE : FALSE;
 }
 
 static void SetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system, u32 floatingPlatformIndex)
@@ -7394,7 +7445,7 @@ UnkStruct_ov9_0224F6EC *ov9_0224F2BC(FieldSystem *fieldSystem, FieldTask *param1
     case 6:
     case 7:
     case 8:
-        if (ov9_02249E00(v0->unk_00, v0->unk_14) == 0) {
+        if (CheckPersistedBoulderPuzzleFlag(v0->unk_00, v0->unk_14) == 0) {
             v0->unk_12 = 1;
             break;
         }
@@ -7444,8 +7495,8 @@ static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
             break;
         }
 
-        ov9_02249DC8(param0->unk_00, v3);
-        ov9_02249DE4(param0->unk_00, v4);
+        SetPersistedBoulderPuzzleFlag(param0->unk_00, v3);
+        ClearPersistedBoulderPuzzleFlag(param0->unk_00, v4);
     }
 
     return 1;
@@ -7494,7 +7545,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
             u32 v4 = 0, v5 = 0;
             MapObject *v6 = param0->unk_0C;
 
-            ov9_02249DC8(param0->unk_00, param0->unk_14);
+            SetPersistedBoulderPuzzleFlag(param0->unk_00, param0->unk_14);
 
             switch (MapObject_GetLocalID(v6)) {
             case MAP_OBJECT_B6F_MESPRIT_BOULDER_OUTSIDE:
@@ -7513,7 +7564,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
                 GF_ASSERT(0);
             }
 
-            ov9_02249DE4(param0->unk_00, v5);
+            ClearPersistedBoulderPuzzleFlag(param0->unk_00, v5);
             MapObject_SetLocalID(v6, v4);
 
             {
@@ -7588,7 +7639,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
                 GF_ASSERT(0);
             }
 
-            ov9_02249DE4(param0->unk_00, v15);
+            ClearPersistedBoulderPuzzleFlag(param0->unk_00, v15);
             ScriptManager_Start(param0->unk_08, v14, NULL, NULL);
             param0->unk_10++;
             break;
@@ -7596,12 +7647,12 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
     case 3: {
         int v17 = 0;
 
-        v17 += ov9_02249E00(
-            param0->unk_00, 6);
-        v17 += ov9_02249E00(
-            param0->unk_00, 7);
-        v17 += ov9_02249E00(
-            param0->unk_00, 8);
+        v17 += CheckPersistedBoulderPuzzleFlag(
+            param0->unk_00, DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT);
+        v17 += CheckPersistedBoulderPuzzleFlag(
+            param0->unk_00, DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT);
+        v17 += CheckPersistedBoulderPuzzleFlag(
+            param0->unk_00, DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT);
 
         if (v17 >= 3) {
             VarsFlags *v18 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
@@ -7692,8 +7743,8 @@ static BOOL ov9_0224F5D8(UnkStruct_ov9_0224F6EC *param0)
                 GF_ASSERT(0);
             }
 
-            ov9_02249DC8(param0->unk_00, v6);
-            ov9_02249DE4(param0->unk_00, v7);
+            SetPersistedBoulderPuzzleFlag(param0->unk_00, v6);
+            ClearPersistedBoulderPuzzleFlag(param0->unk_00, v7);
             DeleteMapObject(param0->unk_00, param0->unk_0C);
 
             return 1;
@@ -8674,7 +8725,7 @@ static int ov9_02250704(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 {
     const UnkStruct_ov9_02250704 *v0 = param3;
 
-    ov9_02249DC8(param0, v0->unk_00);
+    SetPersistedBoulderPuzzleFlag(param0, v0->unk_00);
     return 2;
 }
 
@@ -8686,7 +8737,7 @@ static int ov9_02250710(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 {
     const UnkStruct_ov9_02250704 *v0 = param3;
 
-    ov9_02249DE4(param0, v0->unk_00);
+    ClearPersistedBoulderPuzzleFlag(param0, v0->unk_00);
     return 2;
 }
 
@@ -8862,388 +8913,393 @@ static const DistWorldEventCmdHandler Unk_ov9_02251490[5] = {
     ov9_022508F4
 };
 
-static int ov9_02250918(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowUxieBoulderTuto_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250918 *v0 = ResetLoadedEventDataBuffer(param0, sizeof(UnkStruct_ov9_02250918));
-    v0->unk_20 = AddMapObjectWithLocalID(param0, 579, MAP_OBJECT_B5F_UXIE);
+    CmdRunDataShowUxieBoulderTuto *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataShowUxieBoulderTuto));
+    runData->uxieMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, MAP_OBJECT_B5F_UXIE);
 
     Sound_PlayPokemonCry(SPECIES_UXIE, 0);
 
-    v0->unk_04 = 1;
-    *param2 = 1;
-    return 0;
+    runData->hoverStepDelta = 1;
+    *cmdState = EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_ASCEND;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_0225094C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowUxieBoulderTuto_Ascend(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250918 *v0;
-    fx32 v1 = (FX32_ONE * 2);
+    CmdRunDataShowUxieBoulderTuto *runData;
+    fx32 ascendYDelta = UXIE_BOULDER_TUTO_ASCEND_Y_DELTA;
 
-    v0 = GetLoadedEventDataBuffer(param0);
+    runData = GetLoadedEventDataBuffer(system);
 
-    if ((((v0->unk_14.y) >> 4) / FX32_ONE) < 16) {
-        v1 <<= 1;
+    if ((runData->uxieSpritePosOffset.y >> 4) / FX32_ONE < UXIE_BOULDER_TUTO_ASCEND_Y_TARGET - 1) {
+        ascendYDelta <<= 1;
     }
 
-    v0->unk_14.y += v1;
-    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
+    runData->uxieSpritePosOffset.y += ascendYDelta;
+    MapObject_SetSpritePosOffset(runData->uxieMapObj, &runData->uxieSpritePosOffset);
 
-    if ((((v0->unk_14.y) >> 4) / FX32_ONE) >= 17) {
-        *param2 = 2;
+    if ((runData->uxieSpritePosOffset.y >> 4) / FX32_ONE >= UXIE_BOULDER_TUTO_ASCEND_Y_TARGET) {
+        *cmdState = EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_MOVE_TO_BOULDER;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250994(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowUxieBoulderTuto_MoveToBoulder(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250918 *v0 = GetLoadedEventDataBuffer(param0);
-    v0->unk_14.z -= (FX32_ONE * 1);
-    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
+    CmdRunDataShowUxieBoulderTuto *runData = GetLoadedEventDataBuffer(system);
+    runData->uxieSpritePosOffset.z -= UXIE_BOULDER_TUTO_MOVE_TO_BOULDER_Z_DELTA;
+    MapObject_SetSpritePosOffset(runData->uxieMapObj, &runData->uxieSpritePosOffset);
 
-    if ((((v0->unk_14.z) >> 4) / FX32_ONE) <= -2) {
-        v0->unk_0C = v0->unk_14.y;
-        *param2 = 3;
+    if ((runData->uxieSpritePosOffset.z >> 4) / FX32_ONE <= UXIE_BOULDER_TUTO_MOVE_TO_BOULDER_Z_TARGET) {
+        runData->finalUxieY = runData->uxieSpritePosOffset.y;
+        *cmdState = EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_HOVER;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_022509D4(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowUxieBoulderTuto_Hover(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250918 *v0;
-    fx32 v1[8] = { 0x0, 0x800, 0x1000, 0x2000, 0x4000, 0x6000, 0x7000, 0x8000 };
+    CmdRunDataShowUxieBoulderTuto *runData;
+    fx32 yOffsets[UXIE_BOULDER_TUTO_HOVER_STEP_COUNT] = { 0, 2048, 4096, 8192, 16384, 24576, 28672, 32768 };
 
-    v0 = GetLoadedEventDataBuffer(param0);
-    v0->unk_14.y = v0->unk_0C + v1[v0->unk_00 >> 1];
-    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
+    runData = GetLoadedEventDataBuffer(system);
+    runData->uxieSpritePosOffset.y = runData->finalUxieY + yOffsets[runData->hoverStep >> 1];
+    MapObject_SetSpritePosOffset(runData->uxieMapObj, &runData->uxieSpritePosOffset);
 
-    v0->unk_00 += v0->unk_04;
+    runData->hoverStep += runData->hoverStepDelta;
 
-    if ((v0->unk_00 >= 15) || (v0->unk_00 <= 0)) {
-        v0->unk_04 = -v0->unk_04;
+    if (runData->hoverStep >= UXIE_BOULDER_TUTO_HOVER_STEP_COUNT * 2 - 1 || runData->hoverStep <= 0) {
+        runData->hoverStepDelta = -runData->hoverStepDelta;
 
-        if (v0->unk_00 == 0) {
-            v0->unk_08++;
+        if (runData->hoverStep == 0) {
+            runData->hoverRepeat++;
 
-            if (v0->unk_08 >= 3) {
-                v0->unk_14.y = v0->unk_0C + v1[v0->unk_00 >> 1];
-                *param2 = 4;
+            if (runData->hoverRepeat >= UXIE_BOULDER_TUTO_HOVER_REPEAT_COUNT) {
+                runData->uxieSpritePosOffset.y = runData->finalUxieY + yOffsets[runData->hoverStep >> 1];
+                *cmdState = EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_MOVE_AWAY;
             }
         }
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250A58(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowUxieBoulderTuto_MoveAway(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250918 *v0 = GetLoadedEventDataBuffer(param0);
-    v0->unk_14.z += (FX32_ONE * 1);
+    CmdRunDataShowUxieBoulderTuto *runData = GetLoadedEventDataBuffer(system);
+    runData->uxieSpritePosOffset.z += UXIE_BOULDER_TUTO_MOVE_AWAY_Z_DELTA;
 
-    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(runData->uxieMapObj, &runData->uxieSpritePosOffset);
 
-    if ((((v0->unk_14.z) >> 4) / FX32_ONE) == 1) {
-        *param2 = 5;
+    if ((runData->uxieSpritePosOffset.z >> 4) / FX32_ONE == UXIE_BOULDER_TUTO_MOVE_AWAY_Z_TARGET) {
+        *cmdState = EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_DESCEND;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250A90(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowUxieBoulderTuto_Descend(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250918 *v0 = GetLoadedEventDataBuffer(param0);
+    CmdRunDataShowUxieBoulderTuto *runData = GetLoadedEventDataBuffer(system);
 
-    if (v0->unk_10 < (FX32_ONE * 2)) {
-        v0->unk_10 += 0x200;
+    if (runData->descendYDelta < UXIE_BOULDER_TUTO_DESCEND_Y_DELTA_TARGET) {
+        runData->descendYDelta += UXIE_BOULDER_TUTO_DESCEND_Y_DELTA_INCREMENT;
     }
 
-    v0->unk_14.y -= v0->unk_10;
-    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
+    runData->uxieSpritePosOffset.y -= runData->descendYDelta;
+    MapObject_SetSpritePosOffset(runData->uxieMapObj, &runData->uxieSpritePosOffset);
 
-    if ((((v0->unk_14.y) >> 4) / FX32_ONE) <= 0) {
-        DeleteMapObject(param0, v0->unk_20);
-        ov9_02249DC8(param0, 10);
-        ov9_02249DC8(param0, 13);
-        v0->unk_20 = AddMapObjectWithLocalID(param0, 580, MAP_OBJECT_B6F_UXIE);
-        return 2;
+    if ((runData->uxieSpritePosOffset.y >> 4) / FX32_ONE <= 0) {
+        DeleteMapObject(system, runData->uxieMapObj);
+        SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_UXIE_TUTO_SEEN);
+        SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_UXIE_IN_B6F);
+        runData->uxieMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, MAP_OBJECT_B6F_UXIE);
+
+        return EVENT_CMD_HANDLER_RES_FINISH;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_02251CC0[6] = {
-    ov9_02250918,
-    ov9_0225094C,
-    ov9_02250994,
-    ov9_022509D4,
-    ov9_02250A58,
-    ov9_02250A90
+static const DistWorldEventCmdHandler sShowUxieBoulderTutoHandlers[] = {
+    [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_INIT] = EventCmdShowUxieBoulderTuto_Init,
+    [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_ASCEND] = EventCmdShowUxieBoulderTuto_Ascend,
+    [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_MOVE_TO_BOULDER] = EventCmdShowUxieBoulderTuto_MoveToBoulder,
+    [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_HOVER] = EventCmdShowUxieBoulderTuto_Hover,
+    [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_MOVE_AWAY] = EventCmdShowUxieBoulderTuto_MoveAway,
+    [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO_STATE_DESCEND] = EventCmdShowUxieBoulderTuto_Descend
 };
 
-static const MapObjectAnimCmd Unk_ov9_02251E74[] = {
-    { 0x42, 0x1 },
-    { 0x7, 0x1 },
-    { 0x7, 0x1 },
-    { 0xA, 0x1 },
-    { 0x6, 0x1 },
-    { 0x41, 0x1 },
-    { 0xfe, 0x0 }
+static const MapObjectAnimCmd sAzelfBoulderTutoAnimation[] = {
+    { .movementAction = MOVEMENT_ACTION_DELAY_32, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOWER_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOWER_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOW_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOWER_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_16, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_END, .count = 0 }
 };
 
-static int ov9_02250AFC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowAzelfBoulderTuto_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250AFC *v0 = ResetLoadedEventDataBuffer(param0, sizeof(UnkStruct_ov9_02250AFC));
-    v0->unk_14 = AddMapObjectWithLocalID(param0, 579, MAP_OBJECT_B5F_AZELF);
+    CmdRunDataShowAzelfBoulderTuto *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataShowAzelfBoulderTuto));
+    runData->azelfMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, MAP_OBJECT_B5F_AZELF);
 
     Sound_PlayPokemonCry(SPECIES_AZELF, 0);
 
-    *param2 = 1;
-    return 0;
+    *cmdState = EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_ASCEND;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250B30(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowAzelfBoulderTuto_Ascend(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250AFC *v0;
-    fx32 v1 = (FX32_ONE * 2);
+    CmdRunDataShowAzelfBoulderTuto *runData;
+    fx32 ascendYDelta = AZELF_BOULDER_TUTO_ASCEND_Y_DELTA;
 
-    v0 = GetLoadedEventDataBuffer(param0);
+    runData = GetLoadedEventDataBuffer(system);
 
-    if ((((v0->unk_04.y) >> 4) / FX32_ONE) < 12) {
-        v1 <<= 1;
+    if ((runData->azelfSpritePosOffset.y >> 4) / FX32_ONE < AZELF_BOULDER_TUTO_ASCEND_Y_TARGET - 1) {
+        ascendYDelta <<= 1;
     }
 
-    v0->unk_04.y += v1;
-    MapObject_SetSpritePosOffset(v0->unk_14, &v0->unk_04);
+    runData->azelfSpritePosOffset.y += ascendYDelta;
+    MapObject_SetSpritePosOffset(runData->azelfMapObj, &runData->azelfSpritePosOffset);
 
-    if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 13) {
-        v0->unk_10 = MapObject_StartAnimation(
-            v0->unk_14, Unk_ov9_02251E74);
-        *param2 = 2;
+    if ((runData->azelfSpritePosOffset.y >> 4) / FX32_ONE >= AZELF_BOULDER_TUTO_ASCEND_Y_TARGET) {
+        runData->azelfAnimTask = MapObject_StartAnimation(runData->azelfMapObj, sAzelfBoulderTutoAnimation);
+        *cmdState = EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_WAIT_FOR_ANIMATION;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250B84(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowAzelfBoulderTuto_WaitForAnimation(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250AFC *v0 = GetLoadedEventDataBuffer(param0);
+    CmdRunDataShowAzelfBoulderTuto *runData = GetLoadedEventDataBuffer(system);
 
-    if (MapObject_HasAnimationEnded(v0->unk_10) == 1) {
-        MapObject_FinishAnimation(v0->unk_10);
-        *param2 = 3;
-        return 1;
+    if (MapObject_HasAnimationEnded(runData->azelfAnimTask) == TRUE) {
+        MapObject_FinishAnimation(runData->azelfAnimTask);
+
+        *cmdState = EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_DESCEND;
+        return EVENT_CMD_HANDLER_RES_LOOP;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250BAC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowAzelfBoulderTuto_Descend(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250AFC *v0 = GetLoadedEventDataBuffer(param0);
+    CmdRunDataShowAzelfBoulderTuto *runData = GetLoadedEventDataBuffer(system);
 
-    if (v0->unk_00 < (FX32_ONE * 2)) {
-        v0->unk_00 += 0x200;
+    if (runData->descendYDelta < AZELF_BOULDER_TUTO_DESCEND_Y_DELTA_TARGET) {
+        runData->descendYDelta += AZELF_BOULDER_TUTO_DESCEND_Y_DELTA_INCREMENT;
     }
 
-    v0->unk_04.y -= v0->unk_00;
-    MapObject_SetSpritePosOffset(v0->unk_14, &v0->unk_04);
+    runData->azelfSpritePosOffset.y -= runData->descendYDelta;
+    MapObject_SetSpritePosOffset(runData->azelfMapObj, &runData->azelfSpritePosOffset);
 
-    if ((((v0->unk_04.y) >> 4) / FX32_ONE) <= 0) {
-        DeleteMapObject(param0, v0->unk_14);
-        ov9_02249DC8(param0, 11);
-        ov9_02249DC8(param0, 14);
-        v0->unk_14 = AddMapObjectWithLocalID(param0, 580, MAP_OBJECT_B6F_AZELF);
-        return 2;
+    if ((runData->azelfSpritePosOffset.y >> 4) / FX32_ONE <= 0) {
+        DeleteMapObject(system, runData->azelfMapObj);
+        SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_AZELF_TUTO_SEEN);
+        SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_AZELF_IN_B6F);
+        runData->azelfMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, MAP_OBJECT_B6F_AZELF);
+
+        return EVENT_CMD_HANDLER_RES_FINISH;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_02251408[4] = {
-    ov9_02250AFC,
-    ov9_02250B30,
-    ov9_02250B84,
-    ov9_02250BAC
+static const DistWorldEventCmdHandler sShowAzelfBoulderTutoHandlers[] = {
+    [EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_INIT] = EventCmdShowAzelfBoulderTuto_Init,
+    [EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_ASCEND] = EventCmdShowAzelfBoulderTuto_Ascend,
+    [EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_WAIT_FOR_ANIMATION] = EventCmdShowAzelfBoulderTuto_WaitForAnimation,
+    [EVENT_CMD_SHOW_AZELF_BOULDER_TUTO_STATE_DESCEND] = EventCmdShowAzelfBoulderTuto_Descend
 };
 
-static const MapObjectAnimCmd Unk_ov9_02252D80[] = {
-    { 0x42, 0x1 },
-    { 0xf, 0x2 },
-    { 0x10, 0x2 },
-    { 0x13, 0x2 },
-    { 0x11, 0x2 },
-    { 0x12, 0x2 },
-    { 0x10, 0x2 },
-    { 0x13, 0x2 },
-    { 0x11, 0x2 },
-    { 0x12, 0x2 },
-    { 0x12, 0x2 },
-    { 0xE, 0x1 },
-    { 0xA, 0x1 },
-    { 0x42, 0x1 },
-    { 0xB, 0x2 },
-    { 0x7, 0x1 },
-    { 0x41, 0x1 },
-    { 0xfe, 0x0 }
+static const MapObjectAnimCmd sMespritBoulderTutoAnimationPokemonTop[] = {
+    { .movementAction = MOVEMENT_ACTION_DELAY_32, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_NORMAL_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_SOUTH, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_WEST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_SOUTH, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_WEST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_WEST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_NORMAL_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOW_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_32, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOW_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOWER_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_16, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_END, .count = 0 }
 };
 
-static const MapObjectAnimCmd Unk_ov9_02252DC8[] = {
-    { 0x42, 0x1 },
-    { 0xf, 0x2 },
-    { 0x10, 0x1 },
-    { 0x13, 0x2 },
-    { 0x11, 0x2 },
-    { 0x12, 0x2 },
-    { 0x10, 0x2 },
-    { 0x13, 0x2 },
-    { 0x11, 0x2 },
-    { 0x12, 0x2 },
-    { 0x10, 0x1 },
-    { 0x12, 0x2 },
-    { 0xE, 0x1 },
-    { 0xA, 0x1 },
-    { 0x42, 0x1 },
-    { 0xB, 0x2 },
-    { 0x7, 0x1 },
-    { 0x41, 0x1 },
-    { 0xfe, 0x0 }
+static const MapObjectAnimCmd sMespritBoulderTutoAnimationPokemonBottom[] = {
+    { .movementAction = MOVEMENT_ACTION_DELAY_32, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_NORMAL_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_SOUTH, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_WEST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_SOUTH, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_WEST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_NORTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_FAST_WEST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_NORMAL_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOW_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_32, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOW_EAST, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_WALK_SLOWER_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_16, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_END, .count = 0 }
 };
 
-static const MapObjectAnimCmd Unk_ov9_02252E14[] = {
-    { 0x42, 0x1 },
-    { 0x3f, 0x2 },
-    { 0x2, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x0, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x3, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x1, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x2, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x0, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x3, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x1, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x2, 0x1 },
-    { 0xfe, 0x0 }
+static const MapObjectAnimCmd sMespritBoulderTutoAnimationPlayerTop[] = {
+    { .movementAction = MOVEMENT_ACTION_DELAY_32, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_8, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_FACE_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_NORTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_SOUTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_NORTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_SOUTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_END, .count = 0 }
 };
 
-static const MapObjectAnimCmd Unk_ov9_02252E64[] = {
-    { 0x42, 0x1 },
-    { 0x3f, 0x2 },
-    { 0x2, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x0, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x3, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x1, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x2, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x0, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x3, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x1, 0x1 },
-    { 0x3C, 0x3 },
-    { 0x2, 0x1 },
-    { 0xfe, 0x0 }
+static const MapObjectAnimCmd sMespritBoulderTutoAnimationPlayerBottom[] = {
+    { .movementAction = MOVEMENT_ACTION_DELAY_32, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_8, .count = 2 },
+    { .movementAction = MOVEMENT_ACTION_FACE_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_NORTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_SOUTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_NORTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_EAST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_SOUTH, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_DELAY_1, .count = 3 },
+    { .movementAction = MOVEMENT_ACTION_FACE_WEST, .count = 1 },
+    { .movementAction = MOVEMENT_ACTION_END, .count = 0 }
 };
 
-static int ov9_02250C14(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowMespritBoulderTuto_Init(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250C14 *v0 = ResetLoadedEventDataBuffer(param0, sizeof(UnkStruct_ov9_02250AFC));
-    v0->unk_18 = AddMapObjectWithLocalID(param0, 579, MAP_OBJECT_B5F_MESPRIT);
+    CmdRunDataShowMespritBoulderTuto *runData = ResetLoadedEventDataBuffer(system, sizeof(CmdRunDataShowAzelfBoulderTuto));
+    runData->mespritMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B5F, MAP_OBJECT_B5F_MESPRIT);
 
     Sound_PlayPokemonCry(SPECIES_MESPRIT, 0);
-    *param2 = 1;
-    return 0;
+
+    *cmdState = EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_ASCEND;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250C48(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowMespritBoulderTuto_Ascend(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250C14 *v0;
-    fx32 v1 = (FX32_ONE * 2);
+    CmdRunDataShowMespritBoulderTuto *runData;
+    fx32 ascendYDelta = MESPRIT_BOULDER_TUTO_ASCEND_Y_DELTA;
 
-    v0 = GetLoadedEventDataBuffer(param0);
+    runData = GetLoadedEventDataBuffer(system);
 
-    if ((((v0->unk_04.y) >> 4) / FX32_ONE) < 8) {
-        v1 <<= 1;
+    if ((runData->mespritSpritePosOffset.y >> 4) / FX32_ONE < MESPRIT_BOULDER_TUTO_ASCEND_Y_TARGET - 1) {
+        ascendYDelta <<= 1;
     }
 
-    v0->unk_04.y += v1;
-    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_04);
+    runData->mespritSpritePosOffset.y += ascendYDelta;
+    MapObject_SetSpritePosOffset(runData->mespritMapObj, &runData->mespritSpritePosOffset);
 
-    if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 9) {
-        int v2, v3, v4;
-        const MapObjectAnimCmd *v5, *v6;
+    if ((runData->mespritSpritePosOffset.y >> 4) / FX32_ONE >= MESPRIT_BOULDER_TUTO_ASCEND_Y_TARGET) {
+        int playerX, playerY, playerZ;
+        const MapObjectAnimCmd *playerAnimCmds, *mespritAnimCmds;
 
-        GetPlayerPos(param0, &v2, &v3, &v4);
+        GetPlayerPos(system, &playerX, &playerY, &playerZ);
 
-        if (v4 == 67) {
-            v5 = Unk_ov9_02252E14;
-            v6 = Unk_ov9_02252D80;
+        if (playerZ == 67) {
+            playerAnimCmds = sMespritBoulderTutoAnimationPlayerTop;
+            mespritAnimCmds = sMespritBoulderTutoAnimationPokemonTop;
         } else {
-            v5 = Unk_ov9_02252E64;
-            v6 = Unk_ov9_02252DC8;
+            playerAnimCmds = sMespritBoulderTutoAnimationPlayerBottom;
+            mespritAnimCmds = sMespritBoulderTutoAnimationPokemonBottom;
         }
 
-        v0->unk_10 = MapObject_StartAnimation(v0->unk_18, v6);
-        v0->unk_14 = MapObject_StartAnimation(Player_MapObject(param0->fieldSystem->playerAvatar), v5);
-        *param2 = 2;
+        runData->mespritAnimTask = MapObject_StartAnimation(runData->mespritMapObj, mespritAnimCmds);
+        runData->playerAnimTask = MapObject_StartAnimation(Player_MapObject(system->fieldSystem->playerAvatar), playerAnimCmds);
+
+        *cmdState = EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_WAIT_FOR_ANIMATION;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250CD8(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowMespritBoulderTuto_WaitForAnimation(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250C14 *v0 = GetLoadedEventDataBuffer(param0);
+    CmdRunDataShowMespritBoulderTuto *runData = GetLoadedEventDataBuffer(system);
 
-    if ((MapObject_HasAnimationEnded(v0->unk_10) == 1) && (MapObject_HasAnimationEnded(v0->unk_14) == 1)) {
-        MapObject_FinishAnimation(v0->unk_10);
-        MapObject_FinishAnimation(v0->unk_14);
-        *param2 = 3;
-        return 1;
+    if (MapObject_HasAnimationEnded(runData->mespritAnimTask) == TRUE && MapObject_HasAnimationEnded(runData->playerAnimTask) == TRUE) {
+        MapObject_FinishAnimation(runData->mespritAnimTask);
+        MapObject_FinishAnimation(runData->playerAnimTask);
+
+        *cmdState = EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_DESCEND;
+        return EVENT_CMD_HANDLER_RES_LOOP;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static int ov9_02250D10(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
+static int EventCmdShowMespritBoulderTuto_Descend(DistWorldSystem *system, FieldTask *task, u16 *cmdState, const void *params)
 {
-    UnkStruct_ov9_02250C14 *v0 = GetLoadedEventDataBuffer(param0);
+    CmdRunDataShowMespritBoulderTuto *runData = GetLoadedEventDataBuffer(system);
 
-    if (v0->unk_00 < (FX32_ONE * 2)) {
-        v0->unk_00 += 0x200;
+    if (runData->descendYDelta < MESPRIT_BOULDER_TUTO_DESCEND_Y_DELTA_TARGET) {
+        runData->descendYDelta += MESPRIT_BOULDER_TUTO_DESCEND_Y_DELTA_INCREMENT;
     }
 
-    v0->unk_04.y -= v0->unk_00;
-    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_04);
+    runData->mespritSpritePosOffset.y -= runData->descendYDelta;
+    MapObject_SetSpritePosOffset(runData->mespritMapObj, &runData->mespritSpritePosOffset);
 
-    if ((((v0->unk_04.y) >> 4) / FX32_ONE) <= 0) {
-        DeleteMapObject(param0, v0->unk_18);
-        ov9_02249DC8(param0, 12);
-        ov9_02249DC8(param0, 15);
-        v0->unk_18 = AddMapObjectWithLocalID(
-            param0, 580, MAP_OBJECT_B6F_MESPRIT);
-        return 2;
+    if ((runData->mespritSpritePosOffset.y >> 4) / FX32_ONE <= 0) {
+        DeleteMapObject(system, runData->mespritMapObj);
+        SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_MESPRIT_TUTO_SEEN);
+        SetPersistedBoulderPuzzleFlag(system, DIST_WORLD_PUZZLE_FLAG_MESPRIT_IN_B6F);
+        runData->mespritMapObj = AddMapObjectWithLocalID(system, MAP_HEADER_DISTORTION_WORLD_B6F, MAP_OBJECT_B6F_MESPRIT);
+
+        return EVENT_CMD_HANDLER_RES_FINISH;
     }
 
-    return 0;
+    return EVENT_CMD_HANDLER_RES_CONTINUE;
 }
 
-static const DistWorldEventCmdHandler Unk_ov9_02251448[4] = {
-    ov9_02250C14,
-    ov9_02250C48,
-    ov9_02250CD8,
-    ov9_02250D10
+static const DistWorldEventCmdHandler sShowMespritBoulderTutoHandlers[] = {
+    [EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_INIT] = EventCmdShowMespritBoulderTuto_Init,
+    [EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_ASCEND] = EventCmdShowMespritBoulderTuto_Ascend,
+    [EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_WAIT_FOR_ANIMATION] = EventCmdShowMespritBoulderTuto_WaitForAnimation,
+    [EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO_STATE_DESCEND] = EventCmdShowMespritBoulderTuto_Descend
 };
 
 const DistWorldCameraAngleTemplate Unk_ov9_02251D68 = {
@@ -9536,15 +9592,15 @@ static BOOL CheckFlagCondition(DistWorldSystem *system, enum FlagCondition flagC
     case FLAG_COND_NONE:
         return TRUE;
 
-    case FLAG_COND_1:
-        if (ov9_02249E00(system, val) != TRUE) {
+    case FLAG_COND_BOULDER_PUZZLE_FALSE:
+        if (CheckPersistedBoulderPuzzleFlag(system, val) != TRUE) {
             return TRUE;
         }
 
         break;
 
-    case FLAG_COND_2:
-        if (ov9_02249E00(system, val) == TRUE) {
+    case FLAG_COND_BOULDER_PUZZLE_TRUE:
+        if (CheckPersistedBoulderPuzzleFlag(system, val) == TRUE) {
             return TRUE;
         }
 
@@ -10898,9 +10954,9 @@ static const DistWorldEventCmdHandler *sEventCmdHandlers[EVENT_CMD_KIND_COUNT] =
     [EVENT_CMD_KIND_09] = Unk_ov9_02251270,
     [EVENT_CMD_KIND_0A] = Unk_ov9_02251544,
     [EVENT_CMD_KIND_0B] = Unk_ov9_02251490,
-    [EVENT_CMD_KIND_0C] = Unk_ov9_02251CC0,
-    [EVENT_CMD_KIND_0D] = Unk_ov9_02251408,
-    [EVENT_CMD_KIND_0E] = Unk_ov9_02251448,
+    [EVENT_CMD_SHOW_UXIE_BOULDER_TUTO] = sShowUxieBoulderTutoHandlers,
+    [EVENT_CMD_SHOW_AZELF_BOULDER_TUTO] = sShowAzelfBoulderTutoHandlers,
+    [EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO] = sShowMespritBoulderTutoHandlers,
     [EVENT_CMD_KIND_0F] = Unk_ov9_02251340,
     [EVENT_CMD_KIND_10] = Unk_ov9_0225139C,
     [EVENT_CMD_KIND_11] = Unk_ov9_02251254
@@ -12343,25 +12399,25 @@ static const DistWorldEventCmd Unk_ov9_022513D8[] = {
     { EVENT_CMD_END, NULL }
 };
 
-static const DistWorldEventCmd sUnkMapEventB5F_1[] = {
+static const DistWorldEventCmd sMapEventB5F_UxieTuto[] = {
     {
-        .kind = EVENT_CMD_KIND_0C,
+        .kind = EVENT_CMD_SHOW_UXIE_BOULDER_TUTO,
         .params = NULL,
     },
     { EVENT_CMD_END, NULL }
 };
 
-static const DistWorldEventCmd sUnkMapEventB5F_2[] = {
+static const DistWorldEventCmd sMapEventB5F_AzelfTuto[] = {
     {
-        .kind = EVENT_CMD_KIND_0D,
+        .kind = EVENT_CMD_SHOW_AZELF_BOULDER_TUTO,
         .params = NULL,
     },
     { EVENT_CMD_END, NULL }
 };
 
-static const DistWorldEventCmd sUnkMapEventB5F_3[] = {
+static const DistWorldEventCmd sMapEventB5F_MespritTuto[] = {
     {
-        .kind = EVENT_CMD_KIND_0E,
+        .kind = EVENT_CMD_SHOW_MESPRIT_BOULDER_TUTO,
         .params = NULL,
     },
     { EVENT_CMD_END, NULL }
@@ -12372,49 +12428,49 @@ static const DistWorldEvent sMapEventsB5F[] = {
         .tileX = 0x56,
         .tileY = 0x81,
         .tileZ = 0x35,
-        .flagCond = FLAG_COND_1,
-        .flagCondVal = 0xA,
-        .cmds = sUnkMapEventB5F_1,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_FALSE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_UXIE_TUTO_SEEN,
+        .cmds = sMapEventB5F_UxieTuto,
     },
     {
         .tileX = 0x57,
         .tileY = 0x81,
         .tileZ = 0x35,
-        .flagCond = FLAG_COND_1,
-        .flagCondVal = 0xA,
-        .cmds = sUnkMapEventB5F_1,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_FALSE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_UXIE_TUTO_SEEN,
+        .cmds = sMapEventB5F_UxieTuto,
     },
     {
         .tileX = 0x64,
         .tileY = 0x81,
         .tileZ = 0x43,
-        .flagCond = FLAG_COND_1,
-        .flagCondVal = 0xB,
-        .cmds = sUnkMapEventB5F_2,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_FALSE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_AZELF_TUTO_SEEN,
+        .cmds = sMapEventB5F_AzelfTuto,
     },
     {
         .tileX = 0x64,
         .tileY = 0x81,
         .tileZ = 0x44,
-        .flagCond = FLAG_COND_1,
-        .flagCondVal = 0xB,
-        .cmds = sUnkMapEventB5F_2,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_FALSE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_AZELF_TUTO_SEEN,
+        .cmds = sMapEventB5F_AzelfTuto,
     },
     {
         .tileX = 0x50,
         .tileY = 0x81,
         .tileZ = 0x43,
-        .flagCond = FLAG_COND_1,
-        .flagCondVal = 0xC,
-        .cmds = sUnkMapEventB5F_3,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_FALSE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_MESPRIT_TUTO_SEEN,
+        .cmds = sMapEventB5F_MespritTuto,
     },
     {
         .tileX = 0x50,
         .tileY = 0x81,
         .tileZ = 0x44,
-        .flagCond = FLAG_COND_1,
-        .flagCondVal = 0xC,
-        .cmds = sUnkMapEventB5F_3,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_FALSE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_MESPRIT_TUTO_SEEN,
+        .cmds = sMapEventB5F_MespritTuto,
     },
     { 0x0, 0x0, 0x0, FLAG_COND_NONE, 0x0, NULL }
 };
@@ -12590,16 +12646,16 @@ static const DistWorldEvent sMapEventsGiratinaRoom[] = {
         .tileX = 0xF,
         .tileY = 0x1,
         .tileZ = 0x17,
-        .flagCond = FLAG_COND_1,
-        .flagCondVal = 0x10,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_FALSE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_GIRATINA_ROOM_PLATFORMS_VISIBLE,
         .cmds = sUnkMapEventGiratinaRoom_1,
     },
     {
         .tileX = 0xF,
         .tileY = 0x1,
         .tileZ = 0x18,
-        .flagCond = FLAG_COND_2,
-        .flagCondVal = 0x10,
+        .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+        .flagCondVal = DIST_WORLD_PUZZLE_FLAG_GIRATINA_ROOM_PLATFORMS_VISIBLE,
         .cmds = sUnkMapEventGiratinaRoom_2,
     },
     {
@@ -12879,8 +12935,8 @@ static const DistWorldObjectEvent *sMapObjectEventsB4F[] = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB5F_MespritBoulder = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x0,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B5F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -12901,8 +12957,8 @@ static const DistWorldObjectEvent sMapObjectEventB5F_MespritBoulder = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB5F_AzelfBoulder = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x1,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B5F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -12923,8 +12979,8 @@ static const DistWorldObjectEvent sMapObjectEventB5F_AzelfBoulder = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB5F_UxieBoulder = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x2,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B5F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13021,8 +13077,8 @@ static const DistWorldObjectEvent *sMapObjectEventsB5F[] = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderOutside = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x3,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_OUTSIDE,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13043,8 +13099,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderOutside = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderOutside = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x4,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_OUTSIDE,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13065,8 +13121,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderOutside = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderOutside = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x5,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_OUTSIDE,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13087,8 +13143,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderOutside = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_Mesprit = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0xF,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_MESPRIT_IN_B6F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13109,8 +13165,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_Mesprit = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_Uxie = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0xD,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_UXIE_IN_B6F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13131,8 +13187,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_Uxie = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_Azelf = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0xE,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_AZELF_IN_B6F,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13395,8 +13451,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderPitText3 = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderInPit = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x6,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_MESPRIT_BOULDER_IN_B6F_PIT,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13417,8 +13473,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_MespritBoulderInPit = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderInPit = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x7,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_AZELF_BOULDER_IN_B6F_PIT,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
@@ -13439,8 +13495,8 @@ static const DistWorldObjectEvent sMapObjectEventB6F_AzelfBoulderInPit = {
 };
 
 static const DistWorldObjectEvent sMapObjectEventB6F_UxieBoulderInPit = {
-    .flagCond = FLAG_COND_2,
-    .flagCondVal = 0x8,
+    .flagCond = FLAG_COND_BOULDER_PUZZLE_TRUE,
+    .flagCondVal = DIST_WORLD_PUZZLE_FLAG_UXIE_BOULDER_IN_B6F_PIT,
     .rotated = FALSE,
     .rotationAngle = 0x0,
     .objEvent = {
