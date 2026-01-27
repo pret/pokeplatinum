@@ -6,9 +6,17 @@
 #include "palette.h"
 #include "sprite_system.h"
 
+enum PartyStockStatus {
+    STOCK_STATUS_NO_MON = 0,
+    STOCK_STATUS_MON_ALIVE,
+    STOCK_STATUS_MON_FAINTED,
+    STOCK_STATUS_HAS_STATUS_CONDITION,
+};
+
 enum PartyGaugeSide {
     PARTY_GAUGE_OURS,
     PARTY_GAUGE_THEIRS,
+    PARTY_GAUGE_COUNT
 };
 
 enum ShowPartyGaugeType {
@@ -54,7 +62,7 @@ void PartyGauge_FreeGraphics(SpriteManager *spriteMan);
  * @param ballStatus    The status of each battler's, represented as a Pokeball with a particular
  *                      masking filter. Plain Pokeballs represent healthy battlers, gray represent
  *                      fainted, darkened represent those afflicted with a status condition. For
- *                      possible values, see enum PartyGaugeBallStatus.
+ *                      possible values, see enum PartyStockStatus.
  *
  * @param side          The side of the battle for which the gauge should be displayed.
  *

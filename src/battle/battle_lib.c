@@ -18,9 +18,9 @@
 #include "struct_defs/fraction.h"
 
 #include "battle/battle_context.h"
+#include "battle/battle_controller.h"
 #include "battle/battle_controller_player.h"
 #include "battle/battle_display.h"
-#include "battle/battle_io.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/common.h"
@@ -1820,7 +1820,7 @@ void BattleMon_CopyToParty(BattleSystem *battleSys, BattleContext *battleCtx, in
         BattleAI_ClearKnownItem(battleCtx, battler);
     }
 
-    BattleIO_UpdatePartyMon(battleSys, battleCtx, battler);
+    BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battler);
 }
 
 void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -3290,7 +3290,7 @@ BOOL Battler_CanEscape(BattleSystem *battleSys, BattleContext *battleCtx, int ba
         }
 
         if (result == FALSE) {
-            BattleIO_IncrementRecord(battleSys, battler, 0, RECORD_FAILED_ESCAPE);
+            BattleController_EmitIncrementRecord(battleSys, battler, 0, RECORD_FAILED_ESCAPE);
         }
 
         battleCtx->runAttempts++;
@@ -6440,7 +6440,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = GIRATINA_FORM_ALTERED;
                 battleCtx->battleStatusMask2 |= SYSCTL_FORM_CHANGE;
 
-                BattleIO_UpdatePartyMon(battleSys, battleCtx, battleCtx->msgBattlerTemp);
+                BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battleCtx->msgBattlerTemp);
                 Heap_Free(mon);
 
                 *subscript = subscript_form_change;
