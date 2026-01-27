@@ -1356,7 +1356,7 @@ void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler)
     v0.unk_00 = 55;
     v0.unk_02 = 0;
 
-    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
         GF_ASSERT(v0.unk_02 < 28);
         SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C988));
@@ -1421,7 +1421,7 @@ void BattleIO_EscapeMessage(BattleSystem *battleSys, BattleContext *param1)
         }
     }
 
-    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
         GF_ASSERT(v0.unk_02 < 28);
     }
@@ -1437,7 +1437,7 @@ void BattleIO_ForfeitMessage(BattleSystem *battleSys)
     v0.unk_00 = 61;
     v0.unk_02 = 0;
 
-    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
         GF_ASSERT(v0.unk_02 < 28);
     }
@@ -1505,7 +1505,7 @@ void BattleIO_SubmitResult(BattleSystem *battleSys)
     v0.unk_04 = BattleSystem_ResultMask(battleSys);
     v0.unk_02 = 0;
 
-    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_08[0]);
         GF_ASSERT(v0.unk_02 <= 28);
     }

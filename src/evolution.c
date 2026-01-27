@@ -435,7 +435,7 @@ static void sub_0207B180(EvolutionData *param0)
         default:
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, v3);
-            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00004);
+            param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_PokemonLearnedMove);
             param0->unk_66 = 30;
             param0->unk_64 = 37;
             break;
