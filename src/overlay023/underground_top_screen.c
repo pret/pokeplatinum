@@ -42,6 +42,10 @@
 #define MAP_WIDTH  (TILE_WIDTH_PIXELS * 17 + 2)
 #define MAP_HEIGHT (TILE_HEIGHT_PIXELS * 16)
 
+#define TEMP_STRING_SIZE 80
+
+#define UG_TOP_SCREEN_RESOURCE_ID 1000
+
 enum TopScreenState {
     TOP_SCREEN_STATE_INIT = 0,
     TOP_SCREEN_STATE_INIT_SPRITES,
@@ -66,7 +70,7 @@ typedef struct MessageQueue {
     String *tempStringLines[2];
     int endIndex;
     int currentIndex;
-    charcode_t tempStringChars[80];
+    charcode_t tempStringChars[TEMP_STRING_SIZE];
 } MessageQueue;
 
 typedef struct PlayerCoordinates {
@@ -123,7 +127,7 @@ static BOOL MessageQueue_TryEnqueue(MessageQueue *queue, String *message);
 static String *MessageQueue_Dequeue(MessageQueue *queue);
 static BOOL MessageQueue_IsEmpty(MessageQueue *queue);
 static void UndergroundMap_DrawRadarAndBaseMarkers(OtherMarkerData markerData[], Sprite *sprites[]);
-static void UndergroundMap_GetRadarAndBaseInfo(OtherMarkerData markerData[]);
+static void UndergroundMap_FetchRadarAndBaseInfo(OtherMarkerData markerData[]);
 
 static UndergroundTopScreenContext *sUnused;
 
@@ -143,7 +147,22 @@ static void UndergroundTopScreen_Task(SysTask *sysTask, void *data)
         break;
     case TOP_SCREEN_STATE_INIT_SPRITES:
         UndergroundMap_InitSpriteResources(ctx);
-        SpriteResourcesHeader_Init(&ctx->resourceData, 1000, 1000, 1000, 1000, 0xffffffff, 0xffffffff, FALSE, 0, ctx->spriteResourceCollection[SPRITE_RESOURCE_CHAR], ctx->spriteResourceCollection[SPRITE_RESOURCE_PLTT], ctx->spriteResourceCollection[SPRITE_RESOURCE_CELL], ctx->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
+        SpriteResourcesHeader_Init(
+            &ctx->resourceData,
+            UG_TOP_SCREEN_RESOURCE_ID,
+            UG_TOP_SCREEN_RESOURCE_ID,
+            UG_TOP_SCREEN_RESOURCE_ID,
+            UG_TOP_SCREEN_RESOURCE_ID,
+            -1,
+            -1,
+            FALSE,
+            0,
+            ctx->spriteResourceCollection[SPRITE_RESOURCE_CHAR],
+            ctx->spriteResourceCollection[SPRITE_RESOURCE_PLTT],
+            ctx->spriteResourceCollection[SPRITE_RESOURCE_CELL],
+            ctx->spriteResourceCollection[SPRITE_RESOURCE_ANIM],
+            NULL,
+            NULL);
 
         AffineSpriteListTemplate template;
 
@@ -199,7 +218,7 @@ static void UndergroundTopScreen_Task(SysTask *sysTask, void *data)
     case TOP_SCREEN_STATE_MAIN:
         UndergroundMap_FetchPlayerPositions(ctx->parent->playerAvatar, ctx->playerCoords, ctx->playerMarkers);
         UndergroundMap_DrawPlayerMarkers(ctx->playerMarkers, ctx->playerMarkerSprites);
-        UndergroundMap_GetRadarAndBaseInfo(ctx->otherMarkers);
+        UndergroundMap_FetchRadarAndBaseInfo(ctx->otherMarkers);
         UndergroundMap_DrawRadarAndBaseMarkers(ctx->otherMarkers, ctx->otherMarkerSprites);
         UndergroundTopScreen_HandleMessageQueue(ctx->bgConfig, &ctx->window, &ctx->printerID, &ctx->messageState, &ctx->messageTimer, &ctx->messageQueue);
         SpriteList_Update(ctx->spriteList);
@@ -302,7 +321,7 @@ static void UndergroundMap_DrawPlayerMarkers(PlayerMarkerData markerData[], Spri
     }
 }
 
-static void UndergroundMap_GetRadarAndBaseInfo(OtherMarkerData markerData[])
+static void UndergroundMap_FetchRadarAndBaseInfo(OtherMarkerData markerData[])
 {
     for (int i = 0; i < MAX_RADAR_BLIPS + 1; i++) {
         int x = CommManUnderground_GetRadarItemXCoord(i);
@@ -494,7 +513,7 @@ static void UndergroundTopScreen_HandleMessageQueue(BgConfig *unused, Window *wi
         break;
     case MESSAGE_STATE_WAIT_FOR_NEW_MESSAGE:
         if (!MessageQueue_IsEmpty(queue)) {
-            Window_Scroll(window, SCROLL_DIRECTION_UP, 2, 0x0);
+            Window_Scroll(window, SCROLL_DIRECTION_UP, 2, 0);
             Window_CopyToVRAM(window);
 
             if (++(*timer) >= 8) {
@@ -517,7 +536,7 @@ static void MessageQueue_Init(MessageQueue *queue)
     queue->tempString = String_Init(50 * 2, HEAP_ID_FIELD1);
 
     for (int i = 0; i < (int)NELEMS(queue->tempStringLines); i++) {
-        queue->tempStringLines[i] = String_Init(80, HEAP_ID_FIELD1);
+        queue->tempStringLines[i] = String_Init(TEMP_STRING_SIZE, HEAP_ID_FIELD1);
     }
 }
 
@@ -536,7 +555,7 @@ static void MessageQueue_Free(MessageQueue *queue)
 
 static int MessageQueue_SplitMessage(MessageQueue *queue, String *message)
 {
-    String_ToChars(message, queue->tempStringChars, 80);
+    String_ToChars(message, queue->tempStringChars, TEMP_STRING_SIZE);
 
     int newlineCount = 0;
     int i = 0;
