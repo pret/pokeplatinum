@@ -8,7 +8,7 @@
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
-#include "overlay023/ov23_02241F74.h"
+#include "overlay023/underground_manager.h"
 
 #include "field_comm_manager.h"
 #include "goods.h"
@@ -31,8 +31,8 @@ void ov5_021F0824(FieldSystem *fieldSystem)
         return;
     }
 
-    v3 = ov23_02242E28();
-    v4 = ov23_02242E40();
+    v3 = UndergroundMan_GetSecretBaseXCoordinate();
+    v4 = UndergroundMan_GetSecretBaseZCoordinate();
 
     for (v0 = 0; v0 < 32; v0++) {
         v1 = SecretBase_GetGoodIDAtIndex(v2, v0);
