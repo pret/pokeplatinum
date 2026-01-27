@@ -10,7 +10,7 @@ _000:
     WaitButtonABTime 30
     UseBagItem BTLSCR_ATTACKER
     // The {1} raised {0}’s {2}!
-    PrintMessage pl_msg_00000368_00756, TAG_NICKNAME_ITEM_STAT, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_TheItemRaisedPokemonsStat, TAG_NICKNAME_ITEM_STAT, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     End 

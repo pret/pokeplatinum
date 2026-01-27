@@ -123,10 +123,10 @@ struct BattleSystem {
     enum EvolutionMethod mapEvolutionMethod;
     int unk_2424;
     int fieldWeather;
-    int unk_242C;
+    int metBebe;
     u32 unk_2430;
     int unk_2434;
-    int unk_2438;
+    int caughtBattlerIdx;
     int commandSelectionFlags;
     u8 unk_2440;
     u8 overlayFlags;

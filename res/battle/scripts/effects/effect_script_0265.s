@@ -26,7 +26,7 @@ _048:
     Wait 
     WaitButtonABTime 15
     // {0}’s {1} made {2} ineffective!
-    PrintMessage pl_msg_00000368_00714, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
