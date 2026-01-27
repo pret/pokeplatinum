@@ -8,7 +8,6 @@
 
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
 #include "game_options.h"
@@ -205,7 +204,7 @@ static void sub_0208945C(BgConfig *param0)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

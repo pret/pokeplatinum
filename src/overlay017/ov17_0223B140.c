@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "battle_anim/battle_anim_system.h"
 #include "overlay011/particle_helper.h"
 #include "overlay017/const_ov17_022536B4.h"
@@ -414,7 +412,7 @@ static void ov17_0223B728(BgConfig *param0)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_C,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

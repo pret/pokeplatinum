@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
@@ -144,7 +142,7 @@ void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0)
 
 static void ov83_0223CC10(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_64_E,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_48_HI,

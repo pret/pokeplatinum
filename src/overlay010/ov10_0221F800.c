@@ -6,7 +6,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "applications/party_menu/main.h"
 #include "applications/pokemon_summary_screen/main.h"
@@ -432,7 +431,7 @@ static void ov10_0221F870(SysTask *param0, void *param1)
 
 static void ov10_0221F900(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

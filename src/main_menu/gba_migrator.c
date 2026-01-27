@@ -14,7 +14,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "game_opening/const_ov77_021D742C.h"
 #include "main_menu/gba_convert_string.h"
@@ -1432,7 +1431,7 @@ static void ov97_02234D28(BgConfig *bgConfig)
 
 static void ov97_02234DFC(GBAMigrator *migrator)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

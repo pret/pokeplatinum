@@ -7,8 +7,6 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/encounter_effect.h"
@@ -1533,7 +1531,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
 static void ov5_021DF30C(FieldSystem *fieldSystem)
 {
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_256_BC,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

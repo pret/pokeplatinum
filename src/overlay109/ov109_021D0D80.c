@@ -8,7 +8,6 @@
 #include "generated/text_banks.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_0209BDF8.h"
 #include "struct_defs/struct_0209C0F0.h"
 #include "struct_defs/struct_0209C194.h"
@@ -1583,7 +1582,7 @@ static void ov109_021D1C90(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D1CF0(UnkStruct_ov109_021D0F70 *param0)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

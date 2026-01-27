@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay099/ov99_021D1A54.h"
 #include "overlay099/ov99_021D3E78.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
@@ -363,7 +361,7 @@ static void ov99_021D1380(BgConfig *param0)
     GXLayers_DisableEngineBLayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_B,
             GX_VRAM_BGEXTPLTT_23_G,
             GX_VRAM_BG_128_C,
@@ -536,7 +534,7 @@ static void ov99_021D1580(BgConfig *param0)
     GXLayers_DisableEngineBLayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_256_AB,
             GX_VRAM_BGEXTPLTT_23_G,
             GX_VRAM_BG_128_C,

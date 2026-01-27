@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay020/ov20_021D2EA4.h"
@@ -372,7 +371,7 @@ static void ov20_021D2414(SysTask *param0, void *param1)
 
 static void ov20_021D24EC(UnkStruct_ov20_021D2238 *param0)
 {
-    static const UnkStruct_02099F80 v0 = {
+    static const GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

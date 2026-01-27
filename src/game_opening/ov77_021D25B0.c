@@ -3,8 +3,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "game_opening/ov77_021D54B0.h"
 #include "game_opening/ov77_021D6670.h"
 #include "game_opening/ov77_021D6C70.h"
@@ -233,7 +231,7 @@ const GXRgb Unk_ov77_021D7444[4] = {
 
 static void ov77_021D25B0(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -251,7 +249,7 @@ static void ov77_021D25B0(void)
 
 static void ov77_021D25D0(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -269,7 +267,7 @@ static void ov77_021D25D0(void)
 
 static void ov77_021D25F0(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_256_AB,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

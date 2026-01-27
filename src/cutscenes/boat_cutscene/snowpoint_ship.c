@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "cutscenes/boat_cutscene.h"
 #include "overlay009/camera_configuration.h"
 
@@ -212,7 +210,7 @@ static void BoatCutscene_SnowpointShip_Init3D(void)
 
 static void BoatCutscene_SnowpointShip_SetGXBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

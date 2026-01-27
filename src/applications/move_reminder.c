@@ -7,8 +7,6 @@
 #include "constants/pokemon.h"
 #include "generated/pokemon_types.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bg_window.h"
@@ -701,7 +699,7 @@ static void MoveReminder_VBlankCallback(void *data)
 
 static void MoveReminder_SetGXBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

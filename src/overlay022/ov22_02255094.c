@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
@@ -407,7 +405,7 @@ void ov22_0225562C(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_02255634(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

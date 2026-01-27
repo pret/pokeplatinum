@@ -1858,7 +1858,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     if (Evolution_IsDone(menu->taskData) == 1) {
-        sub_0207B0E0(menu->taskData);
+        Evolution_Free(menu->taskData);
         Heap_Destroy(HEAP_ID_73);
         Sound_StopBGM(SEQ_SHINKA, 0);
         Sound_SetScene(SOUND_SCENE_NONE);

@@ -6,7 +6,6 @@
 #include "generated/trainer_score_events.h"
 #include "generated/traps.h"
 
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
@@ -1124,7 +1123,7 @@ int ov23_0223EC30(void)
 static void ov23_0223EC34(BgConfig *bgConfig)
 {
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

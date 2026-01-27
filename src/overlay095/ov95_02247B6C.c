@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
@@ -192,7 +191,7 @@ static void ov95_02247C6C(UnkStruct_ov95_02247C6C *param0)
 
 static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 {
-    static const UnkStruct_02099F80 v0 = {
+    static const GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
         GX_VRAM_SUB_BG_128_C,

@@ -6,8 +6,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay117/ov117_022626B0.h"
@@ -631,7 +629,7 @@ static void ov117_022610D8(BgConfig *param0)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_B,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_128_C,

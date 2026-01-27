@@ -9,7 +9,6 @@
 #include "struct_defs/seal_case.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/struct_ov12_02236030.h"
@@ -1321,7 +1320,7 @@ void ov76_0223EB64(BgConfig *param0)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

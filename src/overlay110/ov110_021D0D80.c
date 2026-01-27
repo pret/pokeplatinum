@@ -7,7 +7,6 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0203E564.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay110/ov110_021D2124.h"
 
@@ -261,7 +260,7 @@ static void ov110_021D1048(void *param0)
 
 static void ov110_021D1078(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

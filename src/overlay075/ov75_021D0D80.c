@@ -6,7 +6,6 @@
 #include "constants/narc.h"
 
 #include "struct_defs/struct_020978D8.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -537,7 +536,7 @@ static int ov75_021D1434(UnkStruct_ov75_021D1184 *param0)
 
 static void ov75_021D1460(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

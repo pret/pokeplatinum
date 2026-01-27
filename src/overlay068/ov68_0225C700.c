@@ -8,7 +8,6 @@
 #include "constants/graphics.h"
 
 #include "struct_decls/struct_02030EC4_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -211,7 +210,7 @@ static const WindowTemplate Unk_ov68_0225DDE8[6] = {
     { 0x2, 0x3, 0xF, 0x19, 0x2, 0x3, 0xE5 }
 };
 
-static const UnkStruct_02099F80 Unk_ov68_0225DDC0 = {
+static const GXBanks Unk_ov68_0225DDC0 = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_128_C,

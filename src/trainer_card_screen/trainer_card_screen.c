@@ -6,8 +6,6 @@
 #include "constants/trainer_card_levels.h"
 #include "generated/genders.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "trainer_card_screen/trainer_card_display_text.h"
 #include "trainer_card_screen/trainer_card_screen_defs.h"
 #include "trainer_card_screen/trainer_card_sprites.h"
@@ -461,7 +459,7 @@ static void TrainerCard_FreeStrings(TrainerCardScreen *trainerCardScreen)
 
 static void TrainerCard_SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_64_E,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

@@ -5,7 +5,6 @@
 
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
 
@@ -612,7 +611,7 @@ static SysTask *HallOfFame_ExecuteSysTaskOnVBlank(SysTaskFunc callback, void *pa
 static void ov86_0223B74C(HallOfFameMan *hallOfFameMan)
 {
     NARC *narc;
-    static const UnkStruct_02099F80 v1 = {
+    static const GXBanks v1 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

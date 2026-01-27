@@ -12,8 +12,6 @@
 #include "generated/moves.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/sprites.h"
@@ -715,7 +713,7 @@ static void sub_0207E898(void *param0)
 
 static void SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

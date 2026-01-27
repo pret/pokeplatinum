@@ -12,7 +12,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -694,7 +693,7 @@ static void ov113_0225CF58(BgConfig *param0)
     GXLayers_DisableEngineBLayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_C,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

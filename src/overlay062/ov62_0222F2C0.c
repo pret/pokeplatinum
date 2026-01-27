@@ -6,7 +6,6 @@
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208C06C.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay062/ov62_022300D8.h"
 #include "overlay062/ov62_02231690.h"
@@ -342,7 +341,7 @@ static void ov62_0222F670(BgConfig *param0)
     }
 
     {
-        UnkStruct_02099F80 v1 = {
+        GXBanks v1 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_128_C,

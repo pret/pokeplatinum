@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "applications/naming_screen.h"
 #include "applications/rowan_intro/main.h"
@@ -494,7 +493,7 @@ static BOOL RowanIntro_WasPokeballOpened(void)
 static void RowanIntro_InitGraphics(RowanIntro *manager)
 {
     {
-        UnkStruct_02099F80 banks = {
+        GXBanks banks = {
             .unk_00 = GX_VRAM_BG_128_B,
             .unk_04 = GX_VRAM_BGEXTPLTT_NONE,
             .unk_08 = GX_VRAM_SUB_BG_128_C,

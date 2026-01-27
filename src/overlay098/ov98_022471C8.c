@@ -8,7 +8,6 @@
 #include "constants/net.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -452,7 +451,7 @@ static void ov98_02247510(BgConfig *param0)
     GXLayers_DisableEngineBLayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_128_C,

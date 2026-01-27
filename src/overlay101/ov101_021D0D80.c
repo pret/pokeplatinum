@@ -6,7 +6,6 @@
 #include "generated/game_records.h"
 
 #include "struct_defs/struct_0203E348.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay101/ov101_021D1A28.h"
 #include "overlay101/ov101_021D59AC.h"
@@ -243,7 +242,7 @@ static void ov101_021D107C(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D1098(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

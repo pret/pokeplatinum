@@ -10,7 +10,6 @@
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_decl.h"
@@ -530,7 +529,7 @@ static void ov5_021D13B4(FieldSystem *fieldSystem)
 
 static void ov5_021D1414(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

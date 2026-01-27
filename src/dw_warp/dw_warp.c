@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "camera.h"
 #include "easy3d_object.h"
 #include "g3d_pipeline.h"
@@ -186,7 +184,7 @@ static void DWWarp_VramSetBank(void)
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
-    UnkStruct_02099F80 vramBank = {
+    GXBanks vramBank = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

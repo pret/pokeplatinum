@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0207DE04.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay063/ov63_0222BE18.h"
@@ -596,7 +595,7 @@ static void ov65_022367F8(UnkStruct_ov65_022367A8 *param0, u32 heapID)
 
 static void ov65_02236820(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

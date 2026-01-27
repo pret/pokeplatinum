@@ -5,7 +5,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay096/ov96_0223B140.h"
 #include "overlay096/ov96_0223BCE0.h"
@@ -203,7 +202,7 @@ static void ov96_0223B940(void *param0)
 
 static void ov96_0223B960(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

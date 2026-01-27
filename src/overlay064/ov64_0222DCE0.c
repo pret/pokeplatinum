@@ -11,7 +11,6 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_02089438.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "applications/naming_screen.h"
 #include "overlay063/ov63_0222AE60.h"
@@ -877,7 +876,7 @@ static void ov64_0222E23C(UnkStruct_ov64_0222E21C *param0)
 
 static void ov64_0222E270(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_256_AB,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

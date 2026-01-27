@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay116/ov116_02260440.h"
@@ -845,7 +843,7 @@ static void ov116_02261494(BgConfig *param0)
         SetAllGraphicsModes(&v0);
     }
     {
-        UnkStruct_02099F80 v1 = {
+        GXBanks v1 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_128_C,

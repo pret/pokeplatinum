@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay114/ov114_0225C700.h"
@@ -2825,7 +2824,7 @@ static BOOL ov115_022632DC(const UnkStruct_ov115_022632C8 *param0, u32 param1)
 
 static void ov115_02263308(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_32_FG,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

@@ -6,8 +6,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay005/struct_ov5_021DE5D0.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -461,7 +459,7 @@ static const GXRgb Unk_ov70_0226D5EC[8] = {
     GX_RGB(4, 4, 4)
 };
 
-static const UnkStruct_02099F80 Unk_ov70_0226D664 = {
+static const GXBanks Unk_ov70_0226D664 = {
     GX_VRAM_BG_128_B,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_32_H,
