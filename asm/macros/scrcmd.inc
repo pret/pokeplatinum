@@ -727,7 +727,7 @@
     .byte \flag
     .endm
 
-    .macro SetMoveCode localID, movementType
+    .macro SetMovementType localID, movementType
     .short 109
     .short \localID
     .short \movementType

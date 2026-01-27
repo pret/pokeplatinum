@@ -22,11 +22,11 @@ LakeVerity_OnTransition:
     End
 
 LakeVerity_SetCounterpartGraphicsDawn:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
 LakeVerity_SetCounterpartGraphicsLucas:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
 LakeVerity_SetProfRowanStartPosition:
@@ -52,6 +52,8 @@ LakeVerity_SetPositionsAfterTeamGalactic:
 
 LakeVerity_OnLoad:
     End
+
+LakeVerity_Unused:
     End
 
 LakeVerity_ProfRowan:
@@ -205,7 +207,7 @@ LakeVerity_Mars:
     FadeScreenOut
     WaitFadeScreen
     RemoveObject LOCALID_MARS
-    RemoveObject LOCALID_GRUNT_M_8
+    RemoveObject LOCALID_GRUNT_M
     RemoveObject LOCALID_GALACTIC_GRUNT_1
     RemoveObject LOCALID_GALACTIC_GRUNT_3
     RemoveObject LOCALID_GALACTIC_GRUNT_2

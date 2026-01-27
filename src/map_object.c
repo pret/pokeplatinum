@@ -1851,7 +1851,7 @@ int MapObject_IsHeightCalculationDisabled(const MapObject *mapObj)
     return FALSE;
 }
 
-void MapObject_SetFlagPersistent(MapObject *mapObj, BOOL flag)
+void MapObject_SetFlagIsPersistent(MapObject *mapObj, BOOL flag)
 {
     if (flag == TRUE) {
         MapObject_SetStatusFlagOn(mapObj, MAP_OBJ_STATUS_PERSISTENT);
@@ -2479,7 +2479,7 @@ void MapObject_SetPosDirFromCoords(MapObject *mapObj, int x, int y, int z, int d
     sub_020656DC(mapObj);
 }
 
-void MapObject_SetMoveCode(MapObject *mapObj, u32 movementType)
+void MapObject_SwitchMovementType(MapObject *mapObj, u32 movementType)
 {
     sub_02062B28(mapObj);
     MapObject_SetMovementType(mapObj, movementType);

@@ -671,7 +671,7 @@ static int sub_02068308(UnkStruct_020EF6D0 *param0)
     sub_020656AC(param0->mapObj);
 
     if ((PersistedMapFeatures_IsCurrentDynamicMap(param0->fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == 0) || (ov8_0224C5DC(param0->fieldSystem, param0->mapObj) == 0)) {
-        MapObject_SetMoveCode(param0->mapObj, MOVEMENT_TYPE_NONE);
+        MapObject_SwitchMovementType(param0->mapObj, MOVEMENT_TYPE_NONE);
     }
 
     param0->unk_00 = 17;

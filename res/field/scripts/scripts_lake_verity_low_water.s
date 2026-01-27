@@ -19,11 +19,11 @@ LakeVerityLowWater_OnTransition:
     End
 
 LakeVerityLowWater_SetCounterpartGraphicsDawn:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
 LakeVerityLowWater_SetCounterpartGraphicsLucas:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
 LakeVerityLowWater_OnLoad:
@@ -32,8 +32,8 @@ LakeVerityLowWater_OnLoad:
 
 LakeVerityLowWater_HideStarly:
     SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_STARLY
-    RemoveObject LOCALID_STARLY_3
-    RemoveObject LOCALID_STARLY_2
+    RemoveObject LOCALID_STARLY_SOUTH
+    RemoveObject LOCALID_STARLY_EAST
     ClearFlag FLAG_MAP_LOCAL
     End
     End

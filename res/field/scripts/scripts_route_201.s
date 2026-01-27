@@ -251,7 +251,7 @@ Route201_LucasBringBriefcase:
 Route201_GoOnChoosePokemon:
     Message Route201_Text_PeopleShouldMeetPokemon
     CloseMessage
-    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFacPlayer
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFacePlayerEast
     WaitMovement
     WaitTime 15, VAR_RESULT
     Message Route201_Text_GoOnChooseAPokemon
@@ -284,7 +284,7 @@ Route201_Briefcase:
     WaitFadeScreen
     GetPlayerStarterSpecies VAR_0x8000
     GivePokemon VAR_0x8000, 5, ITEM_NONE, VAR_RESULT
-    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFacePlayer
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFacePlayerSouth
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFaceWest
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerFaceProfRowanNorth
     WaitMovement
@@ -356,7 +356,7 @@ Route201_StartRivalBattle:
     BufferPlayerName 1
     Message Route201_Text_IChallengeYouToABattle
     CloseMessage
-    SetMoveCode LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, Route201_StartFirstBattleTurtwig
     GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, Route201_StartFirstBattleChimchar
@@ -607,12 +607,12 @@ Route201_Movement_ProfRowanFaceCounterpart:
     EndMovement
 
     .balign 4, 0
-Route201_Movement_ProfRowanFacPlayer:
+Route201_Movement_ProfRowanFacePlayerEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-Route201_Movement_ProfRowanFacePlayer:
+Route201_Movement_ProfRowanFacePlayerSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
@@ -766,7 +766,7 @@ Route201_ISaidTheLakesNotThatWay:
     Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
     ClearHasPartner
-    SetMoveCode LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 Route201_ResetRivalPartnerEast:
@@ -776,7 +776,7 @@ Route201_ResetRivalPartnerEast:
 
 Route201_ResetRivalPartner:
     SetHasPartner
-    SetMoveCode LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
     SetObjectFlagPersistent LOCALID_RIVAL, TRUE
     Return
 
@@ -837,7 +837,7 @@ Route201_TriggerFollowingRivalStopPlayerSouth:
 
 Route201_PlayerAndRivalWalkBackNorth:
     ClearHasPartner
-    SetMoveCode LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkNorthWithRival
     ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkNorthWithPlayer
     WaitMovement
@@ -1255,7 +1255,7 @@ Route201_SetRivalPartner:
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
     SetStepFlag
     SetHasPartner
-    SetMoveCode LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
     SetObjectFlagPersistent LOCALID_RIVAL, TRUE
     SetFlag FLAG_HIDE_ROUTE_201_RIVAL
     ReleaseAll

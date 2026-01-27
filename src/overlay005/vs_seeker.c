@@ -783,7 +783,7 @@ static BOOL VsSeeker_IsTrainerDoingRematchAnimation(MapObject *trainerObj)
 
 static void VsSeeker_SetTrainerMoveCode(MapObject *trainerObj, u16 moveCode)
 {
-    MapObject_SetMoveCode(trainerObj, moveCode);
+    MapObject_SwitchMovementType(trainerObj, moveCode);
 }
 
 void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject *trainerObj)

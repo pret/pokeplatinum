@@ -353,7 +353,7 @@ static BOOL ScrCmd_Unused_06A(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx);
 static BOOL ScrCmd_MoveCamera(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectFlagPersistent(ScriptContext *ctx);
-static BOOL ScrCmd_SetMoveCode(ScriptContext *ctx);
+static BOOL ScrCmd_SetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
@@ -877,7 +877,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Unused_06A,
     ScrCmd_MoveCamera,
     ScrCmd_SetObjectFlagPersistent,
-    ScrCmd_SetMoveCode,
+    ScrCmd_SetMovementType,
     ScrCmd_Unused_06E,
     ScrCmd_GiveMoney,
     ScrCmd_RemoveMoney,
@@ -3349,16 +3349,16 @@ static BOOL ScrCmd_SetObjectFlagPersistent(ScriptContext *ctx)
     MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
     u8 flag = ScriptContext_ReadByte(ctx);
 
-    MapObject_SetFlagPersistent(mapObj, flag);
+    MapObject_SetFlagIsPersistent(mapObj, flag);
     return FALSE;
 }
 
-static BOOL ScrCmd_SetMoveCode(ScriptContext *ctx)
+static BOOL ScrCmd_SetMovementType(ScriptContext *ctx)
 {
     MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
     u16 movementType = ScriptContext_ReadHalfWord(ctx);
 
-    MapObject_SetMoveCode(mapObj, movementType);
+    MapObject_SwitchMovementType(mapObj, movementType);
     return FALSE;
 }
 
