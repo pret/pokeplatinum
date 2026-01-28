@@ -42,8 +42,26 @@ enum UndergroundMenuKeys {
     UNDERGROUND_MENU_KEY_PC,
 };
 
+enum MapMarkerAnim {
+    MARKER_ANIM_LINK = 0,
+    MARKER_ANIM_CURRENT_PLAYER,
+    MARKER_ANIM_PINK_DOT_UNUSED,
+    MARKER_ANIM_SECRET_BASE,
+    MARKER_ANIM_RED_SHINE_UNUSED,
+    MARKER_ANIM_BROWN_SHINE_UNUSED,
+    MARKER_ANIM_GRAY_SHINE_UNUSED,
+    MARKER_ANIM_YELLOW_SHINE_UNUSED,
+    MARKER_ANIM_LIGHT_YELLOW_SHINE_UNUSED,
+    MARKER_ANIM_SPHERE,
+    MARKER_ANIM_GREEN_SHINE_UNUSED,
+    MARKER_ANIM_TRAP,
+    MARKER_ANIM_MINING_SPOT,
+};
+
 #define BIT_TRAPS_FULL             1 << 4
 #define BIT_BURIED_SPHERE_IN_FRONT 1 << 5
+
+#define MAX_RADAR_BLIPS 16
 
 typedef Coordinates *(*CoordinatesGetter)(Coordinates *, int);
 
@@ -74,16 +92,16 @@ void ov23_02242C78(void);
 void ov23_02242CB4(void);
 void ov23_02242D08(void);
 void ov23_02242D44(FieldSystem *fieldSystem);
-BOOL ov23_02242D60(String *param0);
+BOOL CommManUnderground_GetQueuedMessage(String *param0);
 SecretBase *ov23_02242E10(SaveData *saveData);
 int ov23_02242E28(void);
 int ov23_02242E40(void);
 BOOL Underground_AreCoordinatesInSecretBase(int x, int z);
-int ov23_02242E78(int param0);
-int ov23_02242EE0(int param0);
-int ov23_02242F48(int param0);
-void ov23_02242FA8(void);
-void ov23_02242FBC(void);
+int CommManUnderground_GetRadarItemXCoord(int param0);
+int CommManUnderground_GetRadarItemZCoord(int param0);
+int CommManUnderground_GetRadarItemAnimID(int param0);
+void CommManUnderground_DeactivateRadar(void);
+void CommManUnderground_SetNormalRadarActive(void);
 void CommManUnderground_SetSphereRadarActive(void);
 void CommManUnderground_SetTrapRadarActive(void);
 void CommManUnderground_SetTreasureRadarActive(void);

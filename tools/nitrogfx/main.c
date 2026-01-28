@@ -181,7 +181,7 @@ void ConvertPngToNtr(char *inputPath, char *outputPath, struct PngToNtrOptions *
 
     if (options->cellFilePath != NULL)
     {
-        ApplyCellsToImage(options->cellFilePath, &image, false, options->cellSnap, false, false);
+        ApplyCellsToImage(options->cellFilePath, &image, false, options->cellSnap, options->noSkip, false);
     }
 
     WriteNtrImage(outputPath, options->numTiles, options->bitDepth, options->colsPerChunk, options->rowsPerChunk,
@@ -532,6 +532,7 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
     options.mappingType = 0;
     options.convertTo4Bpp = false;
     options.rotate = 0;
+    options.noSkip = false;
 
     for (int i = 3; i < argc; i++)
     {
@@ -567,12 +568,24 @@ void HandlePngToNtrCommand(char *inputPath, char *outputPath, int argc, char **a
                 sprintf(options.cellFilePath, "%.*s%s" , (int)inputStemSize, inputPath, suffix);
             }
 
-            if (i + 1 < argc)
+            for (int j = 0; j < 2; j++)
             {
-                if (strcmp(argv[i + 1], "-nosnap") == 0)
+                if (i + 1 < argc)
                 {
-                    options.cellSnap = false;
-                    i++;
+                    if (strcmp(argv[i + 1], "-nosnap") == 0)
+                    {
+                        options.cellSnap = false;
+                        i++;
+                    }
+                    else if (strcmp(argv[i + 1], "-noskip") == 0)
+                    {
+                        options.noSkip = true;
+                        i++;
+                    }
+                }
+                else
+                {
+                    break;
                 }
             }
         }
