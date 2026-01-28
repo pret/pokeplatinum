@@ -26,7 +26,7 @@ _078:
     Wait 
     WaitButtonABTime 30
     // But it failed to swallow a thing!
-    PrintMessage pl_msg_00000368_00815, TAG_NONE
+    PrintMessage BattleStrings_Text_ButItFailedToSwallowAThing, TAG_NONE
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
