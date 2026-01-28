@@ -12,8 +12,8 @@
 #include "location.h"
 #include "player_avatar.h"
 #include "pokemon.h"
-#include "sys_task_manager.h"
 #include "spawn_locations.h"
+#include "sys_task_manager.h"
 
 typedef struct {
     FieldSystem *fieldSystem;
