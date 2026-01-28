@@ -167,7 +167,7 @@ _025F:
 _0272:
     Message BattleTower_Text_CongratulationsOnAchievingWinStreak
     SetVar VAR_0x8005, 1
-    SendToUndergroundPCWithLinefeed
+    Common_SendToUndergroundPCWithLinefeed
     Message BattleTower_Text_WeHopeToSeeYouAgain2
     GoTo _020B
     End
@@ -275,7 +275,7 @@ BattleTower_HealAndSaveBeforeEnteringBattleRoom:
     End
 
 BattleTower_SaveGame:
-    SaveGame
+    Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     Return
 
@@ -1025,7 +1025,7 @@ _114C:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_TOWER_PRINT_STATE, 4
-    CheckAllFrontierGoldPrintsObtained
+    Common_CheckAllFrontierGoldPrintsObtained
     Return
 
 _1167:
@@ -1086,7 +1086,7 @@ _1205:
     Message BattleTower_Text_ResultsWereSent
     GoTo BattleTower_WeHopeToSeeYouAgain
     End
-    
+
     .balign 4, 0
 _1248:
     Delay4
@@ -1256,7 +1256,7 @@ BattleTower_Pikachu2:
 _13CE:
     Call _07B5
     Call _07B9
-    GriseousOrbCouldNotBeRemoved
+    Common_GriseousOrbCouldNotBeRemoved
     End
 
 BattleTower_StatsJudge:

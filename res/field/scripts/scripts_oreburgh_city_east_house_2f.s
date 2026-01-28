@@ -27,7 +27,7 @@ _0025:
     SetVar VAR_0x8004, ITEM_GREAT_BALL
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0077
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x010A
     GoTo _006C
     End
@@ -40,7 +40,7 @@ _006C:
     End
 
 _0077:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -12,7 +12,7 @@ SandgemTownMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon 0
     ReleaseAll

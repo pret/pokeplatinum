@@ -40,7 +40,7 @@ _0085:
     LockAll
     ApplyMovement 5, _0268
     WaitMovement
-    SetRivalBGM
+    Common_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 0x2F5, _00D1
     GoToIfEq VAR_0x8005, 0x2F6, _00E1

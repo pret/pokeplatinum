@@ -399,7 +399,7 @@ TwinleafTown_RivalThudTrigger:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
-    SetRivalBGM
+    Common_SetRivalBGM
     ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
@@ -419,7 +419,7 @@ TwinleafTown_RivalThudTrigger:
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject LOCALID_RIVAL
-    FadeToDefaultMusic2
+    Common_FadeToDefaultMusic2
     SetVar VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, 1
     SetVar VAR_TWINLEAF_TOWN_RIVAL_TRIGGER_STATE, 1
     ReleaseAll

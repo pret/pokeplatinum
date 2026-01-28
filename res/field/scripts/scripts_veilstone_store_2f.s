@@ -117,7 +117,7 @@ VeilstoneStore2F_PoketchVendor:
     GoToIfEq VAR_RESULT, MENU_NO, VeilstoneStore2F_PoketchVendorDeclined
     Message VeilstoneStore2F_Text_HereYouGo
     SetVar VAR_0x8004, POKETCH_APPID_COUNTER
-    GivePoketchApp
+    Common_GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -151,7 +151,7 @@ VeilstoneStore2F_TopVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_UP
     ReleaseAll
@@ -161,7 +161,7 @@ VeilstoneStore2F_MiddleVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_MID
     ReleaseAll

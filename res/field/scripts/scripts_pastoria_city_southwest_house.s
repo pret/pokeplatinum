@@ -17,7 +17,7 @@ _000A:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0060
     SetFlag FLAG_UNK_0x0AA3
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -30,7 +30,7 @@ _0055:
     End
 
 _0060:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -46,4 +46,3 @@ _006A:
     End
 
     .balign 4, 0
-

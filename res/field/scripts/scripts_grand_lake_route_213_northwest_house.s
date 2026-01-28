@@ -16,7 +16,7 @@ _000E:
     SetVar VAR_0x8004, ITEM_TM92
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _005E
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x00CA
     GoTo _0053
 
@@ -28,7 +28,7 @@ _0053:
     End
 
 _005E:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

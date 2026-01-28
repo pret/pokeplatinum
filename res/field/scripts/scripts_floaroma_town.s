@@ -135,7 +135,7 @@ _0141:
     Message 9
     SetVar VAR_0x8004, 0x1D2
     SetVar VAR_0x8005, 1
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

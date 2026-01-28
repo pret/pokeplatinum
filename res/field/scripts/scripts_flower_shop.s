@@ -18,7 +18,7 @@ _000E:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0064
     SetFlag FLAG_UNK_0x0AAA
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -31,7 +31,7 @@ _0059:
     End
 
 _0064:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -45,7 +45,7 @@ _006E:
     SetVar VAR_0x8004, 0x1C0
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x0080
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
