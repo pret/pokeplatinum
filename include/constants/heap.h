@@ -100,7 +100,7 @@ enum HeapID {
     HEAP_ID_95,
     HEAP_ID_96,
     HEAP_ID_97,
-    HEAP_ID_98,
+    HEAP_ID_BATTLE_HALL_APP,
     HEAP_ID_99,
     HEAP_ID_100,
     HEAP_ID_101,

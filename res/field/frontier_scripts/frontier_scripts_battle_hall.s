@@ -714,7 +714,7 @@ _0611:
     FrontierScrCmd_12
     FrontierScrCmd_91 30, 0, 0, 0x8008
     CallIfEq 0x8008, 1, _065B
-    FrontierScrCmd_8E
+    OpenBattleHallApp
     FrontierScrCmd_91 31, 0, 0, 0x8008
     FrontierScrCmd_91 36, 0, 0, 0x8008
     FrontierScrCmd_13 6, 1, 1, 0
@@ -1112,7 +1112,7 @@ _0D10:
 
 _0D2C:
     FrontierScrCmd_7C 0
-    Message BattleHallScene_Text_OpponentIsChoosing
+    Message BattleHallScene_Text_PartnerIsChoosing
     GoTo _0D3B
     End
 

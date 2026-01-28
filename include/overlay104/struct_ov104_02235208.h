@@ -10,7 +10,7 @@ typedef struct {
     u8 unk_05;
     u16 unk_06;
     u8 *unk_08;
-    Party *unk_0C;
+    Party *party;
     void *unk_10;
     u16 *unk_14;
     u16 unk_18;
