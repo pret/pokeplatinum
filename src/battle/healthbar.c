@@ -1158,7 +1158,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
 
     nickname = String_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
-    template = MessageLoader_GetNewString(msgLoader, pl_msg_00000368_00964);
+    template = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_00964);
 
     mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
     boxMon = Pokemon_GetBoxPokemon(mon);

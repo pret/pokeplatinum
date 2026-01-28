@@ -263,7 +263,7 @@ static void sub_0207B180(EvolutionData *param0)
         break;
     case 2:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00916);
+            param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_What);
             param0->unk_64++;
         }
         break;
@@ -287,9 +287,9 @@ static void sub_0207B180(EvolutionData *param0)
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
-                param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00917);
+                param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_PokemonIsEvolving);
             } else {
-                param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00915);
+                param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_WhatPokemonIsEvolving);
             }
 
             param0->unk_64 = 5;
@@ -398,7 +398,7 @@ static void sub_0207B180(EvolutionData *param0)
             Pokemon_CalcLevelAndStats(param0->unk_28);
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetSpeciesName(param0->unk_0C, 1, Pokemon_GetBoxPokemon(param0->unk_28));
-            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00918);
+            param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_CongratulationsYourPokemonEvolvedIntoPokemon);
             param0->unk_66 = 40;
             param0->unk_64++;
         }
@@ -435,7 +435,7 @@ static void sub_0207B180(EvolutionData *param0)
         default:
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, v3);
-            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00004);
+            param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_PokemonLearnedMove);
             param0->unk_66 = 30;
             param0->unk_64 = 37;
             break;
@@ -444,18 +444,18 @@ static void sub_0207B180(EvolutionData *param0)
     case 14:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01193);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_PokemonWantsToLearnTheMove);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01194);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_HoweverPokemonAlreadyKnowsFourMoves);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 18:
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01195);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_ShouldAMoveBeDeleted);
         param0->unk_66 = 1;
         param0->unk_64++;
         break;
@@ -538,7 +538,7 @@ static void sub_0207B180(EvolutionData *param0)
         break;
     case 32:
         StringTemplate_SetMoveName(param0->unk_0C, 0, param0->unk_6C);
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01197);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_StopTryingToTeachMove);
         param0->unk_66 = 1;
         param0->unk_64++;
         break;
@@ -551,7 +551,7 @@ static void sub_0207B180(EvolutionData *param0)
         case 0:
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
-            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01198);
+            param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_PokemonDidNotLearnTheMove);
             param0->unk_66 = 30;
             param0->unk_64 = 36;
             break;
@@ -569,26 +569,26 @@ static void sub_0207B180(EvolutionData *param0)
         }
         break;
     case 25:
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01199);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_EvolutionOneTwoAndPoof);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 27:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01200);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_PokemonForgotHowToUseMove);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 29:
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01201);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_EvolutionAndDotDotDot);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 31:
         StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         StringTemplate_SetMoveName(param0->unk_0C, 1, param0->unk_6C);
-        param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_01202);
+        param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_EvolvedPokemonLearnedMove);
         param0->unk_66 = 0;
         Pokemon_SetValue(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
         Pokemon_SetMoveSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
@@ -656,7 +656,7 @@ static void sub_0207B180(EvolutionData *param0)
     case 43:
         if ((Sound_IsPokemonCryPlaying() == 0) && (PokemonAnimManager_HasAnimCompleted(param0->unk_44, 0) == TRUE) && (PokemonSprite_IsAnimActive(param0->unk_1C[0]) == 0)) {
             StringTemplate_SetNickname(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
-            param0->unk_65 = sub_0207C584(param0, pl_msg_00000368_00919);
+            param0->unk_65 = sub_0207C584(param0, BattleStrings_Text_HuhPokemonStoppedEvolving);
             param0->unk_66 = 20;
             param0->unk_64++;
         }

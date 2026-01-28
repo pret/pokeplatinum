@@ -4,7 +4,7 @@
 _000:
     WaitButtonABTime 15
     // {0} began to nap!
-    PrintMessage pl_msg_00000368_00827, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonBeganToNap, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER
