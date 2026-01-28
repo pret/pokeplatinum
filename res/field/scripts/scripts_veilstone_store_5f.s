@@ -46,7 +46,7 @@ VeilstoneStore5F_Collector1:
     SetVar LOCALID_ITEM_ID, ITEM_STICKY_BARB
     SetVar LOCALID_COUNT, 1
     GoToIfCannotFitItem LOCALID_ITEM_ID, LOCALID_COUNT, VAR_RESULT, VeilstoneStore5F_Collector1BagIsFull
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_VEILSTONE_STORE_5F_RECEIVED_STICKY_BARB
     GoTo VeilstoneStore5F_Collector1AfterItemGiven
     End
@@ -59,7 +59,7 @@ VeilstoneStore5F_Collector1AfterItemGiven:
     End
 
 VeilstoneStore5F_Collector1BagIsFull:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
@@ -159,7 +159,7 @@ VeilstoneStore5F_VendingMachineDispenseDrink:
     Message VeilstoneStore5F_Text_ACanDroppedDown
     SetVar LOCALID_ITEM_ID, LOCALID_DRINK_ID
     SetVar LOCALID_COUNT, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     // 1 in 64 chance for a bonus can
     GetRandom VAR_RESULT, 64
     GoToIfNe VAR_RESULT, 0, VeilstoneStore5F_VendingMachineBuyAnotherDrink
@@ -169,7 +169,7 @@ VeilstoneStore5F_VendingMachineDispenseDrink:
     Message VeilstoneStore5F_Text_ABonusCanDroppedDown
     SetVar LOCALID_ITEM_ID, LOCALID_DRINK_ID
     SetVar LOCALID_COUNT, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     GoTo VeilstoneStore5F_VendingMachineBuyAnotherDrink
 
 VeilstoneStore5F_VendingMachineBuyAnotherDrink:
@@ -181,7 +181,7 @@ VeilstoneStore5F_VendingMachineNotEnoughMoney:
     GoTo VeilstoneStore5F_VendingMachineClose
 
 VeilstoneStore5F_VendingMachineBagIsFull:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     HideMoney
     ReleaseAll

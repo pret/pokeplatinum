@@ -208,7 +208,7 @@ _030B:
     ClearFlag FLAG_UNK_0x0179
     AddObject 6
     LockObject 6
-    SetCounterpartBGM
+    Common_SetCounterpartBGM
     ApplyMovement 6, _08C8
     WaitMovement
     GetPlayerGender VAR_RESULT
@@ -265,7 +265,7 @@ _03DE:
     Message 34
     WaitABXPadPress
     CloseMessage
-    FadeToDefaultMusic
+    Common_FadeToDefaultMusic
     SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_LEFT
     SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll
@@ -1183,7 +1183,7 @@ _0E47:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0E97
     SetFlag FLAG_UNK_0x006C
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1196,7 +1196,7 @@ _0E8C:
     End
 
 _0E97:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

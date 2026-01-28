@@ -29,7 +29,7 @@ _0039:
     SetVar VAR_0x8004, ITEM_POFFIN_CASE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _008E
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x008D
     Message 1
     WaitABXPadPress
@@ -45,7 +45,7 @@ _0083:
     End
 
 _008E:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -2312,7 +2312,7 @@ _1EEA:
     End
 
 _1EF0:
-    CheckBagPocketForItem
+    Common_CheckBagPocketForItem
     RemoveObject VAR_LAST_TALKED
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     TrySetUnusedUndergroundField VAR_0x8004
@@ -2424,5 +2424,5 @@ _20C0:
     Return
 
 _20C6:
-    PrintPlateObtainedMessage
+    Common_PrintPlateObtainedMessage
     Return
