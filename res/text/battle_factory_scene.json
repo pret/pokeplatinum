@@ -89,7 +89,7 @@
       ]
     },
     {
-      "id": "BattleFactoryScene_Text_OpponentIsChoosing",
+      "id": "BattleFactoryScene_Text_PartnerIsChoosing",
       "en_US": [
         "{STRVAR_1 3, 0, 0} is choosing.\n",
         "Please wait."
@@ -100,7 +100,7 @@
       "garbage": 21
     },
     {
-      "id": "BattleFactoryScene_Text_OpponentRetired",
+      "id": "BattleFactoryScene_Text_PartnerRetired",
       "en_US": "{STRVAR_1 3, 0, 0} chose to retire."
     },
     {

@@ -242,13 +242,11 @@ _01B0:
     End
 
 _01D0:
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
+    FadeScreenIn
     Call _02BE
     Call _02FC
     Call _0320
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
+    FadeScreenOut
     FrontierScrCmd_2D 0
     FrontierScrCmd_2D 1
     FrontierScrCmd_2B 1

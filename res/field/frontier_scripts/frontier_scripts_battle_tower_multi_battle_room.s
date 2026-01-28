@@ -281,8 +281,7 @@ _01CE:
     End
 
 _01F8:
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
+    FadeScreenIn
     FrontierScrCmd_3E 0x40DE, 0x8008
     GoToIfEq 0x8008, 1, _0226
     GoToIfEq 0x8008, 2, _04FB
@@ -316,7 +315,7 @@ _0270:
 
 _02B0:
     FrontierScrCmd_84 33, 0, 0x8008
-    FrontierScrCmd_7A 0, 0x8008
+    BufferNumber 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     GoToIfEq 0x8006, 0, _02E9
     FrontierScrCmd_1A 31, 13, 0, 0, 0x8008
@@ -347,7 +346,7 @@ _0330:
 _034B:
     FrontierScrCmd_1C 148, 255, 2
     FrontierScrCmd_1D
-    FrontierScrCmd_12
+    CloseMessage
     SetVar 0x8000, 0
     GoToIfEq 0x8008, 2, _0B27
     GoToIfEq 0x8008, 1, _0B65
@@ -367,7 +366,7 @@ _039F:
     FrontierScrCmd_89 2, 0x8000, 0x8008
     GoToIfEq 0x8008, 0, _039F
     FrontierScrCmd_8A 2, 0x8000
-    FrontierScrCmd_12
+    CloseMessage
     SetVar 0x8010, 0x8000
     GoToIfEq 0x8010, 1, _0B4B
     Call _0605
@@ -381,8 +380,7 @@ _03DD:
     GoToIfEq 0x8008, 6, _0443
     WaitTime 30, 0x8008
     FrontierScrCmd_3D 0x40D8, 1
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
+    FadeScreenOut
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
     FrontierScrCmd_25 2
@@ -405,8 +403,7 @@ _0443:
     CallIfEq 0x8004, 100, _04D1
     FrontierScrCmd_84 43, 0, 0x8008
     CallIfEq 0x8008, 6, _04DF
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
+    FadeScreenOut
     FrontierScrCmd_36
     FrontierScrCmd_35 8
     FrontierScrCmd_84 43, 0, 0x8008
@@ -423,7 +420,7 @@ _0443:
     FrontierScrCmd_02
 
 _04D1:
-    FrontierScrCmd_12
+    CloseMessage
     Return
 
 _04D5:
@@ -438,7 +435,7 @@ _04DF:
     HideSavingIcon
     PlaySoundEffect SEQ_SE_DP_SAVE
     WaitSoundEffect SEQ_SE_DP_SAVE
-    FrontierScrCmd_12
+    CloseMessage
     Return
 
 _04F7:
@@ -463,7 +460,7 @@ _051B:
 
 _053F:
     FrontierScrCmd_84 33, 0, 0x8008
-    FrontierScrCmd_7A 0, 0x8008
+    BufferNumber 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     GoToIfEq 0x8006, 0, _0578
     FrontierScrCmd_1A 31, 11, 0, 0, 0x8008
@@ -484,7 +481,7 @@ _059B:
     FrontierScrCmd_1C 147, 255, 2
     FrontierScrCmd_1C 148, 255, 3
     FrontierScrCmd_1D
-    FrontierScrCmd_12
+    CloseMessage
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 0, _05F1
     GoToIfEq 0x8010, 1, _0629
@@ -549,7 +546,7 @@ _069B:
 
 _06CE:
     PlaySoundEffect SEQ_SE_DP_SAVE
-    FrontierScrCmd_7B 0
+    BufferPlayerName 0
     Message BattleTowerMultiBattleRoom_Text_BattleHasBeenSaved
     Return
 
@@ -564,7 +561,7 @@ _06E1:
 _06E7:
     Message BattleTowerMultiBattleRoom_Text_AskSaveAndQuit
     ShowYesNoMenu 0x8008, MENU_YES
-    FrontierScrCmd_12
+    CloseMessage
     GoToIfEq 0x8008, 0, _0707
     GoTo _053F
     End
@@ -579,9 +576,8 @@ _0707:
     HideSavingIcon
     PlaySoundEffect SEQ_SE_DP_SAVE
     WaitSoundEffect SEQ_SE_DP_SAVE
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
-    FrontierScrCmd_12
+    FadeScreenOut
+    CloseMessage
     FrontierScrCmd_6F
     FrontierScrCmd_84 2, 0, 0x8008
     End
@@ -589,7 +585,7 @@ _0707:
 _0745:
     Message BattleTowerMultiBattleRoom_Text_AskCancelChallenge
     ShowYesNoMenu 0x8008, MENU_NO
-    FrontierScrCmd_12
+    CloseMessage
     GoToIfEq 0x8008, 0, _0765
     GoTo _053F
     End
@@ -633,15 +629,15 @@ _0817:
     FrontierScrCmd_84 38, 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_YouHaveClearedYourSeventhMatch
     FrontierScrCmd_84 46, 0, 0x8008
-    FrontierScrCmd_7A 1, 0x8008
-    FrontierScrCmd_7B 0
+    BufferNumber 1, 0x8008
+    BufferPlayerName 0
     Message BattleTowerMultiBattleRoom_Text_PlayerReceivedBP
     PlayFanfare SEQ_PL_POINTGET3
     WaitFanfare
     FrontierScrCmd_84 43, 0, 0x8008
     GoToIfEq 0x8008, 3, _0869
     GoToIfEq 0x8008, 6, _0869
-    FrontierScrCmd_12
+    CloseMessage
     GoTo _03DD
     End
 
@@ -682,7 +678,7 @@ _08E9:
     FrontierScrCmd_84 43, 0, 0x8008
     GoToIfEq 0x8008, 3, _08D7
     GoToIfEq 0x8008, 6, _08D7
-    FrontierScrCmd_12
+    CloseMessage
     GoTo _0945
     End
 
@@ -742,7 +738,7 @@ _0A0D:
     Message BattleTowerMultiBattleRoom_Text_YourPokemonWillBeRestored
     PlayFanfare SEQ_ASA
     WaitFanfare
-    FrontierScrCmd_39
+    HealParty
     Return
 
 _0A1B:
@@ -750,18 +746,17 @@ _0A1B:
     Call _0A61
     Call _0AB5
     FrontierScrCmd_85 0
-    FrontierScrCmd_3A
-    FrontierScrCmd_12
+    WaitABPress
+    CloseMessage
     Call _0AC1
     FrontierScrCmd_85 1
-    FrontierScrCmd_3A
-    FrontierScrCmd_12
+    WaitABPress
+    CloseMessage
     Call _0A91
     FrontierScrCmd_3F 0
     FrontierScrCmd_87
     FrontierScrCmd_88 0x8003
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
+    FadeScreenIn
     Return
 
 _0A61:
@@ -798,21 +793,20 @@ _0ACD:
     Call _0AB5
     FrontierScrCmd_85 0
     WaitTime 30, 0x8008
-    FrontierScrCmd_12
+    CloseMessage
     Call _0AC1
     FrontierScrCmd_85 1
     WaitTime 30, 0x8008
-    FrontierScrCmd_12
+    CloseMessage
     Call _0A91
     MessageNoSkip BattleTowerMultiBattleRoom_Text_PleaseWait
     FrontierScrCmd_36
     FrontierScrCmd_35 4
-    FrontierScrCmd_12
+    CloseMessage
     FrontierScrCmd_3F 0
     FrontierScrCmd_87
     FrontierScrCmd_88 0x8003
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
+    FadeScreenIn
     Return
 
 _0B27:
@@ -828,7 +822,7 @@ _0B4B:
     WaitTime 30, 0x8008
     FrontierScrCmd_36
     FrontierScrCmd_35 7
-    FrontierScrCmd_12
+    CloseMessage
     GoTo _0765
     End
 

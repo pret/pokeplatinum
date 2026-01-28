@@ -164,8 +164,7 @@ _010C:
     FrontierScrCmd_24 _0010
     FrontierScrCmd_2A _0028
     FrontierScrCmd_2C _002C
-    FrontierScrCmd_13 6, 1, 1, 0
-    FrontierScrCmd_14
+    FadeScreenIn
     FrontierScrCmd_3E 0x40DC, 0x8001
     GoToIfEq 0x8001, 1, _0161
     End
@@ -182,7 +181,7 @@ _0153:
 
 _0161:
     Call _01A2
-    FrontierScrCmd_38 0x8008, 4
+    GetRandom 0x8008, 4
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 1, _01E4
     GoToIfEq 0x8010, 2, _01FE
@@ -230,8 +229,7 @@ _0218:
     End
 
 _0232:
-    FrontierScrCmd_13 6, 1, 0, 0
-    FrontierScrCmd_14
+    FadeScreenOut
     FrontierScrCmd_2D 0
     FrontierScrCmd_2B 1
     FrontierScrCmd_25 0
