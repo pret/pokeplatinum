@@ -1248,7 +1248,7 @@ static int SubTask_Waterfall_InitAscent(WaterfallTaskEnv *taskEnv)
     targetX = MapObject_GetX(taskEnv->surfBlob) + (MapObject_GetDxFromDir(DIR_NORTH) << 1);
     targetZ = MapObject_GetZ(taskEnv->surfBlob) + (MapObject_GetDzFromDir(DIR_NORTH) << 1);
 
-    sub_02064450(targetX, targetZ, &taskEnv->targetPosition);
+    VecFx32_SetPosFromMapCoords(targetX, targetZ, &taskEnv->targetPosition);
     sub_020644A4(taskEnv->fieldSystem, &taskEnv->targetPosition);
 
     taskEnv->targetX = targetX;
@@ -1365,7 +1365,7 @@ static int SubTask_Waterfall_InitDescent(WaterfallTaskEnv *taskEnv)
     targetX = MapObject_GetX(taskEnv->surfBlob) + (MapObject_GetDxFromDir(DIR_SOUTH) << 1);
     targetZ = MapObject_GetZ(taskEnv->surfBlob) + (MapObject_GetDzFromDir(DIR_SOUTH) << 1);
 
-    sub_02064450(targetX, targetZ, &taskEnv->targetPosition);
+    VecFx32_SetPosFromMapCoords(targetX, targetZ, &taskEnv->targetPosition);
     sub_020644A4(taskEnv->fieldSystem, &taskEnv->targetPosition);
 
     taskEnv->distanceMoved = 0;

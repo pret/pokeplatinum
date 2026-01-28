@@ -151,7 +151,7 @@ void BerryPatches_UpdateGrowthStates(FieldSystem *fieldSystem)
     MapObject *mapObject;
     BerryPatch *berryPatches = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, &mapObject, &objectIndex, 1 << 0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(fieldSystem->mapObjMan, &mapObject, &objectIndex, 1 << 0) == 1) {
         if (BerryPatchGraphics_IsBerryPatch(MapObject_GetGraphicsID(mapObject)) == TRUE && BerryPatches_IsInView(fieldSystem, MapObject_GetPos(mapObject))) {
             int patchID = MapObject_GetDataAt(mapObject, 0);
             BerryPatches_SetIsPatchGrowing(berryPatches, patchID, TRUE);

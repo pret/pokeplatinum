@@ -276,14 +276,14 @@ static int ov5_021F4AB4(const MapObject *param0, int param1, VecFx32 *param2)
                 GF_ASSERT(v7 != NULL);
                 MapObject_GetPosPtr(v7, param2);
             } else {
-                sub_02064450(v4, v6, param2);
+                VecFx32_SetPosFromMapCoords(v4, v6, param2);
             }
 
             return v2;
         }
     }
 
-    sub_02064450(v4, v6, param2);
+    VecFx32_SetPosFromMapCoords(v4, v6, param2);
     return v2;
 }
 
@@ -366,7 +366,7 @@ OverworldAnimManager *ov5_021F4CEC(UnkStruct_ov5_021DF47C *param0, int param1, i
 
     GF_ASSERT(param3 < 8);
 
-    sub_02064450(param1, param2, &v1);
+    VecFx32_SetPosFromMapCoords(param1, param2, &v1);
     sub_020644A4(ov5_021DF574(param0), &v1);
 
     v1.x += (FX32_ONE * 0);

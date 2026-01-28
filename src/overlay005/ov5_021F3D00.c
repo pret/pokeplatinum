@@ -97,7 +97,7 @@ OverworldAnimManager *ov5_021F3D90(MapObject *param0, int param1)
         int v5 = MapObject_GetX(param0);
         int v6 = MapObject_GetZ(param0);
 
-        sub_02064450(v5, v6, &v0);
+        VecFx32_SetPosFromMapCoords(v5, v6, &v0);
         sub_020644A4(fieldSystem, &v0);
     }
 

@@ -3,6 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
+#include "constants/field/map.h"
 #include "constants/map_object.h"
 #include "generated/movement_actions.h"
 
@@ -23,6 +24,8 @@
 #include "map_header_data.h"
 #include "narc.h"
 #include "sys_task_manager.h"
+
+#define MAP_OBJECT_COORD_TO_FX32(coord) ((coord << 4) * FX32_ONE) + (MAP_OBJECT_TILE_SIZE >> 1)
 
 typedef struct MapObjectSave {
     u32 status;
@@ -73,7 +76,7 @@ void MapObjectMan_LoadAllObjects(const MapObjectManager *mapObjMan, MapObjectSav
 void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, const ObjectEvent *objectEvent);
 MapObject *MapObjMan_LocalMapObjByIndex(const MapObjectManager *mapObjMan, int index);
 MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType);
-int sub_020625B0(const MapObjectManager *mapObjMan, MapObject **mapObj, int *param2, u32 status);
+BOOL MapObjectMan_FindObjectWithStatus(const MapObjectManager *mapObjMan, MapObject **mapObj, int *startIdx, u32 status);
 int MapObject_HasNoScript(const MapObject *mapObj);
 int sub_02062758(const MapObject *mapObj, int param1);
 int sub_02062764(const MapObject *mapObj, int param1, int param2);

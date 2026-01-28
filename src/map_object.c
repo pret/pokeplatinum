@@ -433,7 +433,7 @@ void MapObjectMan_SaveAll(FieldSystem *fieldSystem, const MapObjectManager *mapO
     int v0 = 0;
     MapObject *mapObj;
 
-    while (sub_020625B0(mapObjMan, &mapObj, &v0, MAP_OBJ_STATUS_0)) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &v0, MAP_OBJ_STATUS_0)) {
         MapObject_Save(fieldSystem, mapObj, mapObjSave);
         mapObjSave++;
         param3--;
@@ -493,7 +493,7 @@ static void MapObject_Save(FieldSystem *fieldSystem, MapObject *mapObj, MapObjec
     VecFx32 v0;
     int v1, v2;
 
-    sub_02064450(mapObjSave->x, mapObjSave->z, &v0);
+    VecFx32_SetPosFromMapCoords(mapObjSave->x, mapObjSave->z, &v0);
     v0.y = MapObject_GetPosY(mapObj);
 
     v2 = MapObject_IsDynamicHeightCalculationEnabled(mapObj);
@@ -661,7 +661,7 @@ static MapObject *sub_02062154(const MapObjectManager *mapObjMan, int param1, in
     int v0 = 0;
     MapObject *mapObj;
 
-    while (sub_020625B0(mapObjMan, &mapObj, &v0, MAP_OBJ_STATUS_0) == TRUE) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &v0, MAP_OBJ_STATUS_0) == TRUE) {
         if (sub_02062E94(mapObj) == TRUE
             && MapObject_GetLocalID(mapObj) == param1
             && sub_02062C18(mapObj) == param2) {
@@ -816,7 +816,7 @@ static MapObject *sub_020624CC(const MapObjectManager *mapObjMan, int localID, i
     int v0 = 0;
     MapObject *mapObj;
 
-    while (sub_020625B0(mapObjMan, &mapObj, &v0, MAP_OBJ_STATUS_0) == TRUE) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &v0, MAP_OBJ_STATUS_0) == TRUE) {
         if (MapObject_GetLocalID(mapObj) == localID && sub_02062918(mapObj) == flag) {
             return mapObj;
         }
@@ -865,28 +865,28 @@ MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType)
     return NULL;
 }
 
-int sub_020625B0(const MapObjectManager *mapObjMan, MapObject **mapObj, int *param2, u32 status)
+BOOL MapObjectMan_FindObjectWithStatus(const MapObjectManager *mapObjMan, MapObject **mapObj, int *startIdx, u32 status)
 {
     int maxObjects = MapObjectMan_GetMaxObjects(mapObjMan);
-    MapObject *v1;
+    MapObject *currMapObj;
 
-    if ((*param2) >= maxObjects) {
-        return 0;
+    if (*startIdx >= maxObjects) {
+        return FALSE;
     }
 
-    v1 = MapObjectMan_GetMapObjectStatic(mapObjMan);
-    v1 = &v1[(*param2)];
+    currMapObj = MapObjectMan_GetMapObjectStatic(mapObjMan);
+    currMapObj = &currMapObj[*startIdx];
 
     do {
-        (*param2)++;
+        (*startIdx)++;
 
-        if (MapObject_CheckStatus(v1, status) == status) {
-            *mapObj = v1;
+        if (MapObject_CheckStatus(currMapObj, status) == status) {
+            *mapObj = currMapObj;
             return TRUE;
         }
 
-        v1++;
-    } while ((*param2) < maxObjects);
+        currMapObj++;
+    } while (*startIdx < maxObjects);
 
     return FALSE;
 }

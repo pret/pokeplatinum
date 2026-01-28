@@ -974,7 +974,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
     MapObject_GetPosPtr(v6, &v1);
     v0 = v1.y;
 
-    while (sub_020625B0(mapObjMan, &v7, &v3, MAP_OBJ_STATUS_0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v3, MAP_OBJ_STATUS_0) == 1) {
         if (v7 != v6) {
             MapObject_SetStatusFlagOn(v7, MAP_OBJ_STATUS_13);
 
@@ -1012,7 +1012,7 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
     MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
     MapObject *v4;
 
-    while (sub_020625B0(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {
         if (v4 != v3) {
             MapObject_SetStatusFlagOff(v4, MAP_OBJ_STATUS_13);
         }

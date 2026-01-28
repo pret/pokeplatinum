@@ -1069,7 +1069,7 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
 
     sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
+    while (MapObjectMan_FindObjectWithStatus(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
         objectX = MapObject_GetX(*object);
         objectY = MapObject_GetY(*object) / 2;
         objectZ = MapObject_GetZ(*object);
