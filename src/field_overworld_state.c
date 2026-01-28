@@ -12,7 +12,7 @@
 #include "overworld_map_history.h"
 #include "player_avatar.h"
 #include "savedata.h"
-#include "unk_0203A7D8.h"
+#include "spawn_locations.h"
 
 typedef struct FieldOverworldState {
     Location player;
