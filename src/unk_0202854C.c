@@ -297,7 +297,7 @@ void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const Tr
     MI_CpuCopy8(TrainerInfo_Name(info), underground->registeredFlagOwnerNames[index], (sizeof(u16) * (TRAINER_NAME_LEN + 1)));
 
     underground->registeredFlagOwnerIDs[index] = TrainerInfo_ID(info);
-    underground->registeredFlagOwnerRegionCodes[index] = TrainerInfo_RegionCode(info);
+    underground->registeredFlagOwnerLanguages[index] = TrainerInfo_Language(info);
     underground->registeredFlagOwnerGameCodes[index] = TrainerInfo_GameCode(info);
     underground->registeredFlagOwnerIndex++;
 
@@ -319,7 +319,7 @@ TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *undergrou
 
         TrainerInfo_SetName(flagOwnerInfo, underground->registeredFlagOwnerNames[index]);
         TrainerInfo_SetGameCode(flagOwnerInfo, underground->registeredFlagOwnerGameCodes[index]);
-        TrainerInfo_SetRegionCode(flagOwnerInfo, underground->registeredFlagOwnerRegionCodes[index]);
+        TrainerInfo_SetLanguage(flagOwnerInfo, underground->registeredFlagOwnerLanguages[index]);
         TrainerInfo_SetID(flagOwnerInfo, underground->registeredFlagOwnerIDs[index]);
 
         return flagOwnerInfo;
