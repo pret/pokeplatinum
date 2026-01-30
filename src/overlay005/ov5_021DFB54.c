@@ -457,7 +457,7 @@ static int ov5_021DFE68(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, in
     int v0 = sub_02061434(playerAvatar, param2);
 
     if (param3 & 1 << 2) {
-        if (ov9_0224A59C(fieldSystem, param2) == 1) {
+        if (DistWorld_HandlePlayerMoved(fieldSystem, param2) == 1) {
             return 1;
         }
     }

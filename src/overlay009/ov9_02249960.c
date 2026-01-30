@@ -166,6 +166,15 @@
 #define GIRATINA_ROOM_PLAY_ARRIVAL_SPRITE_DARKNESS_DECREMENT ((FX32_ONE * 16) / (3 * 30))
 #define GIRATINA_ROOM_PLAY_ARRIVAL_WAIT_DELAY                30
 
+#define WATERFALL_B4F_X       104
+#define WATERFALL_B4F_Y       170
+#define WATERFALL_B4F_START_Z 76
+#define WATERFALL_B4F_END_Z   79
+#define WATERFALL_B5F_X       104
+#define WATERFALL_B5F_Y       128
+#define WATERFALL_B5F_START_Z 76
+#define WATERFALL_B5F_END_Z   79
+
 enum FloatingPlatformKind {
     FLOATING_PLATFORM_KIND_FLOOR = 0,
     FLOATING_PLATFORM_KIND_WEST_WALL,
@@ -1288,10 +1297,10 @@ static void FieldTaskContextNoOp1(DistWorldSystem *system);
 static void FieldTaskContextNoOp2(DistWorldSystem *system);
 static void *InitFieldTaskContext(DistWorldSystem *system, int ctxSize);
 static void *GetFieldTaskContext(DistWorldSystem *system);
-static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void ov9_0224A8C0(DistWorldSystem *param0);
 static void ov9_0224A9E8(DistWorldSystem *param0);
-static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void CreateJumpOnFloatingPlatformTask(DistWorldSystem *system, const DistWorldFloatingPlatformJumpPointTemplate *template);
 static BOOL JumpOnFloatingPlatform(FieldTask *task);
 static BOOL TickJumpOnFloatingPlatformMovementAnimation(DistWorldFloatingPlatformJumpTaskContext *ctx, MapObject *playerMapObj);
@@ -1317,7 +1326,7 @@ static BOOL IsInactiveGhostPropGroupHidden(DistWorldSystem *system, u32 groupID)
 static void PersistActiveHiddenGhostPropGroups(DistWorldSystem *system);
 static void InitAllGhostPropAnimManagers(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropTemplate *iter, int mapHeaderID);
 static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, int animManIndex, int mapHeaderID, const DistWorldGhostPropTemplate *ghostPropTemplate);
-static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction);
+static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, enum FaceDirection direction);
 static BOOL HasActiveGhostProp2(DistWorldSystem *system, u32 propKind);
 static BOOL HasActiveGhostPropAnim(DistWorldSystem *system, u32 animKind);
 static BOOL HasActiveGhostProp(DistWorldSystem *system, int propKind);
@@ -1378,10 +1387,10 @@ static u16 GetCurrentFloatingPlatformTileAttributesRelative(DistWorldSystem *sys
 static u16 GetCurrentFloatingPlatformTileAttributes(DistWorldSystem *system, int tileX, int tileY, int tileZ);
 static void InitFloatingPlatformJumpPoint(DistWorldSystem *system);
 static void ResetFloatingPlatformJumpPoint(DistWorldSystem *system);
-static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void InitCameraAngleTemplates(DistWorldSystem *system);
 static void ResetCameraAngleTemplates(DistWorldSystem *system);
-static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir);
+static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir);
 static void DistWorldGhostPropData_InitFromFile(DistWorldFile *file, DistWorldGhostPropData *data);
 static void InitActiveGhostPropData(DistWorldSystem *system);
 static void InitInactiveGhostPropData(DistWorldSystem *system);
@@ -2407,47 +2416,43 @@ static void *GetFieldTaskContext(DistWorldSystem *system)
     return system->fieldTaskCtx.data;
 }
 
-BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1)
+BOOL DistWorld_HandlePlayerMoved(FieldSystem *fieldSystem, enum FaceDirection playerDir)
 {
-    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    PersistedMapFeatures *persistedMapFeatures = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
 
-    if (PersistedMapFeatures_GetID(v0) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
-        int v1, v2, v3, v4;
-        DistWorldSystem *v5 = fieldSystem->unk_04->dynamicMapFeaturesData;
+    if (PersistedMapFeatures_GetID(persistedMapFeatures) == DYNAMIC_MAP_FEATURES_DISTORTION_WORLD) {
+        DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+        int v4 = sub_02061434(fieldSystem->playerAvatar, playerDir);
 
-        v4 = sub_02061434(fieldSystem->playerAvatar, param1);
-        GetPlayerPos(v5, &v1, &v2, &v3);
+        int playerX, playerY, playerZ;
+        GetPlayerPos(dwSystem, &playerX, &playerY, &playerZ);
 
         if (v4 == 1) {
-            HandleGhostPropTriggerAt(v5, v1, v2, v3, param1);
+            HandleGhostPropTriggerAt(dwSystem, playerX, playerY, playerZ, playerDir);
         }
 
-        if (ApplyCameraAngleForPlayerPosition(v5, v1, v2, v3, param1) == 1) {
-            (void)0;
+        ApplyCameraAngleForPlayerPosition(dwSystem, playerX, playerY, playerZ, playerDir);
+
+        if (HandleFloatingPlatformJumpPointAt(dwSystem, playerX, playerY, playerZ, playerDir) == TRUE) {
+            return TRUE;
         }
 
-        if (HandleFloatingPlatformJumpPointAt(v5, v1, v2, v3, param1) == 1) {
-            return 1;
-        }
+        u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(dwSystem);
 
-        {
-            u32 v6 = DistWorldSystem_GetMapHeaderID(v5);
-
-            if (v6 == 577) {
-                if ((param1 == 3) && (v1 == 104) && (v2 == 170) && (v3 >= 76) && (v3 <= 79)) {
-                    RunEventCommands(v5, Unk_ov9_02251438);
-                    return 1;
-                }
-            } else if (v6 == 579) {
-                if ((param1 == 3) && (v1 == 104) && (v2 == 128) && (v3 >= 76) && (v3 <= 79)) {
-                    RunEventCommands(v5, Unk_ov9_022513D8);
-                    return 1;
-                }
+        if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B4F) {
+            if (playerDir == FACE_RIGHT && playerX == WATERFALL_B4F_X && playerY == WATERFALL_B4F_Y && playerZ >= WATERFALL_B4F_START_Z && playerZ <= WATERFALL_B4F_END_Z) {
+                RunEventCommands(dwSystem, Unk_ov9_02251438);
+                return TRUE;
+            }
+        } else if (mapHeaderID == MAP_HEADER_DISTORTION_WORLD_B5F) {
+            if (playerDir == FACE_RIGHT && playerX == WATERFALL_B5F_X && playerY == WATERFALL_B5F_Y && playerZ >= WATERFALL_B5F_START_Z && playerZ <= WATERFALL_B5F_END_Z) {
+                RunEventCommands(dwSystem, Unk_ov9_022513D8);
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
@@ -2574,7 +2579,7 @@ BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1)
     return 0;
 }
 
-static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static BOOL ApplyCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     const DistWorldCameraAngleTemplate *cameraAngleTemplate = FindCameraAngleForPlayerPosition(system, playerX, playerY, playerZ, playerDir);
 
@@ -2659,7 +2664,7 @@ static void ov9_0224A9E8(DistWorldSystem *param0)
     PlayerAvatar_ClearSpeed(v0);
 }
 
-static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static BOOL HandleFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     const DistWorldFloatingPlatformJumpPointTemplate *template = FindFloatingPlatformJumpPointAt(system, playerX, playerY, playerZ, playerDir);
 
@@ -2719,7 +2724,7 @@ static BOOL JumpOnFloatingPlatform(FieldTask *task)
             break;
         }
 
-        int playerDir = ctx->template.playerDir;
+        enum FaceDirection playerDir = ctx->template.playerDir;
         int platformKind = GetCurrentFloatingPlatformKind2(system);
 
         switch (platformKind) {
@@ -3451,7 +3456,7 @@ static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, i
     return FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, animFuncs, NULL, 0, &ghostProp, 2);
 }
 
-static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction)
+static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, enum FaceDirection direction)
 {
     if (GetActiveGhostPropFileSectionSize(system)) {
         const DistWorldGhostPropHeader *header = GetActiveGhostPropHeader(system);
@@ -4462,7 +4467,7 @@ static void ResetFloatingPlatformJumpPoint(DistWorldSystem *system)
     memset(floatingPlatformJumpPoints, 0, sizeof(DistWorldFileFloatingPlatformJumpPointSection));
 }
 
-static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static const DistWorldFloatingPlatformJumpPointTemplate *FindFloatingPlatformJumpPointAt(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     DistWorldFileFloatingPlatformJumpPointSection *floatingPlatformJumpPoints = &system->unk_169C.floatingPlatformJumpPoints;
     DistWorldFloatingPlatformJumpPointTemplate *iter = floatingPlatformJumpPoints->templates;
@@ -4502,7 +4507,7 @@ static void ResetCameraAngleTemplates(DistWorldSystem *system)
     memset(cameraAngleTemplates, 0, sizeof(DistWorldCameraAngleTemplates));
 }
 
-static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, int playerDir)
+static const DistWorldCameraAngleTemplate *FindCameraAngleForPlayerPosition(DistWorldSystem *system, int playerX, int playerY, int playerZ, enum FaceDirection playerDir)
 {
     DistWorldCameraAngleTemplates *cameraAngleTemplates = &system->unk_169C.cameraAngleTemplates;
     DistWorldCameraAngleTemplate *cameraAngleTemplateIter = cameraAngleTemplates->templates;
