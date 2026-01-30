@@ -179,7 +179,7 @@ MapObject *sub_0205EA24(const MapObjectManager *mapObjMan)
     int v0 = 0;
     MapObject *mapObj = NULL;
 
-    while (sub_020625B0(mapObjMan, &mapObj, &v0, 1 << 0)) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &mapObj, &v0, 1 << 0)) {
         if (MapObject_GetMovementType(mapObj) == 0x1) {
             break;
         }
