@@ -187,7 +187,7 @@ SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *ani
     GF_ASSERT(data != NULL);
     memset(data, 0, sizeof(MoveAnimData));
 
-    int priority = sub_02062858(MapObject_MapObjectManager(mapObj)) - 1;
+    int priority = MapObjectMan_GetTaskBasePriority(MapObject_MapObjectManager(mapObj)) - 1;
     SysTask *task = SysTask_Start(MapObject_DoAnimation, data, priority);
     GF_ASSERT(task != NULL);
 

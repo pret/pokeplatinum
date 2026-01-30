@@ -361,7 +361,7 @@ OverworldAnimManager *ov5_021F5D8C(MapObject *param0, int param1, int param2, in
     v1.unk_0C = param0;
 
     MapObject_GetPosPtr(param0, &v3);
-    v0 = sub_02062C0C(param0) + 1;
+    v0 = MapObject_GetTaskBasePriority(param0) + 1;
 
     if (param3 == 1) {
         v5 = &Unk_ov5_02200BAC;
@@ -384,7 +384,7 @@ static int ov5_021F5DE4(OverworldAnimManager *param0, void *param1)
 
     v1->unk_30 = *v2;
     v1->unk_08 = MapObject_GetLocalID(v1->unk_30.unk_0C);
-    v1->unk_0C = sub_02062918(v1->unk_30.unk_0C);
+    v1->unk_0C = MapObject_GetMapID(v1->unk_30.unk_0C);
     v1->unk_24.y = (FX32_ONE * 6);
 
     ov5_021F5BF0(v1->unk_30.unk_08, v1->unk_30.unk_00);
@@ -453,7 +453,7 @@ static int ov5_021F5EE0(OverworldAnimManager *param0, void *param1)
 
     v1->unk_30 = *v2;
     v1->unk_08 = MapObject_GetLocalID(v1->unk_30.unk_0C);
-    v1->unk_0C = sub_02062918(v1->unk_30.unk_0C);
+    v1->unk_0C = MapObject_GetMapID(v1->unk_30.unk_0C);
     v1->unk_24.y = (FX32_ONE * 6);
     v1->unk_10 = 1;
 

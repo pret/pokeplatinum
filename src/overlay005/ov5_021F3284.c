@@ -90,7 +90,7 @@ void ov5_021F331C(MapObject *param0, int param1)
 
     {
         VecFx32 v3 = { 0, 0, 0 };
-        int v4 = sub_02062758(param0, 2);
+        int v4 = MapObject_CalculateTaskPriority(param0, 2);
 
         v2 = ov5_021DF72C(v1, &Unk_ov5_02200588, &v3, param1, &v0, v4);
     }
@@ -108,7 +108,7 @@ static int ov5_021F336C(OverworldAnimManager *param0, void *param1)
     v1->unk_14 = *v2;
     v1->unk_04 = MapObject_GetEffectiveGraphicsID(v1->unk_14.unk_0C);
     v1->unk_08 = MapObject_GetLocalID(v1->unk_14.unk_0C);
-    v1->unk_0C = sub_02062918(v1->unk_14.unk_0C);
+    v1->unk_0C = MapObject_GetMapID(v1->unk_14.unk_0C);
 
     OverworldAnimManager_SetPosition(param0, &v0);
     v1->unk_24 = ov5_021DF84C(v1->unk_14.unk_04, 3, &v0);

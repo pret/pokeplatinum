@@ -108,7 +108,7 @@ void ov5_021F1800(MapObject *param0, int param1)
 
     MapObject_GetPosPtr(param0, &v1);
 
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
     v3 = ov5_021DF72C(v2.unk_04, &Unk_ov5_02200338, &v1, param1, &v2, v0);
 }
 
@@ -124,7 +124,7 @@ static int ov5_021F184C(OverworldAnimManager *param0, void *param1)
     v1->unk_14 = *v2;
     v1->unk_10 = OverworldAnimManager_GetID(param0);
     v1->unk_00 = MapObject_GetLocalID(v1->unk_14.unk_0C);
-    v1->unk_04 = sub_02062918(v1->unk_14.unk_0C);
+    v1->unk_04 = MapObject_GetMapID(v1->unk_14.unk_0C);
     v1->unk_08 = MapObject_GetGraphicsID(v1->unk_14.unk_0C);
 
     if (BerryPatchGraphics_IsBerryPatch(v1->unk_08) == 1) {
@@ -264,7 +264,7 @@ static void ov5_021F1A24(UnkStruct_ov5_021F1A24 *param0, MapObject *param1, VecF
     v2 = -param2->z;
 
     MapObject_GetPosPtr(param1, param2);
-    v0 = sub_020644A4(param0->unk_14.fieldSystem, param2);
+    v0 = MapObject_RecalculatePositionHeight(param0->unk_14.fieldSystem, param2);
 
     param2->x += v1;
     param2->z += v2 + (FX32_ONE * -7);
@@ -342,7 +342,7 @@ static void ov5_021F1B4C(UnkStruct_ov5_021F1AD8 *param0, VecFx32 *param1)
     };
 
     *param1 = param0->unk_50;
-    v0 = sub_020644A4(param0->unk_04.fieldSystem, param1);
+    v0 = MapObject_RecalculatePositionHeight(param0->unk_04.fieldSystem, param1);
     param1->z += (FX32_ONE * -7);
 
     if (v0 == 0) {

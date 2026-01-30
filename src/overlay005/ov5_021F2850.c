@@ -127,12 +127,12 @@ OverworldAnimManager *ov5_021F28F4(MapObject *param0, int param1, int param2, in
     if (param4 == 0) {
         v3.x = (((param1) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
         v3.z = (((param2) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
-        sub_020644A4(v2.fieldSystem, &v3);
+        MapObject_RecalculatePositionHeight(v2.fieldSystem, &v3);
     } else {
         MapObject_GetPosPtr(param0, &v3);
     }
 
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
     v1 = ov5_021DF72C(v4, &Unk_ov5_022004B0, &v3, param4, &v2, v0);
 
     return v1;
@@ -178,7 +178,7 @@ static void ov5_021F29D0(OverworldAnimManager *param0, void *param1)
 
     {
         VecFx32 v2 = { 0, 0, 0 };
-        sub_020630AC(v1, &v2);
+        MapObject_SetSpritePosOffset(v1, &v2);
     }
 
     {

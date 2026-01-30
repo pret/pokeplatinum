@@ -84,7 +84,7 @@ void ov5_021F1370(void *param0)
 static void ov5_021F1388(UnkStruct_ov5_021F1388 *param0)
 {
     FieldSystem *fieldSystem = ov5_021DF574(param0->unk_20);
-    int v1 = sub_02062858(fieldSystem->mapObjMan) - 1;
+    int v1 = MapObjectMan_GetTaskBasePriority(fieldSystem->mapObjMan) - 1;
     SysTask *v2 = SysTask_Start(ov5_021F1424, param0, v1);
 
     param0->unk_24 = v2;
@@ -207,7 +207,7 @@ void ov5_021F1570(MapObject *param0)
     MapObject_GetPosPtr(param0, &v4);
 
     v0 = 0;
-    v1 = sub_02062758(param0, 2);
+    v1 = MapObject_CalculateTaskPriority(param0, 2);
 
     ov5_021DF72C(v3, &Unk_ov5_022002AC, &v4, v0, &v2, v1);
 }
@@ -228,7 +228,7 @@ static int ov5_021F15B4(OverworldAnimManager *param0, void *param1)
     if (sub_02062E94(v0->unk_14.unk_08) == 1) {
         v0->unk_08 = sub_02062C18(v0->unk_14.unk_08);
     } else {
-        v0->unk_08 = sub_02062918(v0->unk_14.unk_08);
+        v0->unk_08 = MapObject_GetMapID(v0->unk_14.unk_08);
     }
 
     return 1;
@@ -312,7 +312,7 @@ OverworldAnimManager *ov5_021F16D4(MapObject *param0, int param1)
 
     MapObject_GetPosPtr(param0, &v3);
 
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
     return ov5_021DF72C(v2, &Unk_ov5_02200298, &v3, param1, &v1, v0);
 }
 

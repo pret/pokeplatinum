@@ -128,7 +128,7 @@ void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
     MapObject_GetPosPtr(mapObject, &position);
 
     int priority = 0;
-    int effectPriority = sub_02062C0C(mapObject) + 1;
+    int effectPriority = MapObject_GetTaskBasePriority(mapObject) + 1;
 
     ov5_021DF72C(renderManager, &sBerryPatchMoistureEffectDefinition, &position, priority, &context, effectPriority);
 }
@@ -140,7 +140,7 @@ static BOOL BerryPatchMoistureEffect_Init(OverworldAnimManager *effect, void *co
 
     moistureEffect->context = *effectContext;
     moistureEffect->localID = MapObject_GetLocalID(moistureEffect->context.mapObject);
-    moistureEffect->mapID = sub_02062918(moistureEffect->context.mapObject);
+    moistureEffect->mapID = MapObject_GetMapID(moistureEffect->context.mapObject);
 
     return TRUE;
 }

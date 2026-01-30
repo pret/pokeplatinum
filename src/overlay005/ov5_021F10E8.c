@@ -189,7 +189,7 @@ OverworldAnimManager *ov5_021F121C(const MapObject *param0, const VecFx32 *param
     v2.unk_04 = v3;
     v2.unk_08 = param0;
 
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
     v1 = ov5_021DF72C(v3, &Unk_ov5_0220021C, param1, 0, &v2, v0);
 
     return v1;
@@ -207,7 +207,7 @@ static int ov5_021F1258(OverworldAnimManager *param0, void *param1)
     if (sub_02062E94(v0->unk_1C.unk_08) == 1) {
         v0->unk_08 = sub_02062C18(v0->unk_1C.unk_08);
     } else {
-        v0->unk_08 = sub_02062918(v0->unk_1C.unk_08);
+        v0->unk_08 = MapObject_GetMapID(v0->unk_1C.unk_08);
     }
 
     OverworldAnimManager_GetPosition(param0, &v0->unk_0C);

@@ -98,7 +98,7 @@ OverworldAnimManager *ov5_021F3D90(MapObject *param0, int param1)
         int v6 = MapObject_GetZ(param0);
 
         VecFx32_SetPosFromMapCoords(v5, v6, &v0);
-        sub_020644A4(fieldSystem, &v0);
+        MapObject_RecalculatePositionHeight(fieldSystem, &v0);
     }
 
     {
@@ -110,7 +110,7 @@ OverworldAnimManager *ov5_021F3D90(MapObject *param0, int param1)
     }
 
     {
-        int v7 = sub_02062758(param0, 2);
+        int v7 = MapObject_CalculateTaskPriority(param0, 2);
         v1 = ov5_021DF72C(v3, &Unk_ov5_02200688, &v0, 0, &v2, v7);
     }
 
@@ -125,7 +125,7 @@ static int ov5_021F3E00(OverworldAnimManager *param0, void *param1)
 
     v0->unk_10 = *v1;
     v0->unk_08 = MapObject_GetLocalID(v2);
-    v0->unk_0C = sub_02062918(v2);
+    v0->unk_0C = MapObject_GetMapID(v2);
 
     return 1;
 }

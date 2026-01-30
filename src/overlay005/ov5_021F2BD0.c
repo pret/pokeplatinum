@@ -79,7 +79,7 @@ void ov5_021F2C38(MapObject *param0, int param1, int param2, int param3)
     v3.y = (((MapObject_GetYPrev(param0)) << 3) * FX32_ONE) + (-FX32_ONE * 8);
 
     v1 = 0;
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
 
     ov5_021DF72C(v2.unk_00, &Unk_ov5_022004D8, &v3, v1, &v2, v0);
 }

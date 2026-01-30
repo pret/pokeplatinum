@@ -111,10 +111,10 @@ OverworldAnimManager *ov5_021F85BC(PlayerAvatar *playerAvatar, int param1, int p
     } else {
         v2 = &Unk_ov5_02201C10[param6];
         MapObject_GetPosPtr(v5, &v3);
-        sub_020630AC(v5, v2);
+        MapObject_SetSpritePosOffset(v5, v2);
     }
 
-    v0 = sub_02062758(v5, 2);
+    v0 = MapObject_CalculateTaskPriority(v5, 2);
     v1 = ov5_021DF72C(v4.unk_08, &Unk_ov5_02201B54, &v3, param5, &v4, v0);
 
     return v1;
@@ -148,7 +148,7 @@ static void ov5_021F86CC(OverworldAnimManager *param0, void *param1)
     MapObject *v1 = v0->unk_38.unk_10;
     VecFx32 v2 = { 0, 0, 0 };
 
-    sub_020630AC(v1, &v2);
+    MapObject_SetSpritePosOffset(v1, &v2);
 }
 
 static void ov5_021F86E4(OverworldAnimManager *param0, void *param1)
@@ -199,7 +199,7 @@ static void ov5_021F86E4(OverworldAnimManager *param0, void *param1)
             v3.z += v0->unk_14.z;
         }
 
-        sub_020630AC(v1, &v3);
+        MapObject_SetSpritePosOffset(v1, &v3);
         MapObject_GetPosPtr(v1, &v3);
 
         {

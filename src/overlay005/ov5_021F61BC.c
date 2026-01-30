@@ -93,7 +93,7 @@ void ov5_021F6218(PlayerAvatar *playerAvatar)
     v2.unk_04 = ov5_021DF55C(v3, 14);
     v2.playerAvatar = playerAvatar;
 
-    v1 = sub_02062758(v4, 2);
+    v1 = MapObject_CalculateTaskPriority(v4, 2);
     ov5_021DF72C(v3, &Unk_ov5_02200C10, &v5, v0, &v2, v1);
 }
 
@@ -110,7 +110,7 @@ static int ov5_021F6264(OverworldAnimManager *param0, void *param1)
 
     v0->unk_04 = -1;
     v0->unk_14 = MapObject_GetLocalID(v1);
-    v0->unk_18 = sub_02062918(v1);
+    v0->unk_18 = MapObject_GetMapID(v1);
 
     return 1;
 }

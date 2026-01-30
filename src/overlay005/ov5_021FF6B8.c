@@ -11,7 +11,6 @@
 #include "overlay005/ov5_021F17B8.h"
 #include "overlay005/ov5_021F1CC8.h"
 #include "overlay005/ov5_021F23D0.h"
-#include "overlay005/ov5_021F25C0.h"
 #include "overlay005/ov5_021F2850.h"
 #include "overlay005/ov5_021F2A7C.h"
 #include "overlay005/ov5_021F2BD0.h"
@@ -39,6 +38,7 @@
 #include "overlay005/ov5_021F61BC.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021FF85C.h"
+#include "overlay005/surf_mount_renderer.h"
 
 const UnkStruct_ov5_021FF85C Unk_ov5_021FF85C[35] = {
     { 0x0, ov5_021F134C, ov5_021F1370 },
@@ -56,7 +56,7 @@ const UnkStruct_ov5_021FF85C Unk_ov5_021FF85C[35] = {
     { 0xC, BerryPatchGraphicsManager_New, BerryPatchGraphicsManager_Free },
     { 0xD, ov5_021F23D0, ov5_021F23EC },
     { 0xE, ov5_021F61BC, ov5_021F61D8 },
-    { 0xF, ov5_021F25C0, ov5_021F25DC },
+    { 0xF, SurfMountRenderer_New, SurfMountRenderer_Free },
     { 0x10, ov5_021F2850, ov5_021F2864 },
     { 0x11, ov5_021F2A7C, ov5_021F2A98 },
     { 0x12, ov5_021F2BD0, ov5_021F2BEC },

@@ -164,7 +164,7 @@ void ov5_021F2EA4(MapObject *param0, int param1)
 
     MapObject_GetPosPtr(param0, &v1);
 
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
     v4 = ov5_021DF72C(v3, &Unk_ov5_022004EC, &v1, param1, &v2, v0);
 }
 
@@ -181,12 +181,12 @@ static int ov5_021F2F0C(OverworldAnimManager *param0, void *param1)
     v3->unk_18 = *v4;
     v3->unk_04 = MapObject_GetEffectiveGraphicsID(v3->unk_18.unk_18);
     v3->unk_08 = MapObject_GetLocalID(v3->unk_18.unk_18);
-    v3->unk_0C = sub_02062918(v3->unk_18.unk_18);
+    v3->unk_0C = MapObject_GetMapID(v3->unk_18.unk_18);
 
     v2.x = (((v3->unk_18.unk_00) << 4) * FX32_ONE);
     v2.z = (((v3->unk_18.unk_08) << 4) * FX32_ONE);
     v2.y = MapObject_GetPosY(v3->unk_18.unk_18);
-    v3->unk_14 = sub_020644A4(v3->unk_18.fieldSystem, &v2);
+    v3->unk_14 = MapObject_RecalculatePositionHeight(v3->unk_18.fieldSystem, &v2);
 
     v2.x += ((16 * FX32_ONE) >> 1);
     v2.z += (((16 * FX32_ONE) >> 1) + (FX32_ONE * 6) + (FX32_ONE * 4));
@@ -228,7 +228,7 @@ static void ov5_021F2FAC(OverworldAnimManager *param0, void *param1)
         v4.z = (((v1->unk_18.unk_08) << 4) * FX32_ONE);
         v4.y = v3.y;
 
-        v1->unk_14 = sub_020644A4(v1->unk_18.fieldSystem, &v4);
+        v1->unk_14 = MapObject_RecalculatePositionHeight(v1->unk_18.fieldSystem, &v4);
 
         if (v1->unk_14 == 1) {
             v3.y = v4.y;
@@ -424,7 +424,7 @@ static int ov5_021F31B4(OverworldAnimManager *param0, void *param1)
     v1.z = (((v2->unk_10.unk_04) << 4) * FX32_ONE) + ((((16 * FX32_ONE) >> 1) + (FX32_ONE * 6) + (FX32_ONE * 4)) / 2);
 
     v1.y = 0;
-    sub_020644A4(v2->unk_10.fieldSystem, &v1);
+    MapObject_RecalculatePositionHeight(v2->unk_10.fieldSystem, &v1);
     v1.y += (FX32_ONE);
 
     OverworldAnimManager_SetPosition(param0, &v1);

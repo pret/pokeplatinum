@@ -1836,7 +1836,7 @@ static void ov5_021EE320(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2)
 
     param0->unk_100 = v5;
 
-    v0 = sub_02062858(param0->unk_104);
+    v0 = MapObjectMan_GetTaskBasePriority(param0->unk_104);
     v5->unk_18 = SysTask_Start(ov5_021EE030, param0, v0 + 1);
     v5->unk_1C = SysTask_Start(ov5_021EE2C4, param0, v0 + 2);
     v5->unk_20 = SysTask_ExecuteOnVBlank(ov5_021EE1AC, param0, 0xff);
@@ -1970,7 +1970,7 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
         if (sub_02062F64(param0) == 1) {
             VecFx32 v12;
             int v13;
-            int v14 = sub_02062758(param0, 2);
+            int v14 = MapObject_CalculateTaskPriority(param0, 2);
             u8 v15 = MapObject_GetTileBehaviorFromDir(param0, 1);
 
             if (TileBehavior_IsReflective(v15) == 1) {
@@ -1991,7 +1991,7 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
     sub_02061AB4(param0, param1);
 
     {
-        int v16 = sub_02062858(v8->unk_104);
+        int v16 = MapObjectMan_GetTaskBasePriority(v8->unk_104);
         SysTask *v17 = SysTask_ExecuteAfterVBlank(ov5_021EE698, v11, 0xff);
 
         GF_ASSERT(v17 != NULL);

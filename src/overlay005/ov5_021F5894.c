@@ -92,7 +92,7 @@ void ov5_021F58FC(MapObject *param0, int param1, int param2, int param3)
     }
 
     v1 = 0;
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
 
     ov5_021DF72C(v3.unk_00, &Unk_ov5_02200B68, &v4, v1, &v3, v0);
 }

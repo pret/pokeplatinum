@@ -190,7 +190,7 @@ static void ov5_021F440C(OverworldAnimManager *param0, UnkStruct_ov5_021F4698 *p
     param1->unk_08 = FX32_ONE;
 
     VecFx32_SetPosFromMapCoords(param1->unk_02, param1->unk_04, &v0);
-    sub_020644A4(param1->unk_84.fieldSystem, &v0);
+    MapObject_RecalculatePositionHeight(param1->unk_84.fieldSystem, &v0);
 
     v0.y += (FX32_ONE * 6) + param1->unk_84.unk_08;
 
@@ -253,7 +253,7 @@ static int ov5_021F4560(OverworldAnimManager *param0, void *param1)
     v1->unk_08 = v2->unk_01;
 
     VecFx32_SetPosFromMapCoords(v1->unk_04, v1->unk_06, &v0);
-    sub_020644A4(v1->unk_60.fieldSystem, &v0);
+    MapObject_RecalculatePositionHeight(v1->unk_60.fieldSystem, &v0);
 
     v0.y += (FX32_ONE * 6) + v1->unk_60.unk_08;
 

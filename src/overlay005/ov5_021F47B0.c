@@ -119,7 +119,7 @@ OverworldAnimManager *ov5_021F4840(UnkStruct_ov5_021DF47C *param0, const MapObje
     v2.unk_08 = ov5_021DF55C(param0, 32);
     v2.unk_0C = param1;
 
-    v0 = sub_02062758(param1, param3);
+    v0 = MapObject_CalculateTaskPriority(param1, param3);
     v1 = ov5_021DF72C(param0, &Unk_ov5_02200754, NULL, 0, &v2, v0);
 
     return v1;
@@ -367,7 +367,7 @@ OverworldAnimManager *ov5_021F4CEC(UnkStruct_ov5_021DF47C *param0, int param1, i
     GF_ASSERT(param3 < 8);
 
     VecFx32_SetPosFromMapCoords(param1, param2, &v1);
-    sub_020644A4(ov5_021DF574(param0), &v1);
+    MapObject_RecalculatePositionHeight(ov5_021DF574(param0), &v1);
 
     v1.x += (FX32_ONE * 0);
     v1.y += (FX32_ONE * -3);

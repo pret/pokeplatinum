@@ -117,7 +117,7 @@ static void ov5_021F35E8(UnkStruct_ov5_021DF47C *param0, MapObject *param1, UnkS
     MapObject_GetPosPtr(param1, param3);
     VecFx32_SetPosFromMapCoords(MapObject_GetX(param1), MapObject_GetZ(param1), param3);
 
-    *param4 = sub_02062758(param1, 2);
+    *param4 = MapObject_CalculateTaskPriority(param1, 2);
 }
 
 void ov5_021F3638(MapObject *param0)
@@ -188,7 +188,7 @@ static int ov5_021F36F4(OverworldAnimManager *param0, void *param1)
 
     v2->unk_10 = *v3;
     v2->unk_04 = MapObject_GetLocalID(v2->unk_10.unk_0C);
-    v2->unk_08 = sub_02062918(v2->unk_10.unk_0C);
+    v2->unk_08 = MapObject_GetMapID(v2->unk_10.unk_0C);
 
     OverworldAnimManager_GetPosition(param0, &v1);
 

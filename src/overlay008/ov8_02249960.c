@@ -3807,7 +3807,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
 
     v0 = 0;
     v1 = 0;
-    v3 = sub_02062858(mapObjMan) + 2;
+    v3 = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0))) {
         v4 = MapObject_GetLocalID(v5);
