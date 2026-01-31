@@ -766,7 +766,7 @@
     .short 0x08D
     .endm
 
-    .macro FrontierScrCmd_8E
+    .macro OpenBattleHallApp
     .short 0x08E
     .endm
 

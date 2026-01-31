@@ -511,7 +511,7 @@ int ov107_02241BD4(ApplicationManager *appMan, int *param1)
             }
 
             ov107_02249DBC(&v0->unk_50[6], Options_Frame(v0->options));
-            ov104_0222E5D0(v0->unk_24, 0);
+            BattleFrontier_SetPartnerInStrTemplate(v0->unk_24, 0);
 
             v0->unk_0A = ov107_02243918(v0, 8, FONT_MESSAGE);
 
