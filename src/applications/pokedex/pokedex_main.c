@@ -729,34 +729,34 @@ void PokedexMain_DisplayPokemonSprite(PokedexGraphicData *pokedexGraphicData, Po
 {
     switch (species) {
     case SPECIES_UNOWN:
-        PokedexMain_DisplayUnownSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayUnownSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_BURMY:
-        PokedexMain_DisplayBurmySprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayBurmySprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_WORMADAM:
-        PokedexMain_DisplayWormadamSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayWormadamSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_SHELLOS:
-        PokedexMain_DisplayShellosSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayShellosSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_GASTRODON:
-        PokedexMain_DisplayGastrodonSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayGastrodonSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_DEOXYS:
-        PokedexMain_DisplayDeoxysSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayDeoxysSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_SHAYMIN:
-        PokedexMain_DisplayShayminSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayShayminSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_GIRATINA:
-        PokedexMain_DisplayGiratinaSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayGiratinaSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     case SPECIES_ROTOM:
-        PokedexMain_DisplayRotomSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplayRotomSprite(pokedexGraphicData, pokedexSortData, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     default:
-        PokedexMain_DisplaySpeciesSprite(pokedexGraphicData, pokedexSortData, species, face, x, y, 0, SPRITE_RESOURCE_CHAR);
+        PokedexMain_DisplaySpeciesSprite(pokedexGraphicData, pokedexSortData, species, face, x, y, 0, SPRITEINDEX_CURRENT_FRONT);
         break;
     }
 }
