@@ -119,7 +119,7 @@ int PokedexSort_CurrentStatusIndex(const PokedexSortData *param0);
 int PokedexSort_CaughtStatusLength(const PokedexSortData *param0);
 int PokedexSort_SpeciesToStatusIndex(const PokedexSortData *param0, u32 param1);
 BOOL PokedexSort_SetCurrentStatusIndexWithSpecies(PokedexSortData *param0, int param1);
-int PokedexSort_CurrentSpecies(const PokedexSortData *param0);
+enum Species PokedexSort_CurrentSpecies(const PokedexSortData *param0);
 int PokedexSort_CurrentCaughtStatus(const PokedexSortData *param0);
 const SpeciesCaughtStatus *PokedexSort_StatusIndexToCaughtStatus(const PokedexSortData *param0, int dexIndex);
 BOOL PokedexSort_IsValidDisplayIndex(const PokedexSortData *param0, int param1);

@@ -44,8 +44,8 @@ typedef struct {
     PokedexTextData *unk_10;
     SpriteResource *unk_14[4];
     SpriteResource *unk_24[4];
-    CursorTransformation unk_34;
-    CursorTransformation unk_54;
+    SpriteTransformation unk_34;
+    SpriteTransformation unk_54;
 } UnkStruct_ov21_021DF374;
 
 static UnkStruct_ov21_021DE6D4 *ov21_021DE6E8(enum HeapID heapID, PokedexApp *param1);
@@ -988,7 +988,7 @@ static void ov21_021DF6C4(UnkStruct_ov21_021DF374 *param0, int param1, int param
 
 static BOOL ov21_021DF6E0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
 {
-    BOOL v0 = PokedexGraphics_TakeCursorTransformStep(&param0->unk_34);
+    BOOL v0 = PokedexGraphics_TakeTransformStep(&param0->unk_34);
     PokemonGraphics_SetCharCenterXY(*param1, param0->unk_34.currentX, param0->unk_34.currentY);
 
     return v0;
@@ -1001,7 +1001,7 @@ static void ov21_021DF6FC(UnkStruct_ov21_021DF374 *param0)
 
 static BOOL ov21_021DF718(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1)
 {
-    BOOL v0 = PokedexGraphics_TakeCursorTransformStep(&param0->unk_54);
+    BOOL v0 = PokedexGraphics_TakeTransformStep(&param0->unk_54);
     ov21_021D1848(*param1, param0->unk_54.currentX, param0->unk_54.currentY);
 
     return v0;

@@ -50,7 +50,7 @@ typedef struct PokedexCursorGraphics {
     int scale;
 } PokedexCursorGraphics;
 
-typedef struct CursorTransformation {
+typedef struct SpriteTransformation {
     int currentX;
     int currentY;
     int startX;
@@ -59,18 +59,26 @@ typedef struct CursorTransformation {
     int deltaY;
     int step;
     int numSteps;
-} CursorTransformation;
+} SpriteTransformation;
 
 typedef struct PokedexCursorManager {
     PokedexCursorGraphics *cursorGraphics;
-    CursorTransformation centerPoint;
-    CursorTransformation size;
+    SpriteTransformation centerPoint;
+    SpriteTransformation size;
     int x;
     int y;
     int width;
     int height;
     BOOL isMoving;
 } PokedexCursorManager;
+
+enum FormPageSpriteIndex {
+    SPRITEINDEX_CURRENT_FRONT,
+    SPRITEINDEX_CURRENT_BACK,
+    SPRITEINDEX_PREVIOUS_FRONT,
+    SPRITEINDEX_PREVIOUS_BACK,
+    NUM_VISIBLE_SPRITES,
+};
 
 typedef struct PokedexGraphicData {
     BgConfig *bgConfig;
@@ -80,7 +88,7 @@ typedef struct PokedexGraphicData {
     SpriteResourceCollection *spriteResourceCollection[MAX_SPRITE_RESOURCE_GEN4];
     PokedexTextManager *textMan;
     PokemonSpriteManager *spriteMan;
-    PokemonSprite *pokemonSprite[MAX_SPRITE_RESOURCE_GEN4];
+    PokemonSprite *pokemonSprite[NUM_VISIBLE_SPRITES];
     SoftwareSpriteManager *unk_164;
     PokedexBlendTransition blendMain;
     PokedexBlendTransition blendSub;
@@ -99,11 +107,11 @@ void PokemonGraphics_UpdateCharAndPltt(PokedexGraphicData *pokedexGraphicData);
 void PokemonGraphics_SetCharCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y);
 PokemonSprite *PokemonGraphics_GetPokemonChar(const PokedexGraphicData *pokedexGraphicData);
 void PokedexGraphics_SetPokemonCharHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden);
-void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, enum SpriteResourceType spriteResourceType);
-void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, enum SpriteResourceType spriteResourceType);
-void PokemonGraphics_GetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int *x, int *y, enum SpriteResourceType spriteResourceType);
-PokemonSprite *PokedexGraphics_GetPokemonSprite(const PokedexGraphicData *pokedexGraphicData, enum SpriteResourceType spriteResourceType);
-void PokedexGraphics_SetPokemonSpriteHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden, enum SpriteResourceType spriteResourceType);
+void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, int spriteIndex);
+void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, int spriteIndex);
+void PokemonGraphics_GetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int *x, int *y, int spriteIndex);
+PokemonSprite *PokedexGraphics_GetPokemonSprite(const PokedexGraphicData *pokedexGraphicData, int spriteIndex);
+void PokedexGraphics_SetPokemonSpriteHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden, int spriteIndex);
 Sprite *PokedexGraphics_GetNameTag(const PokedexGraphicData *pokedexGraphicData);
 Sprite *PokedexGraphics_GetCaughtIcon(const PokedexGraphicData *pokedexGraphicData);
 void PokedexGraphics_UpdatePokedexSpeciesLabel(PokedexGraphicData *pokedexGraphicData, PokedexDisplayBox *displayBox, int size, enum Species species, BOOL isNationalDex);
@@ -118,7 +126,7 @@ int PokedexGraphics_BlendSprites(PokedexBlendTransition *blendTransition);
 int PokedexGraphics_BlendScreen(PokedexBlendTransition *blendTransition);
 BOOL PokedexGraphics_BlendTransitionComplete(PokedexBlendTransition *blendTransition);
 void PokedexGraphics_BlendPokemonChar(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition);
-void PokedexGraphics_BlendPokemonSprite(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition, enum SpriteResourceType spriteResourceType);
+void PokedexGraphics_BlendPokemonSprite(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition, int spriteIndex);
 void PokedexGraphics_CurrentButtonTransformation(const PokedexPanelData *pokedexPanelData, PokedexGraphicData *pokedexGraphicData);
 void PokedexGraphics_TransformCursor(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height);
 void PokedexGraphics_SetDrawCursor(PokedexCursorGraphics *pokedexCursorGraphics, BOOL draw);
@@ -126,8 +134,8 @@ BOOL PokedexGraphics_GetDrawCursor(PokedexCursorGraphics *pokedexCursorGraphics)
 void PokedexGraphics_SetStaticCursorSize(PokedexCursorGraphics *pokedexCursorGraphics, BOOL isStaticSize);
 void PokedexGraphics_GoToCurrentButton(const PokedexPanelData *pokedexPanelData, PokedexGraphicData *pokedexGraphicData);
 void PokedexGraphics_SetCursorPosAndSize(PokedexGraphicData *pokedexGraphicData, int x, int y, int width, int height);
-void PokedexGraphics_InitTransformation(CursorTransformation *cursorTransformation, int startX, int endX, int startY, int endY, int numSteps);
-BOOL PokedexGraphics_TakeCursorTransformStep(CursorTransformation *cursorTransformation);
+void PokedexGraphics_InitTransformation(SpriteTransformation *spriteTransformation, int startX, int endX, int startY, int endY, int numSteps);
+BOOL PokedexGraphics_TakeTransformStep(SpriteTransformation *spriteTransformation);
 NARC *PokedexGraphics_GetNARC(PokedexGraphicData *pokedexGraphicData);
 u32 PokedexGraphics_LoadGraphicNarcCharacterData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, BgConfig *bgConfig, u32 bgLayer, u32 tileStart, u32 size, BOOL isCompressed, enum HeapID heapID);
 void PokedexGraphics_LoadGraphicNarcPaletteData(PokedexGraphicData *pokedexGraphicData, u32 memberIndex, enum PaletteLoadLocation loadLocation, u32 offset, u32 szByte, enum HeapID heapID);
