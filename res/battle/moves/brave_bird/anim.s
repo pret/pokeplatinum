@@ -27,23 +27,23 @@ L_0:
     End
 
 L_2:
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 6, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 15
     PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
-    CreateEmitter 0, 8, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 9, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 5, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 6, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 7, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 8, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 9, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 5, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 6, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 7, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
@@ -65,23 +65,23 @@ L_2:
     End
 
 L_1:
-    CreateEmitter 0, 3, 17
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 3, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 6, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 15
     PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
-    CreateEmitter 0, 8, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 9, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 5, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 6, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 7, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 8, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 9, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 5, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 6, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 7, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE
@@ -103,23 +103,23 @@ L_1:
     End
 
 L_3:
-    CreateEmitter 0, 2, 17
-    BtlAnimCmd_055 0, 2, 6, 1, 0, 0
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 6, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 15
     PlaySoundEffectR SEQ_SE_DP_186
     Func_Shake 4, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_RED, 14, 0
-    CreateEmitter 0, 8, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 9, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 5, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 6, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
-    CreateEmitter 0, 7, 17
-    BtlAnimCmd_055 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 8, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 9, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 5, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 6, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
+    CreateEmitter 0, 7, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 2, 0, 0, 0
     WaitForAllEmitters
     UnloadParticleSystem 0
     SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_0, TRUE

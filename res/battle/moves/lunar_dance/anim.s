@@ -22,14 +22,14 @@ L_1:
     Func_SetPokemonSpritePriority BATTLE_ANIM_MON_SPRITE_1, 80, BATTLE_ANIM_BG_POKEMON, 0, BATTLER_ROLE_ATTACKER_PARTNER
     Delay 1
     PlaySoundEffectL SEQ_SE_DP_W461
-    CreateEmitter 0, 3, 3
-    CreateEmitter 0, 0, 3
-    CreateEmitter 1, 1, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
-    CreateEmitter 1, 2, 17
-    BtlAnimCmd_055 0, 1, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -1720, 0
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 1, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
+    CreateEmitter 1, 2, EMITTER_CB_GENERIC
+    SetExtraParams 0, 1, 5, 0, 0, 0
+    SetExtraParams 1, 0, -1720, 0
     Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 0, 10, BATTLE_COLOR_LIGHT_YELLOW1
     Delay 20
     Func_FadePokemonSprite BATTLE_ANIM_ATTACKER, 0, 1, 10, 0, BATTLE_COLOR_LIGHT_YELLOW1
@@ -57,8 +57,8 @@ L_2:
     LoadParticleResource 0, lunar_dance_spa
     LoadParticleResource 1, lunar_dance_spa
     PlaySoundEffectL SEQ_SE_DP_W461
-    CreateEmitter 0, 3, 3
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 20
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 10, 0
     WaitForAnimTasks

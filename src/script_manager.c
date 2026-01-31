@@ -20,7 +20,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "start_menu.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "trainer_data.h"
 #include "vars_flags.h"
 
@@ -95,8 +95,8 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
         scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD2);
-        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
-        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
+        scriptManager->msgBuf = String_Init(1024, HEAP_ID_FIELD2);
+        scriptManager->tmpBuf = String_Init(1024, HEAP_ID_FIELD2);
         scriptManager->state++;
     case 1:
         for (i = 0; i < NUM_SCRIPT_CONTEXTS; i++) {
@@ -115,8 +115,8 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
         if (scriptManager->numActiveContexts <= 0) {
             scriptFunction = scriptManager->function;
             StringTemplate_Free(scriptManager->strTemplate);
-            Strbuf_Free(scriptManager->msgBuf);
-            Strbuf_Free(scriptManager->tmpBuf);
+            String_Free(scriptManager->msgBuf);
+            String_Free(scriptManager->tmpBuf);
             scriptManager->magic = 0;
             Heap_Free(scriptManager);
 
@@ -300,14 +300,14 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 {
     u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELD2);
+    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELD2);
 }
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
     u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
+    ctx->loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
@@ -667,7 +667,7 @@ static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 script
     return TRUE;
 }
 
-HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, int heapID)
+HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     HiddenItemTilePosition *hiddenItems;
     const BgEvent *bgEvents;

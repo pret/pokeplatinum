@@ -11,7 +11,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 #include "res/graphics/item_icons/item_icon.naix.h"
 
@@ -3110,7 +3110,7 @@ u16 Item_IconNANRFile(void)
     return 0; // TODO: Use NAIX generated from item_icon.narc
 }
 
-void *Item_Load(u16 item, enum ItemFileType type, u32 heapID)
+void *Item_Load(u16 item, enum ItemFileType type, enum HeapID heapID)
 {
     if (item > NUM_ITEMS) {
         item = ITEM_NONE;
@@ -3128,23 +3128,23 @@ void *Item_Load(u16 item, enum ItemFileType type, u32 heapID)
     return NULL;
 }
 
-void Item_LoadName(Strbuf *dst, u16 item, u32 heapID)
+void Item_LoadName(String *dst, u16 item, enum HeapID heapID)
 {
-    MessageLoader *msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, heapID);
+    MessageLoader *msgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, heapID);
 
-    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_GetString(msgData, item, dst);
     MessageLoader_Free(msgData);
 }
 
-void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID)
+void Item_LoadDescription(String *dst, u16 item, u16 heapID)
 {
-    MessageLoader *msgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, heapID);
+    MessageLoader *msgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, heapID);
 
-    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_GetString(msgData, item, dst);
     MessageLoader_Free(msgData);
 }
 
-s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID)
+s32 Item_LoadParam(u16 item, enum ItemDataParam param, enum HeapID heapID)
 {
     ItemData *itemData = (ItemData *)Item_Load(item, 0, heapID);
     s32 val = Item_Get(itemData, param);

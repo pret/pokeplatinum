@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208C06C.h"
 
@@ -39,7 +39,7 @@
 #include "pokedex.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -57,7 +57,7 @@ FS_EXTERN_OVERLAY(overlay22);
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02029C68 *unk_08;
+    DressUpPhoto *photo;
     UnkStruct_ov61_0222BC90 *unk_0C[5];
 } UnkStruct_ov62_02237D24_sub1;
 
@@ -77,7 +77,7 @@ typedef struct {
     UnkStruct_ov62_02248CDC unk_1EC;
     UnkStruct_ov22_0225AF8C unk_218;
     UnkStruct_ov22_0225B1BC *unk_228;
-    UnkStruct_02029C68 *unk_22C;
+    DressUpPhoto *photo;
     UnkStruct_ov62_02237D24_sub1 unk_230;
     UnkStruct_ov62_022323B8 unk_250;
     UnkStruct_02030A80 *unk_2DC;
@@ -217,7 +217,7 @@ static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
     }
 
     {
-        v0->unk_230.unk_08 = sub_02029C68(HEAP_ID_102);
+        v0->unk_230.photo = DressUpPhoto_New(HEAP_ID_102);
         v0->unk_250.unk_00 = sub_02030A80(HEAP_ID_102);
     }
 
@@ -295,10 +295,10 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         ov62_02234540(param0, 1);
 
-        v0->unk_22C = sub_02029CA8(sub_0202A750(param0->saveData), 0);
+        v0->photo = ImageClips_GetDressUpPhoto(SaveData_GetImageClips(param0->saveData), 0);
 
         if (v0->unk_228 == NULL) {
-            v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_22C);
+            v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->photo);
             ov22_0225B074(v0->unk_228, 1);
         }
 
@@ -381,7 +381,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
-            Heap_Free(v0->unk_230.unk_08);
+            Heap_Free(v0->unk_230.photo);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
@@ -417,7 +417,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         param0->unk_08++;
         break;
     case 3:
-        if (ov61_0222B1B4(ov62_0224112C(param0), v0->unk_2DC, v0->unk_22C) == 1) {
+        if (ov61_0222B1B4(ov62_0224112C(param0), v0->unk_2DC, v0->photo) == 1) {
             sub_02030A98(v0->unk_2DC);
             param0->unk_08++;
         }
@@ -505,7 +505,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
         Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
-            Heap_Free(v0->unk_230.unk_08);
+            Heap_Free(v0->unk_230.photo);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
@@ -756,7 +756,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
         Bg_SetPriority(BG_LAYER_SUB_3, 1);
 
         {
-            Heap_Free(v0->unk_230.unk_08);
+            Heap_Free(v0->unk_230.photo);
             sub_02030A98(v0->unk_250.unk_00);
         }
 
@@ -906,8 +906,8 @@ static BOOL ov62_02238D04(UnkStruct_0208C06C *param0)
     case 0:
 
         v0->unk_0C = 0;
-        ov61_0222AE80(&v0->unk_230.unk_0C[v0->unk_230.unk_04]->unk_80, v0->unk_230.unk_08);
-        v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_230.unk_08);
+        ov61_0222AE80(&v0->unk_230.unk_0C[v0->unk_230.unk_04]->unk_80, v0->unk_230.photo);
+        v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_230.photo);
 
         ov22_0225B074(v0->unk_228, 0);
         ov62_02239518();
@@ -1088,8 +1088,8 @@ static BOOL ov62_0223900C(UnkStruct_0208C06C *param0)
             ov62_02234540(param0, 0);
             ov62_022343B8(param0, 80, 3);
         } else {
-            ov61_0222AE80(&v0->unk_230.unk_0C[v0->unk_230.unk_04]->unk_80, v0->unk_230.unk_08);
-            v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_230.unk_08);
+            ov61_0222AE80(&v0->unk_230.unk_0C[v0->unk_230.unk_04]->unk_80, v0->unk_230.photo);
+            v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_230.photo);
             ov22_0225B074(v0->unk_228, 0);
             ov62_02239518();
             ov62_022343B8(param0, 35, 3);
@@ -1175,8 +1175,8 @@ static BOOL ov62_0223921C(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 1);
 
         if (v0->unk_0C == 0) {
-            ov61_0222AE80(&v0->unk_230.unk_0C[v0->unk_230.unk_04]->unk_80, v0->unk_230.unk_08);
-            v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_230.unk_08);
+            ov61_0222AE80(&v0->unk_230.unk_0C[v0->unk_230.unk_04]->unk_80, v0->unk_230.photo);
+            v0->unk_228 = ov22_0225AF8C(&v0->unk_218, v0->unk_230.photo);
             ov22_0225B074(v0->unk_228, 0);
             ov62_02239518();
             ov62_022343B8(param0, 35, 3);
@@ -1239,18 +1239,18 @@ static void ov62_02239440(UnkStruct_0208C06C *param0, int param1)
 {
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
     Window *v1;
-    Strbuf *v2;
+    String *v2;
     int v3;
 
     v1 = &v0->unk_D0[0];
 
     Window_FillTilemap(v1, 0x0);
 
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, v3, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
-    Strbuf_Free(v2);
+    String_Free(v2);
     Window_ScheduleCopyToVRAM(v1);
 }
 
@@ -1357,12 +1357,12 @@ static void ov62_022396E8(UnkStruct_0208C06C *param0)
 static void ov62_02239724(UnkStruct_0208C06C *param0)
 {
     Window *v0;
-    Strbuf *v1;
-    Strbuf *v2;
-    Strbuf *v3;
+    String *v1;
+    String *v2;
+    String *v3;
     StringTemplate *v4;
     UnkStruct_ov62_02237D24 *v5 = param0->unk_860;
-    u16 v6;
+    u16 word;
     u32 v7;
     int v8, v9;
 
@@ -1376,42 +1376,42 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(HEAP_ID_102);
-    v3 = Strbuf_Init(255, HEAP_ID_102);
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 56);
+    v3 = String_Init(255, HEAP_ID_102);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 56);
 
-    v1 = Strbuf_Init(255, HEAP_ID_102);
-    sub_0202A1A0(v5->unk_22C, v1);
+    v1 = String_Init(255, HEAP_ID_102);
+    DressUpPhoto_SetTrainerName(v5->photo, v1);
     ov62_022349A8(param0, v1);
-    v6 = sub_0202A1F4(v5->unk_22C);
+    word = DressUpPhoto_GetTitleWord(v5->photo);
 
-    StringTemplate_SetStrbuf(v4, 0, v1, 0, 1, 2);
-    StringTemplate_SetCustomMessageWord(v4, 1, v6);
+    StringTemplate_SetString(v4, 0, v1, 0, 1, GAME_LANGUAGE);
+    StringTemplate_SetCustomMessageWord(v4, 1, word);
     StringTemplate_Format(v4, v3, v2);
 
-    v7 = Strbuf_NumLines(v3);
+    v7 = String_NumLines(v3);
     for (v8 = 0; v8 < v7; v8++) {
-        Strbuf_CopyLineNum(v1, v3, v8);
-        v9 = (128 - Font_CalcStrbufWidth(0, v1, 0)) / 2;
+        String_CopyLineNum(v1, v3, v8);
+        v9 = (128 - Font_CalcStringWidth(0, v1, 0)) / 2;
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, v9, 16 * v8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     }
 
     Window_ScheduleCopyToVRAM(v0);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
     StringTemplate_Free(v4);
 }
 
 static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
 {
     Window *v0;
-    Strbuf *v1;
-    Strbuf *v2;
-    Strbuf *v3;
+    String *v1;
+    String *v2;
+    String *v3;
     StringTemplate *v4;
     UnkStruct_ov62_02237D24 *v5 = param0->unk_860;
-    u16 v6;
+    u16 word;
     u32 v7;
     int v8, v9;
 
@@ -1425,30 +1425,30 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(HEAP_ID_102);
-    v3 = Strbuf_Init(255, HEAP_ID_102);
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 56);
+    v3 = String_Init(255, HEAP_ID_102);
+    v2 = MessageLoader_GetNewString(param0->unk_14.unk_34, 56);
 
-    v1 = Strbuf_Init(255, HEAP_ID_102);
-    sub_0202A1A0(v5->unk_230.unk_08, v1);
+    v1 = String_Init(255, HEAP_ID_102);
+    DressUpPhoto_SetTrainerName(v5->unk_230.photo, v1);
     ov62_022349A8(param0, v1);
-    v6 = sub_0202A1F4(v5->unk_230.unk_08);
+    word = DressUpPhoto_GetTitleWord(v5->unk_230.photo);
 
-    StringTemplate_SetStrbuf(v4, 0, v1, 0, 1, 2);
-    StringTemplate_SetCustomMessageWord(v4, 1, v6);
+    StringTemplate_SetString(v4, 0, v1, 0, 1, GAME_LANGUAGE);
+    StringTemplate_SetCustomMessageWord(v4, 1, word);
     StringTemplate_Format(v4, v3, v2);
 
-    v7 = Strbuf_NumLines(v3);
+    v7 = String_NumLines(v3);
     for (v8 = 0; v8 < v7; v8++) {
-        Strbuf_CopyLineNum(v1, v3, v8);
-        v9 = (128 - Font_CalcStrbufWidth(0, v1, 0)) / 2;
+        String_CopyLineNum(v1, v3, v8);
+        v9 = (128 - Font_CalcStringWidth(0, v1, 0)) / 2;
         Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, v9, 16 * v8, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 13, 0), NULL);
     }
 
     Window_ScheduleCopyToVRAM(v0);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v1);
+    String_Free(v2);
+    String_Free(v3);
     StringTemplate_Free(v4);
 }
 
@@ -1554,7 +1554,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
             v4->unk_1E8[v5].unk_04 = v4->unk_1D4.unk_08[v5];
         }
     }
-    v4->unk_1D4.unk_0C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_102);
+    v4->unk_1D4.unk_0C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_102);
     v4->unk_1D4.unk_10 = 1;
 }
 
@@ -1587,7 +1587,7 @@ static void ov62_02239BAC(u32 param0, enum TouchScreenButtonState param1, void *
 
 static void ov62_02239BD8(UnkStruct_0208C06C *param0)
 {
-    Strbuf *v0;
+    String *v0;
     Window *v1;
     UnkStruct_ov62_02237D24 *v2 = param0->unk_860;
 
@@ -1605,7 +1605,7 @@ static void ov62_02239BD8(UnkStruct_0208C06C *param0)
         Window_Init(v1);
         Window_Add(param0->unk_14.unk_10, v1, 6, v5, v6, v7, v8, 14, v4);
         Window_FillTilemap(v1, 0x00);
-        v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 68 + v3);
+        v0 = MessageLoader_GetNewString(param0->unk_14.unk_34, 68 + v3);
         v9 = ov62_0223429C(v1, v0);
         v10 = (8 * v8 - 16) / 2;
         if (ov62_02239984(param0, v3) == 1) {
@@ -1615,7 +1615,7 @@ static void ov62_02239BD8(UnkStruct_0208C06C *param0)
         }
 
         Window_ScheduleCopyToVRAM(v1);
-        Strbuf_Free(v0);
+        String_Free(v0);
         v4 += v7 * v8;
     }
 }

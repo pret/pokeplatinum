@@ -25,9 +25,9 @@ L_2:
     WaitForAnimTasks
     Delay 20
     PlaySoundEffectR SEQ_SE_DP_W007
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 4, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Delay 5
     PlayDelayedSoundEffectR SEQ_SE_DP_W109, 8

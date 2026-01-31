@@ -11,7 +11,7 @@
 
 #include "message.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 typedef struct {
@@ -19,7 +19,7 @@ typedef struct {
     UnkFuncPtr_ov62_022349A8 unk_04;
     void *unk_08;
     UnkStruct_ov62_022349A8_sub1 unk_0C;
-    int heapID;
+    enum HeapID heapID;
     int unk_148;
     int unk_14C;
     UnkStruct_ov62_022349A8_sub2 unk_150;
@@ -42,7 +42,7 @@ typedef struct {
     int unk_3F0;
     MessageLoader *unk_3F4;
     StringTemplate *unk_3F8;
-    Strbuf *unk_3FC;
+    String *unk_3FC;
     UnkStruct_ov61_0222B920 unk_400;
     u8 unk_40D;
     u8 unk_40E;

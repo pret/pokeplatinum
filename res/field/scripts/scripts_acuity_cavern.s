@@ -10,17 +10,17 @@
     ScriptEntryEnd
 
 _000E:
-    SetFlag FLAG_UNK_0x09E3
+    SetFlag FLAG_FIRST_ARRIVAL_ACUITY_CAVERN
     End
 
 AcuityCavern_CheckShouldUxieBeRemoved:
-    GoToIfSet FLAG_UNK_0x008E, AcuityCavern_RemoveUxie
+    GoToIfSet FLAG_MAP_LOCAL, AcuityCavern_RemoveUxie
     End
 
 AcuityCavern_RemoveUxie:
     SetFlag FLAG_UXIE_DISAPPEARED
     RemoveObject LOCALID_UXIE
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 AcuityCavern_Uxie:
@@ -30,14 +30,14 @@ AcuityCavern_Uxie:
     PlayCry SPECIES_UXIE
     Message AcuityCavern_Text_UxieCry
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_UXIE, 50
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, AcuityCavern_LostBattle
     CheckDidNotCapture VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, AcuityCavern_UxieDisappeared
-    SetFlag FLAG_UXIE_CAUGHT
+    SetFlag FLAG_CAUGHT_UXIE
     ReleaseAll
     End
 

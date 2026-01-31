@@ -18,7 +18,7 @@ _0022:
     End
 
 _0026:
-    GoToIfSet FLAG_UNK_0x008E, _0033
+    GoToIfSet FLAG_MAP_LOCAL, _0033
     End
 
 _0033:
@@ -42,7 +42,7 @@ _0061:
     Message 14
     CloseMessage
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
-    SetVar VAR_UNK_0x40AA, 1
+    SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 1
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreenOut
     WaitFadeScreen
@@ -66,9 +66,9 @@ _00C4:
     Message 2
     WaitCry
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartGiratinaOriginBattle SPECIES_GIRATINA, 47
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GetBattleResult VAR_RESULT
     GoToIfEq VAR_RESULT, BATTLE_RESULT_LOSE, _0204
@@ -96,8 +96,8 @@ _014E:
     GoTo _0194
 
 _016E:
-    SetFlag FLAG_UNK_0x0121
-    SetFlag FLAG_UNK_0x0250
+    SetFlag FLAG_CAUGHT_GIRATINA
+    SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     ClearFlag FLAG_UNK_0x0278
     ScrCmd_311 130
     ScrCmd_311 129

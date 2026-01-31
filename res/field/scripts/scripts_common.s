@@ -55,7 +55,7 @@
     ScriptEntry CommonScript_ObtainContestBackdrop @ 0x7FD
     ScriptEntry CommonScript_SendToUndergroundPCWithLinefeed @ 0x7FE
     ScriptEntry CommonScript_ObtainAccessory @ 0x7FF
-    ScriptEntry _15BF @ 0x800
+    ScriptEntry CommonScript_SetFollowMeBGM @ 0x800
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x801
     ScriptEntry _15E7 @ 0x802
     ScriptEntry _1636 @ 0x803
@@ -64,7 +64,7 @@
     ScriptEntry CommonScript_Frontier_CheckAllFrontierGoldPrintsObtained @ 0x806
     ScriptEntry CommonScript_SetLookerBGM @ 0x807
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x808
-    ScriptEntry _170A @ 0x809
+    ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntryEnd
 
 CommonScript_EmptyScript1:
@@ -323,7 +323,7 @@ _0457:
     FadeOutBGM 0, 10
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_1F8
+    WaitForTransition
     BlackOutFromBattle2
     End
 
@@ -399,7 +399,7 @@ CommonScript_SaveGame_DoSave:
 CommonScript_SaveGame_SaveComplete:
     GoToIfEq VAR_RESULT, 0, CommonScript_SaveGame_SaveError
     BufferPlayerName 0
-    Message pl_msg_00000213_00016
+    Message CommonStrings_Text_PlayerSavedTheGame
     PlayFanfare SEQ_SE_DP_SAVE
     WaitFanfare SEQ_SE_DP_SAVE
     WaitABPressTime 30
@@ -412,7 +412,7 @@ CommonScript_SaveGame_Cancel:
     Return
 
 CommonScript_SaveGame_SaveError:
-    Message pl_msg_00000213_00018
+    Message CommonStrings_Text_SaveError
     WaitABPress
     CloseSaveInfo
     Return
@@ -428,7 +428,7 @@ CommonScript_SaveGame_SaveExtraBlock:
     Return
 
 CommonScript_QuickSave_Save:
-    Message pl_msg_00000213_00015
+    Message CommonStrings_Text_SavingDontTurnOffThePower
     GoTo CommonScript_SaveGame_StartSave
     End
 
@@ -559,8 +559,8 @@ CommonScript_InternalObtainPoketchApp:
     CallIfEq VAR_0x8004, POKETCH_APPID_KITCHENTIMER, CommonScript_ObtainedPoketchKitchenTimer
     CallIfEq VAR_0x8004, POKETCH_APPID_COLORCHANGER, CommonScript_ObtainedPoketchColorChanger
     CallIfEq VAR_0x8004, POKETCH_APPID_MATCHUPCHECKER, CommonScript_ObtainedPoketchMatchupChecker
-    CallIfEq VAR_0x8004, POKETCH_APPID_UNUSED_STOPWATCH, CommonScript_ObtainedPoketchStopwatch
-    CallIfEq VAR_0x8004, POKETCH_APPID_UNUSED_ALARMCLOCK, CommonScript_ObtainedPoketchAlarmClock
+    CallIfEq VAR_0x8004, POKETCH_APPID_STOPWATCH, CommonScript_ObtainedPoketchStopwatch
+    CallIfEq VAR_0x8004, POKETCH_APPID_ALARMCLOCK, CommonScript_ObtainedPoketchAlarmClock
     Return
 
 CommonScript_ObtainedPoketchDigitalWatch:
@@ -1188,8 +1188,7 @@ CommonScript_PokecenterBlackOutRecover:
     Message CommonStrings_Text_PokecenterFirstLetsRestoreYourPokemon
     Call CommonScript_PokecenterNurse_FindNurseObject
     Call CommonScript_PokecenterNurse_HealPokemon
-    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
+    GoToIfBadgeAcquired BADGE_ID_COAL, CommonScript_PokecenterBlackOutRecover_HasCoalBadge
     Message CommonStrings_Text_PokecenterHealedToPerfectHealth
     ApplyMovement LOCALID_PLAYER, CommonScript_PokecenterNurse_PlayerRetrievePokemonMovement
     WaitMovement
@@ -1225,7 +1224,7 @@ CommonScript_PokecenterNurse_FindNurseObject:
     GoToIfEq VAR_0x8004, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Hearthome
     GoToIfEq VAR_0x8004, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Pastoria
     GoToIfEq VAR_0x8004, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Veilstone
-    GoToIfEq VAR_0x8004, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Sunnyshore
+    GoToIfEq VAR_0x8004, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Sunyshore
     GoToIfEq VAR_0x8004, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_Snowpoint
     GoToIfEq VAR_0x8004, MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_PokemonLeagueSouth
     GoToIfEq VAR_0x8004, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, CommonScript_PokecenterNurse_FindNurseObject_FightArea
@@ -1267,7 +1266,7 @@ CommonScript_PokecenterNurse_FindNurseObject_Veilstone:
     SetVar VAR_0x8007, 0
     Return
 
-CommonScript_PokecenterNurse_FindNurseObject_Sunnyshore:
+CommonScript_PokecenterNurse_FindNurseObject_Sunyshore:
     SetVar VAR_0x8007, 0
     Return
 
@@ -1600,7 +1599,7 @@ CommonScript_SetRivalBGM:
     ReturnCommonScript
     End
 
-_15BF:
+CommonScript_SetFollowMeBGM:
     StopMusic 0
     SetBGM SEQ_TSURETEKE
     ReturnCommonScript
@@ -1692,8 +1691,8 @@ CommonScript_Frontier_End:
     ReturnCommonScript
     End
 
-_170A:
-    Message pl_msg_00000213_00130
+CommonScript_GriseousOrbCouldNotBeRemoved:
+    Message CommonStrings_Text_GriseousOrbCouldNotBeRemoved
     WaitABXPadPress
     CloseMessage
     ReleaseAll

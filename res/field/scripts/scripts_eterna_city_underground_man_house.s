@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
-#include "constants/traps.h"
+#include "generated/goods.h"
+#include "generated/traps.h"
 
 
     ScriptEntry _001A
@@ -171,13 +172,13 @@ _01DF:
     Message 6
     SetVar VAR_0x8004, TRAP_MOVE_UP
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     SetVar VAR_0x8004, TRAP_BUBBLE
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     SetVar VAR_0x8004, TRAP_LEAF
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -192,13 +193,13 @@ _023D:
     Message 10
     SetVar VAR_0x8004, 1
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    ObtainUndergroundSphere
     SetVar VAR_0x8004, 3
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    ObtainUndergroundSphere
     SetVar VAR_0x8004, 4
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DE
+    ObtainUndergroundSphere
     Message 11
     WaitABXPadPress
     CloseMessage
@@ -213,7 +214,7 @@ _029B:
     Message 14
     SetVar VAR_0x8004, TRAP_DIGGER_DRILL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7DD
+    ObtainUndergroundTrap
     Message 15
     WaitABXPadPress
     CloseMessage
@@ -226,18 +227,18 @@ _02D9:
     SetVar VAR_UNK_0x40B6, 4
     ClearFlag FLAG_UNK_0x0111
     Message 18
-    SetVar VAR_0x8004, 11
+    SetVar VAR_0x8004, UG_GOOD_PLAIN_TABLE
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
-    SetVar VAR_0x8004, 9
+    SendToUndergroundPCWithLinefeed
+    SetVar VAR_0x8004, UG_GOOD_WOODEN_CHAIR
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
-    SetVar VAR_0x8004, 17
+    SendToUndergroundPCWithLinefeed
+    SetVar VAR_0x8004, UG_GOOD_SMALL_BOOKSHELF
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
-    SetVar VAR_0x8004, 113
+    SendToUndergroundPCWithLinefeed
+    SetVar VAR_0x8004, UG_GOOD_BUNEARY_DOLL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    SendToUndergroundPCWithLinefeed
     Message 19
     WaitABXPadPress
     CloseMessage
@@ -265,21 +266,21 @@ _037F:
     GoTo _03C7
 
 _03A3:
-    SetVar VAR_0x8004, 101
+    SetVar VAR_0x8004, UG_GOOD_CHIMCHAR_DOLL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    SendToUndergroundPCWithLinefeed
     Return
 
 _03B5:
-    SetVar VAR_0x8004, 102
+    SetVar VAR_0x8004, UG_GOOD_TURTWIG_DOLL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    SendToUndergroundPCWithLinefeed
     Return
 
 _03C7:
-    SetVar VAR_0x8004, 103
+    SetVar VAR_0x8004, UG_GOOD_PIPLUP_DOLL
     SetVar VAR_0x8005, 1
-    CallCommonScript 0x7FE
+    SendToUndergroundPCWithLinefeed
     Return
 
 _03D9:
@@ -287,11 +288,11 @@ _03D9:
     GoToIfUnset FLAG_DELIVERED_STOLEN_FLAG, _0159
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0443
-    SetVar VAR_0x8004, 81
+    SetVar VAR_0x8004, UG_GOOD_PRETTY_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7FE
+    SendToUndergroundPCWithLinefeed
     SetVar VAR_UNK_0x40B6, 6
     ClearFlag FLAG_UNK_0x0111
     ClearFlag FLAG_UNK_0x00FC
@@ -310,11 +311,11 @@ _0448:
     GoToIfLt VAR_RESULT, 3, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _04A4
-    SetVar VAR_0x8004, 82
+    SetVar VAR_0x8004, UG_GOOD_SHINY_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7DC
+    SendToUndergroundPC
     SetVar VAR_UNK_0x40B6, 7
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
@@ -330,11 +331,11 @@ _04A9:
     GoToIfLt VAR_RESULT, 10, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0505
-    SetVar VAR_0x8004, 83
+    SetVar VAR_0x8004, UG_GOOD_MYSTIC_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7DC
+    SendToUndergroundPC
     SetVar VAR_UNK_0x40B6, 8
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage
@@ -350,11 +351,11 @@ _050A:
     GoToIfLt VAR_RESULT, 50, _00A7
     CallIfSet FLAG_UNK_0x00FC, _057A
     CallIfUnset FLAG_UNK_0x00FC, _0566
-    SetVar VAR_0x8004, 84
+    SetVar VAR_0x8004, UG_GOOD_GLITTER_GEM
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _056B
-    CallCommonScript 0x7DC
+    SendToUndergroundPC
     SetVar VAR_UNK_0x40B6, 9
     ClearFlag FLAG_UNK_0x00FC
     CloseMessage

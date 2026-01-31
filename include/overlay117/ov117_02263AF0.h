@@ -16,7 +16,7 @@
 #include "bg_window.h"
 #include "font.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 
 void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02263DAC *param3);
@@ -49,7 +49,7 @@ void ov117_02265ABC(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *
 void ov117_02265B3C(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *param1);
 void ov117_02265B58(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *param1, int param2, int param3, int param4);
 void ov117_02265C1C(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *param1);
-void ov117_02265DB8(BgConfig *param0, SpriteManager *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14);
+void ov117_02265DB8(BgConfig *param0, SpriteManager *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const String *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14);
 void ov117_02265EB0(UnkStruct_ov117_02265EB0 *param0);
 void ov117_02265EC8(UnkStruct_ov117_02265EC8 *param0);
 void ov117_02265F34(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265EC8 *param1);

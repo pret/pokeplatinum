@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_B1FWIFI_PLAZA_ATTENDANT_F_0",
+            "id": "LOCALID_WIFI_PLAZA_ATTENDANT_F",
             "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9204,
             "initial_dir": 1,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_B1F_TEALA_1",
+            "id": "LOCALID_TEALA_1",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9202,
             "initial_dir": 1,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_B1F_TEALA_2",
+            "id": "LOCALID_TEALA_2",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 9201,
             "initial_dir": 1,
             "data": [],

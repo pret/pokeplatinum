@@ -2,7 +2,7 @@
 
 L_0:
     LoadParticleResource 0, stockpile_spa
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 1, 1, BATTLE_COLOR_WHITE, 16
     BeginLoop 2
     PlaySoundEffectL SEQ_SE_DP_W025

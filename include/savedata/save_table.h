@@ -76,7 +76,7 @@ MigratedPokemon *SaveData_GetPalParkTransfer(SaveData *saveData);
  * @param resultCode    Load-result opcode output.
  * @return Address of the allocated HallOfFame data.
  */
-HallOfFame *SaveData_HallOfFame(SaveData *saveData, int heapID, int *resultCode);
+HallOfFame *SaveData_HallOfFame(SaveData *saveData, enum HeapID heapID, int *resultCode);
 
 /**
  * @brief Saves a mirror of the given HallOfFame data into the extended save.
@@ -96,7 +96,7 @@ int SaveData_SaveHallOfFame(SaveData *saveData, HallOfFame *hof);
  * @param recNum        Which recording slot to load.
  * @return Address of the allocated BattleRecording data.
  */
-BattleRecording *SaveData_BattleRecording(SaveData *saveData, int heapID, int *resultCode, int recNum);
+BattleRecording *SaveData_BattleRecording(SaveData *saveData, enum HeapID heapID, int *resultCode, int recNum);
 
 /**
  * @brief Saves a mirror of the given BattleRecording data into the extended save.
@@ -116,7 +116,7 @@ int SaveData_SaveBattleRecording(SaveData *saveData, BattleRecording *rec, int r
  * @param resultCode    Load-result opcode output.
  * @return Address of the allocated BattleFrontierStage data.
  */
-BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, int heapID, int *resultCode);
+BattleFrontierStage *SaveData_BattleFrontierStage(SaveData *saveData, enum HeapID heapID, int *resultCode);
 
 /**
  * @brief Saves a mirror of the given BattleRecording data into the extended save.

@@ -2,51 +2,51 @@
   "key": 63468,
   "messages": [
     {
-      "id": "pl_msg_00000633_00000",
+      "id": "UndergroundQuestions_Text_FavoriteColor",
       "en_US": "Favorite color"
     },
     {
-      "id": "pl_msg_00000633_00001",
+      "id": "UndergroundQuestions_Text_FavoriteSport",
       "en_US": "Favorite sport"
     },
     {
-      "id": "pl_msg_00000633_00002",
+      "id": "UndergroundQuestions_Text_FavoritePlace",
       "en_US": "Favorite place"
     },
     {
-      "id": "pl_msg_00000633_00003",
+      "id": "UndergroundQuestions_Text_FavoriteClass",
       "en_US": "Favorite class"
     },
     {
-      "id": "pl_msg_00000633_00004",
+      "id": "UndergroundQuestions_Text_LeastFavoriteClass",
       "en_US": "Least favorite class"
     },
     {
-      "id": "pl_msg_00000633_00005",
+      "id": "UndergroundQuestions_Text_FavoriteThing",
       "en_US": "Favorite thing"
     },
     {
-      "id": "pl_msg_00000633_00006",
+      "id": "UndergroundQuestions_Text_FavoritePersonality",
       "en_US": "Favorite personality"
     },
     {
-      "id": "pl_msg_00000633_00007",
+      "id": "UndergroundQuestions_Text_MostWantedThing",
       "en_US": "Most wanted thing"
     },
     {
-      "id": "pl_msg_00000633_00008",
+      "id": "UndergroundQuestions_Text_OwnDream",
       "en_US": "Own dream"
     },
     {
-      "id": "pl_msg_00000633_00009",
+      "id": "UndergroundQuestions_Text_FoodIWantNow",
       "en_US": "Food I want now"
     },
     {
-      "id": "pl_msg_00000633_00010",
+      "id": "UndergroundQuestions_Text_FavoritePokemon",
       "en_US": "Favorite Pokémon"
     },
     {
-      "id": "pl_msg_00000633_00011",
+      "id": "UndergroundQuestions_Text_HolidayActivity",
       "en_US": "Holiday activity"
     }
   ]

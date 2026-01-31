@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag FLAG_UNK_0x09C2
+    SetFlag FLAG_FIRST_ARRIVAL_OREBURGH_MINE
     SetFlag FLAG_UNK_0x02C8
     CallIfEq VAR_ARCEUS_EVENT_STATE, 1, _0029
     End

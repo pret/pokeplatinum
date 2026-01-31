@@ -18,7 +18,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "touch_pad.h"
 #include "touch_screen_actions.h"
@@ -151,7 +151,7 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
+static UnkStruct_02089438 *sub_020893B4(enum HeapID heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
     int i;
     UnkStruct_02089438 *v1 = NULL;
@@ -159,7 +159,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
-    v1->unk_1C = Strbuf_Init(param1 + 1, heapID);
+    v1->unk_1C = String_Init(param1 + 1, heapID);
     v1->options = options;
 
     for (i = 0; i < 4; i++) {
@@ -173,7 +173,7 @@ static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Op
     return v1;
 }
 
-UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
+UnkStruct_02089438 *sub_02089400(enum HeapID heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
     UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
@@ -182,7 +182,7 @@ UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *
     return v0;
 }
 
-UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7)
+UnkStruct_02089438 *sub_0208941C(enum HeapID heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7)
 {
     UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
@@ -196,7 +196,7 @@ void sub_02089438(UnkStruct_02089438 *param0)
     GF_ASSERT(param0->unk_1C != NULL);
     GF_ASSERT(param0 != NULL);
 
-    Strbuf_Free(param0->unk_1C);
+    String_Free(param0->unk_1C);
     Heap_Free(param0);
 }
 

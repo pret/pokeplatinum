@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag FLAG_UNK_0x09C3
+    SetFlag FLAG_FIRST_ARRIVAL_VALLEY_WINDWORKS
     GoToIfGe VAR_UNK_0x4089, 2, _0035
     End
 
@@ -331,7 +331,7 @@ _03DA:
 _03E2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfGe VAR_UNK_0x40AA, 2, _0400
+    GoToIfGe VAR_EXITED_DISTORTION_WORLD_STATE, 2, _0400
     Message 14
     GoTo _040B
     End

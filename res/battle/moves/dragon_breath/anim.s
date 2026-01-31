@@ -7,10 +7,10 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 32, 1, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 32, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 32, 1, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 32, 1, 0, 0
     PlaySoundEffectR SEQ_SE_DP_W172
     Delay 15
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_RED, 12, 
@@ -21,10 +21,10 @@ L_1:
     End
 
 L_2:
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 8, 1, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 2, 8, 1, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 8, 1, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 8, 1, 0, 0
     WaitForLRX
     PlaySoundEffectR SEQ_SE_DP_W172
     Delay 15

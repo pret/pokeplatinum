@@ -17,6 +17,7 @@
 
 #include "savedata/save_table.h"
 
+#include "battle_regulation.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "game_options.h"
@@ -30,7 +31,6 @@
 #include "sound_chatot.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_02026150.h"
 
 BattleRecording *Unk_021C07A4 = NULL;
 
@@ -54,7 +54,7 @@ void BattleRecording_Init(BattleRecording *param0)
     param0->unk_00 = 0xffffffff;
 }
 
-void sub_0202F1F8(SaveData *saveData, int heapID, int *param2)
+void sub_0202F1F8(SaveData *saveData, enum HeapID heapID, int *param2)
 {
     if (Unk_021C07A4 != NULL) {
         Heap_Free(Unk_021C07A4);
@@ -303,7 +303,7 @@ static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const U
         for (v1 = 0; v1 < v3; v1++) {
             v7 = &(param2->unk_1150[v5].unk_04[v1]);
 
-            if ((v7->isEgg == 0) && (v7->invalidData == 0)) {
+            if ((v7->isEgg == 0) && (v7->checksumFailed == 0)) {
                 param1->unk_00[v4] = v7->species;
                 param1->unk_18[v4] = v7->form;
             }
@@ -315,32 +315,32 @@ static void sub_0202F510(SaveData *saveData, UnkStruct_0202F41C *param1, const U
     switch (param3) {
     case (UnkEnum_0202F510_01):
     case (UnkEnum_0202F510_08):
-        param1->unk_28 = *(sub_02026150(saveData, 0));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 0));
         break;
     case (UnkEnum_0202F510_02):
     case (UnkEnum_0202F510_09):
-        param1->unk_28 = *(sub_02026150(saveData, 1));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 1));
         break;
     case (UnkEnum_0202F510_03):
     case (UnkEnum_0202F510_10):
-        param1->unk_28 = *(sub_02026150(saveData, 2));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 2));
         break;
     case (UnkEnum_0202F510_04):
     case (UnkEnum_0202F510_11):
-        param1->unk_28 = *(sub_02026150(saveData, 3));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 3));
         break;
     case (UnkEnum_0202F510_05):
     case (UnkEnum_0202F510_12):
-        param1->unk_28 = *(sub_02026150(saveData, 4));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 4));
         break;
     case (UnkEnum_0202F510_06):
     case (UnkEnum_0202F510_13):
-        param1->unk_28 = *(sub_02026150(saveData, 5));
+        param1->battleRegulation = *(BattleRegulation_GetByIndex(saveData, 5));
         break;
     case (UnkEnum_0202F510_00):
     case (UnkEnum_0202F510_07):
     default:
-        param1->unk_28 = *(sub_020261A8());
+        param1->battleRegulation = *(BattleRegulation_GetDefault());
         break;
     }
 
@@ -615,7 +615,7 @@ static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *party)
     Heap_Free(v1);
 }
 
-UnkStruct_0202F41C *sub_0202FD88(int heapID)
+UnkStruct_0202F41C *sub_0202FD88(enum HeapID heapID)
 {
     UnkStruct_0202F41C *v0;
 
@@ -627,7 +627,7 @@ UnkStruct_0202F41C *sub_0202FD88(int heapID)
     return v0;
 }
 
-UnkStruct_02030A80 *sub_0202FDB8(int heapID)
+UnkStruct_02030A80 *sub_0202FDB8(enum HeapID heapID)
 {
     UnkStruct_02030A80 *v0;
 
@@ -704,7 +704,7 @@ u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2)
     return 0;
 }
 
-UnkStruct_0202F41C *sub_0202FF2C(int heapID)
+UnkStruct_0202F41C *sub_0202FF2C(enum HeapID heapID)
 {
     UnkStruct_0202F41C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0202F41C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0202F41C));

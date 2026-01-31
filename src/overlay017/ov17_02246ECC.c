@@ -1313,7 +1313,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                 v7[v4] = 0;
             }
 
-            v2 = Unk_ov17_02253BBC[Unk_ov17_02253C30[v1].unk_01](v5, param2, param1, v7, param0->unk_00->unk_00.unk_10F);
+            v2 = Unk_ov17_02253BBC[Unk_ov17_02253C30[v1].unk_01](v5, param2, param1, v7, param0->unk_00->unk_00.contestType);
 
             if (v2 == 1) {
                 switch (Unk_ov17_02253C30[v1].unk_03) {
@@ -1340,7 +1340,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                 switch (Unk_ov17_02253C30[v1].unk_02) {
                 case 240:
                     for (v3 = 0; v3 < 4; v3++) {
-                        if (param0->unk_00->unk_00.unk_10F == param1->unk_00[v3].unk_0B) {
+                        if (param0->unk_00->unk_00.contestType == param1->unk_00[v3].unk_0B) {
                             param1->unk_00[v3].unk_02 += v6;
 
                             for (v4 = 0; v4 < (1 + 2); v4++) {
@@ -1414,7 +1414,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
 
         v15 = v11;
 
-        if (param0->unk_00->unk_155 == 0) {
+        if (param0->unk_00->isLinkContest == FALSE) {
             int v16, v17, v18, v19;
 
             v16 = 0;
@@ -1435,7 +1435,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
 
                 v18 = sub_02094E98(param0->unk_00) & 0xff;
 
-                if (v18 < v20[param0->unk_00->unk_00.unk_110]) {
+                if (v18 < v20[param0->unk_00->unk_00.contestRank]) {
                     v19 = param0->unk_220.unk_0E[param0->unk_00->unk_00.unk_113];
                     param1->unk_00[v15].unk_04[v19] -= 100;
                 }

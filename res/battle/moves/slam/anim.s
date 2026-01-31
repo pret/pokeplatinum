@@ -2,8 +2,8 @@
 
 L_0:
     LoadParticleResource 0, slam_spa
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_ATTACKER, 14, 4, 2
     Delay 1
     Func_MoveBattler BATTLE_ANIM_BATTLER_SPRITE_DEFENDER, -14, -4, 2

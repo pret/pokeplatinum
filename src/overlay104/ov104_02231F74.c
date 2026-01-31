@@ -13,10 +13,8 @@
 #include "overlay063/ov63_0222D77C.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
+#include "overlay104/frontier_script_context.h"
 #include "overlay104/ov104_0222E63C.h"
-#include "overlay104/ov104_0222E930.h"
-#include "overlay104/struct_ov104_0222E930_decl.h"
-#include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_0222FEDC.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -46,7 +44,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -61,7 +59,7 @@ typedef struct UnkStruct_ov104_02232B5C_t {
     SysTask *unk_04;
     Window unk_08;
     Window *unk_18;
-    Strbuf *unk_1C[28];
+    String *unk_1C[28];
     MessageLoader *unk_8C;
     StringTemplate *unk_90;
     u8 unk_94;
@@ -96,12 +94,9 @@ typedef struct {
 } UnkStruct_ov104_022419A0;
 
 static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0);
-static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u32 param2);
-static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, int param3, int param4);
+static void GetMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u32 entryID);
+static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll);
 static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8);
-UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
-void ov104_022322A8(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
-void ov104_022322B0(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
 static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232454(UnkStruct_ov104_02232B5C *param0);
@@ -109,12 +104,9 @@ static void ov104_022324C8(SysTask *param0, void *param1);
 static void ov104_02232570(UnkStruct_ov104_02232B5C *param0);
 static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2);
-void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6);
-static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u16 param4);
-static BOOL ov104_02233184(UnkStruct_ov104_0222E930 *param0);
-UnkStruct_ov104_02232B5C *ov104_022325FC(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7);
-void ov104_0223261C(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
-void ov104_02232624(UnkStruct_ov104_02232B5C *param0);
+static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6);
+static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u16 param4);
+static BOOL ov104_02233184(FrontierScriptContext *param0);
 static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
 static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0);
 static void ov104_02232830(UnkStruct_ov104_02232B5C *param0);
@@ -123,37 +115,30 @@ static void ov104_02232960(ListMenu *param0, u32 param1, u8 param2);
 static void ov104_0223296C(SysTask *param0, void *param1);
 static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1);
 static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0);
-void ov104_02232B5C(UnkStruct_ov104_02232B5C *param0);
-void ov104_022330FC(UnkStruct_ov104_0222E930 *param0, u16 *param1);
-void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2);
-extern void ov104_0223327C(UnkStruct_ov104_02232B5C *param0, int param1);
-extern void ov104_02233298(UnkStruct_ov104_02232B5C *param0, int param1);
 
-void ov104_02231F74(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u16 param2, u8 param3, UnkStruct_ov104_0222FEDC *param4)
+void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions)
 {
-    u8 v0;
-    u8 v1;
-    u8 v2;
+    u8 renderDelay;
+    u8 autoScroll;
+    u8 font;
 
     ov104_02231FC4(param0);
-    ov104_02232034(param0, param1, param2);
+    GetMessage(param0, msgLoader, messageID);
 
-    if (param4 == NULL) {
+    if (msgOptions == NULL) {
         UnkStruct_ov104_0223C4CC *v3 = ov104_0222E924(param0);
-        UnkStruct_ov104_02230BE4 *v4;
+        UnkStruct_ov104_02230BE4 *v4 = sub_0209B970(v3->unk_08);
 
-        v4 = sub_0209B970(v3->unk_08);
-
-        v0 = Options_TextFrameDelay(v4->options);
-        v1 = 0;
-        v2 = FONT_MESSAGE;
+        renderDelay = Options_TextFrameDelay(v4->options);
+        autoScroll = AUTO_SCROLL_DISABLED;
+        font = FONT_MESSAGE;
     } else {
-        v0 = param4->unk_00;
-        v1 = param4->unk_01;
-        v2 = param4->unk_02;
+        renderDelay = msgOptions->renderDelay;
+        autoScroll = msgOptions->scrollFlags;
+        font = msgOptions->font;
     }
 
-    ov104_02232050(param0, v2, v0, param3, v1);
+    PrintMessage(param0, font, renderDelay, canSpeedUp, autoScroll);
 }
 
 static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
@@ -162,68 +147,66 @@ static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
 
     if (param0->unk_5A == 0) {
         Window_Add(
-            v0->unk_00, &param0->unk_64, 1, 2, 19, 27, 4, 13, (((1024 - (18 + 12)) - 9) - (27 * 4)));
-        Window_FillTilemap(&param0->unk_64, 15);
-        Window_DrawMessageBoxWithScrollCursor(&param0->unk_64, 0, (1024 - (18 + 12)), 11);
+            v0->unk_00, &param0->msgWindow, 1, 2, 19, 27, 4, 13, ((1024 - (18 + 12)) - 9) - (27 * 4));
+        Window_FillTilemap(&param0->msgWindow, 15);
+        Window_DrawMessageBoxWithScrollCursor(&param0->msgWindow, 0, 1024 - (18 + 12), 11);
 
         param0->unk_5A = 1;
     } else {
-        Window_FillTilemap(&param0->unk_64, 15);
+        Window_FillTilemap(&param0->msgWindow, 15);
     }
 }
 
-static void ov104_02232034(UnkStruct_ov104_022320B4 *param0, const MessageLoader *param1, u32 param2)
+static void GetMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u32 entryID)
 {
-    MessageLoader_GetStrbuf(param1, param2, param0->unk_4C);
-    StringTemplate_Format(param0->unk_44, param0->unk_48, param0->unk_4C);
+    MessageLoader_GetString(msgLoader, entryID, param0->fmtString);
+    StringTemplate_Format(param0->strTemplate, param0->string, param0->fmtString);
 }
 
-static void ov104_02232050(UnkStruct_ov104_022320B4 *param0, enum Font param1, int param2, int param3, int param4)
+static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll)
 {
-    RenderControlFlags_SetCanABSpeedUpPrint(param3);
-    RenderControlFlags_SetAutoScrollFlags(param4);
+    RenderControlFlags_SetCanABSpeedUpPrint(canSpeedUp);
+    RenderControlFlags_SetAutoScrollFlags(autoScroll);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
-    param0->unk_50 = Text_AddPrinterWithParams(&param0->unk_64, param1, param0->unk_48, 0, 0, param2, NULL);
+    param0->printerID = Text_AddPrinterWithParams(&param0->msgWindow, font, param0->string, 0, 0, renderDelay, NULL);
 }
 
 void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
 {
     GF_ASSERT(param0->unk_5A == 1);
 
-    Window_EraseMessageBox(&param0->unk_64, 0);
-    Window_Remove(&param0->unk_64);
+    Window_EraseMessageBox(&param0->msgWindow, 0);
+    Window_Remove(&param0->msgWindow);
 
     param0->unk_5A = 0;
 }
 
-void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6)
+static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16 param2, u16 param3, u16 param4, s16 param5, u8 canSpeedUp)
 {
-    Sentence v0;
-
     ov104_02231FC4(param0);
 
-    ov104_022320FC(param0->unk_48, param2, param3, param4, param5);
+    ov104_022320FC(param0->string, param2, param3, param4, param5);
 
-    if (param6 != 0xFF) {
-        ov104_02232050(param0, FONT_MESSAGE, param1, param6, 0);
+    if (canSpeedUp != 0xFF) {
+        PrintMessage(param0, FONT_MESSAGE, renderDelay, canSpeedUp, AUTO_SCROLL_DISABLED);
     } else {
-        ov104_02232050(param0, FONT_MESSAGE, TEXT_SPEED_INSTANT, param6, 0);
+        PrintMessage(param0, FONT_MESSAGE, TEXT_SPEED_INSTANT, canSpeedUp, AUTO_SCROLL_DISABLED);
     }
 }
 
-static void ov104_022320FC(Strbuf *param0, u16 param1, u16 param2, u16 param3, u16 param4)
+static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u16 param4)
 {
     Sentence v0;
-    Strbuf *v1;
+    String *v1;
 
     sub_02014A84(&v0);
     sub_02014CE0(&v0, param1, param2);
-    sub_02014CF8(&v0, 0, param3);
-    sub_02014CF8(&v0, 1, param4);
+    Sentence_SetWord(&v0, 0, param3);
+    Sentence_SetWord(&v0, 1, param4);
 
     v1 = sub_02014B34(&v0, HEAP_ID_FIELD3);
-    Strbuf_Copy(param0, v1);
-    Strbuf_Free(v1);
+    String_Copy(param0, v1);
+    String_Free(v1);
 }
 
 static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8)
@@ -231,7 +214,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     int v0;
 
     if (param8 == NULL) {
-        param1->unk_8C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, param0->heapID);
+        param1->unk_8C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, param0->heapID);
         param1->unk_97_1 = 1;
     } else {
         param1->unk_8C = param8;
@@ -250,7 +233,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     param1->unk_98 = param2;
     param1->unk_99 = param3;
     param1->unk_9B = 0;
-    param1->unk_18 = &param0->unk_64;
+    param1->unk_18 = &param0->msgWindow;
     param1->unk_94 = 3;
     param1->unk_2D4 = param4;
 
@@ -266,7 +249,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C[v0] = Strbuf_Init((40 * 2), param0->heapID);
+        param1->unk_1C[v0] = String_Init(40 * 2, param0->heapID);
     }
 
     *param1->unk_A0 = 0xeeee;
@@ -331,12 +314,12 @@ static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
+        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
 
-        MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
+        MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_B4[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     param0->unk_29C[param0->unk_9B] = param2;
@@ -357,7 +340,7 @@ static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_B4[v0].entry, 0);
+        v1 = Font_CalcStringWidth(FONT_SYSTEM, (String *)param0->unk_B4[v0].entry, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -439,7 +422,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
     Window_Remove(param0->unk_A4.window);
 
     for (v0 = 0; v0 < 28; v0++) {
-        Strbuf_Free(param0->unk_1C[v0]);
+        String_Free(param0->unk_1C[v0]);
     }
 
     if (param0->unk_97_1 == 1) {
@@ -513,13 +496,13 @@ static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
+        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
 
-        MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
+        MessageLoader_GetString(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_1BC[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
 
-        Strbuf_Free(v2);
+        String_Free(v2);
     }
 
     if (param3 == 0xfa) {
@@ -545,7 +528,7 @@ static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
             break;
         }
 
-        v1 = Font_CalcStrbufWidth(FONT_SYSTEM, (Strbuf *)param0->unk_1BC[v0].entry, 0);
+        v1 = Font_CalcStringWidth(FONT_SYSTEM, (String *)param0->unk_1BC[v0].entry, 0);
 
         if (v2 < v1) {
             v2 = v1;
@@ -673,7 +656,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     Window_Remove(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {
-        Strbuf_Free(param0->unk_1C[v0]);
+        String_Free(param0->unk_1C[v0]);
     }
 
     if (param0->unk_97_1 == 1) {
@@ -687,19 +670,19 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
 
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2)
 {
-    Strbuf *v0 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
-    Strbuf *v1 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
+    String *v0 = String_Init(40 * 2, param0->unk_00->heapID);
+    String *v1 = String_Init(40 * 2, param0->unk_00->heapID);
 
     Window_FillTilemap(param0->unk_18, 15);
 
-    MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
+    MessageLoader_GetString(param0->unk_8C, param1, v0);
 
     StringTemplate_Format(param0->unk_90, v1, v0);
 
     Text_AddPrinterWithParams(param0->unk_18, 1, v1, 0, 0, param2, NULL);
 
-    Strbuf_Free(v0);
-    Strbuf_Free(v1);
+    String_Free(v0);
+    String_Free(v1);
     return;
 }
 
@@ -901,7 +884,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
     {
         u32 personality, species;
 
-        v4 = Heap_Alloc(heapID, (10 * 10 * ((8 / 2) * 8)));
+        v4 = Heap_Alloc(heapID, 10 * 10 * ((8 / 2) * 8));
         personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
@@ -916,7 +899,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum Heap
 
         v11 = Sprite_GetImageProxy(v5->sprite);
         DC_FlushRange(v4, sizeof(10 * 10 * ((8 / 2) * 8)));
-        GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], (10 * 10 * ((8 / 2) * 8)));
+        GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], 10 * 10 * ((8 / 2) * 8));
 
         v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -1058,35 +1041,35 @@ void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
     Sprite_DeleteAndFreeResources(param1);
 }
 
-void ov104_022330FC(UnkStruct_ov104_0222E930 *param0, u16 *param1)
+void ov104_022330FC(FrontierScriptContext *param0, u16 *param1)
 {
     ov104_0223310C(param0, param1, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
     return;
 }
 
-void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 bankID)
+void ov104_0223310C(FrontierScriptContext *param0, u16 *param1, u32 bankID)
 {
     u8 v0;
     MessageLoader *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+        v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
-        ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
+        FrontierShowMessage(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);
     } else {
         v0 = Options_TextFrameDelay(SaveData_GetOptions(v2->saveData));
         ov104_022320B4(param0->unk_00, v0, param1[0], param1[1], param1[2], param1[3], 1);
     }
 
-    ov104_0222E974(param0, ov104_02233184);
+    FrontierScriptContext_Pause(param0, ov104_02233184);
     return;
 }
 
-static BOOL ov104_02233184(UnkStruct_ov104_0222E930 *param0)
+static BOOL ov104_02233184(FrontierScriptContext *param0)
 {
-    if (Text_IsPrinterActive(param0->unk_00->unk_50) == 0) {
+    if (Text_IsPrinterActive(param0->unk_00->printerID) == 0) {
         return 1;
     }
 

@@ -94,10 +94,10 @@ static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
     [FADE_TYPE_UNK_13] = sub_0200FAEC,
     [FADE_TYPE_UNK_14] = sub_0200FB18,
     [FADE_TYPE_UNK_15] = sub_0200FB4C,
-    [FADE_TYPE_UNK_16] = sub_0200FB7C,
-    [FADE_TYPE_UNK_17] = sub_0200FBA8,
-    [FADE_TYPE_UNK_18] = sub_0200FBD4,
-    [FADE_TYPE_UNK_19] = sub_0200FC00,
+    [FADE_TYPE_CIRCLE_OUT] = sub_0200FB7C,
+    [FADE_TYPE_CIRCLE_IN] = sub_0200FBA8,
+    [FADE_TYPE_TOP_HALF_CIRCLE_OUT] = sub_0200FBD4,
+    [FADE_TYPE_TOP_HALF_CIRCLE_IN] = sub_0200FC00,
     [FADE_TYPE_UNK_20] = sub_0200FC2C,
     [FADE_TYPE_UNK_21] = sub_0200FC58,
     [FADE_TYPE_UNK_22] = sub_0200FC84,
@@ -118,8 +118,8 @@ static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
     [FADE_TYPE_UNK_37] = sub_0200FFE8,
     [FADE_TYPE_UNK_38] = sub_02010014,
     [FADE_TYPE_UNK_39] = sub_02010040,
-    [FADE_TYPE_UNK_40] = sub_0201006C,
-    [FADE_TYPE_UNK_41] = sub_020100A8,
+    [FADE_TYPE_CLAMP_OUT] = sub_0201006C,
+    [FADE_TYPE_CLAMP_IN] = sub_020100A8,
 };
 
 static ScreenFadeManager sScreenFadeManager;

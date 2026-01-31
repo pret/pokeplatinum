@@ -3,9 +3,9 @@
 L_0:
     LoadParticleResource 0, crabhammer_spa
     PlaySoundEffectR SEQ_SE_DP_W233B
-    CreateEmitter 0, 1, 4
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 8, BATTLE_COLOR_TEAL_GREEN
     WaitForAnimTasks
     Func_FadeBg FADE_BG_TYPE_BASE, 0, 8, 0, BATTLE_COLOR_TEAL_GREEN

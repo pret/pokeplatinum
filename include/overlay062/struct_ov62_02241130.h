@@ -8,7 +8,7 @@
 
 typedef struct {
     int unk_00;
-    int heapID;
+    enum HeapID heapID;
     SaveData *saveData;
     UnkStruct_ov62_022349A8_sub2 unk_0C;
     UnkFuncPtr_ov62_022349A8 unk_38;

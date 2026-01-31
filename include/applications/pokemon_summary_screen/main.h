@@ -5,7 +5,6 @@
 
 #include "constants/moves.h"
 
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/species_sprite_data.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -17,11 +16,12 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "savedata.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -354,9 +354,9 @@ typedef struct PokemonSummary {
 } PokemonSummary;
 
 typedef struct PokemonSummaryMonData {
-    Strbuf *speciesName;
-    Strbuf *nickname;
-    Strbuf *OTName;
+    String *speciesName;
+    String *nickname;
+    String *OTName;
 
     u16 species;
     u16 heldItem;
@@ -411,7 +411,7 @@ typedef struct PokemonSummaryMonSpriteData {
     Camera *camera;
     void *spriteManager;
     SpriteAnimFrame frames[MAX_ANIMATION_FRAMES];
-    PokemonAnimationSys *animationSys;
+    PokemonAnimManager *monAnimMan;
     PokemonSprite *sprite;
     BOOL flip;
 } PokemonSummaryMonSpriteData;
@@ -440,8 +440,8 @@ typedef struct PokemonSummaryScreen {
     MessageLoader *msgLoader;
     MessageLoader *ribbonLoader;
     StringTemplate *strFormatter;
-    Strbuf *strbuf;
-    Strbuf *playerName;
+    String *string;
+    String *playerName;
     MessageLoader *moveNameLoader;
     NARC *narcPlPokeData;
 

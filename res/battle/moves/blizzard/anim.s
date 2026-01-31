@@ -14,14 +14,14 @@ L_0:
 L_1:
     PlaySoundEffectC SEQ_SE_DP_KAZE
     WaitForBgSwitch
-    CreateEmitter 0, 3, 0
+    CreateEmitter 0, 3, EMITTER_CB_NONE
     PlaySoundEffectC SEQ_SE_DP_W059
-    CreateEmitter 0, 1, 20
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Delay 4
     PlaySoundEffectR SEQ_SE_DP_151
     Delay 12
-    CreateEmitter 0, 0, 20
-    CreateEmitter 0, 2, 20
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     Delay 15
@@ -43,14 +43,14 @@ L_1:
 L_2:
     PlaySoundEffectC SEQ_SE_DP_KAZE
     WaitForBgSwitch
-    CreateEmitter 0, 4, 0
+    CreateEmitter 0, 4, EMITTER_CB_NONE
     PlaySoundEffectC SEQ_SE_DP_W059
-    CreateEmitter 0, 1, 20
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Delay 4
     PlaySoundEffectR SEQ_SE_DP_151
     Delay 12
-    CreateEmitter 0, 0, 20
-    CreateEmitter 0, 2, 20
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER_SIDE
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER_PARTNER
     Delay 15

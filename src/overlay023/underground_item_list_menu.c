@@ -15,7 +15,7 @@
 #include "system.h"
 #include "unk_0202854C.h"
 
-UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID, MoveItemCallback moveItemCallback, Underground *underground, BOOL isGoodsPC)
+UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID, MoveItemCallback moveItemCallback, Underground *underground, BOOL isDecorationMenu)
 {
     UndergroundItemListMenu *menu = (UndergroundItemListMenu *)Heap_Alloc(heapID, sizeof(UndergroundItemListMenu));
 
@@ -25,7 +25,7 @@ UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template,
 
     if (menu->moveItemCallback) {
         menu->underground = underground;
-        menu->isGoodsPC = isGoodsPC;
+        menu->isDecorationMenu = isDecorationMenu;
         menu->arrow = ColoredArrow_New(heapID);
 
         ColoredArrow_SetColor(menu->arrow, TEXT_COLOR(8, 9, 15));
@@ -115,7 +115,7 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
                     }
                 }
 
-                if (menu->isGoodsPC) {
+                if (menu->isDecorationMenu) {
                     for (i = 0; i < count - 1; i++) {
                         BOOL isPlaced = Underground_IsGoodAtSlotPlacedInBase(menu->underground, i);
                         updatedChoices[i].index = (i << 1) + (!isPlaced ? 1 : 0);

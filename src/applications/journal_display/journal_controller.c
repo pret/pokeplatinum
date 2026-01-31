@@ -24,7 +24,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "trainer_info.h"
@@ -300,16 +300,16 @@ static void JournalController_LoadGraphics(JournalManager *journalManager)
 
 static void JournalController_InitStringUtil(JournalManager *journalManager)
 {
-    journalManager->loader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_JOURNAL_ENTRIES, HEAP_ID_JOURNAL);
+    journalManager->loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_JOURNAL_ENTRIES, HEAP_ID_JOURNAL);
     journalManager->template = StringTemplate_Default(HEAP_ID_JOURNAL);
-    journalManager->strbuf = Strbuf_Init(128, HEAP_ID_JOURNAL);
+    journalManager->string = String_Init(128, HEAP_ID_JOURNAL);
 }
 
 static void JournalController_FreeStringUtil(JournalManager *journalManager)
 {
     MessageLoader_Free(journalManager->loader);
     StringTemplate_Free(journalManager->template);
-    Strbuf_Free(journalManager->strbuf);
+    String_Free(journalManager->string);
 }
 
 static int JournalController_IsOpeningTransitionDone(JournalManager *journalManager)

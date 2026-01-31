@@ -2,10 +2,10 @@
 
 L_0:
     LoadParticleResource 0, withdraw_spa
-    CreateEmitter 0, 2, 3
-    CreateEmitter 0, 3, 3
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 0, 3
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
     PlaySoundEffectL SEQ_SE_DP_W029
     Delay 17
     PlayLoopedSoundEffectL SEQ_SE_DP_W145C, 3, 5

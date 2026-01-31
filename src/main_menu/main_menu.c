@@ -40,7 +40,7 @@
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "system_data.h"
@@ -50,6 +50,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/main_menu_alerts.h"
 #include "res/text/bank/main_menu_options.h"
 #include "res/text/bank/unk_0695.h"
@@ -629,7 +630,7 @@ static void LoadScrollArrowsSprites(MainMenuAppData *appData)
 {
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 43, 40, 42, 41, DS_SCREEN_MAIN);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, main_menu_scroll_arrows_NCGR_lz, main_menu_scroll_arrows_NCLR, main_menu_scroll_arrows_cell_NCER_lz, main_menu_scroll_arrows_anim_NANR_lz, DS_SCREEN_MAIN);
 
     appData->scrollUpArrowSprite = MainMenuUtil_InitSprite(DS_SCREEN_MAIN, appData->scrollUpArrowSprite, HW_LCD_WIDTH / 2, SCROLL_ARROWS_OFFSET, 0);
     Sprite_SetDrawFlag(appData->scrollUpArrowSprite, FALSE);
@@ -640,8 +641,8 @@ static void LoadScrollArrowsSprites(MainMenuAppData *appData)
 
 static void LoadWirelessIconsGraphics(MainMenuAppData *appData)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 45, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 44, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wireless_icons_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(PLTT_4), PALETTE_SIZE_BYTES, HEAP_ID_MAIN_MENU);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wireless_icons_NCGR, appData->bgConfig, BG_LAYER_MAIN_2, WIRELESS_ICONS_TILES_OFFS, WIRELESS_ISONS_TILESET_SIZE * TILE_SIZE_4BPP, FALSE, HEAP_ID_MAIN_MENU);
 }
 
 static void DrawWirelessIcon(MainMenuAppData *appData, int column, int row, int type)
@@ -688,12 +689,12 @@ static void ClearWirelessIcon(MainMenuAppData *appData, int column, int row)
 
 static void PrintRightAlignedWithMargin(Window *window, MessageLoader *msgLoader, StringTemplate *strTemplate, TextColor textColor, u32 entryID, u32 yOffset)
 {
-    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, entryID, HEAP_ID_MAIN_MENU);
-    u32 textWidth = Font_CalcStrbufWidth(FONT_SYSTEM, strBuf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
+    String *string = MessageUtil_ExpandedString(strTemplate, msgLoader, entryID, HEAP_ID_MAIN_MENU);
+    u32 textWidth = Font_CalcStringWidth(FONT_SYSTEM, string, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     u32 xOffset = Window_GetWidth(window) * TILE_WIDTH_PIXELS - (textWidth + CONTINUE_WINDOW_MARGIN);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, textColor, NULL);
-    Strbuf_Free(strBuf);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, textColor, NULL);
+    String_Free(string);
 }
 
 static void SetTemplateNumberCustomFormatting(StringTemplate *strTemplate, int number)
@@ -719,7 +720,7 @@ static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption o
 {
     StringTemplate *strTemplate; // Forward-declaration required to match.
 
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAIN_MENU_OPTIONS, HEAP_ID_MAIN_MENU);
     strTemplate = StringTemplate_Default(HEAP_ID_MAIN_MENU);
 
     TextColor textColor;
@@ -737,9 +738,9 @@ static BOOL RenderContinueOption(MainMenuAppData *appData, enum MainMenuOption o
             continue;
         }
 
-        Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, sContinueOptionStringsIDs[i], HEAP_ID_MAIN_MENU);
-        Text_AddPrinterWithParamsAndColor(window->window, FONT_SYSTEM, strBuf, CONTINUE_WINDOW_MARGIN, TEXT_LINES(i), TEXT_SPEED_NO_TRANSFER, textColor, NULL);
-        Strbuf_Free(strBuf);
+        String *string = MessageUtil_ExpandedString(strTemplate, msgLoader, sContinueOptionStringsIDs[i], HEAP_ID_MAIN_MENU);
+        Text_AddPrinterWithParamsAndColor(window->window, FONT_SYSTEM, string, CONTINUE_WINDOW_MARGIN, TEXT_LINES(i), TEXT_SPEED_NO_TRANSFER, textColor, NULL);
+        String_Free(string);
     }
 
     StringTemplate_SetPlayerName(strTemplate, 0, appData->trainerInfo);

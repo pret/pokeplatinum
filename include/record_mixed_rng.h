@@ -5,7 +5,7 @@
 
 #include "charcode.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 enum RecordMixedRNGEntry {
     RECORD_MIXED_RNG_PLAYER_ORIGINAL,
@@ -27,7 +27,7 @@ typedef struct RecordMixedRNG {
     charcode_t groupName[UNION_GROUP_NAME_LEN + 1];
     charcode_t playerName[TRAINER_NAME_LEN + 1];
     u8 gender;
-    u8 countryCode;
+    u8 language;
     u16 dummy;
     u32 seed;
     u32 rand;
@@ -43,11 +43,11 @@ u32 RecordMixedRNG_GetEntrySeed(RecordMixedRNG *rngCollection, enum RecordMixedR
 void RecordMixedRNG_SetEntrySeed(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, u32 seed);
 u32 RecordMixedRNG_GetRand(RecordMixedRNG *rngCollection);
 const charcode_t *RecordMixedRNG_GetEntryName(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice);
-void RecordMixedRNG_GetEntryNameAsStrbuf(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice, Strbuf *outStrbuf);
+void RecordMixedRNG_GetEntryNameAsString(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice, String *outString);
 void RecordMixedRNG_SetEntryGender(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int gender);
 int RecordMixedRNG_GetEntryGender(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry);
-int RecordMixedRNG_GetEntryCountryCode(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry);
-void RecordMixedRNG_SetEntryCountryCode(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int countryCode);
+int RecordMixedRNG_GetEntryLanguage(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry);
+void RecordMixedRNG_SetEntryLanguage(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int language);
 BOOL RecordMixedRNG_IsEntryValid(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry);
 BOOL RecordMixedRNG_IsEntryEqualToOverride(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry);
 BOOL RecordMixedRNG_DoesCollectionContainGroup(const RecordMixedRNG *rngCollection, const charcode_t *groupName);

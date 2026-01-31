@@ -141,8 +141,8 @@ typedef struct ScriptManager {
     u16 *saveType; // the result of the check to determine what type of save is required in ScrCmd_CheckSaveType
     ScriptContext *ctx[NUM_SCRIPT_CONTEXTS];
     StringTemplate *strTemplate;
-    Strbuf *msgBuf;
-    Strbuf *tmpBuf;
+    String *msgBuf;
+    String *tmpBuf;
     void *savingIcon;
     ApproachingTrainer trainers[2];
     u16 data[SCRIPT_DATA_MAX - SCRIPT_DATA_START];
@@ -183,7 +183,7 @@ u16 Script_GetHiddenItemFlag(u16 scriptID);
 u16 Script_GetHiddenItemScript(u16 scriptID);
 void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem);
 u8 Script_GetHiddenItemRange(u16 scriptID);
-HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, int heapID);
+HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSystem, enum HeapID heapID);
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
 BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 param1);

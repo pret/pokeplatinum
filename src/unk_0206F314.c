@@ -8,8 +8,7 @@
 #include "struct_defs/struct_0202EE10_sub1.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D2F14.h"
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bg_window.h"
 #include "field_task.h"
@@ -26,7 +25,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -36,15 +35,15 @@
 typedef struct {
     MessageLoader *unk_00;
     StringTemplate *unk_04;
-    Strbuf *unk_08;
-    Strbuf *unk_0C;
-    Strbuf *unk_10;
-    Strbuf *unk_14;
-    Strbuf *unk_18;
-    Strbuf *unk_1C[7];
-    Strbuf *unk_38[6];
-    Strbuf *unk_50[6];
-    Strbuf *unk_68[3];
+    String *unk_08;
+    String *unk_0C;
+    String *unk_10;
+    String *unk_14;
+    String *unk_18;
+    String *unk_1C[7];
+    String *unk_38[6];
+    String *unk_50[6];
+    String *unk_68[3];
 } UnkStruct_0206F7F8_sub1;
 
 typedef struct {
@@ -65,7 +64,7 @@ typedef struct {
 } UnkStruct_020F02D0;
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int *unk_04;
     int unk_08;
     int unk_0C;
@@ -97,7 +96,7 @@ typedef struct {
     Window unk_E4;
     Window unk_F4;
     Window unk_104[3];
-    UnkStruct_ov5_021D30A8 unk_134;
+    SpriteResourceManager spriteManager;
     ManagedSprite *unk_2FC[2];
     UnkStruct_0202E8C0 *unk_304;
     UnkStruct_0202EE10 *unk_308[7];
@@ -519,25 +518,25 @@ static void sub_0206FA08(UnkStruct_0206F7F8 *param0)
 {
     int v0;
 
-    param0->unk_2C.unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0532, param0->heapID);
+    param0->unk_2C.unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0532, param0->heapID);
     param0->unk_2C.unk_04 = StringTemplate_New(2, (38 * 2), param0->heapID);
-    param0->unk_2C.unk_08 = Strbuf_Init((38 * 2), param0->heapID);
-    param0->unk_2C.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 13);
-    param0->unk_2C.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 22);
-    param0->unk_2C.unk_14 = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 36);
-    param0->unk_2C.unk_18 = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 14);
+    param0->unk_2C.unk_08 = String_Init((38 * 2), param0->heapID);
+    param0->unk_2C.unk_0C = MessageLoader_GetNewString(param0->unk_2C.unk_00, 13);
+    param0->unk_2C.unk_10 = MessageLoader_GetNewString(param0->unk_2C.unk_00, 22);
+    param0->unk_2C.unk_14 = MessageLoader_GetNewString(param0->unk_2C.unk_00, 36);
+    param0->unk_2C.unk_18 = MessageLoader_GetNewString(param0->unk_2C.unk_00, 14);
 
     for (v0 = 0; v0 < param0->unk_18; v0++) {
-        param0->unk_2C.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 0 + param0->unk_19 + v0);
-        param0->unk_2C.unk_50[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 23 + param0->unk_19 + v0);
+        param0->unk_2C.unk_38[v0] = MessageLoader_GetNewString(param0->unk_2C.unk_00, 0 + param0->unk_19 + v0);
+        param0->unk_2C.unk_50[v0] = MessageLoader_GetNewString(param0->unk_2C.unk_00, 23 + param0->unk_19 + v0);
     }
 
     for (v0 = 0; v0 < 7; v0++) {
-        param0->unk_2C.unk_1C[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 15 + v0);
+        param0->unk_2C.unk_1C[v0] = MessageLoader_GetNewString(param0->unk_2C.unk_00, 15 + v0);
     }
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_2C.unk_68[v0] = MessageLoader_GetNewStrbuf(param0->unk_2C.unk_00, 37 + v0);
+        param0->unk_2C.unk_68[v0] = MessageLoader_GetNewString(param0->unk_2C.unk_00, 37 + v0);
     }
 }
 
@@ -546,23 +545,23 @@ static void sub_0206FAC0(UnkStruct_0206F7F8 *param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        Strbuf_Free(param0->unk_2C.unk_68[v0]);
+        String_Free(param0->unk_2C.unk_68[v0]);
     }
 
     for (v0 = 0; v0 < 7; v0++) {
-        Strbuf_Free(param0->unk_2C.unk_1C[v0]);
+        String_Free(param0->unk_2C.unk_1C[v0]);
     }
 
     for (v0 = 0; v0 < param0->unk_18; v0++) {
-        Strbuf_Free(param0->unk_2C.unk_38[v0]);
-        Strbuf_Free(param0->unk_2C.unk_50[v0]);
+        String_Free(param0->unk_2C.unk_38[v0]);
+        String_Free(param0->unk_2C.unk_50[v0]);
     }
 
-    Strbuf_Free(param0->unk_2C.unk_18);
-    Strbuf_Free(param0->unk_2C.unk_14);
-    Strbuf_Free(param0->unk_2C.unk_10);
-    Strbuf_Free(param0->unk_2C.unk_0C);
-    Strbuf_Free(param0->unk_2C.unk_08);
+    String_Free(param0->unk_2C.unk_18);
+    String_Free(param0->unk_2C.unk_14);
+    String_Free(param0->unk_2C.unk_10);
+    String_Free(param0->unk_2C.unk_0C);
+    String_Free(param0->unk_2C.unk_08);
     StringTemplate_Free(param0->unk_2C.unk_04);
     MessageLoader_Free(param0->unk_2C.unk_00);
 }
@@ -634,23 +633,23 @@ static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)
         },
     };
 
-    ov5_021D3190(&param0->unk_134, &v1, 2, param0->heapID);
+    SpriteResourceManager_SetCapacities(&param0->spriteManager, &v1, 2, param0->heapID);
 
     {
         NARC *v3;
 
         v3 = NARC_ctor(NARC_INDEX_GRAPHIC__RANKING, param0->heapID);
 
-        ov5_021D32E8(&param0->unk_134, v3, 0, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
-        ov5_021D3374(&param0->unk_134, v3, 2, 0, 13528);
-        ov5_021D339C(&param0->unk_134, v3, 3, 0, 13528);
-        ov5_021D3414(&param0->unk_134, v3, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+        SpriteResourceManager_LoadPalette(&param0->spriteManager, v3, 0, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
+        SpriteResourceManager_LoadCell(&param0->spriteManager, v3, 2, 0, 13528);
+        SpriteResourceManager_LoadAnimation(&param0->spriteManager, v3, 3, 0, 13528);
+        SpriteResourceManager_LoadTiles(&param0->spriteManager, v3, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
 
         NARC_dtor(v3);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_2FC[v0] = ov5_021D3584(&param0->unk_134, &v2[v0]);
+        param0->unk_2FC[v0] = SpriteResourceManager_CreateManagedSprite(&param0->spriteManager, &v2[v0]);
     }
 
     ManagedSprite_SetDrawFlag(param0->unk_2FC[1], 0);
@@ -666,7 +665,7 @@ static void sub_0206FD94(UnkStruct_0206F7F8 *param0)
         }
     }
 
-    ov5_021D375C(&param0->unk_134);
+    SpriteResourceManager_Cleanup(&param0->spriteManager);
 }
 
 static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
@@ -680,10 +679,10 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     Window_FillTilemap(&param0->unk_D4, ((15 << 4) | 15));
 
     for (v0 = 0; v0 < param0->unk_18; v0++) {
-        StringList_AddFromStrbuf(param0->unk_C4, param0->unk_2C.unk_38[v0], v0);
+        StringList_AddFromString(param0->unk_C4, param0->unk_2C.unk_38[v0], v0);
     }
 
-    StringList_AddFromStrbuf(param0->unk_C4, param0->unk_2C.unk_0C, 0xFFFF);
+    StringList_AddFromString(param0->unk_C4, param0->unk_2C.unk_0C, 0xFFFF);
 
     MI_CpuCopy8((void *)&Unk_020F02B0, (void *)&(param0->unk_A0), sizeof(ListMenuTemplate));
 
@@ -782,12 +781,12 @@ static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
         }
 
         StringTemplate_SetNumber(param0->unk_2C.unk_04, 0, v2, 1, 1, 1);
-        StringTemplate_SetStrbuf(param0->unk_2C.unk_04, 1, v6->unk_04[v0].unk_00->unk_08, 2, 1, GAME_LANGUAGE);
+        StringTemplate_SetString(param0->unk_2C.unk_04, 1, v6->unk_04[v0].unk_00->unk_08, 2, 1, GAME_LANGUAGE);
         StringTemplate_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_18);
         Text_AddPrinterWithParamsAndColor(&param0->unk_D4, FONT_SYSTEM, param0->unk_2C.unk_08, 8, v3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
         StringTemplate_SetNumber(param0->unk_2C.unk_04, 0, v4, v7->unk_04, 1, 1);
         StringTemplate_Format(param0->unk_2C.unk_04, param0->unk_2C.unk_08, param0->unk_2C.unk_1C[v7->unk_06 - 15]);
-        Text_AddPrinterWithParamsAndColor(&param0->unk_D4, FONT_SYSTEM, param0->unk_2C.unk_08, (24 * 8) - Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_2C.unk_08, 0) - 8, v3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
+        Text_AddPrinterWithParamsAndColor(&param0->unk_D4, FONT_SYSTEM, param0->unk_2C.unk_08, (24 * 8) - Font_CalcStringWidth(FONT_SYSTEM, param0->unk_2C.unk_08, 0) - 8, v3 * 16, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
 
         param0->unk_32C[v3] = v0;
         v5 = v4;
@@ -850,31 +849,31 @@ static BOOL sub_020702D0(FieldTask *param0)
         break;
     case 2:
         v1->unk_00 = sub_0206F488(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 3:
         v1->unk_00 = sub_0206F498(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 4:
         v1->unk_00 = sub_0206F508(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 5:
         v1->unk_00 = sub_0206F514(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 6:
         v1->unk_00 = sub_0206F554(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 7:
         v1->unk_00 = sub_0206F658(v1->unk_08);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 8:
         v1->unk_00 = sub_0206F748(v2);
-        SpriteList_Update(v1->unk_08->unk_134.unk_00);
+        SpriteList_Update(v1->unk_08->spriteManager.spriteList);
         break;
     case 9:
         if (!(gSystem.pressedKeys & PAD_BUTTON_A)) {

@@ -21,7 +21,7 @@ typedef struct ObjectEvent {
     u16 graphicsID;
     u16 movementType;
     u16 trainerType;
-    u16 flag;
+    u16 hiddenFlag;
     u16 script;
     s16 dir;
     u16 data[3];

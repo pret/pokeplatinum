@@ -12,7 +12,7 @@ L_0:
     Delay 2
     Func_FakeOutCurtain
     Delay 4
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 4
     Delay 8
     Func_FakeOut

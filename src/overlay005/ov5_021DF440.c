@@ -8,8 +8,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
-#include "struct_defs/struct_02073838.h"
-#include "struct_defs/struct_02073974.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_light.h"
@@ -26,18 +24,18 @@
 #include "narc.h"
 #include "overworld_anim_manager.h"
 #include "resource_collection.h"
+#include "simple3d.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02020AEC.h"
 #include "unk_0202414C.h"
-#include "unk_02073838.h"
 
 typedef struct UnkStruct_ov5_021DF6AC_t UnkStruct_ov5_021DF6AC;
 typedef struct UnkStruct_ov5_021DF8FC_t UnkStruct_ov5_021DF8FC;
 typedef struct UnkStruct_ov5_021DF8C8_t UnkStruct_ov5_021DF8C8;
 
 typedef struct UnkStruct_ov5_021DF47C_t {
-    u32 heapID;
+    enum HeapID heapID;
     u32 unk_04;
     u32 unk_08;
     u32 unk_0C;
@@ -54,7 +52,7 @@ typedef struct UnkStruct_ov5_021DF6AC_t {
 } UnkStruct_ov5_021DF6AC;
 
 typedef struct UnkStruct_ov5_021DF8FC_t {
-    u32 heapID;
+    enum HeapID heapID;
     u16 unk_04;
     u16 unk_06;
     u16 unk_08;
@@ -94,7 +92,7 @@ static const UnkStruct_ov5_021FF85C *ov5_021DF6D0(u32 param0);
 static void ov5_021DF6F8(UnkStruct_ov5_021DF47C *renderManager);
 static void ov5_021DF708(UnkStruct_ov5_021DF47C *renderManager);
 static void ov5_021DF71C(UnkStruct_ov5_021DF47C *renderManager);
-static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, u32 heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
+static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, enum HeapID heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 static void ov5_021DF7C4(UnkStruct_ov5_021DF47C *renderManager);
 static void ov5_021DF8C8(UnkStruct_ov5_021DF47C *renderManager, UnkStruct_ov5_021DF8FC *graphicsManager, u32 objectCount);
 static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC *graphicsManager);
@@ -105,7 +103,7 @@ static void ov5_021DFA88(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, Text
 static void ov5_021DFAC0(SysTask *param0, void *param1);
 static void ov5_021DFADC(SysTask *param0, void *param1);
 
-UnkStruct_ov5_021DF47C *ov5_021DF440(FieldSystem *fieldSystem, u32 param1, u32 heapID)
+UnkStruct_ov5_021DF47C *ov5_021DF440(FieldSystem *fieldSystem, u32 param1, enum HeapID heapID)
 {
     UnkStruct_ov5_021DF47C *v0 = Heap_Alloc(heapID, (sizeof(UnkStruct_ov5_021DF47C)));
     memset(v0, 0, (sizeof(UnkStruct_ov5_021DF47C)));
@@ -127,7 +125,7 @@ void ov5_021DF47C(UnkStruct_ov5_021DF47C *param0, u32 param1)
     ov5_021DF6F8(param0);
 }
 
-void ov5_021DF488(UnkStruct_ov5_021DF47C *param0, u32 heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+void ov5_021DF488(UnkStruct_ov5_021DF47C *param0, enum HeapID heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     ov5_021DF754(param0, heapID, param2, param3, param4, param5, param6, param7, param8);
 }
@@ -410,7 +408,7 @@ void ov5_021DF74C(OverworldAnimManager *param0)
     OverworldAnimManager_Finish(param0);
 }
 
-static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, u32 heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, enum HeapID heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov5_021DF8FC *v0;
     UnkStruct_ov5_021EDDAC v1;
@@ -705,18 +703,18 @@ static void ov5_021DFADC(SysTask *param0, void *param1)
     }
 }
 
-void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073838 *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd)
+void ov5_021DFB00(UnkStruct_ov5_021DF47C *param0, Simple3DModel *param1, u32 param2, u32 narcMemberIdx, BOOL allocAtEnd)
 {
-    sub_0207389C(param1, param2, param0->unk_18, narcMemberIdx, param0->heapID, allocAtEnd);
-    sub_020738EC(param1);
+    Simple3D_LoadModelFromSet(param1, param2, param0->unk_18, narcMemberIdx, param0->heapID, allocAtEnd);
+    Simple3D_ScheduleBindModelTexture(param1);
 }
 
-void ov5_021DFB24(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, u32 param2, u32 param3, u32 param4)
+void ov5_021DFB24(UnkStruct_ov5_021DF47C *param0, Simple3DAnimation *param1, u32 param2, u32 param3, u32 param4)
 {
-    sub_020739B4(param1, param2, param0->unk_18, param3, param0->heapID, param4);
+    Simple3D_LoadAnimFromOpenNARC(param1, param2, param0->unk_18, param3, param0->heapID, param4);
 }
 
-void ov5_021DFB40(UnkStruct_ov5_021DF47C *param0, UnkStruct_02073974 *param1, const UnkStruct_02073838 *param2, UnkStruct_02073974 *param3, u32 param4)
+void ov5_021DFB40(UnkStruct_ov5_021DF47C *param0, Simple3DAnimation *param1, const Simple3DModel *param2, Simple3DAnimation *param3, u32 param4)
 {
-    sub_02073A6C(param1, param2, param3, param4, param0->heapID);
+    Simple3D_ApplyAnimCopyToModel(param1, param2, param3, param4, param0->heapID);
 }

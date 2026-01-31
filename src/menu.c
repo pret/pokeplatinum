@@ -298,7 +298,7 @@ static u8 CalcMaxEntryWidth(Menu *menu)
 
     u8 width;
     for (u8 i = 0; i < menu->template.xSize * menu->template.ySize; i++) {
-        width = Font_CalcStrbufWidth(menu->template.fontID, menu->template.choices[i].entry, 0);
+        width = Font_CalcStringWidth(menu->template.fontID, menu->template.choices[i].entry, 0);
 
         if (maxWidth < width) {
             maxWidth = width;
@@ -351,7 +351,7 @@ static void CalcCursorDrawCoords(Menu *menu, u8 *outX, u8 *outY, u8 cursorPos)
 Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate *winTemplate, u16 borderTileStart, u8 borderPalette, u8 cursorStart, u32 heapID)
 {
     MenuTemplate menuTemplate;
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, heapID);
     StringList *choices = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(choices, msgLoader, pl_msg_00000361_00041, 0);

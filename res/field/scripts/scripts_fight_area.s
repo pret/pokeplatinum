@@ -46,8 +46,8 @@ _0098:
 
 FightArea_CheckForWeekend_Unused:
     GetDayOfWeek VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0 DAY_OF_WEEK_SUNDAY FightArea_ActivateRivalFight_Unused
-    GoToIfEq VAR_MAP_LOCAL_0 DAY_OF_WEEK_SATURDAY FightArea_ActivateRivalFight_Unused
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SUNDAY, FightArea_ActivateRivalFight_Unused
+    GoToIfEq VAR_MAP_LOCAL_0, DAY_OF_WEEK_SATURDAY, FightArea_ActivateRivalFight_Unused
     End
 
 FightArea_ActivateRivalFight_Unused:
@@ -68,11 +68,11 @@ _00D8:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    CallCommonScript 0x800
+    SetFollowMeBGM
     ApplyMovement LOCALID_PLAYER, _03E4
     ApplyMovement 7, _0354
     WaitMovement
-    CallCommonScript 0x801
+    FadeToDefaultMusic3
     SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1

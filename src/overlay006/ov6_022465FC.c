@@ -9,9 +9,9 @@
 
 #include "field/field_system.h"
 #include "overlay006/ov6_02246444.h"
-#include "overlay006/struct_ov6_022465F4_decl.h"
 #include "savedata/save_table.h"
 
+#include "field_battle_data_transfer.h"
 #include "math_util.h"
 #include "narc.h"
 #include "rtc.h"

@@ -12,10 +12,10 @@
 #define BRIGHTNESS_NORMAL 0
 #define BRIGHTNESS_BLACK  -16
 
-void BrightnessController_StartTransition(const u8 stepCount, const s16 tragetBrightness, const s16 startBrightness, const int planeMask, const u32 screenSelect);
-void BrightnessController_SetScreenBrightness(const s16 brightness, const int planeMask, const u32 screenSelect);
+void BrightnessController_StartTransition(u8 stepCount, s16 targetBrightness, s16 startBrightness, int planeMask, u32 screenSelect);
+void BrightnessController_SetScreenBrightness(s16 brightness, int planeMask, u32 screenSelect);
 void BrightnessController_ResetAllControllers(void);
-void BrightnessController_ResetScreenController(const u32 screenSelect);
+void BrightnessController_ResetScreenController(u32 screenSelect);
 void BrightnessController_Update(void);
 BOOL BrightnessController_IsTransitionComplete(u32 screenSelect);
 

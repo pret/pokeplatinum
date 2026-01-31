@@ -31,7 +31,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system_vars.h"
 #include "text.h"
@@ -146,7 +146,7 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *saveData, u16 param1, u8 para
 
         if (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) > 50) {
             v1 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 50);
-            Pokemon_SetValue(v3, MON_DATA_EXP, &v1);
+            Pokemon_SetValue(v3, MON_DATA_EXPERIENCE, &v1);
             Pokemon_CalcLevelAndStats(v3);
         }
     }
@@ -176,10 +176,10 @@ static void ov104_02236528(UnkStruct_ov104_0223BA10 *param0)
     for (int i = 0; i < v0; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_28, i);
 
-        param0->unk_394[i][0] = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP, NULL);
-        param0->unk_394[i][1] = Pokemon_GetValue(mon, MON_DATA_MOVE2_CUR_PP, NULL);
-        param0->unk_394[i][2] = Pokemon_GetValue(mon, MON_DATA_MOVE3_CUR_PP, NULL);
-        param0->unk_394[i][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_CUR_PP, NULL);
+        param0->unk_394[i][0] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP, NULL);
+        param0->unk_394[i][1] = Pokemon_GetValue(mon, MON_DATA_MOVE2_PP, NULL);
+        param0->unk_394[i][2] = Pokemon_GetValue(mon, MON_DATA_MOVE3_PP, NULL);
+        param0->unk_394[i][3] = Pokemon_GetValue(mon, MON_DATA_MOVE4_PP, NULL);
     }
 
     ov104_0223B760(param0->unk_10, ov104_0223BB60(param0), param0->unk_30, (7 * 2));
@@ -240,22 +240,22 @@ static void ov104_022366A4(UnkStruct_ov104_0223BA10 *param0)
         v5 = Party_GetPokemonBySlotIndex(param0->unk_28, v4);
 
         v2 = (u16)sub_02030398(param0->unk_08, 2, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_CURRENT_HP, &v2);
+        Pokemon_SetValue(v5, MON_DATA_HP, &v2);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE1_CUR_PP, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE1_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 1, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE2_CUR_PP, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE2_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 2, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE3_CUR_PP, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE3_PP, &v3);
 
         v3 = (u8)sub_02030398(param0->unk_08, 3, v4, 3, NULL);
-        Pokemon_SetValue(v5, MON_DATA_MOVE4_CUR_PP, &v3);
+        Pokemon_SetValue(v5, MON_DATA_MOVE4_PP, &v3);
 
         v1 = (u32)sub_02030398(param0->unk_08, 4, v4, 0, NULL);
-        Pokemon_SetValue(v5, MON_DATA_STATUS_CONDITION, &v1);
+        Pokemon_SetValue(v5, MON_DATA_STATUS, &v1);
 
         v2 = (u16)sub_02030398(param0->unk_08, 5, v4, 0, NULL);
         Pokemon_SetValue(v5, MON_DATA_HELD_ITEM, &v2);
@@ -387,22 +387,22 @@ void ov104_02236848(UnkStruct_ov104_0223BA10 *param0, u8 param1)
     for (v0 = 0; v0 < v8; v0++) {
         v11 = Party_GetPokemonBySlotIndex(param0->unk_28, v0);
 
-        v5[0] = Pokemon_GetValue(v11, MON_DATA_CURRENT_HP, NULL);
+        v5[0] = Pokemon_GetValue(v11, MON_DATA_HP, NULL);
         sub_02030308(param0->unk_08, 2, v0, 0, v5);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE1_CUR_PP, NULL);
+        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE1_PP, NULL);
         sub_02030308(param0->unk_08, 3, v0, 0, v4);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE2_CUR_PP, NULL);
+        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE2_PP, NULL);
         sub_02030308(param0->unk_08, 3, v0, 1, v4);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE3_CUR_PP, NULL);
+        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE3_PP, NULL);
         sub_02030308(param0->unk_08, 3, v0, 2, v4);
 
-        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE4_CUR_PP, NULL);
+        v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE4_PP, NULL);
         sub_02030308(param0->unk_08, 3, v0, 3, v4);
 
-        v6[0] = Pokemon_GetValue(v11, MON_DATA_STATUS_CONDITION, NULL);
+        v6[0] = Pokemon_GetValue(v11, MON_DATA_STATUS, NULL);
         sub_02030308(param0->unk_08, 4, v0, 0, v6);
 
         v5[0] = Pokemon_GetValue(v11, MON_DATA_HELD_ITEM, NULL);
@@ -437,7 +437,7 @@ u16 ov104_02236B58(UnkStruct_ov104_0223BA10 *param0, u8 param1)
     FrontierTrainerDataDTO v0;
     u8 v2 = param0->unk_11 + (param1 * 7);
 
-    Heap_Free(ov104_0222DD04(&v0, param0->unk_30[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
+    Heap_Free(BattleTower_GetTrainerData(&v0, param0->unk_30[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
     return ov104_0222E10C(v0.trainerType);
 }
@@ -510,10 +510,10 @@ void ov104_02236C50(UnkStruct_ov104_0223BA10 *param0)
     for (v2 = v0; v2 < (v1 + v0); v2++) {
         v4 = Party_GetPokemonBySlotIndex(param0->unk_28, v2);
 
-        param0->unk_394[v2 - v0][0] = Pokemon_GetValue(v4, MON_DATA_MOVE1_CUR_PP, NULL);
-        param0->unk_394[v2 - v0][1] = Pokemon_GetValue(v4, MON_DATA_MOVE2_CUR_PP, NULL);
-        param0->unk_394[v2 - v0][2] = Pokemon_GetValue(v4, MON_DATA_MOVE3_CUR_PP, NULL);
-        param0->unk_394[v2 - v0][3] = Pokemon_GetValue(v4, MON_DATA_MOVE4_CUR_PP, NULL);
+        param0->unk_394[v2 - v0][0] = Pokemon_GetValue(v4, MON_DATA_MOVE1_PP, NULL);
+        param0->unk_394[v2 - v0][1] = Pokemon_GetValue(v4, MON_DATA_MOVE2_PP, NULL);
+        param0->unk_394[v2 - v0][2] = Pokemon_GetValue(v4, MON_DATA_MOVE3_PP, NULL);
+        param0->unk_394[v2 - v0][3] = Pokemon_GetValue(v4, MON_DATA_MOVE4_PP, NULL);
     }
 
     ov104_0223BA24(param0->unk_28);
@@ -560,7 +560,7 @@ int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0)
             continue;
         }
 
-        v3 = Pokemon_GetValue(v9, MON_DATA_CURRENT_HP, NULL);
+        v3 = Pokemon_GetValue(v9, MON_DATA_HP, NULL);
         v4 = Pokemon_GetValue(v9, MON_DATA_MAX_HP, NULL);
 
         if (v3 > 0) {
@@ -576,17 +576,17 @@ int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0)
                 }
             }
 
-            if (Pokemon_GetValue(v9, MON_DATA_STATUS_CONDITION, NULL) == 0) {
+            if (Pokemon_GetValue(v9, MON_DATA_STATUS, NULL) == 0) {
                 v10[4]++;
             }
         } else {
             param0->unk_12 = 1;
         }
 
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE1_CUR_PP, NULL);
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE2_CUR_PP, NULL);
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE3_CUR_PP, NULL);
-        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE4_CUR_PP, NULL);
+        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE1_PP, NULL);
+        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE2_PP, NULL);
+        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE3_PP, NULL);
+        v8 += Pokemon_GetValue(v9, MON_DATA_MOVE4_PP, NULL);
     }
 
     for (v5 = 0; v5 < v1; v5++) {
@@ -773,25 +773,25 @@ void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3)
 {
     MessageLoader *v0;
-    Strbuf *v1 = Strbuf_Init((10 * 2), param0->heapID);
-    Strbuf *v2 = Strbuf_Init((10 * 2), param0->heapID);
+    String *v1 = String_Init((10 * 2), param0->heapID);
+    String *v2 = String_Init((10 * 2), param0->heapID);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELD2);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELD2);
 
-    StringTemplate_SetNumber(param0->unk_44, 0, param3, 4, 1, 1);
-    MessageLoader_GetStrbuf(v0, 2, v1);
+    StringTemplate_SetNumber(param0->strTemplate, 0, param3, 4, 1, 1);
+    MessageLoader_GetString(v0, 2, v1);
 
-    StringTemplate_Format(param0->unk_44, v2, v1);
+    StringTemplate_Format(param0->strTemplate, v2, v1);
     Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 16, 2 * 8, TEXT_SPEED_NO_TRANSFER, NULL);
-    StringTemplate_SetPlayerName(param0->unk_44, 0, param2);
+    StringTemplate_SetPlayerName(param0->strTemplate, 0, param2);
 
-    MessageLoader_GetStrbuf(v0, 0, v1);
+    MessageLoader_GetString(v0, 0, v1);
 
-    StringTemplate_Format(param0->unk_44, v2, v1);
+    StringTemplate_Format(param0->strTemplate, v2, v1);
     Text_AddPrinterWithParams(param1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
     MessageLoader_Free(v0);
 
     Window_CopyToVRAM(param1);

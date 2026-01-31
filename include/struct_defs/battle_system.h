@@ -8,9 +8,6 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_0206D140_decl.h"
-#include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -32,10 +29,11 @@
 #include "pal_pad.h"
 #include "palette.h"
 #include "party.h"
+#include "pokemon_anim.h"
 #include "poketch.h"
 #include "render_window.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
@@ -48,7 +46,7 @@ struct BattleSystem {
     MessageLoader *unk_0C;
     MessageLoader *unk_10;
     StringTemplate *strFormatter;
-    Strbuf *msgBuffer;
+    String *msgBuffer;
     SysTask *unk_1C;
     SysTask *unk_20;
     SysTask *unk_24;
@@ -69,7 +67,7 @@ struct BattleSystem {
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     Poketch *poketch;
-    UnkStruct_0206D140 *unk_9C;
+    CaptureAttempt *captureAttempt;
     u16 trainerIDs[MAX_BATTLERS];
     u8 unk_A8[4];
     Trainer trainers[MAX_BATTLERS];
@@ -84,7 +82,7 @@ struct BattleSystem {
     WaitDial *waitDial;
     u8 *unk_1BC;
     UnkStruct_ov10_0221F800 *unk_1C0;
-    PokemonAnimationSys *pokemonAnimationSys;
+    PokemonAnimManager *monAnimMan;
     NNSG2dCellTransferState *cellTransferState;
     PokemonSpriteData pokemonSpriteDataArray[4];
     BattleRecords unusedBattleRecords;
@@ -121,7 +119,7 @@ struct BattleSystem {
     u32 unk_2418;
     u8 resultMask;
     u8 unk_241D;
-    u16 unk_241E;
+    u16 ballsThrown;
     enum EvolutionMethod mapEvolutionMethod;
     int unk_2424;
     int fieldWeather;

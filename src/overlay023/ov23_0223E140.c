@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/traps.h"
 #include "generated/trainer_score_events.h"
+#include "generated/traps.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/underground.h"
@@ -14,12 +14,12 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02248F1C.h"
-#include "overlay023/ov23_0224A1D0.h"
-#include "overlay023/ov23_0224B05C.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_top_screen.h"
 #include "overlay023/underground_traps.h"
 
 #include "bg_window.h"
@@ -52,7 +52,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -148,7 +148,7 @@ typedef struct {
     UnkStruct_ov23_0223E6F8 unk_26C[250];
     Menu *unk_848;
     UnkStruct_ov23_0223E6F8 *unk_84C[8];
-    u8 unk_86C[8];
+    u8 isPlayerMining[MAX_CONNECTED_PLAYERS];
     BuriedObject buriedObjects[MINING_MAX_BURIED_OBJECTS];
     u8 unk_8BC[8];
     SysTask *unk_8C4;
@@ -701,12 +701,12 @@ BOOL ov23_0223E354(int param0, Coordinates *param1)
     u8 v1 = param0;
 
     if ((v0 != NULL) && (v0->unk_04 == 0xff)) {
-        if (ov23_0224A6B8(param0)) {
+        if (UndergroundPlayer_BuriedObjectHeldFlagCheck(param0)) {
             return 1;
         }
 
         CommSys_SendDataServer(64, &v1, 1);
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
 
         Unk_ov23_02257740->unk_84C[param0] = v0;
         return 1;
@@ -1006,7 +1006,7 @@ void ov23_0223E9D4(int param0, int param1, void *param2, void *param3)
         Unk_ov23_02257740->unk_A24 = UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_WallIsBulging, FALSE, NULL);
         Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
-        ov23_022431EC(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
+        CommManUnderground_SetCurrentSysTask(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
         CommPlayerMan_PauseFieldSystem();
     }
 }
@@ -1037,7 +1037,7 @@ static void ov23_0223EA38(SysTask *param0, void *param1)
 
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
         SysTask_Done(param0);
-        ov23_02243204();
+        CommManUnderground_ClearCurrentSysTaskInfo();
 
         Unk_ov23_02257740->unk_8C8 = NULL;
     }
@@ -1060,11 +1060,11 @@ void ov23_0223EAF8(int param0, int param1, void *param2, void *param3)
 
             sub_020291A4(v0, v1->unk_05);
 
-            Unk_ov23_02257740->unk_86C[param0] = 1;
+            Unk_ov23_02257740->isPlayerMining[param0] = TRUE;
             Unk_ov23_02257740->unk_84C[param0] = NULL;
         }
     } else {
-        Unk_ov23_02257740->unk_86C[param0] = 0;
+        Unk_ov23_02257740->isPlayerMining[param0] = FALSE;
         Unk_ov23_02257740->unk_84C[param0] = NULL;
     }
 }
@@ -1083,8 +1083,7 @@ void ov23_0223EB8C(int param0, int param1, void *param2, void *param3)
 
 void ov23_0223EBC0(int param0, int param1, void *param2, void *param3)
 {
-    Unk_ov23_02257740->unk_86C[param0] = 0;
-
+    Unk_ov23_02257740->isPlayerMining[param0] = FALSE;
     Unk_ov23_02257740->unk_8FC[param0] = 0;
 }
 
@@ -1097,7 +1096,7 @@ void ov23_0223EBE4(int param0, int param1, void *param2, void *param3)
     v1[1] = v0[0];
     v1[2] = v0[1];
 
-    sub_02035B48(69, v1);
+    CommSys_SendDataFixedSizeServer(69, v1);
 }
 
 int ov23_0223EBFC(void)
@@ -1383,20 +1382,20 @@ static void ov23_0223F118(SysTask *param0, void *param1)
 
     switch (v0->state) {
     case 0:
-        ov23_0224DBF4(0);
+        SecretBases_SetEntranceGraphicsEnabled(0);
         UndergroundSpheres_DisableBuriedSphereSparkles();
         CommPlayerMan_Reset();
-        ov23_0224B430();
+        SecretBases_DisableBaseEntranceGraphics();
         (v0->state)++;
         break;
     case 1:
-        ov23_0224942C(fieldSystem->unk_6C);
-        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_18, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
+        UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
+        StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         (v0->state)++;
         break;
     case 2:
         if (IsScreenFadeDone()) {
-            if (fieldSystem->unk_6C == NULL) {
+            if (fieldSystem->ugTopScreenCtx == NULL) {
                 FieldSystem_FlagNotRunningFieldMap(fieldSystem);
                 (v0->state)++;
             }
@@ -1418,7 +1417,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_17, FADE_TYPE_UNK_17, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_IN, FADE_TYPE_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1533,7 +1532,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         SpriteList_Update(Unk_ov23_02257740->spriteList);
         UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_MINING);
         (v0->state)++;
         break;
     case 19:
@@ -1548,11 +1547,11 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 20:
         if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
-            fieldSystem->unk_6C = ov23_02249404(fieldSystem);
+            fieldSystem->ugTopScreenCtx = UndergroundTopScreen_StartTask(fieldSystem);
             sub_02039734();
             CommPlayerMan_PauseFieldSystem();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
+            StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_TOP_HALF_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
             (v0->state)++;
             break;
         }
@@ -1568,7 +1567,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
             CommPlayerMan_Restart();
 
-            ov23_0224B460();
+            SecretBases_EnableBaseEntranceGraphics();
             UndergroundSpheres_EnableBuriedSphereSparkles();
 
             CommSys_SendDataFixedSize(67, &v0->unk_50);
@@ -1579,7 +1578,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             Heap_Free(v0);
             SysTask_Done(param0);
 
-            ov23_0224DBF4(1);
+            SecretBases_SetEntranceGraphicsEnabled(1);
         }
         break;
     case 22:
@@ -2421,8 +2420,8 @@ static void Mining_NearbyLinksRemoveDirt(UnkStruct_ov23_0223EE80 *param0)
         if ((Unk_ov23_02257740->linkTouchX[netID] != (u8)TOUCHSCREEN_INPUT_NONE) && (Unk_ov23_02257740->linkTouchY[netID] != (u8)TOUCHSCREEN_INPUT_NONE)) {
             int playerXPos = CommPlayer_XPos(CommSys_CurNetId());
             int playerZPos = CommPlayer_ZPos(CommSys_CurNetId());
-            int linkXPos = Underground_GetLinkXPos(netID);
-            int linkZPos = Underground_GetLinkZPos(netID);
+            int linkXPos = UndergroundPlayer_GetXPos(netID);
+            int linkZPos = UndergroundPlayer_GetZPos(netID);
 
             if ((linkXPos > (playerXPos - 10)) && (linkXPos < (playerXPos + 10))) {
                 if ((linkZPos > (playerZPos - 10)) && (linkZPos < (playerZPos + 10))) {
@@ -2471,7 +2470,7 @@ static int Mining_GenerateSizeOfMinedSphere(int itemID)
 static void Mining_AddItem(int itemID, int sphereSize)
 {
     int id = itemID;
-    UndergroundRecord *unused = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
+    UndergroundRecord *unused = SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(Unk_ov23_02257740->fieldSystem));
 
     if (UndergroundSpheres_IsMiningItemSphere(id)) {
@@ -2564,7 +2563,7 @@ static BOOL Mining_PrintNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
 {
     int i, itemID;
-    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
+    UndergroundRecord *undergroundRecord = SaveData_GetUndergroundRecord(Unk_ov23_02257740->fieldSystem->saveData);
     Underground *unused = SaveData_GetUnderground(Unk_ov23_02257740->fieldSystem->saveData);
 
     for (i = 0; i < param0->itemCount; i++) {
@@ -2576,7 +2575,7 @@ static BOOL Mining_ProcessNextDugUpItem(UnkStruct_ov23_0223EE80 *param0)
             if (UndergroundSpheres_IsMiningItemSphere(itemID)) {
                 UndergroundRecord_AddNumSpheresDug(undergroundRecord, 1);
             } else {
-                sub_0206D6C8(Unk_ov23_02257740->fieldSystem, itemID, 1);
+                FieldSystem_SaveTVEpisodeSegment_UndergroundTreasuresCorner(Unk_ov23_02257740->fieldSystem, itemID, 1);
 
                 // bug: rare bones count toward the fossil total
                 if ((itemID >= MINING_TREASURE_HELIX_FOSSIL) && ((MINING_TREASURE_RARE_BONE + 1) > itemID) || (itemID == MINING_TREASURE_ARMOR_FOSSIL) || (itemID == MINING_TREASURE_SKULL_FOSSIL)) {
@@ -2914,7 +2913,7 @@ void ov23_022412F0(void)
     v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov23_022412CC));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022412CC));
-    Link_Message(71);
+    CommSys_SendMessage(71);
 
     v0->unk_4E4 = 250 / 3 - 10;
 
@@ -2954,7 +2953,7 @@ static void ov23_022413B4(void)
                     v4.unk_00 = v3->unk_00;
                     v4.unk_02 = v3->unk_02;
                     v4.unk_04 = v0;
-                    sub_02035B48(72, &v4);
+                    CommSys_SendDataFixedSizeServer(72, &v4);
                     Unk_ov23_02257740->unk_8BC[v0] = v2 + 3;
                     break;
                 }
@@ -3033,7 +3032,7 @@ static void ov23_022414D4(void)
             continue;
         }
 
-        v2 = ov23_0223E8CC(CommPlayer_GetXServer(v1), CommPlayer_GetZServer(v1));
+        v2 = ov23_0223E8CC(CommPlayer_GetXServerIfActive(v1), CommPlayer_GetZServerIfActive(v1));
 
         if (v2 != -1) {
             v0 = &Unk_ov23_02257740->unk_26C[v2];
@@ -3045,7 +3044,7 @@ static void ov23_022414D4(void)
                 v3.unk_00 = v0->unk_00;
                 v3.unk_02 = v0->unk_02;
 
-                sub_02035B48(72, &v3);
+                CommSys_SendDataFixedSizeServer(72, &v3);
             }
         } else {
             UnkStruct_ov23_0224142C v4;
@@ -3054,12 +3053,12 @@ static void ov23_022414D4(void)
             v4.unk_00 = 0;
             v4.unk_02 = 0;
 
-            sub_02035B48(72, &v4);
+            CommSys_SendDataFixedSizeServer(72, &v4);
         }
     }
 }
 
-BOOL ov23_022415B8(Strbuf *param0)
+BOOL ov23_022415B8(String *param0)
 {
     int v0;
     TrainerInfo *v1;
@@ -3074,7 +3073,7 @@ BOOL ov23_022415B8(Strbuf *param0)
             v1 = CommInfo_TrainerInfo(v0);
             Unk_ov23_02257740->unk_908[v0] = 0;
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(v1, 0, 105, param0)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(v1, 0, 105, param0)) {
                 return 1;
             }
         }
@@ -3090,19 +3089,19 @@ void ov23_0224160C(void)
     }
 }
 
-BOOL ov23_0224162C(int netID)
+BOOL Mining_IsPlayerMining(int netID)
 {
     if (Unk_ov23_02257740) {
-        return Unk_ov23_02257740->unk_86C[netID];
+        return Unk_ov23_02257740->isPlayerMining[netID];
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov23_02241648(int param0)
 {
     if (Unk_ov23_02257740) {
-        Unk_ov23_02257740->unk_86C[param0] = 0;
+        Unk_ov23_02257740->isPlayerMining[param0] = FALSE;
         Unk_ov23_02257740->unk_8FC[param0] = 0;
     }
 }
@@ -3121,6 +3120,6 @@ BOOL ov23_02241670(void)
 void ov23_02241690(int param0, int param1)
 {
     if (Unk_ov23_02257740) {
-        Unk_ov23_02257740->unk_86C[param0] = param1;
+        Unk_ov23_02257740->isPlayerMining[param0] = param1;
     }
 }

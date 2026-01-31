@@ -9,8 +9,8 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag FLAG_UNK_0x09D7
-    GoToIfUnset FLAG_UNK_0x00E4, _0023
+    SetFlag FLAG_FIRST_ARRIVAL_WAYWARD_CAVE
+    GoToIfUnset FLAG_TRAVELED_WITH_MIRA, _0023
     End
 
 _0023:
@@ -120,7 +120,7 @@ _016A:
 
 _0182:
     RemoveObject 4
-    SetFlag FLAG_UNK_0x00E4
+    SetFlag FLAG_TRAVELED_WITH_MIRA
     SetVar VAR_UNK_0x4091, 2
     ReleaseAll
     End

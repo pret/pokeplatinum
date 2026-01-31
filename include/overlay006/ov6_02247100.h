@@ -6,13 +6,13 @@
 #include "field_task.h"
 #include "pokemon.h"
 
-void *ov6_02247100(FieldSystem *fieldSystem, u32 heapID);
+void *ov6_02247100(FieldSystem *fieldSystem, enum HeapID heapID);
 BOOL ov6_02247120(FieldTask *task);
-void *ov6_022472C8(FieldSystem *fieldSystem, u32 heapID, int param2);
+void *ov6_022472C8(FieldSystem *fieldSystem, enum HeapID heapID, int param2);
 BOOL ov6_022472E8(FieldTask *task);
-void *ov6_02247488(FieldSystem *, Pokemon *, u32 heapID);
+void *ov6_02247488(FieldSystem *, Pokemon *, enum HeapID heapID);
 BOOL ov6_022474AC(FieldTask *task);
-void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID);
+void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID);
 BOOL ov6_02247554(FieldTask *task);
 
 #endif // POKEPLATINUM_OV6_02247100_H

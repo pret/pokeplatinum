@@ -47,7 +47,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -865,7 +865,7 @@ static void BoxAppMan_InitSummary(BoxApplicationManager *boxAppMan)
     boxAppMan->monSummary.chatotCry = NULL;
     boxAppMan->monSummary.dexMode = SaveData_GetDexMode(boxAppMan->saveData);
     boxAppMan->monSummary.showContest = PokemonSummaryScreen_ShowContestData(boxAppMan->saveData);
-    boxAppMan->monSummary.specialRibbons = sub_0202D79C(boxAppMan->saveData);
+    boxAppMan->monSummary.specialRibbons = SaveData_GetRibbons(boxAppMan->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&boxAppMan->monSummary, summaryPages);
     PokemonSummaryScreen_SetPlayerProfile(&boxAppMan->monSummary, SaveData_GetTrainerInfo(boxAppMan->saveData));
@@ -1831,13 +1831,13 @@ static void BoxAppMan_PlaceMonAction(BoxApplicationManager *boxAppMan, u32 *stat
 static BOOL BoxAppMan_CheckLastAliveMonReason(BoxApplicationManager *boxAppMan, u32 *destMessageID)
 {
     if (BoxAppMan_OnLastAliveMon(boxAppMan)) {
-        if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_EGG_EXISTS, NULL)) {
+        if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_SANITY_IS_EGG, NULL)) {
             *destMessageID = BoxText_LastMon;
             return TRUE;
         }
 
         if (BoxApp_GetCursorMonIsPartyMon(&boxAppMan->boxApp)) {
-            if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_CURRENT_HP, NULL) == 0) {
+            if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_HP, NULL) == 0) {
                 *destMessageID = BoxText_LastMon;
                 return TRUE;
             }
@@ -2106,7 +2106,7 @@ static BOOL BoxAppMan_OnLastAliveMon(BoxApplicationManager *boxAppMan)
         mon = Party_GetPokemonBySlotIndex(boxAppMan->party, i);
         reencrypt = Pokemon_EnterDecryptionContext(mon);
 
-        if (Pokemon_GetValue(mon, MON_DATA_EGG_EXISTS, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+        if (Pokemon_GetValue(mon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
             count++;
         }
 
@@ -2117,11 +2117,11 @@ static BOOL BoxAppMan_OnLastAliveMon(BoxApplicationManager *boxAppMan)
         }
     }
 
-    if (BoxApp_GetPreviewedOrSelectedMonValue(&boxAppMan->boxApp, MON_DATA_EGG_EXISTS, NULL)) {
+    if (BoxApp_GetPreviewedOrSelectedMonValue(&boxAppMan->boxApp, MON_DATA_SANITY_IS_EGG, NULL)) {
         return FALSE;
     }
 
-    if (BoxApp_GetPreviewedOrSelectedMonValue(&boxAppMan->boxApp, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (BoxApp_GetPreviewedOrSelectedMonValue(&boxAppMan->boxApp, MON_DATA_HP, NULL) == 0) {
         return FALSE;
     }
 
@@ -2130,7 +2130,7 @@ static BOOL BoxAppMan_OnLastAliveMon(BoxApplicationManager *boxAppMan)
 
 static BOOL BoxAppMan_CheckReleaseMonValid(BoxApplicationManager *boxAppMan, int *destBoxMessageID)
 {
-    if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_EGG_EXISTS, NULL)) {
+    if (BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_SANITY_IS_EGG, NULL)) {
         *destBoxMessageID = BoxText_CantReleaseEgg;
         return FALSE;
     }
@@ -2422,7 +2422,7 @@ static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
     BOOL hasMove = FALSE;
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    if (BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL) == FALSE) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL) == FALSE) {
         for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
                 hasMove = TRUE;
@@ -3302,10 +3302,10 @@ static void BoxAppMan_Load(BoxApplicationManager *boxAppMan, PokemonStorageSessi
     boxAppMan->options = SaveData_GetOptions(pokemonStorageSession->saveData);
     boxAppMan->pokemonStorageSession = pokemonStorageSession;
     pokemonStorageSession->recordBoxUseInJournal = FALSE;
-    boxAppMan->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_BOX_DATA);
-    boxAppMan->speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BOX_DATA);
-    boxAppMan->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
-    boxAppMan->abilityNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
+    boxAppMan->boxMessagesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_BOX_DATA);
+    boxAppMan->speciesNameLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BOX_DATA);
+    boxAppMan->natureNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
+    boxAppMan->abilityNameLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ABILITY_NAMES, HEAP_ID_BOX_DATA);
     boxAppMan->MessageVariableBuffer = StringTemplate_Default(HEAP_ID_BOX_DATA);
     boxAppMan->mon = Heap_Alloc(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
@@ -3404,31 +3404,31 @@ static void BoxMonSelection_Free(BoxMonSelection *selection)
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)
 {
     customization->boxID = PCBoxes_GetCurrentBoxID(pcBoxes);
-    customization->name = Strbuf_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_BOX_DATA);
+    customization->name = String_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_BOX_DATA);
     PCBoxes_LoadCustomization(pcBoxes, customization);
 }
 
 static void Customization_Free(BoxCustomization *customization)
 {
-    Strbuf_Free(customization->name);
+    String_Free(customization->name);
 }
 
 static void PCMonPreview_Init(PCMonPreview *preview)
 {
-    preview->nickname = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-    preview->speciesName = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-    preview->heldItemName = Strbuf_Init(18, HEAP_ID_BOX_DATA);
-    preview->nature = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-    preview->ability = Strbuf_Init(16, HEAP_ID_BOX_DATA);
+    preview->nickname = String_Init(12, HEAP_ID_BOX_DATA);
+    preview->speciesName = String_Init(12, HEAP_ID_BOX_DATA);
+    preview->heldItemName = String_Init(18, HEAP_ID_BOX_DATA);
+    preview->nature = String_Init(12, HEAP_ID_BOX_DATA);
+    preview->ability = String_Init(16, HEAP_ID_BOX_DATA);
 }
 
 static void PCMonPreview_Free(PCMonPreview *preview)
 {
-    Strbuf_Free(preview->nickname);
-    Strbuf_Free(preview->speciesName);
-    Strbuf_Free(preview->heldItemName);
-    Strbuf_Free(preview->nature);
-    Strbuf_Free(preview->ability);
+    String_Free(preview->nickname);
+    String_Free(preview->speciesName);
+    String_Free(preview->heldItemName);
+    String_Free(preview->nature);
+    String_Free(preview->ability);
 }
 
 static void PCCompareHelper_Init(CompareModeHelper *compareHelper)
@@ -3439,16 +3439,16 @@ static void PCCompareHelper_Init(CompareModeHelper *compareHelper)
 
     for (int i = 0; i < 2; i++) {
         compareHelper->compareSlotHasMon[i] = FALSE;
-        compareHelper->compareMons[i].monName = Strbuf_Init(12, HEAP_ID_BOX_DATA);
-        compareHelper->compareMons[i].nature = Strbuf_Init(12, HEAP_ID_BOX_DATA);
+        compareHelper->compareMons[i].monName = String_Init(12, HEAP_ID_BOX_DATA);
+        compareHelper->compareMons[i].nature = String_Init(12, HEAP_ID_BOX_DATA);
     }
 }
 
 static void PCCompareHelper_Free(CompareModeHelper *compareHelper)
 {
     for (int i = 0; i < 2; i++) {
-        Strbuf_Free(compareHelper->compareMons[i].monName);
-        Strbuf_Free(compareHelper->compareMons[i].nature);
+        String_Free(compareHelper->compareMons[i].monName);
+        String_Free(compareHelper->compareMons[i].nature);
     }
 }
 
@@ -4103,39 +4103,39 @@ static void BoxApp_LoadBoxMonIntoPreview(BoxApplication *boxApp, BoxPokemon *box
     preview->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     preview->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     preview->dexNum = GetDexNumber(SaveData_GetDexMode(boxAppMan->saveData), preview->species);
-    preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL);
+    preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SANITY_IS_EGG, NULL);
     SpeciesData *speciesData = SpeciesData_FromMonSpecies(preview->species, HEAP_ID_BOX_DATA);
-    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXP, NULL));
-    preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
+    preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXPERIENCE, NULL));
+    preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKINGS, NULL);
     preview->type1 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
     preview->type2 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_2, NULL);
 
-    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
+    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NO_PRINT_GENDER, NULL)) {
         preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL));
     } else {
         preview->gender = PREVIEW_GENDER_INVALID;
     }
 
-    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, preview->nickname);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRING, preview->nickname);
 
     if (preview->isEgg == FALSE) {
-        MessageLoader_GetStrbuf(boxAppMan->speciesNameLoader, preview->species, preview->speciesName);
+        MessageLoader_GetString(boxAppMan->speciesNameLoader, preview->species, preview->speciesName);
     } else {
-        Strbuf_Copy(preview->speciesName, preview->nickname);
-        Strbuf_Clear(preview->nickname);
+        String_Copy(preview->speciesName, preview->nickname);
+        String_Clear(preview->nickname);
     }
 
     if (preview->heldItem != ITEM_NONE) {
         Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_BOX_DATA);
     } else {
-        MessageLoader_GetStrbuf(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
+        MessageLoader_GetString(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     }
 
     u32 value = BoxPokemon_GetNature(boxMon);
-    MessageLoader_GetStrbuf(boxAppMan->natureNameLoader, value, preview->nature);
+    MessageLoader_GetString(boxAppMan->natureNameLoader, value, preview->nature);
 
     value = BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY, NULL);
-    MessageLoader_GetStrbuf(boxAppMan->abilityNameLoader, value, preview->ability);
+    MessageLoader_GetString(boxAppMan->abilityNameLoader, value, preview->ability);
 
     SpeciesData_Free(speciesData);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
@@ -4152,12 +4152,12 @@ static void BoxApp_LoadBoxMonIntoComparison(BoxApplication *boxApp, BoxPokemon *
     compareMon->level = preview->level;
 
     if (compareMon->isEgg) {
-        Strbuf_Copy(compareMon->monName, preview->speciesName);
+        String_Copy(compareMon->monName, preview->speciesName);
     } else {
-        Strbuf_Copy(compareMon->monName, preview->nickname);
+        String_Copy(compareMon->monName, preview->nickname);
     }
 
-    Strbuf_Copy(compareMon->nature, preview->nature);
+    String_Copy(compareMon->nature, preview->nature);
     Pokemon_FromBoxPokemon(boxMon, boxAppMan->mon);
 
     BOOL reencrypt = Pokemon_EnterDecryptionContext(boxAppMan->mon);
@@ -4212,7 +4212,7 @@ static void BoxApp_UpdatePreviewMonMarkings(BoxApplication *boxApp)
     u8 markings = boxApp->boxMenu.markings;
     preview->markings = markings;
 
-    BoxPokemon_SetValue(preview->mon, MON_DATA_MARKS, &markings);
+    BoxPokemon_SetValue(preview->mon, MON_DATA_MARKINGS, &markings);
 
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX && BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_UNDER_CURSOR) {
         SaveData_SetFullSaveRequired();
@@ -4227,7 +4227,7 @@ static void BoxApp_GiveItemToSelectedMon(BoxApplication *boxApp, u16 item, BoxAp
     if (preview->heldItem != ITEM_NONE) {
         Item_LoadName(preview->heldItemName, preview->heldItem, HEAP_ID_BOX_DATA);
     } else {
-        MessageLoader_GetStrbuf(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
+        MessageLoader_GetString(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     }
 
     if (BoxApp_GetCursorLocation(boxApp) == CURSOR_IN_BOX && BoxApp_GetPreviewMonSource(boxApp) == PREVIEW_MON_UNDER_CURSOR) {
@@ -4246,7 +4246,7 @@ static void BoxApp_GiveItemToSelectedMon(BoxApplication *boxApp, u16 item, BoxAp
     } else if (species == SPECIES_GIRATINA) {
         BoxPokemon_SetGiratinaForm(preview->mon);
         int ability = BoxPokemon_GetValue(preview->mon, MON_DATA_ABILITY, NULL);
-        MessageLoader_GetStrbuf(boxAppMan->abilityNameLoader, ability, preview->ability);
+        MessageLoader_GetString(boxAppMan->abilityNameLoader, ability, preview->ability);
     }
 }
 
@@ -4294,7 +4294,7 @@ static void BoxApp_PickUpHeldItem(BoxApplication *boxApp, BoxApplicationManager 
 
     boxApp->cursorItem = preview->heldItem;
 
-    MessageLoader_GetStrbuf(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
+    MessageLoader_GetString(boxAppMan->boxMessagesLoader, BoxText_NoItem, preview->heldItemName);
     BoxApp_GiveItemToSelectedMon(boxApp, itemNone, boxAppMan);
 }
 

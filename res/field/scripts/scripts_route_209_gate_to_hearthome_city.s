@@ -20,7 +20,7 @@ _001D:
     LockAll
     ApplyMovement 1, _0264
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 5, _014E
     CallIfEq VAR_0x8005, 6, _015A
@@ -68,7 +68,7 @@ _00CF:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar VAR_UNK_0x407B, 2
+    SetVar VAR_HEARTHOME_STATE, 2
     ReleaseAll
     End
 

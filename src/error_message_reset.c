@@ -18,7 +18,7 @@
 #include "message.h"
 #include "render_window.h"
 #include "screen_fade.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "unk_020366A0.h"
@@ -86,9 +86,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     BgConfig *bgConfig;
     Window window;
     MessageLoader *errorMsgData;
-    Strbuf *errorString;
+    String *errorString;
     int v4;
-    int heapID = HEAP_ID_SYSTEM;
 
     if (sErrorMessagePrinterLock == TRUE) {
         return;
@@ -127,28 +126,28 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     GXLayers_SetBanks(&sErrorMessageBanksConfig);
-    bgConfig = BgConfig_New(heapID);
+    bgConfig = BgConfig_New(HEAP_ID_SYSTEM);
 
     SetAllGraphicsModes(&sErrorMessageBgModeSet);
     Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &sErrorMessageBgTemplate, 0);
     Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
-    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 512 - 9, 2, 0, heapID);
-    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), heapID);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, heapID);
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_0, 512 - 9, 2, 0, HEAP_ID_SYSTEM);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), HEAP_ID_SYSTEM);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_SYSTEM);
     Bg_MaskPalette(BG_LAYER_MAIN_0, 0x6c21);
     Bg_MaskPalette(BG_LAYER_SUB_0, 0x6c21);
 
-    errorMsgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, heapID);
-    errorString = Strbuf_Init(0x180, heapID);
+    errorMsgData = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NETWORK_ERRORS, HEAP_ID_SYSTEM);
+    errorString = String_Init(0x180, HEAP_ID_SYSTEM);
 
     Text_ResetAllPrinters();
 
     Window_AddFromTemplate(bgConfig, &window, &sErrorMessageWindowTemplate);
     Window_FillRectWithColor(&window, 15, 0, 0, 26 * 8, 18 * 8);
     Window_DrawStandardFrame(&window, 0, 512 - 9, 2);
-    MessageLoader_GetStrbuf(errorMsgData, v4, errorString);
+    MessageLoader_GetString(errorMsgData, v4, errorString);
     Text_AddPrinterWithParams(&window, FONT_SYSTEM, errorString, 0, 0, TEXT_SPEED_INSTANT, NULL);
-    Strbuf_Free(errorString);
+    String_Free(errorString);
 
     GXLayers_TurnBothDispOn();
     ResetScreenMasterBrightness(DS_SCREEN_MAIN);

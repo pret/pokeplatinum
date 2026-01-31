@@ -11,7 +11,7 @@
 #include "Options.h"
 
 static const char* progname = "msgenc";
-static const char* version = "2025.08.12";
+static const char* version = "2025.11.24";
 
 static inline void usage() {
     cout << progname << " v" << version << endl;

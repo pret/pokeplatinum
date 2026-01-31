@@ -7,7 +7,7 @@
 
 #include "field_battle_data_transfer.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 enum TrainerDataParam {
     TRDATA_TYPE = 0,
@@ -32,7 +32,7 @@ enum TrainerDataParam {
  * @param save          Save data; used to pull out the rival's name, if needed.
  * @param heapID        Heap on which to allocate message bank access.
  */
-void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, int heapID);
+void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, enum HeapID heapID);
 
 /**
  * @brief Get a parameter for the given trainer ID from the data archive.
@@ -51,19 +51,19 @@ u32 Trainer_LoadParam(int trainerID, enum TrainerDataParam paramID);
  * @param heapID        Heap on which to allocate archive access.
  * @return TRUE if the trainer has a message of the given type; FALSE if not.
  */
-BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, int heapID);
+BOOL Trainer_HasMessageType(int trainerID, enum TrainerMessageType msgType, enum HeapID heapID);
 
 /**
- * @brief Load the trainer's message of a given type into the provided Strbuf.
+ * @brief Load the trainer's message of a given type into the provided String.
  *
- * If no such message exists, then the Strbuf will be cleared.
+ * If no such message exists, then the String will be cleared.
  *
  * @param trainerID     ID of the trainer being queried.
  * @param msgType       The type of message for which we are looking.
- * @param[out] strbuf   Strbuf which will contain the result message.
+ * @param[out] string   String which will contain the result message.
  * @param heapID        Heap on which to allocate archive access.
  */
-void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, Strbuf *strbuf, int heapID);
+void Trainer_LoadMessage(int trainerID, enum TrainerMessageType msgType, String *string, enum HeapID heapID);
 
 /**
  * @brief Load data for the requested trainer.

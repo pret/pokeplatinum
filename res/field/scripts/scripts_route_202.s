@@ -93,21 +93,21 @@ _0164:
     GoTo _0174
 
 _0174:
-    GoToIfUnset FLAG_UNK_0x008F, _027C
+    GoToIfUnset FLAG_RECEIVED_PARCEL, _027C
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, _019F
     GoToIfEq VAR_RESULT, GENDER_FEMALE, _01B2
     End
 
 _019F:
-    CallCommonScript 0x7F8
+    SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 2
     GoTo _01C5
 
 _01B2:
-    CallCommonScript 0x7F8
+    SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message 7
@@ -445,7 +445,7 @@ _0635:
 
 _0641:
     RemoveObject 3
-    ClearFlag FLAG_UNK_0x0177
+    ClearFlag FLAG_HIDE_SANDGEM_TOWN_COUNTERPART
     SetVar VAR_UNK_0x4087, 3
     ReleaseAll
     End

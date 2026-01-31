@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _001A:
-    SetFlag FLAG_UNK_0x09CB
+    SetFlag FLAG_FIRST_ARRIVAL_PAL_PARK
     End
 
 PalPark_Trigger_Countdown:

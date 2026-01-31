@@ -2,7 +2,7 @@
 #define POKEPLATINUM_SHOP_MENU_H
 
 #include "field/field_system_decl.h"
-#include "overlay005/struct_ov5_021D30A8.h"
+#include "overlay005/sprite_resource_manager.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -16,7 +16,7 @@
 #include "message.h"
 #include "savedata.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -87,7 +87,7 @@ typedef struct {
     MessageLoader *msgLoader;
     StringTemplate *strTemplate;
     Camera *camera;
-    UnkStruct_ov5_021D30A8 unk_94;
+    SpriteResourceManager spriteManager;
     Sprite *sprites[SHOP_SPRITE_MAX];
     u16 spriteDrawFlags[2];
     TrainerInfo *trainerInfo;
@@ -102,7 +102,7 @@ typedef struct {
     u8 itemsCount;
     u8 unused[2];
     u8 state;
-    Strbuf *strbuf;
+    String *string;
     u8 bgPriorities[4];
     int engineALayers;
     u8 fieldMsgPrinterId;

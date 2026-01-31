@@ -7,16 +7,15 @@
 
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0203D9B8.h"
+#include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_020997B8.h"
 
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
+#include "applications/poffin_case/main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
 #include "field/field_system_decl.h"
@@ -26,6 +25,7 @@
 #include "field_move_tasks.h"
 #include "field_task.h"
 #include "item_use_functions.h"
+#include "move_reminder_data.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "trainer_card.h"
@@ -52,7 +52,7 @@ int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu);
 int sub_0203D438(void *param0);
 int sub_0203D440(void *param0);
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2);
-PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode);
+PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode);
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);
 void FieldSystem_OpenPokemonStorage(FieldSystem *fieldSystem, PokemonStorageSession *pokemonStorageSession);
@@ -62,9 +62,9 @@ void FieldSystem_OpenTownMap(FieldSystem *fieldSystem, TownMapContext *townMapCt
 void *FieldSystem_OpenTownMapItem(FieldSystem *fieldSystem);
 void *FieldSystem_OpenOptionsMenu(FieldSystem *fieldSystem);
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 mailType, int unusedHeapID);
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID);
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID);
-UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int heapID);
+UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, enum HeapID heapID);
+UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID);
+PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, enum HeapID heapID);
 void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1);
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *saveData, u16 param3, u16 param4);
 BOOL sub_0203DB10(FieldSystem *fieldSystem, void *param1);
@@ -93,17 +93,17 @@ void *sub_0203E1AC(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E224(FieldSystem *fieldSystem);
 void FieldTask_StartHallOfFame(FieldSystem *fieldSystem, HallOfFameDisplayData *displayData);
 void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem);
-void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1);
-void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1);
+void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1);
+void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData);
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv);
 void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *taskEnv);
 void sub_0203E2FC(FieldSystem *fieldSystem);
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1);
 void sub_0203E414(FieldTask *task, int slotMachineID);
 void AccessoryShop_Init(FieldTask *task);
-void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, int heapID, BOOL isNatDex);
-void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, int heapID);
-void *sub_0203E608(FieldSystem *fieldSystem, int heapID);
+void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL isNatDex);
+void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID);
+void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID);
 void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSystem, u16 partySlot, u16 move);
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E704(FieldSystem *fieldSystem);

@@ -30,7 +30,7 @@
 #include "screen_fade.h"
 #include "screen_scroll_manager.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -483,7 +483,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 12, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 12, 1, HEAP_ID_FIELD1);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -541,7 +541,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_UNK_16, COLOR_BLACK, 12, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_CIRCLE_OUT, COLOR_BLACK, 12, 1, HEAP_ID_FIELD1);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -1439,7 +1439,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         v3 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), FX32_CONST(10), 8);
 
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_18, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_TOP_HALF_CIRCLE_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_FIELD1);
         v0->state++;
         break;
 
@@ -1777,7 +1777,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         }
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_16, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         v0->state++;
         break;
 
@@ -2858,24 +2858,24 @@ static BOOL ov5_021E51B4(UnkStruct_ov5_021E5128 *param0)
     return v2;
 }
 
-static Strbuf *EncounterEffect_GetGymLeaderName(u32 trainerClass, u32 heapID)
+static String *EncounterEffect_GetGymLeaderName(u32 trainerClass, enum HeapID heapID)
 {
     StringTemplate *template;
     MessageLoader *messageLoader;
-    Strbuf *result;
-    Strbuf *message;
+    String *result;
+    String *message;
 
-    messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0359, heapID);
+    messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0359, heapID);
     template = StringTemplate_Default(heapID);
-    result = Strbuf_Init(128, heapID);
-    message = Strbuf_Init(128, heapID);
-    MessageLoader_GetStrbuf(messageLoader, 0, message);
+    result = String_Init(128, heapID);
+    message = String_Init(128, heapID);
+    MessageLoader_GetString(messageLoader, 0, message);
     StringTemplate_SetTrainerName(template, 0, trainerClass);
     StringTemplate_Format(template, result, message);
 
     MessageLoader_Free(messageLoader);
     StringTemplate_Free(template);
-    Strbuf_Free(message);
+    String_Free(message);
     return result;
 }
 
@@ -2888,7 +2888,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
     VecFx32 v4;
     int v5;
     int v6;
-    Strbuf *v7;
+    String *v7;
 
     switch (encEffect->state) {
     case 0:
@@ -2903,7 +2903,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapID he
         Window_FillTilemap(&v0->unk_2E0, 0);
         v7 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
         Text_AddPrinterWithParamsAndColor(&v0->unk_2E0, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-        Strbuf_Free(v7);
+        String_Free(v7);
 
         ov5_021DE47C(&v0->unk_44, 8, 3);
 
@@ -3329,7 +3329,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
         Sprite_SetDrawFlag(v0->unk_2CC[3], TRUE);
 
         {
-            Strbuf *v9;
+            String *v9;
 
             Graphics_LoadPaletteFromOpenNARC(encEffect->narc, 11, 0, 2 * 0x20, 0x20, heapID);
 
@@ -3338,7 +3338,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             Window_FillTilemap(&v0->unk_358, 0);
             v9 = EncounterEffect_GetGymLeaderName(param->trainerID, heapID);
             Text_AddPrinterWithParamsAndColor(&v0->unk_358, FONT_SYSTEM, v9, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-            Strbuf_Free(v9);
+            String_Free(v9);
         }
 
         encEffect->effectComplete = 3;

@@ -23,7 +23,7 @@ typedef struct {
     u32 unk_10;
     int unk_14;
     u16 unk_18[14];
-    UnkStruct_ov104_0223A348 unk_34[2];
+    FrontierDataDTO unk_34[2];
     u16 unk_254[6];
     u8 unk_260[6];
     u32 unk_268[6];

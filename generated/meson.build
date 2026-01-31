@@ -44,19 +44,22 @@ metang_generators = {
     'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'bg_event_types': { 'type': 'enum', 'tag': 'BgEventType' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'contest_effects': { 'type': 'enum', 'tag': 'ContestEffects' },
     'comm_club_ret_codes': { 'type': 'enum', 'tag': 'CommClubRetCode' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
-    'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
     'fade_types': { 'type': 'enum', 'tag': 'FadeType' },
     'first_arrival_to_zones': { 'type': 'enum', 'tag': 'FirstArrivalToZone' },
     'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
+    'frontier_trainers': { 'type': 'enum', 'tag': 'FrontierTrainerID' },
+    'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
     'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
+    'goods': { 'type': 'enum', 'tag': 'Good' },
     'hidden_locations': { 'type': 'enum', 'tag': 'HiddenLocation' },
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },
     'item_battle_categories': { 'type': 'enum', 'tag': 'ItemBattleCategory' },
@@ -75,12 +78,14 @@ metang_generators = {
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'natures': { 'type': 'enum', 'tag': 'Nature' },
     'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
-    'object_events': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
+    'object_events_gfx': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
     'player_transitions': { 'type': 'mask', 'tag': 'PlayerTransition' },
+    'pokemon_anim_constants': { 'type': 'enum', 'tag': 'PokemonAnimConstants' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
     'pokemon_colors': { 'type': 'enum', 'tag': 'PokemonColor' },
+    'pokemon_contest_ranks': { 'type': 'enum', 'tag': 'PokemonContestRank' },
     'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },
     'pokemon_data_params': { 'type': 'enum', 'tag': 'PokemonDataParam' },
     'pokemon_stats': { 'type': 'enum', 'tag': 'PokemonStat' },
@@ -90,6 +95,7 @@ metang_generators = {
     'roaming_slots': { 'type': 'enum', 'tag': 'RoamingSlot' },
     'save_types': { 'type': 'enum', 'tag': 'SaveType' },
     'sdat': { 'type': 'enum', 'tag': 'SDATID' },
+    'seals': { 'type': 'enum', 'tag': 'Seal' },
     'signpost_commands': { 'type': 'enum', 'tag': 'SignpostCommand' },
     'signpost_types': { 'type': 'enum', 'tag': 'SignpostType' },
     'size_contest_results': { 'type': 'enum', 'tag': 'SizeContestResult' },
@@ -105,6 +111,7 @@ metang_generators = {
     'trainer_message_types': { 'type': 'enum', 'tag': 'TrainerMessageType' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
+    'traps': { 'type': 'enum', 'tag': 'Trap' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
     'vars_flags': {'type': 'enum', 'tag': 'VarFlag'},
     'versions': {'type': 'enum', 'tag': 'Version'},
@@ -159,6 +166,7 @@ species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainer_classes_txt = files('trainer_classes.txt')
 trainers_txt = files('trainers.txt')
+frontier_trainers_txt = files('frontier_trainers.txt')
 
 py_consts_env = environment()
 py_consts_env.append('PYTHONPATH', meson.project_build_root())

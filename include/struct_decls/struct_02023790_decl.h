@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_02023790_DECL_H
 #define POKEPLATINUM_STRUCT_02023790_DECL_H
 
-typedef struct Strbuf Strbuf;
+typedef struct String String;
 
 #endif // POKEPLATINUM_STRUCT_02023790_DECL_H

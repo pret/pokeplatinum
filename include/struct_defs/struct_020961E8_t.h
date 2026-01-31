@@ -16,7 +16,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
@@ -29,10 +29,10 @@ struct UnkStruct_020961E8_t {
     SysTask *unk_20;
     StringTemplate *unk_24;
     MessageLoader *unk_28;
-    Strbuf *unk_2C[5];
-    Strbuf *unk_40;
-    Strbuf *unk_44;
-    Strbuf *unk_48;
+    String *unk_2C[5];
+    String *unk_40;
+    String *unk_44;
+    String *unk_48;
     int unk_4C;
     SpriteList *unk_50;
     G2dRenderer unk_54;

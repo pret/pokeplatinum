@@ -15,7 +15,7 @@ enum PatchShakeType {
     PATCH_SHAKE_HARD = 1
 };
 
-RadarChain *RadarChain_Init(const int heapID);
+RadarChain *RadarChain_Init(const enum HeapID heapID);
 void RadarChain_Free(RadarChain *chain);
 void RadarChain_Clear(RadarChain *chain);
 BOOL RadarSpawnPatches(FieldSystem *fieldSystem, const int param1, const int param2, RadarChain *chain);

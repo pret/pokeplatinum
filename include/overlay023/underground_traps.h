@@ -7,7 +7,7 @@
 #include "overlay023/underground_defs.h"
 
 #include "bg_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 void TrapsEnv_Init(void *dest, FieldSystem *fieldSystem);
 void UndergroundTraps_DisableTrapGraphics(void);
@@ -46,8 +46,8 @@ void UndergroundTraps_CallSecondTrapEffectServerFunc(int netID, int unused1, voi
 void UndergroundTraps_StartLinkSlideAnimation_Unused(int unused0, int unused1, void *data, void *unused3);
 void UndergroundTraps_SendTriggeredTrapBits(void);
 void UndergroundTraps_ProcessTriggeredTrapBits(int unused0, int unused1, void *data, void *unused3);
-BOOL UndergroundTraps_GetQueuedMessage(Strbuf *dest);
-BOOL UndergroundTraps_GetQueuedMessage2(Strbuf *dest);
+BOOL UndergroundTraps_GetQueuedMessage(String *dest);
+BOOL UndergroundTraps_GetQueuedMessage2(String *dest);
 void UndergroundTraps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolStepBack);
 int CommPacketSizeOf_EscapedTrap(void);
 void UndergroundTraps_EscapeTrapServer(int netID, int unused1, void *unused2, void *unused3);
@@ -57,8 +57,8 @@ void UndergroundTraps_EscapeHole(int unused0, int unused1, void *data, void *unu
 void UndergroundTraps_HelpLink(int netID, int linkNetID);
 void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_TrapHelpData(void);
-int TrapRadar_GetXCoordOfBuriedTrap(int param0);
-int TrapRadar_GetZCoordOfBuriedTrap(int param0);
+int TrapRadar_GetXCoordOfBuriedTrap(int radarIndex);
+int TrapRadar_GetZCoordOfBuriedTrap(int radarIndex);
 void TrapRadar_Start(void);
 void TrapRadar_Exit(void);
 void UndergroundTraps_QueueSendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3);

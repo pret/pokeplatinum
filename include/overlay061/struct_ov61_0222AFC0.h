@@ -1,7 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV61_0222AFC0_H
 #define POKEPLATINUM_STRUCT_OV61_0222AFC0_H
 
-#include "overlay061/struct_ov61_0222BED8_sub2_sub1_sub1_sub1.h"
+#include "struct_defs/sentence.h"
+
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
 typedef struct {
@@ -20,7 +21,7 @@ typedef struct {
     u8 unk_1E;
     u8 unk_1F;
     union {
-        UnkStruct_ov61_0222BED8_sub2_sub1_sub1_sub1 unk_20_val1;
+        Sentence unk_20_val1;
         u16 unk_20_val2[40];
     };
     u8 unk_70[12];

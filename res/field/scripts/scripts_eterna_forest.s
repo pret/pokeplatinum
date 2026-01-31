@@ -17,7 +17,7 @@
     ScriptEntryEnd
 
 _0032:
-    GoToIfUnset FLAG_UNK_0x00E3, _003F
+    GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, _003F
     End
 
 _003F:
@@ -147,7 +147,7 @@ _0198:
 
 _01DB:
     Message 6
-    CallCommonScript 0x7E0
+    GiveItemQuantityNoLineFeed
     GoTo _01EA
     End
 
@@ -209,7 +209,7 @@ _02CB:
     ClearHasPartner
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetFlag FLAG_UNK_0x00E3
+    SetFlag FLAG_TRAVELED_WITH_CHERYL
     SetVar VAR_UNK_0x40B1, 2
     ReleaseAll
     End

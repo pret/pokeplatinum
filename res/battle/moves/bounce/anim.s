@@ -6,8 +6,8 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 3, 3
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 8
     PlaySoundEffectL SEQ_SE_DP_W100
     Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
@@ -17,7 +17,7 @@ L_1:
     End
 
 L_2:
-    CreateEmitter 0, 2, 4
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
     Delay 10
     PlaySoundEffectR SEQ_SE_DP_W029
     Delay 10

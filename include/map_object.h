@@ -3,6 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
+#include "constants/field/map.h"
 #include "constants/map_object.h"
 #include "generated/movement_actions.h"
 
@@ -23,6 +24,8 @@
 #include "map_header_data.h"
 #include "narc.h"
 #include "sys_task_manager.h"
+
+#define MAP_OBJECT_COORD_TO_FX32(coord) ((coord << 4) * FX32_ONE) + (MAP_OBJECT_TILE_SIZE >> 1)
 
 typedef struct MapObjectSave {
     u32 status;
@@ -73,7 +76,7 @@ void MapObjectMan_LoadAllObjects(const MapObjectManager *mapObjMan, MapObjectSav
 void sub_02062068(const MapObjectManager *mapObjMan, int param1, int param2, const ObjectEvent *objectEvent);
 MapObject *MapObjMan_LocalMapObjByIndex(const MapObjectManager *mapObjMan, int index);
 MapObject *sub_02062570(const MapObjectManager *mapObjMan, int movementType);
-int sub_020625B0(const MapObjectManager *mapObjMan, MapObject **mapObj, int *param2, u32 status);
+BOOL MapObjectMan_FindObjectWithStatus(const MapObjectManager *mapObjMan, MapObject **mapObj, int *startIdx, u32 status);
 int MapObject_HasNoScript(const MapObject *mapObj);
 int sub_02062758(const MapObject *mapObj, int param1);
 int sub_02062764(const MapObject *mapObj, int param1, int param2);
@@ -211,8 +214,8 @@ void sub_02062E78(MapObject *mapObj, int param1);
 int sub_02062E94(const MapObject *mapObj);
 void sub_02062EAC(MapObject *mapObj, int param1);
 int sub_02062EC8(const MapObject *mapObj);
-void sub_02062EE0(MapObject *mapObj, int param1);
-int sub_02062EFC(const MapObject *mapObj);
+void MapObject_SetFlagDoNotSinkIntoTerrain(MapObject *mapObj, BOOL flag);
+int MapObject_CheckFlagDoNotSinkIntoTerrain(const MapObject *mapObj);
 void sub_02062F14(MapObject *mapObj, int param1);
 int sub_02062F30(const MapObject *mapObj);
 void sub_02062F48(MapObject *mapObj, int param1);
@@ -247,13 +250,13 @@ void MapObject_GetPosPtr(const MapObject *mapObj, VecFx32 *pos);
 void MapObject_SetPos(MapObject *mapObj, const VecFx32 *pos);
 const VecFx32 *MapObject_GetPos(const MapObject *mapObj);
 fx32 MapObject_GetPosY(const MapObject *mapObj);
-void sub_02063078(const MapObject *mapObj, VecFx32 *vec);
-void sub_02063088(MapObject *mapObj, const VecFx32 *vec);
-VecFx32 *sub_02063098(MapObject *mapObj);
+void MapObject_GetSpriteJumpOffset(const MapObject *mapObj, VecFx32 *vec);
+void MapObject_SetSpriteJumpOffset(MapObject *mapObj, const VecFx32 *vec);
+VecFx32 *MapObject_GetSpriteJumpOffset1(MapObject *mapObj);
 void sub_0206309C(const MapObject *mapObj, VecFx32 *vec);
 void sub_020630AC(MapObject *mapObj, const VecFx32 *vec);
-void sub_020630BC(const MapObject *mapObj, VecFx32 *vec);
-void sub_020630CC(MapObject *mapObj, const VecFx32 *vec);
+void MapObject_GetSpriteTerrainOffset(const MapObject *mapObj, VecFx32 *vec);
+void MapObject_SetSpriteTerrainOffset(MapObject *mapObj, const VecFx32 *spriteOffset);
 int sub_020630DC(const MapObject *mapObj);
 void ObjectEvent_SetLocalID(ObjectEvent *objectEvent, int localID);
 int ObjectEvent_GetLocalID(const ObjectEvent *objectEvent);
@@ -263,8 +266,8 @@ void ObjectEvent_SetMovementType(ObjectEvent *objectEvent, int movementType);
 int ObjectEvent_GetMovementType(const ObjectEvent *objectEvent);
 void ObjectEvent_SetTrainerType(ObjectEvent *objectEvent, int trainerType);
 int ObjectEvent_GetTrainerType(const ObjectEvent *objectEvent);
-void ObjectEvent_SetFlag(ObjectEvent *objectEvent, int flag);
-int ObjectEvent_GetFlag(const ObjectEvent *objectEvent);
+void ObjectEvent_SetHiddenFlag(ObjectEvent *objectEvent, int flag);
+int ObjectEvent_GetHiddenFlag(const ObjectEvent *objectEvent);
 void ObjectEvent_SetScript(ObjectEvent *objectEvent, int script);
 int ObjectEvent_GetScript(const ObjectEvent *objectEvent);
 void ObjectEvent_SetInitialDir(ObjectEvent *objectEvent, int initialDir);

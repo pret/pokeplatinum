@@ -73,8 +73,8 @@ _015E:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_224 VAR_0x8000, VAR_0x8003
-    ScrCmd_225 VAR_RESULT
+    OpenMoveTutorMenu VAR_0x8000, VAR_0x8003
+    CheckLearnedTutorMove VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

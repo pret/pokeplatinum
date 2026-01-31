@@ -40,10 +40,10 @@ void SealCase_CopyCapsuleFromId(SealCase *sealCase, BallCapsule *dst, int capsul
     BallCapsule_Copy(dst, SealCase_GetCapsuleById(sealCase, capsuleId));
 }
 
-BallSeal *BallCapsule_GetBallSeals(BallCapsule *ballCapsule, int sealNum)
+BallSeal *BallCapsule_GetBallSeals(BallCapsule *ballCapsule, int sealId)
 {
-    GF_ASSERT(sealNum < SEALS_PER_CAPSULE);
-    return &ballCapsule->seals[sealNum];
+    GF_ASSERT(sealId < SEALS_PER_CAPSULE);
+    return &ballCapsule->seals[sealId];
 }
 
 u8 BallSeal_GetSealType(const BallSeal *seal)
@@ -66,17 +66,17 @@ SealCounts *SealCase_GetSealsObtained(SealCase *sealCase)
     return &sealCase->seals;
 }
 
-u8 SealCase_GetSealCount(const SealCounts *seals, int sealNum)
+u8 SealCase_GetSealCount(const SealCounts *seals, int sealId)
 {
-    return seals->count[sealNum];
+    return seals->count[sealId];
 }
 
-BOOL sub_0202CA94(const BallCapsule *ballCapsule, int param1)
+BOOL SealIsOnCapsule(const BallCapsule *ballCapsule, int sealId)
 {
-    int v0, i;
+    int unused, i;
 
     for (i = 0; i < SEALS_PER_CAPSULE; i++) {
-        if (ballCapsule->seals[i].type == (param1 + 1)) {
+        if (ballCapsule->seals[i].type == (sealId + 1)) {
             return TRUE;
         }
     }
@@ -84,14 +84,14 @@ BOOL sub_0202CA94(const BallCapsule *ballCapsule, int param1)
     return FALSE;
 }
 
-int sub_0202CAB0(const SealCase *sealCase, int param1)
+int SealCase_CountSealOccurrenceInUse(const SealCase *sealCase, int sealId)
 {
     int i, j;
     int count = 0;
 
     for (i = 0; i < TOTAL_CAPSULES; i++) {
         for (j = 0; j < SEALS_PER_CAPSULE; j++) {
-            if (sealCase->capsules[i].seals[j].type == (param1 + 1)) {
+            if (sealCase->capsules[i].seals[j].type == (sealId + 1)) {
                 count++;
             }
         }
@@ -100,28 +100,28 @@ int sub_0202CAB0(const SealCase *sealCase, int param1)
     return count;
 }
 
-void sub_0202CADC(SealCounts *seals, int param1, int param2)
+void SealCase_SetSealQuantity(SealCounts *seals, int sealId, int quantity)
 {
-    seals->count[param1] = param2;
+    seals->count[sealId] = quantity;
 }
 
-BOOL sub_0202CAE0(SealCase *param0, int param1, s16 param2)
+BOOL GiveOrTakeSeal(SealCase *sealCase, int sealId, s16 quantity)
 {
-    int v0;
-    int v1;
+    int num;
+    int total;
 
-    v0 = sub_0202CAB0(param0, param1 - 1);
-    v1 = v0 + param0->seals.count[param1 - 1];
+    num = SealCase_CountSealOccurrenceInUse(sealCase, sealId - 1);
+    total = num + sealCase->seals.count[sealId - 1];
 
-    if (param2 < 0) {
-        if (param0->seals.count[param1 - 1] + param2 >= 0) {
-            param0->seals.count[param1 - 1] += param2;
+    if (quantity < 0) {
+        if (sealCase->seals.count[sealId - 1] + quantity >= 0) {
+            sealCase->seals.count[sealId - 1] += quantity;
         } else {
             return 0;
         }
     } else {
-        if (v1 + param2 <= MAX_SEALS_PER_TYPE) {
-            param0->seals.count[param1 - 1] += param2;
+        if (total + quantity <= MAX_SEALS_PER_TYPE) {
+            sealCase->seals.count[sealId - 1] += quantity;
         } else {
             return 0;
         }
@@ -130,26 +130,26 @@ BOOL sub_0202CAE0(SealCase *param0, int param1, s16 param2)
     return 1;
 }
 
-BOOL sub_0202CB20(SealCase *sealCase, int param1, s16 param2)
+BOOL GiveOrTakeSeal2(SealCase *sealCase, int sealId, s16 quantity)
 {
-    int v0;
-    int v1;
+    int num;
+    int total;
 
-    v0 = sub_0202CAB0(sealCase, param1 - 1);
-    v1 = v0;
+    num = SealCase_CountSealOccurrenceInUse(sealCase, sealId - 1);
+    total = num;
 
-    if (param2 < 0) {
-        if (sealCase->seals.count[param1 - 1] + param2 >= 0) {
-            sealCase->seals.count[param1 - 1] += param2;
+    if (quantity < 0) {
+        if (sealCase->seals.count[sealId - 1] + quantity >= 0) {
+            sealCase->seals.count[sealId - 1] += quantity;
         } else {
             return 0;
         }
     } else {
-        if (v1 + param2 <= MAX_SEALS_PER_TYPE) {
-            sealCase->seals.count[param1 - 1] += param2;
+        if (total + quantity <= MAX_SEALS_PER_TYPE) {
+            sealCase->seals.count[sealId - 1] += quantity;
 
-            if (sealCase->seals.count[param1 - 1] >= MAX_SEALS_PER_TYPE) {
-                sealCase->seals.count[param1 - 1] = MAX_SEALS_PER_TYPE;
+            if (sealCase->seals.count[sealId - 1] >= MAX_SEALS_PER_TYPE) {
+                sealCase->seals.count[sealId - 1] = MAX_SEALS_PER_TYPE;
             }
         } else {
             return 0;
@@ -159,19 +159,19 @@ BOOL sub_0202CB20(SealCase *sealCase, int param1, s16 param2)
     return 1;
 }
 
-BOOL sub_0202CB70(SealCase *sealCase, int param1, s16 param2)
+BOOL SealCase_CheckSealCount(SealCase *sealCase, int sealId, s16 quantity)
 {
-    int v0 = sub_0202CAB0(sealCase, param1 - 1);
-    int v1 = v0 + sealCase->seals.count[param1 - 1];
+    int num = SealCase_CountSealOccurrenceInUse(sealCase, sealId - 1);
+    int total = num + sealCase->seals.count[sealId - 1];
 
-    if (param2 < 0) {
-        if (sealCase->seals.count[param1 - 1] + param2 >= 0) {
+    if (quantity < 0) {
+        if (sealCase->seals.count[sealId - 1] + quantity >= 0) {
             return TRUE;
         } else {
             return FALSE;
         }
     } else {
-        if (v1 + param2 <= MAX_SEALS_PER_TYPE) {
+        if (total + quantity <= MAX_SEALS_PER_TYPE) {
             return TRUE;
         } else {
             return FALSE;
@@ -181,27 +181,27 @@ BOOL sub_0202CB70(SealCase *sealCase, int param1, s16 param2)
     return TRUE;
 }
 
-int sub_0202CBA8(const SealCase *sealCase)
+int SealCase_CountUniqueSeals(const SealCase *sealCase)
 {
     int i;
-    int v1 = 0;
+    int totalUnique = 0;
 
     for (i = 1; i < SEAL_ID_MAX; i++) {
-        if (sub_0202CBC8(sealCase, i) != 0) {
-            v1++;
+        if (SealCase_CountSealOccurrenceAnywhere(sealCase, i) != 0) {
+            totalUnique++;
         }
     }
 
-    return v1;
+    return totalUnique;
 }
 
-int sub_0202CBC8(const SealCase *sealCase, int param1)
+int SealCase_CountSealOccurrenceAnywhere(const SealCase *sealCase, int sealId)
 {
-    int v0;
-    int v1;
+    int num;
+    int total;
 
-    v0 = sub_0202CAB0(sealCase, param1 - 1);
-    v1 = v0 + sealCase->seals.count[param1 - 1];
+    num = SealCase_CountSealOccurrenceInUse(sealCase, sealId - 1);
+    total = num + sealCase->seals.count[sealId - 1];
 
-    return v1;
+    return total;
 }

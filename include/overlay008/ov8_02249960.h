@@ -5,9 +5,9 @@
 
 #include "bg_window.h"
 #include "message.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
-void ov8_0224997C(FieldSystem *fieldSystem);
+void PastoriaGym_PressButton(FieldSystem *fieldSystem);
 BOOL PastoriaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
 void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void ov8_02249FB8(FieldSystem *fieldSystem);
@@ -22,7 +22,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1);
 void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void EternaGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);
 BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const int tileX, const int tileZ, const fx32 height, BOOL *isColliding);
-BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3);
+BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, String *param3);
 BOOL EternaGym_IsHourHandJumpTile(FieldSystem *fieldSystem, int tileX, int tileZ, int direction);
 void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem);
 void VeilstoneGym_DynamicMapFeaturesFree(FieldSystem *fieldSystem);

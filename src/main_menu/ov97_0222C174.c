@@ -32,13 +32,15 @@
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
+
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 
 FS_EXTERN_OVERLAY(game_opening);
 
@@ -342,7 +344,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 };
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     BgConfig *unk_04;
     SaveData *saveData;
     Pokedex *unk_0C;
@@ -540,9 +542,9 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     v0 = Options_Frame(param0->options);
 
     LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_0, (1 + 9), 2, v0, param0->heapID);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, 0, 16 * 2 * 8, 16 * 2, param0->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, 0, 16 * 2 * 8, 16 * 2, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 1);
 
@@ -551,9 +553,9 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, 4, 16 * 2 * 8, 16 * 2, param0->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->heapID);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, 4, 16 * 2 * 8, 16 * 2, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_NSCR_lz, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 4, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 4);
 }
@@ -598,7 +600,7 @@ static void ov97_0222C47C(UnkStruct_ov97_0222C388 *param0)
 
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(116, 10, 7, 9, 8, 0);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, download_arrow_NCGR_lz, download_arrow_NCLR, download_arrow_cell_NCER_lz, download_arrow_anim_NANR_lz, DS_SCREEN_MAIN);
 
     param0->unk_3170 = MainMenuUtil_InitSprite(0, param0->unk_3170, HW_LCD_WIDTH / 2, 76, 1);
 
@@ -783,21 +785,21 @@ static int ov97_0222C948(ApplicationManager *appMan, int *param1)
 static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
 {
     RTCDate v0;
-    Strbuf *v1;
+    String *v1;
     StringTemplate *v2;
     MessageLoader *v3;
     WonderCard *v4 = &param0->unk_3180;
 
     MI_CpuClear8(v4, sizeof(WonderCard));
 
-    v3 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, param0->heapID);
+    v3 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, param0->heapID);
     v2 = StringTemplate_Default(param0->heapID);
 
     v4->pgt.type = 7;
-    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 76, param0->heapID);
+    v1 = MessageUtil_ExpandedString(v2, v3, 76, param0->heapID);
 
-    Strbuf_ToChars((const Strbuf *)v1, v4->eventHeader.title, 36);
-    Strbuf_Free(v1);
+    String_ToChars((const String *)v1, v4->eventHeader.title, 36);
+    String_Free(v1);
 
     v4->eventHeader.validGames = (MainMenuUtil_CalcMysteryGiftVersionBit(10) | MainMenuUtil_CalcMysteryGiftVersionBit(11) | MainMenuUtil_CalcMysteryGiftVersionBit(12));
     v4->eventHeader.id = 1;
@@ -807,10 +809,10 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     v4->eventHeader.savePgt = 1;
     v4->eventHeader.fromSharing = 0;
 
-    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->heapID);
+    v1 = MessageUtil_ExpandedString(v2, v3, 75, param0->heapID);
 
-    Strbuf_ToChars((const Strbuf *)v1, v4->description, 250);
-    Strbuf_Free(v1);
+    String_ToChars((const String *)v1, v4->description, 250);
+    String_Free(v1);
 
     v4->sharesLeft = 0;
     v4->spritesSpecies[0] = 490;

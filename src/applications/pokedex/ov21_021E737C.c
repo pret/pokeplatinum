@@ -28,7 +28,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -150,7 +150,7 @@ static void ov21_021E7CF0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 static void ov21_021E7CF4(UnkStruct_ov21_021E7714 *param0);
 static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, enum HeapID heapID);
 static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, enum HeapID heapID);
-static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID);
+static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, enum HeapID heapID);
 static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0);
 static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1);
 static void ov21_021E7F7C(UnkStruct_ov21_021E747C *param0);
@@ -691,64 +691,64 @@ static void ov21_021E7CF4(UnkStruct_ov21_021E7714 *param0)
 
 static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, enum HeapID heapID)
 {
-    Strbuf *v0 = Strbuf_Init(32, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    String *v0 = String_Init(32, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_weightcheck_topscreen, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_weightcheck_topscreen, v0);
 
     {
         u32 v2 = Font_CalcCenterAlignment(FONT_SYSTEM, v0, 0, 256);
         Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, v0, v2, 24, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_wt, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_wt, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, v0, 32, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_wt, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_wt, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, v0, 152, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(pokedexMessageBank);
 }
 
 static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, enum HeapID heapID)
 {
-    Strbuf *v0 = Strbuf_Init(32, heapID);
+    String *v0 = String_Init(32, heapID);
     int species = PokedexSort_CurrentSpecies(param1->unk_00);
-    Strbuf *v3 = MessageUtil_SpeciesName(species, heapID);
+    String *v3 = MessageUtil_SpeciesName(species, heapID);
 
     int weightMessageBankIndex = Weight_Message_Bank_Index();
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, heapID);
+    MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, heapID);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, v3, 26, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    MessageLoader_GetStrbuf(v1, species, v0);
+    MessageLoader_GetString(v1, species, v0);
 
     {
-        u32 v5 = 32 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+        u32 v5 = 32 + 78 - Font_CalcStringWidth(FONT_SYSTEM, v0, 0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, v0, v5, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    Strbuf_Free(v3);
+    String_Free(v3);
     MessageLoader_Free(v1);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_00), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     if (PokedexSort_TrainerGender(param1->unk_00) == 0) {
-        MessageLoader_GetStrbuf(v1, pl_msg_pokedex_lucasweight, v0);
+        MessageLoader_GetString(v1, pl_msg_pokedex_lucasweight, v0);
     } else {
-        MessageLoader_GetStrbuf(v1, pl_msg_pokedex_dawnweight, v0);
+        MessageLoader_GetString(v1, pl_msg_pokedex_dawnweight, v0);
     }
 
     {
-        u32 v6 = 152 + 78 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+        u32 v6 = 152 + 78 - Font_CalcStringWidth(FONT_SYSTEM, v0, 0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, v0, v6, 168, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     }
 
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(v1);
 }
 
-static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID)
+static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, enum HeapID heapID)
 {
     SoftwareSpriteCharsTemplate v0;
     SoftwareSpritePaletteTemplate v1;

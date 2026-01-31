@@ -24,7 +24,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020366A0.h"
@@ -115,10 +115,10 @@ static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
 {
     int fontSpacing = Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT) + Font_GetAttribute(FONT_SYSTEM, FONTATTR_LINE_SPACING);
     int yOffset = 0;
-    Strbuf *buf = MessageUtil_ExpandedStrbuf(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoLabels[0], saveInfoWin->heapID);
+    String *buf = MessageUtil_ExpandedString(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoLabels[0], saveInfoWin->heapID);
 
     Text_AddPrinterWithParams(saveInfoWin->window, FONT_SYSTEM, buf, 0, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
-    Strbuf_Free(buf);
+    String_Free(buf);
 
     int xOffset;
 
@@ -128,16 +128,16 @@ static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
         }
 
         yOffset += fontSpacing;
-        buf = MessageLoader_GetNewStrbuf(saveInfoWin->msgLoader, sSaveInfoLabels[i]);
+        buf = MessageLoader_GetNewString(saveInfoWin->msgLoader, sSaveInfoLabels[i]);
 
         Text_AddPrinterWithParams(saveInfoWin->window, FONT_SYSTEM, buf, 0, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(buf);
+        String_Free(buf);
 
-        buf = MessageUtil_ExpandedStrbuf(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoValues[i - 1], saveInfoWin->heapID);
-        xOffset = SAVE_INFO_WINDOW_WIDTH * 8 - Font_CalcStrbufWidth(FONT_SYSTEM, buf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
+        buf = MessageUtil_ExpandedString(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoValues[i - 1], saveInfoWin->heapID);
+        xOffset = SAVE_INFO_WINDOW_WIDTH * 8 - Font_CalcStringWidth(FONT_SYSTEM, buf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
 
         Text_AddPrinterWithParams(saveInfoWin->window, FONT_SYSTEM, buf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
-        Strbuf_Free(buf);
+        String_Free(buf);
     }
 }
 
@@ -169,7 +169,7 @@ SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapID heapID,
     saveInfoWin->bgLayer = bgLayer;
     saveInfoWin->bgConfig = fieldSystem->bgConfig;
     saveInfoWin->strTemplate = StringTemplate_Default(heapID);
-    saveInfoWin->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_INFO_WINDOW, heapID);
+    saveInfoWin->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SAVE_INFO_WINDOW, heapID);
 
     SaveInfo_SetValues(&saveInfoWin->saveInfo, saveInfoWin->fieldSystem);
     SaveInfoWindow_SetStrings(saveInfoWin->strTemplate, &saveInfoWin->saveInfo);

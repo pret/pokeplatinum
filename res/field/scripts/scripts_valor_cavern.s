@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _0012:
-    SetFlag FLAG_UNK_0x09E1
+    SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater
     End
@@ -26,8 +26,8 @@ ValorCavern_SetWarpEventPosLakeWithWater:
     End
 
 _0042:
-    SetFlag FLAG_UNK_0x09E1
-    CallIfSet FLAG_UNK_0x008E, ValorCavern_RemoveAzelf
+    SetFlag FLAG_FIRST_ARRIVAL_VALOR_CAVERN
+    CallIfSet FLAG_MAP_LOCAL, ValorCavern_RemoveAzelf
     GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithGalactic
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_SetWarpEventPosLakeWithWater
     End
@@ -35,7 +35,7 @@ _0042:
 ValorCavern_RemoveAzelf:
     SetFlag FLAG_AZELF_DISAPPEARED
     RemoveObject LOCALID_AZELF
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     Return
 
 ValorCavern_Azelf:
@@ -45,14 +45,14 @@ ValorCavern_Azelf:
     PlayCry SPECIES_AZELF
     Message ValorCavern_Text_AzelfCry
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_AZELF, 50
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, ValorCavern_LostBattleAzelf
     CheckDidNotCapture VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, ValorCavern_AzelfDisappeared
-    SetFlag FLAG_AZELF_CAUGHT
+    SetFlag FLAG_CAUGHT_AZELF
     ReleaseAll
     End
 

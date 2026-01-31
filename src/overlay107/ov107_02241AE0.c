@@ -46,7 +46,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -233,9 +233,9 @@ struct UnkStruct_ov107_02241D6C_t {
     MessageLoader *unk_1C;
     MessageLoader *unk_20;
     StringTemplate *unk_24;
-    Strbuf *unk_28;
-    Strbuf *unk_2C;
-    Strbuf *unk_30[3];
+    String *unk_28;
+    String *unk_2C;
+    String *unk_30[3];
     u16 unk_3C[8];
     BgConfig *unk_4C;
     Window unk_50[18];
@@ -849,7 +849,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             }
 
             if (param0->unk_16 == 0) {
-                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) {
+                if (Pokemon_GetValue(v7, MON_DATA_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) {
                     param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
                     param0->unk_08 = 7;
                     break;
@@ -861,7 +861,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
                     break;
                 }
             } else {
-                if ((Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) && (ov107_02245210(v7) == 0)) {
+                if ((Pokemon_GetValue(v7, MON_DATA_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) && (ov107_02245210(v7) == 0)) {
                     param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
                     param0->unk_08 = 7;
                     break;
@@ -1393,12 +1393,12 @@ static void ov107_02242E14(UnkStruct_ov107_02241D6C *param0)
     MessageLoader_Free(param0->unk_20);
     MessageLoader_Free(param0->unk_1C);
     StringTemplate_Free(param0->unk_24);
-    Strbuf_Free(param0->unk_28);
-    Strbuf_Free(param0->unk_2C);
+    String_Free(param0->unk_28);
+    String_Free(param0->unk_2C);
     FontSpecialChars_Free(param0->unk_1C4);
 
     for (v1 = 0; v1 < 3; v1++) {
-        Strbuf_Free(param0->unk_30[v1]);
+        String_Free(param0->unk_30[v1]);
     }
 
     ov107_02249D5C(param0->unk_50, 0);
@@ -1436,14 +1436,14 @@ static void ov107_02242F5C(UnkStruct_ov107_02241D6C *param0)
     ov107_02243324(param0);
     ov107_02243384(param0);
 
-    param0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_100);
-    param0->unk_1C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, HEAP_ID_100);
+    param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_100);
+    param0->unk_1C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, HEAP_ID_100);
     param0->unk_24 = StringTemplate_Default(HEAP_ID_100);
-    param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
-    param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);
+    param0->unk_28 = String_Init(600, HEAP_ID_100);
+    param0->unk_2C = String_Init(600, HEAP_ID_100);
 
     for (v15 = 0; v15 < 3; v15++) {
-        param0->unk_30[v15] = Strbuf_Init(32, HEAP_ID_100);
+        param0->unk_30[v15] = String_Init(32, HEAP_ID_100);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_100);
@@ -1479,7 +1479,7 @@ static void ov107_02242F5C(UnkStruct_ov107_02241D6C *param0)
             ov107_02249BAC(param0->unk_404[v15], 0);
         }
 
-        v2 = Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL);
+        v2 = Pokemon_GetValue(v19, MON_DATA_HP, NULL);
         v3 = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
         v4 = ov107_022450E8(param0, HealthBar_Color(v2, v3, 48));
         v5 = ov107_02245114(param0, HealthBar_Color(v2, v3, 48));
@@ -1802,15 +1802,15 @@ static u8 ov107_022437CC(UnkStruct_ov107_02241D6C *param0, Window *param1, int p
 {
     u8 v0;
     Window_FillTilemap(param1, param8);
-    MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     switch (param10) {
     case 1:
-        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
+        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
 
@@ -1828,15 +1828,15 @@ static u8 ov107_02243860(UnkStruct_ov107_02241D6C *param0, Window *param1, int p
 static u8 ov107_02243890(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
 {
     u8 v0;
-    MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     switch (param10) {
     case 1:
-        param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0);
+        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0);
         break;
     }
 
@@ -1923,8 +1923,8 @@ static void ov107_02243C18(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
     StringTemplate_SetMoveName(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
     param0->unk_0A = ov107_02243860(param0, param1, param3, v0, v1, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM);
 
-    ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_IS_DATA_INVALID, 0);
-    ov107_02244A74(param0, 5, Pokemon_GetValue(param5, param8, NULL), MON_DATA_IS_DATA_INVALID, 0);
+    ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_CHECKSUM_FAILED, 0);
+    ov107_02244A74(param0, 5, Pokemon_GetValue(param5, param8, NULL), MON_DATA_CHECKSUM_FAILED, 0);
     param0->unk_0A = ov107_02243890(param0, param1, param4, v2, v3, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
 
     return;
@@ -1976,7 +1976,7 @@ static void ov107_02243CFC(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
         v4 = 0;
     }
 
-    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v1, v2);
+    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_HP, NULL), 3, 1, param1, v1, v2);
     FontSpecialChars_DrawPartyScreenLevelText(param0->unk_1C4, 0, param1, v5, v6);
     FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
 
@@ -2052,7 +2052,7 @@ static u8 ov107_02243EF8(UnkStruct_ov107_02241D6C *param0, Window *param1, u16 p
     u8 v0;
 
     Window_FillTilemap(param1, 0);
-    MessageLoader_GetStrbuf(param0->unk_1C, param2, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_1C, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     v0 = Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -2203,7 +2203,7 @@ static void ov107_022441B0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     int v0;
     void *v1;
 
-    MessageLoader_GetStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
+    MessageLoader_GetString(param0->unk_20, param3, param0->unk_30[param1]);
 
     param0->unk_180[param1].entry = (const void *)param0->unk_30[param1];
     param0->unk_180[param1].index = param2;
@@ -2244,7 +2244,7 @@ static void ov107_02244240(UnkStruct_ov107_02241D6C *param0, u8 param1)
     ov107_02249BAC(param0->unk_3EC, 1);
     ov107_02249BAC(param0->unk_434, 1);
 
-    v5 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_100);
+    v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_100);
     v0 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
 
     if (param1 == 6) {
@@ -2642,12 +2642,12 @@ static void ov107_02244AB4(UnkStruct_ov107_02241D6C *param0, Window *param1, u32
 {
     TextColor v0;
     const TrainerInfo *v1;
-    Strbuf *v2;
+    String *v2;
 
     v1 = SaveData_GetTrainerInfo(param0->saveData);
-    v2 = Strbuf_Init(7 + 1, HEAP_ID_100);
+    v2 = String_Init(7 + 1, HEAP_ID_100);
 
-    Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
+    String_CopyChars(v2, TrainerInfo_Name(v1));
 
     if (TrainerInfo_Gender(v1) == 0) {
         v0 = TEXT_COLOR(7, 8, 0);
@@ -2657,7 +2657,7 @@ static void ov107_02244AB4(UnkStruct_ov107_02241D6C *param0, Window *param1, u32
 
     Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
     Window_ScheduleCopyToVRAM(param1);
-    Strbuf_Free(v2);
+    String_Free(v2);
 
     return;
 }
@@ -2914,7 +2914,7 @@ static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
 
     v5 = ov107_02249C98(param0->unk_14, param1);
     v6 = Party_GetPokemonBySlotIndex(param0->unk_43C, v5);
-    v0 = Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL);
+    v0 = Pokemon_GetValue(v6, MON_DATA_HP, NULL);
     v1 = Pokemon_GetValue(v6, MON_DATA_MAX_HP, NULL);
     v2 = ov107_022450E8(param0, HealthBar_Color(v0, v1, 48));
     v3 = ov107_02245114(param0, HealthBar_Color(v0, v1, 48));
@@ -2948,7 +2948,7 @@ static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
         }
 
         if (param0->unk_414 == NULL) {
-            ov107_02243F4C(param0, &param0->unk_50[3], v5, Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL));
+            ov107_02243F4C(param0, &param0->unk_50[3], v5, Pokemon_GetValue(v6, MON_DATA_HP, NULL));
             ov107_02249BEC(param0->unk_420[v5], v3);
             ov107_02249C1C(param0->unk_3F4[v5], v2);
             param0->unk_0E_2 = 0;
@@ -3130,19 +3130,19 @@ static BOOL ov107_02245210(Pokemon *param0)
 {
     u8 v0 = 0;
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE1_MAX_PP, NULL)) {
+    if (Pokemon_GetValue(param0, MON_DATA_MOVE1_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE1_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE2_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE2_MAX_PP, NULL)) {
+    if (Pokemon_GetValue(param0, MON_DATA_MOVE2_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE2_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE3_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE3_MAX_PP, NULL)) {
+    if (Pokemon_GetValue(param0, MON_DATA_MOVE3_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE3_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (Pokemon_GetValue(param0, MON_DATA_MOVE4_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE4_MAX_PP, NULL)) {
+    if (Pokemon_GetValue(param0, MON_DATA_MOVE4_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE4_MAX_PP, NULL)) {
         v0 = 1;
     }
 
@@ -3668,7 +3668,7 @@ static void ov107_02245C00(UnkStruct_ov107_02241D6C *param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_43C, v0);
-        v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
+        v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
 
         if (param0->unk_3F4[v0] != NULL) {
             ov107_02249C1C(param0->unk_3F4[v0], v2);

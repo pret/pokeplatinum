@@ -1411,8 +1411,8 @@ static void AddRoamerToEnemyParty(const u32 trainerID, Roamer *roamer, FieldBatt
 
     Pokemon_InitAndCalcStats(mon, roamerSpecies, roamerLevel, roamerCombinedIVs, roamerPersonality);
     Pokemon_SetValue(mon, MON_DATA_OT_ID, &trainerID);
-    Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &roamerStatusCondition);
-    Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &roamerCurrentHP);
+    Pokemon_SetValue(mon, MON_DATA_STATUS, &roamerStatusCondition);
+    Pokemon_SetValue(mon, MON_DATA_HP, &roamerCurrentHP);
 
     GF_ASSERT(Party_AddPokemon(battle->parties[1], mon));
     Heap_Free(mon);

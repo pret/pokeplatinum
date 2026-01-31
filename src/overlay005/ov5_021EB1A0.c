@@ -736,7 +736,7 @@ void ov5_021EBA34(MapObject *mapObj)
     v0 = sub_02062AF0(mapObj);
 
     ov5_021ECFA4(mapObj, &v0->unk_04);
-    sub_02063088(mapObj, &v1);
+    MapObject_SetSpriteJumpOffset(mapObj, &v1);
 }
 
 void ov5_021EBA60(MapObject *mapObj)
@@ -1294,7 +1294,7 @@ static void ov5_021EC374(MapObject *mapObj, UnkStruct_020216E0 *param1, int para
         break;
     }
 
-    sub_02063088(mapObj, &v0);
+    MapObject_SetSpriteJumpOffset(mapObj, &v0);
 }
 
 static void (*const Unk_ov5_021FF31C[])(MapObject *, UnkStruct_020216E0 *, UnkStruct_ov5_021EBA0C *, int) = {
@@ -1800,14 +1800,14 @@ void ov5_021EC9E8(MapObject *mapObj)
             0x0
         };
 
-        sub_02063078(mapObj, &v4);
+        MapObject_GetSpriteJumpOffset(mapObj, &v4);
 
         if (v4.y == v2->unk_04) {
             v4.y = v5[v2->unk_00 >> 1];
             v2->unk_00 = (v2->unk_00 + 1) & 0x1f;
             v2->unk_04 = v4.y;
 
-            sub_02063088(mapObj, &v4);
+            MapObject_SetSpriteJumpOffset(mapObj, &v4);
         }
     }
 

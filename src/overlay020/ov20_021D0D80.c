@@ -15,7 +15,7 @@
 #include "overlay_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
@@ -1053,7 +1053,7 @@ static BOOL ov20_021D1BB0(UnkStruct_ov20_021D16E8 *param0)
         param0->unk_10[param0->unk_4E] = v1;
         break;
     case 2:
-        sub_02014CF8(&param0->unk_08, param0->unk_4E, v1);
+        Sentence_SetWord(&param0->unk_08, param0->unk_4E, v1);
         break;
     }
 
@@ -1302,13 +1302,13 @@ u32 ov20_021D1F9C(const UnkStruct_ov20_021D16E8 *param0)
 u16 ov20_021D1FA8(const UnkStruct_ov20_021D16E8 *param0, int param1)
 {
     if (param0->unk_04 == 2) {
-        return sub_02014C78(&param0->unk_08, param1);
+        return Sentence_GetWord(&param0->unk_08, param1);
     } else {
         return param0->unk_10[param1];
     }
 }
 
-Strbuf *ov20_021D1FC0(const UnkStruct_ov20_021D16E8 *param0, u32 param1)
+String *ov20_021D1FC0(const UnkStruct_ov20_021D16E8 *param0, u32 param1)
 {
     return sub_02014BA0(&(param0->unk_08), param1);
 }
@@ -1337,7 +1337,7 @@ u32 ov20_021D1FE4(const UnkStruct_ov20_021D16E8 *param0)
     }
 }
 
-void ov20_021D2008(const UnkStruct_ov20_021D16E8 *param0, u32 param1, Strbuf *param2)
+void ov20_021D2008(const UnkStruct_ov20_021D16E8 *param0, u32 param1, String *param2)
 {
     if (param0->unk_65 == 0) {
         sub_02099CA8(param0->unk_18, param0->unk_50, param1, param2);

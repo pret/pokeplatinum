@@ -10,7 +10,7 @@
 #include "assert.h"
 #include "rtc.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "unk_02038FFC.h"
 
 int WiFiList_SaveSize(void)
@@ -139,10 +139,10 @@ u16 *sub_0202AEF0(WiFiList *param0, int param1)
     return param0->unk_1C0[param1].unk_10;
 }
 
-void sub_0202AF0C(WiFiList *param0, int param1, Strbuf *param2)
+void sub_0202AF0C(WiFiList *param0, int param1, String *param2)
 {
     GF_ASSERT(param1 < 32);
-    Strbuf_ToChars(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
+    String_ToChars(param2, param0->unk_1C0[param1].unk_10, sizeof(param0->unk_1C0[param1].unk_10));
 }
 
 u16 *sub_0202AF34(WiFiList *param0, int param1)
@@ -151,10 +151,10 @@ u16 *sub_0202AF34(WiFiList *param0, int param1)
     return param0->unk_1C0[param1].unk_00;
 }
 
-void sub_0202AF50(WiFiList *param0, int param1, Strbuf *param2)
+void sub_0202AF50(WiFiList *param0, int param1, String *param2)
 {
     GF_ASSERT(param1 < 32);
-    Strbuf_ToChars(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));
+    String_ToChars(param2, param0->unk_1C0[param1].unk_00, sizeof(param0->unk_1C0[param1].unk_00));
 }
 
 BOOL sub_0202AF78(WiFiList *param0, int param1)

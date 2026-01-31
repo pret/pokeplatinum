@@ -5,30 +5,28 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02098700_decl.h"
-#include "struct_defs/struct_0202610C.h"
-
 #include "field/field_system.h"
 
+#include "battle_regulation.h"
+#include "battle_regulation_validation.h"
 #include "bg_window.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
 #include "heap.h"
+#include "height_weight_data.h"
 #include "list_menu.h"
 #include "message.h"
 #include "party.h"
+#include "pokedex_heightweight.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202602C.h"
-#include "unk_02026150.h"
-#include "unk_0207A2A8.h"
 
 typedef struct {
     ListMenu *unk_00;
@@ -36,10 +34,10 @@ typedef struct {
     StringList *unk_08;
     StringList *unk_0C;
     FieldSystem *fieldSystem;
-    Strbuf *unk_14;
-    Strbuf *unk_18;
-    Strbuf *unk_1C;
-    Strbuf *unk_20;
+    String *unk_14;
+    String *unk_18;
+    String *unk_1C;
+    String *unk_20;
     Window unk_24;
     Window unk_34;
     Window unk_44;
@@ -93,7 +91,7 @@ static void ov7_0224B4E8(UnkStruct_ov7_0224B4E8 *param0, int param1)
         FieldMessage_ClearWindow(&param0->unk_54);
     }
 
-    MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
+    MessageLoader_GetString(param0->unk_68, param1, param0->unk_14);
     StringTemplate_Format(param0->unk_64, param0->unk_18, param0->unk_14);
 
     param0->unk_74 = FieldMessage_Print(&param0->unk_54, param0->unk_18, SaveData_GetOptions(param0->fieldSystem->saveData), 1);
@@ -111,15 +109,15 @@ static void ov7_0224B558(UnkStruct_ov7_0224B4E8 *param0, BOOL param1)
 
 static void ov7_0224B57C(UnkStruct_ov7_0224B4E8 *param0, int param1)
 {
-    sub_0202616C(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD1);
-    StringTemplate_SetStrbuf(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
+    BattleRegulation_GetNameByIndex(param0->fieldSystem->saveData, param1, param0->unk_1C, HEAP_ID_FIELD1);
+    StringTemplate_SetString(param0->unk_64, 0, param0->unk_1C, 0, 1, GAME_LANGUAGE);
 }
 
 static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
 {
     ListMenuTemplate v0;
     Window *v1 = &(param0->unk_34);
-    BattleRegulation *v2 = sub_0202610C(param0->fieldSystem->saveData, 0);
+    BattleRegulation *v2 = BattleRegulation_Load(param0->fieldSystem->saveData, 0);
     int v3 = 5;
 
     if (v2) {
@@ -138,9 +136,9 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
         for (v4 = 0; v4 < v3; v4++) {
             ov7_0224B57C(param0, v4);
 
-            MessageLoader_GetStrbuf(param0->unk_68, 113, param0->unk_1C);
+            MessageLoader_GetString(param0->unk_68, 113, param0->unk_1C);
             StringTemplate_Format(param0->unk_64, param0->unk_20, param0->unk_1C);
-            StringList_AddFromStrbuf(param0->unk_08, param0->unk_20, v4);
+            StringList_AddFromString(param0->unk_08, param0->unk_20, v4);
         }
 
         StringList_AddFromMessageBank(param0->unk_08, param0->unk_68, 114, 0xfffffffe);
@@ -200,7 +198,7 @@ static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
         return -1;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        param0->fieldSystem->unk_B0 = sub_02026150(param0->fieldSystem->saveData, v0);
+        param0->fieldSystem->unk_B0 = BattleRegulation_GetByIndex(param0->fieldSystem->saveData, v0);
         break;
     }
 
@@ -316,8 +314,8 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
 {
     MessageLoader *v0;
     StringTemplate *v1 = param0->unk_64;
-    Strbuf *v2;
-    Strbuf *v3;
+    String *v2;
+    String *v3;
     Window *v4;
     int v5, v6, v7, v8;
     const int v9 = 16;
@@ -326,9 +324,9 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     const int v12 = 55;
     const int v13 = (24 * 8) - 1;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD1);
-    v2 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
-    v3 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0353, HEAP_ID_FIELD1);
+    v2 = String_Init((90 * 2), HEAP_ID_FIELD1);
+    v3 = String_Init((90 * 2), HEAP_ID_FIELD1);
     v4 = &param0->unk_24;
 
     Window_Add(param0->fieldSystem->bgConfig, v4, 3, 4, 2, 24, 19, 13, 1);
@@ -337,17 +335,17 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
 
     ov7_0224B57C(param0, param0->unk_78 - 1);
 
-    MessageLoader_GetStrbuf(v0, 95, v2);
+    MessageLoader_GetString(v0, 95, v2);
     StringTemplate_Format(v1, v3, v2);
     Text_AddPrinterWithParams(v4, FONT_SYSTEM, v3, v10 + v12, 0, TEXT_SPEED_NO_TRANSFER, NULL);
 
     for (v5 = 0; v5 < 9; v5++) {
-        MessageLoader_GetStrbuf(v0, 75 + v5, v2);
+        MessageLoader_GetString(v0, 75 + v5, v2);
         Text_AddPrinterWithParams(v4, FONT_SYSTEM, v2, v10, v9 + v11 * v5, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     for (v5 = 0; v5 < 9; v5++) {
-        v6 = sub_02026074(param0->fieldSystem->unk_B0, Unk_ov7_0224F4C0[v5]);
+        v6 = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, Unk_ov7_0224F4C0[v5]);
         v7 = Unk_ov7_0224F4CC[v5];
 
         switch (Unk_ov7_0224F4C0[v5]) {
@@ -398,18 +396,18 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
             break;
         }
 
-        MessageLoader_GetStrbuf(v0, v7, v2);
+        MessageLoader_GetString(v0, v7, v2);
         StringTemplate_Format(v1, v3, v2);
         {
-            int v14 = Font_CalcStrbufWidth(FONT_SYSTEM, v3, 0);
+            int v14 = Font_CalcStringWidth(FONT_SYSTEM, v3, 0);
             int v15 = v13 - v14;
 
             Text_AddPrinterWithParams(v4, FONT_SYSTEM, v3, v15, v9 + v11 * v5, TEXT_SPEED_NO_TRANSFER, NULL);
         }
     }
 
-    Strbuf_Free(v2);
-    Strbuf_Free(v3);
+    String_Free(v2);
+    String_Free(v3);
     MessageLoader_Free(v0);
     Window_CopyToVRAM(v4);
 }
@@ -424,7 +422,7 @@ static void ov7_0224BBA0(UnkStruct_ov7_0224B4E8 *param0)
 static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
 {
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
-    int v1 = sub_0207A594(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
+    int v1 = BattleRegulation_SelectValidPokemon(param0->fieldSystem->unk_B0, v0, param0->unk_6C);
     int v2;
 
     switch (v1) {
@@ -433,7 +431,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     case 4:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
-        v2 = sub_02026074(param0->fieldSystem->unk_B0, 1);
+        v2 = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, BATTLE_REGULATION_RULE_TEAM_SIZE);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 1, 1, 1);
         ov7_0224B4E8(param0, 107);
         break;
@@ -441,7 +439,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     case 1:
         Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
-        v2 = sub_02026074(param0->fieldSystem->unk_B0, 3);
+        v2 = BattleRegulation_GetRuleValue(param0->fieldSystem->unk_B0, BATTLE_REGULATION_RULE_MAX_TOTAL_LEVEL);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 3, 0, 1);
         ov7_0224B4E8(param0, 121);
         break;
@@ -535,11 +533,11 @@ static BOOL ov7_0224BC74(FieldTask *param0)
         ov7_0224B558(v1, 0);
         StringTemplate_Free(v1->unk_64);
         MessageLoader_Free(v1->unk_68);
-        Strbuf_Free(v1->unk_14);
-        Strbuf_Free(v1->unk_18);
-        Strbuf_Free(v1->unk_1C);
-        Strbuf_Free(v1->unk_20);
-        sub_0207A2C0(v1->unk_6C);
+        String_Free(v1->unk_14);
+        String_Free(v1->unk_18);
+        String_Free(v1->unk_1C);
+        String_Free(v1->unk_20);
+        HeightWeightData_Free(v1->unk_6C);
         Heap_Free(v1);
         return 1;
     default:
@@ -559,11 +557,11 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->fieldSystem->unk_B0 = NULL;
     v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD1);
-    v0->unk_68 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD1);
-    v0->unk_14 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
-    v0->unk_18 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
-    v0->unk_1C = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
-    v0->unk_20 = Strbuf_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_68 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD1);
+    v0->unk_14 = String_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_18 = String_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_1C = String_Init((90 * 2), HEAP_ID_FIELD1);
+    v0->unk_20 = String_Init((90 * 2), HEAP_ID_FIELD1);
     v0->unk_6C = HeightWeightData_Load(HEAP_ID_FIELD2);
 
     return v0;

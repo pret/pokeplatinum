@@ -10,10 +10,10 @@ L_0:
     WaitForPartialBgSwitch
     Func_ScrollSwitchedBg 100
     WaitForBgSwitch
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
-    CreateEmitter 0, 2, 3
-    CreateEmitter 0, 3, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     PlayPannedSoundEffect SEQ_SE_DP_W250, BATTLE_SOUND_PAN_LEFT
     Delay 5
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER

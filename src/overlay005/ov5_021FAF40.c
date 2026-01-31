@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 
 #include "struct_defs/struct_020217F4.h"
 

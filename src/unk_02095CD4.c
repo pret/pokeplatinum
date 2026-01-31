@@ -36,7 +36,7 @@ static const CommCmdTable Unk_020F59BC[] = {
     { sub_02095DAC, CommPacketSizeOf_NetId },
     { sub_02095DFC, sub_02095E74, sub_02095E80 },
     { sub_02095E28, sub_02095E68, sub_02095E80 },
-    { sub_02095DB8, sub_0203294C },
+    { sub_02095DB8, CommPacketSizeOf_Nothing },
     { sub_02095DBC, CommPacketSizeOf_NetId },
     { sub_02095DCC, sub_02095E70 }
 };
@@ -134,7 +134,7 @@ void sub_02095DCC(int param0, int param1, void *param2, void *param3)
 {
     FieldSystem *fieldSystem = (FieldSystem *)param3;
     int v1;
-    u8 *v2 = sub_0202D79C(fieldSystem->saveData);
+    u8 *v2 = SaveData_GetRibbons(fieldSystem->saveData);
     u8 *v3 = (u8 *)param2;
 
     if (CommSys_CurNetId() == param0) {

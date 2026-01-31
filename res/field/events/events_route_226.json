@@ -47,7 +47,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 0,
             "data": [
@@ -64,7 +64,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04C3",
+            "hidden_flag": "FLAG_UNK_0x04C3",
             "script": 7205,
             "initial_dir": 0,
             "data": [],
@@ -79,7 +79,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04C5",
+            "hidden_flag": "FLAG_UNK_0x04C5",
             "script": 7207,
             "initial_dir": 0,
             "data": [],
@@ -94,7 +94,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x04C4",
+            "hidden_flag": "FLAG_UNK_0x04C4",
             "script": 7206,
             "initial_dir": 0,
             "data": [],
@@ -109,7 +109,7 @@
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -126,7 +126,7 @@
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -143,7 +143,7 @@
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -160,7 +160,7 @@
             "graphics_id": "OBJ_EVENT_GFX_UNK_100",
             "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2800,
             "initial_dir": 0,
             "data": [
@@ -173,12 +173,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_SWIMMER_F_8",
+            "id": "ROUTE_226_SWIMMER_LYDIA",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3603,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_LYDIA",
             "initial_dir": 1,
             "data": [
                 2
@@ -195,7 +195,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0193",
+            "hidden_flag": "FLAG_UNK_0x0193",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -208,12 +208,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ACE_TRAINER_M_10",
+            "id": "ROUTE_226_ACE_TRAINER_GRAHAM",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3567,
+            "hidden_flag": "0",
+            "script": "TRAINER_ACE_TRAINER_GRAHAM",
             "initial_dir": 2,
             "data": [
                 1
@@ -225,12 +225,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ACE_TRAINER_F_11",
+            "id": "ROUTE_226_BIRD_KEEPER_GENEVA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3554,
+            "hidden_flag": "0",
+            "script": "TRAINER_BIRD_KEEPER_GENEVA",
             "initial_dir": 2,
             "data": [
                 2
@@ -242,12 +242,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_ACE_TRAINER_M_12",
+            "id": "ROUTE_226_DRAGON_TAMER_STANLEY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3559,
+            "hidden_flag": "0",
+            "script": "TRAINER_DRAGON_TAMER_STANLEY",
             "initial_dir": 1,
             "data": [
                 1
@@ -264,7 +264,7 @@
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x01C2",
+            "hidden_flag": "FLAG_UNK_0x01C2",
             "script": 65535,
             "initial_dir": 1,
             "data": [],
@@ -279,7 +279,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 2,
             "initial_dir": 0,
             "data": [
@@ -292,12 +292,12 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_SWIMMER_M_15",
+            "id": "ROUTE_226_SWIMMER_WADE",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
             "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "flag": "0",
-            "script": 3599,
+            "hidden_flag": "0",
+            "script": "TRAINER_SWIMMER_WADE",
             "initial_dir": 1,
             "data": [
                 2
@@ -331,4 +331,3 @@
     ],
     "coord_events": []
 }
-

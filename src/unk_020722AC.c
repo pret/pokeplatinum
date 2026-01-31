@@ -32,7 +32,7 @@
 #include "screen_fade.h"
 #include "scroll_prompts.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -50,7 +50,7 @@ typedef struct {
     u8 trainerGender;
     u8 mailType;
     u16 item;
-    Strbuf *unk_08;
+    String *unk_08;
 } UnkStruct_02072EB8;
 
 typedef struct {
@@ -60,14 +60,14 @@ typedef struct {
 
 typedef struct {
     StringTemplate *unk_00;
-    Strbuf *unk_04;
-    Strbuf *unk_08;
-    Strbuf *unk_0C;
-    Strbuf *unk_10[6];
+    String *unk_04;
+    String *unk_08;
+    String *unk_0C;
+    String *unk_10[6];
 } UnkStruct_02072334_sub1;
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int *unk_04;
     SysTask *unk_08;
     SysTaskFunc unk_0C;
@@ -130,7 +130,7 @@ static void sub_020727F8(SysTask *param0, void *param1);
 static void sub_02072878(SysTask *param0, void *param1);
 static void sub_02072EA4(UnkStruct_02072334 *param0, SysTaskFunc param1, SysTaskFunc param2);
 static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1);
-static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID);
+static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, enum HeapID heapID);
 static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1);
 static void sub_020729B4(UnkStruct_02072334 *param0);
 static void sub_02072BBC(ListMenu *param0, u32 param1, u8 param2);
@@ -139,7 +139,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2);
 static void sub_02072DA4(ListMenu *param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 *param0);
 static void sub_02072E4C(UnkStruct_02072334 *param0);
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID);
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, enum HeapID heapID);
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1);
 static BOOL sub_02073060(UnkStruct_02072334 *param0);
 static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2);
@@ -684,11 +684,11 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
             continue;
         }
 
-        StringList_AddFromStrbuf(param0->unk_164, v2->unk_08, v2->unk_00);
+        StringList_AddFromString(param0->unk_164, v2->unk_08, v2->unk_00);
         v1++;
     }
 
-    StringList_AddFromStrbuf(param0->unk_164, param0->unk_110.unk_08, 0xFFFF);
+    StringList_AddFromString(param0->unk_164, param0->unk_110.unk_08, 0xFFFF);
     v1++;
 
     MI_CpuCopy8((void *)&Unk_020F0504, (void *)&(param0->unk_140), sizeof(ListMenuTemplate));
@@ -867,16 +867,16 @@ static void sub_02072EB8(UnkStruct_02072EB8 *param0, u8 param1)
     param0->unk_03 = 0;
 
     if (param0->unk_08 != NULL) {
-        Strbuf_Clear(param0->unk_08);
+        String_Clear(param0->unk_08);
     }
 }
 
-static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, int heapID)
+static void sub_02072ED0(UnkStruct_02072EB8 *param0, u8 param1, enum HeapID heapID)
 {
     u8 v0 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        param0[v0].unk_08 = Strbuf_Init(8, heapID);
+        param0[v0].unk_08 = String_Init(8, heapID);
         sub_02072EB8(param0, v0);
     }
 }
@@ -887,12 +887,12 @@ static void sub_02072F04(UnkStruct_02072EB8 *param0, u8 param1)
 
     for (v0 = 0; v0 < param1; v0++) {
         if (param0[v0].unk_08 != NULL) {
-            Strbuf_Free(param0[v0].unk_08);
+            String_Free(param0[v0].unk_08);
         }
     }
 }
 
-static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int heapID)
+static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, enum HeapID heapID)
 {
     u8 i = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;
@@ -926,7 +926,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *saveData, int hea
         v7->mailType = Mail_GetMailType(mail);
         v7->item = Item_ForMailNumber(v7->mailType);
 
-        Strbuf_CopyChars(v7->unk_08, Mail_GetTrainerName(mail));
+        String_CopyChars(v7->unk_08, Mail_GetTrainerName(mail));
 
         v7->unk_02 = param0->unk_19;
         v8->unk_03 = v7->unk_00;
@@ -1005,16 +1005,16 @@ static void sub_02073130(UnkStruct_02072334 *param0)
 {
     MessageLoader *v0;
     int v1;
-    Strbuf *v2;
+    String *v2;
 
-    param0->unk_10C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAILBOX, param0->heapID);
+    param0->unk_10C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MAILBOX, param0->heapID);
     param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->heapID);
-    param0->unk_110.unk_04 = Strbuf_Init(128, param0->heapID);
-    param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);
-    param0->unk_110.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_10C, 0);
+    param0->unk_110.unk_04 = String_Init(128, param0->heapID);
+    param0->unk_110.unk_08 = MessageLoader_GetNewString(param0->unk_10C, 4);
+    param0->unk_110.unk_0C = MessageLoader_GetNewString(param0->unk_10C, 0);
 
     for (v1 = 0; v1 < 6; v1++) {
-        param0->unk_110.unk_10[v1] = MessageLoader_GetNewStrbuf(param0->unk_10C, 6 + v1);
+        param0->unk_110.unk_10[v1] = MessageLoader_GetNewString(param0->unk_10C, 6 + v1);
     }
 }
 
@@ -1023,12 +1023,12 @@ static void sub_020731A4(UnkStruct_02072334 *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        Strbuf_Free(param0->unk_110.unk_10[v0]);
+        String_Free(param0->unk_110.unk_10[v0]);
     }
 
-    Strbuf_Free(param0->unk_110.unk_0C);
-    Strbuf_Free(param0->unk_110.unk_08);
-    Strbuf_Free(param0->unk_110.unk_04);
+    String_Free(param0->unk_110.unk_0C);
+    String_Free(param0->unk_110.unk_08);
+    String_Free(param0->unk_110.unk_04);
     StringTemplate_Free(param0->unk_110.unk_00);
     MessageLoader_Free(param0->unk_10C);
 }
@@ -1058,7 +1058,7 @@ static void sub_02073294(UnkStruct_02072334 *param0)
 
 static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 param3, int param4)
 {
-    Strbuf *v0;
+    String *v0;
 
     if (param4) {
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_184, 1, 1024 - (18 + 12), 10);
@@ -1069,8 +1069,8 @@ static void sub_020732C4(UnkStruct_02072334 *param0, int param1, u8 param2, u8 p
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
 
     if (param1 == 0) {
-        Strbuf_Clear(param0->unk_110.unk_04);
-        StringTemplate_SetStrbuf(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
+        String_Clear(param0->unk_110.unk_04);
+        StringTemplate_SetString(param0->unk_110.unk_00, 0, param0->unk_1C[param0->unk_18].unk_08, 2, 1, GAME_LANGUAGE);
         StringTemplate_Format(param0->unk_110.unk_00, param0->unk_110.unk_04, param0->unk_110.unk_10[param1]);
 
         v0 = param0->unk_110.unk_04;

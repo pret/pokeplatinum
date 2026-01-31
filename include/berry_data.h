@@ -2,7 +2,7 @@
 #define POKEPLATINUM_BERRY_DATA_H
 
 #include "narc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 // These must be #defines for csv2bin
 #define FIRMNESS_VERY_SOFT  1
@@ -45,7 +45,7 @@ void BerryData_NARC_dtor(NARC *narc);
 BerryData *BerryData_Load(u32 memberIdx, u32 heapID);
 BerryData *BerryData_LoadDataByItemID(u32 itemID, u32 heapID);
 u32 BerryData_GetAttribute(BerryData *berryData, u32 attributeID);
-Strbuf *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID);
-Strbuf *BerryData_AllocAndGetDescription(u16 memberIdx, u16 heapID);
+String *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID);
+String *BerryData_AllocAndGetDescription(u16 memberIdx, u16 heapID);
 
 #endif // POKEPLATINUM_BERRY_DATA_H

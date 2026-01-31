@@ -5,7 +5,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40D1, 0, 3
+    InitScriptGoToIfEqual VAR_HAS_ENTERED_HEARTHOME_GYM_BEFORE, FALSE, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

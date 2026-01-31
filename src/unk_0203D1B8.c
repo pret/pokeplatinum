@@ -8,18 +8,16 @@
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/clear_game_player_info.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/gts_player_data.h"
-#include "struct_defs/struct_0203D9B8.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0203E2FC.h"
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_0203E564.h"
@@ -27,11 +25,11 @@
 #include "struct_defs/struct_0203E6C0.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02097728.h"
-#include "struct_defs/struct_020997B8.h"
 
 #include "applications/bag/application.h"
 #include "applications/diploma.h"
 #include "applications/journal_display/journal_controller.h"
+#include "applications/move_reminder.h"
 #include "applications/naming_screen.h"
 #include "applications/options_menu.h"
 #include "applications/party_menu/defs.h"
@@ -39,6 +37,7 @@
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pc_hall_of_fame/manager.h"
+#include "applications/poffin_case/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
@@ -64,7 +63,6 @@
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D0D80.h"
-#include "overlay091/ov91_021D0D80.h"
 #include "overlay092/ov92_021D0D80.h"
 #include "overlay094/application.h"
 #include "overlay095/ov95_02246C20.h"
@@ -95,6 +93,7 @@
 #include "item_use_functions.h"
 #include "mail.h"
 #include "math_util.h"
+#include "move_reminder_data.h"
 #include "overlay_manager.h"
 #include "overworld_map_history.h"
 #include "party.h"
@@ -107,7 +106,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system_data.h"
 #include "system_flags.h"
 #include "system_vars.h"
@@ -128,7 +127,6 @@
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
-#include "unk_020989DC.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EA02C.h"
@@ -159,7 +157,6 @@ FS_EXTERN_OVERLAY(hall_of_fame);
 FS_EXTERN_OVERLAY(pc_hall_of_fame);
 FS_EXTERN_OVERLAY(overlay88);
 FS_EXTERN_OVERLAY(overlay90);
-FS_EXTERN_OVERLAY(overlay91);
 FS_EXTERN_OVERLAY(overlay92);
 FS_EXTERN_OVERLAY(cutscenes);
 FS_EXTERN_OVERLAY(overlay94);
@@ -174,7 +171,7 @@ FS_EXTERN_OVERLAY(dw_warp);
 #include <nitro/code16.h>
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     PartyMenu *unk_04;
     PokemonSummary *unk_08;
 } UnkStruct_0203D444;
@@ -206,7 +203,7 @@ typedef struct {
     int unk_04;
     u16 *unk_08;
     NamingScreenArgs *unk_0C;
-    Strbuf *unk_10;
+    String *unk_10;
 } UnkStruct_0203DE98;
 
 typedef struct {
@@ -364,7 +361,7 @@ void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *appArgs)
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, appArgs);
 }
 
-static PartyMenu *PartyMenu_New(int heapID, FieldSystem *fieldSystem, int type, int mode)
+static PartyMenu *PartyMenu_New(enum HeapID heapID, FieldSystem *fieldSystem, int type, int mode)
 {
     PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
 
@@ -528,7 +525,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    v0->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
     v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
@@ -549,7 +546,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem
     return partyMenu;
 }
 
-PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
+PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode)
 {
     PokemonSummary *v0;
     SaveData *saveData;
@@ -571,7 +568,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int heapID, int mode)
     v0->mode = mode;
     v0->dexMode = SaveData_GetDexMode(saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(saveData);
-    v0->specialRibbons = sub_0202D79C(saveData);
+    v0->specialRibbons = SaveData_GetRibbons(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));
@@ -769,7 +766,7 @@ UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, int heapID)
+UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0;
 
@@ -784,7 +781,7 @@ UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2
     return v0;
 }
 
-UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int heapID)
+UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, enum HeapID heapID)
 {
     UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, heapID);
     sub_0203D910(fieldSystem, v0);
@@ -792,17 +789,17 @@ UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int 
     return v0;
 }
 
-static void sub_0203D9A8(FieldSystem *fieldSystem, UnkStruct_0203D9B8 *param1)
+static void OpenPoffinCaseApp(FieldSystem *fieldSystem, PoffinCaseAppData *poffinCaseAppData)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F6890, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gPoffinCaseAppTemplate, poffinCaseAppData);
 }
 
-UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int heapID)
+PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, enum HeapID heapID)
 {
-    UnkStruct_0203D9B8 *v0 = sub_020989DC(FieldSystem_GetSaveData(fieldSystem), heapID);
-    sub_0203D9A8(fieldSystem, v0);
+    PoffinCaseAppData *appData = PoffinCaseAppData_New(FieldSystem_GetSaveData(fieldSystem), heapID);
+    OpenPoffinCaseApp(fieldSystem, appData);
 
-    return v0;
+    return appData;
 }
 
 void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
@@ -819,14 +816,14 @@ void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int param2, BOOL *param3, BOOL param4)
+static UnkStruct_0203DA00 *sub_0203DA00(enum HeapID heapID, SaveData *saveData, int param2, BOOL *param3, BOOL param4)
 {
     UnkStruct_0203DA00 *v0;
     Pokemon *v1;
     int v2;
-    UnkStruct_0202A750 *v3;
-    UnkStruct_02029C68 *v4;
-    UnkStruct_02029D04 *v5;
+    ImageClips *imageClips;
+    DressUpPhoto *photo;
+    FashionCase *fashionCase;
 
     v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0203DA00));
     memset(v0, 0, sizeof(UnkStruct_0203DA00));
@@ -834,12 +831,12 @@ static UnkStruct_0203DA00 *sub_0203DA00(int heapID, SaveData *saveData, int para
 
     v0->unk_00 = v1;
 
-    v3 = sub_0202A750(saveData);
-    v4 = sub_02029CA8(v3, 0);
-    v5 = sub_02029D04(v3);
+    imageClips = SaveData_GetImageClips(saveData);
+    photo = ImageClips_GetDressUpPhoto(imageClips, 0);
+    fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    v0->unk_04 = v4;
-    v0->unk_08 = v5;
+    v0->photo = photo;
+    v0->fashionCase = fashionCase;
     v0->options = SaveData_GetOptions(saveData);
     v0->records = SaveData_GetGameRecords(saveData);
     v0->unk_14 = SaveData_GetTrainerInfo(saveData);
@@ -1156,11 +1153,11 @@ static BOOL sub_0203DE98(FieldTask *param0)
         break;
     case 3:
         if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
-            if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
+            if (String_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
                 v2->unk_0C->returnCode = 1;
             }
         } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
-            const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
+            const u16 *v3 = String_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
@@ -1179,7 +1176,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
         }
 
         NamingScreenArgs_Free(v2->unk_0C);
-        Strbuf_Free(v2->unk_10);
+        String_Free(v2->unk_10);
         Heap_Free(v2);
 
         return 1;
@@ -1207,7 +1204,7 @@ static void sub_0203DF68(FieldTask *param0)
     } break;
     case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
-        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->textInputStr);
+        RecordMixedRNG_GetEntryNameAsString(v5, 0, 0, v1->unk_0C->textInputStr);
     } break;
     case NAMING_SCREEN_TYPE_UNK6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
@@ -1235,7 +1232,7 @@ void sub_0203DFE8(
     v2->unk_04 = param4;
     v2->unk_08 = param6;
     v2->unk_0C = NamingScreenArgs_Init(HEAP_ID_FIELD2, type, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
-    v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELD2);
+    v2->unk_10 = String_Init(12, HEAP_ID_FIELD2);
 
     switch (type) {
     case NAMING_SCREEN_TYPE_POKEMON:
@@ -1244,15 +1241,15 @@ void sub_0203DFE8(
         v2->unk_0C->monForm = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
-            Strbuf_CopyChars(v2->unk_10, param5);
+            String_CopyChars(v2->unk_10, param5);
         }
         break;
     case NAMING_SCREEN_TYPE_GROUP:
-        Strbuf_CopyChars(v2->unk_10, param5);
+        String_CopyChars(v2->unk_10, param5);
         break;
     default:
         if (param5 != NULL) {
-            Strbuf_CopyChars(v2->unk_0C->textInputStr, param5);
+            String_CopyChars(v2->unk_0C->textInputStr, param5);
         }
         break;
     }
@@ -1432,7 +1429,7 @@ void *FieldTask_OpenPCHallOfFameScreen(FieldSystem *fieldSystem)
     }
 }
 
-void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1)
+void sub_0203E274(FieldSystem *fieldSystem, ClearGamePlayerInfo *param1)
 {
     FS_EXTERN_OVERLAY(overlay99);
 
@@ -1446,18 +1443,18 @@ void sub_0203E274(FieldSystem *fieldSystem, UnkStruct_0203E274 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
 }
 
-void sub_0203E284(FieldSystem *fieldSystem, UnkStruct_020997B8 *param1)
+void FieldSystem_OpenMoveReminderMenu(FieldSystem *fieldSystem, MoveReminderData *moveReminderData)
 {
-    FS_EXTERN_OVERLAY(overlay91);
+    FS_EXTERN_OVERLAY(move_reminder);
 
-    const ApplicationManagerTemplate v0 = {
-        ov91_021D0D80,
-        ov91_021D0E08,
-        ov91_021D0EBC,
-        FS_OVERLAY_ID(overlay91)
+    const ApplicationManagerTemplate template = {
+        MoveReminder_Init,
+        MoveReminder_Main,
+        MoveReminder_Exit,
+        FS_OVERLAY_ID(move_reminder)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, moveReminderData);
 }
 
 void FieldTask_PlayBoatCutscene_CanalaveShip(FieldSystem *fieldSystem, void *taskEnv)
@@ -1495,7 +1492,7 @@ void sub_0203E2FC(FieldSystem *fieldSystem)
     Pokemon *v2 = Party_GetFirstEgg(v1);
 
     GF_ASSERT(v2 != NULL);
-    sub_0206D578(fieldSystem, v2);
+    FieldSystem_SaveTVEpisodeSegment_HappyHappyEggClub(fieldSystem, v2);
 
     v0.unk_00 = v2;
     v0.options = SaveData_GetOptions(fieldSystem->saveData);
@@ -1650,7 +1647,7 @@ void AccessoryShop_Init(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_AccessoryShop, shop);
 }
 
-void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, int heapID, BOOL isNatDex)
+void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, enum HeapID heapID, BOOL isNatDex)
 {
     FS_EXTERN_OVERLAY(diploma);
 
@@ -1670,7 +1667,7 @@ void *FieldSystem_ShowDiploma(FieldSystem *fieldSystem, int heapID, BOOL isNatDe
     return diplomaData;
 }
 
-void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, int heapID)
+void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, enum HeapID heapID)
 {
     UnkStruct_0203E564 *v0;
 
@@ -1716,7 +1713,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem
     return partyMenu;
 }
 
-void *sub_0203E608(FieldSystem *fieldSystem, int heapID)
+void *sub_0203E608(FieldSystem *fieldSystem, enum HeapID heapID)
 {
     UnkStruct_0203E608 *v0;
 
@@ -1755,7 +1752,7 @@ void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSyste
     summary->monMax = 1;
     summary->move = move;
     summary->mode = SUMMARY_MODE_SELECT_MOVE;
-    summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+    summary->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
     summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     summary->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     summary->chatotCry = NULL;

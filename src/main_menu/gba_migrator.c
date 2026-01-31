@@ -53,7 +53,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -64,6 +64,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/migrate_from_gba.h"
 
 FS_EXTERN_OVERLAY(game_opening);
@@ -134,7 +135,7 @@ typedef struct {
     TextColor unk_30;
     int messageEntryID;
     u16 *unk_38;
-    Strbuf *unk_3C;
+    String *unk_3C;
     StringTemplate *unk_40;
     int unk_44;
     int unk_48;
@@ -203,8 +204,8 @@ typedef struct {
     UnkStruct_ov97_02233B8C unk_E8F0;
     UnkStruct_ov97_0223F434 unk_E8FC[GBA_MAX_MONS_PER_BOX];
     void (*unk_12664)(void);
-    Strbuf *unk_12668;
-    Strbuf *unk_1266C;
+    String *unk_12668;
+    String *unk_1266C;
 } GBAMigrator;
 
 static void ov97_02234A2C(GBAMigrator *migrator, int boxNum);
@@ -212,8 +213,8 @@ static void ov97_022349E0(GBAMigrator *migrator);
 static void ov97_02234ECC(GBAMigrator *migrator);
 static void ov97_02235310(GBAMigrator *migrator);
 static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator);
-void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
-void Strbuf_CopyChars(Strbuf *param0, const u16 *param1);
+void String_CopyNumChars(String *param0, const u16 *param1, u32 param2);
+void String_CopyChars(String *param0, const u16 *param1);
 void BoxMonGBAToBoxMon(GBABoxPokemon *gbaBoxMon, BoxPokemon *boxMon);
 
 UnkStruct_ov97_0223F434 *Unk_ov97_0223F434;
@@ -448,12 +449,12 @@ static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
     }
 }
 
-static int ov97_02233DAC(UnkStruct_ov97_02233DAC *param0, Strbuf *param1, int param2)
+static int ov97_02233DAC(UnkStruct_ov97_02233DAC *param0, String *param1, int param2)
 {
     int v0, v1;
 
     if (param2 & 0x1) {
-        v0 = Font_CalcStrbufWidth(FONT_MESSAGE, (const Strbuf *)param1, 0);
+        v0 = Font_CalcStringWidth(FONT_MESSAGE, (const String *)param1, 0);
         v1 = param0->unk_10 * 8;
         return (v1 - v0) / 2;
     } else {
@@ -463,11 +464,11 @@ static int ov97_02233DAC(UnkStruct_ov97_02233DAC *param0, Strbuf *param1, int pa
 
 static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1, int param2)
 {
-    Strbuf *v0;
+    String *v0;
     StringTemplate *v1;
     MessageLoader *msgLoader;
     int v3, v4, v5;
-    Strbuf *v6;
+    String *v6;
 
     if (param1->unk_44 == 0) {
         v5 = TEXT_SPEED_NO_TRANSFER;
@@ -484,7 +485,7 @@ static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1
     }
 
     if (param1->messageEntryID != -1) {
-        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MIGRATE_FROM_GBA, HEAP_ID_MIGRATE_FROM_GBA);
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MIGRATE_FROM_GBA, HEAP_ID_MIGRATE_FROM_GBA);
 
         if (param1->unk_40) {
             v1 = param1->unk_40;
@@ -492,13 +493,13 @@ static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1
             v1 = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
         }
 
-        Strbuf_Clear(migrator->unk_12668);
+        String_Clear(migrator->unk_12668);
 
         v0 = migrator->unk_12668;
-        v6 = MessageLoader_GetNewStrbuf(msgLoader, param1->messageEntryID);
+        v6 = MessageLoader_GetNewString(msgLoader, param1->messageEntryID);
 
         StringTemplate_Format(v1, migrator->unk_12668, v6);
-        Strbuf_Free(v6);
+        String_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
         param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
@@ -513,7 +514,7 @@ static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1
 
     if (param1->unk_38) {
         v0 = migrator->unk_1266C;
-        Strbuf_CopyNumChars(v0, param1->unk_38, 64);
+        String_CopyNumChars(v0, param1->unk_38, 64);
         v3 = ov97_02233DAC(param1, v0, param2);
         param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
         param1->unk_38 = NULL;
@@ -571,10 +572,10 @@ static void ov97_02233FA4(GBAMigrator *migrator)
         migrator->unk_1B8[i] = SpriteResourceCollection_New(3, i, HEAP_ID_MIGRATE_FROM_GBA);
     }
 
-    migrator->unk_1D0[0] = SpriteResourceCollection_AddTiles(migrator->unk_1B8[0], NARC_INDEX_GRAPHIC__MYSTERY, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1D0[1] = SpriteResourceCollection_AddPalette(migrator->unk_1B8[1], NARC_INDEX_GRAPHIC__MYSTERY, 23, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1D0[2] = SpriteResourceCollection_Add(migrator->unk_1B8[2], NARC_INDEX_GRAPHIC__MYSTERY, 25, 1, 0, 2, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1D0[3] = SpriteResourceCollection_Add(migrator->unk_1B8[3], NARC_INDEX_GRAPHIC__MYSTERY, 24, 1, 0, 3, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[0] = SpriteResourceCollection_AddTiles(migrator->unk_1B8[0], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_NCGR_lz, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[1] = SpriteResourceCollection_AddPalette(migrator->unk_1B8[1], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[2] = SpriteResourceCollection_Add(migrator->unk_1B8[2], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_cell_NCER_lz, 1, 0, 2, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[3] = SpriteResourceCollection_Add(migrator->unk_1B8[3], NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_anim_NANR_lz, 1, 0, 3, HEAP_ID_MIGRATE_FROM_GBA);
 
     SpriteTransfer_RequestChar(migrator->unk_1D0[0]);
     SpriteTransfer_RequestPlttWholeRange(migrator->unk_1D0[1]);
@@ -624,7 +625,7 @@ static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int par
     rect->rect.right = param1 + param3 / 2;
 }
 
-static void *ov97_022341B4(u32 narcID, u32 memberIndex, NNSG2dCharacterData **param2, u32 heapID)
+static void *ov97_022341B4(u32 narcID, u32 memberIndex, NNSG2dCharacterData **param2, enum HeapID heapID)
 {
     void *v0 = Heap_AllocAtEnd(heapID, 4096);
 
@@ -1221,7 +1222,7 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     MessageLoader *msgLoader;
     u8 gbaNickname[GBA_MON_NAME_LEN + 1];
     u16 dsNickname[MON_NAME_LEN + 1];
-    Strbuf *strBuf;
+    String *string;
 
     memset(&v4, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1264,13 +1265,13 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
 
     ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
 
-    strBuf = Strbuf_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_MIGRATE_FROM_GBA);
+    string = String_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
+    msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_MIGRATE_FROM_GBA);
     species = GBAPokemon_ConvertSpeciesToDS(GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_SPECIES, NULL));
 
-    MessageLoader_GetStrbuf(msgLoader, species, strBuf);
+    MessageLoader_GetString(msgLoader, species, string);
 
-    v4.unk_3C = strBuf;
+    v4.unk_3C = string;
     v4.messageEntryID = -1;
     v4.unk_18 = 2 * 8;
     v4.unk_1C = 2 * 8;
@@ -1278,38 +1279,38 @@ static void PrintGBABoxMonInfo(GBAMigrator *migrator, GBABoxPokemon *gbaBoxMon)
     ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
 
     MessageLoader_Free(msgLoader);
-    Strbuf_Free(strBuf);
+    String_Free(string);
 
     gbaItemID = GBABoxPokemon_GetData(gbaBoxMon, GBA_MON_DATA_HELD_ITEM, NULL);
 
     if (gbaItemID) {
         itemID = Item_FromGBAID(gbaItemID);
-        strBuf = Strbuf_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
+        string = String_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
 
-        Item_LoadName(strBuf, itemID, HEAP_ID_MIGRATE_FROM_GBA);
+        Item_LoadName(string, itemID, HEAP_ID_MIGRATE_FROM_GBA);
 
-        v4.unk_3C = strBuf;
+        v4.unk_3C = string;
         v4.messageEntryID = -1;
         v4.unk_18 = 19 * 8;
         v4.unk_1C = 2 * 8;
 
         ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
-        Strbuf_Free(strBuf);
+        String_Free(string);
     }
 
     level = GBABoxPokemon_GetLevel(gbaBoxMon);
-    strBuf = Strbuf_Init(10, HEAP_ID_MIGRATE_FROM_GBA);
+    string = String_Init(10, HEAP_ID_MIGRATE_FROM_GBA);
 
-    Strbuf_FormatInt(strBuf, level, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    String_FormatInt(string, level, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
 
-    v4.unk_3C = strBuf;
+    v4.unk_3C = string;
     v4.messageEntryID = -1;
     v4.unk_18 = 12 * 8 + 4;
     v4.unk_1C = 1 * 8;
 
     ov97_02233DD0(migrator, &v4, 0x2);
 
-    Strbuf_Free(strBuf);
+    String_Free(string);
     Sound_PlayPokemonCry(species, 0);
 }
 
@@ -1453,14 +1454,14 @@ static void ov97_02234DFC(GBAMigrator *migrator)
     Text_ResetAllPrinters();
 
     Font_LoadTextPalette(0, 15 * 32, HEAP_ID_MIGRATE_FROM_GBA);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 19, 0, 0, 32 * 6, HEAP_ID_MIGRATE_FROM_GBA);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 22, migrator->bgConfig, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCLR, 0, 0, 32 * 6, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_bg_tiles_NCGR_lz, migrator->bgConfig, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_MIGRATE_FROM_GBA);
 }
 
 static void ov97_02234E7C(GBAMigrator *migrator)
 {
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 20, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_box_NSCR_lz, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Bg_ChangeTilemapRectPalette(migrator->bgConfig, 2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
 }
@@ -1527,7 +1528,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
         ov97_02234278(species, isEgg, personality, gbaVersion, i, migrator->selectedMonIcons[i]);
     }
 
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 21, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_confirm_NSCR_lz, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
     Bg_ChangeTilemapRectPalette(migrator->bgConfig, BG_LAYER_MAIN_2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
     Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, BG_LAYER_MAIN_2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -1653,16 +1654,16 @@ static void ov97_02235344(GBAMigrator *migrator)
 {
     UnkStruct_ov97_02233DAC v0;
     StringTemplate *strTemplate;
-    Strbuf *strBuf;
+    String *string;
     u16 playerName[GBA_PLAYER_NAME_LEN + 1];
 
     GBA_ConvertStringToDS(GetGBAPlayerName(), playerName, GBA_PLAYER_NAME_LEN + 1, GBACart_GetLanguage());
 
     strTemplate = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
-    strBuf = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
+    string = String_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
 
-    Strbuf_CopyChars(strBuf, playerName);
-    StringTemplate_SetStrbuf(strTemplate, 1, strBuf, 0, 1, GAME_LANGUAGE);
+    String_CopyChars(string, playerName);
+    StringTemplate_SetString(strTemplate, 1, string, 0, 1, GAME_LANGUAGE);
 
     ov97_02234ECC(migrator);
 
@@ -1671,7 +1672,7 @@ static void ov97_02235344(GBAMigrator *migrator)
 
     ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
 
-    Strbuf_Free(strBuf);
+    String_Free(string);
     StringTemplate_Free(strTemplate);
 
     ov97_02235310(migrator);
@@ -1832,8 +1833,8 @@ static int GBAMigrator_Init(ApplicationManager *appMan, int *state)
     migrator->trainerInfo = SaveData_GetTrainerInfo(migrator->saveData);
     migrator->options = SaveData_GetOptions(migrator->saveData);
     migrator->messageBoxFrame = Options_Frame(migrator->options);
-    migrator->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
-    migrator->unk_1266C = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_12668 = String_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1266C = String_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_9, SEQ_PRESENT, 1);
 
@@ -2185,8 +2186,8 @@ static int GBAMigrator_Exit(ApplicationManager *appMan, int *state)
 
     GBAMigrator *migrator = ApplicationManager_Data(appMan);
 
-    Strbuf_Free(migrator->unk_12668);
-    Strbuf_Free(migrator->unk_1266C);
+    String_Free(migrator->unk_12668);
+    String_Free(migrator->unk_1266C);
     Heap_Free(migrator->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(game_opening), &gTitleScreenAppTemplate);
     ApplicationManager_FreeData(appMan);

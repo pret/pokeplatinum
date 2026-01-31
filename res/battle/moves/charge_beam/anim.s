@@ -6,10 +6,10 @@ L_0:
     JumpIfContest L_2
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 10, 3
-    CreateEmitter 0, 11, 3
-    CreateEmitter 0, 12, 3
-    CreateEmitter 0, 13, 3
+    CreateEmitter 0, 10, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 12, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 13, EMITTER_CB_SET_POS_TO_ATTACKER
     PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
     Delay 80
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
@@ -26,10 +26,10 @@ L_0:
 L_1:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 10, 3
-    CreateEmitter 0, 11, 3
-    CreateEmitter 0, 12, 3
-    CreateEmitter 0, 13, 3
+    CreateEmitter 0, 10, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 12, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 13, EMITTER_CB_SET_POS_TO_ATTACKER
     PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
     Delay 80
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
@@ -46,14 +46,14 @@ L_1:
 L_2:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
-    CreateEmitter 0, 10, 3
-    CreateEmitter 0, 11, 3
-    CreateEmitter 0, 12, 3
-    CreateEmitter 0, 13, 3
+    CreateEmitter 0, 10, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 11, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 12, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 13, EMITTER_CB_SET_POS_TO_ATTACKER
     PlayLoopedSoundEffectL SEQ_SE_DP_206, 4, 5
     Delay 80
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_291, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    CreateEmitter 0, 7, 0
+    CreateEmitter 0, 7, EMITTER_CB_NONE
     Delay 5
     Func_Shake 2, 0, 1, 4, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_LIGHT_YELLOW1, 10, 10

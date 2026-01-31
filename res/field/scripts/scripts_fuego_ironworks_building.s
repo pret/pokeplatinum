@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09C5
+    SetFlag FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS
     End
 
 _0010:

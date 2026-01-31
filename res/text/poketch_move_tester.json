@@ -1,0 +1,33 @@
+{
+  "key": 3407,
+  "messages": [
+    {
+      "id": "MoveTester_Text_NotEffective",
+      "en_US": "Not effective"
+    },
+    {
+      "id": "MoveTester_Text_NotVeryEffective",
+      "en_US": "Not very effective"
+    },
+    {
+      "id": "MoveTester_Text_NotVeryEffective2",
+      "en_US": "Not very effective"
+    },
+    {
+      "id": "MoveTester_Text_RegularlyEffective",
+      "en_US": "Regularly effective"
+    },
+    {
+      "id": "MoveTester_Text_SuperEffective",
+      "en_US": "Super effective"
+    },
+    {
+      "id": "MoveTester_Text_SuperEffective2",
+      "en_US": "Super effective"
+    },
+    {
+      "id": "MoveTester_Text_None",
+      "en_US": "None"
+    }
+  ]
+}

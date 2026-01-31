@@ -31,7 +31,7 @@
 #include "palette.h"
 #include "particle_system.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 
@@ -48,7 +48,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     Window unk_30[5];
     MessageLoader *unk_80;
     StringTemplate *unk_84;
-    Strbuf *unk_88;
+    String *unk_88;
     PaletteData *unk_8C;
     UnkStruct_02012744 *unk_90;
     SysTask *unk_94;

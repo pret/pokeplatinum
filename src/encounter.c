@@ -12,13 +12,13 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
 #include "overlay006/roamer_after_battle.h"
 #include "overlay006/wild_encounters.h"
 #include "savedata/save_table.h"
 
+#include "battle_regulation.h"
 #include "catching_show.h"
 #include "communication_information.h"
 #include "dexmode_checker.h"
@@ -47,7 +47,6 @@
 #include "system_vars.h"
 #include "trainer_data.h"
 #include "tv_episode_segment.h"
-#include "unk_02026150.h"
 #include "unk_0202F1D4.h"
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
@@ -189,7 +188,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
         if (encounter->dto->battleType == BATTLE_TYPE_WILD_MON
             || encounter->dto->battleType == BATTLE_TYPE_ROAMER
             || encounter->dto->battleType == BATTLE_TYPE_AI_PARTNER) {
-            sub_0206D1B8(fieldSystem, encounter->dto->unk_10C, encounter->dto->resultMask);
+            FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
         }
 
         if (CheckPlayerWonEncounter(encounter) == FALSE) {
@@ -389,7 +388,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
-        sub_0206D1B8(fieldSystem, encounter->dto->unk_10C, encounter->dto->resultMask);
+        FieldSystem_SaveTVEpisodeSegment_CatchThatPokemonShow(fieldSystem, encounter->dto->captureAttempt, encounter->dto->resultMask);
 
         if (CheckPlayerWonBattle(encounter->dto->resultMask) == 0) {
             FreeWildEncounter(encounter);
@@ -479,7 +478,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
             TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
             Pokemon *caughtMon = Party_GetPokemonBySlotIndex(encounter->dto->parties[1], 0);
 
-            sub_0206D018(broadcast, caughtMon);
+            TVBroadcast_UpdateSafariGameData(broadcast, caughtMon);
         }
 
         UpdateGameRecords(fieldSystem, encounter->dto);
@@ -653,7 +652,7 @@ void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dt
     FieldSystem_CreateTask(fieldSystem, FieldTask_PalParkEncounter, encounter);
 }
 
-void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, int heapID, int *resultMaskPtr)
+void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, enum HeapID heapID, int *resultMaskPtr)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_TRAINER);
@@ -724,7 +723,7 @@ void Encounter_NewCatchingTutorial(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_CatchingTutorialEncounter, encounter);
 }
 
-void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTrainer2ID, int partnerTrainerID, int heapID, int *resultMaskPtr)
+void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTrainer2ID, int partnerTrainerID, enum HeapID heapID, int *resultMaskPtr)
 {
     u32 battleType;
     FieldBattleDTO *dto;
@@ -774,7 +773,7 @@ void Encounter_NewVsLink(FieldTask *task, const u8 *partyOrder, int battleType)
 static int sub_020516C8(const BattleRegulation *regulation, int battleType)
 {
     int v0;
-    int v1 = sub_020261B0(regulation);
+    int v1 = BattleRegulation_GetIndex(regulation);
 
     if (battleType & BATTLE_TYPE_2vs2) {
         v0 = (UnkEnum_0202F510_14);

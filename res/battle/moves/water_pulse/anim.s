@@ -12,7 +12,7 @@ L_0:
     Call L_1
     PlayLoopedSoundEffectC SEQ_SE_DP_W145C, 4, 6
     Delay 5
-    CreateEmitterEx 1, 0, 2, 3
+    CreateEmitterEx 1, 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_MoveEmitterA2BLinear 0, 0, 0, 0, 12, 64
     Delay 10
     PlayLoopedSoundEffectR SEQ_SE_DP_W202, 2, 3
@@ -28,66 +28,66 @@ L_0:
     End
 
 L_1:
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, 5504, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, 5504, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 11008, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 11008, 0, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 22016, 5504, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 22016, 5504, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -11008, 0, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -11008, 0, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -27520, 5504, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -27520, 5504, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 0, 5504, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 0, 5504, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 11008, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 11008, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 22016, 5504, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 22016, 5504, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -11008, 0, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -11008, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -27520, 5504, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -27520, 5504, 0
     Delay 1
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -11008, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 0, -11008, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 11008, -11008, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 11008, -11008, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 22016, -11008, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, 22016, -11008, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -11008, -11008, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -11008, -11008, 0
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -27520, -11008, 0
-    CreateEmitter 0, 1, 17
-    BtlAnimCmd_055 0, 0, 5, 0, 0, 0
-    BtlAnimCmd_055 1, -27520, -11008, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 0, -11008, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 0, -11008, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 11008, -11008, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 11008, -11008, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 22016, -11008, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, 22016, -11008, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -11008, -11008, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -11008, -11008, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -27520, -11008, 0
+    CreateEmitter 0, 1, EMITTER_CB_GENERIC
+    SetExtraParams 0, 0, 5, 0, 0, 0
+    SetExtraParams 1, -27520, -11008, 0
     Delay 1
     Return

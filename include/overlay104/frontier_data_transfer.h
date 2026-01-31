@@ -3,6 +3,7 @@
 
 #include "constants/moves.h"
 #include "constants/string.h"
+#include "generated/pokemon_stats.h"
 
 typedef struct FrontierTrainerDataDTO {
     u32 trainerID;
@@ -45,7 +46,7 @@ typedef struct FrontierPokemonDataDTO {
             u8 spAtkEV;
             u8 spDefEV;
         };
-        u8 evList[6];
+        u8 evList[STAT_MAX];
     };
     union {
         struct {
@@ -62,9 +63,9 @@ typedef struct FrontierPokemonDataDTO {
     u16 nickname[MON_NAME_LEN + 1];
 } FrontierPokemonDataDTO;
 
-typedef struct {
-    FrontierTrainerDataDTO unk_00;
-    FrontierPokemonDataDTO unk_30[4];
-} UnkStruct_ov104_0223A348;
+typedef struct FrontierDataDTO {
+    FrontierTrainerDataDTO trDataDTO;
+    FrontierPokemonDataDTO monDataDTO[4];
+} FrontierDataDTO;
 
 #endif // POKEPLATINUM_FRONTIER_DATA_TRANSFER

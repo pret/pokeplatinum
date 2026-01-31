@@ -7,7 +7,7 @@
     ScriptEntryEnd
 
 _000A:
-    SetFlag FLAG_UNK_0x09DC
+    SetFlag FLAG_FIRST_ARRIVAL_OLD_CHATEAU
     End
 
 _0010:

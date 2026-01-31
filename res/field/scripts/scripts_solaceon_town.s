@@ -42,8 +42,7 @@ _0062:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0088
+    GoToIfBadgeAcquired BADGE_ID_RELIC, _0088
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -133,7 +132,7 @@ _0168:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0218
     WaitMovement
-    CallCommonScript 0x7FA
+    SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos 18, VAR_0x8004, 0x295
     ClearFlag FLAG_UNK_0x021E
@@ -156,7 +155,7 @@ _0168:
     ApplyMovement 18, _0210
     WaitMovement
     RemoveObject 18
-    CallCommonScript 0x7FB
+    FadeToDefaultMusic2
     SetVar VAR_UNK_0x4073, 1
     ReleaseAll
     End

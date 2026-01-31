@@ -10,6 +10,7 @@
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "global/pm_version.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/struct_ov66_02230F50.h"
@@ -43,7 +44,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -229,7 +230,7 @@ typedef struct {
     u32 unk_00;
     u32 unk_04;
     u32 unk_08;
-    Strbuf *unk_0C;
+    String *unk_0C;
     Window unk_10;
     UnkStruct_02015920 *unk_20;
 } UnkStruct_ov69_0225DDC8;
@@ -237,8 +238,8 @@ typedef struct {
 typedef struct {
     MessageLoader *unk_00;
     StringTemplate *unk_04;
-    Strbuf *unk_08;
-    Strbuf *unk_0C;
+    String *unk_08;
+    String *unk_0C;
 } UnkStruct_ov69_0225EF54;
 
 typedef struct {
@@ -324,7 +325,7 @@ static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0);
 static void ov69_0225DDFC(UnkStruct_ov69_0225DDC8 *param0);
 static u32 ov69_0225DE40(UnkStruct_ov69_0225DDC8 *param0);
 static void ov69_0225DEA0(UnkStruct_ov69_0225DDC8 *param0);
-static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, u32 heapID);
+static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, enum HeapID heapID);
 static void ov69_0225DFBC(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1);
 static void ov69_0225E00C(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225EF54 *param1, UnkStruct_ov69_0225D35C *param2);
 static void ov69_0225E084(UnkStruct_ov69_0225E084 *param0);
@@ -356,7 +357,7 @@ static void ov69_0225E644(UnkStruct_ov69_0225E084 *param0, u32 param1, const Unk
 static u8 *ov69_0225E6E8(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param2);
 static u8 *ov69_0225E70C(UnkStruct_ov69_0225E084 *param0, u32 param1);
 static void ov69_0225E71C(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param2, const u8 *param3);
-static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, u32 heapID);
+static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, enum HeapID heapID);
 static void ov69_0225E7DC(UnkStruct_ov69_0225E7DC *param0);
 static void ov69_0225E810(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1);
 static void ov69_0225E8EC(UnkStruct_ov69_0225E7DC *param0, u32 param1, BOOL param2);
@@ -383,10 +384,10 @@ static u16 ov69_0225EEEC(u32 param0);
 static u16 ov69_0225EF04(u32 param0);
 static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, u32 heapID);
 static void ov69_0225EF54(UnkStruct_ov69_0225EF54 *param0);
-static Strbuf *ov69_0225EF74(UnkStruct_ov69_0225EF54 *param0, u32 param1);
-static Strbuf *ov69_0225EF90(UnkStruct_ov69_0225EF54 *param0, u32 param1);
-static Strbuf *ov69_0225EFB8(UnkStruct_ov69_0225EF54 *param0, u32 param1, u32 param2);
-static void ov69_0225EF84(UnkStruct_ov69_0225EF54 *param0, u32 param1, Strbuf *param2);
+static String *ov69_0225EF74(UnkStruct_ov69_0225EF54 *param0, u32 param1);
+static String *ov69_0225EF90(UnkStruct_ov69_0225EF54 *param0, u32 param1);
+static String *ov69_0225EFB8(UnkStruct_ov69_0225EF54 *param0, u32 param1, u32 param2);
+static void ov69_0225EF84(UnkStruct_ov69_0225EF54 *param0, u32 param1, String *param2);
 static u32 ov69_0225EFEC(const UnkStruct_ov66_02231560 *param0);
 
 static const u32 Unk_ov69_0225F028[3] = {
@@ -1331,7 +1332,7 @@ static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_
     param0->unk_04.unk_00_1 = 0;
     param0->unk_04.unk_00_0 = 0;
 
-    if (gGameLanguage == 1) {
+    if (gGameLanguage == JAPANESE) {
         param0->unk_04.unk_00_1 = 1;
     } else {
         param0->unk_04.unk_00_1 = 0;
@@ -1792,7 +1793,7 @@ static void ov69_0225DBB4(UnkStruct_ov69_0225DC48 *param0, UnkStruct_ov69_0225D3
     Window_FillTilemap(&param0->unk_1C, 15);
 
     {
-        Strbuf *v0;
+        String *v0;
 
         v0 = ov69_0225EF74(param2, 1);
 
@@ -1903,7 +1904,7 @@ static void ov69_0225DD60(UnkStruct_ov69_0225DDC8 *param0, UnkStruct_ov69_0225D3
     memset(param0, 0, sizeof(UnkStruct_ov69_0225DC48));
 
     param0->unk_08 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
-    param0->unk_0C = Strbuf_Init(128, heapID);
+    param0->unk_0C = String_Init(128, heapID);
 
     Window_Add(param1->unk_00, &param0->unk_10, 1, 2, 1, 27, 4, 1, ((1 + (18 + 12)) + 9) + (6 * 2));
     Window_FillTilemap(&param0->unk_10, 15);
@@ -1919,7 +1920,7 @@ static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0)
         Text_RemovePrinter(param0->unk_04);
     }
 
-    Strbuf_Free(param0->unk_0C);
+    String_Free(param0->unk_0C);
     sub_02015938(param0->unk_20);
     Window_Remove(&param0->unk_10);
 }
@@ -1966,7 +1967,7 @@ static void ov69_0225DEA0(UnkStruct_ov69_0225DDC8 *param0)
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_10);
 }
 
-static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, u32 heapID)
+static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, enum HeapID heapID)
 {
     param0->unk_00 = 0;
 
@@ -1981,7 +1982,7 @@ static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
     }
 
     {
-        Strbuf *v1;
+        String *v1;
 
         Window_Add(param1->unk_00, &param0->unk_1A8, 4, 2, 19, 27, 4, 11, 10 + (18 + 12));
         Window_FillTilemap(&param0->unk_1A8, 15);
@@ -2426,7 +2427,7 @@ static void ov69_0225E61C(UnkStruct_ov69_0225E084 *param0)
 
 static void ov69_0225E644(UnkStruct_ov69_0225E084 *param0, u32 param1, const UnkStruct_ov69_0225E0C0 *param2, UnkStruct_ov69_0225EF54 *param3)
 {
-    Strbuf *v0;
+    String *v0;
     Window *v1;
     u32 v2;
 
@@ -2476,7 +2477,7 @@ static void ov69_0225E71C(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param
     VramTransfer_Request(NNS_GFD_DST_2D_BG1_CHAR_SUB, v0 * 32, (void *)param3, 27 * 32);
 }
 
-static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, u32 heapID)
+static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, enum HeapID heapID)
 {
     int v0;
 
@@ -2857,10 +2858,10 @@ static u16 ov69_0225EF04(u32 param0)
 
 static void ov69_0225EF1C(UnkStruct_ov69_0225EF54 *param0, u32 heapID)
 {
-    param0->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0696, heapID);
+    param0->unk_00 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0696, heapID);
     param0->unk_04 = StringTemplate_New(8, 64, heapID);
-    param0->unk_08 = Strbuf_Init(128, heapID);
-    param0->unk_0C = Strbuf_Init(128, heapID);
+    param0->unk_08 = String_Init(128, heapID);
+    param0->unk_0C = String_Init(128, heapID);
 }
 
 static void ov69_0225EF54(UnkStruct_ov69_0225EF54 *param0)
@@ -2873,34 +2874,34 @@ static void ov69_0225EF54(UnkStruct_ov69_0225EF54 *param0)
         StringTemplate_Free(param0->unk_04);
     }
 
-    Strbuf_Free(param0->unk_08);
-    Strbuf_Free(param0->unk_0C);
+    String_Free(param0->unk_08);
+    String_Free(param0->unk_0C);
 }
 
-static Strbuf *ov69_0225EF74(UnkStruct_ov69_0225EF54 *param0, u32 param1)
+static String *ov69_0225EF74(UnkStruct_ov69_0225EF54 *param0, u32 param1)
 {
-    MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_08);
+    MessageLoader_GetString(param0->unk_00, param1, param0->unk_08);
     return param0->unk_08;
 }
 
-static void ov69_0225EF84(UnkStruct_ov69_0225EF54 *param0, u32 param1, Strbuf *param2)
+static void ov69_0225EF84(UnkStruct_ov69_0225EF54 *param0, u32 param1, String *param2)
 {
-    MessageLoader_GetStrbuf(param0->unk_00, param1, param2);
+    MessageLoader_GetString(param0->unk_00, param1, param2);
 }
 
-static Strbuf *ov69_0225EF90(UnkStruct_ov69_0225EF54 *param0, u32 param1)
+static String *ov69_0225EF90(UnkStruct_ov69_0225EF54 *param0, u32 param1)
 {
-    MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
+    MessageLoader_GetString(param0->unk_00, 3, param0->unk_0C);
     StringTemplate_SetCountryName(param0->unk_04, 0, param1);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 
     return param0->unk_08;
 }
 
-static Strbuf *ov69_0225EFB8(UnkStruct_ov69_0225EF54 *param0, u32 param1, u32 param2)
+static String *ov69_0225EFB8(UnkStruct_ov69_0225EF54 *param0, u32 param1, u32 param2)
 {
     StringTemplate_ClearArgs(param0->unk_04);
-    MessageLoader_GetStrbuf(param0->unk_00, 3, param0->unk_0C);
+    MessageLoader_GetString(param0->unk_00, 3, param0->unk_0C);
     StringTemplate_SetCityName(param0->unk_04, 0, param1, param2);
     StringTemplate_Format(param0->unk_04, param0->unk_08, param0->unk_0C);
 

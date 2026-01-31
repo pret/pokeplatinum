@@ -31,7 +31,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "text.h"
 #include "unk_02012744.h"
 
@@ -72,13 +72,13 @@ static void ov21_021DF6C4(UnkStruct_ov21_021DF374 *param0, int param1, int param
 static BOOL ov21_021DF6E0(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1);
 static void ov21_021DF6FC(UnkStruct_ov21_021DF374 *param0);
 static BOOL ov21_021DF718(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1);
-static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int heapID);
+static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, enum HeapID heapID);
 static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1);
-static void ov21_021DEA44(PokedexGraphicData **param0, int heapID);
+static void ov21_021DEA44(PokedexGraphicData **param0, enum HeapID heapID);
 static void ov21_021DEB58(PokedexGraphicData **param0, const UnkStruct_ov21_021DE6D4 *param1, int param2);
-static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3);
-static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3);
-static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4);
+static void ov21_021DEC2C(Window *param0, enum HeapID heapID, int param2, u32 param3);
+static void ov21_021DEC80(Window *param0, enum HeapID heapID, int param2, u32 param3);
+static void ov21_021DECD4(Window *param0, enum HeapID heapID, int param2, int param3, u32 param4);
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int param3);
 static void ov21_021DED68(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1);
 static void ov21_021DED7C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, int param2, int param3);
@@ -353,7 +353,7 @@ static int ov21_021DE8E8(void *graphics, PokedexGraphicsManager *graphicsMan, co
     return 0;
 }
 
-static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, int heapID)
+static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **param1, const UnkStruct_ov21_021DE6D4 *param2, enum HeapID heapID)
 {
     ov21_021DEF08(param1, param2, heapID);
     ov21_021DEF54(param1, param2);
@@ -381,7 +381,7 @@ static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
     Bg_ClearTilemap((*param1)->bgConfig, 1);
 }
 
-static void ov21_021DEA44(PokedexGraphicData **param0, int heapID)
+static void ov21_021DEA44(PokedexGraphicData **param0, enum HeapID heapID)
 {
     void *v0;
     NNSG2dScreenData *v1;
@@ -419,15 +419,15 @@ static void ov21_021DEB58(PokedexGraphicData **param0, const UnkStruct_ov21_021D
 
 void ov21_021DEB8C(Window *param0, int param1, enum HeapID heapID, int param3, u32 param4)
 {
-    Strbuf *v0 = Strbuf_Init(64, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    String *v0 = String_Init(64, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_ht, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_ht, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 152, 88, TEXT_SPEED_INSTANT, param4, NULL);
 
-    MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_wt, v0);
+    MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_wt, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 152, 104, TEXT_SPEED_INSTANT, param4, NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(pokedexMessageBank);
 
     ov21_021DEC2C(param0, heapID, param1, param4);
@@ -435,35 +435,35 @@ void ov21_021DEB8C(Window *param0, int param1, enum HeapID heapID, int param3, u
     ov21_021DECD4(param0, heapID, param1, param3, param4);
 }
 
-static void ov21_021DEC2C(Window *param0, int heapID, int param2, u32 param3)
+static void ov21_021DEC2C(Window *param0, enum HeapID heapID, int param2, u32 param3)
 {
-    Strbuf *v0 = Strbuf_Init(64, heapID);
+    String *v0 = String_Init(64, heapID);
 
     int heightMessageBankIndex = Height_Message_Bank_Index();
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
+    MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
 
-    MessageLoader_GetStrbuf(v1, param2, v0);
+    MessageLoader_GetString(v1, param2, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 184, 88, TEXT_SPEED_INSTANT, param3, NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DEC80(Window *param0, int heapID, int param2, u32 param3)
+static void ov21_021DEC80(Window *param0, enum HeapID heapID, int param2, u32 param3)
 {
-    Strbuf *v0 = Strbuf_Init(64, heapID);
+    String *v0 = String_Init(64, heapID);
 
     int weightMessageBankIndex = Weight_Message_Bank_Index();
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, heapID);
+    MessageLoader *v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, heapID);
 
-    MessageLoader_GetStrbuf(v1, param2, v0);
+    MessageLoader_GetString(v1, param2, v0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, v0, 184, 104, TEXT_SPEED_INSTANT, param3, NULL);
-    Strbuf_Free(v0);
+    String_Free(v0);
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DECD4(Window *param0, int heapID, int param2, int param3, u32 param4)
+static void ov21_021DECD4(Window *param0, enum HeapID heapID, int param2, int param3, u32 param4)
 {
-    Strbuf *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, heapID);
+    String *v0 = PokedexText_DexEntry(param2, GAME_LANGUAGE, param3, heapID);
     u32 v1 = Font_CalcMaxLineWidth(FONT_SYSTEM, v0, 0);
     u32 v2 = (v1 < 240) ? 128 - v1 / 2 : 8;
 
@@ -777,13 +777,13 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, PokedexGraphicData **
 Window *ov21_021DF30C(PokedexTextManager *textMan, int param1, int param2)
 {
     Window *v0 = PokedexTextManager_NewWindow(textMan, 18, 2);
-    Strbuf *v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
+    String *v1 = PokedexText_Category(param1, GAME_LANGUAGE, param2);
 
     {
-        u32 v2 = Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0);
+        u32 v2 = Font_CalcStringWidth(FONT_SUBSCREEN, v1, 0);
         u32 v3 = (v2 < 136) ? (136 - v2) / 2 : 0;
 
-        PokedexTextManager_DisplayStrbuf(textMan, v0, v1, v3, 0);
+        PokedexTextManager_DisplayString(textMan, v0, v1, v3, 0);
     }
 
     PokedexText_Free(v1);

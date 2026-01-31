@@ -4,9 +4,9 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     LoadParticleResource 0, encore_spa
-    CreateEmitter 0, 2, 4
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     PlaySoundEffectR SEQ_SE_DP_W227B
     BeginLoop 5
     PlaySoundEffectR SEQ_SE_DP_W227

@@ -8,7 +8,7 @@
 #include "charcode_util.h"
 #include "math_util.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 RecordMixedRNG *sRNGCollection;
 
@@ -68,15 +68,15 @@ const charcode_t *RecordMixedRNG_GetEntryName(const RecordMixedRNG *rngCollectio
     return rngCollection[entry].playerName;
 }
 
-void RecordMixedRNG_GetEntryNameAsStrbuf(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice, Strbuf *outStrbuf)
+void RecordMixedRNG_GetEntryNameAsString(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, enum RecordMixedRNGName nameChoice, String *outString)
 {
     charcode_t *name;
     if (nameChoice == RECORD_MIXED_RNG_GROUP_NAME) {
         name = rngCollection[entry].groupName;
-        Strbuf_ToChars(outStrbuf, name, UNION_GROUP_NAME_LEN + 1);
+        String_ToChars(outString, name, UNION_GROUP_NAME_LEN + 1);
     } else {
         name = rngCollection[entry].playerName;
-        Strbuf_ToChars(outStrbuf, name, TRAINER_NAME_LEN + 1);
+        String_ToChars(outString, name, TRAINER_NAME_LEN + 1);
     }
 }
 
@@ -90,14 +90,14 @@ int RecordMixedRNG_GetEntryGender(const RecordMixedRNG *rngCollection, enum Reco
     return rngCollection[entry].gender;
 }
 
-int RecordMixedRNG_GetEntryCountryCode(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry)
+int RecordMixedRNG_GetEntryLanguage(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry)
 {
-    return rngCollection[entry].countryCode;
+    return rngCollection[entry].language;
 }
 
-void RecordMixedRNG_SetEntryCountryCode(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int countryCode)
+void RecordMixedRNG_SetEntryLanguage(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int language)
 {
-    rngCollection[entry].countryCode = countryCode;
+    rngCollection[entry].language = language;
 }
 
 RecordMixedRNG *SaveData_GetRecordMixedRNG(SaveData *saveData)
@@ -157,7 +157,7 @@ BOOL RecordMixedRNG_AreEntriesEqual(const RecordMixedRNG *entry1, const RecordMi
         return FALSE;
     }
 
-    if (entry1->countryCode != entry2->countryCode) {
+    if (entry1->language != entry2->language) {
         return FALSE;
     }
 

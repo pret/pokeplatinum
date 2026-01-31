@@ -16,18 +16,18 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 
 FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int unk_04;
     int unk_08;
     int unk_0C;
-    Strbuf *unk_10;
+    String *unk_10;
     BgConfig *unk_14;
     MessageLoader *unk_18;
     Window unk_1C;
@@ -80,14 +80,13 @@ static const WindowTemplate Unk_020F89EC = {
 int sub_02099DFC(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02099DFC *v0;
-    int heapID = HEAP_ID_88;
 
-    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_88, 0x20000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02099DFC), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02099DFC), HEAP_ID_88);
     memset(v0, 0, sizeof(UnkStruct_02099DFC));
 
-    v0->heapID = heapID;
+    v0->heapID = HEAP_ID_88;
     v0->unk_04 = 0;
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
 
@@ -236,7 +235,7 @@ static void sub_0209A044(UnkStruct_02099DFC *param0)
 
 static void sub_0209A098(UnkStruct_02099DFC *param0)
 {
-    param0->unk_18 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0004, param0->heapID);
+    param0->unk_18 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0004, param0->heapID);
     Text_ResetAllPrinters();
     param0->unk_08 = 0;
     Window_AddFromTemplate(param0->unk_14, &param0->unk_1C, &Unk_020F89E4);
@@ -319,12 +318,12 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
         Window_FillRectWithColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_1C, 0, 512 - (18 + 12), 2);
 
-        param0->unk_10 = Strbuf_Init(0x400, param0->heapID);
-        MessageLoader_GetStrbuf(param0->unk_18, param1, param0->unk_10);
+        param0->unk_10 = String_Init(0x400, param0->heapID);
+        MessageLoader_GetString(param0->unk_18, param1, param0->unk_10);
         param0->unk_0C = Text_AddPrinterWithParams(&param0->unk_1C, FONT_MESSAGE, param0->unk_10, 0, 0, param3, NULL);
 
         if (param3 == 0) {
-            Strbuf_Free(param0->unk_10);
+            String_Free(param0->unk_10);
             param0->unk_08++;
         }
 
@@ -332,7 +331,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
         break;
     case 1:
         if (!(Text_IsPrinterActive(param0->unk_0C))) {
-            Strbuf_Free(param0->unk_10);
+            String_Free(param0->unk_10);
             param0->unk_08++;
         }
         break;

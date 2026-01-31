@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "BATTLE_TOWER_CORRIDOR_MULTI_TEALA_0",
+            "id": "BATTLE_TOWER_CORRIDOR_MULTI_LEFT_ATTENDANT",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_CORRIDOR_MULTI_TEALA_1",
+            "id": "BATTLE_TOWER_CORRIDOR_MULTI_RIGHT_ATTENDANT",
             "graphics_id": "OBJ_EVENT_GFX_TEALA",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_CORRIDOR_MULTI_COUNTERPART_2",
+            "id": "BATTLE_TOWER_CORRIDOR_MULTI_LEADER",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_TOWER_CORRIDOR_MULTI_UNK_102_3",
+            "id": "BATTLE_TOWER_CORRIDOR_MULTI_PARTNER",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 0,
             "initial_dir": 1,
             "data": [],

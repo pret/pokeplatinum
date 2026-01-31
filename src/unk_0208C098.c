@@ -77,7 +77,7 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
     return App_BarColor(App_PixelCount(curHP, maxHP, barSize), barSize);
 }
 
-void App_StartScreenFade(u8 fadeOut, u32 heapID)
+void App_StartScreenFade(u8 fadeOut, enum HeapID heapID)
 {
     if (fadeOut == FALSE) {
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, heapID);
@@ -149,7 +149,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
     return 0;
 }
 
-void App_LoadGraphicMember(BgConfig *bgConfig, int heapID, NARC *narc, int unused, int memberIndex, int bgLayer, enum GraphicMemberType memberType, u16 memberSize, u16 offset)
+void App_LoadGraphicMember(BgConfig *bgConfig, enum HeapID heapID, NARC *narc, int unused, int memberIndex, int bgLayer, enum GraphicMemberType memberType, u16 memberSize, u16 offset)
 {
     u32 narcSize;
     void *dest;

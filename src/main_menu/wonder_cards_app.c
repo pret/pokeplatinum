@@ -38,7 +38,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -51,6 +51,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
+#include "res/graphics/main_menu/main_menu_graphics.naix.h"
 #include "res/text/bank/mystery_gift_menu.h"
 
 FS_EXTERN_OVERLAY(main_menu);
@@ -221,7 +222,7 @@ typedef struct StateTransitionMenuOptionTemplate {
 } StateTransitionMenuOptionTemplate;
 
 struct WonderCardsAppData {
-    int heapID;
+    enum HeapID heapID;
     MysteryGiftAppData mysteryGiftAppData;
     BgConfig *bgConfig;
     StringTemplate *strTemplate;
@@ -623,7 +624,7 @@ static void LoadWcShareScreenButtonsGraphics(WonderCardsAppData *appData)
     ResetAllSprites(appData);
     MainMenuUtil_InitCharPlttTransferBuffers();
     MainMenuUtil_InitSpriteLoader();
-    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 15, 12, 14, 13, DS_SCREEN_MAIN);
+    MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_buttons_NCGR_lz, wonder_card_share_buttons_NCLR, wonder_card_share_buttons_cell_NCER_lz, wonder_card_share_buttons_anim_NANR_lz, DS_SCREEN_MAIN);
 }
 
 static void ResetAllSprites(WonderCardsAppData *appData)
@@ -689,7 +690,7 @@ static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appDat
     }
 
     appData->strList = StringList_New(numEntries, HEAP_ID_WONDER_CARDS_APP);
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
 
     for (int i = 0; i < numEntries; i++) {
         StringList_AddFromMessageBank(appData->strList, appData->msgLoader, entries[i].textEntryID, entries[i].stateChange.asU32);
@@ -708,26 +709,26 @@ static void MakeStateChangeListMenuFromEntryTemplates(WonderCardsAppData *appDat
 
 static void PrintTextEntryToWindow(Window *window, int textEntryID)
 {
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
     Window_FillTilemap(window, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
-    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, textEntryID, HEAP_ID_WONDER_CARDS_APP);
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    String *string = MessageUtil_ExpandedString(strTemplate, msgLoader, textEntryID, HEAP_ID_WONDER_CARDS_APP);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(window);
 
-    Strbuf_Free(strBuf);
+    String_Free(string);
     MessageLoader_Free(msgLoader);
     StringTemplate_Free(strTemplate);
 }
 
 static void LoadWcShareScreenBackground(BgConfig *bgConfig)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 11, PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 16, PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 17, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_WONDER_CARDS_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 18, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILEMAP_HEIGHT * WC_SHARE_SCREEN_TILEMAP_WIDTH * 2, TRUE, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wonder_cards_text_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(15), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), PALETTE_SIZE_BYTES, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, HEAP_ID_WONDER_CARDS_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_share_bg_NSCR_lz, bgConfig, BG_LAYER_MAIN_1, 0, WC_SHARE_SCREEN_TILEMAP_HEIGHT * WC_SHARE_SCREEN_TILEMAP_WIDTH * 2, TRUE, HEAP_ID_WONDER_CARDS_APP);
     Bg_ChangeTilemapRectPalette(bgConfig, BG_LAYER_MAIN_1, 0, 0, WC_SHARE_SCREEN_TILEMAP_WIDTH, WC_SHARE_SCREEN_TILEMAP_HEIGHT, PLTT_12);
     Bg_CopyTilemapBufferToVRAM(bgConfig, BG_LAYER_MAIN_1);
 }
@@ -819,11 +820,11 @@ static BOOL DoNothing(WonderCardsAppData *appData, Window *window, TextColor col
 
 static BOOL PrintWondercardTitle(WonderCardsAppData *appData, Window *windwow, TextColor color)
 {
-    Strbuf *strBuf = Strbuf_Init(WONDERCARD_TITLE_LENGTH + 1, appData->heapID);
+    String *string = String_Init(WONDERCARD_TITLE_LENGTH + 1, appData->heapID);
 
-    Strbuf_CopyNumChars(strBuf, appData->wonderCards[appData->selectedWondercardSlot]->eventHeader.title, WONDERCARD_TITLE_LENGTH);
-    Text_AddPrinterWithParamsAndColor(windwow, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
-    Strbuf_Free(strBuf);
+    String_CopyNumChars(string, appData->wonderCards[appData->selectedWondercardSlot]->eventHeader.title, WONDERCARD_TITLE_LENGTH);
+    Text_AddPrinterWithParamsAndColor(windwow, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    String_Free(string);
 
     return TRUE;
 }
@@ -843,10 +844,10 @@ static BOOL DetermineGiftStatus(WonderCardsAppData *appData, Window *window, Tex
         }
     }
 
-    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, stringEntryID, appData->heapID);
+    String *string = MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, stringEntryID, appData->heapID);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
-    Strbuf_Free(strBuf);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    String_Free(string);
 
     return TRUE;
 }
@@ -866,11 +867,11 @@ static BOOL SetupDateString(WonderCardsAppData *appData, Window *window, TextCol
 
 static BOOL PrintWondercardDescription(WonderCardsAppData *appData, Window *window, TextColor color)
 {
-    Strbuf *strBuf = Strbuf_Init(WONDERCARD_DESCRIPTION_LENGTH + 1, HEAP_ID_WONDER_CARDS_APP);
+    String *string = String_Init(WONDERCARD_DESCRIPTION_LENGTH + 1, HEAP_ID_WONDER_CARDS_APP);
 
-    Strbuf_CopyNumChars(strBuf, appData->wonderCards[appData->selectedWondercardSlot]->description, WONDERCARD_DESCRIPTION_LENGTH);
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
-    Strbuf_Free(strBuf);
+    String_CopyNumChars(string, appData->wonderCards[appData->selectedWondercardSlot]->description, WONDERCARD_DESCRIPTION_LENGTH);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    String_Free(string);
 
     return FALSE;
 }
@@ -878,9 +879,9 @@ static BOOL PrintWondercardDescription(WonderCardsAppData *appData, Window *wind
 static BOOL SetupRemainingSharesCount(WonderCardsAppData *appData, Window *window, TextColor color)
 {
     if (appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft == SHARE_UNLIMITED) {
-        Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, MysteryGiftMenu_Text_CanBeSharedAsManyFriendsAsYouLike, HEAP_ID_WONDER_CARDS_APP);
-        Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
-        Strbuf_Free(strBuf);
+        String *string = MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, MysteryGiftMenu_Text_CanBeSharedAsManyFriendsAsYouLike, HEAP_ID_WONDER_CARDS_APP);
+        Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, color, NULL);
+        String_Free(string);
         return FALSE;
     } else if (appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft) {
         StringTemplate_SetNumber(appData->strTemplate, 0, appData->wonderCards[appData->selectedWondercardSlot]->sharesLeft, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -959,7 +960,7 @@ static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum 
 
     WonderCardsAppWindowTemplate *windowTemplates = sWonderCardsAppWindows;
 
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, appData->heapID);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, appData->heapID);
     appData->strTemplate = StringTemplate_Default(appData->heapID);
     appData->currentScreen = screen;
 
@@ -988,14 +989,14 @@ static void ShowWindowsForScreen(WonderCardsAppData *appData, BOOL unused, enum 
 
             if (windowTemplates[i].setup(appData, &appData->windows[i], color) == TRUE) {
                 if (windowTemplates[i].entryID) {
-                    Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, windowTemplates[i].entryID, appData->heapID);
+                    String *string = MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, windowTemplates[i].entryID, appData->heapID);
 
                     {
-                        u32 yOffset = (windowTemplates[i].leftMarginSize == CENTER_TEXT) ? Font_CalcCenterAlignment(windowTemplates[i].font, strBuf, 0, windowTemplates[i].width * TILE_WIDTH_PIXELS) : windowTemplates[i].leftMarginSize;
-                        Text_AddPrinterWithParamsAndColor(&appData->windows[i], windowTemplates[i].font, strBuf, yOffset, windowTemplates[i].topMarginSize, TEXT_SPEED_NO_TRANSFER, color, NULL);
+                        u32 yOffset = (windowTemplates[i].leftMarginSize == CENTER_TEXT) ? Font_CalcCenterAlignment(windowTemplates[i].font, string, 0, windowTemplates[i].width * TILE_WIDTH_PIXELS) : windowTemplates[i].leftMarginSize;
+                        Text_AddPrinterWithParamsAndColor(&appData->windows[i], windowTemplates[i].font, string, yOffset, windowTemplates[i].topMarginSize, TEXT_SPEED_NO_TRANSFER, color, NULL);
                     }
 
-                    Strbuf_Free(strBuf);
+                    String_Free(string);
                 }
             }
 
@@ -1023,7 +1024,7 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     Window_FillTilemap(window, windowTemplate->bgColor.colorIndex);
 
     if (windowTemplate->entryID) {
-        appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+        appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
         appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
     }
 
@@ -1033,10 +1034,10 @@ static int ShowWindowFromTemplateIndex(WonderCardsAppData *appData, Window *wind
     windowTemplate->setup(appData, window, TEXT_COLOR(1, 2, 0));
 
     if (windowTemplate->entryID) {
-        Strbuf *strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, windowTemplate->entryID, HEAP_ID_WONDER_CARDS_APP);
+        String *string = MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, windowTemplate->entryID, HEAP_ID_WONDER_CARDS_APP);
 
-        Text_AddPrinterWithParamsAndColor(window, windowTemplate->font, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, windowTemplate->textColor, NULL);
-        Strbuf_Free(strBuf);
+        Text_AddPrinterWithParamsAndColor(window, windowTemplate->font, string, 0, 0, TEXT_SPEED_NO_TRANSFER, windowTemplate->textColor, NULL);
+        String_Free(string);
         MessageLoader_Free(appData->msgLoader);
         StringTemplate_Free(appData->strTemplate);
     }
@@ -1090,24 +1091,24 @@ static void LoadTilemapBufferFromNarc(WonderCardsAppData *appData, u32 narcMembe
 
 static void LoadWondercardGraphics(WonderCardsAppData *appData, enum WonderCardsAppScreen screen)
 {
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 3, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 8 * PALETTE_SIZE_BYTES, appData->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 6, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_BACK_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(0), 8 * PALETTE_SIZE_BYTES, appData->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_tiles_NCGR_lz, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_BACK_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
 
     switch (screen) {
     case WC_SCREEN_WONDERCARD_FRONT:
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 4, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_TILEMAP_WIDTH * WC_FRONT_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_front_NSCR_lz, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_FRONT_TILEMAP_WIDTH * WC_FRONT_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
         break;
     case WC_SCREEN_WONDERCARD_BACK:
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 5, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_BACK_TILEMAP_WIDTH * WC_BACK_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, wonder_card_back_NSCR_lz, appData->bgConfig, BG_LAYER_MAIN_1, 0, WC_BACK_TILEMAP_WIDTH * WC_BACK_TILEMAP_HEIGHT * 2, TRUE, appData->heapID);
         break;
     default:
         break;
     }
 
-    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), PALETTE_SIZE_BYTES, appData->heapID);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, appData->bgConfig, BG_LAYER_MAIN_3, 0, WC_APP_BG_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCLR, PAL_LOAD_MAIN_BG, PLTT_OFFSET(11), PALETTE_SIZE_BYTES, appData->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, mystery_gift_bg_tiles_NCGR_lz, appData->bgConfig, BG_LAYER_MAIN_3, 0, WC_APP_BG_TILESET_SIZE * TILE_SIZE_4BPP, TRUE, appData->heapID);
 
-    LoadTilemapBufferFromNarc(appData, 2, BG_LAYER_MAIN_3, WC_APP_BG_TILEMAP_WIDTH * WC_APP_BG_TILEMAP_HEIGHT * 2);
+    LoadTilemapBufferFromNarc(appData, mystery_gift_bg_NSCR_lz, BG_LAYER_MAIN_3, WC_APP_BG_TILEMAP_WIDTH * WC_APP_BG_TILEMAP_HEIGHT * 2);
 
     Bg_ChangeTilemapRectPalette(appData->bgConfig, BG_LAYER_MAIN_3, 0, 0, WC_APP_BG_TILEMAP_WIDTH, WC_APP_BG_TILEMAP_HEIGHT, PLTT_11);
     Bg_CopyTilemapBufferToVRAM(appData->bgConfig, BG_LAYER_MAIN_3);
@@ -1165,7 +1166,7 @@ static void LoadPokemonSpritesForSelectedWc(WonderCardsAppData *appData)
 
         MainMenuUtil_InitCharPlttTransferBuffers();
         MainMenuUtil_InitSpriteLoader();
-        MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, 26, 23, 25, 24, DS_SCREEN_MAIN);
+        MainMenuUtil_LoadSprite(NARC_INDEX_GRAPHIC__MYSTERY, gba_migration_sprites_NCGR_lz, gba_migration_sprites_NCLR, gba_migration_sprites_cell_NCER_lz, gba_migration_sprites_anim_NANR_lz, DS_SCREEN_MAIN);
 
         Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), PAL_LOAD_MAIN_OBJ, PLTT_OFFSET(3), 0, appData->heapID);
     }
@@ -1698,7 +1699,7 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
 {
     // forward declarations required to match
     int i;
-    Strbuf *strBuf;
+    String *string;
 
     int numConnectedPlayers = 0;
     int numSlotsChanged = 0;
@@ -1737,7 +1738,7 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
     connectedPlayersNetIds[3] = PopEarliestReturnNetId(orderNumbers);
 
     StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     int trainerInfoYOffset = 0;
 
     Window_FillTilemap(window, 0);
@@ -1747,21 +1748,21 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
 
         if (tmpTrainerInfo) {
             StringTemplate_SetPlayerName(strTemplate, 0, tmpTrainerInfo);
-            strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, MysteryGiftMenu_Text_TrainerNameTemplate, HEAP_ID_WONDER_CARDS_APP);
+            string = MessageUtil_ExpandedString(strTemplate, msgLoader, MysteryGiftMenu_Text_TrainerNameTemplate, HEAP_ID_WONDER_CARDS_APP);
 
             if (TrainerInfo_Gender(tmpTrainerInfo) == GENDER_MALE) {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(5, 6, 0), NULL);
             } else {
-                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
+                Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 0, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 4, 0), NULL);
             }
 
-            Strbuf_Free(strBuf);
+            String_Free(string);
             StringTemplate_SetNumber(strTemplate, 0, TrainerInfo_ID(tmpTrainerInfo) & 0xFFFF, 5, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
 
-            strBuf = MessageUtil_ExpandedStrbuf(strTemplate, msgLoader, MysteryGiftMenu_Text_TrainerIdTemplate, HEAP_ID_WONDER_CARDS_APP);
+            string = MessageUtil_ExpandedString(strTemplate, msgLoader, MysteryGiftMenu_Text_TrainerIdTemplate, HEAP_ID_WONDER_CARDS_APP);
 
-            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strBuf, 80, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
-            Strbuf_Free(strBuf);
+            Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, 80, trainerInfoYOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 15, 0), NULL);
+            String_Free(string);
 
             trainerInfoYOffset += TEXT_LINES(1) + 8;
         }
@@ -1779,21 +1780,21 @@ static int UpdateConnectedPlayers(WonderCardsAppData *appData, Window *window)
 
 static void UpdateConnectedPlayersCount(WonderCardsAppData *appData, Window *window, int newCount)
 {
-    Strbuf *strBuf;
+    String *string;
 
     appData->connectedPlayersCount = newCount;
-    appData->msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
+    appData->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_MENU, HEAP_ID_WONDER_CARDS_APP);
     appData->strTemplate = StringTemplate_Default(HEAP_ID_WONDER_CARDS_APP);
 
     Window_FillTilemap(window, 0);
     StringTemplate_SetNumber(appData->strTemplate, 0, appData->connectedPlayersCount, 1, PADDING_MODE_SPACES, CHARSET_MODE_EN);
 
-    strBuf = MessageUtil_ExpandedStrbuf(appData->strTemplate, appData->msgLoader, MysteryGiftMenu_Text_EntriesCountTemplate, HEAP_ID_WONDER_CARDS_APP);
+    string = MessageUtil_ExpandedString(appData->strTemplate, appData->msgLoader, MysteryGiftMenu_Text_EntriesCountTemplate, HEAP_ID_WONDER_CARDS_APP);
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strBuf, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Window_CopyToVRAM(window);
 
-    Strbuf_Free(strBuf);
+    String_Free(string);
     MessageLoader_Free(appData->msgLoader);
     StringTemplate_Free(appData->strTemplate);
 }

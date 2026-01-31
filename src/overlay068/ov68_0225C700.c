@@ -41,7 +41,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -55,8 +55,8 @@ typedef struct {
     u32 unk_04;
     BOOL unk_08;
     BOOL unk_0C;
-    Strbuf *unk_10;
-    Strbuf *unk_14[3];
+    String *unk_10;
+    String *unk_14[3];
 } UnkStruct_ov68_0225DB8C;
 
 typedef struct {
@@ -93,7 +93,7 @@ typedef struct {
     u32 unk_00;
     s32 unk_04;
     Window unk_08;
-    Strbuf *unk_18;
+    String *unk_18;
     void *unk_1C;
     Menu *unk_20;
 } UnkStruct_ov68_0225D128;
@@ -101,8 +101,8 @@ typedef struct {
 typedef struct {
     MessageLoader *unk_00[9];
     StringTemplate *unk_24;
-    Strbuf *unk_28;
-    Strbuf *unk_2C;
+    String *unk_28;
+    String *unk_2C;
     UnkStruct_ov66_0222DFF8 *unk_30;
 } UnkStruct_ov68_0225CB70;
 
@@ -122,29 +122,29 @@ typedef struct {
 } UnkStruct_ov68_0225C700;
 
 static void ov68_0225C914(void *param0);
-static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, u32 param2);
+static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, enum HeapID heapID);
 static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225C980(UnkStruct_ov68_0225C91C *param0);
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0);
-static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, u32 heapID);
+static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, enum HeapID heapID);
 static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0);
-static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, u32 heapID);
+static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, enum HeapID heapID);
 static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0);
-static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, u32 param2);
+static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, enum HeapID heapID);
 static void ov68_0225CBC0(UnkStruct_ov68_0225CB70 *param0);
-static Strbuf *ov68_0225CBEC(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2);
-static Strbuf *ov68_0225CC18(UnkStruct_ov68_0225CB70 *param0, u32 param1);
-static Strbuf *ov68_0225CC44(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2);
-static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 heapID);
-static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, u32 param2);
+static String *ov68_0225CBEC(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2);
+static String *ov68_0225CC18(UnkStruct_ov68_0225CB70 *param0, u32 param1);
+static String *ov68_0225CC44(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2);
+static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, enum HeapID heapID);
+static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, enum HeapID heapID);
 static void ov68_0225DC24(UnkStruct_ov68_0225DB8C *param0);
-static Strbuf *ov68_0225DC40(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1);
-static Strbuf *ov68_0225DC58(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2);
+static String *ov68_0225DC40(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1);
+static String *ov68_0225DC58(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2);
 static void ov68_0225DC74(UnkStruct_ov68_0225DC74 *param0);
 static u32 ov68_0225DCA4(const UnkStruct_ov68_0225DC74 *param0, u32 param1, u32 param2);
 static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_0222DFF8 *param1);
 static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
-static BOOL ov68_0225CCB4(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5);
+static BOOL ov68_0225CCB4(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID);
 static void ov68_0225CCC8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
 static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
 static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5);
@@ -153,20 +153,20 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0);
 static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0);
 static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
-static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID);
+static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID);
 static void ov68_0225D380(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
-static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
-static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID);
+static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, enum HeapID heapID);
+static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID);
 static void ov68_0225D868(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
 static void ov68_0225D89C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2, TextColor param3);
-static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DB8C *param1, UnkStruct_ov68_0225CB70 *param2, UnkStruct_ov68_0225C91C *param3, const UnkStruct_ov66_0222E908 *param4, u32 heapID, u32 param6, u32 param7, BOOL param8);
+static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DB8C *param1, UnkStruct_ov68_0225CB70 *param2, UnkStruct_ov68_0225C91C *param3, const UnkStruct_ov66_0222E908 *param4, enum HeapID heapID, u32 param6, u32 param7, BOOL param8);
 static void ov68_0225DA30(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DC74 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
 static BOOL ov68_0225DA74(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225C91C *param1);
 static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, u32 param3);
-static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, u32 param3);
+static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, enum HeapID heapID);
 static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1);
-static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1);
-static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1);
+static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const String *param1);
+static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const String *param1);
 static void ov68_0225D284(UnkStruct_ov68_0225D128 *param0);
 static void ov68_0225D2A0(UnkStruct_ov68_0225D128 *param0);
 static BOOL ov68_0225D2B4(const UnkStruct_ov68_0225D128 *param0);
@@ -302,7 +302,7 @@ static void (*Unk_ov68_0225DEB0[2])(UnkUnion_ov68_0225CCA8 *, UnkStruct_ov68_022
     ov68_0225D35C
 };
 
-static BOOL (*Unk_ov68_0225DEA8[2])(UnkUnion_ov68_0225CCA8 *, UnkStruct_ov68_0225CB70 *, UnkStruct_ov68_0225C91C *, UnkStruct_ov68_0225D128 *, UnkStruct_ov66_02231374 *, u32) = {
+static BOOL (*Unk_ov68_0225DEA8[2])(UnkUnion_ov68_0225CCA8 *, UnkStruct_ov68_0225CB70 *, UnkStruct_ov68_0225C91C *, UnkStruct_ov68_0225D128 *, UnkStruct_ov66_02231374 *, enum HeapID) = {
     ov68_0225CCB4,
     ov68_0225D36C
 };
@@ -422,7 +422,7 @@ static void ov68_0225C914(void *param0)
     ov68_0225C98C(&v0->unk_00);
 }
 
-static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, u32 heapID)
+static void ov68_0225C91C(UnkStruct_ov68_0225C91C *param0, SaveData *saveData, enum HeapID heapID)
 {
     Options *options = SaveData_GetOptions(saveData);
     param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
@@ -454,7 +454,7 @@ static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0)
     VramTransfer_Process();
 }
 
-static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, u32 heapID)
+static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *options, enum HeapID heapID)
 {
     SetAllGraphicsModes(&Unk_ov68_0225DD48);
 
@@ -494,7 +494,7 @@ static void ov68_0225CA8C(UnkStruct_ov68_0225C91C *param0)
     Heap_Free(param0->unk_00);
 }
 
-static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, u32 heapID)
+static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, enum HeapID heapID)
 {
     int v0;
 
@@ -534,7 +534,7 @@ static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0)
     RenderOam_Free();
 }
 
-static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, u32 heapID)
+static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DFF8 *param1, enum HeapID heapID)
 {
     int v0;
     static const v1[9] = {
@@ -552,12 +552,12 @@ static void ov68_0225CB70(UnkStruct_ov68_0225CB70 *param0, UnkStruct_ov66_0222DF
     param0->unk_30 = param1;
 
     for (v0 = 0; v0 < 9; v0++) {
-        param0->unk_00[v0] = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
+        param0->unk_00[v0] = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, v1[v0], heapID);
     }
 
     param0->unk_24 = StringTemplate_Default(heapID);
-    param0->unk_28 = Strbuf_Init(256, heapID);
-    param0->unk_2C = Strbuf_Init(256, heapID);
+    param0->unk_28 = String_Init(256, heapID);
+    param0->unk_2C = String_Init(256, heapID);
 }
 
 static void ov68_0225CBC0(UnkStruct_ov68_0225CB70 *param0)
@@ -569,21 +569,21 @@ static void ov68_0225CBC0(UnkStruct_ov68_0225CB70 *param0)
     }
 
     StringTemplate_Free(param0->unk_24);
-    Strbuf_Free(param0->unk_28);
-    Strbuf_Free(param0->unk_2C);
+    String_Free(param0->unk_28);
+    String_Free(param0->unk_2C);
 }
 
-static Strbuf *ov68_0225CBEC(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2)
+static String *ov68_0225CBEC(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2)
 {
     GF_ASSERT(param1 < 9);
 
-    MessageLoader_GetStrbuf(param0->unk_00[param1], param2, param0->unk_2C);
+    MessageLoader_GetString(param0->unk_00[param1], param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
 
     return param0->unk_28;
 }
 
-static Strbuf *ov68_0225CC18(UnkStruct_ov68_0225CB70 *param0, u32 param1)
+static String *ov68_0225CC18(UnkStruct_ov68_0225CB70 *param0, u32 param1)
 {
     if (param1 >= (50 + 10)) {
         GF_ASSERT(param1 >= (50 + 10));
@@ -597,7 +597,7 @@ static Strbuf *ov68_0225CC18(UnkStruct_ov68_0225CB70 *param0, u32 param1)
     return ov68_0225CBEC(param0, 2, param1 - 50);
 }
 
-static Strbuf *ov68_0225CC44(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2)
+static String *ov68_0225CC44(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 param2)
 {
     if (param1 >= (50 + 10)) {
         GF_ASSERT(param1 >= (50 + 10));
@@ -611,7 +611,7 @@ static Strbuf *ov68_0225CC44(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 pa
     return ov68_0225CBEC(param0, 6 + param2, param1 - 50);
 }
 
-static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, u32 heapID)
+static void ov68_0225CC78(UnkStruct_ov68_0225CB70 *param0, u32 param1, enum HeapID heapID)
 {
     TrainerInfo *v0 = TrainerInfo_New(heapID);
     const UnkStruct_ov66_0222E71C *v1 = ov66_0222E3BC(param0->unk_30);
@@ -626,9 +626,9 @@ static void ov68_0225CCA8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB7
     ov68_0225CCD0(&param0->val1, param1, param2, param4);
 }
 
-static BOOL ov68_0225CCB4(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5)
+static BOOL ov68_0225CCB4(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID)
 {
-    return ov68_0225CE48(&param0->val1, param1, param2, param3, param4, param5);
+    return ov68_0225CE48(&param0->val1, param1, param2, param3, param4, heapID);
 }
 
 static void ov68_0225CCC8(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2)
@@ -693,7 +693,7 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 static BOOL ov68_0225CE48(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5)
 {
     u32 v0;
-    Strbuf *v1;
+    String *v1;
 
     switch (param0->unk_28) {
     case 0:
@@ -849,7 +849,7 @@ static void ov68_0225D02C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
 static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2)
 {
-    Strbuf *v0;
+    String *v0;
 
     Window_FillTilemap(&param0->unk_00[0], 0);
 
@@ -875,12 +875,12 @@ static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0)
     Sprite_SetAnimateFlag(param0->unk_14, 1);
 }
 
-static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, u32 heapID)
+static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *saveData, enum HeapID heapID)
 {
     Window_Add(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, (1 + (18 + 12)) + 9);
     Window_FillTilemap(&param0->unk_08, 15);
 
-    param0->unk_18 = Strbuf_Init(256, heapID);
+    param0->unk_18 = String_Init(256, heapID);
     param0->unk_04 = Options_TextFrameDelay(SaveData_GetOptions(saveData));
 }
 
@@ -892,32 +892,32 @@ static void ov68_0225D178(UnkStruct_ov68_0225D128 *param0, u32 param1)
 
     ov68_0225D2A0(param0);
 
-    Strbuf_Free(param0->unk_18);
+    String_Free(param0->unk_18);
     Window_Remove(&param0->unk_08);
 
     ov68_0225D348(param0, param1);
 }
 
-static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1)
+static void ov68_0225D1B4(UnkStruct_ov68_0225D128 *param0, const String *param1)
 {
     if (Text_IsPrinterActive(param0->unk_00)) {
         Text_RemovePrinter(param0->unk_00);
     }
 
     Window_FillTilemap(&param0->unk_08, 15);
-    Strbuf_Copy(param0->unk_18, param1);
+    String_Copy(param0->unk_18, param1);
     param0->unk_00 = Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, param0->unk_04, TEXT_COLOR(1, 2, 15), NULL);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_08, 1, 1, 5);
 }
 
-static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const Strbuf *param1)
+static void ov68_0225D218(UnkStruct_ov68_0225D128 *param0, const String *param1)
 {
     if (Text_IsPrinterActive(param0->unk_00)) {
         Text_RemovePrinter(param0->unk_00);
     }
 
     Window_FillTilemap(&param0->unk_08, 15);
-    Strbuf_Copy(param0->unk_18, param1);
+    String_Copy(param0->unk_18, param1);
     Text_AddPrinterWithParamsAndColor(&param0->unk_08, FONT_MESSAGE, param0->unk_18, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_08, 1, 1, 5);
     Window_ScheduleCopyToVRAM(&param0->unk_08);
@@ -988,7 +988,7 @@ static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB7
     ov68_0225D388(&param0->val2, param1, param2, param3, param4);
 }
 
-static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID)
+static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID)
 {
     return ov68_0225D478(&param0->val2, param1, param2, param3, param4, heapID);
 }
@@ -998,12 +998,12 @@ static void ov68_0225D380(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB7
     ov68_0225D868(&param0->val2, param1, param2);
 }
 
-static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4)
+static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, enum HeapID heapID)
 {
     {
-        Graphics_LoadPaletteFromOpenNARC(param2->unk_1A4, 199, 0, 0, 4 * 32, param4);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, param4);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 202, param2->unk_00, 0, 0, 0, 0, param4);
+        Graphics_LoadPaletteFromOpenNARC(param2->unk_1A4, 199, 0, 0, 4 * 32, heapID);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param2->unk_1A4, 200, param2->unk_00, 0, 0, 0, 0, heapID);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2->unk_1A4, 202, param2->unk_00, 0, 0, 0, 0, heapID);
     }
 
     {
@@ -1017,12 +1017,12 @@ static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     ov68_0225D89C(param0, param1, 109, TEXT_COLOR(3, 4, 0));
 
     {
-        param0->unk_80 = Graphics_GetCharDataFromOpenNARC(param2->unk_1A4, 200, 0, &param0->unk_84, param4);
+        param0->unk_80 = Graphics_GetCharDataFromOpenNARC(param2->unk_1A4, 200, 0, &param0->unk_84, heapID);
     }
 
     {
-        ov68_0225DB8C(&param0->unk_88, 1, param4);
-        ov68_0225DB8C(&param0->unk_A8, 0, param4);
+        ov68_0225DB8C(&param0->unk_88, 1, heapID);
+        ov68_0225DB8C(&param0->unk_A8, 0, heapID);
 
         if (ov66_0222F144(param3->unk_04, &param0->unk_C8) == 0) {
             ov68_0225DCCC(&param0->unk_C8, param3->unk_04);
@@ -1033,9 +1033,9 @@ static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     }
 }
 
-static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID)
+static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, enum HeapID heapID)
 {
-    Strbuf *v0;
+    String *v0;
     u32 v1;
 
     switch (param0->unk_60) {
@@ -1265,23 +1265,23 @@ static void ov68_0225D868(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
 
 static void ov68_0225D89C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2, TextColor param3)
 {
-    Strbuf *v0;
+    String *v0;
     u32 v1;
     s32 v2;
 
     Window_FillTilemap(&param0->unk_00[0], 0);
 
     v0 = ov68_0225CBEC(param1, 0, param2);
-    v1 = Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
+    v1 = Font_CalcStringWidth(FONT_MESSAGE, v0, 0);
     v2 = ((18 * 8) - v1) / 2;
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00[0], FONT_MESSAGE, v0, v2, 4, TEXT_SPEED_NO_TRANSFER, param3, NULL);
     Window_ScheduleCopyToVRAM(&param0->unk_00[0]);
 }
 
-static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DB8C *param1, UnkStruct_ov68_0225CB70 *param2, UnkStruct_ov68_0225C91C *param3, const UnkStruct_ov66_0222E908 *param4, u32 heapID, u32 param6, u32 param7, BOOL param8)
+static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DB8C *param1, UnkStruct_ov68_0225CB70 *param2, UnkStruct_ov68_0225C91C *param3, const UnkStruct_ov66_0222E908 *param4, enum HeapID heapID, u32 param6, u32 param7, BOOL param8)
 {
-    Strbuf *v0;
+    String *v0;
 
     Window_FillTilemap(&param0->unk_00[1], 0);
     Window_FillTilemap(&param0->unk_00[5], 0);
@@ -1309,13 +1309,13 @@ static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_
         ov68_0225CC78(param2, 0, heapID);
 
         v0 = ov68_0225CBEC(param2, 0, 110);
-        v1 = Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
+        v1 = Font_CalcStringWidth(FONT_MESSAGE, v0, 0);
         v2 = (((12 * 8) - v1) / 2);
 
         Text_AddPrinterWithParamsAndColor(&param0->unk_00[5], FONT_MESSAGE, v0, v2, 0, TEXT_SPEED_NO_TRANSFER, v3, NULL);
 
         v0 = ov68_0225DC58(param1, param2, param4->unk_04);
-        v1 = Font_CalcStrbufWidth(FONT_MESSAGE, v0, 0);
+        v1 = Font_CalcStringWidth(FONT_MESSAGE, v0, 0);
         v2 = (((13 * 8) - v1) / 2);
 
         Text_AddPrinterWithParamsAndColor(&param0->unk_00[5], FONT_MESSAGE, v0, (12 * 8) + v2, 0, TEXT_SPEED_NO_TRANSFER, param6, NULL);
@@ -1405,17 +1405,17 @@ static void ov68_0225DB3C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     ov68_0225D89C(param0, param1, 119, TEXT_COLOR(5, 6, 0));
 }
 
-static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, u32 heapID)
+static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, enum HeapID heapID)
 {
     u32 v0;
     u32 v1;
     u16 *v2;
     int v3;
 
-    param0->unk_10 = Strbuf_Init(256, heapID);
+    param0->unk_10 = String_Init(256, heapID);
 
     for (v3 = 0; v3 < 3; v3++) {
-        param0->unk_14[v3] = Strbuf_Init(256, heapID);
+        param0->unk_14[v3] = String_Init(256, heapID);
     }
 
     if (param1 == 1) {
@@ -1434,12 +1434,12 @@ static void ov68_0225DB8C(UnkStruct_ov68_0225DB8C *param0, BOOL param1, u32 heap
     if (param0->unk_0C == 1) {
         v2 = ov66_02233538(v1 + UnkEnum_ov66_02233538_00);
         GF_ASSERT(v2);
-        Strbuf_CopyChars(param0->unk_10, v2);
+        String_CopyChars(param0->unk_10, v2);
 
         for (v3 = 0; v3 < 3; v3++) {
             v2 = ov66_02233538(v1 + UnkEnum_ov66_02233538_01 + v3);
             GF_ASSERT(v2);
-            Strbuf_CopyChars(param0->unk_14[v3], v2);
+            String_CopyChars(param0->unk_14[v3], v2);
         }
     }
 }
@@ -1448,14 +1448,14 @@ static void ov68_0225DC24(UnkStruct_ov68_0225DB8C *param0)
 {
     int v0;
 
-    Strbuf_Free(param0->unk_10);
+    String_Free(param0->unk_10);
 
     for (v0 = 0; v0 < 3; v0++) {
-        Strbuf_Free(param0->unk_14[v0]);
+        String_Free(param0->unk_14[v0]);
     }
 }
 
-static Strbuf *ov68_0225DC40(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1)
+static String *ov68_0225DC40(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1)
 {
     if (param0->unk_0C == 0) {
         return ov68_0225CC18(param1, param0->unk_00);
@@ -1464,7 +1464,7 @@ static Strbuf *ov68_0225DC40(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov
     return param0->unk_10;
 }
 
-static Strbuf *ov68_0225DC58(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2)
+static String *ov68_0225DC58(const UnkStruct_ov68_0225DB8C *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2)
 {
     if (param0->unk_0C == 0) {
         return ov68_0225CC44(param1, param0->unk_00, param2);
@@ -1502,7 +1502,7 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
     const UnkStruct_ov66_0222E71C *v0;
     UnkStruct_ov66_0222E908 v1;
     int v2;
-    u32 v3;
+    u32 language;
     BOOL v4;
 
     memset(param0, 0, sizeof(UnkStruct_ov68_0225DC74));
@@ -1511,9 +1511,9 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
         v0 = ov66_0222E374(param1, v2);
 
         if (v0 != NULL) {
-            v3 = ov66_0222E850(v0);
+            language = ov66_0222E850(v0);
             ov66_0222E908(v0, &v1);
-            v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, v3);
+            v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, language);
 
             if ((v4 == 1) && (v1.unk_04 < 3)) {
                 param0->unk_00[v1.unk_04]++;

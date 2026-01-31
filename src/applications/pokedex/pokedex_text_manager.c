@@ -113,14 +113,14 @@ void PokedexTextManager_FreeWindow(Window *window)
 
 u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID, int xOffset, int yOffset)
 {
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
     GF_ASSERT(messageLoader);
 
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, entryID);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-    u32 strWidth = Font_CalcStrbufWidth(FONT_SUBSCREEN, strbuf, 0);
+    String *string = MessageLoader_GetNewString(messageLoader, entryID);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
+    u32 strWidth = Font_CalcStringWidth(FONT_SUBSCREEN, string, 0);
 
-    Strbuf_Free(strbuf);
+    String_Free(string);
     MessageLoader_Free(messageLoader);
 
     return strWidth;
@@ -128,23 +128,23 @@ u32 PokedexTextManager_DisplayMessage(PokedexTextManager *textMan, Window *windo
 
 void PokedexTextManager_DisplayMessageTopRight(PokedexTextManager *textMan, Window *window, u32 bankID, u32 entryID)
 {
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
+    MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, bankID, textMan->heapID);
     GF_ASSERT(messageLoader);
 
-    Strbuf *strbuf = MessageLoader_GetNewStrbuf(messageLoader, entryID);
-    int strBufWidth = Font_CalcStrbufWidth(FONT_SUBSCREEN, strbuf, 0);
+    String *string = MessageLoader_GetNewString(messageLoader, entryID);
+    int stringWidth = Font_CalcStringWidth(FONT_SUBSCREEN, string, 0);
     int xOffset = Window_GetWidth(window) * 8;
-    xOffset = xOffset - strBufWidth;
+    xOffset = xOffset - stringWidth;
     xOffset /= 2;
 
-    Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-    Strbuf_Free(strbuf);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, string, xOffset, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
+    String_Free(string);
     MessageLoader_Free(messageLoader);
 }
 
-void PokedexTextManager_DisplayStrbuf(PokedexTextManager *textMan, Window *window, Strbuf *strbuf, int xOffset, int yOffset)
+void PokedexTextManager_DisplayString(PokedexTextManager *textMan, Window *window, String *string, int xOffset, int yOffset)
 {
-    Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, strbuf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
 }
 
 static BOOL FontExists(PokedexTextData *textData)

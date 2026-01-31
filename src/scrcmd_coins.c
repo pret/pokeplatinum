@@ -67,7 +67,7 @@ BOOL ScrCmd_AddCoins(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_SubstractCoinsFromValue(ScriptContext *ctx)
+BOOL ScrCmd_SubtractCoinsFromValue(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
@@ -79,7 +79,7 @@ BOOL ScrCmd_SubstractCoinsFromValue(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_SubstractCoinsFromVar(ScriptContext *ctx)
+BOOL ScrCmd_SubtractCoinsFromVar(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;
@@ -131,7 +131,7 @@ BOOL ScrCmd_HasCoinsFromVar(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_CanAddCoins(ScriptContext *ctx)
+BOOL ScrCmd_CheckCanAddCoins(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *saveData = fieldSystem->saveData;

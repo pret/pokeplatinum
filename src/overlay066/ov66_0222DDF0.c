@@ -15,6 +15,7 @@
 #include "struct_decls/struct_0207E060_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "global/pm_version.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_0223177C.h"
 #include "overlay066/ov66_022324F0.h"
@@ -56,7 +57,7 @@
 #include "savedata.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system_data.h"
 #include "trainer_info.h"
 #include "unk_02014D38.h"
@@ -74,7 +75,7 @@ typedef struct UnkStruct_ov66_0222E71C_t {
     u8 unk_2C[6];
     u8 unk_32[6];
     u8 unk_38;
-    u8 unk_39;
+    u8 language;
     u16 unk_3A;
     u16 unk_3C;
     u8 unk_3E;
@@ -244,7 +245,7 @@ typedef struct UnkStruct_ov66_0222DFF8_t {
     UnkStruct_ov66_02230A6C unk_4BC;
     UnkStruct_ov66_0222FBF0 unk_508;
     UnkStruct_ov66_0222DFF8_sub3 unk_510;
-    u32 heapID;
+    enum HeapID heapID;
     u32 unk_52C;
 } UnkStruct_ov66_0222DFF8;
 
@@ -266,7 +267,7 @@ static void ov66_0222F4C8(PPW_LOBBY_TIME_EVENT param0, void *param1);
 static void ov66_0222F684(const void *param0, u32 param1, void *param2);
 static void ov66_0222F6C4(UnkStruct_ov66_0222F6C4 *param0, UnkStruct_ov66_02231560 *param1);
 static void ov66_0222F768(UnkStruct_ov66_0222DFF8 *param0);
-static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u32 heapID);
+static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, enum HeapID heapID);
 static void ov66_0222F964(UnkStruct_ov66_0222DFF8 *param0);
 static void ov66_0222F9EC(UnkStruct_ov66_0222F6C4 *param0, const SaveData *saveData);
 static BOOL ov66_0222FA04(const UnkStruct_ov66_0222F6C4 *param0, const SaveData *saveData);
@@ -278,9 +279,9 @@ static void ov66_0222FBAC(const UnkStruct_ov66_0222FB64 *param0);
 static void ov66_0222FBC8(UnkStruct_ov66_0222FBC8 *param0);
 static BOOL ov66_0222FBD0(const UnkStruct_ov66_0222FBC8 *param0);
 static void ov66_0222FBE0(UnkStruct_ov66_0222FBC8 *param0);
-static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 heapID);
+static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, enum HeapID heapID);
 static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0);
-static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, u32 heapID);
+static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, enum HeapID heapID);
 static void ov66_0222FC4C(UnkStruct_ov66_0222FBC8 *param0);
 static BOOL ov66_0222FC54(const UnkStruct_ov66_0222FBC8 *param0);
 static void ov66_0222FC58(UnkStruct_ov66_0222FC58 *param0);
@@ -411,7 +412,7 @@ static const UnkStruct_ov66_022589B4 Unk_ov66_022589B4[8] = {
     { ov66_022307B4, sizeof(u32) }
 };
 
-UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, u32 heapID)
+UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, enum HeapID heapID)
 {
     UnkStruct_ov66_0222DFF8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0222DFF8));
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DFF8));
@@ -979,7 +980,7 @@ void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 *param0, u32 param1, u32 param2)
     ov66_0222F964(param0);
 }
 
-void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u32 heapID)
+void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, enum HeapID heapID)
 {
     BOOL v0;
     BOOL v1;
@@ -991,20 +992,20 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
         TrainerInfo_SetName(param1, param0->unk_08);
 
         {
-            Strbuf *v2;
-            Strbuf *v3;
+            String *v2;
+            String *v3;
 
-            v3 = Strbuf_Init((7 + 1) * 4, heapID);
-            v2 = Strbuf_Init((7 + 1) * 4, heapID);
-            TrainerInfo_NameStrbuf(param1, v2);
+            v3 = String_Init((7 + 1) * 4, heapID);
+            v2 = String_Init((7 + 1) * 4, heapID);
+            TrainerInfo_NameString(param1, v2);
             v0 = Font_AreAllCharsValid(FONT_SYSTEM, v2, v3);
 
             if (v0 == 0) {
                 v1 = 1;
             }
 
-            Strbuf_Free(v3);
-            Strbuf_Free(v2);
+            String_Free(v3);
+            String_Free(v2);
         }
     } else {
         v1 = 1;
@@ -1012,20 +1013,20 @@ void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u
 
     if (v1) {
         MessageLoader *v4;
-        Strbuf *v5;
+        String *v5;
 
-        v4 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
-        v5 = MessageLoader_GetNewStrbuf(v4, 64);
+        v4 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0673, heapID);
+        v5 = MessageLoader_GetNewString(v4, 64);
 
-        TrainerInfo_SetNameFromStrbuf(param1, v5);
-        Strbuf_Free(v5);
+        TrainerInfo_SetNameFromString(param1, v5);
+        String_Free(v5);
         MessageLoader_Free(v4);
     }
 
     TrainerInfo_SetID(param1, ov66_0222E79C(param0));
     TrainerInfo_SetGender(param1, ov66_0222E7C8(param0));
     TrainerInfo_SetAppearance(param1, ov66_0222E858(param0));
-    TrainerInfo_SetRegionCode(param1, ov66_0222E80C(param0));
+    TrainerInfo_SetLanguage(param1, ov66_0222E80C(param0));
     TrainerInfo_SetMainStoryCleared(param1);
 }
 
@@ -1140,37 +1141,38 @@ u32 ov66_0222E7C8(const UnkStruct_ov66_0222E71C *param0)
 
 u32 ov66_0222E80C(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0;
+    u32 language;
 
-    if (ov66_0222E824(param0) == 1) {
-        v0 = param0->unk_39;
+    if (ov66_0222E824(param0) == TRUE) {
+        language = param0->language;
     } else {
-        v0 = 2;
+        language = ENGLISH;
     }
 
-    return v0;
+    return language;
 }
 
+// Probably checking if language is valid
 BOOL ov66_0222E824(const UnkStruct_ov66_0222E71C *param0)
 {
-    switch (param0->unk_39) {
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 7:
-        return 1;
+    switch (param0->language) {
+    case JAPANESE:
+    case ENGLISH:
+    case FRENCH:
+    case ITALIAN:
+    case GERMAN:
+    case SPANISH:
+        return TRUE;
     default:
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 u32 ov66_0222E850(const UnkStruct_ov66_0222E71C *param0)
 {
-    return param0->unk_39;
+    return param0->language;
 }
 
 u32 ov66_0222E858(const UnkStruct_ov66_0222E71C *param0)
@@ -2273,7 +2275,7 @@ static void ov66_0222F768(UnkStruct_ov66_0222DFF8 *param0)
     }
 }
 
-static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u32 heapID)
+static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, enum HeapID heapID)
 {
     TrainerInfo *v0;
     Party *v1;
@@ -2290,13 +2292,13 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
     }
 
     {
-        Strbuf *v5;
+        String *v5;
 
-        v5 = TrainerInfo_NameNewStrbuf(v0, heapID);
+        v5 = TrainerInfo_NameNewString(v0, heapID);
 
-        Strbuf_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
-        Strbuf_ToChars(v5, param0->unk_00, 7 + 1);
-        Strbuf_Free(v5);
+        String_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
+        String_ToChars(v5, param0->unk_00, 7 + 1);
+        String_Free(v5);
     }
 
     param0->unk_20.unk_00 = DWC_LOBBY_INVALID_USER_ID;
@@ -2322,7 +2324,7 @@ static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 *param0, SaveData *saveData, u
     }
 
     param0->unk_20.unk_38 = TrainerInfo_Gender(v0);
-    param0->unk_20.unk_39 = TrainerInfo_RegionCode(v0);
+    param0->unk_20.language = TrainerInfo_Language(v0);
     param0->unk_20.unk_3A = TrainerInfo_Appearance(v0);
     param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
     param0->unk_20.unk_3C = WiFiHistory_GetCountry(wiFiHistory);
@@ -2509,7 +2511,7 @@ static void ov66_0222FBE0(UnkStruct_ov66_0222FBC8 *param0)
     }
 }
 
-static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, u32 heapID)
+static void ov66_0222FBF0(UnkStruct_ov66_0222FBF0 *param0, enum HeapID heapID)
 {
     param0->unk_00 = TrainerInfo_New(heapID);
 }
@@ -2519,7 +2521,7 @@ static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0)
     Heap_Free(param0->unk_00);
 }
 
-static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, u32 heapID)
+static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, enum HeapID heapID)
 {
     UnkStruct_ov66_0222E71C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov66_0222E71C));
 

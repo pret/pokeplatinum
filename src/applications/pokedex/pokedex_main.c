@@ -53,7 +53,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "touch_pad.h"
@@ -603,14 +603,14 @@ BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *loadingScreen)
     return TRUE;
 }
 
-void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID)
+void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, enum HeapID heapID)
 {
-    Strbuf *numStr;
-    Strbuf *nameNumber;
+    String *numStr;
+    String *nameNumber;
 
     if (dexNumber > 0) {
-        numStr = Strbuf_Init(4, heapID);
-        Strbuf_FormatInt(numStr, dexNumber, 3, 2, 1);
+        numStr = String_Init(4, heapID);
+        String_FormatInt(numStr, dexNumber, 3, 2, 1);
     } else {
         numStr = PokedexMain_GetMessage(pl_msg_pokedex_none, heapID);
     }
@@ -619,12 +619,12 @@ void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int specie
 
     Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, numStr, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     Text_AddPrinterWithParamsAndColor(window, FONT_SUBSCREEN, nameNumber, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
-    Strbuf_Free(numStr);
+    String_Free(numStr);
 
     PokedexText_Free(nameNumber);
 }
 
-Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, int heapID, int species)
+Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, enum HeapID heapID, int species)
 {
     Window *window;
 
@@ -637,7 +637,7 @@ Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, co
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int heapID, int species)
+Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, enum HeapID heapID, int species)
 {
     Window *window = PokedexTextManager_NewWindow(textMan, 15, 2);
     PokedexMain_DisplayNameNumberText(window, species, species, heapID);
@@ -645,7 +645,7 @@ Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int h
     return window;
 }
 
-Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species)
+Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, enum HeapID heapID, int species)
 {
     int dexNumber = Pokemon_SinnohDexNumber(species);
 
@@ -659,7 +659,7 @@ Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heap
     return window;
 }
 
-void PokedexMain_EntryNameNumber(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y)
+void PokedexMain_EntryNameNumber(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, enum HeapID heapID, int statusIndex, fx32 x, fx32 y)
 {
     PokedexDisplayBox displayBox;
     VecFx32 position;
@@ -890,11 +890,11 @@ u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const
     return form;
 }
 
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID)
+String *PokedexMain_GetMessage(int entryID, enum HeapID heapID)
 {
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
-    Strbuf *pokedexMessage = MessageLoader_GetNewStrbuf(pokedexMessageBank, entryID);
+    String *pokedexMessage = MessageLoader_GetNewString(pokedexMessageBank, entryID);
     MessageLoader_Free(pokedexMessageBank);
 
     return pokedexMessage;

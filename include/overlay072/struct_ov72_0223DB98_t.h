@@ -14,7 +14,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 
 struct UnkStruct_ov72_0223DB98_t {
@@ -24,10 +24,10 @@ struct UnkStruct_ov72_0223DB98_t {
     Options *options;
     StringTemplate *unk_10;
     MessageLoader *unk_14;
-    Strbuf *unk_18[5];
-    Strbuf *unk_2C;
-    Strbuf *unk_30;
-    Strbuf *unk_34;
+    String *unk_18[5];
+    String *unk_2C;
+    String *unk_30;
+    String *unk_34;
     int unk_38;
     SpriteList *unk_3C;
     G2dRenderer unk_40;

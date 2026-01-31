@@ -4,12 +4,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202610C.h"
-
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_022324F0.h"
 
+#include "battle_regulation.h"
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -1437,12 +1436,12 @@ void sub_02037A78(int param0, int param1, void *param2, void *param3)
 
     if (v2 && (!Unk_021C07D4->unk_53)) {
         Unk_02100A30[0] = param0;
-        sub_02035B48(7, Unk_02100A30);
+        CommSys_SendDataFixedSizeServer(7, Unk_02100A30);
         return;
     }
 
     Unk_02100A28[0] = param0;
-    sub_02035B48(7, Unk_02100A28);
+    CommSys_SendDataFixedSizeServer(7, Unk_02100A28);
 }
 
 void sub_02037AD8(int param0, int param1, void *param2, void *param3)
@@ -2478,7 +2477,7 @@ void sub_02038A20(int param0)
 
 BOOL sub_02038AB8(void)
 {
-    if (sub_02033DFC() || !CommMan_IsInitialized()) {
+    if (CommServerClient_IsInClosedSecretBase() || !CommMan_IsInitialized()) {
         return 1;
     }
 

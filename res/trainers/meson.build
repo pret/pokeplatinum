@@ -49,3 +49,35 @@ nitrofs_files += datagen_trainer_out
 
 subdir('classes')
 subdir('frontier')
+
+trainer_ball_capsules_env = environment()
+trainer_ball_capsules_env.append('PYTHONPATH', meson.project_build_root()) # for generated constants in Python scripts
+
+ball_capsules_bin = generator(
+    make_trainer_ball_capsules_py,
+    output: '@BASENAME@.bin',
+    arguments: ['@INPUT@', '@OUTPUT@']
+).process(
+    files('ball_capsules.json'),
+    env: trainer_ball_capsules_env,
+)
+
+ball_capsules_narc = custom_target('trainer_ball_capsules.narc',
+    output: [
+        'trainer_ball_capsules.narc',
+        'trainer_ball_capsules.naix.h',
+    ],
+    input: [
+        ball_capsules_bin,
+    ],
+    command: [
+        narc_exe, 'create',
+        '--naix',
+        '--output', '@OUTPUT0@',
+        '@PRIVATE_DIR@'
+    ],
+    depends: [ py_consts_generators ],
+)
+
+nitrofs_files += ball_capsules_narc
+naix_headers += ball_capsules_narc[1]

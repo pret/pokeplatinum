@@ -18,6 +18,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
+#include "res/graphics/poketch/poketch.naix.h"
+
 static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *daycareStatus);
 static void UnloadSprites(DaycareCheckerGraphics *graphics);
 
@@ -162,14 +164,14 @@ static void SetupSprites(DaycareCheckerGraphics *graphics, const DaycareStatus *
 
     PoketchTask_LoadPokemonIconLuminancePalette(1);
 
-    symbolTilesSize = Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 84, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    symbolTilesSize = Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, daycare_checker_NCGR_lz, DS_SCREEN_SUB, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     symbolTilesSize /= 20;
 
     graphics->monIconOffset = symbolTilesSize;
 
     LoadDaycareMonIcons(symbolTilesSize, daycareStatus);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->symbolAnimData, NARC_INDEX_GRAPHIC__POKETCH, 82, 83, HEAP_ID_POKETCH_APP);
-    PoketchAnimation_LoadSpriteFromNARC(&graphics->monAnimData, NARC_INDEX_GRAPHIC__POKETCH, 5, 6, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->symbolAnimData, NARC_INDEX_GRAPHIC__POKETCH, daycare_checker_cell_NCER_lz, daycare_checker_anim_NANR_lz, HEAP_ID_POKETCH_APP);
+    PoketchAnimation_LoadSpriteFromNARC(&graphics->monAnimData, NARC_INDEX_GRAPHIC__POKETCH, poke_icon_cell_NCER_lz, poke_icon_anim_NANR_lz, HEAP_ID_POKETCH_APP);
 
     for (int index = 0; index < NUM_DAYCARE_SPRITES; index++) {
         if ((index >= 0) && (index <= 2)) {
@@ -245,8 +247,8 @@ static void Task_DrawAppBackground(SysTask *task, void *taskMan)
     DaycareCheckerGraphics *graphics = PoketchTask_GetTaskData(taskMan);
 
     Bg_InitFromTemplate(graphics->bgConfig, BG_LAYER_SUB_2, &bgTemplate, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 81, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 80, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, daycare_checker_bg_tiles_NCGR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, daycare_checker_NSCR_lz, graphics->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(graphics->bgConfig, BG_LAYER_SUB_2);

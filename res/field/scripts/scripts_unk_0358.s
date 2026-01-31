@@ -5,7 +5,7 @@
     ScriptEntryEnd
 
 _0006:
-    SetFlag FLAG_UNK_0x09E2
+    SetFlag FLAG_FIRST_ARRIVAL_LAKE_ACUITY_UNUSED
     End
 
 Unk358_Unused:

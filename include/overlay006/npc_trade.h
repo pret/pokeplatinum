@@ -34,10 +34,10 @@ typedef struct NpcTradeData {
     Pokemon *mon;
     TrainerInfo *trainerInfo;
     u32 npcTradeID;
-    u32 heapID;
+    enum HeapID heapID;
 } NpcTradeData;
 
-NpcTradeData *NpcTrade_Init(u32 heapID, u32 entryID);
+NpcTradeData *NpcTrade_Init(enum HeapID heapID, u32 entryID);
 void NpcTrade_Free(NpcTradeData *data);
 u32 NpcTrade_GetSpecies(const NpcTradeData *data);
 u32 NpcTrade_GetRequestedSpecies(const NpcTradeData *data);

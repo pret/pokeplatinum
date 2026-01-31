@@ -16,8 +16,8 @@ L_0:
     SwitchBg 28, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
     WaitForBgSwitch
     PlayLoopedSoundEffectL SEQ_SE_DP_W082, 4, 2
-    CreateEmitter 0, 0, 3
-    CreateEmitter 0, 1, 3
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 3, BATTLE_COLOR_RED, 10, 10
     Func_Shake 3, 0, 0, 13, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     BeginLoop 2

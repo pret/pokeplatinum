@@ -169,7 +169,7 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
         input->transitionDir = DIR_NONE;
     }
 
-    input->playerDir = sub_02061308(fieldSystem->playerAvatar, pressedKeys, heldKeys);
+    input->playerDir = PlayerAvatar_CalcFaceDirection(fieldSystem->playerAvatar, pressedKeys, heldKeys);
 }
 
 BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
@@ -206,7 +206,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->dummy5 == FALSE) {
         int playerEvent = PLAYER_EVENT_NONE;
-        int direction = sub_02061308(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
+        enum FaceDirection direction = PlayerAvatar_CalcFaceDirection(fieldSystem->playerAvatar, input->pressedKeys, input->heldKeys);
 
         if (SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CHECK)) {
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
@@ -890,7 +890,7 @@ static void Field_CalculateFriendship(FieldSystem *fieldSystem)
 
     for (i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
-        Pokemon_UpdateFriendship(mon, 5, mapID);
+        Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_WALK_CYCLE, mapID);
     }
 }
 
@@ -1069,7 +1069,7 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
 
     sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
+    while (MapObjectMan_FindObjectWithStatus(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
         objectX = MapObject_GetX(*object);
         objectY = MapObject_GetY(*object) / 2;
         objectZ = MapObject_GetZ(*object);

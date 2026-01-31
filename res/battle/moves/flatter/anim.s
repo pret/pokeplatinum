@@ -3,8 +3,8 @@
 L_0:
     LoadParticleResource 0, flatter_spa
     PlaySoundEffectC SEQ_SE_DP_W227B
-    CreateEmitter 0, 0, 4
-    CreateEmitter 0, 1, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_1, L_2
     End
 

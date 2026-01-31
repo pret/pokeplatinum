@@ -26,14 +26,14 @@ _0046:
     End
 
 _004E:
-    GoToIfSet FLAG_UNK_0x008E, _005B
+    GoToIfSet FLAG_MAP_LOCAL, _005B
     End
 
 _005B:
     SetFlag FLAG_UNK_0x018F
     RemoveObject 3
     RemoveObject 2
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
     End
 
@@ -110,7 +110,7 @@ _006F:
 
 _01A1:
     SetVar VAR_FOLLOWER_RIVAL_STATE, 4
-    SetVar VAR_UNK_0x4095, 1
+    SetVar VAR_VISITED_LAKE_VERITY_WITH_RIVAL, 1
     ReleaseAll
     End
 

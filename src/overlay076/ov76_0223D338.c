@@ -29,6 +29,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "screen_fade.h"
@@ -42,7 +43,6 @@
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_02015F84.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 #include "vram_transfer.h"
@@ -84,7 +84,7 @@ void ov76_0223D384(UnkStruct_ov76_0223DE00 *param0)
     int i;
 
     for (i = 0; i < (80 + 1); i++) {
-        sub_0202CADC(param0->unk_64, i, param0->unk_80[i]);
+        SealCase_SetSealQuantity(param0->unk_64, i, param0->unk_80[i]);
     }
 }
 
@@ -605,7 +605,7 @@ void ov76_0223DA34(u32 param0, enum TouchScreenButtonState param1, void *param2)
                     v1 = sub_02098164(v0->unk_418.unk_08[param0]);
 
                     ov76_0223CDC4(&v0->unk_D4.unk_18[0], v1);
-                    sub_0202CAE0(v0->unk_00->unk_20, v0->unk_418.unk_08[param0], -1);
+                    GiveOrTakeSeal(v0->unk_00->unk_20, v0->unk_418.unk_08[param0], -1);
                     ov76_0223CD20(v0, param0);
                     Sound_PlayEffect(SEQ_SE_DP_BOX02);
                 } else {
@@ -900,7 +900,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 break;
             }
 
-            if (sub_020160F4(param0->unk_D4.unk_188, 0) != 1) {
+            if (PokemonAnimManager_HasAnimCompleted(param0->unk_D4.unk_188, 0) != TRUE) {
                 break;
             }
 
@@ -1150,7 +1150,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             ov76_0223B184(param0->unk_324[v13].unk_0C, param0->unk_324[v13].unk_08, 0);
 
             if (v16 == 0) {
-                sub_0202CB20(param0->unk_00->unk_20, param0->unk_324[v13].unk_04, +1);
+                GiveOrTakeSeal2(param0->unk_00->unk_20, param0->unk_324[v13].unk_04, +1);
                 ov76_0223CC8C(param0);
                 ov76_0223B704(param0, v13);
             }

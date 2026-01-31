@@ -7,7 +7,6 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 
@@ -30,10 +29,11 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_anim.h"
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sprite_system.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_0201567C.h"
@@ -109,7 +109,7 @@ u16 *ov16_0223E0B0(BattleSystem *battleSys);
 u16 *ov16_0223E0BC(BattleSystem *battleSys);
 PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSys);
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSys);
-Strbuf *ov16_0223E0D4(BattleSystem *battleSys);
+String *ov16_0223E0D4(BattleSystem *battleSys);
 
 /**
  * @brief Get the trainer ID for a particular battler.
@@ -210,7 +210,7 @@ BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem *battleSys);
 u8 BattleSystem_TextSpeed(BattleSystem *battleSys);
 int BattleSystem_Ruleset(BattleSystem *battleSys);
-PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battleSys);
+PokemonAnimManager *BattleSystem_GetPokemonAnimManager(BattleSystem *battleSys);
 ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSys, int param1);
 void BattleSystem_SetBurmyForm(BattleSystem *battleSys);
 void ov16_0223EF2C(BattleSystem *battleSys, int param1, int param2);

@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -31,7 +31,7 @@
 #include "message.h"
 #include "play_time.h"
 #include "save_player.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "unk_0202F1D4.h"
@@ -46,10 +46,10 @@ static int ov61_0222B190(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
 static int ov61_0222B6D8(UnkStruct_ov62_022349A8 *param0);
 static int ov61_0222B860(UnkStruct_ov62_022349A8 *param0);
 static int ov61_0222BBE8(UnkStruct_ov62_022349A8 *param0);
-static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, Strbuf *param1);
+static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, String *param1);
 static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param2);
 static int ov61_0222B960(UnkStruct_ov62_022349A8 *param0);
-static void *ov61_0222BBF0(int heapID);
+static void *ov61_0222BBF0(enum HeapID heapID);
 static void ov61_0222BC40(void);
 static BOOL ov61_0222B920(void *param0, void *param1);
 static BOOL ov61_0222B924(void *param0, void *param1);
@@ -94,13 +94,13 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
 
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
-    param0->unk_3F4 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, param1->heapID);
+    param0->unk_3F4 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0695, param1->heapID);
     param0->unk_3F8 = StringTemplate_Default(param1->heapID);
-    param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->heapID);
+    param0->unk_3FC = String_Init((16 * 8 * 2), param1->heapID);
     param0->unk_18C = ov61_0222BBF0(param1->heapID);
     param0->unk_0C.unk_00 = param1->unk_00;
     param0->unk_0C.unk_04 = GAME_VERSION;
-    param0->unk_0C.unk_05 = GAME_LANGUAGE;
+    param0->unk_0C.language = GAME_LANGUAGE;
 
     v0 = ov61_0222DCDC(&param0->unk_0C);
     GF_ASSERT(v0 == 1);
@@ -117,7 +117,7 @@ void ov61_0222B0F0(UnkStruct_ov62_022349A8 *param0)
 
     param0->unk_3C4 = 0;
 
-    Strbuf_Free(param0->unk_3FC);
+    String_Free(param0->unk_3FC);
     StringTemplate_Free(param0->unk_3F8);
     MessageLoader_Free(param0->unk_3F4);
     Heap_Free(param0->unk_3B4);
@@ -163,14 +163,14 @@ static int ov61_0222B190(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
     return 0;
 }
 
-int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, UnkStruct_02029C68 *param2)
+int ov61_0222B1B4(UnkStruct_ov62_022349A8 *param0, UnkStruct_02030A80 *param1, DressUpPhoto *photo)
 {
     if (ov61_0222BBBC(param0) == 0) {
         return 0;
     }
 
     ov61_0222AFA4(param0->saveData, param1, &param0->unk_190.unk_00_val1.unk_00);
-    ov61_0222AE60(param0->saveData, param2, &param0->unk_190.unk_00_val1.unk_80);
+    ov61_0222AE60(param0->saveData, photo, &param0->unk_190.unk_00_val1.unk_80);
 
     param0->unk_40E = 60;
     param0->unk_3E8 = 20000;
@@ -739,7 +739,7 @@ BOOL ov61_0222BB48(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov62_0223CAA4 **pa
     return param0->unk_17C.unk_00;
 }
 
-static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, Strbuf *param1)
+static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, String *param1)
 {
     param0->unk_04(param0->unk_08, param1);
 }
@@ -747,7 +747,7 @@ static void ov61_0222BB54(UnkStruct_ov62_022349A8 *param0, Strbuf *param1)
 static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param2)
 {
     int v0;
-    Strbuf *v1;
+    String *v1;
 
     if (param1 != -1) {
         v0 = 0 + param1;
@@ -756,9 +756,9 @@ static void ov61_0222BB60(UnkStruct_ov62_022349A8 *param0, int param1, int param
     }
 
     StringTemplate_SetNumber(param0->unk_3F8, 0, param2, 5, 2, 1);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_3F4, v0);
+    v1 = MessageLoader_GetNewString(param0->unk_3F4, v0);
     StringTemplate_Format(param0->unk_3F8, param0->unk_3FC, v1);
-    Strbuf_Free(v1);
+    String_Free(v1);
     ov61_0222BB54(param0, param0->unk_3FC);
 }
 
@@ -778,7 +778,7 @@ static int ov61_0222BBE8(UnkStruct_ov62_022349A8 *param0)
 
 static OSHeapHandle Unk_ov61_0222E760;
 
-static void *ov61_0222BBF0(int heapID)
+static void *ov61_0222BBF0(enum HeapID heapID)
 {
     void *v0;
     void *v1;

@@ -40,7 +40,7 @@
 #include "sound.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -203,13 +203,13 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_0C.unk_20 = BattleAnimSystem_New(HEAP_ID_21);
     BattleAnimSystem_SetIsContest(v0->unk_0C.unk_20, 1);
 
-    v0->unk_0C.unk_38 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
-    v0->unk_0C.unk_3C = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, HEAP_ID_21);
-    v0->unk_0C.unk_40 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_21);
-    v0->unk_0C.unk_44 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_ACTING_COMPETITION, HEAP_ID_21);
+    v0->unk_0C.unk_38 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_TEXT, HEAP_ID_21);
+    v0->unk_0C.unk_3C = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_OPPONENT_NAMES, HEAP_ID_21);
+    v0->unk_0C.unk_40 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_EFFECTS, HEAP_ID_21);
+    v0->unk_0C.unk_44 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_ACTING_COMPETITION, HEAP_ID_21);
     v0->unk_0C.unk_54 = sub_02012744(2 * 4, HEAP_ID_21);
     v0->unk_0C.unk_48 = StringTemplate_Default(HEAP_ID_21);
-    v0->unk_0C.unk_4C = Strbuf_Init(3 * 160, HEAP_ID_21);
+    v0->unk_0C.unk_4C = String_Init(3 * 160, HEAP_ID_21);
 
     {
         NARC *v1;
@@ -253,7 +253,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
-    sub_020959F4(v0->unk_00->unk_155);
+    SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
     SetVBlankCallback(ov17_0223B6BC, v0);
 
     return 1;
@@ -355,7 +355,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
     PaletteData_FreeBuffer(v0->unk_0C.unk_50, 3);
     PaletteData_Free(v0->unk_0C.unk_50);
 
-    Strbuf_Free(v0->unk_0C.unk_4C);
+    String_Free(v0->unk_0C.unk_4C);
     StringTemplate_Free(v0->unk_0C.unk_48);
     MessageLoader_Free(v0->unk_0C.unk_38);
     MessageLoader_Free(v0->unk_0C.unk_3C);
@@ -372,7 +372,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_21);
-    sub_02095A24();
+    LockTextSpeed();
     NetworkIcon_Destroy();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
@@ -755,7 +755,7 @@ static int ov17_0223BDCC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BCE
         if (sub_0209590C(param0->unk_00) == 1) {
             param0->unk_304.unk_C6.unk_0C = 45;
         } else {
-            param0->unk_304.unk_C6.unk_0C = ov17_02243944(param0->unk_00->unk_00.unk_10F);
+            param0->unk_304.unk_C6.unk_0C = ov17_02243944(param0->unk_00->unk_00.contestType);
         }
 
         param0->unk_304.unk_C6.unk_0E = 0;

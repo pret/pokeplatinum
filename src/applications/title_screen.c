@@ -30,7 +30,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system.h"
 #include "text.h"
 #include "unk_0202419C.h"
@@ -199,7 +199,7 @@ typedef struct TitleScreen {
 } TitleScreen;
 
 typedef struct TitleScreenAppData {
-    int heapID;
+    enum HeapID heapID;
     BgConfig *bgConfig;
     G3DPipelineBuffers *buffers;
     TitleScreenUnusedStruct unused0;
@@ -1318,16 +1318,16 @@ static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapID heapID, TitleS
     Bg_ClearTilesRange(TITLE_SCREEN_LAYER_PRESS_START, 32, 0, heapID);
 
     MessageLoader *msgLoader = MessageLoader_Init(
-        MESSAGE_LOADER_NARC_HANDLE,
+        MSG_LOADER_LOAD_ON_DEMAND,
         NARC_INDEX_MSGDATA__PL_MSG,
         TEXT_BANK_TITLE_SCREEN,
         heapID);
 
-    Strbuf *buffer = Strbuf_Init(64, heapID);
+    String *buffer = String_Init(64, heapID);
 
     Window_AddFromTemplate(bgConfig, &titleScreen->pressStartWindow, &sPressStartWindowTemplate);
     Window_FillRectWithColor(&titleScreen->pressStartWindow, 0, 0, 0, TILES_TO_PIXELS(28), TILES_TO_PIXELS(2));
-    MessageLoader_GetStrbuf(msgLoader, TitleScreen_Text_PressStart, buffer);
+    MessageLoader_GetString(msgLoader, TitleScreen_Text_PressStart, buffer);
 
     u32 xpos = Font_CalcCenterAlignment(FONT_SYSTEM, buffer, 1, titleScreen->pressStartWindow.width * TILE_HEIGHT_PIXELS);
 
@@ -1343,7 +1343,7 @@ static void TitleScreen_Load2DGfx(BgConfig *bgConfig, enum HeapID heapID, TitleS
         0,
         NULL);
 
-    Strbuf_Free(buffer);
+    String_Free(buffer);
     MessageLoader_Free(msgLoader);
 
     u16 letterColor = GX_RGB(21, 0, 0);

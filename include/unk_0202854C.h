@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_UNK_0202854C_H
 #define POKEPLATINUM_UNK_0202854C_H
 
-#include "struct_decls/struct_02029894_decl.h"
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
@@ -19,9 +18,9 @@ enum BaseFlagType {
 };
 
 int Underground_SaveSize(void);
-int sub_02028554(void);
+int SecretBase_Size(void);
 int UndergroundRecord_Size(void);
-UndergroundRecord *UndergroundRecord_Init(u32 heapID);
+UndergroundRecord *UndergroundRecord_Init(enum HeapID heapID);
 void Underground_Init(Underground *underground);
 void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed);
 void sub_02028758(SaveData *saveData, s32 param1, BOOL param2);
@@ -30,8 +29,8 @@ void sub_020287E0(SaveData *saveData);
 void sub_020287F8(SaveData *saveData);
 BOOL sub_02028810(SaveData *saveData);
 void Underground_SetUnusedField(Underground *underground);
-void sub_02028830(Underground *underground, const TrainerInfo *info);
-TrainerInfo *sub_020288C8(const Underground *underground, int heapID, int param2);
+void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const TrainerInfo *info);
+TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, enum HeapID heapID, int param2);
 u32 Underground_GetRandomSeed(Underground *underground);
 int Underground_ConvertTreasureToBagItem(int treasureID);
 BOOL Underground_TryAddGoodPC(Underground *underground, int goodID);
@@ -40,10 +39,10 @@ int Underground_GetGoodsCountPC(Underground *underground);
 int Underground_GetGoodAtSlotPC(Underground *underground, int slot);
 int Underground_RemoveGoodAtSlotPC(Underground *underground, int slot);
 void Underground_MoveGoodPC(Underground *underground, int origSlot, int slotToMoveAfter);
-int sub_02028ACC(Underground *underground, int param1, int param2);
+int Underground_AddPlacedGood(Underground *underground, int slot, int index);
 BOOL Underground_IsGoodAtSlotPlacedInBase(Underground *underground, int slot);
-void sub_02028B20(Underground *underground, int param1);
-void sub_02028B34(Underground *underground);
+void Underground_RemovePlacedGood(Underground *underground, int index);
+void Underground_InitPlacedGoodSlots(Underground *underground);
 int Underground_GetGoodsCountBag(Underground *underground);
 int Underground_GetGoodAtSlotBag(Underground *underground, int slot);
 int Underground_RemoveGoodAtSlotBag(Underground *underground, int slot);
@@ -93,24 +92,24 @@ void Underground_SetPlateMined(Underground *underground, int miningItemID);
 BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItemID);
 void Underground_IncrementStepCount(Underground *underground);
 int Underground_GetStepCount(Underground *underground);
-void sub_020292C0(UnkStruct_02029894 *param0);
-void sub_020292CC(UnkStruct_02029894 *param0);
-void sub_02029300(UnkStruct_02029894 *param0);
-void sub_02029308(UnkStruct_02029894 *param0, int param1, int param2, int param3, int param4);
-void sub_02029364(UnkStruct_02029894 *param0, int param1, int param2, int param3);
-int sub_020293B0(const UnkStruct_02029894 *param0, int param1);
-int sub_020293FC(const UnkStruct_02029894 *param0, int param1);
-int sub_0202942C(const UnkStruct_02029894 *param0, int param1);
-int sub_GetMaxRemovableRocks(const UnkStruct_02029894 *param0);
-int sub_GetMaxDisplayItemsCount(const UnkStruct_02029894 *param0);
+void SecretBase_Init(SecretBase *secretBase);
+void SecretBase_Clear(SecretBase *secretBase);
+void SecretBase_SetInactive(SecretBase *secretBase);
+void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, int goodID, int x, int z);
+void SecretBase_SetGoodCoordsAtIndex(SecretBase *secretBase, int index, int x, int z);
+int SecretBase_GetGoodIDAtIndex(const SecretBase *secretBase, int index);
+int SecretBase_GetGoodXCoordAtIndex(const SecretBase *secretBase, int index);
+int SecretBase_GetGoodZCoordAtIndex(const SecretBase *secretBase, int index);
+int SecretBase_GetUnremovableBoulderCount(const SecretBase *secretBase);
+int SecretBase_GetPlacedGoodsLimit(const SecretBase *secretBase);
 int UndergroundRecord_GetTrainerScore(const UndergroundRecord *undergroundRecord);
 BOOL UndergroundRecord_HasPlatBaseFlag(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_SetTrainerScore(UndergroundRecord *undergroundRecord, int param1);
 int UndergroundRecord_GetPeopleMet(const UndergroundRecord *undergroundRecord);
-void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int param1);
+void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int unused);
 int UndergroundRecord_GetNumGiftsGiven(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_IncrementGiftsGiven(UndergroundRecord *undergroundRecord);
-void sub_0202955C(UndergroundRecord *param0);
+void UndergroundRecord_IncrementFlagsStolen(UndergroundRecord *undergroundRecord);
 enum BaseFlagType UndergroundRecord_GetFlagRank(const UndergroundRecord *undergroundRecord);
 int UndergroundRecord_GetCapturedFlagCount(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_IncrementCapturedFlagCount(UndergroundRecord *undergroundRecord);
@@ -125,22 +124,22 @@ int UndergroundRecord_GetNumTrapsTriggered(const UndergroundRecord *undergroundR
 void UndergroundRecord_IncrementNumTrapsTriggered(UndergroundRecord *undergroundRecord);
 int UndergroundRecord_GetNumPlayersHelped(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_IncrementNumPlayersHelped(UndergroundRecord *undergroundRecord);
-int sub_02029774(const UndergroundRecord *param0);
-void sub_0202977C(UndergroundRecord *param0);
-int sub_020297AC(const UndergroundRecord *param0);
-void sub_020297B4(UndergroundRecord *param0);
-int sub_020297E4(const UndergroundRecord *param0);
-void sub_020297EC(UndergroundRecord *param0);
-int sub_0202981C(const UndergroundRecord *param0);
-void sub_02029824(UndergroundRecord *param0);
-void sub_02029854(UnkStruct_02029894 *param0, int param1, int param2, int param3);
-int sub_02029874(const UnkStruct_02029894 *param0);
-int sub_0202987C(const UnkStruct_02029894 *param0);
-int sub_02029884(const UnkStruct_02029894 *param0);
-BOOL sub_0202988C(const UnkStruct_02029894 *param0);
-UnkStruct_02029894 *sub_02029894(SaveData *saveData);
-UndergroundRecord *SaveData_UndergroundRecord(SaveData *saveData);
-UndergroundRecord *sub_020298AC(UnkStruct_02029894 *param0);
+int UndergroundRecord_GetGiftsReceived(const UndergroundRecord *undergroundRecord);
+void UndergroundRecord_IncrementGiftsReceived(UndergroundRecord *undergroundRecord);
+int UndergroundRecord_GetTimesFlagTaken(const UndergroundRecord *undergroundRecord);
+void UndergroundRecord_IncrementTimesFlagTaken(UndergroundRecord *undergroundRecord);
+int UndergroundRecord_GetFlagsRecovered(const UndergroundRecord *undergroundRecord);
+void UndergroundRecord_IncrementFlagsRecovered(UndergroundRecord *undergroundRecord);
+int UndergroundRecord_GetTimesBaseMoved(const UndergroundRecord *undergroundRecord);
+void UndergroundRecord_IncrementTimesBaseMoved(UndergroundRecord *undergroundRecord);
+void SecretBase_SetEntrance(SecretBase *secretBase, int x, int z, int dir);
+int SecretBase_GetEntranceXCoord(const SecretBase *secretBase);
+int SecretBase_GetEntranceZCoord(const SecretBase *secretBase);
+int SecretBase_GetEntranceDir(const SecretBase *secretBase);
+BOOL SecretBase_IsActive(const SecretBase *secretBase);
+SecretBase *SaveData_GetSecretBase(SaveData *saveData);
+UndergroundRecord *SaveData_GetUndergroundRecord(SaveData *saveData);
+UndergroundRecord *SecretBase_GetUndergroundRecord(SecretBase *secretBase);
 Underground *SaveData_GetUnderground(SaveData *saveData);
 
 #endif // POKEPLATINUM_UNK_0202854C_H

@@ -22,7 +22,7 @@
 #include "narc.h"
 #include "render_window.h"
 #include "screen_fade.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "system_data.h"
@@ -70,7 +70,7 @@ static int GTSApplication_WFCInit_Authenticate(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_CheckAuthentication(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_ShowNetworkError(GTSApplicationState *appState);
 static int GTSApplication_WFCInit_RestartConnection(GTSApplicationState *appState);
-static int ov94_02245894(Window *window, Strbuf *strbuf, int x, int centered, TextColor textColor, int font);
+static int ov94_02245894(Window *window, String *string, int x, int centered, TextColor textColor, int font);
 
 static int (*gtsWFCInitScreenStates[])(GTSApplicationState *) = {
     GTSApplication_WFCInit_AskToSetupConnection,
@@ -305,16 +305,16 @@ static void GTSApplication_WFCInit_CleanupWindows(GTSApplicationState *appState)
 
 static void GTSApplication_WFCInit_InitTitle(GTSApplicationState *appState)
 {
-    appState->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
-    appState->shortErrorBuffer = Strbuf_Init(16 * 8 * 2, HEAP_ID_62);
-    appState->title = MessageLoader_GetNewStrbuf(appState->gtsMessageLoader, GTS_Text_NintendoWifiConnection);
+    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
+    appState->shortErrorBuffer = String_Init(16 * 8 * 2, HEAP_ID_62);
+    appState->title = MessageLoader_GetNewString(appState->gtsMessageLoader, GTS_Text_NintendoWifiConnection);
 }
 
 static void GTSApplication_WFCInit_CleanupStrings(GTSApplicationState *appState)
 {
-    Strbuf_Free(appState->title);
-    Strbuf_Free(appState->shortErrorBuffer);
-    Strbuf_Free(appState->genericMessageBuffer);
+    String_Free(appState->title);
+    String_Free(appState->shortErrorBuffer);
+    String_Free(appState->genericMessageBuffer);
 }
 
 static int GTSApplication_WFCInit_AskToSetupConnection(GTSApplicationState *appState)
@@ -887,10 +887,10 @@ static int GTSApplication_WFCInit_WaitForTextThenYesNoMenu(GTSApplicationState *
 
 void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageLoader *messageLoader, int messageId, int textSpeed, u16 unused)
 {
-    Strbuf *template = MessageLoader_GetNewStrbuf(messageLoader, messageId);
+    String *template = MessageLoader_GetNewString(messageLoader, messageId);
 
     StringTemplate_Format(appState->stringTemplate, appState->genericMessageBuffer, template);
-    Strbuf_Free(template);
+    String_Free(template);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, 0, 1, 10);
 
@@ -898,17 +898,17 @@ void GTSApplication_DisplayStatusMessage(GTSApplicationState *appState, MessageL
     appState->frameDelay = 0;
 }
 
-static int ov94_02245894(Window *window, Strbuf *strbuf, int x, int centered, TextColor textColor, int font)
+static int ov94_02245894(Window *window, String *string, int x, int centered, TextColor textColor, int font)
 {
     int width = 0;
 
     switch (centered) {
     case 1:
-        width = Font_CalcStrbufWidth(font, strbuf, 0);
+        width = Font_CalcStringWidth(font, string, 0);
         x = ((window->width * 8) - width) / 2;
         break;
     case 2:
-        width = Font_CalcStrbufWidth(font, strbuf, 0);
+        width = Font_CalcStringWidth(font, string, 0);
         x = (window->width * 8) - width;
         break;
     }
@@ -916,16 +916,16 @@ static int ov94_02245894(Window *window, Strbuf *strbuf, int x, int centered, Te
     return x;
 }
 
-void ov94_022458CC(Window *window, Strbuf *strbuf, int x, int y, int width, TextColor textColor)
+void ov94_022458CC(Window *window, String *string, int x, int y, int width, TextColor textColor)
 {
-    x = ov94_02245894(window, strbuf, x, width, textColor, FONT_MESSAGE);
-    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, strbuf, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
+    x = ov94_02245894(window, string, x, width, textColor, FONT_MESSAGE);
+    Text_AddPrinterWithParamsAndColor(window, FONT_MESSAGE, string, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
-void ov94_02245900(Window *window, Strbuf *strbuf, int x, int y, int centered, TextColor textColor)
+void ov94_02245900(Window *window, String *string, int x, int y, int centered, TextColor textColor)
 {
-    x = ov94_02245894(window, strbuf, x, centered, textColor, FONT_SYSTEM);
-    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, strbuf, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
+    x = ov94_02245894(window, string, x, centered, textColor, FONT_SYSTEM);
+    Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, string, x, y, TEXT_SPEED_INSTANT, textColor, NULL);
 }
 
 void ov94_02245934(GTSApplicationState *appState)
@@ -935,9 +935,9 @@ void ov94_02245934(GTSApplicationState *appState)
 
 static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appState, int messageId)
 {
-    Strbuf *fmtString = Strbuf_Init(16 * 8 * 2, HEAP_ID_62);
+    String *fmtString = String_Init(16 * 8 * 2, HEAP_ID_62);
 
-    MessageLoader_GetStrbuf(appState->unk0695MessageLoader, messageId, fmtString);
+    MessageLoader_GetString(appState->unk0695MessageLoader, messageId, fmtString);
     StringTemplate_Format(appState->stringTemplate, appState->shortErrorBuffer, fmtString);
 
     Window_FillTilemap(&appState->unk_F8C, 15);
@@ -945,7 +945,7 @@ static void GTSApplication_WFCInit_DisplayNetworkError(GTSApplicationState *appS
 
     appState->textPrinter = Text_AddPrinterWithParams(&appState->unk_F8C, FONT_MESSAGE, appState->shortErrorBuffer, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
-    Strbuf_Free(fmtString);
+    String_Free(fmtString);
 }
 
 static void GTSApplication_WFCInit_DisplayErrorCode(GTSApplicationState *appState, int errorCode, int visibleErrorCode)

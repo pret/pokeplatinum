@@ -7,16 +7,15 @@
 #include "constants/heap.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_0202610C.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "battle_regulation.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "trainer_info.h"
-#include "unk_0202602C.h"
 #include "unk_0202854C.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
@@ -226,7 +225,7 @@ BOOL CommInfo_ServerSendArray(void)
         return FALSE;
     }
 
-    if (!sub_02036254(5)) {
+    if (!CommSys_IsCmdQueuedServer(5)) {
         for (netId = 0; netId < MAX_CONNECTED_PLAYERS; netId++) {
             if (sCommInfo->infoState[netId] != INFO_STATE_EMPTY) {
                 sCommInfo->playerInfo[netId].netId = netId;

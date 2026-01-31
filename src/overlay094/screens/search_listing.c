@@ -23,7 +23,7 @@
 #include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -51,7 +51,7 @@ static void ov94_0223E240(GTSApplicationState *appState);
 static void ov94_0223E358(MessageLoader *messageLoader, Window windows[]);
 static void ov94_0223E300(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4);
 static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSPokemonRequirements *requirements);
-static void ov94_0223E424(Window *window, Strbuf *countryStrbuf, Strbuf *cityStrbuf);
+static void ov94_0223E424(Window *window, String *countryString, String *cityString);
 
 static int (*sGTSListingSummaryScreenStates[])(GTSApplicationState *wk) = {
     ov94_0223E09C,
@@ -275,7 +275,7 @@ static void ov94_0223DFDC(GTSApplicationState *appState)
 {
     GTSPokemonListing *listing = &appState->searchResults[appState->selectedSearchResult];
 
-    appState->genericMessageBuffer = Strbuf_Init(90 * 2, HEAP_ID_62);
+    appState->genericMessageBuffer = String_Init(90 * 2, HEAP_ID_62);
 
     StringTemplate_ClearArgs(appState->stringTemplate);
 
@@ -287,15 +287,15 @@ static void ov94_0223DFDC(GTSApplicationState *appState)
         StringTemplate_SetCityName(appState->stringTemplate, 9, listing->trainerCountry, listing->trainerRegion);
     }
 
-    appState->unk_BB4[0] = MessageUtil_ExpandedStrbuf(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_Country, HEAP_ID_62);
-    appState->unk_BB4[1] = MessageUtil_ExpandedStrbuf(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_City, HEAP_ID_62);
+    appState->unk_BB4[0] = MessageUtil_ExpandedString(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_Country, HEAP_ID_62);
+    appState->unk_BB4[1] = MessageUtil_ExpandedString(appState->stringTemplate, appState->gtsMessageLoader, Text_Gts_Template_City, HEAP_ID_62);
 }
 
 static void ov94_0223E074(GTSApplicationState *appState)
 {
-    Strbuf_Free(appState->unk_BB4[0]);
-    Strbuf_Free(appState->unk_BB4[1]);
-    Strbuf_Free(appState->genericMessageBuffer);
+    String_Free(appState->unk_BB4[0]);
+    String_Free(appState->unk_BB4[1]);
+    String_Free(appState->genericMessageBuffer);
 }
 
 static int ov94_0223E09C(GTSApplicationState *appState)
@@ -410,7 +410,7 @@ static int ov94_0223E2E0(GTSApplicationState *appState)
 
 static void ov94_0223E300(GTSApplicationState *appState, int messageId, int textSpeed, int unused3, u16 unused4)
 {
-    MessageLoader_GetStrbuf(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
+    MessageLoader_GetString(appState->gtsMessageLoader, messageId, appState->genericMessageBuffer);
     Window_FillTilemap(&appState->bottomInstructionWindow, 0xf0f);
     Window_DrawMessageBoxWithScrollCursor(&appState->bottomInstructionWindow, 0, 1, 10);
 
@@ -419,14 +419,14 @@ static void ov94_0223E300(GTSApplicationState *appState, int messageId, int text
 
 static void ov94_0223E358(MessageLoader *messageLoader, Window windows[])
 {
-    Strbuf *wantedHeader = MessageLoader_GetNewStrbuf(messageLoader, Gts_Text_WantedPokemon);
-    Strbuf *locationHeader = MessageLoader_GetNewStrbuf(messageLoader, Gts_Text_OTLocation);
+    String *wantedHeader = MessageLoader_GetNewString(messageLoader, Gts_Text_WantedPokemon);
+    String *locationHeader = MessageLoader_GetNewString(messageLoader, Gts_Text_OTLocation);
 
     ov94_02245900(&windows[0], wantedHeader, 0, 2, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&windows[1], locationHeader, 0, 2, 1, TEXT_COLOR(15, 2, 0));
 
-    Strbuf_Free(wantedHeader);
-    Strbuf_Free(locationHeader);
+    String_Free(wantedHeader);
+    String_Free(locationHeader);
 }
 
 static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, MessageLoader *speciesMessageLoader, GTSPokemonRequirements *requirements)
@@ -442,15 +442,15 @@ static void ov94_0223E3B0(Window *window, MessageLoader *gtsMessageLoader, Messa
 #endif
 }
 
-static void ov94_0223E424(Window *window, Strbuf *countryStrbuf, Strbuf *cityStrbuf)
+static void ov94_0223E424(Window *window, String *countryString, String *cityString)
 {
     Window_FillTilemap(window, 0x0);
 
-    if (countryStrbuf != NULL) {
-        ov94_02245900(window, countryStrbuf, 0, 3, 0, TEXT_COLOR(15, 2, 0));
+    if (countryString != NULL) {
+        ov94_02245900(window, countryString, 0, 3, 0, TEXT_COLOR(15, 2, 0));
     }
 
-    if (cityStrbuf != NULL) {
-        ov94_02245900(window, cityStrbuf, 8, 19, 0, TEXT_COLOR(15, 2, 0));
+    if (cityString != NULL) {
+        ov94_02245900(window, cityString, 8, 19, 0, TEXT_COLOR(15, 2, 0));
     }
 }

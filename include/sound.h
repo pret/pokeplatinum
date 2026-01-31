@@ -172,7 +172,7 @@ BOOL Sound_IsWaveOutPlaying(enum WaveOutChannel channel);
 void Sound_SetWaveOutPan(enum WaveOutChannel channel, u8 pan);
 void Sound_SetWaveOutSpeed(enum WaveOutChannel channel, u32 speed);
 void Sound_SetWaveOutVolume(enum WaveOutChannel channel, int volume);
-BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, int heapID);
+BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, enum HeapID heapID);
 void Sound_StopWaveOutReversed(enum WaveOutChannel channel);
 BOOL Sound_IsCaptureActive(void);
 BOOL Sound_StartReverb(int frames);

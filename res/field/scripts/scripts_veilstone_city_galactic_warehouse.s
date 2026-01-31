@@ -85,7 +85,7 @@ _00D8:
     ApplyMovement LOCALID_PLAYER, _0174
     ApplyMovement 4, _015C
     WaitMovement
-    SetVar VAR_UNK_0x407C, 1
+    SetVar VAR_PASTORIA_STATE, 1
     SetVar VAR_UNK_0x411F, 2
     Message 2
     WaitABXPadPress

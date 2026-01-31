@@ -198,7 +198,7 @@ const u16 *sub_0202E4C8(const UnkStruct_0202E794 *param0)
 
 int sub_0202E4CC(const UnkStruct_0202E794 *param0)
 {
-    return param0->unk_06;
+    return param0->language;
 }
 
 int sub_0202E4D0(const UnkStruct_0202E794 *param0)
@@ -449,9 +449,9 @@ UnkStruct_0202E7FC *sub_0202E7FC(TVBroadcast *broadcast)
     return &broadcast->unk_B04;
 }
 
-UnkStruct_0202E808 *sub_0202E808(TVBroadcast *broadcast)
+UnkStruct_0202E808 *TVBroadcast_GetSafariGameData(TVBroadcast *broadcast)
 {
-    return &broadcast->unk_B08;
+    return &broadcast->safariGame;
 }
 
 UnkStruct_0202E810 *sub_0202E810(TVBroadcast *broadcast)

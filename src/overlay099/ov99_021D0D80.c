@@ -75,7 +75,7 @@ static void ov99_021D1380(BgConfig *param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0);
-static G3DPipelineBuffers *ov99_021D19AC(int heapID);
+static G3DPipelineBuffers *ov99_021D19AC(enum HeapID heapID);
 static void ov99_021D19C8(void);
 static void ov99_021D1A4C(G3DPipelineBuffers *param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0);
@@ -124,7 +124,7 @@ int ov99_021D0D80(ApplicationManager *appMan, int *param1)
     EnableTouchPad();
     InitializeTouchPad(4);
 
-    v0->unk_20 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);
+    v0->unk_20 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0548, HEAP_ID_75);
     v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, HEAP_ID_75);
 
     ov99_021D1918(v0);
@@ -186,7 +186,7 @@ int ov99_021D1028(ApplicationManager *appMan, int *param1)
         v0->unk_1110 = ov99_021D3F6C(v0->unk_110C, 1);
     }
 
-    if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
+    if (v0->unk_00->gameCompleted && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_75);
             v0->unk_1100 = 1;
@@ -756,7 +756,7 @@ static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0)
     Camera_Delete(param0->camera);
 }
 
-static G3DPipelineBuffers *ov99_021D19AC(int heapID)
+static G3DPipelineBuffers *ov99_021D19AC(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_16K, ov99_021D19C8);
 }

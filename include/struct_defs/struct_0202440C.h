@@ -31,7 +31,7 @@ typedef struct TVBroadcast {
     UnkStruct_0202E7E4 unk_ADE;
     UnkStruct_0202E7F0 unk_B02;
     UnkStruct_0202E7FC unk_B04;
-    UnkStruct_0202E808 unk_B08;
+    UnkStruct_0202E808 safariGame;
     UnkStruct_0202E810 unk_B10;
     UnkStruct_0202E81C unk_B2E;
     UnkStruct_0202E828 unk_B44;

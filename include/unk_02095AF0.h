@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02095AF0_H
 #define POKEPLATINUM_UNK_02095AF0_H
 
-#include "struct_decls/struct_02029C88_decl.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02095C48.h"
 #include "struct_defs/struct_02095C60.h"
 

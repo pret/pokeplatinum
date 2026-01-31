@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_tower.h"
+
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
@@ -75,7 +77,7 @@ u32 sub_0202D0BC(UnkStruct_0202D060 *param0, int param1, void *param2)
     case 7:
         return param0->unk_00_0;
     case 8:
-        MI_CpuCopy8(param0->unk_0C, param2, 2 * 14);
+        MI_CpuCopy8(param0->unk_0C, param2, BT_OPPONENTS_COUNT * 2 * sizeof(u16));
         return 0;
     case 9:
         return param0->unk_00_5;
@@ -485,17 +487,17 @@ void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
     param1->unk_04 = param0->unk_100;
 }
 
-void sub_0202D63C(UnkStruct_0202D764 *param0, UnkStruct_ov104_0223A348 *param1, const u8 param2)
+void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 param2)
 {
-    FrontierTrainerDataDTO *v0 = &(param1->unk_00);
-    FrontierPokemonDataDTO *v1 = param1->unk_30;
+    FrontierTrainerDataDTO *v0 = &(param1->trDataDTO);
+    FrontierPokemonDataDTO *v1 = param1->monDataDTO;
     UnkStruct_0202D63C *v2 = &(param0->unk_104[param2]);
 
     v0->trainerID = 10000;
     v0->trainerType = v2->unk_C9;
 
     if (v2->unk_C8_val1_unk_00_0) {
-        MessageLoader *v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
+        MessageLoader *v3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0022, HEAP_ID_FIELD2);
 
         MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->trainerName);
         MessageLoader_Free(v3);
@@ -524,7 +526,7 @@ void sub_0202D708(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1)
     param1->unk_04 = param0->unk_102;
 }
 
-UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *param0, int heapID)
+UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *param0, enum HeapID heapID)
 {
     UnkStruct_ov90_021D1750 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov90_021D1750) * 30);
     MI_CpuCopy8(param0->unk_740, v0, sizeof(UnkStruct_ov90_021D1750) * 30);

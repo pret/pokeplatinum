@@ -3,27 +3,26 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02029894_decl.h"
+#include "constants/map_object.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
 #include "overlay005/ov5_021EAFA4.h"
-#include "overlay023/funcptr_ov23_022431EC.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_0224A1D0.h"
-#include "overlay023/ov23_0224B05C.h"
-#include "overlay023/ov23_0225128C.h"
-#include "overlay023/ov23_022521F0.h"
-#include "overlay023/ov23_02253598.h"
+#include "overlay023/secret_bases.h"
 #include "overlay023/struct_ov23_02241A80.h"
 #include "overlay023/struct_ov23_02241A88.h"
-#include "overlay023/struct_ov23_02253598_decl.h"
 #include "overlay023/underground_menu.h"
+#include "overlay023/underground_pc.h"
+#include "overlay023/underground_player.h"
+#include "overlay023/underground_records.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
 #include "overlay023/underground_traps.h"
+#include "overlay023/underground_vendors.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -36,7 +35,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -50,6 +49,7 @@
 #include "vars_flags.h"
 
 #include "res/graphics/trap_effects/trap_effects.naix.h"
+#include "res/text/bank/underground_common.h"
 
 typedef BOOL (*UnkFuncPtr_ov23_02242540)(int, int);
 
@@ -61,11 +61,11 @@ typedef struct StoredListMenuPos {
 } StoredListMenuPos;
 
 typedef struct {
-    void *unk_00;
-    SysTask *unk_04;
-    UnkFuncPtr_ov23_022431EC unk_08;
+    void *currentSysTaskCtx;
+    SysTask *currentSysTask;
+    EndSysTaskFunc endCurrentSysTask;
     FieldSystem *fieldSystem;
-    UnkStruct_ov23_02253598 *unk_10;
+    u8 padding[4];
     SysTask *unk_14;
     Coordinates unk_18;
     Coordinates unk_1C;
@@ -73,8 +73,8 @@ typedef struct {
     u16 storedPositionKey;
     u8 unk_C2[8];
     u8 unk_CA[8];
-    u8 unk_D2[8];
-    Strbuf *unk_DC[8];
+    u8 talkedToVendorMessagesQueued[MAX_CONNECTED_PLAYERS];
+    String *unk_DC[8];
     u8 unk_FC[8];
     u8 unk_104[8];
     u8 unk_10C[8];
@@ -82,7 +82,7 @@ typedef struct {
     UndergroundTextPrinter *commonTextPrinter;
     UndergroundTextPrinter *captureFlagTextPrinter;
     UndergroundTextPrinter *miscTextPrinter;
-    UndergroundTextPrinter *decorateBaseTextPrinter;
+    UndergroundTextPrinter *baseDecorationTextPrinter;
     UndergroundTextPrinter *itemNameTextPrinter;
     int orderedArrayLength;
     int unk_130;
@@ -91,19 +91,13 @@ typedef struct {
     u8 unk_13D[8];
     u8 unk_145;
     u8 unk_146;
-    u8 unk_147;
+    u8 activeRadar;
     u8 unk_148;
     u8 unk_149;
     u8 unk_14A;
     u8 unk_14B;
-    u8 unk_14C;
+    u8 messageRetrieved;
 } CommManUnderground;
-
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-} UnkStruct_ov23_022428D8;
 
 typedef struct {
     u8 bits;
@@ -116,6 +110,14 @@ typedef struct {
     u8 unk_04;
     u8 unk_05;
 } UnkStruct_ov23_02243360;
+
+enum Radar {
+    RADAR_NONE = 0,
+    RADAR_NORMAL,
+    RADAR_SPHERE,
+    RADAR_TREASURE,
+    RADAR_TRAP,
+};
 
 static void ov23_022433F4(int param0);
 static void ov23_02243310(SysTask *param0, void *param1);
@@ -135,20 +137,20 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_1C.x = 0;
     sCommManUnderground->unk_1C.z = 0;
     sCommManUnderground->unk_14B = 0;
-    sCommManUnderground->unk_147 = 1;
+    sCommManUnderground->activeRadar = RADAR_NORMAL;
     sCommManUnderground->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 500);
     sCommManUnderground->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
     sCommManUnderground->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 1000);
-    sCommManUnderground->decorateBaseTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
+    sCommManUnderground->baseDecorationTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_BASE_DECORATION, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
     sCommManUnderground->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD1);
     Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD1);
     LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD1);
 
-    for (i = 0; i < (7 + 1); i++) {
+    for (i = 0; i < MAX_CONNECTED_PLAYERS; i++) {
         sCommManUnderground->unk_C2[i] = 0xff;
-        sCommManUnderground->unk_D2[i] = 0xff;
+        sCommManUnderground->talkedToVendorMessagesQueued[i] = 0xff;
         sCommManUnderground->unk_DC[i] = NULL;
     }
 
@@ -163,7 +165,7 @@ static void ov23_02242108(void)
 
     for (i = 0; i < (7 + 1); i++) {
         if (sCommManUnderground->unk_DC[i]) {
-            Strbuf_Free(sCommManUnderground->unk_DC[i]);
+            String_Free(sCommManUnderground->unk_DC[i]);
         }
     }
 
@@ -173,7 +175,7 @@ static void ov23_02242108(void)
     UndergroundTextPrinter_Free(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_Free(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_Free(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_Free(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_Free(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_Free(sCommManUnderground->itemNameTextPrinter);
 
     sCommManUnderground->fieldSystem->menuCursorPos = 0;
@@ -196,9 +198,9 @@ UndergroundTextPrinter *CommManUnderground_GetMiscTextPrinter(void)
     return sCommManUnderground->miscTextPrinter;
 }
 
-UndergroundTextPrinter *CommManUnderground_GetDecorateBaseTextPrinter(void)
+UndergroundTextPrinter *CommManUnderground_GetBaseDecorationTextPrinter(void)
 {
-    return sCommManUnderground->decorateBaseTextPrinter;
+    return sCommManUnderground->baseDecorationTextPrinter;
 }
 
 UndergroundTextPrinter *CommManUnderground_GetItemNameTextPrinter(void)
@@ -211,21 +213,21 @@ void ov23_022421EC(void)
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_RemovePrinter(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_RemovePrinter(sCommManUnderground->itemNameTextPrinter);
 }
 
-BOOL CommManUnderground_FormatStrbufWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, Strbuf *dest)
+BOOL CommManUnderground_FormatCommonStringWith2TrainerNames(TrainerInfo *trainerInfo1, TrainerInfo *trainerInfo2, int bankEntry, String *dest)
 {
     if (trainerInfo1 && trainerInfo2) {
         StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD1);
-        Strbuf *fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+        String *fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
 
         StringTemplate_SetPlayerName(template, 0, trainerInfo1);
         StringTemplate_SetPlayerName(template, 1, trainerInfo2);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), bankEntry, fmtString);
+        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), bankEntry, fmtString);
         StringTemplate_Format(template, dest, fmtString);
-        Strbuf_Free(fmtString);
+        String_Free(fmtString);
         StringTemplate_Free(template);
 
         return TRUE;
@@ -234,16 +236,16 @@ BOOL CommManUnderground_FormatStrbufWith2TrainerNames(TrainerInfo *trainerInfo1,
     return FALSE;
 }
 
-BOOL CommManUnderground_FormatStrbufWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, Strbuf *dest)
+BOOL CommManUnderground_FormatCommonStringWithTrainerName(TrainerInfo *trainerInfo, int index, int bankEntry, String *dest)
 {
     if (trainerInfo) {
         StringTemplate *template = StringTemplate_Default(HEAP_ID_FIELD1);
-        Strbuf *fmtString = Strbuf_Init(50 * 2, HEAP_ID_FIELD1);
+        String *fmtString = String_Init(50 * 2, HEAP_ID_FIELD1);
 
         StringTemplate_SetPlayerName(template, index, trainerInfo);
-        MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), bankEntry, fmtString);
+        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), bankEntry, fmtString);
         StringTemplate_Format(template, dest, fmtString);
-        Strbuf_Free(fmtString);
+        String_Free(fmtString);
         StringTemplate_Free(template);
 
         return TRUE;
@@ -252,11 +254,11 @@ BOOL CommManUnderground_FormatStrbufWithTrainerName(TrainerInfo *trainerInfo, in
     return FALSE;
 }
 
-static BOOL ov23_02242308(Strbuf *param0)
+static BOOL ov23_02242308(String *param0)
 {
     int i;
     StringTemplate *v1;
-    Strbuf *v2;
+    String *v2;
     TrainerInfo *v3;
     TrainerInfo *v4;
 
@@ -269,7 +271,7 @@ static BOOL ov23_02242308(Strbuf *param0)
             v3 = CommInfo_TrainerInfo(i);
             CommInfo_SetReceiveEnd(i);
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(v3, 1, 91, param0)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(v3, 1, 91, param0)) {
                 return 1;
             }
         }
@@ -280,24 +282,24 @@ static BOOL ov23_02242308(Strbuf *param0)
 
             sCommManUnderground->unk_C2[i] = 0xff;
 
-            if (CommManUnderground_FormatStrbufWith2TrainerNames(v3, v4, 111, param0)) {
+            if (CommManUnderground_FormatCommonStringWith2TrainerNames(v3, v4, 111, param0)) {
                 return 1;
             }
         }
 
-        if (sCommManUnderground->unk_D2[i] != 0xff) {
+        if (sCommManUnderground->talkedToVendorMessagesQueued[i] != 0xff) {
             v3 = CommInfo_TrainerInfo(i);
-            sCommManUnderground->unk_D2[i] = 0xff;
+            sCommManUnderground->talkedToVendorMessagesQueued[i] = 0xff;
 
-            if (CommManUnderground_FormatStrbufWithTrainerName(v3, 0, 112, param0)) {
+            if (CommManUnderground_FormatCommonStringWithTrainerName(v3, 0, UndergroundCommon_Text_PlayerTalkedWithSomeone, param0)) {
                 return 1;
             }
         }
 
         if (sCommManUnderground->unk_13D[i] == 1) {
             if (sCommManUnderground->unk_DC[i]) {
-                Strbuf_Copy(param0, sCommManUnderground->unk_DC[i]);
-                Strbuf_Free(sCommManUnderground->unk_DC[i]);
+                String_Copy(param0, sCommManUnderground->unk_DC[i]);
+                String_Free(sCommManUnderground->unk_DC[i]);
                 sCommManUnderground->unk_DC[i] = NULL;
             }
 
@@ -324,7 +326,7 @@ BOOL ov23_0224240C(int x, int z)
         return TRUE;
     }
 
-    if (ov23_022512D4(&coordinates, -1) != 0xff) {
+    if (UndergroundPC_GetPCAtCoordinates(&coordinates, DIR_NONE) != PC_NONE) {
         return TRUE;
     }
 
@@ -350,7 +352,7 @@ BOOL ov23_02242458(void)
         sCommManUnderground->unk_134 = 30;
 
         if (!sCommManUnderground->unk_14B) {
-            if (sub_02057FAC() && !ov23_0224ACC0(CommSys_CurNetId())) {
+            if (sub_02057FAC() && !UndergroundPlayer_IsAffectedByTrap(CommSys_CurNetId())) {
                 if (CommSys_CheckError()) {
                     return 0;
                 }
@@ -435,11 +437,11 @@ void ov23_022425F8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (ov23_0224ACC0(param0)) {
+    if (UndergroundPlayer_IsAffectedByTrap(param0)) {
         return;
     }
 
-    sub_02059058(param0, 0);
+    CommPlayerMan_SetMovementEnabled(param0, 0);
     ov23_022425B8(param0, v0);
 }
 
@@ -547,7 +549,7 @@ void Underground_InitCoordinatesOrderingState(int orderedArrayLength, Coordinate
 void ov23_022427F8(void)
 {
     if (0 == CommPlayer_GetMovementTimer(CommSys_CurNetId())) {
-        Link_Message(27);
+        CommSys_SendMessage(27);
         sub_0203572C();
     }
 }
@@ -601,7 +603,7 @@ int ov23_022428D4(void)
 
 void ov23_022428D8(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov23_022428D8 v0;
+    TalkEvent v0;
     UnkStruct_ov23_02242830 *v1 = param2;
     Coordinates v2;
     int v3;
@@ -609,7 +611,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
     v2.x = CommPlayer_GetXInFrontOfPlayerServer(param0);
     v2.z = CommPlayer_GetZInFrontOfPlayerServer(param0);
 
-    if ((CommPlayer_GetXServer(param0) == 0xffff) && (CommPlayer_GetZServer(param0) == 0xffff)) {
+    if ((CommPlayer_GetXServerIfActive(param0) == 0xffff) && (CommPlayer_GetZServerIfActive(param0) == 0xffff)) {
         return;
     }
 
@@ -617,53 +619,53 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
         return;
     }
 
-    if (ov23_0224ACC0(param0)) {
+    if (UndergroundPlayer_IsAffectedByTrap(param0)) {
         return;
     }
 
     v3 = CommPlayerMan_GetLinkNetIDAtLocation(v2.x, v2.z);
 
-    if (v3 != 0xff) {
-        if (ov23_0224C1C8(v3)) {
-            (void)0;
-        } else if (ov23_0224162C(v3)) {
-            v0.unk_00 = 4;
-            v0.unk_02 = v3;
-            v0.unk_01 = param0;
+    if (v3 != NETID_NONE) {
+        if (SecretBases_IsPlayerMidBaseTransition(v3)) {
+            return;
+        } else if (Mining_IsPlayerMining(v3)) {
+            v0.result = TALK_RESULT_MINING;
+            v0.talkTargetNetID = v3;
+            v0.netID = param0;
 
             CommSys_SendDataServer(30, &v0, sizeof(v0));
-            sub_02059058(param0, 0);
-        } else if (ov23_0224A658(param0, v3, 0)) {
-            (void)0;
-        } else if (ov23_0224ACC0(v3)) {
+            CommPlayerMan_SetMovementEnabled(param0, 0);
+        } else if (UndergroundPlayer_TalkHeldFlagCheck(param0, v3, FALSE)) {
+            return;
+        } else if (UndergroundPlayer_IsAffectedByTrap(v3)) {
             if (!UndergroundTraps_HasPlayerTriggeredTool(v3)) {
                 UndergroundTraps_HelpLink(param0, v3);
             } else {
-                v0.unk_00 = 2;
-                v0.unk_02 = v3;
-                v0.unk_01 = param0;
+                v0.result = TALK_RESULT_FAIL;
+                v0.talkTargetNetID = v3;
+                v0.netID = param0;
 
                 CommSys_SendDataServer(30, &v0, sizeof(v0));
-                sub_02059058(param0, 0);
+                CommPlayerMan_SetMovementEnabled(param0, 0);
             }
         } else if (!sub_02059094(param0)) {
-            (void)0;
-        } else if (!sub_02059094(v3) || (0 != CommPlayer_GetMovementTimerServer(v3))) {
-            v0.unk_00 = 2;
-            v0.unk_02 = v3;
-            v0.unk_01 = param0;
+            return;
+        } else if (!sub_02059094(v3) || CommPlayer_GetMovementTimerServer(v3) != 0) {
+            v0.result = TALK_RESULT_FAIL;
+            v0.talkTargetNetID = v3;
+            v0.netID = param0;
 
             CommSys_SendDataServer(30, &v0, sizeof(v0));
-            sub_02059058(param0, 0);
+            CommPlayerMan_SetMovementEnabled(param0, 0);
         } else {
-            v0.unk_00 = 1;
-            v0.unk_02 = v3;
-            v0.unk_01 = param0;
+            v0.result = TALK_RESULT_SUCCESS;
+            v0.talkTargetNetID = v3;
+            v0.netID = param0;
 
             if (sub_02059094(v3)) {
                 if (CommSys_SendDataServer(30, &v0, sizeof(v0))) {
-                    sub_02059058(param0, 0);
-                    sub_02059058(v3, 0);
+                    CommPlayerMan_SetMovementEnabled(param0, 0);
+                    CommPlayerMan_SetMovementEnabled(v3, 0);
                     CommPlayer_LookTowardsServer(param0, v3);
                 }
             }
@@ -673,44 +675,44 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
     }
 
     if (UndergroundTraps_TryDisengageTrap(param0, &v2, v1->bits)) {
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
     if (ov23_0223E354(param0, &v2)) {
-        sub_02059058(param0, 0);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
-    if (ov23_02251324(param0, &v2)) {
-        sub_02059058(param0, 0);
+    if (UndergroundPC_TryUsePC(param0, &v2)) {
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
-    if (ov23_0224D454(param0, &v2)) {
-        sub_02059058(param0, 0);
+    if (SecretBases_CheckForInteractableGood(param0, &v2)) {
+        CommPlayerMan_SetMovementEnabled(param0, 0);
         return;
     }
 
     if (CommPlayer_CheckNPCCollision(v2.x, v2.z)) {
-        if (ov23_0224A658(param0, 0xff, 0)) {
+        if (UndergroundPlayer_TalkHeldFlagCheck(param0, NETID_NONE, FALSE)) {
             return;
         }
 
-        sub_02035B48(24, &v4);
-        sub_02059058(param0, 0);
+        CommSys_SendDataFixedSizeServer(24, &v4);
+        CommPlayerMan_SetMovementEnabled(param0, 0);
 
         return;
     }
 
     if (v1->bits & BIT_BURIED_SPHERE_IN_FRONT) {
-        if (ov23_0224A6B8(param0)) {
+        if (UndergroundPlayer_BuriedObjectHeldFlagCheck(param0)) {
             return;
         }
 
         if (v1->unk_01 == (v2.x & 0xf) * 16 + (v2.z & 0xf)) {
-            sub_02035B48(63, &v4);
-            sub_02059058(param0, 0);
+            CommSys_SendDataFixedSizeServer(63, &v4);
+            CommPlayerMan_SetMovementEnabled(param0, 0);
         }
     }
 }
@@ -722,7 +724,7 @@ void ov23_02242B14(void)
     if (CommSys_CurNetId() == 0) {
         for (i = 0; i < (7 + 1); i++) {
             if ((NULL != CommInfo_TrainerInfo(i)) && !sCommManUnderground->unk_135[i]) {
-                ov23_0224B5CC(i);
+                SecretBases_ResetBaseEntranceData(i);
             }
 
             if (CommInfo_TrainerInfo(i)) {
@@ -766,8 +768,8 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
         v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, TrapsEnv_Size());
         TrapsEnv_Init(v0, fieldSystem);
 
-        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_0224B5C4());
-        ov23_0224B144(v0, fieldSystem);
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, SecretBasesEnv_Size());
+        SecretBasesEnv_Init(v0, fieldSystem);
 
         v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, BuriedSpheresEnv_Size());
         BuriedSpheresEnv_Init(v0, fieldSystem);
@@ -775,8 +777,8 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
         v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_0223E2E8());
         ov23_0223E1E4(v0, fieldSystem);
 
-        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_02253608());
-        ov23_02253598(v0, SaveData_UndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
+        v0 = Heap_Alloc(HEAP_ID_COMMUNICATION, RecordsEnv_Size());
+        RecordsEnv_Init(v0, SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
         UndergroundMenuContext_Init(SaveData_GetUnderground(FieldSystem_GetSaveData(fieldSystem)));
     }
 }
@@ -784,9 +786,9 @@ void ov23_02242BC0(FieldSystem *fieldSystem)
 void ov23_02242C78(void)
 {
     if (sCommManUnderground) {
-        ov23_022535EC();
+        UndergroundRecords_ForceExitTrainerCase();
         UndergroundSpheres_DisableBuriedSphereSparkles();
-        ov23_0224B430();
+        SecretBases_DisableBaseEntranceGraphics();
         UndergroundTraps_DisableTrapGraphics();
         CommPlayerMan_Reset();
         ov23_0223E2F0();
@@ -800,9 +802,9 @@ void ov23_02242CB4(void)
 {
     if (sCommManUnderground) {
         CommPlayerMan_Restart();
-        ov23_02253604();
+        UndergroundRecords_Dummy();
         UndergroundSpheres_EnableBuriedSphereSparkles();
-        ov23_0224B460();
+        SecretBases_EnableBaseEntranceGraphics();
         UndergroundTraps_EnableTrapGraphics();
         ov23_0223E2F4();
         sCommManUnderground->unk_14B = 0;
@@ -814,13 +816,13 @@ void ov23_02242D08(void)
 {
     if (sCommManUnderground != NULL) {
         sub_020287F8(sCommManUnderground->fieldSystem->saveData);
-        ov23_0224B4E4();
+        SecretBasesEnv_Free();
         TrapsEnv_Free();
         CommPlayerMan_Delete(1);
         BuriedSpheresEnv_Free();
         ov23_0223E2F8();
         UndergroundMenuContext_Free();
-        ov23_022535CC();
+        RecordsEnv_Free();
         ov23_02242108();
     }
 }
@@ -832,47 +834,47 @@ void ov23_02242D44(FieldSystem *fieldSystem)
     if (sCommManUnderground != NULL) {
         UndergroundTraps_Reinit(fieldSystem);
         CommPlayerMan_Reinit();
-        ov23_0224B518();
+        SecretBases_ResetAllBaseInfo();
     }
 }
 
-BOOL ov23_02242D60(Strbuf *param0)
+BOOL CommManUnderground_GetQueuedMessage(String *dest)
 {
-    if (sCommManUnderground->unk_14C) {
-        sCommManUnderground->unk_14C = 0;
-        return 0;
+    if (sCommManUnderground->messageRetrieved) {
+        sCommManUnderground->messageRetrieved = FALSE;
+        return FALSE;
     }
 
-    if (ov23_02242308(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (UndergroundTraps_GetQueuedMessage(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (UndergroundTraps_GetQueuedMessage2(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (ov23_0224D020(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (ov23_022415B8(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (UndergroundSpheres_CheckForRetrievedSphereNotification(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
+    if (ov23_02242308(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (UndergroundTraps_GetQueuedMessage(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (UndergroundTraps_GetQueuedMessage2(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (SecretBases_GetQueuedMessage(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (ov23_022415B8(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (UndergroundSpheres_CheckForRetrievedSphereNotification(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-UnkStruct_02029894 *ov23_02242E10(SaveData *saveData)
+SecretBase *ov23_02242E10(SaveData *saveData)
 {
     if (!sCommManUnderground) {
         return NULL;
     }
 
-    return ov23_0224D130(saveData);
+    return SecretBases_GetCurrentOccupiedBase(saveData);
 }
 
 int ov23_02242E28(void)
@@ -881,7 +883,7 @@ int ov23_02242E28(void)
         return 0;
     }
 
-    return ov23_0224D150();
+    return SecretBases_GetBaseXCoordinate();
 }
 
 int ov23_02242E40(void)
@@ -890,7 +892,7 @@ int ov23_02242E40(void)
         return 0;
     }
 
-    return ov23_0224D178();
+    return SecretBases_GetBaseZCoordinate();
 }
 
 BOOL Underground_AreCoordinatesInSecretBase(int x, int z)
@@ -902,90 +904,81 @@ BOOL Underground_AreCoordinatesInSecretBase(int x, int z)
     return TRUE;
 }
 
-int ov23_02242E78(int param0)
+int CommManUnderground_GetRadarItemXCoord(int index)
 {
-    int v0, v1;
-
     if (sCommManUnderground) {
-        if (param0 < 16) {
-            v1 = param0;
-
-            switch (sCommManUnderground->unk_147) {
-            case 0:
+        if (index < MAX_RADAR_BLIPS) {
+            switch (sCommManUnderground->activeRadar) {
+            case RADAR_NONE:
                 return 0;
-            case 1:
-                if (param0 < 8) {
-                    return ov23_0224121C(v1);
+            case RADAR_NORMAL:
+                if (index < 8) {
+                    return ov23_0224121C(index);
                 }
-            case 2:
-                return SphereRadar_GetXCoordOfBuriedSphere(v1);
-            case 4:
-                return TrapRadar_GetXCoordOfBuriedTrap(v1);
-            case 3:
-                return ov23_0224125C(v1);
+            case RADAR_SPHERE:
+                return SphereRadar_GetXCoordOfBuriedSphere(index);
+            case RADAR_TRAP:
+                return TrapRadar_GetXCoordOfBuriedTrap(index);
+            case RADAR_TREASURE:
+                return ov23_0224125C(index);
             }
         } else {
-            UnkStruct_02029894 *v2 = sub_02029894(sCommManUnderground->fieldSystem->saveData);
-            return sub_02029874(v2);
+            SecretBase *secretBase = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
+            return SecretBase_GetEntranceXCoord(secretBase);
         }
     }
 
     return 0;
 }
 
-int ov23_02242EE0(int param0)
+int CommManUnderground_GetRadarItemZCoord(int index)
 {
-    int v0, v1, v2;
-
     if (sCommManUnderground) {
-        if (param0 < 16) {
-            v1 = param0;
-
-            switch (sCommManUnderground->unk_147) {
-            case 0:
+        if (index < MAX_RADAR_BLIPS) {
+            switch (sCommManUnderground->activeRadar) {
+            case RADAR_NONE:
                 return 0;
-            case 1:
-                if (param0 < 8) {
-                    return ov23_0224123C(v1);
+            case RADAR_NORMAL:
+                if (index < 8) {
+                    return ov23_0224123C(index);
                 }
-            case 2:
-                return SphereRadar_GetZCoordOfBuriedSphere(v1);
-            case 4:
-                return TrapRadar_GetZCoordOfBuriedTrap(v1);
-            case 3:
-                return ov23_02241294(v1);
+            case RADAR_SPHERE:
+                return SphereRadar_GetZCoordOfBuriedSphere(index);
+            case RADAR_TRAP:
+                return TrapRadar_GetZCoordOfBuriedTrap(index);
+            case RADAR_TREASURE:
+                return ov23_02241294(index);
             }
         } else {
-            UnkStruct_02029894 *v3 = sub_02029894(sCommManUnderground->fieldSystem->saveData);
-
-            return sub_0202987C(v3);
+            SecretBase *secretBase = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
+            return SecretBase_GetEntranceZCoord(secretBase);
         }
     }
 
     return 0;
 }
 
-int ov23_02242F48(int param0)
+int CommManUnderground_GetRadarItemAnimID(int index)
 {
     if (sCommManUnderground) {
-        if (param0 < 16) {
-            switch (sCommManUnderground->unk_147) {
-            case 1:
-                if (param0 < 8) {
-                    return 12;
+        if (index < MAX_RADAR_BLIPS) {
+            switch (sCommManUnderground->activeRadar) {
+            case RADAR_NORMAL:
+                if (index < 8) {
+                    return MARKER_ANIM_MINING_SPOT;
                 }
-            case 2:
-                return 9;
-            case 4:
-                return 11;
-            case 3:
-                return 12;
+            case RADAR_SPHERE:
+                return MARKER_ANIM_SPHERE;
+            case RADAR_TRAP:
+                return MARKER_ANIM_TRAP;
+            case RADAR_TREASURE:
+                return MARKER_ANIM_MINING_SPOT;
             }
         } else {
-            UnkStruct_02029894 *v0 = sub_02029894(sCommManUnderground->fieldSystem->saveData);
+            SecretBase *secretBase = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
 
-            if (sub_0202988C(v0)) {
-                return 3;
+            if (SecretBase_IsActive(secretBase)) {
+                return MARKER_ANIM_SECRET_BASE;
             }
         }
     }
@@ -993,29 +986,29 @@ int ov23_02242F48(int param0)
     return 0;
 }
 
-void ov23_02242FA8(void)
+void CommManUnderground_DeactivateRadar(void)
 {
-    sCommManUnderground->unk_147 = 0;
+    sCommManUnderground->activeRadar = RADAR_NONE;
 }
 
-void ov23_02242FBC(void)
+void CommManUnderground_SetNormalRadarActive(void)
 {
-    sCommManUnderground->unk_147 = 1;
+    sCommManUnderground->activeRadar = RADAR_NORMAL;
 }
 
-void ov23_02242FD0(void)
+void CommManUnderground_SetSphereRadarActive(void)
 {
-    sCommManUnderground->unk_147 = 2;
+    sCommManUnderground->activeRadar = RADAR_SPHERE;
 }
 
-void ov23_02242FE4(void)
+void CommManUnderground_SetTrapRadarActive(void)
 {
-    sCommManUnderground->unk_147 = 4;
+    sCommManUnderground->activeRadar = RADAR_TRAP;
 }
 
-void ov23_02242FF8(void)
+void CommManUnderground_SetTreasureRadarActive(void)
 {
-    sCommManUnderground->unk_147 = 3;
+    sCommManUnderground->activeRadar = RADAR_TREASURE;
 }
 
 void ov23_0224300C(int param0, int param1)
@@ -1025,29 +1018,29 @@ void ov23_0224300C(int param0, int param1)
     }
 }
 
-void ov23_02243020(int param0)
+void CommManUnderground_QueueTalkedToVendorMessage(int netID)
 {
     if (sCommManUnderground) {
-        sCommManUnderground->unk_D2[param0] = 1;
+        sCommManUnderground->talkedToVendorMessagesQueued[netID] = TRUE;
     }
 }
 
 void UndergroundMan_SetReturnLog(int param0)
 {
     StringTemplate *v0;
-    Strbuf *v1;
+    String *v1;
 
     if (sCommManUnderground) {
         if (sCommManUnderground->unk_DC[param0] == NULL) {
-            sCommManUnderground->unk_DC[param0] = Strbuf_Init((50 * 2), HEAP_ID_COMMUNICATION);
+            sCommManUnderground->unk_DC[param0] = String_Init((50 * 2), HEAP_ID_COMMUNICATION);
 
             v0 = StringTemplate_Default(HEAP_ID_FIELD2);
-            v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD2);
+            v1 = String_Init((50 * 2), HEAP_ID_FIELD2);
 
             StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));
-            MessageLoader_GetStrbuf(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), 115, v1);
+            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), 115, v1);
             StringTemplate_Format(v0, sCommManUnderground->unk_DC[param0], v1);
-            Strbuf_Free(v1);
+            String_Free(v1);
             StringTemplate_Free(v0);
         }
     }
@@ -1120,39 +1113,39 @@ u16 CommManUnderground_GetStoredCursorPos(u16 menuKey)
     return 0;
 }
 
-void ov23_022431C4(int param0, int param1, void *param2, void *param3)
+void CommManUnderground_ProcessVendorTalkRequest(int unused0, int unused1, void *data, void *unused3)
 {
-    u8 *v0 = param2;
-    int v1 = v0[0];
+    u8 *buffer = data;
+    int netID = *buffer;
 
-    if (v1 == CommSys_CurNetId()) {
-        ov23_022534A0(sCommManUnderground->fieldSystem);
-        Link_Message(25);
+    if (netID == CommSys_CurNetId()) {
+        UndergroundVendors_StartShopMenuTask(sCommManUnderground->fieldSystem);
+        CommSys_SendMessage(25);
         CommPlayerMan_PauseFieldSystem();
     }
 }
 
-void ov23_022431EC(void *param0, SysTask *param1, UnkFuncPtr_ov23_022431EC param2)
+void CommManUnderground_SetCurrentSysTask(void *ctx, SysTask *sysTask, EndSysTaskFunc endFunc)
 {
-    sCommManUnderground->unk_00 = param0;
-    sCommManUnderground->unk_04 = param1;
-    sCommManUnderground->unk_08 = param2;
+    sCommManUnderground->currentSysTaskCtx = ctx;
+    sCommManUnderground->currentSysTask = sysTask;
+    sCommManUnderground->endCurrentSysTask = endFunc;
 }
 
-void ov23_02243204(void)
+void CommManUnderground_ClearCurrentSysTaskInfo(void)
 {
-    sCommManUnderground->unk_00 = NULL;
-    sCommManUnderground->unk_04 = NULL;
-    sCommManUnderground->unk_08 = NULL;
+    sCommManUnderground->currentSysTaskCtx = NULL;
+    sCommManUnderground->currentSysTask = NULL;
+    sCommManUnderground->endCurrentSysTask = NULL;
 }
 
 BOOL ov23_0224321C(void)
 {
     BOOL v0 = 0;
 
-    if (sCommManUnderground->unk_04) {
-        sCommManUnderground->unk_08(sCommManUnderground->unk_04, sCommManUnderground->unk_00);
-        ov23_02243204();
+    if (sCommManUnderground->currentSysTask) {
+        sCommManUnderground->endCurrentSysTask(sCommManUnderground->currentSysTask, sCommManUnderground->currentSysTaskCtx);
+        CommManUnderground_ClearCurrentSysTaskInfo();
         v0 = 1;
     }
 
@@ -1160,7 +1153,7 @@ BOOL ov23_0224321C(void)
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->itemNameTextPrinter);
     UndergroundTextPrinter_EraseMessageBoxWindow(sCommManUnderground->commonTextPrinter);
 
@@ -1171,7 +1164,7 @@ BOOL ov23_02243298(int param0)
 {
     int v0, v1;
 
-    if (sCommManUnderground->unk_04) {
+    if (sCommManUnderground->currentSysTask) {
         return 0;
     }
 
@@ -1185,7 +1178,7 @@ BOOL ov23_02243298(int param0)
         return 0;
     }
 
-    if (ov23_0224ACC0(param0)) {
+    if (UndergroundPlayer_IsAffectedByTrap(param0)) {
         return 0;
     }
 
@@ -1206,7 +1199,7 @@ static void ov23_02243310(SysTask *param0, void *param1)
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->commonTextPrinter);
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->captureFlagTextPrinter);
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->miscTextPrinter);
-    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->decorateBaseTextPrinter);
+    UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->baseDecorationTextPrinter);
     UndergroundTextPrinter_ClearPrinterID(sCommManUnderground->itemNameTextPrinter);
 }
 
@@ -1214,9 +1207,9 @@ void ov23_02243360(void)
 {
     UnkStruct_ov23_02243360 v0;
 
-    v0.unk_00 = ov23_0224DB48();
-    v0.unk_02 = ov23_0224DB64();
-    v0.unk_04 = ov23_0224DB84();
+    v0.unk_00 = SecretBases_GetCurrentBaseReturnXCoord();
+    v0.unk_02 = SecretBases_GetCurrentBaseReturnZCoord();
+    v0.unk_04 = SecretBases_GetCurrentBaseReturnDir();
     v0.unk_05 = ov23_02241670();
 
     CommSys_SendDataFixedSize(70, &v0);
@@ -1226,9 +1219,9 @@ void ov23_02243390(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_02243360 *v0 = param2;
 
-    ov23_0224DBA0(param0, v0->unk_00);
-    ov23_0224DBBC(param0, v0->unk_02);
-    ov23_0224DBD8(param0, v0->unk_04);
+    SecretBases_SetBaseReturnXCoord(param0, v0->unk_00);
+    SecretBases_SetBaseReturnZCoord(param0, v0->unk_02);
+    SecretBases_SetBaseReturnDir(param0, v0->unk_04);
     ov23_02241690(param0, v0->unk_05);
 }
 
@@ -1258,5 +1251,5 @@ int ov23_022433D0(void)
 static void ov23_022433F4(int param0)
 {
     sCommManUnderground->unk_CA[param0] = 0;
-    ov23_0224B5CC(param0);
+    SecretBases_ResetBaseEntranceData(param0);
 }

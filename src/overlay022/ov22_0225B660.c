@@ -5,8 +5,8 @@
 
 #include "constants/graphics.h"
 
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029C88_decl.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_02041DC8.h"
 
 #include "overlay022/ov22_02255094.h"
@@ -25,7 +25,7 @@
 #include "pokemon.h"
 #include "screen_fade.h"
 #include "sprite.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
@@ -34,7 +34,7 @@
 #include "unk_02094EDC.h"
 
 typedef struct {
-    const UnkStruct_02029C68 *unk_00;
+    const DressUpPhoto *photo;
     const UnkStruct_02029C88 *unk_04;
     u32 unk_08;
     u32 unk_0C;
@@ -72,9 +72,9 @@ int ov22_0225B660(ApplicationManager *appMan, int *param1)
     v1 = ApplicationManager_Args(appMan);
 
     if (v1->unk_08 == 0) {
-        v0->unk_00 = sub_02029CA8(v1->unk_00, v1->unk_04);
+        v0->photo = ImageClips_GetDressUpPhoto(v1->imageClips, v1->unk_04);
     } else {
-        v0->unk_04 = sub_02029CD0(v1->unk_00, v1->unk_04);
+        v0->unk_04 = sub_02029CD0(v1->imageClips, v1->unk_04);
     }
 
     v0->unk_08 = v1->unk_04;
@@ -94,7 +94,7 @@ int ov22_0225B660(ApplicationManager *appMan, int *param1)
         v2.heapID = HEAP_ID_14;
 
         if (v0->unk_0C == 0) {
-            v0->unk_10 = ov22_0225AF8C(&v2, v0->unk_00);
+            v0->unk_10 = ov22_0225AF8C(&v2, v0->photo);
         } else {
             v0->unk_10 = ov22_0225AFB0(&v2, v0->unk_04);
         }
@@ -272,11 +272,11 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     VecFx32 v0;
     int v1, v2;
     int v3;
-    u16 v4;
+    u16 word;
     StringTemplate *v5;
-    Strbuf *v6;
-    Strbuf *v7;
-    MessageLoader *v8 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    String *v6;
+    String *v7;
+    MessageLoader *v8 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     GF_ASSERT(v8);
     v5 = StringTemplate_Default(HEAP_ID_13);
 
@@ -286,30 +286,30 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v0.z = 0;
     Sprite_SetPosition(param0->unk_1FC, &v0);
 
-    v7 = Strbuf_Init(12, HEAP_ID_13);
-    sub_0202A1A0(param0->unk_00, v7);
+    v7 = String_Init(12, HEAP_ID_13);
+    DressUpPhoto_SetTrainerName(param0->photo, v7);
 
-    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
+    v3 = Font_CalcStringWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
     v2 = 7;
 
     Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v7);
+    String_Free(v7);
 
-    v4 = sub_0202A1F4(param0->unk_00);
-    StringTemplate_SetCustomMessageWord(v5, 0, v4);
+    word = DressUpPhoto_GetTitleWord(param0->photo);
+    StringTemplate_SetCustomMessageWord(v5, 0, word);
 
-    v7 = Strbuf_Init(200, HEAP_ID_13);
-    v6 = MessageLoader_GetNewStrbuf(v8, 45);
+    v7 = String_Init(200, HEAP_ID_13);
+    v6 = MessageLoader_GetNewString(v8, 45);
     StringTemplate_Format(v5, v7, v6);
 
-    v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
+    v3 = Font_CalcStringWidth(FONT_SYSTEM, v7, 0);
     v1 = 128 - (v3 / 2);
     v2 = 27;
 
     Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v7, v1, v2, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
-    Strbuf_Free(v7);
-    Strbuf_Free(v6);
+    String_Free(v7);
+    String_Free(v6);
     MessageLoader_Free(v8);
     StringTemplate_Free(v5);
 }
@@ -318,8 +318,8 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
 {
     int v0;
     StringTemplate *v1;
-    Strbuf *v2;
-    Strbuf *v3;
+    String *v2;
+    String *v3;
     int v4;
     Pokemon *v5;
     BoxPokemon *v6;
@@ -331,14 +331,14 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = StringTemplate_Default(HEAP_ID_13);
-    v2 = Strbuf_Init(200, HEAP_ID_13);
+    v2 = String_Init(200, HEAP_ID_13);
 
-    StringTemplate_SetContestTypeName(v1, 0, sub_020958B8(param0->unk_08));
-    StringTemplate_SetContestRankName(v1, 1, sub_02095888(v0));
+    StringTemplate_SetContestTypeName(v1, 0, Contest_GetContestTypeMessageID(param0->unk_08));
+    StringTemplate_SetContestRankName(v1, 1, Contest_GetRankMessageID(v0));
 
     v4 = sub_0202A544(param0->unk_04);
     sub_0202A524(param0->unk_04, v2);
-    StringTemplate_SetStrbuf(v1, 3, v2, v4, 1, GAME_LANGUAGE);
+    StringTemplate_SetString(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
     v5 = Pokemon_New(HEAP_ID_13);
     sub_0202A560(param0->unk_04, v5);
@@ -346,26 +346,26 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     StringTemplate_SetNickname(v1, 4, v6);
     Heap_Free(v5);
 
-    v7 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    v7 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
     GF_ASSERT(v7);
 
-    v3 = MessageLoader_GetNewStrbuf(v7, 43);
+    v3 = MessageLoader_GetNewString(v7, 43);
     StringTemplate_Format(v1, v2, v3);
-    Strbuf_Free(v3);
-    v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
+    String_Free(v3);
+    v10 = Font_CalcStringWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 7;
     Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v2, v8, v9, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
-    v3 = MessageLoader_GetNewStrbuf(v7, 44);
+    v3 = MessageLoader_GetNewString(v7, 44);
     StringTemplate_Format(v1, v2, v3);
-    Strbuf_Free(v3);
-    v10 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, 0);
+    String_Free(v3);
+    v10 = Font_CalcStringWidth(FONT_SYSTEM, v2, 0);
     v8 = 128 - (v10 / 2);
     v9 = 27;
     Text_AddPrinterWithParamsAndColor(param0->unk_200, FONT_SYSTEM, v2, v8, v9, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
-    Strbuf_Free(v2);
+    String_Free(v2);
     MessageLoader_Free(v7);
     StringTemplate_Free(v1);
 }

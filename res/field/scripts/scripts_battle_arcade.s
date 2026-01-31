@@ -157,7 +157,7 @@ _02A3:
     CallIfEq VAR_UNK_0x40BE, 1, _0448
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
-    CallCommonScript 0x7D6
+    SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0145
     GoToIfEq VAR_UNK_0x40BE, 2, _02F1
@@ -288,7 +288,7 @@ _04DC:
     CallIfEq VAR_UNK_0x40BE, 2, _05CD
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_ARCADE, 0, 0, 0, 0
-    ScrCmd_1F8
+    WaitForTransition
     ScrCmd_2C4 15
     CallIfEq VAR_UNK_0x40BE, 2, _0545
     ReturnToField
@@ -350,7 +350,7 @@ _05CD:
 
 _05E1:
     SetVar VAR_UNK_0x40BF, 0
-    CallCommonScript 0x809
+    GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
@@ -494,7 +494,7 @@ _0759:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 4
-    CallCommonScript 0x806
+    CheckAllFrontierGoldPrintsObtained
     Return
 
 _0774:

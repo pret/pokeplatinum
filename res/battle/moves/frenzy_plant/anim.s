@@ -16,7 +16,7 @@ L_0:
     AddSpriteWithFunc 0, 24, vines_NCGR_lz, vines_NCLR, vines_cell_NCER_lz, vines_anim_NANR_lz, 0, 0, 8
     Delay 96
     PlayLoopedSoundEffectR SEQ_SE_DP_W025B, 3, 6
-    CreateEmitter 0, 0, 4
+    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
     Func_Shake 2, 0, 1, 10, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     WaitForAnimTasks
     FreeSpriteManager 0

@@ -58,7 +58,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
@@ -292,7 +292,7 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, HEAP_ID_26);
     v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
     v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
-    v0->unk_184 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
+    v0->unk_184 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0354, HEAP_ID_26);
     v0->appMan = NULL;
 
     ov88_0223C370(v0, appMan);
@@ -340,22 +340,22 @@ static void ov88_0223B2F0(NNSG2dCharacterData *param0, int param1, int param2, i
 
 static void ov88_0223B320(UnkStruct_02095E80 *param0)
 {
-    Strbuf *v0, *v1, *v2;
+    String *v0, *v1, *v2;
     TrainerInfo *v3, *v4;
 
     v3 = CommInfo_TrainerInfo(CommSys_CurNetId());
     v4 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    v0 = TrainerInfo_NameNewStrbuf(v3, 26);
-    v1 = TrainerInfo_NameNewStrbuf(v4, 26);
-    v2 = MessageLoader_GetNewStrbuf(param0->unk_184, 50);
+    v0 = TrainerInfo_NameNewString(v3, 26);
+    v1 = TrainerInfo_NameNewString(v4, 26);
+    v2 = MessageLoader_GetNewString(param0->unk_184, 50);
 
     ov88_0223EC78(&param0->unk_49C[0], v0, 10, TEXT_SPEED_INSTANT, 1, 1);
     ov88_0223EC78(&param0->unk_49C[1], v1, 10, TEXT_SPEED_INSTANT, 1, 1);
     ov88_0223EC78(&param0->unk_49C[6], v2, 5, TEXT_SPEED_INSTANT, 1, 1);
 
-    Strbuf_Free(v2);
-    Strbuf_Free(v1);
-    Strbuf_Free(v0);
+    String_Free(v2);
+    String_Free(v1);
+    String_Free(v0);
 }
 
 static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
@@ -504,10 +504,10 @@ static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader 
     int v0;
 
     for (v0 = 0; v0 < Party_GetCurrentCount(param3); v0++) {
-        Strbuf *v1 = MessageUtil_ExpandedStrbuf(param1, param2, 1 + param4 + v0, HEAP_ID_26);
+        String *v1 = MessageUtil_ExpandedString(param1, param2, 1 + param4 + v0, HEAP_ID_26);
 
         ov88_0223EC78(&param0[v0], v1, 8, TEXT_SPEED_INSTANT, 1, 0);
-        Strbuf_Free(v1);
+        String_Free(v1);
     }
 }
 
@@ -563,7 +563,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         for (i = 0; i < Party_GetCurrentCount(param0->unk_08->unk_08); i++) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(param0->unk_08->unk_08, i);
 
-            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL);
+            species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
 
             if (species == SPECIES_SHAYMIN) {
                 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
@@ -867,7 +867,7 @@ int ov88_0223C03C(ApplicationManager *appMan, int *param1)
 
     ov88_0223BFD8(v0);
 
-    Strbuf_Free(v0->unk_190);
+    String_Free(v0->unk_190);
     Heap_Free(v0->unk_2274);
 
     ov88_0223BF7C(v0);
@@ -879,7 +879,7 @@ int ov88_0223C03C(ApplicationManager *appMan, int *param1)
     StringTemplate_Free(v0->unk_180);
     StringTemplate_Free(v0->unk_17C);
     StringTemplate_Free(v0->unk_178);
-    Strbuf_Free(v0->unk_18C);
+    String_Free(v0->unk_18C);
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_26);
@@ -1135,8 +1135,8 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_SaveSize());
 
-    param0->unk_18C = TrainerInfo_NameNewStrbuf(v0->unk_04, 26);
-    param0->unk_190 = MessageLoader_GetNewStrbuf(param0->unk_184, 42);
+    param0->unk_18C = TrainerInfo_NameNewString(v0->unk_04, 26);
+    param0->unk_190 = MessageLoader_GetNewString(param0->unk_184, 42);
 
     WiFiHistory_FlagGeonetLinkInfo(v0->wiFiHistory);
 }
@@ -1266,12 +1266,12 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteT
 
 static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3, int param4)
 {
-    Strbuf *v0 = Strbuf_Init(20, HEAP_ID_26);
+    String *v0 = String_Init(20, HEAP_ID_26);
 
-    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
+    Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRING, v0);
     Window_FillTilemap(param0, 0);
     ov88_0223EC78(param0, v0, param3, TEXT_SPEED_INSTANT, param4, 1);
-    Strbuf_Free(v0);
+    String_Free(v0);
 }
 
 static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC *param0, Party *param1, int param2, int param3)
@@ -1290,7 +1290,7 @@ static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC *param0, Party *param1, int par
 
 static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3, UnkStruct_02095E80 *param4)
 {
-    Strbuf *v0, *v1;
+    String *v0, *v1;
     u16 item, v3;
     int v4;
     Pokemon *v5 = Party_GetPokemonBySlotIndex(param2, param3);
@@ -1332,15 +1332,15 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     }
 
     if (!param4->unk_6F4[param1 * 6 + param3].unk_05) {
-        v0 = Strbuf_Init(10, HEAP_ID_26);
+        v0 = String_Init(10, HEAP_ID_26);
         Window_FillTilemap(&param0[28 + param1], 0);
-        MessageLoader_GetStrbuf(param4->unk_184, 41, v0);
+        MessageLoader_GetString(param4->unk_184, 41, v0);
         ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
 
         v3 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_LEVEL, NULL);
-        Strbuf_FormatInt(v0, v3, 3, 0, 1);
+        String_FormatInt(v0, v3, 3, 0, 1);
         ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_INSTANT, 24 + 6, 0);
-        Strbuf_Free(v0);
+        String_Free(v0);
     } else {
         Window_ClearAndCopyToVRAM(&param0[28 + param1]);
     }
@@ -1350,10 +1350,10 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     item = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
     Window_FillTilemap(&param0[32 + param1], 0);
 
-    v1 = Strbuf_Init(20, HEAP_ID_26);
+    v1 = String_Init(20, HEAP_ID_26);
     Item_LoadName(v1, item, HEAP_ID_26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, TEXT_SPEED_INSTANT, 3, 0);
-    Strbuf_Free(v1);
+    String_Free(v1);
 }
 
 static void ov88_0223CB34(Window *param0, int param1, UnkStruct_02095E80 *param2)
@@ -1632,7 +1632,7 @@ void ov88_0223D098(int param0, Party *param1, int param2)
 
 static void ov88_0223D0C0(SaveData *saveData)
 {
-    u8 *v0 = sub_0202D79C(saveData);
+    u8 *v0 = SaveData_GetRibbons(saveData);
     int v1;
 
     CommSys_SendData(32, v0, 14);
@@ -1646,14 +1646,14 @@ static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
     CharCode_Copy(param2->trainerName, TrainerInfo_Name(param0));
 
     param2->trainerId = TrainerInfo_ID(param0);
-    param2->regionCode = TrainerInfo_RegionCode(param0);
+    param2->language = TrainerInfo_Language(param0);
     param2->gameCode = TrainerInfo_GameCode(param0);
     param2->gender = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
         param2->associatedTrainerIds[v0] = param1[v0].trainerId;
         param2->associatedTrainerGameCodes[v0] = param1[v0].gameCode;
-        param2->associatedTrainerRegionCodes[v0] = param1[v0].regionCode;
+        param2->associatedTrainerLanguages[v0] = param1[v0].language;
         param2->associatedTrainerGenders[v0] = param1[v0].gender;
     }
 
@@ -1725,7 +1725,7 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
     param0->unk_0C.options = param0->unk_08->options;
-    param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->saveData);
+    param0->unk_0C.specialRibbons = SaveData_GetRibbons(param0->unk_08->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
@@ -1885,18 +1885,18 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
 
     {
         MessageLoader *v3;
-        Strbuf *v4 = Strbuf_Init(100, HEAP_ID_26);
+        String *v4 = String_Init(100, HEAP_ID_26);
         int v5 = 0;
 
         for (v5 = 0; v5 < 32; v5++) {
             if (sub_0202AF78(param0->unk_36EC, v5)) {
-                Strbuf_CopyChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
-                StringList_AddFromStrbuf(param0->unk_36D4, v4, v5);
+                String_CopyChars(v4, sub_0202AEF0(param0->unk_36EC, v5));
+                StringList_AddFromString(param0->unk_36D4, v4, v5);
             }
         }
 
         StringList_AddFromMessageBank(param0->unk_36D4, param0->unk_36D0, 11, 0xfffffffe);
-        Strbuf_Free(v4);
+        String_Free(v4);
     }
 
     param0->unk_36D8 = ov88_0223ED94(param0->unk_36D4, v1, &param0->unk_36DC, param0->unk_174);
@@ -2025,7 +2025,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
     }
 
     param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
-    param0->unk_36D0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
+    param0->unk_36D0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0675, HEAP_ID_26);
     param0->unk_36EC = SaveData_GetWiFiList(param0->saveData);
     param0->unk_226C = ov88_0223D854;
 
@@ -2465,7 +2465,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);
 
     if (Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
+        if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_MET_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v2 = SaveData_GetVarsFlags(param4->saveData);
 
             if (SystemVars_GetArceusEventState(v2) == 0) {
@@ -2573,7 +2573,7 @@ static int ov88_0223E914(UnkStruct_02095E80 *param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2270, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 1;
         }
     }
@@ -2583,7 +2583,7 @@ static int ov88_0223E914(UnkStruct_02095E80 *param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0->unk_2274, v0);
 
-        if (Pokemon_GetValue(v2, MON_DATA_IS_DATA_INVALID, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_CHECKSUM_FAILED, NULL)) {
             return 2;
         }
     }

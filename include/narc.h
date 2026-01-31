@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_NARC_H
 #define POKEPLATINUM_NARC_H
 
+#include "constants/heap.h"
 #include "constants/narc.h"
 
 /*
@@ -35,8 +36,8 @@ void NARC_ReadWholeMemberByIndexPair(void *dest, enum NarcID narcID, int memberI
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void *NARC_AllocAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID);
-void *NARC_AllocAtEndAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID);
+void *NARC_AllocAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID);
+void *NARC_AllocAtEndAndReadWholeMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID);
 
 /*
  * Reads a portion of an archive member into an existing buffer
@@ -61,8 +62,8 @@ void NARC_ReadFromMemberByIndexPair(void *dest, enum NarcID narcID, int memberIn
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void *NARC_AllocAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead);
-void *NARC_AllocAtEndAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, int heapID, int offset, int bytesToRead);
+void *NARC_AllocAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID, int offset, int bytesToRead);
+void *NARC_AllocAtEndAndReadFromMemberByIndexPair(enum NarcID narcID, int memberIndex, enum HeapID heapID, int offset, int bytesToRead);
 
 /*
  * Gets the size of a NARC member. Useful when managing the read buffer yourself and the NARC has variable
@@ -84,7 +85,7 @@ u32 NARC_GetMemberSizeByIndexPair(enum NarcID narcID, int memberIndex);
  *
  * @returns: Pointer to the newly-allocated NARC
  */
-NARC *NARC_ctor(enum NarcID narcID, u32 heapID);
+NARC *NARC_ctor(enum NarcID narcID, enum HeapID heapID);
 
 /*
  * Closes the wrapped FSFile and returns the NARC allocation to the heap from whence it came.
@@ -102,7 +103,7 @@ void NARC_dtor(NARC *narc);
  *
  * @returns: Pointer to the allocated buffer which contains the data that was read.
  */
-void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, u32 heapID);
+void *NARC_AllocAndReadWholeMember(NARC *narc, u32 memberIndex, enum HeapID heapID);
 
 /*
  * Reads NARC member to preallocated buffer dest, which should be large enough to hold the data.

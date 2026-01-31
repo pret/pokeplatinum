@@ -54,7 +54,7 @@
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -65,6 +65,8 @@
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
 #include "vars_flags.h"
+
+#include "res/text/bank/eterna_city_gym.h"
 
 typedef struct {
     int unk_00;
@@ -183,7 +185,7 @@ typedef struct {
     u32 unk_40;
     Window *unk_44;
     MessageLoader *unk_48;
-    Strbuf *unk_4C;
+    String *unk_4C;
 } UnkStruct_ov8_0224B67C;
 
 typedef struct {
@@ -337,26 +339,25 @@ static void ov8_0224996C(const u8 param0, int *param1)
     (*param1) ^= (0x1 << param0);
 }
 
-void ov8_0224997C(FieldSystem *fieldSystem)
+void PastoriaGym_PressButton(FieldSystem *fieldSystem)
 {
-    TerrainCollisionHitbox v0;
-    int v1, v2;
-    BOOL v3;
-    int v4;
-    int v5[] = {
+    TerrainCollisionHitbox terrainCollision;
+    BOOL hasCollisionHit;
+    int mapPropModelID;
+    int pastoriaButtonTypes[] = {
         MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON,
         MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON,
         MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON
     };
 
-    v1 = Player_GetXPos(fieldSystem->playerAvatar);
-    v2 = Player_GetZPos(fieldSystem->playerAvatar);
+    int playerX = Player_GetXPos(fieldSystem->playerAvatar);
+    int playerY = Player_GetZPos(fieldSystem->playerAvatar);
 
-    TerrainCollisionHitbox_Init(v1, v2, 0, 0, 1, 1, &v0);
+    TerrainCollisionHitbox_Init(playerX, playerY, 0, 0, 1, 1, &terrainCollision);
 
-    v3 = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, v5, NELEMS(v5), &v0, NULL, &v4);
+    hasCollisionHit = FieldSystem_FindCollidingLoadedMapPropByModelIDs(fieldSystem, pastoriaButtonTypes, NELEMS(pastoriaButtonTypes), &terrainCollision, NULL, &mapPropModelID);
 
-    if (v3) {
+    if (hasCollisionHit) {
         UnkStruct_ov8_0224997C *v6;
         PersistedMapFeatures *v7;
         UnkStruct_02071B10 *v8;
@@ -367,13 +368,13 @@ void ov8_0224997C(FieldSystem *fieldSystem)
         v6 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224997C));
         v6->unk_00 = 0;
 
-        if (v4 == 239) {
+        if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249CD8, v6);
             v8->unk_00 = 2;
-        } else if (v4 == 240) {
+        } else if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249B74, v6);
             v8->unk_00 = 1;
-        } else if (v4 == 241) {
+        } else if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
@@ -2800,7 +2801,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
             v2->unk_00++;
 
             Sound_StopEffect(1593, 0);
-            MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
+            MessageLoader_GetString(v2->unk_48, EternaGym_Text_FountainWaterLevelDropped, v2->unk_4C);
             FieldMessage_AddWindow(fieldSystem->bgConfig, v2->unk_44, 3);
             Window_EraseMessageBox(v2->unk_44, 0);
             FieldMessage_DrawWindow(v2->unk_44, SaveData_GetOptions(fieldSystem->saveData));
@@ -2831,7 +2832,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
     return 0;
 }
 
-BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3)
+BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, String *param3)
 {
     PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
     UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
@@ -3065,7 +3066,7 @@ static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
     UnkStruct_ov8_0224B8A0 *v5 = param0->unk_04;
     UnkStruct_ov8_0224BCA8 *v6 = param0->unk_10C;
 
-    while (sub_020625B0(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
         if (MapObject_GetLocalID(v2) == 0xfd) {
             if (MapObject_GetDataAt(v2, 0) == 0) {
                 ov8_0224B80C(&v5->unk_08, v2, fieldSystem);
@@ -3307,7 +3308,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
         if (v1 == 0) {
             (void)0;
         } else {
-            sub_02064450(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
+            VecFx32_SetPosFromMapCoords(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
             MapObject_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
             MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
             MapObject_UpdateCoords(v0->unk_08.unk_08);
@@ -3808,7 +3809,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
     v1 = 0;
     v3 = sub_02062858(mapObjMan) + 2;
 
-    while (sub_020625B0(mapObjMan, &v5, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0))) {
         v4 = MapObject_GetLocalID(v5);
         v6->unk_08 = MapObject_GetDataAt(v5, 0);
 
@@ -3874,7 +3875,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     v2 = 2;
     v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
 
-    while (sub_020625B0(mapObjMan, &v7, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, (1 << 0))) {
         if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {
             v3 = sub_02067D58(v7, playerAvatar, v1, v2);
 

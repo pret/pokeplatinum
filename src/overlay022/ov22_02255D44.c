@@ -6,9 +6,9 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029C88_decl.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02015958.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_02093BBC.h"
 #include "struct_defs/struct_02095C60.h"
@@ -64,7 +64,7 @@
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -104,7 +104,7 @@ typedef struct {
     UnkStruct_02095C60 *unk_734;
     const Options *options;
     u32 unk_73C;
-    Strbuf *unk_740;
+    String *unk_740;
     StringTemplate *unk_744;
 } UnkStruct_ov22_02255D44;
 
@@ -155,7 +155,7 @@ static void ov22_02256C70(SysTask *param0, void *param1);
 static void ov22_02256DB8(UnkStruct_ov22_02255D44 *param0, BOOL *param1);
 static void ov22_02256DE0(SysTask *param0, void *param1);
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 *param0, int param1, int param2, int param3);
-static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2);
+static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *info);
 static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, int param2, const TrainerInfo *param3);
 static void ov22_02257104(UnkStruct_ov22_02255D44 *param0);
 static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0);
@@ -212,7 +212,7 @@ int ov22_02255D44(ApplicationManager *appMan, int *param1)
         (void)0;
     }
 
-    ov22_0225894C(v2->unk_08, &v0->unk_1E8);
+    ov22_0225894C(v2->fashionCase, &v0->unk_1E8);
     ov22_022566C0(v0);
     ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
 
@@ -363,7 +363,7 @@ int ov22_02256098(ApplicationManager *appMan, int *param1)
 
     if (v0->unk_71C == 1) {
         GameRecords_IncrementTrainerScore(v2->records, TRAINER_SCORE_EVENT_UNK_07);
-        ov22_02256F38(v2->unk_04, &v0->unk_458, v2->unk_14);
+        ov22_02256F38(v2->photo, &v0->unk_458, v2->unk_14);
     }
 
     if (v2->unk_18 != NULL) {
@@ -433,7 +433,7 @@ int ov22_02256174(ApplicationManager *appMan, int *param1)
         (void)0;
     }
 
-    ov22_0225894C(v2->unk_18, &v0->unk_1E8);
+    ov22_0225894C(v2->fashionCase, &v0->unk_1E8);
     ov22_022566C0(v0);
 
     SpriteList_SetActive(v0->unk_00.unk_44, 0);
@@ -463,7 +463,7 @@ int ov22_02256174(ApplicationManager *appMan, int *param1)
     v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
-    sub_020959F4(v0->unk_734->unk_16);
+    SetLockTextWithAutoScroll(v0->unk_734->unk_16);
 
     return 1;
 }
@@ -549,7 +549,7 @@ int ov22_022562EC(ApplicationManager *appMan, int *param1)
         (*param1)++;
         break;
     case 11:
-        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_19, COLOR_BLACK, 6, 1, HEAP_ID_13);
+        StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_TOP_HALF_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
@@ -660,7 +660,7 @@ int ov22_02256600(ApplicationManager *appMan, int *param1)
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_13);
     Heap_Destroy(HEAP_ID_14);
-    sub_02095A24();
+    LockTextSpeed();
     NetworkIcon_Destroy();
 
     return 1;
@@ -1124,21 +1124,21 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
     }
 }
 
-static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *param1, const TrainerInfo *param2)
+static void ov22_02256F38(DressUpPhoto *photo, UnkStruct_ov22_02257964 *param1, const TrainerInfo *info)
 {
     UnkStruct_ov22_02259560 *v0;
     int v1;
-    Strbuf *v2;
-    int v3;
+    String *name;
+    int gender;
 
-    sub_02029F84(param0);
-    sub_02029FAC(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
+    DressUpPhoto_Init(photo);
+    sub_02029FAC(photo, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
-    if (param2) {
-        v2 = TrainerInfo_NameNewStrbuf(param2, 13);
-        v3 = TrainerInfo_Gender(param2);
-        sub_0202A0EC(param0, v2, v3);
-        Strbuf_Free(v2);
+    if (info != NULL) {
+        name = TrainerInfo_NameNewString(info, HEAP_ID_13);
+        gender = TrainerInfo_Gender(info);
+        DressUpPhoto_SetTrainerNameAndGender(photo, name, gender);
+        String_Free(name);
     }
 
     v1 = 0;
@@ -1146,7 +1146,7 @@ static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *p
 
     while (v0 != &param1->unk_00.unk_14) {
         if (v0->unk_04 == 0) {
-            sub_02029FD0(param0, v0->unk_00, v1);
+            sub_02029FD0(photo, v0->unk_00, v1);
             v1++;
         }
 
@@ -1157,15 +1157,15 @@ static void ov22_02256F38(UnkStruct_02029C68 *param0, UnkStruct_ov22_02257964 *p
 
     while (v0 != &param1->unk_00.unk_04) {
         if (v0->unk_04 == 0) {
-            sub_02029FD0(param0, v0->unk_00, v1);
+            sub_02029FD0(photo, v0->unk_00, v1);
             v1++;
         }
 
         v0 = v0->unk_08;
     }
 
-    sub_0202A084(param0, param1->unk_2C.unk_48);
-    sub_02029F5C(param0);
+    sub_0202A084(photo, param1->unk_2C.unk_48);
+    DressUpPhoto_SetLanguageAndMagic(photo);
 }
 
 static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *param1, int param2, const TrainerInfo *param3)
@@ -1174,7 +1174,7 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     int v1;
     UnkStruct_ov22_02256FD8 *v2;
     UnkStruct_ov22_02259560 *v3;
-    Strbuf *v4;
+    String *v4;
     int v5;
 
     v2 = Heap_Alloc(HEAP_ID_13, sizeof(UnkStruct_ov22_02256FD8));
@@ -1183,10 +1183,10 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param3) {
-        v4 = TrainerInfo_NameNewStrbuf(param3, 13);
+        v4 = TrainerInfo_NameNewString(param3, 13);
         v5 = TrainerInfo_Gender(param3);
         sub_0202A4B4(param0, v4, v5);
-        Strbuf_Free(v4);
+        String_Free(v4);
     }
 
     ov22_02257778(v2, &param1->unk_00.unk_14, 1);
@@ -1321,7 +1321,7 @@ static u32 ov22_02257278(UnkStruct_ov22_02255D44 *param0)
 static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
     MessageLoader *v0;
-    Strbuf *v1;
+    String *v1;
     int v2 = Options_Frame(param0->options);
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, HEAP_ID_14);
@@ -1330,11 +1330,11 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, HEAP_ID_14);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
-    v1 = MessageLoader_GetNewStrbuf(v0, param1);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    v1 = MessageLoader_GetNewString(v0, param1);
 
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Strbuf_Free(v1);
+    String_Free(v1);
     MessageLoader_Free(v0);
     Window_CopyToVRAM(param0->unk_718);
 }
@@ -1342,19 +1342,19 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
 static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
 {
     MessageLoader *v0;
-    Strbuf *v1;
-    Strbuf *v2;
+    String *v1;
+    String *v2;
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
-    v2 = MessageLoader_GetNewStrbuf(v0, param1);
-    v1 = Strbuf_Init(256, HEAP_ID_13);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    v2 = MessageLoader_GetNewString(v0, param1);
+    v1 = String_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    Strbuf_Free(v1);
-    Strbuf_Free(v2);
+    String_Free(v1);
+    String_Free(v2);
     MessageLoader_Free(v0);
     Window_CopyToVRAM(param0->unk_718);
 }
@@ -1364,15 +1364,15 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
     u32 v0;
     MessageLoader *v1;
     u32 v2;
-    Strbuf *v3;
+    String *v3;
 
     GF_ASSERT(param0->unk_740 == NULL);
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
-    v3 = MessageLoader_GetNewStrbuf(v1, param1);
-    param0->unk_740 = Strbuf_Init(256, HEAP_ID_13);
+    v1 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0385, HEAP_ID_13);
+    v3 = MessageLoader_GetNewString(v1, param1);
+    param0->unk_740 = String_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 
@@ -1384,7 +1384,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     v0 = Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, param0->unk_740, 0, 0, v2, TEXT_COLOR(1, 2, 15), NULL);
 
-    Strbuf_Free(v3);
+    String_Free(v3);
     MessageLoader_Free(v1);
     Window_CopyToVRAM(param0->unk_718);
 
@@ -1393,7 +1393,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
 static void ov22_02257498(UnkStruct_ov22_02255D44 *param0)
 {
-    Strbuf_Free(param0->unk_740);
+    String_Free(param0->unk_740);
     param0->unk_740 = NULL;
 }
 

@@ -5,8 +5,8 @@ L_0:
     Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 12, BATTLE_COLOR_BLACK
     WaitForAnimTasks
     PlayMovingSoundEffectAtkDef SEQ_SE_DP_W020, BATTLE_SOUND_PAN_LEFT, BATTLE_SOUND_PAN_RIGHT, 4, 2
-    CreateEmitter 0, 0, 17
-    BtlAnimCmd_055 0, 2, 1, 0, 0, 0
+    CreateEmitter 0, 0, EMITTER_CB_GENERIC
+    SetExtraParams 0, 2, 1, 0, 0, 0
     LoadPokemonSpriteIntoBg BATTLER_ROLE_DEFENDER, FALSE
     InitPokemonSpriteManager
     LoadPokemonSpriteDummyResources 0

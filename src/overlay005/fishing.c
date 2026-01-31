@@ -30,7 +30,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "sound_playback.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -82,8 +82,8 @@ typedef struct {
     FieldSystem *fieldSystem;
     OverworldAnimManager *unk_24;
     u8 printerID;
-    Strbuf *formattedFishingMessage;
-    Strbuf *fishingMessage;
+    String *formattedFishingMessage;
+    String *fishingMessage;
     StringTemplate *strTemplate;
     Window window;
     MessageLoader *messageLoader;
@@ -105,7 +105,7 @@ static int HasCaughtFish(SysTask *task);
 BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *);
 const int sRodTypeHookTimingWindow[];
 
-void *FishingContext_Init(FieldSystem *fieldSystem, u32 heapID, enum EncounterFishingRodType rodType)
+void *FishingContext_Init(FieldSystem *fieldSystem, enum HeapID heapID, enum EncounterFishingRodType rodType)
 {
     FishingContext *fishingContext = Heap_AllocAtEnd(heapID, sizeof(FishingContext));
 
@@ -138,7 +138,7 @@ BOOL FieldTask_Fishing(FieldTask *taskMan)
 
             if (caughtFish == TRUE) {
                 Pokemon *wildFish = Party_GetPokemonBySlotIndex(fishingContext->fishEncounterDTO->parties[1], 0);
-                sub_0206D340(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
+                FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fieldSystem, TRUE, fishingContext->fishingRodItemID, wildFish);
 
                 GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_CAUGHT_FISH);
 
@@ -366,7 +366,7 @@ static BOOL FishingTask_FishGotAway(FishingTask *fishingTask, PlayerAvatar *play
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fishingTask->fieldSystem->saveData), RECORD_FISH_GOT_AWAY);
 
-    sub_0206D340(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
+    FieldSystem_SaveTVEpisodeSegment_WhatsFishing(fishingTask->fieldSystem, FALSE, ConvertRodTypeToRodItem(fishingTask->rodType), NULL);
 
     return TRUE;
 }
@@ -513,17 +513,17 @@ static int TryPressAOrB(void)
 
 static void FishingTask_Init(FishingTask *fishingTask)
 {
-    fishingTask->messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
-    fishingTask->formattedFishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
-    fishingTask->fishingMessage = Strbuf_Init(0x400, HEAP_ID_FIELD1);
+    fishingTask->messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
+    fishingTask->formattedFishingMessage = String_Init(0x400, HEAP_ID_FIELD1);
+    fishingTask->fishingMessage = String_Init(0x400, HEAP_ID_FIELD1);
     fishingTask->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD1);
 }
 
 static void FishingTask_Free(FishingTask *fishingTask)
 {
     StringTemplate_Free(fishingTask->strTemplate);
-    Strbuf_Free(fishingTask->formattedFishingMessage);
-    Strbuf_Free(fishingTask->fishingMessage);
+    String_Free(fishingTask->formattedFishingMessage);
+    String_Free(fishingTask->fishingMessage);
     MessageLoader_Free(fishingTask->messageLoader);
 }
 
@@ -541,7 +541,7 @@ static void PrintFishingMessage(FishingTask *fishingTask, u32 messageID)
 
     FieldSystem *fieldSystem = fishingTask->fieldSystem;
 
-    MessageLoader_GetStrbuf(fishingTask->messageLoader, messageID, fishingTask->fishingMessage);
+    MessageLoader_GetString(fishingTask->messageLoader, messageID, fishingTask->fishingMessage);
     StringTemplate_Format(fishingTask->strTemplate, fishingTask->formattedFishingMessage, fishingTask->fishingMessage);
 
     fishingTask->printerID = FieldMessage_Print(&fishingTask->window, fishingTask->formattedFishingMessage, SaveData_GetOptions(fieldSystem->saveData), TRUE);

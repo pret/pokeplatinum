@@ -5,8 +5,8 @@ L_0:
     PlaySoundEffectC SEQ_SE_DP_W118
     PlayDelayedSoundEffectC SEQ_SE_DP_W039, 30
     PlayDelayedSoundEffectC SEQ_SE_DP_W039, 47
-    CreateEmitter 0, 0, 0
-    CreateEmitter 0, 1, 0
+    CreateEmitter 0, 0, EMITTER_CB_NONE
+    CreateEmitter 0, 1, EMITTER_CB_NONE
     InitSpriteManager 0, 1, 1, 1, 1, 1, 0, 0
     LoadCharResObj 0, taunt_NCGR_lz
     LoadPlttRes 0, taunt_NCLR, 1

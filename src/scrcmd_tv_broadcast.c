@@ -7,7 +7,7 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
@@ -31,7 +31,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "script_manager.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "tv_episode_segment.h"
 #include "unk_020298BC.h"
@@ -105,7 +105,7 @@ BOOL ScrCmd_CallTVBroadcast(ScriptContext *param0)
 
 BOOL ScrCmd_236(ScriptContext *param0)
 {
-    sub_0206D4AC(param0->fieldSystem, ScriptContext_GetVar(param0));
+    FieldSystem_SaveTVEpisodeSegment_HiddenItemBreakingNews(param0->fieldSystem, ScriptContext_GetVar(param0));
     return 0;
 }
 
@@ -114,19 +114,19 @@ BOOL ScrCmd_2B8(ScriptContext *param0)
     Party *v0 = SaveData_GetParty(param0->fieldSystem->saveData);
     Pokemon *v1 = Party_GetPokemonBySlotIndex(v0, ScriptContext_GetVar(param0));
 
-    sub_0206D60C(param0->fieldSystem, v1);
+    FieldSystem_SaveTVEpisodeSegment_RateThatNameChange(param0->fieldSystem, v1);
     return 0;
 }
 
 BOOL ScrCmd_30B(ScriptContext *param0)
 {
-    sub_0206D7C4(param0->fieldSystem);
+    FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(param0->fieldSystem);
     return 0;
 }
 
 BOOL ScrCmd_30C(ScriptContext *param0)
 {
-    sub_0206DB20(param0->fieldSystem);
+    FieldSystem_SaveTVEpisodeSegment_HomeAndManor_NoFurniture(param0->fieldSystem);
     return 0;
 }
 
@@ -134,7 +134,7 @@ BOOL ScrCmd_30D(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
-    sub_0206DB5C(param0->fieldSystem, v0);
+    FieldSystem_SaveTVEpisodeSegment_HomeAndManor(param0->fieldSystem, v0);
     return 0;
 }
 
@@ -251,13 +251,13 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
     return isEligibleFn(fieldSystem);
 }
 
-static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
+static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int language, int param5)
 {
-    Strbuf *v0 = Strbuf_Init(64, HEAP_ID_FIELD1);
+    String *v0 = String_Init(64, HEAP_ID_FIELD1);
 
-    Strbuf_CopyChars(v0, param2);
-    StringTemplate_SetStrbuf(param0, param1, v0, param3, param5, param4);
-    Strbuf_Free(v0);
+    String_CopyChars(v0, param2);
+    StringTemplate_SetString(param0, param1, v0, param3, param5, language);
+    String_Free(v0);
 }
 
 static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
@@ -296,15 +296,15 @@ static void sub_020492D4(FieldSystem *fieldSystem, StringTemplate *param1)
 
 static void sub_02049308(FieldSystem *fieldSystem, StringTemplate *param1)
 {
-    Strbuf *v0;
+    String *v0;
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     UnkStruct_0202E81C *v2 = sub_0202E81C(broadcast);
 
-    v0 = Strbuf_Init(64, HEAP_ID_FIELD1);
+    v0 = String_Init(64, HEAP_ID_FIELD1);
 
-    Strbuf_CopyChars(v0, v2->unk_06);
-    StringTemplate_SetStrbuf(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
-    Strbuf_Free(v0);
+    String_CopyChars(v0, v2->unk_06);
+    StringTemplate_SetString(param1, 0, v0, v2->unk_02, 1, GAME_LANGUAGE);
+    String_Free(v0);
 }
 
 static BOOL sub_02049348(FieldSystem *fieldSystem)
@@ -327,8 +327,8 @@ static BOOL sub_02049368(FieldSystem *fieldSystem)
 
 static BOOL sub_02049378(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
-    return sub_02029D10(v0, 0);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
+    return ImageClips_DressUpPhotoHasData(imageClips, 0);
 }
 
 static BOOL sub_02049388(FieldSystem *fieldSystem)
@@ -377,17 +377,17 @@ static const TVInterview sInterviews[TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS] = 
     { FieldSystem_SaveTVEpisodeSegment_BattleFrontierFrontlineNews_Multi, sub_02049308, sub_020493B8, 0x15 }
 };
 
-BOOL ScrCmd_31B(ScriptContext *param0)
+BOOL ScrCmd_GetCurrentSafariGameCaughtNum(ScriptContext *ctx)
 {
     TVBroadcast *broadcast;
-    UnkStruct_0202E808 *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
+    UnkStruct_0202E808 *safariGame;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    broadcast = SaveData_GetTVBroadcast(param0->fieldSystem->saveData);
-    v1 = sub_0202E808(broadcast);
-    *v2 = v1->unk_07;
+    broadcast = SaveData_GetTVBroadcast(ctx->fieldSystem->saveData);
+    safariGame = TVBroadcast_GetSafariGameData(broadcast);
+    *destVar = safariGame->numPokemonCaught;
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_329(ScriptContext *param0)

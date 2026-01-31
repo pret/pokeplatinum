@@ -6,7 +6,7 @@
             "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "0",
+            "hidden_flag": "0",
             "script": 1,
             "initial_dir": 1,
             "data": [],
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_209_GATE_TO_HEARTHOME_CITY_BARRY_1",
+            "id": "ROUTE_209_GATE_TO_HEARTHOME_CITY_RIVAL_1",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "flag": "FLAG_UNK_0x0207",
+            "hidden_flag": "FLAG_HIDE_HEARTHOME_ROUTE_209_GATE_RIVAL",
             "script": 0,
             "initial_dir": 2,
             "data": [],
@@ -54,7 +54,7 @@
             "y": 0,
             "width": 1,
             "length": 5,
-            "var": "VAR_UNK_0x407B",
+            "var": "VAR_HEARTHOME_STATE",
             "value": 1
         }
     ]

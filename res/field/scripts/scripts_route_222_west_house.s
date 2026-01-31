@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001E:
-    SetFlag FLAG_UNK_0x09EF
+    SetFlag FLAG_FIRST_ARRIVAL_PIKACHU_FAN_CLUB
     End
 
 _0024:

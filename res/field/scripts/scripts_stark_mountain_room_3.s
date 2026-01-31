@@ -16,32 +16,32 @@ _0016:
     End
 
 _0031:
-    SetFlag FLAG_UNK_0x01DB
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_BUCK
     Return
 
 _0037:
-    GoToIfSet FLAG_UNK_0x0120, _0083
+    GoToIfSet FLAG_CAUGHT_HEATRAN, _0083
     CheckGameCompleted VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
     GetNationalDexEnabled VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
-    GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
+    GoToIfUnset FLAG_CAUGHT_MESPRIT, _0083
     GoToIfNe VAR_UNK_0x409E, 1, _0083
-    ClearFlag FLAG_UNK_0x01DD
+    ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     Return
 
 _0083:
-    SetFlag FLAG_UNK_0x01DD
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     Return
 
 _0089:
-    GoToIfSet FLAG_UNK_0x008E, _0096
+    GoToIfSet FLAG_MAP_LOCAL, _0096
     End
 
 _0096:
-    SetFlag FLAG_UNK_0x01DD
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_HEATRAN
     RemoveObject 1
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     End
 
 StarkMountainRoom3_UnusedMovement:
@@ -84,9 +84,9 @@ _00E6:
     PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
-    SetFlag FLAG_UNK_0x008E
+    SetFlag FLAG_MAP_LOCAL
     StartLegendaryBattle SPECIES_HEATRAN, 50
-    ClearFlag FLAG_UNK_0x008E
+    ClearFlag FLAG_MAP_LOCAL
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _0168
     CheckLostBattle VAR_RESULT
@@ -97,7 +97,7 @@ _00E6:
     End
 
 _0155:
-    SetFlag FLAG_UNK_0x0120
+    SetFlag FLAG_CAUGHT_HEATRAN
     ReleaseAll
     End
 
@@ -175,7 +175,7 @@ _019C:
     RemoveObject 6
     ClearFlag FLAG_UNK_0x0231
     AddObject 4
-    CallCommonScript 0x807
+    SetLookerBGM
     Message 6
     CloseMessage
     ApplyMovement 4, _04A8
@@ -229,11 +229,11 @@ _019C:
     Message 14
     CloseMessage
     SetVar VAR_UNK_0x40A0, 2
-    SetFlag FLAG_UNK_0x01DB
+    SetFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_BUCK
     SetFlag FLAG_UNK_0x0231
     SetVar VAR_UNK_0x409E, 1
     SetFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN
-    ClearFlag FLAG_UNK_0x01A3
+    ClearFlag FLAG_HIDE_LOOKER_IN_GAME_CORNER
     ClearFlag FLAG_UNK_0x01D9
     ClearFlag FLAG_UNK_0x01D6
     ClearFlag FLAG_UNK_0x022B

@@ -3,13 +3,13 @@
 
 #include "field_battle_data_transfer.h"
 #include "party.h"
-#include "strbuf.h"
+#include "string_gf.h"
 
 typedef struct {
     FieldBattleDTO *unk_00;
     Party *unk_04[4];
-    Strbuf *unk_14[4];
-    u32 heapID;
+    String *unk_14[4];
+    enum HeapID heapID;
     u8 unk_28;
     u8 unk_29;
     u8 unk_2A;

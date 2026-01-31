@@ -164,7 +164,7 @@ static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing)
     TrainerInfo_Init(trainerInfo);
     TrainerInfo_SetName(trainerInfo, listing->unk_10C);
     TrainerInfo_SetGameCode(trainerInfo, listing->unk_122);
-    TrainerInfo_SetRegionCode(trainerInfo, listing->trainerLanguage);
+    TrainerInfo_SetLanguage(trainerInfo, listing->trainerLanguage);
 
     return trainerInfo;
 }

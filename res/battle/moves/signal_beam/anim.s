@@ -34,7 +34,7 @@ L_1:
     End
 
 L_2:
-    CreateEmitter 0, 6, 3
+    CreateEmitter 0, 6, EMITTER_CB_SET_POS_TO_ATTACKER
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
     Func_Shake 1, 0, 0, 15, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
     PlayLoopedSoundEffectC SEQ_SE_DP_W062, 6, 2

@@ -77,8 +77,8 @@ static void sub_0207AE34(int param0, int param1, void *param2, void *param3);
 static void PalPad_CreateNetworkObject(TrainerInfo *param0, PalPad *param1, PalPad *param2);
 
 static const CommCmdTable Unk_020F099C[] = {
-    { sub_0207ADB4, sub_02032944, NULL },
-    { sub_0207A8A8, sub_02032944, NULL },
+    { sub_0207ADB4, CommPacketSizeOf_Variable, NULL },
+    { sub_0207A8A8, CommPacketSizeOf_Variable, NULL },
     { sub_0207A934, sub_0207A758, NULL },
     { sub_0207A9BC, sub_0207A75C, sub_0207A778 },
     { sub_0207AA28, sub_0207A774, sub_0207A798 },
@@ -655,14 +655,14 @@ static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source,
     CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
 
     destination->trainerId = TrainerInfo_ID(trainerInfo);
-    destination->regionCode = TrainerInfo_RegionCode(trainerInfo);
+    destination->language = TrainerInfo_Language(trainerInfo);
     destination->gameCode = TrainerInfo_GameCode(trainerInfo);
     destination->gender = TrainerInfo_Gender(trainerInfo);
 
     for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
         destination->associatedTrainerIds[i] = source[i].trainerId;
         destination->associatedTrainerGameCodes[i] = source[i].gameCode;
-        destination->associatedTrainerRegionCodes[i] = source[i].regionCode;
+        destination->associatedTrainerLanguages[i] = source[i].language;
         destination->associatedTrainerGenders[i] = source[i].gender;
     }
 }
