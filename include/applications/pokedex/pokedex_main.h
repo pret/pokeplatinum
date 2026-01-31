@@ -94,6 +94,6 @@ u32 PokedexMain_DisplayDeoxysSprite(PokedexGraphicData *pokedexGraphicData, cons
 u32 PokedexMain_DisplayShayminSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int x, int y, int formIndex, int spriteIndex);
 u32 PokedexMain_DisplayGiratinaSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int x, int y, int formIndex, int spriteIndex);
 u32 PokedexMain_DisplayRotomSprite(PokedexGraphicData *pokedexGraphicData, const PokedexSortData *pokedexSortData, int face, int x, int y, int formIndex, int spriteIndex);
-Strbuf *PokedexMain_GetMessage(int entryID, enum HeapID heapID);
+String *PokedexMain_GetMessage(int entryID, enum HeapID heapID);
 
 #endif // POKEPLATINUM_POKEDEX_MAIN_H
