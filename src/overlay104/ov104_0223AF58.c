@@ -38,14 +38,12 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 static u32 ov104_0223B4D4(u8 param0);
 static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
 static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
-u8 BattleHall_CursorPosToType(u8 param0);
 u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0);
 static u8 ov104_0223B5F0(u8 param0);
 static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2);
 static u16 ov104_0223B644(u8 param0);
 u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0);
 static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
-BOOL BattleFrontier_IsMultiPlayerChallenge(u8 param0);
 
 static const u16 Unk_ov104_0224041C[10][8] = {
     { 0x2, 0x3, 0x14, 0x15, 0x25, 0x24, 0x16, 0x1C },

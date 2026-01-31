@@ -2,6 +2,8 @@
 
 #include <nitro.h>
 
+#include "constants/scrcmd.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/frontier/battle_hall/sprite_manager.h"
@@ -54,33 +56,38 @@
 #include "res/text/bank/battle_hall_scene.h"
 
 // States of the overall app
-#define STATE_FADE_IN          0
-#define STATE_MON_SUMMARY      1
-#define STATE_SELECT_BATTLE    2
-#define STATE_MULTI_CONFIRM    3
-#define STATE_SYNC_BEFORE_EXIT 4
-#define STATE_FADE_OUT         5
-#define STATE_CLOSE_MESSAGE    6
+enum BattleHallAppState {
+    STATE_FADE_IN = 0,
+    STATE_MON_SUMMARY,
+    STATE_SELECT_BATTLE,
+    STATE_MULTI_CONFIRM,
+    STATE_SYNC_BEFORE_EXIT,
+    STATE_FADE_OUT,
+    STATE_CLOSE_MESSAGE,
+};
 
 // Substates of the STATE_SELECT_BATTLE state
-#define SELECT_STATE_INIT                  0
-#define SELECT_STATE_MAKE_PICK             1
-#define SELECT_STATE_OPEN_YES_NO           2
-#define SELECT_STATE_PROCESS_YES_NO        3
-#define SELECT_STATE_PRINT_MATRON_MSG      4
-#define SELECT_STATE_HIGHLIGHT_MATRON_CELL 5
-#define SELECT_STATE_OPEN_MON_SUMMARY      6
+enum BattleHallAppSelectBattleSubState {
+    SELECT_STATE_INIT = 0,
+    SELECT_STATE_MAKE_PICK,
+    SELECT_STATE_OPEN_YES_NO,
+    SELECT_STATE_PROCESS_YES_NO,
+    SELECT_STATE_PRINT_MATRON_MSG,
+    SELECT_STATE_HIGHLIGHT_MATRON_CELL,
+    SELECT_STATE_OPEN_MON_SUMMARY,
+};
 
 // Substates of the STATE_MULTI_CONFIRM state
-#define MCONFIRM_STATE_SEND_COMM                0
-#define MCONFIRM_STATE_WAIT_FOR_PARTNER_ACK     1
-#define MCONFIRM_STATE_OPEN_YES_NO              2
-#define MCONFIRM_STATE_PARTNER_IS_CHOOSING      3
-#define MCONFIRM_STATE_HANDLE_PARTNERS_DECISION 4
-#define MCONFIRM_STATE_PROCESS_YES_NO           5
-#define MCONFIRM_STATE_SEND_CONFIRM_COMM        6
-#define MCONFIRM_STATE_SEND_CANCELED_COMM       7
-#define MCONFIRM_STATE_SEND_CANCELED_COMM       7
+enum BattleHallAppMultiConfirmSubState {
+    MCONFIRM_STATE_SEND_COMM,
+    MCONFIRM_STATE_WAIT_FOR_PARTNER_ACK,
+    MCONFIRM_STATE_OPEN_YES_NO,
+    MCONFIRM_STATE_PARTNER_IS_CHOOSING,
+    MCONFIRM_STATE_HANDLE_PARTNERS_DECISION,
+    MCONFIRM_STATE_PROCESS_YES_NO,
+    MCONFIRM_STATE_SEND_CONFIRM_COMM,
+    MCONFIRM_STATE_SEND_CANCELED_COMM,
+};
 
 #define PARTNER_DECISION_PENDING 0
 #define PARTNER_DECISION_CONFIRM 1
@@ -88,9 +95,16 @@
 
 #define MAX_RANK 10
 
+#define WINDOW_MSG_BOX     0
+#define WINDOW_YES_NO_MENU 1
+#define WINDOW_MON_NAME    2
+#define WINDOW_TYPE_INFO   3
+
 #define GRID_WIDTH       4
 #define GRID_HEIGHT      5
 #define GRID_TOTAL_CELLS (GRID_WIDTH * GRID_HEIGHT)
+#define COL_WIDTH        64
+#define ROW_HEIGHT       36
 
 #define CELL_BACKGROUND_NORMAL           0
 #define CELL_BACKGROUND_SELECTED         1
@@ -113,7 +127,7 @@ typedef struct BattleHallApp {
     u8 prevCursorPos;
     u8 cursorPos;
     u8 unused2;
-    u8 yewNoMenuOpen;
+    u8 yesNoMenuOpen;
     u16 summaryScreenOpen;
     u16 isSynced;
     u16 openMenuDelay;
@@ -165,7 +179,7 @@ static BOOL State_MultiplayerConfirmSelection(BattleHallApp *app);
 static BOOL State_SyncBeforeExit(BattleHallApp *app);
 static BOOL State_FadeOutApp(BattleHallApp *app);
 static BOOL State_CloseMessageBox(BattleHallApp *app);
-static void ChangeState(BattleHallApp *app, int *state, int nextState);
+static void ChangeState(BattleHallApp *app, int *state, enum BattleHallAppState nextState);
 
 static void ReInitApp(BattleHallApp *app);
 static void VBlankCallback(void *data);
@@ -230,7 +244,7 @@ BOOL BattleHallApp_Init(ApplicationManager *appMan, int *state)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), OVERLAY_LOAD_ASYNC);
     InitGraphicsPlane();
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_HALL_APP, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_HALL_APP, HEAP_SIZE_BATTLE_HALL_APP);
 
     BattleHallApp *app = ApplicationManager_NewData(appMan, sizeof(BattleHallApp), HEAP_ID_BATTLE_HALL_APP);
     memset(app, 0, sizeof(BattleHallApp));
@@ -387,9 +401,9 @@ static BOOL State_FadeInApp(BattleHallApp *app)
 
 static void PrintAppStrings(BattleHallApp *app)
 {
-    PrintTypeStrings(app, &app->windows[3], 1, 2, 0, FONT_SYSTEM);
-    PrintTypesRanks(app, &app->windows[3]);
-    PrintPokemonsName(app, &app->windows[2], 0, 0, 1, 2, 0, FONT_SYSTEM);
+    PrintTypeStrings(app, &app->windows[WINDOW_TYPE_INFO], 1, 2, 0, FONT_SYSTEM);
+    PrintTypesRanks(app, &app->windows[WINDOW_TYPE_INFO]);
+    PrintPokemonsName(app, &app->windows[WINDOW_MON_NAME], 0, 0, 1, 2, 0, FONT_SYSTEM);
 }
 
 static BOOL State_RunMonSummaryApp(BattleHallApp *app)
@@ -419,7 +433,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
     case SELECT_STATE_MAKE_PICK:
         UpdateCursorPosition(app, gSystem.pressedKeys);
 
-        if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A)) {
             if (BattleHall_CursorPosToType(app->cursorPos) == BATTLE_HALL_MON_SUMMARY) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BATTLE_HALL_APP);
@@ -466,7 +480,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
                 app->subState = SELECT_STATE_PROCESS_YES_NO;
                 break;
             } else {
-                BattleHallApp_DrawMessageBox(&app->windows[0], Options_Frame(app->options));
+                BattleHallApp_DrawMessageBox(&app->windows[WINDOW_MSG_BOX], Options_Frame(app->options));
                 app->printerID = PrintMessageAndCopyToVRAM(app, BattleHallScene_Text_PleaseWait, FONT_MESSAGE);
                 app->selectedCursorPos = app->cursorPos;
                 app->startMultiSelectionConfirm = TRUE;
@@ -478,7 +492,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
         switch (Menu_ProcessInput(app->yesNoMenu)) {
         case MENU_NOTHING_CHOSEN:
             break;
-        case 0:
+        case MENU_YES:
             FreeYesNoMenu(app);
 
             if (NextOpponentIsHallMatron(app) == TRUE && !IsHallMatronBattleAvailable(app)) {
@@ -495,7 +509,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
                 return TRUE;
             }
             break;
-        case 1:
+        case MENU_NO:
         case MENU_CANCELED:
             FreeYesNoMenu(app);
             DeselectCell(app);
@@ -504,9 +518,9 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
         }
         break;
     case SELECT_STATE_PRINT_MATRON_MSG:
-        BattleHallApp_DrawMessageBox(&app->windows[0], Options_Frame(app->options));
-        app->printerID = PrintMessage(app, &app->windows[0], BattleHallScene_Text_HallMatronApproaching, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(app->saveData)), 1, 2, 15, FONT_MESSAGE);
-        Window_CopyToVRAM(&app->windows[0]);
+        BattleHallApp_DrawMessageBox(&app->windows[WINDOW_MSG_BOX], Options_Frame(app->options));
+        app->printerID = PrintMessage(app, &app->windows[WINDOW_MSG_BOX], BattleHallScene_Text_HallMatronApproaching, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(app->saveData)), 1, 2, 15, FONT_MESSAGE);
+        Window_CopyToVRAM(&app->windows[WINDOW_MSG_BOX]);
         app->subState = SELECT_STATE_HIGHLIGHT_MATRON_CELL;
         break;
     case SELECT_STATE_HIGHLIGHT_MATRON_CELL:
@@ -580,7 +594,7 @@ static BOOL State_MultiplayerConfirmSelection(BattleHallApp *app)
         break;
     case MCONFIRM_STATE_PARTNER_IS_CHOOSING:
         BattleHallAppSprite_SetDrawFlag(app->monSprite, FALSE);
-        BattleHallApp_DrawMessageBox(&app->windows[0], Options_Frame(app->options));
+        BattleHallApp_DrawMessageBox(&app->windows[WINDOW_MSG_BOX], Options_Frame(app->options));
         BattleFrontier_SetPartnerInStrTemplate(app->strTemplate, 0);
 
         app->printerID = PrintMessageAndCopyToVRAM(app, BattleHallScene_Text_PartnerIsChoosing, FONT_MESSAGE);
@@ -623,13 +637,13 @@ static BOOL State_MultiplayerConfirmSelection(BattleHallApp *app)
         switch (Menu_ProcessInput(app->yesNoMenu)) {
         case MENU_NOTHING_CHOSEN:
             break;
-        case 0:
+        case MENU_YES:
             Sound_StopEffect(SEQ_SE_CONFIRM, 0);
             Sound_PlayEffect(SEQ_SE_DP_UG_020);
             FreeYesNoMenu(app);
             app->subState = MCONFIRM_STATE_SEND_CONFIRM_COMM;
             break;
-        case 1:
+        case MENU_NO:
         case MENU_CANCELED:
             FreeYesNoMenu(app);
             app->subState = MCONFIRM_STATE_SEND_CANCELED_COMM;
@@ -720,7 +734,7 @@ static BOOL State_CloseMessageBox(BattleHallApp *app)
     case 0:
         FreeYesNoMenu(app);
         BattleHallAppSprite_SetDrawFlag(app->monSprite, TRUE);
-        Window_EraseMessageBox(&app->windows[0], FALSE);
+        Window_EraseMessageBox(&app->windows[WINDOW_MSG_BOX], FALSE);
 
         app->subState++;
         break;
@@ -1024,8 +1038,8 @@ static u8 PrintMessage(BattleHallApp *app, Window *window, int messageID, u32 x,
 
 static u8 PrintMessageAndCopyToVRAM(BattleHallApp *app, int messageID, u8 fontID)
 {
-    u8 printerID = PrintMessage(app, &app->windows[0], messageID, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, fontID);
-    Window_CopyToVRAM(&app->windows[0]);
+    u8 printerID = PrintMessage(app, &app->windows[WINDOW_MSG_BOX], messageID, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, fontID);
+    Window_CopyToVRAM(&app->windows[WINDOW_MSG_BOX]);
 
     return printerID;
 }
@@ -1057,10 +1071,10 @@ static void AddStringToYesNoMenu(BattleHallApp *app, u8 strIndex, u8 listIndex, 
 
 static void OpenYesNoMenu(BattleHallApp *app)
 {
-    app->yewNoMenuOpen = TRUE;
+    app->yesNoMenuOpen = TRUE;
 
-    BattleHallApp_DrawWindow(app->bgConfig, &app->windows[1]);
-    InitYesNoMenu(app, &app->windows[1], 2);
+    BattleHallApp_DrawWindow(app->bgConfig, &app->windows[WINDOW_YES_NO_MENU]);
+    InitYesNoMenu(app, &app->windows[WINDOW_YES_NO_MENU], 2);
     AddStringToYesNoMenu(app, 0, 0, BattleHallScene_Text_Yes);
     AddStringToYesNoMenu(app, 1, 1, BattleHallScene_Text_No);
 
@@ -1089,19 +1103,19 @@ static void PrintPokemonsName(BattleHallApp *app, Window *window, u32 x, u32 y, 
 
 static void PrintTypeStrings(BattleHallApp *app, Window *window, u8 textColor, u8 shadowColor, u8 bgColor, u8 fontID)
 {
-    int r, c;
+    int row, col;
 
     Window_FillTilemap(window, bgColor);
 
     MessageLoader *loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_TYPE_NAMES, HEAP_ID_BATTLE_HALL_APP);
     String *strBuf = String_Init(11, HEAP_ID_BATTLE_HALL_APP);
 
-    for (r = 0; r < GRID_HEIGHT; r++) {
-        for (c = 0; c < GRID_WIDTH; c++) {
-            if (BattleHall_CursorPosToType(r * GRID_WIDTH + c) != BATTLE_HALL_MON_SUMMARY) {
+    for (row = 0; row < GRID_HEIGHT; row++) {
+        for (col = 0; col < GRID_WIDTH; col++) {
+            if (BattleHall_CursorPosToType(row * GRID_WIDTH + col) != BATTLE_HALL_MON_SUMMARY) {
                 String_Clear(strBuf);
-                MessageLoader_GetString(loader, BattleHall_CursorPosToType(r * GRID_WIDTH + c), strBuf);
-                Text_AddPrinterWithParamsAndColor(window, fontID, strBuf, 1 + (64 * c), 16 + (36 * r), TEXT_SPEED_INSTANT, TEXT_COLOR(textColor, shadowColor, bgColor), NULL);
+                MessageLoader_GetString(loader, BattleHall_CursorPosToType(row * GRID_WIDTH + col), strBuf);
+                Text_AddPrinterWithParamsAndColor(window, fontID, strBuf, 1 + (COL_WIDTH * col), 16 + (ROW_HEIGHT * row), TEXT_SPEED_INSTANT, TEXT_COLOR(textColor, shadowColor, bgColor), NULL);
             }
         }
     }
@@ -1131,7 +1145,7 @@ static void PrintTypesRanks(BattleHallApp *app, Window *window)
                     rank = MAX_RANK;
                 }
 
-                PrintRank(app, window, rank, 18 + (64 * c), 4 + (36 * r));
+                PrintRank(app, window, rank, 18 + (COL_WIDTH * c), 4 + (ROW_HEIGHT * r));
             }
         }
     }
@@ -1156,7 +1170,7 @@ static void SetupMonSummaryApp(BattleHallApp *app)
     PokemonSummaryScreen_SetPlayerProfile(app->monSummary, SaveData_GetTrainerInfo(app->saveData));
 }
 
-static void ChangeState(BattleHallApp *app, int *state, int nextState)
+static void ChangeState(BattleHallApp *app, int *state, enum BattleHallAppState nextState)
 {
     app->subState = 0;
     *state = nextState;
@@ -1166,7 +1180,7 @@ static void UpdateCursorPosition(BattleHallApp *app, int _)
 {
     BOOL updateMade = FALSE;
 
-    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
+    if (JOY_NEW(PAD_KEY_LEFT)) {
         if (BattleHall_CursorPosToType(app->cursorPos) != BATTLE_HALL_MON_SUMMARY) {
             app->prevCursorPos = app->cursorPos;
         }
@@ -1182,7 +1196,7 @@ static void UpdateCursorPosition(BattleHallApp *app, int _)
         updateMade = TRUE;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
+    if (JOY_NEW(PAD_KEY_RIGHT)) {
         if (BattleHall_CursorPosToType(app->cursorPos) != BATTLE_HALL_MON_SUMMARY) {
             app->prevCursorPos = app->cursorPos;
         }
@@ -1198,7 +1212,7 @@ static void UpdateCursorPosition(BattleHallApp *app, int _)
         updateMade = TRUE;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_UP) {
+    if (JOY_NEW(PAD_KEY_UP)) {
         if (BattleHall_CursorPosToType(app->cursorPos) != BATTLE_HALL_MON_SUMMARY) {
             app->prevCursorPos = app->cursorPos;
         }
@@ -1222,7 +1236,7 @@ static void UpdateCursorPosition(BattleHallApp *app, int _)
         updateMade = TRUE;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
+    if (JOY_NEW(PAD_KEY_DOWN)) {
         if (BattleHall_CursorPosToType(app->cursorPos) != BATTLE_HALL_MON_SUMMARY) {
             app->prevCursorPos = app->cursorPos;
         }
@@ -1261,12 +1275,12 @@ static void UpdateCursorPosition(BattleHallApp *app, int _)
 
 static u16 GetCursorX(BattleHallApp *app)
 {
-    return (app->cursorPos % GRID_WIDTH) * 64 + 32;
+    return (app->cursorPos % GRID_WIDTH) * COL_WIDTH + 32;
 }
 
 static u16 GetCursorY(BattleHallApp *app)
 {
-    return (app->cursorPos / GRID_WIDTH) * 36 + 16;
+    return (app->cursorPos / GRID_WIDTH) * ROW_HEIGHT + 16;
 }
 
 static void GrayOutUnselectableCells(BattleHallApp *app, BgConfig *bgConfig)
@@ -1486,8 +1500,8 @@ void BattleHall_HandlePartnerDecisionCmd(int netID, int unused, void *data, void
 
 static void FreeYesNoMenu(BattleHallApp *app)
 {
-    if (app->yewNoMenuOpen == TRUE) {
-        app->yewNoMenuOpen = FALSE;
+    if (app->yesNoMenuOpen == TRUE) {
+        app->yesNoMenuOpen = FALSE;
         Menu_Free(app->yesNoMenu, NULL);
         Window_EraseStandardFrame(app->yesNoMenuTemplate.window, FALSE);
     }
@@ -1497,7 +1511,7 @@ static void DrawMessageWithYesNoMenu(BattleHallApp *app)
 {
 
     BattleHallAppSprite_SetDrawFlag(app->monSprite, FALSE);
-    BattleHallApp_DrawMessageBox(&app->windows[0], Options_Frame(app->options));
+    BattleHallApp_DrawMessageBox(&app->windows[WINDOW_MSG_BOX], Options_Frame(app->options));
     StringTemplate_SetPokemonTypeName(app->strTemplate, 0, BattleHall_CursorPosToType(app->cursorPos));
 
     u8 rank = BattleHall_GetRankOfType(GetCursorPos(app->cursorPos), app->typeRanks) + 1;
@@ -1527,7 +1541,7 @@ static void DeselectCell(BattleHallApp *app)
 static void DrawMonSpriteAndName(BattleHallApp *app)
 {
     BattleHallAppSprite_SetDrawFlag(app->monSprite, TRUE);
-    Window_EraseMessageBox(&app->windows[0], FALSE);
+    Window_EraseMessageBox(&app->windows[WINDOW_MSG_BOX], FALSE);
 
-    PrintPokemonsName(app, &app->windows[2], 0, 0, 1, 2, 0, FONT_SYSTEM);
+    PrintPokemonsName(app, &app->windows[WINDOW_MON_NAME], 0, 0, 1, 2, 0, FONT_SYSTEM);
 }

@@ -14,7 +14,6 @@ BOOL sub_02030124(UnkStruct_02030114 *param0);
 void sub_0203012C(UnkStruct_02030114 *param0, BOOL param1);
 void sub_02030140(UnkStruct_02030114 *param0, u8 param1, u8 param2, u8 param3, const void *param4);
 u32 sub_02030198(UnkStruct_02030114 *param0, u8 param1, u8 param2, u8 param3, void *param4);
-u8 BattleHall_GetRankOfType(u8 param0, u8 *param1);
 void sub_02030204(u8 param0, u8 *param1, u8 param2);
 void sub_02030244(u8 *param0);
 void sub_02030260(UnkStruct_0203026C *param0);
@@ -98,8 +97,8 @@ u32 sub_02030198(UnkStruct_02030114 *param0, u8 param1, u8 param2, u8 param3, vo
 u8 BattleHall_GetRankOfType(u8 idx, u8 *typeRanks)
 {
     u8 byte = idx / 2;
-    u8 nibble = idx % 2;
-    u8 rank = (typeRanks[byte] >> (4 * nibble)) & 0xf;
+    u8 nybble = idx % 2;
+    u8 rank = (typeRanks[byte] >> (4 * nybble)) & 0xf;
 
     return rank;
 }
