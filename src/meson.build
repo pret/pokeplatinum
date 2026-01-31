@@ -407,7 +407,7 @@ pokeplatinum_c = files(
     'overlay005/area_data.c',
     'overlay005/honey_tree.c',
     'overlay005/ov5_021F007C.c',
-    'overlay005/ov5_021F067C.c',
+    'overlay005/resource_heap.c',
     'overlay005/ov5_021F0824.c',
     'overlay005/fishing.c',
     'overlay005/footprint_type.c',

@@ -516,7 +516,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_honey_tree.c.o
 	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
 	Object main.nef.p/src_overlay005_ov5_021FF6B8.c.o
-	Object main.nef.p/src_overlay005_ov5_021F067C.c.o
+	Object main.nef.p/src_overlay005_resource_heap.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0824.c.o
 	Object main.nef.p/src_overlay005_fishing.c.o
 	Object main.nef.p/src_overlay005_footprint_type.c.o

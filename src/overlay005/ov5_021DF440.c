@@ -12,11 +12,10 @@
 #include "field/field_system.h"
 #include "overlay005/area_light.h"
 #include "overlay005/const_ov5_021FF85C.h"
-#include "overlay005/ov5_021F067C.h"
+#include "overlay005/resource_heap.h"
 #include "overlay005/struct_ov5_021DF7F8.h"
 #include "overlay005/struct_ov5_021DF84C.h"
 #include "overlay005/struct_ov5_021EDDAC.h"
-#include "overlay005/struct_ov5_021F06D8_decl.h"
 #include "overlay005/struct_ov5_021FF85C.h"
 
 #include "heap.h"
@@ -58,8 +57,8 @@ typedef struct UnkStruct_ov5_021DF8FC_t {
     u16 unk_08;
     u16 unk_0A;
     UnkStruct_02020C44 *unk_0C;
-    UnkStruct_ov5_021F06D8 *unk_10;
-    UnkStruct_ov5_021F06D8 *unk_14;
+    ResourceHeap *unk_10;
+    ResourceHeap *unk_14;
     TextureResourceManager *unk_18;
     UnkStruct_ov5_021DF8C8 *unk_1C;
     UnkStruct_ov5_021DF84C *unk_20;
@@ -421,8 +420,8 @@ static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, enum HeapID heapID, u32
     v0->unk_06 = param3;
     v0->unk_08 = param4;
     v0->unk_0A = param5;
-    v0->unk_10 = ov5_021F067C(heapID, HEAP_ID_69, param6, param3);
-    v0->unk_14 = ov5_021F067C(heapID, HEAP_ID_70, param7, param4);
+    v0->unk_10 = ResourceHeap_New(heapID, HEAP_ID_69, param6, param3);
+    v0->unk_14 = ResourceHeap_New(heapID, HEAP_ID_70, param7, param4);
     v0->unk_18 = TextureResourceManager_New(param5, heapID);
 
     ov5_021DF8C8(param0, v0, param2);
@@ -439,8 +438,8 @@ static void ov5_021DF7C4(UnkStruct_ov5_021DF47C *param0)
     if (v0 != NULL) {
         sub_02020CCC(v0->unk_0C);
         ov5_021DF8FC(v0);
-        ov5_021F06D8(v0->unk_10);
-        ov5_021F06D8(v0->unk_14);
+        ResourceHeap_Free(v0->unk_10);
+        ResourceHeap_Free(v0->unk_14);
         TextureResourceManager_Delete(v0->unk_18);
         ov5_021DF554(v0);
 
@@ -486,8 +485,8 @@ UnkStruct_ov5_021DF84C *ov5_021DF864(UnkStruct_ov5_021DF47C *param0, u32 param1,
     TextureResource *v4;
     UnkStruct_ov5_021DF84C *v5;
     UnkStruct_ov5_021DF8FC *v6 = param0->unk_20;
-    v0 = ov5_021F075C(v6->unk_10, param2);
-    v2 = ov5_021F075C(v6->unk_14, param3);
+    v0 = ResourceHeap_GetItemData(v6->unk_10, param2);
+    v2 = ResourceHeap_GetItemData(v6->unk_14, param3);
 
     sub_02024184(v2, &v3);
 
@@ -626,13 +625,13 @@ void ov5_021DF9E0(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, u32 resourc
 {
     UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
 
-    ov5_021F0784(v0->unk_10, slotID, renderManager->unk_18, resourceID, 0);
+    ResourceHeap_LoadMemberFromNARC(v0->unk_10, slotID, renderManager->unk_18, resourceID, 0);
 }
 
 void *ov5_021DF9FC(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
     UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
-    void *v1 = ov5_021F075C(v0->unk_10, slotID);
+    void *v1 = ResourceHeap_GetItemData(v0->unk_10, slotID);
 
     return v1;
 }
@@ -640,19 +639,19 @@ void *ov5_021DF9FC(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 void ov5_021DFA08(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
     UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
-    ov5_021F0740(v0->unk_10, slotID);
+    ResourceHeap_FreeItem(v0->unk_10, slotID);
 }
 
 void ov5_021DFA14(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, u32 resourceID)
 {
     UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
-    ov5_021F0784(v0->unk_14, slotID, renderManager->unk_18, resourceID, 0);
+    ResourceHeap_LoadMemberFromNARC(v0->unk_14, slotID, renderManager->unk_18, resourceID, 0);
 }
 
 void ov5_021DFA30(UnkStruct_ov5_021DF47C *renderManager, u32 slotID)
 {
     UnkStruct_ov5_021DF8FC *v0 = renderManager->unk_20;
-    ov5_021F0740(v0->unk_14, slotID);
+    ResourceHeap_FreeItem(v0->unk_14, slotID);
 }
 
 void ov5_021DFA3C(UnkStruct_ov5_021DF47C *renderManager, u32 slotID, u32 param2, u32 param3)
