@@ -3,13 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/field_effect_renderer.h"
 #include "constants/map_object.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DF440.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
+#include "overlay005/field_effect_manager.h"
 
 #include "fx_util.h"
 #include "map_object.h"
@@ -27,14 +27,14 @@
 #define MAP_OBJECT_BASE_POS_OFFSET_Z (FX32_ONE * 4)
 
 typedef struct SurfMountResources {
-    UnkStruct_ov5_021DF47C *renderMan;
+    FieldEffectManager *fieldEffMan;
     Simple3DModel surfMountModel;
     Simple3DRenderObj surfMountRenderObj;
 } SurfMountResources;
 
 typedef struct SurfMountUserData {
     int dir;
-    UnkStruct_ov5_021DF47C *renderMan;
+    FieldEffectManager *fieldEffMan;
     SurfMountResources *resources;
     MapObject *surfMountMapObj;
 } SurfMountUserData;
@@ -57,10 +57,10 @@ static void SurfMountResources_Free(SurfMountResources *resources);
 
 static const OverworldAnimManagerFuncs sSurfMountRendererAnimFuncs;
 
-void *SurfMountRenderer_New(UnkStruct_ov5_021DF47C *renderMan)
+void *SurfMountRenderer_New(FieldEffectManager *fieldEffMan)
 {
-    SurfMountResources *resources = ov5_021DF53C(renderMan, sizeof(SurfMountResources), FALSE, 0);
-    resources->renderMan = renderMan;
+    SurfMountResources *resources = FieldEffectManager_HeapAllocInit(fieldEffMan, sizeof(SurfMountResources), FALSE, 0);
+    resources->fieldEffMan = fieldEffMan;
 
     SurfMountResources_Init(resources);
     return resources;
@@ -71,12 +71,12 @@ void SurfMountRenderer_Free(void *context)
     SurfMountResources *resources = context;
 
     SurfMountResources_Free(resources);
-    ov5_021DF554(resources);
+    FieldEffectManager_HeapFree(resources);
 }
 
 static void SurfMountResources_Init(SurfMountResources *resources)
 {
-    ov5_021DFB00(resources->renderMan, &resources->surfMountModel, 0, 81, FALSE);
+    FieldEffectManager_LoadModel(resources->fieldEffMan, &resources->surfMountModel, 0, 81, FALSE);
     Simple3D_CreateRenderObject(&resources->surfMountRenderObj, &resources->surfMountModel);
 }
 
@@ -91,8 +91,8 @@ OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *surfMountMapO
     VecFx32 mapObjPos = { 0, 0, 0 };
 
     userData.dir = dir;
-    userData.renderMan = ov5_021DF578(surfMountMapObj);
-    userData.resources = ov5_021DF55C(userData.renderMan, 15);
+    userData.fieldEffMan = MapObject_GetFieldEffectManager(surfMountMapObj);
+    userData.resources = FieldEffectManager_GetRendererContext(userData.fieldEffMan, FIELD_EFFECT_RENDERER_SURF_MOUNT);
     userData.surfMountMapObj = surfMountMapObj;
 
     if (!reuseMapObjPos) {
@@ -109,7 +109,7 @@ OverworldAnimManager *SurfMountRenderer_HandleSurfBegin(MapObject *surfMountMapO
     }
 
     int taskPriority = MapObject_CalculateTaskPriority(surfMountMapObj, 2);
-    return ov5_021DF72C(userData.renderMan, &sSurfMountRendererAnimFuncs, &mapObjPos, reuseMapObjPos, &userData, taskPriority);
+    return FieldEffectManager_InitAnimManager(userData.fieldEffMan, &sSurfMountRendererAnimFuncs, &mapObjPos, reuseMapObjPos, &userData, taskPriority);
 }
 
 static BOOL SurfMountRenderer_AnimInit(OverworldAnimManager *animMan, void *context)
@@ -144,7 +144,7 @@ static void SurfMountRenderer_AnimTick(OverworldAnimManager *animMan, void *cont
     MapObject *surfMountMapObj = renderer->userData.surfMountMapObj;
 
     if (!sub_02062764(surfMountMapObj, renderer->mapObjLocalID, renderer->mapHeaderID)) {
-        ov5_021DF74C(animMan);
+        FieldEffectManager_FinishAnimManager(animMan);
         return;
     }
 

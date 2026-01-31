@@ -21,18 +21,17 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/land_data.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F348C.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/camera_configuration.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
@@ -1030,7 +1029,7 @@ static void ov9_0224AEE4(DistWorldSystem *param0, UnkStruct_ov9_0224B064 *param1
 static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0);
 static void ov9_0224B124(SysTask *param0, void *param1);
 static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
-static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2);
+static void ov9_0224B1B4(DistWorldSystem *param0, FieldEffectManager *param1, UnkStruct_ov9_0224B064 *param2);
 static void ov9_0224B3A8(DistWorldSystem *param0);
 static void ov9_0224B3F4(DistWorldSystem *param0);
 static void InitGhostPropManager(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropHeader *header, const DistWorldGhostPropTemplate *ghostPropTemplateList, int mapHeaderID, u32 hiddenGhostPropGroups);
@@ -1311,9 +1310,9 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     ov9_0224C8E8(dwSystem);
     ov9_0224CBD8(dwSystem);
     ov9_0224DCA8(dwSystem);
-    ov9_0224B1B4(dwSystem, dwSystem->fieldSystem->unk_40, &dwSystem->unk_1A8);
+    ov9_0224B1B4(dwSystem, dwSystem->fieldSystem->fieldEffMan, &dwSystem->unk_1A8);
     ov9_0224E984(dwSystem);
-    ov5_021F34B8(dwSystem->fieldSystem->unk_40);
+    ov5_021F34B8(dwSystem->fieldSystem->fieldEffMan);
     ov9_02249EF0(dwSystem);
 
     data->valid = TRUE;
@@ -1836,7 +1835,7 @@ static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
     memset(v0->unk_04, 0, param1);
     HeapExp_FndInitAllocator(&v0->unk_10, HEAP_ID_FIELD1, 4);
 
-    v0->unk_08 = ov5_021DF5C0(param0->fieldSystem->unk_40, 197, 1);
+    v0->unk_08 = FieldEffectManager_AllocAndReadNARCWholeMember(param0->fieldSystem->fieldEffMan, 197, 1);
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
 }
 
@@ -2860,7 +2859,7 @@ static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param
     return v2;
 }
 
-static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2)
+static void ov9_0224B1B4(DistWorldSystem *param0, FieldEffectManager *param1, UnkStruct_ov9_0224B064 *param2)
 {
     int v0;
     UnkStruct_ov9_0224B1B4 v1;
@@ -2886,7 +2885,7 @@ static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1
 
     for (v0 = 0; v0 < 9; v0++) {
         v1.unk_04 = Unk_ov9_02253680[v0];
-        v2 = ov5_021DF72C(param1, &Unk_ov9_02251508, NULL, 0, &v1, 0);
+        v2 = FieldEffectManager_InitAnimManager(param1, &Unk_ov9_02251508, NULL, 0, &v1, 0);
     }
 }
 
@@ -3173,7 +3172,7 @@ static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, i
     ghostProp.template = *ghostPropTemplate;
     ghostProp.system = system;
 
-    return ov5_021DF72C(system->fieldSystem->unk_40, animFuncs, NULL, 0, &ghostProp, 2);
+    return FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, animFuncs, NULL, 0, &ghostProp, 2);
 }
 
 static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction)
@@ -5382,7 +5381,7 @@ static void LoadProp3DModel(DistWorldSystem *system, u32 propKind)
 
     if (renderBuffs->models[propKind].propKind == PROP_KIND_INVALID) {
         renderBuffs->models[propKind].propKind = propKind;
-        ov5_021DFB00(system->fieldSystem->unk_40, &renderBuffs->models[propKind].model, 0, sProp3DModelNARCIndexByKind[propKind], TRUE);
+        FieldEffectManager_LoadModel(system->fieldSystem->fieldEffMan, &renderBuffs->models[propKind].model, 0, sProp3DModelNARCIndexByKind[propKind], TRUE);
     }
 }
 
@@ -5414,10 +5413,10 @@ static void LoadPropAnimSet(DistWorldSystem *system, u32 animKind)
 
     if (renderBuffs->animSets[animKind].animKind == PROP_ANIM_KIND_INVALID) {
         u32 narcIndex = sPropAnimSetNARCIndexByKind[animKind];
-        u32 animSetSize = ov5_021DF5A8(system->fieldSystem->unk_40, narcIndex);
+        u32 animSetSize = FieldEffectManager_GetNARCMemberSize(system->fieldSystem->fieldEffMan, narcIndex);
 
         renderBuffs->animSets[animKind].animSet = Heap_AllocAtEnd(HEAP_ID_FIELD1, animSetSize);
-        ov5_021DF5B4(system->fieldSystem->unk_40, narcIndex, renderBuffs->animSets[animKind].animSet);
+        FieldEffectManager_ReadNARCWholeMember(system->fieldSystem->fieldEffMan, narcIndex, renderBuffs->animSets[animKind].animSet);
         renderBuffs->animSets[animKind].animKind = animKind;
     }
 }
@@ -5844,7 +5843,7 @@ static OverworldAnimManager *ov9_0224DFA0(DistWorldSystem *param0, UnkStruct_ov9
         v1.unk_08 = 1;
     }
 
-    v0 = ov5_021DF72C(param0->fieldSystem->unk_40, &Unk_ov9_02251468, NULL, 0, &v1, 0);
+    v0 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, &Unk_ov9_02251468, NULL, 0, &v1, 0);
     return v0;
 }
 
@@ -6569,7 +6568,7 @@ static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *
     v0.unk_08 = *param1;
     v0.unk_04 = v1->unk_04;
 
-    v1->unk_08 = ov5_021DF72C(param0->fieldSystem->unk_40, &Unk_ov9_022514B8, NULL, 0, &v0, 0);
+    v1->unk_08 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, &Unk_ov9_022514B8, NULL, 0, &v0, 0);
 }
 
 static BOOL ov9_0224E964(DistWorldSystem *param0)
@@ -6802,7 +6801,7 @@ static void ov9_0224EBCC(DistWorldSystem *param0, UnkStruct_ov9_0224EBB8 *param1
         v0.unk_04 = param1;
         v1 = sPropAnimFuncsByKind[param2->unk_04];
 
-        param1->unk_04 = ov5_021DF72C(param0->fieldSystem->unk_40, v1, NULL, 0, &v0, 2);
+        param1->unk_04 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, v1, NULL, 0, &v0, 2);
     }
 }
 

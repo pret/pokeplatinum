@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DF440.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021F3D00.h"
 
 #include "map_object.h"
@@ -465,7 +465,7 @@ void sub_0206A158(MapObject *mapObj)
     OverworldAnimManager *v0 = sub_0206A224(mapObj);
 
     if (v0 != NULL) {
-        ov5_021DF74C(v0);
+        FieldEffectManager_FinishAnimManager(v0);
     }
 }
 

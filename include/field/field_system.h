@@ -13,6 +13,7 @@
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"
 #include "overlay005/dynamic_terrain_height.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
@@ -21,7 +22,6 @@
 #include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay023/struct_underground_top_screen_context_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
@@ -83,7 +83,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021D1A68 *unk_34;
     MapObjectManager *mapObjMan;
     PlayerAvatar *playerAvatar;
-    UnkStruct_ov5_021DF47C *unk_40;
+    FieldEffectManager *fieldEffMan;
     ModelAttributes *areaModelAttrs;
     UnkStruct_ov5_021D57D8 *unk_48;
     AreaLightManager *areaLightMan;

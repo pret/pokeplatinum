@@ -18,8 +18,8 @@
 #include "overlay005/const_ov5_021FB5BC.h"
 #include "overlay005/const_ov5_021FC9B4.h"
 #include "overlay005/const_ov5_021FD77C.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/funcptr_ov5_021EE454.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021F17B8.h"
@@ -1981,7 +1981,7 @@ static UnkStruct_020216E0 *ov5_021EE454(MapObject *param0, int param1, UnkFuncPt
             }
 
             MapObject_GetPosPtr(param0, &v12);
-            v11->unk_54 = ov5_021F1BA4(ov5_021DF578(param0), &v11->unk_28, v11->unk_24, &v12, v13, v14);
+            v11->unk_54 = ov5_021F1BA4(MapObject_GetFieldEffectManager(param0), &v11->unk_28, v11->unk_24, &v12, v13, v14);
         }
     }
 

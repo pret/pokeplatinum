@@ -14,8 +14,8 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/map_object_anim_cmd.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F2850.h"
@@ -269,7 +269,7 @@ static void PlayerAvatar_RequestStateWalking(PlayerAvatar *playerAvatar)
         OverworldAnimManager *v4 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
 
         if (v4 != NULL) {
-            ov5_021DF74C(v4);
+            FieldEffectManager_FinishAnimManager(v4);
         }
 
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, NULL);
@@ -288,7 +288,7 @@ static void PlayerAvatar_RequestStateCycle(PlayerAvatar *playerAvatar)
         OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
 
         if (v1 != NULL) {
-            ov5_021DF74C(v1);
+            FieldEffectManager_FinishAnimManager(v1);
         }
 
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, NULL);
@@ -306,7 +306,7 @@ static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
     OverworldAnimManager *v5 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
 
     if (v5 != NULL) {
-        ov5_021DF74C(v5);
+        FieldEffectManager_FinishAnimManager(v5);
     }
 
     PlayerAvatar_SetSurfMountAnimManager(playerAvatar, NULL);
@@ -828,7 +828,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
         sub_020656AC(v0->unk_10);
 
         if (v0->unk_14 != NULL) {
-            ov5_021DF74C(v0->unk_14);
+            FieldEffectManager_FinishAnimManager(v0->unk_14);
         }
 
         PlayerAvatar_SetSurfMountAnimManager(v0->playerAvatar, NULL);
@@ -1157,7 +1157,7 @@ static int SubTask_RockClimb_WaitFinished(RockClimbTaskEnv *taskEnv)
     }
 
     sub_020656AC(taskEnv->rockMount);
-    ov5_021DF74C(taskEnv->unk_18);
+    FieldEffectManager_FinishAnimManager(taskEnv->unk_18);
     return 1;
 }
 

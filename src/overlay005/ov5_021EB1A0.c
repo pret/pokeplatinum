@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/const_ov5_021FB51C.h"
-#include "overlay005/ov5_021DF440.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECA70.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
@@ -1575,7 +1575,7 @@ void ov5_021EC760(MapObject *mapObj)
     UnkStruct_ov5_021EC760 *v0 = sub_02062AF0(mapObj);
 
     if (v0->unk_00 != NULL) {
-        ov5_021DF74C(v0->unk_00);
+        FieldEffectManager_FinishAnimManager(v0->unk_00);
         v0->unk_00 = NULL;
     }
 }
@@ -1585,7 +1585,7 @@ void ov5_021EC778(MapObject *mapObj)
     UnkStruct_ov5_021EC760 *v0 = sub_02062AF0(mapObj);
 
     if (v0->unk_00 != NULL) {
-        ov5_021DF74C(v0->unk_00);
+        FieldEffectManager_FinishAnimManager(v0->unk_00);
         v0->unk_00 = NULL;
     }
 }
