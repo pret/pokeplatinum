@@ -3125,7 +3125,7 @@ BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *bat
     // Declarations here are done C89-style to match.
     BOOL result;
     Party *party;
-    Pokemon *pokemon;
+    Pokemon *mon;
     int partySize;
     int aliveMons = 0, neededAliveMons;
     int start, end;
@@ -3161,10 +3161,10 @@ BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *bat
     }
 
     for (int i = start; i < end; i++) {
-        pokemon = Party_GetPokemonBySlotIndex(party, i);
-        if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL)
-            && Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == FALSE
-            && Pokemon_GetValue(pokemon, MON_DATA_HP, NULL)
+        mon = Party_GetPokemonBySlotIndex(party, i);
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL)
+            && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL)
             && selectedSlot1 != i
             && selectedSlot2 != i) {
             aliveMons++;

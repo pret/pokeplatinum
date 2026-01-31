@@ -139,7 +139,7 @@ typedef struct BattlePartyPokemonMove {
 } BattlePartyPokemonMove;
 
 typedef struct BattlePartyPokemon {
-    Pokemon *pokemon;
+    Pokemon *mon;
     u16 species;
     u16 attack;
     u16 defence;

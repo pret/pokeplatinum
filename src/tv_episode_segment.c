@@ -1056,7 +1056,7 @@ void FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(FieldSys
 {
     u32 hasMale, hasFemale, hasGenderless, gender;
     u8 partyCount, partyIndex;
-    Pokemon *pokemon;
+    Pokemon *mon;
     TVEpisodeSegment segments;
     Party *party;
     TVEpisodeSegment_PokemonStorageSpecialNewsBulletin *pokemonStorageSpecialNewsBulletin = &segments.pokemonStorageSpecialNewsBulletin;
@@ -1068,10 +1068,10 @@ void FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(FieldSys
     partyCount = Party_GetCurrentCount(party);
 
     for (partyIndex = 0; partyIndex < partyCount; partyIndex++) {
-        pokemon = Party_GetPokemonBySlotIndex(party, partyIndex);
+        mon = Party_GetPokemonBySlotIndex(party, partyIndex);
 
-        if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == FALSE) {
-            gender = Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL);
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
 
             if (gender == GENDER_MALE) {
                 hasMale = TRUE;
@@ -1085,12 +1085,12 @@ void FieldSystem_SaveTVEpisodeSegment_PokemonStorageSpecialNewsBulletin(FieldSys
 
     if (hasGenderless == FALSE) {
         if (hasMale == TRUE && hasFemale == FALSE) {
-            pokemon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
-            TVEpisodeSegment_CopyPokemonValues(pokemon, &pokemonStorageSpecialNewsBulletin->species, &pokemonStorageSpecialNewsBulletin->gender, &pokemonStorageSpecialNewsBulletin->language, &pokemonStorageSpecialNewsBulletin->metGame);
+            mon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
+            TVEpisodeSegment_CopyPokemonValues(mon, &pokemonStorageSpecialNewsBulletin->species, &pokemonStorageSpecialNewsBulletin->gender, &pokemonStorageSpecialNewsBulletin->language, &pokemonStorageSpecialNewsBulletin->metGame);
             FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_POKEMON_STORAGE_SPECIAL_NEWS_BULLETIN, pokemonStorageSpecialNewsBulletin);
         } else if (hasMale == FALSE && hasFemale == TRUE) {
-            pokemon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
-            TVEpisodeSegment_CopyPokemonValues(pokemon, &pokemonStorageSpecialNewsBulletin->species, &pokemonStorageSpecialNewsBulletin->gender, &pokemonStorageSpecialNewsBulletin->language, &pokemonStorageSpecialNewsBulletin->metGame);
+            mon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
+            TVEpisodeSegment_CopyPokemonValues(mon, &pokemonStorageSpecialNewsBulletin->species, &pokemonStorageSpecialNewsBulletin->gender, &pokemonStorageSpecialNewsBulletin->language, &pokemonStorageSpecialNewsBulletin->metGame);
             FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_TRAINER_SIGHTINGS, TV_PROGRAM_SEGMENT_POKEMON_STORAGE_SPECIAL_NEWS_BULLETIN, pokemonStorageSpecialNewsBulletin);
         }
     }
@@ -1670,10 +1670,10 @@ void FieldSystem_SaveTVEpisodeSegment_YourPokemonCorner(FieldSystem *fieldSystem
 {
     TVEpisodeSegment segments;
     TVEpisodeSegment_YourPokemonCorner *yourPokemonCorner = &segments.yourPokemonCorner;
-    Pokemon *pokemon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
+    Pokemon *mon = Party_FindFirstHatchedMon(SaveData_GetParty(fieldSystem->saveData));
 
-    TVEpisodeSegment_CopyPokemonValues(pokemon, &yourPokemonCorner->species, &yourPokemonCorner->gender, &yourPokemonCorner->language, &yourPokemonCorner->metGame);
-    sub_0206CED0(HEAP_ID_FIELD3, pokemon, &yourPokemonCorner->hasNickname, yourPokemonCorner->nickname);
+    TVEpisodeSegment_CopyPokemonValues(mon, &yourPokemonCorner->species, &yourPokemonCorner->gender, &yourPokemonCorner->language, &yourPokemonCorner->metGame);
+    sub_0206CED0(HEAP_ID_FIELD3, mon, &yourPokemonCorner->hasNickname, yourPokemonCorner->nickname);
 
     yourPokemonCorner->customMessageWord = customMessageWord;
     FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_INTERVIEWS, TV_PROGRAM_SEGMENT_YOUR_POKEMON_CORNER, yourPokemonCorner);
@@ -2755,15 +2755,15 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *template, UnkS
 {
     String *v0;
     u16 v1, v2;
-    Pokemon *pokemon;
+    Pokemon *mon;
     Party *party;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
     party = SaveData_GetParty(fieldSystem->saveData);
-    pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
+    mon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
-    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_Language(trainerInfo), TrainerInfo_GameCode(trainerInfo));
+    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_GENDER, NULL), TrainerInfo_Language(trainerInfo), TrainerInfo_GameCode(trainerInfo));
     StringTemplate_SetContestAccessoryName(template, 1, LCRNG_Next() % 100);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
