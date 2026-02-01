@@ -3,10 +3,15 @@
 ### This tool is responsible for using `debugedit` to fix Wine paths in the debuginfo file to real filesystem paths.
 ### VSC requires the debuginfo paths to map to real filesystem paths in order for VSC to correctly open sources during a debugging session.
 ### (This works fine on my Linux system, but may or may not work on WSL, and will certainly not work on other systems)
-import subprocess
 import os
+import platform
 import shutil
+import subprocess
 import sys
+
+if platform.system() == "Darwin":
+    print("Skipping nef_fixer.py, debugedit not supported on macOS")
+    sys.exit(0)
 
 try:
     os.remove("sources.txt")
@@ -24,17 +29,18 @@ subprocess.run(["debugedit", "-l", "sources.txt", dest])
 
 with open("sources.txt") as f:
     content = f.read()
-    all_sources = content.split('\0')
+    all_sources = content.split("\0")
 
 print("Identifying unique source directories")
 source_paths = []
 for source in all_sources:
     source_parts = source.split(":")
-    if len(source_parts) != 3: continue
+    if len(source_parts) != 3:
+        continue
 
     source_original = source_parts[0] + ":" + source_parts[1]
     source_original = source_original[:-2]
-    
+
     if source_original not in source_paths:
         source_paths.append(source_original)
 
