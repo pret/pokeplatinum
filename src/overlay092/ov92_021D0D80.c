@@ -5,7 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
@@ -685,7 +684,7 @@ int ov92_021D1478(ApplicationManager *appMan, int *param1)
 
 static void ov92_021D14F0(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

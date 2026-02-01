@@ -6,7 +6,6 @@
 #include "generated/journal_online_events.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_0209BF64.h"
 #include "struct_defs/struct_0209C194.h"
 
@@ -371,7 +370,7 @@ static void ov109_021D40A8(void *param0)
 
 static void ov109_021D40D0(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
