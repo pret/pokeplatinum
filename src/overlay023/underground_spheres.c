@@ -529,7 +529,7 @@ static void SphereRadar_TimerSysTask(SysTask *sysTask, void *timer)
 
     radarTimer->timer++;
 
-    if (radarTimer->timer > 100) {
+    if (radarTimer->timer > MAX_BURIED_SPHERES) {
         Sound_PlayEffect(SEQ_SE_PL_UG_006);
         radarTimer->timer = 0;
     }
@@ -542,7 +542,7 @@ void SphereRadar_Start(void)
 
     SphereRadarTimer *radarTimer = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(SphereRadarTimer));
     MI_CpuFill8(radarTimer, 0, sizeof(SphereRadarTimer));
-    radarTimer->timer = 100;
+    radarTimer->timer = MAX_BURIED_SPHERES;
 
     buriedSpheresEnv->sphereRadarTimer = radarTimer;
     buriedSpheresEnv->sysTask = SysTask_Start(SphereRadar_TimerSysTask, radarTimer, 100);
@@ -559,12 +559,12 @@ void SphereRadar_Exit(void)
     }
 }
 
-int SphereRadar_GetXCoordOfBuriedSphere(int param0)
+int SphereRadar_GetXCoordOfBuriedSphere(int radarIndex)
 {
     if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarTimer) {
         // bug: only the first 66 buried spheres can show up on the radar
         int index = buriedSpheresEnv->sphereRadarTimer->timer / 2;
-        index = (index + param0) % 100;
+        index = (index + radarIndex) % MAX_BURIED_SPHERES;
 
         return UndergroundSpheres_GetBuriedSphereXCoordAtIndex(index);
     }
@@ -572,12 +572,12 @@ int SphereRadar_GetXCoordOfBuriedSphere(int param0)
     return 0;
 }
 
-int SphereRadar_GetZCoordOfBuriedSphere(int param0)
+int SphereRadar_GetZCoordOfBuriedSphere(int radarIndex)
 {
     if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarTimer) {
         // bug: only the first 66 buried spheres can show up on the radar
         int index = buriedSpheresEnv->sphereRadarTimer->timer / 2;
-        index = (index + param0) % 100;
+        index = (index + radarIndex) % MAX_BURIED_SPHERES;
 
         return UndergroundSpheres_GetBuriedSphereZCoordAtIndex(index);
     }

@@ -3066,7 +3066,7 @@ static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
     UnkStruct_ov8_0224B8A0 *v5 = param0->unk_04;
     UnkStruct_ov8_0224BCA8 *v6 = param0->unk_10C;
 
-    while (sub_020625B0(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
         if (MapObject_GetLocalID(v2) == 0xfd) {
             if (MapObject_GetDataAt(v2, 0) == 0) {
                 ov8_0224B80C(&v5->unk_08, v2, fieldSystem);
@@ -3308,7 +3308,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
         if (v1 == 0) {
             (void)0;
         } else {
-            sub_02064450(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
+            VecFx32_SetPosFromMapCoords(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
             MapObject_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
             MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
             MapObject_UpdateCoords(v0->unk_08.unk_08);
@@ -3809,7 +3809,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
     v1 = 0;
     v3 = sub_02062858(mapObjMan) + 2;
 
-    while (sub_020625B0(mapObjMan, &v5, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0))) {
         v4 = MapObject_GetLocalID(v5);
         v6->unk_08 = MapObject_GetDataAt(v5, 0);
 
@@ -3875,7 +3875,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     v2 = 2;
     v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
 
-    while (sub_020625B0(mapObjMan, &v7, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, (1 << 0))) {
         if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {
             v3 = sub_02067D58(v7, playerAvatar, v1, v2);
 

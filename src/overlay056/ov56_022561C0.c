@@ -766,7 +766,7 @@ static String *ov56_02256E5C(PalPad *param0, u32 param1, StringTemplate *param2,
             v1 = String_Init(10, HEAP_ID_89);
 
             String_CopyChars(v1, PalPad_GetTrainerNamePointer(param0, v3));
-            StringTemplate_SetString(param2, 0, v1, 0, 0, PalPad_GetTrainerRegionCode(param0, v3));
+            StringTemplate_SetString(param2, 0, v1, 0, 0, PalPad_GetTrainerLanguage(param0, v3));
             String_Free(v1);
         }
 

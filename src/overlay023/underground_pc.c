@@ -771,9 +771,9 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
                 UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
 
                 if (CommServerClient_IsInClosedSecretBase()) {
-                    ov23_02242FA8();
+                    CommManUnderground_DeactivateRadar();
                 } else {
-                    ov23_02242FBC();
+                    CommManUnderground_SetNormalRadarActive();
                 }
 
                 TrapRadar_Exit();

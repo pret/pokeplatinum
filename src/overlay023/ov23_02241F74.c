@@ -96,7 +96,7 @@ typedef struct {
     u8 unk_149;
     u8 unk_14A;
     u8 unk_14B;
-    u8 unk_14C;
+    u8 messageRetrieved;
 } CommManUnderground;
 
 typedef struct {
@@ -110,6 +110,14 @@ typedef struct {
     u8 unk_04;
     u8 unk_05;
 } UnkStruct_ov23_02243360;
+
+enum Radar {
+    RADAR_NONE = 0,
+    RADAR_NORMAL,
+    RADAR_SPHERE,
+    RADAR_TREASURE,
+    RADAR_TRAP,
+};
 
 static void ov23_022433F4(int param0);
 static void ov23_02243310(SysTask *param0, void *param1);
@@ -129,7 +137,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_1C.x = 0;
     sCommManUnderground->unk_1C.z = 0;
     sCommManUnderground->unk_14B = 0;
-    sCommManUnderground->activeRadar = 1;
+    sCommManUnderground->activeRadar = RADAR_NORMAL;
     sCommManUnderground->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 500);
     sCommManUnderground->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
     sCommManUnderground->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 1000);
@@ -830,34 +838,34 @@ void ov23_02242D44(FieldSystem *fieldSystem)
     }
 }
 
-BOOL ov23_02242D60(String *param0)
+BOOL CommManUnderground_GetQueuedMessage(String *dest)
 {
-    if (sCommManUnderground->unk_14C) {
-        sCommManUnderground->unk_14C = 0;
-        return 0;
+    if (sCommManUnderground->messageRetrieved) {
+        sCommManUnderground->messageRetrieved = FALSE;
+        return FALSE;
     }
 
-    if (ov23_02242308(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (UndergroundTraps_GetQueuedMessage(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (UndergroundTraps_GetQueuedMessage2(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (SecretBases_GetQueuedMessage(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (ov23_022415B8(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
-    } else if (UndergroundSpheres_CheckForRetrievedSphereNotification(param0)) {
-        sCommManUnderground->unk_14C = 1;
-        return 1;
+    if (ov23_02242308(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (UndergroundTraps_GetQueuedMessage(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (UndergroundTraps_GetQueuedMessage2(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (SecretBases_GetQueuedMessage(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (ov23_022415B8(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
+    } else if (UndergroundSpheres_CheckForRetrievedSphereNotification(dest)) {
+        sCommManUnderground->messageRetrieved = TRUE;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 SecretBase *ov23_02242E10(SaveData *saveData)
@@ -896,90 +904,81 @@ BOOL Underground_AreCoordinatesInSecretBase(int x, int z)
     return TRUE;
 }
 
-int ov23_02242E78(int param0)
+int CommManUnderground_GetRadarItemXCoord(int index)
 {
-    int v0, v1;
-
     if (sCommManUnderground) {
-        if (param0 < 16) {
-            v1 = param0;
-
+        if (index < MAX_RADAR_BLIPS) {
             switch (sCommManUnderground->activeRadar) {
-            case 0:
+            case RADAR_NONE:
                 return 0;
-            case 1:
-                if (param0 < 8) {
-                    return ov23_0224121C(v1);
+            case RADAR_NORMAL:
+                if (index < 8) {
+                    return ov23_0224121C(index);
                 }
-            case 2:
-                return SphereRadar_GetXCoordOfBuriedSphere(v1);
-            case 4:
-                return TrapRadar_GetXCoordOfBuriedTrap(v1);
-            case 3:
-                return ov23_0224125C(v1);
+            case RADAR_SPHERE:
+                return SphereRadar_GetXCoordOfBuriedSphere(index);
+            case RADAR_TRAP:
+                return TrapRadar_GetXCoordOfBuriedTrap(index);
+            case RADAR_TREASURE:
+                return ov23_0224125C(index);
             }
         } else {
-            SecretBase *v2 = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
-            return SecretBase_GetEntranceXCoord(v2);
+            SecretBase *secretBase = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
+            return SecretBase_GetEntranceXCoord(secretBase);
         }
     }
 
     return 0;
 }
 
-int ov23_02242EE0(int param0)
+int CommManUnderground_GetRadarItemZCoord(int index)
 {
-    int v0, v1, v2;
-
     if (sCommManUnderground) {
-        if (param0 < 16) {
-            v1 = param0;
-
+        if (index < MAX_RADAR_BLIPS) {
             switch (sCommManUnderground->activeRadar) {
-            case 0:
+            case RADAR_NONE:
                 return 0;
-            case 1:
-                if (param0 < 8) {
-                    return ov23_0224123C(v1);
+            case RADAR_NORMAL:
+                if (index < 8) {
+                    return ov23_0224123C(index);
                 }
-            case 2:
-                return SphereRadar_GetZCoordOfBuriedSphere(v1);
-            case 4:
-                return TrapRadar_GetZCoordOfBuriedTrap(v1);
-            case 3:
-                return ov23_02241294(v1);
+            case RADAR_SPHERE:
+                return SphereRadar_GetZCoordOfBuriedSphere(index);
+            case RADAR_TRAP:
+                return TrapRadar_GetZCoordOfBuriedTrap(index);
+            case RADAR_TREASURE:
+                return ov23_02241294(index);
             }
         } else {
-            SecretBase *v3 = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
-
-            return SecretBase_GetEntranceZCoord(v3);
+            SecretBase *secretBase = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
+            return SecretBase_GetEntranceZCoord(secretBase);
         }
     }
 
     return 0;
 }
 
-int ov23_02242F48(int param0)
+int CommManUnderground_GetRadarItemAnimID(int index)
 {
     if (sCommManUnderground) {
-        if (param0 < 16) {
+        if (index < MAX_RADAR_BLIPS) {
             switch (sCommManUnderground->activeRadar) {
-            case 1:
-                if (param0 < 8) {
-                    return 12;
+            case RADAR_NORMAL:
+                if (index < 8) {
+                    return MARKER_ANIM_MINING_SPOT;
                 }
-            case 2:
-                return 9;
-            case 4:
-                return 11;
-            case 3:
-                return 12;
+            case RADAR_SPHERE:
+                return MARKER_ANIM_SPHERE;
+            case RADAR_TRAP:
+                return MARKER_ANIM_TRAP;
+            case RADAR_TREASURE:
+                return MARKER_ANIM_MINING_SPOT;
             }
         } else {
-            SecretBase *v0 = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
+            SecretBase *secretBase = SaveData_GetSecretBase(sCommManUnderground->fieldSystem->saveData);
 
-            if (SecretBase_IsActive(v0)) {
-                return 3;
+            if (SecretBase_IsActive(secretBase)) {
+                return MARKER_ANIM_SECRET_BASE;
             }
         }
     }
@@ -987,29 +986,29 @@ int ov23_02242F48(int param0)
     return 0;
 }
 
-void ov23_02242FA8(void)
+void CommManUnderground_DeactivateRadar(void)
 {
-    sCommManUnderground->activeRadar = 0;
+    sCommManUnderground->activeRadar = RADAR_NONE;
 }
 
-void ov23_02242FBC(void)
+void CommManUnderground_SetNormalRadarActive(void)
 {
-    sCommManUnderground->activeRadar = 1;
+    sCommManUnderground->activeRadar = RADAR_NORMAL;
 }
 
 void CommManUnderground_SetSphereRadarActive(void)
 {
-    sCommManUnderground->activeRadar = 2;
+    sCommManUnderground->activeRadar = RADAR_SPHERE;
 }
 
 void CommManUnderground_SetTrapRadarActive(void)
 {
-    sCommManUnderground->activeRadar = 4;
+    sCommManUnderground->activeRadar = RADAR_TRAP;
 }
 
 void CommManUnderground_SetTreasureRadarActive(void)
 {
-    sCommManUnderground->activeRadar = 3;
+    sCommManUnderground->activeRadar = RADAR_TREASURE;
 }
 
 void ov23_0224300C(int param0, int param1)

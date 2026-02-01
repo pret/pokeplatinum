@@ -185,7 +185,7 @@ typedef struct {
     u16 unk_00;
     u16 unk_02;
     u8 unk_04;
-    u8 unk_05;
+    u8 language;
     u8 unk_06;
     u8 unk_07;
 } UnkStruct_0206DBE8;
@@ -193,7 +193,7 @@ typedef struct {
 typedef struct {
     u16 unk_00;
     u8 unk_02;
-    u8 unk_03;
+    u8 language;
     u8 unk_04;
     u32 unk_08;
 } UnkStruct_0206DC9C;
@@ -210,7 +210,7 @@ typedef struct {
     u8 unk_17;
     u8 unk_18;
     u8 unk_19;
-    u8 unk_1A;
+    u8 language;
     u8 unk_1B;
     u16 unk_1C;
 } UnkStruct_0206DE80;
@@ -367,36 +367,36 @@ static const TVProgramSegment sInterviewsSegments[TV_PROGRAM_TYPE_INTERVIEWS_NUM
 static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS];
 static const TVProgramSegment sVarietyHourSegments[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS];
 
-static const TVProgramType sProgramTypes[] = {
-    {
-        TV_PROGRAM_TYPE_INTERVIEWS,
-        TEXT_BANK_TV_PROGRAMS_INTERVIEWS,
-        TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS + 1,
-        sInterviewsSegments,
+static const TVProgramType sProgramTypes[TV_PROGRAM_TYPE_MAX - 1] = {
+    [TV_PROGRAM_TYPE_INTERVIEWS - 1] = {
+        .programTypeID = TV_PROGRAM_TYPE_INTERVIEWS,
+        .bankID = TEXT_BANK_TV_PROGRAMS_INTERVIEWS,
+        .numSegments = TV_PROGRAM_TYPE_INTERVIEWS_NUM_SEGMENTS + 1,
+        .segments = sInterviewsSegments,
     },
-    {
-        TV_PROGRAM_TYPE_TRAINER_SIGHTINGS,
-        TEXT_BANK_TV_PROGRAMS_TRAINER_SIGHTINGS,
-        TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS + 1,
-        sTrainerSightingsSegments,
+    [TV_PROGRAM_TYPE_TRAINER_SIGHTINGS - 1] = {
+        .programTypeID = TV_PROGRAM_TYPE_TRAINER_SIGHTINGS,
+        .bankID = TEXT_BANK_TV_PROGRAMS_TRAINER_SIGHTINGS,
+        .numSegments = TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS + 1,
+        .segments = sTrainerSightingsSegments,
     },
-    {
-        TV_PROGRAM_TYPE_RECORDS,
-        TEXT_BANK_TV_PROGRAMS_RECORDS,
-        TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS + 1,
-        sRecordsSegments,
+    [TV_PROGRAM_TYPE_RECORDS - 1] = {
+        .programTypeID = TV_PROGRAM_TYPE_RECORDS,
+        .bankID = TEXT_BANK_TV_PROGRAMS_RECORDS,
+        .numSegments = TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS + 1,
+        .segments = sRecordsSegments,
     },
-    {
-        TV_PROGRAM_TYPE_SINNOH_NOW,
-        TEXT_BANK_TV_PROGRAMS_SINNOH_NOW,
-        TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS + 1,
-        sSinnohNowSegments,
+    [TV_PROGRAM_TYPE_SINNOH_NOW - 1] = {
+        .programTypeID = TV_PROGRAM_TYPE_SINNOH_NOW,
+        .bankID = TEXT_BANK_TV_PROGRAMS_SINNOH_NOW,
+        .numSegments = TV_PROGRAM_TYPE_SINNOH_NOW_NUM_SEGMENTS + 1,
+        .segments = sSinnohNowSegments,
     },
-    {
-        TV_PROGRAM_TYPE_VARIETY_HOUR,
-        TEXT_BANK_TV_PROGRAMS_VARIETY_HOUR,
-        TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS + 1,
-        sVarietyHourSegments,
+    [TV_PROGRAM_TYPE_VARIETY_HOUR - 1] = {
+        .programTypeID = TV_PROGRAM_TYPE_VARIETY_HOUR,
+        .bankID = TEXT_BANK_TV_PROGRAMS_VARIETY_HOUR,
+        .numSegments = TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS + 1,
+        .segments = sVarietyHourSegments,
     },
 };
 
@@ -477,12 +477,12 @@ static void SaveData_SaveTVEpisodeSegment(SaveData *saveData, int programTypeID,
     TVBroadcast_SaveSegmentData(broadcast, programTypeID, segmentID, (const u8 *)segment);
 }
 
-static void sub_0206CD94(StringTemplate *template, int idx, const u16 *param2, int unused3, int unused4, int unused5)
+static void sub_0206CD94(StringTemplate *template, int idx, const u16 *param2, int unused3, int language, int unused5)
 {
     String *string = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(string, param2);
-    StringTemplate_SetString(template, idx, string, unused3, unused5, unused4);
+    StringTemplate_SetString(template, idx, string, unused3, unused5, language);
     String_Free(string);
 }
 
@@ -508,12 +508,12 @@ static void TVEpisodeSegment_CopyPokemonValues(Pokemon *mon, u16 *species, u8 *g
     *metGame = Pokemon_GetValue(mon, MON_DATA_MET_GAME, NULL);
 }
 
-static void TVEpisodeSegment_SetTemplatePokemonSpecies(StringTemplate *template, int idx, u16 species, u8 unused3, u8 unused4, u8 unused5)
+static void TVEpisodeSegment_SetTemplatePokemonSpecies(StringTemplate *template, int idx, u16 species, u8 unused3, u8 language, u8 unused5)
 {
     u16 speciesName[TEMPLATE_NAME_SIZE];
 
     MessageLoader_GetSpeciesName(species, HEAP_ID_FIELD1, speciesName);
-    sub_0206CD94(template, idx, speciesName, unused3, unused4, 1);
+    sub_0206CD94(template, idx, speciesName, unused3, language, 1);
 }
 
 static void TVEpisodeSegment_SetTemplateOwnPokemonSpecies(StringTemplate *template, int idx, u16 species)
@@ -542,7 +542,7 @@ void sub_0206CF14(TVBroadcast *broadcast, Pokemon *param1, int param2, int param
     UnkStruct_0202E7D8 *v0 = sub_0202E7D8(broadcast);
 
     v0->unk_00 = 1;
-    TVEpisodeSegment_CopyPokemonValues(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
+    TVEpisodeSegment_CopyPokemonValues(param1, &v0->unk_02, &v0->unk_04, &v0->language, &v0->unk_06);
     v0->unk_08 = param2;
     v0->unk_07 = param3;
     v0->unk_09 = param4;
@@ -558,7 +558,7 @@ void sub_0206CF48(TVBroadcast *broadcast, Pokemon *param1, enum HeapID heapID)
     v0->unk_1F = 0;
     v0->unk_1E = Pokemon_GetNature(param1);
 
-    TVEpisodeSegment_CopyPokemonValues(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
+    TVEpisodeSegment_CopyPokemonValues(param1, &v0->unk_02, &v0->unk_04, &v0->language, &v0->unk_06);
     v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(heapID, param1, &v0->unk_07, v0->unk_08);
@@ -633,7 +633,7 @@ void sub_0206D048(TVBroadcast *broadcast, Pokemon *mon)
     UnkStruct_0202E810 *v0 = sub_0202E810(broadcast);
 
     v0->unk_00 = 1;
-    TVEpisodeSegment_CopyPokemonValues(mon, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
+    TVEpisodeSegment_CopyPokemonValues(mon, &v0->unk_02, &v0->unk_04, &v0->language, &v0->unk_06);
     v0->unk_07 = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(HEAP_ID_FIELD2, mon, &v0->unk_07, v0->unk_08);
@@ -649,7 +649,7 @@ void sub_0206D088(TVBroadcast *broadcast, u8 param1, const TrainerInfo *param2)
 
     CharCode_Copy(v0->unk_06, TrainerInfo_Name(param2));
 
-    v0->unk_03 = TrainerInfo_RegionCode(param2);
+    v0->language = TrainerInfo_Language(param2);
     v0->unk_04 = TrainerInfo_GameCode(param2);
     v0->unk_02 = TrainerInfo_Gender(param2);
 
@@ -1301,7 +1301,7 @@ void sub_0206DBB0(SaveData *saveData, u32 param1, Pokemon *param2, BOOL param3)
     TVEpisodeSegment segments;
     UnkStruct_0206DBE8 *v1 = &segments.val18;
 
-    TVEpisodeSegment_CopyPokemonValues(param2, &v1->unk_02, &v1->unk_04, &v1->unk_05, &v1->unk_06);
+    TVEpisodeSegment_CopyPokemonValues(param2, &v1->unk_02, &v1->unk_04, &v1->language, &v1->unk_06);
 
     v1->unk_00 = param1;
     v1->unk_07 = param3;
@@ -1314,7 +1314,7 @@ static int sub_0206DBE8(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     UnkStruct_0206DBE8 *v0 = ov6_02246498(param2);
 
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
-    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_02, v0->unk_04, v0->unk_05, v0->unk_06);
+    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_02, v0->unk_04, v0->language, v0->unk_06);
     StringTemplate_SetNumber(param1, 2, v0->unk_00, 4, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
     if (v0->unk_07) {
@@ -1340,7 +1340,7 @@ void sub_0206DC6C(FieldSystem *fieldSystem, u32 param1, Pokemon *param2)
     TVEpisodeSegment segments;
     UnkStruct_0206DC9C *v1 = &segments.val19;
 
-    TVEpisodeSegment_CopyPokemonValues(param2, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
+    TVEpisodeSegment_CopyPokemonValues(param2, &v1->unk_00, &v1->unk_02, &v1->language, &v1->unk_04);
     v1->unk_08 = param1;
     FieldSystem_SaveTVEpisodeSegment(fieldSystem, TV_PROGRAM_TYPE_RECORDS, 3, v1);
 }
@@ -1350,7 +1350,7 @@ static int sub_0206DC9C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     UnkStruct_0206DC9C *v0 = ov6_02246498(param2);
 
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
-    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_00, v0->unk_02, v0->unk_03, v0->unk_04);
+    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_00, v0->unk_02, v0->language, v0->unk_04);
 
     {
         u32 v1 = (((v0->unk_08 * 1000) / 254 + 5) / 10);
@@ -1416,7 +1416,7 @@ void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam)
             return;
         }
 
-        TVEpisodeSegment_CopyPokemonValues(mon, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
+        TVEpisodeSegment_CopyPokemonValues(mon, &v3->unk_1C, &v3->unk_19, &v3->language, &v3->unk_1B);
         sub_0206CED0(HEAP_ID_FIELD3, mon, &v3->unk_18, v3->unk_00);
 
         v3->unk_16 = Ribbon_MonDataParamToNameID(monDataParam);
@@ -1489,9 +1489,9 @@ static int sub_0206DE80(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     TVEpisodeSegment_SetTemplateTrainerName(param1, 0, param2);
 
     if (v0->unk_18) {
-        sub_0206CD94(param1, 1, v0->unk_00, v0->unk_19, v0->unk_1A, 1);
+        sub_0206CD94(param1, 1, v0->unk_00, v0->unk_19, v0->language, 1);
     } else {
-        TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_1C, v0->unk_19, v0->unk_1A, v0->unk_1B);
+        TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 1, v0->unk_1C, v0->unk_19, v0->language, v0->unk_1B);
     }
 
     StringTemplate_SetRibbonName(param1, 2, v0->unk_16);
@@ -1745,7 +1745,7 @@ static int TVEpisodeSegment_LoadMessage_ContestHall(FieldSystem *fieldSystem, St
 {
     TVEpisodeSegment_ContestHall *contestHall = ov6_02246498(param2);
 
-    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, contestHall->unk_00.unk_02, contestHall->unk_00.unk_04, contestHall->unk_00.unk_05, contestHall->unk_00.unk_06);
+    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, contestHall->unk_00.unk_02, contestHall->unk_00.unk_04, contestHall->unk_00.language, contestHall->unk_00.unk_06);
     StringTemplate_SetContestTypeName(template, 1, Contest_GetContestTypeMessageID(contestHall->unk_00.unk_08));
     StringTemplate_SetContestRankName(template, 2, Contest_GetRankMessageID(contestHall->unk_00.unk_07));
     StringTemplate_SetNumber(template, 3, contestHall->unk_00.unk_09, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
@@ -1870,7 +1870,7 @@ static int TVEpisodeSegment_LoadMessage_AmitySquareWatch(FieldSystem *fieldSyste
     TVEpisodeSegment_AmitySquareWatch *amitySquareWatch = ov6_02246498(param2);
 
     TVEpisodeSegment_SetTemplateTrainerName(template, 0, param2);
-    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, amitySquareWatch->unk_00.unk_02, amitySquareWatch->unk_00.unk_04, amitySquareWatch->unk_00.unk_05, amitySquareWatch->unk_00.unk_06);
+    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, amitySquareWatch->unk_00.unk_02, amitySquareWatch->unk_00.unk_04, amitySquareWatch->unk_00.language, amitySquareWatch->unk_00.unk_06);
     StringTemplate_SetNatureName(template, 2, amitySquareWatch->unk_00.unk_1E);
     StringTemplate_SetCustomMessageWord(template, 5, amitySquareWatch->customWordMessage);
 
@@ -1907,12 +1907,12 @@ static int TVEpisodeSegment_LoadMessage_BattleFrontierFrontlineNews_Single(Field
     TVEpisodeSegment_BattleFrontierFrontlineNews_Single *battleFrontierFrontlineNewsSingle = ov6_02246498(param2);
 
     TVEpisodeSegment_SetTemplateTrainerName(template, 0, param2);
-    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, battleFrontierFrontlineNewsSingle->unk_00.unk_02, battleFrontierFrontlineNewsSingle->unk_00.unk_04, battleFrontierFrontlineNewsSingle->unk_00.unk_05, battleFrontierFrontlineNewsSingle->unk_00.unk_06);
+    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, battleFrontierFrontlineNewsSingle->unk_00.unk_02, battleFrontierFrontlineNewsSingle->unk_00.unk_04, battleFrontierFrontlineNewsSingle->unk_00.language, battleFrontierFrontlineNewsSingle->unk_00.unk_06);
 
     if (battleFrontierFrontlineNewsSingle->unk_00.unk_07) {
-        sub_0206CD94(template, 2, battleFrontierFrontlineNewsSingle->unk_00.unk_08, battleFrontierFrontlineNewsSingle->unk_00.unk_04, battleFrontierFrontlineNewsSingle->unk_00.unk_05, 1);
+        sub_0206CD94(template, 2, battleFrontierFrontlineNewsSingle->unk_00.unk_08, battleFrontierFrontlineNewsSingle->unk_00.unk_04, battleFrontierFrontlineNewsSingle->unk_00.language, 1);
     } else {
-        TVEpisodeSegment_SetTemplatePokemonSpecies(template, 2, battleFrontierFrontlineNewsSingle->unk_00.unk_02, battleFrontierFrontlineNewsSingle->unk_00.unk_04, battleFrontierFrontlineNewsSingle->unk_00.unk_05, battleFrontierFrontlineNewsSingle->unk_00.unk_06);
+        TVEpisodeSegment_SetTemplatePokemonSpecies(template, 2, battleFrontierFrontlineNewsSingle->unk_00.unk_02, battleFrontierFrontlineNewsSingle->unk_00.unk_04, battleFrontierFrontlineNewsSingle->unk_00.language, battleFrontierFrontlineNewsSingle->unk_00.unk_06);
     }
 
     StringTemplate_SetCustomMessageWord(template, 3, battleFrontierFrontlineNewsSingle->customWordMessage);
@@ -2022,7 +2022,7 @@ static int TVEpisodeSegment_LoadMessage_BattleFrontierFrontlineNews_Multi(FieldS
 
     TVEpisodeSegment_SetTemplateTrainerName(template, 0, param2);
     String_CopyChars(v2, battleFrontierFrontlineNewsMulti->unk_00.unk_06);
-    StringTemplate_SetString(template, 1, v2, battleFrontierFrontlineNewsMulti->unk_00.unk_02, 0, battleFrontierFrontlineNewsMulti->unk_00.unk_03);
+    StringTemplate_SetString(template, 1, v2, battleFrontierFrontlineNewsMulti->unk_00.unk_02, 0, battleFrontierFrontlineNewsMulti->unk_00.language);
     String_Free(v2);
     StringTemplate_SetCustomMessageWord(template, 2, battleFrontierFrontlineNewsMulti->customWordMessage);
 
@@ -2112,7 +2112,7 @@ static int TVEpisodeSegment_LoadMessage_DiscoveringGroups(FieldSystem *fieldSyst
     StringTemplate_SetUnionGroupName(template, fieldSystem->saveData, entry, 1, 0);
     StringTemplate_SetPokemonTypeName(template, 2, type);
 
-    return pl_msg_00000418_00000;
+    return TVProgramSinnohNow_Text_DiscoveringGroups;
 }
 
 static BOOL TVEpisodeSegment_IsEligible_DiscoveringGroups(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2144,35 +2144,35 @@ static int TVEpisodeSegment_LoadMessage_OnTheSpotWeather(FieldSystem *fieldSyste
     case OVERWORLD_WEATHER_CLEAR:
         switch (LCRNG_RandMod(4)) {
         case 0:
-            return pl_msg_00000418_00001;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear1;
         case 1:
-            return pl_msg_00000418_00002;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear2;
         case 2:
-            return pl_msg_00000418_00003;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear3;
         case 3:
-            return pl_msg_00000418_00004;
+            return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear4;
         }
     case OVERWORLD_WEATHER_CLOUDY:
-        return pl_msg_00000418_00005;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Cloudy;
     case OVERWORLD_WEATHER_RAINING:
-        return pl_msg_00000418_00006;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Raining;
     case OVERWORLD_WEATHER_HEAVY_RAIN:
-        return pl_msg_00000418_00007;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_HeavyRain;
     case OVERWORLD_WEATHER_SNOWING:
-        return pl_msg_00000418_00008;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Snowing;
     case OVERWORLD_WEATHER_HEAVY_SNOW:
-        return pl_msg_00000418_00009;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_HeavySnow;
     case OVERWORLD_WEATHER_BLIZZARD:
-        return pl_msg_00000418_00010;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Blizzard;
     case OVERWORLD_WEATHER_THUNDERSTORM:
-        return pl_msg_00000418_00011;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Thunderstorm;
     case OVERWORLD_WEATHER_HAILING:
-        return pl_msg_00000418_00012;
+        return TVProgramSinnohNow_Text_OnTheSpotWeather_Hailing;
     default:
         GF_ASSERT(FALSE);
     }
 
-    return pl_msg_00000418_00001;
+    return TVProgramSinnohNow_Text_OnTheSpotWeather_Clear1;
 }
 
 static BOOL FieldSystem_AlwaysTrue(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2189,66 +2189,66 @@ static int TVEpisodeSegment_LoadMessage_YourTownsBestThree(FieldSystem *fieldSys
     if (mapID == MAP_HEADER_TWINLEAF_TOWN || (mapID >= MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F && mapID <= MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE)) {
         StringTemplate_SetPlayerName(template, 0, trainerInfo);
         StringTemplate_SetRivalName(template, 1, fieldSystem->saveData);
-        return pl_msg_00000418_00013;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_TwinleafTown;
     }
 
     if (mapID == MAP_HEADER_SANDGEM_TOWN || (mapID >= MAP_HEADER_SANDGEM_TOWN_POKEMON_RESEARCH_LAB && mapID <= MAP_HEADER_SANDGEM_TOWN_HOUSE)) {
         StringTemplate_SetCounterpartName(template, 1, fieldSystem->saveData);
-        return pl_msg_00000418_00014;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SandgemTown;
     }
 
     if (mapID == MAP_HEADER_FLOAROMA_TOWN || (mapID >= MAP_HEADER_FLOWER_SHOP && mapID <= MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE) || mapID == MAP_HEADER_FLOAROMA_MEADOW_HOUSE) {
-        return pl_msg_00000418_00015;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_FloaromaTown;
     }
 
     if (mapID == MAP_HEADER_SOLACEON_TOWN || (mapID >= MAP_HEADER_POKEMON_DAY_CARE && mapID <= MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE)) {
-        return pl_msg_00000418_00016;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SolaceonTown;
     }
 
     if (mapID == MAP_HEADER_CELESTIC_TOWN || (mapID >= MAP_HEADER_CELESTIC_TOWN_NORTH_HOUSE && mapID <= MAP_HEADER_CELESTIC_TOWN_CAVE)) {
-        return pl_msg_00000418_00017;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_CelesticTown;
     }
 
     if (mapID == MAP_HEADER_JUBILIFE_CITY || (mapID >= MAP_HEADER_POKETCH_CO_1F && mapID <= MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4)) {
-        return pl_msg_00000418_00018;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_JubilifeCity;
     }
 
     if (mapID == MAP_HEADER_CANALAVE_CITY || (mapID >= MAP_HEADER_CANALAVE_LIBRARY_1F && mapID <= MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE) || mapID == MAP_HEADER_CANALAVE_CITY_WEST_HOUSE) {
-        return pl_msg_00000418_00019;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_CanalaveCity;
     }
 
     if (mapID == MAP_HEADER_OREBURGH_CITY || (mapID >= MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F && mapID <= MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE)) {
-        return pl_msg_00000418_00020;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_OreburghCity;
     }
 
     if (mapID == MAP_HEADER_ETERNA_CITY || (mapID >= MAP_HEADER_CYCLE_SHOP && mapID <= MAP_HEADER_ETERNA_CITY_UNKNOWN_HOUSE)) {
-        return pl_msg_00000418_00021;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_EternaCity;
     }
 
     if (mapID == MAP_HEADER_HEARTHOME_CITY || (mapID >= MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F && mapID <= MAP_HEADER_FOREIGN_BUILDING)) {
-        return pl_msg_00000418_00022;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_HearthomeCity;
     }
 
     if (mapID == MAP_HEADER_PASTORIA_CITY || (mapID >= MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F && mapID <= MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE)) {
-        return pl_msg_00000418_00023;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_PastoriaCity;
     }
 
     if (mapID == MAP_HEADER_VEILSTONE_CITY || (mapID >= MAP_HEADER_GAME_CORNER && mapID <= MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY) || (mapID >= MAP_HEADER_GALACTIC_HQ_1F && mapID <= MAP_HEADER_GALACTIC_HQ_B2F)) {
-        return pl_msg_00000418_00024;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_VeilstoneCity;
     }
 
     if (mapID == MAP_HEADER_SUNYSHORE_CITY || (mapID >= MAP_HEADER_SUNYSHORE_MARKET && mapID <= MAP_HEADER_VISTA_LIGHTHOUSE) || mapID == MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR) {
-        return pl_msg_00000418_00025;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SunyshoreCity;
     }
 
     if (mapID == MAP_HEADER_SNOWPOINT_CITY || (mapID >= MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE && mapID <= MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE)) {
-        return pl_msg_00000418_00026;
+        return TVProgramSinnohNow_Text_YourTownsBestThree_SnowpointCity;
     }
 
     StringTemplate_SetPlayerName(template, 0, trainerInfo);
     StringTemplate_SetRivalName(template, 1, fieldSystem->saveData);
 
-    return pl_msg_00000418_00027;
+    return TVProgramSinnohNow_Text_YourTownsBestThree_WhereWillWeGo;
 }
 
 static int TVEpisodeSegment_LoadMessage_SwarmNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
@@ -2260,7 +2260,7 @@ static int TVEpisodeSegment_LoadMessage_SwarmNewsFlash(FieldSystem *fieldSystem,
     StringTemplate_SetLocationName(template, 0, MapHeader_GetMapLabelTextID(mapID));
     TVEpisodeSegment_SetTemplateOwnPokemonSpecies(template, 1, species);
 
-    return pl_msg_00000418_00029;
+    return TVProgramSinnohNow_Text_SwarmNewsFlash;
 }
 
 static BOOL TVEpisodeSegment_IsEligible_SwarmNewsFlash(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *unused)
@@ -2297,147 +2297,147 @@ enum BerryLookoutArrival {
     BERRY_LOOKOUT_ARRIVAL_COUNT
 };
 
+// clang-format off
 static const u16 sBerryLookoutArrivalFlags[BERRY_LOOKOUT_ARRIVAL_COUNT] = {
-    [BERRY_LOOKOUT_ARRIVAL_TWINLEAF_TOWN] = FIRST_ARRIVAL_TWINLEAF_TOWN,
-    [BERRY_LOOKOUT_ARRIVAL_SANDGEM_TOWN] = FIRST_ARRIVAL_SANDGEM_TOWN,
-    [BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN] = FIRST_ARRIVAL_FLOAROMA_TOWN,
-    [BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN] = FIRST_ARRIVAL_SOLACEON_TOWN,
-    [BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN] = FIRST_ARRIVAL_CELESTIC_TOWN,
-    [BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA] = FIRST_ARRIVAL_SURVIVAL_AREA,
-    [BERRY_LOOKOUT_ARRIVAL_RESORT_AREA] = FIRST_ARRIVAL_RESORT_AREA,
-    [BERRY_LOOKOUT_ARRIVAL_JUBILIFE_CITY] = FIRST_ARRIVAL_JUBILIFE_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_CANALAVE_CITY] = FIRST_ARRIVAL_CANALAVE_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY] = FIRST_ARRIVAL_OREBURGH_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_ETERNA_CITY] = FIRST_ARRIVAL_ETERNA_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY] = FIRST_ARRIVAL_HEARTHOME_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY] = FIRST_ARRIVAL_PASTORIA_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY] = FIRST_ARRIVAL_VEILSTONE_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_SUNYSHORE_CITY] = FIRST_ARRIVAL_SUNYSHORE_CITY,
-    [BERRY_LOOKOUT_ARRIVAL_SNOWPOINT_CITY] = FIRST_ARRIVAL_SNOWPOINT_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_TWINLEAF_TOWN]        = FIRST_ARRIVAL_TWINLEAF_TOWN,
+    [BERRY_LOOKOUT_ARRIVAL_SANDGEM_TOWN]         = FIRST_ARRIVAL_SANDGEM_TOWN,
+    [BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN]        = FIRST_ARRIVAL_FLOAROMA_TOWN,
+    [BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN]        = FIRST_ARRIVAL_SOLACEON_TOWN,
+    [BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN]        = FIRST_ARRIVAL_CELESTIC_TOWN,
+    [BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA]        = FIRST_ARRIVAL_SURVIVAL_AREA,
+    [BERRY_LOOKOUT_ARRIVAL_RESORT_AREA]          = FIRST_ARRIVAL_RESORT_AREA,
+    [BERRY_LOOKOUT_ARRIVAL_JUBILIFE_CITY]        = FIRST_ARRIVAL_JUBILIFE_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_CANALAVE_CITY]        = FIRST_ARRIVAL_CANALAVE_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY]        = FIRST_ARRIVAL_OREBURGH_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_ETERNA_CITY]          = FIRST_ARRIVAL_ETERNA_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY]       = FIRST_ARRIVAL_HEARTHOME_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY]        = FIRST_ARRIVAL_PASTORIA_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY]       = FIRST_ARRIVAL_VEILSTONE_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_SUNYSHORE_CITY]       = FIRST_ARRIVAL_SUNYSHORE_CITY,
+    [BERRY_LOOKOUT_ARRIVAL_SNOWPOINT_CITY]       = FIRST_ARRIVAL_SNOWPOINT_CITY,
     [BERRY_LOOKOUT_ARRIVAL_OUTSIDE_VICTORY_ROAD] = FIRST_ARRIVAL_OUTSIDE_VICTORY_ROAD,
-    [BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA] = FIRST_ARRIVAL_FIGHT_AREA,
+    [BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA]           = FIRST_ARRIVAL_FIGHT_AREA,
 };
 
-// clang-format off
 static const u16 sBerryLookoutPatchInfo[] = {
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_FLOAROMA_TOWN,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_FLOAROMA_TOWN,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ETERNA_FOREST_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ETERNA_FOREST_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ETERNA_FOREST_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ETERNA_FOREST_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN, MAP_HEADER_ROUTE_205_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_206,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_206,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_206,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_206,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_207,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_207,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_207,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_207,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_208,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_208,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_208,
-    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY, MAP_HEADER_ROUTE_208,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_209,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_209,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_209,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_209,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_SOLACEON_TOWN,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_SOLACEON_TOWN,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_SOLACEON_TOWN,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_SOLACEON_TOWN,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_ROUTE_210_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_ROUTE_210_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_ROUTE_210_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN, MAP_HEADER_ROUTE_210_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_210_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_210_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_210_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_210_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_211_EAST,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_211_EAST,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_211_EAST,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_211_EAST,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_212_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_212_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_212_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY, MAP_HEADER_ROUTE_212_NORTH,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_212_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_212_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_212_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_212_SOUTH,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_PASTORIA_CITY,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_PASTORIA_CITY,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_PASTORIA_CITY,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_PASTORIA_CITY,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_213,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_213,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_213,
-    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY, MAP_HEADER_ROUTE_213,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_214,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_214,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_214,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_214,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_215,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_215,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_215,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_215,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_218,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_218,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_218,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_218,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_221,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_221,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_221,
-    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN, MAP_HEADER_ROUTE_221,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_222,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_222,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_222,
-    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY, MAP_HEADER_ROUTE_222,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_FLOAROMA_TOWN,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_FLOAROMA_TOWN,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ETERNA_FOREST_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ETERNA_FOREST_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ETERNA_FOREST_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ETERNA_FOREST_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_FLOAROMA_TOWN,        MAP_HEADER_ROUTE_205_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_206,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_206,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_206,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_206,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_207,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_207,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_207,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_207,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_208,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_208,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_208,
+    BERRY_LOOKOUT_ARRIVAL_OREBURGH_CITY,        MAP_HEADER_ROUTE_208,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_209,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_209,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_209,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_209,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_SOLACEON_TOWN,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_SOLACEON_TOWN,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_SOLACEON_TOWN,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_SOLACEON_TOWN,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_ROUTE_210_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_ROUTE_210_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_ROUTE_210_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_SOLACEON_TOWN,        MAP_HEADER_ROUTE_210_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_210_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_210_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_210_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_210_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_211_EAST,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_211_EAST,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_211_EAST,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_211_EAST,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_212_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_212_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_212_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_HEARTHOME_CITY,       MAP_HEADER_ROUTE_212_NORTH,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_212_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_212_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_212_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_212_SOUTH,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_PASTORIA_CITY,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_PASTORIA_CITY,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_PASTORIA_CITY,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_PASTORIA_CITY,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_213,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_213,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_213,
+    BERRY_LOOKOUT_ARRIVAL_PASTORIA_CITY,        MAP_HEADER_ROUTE_213,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_214,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_214,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_214,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_214,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_215,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_215,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_215,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_215,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_218,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_218,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_218,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_218,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_221,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_221,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_221,
+    BERRY_LOOKOUT_ARRIVAL_CELESTIC_TOWN,        MAP_HEADER_ROUTE_221,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_222,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_222,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_222,
+    BERRY_LOOKOUT_ARRIVAL_VEILSTONE_CITY,       MAP_HEADER_ROUTE_222,
     BERRY_LOOKOUT_ARRIVAL_OUTSIDE_VICTORY_ROAD, MAP_HEADER_ROUTE_224,
     BERRY_LOOKOUT_ARRIVAL_OUTSIDE_VICTORY_ROAD, MAP_HEADER_ROUTE_224,
     BERRY_LOOKOUT_ARRIVAL_OUTSIDE_VICTORY_ROAD, MAP_HEADER_ROUTE_224,
     BERRY_LOOKOUT_ARRIVAL_OUTSIDE_VICTORY_ROAD, MAP_HEADER_ROUTE_224,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_FIGHT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_FIGHT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_FIGHT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_FIGHT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_ROUTE_225,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_ROUTE_225,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_ROUTE_225,
-    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA, MAP_HEADER_ROUTE_225,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_226,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_226,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_226,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_226,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_228,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_228,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_228,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_228,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_229,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_229,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_229,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_229,
-    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA, MAP_HEADER_RESORT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA, MAP_HEADER_RESORT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA, MAP_HEADER_RESORT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA, MAP_HEADER_RESORT_AREA,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_230,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_230,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_230,
-    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA, MAP_HEADER_ROUTE_230,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_FIGHT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_FIGHT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_FIGHT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_FIGHT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_ROUTE_225,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_ROUTE_225,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_ROUTE_225,
+    BERRY_LOOKOUT_ARRIVAL_FIGHT_AREA,           MAP_HEADER_ROUTE_225,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_226,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_226,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_226,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_226,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_228,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_228,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_228,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_228,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_229,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_229,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_229,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_229,
+    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA,          MAP_HEADER_RESORT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA,          MAP_HEADER_RESORT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA,          MAP_HEADER_RESORT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_RESORT_AREA,          MAP_HEADER_RESORT_AREA,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_230,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_230,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_230,
+    BERRY_LOOKOUT_ARRIVAL_SURVIVAL_AREA,        MAP_HEADER_ROUTE_230,
 };
 // clang-format on
 
@@ -2471,17 +2471,17 @@ static int TVEpisodeSegment_LoadMessage_BerryLookout(FieldSystem *fieldSystem, S
 
     switch (BerryPatches_GetPatchGrowthStage(berryPatches, patchID)) {
     case BERRY_GROWTH_STAGE_FRUIT:
-        return pl_msg_00000418_00036;
+        return TVProgramSinnohNow_Text_BerryLookout_Fruit;
     case BERRY_GROWTH_STAGE_BLOOMING:
-        return pl_msg_00000418_00037;
+        return TVProgramSinnohNow_Text_BerryLookout_Blooming;
     case BERRY_GROWTH_STAGE_GROWING:
-        return pl_msg_00000418_00038;
+        return TVProgramSinnohNow_Text_BerryLookout_Growing;
     case BERRY_GROWTH_STAGE_SPROUTED:
-        return pl_msg_00000418_00039;
+        return TVProgramSinnohNow_Text_BerryLookout_Sprouted;
     case BERRY_GROWTH_STAGE_NONE:
     case BERRY_GROWTH_STAGE_PLANTED:
     default:
-        return pl_msg_00000418_00040;
+        return TVProgramSinnohNow_Text_BerryLookout_None;
     }
 }
 
@@ -2512,7 +2512,7 @@ static int TVEpisodeSegment_LoadMessage_RichBoyNatureCorner(FieldSystem *fieldSy
         || nature == NATURE_SERIOUS
         || nature == NATURE_BASHFUL
         || nature == NATURE_QUIRKY) {
-        return pl_msg_00000418_00046;
+        return TVProgramSinnohNow_Text_RichBoyNatureCorner_NeutralNature;
     }
 
     if ((personality % 2) == 0) {
@@ -2524,7 +2524,7 @@ static int TVEpisodeSegment_LoadMessage_RichBoyNatureCorner(FieldSystem *fieldSy
         }
 
         StringTemplate_SetFlavorName(template, 2, flavor);
-        return pl_msg_00000418_00045;
+        return TVProgramSinnohNow_Text_RichBoyNatureCorner_FlavorAffinity;
     }
 
     for (i = 0; i < STAT_MAX - 1; i++) {
@@ -2535,7 +2535,7 @@ static int TVEpisodeSegment_LoadMessage_RichBoyNatureCorner(FieldSystem *fieldSy
     }
 
     StringTemplate_SetPokemonStatName(template, 1, 1 + stat);
-    return pl_msg_00000418_00044;
+    return TVProgramSinnohNow_Text_RichBoyNatureCorner_StatAffinity;
 }
 
 static int TVEpisodeSegment_LoadMessage_RoamerNewsFlash(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
@@ -2561,12 +2561,12 @@ static int TVEpisodeSegment_LoadMessage_RoamerNewsFlash(FieldSystem *fieldSystem
             species = Roamer_GetData(roamer, ROAMER_DATA_SPECIES);
             personality = Roamer_GetData(roamer, ROAMER_DATA_PERSONALITY);
 
-            TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, species, Pokemon_GetGenderOf(species, personality), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
+            TVEpisodeSegment_SetTemplatePokemonSpecies(template, 1, species, Pokemon_GetGenderOf(species, personality), TrainerInfo_Language(trainerInfo), TrainerInfo_GameCode(trainerInfo));
             break;
         }
     }
 
-    return pl_msg_00000418_00049;
+    return TVProgramSinnohNow_Text_RoamerNewsFlash;
 }
 
 static BOOL TVEpisodeSegment_IsEligible_RoamerNewsFlash(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2596,56 +2596,56 @@ static int ImageClips_CountDressUpPhotosWithData(ImageClips *imageClips)
     return count;
 }
 
-static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int TVEpisodeSegment_LoadMessage_PokemonPhotoRating(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     DressUpPhoto *photo;
-    int i, count, v3, v4;
+    int i, count, rand, slot;
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     count = ImageClips_CountDressUpPhotosWithData(imageClips);
 
     if (count > 1) {
-        v3 = MTRNG_Next() % count;
+        rand = MTRNG_Next() % count;
     } else {
-        v3 = 0;
+        rand = 0;
     }
 
     for (i = 0; i < SAVED_PHOTOS_COUNT; i++) {
         if (ImageClips_DressUpPhotoHasData(imageClips, i) == TRUE) {
-            if (v3 == 0) {
-                v4 = i;
+            if (rand == 0) {
+                slot = i;
                 break;
             } else {
-                v3--;
+                rand--;
             }
         }
     }
 
     GF_ASSERT(i < SAVED_PHOTOS_COUNT);
-    photo = ImageClips_GetDressUpPhoto(imageClips, v4);
+    photo = ImageClips_GetDressUpPhoto(imageClips, slot);
 
     u16 word;
-    String *v7 = String_Init(7 + 1, HEAP_ID_FIELD1);
+    String *trainerName = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_FIELD1);
     int gender = DressUpPhoto_GetTrainerGender(photo);
 
-    DressUpPhoto_SetTrainerName(photo, v7);
-    StringTemplate_SetString(param1, 0, v7, gender, 1, DressUpPhoto_GetLanguage(photo));
-    String_Free(v7);
+    DressUpPhoto_SetTrainerName(photo, trainerName);
+    StringTemplate_SetString(template, 0, trainerName, gender, 1, DressUpPhoto_GetLanguage(photo));
+    String_Free(trainerName);
 
     word = DressUpPhoto_GetTitleWord(photo);
-    StringTemplate_SetCustomMessageWord(param1, 1, word);
+    StringTemplate_SetCustomMessageWord(template, 1, word);
 
-    return 52;
+    return TVProgramSinnohNow_Text_PokemonPhotoRating;
 }
 
-static BOOL sub_0206EF64(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL TVEpisodeSegment_IsEligible_PokemonPhotoRating(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (ImageClips_CountDressUpPhotosWithData(imageClips) != 0) {
-        return 1;
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
@@ -2751,7 +2751,7 @@ static int sub_0206F13C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     }
 }
 
-static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
+static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *template, UnkStruct_ov6_022465F4 *param2)
 {
     String *v0;
     u16 v1, v2;
@@ -2763,15 +2763,15 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     party = SaveData_GetParty(fieldSystem->saveData);
     pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
-    TVEpisodeSegment_SetTemplatePokemonSpecies(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
-    StringTemplate_SetContestAccessoryName(param1, 1, LCRNG_Next() % 100);
+    TVEpisodeSegment_SetTemplatePokemonSpecies(template, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_Language(trainerInfo), TrainerInfo_GameCode(trainerInfo));
+    StringTemplate_SetContestAccessoryName(template, 1, LCRNG_Next() % 100);
 
     v1 = (LCRNG_Next() % (NATIONAL_DEX_COUNT - 2) + 1);
 
     for (v2 = 1; v2 <= NATIONAL_DEX_COUNT; v2++) {
         if (Pokedex_HasSeenSpecies(pokedex, v1) == TRUE) {
             v0 = sub_0206F0D8(v1, HEAP_ID_FIELD1);
-            StringTemplate_SetString(param1, 2, v0, 0, 1, GAME_LANGUAGE);
+            StringTemplate_SetString(template, 2, v0, 0, 1, GAME_LANGUAGE);
             String_Free(v0);
             break;
         }
@@ -2783,7 +2783,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
         }
     }
 
-    StringTemplate_SetMoveName(param1, 3, (LCRNG_Next() % 467 - 2) + 1);
+    StringTemplate_SetMoveName(template, 3, (LCRNG_Next() % 467 - 2) + 1);
 
     return 17;
 }
@@ -3027,7 +3027,7 @@ static const TVProgramSegment sSinnohNowSegments[TV_PROGRAM_TYPE_SINNOH_NOW_NUM_
     TV_PROGRAM_SEGMENT_NULL,
     { TVEpisodeSegment_LoadMessage_RoamerNewsFlash, TVEpisodeSegment_IsEligible_RoamerNewsFlash },
     TV_PROGRAM_SEGMENT_NULL,
-    { sub_0206EEBC, sub_0206EF64 }
+    { TVEpisodeSegment_LoadMessage_PokemonPhotoRating, TVEpisodeSegment_IsEligible_PokemonPhotoRating }
 };
 
 static const TVProgramSegment sVarietyHourSegments[TV_PROGRAM_TYPE_VARIETY_HOUR_NUM_SEGMENTS] = {

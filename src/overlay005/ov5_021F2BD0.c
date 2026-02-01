@@ -73,7 +73,7 @@ void ov5_021F2C38(MapObject *param0, int param1, int param2, int param3)
     v2.unk_00 = ov5_021DF578(param0);
     v2.unk_04 = ov5_021DF55C(v2.unk_00, 18);
 
-    sub_02064450(param1, param3, &v3);
+    VecFx32_SetPosFromMapCoords(param1, param3, &v3);
 
     v3.z += ((param2) << 3) + (FX32_ONE * 0);
     v3.y = (((MapObject_GetYPrev(param0)) << 3) * FX32_ONE) + (-FX32_ONE * 8);

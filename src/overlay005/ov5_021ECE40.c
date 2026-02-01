@@ -1047,7 +1047,7 @@ static int ov5_021EDA54(const MapObjectManager *param0, int param1, const MapObj
     int v0 = 0, v1;
     MapObject *v2 = NULL;
 
-    while (sub_020625B0(param0, &v2, &v0, MAP_OBJ_STATUS_0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(param0, &v2, &v0, MAP_OBJ_STATUS_0) == 1) {
         if ((param2 != NULL) && (param2 == v2)) {
             continue;
         }
@@ -1071,7 +1071,7 @@ static int ov5_021EDAB4(const MapObjectManager *param0, int param1, const MapObj
     int v0, v1 = 0;
     MapObject *v2 = NULL;
 
-    while (sub_020625B0(param0, &v2, &v1, MAP_OBJ_STATUS_0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(param0, &v2, &v1, MAP_OBJ_STATUS_0) == 1) {
         if ((param2 != NULL) && (param2 == v2)) {
             continue;
         }
@@ -1109,7 +1109,7 @@ static int ov5_021EDB3C(const MapObjectManager *param0, int param1, const MapObj
     int v0, v1 = 0;
     MapObject *v2 = NULL;
 
-    while (sub_020625B0(param0, &v2, &v1, MAP_OBJ_STATUS_0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(param0, &v2, &v1, MAP_OBJ_STATUS_0) == 1) {
         if ((param2 != NULL) && (v2 == param2)) {
             continue;
         }

@@ -32,7 +32,7 @@ void ov104_0222E330(FrontierPokemonDataDTO *param0, u16 param1[], u8 param2[], u
 u8 ov104_0222E3A8(u16 param0);
 BOOL ov104_0222E3E4(BattleFrontierTrainerData *param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6);
 void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPokemonDataDTO *param4, u8 *param5, u32 *param6, u8 param7);
-void ov104_0222E5D0(StringTemplate *param0, u32 param1);
+void BattleFrontier_SetPartnerInStrTemplate(StringTemplate *template, u32 idx);
 int ov104_0222E5F0(const TrainerInfo *param0);
 void ov104_0222E630(SaveData *saveData);
 

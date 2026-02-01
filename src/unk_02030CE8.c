@@ -111,7 +111,7 @@ static void sub_02030DD0(SaveData *saveData, WorldExchangeTrainer *param1)
     MI_CpuClear8(param1, sizeof(WorldExchangeTrainer));
 
     param1->gameCode = GAME_VERSION;
-    param1->languageCode = GAME_LANGUAGE;
+    param1->language = GAME_LANGUAGE;
     param1->country = WiFiHistory_GetCountry(wiFiHistory);
     param1->unk_03 = WiFiHistory_GetRegion(wiFiHistory);
     param1->trainerId = TrainerInfo_ID(v1);
