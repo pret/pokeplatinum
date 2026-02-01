@@ -87,7 +87,7 @@ static const u8 summaryPages[] = {
     SUMMARY_PAGE_MAX
 };
 
-EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Options *options, int showContest, Pokedex *pokedex, Bag *bag, GameRecords *records, Poketch *poketch, int method, int param10, enum HeapID heapID)
+EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Options *options, int showContest, Pokedex *pokedex, Bag *bag, GameRecords *records, Poketch *poketch, int method, int flags, enum HeapID heapID)
 {
     EvolutionData *evolutionData = (EvolutionData *)Heap_Alloc(heapID, sizeof(EvolutionData));
 
@@ -144,7 +144,7 @@ EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Op
     evolutionData->records = records;
     evolutionData->poketch = poketch;
     evolutionData->method = method;
-    evolutionData->unk_7C = param10;
+    evolutionData->flags = flags;
 
     Evolution_CreateSprites(evolutionData);
     PaletteData_StartFade(evolutionData->paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 16, 0, 0);
@@ -256,15 +256,15 @@ enum EvolutionState {
 
 static void Evolution_Main(EvolutionData *evolutionData)
 {
-    if (evolutionData->animationState) {
-        if ((evolutionData->animationState & 1) == 0) {
+    if (evolutionData->shrinkAndGrowState) {
+        if ((evolutionData->shrinkAndGrowState & 1) == 0) {
             PokemonSprite_AddAttribute(evolutionData->monSprites[0], MON_SPRITE_SCALE_X, evolutionData->attributeDelta * -1);
             PokemonSprite_AddAttribute(evolutionData->monSprites[0], MON_SPRITE_SCALE_Y, evolutionData->attributeDelta * -1);
             PokemonSprite_AddAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_X, evolutionData->attributeDelta);
             PokemonSprite_AddAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_Y, evolutionData->attributeDelta);
 
             if (PokemonSprite_GetAttribute(evolutionData->monSprites[0], MON_SPRITE_SCALE_X) == 0) {
-                evolutionData->animationState ^= 1;
+                evolutionData->shrinkAndGrowState ^= 1;
             }
         } else {
             PokemonSprite_AddAttribute(evolutionData->monSprites[0], MON_SPRITE_SCALE_X, evolutionData->attributeDelta);
@@ -273,7 +273,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_AddAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_Y, evolutionData->attributeDelta * -1);
 
             if (PokemonSprite_GetAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_X) == 0) {
-                evolutionData->animationState ^= 1;
+                evolutionData->shrinkAndGrowState ^= 1;
 
                 if (evolutionData->attributeDelta < 64) {
                     evolutionData->attributeDelta *= 2;
@@ -282,7 +282,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
         }
     }
 
-    if ((evolutionData->unk_7C & 0x1) && evolutionData->state == EVOLUTION_STATE_ANIMATION_ALTERNATE_POKEMON && JOY_NEW(PAD_BUTTON_B)) {
+    if ((evolutionData->flags & 0x1) && evolutionData->state == EVOLUTION_STATE_ANIMATION_ALTERNATE_POKEMON && JOY_NEW(PAD_BUTTON_B)) {
         PaletteData_StartFade(evolutionData->paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xC00 ^ 0xFFFF, 0, 0, 16, 0x7FFF);
         evolutionData->state = EVOLUTION_STATE_CANCEL_EVOLUTION;
     }
@@ -298,7 +298,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
         ResetScreenMasterBrightness(DS_SCREEN_SUB);
         sub_02015738(evolutionData->unk_58, 0);
 
-        if (evolutionData->unk_7C & 0x2) {
+        if (evolutionData->flags & 0x2) {
             evolutionData->state = EVOLUTION_STATE_PRINT_WHAT;
         } else {
             evolutionData->state = EVOLUTION_STATE_PRINT_POKEMON_IS_EVOLVING;
@@ -327,7 +327,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             Sound_PlayDelayedPokemonCry(evolutionData->currentSpecies, evolutionData->currentSpeciesCryDelay, evolutionData->form);
             StringTemplate_SetNickname(evolutionData->strTemplate, 0, Pokemon_GetBoxPokemon(evolutionData->mon));
 
-            if (evolutionData->unk_7C & 0x2) {
+            if (evolutionData->flags & 0x2) {
                 evolutionData->printerID = Evolution_PrintString(evolutionData, BattleStrings_Text_PokemonIsEvolving);
             } else {
                 evolutionData->printerID = Evolution_PrintString(evolutionData, BattleStrings_Text_WhatPokemonIsEvolving);
@@ -367,9 +367,9 @@ static void Evolution_Main(EvolutionData *evolutionData)
         }
         break;
     case EVOLUTION_STATE_CLAMP_IN:
-        if (evolutionData->top < 40) {
-            evolutionData->top += 2;
-            evolutionData->bottom -= 2;
+        if (evolutionData->windowTop < 40) {
+            evolutionData->windowTop += 2;
+            evolutionData->windowBottom -= 2;
         }
 
         if (--evolutionData->delay == 0) {
@@ -380,7 +380,7 @@ static void Evolution_Main(EvolutionData *evolutionData)
             sub_0207C8C4(evolutionData->unk_30, 9);
             sub_0207C8C4(evolutionData->unk_30, 11);
             Sound_PlayEffect(SEQ_SE_DP_W060C);
-            evolutionData->animationState = 0x10;
+            evolutionData->shrinkAndGrowState = 0x10;
             evolutionData->attributeDelta = 8;
             evolutionData->state++;
         }
@@ -398,15 +398,15 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
             Sound_PlayEffect(SEQ_SE_DP_W062);
-            evolutionData->animationState = 0;
+            evolutionData->shrinkAndGrowState = 0;
             evolutionData->delay = 8;
             evolutionData->state++;
         }
         break;
     case EVOLUTION_STATE_CLAMP_OUT_AND_FADE:
-        if (evolutionData->top) {
-            evolutionData->top -= 2;
-            evolutionData->bottom += 2;
+        if (evolutionData->windowTop) {
+            evolutionData->windowTop -= 2;
+            evolutionData->windowBottom += 2;
         }
 
         if (PaletteData_GetSelectedBuffersMask(evolutionData->paletteData) == 0) {
@@ -669,11 +669,11 @@ static void Evolution_Main(EvolutionData *evolutionData)
             PokemonSprite_SetAttribute(evolutionData->monSprites[1], MON_SPRITE_HIDE, 1);
             PaletteData_StartFade(evolutionData->paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xC00 ^ 0xFFFF, 0, 16, 0, 0x7FFF);
             PokemonSpriteManager_StartFadeAll(evolutionData->monSpriteMan, 16, 0, 0, 0x7FFF);
-            evolutionData->left = 0;
-            evolutionData->top = 0;
-            evolutionData->right = HW_LCD_WIDTH - 1;
-            evolutionData->bottom = 160;
-            evolutionData->animationState = 0;
+            evolutionData->windowLeft = 0;
+            evolutionData->windowTop = 0;
+            evolutionData->windowRight = HW_LCD_WIDTH - 1;
+            evolutionData->windowBottom = 160;
+            evolutionData->shrinkAndGrowState = 0;
             Sound_StopBGM(SEQ_SHINKA, 0);
             sub_0207C8F4(evolutionData->unk_30);
             evolutionData->state++;
@@ -918,10 +918,10 @@ static void Evolution_InitGraphics(EvolutionData *evolutionData, BgConfig *bgCon
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, NULL);
     G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ, NULL);
 
-    evolutionData->left = 0;
-    evolutionData->top = 0;
-    evolutionData->right = HW_LCD_WIDTH - 1;
-    evolutionData->bottom = 160;
+    evolutionData->windowLeft = 0;
+    evolutionData->windowTop = 0;
+    evolutionData->windowRight = HW_LCD_WIDTH - 1;
+    evolutionData->windowBottom = 160;
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -964,7 +964,7 @@ static void Evolution_VBlankCallback(void *data)
 {
     EvolutionData *evolutionData = (EvolutionData *)data;
 
-    G2_SetWnd0Position(evolutionData->left, evolutionData->top, evolutionData->right, evolutionData->bottom);
+    G2_SetWnd0Position(evolutionData->windowLeft, evolutionData->windowTop, evolutionData->windowRight, evolutionData->windowBottom);
 
     PokemonSpriteManager_UpdateCharAndPltt(evolutionData->monSpriteMan);
     VramTransfer_Process();

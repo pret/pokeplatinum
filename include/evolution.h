@@ -53,21 +53,21 @@ typedef struct EvolutionData {
     u16 moveID;
     u8 moveSlot;
     u8 unused;
-    u8 animationState;
+    u8 shrinkAndGrowState;
     u8 attributeDelta;
-    u8 left;
-    u8 top;
-    u8 right;
-    u8 bottom;
+    u8 windowLeft;
+    u8 windowTop;
+    u8 windowRight;
+    u8 windowBottom;
     int method;
-    int unk_7C;
+    int flags;
     NARC *narc;
     u8 currentSpeciesCryDelay;
     u8 targetSpeciesCryDelay;
     u8 form;
 } EvolutionData;
 
-EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Options *options, int showContest, Pokedex *pokedex, Bag *bag, GameRecords *records, Poketch *poketch, int method, int param10, enum HeapID heapID);
+EvolutionData *Evolution_Begin(Party *party, Pokemon *mon, int targetSpecies, Options *options, int showContest, Pokedex *pokedex, Bag *bag, GameRecords *records, Poketch *poketch, int method, int flags, enum HeapID heapID);
 BOOL Evolution_IsDone(EvolutionData *evolutionData);
 void Evolution_Free(EvolutionData *evolutionData);
 
