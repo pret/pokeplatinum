@@ -57,7 +57,7 @@ _008E:
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
     SetHasPartner
     SetMovementType 0, 48
-    SetObjectFlagPersistent 0, TRUE
+    SetObjectFlagIsPersistent 0, TRUE
     ReleaseAll
     End
 
@@ -89,7 +89,7 @@ _0108:
     LockAll
     ClearHasPartner
     SetMovementType 0, 15
-    SetObjectFlagPersistent 0, FALSE
+    SetObjectFlagIsPersistent 0, FALSE
     ApplyMovement 0, _0190
     WaitMovement
     Message 4

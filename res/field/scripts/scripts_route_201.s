@@ -777,7 +777,7 @@ Route201_ResetRivalPartnerEast:
 Route201_ResetRivalPartner:
     SetHasPartner
     SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
-    SetObjectFlagPersistent LOCALID_RIVAL, TRUE
+    SetObjectFlagIsPersistent LOCALID_RIVAL, TRUE
     Return
 
     .balign 4, 0
@@ -1036,7 +1036,7 @@ _0CF1:
     RemoveObject LOCALID_COUNTERPART
     RemoveObject LOCALID_PROF_ROWAN
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
-    SetObjectFlagPersistent 254, FALSE
+    SetObjectFlagIsPersistent 254, FALSE
     ClearHasPartner
     SetFlag FLAG_HIDE_ROUTE_201_RIVAL
     SetFlag FLAG_UNK_0x0195
@@ -1256,7 +1256,7 @@ Route201_SetRivalPartner:
     SetStepFlag
     SetHasPartner
     SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
-    SetObjectFlagPersistent LOCALID_RIVAL, TRUE
+    SetObjectFlagIsPersistent LOCALID_RIVAL, TRUE
     SetFlag FLAG_HIDE_ROUTE_201_RIVAL
     ReleaseAll
     End

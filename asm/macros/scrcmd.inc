@@ -721,7 +721,7 @@
     .short \z
     .endm
 
-    .macro SetObjectFlagPersistent localID, flag
+    .macro SetObjectFlagIsPersistent localID, flag
     .short 108
     .short \localID
     .byte \flag
