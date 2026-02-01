@@ -125,7 +125,7 @@ static int sub_02067BA8(FieldSystem *fieldSystem, MapObjectManager *param1, Play
     v3 = NULL;
     v1 = -1;
 
-    while (sub_020625B0(param1, &v3, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(param1, &v3, &v0, (1 << 0))) {
         if ((param3 == NULL) || (param3 != v3)) {
             v1 = sub_02067C80(v3, playerAvatar, &v2);
 
@@ -365,7 +365,7 @@ static MapObject *sub_02067F2C(FieldSystem *fieldSystem, MapObjectManager *param
 
     v0 = 0;
 
-    while (sub_020625B0(param1, &v1, &v0, MAP_OBJ_STATUS_0)) {
+    while (MapObjectMan_FindObjectWithStatus(param1, &v1, &v0, MAP_OBJ_STATUS_0)) {
         if (v1 != param2) {
             int v2 = sub_02067C54(v1);
 

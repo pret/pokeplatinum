@@ -14,7 +14,7 @@ typedef struct {
     Sentence title;
     UnkStruct_ov61_0222AE80_sub2 unk_30[10];
     u8 unk_58;
-    u8 unk_59;
+    u8 language;
     u8 unk_5A[2];
     UnkStruct_ov62_02239DA4_sub1 unk_5C;
 } UnkStruct_ov61_0222AE80;

@@ -27,7 +27,7 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(String *string);
 int ov23_02241DF8(MATHRandContext16 *rand);
 void SphereRadar_Start(void);
 void SphereRadar_Exit(void);
-int SphereRadar_GetXCoordOfBuriedSphere(int param0);
-int SphereRadar_GetZCoordOfBuriedSphere(int param0);
+int SphereRadar_GetXCoordOfBuriedSphere(int radarIndex);
+int SphereRadar_GetZCoordOfBuriedSphere(int radarIndex);
 
 #endif // POKEPLATINUM_OV23_022416A8_H

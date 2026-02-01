@@ -57,8 +57,8 @@ void UndergroundTraps_EscapeHole(int unused0, int unused1, void *data, void *unu
 void UndergroundTraps_HelpLink(int netID, int linkNetID);
 void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_TrapHelpData(void);
-int TrapRadar_GetXCoordOfBuriedTrap(int param0);
-int TrapRadar_GetZCoordOfBuriedTrap(int param0);
+int TrapRadar_GetXCoordOfBuriedTrap(int radarIndex);
+int TrapRadar_GetZCoordOfBuriedTrap(int radarIndex);
 void TrapRadar_Start(void);
 void TrapRadar_Exit(void);
 void UndergroundTraps_QueueSendTrapRadarResults(int netID, int unused1, void *unused2, void *unused3);

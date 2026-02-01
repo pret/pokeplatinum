@@ -9,10 +9,10 @@
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "applications/frontier/battle_hall/main.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
 #include "overlay105/ov105_02241AE0.h"
-#include "overlay106/ov106_02241AE0.h"
 #include "overlay107/ov107_02241AE0.h"
 #include "overlay107/ov107_02245EB0.h"
 #include "overlay108/ov108_02241AE0.h"
@@ -57,9 +57,9 @@ static const CommCmdTable Unk_020F8BF0[] = {
     { ov104_0222EDDC, CommPacketSizeOf_Variable, NULL },
     { ov104_0222EE38, CommPacketSizeOf_Variable, NULL },
     { ov104_0222EEA8, CommPacketSizeOf_Variable, ov104_0222EED8 },
-    { ov106_02243130, CommPacketSizeOf_Variable, NULL },
-    { ov106_02243180, CommPacketSizeOf_Variable, NULL },
-    { ov106_022431E0, CommPacketSizeOf_Variable, NULL },
+    { BattleHall_DummyCommCommand, CommPacketSizeOf_Variable, NULL },
+    { BattleHall_HandleTypeSelectionMsg, CommPacketSizeOf_Variable, NULL },
+    { BattleHall_HandlePartnerDecisionCmd, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F418, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F480, CommPacketSizeOf_Variable, NULL },
     { ov104_0222F530, CommPacketSizeOf_Variable, NULL },
