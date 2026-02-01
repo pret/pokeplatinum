@@ -96,12 +96,6 @@ FS_EXTERN_OVERLAY(pokedex);
 
 static const u32 BattleServerVersion = 0x140;
 
-void ov16_0223B384(BattleSystem *battleSys);
-void ov16_0223B3E4(BattleSystem *battleSys);
-void ov16_0223B430(BattleSystem *battleSys);
-void ov16_0223B53C(BattleSystem *battleSys);
-void ov16_0223B578(BattleSystem *battleSys);
-void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags);
 static void ov16_0223B790(ApplicationManager *appMan);
 static int ov16_0223BBD0(ApplicationManager *appMan);
 static void ov16_0223BCB4(ApplicationManager *appMan);

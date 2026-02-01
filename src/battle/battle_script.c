@@ -10659,7 +10659,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov16_02265050(data->battleSys, battler, data->ball);
             data->tmpData[CATCH_MON_TOTAL_SHAKES] = BattleScript_CalcCatchShakes(data->battleSys, data->battleCtx);
 
-            if (data->tmpData[CATCH_MON_TOTAL_SHAKES] < 4) {
+            if (data->tmpData[CATCH_MON_TOTAL_SHAKES] < BALL_3_SHAKES_SUCCESS) {
                 data->tmpData[CATCH_MON_REMAINING_SHAKES] = data->tmpData[CATCH_MON_TOTAL_SHAKES];
             } else {
                 data->tmpData[CATCH_MON_REMAINING_SHAKES] = 3;
@@ -10681,7 +10681,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         break;
     case SEQ_CATCH_MON_DO_SHAKES:
         if (data->tmpData[CATCH_MON_REMAINING_SHAKES] == 0) {
-            if (data->tmpData[CATCH_MON_TOTAL_SHAKES] == 4) {
+            if (data->tmpData[CATCH_MON_TOTAL_SHAKES] == BALL_3_SHAKES_SUCCESS) {
                 data->seqNum = SEQ_CATCH_MON_WAIT_SHAKES_FINISH;
                 data->tmpData[CATCH_MON_DELAY] = 12;
             } else {
@@ -11081,7 +11081,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                 PokemonSpriteManager_DeleteAll(monSpriteMan);
             }
 
-            data->battleSys->resultMask = 0x4;
+            data->battleSys->resultMask = BATTLE_RESULT_CAPTURED_MON;
             data->battleCtx->taskData = NULL;
 
             Heap_Free(inData);
@@ -11130,7 +11130,7 @@ static const struct Fraction sSafariCatchRate[] = {
 static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_ALWAYS_CATCH) {
-        return 4;
+        return BALL_3_SHAKES_SUCCESS;
     }
 
     u32 speciesMod;
@@ -11214,8 +11214,8 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
     }
 
     int shakes;
-    if (catchRate >= 0xFF) {
-        shakes = 4;
+    if (catchRate >= 255) {
+        shakes = BALL_3_SHAKES_SUCCESS;
     } else {
         u32 sqrtRate = (0xFF << 16) / catchRate;
         CP_SetSqrt32(sqrtRate);
@@ -11228,14 +11228,14 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
         catchRate = CP_GetSqrtResult32();
         catchRate = (0xFFFF << 4) / catchRate;
 
-        for (shakes = 0; shakes < 4; shakes++) {
+        for (shakes = 0; shakes < BALL_3_SHAKES_SUCCESS; shakes++) {
             if (BattleSystem_RandNext(battleSys) >= catchRate) {
                 break;
             }
         }
 
         if (battleCtx->msgItemTemp == ITEM_MASTER_BALL) {
-            shakes = 4;
+            shakes = BALL_3_SHAKES_SUCCESS;
         }
     }
 
@@ -12217,8 +12217,8 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
 
     data->tmpPtr[0] = sub_02012744(1, HEAP_ID_BATTLE);
 
-    if (Pokemon_GetValue(mon, MON_DATA_NO_PRINT_GENDER, NULL) == 0) {
-        gender = 2;
+    if (Pokemon_GetValue(mon, MON_DATA_NO_PRINT_GENDER, NULL) == FALSE) {
+        gender = GENDER_NONE;
     } else {
         gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
     }

@@ -226,7 +226,7 @@ int BattleSystem_FieldWeather(BattleSystem *battleSys);
 u8 ov16_0223F228(BattleSystem *battleSys);
 void ov16_0223F234(BattleSystem *battleSys, u8 param1);
 int BattleSystem_GetMetBebe(BattleSystem *battleSys);
-void BattleSystem_TryIncrementRecordValue(BattleSystem *battleSys, int param1);
+void BattleSystem_TryIncrementRecordValue(BattleSystem *battleSys, int id);
 void BattleSystem_TryIncrementTrainerScoreCaughtSpecies(BattleSystem *battleSys);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSys, int param1);
