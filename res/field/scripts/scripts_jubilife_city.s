@@ -92,7 +92,7 @@ JubilifeCity_Counterpart_Init:
     WaitMovement
     ApplyMovement JUBILIFE_CITY_COUNTERPART, _044C
     WaitMovement
-    SetCounterpartBGM
+    Common_SetCounterpartBGM
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, JubilifeCity_Dawn
     GoToIfEq VAR_RESULT, GENDER_FEMALE, JubilifeCity_Lucas
@@ -229,7 +229,7 @@ _0348:
 _036E:
     ApplyMovement 31, _0550
     WaitMovement
-    SetLookerBGM
+    Common_SetLookerBGM
     Message 12
     Message 13
     CloseMessage
@@ -257,7 +257,7 @@ _03C0:
     Message 20
     SetVar VAR_0x8004, ITEM_VS_RECORDER
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Message 21
     CloseMessage
     ApplyMovement 31, _055C
@@ -270,7 +270,7 @@ _03C0:
     WaitMovement
     SetPosition 31, 186, 0, 0x2F4, 1
     SetObjectEventPos 31, 186, 0x2F4
-    FadeToDefaultMusic4
+    Common_FadeToDefaultMusic4
     Return
 
 _041B:
@@ -986,7 +986,7 @@ _0C7C:
 _0CF0:
     SetVar VAR_0x8004, ITEM_FASHION_CASE
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x00F2
     Call _0D58
     Call _0D58
@@ -1207,7 +1207,7 @@ JubilifeCity_UnusedMovement9:
 JubilifeCity_UnusedMovement10:
     WalkOnSpotNormalWest
     EndMovement
-    
+
 JubilifeCity_UnusedMovement11:
     WalkOnSpotNormalWest
     EndMovement
@@ -1541,7 +1541,7 @@ _1356:
     SetVar VAR_0x8004, ITEM_COUPON_1
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_1
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1580,7 +1580,7 @@ _13CD:
     SetVar VAR_0x8004, ITEM_COUPON_2
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_2
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1621,7 +1621,7 @@ _1451:
     SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_3
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1678,7 +1678,7 @@ JubilifeCity_Looker_AfterOneBadgeObtained:
     AddObject 31
     ApplyMovement 31, _1538
     WaitMovement
-    SetLookerBGM
+    Common_SetLookerBGM
     ApplyMovement 31, _1544
     ApplyMovement LOCALID_PLAYER, _08A0
     WaitMovement
@@ -1687,7 +1687,7 @@ JubilifeCity_Looker_AfterOneBadgeObtained:
     ApplyMovement 31, _154C
     WaitMovement
     RemoveObject 31
-    FadeToDefaultMusic4
+    Common_FadeToDefaultMusic4
     SetVar VAR_JUBILIFE_LOOKER_PALPAD, 2
     ReleaseAll
     End

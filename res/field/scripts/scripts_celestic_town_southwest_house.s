@@ -14,7 +14,7 @@ _000A:
     GoToIfEq VAR_RESULT, 1, _003A
     Message 0
     SetVar VAR_0x8004, POKETCH_APPID_ANALOGWATCH
-    GivePoketchApp
+    Common_GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

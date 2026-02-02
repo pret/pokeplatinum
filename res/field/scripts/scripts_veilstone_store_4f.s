@@ -109,7 +109,7 @@ VeilstoneStore4F_TopDecorVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_UP
     ReleaseAll
@@ -119,7 +119,7 @@ VeilstoneStore4F_BottomDecorVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartDecor MART_DECOR_ID_VEILSTONE_4F_DOWN
     ReleaseAll

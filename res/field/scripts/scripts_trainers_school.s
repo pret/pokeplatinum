@@ -33,7 +33,7 @@ _0032:
     Message 2
     SetVar VAR_0x8004, ITEM_TOWN_MAP
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     BufferRivalName 1
     Message 3
     CloseMessage
@@ -209,7 +209,7 @@ _0274:
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _02B3
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0112
     GoTo _02A8
     End
@@ -222,7 +222,7 @@ _02A8:
     End
 
 _02B3:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

@@ -230,7 +230,7 @@ _02A8:
 _02BD:
     HealParty
     ClearFlag FLAG_COMMUNICATION_CLUB_ACCESSIBLE
-    SaveGame
+    Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 1, _02E2
     GoTo _0291
@@ -792,7 +792,7 @@ _0BF2:
     BufferAccessoryName 1, VAR_0x8004
     Message 80
     SetVar VAR_0x8005, 1
-    GiveAccessory
+    Common_GiveAccessory
 _0C3E:
     Message 82
     WaitABXPadPress
@@ -1058,7 +1058,7 @@ Unk212_Unused:
     GoToIfEq VAR_0x8008, 2, Unk212_Unused4
     GoToIfEq VAR_0x8008, 3, Unk212_Unused5
     GoTo Unk212_Unused6
-    End 
+    End
 
 Unk212_Unused2:
     SetVar VAR_0x8004, 0

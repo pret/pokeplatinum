@@ -38,7 +38,7 @@ _0036:
     AddObject 5
     ApplyMovement 5, _0148
     WaitMovement
-    SetLookerBGM
+    Common_SetLookerBGM
     CallIfEq VAR_0x8005, 24, _0109
     CallIfEq VAR_0x8005, 25, _011D
     CallIfEq VAR_0x8005, 26, _0131
@@ -52,9 +52,9 @@ _0036:
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F2
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Call _00E5
-    FadeToDefaultMusic4
+    Common_FadeToDefaultMusic4
     ReleaseAll
     End
 
@@ -67,7 +67,7 @@ _00E5:
 
 _00F2:
     Call _0100
-    FadeToDefaultMusic4
+    Common_FadeToDefaultMusic4
     ReleaseAll
     End
 
@@ -154,7 +154,7 @@ _01BE:
     SetVar VAR_0x8004, ITEM_BLACK_FLUTE
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01F0
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Call _00E5
     ReleaseAll
     End

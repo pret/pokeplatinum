@@ -47,7 +47,7 @@ OreburghGym_RoarkGiveTM76:
     SetVar VAR_0x8004, ITEM_TM76
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghGym_RoarkGiveTM76BagFull
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_OBTAINED_ROARK_TM76
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -58,7 +58,7 @@ OreburghGym_RoarkGiveTM76:
     End
 
 OreburghGym_RoarkGiveTM76BagFull:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

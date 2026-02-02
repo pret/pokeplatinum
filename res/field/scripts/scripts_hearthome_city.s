@@ -322,7 +322,7 @@ _03AC:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x014A
     CloseMessage
     ReleaseAll
@@ -337,7 +337,7 @@ _03F4:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x014B
     CloseMessage
     ReleaseAll
@@ -351,7 +351,7 @@ _0442:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x014C
     CloseMessage
     ReleaseAll
@@ -365,7 +365,7 @@ _048A:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x014D
     CloseMessage
     ReleaseAll
@@ -379,7 +379,7 @@ _04D2:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x014E
     CloseMessage
     ReleaseAll
@@ -393,7 +393,7 @@ _051A:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x014F
     CloseMessage
     ReleaseAll
@@ -407,7 +407,7 @@ _0562:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x0150
     CloseMessage
     ReleaseAll
@@ -422,7 +422,7 @@ _05AA:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x0151
     CloseMessage
     ReleaseAll
@@ -437,7 +437,7 @@ _05F8:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x0152
     CloseMessage
     ReleaseAll
@@ -452,7 +452,7 @@ _0646:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x0153
     CloseMessage
     ReleaseAll
@@ -467,7 +467,7 @@ _0694:
     SetVar VAR_0x8005, 1
     CheckHasRoomForGoodsInPC VAR_0x8004, VAR_0x8005, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _06F3
-    SendToUndergroundPC
+    Common_SendToUndergroundPC
     SetFlag FLAG_UNK_0x0154
     CloseMessage
     ReleaseAll

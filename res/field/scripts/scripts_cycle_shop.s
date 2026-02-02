@@ -17,7 +17,7 @@ _0016:
     Message 0
     SetVar VAR_0x8004, ITEM_BICYCLE
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0082
     SetVar VAR_UNK_0x4114, 1
     ScrCmd_14C 9

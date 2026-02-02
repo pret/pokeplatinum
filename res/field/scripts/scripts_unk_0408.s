@@ -303,7 +303,7 @@ _04AC:
     End
 
 _04B0:
-    CheckBagPocketForItem
+    Common_CheckBagPocketForItem
     ScrCmd_236 VAR_0x8004
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
     IsItemTMHM VAR_0x8004, VAR_RESULT
@@ -409,7 +409,7 @@ _064F:
     End
 
 _0667:
-    PrintPlateObtainedMessage
+    Common_PrintPlateObtainedMessage
     Return
 
     .balign 4, 0

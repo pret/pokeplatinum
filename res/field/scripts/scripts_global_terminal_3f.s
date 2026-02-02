@@ -155,7 +155,7 @@ _015D:
     End
 
 _0163:
-    SaveGame
+    Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _015D
     CloseMessage
@@ -167,5 +167,5 @@ _0184:
     Message 12
     GoTo _0119
     End
-    
+
     .balign 4, 0

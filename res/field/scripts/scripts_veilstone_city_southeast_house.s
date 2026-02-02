@@ -53,7 +53,7 @@ _009F:
     SetVar VAR_0x8004, ITEM_COIN_CASE
     SetVar VAR_0x8005, 1
     SetFlag FLAG_UNK_0x00BC
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End

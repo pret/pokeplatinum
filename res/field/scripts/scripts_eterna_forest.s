@@ -147,7 +147,7 @@ _0198:
 
 _01DB:
     Message 6
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     GoTo _01EA
     End
 

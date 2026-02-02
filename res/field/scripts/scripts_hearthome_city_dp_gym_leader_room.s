@@ -73,7 +73,7 @@ _012B:
     SetVar VAR_0x8004, ITEM_TM65
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0169
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_OBTAINED_FANTINA_TM65
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -84,7 +84,7 @@ _012B:
     End
 
 _0169:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
