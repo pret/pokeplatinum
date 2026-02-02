@@ -88,7 +88,7 @@ UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
 UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem);
 FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSystem);
 FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSystem);
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem);
+MessageLoader *BattleSystem_GetMessageLoader(BattleSystem *battleSystem);
 MessageLoader *ov16_0223E060(BattleSystem *battleSystem);
 PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSystem);
 Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSystem);
@@ -338,7 +338,7 @@ FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSystem)
     return battleSystem->unk_1A8;
 }
 
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem)
+MessageLoader *BattleSystem_GetMessageLoader(BattleSystem *battleSystem)
 {
     return battleSystem->unk_0C;
 }

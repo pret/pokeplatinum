@@ -1154,7 +1154,7 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     StringTemplate *strFormatter;
 
     bgl = BattleSystem_BGL(healthbar->battleSys);
-    msgLoader = BattleSystem_MessageLoader(healthbar->battleSys);
+    msgLoader = BattleSystem_GetMessageLoader(healthbar->battleSys);
     strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
 
     nickname = String_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
@@ -1369,7 +1369,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     String *v5;
 
     v0 = BattleSystem_BGL(param0->battleSys);
-    v4 = BattleSystem_MessageLoader(param0->battleSys);
+    v4 = BattleSystem_GetMessageLoader(param0->battleSys);
 
     if (param1 & (1 << 10)) {
         v5 = MessageLoader_GetNewString(v4, 950);
@@ -1413,7 +1413,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     StringTemplate *v7;
 
     v0 = BattleSystem_BGL(param0->battleSys);
-    v4 = BattleSystem_MessageLoader(param0->battleSys);
+    v4 = BattleSystem_GetMessageLoader(param0->battleSys);
     v7 = BattleSystem_StringTemplate(param0->battleSys);
     v5 = String_Init(30, HEAP_ID_BATTLE);
 

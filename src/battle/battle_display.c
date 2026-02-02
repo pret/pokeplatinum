@@ -810,7 +810,7 @@ void ov16_0225D8F0(BattleSystem *battleSys, BattlerData *param1, AttackMsgMessag
 
 void BattleDisplay_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg)
 {
-    MessageLoader *msgLoader = BattleSystem_MessageLoader(battleSys);
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(battleSys);
     BattleMessageWaitTask *taskData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     taskData->battleSys = battleSys;
@@ -1031,7 +1031,7 @@ void ov16_0225DDD8(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessag
 
     ov16_02263C1C(battleSys, param1, message, &v2);
 
-    v1 = BattleSystem_MessageLoader(battleSys);
+    v1 = BattleSystem_GetMessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
@@ -1050,7 +1050,7 @@ void ov16_0225DE30(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessa
 
     ov16_02263CF0(battleSys, param1, message, &v2);
 
-    v1 = BattleSystem_MessageLoader(battleSys);
+    v1 = BattleSystem_GetMessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
@@ -1069,7 +1069,7 @@ void ov16_0225DE88(BattleSystem *battleSys, BattlerData *param1)
 
     ov16_02263DD0(battleSys, param1, &v2);
 
-    v1 = BattleSystem_MessageLoader(battleSys);
+    v1 = BattleSystem_GetMessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
@@ -1088,7 +1088,7 @@ void ov16_0225DEDC(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessa
 
     ov16_02263E7C(battleSys, param1, message, &v2);
 
-    v1 = BattleSystem_MessageLoader(battleSys);
+    v1 = BattleSystem_GetMessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
@@ -1118,7 +1118,7 @@ void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage
     MessageLoader *v1;
 
     if (param1->bootState == 0x0) {
-        v1 = BattleSystem_MessageLoader(battleSys);
+        v1 = BattleSystem_GetMessageLoader(battleSys);
         v0 = (UnkStruct_ov16_0225DF6C *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225DF6C));
 
         v0->unk_00 = battleSys;
@@ -1276,7 +1276,7 @@ void ov16_0225E23C(BattleSystem *battleSys, BattlerData *param1)
     BattleMessage v1;
 
     if (param1->bootState == 0x0) {
-        v0 = BattleSystem_MessageLoader(battleSys);
+        v0 = BattleSystem_GetMessageLoader(battleSys);
 
         v1.id = 923;
         v1.tags = 0;
@@ -1333,7 +1333,7 @@ void ov16_0225E338(BattleSystem *battleSys, BattlerData *param1)
 
     ov16_022641B4(battleSys, param1, &v2);
 
-    v1 = BattleSystem_MessageLoader(battleSys);
+    v1 = BattleSystem_GetMessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
@@ -1352,7 +1352,7 @@ void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessag
 
     ov16_02264270(battleSys, param1, message, &v2);
 
-    v1 = BattleSystem_MessageLoader(battleSys);
+    v1 = BattleSystem_GetMessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
@@ -1371,7 +1371,7 @@ void ov16_0225E3E0(BattleSystem *battleSys, BattlerData *param1)
 
     ov16_02264360(battleSys, param1, &v2);
 
-    v1 = BattleSystem_MessageLoader(battleSys);
+    v1 = BattleSystem_GetMessageLoader(battleSys);
     v0 = (BattleMessageWaitTask *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageWaitTask));
 
     v0->battleSys = battleSys;
@@ -2832,7 +2832,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         MessageLoader *v9;
         BattleMessage v10;
 
-        v9 = BattleSystem_MessageLoader(v0->unk_00);
+        v9 = BattleSystem_GetMessageLoader(v0->unk_00);
 
         if (battleType & BATTLE_TYPE_CATCH_TUTORIAL) {
             switch (ov16_0223F228(v0->unk_00)) {
@@ -3165,7 +3165,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
             MessageLoader *v6;
             BattleMessage v7;
 
-            v6 = BattleSystem_MessageLoader(v0->unk_00);
+            v6 = BattleSystem_GetMessageLoader(v0->unk_00);
             v7.tags = 2;
             v7.params[0] = v0->unk_1D | (v0->unk_1F << 8);
             v7.id = 921;
@@ -3728,7 +3728,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v9.tags = 5;
         v9.params[0] = v0->unk_04->selectedBattleBagItem;
 
-        v8 = BattleSystem_MessageLoader(v0->unk_00);
+        v8 = BattleSystem_GetMessageLoader(v0->unk_00);
 
         v0->unk_11 = BattleMessage_Print(v0->unk_00, v8, &v9, BattleSystem_TextSpeed(v0->unk_00));
         v0->unk_17 = 30;
@@ -3813,7 +3813,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             break;
         }
 
-        v14 = BattleSystem_MessageLoader(v0->unk_00);
+        v14 = BattleSystem_GetMessageLoader(v0->unk_00);
         v0->unk_11 = BattleMessage_Print(v0->unk_00, v14, &v15, BattleSystem_TextSpeed(v0->unk_00));
         v0->unk_17 = 30;
     }
@@ -3873,7 +3873,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         BattleMessage v25;
         int v26;
 
-        v24 = BattleSystem_MessageLoader(v0->unk_00);
+        v24 = BattleSystem_GetMessageLoader(v0->unk_00);
         v26 = v0->unk_08->unk_04->selectedPartyIndex * 2;
 
         if (v0->unk_08->unk_04->currentDamage) {
@@ -3979,7 +3979,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
             }
         }
 
-        v29 = BattleSystem_MessageLoader(v0->unk_00);
+        v29 = BattleSystem_GetMessageLoader(v0->unk_00);
         v0->unk_11 = BattleMessage_Print(v0->unk_00, v29, &v30, BattleSystem_TextSpeed(v0->unk_00));
         v0->unk_17 = 30;
     }
@@ -4352,7 +4352,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
                 MessageLoader *v7;
                 BattleMessage v8;
 
-                v7 = BattleSystem_MessageLoader(v0->unk_00);
+                v7 = BattleSystem_GetMessageLoader(v0->unk_00);
 
                 if (v0->unk_0F == 5) {
                     v8.tags = 2 | 0x80;

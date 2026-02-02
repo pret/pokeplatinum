@@ -1791,7 +1791,7 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
     param0->unk_6C1 = v6->unk_08;
 
-    v4 = BattleSystem_MessageLoader(param0->battleSys);
+    v4 = BattleSystem_GetMessageLoader(param0->battleSys);
 
     param0->unk_66A = v5;
 
@@ -1917,7 +1917,7 @@ static void ov16_022699AC(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
     param0->unk_66A = v0->unk_10;
 
-    messageLoader = BattleSystem_MessageLoader(param0->battleSys);
+    messageLoader = BattleSystem_GetMessageLoader(param0->battleSys);
     v3 = ov16_0226ABD4(param0, v0->unk_10);
 
     DrawMoveTypeIcons(param0);
@@ -1995,7 +1995,7 @@ static void ov16_02269C7C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     MessageLoader *v0;
     String *v1, *v2;
 
-    v0 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetMessageLoader(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 940);
     v2 = MessageLoader_GetNewString(v0, 941);
 
@@ -2011,7 +2011,7 @@ static void ov16_02269D14(UnkStruct_ov16_02268A14 *param0, int param1, int param
     MessageLoader *v0;
     String *v1, *v2;
 
-    v0 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetMessageLoader(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1181);
     v2 = MessageLoader_GetNewString(v0, 1182);
 
@@ -2028,7 +2028,7 @@ static void ov16_02269DB0(UnkStruct_ov16_02268A14 *param0, int param1, int param
     String *v1, *v2, *v3, *v4;
     StringTemplate *v5;
     UnkStruct_ov16_022623F0 *v6 = &param0->unk_1A.val4;
-    v0 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetMessageLoader(param0->battleSys);
     v5 = BattleSystem_StringTemplate(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1186);
     v2 = MessageLoader_GetNewString(v0, 1187);
@@ -2055,7 +2055,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_BGALL, 31, 0);
 
-    v0 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetMessageLoader(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1260);
 
     {
@@ -2090,7 +2090,7 @@ static void ov16_02269F68(UnkStruct_ov16_02268A14 *param0, int param1, int param
     String *v1, *v2, *v3, *v4;
     StringTemplate *v5;
     UnkStruct_ov16_022623F0 *v6 = &param0->unk_1A.val4;
-    v0 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetMessageLoader(param0->battleSys);
     v5 = BattleSystem_StringTemplate(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1217);
     v2 = MessageLoader_GetNewString(v0, 1218);
@@ -2116,7 +2116,7 @@ static void ov16_0226A04C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     String *v1, *v2, *v3, *v4;
     StringTemplate *v5;
     UnkStruct_ov16_022623F0 *v6 = &param0->unk_1A.val4;
-    v0 = BattleSystem_MessageLoader(param0->battleSys);
+    v0 = BattleSystem_GetMessageLoader(param0->battleSys);
     v5 = BattleSystem_StringTemplate(param0->battleSys);
     v1 = MessageLoader_GetNewString(v0, 1215);
     v2 = MessageLoader_GetNewString(v0, 1216);
@@ -2156,7 +2156,7 @@ static void ov16_0226A12C(UnkStruct_ov16_02268A14 *param0, int param1, int param
     param0->unk_66C = v0->unk_21;
     param0->unk_66A = v0->unk_20;
 
-    v2 = BattleSystem_MessageLoader(param0->battleSys);
+    v2 = BattleSystem_GetMessageLoader(param0->battleSys);
     v8 = BattleSystem_StringTemplate(param0->battleSys);
 
     ov16_0226B20C(param0, v3, 0);
@@ -2806,7 +2806,7 @@ void ov16_0226AC98(UnkStruct_ov16_02268A14 *param0, int param1, const MoveDispla
     String *v9;
     StringTemplate *v10;
     TextColor v11;
-    MessageLoader *v12 = BattleSystem_MessageLoader(param0->battleSys);
+    MessageLoader *v12 = BattleSystem_GetMessageLoader(param0->battleSys);
     v0 = ov16_0226ABD4(param0, param1);
     v3 = sub_0208C098(6);
     v9 = MessageLoader_GetNewString(v12, 938);
@@ -4609,7 +4609,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
 
     {
         String *v8;
-        MessageLoader *v9 = BattleSystem_MessageLoader(param0->battleSys);
+        MessageLoader *v9 = BattleSystem_GetMessageLoader(param0->battleSys);
         int i;
         const u16 v11[][2] = {
             { 1261, 1262 },

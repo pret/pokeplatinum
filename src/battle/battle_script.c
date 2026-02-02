@@ -9916,7 +9916,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     int item;
     int itemEffect;
 
-    msgLoader = BattleSystem_MessageLoader(data->battleSys);
+    msgLoader = BattleSystem_GetMessageLoader(data->battleSys);
     battleType = BattleSystem_BattleType(data->battleSys);
     battler = data->battleCtx->faintedMon >> 1 & 1; // init to the side with the fainted mon
     expBattler = 0;
@@ -10541,7 +10541,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     Pokemon *v3;
     PaletteData *v4;
     PokemonSpriteManager *v5;
-    MessageLoader *v6 = BattleSystem_MessageLoader(v2->battleSys);
+    MessageLoader *v6 = BattleSystem_GetMessageLoader(v2->battleSys);
     v4 = BattleSystem_PaletteSys(v2->battleSys);
     v5 = ov16_0223E000(v2->battleSys);
     v1 = 1;
@@ -12200,7 +12200,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     UnkStruct_020127E8 v12;
     int v13;
 
-    v4 = BattleSystem_MessageLoader(battleSys);
+    v4 = BattleSystem_GetMessageLoader(battleSys);
     v7 = ov16_0223E0D4(battleSys);
     v5 = BattleSystem_StringTemplate(battleSys);
     v8 = BattleSystem_BGL(battleSys);
