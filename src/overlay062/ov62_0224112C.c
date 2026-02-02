@@ -11,7 +11,6 @@
 #include "overlay062/ov62_02239D60.h"
 #include "overlay062/ov62_0223CAEC.h"
 #include "overlay062/ov62_02241204.h"
-#include "overlay062/struct_ov62_022349A8.h"
 #include "overlay062/struct_ov62_02241130.h"
 
 #include "inlines.h"
