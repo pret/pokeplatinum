@@ -6,11 +6,13 @@
 #include "sprite_resource.h"
 #include "sprite_util.h"
 
-typedef struct {
+#define NUM_SPRITES 7
+
+typedef struct BattleCastleAppSpriteManager {
     SpriteList *spriteList;
     G2dRenderer renderer;
-    SpriteResourceCollection *resourceCollection[4];
-    SpriteResource *resources[7][4];
+    SpriteResourceCollection *resourceCollection[MAX_SPRITE_RESOURCE_GEN4];
+    SpriteResource *resources[NUM_SPRITES][MAX_SPRITE_RESOURCE_GEN4];
 } BattleCastleAppSpriteManager;
 
 void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, Party *party, u8 param2);

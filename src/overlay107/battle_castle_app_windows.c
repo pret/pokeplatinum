@@ -2,8 +2,12 @@
 
 #include <nitro.h>
 
+#include "constants/field_base_tiles.h"
+
 #include "bg_window.h"
 #include "render_window.h"
+
+#define BASE_TILE_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
 
 static const WindowTemplate Unk_ov107_0224A288[] = {
     { BG_LAYER_MAIN_1, 2, 1, 29, 2, 13, 1 },
@@ -72,14 +76,14 @@ void BattleCastleApp_FreeWindows(Window *windows, u8 param1)
 
 void BattleCastleApp_DrawWindow(BgConfig *bgConfig, Window *window)
 {
-    LoadStandardWindowGraphics(bgConfig, Window_GetBgLayer(window), 1015, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_BATTLE_CASTLE_APP);
-    Window_DrawStandardFrame(window, 1, 1015, 11);
+    LoadStandardWindowGraphics(bgConfig, Window_GetBgLayer(window), BASE_TILE_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_BATTLE_CASTLE_APP);
+    Window_DrawStandardFrame(window, 1, BASE_TILE_WINDOW_FRAME, PLTT_11);
 }
 
 void BattleCastleApp_DrawMessageBox(Window *window, int frame)
 {
-    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), 985, 10, frame, HEAP_ID_BATTLE_CASTLE_APP);
+    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10, frame, HEAP_ID_BATTLE_CASTLE_APP);
     Window_FillTilemap(window, 15);
-    Window_DrawMessageBoxWithScrollCursor(window, 1, 985, 10);
+    Window_DrawMessageBoxWithScrollCursor(window, 1, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10);
     Window_ScheduleCopyToVRAM(window);
 }

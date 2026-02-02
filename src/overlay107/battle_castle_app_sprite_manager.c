@@ -22,7 +22,7 @@
 static void InitCharPlttTransferBuffers(void);
 static void ov107_02249A70(BattleCastleAppSpriteManager *spriteMan);
 
-static const u8 sCapacities[4] = { 7, 7, 7, 7 };
+static const u8 sCapacities[4] = { NUM_SPRITES, NUM_SPRITES, NUM_SPRITES, NUM_SPRITES };
 
 void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, Party *party, u8 param2)
 {
@@ -34,7 +34,7 @@ void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, 
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_BATTLE_CASTLE_APP);
     spriteMan->spriteList = SpriteList_InitRendering(40, &spriteMan->renderer, HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < MAX_SPRITE_RESOURCE_GEN4; i++) {
         spriteMan->resourceCollection[i] = SpriteResourceCollection_New(sCapacities[i], i, HEAP_ID_BATTLE_CASTLE_APP);
     }
 
@@ -77,7 +77,7 @@ void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, 
 
     NARC_dtor(narc);
 
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < NUM_SPRITES; i++) {
         SpriteTransfer_RequestChar(spriteMan->resources[i][0]);
     }
 
@@ -130,7 +130,7 @@ Sprite *BattleCastleApp_InitSprite(BattleCastleAppSpriteManager *spriteMan, u32 
 
 void BattleCastleApp_FreeSprites(BattleCastleAppSpriteManager *spriteMan)
 {
-    for (u8 i = 0; i < 7; i++) {
+    for (u8 i = 0; i < NUM_SPRITES; i++) {
         SpriteTransfer_ResetCharTransfer(spriteMan->resources[i][SPRITE_RESOURCE_CHAR]);
     }
 
@@ -138,7 +138,7 @@ void BattleCastleApp_FreeSprites(BattleCastleAppSpriteManager *spriteMan)
         SpriteTransfer_ResetPlttTransfer(spriteMan->resources[i][SPRITE_RESOURCE_PLTT]);
     }
 
-    for (u8 i = 0; i < 4; i++) {
+    for (u8 i = 0; i < MAX_SPRITE_RESOURCE_GEN4; i++) {
         SpriteResourceCollection_Delete(spriteMan->resourceCollection[i]);
     }
 
