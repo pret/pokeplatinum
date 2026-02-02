@@ -3,8 +3,6 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "graphics.h"
@@ -196,7 +194,7 @@ static void RowanIntroTv_VBlankCallback(void *uncastTv)
 static void RowanIntroTv_InitGraphics(RowanIntroTv *tv)
 {
     {
-        UnkStruct_02099F80 banks = {
+        GXBanks banks = {
             .unk_00 = GX_VRAM_BG_256_AB,
             .unk_04 = GX_VRAM_BGEXTPLTT_NONE,
             .unk_08 = GX_VRAM_SUB_BG_NONE,

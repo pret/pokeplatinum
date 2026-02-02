@@ -2684,24 +2684,24 @@ int CommPacketSizeOf_TrapHelpData(void)
     return sizeof(TrapHelpData);
 }
 
-int TrapRadar_GetXCoordOfBuriedTrap(int param0)
+int TrapRadar_GetXCoordOfBuriedTrap(int radarIndex)
 {
     if (trapsEnv && trapsEnv->trapRadarContext) {
         int index = trapsEnv->trapRadarContext->timer / 2;
 
-        index = (index + param0) % (MAX_PLACED_TRAPS + MAX_SPAWNED_TRAPS);
+        index = (index + radarIndex) % (MAX_PLACED_TRAPS + MAX_SPAWNED_TRAPS);
         return trapsEnv->trapRadarContext->results[index].x;
     }
 
     return 0;
 }
 
-int TrapRadar_GetZCoordOfBuriedTrap(int param0)
+int TrapRadar_GetZCoordOfBuriedTrap(int radarIndex)
 {
     if (trapsEnv && trapsEnv->trapRadarContext) {
         int index = trapsEnv->trapRadarContext->timer / 2;
 
-        index = (index + param0) % (MAX_PLACED_TRAPS + MAX_SPAWNED_TRAPS);
+        index = (index + radarIndex) % (MAX_PLACED_TRAPS + MAX_SPAWNED_TRAPS);
         return trapsEnv->trapRadarContext->results[index].z;
     }
 

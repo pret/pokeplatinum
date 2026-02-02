@@ -2,8 +2,6 @@
 
 #include <nitro.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "applications/poffin_case/main.h"
 #include "applications/poffin_case/menus.h"
 #include "applications/poffin_case/sprites.h"
@@ -457,7 +455,7 @@ static int UnloadApp(PoffinManager *app)
 
 static void SetGXBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

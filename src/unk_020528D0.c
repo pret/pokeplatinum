@@ -6,7 +6,6 @@
 #include "generated/text_banks.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
 
@@ -63,7 +62,7 @@ static const WindowTemplate Unk_020EC2F0 = {
 
 static void sub_020528D0(BgConfig *param0)
 {
-    static const UnkStruct_02099F80 v0 = {
+    static const GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

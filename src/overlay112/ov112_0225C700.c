@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/ov66_0223177C.h"
@@ -185,7 +183,7 @@ static const CharTransferTemplate Unk_ov112_0225D814 = {
     0x6B
 };
 
-static const UnkStruct_02099F80 Unk_ov112_0225D858 = {
+static const GXBanks Unk_ov112_0225D858 = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_128_C,

@@ -10302,7 +10302,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             if (BattleContext_IOBufferVal(data->battleCtx, expBattler) == PLAYER_INPUT_CANCEL) {
                 data->seqNum = SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED;
             } else {
-                msg.id = BattleStrings_Text_WhichMoveShouldBeForgotten; // "Which move should be forgotten?"
+                msg.id = BattleStrings_Text_WhichMoveShouldBeForgotten2; // "Which move should be forgotten?"
                 msg.tags = TAG_NONE;
                 data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
                 data->seqNum = SEQ_GET_EXP_MAKE_IT_FORGET_WAIT;

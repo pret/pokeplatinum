@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
@@ -43,7 +42,7 @@ void include_unk_ov6_02248F30();
 
 typedef struct {
     FieldSystem *fieldSystem;
-    UnkStruct_02099F80 unk_04;
+    GXBanks unk_04;
     MotionBlur *motionBlur;
     int unk_30;
     int unk_34;
@@ -348,7 +347,7 @@ static u32 ov6_0223E1AC(const UnkStruct_ov6_0223E140 *param0)
 
 static void ov6_0223E1B0(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_32_FG,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

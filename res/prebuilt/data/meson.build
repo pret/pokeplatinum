@@ -127,7 +127,6 @@ prebuilt_files = [
     'uground_pltt2.resdat',
     'ugroundeffect.naix',
     'ugroundeffect.narc',
-    'underg_radar.narc',
     'UTF16.dat',
     'utility.bin',
     'weather_sys.narc',

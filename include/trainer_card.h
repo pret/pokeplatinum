@@ -24,7 +24,7 @@ typedef struct TrainerCardBadge {
 
 typedef struct TrainerCard {
     u8 gameVersion;
-    u8 regionCode;
+    u8 language;
     u8 gymLeadersToHide_Unused;
     u8 level;
     u8 badgesInteractable : 1;

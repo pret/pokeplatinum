@@ -6,7 +6,6 @@
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223B6F4.h"
@@ -307,7 +306,7 @@ int ov107_02245FD0(ApplicationManager *appMan, int *param1)
             }
 
             ov107_02249DBC(&v0->unk_50[7], Options_Frame(v0->options));
-            ov104_0222E5D0(v0->unk_24, 0);
+            BattleFrontier_SetPartnerInStrTemplate(v0->unk_24, 0);
             v0->unk_0A = ov107_022477CC(v0, 7, FONT_MESSAGE);
             ov107_02248350(v0, param1, 3);
             break;
@@ -1247,7 +1246,7 @@ static void ov107_022472E8(void *param0)
 
 static void ov107_02247320(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

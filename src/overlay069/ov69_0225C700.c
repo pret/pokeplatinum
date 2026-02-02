@@ -7,9 +7,9 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "global/pm_version.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/struct_ov66_02230F50.h"
@@ -395,7 +395,7 @@ static const u32 Unk_ov69_0225F028[3] = {
     0x2
 };
 
-static const UnkStruct_02099F80 Unk_ov69_0225F0C0 = {
+static const GXBanks Unk_ov69_0225F0C0 = {
     GX_VRAM_BG_16_F,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_128_C,
@@ -1331,7 +1331,7 @@ static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_
     param0->unk_04.unk_00_1 = 0;
     param0->unk_04.unk_00_0 = 0;
 
-    if (gGameLanguage == 1) {
+    if (gGameLanguage == JAPANESE) {
         param0->unk_04.unk_00_1 = 1;
     } else {
         param0->unk_04.unk_00_1 = 0;

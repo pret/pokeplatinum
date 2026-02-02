@@ -7,7 +7,6 @@
 #include "generated/string_padding_mode.h"
 
 #include "struct_defs/pc_hall_of_fame_screen_def.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "applications/pc_hall_of_fame/manager.h"
 
@@ -249,7 +248,7 @@ static BOOL PCHallOfFame_LoadCurrentTextState(PCHallOfFameApp *pcHallOfFameApp, 
 
 static void ov87_021D139C(PCHallOfFameApp *pcHallOfFameApp)
 {
-    static const UnkStruct_02099F80 v0 = {
+    static const GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

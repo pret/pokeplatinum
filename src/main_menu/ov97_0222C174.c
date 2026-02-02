@@ -2,7 +2,6 @@
 #include <string.h>
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "game_opening/const_ov77_021D742C.h"
 #include "main_menu/main_menu_util.h"
@@ -508,7 +507,7 @@ static void ov97_0222C210(UnkStruct_ov97_0222C388 *param0)
 static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 {
     int v0;
-    UnkStruct_02099F80 v1 = {
+    GXBanks v1 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -478,7 +477,7 @@ static const CharTransferTemplate Unk_ov114_0226017C = {
     0x0
 };
 
-static const UnkStruct_02099F80 Unk_ov114_022601B4 = {
+static const GXBanks Unk_ov114_022601B4 = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_32_H,
@@ -616,7 +615,7 @@ static const u8 Unk_ov114_0226016C[4][4] = {
     { 0x0, 0x3, 0x1, 0x2 }
 };
 
-static const UnkStruct_02099F80 Unk_ov114_022601DC = {
+static const GXBanks Unk_ov114_022601DC = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_32_H,
