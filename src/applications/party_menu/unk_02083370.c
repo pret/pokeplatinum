@@ -186,7 +186,9 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v4);
         Pokemon_SetArceusForm(mon);
 
-        if ((fieldSystem == NULL) || (fieldSystem->location->mapId < 573) || (fieldSystem->location->mapId > 583)) {
+        if (fieldSystem == NULL
+            || fieldSystem->location->mapId < MAP_HEADER_DISTORTION_WORLD_1F
+            || fieldSystem->location->mapId > MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM) {
             v1 = Pokemon_SetGiratinaFormByHeldItem(mon);
 
             if ((param0->partyMembers[param0->currPartySlot].heldItem == ITEM_GRISEOUS_ORB) && (v1 == 0)) {

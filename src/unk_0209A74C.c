@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "font.h"
@@ -20,7 +18,7 @@
 #include "system.h"
 #include "text.h"
 
-static const UnkStruct_02099F80 Unk_020F8AF8 = {
+static const GXBanks Unk_020F8AF8 = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_NONE,
@@ -65,7 +63,7 @@ static const WindowTemplate Unk_020F8AC4 = {
     0x23
 };
 
-void sub_0209A74C(int heapID)
+void sub_0209A74C(enum HeapID heapID)
 {
     BgConfig *v0;
     Window v1;
@@ -140,7 +138,7 @@ void sub_0209A74C(int heapID)
     PM_ForceToPowerOff();
 }
 
-void sub_0209A8E0(int heapID)
+void sub_0209A8E0(enum HeapID heapID)
 {
     BgConfig *v0;
     Window v1;

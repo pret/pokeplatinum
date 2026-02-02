@@ -1,0 +1,136 @@
+{
+  "key": 208,
+  "messages": [
+    {
+      "id": "UndergroundBaseDecoration_Text_Decor",
+      "en_US": "DECOR"
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_Decorate",
+      "en_US": "DECORATE"
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_PutAway",
+      "en_US": "PUT AWAY"
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_MoveGoods",
+      "en_US": "MOVE GOODS"
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_DecorateDescription",
+      "en_US": [
+        "Pick decoration goods stored on the\n",
+        "PC and display them."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_PutAwayDescription",
+      "en_US": [
+        "Take goods displayed in your Secret\n",
+        "Base and put them away in your PC."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_MoveGoodsDescription",
+      "en_US": [
+        "Move displayed decoration goods inside\n",
+        "your Secret Base."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CancelDescription",
+      "en_US": "Cancel decorating."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_GoodsSet",
+      "en_US": "Goods Set"
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_GoodsSetTemplate",
+      "en_US": "{STRVAR_1 51, 0, 0}/{STRVAR_1 51, 1, 0}"
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_GoodWasPlaced",
+      "en_US": "The {STRVAR_1 10, 0, 0} was placed."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CantPlaceHere",
+      "en_US": "It can’t be placed here."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_GoodReturnedToPC",
+      "en_US": [
+        "The {STRVAR_1 10, 0, 0} was\n",
+        "returned to the PC."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_BigBoulderRemoved",
+      "en_US": "The Big Boulder was removed."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CantRemoveBigBoulder",
+      "en_US": "You can’t remove a Big Boulder."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CantMoveBigBoulder",
+      "en_US": "You can’t move a Big Boulder."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CanRemove1MoreBoulder",
+      "en_US": [
+        "You are able to remove {STRVAR_1 51, 0, 0} more\n",
+        "Big Boulder."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CantRemoveMoreBoulders",
+      "en_US": "No more Big Boulders can be removed."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_NoGoodsInPC",
+      "en_US": [
+        "There are no decoration goods stored\n",
+        "on your PC."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_DisplayLimitReached",
+      "en_US": [
+        "No more decoration goods can be\n",
+        "displayed."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_GoodAlreadyDisplayed",
+      "en_US": [
+        "That decoration good is already out\n",
+        "on display."
+      ]
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CantPutAwayPC",
+      "en_US": "The PC cannot be put away."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CantMovePC",
+      "en_US": "The PC cannot be moved."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_QuitDecorating_Unused",
+      "en_US": "Quit decorating."
+    },
+    {
+      "id": "UndergroundBaseDecoration_Text_CanRemoveXMoreBoulders",
+      "en_US": [
+        "You are able to remove {STRVAR_1 51, 0, 0} more\n",
+        "Big Boulders."
+      ]
+    }
+  ]
+}

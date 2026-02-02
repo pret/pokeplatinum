@@ -6,8 +6,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay117/ov117_022626B0.h"
@@ -57,7 +55,7 @@
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
-static G3DPipelineBuffers *ov117_02260E14(int heapID);
+static G3DPipelineBuffers *ov117_02260E14(enum HeapID heapID);
 static void ov117_02260E34(void);
 static void ov117_02260EB8(G3DPipelineBuffers *param0);
 static void ov117_02260F7C(SysTask *param0, void *param1);
@@ -507,7 +505,7 @@ static void ov117_02260DA0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static G3DPipelineBuffers *ov117_02260E14(int heapID)
+static G3DPipelineBuffers *ov117_02260E14(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, ov117_02260E34);
 }
@@ -631,7 +629,7 @@ static void ov117_022610D8(BgConfig *param0)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_B,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_128_C,

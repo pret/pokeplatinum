@@ -5,7 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
@@ -65,7 +64,7 @@ typedef struct {
 } UnkStruct_ov92_021D1B24_sub1;
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     WiFiHistory *wiFiHistory;
     Options *options;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
@@ -298,7 +297,7 @@ static const ListMenuTemplate Unk_ov92_021D29C8 = {
 int ov92_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov92_021D1B24 *v0;
-    int heapID = HEAP_ID_50;
+    enum HeapID heapID = HEAP_ID_50;
 
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
@@ -314,10 +313,10 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov92_021D1B24));
     v0->heapID = heapID;
 
-    if (gGameLanguage == 1) {
-        v0->unk_BAF0 = 1;
+    if (gGameLanguage == JAPANESE) {
+        v0->unk_BAF0 = TRUE;
     } else {
-        v0->unk_BAF0 = 0;
+        v0->unk_BAF0 = FALSE;
     }
 
     SaveData *saveData = ApplicationManager_Args(appMan);
@@ -664,7 +663,7 @@ int ov92_021D0EB8(ApplicationManager *appMan, int *param1)
 int ov92_021D1478(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov92_021D1B24 *v0 = ApplicationManager_Data(appMan);
-    int heapID = v0->heapID;
+    enum HeapID heapID = v0->heapID;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -685,7 +684,7 @@ int ov92_021D1478(ApplicationManager *appMan, int *param1)
 
 static void ov92_021D14F0(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,
@@ -1475,7 +1474,7 @@ static void ov92_021D26D0(UnkStruct_ov92_021D1B24 *param0)
     }
 }
 
-BOOL ov92_021D27E8(int param0, int param1, String *param2, String *param3, int heapID)
+BOOL ov92_021D27E8(int param0, int param1, String *param2, String *param3, enum HeapID heapID)
 {
     MessageLoader *v0;
     int v1 = ov92_021D16F8(param0);

@@ -253,7 +253,7 @@
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x015D",
+            "hidden_flag": "MAP_HEADER_ROUTE_205_NORTH",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -558,7 +558,7 @@
             "y": 7
         },
         {
-            "id": "ETERNA_CITY_BARRY_33",
+            "id": "ETERNA_CITY_RIVAL_33",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",

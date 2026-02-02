@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "main_menu/application_template.h"
 
 #include "bg_window.h"
@@ -23,7 +21,7 @@
 FS_EXTERN_OVERLAY(main_menu);
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -68,14 +66,13 @@ const ApplicationManagerTemplate Unk_020F8AB4 = {
 int sub_0209A2C4(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_0209A3D0 *v0;
-    int heapID = HEAP_ID_88;
 
-    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_88, 0x20000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209A3D0), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_0209A3D0), HEAP_ID_88);
     memset(v0, 0, sizeof(UnkStruct_0209A3D0));
 
-    v0->heapID = heapID;
+    v0->heapID = HEAP_ID_88;
     v0->unk_04 = 0;
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
 
@@ -134,7 +131,7 @@ int sub_0209A3A4(ApplicationManager *appMan, int *param1)
 static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
 {
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_256_AB,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_NONE,

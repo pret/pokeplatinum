@@ -192,7 +192,7 @@ static void CharacterSprite_CopyTilesRegion(int sourceWidth, int sourceHeight, c
     CharacterSprite_CopyTilesRect(sourceWidth, sourceHeight, subRegion->x, subRegion->y, subRegion->width, subRegion->height, destOffset, sourceSprite, dest);
 }
 
-static void CharacterSprite_LoadSpriteRect(enum NarcID narcID, int characterIdx, int heapID, int x, int y, int width, int height, void *dest)
+static void CharacterSprite_LoadSpriteRect(enum NarcID narcID, int characterIdx, enum HeapID heapID, int x, int y, int width, int height, void *dest)
 {
     int numRegions;
     int destOffset;

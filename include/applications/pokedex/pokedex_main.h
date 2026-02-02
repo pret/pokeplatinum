@@ -76,11 +76,11 @@ void ov21_021D1524(Sprite *param0, PokedexTextData *textData, int param2, int pa
 void PokedexMain_SetHitTableRect(TouchScreenHitTable *hitTable, int top, int bottom, int left, int right);
 void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration);
 BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *pokedexLoadingScreen);
-void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, int heapID);
-Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, int heapID, int species);
-Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, int heapID, int species);
-Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, int heapID, int species);
-void PokedexMain_EntryNameNumber(PokedexGraphicData *param0, const PokedexSortData *pokedexSortData, int heapID, int statusIndex, fx32 x, fx32 y);
+void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int species, enum HeapID heapID);
+Window *PokedexMain_DisplayNameNumber(PokedexGraphicData *pokedexgraphicData, const PokedexSortData *pokedexSortData, enum HeapID heapID, int species);
+Window *PokedexMain_DisplayNameNumberNational(PokedexTextManager *textMan, enum HeapID heapID, int species);
+Window *PokedexMain_DisplayNameNumberLocal(PokedexTextManager *textMan, enum HeapID heapID, int species);
+void PokedexMain_EntryNameNumber(PokedexGraphicData *param0, const PokedexSortData *pokedexSortData, enum HeapID heapID, int statusIndex, fx32 x, fx32 y);
 void ov21_021D1848(PokedexGraphicData *pokedexGraphicData, int param1, int param2);
 void ov21_021D1858(PokedexSpeciesLabel *param0, int param1, int param2);
 void PokedexMain_DisplayPokemonSprite(PokedexGraphicData *pokedexGraphicData, PokedexSortData *pokedexSortData, int species, int face, int param4, int param5);

@@ -931,8 +931,11 @@ void ApplyCellsToImage(char *cellFilePath, struct Image *image, bool toPNG, bool
                 uniqueOAMs--;
                 continue;
             }
+            if (!tileMask[pixelOffset])
+            {
+                numTiles += oamdim.height * oamdim.width;
+            }
             tileMask[pixelOffset] = 1;
-            numTiles += oamdim.height * oamdim.width;
 
             bool rotationScaling = options->cells[i]->oam[j].attr1.RotationScaling;
             bool hFlip = options->cells[i]->attributes.hFlip && rotationScaling;

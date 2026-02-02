@@ -73,7 +73,7 @@ void DisableHBlank(void);
 BOOL SetHBlankCallback(Callback cb, void *data);
 void InitSystem(void);
 void InitVRAM(void);
-void *ReadFileToHeap(int heapID, const char *filename);
+void *ReadFileToHeap(enum HeapID heapID, const char *filename);
 void ReadFileToBuffer(const char *filename, void **buf);
 void ClearUnusedSystemCache(void);
 void InitKeypadAndTouchpad(void);

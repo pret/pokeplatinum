@@ -134,7 +134,7 @@ void ov17_02243C28(UnkStruct_ov17_02246F24 *param0)
     v0.unk_04 = NELEMS(Unk_ov17_022539E4);
     v0.unk_06 = param0->unk_00->unk_00.unk_113;
     v0.unk_08 = param0->unk_00->unk_00.unk_10C;
-    v0.unk_07 = param0->unk_00->unk_155;
+    v0.unk_07 = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_BF8, &v0);
 }
@@ -911,7 +911,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
     case 10:
         v0->unk_0C++;
     default:
-        if (v0->unk_00->unk_00->unk_155 == 1) {
+        if (v0->unk_00->unk_00->isLinkContest == TRUE) {
             ov17_02242E5C(v0->unk_00, 46, NULL, NULL);
         }
 

@@ -13,7 +13,6 @@
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
@@ -90,18 +89,12 @@
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(battle_anim);
-FS_EXTERN_OVERLAY(overlay13);
+FS_EXTERN_OVERLAY(battle_sub_menus);
 FS_EXTERN_OVERLAY(trainer_ai);
 FS_EXTERN_OVERLAY(pokedex);
 
 static const u32 BattleServerVersion = 0x140;
 
-void ov16_0223B384(BattleSystem *battleSys);
-void ov16_0223B3E4(BattleSystem *battleSys);
-void ov16_0223B430(BattleSystem *battleSys);
-void ov16_0223B53C(BattleSystem *battleSys);
-void ov16_0223B578(BattleSystem *battleSys);
-void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags);
 static void ov16_0223B790(ApplicationManager *appMan);
 static int ov16_0223BBD0(ApplicationManager *appMan);
 static void ov16_0223BCB4(ApplicationManager *appMan);
@@ -274,7 +267,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
         EvolutionData *v5 = (EvolutionData *)v0->unk_170;
 
         if (Evolution_IsDone(v5) == 1) {
-            sub_0207B0E0(v5);
+            Evolution_Free(v5);
             Heap_Destroy(HEAP_ID_73);
             *param1 = 13;
         }
@@ -302,7 +295,7 @@ void ov16_0223B384(BattleSystem *battleSys)
         Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
     }
 
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay13), 2);
+    Overlay_LoadByID(FS_OVERLAY_ID(battle_sub_menus), 2);
 }
 
 void ov16_0223B3E4(BattleSystem *battleSys)
@@ -325,7 +318,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     NARC *v0;
     NARC *v1;
 
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay13));
+    Overlay_UnloadByID(FS_OVERLAY_ID(battle_sub_menus));
 
     if (battleSys->overlayFlags == 0) {
         Overlay_LoadByID(FS_OVERLAY_ID(battle_anim), 2);
@@ -644,7 +637,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->monAnimMan = PokemonAnimManager_New(HEAP_ID_BATTLE, 4, FALSE);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
-    if (battleSys->battleStatusMask & 0x10) {
+    if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {
         for (idx = 0; idx < 4; idx++) {
             battleSys->unk_247C[idx] = v1->unk_194[idx];
         }
@@ -656,7 +649,7 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     int v1;
 
-    if ((battleSys->battleType & BATTLE_TYPE_LINK) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleSys->battleType & BATTLE_TYPE_LINK) && ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
         if (battleSys->unk_23F8) {
             BattleContext_Main(battleSys, battleSys->battleCtx);
         }
@@ -700,7 +693,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->seed = battleSystem->unk_2448;
     v1->battleStatusMask = battleSystem->battleStatusMask;
 
-    if ((battleSystem->battleStatusMask & 0x10) == 0) {
+    if ((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) == 0) {
         sub_0202F8AC(v1);
     }
 
@@ -735,7 +728,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->captureAttempt = battleSystem->captureAttempt;
     v1->countSafariBalls = battleSystem->safariBalls;
     v1->resultMask = battleSystem->resultMask & (0xc0 ^ 0xff);
-    v1->caughtBattlerIdx = battleSystem->unk_2438;
+    v1->caughtBattlerIdx = battleSystem->caughtBattlerIdx;
     v1->leveledUpMonsMask = BattleContext_Get(battleSystem, battleSystem->battleCtx, 4, NULL);
     v1->battleRecords.totalTurns += BattleContext_Get(battleSystem, battleSystem->battleCtx, 3, NULL);
     v1->battleRecords.totalFainted += (BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 0) + BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 2));
@@ -819,7 +812,7 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,
@@ -1093,7 +1086,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->time = dto->timeOfDay;
     battleSys->unk_2418 = dto->rulesetMask;
     battleSys->unk_2424 = dto->visitedContestHall;
-    battleSys->unk_242C = dto->metBebe;
+    battleSys->metBebe = dto->metBebe;
     battleSys->fieldWeather = dto->fieldWeather;
     battleSys->records = dto->records;
 
@@ -1475,7 +1468,7 @@ static void ov16_0223CE68(void *param0)
     if (v0->unk_23FB_1) {
         v0->unk_23FB_1 = 0;
         {
-            UnkStruct_02099F80 v1 = {
+            GXBanks v1 = {
                 GX_VRAM_BG_128_A,
                 GX_VRAM_BGEXTPLTT_NONE,
                 GX_VRAM_SUB_BG_32_H,
@@ -1495,7 +1488,7 @@ static void ov16_0223CE68(void *param0)
     if (v0->unk_23FB_2) {
         v0->unk_23FB_2 = 0;
         {
-            UnkStruct_02099F80 v2 = {
+            GXBanks v2 = {
                 GX_VRAM_BG_128_A,
                 GX_VRAM_BGEXTPLTT_NONE,
                 GX_VRAM_SUB_BG_128_C,
@@ -1655,7 +1648,7 @@ static void ov16_0223D10C(ApplicationManager *appMan, FieldBattleDTO *param1)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v1 = {
+        GXBanks v1 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,
@@ -1998,7 +1991,7 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
     MI_CpuClearFast(battleSys, sizeof(BattleSystem));
     ov16_0223C2C0(battleSys, v1);
 
-    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
+    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
         NetworkIcon_Destroy();
         return 0;
     }
@@ -2071,7 +2064,7 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     u8 v2;
     int v3;
 
-    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
+    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
         NetworkIcon_Destroy();
         return 0;
     }
@@ -2230,7 +2223,7 @@ static BOOL ov16_0223DD10(ApplicationManager *appMan)
 
 static void ov16_0223DD4C(BattleSystem *battleSys)
 {
-    if ((battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_CATCH_TUTORIAL)) || (battleSys->battleStatusMask & 0x10)) {
+    if ((battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_CATCH_TUTORIAL)) || (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING)) {
         RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
         RenderControlFlags_SetSpeedUpOnTouch(FALSE);
@@ -2248,7 +2241,7 @@ static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *param1)
     int v5[4];
     int v6[4];
 
-    if (battleSys->battleStatusMask & 0x10) {
+    if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {
         battleSys->unk_23F8 = 1;
         return;
     }

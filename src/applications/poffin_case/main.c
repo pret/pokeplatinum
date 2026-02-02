@@ -4,16 +4,13 @@
 
 #include "generated/natures.h"
 
-#include "struct_defs/struct_02098DE8.h"
-
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
+#include "applications/poffin_case/cutscene.h"
 #include "applications/poffin_case/manager.h"
-#include "applications/poffin_case/ov79_021D2268.h"
 #include "applications/pokemon_summary_screen/main.h"
 
 #include "bag.h"
-#include "enums.h"
 #include "game_options.h"
 #include "heap.h"
 #include "overlay_manager.h"
@@ -70,7 +67,7 @@ enum PoffinCaseAppState {
     STATE_EXIT,
 };
 
-typedef struct {
+typedef struct PoffinCaseApp {
     enum HeapID heapID;
     int unused;
     u8 monIndex;
@@ -100,7 +97,7 @@ const ApplicationManagerTemplate gPoffinCaseAppTemplate = {
     FS_OVERLAY_ID_NONE
 };
 
-PoffinCaseAppData *PoffinCaseAppData_New(SaveData *saveData, int heapID)
+PoffinCaseAppData *PoffinCaseAppData_New(SaveData *saveData, enum HeapID heapID)
 {
     StringTemplate *unused;
     u8 count = 0, j = 0;
@@ -366,23 +363,23 @@ static int State_InitPoffinGivingCutscene(PoffinCaseApp *app)
 {
     FS_EXTERN_OVERLAY(poffin_case);
 
-    static const ApplicationManagerTemplate v0 = {
-        ov79_021D22AC,
-        ov79_021D22E4,
-        ov79_021D2460,
+    static const ApplicationManagerTemplate cutsceneTemplate = {
+        PoffinCutscene_Init,
+        PoffinCutscene_Main,
+        PoffinCutscene_Exit,
         FS_OVERLAY_ID(poffin_case),
     };
-    UnkStruct_02098DE8 *v1 = Heap_Alloc(app->heapID, sizeof(UnkStruct_02098DE8));
-    MI_CpuClear8(v1, sizeof(UnkStruct_02098DE8));
+    PoffinCutsceneData *appData = Heap_Alloc(app->heapID, sizeof(PoffinCutsceneData));
+    MI_CpuClear8(appData, sizeof(PoffinCutsceneData));
 
-    v1->unk_08 = app->data->poffins[app->data->selectedPoffin].type;
-    v1->unk_04 = PoffinCase_AllocateForSlot(app->data->poffinCase, app->data->poffins[app->data->selectedPoffin].caseIndex, app->heapID);
-    v1->unk_00 = Party_GetPokemonBySlotIndex(app->data->party, app->monIndex);
-    v1->unk_0A = Options_TextFrameDelay(app->data->options);
-    v1->unk_0B = Options_Frame(app->data->options);
+    appData->poffinType = app->data->poffins[app->data->selectedPoffin].type;
+    appData->poffin = PoffinCase_AllocateForSlot(app->data->poffinCase, app->data->poffins[app->data->selectedPoffin].caseIndex, app->heapID);
+    appData->mon = Party_GetPokemonBySlotIndex(app->data->party, app->monIndex);
+    appData->textDelay = Options_TextFrameDelay(app->data->options);
+    appData->frame = Options_Frame(app->data->options);
 
-    app->subApp = ApplicationManager_New(&v0, v1, app->heapID);
-    app->subAppData = v1;
+    app->subApp = ApplicationManager_New(&cutsceneTemplate, appData, app->heapID);
+    app->subAppData = appData;
 
     return STATE_PLAY_GIVING_CUTSCENE;
 }
@@ -393,10 +390,10 @@ static int State_PlayPoffinGivingCutscene(PoffinCaseApp *app)
         return STATE_PLAY_GIVING_CUTSCENE;
     }
 
-    UnkStruct_02098DE8 *v0 = app->subAppData;
+    PoffinCutsceneData *appData = app->subAppData;
 
-    Heap_Free(v0->unk_04);
-    Heap_Free(v0);
+    Heap_Free(appData->poffin);
+    Heap_Free(appData);
 
     return STATE_INIT_SUMMARY_AFTER_GIVING;
 }
@@ -443,81 +440,77 @@ static int State_OpenSummaryAfterGiving(PoffinCaseApp *app)
     return STATE_INIT_POFFIN_MANAGER;
 }
 
-UnkEnum_02098EAC sub_02098EAC(Poffin *param0, u8 param1)
+enum PoffinPreference PoffinCase_GetPoffinPreference(Poffin *poffin, u8 nature)
 {
-    u8 v0[7];
-    u8 v1, v2, v3;
-    u8 v4 = sFlavorPreferences[param1][0];
-    u8 v5 = sFlavorPreferences[param1][1];
+    u8 likedFlavor = sFlavorPreferences[nature][0];
+    u8 dislikedFlavor = sFlavorPreferences[nature][1];
 
-    if (v4 == 5) {
-        return 2;
+    if (likedFlavor == FLAVOR_MAX) {
+        return POFFIN_PREFERENCE_NEUTRAL;
     }
 
-    Poffin_StoreAttributesToArray(param0, v0);
+    u8 poffinAttrs[7];
+    Poffin_StoreAttributesToArray(poffin, poffinAttrs);
 
-    v1 = v0[0];
-    v2 = v0[v4 + 1];
-    v3 = v0[v5 + 1];
+    u8 likedStrength = poffinAttrs[likedFlavor + 1];
+    u8 dislikedStrength = poffinAttrs[dislikedFlavor + 1];
 
-    if (v2 == v3) {
-        return 2;
+    if (likedStrength == dislikedStrength) {
+        return POFFIN_PREFERENCE_NEUTRAL;
     }
 
-    if (v2 > v3) {
-        return 0;
+    if (likedStrength > dislikedStrength) {
+        return POFFIN_PREFERENCE_LIKE;
     } else {
-        return 1;
+        return POFFIN_PREFERENCE_DISLIKE;
     }
 }
 
-void sub_02098EF8(Poffin *param0, Pokemon *param1)
+void PoffinCase_UpdateMonContestStats(Poffin *poffin, Pokemon *mon)
 {
-    u8 v0, v1;
-    u8 v2, v3;
-    u8 v4, v5;
-    float v6;
-    int v7[6];
-    u8 v8[7];
-    u8 v9[7];
+    u8 i;
 
-    v2 = Pokemon_GetNature(param1);
-    v4 = sFlavorPreferences[v2][0];
-    v5 = sFlavorPreferences[v2][1];
+    u8 nature = Pokemon_GetNature(mon);
+    u8 likedFlavor = sFlavorPreferences[nature][0];
+    u8 dislikedFlavor = sFlavorPreferences[nature][1];
 
-    Poffin_StoreAttributesToArray(param0, v8);
+    u8 poffinAttrs[7];
+    Poffin_StoreAttributesToArray(poffin, poffinAttrs);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v7[v0] = Pokemon_GetValue(param1, MON_DATA_COOL + v0, NULL);
+    int monContestStats[6];
+    for (i = 0; i < 6; i++) {
+        monContestStats[i] = Pokemon_GetValue(mon, MON_DATA_COOL + i, NULL);
     }
 
-    v1 = 0;
+    u8 adjustedPoffinAttrs[7];
 
-    for (v0 = 1; v0 <= 6; v0++) {
-        v9[v1++] = v8[v0];
+    u8 j = 0;
+    for (i = 1; i <= 6; i++) {
+        adjustedPoffinAttrs[j++] = poffinAttrs[i];
     }
 
-    if (v4 != 5) {
-        v6 = (float)v9[v4] * 1.1f;
-        v9[v4] = (u8)v6;
-        v6 = (float)v9[v5] * 0.9f;
-        v9[v5] = (u8)v6;
+    if (likedFlavor != FLAVOR_MAX) {
+        float modifiedAttr = adjustedPoffinAttrs[likedFlavor] * 1.1f;
+        adjustedPoffinAttrs[likedFlavor] = modifiedAttr;
+
+        modifiedAttr = adjustedPoffinAttrs[dislikedFlavor] * 0.9f;
+        adjustedPoffinAttrs[dislikedFlavor] = modifiedAttr;
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v7[v0] += v9[v0];
+    for (i = 0; i < 6; i++) {
+        monContestStats[i] += adjustedPoffinAttrs[i];
 
-        if (v7[v0] > 255) {
-            v7[v0] = 255;
+        if (monContestStats[i] > MAX_CONTEST_STAT) {
+            monContestStats[i] = MAX_CONTEST_STAT;
         }
 
-        Pokemon_SetValue(param1, 19 + v0, &v7[v0]);
+        Pokemon_SetValue(mon, MON_DATA_COOL + i, &monContestStats[i]);
     }
 
-    v3 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
+    u8 friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    if (v3 < 255) {
-        ++v3;
-        Pokemon_SetValue(param1, MON_DATA_FRIENDSHIP, &v3);
+    if (friendship < MAX_FRIENDSHIP_VALUE) {
+        ++friendship;
+        Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
     }
 }

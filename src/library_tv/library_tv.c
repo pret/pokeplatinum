@@ -5,8 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "graphics.h"
@@ -21,7 +19,7 @@
 #define LIBRARY_TV_DURATION 90 + 150
 
 typedef struct LibraryTV {
-    int heapID;
+    enum HeapID heapID;
     BgConfig *bgl;
     MessageLoader *msgLdr;
     int tvState;
@@ -40,14 +38,12 @@ static void LibraryTV_UpdateScanLines(LibraryTV *ltv);
 
 BOOL LibraryTV_Init(ApplicationManager *appMan, int *state)
 {
-    int heapID = HEAP_ID_LIBRARY_TV;
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_LIBRARY_TV, HEAP_SIZE_LIBRARY_TV);
 
-    Heap_Create(HEAP_ID_APPLICATION, heapID, HEAP_SIZE_LIBRARY_TV);
-
-    LibraryTV *ltv = ApplicationManager_NewData(appMan, sizeof(LibraryTV), heapID);
+    LibraryTV *ltv = ApplicationManager_NewData(appMan, sizeof(LibraryTV), HEAP_ID_LIBRARY_TV);
     memset(ltv, 0, sizeof(LibraryTV));
 
-    ltv->heapID = heapID;
+    ltv->heapID = HEAP_ID_LIBRARY_TV;
     ltv->waitTiming = 0;
 
     return TRUE;
@@ -165,7 +161,7 @@ static void LibraryTV_VBlank(void *data)
 
 static void LibraryTV_SetVramBank(LibraryTV *ltv)
 {
-    UnkStruct_02099F80 vramBank = {
+    GXBanks vramBank = {
         GX_VRAM_BG_256_AB,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_NONE,

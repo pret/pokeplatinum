@@ -98,7 +98,7 @@ int sub_0205CA14(int gender, int param1, int param2)
     return 0;
 }
 
-u16 *sub_0205CA4C(int heapID)
+u16 *sub_0205CA4C(enum HeapID heapID)
 {
     u8 *v0, *v1;
     NNSG2dPaletteData *v2, *v3;

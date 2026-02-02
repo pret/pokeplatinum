@@ -3,10 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02029C68_decl.h"
+#include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208C06C.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay062/ov62_022300D8.h"
 #include "overlay062/ov62_02231690.h"
@@ -342,7 +341,7 @@ static void ov62_0222F670(BgConfig *param0)
     }
 
     {
-        UnkStruct_02099F80 v1 = {
+        GXBanks v1 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_128_C,
@@ -697,10 +696,10 @@ BOOL ov62_0222FD3C(UnkStruct_0208C06C *param0)
         break;
     case 5:
         if (v0 == 0) {
-            UnkStruct_02029C68 *v2 = sub_02029CA8(sub_0202A750(param0->saveData), v0);
-            v1 = sub_02029F34(v2);
+            DressUpPhoto *photo = ImageClips_GetDressUpPhoto(SaveData_GetImageClips(param0->saveData), v0);
+            v1 = DressUpPhoto_HasData(photo);
 
-            if (v1 == 0) {
+            if (v1 == FALSE) {
                 ov62_0223197C(param0, 290);
             }
         }

@@ -53,7 +53,7 @@ static void ov63_0222CA48(UnkStruct_ov63_0222BEC0 *param0);
 static UnkStruct_ov63_0222CC3C ov63_0222C9E4(UnkStruct_ov63_0222CC3C param0, int param1);
 static BOOL ov63_0222CA14(UnkStruct_ov63_0222BEC0 *param0);
 
-UnkStruct_ov63_0222BE18 *ov63_0222BE18(u32 param0, u32 heapID)
+UnkStruct_ov63_0222BE18 *ov63_0222BE18(u32 param0, enum HeapID heapID)
 {
     UnkStruct_ov63_0222BE18 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov63_0222BE18));
     GF_ASSERT(v0);

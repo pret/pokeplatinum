@@ -3,8 +3,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "font.h"
@@ -18,7 +16,7 @@
 #include "system.h"
 #include "text.h"
 
-static const UnkStruct_02099F80 Unk_020E5F7C = {
+static const GXBanks Unk_020E5F7C = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_NONE,
@@ -63,7 +61,7 @@ static const WindowTemplate Unk_020E5F48 = {
     0x23
 };
 
-void sub_02039A64(int heapID, int unused)
+void sub_02039A64(enum HeapID heapID, int unused)
 {
     BgConfig *v0;
     Window v1;

@@ -1,0 +1,129 @@
+{
+  "key": 51,
+  "messages": [
+    {
+      "id": "LinkContestRecord_Text_PlayerName",
+      "en_US": "{STRVAR_1 3, 0, 0}’s"
+    },
+    {
+      "id": "LinkContestRecord_Text_LinkContestRecord",
+      "en_US": "Link Contest Record"
+    },
+    {
+      "id": "LinkContestRecord_Text_Cool",
+      "en_US": "Cool"
+    },
+    {
+      "id": "LinkContestRecord_Text_Beauty",
+      "en_US": "Beauty"
+    },
+    {
+      "id": "LinkContestRecord_Text_Cute",
+      "en_US": "Cute"
+    },
+    {
+      "id": "LinkContestRecord_Text_Smart",
+      "en_US": "Smart"
+    },
+    {
+      "id": "LinkContestRecord_Text_Tough",
+      "en_US": "Tough"
+    },
+    {
+      "id": "LinkContestRecord_Text_First",
+      "en_US": "First"
+    },
+    {
+      "id": "LinkContestRecord_Text_Second",
+      "en_US": "Second"
+    },
+    {
+      "id": "LinkContestRecord_Text_Third",
+      "en_US": "Third"
+    },
+    {
+      "id": "LinkContestRecord_Text_Fourth",
+      "en_US": "Fourth"
+    },
+    {
+      "id": "LinkContestRecord_Text_CoolFirstPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_CoolSecondPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_CoolThirdPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_CoolFourthPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_BeautyFirstPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_BeautySecondPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_BeautyThirdPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_BeautyFourthPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_CuteFirstPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_CuteSecondPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_CuteThirdPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_CuteFourthPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_SmartFirstPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_SmartSecondPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_SmartThirdPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_SmartFourthPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_ToughFirstPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_ToughSecondPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_ToughThirdPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    },
+    {
+      "id": "LinkContestRecord_Text_ToughFourthPlaces",
+      "en_US": "{STRVAR_1 53, 0, 0}"
+    }
+  ]
+}

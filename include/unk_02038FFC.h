@@ -5,7 +5,7 @@
 
 #include "savedata.h"
 
-int sub_02038FFC(int heapID);
+int sub_02038FFC(enum HeapID heapID);
 void sub_02039034(WiFiList *param0);
 int WiFiList_GetUserGsProfileId(WiFiList *wifiList);
 BOOL WiFiList_HasValidLogin(SaveData *saveData);

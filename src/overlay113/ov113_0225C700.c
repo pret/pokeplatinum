@@ -12,7 +12,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -134,7 +133,7 @@ static void ov113_0225D12C(BgConfig *param0);
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0);
-static G3DPipelineBuffers *ov113_0225DC6C(int heapID);
+static G3DPipelineBuffers *ov113_0225DC6C(enum HeapID heapID);
 static void ov113_0225DC88(void);
 static void ov113_0225DD0C(G3DPipelineBuffers *param0);
 static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0);
@@ -694,7 +693,7 @@ static void ov113_0225CF58(BgConfig *param0)
     GXLayers_DisableEngineBLayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_C,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,
@@ -1253,7 +1252,7 @@ static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static G3DPipelineBuffers *ov113_0225DC6C(int heapID)
+static G3DPipelineBuffers *ov113_0225DC6C(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov113_0225DC88);
 }

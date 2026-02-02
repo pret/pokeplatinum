@@ -1025,7 +1025,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monMax = Party_GetCurrentCount(summary->monData);
         summary->move = 0;
         summary->mode = SUMMARY_MODE_NORMAL;
-        summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
+        summary->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
         summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         summary->chatotCry = NULL;
@@ -1858,7 +1858,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
     StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     if (Evolution_IsDone(menu->taskData) == 1) {
-        sub_0207B0E0(menu->taskData);
+        Evolution_Free(menu->taskData);
         Heap_Destroy(HEAP_ID_73);
         Sound_StopBGM(SEQ_SHINKA, 0);
         Sound_SetScene(SOUND_SCENE_NONE);

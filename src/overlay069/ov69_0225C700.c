@@ -7,9 +7,9 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/struct_02015958.h"
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
 
+#include "global/pm_version.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
 #include "overlay066/struct_ov66_02230F50.h"
@@ -324,7 +324,7 @@ static void ov69_0225DDC8(UnkStruct_ov69_0225DDC8 *param0);
 static void ov69_0225DDFC(UnkStruct_ov69_0225DDC8 *param0);
 static u32 ov69_0225DE40(UnkStruct_ov69_0225DDC8 *param0);
 static void ov69_0225DEA0(UnkStruct_ov69_0225DDC8 *param0);
-static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, u32 heapID);
+static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, enum HeapID heapID);
 static void ov69_0225DFBC(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1);
 static void ov69_0225E00C(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225EF54 *param1, UnkStruct_ov69_0225D35C *param2);
 static void ov69_0225E084(UnkStruct_ov69_0225E084 *param0);
@@ -356,7 +356,7 @@ static void ov69_0225E644(UnkStruct_ov69_0225E084 *param0, u32 param1, const Unk
 static u8 *ov69_0225E6E8(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param2);
 static u8 *ov69_0225E70C(UnkStruct_ov69_0225E084 *param0, u32 param1);
 static void ov69_0225E71C(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param2, const u8 *param3);
-static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, u32 heapID);
+static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, enum HeapID heapID);
 static void ov69_0225E7DC(UnkStruct_ov69_0225E7DC *param0);
 static void ov69_0225E810(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1);
 static void ov69_0225E8EC(UnkStruct_ov69_0225E7DC *param0, u32 param1, BOOL param2);
@@ -395,7 +395,7 @@ static const u32 Unk_ov69_0225F028[3] = {
     0x2
 };
 
-static const UnkStruct_02099F80 Unk_ov69_0225F0C0 = {
+static const GXBanks Unk_ov69_0225F0C0 = {
     GX_VRAM_BG_16_F,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_128_C,
@@ -1331,7 +1331,7 @@ static void ov69_0225D2A8(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_
     param0->unk_04.unk_00_1 = 0;
     param0->unk_04.unk_00_0 = 0;
 
-    if (gGameLanguage == 1) {
+    if (gGameLanguage == JAPANESE) {
         param0->unk_04.unk_00_1 = 1;
     } else {
         param0->unk_04.unk_00_1 = 0;
@@ -1966,7 +1966,7 @@ static void ov69_0225DEA0(UnkStruct_ov69_0225DDC8 *param0)
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_10);
 }
 
-static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, u32 heapID)
+static void ov69_0225DEC0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225EF54 *param2, enum HeapID heapID)
 {
     param0->unk_00 = 0;
 
@@ -2476,7 +2476,7 @@ static void ov69_0225E71C(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param
     VramTransfer_Request(NNS_GFD_DST_2D_BG1_CHAR_SUB, v0 * 32, (void *)param3, 27 * 32);
 }
 
-static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, u32 heapID)
+static void ov69_0225E748(UnkStruct_ov69_0225E7DC *param0, UnkStruct_ov69_0225D35C *param1, const UnkStruct_ov69_0225F118 *param2, u16 param3, enum HeapID heapID)
 {
     int v0;
 

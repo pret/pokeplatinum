@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "camera.h"
 #include "easy3d_object.h"
 #include "g3d_pipeline.h"
@@ -52,7 +50,7 @@ static void DWWarp_DeleteCamera(DistortionWorldWarp *warp);
 static void DWWarp_InitModel(DistortionWorldWarp *warp);
 static void DWWarp_DeleteModel(DistortionWorldWarp *warp);
 static void Model3D_Update(DistortionWorldWarp *warp);
-static G3DPipelineBuffers *DWWarp_Init3D(int heapID);
+static G3DPipelineBuffers *DWWarp_Init3D(enum HeapID heapID);
 static void DWWarp_Setup3D(void);
 static void DWWarp_Exit3D(G3DPipelineBuffers *param0);
 static void DWWarp_CameraMove(DistortionWorldWarp *warp);
@@ -186,7 +184,7 @@ static void DWWarp_VramSetBank(void)
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
 
-    UnkStruct_02099F80 vramBank = {
+    GXBanks vramBank = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,
@@ -313,7 +311,7 @@ static void Model3D_Update(DistortionWorldWarp *warp)
     NNS_G3dGePopMtx(1);
 }
 
-static G3DPipelineBuffers *DWWarp_Init3D(int heapID)
+static G3DPipelineBuffers *DWWarp_Init3D(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, DWWarp_Setup3D);
 }

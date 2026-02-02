@@ -3,19 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/goods.h"
+#include "generated/goods.h"
 
 #include "overlay023/underground_defs.h"
 
 #include "res/text/bank/underground_records.h"
 
-typedef struct SpherePrice {
-    u8 sphereType;
-    u8 minSize;
-    u8 maxSize;
-} SpherePrice;
-
-typedef struct Good {
+typedef struct GoodData {
     u8 width;
     u8 depth;
     u8 collision[9];
@@ -24,10 +18,10 @@ typedef struct Good {
     int interactMessageID;
     u8 natDexRequired;
     u8 ungiftable;
-} Good;
+} GoodData;
 
 // clang-format off
-static const Good sGoods[] = {
+static const GoodData sGoodData[] = {
     [UG_GOOD_NONE] = {
         .width = 0,
         .depth = 0,
@@ -330,7 +324,7 @@ static const Good sGoods[] = {
             .maxSize = 25,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00037,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenFossilsDug,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -348,7 +342,7 @@ static const Good sGoods[] = {
             .maxSize = 10,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00037,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenFossilsDug,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -366,7 +360,7 @@ static const Good sGoods[] = {
             .maxSize = 15,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00036,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenSpheresDug,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -384,7 +378,7 @@ static const Good sGoods[] = {
             .maxSize = 49,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00038,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenTrapHits,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -402,7 +396,7 @@ static const Good sGoods[] = {
             .maxSize = 49,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00034,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenGiftsGiven,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -420,7 +414,7 @@ static const Good sGoods[] = {
             .maxSize = 15,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00041,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenGiftsReceived,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -438,7 +432,7 @@ static const Good sGoods[] = {
             .maxSize = 25,
         },
         .moneyPrice = 1000,
-        .interactMessageID = pl_msg_00000640_00040,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenOthersHelped,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -492,7 +486,7 @@ static const Good sGoods[] = {
             .maxSize = 10,
         },
         .moneyPrice = 4500,
-        .interactMessageID = pl_msg_00000640_00032,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenTotalScore,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -564,7 +558,7 @@ static const Good sGoods[] = {
             .maxSize = 10,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00039,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenTrapsHit,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -582,7 +576,7 @@ static const Good sGoods[] = {
             .maxSize = 25,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00044,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenTimesBaseMoved,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -600,7 +594,7 @@ static const Good sGoods[] = {
             .maxSize = 40,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00044,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenTimesBaseMoved,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -618,7 +612,7 @@ static const Good sGoods[] = {
             .maxSize = 40,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00044,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenTimesBaseMoved,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -726,7 +720,7 @@ static const Good sGoods[] = {
             .maxSize = 99,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00045,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenFlagsRegistered,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -744,7 +738,7 @@ static const Good sGoods[] = {
             .maxSize = 30,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00043,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenRecoveredFlags,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -762,7 +756,7 @@ static const Good sGoods[] = {
             .maxSize = 30,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00042,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenOwnFlagsTaken,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -780,7 +774,7 @@ static const Good sGoods[] = {
             .maxSize = 50,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00032,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenTotalScore,
         .natDexRequired = FALSE,
         .ungiftable = FALSE,
     },
@@ -870,7 +864,7 @@ static const Good sGoods[] = {
             .maxSize = 0,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00033,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenPeopleMet,
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
@@ -888,7 +882,7 @@ static const Good sGoods[] = {
             .maxSize = 0,
         },
         .moneyPrice = 0,
-        .interactMessageID = pl_msg_00000640_00035,
+        .interactMessageID = UndergroundRecords_Text_SomethingWrittenFlagsObtained,
         .natDexRequired = FALSE,
         .ungiftable = TRUE,
     },
@@ -2533,52 +2527,52 @@ static const Good sGoods[] = {
 };
 // clang-format on
 
-u8 Good_GetWidth(int goodID)
+u8 Good_GetWidth(enum Good goodID)
 {
-    return sGoods[goodID].width;
+    return sGoodData[goodID].width;
 }
 
-u8 Good_GetDepth(int goodID)
+u8 Good_GetDepth(enum Good goodID)
 {
-    return sGoods[goodID].depth;
+    return sGoodData[goodID].depth;
 }
 
-const u8 *Good_GetCollision(int goodID)
+const u8 *Good_GetCollision(enum Good goodID)
 {
-    return sGoods[goodID].collision;
+    return sGoodData[goodID].collision;
 }
 
-u8 Good_GetSpherePriceType(int goodID)
+u8 Good_GetSpherePriceType(enum Good goodID)
 {
-    return sGoods[goodID].spherePrice.sphereType;
+    return sGoodData[goodID].spherePrice.sphereType;
 }
 
-u8 Good_GetSpherePriceMinSize(int goodID)
+u8 Good_GetSpherePriceMinSize(enum Good goodID)
 {
-    return sGoods[goodID].spherePrice.minSize;
+    return sGoodData[goodID].spherePrice.minSize;
 }
 
-u8 Good_GetSpherePriceMaxSize(int goodID)
+u8 Good_GetSpherePriceMaxSize(enum Good goodID)
 {
-    return sGoods[goodID].spherePrice.maxSize;
+    return sGoodData[goodID].spherePrice.maxSize;
 }
 
-int Good_GetMoneyPrice(int goodID)
+int Good_GetMoneyPrice(enum Good goodID)
 {
-    return sGoods[goodID].moneyPrice;
+    return sGoodData[goodID].moneyPrice;
 }
 
-int Good_GetInteractMessageID(int goodID)
+int Good_GetInteractMessageID(enum Good goodID)
 {
-    return sGoods[goodID].interactMessageID;
+    return sGoodData[goodID].interactMessageID;
 }
 
-BOOL Good_IsNatDexRequired(int goodID)
+BOOL Good_IsNatDexRequired(enum Good goodID)
 {
-    return sGoods[goodID].natDexRequired;
+    return sGoodData[goodID].natDexRequired;
 }
 
-BOOL Good_IsUngiftable(int goodID)
+BOOL Good_IsUngiftable(enum Good goodID)
 {
-    return sGoods[goodID].ungiftable;
+    return sGoodData[goodID].ungiftable;
 }

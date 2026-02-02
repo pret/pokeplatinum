@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "constants/charcode.h"
-#include "constants/goods.h"
 #include "constants/items.h"
 #include "constants/map_object.h"
-#include "constants/traps.h"
+#include "generated/goods.h"
+#include "generated/traps.h"
 
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
@@ -96,7 +96,7 @@ int UndergroundRecord_Size(void)
     return sizeof(UndergroundRecord);
 }
 
-UndergroundRecord *UndergroundRecord_Init(u32 heapID)
+UndergroundRecord *UndergroundRecord_Init(enum HeapID heapID)
 {
     UndergroundRecord *undergroundRecord = Heap_Alloc(heapID, sizeof(UndergroundRecord));
     MI_CpuFill8(undergroundRecord, 0, sizeof(UndergroundRecord));
@@ -297,7 +297,7 @@ void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const Tr
     MI_CpuCopy8(TrainerInfo_Name(info), underground->registeredFlagOwnerNames[index], (sizeof(u16) * (TRAINER_NAME_LEN + 1)));
 
     underground->registeredFlagOwnerIDs[index] = TrainerInfo_ID(info);
-    underground->registeredFlagOwnerRegionCodes[index] = TrainerInfo_RegionCode(info);
+    underground->registeredFlagOwnerLanguages[index] = TrainerInfo_Language(info);
     underground->registeredFlagOwnerGameCodes[index] = TrainerInfo_GameCode(info);
     underground->registeredFlagOwnerIndex++;
 
@@ -306,7 +306,7 @@ void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const Tr
     }
 }
 
-TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, int heapID, int offset)
+TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, enum HeapID heapID, int offset)
 {
     int index = underground->registeredFlagOwnerIndex - offset - 1;
 
@@ -319,7 +319,7 @@ TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *undergrou
 
         TrainerInfo_SetName(flagOwnerInfo, underground->registeredFlagOwnerNames[index]);
         TrainerInfo_SetGameCode(flagOwnerInfo, underground->registeredFlagOwnerGameCodes[index]);
-        TrainerInfo_SetRegionCode(flagOwnerInfo, underground->registeredFlagOwnerRegionCodes[index]);
+        TrainerInfo_SetLanguage(flagOwnerInfo, underground->registeredFlagOwnerLanguages[index]);
         TrainerInfo_SetID(flagOwnerInfo, underground->registeredFlagOwnerIDs[index]);
 
         return flagOwnerInfo;
@@ -441,13 +441,13 @@ void Underground_MoveGoodPC(Underground *underground, int origSlot, int slotToMo
     }
 }
 
-int sub_02028ACC(Underground *underground, int param1, int param2)
+int Underground_AddPlacedGood(Underground *underground, int slot, int index)
 {
-    GF_ASSERT(param2 >= 1);
-    GF_ASSERT(param2 <= MAX_PLACED_GOODS);
+    GF_ASSERT(index >= 1);
+    GF_ASSERT(index <= MAX_PLACED_GOODS);
 
-    underground->placedGoodSlots[param2 - 1] = param1 + 1;
-    return underground->goodsPC[param1];
+    underground->placedGoodSlots[index - 1] = slot + 1;
+    return underground->goodsPC[slot];
 }
 
 BOOL Underground_IsGoodAtSlotPlacedInBase(Underground *underground, int slot)
@@ -461,13 +461,13 @@ BOOL Underground_IsGoodAtSlotPlacedInBase(Underground *underground, int slot)
     return FALSE;
 }
 
-void sub_02028B20(Underground *underground, int param1)
+void Underground_RemovePlacedGood(Underground *underground, int index)
 {
-    if (param1 - 1 >= MAX_PLACED_GOODS) {
+    if (index - 1 >= MAX_PLACED_GOODS) {
         return;
     }
 
-    underground->placedGoodSlots[param1 - 1] = 0;
+    underground->placedGoodSlots[index - 1] = 0;
 }
 
 void Underground_InitPlacedGoodSlots(Underground *underground)

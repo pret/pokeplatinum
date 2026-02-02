@@ -42,7 +42,7 @@ _0061:
     Message 14
     CloseMessage
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
-    SetVar VAR_UNK_0x40AA, 1
+    SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 1
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreenOut
     WaitFadeScreen
@@ -96,8 +96,8 @@ _014E:
     GoTo _0194
 
 _016E:
-    SetFlag FLAG_UNK_0x0121
-    SetFlag FLAG_UNK_0x0250
+    SetFlag FLAG_CAUGHT_GIRATINA
+    SetFlag FLAG_HIDE_TURNBACK_CAVE_GIRATINA_ROOM_GIRATINA
     ClearFlag FLAG_UNK_0x0278
     ScrCmd_311 130
     ScrCmd_311 129

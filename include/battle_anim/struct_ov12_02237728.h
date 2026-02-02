@@ -8,7 +8,7 @@
 
 typedef struct BallThrow {
     int type;
-    int heapID;
+    enum HeapID heapID;
     int mode;
     int target;
     int ballID;

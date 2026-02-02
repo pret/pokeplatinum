@@ -45,7 +45,7 @@ _008C:
     End
 
 _00AF:
-    SetVar VAR_UNK_0x40AA, 3
+    SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 3
     Return
 
 _00B7:
@@ -77,7 +77,7 @@ _0106:
 
 _0114:
     LockAll
-    CallIfEq VAR_UNK_0x40AA, 2, _00AF
+    CallIfEq VAR_EXITED_DISTORTION_WORLD_STATE, 2, _00AF
     BufferPlayerName 1
     Message 51
     CloseMessage
@@ -307,7 +307,7 @@ _044D:
     ApplyMovement 3, _04D8
     WaitMovement
     RemoveObject 3
-    ClearFlag FLAG_UNK_0x0177
+    ClearFlag FLAG_HIDE_SANDGEM_TOWN_COUNTERPART
     SetVar VAR_UNK_0x40A6, 1
     ReleaseAll
     End
@@ -731,7 +731,7 @@ _08A0:
     Return
 
 _08B5:
-    GoToIfUnset FLAG_UNK_0x09BE, _08C2
+    GoToIfUnset FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY, _08C2
     Return
 
 _08C2:

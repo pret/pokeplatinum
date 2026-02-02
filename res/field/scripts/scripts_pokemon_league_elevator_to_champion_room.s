@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 
 
-    ScriptEntry _000E
+    ScriptEntry PokemonLeagueElevatorToChampionRoom_OnTransition
     ScriptEntry _0029
-    ScriptEntry _0031
+    ScriptEntry PokemonLeagueElevatorToChampionRoom_TriggerPlatformLift
     ScriptEntryEnd
 
-_000E:
+PokemonLeagueElevatorToChampionRoom_OnTransition:
     SetVar VAR_MAP_LOCAL_0, 0
     InitPersistedMapFeaturesForPlatformLift
     CheckPlatformLiftNotUsedWhenEnteredMap VAR_MAP_LOCAL_1
@@ -17,7 +17,7 @@ _0029:
     SetVar VAR_MAP_LOCAL_0, 1
     End
 
-_0031:
+PokemonLeagueElevatorToChampionRoom_TriggerPlatformLift:
     TriggerPlatformLift
     SetVar VAR_MAP_LOCAL_0, 1
     End

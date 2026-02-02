@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay092/struct_ov92_021D28C0.h"
 #include "overlay114/ov114_0225C700.h"
@@ -256,7 +255,7 @@ typedef struct {
     s16 unk_96;
     u16 unk_98;
     s16 unk_9A;
-    u32 heapID;
+    enum HeapID heapID;
 } UnkStruct_ov115_02265788;
 
 typedef struct {
@@ -338,7 +337,6 @@ static void ov115_02261660(UnkStruct_ov115_022615B0 *param0, u32 param1, u32 par
 static void ov115_02261744(UnkStruct_ov115_022615B0 *param0);
 static void ov115_0226177C(UnkStruct_ov115_022615B0 *param0, u32 param1);
 static void ov115_022617D8(UnkStruct_ov115_022615B0 *param0, u32 param1);
-static void ov115_022617E8(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1, const UnkStruct_ov115_02262F50 *param2, u32 param3, u32 param4, NARC *param5, u32 param6);
 static void ov115_02261A04(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1);
 static void ov115_02261A10(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1);
 static BOOL ov115_02261A3C(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1);
@@ -427,7 +425,7 @@ static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263954(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0);
-static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 param1);
+static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263C24(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 param3);
 static void ov115_02263CC0(UnkStruct_ov115_02261ADC *param0);
@@ -2826,7 +2824,7 @@ static BOOL ov115_022632DC(const UnkStruct_ov115_022632C8 *param0, u32 param1)
 
 static void ov115_02263308(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_32_FG,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

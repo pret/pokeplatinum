@@ -85,7 +85,7 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
  * @return Pointer to the Pokemon struct in that battler's party slot.
  */
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSys);
+PokemonSpriteManager *BattleSystem_GetPokemonSpriteManager(BattleSystem *battleSys);
 BattleAnimSystem *ov16_0223E008(BattleSystem *battleSys);
 SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
 SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
@@ -109,7 +109,7 @@ u16 *ov16_0223E0B0(BattleSystem *battleSys);
 u16 *ov16_0223E0BC(BattleSystem *battleSys);
 PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSys);
 StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSys);
-String *ov16_0223E0D4(BattleSystem *battleSys);
+String *BattleSystem_GetMsgBuffer(BattleSystem *battleSys);
 
 /**
  * @brief Get the trainer ID for a particular battler.
@@ -225,9 +225,9 @@ u16 *ov16_0223F210(BattleSystem *battleSys);
 int BattleSystem_FieldWeather(BattleSystem *battleSys);
 u8 ov16_0223F228(BattleSystem *battleSys);
 void ov16_0223F234(BattleSystem *battleSys, u8 param1);
-int ov16_0223F240(BattleSystem *battleSys);
-void ov16_0223F24C(BattleSystem *battleSys, int param1);
-void ov16_0223F268(BattleSystem *battleSys);
+int BattleSystem_GetMetBebe(BattleSystem *battleSys);
+void BattleSystem_TryIncrementRecordValue(BattleSystem *battleSys, int id);
+void BattleSystem_TryIncrementTrainerScoreCaughtSpecies(BattleSystem *battleSys);
 void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
 void ov16_0223F290(BattleSystem *battleSys, int param1);
 WaitDial *Battle_GetWaitDial(BattleSystem *battleSys);
@@ -254,7 +254,7 @@ u8 ov16_0223F450(BattleSystem *battleSys);
 void BattleSystem_SetRedHPSoundFlag(BattleSystem *battleSys, u8 param1);
 u8 ov16_0223F47C(BattleSystem *battleSys);
 void ov16_0223F48C(BattleSystem *battleSys, u8 param1);
-void ov16_0223F4B0(BattleSystem *battleSys, int param1);
+void BattleSystem_SetCaughtBattlerIndex(BattleSystem *battleSys, int value);
 u16 BattleSystem_RandNext(BattleSystem *battleSys);
 u32 ov16_0223F4E8(BattleSystem *battleSys);
 void ov16_0223F4F4(BattleSystem *battleSys, u32 param1);
@@ -286,7 +286,7 @@ void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1);
  */
 u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem *battleSys, int param1);
-void ov16_0223F9A0(BattleSystem *battleSys, int param1);
+void BattleSystem_DexFlagCaught(BattleSystem *battleSys, int battler);
 
 /**
  * @brief Checks if the player has previously caught a member of this species.

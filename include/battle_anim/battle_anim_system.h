@@ -286,8 +286,8 @@ void BattleAnimSystem_LoadBattleBgTiles(BattleAnimSystem *system, enum BgLayer l
 void BattleAnimSystem_LoadBattleBgPaletteBuffer(BattleAnimSystem *system);
 BOOL BattleAnimSystem_ShouldBattlerSpriteBeFlipped(BattleAnimSystem *system, int battlerRole);
 int BattleAnimSystem_GetBgNarcMemberIndex(int bgID, enum BgNarcMemberType type);
-UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int param2);
-UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int heapID);
+UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heapID, int param2);
+UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, enum HeapID heapID);
 void ov12_02223770(UnkStruct_ov12_02223764 *param0);
 void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1);
 int ov12_022237D8(UnkStruct_ov12_02223764 *param0);

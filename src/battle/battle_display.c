@@ -75,9 +75,9 @@
 #include "battle_anim/struct_ov12_02237728.h"
 #include "battle_anim/struct_ov12_02237F38.h"
 #include "battle_anim/struct_ov12_022380DC.h"
-#include "overlay013/battle_bag.h"
-#include "overlay013/battle_bag_utils.h"
-#include "overlay013/battle_party.h"
+#include "battle_sub_menus/battle_bag.h"
+#include "battle_sub_menus/battle_bag_utils.h"
+#include "battle_sub_menus/battle_party.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -223,7 +223,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, MonEncounterMes
     s8 v8;
     u8 v9;
 
-    v2 = ov16_0223E000(battleSys);
+    v2 = BattleSystem_GetPokemonSpriteManager(battleSys);
     battleType = BattleSystem_BattleType(battleSys);
     v4 = (UnkStruct_ov16_0225E4E8 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0225E4E8));
 
@@ -537,7 +537,7 @@ void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, TrainerSlideInM
     UnkStruct_ov16_02260384 *v3;
     u32 v4;
 
-    v2 = ov16_0223E000(battleSys);
+    v2 = BattleSystem_GetPokemonSpriteManager(battleSys);
     v3 = (UnkStruct_ov16_02260384 *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_02260384));
     v3->unk_0A = 0;
 
@@ -1720,7 +1720,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 PokemonSpriteManager *v2;
                 SpriteAnimFrame v3[10];
 
-                v2 = ov16_0223E000(v0->unk_00);
+                v2 = BattleSystem_GetPokemonSpriteManager(v0->unk_00);
                 PokemonSprite_LoadAnimFrames(v0->unk_04->unk_1A0, &v3[0], v0->unk_86, v0->unk_82);
                 v0->unk_04->unk_20 = ov16_02263B30(v0->unk_00, v2, &v0->unk_14, Unk_ov12_0223B0A0[v0->unk_82][0], Unk_ov12_0223B0B8[v0->unk_82][1], Unk_ov12_0223B0B8[v0->unk_82][2], v0->unk_85, v0->unk_90, v0->unk_91, v0->unk_93, v0->unk_81, &v3[0], NULL);
 
@@ -1888,7 +1888,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
             PokemonSpriteManager *v3;
             SpriteAnimFrame v4[10];
 
-            v3 = ov16_0223E000(v0->unk_00);
+            v3 = BattleSystem_GetPokemonSpriteManager(v0->unk_00);
             PokemonSprite_LoadAnimFrames(v0->unk_04->unk_1A0, &v4[0], v0->unk_86, v0->unk_82);
             v0->unk_04->unk_20 = ov16_02263B30(v0->unk_00, v3, &v0->unk_14, Unk_ov12_0223B0A0[v0->unk_82][0], Unk_ov12_0223B0B8[v0->unk_82][1], Unk_ov12_0223B0B8[v0->unk_82][2], v0->unk_85, v0->unk_90, v0->unk_91, v0->unk_93, v0->unk_81, &v4[0], NULL);
 
@@ -4529,7 +4529,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         }
 
         if (v0->unk_6C) {
-            PokemonSpriteManager_HideShadows(ov16_0223E000(v0->unk_00));
+            PokemonSpriteManager_HideShadows(BattleSystem_GetPokemonSpriteManager(v0->unk_00));
         }
 
         ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v0->unk_10);
@@ -4543,7 +4543,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         }
 
         if (v0->unk_6C) {
-            PokemonSpriteManager_ShowShadows(ov16_0223E000(v0->unk_00));
+            PokemonSpriteManager_ShowShadows(BattleSystem_GetPokemonSpriteManager(v0->unk_00));
         }
 
         if ((v0->unk_10.isSubstitute) && (v0->unk_10.unk_4C == 0) && (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_HIDE) == 0)) {
@@ -4806,7 +4806,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DC7C *v0 = (UnkStruct_ov16_0225DC7C *)param1;
     PaletteData *v1 = BattleSystem_PaletteSys(v0->unk_00);
-    PokemonSpriteManager *v2 = ov16_0223E000(v0->unk_00);
+    PokemonSpriteManager *v2 = BattleSystem_GetPokemonSpriteManager(v0->unk_00);
 
     switch (v0->unk_06) {
     case 0:

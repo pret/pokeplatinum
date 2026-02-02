@@ -1,12 +1,12 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/amity_square.h"
-#include "generated/object_events.h"
+#include "generated/object_events_gfx.h"
 
 #define LOCALID_HAS_NATIONAL_DEX     VAR_MAP_LOCAL_0
 #define LOCALID_ITEM_OR_ACCESSORY_ID VAR_0x8004
 #define LOCALID_COUNT                VAR_0x8005
 #define PICKUP_TYPE_ITEM             0
-#define PICKUP_TYPE_ACCESORY         1
+#define PICKUP_TYPE_ACCESSORY        1
 
 
     ScriptEntry _00B6
@@ -57,7 +57,7 @@
     ScriptEntryEnd
 
 _00B6:
-    SetFlag FLAG_UNK_0x09CC
+    SetFlag FLAG_FIRST_ARRIVAL_AMITY_SQUARE
     SetFlag FLAG_UNK_0x02A1
     CalcAmitySquareBerryAndAccessoryManOptionID VAR_AMITY_SQUARE_GIFT_ID
     GetRandom VAR_MAP_LOCAL_2, 5
@@ -290,7 +290,7 @@ AmitySquare_FollowerMon_SetNextPickUpType_Item:
     Return
 
 AmitySquare_FollowerMon_SetNextPickUpType_Accessory:
-    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ACCESORY
+    SetVar VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, PICKUP_TYPE_ACCESSORY
     Return
 
 AmitySquare_FollowerMon_SetPickupItemVar:
@@ -976,7 +976,7 @@ AmitySquare_GiftMan:
     GoToIfSet FLAG_AMITY_SQUARE_MAN_GIFT_RECEIVED, AmitySquare_GiftMan_ReceivedGift
     Message AmitySquare_Text_HelloHowDoYouDoILoveThisPark
     GetAmitySquareBerryOrAccessoryIDFromMan VAR_AMITY_SQUARE_GIFT_ID, LOCALID_ITEM_OR_ACCESSORY_ID
-    GoToIfAmitySquareManGiftIsNotAccesory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
+    GoToIfAmitySquareManGiftIsNotAccessory VAR_AMITY_SQUARE_GIFT_ID, AmitySquare_GiftMan_ItemGift
     GoTo AmitySquare_GiftMan_AccessoryGift
     End
 

@@ -116,7 +116,7 @@ int sub_0202E91C(void)
     return sizeof(UnkStruct_0202E91C);
 }
 
-static u32 *sub_0202E924(SaveData *saveData, int heapID)
+static u32 *sub_0202E924(SaveData *saveData, enum HeapID heapID)
 {
     int v0;
     u32 v1;
@@ -155,8 +155,8 @@ static u32 *sub_0202E924(SaveData *saveData, int heapID)
             v4[v0] = v1;
             break;
         case 10:
-            v1 = GameRecords_GetRecordValue(v2, RECORD_UNK_092);
-            v1 += GameRecords_GetRecordValue(v2, RECORD_UNK_093);
+            v1 = GameRecords_GetRecordValue(v2, RECORD_SUPER_CONTEST_WINS);
+            v1 += GameRecords_GetRecordValue(v2, RECORD_LINK_CONTEST_WINS);
             v4[v0] = v1;
             break;
         case 11:
@@ -183,7 +183,7 @@ static u32 *sub_0202E924(SaveData *saveData, int heapID)
     return v4;
 }
 
-void *sub_0202E9FC(SaveData *saveData, int heapID)
+void *sub_0202E9FC(SaveData *saveData, enum HeapID heapID)
 {
     int v0;
     u32 v1, v2;
@@ -249,7 +249,7 @@ static BOOL sub_0202EABC(UnkStruct_0202EABC *param0, const UnkStruct_0202E858 *p
     return 0;
 }
 
-static void sub_0202EAEC(UnkStruct_0202E8C0 *param0, UnkStruct_0202EABC *param1, u32 param2, u8 param3, u8 param4, UnkStruct_0202E91C **param5, u8 param6, int param7)
+static void sub_0202EAEC(UnkStruct_0202E8C0 *param0, UnkStruct_0202EABC *param1, u32 param2, u8 param3, u8 param4, UnkStruct_0202E91C **param5, u8 param6, enum HeapID heapID)
 {
     int v0, v1;
     UnkStruct_0202E858 *v2;
@@ -332,7 +332,7 @@ static void sub_0202EAEC(UnkStruct_0202E8C0 *param0, UnkStruct_0202EABC *param1,
     }
 }
 
-static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, int heapID)
+static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, enum HeapID heapID)
 {
     int v0, v1;
     UnkStruct_0202EABC *v2 = Heap_AllocAtEnd(heapID, sizeof(UnkStruct_0202EABC));
@@ -346,7 +346,7 @@ static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkS
     Heap_Free(v2);
 }
 
-void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **param3, int heapID)
+void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **param3, enum HeapID heapID)
 {
     u8 v0, v1;
     u32 v2;
@@ -383,7 +383,7 @@ void sub_0202ED0C(SaveData *saveData, int param1, u8 param2, const void **param3
     return;
 }
 
-UnkStruct_0202EE10 *sub_0202ED8C(SaveData *saveData, int param1, int heapID)
+UnkStruct_0202EE10 *sub_0202ED8C(SaveData *saveData, int param1, enum HeapID heapID)
 {
     int v0, v1;
     u32 v2;
@@ -409,7 +409,7 @@ UnkStruct_0202EE10 *sub_0202ED8C(SaveData *saveData, int param1, int heapID)
     return v3;
 }
 
-UnkStruct_0202EE10 *sub_0202EE10(UnkStruct_0202E8C0 *param0, int param1, int heapID)
+UnkStruct_0202EE10 *sub_0202EE10(UnkStruct_0202E8C0 *param0, int param1, enum HeapID heapID)
 {
     int v0;
     UnkStruct_0202EE10 *v1;

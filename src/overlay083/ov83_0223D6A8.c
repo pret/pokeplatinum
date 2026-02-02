@@ -171,7 +171,7 @@ static SoftwareSprite *ov83_0223D720(SoftwareSpriteManager *param0, SoftwareSpri
     return v1;
 }
 
-void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int heapID)
+void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, enum HeapID heapID)
 {
     int i;
 
@@ -1829,7 +1829,7 @@ void ov83_0223F784(UnkStruct_ov83_0223F770 *param0)
     PoffinSpriteManager_DrawSprites(param0->unk_00);
 }
 
-void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int heapID, BgConfig *param2)
+void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, enum HeapID heapID, BgConfig *param2)
 {
     param0->unk_00 = sub_02015920(heapID);
     param0->unk_04 = param2;

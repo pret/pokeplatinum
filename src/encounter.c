@@ -652,7 +652,7 @@ void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dt
     FieldSystem_CreateTask(fieldSystem, FieldTask_PalParkEncounter, encounter);
 }
 
-void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, int heapID, int *resultMaskPtr)
+void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, enum HeapID heapID, int *resultMaskPtr)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_TRAINER);
@@ -723,7 +723,7 @@ void Encounter_NewCatchingTutorial(FieldTask *task)
     FieldTask_InitCall(task, FieldTask_CatchingTutorialEncounter, encounter);
 }
 
-void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTrainer2ID, int partnerTrainerID, int heapID, int *resultMaskPtr)
+void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTrainer2ID, int partnerTrainerID, enum HeapID heapID, int *resultMaskPtr)
 {
     u32 battleType;
     FieldBattleDTO *dto;

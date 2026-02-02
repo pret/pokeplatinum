@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223A7F4.h"
@@ -2076,7 +2074,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_310 = NULL;
         }
 
-        ov104_0222E5D0(param0->unk_20, 0);
+        BattleFrontier_SetPartnerInStrTemplate(param0->unk_20, 0);
 
         v1 = Party_GetPokemonBySlotIndex(param0->unk_31C, 2 + param0->unk_324[0]);
         v2 = Pokemon_GetBoxPokemon(v1);
@@ -2132,7 +2130,7 @@ static void ov105_0224451C(void *param0)
 
 static void ov105_02244564(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

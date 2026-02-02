@@ -24,10 +24,10 @@
 static BOOL ov104_0222E7CC(UnkStruct_ov104_022320B4 *param0, FrontierScriptContext *param1);
 static void ov104_0222E7FC(UnkStruct_ov104_022320B4 *param0, FrontierScriptContext *param1);
 static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *param2, void *param3);
-static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int heapID);
+static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, enum HeapID heapID);
 static void ov104_0222E904(FrontierScriptContext *param0, int param1);
 
-UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, int heapID, int param2)
+UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, enum HeapID heapID, int param2)
 {
     UnkStruct_ov104_022320B4 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_022320B4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_022320B4));
@@ -38,9 +38,9 @@ UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, int heapID,
 
     ov104_0222E830(&v0->unk_40, &v0->unk_3C, param2, heapID);
 
-    v0->unk_44 = StringTemplate_New(8, 64, heapID);
-    v0->unk_48 = String_Init(1024, heapID);
-    v0->unk_4C = String_Init(1024, heapID);
+    v0->strTemplate = StringTemplate_New(8, 64, heapID);
+    v0->string = String_Init(1024, heapID);
+    v0->fmtString = String_Init(1024, heapID);
 
     ov104_0222E82C(v0, param2, NULL, NULL);
 
@@ -87,9 +87,9 @@ void ov104_0222E710(UnkStruct_ov104_022320B4 *param0)
 {
     GF_ASSERT(param0->unk_51 == 0);
 
-    StringTemplate_Free(param0->unk_44);
-    String_Free(param0->unk_48);
-    String_Free(param0->unk_4C);
+    StringTemplate_Free(param0->strTemplate);
+    String_Free(param0->string);
+    String_Free(param0->fmtString);
     Heap_Free(param0->unk_40);
     MessageLoader_Free(param0->unk_3C);
 
@@ -153,24 +153,24 @@ static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *pa
     }
 }
 
-static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int heapID)
+static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, enum HeapID heapID)
 {
-    int v0 = ov104_0222EA90(param2, 1);
-    int v1 = ov104_0222EA90(param2, 2);
+    int scriptID = GetFrontierSceneValue(param2, FR_SCENE_SCRIPT_ID);
+    int bankID = GetFrontierSceneValue(param2, FR_SCENE_BANK_ID);
 
-    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, heapID);
-    *param1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, v1, heapID);
+    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, scriptID, heapID);
+    *param1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, heapID);
 }
 
-void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
+void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, enum HeapID heapID)
 {
     int v0;
     FrontierScriptContext *v1;
     int v2, v3;
     MessageLoader *v4;
 
-    v2 = ov104_0222EA90(param0->unk_52, 2);
-    v3 = ov104_0222EA90(param1, 2);
+    v2 = GetFrontierSceneValue(param0->unk_52, FR_SCENE_BANK_ID);
+    v3 = GetFrontierSceneValue(param1, FR_SCENE_BANK_ID);
 
     if (v2 == v3) {
         return;
@@ -192,7 +192,7 @@ void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int heapID)
     param0->unk_3C = v4;
 }
 
-UnkStruct_ov104_0222E8C8 *ov104_0222E8C8(UnkStruct_ov104_022320B4 *param0, int heapID)
+UnkStruct_ov104_0222E8C8 *ov104_0222E8C8(UnkStruct_ov104_022320B4 *param0, enum HeapID heapID)
 {
     UnkStruct_ov104_0222E8C8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov104_0222E8C8));
     *v0 = param0->unk_24;

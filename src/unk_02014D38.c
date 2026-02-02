@@ -120,7 +120,7 @@ static const struct {
 };
 
 typedef struct UnkStruct_02014D38_t {
-    u32 heapID;
+    enum HeapID heapID;
     MessageLoader *unk_04[11];
 } UnkStruct_02014D38;
 
@@ -142,7 +142,7 @@ void include_unk_020E5538(void)
     Unk_020E5538[0];
 }
 
-UnkStruct_02014D38 *sub_02014D38(u32 heapID)
+UnkStruct_02014D38 *sub_02014D38(enum HeapID heapID)
 {
     int v0;
     UnkStruct_02014D38 *v1 = Heap_Alloc(heapID, sizeof(UnkStruct_02014D38));
@@ -234,25 +234,25 @@ u32 Sentence_SaveSize(void)
 void Sentence_Init(void *param0)
 {
     static const struct {
-        u8 unk_00;
+        u8 language;
         u8 unk_01;
     } v0[] = {
-        { 0x1, 0x0 },
-        { 0x2, 0x1 },
-        { 0x3, 0x2 },
-        { 0x4, 0x3 },
-        { 0x5, 0x4 },
-        { 0x7, 0x5 }
+        { JAPANESE, 0x0 },
+        { ENGLISH, 0x1 },
+        { FRENCH, 0x2 },
+        { ITALIAN, 0x3 },
+        { GERMAN, 0x4 },
+        { SPANISH, 0x5 }
     };
     UnkStruct_02014EC4 *v1 = param0;
-    int v2;
+    int i;
 
     v1->unk_00 = 0;
     v1->unk_04 = 0;
 
-    for (v2 = 0; v2 < NELEMS(v0); v2++) {
-        if (GAME_LANGUAGE == v0[v2].unk_00) {
-            sub_02014F98(v1, v0[v2].unk_01);
+    for (i = 0; i < NELEMS(v0); i++) {
+        if (GAME_LANGUAGE == v0[i].language) {
+            sub_02014F98(v1, v0[i].unk_01);
             break;
         }
     }
@@ -341,7 +341,7 @@ void sub_02014F98(UnkStruct_02014EC4 *param0, int param1)
     SaveData_SetChecksum(SAVE_TABLE_ENTRY_SENTENCE);
 }
 
-UnkStruct_02014FB0 *sub_02014FB0(u32 heapID)
+UnkStruct_02014FB0 *sub_02014FB0(enum HeapID heapID)
 {
     UnkStruct_02014FB0 *v0;
     u32 fileSize;

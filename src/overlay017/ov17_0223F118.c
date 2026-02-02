@@ -77,7 +77,7 @@ static void NitroStaticInit(void)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-G3DPipelineBuffers *ov17_0223F140(int heapID)
+G3DPipelineBuffers *ov17_0223F140(enum HeapID heapID)
 {
     return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov17_0223F15C);
 }
@@ -102,7 +102,7 @@ void ov17_0223F1E0(G3DPipelineBuffers *param0)
     G3DPipelineBuffers_Free(param0);
 }
 
-void ov17_0223F1E8(int heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const String *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(enum HeapID heapID, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const String *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -179,7 +179,7 @@ void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int 
     FontOAM_SetXY(param0->unk_00, param1, param2);
 }
 
-String *ov17_0223F310(u32 param0, u32 heapID)
+String *ov17_0223F310(u32 param0, enum HeapID heapID)
 {
     MessageLoader *v0 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_JUDGE_NAMES, heapID);
     String *v1 = MessageLoader_GetNewString(v0, param0);
@@ -212,7 +212,7 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
         v5 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_HELD_ITEM, NULL);
         v6 = 100;
 
-        switch (param0->unk_00.unk_10F) {
+        switch (param0->unk_00.contestType) {
         case 0:
             v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
             v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
@@ -391,7 +391,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
     }
 }
 
-UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
+UnkStruct_ov17_0223F744 *ov17_0223F70C(enum HeapID heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5)
 {
     UnkStruct_ov17_0223F744 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov17_0223F744));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F744));

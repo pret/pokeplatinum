@@ -18,7 +18,7 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
-UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, u32 heapID);
+UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *saveData, enum HeapID heapID);
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 *param0);
 void ov66_0222DF58(UnkStruct_ov66_0222DFF8 *param0);
 void ov66_0222DFF4(UnkStruct_ov66_0222DFF8 *param0);
@@ -69,7 +69,7 @@ void ov66_0222E500(UnkStruct_ov66_0222DFF8 *param0, int param1, s32 param2);
 void ov66_0222E528(UnkStruct_ov66_0222DFF8 *param0, u32 param1);
 void ov66_0222E56C(UnkStruct_ov66_0222DFF8 *param0, int param1, int param2);
 void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 *param0, u32 param1, u32 param2);
-void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, u32 param2);
+void ov66_0222E640(const UnkStruct_ov66_0222E71C *param0, TrainerInfo *param1, enum HeapID heapID);
 u32 ov66_0222E71C(const UnkStruct_ov66_0222E71C *param0);
 int ov66_0222E728(const UnkStruct_ov66_0222E71C *param0, u32 param1);
 s32 ov66_0222E760(const UnkStruct_ov66_0222E71C *param0, u32 param1);

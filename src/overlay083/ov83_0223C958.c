@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
@@ -25,7 +23,7 @@
 #include "system.h"
 #include "unk_0202419C.h"
 
-static void ov83_0223CC30(BgConfig **param0, int heapID);
+static void ov83_0223CC30(BgConfig **param0, enum HeapID heapID);
 static void ov83_0223CCCC(BgConfig **param0);
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0);
 static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0);
@@ -144,7 +142,7 @@ void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0)
 
 static void ov83_0223CC10(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_64_E,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_48_HI,
@@ -160,7 +158,7 @@ static void ov83_0223CC10(void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30(BgConfig **param0, int heapID)
+static void ov83_0223CC30(BgConfig **param0, enum HeapID heapID)
 {
     int v0 = 0, v1;
 

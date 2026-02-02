@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "font.h"
@@ -22,7 +20,7 @@
 
 #include "res/text/bank/network_errors.h"
 
-static const UnkStruct_02099F80 Unk_020E5EFC = {
+static const GXBanks Unk_020E5EFC = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_NONE,
@@ -73,7 +71,7 @@ static void sub_02039814(void)
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void NetworkError_DisplayNetworkError(int heapID, int networkErrorId, int errorCode)
+void NetworkError_DisplayNetworkError(enum HeapID heapID, int networkErrorId, int errorCode)
 {
     BgConfig *v0;
     Window v1;

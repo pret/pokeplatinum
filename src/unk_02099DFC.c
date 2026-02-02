@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -23,7 +21,7 @@
 FS_EXTERN_OVERLAY(game_opening);
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -80,14 +78,13 @@ static const WindowTemplate Unk_020F89EC = {
 int sub_02099DFC(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02099DFC *v0;
-    int heapID = HEAP_ID_88;
 
-    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_88, 0x20000);
 
-    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02099DFC), heapID);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02099DFC), HEAP_ID_88);
     memset(v0, 0, sizeof(UnkStruct_02099DFC));
 
-    v0->heapID = heapID;
+    v0->heapID = HEAP_ID_88;
     v0->unk_04 = 0;
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
 
@@ -167,7 +164,7 @@ static void sub_02099F74(void *param0)
 static void sub_02099F80(UnkStruct_02099DFC *param0)
 {
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_256_AB,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_NONE,

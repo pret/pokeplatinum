@@ -12,7 +12,7 @@
     ScriptEntryEnd
 
 _001E:
-    SetFlag FLAG_UNK_0x09CE
+    SetFlag FLAG_FIRST_ARRIVAL_FLOAROMA_MEADOW
     End
 
 _0024:

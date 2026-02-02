@@ -32,7 +32,7 @@ static void sub_0201DDE4(UnkStruct_0201DDF4 *param0);
 static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
 static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
 
-UnkStruct_0201DD00 *sub_0201DD00(int param0, int heapID)
+UnkStruct_0201DD00 *sub_0201DD00(int param0, enum HeapID heapID)
 {
     UnkStruct_0201DD00 *v0;
     int v1;

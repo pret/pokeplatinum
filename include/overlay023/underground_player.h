@@ -41,8 +41,8 @@ void UndergroundPlayer_ProcessHeldFlagOwnerInfoAck(int unused0, int unused1, voi
 BOOL UndergroundPlayer_HaveLinksReceivedHeldFlagData(void);
 void ov23_0224AC4C(void);
 BOOL UndergroundPlayer_IsAffectedByTrap(int netID);
-void ov23_0224ACE8(int netID, int unused1, void *unused2, void *unused3);
-void ov23_0224ACF8(int unused0, int unused1, void *data, void *unused3);
+void UndergroundPlayer_ProcessVendorTalk(int netID, int unused1, void *unused2, void *unused3);
+void UndergroundPlayer_ProcessVendorTalkServer(int unused0, int unused1, void *data, void *unused3);
 int UndergroundPlayer_GetXPos(int netID);
 int UndergroundPlayer_GetZPos(int netID);
 void UndergroundPlayer_UpdateStatus(int netID, int status);

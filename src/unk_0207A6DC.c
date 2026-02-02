@@ -655,14 +655,14 @@ static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source,
     CharCode_Copy(destination->trainerName, TrainerInfo_Name(trainerInfo));
 
     destination->trainerId = TrainerInfo_ID(trainerInfo);
-    destination->regionCode = TrainerInfo_RegionCode(trainerInfo);
+    destination->language = TrainerInfo_Language(trainerInfo);
     destination->gameCode = TrainerInfo_GameCode(trainerInfo);
     destination->gender = TrainerInfo_Gender(trainerInfo);
 
     for (int i = 0; i < PAL_PAD_ENTRIES; i++) {
         destination->associatedTrainerIds[i] = source[i].trainerId;
         destination->associatedTrainerGameCodes[i] = source[i].gameCode;
-        destination->associatedTrainerRegionCodes[i] = source[i].regionCode;
+        destination->associatedTrainerLanguages[i] = source[i].language;
         destination->associatedTrainerGenders[i] = source[i].gender;
     }
 }

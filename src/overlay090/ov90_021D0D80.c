@@ -8,7 +8,6 @@
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_02049A68.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
@@ -62,7 +61,7 @@ typedef struct {
 } UnkStruct_ov90_021D17F8;
 
 typedef struct {
-    int heapID;
+    enum HeapID heapID;
     int unk_04;
     u16 unk_08;
     u8 unk_0A;
@@ -283,7 +282,7 @@ static int ov90_021D0F98(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1014(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

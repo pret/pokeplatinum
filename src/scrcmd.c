@@ -4,6 +4,7 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/accessories.h"
 #include "constants/battle.h"
 #include "constants/daycare.h"
 #include "constants/field/dynamic_map_features.h"
@@ -14,7 +15,6 @@
 #include "constants/scrcmd.h"
 #include "constants/species.h"
 #include "constants/string.h"
-#include "generated/accessories.h"
 #include "generated/comm_club_ret_codes.h"
 #include "generated/first_arrival_to_zones.h"
 #include "generated/journal_location_events.h"
@@ -27,10 +27,6 @@
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_02029C88_decl.h"
-#include "struct_decls/struct_02029D04_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -39,9 +35,12 @@
 #include "struct_defs/battle_tower.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/daycare.h"
+#include "struct_defs/dress_up_photo.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/mail.h"
 #include "struct_defs/seal_case.h"
 #include "struct_defs/special_encounter.h"
+#include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
 #include "struct_defs/underground.h"
@@ -91,7 +90,7 @@
 #include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay023/ov23_022521F0.h"
+#include "overlay023/underground_vendors.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay104/struct_ov104_02230BE4.h"
@@ -100,6 +99,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
+#include "clear_game.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "daycare_save.h"
@@ -203,7 +203,6 @@
 #include "unk_0205003C.h"
 #include "unk_02050568.h"
 #include "unk_020528D0.h"
-#include "unk_02052C6C.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205749C.h"
@@ -384,7 +383,7 @@ static BOOL ScrCmd_0A7(ScriptContext *ctx);
 static BOOL ScrCmd_0A8(ScriptContext *ctx);
 static BOOL ScrCmd_12E(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
-static BOOL ScrCmd_130(ScriptContext *ctx);
+static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
 static BOOL ScrCmd_OpenRegionMap(ScriptContext *ctx);
 static BOOL ScrCmd_1D7(ScriptContext *ctx);
@@ -395,7 +394,7 @@ static BOOL ScrCmd_0AC(ScriptContext *ctx);
 static BOOL ScrCmd_0AD(ScriptContext *ctx);
 static BOOL ScrCmd_0AE(ScriptContext *ctx);
 static BOOL ScrCmd_0AF(ScriptContext *ctx);
-static BOOL ScrCmd_0B0(ScriptContext *ctx);
+static BOOL ScrCmd_ClearGame(ScriptContext *ctx);
 static BOOL ScrCmd_0B1(ScriptContext *ctx);
 static BOOL ScrCmd_336(ScriptContext *ctx);
 static BOOL ScrCmd_TryStartGTSApp(ScriptContext *ctx);
@@ -657,7 +656,7 @@ static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
 static BOOL ScrCmd_BufferContestBackdropName(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx);
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_279(ScriptContext *ctx);
+static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_27A(ScriptContext *ctx);
 static BOOL ScrCmd_InitDailyRandomLevel(ScriptContext *ctx);
 static BOOL ScrCmd_27D(ScriptContext *ctx);
@@ -677,7 +676,7 @@ static BOOL ScrCmd_DrawPokemonPreviewFromPartySlot(ScriptContext *ctx);
 static BOOL ScrCmd_28D(ScriptContext *ctx);
 static BOOL ScrCmd_28E(ScriptContext *ctx);
 static BOOL sub_02041FF8(ScriptContext *ctx);
-static BOOL ScrCmd_28F(ScriptContext *ctx);
+static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx);
 static BOOL ScrCmd_292(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForDaycare(ScriptContext *ctx);
 static BOOL ScrCmd_291(ScriptContext *ctx);
@@ -891,7 +890,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_UpdateCoinDisplay,
     ScrCmd_GetCoinsAmount,
     ScrCmd_AddCoins,
-    ScrCmd_SubstractCoinsFromValue,
+    ScrCmd_SubtractCoinsFromValue,
     ScrCmd_AddItem,
     ScrCmd_RemoveItem,
     ScrCmd_CanFitItem,
@@ -945,7 +944,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0AD,
     ScrCmd_0AE,
     ScrCmd_0AF,
-    ScrCmd_0B0,
+    ScrCmd_ClearGame,
     ScrCmd_0B1,
     ScrCmd_TryStartGTSApp,
     ScrCmd_0B3,
@@ -1047,8 +1046,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_113,
     ScrCmd_114,
     ScrCmd_115,
-    ScrCmd_116,
-    ScrCmd_117,
+    ScrCmd_ShowLinkContestRecords,
+    ScrCmd_LockAutoScrollForLinkContests,
     ScrCmd_118,
     ScrCmd_CheckPartyPokerus,
     ScrCmd_GetPartyMonGender_Unused,
@@ -1073,7 +1072,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TrySaveGame,
     ScrCmd_12E,
     ScrCmd_12F,
-    ScrCmd_130,
+    ScrCmd_SetDressUpPhotoTitle,
     ScrCmd_131,
     ScrCmd_132,
     ScrCmd_RegisterPoketchApp,
@@ -1399,10 +1398,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferContestBackdropName,
     ScrCmd_HasCoinsFromValue,
     ScrCmd_CheckBonusRoundStreak,
-    ScrCmd_CanAddCoins,
+    ScrCmd_CheckCanAddCoins,
     ScrCmd_GetDailyRandomLevel,
     ScrCmd_GetPartyMonLevel,
-    ScrCmd_Unused_279,
+    ScrCmd_RemoveAccessory,
     ScrCmd_27A,
     ScrCmd_InitDailyRandomLevel,
     ScrCmd_27C,
@@ -1424,7 +1423,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_DrawPokemonPreviewFromPartySlot,
     ScrCmd_28D,
     ScrCmd_28E,
-    ScrCmd_28F,
+    ScrCmd_GetLeagueVictories,
     ScrCmd_OpenPartyMenuForDaycare,
     ScrCmd_291,
     ScrCmd_292,
@@ -1449,7 +1448,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_OpenPartyMenuForTrade,
     ScrCmd_GetGameCornerPrizeData,
     ScrCmd_CheckItemIsPlate,
-    ScrCmd_SubstractCoinsFromVar,
+    ScrCmd_SubtractCoinsFromVar,
     ScrCmd_HasCoinsFromVar,
     ScrCmd_2AA,
     ScrCmd_2AB,
@@ -1505,7 +1504,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_FindPartySlotWithSpecies,
     ScrCmd_2DE,
     ScrCmd_CalcAmitySquareBerryAndAccessoryManOptionID,
-    ScrCmd_CheckAmitySquareManGiftIsAccesory,
+    ScrCmd_CheckAmitySquareManGiftIsAccessory,
     ScrCmd_GetAmitySquareBerryOrAccessoryIDFromMan,
     ScrCmd_2E2,
     ScrCmd_2E3,
@@ -3780,14 +3779,14 @@ static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx)
 
 static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (param1 == 0) {
-        if (!sub_02029D10(v0, param2)) {
+        if (!ImageClips_DressUpPhotoHasData(imageClips, param2)) {
             return FALSE;
         }
     } else {
-        if (!sub_02029D2C(v0, param2)) {
+        if (!sub_02029D2C(imageClips, param2)) {
             return FALSE;
         }
     }
@@ -3795,9 +3794,9 @@ static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
     return TRUE;
 }
 
-static UnkStruct_02041DC8 *sub_02041DC8(int heapID, FieldSystem *fieldSystem, int param2, int param3)
+static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
-    UnkStruct_0202A750 *v3 = sub_0202A750(fieldSystem->saveData);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (!sub_02041D98(fieldSystem, param2, param3)) {
         return NULL;
@@ -3806,7 +3805,7 @@ static UnkStruct_02041DC8 *sub_02041DC8(int heapID, FieldSystem *fieldSystem, in
     UnkStruct_02041DC8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_02041DC8));
     memset(v0, 0, sizeof(UnkStruct_02041DC8));
 
-    v0->unk_00 = v3;
+    v0->imageClips = imageClips;
     v0->unk_08 = param2;
     v0->unk_04 = param3;
 
@@ -4039,13 +4038,13 @@ static BOOL ScrCmd_12F(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_130(ScriptContext *ctx)
+static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    UnkStruct_0202A750 *v1 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029C68 *v2 = sub_02029CA8(v1, 0);
+    u16 word = ScriptContext_GetVar(ctx);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    DressUpPhoto *photo = ImageClips_GetDressUpPhoto(imageClips, 0);
 
-    sub_0202A0A0(v2, v0);
+    DressUpPhoto_SetTitle(photo, word);
 
     return TRUE;
 }
@@ -4182,9 +4181,9 @@ static BOOL ScrCmd_0AF(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0B0(ScriptContext *ctx)
+static BOOL ScrCmd_ClearGame(ScriptContext *ctx)
 {
-    sub_02052E58(ctx->fieldSystem->task);
+    ClearGame(ctx->fieldSystem->task);
     return TRUE;
 }
 
@@ -5664,7 +5663,7 @@ static BOOL ScrCmd_19E(ScriptContext *ctx)
     u16 v3 = ScriptContext_ReadHalfWord(ctx);
 
     ctx->data[0] = v3;
-    *v0 = ov23_02252C98(v2, ctx->fieldSystem, MapObject_GetLocalID(*v1));
+    *v0 = UndergroundVendors_ReturnNull(v2, ctx->fieldSystem, MapObject_GetLocalID(*v1));
 
     ScriptContext_Pause(ctx, sub_020441C8);
     return TRUE;
@@ -5675,9 +5674,9 @@ static BOOL sub_020441C8(ScriptContext *ctx)
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
-    *v1 = ov23_02252C70(*v0);
+    *v1 = UndergroundVendors_ReturnFFFE(*v0);
 
-    if ((*v1) == 0xfffe) {
+    if (*v1 == 0xFFFE) {
         return FALSE;
     }
 
@@ -5688,7 +5687,7 @@ static BOOL ScrCmd_19F(ScriptContext *ctx)
 {
     u8 *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 
-    *v0 = ov23_02252C9C(ScriptContext_GetVar(ctx));
+    *v0 = UndergroundVendors_PrintNPCMessage(ScriptContext_GetVar(ctx));
     ScriptContext_Pause(ctx, sub_02044240);
 
     return TRUE;
@@ -5702,7 +5701,7 @@ static BOOL sub_02044240(ScriptContext *ctx)
 
 static BOOL ScrCmd_1A0(ScriptContext *ctx)
 {
-    ov23_02252CD4();
+    UndergroundVendors_EraseMessageBoxWindow();
     return FALSE;
 }
 
@@ -5711,7 +5710,7 @@ static BOOL ScrCmd_Unused_1A1(ScriptContext *ctx)
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    ov23_02252CE0(v0, v1);
+    UndergroundVendors_SetTreasureNameForPrinter(v0, v1);
     return FALSE;
 }
 
@@ -5720,7 +5719,7 @@ static BOOL ScrCmd_Unused_1A2(ScriptContext *ctx)
     u8 v0 = ScriptContext_ReadByte(ctx);
     u16 v1 = ScriptContext_GetVar(ctx);
 
-    ov23_02252CF4(v0, v1);
+    UndergroundVendors_SetTrapNameForPrinter(v0, v1);
     return FALSE;
 }
 
@@ -5929,10 +5928,10 @@ static BOOL ScrCmd_AddAccessory(ScriptContext *ctx)
     u16 accessoryID = ScriptContext_GetVar(ctx);
     u16 amount = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029E2C(v1, accessoryID, amount);
+    FashionCase_AddAccessory(fashionCase, accessoryID, amount);
     return FALSE;
 }
 
@@ -5942,9 +5941,9 @@ static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx)
     u16 count = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
-    *destVar = sub_02029D50(v1, accessory, count);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    *destVar = FashionCase_CanFitAccessoryCount(fashionCase, accessory, count);
 
     return FALSE;
 }
@@ -5955,10 +5954,10 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    if (v3 <= sub_02029D94(v1, v2)) {
+    if (v3 <= FashionCase_GetAccessoryCount(fashionCase, v2)) {
         *v4 = 1;
     } else {
         *v4 = 0;
@@ -5969,12 +5968,12 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
 
 static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 backdropID = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029EFC(v1, v2);
+    FashionCase_AddBackdrop(fashionCase, backdropID);
     return FALSE;
 }
 
@@ -5983,9 +5982,9 @@ static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx)
     u16 backdrop = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
-    *destVar = sub_02029D80(v1, backdrop);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
+    *destVar = FashionCase_HasBackdrop(fashionCase, backdrop);
 
     return FALSE;
 }
@@ -6737,13 +6736,13 @@ static BOOL ScrCmd_TryGetRandomMassageGirlAccessory(ScriptContext *ctx)
     int i;
     u16 *destAccessoryID = ScriptContext_GetVarPointer(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
     int unobtainedAccessoryCount = 0;
 
     for (i = 0; i < NUM_MASSAGE_GIRL_ACCESSORIES; i++) {
-        if (sub_02029D50(v1, ACCESSORY_PRETTY_DEWDROP + i, 1) == TRUE) {
+        if (FashionCase_CanFitAccessoryCount(fashionCase, ACCESSORY_PRETTY_DEWDROP + i, 1) == TRUE) {
             hasAccessory[i] = TRUE;
             unobtainedAccessoryCount++;
         }
@@ -6833,15 +6832,15 @@ static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_279(ScriptContext *ctx)
+static BOOL ScrCmd_RemoveAccessory(ScriptContext *ctx)
 {
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 accessoryID = ScriptContext_GetVar(ctx);
+    u16 amount = ScriptContext_GetVar(ctx);
 
-    UnkStruct_0202A750 *v0 = sub_0202A750(ctx->fieldSystem->saveData);
-    UnkStruct_02029D04 *v1 = sub_02029D04(v0);
+    ImageClips *imageClips = SaveData_GetImageClips(ctx->fieldSystem->saveData);
+    FashionCase *fashionCase = ImageClips_GetFashionCase(imageClips);
 
-    sub_02029EA0(v1, v2, v3);
+    FashionCase_RemoveAccessory(fashionCase, accessoryID, amount);
     return FALSE;
 }
 
@@ -7110,28 +7109,28 @@ static BOOL ScrCmd_CheckDistributionEvent(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_28F(ScriptContext *ctx)
+static BOOL ScrCmd_GetLeagueVictories(ScriptContext *ctx)
 {
-    int v0;
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    int resultCode;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    const HallOfFame *v1 = SaveData_HallOfFame(ctx->fieldSystem->saveData, 32, &v0);
+    const HallOfFame *hallOfFame = SaveData_HallOfFame(ctx->fieldSystem->saveData, 32, &resultCode);
 
-    if (v0 == 0) {
-        *v2 = 0;
-        Heap_Free((void *)v1);
+    if (resultCode == LOAD_RESULT_EMPTY) {
+        *destVar = 0;
+        Heap_Free((void *)hallOfFame);
         return TRUE;
-    } else if (v0 == 1) {
-        *v2 = HallOfFame_GetEntryNum(v1, 0);
-        Heap_Free((void *)v1);
+    } else if (resultCode == LOAD_RESULT_OK) {
+        *destVar = HallOfFame_GetEntryNum(hallOfFame, 0);
+        Heap_Free((void *)hallOfFame);
         return TRUE;
-    } else if (v0 == 2) {
-        *v2 = 0;
-        Heap_Free((void *)v1);
+    } else if (resultCode == LOAD_RESULT_CORRUPT) {
+        *destVar = 0;
+        Heap_Free((void *)hallOfFame);
         return TRUE;
     }
 
-    *v2 = 0;
+    *destVar = 0;
     return TRUE;
 }
 

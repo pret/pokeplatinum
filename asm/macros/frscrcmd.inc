@@ -1,15 +1,21 @@
+#include "generated/fade_types.h"
+#include "generated/sdat.h"
+#include "constants/colors.h"
+#include "constants/fade_screen.h"
+#include "constants/scrcmd.h"
+
     .set FALSE, 0
     .set TRUE, 1
 
-    .macro FrontierScrCmd_00 
+    .macro Noop
     .short 0x000
     .endm
 
-    .macro FrontierScrCmd_01 
+    .macro End
     .short 0x001
     .endm
 
-    .macro FrontierScrCmd_02 
+    .macro FrontierScrCmd_02
     .short 0x002
     .endm
 
@@ -24,91 +30,99 @@
     .short \arg1
     .endm
 
-    .macro FrontierScrCmd_05 arg0, arg1
+    .macro WaitTime frames, countdownVarID
     .short 0x005
-    .short \arg0
-    .short \arg1
+    .short \frames
+    .short \countdownVarID
     .endm
 
-    .macro FrontierScrCmd_06 arg0, arg1
-    .short 0x006
-    .short \arg0
-    .short \arg1
+    .macro SetVar destVarID, valueOrVarID
+    .if \valueOrVarID < 0x8000
+        .short 0x006 /* SetVarFromValue */
+    .else
+        .short 0x007 /* SetVarFromVar */
+    .endif
+    .short \destVarID
+    .short \valueOrVarID
     .endm
 
-    .macro FrontierScrCmd_07 arg0, arg1
-    .short 0x007
-    .short \arg0
-    .short \arg1
-    .endm
-
-    .macro FrontierScrCmd_08 arg0, arg1
+    .macro AddVar destVarID, valueOrVarID
     .short 0x008
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \valueOrVarID
     .endm
 
-    .macro FrontierScrCmd_09 arg0, arg1
+    .macro SubVar destVarID, valueOrVarID
     .short 0x009
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \valueOrVarID
     .endm
 
-    .macro FrontierScrCmd_0A offset
+    .macro GoTo offset
     .short 0x00A
     .long \offset-.-4
     .endm
 
-    .macro FrontierScrCmd_0B arg0, offset
+    .macro GoToIf condition, offset
     .short 0x00B
-    .byte \arg0
+    .byte \condition
     .long \offset-.-4
     .endm
 
-    .macro FrontierScrCmd_0C offset
+    .macro Call offset
     .short 0x00C
     .long \offset-.-4
     .endm
 
-    .macro FrontierScrCmd_0D 
+    .macro Return
     .short 0x00D
     .endm
 
-    .macro FrontierScrCmd_0E arg0, offset
+    .macro CallIf condition, offset
     .short 0x00E
-    .byte \arg0
+    .byte \condition
     .long \offset-.-4
     .endm
 
-    .macro FrontierScrCmd_0F arg0
+    .macro MessageInstant messageID
     .short 0x00F
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro FrontierScrCmd_10 arg0
+    .macro MessageNoSkip messageID
     .short 0x010
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro FrontierScrCmd_11 arg0
+    .macro Message messageID
     .short 0x011
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro FrontierScrCmd_12 
+    .macro CloseMessage
     .short 0x012
     .endm
 
-    .macro FrontierScrCmd_13 arg0, arg1, arg2, arg3
+    .macro FadeScreen transition, frames, type, color
     .short 0x013
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \transition
+    .short \frames
+    .short \type
+    .short \color
     .endm
 
-    .macro FrontierScrCmd_14 
+    .macro WaitFadeScreen
     .short 0x014
+    .endm
+
+    .macro FadeScreenOut color=COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_BRIGHTNESS_OUT, \color
+    WaitFadeScreen
+    .endm
+
+    .macro FadeScreenIn color=COLOR_BLACK
+    FadeScreen FADE_SCREEN_CMD_STEPS, FADE_SCREEN_SPEED_FAST, FADE_TYPE_BRIGHTNESS_IN, \color
+    WaitFadeScreen
     .endm
 
     .macro FrontierScrCmd_15 arg0, arg1, arg2, arg3, arg4
@@ -142,7 +156,7 @@
     .short \arg2
     .endm
 
-    .macro FrontierScrCmd_19 
+    .macro FrontierScrCmd_19
     .short 0x019
     .endm
 
@@ -171,30 +185,28 @@
     .short \arg2
     .endm
 
-    .macro FrontierScrCmd_1D 
+    .macro FrontierScrCmd_1D
     .short 0x01D
     .endm
 
-    .macro FrontierScrCmd_1E 
+    .macro FrontierScrCmd_1E
     .short 0x01E
     .endm
 
-    .macro FrontierScrCmd_1F arg0, arg1
+    .macro ShowYesNoMenu destVarID, cursorStart
     .short 0x01F
-    .short \arg0
-    .byte \arg1
+    .short \destVarID
+    .byte \cursorStart
     .endm
 
-    .macro FrontierScrCmd_20 arg0, arg1
-    .short 0x020
-    .short \arg0
-    .short \arg1
-    .endm
-
-    .macro FrontierScrCmd_21 arg0, arg1
-    .short 0x021
-    .short \arg0
-    .short \arg1
+    .macro CompareVar varID, valueOrVarID
+    .if \valueOrVarID < 0x8000
+        .short 0x020 /* CompareVarToValue */
+    .else
+        .short 0x021 /* CompareVarToVar */
+    .endif
+    .short \varID
+    .short \valueOrVarID
     .endm
 
     .macro FrontierScrCmd_22 offset
@@ -223,7 +235,7 @@
     .byte \arg1
     .endm
 
-    .macro FrontierScrCmd_27 
+    .macro FrontierScrCmd_27
     .short 0x027
     .endm
 
@@ -233,7 +245,7 @@
     .long \offset-.-4
     .endm
 
-    .macro FrontierScrCmd_29 
+    .macro FrontierScrCmd_29
     .short 0x029
     .endm
 
@@ -290,7 +302,7 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_34 
+    .macro FrontierScrCmd_34
     .short 0x034
     .endm
 
@@ -299,31 +311,31 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_36 
+    .macro FrontierScrCmd_36
     .short 0x036
     .endm
 
-    .macro FrontierScrCmd_37 
+    .macro FrontierScrCmd_37
     .short 0x037
     .endm
 
-    .macro FrontierScrCmd_38 arg0, arg1
+    .macro GetRandom destVarID, upperBound
     .short 0x038
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \upperBound
     .endm
 
-    .macro FrontierScrCmd_39 
+    .macro HealParty
     .short 0x039
     .endm
 
-    .macro FrontierScrCmd_3A 
+    .macro WaitABPress
     .short 0x03A
     .endm
 
-    .macro FrontierScrCmd_3B arg0
+    .macro WaitABPressTime frames
     .short 0x03B
-    .short \arg0
+    .short \frames
     .endm
 
     .macro FrontierScrCmd_3C arg0
@@ -371,7 +383,7 @@
     .short \arg1
     .endm
 
-    .macro FrontierScrCmd_44 
+    .macro FrontierScrCmd_44
     .short 0x044
     .endm
 
@@ -424,7 +436,7 @@
     .short \arg3
     .endm
 
-    .macro FrontierScrCmd_4D 
+    .macro FrontierScrCmd_4D
     .short 0x04D
     .endm
 
@@ -438,19 +450,19 @@
     .short \arg5
     .endm
 
-    .macro FrontierScrCmd_4F 
+    .macro FrontierScrCmd_4F
     .short 0x04F
     .endm
 
-    .macro FrontierScrCmd_50 
+    .macro FrontierScrCmd_50
     .short 0x050
     .endm
 
-    .macro FrontierScrCmd_51 
+    .macro FrontierScrCmd_51
     .short 0x051
     .endm
 
-    .macro FrontierScrCmd_52 
+    .macro FrontierScrCmd_52
     .short 0x052
     .endm
 
@@ -459,42 +471,42 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_54 
+    .macro FrontierScrCmd_54
     .short 0x054
     .endm
 
-    .macro FrontierScrCmd_55 arg0
+    .macro PlaySoundEffect seqID
     .short 0x055
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_56 arg0
+    .macro StopSoundEffect seqID
     .short 0x056
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_57 arg0
+    .macro WaitSoundEffect seqID
     .short 0x057
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_58 arg0
+    .macro PlayFanfare seqID
     .short 0x058
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_59 
+    .macro WaitFanfare
     .short 0x059
     .endm
 
-    .macro FrontierScrCmd_5A arg0
+    .macro PlayBGM seqID
     .short 0x05A
-    .short \arg0
+    .short \seqID
     .endm
 
-    .macro FrontierScrCmd_5B arg0
+    .macro StopBGM seqID
     .short 0x05B
-    .short \arg0
+    .short \seqID
     .endm
 
     .macro FrontierScrCmd_5C arg0, arg1, arg2
@@ -509,39 +521,39 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_5E 
+    .macro FrontierScrCmd_5E
     .short 0x05E
     .endm
 
-    .macro FrontierScrCmd_5F 
+    .macro FrontierScrCmd_5F
     .short 0x05F
     .endm
 
-    .macro FrontierScrCmd_60 
+    .macro FrontierScrCmd_60
     .short 0x060
     .endm
 
-    .macro FrontierScrCmd_61 
+    .macro FrontierScrCmd_61
     .short 0x061
     .endm
 
-    .macro FrontierScrCmd_62 
+    .macro FrontierScrCmd_62
     .short 0x062
     .endm
 
-    .macro FrontierScrCmd_63 
+    .macro FrontierScrCmd_63
     .short 0x063
     .endm
 
-    .macro FrontierScrCmd_64 
+    .macro FrontierScrCmd_64
     .short 0x064
     .endm
 
-    .macro FrontierScrCmd_65 
+    .macro FrontierScrCmd_65
     .short 0x065
     .endm
 
-    .macro FrontierScrCmd_66 
+    .macro FrontierScrCmd_66
     .short 0x066
     .endm
 
@@ -575,7 +587,7 @@
     .byte \arg0
     .endm
 
-    .macro FrontierScrCmd_6C 
+    .macro FrontierScrCmd_6C
     .short 0x06C
     .endm
 
@@ -587,11 +599,11 @@
     .short \arg3
     .endm
 
-    .macro FrontierScrCmd_6E 
+    .macro FrontierScrCmd_6E
     .short 0x06E
     .endm
 
-    .macro FrontierScrCmd_6F 
+    .macro FrontierScrCmd_6F
     .short 0x06F
     .endm
 
@@ -615,7 +627,7 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_74 
+    .macro FrontierScrCmd_74
     .short 0x074
     .endm
 
@@ -629,59 +641,59 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_77 
+    .macro ShowSavingIcon
     .short 0x077
     .endm
 
-    .macro FrontierScrCmd_78 
+    .macro HideSavingIcon
     .short 0x078
     .endm
 
-    .macro FrontierScrCmd_79 arg0, arg1
+    .macro BufferItemName templateArg, item
     .short 0x079
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \item
     .endm
 
-    .macro FrontierScrCmd_7A arg0, arg1
+    .macro BufferNumber templateArg, number
     .short 0x07A
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \number
     .endm
 
-    .macro FrontierScrCmd_7B arg0
+    .macro BufferPlayerName templateArg
     .short 0x07B
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro FrontierScrCmd_7C arg0
+    .macro BufferPartnerName templateArg
     .short 0x07C
-    .byte \arg0
+    .byte \templateArg
     .endm
 
-    .macro FrontierScrCmd_7D arg0, arg1
+    .macro BufferMoveName templateArg, move
     .short 0x07D
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \move
     .endm
 
-    .macro FrontierScrCmd_7E arg0, arg1, arg2, arg3
+    .macro BufferSpeciesName templateArg, species, unused1=0, unused2=0
     .short 0x07E
-    .byte \arg0
-    .short \arg1
-    .short \arg2
-    .byte \arg3
+    .byte \templateArg
+    .short \species
+    .short \unused1
+    .byte \unused2
     .endm
 
-    .macro FrontierScrCmd_7F arg0, arg1
+    .macro BufferTypeName templateArg, type
     .short 0x07F
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \type
     .endm
 
-    .macro FrontierScrCmd_80 arg0
+    .macro BufferRivalName templateArg
     .short 0x080
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro FrontierScrCmd_81 arg0
@@ -711,11 +723,11 @@
     .byte \arg0
     .endm
 
-    .macro FrontierScrCmd_86 
+    .macro FrontierScrCmd_86
     .short 0x086
     .endm
 
-    .macro FrontierScrCmd_87 
+    .macro FrontierScrCmd_87
     .short 0x087
     .endm
 
@@ -750,19 +762,19 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_8D 
+    .macro FrontierScrCmd_8D
     .short 0x08D
     .endm
 
-    .macro FrontierScrCmd_8E 
+    .macro OpenBattleHallApp
     .short 0x08E
     .endm
 
-    .macro FrontierScrCmd_8F 
+    .macro FrontierScrCmd_8F
     .short 0x08F
     .endm
 
-    .macro FrontierScrCmd_90 
+    .macro FrontierScrCmd_90
     .short 0x090
     .endm
 
@@ -816,31 +828,31 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_99 
+    .macro FrontierScrCmd_99
     .short 0x099
     .endm
 
-    .macro FrontierScrCmd_9A 
+    .macro FrontierScrCmd_9A
     .short 0x09A
     .endm
 
-    .macro FrontierScrCmd_9B 
+    .macro FrontierScrCmd_9B
     .short 0x09B
     .endm
 
-    .macro FrontierScrCmd_9C 
+    .macro FrontierScrCmd_9C
     .short 0x09C
     .endm
 
-    .macro FrontierScrCmd_9D 
+    .macro FrontierScrCmd_9D
     .short 0x09D
     .endm
 
-    .macro FrontierScrCmd_9E 
+    .macro FrontierScrCmd_9E
     .short 0x09E
     .endm
 
-    .macro FrontierScrCmd_9F 
+    .macro FrontierScrCmd_9F
     .short 0x09F
     .endm
 
@@ -869,7 +881,7 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_A4 
+    .macro FrontierScrCmd_A4
     .short 0x0A4
     .endm
 
@@ -901,11 +913,11 @@
     .byte \arg0
     .endm
 
-    .macro FrontierScrCmd_AA 
+    .macro FrontierScrCmd_AA
     .short 0x0AA
     .endm
 
-    .macro FrontierScrCmd_AB 
+    .macro FrontierScrCmd_AB
     .short 0x0AB
     .endm
 
@@ -954,7 +966,7 @@
     .short \arg3
     .endm
 
-    .macro FrontierScrCmd_B3 
+    .macro FrontierScrCmd_B3
     .short 0x0B3
     .endm
 
@@ -963,15 +975,15 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_B5 
+    .macro FrontierScrCmd_B5
     .short 0x0B5
     .endm
 
-    .macro FrontierScrCmd_B6 
+    .macro FrontierScrCmd_B6
     .short 0x0B6
     .endm
 
-    .macro FrontierScrCmd_B7 
+    .macro FrontierScrCmd_B7
     .short 0x0B7
     .endm
 
@@ -990,23 +1002,23 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_BA 
+    .macro FrontierScrCmd_BA
     .short 0x0BA
     .endm
 
-    .macro FrontierScrCmd_BB 
+    .macro FrontierScrCmd_BB
     .short 0x0BB
     .endm
 
-    .macro FrontierScrCmd_BC 
+    .macro FrontierScrCmd_BC
     .short 0x0BC
     .endm
 
-    .macro FrontierScrCmd_BD 
+    .macro FrontierScrCmd_BD
     .short 0x0BD
     .endm
 
-    .macro FrontierScrCmd_BE 
+    .macro FrontierScrCmd_BE
     .short 0x0BE
     .endm
 
@@ -1035,7 +1047,7 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_C3 
+    .macro FrontierScrCmd_C3
     .short 0x0C3
     .endm
 
@@ -1044,7 +1056,7 @@
     .byte \arg0
     .endm
 
-    .macro FrontierScrCmd_C5 
+    .macro FrontierScrCmd_C5
     .short 0x0C5
     .endm
 
@@ -1055,7 +1067,7 @@
     .short \arg2
     .endm
 
-    .macro FrontierScrCmd_C7 
+    .macro FrontierScrCmd_C7
     .short 0x0C7
     .endm
 
@@ -1078,6 +1090,70 @@
     .short 0x0CB
     .byte \arg0
     .endm
+
+
+
+    .macro GoToIfLt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 0, \offset
+    .endm
+
+	.macro GoToIfEq varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 1, \offset
+    .endm
+
+    .macro GoToIfGt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 2, \offset
+    .endm
+
+    .macro GoToIfLe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 3, \offset
+    .endm
+
+    .macro GoToIfGe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 4, \offset
+    .endm
+
+    .macro GoToIfNe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    GoToIf 5, \offset
+    .endm
+
+    .macro CallIfLt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 0, \offset
+    .endm
+
+    .macro CallIfEq varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 1, \offset
+    .endm
+
+    .macro CallIfGt varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 2, \offset
+    .endm
+
+    .macro CallIfLe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 3, \offset
+    .endm
+
+    .macro CallIfGe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 4, \offset
+    .endm
+
+    .macro CallIfNe varID, valueOrVarID, offset
+    CompareVar \varID, \valueOrVarID
+    CallIf 5, \offset
+    .endm
+
+
 
     .text
     .globl _start

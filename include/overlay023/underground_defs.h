@@ -19,6 +19,15 @@
 #define PC_COORDINATE_X 15
 #define PC_COORDINATE_Z 12
 
+#define UNDERGROUND_MAIN_AREA_START_X 32
+#define UNDERGROUND_MAIN_AREA_START_Z 64
+
+#define UNDERGROUND_MAX_X 479
+#define UNDERGROUND_MAX_Z 479
+
+#define UNDERGROUND_MAIN_AREA_WIDTH (UNDERGROUND_MAX_X - UNDERGROUND_MAIN_AREA_START_X)
+#define UNDERGROUND_MAIN_AREA_DEPTH (UNDERGROUND_MAX_Z - UNDERGROUND_MAIN_AREA_START_Z)
+
 enum SphereTypes {
     SPHERE_NONE = 0,
     PRISM_SPHERE,
@@ -26,6 +35,7 @@ enum SphereTypes {
     RED_SPHERE,
     BLUE_SPHERE,
     GREEN_SPHERE,
+    SPHERE_TYPE_MAX,
 };
 
 typedef struct Coordinates {
@@ -37,5 +47,11 @@ typedef struct Coordinates2D {
     u16 x;
     u16 y;
 } Coordinates2D;
+
+typedef struct SpherePrice {
+    u8 sphereType;
+    u8 minSize;
+    u8 maxSize;
+} SpherePrice;
 
 #endif // POKEPLATINUM_UNDERGROUND_TYPES_H

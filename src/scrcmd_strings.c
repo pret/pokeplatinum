@@ -33,7 +33,7 @@
 #include "unk_0205DFC4.h"
 #include "vars_flags.h"
 
-static String *GetSpeciesNameString(u16 speciesId, u32 heapID);
+static String *GetSpeciesNameString(u16 speciesId, enum HeapID heapID);
 
 BOOL ScrCmd_BufferStatName(ScriptContext *ctx)
 {
@@ -263,13 +263,13 @@ BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
     u8 unused2 = ScriptContext_ReadByte(ctx);
     String *buffer = GetSpeciesNameString(species, HEAP_ID_FIELD1);
 
-    StringTemplate_SetString(*template, bufferId, buffer, unused1, unused2, 2);
+    StringTemplate_SetString(*template, bufferId, buffer, unused1, unused2, GAME_LANGUAGE);
     String_Free(buffer);
 
     return FALSE;
 }
 
-static String *GetSpeciesNameString(u16 speciesId, u32 heapID)
+static String *GetSpeciesNameString(u16 speciesId, enum HeapID heapID)
 {
     MessageLoader *speciesNames = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
     String *buffer = MessageLoader_GetNewString(speciesNames, speciesId);
@@ -358,7 +358,7 @@ BOOL ScrCmd_BufferMapName(ScriptContext *ctx)
     u16 mapHeaderID = ScriptContext_GetVar(ctx);
 
     MapHeader_LoadName(mapHeaderID, HEAP_ID_FIELD1, mapName);
-    StringTemplate_SetString(*strTemplate, templateArg, mapName, 0, 1, 2);
+    StringTemplate_SetString(*strTemplate, templateArg, mapName, 0, 1, GAME_LANGUAGE);
     String_Free(mapName);
 
     return FALSE;
@@ -372,7 +372,7 @@ BOOL ScrCmd_BufferBerryName(ScriptContext *ctx)
     u16 unused = ScriptContext_GetVar(ctx);
     String *berryName = BerryData_AllocAndGetName(item - FIRST_BERRY_IDX, HEAP_ID_FIELD3);
 
-    StringTemplate_SetString(*strTemplate, templateArg, berryName, 0, (unused < 2 ? 1 : 0), 2);
+    StringTemplate_SetString(*strTemplate, templateArg, berryName, 0, (unused < 2 ? 1 : 0), GAME_LANGUAGE);
     String_Free(berryName);
 
     return FALSE;

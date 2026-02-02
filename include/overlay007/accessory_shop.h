@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02029D04_decl.h"
+#include "struct_defs/fashion_case.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -113,7 +113,7 @@ typedef struct AccessoryShop {
     enum AccessoryShopState state;
     enum AccessoryShopState nextState;
     SaveData *saveData;
-    UnkStruct_02029D04 *unk_0C;
+    FashionCase *fashionCase;
     Bag *bag;
     BgConfig *bgConfig;
     enum HeapID heapID;

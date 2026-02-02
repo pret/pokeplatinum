@@ -42,7 +42,7 @@ struct PoketchAnimation_AnimationManager {
     u16 numSlots;
     u16 nextUnusedSlotIdx;
     GXOamAttr *oam;
-    u32 heapID;
+    enum HeapID heapID;
 };
 
 static void PoketchAnimation_PopulateAnimatedSpritePtrArray(PoketchAnimation_AnimatedSpriteData **animatedSpritePtrArray, PoketchAnimation_AnimatedSpriteData *animatedSpritePool, u32 numSlots);

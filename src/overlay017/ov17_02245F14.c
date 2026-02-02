@@ -310,7 +310,7 @@ void ov17_022463C4(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246540 *par
     param3->unk_0D = 0;
 
     v1 = param0->unk_220.unk_0E[param2];
-    v2 = ov17_02243AF0(param0->unk_00->unk_00.unk_10F, param1->unk_00[param2].unk_00, v1, param0->unk_00->unk_00.unk_10E);
+    v2 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[param2].unk_00, v1, param0->unk_00->unk_00.unk_10E);
 
     if ((v2 > 0) && (param1->unk_00[param2].unk_28_1 == 0)) {
         param1->unk_B3[v1] += v2;
@@ -532,7 +532,7 @@ static int ov17_022467CC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0224654
     int v1;
 
     v0 = param1->unk_00[param3].unk_03;
-    v1 = ov17_02243AF0(param0->unk_00->unk_00.unk_10F, param1->unk_00[param3].unk_00, v0, param0->unk_00->unk_00.unk_10E);
+    v1 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[param3].unk_00, v0, param0->unk_00->unk_00.unk_10E);
 
     if ((v1 > 0) && (param1->unk_00[param3].unk_28_1 == 0)) {
         param1->unk_00[param3].unk_1E += (10 * 2);
@@ -784,8 +784,8 @@ static int ov17_02246CDC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0224654
         return 0;
     }
 
-    v1 = ov17_02243AF0(param0->unk_00->unk_00.unk_10F, param1->unk_00[param3].unk_00, param1->unk_00[param3].unk_03, param0->unk_00->unk_00.unk_10E);
-    v2 = ov17_02243AF0(param0->unk_00->unk_00.unk_10F, param1->unk_00[v0].unk_00, param1->unk_00[v0].unk_03, param0->unk_00->unk_00.unk_10E);
+    v1 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[param3].unk_00, param1->unk_00[param3].unk_03, param0->unk_00->unk_00.unk_10E);
+    v2 = ov17_02243AF0(param0->unk_00->unk_00.contestType, param1->unk_00[v0].unk_00, param1->unk_00[v0].unk_03, param0->unk_00->unk_00.unk_10E);
 
     if ((v2 > 0) && (v1 > 0)) {
         param1->unk_00[param3].unk_1E += (10 * 3);

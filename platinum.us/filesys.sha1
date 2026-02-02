@@ -130,7 +130,7 @@ f70dd62e5908f8723fef69a48951a2a82adf01b3 *res/prebuilt/data/uground_clact.cldat
 bf16274373fa7a0a1db503ac7f82ef977c2d823a *res/prebuilt/data/uground_pltt2.resdat
 fed2bdb82fffa0aa263e3d6df0f6287f742ac430 *res/prebuilt/data/ugroundeffect.naix
 9a9c462760c8a718fbf8cd41d0bb87dfcfa50a41 *res/prebuilt/data/ugroundeffect.narc
-010b6c08bc7da35acaaf093feac31518cd64027e *res/prebuilt/data/underg_radar.narc
+010b6c08bc7da35acaaf093feac31518cd64027e *res/graphics/underground_top_screen/underground_top_screen.narc
 771128a72a1452c507a57f5efe8d5554f4394ea2 *res/prebuilt/data/utility.bin
 2e51272d8f954300bf0108af0006e8e1345e5bf2 *res/prebuilt/data/weather_sys.narc
 54fdcacd4730f2d511ca78c016c154415e5ca256 *res/prebuilt/data/wifi.ncgr
@@ -226,7 +226,7 @@ e6a7fe0328d168e1b4d92919fe047d2fa12daf56 *res/prebuilt/graphic/pmsi.narc
 7c6a50d69659697636849cedebb0143ed0cf146a *res/graphics/poketch/poketch.narc
 3201157ab4617a303e9cac30cf1e3f7104c653e2 *res/graphics/poffin_case/poru_gra.narc
 072d6abfeee0e866719b37d40475fcd86cf928a9 *res/prebuilt/graphic/poruact.narc
-d263e5a1eae27a68063e10093e15b06e02de10f5 *res/prebuilt/graphic/porudemo.narc
+d263e5a1eae27a68063e10093e15b06e02de10f5 *res/graphics/poffin_case/feeding_cutscene/cutscene.narc
 1360486ee8eb2c19e8c5b6e36e4843d56a42c066 *res/prebuilt/graphic/pst_gra.narc
 a14c782aba232ccd2fa1968512950f5d055936e3 *res/prebuilt/graphic/ranking.narc
 dc5129bfe80b3fb77c46f54392e6762d0b3aaeb3 *res/prebuilt/graphic/record.narc

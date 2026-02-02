@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_POFFIN_H
 #define POKEPLATINUM_POFFIN_H
 
+#include "constants/heap.h"
+
 #include "savedata.h"
 
 #define POFFIN_NONE 0xFFFF
@@ -40,7 +42,7 @@ enum PoffinAttributeID {
 int Poffin_SizeOf(void);
 BOOL Poffin_HasValidFlavor(Poffin *poffin);
 void Poffin_Clear(Poffin *poffin);
-Poffin *Poffin_New(int heapID);
+Poffin *Poffin_New(enum HeapID heapID);
 void Poffin_Copy(Poffin *src, Poffin *dest);
 u8 Poffin_GetAttribute(Poffin *poffin, enum PoffinAttributeID attributeID);
 int Poffin_MakePoffin(Poffin *poffin, u8 *param1, u8 param2, BOOL isFoul);
@@ -54,7 +56,7 @@ u16 PoffinCase_AddPoffin(PoffinCase *poffinCase, Poffin *poffin);
 BOOL PoffinCase_ClearSlot(PoffinCase *poffinCase, u16 slot);
 void PoffinCase_Compact(PoffinCase *poffinCase);
 void PoffinCase_CopyPoffinFromSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin);
-Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, int heapID);
+Poffin *PoffinCase_AllocateForSlot(PoffinCase *poffinCase, u16 destSlot, enum HeapID heapID);
 u16 PoffinCase_CountFilledSlots(PoffinCase *poffinCase);
 u16 PoffinCase_CountEmptySlots(PoffinCase *poffinCase);
 

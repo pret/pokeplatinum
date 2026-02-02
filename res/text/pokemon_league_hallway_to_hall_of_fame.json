@@ -1,0 +1,66 @@
+{
+  "key": 53294,
+  "messages": [
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_TheRoomAheadIsTheHallOfFame",
+      "en_US": [
+        "Cynthia: The room ahead is the Hall\n",
+        "of Fame...\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_YourLastBattleWasSplendid",
+      "en_US": [
+        "Rowan: {STRVAR_1 3, 0, 0}!\n",
+        "Your last battle was splendid!\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_HelloProfessorRowan",
+      "en_US": "Cynthia: Oh, hello, Professor Rowan.\r"
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_YouveGrownIntoARealChampion",
+      "en_US": [
+        "Rowan: Hm!\r",
+        "A child I enlisted for my Pokédex\n",
+        "project has come this far...\r",
+        "It’s only natural that I come and\n",
+        "witness the child’s crowning glory.\r",
+        "{STRVAR_1 3, 0, 0}!\n",
+        "I shouldn’t call you a child anymore.\f",
+        "You’ve grown into a real Champion!\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_ProfessorYouStillEnjoyEnthusiasm",
+      "en_US": [
+        "Cynthia: Professor, you still enjoy\n",
+        "the enthusiasm kids bring to your\f",
+        "research, don’t you?\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_StepThisWayPleaseMale",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, step this way,\n",
+        "please.\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_StepThisWayPleaseFemale",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}, step this way,\n",
+        "please.\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_ProfessorRowanPleaseJoinUs",
+      "en_US": "Professor Rowan, please join us.\r"
+    },
+    {
+      "id": "PokemonLeagueHallwayToHallOfFame_Text_Dummy_00008",
+      "garbage": 39
+    }
+  ]
+}

@@ -3,10 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/traps.h"
 #include "generated/trainer_score_events.h"
+#include "generated/traps.h"
 
-#include "struct_defs/struct_02099F80.h"
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
@@ -14,12 +13,12 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_02248F1C.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_spheres.h"
 #include "overlay023/underground_text_printer.h"
+#include "overlay023/underground_top_screen.h"
 #include "overlay023/underground_traps.h"
 
 #include "bg_window.h"
@@ -1124,7 +1123,7 @@ int ov23_0223EC30(void)
 static void ov23_0223EC34(BgConfig *bgConfig)
 {
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_A,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,
@@ -1389,13 +1388,13 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         (v0->state)++;
         break;
     case 1:
-        ov23_0224942C(fieldSystem->unk_6C);
+        UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         (v0->state)++;
         break;
     case 2:
         if (IsScreenFadeDone()) {
-            if (fieldSystem->unk_6C == NULL) {
+            if (fieldSystem->ugTopScreenCtx == NULL) {
                 FieldSystem_FlagNotRunningFieldMap(fieldSystem);
                 (v0->state)++;
             }
@@ -1547,7 +1546,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 20:
         if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
-            fieldSystem->unk_6C = ov23_02249404(fieldSystem);
+            fieldSystem->ugTopScreenCtx = UndergroundTopScreen_StartTask(fieldSystem);
             sub_02039734();
             CommPlayerMan_PauseFieldSystem();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);

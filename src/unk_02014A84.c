@@ -85,7 +85,7 @@ void sub_02014AC4(Sentence *sentence, int param1)
     }
 }
 
-String *sub_02014B34(const Sentence *sentence, u32 heapID)
+String *sub_02014B34(const Sentence *sentence, enum HeapID heapID)
 {
     String *v0;
     StringTemplate *v1;
@@ -165,9 +165,9 @@ static u32 sub_02014C00(u32 param0, u32 param1)
     return v2;
 }
 
-u16 sub_02014C78(const Sentence *sentence, int param1)
+u16 Sentence_GetWord(const Sentence *sentence, int slot)
 {
-    return sentence->words[param1];
+    return sentence->words[slot];
 }
 
 u32 sub_02014C80(const Sentence *sentence)
@@ -219,7 +219,7 @@ void sub_02014CE0(Sentence *sentence, u32 param1, u32 param2)
     sentence->id = param2;
 }
 
-void sub_02014CF8(Sentence *sentence, u32 index, u16 word)
+void Sentence_SetWord(Sentence *sentence, u32 index, u16 word)
 {
     GF_ASSERT(index < 2);
     sentence->words[index] = word;

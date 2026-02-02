@@ -48,8 +48,8 @@ static void ov22_02259980(const NNSG2dScreenData *param0, int param1);
 static void ov22_022599A0(UnkStruct_ov22_022599A0 *param0, int *param1, int *param2);
 static void ov22_02259A4C(SysTask *param0, void *param1);
 static void ov22_02259ABC(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4, int param5, int param6, int param7, int param8);
-static void ov22_02259B3C(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID);
-static void ov22_02259B8C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID);
+static void ov22_02259B3C(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, enum HeapID heapID);
+static void ov22_02259B8C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, enum HeapID heapID);
 static void ov22_02259BD4(SysTask *param0, void *param1);
 static void ov22_02259C10(SysTask *param0, void *param1);
 
@@ -222,7 +222,7 @@ static void ov22_02259ABC(BgConfig *param0, int param1, const NNSG2dScreenData *
     Bg_ScheduleTilemapTransfer(param0, param1);
 }
 
-static void ov22_02259B3C(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID)
+static void ov22_02259B3C(enum NarcID narcID, u32 param1, BgConfig *param2, u32 param3, u32 param4, enum HeapID heapID)
 {
     UnkStruct_ov22_02259B3C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02259B3C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B3C));
@@ -235,7 +235,7 @@ static void ov22_02259B3C(enum NarcID narcID, u32 param1, BgConfig *param2, u32 
     SysTask_ExecuteAfterVBlank(ov22_02259BD4, v0, 128);
 }
 
-static void ov22_02259B8C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
+static void ov22_02259B8C(enum NarcID narcID, u32 param1, int param2, u32 param3, u32 param4, enum HeapID heapID)
 {
     UnkStruct_ov22_02259B8C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov22_02259B8C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B8C));

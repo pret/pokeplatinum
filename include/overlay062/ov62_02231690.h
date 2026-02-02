@@ -19,13 +19,13 @@
 #include "sprite_system.h"
 #include "string_gf.h"
 
-StringTemplate *ov62_02231690(u32 heapID);
+StringTemplate *ov62_02231690(enum HeapID heapID);
 int ov62_022316A0(UnkStruct_0208C06C *param0);
 int ov62_022316D0(UnkStruct_0208C06C *param0);
 int ov62_02231710(UnkStruct_0208C06C *param0, int param1);
 void ov62_022317CC(UnkStruct_0208C06C *param0, int param1);
 void ov62_022318E8(UnkStruct_0208C06C *param0);
-u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength);
+u16 *ov62_Pokedex_Alphabetical(enum HeapID heapID, int unused, int *pokedexLength);
 void ov62_0223196C(UnkStruct_0208C06C *param0, BOOL param1);
 BOOL ov62_02231974(UnkStruct_0208C06C *param0);
 void ov62_0223197C(UnkStruct_0208C06C *param0, int param1);

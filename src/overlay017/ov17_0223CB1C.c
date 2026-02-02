@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay011/particle_helper.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_022476F8.h"
@@ -215,7 +213,7 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetScene(SOUND_SCENE_NONE);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
-    sub_020959F4(v0->unk_00->unk_155);
+    SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
     SetVBlankCallback(ov17_0223D0C8, v0);
     Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN);
 
@@ -337,7 +335,7 @@ int ov17_0223CF8C(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_22);
-    sub_02095A24();
+    LockTextSpeed();
     NetworkIcon_Destroy();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
@@ -407,7 +405,7 @@ static void ov17_0223D1B8(BgConfig *param0)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_C,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,

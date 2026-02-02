@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_1F_ACE_TRAINER_M_0",
+            "id": "LOCALID_ACE_TRAINER_M",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_1F_CASHIER_F_1",
+            "id": "LOCALID_CASHIER_F",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_1F_CASHIER_M_2",
+            "id": "LOCALID_CASHIER_M",
             "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_1F_POKECENTER_NURSE_3",
+            "id": "LOCALID_POKECENTER_NURSE",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_1F_ACE_TRAINER_F_4",
+            "id": "LOCALID_ACE_TRAINER_F",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_1F_BARRY_5",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x021D",
+            "hidden_flag": "FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL",
             "script": 0,
             "initial_dir": 0,
             "data": [],
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "POKEMON_LEAGUE_NORTH_POKECENTER_1F_GUITARIST_6",
+            "id": "LOCALID_GUITARIST",
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

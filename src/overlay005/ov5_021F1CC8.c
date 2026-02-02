@@ -196,7 +196,7 @@ static OverworldAnimManager *ov5_021F1ECC(const MapObject *param0, int param1)
     v2.unk_08 = ov5_021F1DA4(v10, param1, v6, v7);
     v2.unk_04 = ov5_021F1E24(v10, param1, v6, v7);
 
-    sub_02064450(v3, v4, &v0);
+    VecFx32_SetPosFromMapCoords(v3, v4, &v0);
     v0.y = v5;
 
     switch (param1) {

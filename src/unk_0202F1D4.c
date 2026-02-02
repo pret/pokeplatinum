@@ -54,7 +54,7 @@ void BattleRecording_Init(BattleRecording *param0)
     param0->unk_00 = 0xffffffff;
 }
 
-void sub_0202F1F8(SaveData *saveData, int heapID, int *param2)
+void sub_0202F1F8(SaveData *saveData, enum HeapID heapID, int *param2)
 {
     if (Unk_021C07A4 != NULL) {
         Heap_Free(Unk_021C07A4);
@@ -615,7 +615,7 @@ static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *party)
     Heap_Free(v1);
 }
 
-UnkStruct_0202F41C *sub_0202FD88(int heapID)
+UnkStruct_0202F41C *sub_0202FD88(enum HeapID heapID)
 {
     UnkStruct_0202F41C *v0;
 
@@ -627,7 +627,7 @@ UnkStruct_0202F41C *sub_0202FD88(int heapID)
     return v0;
 }
 
-UnkStruct_02030A80 *sub_0202FDB8(int heapID)
+UnkStruct_02030A80 *sub_0202FDB8(enum HeapID heapID)
 {
     UnkStruct_02030A80 *v0;
 
@@ -704,7 +704,7 @@ u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2)
     return 0;
 }
 
-UnkStruct_0202F41C *sub_0202FF2C(int heapID)
+UnkStruct_0202F41C *sub_0202FF2C(enum HeapID heapID)
 {
     UnkStruct_0202F41C *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0202F41C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0202F41C));

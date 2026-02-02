@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "battle_anim/battle_anim_system.h"
 #include "overlay011/particle_helper.h"
 #include "overlay017/const_ov17_022536B4.h"
@@ -253,7 +251,7 @@ int ov17_0223B140(ApplicationManager *appMan, int *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_CONTEST, SEQ_CONTEST_DRESSING_ROOM, 1);
-    sub_020959F4(v0->unk_00->unk_155);
+    SetLockTextWithAutoScroll(v0->unk_00->isLinkContest);
     SetVBlankCallback(ov17_0223B6BC, v0);
 
     return 1;
@@ -372,7 +370,7 @@ int ov17_0223B580(ApplicationManager *appMan, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_21);
-    sub_02095A24();
+    LockTextSpeed();
     NetworkIcon_Destroy();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
@@ -414,7 +412,7 @@ static void ov17_0223B728(BgConfig *param0)
     GXLayers_DisableEngineALayers();
 
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_128_C,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_32_H,
@@ -755,7 +753,7 @@ static int ov17_0223BDCC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BCE
         if (sub_0209590C(param0->unk_00) == 1) {
             param0->unk_304.unk_C6.unk_0C = 45;
         } else {
-            param0->unk_304.unk_C6.unk_0C = ov17_02243944(param0->unk_00->unk_00.unk_10F);
+            param0->unk_304.unk_C6.unk_0C = ov17_02243944(param0->unk_00->unk_00.contestType);
         }
 
         param0->unk_304.unk_C6.unk_0E = 0;

@@ -6,8 +6,6 @@
 #include "constants/heap.h"
 #include "generated/genders.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "applications/journal_display/journal_printer.h"
 
 #include "bg_window.h"
@@ -162,7 +160,7 @@ static void JournalController_MainCallback(void *data)
 
 static void JournalController_SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_256_AB,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

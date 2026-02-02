@@ -18,22 +18,22 @@
 typedef struct {
     FieldSystem *fieldSystem;
     int state;
-    u16 unk_08;
+    u16 mapID;
     s16 unk_0A;
     s16 unk_0C;
     Pokemon *partyPokemon;
     SysTask *cutInTask;
 } FlyTaskEnv;
 
-void *sub_0207064C(u32 heapID, FieldSystem *fieldSystem, Pokemon *param2, u16 param3, s16 param4, s16 param5)
+void *sub_0207064C(enum HeapID heapID, FieldSystem *fieldSystem, Pokemon *mon, u16 mapID, s16 param4, s16 param5)
 {
     FlyTaskEnv *v0 = Heap_AllocAtEnd(heapID, sizeof(FlyTaskEnv));
 
     memset(v0, 0, sizeof(FlyTaskEnv));
 
     v0->fieldSystem = fieldSystem;
-    v0->partyPokemon = param2;
-    v0->unk_08 = param3;
+    v0->partyPokemon = mon;
+    v0->mapID = mapID;
     v0->unk_0A = param4;
     v0->unk_0C = param5;
 
@@ -60,7 +60,7 @@ BOOL sub_02070680(FieldTask *task)
         u16 destination;
         Location location;
 
-        destination = sub_0203A8A0(taskEnv->unk_08, taskEnv->unk_0A, taskEnv->unk_0C);
+        destination = sub_0203A8A0(taskEnv->mapID, taskEnv->unk_0A, taskEnv->unk_0C);
         GF_ASSERT(destination != 0);
 
         Location_InitFly(destination, &location);

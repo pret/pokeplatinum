@@ -850,7 +850,7 @@ void Sound_SetWaveOutVolume(enum WaveOutChannel channel, int volume)
     }
 }
 
-BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, int heapID)
+BOOL Sound_PlayWaveOutReversed(u16 waveArcID, int volume, int pan, enum WaveOutChannel channel, enum HeapID heapID)
 {
     UNUSED(SoundSystem_Get());
     void **reverseBuffer = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_WAVE_OUT_REVERSE_BUFFER);

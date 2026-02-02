@@ -7,7 +7,7 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_0202A750_decl.h"
+#include "struct_defs/image_clips.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
@@ -251,12 +251,12 @@ static BOOL TVInterview_IsEligible(FieldSystem *fieldSystem, int segmentID)
     return isEligibleFn(fieldSystem);
 }
 
-static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
+static void sub_0204922C(StringTemplate *param0, int param1, const u16 *param2, int param3, int language, int param5)
 {
     String *v0 = String_Init(64, HEAP_ID_FIELD1);
 
     String_CopyChars(v0, param2);
-    StringTemplate_SetString(param0, param1, v0, param3, param5, param4);
+    StringTemplate_SetString(param0, param1, v0, param3, param5, language);
     String_Free(v0);
 }
 
@@ -327,8 +327,8 @@ static BOOL sub_02049368(FieldSystem *fieldSystem)
 
 static BOOL sub_02049378(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202A750 *v0 = sub_0202A750(fieldSystem->saveData);
-    return sub_02029D10(v0, 0);
+    ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
+    return ImageClips_DressUpPhotoHasData(imageClips, 0);
 }
 
 static BOOL sub_02049388(FieldSystem *fieldSystem)
