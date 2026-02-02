@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
-#define POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
+#ifndef POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
+#define POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H
 
 #include "constants/battle.h"
 #include "constants/moves.h"
@@ -396,4 +396,4 @@ typedef struct CommandClearMsg {
     u16 padding_02;
 } CommandClearMsg;
 
-#endif // POKEPLATINUM_STRUCT_BATTLE_CONTROLLER_H
+#endif // POKEPLATINUM_STRUCT_BATTLE_MESSAGE_DEFS_H

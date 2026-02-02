@@ -8,7 +8,6 @@
 #include "generated/items.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/battle_controller.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"
 
@@ -19,6 +18,7 @@
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/healthbar.h"
+#include "battle/message_defs.h"
 #include "battle/move_display_info.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_0223DF00.h"
@@ -164,11 +164,11 @@ static void ov16_022636D4(SysTask *param0, void *param1);
 static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManager *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimFrame *param11, PokemonSpriteCallback *param12);
 static void ov16_02263C1C(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessage *message, BattleMessage *param3);
 static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessage *message, BattleMessage *param3);
-static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
+static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *param1, BattleMessage *message);
 static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *message, BattleMessage *param3);
-static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
+static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMessage *message);
 static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessage *message, BattleMessage *param3);
-static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
+static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *message);
 static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int param2, int param3, s16 param4, s16 param5);
 static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, MoveAnimation *param3);
 static void ov16_02264530(BattleSystem *battleSys, MoveAnimation *param1, UnkStruct_ov12_022380DC *param2, int param3);
@@ -5709,7 +5709,7 @@ static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, SendOutM
     }
 }
 
-static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *unused, BattleMessage *param2)
+static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *unused, BattleMessage *message)
 {
     u32 battleType;
     int battlerType1;
@@ -5727,35 +5727,35 @@ static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *unused, BattleMe
 
     if (battleType & BATTLE_TYPE_LINK) {
         if (battleType & BATTLE_TYPE_FRONTIER) {
-            param2->id = 992;
-            param2->tags = 59;
-            param2->params[0] = battlerType1;
-            param2->params[1] = battlerType1;
-            param2->params[2] = battlerType2;
-            param2->params[3] = battlerType2;
+            message->id = 992;
+            message->tags = 59;
+            message->params[0] = battlerType1;
+            message->params[1] = battlerType1;
+            message->params[2] = battlerType2;
+            message->params[3] = battlerType2;
         } else if (battleType & BATTLE_TYPE_2vs2) {
-            param2->id = 971;
-            param2->tags = 26;
-            param2->params[0] = battlerType1;
-            param2->params[1] = battlerType2;
+            message->id = 971;
+            message->tags = 26;
+            message->params[0] = battlerType1;
+            message->params[1] = battlerType2;
         } else {
-            param2->id = 970;
-            param2->tags = 8;
-            param2->params[0] = battlerType1;
+            message->id = 970;
+            message->tags = 8;
+            message->params[0] = battlerType1;
         }
     } else {
         if ((battleType & BATTLE_TYPE_TAG) || (battleType & BATTLE_TYPE_2vs2)) {
-            param2->id = 992;
-            param2->tags = 59;
-            param2->params[0] = battlerType1;
-            param2->params[1] = battlerType1;
-            param2->params[2] = battlerType2;
-            param2->params[3] = battlerType2;
+            message->id = 992;
+            message->tags = 59;
+            message->params[0] = battlerType1;
+            message->params[1] = battlerType1;
+            message->params[2] = battlerType2;
+            message->params[3] = battlerType2;
         } else {
-            param2->id = 969;
-            param2->tags = 30;
-            param2->params[0] = battlerType1;
-            param2->params[1] = battlerType1;
+            message->id = 969;
+            message->tags = 30;
+            message->params[0] = battlerType1;
+            message->params[1] = battlerType1;
         }
     }
 }
@@ -5907,7 +5907,7 @@ static void ov16_02263E7C(BattleSystem *battleSys, BattlerData *param1, LeadMonM
     }
 }
 
-static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2)
+static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMessage *message)
 {
     u32 battleType;
     int v1;
@@ -5928,38 +5928,38 @@ static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMe
     switch (v3) {
     case 0x1:
         if (battleType & BATTLE_TYPE_2vs2) {
-            param2->id = 786;
-            param2->tags = 26;
-            param2->params[0] = v1;
-            param2->params[1] = v2;
+            message->id = 786;
+            message->tags = 26;
+            message->params[0] = v1;
+            message->params[1] = v2;
         } else {
-            param2->id = 785;
-            param2->tags = 8;
-            param2->params[0] = v1;
+            message->id = 785;
+            message->tags = 8;
+            message->params[0] = v1;
         }
         break;
     case 0x2:
         if (battleType & BATTLE_TYPE_2vs2) {
-            param2->id = 788;
-            param2->tags = 26;
-            param2->params[0] = v1;
-            param2->params[1] = v2;
+            message->id = 788;
+            message->tags = 26;
+            message->params[0] = v1;
+            message->params[1] = v2;
         } else {
-            param2->id = 787;
-            param2->tags = 8;
-            param2->params[0] = v1;
+            message->id = 787;
+            message->tags = 8;
+            message->params[0] = v1;
         }
         break;
     case 0x3:
         if (battleType & BATTLE_TYPE_2vs2) {
-            param2->id = 790;
-            param2->tags = 26;
-            param2->params[0] = v1;
-            param2->params[1] = v2;
+            message->id = 790;
+            message->tags = 26;
+            message->params[0] = v1;
+            message->params[1] = v2;
         } else {
-            param2->id = 789;
-            param2->tags = 8;
-            param2->params[0] = v1;
+            message->id = 789;
+            message->tags = 8;
+            message->params[0] = v1;
         }
         break;
     }
@@ -6009,19 +6009,19 @@ static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, EscapeMs
     }
 }
 
-static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2)
+static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *message)
 {
-    param2->id = 956;
-    param2->tags = 8;
+    message->id = 956;
+    message->tags = 8;
 
     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) {
         if (ov16_0223F6F0(battleSys, ov16_0223F6E4(battleSys))) {
-            param2->params[0] = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
+            message->params[0] = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
         } else {
-            param2->params[0] = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
+            message->params[0] = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
         }
     } else {
-        param2->params[0] = param1->battler;
+        message->params[0] = param1->battler;
     }
 
     BattleSystem_SetResultFlag(battleSys, 0x2 | 0x80 | 0x40);

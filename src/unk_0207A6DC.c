@@ -6,7 +6,6 @@
 #include "constants/battle.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/battle_controller.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0207A778.h"
@@ -15,6 +14,7 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_controller.h"
+#include "battle/message_defs.h"
 #include "battle/ov16_0223DF00.h"
 
 #include "charcode_util.h"

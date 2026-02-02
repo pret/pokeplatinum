@@ -2,9 +2,9 @@
 #define POKEPLATINUM_OV16_0225CBB8_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/battle_controller.h"
 
 #include "battle/battle_message.h"
+#include "battle/message_defs.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_022674C4.h"
@@ -55,25 +55,25 @@ void ov16_0225D8F0(BattleSystem *battleSys, BattlerData *param1, AttackMsgMessag
  * @param battleMsg
  */
 void BattleDisplay_PrintMessage(BattleSystem *battleSys, BattlerData *battlerData, BattleMessage *battleMsg);
-void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *param2);
+void ov16_0225D9A8(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *moveAnimation);
 void ov16_0225DA44(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMessage *param2);
-void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateMessage *param2);
-void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, FaintingSequenceMessage *param2);
-void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, PlaySoundMessage *param2);
+void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMessage *message);
+void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateMessage *message);
+void ov16_0225DB74(BattleSystem *battleSys, BattlerData *param1, FaintingSequenceMessage *message);
+void ov16_0225DC4C(BattleSystem *battleSys, BattlerData *param1, PlaySoundMessage *message);
 void ov16_0225DC7C(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, ToggleVanishMessage *param2);
-void ov16_0225DD44(BattleSystem *battleSys, BattlerData *param1, SetStatusIconMessage *param2);
-void ov16_0225DD7C(BattleSystem *battleSys, BattlerData *param1, TrainerMsgMessage *param2);
-void ov16_0225DDD8(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessage *param2);
-void ov16_0225DE30(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessage *param2);
+void ov16_0225DCB0(BattleSystem *battleSys, BattlerData *param1, ToggleVanishMessage *message);
+void ov16_0225DD44(BattleSystem *battleSys, BattlerData *param1, SetStatusIconMessage *message);
+void ov16_0225DD7C(BattleSystem *battleSys, BattlerData *param1, TrainerMsgMessage *message);
+void ov16_0225DDD8(BattleSystem *battleSys, BattlerData *param1, RecallMsgMessage *message);
+void ov16_0225DE30(BattleSystem *battleSys, BattlerData *param1, SendOutMsgMessage *message);
 void ov16_0225DE88(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225DEDC(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *param2);
+void ov16_0225DEDC(BattleSystem *battleSys, BattlerData *param1, LeadMonMsgMessage *message);
 void ov16_0225DF34(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage *param2);
-void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeMessage *param2);
-void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, ForgetMoveMessage *param2);
-void ov16_0225E0F4(BattleSystem *battleSys, BattlerData *param1, MosaicSetMessage *param2);
+void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage *message);
+void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeMessage *message);
+void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, ForgetMoveMessage *message);
+void ov16_0225E0F4(BattleSystem *battleSys, BattlerData *param1, MosaicSetMessage *message);
 
 /**
  * @brief Show the start-of-battle party gauge.
@@ -111,15 +111,15 @@ void BattleDisplay_ShowPartyGauge(BattleSystem *battleSys, BattlerData *battlerD
  */
 void BattleDisplay_HidePartyGauge(BattleSystem *battleSys, BattlerData *battlerData, PartyGaugeData *partyGauge);
 void ov16_0225E23C(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *param2);
+void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *moveAnimation);
 void ov16_0225E2C8(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E300(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225E338(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessage *param2);
+void ov16_0225E38C(BattleSystem *battleSys, BattlerData *param1, EscapeMsgMessage *message);
 void ov16_0225E3E0(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *param2);
-void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, MoveHitSoundMessage *param2);
-void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, MusicPlayMessage *param2);
+void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, MoveAnimation *moveAnimation);
+void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, MoveHitSoundMessage *message);
+void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, MusicPlayMessage *message);
 void ov16_02263730(BattleSystem *battleSys, BattlerData *param1);
 u8 Battler_Type(BattlerData *param0);
 u8 Battler_BootState(BattlerData *param0);

@@ -8,7 +8,6 @@
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/battle_controller.h"
 #include "struct_defs/battle_system.h"
 
 #include "battle/battle_context.h"
@@ -16,6 +15,7 @@
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/common.h"
+#include "battle/message_defs.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
