@@ -826,11 +826,11 @@ static void ov16_0225C940(BattleSystem *battleSys, BattlerData *param1)
 
     if (message->battlerType == 0) {
         if (param1->bootState == 0x0) {
-            BattleSystem_TryIncrementRecordValue(battleSys, message->unk_02);
+            BattleSystem_TryIncrementRecordValue(battleSys, message->record);
         }
     } else {
         if (param1->bootState != 0x0) {
-            BattleSystem_TryIncrementRecordValue(battleSys, message->unk_02);
+            BattleSystem_TryIncrementRecordValue(battleSys, message->record);
         }
     }
 

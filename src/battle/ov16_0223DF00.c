@@ -211,7 +211,7 @@ FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSystem)
     return battleSystem->unk_1A8;
 }
 
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem)
+MessageLoader *BattleSystem_GetMessageLoader(BattleSystem *battleSystem)
 {
     return battleSystem->unk_0C;
 }

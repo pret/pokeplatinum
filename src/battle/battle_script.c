@@ -10583,7 +10583,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     Pokemon *mon;
     PaletteData *paletteData;
     PokemonSpriteManager *monSpriteMan;
-    MessageLoader *msgLoader = BattleSystem_MessageLoader(data->battleSys);
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(data->battleSys);
     paletteData = BattleSystem_PaletteSys(data->battleSys);
     monSpriteMan = BattleSystem_GetPokemonSpriteManager(data->battleSys);
     battler = BATTLER_ENEMY_1;
@@ -10942,7 +10942,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             BattleSystem_SetPokemonCatchData(data->battleSys, data->battleCtx, mon);
             ov16_0223EF48(data->battleSys, mon);
             ov16_0223EF68(data->battleSys, mon);
-            BattleIO_IncrementRecord(data->battleSys, 0, 0, RECORD_CAUGHT_POKEMON);
+            BattleController_EmitIncrementRecord(data->battleSys, 0, 0, RECORD_CAUGHT_POKEMON);
 
             if (Party_AddPokemon(party, mon) == TRUE) {
                 if (data->seqNum == SEQ_CATCH_MON_DIDNT_GIVE_NICKNAME) {
@@ -12179,7 +12179,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     SpriteSystem *spriteSys;
     SpriteManager *spriteMan;
     PaletteData *paletteData;
-    MessageLoader *msgLoader = BattleSystem_MessageLoader(battleSys);
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(battleSys);
     StringTemplate *strTemplate;
     String *templateString;
     String *msgBuffer = BattleSystem_GetMsgBuffer(battleSys);
