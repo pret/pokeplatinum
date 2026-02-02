@@ -72,133 +72,6 @@
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
 
-BgConfig *BattleSystem_BGL(BattleSystem *battleSystem);
-u32 BattleSystem_BattleType(BattleSystem *battleSystem);
-BattleContext *BattleSystem_Context(BattleSystem *battleSystem);
-BattlerData *BattleSystem_BattlerData(BattleSystem *battleSystem, int param1);
-int BattleSystem_MaxBattlers(BattleSystem *battleSystem);
-Party *BattleSystem_Party(BattleSystem *battleSystem, int param1);
-int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
-Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem);
-BattleAnimSystem *ov16_0223E008(BattleSystem *battleSystem);
-SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem);
-SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem);
-UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem);
-FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSystem);
-FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSystem);
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem);
-MessageLoader *ov16_0223E060(BattleSystem *battleSystem);
-PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSystem);
-Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSystem);
-u8 *ov16_0223E06C(BattleSystem *battleSystem);
-u8 *ov16_0223E074(BattleSystem *battleSystem);
-u16 *ov16_0223E080(BattleSystem *battleSystem);
-u16 *ov16_0223E08C(BattleSystem *battleSystem);
-u16 *ov16_0223E098(BattleSystem *battleSystem);
-u16 *ov16_0223E0A4(BattleSystem *battleSystem);
-u16 *ov16_0223E0B0(BattleSystem *battleSystem);
-u16 *ov16_0223E0BC(BattleSystem *battleSystem);
-PokemonSpriteData *ov16_0223E0C8(BattleSystem *battleSystem);
-StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSystem);
-String *ov16_0223E0D4(BattleSystem *battleSystem);
-u16 Battler_TrainerID(BattleSystem *battleSystem, int param1);
-Trainer *BattleSystem_GetTrainer(BattleSystem *battleSystem, int param1);
-TrainerInfo *BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
-Bag *BattleSystem_Bag(BattleSystem *battleSystem);
-BagCursor *BattleSystem_BagCursor(BattleSystem *battleSystem);
-u32 BattleSystem_GetTrainerGender(BattleSystem *battleSystem, int param1);
-int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
-u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
-u8 Battler_Side(BattleSystem *battleSystem, int param1);
-UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSystem);
-enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
-int BattleSystem_MapHeader(BattleSystem *battleSystem);
-int BattleSystem_Partner(BattleSystem *battleSys, int battler);
-int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
-BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot, int moveSlot, int item);
-u32 ov16_0223EBEC(BattleSystem *battleSystem);
-enum TimeOfDay BattleSystem_Time(BattleSystem *battleSys);
-int ov16_0223EC04(BattleSystem *battleSystem);
-u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2);
-u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
-u8 ov16_0223ED60(BattleSystem *battleSystem);
-u8 ov16_0223ED6C(BattleSystem *battleSystem);
-int BattleSystem_NumSafariBalls(BattleSystem *battleSystem);
-void BattleSystem_SetSafariBalls(BattleSystem *battleSystem, int param1);
-BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
-int ov16_0223EDE0(BattleSystem *battleSystem);
-u8 BattleSystem_TextSpeed(BattleSystem *battleSystem);
-int BattleSystem_Ruleset(BattleSystem *battleSystem);
-PokemonAnimManager *BattleSystem_GetPokemonAnimManager(BattleSystem *battleSystem);
-ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1);
-void ov16_0223EF2C(BattleSystem *battleSystem, int param1, int param2);
-void ov16_0223EF48(BattleSystem *battleSystem, Pokemon *param1);
-void ov16_0223EF68(BattleSystem *battleSystem, Pokemon *param1);
-void ov16_0223EF8C(BattleSystem *battleSystem);
-u8 *ov16_0223F1E8(BattleSystem *battleSystem);
-u16 *ov16_0223F1F0(BattleSystem *battleSystem);
-int ov16_0223F1F8(BattleSystem *battleSystem);
-u16 *ov16_0223F204(BattleSystem *battleSystem);
-u16 *ov16_0223F210(BattleSystem *battleSystem);
-int BattleSystem_FieldWeather(BattleSystem *battleSystem);
-u8 ov16_0223F228(BattleSystem *battleSystem);
-void ov16_0223F234(BattleSystem *battleSystem, u8 param1);
-int ov16_0223F240(BattleSystem *battleSystem);
-void ov16_0223F24C(BattleSystem *battleSystem, int param1);
-void ov16_0223F268(BattleSystem *battleSystem);
-void BattleSystem_SetCommandSelectionFlags(BattleSystem *battleSys, int flags);
-void ov16_0223F290(BattleSystem *battleSystem, int param1);
-WaitDial *Battle_GetWaitDial(BattleSystem *battleSystem);
-void Battle_SetWaitDial(BattleSystem *battleSystem, WaitDial *waitDial);
-u8 *ov16_0223F2B8(PokemonSpriteData *param0, int param1);
-void PokemonSpriteData_SetNarcID(PokemonSpriteData *param0, int param1, int param2);
-void PokemonSpriteData_SetPalette(PokemonSpriteData *param0, int param1, int param2);
-void PokemonSpriteData_SetYOffset(PokemonSpriteData *param0, int param1, int param2);
-void ov16_0223F314(BattleSystem *battleSystem, int param1);
-void ov16_0223F320(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F32C(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F338(BattleSystem *battleSystem, u8 param1);
-void ov16_0223F344(BattleSystem *battleSystem, u8 param1);
-void ov16_0223F350(BattleSystem *battleSystem, u8 param1);
-void ov16_0223F36C(BattleSystem *battleSystem);
-void ov16_0223F3BC(BattleSystem *battleSystem);
-void ov16_0223F3EC(BattleSystem *battleSystem);
-void ov16_0223F414(BattleSystem *battleSystem);
-u8 BattleSystem_ResultMask(BattleSystem *battleSystem);
-void BattleSystem_SetResultFlag(BattleSystem *battleSystem, u8 param1);
-u8 ov16_0223F450(BattleSystem *battleSystem);
-void BattleSystem_SetRedHPSoundFlag(BattleSystem *battleSystem, u8 param1);
-u8 ov16_0223F47C(BattleSystem *battleSystem);
-void ov16_0223F48C(BattleSystem *battleSystem, u8 param1);
-void ov16_0223F4B0(BattleSystem *battleSystem, int param1);
-u16 BattleSystem_RandNext(BattleSystem *battleSystem);
-u32 ov16_0223F4E8(BattleSystem *battleSystem);
-void ov16_0223F4F4(BattleSystem *battleSystem, u32 param1);
-void BattleSystem_Record(BattleSystem *battleSystem, int param1, u8 param2);
-BOOL ov16_0223F530(BattleSystem *battleSystem, int param1, u8 *param2);
-u8 ov16_0223F58C(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F638(BattleSystem *battleSystem, u16 param1, u8 *param2);
-u16 ov16_0223F6E4(BattleSystem *battleSystem);
-int ov16_0223F6F0(BattleSystem *battleSystem, u16 param1);
-u16 BattleSystem_TrainerItems(BattleSystem *battleSystem, int param1, int param2);
-u32 BattleSystem_RecordingStopped(BattleSystem *battleSystem);
-void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);
-BOOL ov16_0223F7A4(BattleSystem *battleSystem);
-void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSystem);
-u8 BattleSystem_RecordedChatter(BattleSystem *battleSystem, int param1);
-void ov16_0223F858(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1);
-void BattleSystem_SetGaugePriority(BattleSystem *battleSystem, int param1);
-u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
-void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1);
-void ov16_0223F9A0(BattleSystem *battleSystem, int param1);
-BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
-void Battle_SetDefaultBlend(void);
-u8 ov16_0223F9FC(BattleSystem *battleSys, int trainerID, int param2, enum TrainerMessageType msgType, int param4);
-u8 BattleMessage_PrintToWindow(BattleSystem *battleSystem, Window *param1, MessageLoader *param2, BattleMessage *param3, int param4, int param5, int param6, int param7, int param8);
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessage *battleMsg);
 static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoader, BattleMessage *battleMsg);
@@ -288,7 +161,7 @@ Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slo
     return Party_GetPokemonBySlotIndex(battleSys->parties[battler], slot);
 }
 
-PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem)
+PokemonSpriteManager *BattleSystem_GetPokemonSpriteManager(BattleSystem *battleSystem)
 {
     return battleSystem->unk_88;
 }
@@ -408,7 +281,7 @@ StringTemplate *BattleSystem_StringTemplate(BattleSystem *battleSystem)
     return battleSystem->strFormatter;
 }
 
-String *ov16_0223E0D4(BattleSystem *battleSystem)
+String *BattleSystem_GetMsgBuffer(BattleSystem *battleSystem)
 {
     return battleSystem->msgBuffer;
 }
@@ -1026,7 +899,7 @@ int ov16_0223EDE0(BattleSystem *battleSystem)
 
 u8 BattleSystem_TextSpeed(BattleSystem *battleSystem)
 {
-    if ((battleSystem->battleType & 0x4) && ((battleSystem->battleStatusMask & 0x10) == 0)) {
+    if ((battleSystem->battleType & 0x4) && ((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
         return 1;
     }
 
@@ -1242,23 +1115,23 @@ void ov16_0223F234(BattleSystem *battleSystem, u8 param1)
     battleSystem->unk_241D = param1;
 }
 
-int ov16_0223F240(BattleSystem *battleSystem)
+int BattleSystem_GetMetBebe(BattleSystem *battleSystem)
 {
-    return battleSystem->unk_242C;
+    return battleSystem->metBebe;
 }
 
-void ov16_0223F24C(BattleSystem *battleSystem, int param1)
+void BattleSystem_TryIncrementRecordValue(BattleSystem *battleSystem, int id)
 {
-    if (battleSystem->battleStatusMask & 0x10) {
+    if (battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) {
         return;
     }
 
-    GameRecords_IncrementRecordValue(battleSystem->records, param1);
+    GameRecords_IncrementRecordValue(battleSystem->records, id);
 }
 
-void ov16_0223F268(BattleSystem *battleSystem)
+void BattleSystem_TryIncrementTrainerScoreCaughtSpecies(BattleSystem *battleSystem)
 {
-    if (battleSystem->battleStatusMask & 0x10) {
+    if (battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) {
         return;
     }
 
@@ -1432,9 +1305,9 @@ void ov16_0223F48C(BattleSystem *battleSystem, u8 param1)
     battleSystem->unk_23FB_5 = param1;
 }
 
-void ov16_0223F4B0(BattleSystem *battleSystem, int param1)
+void BattleSystem_SetCaughtBattlerIndex(BattleSystem *battleSystem, int value)
 {
-    battleSystem->unk_2438 = param1;
+    battleSystem->caughtBattlerIdx = value;
 }
 
 u16 BattleSystem_RandNext(BattleSystem *battleSystem)
@@ -1455,7 +1328,7 @@ void ov16_0223F4F4(BattleSystem *battleSystem, u32 param1)
 
 void BattleSystem_Record(BattleSystem *battleSystem, int param1, u8 param2)
 {
-    if (((battleSystem->battleStatusMask & 0x10) == 0) && (battleSystem->unk_245C[param1] < 0x400)) {
+    if (((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) == 0) && (battleSystem->unk_245C[param1] < 0x400)) {
         sub_0202F868(param1, battleSystem->unk_245C[param1], param2);
         battleSystem->unk_245C[param1]++;
     }
@@ -1467,11 +1340,11 @@ BOOL ov16_0223F530(BattleSystem *battleSystem, int param1, u8 *param2)
 
     *param2 = 0xff;
 
-    if ((battleSystem->battleStatusMask & 0x10) && (battleSystem->unk_245C[param1] < 0x400)) {
+    if ((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSystem->unk_245C[param1] < 0x400)) {
         *param2 = sub_0202F884(param1, battleSystem->unk_245C[param1]);
         battleSystem->unk_245C[param1]++;
         v0 = 0;
-    } else if ((battleSystem->battleStatusMask & 0x10) && (battleSystem->unk_245C[param1] >= 0x400)) {
+    } else if ((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) && (battleSystem->unk_245C[param1] >= 0x400)) {
         v0 = 1;
     }
 
@@ -1572,7 +1445,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
 
 BOOL ov16_0223F7A4(BattleSystem *battleSystem)
 {
-    if (((battleSystem->battleStatusMask & 0x10) == 0) || (battleSystem->recordingStopped) || (BattleContext_Get(battleSystem, battleSystem->battleCtx, 13, 0) == 43) || (BattleContext_Get(battleSystem, battleSystem->battleCtx, 14, 0) == 43)) {
+    if (((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) == 0) || (battleSystem->recordingStopped) || (BattleContext_Get(battleSystem, battleSystem->battleCtx, 13, 0) == 43) || (BattleContext_Get(battleSystem, battleSystem->battleCtx, 14, 0) == 43)) {
         return 0;
     }
 
@@ -1691,21 +1564,17 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     }
 }
 
-void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
+void BattleSystem_DexFlagCaught(BattleSystem *battleSystem, int battler)
 {
-    int v0 = Battler_Type(battleSystem->battlers[param1]);
+    int battlerType = Battler_Type(battleSystem->battlers[battler]);
 
-    if ((battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == 0) {
-        if (v0 & 0x1) {
-            {
-                Pokemon *v1;
-                int v2;
+    if ((battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == FALSE) {
+        if (battlerType & BATTLER_THEM) {
+            Pokemon *mon;
+            int targetSlot = BattleContext_Get(battleSystem, battleSystem->battleCtx, BATTLECTX_SELECTED_PARTY_SLOT, battler);
+            mon = BattleSystem_PartyPokemon(battleSystem, battler, targetSlot);
 
-                v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
-                v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
-
-                Pokedex_Capture(battleSystem->pokedex, v1);
-            }
+            Pokedex_Capture(battleSystem->pokedex, mon);
         }
     }
 }

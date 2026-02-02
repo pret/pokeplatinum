@@ -95,12 +95,6 @@ FS_EXTERN_OVERLAY(pokedex);
 
 static const u32 BattleServerVersion = 0x140;
 
-void ov16_0223B384(BattleSystem *battleSys);
-void ov16_0223B3E4(BattleSystem *battleSys);
-void ov16_0223B430(BattleSystem *battleSys);
-void ov16_0223B53C(BattleSystem *battleSys);
-void ov16_0223B578(BattleSystem *battleSys);
-void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags);
 static void ov16_0223B790(ApplicationManager *appMan);
 static int ov16_0223BBD0(ApplicationManager *appMan);
 static void ov16_0223BCB4(ApplicationManager *appMan);
@@ -643,7 +637,7 @@ static void ov16_0223B790(ApplicationManager *appMan)
     battleSys->monAnimMan = PokemonAnimManager_New(HEAP_ID_BATTLE, 4, FALSE);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
-    if (battleSys->battleStatusMask & 0x10) {
+    if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {
         for (idx = 0; idx < 4; idx++) {
             battleSys->unk_247C[idx] = v1->unk_194[idx];
         }
@@ -655,7 +649,7 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
     BattleSystem *battleSys = ApplicationManager_Data(appMan);
     int v1;
 
-    if ((battleSys->battleType & BATTLE_TYPE_LINK) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleSys->battleType & BATTLE_TYPE_LINK) && ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
         if (battleSys->unk_23F8) {
             BattleContext_Main(battleSys, battleSys->battleCtx);
         }
@@ -699,7 +693,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->seed = battleSystem->unk_2448;
     v1->battleStatusMask = battleSystem->battleStatusMask;
 
-    if ((battleSystem->battleStatusMask & 0x10) == 0) {
+    if ((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) == 0) {
         sub_0202F8AC(v1);
     }
 
@@ -734,7 +728,7 @@ static void ov16_0223BCB4(ApplicationManager *appMan)
     v1->captureAttempt = battleSystem->captureAttempt;
     v1->countSafariBalls = battleSystem->safariBalls;
     v1->resultMask = battleSystem->resultMask & (0xc0 ^ 0xff);
-    v1->caughtBattlerIdx = battleSystem->unk_2438;
+    v1->caughtBattlerIdx = battleSystem->caughtBattlerIdx;
     v1->leveledUpMonsMask = BattleContext_Get(battleSystem, battleSystem->battleCtx, 4, NULL);
     v1->battleRecords.totalTurns += BattleContext_Get(battleSystem, battleSystem->battleCtx, 3, NULL);
     v1->battleRecords.totalFainted += (BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 0) + BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 2));
@@ -1092,7 +1086,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->time = dto->timeOfDay;
     battleSys->unk_2418 = dto->rulesetMask;
     battleSys->unk_2424 = dto->visitedContestHall;
-    battleSys->unk_242C = dto->metBebe;
+    battleSys->metBebe = dto->metBebe;
     battleSys->fieldWeather = dto->fieldWeather;
     battleSys->records = dto->records;
 
@@ -1997,7 +1991,7 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
     MI_CpuClearFast(battleSys, sizeof(BattleSystem));
     ov16_0223C2C0(battleSys, v1);
 
-    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
+    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
         NetworkIcon_Destroy();
         return 0;
     }
@@ -2070,7 +2064,7 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
     u8 v2;
     int v3;
 
-    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & 0x10) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
+    if (((battleSys->battleType & BATTLE_TYPE_LINK) == FALSE) || (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) || (battleSys->battleType & BATTLE_TYPE_FRONTIER)) {
         NetworkIcon_Destroy();
         return 0;
     }
@@ -2229,7 +2223,7 @@ static BOOL ov16_0223DD10(ApplicationManager *appMan)
 
 static void ov16_0223DD4C(BattleSystem *battleSys)
 {
-    if ((battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_CATCH_TUTORIAL)) || (battleSys->battleStatusMask & 0x10)) {
+    if ((battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_CATCH_TUTORIAL)) || (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING)) {
         RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_ENABLED);
         RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
         RenderControlFlags_SetSpeedUpOnTouch(FALSE);
@@ -2247,7 +2241,7 @@ static void ov16_0223DD90(BattleSystem *battleSys, FieldBattleDTO *param1)
     int v5[4];
     int v6[4];
 
-    if (battleSys->battleStatusMask & 0x10) {
+    if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {
         battleSys->unk_23F8 = 1;
         return;
     }

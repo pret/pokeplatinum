@@ -2,25 +2,25 @@
   "key": 47860,
   "messages": [
     {
-      "id": "pl_msg_00000368_00000",
+      "id": "BattleStrings_Text_Dummy0",
       "garbage": 8
     },
     {
-      "id": "pl_msg_00000368_00001",
+      "id": "BattleStrings_Text_PokemonGainedExpPoints",
       "en_US": [
         "{STRVAR_1 1, 0, 0} gained\n",
         "{STRVAR_1 54, 1, 0} Exp. Points!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00002",
+      "id": "BattleStrings_Text_PokemonGainedABoostedExpPoints",
       "en_US": [
         "{STRVAR_1 1, 0, 0} gained a boosted\n",
         "{STRVAR_1 54, 1, 0} Exp. Points!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00003",
+      "id": "BattleStrings_Text_PokemonGrewToLevel",
       "en_US": [
         "{STRVAR_1 1, 0, 0} grew to\n",
         "Lv. {STRVAR_1 52, 1, 0}!{WAIT 5}{WAIT 2}\r"
@@ -972,7 +972,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00142",
+      "id": "BattleStrings_Text_PokemonsStatWontGoHigher",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
         "won’t go higher!"
@@ -993,7 +993,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00145",
+      "id": "BattleStrings_Text_PokemonsStatWontGoLower",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
         "won’t go lower!"
@@ -1299,7 +1299,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00190",
+      "id": "BattleStrings_Text_MoveRaisedYourTeamsSpecialDefense",
       "en_US": [
         "{STRVAR_1 6, 0, 0} raised your team’s\n",
         "Special Defense!"
@@ -1313,7 +1313,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00192",
+      "id": "BattleStrings_Text_MoveRaisedYourTeamsSpecialDefenseSlightly",
       "en_US": [
         "{STRVAR_1 6, 0, 0} raised your team’s\n",
         "Special Defense slightly!"
@@ -1327,7 +1327,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00194",
+      "id": "BattleStrings_Text_MoveRaisedYourTeamsDefense",
       "en_US": [
         "{STRVAR_1 6, 0, 0} raised your team’s\n",
         "Defense!"
@@ -1341,7 +1341,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00196",
+      "id": "BattleStrings_Text_MoveRaisedYourTeamsDefenseSlightly",
       "en_US": [
         "{STRVAR_1 6, 0, 0} raised your team’s\n",
         "Defense slightly!"
@@ -1355,7 +1355,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00198",
+      "id": "BattleStrings_Text_YourTeamBecameCloakedInAMysticalVeil",
       "en_US": [
         "Your team became cloaked in\n",
         "a mystical veil!"
@@ -1871,7 +1871,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00273",
+      "id": "BattleStrings_Text_PokemonIsProtectedByMist",
       "en_US": [
         "{STRVAR_1 1, 0, 0} is protected\n",
         "by Mist!"
@@ -1934,7 +1934,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00282",
+      "id": "BattleStrings_Text_PokemonProtectedItself",
       "en_US": [
         "{STRVAR_1 1, 0, 0} protected\n",
         "itself!"
@@ -3043,7 +3043,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00442",
+      "id": "BattleStrings_Text_PokemonBracedItself",
       "en_US": [
         "{STRVAR_1 1, 0, 0} braced\n",
         "itself!"
@@ -3314,7 +3314,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00481",
+      "id": "BattleStrings_Text_PokemonsBeatUpAttack",
       "en_US": "{STRVAR_1 1, 0, 0}’s attack!"
     },
     {
@@ -3810,7 +3810,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00552",
+      "id": "BattleStrings_Text_PokemonKnockedOffPokemonsItem",
       "en_US": [
         "{STRVAR_1 1, 0, 0} knocked off\n",
         "{STRVAR_1 1, 1, 0}’s {STRVAR_1 8, 2, 0}!"
@@ -4290,7 +4290,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00622",
+      "id": "BattleStrings_Text_PokemonsAbilityRaisedItsStat",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "raised its {STRVAR_1 13, 2, 0}!"
@@ -4585,7 +4585,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00662",
+      "id": "BattleStrings_Text_PokemonsAbilityCutsPokemonsStat",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "cuts {STRVAR_1 1, 2, 0}’s {STRVAR_1 13, 3, 0}!"
@@ -4640,7 +4640,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00669",
+      "id": "BattleStrings_Text_PokemonsAbilityPreventsStatLoss",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "prevents stat loss!"
@@ -4895,7 +4895,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00704",
+      "id": "BattleStrings_Text_PokemonsAbilityPreventsBufferStatLoss",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "prevents {STRVAR_1 13, 2, 0} loss!"
@@ -4971,7 +4971,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00714",
+      "id": "BattleStrings_Text_PokemonsAbilityMadeMoveIneffective",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "made {STRVAR_1 6, 2, 0} ineffective!"
@@ -5063,7 +5063,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00727",
+      "id": "BattleStrings_Text_PokemonsAbilitySuppressedByPokemonsAbility",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "suppressed {STRVAR_1 1, 2, 0}’s\f",
@@ -5237,7 +5237,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00750",
+      "id": "BattleStrings_Text_PokemonsStatRose",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
         "rose!"
@@ -5258,7 +5258,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00753",
+      "id": "BattleStrings_Text_PokemonsStatSharplyRose",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
         "sharply rose!"
@@ -5279,7 +5279,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00756",
+      "id": "BattleStrings_Text_TheItemRaisedPokemonsStat",
       "en_US": [
         "The {STRVAR_1 8, 1, 0} raised\n",
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 2, 0}!"
@@ -5321,7 +5321,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00762",
+      "id": "BattleStrings_Text_PokemonsStatFell",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
         "fell!"
@@ -5342,7 +5342,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00765",
+      "id": "BattleStrings_Text_PokemonsStatHarshlyFell",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 13, 1, 0}\n",
         "harshly fell!"
@@ -5867,11 +5867,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00859",
+      "id": "BattleStrings_Text_TheTrainerBlockedTheBall",
       "en_US": "The Trainer blocked the Ball!"
     },
     {
-      "id": "pl_msg_00000368_00860",
+      "id": "BattleStrings_Text_DontBeAThief",
       "en_US": "Don’t be a thief!"
     },
     {
@@ -5886,42 +5886,42 @@
       "en_US": "You missed the Pokémon!"
     },
     {
-      "id": "pl_msg_00000368_00863",
+      "id": "BattleStrings_Text_OhNoThePokemonBrokeFree",
       "en_US": [
         "Oh, no!\n",
         "The Pokémon broke free!"
       ]
     },
     {
-      "id": "pl_msg_00000368_00864",
+      "id": "BattleStrings_Text_AwwItAppearedToBeCaught",
       "en_US": [
         "Aww!\n",
         "It appeared to be caught!"
       ]
     },
     {
-      "id": "pl_msg_00000368_00865",
+      "id": "BattleStrings_Text_AarghAlmostHadIt",
       "en_US": [
         "Aargh!\n",
         "Almost had it!"
       ]
     },
     {
-      "id": "pl_msg_00000368_00866",
+      "id": "BattleStrings_Text_ShootItWasSoCloseToo",
       "en_US": [
         "Shoot!\n",
         "It was so close, too!"
       ]
     },
     {
-      "id": "pl_msg_00000368_00867",
+      "id": "BattleStrings_Text_GotchaPokemonWasCaught",
       "en_US": [
         "{WAIT 3}Gotcha!\n",
         "{STRVAR_1 1, 0, 0} was caught!{WAIT 2}\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00868",
+      "id": "BattleStrings_Text_GiveANicknameToTheCaughtPokemonYesNo",
       "en_US": [
         "Give a nickname to the\n",
         "caught {STRVAR_1 1, 0, 0}?{YESNO 0}"
@@ -5942,7 +5942,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00871",
+      "id": "BattleStrings_Text_PokemonsDataWasAddedToThePokedex",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s data was\n",
         "added to the Pokédex.\r"
@@ -6376,36 +6376,36 @@
       "en_US": "Quit the battle?{YESNO 0}"
     },
     {
-      "id": "pl_msg_00000368_00944",
+      "id": "BattleStrings_Text_PokemonMaleLevel",
       "en_US": [
         "{STRVAR_1 1, 0, 0}{COLOR 1}♂{COLOR 0}\n",
         "Lv. {STRVAR_1 52, 1, 0}"
       ]
     },
     {
-      "id": "pl_msg_00000368_00945",
+      "id": "BattleStrings_Text_PokemonFemaleLevel",
       "en_US": [
         "{STRVAR_1 1, 0, 0}{COLOR 2}♀{COLOR 0}\n",
         "Lv. {STRVAR_1 52, 1, 0}"
       ]
     },
     {
-      "id": "pl_msg_00000368_00946",
+      "id": "BattleStrings_Text_PokemonGenderlessLevel",
       "en_US": [
         "{STRVAR_1 1, 0, 0}\n",
         "Lv. {STRVAR_1 52, 1, 0}"
       ]
     },
     {
-      "id": "pl_msg_00000368_00947",
+      "id": "BattleStrings_Text_StatName",
       "en_US": "{STRVAR_1 13, 0, 0}"
     },
     {
-      "id": "pl_msg_00000368_00948",
+      "id": "BattleStrings_Text_PlusStatIncrease",
       "en_US": "+{STRVAR_1 51, 0, 0}"
     },
     {
-      "id": "pl_msg_00000368_00949",
+      "id": "BattleStrings_Text_StatValue",
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
@@ -7937,21 +7937,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_01174",
+      "id": "BattleStrings_Text_PokemonWasTransferredToBoxInSomeonesPC",
       "en_US": [
         "{STRVAR_1 1, 0, 0} was transferred to\n",
         "{STRVAR_1 11, 1, 0} in someone’s PC!"
       ]
     },
     {
-      "id": "pl_msg_00000368_01175",
+      "id": "BattleStrings_Text_PokemonWasTransferredToBoxInBebesPC",
       "en_US": [
         "{STRVAR_1 1, 0, 0} was transferred to\n",
         "{STRVAR_1 11, 1, 0} in Bebe’s PC!"
       ]
     },
     {
-      "id": "pl_msg_00000368_01176",
+      "id": "BattleStrings_Text_BoxInSomeonesPCIsFullPokemonWasTransferredToOtherBoxInstead",
       "en_US": [
         "{STRVAR_1 11, 1, 0} in someone’s PC is full.\r",
         "{STRVAR_1 1, 0, 0} was transferred to\n",
@@ -7959,7 +7959,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_01177",
+      "id": "BattleStrings_Text_BoxInBebesPCIsFullPokemonWasTransferredToOtherBoxInstead",
       "en_US": [
         "{STRVAR_1 11, 1, 0} in Bebe’s PC is full.\r",
         "{STRVAR_1 1, 0, 0} was transferred to\n",
@@ -7967,21 +7967,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_01178",
+      "id": "BattleStrings_Text_PokemonWantsToLearnMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} wants to learn the\n",
         "move {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01179",
+      "id": "BattleStrings_Text_PokemonCantLearnMoreThanFourMoves",
       "en_US": [
         "But {STRVAR_1 1, 0, 0} can’t learn\n",
         "more than four moves.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01180",
+      "id": "BattleStrings_Text_MakeItForgetAnotherMoveYesNo",
       "en_US": [
         "Make it forget\n",
         "another move?{YESNO 0}"
@@ -7996,18 +7996,18 @@
       "en_US": "Keep old moves!"
     },
     {
-      "id": "pl_msg_00000368_01183",
+      "id": "BattleStrings_Text_WhichMoveShouldBeForgotten2",
       "en_US": [
         "Which move should\n",
         "be forgotten?{YESNO 0}"
       ]
     },
     {
-      "id": "pl_msg_00000368_01184",
+      "id": "BattleStrings_Text_WellThen",
       "en_US": "Well, then...\r"
     },
     {
-      "id": "pl_msg_00000368_01185",
+      "id": "BattleStrings_Text_ShouldPokemonGiveUpOnLearningMove",
       "en_US": [
         "Should this Pokémon give up on\n",
         "learning this new move?{YESNO 0}"
@@ -8022,29 +8022,29 @@
       "en_US": "Don’t give up on {STRVAR_1 6, 0, 0}!"
     },
     {
-      "id": "pl_msg_00000368_01188",
+      "id": "BattleStrings_Text_PokemonDidNotLearnMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} did not learn\n",
         "{STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01189",
+      "id": "BattleStrings_Text_BattleOneTwoAndPoof",
       "en_US": "1, {PAUSE 20}2, and{PAUSE 20}... {PAUSE 20}... {PAUSE 20}{WAIT 4}Poof!\r"
     },
     {
-      "id": "pl_msg_00000368_01190",
+      "id": "BattleStrings_Text_BattlePokemonForgotHowToUseMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} forgot how to\n",
         "use {STRVAR_1 6, 1, 0}.\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_01191",
+      "id": "BattleStrings_Text_BattleAndDotDotDot",
       "en_US": "And...\r"
     },
     {
-      "id": "pl_msg_00000368_01192",
+      "id": "BattleStrings_Text_BattlePokemonLearnedMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} learned\n",
         "{STRVAR_1 6, 1, 0}!{WAIT 5}{WAIT 2}\r"
@@ -8069,7 +8069,7 @@
       "en_US": "Should a move be deleted?"
     },
     {
-      "id": "BattleStrings_Text_WhichMoveShouldBeForgotten",
+      "id": "BattleStrings_Text_WhichMoveShouldBeForgotten3",
       "en_US": "Which move should be forgotten?\r"
     },
     {
