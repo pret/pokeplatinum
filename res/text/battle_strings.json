@@ -254,7 +254,7 @@
       "en_US": "... ... ... ...\r"
     },
     {
-      "id": "pl_msg_00000368_00039",
+      "id": "BattleStrings_Text_PokemonPreventsEscapeWithAbility",
       "en_US": [
         "{STRVAR_1 1, 0, 0} prevents\n",
         "escape with {STRVAR_1 5, 1, 0}!\r"
@@ -4199,70 +4199,70 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00609",
+      "id": "BattleStrings_Text_PokemonsMoveIsDisabled",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 6, 1, 0}\n",
         "is disabled!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00610",
+      "id": "BattleStrings_Text_TheWildPokemonsMoveIsDisabled",
       "en_US": [
         "The wild {STRVAR_1 1, 0, 0}’s\n",
         "{STRVAR_1 6, 1, 0} is disabled!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00611",
+      "id": "BattleStrings_Text_TheFoesPokemonsMoveIsDisabled",
       "en_US": [
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "{STRVAR_1 6, 1, 0} is disabled!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00612",
+      "id": "BattleStrings_Text_PokemonCantUseTheSameMoveTwiceInARowDueToTheTorment",
       "en_US": [
         "{STRVAR_1 1, 0, 0} can’t use the same move\n",
         "twice in a row due to the torment!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00613",
+      "id": "BattleStrings_Text_PokemonCantUseMoveAfterTheTaunt",
       "en_US": [
         "{STRVAR_1 1, 0, 0} can’t use\n",
         "{STRVAR_1 6, 1, 0} after the taunt!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00614",
+      "id": "BattleStrings_Text_TheWildPokemonCantUseMoveAfterTheTaunt",
       "en_US": [
         "The wild {STRVAR_1 1, 0, 0} can’t use\n",
         "{STRVAR_1 6, 1, 0} after the taunt!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00615",
+      "id": "BattleStrings_Text_TheFoesPokemonCantUseMoveAfterTheTaunt",
       "en_US": [
         "The foe’s {STRVAR_1 1, 0, 0} can’t use\n",
         "{STRVAR_1 6, 1, 0} after the taunt!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00616",
+      "id": "BattleStrings_Text_PokemonCantUseTheSealedMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} can’t use\n",
         "the sealed {STRVAR_1 6, 1, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00617",
+      "id": "BattleStrings_Text_TheWildPokemonCantUseTheSealedMove",
       "en_US": [
         "The wild {STRVAR_1 1, 0, 0} can’t use\n",
         "the sealed {STRVAR_1 6, 1, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000368_00618",
+      "id": "BattleStrings_Text_TheFoesPokemonCantUseTheSealedMove",
       "en_US": [
         "The foe’s {STRVAR_1 1, 0, 0} can’t use\n",
         "the sealed {STRVAR_1 6, 1, 0}!\r"
@@ -5515,7 +5515,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00794",
+      "id": "BattleStrings_Text_CantEscape",
       "en_US": "Can’t escape!\r"
     },
     {
@@ -5649,7 +5649,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00823",
+      "id": "BattleStrings_Text_TheresNoPPLeftForThisMove",
       "en_US": "There’s no PP left for this move!"
     },
     {
@@ -6220,7 +6220,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_00911",
+      "id": "BattleStrings_Text_TheItemAllowsTheUseOfOnlyMove",
       "en_US": [
         "The {STRVAR_1 8, 0, 0} allows the\n",
         "use of only {STRVAR_1 6, 1, 0}!\r"
@@ -6721,7 +6721,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_01001",
+      "id": "BattleStrings_Text_PokemonCantUseMoveBecauseOfGravity",
       "en_US": [
         "{STRVAR_1 1, 0, 0} can’t use\n",
         "{STRVAR_1 6, 1, 0} because of gravity!"
@@ -7107,7 +7107,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_01057",
+      "id": "BattleStrings_Text_PokemonCantUseMoveBecauseOfMove",
       "en_US": [
         "{STRVAR_1 1, 0, 0} can’t use\n",
         "{STRVAR_1 6, 2, 0} because of\f",
