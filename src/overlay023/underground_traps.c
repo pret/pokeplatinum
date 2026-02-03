@@ -1009,9 +1009,9 @@ static void UndergroundTraps_AddBuriedTrapToCoordinatesOrdering(BuriedTrap *trap
         .z = trap->z
     };
 
-    UndergroundMan_InitCoordinatesOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
 
-    int index = UndergroundMan_CalculateCoordinatesIndexInsert(&coordinates);
+    int index = UndergroundMan_CalcCoordsIndexInsert(&coordinates);
 
     if (index >= MAX_BURIED_TRAPS) {
         return;
@@ -1459,7 +1459,7 @@ int CommPacketSizeOf_Coordinates(void)
     return sizeof(Coordinates);
 }
 
-BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 bits)
+BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 flags)
 {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
 
@@ -1478,7 +1478,7 @@ BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 bits)
 
         MI_CpuCopy8(trap, &retrievedTrap.trap, sizeof(BuriedTrap));
 
-        if (bits & BIT_TRAPS_FULL) {
+        if (flags & FLAG_TRAPS_FULL) {
             retrievedTrap.hasMessageToDisplay = TRUE;
         } else {
             retrievedTrap.hasMessageToDisplay = FALSE;
@@ -1573,8 +1573,8 @@ static BuriedTrap *UndergroundTraps_GetTrapAtCoordinates(int x, int z)
         .z = z
     };
 
-    UndergroundMan_InitCoordinatesOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
-    int index = UndergroundMan_CalculateCoordinatesIndexGet(&coordinates);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
+    int index = UndergroundMan_CalcCoordsIndexGet(&coordinates);
 
     if (index == -1) {
         return NULL;

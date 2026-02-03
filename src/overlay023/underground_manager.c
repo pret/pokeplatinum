@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/map.h"
+#include "constants/field/map_matrix.h"
 #include "constants/field_base_tiles.h"
 #include "constants/map_object.h"
 
@@ -56,6 +58,10 @@
 
 #define MAX_NORMAL_RADAR_BLIPS 8
 
+#define MAX_STORED_MENU_POSITIONS 20
+
+#define COORDS_TO_EVENT_POS(x, z) (x & 0xF) * 16 + (z & 0xF)
+
 typedef BOOL (*TouchRadarItemCheckFunc)(int x, int z);
 
 typedef struct StoredListMenuPos {
@@ -65,7 +71,7 @@ typedef struct StoredListMenuPos {
     u16 listPos;
 } StoredListMenuPos;
 
-typedef struct UndergroundMan {
+typedef struct UndergroundManager {
     void *currentSysTaskCtx;
     SysTask *currentSysTask;
     EndSysTaskFunc endCurrentSysTask;
@@ -74,7 +80,7 @@ typedef struct UndergroundMan {
     SysTask *sysTask;
     Coordinates2D touchCoordinates;
     Coordinates touchedTileCoordinates;
-    StoredListMenuPos storedPositions[20];
+    StoredListMenuPos storedPositions[MAX_STORED_MENU_POSITIONS];
     u16 storedPositionKey;
     u8 linksTalkedTo[MAX_CONNECTED_PLAYERS];
     u8 unk_CA[MAX_CONNECTED_PLAYERS];
@@ -102,10 +108,10 @@ typedef struct UndergroundMan {
     u8 touchRadarBuriedSphereResultCount;
     u8 resourcesPaused;
     u8 messageRetrieved;
-} UndergroundMan;
+} UndergroundManager;
 
 typedef struct InteractEvent {
-    u8 bits;
+    u8 flags;
     u8 pos;
 } InteractEvent;
 
@@ -128,14 +134,14 @@ static void UndergroundMan_DisconnectCallback(int param0);
 static void UndergroundMan_ClearPrinterIDsTask(SysTask *param0, void *param1);
 static int ov23_022433D0(void);
 
-static UndergroundMan *sUndergroundMan = NULL;
+static UndergroundManager *sUndergroundMan = NULL;
 
-static void UndergroundMan_Init(UndergroundMan *param0, FieldSystem *fieldSystem)
+static void UndergroundMan_Init(UndergroundManager *dest, FieldSystem *fieldSystem)
 {
     u8 renderDelay = Options_TextFrameDelay(SaveData_GetOptions(fieldSystem->saveData));
 
-    sUndergroundMan = param0;
-    MI_CpuFill8(sUndergroundMan, 0, sizeof(UndergroundMan));
+    sUndergroundMan = dest;
+    MI_CpuFill8(sUndergroundMan, 0, sizeof(UndergroundManager));
 
     sUndergroundMan->fieldSystem = fieldSystem;
     sUndergroundMan->touchCooldown = 0;
@@ -268,7 +274,7 @@ static BOOL UndergroundMan_GetQueuedPlayerMessage(String *dest)
             TrainerInfo *trainerInfo = CommInfo_TrainerInfo(netID);
             CommInfo_SetReceiveEnd(netID);
 
-            if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 1, UndergroundCommon_PlayerHasEntered, dest)) {
+            if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 1, UndergroundCommon_Text_PlayerHasEntered, dest)) {
                 return TRUE;
             }
         }
@@ -475,16 +481,16 @@ static int UndergroundMan_GetOrderedCoordinatesValue(Coordinates *coordinates)
     int x = 0, z = 0;
 
     if (coordinates == NULL) {
-        return 30 * 30 * 32 * 32;
+        return MAP_MATRIX_MAX_WIDTH * MAP_TILES_COUNT_X * MAP_MATRIX_MAX_HEIGHT * MAP_TILES_COUNT_Z;
     }
 
     x = coordinates->x;
     z = coordinates->z;
 
-    return (z * 30 * 32) + x;
+    return (z * MAP_MATRIX_MAX_WIDTH * MAP_TILES_COUNT_X) + x;
 }
 
-int UndergroundMan_CalculateCoordinatesIndexGet(Coordinates *coordinates)
+int UndergroundMan_CalcCoordsIndexGet(Coordinates *coordinates)
 {
     int index = 0;
     int max = sUndergroundMan->orderedArrayLength - 1;
@@ -509,7 +515,7 @@ int UndergroundMan_CalculateCoordinatesIndexGet(Coordinates *coordinates)
     return -1;
 }
 
-int UndergroundMan_CalculateCoordinatesIndexInsert(Coordinates *coordinates)
+int UndergroundMan_CalcCoordsIndexInsert(Coordinates *coordinates)
 {
     int index = 0;
     int max = sUndergroundMan->orderedArrayLength - 2;
@@ -532,7 +538,7 @@ int UndergroundMan_CalculateCoordinatesIndexInsert(Coordinates *coordinates)
     return index;
 }
 
-void UndergroundMan_InitCoordinatesOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter)
+void UndergroundMan_InitCoordsOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter)
 {
     sUndergroundMan->coordinatesGetter = coordinatesGetter;
     sUndergroundMan->orderedArrayLength = orderedArrayLength;
@@ -553,7 +559,7 @@ void UndergroundMan_ProgressInteractCooldown(void)
     }
 }
 
-void UndergroundMan_ProcessInteract(u8 bits)
+void UndergroundMan_ProcessInteract(u8 flags)
 {
     Underground *underground = SaveData_GetUnderground(sUndergroundMan->fieldSystem->saveData);
 
@@ -566,19 +572,19 @@ void UndergroundMan_ProcessInteract(u8 bits)
     }
 
     if (Underground_GetTrapCount(underground) == MAX_TRAP_SLOTS) {
-        bits |= BIT_TRAPS_FULL;
+        flags |= FLAG_TRAPS_FULL;
     }
 
     int x = CommPlayer_GetXInFrontOfPlayer(CommSys_CurNetId());
     int z = CommPlayer_GetZInFrontOfPlayer(CommSys_CurNetId());
 
     if (UndergroundSpheres_IsBuriedSphereAtCoordinates(x, z)) {
-        bits |= BIT_BURIED_SPHERE_IN_FRONT;
+        flags |= FLAG_BURIED_SPHERE_IN_FRONT;
     }
 
     InteractEvent event = {
-        .bits = bits,
-        .pos = (x & 0xF) * 16 + (z & 0xF)
+        .flags = flags,
+        .pos = COORDS_TO_EVENT_POS(x, z)
     };
 
     CommSys_SendDataFixedSize(28, &event);
@@ -664,7 +670,7 @@ void UndergroundMan_ProcessInteractEvent(int netID, int unused1, void *data, voi
         return;
     }
 
-    if (UndergroundTraps_TryDisengageTrap(netID, &coordinates, event->bits)) {
+    if (UndergroundTraps_TryDisengageTrap(netID, &coordinates, event->flags)) {
         CommPlayerMan_SetMovementEnabled(netID, FALSE);
         return;
     }
@@ -695,12 +701,12 @@ void UndergroundMan_ProcessInteractEvent(int netID, int unused1, void *data, voi
         return;
     }
 
-    if (event->bits & BIT_BURIED_SPHERE_IN_FRONT) {
+    if (event->flags & FLAG_BURIED_SPHERE_IN_FRONT) {
         if (UndergroundPlayer_BuriedObjectHeldFlagCheck(netID)) {
             return;
         }
 
-        if (event->pos == (coordinates.x & 0xF) * 16 + (coordinates.z & 0xF)) {
+        if (event->pos == COORDS_TO_EVENT_POS(coordinates.x, coordinates.z)) {
             CommSys_SendDataFixedSizeServer(63, &netIDBuffer);
             CommPlayerMan_SetMovementEnabled(netID, FALSE);
         }
@@ -747,7 +753,7 @@ void UndergroundMan_InitAllResources(FieldSystem *fieldSystem)
     void *resource;
 
     if (sUndergroundMan == NULL) {
-        resource = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UndergroundMan));
+        resource = Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UndergroundManager));
         UndergroundMan_Init(resource, fieldSystem);
 
         resource = Heap_Alloc(HEAP_ID_COMMUNICATION, CommPlayer_Size());
@@ -1052,7 +1058,7 @@ void UndergroundMan_StoreCursorAndListPos(u16 menuKey, u16 cursorPos, u16 listPo
         return;
     }
 
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < MAX_STORED_MENU_POSITIONS; i++) {
         if (sUndergroundMan->storedPositionKey == sUndergroundMan->storedPositions[i].key) {
             if (sUndergroundMan->storedPositions[i].menuKey == menuKey) {
                 sUndergroundMan->storedPositions[i].cursorPos = cursorPos;
@@ -1062,7 +1068,7 @@ void UndergroundMan_StoreCursorAndListPos(u16 menuKey, u16 cursorPos, u16 listPo
         }
     }
 
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < MAX_STORED_MENU_POSITIONS; i++) {
         if (sUndergroundMan->storedPositions[i].key == UNDERGROUND_STORED_POS_NONE) {
             sUndergroundMan->storedPositions[i].key = sUndergroundMan->storedPositionKey;
             sUndergroundMan->storedPositions[i].menuKey = menuKey;
@@ -1077,7 +1083,7 @@ void UndergroundMan_StoreCursorAndListPos(u16 menuKey, u16 cursorPos, u16 listPo
 
 u16 UndergroundMan_GetStoredListPos(u16 menuKey)
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < MAX_STORED_MENU_POSITIONS; i++) {
         if (sUndergroundMan->storedPositionKey == sUndergroundMan->storedPositions[i].key) {
             if (sUndergroundMan->storedPositions[i].menuKey == menuKey) {
                 return sUndergroundMan->storedPositions[i].listPos;
@@ -1090,7 +1096,7 @@ u16 UndergroundMan_GetStoredListPos(u16 menuKey)
 
 u16 UndergroundMan_GetStoredCursorPos(u16 menuKey)
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < MAX_STORED_MENU_POSITIONS; i++) {
         if (sUndergroundMan->storedPositionKey == sUndergroundMan->storedPositions[i].key) {
             if (sUndergroundMan->storedPositions[i].menuKey == menuKey) {
                 return sUndergroundMan->storedPositions[i].cursorPos;

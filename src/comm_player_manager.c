@@ -129,7 +129,7 @@ void CommPlayerMan_Disable(void)
     }
 
     if (sCommPlayerManager->isUnderground) {
-        sCommPlayerManager->isResetting = TRUE;
+        sCommPlayerManager->isDisabled = TRUE;
     }
 }
 
@@ -140,7 +140,7 @@ void CommPlayerMan_Restart(void)
     }
 
     sCommPlayerManager->sendAllPos = TRUE;
-    sCommPlayerManager->isResetting = FALSE;
+    sCommPlayerManager->isDisabled = FALSE;
 
     CommPlayer_InitPersonal();
     CommPlayer_SendPos(TRUE);
@@ -382,7 +382,7 @@ static void CommPlayer_Add(u8 netId)
         return;
     }
 
-    if (sCommPlayerManager->isResetting) {
+    if (sCommPlayerManager->isDisabled) {
         return;
     }
 
@@ -415,7 +415,7 @@ static void CommPlayer_Add(u8 netId)
         }
 
         if (sCommPlayerManager->isUnderground && !sCommPlayerManager->isActive[netId]) {
-            if (!sCommPlayerManager->isResetting) {
+            if (!sCommPlayerManager->isDisabled) {
                 ov5_021F5634(sCommPlayerManager->fieldSystem, sCommPlayerManager->playerLocation[netId].x, 0, sCommPlayerManager->playerLocation[netId].z);
             }
 
@@ -864,7 +864,7 @@ void CommPlayer_RecvDelete(int unused0, int unused1, void *src, void *unused2)
     if (sCommPlayerManager->isUnderground) {
         UndergroundMan_SetPlayerLeft(netId);
 
-        if (!sCommPlayerManager->isResetting) {
+        if (!sCommPlayerManager->isDisabled) {
             ov5_021F5634(sCommPlayerManager->fieldSystem, sCommPlayerManager->playerLocation[netId].x, 0, sCommPlayerManager->playerLocation[netId].z);
         }
     }
@@ -987,7 +987,7 @@ static void CommPlayer_MoveClient(int netId)
         return;
     }
 
-    if (sCommPlayerManager->isResetting) {
+    if (sCommPlayerManager->isDisabled) {
         return;
     }
 

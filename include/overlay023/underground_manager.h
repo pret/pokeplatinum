@@ -58,8 +58,8 @@ enum MapMarkerAnim {
     MARKER_ANIM_MINING_SPOT,
 };
 
-#define BIT_TRAPS_FULL             1 << 4
-#define BIT_BURIED_SPHERE_IN_FRONT 1 << 5
+#define FLAG_TRAPS_FULL             (1 << 4)
+#define FLAG_BURIED_SPHERE_IN_FRONT (1 << 5)
 
 #define MAX_RADAR_BLIPS 16
 
@@ -78,12 +78,12 @@ BOOL UndergroundMan_CheckForTouchInput(void);
 void UndergroundMan_ProcessTouchInput(int netID, int unused1, void *data, void *unused3);
 void UndergroundMan_ProcessTouchRadarTrapResults(int unused0, int size, void *data, void *unused3);
 void UndergroundMan_ProcessTouchRadarMiningSpotResults(int unused0, int size, void *data, void *unused3);
-int UndergroundMan_CalculateCoordinatesIndexGet(Coordinates *coordinates);
-int UndergroundMan_CalculateCoordinatesIndexInsert(Coordinates *coordinates);
-void UndergroundMan_InitCoordinatesOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter);
+int UndergroundMan_CalcCoordsIndexGet(Coordinates *coordinates);
+int UndergroundMan_CalcCoordsIndexInsert(Coordinates *coordinates);
+void UndergroundMan_InitCoordsOrderingState(int orderedArrayLength, CoordinatesGetter coordinatesGetter);
 void UndergroundMan_OpenMenu(void);
 void UndergroundMan_ProgressInteractCooldown(void);
-void UndergroundMan_ProcessInteract(u8 bits);
+void UndergroundMan_ProcessInteract(u8 flags);
 int CommPacketSizeOf_InteractEvent(void);
 void UndergroundMan_ProcessInteractEvent(int netID, int unused1, void *data, void *unused3);
 void UndergroundMan_Process(void);

@@ -33,7 +33,7 @@ int CommPacketSizeOf_LoadTrapsResult(void);
 BOOL UndergroundTraps_GetLinkReceivedPlacedTraps(void);
 void UndergroundTraps_SetLinkReceivedPlacedTrapsToFalse(void);
 int CommPacketSizeOf_Coordinates(void);
-BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 bits);
+BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 flags);
 int CommPacketSizeOf_TriggeredTrap(void);
 void UndergroundTraps_ProcessDisengagedTrap(int unused0, int unused1, void *data, void *unused3);
 BOOL UndergroundTraps_IsTrapAtCoordinates(int x, int z);

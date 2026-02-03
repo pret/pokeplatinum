@@ -180,9 +180,9 @@ static void UndergroundSpheres_AddBuriedSphereToCoordinatesOrdering(BuriedSphere
         .z = sphere->z
     };
 
-    UndergroundMan_InitCoordinatesOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
 
-    int index = UndergroundMan_CalculateCoordinatesIndexInsert(&coordinates);
+    int index = UndergroundMan_CalcCoordsIndexInsert(&coordinates);
 
     GF_ASSERT(index < MAX_BURIED_SPHERES);
 
@@ -229,9 +229,9 @@ static BuriedSphere *UndergroundSpheres_GetBuriedSphereAtCoordinates(int x, int 
         .z = z
     };
 
-    UndergroundMan_InitCoordinatesOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
 
-    int index = UndergroundMan_CalculateCoordinatesIndexGet(&coordinates);
+    int index = UndergroundMan_CalcCoordsIndexGet(&coordinates);
 
     if (index == -1) {
         return NULL;

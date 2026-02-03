@@ -79,7 +79,7 @@ void UndergroundPlayer_DeleteAllPlayers(void)
         CommPlayerMan_RemovePlayerFromHole(netID);
     }
 
-    commPlayerMan->isResetting = TRUE;
+    commPlayerMan->isDisabled = TRUE;
 }
 
 static void UndergroundPlayer_ProcessRegisteredFlag(int netID)
@@ -737,7 +737,7 @@ void UndergroundPlayer_MoveToFromSecretBaseClient(int netID, int x, int z, int d
 
     CommPlayerLocation *playerLocation = &commPlayerMan->playerLocation[netID];
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         ov5_021F5634(commPlayerMan->fieldSystem, playerLocation->x, 0, playerLocation->z);
     }
 
@@ -749,11 +749,11 @@ void UndergroundPlayer_MoveToFromSecretBaseClient(int netID, int x, int z, int d
         sub_0205ECE0(commPlayerMan->playerAvatar[netID], x, z, dir);
     }
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         ov5_021F5634(commPlayerMan->fieldSystem, playerLocation->x, 0, playerLocation->z);
     }
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         UndergroundPlayer_RemoveEmote(netID);
     }
 }
@@ -829,7 +829,7 @@ void UndergroundPlayer_HandleEmoteDisplay(int netID)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         if (commPlayerMan->playerAvatar[netID]) {
             switch (commPlayerMan->emote[netID]) {
             case EMOTE_OK:

@@ -78,7 +78,7 @@ typedef struct CommPlayerManager {
     u8 unk_2BA;
     u8 sendAllPos;
     u8 isFieldSystemActive;
-    u8 isResetting;
+    u8 isDisabled;
     u8 isUnderground;
     u8 unk_2BF;
     u8 forceDirTimer;
