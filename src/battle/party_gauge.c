@@ -5,8 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_defs/battle_io.h"
-
+#include "battle/message_defs.h"
 #include "battle/ov16_0223DF00.h"
 
 #include "assert.h"
@@ -79,7 +78,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data);
 static void ShowPokeballsMidBattleTask(SysTask *task, void *data);
 static void HidePokeballsStartOfBattleTask(SysTask *task, void *data);
 static void HidePokeballsMidBattleTask(SysTask *task, void *data);
-static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyGaugeSide side);
+static int PokeballsAnimationFrame(enum PartyStockStatus status, enum PartyGaugeSide side);
 static int FlippedAnimationFrame(int frame);
 static PartyGauge *NewPartyGauge(void);
 static void FreePartyGauge(PartyGauge *partyGauge);
@@ -759,20 +758,20 @@ static void HidePokeballsMidBattleTask(SysTask *task, void *data)
     }
 }
 
-static int PokeballsAnimationFrame(enum PartyGaugeBallStatus status, enum PartyGaugeSide side)
+static int PokeballsAnimationFrame(enum PartyStockStatus status, enum PartyGaugeSide side)
 {
     switch (status) {
-    case BALL_STATUS_NO_MON:
+    case STOCK_STATUS_NO_MON:
     default:
         return PGANM_POKEBALL_EMPTY_SLOT;
 
-    case BALL_STATUS_MON_ALIVE:
+    case STOCK_STATUS_MON_ALIVE:
         return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_HEALTHY_OURS : PGANM_POKEBALL_HEALTHY_THEIRS;
 
-    case BALL_STATUS_MON_FAINTED:
+    case STOCK_STATUS_MON_FAINTED:
         return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_FAINTED_OURS : PGANM_POKEBALL_FAINTED_THEIRS;
 
-    case BALL_STATUS_HAS_STATUS_CONDITION:
+    case STOCK_STATUS_HAS_STATUS_CONDITION:
         return (side == PARTY_GAUGE_OURS) ? PGANM_POKEBALL_STATUSED_OURS : PGANM_POKEBALL_STATUSED_THEIRS;
     }
 }
