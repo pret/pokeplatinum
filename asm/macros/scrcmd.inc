@@ -163,10 +163,10 @@
     .endm
 
     .macro CompareVar varID, valueOrVarID
-    .if \valueOrVarID < VARS_START
-        CompareVarToValue \varID, \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         CompareVarToVar \varID, \valueOrVarID
+    .else
+        CompareVarToValue \varID, \valueOrVarID
     .endif
     .endm
 
@@ -294,10 +294,10 @@
     .endm
 
     .macro SetVar destVarID, valueOrVarID
-    .if \valueOrVarID < VARS_START
-        SetVarFromValue \destVarID, \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         SetVarFromVar \destVarID, \valueOrVarID
+    .else
+        SetVarFromValue \destVarID, \valueOrVarID
     .endif
     .endm
 
@@ -4060,10 +4060,10 @@
     .endm
 
     .macro SubtractCoins valueOrVarID
-    .if \valueOrVarID < VARS_START
-        SubtractCoinsFromValue \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         SubtractCoinsFromVar \valueOrVarID
+    .else
+        SubtractCoinsFromValue \valueOrVarID
     .endif
     .endm
 
@@ -4074,10 +4074,10 @@
     .endm
 
     .macro HasCoins varID, valueOrVarID
-    .if \valueOrVarID < VARS_START
-        HasCoinsFromValue \varID, \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         HasCoinsFromVar \varID, \valueOrVarID
+    .else
+        HasCoinsFromValue \varID, \valueOrVarID
     .endif
     .endm
 
