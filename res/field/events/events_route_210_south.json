@@ -149,7 +149,7 @@
         {
             "id": "ROUTE_210_SOUTH_BREEDER_KAHLIL",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BREEDER_KAHLIL",
@@ -183,7 +183,7 @@
         {
             "id": "ROUTE_210_SOUTH_BELLE_AVA",
             "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BELLE_AND_PA_AVA_AND_MATT",
@@ -201,7 +201,7 @@
         {
             "id": "ROUTE_210_SOUTH_PA_MATT",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BELLE_AND_PA_AVA_AND_MATT",
@@ -444,7 +444,7 @@
         {
             "id": "ROUTE_210_SOUTH_RANCHER_MARCO",
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_RANCHER_MARCO",

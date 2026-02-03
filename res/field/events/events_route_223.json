@@ -72,7 +72,7 @@
         {
             "id": "ROUTE_223_SWIMMER_COLTON",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_SWIMMER_COLTON",
@@ -106,7 +106,7 @@
         {
             "id": "ROUTE_223_SWIMMER_OSCAR",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
             "hidden_flag": "0",
             "script": "TRAINER_SWIMMER_OSCAR",
@@ -157,7 +157,7 @@
         {
             "id": "ROUTE_223_SWIMMER_PAIGE",
             "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_SWIMMER_PAIGE",

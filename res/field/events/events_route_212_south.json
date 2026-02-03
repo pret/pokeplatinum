@@ -84,7 +84,7 @@
         {
             "id": "ROUTE_212_SOUTH_FISHERMAN_JOSH",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_FISHERMAN_JOSH",
@@ -655,7 +655,7 @@
         {
             "id": "ROUTE_212_SOUTH_SCHOOL_KID_M_37",
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,

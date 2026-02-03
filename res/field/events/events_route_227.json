@@ -76,7 +76,7 @@
         {
             "id": "ROUTE_227_RIVAL_3",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01D7",
             "script": 0,
@@ -91,7 +91,7 @@
         {
             "id": "ROUTE_227_CRASHER_WAKE_4",
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01D8",
             "script": 0,
@@ -106,7 +106,7 @@
         {
             "id": "ROUTE_227_ACE_TRAINER_SAUL",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_SAUL",
@@ -157,7 +157,7 @@
         {
             "id": "ROUTE_227_ACE_TRAINER_MIKAYLA",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_MIKAYLA",

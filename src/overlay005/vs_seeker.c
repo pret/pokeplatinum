@@ -783,7 +783,7 @@ static BOOL VsSeeker_IsTrainerDoingRematchAnimation(MapObject *trainerObj)
 
 static void VsSeeker_SetTrainerMoveCode(MapObject *trainerObj, u16 moveCode)
 {
-    MapObject_SetMoveCode(trainerObj, moveCode);
+    MapObject_SwitchMovementType(trainerObj, moveCode);
 }
 
 void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject *trainerObj)
@@ -800,9 +800,9 @@ void VsSeeker_SetMoveCodeForFacingDirection(FieldSystem *fieldSystem, MapObject 
     } else if (dir == DIR_SOUTH) {
         moveCode = MOVEMENT_TYPE_LOOK_SOUTH;
     } else if (dir == DIR_WEST) {
-        moveCode = MOVEMENT_TYPE_LOOK_LEFT;
+        moveCode = MOVEMENT_TYPE_LOOK_WEST;
     } else {
-        moveCode = MOVEMENT_TYPE_LOOK_RIGHT;
+        moveCode = MOVEMENT_TYPE_LOOK_EAST;
     }
 
     MapObject *secondTrainer = VsSeeker_GetSecondDoubleBattleTrainer(fieldSystem, trainerObj, VS_SEEKER_2V2_TRAINER_SEARCH_MODE_REMATCH_ANIM_SET);

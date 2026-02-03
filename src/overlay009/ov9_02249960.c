@@ -5794,7 +5794,7 @@ static MapObject *ov9_0224DE94(DistWorldSystem *param0, int param1, int param2, 
     MapObject_SetDataAt(v0, param4, 0);
     MapObject_SetDataAt(v0, param6, 1);
     MapObject_SetDataAt(v0, param5, 2);
-    sub_02062E5C(v0, 1);
+    MapObject_SetFlagIsPersistent(v0, 1);
     sub_02062D80(v0, 0);
     MapObject_SetHeightCalculationDisabled(v0, TRUE);
     sub_02062FC4(v0, 1);
@@ -5822,7 +5822,7 @@ static void ov9_0224DF10(DistWorldSystem *param0, UnkStruct_ov9_0224E0DC *param1
     param1->unk_1C = param2;
     param1->unk_20 = ov9_0224DFA0(param0, param1);
 
-    sub_02062E5C(param2, 1);
+    MapObject_SetFlagIsPersistent(param2, 1);
     sub_02062D80(param2, 0);
     MapObject_SetHeightCalculationDisabled(param2, TRUE);
     sub_02062FC4(param2, 1);
@@ -7123,7 +7123,7 @@ static BOOL ov9_0224EF64(DistWorldSystem *param0, MapObject **param1, const UnkS
     }
 
     sub_02062FC4(*param1, 1);
-    sub_02062E5C(*param1, 1);
+    MapObject_SetFlagIsPersistent(*param1, 1);
     MapObject_SetHeightCalculationDisabled(*param1, TRUE);
     MapObject_SetStatusFlagOn(*param1, MAP_OBJ_STATUS_13);
 

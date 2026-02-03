@@ -98,7 +98,7 @@
         {
             "id": "VICTORY_ROAD_2F_ACE_TRAINER_SYDNEY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_ACE_TRAINER_SYDNEY",
@@ -132,7 +132,7 @@
         {
             "id": "VICTORY_ROAD_2F_DOUBLE_TEAM_TRAINER_AL",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_DOUBLE_TEAM_AL_AND_KAY",
@@ -150,7 +150,7 @@
         {
             "id": "VICTORY_ROAD_2F_DOUBLE_TEAM_TRAINER_KAY",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_DOUBLE_TEAM_AL_AND_KAY",

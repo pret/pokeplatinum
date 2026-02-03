@@ -248,7 +248,7 @@
         {
             "id": "MT_CORONET_1F_TUNNEL_ROOM_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_1",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "FLAG_UNK_0x028F",
             "script": "TRAINER_GALACTIC_GRUNT_MT_CORONET_TUNNEL_ROOM_1",

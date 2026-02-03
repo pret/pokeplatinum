@@ -261,7 +261,7 @@
         {
             "id": "JUBILIFE_CITY_PROF_ROWAN_16",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_JUBILIFE_ROWAN",
             "script": 0,
@@ -276,7 +276,7 @@
         {
             "id": "JUBILIFE_CITY_GRUNT_M_17",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS",
             "script": 0,
@@ -291,7 +291,7 @@
         {
             "id": "JUBILIFE_CITY_GRUNT_M_18",
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS",
             "script": 0,

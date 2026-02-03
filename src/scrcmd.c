@@ -263,7 +263,7 @@ static BOOL ScrCmd_CallCommonScript(ScriptContext *ctx);
 static BOOL ScriptContext_WaitSubContext(ScriptContext *ctx);
 static BOOL ScrCmd_ReturnCommonScript(ScriptContext *ctx);
 static BOOL ScrCmd_GoTo(ScriptContext *ctx);
-static MapObject *sub_02040ED4(FieldSystem *fieldSystem, int param1);
+static MapObject *GetLocalMapObjByIndex(FieldSystem *fieldSystem, int localID);
 static BOOL ScrCmd_Unused_017(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_018(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_019(ScriptContext *ctx);
@@ -352,8 +352,8 @@ static BOOL ScrCmd_GetPlayerMapPos(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06A(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerDir(ScriptContext *ctx);
 static BOOL ScrCmd_MoveCamera(ScriptContext *ctx);
-static BOOL ScrCmd_06C(ScriptContext *ctx);
-static BOOL ScrCmd_06D(ScriptContext *ctx);
+static BOOL ScrCmd_SetObjectFlagIsPersistent(ScriptContext *ctx);
+static BOOL ScrCmd_SetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_GetMovementType(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
@@ -876,8 +876,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPlayerMapPos,
     ScrCmd_Unused_06A,
     ScrCmd_MoveCamera,
-    ScrCmd_06C,
-    ScrCmd_06D,
+    ScrCmd_SetObjectFlagIsPersistent,
+    ScrCmd_SetMovementType,
     ScrCmd_Unused_06E,
     ScrCmd_GiveMoney,
     ScrCmd_RemoveMoney,
@@ -2875,7 +2875,7 @@ static BOOL ScrCmd_ApplyMovement(ScriptContext *ctx)
 {
     u16 localID = ScriptContext_GetVar(ctx);
     u32 movementOffset = ScriptContext_ReadWord(ctx);
-    MapObject *object = sub_02040ED4(ctx->fieldSystem, localID);
+    MapObject *object = GetLocalMapObjByIndex(ctx->fieldSystem, localID);
     if (object == NULL) {
         GF_ASSERT(FALSE);
         return FALSE;
@@ -2894,7 +2894,7 @@ static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx)
     u16 v6 = ScriptContext_GetVar(ctx);
     u16 v7 = ScriptContext_GetVar(ctx);
 
-    MapObject *v4 = sub_02040ED4(ctx->fieldSystem, v5);
+    MapObject *v4 = GetLocalMapObjByIndex(ctx->fieldSystem, v5);
 
     if (v4 == NULL) {
         GF_ASSERT(FALSE);
@@ -2937,20 +2937,20 @@ static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx)
     return FALSE;
 }
 
-static MapObject *sub_02040ED4(FieldSystem *fieldSystem, int param1)
+static MapObject *GetLocalMapObjByIndex(FieldSystem *fieldSystem, int localID)
 {
-    MapObject *v1;
+    MapObject *object;
 
-    if (param1 == 0xf2) {
-        v1 = sub_02062570(fieldSystem->mapObjMan, 0x30);
-    } else if (param1 == 0xf1) {
-        MapObject **v0 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
-        v1 = *v0;
+    if (localID == LOCALID_FOLLOWER) {
+        object = MapObjMan_GetLocalMapObjByMovementType(fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
+    } else if (localID == LOCALID_CAMERA) {
+        MapObject **cameraObject = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_CAMERA_OBJECT);
+        object = *cameraObject;
     } else {
-        v1 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, param1);
+        object = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, localID);
     }
 
-    return v1;
+    return object;
 }
 
 static BOOL ScrCmd_WaitMovement(ScriptContext *ctx)
@@ -3025,7 +3025,7 @@ static BOOL ScrCmd_LockAll(ScriptContext *ctx)
         MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
         MapObjectMan_PauseAllMovement(mapObjMan);
 
-        MapObject *object = sub_02062570(fieldSystem->mapObjMan, 0x30);
+        MapObject *object = MapObjMan_GetLocalMapObjByMovementType(fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
 
         if (object
             && SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE
@@ -3081,7 +3081,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
     }
 
     if (inline_020410F4_1(1 << 1)) {
-        MapObject *v3 = sub_02062570(fieldSystem->mapObjMan, 0x30);
+        MapObject *v3 = MapObjMan_GetLocalMapObjByMovementType(fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
 
         if (!MapObject_IsMoving(v3)) {
             MapObject_SetPauseMovementOn(v3);
@@ -3108,7 +3108,7 @@ static BOOL sub_02041004(ScriptContext *ctx)
 static BOOL sub_020410CC(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    MapObject *v1 = sub_02062570(fieldSystem->mapObjMan, 0x30);
+    MapObject *v1 = MapObjMan_GetLocalMapObjByMovementType(fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
 
     if (!MapObject_IsMoving(v1)) {
         MapObject_SetPauseMovementOn(v1);
@@ -3123,7 +3123,7 @@ static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObject **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
     MapObject *player = Player_MapObject(fieldSystem->playerAvatar);
-    MapObject *v3 = sub_02062570(fieldSystem->mapObjMan, 0x30);
+    MapObject *v3 = MapObjMan_GetLocalMapObjByMovementType(fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
     MapObject *v4 = sub_02069EB8(*v1);
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
 
@@ -3344,21 +3344,21 @@ static BOOL ScrCmd_MoveCamera(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_06C(ScriptContext *ctx)
+static BOOL ScrCmd_SetObjectFlagIsPersistent(ScriptContext *ctx)
 {
     MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
-    u8 v1 = ScriptContext_ReadByte(ctx);
+    u8 flag = ScriptContext_ReadByte(ctx);
 
-    sub_02062E5C(mapObj, v1);
+    MapObject_SetFlagIsPersistent(mapObj, flag);
     return FALSE;
 }
 
-static BOOL ScrCmd_06D(ScriptContext *ctx)
+static BOOL ScrCmd_SetMovementType(ScriptContext *ctx)
 {
     MapObject *mapObj = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, ScriptContext_GetVar(ctx));
-    u16 v1 = ScriptContext_ReadHalfWord(ctx);
+    u16 movementType = ScriptContext_ReadHalfWord(ctx);
 
-    MapObject_SetMoveCode(mapObj, v1);
+    MapObject_SwitchMovementType(mapObj, movementType);
     return FALSE;
 }
 
@@ -3378,7 +3378,7 @@ static BOOL ScrCmd_GetMovementType(ScriptContext *ctx)
 
 static BOOL ScrCmd_Unused_06E(ScriptContext *ctx)
 {
-    MapObject *mapObj = sub_02062570(ctx->fieldSystem->mapObjMan, 0x30);
+    MapObject *mapObj = MapObjMan_GetLocalMapObjByMovementType(ctx->fieldSystem->mapObjMan, MOVEMENT_TYPE_FOLLOW_PLAYER);
 
     sub_020633C8(mapObj, 0xfe);
     return FALSE;

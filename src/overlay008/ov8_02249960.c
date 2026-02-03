@@ -3907,7 +3907,7 @@ BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
         MapObject_SetZInitial(v1, MapObject_GetZ(v1));
         MapObject_SetMovementRangeX(v1, 2);
         MapObject_SetMovementRangeZ(v1, 2);
-        MapObject_SetMoveCode(v1, MOVEMENT_TYPE_WANDER_AROUND);
+        MapObject_SwitchMovementType(v1, MOVEMENT_TYPE_WANDER_AROUND);
 
         return 1;
     }

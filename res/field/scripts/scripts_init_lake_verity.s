@@ -7,7 +7,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x4097, 0, 5
+    InitScriptGoToIfEqual VAR_LAKE_VERITY_PROF_ROWAN_STATE, 0, 5
     InitScriptFrameTableEnd
 
     InitScriptEnd

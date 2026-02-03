@@ -241,11 +241,11 @@ EternaGym_FaceNorth:
     Return
 
 EternaGym_FaceEast:
-    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_EAST
     SetObjectEventDir VAR_0x8007, DIR_EAST
     Return
 
 EternaGym_FaceWest:
-    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType VAR_0x8007, MOVEMENT_TYPE_LOOK_WEST
     SetObjectEventDir VAR_0x8007, DIR_WEST
     Return

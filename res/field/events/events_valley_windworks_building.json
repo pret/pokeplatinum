@@ -36,7 +36,7 @@
         {
             "id": "VALLEY_WINDWORKS_BUILDING_MARS_1",
             "graphics_id": "OBJ_EVENT_GFX_MARS",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01A5",
             "script": 4,
@@ -100,7 +100,7 @@
         {
             "id": "VALLEY_WINDWORKS_BUILDING_TWIN_5",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01F9",
             "script": 6,
@@ -130,7 +130,7 @@
         {
             "id": "VALLEY_WINDWORKS_BUILDING_CHARON_7",
             "graphics_id": "OBJ_EVENT_GFX_CHARON",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_UNK_0x01A5",
             "script": 0,

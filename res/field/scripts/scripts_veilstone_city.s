@@ -47,7 +47,7 @@ _0082:
 
 _00BA:
     SetObjectEventPos 6, 0x2B8, 0x254
-    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 6, MOVEMENT_TYPE_LOOK_EAST
     SetObjectEventDir 6, DIR_EAST
     Return
 

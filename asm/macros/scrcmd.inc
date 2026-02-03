@@ -690,7 +690,7 @@
     .endm
 
     .macro ApplyFreeCameraMovement movementOffset
-    ApplyMovement 241, \movementOffset
+    ApplyMovement LOCALID_CAMERA, \movementOffset
     .endm
 
     .macro RestoreCamera
@@ -721,16 +721,16 @@
     .short \z
     .endm
 
-    .macro ScrCmd_06C arg0, arg1
+    .macro SetObjectFlagIsPersistent localID, flag
     .short 108
-    .short \arg0
-    .byte \arg1
+    .short \localID
+    .byte \flag
     .endm
 
-    .macro ScrCmd_06D arg0, arg1
+    .macro SetMovementType localID, movementType
     .short 109
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \movementType
     .endm
 
     .macro ScrCmd_Unused_06E
@@ -5010,6 +5010,14 @@
     .macro GoToIfNe varID, valueOrVarID, offset
     CompareVar \varID, \valueOrVarID
     GoToIf 5, \offset
+    .endm
+
+   .macro GoToIfInRange varID, lower, upper, offset
+    CompareVar \varID, \lower
+    GoToIf 1, \offset
+    .if \lower < \upper
+        GoToIfInRange \varID, \lower + 1, \upper, \offset
+    .endif
     .endm
 
     .macro GoToIfUnset flagID, offset
