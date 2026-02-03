@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0202B370_decl.h"
 
 #include "applications/naming_screen.h"
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -2710,7 +2710,7 @@ static BOOL FrontierScrCmd_B7(FrontierScriptContext *param0)
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     WiFiList *v0 = SaveData_GetWiFiList(v1->saveData);
 
-    sub_0202B13C(v0, ov4_021D2388());
+    sub_0202B13C(v0, NintendoWFC_GetHostFriendIdx());
     return 0;
 }
 

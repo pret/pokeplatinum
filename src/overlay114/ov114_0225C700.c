@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02015958.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay114/ov114_02260044.h"
@@ -1647,7 +1647,7 @@ static UnkStruct_ov114_0225D678 *ov114_0225D48C(const UnkStruct_ov114_0225C76C *
     v0->unk_654 = SysTask_ExecuteAfterVBlank(ov114_0225DA0C, v0, 0);
 
     if (v0->unk_08.unk_0A) {
-        ov4_021D1E74(heapID);
+        NintendoWFC_StartVoiceChat(heapID);
     }
 
     return v0;
@@ -1779,7 +1779,7 @@ static void ov114_0225D688(SysTask *param0, void *param1)
             CommTiming_StartSync(129);
 
             if (v0->unk_08.unk_0A) {
-                ov4_021D1F18();
+                NintendoWFC_TerminateVoiceChat();
             }
         }
         break;
@@ -2511,7 +2511,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
     v0->unk_6AC = SysTask_ExecuteAfterVBlank(ov114_0225F124, v0, 0);
 
     if (v0->unk_0C.unk_0A) {
-        ov4_021D1E74(heapID);
+        NintendoWFC_StartVoiceChat(heapID);
     }
 
     return v0;
@@ -2812,7 +2812,7 @@ static void ov114_0225E874(SysTask *param0, void *param1)
             CommTiming_StartSync(130);
 
             if (v0->unk_0C.unk_0A) {
-                ov4_021D1F18();
+                NintendoWFC_TerminateVoiceChat();
             }
 
             v0->unk_04++;
@@ -3052,7 +3052,7 @@ static void ov114_0225ED40(SysTask *param0, void *param1)
         break;
     case 14:
         if (v0->unk_0C.unk_0A) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         CommTiming_StartSync(130);
@@ -3202,7 +3202,7 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
         sub_020397C8(0, heapID);
 
         if (param0->unk_01) {
-            ov4_021D1E74(heapID);
+            NintendoWFC_StartVoiceChat(heapID);
         }
 
         param0->unk_00++;
@@ -3282,7 +3282,7 @@ static BOOL ov114_0225F27C(UnkStruct_ov114_0225F270 *param0, UnkStruct_ov114_022
             NetworkIcon_Destroy();
 
             if (param0->unk_01) {
-                ov4_021D1F18();
+                NintendoWFC_TerminateVoiceChat();
             }
 
             param0->unk_00++;

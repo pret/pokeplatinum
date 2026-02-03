@@ -5,7 +5,7 @@
 
 #include "constants/graphics.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay116/ov116_02260440.h"
 #include "overlay116/ov116_02261870.h"
@@ -226,7 +226,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
 
     if (param0->unk_80->unk_3C) {
-        ov4_021D1E74(HEAP_ID_106);
+        NintendoWFC_StartVoiceChat(HEAP_ID_106);
     }
 }
 
@@ -627,7 +627,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
                 ov116_0226178C(v0, v1, 0, param1);
 
                 if (v0->unk_80->unk_3C) {
-                    ov4_021D1F18();
+                    NintendoWFC_TerminateVoiceChat();
                 }
                 break;
             }
@@ -639,7 +639,7 @@ int ov116_02260CF4(ApplicationManager *appMan, int *param1)
         CommTiming_StartSync(27);
 
         if (v0->unk_80->unk_3C) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         ov116_0226178C(v0, v1, 20, param1);

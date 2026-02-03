@@ -26,8 +26,8 @@
 #include "unk_0202F1D4.h"
 #include "unk_020553DC.h"
 #include "unk_0208C010.h"
-#include "unk_02099550.h"
 #include "vars_flags.h"
+#include "wifi_overlays.h"
 
 #include "constdata/const_020EA358.h"
 #include "constdata/const_020F2FCC.h"

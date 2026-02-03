@@ -1,23 +1,25 @@
-#include "overlay060/http.h"
+#include "http/http.h"
 
 #include <dwc.h>
 
-#include "overlay060/ov60_0221F800.h"
+#include "http/http_b64.h"
+
+#define HASH_SIZE 20
 
 struct {
     int readyState;
     int requestHandle;
     int errorCode;
     int responseLength;
-    int unk_10;
-    void *unk_14;
-    int unk_18;
-    void *unk_1C;
+    int dwcProfileID;
+    void *data;
+    int dataSize;
+    void *response;
     int maxResponseLength;
-    char *unk_24;
-    char *unk_28;
-    char *unk_2C;
-    int unk_30;
+    char *url;
+    char *hashStr;
+    char *b64DataStr;
+    int encodedDataSize;
 } sHttpData = { 1, 0, 0, 0 };
 
 static void HTTP_SetErrorCode(int requestHandle)
@@ -62,33 +64,33 @@ static void HTTP_RequestCompletedCallback(const char *responseText, int length, 
         case 4:
 
             if (length == 32) {
-                int v0;
-                u8 *v1 = (u8 *)(sHttpData.unk_28 + 20);
-                char v2[(32 + 20 + 1)];
-                int v3;
-                const char v4[] = "0123456789abcdef";
+                // Temporarily store the hash is the second half of the hash string
+                // to be overwritten when turning it into hexadecimal for sending
+                u8 *responseHash = (u8 *)(sHttpData.hashStr + HASH_SIZE);
+                char saltedResponseText[(20 + 32 + 1)];
+                const char hexDigits[] = "0123456789abcdef";
 
-                strcpy(v2, "sAdeqWo3voLeC5r16DYv");
-                strncat(v2, responseText, (u32)length);
+                strcpy(saltedResponseText, "sAdeqWo3voLeC5r16DYv");
+                strncat(saltedResponseText, responseText, (u32)length);
 
-                MATH_CalcSHA1((u8 *)v1, (const u8 *)v2, strlen(v2));
+                MATH_CalcSHA1((u8 *)responseHash, (const u8 *)saltedResponseText, strlen(saltedResponseText));
 
-                strcat(sHttpData.unk_24, "&hash=");
+                strcat(sHttpData.url, "&hash=");
 
-                for (v0 = 0; v0 < 20; v0++) {
-                    sHttpData.unk_28[v0 * 2] = v4[v1[v0] >> 4];
-                    sHttpData.unk_28[v0 * 2 + 1] = v4[v1[v0] & 0xf];
+                for (int i = 0; i < HASH_SIZE; i++) {
+                    sHttpData.hashStr[i * 2] = hexDigits[responseHash[i] >> 4];
+                    sHttpData.hashStr[i * 2 + 1] = hexDigits[responseHash[i] & 0xf];
                 }
 
-                sHttpData.unk_28[40] = '\0';
-                strcat(sHttpData.unk_24, "&data=");
-                v3 = ov60_0221F838((u32)sHttpData.unk_10, (u8 *)sHttpData.unk_14, sHttpData.unk_18, (u8 *)sHttpData.unk_2C, sHttpData.unk_30);
+                sHttpData.hashStr[HASH_SIZE * 2] = '\0';
+                strcat(sHttpData.url, "&data=");
+                enum HTTPB64EncodeResult b64EncodeResult = HTTPB64_EncryptAndEncodeB64((u32)sHttpData.dwcProfileID, (u8 *)sHttpData.data, sHttpData.dataSize, (u8 *)sHttpData.b64DataStr, sHttpData.encodedDataSize);
 
-                switch (v3) {
-                case 0:
+                switch (b64EncodeResult) {
+                case HTTP_B64_ENCODE_SUCCESS:
                     break;
-                case 1:
-                case 2:
+                case HTTP_B64_ENCODE_ERROR_ALLOC_FAIL:
+                case HTTP_B64_ENCORE_ERROR_INSUFFICIENT_BUFFER_SIZE:
                     sHttpData.readyState = 1;
                     return;
                 }
@@ -128,10 +130,10 @@ static void HTTP_RequestCompletedCallback(const char *responseText, int length, 
             }
 
             if (length <= sHttpData.maxResponseLength) {
-                memcpy(sHttpData.unk_1C, responseText, (u32)length);
+                memcpy(sHttpData.response, responseText, (u32)length);
                 sHttpData.readyState = 7;
             } else {
-                memcpy(sHttpData.unk_1C, responseText, (u32)sHttpData.maxResponseLength);
+                memcpy(sHttpData.response, responseText, (u32)sHttpData.maxResponseLength);
 
                 sHttpData.readyState = 1;
                 sHttpData.errorCode = 32;
@@ -205,28 +207,28 @@ void HTTP_Init(void)
     return;
 }
 
-int HTTP_PrepareRequest(const u8 *param0, int param1, const void *param2, int param3, u8 *param4, int maxResponseLength)
+int HTTP_PrepareRequest(const u8 *url, int dwcProfileID, const void *data, int dataSize, u8 *response, int maxResponseLength)
 {
     if (sHttpData.readyState != 2) {
         return 1;
     }
 
-    sHttpData.unk_10 = param1;
-    sHttpData.unk_14 = (void *)param2;
-    sHttpData.unk_18 = param3;
-    sHttpData.unk_1C = param4;
+    sHttpData.dwcProfileID = dwcProfileID;
+    sHttpData.data = (void *)data;
+    sHttpData.dataSize = dataSize;
+    sHttpData.response = response;
     sHttpData.maxResponseLength = maxResponseLength;
-    sHttpData.unk_24 = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)param0) + 68 + ov60_0221F944(8 + (u32)param3) + 1);
+    sHttpData.url = (char *)DWC_Alloc((DWCAllocType)10, strlen((const char *)url) + (2 * HASH_SIZE) + 28 + HTTPB64_CalcEncodedSize(8 + (u32)dataSize) + 1);
 
-    if (sHttpData.unk_24 == NULL) {
+    if (sHttpData.url == NULL) {
         return 2;
     }
 
-    sprintf(sHttpData.unk_24, "%s?pid=%d", param0, param1);
+    sprintf(sHttpData.url, "%s?pid=%d", url, dwcProfileID);
 
-    sHttpData.unk_28 = sHttpData.unk_24 + strlen(sHttpData.unk_24) + strlen("&hash=");
-    sHttpData.unk_2C = sHttpData.unk_28 + 40 + strlen("&data=");
-    sHttpData.unk_30 = (int)(ov60_0221F944(8 + (u32)param3) + 1);
+    sHttpData.hashStr = sHttpData.url + strlen(sHttpData.url) + strlen("&hash=");
+    sHttpData.b64DataStr = sHttpData.hashStr + (2 * HASH_SIZE) + strlen("&data=");
+    sHttpData.encodedDataSize = (int)(HTTPB64_CalcEncodedSize(8 + (u32)dataSize) + 1);
     sHttpData.readyState = 3;
 
     return 0;
@@ -244,7 +246,7 @@ int HTTP_GetRequestStatus(void)
     case 2:
         break;
     case 3:
-        sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.unk_24, HTTP_RequestCompletedCallback, &sHttpData);
+        sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.url, HTTP_RequestCompletedCallback, &sHttpData);
         HTTP_SetErrorCode(sHttpData.requestHandle);
 
         if (sHttpData.requestHandle >= 0) {
@@ -262,7 +264,7 @@ int HTTP_GetRequestStatus(void)
         }
         break;
     case 5:
-        sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.unk_24, HTTP_RequestCompletedCallback, &sHttpData);
+        sHttpData.requestHandle = DWC_GetGHTTPData(sHttpData.url, HTTP_RequestCompletedCallback, &sHttpData);
         HTTP_SetErrorCode(sHttpData.requestHandle);
 
         if (sHttpData.requestHandle >= 0) {
@@ -288,9 +290,9 @@ int HTTP_GetRequestStatus(void)
 
 void HTTP_Shutdown(void)
 {
-    if (sHttpData.unk_24 != NULL) {
-        DWC_Free((DWCAllocType)10, sHttpData.unk_24, (u32)0);
-        sHttpData.unk_24 = NULL;
+    if (sHttpData.url != NULL) {
+        DWC_Free((DWCAllocType)10, sHttpData.url, (u32)0);
+        sHttpData.url = NULL;
     }
 
     DWC_ShutdownGHTTP();
