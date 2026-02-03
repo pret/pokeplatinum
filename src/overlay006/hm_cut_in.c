@@ -58,7 +58,7 @@ typedef struct HMCutIn {
     fx32 windowY2;
     fx32 windowDelta;
     fx32 pokemonSpriteDeltaX;
-    Pokemon *pokemon;
+    Pokemon *mon;
     FieldSystem *fieldSystem;
     NNSG2dScreenData *g2dScreenData;
     NNSG2dCharacterData *g2dCharData;
@@ -258,7 +258,7 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc);
 static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate);
 static SpriteResource *CutIn_GetParticleCharResource(HMCutIn *cutIn, NARC *narc);
 static SpriteResource *CutIn_GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc);
-static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID);
+static void *CutIn_GetPokemonSpriteSource(Pokemon *mon, PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID);
 static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID);
 static Sprite *CutIn_InitPlayerSprite(HMCutIn *cutIn, const VecFx32 *position);
 static void CutIn_LoadBgPalette(NARC *narc, u32 memberIndex, NNSG2dPaletteData **paletteData);
@@ -1040,7 +1040,7 @@ SysTask *SysTask_HMCutIn_New(FieldSystem *fieldSystem, BOOL isNotFly, Pokemon *s
     SysTask *task;
     HMCutIn *cutIn = CreateHMCutIn(fieldSystem);
 
-    cutIn->pokemon = shownPokemon;
+    cutIn->mon = shownPokemon;
     cutIn->playerGender = playerGender;
     cutIn->_1 = isNotFly;
 
@@ -1235,7 +1235,7 @@ static BOOL HMCutIn_SlideMonToCenter(HMCutIn *cutIn)
         cutIn->pokemonSpriteDeltaX = (FX32_ONE * -2);
         cutIn->state++;
 
-        Pokemon_PlayCry(cutIn->pokemon);
+        Pokemon_PlayCry(cutIn->mon);
     }
 
     pokemonSpritePosition = Sprite_GetPosition(cutIn->pokemonSprite);
@@ -1794,7 +1794,7 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
         cutIn->animSource[i] = SpriteResourceCollection_AddFrom(cutIn->animLocation, narc, 18, FALSE, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_FIELD1);
     }
 
-    cutIn->pokemonCharSource = CutIn_GetPokemonSpriteSource(cutIn->pokemon, &cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD1);
+    cutIn->pokemonCharSource = CutIn_GetPokemonSpriteSource(cutIn->mon, &cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD1);
     cutIn->pokemonPaletteSource = CutIn_GetPokemonPaletteSource(&cutIn->pokemonSpriteTemplate, HEAP_ID_FIELD1);
 }
 
@@ -2082,16 +2082,16 @@ static void SysTask_CutIn_ShowWindow(SysTask *task, void *hmCutInPtr)
 
 static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTemplate *spriteTemplate)
 {
-    Pokemon_BuildSpriteTemplate(spriteTemplate, cutIn->pokemon, 2);
+    Pokemon_BuildSpriteTemplate(spriteTemplate, cutIn->mon, 2);
 }
 
-static void *CutIn_GetPokemonSpriteSource(Pokemon *pokemon, PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID)
+static void *CutIn_GetPokemonSpriteSource(Pokemon *mon, PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID)
 {
     void *spriteSource = Heap_Alloc(HEAP_ID_FIELD1, (32 * 10) * 10);
 
     GF_ASSERT(spriteSource != NULL);
 
-    int personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
+    int personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
     CharacterSprite_LoadPokemonSprite(spriteTemplate->narcID, spriteTemplate->character, heapID, spriteSource, personality, FALSE, 2, spriteTemplate->spindaSpots);
 
     return spriteSource;

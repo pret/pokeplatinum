@@ -5031,9 +5031,9 @@ u16 Pokemon_GetBattleFrontierBanlistEntry(u8 index)
     return sBattleFrontierBanlist[index];
 }
 
-BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *pokemon)
+BOOL Pokemon_IsBannedFromBattleFrontier(Pokemon *mon)
 {
-    u16 species = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    u16 species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     return Pokemon_IsOnBattleFrontierBanlist(species);
 }
 

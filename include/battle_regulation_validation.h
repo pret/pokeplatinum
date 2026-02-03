@@ -15,7 +15,7 @@ enum BattleRegulationValidationError {
     BATTLE_REGULATION_VALIDATION_ERROR_INVALID_POKEMON = 5,
 };
 
-BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemon *pokemon, const HeightWeightData *heightWeightData);
+BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemon *mon, const HeightWeightData *heightWeightData);
 enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData, u8 *selectedSlots);
 enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData);
 

@@ -9,9 +9,9 @@
 #include "pokedex_heightweight.h"
 #include "pokemon.h"
 
-BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemon *pokemon, const HeightWeightData *heightWeightData)
+BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemon *mon, const HeightWeightData *heightWeightData)
 {
-    u16 species = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    u16 species = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int ruleValue, height, weight;
 
     if (regulation == NULL) {
@@ -20,11 +20,11 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
 
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_MAX_LEVEL);
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL) > ruleValue) {
+    if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) > ruleValue) {
         return FALSE;
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL)) {
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
         return FALSE;
     }
 
@@ -71,7 +71,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
     ruleValue = BattleRegulation_GetRuleValue(regulation, BATTLE_REGULATION_RULE_ITEM_RESTRICT);
 
     if (ruleValue == 0) {
-        if (Pokemon_IsBannedFromBattleFrontier(pokemon)) {
+        if (Pokemon_IsBannedFromBattleFrontier(mon)) {
             return FALSE;
         }
     }
@@ -81,7 +81,7 @@ BOOL BattleRegulation_ValidatePokemon(const BattleRegulation *regulation, Pokemo
 
 enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData, u8 *selectedSlots)
 {
-    Pokemon *pokemon;
+    Pokemon *mon;
     int ruleValue, selectedCount = 0, i, j, totalLevel = 0;
     u16 species[MAX_PARTY_SIZE], heldItems[MAX_PARTY_SIZE];
 
@@ -108,16 +108,16 @@ enum BattleRegulationValidationError BattleRegulation_ValidatePartySelection(con
         if (selectedSlots[i]) {
             int slotIndex = selectedSlots[i] - 1;
 
-            pokemon = Party_GetPokemonBySlotIndex(party, slotIndex);
+            mon = Party_GetPokemonBySlotIndex(party, slotIndex);
 
-            if (BattleRegulation_ValidatePokemon(regulation, pokemon, heightWeightData) == FALSE) {
+            if (BattleRegulation_ValidatePokemon(regulation, mon, heightWeightData) == FALSE) {
                 return BATTLE_REGULATION_VALIDATION_ERROR_INVALID_POKEMON;
             }
 
-            species[i] = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-            heldItems[i] = (u16)Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
+            species[i] = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+            heldItems[i] = (u16)Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-            totalLevel += Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
+            totalLevel += Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
         }
     }
 
@@ -200,7 +200,7 @@ static BOOL BattleRegulation_FindValidTeamCombination(u16 *species, u16 *levels,
 
 enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const BattleRegulation *regulation, Party *party, const HeightWeightData *heightWeightData)
 {
-    Pokemon *pokemon;
+    Pokemon *mon;
     int ruleValue, partyCount, i, j, validCount = 0;
     u16 species[MAX_PARTY_SIZE], levels[MAX_PARTY_SIZE], used[MAX_PARTY_SIZE];
     int requiredCount;
@@ -211,11 +211,11 @@ enum BattleRegulationValidationError BattleRegulation_SelectValidPokemon(const B
     MI_CpuClear8(used, MAX_PARTY_SIZE * sizeof(u16));
 
     for (i = 0; i < partyCount; i++) {
-        pokemon = Party_GetPokemonBySlotIndex(party, i);
-        species[i] = (u16)Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-        levels[i] = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
+        mon = Party_GetPokemonBySlotIndex(party, i);
+        species[i] = (u16)Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        levels[i] = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-        if (BattleRegulation_ValidatePokemon(regulation, pokemon, heightWeightData) == FALSE) {
+        if (BattleRegulation_ValidatePokemon(regulation, mon, heightWeightData) == FALSE) {
             species[i] = 0;
             validCount--;
         }

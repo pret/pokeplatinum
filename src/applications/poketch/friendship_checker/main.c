@@ -77,7 +77,7 @@ static BOOL Init(PoketchFriendshipChecker *appData, PoketchSystem *poketchSys, B
         appData->poketchSys = poketchSys;
 
         Party *party = SaveData_GetParty(SaveData_Ptr());
-        Pokemon *pokemon;
+        Pokemon *mon;
         int friendshipLevel;
         int slot;
 
@@ -85,13 +85,13 @@ static BOOL Init(PoketchFriendshipChecker *appData, PoketchSystem *poketchSys, B
         appData->friendshipCheckerData.monCount = Party_GetCurrentCount(party);
 
         for (int i = 0; i < appData->friendshipCheckerData.monCount; i++) {
-            pokemon = Party_GetPokemonBySlotIndex(party, i);
+            mon = Party_GetPokemonBySlotIndex(party, i);
 
-            if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == 0) {
-                appData->friendshipCheckerData.party[slot].species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-                appData->friendshipCheckerData.party[slot].form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
-                appData->friendshipCheckerData.party[slot].spriteIdx = BoxPokemon_IconSpriteIndex((const BoxPokemon *)pokemon);
-                friendshipLevel = GetFriendshipLevel(Pokemon_GetValue(pokemon, MON_DATA_FRIENDSHIP, NULL));
+            if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == 0) {
+                appData->friendshipCheckerData.party[slot].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+                appData->friendshipCheckerData.party[slot].form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+                appData->friendshipCheckerData.party[slot].spriteIdx = BoxPokemon_IconSpriteIndex((const BoxPokemon *)mon);
+                friendshipLevel = GetFriendshipLevel(Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL));
 
                 switch (friendshipLevel) {
                 case 0:
