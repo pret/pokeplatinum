@@ -38,7 +38,7 @@ OreburghGym_Roark:
     ClearFlag FLAG_HIDE_JUBILIFE_COUNTERPART
     ClearFlag FLAG_HIDE_JUBILIFE_ROWAN
     ClearFlag FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS
-    SetFlag FLAG_UNK_0x0198
+    SetFlag FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN
     Message OreburghGym_Text_RoarkExplainCoalBadge
     GoTo OreburghGym_RoarkGiveTM76
     End

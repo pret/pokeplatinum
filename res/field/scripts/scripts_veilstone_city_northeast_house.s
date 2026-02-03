@@ -50,7 +50,7 @@ _00AC:
     SubVar VAR_MAP_LOCAL_0, 1
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0BB VAR_MAP_LOCAL_0, VAR_RESULT
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0, VAR_RESULT
     CallIfNe VAR_RESULT, 1, _00E7
     FadeScreenIn
     WaitFadeScreen

@@ -22,6 +22,7 @@
 #include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
 #include "generated/object_events_gfx.h"
+#include "generated/player_transitions.h"
 #include "generated/poketch_apps.h"
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
@@ -1167,10 +1168,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0BB arg0, arg1
+    .macro OpenPokemonNamingScreen slot, destVar
     .short 187
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
     .macro FadeScreen transition, frames, type, color

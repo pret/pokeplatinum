@@ -2,7 +2,7 @@
   "key": 5150,
   "messages": [
     {
-      "id": "pl_msg_00000566_00000",
+      "id": "SandgemTownCounterpartHouse1F_Text_SoThatRowanFellowIsBack",
       "en_US": [
         "Ah, so that Rowan fellow is back?\n",
         "He’s quite the remarkable man.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000566_00001",
+      "id": "SandgemTownCounterpartHouse1F_Text_OhMyYouveGotANationalPokedex",
       "en_US": [
         "Oh, my!\n",
         "You’ve got a National Pokédex?\f",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000566_00002",
+      "id": "SandgemTownCounterpartHouse1F_Text_WowYoureDoingTheSameAsMyBigSister",
       "en_US": [
         "Who are you?\r",
         "...\r",
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000566_00003",
+      "id": "SandgemTownCounterpartHouse1F_Text_WowYoureDoingTheSameAsMyBigBrother",
       "en_US": [
         "Who are you?\r",
         "...\r",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000566_00004",
+      "id": "SandgemTownCounterpartHouse1F_Text_ThereWasNewsSayingThereIsAMassiveOutbreakOfPokemon",
       "en_US": [
         "Oh, hi, {STRVAR_1 3, 0, 0}!\r",
         "There was news on TV saying there\n",
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000566_00005",
+      "id": "SandgemTownCounterpartHouse1F_Text_MaleTheresABunchOfThisPokemonAtThatLocation",
       "en_US": [
         "Let me see...\n",
         "What did that news say now...?\r",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000566_00006",
+      "id": "SandgemTownCounterpartHouse1F_Text_FemaleTheresABunchOfThisPokemonAtThatLocation",
       "en_US": [
         "Let me see...\n",
         "What did that news say now...?\r",
