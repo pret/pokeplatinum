@@ -20,7 +20,7 @@
 #define MAP_OBJ_STATUS_LOCK_DIR                    (1 << 7)
 #define MAP_OBJ_STATUS_PAUSE_ANIMATION             (1 << 8)
 #define MAP_OBJ_STATUS_HIDE                        (1 << 9)
-#define MAP_OBJ_STATUS_10                          (1 << 10)
+#define MAP_OBJ_STATUS_PERSISTENT                  (1 << 10)
 #define MAP_OBJ_STATUS_11                          (1 << 11)
 #define MAP_OBJ_STATUS_12                          (1 << 12)
 #define MAP_OBJ_STATUS_13                          (1 << 13)

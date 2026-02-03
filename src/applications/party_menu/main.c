@@ -12,8 +12,6 @@
 #include "generated/moves.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/sprites.h"
@@ -715,7 +713,7 @@ static void sub_0207E898(void *param0)
 
 static void SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -1793,7 +1791,7 @@ static void sub_0207FFC8(PartyMenuApplication *application)
 
 static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8 *menuEntriesBuffer)
 {
-    Pokemon *pokemon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
     u16 move;
     u8 fieldMoveIndex = 0, i, count = 0, fieldEffect;
 
@@ -1803,7 +1801,7 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
     if (FieldSystem_IsInBattleTowerSalon(application->partyMenu->fieldSystem) == FALSE) {
         if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
             for (i = 0; i < 4; i++) {
-                move = (u16)Pokemon_GetValue(pokemon, MON_DATA_MOVE1 + i, NULL);
+                move = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
 
                 if (move == 0) {
                     break;

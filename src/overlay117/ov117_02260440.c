@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02266498.h"
@@ -85,7 +85,7 @@ int ov117_02260474(ApplicationManager *appMan, int *param1)
         break;
     case 4:
         if (v1->unk_38) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         v0->unk_31 = 2;

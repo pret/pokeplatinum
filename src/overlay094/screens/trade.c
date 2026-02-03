@@ -136,7 +136,7 @@ int GTSApplication_Trade_Main(GTSApplicationState *appState, int unused1)
         break;
     case 1:
         if (Evolution_IsDone(appState->evolutionData)) {
-            sub_0207B0E0(appState->evolutionData);
+            Evolution_Free(appState->evolutionData);
             GTSApplication_Trade_StoreTradedPokemon(appState);
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_NETWORK_HANDLER, SCREEN_ARGUMENT_SAVE_AFTER_EVOLVE);
@@ -164,7 +164,7 @@ static TrainerInfo *GTSPokemonListing_GetTrainerInfo(GTSPokemonListing *listing)
     TrainerInfo_Init(trainerInfo);
     TrainerInfo_SetName(trainerInfo, listing->unk_10C);
     TrainerInfo_SetGameCode(trainerInfo, listing->unk_122);
-    TrainerInfo_SetRegionCode(trainerInfo, listing->trainerLanguage);
+    TrainerInfo_SetLanguage(trainerInfo, listing->trainerLanguage);
 
     return trainerInfo;
 }

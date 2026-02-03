@@ -5,8 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "graphics.h"
@@ -163,7 +161,7 @@ static void LibraryTV_VBlank(void *data)
 
 static void LibraryTV_SetVramBank(LibraryTV *ltv)
 {
-    UnkStruct_02099F80 vramBank = {
+    GXBanks vramBank = {
         GX_VRAM_BG_256_AB,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_NONE,

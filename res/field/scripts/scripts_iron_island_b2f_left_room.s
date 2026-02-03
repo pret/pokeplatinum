@@ -26,7 +26,7 @@ _0035:
 
 _004A:
     SetObjectEventPos 4, 19, 41
-    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 4, MOVEMENT_TYPE_LOOK_EAST
     SetObjectEventDir 4, DIR_EAST
     End
 
@@ -54,7 +54,7 @@ _0064:
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_RILEY_IRON_ISLAND
     SetHasPartner
-    ScrCmd_06D 4, 48
+    SetMovementType 4, 48
     ReleaseAll
     End
 
@@ -85,7 +85,7 @@ _00F3:
     CloseMessage
     SetVar VAR_UNK_0x4092, 0
     ClearHasPartner
-    ScrCmd_06D 4, 16
+    SetMovementType 4, 16
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 2, _013E
     CallIfEq VAR_0x8005, 3, _014A
@@ -148,7 +148,7 @@ _01A8:
 _01AA:
     LockAll
     ClearHasPartner
-    ScrCmd_06D 4, 16
+    SetMovementType 4, 16
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 40, _0291
     CallIfEq VAR_0x8005, 41, _02A5

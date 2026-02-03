@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020322F8.h"
 #include "struct_defs/struct_0203233C.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "comm_ring.h"
 #include "communication_information.h"
@@ -441,7 +441,7 @@ void CommSys_Delete(void)
 
     if (sCommunicationSystem) {
         if (CommLocal_IsWifiGroup(sub_0203895C())) {
-            ov4_021D2184();
+            NintendoWFC_Stop();
             v0 = 1;
         } else {
             if (sub_02033768()) {
@@ -620,7 +620,7 @@ static void sub_02034B50(void)
                 return;
             }
 
-            if (ov4_021D1590(sCommunicationSystem->sendBuffer[0], 38)) {
+            if (NintendoWFC_SendData(sCommunicationSystem->sendBuffer[0], 38)) {
                 int i;
                 int v1 = CommLocal_MaxMachines(sub_0203895C()) + 1;
 
@@ -658,7 +658,7 @@ static void sub_02034B50(void)
                 return;
             }
 
-            if (ov4_021D142C(sCommunicationSystem->sendBuffer[0], 38)) {
+            if (NintendoWFC_SendData_Server(sCommunicationSystem->sendBuffer[0], 38)) {
                 Unk_02100A1D = 4;
                 sCommunicationSystem->unk_660++;
             }
@@ -809,7 +809,7 @@ static void sub_02034F68(void)
                 Unk_02100A1C = 2;
             }
 
-            if (ov4_021D14D4(sCommunicationSystem->sendBufferServer[0], 192)) {
+            if (NintendoWFC_SendData_Client(sCommunicationSystem->sendBufferServer[0], 192)) {
                 Unk_02100A1C = 4;
 
                 for (i = 0; i < v1; i++) {
@@ -1178,7 +1178,7 @@ static BOOL sub_020356A0(u8 *param0, int param1)
     return TRUE;
 }
 
-void sub_0203572C(void)
+void CommSys_Dummy(void)
 {
     return;
 }
@@ -1732,7 +1732,7 @@ u16 CommSys_CurNetId(void)
 {
     if (sCommunicationSystem) {
         if (CommLocal_IsWifiGroup(sub_0203895C())) {
-            int netId = ov4_021D1E30();
+            int netId = NintendoWFC_GetNetID();
 
             if (netId != -1) {
                 return netId;
@@ -1889,7 +1889,7 @@ BOOL sub_02036314(void)
         return FALSE;
     }
 
-    return ov4_021D254C();
+    return NintendoWFC_GetVoiceChatEnabled();
 }
 
 void sub_0203632C(BOOL param0)
@@ -1919,9 +1919,9 @@ void sub_02036378(BOOL param0)
 
     if (CommLocal_IsWifiGroup(sub_0203895C())) {
         if (param0) {
-            ov4_021D2598(0);
+            NintendoWFC_SetVoiceChatEnabled_Battle(0);
         } else {
-            ov4_021D2598(1);
+            NintendoWFC_SetVoiceChatEnabled_Battle(1);
         }
     }
 }

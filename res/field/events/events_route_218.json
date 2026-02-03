@@ -38,7 +38,7 @@
         {
             "id": "ROUTE_218_FISHERMAN_MIGUEL",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_FISHERMAN_MIGUEL",
@@ -53,7 +53,7 @@
         {
             "id": "ROUTE_218_FISHERMAN_LUC",
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_FISHERMAN_LUC",

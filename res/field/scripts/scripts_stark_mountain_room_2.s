@@ -34,7 +34,7 @@ _0031:
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_BUCK_STARK_MOUNTAIN
     SetHasPartner
-    ScrCmd_06D 14, 48
+    SetMovementType 14, 48
     ReleaseAll
     End
 
@@ -92,7 +92,7 @@ _00FC:
     CloseMessage
     SetVar VAR_UNK_0x4094, 0
     ClearHasPartner
-    ScrCmd_06D 14, 15
+    SetMovementType 14, 15
     ApplyMovement 14, _013C
     WaitMovement
     ReleaseAll
@@ -121,7 +121,7 @@ _014C:
 _0154:
     LockAll
     ClearHasPartner
-    ScrCmd_06D 14, 15
+    SetMovementType 14, 15
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _0177
     GoTo _0191

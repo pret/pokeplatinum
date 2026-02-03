@@ -86,7 +86,7 @@ BOOL ScrCmd_21D(ScriptContext *param0)
         TrainerInfo_NameString(v15, v14);
         RecordMixedRNG_GetEntryNameAsString(v1, 0, 1, v14);
         RecordMixedRNG_SetEntryGender(v1, 0, TrainerInfo_Gender(v15));
-        RecordMixedRNG_SetEntryCountryCode(v1, 0, GAME_LANGUAGE);
+        RecordMixedRNG_SetEntryLanguage(v1, 0, GAME_LANGUAGE);
         RecordMixedRNG_SetEntrySeed(v1, 0, MTRNG_Next());
         String_Free(v14);
         RecordMixedRNG_CopyEntry(v1, 0, 1);

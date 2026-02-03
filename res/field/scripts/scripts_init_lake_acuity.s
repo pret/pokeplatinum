@@ -5,7 +5,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40D3, 1, 1
+    InitScriptGoToIfEqual VAR_LAKE_ACUITY_STATE, 1, 1
     InitScriptFrameTableEnd
 
     InitScriptEnd

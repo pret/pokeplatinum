@@ -121,7 +121,7 @@
       "garbage": 3
     },
     {
-      "id": "BattleCastleScene_Text_OpponentIsChoosing",
+      "id": "BattleCastleScene_Text_PartnerIsChoosing",
       "en_US": [
         "{STRVAR_1 3, 0, 0} is choosing.\n",
         "Please wait."
@@ -132,7 +132,7 @@
       "garbage": 20
     },
     {
-      "id": "BattleCastleScene_Text_OpponentRetired",
+      "id": "BattleCastleScene_Text_PartnerRetired",
       "en_US": "{STRVAR_1 3, 0, 0} chose to retire."
     },
     {

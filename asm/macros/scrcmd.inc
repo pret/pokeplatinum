@@ -163,10 +163,10 @@
     .endm
 
     .macro CompareVar varID, valueOrVarID
-    .if \valueOrVarID < VARS_START
-        CompareVarToValue \varID, \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         CompareVarToVar \varID, \valueOrVarID
+    .else
+        CompareVarToValue \varID, \valueOrVarID
     .endif
     .endm
 
@@ -294,10 +294,10 @@
     .endm
 
     .macro SetVar destVarID, valueOrVarID
-    .if \valueOrVarID < VARS_START
-        SetVarFromValue \destVarID, \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         SetVarFromVar \destVarID, \valueOrVarID
+    .else
+        SetVarFromValue \destVarID, \valueOrVarID
     .endif
     .endm
 
@@ -690,7 +690,7 @@
     .endm
 
     .macro ApplyFreeCameraMovement movementOffset
-    ApplyMovement 241, \movementOffset
+    ApplyMovement LOCALID_CAMERA, \movementOffset
     .endm
 
     .macro RestoreCamera
@@ -721,16 +721,16 @@
     .short \z
     .endm
 
-    .macro ScrCmd_06C arg0, arg1
+    .macro SetObjectFlagIsPersistent localID, flag
     .short 108
-    .short \arg0
-    .byte \arg1
+    .short \localID
+    .byte \flag
     .endm
 
-    .macro ScrCmd_06D arg0, arg1
+    .macro SetMovementType localID, movementType
     .short 109
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \movementType
     .endm
 
     .macro ScrCmd_Unused_06E
@@ -4060,10 +4060,10 @@
     .endm
 
     .macro SubtractCoins valueOrVarID
-    .if \valueOrVarID < VARS_START
-        SubtractCoinsFromValue \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         SubtractCoinsFromVar \valueOrVarID
+    .else
+        SubtractCoinsFromValue \valueOrVarID
     .endif
     .endm
 
@@ -4074,10 +4074,10 @@
     .endm
 
     .macro HasCoins varID, valueOrVarID
-    .if \valueOrVarID < VARS_START
-        HasCoinsFromValue \varID, \valueOrVarID
-    .else
+    .if ((\valueOrVarID >= VARS_START && \valueOrVarID <= VARS_END) || (\valueOrVarID >= SCRIPT_LOCAL_VARS_START && \valueOrVarID <= SCRIPT_LOCAL_VARS_END))
         HasCoinsFromVar \varID, \valueOrVarID
+    .else
+        HasCoinsFromValue \varID, \valueOrVarID
     .endif
     .endm
 
@@ -5010,6 +5010,14 @@
     .macro GoToIfNe varID, valueOrVarID, offset
     CompareVar \varID, \valueOrVarID
     GoToIf 5, \offset
+    .endm
+
+   .macro GoToIfInRange varID, lower, upper, offset
+    CompareVar \varID, \lower
+    GoToIf 1, \offset
+    .if \lower < \upper
+        GoToIfInRange \varID, \lower + 1, \upper, \offset
+    .endif
     .endm
 
     .macro GoToIfUnset flagID, offset

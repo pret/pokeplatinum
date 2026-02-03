@@ -1242,11 +1242,11 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
     }
 }
 
-static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicationState *appState, Pokemon *pokemon, int boxIndex, int exchangedFromRemote)
+static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicationState *appState, Pokemon *mon, int boxIndex, int exchangedFromRemote)
 {
-    int unused = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
+    int unused = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
-    SaveData_UpdateCatchRecords(appState->playerData->saveData, pokemon);
+    SaveData_UpdateCatchRecords(appState->playerData->saveData, mon);
     boxIndex = MAX_PC_BOXES;
 
     if (Party_GetCurrentCount(appState->playerData->party) == MAX_PARTY_SIZE) {
@@ -1257,8 +1257,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
     if (exchangedFromRemote) {
         u8 friendship = BASE_FRIENDSHIP_VALUE;
 
-        if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-            if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+            if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
                 VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
                 if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1267,14 +1267,14 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
             }
         }
 
-        Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
-        Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
+        Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
+        Pokemon_SetValue(mon, MON_DATA_GENDER, NULL);
 
         GTS_SetTradedTimestamp(appState->playerData->globalTrade, GTS_TIMESTAMPS_TRADE_BY_DEPOSITING);
     }
 
     if (boxIndex == MAX_PC_BOXES) {
-        Party_AddPokemon(appState->playerData->party, pokemon);
+        Party_AddPokemon(appState->playerData->party, mon);
         int partyIndex = Party_GetCurrentCount(appState->playerData->party);
 
         appState->tradedPokemonLocation.boxIndex = MAX_PC_BOXES;
@@ -1283,7 +1283,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
         int boxPosition = 0;
 
         PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIndex, &boxPosition);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(pokemon));
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(mon));
 
         appState->tradedPokemonLocation.boxIndex = boxIndex;
         appState->tradedPokemonLocation.index = boxPosition;
@@ -1292,9 +1292,9 @@ static void GTSApplication_NetworkHandler_StorePokemonFromDepositing(GTSApplicat
     GlobalTrade_SetPokemonListed(appState->playerData->globalTrade, 0);
 }
 
-static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicationState *appState, Pokemon *pokemon, int boxIndex)
+static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicationState *appState, Pokemon *mon, int boxIndex)
 {
-    SaveData_UpdateCatchRecords(appState->playerData->saveData, pokemon);
+    SaveData_UpdateCatchRecords(appState->playerData->saveData, mon);
 
     boxIndex = MAX_PC_BOXES;
 
@@ -1302,8 +1302,8 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         boxIndex = 0;
     }
 
-    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
-        if (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(pokemon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(pokemon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
+    if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
+        if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == LocationNames_Text_HallOfOrigin) && (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == FALSE))) {
             VarsFlags *varsFlags = SaveData_GetVarsFlags(appState->playerData->saveData);
 
             if (SystemVars_GetArceusEventState(varsFlags) == FALSE) {
@@ -1313,12 +1313,12 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
     }
 
     u8 friendship = BASE_FRIENDSHIP_VALUE;
-    Pokemon_SetValue(pokemon, MON_DATA_FRIENDSHIP, &friendship);
+    Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
 
-    Pokemon_SetValue(pokemon, MON_DATA_GENDER, NULL);
+    Pokemon_SetValue(mon, MON_DATA_GENDER, NULL);
 
     if (boxIndex == MAX_PC_BOXES) {
-        Party_AddPokemon(appState->playerData->party, pokemon);
+        Party_AddPokemon(appState->playerData->party, mon);
         int partyIndex = Party_GetCurrentCount(appState->playerData->party);
 
         appState->tradedPokemonLocation.boxIndex = MAX_PC_BOXES;
@@ -1327,7 +1327,7 @@ static void GTSApplication_NetworkHandler_StorePokemonFromSearching(GTSApplicati
         int boxPosition = 0;
 
         PCBoxes_TryGetNextAvailableSpace(appState->playerData->pcBoxes, &boxIndex, &boxPosition);
-        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(pokemon));
+        PCBoxes_TryStoreBoxMonInBox(appState->playerData->pcBoxes, boxIndex, Pokemon_GetBoxPokemon(mon));
 
         appState->tradedPokemonLocation.boxIndex = boxIndex;
         appState->tradedPokemonLocation.index = boxPosition;

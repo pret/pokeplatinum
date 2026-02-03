@@ -1,282 +1,282 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_201.h"
+#include "res/field/events/events_route_201.h"
 
-
-    ScriptEntry _0042
-    ScriptEntry _0072
-    ScriptEntry _09E0
-    ScriptEntry _0A8C
+    ScriptEntry Route201_OnTransition
+    ScriptEntry Route201_TriggerChooseStarterScene
+    ScriptEntry Route201_TriggerFollowingRivalStopPlayerSouth
+    ScriptEntry Route201_TriggerPickAPokemon
     ScriptEntry _0B24
-    ScriptEntry _0F76
-    ScriptEntry _0F8D
-    ScriptEntry _0FA4
-    ScriptEntry _0DF4
-    ScriptEntry _0E47
-    ScriptEntry _0E07
-    ScriptEntry _0E1A
-    ScriptEntry _042E
-    ScriptEntry _08E8
-    ScriptEntry _0EA1
-    ScriptEntry _0EB4
+    ScriptEntry Route201_ArrowSignpostTwinleafTown
+    ScriptEntry Route201_ArrowSignpostSandgemTown
+    ScriptEntry Route201_TrainerTipsSignpost
+    ScriptEntry Route201_BreederM
+    ScriptEntry Route201_Cashier
+    ScriptEntry Route201_SchoolKidM
+    ScriptEntry Route201_Lass
+    ScriptEntry Route201_Briefcase
+    ScriptEntry Route201_TriggerFollowingRivalStopPlayerEast
+    ScriptEntry Route201_ProfRowan
+    ScriptEntry Route201_TriggerLetsCatchThatLegendaryPokemon
     ScriptEntryEnd
 
-_0042:
+Route201_OnTransition:
     GetPlayerGender VAR_MAP_LOCAL_0
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _0062
-    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _006A
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, Route201_SetCounterpartGraphicsDawn
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, Route201_SetCounterpartGraphicsLucas
     End
 
-_0062:
-    SetVar VAR_OBJ_GFX_ID_0, 97
+Route201_SetCounterpartGraphicsDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
     End
 
-_006A:
-    SetVar VAR_OBJ_GFX_ID_0, 0
+Route201_SetCounterpartGraphicsLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
     End
 
-_0072:
+Route201_TriggerChooseStarterScene:
     LockAll
-    ApplyMovement 2, _0664
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalNoticePlayer
     WaitMovement
-    Message 0
+    Message Route201_Text_TooSlow
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 110, _00BF
-    GoToIfEq VAR_0x8004, 111, _00EB
-    GoToIfEq VAR_0x8004, 112, _0117
-    GoToIfEq VAR_0x8004, 113, _0143
+    GoToIfEq VAR_0x8004, 110, Route201_LetsGetMovingToProfRowansLabX110
+    GoToIfEq VAR_0x8004, 111, Route201_LetsGetMovingToProfRowansLabX111
+    GoToIfEq VAR_0x8004, 112, Route201_LetsGetMovingToProfRowansLabX112
+    GoToIfEq VAR_0x8004, 113, Route201_LetsGetMovingToProfRowansLabX113
     End
 
-_00BF:
-    ApplyMovement 2, _0670
+Route201_LetsGetMovingToProfRowansLabX110:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX110
     WaitMovement
     BufferRivalName 0
-    Message 1
+    Message Route201_Text_LetsGetMovingToProfRowansLab
     CloseMessage
-    ApplyMovement 2, _06A8
-    ApplyMovement LOCALID_PLAYER, _0810
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX110
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX110
     WaitMovement
-    GoTo _016F
+    GoTo Route201_GoIntoTallGrass
     End
 
-_00EB:
-    ApplyMovement 2, _0680
+Route201_LetsGetMovingToProfRowansLabX111:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX111
     WaitMovement
     BufferRivalName 0
-    Message 1
+    Message Route201_Text_LetsGetMovingToProfRowansLab
     CloseMessage
-    ApplyMovement 2, _06C0
-    ApplyMovement LOCALID_PLAYER, _0824
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX111
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX111
     WaitMovement
-    GoTo _016F
+    GoTo Route201_GoIntoTallGrass
     End
 
-_0117:
-    ApplyMovement 2, _0690
+Route201_LetsGetMovingToProfRowansLabX112:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX112
     WaitMovement
     BufferRivalName 0
-    Message 1
+    Message Route201_Text_LetsGetMovingToProfRowansLab
     CloseMessage
-    ApplyMovement 2, _06D8
-    ApplyMovement LOCALID_PLAYER, _0838
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX112
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX112
     WaitMovement
-    GoTo _016F
+    GoTo Route201_GoIntoTallGrass
     End
 
-_0143:
-    ApplyMovement 2, _0698
+Route201_LetsGetMovingToProfRowansLabX113:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX113
     WaitMovement
     BufferRivalName 0
-    Message 1
+    Message Route201_Text_LetsGetMovingToProfRowansLab
     CloseMessage
-    ApplyMovement 2, _06F0
-    ApplyMovement LOCALID_PLAYER, _084C
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToGrassX113
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkToGrassX113
     WaitMovement
-    GoTo _016F
+    GoTo Route201_GoIntoTallGrass
     End
 
-_016F:
+Route201_GoIntoTallGrass:
     BufferRivalName 0
-    Message 2
+    Message Route201_Text_TrustMeIveGotAnIdea
     CloseMessage
-    ApplyMovement 2, _0708
-    ApplyMovement LOCALID_PLAYER, _0860
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkToPlayer
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWatchRivalWalkUp
     WaitMovement
-    Message 3
+    Message Route201_Text_ScootOverBeforeWildPokemonCanAppear
     CloseMessage
-    ApplyMovement 2, _071C
-    ApplyMovement LOCALID_PLAYER, _086C
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkBackToRun
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWatchRivalWalkBackToRun
     WaitMovement
-    Message 4
+    Message Route201_Text_HereGoes
     CloseMessage
     WaitTime 15, VAR_RESULT
-    ApplyMovement 2, _0728
-    ApplyMovement LOCALID_PLAYER, _0878
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunTowardsGrass
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWatchRivalRunTowardsGrass
     WaitMovement
-    Message 5
+    Message Route201_Text_HoldIt
     CloseMessage
-    ApplyMovement LOCALID_PLAYER, _0730
-    ApplyMovement 2, _0730
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_NoticeProfRowan
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_NoticeProfRowan
     WaitMovement
     PlayMusic SEQ_OPENING2
-    ClearFlag FLAG_UNK_0x0178
-    AddObject 5
-    LockObject 5
-    ApplyMovement 5, _07C0
+    ClearFlag FLAG_HIDE_ROUTE_201_PROF_ROWAN
+    AddObject LOCALID_PROF_ROWAN
+    LockObject LOCALID_PROF_ROWAN
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanEnter
     WaitMovement
-    Message 6
+    Message Route201_Text_YouTwoDontHaveAnyPokemon
     BufferRivalName 0
-    Message 7
-    Message 8
-    ApplyMovement 2, _0740
+    Message Route201_Text_RivalEllipsis
+    Message Route201_Text_ProfessorEllipsis
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerThisIsProfRowan
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 9
+    Message Route201_Text_ThisIsProfRowanIsntIt
     CloseMessage
-    ApplyMovement 2, _0748
-    ApplyMovement 5, _07C8
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFaceProfRowanThisIsProfRowan
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkAway
     WaitMovement
-    Message 10
+    Message Route201_Text_HmmWhatToDo
     CloseMessage
     WaitTime 20, VAR_RESULT
-    ApplyMovement 5, _07D0
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanWalkBack
     WaitMovement
-    Message 11
+    Message Route201_Text_YouTrulyLovePokemonDoYou
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0298
-    GoToIfEq VAR_RESULT, MENU_NO, _0259
+    GoToIfEq VAR_RESULT, MENU_YES, Route201_WeLovePokemon
+    GoToIfEq VAR_RESULT, MENU_NO, Route201_WeDontLovePokemon
     End
 
-_0259:
-    ApplyMovement 2, _0750
+Route201_WeDontLovePokemon:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerDontLovePokemon
     WaitMovement
     BufferRivalName 0
-    Message 12
+    Message Route201_Text_YoureNotMakingAnySense
     CloseMessage
-    ApplyMovement 2, _0758
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotNormalLeft
     WaitMovement
-    Message 13
+    Message Route201_Text_IDidntQuiteCatchThat
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0298
-    GoToIfEq VAR_RESULT, MENU_NO, _0259
+    GoToIfEq VAR_RESULT, MENU_YES, Route201_WeLovePokemon
+    GoToIfEq VAR_RESULT, MENU_NO, Route201_WeDontLovePokemon
     End
 
-_0298:
-    ApplyMovement 2, _0758
+Route201_WeLovePokemon:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotNormalLeft
     WaitMovement
     BufferRivalName 0
-    Message 14
-    Message 15
-    GoTo _02B3
+    Message Route201_Text_ILovePokemonToo
+    Message Route201_Text_IWillAskOnceAgain
+    GoTo Route201_TheAnswerWillNeverChangeRight
     End
 
-_02B3:
-    ApplyMovement 2, _0768
+Route201_TheAnswerWillNeverChangeRight:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotFastLeft
     WaitMovement
     BufferRivalName 0
-    Message 16
-    ApplyMovement 2, _0770
+    Message Route201_Text_TheAnswerWillNeverChange
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerRightPlayer
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _088C
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerFaceRivalRightPlayer
     WaitMovement
     BufferPlayerName 1
-    Message 17
+    Message Route201_Text_RightPlayer
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _030B
-    GoToIfEq VAR_RESULT, MENU_NO, _02FD
+    GoToIfEq VAR_RESULT, MENU_YES, Route201_WeStillLovePokemon
+    GoToIfEq VAR_RESULT, MENU_NO, Route201_ThatJokesGettingOld
     End
 
-_02FD:
+Route201_ThatJokesGettingOld:
     BufferRivalName 0
-    Message 18
-    GoTo _02B3
+    Message Route201_Text_ThatJokesGettingOld
+    GoTo Route201_TheAnswerWillNeverChangeRight
     End
 
-_030B:
-    Message 19
-    ApplyMovement 2, _0768
-    ApplyMovement LOCALID_PLAYER, _0894
+Route201_WeStillLovePokemon:
+    Message Route201_Text_ItWorriesMeWhatPeopleWouldDo
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotFastLeft
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerFaceProfRowanWest
     WaitMovement
     BufferRivalName 0
-    Message 20
-    Message 21
+    Message Route201_Text_GiveAPokemonToMyFriendHere
+    Message Route201_Text_IWillEntrustYouWithPokemon
     CloseMessage
-    ApplyMovement 5, _07D8
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanLookAround
     WaitMovement
     WaitTime 25, VAR_RESULT
-    ClearFlag FLAG_UNK_0x0179
-    AddObject 6
-    LockObject 6
+    ClearFlag FLAG_HIDE_ROUTE_201_COUNTERPART
+    AddObject LOCALID_COUNTERPART
+    LockObject LOCALID_COUNTERPART
     SetCounterpartBGM
-    ApplyMovement 6, _08C8
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartEnter
     WaitMovement
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _036E
-    GoTo _03A6
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route201_DawnBringBriefcase
+    GoTo Route201_LucasBringBriefcase
     End
 
-_036E:
-    Message 22
+Route201_DawnBringBriefcase:
+    Message Route201_Text_DawnYouLeftYourBriefcaseAtTheLake
     CloseMessage
-    ApplyMovement 5, _07E8
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFaceCounterpart
     WaitMovement
-    ClearFlag FLAG_UNK_0x017D
-    AddObject 12
+    ClearFlag FLAG_HIDE_ROUTE_201_BRIEFCASE
+    AddObject LOCALID_BRIEFCASE
     WaitTime 15, VAR_RESULT
-    Message 23
-    Message 26
-    ApplyMovement 6, _08D0
+    Message Route201_Text_OhIsSomethingWrongHere
+    Message Route201_Text_ThereItIsNiceWorkDawn
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartWalkOnSpotEast
     WaitMovement
-    Message 28
-    GoTo _03DE
+    Message Route201_Text_DawnThosePokemonAreHardToReplace
+    GoTo Route201_GoOnChoosePokemon
     End
 
-_03A6:
-    Message 24
+Route201_LucasBringBriefcase:
+    Message Route201_Text_LucasYouLeftYourBriefcaseAtTheLake
     CloseMessage
-    ApplyMovement 5, _07E8
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFaceCounterpart
     WaitMovement
-    ClearFlag FLAG_UNK_0x017D
-    AddObject 12
+    ClearFlag FLAG_HIDE_ROUTE_201_BRIEFCASE
+    AddObject LOCALID_BRIEFCASE
     WaitTime 15, VAR_RESULT
-    Message 25
-    Message 27
-    ApplyMovement 6, _08D0
+    Message Route201_Text_IsSomethingWrongHere
+    Message Route201_Text_ThereItIsNiceWorkLucas
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartWalkOnSpotEast
     WaitMovement
-    Message 29
-    GoTo _03DE
+    Message Route201_Text_LucasThosePokemonAreCrucial
+    GoTo Route201_GoOnChoosePokemon
     End
 
-_03DE:
-    Message 30
+Route201_GoOnChoosePokemon:
+    Message Route201_Text_PeopleShouldMeetPokemon
     CloseMessage
-    ApplyMovement 5, _07F0
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFacePlayerEast
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message 31
-    ApplyMovement 2, _0778
+    Message Route201_Text_GoOnChooseAPokemon
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerICantBelieveIt
     WaitMovement
     BufferRivalName 0
-    Message 33
-    ApplyMovement 2, _0780
+    Message Route201_Text_ICantBelieveIt
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotSouth
     WaitMovement
     BufferPlayerName 1
-    Message 34
+    Message Route201_Text_YouCanChooseFirst
     WaitABXPadPress
     CloseMessage
     FadeToDefaultMusic
-    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
     SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll
     End
 
-_042E:
+Route201_Briefcase:
     LockAll
     FadeScreenOut
     WaitFadeScreen
-    SetFlag FLAG_UNK_0x017D
-    RemoveObject 12
+    SetFlag FLAG_HIDE_ROUTE_201_BRIEFCASE
+    RemoveObject LOCALID_BRIEFCASE
     StartChooseStarterScene
     SaveChosenStarter
     ReturnToField
@@ -284,79 +284,79 @@ _042E:
     WaitFadeScreen
     GetPlayerStarterSpecies VAR_0x8000
     GivePokemon VAR_0x8000, 5, ITEM_NONE, VAR_RESULT
-    ApplyMovement 5, _07F8
-    ApplyMovement 2, _0760
-    ApplyMovement LOCALID_PLAYER, _0884
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanFacePlayerSouth
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFaceWest
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerFaceProfRowanNorth
     WaitMovement
     BufferRivalName 0
     BufferRivalStarterSpeciesName 2
-    Message 36
-    Message 37
-    Message 38
+    Message Route201_Text_ImPickingThisStarter
+    Message Route201_Text_IHopeYoullDoWellTogether
+    Message Route201_Text_ComeSeeMeInSandgemTown
     CloseMessage
-    ApplyMovement 5, _0800
-    ApplyMovement 2, _0788
-    ApplyMovement LOCALID_PLAYER, _089C
+    ApplyMovement LOCALID_PROF_ROWAN, Route201_Movement_ProfRowanLeave
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalMoveAwayForProfRowan
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWatchProfRowanLeave
     WaitMovement
-    SetFlag FLAG_UNK_0x0178
-    RemoveObject 5
+    SetFlag FLAG_HIDE_ROUTE_201_PROF_ROWAN
+    RemoveObject LOCALID_PROF_ROWAN
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, _04CA
-    GoTo _04EE
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route201_DawnLeave
+    GoTo Route201_LucasLeave
     End
 
-_04CA:
-    Message 39
+Route201_DawnLeave:
+    Message Route201_Text_DawnWaitForMe
     CloseMessage
-    ApplyMovement 6, _08D8
-    ApplyMovement LOCALID_PLAYER, _08A8
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartStartToLeave
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_WatchCounterpartStartToLeave
     WaitMovement
-    Message 40
+    Message Route201_Text_DawnPleaseLetMePass
     CloseMessage
-    GoTo _0512
+    GoTo Route201_CounterpartLeave
     End
 
-_04EE:
-    Message 41
+Route201_LucasLeave:
+    Message Route201_Text_LucasWaitForMe
     CloseMessage
-    ApplyMovement 6, _08D8
-    ApplyMovement LOCALID_PLAYER, _08A8
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartStartToLeave
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_WatchCounterpartStartToLeave
     WaitMovement
-    Message 42
+    Message Route201_Text_LucasSorryFolks
     CloseMessage
-    GoTo _0512
+    GoTo Route201_CounterpartLeave
     End
 
-_0512:
-    ApplyMovement LOCALID_PLAYER, _08B0
-    ApplyMovement 6, _08E0
+Route201_CounterpartLeave:
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_WatchCounterpartLeave
+    ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartLeave
     WaitMovement
-    SetFlag FLAG_UNK_0x0179
-    RemoveObject 6
+    SetFlag FLAG_HIDE_ROUTE_201_COUNTERPART
+    RemoveObject LOCALID_COUNTERPART
     BufferRivalName 0
-    Message 43
+    Message Route201_Text_ProfRowansReallyNice
     CloseMessage
     WaitTime 40, VAR_RESULT
-    ApplyMovement 2, _07A8
-    ApplyMovement LOCALID_PLAYER, _08BC
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerForBattle
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerFaceRivalForBattle
     WaitMovement
-    GoTo _0554
+    GoTo Route201_AskUpForABattle
     End
 
-_0554:
+Route201_AskUpForABattle:
     BufferPlayerName 1
-    Message 44
+    Message Route201_Text_OnlyOneThingToDo
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _057A
-    GoToIfEq VAR_RESULT, MENU_NO, _0656
+    GoToIfEq VAR_RESULT, MENU_YES, Route201_StartRivalBattle
+    GoToIfEq VAR_RESULT, MENU_NO, Route201_DontBeThatWay
     End
 
-_057A:
+Route201_StartRivalBattle:
     BufferRivalName 0
     BufferPlayerName 1
-    Message 47
+    Message Route201_Text_IChallengeYouToABattle
     CloseMessage
-    ScrCmd_06D 2, 15
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, Route201_StartFirstBattleTurtwig
     GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, Route201_StartFirstBattleChimchar
@@ -365,38 +365,38 @@ _057A:
 
 Route201_StartFirstBattlePiplup:
     StartFirstBattle TRAINER_RIVAL_ROUTE_201_PIPLUP
-    GoTo _05CF
+    GoTo Route201_HandleRivalBattleEnd
 
 Route201_StartFirstBattleTurtwig:
     StartFirstBattle TRAINER_RIVAL_ROUTE_201_TURTWIG
-    GoTo _05CF
+    GoTo Route201_HandleRivalBattleEnd
 
 Route201_StartFirstBattleChimchar:
     StartFirstBattle TRAINER_RIVAL_ROUTE_201_CHIMCHAR
-    GoTo _05CF
+    GoTo Route201_HandleRivalBattleEnd
 
-_05CF:
+Route201_HandleRivalBattleEnd:
     CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, _05F5
-    LockObject 2
+    GoToIfEq VAR_RESULT, FALSE, Route201_RivalWonLetsGoHome
+    LockObject LOCALID_RIVAL
     BufferRivalName 0
     BufferPlayerName 1
-    Message 48
-    GoTo _0618
+    Message Route201_Text_WhewLetsGoHome
+    GoTo Route201_EndChooseStarterSequenceAndWarpHome
     End
 
-_05F5:
+Route201_RivalWonLetsGoHome:
     ReturnToField
-    LockObject 2
+    LockObject LOCALID_RIVAL
     FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
     BufferRivalName 0
     BufferPlayerName 1
-    Message 49
-    GoTo _0618
+    Message Route201_Text_IWonLetsGoHome
+    GoTo Route201_EndChooseStarterSequenceAndWarpHome
     End
 
-_0618:
+Route201_EndChooseStarterSequenceAndWarpHome:
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 2
     SetVar VAR_PLAYER_HOUSE_STATE, 3
@@ -410,46 +410,46 @@ _0618:
     ReleaseAll
     End
 
-_0656:
+Route201_DontBeThatWay:
     BufferRivalName 0
-    Message 45
-    GoTo _0554
+    Message Route201_Text_DontBeThatWay
+    GoTo Route201_AskUpForABattle
     End
 
     .balign 4, 0
-_0664:
+Route201_Movement_RivalNoticePlayer:
     WalkOnSpotFastSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-_0670:
+Route201_Movement_RivalRunToPlayerX110:
     WalkFastSouth
     WalkFastWest 2
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0680:
+Route201_Movement_RivalRunToPlayerX111:
     WalkFastSouth
     WalkFastWest
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0690:
+Route201_Movement_RivalRunToPlayerX112:
     WalkFastSouth
     EndMovement
 
     .balign 4, 0
-_0698:
+Route201_Movement_RivalRunToPlayerX113:
     WalkFastSouth
     WalkFastEast
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_06A8:
+Route201_Movement_RivalWalkToGrassX110:
     WalkNormalNorth
     WalkNormalEast 4
     WalkNormalNorth 2
@@ -458,7 +458,7 @@ _06A8:
     EndMovement
 
     .balign 4, 0
-_06C0:
+Route201_Movement_RivalWalkToGrassX111:
     WalkNormalNorth
     WalkNormalEast 3
     WalkNormalNorth 2
@@ -467,7 +467,7 @@ _06C0:
     EndMovement
 
     .balign 4, 0
-_06D8:
+Route201_Movement_RivalWalkToGrassX112:
     WalkNormalNorth
     WalkNormalEast 2
     WalkNormalNorth 2
@@ -476,7 +476,7 @@ _06D8:
     EndMovement
 
     .balign 4, 0
-_06F0:
+Route201_Movement_RivalWalkToGrassX113:
     WalkNormalNorth
     WalkNormalEast
     WalkNormalNorth 2
@@ -485,7 +485,7 @@ _06F0:
     EndMovement
 
     .balign 4, 0
-_0708:
+Route201_Movement_RivalWalkToPlayer:
     WalkNormalWest
     WalkOnSpotNormalSouth
     EndMovement
@@ -495,70 +495,70 @@ Route201_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_071C:
+Route201_Movement_RivalWalkBackToRun:
     WalkNormalWest 3
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0728:
+Route201_Movement_RivalRunTowardsGrass:
     WalkFastEast 3
     EndMovement
 
     .balign 4, 0
-_0730:
+Route201_Movement_NoticeProfRowan:
     EmoteExclamationMark
     Delay16
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0740:
+Route201_Movement_RivalFacePlayerThisIsProfRowan:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0748:
+Route201_Movement_RivalFaceProfRowanThisIsProfRowan:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0750:
+Route201_Movement_RivalFacePlayerDontLovePokemon:
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0758:
+Route201_Movement_RivalWalkOnSpotNormalLeft:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0760:
+Route201_Movement_RivalFaceWest:
     FaceWest
     EndMovement
 
     .balign 4, 0
-_0768:
+Route201_Movement_RivalWalkOnSpotFastLeft:
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0770:
+Route201_Movement_RivalFacePlayerRightPlayer:
     WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
-_0778:
+Route201_Movement_RivalFacePlayerICantBelieveIt:
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_0780:
+Route201_Movement_RivalWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0788:
+Route201_Movement_RivalMoveAwayForProfRowan:
     WalkNormalNorth
     WalkOnSpotNormalSouth
     Delay8 2
@@ -571,7 +571,7 @@ Route201_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_07A8:
+Route201_Movement_RivalRunToPlayerForBattle:
     WalkOnSpotNormalSouth
     Delay8 3
     WalkOnSpotFastSouth 8
@@ -580,51 +580,51 @@ _07A8:
     EndMovement
 
     .balign 4, 0
-_07C0:
+Route201_Movement_ProfRowanEnter:
     WalkNormalEast 8
     EndMovement
 
     .balign 4, 0
-_07C8:
+Route201_Movement_ProfRowanWalkAway:
     WalkNormalWest 3
     EndMovement
 
     .balign 4, 0
-_07D0:
+Route201_Movement_ProfRowanWalkBack:
     WalkNormalEast 3
     EndMovement
 
     .balign 4, 0
-_07D8:
+Route201_Movement_ProfRowanLookAround:
     WalkOnSpotNormalWest
     Delay8 2
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_07E8:
+Route201_Movement_ProfRowanFaceCounterpart:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_07F0:
+Route201_Movement_ProfRowanFacePlayerEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_07F8:
+Route201_Movement_ProfRowanFacePlayerSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0800:
+Route201_Movement_ProfRowanLeave:
     Delay8 2
     Delay4
     WalkNormalEast 9
     EndMovement
 
     .balign 4, 0
-_0810:
+Route201_Movement_PlayerWalkToGrassX110:
     WalkNormalNorth 2
     WalkNormalEast 4
     WalkNormalNorth
@@ -632,7 +632,7 @@ _0810:
     EndMovement
 
     .balign 4, 0
-_0824:
+Route201_Movement_PlayerWalkToGrassX111:
     WalkNormalNorth 2
     WalkNormalEast 3
     WalkNormalNorth
@@ -640,7 +640,7 @@ _0824:
     EndMovement
 
     .balign 4, 0
-_0838:
+Route201_Movement_PlayerWalkToGrassX112:
     WalkNormalNorth 2
     WalkNormalEast 2
     WalkNormalNorth
@@ -648,7 +648,7 @@ _0838:
     EndMovement
 
     .balign 4, 0
-_084C:
+Route201_Movement_PlayerWalkToGrassX113:
     WalkNormalNorth 2
     WalkNormalEast
     WalkNormalNorth
@@ -656,262 +656,259 @@ _084C:
     EndMovement
 
     .balign 4, 0
-_0860:
+Route201_Movement_PlayerWatchRivalWalkUp:
     Delay4
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_086C:
+Route201_Movement_PlayerWatchRivalWalkBackToRun:
     Delay8
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0878:
+Route201_Movement_PlayerWatchRivalRunTowardsGrass:
     Delay8
     WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
-_0884:
+Route201_Movement_PlayerFaceProfRowanNorth:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_088C:
+Route201_Movement_PlayerFaceRivalRightPlayer:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_0894:
+Route201_Movement_PlayerFaceProfRowanWest:
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_089C:
+Route201_Movement_PlayerWatchProfRowanLeave:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_08A8:
+Route201_Movement_WatchCounterpartStartToLeave:
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_08B0:
+Route201_Movement_WatchCounterpartLeave:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_08BC:
+Route201_Movement_PlayerFaceRivalForBattle:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-_08C8:
+Route201_Movement_CounterpartEnter:
     WalkNormalEast 7
     EndMovement
 
     .balign 4, 0
-_08D0:
+Route201_Movement_CounterpartWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_08D8:
+Route201_Movement_CounterpartStartToLeave:
     WalkNormalEast
     EndMovement
 
     .balign 4, 0
-_08E0:
+Route201_Movement_CounterpartLeave:
     WalkNormalEast 9
     EndMovement
 
-_08E8:
+Route201_TriggerFollowingRivalStopPlayerEast:
     LockAll
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 3, _0903
-    GoTo _0935
+    GoToIfEq VAR_RESULT, DIR_EAST, Route201_RivalStopPlayerFacingEast
+    GoTo Route201_RivalStopPlayerFacingNorth
     End
 
-_0903:
-    ApplyMovement LOCALID_PLAYER, _09D0
-    ApplyMovement 2, _09B0
+Route201_RivalStopPlayerFacingEast:
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerTurnToRivalWest
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerEast
     WaitMovement
-    Call _0967
-    ApplyMovement LOCALID_PLAYER, _09C0
-    ApplyMovement 2, _0998
+    Call Route201_ISaidTheLakesNotThatWay
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkBackWest
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalLeadPlayerBackWest
     WaitMovement
-    GoTo _097C
+    GoTo Route201_ResetRivalPartnerEast
     End
 
-_0935:
-    ApplyMovement LOCALID_PLAYER, _09D8
-    ApplyMovement 2, _09B8
+Route201_RivalStopPlayerFacingNorth:
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerTurnToRivalSouth
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerNorth
     WaitMovement
-    Call _0967
-    ApplyMovement LOCALID_PLAYER, _09C8
-    ApplyMovement 2, _09A4
+    Call Route201_ISaidTheLakesNotThatWay
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkBackSouth
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFollowPlayerWalkingBackSouth
     WaitMovement
-    GoTo _097C
+    GoTo Route201_ResetRivalPartnerEast
     End
 
-_0967:
+Route201_ISaidTheLakesNotThatWay:
     BufferRivalName 0
     BufferPlayerName 1
-    Message 53
+    Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
     ClearHasPartner
-    ScrCmd_06D 2, 15
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
-_097C:
-    Call _0986
+Route201_ResetRivalPartnerEast:
+    Call Route201_ResetRivalPartner
     ReleaseAll
     End
 
-_0986:
+Route201_ResetRivalPartner:
     SetHasPartner
-    ScrCmd_06D 2, 48
-    ScrCmd_06C 2, 1
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
+    SetObjectFlagIsPersistent LOCALID_RIVAL, TRUE
     Return
 
     .balign 4, 0
-_0998:
+Route201_Movement_RivalLeadPlayerBackWest:
     WalkNormalWest
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_09A4:
+Route201_Movement_RivalFollowPlayerWalkingBackSouth:
     WalkNormalNorth
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_09B0:
+Route201_Movement_RivalFacePlayerEast:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_09B8:
+Route201_Movement_RivalFacePlayerNorth:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_09C0:
+Route201_Movement_PlayerWalkBackWest:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_09C8:
+Route201_Movement_PlayerWalkBackSouth:
     WalkNormalSouth
     EndMovement
 
     .balign 4, 0
-_09D0:
+Route201_Movement_PlayerTurnToRivalWest:
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_09D8:
+Route201_Movement_PlayerTurnToRivalSouth:
     WalkOnSpotFastSouth
     EndMovement
 
-_09E0:
+Route201_TriggerFollowingRivalStopPlayerSouth:
     LockAll
-    ApplyMovement LOCALID_PLAYER, _0A84
-    ApplyMovement 2, _0A74
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerTurnToRivalNorth
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalFacePlayerSouth
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 52
+    Message Route201_Text_TheLakesNotThatWay
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 110, _0A3B
-    GoToIfEq VAR_0x8004, 111, _0A3B
-    GoToIfEq VAR_0x8004, 112, _0A3B
-    GoToIfEq VAR_0x8004, 113, _0A3B
+    GoToIfInRange VAR_0x8004, 110, 113, Route201_PlayerAndRivalWalkBackNorth
     End
 
-_0A3B:
+Route201_PlayerAndRivalWalkBackNorth:
     ClearHasPartner
-    ScrCmd_06D 2, 15
-    ApplyMovement LOCALID_PLAYER, _0A7C
-    ApplyMovement 2, _0A68
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_SOUTH
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkNorthWithRival
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkNorthWithPlayer
     WaitMovement
-    GoTo _0A5B
+    GoTo Route201_ResetRivalPartnerSouth
 
-_0A5B:
-    Call _0986
+Route201_ResetRivalPartnerSouth:
+    Call Route201_ResetRivalPartner
     ReleaseAll
     End
 
     .balign 4, 0
-_0A68:
+Route201_Movement_RivalWalkNorthWithPlayer:
     WalkNormalNorth
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0A74:
+Route201_Movement_RivalFacePlayerSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0A7C:
+Route201_Movement_PlayerWalkNorthWithRival:
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0A84:
+Route201_Movement_PlayerTurnToRivalNorth:
     WalkOnSpotFastNorth
     EndMovement
 
-_0A8C:
+Route201_TriggerPickAPokemon:
     LockAll
-    ApplyMovement 2, _0AE4
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalWalkOnSpotNormalSouth
     WaitMovement
     BufferRivalName 0
-    Message 35
+    Message Route201_Text_PickAPokemon
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, 3, _0AB9
-    GoTo _0ACB
+    GoToIfEq VAR_RESULT, DIR_EAST, Route201_PlayerWalkBackWestToBriefcase
+    GoTo Route201_PlayerWalkBackNorthToBriefcase
     End
 
-_0AB9:
-    ApplyMovement LOCALID_PLAYER, _0AEC
+Route201_PlayerWalkBackWestToBriefcase:
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkBackWestToBriefcase
     WaitMovement
-    GoTo _0ADD
+    GoTo Route201_Release
     End
 
-_0ACB:
-    ApplyMovement LOCALID_PLAYER, _0AF4
+Route201_PlayerWalkBackNorthToBriefcase:
+    ApplyMovement LOCALID_PLAYER, Route201_Movement_PlayerWalkBackNorthToBriefcase
     WaitMovement
-    GoTo _0ADD
+    GoTo Route201_Release
     End
 
-_0ADD:
+Route201_Release:
     ReleaseAll
     End
 
     .balign 4, 0
-_0AE4:
+Route201_Movement_RivalWalkOnSpotNormalSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0AEC:
+Route201_Movement_PlayerWalkBackWestToBriefcase:
     WalkNormalWest
     EndMovement
 
     .balign 4, 0
-_0AF4:
+Route201_Movement_PlayerWalkBackNorthToBriefcase:
     WalkNormalNorth
     EndMovement
 
@@ -945,39 +942,39 @@ _0B24:
 
 _0B55:
     ApplyMovement 254, _0DBC
-    ApplyMovement 5, _0D48
+    ApplyMovement LOCALID_PROF_ROWAN, _0D48
     WaitMovement
     BufferRivalName 0
-    Message 53
+    Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
-    ApplyMovement 5, _0D50
-    ApplyMovement 6, _0D80
+    ApplyMovement LOCALID_PROF_ROWAN, _0D50
+    ApplyMovement LOCALID_COUNTERPART, _0D80
     WaitMovement
     GoTo _0BF5
     End
 
 _0B89:
     ApplyMovement 254, _0DBC
-    ApplyMovement 5, _0D48
+    ApplyMovement LOCALID_PROF_ROWAN, _0D48
     WaitMovement
     BufferRivalName 0
-    Message 53
+    Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
-    ApplyMovement 5, _0D5C
-    ApplyMovement 6, _0D80
+    ApplyMovement LOCALID_PROF_ROWAN, _0D5C
+    ApplyMovement LOCALID_COUNTERPART, _0D80
     WaitMovement
     GoTo _0BF5
 
 _0BBB:
     ApplyMovement LOCALID_PLAYER, _0DDC
     ApplyMovement 254, _0DCC
-    ApplyMovement 5, _0D48
+    ApplyMovement LOCALID_PROF_ROWAN, _0D48
     WaitMovement
     BufferRivalName 0
-    Message 53
+    Message Route201_Text_ISaidTheLakesNotThatWay
     CloseMessage
-    ApplyMovement 5, _0D5C
-    ApplyMovement 6, _0D80
+    ApplyMovement LOCALID_PROF_ROWAN, _0D5C
+    ApplyMovement LOCALID_COUNTERPART, _0D80
     WaitMovement
     GoTo _0BF5
 
@@ -985,7 +982,7 @@ _0BF5:
     BufferCounterpartName 0
     BufferPlayerStarterSpeciesName 1
     BufferRivalStarterSpeciesName 2
-    ApplyMovement 5, _0D70
+    ApplyMovement LOCALID_PROF_ROWAN, _0D70
     WaitMovement
     GoToIfEq VAR_0x8005, 0x355, _0C3E
     GoToIfEq VAR_0x8005, 0x356, _0C56
@@ -994,20 +991,20 @@ _0BF5:
     End
 
 _0C3E:
-    ApplyMovement 5, _0D78
-    ApplyMovement 6, _0D94
+    ApplyMovement LOCALID_PROF_ROWAN, _0D78
+    ApplyMovement LOCALID_COUNTERPART, _0D94
     WaitMovement
     GoTo _0C86
 
 _0C56:
-    ApplyMovement 5, _0D78
-    ApplyMovement 6, _0DA0
+    ApplyMovement LOCALID_PROF_ROWAN, _0D78
+    ApplyMovement LOCALID_COUNTERPART, _0DA0
     WaitMovement
     GoTo _0C86
 
 _0C6E:
-    ApplyMovement 5, _0D78
-    ApplyMovement 6, _0DA0
+    ApplyMovement LOCALID_PROF_ROWAN, _0D78
+    ApplyMovement LOCALID_COUNTERPART, _0DA0
     WaitMovement
     GoTo _0C86
 
@@ -1031,20 +1028,20 @@ _0CA9:
     End
 
 _0CE1:
-    ApplyMovement 6, _0DB4
+    ApplyMovement LOCALID_COUNTERPART, _0DB4
     WaitMovement
     GoTo _0CF1
 
 _0CF1:
-    RemoveObject 6
-    RemoveObject 5
+    RemoveObject LOCALID_COUNTERPART
+    RemoveObject LOCALID_PROF_ROWAN
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
-    ScrCmd_06C 254, 0
+    SetObjectFlagIsPersistent 254, FALSE
     ClearHasPartner
-    SetFlag FLAG_UNK_0x0172
+    SetFlag FLAG_HIDE_ROUTE_201_RIVAL
     SetFlag FLAG_UNK_0x0195
     SetVar VAR_UNK_0x4082, 4
-    SetFlag FLAG_UNK_0x0196
+    SetFlag FLAG_HIDE_LAKE_VERITY_LOW_WATER_RIVAL
     WaitTime 30, VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
     WaitFadeScreen
@@ -1135,145 +1132,145 @@ _0DDC:
     WalkOnSpotNormalEast
     EndMovement
 
-_0DF4:
+Route201_BreederM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 54
+    Message Route201_Text_WildPokemonLurkInTallGrass
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0E07:
+Route201_SchoolKidM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 57
+    Message Route201_Text_ThatLedgeIsOneWay
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0E1A:
+Route201_Lass:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_HAS_POKEDEX, _0E3E
-    Message 58
-    GoTo _0E36
+    GoToIfSet FLAG_HAS_POKEDEX, Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»
+    Message Route201_Text_IfYourPokemonsHPIsLowGoHome
+    GoTo Route201_LassCloseMessage
 
-_0E36:
+Route201_LassCloseMessage:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0E3E:
-    Message 59
-    GoTo _0E36
+Route201_IfYourPokemonsHPIsLowGoToAPokemonCenter»:
+    Message Route201_Text_IfYourPokemonsHPIsLowGoToAPokemonCenter
+    GoTo Route201_LassCloseMessage
 
-_0E47:
+Route201_Cashier:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x006C, _0E8C
-    Message 55
+    GoToIfSet FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER, Route201_YouCanFindMartsInCitiesAndMajorTowns
+    Message Route201_Text_HereAPotionAsAFreeSample
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0E97
-    SetFlag FLAG_UNK_0x006C
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route201_BagIsFull
+    SetFlag FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER
     GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_0E8C:
-    Message 56
+Route201_YouCanFindMartsInCitiesAndMajorTowns:
+    Message Route201_Text_YouCanFindMartsInCitiesAndMajorTowns
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0E97:
+Route201_BagIsFull:
     MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0EA1:
+Route201_ProfRowan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 32
+    Message Route201_Text_RowanGoOnChooseAPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0EB4:
+Route201_TriggerLetsCatchThatLegendaryPokemon:
     LockAll
-    ApplyMovement 2, _0664
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
-    Message 50
+    Message Route201_Text_LetsCatchThatLegendaryPokemon
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8004, 110, _0F07
-    GoToIfEq VAR_0x8004, 111, _0F19
-    GoToIfEq VAR_0x8004, 112, _0F2B
-    GoToIfEq VAR_0x8004, 113, _0F3D
+    GoToIfEq VAR_0x8004, 110, Route201_RivalRunToPlayerX110
+    GoToIfEq VAR_0x8004, 111, Route201_RivalRunToPlayerX111
+    GoToIfEq VAR_0x8004, 112, Route201_RivalRunToPlayerX112
+    GoToIfEq VAR_0x8004, 113, Route201_RivalRunToPlayerX113
     End
 
-_0F07:
-    ApplyMovement 2, _0670
+Route201_RivalRunToPlayerX110:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX110
     WaitMovement
-    GoTo _0F4F
+    GoTo Route201_SetRivalPartner
     End
 
-_0F19:
-    ApplyMovement 2, _0680
+Route201_RivalRunToPlayerX111:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX111
     WaitMovement
-    GoTo _0F4F
+    GoTo Route201_SetRivalPartner
     End
 
-_0F2B:
-    ApplyMovement 2, _0690
+Route201_RivalRunToPlayerX112:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX112
     WaitMovement
-    GoTo _0F4F
+    GoTo Route201_SetRivalPartner
     End
 
-_0F3D:
-    ApplyMovement 2, _0698
+Route201_RivalRunToPlayerX113:
+    ApplyMovement LOCALID_RIVAL, Route201_Movement_RivalRunToPlayerX113
     WaitMovement
-    GoTo _0F4F
+    GoTo Route201_SetRivalPartner
     End
 
-_0F4F:
+Route201_SetRivalPartner:
     BufferRivalName 0
-    Message 51
+    Message Route201_Text_TogetherWeveGotNothingToFear
     WaitABXPadPress
     CloseMessage
     SetVar VAR_FOLLOWER_RIVAL_STATE, 3
     SetStepFlag
     SetHasPartner
-    ScrCmd_06D 2, 48
-    ScrCmd_06C 2, 1
-    SetFlag FLAG_UNK_0x0172
+    SetMovementType LOCALID_RIVAL, MOVEMENT_TYPE_FOLLOW_PLAYER
+    SetObjectFlagIsPersistent LOCALID_RIVAL, TRUE
+    SetFlag FLAG_HIDE_ROUTE_201_RIVAL
     ReleaseAll
     End
 
-_0F76:
-    ShowArrowSign 60
+Route201_ArrowSignpostTwinleafTown:
+    ShowArrowSign Route201_Text_Rt201TwinleafTown
     End
 
-_0F8D:
-    ShowArrowSign 61
+Route201_ArrowSignpostSandgemTown:
+    ShowArrowSign Route201_Text_Rt201SandgemTown
     End
 
-_0FA4:
-    ShowScrollingSign 62
+Route201_TrainerTipsSignpost:
+    ShowScrollingSign Route201_Text_TrainerTipsTalkToAnyone
     End
 
     .balign 4, 0

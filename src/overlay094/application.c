@@ -8,7 +8,6 @@
 #include "constants/species.h"
 
 #include "struct_defs/gts_player_data.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "global/utility.h"
 #include "overlay094/gts_application_state.h"
@@ -51,8 +50,8 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02033200.h"
-#include "unk_02099550.h"
 #include "vram_transfer.h"
+#include "wifi_overlays.h"
 
 static void GTSApplication_VBlankCallback(void *appStatePtr);
 static void GTSApplication_SetVRAMBanks(void);
@@ -133,7 +132,7 @@ BOOL GTSApplication_Init(ApplicationManager *appMan, int *loopState)
         *loopState = 1;
         break;
     case 1:
-        sub_02099550(); // load overlay4
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
         WirelessDriver_Init();
         (*loopState) = 0;
@@ -205,7 +204,7 @@ BOOL GTSApplication_Exit(ApplicationManager *appMan, int *unused)
 
     Heap_Free(appState->dwcHeapPointer);
     Overlay_UnloadHttpOverlay();
-    sub_02099560();
+    Overlay_UnloadWFCOverlay();
 
     GTSApplication_CleanupGraphics(appState);
 
@@ -245,7 +244,7 @@ static void GTSApplication_VBlankCallback(void *appStatePtr)
 
 static void GTSApplication_SetVRAMBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

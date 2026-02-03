@@ -17,7 +17,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_02099550.h"
+#include "wifi_overlays.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 
@@ -38,7 +38,7 @@ int ov66_0222DCE0(ApplicationManager *appMan, int *param1)
     {
         FS_EXTERN_OVERLAY(overlay63);
         Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
-        sub_02099550();
+        Overlay_LoadWFCOverlay();
         Overlay_LoadHttpOverlay();
     }
 
@@ -98,7 +98,7 @@ int ov66_0222DD90(ApplicationManager *appMan, int *param1)
         FS_EXTERN_OVERLAY(overlay63);
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
         Overlay_UnloadHttpOverlay();
-        sub_02099560();
+        Overlay_UnloadWFCOverlay();
     }
 
     return 1;

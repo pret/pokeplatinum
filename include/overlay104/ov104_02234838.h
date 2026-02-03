@@ -6,7 +6,7 @@
 BOOL FrontierScrCmd_8B(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_8C(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_8D(FrontierScriptContext *param0);
-BOOL FrontierScrCmd_8E(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_OpenBattleHallApp(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_8F(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_90(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_91(FrontierScriptContext *param0);

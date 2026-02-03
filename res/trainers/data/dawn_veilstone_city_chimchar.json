@@ -38,15 +38,15 @@
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_PRINPLUP",
+            "species": "SPECIES_GROTLE",
             "form": 0,
             "level": 27,
             "item": null,
             "moves": [
-                "MOVE_BUBBLE_BEAM",
-                "MOVE_METAL_CLAW",
-                "MOVE_PECK",
-                "MOVE_GROWL"
+                "MOVE_RAZOR_LEAF",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_BITE",
+                "MOVE_CURSE"
             ],
             "power": 60,
             "ball_seal": 0

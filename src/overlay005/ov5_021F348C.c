@@ -115,7 +115,7 @@ static void ov5_021F35E8(UnkStruct_ov5_021DF47C *param0, MapObject *param1, UnkS
     param2->unk_0C = param1;
 
     MapObject_GetPosPtr(param1, param3);
-    sub_02064450(MapObject_GetX(param1), MapObject_GetZ(param1), param3);
+    VecFx32_SetPosFromMapCoords(MapObject_GetX(param1), MapObject_GetZ(param1), param3);
 
     *param4 = sub_02062758(param1, 2);
 }

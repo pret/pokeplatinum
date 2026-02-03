@@ -321,7 +321,7 @@ static void LoadPartyPokemonSpriteData(BattleParty *battleParty)
 
     for (u32 i = 0; i < MAX_PARTY_SIZE; i++) {
         if (battleParty->partyPokemon[i].species != SPECIES_NONE) {
-            SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleParty->spriteManager, narc, Pokemon_IconSpriteIndex(battleParty->partyPokemon[i].pokemon), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, PARTY_POKEMON_CHAR_RESOURCE_ID_OFFSET + i);
+            SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleParty->spriteManager, narc, Pokemon_IconSpriteIndex(battleParty->partyPokemon[i].mon), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, PARTY_POKEMON_CHAR_RESOURCE_ID_OFFSET + i);
         } else {
             SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleParty->spriteManager, narc, PokeIconSpriteIndex(SPECIES_NONE, FALSE, 0), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, PARTY_POKEMON_CHAR_RESOURCE_ID_OFFSET + i);
         }

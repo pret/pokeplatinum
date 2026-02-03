@@ -70,8 +70,8 @@ typedef struct {
 static BOOL ScriptContextShouldResume(ScriptContext *ctx);
 static u16 GetMoveID(u16 moveIndex);
 static u16 GetMoveIndex(u16 moveID);
-static u8 Pokemon_ReadMovesetMaskByte(Pokemon *pokemon, u8 offset);
-static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation location);
+static u8 Pokemon_ReadMovesetMaskByte(Pokemon *mon, u8 offset);
+static BOOL Pokemon_HasLearnableMovesAt(Pokemon *mon, enum TutorLocation location);
 static void MoveTutorManager_SetMessageLoader(MoveTutorManager *moveTutorManager, MessageLoader *messageLoader);
 static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *moveTutorManager, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *scriptManagerWindow, MessageLoader *messageLoader);
 MoveTutorManager *MoveTutorManager_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader);
@@ -98,8 +98,8 @@ BOOL ScrCmd_CheckHasLearnableTutorMoves(ScriptContext *ctx)
     u16 location = ScriptContext_GetVar(ctx);
     u16 *hasLearnableMoves = ScriptContext_GetVarPointer(ctx);
 
-    Pokemon *pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
-    *hasLearnableMoves = Pokemon_HasLearnableMovesAt(pokemon, location);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+    *hasLearnableMoves = Pokemon_HasLearnableMovesAt(mon, location);
 
     return FALSE;
 }
@@ -208,10 +208,10 @@ static u16 GetMoveIndex(u16 moveID)
     return 0;
 }
 
-static u8 Pokemon_ReadMovesetMaskByte(Pokemon *pokemon, u8 offset)
+static u8 Pokemon_ReadMovesetMaskByte(Pokemon *mon, u8 offset)
 {
-    u32 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-    u32 form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+    u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     u16 moveset = species;
 
     switch (species) {
@@ -259,21 +259,21 @@ static u8 Pokemon_ReadMovesetMaskByte(Pokemon *pokemon, u8 offset)
     return sSpeciesLearnsetsByTutor[moveset - 1].maskData[offset];
 }
 
-static BOOL Pokemon_HasLearnableMovesAt(Pokemon *pokemon, enum TutorLocation location)
+static BOOL Pokemon_HasLearnableMovesAt(Pokemon *mon, enum TutorLocation location)
 {
     int movesetMaskByteOffset, movesetMaskBitOffset, knownMovesIndex;
     u8 movesetMask, canLearn;
     u32 species;
     u16 knownMoves[LEARNED_MOVES_MAX];
 
-    species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+    species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
     for (knownMovesIndex = 0; knownMovesIndex < LEARNED_MOVES_MAX; knownMovesIndex++) {
-        knownMoves[knownMovesIndex] = Pokemon_GetValue(pokemon, MON_DATA_MOVE1 + knownMovesIndex, NULL);
+        knownMoves[knownMovesIndex] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + knownMovesIndex, NULL);
     }
 
     for (movesetMaskByteOffset = 0; movesetMaskByteOffset < MOVESET_MASK_SIZE; movesetMaskByteOffset++) {
-        movesetMask = Pokemon_ReadMovesetMaskByte(pokemon, movesetMaskByteOffset);
+        movesetMask = Pokemon_ReadMovesetMaskByte(mon, movesetMaskByteOffset);
 
         for (movesetMaskBitOffset = 0; movesetMaskBitOffset < 8; movesetMaskBitOffset++) {
             canLearn = ((movesetMask >> movesetMaskBitOffset) & 0x1);
@@ -299,7 +299,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
 {
     u8 movesetMaskByte, canLearn;
     int i, knownMoveIndex;
-    Pokemon *pokemon;
+    Pokemon *mon;
     MessageLoader *moveNamesLoader;
     MessageLoader *miscMessageLoader;
     FieldSystem *fieldSystem = scriptContext->fieldSystem;
@@ -314,7 +314,7 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
     scriptContext->data[0] = selectedOptionVar;
 
     if (partySlot != 0xff) {
-        pokemon = Party_GetPokemonBySlotIndex(SaveData_GetParty(scriptContext->fieldSystem->saveData), partySlot);
+        mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(scriptContext->fieldSystem->saveData), partySlot);
     }
 
     moveNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD3);
@@ -328,11 +328,11 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
 
     if (partySlot != 0xff) {
         for (knownMoveIndex = 0; knownMoveIndex < LEARNED_MOVES_MAX; knownMoveIndex++) {
-            knownMoves[knownMoveIndex] = Pokemon_GetValue(pokemon, (MON_DATA_MOVE1 + knownMoveIndex), NULL);
+            knownMoves[knownMoveIndex] = Pokemon_GetValue(mon, (MON_DATA_MOVE1 + knownMoveIndex), NULL);
         }
 
         for (i = 0; i < MOVESET_MASK_SIZE; i++) {
-            movesetMaskByte = Pokemon_ReadMovesetMaskByte(pokemon, i);
+            movesetMaskByte = Pokemon_ReadMovesetMaskByte(mon, i);
 
             for (int j = 0; j < 8; j++) {
                 canLearn = ((movesetMaskByte >> j) & 0x1);

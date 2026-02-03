@@ -38,14 +38,12 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 static u32 ov104_0223B4D4(u8 param0);
 static void ov104_0223B518(FrontierPokemonDataDTO *param0, u8 param1, u16 param2, u16 param3[], int param4, int param5, int param6);
 static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
-u8 ov104_0223B5A4(u8 param0);
 u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0);
 static u8 ov104_0223B5F0(u8 param0);
 static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2);
 static u16 ov104_0223B644(u8 param0);
 u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0);
 static BOOL ov104_0223B4A4(UnkStruct_ov104_0223B5C0 *param0, u8 param1);
-BOOL ov104_0223B5B0(u8 param0);
 
 static const u16 Unk_ov104_0224041C[10][8] = {
     { 0x2, 0x3, 0x14, 0x15, 0x25, 0x24, 0x16, 0x1C },
@@ -1596,7 +1594,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     ov104_0222E284(v8, &v10, v5, 1, 11);
     Party_InitWithCapacity(v8->parties[1], v5);
 
-    v7 = sub_020301E0(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
+    v7 = BattleHall_GetRankOfType(param0->unk_6F5, &param0->unk_704[param0->unk_04][0]);
 
     if (param0->unk_04 == 2) {
         v7 = (10 - 1);
@@ -1743,43 +1741,37 @@ static u32 ov104_0223B57C(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
     return v1;
 }
 
-static const u8 Unk_ov104_02241244[20] = {
-    0x0,
-    0xA,
-    0xB,
-    0xD,
-    0xC,
-    0xF,
-    0x1,
-    0x3,
-    0x4,
-    0x2,
-    0xE,
-    0x6,
-    0x5,
-    0x7,
-    0x10,
-    0x11,
-    0x8,
-    0xfe,
-    0xfe,
-    0x9
+static const u8 sBattleHallAppGridOrder[20] = {
+    TYPE_NORMAL,
+    TYPE_FIRE,
+    TYPE_WATER,
+    TYPE_ELECTRIC,
+    TYPE_GRASS,
+    TYPE_ICE,
+    TYPE_FIGHTING,
+    TYPE_POISON,
+    TYPE_GROUND,
+    TYPE_FLYING,
+    TYPE_PSYCHIC,
+    TYPE_BUG,
+    TYPE_ROCK,
+    TYPE_GHOST,
+    TYPE_DRAGON,
+    TYPE_DARK,
+    TYPE_STEEL,
+    BATTLE_HALL_MON_SUMMARY,
+    BATTLE_HALL_MON_SUMMARY,
+    TYPE_MYSTERY
 };
 
-u8 ov104_0223B5A4(u8 param0)
+u8 BattleHall_CursorPosToType(u8 cursorPos)
 {
-    return Unk_ov104_02241244[param0];
+    return sBattleHallAppGridOrder[cursorPos];
 }
 
-BOOL ov104_0223B5B0(u8 param0)
+BOOL BattleFrontier_IsMultiPlayerChallenge(u8 challengeMode)
 {
-    switch (param0) {
-    case 2:
-    case 3:
-        return 1;
-    }
-
-    return 0;
+    return challengeMode == 2 || challengeMode == 3;
 }
 
 u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
@@ -1857,7 +1849,7 @@ u16 ov104_0223B64C(UnkStruct_ov104_0223B5C0 *param0)
             return v3;
         }
     } else {
-        if (ov104_0223B5B0(param0->unk_04) == 1) {
+        if (BattleFrontier_IsMultiPlayerChallenge(param0->unk_04) == 1) {
             if (v2 > param0->unk_D84[0]) {
                 return v2;
             } else {

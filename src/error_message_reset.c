@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "communication_system.h"
@@ -23,7 +21,7 @@
 #include "text.h"
 #include "unk_020366A0.h"
 
-static const UnkStruct_02099F80 sErrorMessageBanksConfig = {
+static const GXBanks sErrorMessageBanksConfig = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_NONE,

@@ -463,9 +463,9 @@ static BOOL FormSeen_Deoxys(const Pokedex *pokedexData, u32 form)
     return FALSE;
 }
 
-static void UpdateForms_Deoxys(Pokedex *pokedexData, u16 species, Pokemon *pokemon)
+static void UpdateForms_Deoxys(Pokedex *pokedexData, u16 species, Pokemon *mon)
 {
-    u8 form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+    u8 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
     if (species == SPECIES_DEOXYS) {
         if (FormSeen_Deoxys(pokedexData, form) == FALSE) {
@@ -559,44 +559,44 @@ static void UpdateForms_Rotom(Pokedex *pokedexData, u32 species, int form)
     }
 }
 
-static void UpdateForm(Pokedex *pokedexData, u16 species, Pokemon *pokemon)
+static void UpdateForm(Pokedex *pokedexData, u16 species, Pokemon *mon)
 {
     int form;
 
     switch (species) {
     case SPECIES_UNOWN:
-        form = Pokemon_GetForm(pokemon);
+        form = Pokemon_GetForm(mon);
         SetUnownForm(pokedexData, form);
         break;
     case SPECIES_BURMY:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         UpdateForms_ThreeForms(pokedexData, species, form);
         break;
     case SPECIES_WORMADAM:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         UpdateForms_ThreeForms(pokedexData, species, form);
         break;
     case SPECIES_SHELLOS:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_GASTRODON:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_DEOXYS:
-        UpdateForms_Deoxys(pokedexData, species, pokemon);
+        UpdateForms_Deoxys(pokedexData, species, mon);
         break;
     case SPECIES_SHAYMIN:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_GIRATINA:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         UpdateForms_TwoForms(pokedexData, species, form);
         break;
     case SPECIES_ROTOM:
-        form = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+        form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
         UpdateForms_Rotom(pokedexData, species, form);
         break;
     }
@@ -1026,11 +1026,11 @@ u32 Pokedex_NumFormsSeen_Deoxys(const Pokedex *pokedexData)
     return NumFormsSeen_Deoxys(pokedexData);
 }
 
-void Pokedex_Encounter(Pokedex *pokedexData, Pokemon *pokemon)
+void Pokedex_Encounter(Pokedex *pokedexData, Pokemon *mon)
 {
-    u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-    u32 personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
-    u32 gender = Pokemon_GetGender(pokemon);
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    u32 gender = Pokemon_GetGender(mon);
 
     CheckPokedexIntegrity(pokedexData);
 
@@ -1049,16 +1049,16 @@ void Pokedex_Encounter(Pokedex *pokedexData, Pokemon *pokemon)
         }
     }
 
-    UpdateForm(pokedexData, species, pokemon);
+    UpdateForm(pokedexData, species, mon);
     Write_SeenSpecies(pokedexData, species);
 }
 
-void Pokedex_Capture(Pokedex *pokedexData, Pokemon *pokemon)
+void Pokedex_Capture(Pokedex *pokedexData, Pokemon *mon)
 {
-    u16 species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-    u32 language = Pokemon_GetValue(pokemon, MON_DATA_LANGUAGE, NULL);
-    u32 personality = Pokemon_GetValue(pokemon, MON_DATA_PERSONALITY, NULL);
-    u32 gender = Pokemon_GetGender(pokemon);
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u32 language = Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL);
+    u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    u32 gender = Pokemon_GetGender(mon);
 
     CheckPokedexIntegrity(pokedexData);
 
@@ -1077,7 +1077,7 @@ void Pokedex_Capture(Pokedex *pokedexData, Pokemon *pokemon)
         }
     }
 
-    UpdateForm(pokedexData, species, pokemon);
+    UpdateForm(pokedexData, species, mon);
     UpdateLanguage(pokedexData, species, language);
 
     Write_CaughtSpecies(pokedexData, species);

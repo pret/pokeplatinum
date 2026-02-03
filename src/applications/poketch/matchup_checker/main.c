@@ -92,16 +92,16 @@ static BOOL Init(PoketchMatchupChecker *appData, PoketchSystem *poketchSys, BgCo
     appData->matchupData.partySize = Party_GetCurrentCount(party);
 
     for (int i = 0; i < appData->matchupData.partySize; i++) {
-        Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
-        if (Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL)) {
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
             continue;
         }
 
-        appData->matchupData.spriteIndices[nonEggMon] = BoxPokemon_IconSpriteIndex((const BoxPokemon *)pokemon);
-        appData->matchupData.species[nonEggMon] = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
-        appData->matchupData.forms[nonEggMon] = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
-        appData->pokemon[nonEggMon] = (BoxPokemon *)pokemon;
+        appData->matchupData.spriteIndices[nonEggMon] = BoxPokemon_IconSpriteIndex((const BoxPokemon *)mon);
+        appData->matchupData.species[nonEggMon] = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        appData->matchupData.forms[nonEggMon] = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        appData->pokemon[nonEggMon] = (BoxPokemon *)mon;
         nonEggMon++;
     }
 
