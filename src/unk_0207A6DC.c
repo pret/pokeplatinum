@@ -9,12 +9,12 @@
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0207A778.h"
-#include "struct_defs/struct_0207A81C.h"
 #include "struct_defs/struct_0207ACB4.h"
 #include "struct_defs/struct_0207AD40.h"
 #include "struct_defs/trainer.h"
 
-#include "battle/battle_io.h"
+#include "battle/battle_controller.h"
+#include "battle/message_defs.h"
 #include "battle/ov16_0223DF00.h"
 
 #include "charcode_util.h"
@@ -229,29 +229,29 @@ static u8 *sub_0207A814(int param0, void *param1, int param2)
 void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4)
 {
     int v0;
-    UnkStruct_0207A81C *v1;
+    BattleMessageInfo *info;
     u8 *v2;
     u8 *v3;
     u16 *v4;
     u16 *v5;
 
-    v1 = (UnkStruct_0207A81C *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_0207A81C));
+    info = (BattleMessageInfo *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageInfo));
     v3 = ov16_0223E06C(battleSys);
     v4 = ov16_0223E08C(battleSys);
     v5 = ov16_0223E098(battleSys);
 
-    if (v4[0] + sizeof(UnkStruct_0207A81C) + param4 + 1 > 0x1000) {
+    if (v4[0] + sizeof(BattleMessageInfo) + param4 + 1 > 0x1000) {
         v5[0] = v4[0];
         v4[0] = 0;
     }
 
-    v1->unk_00 = param1;
-    v1->unk_01 = param2;
-    v1->unk_02 = param4;
+    info->recipient = param1;
+    info->battler = param2;
+    info->size = param4;
 
-    v2 = (u8 *)v1;
+    v2 = (u8 *)info;
 
-    for (v0 = 0; v0 < sizeof(UnkStruct_0207A81C); v0++) {
+    for (v0 = 0; v0 < sizeof(BattleMessageInfo); v0++) {
         v3[v4[0]] = v2[v0];
         v4[0]++;
     }
@@ -263,7 +263,7 @@ void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3,
         v4[0]++;
     }
 
-    Heap_Free(v1);
+    Heap_Free(info);
 }
 
 static void sub_0207A8A8(int param0, int param1, void *param2, void *param3)
@@ -589,7 +589,7 @@ void sub_0207ACB4(SysTask *param0, void *param1)
             v4[0] = 0;
         }
 
-        v5 = sizeof(UnkStruct_0207A81C) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
+        v5 = sizeof(BattleMessageInfo) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
 
         if (CommSys_SendData(23, (void *)&v1[v2[0]], v5) == 1) {
             v2[0] += v5;
@@ -628,8 +628,8 @@ void sub_0207AD40(SysTask *param0, void *param1)
             v4[0] = 0;
         }
 
-        if (ov16_02266AE4(v0->unk_00, (void *)&v1[v2[0]]) == 1) {
-            v5 = sizeof(UnkStruct_0207A81C) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
+        if (BattleController_RecvCommMessage(v0->unk_00, (void *)&v1[v2[0]]) == 1) {
+            v5 = sizeof(BattleMessageInfo) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
             v2[0] += v5;
         }
         break;

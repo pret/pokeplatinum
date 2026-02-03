@@ -95,7 +95,7 @@ PartyGauge *BattleSystem_GetPartyGauge(BattleSystem *battleSys, enum PartyGaugeS
 void BattleSystem_SetPartyGauge(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
 FontSpecialCharsContext *ov16_0223E04C(BattleSystem *battleSys);
 FontSpecialCharsContext *ov16_0223E054(BattleSystem *battleSys);
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSys);
+MessageLoader *BattleSystem_GetMessageLoader(BattleSystem *battleSys);
 MessageLoader *ov16_0223E060(BattleSystem *battleSys);
 PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSys);
 Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSys);

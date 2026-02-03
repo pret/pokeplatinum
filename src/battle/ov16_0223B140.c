@@ -15,10 +15,10 @@
 #include "struct_defs/struct_0207A778.h"
 
 #include "battle/battle_context.h"
+#include "battle/battle_controller.h"
 #include "battle/battle_controller_player.h"
 #include "battle/battle_cursor.h"
 #include "battle/battle_display.h"
-#include "battle/battle_io.h"
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
@@ -660,23 +660,23 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
     } else {
         if (battleSys->unk_23F8) {
             battleSys->unk_23FA = BattleContext_Main(battleSys, battleSys->battleCtx);
-            ov16_02264988(battleSys, 1);
+            BattleController_TryRecvLocalMessage(battleSys, 1);
         }
 
         for (v1 = 0; v1 < battleSys->maxBattlers; v1++) {
             ov16_0225C0DC(battleSys, battleSys->battlers[v1]);
-            ov16_02264988(battleSys, 0);
+            BattleController_TryRecvLocalMessage(battleSys, 0);
         }
 
         if (battleSys->unk_23FA == 0) {
             if (battleSys->unk_23F8) {
                 battleSys->unk_23FA = BattleContext_Main(battleSys, battleSys->battleCtx);
-                ov16_02264988(battleSys, 1);
+                BattleController_TryRecvLocalMessage(battleSys, 1);
             }
 
             for (v1 = 0; v1 < battleSys->maxBattlers; v1++) {
                 ov16_0225C0DC(battleSys, battleSys->battlers[v1]);
-                ov16_02264988(battleSys, 0);
+                BattleController_TryRecvLocalMessage(battleSys, 0);
             }
         }
     }
