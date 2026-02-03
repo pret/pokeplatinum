@@ -15,8 +15,8 @@
 #include "overlay005/ov5_021F4E08.h"
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_status.h"
@@ -1009,9 +1009,9 @@ static void UndergroundTraps_AddBuriedTrapToCoordinatesOrdering(BuriedTrap *trap
         .z = trap->z
     };
 
-    Underground_InitCoordinatesOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
 
-    int index = Underground_CalculateCoordinatesIndexInsert(&coordinates);
+    int index = UndergroundMan_CalcCoordsIndexInsert(&coordinates);
 
     if (index >= MAX_BURIED_TRAPS) {
         return;
@@ -1183,7 +1183,7 @@ void UndergroundTraps_TryPlaceTrap(int netID, int unused1, void *data, void *unu
         return;
     }
 
-    if (Underground_AreCoordinatesInSecretBase(x, z)) {
+    if (UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
         placeResult.result = PLACE_TRAP_NOT_IN_SECRET_BASE;
         CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
         return;
@@ -1196,7 +1196,7 @@ void UndergroundTraps_TryPlaceTrap(int netID, int unused1, void *data, void *unu
     }
 
     // effectively only checks for existing trap, other checks in this function are already covered above
-    if (!ov23_0224240C(x, z)) {
+    if (!UndergroundMan_AreCoordinatesOccupied(x, z)) {
         BuriedTrap *trap = UndergroundTraps_AddBuriedTrap(x, z, &trapsEnv->buriedTraps[netID * MAX_PLACED_TRAPS], *trapID);
 
         if (trap) {
@@ -1255,7 +1255,7 @@ int UndergroundTraps_SpawnRandomTrap(int x, int z, MATHRandContext16 *rand, int 
     u8 randomIndex = MATH_Rand16(rand, NELEMS(traps));
     u8 trapID = traps[randomIndex];
 
-    if (!ov23_0224240C(x, z)) {
+    if (!UndergroundMan_AreCoordinatesOccupied(x, z)) {
         BuriedTrap *emptySlot = UndergroundTraps_FindEmptyBuriedTrapSlot(dest);
 
         if (emptySlot != NULL) {
@@ -1365,19 +1365,19 @@ void UndergroundTraps_ProcessPlaceTrapResult(int unused0, int unused1, void *dat
         if (placeResult->result == PLACE_TRAP_SUCCESS) {
             UndergroundTraps_AddPlacedTrapCurrentPlayer(&placeResult->trap);
             UndergroundMenu_RemoveSelectedTrap(placeResult->trap.trapID);
-            UndergroundTextPrinter_SetUndergroundTrapName(CommManUnderground_GetCommonTextPrinter(), placeResult->trap.trapID);
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_TrapWasSetInGround, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_SetUndergroundTrapName(UndergroundMan_GetCommonTextPrinter(), placeResult->trap.trapID);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_TrapWasSetInGround, TRUE, UndergroundTraps_ResumeFieldSystem);
             Sound_PlayEffect(SEQ_SE_DP_UG_008);
         } else if (placeResult->result == PLACE_TRAP_NOT_IN_SECRET_BASE) {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantPutTrapInSecretBase, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantPutTrapInSecretBase, TRUE, UndergroundTraps_ResumeFieldSystem);
         } else if (placeResult->result == PLACE_TRAP_PERSON_IN_WAY) {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBePlacedThere, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantBePlacedThere, TRUE, UndergroundTraps_ResumeFieldSystem);
         } else if (placeResult->result == PLACE_TRAP_WALL_IN_WAY) {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInWall, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInWall, TRUE, UndergroundTraps_ResumeFieldSystem);
         } else if (placeResult->result == PLACE_TRAP_FAIL) {
             UndergroundTraps_ResumeFieldSystem(0);
         } else {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_SomethingAlreadyBuried, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_SomethingAlreadyBuried, TRUE, UndergroundTraps_ResumeFieldSystem);
         }
     }
 }
@@ -1459,7 +1459,7 @@ int CommPacketSizeOf_Coordinates(void)
     return sizeof(Coordinates);
 }
 
-BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 bits)
+BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 flags)
 {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(trapsEnv->fieldSystem));
 
@@ -1478,7 +1478,7 @@ BOOL UndergroundTraps_TryDisengageTrap(int netID, Coordinates *unused, u8 bits)
 
         MI_CpuCopy8(trap, &retrievedTrap.trap, sizeof(BuriedTrap));
 
-        if (bits & BIT_TRAPS_FULL) {
+        if (flags & FLAG_TRAPS_FULL) {
             retrievedTrap.hasMessageToDisplay = TRUE;
         } else {
             retrievedTrap.hasMessageToDisplay = FALSE;
@@ -1511,7 +1511,7 @@ void UndergroundTraps_ProcessDisengagedTrap(int unused0, int unused1, void *data
 
     if (retrievedTrap->hasMessageToDisplay == TRUE) {
         if (CommSys_CurNetId() == retrievedTrap->victimNetID) {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_NoRoomForTrap, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_NoRoomForTrap, TRUE, UndergroundTraps_ResumeFieldSystem);
             CommPlayerMan_PauseFieldSystem();
         }
 
@@ -1539,15 +1539,15 @@ void UndergroundTraps_ProcessDisengagedTrap(int unused0, int unused1, void *data
 
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
-            UndergroundTextPrinter_SetPlayerNameIndex1(CommManUnderground_GetCommonTextPrinter(), CommInfo_TrainerInfo(retrievedTrap->victimNetID));
-            UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(CommManUnderground_GetCommonTextPrinter(), 2, retrievedTrap->trap.trapID);
-            UndergroundTextPrinter_CapitalizeArgAtIndex(CommManUnderground_GetCommonTextPrinter(), 2);
-            UndergroundTextPrinter_SetUndergroundTrapName(CommManUnderground_GetCommonTextPrinter(), retrievedTrap->trap.trapID);
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_TrapFoundPlayerDisengaged, TRUE, UndergroundTraps_ResumeFieldSystem);
-            UndergroundTextPrinter_SetDummyField(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_SetPlayerNameIndex1(UndergroundMan_GetCommonTextPrinter(), CommInfo_TrainerInfo(retrievedTrap->victimNetID));
+            UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(UndergroundMan_GetCommonTextPrinter(), 2, retrievedTrap->trap.trapID);
+            UndergroundTextPrinter_CapitalizeArgAtIndex(UndergroundMan_GetCommonTextPrinter(), 2);
+            UndergroundTextPrinter_SetUndergroundTrapName(UndergroundMan_GetCommonTextPrinter(), retrievedTrap->trap.trapID);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_TrapFoundPlayerDisengaged, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_SetDummyField(UndergroundMan_GetCommonTextPrinter());
         } else {
             // should be unreachable
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_NoRoomForTrap, TRUE, UndergroundTraps_ResumeFieldSystem);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_NoRoomForTrap, TRUE, UndergroundTraps_ResumeFieldSystem);
         }
 
         CommPlayerMan_PauseFieldSystem();
@@ -1573,8 +1573,8 @@ static BuriedTrap *UndergroundTraps_GetTrapAtCoordinates(int x, int z)
         .z = z
     };
 
-    Underground_InitCoordinatesOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
-    int index = Underground_CalculateCoordinatesIndexGet(&coordinates);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_TRAPS, UndergroundTraps_GetCoordinatesOfBuriedTrapAtOrderedIndex);
+    int index = UndergroundMan_CalcCoordsIndexGet(&coordinates);
 
     if (index == -1) {
         return NULL;
@@ -1660,7 +1660,7 @@ void UndergroundTraps_HandleTriggeredTool(int victimNetID, int setterNetID, int 
 BOOL UndergroundTraps_CheckPlayerSteppedOnTrap(int netID)
 {
     if (trapsEnv) {
-        if (sub_02059094(netID)) {
+        if (CommPlayerMan_IsMovementEnabled(netID)) {
             return CheckPlayerSteppedOnTrap(netID);
         }
     }
@@ -1796,14 +1796,14 @@ BOOL UndergroundTraps_GetQueuedMessage(String *dest)
             if (trapsEnv->triggeredTraps[netID].setterNetID >= MAX_CONNECTED_PLAYERS) {
                 TrainerInfo *trapVictimInfo = CommInfo_TrainerInfo(netID);
 
-                if (CommManUnderground_FormatCommonStringWithTrainerName(trapVictimInfo, 0, UndergroundCommon_Text_PlayerTriggeredTrap, dest)) {
+                if (UndergroundMan_FormatCommonStringWithTrainerName(trapVictimInfo, 0, UndergroundCommon_Text_PlayerTriggeredTrap, dest)) {
                     return TRUE;
                 }
             } else {
                 TrainerInfo *trapSetterInfo = CommInfo_TrainerInfo(trapsEnv->triggeredTraps[netID].setterNetID);
                 TrainerInfo *trapVictimInfo = CommInfo_TrainerInfo(netID);
 
-                if (CommManUnderground_FormatCommonStringWith2TrainerNames(trapVictimInfo, trapSetterInfo, UndergroundCommon_Text_PlayerTriggeredOtherPlayersTrap, dest)) {
+                if (UndergroundMan_FormatCommonStringWith2TrainerNames(trapVictimInfo, trapSetterInfo, UndergroundCommon_Text_PlayerTriggeredOtherPlayersTrap, dest)) {
                     return TRUE;
                 }
             }
@@ -1815,7 +1815,7 @@ BOOL UndergroundTraps_GetQueuedMessage(String *dest)
 
             trapsEnv->helpedNetIDs[netID] = 0xFF;
 
-            if (CommManUnderground_FormatCommonStringWith2TrainerNames(helperInfo, trapVictimInfo, UndergroundCommon_Text_PlayerHelpedOtherPlayer, dest)) {
+            if (UndergroundMan_FormatCommonStringWith2TrainerNames(helperInfo, trapVictimInfo, UndergroundCommon_Text_PlayerHelpedOtherPlayer, dest)) {
                 return TRUE;
             }
         }
@@ -1838,7 +1838,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
             trapsEnv->queuedAlertMessages[netID] = 0;
             trainerInfo = CommInfo_TrainerInfo(netID);
 
-            if (CommManUnderground_FormatCommonStringWithTrainerName(trainerInfo, 0, bankEntry, dest)) {
+            if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 0, bankEntry, dest)) {
                 return TRUE;
             }
         }
@@ -1847,7 +1847,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
             trapsEnv->queuedDisengageMessages[netID] = FALSE;
             trainerInfo = CommInfo_TrainerInfo(netID);
 
-            if (CommManUnderground_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerDisengagedTrap, dest)) {
+            if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerDisengagedTrap, dest)) {
                 return TRUE;
             }
         }
@@ -1856,7 +1856,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
             trainerInfo = CommInfo_TrainerInfo(netID);
             trapsEnv->queuedEscapeMessages[netID] = FALSE;
 
-            if (CommManUnderground_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerEscapedFromTrap, dest)) {
+            if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerEscapedFromTrap, dest)) {
                 return TRUE;
             }
         }
@@ -1902,7 +1902,7 @@ void UndergroundTraps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolS
         trapsEnv->unused4 = NULL;
 
         UndergroundPlayer_RemoveEmote(netID);
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
 
         trapsEnv->triggeredTrapIDClient = TRAP_NONE;
     }
@@ -2121,9 +2121,9 @@ static int UndergroundTraps_NotifyTrapTriggered(void)
     int z = Player_GetZPos(trapsEnv->fieldSystem->playerAvatar);
 
     ov5_021F5634(trapsEnv->fieldSystem, x, 0, z);
-    UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(CommManUnderground_GetCommonTextPrinter(), 0, trapsEnv->triggeredTrapIDClient);
+    UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundMan_GetCommonTextPrinter(), 0, trapsEnv->triggeredTrapIDClient);
 
-    int printerID = UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_TriggeredTrap, FALSE, NULL);
+    int printerID = UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_TriggeredTrap, FALSE, NULL);
     CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
 
     return printerID;
@@ -2161,7 +2161,7 @@ static void UndergroundTraps_MoveTrapClientTask(SysTask *sysTask, void *data)
         if (ctx->timer > 30) {
             CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
             BrightnessController_StartTransition(1, -4, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             CommPlayer_StartSlideAnimation(ctx->netID, ctx->dir, ctx->isHurlTrap);
             Sound_PlayEffect(SEQ_SE_DP_F007);
             ctx->state = MOVE_TRAP_STATE_FRAME_DELAY_2;
@@ -2481,7 +2481,7 @@ static void UndergroundTraps_SmokeTrapClientTask(SysTask *sysTask, void *data)
             BrightnessController_StartTransition(1, -4, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
             ctx->state = SMOKE_TRAP_STATE_MAIN;
-            UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
+            UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
             ctx->messageTimer = 0;
             Sound_PlayEffect(SEQ_SE_DP_FPASA2);
         }
@@ -2509,12 +2509,12 @@ static void UndergroundTraps_SmokeTrapClientTask(SysTask *sysTask, void *data)
             ctx->messageTimer++;
 
             if (ctx->messageTimer == 60) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             }
         }
         break;
     case SMOKE_TRAP_STATE_WAIT_FOR_END:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         break;
     case SMOKE_TRAP_STATE_END_UNUSED:
         UndergroundTraps_EndSmokeTrapEffectClient(CommSys_CurNetId(), ctx->isTool);
@@ -2651,8 +2651,8 @@ void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(trapsEnv->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_HELP_TRAPPED_PLAYER);
         CommPlayerMan_PauseFieldSystem();
 
-        UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCommonTextPrinter(), CommInfo_TrainerInfo(helpdata->helpeeNetID));
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_HelpedOutPlayer, TRUE, UndergroundTraps_ResumeFieldSystem);
+        UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCommonTextPrinter(), CommInfo_TrainerInfo(helpdata->helpeeNetID));
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_HelpedOutPlayer, TRUE, UndergroundTraps_ResumeFieldSystem);
     }
 
     UndergroundTraps_StopLinkSpin(helpdata->helpeeNetID);
@@ -2669,7 +2669,7 @@ void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void
         trapsEnv->triggeredTrapIDClient = TRAP_NONE;
 
         CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
     }
 
     if (CommSys_CurNetId() != 0) {
@@ -2864,7 +2864,7 @@ static void UndergroundTraps_AlterMovementTrapClientTask(SysTask *sysTask, void 
         }
 
         if (ctx->timer > 30) {
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             ctx->state = ALTER_MOVEMENT_TRAP_STATE_WAIT_FOR_END;
 
             if (ctx->isReverseTrap) {
@@ -3020,7 +3020,7 @@ static void UndergroundTraps_HoleTrapClientTask(SysTask *sysTask, void *data)
 
         if (ctx->timer > 30) {
             CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
 
             ctx->state = HOLE_TRAP_STATE_MAIN;
             int x = Player_GetXPos(trapsEnv->fieldSystem->playerAvatar);
@@ -3231,7 +3231,7 @@ static void UndergroundTraps_LeafTrapClientTask(SysTask *sysTask, void *data)
 
         if (ctx->timer > 30) {
             BrightnessController_StartTransition(1, -4, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-            UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_BlowTrapAway, FALSE, NULL);
+            UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlowTrapAway, FALSE, NULL);
 
             ctx->state = LEAF_TRAP_STATE_MAIN;
             ctx->messageTimer = 0;
@@ -3251,13 +3251,13 @@ static void UndergroundTraps_LeafTrapClientTask(SysTask *sysTask, void *data)
             ctx->messageTimer++;
 
             if (ctx->messageTimer == 60) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             }
         }
 
         break;
     case LEAF_TRAP_STATE_WAIT_FOR_END:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         break;
     case LEAF_TRAP_STATE_END_UNUSED:
         UndergroundTraps_EndLeafTrapEffectClient(CommSys_CurNetId(), ctx->isTool);
@@ -3637,7 +3637,7 @@ static void UndergroundTraps_BubbleTrapClientTask(SysTask *sysTask, void *data)
         if (ctx->timer > 30) {
             GX_SetMasterBrightness(-4);
             ctx->state = BUBBLE_TRAP_STATE_MAIN;
-            UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
+            UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
             ctx->messageTimer = 0;
             Sound_PlayEffect(SEQ_SE_DP_FAWA);
         }
@@ -3660,13 +3660,13 @@ static void UndergroundTraps_BubbleTrapClientTask(SysTask *sysTask, void *data)
             ctx->messageTimer++;
 
             if (ctx->messageTimer == 60) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             }
         }
         break;
     case BUBBLE_TRAP_STATE_WAIT_FOR_END:
         Sound_StopEffect(SEQ_SE_DP_FAWA, 0);
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         break;
     case BUBBLE_TRAP_STATE_END_UNUSED:
         ctx->state = BUBBLE_TRAP_STATE_END_UNUSED_2;
@@ -4224,7 +4224,7 @@ static void UndergroundTraps_RockTrapClientTask(SysTask *sysTask, void *data)
                 SpriteTransfer_ReplaceCharData(ctx->boulderSpriteResources[0], ctx->boulderSpriteResources[2]);
             }
 
-            UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
+            UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_RemoveTrapByTouch, FALSE, NULL);
 
             ctx->messageTimer = 0;
             ctx->state = ROCK_TRAP_STATE_MAIN;
@@ -4244,12 +4244,12 @@ static void UndergroundTraps_RockTrapClientTask(SysTask *sysTask, void *data)
             ctx->messageTimer++;
 
             if (ctx->messageTimer == 60) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             }
         }
         break;
     case ROCK_TRAP_STATE_WAIT_FOR_END:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         break;
     case ROCK_TRAP_STATE_END_UNUSED:
         UndergroundTraps_EndRockTrapEffectClient(CommSys_CurNetId(), ctx->isTool);
@@ -4509,7 +4509,7 @@ static void UndergroundTraps_FireTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 30) {
-            UndergroundTextPrinter_PrintTextInstant(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_BlowTrapAway, FALSE, NULL);
+            UndergroundTextPrinter_PrintTextInstant(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlowTrapAway, FALSE, NULL);
             GX_SetMasterBrightness(-4);
 
             ctx->state = FIRE_TRAP_STATE_MAIN;
@@ -4532,12 +4532,12 @@ static void UndergroundTraps_FireTrapClientTask(SysTask *sysTask, void *data)
             ctx->messageTimer++;
 
             if (ctx->messageTimer == 60) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             }
         }
         break;
     case FIRE_TRAP_STATE_WAIT_FOR_END:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         break;
     case FIRE_TRAP_STATE_END_UNUSED:
         UndergroundTraps_EndFireTrapEffectClient(CommSys_CurNetId(), ctx->isTool);
@@ -4640,7 +4640,7 @@ static void UndergroundTraps_AlertTrapClientTask(SysTask *sysTask, void *data)
         ctx->timer++;
 
         if (ctx->timer > 30) {
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
             GX_SetMasterBrightness(-4);
             ctx->state = ALERT_TRAP_STATE_TRANSITION_TO_END;
         }

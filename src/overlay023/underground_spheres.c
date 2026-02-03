@@ -10,9 +10,7 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021F575C.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_02241F74.h"
-#include "overlay023/struct_ov23_02241A80.h"
-#include "overlay023/struct_ov23_02241A88.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
@@ -76,8 +74,8 @@ static void UndergroundSpheres_ResumeFieldSystem(int unused)
 static void UndergroundSpheres_PrintSphereGrowth(int growth)
 {
     if (growth > 0) {
-        UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 0, growth);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_ItsSizeGrewBiggerBy, TRUE, UndergroundSpheres_ResumeFieldSystem);
+        UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundMan_GetCommonTextPrinter(), 0, growth);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ItsSizeGrewBiggerBy, TRUE, UndergroundSpheres_ResumeFieldSystem);
     } else {
         UndergroundSpheres_ResumeFieldSystem(growth);
     }
@@ -182,9 +180,9 @@ static void UndergroundSpheres_AddBuriedSphereToCoordinatesOrdering(BuriedSphere
         .z = sphere->z
     };
 
-    Underground_InitCoordinatesOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
 
-    int index = Underground_CalculateCoordinatesIndexInsert(&coordinates);
+    int index = UndergroundMan_CalcCoordsIndexInsert(&coordinates);
 
     GF_ASSERT(index < MAX_BURIED_SPHERES);
 
@@ -231,9 +229,9 @@ static BuriedSphere *UndergroundSpheres_GetBuriedSphereAtCoordinates(int x, int 
         .z = z
     };
 
-    Underground_InitCoordinatesOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
+    UndergroundMan_InitCoordsOrderingState(MAX_BURIED_SPHERES, UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex);
 
-    int index = Underground_CalculateCoordinatesIndexGet(&coordinates);
+    int index = UndergroundMan_CalcCoordsIndexGet(&coordinates);
 
     if (index == -1) {
         return NULL;
@@ -265,8 +263,8 @@ void UndergroundSpheres_RetrieveBuriedSphere(int unused, int unused2, void *src,
                     numberToPrint = sphere->initialSize + sphere->growth;
                 }
 
-                UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, numberToPrint);
-                UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(CommManUnderground_GetCommonTextPrinter(), 2, sphere->type);
+                UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundMan_GetCommonTextPrinter(), 1, numberToPrint);
+                UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(UndergroundMan_GetCommonTextPrinter(), 2, sphere->type);
 
                 numberToPrint = sphere->growth;
 
@@ -274,60 +272,60 @@ void UndergroundSpheres_RetrieveBuriedSphere(int unused, int unused2, void *src,
                     numberToPrint = MAX_SPHERE_SIZE - sphere->initialSize;
                 }
 
-                UndergroundTextPrinter_PrintTextWithCallbackParam(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_YouObtainedSphere, TRUE, UndergroundSpheres_PrintSphereGrowth, numberToPrint);
-                UndergroundTextPrinter_SetDummyField(CommManUnderground_GetCommonTextPrinter());
+                UndergroundTextPrinter_PrintTextWithCallbackParam(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_YouObtainedSphere, TRUE, UndergroundSpheres_PrintSphereGrowth, numberToPrint);
+                UndergroundTextPrinter_SetDummyField(UndergroundMan_GetCommonTextPrinter());
                 UndergroundSpheres_RemoveBuriedSphere(sphere);
                 UndergroundSpheres_SaveBuriedSpheres();
             } else {
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_NoRoomForSphere, TRUE, UndergroundSpheres_ResumeFieldSystem);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_NoRoomForSphere, TRUE, UndergroundSpheres_ResumeFieldSystem);
             }
         }
     }
 }
 
-void ov23_02241A80(UnkStruct_ov23_02241A80 *param0, int param1)
+void TouchRadarSearch_Init(TouchRadarSearchContext *ctx, int radius)
 {
-    param0->unk_02 = param1;
-    param0->unk_00 = 0;
+    ctx->radius = radius;
+    ctx->iterator = 0;
 }
 
-BOOL ov23_02241A88(UnkStruct_ov23_02241A80 *param0, UnkStruct_ov23_02241A88 *param1)
+BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, TouchRadarCoordinates *out)
 {
-    int v0, v1, v2, v3;
+    int i;
+    int iterator = ctx->iterator;
+    int x, z;
 
-    v1 = param0->unk_00;
-
-    for (v0 = 0; v0 <= param0->unk_02; v0++) {
-        if ((v1 - (v0 * 4)) > 0) {
-            v1 = v1 - (v0 * 4);
+    for (i = 0; i <= ctx->radius; i++) {
+        if (iterator - i * 4 > 0) {
+            iterator -= i * 4;
         } else {
-            if (v1 != 0) {
-                v1--;
+            if (iterator != 0) {
+                iterator--;
             }
 
-            if (v1 < (v0 * 2)) {
-                v3 = v0 - v1;
+            if (iterator < i * 2) {
+                z = i - iterator;
             } else {
-                v3 = v1 - v0 * 3;
+                z = iterator - i * 3;
             }
 
-            if (v1 < (v0)) {
-                v2 = v1;
-            } else if (v1 < (v0 * 3)) {
-                v2 = v0 * 3 - (v1 + v0);
+            if (iterator < i) {
+                x = iterator;
+            } else if (iterator < i * 3) {
+                x = i * 3 - (iterator + i);
             } else {
-                v2 = -v0 + (v1 - v0 * 3);
+                x = -i + (iterator - i * 3);
             }
 
-            param1->unk_00 = v2;
-            param1->unk_02 = v3;
-            param0->unk_00++;
+            out->x = x;
+            out->z = z;
+            ctx->iterator++;
 
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int z)
@@ -341,18 +339,18 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
     sphere.type = sphereType;
     sphere.growth = 0;
 
-    if (Underground_AreCoordinatesInSecretBase(x, z)) {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInSecretBase, FALSE, NULL);
+    if (UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInSecretBase, FALSE, NULL);
         return;
     }
 
     if (CommPlayer_CheckNPCCollision(x, z)) {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBePlacedThere, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantBePlacedThere, FALSE, NULL);
         return;
     }
 
     if (TerrainCollisionManager_CheckCollision(buriedSpheresEnv->fieldSystem, x, z)) {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInWall, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantBuryInWall, FALSE, NULL);
         return;
     }
 
@@ -372,7 +370,7 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
 
             success = TRUE;
         } else {
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_SomethingAlreadyBuried, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_SomethingAlreadyBuried, FALSE, NULL);
         }
     } else {
         UndergroundSpheres_AddBuriedSphere(&sphere);
@@ -380,9 +378,9 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
     }
 
     if (success) {
-        UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetCommonTextPrinter(), 0, sphereType);
-        UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetCommonTextPrinter(), 1, sphereSize);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_SphereWasBuried, FALSE, NULL);
+        UndergroundTextPrinter_SetUndergroundItemName(UndergroundMan_GetCommonTextPrinter(), 0, sphereType);
+        UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundMan_GetCommonTextPrinter(), 1, sphereSize);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_SphereWasBuried, FALSE, NULL);
         UndergroundMenu_RemoveSelectedSphere(sphereType);
 
         Sound_PlayEffect(SEQ_SE_DP_SUTYA);
@@ -469,12 +467,12 @@ int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int idx)
     return 0;
 }
 
-BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(String *string)
+BOOL UndergroundSpheres_GetQueuedMessage(String *dest)
 {
     int netID;
     StringTemplate *template = NULL;
     String *fmtString = NULL;
-    BOOL isMessageToPrint = FALSE;
+    BOOL isMessageQueued = FALSE;
 
     if (!buriedSpheresEnv) {
         return FALSE;
@@ -487,11 +485,11 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(String *string)
 
             StringTemplate_SetUndergroundItemNameWithArticle(template, 2, buriedSpheresEnv->retrievedSpheres[netID]);
             StringTemplate_CapitalizeArgAtIndex(template, 2);
-            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter()), UndergroundCommon_Text_ItemWasObtainedExclamationPoint, fmtString);
-            StringTemplate_Format(template, string, fmtString);
+            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetCommonTextPrinter()), UndergroundCommon_Text_ItemWasObtainedExclamationPoint, fmtString);
+            StringTemplate_Format(template, dest, fmtString);
 
             buriedSpheresEnv->retrievedSpheres[netID] = SPHERE_NONE;
-            isMessageToPrint = TRUE;
+            isMessageQueued = TRUE;
             break;
         }
     }
@@ -504,7 +502,7 @@ BOOL UndergroundSpheres_CheckForRetrievedSphereNotification(String *string)
         StringTemplate_Free(template);
     }
 
-    return isMessageToPrint;
+    return isMessageQueued;
 }
 
 int ov23_02241DF8(MATHRandContext16 *rand)

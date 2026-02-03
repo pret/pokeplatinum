@@ -552,7 +552,7 @@
       "en_US": "{STRVAR_1 3, 0, 0} disengaged the Trap!"
     },
     {
-      "id": "pl_msg_00000634_00091",
+      "id": "UndergroundCommon_Text_PlayerHasEntered",
       "en_US": "{STRVAR_1 3, 1, 0} has entered."
     },
     {
@@ -647,7 +647,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00111",
+      "id": "UndergroundCommon_Text_PlayerTalkedWithPlayer",
       "en_US": [
         "{STRVAR_1 3, 0, 0} talked with\n",
         "{STRVAR_1 3, 1, 0}."
@@ -669,7 +669,7 @@
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000634_00115",
+      "id": "UndergroundCommon_Text_PlayerLeftUnderground",
       "en_US": [
         "{STRVAR_1 3, 0, 0} has left the\n",
         "underground tunnels."

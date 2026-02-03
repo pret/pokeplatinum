@@ -20,9 +20,9 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_022499E4.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_status.h"
 #include "overlay023/underground_traps.h"
@@ -114,7 +114,7 @@ BOOL CommPlayerMan_Init(void *dest, FieldSystem *fieldSystem, BOOL isUnderground
     return TRUE;
 }
 
-void CommPlayerMan_Reset(void)
+void CommPlayerMan_Disable(void)
 {
     if (sCommPlayerManager == NULL) {
         return;
@@ -129,7 +129,7 @@ void CommPlayerMan_Reset(void)
     }
 
     if (sCommPlayerManager->isUnderground) {
-        sCommPlayerManager->isResetting = TRUE;
+        sCommPlayerManager->isDisabled = TRUE;
     }
 }
 
@@ -140,7 +140,7 @@ void CommPlayerMan_Restart(void)
     }
 
     sCommPlayerManager->sendAllPos = TRUE;
-    sCommPlayerManager->isResetting = FALSE;
+    sCommPlayerManager->isDisabled = FALSE;
 
     CommPlayer_InitPersonal();
     CommPlayer_SendPos(TRUE);
@@ -382,7 +382,7 @@ static void CommPlayer_Add(u8 netId)
         return;
     }
 
-    if (sCommPlayerManager->isResetting) {
+    if (sCommPlayerManager->isDisabled) {
         return;
     }
 
@@ -411,11 +411,11 @@ static void CommPlayer_Add(u8 netId)
         MapObject_SetLocalID(Player_MapObject(playerAvatar), 0xff + netId + 1);
 
         if (sCommPlayerManager->isUnderground) {
-            UndergroundMan_SetReturnLog(netId);
+            UndergroundMan_SetLeftUndergroundMessage(netId);
         }
 
         if (sCommPlayerManager->isUnderground && !sCommPlayerManager->isActive[netId]) {
-            if (!sCommPlayerManager->isResetting) {
+            if (!sCommPlayerManager->isDisabled) {
                 ov5_021F5634(sCommPlayerManager->fieldSystem, sCommPlayerManager->playerLocation[netId].x, 0, sCommPlayerManager->playerLocation[netId].z);
             }
 
@@ -499,7 +499,7 @@ static void Task_CommPlayerManagerRun(SysTask *task, void *data)
         if (sCommPlayerManager->isUnderground) {
             if (CommSys_CurNetId() == 0) {
                 if (NULL == CommInfo_TrainerInfo(netId)) {
-                    SecretBases_ResetBaseEntranceData(netId);
+                    SecretBases_ClearBaseEntranceData(netId);
                 }
             }
         }
@@ -535,7 +535,7 @@ static void sub_02057EF8(void *unused)
     }
 }
 
-BOOL sub_02057FAC(void)
+BOOL CommPlayerMan_IsFieldSystemActive(void)
 {
     if (sCommPlayerManager != NULL) {
         return sCommPlayerManager->isFieldSystemActive;
@@ -862,9 +862,9 @@ void CommPlayer_RecvDelete(int unused0, int unused1, void *src, void *unused2)
     }
 
     if (sCommPlayerManager->isUnderground) {
-        ov23_022430B8(netId);
+        UndergroundMan_SetPlayerLeft(netId);
 
-        if (!sCommPlayerManager->isResetting) {
+        if (!sCommPlayerManager->isDisabled) {
             ov5_021F5634(sCommPlayerManager->fieldSystem, sCommPlayerManager->playerLocation[netId].x, 0, sCommPlayerManager->playerLocation[netId].z);
         }
     }
@@ -987,7 +987,7 @@ static void CommPlayer_MoveClient(int netId)
         return;
     }
 
-    if (sCommPlayerManager->isResetting) {
+    if (sCommPlayerManager->isDisabled) {
         return;
     }
 
@@ -1251,7 +1251,7 @@ BOOL CommPlayer_IsActive(int netId)
     return sCommPlayerManager->isActive[netId];
 }
 
-int CommPlayer_XPos(int netId)
+int CommPlayer_GetXIfActive(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1264,7 +1264,7 @@ int CommPlayer_XPos(int netId)
     return sCommPlayerManager->playerLocation[netId].x;
 }
 
-int CommPlayer_ZPos(int netId)
+int CommPlayer_GetZIfActive(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1277,7 +1277,7 @@ int CommPlayer_ZPos(int netId)
     return sCommPlayerManager->playerLocation[netId].z;
 }
 
-int sub_02058D48(int netId)
+int CommPlayer_GetX(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1286,7 +1286,7 @@ int sub_02058D48(int netId)
     return sCommPlayerManager->playerLocation[netId].x;
 }
 
-int sub_02058D68(int netId)
+int CommPlayer_GetZ(int netId)
 {
     if (!sCommPlayerManager) {
         return 0xffff;
@@ -1297,7 +1297,7 @@ int sub_02058D68(int netId)
 
 int CommPlayer_GetXInFrontOfPlayer(int netId)
 {
-    if (CommPlayer_XPos(netId) == 0xffff) {
+    if (CommPlayer_GetXIfActive(netId) == 0xffff) {
         return 0xffff;
     }
 
@@ -1306,7 +1306,7 @@ int CommPlayer_GetXInFrontOfPlayer(int netId)
 
 int CommPlayer_GetZInFrontOfPlayer(int netId)
 {
-    if (CommPlayer_ZPos(netId) == 0xffff) {
+    if (CommPlayer_GetZIfActive(netId) == 0xffff) {
         return 0xffff;
     }
 
@@ -1439,14 +1439,14 @@ void CommPlayerMan_SetMovementEnabled(int netId, BOOL movementEnabled)
     }
 }
 
-BOOL sub_02059094(int netId)
+BOOL CommPlayerMan_IsMovementEnabled(int netId)
 {
     if (sCommPlayerManager->updatingHeldFlags) {
-        return 0;
+        return FALSE;
     }
 
     if (!sCommPlayerManager->movementEnabled2[netId]) {
-        return 0;
+        return FALSE;
     }
 
     return sCommPlayerManager->movementEnabled[netId];
@@ -1477,7 +1477,7 @@ BOOL sub_020590C4(void)
 
     for (netId = 0; netId < connectedPlayers; netId++) {
         for (netJd = 0; netJd < connectedPlayers; netJd++) {
-            if ((CommPlayer_XPos(netJd) == v9[netId].unk_00) && (CommPlayer_ZPos(netJd) == v9[netId].unk_02)) {
+            if ((CommPlayer_GetXIfActive(netJd) == v9[netId].unk_00) && (CommPlayer_GetZIfActive(netJd) == v9[netId].unk_02)) {
                 playerCnt++;
                 v6[netJd] = netId;
 
@@ -1553,7 +1553,7 @@ void CommPlayer_SetBattleDir(void)
     int netId = CommSys_CurNetId();
     int code;
 
-    if (CommPlayer_XPos(netId) > 8) {
+    if (CommPlayer_GetXIfActive(netId) > 8) {
         CommPlayer_SetDir(2);
         code = MovementAction_TurnActionTowardsDir(DIR_WEST, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH);
     } else {
@@ -1717,7 +1717,7 @@ void sub_02059524(void)
         if (!sCommPlayerManager->isUnderground) {
             CommPlayerMan_ResumeFieldSystem();
             sCommPlayerManager->unk_2BF = 1;
-        } else if (ov23_02243298(CommSys_CurNetId())) {
+        } else if (UndergroundMan_ShouldFieldSystemBeResumed(CommSys_CurNetId())) {
             CommPlayerMan_ResumeFieldSystem();
             sCommPlayerManager->unk_2BF = 1;
         } else {
@@ -1730,7 +1730,7 @@ void sub_02059570(void)
 {
     if (sCommPlayerManager->unk_2BF == 0) {
         if (sCommPlayerManager->isUnderground) {
-            if (!ov23_02243298(CommSys_CurNetId())) {
+            if (!UndergroundMan_ShouldFieldSystemBeResumed(CommSys_CurNetId())) {
                 sub_02057FC4(0);
             }
         }

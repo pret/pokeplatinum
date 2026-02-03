@@ -10,8 +10,8 @@
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_traps.h"
 
@@ -93,7 +93,7 @@ void ov23_02249A2C(void)
     v0->unk_41 = 1;
     GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_ENTERED);
 
-    ov23_02242BC0(v0->fieldSystem);
+    UndergroundMan_InitAllResources(v0->fieldSystem);
     ov23_02249C24(ov23_02249C34, 0);
 }
 
@@ -265,7 +265,7 @@ static void ov23_02249C34(void)
         return;
     }
 
-    ov23_02242D44(v0->fieldSystem);
+    UndergroundMan_ResetResources(v0->fieldSystem);
 
     CommInfo_SendBattleRegulation();
     CommPlayer_SendPos(0);
@@ -309,7 +309,7 @@ static void ov23_02249CC4(void)
 
 static void ov23_02249CE4(void)
 {
-    ov23_02242B14();
+    UndergroundMan_Process();
     sub_02059524();
 
     if (sub_02036834()) {
@@ -342,7 +342,7 @@ static void ov23_02249D20(void)
             }
         }
 
-        ov23_0224321C();
+        UndergroundMan_ForceEndCurrentSysTask();
         CommPlayer_CopyPersonal(0);
 
         UndergroundTraps_EndCurrentTrapEffectServer(0, 0, NULL, NULL);
@@ -361,14 +361,14 @@ static void ov23_02249DBC(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    ov23_02242B14();
+    UndergroundMan_Process();
 
     if (v0->timer != 0) {
         v0->timer--;
     }
 
     if (sub_020360E8() || (v0->timer == 0)) {
-        if (ov23_0224321C()) {
+        if (UndergroundMan_ForceEndCurrentSysTask()) {
             CommPlayerMan_ResumeFieldSystem();
         }
 
@@ -378,7 +378,7 @@ static void ov23_02249DBC(void)
 
         UndergroundPlayer_SendHeldFlagOwnerInfo();
         SecretBases_SendBaseInfo();
-        ov23_02243360();
+        UndergroundMan_SendPlayerState();
         ov23_02249C24(ov23_02249E18, 0);
 
         return;
@@ -389,21 +389,21 @@ static void ov23_02249E18(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    ov23_02242B14();
+    UndergroundMan_Process();
 
     if (v0->fieldSystem->task != NULL) {
         return;
     }
 
     if (CommSys_CheckError() || !CommServerClient_IsClientConnecting() || (!CommSys_IsPlayerConnected(CommSys_CurNetId()) && !CommSys_IsAlone())) {
-        SecretBases_ResetBaseEntranceData(0);
+        SecretBases_ClearBaseEntranceData(0);
         UndergroundPlayer_ClearHeldFlagInfo();
         SecretBases_AbortBaseEnterEarly();
 
         CommSys_SendMessage(43);
 
         UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), 1);
-        ov23_0224321C();
+        UndergroundMan_ForceEndCurrentSysTask();
 
         sub_02036824();
         ov23_02249C24(ov23_02249FB4, 0);
@@ -412,13 +412,13 @@ static void ov23_02249E18(void)
 
 static void ov23_02249E84(void)
 {
-    CommPlayerMan_Reset();
+    CommPlayerMan_Disable();
     ov23_02249C24(ov23_02249E98, 0);
 }
 
 static void ov23_02249E98(void)
 {
-    ov23_02242B14();
+    UndergroundMan_Process();
 }
 
 static void ov23_02249EA0(void)
@@ -436,7 +436,7 @@ static void ov23_02249EBC(void)
 
     if (v0->timer == 9) {
         CommInfo_SendBattleRegulation();
-        ov23_02243360();
+        UndergroundMan_SendPlayerState();
     }
 
     if (v0->timer == 1) {
@@ -543,7 +543,7 @@ static void ov23_02249FFC(void)
 
 static void ov23_0224A024(void)
 {
-    ov23_02242B14();
+    UndergroundMan_Process();
 }
 
 static void ov23_0224A02C(void)
@@ -551,7 +551,7 @@ static void ov23_0224A02C(void)
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
     if (CommSys_CurNetId() == 0) {
-        ov23_02242D44(v0->fieldSystem);
+        UndergroundMan_ResetResources(v0->fieldSystem);
         CommInfo_SendBattleRegulation();
         CommPlayer_SendPos(0);
         UndergroundTraps_SendPlacedTraps();
@@ -566,7 +566,7 @@ static void ov23_0224A064(void)
     SecretBases_RemovePlayerFromBase(CommSys_CurNetId(), 1);
     ov23_0224160C();
     CommPlayerMan_Stop();
-    ov23_0224321C();
+    UndergroundMan_ForceEndCurrentSysTask();
     sub_020367F0();
     ov23_0224AC4C();
     ov23_02249C24(ov23_02249FFC, 0);
@@ -576,7 +576,7 @@ static void ov23_0224A09C(void)
 {
     FieldCommunicationManager *v0 = FieldCommMan_Get();
 
-    ov23_02242B14();
+    UndergroundMan_Process();
     sub_02059524();
 
     if (v0->fieldSystem->task != NULL) {
@@ -590,7 +590,7 @@ static void ov23_0224A09C(void)
 
 static void ov23_0224A0CC(void)
 {
-    CommPlayerMan_Reset();
+    CommPlayerMan_Disable();
     ov23_02249C24(ov23_0224A0E0, 0);
 }
 
@@ -609,7 +609,7 @@ static void ov23_0224A0E8(void)
     if (sub_02033E68() || CommSys_CheckError()) {
         SecretBases_ResetAllBaseInfo();
         CommPlayerMan_Stop();
-        ov23_0224321C();
+        UndergroundMan_ForceEndCurrentSysTask();
         sub_020367F0();
         ov23_0224AC4C();
         ov23_02249C24(ov23_02249FFC, 0);
@@ -620,7 +620,7 @@ static void ov23_0224A0E8(void)
 
 static void ov23_0224A138(void)
 {
-    CommPlayerMan_Reset();
+    CommPlayerMan_Disable();
     ov23_02249C24(ov23_0224A14C, 0);
 }
 
@@ -667,7 +667,7 @@ static void ov23_0224A1A0(void)
         return;
     }
 
-    ov23_02242D08();
+    UndergroundMan_FreeAllResources();
 
     sub_020367D0();
     Heap_Destroy(HEAP_ID_33);

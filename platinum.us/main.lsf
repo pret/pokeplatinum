@@ -841,7 +841,7 @@ Overlay overlay23
 	After overlay5
 	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
 	Object main.nef.p/src_overlay023_underground_spheres.c.o
-	Object main.nef.p/src_overlay023_ov23_02241F74.c.o
+	Object main.nef.p/src_overlay023_underground_manager.c.o
 	Object main.nef.p/src_overlay023_underground_traps.c.o
 	Object main.nef.p/src_overlay023_underground_item_list_menu.c.o
 	Object main.nef.p/src_overlay023_underground_top_screen.c.o
