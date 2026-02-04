@@ -6,7 +6,7 @@
 #include "sprite_system.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     ManagedSprite *unk_04;
     u8 unk_08;
     u8 unk_09;

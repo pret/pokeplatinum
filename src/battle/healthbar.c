@@ -7,7 +7,7 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/struct_ov16_022674C4.h"
 
 #include "assert.h"
@@ -677,7 +677,7 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
         break;
     }
 
-    if (BattleSystem_BattleType(healthbar->battleSys) & BATTLE_TYPE_TRAINER) {
+    if (BattleSystem_GetBattleType(healthbar->battleSys) & BATTLE_TYPE_TRAINER) {
         // Never show the pokeball icon on an enemy trainer's healthbar
         flags &= ~HEALTHBAR_INFO_CAUGHT_SPECIES;
     }
@@ -814,7 +814,7 @@ void ov16_022672C4(Healthbar *param0)
     NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
     v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
     v2 = BattleSystem_GetSpriteManager(param0->battleSys);
-    v3 = BattleSystem_PaletteSys(param0->battleSys);
+    v3 = BattleSystem_GetPaletteData(param0->battleSys);
     v0 = Healthbar_SpriteTemplate(param0->type);
 
     Healthbar_LoadResources(v1, v2, v4, v3, param0->type);
@@ -959,7 +959,7 @@ void ov16_0226757C(Healthbar *param0)
         Healthbar_EnableArrow(param0, 1);
     }
 
-    if ((BattleSystem_BattleType(param0->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == 0) {
+    if ((BattleSystem_GetBattleType(param0->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == 0) {
         ov16_02268470(param0);
     }
 }
@@ -1001,7 +1001,7 @@ static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
     }
 
     // Safari battles don't get an arrow.
-    if ((BattleSystem_BattleType(battleSys->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK))
+    if ((BattleSystem_GetBattleType(battleSys->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK))
         && enable == TRUE) {
         return;
     }
@@ -1153,14 +1153,14 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     BoxPokemon *boxMon;
     StringTemplate *strFormatter;
 
-    bgl = BattleSystem_BGL(healthbar->battleSys);
+    bgl = BattleSystem_GetBgConfig(healthbar->battleSys);
     msgLoader = BattleSystem_GetMessageLoader(healthbar->battleSys);
-    strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
+    strFormatter = BattleSystem_GetStringTemplate(healthbar->battleSys);
 
     nickname = String_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
     template = MessageLoader_GetNewString(msgLoader, pl_msg_00000368_00964);
 
-    mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
+    mon = BattleSystem_GetPartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
     boxMon = Pokemon_GetBoxPokemon(mon);
 
     StringTemplate_SetNickname(strFormatter, 0, boxMon);
@@ -1239,7 +1239,7 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
     v1 = Heap_Alloc(HEAP_ID_BATTLE, v3 * 2);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), v3);
-    FontSpecialChars_DrawBattleScreenText(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
+    FontSpecialChars_DrawBattleScreenText(BattleSystem_GetSpecialCharsLevel(param0->battleSys), param0->unk_48, 3, 0, v0);
 
     {
         void *v7;
@@ -1282,7 +1282,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
     v0 = Heap_Alloc(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
+    FontSpecialChars_DrawBattleScreenText(BattleSystem_GetSpecialCharsHP(param0->battleSys), param1, 3, 1, v0);
 
     {
         void *v2;
@@ -1307,7 +1307,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
     v0 = Heap_Alloc(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
+    FontSpecialChars_DrawBattleScreenText(BattleSystem_GetSpecialCharsHP(param0->battleSys), param0->maxHP, 3, 0, v0);
 
     {
         void *v2;
@@ -1368,7 +1368,7 @@ static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
     MessageLoader *v4;
     String *v5;
 
-    v0 = BattleSystem_BGL(param0->battleSys);
+    v0 = BattleSystem_GetBgConfig(param0->battleSys);
     v4 = BattleSystem_GetMessageLoader(param0->battleSys);
 
     if (param1 & (1 << 10)) {
@@ -1412,9 +1412,9 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     String *v5, *v6;
     StringTemplate *v7;
 
-    v0 = BattleSystem_BGL(param0->battleSys);
+    v0 = BattleSystem_GetBgConfig(param0->battleSys);
     v4 = BattleSystem_GetMessageLoader(param0->battleSys);
-    v7 = BattleSystem_StringTemplate(param0->battleSys);
+    v7 = BattleSystem_GetStringTemplate(param0->battleSys);
     v5 = String_Init(30, HEAP_ID_BATTLE);
 
     if (param1 & (1 << 10)) {
@@ -1839,7 +1839,7 @@ static void ov16_02268380(SysTask *param0, void *param1)
     PaletteData *v3;
 
     v1 = BattleSystem_GetSpriteManager(v0->unk_00->battleSys);
-    v3 = BattleSystem_PaletteSys(v0->unk_00->battleSys);
+    v3 = BattleSystem_GetPaletteData(v0->unk_00->battleSys);
 
     switch (v0->unk_08) {
     case 0:

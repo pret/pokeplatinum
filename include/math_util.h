@@ -7,6 +7,7 @@
 
 #define LCRNG_MULTIPLIER 1103515245L
 #define LCRNG_INCREMENT  24691
+#define LCRNG_DIVISOR    65536L
 
 // Does almost the same as FX_DEG_TO_IDX but takes integers as input instead of fx32
 // Use if FX_DEG_TO_IDX(FX32_CONST(degrees)) doesn't match

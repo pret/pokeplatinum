@@ -1,6 +1,6 @@
 #include "battle_sub_menus/battle_bag_sprites.h"
 
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/ov16_0226DB7C.h"
 #include "battle/ov16_0226DE44.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
@@ -96,7 +96,7 @@ void BattleBagSprites_InitializeSprites(BattleBag *battleBag)
 static void InitializeSpriteManager(BattleBag *battleBag)
 {
     SpriteResourceCapacities capacities = { .asArray[SPRITE_RESOURCE_CHAR] = SPRITE_MANAGER_CHAR_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_PLTT] = SPRITE_MANAGER_PLTT_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_CELL] = SPRITE_MANAGER_CELL_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_ANIM] = SPRITE_MANAGER_ANIM_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_MANAGER_MULTI_CELL_RESOURCE_CAPACITY, .asArray[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_MANAGER_MULTI_ANIM_RESOURCE_CAPACITY };
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
 
     battleBag->spriteManager = SpriteManager_New(spriteSystem);
 
@@ -107,7 +107,7 @@ static void InitializeSpriteManager(BattleBag *battleBag)
 static void LoadSpriteData(BattleBag *battleBag)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, battleBag->context->heapID);
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
 
     for (u32 i = 0; i < NUM_BATTLE_BAG_SPRITES; i++) {
         SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, battleBag->spriteManager, narc, Item_FileID(ITEM_MASTER_BALL, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, POCKET_SLOT_1_RESOURCE_ID + i);
@@ -121,7 +121,7 @@ static void LoadSpriteData(BattleBag *battleBag)
 
 static void LoadItemIcon(BattleBag *battleBag, u16 item, u32 resourceID)
 {
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
     SpriteSystem_ReplaceCharResObj(spriteSystem, battleBag->spriteManager, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, resourceID);
 }
 
@@ -132,7 +132,7 @@ static void LoadItemPaletteData(BattleBag *battleBag, u16 item, u16 slotIndex, u
 
 static ManagedSprite *CreateSprite(BattleBag *battleBag, u32 spriteIndex)
 {
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
     SpriteTemplate template;
 
     template.x = 0;
@@ -161,7 +161,7 @@ static void InitializeSprites(BattleBag *battleBag)
 
 void BattleBagSprites_CleanupSprites(BattleBag *battleBag)
 {
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
 
     for (u32 i = 0; i < NUM_BATTLE_BAG_SPRITES; i++) {
         Sprite_DeleteAndFreeResources(battleBag->sprites[i]);
@@ -232,7 +232,7 @@ static void DrawSelectedItem(BattleBag *battleBag)
 
 static void InitializeCursor(BattleBag *battleBag)
 {
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
     UnkStruct_ov16_0226DC24 *cursorSprites;
 
     ov16_0226DB7C(spriteSystem, battleBag->spriteManager, battleBag->palette, battleBag->context->heapID, CURSOR_CHAR_RESOURCE_ID, CURSOR_PLTT_RESOURCE_ID, CURSOR_CELL_RESOURCE_ID, CURSOR_ANIM_RESOURCE_ID);
@@ -457,7 +457,7 @@ void BattleBagSprites_DisableCursor(BattleBag *battleBag)
 
 static void InitializeCatchTutorialCursor(BattleBag *battleBag)
 {
-    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleBag->context->battleSys);
 
     ov16_0226DE44(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, battleBag->palette, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID);
     battleBag->catchTutorialCursor = ov16_0226DEEC(spriteSystem, battleBag->spriteManager, battleBag->context->heapID, CATCH_TUTORIAL_CURSOR_CHAR_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_PLTT_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_CELL_RESOURCE_ID, CATCH_TUTORIAL_CURSOR_ANIM_RESOURCE_ID, 0, 0);

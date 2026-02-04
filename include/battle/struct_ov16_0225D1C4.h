@@ -6,7 +6,7 @@
 #include "pokemon_sprite.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     PokemonSprite *unk_04;
     u8 unk_08;
     u8 unk_09;
