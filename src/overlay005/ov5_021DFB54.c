@@ -12,12 +12,12 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
+#include "overlay005/dist_world_surf_mount_renderer.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F2850.h"
-#include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay005/surf_mount_renderer.h"
 #include "overlay006/hm_cut_in.h"
@@ -320,7 +320,7 @@ static void PlayerAvatar_RequestStateSurf(PlayerAvatar *playerAvatar)
         v5 = SurfMountRenderer_HandleSurfBegin(mapObj, 0, 0, v1, 1);
         v0 = PLAYER_STATE_SURFING;
     } else {
-        v5 = ov5_021F85BC(playerAvatar, 0, 0, 0, v1, 1, distortionState);
+        v5 = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, 0, 0, 0, v1, 1, distortionState);
         v0 = 0x19;
     }
 
@@ -689,7 +689,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
             enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(taskEnv->playerAvatar);
 
             sub_02061674(taskEnv->playerAvatar, taskEnv->direction, &mountXPos, &mountYPos, &mountZPos);
-            taskEnv->unk_28 = ov5_021F85BC(taskEnv->playerAvatar, mountXPos, mountYPos, mountZPos, taskEnv->direction, 0, distortionState);
+            taskEnv->unk_28 = DistWorldSurfMountRenderer_HandleSurfBegin(taskEnv->playerAvatar, mountXPos, mountYPos, mountZPos, taskEnv->direction, 0, distortionState);
         }
 
         PlayerAvatar_SetSurfMountAnimManager(taskEnv->playerAvatar, taskEnv->unk_28);
@@ -734,7 +734,7 @@ static BOOL FieldTask_UseSurf(FieldTask *task)
         } else {
             int moveState;
 
-            ov5_021F88CC(taskEnv->unk_28, 1 << 1);
+            DistWorldSurfMountRenderer_SetFlags(taskEnv->unk_28, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_TICK);
             moveState = Player_MoveStateFromGender(0x19, PlayerAvatar_Gender(taskEnv->playerAvatar));
             PlayerAvatar_Redraw(taskEnv->playerAvatar, moveState);
         }
@@ -808,7 +808,7 @@ static BOOL ov5_021E03C8(FieldTask *param0)
                 SurfMountRenderer_Reset(v0->unk_14, 0);
                 v1 = Player_MoveStateFromGender(0x0, PlayerAvatar_Gender(v0->playerAvatar));
             } else {
-                ov5_021F88DC(v0->unk_14, 1 << 1);
+                DistWorldSurfMountRenderer_ClearFlags(v0->unk_14, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_TICK);
                 v1 = Player_MoveStateFromGender(0x18, PlayerAvatar_Gender(v0->playerAvatar));
             }
 

@@ -22,6 +22,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
+#include "overlay005/dist_world_surf_mount_renderer.h"
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/land_data.h"
@@ -31,7 +32,6 @@
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F348C.h"
-#include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/camera_configuration.h"
@@ -2649,7 +2649,7 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
         OverworldAnimManager *v9;
         int v10 = PlayerAvatar_GetDir(playerAvatar);
 
-        v9 = ov5_021F85BC(playerAvatar, v2, v3, v4, v10, 1, v0);
+        v9 = DistWorldSurfMountRenderer_HandleSurfBegin(playerAvatar, v2, v3, v4, v10, 1, v0);
         PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v9);
     }
 
@@ -8122,10 +8122,10 @@ static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     {
         VecFx32 *v7;
         OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
-        Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
+        Simple3DRotationAngles *v9 = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(v8);
 
-        ov5_021F88B4(v8, 2, 5);
-        ov5_021F88CC(v8, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
+        DistWorldSurfMountRenderer_SetFixedRotationAngles(v8, 2, 5);
+        DistWorldSurfMountRenderer_SetFlags(v8, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
         v4->unk_0C.x = (FX32_ONE * (v9->alpha));
         v4->unk_0C.y = (FX32_ONE * (v9->beta));
@@ -8136,7 +8136,7 @@ static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         v4->unk_30 = (FX32_ONE * 90);
         v4->unk_34 = (FX32_ONE * -70) / 32;
 
-        v7 = ov5_021F88FC(v8);
+        v7 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v8);
         v7->x = 0;
         v7->y = 0;
         v7->z = (FX32_ONE * 6);
@@ -8165,7 +8165,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
 
         {
-            Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
+            Simple3DRotationAngles *v4 = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(v3);
 
             ov9_02250F1C(&v1->unk_0C.x, v1->unk_18.x);
             ov9_02250F1C(&v1->unk_0C.y, v1->unk_18.y);
@@ -8178,11 +8178,11 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
         {
             ov9_02250F1C(&v1->unk_30, v1->unk_34);
-            ov5_021F8908(v3, ((v1->unk_30) / FX32_ONE));
+            DistWorldSurfMountRenderer_SetOrbitAngle(v3, ((v1->unk_30) / FX32_ONE));
         }
 
         {
-            VecFx32 *v5 = ov5_021F88FC(v3);
+            VecFx32 *v5 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v3);
 
             v5->x += v1->unk_24.x;
             v5->y += v1->unk_24.y;
@@ -8203,7 +8203,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
             OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
             VecFx32 *v7;
 
-            v7 = ov5_021F88FC(v6);
+            v7 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v6);
             v7->x = 0;
             v7->y = 0;
             v7->z = (FX32_ONE * 10);
@@ -8243,8 +8243,8 @@ static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     ov9_0224FA94(param0, v3);
 
     {
-        VecFx32 *v6 = ov5_021F88FC(v1);
-        VecFx32 *v7 = ov5_021F88F0(v1);
+        VecFx32 *v6 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v1);
+        VecFx32 *v7 = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(v1);
 
         *v7 = v4->unk_40;
 
@@ -8288,7 +8288,7 @@ static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
             v3->unk_24.z = (FX32_ONE * -7) / 16;
             v3->unk_34 = (FX32_ONE * -110) / 16;
 
-            ov5_021F88DC(v1, 1 << 5);
+            DistWorldSurfMountRenderer_ClearFlags(v1, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
         }
 
         *param2 = 3;
@@ -8315,7 +8315,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 *v5;
-        Simple3DRotationAngles *v6 = ov5_021F88A8(v1);
+        Simple3DRotationAngles *v6 = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(v1);
 
         ov9_02250F1C(&v3->unk_0C.x, v3->unk_18.x);
         ov9_02250F1C(&v3->unk_0C.y, v3->unk_18.y);
@@ -8326,10 +8326,10 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         v6->gamma = ((v3->unk_0C.z) / FX32_ONE);
 
         ov9_02250F1C(&v3->unk_30, v3->unk_34);
-        ov5_021F8908(v1, ((v3->unk_30) / FX32_ONE));
+        DistWorldSurfMountRenderer_SetOrbitAngle(v1, ((v3->unk_30) / FX32_ONE));
 
         {
-            VecFx32 *v7 = ov5_021F88FC(v1);
+            VecFx32 *v7 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v1);
 
             v7->x += v3->unk_24.x;
             v7->y += v3->unk_24.y;
@@ -8361,16 +8361,16 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
         {
             {
-                VecFx32 *v14 = ov5_021F88FC(v1);
+                VecFx32 *v14 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v1);
 
                 *v14 = v13;
-                v14 = ov5_021F88F0(v1);
+                v14 = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(v1);
                 *v14 = v13;
             }
 
-            ov5_021F8908(v1, 270);
-            ov5_021F88B4(v1, 2, 1);
-            ov5_021F88DC(v1, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
+            DistWorldSurfMountRenderer_SetOrbitAngle(v1, 270);
+            DistWorldSurfMountRenderer_SetFixedRotationAngles(v1, 2, 1);
+            DistWorldSurfMountRenderer_ClearFlags(v1, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
         }
 
         Sound_StopEffect(1488, 0);
@@ -8464,10 +8464,10 @@ static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     {
         VecFx32 *v7;
         OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
-        Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
+        Simple3DRotationAngles *v9 = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(v8);
 
-        ov5_021F88B4(v8, 3, 1);
-        ov5_021F88CC(v8, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
+        DistWorldSurfMountRenderer_SetFixedRotationAngles(v8, 3, 1);
+        DistWorldSurfMountRenderer_SetFlags(v8, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
 
         v4->unk_08.x = (FX32_ONE * (v9->alpha));
         v4->unk_08.y = (FX32_ONE * (v9->beta));
@@ -8478,7 +8478,7 @@ static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         v4->unk_2C = (FX32_ONE * 270);
         v4->unk_30 = (FX32_ONE * 110) / 4;
 
-        v7 = ov5_021F88FC(v8);
+        v7 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v8);
         v7->x = 0;
         v7->y = 0;
         v7->z = (FX32_ONE * -7);
@@ -8507,7 +8507,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
 
         {
-            Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
+            Simple3DRotationAngles *v4 = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(v3);
 
             ov9_02250F1C(&v1->unk_08.x, v1->unk_14.x);
             ov9_02250F1C(&v1->unk_08.y, v1->unk_14.y);
@@ -8520,11 +8520,11 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
         {
             ov9_02250F1C(&v1->unk_2C, v1->unk_30);
-            ov5_021F8908(v3, ((v1->unk_2C) / FX32_ONE));
+            DistWorldSurfMountRenderer_SetOrbitAngle(v3, ((v1->unk_2C) / FX32_ONE));
         }
 
         {
-            VecFx32 *v5 = ov5_021F88FC(v3);
+            VecFx32 *v5 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v3);
 
             v5->x += v1->unk_20.x;
             v5->y += v1->unk_20.y;
@@ -8545,7 +8545,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
             OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
             VecFx32 *v7;
 
-            v7 = ov5_021F88FC(v6);
+            v7 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v6);
             v7->x = 0;
             v7->y = 0;
             v7->z = (FX32_ONE * -7);
@@ -8576,12 +8576,12 @@ static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     ov9_02250138(param0, v3);
 
     {
-        VecFx32 *v5 = ov5_021F88F0(v1);
+        VecFx32 *v5 = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(v1);
 
         *v5 = v4->unk_40;
 
         if (v3->unk_04 == 1) {
-            VecFx32 *v6 = ov5_021F88FC(v1);
+            VecFx32 *v6 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v1);
 
             if (v6->z < (FX32_ONE * 10)) {
                 v6->x += v3->unk_20.x;
@@ -8604,7 +8604,7 @@ static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
             v3->unk_20.z = (FX32_ONE * -4) / 2;
             v3->unk_30 = (FX32_ONE * 70) / 2;
 
-            ov5_021F88DC(v1, 1 << 5);
+            DistWorldSurfMountRenderer_ClearFlags(v1, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
         }
 
         *param2 = 3;
@@ -8631,7 +8631,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 *v5;
-        Simple3DRotationAngles *v6 = ov5_021F88A8(v1);
+        Simple3DRotationAngles *v6 = DistWorldSurfMountRenderer_GetSurfMountRotationAngles(v1);
 
         ov9_02250F1C(&v3->unk_08.x, v3->unk_14.x);
         ov9_02250F1C(&v3->unk_08.y, v3->unk_14.y);
@@ -8642,10 +8642,10 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         v6->gamma = ((v3->unk_08.z) / FX32_ONE);
 
         ov9_02250F1C(&v3->unk_2C, v3->unk_30);
-        ov5_021F8908(v1, ((v3->unk_2C) / FX32_ONE));
+        DistWorldSurfMountRenderer_SetOrbitAngle(v1, ((v3->unk_2C) / FX32_ONE));
 
         {
-            VecFx32 *v7 = ov5_021F88FC(v1);
+            VecFx32 *v7 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v1);
 
             v7->x += v3->unk_20.x;
             v7->y += v3->unk_20.y;
@@ -8677,16 +8677,16 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
         {
             {
-                VecFx32 *v14 = ov5_021F88FC(v1);
+                VecFx32 *v14 = DistWorldSurfMountRenderer_GetExternalPosFixPtr(v1);
 
                 *v14 = v13;
-                v14 = ov5_021F88F0(v1);
+                v14 = DistWorldSurfMountRenderer_GetExternalSpritePosOffsetPtr(v1);
                 *v14 = v13;
             }
 
-            ov5_021F8908(v1, 90);
-            ov5_021F88B4(v1, 3, 5);
-            ov5_021F88DC(v1, 1 << 2 | 1 << 4 | 1 << 6 | 1 << 5);
+            DistWorldSurfMountRenderer_SetOrbitAngle(v1, 90);
+            DistWorldSurfMountRenderer_SetFixedRotationAngles(v1, 3, 5);
+            DistWorldSurfMountRenderer_ClearFlags(v1, DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ROTATION_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_NO_ORBIT_RECALCULATION | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_POS_FIX | DIST_WORLD_SURF_MOUNT_RENDERER_FLAG_MASK_USE_EXTERNAL_SPRITE_POS_OFFSET);
         }
 
         Sound_StopEffect(1488, 0);
