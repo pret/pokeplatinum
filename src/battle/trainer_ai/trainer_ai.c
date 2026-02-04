@@ -15,8 +15,8 @@
 #include "battle/battle_context.h"
 #include "battle/battle_controller_player.h"
 #include "battle/battle_lib.h"
+#include "battle/battle_system.h"
 #include "battle/common.h"
-#include "battle/ov16_0223DF00.h"
 #include "battle/trainer_ai.h"
 #include "pch/global_pch.h"
 
@@ -567,7 +567,7 @@ static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCt
 
     // Override targets as needed
     if (AI_CONTEXT.moveTable[move].range == RANGE_USER_OR_ALLY
-        && Battler_Side(battleSys, AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker]) == 0) {
+        && BattleSystem_GetBattlerSide(battleSys, AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker]) == 0) {
         AI_CONTEXT.selectedTarget[AI_CONTEXT.attacker] = AI_CONTEXT.attacker;
     }
 
@@ -844,7 +844,7 @@ static void AICmd_IfSideCondition(BattleSystem *battleSys, BattleContext *battle
     u32 mask = AIScript_Read(battleCtx);
     int jump = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
-    u8 side = Battler_Side(battleSys, battler);
+    u8 side = BattleSystem_GetBattlerSide(battleSys, battler);
 
     if (battleCtx->sideConditionsMask[side] & mask) {
         AIScript_Iter(battleCtx, jump);
@@ -859,7 +859,7 @@ static void AICmd_IfNotSideCondition(BattleSystem *battleSys, BattleContext *bat
     u32 mask = AIScript_Read(battleCtx);
     int jump = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
-    u8 side = Battler_Side(battleSys, battler);
+    u8 side = BattleSystem_GetBattlerSide(battleSys, battler);
 
     if ((battleCtx->sideConditionsMask[side] & mask) == FALSE) {
         AIScript_Iter(battleCtx, jump);
@@ -1070,22 +1070,22 @@ static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx
         break;
 
     case LOAD_ATTACKER_PARTNER_TYPE_1:
-        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.attacker);
+        partner = BattleSystem_GetPartner(battleSys, AI_CONTEXT.attacker);
         AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_1, NULL);
         break;
 
     case LOAD_DEFENDER_PARTNER_TYPE_1:
-        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.defender);
+        partner = BattleSystem_GetPartner(battleSys, AI_CONTEXT.defender);
         AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_1, NULL);
         break;
 
     case LOAD_ATTACKER_PARTNER_TYPE_2:
-        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.attacker);
+        partner = BattleSystem_GetPartner(battleSys, AI_CONTEXT.attacker);
         AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_2, NULL);
         break;
 
     case LOAD_DEFENDER_PARTNER_TYPE_2:
-        partner = BattleSystem_Partner(battleSys, AI_CONTEXT.defender);
+        partner = BattleSystem_GetPartner(battleSys, AI_CONTEXT.defender);
         AI_CONTEXT.calcTemp = BattleMon_Get(battleCtx, partner, BATTLEMON_TYPE_1, NULL);
         break;
 
@@ -1239,17 +1239,17 @@ static void AICmd_CountAlivePartyBattlers(BattleSystem *battleSys, BattleContext
     AI_CONTEXT.calcTemp = 0;
 
     u8 battler = AIScript_Battler(battleCtx, inBattler);
-    Party *party = BattleSystem_Party(battleSys, battler);
+    Party *party = BattleSystem_GetParty(battleSys, battler);
     u8 battlerSlot, partnerSlot;
 
     if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
         battlerSlot = battleCtx->selectedPartySlot[battler];
-        partnerSlot = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battler)];
+        partnerSlot = battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battler)];
     } else {
         battlerSlot = partnerSlot = battleCtx->selectedPartySlot[battler];
     }
 
-    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+    for (int i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (i != battlerSlot
@@ -1465,13 +1465,13 @@ static void AICmd_IfPartyMemberStatus(BattleSystem *battleSys, BattleContext *ba
     u8 slot1, slot2;
     if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
         slot1 = battleCtx->selectedPartySlot[battler];
-        slot2 = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battler)];
+        slot2 = battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battler)];
     } else {
         slot1 = slot2 = battleCtx->selectedPartySlot[battler];
     }
 
-    party = BattleSystem_Party(battleSys, battler);
-    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+    party = BattleSystem_GetParty(battleSys, battler);
+    for (int i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (i != slot1 && i != slot2
@@ -1498,13 +1498,13 @@ static void AICmd_IfPartyMemberNotStatus(BattleSystem *battleSys, BattleContext 
     u8 slot1, slot2;
     if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
         slot1 = battleCtx->selectedPartySlot[battler];
-        slot2 = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battler)];
+        slot2 = battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battler)];
     } else {
         slot1 = slot2 = battleCtx->selectedPartySlot[battler];
     }
 
-    party = BattleSystem_Party(battleSys, battler);
-    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+    party = BattleSystem_GetParty(battleSys, battler);
+    for (int i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (i != slot1 && i != slot2
@@ -2059,7 +2059,7 @@ static void AICmd_LoadSpikesLayers(BattleSystem *battleSys, BattleContext *battl
     int inBattler = AIScript_Read(battleCtx);
     u32 sideCondition = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
-    u8 side = Battler_Side(battleSys, battler);
+    u8 side = BattleSystem_GetBattlerSide(battleSys, battler);
 
     switch (sideCondition) {
     case SIDE_CONDITION_SPIKES:
@@ -2080,8 +2080,8 @@ static void AICmd_IfAnyPartyMemberIsWounded(BattleSystem *battleSys, BattleConte
     int jump = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    for (int i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
-        Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+    for (int i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
+        Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
         if (i != battleCtx->selectedPartySlot[battler]
             && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
@@ -2100,8 +2100,8 @@ static void AICmd_IfAnyPartyMemberUsedPP(BattleSystem *battleSys, BattleContext 
     u8 battler = AIScript_Battler(battleCtx, inBattler);
     int moveSlot; // must be declared outside of the loop to match
 
-    for (int partySlot = 0; partySlot < BattleSystem_PartyCount(battleSys, battler); partySlot++) {
-        Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
+    for (int partySlot = 0; partySlot < BattleSystem_GetPartyCount(battleSys, battler); partySlot++) {
+        Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, partySlot);
 
         if (partySlot != battleCtx->selectedPartySlot[battler]) {
             for (moveSlot = 0; moveSlot < LEARNED_MOVES_MAX; moveSlot++) {
@@ -2174,7 +2174,7 @@ static void AICmd_LoadBattlerSpeedRank(BattleSystem *battleSys, BattleContext *b
 
     inBattler = AIScript_Read(battleCtx);
     battler = AIScript_Battler(battleCtx, inBattler);
-    maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     for (i = 0; i < maxBattlers; i++) {
         speedOrder[i] = i;
@@ -2245,9 +2245,9 @@ static void AICmd_IfPartyMemberDealsMoreDamage(BattleSystem *battleSys, BattleCo
         battleCtx->battleMons[battler].moveEffectsData.embargoTurns,
         varyDamage);
 
-    for (i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
+    for (i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
         if (i != battleCtx->selectedPartySlot[battler]) {
-            partyMon = BattleSystem_PartyPokemon(battleSys, battler, i);
+            partyMon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
             if (Pokemon_GetValue(partyMon, MON_DATA_HP, NULL) != 0
                 && Pokemon_GetValue(partyMon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
@@ -2518,7 +2518,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
                 varyDamage);
 
             // Update to the partner for the next iteration
-            battler = BattleSystem_Partner(battleSys, AI_CONTEXT.attacker);
+            battler = BattleSystem_GetPartner(battleSys, AI_CONTEXT.attacker);
 
             if (j == 0) {
                 moveDamage = damageVals[AI_CONTEXT.moveSlot];
@@ -2982,7 +2982,7 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
     u32 effectivenessFlags;
     s32 damage;
 
-    defendingSide = Battler_Side(battleSys, AI_CONTEXT.defender);
+    defendingSide = BattleSystem_GetBattlerSide(battleSys, AI_CONTEXT.defender);
     damage = 0;
     power = 0;
     type = 0;
@@ -3398,7 +3398,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
     u32 effectiveness;
     Pokemon *mon;
 
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
         return FALSE;
     }
 
@@ -3419,8 +3419,8 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
         }
 
         // If we don't, check if any of our party members have a super-effective move
-        for (i = 0; i < BattleSystem_PartyCount(battleSys, battler); i++) {
-            mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+        for (i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
+            mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
             if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
                 && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
@@ -3478,7 +3478,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
     Pokemon *mon;
 
     // "Player" consts here refer to the AI's perspective.
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
         defender1 = BATTLER_PLAYER_1;
         defender2 = BATTLER_PLAYER_2;
     } else {
@@ -3522,21 +3522,21 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
     }
 
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
-        aiSlot2 = BattleSystem_Partner(battleSys, battler);
+        aiSlot2 = BattleSystem_GetPartner(battleSys, battler);
     }
 
     start = 0;
-    end = BattleSystem_PartyCount(battleSys, battler);
+    end = BattleSystem_GetPartyCount(battleSys, battler);
 
     // For each of the AI's active party Pokemon on the bench, check if any of them have a
     // damaging move which is super-effective against either of the player's active Pokemon
     // on the battlefield. If any such Pokemon on the bench exists, switch to it 66% of
     // the time.
     for (i = start; i < end; i++) {
-        mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+        mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
             && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
@@ -3595,7 +3595,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
     // Pokemon on the battlefield. If any such Pokemon on the bench exists, switch to it
     // 50% of the time.
     for (i = start; i < end; i++) {
-        mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+        mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
             && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
@@ -3675,8 +3675,8 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
 
     // Look at the slot directly across from us on the opposite side. i.e.,
     // AI slot 1 looks at player slot 1, AI slot 2 looks at player slot 2
-    oppositeSlot = BattleSystem_BattlerSlot(battleSys, battler) ^ 1;
-    defender = BattleSystem_BattlerOfType(battleSys, oppositeSlot);
+    oppositeSlot = BattleSystem_GetBattlerType(battleSys, battler) ^ 1;
+    defender = BattleSystem_GetBattlerOfType(battleSys, oppositeSlot);
 
     if ((battleCtx->battlersSwitchingMask & FlagIndex(defender)) == FALSE) {
         // Check if the player's battler is weak to any of our moves
@@ -3701,10 +3701,10 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
     }
 
     // Check the defender's partner the same way as above.
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
         return FALSE;
     }
-    defender = BattleSystem_Partner(battleSys, defender);
+    defender = BattleSystem_GetPartner(battleSys, defender);
 
     if ((battleCtx->battlersSwitchingMask & FlagIndex(defender)) == FALSE) {
         for (i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -3786,19 +3786,19 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     }
 
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
-        aiSlot2 = BattleSystem_Partner(battleSys, battler);
+        aiSlot2 = BattleSystem_GetPartner(battleSys, battler);
     }
 
     start = 0;
-    end = BattleSystem_PartyCount(battleSys, battler);
+    end = BattleSystem_GetPartyCount(battleSys, battler);
 
     // Check each Pokemon on the bench for one which has an ability that absorbs
     // the last move that was used.
     for (i = start; i < end; i++) {
-        mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+        mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
             && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
@@ -3851,17 +3851,17 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
     }
 
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
-        aiSlot2 = BattleSystem_Partner(battleSys, battler);
+        aiSlot2 = BattleSystem_GetPartner(battleSys, battler);
     }
 
     start = 0;
-    end = BattleSystem_PartyCount(battleSys, battler);
+    end = BattleSystem_GetPartyCount(battleSys, battler);
 
     for (i = start; i < end; i++) {
-        mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+        mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
             && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
@@ -4021,17 +4021,17 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
 
     alivePartyMons = 0;
     aiSlot1 = battler;
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2)) {
         aiSlot2 = aiSlot1;
     } else {
-        aiSlot2 = BattleSystem_Partner(battleSys, battler);
+        aiSlot2 = BattleSystem_GetPartner(battleSys, battler);
     }
 
     // Check for living party members (obviously, do not try to switch if there are none).
     start = 0;
-    end = BattleSystem_PartyCount(battleSys, battler);
+    end = BattleSystem_GetPartyCount(battleSys, battler);
     for (i = start; i < end; i++) {
-        mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+        mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
             && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
@@ -4102,9 +4102,9 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
     int end;
     Pokemon *mon;
     BattleContext *battleCtx = battleSys->battleCtx;
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
 
-    if ((battleType & BATTLE_TYPE_TRAINER) || Battler_Side(battleSys, battler) == BATTLE_SIDE_PLAYER) {
+    if ((battleType & BATTLE_TYPE_TRAINER) || BattleSystem_GetBattlerSide(battleSys, battler) == BATTLE_SIDE_PLAYER) {
         if (TrainerAI_ShouldSwitch(battleSys, battleCtx, battler)) {
             // If this is a switch which should use the post-KO switch logic, then do so.
             // If there is no valid battler, pick the first one in party order.
@@ -4114,12 +4114,12 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
                     if ((battleType & BATTLE_TYPE_TAG) || (battleType & BATTLE_TYPE_2vs2)) {
                         battler2 = battler1;
                     } else {
-                        battler2 = BattleSystem_Partner(battleSys, battler);
+                        battler2 = BattleSystem_GetPartner(battleSys, battler);
                     }
 
-                    end = BattleSystem_PartyCount(battleSys, battler);
+                    end = BattleSystem_GetPartyCount(battleSys, battler);
                     for (i = 0; i < end; i++) {
-                        mon = BattleSystem_PartyPokemon(battleSys, battler, i);
+                        mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
 
                         if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
                             && i != battleCtx->selectedPartySlot[battler1]
@@ -4175,7 +4175,7 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
 
     // Don't let the AI partners ever use items in battle against trainers.
     if ((battleSys->battleType & BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER
-        && BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+        && BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
         return result;
     }
 
@@ -4184,7 +4184,7 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
         return result;
     }
 
-    party = BattleSystem_Party(battleSys, battler);
+    party = BattleSystem_GetParty(battleSys, battler);
     for (i = 0; i < Party_GetCurrentCount(party); i++) {
         mon = Party_GetPokemonBySlotIndex(party, i);
 

@@ -5,8 +5,8 @@
 
 #include "constants/heap.h"
 
+#include "battle/battle_system.h"
 #include "battle/message_defs.h"
-#include "battle/ov16_0223DF00.h"
 
 #include "assert.h"
 #include "enums.h"

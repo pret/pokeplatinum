@@ -15,7 +15,7 @@
 
 #include "battle/battle_anim_battler_context.h"
 #include "battle/battle_background_reference.h"
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle_anim/battle_anim_helpers.h"
@@ -3937,12 +3937,12 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, enum HeapID heap
     v2->unk_04 = param2;
     v2->unk_08.unk_00 = BattleSystem_GetSpriteSystem(battleSys);
     v2->unk_08.unk_04 = BattleSystem_GetSpriteManager(battleSys);
-    v2->unk_08.unk_08 = BattleSystem_PaletteSys(battleSys);
+    v2->unk_08.unk_08 = BattleSystem_GetPaletteData(battleSys);
 
     {
         for (v0 = 0; v0 < 4; v0++) {
             v2->unk_24[v0] = NULL;
-            v2->pokemonSpriteDataArray[v0] = ov16_0223F2AC(battleSys, v0);
+            v2->pokemonSpriteDataArray[v0] = BattleSystem_GetPokemonSpriteDataByIndex(battleSys, v0);
         }
 
         ov16_0223F87C(battleSys, &(v2->unk_44[0]));
@@ -4080,21 +4080,21 @@ UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, enum HeapID heap
     return ov12_022234F8(battleSys, heapID, 0xFF);
 }
 
-void ov12_02223770(UnkStruct_ov12_02223764 *battleSys)
+void ov12_02223770(UnkStruct_ov12_02223764 *param0)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (battleSys->unk_24[v0] == NULL) {
+        if (param0->unk_24[v0] == NULL) {
             continue;
         }
 
-        SpriteManager_UnloadCharObjById(battleSys->unk_08.unk_04, battleSys->unk_14[v0]);
-        SpriteManager_UnloadPlttObjById(battleSys->unk_08.unk_04, battleSys->unk_14[v0]);
-        Sprite_DeleteAndFreeResources(battleSys->unk_24[v0]);
+        SpriteManager_UnloadCharObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
+        SpriteManager_UnloadPlttObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_24[v0]);
     }
 
-    Heap_Free(battleSys);
+    Heap_Free(param0);
 }
 
 void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1)
