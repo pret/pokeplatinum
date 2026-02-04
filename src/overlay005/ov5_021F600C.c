@@ -8,20 +8,19 @@
 #include "struct_defs/struct_020217F4.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DF440.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
+#include "overlay005/field_effect_manager.h"
 
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021F600C_t {
-    UnkStruct_ov5_021DF47C *unk_00;
+    FieldEffectManager *unk_00;
 } UnkStruct_ov5_021F600C;
 
 typedef struct {
     FieldSystem *fieldSystem;
-    UnkStruct_ov5_021DF47C *unk_04;
+    FieldEffectManager *unk_04;
     UnkStruct_ov5_021F600C *unk_08;
     MapObject *unk_0C;
 } UnkStruct_ov5_021F6094;
@@ -41,9 +40,9 @@ static void ov5_021F6074(UnkStruct_ov5_021F600C *param0);
 static const OverworldAnimManagerFuncs Unk_ov5_02200BD8;
 const UnkStruct_020217F4 Unk_ov5_02200BEC[];
 
-void *ov5_021F600C(UnkStruct_ov5_021DF47C *param0)
+void *ov5_021F600C(FieldEffectManager *param0)
 {
-    UnkStruct_ov5_021F600C *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F600C)), 0, 0);
+    UnkStruct_ov5_021F600C *v0 = FieldEffectManager_HeapAllocInit(param0, (sizeof(UnkStruct_ov5_021F600C)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F6038(v0);
@@ -55,7 +54,7 @@ void ov5_021F6028(void *param0)
     UnkStruct_ov5_021F600C *v0 = param0;
 
     ov5_021F6074(v0);
-    ov5_021DF554(v0);
+    FieldEffectManager_HeapFree(v0);
 }
 
 static void ov5_021F6038(UnkStruct_ov5_021F600C *param0)
@@ -75,21 +74,21 @@ static void ov5_021F6074(UnkStruct_ov5_021F600C *param0)
 OverworldAnimManager *ov5_021F6094(MapObject *param0)
 {
     UnkStruct_ov5_021F6094 v0;
-    UnkStruct_ov5_021DF47C *v1;
+    FieldEffectManager *v1;
     OverworldAnimManager *v2;
 
-    v1 = ov5_021DF578(param0);
+    v1 = MapObject_GetFieldEffectManager(param0);
 
     v0.fieldSystem = MapObject_FieldSystem(param0);
     v0.unk_04 = v1;
-    v0.unk_08 = ov5_021DF55C(v1, 22);
+    v0.unk_08 = FieldEffectManager_GetRendererContext(v1, 22);
     v0.unk_0C = param0;
 
     {
         VecFx32 v3 = { 0, 0, 0 };
-        int v4 = sub_02062758(param0, 2);
+        int v4 = MapObject_CalculateTaskPriority(param0, 2);
 
-        v2 = ov5_021DF72C(v1, &Unk_ov5_02200BD8, &v3, 0, &v0, v4);
+        v2 = FieldEffectManager_InitAnimManager(v1, &Unk_ov5_02200BD8, &v3, 0, &v0, v4);
     }
 
     return v2;
@@ -106,7 +105,7 @@ static int ov5_021F60E4(OverworldAnimManager *param0, void *param1)
 
     v1->unk_10 = *v2;
     v1->unk_04 = MapObject_GetLocalID(v1->unk_10.unk_0C);
-    v1->unk_08 = sub_02062918(v1->unk_10.unk_0C);
+    v1->unk_08 = MapObject_GetMapID(v1->unk_10.unk_0C);
 
     OverworldAnimManager_SetPosition(param0, &v0);
     v1->unk_20 = ov5_021DF84C(v1->unk_10.unk_04, 4, &v0);
@@ -126,7 +125,7 @@ static void ov5_021F6140(OverworldAnimManager *param0, void *param1)
     MapObject *v1 = v0->unk_10.unk_0C;
 
     if (sub_02062764(v1, v0->unk_04, v0->unk_08) == 0) {
-        ov5_021DF74C(param0);
+        FieldEffectManager_FinishAnimManager(param0);
         return;
     }
 }
@@ -138,7 +137,7 @@ static void ov5_021F615C(OverworldAnimManager *param0, void *param1)
     MapObject *v3 = v2->unk_10.unk_0C;
 
     if (sub_02062764(v3, v2->unk_04, v2->unk_08) == 0) {
-        ov5_021DF74C(param0);
+        FieldEffectManager_FinishAnimManager(param0);
         return;
     }
 

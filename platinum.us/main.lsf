@@ -485,7 +485,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_map_name_popup.c.o
 	Object main.nef.p/src_overlay005_ov5_021DDAE4.c.o
 	Object main.nef.p/src_overlay005_encounter_effect.c.o
-	Object main.nef.p/src_overlay005_ov5_021DF440.c.o
+	Object main.nef.p/src_overlay005_field_effect_manager.c.o
 	Object main.nef.p/src_overlay005_ov5_021DFB54.c.o
 	Object main.nef.p/src_overlay005_ov5_021E1154.c.o
 	Object main.nef.p/src_overlay005_ov5_021E135C.c.o
@@ -515,8 +515,8 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_area_data.c.o
 	Object main.nef.p/src_overlay005_honey_tree.c.o
 	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
-	Object main.nef.p/src_overlay005_ov5_021FF6B8.c.o
-	Object main.nef.p/src_overlay005_ov5_021F067C.c.o
+	Object main.nef.p/src_overlay005_field_effect_renderer.c.o
+	Object main.nef.p/src_overlay005_resource_heap.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0824.c.o
 	Object main.nef.p/src_overlay005_fishing.c.o
 	Object main.nef.p/src_overlay005_footprint_type.c.o
@@ -528,7 +528,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F1CC8.c.o
 	Object main.nef.p/src_overlay005_berry_patch_effects.c.o
 	Object main.nef.p/src_overlay005_ov5_021F23D0.c.o
-	Object main.nef.p/src_overlay005_ov5_021F25C0.c.o
+	Object main.nef.p/src_overlay005_surf_mount_renderer.c.o
 	Object main.nef.p/src_overlay005_ov5_021F2850.c.o
 	Object main.nef.p/src_overlay005_ov5_021F2A7C.c.o
 	Object main.nef.p/src_overlay005_ov5_021F2BD0.c.o

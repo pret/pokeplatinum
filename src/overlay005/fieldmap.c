@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
+#include "constants/field/field_effect_renderer.h"
 #include "constants/field/map.h"
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
@@ -16,11 +17,10 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"
-#include "overlay005/const_ov5_021FF6B8.h"
-#include "overlay005/const_ov5_021FF744.h"
-#include "overlay005/const_ov5_021FF7D0.h"
 #include "overlay005/dynamic_terrain_height.h"
 #include "overlay005/field_camera.h"
+#include "overlay005/field_effect_manager.h"
+#include "overlay005/field_effect_renderer.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
@@ -32,7 +32,6 @@
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021D5EB8.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021ECE40.h"
@@ -298,7 +297,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
         ov5_021ECC78(fieldSystem->mapObjMan);
 
         MapObjectMan_StopAllMovement(fieldSystem->mapObjMan);
-        ov5_021DF500(fieldSystem->unk_40);
+        FieldEffectManager_Free(fieldSystem->fieldEffMan);
 
         ov5_021D1A70(fieldSystem->unk_34);
         fieldSystem->unk_34 = NULL;
@@ -724,7 +723,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
         NNS_G3dGlbFlush();
     }
 
-    ov5_021DF4F8(fieldSystem->unk_40);
+    FieldEffectManager_Render(fieldSystem->fieldEffMan);
     sub_02020C08();
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
@@ -820,7 +819,7 @@ static void FieldSystem_InitLandManager(FieldSystem *fieldSystem)
 
 static void ov5_021D1878(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, HEAP_ID_FIELD1);
+    fieldSystem->fieldEffMan = FieldEffectManager_New(fieldSystem, FIELD_EFFECT_RENDERER_COUNT, HEAP_ID_FIELD1);
 
     {
         int v0 = 80;
@@ -829,10 +828,10 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
             v0 = 112;
         }
 
-        ov5_021DF47C(fieldSystem->unk_40, v0);
+        FieldEffectManager_InitAnimManagerList(fieldSystem->fieldEffMan, v0);
     }
 
-    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD1, 32, 32, 32, 32, 0x500 * (32 / 2), 0x80 * (32 / 2), 0x800 * 32);
+    ov5_021DF488(fieldSystem->fieldEffMan, HEAP_ID_FIELD1, 32, 32, 32, 32, 0x500 * (32 / 2), 0x80 * (32 / 2), 0x800 * 32);
 
     if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
@@ -842,16 +841,16 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         const u32 *v1;
 
         if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) {
-            v1 = Unk_ov5_021FF7D0;
+            v1 = sUndergroundFieldEffectRenderers;
         } else {
             if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-                v1 = Unk_ov5_021FF6B8;
+                v1 = sDistWorldFieldEffectRenderers;
             } else {
-                v1 = Unk_ov5_021FF744;
+                v1 = sDefaultFieldEffectRenderers;
             }
         }
 
-        ov5_021DF4C8(fieldSystem->unk_40, v1);
+        FieldEffectManager_InitRenderers(fieldSystem->fieldEffMan, v1);
     }
 
     {
@@ -864,7 +863,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         ov5_021ECC20(fieldSystem->mapObjMan, 32, ov5_021D1A6C(fieldSystem->unk_34) + 3, ov5_021D1A68(fieldSystem->unk_34), v2);
     }
 
-    FieldEffect_InitRenderObject(fieldSystem->unk_40);
+    FieldEffect_InitRenderObject(fieldSystem->fieldEffMan);
 
     {
         PersistedMapFeatures *v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));

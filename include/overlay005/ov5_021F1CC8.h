@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "overlay005/struct_ov5_021DF47C_decl.h"
+#include "overlay005/field_effect_manager.h"
 
 #include "overworld_anim_manager.h"
 
-void *ov5_021F1CC8(UnkStruct_ov5_021DF47C *param0);
+void *ov5_021F1CC8(FieldEffectManager *param0);
 void ov5_021F1CE8(void *param0);
 OverworldAnimManager *ov5_021F1E8C(const MapObject *param0);
 OverworldAnimManager *ov5_021F1E98(const MapObject *param0);

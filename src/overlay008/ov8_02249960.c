@@ -22,11 +22,11 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/dynamic_terrain_height.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021F4018.h"
 #include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
@@ -2936,8 +2936,8 @@ void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = v2;
     v2->fieldSystem = fieldSystem;
 
-    ov5_021DF4A8(fieldSystem->unk_40, 31);
-    ov5_021F42D8(fieldSystem->unk_40, 11, 9);
+    FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, 31);
+    ov5_021F42D8(fieldSystem->fieldEffMan, 11, 9);
 
     if (v1->unk_00 == 1) {
         ov8_0224B958(v2);
@@ -3672,7 +3672,7 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = v2;
 
     ov8_0224C3B4(v2);
-    ov5_021DF4A8(fieldSystem->unk_40, 32);
+    FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, 32);
     MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
 
     {
@@ -3745,7 +3745,7 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
                 v12++;
             }
 
-            ov5_021F4CEC(fieldSystem->unk_40, v1->unk_04, v1->unk_06, v1->unk_02);
+            ov5_021F4CEC(fieldSystem->fieldEffMan, v1->unk_04, v1->unk_06, v1->unk_02);
         }
     }
 
@@ -3807,7 +3807,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
 
     v0 = 0;
     v1 = 0;
-    v3 = sub_02062858(mapObjMan) + 2;
+    v3 = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0))) {
         v4 = MapObject_GetLocalID(v5);
@@ -3823,7 +3823,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
                 v6->unk_08 = 2;
             }
 
-            v6->unk_10 = ov5_021F4840(param0->fieldSystem->unk_40, v5, v6->unk_08, 3);
+            v6->unk_10 = ov5_021F4840(param0->fieldSystem->fieldEffMan, v5, v6->unk_08, 3);
             v6->unk_0C = SysTask_Start(ov8_0224C518, v6, v3);
             GF_ASSERT(v6->unk_0C);
 

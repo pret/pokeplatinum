@@ -11,8 +11,8 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021F25C0.h"
 #include "overlay005/ov5_021F61BC.h"
+#include "overlay005/surf_mount_renderer.h"
 
 #include "heap.h"
 #include "map_object.h"
@@ -33,7 +33,7 @@ typedef struct PlayerAvatar {
     enum FaceDirection faceLeftOrRight;
     enum FaceDirection faceUpOrDown;
     MapObject *mapObject;
-    OverworldAnimManager *unk_34;
+    OverworldAnimManager *surfMountAnimMan;
     PlayerData *player;
     const PlayerData *playerConst;
 } PlayerAvatar;
@@ -106,9 +106,9 @@ void PlayerAvatar_InitDraw(PlayerAvatar *playerAvatar, int dynamicMapFeaturesID)
             int x = Player_GetXPos(playerAvatar);
             int z = Player_GetZPos(playerAvatar);
             int dir = PlayerAvatar_GetDir(playerAvatar);
-            OverworldAnimManager *v7 = ov5_021F261C(mapObj, x, z, dir, 1);
+            OverworldAnimManager *v7 = SurfMountRenderer_HandleSurfBegin(mapObj, x, z, dir, 1);
 
-            sub_0205EC00(playerAvatar, v7);
+            PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v7);
         }
     }
 }
@@ -406,14 +406,14 @@ void PlayerAvatar_SetFaceDirection(PlayerAvatar *playerAvatar, enum FaceDirectio
     PlayerAvatar_SetFaceUpOrDown(playerAvatar, faceUpOrDown);
 }
 
-void sub_0205EC00(PlayerAvatar *playerAvatar, OverworldAnimManager *param1)
+void PlayerAvatar_SetSurfMountAnimManager(PlayerAvatar *playerAvatar, OverworldAnimManager *surfMountAnimMan)
 {
-    playerAvatar->unk_34 = param1;
+    playerAvatar->surfMountAnimMan = surfMountAnimMan;
 }
 
-OverworldAnimManager *sub_0205EC04(PlayerAvatar *playerAvatar)
+OverworldAnimManager *PlayerAvatar_GetSurfMountAnimManager(PlayerAvatar *playerAvatar)
 {
-    return playerAvatar->unk_34;
+    return playerAvatar->surfMountAnimMan;
 }
 
 static void PlayerAvatar_SetPlayerData(PlayerAvatar *playerAvatar, PlayerData *player)

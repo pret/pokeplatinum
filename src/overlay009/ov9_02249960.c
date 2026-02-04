@@ -21,18 +21,17 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/land_data.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F348C.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/camera_configuration.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
@@ -1030,7 +1029,7 @@ static void ov9_0224AEE4(DistWorldSystem *param0, UnkStruct_ov9_0224B064 *param1
 static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0);
 static void ov9_0224B124(SysTask *param0, void *param1);
 static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
-static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2);
+static void ov9_0224B1B4(DistWorldSystem *param0, FieldEffectManager *param1, UnkStruct_ov9_0224B064 *param2);
 static void ov9_0224B3A8(DistWorldSystem *param0);
 static void ov9_0224B3F4(DistWorldSystem *param0);
 static void InitGhostPropManager(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropHeader *header, const DistWorldGhostPropTemplate *ghostPropTemplateList, int mapHeaderID, u32 hiddenGhostPropGroups);
@@ -1311,9 +1310,9 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     ov9_0224C8E8(dwSystem);
     ov9_0224CBD8(dwSystem);
     ov9_0224DCA8(dwSystem);
-    ov9_0224B1B4(dwSystem, dwSystem->fieldSystem->unk_40, &dwSystem->unk_1A8);
+    ov9_0224B1B4(dwSystem, dwSystem->fieldSystem->fieldEffMan, &dwSystem->unk_1A8);
     ov9_0224E984(dwSystem);
-    ov5_021F34B8(dwSystem->fieldSystem->unk_40);
+    ov5_021F34B8(dwSystem->fieldSystem->fieldEffMan);
     ov9_02249EF0(dwSystem);
 
     data->valid = TRUE;
@@ -1603,7 +1602,7 @@ static void ov9_02249E94(DistWorldSystem *param0)
 
     memset(v1, 0, sizeof(UnkStruct_ov9_02249E94));
 
-    v0 = sub_02062858(param0->fieldSystem->mapObjMan);
+    v0 = MapObjectMan_GetTaskBasePriority(param0->fieldSystem->mapObjMan);
     v0 += 2;
 
     v1->unk_00 = SysTask_Start(ov9_02249EDC, param0, v0);
@@ -1836,7 +1835,7 @@ static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
     memset(v0->unk_04, 0, param1);
     HeapExp_FndInitAllocator(&v0->unk_10, HEAP_ID_FIELD1, 4);
 
-    v0->unk_08 = ov5_021DF5C0(param0->fieldSystem->unk_40, 197, 1);
+    v0->unk_08 = FieldEffectManager_AllocAndReadNARCWholeMember(param0->fieldSystem->fieldEffMan, 197, 1);
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
 }
 
@@ -2370,7 +2369,7 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
         int v10 = PlayerAvatar_GetDir(playerAvatar);
 
         v9 = ov5_021F85BC(playerAvatar, v2, v3, v4, v10, 1, v0);
-        sub_0205EC00(playerAvatar, v9);
+        PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v9);
     }
 
     ov9_0224A390(param0, v8, v6[v0]);
@@ -2860,7 +2859,7 @@ static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param
     return v2;
 }
 
-static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2)
+static void ov9_0224B1B4(DistWorldSystem *param0, FieldEffectManager *param1, UnkStruct_ov9_0224B064 *param2)
 {
     int v0;
     UnkStruct_ov9_0224B1B4 v1;
@@ -2886,7 +2885,7 @@ static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1
 
     for (v0 = 0; v0 < 9; v0++) {
         v1.unk_04 = Unk_ov9_02253680[v0];
-        v2 = ov5_021DF72C(param1, &Unk_ov9_02251508, NULL, 0, &v1, 0);
+        v2 = FieldEffectManager_InitAnimManager(param1, &Unk_ov9_02251508, NULL, 0, &v1, 0);
     }
 }
 
@@ -3173,7 +3172,7 @@ static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, i
     ghostProp.template = *ghostPropTemplate;
     ghostProp.system = system;
 
-    return ov5_021DF72C(system->fieldSystem->unk_40, animFuncs, NULL, 0, &ghostProp, 2);
+    return FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, animFuncs, NULL, 0, &ghostProp, 2);
 }
 
 static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction)
@@ -4995,11 +4994,11 @@ static int ov9_0224D0C8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
         VecFx32 v6, *v7;
 
         param1->unk_5C = (FX32_ONE * 6);
-        sub_0206309C(v1, &v6);
+        MapObject_GetSpritePosOffset(v1, &v6);
         param1->unk_50 = v6.y;
 
         if (param1->unk_68 != NULL) {
-            sub_0206309C(param1->unk_68, &v6);
+            MapObject_GetSpritePosOffset(param1->unk_68, &v6);
             param1->unk_54 = v6.y;
         }
 
@@ -5027,19 +5026,19 @@ static int ov9_0224D288(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     MapObject *v2 = Player_MapObject(playerAvatar);
     VecFx32 *v3 = ov9_0224E330(param1->unk_64->unk_20);
 
-    sub_0206309C(v2, &v0);
+    MapObject_GetSpritePosOffset(v2, &v0);
 
     v0.y = param1->unk_50 + param1->unk_5C;
 
-    sub_020630AC(v2, &v0);
+    MapObject_SetSpritePosOffset(v2, &v0);
     ov9_022511F4(v2, &param1->unk_14);
 
     if (param1->unk_68 != NULL) {
         VecFx32 v4;
 
-        sub_0206309C(param1->unk_68, &v0);
+        MapObject_GetSpritePosOffset(param1->unk_68, &v0);
         v0.y = param1->unk_54 + param1->unk_5C;
-        sub_020630AC(param1->unk_68, &v0);
+        MapObject_SetSpritePosOffset(param1->unk_68, &v0);
 
         MapObject_GetPosPtr(param1->unk_68, &v4);
         v4.y = param1->unk_14.y;
@@ -5063,14 +5062,14 @@ static int ov9_0224D288(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
         }
 
         if (param1->unk_5C <= 0) {
-            sub_0206309C(v2, &v0);
+            MapObject_GetSpritePosOffset(v2, &v0);
             v0.y = param1->unk_50;
-            sub_020630AC(v2, &v0);
+            MapObject_SetSpritePosOffset(v2, &v0);
 
             if (param1->unk_68 != NULL) {
-                sub_0206309C(param1->unk_68, &v0);
+                MapObject_GetSpritePosOffset(param1->unk_68, &v0);
                 v0.y = param1->unk_54;
-                sub_020630AC(param1->unk_68, &v0);
+                MapObject_SetSpritePosOffset(param1->unk_68, &v0);
             }
 
             v3->y = param1->unk_58;
@@ -5148,7 +5147,7 @@ static int ov9_0224D430(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
             MapObject_SetScript(param1->unk_68, 6);
         }
 
-        sub_02062914(param1->unk_68, param1->unk_06);
+        MapObject_SetMapID(param1->unk_68, param1->unk_06);
     }
 
     if (param1->unk_00 == 1) {
@@ -5382,7 +5381,7 @@ static void LoadProp3DModel(DistWorldSystem *system, u32 propKind)
 
     if (renderBuffs->models[propKind].propKind == PROP_KIND_INVALID) {
         renderBuffs->models[propKind].propKind = propKind;
-        ov5_021DFB00(system->fieldSystem->unk_40, &renderBuffs->models[propKind].model, 0, sProp3DModelNARCIndexByKind[propKind], TRUE);
+        FieldEffectManager_LoadModel(system->fieldSystem->fieldEffMan, &renderBuffs->models[propKind].model, 0, sProp3DModelNARCIndexByKind[propKind], TRUE);
     }
 }
 
@@ -5414,10 +5413,10 @@ static void LoadPropAnimSet(DistWorldSystem *system, u32 animKind)
 
     if (renderBuffs->animSets[animKind].animKind == PROP_ANIM_KIND_INVALID) {
         u32 narcIndex = sPropAnimSetNARCIndexByKind[animKind];
-        u32 animSetSize = ov5_021DF5A8(system->fieldSystem->unk_40, narcIndex);
+        u32 animSetSize = FieldEffectManager_GetNARCMemberSize(system->fieldSystem->fieldEffMan, narcIndex);
 
         renderBuffs->animSets[animKind].animSet = Heap_AllocAtEnd(HEAP_ID_FIELD1, animSetSize);
-        ov5_021DF5B4(system->fieldSystem->unk_40, narcIndex, renderBuffs->animSets[animKind].animSet);
+        FieldEffectManager_ReadNARCWholeMember(system->fieldSystem->fieldEffMan, narcIndex, renderBuffs->animSets[animKind].animSet);
         renderBuffs->animSets[animKind].animKind = animKind;
     }
 }
@@ -5844,7 +5843,7 @@ static OverworldAnimManager *ov9_0224DFA0(DistWorldSystem *param0, UnkStruct_ov9
         v1.unk_08 = 1;
     }
 
-    v0 = ov5_021DF72C(param0->fieldSystem->unk_40, &Unk_ov9_02251468, NULL, 0, &v1, 0);
+    v0 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, &Unk_ov9_02251468, NULL, 0, &v1, 0);
     return v0;
 }
 
@@ -6310,7 +6309,7 @@ static int ov9_0224E550(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject *v4 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
         MapObject_SetHeightCalculationDisabled(v4, TRUE);
-        sub_0206309C(v4, &v3);
+        MapObject_GetSpritePosOffset(v4, &v3);
 
         v1->unk_28 = v3.y;
     }
@@ -6337,10 +6336,10 @@ static int ov9_0224E5EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     if (v0 != NULL) {
         VecFx32 v4;
 
-        sub_0206309C(v0, &v4);
+        MapObject_GetSpritePosOffset(v0, &v4);
         v4.y = v2->unk_28 + v2->unk_30;
 
-        sub_020630AC(v0, &v4);
+        MapObject_SetSpritePosOffset(v0, &v4);
         MapObject_GetPosPtr(v0, &v4);
         ov9_022511F4(v0, &v4);
     }
@@ -6364,9 +6363,9 @@ static int ov9_0224E5EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
             if (v0 != NULL) {
                 VecFx32 v5;
 
-                sub_0206309C(v0, &v5);
+                MapObject_GetSpritePosOffset(v0, &v5);
                 v5.y = v2->unk_28;
-                sub_020630AC(v0, &v5);
+                MapObject_SetSpritePosOffset(v0, &v5);
 
                 MapObject_GetPosPtr(v0, &v5);
                 ov9_022511F4(v0, &v5);
@@ -6569,7 +6568,7 @@ static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *
     v0.unk_08 = *param1;
     v0.unk_04 = v1->unk_04;
 
-    v1->unk_08 = ov5_021DF72C(param0->fieldSystem->unk_40, &Unk_ov9_022514B8, NULL, 0, &v0, 0);
+    v1->unk_08 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, &Unk_ov9_022514B8, NULL, 0, &v0, 0);
 }
 
 static BOOL ov9_0224E964(DistWorldSystem *param0)
@@ -6802,7 +6801,7 @@ static void ov9_0224EBCC(DistWorldSystem *param0, UnkStruct_ov9_0224EBB8 *param1
         v0.unk_04 = param1;
         v1 = sPropAnimFuncsByKind[param2->unk_04];
 
-        param1->unk_04 = ov5_021DF72C(param0->fieldSystem->unk_40, v1, NULL, 0, &v0, 2);
+        param1->unk_04 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, v1, NULL, 0, &v0, 2);
     }
 }
 
@@ -7069,7 +7068,7 @@ static MapObject *ov9_0224EECC(DistWorldSystem *param0, const ObjectEvent *param
     const MapObjectManager *v2 = param0->fieldSystem->mapObjMan;
 
     while (MapObjectMan_FindObjectWithStatus(v2, &v1, &v0, (1 << 0))) {
-        if (sub_02062918(v1) == param2) {
+        if (MapObject_GetMapID(v1) == param2) {
             if (MapObject_GetLocalID(v1) == param1->localID) {
                 GF_ASSERT(param1->graphicsID == MapObject_GetGraphicsID(v1));
                 return v1;
@@ -7181,7 +7180,7 @@ static void ov9_0224F0A4(DistWorldSystem *param0, u32 param1)
 
     for (v0 = 0; v0 < 19; v0++, v2++) {
         if ((*v2) != NULL) {
-            if (sub_02062918(*v2) == param1) {
+            if (MapObject_GetMapID(*v2) == param1) {
                 MapObject_Delete(*v2);
                 *v2 = NULL;
             }
@@ -7245,7 +7244,7 @@ void ov9_0224F16C(FieldSystem *fieldSystem, u16 param1)
     while (MapObjectMan_FindObjectWithStatus(
                v3, &v1, &v0, (1 << 0))
         == 1) {
-        if ((MapObject_GetLocalID(v1) == param1) && (sub_02062918(v1) == v2)) {
+        if ((MapObject_GetLocalID(v1) == param1) && (MapObject_GetMapID(v1) == v2)) {
             ov9_0224EE70(v4, v1);
             return;
         }
@@ -7389,7 +7388,7 @@ static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
     Sound_PlayEffect(SEQ_SE_DP_UG_008);
     v1.y = ((115 << 4) * FX32_ONE);
     MapObject_SetPosDirFromVec(v2, &v1, MapObject_GetFacingDir(v2));
-    sub_02062914(v2, 580);
+    MapObject_SetMapID(v2, 580);
 
     {
         u32 v3, v4;
@@ -7501,7 +7500,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
         {
             VecFx32 v11;
 
-            sub_0206309C(param0->unk_0C, &v11);
+            MapObject_GetSpritePosOffset(param0->unk_0C, &v11);
 
             param0->unk_1C = v11.y;
             param0->unk_20 = (FX32_ONE * 1);
@@ -7515,10 +7514,10 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
         VecFx32 v12;
         MapObject *v13 = param0->unk_0C;
 
-        sub_0206309C(v13, &v12);
+        MapObject_GetSpritePosOffset(v13, &v12);
         v12.y = param0->unk_1C + param0->unk_20;
 
-        sub_020630AC(v13, &v12);
+        MapObject_SetSpritePosOffset(v13, &v12);
         param0->unk_20 = -param0->unk_20;
     }
 
@@ -7983,12 +7982,12 @@ static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 v6 = { 0, 0, 0 };
-        sub_020630AC(v2, &v6);
+        MapObject_SetSpritePosOffset(v2, &v6);
     }
 
     {
         VecFx32 *v7;
-        OverworldAnimManager *v8 = sub_0205EC04(playerAvatar);
+        OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
         Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 2, 5);
@@ -8029,7 +8028,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     ov9_0224FA94(param0, v1);
 
     {
-        OverworldAnimManager *v3 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+        OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
 
         {
             Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
@@ -8067,7 +8066,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         ov9_0224F930(v2, 0, 0x400, (FX32_ONE * 4));
 
         {
-            OverworldAnimManager *v6 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+            OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
             VecFx32 *v7;
 
             v7 = ov5_021F88FC(v6);
@@ -8092,7 +8091,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_0224FA94 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_40;
@@ -8168,7 +8167,7 @@ static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_0224FA94 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_40;
@@ -8221,7 +8220,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_TryFace(v2, 2);
         MapObject_Turn(v2, 2);
         MapObject_SetSpriteJumpOffset(v2, &v13);
-        sub_020630AC(v2, &v13);
+        MapObject_SetSpritePosOffset(v2, &v13);
         FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
         MapObject_SetHeightCalculationDisabled(v2, FALSE);
@@ -8325,12 +8324,12 @@ static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 v6 = { 0, 0, 0 };
-        sub_020630AC(v2, &v6);
+        MapObject_SetSpritePosOffset(v2, &v6);
     }
 
     {
         VecFx32 *v7;
-        OverworldAnimManager *v8 = sub_0205EC04(playerAvatar);
+        OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
         Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 3, 1);
@@ -8371,7 +8370,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     ov9_02250138(param0, v1);
 
     {
-        OverworldAnimManager *v3 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+        OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
 
         {
             Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
@@ -8409,7 +8408,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         ov9_0224F930(v2, 0, 0x200, (FX32_ONE * 4));
 
         {
-            OverworldAnimManager *v6 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+            OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
             VecFx32 *v7;
 
             v7 = ov5_021F88FC(v6);
@@ -8431,7 +8430,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_02250138 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_34;
@@ -8484,7 +8483,7 @@ static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_02250138 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_34;
@@ -8537,7 +8536,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_TryFace(v2, 3);
         MapObject_Turn(v2, 3);
         MapObject_SetSpriteJumpOffset(v2, &v13);
-        sub_020630AC(v2, &v13);
+        MapObject_SetSpritePosOffset(v2, &v13);
         FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
         MapObject_SetHeightCalculationDisabled(v2, TRUE);
@@ -8733,7 +8732,7 @@ static int ov9_022507C4(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     v0->unk_18 = ov9_0224F0D4(param0, 582, (0x80 + 0));
     v0->unk_08.y = ((10 << 4) * FX32_ONE);
 
-    sub_020630AC(v0->unk_18, &v0->unk_08);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_08);
 
     *param2 = 1;
     return 0;
@@ -8783,7 +8782,7 @@ static int ov9_02250854(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         *param2 = 3;
     }
 
-    sub_020630AC(v0->unk_18, &v0->unk_08);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_08);
     return 0;
 }
 
@@ -8851,7 +8850,7 @@ static int ov9_0225094C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_14.y += v1;
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.y) >> 4) / FX32_ONE) >= 17) {
         *param2 = 2;
@@ -8864,7 +8863,7 @@ static int ov9_02250994(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 {
     UnkStruct_ov9_02250918 *v0 = ov9_0224E39C(param0);
     v0->unk_14.z -= (FX32_ONE * 1);
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.z) >> 4) / FX32_ONE) <= -2) {
         v0->unk_0C = v0->unk_14.y;
@@ -8881,7 +8880,7 @@ static int ov9_022509D4(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     v0 = ov9_0224E39C(param0);
     v0->unk_14.y = v0->unk_0C + v1[v0->unk_00 >> 1];
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     v0->unk_00 += v0->unk_04;
 
@@ -8906,7 +8905,7 @@ static int ov9_02250A58(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     UnkStruct_ov9_02250918 *v0 = ov9_0224E39C(param0);
     v0->unk_14.z += (FX32_ONE * 1);
 
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.z) >> 4) / FX32_ONE) == 1) {
         *param2 = 5;
@@ -8924,7 +8923,7 @@ static int ov9_02250A90(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_14.y -= v0->unk_10;
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.y) >> 4) / FX32_ONE) <= 0) {
         ov9_0224EE70(param0, v0->unk_20);
@@ -8979,7 +8978,7 @@ static int ov9_02250B30(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y += v1;
-    sub_020630AC(v0->unk_14, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_14, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 13) {
         v0->unk_10 = MapObject_StartAnimation(
@@ -9012,7 +9011,7 @@ static int ov9_02250BAC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y -= v0->unk_00;
-    sub_020630AC(v0->unk_14, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_14, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) <= 0) {
         ov9_0224EE70(param0, v0->unk_14);
@@ -9143,7 +9142,7 @@ static int ov9_02250C48(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y += v1;
-    sub_020630AC(v0->unk_18, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 9) {
         int v2, v3, v4;
@@ -9190,7 +9189,7 @@ static int ov9_02250D10(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y -= v0->unk_00;
-    sub_020630AC(v0->unk_18, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) <= 0) {
         ov9_0224EE70(param0, v0->unk_18);

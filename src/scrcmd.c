@@ -3338,7 +3338,7 @@ static BOOL ScrCmd_MoveCamera(ScriptContext *ctx)
     pos.y = FX32_CONST(y);
     pos.z = FX32_CONST(z);
 
-    sub_020630AC(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
+    MapObject_SetSpritePosOffset(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
     Camera_Move(&pos, ctx->fieldSystem->camera);
 
     return FALSE;
