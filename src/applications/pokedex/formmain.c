@@ -39,6 +39,13 @@
 // constants used in this file
 #define FORMMAIN_GRAPHIC_ID 14000
 #define TRANSITION_FRAMES   16
+#define ARROW_X             248
+#define ARROW_Y             96
+#define TEXT_WIDTH          16
+#define TEXT_HEIGHT         2
+#define FRONT_SPRITE_X      76
+#define SPRITE_X_GAP        104
+#define SPRITE_Y            88
 
 enum FormCategory {
     FORMCATEGORY_GENDER = 0,
@@ -244,13 +251,13 @@ static inline int CalcNextFormIndex(int formIndex, int numFormsSeen, int formDel
     int newFormIndex;
 
     if (formDelta > 0) {
-        if ((formIndex + formDelta) < numFormsSeen) {
+        if (formIndex + formDelta < numFormsSeen) {
             newFormIndex = formIndex + formDelta;
         } else {
             newFormIndex = 0;
         }
     } else {
-        if ((formIndex + formDelta) >= 0) {
+        if (formIndex + formDelta >= 0) {
             newFormIndex = formDelta;
         } else {
             newFormIndex = numFormsSeen - 1;
@@ -279,15 +286,7 @@ static BOOL FormMainDataEnter(PokedexDataManager *dataMan, void *data)
 
 static BOOL FormMainDataUpdate(PokedexDataManager *dataMan, void *data)
 {
-    if (dataMan->exit == TRUE) {
-        return TRUE;
-    }
-
-    if (dataMan->unchanged == TRUE) {
-        return FALSE;
-    }
-
-    return FALSE;
+    return dataMan->exit == TRUE;
 }
 
 static BOOL FormMainDataExit(PokedexDataManager *dataMan, void *data)
@@ -379,7 +378,6 @@ static BOOL FormMainGraphicsExit(void *graphics, PokedexGraphicsManager *graphic
     const FormMainData *formMainData = data;
     FormMainGraphics *formMainGraphics = graphics;
     FormDisplayBox *formDisplayBox = graphicsMan->pageGraphics;
-    BOOL v3;
 
     switch (graphicsMan->state) {
     case 0:
@@ -387,9 +385,7 @@ static BOOL FormMainGraphicsExit(void *graphics, PokedexGraphicsManager *graphic
         graphicsMan->state++;
         break;
     case 1:
-        v3 = AdvanceBlendTransition(formDisplayBox, formMainGraphics, formMainData, FALSE);
-
-        if (v3) {
+        if (AdvanceBlendTransition(formDisplayBox, formMainGraphics, formMainData, FALSE)) {
             graphicsMan->state++;
         }
         break;
@@ -443,10 +439,10 @@ static void DisplaySpecies(FormDisplayBox *formDisplayBox, FormMainGraphics *for
 {
     enum Species species = PokedexSort_CurrentSpecies(formMainData->sortData);
 
-    DisplayPokemonSprites(formDisplayBox, formMainGraphics, formMainData, species, formMainData->formCategory, formMainData->formIndex, 0);
+    DisplayPokemonSprites(formDisplayBox, formMainGraphics, formMainData, species, formMainData->formCategory, formMainData->formIndex, SPRITEINDEX_CURRENT_FRONT);
 
     int nextFormIndex = NextFormIndex(formMainData->formCategory, formMainData->formIndex, 1, formMainData->numFormsSeen);
-    DisplayPokemonSprites(formDisplayBox, formMainGraphics, formMainData, species, formMainData->formCategory, nextFormIndex, 2);
+    DisplayPokemonSprites(formDisplayBox, formMainGraphics, formMainData, species, formMainData->formCategory, nextFormIndex, SPRITEINDEX_PREVIOUS_FRONT);
 
     for (int spriteIndex = 0; spriteIndex < NUM_VISIBLE_SPRITES; spriteIndex++) {
         PokedexGraphics_SetPokemonSpriteHide(formMainGraphics->graphicData, TRUE, spriteIndex);
@@ -457,7 +453,7 @@ static void DisplayNextFormSprite(FormDisplayBox *formDisplayBox, FormMainGraphi
 {
     enum Species species = PokedexSort_CurrentSpecies(formMainData->sortData);
     int nextFormIndex = NextFormIndex(formMainData->formCategory, formMainData->formIndex, 1, formMainData->numFormsSeen);
-    DisplayPokemonSprites(formDisplayBox, formMainGraphics, formMainData, species, formMainData->formCategory, nextFormIndex, 2);
+    DisplayPokemonSprites(formDisplayBox, formMainGraphics, formMainData, species, formMainData->formCategory, nextFormIndex, SPRITEINDEX_PREVIOUS_FRONT);
 }
 
 static void DisplayPokemonSprites(FormDisplayBox *formDisplayBox, FormMainGraphics *formMainGraphics, const FormMainData *formMainData, int species, int formCategory, int formIndex, int spriteIndex)
@@ -566,15 +562,15 @@ static void AnimateSprites(FormDisplayBox *formDisplayBox, FormMainGraphics *for
 
         formDisplayBox->boxSprite[spriteIndex] = SpriteList_Add(&spriteListTemplate);
 
-        if ((spriteIndex % 2) == 0) {
+        if (spriteIndex % 2 == 0) {
             Sprite_SetAnim(formDisplayBox->boxSprite[spriteIndex], 0);
         } else {
             Sprite_SetAnim(formDisplayBox->boxSprite[spriteIndex], 2);
         }
     }
 
-    spriteListTemplate.position.x = 248 << FX32_SHIFT;
-    spriteListTemplate.position.y = 96 << FX32_SHIFT;
+    spriteListTemplate.position.x = ARROW_X << FX32_SHIFT;
+    spriteListTemplate.position.y = ARROW_Y << FX32_SHIFT;
     spriteListTemplate.priority = 0;
 
     formDisplayBox->arrowSprite = SpriteList_Add(&spriteListTemplate);
@@ -675,7 +671,7 @@ static void BlendPokemonSprite(FormMainGraphics *formMainGraphics)
 static void InitBoxTransform(FormDisplayBox *formDisplayBox, FormMainGraphics *formMainGraphics)
 {
     for (int spriteIndex = 0; spriteIndex < NUM_VISIBLE_SPRITES; spriteIndex++) {
-        InitBoxResourceTypeTransform(formDisplayBox, formMainGraphics, -256, 0, spriteIndex);
+        InitBoxResourceTypeTransform(formDisplayBox, formMainGraphics, -HW_LCD_WIDTH, 0, spriteIndex);
     }
 }
 
@@ -977,18 +973,18 @@ static void DisplayRotomSprites(FormDisplayBox *formDisplayBox, FormMainGraphics
 
 static void LoadBoxText(FormDisplayBox *formDisplayBox, FormMainGraphics *formMainGraphics, const FormMainData *formMainData, enum HeapID heapID, int formCategory, int formIndex)
 {
-    int newSpriteIndex = SwapSpriteIndex(formDisplayBox->boxIndex, 0);
+    int newSpriteIndex = SwapSpriteIndex(formDisplayBox->boxIndex, SPRITEINDEX_CURRENT_FRONT);
     DisplayFormText(formDisplayBox, formMainGraphics, formMainData, heapID, formCategory, formIndex, newSpriteIndex, 0);
 
     int nextFormIndex = NextFormIndex(formCategory, formIndex, 1, formMainData->numFormsSeen);
-    newSpriteIndex = SwapSpriteIndex(formDisplayBox->boxIndex, 2);
+    newSpriteIndex = SwapSpriteIndex(formDisplayBox->boxIndex, SPRITEINDEX_PREVIOUS_FRONT);
     DisplayFormText(formDisplayBox, formMainGraphics, formMainData, heapID, formCategory, nextFormIndex, newSpriteIndex, 1);
 }
 
 static void DisplayNextFormText(FormDisplayBox *formDisplayBox, FormMainGraphics *formMainGraphics, const FormMainData *formMainData, enum HeapID heapID, int formCategory, int formIndex)
 {
     int nextFormIndex = NextFormIndex(formCategory, formIndex, 1, formMainData->numFormsSeen);
-    int newSpriteIndex = SwapSpriteIndex(formDisplayBox->boxIndex, 2);
+    int newSpriteIndex = SwapSpriteIndex(formDisplayBox->boxIndex, SPRITEINDEX_PREVIOUS_FRONT);
     int textIndex = (formDisplayBox->boxIndex + 1) % 2;
 
     PokedexTextManager_FreeTextData(formDisplayBox->textData[textIndex]);
@@ -1017,7 +1013,7 @@ static void DisplayFormText(FormDisplayBox *formDisplayBox, FormMainGraphics *fo
     displayBox.heapID = heapID;
 
     plttOffset = PlttTransfer_GetPlttOffset(displayBox.paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
-    window = PokedexTextManager_NewWindow(graphicData->textMan, 16, 2);
+    window = PokedexTextManager_NewWindow(graphicData->textMan, TEXT_WIDTH, TEXT_HEIGHT);
 
     PokedexTextManager_DisplayMessageTopRight(graphicData->textMan, window, TEXT_BANK_POKEDEX, entryID);
 
@@ -1135,16 +1131,16 @@ static void SpriteEndXY(int spriteIndex, int *x, int *y)
 
     switch (spriteIndex) {
     case SPRITEINDEX_CURRENT_BACK:
-        newX = 104;
+        newX = SPRITE_X_GAP;
     case SPRITEINDEX_CURRENT_FRONT:
-        newX += 76;
-        newY = 88;
+        newX += FRONT_SPRITE_X;
+        newY = SPRITE_Y;
         break;
     case SPRITEINDEX_PREVIOUS_BACK:
-        newX = 104;
+        newX = SPRITE_X_GAP;
     case SPRITEINDEX_PREVIOUS_FRONT:
-        newX += (76 + HW_LCD_WIDTH);
-        newY = 88;
+        newX += FRONT_SPRITE_X + HW_LCD_WIDTH;
+        newY = SPRITE_Y;
         break;
     default:
         GF_ASSERT(FALSE);

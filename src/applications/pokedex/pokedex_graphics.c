@@ -412,7 +412,7 @@ BOOL PokedexGraphics_TakeTransformStep(SpriteTransformation *spriteTransformatio
     spriteTransformation->currentX = (x >> FX32_SHIFT) + spriteTransformation->startX;
     spriteTransformation->currentY = (y >> FX32_SHIFT) + spriteTransformation->startY;
 
-    if ((spriteTransformation->step + 1) <= spriteTransformation->numSteps) {
+    if (spriteTransformation->step + 1 <= spriteTransformation->numSteps) {
         spriteTransformation->step++;
         return FALSE;
     }
