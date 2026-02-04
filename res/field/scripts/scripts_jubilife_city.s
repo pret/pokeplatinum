@@ -958,7 +958,7 @@ _0C52:
 _0C7C:
     RemoveObject 7
     RemoveObject 16
-    ClearFlag FLAG_UNK_0x0198
+    ClearFlag FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN
     SetVar VAR_JUBILIFE_STATE, 4
     SetVar VAR_JUBILIFE_LOOKER_PALPAD, 2
     SetVar VAR_OREBURGH_STATE, 3

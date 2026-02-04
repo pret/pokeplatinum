@@ -1,42 +1,43 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sandgem_town_pokecenter_1f.h"
+#include "res/field/events/events_sandgem_town_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
+    ScriptEntry SandgemTownPokecenter1F_PokecenterNurse
+    ScriptEntry SandgemTownPokecenter1F_BreederM
+    ScriptEntry SandgemTownPokecenter1F_ExpertM
+    ScriptEntry SandgemTownPokecenter1F_Lass
     ScriptEntryEnd
 
-_0012:
-    CallPokecenterNurse 3
+SandgemTownPokecenter1F_PokecenterNurse:
+    CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
+SandgemTownPokecenter1F_BreederM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message SandgemTownPokecenter1F_Text_ThatLadyAtTheCounterWillHealYourPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0031:
+SandgemTownPokecenter1F_ExpertM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message SandgemTownPokecenter1F_Text_DoYouSeeThatPCOverThere
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0044:
+SandgemTownPokecenter1F_Lass:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message SandgemTownPokecenter1F_Text_TheTopFloorIsTheCommunicationClub
     WaitABXPadPress
     CloseMessage
     ReleaseAll

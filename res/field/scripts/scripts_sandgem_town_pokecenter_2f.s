@@ -2,14 +2,14 @@
 #include "res/text/bank/sandgem_town_pokecenter_2f.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry SandgemTownPokecenter2F_Lass
     ScriptEntryEnd
 
-_0006:
+SandgemTownPokecenter2F_Lass:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message SandgemTownPokecenter2F_Text_WhatKindOfTrainersSignWillGetPeopleLaughing
     WaitABXPadPress
     CloseMessage
     ReleaseAll

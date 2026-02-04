@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "SANDGEM_TOWN_YOUNGSTER_0",
+            "id": "LOCALID_YOUNGSTER",
             "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 1
         },
         {
-            "id": "SANDGEM_TOWN_POKEMON_BREEDER_M_1",
+            "id": "LOCALID_POKEMON_BREEDER_M",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 1
         },
         {
-            "id": "SANDGEM_TOWN_POKEMON_BREEDER_F_2",
+            "id": "LOCALID_POKEMON_BREEDER_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,11 +47,11 @@
             "y": 1
         },
         {
-            "id": "SANDGEM_TOWN_RIVAL_3",
+            "id": "LOCALID_RIVAL",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0197",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_RIVAL",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -62,7 +62,7 @@
             "y": 1
         },
         {
-            "id": "SANDGEM_TOWN_COUNTERPART_4",
+            "id": "LOCALID_COUNTERPART",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,7 +77,7 @@
             "y": 1
         },
         {
-            "id": "SANDGEM_TOWN_SIGNBOARD_5",
+            "id": "LOCALID_SIGNBOARD_POKEMON_RESEARCH_LAB",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_SIGNBOARD_6",
+            "id": "LOCALID_SIGNBOARD_COUNTERPART_MAILBOX",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_MAP_SIGNPOST_7",
+            "id": "LOCALID_MAP_SIGNPOST",
             "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -124,12 +124,12 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_8",
+            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_219",
             "clone_id": 2,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0187",
+            "hidden_flag": "MAP_HEADER_ROUTE_219",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -142,12 +142,12 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_9",
+            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_202",
             "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0157",
+            "hidden_flag": "MAP_HEADER_ROUTE_202",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -160,12 +160,12 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_ARROW_SIGNPOST_10",
+            "id": "LOCALID_ARROW_SIGNPOST_ROUTE_201",
             "clone_id": 4,
             "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0156",
+            "hidden_flag": "MAP_HEADER_ROUTE_201",
             "script": 65535,
             "initial_dir": 0,
             "data": [
@@ -178,12 +178,12 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_SCHOOL_KID_M_11",
+            "id": "LOCALID_SCHOOL_KID_M",
             "clone_id": 9,
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0156",
+            "hidden_flag": "MAP_HEADER_ROUTE_201",
             "script": 65535,
             "initial_dir": 2,
             "data": [],
@@ -194,7 +194,7 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_SIGNBOARD_12",
+            "id": "LOCALID_SIGNBOARD_POKEMON_CENTER",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -209,7 +209,7 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_SIGNBOARD_13",
+            "id": "LOCALID_SIGNBOARD_POKE_MART",
             "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -224,11 +224,11 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_PROF_ROWAN_14",
+            "id": "LOCALID_PROF_ROWAN",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02C4",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_PROF_ROWAN",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -279,7 +279,7 @@
             "y": 0,
             "width": 1,
             "length": 6,
-            "var": "VAR_UNK_0x4071",
+            "var": "VAR_SANDGEM_TOWN_STATE",
             "value": 0
         }
     ]

@@ -34,7 +34,7 @@ _0021:
     WaitABXPadPress
     CloseMessage
     SetVar VAR_EXITED_DISTORTION_WORLD_STATE, 2
-    SetVar VAR_UNK_0x40A6, 2
+    SetVar VAR_SANDGEM_TOWN_LAB_STATE, 2
     SetFlag FLAG_UNK_0x01C7
     ClearFlag FLAG_UNK_0x0132
     SetFlag FLAG_UNK_0x028F

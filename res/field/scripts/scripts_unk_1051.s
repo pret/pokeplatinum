@@ -10,7 +10,7 @@ _0006:
     LockAll
     FacePlayer
     GetPlayerGender VAR_0x8004
-    GoToIfEq VAR_UNK_0x40A6, 3, _0027
+    GoToIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, _0027
     GoTo _006C
     End
 
@@ -50,7 +50,7 @@ _006C:
 _00B2:
     GetNationalDexEnabled VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _030D
-    GoToIfUnset FLAG_UNK_0x00F0, _02E8
+    GoToIfUnset FLAG_TALKED_TO_COUNTERPART_SISTER_WITH_NATIONAL_DEX, _02E8
     GoToIfUnset FLAG_UNK_0x0131, _02C3
     CheckNationalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _0158

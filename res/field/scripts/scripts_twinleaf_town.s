@@ -10,8 +10,8 @@
     ScriptEntry TwinleafTown_Collector
     ScriptEntry TwinleafTown_BreederF
     ScriptEntry TwinleafTown_MapSign
-    ScriptEntry TwinleafTown_PlayerMailbox
-    ScriptEntry TwinleafTown_RivalMailbox
+    ScriptEntry TwinleafTown_LandmarkSignPlayerMailbox
+    ScriptEntry TwinleafTown_LandmarkSignRivalMailbox
     ScriptEntryEnd
 
 TwinleafTown_OnTransition:
@@ -508,12 +508,12 @@ TwinleafTown_MapSign:
     ShowMapSign TwinleafTown_Text_MapSign
     End
 
-TwinleafTown_PlayerMailbox:
+TwinleafTown_LandmarkSignPlayerMailbox:
     BufferPlayerName 0
     ShowLandmarkSign TwinleafTown_Text_PlayerMailbox
     End
 
-TwinleafTown_RivalMailbox:
+TwinleafTown_LandmarkSignRivalMailbox:
     BufferRivalName 0
     ShowLandmarkSign TwinleafTown_Text_RivalMailbox
     End

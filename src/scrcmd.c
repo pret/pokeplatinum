@@ -402,7 +402,7 @@ static BOOL ScrCmd_0B3(ScriptContext *ctx);
 static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
 static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx);
-static BOOL ScrCmd_0BB(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPokemonNamingScreen(ScriptContext *ctx);
 static BOOL ScrCmd_271(ScriptContext *ctx);
 static BOOL ScrCmd_FadeScreen(ScriptContext *ctx);
 static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx);
@@ -955,7 +955,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0B8,
     ScrCmd_GetApproachingTrainerID,
     ScrCmd_Unused_0BA,
-    ScrCmd_0BB,
+    ScrCmd_OpenPokemonNamingScreen,
     ScrCmd_FadeScreen,
     ScrCmd_WaitFadeScreen,
     ScrCmd_Warp,
@@ -4306,16 +4306,16 @@ static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0BB(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPokemonNamingScreen(ScriptContext *ctx)
 {
-    u16 v0[10 * 2];
+    u16 nickname[MON_NAME_LEN * 2];
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
 
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-    Pokemon_GetValue(v1, MON_DATA_NICKNAME, v0);
-    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), MON_NAME_LEN, v3, v0, ScriptContext_GetVarPointer(ctx));
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), MON_NAME_LEN, slot, nickname, ScriptContext_GetVarPointer(ctx));
 
     return TRUE;
 }
