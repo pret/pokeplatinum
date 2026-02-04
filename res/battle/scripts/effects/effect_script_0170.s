@@ -12,5 +12,5 @@ _000:
 _016:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_LOST_FOCUS
     // {0} lost its focus and couldn’t move!
-    BufferMessage BattleStrings_Text_PokemonLostItsFocusAndCouldntMove, TAG_NICKNAME, BTLSCR_ATTACKER
+    BufferMessage BattleStrings_Text_PokemonLostItsFocusAndCouldntMove_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     End 

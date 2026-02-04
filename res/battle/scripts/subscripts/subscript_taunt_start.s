@@ -8,7 +8,7 @@ _000:
     Random 2, 3
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_TAUNTED_TURNS, BTLVAR_CALC_TEMP
     // {0} fell for the taunt!
-    PrintMessage BattleStrings_Text_PokemonFellForTheTaunt, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonFellForTheTaunt_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     End 

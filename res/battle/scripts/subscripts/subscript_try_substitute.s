@@ -13,7 +13,7 @@ _000:
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // {0} made a substitute!
-    PrintMessage BattleStrings_Text_PokemonMadeASubstitute, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonMadeASubstitute_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 
@@ -27,7 +27,7 @@ _036:
 _043:
     WaitButtonABTime 30
     // {0} already has a substitute!
-    PrintMessage BattleStrings_Text_PokemonAlreadyHasASubstitute, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonAlreadyHasASubstitute_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
 
 _049:
     Wait 

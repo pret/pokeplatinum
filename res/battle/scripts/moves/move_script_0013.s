@@ -3,5 +3,5 @@
 
 _000:
     // {0} whipped up a whirlwind!
-    BufferMessage BattleStrings_Text_PokemonWhippedUpAWhirlwind, TAG_NICKNAME, BTLSCR_ATTACKER
+    BufferMessage BattleStrings_Text_PokemonWhippedUpAWhirlwind_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoToEffectScript 

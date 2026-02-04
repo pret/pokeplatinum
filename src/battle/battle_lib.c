@@ -2324,7 +2324,7 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
 
     if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_DISABLED) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE;
-        msgOut->id = BattleStrings_Text_PokemonsMoveIsDisabled; // "{0}'s {1} is disabled!"
+        msgOut->id = BattleStrings_Text_PokemonsMoveIsDisabled_Ally; // "{0}'s {1} is disabled!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
@@ -2335,25 +2335,25 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_TAUNTED) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE;
-        msgOut->id = BattleStrings_Text_PokemonCantUseMoveAfterTheTaunt; // "{0} can't use {1} after the taunt!"
+        msgOut->id = BattleStrings_Text_PokemonCantUseMoveAfterTheTaunt_Ally; // "{0} can't use {1} after the taunt!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_IMPRISONED) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE;
-        msgOut->id = BattleStrings_Text_PokemonCantUseTheSealedMove; // "{0} can't use the sealed {1}!"
+        msgOut->id = BattleStrings_Text_PokemonCantUseTheSealedMove_Ally; // "{0} can't use the sealed {1}!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_GRAVITY) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE;
-        msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfGravity; // "{0} can't use {1} because of gravity!"
+        msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfGravity_Ally; // "{0} can't use {1} because of gravity!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_HEAL_BLOCK) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE_MOVE;
-        msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfMove; // "{0} can't use {2} because of {1}!"
+        msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfMove_Ally; // "{0} can't use {2} because of {1}!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = MOVE_HEAL_BLOCK;
         msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
@@ -3205,7 +3205,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
         }
 
         msgOut->tags = TAG_NICKNAME_ABILITY;
-        msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility; // "{0} prevents escape with {1}!"
+        msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility_Ally; // "{0} prevents escape with {1}!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
         msgOut->params[1] = ABILITY_SHADOW_TAG;
         return TRUE;
@@ -3221,7 +3221,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
                 }
 
                 msgOut->tags = TAG_NICKNAME_ABILITY;
-                msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility; // "{0} prevents escape with {1}!"
+                msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility_Ally; // "{0} prevents escape with {1}!"
                 msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
                 msgOut->params[1] = ABILITY_ARENA_TRAP;
                 return TRUE;
@@ -3232,7 +3232,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
             }
 
             msgOut->tags = TAG_NICKNAME_ABILITY;
-            msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility; // "{0} prevents escape with {1}!"
+            msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility_Ally; // "{0} prevents escape with {1}!"
             msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
             msgOut->params[1] = ABILITY_ARENA_TRAP;
             return TRUE;
@@ -3246,7 +3246,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
         }
 
         msgOut->tags = TAG_NICKNAME_ABILITY;
-        msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility; // "{0} prevents escape with {1}!"
+        msgOut->id = BattleStrings_Text_PokemonPreventsEscapeWithAbility_Ally; // "{0} prevents escape with {1}!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, tmp);
         msgOut->params[1] = ABILITY_MAGNET_PULL;
         return TRUE;

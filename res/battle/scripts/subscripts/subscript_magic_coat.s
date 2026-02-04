@@ -6,7 +6,7 @@ _000:
     Wait 
     WaitButtonABTime 15
     // {0}’s {1} was bounced back by Magic Coat!
-    PrintMessage BattleStrings_Text_PokemonsMoveWasBouncedBackByMagicCoat, TAG_NICKNAME_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsMoveWasBouncedBackByMagicCoat_Ally, TAG_NICKNAME_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     MagicCoat 

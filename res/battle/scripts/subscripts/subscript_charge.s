@@ -5,7 +5,7 @@ _000:
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_ATTACKER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_CHARGE
     UpdateMonData OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_CHARGED_TURNS, 2
     // {0} began charging power!
-    PrintMessage BattleStrings_Text_PokemonBeganChargingPower, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonBeganChargingPower_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER

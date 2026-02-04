@@ -23,7 +23,7 @@ _036:
     PlayMoveAnimation BTLSCR_ATTACKER
     Wait 
     // {0} made {1} drowsy!
-    PrintMessage BattleStrings_Text_PokemonMadePokemonDrowsy, TAG_NICKNAME_NICKNAME, BTLSCR_ATTACKER, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonMadePokemonDrowsy_AllyAlly, TAG_NICKNAME_NICKNAME, BTLSCR_ATTACKER, BTLSCR_SIDE_EFFECT_MON
     Wait 
     WaitButtonABTime 30
     End 
@@ -33,7 +33,7 @@ _066:
     Wait 
     WaitButtonABTime 30
     // {0}’s {1} made it ineffective!
-    PrintMessage BattleStrings_Text_PokemonsAbilityMadeItIneffective, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeItIneffective_Ally, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
     GoTo _089
 
 _077:
@@ -44,7 +44,7 @@ _077:
 _083:
     WaitButtonABTime 30
     // {0} is protected by Safeguard!
-    PrintMessage BattleStrings_Text_PokemonIsProtectedBySafeguard, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonIsProtectedBySafeguard_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
 
 _089:
     Wait 

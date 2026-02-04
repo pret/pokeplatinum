@@ -3,5 +3,5 @@
 
 _000:
     // {0} foresaw an attack!
-    BufferMessage BattleStrings_Text_PokemonForesawAnAttack, TAG_NICKNAME, BTLSCR_ATTACKER
+    BufferMessage BattleStrings_Text_PokemonForesawAnAttack_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoToEffectScript 

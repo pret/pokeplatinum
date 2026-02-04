@@ -3,5 +3,5 @@
 
 _000:
     // {0} was wrapped by {1}!
-    BufferMessage BattleStrings_Text_PokemonWasWrappedByPokemon, TAG_NICKNAME_NICKNAME, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    BufferMessage BattleStrings_Text_PokemonWasWrappedByPokemon_AllyAlly, TAG_NICKNAME_NICKNAME, BTLSCR_DEFENDER, BTLSCR_ATTACKER
     GoToEffectScript 

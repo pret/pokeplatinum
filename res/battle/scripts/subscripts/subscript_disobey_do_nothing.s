@@ -8,7 +8,7 @@ _000:
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, 0x00000002, _031
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, 0x00000003, _037
     // {0} is loafing around!
-    PrintMessage BattleStrings_Text_PokemonIsLoafingAroundDisobedience, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonIsLoafingAround, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _043
 
 _025:

@@ -3,7 +3,7 @@
 
 _000:
     // {0} unleashed energy!
-    PrintMessage BattleStrings_Text_PokemonUnleashedEnergy, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonUnleashedEnergy_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     UpdateMonData OPCODE_FLAG_OFF, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_MOVE_LOCKED

@@ -3,5 +3,5 @@
 
 _000:
     // {0} was trapped by Sand Tomb!
-    BufferMessage BattleStrings_Text_PokemonWasTrappedBySandTomb, TAG_NICKNAME, BTLSCR_DEFENDER
+    BufferMessage BattleStrings_Text_PokemonWasTrappedBySandTomb_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     GoToEffectScript 

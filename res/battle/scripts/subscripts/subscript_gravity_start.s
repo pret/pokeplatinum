@@ -32,7 +32,7 @@ _072:
 
 _078:
     // {0} couldn’t stay airborne because of gravity!
-    PrintMessage BattleStrings_Text_PokemonCouldntStayAirborneBecauseOfGravity, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonCouldntStayAirborneBecauseOfGravity_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

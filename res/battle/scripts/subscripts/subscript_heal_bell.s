@@ -18,14 +18,14 @@ _013:
     CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_AROMATHERAPY, _049
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_CALC_TEMP, 0x00000001, _035
     // {0}’s {1} blocks {2}!
-    PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 
 _035:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_CALC_TEMP, 0x00000002, _049
     // {0}’s {1} blocks {2}!
-    PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER_PARTNER, BTLSCR_ATTACKER_PARTNER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER_PARTNER, BTLSCR_ATTACKER_PARTNER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

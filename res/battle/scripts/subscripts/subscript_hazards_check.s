@@ -33,7 +33,7 @@ _065:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // {0} is hurt by the spikes!
-    PrintMessage BattleStrings_Text_PokemonIsHurtByTheSpikes, TAG_NICKNAME, BTLSCR_SWITCHED_MON
+    PrintMessage BattleStrings_Text_PokemonIsHurtByTheSpikes_Ally, TAG_NICKNAME, BTLSCR_SWITCHED_MON
     Wait 
     WaitButtonABTime 30
 
@@ -43,7 +43,7 @@ _085:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // Pointed stones dug into {0}!
-    PrintMessage BattleStrings_Text_PointedStonesDugIntoPokemon, TAG_NICKNAME, BTLSCR_SWITCHED_MON
+    PrintMessage BattleStrings_Text_PointedStonesDugIntoPokemon_Ally, TAG_NICKNAME, BTLSCR_SWITCHED_MON
     Wait 
     WaitButtonABTime 30
 
