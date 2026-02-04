@@ -1,8 +1,8 @@
 #ifndef SPL_MANAGER_H
 #define SPL_MANAGER_H
 
-#include <nitro/types.h>
 #include <nitro/gx/g3.h>
+#include <nitro/types.h>
 
 #include "spl_emitter.h"
 #include "spl_particle.h"
