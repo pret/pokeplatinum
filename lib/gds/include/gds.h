@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_GLOBAL_TERMINAL_H
 #define POKEPLATINUM_GLOBAL_TERMINAL_H
 
-#include "nitro/types.h"
+#include <nitro/types.h>
 
 #include "overlay062/struct_ov62_022349A8_sub3_sub1.h"
 #include "overlay062/struct_ov62_022349A8_sub3_sub2.h"

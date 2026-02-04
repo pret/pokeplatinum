@@ -1,8 +1,8 @@
 #ifndef GDS_INTERNAL_H
 #define GDS_INTERNAL_H
-#include "nitro/os/common/mutex.h"
-#include "nitro/os/common/thread.h"
-#include "nitro/types.h"
+#include <nitro/os/common/mutex.h>
+#include <nitro/os/common/thread.h>
+#include <nitro/types.h>
 
 #include "gds.h"
 

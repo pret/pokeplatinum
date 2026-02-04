@@ -1,6 +1,6 @@
-#include "nitro/wm/common/wm.h"
 #include <dwc.h>
 #include <gs/nonport.h>
+#include <nitro/wm/common/wm.h>
 #include <nitroWiFi/soc.h>
 #include <string.h>
 

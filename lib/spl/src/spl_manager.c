@@ -10,10 +10,12 @@
 #include "spl_particle.h"
 
 #define DECODE_WH(X) ((u16)(1 << ((X) + 3)))
+// clang-format off
 #define EMITTER_SHOULD_TERMINATE(emtr, header)                                                                                      \
     (((header->flags.selfMaintaining && header->emitterLifeTime != 0 && emtr->state.started && emtr->age > header->emitterLifeTime) \
-    || emtr->state.terminate)                                                                                                       \
+    || emtr->state.terminate)                                                                                                  \
     && emtr->particles.count == 0 && emtr->childParticles.count == 0)
+// clang-format on
 
 static u32 SPLUtil_AllocTextureVRAM(u32 size, BOOL is4x4);
 static u32 SPLUtil_AllocPaletteVRAM(u32 size, BOOL is4Pltt);
