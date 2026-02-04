@@ -8,7 +8,7 @@ enum CaughtStatus {
 };
 
 typedef struct {
-    int species;
+    enum Species species;
     enum CaughtStatus caughtStatus;
 } SpeciesCaughtStatus;
 

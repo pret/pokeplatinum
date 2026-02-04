@@ -134,13 +134,13 @@ void PokedexGraphics_SetPokemonCharHide(const PokedexGraphicData *pokedexGraphic
     PokedexGraphics_SetPokemonSpriteHide(pokedexGraphicData, unhidden, SPRITE_RESOURCE_CHAR);
 }
 
-void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, enum SpriteResourceType spriteResourceType)
+void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum Species species, int gender, int face, int shiny, u8 form, u32 personality, int x, int y, int spriteIndex)
 {
     PokemonSpriteTemplate spriteTemplate;
     s16 yOffset;
 
-    if (pokedexGraphicData->pokemonSprite[spriteResourceType]) {
-        PokemonSprite_Delete(pokedexGraphicData->pokemonSprite[spriteResourceType]);
+    if (pokedexGraphicData->pokemonSprite[spriteIndex]) {
+        PokemonSprite_Delete(pokedexGraphicData->pokemonSprite[spriteIndex]);
     }
 
     if (gender == -1) {
@@ -156,36 +156,36 @@ void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, e
         yOffset = 0;
     }
 
-    pokedexGraphicData->pokemonSprite[spriteResourceType] = PokemonSpriteManager_CreateSprite(pokedexGraphicData->spriteMan, &spriteTemplate, x, y + yOffset, 0, 0, NULL, NULL);
+    pokedexGraphicData->pokemonSprite[spriteIndex] = PokemonSpriteManager_CreateSprite(pokedexGraphicData->spriteMan, &spriteTemplate, x, y + yOffset, 0, 0, NULL, NULL);
 }
 
-void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, enum SpriteResourceType spriteResourceType)
+void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, int spriteIndex)
 {
-    PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_X_CENTER, x);
-    PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_Y_CENTER, y);
+    PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteIndex], MON_SPRITE_X_CENTER, x);
+    PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteIndex], MON_SPRITE_Y_CENTER, y);
 }
 
-void PokemonGraphics_GetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int *x, int *y, enum SpriteResourceType spriteResourceType)
+void PokemonGraphics_GetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int *x, int *y, int spriteIndex)
 {
-    *x = PokemonSprite_GetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_X_CENTER);
-    *y = PokemonSprite_GetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_Y_CENTER);
+    *x = PokemonSprite_GetAttribute(pokedexGraphicData->pokemonSprite[spriteIndex], MON_SPRITE_X_CENTER);
+    *y = PokemonSprite_GetAttribute(pokedexGraphicData->pokemonSprite[spriteIndex], MON_SPRITE_Y_CENTER);
 }
 
-PokemonSprite *PokedexGraphics_GetPokemonSprite(const PokedexGraphicData *pokedexGraphicData, enum SpriteResourceType spriteResourceType)
+PokemonSprite *PokedexGraphics_GetPokemonSprite(const PokedexGraphicData *pokedexGraphicData, int spriteIndex)
 {
-    return pokedexGraphicData->pokemonSprite[spriteResourceType];
+    return pokedexGraphicData->pokemonSprite[spriteIndex];
 }
 
-void PokedexGraphics_SetPokemonSpriteHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden, enum SpriteResourceType spriteResourceType)
+void PokedexGraphics_SetPokemonSpriteHide(const PokedexGraphicData *pokedexGraphicData, BOOL unhidden, int spriteIndex)
 {
-    if (pokedexGraphicData->pokemonSprite[spriteResourceType] == NULL) {
+    if (pokedexGraphicData->pokemonSprite[spriteIndex] == NULL) {
         return;
     }
 
     if (unhidden == TRUE) {
-        PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_HIDE, FALSE);
+        PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteIndex], MON_SPRITE_HIDE, FALSE);
     } else {
-        PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteResourceType], MON_SPRITE_HIDE, TRUE);
+        PokemonSprite_SetAttribute(pokedexGraphicData->pokemonSprite[spriteIndex], MON_SPRITE_HIDE, TRUE);
     }
 }
 
@@ -322,10 +322,10 @@ void PokedexGraphics_BlendPokemonChar(const PokedexGraphicData *pokedexGraphicDa
     PokemonSprite_StartFade(pokemonSprite, oppBackgroundBrightness, oppBackgroundBrightness, 0, 0);
 }
 
-void PokedexGraphics_BlendPokemonSprite(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition, enum SpriteResourceType spriteResourceType)
+void PokedexGraphics_BlendPokemonSprite(const PokedexGraphicData *pokedexGraphicData, PokedexBlendTransition *blendTransition, int spriteIndex)
 {
     int oppBackgroundBrightness = -PokedexGraphics_BlendScreen(blendTransition);
-    PokemonSprite *pokemonSprite = PokedexGraphics_GetPokemonSprite(pokedexGraphicData, spriteResourceType);
+    PokemonSprite *pokemonSprite = PokedexGraphics_GetPokemonSprite(pokedexGraphicData, spriteIndex);
 
     PokemonSprite_StartFade(pokemonSprite, oppBackgroundBrightness, oppBackgroundBrightness, 0, 0);
 }
@@ -390,34 +390,34 @@ void PokedexGraphics_SetCursorPosAndSize(PokedexGraphicData *pokedexGraphicData,
     pokedexGraphicData->cursorMan.isMoving = FALSE;
 }
 
-void PokedexGraphics_InitTransformation(CursorTransformation *cursorTransformation, int startX, int endX, int startY, int endY, int numSteps)
+void PokedexGraphics_InitTransformation(SpriteTransformation *spriteTransformation, int startX, int endX, int startY, int endY, int numSteps)
 {
-    cursorTransformation->currentX = startX;
-    cursorTransformation->currentY = startY;
-    cursorTransformation->startX = startX;
-    cursorTransformation->startY = startY;
-    cursorTransformation->deltaX = endX - startX;
-    cursorTransformation->deltaY = endY - startY;
-    cursorTransformation->numSteps = numSteps;
-    cursorTransformation->step = 0;
+    spriteTransformation->currentX = startX;
+    spriteTransformation->currentY = startY;
+    spriteTransformation->startX = startX;
+    spriteTransformation->startY = startY;
+    spriteTransformation->deltaX = endX - startX;
+    spriteTransformation->deltaY = endY - startY;
+    spriteTransformation->numSteps = numSteps;
+    spriteTransformation->step = 0;
 }
 
-BOOL PokedexGraphics_TakeCursorTransformStep(CursorTransformation *cursorTransformation)
+BOOL PokedexGraphics_TakeTransformStep(SpriteTransformation *spriteTransformation)
 {
-    fx32 x = FX_Mul(cursorTransformation->deltaX << FX32_SHIFT, cursorTransformation->step << FX32_SHIFT);
-    x = FX_Div(x, cursorTransformation->numSteps << FX32_SHIFT);
-    fx32 y = FX_Mul(cursorTransformation->deltaY << FX32_SHIFT, cursorTransformation->step << FX32_SHIFT);
-    y = FX_Div(y, cursorTransformation->numSteps << FX32_SHIFT);
+    fx32 x = FX_Mul(spriteTransformation->deltaX << FX32_SHIFT, spriteTransformation->step << FX32_SHIFT);
+    x = FX_Div(x, spriteTransformation->numSteps << FX32_SHIFT);
+    fx32 y = FX_Mul(spriteTransformation->deltaY << FX32_SHIFT, spriteTransformation->step << FX32_SHIFT);
+    y = FX_Div(y, spriteTransformation->numSteps << FX32_SHIFT);
 
-    cursorTransformation->currentX = (x >> FX32_SHIFT) + cursorTransformation->startX;
-    cursorTransformation->currentY = (y >> FX32_SHIFT) + cursorTransformation->startY;
+    spriteTransformation->currentX = (x >> FX32_SHIFT) + spriteTransformation->startX;
+    spriteTransformation->currentY = (y >> FX32_SHIFT) + spriteTransformation->startY;
 
-    if ((cursorTransformation->step + 1) <= cursorTransformation->numSteps) {
-        cursorTransformation->step++;
+    if (spriteTransformation->step + 1 <= spriteTransformation->numSteps) {
+        spriteTransformation->step++;
         return FALSE;
     }
 
-    cursorTransformation->step = cursorTransformation->numSteps;
+    spriteTransformation->step = spriteTransformation->numSteps;
     return TRUE;
 }
 
@@ -692,8 +692,8 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID
     PokemonSpriteManager_SetCharBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetTexKeyAddr(texKey), NNS_GfdGetTexKeySize(texKey));
     PokemonSpriteManager_SetPlttBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetPlttKeyAddr(plttKey), NNS_GfdGetPlttKeySize(plttKey));
 
-    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_GEN4; spriteResourceType++) {
-        pokedexGraphicData->pokemonSprite[spriteResourceType] = NULL;
+    for (int spriteIndex = 0; spriteIndex < NUM_VISIBLE_SPRITES; spriteIndex++) {
+        pokedexGraphicData->pokemonSprite[spriteIndex] = NULL;
     }
 
     {
@@ -711,9 +711,9 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID
 
 static void FreePokemonSprite(PokedexGraphicData *pokedexGraphicData)
 {
-    for (int spriteResourceType = 0; spriteResourceType < MAX_SPRITE_RESOURCE_GEN4; spriteResourceType++) {
-        if (pokedexGraphicData->pokemonSprite[spriteResourceType]) {
-            PokemonSprite_Delete(pokedexGraphicData->pokemonSprite[spriteResourceType]);
+    for (int spriteIndex = 0; spriteIndex < NUM_VISIBLE_SPRITES; spriteIndex++) {
+        if (pokedexGraphicData->pokemonSprite[spriteIndex]) {
+            PokemonSprite_Delete(pokedexGraphicData->pokemonSprite[spriteIndex]);
         }
     }
 
@@ -1038,8 +1038,8 @@ static void TransformCursor(SysTask *sysTask, void *data)
         return;
     }
 
-    BOOL transformFinished = PokedexGraphics_TakeCursorTransformStep(&cursorMan->centerPoint);
-    PokedexGraphics_TakeCursorTransformStep(&cursorMan->size);
+    BOOL transformFinished = PokedexGraphics_TakeTransformStep(&cursorMan->centerPoint);
+    PokedexGraphics_TakeTransformStep(&cursorMan->size);
 
     cursorMan->cursorGraphics->x = cursorMan->centerPoint.currentX;
     cursorMan->cursorGraphics->y = cursorMan->centerPoint.currentY;
