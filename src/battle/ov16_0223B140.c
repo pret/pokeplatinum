@@ -21,12 +21,12 @@
 #include "battle/battle_display.h"
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
+#include "battle/healthbar.h"
 #include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle_anim/battle_anim_system.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
@@ -1547,7 +1547,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
 {
     BattleSystem *v0 = param1;
     BattlerData *v1;
-    Healthbar *v2;
+    Healthbar *healthbar;
     int v3;
     int v4;
     int v5;
@@ -1575,10 +1575,10 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
         v1 = BattleSystem_BattlerData(v0, v3);
 
         if (((Battler_BootState(v1) == 0x0) && ((BattleSystem_BattleStatus(v0) & 0x10) == 0)) || ((Battler_Side(v0, v3) == 0) && (BattleSystem_BattleStatus(v0) & 0x10))) {
-            v2 = ov16_02263B08(v1);
+            healthbar = ov16_02263B08(v1);
 
-            if (v2 != NULL) {
-                if (HealthBar_Color(v2->curHP, v2->maxHP, 8 * 6) == 1) {
+            if (healthbar != NULL) {
+                if (HealthBar_Color(healthbar->curHP, healthbar->maxHP, 8 * 6) == 1) {
                     v5 |= FlagIndex(v3);
                 }
             }

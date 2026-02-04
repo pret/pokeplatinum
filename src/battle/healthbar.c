@@ -6,9 +6,10 @@
 
 #include "constants/graphics.h"
 #include "constants/heap.h"
+#include "constants/pokemon.h"
+#include "generated/string_padding_mode.h"
 
 #include "battle/ov16_0223DF00.h"
-#include "battle/struct_ov16_022674C4.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -56,6 +57,9 @@
 #define HEALTHBAR_NAME_BACKGROUND_COLOR 0xF
 #define HEALTHBAR_NAME_TEXT_COLOR       TEXT_COLOR(14, 2, HEALTHBAR_NAME_BACKGROUND_COLOR)
 
+#define HEALTHBAR_HP_CELL_COUNT  6
+#define HEALTHBAR_EXP_CELL_COUNT 12
+
 #define VRAM_TRANSFER_DST(vram, transferTable, index_0, index_1, imgProxy) ( \
     (void *)((u32)vram + transferTable[index_0][index_1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]))
 
@@ -67,9 +71,9 @@ typedef struct VRAMTransfer {
 } VRAMTransfer;
 
 typedef struct {
-    Healthbar *unk_00;
+    Healthbar *healthbar;
     u8 *unk_04;
-    u8 unk_08;
+    u8 state;
     u8 unk_09;
     s8 unk_0A;
 } UnkStruct_ov16_0226834C;
@@ -158,29 +162,29 @@ enum HealthbarPart {
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType);
 static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillOffset);
 static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum);
-static u32 CalcGaugeFill(s32 param0, s32 param1, s32 param2, u8 param3);
+static u32 CalcGaugeFill(s32 curVal, s32 diff, s32 maxVal, u8 gaugeSize);
 static const u8 *GetHealthbarPartsTile(enum HealthbarPart part);
-static void DrawGauge(Healthbar *param0, u8 param1);
-static void Healthbar_DrawBattlerName(Healthbar *param0);
-static void Healthbar_DrawLevelText(Healthbar *param0);
-static void Healthbar_DrawLevelNumber(Healthbar *param0);
-static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1);
-static void Healthbar_DrawMaxHP(Healthbar *param0);
-static void Healthbar_DrawCaughtIcon(Healthbar *param0);
-static void Healthbar_DrawStatusIcon(Healthbar *param0, enum HealthbarPart param1);
-static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1);
-static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1);
+static void DrawGauge(Healthbar *healthbar, u8 gaugeType);
+static void Healthbar_DrawBattlerName(Healthbar *healthbar);
+static void Healthbar_DrawLevelText(Healthbar *healthbar);
+static void Healthbar_DrawLevelNumber(Healthbar *healthbar);
+static void Healthbar_DrawCurrentHP(Healthbar *healthbar, u32 hp);
+static void Healthbar_DrawMaxHP(Healthbar *healthbar);
+static void Healthbar_DrawCaughtIcon(Healthbar *healthbar);
+static void Healthbar_DrawStatusIcon(Healthbar *healthbar, enum HealthbarPart part);
+static void Healthbar_DrawBallCount(Healthbar *healthbar, u32 flags);
+static void Healthbar_DrawBallsLeftMessage(Healthbar *healthbar, u32 flags);
 static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *handler, NARC *narc, PaletteData *palette, int type);
-static void ov16_02267244(Healthbar *param0);
-static void ov16_0226728C(Healthbar *param0);
+static void ov16_02267244(Healthbar *healthbar);
+static void ov16_0226728C(Healthbar *healthbar);
 static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type);
-static const SpriteTemplate *ov16_02268314(u8 param0);
+static const SpriteTemplate *ov16_02268314(u8 type);
 static void ScrollHealthbarTask(SysTask *task, void *data);
-static void ov16_02268380(SysTask *param0, void *param1);
-void ov16_02268470(Healthbar *param0);
-void ov16_02268498(Healthbar *param0);
-static void ov16_022684BC(SysTask *param0, void *param1);
-static void Healthbar_EnableArrow(Healthbar *param0, int param1);
+static void ov16_02268380(SysTask *task, void *param1);
+void ov16_02268470(Healthbar *healthbar);
+void ov16_02268498(Healthbar *healthbar);
+static void ov16_022684BC(SysTask *task, void *data);
+static void Healthbar_EnableArrow(Healthbar *healthbar, BOOL enable);
 
 __attribute__((aligned(4))) static const s8 sArrowOffsetX[] = {
     [HEALTHBAR_TYPE_PLAYER_SOLO] = 72,
@@ -326,7 +330,7 @@ static const VRAMTransfer Unk_ov16_0226F44C[][2] = {
         { 0xC20, 0xC0 },
     },
     {
-        { 0x4E0, 0x20 },
+        { 0x4E0, HEALTHBAR_WINDOW_BLOCK_SIZE },
         { 0xC00, 0xA0 },
     },
     {
@@ -334,7 +338,7 @@ static const VRAMTransfer Unk_ov16_0226F44C[][2] = {
         { 0xC00, 0xC0 },
     },
     {
-        { 0x4E0, 0x20 },
+        { 0x4E0, HEALTHBAR_WINDOW_BLOCK_SIZE },
         { 0xC00, 0xA0 },
     },
     {
@@ -342,18 +346,18 @@ static const VRAMTransfer Unk_ov16_0226F44C[][2] = {
         { 0xC00, 0xC0 },
     },
     {
-        { 0x4E0, 0x20 },
+        { 0x4E0, HEALTHBAR_WINDOW_BLOCK_SIZE },
         { 0xC00, 0xA0 },
     },
 };
 
 static const VRAMTransfer Unk_ov16_0226F38C[] = {
-    { 0x460, 0x20 },
-    { 0x420, 0x20 },
-    { 0x440, 0x20 },
-    { 0x420, 0x20 },
-    { 0x440, 0x20 },
-    { 0x420, 0x20 },
+    { 0x460, HEALTHBAR_WINDOW_BLOCK_SIZE },
+    { 0x420, HEALTHBAR_WINDOW_BLOCK_SIZE },
+    { 0x440, HEALTHBAR_WINDOW_BLOCK_SIZE },
+    { 0x420, HEALTHBAR_WINDOW_BLOCK_SIZE },
+    { 0x440, HEALTHBAR_WINDOW_BLOCK_SIZE },
+    { 0x420, HEALTHBAR_WINDOW_BLOCK_SIZE },
 };
 
 static const VRAMTransfer Unk_ov16_0226F35C[] = {
@@ -391,18 +395,18 @@ static const VRAMTransfer Unk_ov16_0226F374[] = {
 static const VRAMTransfer Unk_ov16_0226F3A4[] = {
     { 0x0, 0x0 },
     { 0x0, 0x0 },
-    { 0xCC0, 0x20 },
+    { 0xCC0, HEALTHBAR_WINDOW_BLOCK_SIZE },
     { 0x0, 0x0 },
-    { 0xCC0, 0x20 },
+    { 0xCC0, HEALTHBAR_WINDOW_BLOCK_SIZE },
     { 0x0, 0x0 },
 };
 
 static const VRAMTransfer Unk_ov16_0226F3D4[] = {
     { 0x0, 0x0 },
     { 0x0, 0x0 },
-    { 0xC60, 0x20 },
+    { 0xC60, HEALTHBAR_WINDOW_BLOCK_SIZE },
     { 0x0, 0x0 },
-    { 0xC60, 0x20 },
+    { 0xC60, HEALTHBAR_WINDOW_BLOCK_SIZE },
     { 0x0, 0x0 },
 };
 
@@ -414,7 +418,10 @@ static const VRAMTransfer Unk_ov16_0226F3D4[] = {
 #define HEALTHBAR_SAFARI_PALETTE_RESID  20008
 
 enum HealthbarGfxResourceID {
-    HEALTHBAR_SOLO_ENEMY_NANR = 186,
+    HEALTHBAR_UNK_B7_NANR = 183,
+    HEALTHBAR_UNK_B8_NCER,
+    HEALTHBAR_UNK_B9_NCER,
+    HEALTHBAR_SOLO_ENEMY_NANR,
     HEALTHBAR_SOLO_ENEMY_NCER,
     HEALTHBAR_SOLO_ENEMY_NCGR,
     HEALTHBAR_SOLO_PLAYER_NANR,
@@ -558,17 +565,23 @@ static const SpriteTemplate sHealthbarTemplate_EnemySlot2 = {
     .vramTransfer = FALSE,
 };
 
-static const SpriteTemplate Unk_ov16_0226F514 = {
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    17,
-    0x0,
-    NNS_G2D_VRAM_TYPE_2DMAIN,
-    { 0xB9, 0x4E26, 0xB8, 0xB7, 0xFFFFFFFF, 0xFFFFFFFF },
-    0x0,
-    0x0
+static const SpriteTemplate sHealthbarTemplate_Unk_ov16_0226F514 = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = 0,
+    .priority = 17,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        HEALTHBAR_UNK_B9_NCER,
+        HEALTHBAR_MAIN_PALETTE_RESID,
+        HEALTHBAR_UNK_B8_NCER,
+        HEALTHBAR_UNK_B7_NANR,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE },
+    .bgPriority = 0,
+    .vramTransfer = FALSE
 };
 
 static const SpriteTemplate sHealthbarTemplate_NoPlayerMon = {
@@ -719,22 +732,22 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
     if (flags & HEALTHBAR_INFO_STATUS) {
         switch (healthbar->status) {
         default:
-        case 0:
+        case BATTLE_ANIMATION_NONE:
             Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_HEALTHY_0);
             break;
-        case 1:
+        case BATTLE_ANIMATION_ASLEEP:
             Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_SLEEP_0);
             break;
-        case 2:
+        case BATTLE_ANIMATION_POISONED:
             Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_POISON_0);
             break;
-        case 3:
+        case BATTLE_ANIMATION_BURNED:
             Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_BURN_0);
             break;
-        case 4:
+        case BATTLE_ANIMATION_FROZEN:
             Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_FREEZE_0);
             break;
-        case 5:
+        case BATTLE_ANIMATION_PARALYZED:
             Healthbar_DrawStatusIcon(healthbar, HEALTHBAR_PART_STATUS_PARALYSIS_0);
             break;
         }
@@ -749,134 +762,130 @@ void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
     }
 }
 
-void ov16_02267220(Healthbar *param0)
+void ov16_02267220(Healthbar *healthbar)
 {
-    if (param0->unk_50 != NULL) {
-        SysTask_Done(param0->unk_50);
-        param0->unk_50 = NULL;
+    if (healthbar->task_50 != NULL) {
+        SysTask_Done(healthbar->task_50);
+        healthbar->task_50 = NULL;
     }
 
-    if (param0->mainSprite == NULL) {
+    if (healthbar->mainSprite == NULL) {
         return;
     }
 
-    Sprite_DeleteAndFreeResources(param0->mainSprite);
-    param0->mainSprite = NULL;
+    Sprite_DeleteAndFreeResources(healthbar->mainSprite);
+    healthbar->mainSprite = NULL;
 }
 
-static void ov16_02267244(Healthbar *param0)
+static void ov16_02267244(Healthbar *healthbar)
 {
-    if (param0->arrowSprite == NULL) {
+    if (healthbar->arrowSprite == NULL) {
         return;
     }
 
-    Sprite_DeleteAndFreeResources(param0->arrowSprite);
-    param0->arrowSprite = NULL;
+    Sprite_DeleteAndFreeResources(healthbar->arrowSprite);
+    healthbar->arrowSprite = NULL;
 }
 
-void ov16_02267258(Healthbar *param0)
+void ov16_02267258(Healthbar *healthbar)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    const SpriteTemplate *v2 = Healthbar_SpriteTemplate(param0->type);
-    v0 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v1 = BattleSystem_GetSpriteManager(param0->battleSys);
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
+    const SpriteTemplate *spriteTemplate = Healthbar_SpriteTemplate(healthbar->type);
+    spriteSystem = BattleSystem_GetSpriteSystem(healthbar->battleSys);
+    spriteManager = BattleSystem_GetSpriteManager(healthbar->battleSys);
 
-    SpriteManager_UnloadCharObjById(v1, v2->resources[0]);
-    SpriteManager_UnloadCellObjById(v1, v2->resources[2]);
-    SpriteManager_UnloadAnimObjById(v1, v2->resources[3]);
+    SpriteManager_UnloadCharObjById(spriteManager, spriteTemplate->resources[0]);
+    SpriteManager_UnloadCellObjById(spriteManager, spriteTemplate->resources[2]);
+    SpriteManager_UnloadAnimObjById(spriteManager, spriteTemplate->resources[3]);
 }
 
-static void ov16_0226728C(Healthbar *param0)
+static void ov16_0226728C(Healthbar *healthbar)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    const SpriteTemplate *v2 = ov16_02268314(param0->type);
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
+    const SpriteTemplate *spriteTemplate = ov16_02268314(healthbar->type);
 
-    if (v2 == NULL) {
+    if (spriteTemplate == NULL) {
         return;
     }
 
-    v0 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v1 = BattleSystem_GetSpriteManager(param0->battleSys);
+    spriteSystem = BattleSystem_GetSpriteSystem(healthbar->battleSys);
+    spriteManager = BattleSystem_GetSpriteManager(healthbar->battleSys);
 
-    SpriteManager_UnloadCharObjById(v1, v2->resources[0]);
-    SpriteManager_UnloadCellObjById(v1, v2->resources[2]);
-    SpriteManager_UnloadAnimObjById(v1, v2->resources[3]);
+    SpriteManager_UnloadCharObjById(spriteManager, spriteTemplate->resources[0]);
+    SpriteManager_UnloadCellObjById(spriteManager, spriteTemplate->resources[2]);
+    SpriteManager_UnloadAnimObjById(spriteManager, spriteTemplate->resources[3]);
 }
 
-void ov16_022672C4(Healthbar *param0)
+void ov16_022672C4(Healthbar *healthbar)
 {
-    const SpriteTemplate *v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-    PaletteData *v3;
-    NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
-    v3 = BattleSystem_PaletteSys(param0->battleSys);
-    v0 = Healthbar_SpriteTemplate(param0->type);
+    NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(healthbar->battleSys);
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(healthbar->battleSys);
+    PaletteData *paletteData = BattleSystem_PaletteSys(healthbar->battleSys);
+    const SpriteTemplate *spriteTemplate = Healthbar_SpriteTemplate(healthbar->type);
 
-    Healthbar_LoadResources(v1, v2, v4, v3, param0->type);
-    param0->mainSprite = Healthbar_DrawSprite(v1, v2, param0->type);
+    Healthbar_LoadResources(spriteSystem, spriteManager, narc, paletteData, healthbar->type);
+    healthbar->mainSprite = Healthbar_DrawSprite(spriteSystem, spriteManager, healthbar->type);
 
-    Healthbar_LoadMainPalette(v1, v2, v4, v3, param0->type);
+    Healthbar_LoadMainPalette(spriteSystem, spriteManager, narc, paletteData, healthbar->type);
 
-    if (param0->arrowSprite != NULL) {
-        Sprite_SetPositionXY(param0->arrowSprite->sprite, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
+    if (healthbar->arrowSprite != NULL) {
+        Sprite_SetPositionXY(healthbar->arrowSprite->sprite, spriteTemplate->x - sArrowOffsetX[healthbar->type], spriteTemplate->y + 0);
     }
 
-    NARC_dtor(v4);
+    NARC_dtor(narc);
 }
 
-void ov16_02267360(Healthbar *param0)
+void ov16_02267360(Healthbar *healthbar)
 {
-    ov16_02267220(param0);
-    ov16_02267258(param0);
-    ov16_02267244(param0);
-    ov16_0226728C(param0);
+    ov16_02267220(healthbar);
+    ov16_02267258(healthbar);
+    ov16_02267244(healthbar);
+    ov16_0226728C(healthbar);
 }
 
-void ov16_0226737C(Healthbar *param0)
+void ov16_0226737C(Healthbar *healthbar)
 {
-    const u8 *v0;
-    NNSG2dImageProxy *v1;
+    const u8 *tileNum;
+    NNSG2dImageProxy *imgProxy;
     void *v2;
 
-    switch (param0->type) {
-    case 2:
-    case 4:
+    switch (healthbar->type) {
+    case HEALTHBAR_TYPE_PLAYER_SLOT_1:
+    case HEALTHBAR_TYPE_PLAYER_SLOT_2:
         break;
     default:
         return;
     }
 
-    param0->numberMode ^= 1;
+    healthbar->numberMode ^= 1;
 
     v2 = G2_GetOBJCharPtr();
-    v1 = Sprite_GetImageProxy(param0->mainSprite->sprite);
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
 
-    if (param0->numberMode == 1) {
-        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_NUMBERS_LEFT);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
-        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_NUMBERS_RIGHT);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+    if (healthbar->numberMode == 1) {
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_NUMBERS_LEFT);
+        MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F374[healthbar->type].pos + HEALTHBAR_WINDOW_BLOCK_SIZE + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), HEALTHBAR_WINDOW_BLOCK_SIZE);
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_NUMBERS_RIGHT);
+        MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F3A4[healthbar->type].pos + HEALTHBAR_WINDOW_BLOCK_SIZE + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), HEALTHBAR_WINDOW_BLOCK_SIZE);
 
-        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_SLASH);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3D4[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[param0->type].size);
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_SLASH);
+        MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F3D4[healthbar->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3D4[healthbar->type].size);
 
-        Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
+        Healthbar_DrawInfo(healthbar, healthbar->curHP, HEALTHBAR_INFO_CURRENT_HP | HEALTHBAR_INFO_MAX_HP);
     } else {
-        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_HP_H_2);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F374[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[param0->type].size);
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_HP_H_2);
+        MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F374[healthbar->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F374[healthbar->type].size);
 
-        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_BAR_END);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3A4[param0->type].size);
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_BAR_END);
+        MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F3A4[healthbar->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3A4[healthbar->type].size);
 
-        v0 = GetHealthbarPartsTile(HEALTHBAR_PART_STATUS_HEALTHY_0);
-        MI_CpuCopy16(v0, (void *)((u32)v2 + Unk_ov16_0226F3A4[param0->type].pos + 0x20 + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_STATUS_HEALTHY_0);
+        MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F3A4[healthbar->type].pos + HEALTHBAR_WINDOW_BLOCK_SIZE + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), HEALTHBAR_WINDOW_BLOCK_SIZE);
 
-        Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_HP_GAUGE);
+        Healthbar_DrawInfo(healthbar, healthbar->curHP, HEALTHBAR_INFO_HP_GAUGE);
     }
 }
 
@@ -904,87 +913,87 @@ void Healthbar_CalcHP(Healthbar *healthbar, int damage)
     }
 }
 
-s32 ov16_022674F8(Healthbar *param0)
+s32 ov16_022674F8(Healthbar *healthbar)
 {
-    s32 v0 = Healthbar_DrawGauge(param0, 0);
+    s32 result = Healthbar_DrawGauge(healthbar, HEALTHBAR_GAUGE_HP);
 
-    if (v0 == -1) {
-        param0->curHP -= param0->damage;
-        Healthbar_DrawInfo(param0, param0->curHP, HEALTHBAR_INFO_CURRENT_HP);
+    if (result == -1) {
+        healthbar->curHP -= healthbar->damage;
+        Healthbar_DrawInfo(healthbar, healthbar->curHP, HEALTHBAR_INFO_CURRENT_HP);
     } else {
-        Healthbar_DrawInfo(param0, v0, HEALTHBAR_INFO_CURRENT_HP);
+        Healthbar_DrawInfo(healthbar, result, HEALTHBAR_INFO_CURRENT_HP);
     }
 
-    return v0;
+    return result;
 }
 
-void Healthbar_CalcExp(Healthbar *param0, int param1)
+void Healthbar_CalcExp(Healthbar *healthbar, int expReward)
 {
-    param0->expTemp = -2147483648;
+    healthbar->expTemp = S32_MIN;
 
-    if (param0->curExp + param1 < 0) {
-        param1 -= param0->curExp + param1;
+    if (healthbar->curExp + expReward < 0) {
+        expReward -= healthbar->curExp + expReward;
     }
 
-    if (param0->curExp + param1 > param0->maxExp) {
-        param1 -= (param0->curExp + param1) - param0->maxExp;
+    if (healthbar->curExp + expReward > healthbar->maxExp) {
+        expReward -= (healthbar->curExp + expReward) - healthbar->maxExp;
     }
 
-    param0->expReward = -param1;
+    healthbar->expReward = -expReward;
 
-    if (param0->curExp < 0) {
-        param0->curExp = 0;
+    if (healthbar->curExp < 0) {
+        healthbar->curExp = 0;
     }
 
-    if (param0->curExp > param0->maxExp) {
-        param0->curExp = param0->maxExp;
-    }
-}
-
-s32 ov16_02267560(Healthbar *param0)
-{
-    s32 v0 = Healthbar_DrawGauge(param0, 1);
-
-    if (v0 == -1) {
-        param0->curExp -= param0->expReward;
-    }
-
-    return v0;
-}
-
-void ov16_0226757C(Healthbar *param0)
-{
-    if (param0->arrowSprite != NULL) {
-        Sprite_SetAnimateFlag(param0->arrowSprite->sprite, 1);
-        Healthbar_EnableArrow(param0, 1);
-    }
-
-    if ((BattleSystem_BattleType(param0->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == 0) {
-        ov16_02268470(param0);
+    if (healthbar->curExp > healthbar->maxExp) {
+        healthbar->curExp = healthbar->maxExp;
     }
 }
 
-void ov16_022675AC(Healthbar *param0)
+s32 ov16_02267560(Healthbar *healthbar)
 {
-    if (param0->arrowSprite != NULL) {
-        Sprite_SetAnimateFlag(param0->arrowSprite->sprite, 0);
-        Sprite_SetAnimFrame(param0->arrowSprite->sprite, 0);
-        Healthbar_EnableArrow(param0, 0);
+    s32 result = Healthbar_DrawGauge(healthbar, HEALTHBAR_GAUGE_EXP);
+
+    if (result == -1) {
+        healthbar->curExp -= healthbar->expReward;
     }
 
-    ov16_02268498(param0);
+    return result;
 }
 
-void ov16_022675D8(Healthbar *param0, int param1)
+void ov16_0226757C(Healthbar *healthbar)
 {
-    if (param0->mainSprite == NULL) {
+    if (healthbar->arrowSprite != NULL) {
+        Sprite_SetAnimateFlag(healthbar->arrowSprite->sprite, TRUE);
+        Healthbar_EnableArrow(healthbar, TRUE);
+    }
+
+    if ((BattleSystem_BattleType(healthbar->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == FALSE) {
+        ov16_02268470(healthbar);
+    }
+}
+
+void ov16_022675AC(Healthbar *healthbar)
+{
+    if (healthbar->arrowSprite != NULL) {
+        Sprite_SetAnimateFlag(healthbar->arrowSprite->sprite, FALSE);
+        Sprite_SetAnimFrame(healthbar->arrowSprite->sprite, 0);
+        Healthbar_EnableArrow(healthbar, FALSE);
+    }
+
+    ov16_02268498(healthbar);
+}
+
+void ov16_022675D8(Healthbar *healthbar, int priority)
+{
+    if (healthbar->mainSprite == NULL) {
         return;
     }
 
-    ManagedSprite_SetExplicitPriority(param0->mainSprite, param1);
+    ManagedSprite_SetExplicitPriority(healthbar->mainSprite, priority);
 
-    if (param0->arrowSprite != NULL) {
-        ManagedSprite_SetExplicitPriority(param0->arrowSprite, param1);
+    if (healthbar->arrowSprite != NULL) {
+        ManagedSprite_SetExplicitPriority(healthbar->arrowSprite, priority);
     }
 }
 
@@ -1143,25 +1152,18 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
  */
 static void Healthbar_DrawBattlerName(Healthbar *healthbar)
 {
-    BgConfig *bgl;
+    BgConfig *bgl = BattleSystem_BGL(healthbar->battleSys);
     u8 *buf;
     NNSG2dImageProxy *imgProxy;
     Window window;
-    MessageLoader *msgLoader;
-    String *nickname, *template;
-    Pokemon *mon;
-    BoxPokemon *boxMon;
-    StringTemplate *strFormatter;
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(healthbar->battleSys);
+    StringTemplate *strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
 
-    bgl = BattleSystem_BGL(healthbar->battleSys);
-    msgLoader = BattleSystem_GetMessageLoader(healthbar->battleSys);
-    strFormatter = BattleSystem_StringTemplate(healthbar->battleSys);
+    String *nickname = String_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
+    String *template = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_HealthbarPokemonName);
 
-    nickname = String_Init(MON_NAME_LEN + 12, HEAP_ID_BATTLE); // TODO: not sure why there is a +12 here
-    template = MessageLoader_GetNewString(msgLoader, pl_msg_00000368_00964);
-
-    mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
-    boxMon = Pokemon_GetBoxPokemon(mon);
+    Pokemon *mon = BattleSystem_PartyPokemon(healthbar->battleSys, healthbar->battler, healthbar->selectedPartySlot);
+    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
     StringTemplate_SetNickname(strFormatter, 0, boxMon);
     StringTemplate_Format(strFormatter, nickname, template);
@@ -1171,283 +1173,235 @@ static void Healthbar_DrawBattlerName(Healthbar *healthbar)
     buf = window.pixels;
 
     // copy the window's data into VRAM over the painted healthbar
-    {
-        void *vram = G2_GetOBJCharPtr();
-        imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
-        u8 *hiHalf = buf;
-        u8 *loHalf = &buf[HEALTHBAR_NAME_BLOCK_COUNT_X * HEALTHBAR_WINDOW_BLOCK_SIZE];
+    void *vram = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
+    u8 *hiHalf = buf;
+    u8 *loHalf = &buf[HEALTHBAR_NAME_BLOCK_COUNT_X * HEALTHBAR_WINDOW_BLOCK_SIZE];
 
-        MI_CpuCopy16(hiHalf,
-            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 0, imgProxy),
-            sBattlerNameVRAMTransfer[healthbar->type][0].size);
-        MI_CpuCopy16(loHalf,
-            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 1, imgProxy),
-            sBattlerNameVRAMTransfer[healthbar->type][1].size);
-        MI_CpuCopy16(&hiHalf[sBattlerNameVRAMTransfer[healthbar->type][0].size],
-            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 2, imgProxy),
-            sBattlerNameVRAMTransfer[healthbar->type][2].size);
-        MI_CpuCopy16(&loHalf[sBattlerNameVRAMTransfer[healthbar->type][1].size],
-            VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 3, imgProxy),
-            sBattlerNameVRAMTransfer[healthbar->type][3].size);
-    }
+    MI_CpuCopy16(hiHalf,
+        VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 0, imgProxy),
+        sBattlerNameVRAMTransfer[healthbar->type][0].size);
+    MI_CpuCopy16(loHalf,
+        VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 1, imgProxy),
+        sBattlerNameVRAMTransfer[healthbar->type][1].size);
+    MI_CpuCopy16(&hiHalf[sBattlerNameVRAMTransfer[healthbar->type][0].size],
+        VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 2, imgProxy),
+        sBattlerNameVRAMTransfer[healthbar->type][2].size);
+    MI_CpuCopy16(&loHalf[sBattlerNameVRAMTransfer[healthbar->type][1].size],
+        VRAM_TRANSFER_DST(vram, sBattlerNameVRAMTransfer, healthbar->type, 3, imgProxy),
+        sBattlerNameVRAMTransfer[healthbar->type][3].size);
 
     Window_Remove(&window);
     String_Free(nickname);
     String_Free(template);
 }
 
-static void Healthbar_DrawLevelText(Healthbar *param0)
+static void Healthbar_DrawLevelText(Healthbar *healthbar)
 {
-    NNSG2dImageProxy *v0;
-    const u8 *v1;
-    const u8 *v2;
-    int v3, v4;
+    NNSG2dImageProxy *imgProxy;
+    const u8 *tileNum1;
+    const u8 *tileNum2;
+    int part1, part2;
 
-    if (param0->unk_49 == 0) {
-        v3 = HEALTHBAR_PART_LEVEL_MALE_BOTTOM_0;
-        v4 = HEALTHBAR_PART_LEVEL_MALE_TOP_0;
-    } else if (param0->unk_49 == 1) {
-        v3 = HEALTHBAR_PART_LEVEL_FEMALE_BOTTOM_0;
-        v4 = HEALTHBAR_PART_LEVEL_FEMALE_TOP_0;
+    if (healthbar->gender == GENDER_MALE) {
+        part1 = HEALTHBAR_PART_LEVEL_MALE_BOTTOM_0;
+        part2 = HEALTHBAR_PART_LEVEL_MALE_TOP_0;
+    } else if (healthbar->gender == GENDER_FEMALE) {
+        part1 = HEALTHBAR_PART_LEVEL_FEMALE_BOTTOM_0;
+        part2 = HEALTHBAR_PART_LEVEL_FEMALE_TOP_0;
     } else {
-        v3 = HEALTHBAR_PART_LEVEL_GENDERLESS_BOTTOM_0;
-        v4 = HEALTHBAR_PART_LEVEL_GENDERLESS_TOP_0;
+        part1 = HEALTHBAR_PART_LEVEL_GENDERLESS_BOTTOM_0;
+        part2 = HEALTHBAR_PART_LEVEL_GENDERLESS_TOP_0;
     }
 
-    v1 = GetHealthbarPartsTile(v3);
-    v2 = GetHealthbarPartsTile(v4);
+    tileNum1 = GetHealthbarPartsTile(part1);
+    tileNum2 = GetHealthbarPartsTile(part2);
 
-    {
-        void *v5;
+    void *v5 = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
 
-        v5 = G2_GetOBJCharPtr();
-        v0 = Sprite_GetImageProxy(param0->mainSprite->sprite);
-
-        MI_CpuCopy16(v2, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][0].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][0].size);
-        MI_CpuCopy16(v1, (void *)((u32)v5 + Unk_ov16_0226F47C[param0->type][1].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[param0->type][1].size);
-    }
+    MI_CpuCopy16(tileNum2, (void *)((u32)v5 + Unk_ov16_0226F47C[healthbar->type][0].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[healthbar->type][0].size);
+    MI_CpuCopy16(tileNum1, (void *)((u32)v5 + Unk_ov16_0226F47C[healthbar->type][1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F47C[healthbar->type][1].size);
 }
 
-static void Healthbar_DrawLevelNumber(Healthbar *param0)
+static void Healthbar_DrawLevelNumber(Healthbar *healthbar)
 {
-    u8 *v0, *v1;
-    NNSG2dImageProxy *v2;
-    int v3, v4, v5, v6;
+    NNSG2dImageProxy *imgProxy;
+    int v4, v5, v6;
 
-    v3 = 3 * 0x20;
-    v0 = Heap_Alloc(HEAP_ID_BATTLE, v3);
-    v1 = Heap_Alloc(HEAP_ID_BATTLE, v3 * 2);
+    int size = 3 * HEALTHBAR_WINDOW_BLOCK_SIZE;
+    u8 *v0 = Heap_Alloc(HEAP_ID_BATTLE, size);
+    u8 *v1 = Heap_Alloc(HEAP_ID_BATTLE, size * 2);
 
-    MI_CpuFill8(v0, 0xf | (0xf << 4), v3);
-    FontSpecialChars_DrawBattleScreenText(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
+    MI_CpuFill8(v0, 0xf | (0xf << 4), size);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E054(healthbar->battleSys), healthbar->level, 3, PADDING_MODE_NONE, v0);
 
-    {
-        void *v7;
-        u8 *v8, *v9;
+    void *v7 = G2_GetOBJCharPtr();
+    u8 *v8, *v9;
 
-        v7 = G2_GetOBJCharPtr();
-        v2 = Sprite_GetImageProxy(param0->mainSprite->sprite);
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
 
-        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[param0->type][0].size);
-        MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[v3], Unk_ov16_0226F3EC[param0->type][1].size);
+    MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[healthbar->type][0].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), v1, Unk_ov16_0226F3EC[healthbar->type][0].size);
+    MI_CpuCopy16((void *)((u32)v7 + Unk_ov16_0226F3EC[healthbar->type][1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), &v1[size], Unk_ov16_0226F3EC[healthbar->type][1].size);
 
-        v6 = 0;
+    v6 = 0;
 
-        for (v5 = 0; v5 < v3; v5 += 32) {
-            for (v4 = 0; v4 < 16; v4++) {
-                v1[v5 + 16 + v4] = v0[v6];
-                v1[v5 + v4 + v3] = v0[v6 + 16];
-                v6++;
-            }
-
-            v6 += 16;
+    for (v5 = 0; v5 < size; v5 += 32) {
+        for (v4 = 0; v4 < 16; v4++) {
+            v1[v5 + 16 + v4] = v0[v6];
+            v1[v5 + v4 + size] = v0[v6 + 16];
+            v6++;
         }
 
-        v8 = v1;
-        v9 = &v1[v3];
-
-        MI_CpuCopy16(v8, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][0].size);
-        MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[param0->type][1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[param0->type][1].size);
+        v6 += 16;
     }
+
+    v8 = v1;
+    v9 = &v1[size];
+
+    MI_CpuCopy16(v8, (void *)((u32)v7 + Unk_ov16_0226F3EC[healthbar->type][0].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[healthbar->type][0].size);
+    MI_CpuCopy16(v9, (void *)((u32)v7 + Unk_ov16_0226F3EC[healthbar->type][1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3EC[healthbar->type][1].size);
 
     Heap_Free(v0);
     Heap_Free(v1);
 }
 
-static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
+static void Healthbar_DrawCurrentHP(Healthbar *healthbar, u32 hp)
 {
-    u8 *v0;
-    NNSG2dImageProxy *v1;
+    u8 *v0 = Heap_Alloc(HEAP_ID_BATTLE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE);
+    NNSG2dImageProxy *imgProxy;
 
-    v0 = Heap_Alloc(HEAP_ID_BATTLE, 3 * 0x20);
+    MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * HEALTHBAR_WINDOW_BLOCK_SIZE);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(healthbar->battleSys), hp, 3, PADDING_MODE_SPACES, v0);
 
-    MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
+    void *v2 = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
+    u8 *v3 = v0;
 
-    {
-        void *v2;
-        u8 *v3;
-
-        v2 = G2_GetOBJCharPtr();
-        v1 = Sprite_GetImageProxy(param0->mainSprite->sprite);
-        v3 = v0;
-
-        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][0].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][0].size);
-        MI_CpuCopy16(&v3[Unk_ov16_0226F41C[param0->type][0].size], (void *)((u32)v2 + Unk_ov16_0226F41C[param0->type][1].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[param0->type][1].size);
-    }
+    MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F41C[healthbar->type][0].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[healthbar->type][0].size);
+    MI_CpuCopy16(&v3[Unk_ov16_0226F41C[healthbar->type][0].size], (void *)((u32)v2 + Unk_ov16_0226F41C[healthbar->type][1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F41C[healthbar->type][1].size);
 
     Heap_Free(v0);
 }
 
-static void Healthbar_DrawMaxHP(Healthbar *param0)
+static void Healthbar_DrawMaxHP(Healthbar *healthbar)
 {
-    u8 *v0;
-    NNSG2dImageProxy *v1;
+    u8 *v0 = Heap_Alloc(HEAP_ID_BATTLE, 3 * HEALTHBAR_WINDOW_BLOCK_SIZE);
+    NNSG2dImageProxy *imgProxy;
 
-    v0 = Heap_Alloc(HEAP_ID_BATTLE, 3 * 0x20);
+    MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * HEALTHBAR_WINDOW_BLOCK_SIZE);
+    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(healthbar->battleSys), healthbar->maxHP, 3, PADDING_MODE_NONE, v0);
 
-    MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
-    FontSpecialChars_DrawBattleScreenText(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
+    void *v2 = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
+    u8 *v3 = v0;
 
-    {
-        void *v2;
-        u8 *v3;
-
-        v2 = G2_GetOBJCharPtr();
-        v1 = Sprite_GetImageProxy(param0->mainSprite->sprite);
-        v3 = v0;
-
-        MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[param0->type].pos + v1->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[param0->type].size);
-    }
+    MI_CpuCopy16(v3, (void *)((u32)v2 + Unk_ov16_0226F3BC[healthbar->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F3BC[healthbar->type].size);
 
     Heap_Free(v0);
 }
 
-static void Healthbar_DrawCaughtIcon(Healthbar *param0)
+static void Healthbar_DrawCaughtIcon(Healthbar *healthbar)
 {
-    NNSG2dImageProxy *v0;
-    const u8 *v1;
+    NNSG2dImageProxy *imgProxy;
+    const u8 *tileNum;
 
-    if (param0->unk_4B == 1) {
-        v1 = GetHealthbarPartsTile(HEALTHBAR_PART_CAUGHT_INDICATOR);
+    if (healthbar->caughtSpecies == TRUE) {
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_CAUGHT_INDICATOR);
     } else {
-        v1 = GetHealthbarPartsTile(HEALTHBAR_PART_STATUS_HEALTHY_0);
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_STATUS_HEALTHY_0);
     }
 
-    {
-        void *v2;
+    void *v2 = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
 
-        v2 = G2_GetOBJCharPtr();
-        v0 = Sprite_GetImageProxy(param0->mainSprite->sprite);
-
-        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F38C[param0->type].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[param0->type].size);
-    }
+    MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F38C[healthbar->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F38C[healthbar->type].size);
 }
 
-static void Healthbar_DrawStatusIcon(Healthbar *param0, enum HealthbarPart param1)
+static void Healthbar_DrawStatusIcon(Healthbar *healthbar, enum HealthbarPart part)
 {
-    NNSG2dImageProxy *v0;
-    const u8 *v1 = GetHealthbarPartsTile(param1);
+    NNSG2dImageProxy *imgProxy;
+    const u8 *tileNum = GetHealthbarPartsTile(part);
 
-    {
-        void *v2;
+    void *v2 = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
 
-        v2 = G2_GetOBJCharPtr();
-        v0 = Sprite_GetImageProxy(param0->mainSprite->sprite);
-
-        MI_CpuCopy16(v1, (void *)((u32)v2 + Unk_ov16_0226F35C[param0->type].pos + v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[param0->type].size);
-    }
+    MI_CpuCopy16(tileNum, (void *)((u32)v2 + Unk_ov16_0226F35C[healthbar->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F35C[healthbar->type].size);
 }
 
-static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1)
+static void Healthbar_DrawBallCount(Healthbar *healthbar, u32 flags)
 {
-    BgConfig *v0;
+    BgConfig *bgConfig = BattleSystem_BGL(healthbar->battleSys);
     u8 *v1;
-    NNSG2dImageProxy *v2;
-    Window v3;
-    MessageLoader *v4;
-    String *v5;
+    NNSG2dImageProxy *imgProxy;
+    Window window;
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(healthbar->battleSys);
+    String *string;
 
-    v0 = BattleSystem_BGL(param0->battleSys);
-    v4 = BattleSystem_GetMessageLoader(param0->battleSys);
-
-    if (param1 & (1 << 10)) {
-        v5 = MessageLoader_GetNewString(v4, 950);
+    if (flags & (1 << 10)) {
+        string = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_SafariBalls);
     } else {
-        v5 = MessageLoader_GetNewString(v4, 1220);
+        string = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_ParkBalls);
     }
 
-    Window_AddToTopLeftCorner(v0, &v3, 13, 2, 0, 0xf);
-    Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
+    Window_AddToTopLeftCorner(bgConfig, &window, 13, 2, 0, 0xf);
+    Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, HEALTHBAR_NAME_TEXT_COLOR, 0, 0, NULL);
 
-    v1 = v3.pixels;
+    v1 = window.pixels;
 
-    {
-        void *v6;
-        u8 *v7, *v8;
+    void *v6 = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
+    u8 *v7 = v1;
+    u8 *v8 = &v1[13 * HEALTHBAR_WINDOW_BLOCK_SIZE];
 
-        v6 = G2_GetOBJCharPtr();
-        v2 = Sprite_GetImageProxy(param0->mainSprite->sprite);
-        v7 = v1;
-        v8 = &v1[13 * 0x20];
+    MI_CpuCopy16(v7, (void *)((u32)v6 + Unk_ov16_0226F33C[0].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[0].size);
+    MI_CpuCopy16(v8, (void *)((u32)v6 + Unk_ov16_0226F33C[1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[1].size);
 
-        MI_CpuCopy16(v7, (void *)((u32)v6 + Unk_ov16_0226F33C[0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[0].size);
-        MI_CpuCopy16(v8, (void *)((u32)v6 + Unk_ov16_0226F33C[1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[1].size);
+    MI_CpuCopy16(&v7[Unk_ov16_0226F33C[0].size], (void *)((u32)v6 + Unk_ov16_0226F33C[2].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[2].size);
+    MI_CpuCopy16(&v8[Unk_ov16_0226F33C[1].size], (void *)((u32)v6 + Unk_ov16_0226F33C[3].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[3].size);
 
-        MI_CpuCopy16(&v7[Unk_ov16_0226F33C[0].size], (void *)((u32)v6 + Unk_ov16_0226F33C[2].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[2].size);
-        MI_CpuCopy16(&v8[Unk_ov16_0226F33C[1].size], (void *)((u32)v6 + Unk_ov16_0226F33C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F33C[3].size);
-    }
-
-    Window_Remove(&v3);
-    String_Free(v5);
+    Window_Remove(&window);
+    String_Free(string);
 }
 
-static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
+static void Healthbar_DrawBallsLeftMessage(Healthbar *healthbar, u32 flags)
 {
-    BgConfig *v0;
+    BgConfig *bgConfig = BattleSystem_BGL(healthbar->battleSys);
     u8 *v1;
-    NNSG2dImageProxy *v2;
-    Window v3;
-    MessageLoader *v4;
-    String *v5, *v6;
-    StringTemplate *v7;
+    NNSG2dImageProxy *imgProxy;
+    Window window;
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(healthbar->battleSys);
+    String *templateString;
+    StringTemplate *strTemplate = BattleSystem_StringTemplate(healthbar->battleSys);
 
-    v0 = BattleSystem_BGL(param0->battleSys);
-    v4 = BattleSystem_GetMessageLoader(param0->battleSys);
-    v7 = BattleSystem_StringTemplate(param0->battleSys);
-    v5 = String_Init(30, HEAP_ID_BATTLE);
+    String *string = String_Init(30, HEAP_ID_BATTLE);
 
-    if (param1 & (1 << 10)) {
-        v6 = MessageLoader_GetNewString(v4, 951);
+    if (flags & (1 << 10)) {
+        templateString = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_SafariBallsLeft);
     } else {
-        v6 = MessageLoader_GetNewString(v4, 1221);
+        templateString = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_ParkBallsLeft);
     }
 
-    StringTemplate_SetNumber(v7, 0, param0->unk_27, 2, 1, 1);
-    StringTemplate_Format(v7, v5, v6);
-    Window_AddToTopLeftCorner(v0, &v3, 13, 2, 0, 0xf);
-    Text_AddPrinterWithParamsColorAndSpacing(&v3, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 2, 15), 0, 0, NULL);
+    StringTemplate_SetNumber(strTemplate, 0, healthbar->numSafariBalls, 2, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+    StringTemplate_Format(strTemplate, string, templateString);
+    Window_AddToTopLeftCorner(bgConfig, &window, 13, 2, 0, 0xf);
+    Text_AddPrinterWithParamsColorAndSpacing(&window, FONT_SYSTEM, string, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(14, 2, 15), 0, 0, NULL);
 
-    v1 = v3.pixels;
+    v1 = window.pixels;
 
-    {
-        void *v8;
-        u8 *v9, *v10;
+    void *v8 = G2_GetOBJCharPtr();
+    imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
+    u8 *v9 = v1;
+    u8 *v10 = &v1[13 * HEALTHBAR_WINDOW_BLOCK_SIZE];
 
-        v8 = G2_GetOBJCharPtr();
-        v2 = Sprite_GetImageProxy(param0->mainSprite->sprite);
-        v9 = v1;
-        v10 = &v1[13 * 0x20];
+    MI_CpuCopy16(v9, (void *)((u32)v8 + Unk_ov16_0226F34C[0].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[0].size);
+    MI_CpuCopy16(v10, (void *)((u32)v8 + Unk_ov16_0226F34C[1].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[1].size);
+    MI_CpuCopy16(&v9[Unk_ov16_0226F34C[0].size], (void *)((u32)v8 + Unk_ov16_0226F34C[2].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[2].size);
+    MI_CpuCopy16(&v10[Unk_ov16_0226F34C[1].size], (void *)((u32)v8 + Unk_ov16_0226F34C[3].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[3].size);
 
-        MI_CpuCopy16(v9, (void *)((u32)v8 + Unk_ov16_0226F34C[0].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[0].size);
-        MI_CpuCopy16(v10, (void *)((u32)v8 + Unk_ov16_0226F34C[1].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[1].size);
-        MI_CpuCopy16(&v9[Unk_ov16_0226F34C[0].size], (void *)((u32)v8 + Unk_ov16_0226F34C[2].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[2].size);
-        MI_CpuCopy16(&v10[Unk_ov16_0226F34C[1].size], (void *)((u32)v8 + Unk_ov16_0226F34C[3].pos + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), Unk_ov16_0226F34C[3].size);
-    }
-
-    Window_Remove(&v3);
-    String_Free(v5);
-    String_Free(v6);
+    Window_Remove(&window);
+    String_Free(string);
+    String_Free(templateString);
 }
 
 static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gaugeType)
@@ -1456,16 +1410,16 @@ static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gau
     s32 fillOffset;
 
     if (gaugeType == HEALTHBAR_GAUGE_HP) {
-        result = UpdateGauge(healthbar->maxHP, healthbar->curHP, healthbar->damage, &healthbar->hpTemp, 6, 1);
+        result = UpdateGauge(healthbar->maxHP, healthbar->curHP, healthbar->damage, &healthbar->hpTemp, HEALTHBAR_HP_CELL_COUNT, 1);
     } else {
-        fillOffset = CalcGaugeFill(healthbar->curExp, healthbar->expReward, healthbar->maxExp, 12);
+        fillOffset = CalcGaugeFill(healthbar->curExp, healthbar->expReward, healthbar->maxExp, HEALTHBAR_EXP_CELL_COUNT);
 
         if (fillOffset == 0) {
             fillOffset = 1;
         }
 
         fillOffset = abs(healthbar->expReward / fillOffset);
-        result = UpdateGauge(healthbar->maxExp, healthbar->curExp, healthbar->expReward, &healthbar->expTemp, 12, fillOffset);
+        result = UpdateGauge(healthbar->maxExp, healthbar->curExp, healthbar->expReward, &healthbar->expTemp, HEALTHBAR_EXP_CELL_COUNT, fillOffset);
     }
 
     if (gaugeType != HEALTHBAR_GAUGE_HP || healthbar->numberMode != TRUE) {
@@ -1483,72 +1437,65 @@ static s32 Healthbar_DrawGauge(Healthbar *healthbar, enum HealthbarGaugeType gau
     return result;
 }
 
-static void DrawGauge(Healthbar *param0, u8 param1)
+static void DrawGauge(Healthbar *healthbar, u8 gaugeType)
 {
-    u8 v0;
-    u8 v1[12];
-    u8 v2, v3;
-    u8 v4;
-    u8 v5;
-    const u8 *v6;
-    void *v7;
-    NNSG2dImageProxy *v8;
-    int v9;
+    u8 i;
+    u8 cells[HEALTHBAR_EXP_CELL_COUNT];
+    u8 part;
+    u8 pixels;
+    u8 level;
+    const u8 *tileNum;
+    void *v7 = G2_GetOBJCharPtr();
+    NNSG2dImageProxy *imgProxy = Sprite_GetImageProxy(healthbar->mainSprite->sprite);
+    int numBlocks;
 
-    v7 = G2_GetOBJCharPtr();
-    v8 = Sprite_GetImageProxy(param0->mainSprite->sprite);
+    switch (gaugeType) {
+    case HEALTHBAR_GAUGE_HP:
+        pixels = FillCells(healthbar->maxHP, healthbar->curHP, healthbar->damage, &healthbar->hpTemp, cells, HEALTHBAR_HP_CELL_COUNT);
 
-    switch (param1) {
-    case 0:
-        v4 = FillCells(param0->maxHP, param0->curHP, param0->damage, &param0->hpTemp, v1, 6);
+        int barColor = App_BarColor(pixels, 8 * HEALTHBAR_HP_CELL_COUNT);
 
-        {
-            int v10;
-
-            v10 = App_BarColor(v4, (8 * 6));
-
-            switch (v10) {
-            case 3:
-                v3 = HEALTHBAR_PART_GREEN_FILL_0;
-                break;
-            case 2:
-                v3 = HEALTHBAR_PART_YELLOW_FILL_0;
-                break;
-            case 1:
-            default:
-                v3 = HEALTHBAR_PART_RED_FILL_0;
-                break;
-            }
+        switch (barColor) {
+        case BARCOLOR_GREEN:
+            part = HEALTHBAR_PART_GREEN_FILL_0;
+            break;
+        case BARCOLOR_YELLOW:
+            part = HEALTHBAR_PART_YELLOW_FILL_0;
+            break;
+        case BARCOLOR_RED:
+        default:
+            part = HEALTHBAR_PART_RED_FILL_0;
+            break;
         }
 
-        v6 = GetHealthbarPartsTile(v3);
-        v9 = Unk_ov16_0226F44C[param0->type][0].size / 0x20;
+        tileNum = GetHealthbarPartsTile(part);
+        numBlocks = Unk_ov16_0226F44C[healthbar->type][0].size / HEALTHBAR_WINDOW_BLOCK_SIZE;
 
-        for (v0 = 0; v0 < 6; v0++) {
-            if (v0 < v9) {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][0].pos + (v0 * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        for (i = 0; i < HEALTHBAR_HP_CELL_COUNT; i++) {
+            if (i < numBlocks) {
+                MI_CpuCopy16(tileNum + (cells[i] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[healthbar->type][0].pos + (i * HEALTHBAR_WINDOW_BLOCK_SIZE) + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), HEALTHBAR_WINDOW_BLOCK_SIZE);
             } else {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[param0->type][1].pos + ((v0 - v9) * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy16(tileNum + (cells[i] << 5), (void *)((u32)v7 + Unk_ov16_0226F44C[healthbar->type][1].pos + ((i - numBlocks) * HEALTHBAR_WINDOW_BLOCK_SIZE) + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), HEALTHBAR_WINDOW_BLOCK_SIZE);
             }
         }
         break;
-    case 1:
-        FillCells(param0->maxExp, param0->curExp, param0->expReward, &param0->expTemp, v1, 12);
-        v5 = param0->unk_48;
+    case HEALTHBAR_GAUGE_EXP:
+        FillCells(healthbar->maxExp, healthbar->curExp, healthbar->expReward, &healthbar->expTemp, cells, HEALTHBAR_EXP_CELL_COUNT);
+        level = healthbar->level;
 
-        if (v5 == 100) {
-            for (v0 = 0; v0 < 12; v0++) {
-                v1[v0] = 0;
+        if (level == MAX_POKEMON_LEVEL) {
+            for (i = 0; i < HEALTHBAR_EXP_CELL_COUNT; i++) {
+                cells[i] = 0;
             }
         }
 
-        v6 = GetHealthbarPartsTile(HEALTHBAR_PART_EXP_FILL_0);
+        tileNum = GetHealthbarPartsTile(HEALTHBAR_PART_EXP_FILL_0);
 
-        for (v0 = 0; v0 < 12; v0++) {
-            if (v0 < 5) {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + 1632 + (v0 * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+        for (i = 0; i < HEALTHBAR_EXP_CELL_COUNT; i++) {
+            if (i < 5) {
+                MI_CpuCopy16(tileNum + (cells[i] << 5), (void *)((u32)v7 + 1632 + (i * HEALTHBAR_WINDOW_BLOCK_SIZE) + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), HEALTHBAR_WINDOW_BLOCK_SIZE);
             } else {
-                MI_CpuCopy16(v6 + (v1[v0] << 5), (void *)((u32)v7 + 3584 + ((v0 - 5) * 0x20) + v8->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
+                MI_CpuCopy16(tileNum + (cells[i] << 5), (void *)((u32)v7 + 3584 + ((i - 5) * HEALTHBAR_WINDOW_BLOCK_SIZE) + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), HEALTHBAR_WINDOW_BLOCK_SIZE);
             }
         }
         break;
@@ -1570,9 +1517,9 @@ static s32 UpdateGauge(s32 max, s32 cur, s32 diff, s32 *temp, u8 size, u16 fillO
 {
     s32 updated, final, ratio;
 
-    u8 corrected = size * 8;
+    u8 corrected = size * HEALTHBAR_NAME_BLOCK_COUNT_X;
 
-    if (*temp == -2147483648) {
+    if (*temp == S32_MIN) {
         if (max < corrected) {
             *temp = cur << 8;
         } else {
@@ -1669,7 +1616,7 @@ static u8 FillCells(s32 max, s32 cur, s32 diff, s32 *temp, u8 *cells, u8 cellNum
 
     final = pixels;
 
-    if ((pixels == 0) && (updated > 0)) {
+    if (pixels == 0 && updated > 0) {
         cells[0] = 1;
         final = 1;
     } else {
@@ -1792,31 +1739,31 @@ static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type)
     }
 }
 
-static const SpriteTemplate *ov16_02268314(u8 param0)
+static const SpriteTemplate *ov16_02268314(u8 type)
 {
-    const SpriteTemplate *v0;
+    const SpriteTemplate *spriteTemplate;
 
-    switch (param0) {
-    case 0:
-    case 2:
-    case 4:
-    case 6:
-    case 7:
-        v0 = &Unk_ov16_0226F514;
+    switch (type) {
+    case HEALTHBAR_TYPE_PLAYER_SOLO:
+    case HEALTHBAR_TYPE_PLAYER_SLOT_1:
+    case HEALTHBAR_TYPE_PLAYER_SLOT_2:
+    case HEALTHBAR_TYPE_SAFARI_ZONE:
+    case HEALTHBAR_TYPE_PAL_PARK:
+        spriteTemplate = &sHealthbarTemplate_Unk_ov16_0226F514;
         break;
-    case 1:
-    case 3:
-    case 5:
+    case HEALTHBAR_TYPE_ENEMY_SOLO:
+    case HEALTHBAR_TYPE_ENEMY_SLOT_1:
+    case HEALTHBAR_TYPE_ENEMY_SLOT_2:
         return NULL;
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         return NULL;
     }
 
-    return v0;
+    return spriteTemplate;
 }
 
-void ov16_0226834C(Healthbar *param0, u8 *param1)
+void ov16_0226834C(Healthbar *healthbar, u8 *param1)
 {
     UnkStruct_ov16_0226834C *v0;
 
@@ -1825,103 +1772,100 @@ void ov16_0226834C(Healthbar *param0, u8 *param1)
     v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0226834C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226834C));
 
-    v0->unk_00 = param0;
+    v0->healthbar = healthbar;
     v0->unk_04 = param1;
 
     SysTask_Start(ov16_02268380, v0, 1000);
 }
 
-static void ov16_02268380(SysTask *param0, void *param1)
+static void ov16_02268380(SysTask *task, void *param1)
 {
     UnkStruct_ov16_0226834C *v0 = param1;
-    SpriteManager *v1;
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(v0->healthbar->battleSys);
     int v2;
-    PaletteData *v3;
+    PaletteData *paletteData = BattleSystem_PaletteSys(v0->healthbar->battleSys);
 
-    v1 = BattleSystem_GetSpriteManager(v0->unk_00->battleSys);
-    v3 = BattleSystem_PaletteSys(v0->unk_00->battleSys);
-
-    switch (v0->unk_08) {
+    switch (v0->state) {
     case 0:
-        v2 = SpriteManager_FindPlttResourceOffset(v1, 20007, NNS_G2D_VRAM_TYPE_2DMAIN);
-        ManagedSprite_SetExplicitPalette(v0->unk_00->mainSprite, v2);
+        v2 = SpriteManager_FindPlttResourceOffset(spriteManager, 20007, NNS_G2D_VRAM_TYPE_2DMAIN);
+        ManagedSprite_SetExplicitPalette(v0->healthbar->mainSprite, v2);
         v0->unk_09 = v2;
-        v0->unk_08++;
+        v0->state++;
     case 1:
         v0->unk_0A += 2;
 
         if (v0->unk_0A >= 10) {
             v0->unk_0A = 10;
-            v0->unk_08++;
+            v0->state++;
         }
 
-        PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
+        PaletteData_Blend(paletteData, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     case 2:
         v0->unk_0A -= 2;
 
         if (v0->unk_0A <= 0) {
             v0->unk_0A = 0;
-            v0->unk_08++;
+            v0->state++;
         }
 
-        PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
+        PaletteData_Blend(paletteData, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     default:
-        v2 = SpriteManager_FindPlttResourceOffset(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);
-        ManagedSprite_SetExplicitPalette(v0->unk_00->mainSprite, v2);
+        v2 = SpriteManager_FindPlttResourceOffset(spriteManager, HEALTHBAR_MAIN_PALETTE_RESID, NNS_G2D_VRAM_TYPE_2DMAIN);
+        ManagedSprite_SetExplicitPalette(v0->healthbar->mainSprite, v2);
 
-        (*(v0->unk_04)) = 1;
+        *(v0->unk_04) = 1;
 
         Heap_Free(param1);
-        SysTask_Done(param0);
+        SysTask_Done(task);
 
         return;
     }
 }
 
-void ov16_02268468(Healthbar *param0)
+void ov16_02268468(Healthbar *healthbar)
 {
     return;
 }
 
-void ov16_0226846C(Healthbar *param0)
+void ov16_0226846C(Healthbar *healthbar)
 {
     return;
 }
 
-void ov16_02268470(Healthbar *param0)
+void ov16_02268470(Healthbar *healthbar)
 {
-    if (param0->unk_50 != NULL) {
+    if (healthbar->task_50 != NULL) {
         return;
     }
 
-    param0->unk_54 = 0;
-    param0->unk_50 = SysTask_Start(ov16_022684BC, param0, 1010);
+    healthbar->degrees = 0;
+    healthbar->task_50 = SysTask_Start(ov16_022684BC, healthbar, 1010);
 }
 
-void ov16_02268498(Healthbar *param0)
+void ov16_02268498(Healthbar *healthbar)
 {
-    if (param0->unk_50 != NULL) {
-        SysTask_Done(param0->unk_50);
-        param0->unk_50 = NULL;
+    if (healthbar->task_50 != NULL) {
+        SysTask_Done(healthbar->task_50);
+        healthbar->task_50 = NULL;
     }
 
-    param0->unk_54 = 0;
-    Healthbar_OffsetPositionXY(param0, 0, 0);
+    healthbar->degrees = 0;
+    Healthbar_OffsetPositionXY(healthbar, 0, 0);
 }
 
-static void ov16_022684BC(SysTask *param0, void *param1)
+static void ov16_022684BC(SysTask *task, void *data)
 {
-    Healthbar *v0 = param1;
-    int v1;
+    Healthbar *healthbar = data;
+    int y;
 
-    v0->unk_54 += 20;
+    healthbar->degrees += 20;
 
-    if (v0->unk_54 >= 360) {
-        v0->unk_54 -= 360;
+    if (healthbar->degrees >= 360) {
+        healthbar->degrees -= 360;
     }
 
-    v1 = FX_Mul(CalcSineDegrees(v0->unk_54), 0x1800) / FX32_ONE;
-    Healthbar_OffsetPositionXY(v0, 0, v1);
+    y = FX_Mul(CalcSineDegrees(healthbar->degrees), 0x1800) / FX32_ONE;
+    Healthbar_OffsetPositionXY(healthbar, 0, y);
 }

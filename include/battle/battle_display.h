@@ -4,10 +4,10 @@
 #include "struct_decls/battle_system.h"
 
 #include "battle/battle_message.h"
+#include "battle/healthbar.h"
 #include "battle/message_defs.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_0226C378.h"
 
 #include "pokemon_sprite.h"

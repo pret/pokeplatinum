@@ -31,7 +31,6 @@
 #include "battle/ov16_0226E148.h"
 #include "battle/pokemon_sprite_data.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
@@ -1225,29 +1224,29 @@ void *ov16_0223F35C(BattleSystem *battleSystem, int param1)
 void ov16_0223F36C(BattleSystem *battleSystem)
 {
     int v0;
-    Healthbar *v1;
+    Healthbar *healthbar;
 
     for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
-        v1 = ov16_02263B08(battleSystem->battlers[v0]);
+        healthbar = ov16_02263B08(battleSystem->battlers[v0]);
 
-        v1->battleSys = battleSystem;
-        v1->type = Healthbar_Type(Battler_Type(battleSystem->battlers[v0]), BattleSystem_BattleType(battleSystem));
+        healthbar->battleSys = battleSystem;
+        healthbar->type = Healthbar_Type(Battler_Type(battleSystem->battlers[v0]), BattleSystem_BattleType(battleSystem));
 
-        ov16_022672C4(v1);
-        Healthbar_Enable(v1, 0);
+        ov16_022672C4(healthbar);
+        Healthbar_Enable(healthbar, 0);
     }
 }
 
 void ov16_0223F3BC(BattleSystem *battleSystem)
 {
     int v0;
-    Healthbar *v1;
+    Healthbar *healthbar;
 
     for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
-        v1 = ov16_02263B08(battleSystem->battlers[v0]);
+        healthbar = ov16_02263B08(battleSystem->battlers[v0]);
 
-        if (v1->curHP) {
-            Healthbar_Enable(v1, 1);
+        if (healthbar->curHP) {
+            Healthbar_Enable(healthbar, 1);
         }
     }
 }
@@ -1255,22 +1254,22 @@ void ov16_0223F3BC(BattleSystem *battleSystem)
 void ov16_0223F3EC(BattleSystem *battleSystem)
 {
     int v0;
-    Healthbar *v1;
+    Healthbar *healthbar;
 
     for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
-        v1 = ov16_02263B08(battleSystem->battlers[v0]);
-        Healthbar_Enable(v1, 0);
+        healthbar = ov16_02263B08(battleSystem->battlers[v0]);
+        Healthbar_Enable(healthbar, 0);
     }
 }
 
 void ov16_0223F414(BattleSystem *battleSystem)
 {
     int v0;
-    Healthbar *v1;
+    Healthbar *healthbar;
 
     for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
-        v1 = ov16_02263B08(battleSystem->battlers[v0]);
-        ov16_02267360(v1);
+        healthbar = ov16_02263B08(battleSystem->battlers[v0]);
+        ov16_02267360(healthbar);
     }
 }
 
@@ -1511,11 +1510,11 @@ void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1)
 void BattleSystem_SetGaugePriority(BattleSystem *battleSystem, int param1)
 {
     int v0;
-    Healthbar *v1;
+    Healthbar *healthbar;
 
     for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
-        v1 = ov16_02263B08(battleSystem->battlers[v0]);
-        ov16_022675D8(v1, param1);
+        healthbar = ov16_02263B08(battleSystem->battlers[v0]);
+        ov16_022675D8(healthbar, param1);
     }
 }
 
