@@ -1014,7 +1014,7 @@ pokeplatinum_c = files(
     'overlay117/ov117_02266498.c',
     'overlay117/ov117_022665FC.c',
     'overlay117/ov117_022666C0.c',
-    'overlay118/ov118_021D0D80.c',
+    'applications/party_menu/form_change.c',
     'overlay119/ov119_021D0D80.c',
     'overlay119/ov119_021D191C.c',
     'library_tv/library_tv.c',

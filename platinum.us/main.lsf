@@ -1697,10 +1697,10 @@ Overlay overlay117
 	Object main.nef.p/src_overlay117_ov117_022666C0.c.o
 }
 
-Overlay overlay118
+Overlay party_menu_form_change
 {
 	After main
-	Object main.nef.p/src_overlay118_ov118_021D0D80.c.o
+	Object main.nef.p/src_applications_party_menu_form_change.c.o
 }
 
 Overlay overlay119
