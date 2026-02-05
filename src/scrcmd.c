@@ -567,7 +567,7 @@ static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_AddAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx);
-static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx);
+static BOOL ScrCmd_AddContestBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForUnionRoomBattle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx);
@@ -1237,7 +1237,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_AddAccessory,
     ScrCmd_CanFitAccessory,
     ScrCmd_Unused_1D4,
-    ScrCmd_ObtainContestBackdrop,
+    ScrCmd_AddContestBackdrop,
     ScrCmd_CheckBackdrop,
     ScrCmd_1D7,
     ScrCmd_1D8,
@@ -5966,7 +5966,7 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx)
+static BOOL ScrCmd_AddContestBackdrop(ScriptContext *ctx)
 {
     u16 backdropID = ScriptContext_GetVar(ctx);
 
