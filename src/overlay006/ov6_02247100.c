@@ -23,8 +23,8 @@
 #include "pokemon.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
+#include "spawn_locations.h"
 #include "sys_task_manager.h"
-#include "unk_0203A7D8.h"
 #include "unk_020655F4.h"
 
 typedef struct {

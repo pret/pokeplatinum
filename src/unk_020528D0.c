@@ -29,11 +29,11 @@
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
+#include "spawn_locations.h"
 #include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0203A7D8.h"
 #include "unk_020553DC.h"
 #include "unk_02070428.h"
 
