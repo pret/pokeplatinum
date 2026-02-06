@@ -1,0 +1,7 @@
+#include "macros/pokemon_anim_cmd.inc"
+
+PokemonAnimScript_unk_066:
+    TransformCurveEven TRANSFORM_CALC_SET, 0, TRANSFORM_CURVE_SIN, TRANSFORM_TYPE_SCALE_X, 60, 32768, 0, 15
+    TransformCurveEven TRANSFORM_CALC_INCREMENT, 4, TRANSFORM_CURVE_SIN, TRANSFORM_TYPE_SCALE_X, 12, 262144, 0, 7
+    WaitTransform
+    End
