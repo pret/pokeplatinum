@@ -415,10 +415,9 @@ Autoload DTCM
 	Object libos.a (.dtcm)
 }
 
-Overlay overlay0
+Overlay dummy1
 {
 	After main
-	Object main.nef.p/src_overlay000_ov0_dummy.c.o
 }
 
 Overlay overlay1
@@ -427,16 +426,14 @@ Overlay overlay1
 	Object main.nef.p/src_overlay001_ov1_021D0D80.c.o
 }
 
-Overlay overlay2
+Overlay dummy2
 {
 	After overlay1
-	Object main.nef.p/src_overlay002_ov2_dummy.c.o
 }
 
-Overlay overlay3
+Overlay dummy3
 {
 	After ITCM
-	Object main.nef.p/src_overlay003_ov3_dummy.c.o
 }
 
 Overlay nintendo_wfc
@@ -680,10 +677,9 @@ Overlay trainer_ai
 	Object main.nef.p/asm_trainer_ai_trainer_ai_script.s.o
 }
 
-Overlay overlay15
+Overlay dummy4
 {
 	After main
-	Object main.nef.p/src_overlay015_ov15_dummy.c.o
 }
 
 Overlay battle
@@ -1382,10 +1378,9 @@ Overlay overlay88
 	Object main.nef.p/src_overlay088_ov88_0223E9C4.c.o
 }
 
-Overlay overlay89
+Overlay dummy5
 {
 	After main
-	Object main.nef.p/src_overlay089_ov89_dummy.c.o
 }
 
 Overlay overlay90
@@ -1532,10 +1527,9 @@ Overlay diploma
 	Object main.nef.p/src_applications_diploma.c.o
 }
 
-Overlay overlay103
+Overlay dummy6
 {
 	After overlay63
-	Object main.nef.p/src_overlay103_ov103_dummy.c.o
 }
 
 Overlay overlay104
