@@ -149,11 +149,11 @@ static void UndergroundMan_Init(UndergroundManager *dest, FieldSystem *fieldSyst
     sUndergroundMan->touchedTileCoordinates.z = 0;
     sUndergroundMan->resourcesPaused = 0;
     sUndergroundMan->activeRadar = RADAR_NORMAL;
-    sUndergroundMan->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 500);
-    sUndergroundMan->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
-    sUndergroundMan->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 1000);
-    sUndergroundMan->baseDecorationTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_BASE_DECORATION, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
-    sUndergroundMan->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_33, fieldSystem->bgConfig, renderDelay, 0);
+    sUndergroundMan->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_UNDERGROUND, fieldSystem->bgConfig, renderDelay, 500);
+    sUndergroundMan->captureFlagTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_CAPTURE_FLAG, HEAP_ID_UNDERGROUND, fieldSystem->bgConfig, renderDelay, 0);
+    sUndergroundMan->miscTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_NPCS, HEAP_ID_UNDERGROUND, fieldSystem->bgConfig, renderDelay, 1000);
+    sUndergroundMan->baseDecorationTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_BASE_DECORATION, HEAP_ID_UNDERGROUND, fieldSystem->bgConfig, renderDelay, 0);
+    sUndergroundMan->itemNameTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_UNDERGROUND, fieldSystem->bgConfig, renderDelay, 0);
 
     LoadMessageBoxGraphics(sUndergroundMan->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_SCROLLING_MESSAGE_BOX, 10, 0, HEAP_ID_FIELD1);
     Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, text_window_NCLR, 0, PLTT_OFFSET(10), 4 * PALETTE_SIZE_BYTES, HEAP_ID_FIELD1);

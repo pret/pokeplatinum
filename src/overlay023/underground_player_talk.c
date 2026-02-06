@@ -302,7 +302,7 @@ static void UndergroundTalkResponse_PrintMessage(ResponseMenu *menu, int bankEnt
 
 void UndergroundTalk_Start(int linkNetID, ExitCallback exitCallback, FieldSystem *fieldSystem)
 {
-    TalkMenu *menu = Heap_Alloc(HEAP_ID_33, sizeof(TalkMenu));
+    TalkMenu *menu = Heap_Alloc(HEAP_ID_UNDERGROUND, sizeof(TalkMenu));
     MI_CpuFill8(menu, 0, sizeof(TalkMenu));
 
     sCurrentTalkMenu = menu;
@@ -1322,7 +1322,7 @@ void UndergroundTalkResponse_Start(int unused, int linkNetID, FieldSystem *field
         return;
     }
 
-    ResponseMenu *menu = Heap_Alloc(HEAP_ID_33, sizeof(ResponseMenu));
+    ResponseMenu *menu = Heap_Alloc(HEAP_ID_UNDERGROUND, sizeof(ResponseMenu));
     MI_CpuFill8(menu, 0, sizeof(ResponseMenu));
 
     sCurrentResponseMenu = menu;

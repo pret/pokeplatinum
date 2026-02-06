@@ -20,8 +20,8 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay023/ov23_0223E140.h"
-#include "overlay023/ov23_022499E4.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_comm_manager.h"
 #include "overlay023/underground_manager.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_status.h"
@@ -1239,7 +1239,7 @@ BOOL sub_02058C40(void)
         return FALSE;
     }
 
-    if (sCommPlayerManager->isUnderground && !ov23_02249BD4()) {
+    if (sCommPlayerManager->isUnderground && !CommManUnderground_IsInputAllowed()) {
         return FALSE;
     }
 
