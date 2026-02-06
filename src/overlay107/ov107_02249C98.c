@@ -1,7 +1,6 @@
 #include "overlay107/ov107_02249C98.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -11,13 +10,6 @@
 #include "trainer_info.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
-
-FS_EXTERN_OVERLAY(overlay104);
-
-u8 ov107_02249C98(u8 param0, u8 param1);
-u8 ov107_02249C9C(u8 param0, u8 param1);
-void ov107_02249CE0(u32 param0, u16 param1);
-void ov107_02249CF4(StringTemplate *param0, u32 param1);
 
 u8 ov107_02249C98(u8 param0, u8 param1)
 {
@@ -43,17 +35,10 @@ void ov107_02249CE0(u32 param0, u16 param1)
     if (param0 != 0xffffffff) {
         Sound_PlayEffect(param1);
     }
-
-    return;
 }
 
-void ov107_02249CF4(StringTemplate *param0, u32 param1)
+void ov107_02249CF4(StringTemplate *template, u32 idx)
 {
-    TrainerInfo *v0;
-    u32 v1;
-
-    v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
-    StringTemplate_SetPlayerName(param0, param1, v0);
-
-    return;
+    TrainerInfo *partner = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    StringTemplate_SetPlayerName(template, idx, partner);
 }
