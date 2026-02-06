@@ -20,7 +20,7 @@
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021F0468_decl.h"
-#include "overlay006/ov6_02247100.h"
+#include "overlay006/field_warp.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"
@@ -132,7 +132,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task);
 static BOOL PrintRegisteredKeyItemUseMessage(FieldTask *task);
 static void RegisteredItem_CreateGoToAppTask(ItemFieldUseContext *usageContext, void *param1);
 static BOOL RegisteredItem_GoToApp(FieldTask *task);
-static BOOL sub_020690F0(FieldTask *task);
+static BOOL WarpWithEscapeRope(FieldTask *task);
 static BOOL sub_020685AC(FieldTask *task);
 static void PrintRegisteredKeyItemError(ItemFieldUseContext *usageContext, u32 param1);
 
@@ -938,7 +938,7 @@ static void UseEscapeRopeFromMenu(ItemMenuUseContext *usageContext, const ItemUs
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->callback = sub_020690F0;
+    menu->callback = WarpWithEscapeRope;
     menu->taskData = NULL;
     menu->state = START_MENU_STATE_10;
 
@@ -958,12 +958,12 @@ static enum ItemUseCheckResult CanUseEscapeRope(const ItemUseContext *usageConte
     return ITEM_USE_CANNOT_USE_GENERIC;
 }
 
-static BOOL sub_020690F0(FieldTask *task)
+static BOOL WarpWithEscapeRope(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    void *v1 = ov6_02247100(fieldSystem, HEAP_ID_FIELD2);
+    FieldWarp *fieldWarp = FieldWarp_InitEscapeRope(fieldSystem, HEAP_ID_FIELD2);
 
-    FieldTask_InitJump(task, ov6_02247120, v1);
+    FieldTask_InitJump(task, FieldWarp_EscapeRopeFadeOut, fieldWarp);
     return FALSE;
 }
 
