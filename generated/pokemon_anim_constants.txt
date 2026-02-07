@@ -1,8 +1,12 @@
+# These are a variety of constants used in Pokemon anim scripts. 
+# They are not all used interchangeably but have roughly contiguous values.
+# Transform function types
 TRANSFORM_FUNC_CURVE = 0
 TRANSFORM_FUNC_CURVE_EVEN
 TRANSFORM_FUNC_LINEAR
 TRANSFORM_FUNC_LINEAR_EVEN
 TRANSFORM_FUNC_LINEAR_BOUNDED
+# Anim attributes
 ANIM_TRANSLATE_X = 8
 ANIM_TRANSLATE_Y
 ANIM_OFFSET_X
@@ -10,27 +14,44 @@ ANIM_OFFSET_Y
 ANIM_SCALE_X
 ANIM_SCALE_Y
 ANIM_ROTATION_Z
+# Comparison types for the SetVarIf anim commands
 COMPARISON_RESULT_LESS_THAN = 15
 COMPARISON_RESULT_GREATER_THAN
 COMPARISON_RESULT_EQUAL
+# Read types used to determine whether to interpret command parameters as var indexes or literal values
 ANIM_READ_TYPE_VALUE = 18
 ANIM_READ_TYPE_VAR
 ANIM_READ_TYPE_VALUE2
 ANIM_READ_TYPE_VAR2
+# Determines whether to set or add to anim attributes in the UpdateAttribute command
 ANIM_ATTRIBUTE_SET = 22
 ANIM_ATTRIBUTE_ADD
+# Determines how to calculate the next step in a transformation function
 TRANSFORM_CALC_SET = 24
 TRANSFORM_CALC_ADD
 TRANSFORM_CALC_INCREMENT
+# Turns Y normalization on, off, or only on when the sprite's scale is negative
 Y_NORMALIZATION_NEGATIVE_SCALE = 27
 Y_NORMALIZATION_OFF
 Y_NORMALIZATION_ON
+# Transformation curve types
 TRANSFORM_CURVE_SIN = 30
 TRANSFORM_CURVE_COS
 TRANSFORM_CURVE_NEGATIVE_SIN
 TRANSFORM_CURVE_NEGATIVE_COS
+# Transformation function value targets
 TRANSFORM_TYPE_OFFSET_X = 35
 TRANSFORM_TYPE_OFFSET_Y
 TRANSFORM_TYPE_SCALE_X
 TRANSFORM_TYPE_SCALE_Y
 TRANSFORM_TYPE_ROTATION_Z
+# Anim var indexes, offset by 0xFFFFFF to distinguish from literal values
+ANIM_VAR_OFFSET = 268435455 # 0xFFFFFFF
+ANIM_VAR_0 = ANIM_VAR_OFFSET
+ANIM_VAR_1
+ANIM_VAR_2
+ANIM_VAR_3
+ANIM_VAR_4
+ANIM_VAR_5
+ANIM_VAR_6
+ANIM_VAR_7
