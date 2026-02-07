@@ -6,7 +6,7 @@
 #include "struct_decls/pc_boxes_decl.h"
 
 #include "battle/battle_lib.h"
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/ov16_0226DE44.h"
 #include "battle_sub_menus/battle_bag_buttons.h"
 #include "battle_sub_menus/battle_bag_sprites.h"
@@ -131,11 +131,11 @@ void BattleBagTask_Start(BattleBagContext *context)
     memset(battleBagTask, 0, sizeof(BattleBag));
 
     battleBagTask->context = context;
-    battleBagTask->background = BattleSystem_BGL(context->battleSystem);
-    battleBagTask->palette = BattleSystem_PaletteSys(context->battleSystem);
+    battleBagTask->background = BattleSystem_GetBgConfig(context->battleSys);
+    battleBagTask->palette = BattleSystem_GetPaletteData(context->battleSys);
     battleBagTask->currentState = TASK_STATE_INITIALIZE;
 
-    BagCursor *cursor = BattleSystem_BagCursor(context->battleSystem);
+    BagCursor *cursor = BattleSystem_GetBagCursor(context->battleSys);
 
     for (u8 i = 0; i < BATTLE_POCKET_MAX; i++) {
         BagCursor_GetBattleCategoryPosition(cursor, i, &battleBagTask->context->pocketCurrentPagePositions[i], &battleBagTask->context->pocketCurrentPages[i]);
@@ -146,7 +146,7 @@ void BattleBagTask_Start(BattleBagContext *context)
 
     BattleBag_CanUseLastUsedItem(battleBagTask);
 
-    if (BattleSystem_BattleType(battleBagTask->context->battleSystem) & BATTLE_TYPE_CATCH_TUTORIAL) {
+    if (BattleSystem_GetBattleType(battleBagTask->context->battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) {
         battleBagTask->context->isInCatchTutorial = TRUE;
     }
 }
@@ -219,7 +219,7 @@ static u8 BattleBagTask_Initialize(BattleBag *battleBag)
     InitializeMessageLoader(battleBag);
     Font_InitManager(FONT_SUBSCREEN, battleBag->context->heapID);
 
-    battleBag->currentBattlePocket = (u8)BagCursor_GetBattleCurrentCategory(BattleSystem_BagCursor(battleBag->context->battleSystem));
+    battleBag->currentBattlePocket = (u8)BagCursor_GetBattleCurrentCategory(BattleSystem_GetBagCursor(battleBag->context->battleSys));
 
     BattleBag_Init(battleBag);
     BattleBagButtons_InitializeButtons(battleBag, battleBag->currentScreen);
@@ -413,7 +413,7 @@ static u8 TryUseItem(BattleBag *battleBag)
         u32 itemBattleUse = Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_BATTLE_USE_FUNC, context->heapID);
 
         if (context->embargoRemainingTurns != 0 && context->selectedBattleBagItem != ITEM_GUARD_SPEC && itemBattleUse != 3) {
-            Pokemon *mon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, partySlot);
+            Pokemon *mon = BattleSystem_GetPartyPokemon(context->battleSys, context->battler, partySlot);
             String *string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_EmbargoBlockingItemUse);
 
             StringTemplate_SetNickname(battleBag->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
@@ -427,12 +427,12 @@ static u8 TryUseItem(BattleBag *battleBag)
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
 
-        if (BattleSystem_UseBagItem(context->battleSystem, context->battler, partySlot, 0, context->selectedBattleBagItem) == TRUE) {
-            UseBagItem(context->battleSystem, context->selectedBattleBagItem, battleBag->currentBattlePocket, context->heapID);
+        if (BattleSystem_UseBagItem(context->battleSys, context->battler, partySlot, 0, context->selectedBattleBagItem) == TRUE) {
+            UseBagItem(context->battleSys, context->selectedBattleBagItem, battleBag->currentBattlePocket, context->heapID);
             return TASK_STATE_EXIT;
         } else if (itemBattleUse == 3) {
-            if (!(BattleSystem_BattleType(context->battleSystem) & BATTLE_TYPE_TRAINER)) {
-                UseBagItem(context->battleSystem, context->selectedBattleBagItem, battleBag->currentBattlePocket, context->heapID);
+            if (!(BattleSystem_GetBattleType(context->battleSys) & BATTLE_TYPE_TRAINER)) {
+                UseBagItem(context->battleSys, context->selectedBattleBagItem, battleBag->currentBattlePocket, context->heapID);
                 return TASK_STATE_EXIT;
             } else {
                 MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, context->heapID);
@@ -473,8 +473,8 @@ static u8 TryUseItem(BattleBag *battleBag)
             return TASK_STATE_AWAITING_TEXT_FINISH;
         }
 
-        Party *party = BattleSystem_Party(context->battleSystem, context->battler);
-        PCBoxes *pcBoxes = BattleSystem_PCBoxes(context->battleSystem);
+        Party *party = BattleSystem_GetParty(context->battleSys, context->battler);
+        PCBoxes *pcBoxes = BattleSystem_GetPCBoxes(context->battleSys);
 
         if (Party_GetCurrentCount(party) == MAX_PARTY_SIZE && PCBoxes_FirstEmptyBox(pcBoxes) == MAX_PC_BOXES) {
             MessageLoader_GetString(battleBag->messageLoader, BattleBag_Text_CantUseBallNoRoomLeft, battleBag->string);
@@ -561,7 +561,7 @@ static BOOL BattleBagTask_FinishTask(SysTask *task, BattleBag *battleBag)
     Font_Free(FONT_SUBSCREEN);
 
     if (battleBag->context->selectedBattleBagItem != ITEM_NONE) {
-        BagCursor *cursor = BattleSystem_BagCursor(battleBag->context->battleSystem);
+        BagCursor *cursor = BattleSystem_GetBagCursor(battleBag->context->battleSys);
 
         for (u8 i = 0; i < BATTLE_POCKET_MAX; i++) {
             BagCursor_SetBattleCategoryPosition(cursor, i, battleBag->context->pocketCurrentPagePositions[i], battleBag->context->pocketCurrentPages[i]);
@@ -737,7 +737,7 @@ static void LoadGraphicsData(BattleBag *battleBag)
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, 3, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 12, 0);
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 240);
 
-    int optionsFrame = ov16_0223EDE0(battleBag->context->battleSystem);
+    int optionsFrame = BattleSystem_GetOptionsFrame(battleBag->context->battleSys);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleBag->background, BG_LAYER_SUB_0, 1024 - SCROLLING_MESSAGE_BOX_TILE_COUNT, 0, FALSE, battleBag->context->heapID);
     PaletteData_LoadBufferFromFileStart(battleBag->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleBag->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
 }
@@ -813,11 +813,11 @@ static int CheckTouchRectIsPressed(BattleBag *battleBag, const TouchScreenRect *
 
 int BattleBagTask_GetSelectedPartySlot(BattleBag *battleBag)
 {
-    return BattleContext_Get(battleBag->context->battleSystem, BattleSystem_Context(battleBag->context->battleSystem), BATTLECTX_SELECTED_PARTY_SLOT, battleBag->context->battler);
+    return BattleContext_Get(battleBag->context->battleSys, BattleSystem_GetBattleContext(battleBag->context->battleSys), BATTLECTX_SELECTED_PARTY_SLOT, battleBag->context->battler);
 }
 
 static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, enum HeapID heapID)
 {
-    Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
-    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), item, category);
+    Bag_TryRemoveItem(BattleSystem_GetBag(battleSys), item, 1, heapID);
+    Bag_SetLastBattleItemUsed(BattleSystem_GetBagCursor(battleSys), item, category);
 }

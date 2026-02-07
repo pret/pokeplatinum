@@ -5,7 +5,7 @@
 #include "battle_sub_menus/battle_bag.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     BattleBagContext *unk_04;
     UnkStruct_ov16_0225D840 *unk_08;
     u8 unk_0C;

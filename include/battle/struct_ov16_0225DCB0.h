@@ -7,7 +7,7 @@
 #include "battle/struct_ov16_02265BBC.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     BattlerData *unk_04;
     MoveAnimation unk_08;
     u8 unk_60;

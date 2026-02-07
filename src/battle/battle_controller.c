@@ -14,9 +14,9 @@
 #include "battle/battle_controller.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
+#include "battle/battle_system.h"
 #include "battle/common.h"
 #include "battle/message_defs.h"
-#include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0224DDA8.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -52,13 +52,13 @@ static void BattleController_SendLocalMessage(BattleSystem *battleSys, int recip
     u16 *endIndex;
 
     if (recipient == COMM_RECIPIENT_CLIENT) {
-        dest = ov16_0223E074(battleSys);
-        writeIndex = ov16_0223E0B0(battleSys);
-        endIndex = ov16_0223E0BC(battleSys);
+        dest = BattleSystem_GetClientMessage(battleSys);
+        writeIndex = BattleSystem_GetClientWriteIndex(battleSys);
+        endIndex = BattleSystem_GetClientEndIndex(battleSys);
     } else {
-        dest = ov16_0223E06C(battleSys);
-        writeIndex = ov16_0223E08C(battleSys);
-        endIndex = ov16_0223E098(battleSys);
+        dest = BattleSystem_GetServerMessage(battleSys);
+        writeIndex = BattleSystem_GetServerWriteIndex(battleSys);
+        endIndex = BattleSystem_GetServerEndIndex(battleSys);
     }
 
     if (writeIndex[0] + sizeof(BattleMessageInfo) + size + 1 > 0x1000) {
@@ -153,15 +153,15 @@ void BattleController_TryRecvLocalMessage(BattleSystem *battleSys, int recipient
     int size;
 
     if (recipient == COMM_RECIPIENT_CLIENT) {
-        src = ov16_0223E074(battleSys);
-        readIndex = ov16_0223E0A4(battleSys);
-        writeIndex = ov16_0223E0B0(battleSys);
-        endIndex = ov16_0223E0BC(battleSys);
+        src = BattleSystem_GetClientMessage(battleSys);
+        readIndex = BattleSystem_GetClientReadIndex(battleSys);
+        writeIndex = BattleSystem_GetClientWriteIndex(battleSys);
+        endIndex = BattleSystem_GetClientEndIndex(battleSys);
     } else {
-        src = ov16_0223E06C(battleSys);
-        readIndex = ov16_0223E080(battleSys);
-        writeIndex = ov16_0223E08C(battleSys);
-        endIndex = ov16_0223E098(battleSys);
+        src = BattleSystem_GetServerMessage(battleSys);
+        readIndex = BattleSystem_GetServerReadIndex(battleSys);
+        writeIndex = BattleSystem_GetServerWriteIndex(battleSys);
+        endIndex = BattleSystem_GetServerEndIndex(battleSys);
     }
 
     if (readIndex[0] == writeIndex[0]) {
@@ -224,7 +224,7 @@ void BattleController_EmitSetupBattleUI(BattleSystem *battleSys, int battlerId)
     UISetupMessage message;
 
     message.command = BATTLE_COMMAND_SETUP_UI;
-    message.unk_04 = ov16_0223F4E8(battleSys);
+    message.unk_04 = BattleSystem_GetSeedDTO(battleSys);
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(UISetupMessage));
 }
@@ -245,7 +245,7 @@ void BattleController_EmitSetEncounter(BattleSystem *battleSys, int battlerId)
     message.isShiny = battleSys->battleCtx->battleMons[battlerId].isShiny;
     message.species = battleSys->battleCtx->battleMons[battlerId].species;
     message.personality = battleSys->battleCtx->battleMons[battlerId].personality;
-    message.cryModulation = Battler_CryModulation(battleSys->battleCtx, battlerId, BattleSystem_BattlerSlot(battleSys, battlerId), 1);
+    message.cryModulation = Battler_CryModulation(battleSys->battleCtx, battlerId, BattleSystem_GetBattlerType(battleSys, battlerId), 1);
     message.formNum = battleSys->battleCtx->battleMons[battlerId].formNum;
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -274,11 +274,11 @@ void BattleController_EmitShowEncounter(BattleSystem *battleSys, int battlerId)
     message.isShiny = battleSys->battleCtx->battleMons[battlerId].isShiny;
     message.species = battleSys->battleCtx->battleMons[battlerId].species;
     message.personality = battleSys->battleCtx->battleMons[battlerId].personality;
-    message.cryModulation = Battler_CryModulation(battleSys->battleCtx, battlerId, BattleSystem_BattlerSlot(battleSys, battlerId), 1);
+    message.cryModulation = Battler_CryModulation(battleSys->battleCtx, battlerId, BattleSystem_GetBattlerType(battleSys, battlerId), 1);
     message.selectedPartySlot = battleSys->battleCtx->selectedPartySlot[battlerId];
     message.formNum = battleSys->battleCtx->battleMons[battlerId].formNum;
     message.capturedBall = battleSys->battleCtx->battleMons[battlerId].capturedBall;
-    message.partnerPartySlot = battleSys->battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battlerId)];
+    message.partnerPartySlot = battleSys->battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battlerId)];
 
     ov16_0223EF2C(battleSys, battlerId, message.selectedPartySlot);
 
@@ -317,7 +317,7 @@ void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battlerId, in
 
     message.isShiny = battleSys->battleCtx->battleMons[battlerId].isShiny;
     message.species = battleSys->battleCtx->battleMons[battlerId].species;
-    message.cryModulation = Battler_CryModulation(battleSys->battleCtx, battlerId, BattleSystem_BattlerSlot(battleSys, battlerId), 0);
+    message.cryModulation = Battler_CryModulation(battleSys->battleCtx, battlerId, BattleSystem_GetBattlerType(battleSys, battlerId), 0);
     message.selectedPartySlot = battleSys->battleCtx->selectedPartySlot[battlerId];
     message.formNum = battleSys->battleCtx->battleMons[battlerId].formNum;
 
@@ -480,7 +480,7 @@ void BattleController_EmitThrowTrainerBall(BattleSystem *battleSys, int battlerI
 
     message.command = BATTLE_COMMAND_THROW_TRAINER_BALL;
     message.ballTypeIn = ballTypeIn;
-    message.selectedPartySlot = battleSys->battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battlerId)];
+    message.selectedPartySlot = battleSys->battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battlerId)];
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battlerId, &message, sizeof(TrainerThrowBallMessage));
 }
@@ -529,7 +529,7 @@ void BattleController_EmitSlideHealthbarIn(BattleSystem *battleSys, BattleContex
 {
     HealthbarData healthbar;
 
-    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
@@ -549,8 +549,8 @@ void BattleController_EmitSlideHealthbarIn(BattleSystem *battleSys, BattleContex
 
     healthbar.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
     healthbar.expToNextLevel = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
-    healthbar.speciesCaught = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
-    healthbar.numSafariBalls = BattleSystem_NumSafariBalls(battleSys);
+    healthbar.speciesCaught = BattleSystem_HasCaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
+    healthbar.numSafariBalls = BattleSystem_GetNumSafariBalls(battleSys);
     healthbar.delay = delay;
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &healthbar, sizeof(HealthbarData));
@@ -589,11 +589,11 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
     int battlersCanPickCommandMask;
 
     MI_CpuClearFast(&message, sizeof(CommandSetMessage));
-    BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battler);
+    BattleIO_ClearBuffer(BattleSystem_GetBattleContext(battleSys), battler);
 
     battlersCanPickCommandMask = 0;
 
-    for (i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+    for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         if (Battler_CanPickCommand(battleCtx, i) == 0) {
             battlersCanPickCommandMask |= FlagIndex(i);
         }
@@ -603,7 +603,7 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
     message.partySlot = partySlot;
     message.unk_29 = battleCtx->battlersSwitchingMask | battlersCanPickCommandMask;
 
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
 
     if ((battleType & BATTLE_TYPE_DOUBLES) && ((battleType & BATTLE_TYPE_2vs2) == 0)) {
         battlerType = battler & BATTLER_THEM;
@@ -611,7 +611,7 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
         battlerType = battler;
     }
 
-    party = BattleSystem_Party(battleSys, battlerType);
+    party = BattleSystem_GetParty(battleSys, battlerType);
     cnt = 0;
 
     for (i = 0; i < Party_GetCurrentCount(party); i++) {
@@ -643,13 +643,13 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
         || (battleType & BATTLE_TYPE_TAG)
         || (battleType == (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
         || (battleType == ((BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
-        if (Battler_Side(battleSys, battler)) {
-            battlerType = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
+        if (BattleSystem_GetBattlerSide(battleSys, battler)) {
+            battlerType = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
         } else {
-            battlerType = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+            battlerType = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
         }
 
-        party = BattleSystem_Party(battleSys, battlerType);
+        party = BattleSystem_GetParty(battleSys, battlerType);
         cnt = 0;
 
         for (i = 0; i < Party_GetCurrentCount(party); i++) {
@@ -671,13 +671,13 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
             }
         }
 
-        if (Battler_Side(battleSys, battler)) {
-            battlerType = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
+        if (BattleSystem_GetBattlerSide(battleSys, battler)) {
+            battlerType = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
         } else {
-            battlerType = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
+            battlerType = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
         }
 
-        party = BattleSystem_Party(battleSys, battlerType);
+        party = BattleSystem_GetParty(battleSys, battlerType);
         cnt = 3;
 
         for (i = 0; i < Party_GetCurrentCount(party); i++) {
@@ -699,8 +699,8 @@ void BattleController_EmitSetCommandSelection(BattleSystem *battleSys, BattleCon
             }
         }
     } else {
-        battlerType = BattleSystem_EnemyInSlot(battleSys, battler, 2);
-        party = BattleSystem_Party(battleSys, battlerType);
+        battlerType = BattleSystem_GetEnemyInSlot(battleSys, battler, 2);
+        party = BattleSystem_GetParty(battleSys, battlerType);
         cnt = 0;
 
         for (i = 0; i < Party_GetCurrentCount(party); i++) {
@@ -759,7 +759,7 @@ void ov16_022656D4(BattleSystem *battleSys, int battlerId, int command)
  */
 void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battler);
+    BattleIO_ClearBuffer(BattleSystem_GetBattleContext(battleSys), battler);
 
     MoveSelectMenuMessage message;
     message.command = BATTLE_COMMAND_SHOW_MOVE_SELECT_MENU;
@@ -797,7 +797,7 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_SHOW_TARGET_SELECT_MENU;
     message.range = range;
@@ -867,7 +867,7 @@ void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *ba
         message.embargoTurns[i] = battleCtx->battleMons[i].moveEffectsData.embargoTurns;
     }
 
-    if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
+    if (BattleSystem_GetBattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
         if (((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) && ((battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0)) {
             message.unk_01 = 1;
             message.semiInvulnerable = 0;
@@ -899,7 +899,7 @@ void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *ba
                 message.substitute = 0;
             }
         }
-    } else if (BattleSystem_BattleType(battleSys) == (BATTLE_TYPE_SINGLES | BATTLE_TYPE_WILD_MON)) { // Was (0x0 | 0x0). Is this what they intended?
+    } else if (BattleSystem_GetBattleType(battleSys) == (BATTLE_TYPE_SINGLES | BATTLE_TYPE_WILD_MON)) { // Was (0x0 | 0x0). Is this what they intended?
         message.unk_01 = 0;
 
         if (battleCtx->battleMons[1].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) {
@@ -1077,7 +1077,7 @@ void BattleController_EmitFlickerBattlerSprite(BattleSystem *battleSys, int batt
 void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     HPGaugeUpdateMessage message;
-    Pokemon *pokemon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    Pokemon *pokemon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
     int species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     int level = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
 
@@ -1110,7 +1110,7 @@ void BattleController_EmitUpdateHPGauge(BattleSystem *battleSys, BattleContext *
 void BattleController_EmitUpdateExpGauge(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int curExp)
 {
     ExpGaugeUpdateMessage message;
-    Pokemon *pokemon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    Pokemon *pokemon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
     int species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     int level = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
 
@@ -1367,7 +1367,7 @@ void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext 
 
     message.command = BATTLE_COMMAND_PRINT_LEAD_MON_MESSAGE;
 
-    for (i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+    for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         message.partySlot[i] = battleCtx->selectedPartySlot[i];
     }
 
@@ -1396,7 +1396,7 @@ void BattleController_EmitPlayLevelUpAnimation(BattleSystem *battleSys, int batt
  */
 void BattleController_EmitSetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg)
 {
-    BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battler);
+    BattleIO_ClearBuffer(BattleSystem_GetBattleContext(battleSys), battler);
 
     AlertMsgMessage message;
     message.command = BATTLE_COMMAND_SET_ALERT_MESSAGE;
@@ -1425,7 +1425,7 @@ void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext 
     int species;
     int level;
 
-    pokemon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+    pokemon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
     species = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
     level = Pokemon_GetValue(pokemon, MON_DATA_LEVEL, NULL);
 
@@ -1444,8 +1444,8 @@ void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext 
 
     message.curExp = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
     message.maxExp = Pokemon_GetSpeciesBaseExpAt(species, level + 1) - Pokemon_GetSpeciesBaseExpAt(species, level);
-    message.caughtSpecies = BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
-    message.numSafariBalls = BattleSystem_NumSafariBalls(battleSys);
+    message.caughtSpecies = BattleSystem_HasCaughtSpecies(battleSys, battleCtx->battleMons[battler].species);
+    message.numSafariBalls = BattleSystem_GetNumSafariBalls(battleSys);
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RefreshHPGaugeMessage));
 }
@@ -1467,7 +1467,7 @@ void BattleController_EmitUpdatePartyMon(BattleSystem *battleSys, BattleContext 
     message.mimickedMoveSlot = battleCtx->battleMons[battler].moveEffectsData.mimickedMoveSlot;
     message.curHP = battleCtx->battleMons[battler].curHP;
     message.heldItem = battleCtx->battleMons[battler].heldItem;
-    message.knockedOffItemsMask = battleCtx->sideConditions[Battler_Side(battleSys, battler)].knockedOffItemsMask;
+    message.knockedOffItemsMask = battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battler)].knockedOffItemsMask;
     message.formNum = battleCtx->battleMons[battler].formNum;
     message.ability = battleCtx->battleMons[battler].ability;
 
@@ -1551,7 +1551,7 @@ void BattleController_EmitForgetMove(BattleSystem *battleSys, int battlerId, int
 {
     ForgetMoveMessage message;
 
-    BattleIO_ClearBuffer(BattleSystem_Context(battleSys), battlerId);
+    BattleIO_ClearBuffer(BattleSystem_GetBattleContext(battleSys), battlerId);
 
     message.command = BATTLE_COMMAND_FORGET_MOVE;
     message.move = move;
@@ -1732,7 +1732,7 @@ void BattleController_EmitIncrementRecord(BattleSystem *battleSys, int battlerId
 void BattleController_EmitLinkWaitMessage(BattleSystem *battleSys, int battler)
 {
     LinkWaitMsgMessage message;
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_LINK_WAIT_MESSAGE;
     message.unk_02 = 0;
@@ -1820,13 +1820,13 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
 {
     EscapeMsgMessage message;
     int i;
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_ESCAPE_MESSAGE;
     message.unk_01 = 0;
     message.unk_02 = 0;
 
-    for (i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+    for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         if (battleCtx->battlerActions[i][0] == 16) {
             message.unk_01 |= FlagIndex(i);
         }
@@ -1848,7 +1848,7 @@ void BattleController_EmitEscapeMessage(BattleSystem *battleSys, BattleContext *
 void BattleController_EmitForfeitMessage(BattleSystem *battleSys)
 {
     ForfeitMsgMessage message;
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_FORFEIT_MESSAGE;
     message.unk_02 = 0;
@@ -1941,10 +1941,10 @@ void BattleController_EmitPlayMusic(BattleSystem *battleSys, int battlerId, int 
 void BattleController_EmitSubmitResult(BattleSystem *battleSys)
 {
     ResultSubmitMessage message;
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     message.command = BATTLE_COMMAND_SUBMIT_RESULT;
-    message.resultMask = BattleSystem_ResultMask(battleSys);
+    message.resultMask = BattleSystem_GetResultMask(battleSys);
     message.unk_02 = 0;
 
     if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
@@ -2054,7 +2054,7 @@ void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *b
     animation->defender = defender;
     animation->unk_4C = param3;
     animation->unk_50 = param4;
-    animation->terrain = BattleSystem_Terrain(battleSys);
+    animation->terrain = BattleSystem_GetTerrain(battleSys);
 
     if (battleCtx != NULL) {
         animation->damage = battleCtx->damage;
@@ -2119,7 +2119,7 @@ static inline void PartyGaugeData_Fill(BattleContext *battleCtx, PartyGaugeData 
 static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler)
 {
     MI_CpuClearFast(partyGauge, sizeof(PartyGaugeData));
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     partyGauge->command = command;
 
     // must make declarations here to match
@@ -2127,22 +2127,22 @@ static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx
     Party *party;
 
     if ((battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2) // 2vs2 link battle
-        || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
-        || ((battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) && Battler_Side(battleSys, battler)) // either of the two opponents on the enemy side
+        || ((battleType & BATTLE_TYPE_TAG) && BattleSystem_GetBattlerSide(battleSys, battler)) // either of the two opponents on the enemy side
+        || ((battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) && BattleSystem_GetBattlerSide(battleSys, battler)) // either of the two opponents on the enemy side
         || battleType == BATTLE_TYPE_FRONTIER_WITH_AI_PARTNER) { // frontier, AI partner
-        if (BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_PLAYER_2
-            || BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_ENEMY_2) {
+        if (BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_PLAYER_2
+            || BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_ENEMY_2) {
             battler1 = battler;
-            battler2 = BattleSystem_Partner(battleSys, battler);
+            battler2 = BattleSystem_GetPartner(battleSys, battler);
         } else {
-            battler1 = BattleSystem_Partner(battleSys, battler);
+            battler1 = BattleSystem_GetPartner(battleSys, battler);
             battler2 = battler;
         }
 
-        party = BattleSystem_Party(battleSys, battler1);
+        party = BattleSystem_GetParty(battleSys, battler1);
         PartyGaugeData_Fill(battleCtx, partyGauge, party, battler1, 0);
 
-        party = BattleSystem_Party(battleSys, battler2);
+        party = BattleSystem_GetParty(battleSys, battler2);
         PartyGaugeData_Fill(battleCtx, partyGauge, party, battler2, 3);
     } else {
         if ((battleType & BATTLE_TYPE_DOUBLES) && (battleType & BATTLE_TYPE_2vs2) == FALSE) {
@@ -2151,7 +2151,7 @@ static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx
             battler = battler;
         }
 
-        party = BattleSystem_Party(battleSys, battler);
+        party = BattleSystem_GetParty(battleSys, battler);
         PartyGaugeData_Fill(battleCtx, partyGauge, party, battler, 0);
     }
 }
