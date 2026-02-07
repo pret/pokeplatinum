@@ -1,3 +1,5 @@
+subdir('form_changes')
+
 party_menu_narc = custom_target('party_menu_graphics.narc',
     output: [
         'party_menu_graphics.narc',
