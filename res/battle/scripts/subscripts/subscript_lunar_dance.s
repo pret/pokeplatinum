@@ -45,7 +45,7 @@ _065:
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
     // It became cloaked in mystical moonlight!
-    BufferMessage pl_msg_00000368_01006, TAG_NONE
+    BufferMessage BattleStrings_Text_ItBecameCloakedInAMysticalMoonlight, TAG_NONE
     Call BATTLE_SUBSCRIPT_WISH_HEAL
 
 _127:

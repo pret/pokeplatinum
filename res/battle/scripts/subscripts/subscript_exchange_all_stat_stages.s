@@ -51,7 +51,7 @@ _185:
 
 _190:
     // {0} switched stat changes with the target!
-    PrintMessage pl_msg_00000368_01024, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonSwitchedStatChangesWithTheTarget_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

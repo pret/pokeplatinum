@@ -10,14 +10,14 @@ _000:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // {0} restored HP using its {1}!
-    PrintMessage pl_msg_00000368_00635, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonRestoredHPUsingItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
     Wait 
     WaitButtonABTime 30
     End 
 
 _038:
     // {0} is hurt by poison!
-    PrintMessage pl_msg_00000368_00073, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonIsHurtByPoison_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_POISONED

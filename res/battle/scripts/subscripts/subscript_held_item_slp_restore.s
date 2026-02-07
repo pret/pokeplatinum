@@ -5,7 +5,7 @@ _000:
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_HELD_ITEM
     Wait 
     // {0}’s {1} woke it up!
-    PrintMessage pl_msg_00000368_00887, TAG_NICKNAME_ITEM, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsItemWokeItUp_Ally, TAG_NICKNAME_ITEM, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
     SetHealthbarStatus BTLSCR_MSG_TEMP, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30

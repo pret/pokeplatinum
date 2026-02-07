@@ -38,7 +38,7 @@ _064:
 _067:
     Wait 
     // {0} is hurt by {1}!
-    PrintMessage pl_msg_00000368_00262, TAG_NICKNAME_MOVE, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonIsHurtByMove_Ally, TAG_NICKNAME_MOVE, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK

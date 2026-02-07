@@ -5,12 +5,12 @@ _000:
     CheckAbility CHECK_HAVE, BTLSCR_MSG_TEMP, ABILITY_SOUNDPROOF, _015
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_UPROAR, _015
     // The uproar woke up the {0}!
-    PrintMessage pl_msg_00000368_00305, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_TheUproarWokeUpThePokemon_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     GoTo _019
 
 _015:
     // {0} woke up!
-    PrintMessage pl_msg_00000368_00302, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonWokeUp_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
 
 _019:
     Wait 

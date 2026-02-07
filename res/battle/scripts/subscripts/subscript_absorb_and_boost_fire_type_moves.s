@@ -7,7 +7,7 @@ _000:
     WaitButtonABTime 15
     CompareMonDataToValue OPCODE_NEQ, BTLSCR_DEFENDER, BATTLEMON_FLASH_FIRE, 0, _023
     // {0}’s {1} raised the power of its Fire-type moves!
-    PrintMessage pl_msg_00000368_00656, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonsAbilityRaisedThePowerOfItsFireTypeMoves_Ally, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_FLASH_FIRE, 1
@@ -15,7 +15,7 @@ _000:
 
 _023:
     // {0}’s {1} made {2} ineffective!
-    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

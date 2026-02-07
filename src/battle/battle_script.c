@@ -3071,22 +3071,22 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                 BattleScript_Iter(battleCtx, jumpBlocked);
             } else {
-                SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoHigher, statOffset); // "{0}'s {1} won't go higher!"
+                SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoHigher_Ally, statOffset); // "{0}'s {1} won't go higher!"
                 BattleScript_Iter(battleCtx, jumpNoChange);
             }
         } else {
             if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-                SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityRaisedItsStat, statOffset); // "{0}'s {1} raised its {2}!"
+                SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityRaisedItsStat_Ally, statOffset); // "{0}'s {1} raised its {2}!"
             } else if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) {
-                battleCtx->msgBuffer.id = BattleStrings_Text_TheItemRaisedPokemonsStat; // "The {0} raised {1}'s {2}!"
+                battleCtx->msgBuffer.id = BattleStrings_Text_TheItemRaisedPokemonsStat_Ally; // "The {0} raised {1}'s {2}!"
                 battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM_STAT;
                 battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
                 battleCtx->msgBuffer.params[1] = battleCtx->msgItemTemp;
                 battleCtx->msgBuffer.params[2] = BATTLE_STAT_ATTACK + statOffset;
             } else {
                 SetupNicknameStatMsg(battleCtx,
-                    stageChange == 1 ? BattleStrings_Text_PokemonsStatRose : // "{0}'s {1} rose!"
-                        BattleStrings_Text_PokemonsStatSharplyRose, // "{0}'s {1} sharply rose!"
+                    stageChange == 1 ? BattleStrings_Text_PokemonsStatRose_Ally : // "{0}'s {1} rose!"
+                        BattleStrings_Text_PokemonsStatSharplyRose_Ally, // "{0}'s {1} sharply rose!"
                     statOffset);
             }
 
@@ -3100,7 +3100,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
             if (battleCtx->attacker != battleCtx->sideEffectMon) {
                 if (battleCtx->sideConditions[Battler_Side(battleSys, battleCtx->sideEffectMon)].mistTurns) {
-                    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist; // "{0} is protected by Mist!"
+                    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist_Ally; // "{0} is protected by Mist!"
                     battleCtx->msgBuffer.tags = TAG_NICKNAME;
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
 
@@ -3108,9 +3108,9 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
                     || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE) {
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedByPokemonsAbility); // "{0}'s {1} suppressed {2}'s {3}!"
+                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
-                        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityPreventsStatLoss; // "{0}'s {1} prevents stat loss!"
+                        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
                         battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY;
                         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
                         battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->sideEffectMon].ability;
@@ -3120,7 +3120,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)) {
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedByPokemonsAbility); // "{0}'s {1} suppressed {2}'s {3}!"
+                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
                         SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityPreventsBufferStatLoss, statOffset); // "{0}'s {1} prevents {2} loss!"
                     }
@@ -3135,7 +3135,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                         return FALSE;
                     } else {
-                        SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower, statOffset); // "{0}'s {1} won't go lower!"
+                        SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, statOffset); // "{0}'s {1} won't go lower!"
                         BattleScript_Iter(battleCtx, jumpNoChange);
 
                         return FALSE;
@@ -3155,7 +3155,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                     return FALSE;
                 } else {
-                    SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower, statOffset); // "{0}'s {1} won't go lower!"
+                    SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, statOffset); // "{0}'s {1} won't go lower!"
                     BattleScript_Iter(battleCtx, jumpNoChange);
 
                     return FALSE;
@@ -3178,7 +3178,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         }
 
         if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityCutsPokemonsStat; // "{0}'s {1} cuts {2}'s {3}!"
+            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityCutsPokemonsStat_AllyAlly; // "{0}'s {1} cuts {2}'s {3}!"
             battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_STAT;
             battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
             battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->attacker].ability;
@@ -3186,8 +3186,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             battleCtx->msgBuffer.params[3] = BATTLE_STAT_ATTACK + statOffset;
         } else {
             SetupNicknameStatMsg(battleCtx,
-                stageChange == -1 ? BattleStrings_Text_PokemonsStatFell : // "{0}'s {1} fell!"
-                    BattleStrings_Text_PokemonsStatHarshlyFell, // "{0}'s {1} harshly fell!"
+                stageChange == -1 ? BattleStrings_Text_PokemonsStatFell_Ally : // "{0}'s {1} fell!"
+                    BattleStrings_Text_PokemonsStatHarshlyFell_Ally, // "{0}'s {1} harshly fell!"
                 statOffset);
         }
 
@@ -5393,12 +5393,12 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
         && moreBattlersThisTurn) {
         if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PROTECT) {
             ATTACKER_TURN_FLAGS.protecting = TRUE;
-            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonProtectedItself; // "{0} protected itself!"
+            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonProtectedItself2_Ally; // "{0} protected itself!"
         }
 
         if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_SURVIVE_WITH_1_HP) {
             ATTACKER_TURN_FLAGS.enduring = TRUE;
-            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonBracedItself; // "{0} braced itself!"
+            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonBracedItself_Ally; // "{0} braced itself!"
         }
 
         battleCtx->msgBuffer.tags = TAG_NICKNAME;
@@ -6443,7 +6443,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     battleCtx->damage = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->damage);
     battleCtx->damage *= -1;
 
-    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsBeatUpAttack; // "{0}'s attack!"
+    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsBeatUpAttack_Ally; // "{0}'s attack!"
     battleCtx->msgBuffer.tags = TAG_NICKNAME;
     battleCtx->msgBuffer.params[0] = (battleCtx->attacker | (battleCtx->beatUpCounter << 8));
 
@@ -6837,13 +6837,13 @@ static BOOL BtlCmd_TryKnockOff(BattleSystem *battleSys, BattleContext *battleCtx
     int defending = Battler_Side(battleSys, battleCtx->defender);
 
     if (DEFENDING_MON.heldItem && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STICKY_HOLD) == TRUE) {
-        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityMadeMoveIneffective; // "{0}'s {1} made {2} ineffective!"
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityMadeMoveIneffective_Ally; // "{0}'s {1} made {2} ineffective!"
         battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_MOVE;
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->defender);
         battleCtx->msgBuffer.params[1] = DEFENDING_MON.ability;
         battleCtx->msgBuffer.params[2] = battleCtx->moveCur;
     } else if (DEFENDING_MON.heldItem) {
-        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonKnockedOffPokemonsItem; // "{0} knocked off {1}'s {2}!"
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonKnockedOffPokemonsItem_AllyAlly; // "{0} knocked off {1}'s {2}!"
         battleCtx->msgBuffer.tags = TAG_NICKNAME_NICKNAME_ITEM;
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
         battleCtx->msgBuffer.params[1] = BattleSystem_NicknameTag(battleCtx, battleCtx->defender);
@@ -10273,7 +10273,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT:
-        msg.id = BattleStrings_Text_PokemonCantLearnMoreThanFourMoves; // "But {0} can't learn more than four moves."
+        msg.id = BattleStrings_Text_ButPokemonCantLearnMoreThanFourMoves2; // "But {0} can't learn more than four moves."
         msg.tags = TAG_NICKNAME;
         msg.params[0] = expBattler | (slot << 8);
         data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
@@ -10344,7 +10344,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             if (BattleContext_IOBufferVal(data->battleCtx, expBattler) == PLAYER_INPUT_CANCEL) {
                 data->seqNum = SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT;
             } else {
-                msg.id = BattleStrings_Text_PokemonDidNotLearnMove; // "{0} did not learn {1}."
+                msg.id = BattleStrings_Text_PokemonDidNotLearnMove2; // "{0} did not learn {1}."
                 msg.tags = TAG_NICKNAME_MOVE;
                 msg.params[0] = expBattler | (slot << 8);
                 msg.params[1] = data->tmpData[GET_EXP_MOVE];

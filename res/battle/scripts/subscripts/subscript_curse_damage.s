@@ -9,7 +9,7 @@ _000:
     DivideVarByValue BTLVAR_HP_CALC_TEMP, 4
     UpdateVar OPCODE_MUL, BTLVAR_HP_CALC_TEMP, -1
     // {0} is afflicted by the curse!
-    PrintMessage pl_msg_00000368_00424, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonIsAfflictedByTheCurse_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK

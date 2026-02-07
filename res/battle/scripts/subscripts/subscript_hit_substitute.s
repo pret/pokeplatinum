@@ -9,7 +9,7 @@ _000:
 
 _009:
     // The substitute took damage for {0}!
-    PrintMessage pl_msg_00000368_00354, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_TheSubstituteTookDamageForPokemon_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_MSG_TEMP, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_SUBSTITUTE, _040
@@ -20,7 +20,7 @@ _009:
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SUB_IN
     Wait 
     // {0}’s substitute faded!
-    PrintMessage pl_msg_00000368_00357, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsSubstituteFaded_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

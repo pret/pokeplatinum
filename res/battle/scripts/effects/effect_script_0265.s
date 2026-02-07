@@ -15,7 +15,7 @@ _032:
     Wait 
     WaitButtonABTime 15
     // It failed to affect {0}!
-    PrintMessage pl_msg_00000368_01235, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_ItFailedToAffectPokemon_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
@@ -26,7 +26,7 @@ _048:
     Wait 
     WaitButtonABTime 15
     // {0}’s {1} made {2} ineffective!
-    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

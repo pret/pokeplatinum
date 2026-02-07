@@ -3,7 +3,7 @@
 
 _000:
     // The twisted dimensions returned to normal!
-    PrintGlobalMessage pl_msg_00000368_01076, TAG_NONE
+    PrintGlobalMessage BattleStrings_Text_TheTwistedDimensionsReturnedToNormal, TAG_NONE
     Wait 
     WaitButtonABTime 30
     End 

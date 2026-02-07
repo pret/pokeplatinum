@@ -9,19 +9,19 @@ _000:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _029
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_HELD_ITEM, _037
     // {0} fell in love!
-    PrintMessage pl_msg_00000368_00162, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonFellInLove_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _047
 
 _029:
     // {0}’s {1} infatuated {2}!
-    PrintMessage pl_msg_00000368_00707, TAG_NICKNAME_ABILITY_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsAbilityInfatuatedPokemon_AllyAlly, TAG_NICKNAME_ABILITY_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_SIDE_EFFECT_MON
     GoTo _047
 
 _037:
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_HELD_ITEM
     Wait 
     // {0}’s {1} infatuated {2}!
-    PrintMessage pl_msg_00000368_01150, TAG_NICKNAME_ITEM_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsItemInfatuatedPokemon_AllyAlly, TAG_NICKNAME_ITEM_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_SIDE_EFFECT_MON
 
 _047:
     Wait 
@@ -36,7 +36,7 @@ _055:
     Wait 
     WaitButtonABTime 30
     // {0}’s {1} prevents romance!
-    PrintMessage pl_msg_00000368_00647, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsAbilityPreventsRomance_Ally, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
@@ -45,14 +45,14 @@ _055:
 _082:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _117
     // {0}’s {1} suppressed {2}’s {3}!
-    PrintMessage BattleStrings_Text_PokemonsAbilitySuppressedByPokemonsAbility, TAG_NICKNAME_ABILITY_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly, TAG_NICKNAME_ABILITY_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
     Wait 
     WaitButtonABTime 30
     End 
 
 _098:
     // {0}’s {1} made the {2} ineffective!
-    PrintMessage pl_msg_00000368_01147, TAG_NICKNAME_ABILITY_ITEM, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeTheItemIneffective_Ally, TAG_NICKNAME_ABILITY_ITEM, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON, BTLSCR_MSG_BATTLER_TEMP
     Wait 
     WaitButtonABTime 30
     End 

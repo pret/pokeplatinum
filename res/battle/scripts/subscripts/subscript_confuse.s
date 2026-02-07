@@ -35,7 +35,7 @@ _076:
     UpdateMonDataFromVar OPCODE_FLAG_ON, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_VOLATILE_STATUS, BTLVAR_CALC_TEMP
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_MOVE_EFFECT, _185
     // {0} became confused!
-    PrintMessage pl_msg_00000368_00156, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonBecameConfused_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     Wait 
     WaitButtonABTime 30
 
@@ -59,7 +59,7 @@ _128:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _185
     WaitButtonABTime 30
     // {0} is already confused!
-    PrintMessage pl_msg_00000368_00159, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonIsAlreadyConfused_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _178
 
 _141:
@@ -70,14 +70,14 @@ _141:
     Wait 
     WaitButtonABTime 30
     // {0}’s {1} prevents confusion!
-    PrintMessage pl_msg_00000368_00653, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsAbilityPreventsConfusion_Ally, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
     GoTo _178
 
 _167:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _185
     WaitButtonABTime 30
     // {0} is protected by Safeguard!
-    PrintMessage pl_msg_00000368_00200, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonIsProtectedBySafeguard_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
 
 _178:
     Wait 

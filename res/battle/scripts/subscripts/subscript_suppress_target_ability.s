@@ -9,7 +9,7 @@ _000:
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_ABILITY_SUPPRESSED
     // {0}’s ability was suppressed!
-    PrintMessage pl_msg_00000368_01012, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonsAbilityWasSuppressed_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     End 

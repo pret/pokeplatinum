@@ -32,7 +32,7 @@ _058:
     CompareMonDataToValue OPCODE_EQU, BTLSCR_MSG_TEMP, BATTLEMON_ATTACK_STAGE, 12, _092
     UpdateMonData OPCODE_ADD, BTLSCR_MSG_TEMP, BATTLEMON_ATTACK_STAGE, 1
     // {0}’s rage is building!
-    PrintMessage pl_msg_00000368_00363, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsRageIsBuilding_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 
@@ -41,7 +41,7 @@ _092:
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_HELD_ITEM
     Wait 
     // {0} hung on using its {1}!
-    PrintMessage pl_msg_00000368_00912, TAG_NICKNAME_ITEM, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonHungOnUsingItsItem_Ally, TAG_NICKNAME_ITEM, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
     Wait 
     WaitButtonABTime 30
     CheckItemHoldEffect CHECK_NOT_HAVE, BTLSCR_MSG_TEMP, HOLD_EFFECT_ENDURE, _116
@@ -53,7 +53,7 @@ _116:
 _117:
     WaitButtonABTime 30
     // But it failed!
-    PrintMessage pl_msg_00000368_00796, TAG_NONE
+    PrintMessage BattleStrings_Text_ButItFailed, TAG_NONE
     Wait 
     WaitButtonABTime 30
     End 
