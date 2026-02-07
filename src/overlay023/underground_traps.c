@@ -171,7 +171,7 @@ typedef struct TrapsEnv {
     u8 triggeredTrapIDClient;
     u8 triggeredTrapIDs[MAX_CONNECTED_PLAYERS];
     u8 unused6;
-    u8 linkReceivedPlacedTraps;
+    u8 linksReceivedPlacedTraps;
     u8 graphicsDisabled;
 } TrapsEnv;
 
@@ -1434,7 +1434,7 @@ void UndergroundTraps_ReceiveLoadTrapsResult(int unused0, int unused1, void *dat
 
     if (trapsEnv) {
         if (CommSys_CurNetId() == result->netID) {
-            trapsEnv->linkReceivedPlacedTraps = result->success;
+            trapsEnv->linksReceivedPlacedTraps = result->success;
         }
     }
 }
@@ -1444,14 +1444,14 @@ int CommPacketSizeOf_LoadTrapsResult(void)
     return sizeof(LoadTrapsResult);
 }
 
-BOOL UndergroundTraps_GetLinkReceivedPlacedTraps(void)
+BOOL UndergroundTraps_HaveLinksReceivedPlacedTraps(void)
 {
-    return trapsEnv->linkReceivedPlacedTraps == TRUE;
+    return trapsEnv->linksReceivedPlacedTraps == TRUE;
 }
 
-void UndergroundTraps_SetLinkReceivedPlacedTrapsToFalse(void)
+void UndergroundTraps_ClearLinksReceivedPlacedTraps(void)
 {
-    trapsEnv->linkReceivedPlacedTraps = FALSE;
+    trapsEnv->linksReceivedPlacedTraps = FALSE;
 }
 
 int CommPacketSizeOf_Coordinates(void)

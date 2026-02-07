@@ -61,7 +61,7 @@ typedef struct {
 typedef struct {
     u8 sendBuffer[2][64];
     u8 sendBufferServer[2][192];
-    u8 sendBufferCommRing[264];
+    u8 sendBufferCommRing[COMM_RING_BUFFER_SIZE];
     u8 sendBufferCommRingServer[384];
     u8 *unk_488;
     u8 *recvBufferRingServer;
@@ -1757,7 +1757,7 @@ BOOL CommSys_SendMessage(int cmd)
     return CommSys_SendData(cmd, NULL, 0);
 }
 
-BOOL sub_020360E8(void)
+BOOL CommSys_IsClientConnecting(void)
 {
     return CommServerClient_IsClientConnecting();
 }

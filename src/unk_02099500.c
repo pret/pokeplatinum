@@ -54,12 +54,12 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundPlayer_ProcessOpenMenuRequest, CommPacketSizeOf_Nothing, NULL },
     { UndergroundMan_ProcessInteractEvent, CommPacketSizeOf_InteractEvent, NULL },
     { UndergroundPlayer_ProcessOpenMenuEvent, CommPacketSizeOf_Variable, NULL },
-    { UndergroundPlayer_ProcessTalkEvent, CommPacketSizeOf_Variable, NULL },
+    { UndergroundPlayer_ProcessTalkEvent, CommPacketSizeOf_Variable, NULL }, // 30
     { ov23_022433BC, CommPacketSizeOf_Nothing, NULL },
     { UndergroundTraps_TryPlaceTrap, CommPacketSizeOf_NetId, NULL },
     { UndergroundTraps_RemoveBuriedTrapAtIndex_Unused, CommPacketSizeOf_2Bytes_Unused, NULL }, // corresponding cmd never sent
     { UndergroundTraps_ProcessPlaceTrapResult, CommPacketSizeOf_PlaceTrapResult, NULL },
-    { UndergroundTraps_LoadLinkPlacedTraps, CommPacketSizeOf_AllTrapsPlacedPlayer, NULL },
+    { UndergroundTraps_LoadLinkPlacedTraps, CommPacketSizeOf_AllTrapsPlacedPlayer, NULL }, // 35
     { UndergroundTraps_ReceiveLoadTrapsResult, CommPacketSizeOf_LoadTrapsResult, NULL },
     { UndergroundTraps_HandleTriggeredTrap, CommPacketSizeOf_TriggeredTrap2, NULL },
     { UndergroundTraps_CallSecondTrapEffectServerFunc, CommPacketSizeOf_NetId, NULL },

@@ -2202,7 +2202,7 @@ static BOOL ov65_02238190(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 
 static BOOL ov65_022381CC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
-    CommInfo_SendBattleRegulation();
+    CommInfo_SendPlayerInfo();
     CommMan_SetErrorHandling(0, 1);
     param0->unk_00.unk_05 = 1;
     return 0;

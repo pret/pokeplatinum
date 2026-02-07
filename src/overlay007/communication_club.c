@@ -1568,7 +1568,7 @@ static void ov7_0224B3A8(CommClubManager *commClubMan)
     sub_02036994(0);
     sCommClubMan->retCode = COMM_CLUB_RET_2;
     CommMan_SetErrorHandling(1, 1);
-    CommInfo_SendBattleRegulation();
+    CommInfo_SendPlayerInfo();
     sub_02033EA8(1);
 }
 

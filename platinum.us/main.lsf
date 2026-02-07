@@ -842,7 +842,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_underground_item_list_menu.c.o
 	Object main.nef.p/src_overlay023_underground_top_screen.c.o
 	Object main.nef.p/src_overlay023_underground_player_status.c.o
-	Object main.nef.p/src_overlay023_ov23_022499E4.c.o
+	Object main.nef.p/src_overlay023_underground_comm_manager.c.o
 	Object main.nef.p/src_overlay023_underground_player.c.o
 	Object main.nef.p/src_overlay023_secret_bases.c.o
 	Object main.nef.p/src_overlay023_underground_player_talk.c.o
