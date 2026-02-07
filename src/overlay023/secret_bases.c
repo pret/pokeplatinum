@@ -1628,7 +1628,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         CommSys_DisableSendMovementData();
         UndergroundSpheres_DisableBuriedSphereSparkles();
 
-        if (CommManUnderground_TryEnterMoveToFromBaseState()) {
+        if (CommManUnderground_TryEnterBaseTransitionState()) {
             ctx->state = MOVE_STATE_FADE_OUT;
         }
         break;
@@ -1737,7 +1737,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         if (CommServerClient_IsInClosedSecretBase() && !UndergroundMan_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
             CommManUnderground_ReopenSecretBase();
         } else {
-            CommManUnderground_TryEndMoveToFromBaseState();
+            CommManUnderground_TryExitBaseTransitionState();
         }
 
         sub_02059638(FALSE);
@@ -2659,7 +2659,7 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
     secretBasesEnv->currentPlayerInBase = FALSE;
 
     SecretBases_StartMoveToFromSecretBaseTask(secretBasesEnv->fieldSystem, x, z, dir, netID, forceExit);
-    CommManUnderground_TryEnterMoveToFromBaseState();
+    CommManUnderground_TryEnterBaseTransitionState();
 
     secretBasesEnv->currentOccupiedBaseInfo = NULL;
     secretBasesEnv->occupiedBaseOwnerIDs[netID] = NETID_NONE;
