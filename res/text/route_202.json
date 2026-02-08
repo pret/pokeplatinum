@@ -2,7 +2,7 @@
   "key": 40592,
   "messages": [
     {
-      "id": "pl_msg_00000467_00000",
+      "id": "Route202_Text_DawnDidYouTellYourFamily",
       "en_US": [
         "Dawn: {STRVAR_1 3, 1, 0}?!\r",
         "Did you tell your family that you’re\n",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00001",
+      "id": "Route202_Text_DawnYouShouldGoTellYourFamily",
       "en_US": [
         "Dawn: You should go tell your family\n",
         "that you’re helping the professor.\r",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00002",
+      "id": "Route202_Text_DawnIHaventShownYouHowToCatchAPokemon",
       "en_US": [
         "Dawn: Oh, that’s right!\r",
         "{STRVAR_1 3, 1, 0}, I haven’t shown you\n",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00003",
+      "id": "Route202_Text_DawnToGetYouStartedIllGiveYouFivePokeBalls",
       "en_US": [
         "Dawn: Giggle...\n",
         "See? Isn’t it neat?\r",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00004",
+      "id": "Route202_Text_DawnByeNow",
       "en_US": [
         "If you have lots of Pokémon with you,\n",
         "it will be safer on long trips.\r",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00005",
+      "id": "Route202_Text_LucasDidYouTellYourFamily",
       "en_US": [
         "Lucas: {STRVAR_1 3, 1, 0}?!\r",
         "Did you tell your family that you’re\n",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00006",
+      "id": "Route202_Text_LucasWhyDontYouGoTellYourFamily",
       "en_US": [
         "Lucas: Why don’t you go tell your\n",
         "family that the professor asked for\f",
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00007",
+      "id": "Route202_Text_LucasDoYouKnowHowToCatchAPokemon",
       "en_US": [
         "Lucas: {STRVAR_1 3, 1, 0}, do you know\n",
         "how to catch a Pokémon?\r",
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00008",
+      "id": "Route202_Text_LucasHereIllGiveYouFivePokeballsToGetYouStarted",
       "en_US": [
         "Lucas: And that’s how it’s done.\r",
         "Actually, I should have lowered the\n",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00009",
+      "id": "Route202_Text_LucasSeeYouAround",
       "en_US": [
         "If you have lots of Pokémon with you,\n",
         "you’ll be able to travel farther.\r",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00010",
+      "id": "Route202_Text_SomePokemonOnlyAppearInTheMorning",
       "en_US": [
         "Some Pokémon only appear in the\n",
         "morning.\r",
@@ -131,21 +131,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00011",
+      "id": "Route202_Text_Rt202SandgemTown",
       "en_US": [
         "Rt. 202\n",
         "Sandgem Town"
       ]
     },
     {
-      "id": "pl_msg_00000467_00012",
+      "id": "Route202_Text_Rt202JubilifeCity",
       "en_US": [
         "Rt. 202\n",
         "Jubilife City"
       ]
     },
     {
-      "id": "pl_msg_00000467_00013",
+      "id": "Route202_Text_TrainerTipsPokemonInvolvedInBattleEarnExpPoints",
       "en_US": [
         "Trainer Tips!\r",
         "All Pokémon that are involved in\n",
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00014",
+      "id": "Route202_Text_DawnLetMeShowYouHowThePokeRadarWorks",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
         "I was waiting for you.\r",
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00015",
+      "id": "Route202_Text_DawnTheresAPokemonInThatPatchOfTallGrass",
       "en_US": [
         "Dawn: See?\n",
         "Did you notice the tall grass rustling?\r",
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00016",
+      "id": "Route202_Text_DawnNowThisIsWhereItGetsInteresting",
       "en_US": [
         "Now, this is where it gets interesting.\r",
         "If you see another patch of rustling\n",
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00017",
+      "id": "Route202_Text_LucasLetMeExplainHowThePokeRadarWorks",
       "en_US": [
         "Lucas: {STRVAR_1 3, 0, 0}.\r",
         "Let me explain how the Poké Radar\n",
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00018",
+      "id": "Route202_Text_LucasTheresAPokemonInThatPatchOfTallGrass",
       "en_US": [
         "Lucas: There!\n",
         "Did you see the tall grass rustling?\r",
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000467_00019",
+      "id": "Route202_Text_LucasNowHeresTheStrangePart",
       "en_US": [
         "Now, here’s the strange part.\r",
         "If you see another patch of rustling\n",

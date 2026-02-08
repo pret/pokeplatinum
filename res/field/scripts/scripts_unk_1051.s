@@ -145,8 +145,8 @@ _029F:
 
 _02B1:
     RemoveObject 4
-    ClearFlag FLAG_UNK_0x0188
-    SetVar VAR_UNK_0x4087, 2
+    ClearFlag FLAG_HIDE_ROUTE_202_COUNTERPART
+    SetVar VAR_ROUTE_202_STATE, 2
     ReleaseAll
     End
 

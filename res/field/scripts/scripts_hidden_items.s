@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0380.h"
+#include "res/text/bank/hidden_items.h"
 
 
     ScriptEntry _0472

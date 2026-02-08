@@ -51,7 +51,7 @@
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01F7",
+            "hidden_flag": "FLAG_HIDE_POKETCH_CO_1F_POKETCH_CO_PRESIDENT",
             "script": 1,
             "initial_dir": 1,
             "data": [],

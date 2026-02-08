@@ -96,7 +96,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_LAKE_VERITY_POKEBALL",
+            "hidden_flag": "FLAG_OBTAINED_LAKE_VERITY_TM38",
             "script": 7239,
             "initial_dir": 0,
             "data": [],
