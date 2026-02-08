@@ -4750,12 +4750,12 @@
     .short 800
     .endm
 
-    .macro ScrCmd_321 arg0
+    .macro StartDistortionWorldGiratinaShadowEvent eventIndex
     .short 801
-    .short \arg0
+    .short \eventIndex
     .endm
 
-    .macro ScrCmd_322
+    .macro FinishDistortionWorldGiratinaShadowEvent
     .short 802
     .endm
 
