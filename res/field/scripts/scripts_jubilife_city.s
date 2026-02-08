@@ -21,7 +21,7 @@
     ScriptEntry JubilifeCity_Clown2
     ScriptEntry JubilifeCity_Clown3
     ScriptEntry JubilifeCity_TriggerPoketchCampaign
-    ScriptEntry JubilifeCity_PoketchMan
+    ScriptEntry JubilifeCity_PoketchCoPresident
     ScriptEntry JubilifeCity_TriggerGTSGreeterBlockPlayer
     ScriptEntry JubilifeCity_KidWithNDS1
     ScriptEntry JubilifeCity_KidWithNDS2
@@ -153,7 +153,7 @@ JubilifeCity_MeetLookerWithLucas:
     BufferRivalName 1
     Message JubilifeCity_Text_LucasFollowMe
     Call JubilifeCity_PlayerAndCounterpartWalkNorth
-    Message JubilifeCity_Text_LucasThatManWhatsHeDoing
+    Message JubilifeCity_Text_LucasThatGuyWhatsHeDoing
     CloseMessage
     Call JubilifeCity_LookerWalkAround
     Message JubilifeCity_Text_LucasUhExcuse
@@ -779,7 +779,7 @@ JubilifeCity_ItIsYouHaveYouNotObtainedAGymBadge:
 JubilifeCity_CheckPalPad:
     CheckItem ITEM_PAL_PAD, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, JubilifeCity_ISeeThatYouHaveObtainedItAPalPadForYourself
-    Message JubilifeCity_Text_TellmeHaveYouNotObtainedAPalPad
+    Message JubilifeCity_Text_TellMeHaveYouNotObtainedAPalPad
     CloseMessage
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerWalkOnSpotWestEast
     WaitMovement
@@ -1343,15 +1343,15 @@ JubilifeCity_LandmarkSignGlobalTerminal:
 
 JubilifeCity_TriggerPoketchCampaign:
     LockAll
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManNoticePlayer
-    ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerFaceNorthPoketchMan
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentNoticePlayer
+    ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerFaceNorthPoketchCoPresident
     WaitMovement
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    CallIfEq VAR_0x8004, 172, JubilifeCity_PoketchManWalkToPlayerX172
-    CallIfEq VAR_0x8004, 173, JubilifeCity_PoketchManWalkToPlayerX173
-    CallIfEq VAR_0x8004, 174, JubilifeCity_PoketchManWalkToPlayerX174
-    CallIfEq VAR_0x8004, 175, JubilifeCity_PoketchManWalkToPlayerX175
-    CallIfEq VAR_0x8004, 176, JubilifeCity_PoketchManWalkToPlayerX176
+    CallIfEq VAR_0x8004, 172, JubilifeCity_PoketchCoPresidentWalkToPlayerX172
+    CallIfEq VAR_0x8004, 173, JubilifeCity_PoketchCoPresidentWalkToPlayerX173
+    CallIfEq VAR_0x8004, 174, JubilifeCity_PoketchCoPresidentWalkToPlayerX174
+    CallIfEq VAR_0x8004, 175, JubilifeCity_PoketchCoPresidentWalkToPlayerX175
+    CallIfEq VAR_0x8004, 176, JubilifeCity_PoketchCoPresidentWalkToPlayerX176
     Message JubilifeCity_Text_YouCallYourselfAPokemonTrainerAndYetYouHaveNoPoketch
     SetVar VAR_POKETCH_CAMPAIGN_STATE, 2
     Message JubilifeCity_Text_AllYouHaveToDoIsFindThreeClownsInJubilifeCity
@@ -1360,76 +1360,76 @@ JubilifeCity_TriggerPoketchCampaign:
     ReleaseAll
     End
 
-JubilifeCity_PoketchManWalkToPlayerX172:
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManWalkToPlayerX172
+JubilifeCity_PoketchCoPresidentWalkToPlayerX172:
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX172
     WaitMovement
     Return
 
-JubilifeCity_PoketchManWalkToPlayerX173:
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManWalkToPlayerX173
+JubilifeCity_PoketchCoPresidentWalkToPlayerX173:
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX173
     WaitMovement
     Return
 
-JubilifeCity_PoketchManWalkToPlayerX174:
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManWalkToPlayerX174
+JubilifeCity_PoketchCoPresidentWalkToPlayerX174:
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX174
     WaitMovement
     Return
 
-JubilifeCity_PoketchManWalkToPlayerX175:
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManWalkToPlayerX175
+JubilifeCity_PoketchCoPresidentWalkToPlayerX175:
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX175
     WaitMovement
     Return
 
-JubilifeCity_PoketchManWalkToPlayerX176:
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManWalkToPlayerX176
+JubilifeCity_PoketchCoPresidentWalkToPlayerX176:
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX176
     WaitMovement
     Return
 
     .balign 4, 0
-JubilifeCity_Movement_PlayerFaceNorthPoketchMan:
+JubilifeCity_Movement_PlayerFaceNorthPoketchCoPresident:
     FaceNorth
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManNoticePlayer:
+JubilifeCity_Movement_PoketchCoPresidentNoticePlayer:
     WalkOnSpotNormalSouth
     EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManWalkToPlayerX172:
+JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX172:
     WalkNormalSouth 2
     WalkNormalWest 2
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManWalkToPlayerX173:
+JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX173:
     WalkNormalSouth 2
     WalkNormalWest
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManWalkToPlayerX174:
+JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX174:
     WalkNormalSouth 4
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManWalkToPlayerX175:
+JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX175:
     WalkNormalSouth 2
     WalkNormalEast
     WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManWalkToPlayerX176:
+JubilifeCity_Movement_PoketchCoPresidentWalkToPlayerX176:
     WalkNormalSouth 2
     WalkNormalEast 2
     WalkNormalSouth 2
     EndMovement
 
-JubilifeCity_PoketchMan:
+JubilifeCity_PoketchCoPresident:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
@@ -1467,58 +1467,58 @@ JubilifeCity_GivePoketch:
     Message JubilifeCity_Text_PlayerReceivedAPoketch
     PlaySound SEQ_FANFA4
     WaitSound
-    Message JubilifeCity_Text_YoucanAddAppsToYourPoketch
+    Message JubilifeCity_Text_YouCanAddAppsToYourPoketch
     CloseMessage
     GetPlayerDir VAR_RESULT
-    GoToIfEq VAR_RESULT, DIR_NORTH, JubilifeCity_PoketchManLeaveNorthWestEast
-    GoToIfEq VAR_RESULT, DIR_SOUTH, JubilifeCity_PoketchManLeaveSouth
-    GoToIfEq VAR_RESULT, DIR_WEST, JubilifeCity_PoketchManLeaveNorthWestEast
-    GoToIfEq VAR_RESULT, DIR_EAST, JubilifeCity_PoketchManLeaveNorthWestEast
+    GoToIfEq VAR_RESULT, DIR_NORTH, JubilifeCity_PoketchCoPresidentLeaveNorthWestEast
+    GoToIfEq VAR_RESULT, DIR_SOUTH, JubilifeCity_PoketchCoPresidentLeaveSouth
+    GoToIfEq VAR_RESULT, DIR_WEST, JubilifeCity_PoketchCoPresidentLeaveNorthWestEast
+    GoToIfEq VAR_RESULT, DIR_EAST, JubilifeCity_PoketchCoPresidentLeaveNorthWestEast
     End
 
-JubilifeCity_PoketchManLeaveNorthWestEast:
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManLeaveNorthWestEast
-    ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerWatchPoketchManLeaveNorthWestEast
+JubilifeCity_PoketchCoPresidentLeaveNorthWestEast:
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentLeaveNorthWestEast
+    ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerWatchPoketchCoPresidentLeaveNorthWestEast
     WaitMovement
-    GoTo JubilifeCity_RemovePoketchMan
+    GoTo JubilifeCity_RemovePoketchCoPresident
     End
 
-JubilifeCity_PoketchManLeaveSouth:
-    ApplyMovement LOCALID_MIDDLE_AGED_MAN, JubilifeCity_Movement_PoketchManLeaveSouth
-    ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerWatchPoketchManLeaveSouth
+JubilifeCity_PoketchCoPresidentLeaveSouth:
+    ApplyMovement LOCALID_POKETCH_CO_PRESIDENT, JubilifeCity_Movement_PoketchCoPresidentLeaveSouth
+    ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerWatchPoketchCoPresidentLeaveSouth
     WaitMovement
-    GoTo JubilifeCity_RemovePoketchMan
+    GoTo JubilifeCity_RemovePoketchCoPresident
     End
 
-JubilifeCity_RemovePoketchMan:
-    RemoveObject LOCALID_MIDDLE_AGED_MAN
+JubilifeCity_RemovePoketchCoPresident:
+    RemoveObject LOCALID_POKETCH_CO_PRESIDENT
     SetFlag FLAG_OBTAINED_POKETCH
-    ClearFlag FLAG_HIDE_POKETCH_CO_1F_MIDDLE_AGED_MAN
+    ClearFlag FLAG_HIDE_POKETCH_CO_1F_POKETCH_CO_PRESIDENT
     RemoveObject LOCALID_LOOKER
     SetFlag FLAG_HIDE_JUBILIFE_CITY_LOOKER
     ReleaseAll
     End
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManLeaveSouth:
+JubilifeCity_Movement_PoketchCoPresidentLeaveSouth:
     WalkNormalWest
     WalkNormalNorth 9
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PoketchManLeaveNorthWestEast:
+JubilifeCity_Movement_PoketchCoPresidentLeaveNorthWestEast:
     WalkNormalNorth 9
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PlayerWatchPoketchManLeaveSouth:
+JubilifeCity_Movement_PlayerWatchPoketchCoPresidentLeaveSouth:
     Delay8
     WalkOnSpotNormalWest
     WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
-JubilifeCity_Movement_PlayerWatchPoketchManLeaveNorthWestEast:
+JubilifeCity_Movement_PlayerWatchPoketchCoPresidentLeaveNorthWestEast:
     Delay8
     WalkOnSpotNormalNorth
     EndMovement
@@ -1618,7 +1618,7 @@ JubilifeCity_Clown3CorrectAnswer:
     Message JubilifeCity_Text_DingDingYoureAbsolutelyCorrect3
     Message JubilifeCity_Text_APokemonMayHoldASingleItem
     Message JubilifeCity_Text_HereYouGoYourPoketchCoupon3
-    SetPosition LOCALID_MIDDLE_AGED_MAN, 174, 1, 771, DIR_SOUTH
+    SetPosition LOCALID_POKETCH_CO_PRESIDENT, 174, 1, 771, DIR_SOUTH
     SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_3

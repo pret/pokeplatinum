@@ -145,7 +145,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_ROUTE_202_POKEBALL",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_202_POTION",
             "script": 7000,
             "initial_dir": 0,
             "data": [],

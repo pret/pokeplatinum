@@ -370,11 +370,11 @@
             "y": 0
         },
         {
-            "id": "LOCALID_MIDDLE_AGED_MAN",
+            "id": "LOCALID_POKETCH_CO_PRESIDENT",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_JUBILIFE_CITY_MIDDLE_AGED_MAN",
+            "hidden_flag": "FLAG_HIDE_JUBILIFE_CITY_POKETCH_CO_PRESIDENT",
             "script": 18,
             "initial_dir": 2,
             "data": [],
@@ -509,7 +509,7 @@
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_HIDE_JUBILIFE_CITY_POKEBALL",
+            "hidden_flag": "FLAG_OBTAINED_JUBILIFE_CITY_POTION",
             "script": 7257,
             "initial_dir": 0,
             "data": [],

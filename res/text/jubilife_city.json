@@ -86,7 +86,7 @@
       "en_US": "Dawn: Um..."
     },
     {
-      "id": "JubilifeCity_Text_LucasThatManWhatsHeDoing",
+      "id": "JubilifeCity_Text_LucasThatGuyWhatsHeDoing",
       "en_US": [
         "Lucas: That guy...\n",
         "What’s he doing?\r"
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "JubilifeCity_Text_TellmeHaveYouNotObtainedAPalPad",
+      "id": "JubilifeCity_Text_TellMeHaveYouNotObtainedAPalPad",
       "en_US": [
         "Looker: Tell me, have you not obtained\n",
         "a Pal Pad?\r",
@@ -416,7 +416,7 @@
       "en_US": "{STRVAR_1 3, 0, 0} received a {COLOR 1}Pokétch{COLOR 0}!{YESNO 1}"
     },
     {
-      "id": "JubilifeCity_Text_YoucanAddAppsToYourPoketch",
+      "id": "JubilifeCity_Text_YouCanAddAppsToYourPoketch",
       "en_US": [
         "You can add apps to your Pokétch\n",
         "to make it even more versatile!\r",
