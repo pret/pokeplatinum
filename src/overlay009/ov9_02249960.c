@@ -100,6 +100,8 @@
 #define PLATFORM_PROP_ANIM_TIMING_COUNT 8
 #define PLATFORM_PROP_ANIM_DELTA        0x800
 
+#define GIRATINA_SHADOW_EXTERNAL_COUNT 1
+
 #define OBSTACLE_PROP_ANIM_DELTA 2
 
 enum FloatingPlatformKind {
@@ -138,21 +140,21 @@ enum PropKind {
     PROP_KIND_LARGE_ELEVATOR_PLATFORM_3,
     PROP_KIND_LARGE_ELEVATOR_PLATFORM_4,
     PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5,
-    PROP_KIND_DUMMY20,
-    PROP_KIND_DUMMY21,
+    PROP_KIND_GIRATINA_SHADOW,
+    PROP_KIND_WATERFALL,
     PROP_KIND_LAND_VINE_FLOWER,
     PROP_KIND_LAND_ROCK,
-    PROP_KIND_DUMMY24,
+    PROP_KIND_PORTAL,
     PROP_KIND_COUNT,
     PROP_KIND_INVALID = PROP_KIND_COUNT,
 };
 
 enum PropAnimKind {
-    PROP_ANIM_KIND_DUMMY20 = 0,
+    PROP_ANIM_KIND_GIRATINA_SHADOW = 0,
     PROP_ANIM_KIND_LAND_VINE_FLOWER,
     PROP_ANIM_KIND_LAND_ROCK,
-    PROP_ANIM_KIND_DUMMY21,
-    PROP_ANIM_KIND_DUMMY24,
+    PROP_ANIM_KIND_WATERFALL,
+    PROP_ANIM_KIND_PORTAL,
     PROP_ANIM_KIND_COUNT,
     PROP_ANIM_KIND_INVALID = PROP_ANIM_KIND_COUNT,
 };
@@ -165,6 +167,18 @@ enum PlatformPropSoundEffectState {
 enum ObstaclePropSoundEffectState {
     OBSTACLE_PROP_SFX_STATE_DISAPPEAR = -2,
     OBSTACLE_PROP_SFX_STATE_APPEAR = 2,
+};
+
+enum GiratinaShadowPropState {
+    GIRATINA_SHADOW_PROP_STATE_SFX = 0,
+    GIRATINA_SHADOW_PROP_STATE_MOVE,
+    GIRATINA_SHADOW_PROP_STATE_END,
+};
+
+enum GiratinaShadowPropSoundEffectKind {
+    GIRATINA_SHADOW_PROP_SFX_KIND_NONE = 0,
+    GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+    GIRATINA_SHADOW_PROP_SFX_KIND_FLEE,
 };
 
 typedef struct DistWorldSystem DistWorldSystem;
@@ -644,22 +658,22 @@ typedef struct {
     const UnkStruct_ov9_02252044 *unk_04;
 } UnkStruct_ov9_02252D38;
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    s16 unk_04;
-    s8 unk_06;
-    u8 unk_07;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
-    int unk_20;
-} UnkStruct_ov9_02252414;
+typedef struct DistWorldGiratinaShadowTemplate {
+    s16 initialTileX;
+    s16 initialTileY;
+    s16 initialTileZ;
+    s8 rotAnglesIndex;
+    u8 soundKind;
+    VecFx32 scale;
+    VecFx32 posDelta;
+    int movementAnimSteps;
+} DistWorldGiratinaShadowTemplate;
 
-typedef struct {
-    u32 unk_00;
-    DistWorldPropRenderer *unk_04;
-    OverworldAnimManager *unk_08;
-} UnkStruct_ov9_0224E8B4;
+typedef struct DistWorldGiratinaShadowPropRenderer {
+    BOOL valid;
+    DistWorldPropRenderer *renderer;
+    OverworldAnimManager *animMan;
+} DistWorldGiratinaShadowPropRenderer;
 
 typedef struct {
     u8 unk_00;
@@ -709,7 +723,7 @@ struct DistWorldSystem {
     UnkStruct_ov9_0224CBD8 unk_1CD0;
     UnkStruct_ov9_0224ADC0 unk_1D00;
     UnkStruct_ov9_0224C8E8 unk_1E88;
-    UnkStruct_ov9_0224E8B4 unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer giratinaShadowPropRenderer;
     GXRgb unk_1EB0[8];
     u16 unk_1EC0;
     u16 unk_1EC2;
@@ -792,20 +806,20 @@ typedef struct {
     u32 unk_00;
 } UnkStruct_ov9_0224E870;
 
-typedef struct {
-    DistWorldSystem *unk_00;
-    DistWorldPropRenderer *unk_04;
-    UnkStruct_ov9_02252414 unk_08;
-} UnkStruct_ov9_0224E91C;
+typedef struct DistWorldGiratinaShadowPropUserData {
+    DistWorldSystem *system;
+    DistWorldPropRenderer *renderer;
+    DistWorldGiratinaShadowTemplate template;
+} DistWorldGiratinaShadowPropUserData;
 
-typedef struct {
-    UnkStruct_ov9_0224E91C unk_00;
-    u16 unk_2C;
-    u16 unk_2E;
-    int unk_30;
-    int unk_34;
-    Simple3DRotationAngles unk_38;
-} UnkStruct_ov9_0224E964;
+typedef struct DistWorldGiratinaShadowProp {
+    DistWorldGiratinaShadowPropUserData userData;
+    u16 state;
+    u16 animStopped;
+    int movementAnimStep;
+    BOOL animFinished;
+    Simple3DRotationAngles rotAngles;
+} DistWorldGiratinaShadowProp;
 
 typedef struct {
     s16 unk_00;
@@ -1193,15 +1207,15 @@ static BOOL ov9_0224E434(DistWorldSystem *param0, int param1, int param2, int pa
 static void ov9_0224E498(DistWorldSystem *param0, const UnkStruct_ov9_02251438 *param1);
 static void ov9_0224E4B0(DistWorldSystem *param0, const UnkStruct_ov9_02252044 *param1);
 static BOOL ov9_0224E4BC(FieldTask *param0);
-static void ov9_0224E8B4(DistWorldSystem *param0);
-static void ov9_0224E8EC(DistWorldSystem *param0);
-static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *param1);
-static BOOL ov9_0224E964(DistWorldSystem *param0);
-static void ov9_0224E984(DistWorldSystem *param0);
-static void ov9_0224E988(DistWorldSystem *param0);
-static BOOL ov9_0224E9A4(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224E9CC(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224E9F4(DistWorldSystem *param0, int param1);
+static void LoadGiratinaShadowPropRenderer(DistWorldSystem *system);
+static void FreeGiratinaShadowPropRenderer(DistWorldSystem *system);
+static void LoadGiratinaShadowPropAnimation(DistWorldSystem *system, const DistWorldGiratinaShadowTemplate *giratinaTemplate);
+static BOOL IsGiratinaShadowAnimationFinished(DistWorldSystem *system);
+static void Dummy0224E984(DistWorldSystem *system);
+static void FinishGiratinaShadowPropRenderer(DistWorldSystem *system);
+static BOOL IsGiratinaShadowPropRendererValid2(DistWorldSystem *system, u32 propKind);
+static BOOL IsGiratinaShadowPropRendererAnimValid(DistWorldSystem *system, u32 animKind);
+static BOOL IsGiratinaShadowPropRendererValid(DistWorldSystem *system, int propKind);
 static void ov9_0224EB68(DistWorldSystem *param0);
 static void ov9_0224EB94(DistWorldSystem *param0);
 static void ov9_0224EBB8(UnkStruct_ov9_0224EBB8 *param0);
@@ -1243,7 +1257,7 @@ static void ov9_022511F4(MapObject *param0, const VecFx32 *param1);
 
 static const OverworldAnimManagerFuncs Unk_ov9_02251508;
 static const OverworldAnimManagerFuncs Unk_ov9_02251468;
-static const OverworldAnimManagerFuncs Unk_ov9_022514B8;
+static const OverworldAnimManagerFuncs sGiratinaShadowPropAnimFuncs;
 static const OverworldAnimManagerFuncs Unk_ov9_02251530;
 static const fx32 Unk_ov9_02252CF8[16];
 static const FloatingPlatformJumpPointHandler sFloatingPlatformJumpPointHandlers[1];
@@ -1311,7 +1325,7 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     ov9_0224CBD8(dwSystem);
     ov9_0224DCA8(dwSystem);
     ov9_0224B1B4(dwSystem, dwSystem->fieldSystem->fieldEffMan, &dwSystem->unk_1A8);
-    ov9_0224E984(dwSystem);
+    Dummy0224E984(dwSystem);
     ov5_021F34B8(dwSystem->fieldSystem->fieldEffMan);
     ov9_02249EF0(dwSystem);
 
@@ -1323,7 +1337,7 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     ov9_02249F18(v0);
-    ov9_0224E988(v0);
+    FinishGiratinaShadowPropRenderer(v0);
     ov9_0224CBF8(v0);
     ov9_0224C9E8(v0);
     ov9_02249EC8(v0);
@@ -5571,19 +5585,19 @@ static BOOL DistWorldPropAnimInfo_IsStatic(int propKind)
 static void ov9_0224DB1C(DistWorldSystem *system)
 {
     for (int i = 0; i < PROP_KIND_COUNT; i++) {
-        if (!HasActivePropAnimManager(system, i) && !ov9_0224E160(system, i) && !ov9_0224E9F4(system, i) && !ov9_0224ECC0(system, i)) {
+        if (!HasActivePropAnimManager(system, i) && !ov9_0224E160(system, i) && !IsGiratinaShadowPropRendererValid(system, i) && !ov9_0224ECC0(system, i)) {
             InvalidateAllPropRenderersOfKind(system, i);
         }
     }
 
     for (int i = 0; i < PROP_KIND_COUNT; i++) {
-        if (!ov9_0224B7B0(system, i) && !ov9_0224E0E0(system, i) && !ov9_0224E9A4(system, i) && !ov9_0224ECE8(system, i)) {
+        if (!ov9_0224B7B0(system, i) && !ov9_0224E0E0(system, i) && !IsGiratinaShadowPropRendererValid2(system, i) && !ov9_0224ECE8(system, i)) {
             FreeProp3DModel(system, i);
         }
     }
 
     for (int i = 0; i < PROP_ANIM_KIND_COUNT; i++) {
-        if (!ov9_0224B844(system, i) && !ov9_0224E120(system, i) && !ov9_0224E9CC(system, i) && !ov9_0224ED20(system, i)) {
+        if (!ov9_0224B844(system, i) && !ov9_0224E120(system, i) && !IsGiratinaShadowPropRendererAnimValid(system, i) && !ov9_0224ED20(system, i)) {
             FreePropAnimSet(system, i);
         }
     }
@@ -6500,254 +6514,230 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_0225126C[1] = {
     ov9_0224E870
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_02252414[1] = {
+static const DistWorldGiratinaShadowTemplate sGiratinaShadowExternal[GIRATINA_SHADOW_EXTERNAL_COUNT] = {
     {
-        0x6,
-        0x129,
-        0x2A,
-        0x3,
-        0x1,
-        { FX32_ONE, FX32_ONE, FX32_ONE },
-        { (FX32_ONE * 48), 0x0, 0x0 },
-        0x40,
+        .initialTileX = 6,
+        .initialTileY = 297,
+        .initialTileZ = 42,
+        .rotAnglesIndex = 3,
+        .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+        .scale = { FX32_ONE, FX32_ONE, FX32_ONE },
+        .posDelta = { FX32_ONE * 48, 0, 0 },
+        .movementAnimSteps = 64,
     },
 };
 
-void ov9_0224E884(FieldSystem *fieldSystem, u16 param1)
+void DistWorld_StartGiratinaShadowEvent(FieldSystem *fieldSystem, u16 eventIndex)
 {
-    DistWorldSystem *v0;
+    GF_ASSERT(eventIndex < GIRATINA_SHADOW_EXTERNAL_COUNT);
 
-    GF_ASSERT(param1 < 1);
-    v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    ov9_0224E91C(v0, &Unk_ov9_02252414[param1]);
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    LoadGiratinaShadowPropAnimation(dwSystem, &sGiratinaShadowExternal[eventIndex]);
 }
 
-void ov9_0224E8A8(FieldSystem *fieldSystem)
+void DistWorld_FinishGiratinaShadowEvent(FieldSystem *fieldSystem)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    ov9_0224E988(v0);
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    FinishGiratinaShadowPropRenderer(dwSystem);
 }
 
-static void ov9_0224E8B4(DistWorldSystem *param0)
+static void LoadGiratinaShadowPropRenderer(DistWorldSystem *system)
 {
-    int v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    int rendererAlreadyInit;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    if (v1->unk_00 == 0) {
-        v1->unk_04 = DistWorldPropRenderer_Init(param0, 20, &v0);
+    if (giratinaRenderer->valid == FALSE) {
+        giratinaRenderer->renderer = DistWorldPropRenderer_Init(system, PROP_KIND_GIRATINA_SHADOW, &rendererAlreadyInit);
 
-        if (v0 == 0) {
-            LoadRenderBuffersForProp(param0, 20, &v1->unk_04->renderObj, &v1->unk_04->animation);
+        if (!rendererAlreadyInit) {
+            LoadRenderBuffersForProp(system, PROP_KIND_GIRATINA_SHADOW, &giratinaRenderer->renderer->renderObj, &giratinaRenderer->renderer->animation);
         }
 
-        v1->unk_00 = 1;
+        giratinaRenderer->valid = TRUE;
     }
 }
 
-static void ov9_0224E8EC(DistWorldSystem *param0)
+static void FreeGiratinaShadowPropRenderer(DistWorldSystem *system)
 {
-    int v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    if (v1->unk_00 == 1) {
-        DistWorldPropRenderer_InvalidateAnimated(param0, v1->unk_04);
-        FreePropAnimSet(param0, 0);
-        FreeProp3DModel(param0, 20);
-        v1->unk_00 = 0;
+    if (giratinaRenderer->valid == TRUE) {
+        DistWorldPropRenderer_InvalidateAnimated(system, giratinaRenderer->renderer);
+        FreePropAnimSet(system, PROP_ANIM_KIND_GIRATINA_SHADOW);
+        FreeProp3DModel(system, PROP_KIND_GIRATINA_SHADOW);
+        giratinaRenderer->valid = FALSE;
     }
 }
 
-static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *param1)
+static void LoadGiratinaShadowPropAnimation(DistWorldSystem *system, const DistWorldGiratinaShadowTemplate *giratinaTemplate)
 {
-    UnkStruct_ov9_0224E91C v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropUserData userData;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    ov9_0224E8B4(param0);
+    LoadGiratinaShadowPropRenderer(system);
 
-    v0.unk_00 = param0;
-    v0.unk_08 = *param1;
-    v0.unk_04 = v1->unk_04;
+    userData.system = system;
+    userData.template = *giratinaTemplate;
+    userData.renderer = giratinaRenderer->renderer;
 
-    v1->unk_08 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, &Unk_ov9_022514B8, NULL, 0, &v0, 0);
+    giratinaRenderer->animMan = FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, &sGiratinaShadowPropAnimFuncs, NULL, 0, &userData, 0);
 }
 
-static BOOL ov9_0224E964(DistWorldSystem *param0)
+static BOOL IsGiratinaShadowAnimationFinished(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224E964 *v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    GF_ASSERT(v1->unk_08 != NULL);
+    GF_ASSERT(giratinaRenderer->animMan != NULL);
 
-    v0 = OverworldAnimManager_GetFuncsContext(v1->unk_08);
-    return v0->unk_34;
+    DistWorldGiratinaShadowProp *giratinaProp = OverworldAnimManager_GetFuncsContext(giratinaRenderer->animMan);
+    return giratinaProp->animFinished;
 }
 
-static void ov9_0224E984(DistWorldSystem *param0)
+static void Dummy0224E984(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
 }
 
-static void ov9_0224E988(DistWorldSystem *param0)
+static void FinishGiratinaShadowPropRenderer(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    if (v0->unk_08 != NULL) {
-        OverworldAnimManager_Finish(v0->unk_08);
+    if (giratinaRenderer->animMan != NULL) {
+        OverworldAnimManager_Finish(giratinaRenderer->animMan);
     }
 
-    ov9_0224E8EC(param0);
+    FreeGiratinaShadowPropRenderer(system);
 }
 
-static BOOL ov9_0224E9A4(DistWorldSystem *param0, u32 param1)
+static BOOL IsGiratinaShadowPropRendererValid2(DistWorldSystem *system, u32 propKind)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
+    GF_ASSERT(propKind != PROP_KIND_INVALID);
 
-    GF_ASSERT(param1 != 25);
-
-    if (v0->unk_00 == 1) {
-        if (param1 == 20) {
-            return 1;
-        }
-    }
-
-    return 0;
+    return giratinaRenderer->valid == TRUE && propKind == PROP_KIND_GIRATINA_SHADOW;
 }
 
-static BOOL ov9_0224E9CC(DistWorldSystem *param0, u32 param1)
+static BOOL IsGiratinaShadowPropRendererAnimValid(DistWorldSystem *system, u32 animKind)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
+    GF_ASSERT(animKind != PROP_ANIM_KIND_INVALID);
 
-    GF_ASSERT(param1 != 5);
-
-    if (v0->unk_00 == 1) {
-        if (param1 == 0) {
-            return 1;
-        }
-    }
-
-    return 0;
+    return giratinaRenderer->valid == TRUE && animKind == PROP_ANIM_KIND_GIRATINA_SHADOW;
 }
 
-static BOOL ov9_0224E9F4(DistWorldSystem *param0, int param1)
+static BOOL IsGiratinaShadowPropRendererValid(DistWorldSystem *system, int propKind)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
-
-    if (v0->unk_00 == 1) {
-        if (param1 == 20) {
-            return 1;
-        }
-    }
-
-    return 0;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
+    return giratinaRenderer->valid == TRUE && propKind == PROP_KIND_GIRATINA_SHADOW;
 }
 
-static const Simple3DRotationAngles Unk_ov9_022529F8[5] = {
-    { 0x0, 0x0, 0x0 },
-    { 0x0, 0xB4, 0x0 },
-    { 0x0, 0x5A, 0x0 },
-    { 0x0, 0x10E, 0x0 },
-    { 0x5A, 0x0, 0x0 }
+static const Simple3DRotationAngles sGiratinaShadowPropRotAngles[5] = {
+    { 0, 0, 0 },
+    { 0, 180, 0 },
+    { 0, 90, 0 },
+    { 0, 270, 0 },
+    { 90, 0, 0 }
 };
 
-static int ov9_0224EA0C(OverworldAnimManager *param0, void *param1)
+static BOOL DistWorldGiratinaShadowProp_AnimInit(OverworldAnimManager *animMan, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov9_0224E964 *v1 = param1;
-    const UnkStruct_ov9_0224E91C *v2 = OverworldAnimManager_GetUserData(param0);
-    const UnkStruct_ov9_02252414 *v3;
+    DistWorldGiratinaShadowProp *giratinaProp = context;
+    const DistWorldGiratinaShadowPropUserData *userData = OverworldAnimManager_GetUserData(animMan);
 
-    v1->unk_00 = *v2;
-    v3 = &v1->unk_00.unk_08;
+    giratinaProp->userData = *userData;
+    const DistWorldGiratinaShadowTemplate *template = &giratinaProp->userData.template;
 
-    v1->unk_2E = 1;
-    v1->unk_38 = Unk_ov9_022529F8[v3->unk_06];
+    giratinaProp->animStopped = TRUE;
+    giratinaProp->rotAngles = sGiratinaShadowPropRotAngles[template->rotAnglesIndex];
 
-    v0.x = (((v3->unk_00) << 4) * FX32_ONE);
-    v0.y = (((v3->unk_02) << 4) * FX32_ONE);
-    v0.z = (((v3->unk_04) << 4) * FX32_ONE);
+    VecFx32 pos;
+    pos.x = (template->initialTileX << 4) * FX32_ONE;
+    pos.y = (template->initialTileY << 4) * FX32_ONE;
+    pos.z = (template->initialTileZ << 4) * FX32_ONE;
 
-    if (v3->unk_06 == 4) {
-        v0.x += (FX32_ONE * 8);
+    if (template->rotAnglesIndex == 4) {
+        pos.x += FX32_ONE * 8;
     }
 
-    OverworldAnimManager_SetPosition(param0, &v0);
+    OverworldAnimManager_SetPosition(animMan, &pos);
 
-    v1->unk_2E = 0;
-    return 1;
+    giratinaProp->animStopped = FALSE;
+    return TRUE;
 }
 
-static void ov9_0224EA88(OverworldAnimManager *param0, void *param1)
+static void DistWorldGiratinaShadowProp_AnimExit(OverworldAnimManager *animMan, void *context)
 {
-    UnkStruct_ov9_0224E964 *v0 = param1;
-    Simple3D_FreeAnimObject(&v0->unk_00.unk_04->animation);
+    DistWorldGiratinaShadowProp *giratinaProp = context;
+    Simple3D_FreeAnimObject(&giratinaProp->userData.renderer->animation);
 }
 
-static void ov9_0224EA94(OverworldAnimManager *param0, void *param1)
+static void DistWorldGiratinaShadowProp_AnimTick(OverworldAnimManager *animMan, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov9_0224E964 *v1 = param1;
-    const UnkStruct_ov9_02252414 *v2 = &v1->unk_00.unk_08;
+    DistWorldGiratinaShadowProp *giratinaProp = context;
+    const DistWorldGiratinaShadowTemplate *template = &giratinaProp->userData.template;
 
-    switch (v1->unk_2C) {
-    case 0:
-        if (v2->unk_07 == 1) {
+    switch (giratinaProp->state) {
+    case GIRATINA_SHADOW_PROP_STATE_SFX:
+        if (template->soundKind == GIRATINA_SHADOW_PROP_SFX_KIND_CRY) {
             Sound_PlayPokemonCry(SPECIES_GIRATINA, 0);
-        } else if (v2->unk_07 == 2) {
+        } else if (template->soundKind == GIRATINA_SHADOW_PROP_SFX_KIND_FLEE) {
             Sound_PlayEffect(SEQ_SE_DP_FW019);
         }
 
-        v1->unk_2C++;
-    case 1: {
-        VecFx32 v3;
-        const VecFx32 *v4 = &v2->unk_14;
+        giratinaProp->state++;
+        // fallthrough
 
-        OverworldAnimManager_GetPosition(param0, &v3);
+    case GIRATINA_SHADOW_PROP_STATE_MOVE: {
+        VecFx32 pos;
+        const VecFx32 *posDelta = &template->posDelta;
 
-        v3.x += v4->x;
-        v3.y += v4->y;
-        v3.z += v4->z;
+        OverworldAnimManager_GetPosition(animMan, &pos);
 
-        v1->unk_30++;
+        pos.x += posDelta->x;
+        pos.y += posDelta->y;
+        pos.z += posDelta->z;
 
-        if (v1->unk_30 >= v2->unk_20) {
-            v1->unk_2C++;
-            v1->unk_34 = 1;
-            v1->unk_2E = 1;
+        giratinaProp->movementAnimStep++;
+
+        if (giratinaProp->movementAnimStep >= template->movementAnimSteps) {
+            giratinaProp->state++;
+            giratinaProp->animFinished = TRUE;
+            giratinaProp->animStopped = TRUE;
         }
 
-        OverworldAnimManager_SetPosition(param0, &v3);
-    } break;
-    case 2:
+        OverworldAnimManager_SetPosition(animMan, &pos);
         break;
     }
 
-    if (v1->unk_2E == 0) {
-        Simple3D_UpdateAnim(&v1->unk_00.unk_04->animation, FX32_ONE, 1);
+    case GIRATINA_SHADOW_PROP_STATE_END:
+        break;
+    }
+
+    if (!giratinaProp->animStopped) {
+        Simple3D_UpdateAnim(&giratinaProp->userData.renderer->animation, FX32_ONE, TRUE);
     }
 }
 
-static void ov9_0224EB34(OverworldAnimManager *param0, void *param1)
+static void DistWorldGiratinaShadowProp_AnimRender(OverworldAnimManager *animMan, void *context)
 {
-    UnkStruct_ov9_0224E964 *v0 = param1;
+    DistWorldGiratinaShadowProp *giratinaProp = context;
 
-    if (v0->unk_2E == 0) {
-        VecFx32 v1;
-        const VecFx32 *v2;
+    if (!giratinaProp->animStopped) {
+        VecFx32 pos;
+        OverworldAnimManager_GetPosition(animMan, &pos);
 
-        OverworldAnimManager_GetPosition(param0, &v1);
-        v2 = &v0->unk_00.unk_08.unk_08;
+        const VecFx32 *scale = &giratinaProp->userData.template.scale;
 
-        SetPropPolygonID(v0->unk_00.unk_00, 20, (1 * 8));
-        Simple3D_DrawRenderObjRotationAngles(&v0->unk_00.unk_04->renderObj, &v1, v2, &v0->unk_38);
+        SetPropPolygonID(giratinaProp->userData.system, PROP_KIND_GIRATINA_SHADOW, 1 << 3);
+        Simple3D_DrawRenderObjRotationAngles(&giratinaProp->userData.renderer->renderObj, &pos, scale, &giratinaProp->rotAngles);
     }
 }
 
-static const OverworldAnimManagerFuncs Unk_ov9_022514B8 = {
-    sizeof(UnkStruct_ov9_0224E964),
-    ov9_0224EA0C,
-    ov9_0224EA88,
-    ov9_0224EA94,
-    ov9_0224EB34
+static const OverworldAnimManagerFuncs sGiratinaShadowPropAnimFuncs = {
+    sizeof(DistWorldGiratinaShadowProp),
+    DistWorldGiratinaShadowProp_AnimInit,
+    DistWorldGiratinaShadowProp_AnimExit,
+    DistWorldGiratinaShadowProp_AnimTick,
+    DistWorldGiratinaShadowProp_AnimRender
 };
 
 static void ov9_0224EB68(DistWorldSystem *param0)
@@ -8660,17 +8650,17 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251254[1] = {
 
 static int ov9_0225071C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
-    const UnkStruct_ov9_02252414 *v0 = param3;
+    const DistWorldGiratinaShadowTemplate *v0 = param3;
 
-    ov9_0224E91C(param0, v0);
+    LoadGiratinaShadowPropAnimation(param0, v0);
     *param2 = 1;
     return 0;
 }
 
 static int ov9_02250730(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
-    if (ov9_0224E964(param0) == 1) {
-        ov9_0224E988(param0);
+    if (IsGiratinaShadowAnimationFinished(param0) == TRUE) {
+        FinishGiratinaShadowPropRenderer(param0);
         return 2;
     }
 
@@ -9763,19 +9753,19 @@ static const u32 sProp3DModelNARCIndexByKind[PROP_KIND_COUNT] = {
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = 0x8D,
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = 0x8E,
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = 0x8F,
-    [PROP_KIND_DUMMY20] = 0x90,
-    [PROP_KIND_DUMMY21] = 0x91,
+    [PROP_KIND_GIRATINA_SHADOW] = 0x90,
+    [PROP_KIND_WATERFALL] = 0x91,
     [PROP_KIND_LAND_VINE_FLOWER] = 0x92,
     [PROP_KIND_LAND_ROCK] = 0x93,
-    [PROP_KIND_DUMMY24] = 0x94
+    [PROP_KIND_PORTAL] = 0x94
 };
 
 static const u32 sPropAnimSetNARCIndexByKind[PROP_ANIM_KIND_COUNT] = {
-    [PROP_ANIM_KIND_DUMMY20] = 0xC6,
+    [PROP_ANIM_KIND_GIRATINA_SHADOW] = 0xC6,
     [PROP_ANIM_KIND_LAND_VINE_FLOWER] = 0xBF,
     [PROP_ANIM_KIND_LAND_ROCK] = 0xC0,
-    [PROP_ANIM_KIND_DUMMY21] = 0xC8,
-    [PROP_ANIM_KIND_DUMMY24] = 0xC1
+    [PROP_ANIM_KIND_WATERFALL] = 0xC8,
+    [PROP_ANIM_KIND_PORTAL] = 0xC1
 };
 
 // clang-format off
@@ -9880,14 +9870,14 @@ static const DistWorldPropAnimInfo sPropAnimInfoByKind[PROP_KIND_COUNT] = {
         .animKind = PROP_ANIM_KIND_INVALID,
         .isStatic = TRUE
     },
-    [PROP_KIND_DUMMY20] = {
-        .propKind = PROP_KIND_DUMMY20,
-        .animKind = PROP_ANIM_KIND_DUMMY20,
+    [PROP_KIND_GIRATINA_SHADOW] = {
+        .propKind = PROP_KIND_GIRATINA_SHADOW,
+        .animKind = PROP_ANIM_KIND_GIRATINA_SHADOW,
         .isStatic = FALSE
     },
-    [PROP_KIND_DUMMY21] = {
-        .propKind = PROP_KIND_DUMMY21,
-        .animKind = PROP_ANIM_KIND_DUMMY21,
+    [PROP_KIND_WATERFALL] = {
+        .propKind = PROP_KIND_WATERFALL,
+        .animKind = PROP_ANIM_KIND_WATERFALL,
         .isStatic = FALSE
     },
     [PROP_KIND_LAND_VINE_FLOWER] = {
@@ -9900,9 +9890,9 @@ static const DistWorldPropAnimInfo sPropAnimInfoByKind[PROP_KIND_COUNT] = {
         .animKind = PROP_ANIM_KIND_LAND_ROCK,
         .isStatic = FALSE
     },
-    [PROP_KIND_DUMMY24] = {
-        .propKind = PROP_KIND_DUMMY24,
-        .animKind = PROP_ANIM_KIND_DUMMY24,
+    [PROP_KIND_PORTAL] = {
+        .propKind = PROP_KIND_PORTAL,
+        .animKind = PROP_ANIM_KIND_PORTAL,
         .isStatic = FALSE
     }
 };
@@ -9929,11 +9919,11 @@ static const VecFx32 sPropInitialPosOffsetByKind[PROP_KIND_COUNT] = {
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = { 0x0, -FX32_ONE * 25, -FX32_ONE * 6 },
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = { 0 + -FX32_ONE * 8, -FX32_ONE * 25, -FX32_ONE * 6 + FX32_ONE * 16 },
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = { 0x0, -FX32_ONE * 25, -FX32_ONE * 6 },
-    [PROP_KIND_DUMMY20] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
-    [PROP_KIND_DUMMY21] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
+    [PROP_KIND_GIRATINA_SHADOW] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
+    [PROP_KIND_WATERFALL] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
     [PROP_KIND_LAND_VINE_FLOWER] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
     [PROP_KIND_LAND_ROCK] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
-    [PROP_KIND_DUMMY24] = { 0x0, -FX32_ONE * 14, FX32_ONE * 8 }
+    [PROP_KIND_PORTAL] = { 0x0, -FX32_ONE * 14, FX32_ONE * 8 }
 };
 
 static const VecFx32 sPropScaleByKind[PROP_KIND_COUNT] = {
@@ -9957,11 +9947,11 @@ static const VecFx32 sPropScaleByKind[PROP_KIND_COUNT] = {
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
-    [PROP_KIND_DUMMY20] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
-    [PROP_KIND_DUMMY21] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
+    [PROP_KIND_GIRATINA_SHADOW] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
+    [PROP_KIND_WATERFALL] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
     [PROP_KIND_LAND_VINE_FLOWER] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 8 },
     [PROP_KIND_LAND_ROCK] = { 0x0, 0x0, 0x0 },
-    [PROP_KIND_DUMMY24] = { 0x0, 0x0, 0x0 }
+    [PROP_KIND_PORTAL] = { 0x0, 0x0, 0x0 }
 };
 
 static const OverworldAnimManagerFuncs sPlatformPropAnimFuncs = {
@@ -10001,11 +9991,11 @@ static const OverworldAnimManagerFuncs *const sPropAnimFuncsByKind[PROP_KIND_COU
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = &sPlatformPropAnimFuncs,
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = &sPlatformPropAnimFuncs,
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = &sPlatformPropAnimFuncs,
-    [PROP_KIND_DUMMY20] = &Unk_ov9_022514B8,
-    [PROP_KIND_DUMMY21] = &Unk_ov9_02251530,
+    [PROP_KIND_GIRATINA_SHADOW] = &sGiratinaShadowPropAnimFuncs,
+    [PROP_KIND_WATERFALL] = &Unk_ov9_02251530,
     [PROP_KIND_LAND_VINE_FLOWER] = &sObstaclePropAnimFuncs,
     [PROP_KIND_LAND_ROCK] = &sObstaclePropAnimFuncs,
-    [PROP_KIND_DUMMY24] = &Unk_ov9_02251530
+    [PROP_KIND_PORTAL] = &Unk_ov9_02251530
 };
 
 // clang-format off
@@ -11740,15 +11730,15 @@ static const UnkStruct_ov9_02251438 Unk_ov9_02251438[] = {
     { 0x12, NULL },
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_022523A8 = {
-    0x3F,
-    0xA9,
-    0x9,
-    0x1,
-    0x1,
-    { FX32_ONE, FX32_ONE, FX32_ONE },
-    { 0x0, 0x0, (FX32_ONE * 48) },
-    0x40,
+static const DistWorldGiratinaShadowTemplate Unk_ov9_022523A8 = {
+    .initialTileX = 63,
+    .initialTileY = 169,
+    .initialTileZ = 9,
+    .rotAnglesIndex = 1,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+    .scale = { FX32_ONE, FX32_ONE, FX32_ONE },
+    .posDelta = { 0, 0, FX32_ONE * 48 },
+    .movementAnimSteps = 64,
 };
 
 static const UnkStruct_ov9_022506EC Unk_ov9_02251274 = {
@@ -11761,15 +11751,15 @@ static const UnkStruct_ov9_02251438 Unk_ov9_02251960[] = {
     { 0x12, NULL }
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_022523CC = {
-    0x2A,
-    0x89,
-    0x20,
-    0x3,
-    0x1,
-    { FX32_ONE, FX32_ONE, FX32_ONE },
-    { (FX32_ONE * 48), 0x0, 0x0 },
-    0x48
+static const DistWorldGiratinaShadowTemplate Unk_ov9_022523CC = {
+    .initialTileX = 42,
+    .initialTileY = 137,
+    .initialTileZ = 32,
+    .rotAnglesIndex = 3,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+    .scale = { FX32_ONE, FX32_ONE, FX32_ONE },
+    .posDelta = { FX32_ONE * 48, 0, 0 },
+    .movementAnimSteps = 72
 };
 
 static const UnkStruct_ov9_022506EC Unk_ov9_02251228 = {
@@ -11881,15 +11871,15 @@ static const UnkStruct_ov9_022506AC Unk_ov9_02251240 = {
     0x7
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_02252438 = {
-    0xFFFFFFFFFFFFFFF7,
-    -4,
-    0x16,
-    0x3,
-    0x0,
-    { FX32_ONE / 4, FX32_ONE / 4, FX32_ONE / 4 },
-    { (FX32_ONE * 16), 0x0, 0x0 },
-    0x30
+static const DistWorldGiratinaShadowTemplate Unk_ov9_02252438 = {
+    .initialTileX = -9,
+    .initialTileY = -4,
+    .initialTileZ = 22,
+    .rotAnglesIndex = 3,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_NONE,
+    .scale = { FX32_ONE / 4, FX32_ONE / 4, FX32_ONE / 4 },
+    .posDelta = { FX32_ONE * 16, 0, 0 },
+    .movementAnimSteps = 48
 };
 
 static const UnkStruct_ov9_022506D0 Unk_ov9_02251264 = {
@@ -11903,15 +11893,15 @@ static const UnkStruct_ov9_02251438 Unk_ov9_022522C4[] = {
     { 0x12, NULL }
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_0225245C = {
-    0xF,
-    -34,
-    0x8,
-    0x4,
-    0x2,
-    { FX32_ONE / 2, FX32_ONE / 2, FX32_ONE / 2 },
-    { 0x0, (FX32_ONE * 32), (FX32_ONE * 2) },
-    0x20
+static const DistWorldGiratinaShadowTemplate Unk_ov9_0225245C = {
+    .initialTileX = 15,
+    .initialTileY = -34,
+    .initialTileZ = 8,
+    .rotAnglesIndex = 4,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_FLEE,
+    .scale = { FX32_ONE / 2, FX32_ONE / 2, FX32_ONE / 2 },
+    .posDelta = { 0, FX32_ONE * 32, FX32_ONE * 2 },
+    .movementAnimSteps = 32
 };
 
 static const UnkStruct_ov9_022506D0 Unk_ov9_02251230 = {

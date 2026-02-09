@@ -737,8 +737,8 @@ static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx);
 static BOOL ScrCmd_320(ScriptContext *ctx);
-static BOOL ScrCmd_321(ScriptContext *ctx);
-static BOOL ScrCmd_322(ScriptContext *ctx);
+static BOOL ScrCmd_StartDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
+static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
 static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
@@ -1569,8 +1569,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TryRevertPokemonForm,
     ScrCmd_ResetDistortionWorldPersistedCameraAngles,
     ScrCmd_320,
-    ScrCmd_321,
-    ScrCmd_322,
+    ScrCmd_StartDistortionWorldGiratinaShadowEvent,
+    ScrCmd_FinishDistortionWorldGiratinaShadowEvent,
     ScrCmd_323,
     ScrCmd_324,
     ScrCmd_325,
@@ -7909,20 +7909,20 @@ static BOOL ScrCmd_320(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_321(ScriptContext *ctx)
+static BOOL ScrCmd_StartDistortionWorldGiratinaShadowEvent(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 eventIndex = ScriptContext_GetVar(ctx);
 
-    ov9_0224E884(fieldSystem, v1);
+    DistWorld_StartGiratinaShadowEvent(fieldSystem, eventIndex);
     return FALSE;
 }
 
-static BOOL ScrCmd_322(ScriptContext *ctx)
+static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov9_0224E8A8(fieldSystem);
+    DistWorld_FinishGiratinaShadowEvent(fieldSystem);
     return FALSE;
 }
 

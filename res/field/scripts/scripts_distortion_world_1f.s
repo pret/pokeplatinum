@@ -58,12 +58,12 @@ _0070:
     ApplyMovement LOCALID_PLAYER, _0154
     ApplyMovement 128, _01AC
     WaitMovement
-    ScrCmd_321 0
+    StartDistortionWorldGiratinaShadowEvent 0
     ApplyMovement LOCALID_PLAYER, _0160
     ApplyMovement 128, _01B4
     WaitMovement
     WaitTime 30, VAR_RESULT
-    ScrCmd_322
+    FinishDistortionWorldGiratinaShadowEvent
     Message 3
     WaitABXPadPress
     CloseMessage
