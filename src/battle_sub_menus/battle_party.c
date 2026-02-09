@@ -8,7 +8,7 @@
 #include "struct_decls/battle_system.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle_sub_menus/battle_party.h"
 #include "battle_sub_menus/battle_party_buttons.h"
 #include "battle_sub_menus/battle_party_sprites.h"
@@ -239,12 +239,12 @@ void BattlePartyTask_Start(BattlePartyContext *context)
     memset(battleParty, 0, sizeof(BattleParty));
 
     battleParty->context = context;
-    battleParty->background = BattleSystem_BGL(context->battleSystem);
-    battleParty->palette = BattleSystem_PaletteSys(context->battleSystem);
+    battleParty->background = BattleSystem_GetBgConfig(context->battleSys);
+    battleParty->palette = BattleSystem_GetPaletteData(context->battleSys);
     battleParty->currentState = TASK_STATE_INITIALIZE;
     battleParty->partySlotLearningMove = context->selectedPartyIndex;
-    battleParty->hasVisitedContestHall = ov16_0223F1F8(context->battleSystem);
-    battleParty->battlerSlot = BattleSystem_BattlerSlot(context->battleSystem, context->battler);
+    battleParty->hasVisitedContestHall = BattleSystem_GetVisistedContestHall(context->battleSys);
+    battleParty->battlerSlot = BattleSystem_GetBattlerType(context->battleSys, context->battler);
 }
 
 static void BattlePartyTask_Tick(SysTask *task, void *taskParam)
@@ -438,13 +438,13 @@ static u8 PartyUseItemScreen(BattleParty *battleParty)
         return TASK_STATE_SCREEN_TRANSITION;
     }
 
-    if (BattleSystem_UseBagItem(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex], 0, context->selectedBattleBagItem) == TRUE) {
+    if (BattleSystem_UseBagItem(context->battleSys, context->battler, context->pokemonPartySlots[context->selectedPartyIndex], 0, context->selectedBattleBagItem) == TRUE) {
         if (Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_PP_RESTORE_ALL, context->heapID) != FALSE) {
             battleParty->queuedState = TASK_STATE_SETUP_RESTORE_MOVE_PP_SCREEN;
         } else {
             if (BattlePartyTask_CheckCanPartySlotBeSelected(battleParty, context->selectedPartyIndex) == PARTY_SLOT_SELECTABLE_IN_BATTLE && Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_REVIVE, context->heapID) == FALSE) {
-                UseBagItem(context->battleSystem, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
-                battleParty->partyPokemon[context->selectedPartyIndex].mon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
+                UseBagItem(context->battleSys, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
+                battleParty->partyPokemon[context->selectedPartyIndex].mon = BattleSystem_GetPartyPokemon(context->battleSys, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
                 context->currentDamage = Pokemon_GetValue(battleParty->partyPokemon[context->selectedPartyIndex].mon, MON_DATA_HP, NULL);
                 context->currentDamage -= battleParty->partyPokemon[context->selectedPartyIndex].curHP;
                 battleParty->queuedState = TASK_STATE_EXIT;
@@ -780,7 +780,7 @@ static u8 BattlePartyTask_RestoreMovePPScreen(BattleParty *battleParty)
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         BattlePartyButtons_PressButton(battleParty, BATTLE_RESTORE_MOVE_PP_SCREEN_BUTTON_OFFSET + restoreMovePPScreenButtonPressed);
 
-        if (BattleSystem_UseBagItem(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex], restoreMovePPScreenButtonPressed, context->selectedBattleBagItem) == TRUE) {
+        if (BattleSystem_UseBagItem(context->battleSys, context->battler, context->pokemonPartySlots[context->selectedPartyIndex], restoreMovePPScreenButtonPressed, context->selectedBattleBagItem) == TRUE) {
             battleParty->useItemState = BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_INTIALISING;
             battleParty->queuedState = TASK_STATE_USE_RESTORATION_ITEM;
             return TASK_STATE_SCREEN_TRANSITION;
@@ -927,7 +927,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
 
     switch (battleParty->useItemState) {
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_INITIALISING:
-        battleParty->partyPokemon[context->selectedPartyIndex].mon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
+        battleParty->partyPokemon[context->selectedPartyIndex].mon = BattleSystem_GetPartyPokemon(context->battleSys, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
         BattlePartyText_PrintUseItemEffect(battleParty);
 
         if (battleParty->currentScreen == BATTLE_PARTY_SCREEN_RESTORE_MOVE_PP) {
@@ -966,7 +966,7 @@ static u8 BattlePartyTask_UseRestorationItem(BattleParty *battleParty)
         battleParty->useItemState = BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_FINISHING;
         break;
     case BATTLE_PARTY_USE_RESTORATION_ITEM_STATE_FINISHING:
-        UseBagItem(context->battleSystem, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
+        UseBagItem(context->battleSys, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
         BattlePartyText_DisplayErrorMessage(battleParty);
         battleParty->queuedState = TASK_STATE_EXIT;
         return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -990,7 +990,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
 
     switch (battleParty->useItemState) {
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_INTIALISING:
-        battleParty->partyPokemon[context->selectedPartyIndex].mon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
+        battleParty->partyPokemon[context->selectedPartyIndex].mon = BattleSystem_GetPartyPokemon(context->battleSys, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
 
         for (u32 i = 0; i < LEARNED_MOVES_MAX; i++) {
             if (battleParty->partyPokemon[context->selectedPartyIndex].moves[i].move == MOVE_NONE) {
@@ -1026,7 +1026,7 @@ static u8 BattlePartyTask_UseAllMovePPRestorationItem(BattleParty *battleParty)
         }
     } break;
     case BATTLE_PARTY_USE_ALL_MOVE_PP_RESTORATION_ITEM_STATE_FINISHING:
-        UseBagItem(context->battleSystem, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
+        UseBagItem(context->battleSys, context->selectedBattleBagItem, context->selectedBattleBagPocket, context->heapID);
         BattlePartyText_DisplayErrorMessage(battleParty);
         battleParty->queuedState = TASK_STATE_EXIT;
         return TASK_STATE_AWAITING_TEXT_FINISH;
@@ -1195,7 +1195,7 @@ static void LoadGraphicsData(BattleParty *battleParty)
     PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 6, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 208);
     PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_FONT, 7, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 240);
 
-    int optionsFrame = ov16_0223EDE0(battleParty->context->battleSystem);
+    int optionsFrame = BattleSystem_GetOptionsFrame(battleParty->context->battleSys);
 
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxTilesNARCMember(optionsFrame), battleParty->background, BG_LAYER_SUB_0, 1, 0, FALSE, battleParty->context->heapID);
     PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(optionsFrame), battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 224);
@@ -1622,8 +1622,8 @@ static BOOL CheckCanSwitchPokemon(BattleParty *battleParty)
     if (BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(battleParty, battleParty->context->selectedPartyIndex) == TRUE) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_CantSwitchWithPartnersPokemon);
 
-        int trainerSlot = BattleSystem_Partner(battleParty->context->battleSystem, battleParty->context->battler);
-        StringTemplate_SetTrainerNameBattle(battleParty->stringTemplate, 0, BattleSystem_GetTrainer(battleParty->context->battleSystem, trainerSlot));
+        int trainerSlot = BattleSystem_GetPartner(battleParty->context->battleSys, battleParty->context->battler);
+        StringTemplate_SetTrainerNameBattle(battleParty->stringTemplate, 0, BattleSystem_GetTrainer(battleParty->context->battleSys, trainerSlot));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
         return FALSE;
@@ -1680,7 +1680,7 @@ static u8 CheckSelectedPokemonIsEgg(BattleParty *battleParty)
 
 BOOL BattlePartyTask_CheckIfPartnerBattle(BattleParty *battleParty)
 {
-    u32 battleType = BattleSystem_BattleType(battleParty->context->battleSystem);
+    u32 battleType = BattleSystem_GetBattleType(battleParty->context->battleSys);
 
     if (battleType != BATTLE_TYPE_AI_PARTNER
         && battleType != (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)
@@ -1693,7 +1693,7 @@ BOOL BattlePartyTask_CheckIfPartnerBattle(BattleParty *battleParty)
 
 BOOL BattlePartyTask_CheckIf2V2Battle(BattleParty *battleParty)
 {
-    u32 battleType = BattleSystem_BattleType(battleParty->context->battleSystem);
+    u32 battleType = BattleSystem_GetBattleType(battleParty->context->battleSys);
 
     if (battleType != BATTLE_TYPE_AI_PARTNER
         && battleType != (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)
@@ -1751,8 +1751,8 @@ static void ClearMoveContestStats(BattleParty *battleParty)
 static void UseBagItem(BattleSystem *battleSys, u16 item, u16 category, enum HeapID heapID)
 {
     if (item != ITEM_BLUE_FLUTE && item != ITEM_RED_FLUTE && item != ITEM_YELLOW_FLUTE) {
-        Bag_TryRemoveItem(BattleSystem_Bag(battleSys), item, 1, heapID);
+        Bag_TryRemoveItem(BattleSystem_GetBag(battleSys), item, 1, heapID);
     }
 
-    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), item, category);
+    Bag_SetLastBattleItemUsed(BattleSystem_GetBagCursor(battleSys), item, category);
 }

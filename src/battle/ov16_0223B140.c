@@ -21,7 +21,7 @@
 #include "battle/battle_display.h"
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/struct_ov16_0223C2C0.h"
@@ -282,7 +282,7 @@ BOOL Battle_Main(ApplicationManager *appMan, int *param1)
 void ov16_0223B384(BattleSystem *battleSys)
 {
     ov16_02268A14(battleSys->unk_198);
-    ov16_022687A0(battleSys->unk_04);
+    ov16_022687A0(battleSys->bgConfig);
 
     battleSys->unk_23FB_2 = 1;
 
@@ -304,7 +304,7 @@ void ov16_0223B3E4(BattleSystem *battleSys)
     ov16_02268A14(battleSys->unk_198);
     Window_Remove(&battleSys->windows[0]);
 
-    ov16_0223C288(battleSys->unk_04);
+    ov16_0223C288(battleSys->bgConfig);
     ov16_0223C2BC(battleSys);
 
     SpriteSystem_FreeResourcesAndManager(battleSys->spriteSys, battleSys->spriteMan);
@@ -331,14 +331,14 @@ void ov16_0223B430(BattleSystem *battleSys)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
     v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
-    battleSys->unk_198 = ov16_022687C8(v0, v1, battleSys, BattleSystem_GetTrainerGender(battleSys, ov16_0223F6E4(battleSys)), battleSys->unk_1BC);
+    battleSys->unk_198 = ov16_022687C8(v0, v1, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
 
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     battleSys->unk_23FB_1 = 1;
 
     {
-        ov16_02268744(battleSys->unk_04);
+        ov16_02268744(battleSys->bgConfig);
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -357,9 +357,9 @@ void ov16_0223B53C(BattleSystem *battleSys)
     Window_Remove(&battleSys->windows[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(battleSys->unk_04, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(battleSys->unk_04, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(battleSys->unk_04, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(battleSys->bgConfig, BG_LAYER_MAIN_3);
     ov16_0223F3EC(battleSys);
 }
 
@@ -415,12 +415,12 @@ void ov16_0223B578(BattleSystem *battleSys)
             },
         };
 
-        Bg_InitFromTemplate(battleSys->unk_04, BG_LAYER_MAIN_1, &v0[0], 0);
-        Bg_ClearTilemap(battleSys->unk_04, BG_LAYER_MAIN_1);
-        Bg_InitFromTemplate(battleSys->unk_04, BG_LAYER_MAIN_2, &v0[1], 0);
-        Bg_ClearTilemap(battleSys->unk_04, BG_LAYER_MAIN_2);
-        Bg_InitFromTemplate(battleSys->unk_04, BG_LAYER_MAIN_3, &v0[2], 0);
-        Bg_ClearTilemap(battleSys->unk_04, BG_LAYER_MAIN_3);
+        Bg_InitFromTemplate(battleSys->bgConfig, BG_LAYER_MAIN_1, &v0[0], 0);
+        Bg_ClearTilemap(battleSys->bgConfig, BG_LAYER_MAIN_1);
+        Bg_InitFromTemplate(battleSys->bgConfig, BG_LAYER_MAIN_2, &v0[1], 0);
+        Bg_ClearTilemap(battleSys->bgConfig, BG_LAYER_MAIN_2);
+        Bg_InitFromTemplate(battleSys->bgConfig, BG_LAYER_MAIN_3, &v0[2], 0);
+        Bg_ClearTilemap(battleSys->bgConfig, BG_LAYER_MAIN_3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -429,14 +429,14 @@ void ov16_0223B578(BattleSystem *battleSys)
     {
         int v1;
 
-        v1 = ov16_0223EDE0(battleSys);
+        v1 = BattleSystem_GetOptionsFrame(battleSys);
 
-        ReplaceTransparentTiles(battleSys->unk_04, 1, 1, 10, v1, 5);
-        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 7, 172 + (battleSys->background * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
+        ReplaceTransparentTiles(battleSys->bgConfig, 1, 1, 10, v1, 5);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, battleSys->bgConfig, 3, 0, 0, 1, HEAP_ID_BATTLE);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteData, 7, 172 + (battleSys->background * 3) + BattleSystem_GetBackgroundTimeOffset(battleSys), 5, 0, 0, 0);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteData, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteData, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, battleSys->bgConfig, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
     {
@@ -454,7 +454,7 @@ void ov16_0223B578(BattleSystem *battleSys)
 
     battleSys->unk_23FB_1 = 1;
 
-    Window_Add(battleSys->unk_04, battleSys->windows, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
+    Window_Add(battleSys->bgConfig, battleSys->windows, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
     Window_FillTilemap(battleSys->windows, 0xff);
     Window_DrawMessageBoxWithScrollCursor(&battleSys->windows[0], 0, 1, 10);
 
@@ -516,27 +516,23 @@ static void ov16_0223B790(ApplicationManager *appMan)
     MI_CpuFill16((void *)GetHardwareMainBgPaletteAddress(), 0x0, GetHardwareMainBgPaletteSize());
     MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
-    battleSys->unk_00 = ov16_0223CD7C();
+    battleSys->pipelineBuffers = ov16_0223CD7C();
 
     DisableHBlank();
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
-    if (battleSys->battleType & BATTLE_TYPE_SAFARI) {
-        battleSys->unk_1A4 = FontSpecialChars_Init(0xe, 2, 0xf, HEAP_ID_BATTLE);
-    } else {
-        battleSys->unk_1A4 = FontSpecialChars_Init(0xe, 2, 0xf, HEAP_ID_BATTLE);
-    }
+    battleSys->specialCharsHP = FontSpecialChars_Init(14, 2, 15, HEAP_ID_BATTLE);
 
-    battleSys->unk_1A8 = battleSys->unk_1A4;
-    battleSys->paletteSys = PaletteData_New(HEAP_ID_BATTLE);
+    battleSys->specialCharsLevel = battleSys->specialCharsHP;
+    battleSys->paletteData = PaletteData_New(HEAP_ID_BATTLE);
 
-    PaletteData_SetAutoTransparent(battleSys->paletteSys, 1);
-    PaletteData_AllocBuffer(battleSys->paletteSys, 0, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteSys, 1, 0x200, HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteSys, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_BATTLE);
-    PaletteData_AllocBuffer(battleSys->paletteSys, 3, 0x200, HEAP_ID_BATTLE);
+    PaletteData_SetAutoTransparent(battleSys->paletteData, 1);
+    PaletteData_AllocBuffer(battleSys->paletteData, 0, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteData, 1, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteData, 2, ((16 - 2) * 16) * sizeof(u16), HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->paletteData, 3, 0x200, HEAP_ID_BATTLE);
 
-    battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
+    battleSys->bgConfig = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (idx = 0; idx < 4; idx++) {
@@ -549,15 +545,15 @@ static void ov16_0223B790(ApplicationManager *appMan)
         NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
         NARC *v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-        battleSys->unk_198 = ov16_022687C8(v6, v7, battleSys, BattleSystem_GetTrainerGender(battleSys, ov16_0223F6E4(battleSys)), battleSys->unk_1BC);
+        battleSys->unk_198 = ov16_022687C8(v6, v7, battleSys, BattleSystem_GetTrainerGender(battleSys, BattleSystem_GetNetworkID(battleSys)), battleSys->subscreenCursorOn);
 
         NARC_dtor(v6);
         NARC_dtor(v7);
     }
 
-    ov16_0223C004(battleSys, battleSys->unk_04);
+    ov16_0223C004(battleSys, battleSys->bgConfig);
 
-    Window_Add(battleSys->unk_04, &battleSys->windows[0], 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
+    Window_Add(battleSys->bgConfig, &battleSys->windows[0], 1, 2, 0x13, 27, 4, 11, (18 + 12) + 1);
     Window_FillTilemap(&battleSys->windows[0], 0xff);
     Window_DrawMessageBoxWithScrollCursor(&battleSys->windows[0], 0, 1, 10);
 
@@ -589,57 +585,57 @@ static void ov16_0223B790(ApplicationManager *appMan)
         NARC_dtor(v9);
     }
 
-    battleSys->unk_88 = PokemonSpriteManager_New(HEAP_ID_BATTLE);
-    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->unk_88, 0, 0x20 * 6);
+    battleSys->monSpriteMan = PokemonSpriteManager_New(HEAP_ID_BATTLE);
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->monSpriteMan, 0, 0x20 * 6);
 
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
 
-    battleSys->unk_8C = BattleAnimSystem_New(HEAP_ID_BATTLE);
+    battleSys->battleAnimSys = BattleAnimSystem_New(HEAP_ID_BATTLE);
 
     ov16_0223C210(battleSys);
 
     EnableTouchPad();
     InitializeTouchPad(4);
 
-    battleSys->unk_0C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
-    battleSys->unk_10 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
+    battleSys->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_STRINGS, HEAP_ID_BATTLE);
+    battleSys->attackMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVES_USED_IN_BATTLE, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = String_Init(2 * 160, HEAP_ID_BATTLE);
 
-    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 0), &battleSys->unk_2224[0], 0x20 * 7);
-    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteSys, 2), &battleSys->unk_2304[0], 0x20 * 7);
+    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 0), &battleSys->unk_2224[0], 0x20 * 7);
+    MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->paletteData, 2), &battleSys->unk_2304[0], 0x20 * 7);
 
     {
         int v10;
-        v10 = ov16_0223EC04(battleSys);
+        v10 = BattleSystem_GetBackgroundTimeOffset(battleSys);
 
-        PaletteData_FillBufferRange(battleSys->paletteSys, 0, 2, Unk_ov16_0226E44C[battleSys->background][v10], 0, 112);
-        PaletteData_FillBufferRange(battleSys->paletteSys, 0, 2, Unk_ov16_0226E44C[battleSys->background][v10], 0xc * 16, 0xc * 16 + 4 * 16);
-        PaletteData_FillBufferRange(battleSys->paletteSys, 2, 2, Unk_ov16_0226E44C[battleSys->background][v10], 0, ((16 - 2) * 16) - 1);
+        PaletteData_FillBufferRange(battleSys->paletteData, 0, 2, Unk_ov16_0226E44C[battleSys->background][v10], 0, 112);
+        PaletteData_FillBufferRange(battleSys->paletteData, 0, 2, Unk_ov16_0226E44C[battleSys->background][v10], 0xc * 16, 0xc * 16 + 4 * 16);
+        PaletteData_FillBufferRange(battleSys->paletteData, 2, 2, Unk_ov16_0226E44C[battleSys->background][v10], 0, ((16 - 2) * 16) - 1);
     }
 
-    PaletteData_FillBufferRange(battleSys->paletteSys, 0, 0, 0x0, 0xa * 16, 0xa * 16 + 2 * 16);
-    PaletteData_FillBufferRange(battleSys->paletteSys, 1, 0, 0x0, 0, 255);
-    PaletteData_FillBufferRange(battleSys->paletteSys, 3, 0, 0xffff, 0, 255);
+    PaletteData_FillBufferRange(battleSys->paletteData, 0, 0, 0x0, 0xa * 16, 0xa * 16 + 2 * 16);
+    PaletteData_FillBufferRange(battleSys->paletteData, 1, 0, 0x0, 0, 255);
+    PaletteData_FillBufferRange(battleSys->paletteData, 3, 0, 0xffff, 0, 255);
 
-    battleSys->unk_1AC = sub_0201567C(battleSys->paletteSys, 0, 0xb, HEAP_ID_BATTLE);
+    battleSys->unk_1AC = sub_0201567C(battleSys->paletteData, 0, 0xb, HEAP_ID_BATTLE);
     sub_02015738(battleSys->unk_1AC, 1);
 
-    battleSys->unk_1C = SysTask_Start(ov16_0223CF48, battleSys, 60000);
-    battleSys->unk_20 = SysTask_Start(ov16_0223CF8C, battleSys, 50000);
-    battleSys->unk_24 = SysTask_ExecuteOnVBlank(ov16_0223D0C4, battleSys, 1200);
-    battleSys->unk_2434 = -51;
+    battleSys->task_1C = SysTask_Start(ov16_0223CF48, battleSys, 60000);
+    battleSys->task_20 = SysTask_Start(ov16_0223CF8C, battleSys, 50000);
+    battleSys->task_24 = SysTask_ExecuteOnVBlank(ov16_0223D0C4, battleSys, 1200);
+    battleSys->yOffset = -51;
 
     ov16_0223DD4C(battleSys);
-    BagCursor_ResetBattle(BattleSystem_BagCursor(battleSys));
+    BagCursor_ResetBattle(BattleSystem_GetBagCursor(battleSys));
 
     battleSys->monAnimMan = PokemonAnimManager_New(HEAP_ID_BATTLE, 4, FALSE);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {
         for (idx = 0; idx < 4; idx++) {
-            battleSys->unk_247C[idx] = v1->unk_194[idx];
+            battleSys->recordedChatter[idx] = v1->unk_194[idx];
         }
     }
 }
@@ -659,7 +655,7 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
         }
     } else {
         if (battleSys->unk_23F8) {
-            battleSys->unk_23FA = BattleContext_Main(battleSys, battleSys->battleCtx);
+            battleSys->commandIsEndWait = BattleContext_Main(battleSys, battleSys->battleCtx);
             BattleController_TryRecvLocalMessage(battleSys, 1);
         }
 
@@ -668,9 +664,9 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
             BattleController_TryRecvLocalMessage(battleSys, 0);
         }
 
-        if (battleSys->unk_23FA == 0) {
+        if (battleSys->commandIsEndWait == 0) {
             if (battleSys->unk_23F8) {
-                battleSys->unk_23FA = BattleContext_Main(battleSys, battleSys->battleCtx);
+                battleSys->commandIsEndWait = BattleContext_Main(battleSys, battleSys->battleCtx);
                 BattleController_TryRecvLocalMessage(battleSys, 1);
             }
 
@@ -681,122 +677,122 @@ static int ov16_0223BBD0(ApplicationManager *appMan)
         }
     }
 
-    return battleSys->unk_23FA;
+    return battleSys->commandIsEndWait;
 }
 
 static void ov16_0223BCB4(ApplicationManager *appMan)
 {
-    BattleSystem *battleSystem = ApplicationManager_Data(appMan);
+    BattleSystem *battleSys = ApplicationManager_Data(appMan);
     FieldBattleDTO *v1 = ApplicationManager_Args(appMan);
     int battlerId;
 
-    v1->seed = battleSystem->unk_2448;
-    v1->battleStatusMask = battleSystem->battleStatusMask;
+    v1->seed = battleSys->seedDTO;
+    v1->battleStatusMask = battleSys->battleStatusMask;
 
-    if ((battleSystem->battleStatusMask & BATTLE_STATUS_RECORDING) == 0) {
+    if ((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == 0) {
         sub_0202F8AC(v1);
     }
 
-    if (battleSystem->overlayFlags != 0) {
-        BattleSystem_LoadFightOverlay(battleSystem, 0);
+    if (battleSys->overlayFlags != 0) {
+        BattleSystem_LoadFightOverlay(battleSys, 0);
     }
 
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
-    BattleSystem_SetBurmyForm(battleSystem);
+    BattleSystem_SetBurmyForm(battleSys);
 
-    if (battleSystem->resultMask != 0x4) {
-        ov16_0223EF68(battleSystem, Party_GetPokemonBySlotIndex(battleSystem->parties[1], 0));
+    if (battleSys->resultMask != 0x4) {
+        BattleSystem_InitCaptureAttempt(battleSys, Party_GetPokemonBySlotIndex(battleSys->parties[1], 0));
     }
 
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
-        Party_Copy(battleSystem->parties[battlerId], v1->parties[battlerId]);
-        Heap_Free(battleSystem->parties[battlerId]);
-        TrainerInfo_Copy(battleSystem->trainerInfo[battlerId], v1->trainerInfo[battlerId]);
-        Heap_Free(battleSystem->trainerInfo[battlerId]);
+        Party_Copy(battleSys->parties[battlerId], v1->parties[battlerId]);
+        Heap_Free(battleSys->parties[battlerId]);
+        TrainerInfo_Copy(battleSys->trainerInfo[battlerId], v1->trainerInfo[battlerId]);
+        Heap_Free(battleSys->trainerInfo[battlerId]);
     }
 
-    sub_02015760(battleSystem->unk_1AC);
-    Bag_Copy(battleSystem->bag, v1->bag);
-    Heap_Free(battleSystem->bag);
-    Pokedex_Copy(battleSystem->pokedex, v1->pokedex);
-    Heap_Free(battleSystem->pokedex);
-    v1->pcBoxes = battleSystem->pcBoxes;
-    v1->bagCursor = battleSystem->bagCursor;
-    v1->subscreenCursorOn = battleSystem->unk_1BC;
-    v1->poketch = battleSystem->poketch;
-    v1->captureAttempt = battleSystem->captureAttempt;
-    v1->countSafariBalls = battleSystem->safariBalls;
-    v1->resultMask = battleSystem->resultMask & (0xc0 ^ 0xff);
-    v1->caughtBattlerIdx = battleSystem->caughtBattlerIdx;
-    v1->leveledUpMonsMask = BattleContext_Get(battleSystem, battleSystem->battleCtx, 4, NULL);
-    v1->battleRecords.totalTurns += BattleContext_Get(battleSystem, battleSystem->battleCtx, 3, NULL);
-    v1->battleRecords.totalFainted += (BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 0) + BattleContext_Get(battleSystem, battleSystem->battleCtx, 6, 2));
-    v1->battleRecords.totalDamage += (BattleContext_Get(battleSystem, battleSystem->battleCtx, 7, 0) + BattleContext_Get(battleSystem, battleSystem->battleCtx, 7, 2));
-    v1->totalTurnsElapsed = BattleContext_Get(battleSystem, battleSystem->battleCtx, 3, NULL);
-    v1->unk_19C = battleSystem->recordingStopped;
+    sub_02015760(battleSys->unk_1AC);
+    Bag_Copy(battleSys->bag, v1->bag);
+    Heap_Free(battleSys->bag);
+    Pokedex_Copy(battleSys->pokedex, v1->pokedex);
+    Heap_Free(battleSys->pokedex);
+    v1->pcBoxes = battleSys->pcBoxes;
+    v1->bagCursor = battleSys->bagCursor;
+    v1->subscreenCursorOn = battleSys->subscreenCursorOn;
+    v1->poketch = battleSys->poketch;
+    v1->captureAttempt = battleSys->captureAttempt;
+    v1->countSafariBalls = battleSys->safariBalls;
+    v1->resultMask = battleSys->resultMask & (0xc0 ^ 0xff);
+    v1->caughtBattlerIdx = battleSys->caughtBattlerIdx;
+    v1->leveledUpMonsMask = BattleContext_Get(battleSys, battleSys->battleCtx, 4, NULL);
+    v1->battleRecords.totalTurns += BattleContext_Get(battleSys, battleSys->battleCtx, 3, NULL);
+    v1->battleRecords.totalFainted += (BattleContext_Get(battleSys, battleSys->battleCtx, 6, 0) + BattleContext_Get(battleSys, battleSys->battleCtx, 6, 2));
+    v1->battleRecords.totalDamage += (BattleContext_Get(battleSys, battleSys->battleCtx, 7, 0) + BattleContext_Get(battleSys, battleSys->battleCtx, 7, 2));
+    v1->totalTurnsElapsed = BattleContext_Get(battleSys, battleSys->battleCtx, 3, NULL);
+    v1->unk_19C = battleSys->recordingStopped;
 
     for (battlerId = 0; battlerId < 4; battlerId++) {
-        Heap_Free(battleSystem->pokemonSpriteDataArray[battlerId].tiles);
+        Heap_Free(battleSys->pokemonSpriteDataArray[battlerId].tiles);
     }
 
-    Heap_Free(battleSystem->msgBuffer);
-    PaletteData_FreeBuffer(battleSystem->paletteSys, 0);
-    PaletteData_FreeBuffer(battleSystem->paletteSys, 1);
-    PaletteData_FreeBuffer(battleSystem->paletteSys, 2);
-    PaletteData_FreeBuffer(battleSystem->paletteSys, 3);
-    PaletteData_Free(battleSystem->paletteSys);
-    MessageLoader_Free(battleSystem->unk_0C);
-    MessageLoader_Free(battleSystem->unk_10);
-    StringTemplate_Free(battleSystem->strFormatter);
-    PokemonAnimManager_Free(battleSystem->monAnimMan);
+    Heap_Free(battleSys->msgBuffer);
+    PaletteData_FreeBuffer(battleSys->paletteData, 0);
+    PaletteData_FreeBuffer(battleSys->paletteData, 1);
+    PaletteData_FreeBuffer(battleSys->paletteData, 2);
+    PaletteData_FreeBuffer(battleSys->paletteData, 3);
+    PaletteData_Free(battleSys->paletteData);
+    MessageLoader_Free(battleSys->msgLoader);
+    MessageLoader_Free(battleSys->attackMsgLoader);
+    StringTemplate_Free(battleSys->strFormatter);
+    PokemonAnimManager_Free(battleSys->monAnimMan);
     ParticleSystem_FreeAll();
 
-    BattleAnimSystem_Delete(battleSystem->unk_8C);
-    BattleContext_Free(battleSystem->battleCtx);
+    BattleAnimSystem_Delete(battleSys->battleAnimSys);
+    BattleContext_Free(battleSys->battleCtx);
 
-    for (battlerId = 0; battlerId < battleSystem->maxBattlers; battlerId++) {
-        ov16_0225C104(battleSystem, battleSystem->battlers[battlerId], battleSystem->unk_23F9);
+    for (battlerId = 0; battlerId < battleSys->maxBattlers; battlerId++) {
+        ov16_0225C104(battleSys, battleSys->battlers[battlerId], battleSys->unk_23F9);
     }
 
-    PokemonSpriteManager_Free(battleSystem->unk_88);
+    PokemonSpriteManager_Free(battleSys->monSpriteMan);
 
-    if (battleSystem->unk_23F9 != 2) {
-        ov16_0223B3E4(battleSystem);
+    if (battleSys->unk_23F9 != 2) {
+        ov16_0223B3E4(battleSys);
     }
 
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
     RenderControlFlags_SetAutoScrollFlags(AUTO_SCROLL_DISABLED);
     RenderControlFlags_SetSpeedUpOnTouch(FALSE);
-    Windows_Delete(battleSystem->windows, 3);
-    Heap_Free(battleSystem->unk_04);
-    Heap_Free(battleSystem->unk_21C);
-    Heap_Free(battleSystem->unk_220);
-    FontSpecialChars_Free(battleSystem->unk_1A4);
+    Windows_Delete(battleSys->windows, 3);
+    Heap_Free(battleSys->bgConfig);
+    Heap_Free(battleSys->unk_21C);
+    Heap_Free(battleSys->unk_220);
+    FontSpecialChars_Free(battleSys->specialCharsHP);
     Font_Free(FONT_SUBSCREEN);
-    SysTask_Done(battleSystem->unk_1C);
-    SysTask_Done(battleSystem->unk_20);
+    SysTask_Done(battleSys->task_1C);
+    SysTask_Done(battleSys->task_20);
     DisableTouchPad();
 
-    ov16_0223CE20(battleSystem->unk_00);
+    ov16_0223CE20(battleSys->pipelineBuffers);
 
-    LCRNG_SetSeed(battleSystem->unk_2430);
+    LCRNG_SetSeed(battleSys->seedLCRNG);
 
-    if (ov16_0223F450(battleSystem)) {
+    if (BattleSystem_GetRedHPSoundFlag(battleSys)) {
         Sound_StopEffect(1796, 0);
     }
 
-    CellTransfer_Free(battleSystem->cellTransferState);
+    CellTransfer_Free(battleSys->cellTransferState);
 
-    if (BattleSystem_RecordingStopped(battleSystem)) {
+    if (BattleSystem_GetRecordingStopped(battleSys)) {
         Sound_SetMasterVolume(SOUND_VOLUME_MAX);
     }
 
-    if (battleSystem->playbackStopButton) {
-        ov16_0226E174(battleSystem->playbackStopButton);
+    if (battleSys->playbackStopButton) {
+        ov16_0226E174(battleSys->playbackStopButton);
     }
 
-    Heap_Free(battleSystem);
+    Heap_Free(battleSys);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(battle_anim));
 
@@ -912,13 +908,13 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
     {
         int v3;
 
-        v3 = ov16_0223EDE0(battleSys);
+        v3 = BattleSystem_GetOptionsFrame(battleSys);
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v3, 5);
         Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 3 + battleSys->background, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + (battleSys->background * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(battleSys->paletteSys, NARC_INDEX_GRAPHIC__PL_FONT, 7, 5, 0, 0x20, 0xb * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 172 + (battleSys->background * 3) + BattleSystem_GetBackgroundTimeOffset(battleSys), 5, 0, 0, 0);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSys->paletteData, NARC_INDEX_GRAPHIC__PL_FONT, 7, 5, 0, 0x20, 0xb * 0x10);
         Graphics_LoadTilemapToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 2, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
@@ -943,16 +939,16 @@ static void ov16_0223C210(BattleSystem *battleSys)
     BattleContext *v3;
     Pokemon *v4;
 
-    v0 = BattleSystem_Terrain(battleSys);
+    v0 = BattleSystem_GetTerrain(battleSys);
 
     ov16_022686CC(&battleSys->unk_17C[0], battleSys, 0, v0);
     ov16_022686CC(&battleSys->unk_17C[1], battleSys, 1, v0);
 
-    v3 = BattleSystem_Context(battleSys);
+    v3 = BattleSystem_GetBattleContext(battleSys);
 
     for (v1 = 0; v1 < battleSys->maxBattlers; v1++) {
         v2 = BattleContext_Get(battleSys, v3, 2, v1);
-        v4 = BattleSystem_PartyPokemon(battleSys, v1, v2);
+        v4 = BattleSystem_GetPartyPokemon(battleSys, v1, v2);
         ov16_0225C038(battleSys, battleSys->battlers[v1], Pokemon_GetValue(v4, MON_DATA_POKEBALL, NULL), v2);
     }
 
@@ -1052,18 +1048,18 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     for (i = 0; i < 4; i++) {
         battleSys->trainerInfo[i] = TrainerInfo_New(HEAP_ID_BATTLE);
         TrainerInfo_Copy(dto->trainerInfo[i], battleSys->trainerInfo[i]);
-        battleSys->unk_78[i] = dto->chatotCries[i];
+        battleSys->chatotCries[i] = dto->chatotCries[i];
     }
 
-    battleSys->unk_2442 = dto->networkID;
+    battleSys->networkID = dto->networkID;
 
     for (i = 0; i < 4; i++) {
         battleSys->unk_2464[i] = dto->unk_178[i];
     }
 
-    battleSys->unk_2430 = LCRNG_GetSeed();
-    battleSys->unk_2444 = dto->seed;
-    battleSys->unk_2448 = dto->seed;
+    battleSys->seedLCRNG = LCRNG_GetSeed();
+    battleSys->seedRandNext = dto->seed;
+    battleSys->seedDTO = dto->seed;
     battleSys->battleStatusMask = dto->battleStatusMask;
     battleSys->bag = Bag_New(HEAP_ID_BATTLE);
 
@@ -1075,7 +1071,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->options = dto->options;
     battleSys->palPad = dto->palPad;
     battleSys->bagCursor = dto->bagCursor;
-    battleSys->unk_1BC = dto->subscreenCursorOn;
+    battleSys->subscreenCursorOn = dto->subscreenCursorOn;
     battleSys->poketch = dto->poketch;
     battleSys->mapEvolutionMethod = dto->mapEvolutionMethod;
     battleSys->captureAttempt = dto->captureAttempt;
@@ -1084,8 +1080,8 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->background = dto->background;
     battleSys->mapHeader = dto->mapLabelTextID;
     battleSys->time = dto->timeOfDay;
-    battleSys->unk_2418 = dto->rulesetMask;
-    battleSys->unk_2424 = dto->visitedContestHall;
+    battleSys->rulesetMask = dto->rulesetMask;
+    battleSys->visitedContestHall = dto->visitedContestHall;
     battleSys->metBebe = dto->metBebe;
     battleSys->fieldWeather = dto->fieldWeather;
     battleSys->records = dto->records;
@@ -1118,7 +1114,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
     if (battleSys->battleType & BATTLE_TYPE_LINK) {
         sub_0207A6DC(battleSys);
         {
-            u8 v6 = ov16_0223F6E4(battleSys);
+            u8 v6 = BattleSystem_GetNetworkID(battleSys);
             int v7;
 
             ov16_0223DD90(battleSys, dto);
@@ -1252,8 +1248,8 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *dto)
             }
 
             for (i = 0; i < battleSys->maxBattlers; i++) {
-                for (v1 = 0; v1 < BattleSystem_PartyCount(battleSys, i); v1++) {
-                    v3 = BattleSystem_PartyPokemon(battleSys, i, v1);
+                for (v1 = 0; v1 < BattleSystem_GetPartyCount(battleSys, i); v1++) {
+                    v3 = BattleSystem_GetPartyPokemon(battleSys, i, v1);
 
                     if (i == 2) {
                         if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_HP, NULL)) && (v8 != v1)) {
@@ -1457,16 +1453,16 @@ static void ov16_0223CE28(void)
 
 static void ov16_0223CE68(void *param0)
 {
-    BattleSystem *v0 = param0;
+    BattleSystem *battleSys = param0;
 
-    if (v0->unk_23FB_0) {
-        v0->unk_23FB_0 = 0;
+    if (battleSys->unk_23FB_0) {
+        battleSys->unk_23FB_0 = 0;
         G2_BlendNone();
         G2S_BlendNone();
     }
 
-    if (v0->unk_23FB_1) {
-        v0->unk_23FB_1 = 0;
+    if (battleSys->unk_23FB_1) {
+        battleSys->unk_23FB_1 = 0;
         {
             GXBanks v1 = {
                 GX_VRAM_BG_128_A,
@@ -1485,8 +1481,8 @@ static void ov16_0223CE68(void *param0)
         }
     }
 
-    if (v0->unk_23FB_2) {
-        v0->unk_23FB_2 = 0;
+    if (battleSys->unk_23FB_2) {
+        battleSys->unk_23FB_2 = 0;
         {
             GXBanks v2 = {
                 GX_VRAM_BG_128_A,
@@ -1505,11 +1501,11 @@ static void ov16_0223CE68(void *param0)
         }
     }
 
-    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_88);
+    PokemonSpriteManager_UpdateCharAndPltt(battleSys->monSpriteMan);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
-    PaletteData_CommitFadedBuffers(v0->paletteSys);
-    Bg_RunScheduledUpdates(v0->unk_04);
+    PaletteData_CommitFadedBuffers(battleSys->paletteData);
+    Bg_RunScheduledUpdates(battleSys->bgConfig);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1527,17 +1523,17 @@ static void ov16_0223CF1C(void *param0)
 
 static void ov16_0223CF48(SysTask *param0, void *param1)
 {
-    BattleSystem *v0 = param1;
+    BattleSystem *battleSys = param1;
 
-    sub_02038A1C(5, v0->unk_04);
+    sub_02038A1C(5, battleSys->bgConfig);
 
-    if ((v0->unk_23F9 == 0) || (v0->unk_23F9 == 3)) {
-        if (v0->unk_23F9 == 0) {
+    if ((battleSys->unk_23F9 == 0) || (battleSys->unk_23F9 == 3)) {
+        if (battleSys->unk_23F9 == 0) {
             ParticleHelper_DrawParticleSystems();
         }
 
-        PokemonSpriteManager_DrawSprites(v0->unk_88);
-        SpriteSystem_DrawSprites(v0->spriteMan);
+        PokemonSpriteManager_DrawSprites(battleSys->monSpriteMan);
+        SpriteSystem_DrawSprites(battleSys->spriteMan);
         SpriteSystem_UpdateTransfer();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
@@ -1545,7 +1541,7 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
 
 static void ov16_0223CF8C(SysTask *param0, void *param1)
 {
-    BattleSystem *v0 = param1;
+    BattleSystem *battleSys = param1;
     BattlerData *v1;
     Healthbar *v2;
     int v3;
@@ -1554,28 +1550,28 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
     int v6;
     int v7;
 
-    v4 = BattleSystem_MaxBattlers(v0);
+    v4 = BattleSystem_GetMaxBattlers(battleSys);
     v5 = 0;
-    v6 = ov16_0223F450(v0);
+    v6 = BattleSystem_GetRedHPSoundFlag(battleSys);
 
-    if (BattleSystem_BattleType(v0) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
+    if (BattleSystem_GetBattleType(battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         return;
     }
 
     if (v6 & 2) {
         if (v6 & 1) {
             Sound_StopEffect(1796, 0);
-            BattleSystem_SetRedHPSoundFlag(v0, 2);
+            BattleSystem_SetRedHPSoundFlag(battleSys, 2);
         }
 
         return;
     }
 
     for (v3 = 0; v3 < v4; v3++) {
-        v1 = BattleSystem_BattlerData(v0, v3);
+        v1 = BattleSystem_GetBattlerData(battleSys, v3);
 
-        if (((Battler_BootState(v1) == 0x0) && ((BattleSystem_BattleStatus(v0) & 0x10) == 0)) || ((Battler_Side(v0, v3) == 0) && (BattleSystem_BattleStatus(v0) & 0x10))) {
-            v2 = ov16_02263B08(v1);
+        if (((Battler_BootState(v1) == 0x0) && ((BattleSystem_GetBattleStatusMask(battleSys) & 0x10) == 0)) || ((BattleSystem_GetBattlerSide(battleSys, v3) == 0) && (BattleSystem_GetBattleStatusMask(battleSys) & 0x10))) {
+            v2 = BattlerData_GetHealthbar(v1);
 
             if (v2 != NULL) {
                 if (HealthBar_Color(v2->curHP, v2->maxHP, 8 * 6) == 1) {
@@ -1585,24 +1581,24 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
         }
     }
 
-    if ((v5) && (ov16_0223F450(v0) == 0)) {
+    if ((v5) && (BattleSystem_GetRedHPSoundFlag(battleSys) == 0)) {
         Sound_PlayEffect(SEQ_SE_DP_HINSI);
-        BattleSystem_SetRedHPSoundFlag(v0, 1);
-        ov16_0223F48C(v0, 4);
-    } else if ((v5 == 0) && (ov16_0223F450(v0))) {
+        BattleSystem_SetRedHPSoundFlag(battleSys, 1);
+        BattleSystem_SetRedHPSoundEffectDelay(battleSys, 4);
+    } else if ((v5 == 0) && (BattleSystem_GetRedHPSoundFlag(battleSys))) {
         Sound_StopEffect(1796, 0);
-        BattleSystem_SetRedHPSoundFlag(v0, 0);
+        BattleSystem_SetRedHPSoundFlag(battleSys, 0);
     }
 
-    if (ov16_0223F450(v0)) {
-        v7 = ov16_0223F47C(v0);
+    if (BattleSystem_GetRedHPSoundFlag(battleSys)) {
+        v7 = BattleSystem_GetRedHPSoundEffectDelay(battleSys);
 
         if (Sound_IsEffectPlaying(1796) == 0) {
             if (--v7 == 0) {
                 Sound_PlayEffect(SEQ_SE_DP_HINSI);
-                ov16_0223F48C(v0, 4);
+                BattleSystem_SetRedHPSoundEffectDelay(battleSys, 4);
             } else {
-                ov16_0223F48C(v0, v7);
+                BattleSystem_SetRedHPSoundEffectDelay(battleSys, v7);
             }
         }
     }
@@ -1610,12 +1606,12 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
 
 static void ov16_0223D0C4(SysTask *param0, void *param1)
 {
-    BattleSystem *v0 = param1;
+    BattleSystem *battleSys = param1;
 
-    v0->unk_2434 += 3;
-    Bg_SetOffset(v0->unk_04, BG_LAYER_MAIN_1, 3, v0->unk_2434);
+    battleSys->yOffset += 3;
+    Bg_SetOffset(battleSys->bgConfig, BG_LAYER_MAIN_1, BG_OFFSET_UPDATE_SET_Y, battleSys->yOffset);
 
-    if (v0->unk_2434 == 0) {
+    if (battleSys->yOffset == 0) {
         SysTask_Done(param0);
     }
 }
@@ -2010,11 +2006,11 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
     case 0:
     case 3:
         battleSys->unk_1C0->unk_04[0] = battleSys->parties[v2];
-        battleSys->unk_1C0->unk_04[2] = battleSys->parties[BattleSystem_Partner(battleSys, v2)];
+        battleSys->unk_1C0->unk_04[2] = battleSys->parties[BattleSystem_GetPartner(battleSys, v2)];
         break;
     case 1:
     case 2:
-        battleSys->unk_1C0->unk_04[0] = battleSys->parties[BattleSystem_Partner(battleSys, v2)];
+        battleSys->unk_1C0->unk_04[0] = battleSys->parties[BattleSystem_GetPartner(battleSys, v2)];
         battleSys->unk_1C0->unk_04[2] = battleSys->parties[v2];
         break;
     }
@@ -2041,16 +2037,16 @@ static BOOL ov16_0223D800(ApplicationManager *appMan)
 static BOOL ov16_0223D944(ApplicationManager *appMan)
 {
     int v0;
-    BattleSystem *v1 = ApplicationManager_Data(appMan);
+    BattleSystem *battleSys = ApplicationManager_Data(appMan);
 
-    if (v1->unk_1C0->unk_2B) {
+    if (battleSys->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
-            if (v1->unk_1C0->unk_14[v0] != NULL) {
-                Heap_Free(v1->unk_1C0->unk_14[v0]);
+            if (battleSys->unk_1C0->unk_14[v0] != NULL) {
+                Heap_Free(battleSys->unk_1C0->unk_14[v0]);
             }
         }
 
-        Heap_Free(v1->unk_1C0);
+        Heap_Free(battleSys->unk_1C0);
         return 1;
     }
 
@@ -2101,16 +2097,16 @@ static BOOL ov16_0223D98C(ApplicationManager *appMan)
 static BOOL ov16_0223DAD4(ApplicationManager *appMan)
 {
     int v0;
-    BattleSystem *v1 = ApplicationManager_Data(appMan);
+    BattleSystem *battleSys = ApplicationManager_Data(appMan);
 
-    if (v1->unk_1C0->unk_2B) {
+    if (battleSys->unk_1C0->unk_2B) {
         for (v0 = 0; v0 < 4; v0++) {
-            if (v1->unk_1C0->unk_14[v0] != NULL) {
-                Heap_Free(v1->unk_1C0->unk_14[v0]);
+            if (battleSys->unk_1C0->unk_14[v0] != NULL) {
+                Heap_Free(battleSys->unk_1C0->unk_14[v0]);
             }
         }
 
-        Heap_Free(v1->unk_1C0);
+        Heap_Free(battleSys->unk_1C0);
         return 1;
     }
 
