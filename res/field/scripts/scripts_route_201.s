@@ -208,7 +208,7 @@ Route201_WeStillLovePokemon:
     ClearFlag FLAG_HIDE_ROUTE_201_COUNTERPART
     AddObject LOCALID_COUNTERPART
     LockObject LOCALID_COUNTERPART
-    SetCounterpartBGM
+    Common_SetCounterpartBGM
     ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartEnter
     WaitMovement
     GetPlayerGender VAR_RESULT
