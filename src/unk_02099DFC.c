@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -166,7 +164,7 @@ static void sub_02099F74(void *param0)
 static void sub_02099F80(UnkStruct_02099DFC *param0)
 {
     {
-        UnkStruct_02099F80 v0 = {
+        GXBanks v0 = {
             GX_VRAM_BG_256_AB,
             GX_VRAM_BGEXTPLTT_NONE,
             GX_VRAM_SUB_BG_NONE,

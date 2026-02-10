@@ -56,8 +56,8 @@ _008E:
     CloseMessage
     SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
     SetHasPartner
-    ScrCmd_06D 0, 48
-    ScrCmd_06C 0, 1
+    SetMovementType 0, 48
+    SetObjectFlagIsPersistent 0, TRUE
     ReleaseAll
     End
 
@@ -88,8 +88,8 @@ _00F4:
 _0108:
     LockAll
     ClearHasPartner
-    ScrCmd_06D 0, 15
-    ScrCmd_06C 0, 0
+    SetMovementType 0, 15
+    SetObjectFlagIsPersistent 0, FALSE
     ApplyMovement 0, _0190
     WaitMovement
     Message 4

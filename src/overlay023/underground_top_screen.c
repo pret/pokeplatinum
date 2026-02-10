@@ -8,8 +8,8 @@
 #include "struct_decls/struct_0205E884_decl.h"
 
 #include "field/field_system.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/struct_underground_top_screen_context_decl.h"
+#include "overlay023/underground_manager.h"
 
 #include "bg_window.h"
 #include "comm_player_manager.h"
@@ -270,8 +270,8 @@ static void UndergroundMap_InitPlayerPositions(PlayerCoordinates playerCoords[],
 static void UndergroundMap_FetchPlayerPositions(PlayerAvatar *const playerAvatar, PlayerCoordinates playerCoords[], PlayerMarkerData markerData[])
 {
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
-        playerCoords[netID].x = CommPlayer_XPos(netID);
-        playerCoords[netID].z = CommPlayer_ZPos(netID);
+        playerCoords[netID].x = CommPlayer_GetXIfActive(netID);
+        playerCoords[netID].z = CommPlayer_GetZIfActive(netID);
     }
 
     if (CommSys_IsInitialized()) {
@@ -289,7 +289,7 @@ static void UndergroundMap_FetchPlayerPositions(PlayerAvatar *const playerAvatar
     }
 
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
-        if (!Underground_AreCoordinatesInSecretBase(playerCoords[netID].x, playerCoords[netID].z)) {
+        if (!UndergroundMan_AreCoordinatesInSecretBase(playerCoords[netID].x, playerCoords[netID].z)) {
             markerData[netID].x = playerCoords[netID].x - UNDERGROUND_MAIN_AREA_START_X;
             markerData[netID].z = playerCoords[netID].z - UNDERGROUND_MAIN_AREA_START_Z;
             markerData[netID].lifetime = 60;
@@ -324,11 +324,11 @@ static void UndergroundMap_DrawPlayerMarkers(PlayerMarkerData markerData[], Spri
 static void UndergroundMap_FetchRadarAndBaseInfo(OtherMarkerData markerData[])
 {
     for (int i = 0; i < MAX_RADAR_BLIPS + 1; i++) {
-        int x = CommManUnderground_GetRadarItemXCoord(i);
-        int z = CommManUnderground_GetRadarItemZCoord(i);
-        int animID = CommManUnderground_GetRadarItemAnimID(i);
+        int x = UndergroundMan_GetRadarItemXCoord(i);
+        int z = UndergroundMan_GetRadarItemZCoord(i);
+        int animID = UndergroundMan_GetRadarItemAnimID(i);
 
-        if (!Underground_AreCoordinatesInSecretBase(x, z)) {
+        if (!UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
             markerData[i].x = x - UNDERGROUND_MAIN_AREA_START_X;
             markerData[i].z = z - UNDERGROUND_MAIN_AREA_START_Z;
             markerData[i].animID = animID;
@@ -493,7 +493,7 @@ static void UndergroundMap_InitSpriteResources(UndergroundTopScreenContext *ctx)
 
 static void UndergroundTopScreen_HandleMessageQueue(BgConfig *unused, Window *window, int *printerID, int *state, int *timer, MessageQueue *queue)
 {
-    while (CommManUnderground_GetQueuedMessage(queue->tempString)) {
+    while (UndergroundMan_GetQueuedMessage(queue->tempString)) {
         MessageQueue_TryEnqueue(queue, queue->tempString);
     }
 

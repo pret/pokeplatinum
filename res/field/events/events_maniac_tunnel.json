@@ -4,7 +4,7 @@
         {
             "id": "MANIAC_TUNNEL_COLLECTOR_0",
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,

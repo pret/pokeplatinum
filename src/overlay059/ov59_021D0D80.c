@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_020961E8_t.h"
 #include "struct_defs/struct_02096274.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay059/ov59_021D2F88.h"
 #include "overlay059/struct_ov59_021D109C.h"
@@ -371,7 +370,7 @@ static void ov59_021D1100(void *param0)
 
 static void ov59_021D1128(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

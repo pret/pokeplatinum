@@ -8,7 +8,6 @@
 #include "constants/graphics.h"
 
 #include "struct_decls/struct_02030EC4_decl.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -211,7 +210,7 @@ static const WindowTemplate Unk_ov68_0225DDE8[6] = {
     { 0x2, 0x3, 0xF, 0x19, 0x2, 0x3, 0xE5 }
 };
 
-static const UnkStruct_02099F80 Unk_ov68_0225DDC0 = {
+static const GXBanks Unk_ov68_0225DDC0 = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_128_C,
@@ -1502,7 +1501,7 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
     const UnkStruct_ov66_0222E71C *v0;
     UnkStruct_ov66_0222E908 v1;
     int v2;
-    u32 v3;
+    u32 language;
     BOOL v4;
 
     memset(param0, 0, sizeof(UnkStruct_ov68_0225DC74));
@@ -1511,9 +1510,9 @@ static void ov68_0225DCCC(UnkStruct_ov68_0225DC74 *param0, const UnkStruct_ov66_
         v0 = ov66_0222E374(param1, v2);
 
         if (v0 != NULL) {
-            v3 = ov66_0222E850(v0);
+            language = ov66_0222E850(v0);
             ov66_0222E908(v0, &v1);
-            v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, v3);
+            v4 = ov66_022335C0(UnkEnum_ov66_022335C0_00, language);
 
             if ((v4 == 1) && (v1.unk_04 < 3)) {
                 param0->unk_00[v1.unk_04]++;

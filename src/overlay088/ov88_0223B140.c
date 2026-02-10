@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02095E80_t.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay088/ov88_0223E9C4.h"
@@ -910,7 +909,7 @@ static void ov88_0223C0E0(void *param0)
 
 static void ov88_0223C15C(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_A,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,
@@ -1646,14 +1645,14 @@ static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
     CharCode_Copy(param2->trainerName, TrainerInfo_Name(param0));
 
     param2->trainerId = TrainerInfo_ID(param0);
-    param2->regionCode = TrainerInfo_RegionCode(param0);
+    param2->language = TrainerInfo_Language(param0);
     param2->gameCode = TrainerInfo_GameCode(param0);
     param2->gender = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
         param2->associatedTrainerIds[v0] = param1[v0].trainerId;
         param2->associatedTrainerGameCodes[v0] = param1[v0].gameCode;
-        param2->associatedTrainerRegionCodes[v0] = param1[v0].regionCode;
+        param2->associatedTrainerLanguages[v0] = param1[v0].language;
         param2->associatedTrainerGenders[v0] = param1[v0].gender;
     }
 

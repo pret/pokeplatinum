@@ -73,7 +73,7 @@
       ]
     },
     {
-      "id": "BattleHallScene_Text_OpponentIsChoosing",
+      "id": "BattleHallScene_Text_PartnerIsChoosing",
       "en_US": [
         "{STRVAR_1 3, 0, 0} is choosing.\n",
         "Please wait."
@@ -84,7 +84,7 @@
       "garbage": 20
     },
     {
-      "id": "BattleHallScene_Text_OpponentRetired",
+      "id": "BattleHallScene_Text_PartnerRetired",
       "en_US": "{STRVAR_1 3, 0, 0} chose to retire."
     },
     {

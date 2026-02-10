@@ -280,7 +280,7 @@ res/prebuilt/demo/egg/data/egg_data.narc,/demo/egg/data/egg_data.narc
 res/prebuilt/demo/egg/data/particle/egg_demo_particle.narc,/demo/egg/data/particle/egg_demo_particle.narc
 res/prebuilt/fielddata/mm_list/move_model_list.narc,/fielddata/mm_list/move_model_list.narc
 res/prebuilt/pokeanime/poke_anm.narc,/pokeanime/poke_anm.narc
-res/prebuilt/pokeanime/pl_poke_anm.narc,/pokeanime/pl_poke_anm.narc
+res/pokemon_anims/pokemon_anims.narc,/pokeanime/pl_poke_anm.narc
 res/prebuilt/battle/tr_ai/tr_ai_seq.narc,/battle/tr_ai/tr_ai_seq.narc
 res/prebuilt/arc/area_win_gra.narc,/arc/area_win_gra.narc
 res/prebuilt/arc/balance_ball_gra.narc,/arc/balance_ball_gra.narc
@@ -320,7 +320,7 @@ res/prebuilt/application/balloon/graphic/balloon_gra.narc,/application/balloon/g
 res/prebuilt/application/wifi_lobby/map_conv/wflby_map.narc,/application/wifi_lobby/map_conv/wflby_map.narc
 res/prebuilt/fielddata/tornworld/tw_arc.narc,/fielddata/tornworld/tw_arc.narc
 res/prebuilt/fielddata/tornworld/tw_arc_attr.narc,/fielddata/tornworld/tw_arc_attr.narc
-res/prebuilt/particledata/pl_pokelist/pokelist_particle.narc,/particledata/pl_pokelist/pokelist_particle.narc
+res/graphics/party_menu/form_changes/form_change_effects.narc,/particledata/pl_pokelist/pokelist_particle.narc
 res/prebuilt/battle/b_pl_stage/pl_bsdpm.narc,/battle/b_pl_stage/pl_bsdpm.narc
 res/trainers/frontier/pl_btdpm.narc,/battle/b_pl_tower/pl_btdpm.narc
 res/trainers/frontier/pl_btdtr.narc,/battle/b_pl_tower/pl_btdtr.narc

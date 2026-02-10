@@ -580,9 +580,9 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
     return;
 }
 
-void ov104_0222E5D0(StringTemplate *param0, u32 param1)
+void BattleFrontier_SetPartnerInStrTemplate(StringTemplate *template, u32 idx)
 {
-    StringTemplate_SetPlayerName(param0, param1, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
+    StringTemplate_SetPlayerName(template, idx, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     return;
 }
 

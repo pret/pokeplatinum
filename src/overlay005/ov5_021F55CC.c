@@ -4,8 +4,7 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DF440.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
+#include "overlay005/field_effect_manager.h"
 
 #include "fx_util.h"
 #include "overworld_anim_manager.h"
@@ -13,13 +12,13 @@
 #include "sound_playback.h"
 
 typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
+    FieldEffectManager *unk_00;
     Simple3DModel unk_04;
     Simple3DAnimation unk_18;
 } UnkStruct_ov5_021F55F8;
 
 typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
+    FieldEffectManager *unk_00;
     UnkStruct_ov5_021F55F8 *unk_04;
 } UnkStruct_ov5_021F5634;
 
@@ -34,9 +33,9 @@ static void ov5_021F5620(UnkStruct_ov5_021F55F8 *param0);
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200B1C;
 
-void *ov5_021F55CC(UnkStruct_ov5_021DF47C *param0)
+void *ov5_021F55CC(FieldEffectManager *param0)
 {
-    UnkStruct_ov5_021F55F8 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F55F8)), 0, 0);
+    UnkStruct_ov5_021F55F8 *v0 = FieldEffectManager_HeapAllocInit(param0, (sizeof(UnkStruct_ov5_021F55F8)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F55F8(v0);
@@ -48,13 +47,13 @@ void ov5_021F55E8(void *param0)
     UnkStruct_ov5_021F55F8 *v0 = param0;
 
     ov5_021F5620(v0);
-    ov5_021DF554(v0);
+    FieldEffectManager_HeapFree(v0);
 }
 
 static void ov5_021F55F8(UnkStruct_ov5_021F55F8 *param0)
 {
-    ov5_021DFB00(param0->unk_00, &param0->unk_04, 0, 58, 0);
-    ov5_021DFB24(param0->unk_00, &param0->unk_18, 0, 162, 0);
+    FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04, 0, 58, 0);
+    FieldEffectManager_LoadAnimation(param0->unk_00, &param0->unk_18, 0, 162, 0);
 }
 
 static void ov5_021F5620(UnkStruct_ov5_021F55F8 *param0)
@@ -68,14 +67,14 @@ void ov5_021F5634(FieldSystem *fieldSystem, int x, int unused, int z)
     UnkStruct_ov5_021F5634 v2;
     VecFx32 v3;
 
-    v2.unk_00 = fieldSystem->unk_40;
-    v2.unk_04 = ov5_021DF55C(v2.unk_00, 8);
+    v2.unk_00 = fieldSystem->fieldEffMan;
+    v2.unk_04 = FieldEffectManager_GetRendererContext(v2.unk_00, 8);
 
     v3.x = ((x << 4) * FX32_ONE) + (FX32_ONE * 8);
     v3.y = (FX32_ONE * 10);
     v3.z = ((z << 4) * FX32_ONE);
 
-    ov5_021DF72C(v2.unk_00, &Unk_ov5_02200B1C, &v3, 0, &v2, 0xff);
+    FieldEffectManager_InitAnimManager(v2.unk_00, &Unk_ov5_02200B1C, &v3, 0, &v2, 0xff);
     Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 }
 
@@ -86,7 +85,7 @@ static int ov5_021F5684(OverworldAnimManager *param0, void *param1)
 
     v0->unk_78 = *v1;
 
-    ov5_021DFB40(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_04, &v0->unk_78.unk_04->unk_18, 0);
+    FieldEffectManager_ApplyAnimCopyToModel(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_04, &v0->unk_78.unk_04->unk_18, 0);
     Simple3D_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_04, &v0->unk_00);
 
     return 1;
@@ -103,7 +102,7 @@ static void ov5_021F56C8(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F5684 *v0 = param1;
 
     if (Simple3D_HasAnimationReachedEnd(&v0->unk_00) == 1) {
-        ov5_021DF74C(param0);
+        FieldEffectManager_FinishAnimManager(param0);
         return;
     }
 

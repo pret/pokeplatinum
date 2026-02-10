@@ -4,7 +4,7 @@
         {
             "id": "PASTORIA_CITY_NORTHEAST_HOUSE_ACE_TRAINER_M_0",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
-            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
             "script": 1,

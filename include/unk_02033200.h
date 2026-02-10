@@ -19,7 +19,7 @@ BOOL CommServerClient_InitServer(BOOL param0, BOOL param1, BOOL param2);
 BOOL CommServerClient_InitClient(BOOL param0, BOOL param1);
 BOOL sub_020336D4(void);
 BOOL sub_02033768(void);
-void sub_02033794(BOOL param0);
+void CommServerClient_SetSecretBaseClosedState(BOOL isClosed);
 int sub_02033808(void);
 int sub_0203383C(int param0);
 BOOL sub_02033870(void);

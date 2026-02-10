@@ -13,7 +13,7 @@
         {
             "id": "ROUTE_211_EAST_BIRD_KEEPER_KATHERINE",
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
             "hidden_flag": "0",
             "script": "TRAINER_BIRD_KEEPER_KATHERINE",

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "main_menu/mystery_gift_app.h"
 #include "savedata/save_table.h"
 
@@ -15,7 +13,7 @@
 
 void ov97_02232054(void)
 {
-    UnkStruct_02099F80 v0 = {
+    GXBanks v0 = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,

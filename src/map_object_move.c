@@ -924,7 +924,7 @@ int MapObject_RecalculateObjectHeight(MapObject *mapObj)
 
     int dynamicHeightCalculationEnabled = MapObject_IsDynamicHeightCalculationEnabled(mapObj);
     FieldSystem *fieldSystem = MapObject_FieldSystem(mapObj);
-    int heightUpdated = MapObject_RecalculatePositionHeight(fieldSystem, &updatedPos, dynamicHeightCalculationEnabled);
+    int heightUpdated = MapObject_RecalculatePositionHeightEx(fieldSystem, &updatedPos, dynamicHeightCalculationEnabled);
 
     if (heightUpdated == TRUE) {
         pos.y = updatedPos.y;
@@ -985,10 +985,10 @@ void VecFx32_StepDirection(int dir, VecFx32 *vec, fx32 val)
     }
 }
 
-void sub_02064450(int x, int z, VecFx32 *pos)
+void VecFx32_SetPosFromMapCoords(int x, int z, VecFx32 *outVec)
 {
-    pos->x = ((x << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
-    pos->z = ((z << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
+    outVec->x = MAP_OBJECT_COORD_TO_FX32(x);
+    outVec->z = MAP_OBJECT_COORD_TO_FX32(z);
 }
 
 void sub_02064464(MapObject *mapObj)
@@ -1032,27 +1032,23 @@ int sub_02064488(int param0, int param1, int param2, int param3)
     return DIR_SOUTH;
 }
 
-int sub_020644A4(FieldSystem *fieldSystem, VecFx32 *pos)
+int MapObject_RecalculatePositionHeight(FieldSystem *fieldSystem, VecFx32 *pos)
 {
-    fx32 v0;
-    u8 v1;
+    u8 newObjectHeightSource;
+    fx32 objectHeight = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &newObjectHeightSource);
 
-    v0 = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &v1);
-
-    if (v1 == 0) {
+    if (newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_NONE) {
         return FALSE;
     }
 
-    pos->y = v0;
+    pos->y = objectHeight;
     return TRUE;
 }
 
-int MapObject_RecalculatePositionHeight(FieldSystem *fieldSystem, VecFx32 *pos, int dynamicHeightCalculationEnabled)
+int MapObject_RecalculatePositionHeightEx(FieldSystem *fieldSystem, VecFx32 *pos, int dynamicHeightCalculationEnabled)
 {
-    fx32 objectHeight;
     u8 newObjectHeightSource;
-
-    objectHeight = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &newObjectHeightSource);
+    fx32 objectHeight = TerrainCollisionManager_GetHeight(fieldSystem, pos->y, pos->x, pos->z, &newObjectHeightSource);
 
     if (newObjectHeightSource == CALCULATED_HEIGHT_SOURCE_NONE) {
         return FALSE;

@@ -706,7 +706,7 @@ static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1)
     v2 = v1;
 
     VecFx32_StepDirection(param1, &v2, ((16 * FX32_ONE) >> 1) / 2);
-    v0 = sub_020644A4(fieldSystem, &v2);
+    v0 = MapObject_RecalculatePositionHeight(fieldSystem, &v2);
 
     if ((v0 == 0) || (v1.y == v2.y)) {
         return 0;

@@ -89,6 +89,7 @@ metang_generators = {
     'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },
     'pokemon_data_params': { 'type': 'enum', 'tag': 'PokemonDataParam' },
     'pokemon_stats': { 'type': 'enum', 'tag': 'PokemonStat' },
+    'pokemon_sprite_attributes': { 'type': 'enum', 'tag': 'PokemonSpriteAttribute' },
     'pokemon_types': { 'type': 'enum', 'tag': 'PokemonType' },
     'poketch_apps': { 'type': 'enum', 'tag': 'PoketchAppID' },
     'ribbons': { 'type': 'enum', 'tag': 'RibbonID' },

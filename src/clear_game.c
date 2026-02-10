@@ -11,7 +11,6 @@
 
 #include "struct_defs/clear_game_player_info.h"
 #include "struct_defs/struct_0203E234.h"
-#include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -214,7 +213,7 @@ void ClearGame(FieldTask *task)
 
 static void sub_02052F28(FieldSystem *fieldSystem, ClearGameStruct *clearGameStruct)
 {
-    static const UnkStruct_02099F80 v0 = {
+    static const GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_128_C,

@@ -90,14 +90,14 @@ int RecordMixedRNG_GetEntryGender(const RecordMixedRNG *rngCollection, enum Reco
     return rngCollection[entry].gender;
 }
 
-int RecordMixedRNG_GetEntryCountryCode(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry)
+int RecordMixedRNG_GetEntryLanguage(const RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry)
 {
-    return rngCollection[entry].countryCode;
+    return rngCollection[entry].language;
 }
 
-void RecordMixedRNG_SetEntryCountryCode(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int countryCode)
+void RecordMixedRNG_SetEntryLanguage(RecordMixedRNG *rngCollection, enum RecordMixedRNGEntry entry, int language)
 {
-    rngCollection[entry].countryCode = countryCode;
+    rngCollection[entry].language = language;
 }
 
 RecordMixedRNG *SaveData_GetRecordMixedRNG(SaveData *saveData)
@@ -157,7 +157,7 @@ BOOL RecordMixedRNG_AreEntriesEqual(const RecordMixedRNG *entry1, const RecordMi
         return FALSE;
     }
 
-    if (entry1->countryCode != entry2->countryCode) {
+    if (entry1->language != entry2->language) {
         return FALSE;
     }
 

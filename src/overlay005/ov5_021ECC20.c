@@ -29,7 +29,7 @@ void ov5_021ECC20(MapObjectManager *param0, int param1, int param2, const int *p
     ov5_021ECCA4(param0);
 
     v0 = MapObjectMan_GetMaxObjects(param0);
-    v1 = sub_02062858(param0) - 1;
+    v1 = MapObjectMan_GetTaskBasePriority(param0) - 1;
     v2 = sub_0206285C(param0);
 
     ov5_021ECE40(v2, param0, v0, v1, param1, param2, param3, param4);
@@ -134,16 +134,16 @@ void *ov5_021ECD68(const MapObjectManager *param0, u32 param1, int param2)
 
 void ov5_021ECDA0(const MapObject *param0, VecFx32 *adjustedObjectPos)
 {
-    VecFx32 objectPosition, jumpOffset, v2, terrainSpriteOffset;
+    VecFx32 objectPosition, jumpOffset, posOffset, terrainSpriteOffset;
 
     MapObject_GetPosPtr(param0, &objectPosition);
     MapObject_GetSpriteJumpOffset(param0, &jumpOffset);
-    sub_0206309C(param0, &v2);
+    MapObject_GetSpritePosOffset(param0, &posOffset);
     MapObject_GetSpriteTerrainOffset(param0, &terrainSpriteOffset);
 
-    adjustedObjectPos->x = objectPosition.x + jumpOffset.x + v2.x + terrainSpriteOffset.x;
-    adjustedObjectPos->y = objectPosition.y + jumpOffset.y + v2.y + terrainSpriteOffset.y;
-    adjustedObjectPos->z = objectPosition.z + jumpOffset.z + v2.z + terrainSpriteOffset.z;
+    adjustedObjectPos->x = objectPosition.x + jumpOffset.x + posOffset.x + terrainSpriteOffset.x;
+    adjustedObjectPos->y = objectPosition.y + jumpOffset.y + posOffset.y + terrainSpriteOffset.y;
+    adjustedObjectPos->z = objectPosition.z + jumpOffset.z + posOffset.z + terrainSpriteOffset.z;
 }
 
 void ov5_021ECDFC(MapObject *param0, int param1)

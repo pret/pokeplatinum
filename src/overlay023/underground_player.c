@@ -13,8 +13,8 @@
 #include "overlay005/ov5_021F5284.h"
 #include "overlay005/ov5_021F5428.h"
 #include "overlay005/ov5_021F55CC.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player_status.h"
 #include "overlay023/underground_player_talk.h"
@@ -79,7 +79,7 @@ void UndergroundPlayer_DeleteAllPlayers(void)
         CommPlayerMan_RemovePlayerFromHole(netID);
     }
 
-    commPlayerMan->isResetting = TRUE;
+    commPlayerMan->isDisabled = TRUE;
 }
 
 static void UndergroundPlayer_ProcessRegisteredFlag(int netID)
@@ -217,7 +217,7 @@ void UndergroundPlayer_ProcessTalkEvent(int unused0, int unused1, void *data, vo
 
     if (event->result == TALK_RESULT_MINING && event->netID == CommSys_CurNetId()) {
         CommPlayerMan_PauseFieldSystem();
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_ImDiggingRightNow, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ImDiggingRightNow, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
     }
 
     if (event->result == TALK_RESULT_SUCCESS) {
@@ -247,11 +247,11 @@ void UndergroundPlayer_ProcessTalkEvent(int unused0, int unused1, void *data, vo
 
     if (event->result == TALK_RESULT_FAIL && event->netID == CommSys_CurNetId()) {
         CommPlayerMan_PauseFieldSystem();
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_PersonSeemsOccupied, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_PersonSeemsOccupied, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
     }
 
     if (event->result == TALK_RESULT_SUCCESS) {
-        ov23_0224300C(event->netID, event->talkTargetNetID);
+        UndergroundMan_SetLinkTalkedTo(event->netID, event->talkTargetNetID);
     }
 }
 
@@ -283,7 +283,7 @@ void UndergroundPlayer_ProcessFlagEventType(int netID, int unused1, void *data, 
 static void UndergroundPlayer_LostFlagTextCallback(int unused)
 {
     UndergroundPlayer_RemoveEmote(CommSys_CurNetId());
-    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCaptureFlagTextPrinter());
+    UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCaptureFlagTextPrinter());
 
     CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_LOST_FLAG);
 }
@@ -375,20 +375,20 @@ static void UndergroundPlayer_HandleCurrentPlayerLosingFlag(FlagEvent *param0, B
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    ov23_0224321C();
+    UndergroundMan_ForceEndCurrentSysTask();
 
     sub_02057FC4(FALSE);
     CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_LOST_FLAG);
 
-    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(param0->netID));
+    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(param0->netID));
 
     if (takerIsNotFlagOwner) {
         commPlayerMan->emote[CommSys_CurNetId()] = EMOTE_NONE;
         UndergroundPlayer_RemoveEmote(CommSys_CurNetId());
         UndergroundPlayer_AddExclamationEmote(CommSys_CurNetId());
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_PlayerTookAwayYourFlag, TRUE, UndergroundPlayer_LostFlagTextCallback);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_PlayerTookAwayYourFlag, TRUE, UndergroundPlayer_LostFlagTextCallback);
     } else {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_PlayerTookBackTheFlag, TRUE, UndergroundPlayer_LostFlagTextCallback);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_PlayerTookBackTheFlag, TRUE, UndergroundPlayer_LostFlagTextCallback);
     }
 
     Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xFF, NULL);
@@ -409,7 +409,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
 
             if (event->netID == CommSys_CurNetId()) {
                 CommPlayerMan_PauseFieldSystem();
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_DiscardedFlag, TRUE, UndergroundPlayer_ResumeFieldSystemCallback2);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_DiscardedFlag, TRUE, UndergroundPlayer_ResumeFieldSystemCallback2);
                 Sound_FadeOutAndPlayBGM(4, SEQ_TANKOU, 60, 0, 0xFF, NULL);
             }
         }
@@ -434,7 +434,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
             if (event->netID == CommSys_CurNetId()) {
                 UndergroundRecord_IncrementFlagsRecovered(undergroundRecord);
                 CommPlayerMan_PauseFieldSystem();
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_YouTookBackTheFlag, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_YouTookBackTheFlag, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
                 Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (event->targetNetID == CommSys_CurNetId()) {
                 UndergroundPlayer_HandleCurrentPlayerLosingFlag(event, FALSE, undergroundRecord);
@@ -445,8 +445,8 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
             if (event->netID == CommSys_CurNetId()) {
                 UndergroundRecord_IncrementFlagsStolen(undergroundRecord);
                 CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_STOLE_FLAG);
-                UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(event->targetNetID));
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_TookAFlagFromPlayer, TRUE, UndergroundPlayer_StealFlagTextCallback);
+                UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(event->targetNetID));
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_TookAFlagFromPlayer, TRUE, UndergroundPlayer_StealFlagTextCallback);
                 Sound_PlayBGM(SEQ_HATANIGE);
                 Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (event->targetNetID == CommSys_CurNetId()) {
@@ -459,13 +459,13 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
     case FLAG_EVENT_TALK:
         if (event->netID == CommSys_CurNetId()) {
             CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_TALK_WITH_FLAG);
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_NoTimeToChat, TRUE, UndergroundPlayer_TalkWithFlagTextCallback);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_NoTimeToChat, TRUE, UndergroundPlayer_TalkWithFlagTextCallback);
         }
         break;
     case FLAG_EVENT_BURIED_OBJECT:
         if (event->netID == CommSys_CurNetId()) {
             CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_BURIED_OBJECT_WITH_FLAG);
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_SomethingBuriedButHoldingFlag, TRUE, UndergroundPlayer_BuriedObjectWithFlagTextCallback);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_SomethingBuriedButHoldingFlag, TRUE, UndergroundPlayer_BuriedObjectWithFlagTextCallback);
         }
         break;
     case FLAG_EVENT_REGISTER:
@@ -491,7 +491,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
             Sound_PlayEffect(SEQ_SE_DP_UG_027);
 
             if (prevFlagRank == UndergroundRecord_GetFlagRank(undergroundRecord)) {
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, TRUE, UndergroundPlayer_ResumeFieldSystemCallback);
             } else {
                 CommSys_SendDataFixedSize(96, &prevFlagRank);
             }
@@ -672,7 +672,7 @@ void UndergroundPlayer_ProcessVendorTalk(int netID, int unused1, void *unused2, 
 void UndergroundPlayer_ProcessVendorTalkServer(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
-    CommManUnderground_QueueTalkedToVendorMessage(*netID);
+    UndergroundMan_QueueTalkedToVendorMessage(*netID);
 }
 
 int UndergroundPlayer_GetXPos(int netID)
@@ -737,7 +737,7 @@ void UndergroundPlayer_MoveToFromSecretBaseClient(int netID, int x, int z, int d
 
     CommPlayerLocation *playerLocation = &commPlayerMan->playerLocation[netID];
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         ov5_021F5634(commPlayerMan->fieldSystem, playerLocation->x, 0, playerLocation->z);
     }
 
@@ -749,11 +749,11 @@ void UndergroundPlayer_MoveToFromSecretBaseClient(int netID, int x, int z, int d
         sub_0205ECE0(commPlayerMan->playerAvatar[netID], x, z, dir);
     }
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         ov5_021F5634(commPlayerMan->fieldSystem, playerLocation->x, 0, playerLocation->z);
     }
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         UndergroundPlayer_RemoveEmote(netID);
     }
 }
@@ -829,7 +829,7 @@ void UndergroundPlayer_HandleEmoteDisplay(int netID)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
-    if (!commPlayerMan->isResetting) {
+    if (!commPlayerMan->isDisabled) {
         if (commPlayerMan->playerAvatar[netID]) {
             switch (commPlayerMan->emote[netID]) {
             case EMOTE_OK:

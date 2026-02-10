@@ -32,11 +32,11 @@ void MapObject_MovePosInDir(MapObject *mapObj, int dir, fx32 distance);
 int MapObject_RecalculateObjectHeight(MapObject *mapObj);
 int MapObject_SetTileBehaviors(MapObject *mapObj);
 void VecFx32_StepDirection(int param0, VecFx32 *vec, fx32 val);
-void sub_02064450(int x, int z, VecFx32 *pos);
+void VecFx32_SetPosFromMapCoords(int x, int z, VecFx32 *outVec);
 void sub_02064464(MapObject *mapObj);
 int Direction_GetOpposite(int param0);
 int sub_02064488(int x, int z, int xPrev, int zPrev);
-int sub_020644A4(FieldSystem *fieldSystem, VecFx32 *pos);
-int MapObject_RecalculatePositionHeight(FieldSystem *fieldSystem, VecFx32 *pos, int dynamicHeightCalculationEnabled);
+int MapObject_RecalculatePositionHeight(FieldSystem *fieldSystem, VecFx32 *pos);
+int MapObject_RecalculatePositionHeightEx(FieldSystem *fieldSystem, VecFx32 *pos, int dynamicHeightCalculationEnabled);
 
 #endif // POKEPLATINUM_MAP_OBJECT_MOVE_H

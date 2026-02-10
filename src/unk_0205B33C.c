@@ -10,6 +10,7 @@
 #include "struct_defs/struct_0205B4F8.h"
 
 #include "field/field_system.h"
+#include "global/pm_version.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -249,8 +250,8 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
     Unk_021C0850++;
     v0 = sub_020340E8();
 
-    if (sub_020360E8() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
-        CommInfo_SendBattleRegulation();
+    if (CommSys_IsClientConnecting() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
+        CommInfo_SendPlayerInfo();
         CommMan_SetErrorHandling(1, 1);
         sub_0205BEA8(11);
         sub_0205B5B4(param0, sub_0205B578, 0);
@@ -266,11 +267,11 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
 static void sub_0205B578(UnkStruct_0205B43C *param0)
 {
-    if (sub_02038938() && (0 == sub_020360E8())) {
+    if (sub_02038938() && (0 == CommSys_IsClientConnecting())) {
         return;
     }
 
-    if (0 == sub_020360E8()) {
+    if (0 == CommSys_IsClientConnecting()) {
         sub_02036AC4();
         sub_0205C160(param0);
         sub_0205BEA8(0);
@@ -330,10 +331,10 @@ static void sub_0205B620(UnkStruct_0205B43C *param0)
 static void sub_0205B634(UnkStruct_0205B43C *param0)
 {
     if (1 == sub_02036A68()) {
-        CommInfo_SendBattleRegulation();
+        CommInfo_SendPlayerInfo();
         sub_0205B5B4(param0, sub_0205B6C4, 3);
         return;
-    } else if (sub_020360E8()) {
+    } else if (CommSys_IsClientConnecting()) {
         param0->unk_20 = 0;
         param0->unk_1C = 3;
 
@@ -1268,7 +1269,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
     TrainerInfo *v0;
     String *v1;
     MessageLoader *v2 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNION_ROOM, HEAP_ID_FIELD1);
-    int v3, v4;
+    int language, v4;
 
     param2--;
 
@@ -1286,9 +1287,9 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
     StringTemplate_SetPlayerName(param0, 0, v0);
     StringTemplate_SetPlayerName(param0, 1, param3);
 
-    v3 = TrainerInfo_RegionCode(v0);
+    language = TrainerInfo_Language(v0);
 
-    if ((v3 >= 1) && (v3 <= 7)) {
+    if (language >= JAPANESE && language <= SPANISH) {
         static const int v5[] = {
             0,
             1,
@@ -1298,30 +1299,30 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
             -1,
             5,
         };
-        u16 v6 = v3 - 1;
+        u16 v6 = language - 1;
 
-        if ((v6 < NELEMS(v5)) && (v5[v6] >= 0)) {
+        if (v6 < NELEMS(v5) && v5[v6] >= 0) {
             sub_02014F98(param4, v5[v6]);
         }
     }
 
-    switch (v3) {
-    case 1:
+    switch (language) {
+    case JAPANESE:
         v4 = 211;
         break;
-    case 2:
+    case ENGLISH:
         v4 = 212;
         break;
-    case 3:
+    case FRENCH:
         v4 = 213;
         break;
-    case 4:
+    case ITALIAN:
         v4 = 214;
         break;
-    case 5:
+    case GERMAN:
         v4 = 215;
         break;
-    case 7:
+    case SPANISH:
         v4 = 216;
         break;
     default:
@@ -1330,7 +1331,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
 
     v1 = MessageLoader_GetNewString(v2, v4);
 
-    StringTemplate_SetString(param0, 2, v1, 0, 1, v3);
+    StringTemplate_SetString(param0, 2, v1, 0, 1, language);
     Heap_Free(v1);
     MessageLoader_Free(v2);
 }

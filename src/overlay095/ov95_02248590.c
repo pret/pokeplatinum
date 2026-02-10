@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/struct_ov95_02247004_decl.h"
@@ -408,7 +406,7 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
 
 static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
 {
-    static const UnkStruct_02099F80 v0 = {
+    static const GXBanks v0 = {
         GX_VRAM_BG_128_B,
         GX_VRAM_BGEXTPLTT_23_G,
         GX_VRAM_SUB_BG_128_C,

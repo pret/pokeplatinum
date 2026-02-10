@@ -4,11 +4,11 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
+#include "overlay005/field_effect_manager.h"
 
 #include "overworld_anim_manager.h"
 
-void *ov5_021F5A10(UnkStruct_ov5_021DF47C *param0);
+void *ov5_021F5A10(FieldEffectManager *param0);
 void ov5_021F5A24(void *param0);
 void ov5_021F5AA4(FieldSystem *fieldSystem, BOOL param1);
 int ov5_021F5C4C(OverworldAnimManager *param0);

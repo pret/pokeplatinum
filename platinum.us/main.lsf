@@ -347,7 +347,7 @@ Static main
 	Object main.nef.p/src_applications_poffin_case_main.c.o
 	Object main.nef.p/src_poffin_sprite.c.o
 	Object main.nef.p/src_unk_02099500.c.o
-	Object main.nef.p/src_unk_02099550.c.o
+	Object main.nef.p/src_wifi_overlays.c.o
 	Object main.nef.p/src_unk_02099604.c.o
 	Object main.nef.p/src_unk_020996D0.c.o
 	Object main.nef.p/src_move_reminder_data.c.o
@@ -415,10 +415,9 @@ Autoload DTCM
 	Object libos.a (.dtcm)
 }
 
-Overlay overlay0
+Overlay dummy1
 {
 	After main
-	Object main.nef.p/src_overlay000_ov0_dummy.c.o
 }
 
 Overlay overlay1
@@ -427,23 +426,21 @@ Overlay overlay1
 	Object main.nef.p/src_overlay001_ov1_021D0D80.c.o
 }
 
-Overlay overlay2
+Overlay dummy2
 {
 	After overlay1
-	Object main.nef.p/src_overlay002_ov2_dummy.c.o
 }
 
-Overlay overlay3
+Overlay dummy3
 {
 	After ITCM
-	Object main.nef.p/src_overlay003_ov3_dummy.c.o
 }
 
-Overlay overlay4
+Overlay nintendo_wfc
 {
 	After main
-	Object main.nef.p/src_overlay004_ov4_021D0D80.c.o
-	Object main.nef.p/src_overlay004_ov4_021D2808.c.o
+	Object main.nef.p/src_nintendo_wfc_main.c.o
+	Object main.nef.p/src_nintendo_wfc_voice_chat.c.o
 	Library	libdwcauth.a
 	Library libdwcbase.a
 	Library libdwcac.a
@@ -485,7 +482,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_map_name_popup.c.o
 	Object main.nef.p/src_overlay005_ov5_021DDAE4.c.o
 	Object main.nef.p/src_overlay005_encounter_effect.c.o
-	Object main.nef.p/src_overlay005_ov5_021DF440.c.o
+	Object main.nef.p/src_overlay005_field_effect_manager.c.o
 	Object main.nef.p/src_overlay005_ov5_021DFB54.c.o
 	Object main.nef.p/src_overlay005_ov5_021E1154.c.o
 	Object main.nef.p/src_overlay005_ov5_021E135C.c.o
@@ -515,8 +512,8 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_area_data.c.o
 	Object main.nef.p/src_overlay005_honey_tree.c.o
 	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
-	Object main.nef.p/src_overlay005_ov5_021FF6B8.c.o
-	Object main.nef.p/src_overlay005_ov5_021F067C.c.o
+	Object main.nef.p/src_overlay005_field_effect_renderer.c.o
+	Object main.nef.p/src_overlay005_resource_heap.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0824.c.o
 	Object main.nef.p/src_overlay005_fishing.c.o
 	Object main.nef.p/src_overlay005_footprint_type.c.o
@@ -528,7 +525,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F1CC8.c.o
 	Object main.nef.p/src_overlay005_berry_patch_effects.c.o
 	Object main.nef.p/src_overlay005_ov5_021F23D0.c.o
-	Object main.nef.p/src_overlay005_ov5_021F25C0.c.o
+	Object main.nef.p/src_overlay005_surf_mount_renderer.c.o
 	Object main.nef.p/src_overlay005_ov5_021F2850.c.o
 	Object main.nef.p/src_overlay005_ov5_021F2A7C.c.o
 	Object main.nef.p/src_overlay005_ov5_021F2BD0.c.o
@@ -619,13 +616,13 @@ Overlay overlay9
 
 Overlay overlay10
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay010_ov10_0221F800.c.o
 }
 
 Overlay overlay11
 {
-	After overlay4
+	After nintendo_wfc
 	Object main.nef.p/src_overlay011_move_palettes.c.o
 	Object main.nef.p/src_overlay011_particle_helper.c.o
 }
@@ -680,10 +677,9 @@ Overlay trainer_ai
 	Object main.nef.p/asm_trainer_ai_trainer_ai_script.s.o
 }
 
-Overlay overlay15
+Overlay dummy4
 {
 	After main
-	Object main.nef.p/src_overlay015_ov15_dummy.c.o
 }
 
 Overlay battle
@@ -697,7 +693,7 @@ Overlay battle
 	Object main.nef.p/src_battle_battle_io_command.c.o
 	Object main.nef.p/src_battle_battle_display.c.o
 	Object main.nef.p/src_battle_ov16_02264798.c.o
-	Object main.nef.p/src_battle_battle_io.c.o
+	Object main.nef.p/src_battle_battle_controller.c.o
 	Object main.nef.p/src_battle_healthbar.c.o
 	Object main.nef.p/src_battle_ov16_02268520.c.o
 	Object main.nef.p/src_battle_battle_cursor.c.o
@@ -737,10 +733,10 @@ Overlay overlay17
 	Object main.nef.p/src_overlay017_ov17_02252CEC.c.o
 }
 
-Overlay overlay18
+Overlay wfc_settings
 {
-	After overlay4
-	Object main.nef.p/src_overlay018_ov18_0221F800.c.o
+	After nintendo_wfc
+	Object main.nef.p/src_wfc_settings_wfc_settings.c.o
 	Library	libmb.a
 	Library libdwcutil.a
 }
@@ -801,7 +797,7 @@ Overlay pokedex
 	Object main.nef.p/src_applications_pokedex_ov21_021DC9BC.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021DDD2C.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021DE668.c.o
-	Object main.nef.p/src_applications_pokedex_ov21_021DF734.c.o
+	Object main.nef.p/src_applications_pokedex_formmain.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E0C68.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E1924.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E29DC.c.o
@@ -841,12 +837,12 @@ Overlay overlay23
 	After overlay5
 	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
 	Object main.nef.p/src_overlay023_underground_spheres.c.o
-	Object main.nef.p/src_overlay023_ov23_02241F74.c.o
+	Object main.nef.p/src_overlay023_underground_manager.c.o
 	Object main.nef.p/src_overlay023_underground_traps.c.o
 	Object main.nef.p/src_overlay023_underground_item_list_menu.c.o
 	Object main.nef.p/src_overlay023_underground_top_screen.c.o
 	Object main.nef.p/src_overlay023_underground_player_status.c.o
-	Object main.nef.p/src_overlay023_ov23_022499E4.c.o
+	Object main.nef.p/src_overlay023_underground_comm_manager.c.o
 	Object main.nef.p/src_overlay023_underground_player.c.o
 	Object main.nef.p/src_overlay023_secret_bases.c.o
 	Object main.nef.p/src_overlay023_underground_player_talk.c.o
@@ -1116,11 +1112,11 @@ Overlay overlay59
 	Object main.nef.p/src_overlay059_ov59_021D2F88.c.o
 }
 
-Overlay overlay60
+Overlay http
 {
-	After overlay4
-	Object main.nef.p/src_overlay060_ov60_0221F800.c.o
-	Object main.nef.p/src_overlay060_http.c.o
+	After nintendo_wfc
+	Object main.nef.p/src_http_http_b64.c.o
+	Object main.nef.p/src_http_http.c.o
 	Library	libdwcgsghttp.a
 	Library libdwcnd.a
 	Library libdwcnhttp.a
@@ -1128,7 +1124,7 @@ Overlay overlay60
 
 Overlay overlay61
 {
-	After overlay60
+	After http
 	Object main.nef.p/src_overlay061_ov61_0222AE60.c.o
 	Object main.nef.p/src_overlay061_ov61_0222B008.c.o
 	Object main.nef.p/src_overlay061_ov61_0222BC4C.c.o
@@ -1159,7 +1155,7 @@ Overlay overlay62
 
 Overlay overlay63
 {
-	After overlay60
+	After http
 	Object main.nef.p/src_overlay063_ov63_0222AE60.c.o
 	Object main.nef.p/src_overlay063_ov63_0222BCE8.c.o
 	Object main.nef.p/src_overlay063_ov63_0222BE18.c.o
@@ -1382,10 +1378,9 @@ Overlay overlay88
 	Object main.nef.p/src_overlay088_ov88_0223E9C4.c.o
 }
 
-Overlay overlay89
+Overlay dummy5
 {
 	After main
-	Object main.nef.p/src_overlay089_ov89_dummy.c.o
 }
 
 Overlay overlay90
@@ -1455,7 +1450,7 @@ Overlay overlay96
 
 Overlay main_menu
 {
-	After overlay60
+	After http
 	Object main.nef.p/src_main_menu_main_menu.c.o
 	Object main.nef.p/src_main_menu_ov97_0222C174.c.o
 	Object main.nef.p/src_main_menu_ov97_0222D04C.c.o
@@ -1532,10 +1527,9 @@ Overlay diploma
 	Object main.nef.p/src_applications_diploma.c.o
 }
 
-Overlay overlay103
+Overlay dummy6
 {
 	After overlay63
-	Object main.nef.p/src_overlay103_ov103_dummy.c.o
 }
 
 Overlay overlay104
@@ -1588,13 +1582,13 @@ Overlay overlay105
 	Object main.nef.p/src_overlay105_ov105_02246214.c.o
 }
 
-Overlay overlay106
+Overlay battle_hall_app
 {
 	After overlay104
-	Object main.nef.p/src_overlay106_ov106_02241AE0.c.o
-	Object main.nef.p/src_overlay106_ov106_02243310.c.o
-	Object main.nef.p/src_overlay106_ov106_022435FC.c.o
-	Object main.nef.p/src_overlay106_ov106_022436E0.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_main.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_sprite_manager.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_sprites.c.o
+	Object main.nef.p/src_applications_frontier_battle_hall_windows.c.o
 }
 
 Overlay overlay107
@@ -1602,10 +1596,10 @@ Overlay overlay107
 	After overlay104
 	Object main.nef.p/src_overlay107_ov107_02241AE0.c.o
 	Object main.nef.p/src_overlay107_ov107_02245EB0.c.o
-	Object main.nef.p/src_overlay107_ov107_02249604.c.o
-	Object main.nef.p/src_overlay107_ov107_02249B1C.c.o
+	Object main.nef.p/src_overlay107_battle_castle_app_sprite_manager.c.o
+	Object main.nef.p/src_overlay107_battle_castle_app_sprite.c.o
 	Object main.nef.p/src_overlay107_ov107_02249C98.c.o
-	Object main.nef.p/src_overlay107_ov107_02249D14.c.o
+	Object main.nef.p/src_overlay107_battle_castle_app_windows.c.o
 }
 
 Overlay overlay108
@@ -1697,10 +1691,10 @@ Overlay overlay117
 	Object main.nef.p/src_overlay117_ov117_022666C0.c.o
 }
 
-Overlay overlay118
+Overlay party_menu_form_change
 {
 	After main
-	Object main.nef.p/src_overlay118_ov118_021D0D80.c.o
+	Object main.nef.p/src_applications_party_menu_form_change.c.o
 }
 
 Overlay overlay119

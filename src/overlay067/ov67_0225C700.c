@@ -5,8 +5,6 @@
 
 #include "generated/trainer_score_events.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "overlay061/struct_ov61_0222C3B0.h"
 #include "overlay065/struct_ov65_0222F6EC.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -79,7 +77,7 @@ static void ov67_0225D3D0(UnkStruct_ov67_0225D210 *param0, u32 param1);
 static void ov67_0225D330(UnkStruct_ov67_0225D210 *param0);
 static void ov67_0225D37C(UnkStruct_ov67_0225D210 *param0, u32 param1);
 
-static const UnkStruct_02099F80 Unk_ov67_0225D410 = {
+static const GXBanks Unk_ov67_0225D410 = {
     GX_VRAM_BG_128_A,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_128_C,

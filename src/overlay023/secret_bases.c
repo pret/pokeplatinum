@@ -19,8 +19,8 @@
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay005/ov5_021F5894.h"
-#include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_022499E4.h"
+#include "overlay023/underground_comm_manager.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
 #include "overlay023/underground_player_talk.h"
@@ -144,29 +144,29 @@ enum FlagRankUpState {
 };
 
 enum MoveToFromBaseState {
-    BASE_MOVE_STATE_INIT = 0,
-    BASE_MOVE_STATE_FADE_OUT,
-    BASE_MOVE_STATE_WAIT_FOR_FADE_OUT,
-    BASE_MOVE_STATE_STOP_FIELD_MAP,
-    BASE_MOVE_STATE_UPDATE_LOCATION,
-    BASE_MOVE_STATE_RESUME_FIELD_MAP,
-    BASE_MOVE_STATE_FADE_IN,
-    BASE_MOVE_STATE_WAIT_FOR_FADE_IN,
-    BASE_MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK,
-    BASE_MOVE_STATE_FRAME_DELAY,
-    BASE_MOVE_STATE_WAIT,
-    BASE_MOVE_STATE_BLOCK_ENTRANCE,
-    BASE_MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT,
-    BASE_MOVE_STATE_END,
+    MOVE_STATE_INIT = 0,
+    MOVE_STATE_FADE_OUT,
+    MOVE_STATE_WAIT_FOR_FADE_OUT,
+    MOVE_STATE_STOP_FIELD_MAP,
+    MOVE_STATE_UPDATE_LOCATION,
+    MOVE_STATE_RESUME_FIELD_MAP,
+    MOVE_STATE_FADE_IN,
+    MOVE_STATE_WAIT_FOR_FADE_IN,
+    MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK,
+    MOVE_STATE_FRAME_DELAY,
+    MOVE_STATE_WAIT,
+    MOVE_STATE_BLOCK_ENTRANCE,
+    MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT,
+    MOVE_STATE_END,
 };
 
 enum MoveStatus {
     MOVE_STATUS_NONE = 0,
     MOVE_STATUS_ENTERING,
     MOVE_STATUS_ERROR_WHILE_ENTERING,
-    MOVE_STATUS_ERROR_WHILE_ENTERING_2 = 4,
+    MOVE_STATUS_ENTERING_AS_CLIENT = 4,
     MOVE_STATUS_ENTERING_2,
-    MOVE_STATUS_EXITING,
+    MOVE_STATUS_EXIT_IF_HOST,
 };
 
 typedef struct SecretBaseInfo {
@@ -219,7 +219,7 @@ typedef struct SecretBasesEnv {
     u8 currentBaseReturnDir;
     u8 unused;
     u8 dummy;
-    u8 baseEntranceLocationsReceived;
+    u8 linksReceivedBaseData;
     u8 baseEntranceGraphicsDisabled;
     u8 baseEntranceGraphicsEnabled;
     u8 currentPlayerInBase;
@@ -609,7 +609,7 @@ int SecretBasesEnv_Size(void)
     return sizeof(SecretBasesEnv);
 }
 
-void SecretBases_ResetBaseEntranceData(int netID)
+void SecretBases_ClearBaseEntranceData(int netID)
 {
     if (secretBasesEnv) {
         secretBasesEnv->occupiedBaseOwnerIDs[netID] = NETID_NONE;
@@ -681,7 +681,7 @@ void SecretBases_ProcessFailedBaseEnter(int unused0, int unused1, void *data, vo
     if (CommSys_CurNetId() == *netID) {
         CommPlayerMan_PauseFieldSystem();
 
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_WallCrumbledCantEnter, TRUE, SecretBases_ResumeFieldSystem);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_WallCrumbledCantEnter, TRUE, SecretBases_ResumeFieldSystem);
         ov23_0224DC24();
     }
 }
@@ -884,7 +884,7 @@ static void SecretBases_EndBaseTransitionPromptTaskSuccess(SysTask *sysTask, voi
     SysTask_Done(sysTask);
     Heap_Free(ctx);
 
-    CommManUnderground_ClearCurrentSysTaskInfo();
+    UndergroundMan_ClearCurrentSysTaskInfo();
 }
 
 static void SecretBases_EndBaseTransitionPromptTaskFail(SysTask *sysTask, void *data)
@@ -904,7 +904,7 @@ static void SecretBases_EndBaseTransitionPromptTaskFail(SysTask *sysTask, void *
     SysTask_Done(sysTask);
     Heap_Free(ctx);
 
-    CommManUnderground_ClearCurrentSysTaskInfo();
+    UndergroundMan_ClearCurrentSysTaskInfo();
     ov23_0224DC24();
 }
 
@@ -927,10 +927,10 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
             ctx->state = EXIT_PROMPT_STATE_OPEN_CONFIRM_MENU;
         }
 
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
         break;
     case EXIT_PROMPT_STATE_OPEN_CONFIRM_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = EXIT_PROMPT_STATE_CONFIRM;
         }
@@ -947,7 +947,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
         }
         break;
     case EXIT_PROMPT_STATE_OPEN_CONFIRM_MENU_DOOR_CLOSED:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = EXIT_PROMPT_STATE_CONFIRM_DOOR_CLOSED;
         }
@@ -957,7 +957,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
 
         if (input == 0) {
             ctx->menu = NULL;
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CommsWillBeLaunched, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CommsWillBeLaunched, FALSE, NULL);
             ctx->state = EXIT_PROMPT_STATE_OPEN_COMMS_CONFIRM_MENU;
         } else if (input != MENU_NOTHING_CHOSEN) {
             ctx->menu = NULL;
@@ -965,7 +965,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
         }
         break;
     case EXIT_PROMPT_STATE_OPEN_COMMS_CONFIRM_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = EXIT_PROMPT_STATE_CONFIRM_COMMS;
         }
@@ -982,7 +982,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
         }
         break;
     case EXIT_PROMPT_STATE_EXIT_AND_END:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
 
         BaseTransitionEvent event;
         event.success = TRUE;
@@ -1001,7 +1001,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
     }
 
     if (canceled) {
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         SecretBases_EndBaseTransitionPromptTaskFail(sysTask, ctx);
 
         CommPlayerMan_ResumeFieldSystem();
@@ -1026,7 +1026,7 @@ static void SecretBases_StartExitBasePromptTask(FieldSystem *fieldSystem, int x,
     ctx->fieldSystem = fieldSystem;
     ctx->sysTask = SysTask_Start(SecretBases_ExitBasePromptTask, ctx, 100);
 
-    CommManUnderground_SetCurrentSysTask(ctx, ctx->sysTask, SecretBases_EndBaseTransitionPromptTaskFail);
+    UndergroundMan_SetCurrentSysTask(ctx, ctx->sysTask, SecretBases_EndBaseTransitionPromptTaskFail);
     CommPlayerMan_PauseFieldSystem();
 }
 
@@ -1067,11 +1067,11 @@ static int SecretBases_CountPlayersInBase(int ownerNetID, BOOL useServerLocation
             x = CommPlayer_GetXServerIfActive(netID);
             z = CommPlayer_GetZServerIfActive(netID);
         } else {
-            x = CommPlayer_XPos(netID);
-            z = CommPlayer_ZPos(netID);
+            x = CommPlayer_GetXIfActive(netID);
+            z = CommPlayer_GetZIfActive(netID);
         }
 
-        if (!(x == 0xffff && z == 0xffff) && Underground_AreCoordinatesInSecretBase(x, z)) {
+        if (!(x == 0xffff && z == 0xffff) && UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
             int baseNetID = SecretBases_GetOwnerNetIDFromCoordinates(x, z);
 
             if (baseNetID == ownerNetID) {
@@ -1085,7 +1085,7 @@ static int SecretBases_CountPlayersInBase(int ownerNetID, BOOL useServerLocation
 
 static Menu *SecretBases_MakeLeaveOpenOrCloseMenu(BgConfig *bgConfig, const WindowTemplate *windowTemplate, u16 tile, u8 palette, enum HeapID heapID)
 {
-    MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetCommonTextPrinter());
+    MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetCommonTextPrinter());
     StringList *choices = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(choices, loader, UndergroundCommon_Text_LeaveDoorOpen, 0);
@@ -1126,10 +1126,10 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
             ctx->state = ENTER_PROMPT_STATE_OPEN_CONFIRM_MENU_OWN_BASE;
         }
 
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
         break;
     case ENTER_PROMPT_STATE_OPEN_CONFIRM_MENU_OTHER_BASE:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = ENTER_PROMPT_STATE_CONFIRM_OTHER_BASE;
         }
@@ -1146,12 +1146,12 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         }
         break;
     case ENTER_PROMPT_STATE_ENTER_AFTER_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->state = ENTER_PROMPT_STATE_ENTER_AND_END;
         }
         break;
     case ENTER_PROMPT_STATE_OPEN_CONFIRM_MENU_OWN_BASE:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = ENTER_PROMPT_STATE_CONFIRM_OWN_BASE;
         }
@@ -1163,10 +1163,10 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
             ctx->menu = NULL;
 
             if (UndergroundPlayer_IsHoldingFlag(ctx->baseOwnerNetID) || (SecretBases_CountPlayersInBase(ctx->baseOwnerNetID, 0) > 0)) {
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_EnteredOwnBase, FALSE, NULL);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_EnteredOwnBase, FALSE, NULL);
                 ctx->state = ENTER_PROMPT_STATE_ENTER_AFTER_TEXT;
             } else {
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_LeaveEntranceOpenOrClose, FALSE, NULL);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_LeaveEntranceOpenOrClose, FALSE, NULL);
                 ctx->state = ENTER_PROMPT_STATE_OPEN_CLOSE_DOOR_MENU;
             }
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -1175,7 +1175,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         }
         break;
     case ENTER_PROMPT_STATE_OPEN_CLOSE_DOOR_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = SecretBases_MakeLeaveOpenOrCloseMenu(fieldSystem->bgConfig, &Unk_ov23_0225686C, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = ENTER_PROMPT_STATE_CLOSE_DOOR_MENU;
         }
@@ -1195,9 +1195,9 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         }
         break;
     case ENTER_PROMPT_STATE_CLOSE_DOOR_COMMS:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
-            ov23_02249A74();
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
+            CommManUnderground_CloseSecretBase();
             ctx->state = ENTER_PROMPT_STATE_ENTER_CLOSE_DOOR_AND_END;
         }
         break;
@@ -1212,7 +1212,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         }
         break;
     case ENTER_PROMPT_STATE_ENTER_AND_END:
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
 
         BaseTransitionEvent event;
         event.success = TRUE;
@@ -1233,7 +1233,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
     }
 
     if (canceled) {
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         SecretBases_EndBaseTransitionPromptTaskFail(sysTask, ctx);
 
         CommPlayerMan_ResumeFieldSystem();
@@ -1257,7 +1257,7 @@ static void SecretBases_StartEnterBasePromptTask(FieldSystem *fieldSystem, int x
 
     ov23_0224DC08();
     ctx->sysTask = SysTask_Start(SecretBases_EnterBasePromptTask, ctx, 100);
-    CommManUnderground_SetCurrentSysTask(ctx, ctx->sysTask, SecretBases_EndBaseTransitionPromptTaskFail);
+    UndergroundMan_SetCurrentSysTask(ctx, ctx->sysTask, SecretBases_EndBaseTransitionPromptTaskFail);
 
     CommPlayerMan_PauseFieldSystem();
 }
@@ -1276,7 +1276,7 @@ void SecretBases_ProcessBaseExitEvent(int unused0, int unused1, void *data, void
     if (CommSys_CurNetId() == event->netID) {
         UndergroundRecords_ForceExitTrainerCase();
         UndergroundTalk_ExitConversation();
-        ov23_0224321C();
+        UndergroundMan_ForceEndCurrentSysTask();
         UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), FALSE);
 
         CommSys_SendMessage(43);
@@ -1385,7 +1385,7 @@ void SecretBases_ProcessBaseEnter(int unused0, int unused1, void *data, void *un
         secretBasesEnv->currentBaseReturnZCoord = SecretBase_GetEntranceZCoord(secretBase);
         secretBasesEnv->currentBaseReturnDir = SecretBase_GetEntranceDir(secretBase);
 
-        ov23_02243360();
+        UndergroundMan_SendPlayerState();
     } else {
         UndergroundPlayer_MoveToFromSecretBaseClient(baseInfo->visitorNetID, exit.x, exit.z, DIR_NORTH);
     }
@@ -1420,14 +1420,14 @@ int CommPacketSizeOf_SecretBaseInfo(void)
     return sizeof(SecretBaseInfo);
 }
 
-BOOL SecretBases_AreBaseEntranceLocationsReceived(void)
+BOOL SecretBases_HaveLinksReceivedBaseData(void)
 {
-    return secretBasesEnv->baseEntranceLocationsReceived;
+    return secretBasesEnv->linksReceivedBaseData;
 }
 
-void SecretBases_ClearBaseEntranceLocationsReceived(void)
+void SecretBases_ClearLinksReceivedBaseData(void)
 {
-    secretBasesEnv->baseEntranceLocationsReceived = FALSE;
+    secretBasesEnv->linksReceivedBaseData = FALSE;
 }
 
 static void SecretBases_SendBaseEntrancesBuffer(void)
@@ -1485,7 +1485,7 @@ void SecretBases_ProcessBaseEntrancesBuffer(int unused0, int unused1, void *data
         }
     }
 
-    secretBasesEnv->baseEntranceLocationsReceived = TRUE;
+    secretBasesEnv->linksReceivedBaseData = TRUE;
 }
 
 int CommPacketSizeOf_BaseEntrancesBuffer(void)
@@ -1519,7 +1519,7 @@ static void SecretBases_DrawBaseEntrancesTask(SysTask *unused, void *unused1)
     int playerX = Player_GetXPos(secretBasesEnv->fieldSystem->playerAvatar);
     int playerZ = Player_GetZPos(secretBasesEnv->fieldSystem->playerAvatar);
 
-    if (Underground_AreCoordinatesInSecretBase(playerX, playerZ)) {
+    if (UndergroundMan_AreCoordinatesInSecretBase(playerX, playerZ)) {
         return;
     }
 
@@ -1619,7 +1619,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
     BaseTransitionContext *ctx = FieldTask_GetEnv(task);
 
     switch (ctx->state) {
-    case BASE_MOVE_STATE_INIT:
+    case MOVE_STATE_INIT:
         SecretBases_SetEntranceGraphicsEnabled(FALSE);
         ov23_0224DC08();
 
@@ -1628,30 +1628,30 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         CommSys_DisableSendMovementData();
         UndergroundSpheres_DisableBuriedSphereSparkles();
 
-        if (ov23_02249AB8()) {
-            ctx->state = BASE_MOVE_STATE_FADE_OUT;
+        if (CommManUnderground_TryEnterBaseTransitionState()) {
+            ctx->state = MOVE_STATE_FADE_OUT;
         }
         break;
-    case BASE_MOVE_STATE_FADE_OUT:
+    case MOVE_STATE_FADE_OUT:
         FinishScreenFade();
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         ctx->state++;
         break;
-    case BASE_MOVE_STATE_WAIT_FOR_FADE_OUT:
+    case MOVE_STATE_WAIT_FOR_FADE_OUT:
         if (IsScreenFadeDone()) {
             if (fieldSystem->ugTopScreenCtx == NULL) {
                 ctx->state++;
             }
         }
         break;
-    case BASE_MOVE_STATE_STOP_FIELD_MAP:
+    case MOVE_STATE_STOP_FIELD_MAP:
         if (SecretBases_StopFieldMap(task)) {
             ctx->state++;
         }
         break;
-    case BASE_MOVE_STATE_UPDATE_LOCATION:
+    case MOVE_STATE_UPDATE_LOCATION:
         Location nextLocation;
         nextLocation.mapId = ctx->mapID;
         nextLocation.warpId = ctx->warpID;
@@ -1661,23 +1661,23 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         sub_020544F0(task, &nextLocation);
         ctx->state++;
         break;
-    case BASE_MOVE_STATE_RESUME_FIELD_MAP:
+    case MOVE_STATE_RESUME_FIELD_MAP:
         if (SecretBases_ResumeFieldMap(task)) {
             ctx->state++;
         }
         break;
-    case BASE_MOVE_STATE_FADE_IN:
+    case MOVE_STATE_FADE_IN:
         fieldSystem->ugTopScreenCtx = UndergroundTopScreen_StartTask(fieldSystem);
         FinishScreenFade();
         StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_TOP_HALF_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ctx->state++;
         break;
-    case BASE_MOVE_STATE_WAIT_FOR_FADE_IN:
+    case MOVE_STATE_WAIT_FOR_FADE_IN:
         if (!IsScreenFadeDone()) {
             break;
         }
 
-        if (CommServerClient_IsInClosedSecretBase() && !Underground_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
+        if (CommServerClient_IsInClosedSecretBase() && !UndergroundMan_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
             ctx->showBlockedEntranceMessage = FALSE;
         } else {
             ctx->showBlockedEntranceMessage = TRUE;
@@ -1691,67 +1691,67 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
 
         if (ctx->forceExit) {
             CommPlayerMan_ClearPauseContextBits();
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_EscapedToAvoidDanger, FALSE, NULL);
-            ctx->state = BASE_MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK;
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_EscapedToAvoidDanger, FALSE, NULL);
+            ctx->state = MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK;
         } else if (!secretBasesEnv->currentPlayerInBase) {
-            ctx->state = BASE_MOVE_STATE_END;
+            ctx->state = MOVE_STATE_END;
         } else {
             ctx->timer = 0;
-            ctx->state = BASE_MOVE_STATE_FRAME_DELAY;
+            ctx->state = MOVE_STATE_FRAME_DELAY;
         }
         break;
-    case BASE_MOVE_STATE_FRAME_DELAY:
+    case MOVE_STATE_FRAME_DELAY:
         ctx->timer++;
         ctx->timer = 0;
-        ctx->state = BASE_MOVE_STATE_WAIT;
+        ctx->state = MOVE_STATE_WAIT;
         break;
-    case BASE_MOVE_STATE_WAIT:
+    case MOVE_STATE_WAIT:
         ctx->timer++;
 
         if (ctx->timer > 10) {
             if (!CommServerClient_IsInClosedSecretBase() || !ctx->showBlockedEntranceMessage) {
-                ctx->state = BASE_MOVE_STATE_END;
+                ctx->state = MOVE_STATE_END;
             } else {
-                ctx->state = BASE_MOVE_STATE_BLOCK_ENTRANCE;
+                ctx->state = MOVE_STATE_BLOCK_ENTRANCE;
             }
         }
         break;
-    case BASE_MOVE_STATE_BLOCK_ENTRANCE:
+    case MOVE_STATE_BLOCK_ENTRANCE:
         CommPlayerMan_ForceDir();
         PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
         CommPlayer_SetDir(DIR_SOUTH);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_BlockedEntranceToDecorate, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlockedEntranceToDecorate, FALSE, NULL);
         Sound_PlayEffect(SEQ_SE_DP_DOOR);
-        ctx->state = BASE_MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT;
+        ctx->state = MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT;
         break;
-    case BASE_MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+    case MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT:
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                ctx->state = BASE_MOVE_STATE_END;
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                ctx->state = MOVE_STATE_END;
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 CommPlayer_SetDir(DIR_NORTH);
             }
         }
         break;
-    case BASE_MOVE_STATE_END:
-        if (CommServerClient_IsInClosedSecretBase() && !Underground_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
-            ov23_02249AA4();
+    case MOVE_STATE_END:
+        if (CommServerClient_IsInClosedSecretBase() && !UndergroundMan_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
+            CommManUnderground_ReopenSecretBase();
         } else {
-            ov23_02249B60();
+            CommManUnderground_TryExitBaseTransitionState();
         }
 
         sub_02059638(FALSE);
         CommPlayerMan_ResumeFieldSystem();
         Heap_Free(ctx);
 
-        if (CommServerClient_IsInClosedSecretBase() && Underground_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
-            CommManUnderground_DeactivateRadar();
+        if (CommServerClient_IsInClosedSecretBase() && UndergroundMan_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
+            UndergroundMan_DeactivateRadar();
         } else {
-            CommManUnderground_SetNormalRadarActive();
+            UndergroundMan_SetNormalRadarActive();
         }
 
-        if (secretBasesEnv->moveStatus == MOVE_STATUS_ERROR_WHILE_ENTERING_2 && secretBasesEnv->currentPlayerInBase) {
-            secretBasesEnv->moveStatus = MOVE_STATUS_EXITING;
+        if (secretBasesEnv->moveStatus == MOVE_STATUS_ENTERING_AS_CLIENT && secretBasesEnv->currentPlayerInBase) {
+            secretBasesEnv->moveStatus = MOVE_STATUS_EXIT_IF_HOST;
         } else {
             secretBasesEnv->moveStatus = MOVE_STATUS_NONE;
         }
@@ -1759,18 +1759,18 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         ov23_0224DC24();
         SecretBases_SetEntranceGraphicsEnabled(TRUE);
         return TRUE;
-    case BASE_MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+    case MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK:
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                ctx->state = BASE_MOVE_STATE_END;
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+                ctx->state = MOVE_STATE_END;
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 return FALSE;
             }
         }
 
         if (CommSys_ConnectedCount() > 1 && ctx->initialConnectedCount == 0) {
-            ctx->state = BASE_MOVE_STATE_END;
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
+            ctx->state = MOVE_STATE_END;
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         }
         break;
     }
@@ -1801,17 +1801,17 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         ctx->hasExistingBase = SecretBase_IsActive(secretBase);
 
         CommPlayerMan_PauseFieldSystem();
-        UndergroundTextPrinter_SetUndergroundTrapName(CommManUnderground_GetCommonTextPrinter(), TRAP_DIGGER_DRILL);
+        UndergroundTextPrinter_SetUndergroundTrapName(UndergroundMan_GetCommonTextPrinter(), TRAP_DIGGER_DRILL);
         Sound_PlayEffect(SEQ_SE_DP_DORIRU);
 
         ov5_021F58FC(Player_MapObject(fieldSystem->playerAvatar), 0, 0, 0);
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_ItemWasUsed, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ItemWasUsed, FALSE, NULL);
 
         ctx->state = DRILL_STATE_WAIT;
         ctx->timer = 0;
         break;
     case DRILL_STATE_WAIT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->timer++;
 
             if (ctx->timer > 30) {
@@ -1824,14 +1824,14 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         int z = CommPlayer_GetZInFrontOfPlayer(CommSys_CurNetId());
         int dir = CommPlayer_GetOppositeDir(PlayerAvatar_GetDir(fieldSystem->playerAvatar));
 
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_DiscoveredCavern, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_DiscoveredCavern, FALSE, NULL);
         SecretBases_SetBaseEntrancePropLocation(x, z, dir, NETID_CURRENT_PLAYER_BASE);
         ov5_021F5634(fieldSystem, x, 0, z);
 
         ctx->state = DRILL_STATE_PRINT_PROMPT;
     } break;
     case DRILL_STATE_PRINT_PROMPT:
-        if (UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter()) == FALSE) {
+        if (UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter()) == FALSE) {
             int bankEntry;
 
             if (SecretBases_CountPlayersInBase(CommSys_CurNetId(), FALSE) != 0) {
@@ -1845,18 +1845,18 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
                 ctx->state = DRILL_STATE_OPEN_CONFIRM_MENU;
             }
 
-            UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
+            UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), bankEntry, FALSE, NULL);
         }
         break;
     case DRILL_STATE_CANCEL_AFTER_BUTTON_PRESS:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 canceled = TRUE;
             }
         }
         break;
     case DRILL_STATE_OPEN_CONFIRM_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCommonTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = 6;
         }
@@ -1874,8 +1874,8 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         break;
     case DRILL_STATE_REMOVE_DRILL:
         UndergroundMenu_RemoveSelectedTrap(TRAP_DIGGER_DRILL);
-        UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCommonTextPrinter());
-        ov23_02249A74();
+        UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
+        CommManUnderground_CloseSecretBase();
         ctx->state = DRILL_STATE_CREATE_BASE_AND_END;
         break;
     case DRILL_STATE_CREATE_BASE_AND_END:
@@ -1892,14 +1892,14 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
             SysTask_Done(sysTask);
             Heap_Free(ctx);
 
-            CommManUnderground_ClearCurrentSysTaskInfo();
+            UndergroundMan_ClearCurrentSysTaskInfo();
             return;
         }
         break;
     }
 
     if (canceled) {
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_ClosedHole, TRUE, SecretBases_ResumeFieldSystem);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_ClosedHole, TRUE, SecretBases_ResumeFieldSystem);
         SecretBases_ClearBaseEntranceProp(NETID_CURRENT_PLAYER_BASE);
 
         int x = CommPlayer_GetXInFrontOfPlayer(CommSys_CurNetId());
@@ -1910,7 +1910,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         SysTask_Done(sysTask);
         Heap_Free(ctx);
 
-        CommManUnderground_ClearCurrentSysTaskInfo();
+        UndergroundMan_ClearCurrentSysTaskInfo();
         ov23_0224DC24();
     }
 }
@@ -1960,7 +1960,7 @@ void SecretBases_ProcessBaseCreateRequest(int netID, int unused1, void *data, vo
     int entranceOwnerNetID = SecretBases_GetEntranceOwnerNetIDFromCoords(x, z);
 
     if (*type != BASE_CREATE_REQ_USE_DIGGER_DRILL || entranceOwnerNetID == NETID_NONE) {
-        if (Underground_AreCoordinatesInSecretBase(x, z)) {
+        if (UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
             event.type = BASE_CREATE_EVENT_CANT_DRILL_IN_BASE;
         } else if (TerrainCollisionManager_CheckCollision(secretBasesEnv->fieldSystem, x, z) && TerrainCollisionManager_CheckCollision(secretBasesEnv->fieldSystem, cornerCheckX1, cornerCheckZ1) && TerrainCollisionManager_CheckCollision(secretBasesEnv->fieldSystem, cornerCheckX2, cornerCheckZ2)) {
             if (*type == BASE_CREATE_REQ_USE_DIGGER_DRILL) {
@@ -2001,7 +2001,7 @@ static void SecretBases_EndDiggerDrillTask(SysTask *sysTask, void *data)
     SysTask_Done(sysTask);
     Heap_Free(ctx);
 
-    CommManUnderground_ClearCurrentSysTaskInfo();
+    UndergroundMan_ClearCurrentSysTaskInfo();
     CommPlayerMan_ResumeFieldSystem();
     ov23_0224DC24();
 }
@@ -2018,7 +2018,7 @@ static void SecretBases_StartDiggerDrillTask(void)
     ctx->fieldSystem = secretBasesEnv->fieldSystem;
     ctx->sysTask = SysTask_Start(SecretBases_DiggerDrillTask, ctx, 100);
 
-    CommManUnderground_SetCurrentSysTask(ctx, ctx->sysTask, SecretBases_EndDiggerDrillTask);
+    UndergroundMan_SetCurrentSysTask(ctx, ctx->sysTask, SecretBases_EndDiggerDrillTask);
 }
 
 void SecretBases_ProcessBaseCreateEvent(int unused0, int unused1, void *data, void *unused3)
@@ -2032,18 +2032,18 @@ void SecretBases_ProcessBaseCreateEvent(int unused0, int unused1, void *data, vo
 
     if (event->type == BASE_CREATE_EVENT_CANT_DRILL) {
         CommPlayerMan_PauseFieldSystem();
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantBeUsedHere, TRUE, SecretBases_ResumeFieldSystem);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantBeUsedHere, TRUE, SecretBases_ResumeFieldSystem);
         ov23_0224DC24();
     } else if (event->type == BASE_CREATE_EVENT_USE_DRILL) {
         SecretBases_StartDiggerDrillTask();
     } else if (event->type == BASE_CREATE_EVENT_CANT_DRILL_IN_BASE) {
         CommPlayerMan_PauseFieldSystem();
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_CantDrillInBase, TRUE, SecretBases_ResumeFieldSystem);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CantDrillInBase, TRUE, SecretBases_ResumeFieldSystem);
         ov23_0224DC24();
     } else if (event->type == BASE_CREATE_EVENT_CANT_ENTER) {
         CommPlayerMan_PauseFieldSystem();
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), UndergroundCommon_Text_WallCrumbledCantEnter, TRUE, SecretBases_ResumeFieldSystem);
-        ov23_02249AA4();
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_WallCrumbledCantEnter, TRUE, SecretBases_ResumeFieldSystem);
+        CommManUnderground_ReopenSecretBase();
         ov23_0224DC24();
     } else if (event->type == BASE_CREATE_EVENT_CLOSE_BASE || event->type == BASE_CREATE_EVENT_MOVE_BASE || event->type == BASE_CREATE_EVENT_NEW_BASE) {
         int x = CommPlayer_GetXInFrontOfPlayer(event->netID);
@@ -2081,7 +2081,7 @@ BOOL SecretBases_GetQueuedMessage(String *dest)
                 TrainerInfo *trainerInfo = CommInfo_TrainerInfo(netID);
                 TrainerInfo *baseOwnerInfo = CommInfo_TrainerInfo(baseOwnerNetID);
 
-                if (CommManUnderground_FormatCommonStringWith2TrainerNames(trainerInfo, baseOwnerInfo, UndergroundCommon_Text_PlayerEnteredPlayersSecretBase, dest)) {
+                if (UndergroundMan_FormatCommonStringWith2TrainerNames(trainerInfo, baseOwnerInfo, UndergroundCommon_Text_PlayerEnteredPlayersSecretBase, dest)) {
                     return TRUE;
                 }
             }
@@ -2093,7 +2093,7 @@ BOOL SecretBases_GetQueuedMessage(String *dest)
 
             secretBasesEnv->obtainedFlagOwnerNetIDs[netID] = NETID_NONE;
 
-            if (CommManUnderground_FormatCommonStringWith2TrainerNames(trainerInfo, flagOwnerInfo, UndergroundCommon_Text_PlayerObtainedPlayersFlag, dest)) {
+            if (UndergroundMan_FormatCommonStringWith2TrainerNames(trainerInfo, flagOwnerInfo, UndergroundCommon_Text_PlayerObtainedPlayersFlag, dest)) {
                 return TRUE;
             }
         }
@@ -2102,7 +2102,7 @@ BOOL SecretBases_GetQueuedMessage(String *dest)
             TrainerInfo *trainerInfo = CommInfo_TrainerInfo(netID);
             secretBasesEnv->tookBackFlagMessageQueued[netID] = 0xff;
 
-            if (CommManUnderground_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerTookBackFlag, dest)) {
+            if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerTookBackFlag, dest)) {
                 return TRUE;
             }
             break;
@@ -2114,7 +2114,7 @@ BOOL SecretBases_GetQueuedMessage(String *dest)
 
             secretBasesEnv->flagStealVictimNetIDs[netID] = NETID_NONE;
 
-            if (CommManUnderground_FormatCommonStringWith2TrainerNames(trainerInfo, victimInfo, UndergroundCommon_Text_PlayerTookPlayersFlag, dest)) {
+            if (UndergroundMan_FormatCommonStringWith2TrainerNames(trainerInfo, victimInfo, UndergroundCommon_Text_PlayerTookPlayersFlag, dest)) {
                 return TRUE;
             }
         }
@@ -2247,22 +2247,22 @@ static void SecretBases_CreateBase(void)
 
 int SecretBases_PrintBaseDecorationMessage(int bankEntry)
 {
-    return UndergroundTextPrinter_PrintText(CommManUnderground_GetBaseDecorationTextPrinter(), bankEntry, FALSE, NULL);
+    return UndergroundTextPrinter_PrintText(UndergroundMan_GetBaseDecorationTextPrinter(), bankEntry, FALSE, NULL);
 }
 
 void SecretBases_EraseBaseDecorationMessageBox(void)
 {
-    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetBaseDecorationTextPrinter());
+    UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetBaseDecorationTextPrinter());
 }
 
 void SecretBases_SetGoodNameForPrinter(int goodID)
 {
-    UndergroundTextPrinter_SetGoodNameWithIndex(CommManUnderground_GetBaseDecorationTextPrinter(), 0, goodID);
+    UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundMan_GetBaseDecorationTextPrinter(), 0, goodID);
 }
 
 void SecretBases_SetTwoDigitNumberWithIndexForPrinter(int num, int index)
 {
-    UndergroundTextPrinter_SetTwoDigitNumberWithIndex(CommManUnderground_GetBaseDecorationTextPrinter(), index, num);
+    UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundMan_GetBaseDecorationTextPrinter(), index, num);
 }
 
 static int SecretBases_GetGoodWithCollisionAtCoordinates(SecretBase *secretBase, int xWithinBase, int zWithinBase)
@@ -2393,24 +2393,24 @@ static void SecretBases_FlagRankUpTask(SysTask *sysTask, void *data)
     switch (ctx->state) {
     case FLAG_RANK_UP_STATE_PRINT_FLAG_REGISTERED:
         CommPlayerMan_PauseFieldSystem();
-        UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, FALSE, NULL);
+        UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_ObtainedFlagWasRegistered, FALSE, NULL);
         Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
         ctx->state = FLAG_RANK_UP_STATE_PRINT_RANK_UP;
         break;
     case FLAG_RANK_UP_STATE_PRINT_RANK_UP:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCaptureFlagTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCaptureFlagTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                UndergroundTextPrinter_PrintText(CommManUnderground_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_FlagBecameBronze + ctx->prevFlagRank, FALSE, NULL);
+                UndergroundTextPrinter_PrintText(UndergroundMan_GetCaptureFlagTextPrinter(), UndergroundCaptureFlag_Text_FlagBecameBronze + ctx->prevFlagRank, FALSE, NULL);
                 ctx->state = FLAG_RANK_UP_STATE_UPDATE_PC_PROP;
             }
         }
         break;
     case FLAG_RANK_UP_STATE_UPDATE_PC_PROP:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetCaptureFlagTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCaptureFlagTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 SecretBases_UpdatePCMapProp(ctx);
                 ctx->state = FLAG_RANK_UP_STATE_END;
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetCaptureFlagTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCaptureFlagTextPrinter());
                 CommPlayerMan_ResumeFieldSystem();
             }
         }
@@ -2421,7 +2421,7 @@ static void SecretBases_FlagRankUpTask(SysTask *sysTask, void *data)
     case FLAG_RANK_UP_STATE_END:
         Heap_Free(ctx);
         SysTask_Done(sysTask);
-        CommManUnderground_ClearCurrentSysTaskInfo();
+        UndergroundMan_ClearCurrentSysTaskInfo();
         break;
     }
 }
@@ -2451,7 +2451,7 @@ void SecretBases_ProcessFlagRankUpEvent(int unused0, int unused1, void *data, vo
         ctx->prevFlagRank = event->prevFlagRank;
         SysTask *sysTask = SysTask_Start(SecretBases_FlagRankUpTask, ctx, 100);
 
-        CommManUnderground_SetCurrentSysTask(ctx, sysTask, SecretBases_EndFlagRankUpTask);
+        UndergroundMan_SetCurrentSysTask(ctx, sysTask, SecretBases_EndFlagRankUpTask);
     }
 }
 
@@ -2536,7 +2536,7 @@ BOOL SecretBases_CheckPlayerTriggeredTool(int netID)
     int z = CommPlayer_GetZServerIfActive(netID);
     int dir = CommPlayer_DirServer(netID);
 
-    if (!Underground_AreCoordinatesInSecretBase(x, z)) {
+    if (!UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
         return FALSE;
     }
 
@@ -2595,7 +2595,7 @@ void SecretBases_HandleDisconnectedPlayers(int unused)
             }
 
             if (secretBasesEnv->baseTransitioningOwnerNetIDs[netID] == NETID_NONE && secretBasesEnv->baseEnteringOwnerNetIDs[netID] == NETID_NONE) {
-                if (Underground_AreCoordinatesInSecretBase(x, z)) {
+                if (UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
                     if (!playerRemovedFromBase[netID]) {
                         SecretBases_ExitBase(baseOwnerNetID, netID, TRUE);
                         playerRemovedFromBase[netID] = TRUE;
@@ -2605,13 +2605,14 @@ void SecretBases_HandleDisconnectedPlayers(int unused)
         }
     }
 
+    // will always be 0 because this function wouldn't be called otherwise
     netID = CommSys_CurNetId();
 
-    if (secretBasesEnv->moveStatus == MOVE_STATUS_EXITING) {
+    if (secretBasesEnv->moveStatus == MOVE_STATUS_EXIT_IF_HOST) {
         x = CommPlayer_GetXServerIfActive(netID);
         z = CommPlayer_GetZServerIfActive(netID);
 
-        if (!(x == 0xffff && z == 0xffff) && Underground_AreCoordinatesInSecretBase(x, z)) {
+        if (!(x == 0xffff && z == 0xffff) && UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
             int baseOwnerNetID = SecretBases_GetOwnerNetIDFromCoordinates(x, z);
 
             if (!playerRemovedFromBase[netID]) {
@@ -2632,10 +2633,10 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
         return FALSE;
     }
 
-    int x = CommPlayer_XPos(CommSys_CurNetId());
-    int z = CommPlayer_ZPos(CommSys_CurNetId());
+    int x = CommPlayer_GetXIfActive(CommSys_CurNetId());
+    int z = CommPlayer_GetZIfActive(CommSys_CurNetId());
 
-    if (!Underground_AreCoordinatesInSecretBase(x, z)) {
+    if (!UndergroundMan_AreCoordinatesInSecretBase(x, z)) {
         secretBasesEnv->occupiedBaseOwnerIDs[netID] = NETID_NONE;
 
         return FALSE;
@@ -2643,7 +2644,7 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
 
     UndergroundRecords_ForceExitTrainerCase();
     UndergroundTalk_ExitConversation();
-    ov23_0224321C();
+    UndergroundMan_ForceEndCurrentSysTask();
     UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), FALSE);
 
     x = secretBasesEnv->currentBaseReturnXCoord;
@@ -2658,7 +2659,7 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
     secretBasesEnv->currentPlayerInBase = FALSE;
 
     SecretBases_StartMoveToFromSecretBaseTask(secretBasesEnv->fieldSystem, x, z, dir, netID, forceExit);
-    ov23_02249AB8();
+    CommManUnderground_TryEnterBaseTransitionState();
 
     secretBasesEnv->currentOccupiedBaseInfo = NULL;
     secretBasesEnv->occupiedBaseOwnerIDs[netID] = NETID_NONE;
@@ -2666,19 +2667,19 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
     return TRUE;
 }
 
-void SecretBases_AbortBaseEnterEarly(void)
+void SecretBases_AbortBaseEnter(void)
 {
     if (secretBasesEnv->moveStatus == MOVE_STATUS_ENTERING) {
         secretBasesEnv->moveStatus = MOVE_STATUS_ERROR_WHILE_ENTERING;
         CommPlayer_InitPersonal();
-        SecretBases_ResetBaseEntranceData(0);
+        SecretBases_ClearBaseEntranceData(0);
     }
 }
 
-void SecretBases_AbortBaseEnterLate(void)
+void SecretBases_FlagEnteringBaseAsClient(void)
 {
     if (secretBasesEnv->moveStatus == MOVE_STATUS_ENTERING_2) {
-        secretBasesEnv->moveStatus = MOVE_STATUS_ERROR_WHILE_ENTERING_2;
+        secretBasesEnv->moveStatus = MOVE_STATUS_ENTERING_AS_CLIENT;
     }
 }
 
@@ -2700,7 +2701,7 @@ void SecretBases_RemoveNewLinkFromBase(int netID)
 
     if (x == 0xffff && z == 0xffff) {
         SecretBases_ExitBase(netID, netID, TRUE);
-    } else if (Underground_AreCoordinatesInSecretBase(x, z) || TerrainCollisionManager_CheckCollision(secretBasesEnv->fieldSystem, x, z)) {
+    } else if (UndergroundMan_AreCoordinatesInSecretBase(x, z) || TerrainCollisionManager_CheckCollision(secretBasesEnv->fieldSystem, x, z)) {
         SecretBases_ExitBase(netID, netID, TRUE);
     }
 }

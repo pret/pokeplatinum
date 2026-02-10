@@ -24,19 +24,19 @@
     ScriptEntryEnd
 
 _004E:
-    CallIfEq VAR_UNK_0x40A6, 2, _0077
-    CallIfEq VAR_UNK_0x40A6, 3, _0077
+    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 2, _0077
+    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, _0077
     GoToIfEq VAR_SUNYSHORE_STATE, 0, _0083
     End
 
 _0077:
-    SetFlag FLAG_UNK_0x0199
-    SetVar VAR_UNK_0x40A6, 4
+    SetFlag FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART
+    SetVar VAR_SANDGEM_TOWN_LAB_STATE, 4
     Return
 
 _0083:
     SetObjectEventPos 18, 0x349, 0x316
-    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_WEST
     SetObjectEventDir 18, DIR_WEST
     End
 

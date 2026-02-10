@@ -11,10 +11,10 @@
 #include "struct_defs/underground.h"
 
 #include "field/field_system.h"
-#include "overlay023/ov23_02241F74.h"
 #include "overlay023/trap_prices.h"
 #include "overlay023/treasure_prices.h"
 #include "overlay023/underground_item_list_menu.h"
+#include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
@@ -262,18 +262,18 @@ static void *UndergroundVendors_InitVendorOptionsMenu(UndergroundMenu *menu)
     if (menu->vendorType == VENDOR_TYPE_TRAPS) {
         int baseBankEntry = TRAP_VENDOR_OPTIONS_START;
         UndergroundVendors_InitTrapsVendorInventory(menu, menu->vendorIndex);
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), baseBankEntry, 0);
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), baseBankEntry + 1, 1);
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), baseBankEntry + 2, LIST_CANCEL);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), baseBankEntry, 0);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), baseBankEntry + 1, 1);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), baseBankEntry + 2, LIST_CANCEL);
     } else if (menu->vendorType == VENDOR_TYPE_GOODS) {
         int baseBankEntry = GOOD_VENDOR_OPTIONS_START;
         UndergroundVendors_InitGoodsVendorInventory(menu, menu->vendorIndex);
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), baseBankEntry, 0);
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), baseBankEntry + 1, 1);
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), baseBankEntry + 2, LIST_CANCEL);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), baseBankEntry, 0);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), baseBankEntry + 1, 1);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), baseBankEntry + 2, LIST_CANCEL);
     } else {
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), UndergroundNPCs_Text_GiveTreasures, 0);
-        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), UndergroundNPCs_Text_Cancel, LIST_CANCEL);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), UndergroundNPCs_Text_GiveTreasures, 0);
+        StringList_AddFromMessageBank(menu->menuOptions, UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), UndergroundNPCs_Text_Cancel, LIST_CANCEL);
     }
 
     ListMenuTemplate template;
@@ -284,8 +284,8 @@ static void *UndergroundVendors_InitVendorOptionsMenu(UndergroundMenu *menu)
     template.count = optionCount;
     template.maxDisplay = optionCount;
 
-    menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_VENDOR_OPTIONS);
-    menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_VENDOR_OPTIONS);
+    menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_VENDOR_OPTIONS);
+    menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_VENDOR_OPTIONS);
 
     UndergroundMenu_MoveListCursorPosInBounds(menu, template.maxDisplay, template.count);
 
@@ -302,13 +302,13 @@ static void UndergroundVendors_PrintItemDescriptionAndBuyPrice(ListMenu *listMen
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 
     Window_FillTilemap(&menu->secondaryWindow, 15);
-    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), UndergroundNPCs_Text_RequiredSphere + menu->isSelling, menu->string);
+    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), UndergroundNPCs_Text_RequiredSphere + menu->isSelling, menu->string);
     Text_AddPrinterWithParams(&menu->secondaryWindow, FONT_SYSTEM, menu->string, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (index != LIST_CANCEL) {
         StringTemplate_SetUndergroundItemName(menu->template, 2, menu->shopPriceTypes[index]);
         StringTemplate_SetNumber(menu->template, 6, menu->shopPriceSizes[index], 2, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), UndergroundNPCs_Text_SphereTemplate, menu->string);
+        MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), UndergroundNPCs_Text_SphereTemplate, menu->string);
         StringTemplate_Format(menu->template, menu->fmtString, menu->string);
         Text_AddPrinterWithParams(&menu->secondaryWindow, FONT_SYSTEM, menu->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
     }
@@ -381,14 +381,14 @@ static void UndergroundVendors_PrintItemDescriptionAndSellPrice(ListMenu *listMe
         }
     }
 
-    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), UndergroundNPCs_Text_RequiredSphere + menu->isSelling, menu->string);
+    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), UndergroundNPCs_Text_RequiredSphere + menu->isSelling, menu->string);
     Text_AddPrinterWithParams(&menu->secondaryWindow, FONT_SYSTEM, menu->string, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
 
     if (index != LIST_CANCEL) {
         if (sphereType != SPHERE_NONE) {
             StringTemplate_SetUndergroundItemName(menu->template, 2, sphereType);
             StringTemplate_SetNumber(menu->template, 6, sphereSize, 2, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), UndergroundNPCs_Text_SphereTemplate, menu->string);
+            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), UndergroundNPCs_Text_SphereTemplate, menu->string);
             StringTemplate_Format(menu->template, menu->fmtString, menu->string);
             Text_AddPrinterWithParams(&menu->secondaryWindow, FONT_SYSTEM, menu->fmtString, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
 
@@ -397,7 +397,7 @@ static void UndergroundVendors_PrintItemDescriptionAndSellPrice(ListMenu *listMe
         } else {
             menu->shopPriceTypes[0] = sphereType;
 
-            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), UndergroundNPCs_Text_NotForSale, menu->string);
+            MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), UndergroundNPCs_Text_NotForSale, menu->string);
             Text_AddPrinterWithParams(&menu->secondaryWindow, FONT_SYSTEM, menu->string, 1, 17, TEXT_SPEED_NO_TRANSFER, NULL);
         }
     }
@@ -438,13 +438,13 @@ static void UndergroundVendors_InitBuyMenu(UndergroundMenu *menu)
 
     if (menu->vendorType == VENDOR_TYPE_TRAPS) {
         loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_TRAPS, HEAP_ID_FIELD1);
-        UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAPS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
+        UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundMan_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_TRAPS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
     } else if (menu->vendorType == VENDOR_TYPE_GOODS) {
         loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELD1);
-        UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
+        UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundMan_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_GOODS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
     } else {
         loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ITEMS, HEAP_ID_FIELD1);
-        UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
+        UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundMan_GetItemNameTextPrinter(), TEXT_BANK_UNDERGROUND_ITEMS, MSG_LOADER_PRELOAD_ENTIRE_BANK);
     }
 
     for (int i = 0; i < optionCount - 1; i++) {
@@ -465,8 +465,8 @@ static void UndergroundVendors_InitBuyMenu(UndergroundMenu *menu)
     template.parent = menu;
 
     menu->getItem = UndergroundVendors_GetItemAtInventorySlot;
-    menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_BUY_GOODS + menu->vendorType);
-    menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_BUY_GOODS + menu->vendorType);
+    menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_BUY_GOODS + menu->vendorType);
+    menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_BUY_GOODS + menu->vendorType);
     menu->listMenuPos = menu->listMenuCursorPos;
 
     UndergroundMenu_MoveListCursorPosInBounds(menu, template.maxDisplay, template.count);
@@ -540,30 +540,30 @@ void *UndergroundVendors_ReturnNull(int unused0, FieldSystem *unused1, int unuse
 
 int UndergroundVendors_PrintNPCMessage(int bankEntry)
 {
-    UndergroundTextPrinter_ChangeMessageLoaderBank(CommManUnderground_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_NPCS, MSG_LOADER_LOAD_ON_DEMAND);
-    UndergroundTextPrinter_SetPlayerNameIndex0(CommManUnderground_GetMiscTextPrinter(), CommInfo_TrainerInfo(CommSys_CurNetId()));
+    UndergroundTextPrinter_ChangeMessageLoaderBank(UndergroundMan_GetMiscTextPrinter(), TEXT_BANK_UNDERGROUND_NPCS, MSG_LOADER_LOAD_ON_DEMAND);
+    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetMiscTextPrinter(), CommInfo_TrainerInfo(CommSys_CurNetId()));
 
-    return UndergroundTextPrinter_PrintText(CommManUnderground_GetMiscTextPrinter(), bankEntry, FALSE, NULL);
+    return UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), bankEntry, FALSE, NULL);
 }
 
 void UndergroundVendors_EraseMessageBoxWindow(void)
 {
-    UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetMiscTextPrinter());
+    UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetMiscTextPrinter());
 }
 
 void UndergroundVendors_SetTreasureNameForPrinter(int index, int treasureID)
 {
-    UndergroundTextPrinter_SetUndergroundItemName(CommManUnderground_GetMiscTextPrinter(), index, treasureID);
+    UndergroundTextPrinter_SetUndergroundItemName(UndergroundMan_GetMiscTextPrinter(), index, treasureID);
 }
 
 void UndergroundVendors_SetTrapNameForPrinter(int index, int trapID)
 {
-    UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(CommManUnderground_GetMiscTextPrinter(), index, trapID);
+    UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundMan_GetMiscTextPrinter(), index, trapID);
 }
 
 void UndergroundVendors_SetGoodNameForPrinter(int index, int goodID)
 {
-    UndergroundTextPrinter_SetGoodNameWithIndex(CommManUnderground_GetMiscTextPrinter(), index, goodID);
+    UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundMan_GetMiscTextPrinter(), index, goodID);
 }
 
 static void UndergroundVendors_DrawPriceWindow(UndergroundMenu *menu)
@@ -585,7 +585,7 @@ void UndergroundMenu_PrintMenuDescription(UndergroundMenu *menu, int bankEntry)
     Window_FillTilemap(&menu->menuDescriptionWindow, 15);
     Window_CopyToVRAM(&menu->menuDescriptionWindow);
 
-    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(CommManUnderground_GetMiscTextPrinter()), bankEntry, menu->string);
+    MessageLoader_GetString(UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetMiscTextPrinter()), bankEntry, menu->string);
     Text_AddPrinterWithParams(&menu->menuDescriptionWindow, FONT_SYSTEM, menu->string, 1, 1, TEXT_SPEED_NO_TRANSFER, NULL);
     Window_ScheduleCopyToVRAM(&menu->menuDescriptionWindow);
 }
@@ -638,7 +638,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         menu->state = SHOP_MENU_STATE_WAIT_FOR_TEXT;
         break;
     case SHOP_MENU_STATE_WAIT_FOR_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             menu->state = SHOP_MENU_STATE_INIT_OPTIONS_MENU;
         }
         break;
@@ -649,7 +649,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
     case SHOP_MENU_STATE_OPTIONS_MENU:
         input = ListMenu_ProcessInput(menu->listMenu);
         ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
-        CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_VENDOR_OPTIONS, cursorPos, listPos);
+        UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_VENDOR_OPTIONS, cursorPos, listPos);
 
         prevPos = menu->listMenuPos;
         ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->listMenuPos);
@@ -692,7 +692,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
     case SHOP_MENU_STATE_BUY_MENU:
         input = ListMenu_ProcessInput(menu->listMenu);
         ListMenu_GetListAndCursorPos(menu->listMenu, &listPos, &cursorPos);
-        CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_BUY_GOODS + menu->vendorType, cursorPos, listPos);
+        UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_BUY_GOODS + menu->vendorType, cursorPos, listPos);
 
         prevPos = menu->listMenuPos;
         ListMenu_CalcTrueCursorPos(menu->listMenu, &menu->listMenuPos);
@@ -707,7 +707,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         }
 
         if (input != LIST_NOTHING_CHOSEN) {
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
         }
 
         switch (input) {
@@ -734,7 +734,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         }
         break;
     case SHOP_MENU_STATE_BUY_WAIT_FOR_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 menu->state = SHOP_MENU_STATE_INIT_PAY_MENU;
             }
@@ -743,8 +743,8 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
     case SHOP_MENU_STATE_INIT_PAY_MENU:
         UndergroundMenu_EraseCurrentMenu(menu);
 
-        menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PAY_WITH_SPHERES);
-        menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_PAY_WITH_SPHERES);
+        menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_PAY_WITH_SPHERES);
+        menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_PAY_WITH_SPHERES);
 
         UndergroundMenu_OpenPayWithSpheresMenu(menu);
         UndergroundMenu_PrintMenuDescription(menu, UndergroundNPCs_Text_SpheresOnHand);
@@ -758,13 +758,13 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         menu->state = SHOP_MENU_STATE_PAY_MENU;
         break;
     case SHOP_MENU_STATE_PAY_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             input = UndergroundItemListMenu_ProcessInput(menu->itemListMenu);
             ListMenu_GetListAndCursorPos(menu->itemListMenu->listMenu, &listPos, &cursorPos);
-            CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PAY_WITH_SPHERES, cursorPos, listPos);
+            UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_PAY_WITH_SPHERES, cursorPos, listPos);
 
             if (input != LIST_NOTHING_CHOSEN) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
             }
 
             switch (input) {
@@ -802,7 +802,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         menu->state = SHOP_MENU_STATE_END_TRANSACTION;
         break;
     case SHOP_MENU_STATE_BUY_SUCCESS:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 if (menu->vendorType == VENDOR_TYPE_TRAPS) {
                     UndergroundVendors_SetTrapNameForPrinter(2, menu->shopSelection);
@@ -818,7 +818,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         }
         break;
     case SHOP_MENU_STATE_END_TRANSACTION:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 UndergroundVendors_PrintNPCMessage(UndergroundNPCs_Text_DoYouNeedAnythingElse);
                 menu->state = SHOP_MENU_STATE_INIT_OPTIONS_MENU;
@@ -828,8 +828,8 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
     case SHOP_MENU_STATE_INIT_SELL_MENU:
         UndergroundVendors_DrawPriceWindow(menu);
 
-        menu->listMenuCursorPos = CommManUnderground_GetStoredCursorPos(UNDERGROUND_MENU_KEY_SELL_GOODS + menu->vendorType);
-        menu->listMenuListPos = CommManUnderground_GetStoredListPos(UNDERGROUND_MENU_KEY_SELL_GOODS + menu->vendorType);
+        menu->listMenuCursorPos = UndergroundMan_GetStoredCursorPos(UNDERGROUND_MENU_KEY_SELL_GOODS + menu->vendorType);
+        menu->listMenuListPos = UndergroundMan_GetStoredListPos(UNDERGROUND_MENU_KEY_SELL_GOODS + menu->vendorType);
         menu->cursorCallback = UndergroundVendors_PrintItemDescriptionAndSellPrice;
 
         if (menu->vendorType == VENDOR_TYPE_TRAPS) {
@@ -848,11 +848,11 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
     case SHOP_MENU_STATE_SELL_MENU:
         input = UndergroundItemListMenu_ProcessInput(menu->itemListMenu);
         ListMenu_GetListAndCursorPos(menu->itemListMenu->listMenu, &listPos, &cursorPos);
-        CommManUnderground_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_SELL_GOODS + menu->vendorType, cursorPos, listPos);
+        UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_SELL_GOODS + menu->vendorType, cursorPos, listPos);
 
         switch (input) {
         case LIST_CANCEL:
-            UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+            UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
             UndergroundVendors_EraseCurrentMenu(menu, TRUE);
             UndergroundMenu_RemoveDescriptionWindow(menu);
             menu->state = SHOP_MENU_STATE_INIT_OPTIONS_MENU;
@@ -861,7 +861,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
             break;
         default:
             if (menu->shopPriceTypes[0] != SPHERE_NONE) {
-                UndergroundTextPrinter_EraseMessageBoxWindow(CommManUnderground_GetItemNameTextPrinter());
+                UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
                 menu->shopSelection = input;
                 UndergroundVendors_EraseCurrentMenu(menu, TRUE);
                 UndergroundMenu_RemoveDescriptionWindow(menu);
@@ -872,7 +872,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         }
         break;
     case SHOP_MENU_STATE_INIT_CONFIRM_SELL_MENU:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             menu->yesNoMenu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             menu->state = SHOP_MENU_STATE_CONFIRM_SELL;
         }
@@ -899,9 +899,9 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         menu->yesNoMenu = NULL;
         break;
     case SHOP_MENU_STATE_SELL_SUCCESS:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
-                UndergroundTextPrinter_SetTwoDigitNumber(CommManUnderground_GetMiscTextPrinter(), menu->shopPriceSizes[0]);
+                UndergroundTextPrinter_SetTwoDigitNumber(UndergroundMan_GetMiscTextPrinter(), menu->shopPriceSizes[0]);
                 UndergroundVendors_SetTreasureNameForPrinter(2, menu->shopPriceTypes[0]);
                 UndergroundVendors_PrintNPCMessage(UndergroundNPCs_Text_YouObtainedSphere);
 
@@ -916,11 +916,11 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         menu->state = SHOP_MENU_STATE_EXIT_AFTER_TEXT;
         break;
     case SHOP_MENU_STATE_EXIT_AFTER_TEXT:
-        if (!UndergroundTextPrinter_IsPrinterActive(CommManUnderground_GetMiscTextPrinter())) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 UndergroundVendors_EraseMessageBoxWindow();
                 UndergroundVendors_FreeMenu(menu);
-                CommManUnderground_ClearCurrentSysTaskInfo();
+                UndergroundMan_ClearCurrentSysTaskInfo();
                 SysTask_Done(sysTask);
                 CommPlayerMan_ResumeFieldSystem();
             }
@@ -940,7 +940,7 @@ void UndergroundVendors_StartShopMenuTask(FieldSystem *fieldSystem)
     int vendorIndex;
     int vendorType = UndergroundVendors_FindVendorAtCoordinates(x, z, &vendorIndex);
 
-    CommManUnderground_SetStoredPosKey(UNDERGROUND_STORED_POS_KEY_GOODS_VENDOR + vendorType);
+    UndergroundMan_SetStoredPosKey(UNDERGROUND_STORED_POS_KEY_GOODS_VENDOR + vendorType);
 
     UndergroundMenu *menu = Heap_Alloc(HEAP_ID_FIELD1, sizeof(UndergroundMenu));
     MI_CpuClear8(menu, sizeof(UndergroundMenu));
@@ -955,7 +955,7 @@ void UndergroundVendors_StartShopMenuTask(FieldSystem *fieldSystem)
 
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     menu->sysTask = SysTask_Start(UndergroundVendors_ShopMenuTask, menu, 10000);
-    CommManUnderground_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
+    UndergroundMan_SetCurrentSysTask(menu, menu->sysTask, UndergroundMenu_ResetBrightnessAndExit);
 
     int objEventCount = MapHeaderData_GetNumObjectEvents(menu->fieldSystem);
     const ObjectEvent *objEventList = MapHeaderData_GetObjectEvents(menu->fieldSystem);

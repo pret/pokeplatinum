@@ -554,7 +554,7 @@ BOOL ScrCmd_31D(ScriptContext *param0)
 
 BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
 {
-    Pokemon *pokemon;
+    Pokemon *mon;
     Party *party;
     int pokemonSpecies, pokemonForm;
     u32 emptyHeldItem;
@@ -565,7 +565,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
     u16 *result = ScriptContext_GetVarPointer(param0);
 
     party = SaveData_GetParty(fieldSystem->saveData);
-    pokemon = Party_GetPokemonBySlotIndex(party, partySlot);
+    mon = Party_GetPokemonBySlotIndex(party, partySlot);
 
     *result = 0;
 
@@ -573,7 +573,7 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         return 0;
     }
 
-    currentHeldItem = Pokemon_GetValue(pokemon, MON_DATA_HELD_ITEM, NULL);
+    currentHeldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
 
     if (currentHeldItem == ITEM_GRISEOUS_ORB) {
         bagNotFull = Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), ITEM_GRISEOUS_ORB, 1, HEAP_ID_FIELD1);
@@ -584,23 +584,23 @@ BOOL ScrCmd_TryRevertPokemonForm(ScriptContext *param0)
         }
 
         emptyHeldItem = 0;
-        Pokemon_SetValue(pokemon, MON_DATA_HELD_ITEM, &emptyHeldItem);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &emptyHeldItem);
     }
 
-    pokemonForm = Pokemon_GetValue(pokemon, MON_DATA_FORM, NULL);
+    pokemonForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
     if (pokemonForm > 0) {
-        pokemonSpecies = Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL);
+        pokemonSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
         switch (pokemonSpecies) {
         case SPECIES_GIRATINA:
-            Pokemon_SetGiratinaFormByHeldItem(pokemon);
+            Pokemon_SetGiratinaFormByHeldItem(mon);
             break;
         case SPECIES_ROTOM:
-            Pokemon_SetRotomForm(pokemon, ROTOM_FORM_BASE, 0);
+            Pokemon_SetRotomForm(mon, ROTOM_FORM_BASE, 0);
             break;
         case SPECIES_SHAYMIN:
-            Pokemon_SetShayminForm(pokemon, SHAYMIN_FORM_LAND);
+            Pokemon_SetShayminForm(mon, SHAYMIN_FORM_LAND);
             break;
         }
     }
@@ -974,7 +974,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
     MapObject_GetPosPtr(v6, &v1);
     v0 = v1.y;
 
-    while (sub_020625B0(mapObjMan, &v7, &v3, MAP_OBJ_STATUS_0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v3, MAP_OBJ_STATUS_0) == 1) {
         if (v7 != v6) {
             MapObject_SetStatusFlagOn(v7, MAP_OBJ_STATUS_13);
 
@@ -1012,7 +1012,7 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
     MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
     MapObject *v4;
 
-    while (sub_020625B0(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v4, &v0, MAP_OBJ_STATUS_0) == 1) {
         if (v4 != v3) {
             MapObject_SetStatusFlagOff(v4, MAP_OBJ_STATUS_13);
         }

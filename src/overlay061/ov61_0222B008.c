@@ -8,7 +8,7 @@
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/struct_02030A80.h"
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay061/ov61_0222AE60.h"
 #include "overlay061/ov61_0222BC4C.h"
 #include "overlay061/struct_ov61_0222AFC0.h"
@@ -18,7 +18,6 @@
 #include "overlay061/struct_ov61_0222B960.h"
 #include "overlay061/struct_ov61_0222BDC8.h"
 #include "overlay062/ov62_02248408.h"
-#include "overlay062/struct_ov62_022349A8.h"
 #include "overlay062/struct_ov62_022349A8_sub3_sub3.h"
 #include "overlay062/struct_ov62_022349A8_sub3_sub4.h"
 #include "overlay062/struct_ov62_022349A8_sub3_sub5.h"
@@ -100,7 +99,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 *param0, const UnkStruct_ov62_02241130
     param0->unk_18C = ov61_0222BBF0(param1->heapID);
     param0->unk_0C.unk_00 = param1->unk_00;
     param0->unk_0C.unk_04 = GAME_VERSION;
-    param0->unk_0C.unk_05 = GAME_LANGUAGE;
+    param0->unk_0C.language = GAME_LANGUAGE;
 
     v0 = ov61_0222DCDC(&param0->unk_0C);
     GF_ASSERT(v0 == 1);

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay114/struct_ov114_0225C76C.h"
 #include "overlay114/struct_ov114_0225C9A8.h"
@@ -162,7 +162,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         sub_02039734();
 
         if (v1->unk_38) {
-            ov4_021D1E74(HEAP_ID_99);
+            NintendoWFC_StartVoiceChat(HEAP_ID_99);
         }
 
         {
@@ -320,7 +320,7 @@ int ov115_0226048C(ApplicationManager *appMan, int *param1)
         }
 
         if (v1->unk_38) {
-            ov4_021D1F18();
+            NintendoWFC_TerminateVoiceChat();
         }
 
         if (v0->unk_44 == 0) {
@@ -560,7 +560,7 @@ static void ov115_02260B44(UnkStruct_ov115_0226095C *param0, UnkStruct_ov115_022
     }
 
     if (param1->unk_38) {
-        ov4_021D1F18();
+        NintendoWFC_TerminateVoiceChat();
     }
 
     if (param0->unk_04 != NULL) {

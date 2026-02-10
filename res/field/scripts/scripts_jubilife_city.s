@@ -50,7 +50,7 @@ _00AC:
 _00C2:
     SetObjectEventPos 7, 176, 0x2E3
     SetObjectEventDir 7, DIR_WEST
-    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventMovementType 7, MOVEMENT_TYPE_LOOK_WEST
     Return
 
 _00D8:
@@ -958,7 +958,7 @@ _0C52:
 _0C7C:
     RemoveObject 7
     RemoveObject 16
-    ClearFlag FLAG_UNK_0x0198
+    ClearFlag FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN
     SetVar VAR_JUBILIFE_STATE, 4
     SetVar VAR_JUBILIFE_LOOKER_PALPAD, 2
     SetVar VAR_OREBURGH_STATE, 3
@@ -1673,7 +1673,7 @@ JubilifeCity_Looker_AfterOneBadgeObtained:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos 31, 179, VAR_0x8005
     SetObjectEventDir 31, DIR_EAST
-    SetObjectEventMovementType 31, MOVEMENT_TYPE_LOOK_RIGHT
+    SetObjectEventMovementType 31, MOVEMENT_TYPE_LOOK_EAST
     ClearFlag FLAG_UNK_0x0181
     AddObject 31
     ApplyMovement 31, _1538

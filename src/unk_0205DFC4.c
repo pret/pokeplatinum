@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay004/ov4_021D0D80.h"
+#include "nintendo_wfc/main.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -294,7 +294,7 @@ static BOOL sub_0205E268(FieldTask *param0)
     v0.z = FX_Mul(CalcSineDegrees(v2->unk_0E), v2->unk_08);
     v0.y = 0;
 
-    sub_020630AC(v2->unk_00, &v0);
+    MapObject_SetSpritePosOffset(v2->unk_00, &v0);
 
     v2->unk_0E += v2->unk_10;
 
@@ -305,7 +305,7 @@ static BOOL sub_0205E268(FieldTask *param0)
 
     if (v2->unk_0C == 0) {
         v0.x = v0.y = v0.z = 0;
-        sub_020630AC(v2->unk_00, &v0);
+        MapObject_SetSpritePosOffset(v2->unk_00, &v0);
         Heap_Free(v2);
         return 1;
     }
@@ -703,7 +703,7 @@ int sub_0205E6A8(u32 param0)
         return 0xff;
     }
 
-    return ov4_021D2388();
+    return NintendoWFC_GetHostFriendIdx();
 }
 
 u8 sub_0205E6B8(void)

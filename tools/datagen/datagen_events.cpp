@@ -55,10 +55,19 @@ int main(int argc, char **argv)
         std::exit(EXIT_FAILURE);
     }
 
+    std::string fileName = eventsSourceFile.filename();
+
+    fileName = fileName.substr(0, fileName.size() - sizeof(".json")+1);
+    std::transform(fileName.begin(), fileName.end(), fileName.begin(), ::toupper);
+
     std::ofstream byEventObjectsHeader(eventDestPath.c_str());
     byEventObjectsHeader << sHeaderMessage << "\n"
-                    << "#ifndef POKEPLATINUM_GENERATED_OBJECT_EVENTS_H\n"
-                    << "#define POKEPLATINUM_GENERATED_OBJECT_EVENTS_H\n"
+                    << "#ifndef POKEPLATINUM_GENERATED_OBJECT_"
+                    << fileName
+                    << "_H\n"
+                    << "#define POKEPLATINUM_GENERATED_OBJECT_"
+                    << fileName
+                    << "_H\n"
                     << "\n";
 
     const rapidjson::Value& eventArray = eventObjectsDoc["object_events"];
@@ -70,7 +79,9 @@ int main(int argc, char **argv)
     }
 
     byEventObjectsHeader << "\n"
-                    << "#endif // POKEPLATINUM_GENERATED_SPECIES_LEARNSETS_BY_TUTOR_H\n";
+                    << "#endif // POKEPLATINUM_GENERATED_OBJECT_"
+                    << fileName
+                    << "_H\n";
     byEventObjectsHeader.close();
 
     return EXIT_SUCCESS;

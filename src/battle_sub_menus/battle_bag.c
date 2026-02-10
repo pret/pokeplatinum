@@ -413,10 +413,10 @@ static u8 TryUseItem(BattleBag *battleBag)
         u32 itemBattleUse = Item_LoadParam(context->selectedBattleBagItem, ITEM_PARAM_BATTLE_USE_FUNC, context->heapID);
 
         if (context->embargoRemainingTurns != 0 && context->selectedBattleBagItem != ITEM_GUARD_SPEC && itemBattleUse != 3) {
-            Pokemon *pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, partySlot);
+            Pokemon *mon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, partySlot);
             String *string = MessageLoader_GetNewString(battleBag->messageLoader, BattleBag_Text_EmbargoBlockingItemUse);
 
-            StringTemplate_SetNickname(battleBag->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+            StringTemplate_SetNickname(battleBag->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
             StringTemplate_SetMoveName(battleBag->stringTemplate, 1, MOVE_EMBARGO);
             StringTemplate_Format(battleBag->stringTemplate, battleBag->string, string);
             String_Free(string);

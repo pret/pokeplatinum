@@ -33,7 +33,7 @@ void ov5_021ECA70(MapObject *param0)
     v0.y = (FX32_CONST(0));
     v0.z = 0;
 
-    sub_020630AC(param0, &v0);
+    MapObject_SetSpritePosOffset(param0, &v0);
 }
 
 void ov5_021ECA90(MapObject *param0)
@@ -99,7 +99,7 @@ void ov5_021ECB34(MapObject *param0)
     v0.y = (FX32_CONST(24));
     v0.z = 0;
 
-    sub_020630AC(param0, &v0);
+    MapObject_SetSpritePosOffset(param0, &v0);
 }
 
 void ov5_021ECB58(MapObject *param0)

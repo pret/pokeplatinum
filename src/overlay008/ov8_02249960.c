@@ -22,11 +22,11 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/dynamic_terrain_height.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021F4018.h"
 #include "overlay005/ov5_021F428C.h"
 #include "overlay005/ov5_021F47B0.h"
@@ -2936,8 +2936,8 @@ void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = v2;
     v2->fieldSystem = fieldSystem;
 
-    ov5_021DF4A8(fieldSystem->unk_40, 31);
-    ov5_021F42D8(fieldSystem->unk_40, 11, 9);
+    FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, 31);
+    ov5_021F42D8(fieldSystem->fieldEffMan, 11, 9);
 
     if (v1->unk_00 == 1) {
         ov8_0224B958(v2);
@@ -3066,7 +3066,7 @@ static void ov8_0224B958(UnkStruct_ov8_0224B8D0 *param0)
     UnkStruct_ov8_0224B8A0 *v5 = param0->unk_04;
     UnkStruct_ov8_0224BCA8 *v6 = param0->unk_10C;
 
-    while (sub_020625B0(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v2, &v0, (1 << 0)) == 1) {
         if (MapObject_GetLocalID(v2) == 0xfd) {
             if (MapObject_GetDataAt(v2, 0) == 0) {
                 ov8_0224B80C(&v5->unk_08, v2, fieldSystem);
@@ -3308,7 +3308,7 @@ static int ov8_0224BCA8(UnkStruct_ov8_0224C098 *param0)
         if (v1 == 0) {
             (void)0;
         } else {
-            sub_02064450(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
+            VecFx32_SetPosFromMapCoords(v0->unk_08.unk_00, v0->unk_08.unk_04, &param0->unk_20);
             MapObject_SetX(v0->unk_08.unk_08, v0->unk_08.unk_00);
             MapObject_SetZ(v0->unk_08.unk_08, v0->unk_08.unk_04);
             MapObject_UpdateCoords(v0->unk_08.unk_08);
@@ -3672,7 +3672,7 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     fieldSystem->unk_04->dynamicMapFeaturesData = v2;
 
     ov8_0224C3B4(v2);
-    ov5_021DF4A8(fieldSystem->unk_40, 32);
+    FieldEffectManager_InitRenderer(fieldSystem->fieldEffMan, 32);
     MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);
 
     {
@@ -3745,7 +3745,7 @@ void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
                 v12++;
             }
 
-            ov5_021F4CEC(fieldSystem->unk_40, v1->unk_04, v1->unk_06, v1->unk_02);
+            ov5_021F4CEC(fieldSystem->fieldEffMan, v1->unk_04, v1->unk_06, v1->unk_02);
         }
     }
 
@@ -3807,9 +3807,9 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
 
     v0 = 0;
     v1 = 0;
-    v3 = sub_02062858(mapObjMan) + 2;
+    v3 = MapObjectMan_GetTaskBasePriority(mapObjMan) + 2;
 
-    while (sub_020625B0(mapObjMan, &v5, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0))) {
         v4 = MapObject_GetLocalID(v5);
         v6->unk_08 = MapObject_GetDataAt(v5, 0);
 
@@ -3823,7 +3823,7 @@ static void ov8_0224C444(UnkStruct_ov8_0224C444 *param0)
                 v6->unk_08 = 2;
             }
 
-            v6->unk_10 = ov5_021F4840(param0->fieldSystem->unk_40, v5, v6->unk_08, 3);
+            v6->unk_10 = ov5_021F4840(param0->fieldSystem->fieldEffMan, v5, v6->unk_08, 3);
             v6->unk_0C = SysTask_Start(ov8_0224C518, v6, v3);
             GF_ASSERT(v6->unk_0C);
 
@@ -3875,7 +3875,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
     v2 = 2;
     v1 = Direction_GetOpposite(MapObject_GetFacingDir(v8));
 
-    while (sub_020625B0(mapObjMan, &v7, &v0, (1 << 0))) {
+    while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v7, &v0, (1 << 0))) {
         if ((v7 != v8) && (sub_02067F88(fieldSystem, v7) == 1)) {
             v3 = sub_02067D58(v7, playerAvatar, v1, v2);
 
@@ -3907,7 +3907,7 @@ BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
         MapObject_SetZInitial(v1, MapObject_GetZ(v1));
         MapObject_SetMovementRangeX(v1, 2);
         MapObject_SetMovementRangeZ(v1, 2);
-        MapObject_SetMoveCode(v1, MOVEMENT_TYPE_WANDER_AROUND);
+        MapObject_SwitchMovementType(v1, MOVEMENT_TYPE_WANDER_AROUND);
 
         return 1;
     }

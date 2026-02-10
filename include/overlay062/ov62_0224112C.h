@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0208C06C.h"
 
-#include "overlay062/struct_ov62_022349A8.h"
+#include "overlay061/ov61_0222B008.h"
 
 UnkStruct_ov62_022349A8 *ov62_0224112C(UnkStruct_0208C06C *param0);
 void ov62_02241130(UnkStruct_0208C06C *param0);

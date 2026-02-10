@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay061/ov61_0222B008.h"
 #include "overlay061/struct_ov61_0222B960.h"
 #include "overlay061/struct_ov61_0222BC4C.h"
 #include "overlay061/struct_ov61_0222BC4C_1.h"
@@ -24,7 +25,6 @@
 #include "overlay061/struct_ov61_0222BEB8.h"
 #include "overlay061/struct_ov61_0222BED8.h"
 #include "overlay061/struct_ov61_0222BED8_sub1.h"
-#include "overlay062/struct_ov62_022349A8.h"
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 #include "overlay062/struct_ov62_0223DF10.h"
 

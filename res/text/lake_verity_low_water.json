@@ -2,11 +2,11 @@
   "key": 50243,
   "messages": [
     {
-      "id": "pl_msg_00000291_00000",
+      "id": "LakeVerityLowWater_Text_WhatsGoingOn",
       "en_US": "{STRVAR_1 3, 0, 0}: What’s going on...?\r"
     },
     {
-      "id": "pl_msg_00000291_00001",
+      "id": "LakeVerityLowWater_Text_IWillMakeTimeAndSpaceMine",
       "en_US": [
         "...The flowing time...\n",
         "...The expanding space...\r",
@@ -17,32 +17,32 @@
       ]
     },
     {
-      "id": "pl_msg_00000291_00002",
+      "id": "LakeVerityLowWater_Text_AllowMeToPass",
       "en_US": [
         "Allow me to pass.\n",
         "Step aside.\r"
       ]
     },
     {
-      "id": "pl_msg_00000291_00003",
+      "id": "LakeVerityLowWater_Text_WhatWasThatAbout",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What was that about?\n",
         "Weird guy...\r"
       ]
     },
     {
-      "id": "pl_msg_00000291_00004",
+      "id": "LakeVerityLowWater_Text_LetsCatchThatLegendaryPokemon",
       "en_US": [
         "OK, {STRVAR_1 3, 1, 0}!\n",
         "Let’s catch that legendary Pokémon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000291_00005",
+      "id": "LakeVerityLowWater_Text_LegendaryCry",
       "en_US": "Kyauuun!\r"
     },
     {
-      "id": "pl_msg_00000291_00006",
+      "id": "LakeVerityLowWater_Text_ThatWasTheLegendaryPokemonCrying",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: !\n",
         "Did you hear that, {STRVAR_1 3, 1, 0}?!\r",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000291_00007",
+      "id": "LakeVerityLowWater_Text_WaitWeDontHavePokeballs",
       "en_US": [
         "...Wait!\n",
         "What...?!\r",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000291_00008",
+      "id": "LakeVerityLowWater_Text_RowanNoLegendaryPokemonHowWasLakeValor",
       "en_US": [
         "Rowan: Hmmm...\r",
         "No legendary Pokémon, nothing out\n",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000291_00009",
+      "id": "LakeVerityLowWater_Text_RowanHowWasLakeValor",
       "en_US": [
         "Rowan: {STRVAR_1 3, 0, 0}, how was Lake\n",
         "Valor? Anything to report?\r",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000291_00010",
+      "id": "LakeVerityLowWater_Text_DawnHowHasLakeValor",
       "en_US": [
         "Dawn: {STRVAR_1 3, 0, 0}, how was\n",
         "Lake Valor?\r",
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000291_00011",
+      "id": "LakeVerityLowWater_Text_LucasHowsLakeValor",
       "en_US": [
         "Lucas: Hiya, {STRVAR_1 3, 0, 0}!\n",
         "How’s Lake Valor?\r",

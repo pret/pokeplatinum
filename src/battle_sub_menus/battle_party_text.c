@@ -1171,7 +1171,7 @@ static void PrintPokemonNameHeader(BattleParty *battleParty, u32 windowIndex, en
     String *formattedString = String_Init(12, battleParty->context->heapID);
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, sPartyPokemonNameTextIDs[partyIndex]);
 
-    StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
+    StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->mon));
     StringTemplate_Format(battleParty->stringTemplate, formattedString, string);
 
     if (font == FONT_SYSTEM) {
@@ -1887,7 +1887,7 @@ static void RenderPartyPokemonScreen(BattleParty *battleParty)
             BattlePartyText_RenderPartyPokemonStats(battleParty, i);
         }
 
-        if (PokemonSummaryScreen_StatusIconAnimIdx(battleParty->partyPokemon[i].pokemon) != SUMMARY_CONDITION_NONE) {
+        if (PokemonSummaryScreen_StatusIconAnimIdx(battleParty->partyPokemon[i].mon) != SUMMARY_CONDITION_NONE) {
             continue;
         }
 
@@ -1948,7 +1948,7 @@ static void PrintSelectedPokemonName(BattleParty *battleParty, u32 partyIndex)
     u8 genderIconOffset;
     u8 xOffset;
 
-    StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->pokemon));
+    StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon->mon));
     StringTemplate_Format(battleParty->stringTemplate, string, formattedString);
     String_Free(formattedString);
 
@@ -2280,13 +2280,13 @@ void BattlePartyText_PrintToErrorMessageBox(BattleParty *battleParty)
 void BattlePartyText_PrintUseItemEffect(BattleParty *battleParty)
 {
     BattlePartyContext *context = battleParty->context;
-    Pokemon *pokemon;
+    Pokemon *mon;
     void *itemData = Item_Load(context->selectedBattleBagItem, ITEM_FILE_TYPE_DATA, context->heapID);
     u16 newHP;
     u8 healedStatusEffectFlags;
 
-    pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
-    newHP = Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
+    mon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
+    newHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
     healedStatusEffectFlags = 0;
 
     if (Item_Get(itemData, ITEM_PARAM_HEAL_SLEEP) != FALSE) {
@@ -2319,12 +2319,12 @@ void BattlePartyText_PrintUseItemEffect(BattleParty *battleParty)
 
     if (battleParty->partyPokemon[context->selectedPartyIndex].curHP == 0 && newHP != 0) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemRevivedPokemon);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else if (battleParty->partyPokemon[context->selectedPartyIndex].curHP != newHP) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemRestoredHealth);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_SetNumber(battleParty->stringTemplate, 1, newHP - battleParty->partyPokemon[context->selectedPartyIndex].curHP, POKEMON_HP_STAT_DIGITS, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
@@ -2332,42 +2332,42 @@ void BattlePartyText_PrintUseItemEffect(BattleParty *battleParty)
         MessageLoader_GetString(battleParty->messageLoader, BattleParty_Text_ItemRestoredPP, battleParty->string);
     } else if (healedStatusEffectFlags == HEALED_STATUS_EFFECT_FLAG_SLEEP) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredSleep);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else if (healedStatusEffectFlags == HEALED_STATUS_EFFECT_FLAG_POISON) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredPoisoning);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else if (healedStatusEffectFlags == HEALED_STATUS_EFFECT_FLAG_BURN) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredBurn);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else if (healedStatusEffectFlags == HEALED_STATUS_EFFECT_FLAG_FREEZE) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredFreeze);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else if (healedStatusEffectFlags == HEALED_STATUS_EFFECT_FLAG_PARALYSIS) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredParalysis);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else if (healedStatusEffectFlags == HEALED_STATUS_EFFECT_FLAG_CONFUSION) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredConfusion);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else if (healedStatusEffectFlags == HEALED_STATUS_EFFECT_FLAG_INFATUATION) {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredInfatuation);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     } else {
         String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_ItemCuredMultipleStatuses);
-        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+        StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
         String_Free(string);
     }
@@ -2378,10 +2378,10 @@ void BattlePartyText_PrintUseItemEffect(BattleParty *battleParty)
 void BattlePartyText_PrintEmbargoPreventingItemUse(BattleParty *battleParty)
 {
     BattlePartyContext *context = battleParty->context;
-    Pokemon *pokemon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
+    Pokemon *mon = BattleSystem_PartyPokemon(context->battleSystem, context->battler, context->pokemonPartySlots[context->selectedPartyIndex]);
     String *string = MessageLoader_GetNewString(battleParty->messageLoader, BattleParty_Text_EmbargoPreventsItemUse);
 
-    StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(pokemon));
+    StringTemplate_SetNickname(battleParty->stringTemplate, 0, Pokemon_GetBoxPokemon(mon));
     StringTemplate_SetMoveName(battleParty->stringTemplate, 1, MOVE_EMBARGO);
     StringTemplate_Format(battleParty->stringTemplate, battleParty->string, string);
     String_Free(string);

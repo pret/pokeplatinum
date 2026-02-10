@@ -3,10 +3,10 @@
 
 #include "struct_decls/struct_02012744_decl.h"
 
+#include "overlay061/ov61_0222B008.h"
 #include "overlay062/struct_ov62_0223118C_sub1.h"
 #include "overlay062/struct_ov62_02233310.h"
 #include "overlay062/struct_ov62_0223359C.h"
-#include "overlay062/struct_ov62_022349A8.h"
 
 #include "bg_window.h"
 #include "g3d_pipeline.h"

@@ -7,8 +7,6 @@
 #include "constants/graphics.h"
 #include "constants/heap.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "pch/global_pch.h"
 
 #include "bg_window.h"
@@ -1524,7 +1522,7 @@ static void NamingScreen_CopyParamsFromArgs(NamingScreen *namingScreen, NamingSc
 
 static void NamingScreen_InitGraphicsBanks(void)
 {
-    UnkStruct_02099F80 banks = {
+    GXBanks banks = {
         .unk_00 = GX_VRAM_BG_128_A,
         .unk_04 = GX_VRAM_BGEXTPLTT_NONE,
         .unk_08 = GX_VRAM_SUB_BG_128_C,

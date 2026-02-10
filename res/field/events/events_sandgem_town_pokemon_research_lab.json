@@ -51,11 +51,11 @@
     ],
     "object_events": [
         {
-            "id": "SANDGEM_TOWN_POKEMON_RESEARCH_LAB_PROF_ROWAN_0",
+            "id": "LOCALID_PROF_ROWAN",
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0198",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN",
             "script": 3,
             "initial_dir": 1,
             "data": [],
@@ -66,7 +66,7 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_POKEMON_RESEARCH_LAB_SCIENTIST_M_1",
+            "id": "LOCALID_SCIENTIST_M",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,7 +81,7 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_POKEMON_RESEARCH_LAB_SCIENTIST_F_2",
+            "id": "LOCALID_SCIENTIST_F",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -96,11 +96,11 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_POKEMON_RESEARCH_LAB_COUNTERPART_3",
+            "id": "LOCALID_COUNTERPART",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0199",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART",
             "script": 10300,
             "initial_dir": 1,
             "data": [],
@@ -111,11 +111,11 @@
             "y": 0
         },
         {
-            "id": "SANDGEM_TOWN_POKEMON_RESEARCH_LAB_PROF_OAK_4",
+            "id": "LOCALID_PROF_OAK",
             "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x022A",
+            "hidden_flag": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_OAK",
             "script": 0,
             "initial_dir": 0,
             "data": [],

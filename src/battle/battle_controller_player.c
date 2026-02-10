@@ -20,8 +20,8 @@
 
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
+#include "battle/battle_controller.h"
 #include "battle/battle_display.h"
-#include "battle/battle_io.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/battle_script.h"
@@ -340,7 +340,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
 
             // Don't let slow AI processing delay the player from picking their action for the turn
             if (Battler_BootState(BattleSystem_BattlerData(battleSys, i)) == BATTLER_BOOT_STATE_AI || battleCtx->totalTurns) {
-                BattleIO_SetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
+                BattleController_EmitSetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT;
             } else {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT2;
@@ -361,7 +361,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             }
 
             if (j == maxBattlers) {
-                BattleIO_SetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
+                BattleController_EmitSetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT;
             } else {
                 break;
@@ -463,7 +463,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ITEMS) {
                         msg.id = 593; // "Items can’t be used here."
                         msg.tags = TAG_NONE;
-                        BattleIO_SetAlertMessage(battleSys, i, msg);
+                        BattleController_EmitSetAlertMessage(battleSys, i, msg);
 
                         battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                         battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
@@ -485,11 +485,11 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
 
                 case PLAYER_INPUT_CANCEL:
                     if (battleType & BATTLE_TYPE_LINK) {
-                        BattleIO_StopGaugeAnimation(battleSys, i);
+                        BattleController_EmitStopGaugeAnimation(battleSys, i);
                         battleCtx->curCommandState[i] = BATTLE_CONTROL_GET_BATTLE_MON;
                         battleCtx->curCommandState[BattleSystem_Partner(battleSys, i)] = BATTLE_CONTROL_GET_BATTLE_MON;
                     } else if ((battleType & BATTLE_TYPE_DOUBLES) && i == BATTLER_PLAYER_2) {
-                        BattleIO_StopGaugeAnimation(battleSys, i);
+                        BattleController_EmitStopGaugeAnimation(battleSys, i);
                         battleCtx->curCommandState[BATTLER_PLAYER_1] = BATTLE_CONTROL_GET_BATTLE_MON;
                         battleCtx->curCommandState[BATTLER_PLAYER_2] = BATTLE_CONTROL_GET_BATTLE_MON;
                     }
@@ -500,7 +500,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             break;
 
         case COMMAND_SELECTION_MOVE_SELECT_INIT:
-            BattleIO_ShowMoveSelectScreen(battleSys, battleCtx, i);
+            BattleController_EmitShowMoveSelectMenu(battleSys, battleCtx, i);
             battleCtx->curCommandState[i] = COMMAND_SELECTION_MOVE_SELECT;
             // fall-through
 
@@ -517,7 +517,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                         BattleSystem_SetStopRecording(battleSys, 1);
                         Battle_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
                     } else {
-                        BattleIO_SetAlertMessage(battleSys, i, msg);
+                        BattleController_EmitSetAlertMessage(battleSys, i, msg);
                         battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                         battleCtx->nextCommandState[i] = COMMAND_SELECTION_MOVE_SELECT_INIT;
                     }
@@ -534,7 +534,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
         case COMMAND_SELECTION_TARGET_SELECT_INIT:
             int target;
             if (BattleControllerPlayer_MustSelectTarget(battleSys, battleCtx, i, battleType, &target, battleCtx->moveSlot[i], &battleCtx->battlerActions[i][1])) {
-                BattleIO_ShowTargetSelection(battleSys, battleCtx, target, i);
+                BattleCommand_EmitShowTargetSelectMenu(battleSys, battleCtx, target, i);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_TARGET_SELECT;
             } else {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
@@ -553,7 +553,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             break;
 
         case COMMAND_SELECTION_ITEM_SELECT_INIT:
-            BattleIO_ShowBagScreen(battleSys, battleCtx, i);
+            BattleController_EmitShowBagMenu(battleSys, battleCtx, i);
             battleCtx->curCommandState[i] = COMMAND_SELECTION_ITEM_SELECT;
             // fall-through
 
@@ -584,7 +584,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 }
             }
 
-            BattleIO_ShowPartyScreen(battleSys, battleCtx, i, 0, canSwitch, doublesSelection);
+            BattleController_EmitShowPartyMenu(battleSys, battleCtx, i, 0, canSwitch, doublesSelection);
             battleCtx->curCommandState[i] = COMMAND_SELECTION_PARTY_SELECT;
             // fall-through
 
@@ -601,7 +601,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
         case COMMAND_SELECTION_RUN_SELECT_INIT:
             if (battleType & BATTLE_TYPE_FRONTIER) {
                 // "Would you like to forfeit the match and quit now?"
-                BattleIO_ShowYesNoScreen(battleSys, battleCtx, i, 955, 0, NULL, NULL);
+                BattleController_EmitShowYesNoMenu(battleSys, battleCtx, i, 955, 0, NULL, NULL);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT;
             } else if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE) {
                 if (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) {
@@ -610,7 +610,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 } else {
                     msg.tags = 0;
                     msg.id = 793;
-                    BattleIO_SetAlertMessage(battleSys, i, msg);
+                    BattleController_EmitSetAlertMessage(battleSys, i, msg);
 
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                     battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
@@ -620,7 +620,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                     BattleSystem_SetStopRecording(battleSys, 1);
                     Battle_RecordingStopped(battleSys, BattleSystem_Context(battleSys));
                 } else {
-                    BattleIO_SetAlertMessage(battleSys, i, msg);
+                    BattleController_EmitSetAlertMessage(battleSys, i, msg);
                     battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
                     battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
                 }
@@ -650,14 +650,14 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             break;
 
         case COMMAND_SELECTION_WAIT:
-            BattleIO_StopGaugeAnimation(battleSys, i);
+            BattleController_EmitStopGaugeAnimation(battleSys, i);
 
             if (battleType == BATTLE_TYPE_LINK_DOUBLES) {
                 if (battleCtx->curCommandState[BattleSystem_Partner(battleSys, i)] == COMMAND_SELECTION_END) {
-                    BattleIO_LinkWaitMessage(battleSys, i);
+                    BattleController_EmitLinkWaitMessage(battleSys, i);
                 }
             } else {
-                BattleIO_LinkWaitMessage(battleSys, i);
+                BattleController_EmitLinkWaitMessage(battleSys, i);
             }
 
             battleCtx->curCommandState[i] = COMMAND_SELECTION_END;
@@ -678,14 +678,14 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             msg.tags = TAG_NICKNAME;
             msg.id = 608; // "{0} has no moves left!"
             msg.params[0] = BattleSystem_NicknameTag(battleCtx, i);
-            BattleIO_SetAlertMessage(battleSys, i, msg);
+            BattleController_EmitSetAlertMessage(battleSys, i, msg);
 
             battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
             battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;
             break;
 
         case COMMAND_SELECTION_CLEAR_TOUCH_SCREEN:
-            BattleIO_ClearTouchScreen(battleSys, i);
+            BattleController_EmitClearTouchScreen(battleSys, i);
             battleCtx->curCommandState[i] = battleCtx->nextCommandState[i];
             break;
         }
@@ -823,7 +823,7 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
                     && Battler_SelectedMove(battleCtx, battler) == MOVE_FOCUS_PUNCH
                     && Battler_CheckTruant(battleCtx, battler) == FALSE
                     && battleCtx->turnFlags[battler].struggling == FALSE) {
-                    BattleIO_ClearMessageBox(battleSys);
+                    BattleController_EmitClearMessageBox(battleSys);
                     battleCtx->msgBattlerTemp = battler;
 
                     LOAD_SUBSEQ(subscript_tighten_focus);
@@ -1244,7 +1244,7 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
     } while (state == STATE_PROCESSING);
 
     if (state == STATE_BREAK_OUT) {
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     }
 
     if (state == STATE_DONE) {
@@ -1723,7 +1723,7 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
         }
 
         if (state) {
-            BattleIO_ClearMessageBox(battleSys);
+            BattleController_EmitClearMessageBox(battleSys);
             return;
         }
     }
@@ -1751,7 +1751,7 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
         return;
     }
 
-    BattleIO_ClearMessageBox(battleSys);
+    BattleController_EmitClearMessageBox(battleSys);
 
     int battler;
     switch (battleCtx->sideConditionCheckState) {
@@ -1899,7 +1899,7 @@ static void BattleControllerPlayer_FightCommand(BattleSystem *battleSys, BattleC
     battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
     battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, randomizeTarget, 0);
 
-    BattleIO_ClearMessageBox(battleSys);
+    BattleController_EmitClearMessageBox(battleSys);
 }
 
 static void BattleControllerPlayer_ItemCommand(BattleSystem *battleSys, BattleContext *battleCtx)
@@ -2030,7 +2030,7 @@ static void BattleControllerPlayer_SafariBallCommand(BattleSystem *battleSys, Ba
 
     int balls = BattleSystem_NumSafariBalls(battleSys) - 1;
     BattleSystem_SetSafariBalls(battleSys, balls);
-    BattleIO_RefreshHPGauge(battleSys, battleCtx, BATTLER_US);
+    BattleController_EmitRefreshHPGauge(battleSys, battleCtx, BATTLER_US);
 }
 
 static void BattleControllerPlayer_SafariBaitCommand(BattleSystem *battleSys, BattleContext *battleCtx)
@@ -3352,7 +3352,7 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
         GF_ASSERT(battleCtx->damage < 0);
 
         if (Battler_Side(battleSys, battleCtx->attacker) == Battler_Side(battleSys, battleCtx->defender)) {
-            BattleIO_IncrementRecord(battleSys, battleCtx->attacker, 0, RECORD_ATTACKED_ALLY);
+            BattleController_EmitIncrementRecord(battleSys, battleCtx->attacker, 0, RECORD_ATTACKED_ALLY);
         }
 
         battleCtx->lastHitByBattler[battleCtx->defender] = battleCtx->attacker;
@@ -3812,7 +3812,7 @@ static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleC
             battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
         }
 
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     } else {
         battleCtx->command = BATTLE_CONTROL_LOOP_FAINTED;
     }
@@ -3862,7 +3862,7 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
             }
         } while (battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys));
 
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     } else if (CURRENT_MOVE_DATA.range == RANGE_ALL_ADJACENT
         && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
         && battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys)) {
@@ -3881,7 +3881,7 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
             }
         } while (battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys));
 
-        BattleIO_ClearMessageBox(battleSys);
+        BattleController_EmitClearMessageBox(battleSys);
     } else {
         battleCtx->command = BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT;
     }
@@ -4096,10 +4096,10 @@ static BOOL BattleControllerPlayer_ReplaceFainted(BattleSystem *battleSys, Battl
 
                 // Check that there are still living mons in the party.
                 for (j = 0; j < Party_GetCurrentCount(party); j++) {
-                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
-                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != FALSE
-                        && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
-                        && (curHP = Pokemon_GetValue(pokemon, MON_DATA_HP, NULL))) {
+                    Pokemon *mon = Party_GetPokemonBySlotIndex(party, j);
+                    if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != FALSE
+                        && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
+                        && (curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL))) {
                         monsAlive++;
                         if (battleCtx->selectedPartySlot[i ^ 2] != j) {
                             totalHP += curHP;
@@ -4123,11 +4123,11 @@ static BOOL BattleControllerPlayer_ReplaceFainted(BattleSystem *battleSys, Battl
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
             for (j = 0; j < Party_GetCurrentCount(party); j++) {
-                Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
+                Pokemon *mon = Party_GetPokemonBySlotIndex(party, j);
 
-                if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != FALSE
-                    && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                    curHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
+                if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != FALSE
+                    && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
+                    curHP += Pokemon_GetValue(mon, MON_DATA_HP, NULL);
                 }
             }
 
@@ -4198,10 +4198,10 @@ static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, Batt
                 BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
                 for (int j = 0; j < Party_GetCurrentCount(party); j++) {
-                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
-                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
-                        && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
+                    Pokemon *mon = Party_GetPokemonBySlotIndex(party, j);
+                    if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                        && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
+                        totalPartyHP += Pokemon_GetValue(mon, MON_DATA_HP, NULL);
                     }
                 }
 
@@ -4217,18 +4217,18 @@ static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, Batt
                 BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
                 for (int j = 0; j < Party_GetCurrentCount(party); j++) {
-                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
-                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
-                        && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
+                    Pokemon *mon = Party_GetPokemonBySlotIndex(party, j);
+                    if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                        && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
+                        totalPartyHP += Pokemon_GetValue(mon, MON_DATA_HP, NULL);
                     }
                 }
 
                 for (int j = 0; j < Party_GetCurrentCount(partnerParty); j++) {
-                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(partnerParty, j);
-                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
-                        && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
+                    Pokemon *mon = Party_GetPokemonBySlotIndex(partnerParty, j);
+                    if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                        && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
+                        totalPartyHP += Pokemon_GetValue(mon, MON_DATA_HP, NULL);
                     }
                 }
 
@@ -4246,10 +4246,10 @@ static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, Batt
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
             for (int j = 0; j < Party_GetCurrentCount(party); j++) {
-                Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
-                if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
-                    && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
-                    totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_HP, NULL);
+                Pokemon *mon = Party_GetPokemonBySlotIndex(party, j);
+                if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                    && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
+                    totalPartyHP += Pokemon_GetValue(mon, MON_DATA_HP, NULL);
                 }
             }
 

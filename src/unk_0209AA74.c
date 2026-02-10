@@ -5,8 +5,6 @@
 
 #include "constants/graphics.h"
 
-#include "struct_defs/struct_02099F80.h"
-
 #include "bg_window.h"
 #include "brightness_controller.h"
 #include "font.h"
@@ -20,7 +18,7 @@
 #include "system.h"
 #include "text.h"
 
-static const UnkStruct_02099F80 Unk_020F8B54 = {
+static const GXBanks Unk_020F8B54 = {
     GX_VRAM_BG_256_AB,
     GX_VRAM_BGEXTPLTT_NONE,
     GX_VRAM_SUB_BG_NONE,

@@ -241,7 +241,7 @@
         {
             "id": "CANALAVE_LIBRARY_3F_RIVAL_4",
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
-            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_CANALAVE_LIBRARY_RIVAL",
             "script": 0,

@@ -10,7 +10,6 @@
 
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_0207F248.h"
-#include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bag.h"
 #include "battle_regulation.h"
@@ -22,6 +21,7 @@
 #include "grid_menu_cursor_position.h"
 #include "menu.h"
 #include "message.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokedex_heightweight.h"
 #include "sprite.h"
@@ -231,6 +231,16 @@ typedef struct PartyMenuMember {
     u8 isPresent;
 } PartyMenuMember;
 
+typedef struct PartyMenuFormChange {
+    int state;
+    int elapsedFrames;
+    int framesBeforeFormChange;
+    int species;
+    u32 narcIdx;
+    int partySlot;
+    ParticleSystem *ps;
+} PartyMenuFormChange;
+
 #define PARTY_MENU_MEMBER_PANEL_SIZE_TILES 96
 
 typedef struct PartyOrderSwitchData {
@@ -281,8 +291,8 @@ typedef struct PartyMenuApplication {
     u8 unk_B13;
     u16 monStats[6];
     HeightWeightData *heightWeight;
-    OverlayMetadata *unk_B24;
-    G3DPipelineBuffers *unk_B28;
+    PartyMenuFormChange *formChanger;
+    G3DPipelineBuffers *formChange3DPipeline;
 } PartyMenuApplication;
 
 #endif // POKEPLATINUM_PARTY_MENU_DEFS_H
