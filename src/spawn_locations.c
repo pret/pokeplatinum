@@ -13,13 +13,13 @@
 #include "vars_flags.h"
 
 typedef struct SpawnLocation {
-    u16 whiteOutMapId;
-    u16 whiteOutX;
-    u16 whiteOutZ;
+    u16 blackOutMapId;
+    u16 blackOutX;
+    u16 blackOutZ;
     u16 flyMapId;
     u16 flyX;
     u16 flyZ;
-    u8 isTeleportPos;
+    u8 isWarpPos;
     u8 unlockOnMapEntry;
     u16 firstArrival;
 } SpawnLocation;
@@ -74,37 +74,33 @@ void Location_InitFly(int flyDestination, Location *location)
     location->faceDirection = FACE_DOWN;
 }
 
-void Location_InitWhiteOut(int whiteOutDestination, Location *location)
+void Location_InitBlackOut(int blackOutDestination, Location *location)
 {
-    whiteOutDestination = MapSpawnIdToIndex(whiteOutDestination);
+    blackOutDestination = MapSpawnIdToIndex(blackOutDestination);
 
-    location->mapId = sSpawnLocations[whiteOutDestination].whiteOutMapId;
+    location->mapId = sSpawnLocations[blackOutDestination].blackOutMapId;
     location->warpId = WARP_ID_NONE;
-    location->x = sSpawnLocations[whiteOutDestination].whiteOutX;
-    location->z = sSpawnLocations[whiteOutDestination].whiteOutZ;
+    location->x = sSpawnLocations[blackOutDestination].blackOutX;
+    location->z = sSpawnLocations[blackOutDestination].blackOutZ;
     location->faceDirection = FACE_UP;
 }
 
-int GetWhiteOutWarpIdByMap(int param0)
+int GetMapBlackOutWarpId(int mapId)
 {
-    int v0;
-
-    for (v0 = 0; v0 < NELEMS(sSpawnLocations); v0++) {
-        if ((sSpawnLocations[v0].whiteOutMapId == param0) && sSpawnLocations[v0].isTeleportPos) {
-            return v0 + 1;
+    for (int i = 0; i < NELEMS(sSpawnLocations); i++) {
+        if (sSpawnLocations[i].blackOutMapId == mapId && sSpawnLocations[i].isWarpPos) {
+            return i + 1;
         }
     }
 
     return 0;
 }
 
-int GetFlyWarpIdByMap(int param0)
+int GetMapFlyWarpId(int mapId)
 {
-    int v0;
-
-    for (v0 = 0; v0 < NELEMS(sSpawnLocations); v0++) {
-        if ((sSpawnLocations[v0].flyMapId == param0) && sSpawnLocations[v0].isTeleportPos) {
-            return v0 + 1;
+    for (int i = 0; i < NELEMS(sSpawnLocations); i++) {
+        if (sSpawnLocations[i].flyMapId == mapId && sSpawnLocations[i].isWarpPos) {
+            return i + 1;
         }
     }
 

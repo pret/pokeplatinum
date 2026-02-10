@@ -213,7 +213,7 @@ BOOL FieldTask_BlackOutFromBattle(FieldTask *task)
         FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
         u16 warpId = FieldOverworldState_GetWarpId(fieldState);
 
-        Location_InitWhiteOut(warpId, &location);
+        Location_InitBlackOut(warpId, &location);
         Location_InitFly(warpId, FieldOverworldState_GetExitLocation(fieldState));
         FieldTask_ChangeMapByLocation(task, &location);
         FieldSystem_ClearPartnerTrainer(fieldSystem);

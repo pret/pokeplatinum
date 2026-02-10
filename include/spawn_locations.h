@@ -7,9 +7,9 @@
 
 int FieldOverworldState_GetDefaultWarpID(void);
 void Location_InitFly(int flyDestination, Location *location);
-void Location_InitWhiteOut(int whiteOutDestination, Location *location);
-int GetWhiteOutWarpIdByMap(int param0);
-int GetFlyWarpIdByMap(int param0);
+void Location_InitBlackOut(int blackOutDestination, Location *location);
+int GetMapBlackOutWarpId(int mapId);
+int GetMapFlyWarpId(int mapId);
 int GetSpawnIdByMapAndCoords(int mapID, int param1, int param2);
 void TryUnlockFlyLocationByMap(FieldSystem *fieldSystem, int param1);
 BOOL CheckFlyLocationUnlocked(FieldSystem *fieldSystem, int param1);

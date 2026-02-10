@@ -133,7 +133,7 @@ void sub_020705CC(FieldSystem *fieldSystem)
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem)
 {
-    int v0 = GetFlyWarpIdByMap(fieldSystem->location->mapId);
+    int v0 = GetMapFlyWarpId(fieldSystem->location->mapId);
 
     if (v0 != 0 && CheckFlyLocationUnlocked(fieldSystem, v0) == 0) {
         JournalEntry_CreateAndSaveEventArrivedInLocation(fieldSystem->journalEntry, fieldSystem->location->mapId, HEAP_ID_FIELD3);
