@@ -7,7 +7,7 @@ _000:
     Wait 
     WaitButtonABTime 30
     // Magnitude {0}!
-    PrintMessage pl_msg_00000368_00448, TAG_NUMBER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_MagnitudeX, TAG_NUMBER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

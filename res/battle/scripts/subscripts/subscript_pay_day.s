@@ -9,7 +9,7 @@ _000:
 
 _016:
     // Coins scattered everywhere!
-    PrintMessage pl_msg_00000368_00818, TAG_NONE
+    PrintMessage BattleStrings_Text_CoinsScatteredEverywhere, TAG_NONE
     Wait 
     WaitButtonABTime 30
     End 

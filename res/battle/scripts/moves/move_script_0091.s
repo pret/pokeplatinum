@@ -3,5 +3,5 @@
 
 _000:
     // {0} burrowed its way under the ground!
-    BufferMessage pl_msg_00000368_00226, TAG_NICKNAME, BTLSCR_ATTACKER
+    BufferMessage BattleStrings_Text_PokemonBurrowedItsWayUnderTheGround_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoToEffectScript 

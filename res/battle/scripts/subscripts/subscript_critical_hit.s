@@ -4,7 +4,7 @@
 _000:
     CompareVarToValue OPCODE_EQU, BTLVAR_CRITICAL_MUL, 1, _049
     // A critical hit!
-    PrintMessage pl_msg_00000368_00774, TAG_NONE
+    PrintMessage BattleStrings_Text_ACriticalHit, TAG_NONE
     Wait 
     WaitButtonABTime 30
     CheckAbility CHECK_NOT_HAVE, BTLSCR_DEFENDER, ABILITY_ANGER_POINT, _049
@@ -15,7 +15,7 @@ _000:
     UpdateMonData OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_ATTACK_STAGE, 12
     UpdateVar OPCODE_SET, BTLVAR_MSG_TEMP, 1
     // {0} maxed its {2} with {1}!
-    PrintMessage pl_msg_00000368_01093, TAG_NICKNAME_ABILITY_STAT, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonMaxedItsStatWithAbility_Ally, TAG_NICKNAME_ABILITY_STAT, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

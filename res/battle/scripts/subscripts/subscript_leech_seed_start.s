@@ -14,14 +14,14 @@ _000:
     UpdateMonDataFromVar OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, BTLVAR_ATTACKER
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_LEECH_SEED
     // {0} was seeded!
-    PrintMessage pl_msg_00000368_00290, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonWasSeeded_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     GoTo _056
 
 _046:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
     WaitButtonABTime 30
     // {0} evaded the attack!
-    PrintMessage pl_msg_00000368_00293, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonEvadedTheAttack_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
 
 _056:
     Wait 

@@ -11,14 +11,14 @@ _000:
     UpdateMonData OPCODE_ADD, BTLSCR_DEFENDER, BATTLEMON_SPEED_STAGE, 1
     UpdateVar OPCODE_SET, BTLVAR_MSG_TEMP, 3
     // {0}’s {1} raised its {2}!
-    PrintMessage BattleStrings_Text_PokemonsAbilityRaisedItsStat, TAG_NICKNAME_ABILITY_STAT, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityRaisedItsStat_Ally, TAG_NICKNAME_ABILITY_STAT, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     End 
 
 _032:
     // {0}’s {1} made {2} useless!
-    PrintMessage pl_msg_00000368_00638, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveUseless_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

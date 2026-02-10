@@ -22,7 +22,7 @@ _000:
 
 _081:
     // {0} copied {1}’s {2}!
-    PrintMessage pl_msg_00000368_00523, TAG_NICKNAME_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonCopiedPokemonsAbility_AllyAlly, TAG_NICKNAME_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_DEFENDER, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     End 

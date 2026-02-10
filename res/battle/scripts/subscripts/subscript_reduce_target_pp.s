@@ -6,7 +6,7 @@ _000:
     TrySpite _018
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     // It reduced the PP of {0}’s {1} by {2}!
-    PrintMessage pl_msg_00000368_00398, TAG_NICKNAME_MOVE_NUMBER, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_ItReducedThePPOfPokemonsMoveByX_Ally, TAG_NICKNAME_MOVE_NUMBER, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     End 

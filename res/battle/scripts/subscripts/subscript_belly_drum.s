@@ -15,7 +15,7 @@ _000:
     PlayBattleAnimation BTLSCR_ATTACKER, BATTLE_ANIMATION_STAT_BOOST
     Wait 
     // {0} cut its own HP and maximized its Attack!
-    PrintMessage pl_msg_00000368_00449, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonCutItsOwnHPAndMaximizedItsAttack_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

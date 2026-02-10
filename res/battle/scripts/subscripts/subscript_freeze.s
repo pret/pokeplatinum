@@ -33,7 +33,7 @@ _073:
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_FREEZE
     UnlockMoveChoice BTLSCR_SIDE_EFFECT_MON
     // {0} was frozen solid!
-    PrintMessage pl_msg_00000368_00101, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonWasFrozenSolid_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     Wait 
     SetHealthbarStatus BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_FROZEN
     WaitButtonABTime 30
@@ -54,7 +54,7 @@ _115:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _157
     WaitButtonABTime 30
     // It doesn’t affect {0}...
-    PrintMessage pl_msg_00000368_00027, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_ItDoesntAffectPokemon_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _150
 
 _128:
@@ -68,7 +68,7 @@ _139:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _157
     WaitButtonABTime 30
     // {0} is protected by Safeguard!
-    PrintMessage pl_msg_00000368_00200, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonIsProtectedBySafeguard_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
 
 _150:
     Wait 

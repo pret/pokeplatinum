@@ -17,39 +17,39 @@ _000:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_HONEY_TREE, _061
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES, _079
     // A wild {0} appeared!
-    PrintGlobalMessage pl_msg_00000368_00965, TAG_NICKNAME, BTLSCR_ENEMY
+    PrintGlobalMessage BattleStrings_Text_AWildPokemonAppeared, TAG_NICKNAME, BTLSCR_ENEMY
     GoTo _084
 
 _055:
     // Whoa! A wild {0} came charging!
-    PrintGlobalMessage pl_msg_00000368_01167, TAG_NICKNAME, BTLSCR_ENEMY
+    PrintGlobalMessage BattleStrings_Text_WhoaAWildPokemonCameCharging, TAG_NICKNAME, BTLSCR_ENEMY
     GoTo _084
 
 _061:
     // A wild {0} appeared from the tree you slathered with Honey!
-    PrintGlobalMessage pl_msg_00000368_00968, TAG_NICKNAME, BTLSCR_ENEMY
+    PrintGlobalMessage BattleStrings_Text_AWildPokemonAppearedFromTheTreeYouSlatheredWithHoney, TAG_NICKNAME, BTLSCR_ENEMY
     GoTo _084
 
 _067:
     // A wild {0} appeared!
-    PrintGlobalMessage pl_msg_00000368_01246, TAG_NICKNAME, BTLSCR_ENEMY
+    PrintGlobalMessage BattleStrings_Text_AWildPokemonAppeared3, TAG_NICKNAME, BTLSCR_ENEMY
     GoTo _084
 
 _073:
     // The Distortion World’s {0} appeared!
-    PrintGlobalMessage pl_msg_00000368_01268, TAG_NICKNAME, BTLSCR_ENEMY
+    PrintGlobalMessage BattleStrings_Text_TheDistortionWorldsPokemonAppeared, TAG_NICKNAME, BTLSCR_ENEMY
     GoTo _084
 
 _079:
     // A wild {0} and {1} appeared!
-    PrintGlobalMessage pl_msg_00000368_00967, TAG_NICKNAME_NICKNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_2
+    PrintGlobalMessage BattleStrings_Text_AWildPokemonAndPokemonAppeared, TAG_NICKNAME_NICKNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_2
 
 _084:
     Wait 
     WaitButtonABTime 30
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_2vs2, _098
     // Go! {0}!
-    PrintMessage pl_msg_00000368_00979, TAG_NICKNAME, BTLSCR_PLAYER
+    PrintMessage BattleStrings_Text_GoPokemon, TAG_NICKNAME, BTLSCR_PLAYER
     GoTo _100
 
 _098:
@@ -130,7 +130,7 @@ _215:
     HealthbarSlideInDelay BTLSCR_ENEMY
     Wait 
     // A wild {0} appeared!
-    PrintGlobalMessage pl_msg_00000368_00965, TAG_NICKNAME, BTLSCR_ENEMY
+    PrintGlobalMessage BattleStrings_Text_AWildPokemonAppeared, TAG_NICKNAME, BTLSCR_ENEMY
     Wait 
     HealthbarSlideIn BTLSCR_PLAYER
     WaitButtonABTime 7
@@ -145,7 +145,7 @@ _237:
     HealthbarSlideInDelay BTLSCR_ENEMY
     Wait 
     // Wow! {0}’s {1} is drawing close!
-    PrintGlobalMessage pl_msg_00000368_01219, TAG_TRNAME_NICKNAME, BTLSCR_ENEMY, BTLSCR_ENEMY
+    PrintGlobalMessage BattleStrings_Text_01219, TAG_TRNAME_NICKNAME, BTLSCR_ENEMY, BTLSCR_ENEMY
     Wait 
     HealthbarSlideIn BTLSCR_PLAYER
     WaitButtonABTime 7

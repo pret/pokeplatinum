@@ -37,7 +37,7 @@ _065:
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
     // The healing wish came true!
-    BufferMessage pl_msg_00000368_01005, TAG_NONE
+    BufferMessage BattleStrings_Text_TheHealingWishCameTrue, TAG_NONE
     Call BATTLE_SUBSCRIPT_WISH_HEAL
 
 _087:
