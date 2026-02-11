@@ -131,12 +131,12 @@ static void PartyMenu_SelectItem(PartyMenuApplication *application, int *param1)
 
     application->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[3], PartyMenu_GetAction(3));
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[4], PartyMenu_GetAction(4));
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[9], PartyMenu_GetAction(9));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_ITEM_GIVE], PartyMenu_GetAction(3));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_ITEM_TAKE], PartyMenu_GetAction(4));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_CANCEL], PartyMenu_GetAction(9));
 
     v0.choices = application->contextMenuChoices;
-    v0.window = &application->windows[35];
+    v0.window = &application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = 3;
@@ -144,7 +144,7 @@ static void PartyMenu_SelectItem(PartyMenuApplication *application, int *param1)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    Window_DrawStandardFrame(&application->windows[35], 1, 1, 14);
+    Window_DrawStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], 1, 1, 14);
 
     application->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -166,7 +166,7 @@ static void PartyMenu_SelectItemTake(PartyMenuApplication *application, int *par
     int v2 = 17;
     FieldSystem *fieldSystem;
 
-    Window_EraseStandardFrame(&application->windows[35], 1);
+    Window_EraseStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], 1);
     Menu_Free(application->contextMenu, NULL);
     StringList_Free(application->contextMenuChoices);
 
@@ -208,8 +208,8 @@ static void PartyMenu_SelectItemTake(PartyMenuApplication *application, int *par
         MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00083, application->tmpString);
     }
 
-    Window_DrawMessageBoxWithScrollCursor(&application->windows[34], 1, (1 + 9), 15);
-    Window_FillTilemap(&application->windows[34], 15);
+    Window_DrawMessageBoxWithScrollCursor(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1, (1 + 9), 15);
+    Window_FillTilemap(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 15);
     PartyMenu_AddLongMessagePrinter(application);
 
     *param1 = v2;
@@ -219,8 +219,8 @@ int sub_02083658(PartyMenuApplication *application)
 {
     if (Text_IsPrinterActive(application->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Window_EraseMessageBox(&application->windows[34], 1);
-            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+            Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
+            PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
             Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
             return 1;
         }
@@ -233,7 +233,7 @@ int sub_020836A8(PartyMenuApplication *application)
 {
     if (Text_IsPrinterActive(application->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Window_EraseMessageBox(&application->windows[34], 1);
+            Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
             PartyMenu_SetupFormChangeAnim(application);
             return 19;
         }
@@ -261,12 +261,12 @@ static void PartyMenu_SelectMail(PartyMenuApplication *application, int *param1)
 
     application->contextMenuChoices = StringList_New(3, HEAP_ID_PARTY_MENU);
 
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[6], PartyMenu_GetAction(6));
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[7], PartyMenu_GetAction(7));
-    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[9], PartyMenu_GetAction(9));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_MAIL_READ], PartyMenu_GetAction(6));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_MAIL_TAKE], PartyMenu_GetAction(7));
+    StringList_AddFromString(application->contextMenuChoices, application->menuStrings[PARTY_MENU_STR_CANCEL], PartyMenu_GetAction(9));
 
     v0.choices = application->contextMenuChoices;
-    v0.window = &application->windows[35];
+    v0.window = &application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = 3;
@@ -274,7 +274,7 @@ static void PartyMenu_SelectMail(PartyMenuApplication *application, int *param1)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    Window_DrawStandardFrame(&application->windows[35], 1, 1, 14);
+    Window_DrawStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], 1, 1, 14);
 
     application->contextMenu = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -291,7 +291,7 @@ static void PartyMenu_SelectMailRead(PartyMenuApplication *application, int *par
 
 static void PartyMenu_SelectMailTake(PartyMenuApplication *application, int *param1)
 {
-    Window_EraseStandardFrame(&application->windows[35], 1);
+    Window_EraseStandardFrame(&application->windows[PARTY_MENU_WIN_GIVE_ITEM_OR_MAIL], 1);
     Menu_Free(application->contextMenu, NULL);
     StringList_Free(application->contextMenuChoices);
     PartyMenu_PrintLongMessage(application, pl_msg_00000453_00043, TRUE);
@@ -368,8 +368,8 @@ static int sub_02083990(void *applicationPtr)
 {
     PartyMenuApplication *application = applicationPtr;
 
-    Window_EraseMessageBox(&application->windows[34], 1);
-    PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
+    PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
     return 1;
@@ -378,8 +378,8 @@ static int sub_02083990(void *applicationPtr)
 int sub_020839BC(PartyMenuApplication *application)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&application->windows[34], 1);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+        Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
+        PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     }
@@ -421,8 +421,8 @@ int sub_02083AA4(void *applicationPtr)
 {
     PartyMenuApplication *application = applicationPtr;
 
-    Window_EraseMessageBox(&application->windows[34], 1);
-    PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
+    PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
     return 1;
@@ -441,7 +441,7 @@ static void PartyMenu_SelectSwitch(PartyMenuApplication *application, int *param
     Sprite_SetAnim(application->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], PartyMenu_GetMemberPanelAnim(application->partyMenu->type, application->switchTargetSlot) + 2);
     Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_SWITCH], TRUE);
     PartyMenu_UpdateSlotPalette(application, application->switchTargetSlot);
-    Window_EraseMessageBox(&application->windows[33], 1);
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_MEDIUM_MESSAGE], 1);
     PartyMenu_ClearContextWindow(application);
     PartyMenu_PrintShortMessage(application, pl_msg_00000453_00030, TRUE);
 
@@ -458,7 +458,7 @@ void sub_02083B88(PartyMenuApplication *application)
     }
 
     PartyMenu_UpdateSlotPalette(application, application->switchTargetSlot);
-    PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+    PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
 }
 
 void sub_02083BD4(PartyMenuApplication *application)
@@ -558,7 +558,7 @@ BOOL sub_02083D1C(PartyMenuApplication *application)
 
         PartyMenu_UpdateSlotPalette(application, application->currPartySlot);
         PartyMenu_UpdateSlotPalette(application, application->switchTargetSlot);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, FALSE);
+        PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, FALSE);
 
         return 1;
     }
@@ -712,7 +712,7 @@ static void sub_020844B0(PartyMenuApplication *application, int *param1)
 {
     u8 v0;
 
-    Window_EraseMessageBox(&application->windows[33], 1);
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_MEDIUM_MESSAGE], 1);
     PartyMenu_ClearContextWindow(application);
 
     for (v0 = 0; v0 < application->partyMenu->maxSelectionSlots; v0++) {
@@ -759,7 +759,7 @@ static void sub_020844B0(PartyMenuApplication *application, int *param1)
 int sub_020845A8(PartyMenuApplication *application)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&application->windows[34], 1);
+        Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
         PartyMenu_PrintShortMessage(application, pl_msg_00000453_00034, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
@@ -792,9 +792,9 @@ static void sub_020845E8(PartyMenuApplication *application, int *param1)
         PartyMenu_PrintSelectionEligibility(application, v0);
     }
 
-    Window_EraseMessageBox(&application->windows[33], 1);
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_MEDIUM_MESSAGE], 1);
     PartyMenu_ClearContextWindow(application);
-    PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+    PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
 
     *param1 = 1;
@@ -833,7 +833,7 @@ static void PartyMenu_SelectSummary(PartyMenuApplication *application, int *para
 static void sub_02084760(PartyMenuApplication *application, int *param1)
 {
     PartyMenu_ClearContextWindow(application);
-    Window_EraseMessageBox(&application->windows[33], 1);
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_MEDIUM_MESSAGE], 1);
 
     *param1 = sub_02084780(application);
 }
@@ -998,7 +998,7 @@ static void sub_020849FC(PartyMenuApplication *application, int *param1)
 
 static int sub_02084A18(PartyMenuApplication *application)
 {
-    Window_EraseMessageBox(&application->windows[33], 1);
+    Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_MEDIUM_MESSAGE], 1);
     PartyMenu_ClearContextWindow(application);
 
     application->monStats[0] = application->partyMembers[application->currPartySlot].maxHP / 5;
@@ -1029,8 +1029,8 @@ static int sub_02084A18(PartyMenuApplication *application)
 int sub_02084B34(PartyMenuApplication *application)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&application->windows[34], 1);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE); // Choose a Pokémon.
+        Window_EraseMessageBox(&application->windows[PARTY_MENU_WIN_LONG_MESSAGE], 1);
+        PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     }

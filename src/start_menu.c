@@ -1058,14 +1058,14 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan)
 
         UnkStruct_0203C1C8 *v5 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(UnkStruct_0203C1C8));
 
-        v5->unk_00 = partyMenu->usedItemID; // TMHM
+        v5->unk_00 = partyMenu->usedItemID;
         v5->unk_02 = 0;
         menu->unk_260 = v5;
 
         menu->taskData = summary;
         StartMenu_SetCallback(menu, StartMenu_ExitSummary);
     } break;
-    case PARTY_MENU_EXIT_CODE_FORGET_MOVE: { // called after level up
+    case PARTY_MENU_EXIT_CODE_FORGET_MOVE: {
         PokemonSummary *summary = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
 
         summary->monData = SaveData_GetParty(fieldSystem->saveData);
@@ -1120,7 +1120,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan)
 
         StartMenu_SetCallback(menu, StartMenu_ExitMail);
     } break;
-    case PARTY_MENU_EXIT_CODE_GIVE_ITEM: { // give item
+    case PARTY_MENU_EXIT_CODE_GIVE_ITEM: {
         u32 *v13 = (u32 *)Heap_Alloc(HEAP_ID_FIELD2, 4);
         *v13 = partyMenu->selectedMonSlot;
         menu->unk_260 = (void *)v13;
@@ -1157,7 +1157,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan)
         menu->taskData = v15;
         menu->state = START_MENU_STATE_EVOLVE_INIT;
     } break;
-    case PARTY_MENU_EXIT_CODE_ROCK_SMASH: // fieldMoveTaskOrError:
+    case PARTY_MENU_EXIT_CODE_ROCK_SMASH:
     case PARTY_MENU_EXIT_CODE_CUT:
     case PARTY_MENU_EXIT_CODE_FLY:
     case PARTY_MENU_EXIT_CODE_DEFOG:
@@ -1184,7 +1184,7 @@ BOOL StartMenu_ExitPartyMenu(FieldTask *taskMan)
         menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
         StartMenu_SetCallback(menu, StartMenu_ExitBag);
         break;
-    default: // PARTY_MENU_EXIT_CODE_0
+    default:
         if ((partyMenu->mode == PARTY_MENU_MODE_USE_ITEM) || (partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE) || (partyMenu->mode == PARTY_MENU_MODE_TEACH_MOVE_DONE) || (partyMenu->mode == PARTY_MENU_MODE_USE_EVO_ITEM) || (partyMenu->mode == PARTY_MENU_MODE_LEVEL_MOVE_DONE)) {
             menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);
 

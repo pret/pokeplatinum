@@ -323,7 +323,7 @@ static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
         PartyMenu_PrintShortMessage(application, pl_msg_00000453_00197, TRUE);
     } else if (application->partyMenu->mode != PARTY_MENU_MODE_GIVE_ITEM_DONE) {
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+        PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
     } else {
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
     }
@@ -585,7 +585,7 @@ static int sub_0207E634(PartyMenuApplication *application)
         Window_ClearAndScheduleCopyToVRAM(&application->windows[35]);
         Menu_Free(application->contextMenu, NULL);
         StringList_Free(application->contextMenuChoices);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+        PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         return 1;
     default: {
@@ -2138,7 +2138,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
                 PartyMenu_PrintLongMessage(application, pl_msg_00000453_00122, TRUE);
                 break;
             default:
-                PartyMenu_PrintLongMessage(application, pl_msg_00000453_00029, TRUE);
+                PartyMenu_PrintLongMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
                 break;
             }
 
@@ -2391,7 +2391,7 @@ static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *param1)
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
             PartyMenu_PrintShortMessage(application, pl_msg_00000453_00197, TRUE);
         } else {
-            PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+            PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
         }
 
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
@@ -2885,7 +2885,7 @@ static int ResetWindowOnInput(PartyMenuApplication *application)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
         Window_EraseMessageBox(&application->windows[34], 1);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE); // "Choose a Pokémon."
+        PartyMenu_PrintShortMessage(application, PartyMenu_Text_ChooseAPokemon, TRUE);
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         application->partyMenu->mode = PARTY_MENU_MODE_FIELD;
         return 1;
