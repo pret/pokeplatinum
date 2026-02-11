@@ -53,8 +53,8 @@
     Entry(8950,                                     scripts_unk_0498,                       TEXT_BANK_UNK_0539) \
     Entry(8900,                                     scripts_unk_0424,                       TEXT_BANK_UNK_0431) \
     Entry(SCRIPT_ID_OFFSET_SAFARI_GAME,             scripts_safari_game,                    TEXT_BANK_SAFARI_GAME) \
-    Entry(SCRIPT_ID_OFFSET_HIDDEN_ITEMS,            scripts_unk_0408,                       TEXT_BANK_UNK_0380) \
-    Entry(7000,                                     scripts_unk_0404,                       TEXT_BANK_UNK_0369) \
+    Entry(SCRIPT_ID_OFFSET_HIDDEN_ITEMS,            scripts_hidden_items,                   TEXT_BANK_HIDDEN_ITEMS) \
+    Entry(SCRIPT_ID_OFFSET_POKEBALL_ITEMS,          scripts_pokeball_items,                 TEXT_BANK_POKEBALL_ITEMS) \
     Entry(SCRIPT_ID_OFFSET_DOUBLE_BATTLES,          scripts_unk_1114,                       TEXT_BANK_COMMON_STRINGS) \
     Entry(SCRIPT_ID_OFFSET_SINGLE_BATTLES,          scripts_unk_1114,                       TEXT_BANK_COMMON_STRINGS) \
     Entry(2800,                                     scripts_berry_tree_interaction,         TEXT_BANK_BERRY_TREES) \
