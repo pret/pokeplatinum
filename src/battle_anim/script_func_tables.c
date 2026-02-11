@@ -103,8 +103,8 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_StatChangeMetal
 };
 
-static const BattleAnimScriptSpriteFunc sBattleAnimScriptSpriteFuncs[] = {
-    BattleAnimScriptFunc_SpriteExample,
+static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
+    BattleAnimSpriteFunc_SpriteExample,
     ov12_0222AE68,
     ov12_0222FE30,
     ov12_0222D56C,
@@ -159,9 +159,9 @@ BattleAnimScriptFunc BattleAnimScript_GetFunc(u32 id)
 
 BattleAnimScriptSpriteFunc BattleAnimScript_GetSpriteFunc(u32 id)
 {
-    if (id >= NELEMS(sBattleAnimScriptSpriteFuncs)) {
+    if (id >= NELEMS(sBattleAnimSpriteFuncs)) {
         return NULL;
     }
 
-    return sBattleAnimScriptSpriteFuncs[id];
+    return sBattleAnimSpriteFuncs[id];
 }
