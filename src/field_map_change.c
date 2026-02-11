@@ -1175,13 +1175,13 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         break;
     case 3:
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
-            ScriptManager_Start(task, SCRIPT_ID_OFFSET_COMMON_SCRIPTS + 34, NULL, NULL);
+            ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 34), NULL, NULL);
         } else {
             sub_020287E0(fieldSystem->saveData);
             mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD2, BG_LAYER_MAIN_3);
             SaveInfoWindow_Draw(mapChangeUndergroundData->saveInfoWin);
             mapChangeUndergroundData->unk_1C = 0;
-            ScriptManager_Start(task, SCRIPT_ID_OFFSET_COMMON_SCRIPTS + 5, NULL, &mapChangeUndergroundData->unk_1C);
+            ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 5), NULL, &mapChangeUndergroundData->unk_1C);
         }
 
         mapChangeUndergroundData->state = 4;

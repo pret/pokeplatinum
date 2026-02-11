@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/pokeball_items.h"
+#include "res/text/bank/visible_items.h"
 
 
     ScriptEntry _0522

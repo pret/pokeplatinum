@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0547.h"
+#include "res/text/bank/day_care_common.h"
 #include "constants/daycare.h"
 
 
