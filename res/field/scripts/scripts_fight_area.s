@@ -68,11 +68,11 @@ _00D8:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    SetFollowMeBGM
+    Common_SetFollowMeBGM
     ApplyMovement LOCALID_PLAYER, _03E4
     ApplyMovement 7, _0354
     WaitMovement
-    FadeToDefaultMusic3
+    Common_FadeToDefaultMusic3
     SetVar VAR_UNK_0x4081, 1
     ScrCmd_32E
     Message 1
@@ -472,7 +472,7 @@ _0521:
     Message 43
     SetVar VAR_0x8004, ITEM_SUPER_ROD
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_SUPER_ROD_OBTAINED
     Message 44
     WaitABXPadPress

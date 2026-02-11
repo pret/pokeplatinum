@@ -13,6 +13,7 @@
 #include "generated/pokemon_contest_types.h"
 
 #include "applications/party_menu/defs.h"
+#include "applications/party_menu/form_change.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/sprites.h"
 #include "applications/party_menu/unk_02083370.h"
@@ -21,7 +22,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "functypes/funcptr_0207E634.h"
-#include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
 #include "battle_regulation.h"
@@ -67,7 +67,7 @@
 #include "res/graphics/party_menu/party_menu_graphics.naix.h"
 #include "res/text/bank/party_menu.h"
 
-FS_EXTERN_OVERLAY(overlay118);
+FS_EXTERN_OVERLAY(party_menu_form_change);
 
 typedef struct MemberPanelTemplate {
     u16 panelX;
@@ -141,9 +141,9 @@ static u8 CheckDuplicateValues(PartyMenuApplication *application);
 static u8 CheckUniqueValues(PartyMenuApplication *application);
 static u8 CheckEqualityInArray(PartyMenuApplication *application);
 static BOOL ShouldShowSubscreen(PartyMenuApplication *application);
-static G3DPipelineBuffers *sub_0207EAD4(enum HeapID heapID);
-static void sub_0207EAF4(void);
-static void sub_0207EB64(G3DPipelineBuffers *param0);
+static G3DPipelineBuffers *InitG3DPipeline(enum HeapID heapID);
+static void G3DPipelineCallback(void);
+static void FreeG3DPipeline(G3DPipelineBuffers *pipelineBuffers);
 static int ProcessMessageResult(PartyMenuApplication *application);
 static int HandleOverlayCompletion(PartyMenuApplication *application);
 static void DrawMemberPanels_Standard(PartyMenuApplication *application, const MemberPanelTemplate *templates);
@@ -451,8 +451,8 @@ static BOOL PartyMenu_Main(ApplicationManager *appMan, int *state)
         *state = ProcessWindowInput(v0);
         break;
     case 31:
-        if (ov118_021D0DBC(v0) == 1) {
-            UnloadOverlay118(v0);
+        if (PartyMenuFormChange_ChangeForm(v0) == 1) {
+            PartyMenu_TeardownFormChangeAnim(v0);
             *state = 25;
         } else {
             *state = 31;
@@ -867,17 +867,17 @@ static void sub_0207EA24(BgConfig *param0)
     Heap_FreeExplicit(HEAP_ID_PARTY_MENU, param0);
 }
 
-void sub_0207EA74(PartyMenuApplication *application, int param1)
+void PartyMenu_UpdateFormChangeGraphicsMode(PartyMenuApplication *application, BOOL isTeardown)
 {
-    if (param1 == 0) {
+    if (!isTeardown) {
         Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
         Bg_FreeTilemapBuffer(application->bgConfig, BG_LAYER_MAIN_0);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
-        application->unk_B28 = sub_0207EAD4(HEAP_ID_PARTY_MENU);
+        application->formChange3DPipeline = InitG3DPipeline(HEAP_ID_PARTY_MENU);
     } else {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        sub_0207EB64(application->unk_B28);
+        FreeG3DPipeline(application->formChange3DPipeline);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_2D);
 
@@ -886,26 +886,26 @@ void sub_0207EA74(PartyMenuApplication *application, int param1)
     }
 }
 
-static G3DPipelineBuffers *sub_0207EAD4(enum HeapID heapID)
+static G3DPipelineBuffers *InitG3DPipeline(enum HeapID heapID)
 {
-    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, sub_0207EAF4);
+    return G3DPipeline_Init(heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_32K, G3DPipelineCallback);
 }
 
-static void sub_0207EAF4(void)
+static void G3DPipelineCallback(void)
 {
     G3X_SetShading(GX_SHADING_TOON);
-    G3X_AntiAlias(1);
-    G3X_AlphaTest(0, 0);
-    G3X_AlphaBlend(1);
-    G3X_EdgeMarking(0);
-    G3X_SetFog(0, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
+    G3X_AntiAlias(TRUE);
+    G3X_AlphaTest(FALSE, 0);
+    G3X_AlphaBlend(TRUE);
+    G3X_EdgeMarking(FALSE);
+    G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
     G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, 0);
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void sub_0207EB64(G3DPipelineBuffers *param0)
+static void FreeG3DPipeline(G3DPipelineBuffers *pipelineBuffers)
 {
-    G3DPipelineBuffers_Free(param0);
+    G3DPipelineBuffers_Free(pipelineBuffers);
 }
 
 static void LoadGraphics(PartyMenuApplication *application, NARC *narc)
@@ -2632,7 +2632,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
         && Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot)) == TRUE) {
         app->partyMenu->evoTargetSpecies = 1;
         Heap_Free(itemData);
-        LoadOverlay118(app);
+        PartyMenu_SetupFormChangeAnim(app);
         return 31;
     }
 
@@ -2804,7 +2804,7 @@ static int ProcessMessageResult(PartyMenuApplication *application)
     if (Text_IsPrinterActive(application->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&application->windows[34], 1);
-            LoadOverlay118(application);
+            PartyMenu_SetupFormChangeAnim(application);
             return 13;
         }
     }
@@ -2814,8 +2814,8 @@ static int ProcessMessageResult(PartyMenuApplication *application)
 
 static int HandleOverlayCompletion(PartyMenuApplication *application)
 {
-    if (ov118_021D0DBC(application) == 1) {
-        UnloadOverlay118(application);
+    if (PartyMenuFormChange_ChangeForm(application) == 1) {
+        PartyMenu_TeardownFormChangeAnim(application);
 
         return 11;
     }
@@ -3005,13 +3005,13 @@ void PartyMenu_LoadMemberPanelTilemaps(enum HeapID heapID, u16 *lead, u16 *back,
     Heap_Free(nscr);
 }
 
-void LoadOverlay118(PartyMenuApplication *application)
+void PartyMenu_SetupFormChangeAnim(PartyMenuApplication *application)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay118), 2);
-    ov118_021D0D80(application);
+    Overlay_LoadByID(FS_OVERLAY_ID(party_menu_form_change), OVERLAY_LOAD_ASYNC);
+    PartyMenuFormChange_Init(application);
 }
 
-void UnloadOverlay118(PartyMenuApplication *application)
+void PartyMenu_TeardownFormChangeAnim(PartyMenuApplication *application)
 {
-    Overlay_UnloadByID(FS_OVERLAY_ID(overlay118));
+    Overlay_UnloadByID(FS_OVERLAY_ID(party_menu_form_change));
 }

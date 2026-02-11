@@ -101,14 +101,14 @@ Route202_CheckStartCatchingTutorial:
     End
 
 Route202_DawnIHaventShownYouHowToCatchAPokemon:
-    SetCounterpartBGM
+    Common_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message Route202_Text_DawnIHaventShownYouHowToCatchAPokemon
     GoTo Route202_DoCatchingTutorial
 
 Route202_LucasDoYouKnowHowToCatchAPokemon:
-    SetCounterpartBGM
+    Common_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
     Message Route202_Text_LucasDoYouKnowHowToCatchAPokemon
@@ -140,7 +140,7 @@ Route202_LucasHereIllGiveYouFivePokeballsToGetYouStarted:
 Route202_GivePokeballs:
     SetVar VAR_0x8004, ITEM_POKE_BALL
     SetVar VAR_0x8005, 5
-    GiveItemQuantity
+    Common_GiveItemQuantity
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnLeave
     GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasLeave

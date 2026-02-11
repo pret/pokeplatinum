@@ -596,7 +596,7 @@ SandgemTownLab_EnableNationalDex:
     Message SandgemTownLab_Text_IHaveAGiftForCompletingTheSinnohPokedex
     SetVar VAR_0x8004, ITEM_POKE_RADAR
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Message SandgemTownLab_Text_ThatsThePokemonRadar
     WaitABXPadPress
     CloseMessage

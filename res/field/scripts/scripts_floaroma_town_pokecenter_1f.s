@@ -9,7 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    CallPokecenterNurse 2
+    Common_CallPokecenterNurse 2
     End
 
 _001E:

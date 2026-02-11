@@ -20,7 +20,7 @@ typedef struct FieldCommunicationManager {
     u8 unk_3E;
     u8 padding_3F;
     u8 unk_40;
-    u8 unk_41;
+    u8 isUnderground;
     u8 isReturningFromBattle;
     u8 unk_43;
     Party *party;

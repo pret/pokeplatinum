@@ -135,7 +135,7 @@ _01DF:
 
 _01FB:
     SetVar VAR_MAP_LOCAL_0, 0
-    SaveGame
+    Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0175
     GoTo _0220

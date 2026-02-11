@@ -18,8 +18,8 @@
 #include "overlay005/struct_ov5_021D432C_decl.h"
 #include "overlay006/hm_cut_in.h"
 #include "overlay006/ov6_02247100.h"
-#include "overlay023/ov23_022499E4.h"
 #include "overlay023/secret_bases.h"
+#include "overlay023/underground_comm_manager.h"
 #include "overlay023/underground_top_screen.h"
 
 #include "bg_window.h"
@@ -53,6 +53,7 @@
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "spawn_locations.h"
 #include "string_gf.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -62,7 +63,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0203A7D8.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
@@ -278,7 +278,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
     }
 
     if (!noWarp) {
-        u16 warpId = sub_0203A858(mapId);
+        u16 warpId = GetMapBlackOutWarpId(mapId);
 
         if (warpId != 0) {
             FieldOverworldState_SetWarpId(fieldState, warpId);
@@ -316,7 +316,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
     }
 
     if (!param1) {
-        u16 warpId = sub_0203A858(mapId);
+        u16 warpId = GetMapBlackOutWarpId(mapId);
 
         if (warpId != 0) {
             FieldOverworldState_SetWarpId(fieldState, warpId);
@@ -1220,7 +1220,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
     case 9:
         fieldSystem->mapLoadType = MAP_LOAD_TYPE_UNDERGROUND;
         Overlay_LoadByID(FS_OVERLAY_ID(overlay23), 2);
-        ov23_022499E8(fieldSystem);
+        CommManUnderground_InitUnderground(fieldSystem);
         FieldTask_ChangeMapToLocation(task, mapChangeUndergroundData->mapId, -1, mapChangeUndergroundData->unk_10, mapChangeUndergroundData->unk_14, 1);
         mapChangeUndergroundData->state++;
         break;
@@ -1236,7 +1236,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         break;
     case 11:
         if (sub_0205444C(task, 1)) {
-            ov23_02249A2C();
+            CommManUnderground_EnterUnderground();
             fieldSystem->ugTopScreenCtx = UndergroundTopScreen_StartTask(fieldSystem);
             BrightnessController_StartTransition(30, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_SUB_SCREEN);
             mapChangeUndergroundData->state++;
@@ -1263,7 +1263,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
     switch (mapChangeUndergroundData->state) {
     case 0:
         SecretBases_SetEntranceGraphicsEnabled(FALSE);
-        ov23_02249A5C();
+        CommManUnderground_ExitUnderground();
         UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
         BrightnessController_StartTransition(30, -16, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_SUB_SCREEN);
         mapChangeUndergroundData->state++;

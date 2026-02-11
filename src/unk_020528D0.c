@@ -29,11 +29,11 @@
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "sound_playback.h"
+#include "spawn_locations.h"
 #include "string_gf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0203A7D8.h"
 #include "unk_020553DC.h"
 #include "unk_02070428.h"
 
@@ -212,7 +212,7 @@ BOOL FieldTask_BlackOutFromBattle(FieldTask *task)
         FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(fieldSystem->saveData);
         u16 warpId = FieldOverworldState_GetWarpId(fieldState);
 
-        Location_InitWhiteOut(warpId, &location);
+        Location_InitBlackOut(warpId, &location);
         Location_InitFly(warpId, FieldOverworldState_GetExitLocation(fieldState));
         FieldTask_ChangeMapByLocation(task, &location);
         FieldSystem_ClearPartnerTrainer(fieldSystem);

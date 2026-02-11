@@ -157,7 +157,7 @@ _02A3:
     CallIfEq VAR_UNK_0x40BE, 1, _0448
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
-    SaveGame
+    Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0145
     GoToIfEq VAR_UNK_0x40BE, 2, _02F1
@@ -350,7 +350,7 @@ _05CD:
 
 _05E1:
     SetVar VAR_UNK_0x40BF, 0
-    GriseousOrbCouldNotBeRemoved
+    Common_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
@@ -494,7 +494,7 @@ _0759:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_ARCADE_PRINT_STATE, 4
-    CheckAllFrontierGoldPrintsObtained
+    Common_CheckAllFrontierGoldPrintsObtained
     Return
 
 _0774:

@@ -279,7 +279,7 @@ e171ea4a5b54d4e68fe7e0031a2edc0d561c7e7c *res/prebuilt/application/wifi_earth/wi
 fc33b6a3e954c139eae32244b2991cf280ab54a4 *res/prebuilt/demo/egg/data/particle/egg_demo_particle.narc
 205a3d2db44040f4fafa6cb15301f3d9e77e5109 *res/prebuilt/fielddata/mm_list/move_model_list.narc
 b37a0c1e61ba1b2ceb905bad16476f1fb5966f18 *res/prebuilt/pokeanime/poke_anm.narc
-dc6caed3c4b1a0b04bebfcf6627a668e37ae6f2c *res/prebuilt/pokeanime/pl_poke_anm.narc
+dc6caed3c4b1a0b04bebfcf6627a668e37ae6f2c *res/pokemon_anims/pokemon_anims.narc
 e8c96b0f5b6d59820e7201f7881183e3aff1b35f *res/prebuilt/battle/tr_ai/tr_ai_seq.narc
 b54b704c20f35cb66eb2790086dc47cd9ac612f7 *res/prebuilt/arc/area_win_gra.narc
 7d5eac7006f041f4da9f9baf04ee61cc187f4580 *res/prebuilt/arc/balance_ball_gra.narc
@@ -319,7 +319,7 @@ da56afbb7a3f070d8e14f99c9ba6334f7d9b6c2e *res/field/frontier_scripts/fr_script.n
 7fecc969c3a9d6ee05e8157505458927476def4d *res/prebuilt/application/wifi_lobby/map_conv/wflby_map.narc
 def7833f7d5b18328cbe9cc5d5331ff634b082cc *res/prebuilt/fielddata/tornworld/tw_arc.narc
 bf51c9691b15f9aff257a3e8012dc36bd015619f *res/prebuilt/fielddata/tornworld/tw_arc_attr.narc
-ad8bf1d7e289c679e0d2c844ba1700fb2e61fedd *res/prebuilt/particledata/pl_pokelist/pokelist_particle.narc
+ad8bf1d7e289c679e0d2c844ba1700fb2e61fedd *res/graphics/party_menu/form_changes/form_change_effects.narc
 ecdb14e0bc6619f114549e6126c8b6934cfc3aeb *res/prebuilt/battle/b_pl_stage/pl_bsdpm.narc
 2dac84a8a4c8dca13be326dc071ecbd550eb2ee7 *res/trainers/frontier/pl_btdpm.narc
 738eeff4bee6a7cfbc8d448f23f58ad52ce76314 *res/trainers/frontier/pl_btdtr.narc

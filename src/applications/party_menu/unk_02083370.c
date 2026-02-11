@@ -6,11 +6,11 @@
 #include "generated/items.h"
 
 #include "applications/party_menu/defs.h"
+#include "applications/party_menu/form_change.h"
 #include "applications/party_menu/main.h"
 #include "applications/party_menu/sprites.h"
 #include "applications/party_menu/windows.h"
 #include "field/field_system.h"
-#include "overlay118/ov118_021D0D80.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -208,7 +208,7 @@ static void sub_020834B0(PartyMenuApplication *param0, int *param1)
         MessageLoader_GetString(param0->messageLoader, pl_msg_00000453_00083, param0->tmpString);
     }
 
-    Window_DrawMessageBoxWithScrollCursor(&param0->windows[34], 1, (1 + 9), 15);
+    Window_DrawMessageBoxWithScrollCursor(&param0->windows[34], 1, 1 + 9, 15);
     Window_FillTilemap(&param0->windows[34], 15);
     PartyMenu_AddLongMessagePrinter(param0);
 
@@ -234,7 +234,7 @@ int sub_020836A8(PartyMenuApplication *param0)
     if (Text_IsPrinterActive(param0->textPrinterID) == 0) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->windows[34], 1);
-            LoadOverlay118(param0);
+            PartyMenu_SetupFormChangeAnim(param0);
             return 19;
         }
     }
@@ -244,8 +244,8 @@ int sub_020836A8(PartyMenuApplication *param0)
 
 int sub_020836E4(PartyMenuApplication *param0)
 {
-    if (ov118_021D0DBC(param0) == 1) {
-        UnloadOverlay118(param0);
+    if (PartyMenuFormChange_ChangeForm(param0) == 1) {
+        PartyMenu_TeardownFormChangeAnim(param0);
         return 17;
     }
 

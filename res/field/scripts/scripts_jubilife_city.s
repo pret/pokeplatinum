@@ -93,7 +93,7 @@ JubilifeCity_CounterpartWalkToPlayerFirstArrival:
     WaitMovement
     ApplyMovement LOCALID_COUNTERPART, JubilifeCity_Movement_CounterpartWalkToPlayerFirstArrival
     WaitMovement
-    SetCounterpartBGM
+    Common_SetCounterpartBGM
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, JubilifeCity_MeetLookerWithDawn
     GoToIfEq VAR_RESULT, GENDER_FEMALE, JubilifeCity_MeetLookerWithLucas
@@ -230,7 +230,7 @@ JubilifeCity_LookerWalkAround:
 JubilifeCity_LookerNoticePlayerAndCounterpart:
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerNoticePlayerAndCounterpart
     WaitMovement
-    SetLookerBGM
+    Common_SetLookerBGM
     Message JubilifeCity_Text_WHAAAT
     Message JubilifeCity_Text_HowDidYouUnmaskMe
     CloseMessage
@@ -258,7 +258,7 @@ JubilifeCity_LookerGiveVSRecorderAndLeave:
     Message JubilifeCity_Text_PerhapsYouCanMakeUseOfThis
     SetVar VAR_0x8004, ITEM_VS_RECORDER
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Message JubilifeCity_Text_ThatVsRecorderItIsANiftyDeviceForRecordingAMatch
     CloseMessage
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerWalkWestEastSouth
@@ -271,7 +271,7 @@ JubilifeCity_LookerGiveVSRecorderAndLeave:
     WaitMovement
     SetPosition LOCALID_LOOKER, 186, 0, 756, DIR_SOUTH
     SetObjectEventPos LOCALID_LOOKER, 186, 756
-    FadeToDefaultMusic4
+    Common_FadeToDefaultMusic4
     Return
 
 JubilifeCity_CounterpartWalkToTrainersSchool:
@@ -987,7 +987,7 @@ JubilifeCity_CollectorJubilifeTV:
 JubilifeCity_GiveFashionCaseAndAccessories:
     SetVar VAR_0x8004, ITEM_FASHION_CASE
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_OBTAINED_FASHION_CASE
     Call JubilifeCity_GiveRandomAccessoryFluff
     Call JubilifeCity_GiveRandomAccessoryFluff
@@ -1208,7 +1208,7 @@ JubilifeCity_UnusedMovement9:
 JubilifeCity_UnusedMovement10:
     WalkOnSpotNormalWest
     EndMovement
-    
+
 JubilifeCity_UnusedMovement11:
     WalkOnSpotNormalWest
     EndMovement
@@ -1542,7 +1542,7 @@ JubilifeCity_Clown1CorrectAnswer:
     SetVar VAR_0x8004, ITEM_COUPON_1
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_1
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1581,7 +1581,7 @@ JubilifeCity_Clown2CorrectAnswer:
     SetVar VAR_0x8004, ITEM_COUPON_2
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_2
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1622,7 +1622,7 @@ JubilifeCity_Clown3CorrectAnswer:
     SetVar VAR_0x8004, ITEM_COUPON_3
     SetVar VAR_0x8005, 1
     SetFlag FLAG_OBTAINED_COUPON_3
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1679,7 +1679,7 @@ JubilifeCity_TriggerLookerPalPad:
     AddObject LOCALID_LOOKER
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerNoticePlayer
     WaitMovement
-    SetLookerBGM
+    Common_SetLookerBGM
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerWalkToPlayer
     ApplyMovement LOCALID_PLAYER, JubilifeCity_Movement_PlayerFaceWest
     WaitMovement
@@ -1688,7 +1688,7 @@ JubilifeCity_TriggerLookerPalPad:
     ApplyMovement LOCALID_LOOKER, JubilifeCity_Movement_LookerLeavePalPad
     WaitMovement
     RemoveObject LOCALID_LOOKER
-    FadeToDefaultMusic4
+    Common_FadeToDefaultMusic4
     SetVar VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, 2
     ReleaseAll
     End

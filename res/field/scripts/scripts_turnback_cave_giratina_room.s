@@ -68,7 +68,7 @@ _00A5:
 _00CB:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _010C
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     RemoveObject 1
     ReleaseAll
@@ -83,7 +83,7 @@ _0100:
     GoTo _00CB
 
 _010C:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

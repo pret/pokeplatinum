@@ -236,7 +236,7 @@ static void Task_StartBattleServer(void)
 
     ov7_0224B4B8();
 
-    CommInfo_SendBattleRegulation();
+    CommInfo_SendPlayerInfo();
     FieldCommMan_SetTask(Task_ServerWait, 0);
 }
 
@@ -272,7 +272,7 @@ static void sub_02059964(void)
         return;
     }
 
-    CommInfo_SendBattleRegulation();
+    CommInfo_SendPlayerInfo();
     FieldCommMan_SetTask(sub_02059980, 0);
 }
 
@@ -717,7 +717,7 @@ static void sub_0205A058(void)
 
 SecretBase *sub_0205A080(SaveData *saveData)
 {
-    if (!sFieldCommMan || !sFieldCommMan->unk_41) {
+    if (!sFieldCommMan || !sFieldCommMan->isUnderground) {
         return NULL;
     }
 
@@ -726,14 +726,14 @@ SecretBase *sub_0205A080(SaveData *saveData)
 
 void sub_0205A0A0(void)
 {
-    if (sFieldCommMan && sFieldCommMan->unk_41) {
+    if (sFieldCommMan && sFieldCommMan->isUnderground) {
         UndergroundMan_PauseResources();
     }
 }
 
 void sub_0205A0BC(void)
 {
-    if (sFieldCommMan && sFieldCommMan->unk_41) {
+    if (sFieldCommMan && sFieldCommMan->isUnderground) {
         UndergroundMan_UnpauseResources();
     }
 }

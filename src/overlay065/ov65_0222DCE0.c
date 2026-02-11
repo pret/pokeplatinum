@@ -3353,7 +3353,7 @@ static int ov65_02231200(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
         CommInfo_Init(param0->saveData, NULL);
 
-        CommInfo_SendBattleRegulation();
+        CommInfo_SendPlayerInfo();
 
         sub_02032E1C(CommSys_CurNetId());
         param1 = 2;
@@ -4230,7 +4230,7 @@ static int ov65_02232358(UnkStruct_ov65_0222EBE0 *param0, int param1)
     if (ov65_022321A8(param0)) {
         (void)0;
     } else if (CommTiming_IsSyncState(15)) {
-        CommInfo_SendBattleRegulation();
+        CommInfo_SendPlayerInfo();
         CommMan_SetErrorHandling(1, 1);
         CommTiming_StartSync(18);
 

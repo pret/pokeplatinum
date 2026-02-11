@@ -127,7 +127,7 @@ _01C3:
     Message 13
     SetVar VAR_0x8004, ITEM_HM03
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x01AC
     ClearFlag FLAG_UNK_0x01C3
     SetFlag FLAG_DUMMY_2445

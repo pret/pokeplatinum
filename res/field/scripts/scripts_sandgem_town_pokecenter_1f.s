@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 SandgemTownPokecenter1F_PokecenterNurse:
-    CallPokecenterNurse LOCALID_POKECENTER_NURSE
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
 SandgemTownPokecenter1F_BreederM:

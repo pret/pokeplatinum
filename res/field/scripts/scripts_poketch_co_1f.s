@@ -62,7 +62,7 @@ _010A:
 _0121:
     Message 2
     SetVar VAR_0x8004, POKETCH_APPID_MEMOPAD
-    GivePoketchApp
+    Common_GivePoketchApp
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -72,7 +72,7 @@ _0121:
 _0139:
     Message 5
     SetVar VAR_0x8004, POKETCH_APPID_MARKINGMAP
-    GivePoketchApp
+    Common_GivePoketchApp
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -82,7 +82,7 @@ _0139:
 _0151:
     Message 8
     SetVar VAR_0x8004, POKETCH_APPID_LINKSEARCHER
-    GivePoketchApp
+    Common_GivePoketchApp
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -92,7 +92,7 @@ _0151:
 _0169:
     Message 11
     SetVar VAR_0x8004, POKETCH_APPID_MOVETESTER
-    GivePoketchApp
+    Common_GivePoketchApp
     Message 12
     WaitABXPadPress
     CloseMessage
