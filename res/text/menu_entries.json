@@ -182,15 +182,15 @@
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000361_00045",
+      "id": "MenuEntries_Text_TypePreferenceFire",
       "en_US": "FIRE"
     },
     {
-      "id": "pl_msg_00000361_00046",
+      "id": "MenuEntries_Text_TypePreferenceWater",
       "en_US": "WATER"
     },
     {
-      "id": "pl_msg_00000361_00047",
+      "id": "MenuEntries_Text_TypePreferenceGrass",
       "en_US": "GRASS"
     },
     {
