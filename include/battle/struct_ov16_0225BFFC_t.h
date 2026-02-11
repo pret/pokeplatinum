@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 #define POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 
+#include "battle/healthbar.h"
 #include "battle/struct_ov16_0225BFFC_sub1.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_0226C378.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
 #include "battle_anim/struct_ov12_02223764.h"

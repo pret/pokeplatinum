@@ -6409,11 +6409,11 @@
       "en_US": "{STRVAR_1 52, 0, 0}"
     },
     {
-      "id": "pl_msg_00000368_00950",
+      "id": "BattleStrings_Text_SafariBalls",
       "en_US": "SAFARI BALLS"
     },
     {
-      "id": "pl_msg_00000368_00951",
+      "id": "BattleStrings_Text_SafariBallsLeft",
       "en_US": "Left: {STRVAR_1 51, 0, 0}"
     },
     {
@@ -6481,7 +6481,7 @@
       "en_US": "{STRVAR_1 1, 0, 0}{COLOR 4}♀{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000368_00964",
+      "id": "BattleStrings_Text_HealthbarPokemonName",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
@@ -8204,11 +8204,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000368_01220",
+      "id": "BattleStrings_Text_ParkBalls",
       "en_US": "PARK BALLS"
     },
     {
-      "id": "pl_msg_00000368_01221",
+      "id": "BattleStrings_Text_ParkBallsLeft",
       "en_US": "Left: {STRVAR_1 51, 0, 0}"
     },
     {
