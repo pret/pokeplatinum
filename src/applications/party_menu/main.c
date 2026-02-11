@@ -514,7 +514,7 @@ static int sub_0207E518(PartyMenuApplication *application)
 
     if (v0 == 0) {
         if ((application->partyMenu->mode == PARTY_MENU_MODE_SELECT_NO_PROMPT) || (application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN)) {
-            application->partyMenu->menuSelectionResult = 0;
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
             return 32;
         } else if (application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) {
             sub_020868B0(application);
@@ -527,11 +527,11 @@ static int sub_0207E518(PartyMenuApplication *application)
     } else if (v0 == 4) {
         return HandleGameWindowEvent(application);
     } else if (v0 == 3) {
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         return 32;
     } else if (v0 == 2) {
         if (application->partyMenu->mode != 15) {
-            application->partyMenu->menuSelectionResult = 1;
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_SUMMARY;
             return 32;
         } else {
             Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
@@ -550,7 +550,7 @@ static int sub_0207E5B4(PartyMenuApplication *application)
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
         return ApplyItemEffectOnPokemon(application);
     } else if (v0 == 3) {
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         return 32;
     }
 
@@ -565,7 +565,7 @@ static int sub_0207E5F4(PartyMenuApplication *application)
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
         return ProcessItemApplication(application);
     } else if (v0 == 3) {
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         return 32;
     }
 
@@ -650,13 +650,13 @@ static int sub_0207E750(PartyMenuApplication *application)
             return sub_0208615C(application);
         } else {
             PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
-            application->partyMenu->menuSelectionResult = 0;
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
             application->unk_B0E = 25;
             MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00105, application->tmpString);
             return 24;
         }
     } else if (v0 == 3) {
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         return 32;
     }
 
@@ -2222,7 +2222,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
         }
     }
 
-    application->partyMenu->menuSelectionResult = 0;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     return 32;
 }
@@ -2384,7 +2384,7 @@ static u8 HandleWindowInputEvent(PartyMenuApplication *application, int *param1)
         break;
     case 0xfffffffe:
         Window_EraseMessageBox(&application->windows[33], 1);
-        sub_0208337C(application);
+        PartyMenu_ClearContextWindow(application);
 
         if ((application->partyMenu->mode == PARTY_MENU_MODE_SELECT_CONFIRM) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_TOWER) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_CASTLE) || (application->partyMenu->mode == PARTY_MENU_MODE_BATTLE_HALL)) {
             PartyMenu_PrintShortMessage(application, pl_msg_00000453_00034, TRUE);
@@ -2655,7 +2655,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
             Pokemon *mon = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
 
             app->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, app->partyMenu->usedItemID, &app->partyMenu->evoType);
-            app->partyMenu->menuSelectionResult = 8;
+            app->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_EVOLVE_BY_ITEM;
             Heap_Free(itemData);
             return 32;
         }
@@ -2719,7 +2719,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
         switch (CheckItemUsageValidity(application)) {
         case 0:
             if (Item_IsMail(application->partyMenu->usedItemID) == TRUE) {
-                application->partyMenu->menuSelectionResult = 6;
+                application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_MAIL;
                 return 32;
             }
 
@@ -2854,7 +2854,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
             if (Item_IsMail(application->partyMenu->usedItemID) == 1) {
                 Bag_TryRemoveItem(application->partyMenu->bag, (u16)v5, 1, HEAP_ID_PARTY_MENU);
                 SwapPokemonItem(application, mon, v4, v5);
-                application->partyMenu->menuSelectionResult = 6;
+                application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_MAIL;
                 return 32;
             }
 
@@ -2885,13 +2885,13 @@ static int ResetWindowOnInput(PartyMenuApplication *application)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_GIVE_ITEM_DONE) {
         Window_EraseMessageBox(&application->windows[34], 1);
-        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE);
+        PartyMenu_PrintShortMessage(application, pl_msg_00000453_00029, TRUE); // "Choose a Pokémon."
         Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 0);
         application->partyMenu->mode = PARTY_MENU_MODE_FIELD;
         return 1;
     }
 
-    application->partyMenu->menuSelectionResult = 10;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_RETURN_TO_BAG;
     return 32;
 }
 
@@ -2940,7 +2940,7 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
 static int CheckForItemApplication(PartyMenuApplication *application)
 {
     if (application->partyMembers[application->currPartySlot].ballSeal == 0) {
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         return 32;
     }
 

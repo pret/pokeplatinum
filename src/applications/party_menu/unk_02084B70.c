@@ -412,7 +412,7 @@ int sub_02085348(void *param0)
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         return 32;
     }
 
@@ -649,7 +649,7 @@ int sub_02085804(PartyMenuApplication *application)
                 application->unk_B0E = 1;
             } else {
                 Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
-                application->partyMenu->menuSelectionResult = 0;
+                application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
                 application->currPartySlot = 7;
                 return 32;
             }
@@ -816,9 +816,9 @@ static int sub_02085C50(void *applicationPtr)
         application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(application->partyMenu->party, mon, EVO_CLASS_BY_LEVEL, v5, &application->partyMenu->evoType);
 
         if (application->partyMenu->evoTargetSpecies != 0) {
-            application->partyMenu->menuSelectionResult = 9;
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL;
         } else {
-            application->partyMenu->menuSelectionResult = 0;
+            application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         }
     }
         return 32;
@@ -864,7 +864,7 @@ static int sub_02085FB4(void *applicationPtr)
     String_Free(string);
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
-    application->partyMenu->menuSelectionResult = 5;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_FORGET_MOVE;
     application->unk_B0E = 25;
 
     return 24;
@@ -966,7 +966,7 @@ int sub_0208615C(PartyMenuApplication *application)
         StringTemplate_Format(application->template, application->tmpString, string);
         String_Free(string);
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         application->unk_B0E = 25;
         break;
     case 0xfd:
@@ -974,7 +974,7 @@ int sub_0208615C(PartyMenuApplication *application)
         StringTemplate_Format(application->template, application->tmpString, string);
         String_Free(string);
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         application->unk_B0E = 25;
         break;
     case 0xfe:
@@ -993,7 +993,7 @@ int sub_0208615C(PartyMenuApplication *application)
         String_Free(string);
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         application->unk_B0E = 25;
         break;
     }
@@ -1039,7 +1039,7 @@ int sub_020863A0(PartyMenuApplication *application)
         String_Free(string);
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         application->unk_B0E = 25;
 
         return 24;
@@ -1057,7 +1057,7 @@ static int sub_02086438(void *applicationPtr)
     String_Free(string);
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
-    application->partyMenu->menuSelectionResult = 4;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_LEARNED_MOVE;
     application->unk_B0E = 25;
 
     return 24;
@@ -1088,7 +1088,7 @@ static int sub_020864E4(void *applicationPtr)
     String_Free(string);
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, FALSE);
 
-    application->partyMenu->menuSelectionResult = 0;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
     application->unk_B0E = 25;
 
     return 24;
@@ -1220,7 +1220,7 @@ int sub_02086774(PartyMenuApplication *application)
 
         PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
-        application->partyMenu->menuSelectionResult = 0;
+        application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
         application->unk_B0E = 25;
 
         return 24;
@@ -1243,7 +1243,7 @@ void sub_020868B0(PartyMenuApplication *application)
 
     PartyMenu_PrintLongMessage(application, PRINT_MESSAGE_PRELOADED, TRUE);
 
-    application->partyMenu->menuSelectionResult = 0;
+    application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_DONE;
     application->unk_B0E = 25;
 }
 

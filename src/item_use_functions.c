@@ -318,7 +318,7 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemU
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
     menu->taskData = partyMenu;
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static void UseTownMapFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -327,7 +327,7 @@ static void UseTownMapFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
 
     menu->taskData = FieldSystem_OpenTownMapItem(fieldSystem);
-    sub_0203B674(menu, sub_0203C3F4);
+    StartMenu_SetCallback(menu, sub_0203C3F4);
 }
 
 static BOOL UseTownMapInField(ItemFieldUseContext *usageContext)
@@ -515,7 +515,7 @@ static void UseJournalFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
     StartMenu *v1 = FieldTask_GetEnv(usageContext->fieldTask);
 
     sub_0203D30C(fieldSystem, NULL);
-    sub_0203B674(v1, sub_0203C50C);
+    StartMenu_SetCallback(v1, sub_0203C50C);
 }
 
 static BOOL UseJournalInField(ItemFieldUseContext *usageContext)
@@ -552,7 +552,7 @@ static void UseTMHMFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
     menu->taskData = partyMenu;
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -564,7 +564,7 @@ static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
     menu->unk_260 = sub_0203C540(usageContext->item, 3, 0);
     menu->taskData = v2;
 
-    sub_0203B674(menu, sub_0203C558);
+    StartMenu_SetCallback(menu, StartMenu_ExitMail);
 }
 
 static enum ItemUseCheckResult CanUseBerry(const ItemUseContext *usageContext)
@@ -604,7 +604,7 @@ static void UsePoffinCaseFromMenu(ItemMenuUseContext *usageContext, const ItemUs
     PoffinCaseAppData *poffinCase = FieldSystem_LaunchPoffinCaseApp(fieldSystem, HEAP_ID_FIELD2);
 
     menu->taskData = poffinCase;
-    sub_0203B674(menu, sub_0203C710);
+    StartMenu_SetCallback(menu, sub_0203C710);
 }
 
 static BOOL UsePoffinCaseInField(ItemFieldUseContext *usageContext)
@@ -625,7 +625,7 @@ static void UsePalPadFromMenu(ItemMenuUseContext *usageContext, const ItemUseCon
 
     sub_0203DE78(fieldSystem, fieldSystem->saveData);
     menu->taskData = NULL;
-    sub_0203B674(menu, sub_0203C750);
+    StartMenu_SetCallback(menu, sub_0203C750);
 }
 
 static BOOL UsePalPadInField(ItemFieldUseContext *usageContext)
@@ -928,7 +928,7 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
     menu->taskData = partyMenu;
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static void UseEscapeRopeFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -1008,7 +1008,7 @@ static void UseVsRecorderFromMenu(ItemMenuUseContext *usageContext, const ItemUs
 
     sub_0203DE88(fieldSystem, fieldSystem->saveData);
     menu->taskData = NULL;
-    sub_0203B674(menu, sub_0203C784);
+    StartMenu_SetCallback(menu, sub_0203C784);
 }
 
 static BOOL UseVsRecorderInField(ItemFieldUseContext *usageContext)
@@ -1031,7 +1031,7 @@ static void UseGracideaFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
     menu->taskData = FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, ITEM_GRACIDEA);
 
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static BOOL UseGracideaInField(ItemFieldUseContext *usageContext)
