@@ -17,10 +17,10 @@
 #include "player_avatar.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
+#include "spawn_locations.h"
 #include "special_encounter.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_0203A7D8.h"
 #include "vars_flags.h"
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem);
@@ -38,7 +38,7 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
 
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
-    sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
+    TryUnlockFlyLocationByMap(fieldSystem, fieldSystem->location->mapId);
     SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
@@ -67,7 +67,7 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
 
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
-    sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
+    TryUnlockFlyLocationByMap(fieldSystem, fieldSystem->location->mapId);
     SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
     fieldSystem->wildBattleMetadata.encounterAttempts = 0;
@@ -133,9 +133,9 @@ void sub_020705CC(FieldSystem *fieldSystem)
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem)
 {
-    int v0 = sub_0203A87C(fieldSystem->location->mapId);
+    int v0 = GetMapFlyWarpId(fieldSystem->location->mapId);
 
-    if (v0 != 0 && sub_0203A920(fieldSystem, v0) == 0) {
+    if (v0 != 0 && CheckFlyLocationUnlocked(fieldSystem, v0) == 0) {
         JournalEntry_CreateAndSaveEventArrivedInLocation(fieldSystem->journalEntry, fieldSystem->location->mapId, HEAP_ID_FIELD3);
         return TRUE;
     }

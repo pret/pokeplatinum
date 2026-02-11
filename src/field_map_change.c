@@ -53,6 +53,7 @@
 #include "script_manager.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "spawn_locations.h"
 #include "string_gf.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -62,7 +63,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
-#include "unk_0203A7D8.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
@@ -278,7 +278,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
     }
 
     if (!noWarp) {
-        u16 warpId = sub_0203A858(mapId);
+        u16 warpId = GetMapBlackOutWarpId(mapId);
 
         if (warpId != 0) {
             FieldOverworldState_SetWarpId(fieldState, warpId);
@@ -316,7 +316,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
     }
 
     if (!param1) {
-        u16 warpId = sub_0203A858(mapId);
+        u16 warpId = GetMapBlackOutWarpId(mapId);
 
         if (warpId != 0) {
             FieldOverworldState_SetWarpId(fieldState, warpId);
