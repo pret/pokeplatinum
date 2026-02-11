@@ -30,36 +30,36 @@
 
 // clang-format off
 #define SCRIPT_RANGE_TABLE(Entry) \
-    Entry(10490,                                    scripts_unk_0499,                       TEXT_BANK_SCRATCH_OFF_CARDS) \
-    Entry(10450,                                    scripts_unk_0500,                       TEXT_BANK_UNK_0016) \
-    Entry(SCRIPT_ID_POKEMON_CENTER_DAILY_TRAINERS,  scripts_pokemon_center_daily_trainers,  TEXT_BANK_POKEMON_CENTER_DAILY_TRAINERS) \
-    Entry(10300,                                    scripts_unk_1051,                       TEXT_BANK_COUNTERPART_TALK) \
-    Entry(10200,                                    scripts_unk_0407,                       TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN) \
-    Entry(SCRIPT_ID_OFFSET_TV_REPORTER_INTERVIEWS,  scripts_tv_reporter_interviews,         TEXT_BANK_TV_REPORTER_INTERVIEWS) \
-    Entry(SCRIPT_ID_OFFSET_TV_BROADCAST,            scripts_tv_broadcast,                   TEXT_BANK_TV_PROGRAMS) \
-    Entry(SCRIPT_ID_OFFSET_FIELD_MOVES,             scripts_field_moves,                    TEXT_BANK_FIELD_MOVES) \
-    Entry(SCRIPT_ID_OFFSET_POKEDEX_RATINGS,         scripts_pokedex_ratings,                TEXT_BANK_POKEDEX_RATINGS) \
-    Entry(9900,                                     scripts_unk_0397,                       TEXT_BANK_COMMON_STRINGS) \
-    Entry(9800,                                     scripts_unk_0212,                       TEXT_BANK_CONTEST_REGISTRATION) \
-    Entry(SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS,       scripts_follower_partners,              TEXT_BANK_FOLLOWER_PARTNERS) \
-    Entry(SCRIPT_ID_OFFSET_INIT_NEW_GAME,           scripts_init_new_game,                  TEXT_BANK_COMMON_STRINGS) \
-    Entry(9500,                                     scripts_unk_0501,                       TEXT_BANK_UNK_0547) \
-    Entry(9400,                                     scripts_unk_0426,                       TEXT_BANK_UNK_0432) \
-    Entry(9300,                                     scripts_unk_0406,                       TEXT_BANK_UNK_0374) \
-    Entry(9200,                                     scripts_unk_0423,                       TEXT_BANK_UNK_0430) \
-    Entry(9100,                                     scripts_unk_0000,                       TEXT_BANK_UNK_0011) \
-    Entry(9000,                                     scripts_unk_0213,                       TEXT_BANK_UNK_0221) \
-    Entry(8970,                                     scripts_unk_0425,                       TEXT_BANK_BAG) \
-    Entry(8950,                                     scripts_unk_0498,                       TEXT_BANK_UNK_0539) \
-    Entry(8900,                                     scripts_unk_0424,                       TEXT_BANK_UNK_0431) \
-    Entry(SCRIPT_ID_OFFSET_SAFARI_GAME,             scripts_safari_game,                    TEXT_BANK_SAFARI_GAME) \
-    Entry(SCRIPT_ID_OFFSET_HIDDEN_ITEMS,            scripts_hidden_items,                   TEXT_BANK_HIDDEN_ITEMS) \
-    Entry(SCRIPT_ID_OFFSET_POKEBALL_ITEMS,          scripts_pokeball_items,                 TEXT_BANK_POKEBALL_ITEMS) \
-    Entry(SCRIPT_ID_OFFSET_DOUBLE_BATTLES,          scripts_unk_1114,                       TEXT_BANK_COMMON_STRINGS) \
-    Entry(SCRIPT_ID_OFFSET_SINGLE_BATTLES,          scripts_unk_1114,                       TEXT_BANK_COMMON_STRINGS) \
-    Entry(2800,                                     scripts_berry_tree_interaction,         TEXT_BANK_BERRY_TREES) \
-    Entry(2500,                                     scripts_unk_0001,                       TEXT_BANK_UNK_0017) \
-    Entry(SCRIPT_ID_OFFSET_COMMON_SCRIPTS,          scripts_common,                         TEXT_BANK_COMMON_STRINGS)
+    Entry(SCRIPT_ID_OFFSET_SCRATCH_OFF_CARDS,              scripts_scratch_off_cards,              TEXT_BANK_SCRATCH_OFF_CARDS) \
+    Entry(SCRIPT_ID_OFFSET_BATTLE_TOWER_RECORDS,           scripts_battle_tower_records,           TEXT_BANK_BATTLE_TOWER_RECORDS) \
+    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_DAILY_TRAINERS,  scripts_pokemon_center_daily_trainers,  TEXT_BANK_POKEMON_CENTER_DAILY_TRAINERS) \
+    Entry(SCRIPT_ID_OFFSET_COUNTERPART_TALK,               scripts_counterpart_talk,               TEXT_BANK_COUNTERPART_TALK) \
+    Entry(SCRIPT_ID_OFFSET_MYSTERY_GIFT_DELIVERYMAN,       scripts_mystery_gift_deliveryman,       TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN) \
+    Entry(SCRIPT_ID_OFFSET_TV_REPORTER_INTERVIEWS,         scripts_tv_reporter_interviews,         TEXT_BANK_TV_REPORTER_INTERVIEWS) \
+    Entry(SCRIPT_ID_OFFSET_TV_BROADCAST,                   scripts_tv_broadcast,                   TEXT_BANK_TV_PROGRAMS) \
+    Entry(SCRIPT_ID_OFFSET_FIELD_MOVES,                    scripts_field_moves,                    TEXT_BANK_FIELD_MOVES) \
+    Entry(SCRIPT_ID_OFFSET_POKEDEX_RATINGS,                scripts_pokedex_ratings,                TEXT_BANK_POKEDEX_RATINGS) \
+    Entry(9900,                                            scripts_unk_0397,                       TEXT_BANK_COMMON_STRINGS) \
+    Entry(SCRIPT_ID_OFFSET_CONTEST_REGISTRATION,           scripts_contest_registration,           TEXT_BANK_CONTEST_REGISTRATION) \
+    Entry(SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS,              scripts_follower_partners,              TEXT_BANK_FOLLOWER_PARTNERS) \
+    Entry(SCRIPT_ID_OFFSET_INIT_NEW_GAME,                  scripts_init_new_game,                  TEXT_BANK_COMMON_STRINGS) \
+    Entry(SCRIPT_ID_OFFSET_DAY_CARE_COMMON,                scripts_day_care_common,                TEXT_BANK_DAY_CARE_COMMON) \
+    Entry(SCRIPT_ID_OFFSET_POFFIN_COMMON,                  scripts_poffin_common,                  TEXT_BANK_POFFIN_COMMON) \
+    Entry(SCRIPT_ID_OFFSET_GROUP_CONNECTION,               scripts_group_connection,               TEXT_BANK_GROUP_CONNECTION) \
+    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_B1F_ATTENDANTS,  scripts_pokemon_center_b1f_attendants,  TEXT_BANK_POKEMON_CENTER_B1F_ATTENDANTS) \
+    Entry(SCRIPT_ID_OFFSET_COMMUNICATION_CLUB,             scripts_communication_club,             TEXT_BANK_COMMUNICATION_CLUB) \
+    Entry(SCRIPT_ID_OFFSET_POKEMON_CENTER_2F_ATTENDANTS,   scripts_pokemon_center_2f_attendants,   TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS) \
+    Entry(SCRIPT_ID_OFFSET_POKE_RADAR,                     scripts_poke_radar,                     TEXT_BANK_BAG) \
+    Entry(SCRIPT_ID_OFFSET_VS_SEEKER,                      scripts_vs_seeker,                      TEXT_BANK_VS_SEEKER) \
+    Entry(SCRIPT_ID_OFFSET_RECORD_CHATOT_CRY,              scripts_record_chatot_cry,              TEXT_BANK_RECORD_CHATOT_CRY) \
+    Entry(SCRIPT_ID_OFFSET_SAFARI_GAME,                    scripts_safari_game,                    TEXT_BANK_SAFARI_GAME) \
+    Entry(SCRIPT_ID_OFFSET_HIDDEN_ITEMS,                   scripts_hidden_items,                   TEXT_BANK_HIDDEN_ITEMS) \
+    Entry(SCRIPT_ID_OFFSET_VISIBLE_ITEMS,                  scripts_visible_items,                  TEXT_BANK_VISIBLE_ITEMS) \
+    Entry(SCRIPT_ID_OFFSET_DOUBLE_BATTLES,                 scripts_battles,                        TEXT_BANK_COMMON_STRINGS) \
+    Entry(SCRIPT_ID_OFFSET_SINGLE_BATTLES,                 scripts_battles,                        TEXT_BANK_COMMON_STRINGS) \
+    Entry(SCRIPT_ID_OFFSET_BERRY_TREE_INTERACTIONS,        scripts_berry_tree_interaction,         TEXT_BANK_BERRY_TREES) \
+    Entry(SCRIPT_ID_OFFSET_BG_EVENTS,                      scripts_bg_events,                      TEXT_BANK_BG_EVENTS) \
+    Entry(SCRIPT_ID_OFFSET_COMMON_SCRIPTS,                 scripts_common,                         TEXT_BANK_COMMON_STRINGS)
 // clang-format on
 
 static BOOL FieldTask_RunScript(FieldTask *taskManager);

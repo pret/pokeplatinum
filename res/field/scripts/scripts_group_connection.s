@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0374.h"
+#include "res/text/bank/group_connection.h"
 
 
     ScriptEntry _0006

@@ -557,7 +557,7 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->fieldSystem->unk_B0 = NULL;
     v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD1);
-    v0->unk_68 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD1);
+    v0->unk_68 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS, HEAP_ID_FIELD1);
     v0->unk_14 = String_Init((90 * 2), HEAP_ID_FIELD1);
     v0->unk_18 = String_Init((90 * 2), HEAP_ID_FIELD1);
     v0->unk_1C = String_Init((90 * 2), HEAP_ID_FIELD1);

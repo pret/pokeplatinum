@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0430.h"
+#include "res/text/bank/pokemon_center_b1f_attendants.h"
 
 
     ScriptEntry _001A

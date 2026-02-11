@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0011.h"
+#include "res/text/bank/communication_club.h"
 
 
     ScriptEntry _000E

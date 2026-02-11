@@ -17,7 +17,7 @@ BOOL Repel_UpdateSteps(SaveData *saveData, FieldSystem *fieldSystem)
         (*repelSteps)--;
 
         if (*repelSteps == 0) {
-            ScriptManager_Set(fieldSystem, 2032, NULL);
+            ScriptManager_Set(fieldSystem, SCRIPT_ID_OFFSET_COMMON_SCRIPTS + 32, NULL);
             return TRUE;
         }
     }
