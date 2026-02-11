@@ -2,25 +2,25 @@
 #include "res/text/bank/jubilife_city_condominiums_2f.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry JubilifeCityCondominiums2F_BugCatcher
+    ScriptEntry JubilifeCityCondominiums2F_PokemonBreederM
     ScriptEntryEnd
 
-_000A:
+JubilifeCityCondominiums2F_BugCatcher:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeCityCondominiums2F_Text_ILikeHowPokemonCanUseAttacks
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_001D:
+JubilifeCityCondominiums2F_PokemonBreederM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message JubilifeCityCondominiums2F_Text_DidYouBuySomeHealBallsAtThePokeMart
     WaitABXPadPress
     CloseMessage
     ReleaseAll

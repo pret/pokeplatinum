@@ -2,7 +2,7 @@
   "key": 17479,
   "messages": [
     {
-      "id": "pl_msg_00000051_00000",
+      "id": "JubilifeCitySouthwestHouse2F_Text_WeComeFromFarawayLand",
       "en_US": [
         "Wi: We come from faraway land.\n",
         "I come see the Pokémon I trade.\r",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000051_00001",
+      "id": "JubilifeCitySouthwestHouse2F_Text_ILikeLookAtPokemonIGetFromFriendInTrade",
       "en_US": [
         "Fi: I like look at Pokémon I get\n",
         "from friend in trade.\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000051_00002",
+      "id": "JubilifeCitySouthwestHouse2F_Text_YouCanTradePokemonWithPeopleAroundTheWorldOnNintendoWFC",
       "en_US": [
         "You can trade Pokémon with people\n",
         "around the world on Nintendo WFC...\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000051_00003",
+      "id": "JubilifeCitySouthwestHouse2F_Text_WhenYouConnectWithPeopleOnNintendoWFCItsHardToBe",
       "en_US": [
         "When you connect with people on\n",
         "Nintendo WFC, it’s hard to\f",

@@ -34,8 +34,8 @@
     ScriptEntryEnd
 
 _0072:
-    CallIfEq VAR_JUBILIFE_STATE, 0, _00AC
-    CallIfGe VAR_JUBILIFE_STATE, 3, _00C2
+    CallIfEq VAR_JUBILIFE_CITY_STATE, 0, _00AC
+    CallIfGe VAR_JUBILIFE_CITY_STATE, 3, _00C2
     GetPlayerGender VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _00D8
     GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _00E0
@@ -187,7 +187,7 @@ _02BB:
     ApplyMovement LOCALID_PLAYER, _04F8
     WaitMovement
     RemoveObject 7
-    SetVar VAR_JUBILIFE_STATE, 1
+    SetVar VAR_JUBILIFE_CITY_STATE, 1
     ReleaseAll
     End
 
@@ -959,7 +959,7 @@ _0C7C:
     RemoveObject 7
     RemoveObject 16
     ClearFlag FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN
-    SetVar VAR_JUBILIFE_STATE, 4
+    SetVar VAR_JUBILIFE_CITY_STATE, 4
     SetVar VAR_JUBILIFE_LOOKER_PALPAD, 2
     SetVar VAR_OREBURGH_STATE, 3
     RemoveObject 24
@@ -1457,7 +1457,7 @@ _1223:
     RemoveItem ITEM_COUPON_2, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_3, 1, VAR_RESULT
     ScrCmd_131
-    SetVar VAR_JUBILIFE_STATE, 2
+    SetVar VAR_JUBILIFE_CITY_STATE, 2
     RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
     RegisterPoketchApp POKETCH_APPID_CALCULATOR
     RegisterPoketchApp POKETCH_APPID_PEDOMETER

@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "JUBILIFE_CITY_CONDOMINIUMS_1F_EXPERT_F_0",
+            "id": "LOCALID_EXPERT_F",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -17,7 +17,7 @@
             "y": 1
         },
         {
-            "id": "JUBILIFE_CITY_CONDOMINIUMS_1F_PACHIRISU_1",
+            "id": "LOCALID_PACHIRISU",
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -32,7 +32,7 @@
             "y": 1
         },
         {
-            "id": "JUBILIFE_CITY_CONDOMINIUMS_1F_PIKACHU_2",
+            "id": "LOCALID_PIKACHU",
             "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -47,7 +47,7 @@
             "y": 1
         },
         {
-            "id": "JUBILIFE_CITY_CONDOMINIUMS_1F_BEAUTY_3",
+            "id": "LOCALID_BEAUTY",
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NORMAL",

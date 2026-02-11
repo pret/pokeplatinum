@@ -614,7 +614,7 @@
             "y": 0,
             "width": 4,
             "length": 1,
-            "var": "VAR_JUBILIFE_STATE",
+            "var": "VAR_JUBILIFE_CITY_STATE",
             "value": 0
         },
         {
@@ -624,7 +624,7 @@
             "y": 0,
             "width": 3,
             "length": 1,
-            "var": "VAR_JUBILIFE_STATE",
+            "var": "VAR_JUBILIFE_CITY_STATE",
             "value": 3
         },
         {
@@ -634,7 +634,7 @@
             "y": 0,
             "width": 1,
             "length": 4,
-            "var": "VAR_JUBILIFE_STATE",
+            "var": "VAR_JUBILIFE_CITY_STATE",
             "value": 1
         },
         {

@@ -1,80 +1,81 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_tv_2f_gallery.h"
+#include "res/field/events/events_jubilife_tv_2f_gallery.h"
 
 
-    ScriptEntry _003A
-    ScriptEntry _03CC
-    ScriptEntry _0409
-    ScriptEntry _0446
-    ScriptEntry _0483
-    ScriptEntry _04C0
-    ScriptEntry _04FD
-    ScriptEntry _053A
-    ScriptEntry _0577
-    ScriptEntry _05B4
-    ScriptEntry _05F1
-    ScriptEntry _062E
-    ScriptEntry _0676
-    ScriptEntry _0689
+    ScriptEntry JubilifeTV2FGallery_Hiker
+    ScriptEntry JubilifeTV2FGallery_Frame0
+    ScriptEntry JubilifeTV2FGallery_Frame1
+    ScriptEntry JubilifeTV2FGallery_Frame2
+    ScriptEntry JubilifeTV2FGallery_Frame3
+    ScriptEntry JubilifeTV2FGallery_Frame4
+    ScriptEntry JubilifeTV2FGallery_Frame5
+    ScriptEntry JubilifeTV2FGallery_Frame6
+    ScriptEntry JubilifeTV2FGallery_Frame7
+    ScriptEntry JubilifeTV2FGallery_Frame8
+    ScriptEntry JubilifeTV2FGallery_Frame9
+    ScriptEntry JubilifeTV2FGallery_Frame10
+    ScriptEntry JubilifeTV2FGallery_PokemonBreederM
+    ScriptEntry JubilifeTV2FGallery_Twin
     ScriptEntryEnd
 
-_003A:
+JubilifeTV2FGallery_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     SetVar VAR_0x8007, 0
-    CallIfUnset FLAG_UNK_0x0088, _006F
-    GoToIfEq VAR_MAP_LOCAL_1, 0, _0077
-    GoToIfEq VAR_MAP_LOCAL_1, 1, _0080
+    CallIfUnset FLAG_ENTERED_DRESSING_ROOM, _006F
+    GoToIfEq VAR_MAP_LOCAL_1, 0, JubilifeTV2FGallery_AskDressUpPokemon
+    GoToIfEq VAR_MAP_LOCAL_1, 1, JubilifeTV2FGallery_AskDressUpPokemonChangePhoto
     End
 
 _006F:
     SetVar VAR_0x8007, 1
     Return
 
-_0077:
-    Message 1
-    GoTo _00B5
+JubilifeTV2FGallery_AskDressUpPokemon:
+    Message JubilifeTV2FGallery_Text_DressUpYourPokemonYouWillDoThisWontYou
+    GoTo JubilifeTV2FGallery_YesNoDressUpPokemon
 
-_0080:
-    Message 11
-    GoTo _00B5
+JubilifeTV2FGallery_AskDressUpPokemonChangePhoto:
+    Message JubilifeTV2FGallery_Text_WouldYouLikeToDressUpAPokemonDearie
+    GoTo JubilifeTV2FGallery_YesNoDressUpPokemon
 
-_0089:
-    Message 3
+JubilifeTV2FGallery_ShouldIExplainToYouHowToDressUpYourPokemon:
+    Message JubilifeTV2FGallery_Text_ShouldIExplainToYouHowToDressUpYourPokemon
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00AC
-    GoToIfEq VAR_RESULT, MENU_NO, _00F5
+    GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV2FGallery_JustChooseTheAccessoriesAndPutThemOnYourPokemon
+    GoToIfEq VAR_RESULT, MENU_NO, JubilifeTV2FGallery_SetPokemonForDressUp
     End
 
-_00AC:
-    Message 6
-    GoTo _00D5
+JubilifeTV2FGallery_JustChooseTheAccessoriesAndPutThemOnYourPokemon:
+    Message JubilifeTV2FGallery_Text_JustChooseTheAccessoriesAndPutThemOnYourPokemon
+    GoTo JubilifeTV2FGallery_YesNoDressUpPokemonAfterExplanation
 
-_00B5:
+JubilifeTV2FGallery_YesNoDressUpPokemon:
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _0089
-    GoToIfEq VAR_RESULT, MENU_NO, _02B3
+    GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV2FGallery_ShouldIExplainToYouHowToDressUpYourPokemon
+    GoToIfEq VAR_RESULT, MENU_NO, JubilifeTV2FGallery_OhYouSillyThingWheresYourSenseOfAdventure
     End
 
-_00D5:
+JubilifeTV2FGallery_YesNoDressUpPokemonAfterExplanation:
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00F5
-    GoToIfEq VAR_RESULT, MENU_NO, _02B3
+    GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV2FGallery_SetPokemonForDressUp
+    GoToIfEq VAR_RESULT, MENU_NO, JubilifeTV2FGallery_OhYouSillyThingWheresYourSenseOfAdventure
     End
 
-_00F5:
+JubilifeTV2FGallery_SetPokemonForDressUp:
     GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 1, _0115
-    GoToIfNe VAR_RESULT, 1, _0121
+    GoToIfEq VAR_RESULT, 1, JubilifeTV2FGallery_SetOnlyPokemonForDressUp
+    GoToIfNe VAR_RESULT, 1, JubilifeTV2FGallery_ChoosePokemonForDressUp
     End
 
-_0115:
+JubilifeTV2FGallery_SetOnlyPokemonForDressUp:
     SetVar VAR_MAP_LOCAL_2, 0
-    GoTo _016C
+    GoTo JubilifeTV2FGallery_TehehehIHopeYouWillDressItUpAdorably
 
-_0121:
-    Message 4
+JubilifeTV2FGallery_ChoosePokemonForDressUp:
+    Message JubilifeTV2FGallery_Text_OohIWonderWhichPokemonYoullDressUp
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
@@ -83,382 +84,382 @@ _0121:
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, _02B3
+    GoToIfEq VAR_MAP_LOCAL_2, 0xFF, JubilifeTV2FGallery_OhYouSillyThingWheresYourSenseOfAdventure
     GetPartyMonSpecies VAR_MAP_LOCAL_2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _02BE
-    GoTo _016C
+    GoToIfEq VAR_RESULT, SPECIES_NONE, JubilifeTV2FGallery_OohNonNonNonThatsAnEgg
+    GoTo JubilifeTV2FGallery_TehehehIHopeYouWillDressItUpAdorably
 
-_016C:
-    Message 5
+JubilifeTV2FGallery_TehehehIHopeYouWillDressItUpAdorably:
+    Message JubilifeTV2FGallery_Text_TehehehIHopeYouWillDressItUpAdorably
     CloseMessage
     GetPlayerDir VAR_0x8006
-    GoToIfEq VAR_0x8006, 0, _019E
-    GoToIfEq VAR_0x8006, 2, _01B8
-    GoToIfEq VAR_0x8006, 3, _01D2
+    GoToIfEq VAR_0x8006, DIR_NORTH, JubilifeTV2FGallery_EnterDressingRoomNorth
+    GoToIfEq VAR_0x8006, DIR_WEST, JubilifeTV2FGallery_EnterDressingRoomWest
+    GoToIfEq VAR_0x8006, DIR_EAST, JubilifeTV2FGallery_EnterDressingRoomEast
     End
 
-_019E:
-    ApplyMovement 0, _0374
+JubilifeTV2FGallery_EnterDressingRoomNorth:
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerMoveOutOfTheWayNorth
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0340
+    ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerEnterDressingRoomNorth
     WaitMovement
-    GoTo _01EC
+    GoTo JubilifeTV2FGallery_EnterDressingRoom
 
-_01B8:
-    ApplyMovement 0, _0380
+JubilifeTV2FGallery_EnterDressingRoomWest:
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerMoveOutOfTheWayWest
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0348
+    ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerEnterDressingRoomWest
     WaitMovement
-    GoTo _01EC
+    GoTo JubilifeTV2FGallery_EnterDressingRoom
 
-_01D2:
-    ApplyMovement 0, _038C
+JubilifeTV2FGallery_EnterDressingRoomEast:
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerMoveOutOfTheWayEast
     WaitMovement
-    ApplyMovement LOCALID_PLAYER, _0354
+    ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerEnterDressingRoomEast
     WaitMovement
-    GoTo _01EC
+    GoTo JubilifeTV2FGallery_EnterDressingRoom
 
-_01EC:
-    SetFlag FLAG_UNK_0x0088
+JubilifeTV2FGallery_EnterDressingRoom:
+    SetFlag FLAG_ENTERED_DRESSING_ROOM
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A6 VAR_MAP_LOCAL_2, VAR_0x8005, VAR_0x8007
+    DressUpPokemon VAR_MAP_LOCAL_2, VAR_0x8005, VAR_0x8007
     ReturnToField
-    ApplyMovement LOCALID_PLAYER, _0360
+    ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerFaceSouth
     WaitMovement
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_0x8006, 0, _0245
-    GoToIfEq VAR_0x8006, 2, _025F
-    GoToIfEq VAR_0x8006, 3, _0279
+    GoToIfEq VAR_0x8006, DIR_NORTH, JubilifeTV2FGallery_ExitDressingRoomNorth
+    GoToIfEq VAR_0x8006, DIR_WEST, JubilifeTV2FGallery_ExitDressingRoomWest
+    GoToIfEq VAR_0x8006, DIR_EAST, JubilifeTV2FGallery_ExitDressingRoomEast
     End
 
-_0245:
-    ApplyMovement LOCALID_PLAYER, _0368
+JubilifeTV2FGallery_ExitDressingRoomNorth:
+    ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerExitDressingRoom
     WaitMovement
-    ApplyMovement 0, _0398
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerBlockDoorNorth
     WaitMovement
-    GoTo _0293
+    GoTo JubilifeTV2FGallery_CheckDressUpPokemonResult
 
-_025F:
-    ApplyMovement LOCALID_PLAYER, _0368
+JubilifeTV2FGallery_ExitDressingRoomWest:
+    ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerExitDressingRoom
     WaitMovement
-    ApplyMovement 0, _03A4
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerBlockDoorWest
     WaitMovement
-    GoTo _0293
+    GoTo JubilifeTV2FGallery_CheckDressUpPokemonResult
 
-_0279:
-    ApplyMovement LOCALID_PLAYER, _0368
+JubilifeTV2FGallery_ExitDressingRoomEast:
+    ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerExitDressingRoom
     WaitMovement
-    ApplyMovement 0, _03B0
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerBlockDoorEast
     WaitMovement
-    GoTo _0293
+    GoTo JubilifeTV2FGallery_CheckDressUpPokemonResult
 
-_0293:
-    GoToIfEq VAR_0x8005, 0, _0335
+JubilifeTV2FGallery_CheckDressUpPokemonResult:
+    GoToIfEq VAR_0x8005, 0, JubilifeTV2FGallery_OhYouCameOutWithoutDoingAnythingHowDisappointing
     SetVar VAR_MAP_LOCAL_1, 1
-    Message 7
+    Message JubilifeTV2FGallery_Text_OohNiceWorkOhButItNeedsToHaveATitle
     WaitABXPadPress
     CloseMessage
-    GoTo _02C7
+    GoTo JubilifeTV2FGallery_SetDressUpPhotoTitle
 
-_02B3:
-    Message 2
+JubilifeTV2FGallery_OhYouSillyThingWheresYourSenseOfAdventure:
+    Message JubilifeTV2FGallery_Text_OhYouSillyThingWheresYourSenseOfAdventure
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_02BE:
-    Message 13
-    GoTo _0121
+JubilifeTV2FGallery_OohNonNonNonThatsAnEgg:
+    Message JubilifeTV2FGallery_Text_OohNonNonNonThatsAnEgg
+    GoTo JubilifeTV2FGallery_ChoosePokemonForDressUp
 
-_02C7:
+JubilifeTV2FGallery_SetDressUpPhotoTitle:
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8004
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8004
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 0, _0328
+    GoToIfEq VAR_RESULT, 0, JubilifeTV2FGallery_OhNonNonNonItWillBeForlornWithoutATitle
     SetDressUpPhotoTitle VAR_0x8004
-    IncrementGameRecord RECORD_UNK_054
-    ScrCmd_316
-    ScrCmd_245 0, VAR_0x8004
-    Message 8
-    ApplyMovement 0, _03BC
+    IncrementGameRecord RECORD_TIMES_DRESSED_UP_POKEMON
+    Dummy316
+    BufferCustomMessageWord 0, VAR_0x8004
+    Message JubilifeTV2FGallery_Text_OohYesYesIGetItNow
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerFaceEast
     WaitMovement
-    Message 14
+    Message JubilifeTV2FGallery_Text_IPutYourPhotoUpRightHere
     WaitABXPadPress
     CloseMessage
-    ApplyMovement 0, _03C4
+    ApplyMovement LOCALID_HIKER, JubilifeTV2FGallery_Movement_HikerFaceSouth
     WaitMovement
     ReleaseAll
     End
 
-_0328:
-    Message 9
+JubilifeTV2FGallery_OhNonNonNonItWillBeForlornWithoutATitle:
+    Message JubilifeTV2FGallery_Text_OhNonNonNonItWillBeForlornWithoutATitle
     WaitABXPadPress
     CloseMessage
-    GoTo _02C7
+    GoTo JubilifeTV2FGallery_SetDressUpPhotoTitle
 
-_0335:
-    Message 10
+JubilifeTV2FGallery_OhYouCameOutWithoutDoingAnythingHowDisappointing:
+    Message JubilifeTV2FGallery_Text_OhYouCameOutWithoutDoingAnythingHowDisappointing
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
     .balign 4, 0
-_0340:
+JubilifeTV2FGallery_Movement_PlayerEnterDressingRoomNorth:
     WalkSlowNorth 2
     EndMovement
 
     .balign 4, 0
-_0348:
+JubilifeTV2FGallery_Movement_PlayerEnterDressingRoomWest:
     WalkSlowWest
     WalkSlowNorth
     EndMovement
 
     .balign 4, 0
-_0354:
+JubilifeTV2FGallery_Movement_PlayerEnterDressingRoomEast:
     WalkSlowEast
     WalkSlowNorth
     EndMovement
 
     .balign 4, 0
-_0360:
+JubilifeTV2FGallery_Movement_PlayerFaceSouth:
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_0368:
+JubilifeTV2FGallery_Movement_PlayerExitDressingRoom:
     WalkSlowSouth 2
     FaceNorth
     EndMovement
 
     .balign 4, 0
-_0374:
+JubilifeTV2FGallery_Movement_HikerMoveOutOfTheWayNorth:
     WalkNormalWest
     FaceEast
     EndMovement
 
     .balign 4, 0
-_0380:
+JubilifeTV2FGallery_Movement_HikerMoveOutOfTheWayWest:
     WalkNormalWest
     FaceEast
     EndMovement
 
     .balign 4, 0
-_038C:
+JubilifeTV2FGallery_Movement_HikerMoveOutOfTheWayEast:
     WalkNormalEast
     FaceWest
     EndMovement
 
     .balign 4, 0
-_0398:
+JubilifeTV2FGallery_Movement_HikerBlockDoorNorth:
     WalkNormalEast
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_03A4:
+JubilifeTV2FGallery_Movement_HikerBlockDoorWest:
     WalkNormalEast
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_03B0:
+JubilifeTV2FGallery_Movement_HikerBlockDoorEast:
     WalkNormalWest
     FaceSouth
     EndMovement
 
     .balign 4, 0
-_03BC:
+JubilifeTV2FGallery_Movement_HikerFaceEast:
     FaceEast
     EndMovement
 
     .balign 4, 0
-_03C4:
+JubilifeTV2FGallery_Movement_HikerFaceSouth:
     FaceSouth
     EndMovement
 
-_03CC:
+JubilifeTV2FGallery_Frame0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 0, VAR_RESULT
+    ShowDressUpPhoto 0, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_0409:
+JubilifeTV2FGallery_Frame1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 1, VAR_RESULT
+    ShowDressUpPhoto 1, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_0446:
+JubilifeTV2FGallery_Frame2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 2, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 2, VAR_RESULT
+    ShowDressUpPhoto 2, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_0483:
+JubilifeTV2FGallery_Frame3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 3, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 3, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 3, VAR_RESULT
+    ShowDressUpPhoto 3, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_04C0:
+JubilifeTV2FGallery_Frame4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 4, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 4, VAR_RESULT
+    ShowDressUpPhoto 4, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_04FD:
+JubilifeTV2FGallery_Frame5:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 5, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 5, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 5, VAR_RESULT
+    ShowDressUpPhoto 5, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_053A:
+JubilifeTV2FGallery_Frame6:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 6, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 6, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 6, VAR_RESULT
+    ShowDressUpPhoto 6, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_0577:
+JubilifeTV2FGallery_Frame7:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 7, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 7, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 7, VAR_RESULT
+    ShowDressUpPhoto 7, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_05B4:
+JubilifeTV2FGallery_Frame8:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 8, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 8, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 8, VAR_RESULT
+    ShowDressUpPhoto 8, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_05F1:
+JubilifeTV2FGallery_Frame9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 9, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 9, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 9, VAR_RESULT
+    ShowDressUpPhoto 9, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_062E:
+JubilifeTV2FGallery_Frame10:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12E 10, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _066B
+    DressUpPhotoHasData 10, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0A7 10, VAR_RESULT
+    ShowDressUpPhoto 10, VAR_RESULT
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
 
-_066B:
-    Message 15
+JubilifeTV2FGallery_ItsAFrameForHoldingAPokemonPortraitPhoto:
+    Message JubilifeTV2FGallery_Text_ItsAFrameForHoldingAPokemonPortraitPhoto
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0676:
+JubilifeTV2FGallery_PokemonBreederM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 16
+    Message JubilifeTV2FGallery_Text_TheyDisplayPhotosFromTrainersYouBeenMixinRecordsWithRight
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0689:
+JubilifeTV2FGallery_Twin:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 17
+    Message JubilifeTV2FGallery_Text_SomeoneGaveMeANewBackdropWhenIWentToTheGlobalTerminal
     WaitABXPadPress
     CloseMessage
     ReleaseAll
