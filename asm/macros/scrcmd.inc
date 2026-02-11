@@ -370,7 +370,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    HandleSignpostInput
+    Common_HandleSignpostInput
     .endm
 
     .macro ShowArrowSign messageID
@@ -378,7 +378,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    HandleSignpostInput
+    Common_HandleSignpostInput
     .endm
 
     .macro ShowLandmarkSign messageID
@@ -386,7 +386,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     GetSignpostInput VAR_RESULT
-    HandleSignpostInput
+    Common_HandleSignpostInput
     .endm
 
     .macro ShowScrollingSign messageID
@@ -394,7 +394,7 @@
     SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
     WaitForSignpostDone
     DrawSignpostScrollingMessage \messageID, VAR_RESULT
-    HandleSignpostInput
+    Common_HandleSignpostInput
     .endm
 
     .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=VAR_RESULT
@@ -5176,116 +5176,116 @@
 
     /* CallCommonScript aliases below */
 
-    .macro HandleSignpostInput
+    .macro Common_HandleSignpostInput
     CallCommonScript 0x7D0
     .endm
 
-    .macro CheckBagPocketForItem
+    .macro Common_CheckBagPocketForItem
     CallCommonScript 0x7D1
     .endm
 
-    .macro CallPokecenterNurse nurseLocalID
+    .macro Common_CallPokecenterNurse nurseLocalID
     SetVar VAR_0x8007, \nurseLocalID
     CallCommonScript 0x7D2
     .endm
 
-    .macro SaveGame
+    .macro Common_SaveGame
     CallCommonScript 0x7D6
     .endm
 
-    .macro GivePoketchApp
+    .macro Common_GivePoketchApp
     CallCommonScript 0x7D9
     .endm
 
-    .macro SendToUndergroundPC
+    .macro Common_SendToUndergroundPC
     CallCommonScript 0x7DC
     .endm
 
-    .macro ObtainUndergroundTrap
+    .macro Common_ObtainUndergroundTrap
     CallCommonScript 0x7DD
     .endm
 
-    .macro ObtainUndergroundSphere
+    .macro Common_ObtainUndergroundSphere
     CallCommonScript 0x7DE
     .endm
 
-    .macro GiveAccessoryWaitForConfirm
+    .macro Common_GiveAccessoryWaitForConfirm
     CallCommonScript 0x7DF
     .endm
 
-    .macro GiveItemQuantityNoLineFeed
+    .macro Common_GiveItemQuantityNoLineFeed
     CallCommonScript 0x7E0
     .endm
 
-    .macro MessageBagIsFull
+    .macro Common_MessageBagIsFull
     CallCommonScript 0x7E1
     .endm
 
-    .macro VendorGreeting
+    .macro Common_VendorGreeting
     CallCommonScript 0x7E3
     .endm
 
-    .macro ObtainContestBackdropWaitForConfirm
+    .macro Common_ObtainContestBackdropWaitForConfirm
     CallCommonScript 0x7F4
     .endm
 
-    .macro PrintPlateObtainedMessage
+    .macro Common_PrintPlateObtainedMessage
     CallCommonScript 0x7F6
     .endm
 
-    .macro SetCounterpartBGM
+    .macro Common_SetCounterpartBGM
     CallCommonScript 0x7F8
     .endm
 
-    .macro FadeToDefaultMusic
+    .macro Common_FadeToDefaultMusic
     CallCommonScript 0x7F9
     .endm
 
-    .macro SetRivalBGM
+    .macro Common_SetRivalBGM
     CallCommonScript 0x7FA
     .endm
 
-    .macro FadeToDefaultMusic2
+    .macro Common_FadeToDefaultMusic2
     CallCommonScript 0x7FB
     .endm
 
-    .macro GiveItemQuantity
+    .macro Common_GiveItemQuantity
     CallCommonScript 0x7FC
     .endm
 
-    .macro ObtainContestBackdrop
+    .macro Common_ObtainContestBackdrop
     CallCommonScript 0x7FD
     .endm
 
-    .macro SendToUndergroundPCWithLinefeed
+    .macro Common_SendToUndergroundPCWithLinefeed
     CallCommonScript 0x7FE
     .endm
 
-    .macro GiveAccessory
+    .macro Common_GiveAccessory
     CallCommonScript 0x7FF
     .endm
 
-    .macro SetFollowMeBGM
+    .macro Common_SetFollowMeBGM
     CallCommonScript 0x800
     .endm
 
-    .macro FadeToDefaultMusic3
+    .macro Common_FadeToDefaultMusic3
     CallCommonScript 0x801
     .endm
 
-    .macro CheckAllFrontierGoldPrintsObtained
+    .macro Common_CheckAllFrontierGoldPrintsObtained
     CallCommonScript 0x806
     .endm
 
-    .macro SetLookerBGM
+    .macro Common_SetLookerBGM
     CallCommonScript 0x807
     .endm
 
-    .macro FadeToDefaultMusic4
+    .macro Common_FadeToDefaultMusic4
     CallCommonScript 0x808
     .endm
 
-    .macro GriseousOrbCouldNotBeRemoved
+    .macro Common_GriseousOrbCouldNotBeRemoved
     CallCommonScript 0x809
     .endm
 

@@ -96,7 +96,7 @@ _00CC:
     GoToIfLt VAR_RESULT, 50, _010D
     Message 10
     SetVar VAR_0x8004, POKETCH_APPID_POKEMONHISTORY
-    GivePoketchApp
+    Common_GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -132,7 +132,7 @@ _0168:
     LockAll
     ApplyMovement LOCALID_PLAYER, _0218
     WaitMovement
-    SetRivalBGM
+    Common_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     SetObjectEventPos 18, VAR_0x8004, 0x295
     ClearFlag FLAG_UNK_0x021E
@@ -155,7 +155,7 @@ _0168:
     ApplyMovement 18, _0210
     WaitMovement
     RemoveObject 18
-    FadeToDefaultMusic2
+    Common_FadeToDefaultMusic2
     SetVar VAR_UNK_0x4073, 1
     ReleaseAll
     End

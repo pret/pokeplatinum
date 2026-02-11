@@ -356,7 +356,7 @@ Unk501_Unused:
 
 _04EF:
     HideMoney
-    GriseousOrbCouldNotBeRemoved
+    Common_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0

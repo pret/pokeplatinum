@@ -48,7 +48,7 @@ VeilstoneStore1F_RightVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT
     ReleaseAll
@@ -58,7 +58,7 @@ VeilstoneStore1F_LeftVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT
     ReleaseAll
@@ -95,7 +95,7 @@ VeilstoneStore1F_Socialite:
     BufferAccessoryNameWithArticle 0, LOCALID_ACCESSORY_ID
     Message VeilstoneStore1F_Text_IMadeAnAccessory
     SetVar LOCALID_COUNT, 1
-    GiveAccessoryWaitForConfirm
+    Common_GiveAccessoryWaitForConfirm
     SetFlag FLAG_VEILSTONE_STORE_1F_RECEIVED_MASK
     CloseMessage
     ReleaseAll
