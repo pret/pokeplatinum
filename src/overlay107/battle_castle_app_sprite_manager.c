@@ -20,11 +20,11 @@
 #include "vram_transfer.h"
 
 static void InitCharPlttTransferBuffers(void);
-static void ov107_02249A70(BattleCastleAppSpriteManager *spriteMan);
+static void InitItemIconSpriteResources(BattleCastleAppSpriteManager *spriteMan);
 
 static const u8 sCapacities[4] = { NUM_SPRITES, NUM_SPRITES, NUM_SPRITES, NUM_SPRITES };
 
-void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, Party *party, u8 param2)
+void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, Party *party, u8 challengeType)
 {
     VramTransfer_New(32, HEAP_ID_BATTLE_CASTLE_APP);
     InitCharPlttTransferBuffers();
@@ -51,7 +51,7 @@ void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, 
     spriteMan->resources[1][3] = SpriteResourceCollection_AddFrom(spriteMan->resourceCollection[SPRITE_RESOURCE_ANIM], narc, Item_IconNANRFile(), FALSE, 1, SPRITE_RESOURCE_ANIM, HEAP_ID_BATTLE_CASTLE_APP);
 
     NARC_dtor(narc);
-    ov107_02249A70(spriteMan);
+    InitItemIconSpriteResources(spriteMan);
 
     narc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_BATTLE_CASTLE_APP);
 
@@ -63,7 +63,7 @@ void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, 
         Pokemon *mon;
 
         if (i == 3) {
-            if (param2 == 0) {
+            if (challengeType == 0) {
                 mon = Party_GetPokemonBySlotIndex(party, 0);
             } else {
                 mon = Party_GetPokemonBySlotIndex(party, i);
@@ -148,17 +148,17 @@ void BattleCastleApp_FreeSprites(BattleCastleAppSpriteManager *spriteMan)
     PlttTransfer_Free();
 }
 
-void ov107_022499BC(BattleCastleAppSpriteManager *spriteMan, u16 item)
+void BattleCastleApp_SetItemGraphic(BattleCastleAppSpriteManager *spriteMan, u16 item)
 {
-    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->resourceCollection[0], 1);
+    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->resourceCollection[SPRITE_RESOURCE_CHAR], 1);
 
     SpriteResourceCollection_ModifyTiles(spriteMan->resourceCollection[0], resource, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_ICON), FALSE, HEAP_ID_BATTLE_CASTLE_APP);
     SpriteTransfer_RetransferCharData(resource);
 }
 
-void ov107_022499FC(BattleCastleAppSpriteManager *spriteMan, u16 item)
+void BattleCastleApp_SetItemPalette(BattleCastleAppSpriteManager *spriteMan, u16 item)
 {
-    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->resourceCollection[1], 1);
+    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->resourceCollection[SPRITE_RESOURCE_PLTT], 1);
 
     SpriteResourceCollection_ModifyPalette(spriteMan->resourceCollection[1], resource, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(item, ITEM_FILE_TYPE_PALETTE), FALSE, HEAP_ID_BATTLE_CASTLE_APP);
     SpriteTransfer_ReplacePlttData(resource);
@@ -175,14 +175,14 @@ static void InitCharPlttTransferBuffers(void)
     PlttTransfer_Clear();
 }
 
-static void ov107_02249A70(BattleCastleAppSpriteManager *spriteMan)
+static void InitItemIconSpriteResources(BattleCastleAppSpriteManager *spriteMan)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_BATTLE_CASTLE_APP);
 
-    spriteMan->resources[2][0] = SpriteResourceCollection_AddTilesFrom(spriteMan->resourceCollection[0], narc, sub_02081930(), FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_BATTLE_CASTLE_APP);
-    spriteMan->resources[2][1] = SpriteResourceCollection_AddPalette(spriteMan->resourceCollection[1], NARC_INDEX_GRAPHIC__PL_PLIST_GRA, sub_02081934(), FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_BATTLE_CASTLE_APP);
-    spriteMan->resources[2][2] = SpriteResourceCollection_AddFrom(spriteMan->resourceCollection[2], narc, sub_02081938(), FALSE, 2, SPRITE_RESOURCE_CELL, HEAP_ID_BATTLE_CASTLE_APP);
-    spriteMan->resources[2][3] = SpriteResourceCollection_AddFrom(spriteMan->resourceCollection[3], narc, sub_0208193C(), FALSE, 2, SPRITE_RESOURCE_ANIM, HEAP_ID_BATTLE_CASTLE_APP);
+    spriteMan->resources[2][0] = SpriteResourceCollection_AddTilesFrom(spriteMan->resourceCollection[SPRITE_RESOURCE_CHAR], narc, sub_02081930(), FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_BATTLE_CASTLE_APP);
+    spriteMan->resources[2][1] = SpriteResourceCollection_AddPalette(spriteMan->resourceCollection[SPRITE_RESOURCE_PLTT], NARC_INDEX_GRAPHIC__PL_PLIST_GRA, sub_02081934(), FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAP_ID_BATTLE_CASTLE_APP);
+    spriteMan->resources[2][2] = SpriteResourceCollection_AddFrom(spriteMan->resourceCollection[SPRITE_RESOURCE_CELL], narc, sub_02081938(), FALSE, 2, SPRITE_RESOURCE_CELL, HEAP_ID_BATTLE_CASTLE_APP);
+    spriteMan->resources[2][3] = SpriteResourceCollection_AddFrom(spriteMan->resourceCollection[SPRITE_RESOURCE_ANIM], narc, sub_0208193C(), FALSE, 2, SPRITE_RESOURCE_ANIM, HEAP_ID_BATTLE_CASTLE_APP);
 
     NARC_dtor(narc);
 }

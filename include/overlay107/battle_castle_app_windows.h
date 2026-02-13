@@ -3,8 +3,8 @@
 
 #include "bg_window.h"
 
-void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 param2);
-void BattleCastleApp_FreeWindows(Window *windows, u8 param1);
+void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 isOpponentApp);
+void BattleCastleApp_FreeWindows(Window *windows, u8 isOpponentApp);
 void BattleCastleApp_DrawWindow(BgConfig *bgConfig, Window *window);
 void BattleCastleApp_DrawMessageBox(Window *window, int frame);
 

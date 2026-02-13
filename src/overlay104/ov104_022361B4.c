@@ -151,7 +151,7 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *saveData, u16 param1, u8 para
         }
     }
 
-    if (ov104_0223BA14(v9->unk_10) == 1) {
+    if (BattleCastle_IsMultiPlayerChallenge(v9->unk_10) == 1) {
         ov104_0222E630(v9->saveData);
     }
 
@@ -184,7 +184,7 @@ static void ov104_02236528(UnkStruct_ov104_0223BA10 *param0)
 
     ov104_0223B760(param0->unk_10, ov104_0223BB60(param0), param0->unk_30, (7 * 2));
 
-    ov104_0222E4BC(ov104_0223B7DC(param0->unk_10, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, ov104_0223BA14(param0->unk_10));
+    ov104_0222E4BC(ov104_0223B7DC(param0->unk_10, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->unk_10));
 
     return;
 }
@@ -482,7 +482,7 @@ void ov104_02236BF8(UnkStruct_ov104_0223BA10 *param0)
 {
     int v0, v1, v2;
 
-    ov104_0222E4BC(ov104_0223B7DC(param0->unk_10, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, ov104_0223BA14(param0->unk_10));
+    ov104_0222E4BC(ov104_0223B7DC(param0->unk_10, 1), param0->unk_30[param0->unk_11], param0->unk_30[param0->unk_11 + 7], param0->unk_26C, param0->unk_288, param0->unk_274, param0->unk_278, BattleCastle_IsMultiPlayerChallenge(param0->unk_10));
 
     for (v0 = 0; v0 < 4; v0++) {
         (void)0;
@@ -682,7 +682,7 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     GF_ASSERT(param0->unk_A8 == NULL);
     GF_ASSERT(param0->unk_AC == NULL);
 
-    if (ov104_0223BA14(param1->unk_10) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param1->unk_10) == 0) {
         param0->unk_A8 = Window_New(HEAP_ID_FIELD2, 1);
         Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
         ov104_022370C0(v0->unk_00, param0->unk_A8);
@@ -714,7 +714,7 @@ void ov104_022370E0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     Window *v0;
     Window *v1;
 
-    if (ov104_0223BA14(param1->unk_10) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = param0->unk_A8;
         Window_EraseStandardFrame(v0, 0);
@@ -747,7 +747,7 @@ void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 {
     u16 v0, v1;
 
-    if (ov104_0223BA14(param1->unk_10) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param1->unk_10) == 0) {
         GF_ASSERT(param0->unk_A8 != NULL);
         v0 = sub_02030698(SaveData_GetBattleFrontier(param1->saveData), sub_0205E630(param1->unk_10), sub_0205E6A8(sub_0205E630(param1->unk_10)));
         ov104_02237284(param0, param0->unk_A8, SaveData_GetTrainerInfo(param1->saveData), v0);

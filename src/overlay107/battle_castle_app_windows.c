@@ -9,7 +9,7 @@
 
 #define BASE_TILE_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
 
-static const WindowTemplate Unk_ov107_0224A288[] = {
+static const WindowTemplate sSelfAppWinTemplates[] = {
     { BG_LAYER_MAIN_1, 2, 1, 29, 2, 13, 1 },
     { BG_LAYER_MAIN_1, 26, 19, 4, 3, 13, 59 },
     { BG_LAYER_MAIN_1, 0, 4, 32, 2, 13, 71 },
@@ -30,7 +30,7 @@ static const WindowTemplate Unk_ov107_0224A288[] = {
     { BG_LAYER_MAIN_0, 1, 13, 11, 2, 13, 756 }
 };
 
-static const WindowTemplate Unk_ov107_0224A228[] = {
+static const WindowTemplate sOpponentAppWinTemplates[] = {
     { BG_LAYER_MAIN_1, 2, 1, 29, 2, 13, 1 },
     { BG_LAYER_MAIN_1, 26, 19, 4, 3, 13, 59 },
     { BG_LAYER_MAIN_1, 0, 4, 32, 2, 13, 71 },
@@ -49,14 +49,14 @@ static const struct {
     const WindowTemplate *templates;
     u32 numTemplates;
 } sWinTemplates[2] = {
-    { Unk_ov107_0224A288, 18 },
-    { Unk_ov107_0224A228, 12 }
+    { sSelfAppWinTemplates, 18 },
+    { sOpponentAppWinTemplates, 12 }
 };
 
-void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 param2)
+void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 isOpponentApp)
 {
-    const WindowTemplate *v1 = sWinTemplates[param2].templates;
-    u32 numTemplates = sWinTemplates[param2].numTemplates;
+    const WindowTemplate *v1 = sWinTemplates[isOpponentApp].templates;
+    u32 numTemplates = sWinTemplates[isOpponentApp].numTemplates;
 
     for (u8 i = 0; i < numTemplates; i++) {
         Window_AddFromTemplate(bgConfigs, &windows[i], &v1[i]);
@@ -64,10 +64,10 @@ void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 param2
     }
 }
 
-void BattleCastleApp_FreeWindows(Window *windows, u8 param1)
+void BattleCastleApp_FreeWindows(Window *windows, u8 isOpponentApp)
 {
     u16 i;
-    u32 numTemplates = sWinTemplates[param1].numTemplates;
+    u32 numTemplates = sWinTemplates[isOpponentApp].numTemplates;
 
     for (i = 0; i < numTemplates; i++) {
         Window_Remove(&windows[i]);
