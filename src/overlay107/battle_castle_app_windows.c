@@ -10,7 +10,7 @@
 #define BASE_TILE_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
 
 static const WindowTemplate sSelfAppWinTemplates[] = {
-    {
+    [SELF_APP_WINDOW_HEADER] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 2,
         .tilemapTop = 1,
@@ -19,7 +19,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    {
+    [SELF_APP_WINDOW_EXIT] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 26,
         .tilemapTop = 19,
@@ -28,7 +28,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 59,
     },
-    {
+    [SELF_APP_WINDOW_LEVELS] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 0,
         .tilemapTop = 4,
@@ -37,7 +37,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 71,
     },
-    {
+    [SELF_APP_WINDOW_HP_BARS] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 0,
         .tilemapTop = 9,
@@ -46,7 +46,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 135,
     },
-    {
+    [SELF_APP_WINDOW_SUMMARY_SCREEN] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 5,
         .tilemapTop = 10,
@@ -55,7 +55,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    {
+    [SELF_APP_WINDOW_ITEM_SELECT_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 12,
         .tilemapTop = 2,
@@ -64,7 +64,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    {
+    [SELF_APP_WINDOW_MSG_BOX] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 2,
         .tilemapTop = 19,
@@ -73,7 +73,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 12,
         .baseTile = 337,
     },
-    {
+    [SELF_APP_WINDOW_MON_SELECTION_MSG_BOX] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 2,
         .tilemapTop = 19,
@@ -82,7 +82,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 12,
         .baseTile = 445,
     },
-    {
+    [SELF_APP_WINDOW_MON_OPTIONS_MSG_BOX] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 2,
         .tilemapTop = 19,
@@ -91,7 +91,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 12,
         .baseTile = 525,
     },
-    {
+    [SELF_APP_WINDOW_MON_OPTIONS_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 23,
         .tilemapTop = 13,
@@ -100,7 +100,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 593,
     },
-    {
+    [SELF_APP_WINDOW_HEAL_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 20,
         .tilemapTop = 7,
@@ -109,7 +109,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 673,
     },
-    {
+    [SELF_APP_WINDOW_RENTAL_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 22,
         .tilemapTop = 9,
@@ -118,7 +118,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 673,
     },
-    {
+    [SELF_APP_WINDOW_SELECTED_ITEM_NAME] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 5,
         .tilemapTop = 16,
@@ -127,7 +127,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 12,
         .baseTile = 445,
     },
-    {
+    [SELF_APP_WINDOW_YES_NO_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 24,
         .tilemapTop = 13,
@@ -136,7 +136,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 634,
     },
-    {
+    [SELF_APP_WINDOW_UNUSED] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 24,
         .tilemapTop = 11,
@@ -145,7 +145,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 662,
     },
-    {
+    [SELF_APP_WINDOW_ITEM_SELECT_PLAYER_INFO] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 1,
         .tilemapTop = 1,
@@ -154,7 +154,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 704,
     },
-    {
+    [SELF_APP_WINDOW_ITEM_SELECT_MON_INFO] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 1,
         .tilemapTop = 7,
@@ -163,7 +163,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 736,
     },
-    {
+    [SELF_APP_WINDOW_ITEM_SELECT_MON_HP] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 1,
         .tilemapTop = 13,
@@ -175,7 +175,7 @@ static const WindowTemplate sSelfAppWinTemplates[] = {
 };
 
 static const WindowTemplate sOpponentAppWinTemplates[] = {
-    {
+    [OPPONENT_APP_WINDOW_HEADER] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 2,
         .tilemapTop = 1,
@@ -184,7 +184,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    {
+    [OPPONENT_APP_WINDOW_EXIT] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 26,
         .tilemapTop = 19,
@@ -193,7 +193,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 59,
     },
-    {
+    [OPPONENT_APP_WINDOW_LEVELS] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 0,
         .tilemapTop = 4,
@@ -202,7 +202,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 71,
     },
-    {
+    [OPPONENT_APP_WINDOW_HP_BARS] = {
         .bgLayer = BG_LAYER_MAIN_1,
         .tilemapLeft = 0,
         .tilemapTop = 9,
@@ -211,7 +211,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 135,
     },
-    {
+    [OPPONENT_APP_WINDOW_SUMMARY_SCREEN] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 4,
         .tilemapTop = 10,
@@ -220,7 +220,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    {
+    [OPPONENT_APP_WINDOW_MON_OPTIONS_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 23,
         .tilemapTop = 15,
@@ -229,7 +229,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 1,
     },
-    {
+    [OPPONENT_APP_WINDOW_SUMMARY_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 22,
         .tilemapTop = 9,
@@ -238,7 +238,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 365,
     },
-    {
+    [OPPONENT_APP_WINDOW_MSG_BOX] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 2,
         .tilemapTop = 19,
@@ -247,7 +247,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 12,
         .baseTile = 437,
     },
-    {
+    [OPPONENT_APP_WINDOW_MON_SELECTION_MSG_BOX] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 2,
         .tilemapTop = 19,
@@ -256,7 +256,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 12,
         .baseTile = 545,
     },
-    {
+    [OPPONENT_APP_WINDOW_MON_OPTION_MSG_BOX] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 2,
         .tilemapTop = 19,
@@ -265,7 +265,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 12,
         .baseTile = 625,
     },
-    {
+    [OPPONENT_APP_WINDOW_YES_NO_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 24,
         .tilemapTop = 13,
@@ -274,7 +274,7 @@ static const WindowTemplate sOpponentAppWinTemplates[] = {
         .palette = 13,
         .baseTile = 693,
     },
-    {
+    [OPPONENT_APP_WINDOW_LEVEL_MENU] = {
         .bgLayer = BG_LAYER_MAIN_0,
         .tilemapLeft = 24,
         .tilemapTop = 11,
@@ -289,8 +289,8 @@ static const struct {
     const WindowTemplate *templates;
     u32 numTemplates;
 } sWinTemplates[2] = {
-    { sSelfAppWinTemplates, 18 },
-    { sOpponentAppWinTemplates, 12 }
+    { sSelfAppWinTemplates, NUM_SELF_APP_WINDOWS },
+    { sOpponentAppWinTemplates, NUM_OPPONENT_APP_WINDOWS }
 };
 
 void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 isOpponentApp)

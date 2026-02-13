@@ -26,6 +26,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
+#include "items.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
@@ -58,148 +59,162 @@
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"
 
+#include "res/text/bank/battle_castle_self_app.h"
+
 FS_EXTERN_OVERLAY(overlay104);
 
-const u16 Unk_ov107_02249F84[] = {
-    0xDD,
-    0xD9,
-    0x10F,
-    0xFD,
-    0x115,
-    0x10D,
-    0x11E,
-    0x128,
-    0x110,
-    0x111,
-    0xEC,
-    0x102,
-    0xD6,
-    0xE6,
-    0x113,
-    0xEA,
-    0xD5,
-    0xE8,
-    0x109,
-    0x114,
-    0xDC,
-    0x129,
-    0x11F,
-    0x10A,
-    0x10B,
-    0x10C,
-    0x10E
+#define MENU_OPTION_HEAL            0
+#define MENU_OPTION_RESTORE_HP      1
+#define MENU_OPTION_RESTORE_PP      2
+#define MENU_OPTION_RESTORE_ALL     3
+#define MENU_OPTION_RANK_UP_HEALING 4
+#define MENU_OPTION_RENTAL          5
+#define MENU_OPTION_RENT_BERRIES    6
+#define MENU_OPTION_RENT_ITEMS      7
+#define MENU_OPTION_RANK_UP_ITEMS   8
+#define MENU_OPTION_SUMMARY         9
+#define MENU_OPTION_MOVES           10
+
+const u16 sItemsForRent[] = {
+    ITEM_KINGS_ROCK,
+    ITEM_QUICK_CLAW,
+    ITEM_POWER_HERB,
+    ITEM_SHELL_BELL,
+    ITEM_METRONOME,
+    ITEM_LIGHT_CLAY,
+    ITEM_GRIP_CLAW,
+    ITEM_BIG_ROOT,
+    ITEM_TOXIC_ORB,
+    ITEM_FLAME_ORB,
+    ITEM_LIGHT_BALL,
+    ITEM_THICK_CLUB,
+    ITEM_WHITE_HERB,
+    ITEM_FOCUS_BAND,
+    ITEM_FOCUS_SASH,
+    ITEM_LEFTOVERS,
+    ITEM_BRIGHTPOWDER,
+    ITEM_SCOPE_LENS,
+    ITEM_WIDE_LENS,
+    ITEM_ZOOM_LENS,
+    ITEM_CHOICE_BAND,
+    ITEM_CHOICE_SPECS,
+    ITEM_CHOICE_SCARF,
+    ITEM_MUSCLE_BAND,
+    ITEM_WISE_GLASSES,
+    ITEM_EXPERT_BELT,
+    ITEM_LIFE_ORB
 };
 
-const u16 Unk_ov107_02249FBA[NELEMS(Unk_ov107_02249F84)] = {
-    0xA,
-    0xF,
-    0x5,
-    0xF,
-    0xA,
-    0xA,
-    0xA,
-    0xA,
-    0xA,
-    0xA,
-    0xF,
-    0xF,
-    0x5,
-    0xF,
-    0xA,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14,
-    0x14
+const u16 sItemPrices[NELEMS(sItemsForRent)] = {
+    10,
+    15,
+    5,
+    15,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    5,
+    15,
+    10,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
 };
 
-const u16 Unk_ov107_0224A02C[] = {
-    0x95,
-    0x96,
-    0x97,
-    0x98,
-    0x99,
-    0x9C,
-    0x9D,
-    0x9E,
-    0xC9,
-    0xCA,
-    0xCB,
-    0xCC,
-    0xCD,
-    0xCE,
-    0xCF,
-    0xB8,
-    0xB9,
-    0xBA,
-    0xBB,
-    0xBC,
-    0xBD,
-    0xBE,
-    0xBF,
-    0xC0,
-    0xC1,
-    0xC2,
-    0xC3,
-    0xC4,
-    0xC5,
-    0xC6,
-    0xC7,
-    0xC8
+const u16 sBerriesForRent[] = {
+    ITEM_CHERI_BERRY,
+    ITEM_CHESTO_BERRY,
+    ITEM_PECHA_BERRY,
+    ITEM_RAWST_BERRY,
+    ITEM_ASPEAR_BERRY,
+    ITEM_PERSIM_BERRY,
+    ITEM_LUM_BERRY,
+    ITEM_SITRUS_BERRY,
+    ITEM_LIECHI_BERRY,
+    ITEM_GANLON_BERRY,
+    ITEM_SALAC_BERRY,
+    ITEM_PETAYA_BERRY,
+    ITEM_APICOT_BERRY,
+    ITEM_LANSAT_BERRY,
+    ITEM_STARF_BERRY,
+    ITEM_OCCA_BERRY,
+    ITEM_PASSHO_BERRY,
+    ITEM_WACAN_BERRY,
+    ITEM_RINDO_BERRY,
+    ITEM_YACHE_BERRY,
+    ITEM_CHOPLE_BERRY,
+    ITEM_KEBIA_BERRY,
+    ITEM_SHUCA_BERRY,
+    ITEM_COBA_BERRY,
+    ITEM_PAYAPA_BERRY,
+    ITEM_TANGA_BERRY,
+    ITEM_CHARTI_BERRY,
+    ITEM_KASIB_BERRY,
+    ITEM_HABAN_BERRY,
+    ITEM_COLBUR_BERRY,
+    ITEM_BABIRI_BERRY,
+    ITEM_CHILAN_BERRY
 };
 
-const u16 Unk_ov107_0224A06C[NELEMS(Unk_ov107_0224A02C)] = {
-    0x2,
-    0x2,
-    0x2,
-    0x2,
-    0x2,
-    0x2,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5,
-    0x5
+const u16 sBerryPrices[NELEMS(sBerriesForRent)] = {
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
 };
 
-const u16 Unk_ov107_02249E06[] = {
-    0xC,
-    0xC,
-    NELEMS(Unk_ov107_02249F84)
+const u16 sItemsAvailableByRank[] = {
+    12,
+    12,
+    NELEMS(sItemsForRent)
 };
 
-const u16 Unk_ov107_02249E12[] = {
-    0x8,
-    0x8,
-    NELEMS(Unk_ov107_0224A02C)
+const u16 sBerriesAvailableByRank[] = {
+    8,
+    8,
+    NELEMS(sBerriesForRent)
 };
 
 typedef struct BattleCastleSelfApp {
@@ -207,15 +222,15 @@ typedef struct BattleCastleSelfApp {
     BattleFrontier *frontier;
     u8 subState;
     u8 challengeType;
-    u8 unk_0A;
+    u8 printerID;
     u8 unk_0B;
     u8 unk_0C;
     u8 unk_0D;
-    u8 unk_0E_0 : 1;
+    u8 listMenuIsOpen : 1;
     u8 unk_0E_1 : 1;
     u8 unk_0E_2 : 1;
-    u8 unk_0E_3 : 1;
-    u8 unk_0E_4 : 1;
+    u8 itemSelectIsOpen : 1;
+    u8 yesNoMenuIsOpen : 1;
     u8 unk_0E_5 : 2;
     u8 unk_0E_7 : 1;
     u8 unk_0F;
@@ -225,23 +240,23 @@ typedef struct BattleCastleSelfApp {
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
-    u16 unk_18;
-    u16 unk_1A;
+    u16 monMenuListPos;
+    u16 monMenuCursorPos;
     MessageLoader *itemMsgLoader;
     MessageLoader *msgLoader;
     StringTemplate *strTemplate;
     String *displayStr;
     String *fmtStr;
-    String *unk_30[3];
-    u16 unk_3C[8];
+    String *yesNoStrs[3];
+    u16 unused[8];
     BgConfig *bgConfig;
-    Window windows[18];
-    MenuTemplate unk_170;
-    Menu *unk_17C;
-    StringList unk_180[3];
-    ListMenu *unk_198;
-    StringList *unk_19C;
-    ListMenuTemplate unk_1A0;
+    Window windows[NUM_SELF_APP_WINDOWS];
+    MenuTemplate yesNoMenuTemplate;
+    Menu *yesNoMenu;
+    StringList yesNoStrList[3];
+    ListMenu *listMenu;
+    StringList *strList;
+    ListMenuTemplate listTemplate;
     PaletteData *plttData;
     FontSpecialCharsContext *specialChars;
     Options *options;
@@ -294,61 +309,61 @@ static void LoadMovesListBackground(BattleCastleSelfApp *app, enum BgLayer bgLay
 static void LoadItemSelectBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer);
 static void LoadPalette2(void);
 static void LoadSubScreenBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer);
-static u8 ov107_0224379C(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov107_022437CC(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10);
-static u8 ov107_02243860(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov107_02243890(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10);
-static u8 ov107_02243918(BattleCastleSelfApp *param0, int param1, u8 param2);
-static void ov107_02243950(BattleCastleSelfApp *param0, Window *param1, Pokemon *param2);
-static void ov107_02243B5C(BattleCastleSelfApp *param0, Window *param1, int param2, u16 param3, u16 param4, int param5);
-static void ov107_02243B84(BattleCastleSelfApp *param0, Window *param1, Pokemon *param2);
-static void ov107_02243C18(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3, u32 param4, Pokemon *param5, u32 param6, u32 param7, u32 param8);
-static void ov107_02243CC0(BattleCastleSelfApp *param0, Window *param1);
-static void ov107_02243CFC(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3);
-static void ov107_02243DB0(BattleCastleSelfApp *param0, Window *param1);
-static void ov107_02243DE4(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3);
-static void ov107_02243E74(BattleCastleSelfApp *param0, Window *param1);
-static void ov107_02243F4C(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3);
-static void ov107_02243FA4(BattleCastleSelfApp *param0);
-static void ov107_0224400C(BattleCastleSelfApp *param0);
-static void ov107_02244018(BattleCastleSelfApp *param0);
-static void ov107_0224403C(BattleCastleSelfApp *param0);
-static void ov107_02244064(BattleCastleSelfApp *param0);
-static void ov107_02244094(BattleCastleSelfApp *param0);
-static void ov107_0224409C(BattleCastleSelfApp *param0);
-static void ov107_022440C0(BattleCastleSelfApp *param0);
-static void ov107_022440C8(BattleCastleSelfApp *param0, u8 param1);
-static void ov107_02244120(BattleCastleSelfApp *param0);
-static void ov107_0224414C(BattleCastleSelfApp *param0, Window *param1, u8 param2);
-static void ov107_022441B0(BattleCastleSelfApp *param0, u8 param1, u8 param2, int param3);
-static void ov107_022441DC(BattleCastleSelfApp *param0);
-static void ov107_02244240(BattleCastleSelfApp *param0, u8 param1);
-static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244560(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_022445C4(BattleCastleSelfApp *param0);
-static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244780(BattleCastleSelfApp *param0);
-static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244944(BattleCastleSelfApp *param0);
-static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244A74(BattleCastleSelfApp *param0, u32 param1, s32 param2, u32 param3, int param4);
-static void ov107_02244A8C(BattleCastleSelfApp *param0, u32 param1, BoxPokemon *param2);
-static void ov107_02244A98(BattleCastleSelfApp *param0, u32 param1);
-static void ov107_02244AB4(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4);
-static void ov107_02244B24(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4);
-static void ov107_02244B8C(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5);
-static u8 ov107_02243EF8(BattleCastleSelfApp *param0, Window *param1, u16 param2);
-static void ChangeState(BattleCastleSelfApp *app, int *state, int newState);
+static u8 PrintLeftAlignedMessageWithBg(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font);
+static u8 PrintMessageWithBg(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, enum TextAlignment alignment);
+static u8 PrintLeftAlignedMessage(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font);
+static u8 PrintMessage(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, enum TextAlignment alignment);
+static u8 PrintMessageAndCopyToVRAM(BattleCastleSelfApp *app, int entryID, u8 font);
+static void PrintPokemonSummary(BattleCastleSelfApp *app, Window *window, Pokemon *mon);
+static void PrintStaticMessage(BattleCastleSelfApp *app, Window *window, int entryID, u16 xOffset, u16 yOffset, enum TextAlignment alignment);
+static void PrintAllMoves(BattleCastleSelfApp *app, Window *window, Pokemon *mon);
+static void PrintMoveInfo(BattleCastleSelfApp *app, Window *window, u8 idx, u32 moveNameEntryID, u32 ppEntryID, Pokemon *mon, u32 moveParam, u32 ppParam, u32 maxPpParam);
+static void PrintAllMonsHP(BattleCastleSelfApp *app, Window *window);
+static void PrintMonHP(BattleCastleSelfApp *app, Window *window, u8 slot, u8 isItemSelectMenu);
+static void PrintAllMonsLevelAndGender(BattleCastleSelfApp *app, Window *window);
+static void PrintMonLevelAndGender(BattleCastleSelfApp *app, Window *window, u8 slot, u8 isItemSelectMenu);
+static void DrawPlayerInfoOnItemSelectMenu(BattleCastleSelfApp *app, Window *window);
+static void ov107_02243F4C(BattleCastleSelfApp *ctx, Window *window, u8 param2, u32 param3);
+static void PrintMonSelectionStrings(BattleCastleSelfApp *app);
+static void CloseMonSelectionMessageBox(BattleCastleSelfApp *app);
+static void OpenMonOptionsMenu(BattleCastleSelfApp *app);
+static void CloseMonOptions(BattleCastleSelfApp *app);
+static void OpenHealMenu(BattleCastleSelfApp *app);
+static void FreeListMenu2(BattleCastleSelfApp *app);
+static void OpenRentalMenu(BattleCastleSelfApp *app);
+static void FreeListMenu3(BattleCastleSelfApp *app);
+static void OpenItemSelectScreen(BattleCastleSelfApp *app, u8 param1);
+static void FreeItemSelect(BattleCastleSelfApp *app);
+static void InitYesNoMenu(BattleCastleSelfApp *app, Window *window, u8 numOptions);
+static void AddStringToYesNoMenu(BattleCastleSelfApp *app, u8 strIndex, u8 listIndex, int entryID);
+static void OpenYesNoMenu(BattleCastleSelfApp *app);
+static void DrawItemSelectMenuAndMonInfo(BattleCastleSelfApp *app, u8 menuType);
+static void UpdateItemSelectMenuDisplay(ListMenu *menu, u32 item, u8 onInit);
+static void PrintItemPrice(ListMenu *menu, u32 item, u8 yOffset);
+static void InitHealMenu(BattleCastleSelfApp *app);
+static void UpdateHealMenuItemDescription(ListMenu *menu, u32 item, u8 onInit);
+static void SetHealMenuItemColor(ListMenu *menu, u32 item, u8 yOffset);
+static void InitRentalMenu(BattleCastleSelfApp *app);
+static void UpdateRentalMenuItemDescription(ListMenu *menu, u32 item, u8 onInit);
+static void SetRentalMenuItemColor(ListMenu *menu, u32 item, u8 onInit);
+static void InitMonOptionsMenu(BattleCastleSelfApp *app);
+static void UpdateMonMenuItemDescription(ListMenu *menu, u32 item, u8 onInit);
+static void SetStringTemplateNumber(BattleCastleSelfApp *app, u32 idx, s32 num, u32 maxDigits, enum PaddingMode paddingMode);
+static void SetStringTemplateSpecies(BattleCastleSelfApp *app, u32 idx, BoxPokemon *boxMon);
+static void SetStringTemplatePlayerName(BattleCastleSelfApp *app, u32 idx);
+static void PrintPlayerName(BattleCastleSelfApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font);
+static void PrintPartnersName(BattleCastleSelfApp *app, Window *window, u32 xOffset, u32 yOffset, u8 unused);
+static void PrintGenderSymbol(BattleCastleSelfApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font, u8 gender);
+static u8 PrintItemName(BattleCastleSelfApp *app, Window *window, u16 entryID);
+static void ChangeState(BattleCastleSelfApp *app, int *state, int nextState);
 static void ov107_02244BD8(BattleCastleSelfApp *param0, int param1);
 static void ov107_02244C70(BattleCastleSelfApp *param0);
 static void ov107_02244CA0(BattleCastleSelfApp *param0, u8 param1, u8 param2);
 static void GetCursorSpritePos(BattleCastleSelfApp *app, u32 *x, u32 *y, u8 slot);
-static u16 ov107_02244D5C(BattleCastleSelfApp *param0, u16 param1, u8 param2);
-static u16 ov107_02244D90(u16 param0);
-static u16 ov107_02244DE0(BattleCastleSelfApp *param0, u16 param1, u8 param2);
-static void ov107_02244E14(BattleCastleSelfApp *param0, u16 *param1, u16 *param2, u16 *param3, u16 *param4);
+static u16 GetItemPriceFromListPos(BattleCastleSelfApp *app, u16 listPos, u8 menuType);
+static u16 GetItemPrice(u16 itemID);
+static u16 GetItemIDFromListPos(BattleCastleSelfApp *app, u16 idx, u8 selectedMenu);
+static void ov107_02244E14(BattleCastleSelfApp *app, u16 *param1, u16 *param2, u16 *param3, u16 *param4);
 static BOOL ov107_02244E44(BattleCastleSelfApp *param0, u8 param1, u8 param2);
 static void ov107_0224503C(BattleCastleSelfApp *param0, u8 param1, u8 param2);
 static u32 ov107_022450E8(BattleCastleSelfApp *param0, u8 param1);
@@ -357,7 +372,7 @@ static void ov107_02245140(BattleCastleSelfApp *param0, s8 param1);
 static void ov107_0224518C(BattleCastleSelfApp *param0, s8 param1);
 static void ov107_022451D8(BattleCastleSelfApp *param0);
 static BOOL ov107_02245210(Pokemon *param0);
-static void ov107_02245288(Window *param0);
+static void CloseMessageBox(Window *window);
 BOOL ov107_0224529C(BattleCastleSelfApp *param0, u16 param1, u16 param2);
 void ov107_022452F4(BattleCastleSelfApp *param0, u16 param1);
 void ov107_02245338(int param0, int param1, void *param2, void *param3);
@@ -370,12 +385,12 @@ static void ov107_02245454(Pokemon *param0, u16 param1);
 static void ov107_02245464(BattleCastleSelfApp *param0, Window *param1);
 static void ov107_022454F8(BattleCastleSelfApp *param0, u8 param1, u8 param2);
 static void ov107_022455A0(BattleCastleSelfApp *param0, u8 param1, u16 param2);
-static void ov107_02245618(BattleCastleSelfApp *param0);
-static void ov107_02245650(BattleCastleSelfApp *param0, Window *param1);
-static void ov107_02245660(BattleCastleSelfApp *param0);
+static void CloseYesNoMenu(BattleCastleSelfApp *app);
+static void MarkListMenuAsOpen(BattleCastleSelfApp *app, Window *window);
+static void CloseItemSelectScreen(BattleCastleSelfApp *param0);
 static void ov107_022456E4(BattleCastleSelfApp *param0);
-static void ov107_02245730(BattleCastleSelfApp *param0);
-static void ov107_02245780(BattleCastleSelfApp *param0, Window *param1);
+static void FreeListMenu(BattleCastleSelfApp *app);
+static void ov107_02245780(BattleCastleSelfApp *param0, Window *window);
 static void ov107_022459D0(BattleCastleSelfApp *param0, u8 param1, u8 param2);
 static void ov107_02245B40(BattleCastleSelfApp *param0, u8 param1);
 static void ov107_02245B90(BattleCastleSelfApp *param0, u8 param1);
@@ -384,58 +399,58 @@ static void ov107_02245C00(BattleCastleSelfApp *param0);
 static void ov107_02245C94(BattleCastleSelfApp *param0, u8 param1, u8 param2);
 extern void ov107_2243860(void);
 
-static const u16 Unk_ov107_02249E00[] = {
-    0x22,
-    0x23,
-    0x24
+static const u16 sHealingMessages[] = {
+    BattleCastleSelfApp_Text_HPWillBeRestored,
+    BattleCastleSelfApp_Text_PPWillBeRestored,
+    BattleCastleSelfApp_Text_HPAndPPWillBeRestored
 };
 
-static const u16 Unk_ov107_02249E0C[] = {
-    0xA,
-    0x8,
-    0xC
+static const u16 sHealingCosts[] = {
+    10,
+    8,
+    12
 };
 
-static const u32 Unk_ov107_02249FF0[][3] = {
-    { 0x1, 0x13, 0x1 },
-    { 0x2, 0x14, 0x2 },
-    { 0x3, 0x15, 0x3 },
-    { 0x1, 0x16, 0x4 },
-    { 0x1, 0x17, 0xfffffffe }
+static const u32 sHealMenuItems[][3] = {
+    { 1, BattleCastleSelfApp_Text_RestoreHP, MENU_OPTION_RESTORE_HP },
+    { 2, BattleCastleSelfApp_Text_RestorePP, MENU_OPTION_RESTORE_PP },
+    { 3, BattleCastleSelfApp_Text_RestoreAll, MENU_OPTION_RESTORE_ALL },
+    { 1, BattleCastleSelfApp_Text_RankUp, MENU_OPTION_RANK_UP_HEALING },
+    { 1, BattleCastleSelfApp_Text_Cancel2, MENU_CANCELED }
 };
 
-static const u16 Unk_ov107_02249E46[3][3] = {
-    { 0x0, 0x64, 0x64 },
-    { 0x0, 0x64, 0x96 },
-    { 0x0, 0x32, 0x32 }
+static const u16 sRankUpCosts[3][3] = {
+    { 0, 100, 100 },
+    { 0, 100, 150 },
+    { 0, 50, 50 }
 };
 
 static const u16 Unk_ov107_02249E34[3][3] = {
-    { 0x0, 0x2A, 0x2B },
-    { 0x0, 0x44, 0x45 },
-    { 0x0, 0x0, 0x0 }
+    { 0, BattleCastleSelfApp_Text_GainedAbilityToRestorePP, BattleCastleSelfApp_Text_GainedAbilityToRestoreHPAndPP },
+    { 0, BattleCastleSelfApp_Text_GainedAbilityToRentItems, BattleCastleSelfApp_Text_ExpandedItemRentals },
+    { 0, 0, 0 }
 };
 
-static const ListMenuTemplate Unk_ov107_02249EE4 = {
-    NULL,
-    ov107_0224440C,
-    ov107_02244560,
-    NULL,
-    ((NELEMS(Unk_ov107_0224A02C)) + (NELEMS(Unk_ov107_02249F84))) + 1,
-    0x7,
-    0x0,
-    0x8,
-    0x0,
-    0x0,
-    0x1,
-    0x0,
-    0x2,
-    0x0,
-    0x10,
-    0x0,
-    0x0,
-    0x0,
-    NULL
+static const ListMenuTemplate sDefaultListTemplate = {
+    .choices = NULL,
+    .cursorCallback = UpdateItemSelectMenuDisplay,
+    .printCallback = PrintItemPrice,
+    .window = NULL,
+    .count = NELEMS(sBerriesForRent) + NELEMS(sItemsForRent) + 1,
+    .maxDisplay = 7,
+    .headerXOffset = 0,
+    .textXOffset = 8,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 1,
+    .textColorBg = 0,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 0,
+    .pagerMode = PAGER_MODE_NONE,
+    .fontID = 0,
+    .cursorType = 0,
+    .parent = NULL
 };
 
 BOOL BattleCastleSelfApp_Init(ApplicationManager *appMan, int *state)
@@ -502,10 +517,10 @@ BOOL BattleCastleSelfApp_Main(ApplicationManager *appMan, int *state)
                 v0->unk_0E_2 = 0;
             }
 
-            BattleCastleApp_DrawMessageBox(&v0->windows[6], Options_Frame(v0->options));
+            BattleCastleApp_DrawMessageBox(&v0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(v0->options));
             BattleFrontier_SetPartnerInStrTemplate(v0->strTemplate, 0);
 
-            v0->unk_0A = ov107_02243918(v0, 8, FONT_MESSAGE);
+            v0->printerID = PrintMessageAndCopyToVRAM(v0, BattleCastleSelfApp_Text_PartnerChoseToExit, FONT_MESSAGE);
 
             ChangeState(v0, state, 3);
             break;
@@ -638,14 +653,14 @@ static void ov107_02241E70(BattleCastleSelfApp *param0)
     u16 v2, v3, v4, v5;
     ov107_02244E14(param0, &v2, &v3, &v4, &v5);
 
-    Window *v7 = &param0->windows[0];
+    Window *v7 = &param0->windows[SELF_APP_WINDOW_HEADER];
     Window_FillTilemap(v7, 0);
 
     ov107_02245464(param0, v7);
     ov107_02245780(param0, v7);
-    ov107_02243CC0(param0, &param0->windows[3]);
-    ov107_02243DB0(param0, &param0->windows[2]);
-    ov107_02243FA4(param0);
+    PrintAllMonsHP(param0, &param0->windows[SELF_APP_WINDOW_HP_BARS]);
+    PrintAllMonsLevelAndGender(param0, &param0->windows[SELF_APP_WINDOW_LEVELS]);
+    PrintMonSelectionStrings(param0);
 
     GXLayers_TurnBothDispOn();
     return;
@@ -661,13 +676,13 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
     switch (param0->subState) {
     case 0:
         if (param0->unk_0E_5 == 1) {
-            ov107_02244064(param0);
+            OpenHealMenu(param0);
             ov107_02249C60(param0->unk_430, 204, 100);
             param0->subState = 2;
             param0->unk_0E_5 = 0;
             return 0;
         } else if (param0->unk_0E_5 == 2) {
-            ov107_0224409C(param0);
+            OpenRentalMenu(param0);
             ov107_02249C60(param0->unk_430, 211, 106);
             param0->subState = 8;
             param0->unk_0E_5 = 0;
@@ -682,8 +697,8 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
             if (param0->unk_0D >= param0->unk_15) {
                 return 1;
             } else {
-                ov107_0224400C(param0);
-                ov107_02244018(param0);
+                CloseMonSelectionMessageBox(param0);
+                OpenMonOptionsMenu(param0);
                 param0->subState = 1;
                 break;
             }
@@ -697,95 +712,95 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
         }
         break;
     case 1:
-        v6 = ListMenu_ProcessInput(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->listMenu);
         ov107_02249CE0(v6, 1500);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            ov107_0224403C(param0);
-            ov107_02243FA4(param0);
+            CloseMonOptions(param0);
+            PrintMonSelectionStrings(param0);
             param0->subState = 0;
             break;
         case 0:
-            ov107_0224403C(param0);
-            ov107_02244064(param0);
+            CloseMonOptions(param0);
+            OpenHealMenu(param0);
             param0->subState = 2;
             break;
         case 5:
-            ov107_0224403C(param0);
-            ov107_0224409C(param0);
+            CloseMonOptions(param0);
+            OpenRentalMenu(param0);
             param0->subState = 8;
             break;
         case 9:
-            ov107_0224403C(param0);
+            CloseMonOptions(param0);
             ov107_02245B40(param0, param0->unk_0D);
             param0->subState = 20;
             break;
         case 10:
-            ov107_0224403C(param0);
+            CloseMonOptions(param0);
             ov107_02245B90(param0, param0->unk_0D);
             param0->subState = 21;
             break;
         case 11:
-            ov107_0224403C(param0);
-            ov107_02243FA4(param0);
+            CloseMonOptions(param0);
+            PrintMonSelectionStrings(param0);
             param0->subState = 0;
             break;
         }
         break;
     case 2:
-        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->listMenu, &param0->unk_16);
 
         if (gSystem.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_16 == 0) {
-                ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, NELEMS(Unk_ov107_02249FF0) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
-                ListMenu_Draw(param0->unk_198);
+                ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, NELEMS(sHealMenuItems) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
+                ListMenu_Draw(param0->listMenu);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                ov107_0224379C(param0, &param0->windows[6], 28, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+                PrintLeftAlignedMessageWithBg(param0, &param0->windows[SELF_APP_WINDOW_MSG_BOX], BattleCastleSelfApp_Text_ReturnToPrevious, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            if (param0->unk_16 == NELEMS(Unk_ov107_02249FF0) - 1) {
-                ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
-                ListMenu_Draw(param0->unk_198);
+            if (param0->unk_16 == NELEMS(sHealMenuItems) - 1) {
+                ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
+                ListMenu_Draw(param0->listMenu);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                ov107_0224379C(param0, &param0->windows[6], 24, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+                PrintLeftAlignedMessageWithBg(param0, &param0->windows[SELF_APP_WINDOW_MSG_BOX], BattleCastleSelfApp_Text_WhichToUse, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         }
 
-        v6 = ListMenu_ProcessInput(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->listMenu);
 
         ov107_02249CE0(v6, 1500);
-        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->listMenu, &param0->unk_16);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            ov107_02245288(&param0->windows[6]);
-            ov107_02244094(param0);
-            ov107_02244018(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            FreeListMenu2(param0);
+            OpenMonOptionsMenu(param0);
             param0->subState = 1;
             break;
         case 1:
         case 2:
         case 3:
             param0->unk_13 = v6;
-            ov107_02244094(param0);
-            BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+            FreeListMenu2(param0);
+            BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
 
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-            if (v2 < Unk_ov107_02249FF0[param0->unk_16][0]) {
-                param0->unk_0A = ov107_02243918(param0, 33, FONT_MESSAGE);
+            if (v2 < sHealMenuItems[param0->unk_16][0]) {
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_HealRankTooLow, FONT_MESSAGE);
                 param0->subState = 7;
             } else {
-                ov107_02244A74(param0, 0, Unk_ov107_02249E0C[param0->unk_16], 3, 0);
-                param0->unk_0A = ov107_02243918(param0, 55, FONT_MESSAGE);
-                ov107_022441DC(param0);
+                SetStringTemplateNumber(param0, 0, sHealingCosts[param0->unk_16], 3, 0);
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_WillCostCP, FONT_MESSAGE);
+                OpenYesNoMenu(param0);
                 param0->subState = 3;
             }
             break;
@@ -797,68 +812,68 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
                 Sound_PlayEffect(SEQ_SE_DP_BOX03);
             } else {
                 param0->unk_13 = v6;
-                ov107_02244094(param0);
+                FreeListMenu2(param0);
                 v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
-                ov107_02244A74(param0, 0, Unk_ov107_02249E46[0][v2], 4, 0);
-                param0->unk_0A = ov107_02243918(param0, 38, FONT_MESSAGE);
-                ov107_022441DC(param0);
+                SetStringTemplateNumber(param0, 0, sRankUpCosts[0][v2], 4, 0);
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_RankUpForCP, FONT_MESSAGE);
+                OpenYesNoMenu(param0);
                 param0->subState = 4;
             }
             break;
         }
         break;
     case 3:
-        v6 = Menu_ProcessInput(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->yesNoMenu);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0:
             v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
-            ov107_02245618(param0);
+            CloseYesNoMenu(param0);
 
             v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-            if (v2 < Unk_ov107_02249FF0[param0->unk_16][0]) {
-                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                param0->unk_0A = ov107_02243918(param0, 33, FONT_MESSAGE);
+            if (v2 < sHealMenuItems[param0->unk_16][0]) {
+                BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, 33, FONT_MESSAGE);
                 param0->subState = 7;
                 break;
             }
 
-            if (v3 < Unk_ov107_02249E0C[param0->unk_16]) {
-                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                param0->unk_0A = ov107_02243918(param0, 32, FONT_MESSAGE);
+            if (v3 < sHealingCosts[param0->unk_16]) {
+                BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_NotEnoughCP, FONT_MESSAGE);
                 param0->subState = 7;
                 break;
             }
 
             if (param0->unk_16 == 0) {
                 if (Pokemon_GetValue(v7, MON_DATA_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) {
-                    param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
+                    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_NoBenefit, FONT_MESSAGE);
                     param0->subState = 7;
                     break;
                 }
             } else if (param0->unk_16 == 1) {
                 if (ov107_02245210(v7) == 0) {
-                    param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
+                    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_NoBenefit, FONT_MESSAGE);
                     param0->subState = 7;
                     break;
                 }
             } else {
                 if ((Pokemon_GetValue(v7, MON_DATA_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) && (ov107_02245210(v7) == 0)) {
-                    param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
+                    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_NoBenefit, FONT_MESSAGE);
                     param0->subState = 7;
                     break;
                 }
             }
 
-            ov107_02245288(&param0->windows[6]);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
 
             if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-                ov104_0223BC2C(param0->frontier, param0->challengeType, Unk_ov107_02249E0C[param0->unk_13 - 1]);
-                ov107_02245780(param0, &param0->windows[0]);
+                ov104_0223BC2C(param0->frontier, param0->challengeType, sHealingCosts[param0->unk_13 - 1]);
+                ov107_02245780(param0, &param0->windows[SELF_APP_WINDOW_HEADER]);
                 ov107_022454F8(param0, param0->unk_0D, param0->unk_13);
                 param0->subState = 18;
             } else {
@@ -868,29 +883,29 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
             break;
         case 1:
         case 0xfffffffe:
-            ov107_02245618(param0);
-            ov107_02245288(&param0->windows[6]);
-            ov107_02244064(param0);
+            CloseYesNoMenu(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            OpenHealMenu(param0);
             param0->subState = 2;
             break;
         }
         break;
     case 4:
-        v6 = Menu_ProcessInput(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->yesNoMenu);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0:
-            ov107_02245618(param0);
+            CloseYesNoMenu(param0);
 
             v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-            if (v3 < Unk_ov107_02249E46[0][v2]) {
-                ov107_02245618(param0);
-                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                param0->unk_0A = ov107_02243918(param0, 41, FONT_MESSAGE);
+            if (v3 < sRankUpCosts[0][v2]) {
+                CloseYesNoMenu(param0);
+                BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_NotEnoughCP2, FONT_MESSAGE);
                 param0->subState = 7;
                 break;
             }
@@ -906,9 +921,9 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
             break;
         case 1:
         case 0xfffffffe:
-            ov107_02245618(param0);
-            ov107_02245288(&param0->windows[6]);
-            ov107_02244064(param0);
+            CloseYesNoMenu(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            OpenHealMenu(param0);
             param0->subState = 2;
             break;
         }
@@ -921,8 +936,8 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
     case 6:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245618(param0);
-            ov107_02244064(param0);
+            CloseYesNoMenu(param0);
+            OpenHealMenu(param0);
             ov107_02249C60(param0->unk_430, 204, 100);
             param0->subState = 2;
         }
@@ -930,49 +945,49 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
     case 7:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245288(&param0->windows[6]);
-            ov107_02244064(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            OpenHealMenu(param0);
             param0->subState = 2;
         }
         break;
     case 8:
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        v6 = ListMenu_ProcessInput(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->listMenu);
         ov107_02249CE0(v6, 1500);
-        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->listMenu, &param0->unk_16);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            ov107_02245288(&param0->windows[6]);
-            ov107_022440C0(param0);
-            ov107_02244018(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            FreeListMenu3(param0);
+            OpenMonOptionsMenu(param0);
             param0->subState = 1;
             break;
         case 6:
             param0->unk_13 = v6;
-            ov107_02245288(&param0->windows[6]);
-            ov107_022440C0(param0);
-            ov107_022440C8(param0, 6);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            FreeListMenu3(param0);
+            OpenItemSelectScreen(param0, 6);
             param0->subState = 9;
             break;
         case 7:
             param0->unk_13 = v6;
 
-            ov107_02245288(&param0->windows[6]);
-            ov107_022440C0(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            FreeListMenu3(param0);
 
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
 
             if (v2 == 1) {
-                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                param0->unk_0A = ov107_02243918(param0, 54, FONT_MESSAGE);
+                BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_RentalRankTooLow, FONT_MESSAGE);
                 param0->subState = 14;
                 return 0;
             }
 
-            ov107_022440C8(param0, 7);
+            OpenItemSelectScreen(param0, 7);
             param0->subState = 9;
             break;
         case 8:
@@ -983,37 +998,37 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
                 Sound_PlayEffect(SEQ_SE_DP_BOX03);
             } else {
                 param0->unk_13 = v6;
-                ov107_022440C0(param0);
-                ov107_02244A74(param0, 0, Unk_ov107_02249E46[1][v2], 4, 0);
-                param0->unk_0A = ov107_02243918(param0, 38, FONT_MESSAGE);
-                ov107_022441DC(param0);
+                FreeListMenu3(param0);
+                SetStringTemplateNumber(param0, 0, sRankUpCosts[1][v2], 4, 0);
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_RankUpForCP, FONT_MESSAGE);
+                OpenYesNoMenu(param0);
                 param0->subState = 11;
             }
             break;
         }
         break;
     case 9:
-        v6 = ListMenu_ProcessInput(param0->unk_198);
+        v6 = ListMenu_ProcessInput(param0->listMenu);
         ov107_02249CE0(v6, 1500);
-        ListMenu_CalcTrueCursorPos(param0->unk_198, &param0->unk_16);
+        ListMenu_CalcTrueCursorPos(param0->listMenu, &param0->unk_16);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            ov107_02244120(param0);
-            ov107_0224409C(param0);
+            FreeItemSelect(param0);
+            OpenRentalMenu(param0);
             param0->subState = 8;
             break;
         default:
-            Window_ClearAndScheduleCopyToVRAM(&param0->windows[12]);
+            Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_SELECTED_ITEM_NAME]);
 
-            BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-            ov107_02244A74(param0, 0, ov107_02244D5C(param0, param0->unk_16, param0->unk_13), 3, 0);
+            BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+            SetStringTemplateNumber(param0, 0, GetItemPriceFromListPos(param0, param0->unk_16, param0->unk_13), 3, 0);
 
-            param0->unk_0A = ov107_02243918(param0, 55, FONT_MESSAGE);
+            param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_WillCostCP, FONT_MESSAGE);
 
-            ov107_022441DC(param0);
+            OpenYesNoMenu(param0);
             BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 0);
 
             param0->subState = 10;
@@ -1022,18 +1037,18 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
         break;
     case 10:
         v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
-        v6 = Menu_ProcessInput(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->yesNoMenu);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0:
-            ov107_02245618(param0);
+            CloseYesNoMenu(param0);
             v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
 
-            if (v3 < ov107_02244D5C(param0, param0->unk_16, param0->unk_13)) {
-                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                param0->unk_0A = ov107_02243918(param0, 32, FONT_MESSAGE);
+            if (v3 < GetItemPriceFromListPos(param0, param0->unk_16, param0->unk_13)) {
+                BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_NotEnoughCP, FONT_MESSAGE);
 
                 BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 0);
                 param0->subState = 15;
@@ -1042,50 +1057,50 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
 
             if (Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL) == 0) {
                 if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-                    ov107_02244120(param0);
-                    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                    ov104_0223BC2C(param0->frontier, param0->challengeType, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
-                    ov107_02245780(param0, &param0->windows[0]);
-                    ov107_022455A0(param0, param0->unk_0D, ov107_02244DE0(param0, param0->unk_16, param0->unk_13));
+                    FreeItemSelect(param0);
+                    BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                    ov104_0223BC2C(param0->frontier, param0->challengeType, GetItemPriceFromListPos(param0, param0->unk_16, param0->unk_13));
+                    ov107_02245780(param0, &param0->windows[SELF_APP_WINDOW_HEADER]);
+                    ov107_022455A0(param0, param0->unk_0D, GetItemIDFromListPos(param0, param0->unk_16, param0->unk_13));
                     param0->subState = 18;
                 } else {
-                    param0->unk_10 = ov107_02244DE0(param0, param0->unk_16, param0->unk_13);
-                    ov107_02244120(param0);
-                    ov107_02245288(&param0->windows[6]);
+                    param0->unk_10 = GetItemIDFromListPos(param0, param0->unk_16, param0->unk_13);
+                    FreeItemSelect(param0);
+                    CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
                     param0->unk_0E_1 = 1;
                     return 1;
                 }
             } else {
-                ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v7));
+                SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v7));
                 StringTemplate_SetItemNameWithArticle(param0->strTemplate, 1, Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL));
-                param0->unk_0A = ov107_02243918(param0, 60, FONT_MESSAGE);
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_AlreadyHoldingItem, FONT_MESSAGE);
                 param0->subState = 16;
             }
             break;
         case 1:
         case 0xfffffffe:
-            ov107_02245618(param0);
+            CloseYesNoMenu(param0);
             ov107_022456E4(param0);
             param0->subState = 9;
             break;
         }
         break;
     case 11:
-        v6 = Menu_ProcessInput(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->yesNoMenu);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0:
-            ov107_02245618(param0);
+            CloseYesNoMenu(param0);
 
             v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
 
-            if (v3 < Unk_ov107_02249E46[1][v2]) {
-                ov107_02245618(param0);
-                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                param0->unk_0A = ov107_02243918(param0, 41, FONT_MESSAGE);
+            if (v3 < sRankUpCosts[1][v2]) {
+                CloseYesNoMenu(param0);
+                BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_NotEnoughCP2, FONT_MESSAGE);
                 param0->subState = 14;
                 break;
             }
@@ -1101,9 +1116,9 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
             break;
         case 1:
         case 0xfffffffe:
-            ov107_02245618(param0);
-            ov107_02245288(&param0->windows[6]);
-            ov107_0224409C(param0);
+            CloseYesNoMenu(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            OpenRentalMenu(param0);
             param0->subState = 8;
             break;
         }
@@ -1116,8 +1131,8 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
     case 13:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245618(param0);
-            ov107_0224409C(param0);
+            CloseYesNoMenu(param0);
+            OpenRentalMenu(param0);
             ov107_02249C60(param0->unk_430, 211, 106);
             param0->subState = 8;
         }
@@ -1125,8 +1140,8 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
     case 14:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245288(&param0->windows[6]);
-            ov107_0224409C(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            OpenRentalMenu(param0);
             param0->subState = 8;
         }
         break;
@@ -1140,38 +1155,38 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
     case 16:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            param0->unk_0A = ov107_02243918(param0, 61, FONT_MESSAGE);
-            ov107_022441DC(param0);
+            param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_WantToSwitchItems, FONT_MESSAGE);
+            OpenYesNoMenu(param0);
             param0->subState = 17;
         }
         break;
     case 17:
-        v6 = Menu_ProcessInput(param0->unk_17C);
+        v6 = Menu_ProcessInput(param0->yesNoMenu);
 
         switch (v6) {
         case 0xffffffff:
             break;
         case 0:
-            ov107_02245618(param0);
+            CloseYesNoMenu(param0);
 
             if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-                ov107_02244120(param0);
-                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-                ov104_0223BC2C(param0->frontier, param0->challengeType, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
-                ov107_02245780(param0, &param0->windows[0]);
-                ov107_022455A0(param0, param0->unk_0D, ov107_02244DE0(param0, param0->unk_16, param0->unk_13));
+                FreeItemSelect(param0);
+                BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+                ov104_0223BC2C(param0->frontier, param0->challengeType, GetItemPriceFromListPos(param0, param0->unk_16, param0->unk_13));
+                ov107_02245780(param0, &param0->windows[SELF_APP_WINDOW_HEADER]);
+                ov107_022455A0(param0, param0->unk_0D, GetItemIDFromListPos(param0, param0->unk_16, param0->unk_13));
                 param0->subState = 18;
             } else {
-                param0->unk_10 = ov107_02244DE0(param0, param0->unk_16, param0->unk_13);
-                ov107_02244120(param0);
-                ov107_02245288(&param0->windows[6]);
+                param0->unk_10 = GetItemIDFromListPos(param0, param0->unk_16, param0->unk_13);
+                FreeItemSelect(param0);
+                CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
                 param0->unk_0E_1 = 1;
                 return 1;
             }
             break;
         case 1:
         case 0xfffffffe:
-            ov107_02245618(param0);
+            CloseYesNoMenu(param0);
             ov107_022456E4(param0);
             param0->subState = 9;
             break;
@@ -1187,8 +1202,8 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
     case 19:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245288(&param0->windows[6]);
-            ov107_02243FA4(param0);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+            PrintMonSelectionStrings(param0);
             param0->subState = 0;
         }
         break;
@@ -1200,7 +1215,7 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
         } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245BE0(param0);
-            ov107_02244018(param0);
+            OpenMonOptionsMenu(param0);
             param0->subState = 1;
         }
         break;
@@ -1212,7 +1227,7 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
         } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245BE0(param0);
-            ov107_02244018(param0);
+            OpenMonOptionsMenu(param0);
             param0->subState = 1;
         }
         break;
@@ -1276,8 +1291,8 @@ static BOOL ov107_02242C64(BattleCastleSelfApp *param0)
             param0->unk_12 = 0xff;
 
             if (param0->unk_0E_5 == 0) {
-                ov107_02245288(&param0->windows[6]);
-                ov107_02243FA4(param0);
+                CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+                PrintMonSelectionStrings(param0);
             }
 
             param0->unk_496 = 0;
@@ -1313,7 +1328,7 @@ static BOOL ov107_02242D60(BattleCastleSelfApp *param0)
     case 2:
         if (CommTiming_IsSyncState(131) == 1) {
             CommTool_ClearReceivedTempDataAllPlayers();
-            ov107_02245288(&param0->windows[6]);
+            CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
             return 1;
         }
         break;
@@ -1350,7 +1365,7 @@ static void FreeAssets(BattleCastleSelfApp *app)
     BattleCastleAppSprite_Free(app->unk_41C);
     BattleCastleAppSprite_Free(app->unk_434);
 
-    u8 numMons = ov104_0223B7A8(app->challengeType, 1);
+    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         BattleCastleAppSprite_Free(app->monSprites[i]);
@@ -1376,7 +1391,7 @@ static void FreeAssets(BattleCastleSelfApp *app)
     FontSpecialChars_Free(app->specialChars);
 
     for (int i = 0; i < 3; i++) {
-        String_Free(app->unk_30[i]);
+        String_Free(app->yesNoStrs[i]);
     }
 
     BattleCastleApp_FreeWindows(app->windows, FALSE);
@@ -1404,14 +1419,14 @@ static void LoadAssets(BattleCastleSelfApp *app)
     LoadBackgrounds(app);
     InitSpriteManager(app);
 
-    app->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_BATTLE_CASTLE_APP);
+    app->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_CASTLE_SELF_APP, HEAP_ID_BATTLE_CASTLE_APP);
     app->itemMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, HEAP_ID_BATTLE_CASTLE_APP);
     app->strTemplate = StringTemplate_Default(HEAP_ID_BATTLE_CASTLE_APP);
     app->displayStr = String_Init(600, HEAP_ID_BATTLE_CASTLE_APP);
     app->fmtStr = String_Init(600, HEAP_ID_BATTLE_CASTLE_APP);
 
     for (int i = 0; i < 3; i++) {
-        app->unk_30[i] = String_Init(32, HEAP_ID_BATTLE_CASTLE_APP);
+        app->yesNoStrs[i] = String_Init(32, HEAP_ID_BATTLE_CASTLE_APP);
     }
 
     Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_CASTLE_APP);
@@ -1439,7 +1454,7 @@ static void LoadAssets(BattleCastleSelfApp *app)
         iconXOffset = 32 + 8;
     }
 
-    u8 numMons = ov104_0223B7A8(app->challengeType, 1);
+    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
 
     for (int i = 0; i < numMons; i++) {
         app->itemIconSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 2, 2, 2, 0, 64 * i + iconXOffset, 58 + 4, 2, NULL);
@@ -1729,814 +1744,814 @@ static void LoadSubScreenBackground(BattleCastleSelfApp *app, enum BgLayer bgLay
     Graphics_LoadPaletteFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, PAL_LOAD_SUB_BG, 0, PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
-static u8 ov107_0224379C(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static u8 PrintLeftAlignedMessageWithBg(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font)
 {
-    ov107_022437CC(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
+    return PrintMessageWithBg(app, window, entryID, xOffset, yOffset, renderDelay, fgColor, shadowColor, bgColor, font, TEXT_ALIGN_LEFT);
 }
 
-static u8 ov107_022437CC(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10)
+static u8 PrintMessageWithBg(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, enum TextAlignment alignment)
 {
-    Window_FillTilemap(param1, param8);
-    MessageLoader_GetString(param0->msgLoader, param2, param0->fmtStr);
-    StringTemplate_Format(param0->strTemplate, param0->displayStr, param0->fmtStr);
+    Window_FillTilemap(window, bgColor);
+    MessageLoader_GetString(app->msgLoader, entryID, app->fmtStr);
+    StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
 
-    switch (param10) {
-    case 1:
-        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0) + 1) / 2;
+    switch (alignment) {
+    case TEXT_ALIGN_CENTER:
+        xOffset -= (Font_CalcStringWidth(FONT_SYSTEM, app->displayStr, 0) + 1) / 2;
         break;
-    case 2:
-        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0);
-        break;
-    }
-
-    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->displayStr, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
-    Window_ScheduleCopyToVRAM(param1);
-
-    return v0;
-}
-
-static u8 ov107_02243860(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
-{
-    return ov107_02243890(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
-}
-
-static u8 ov107_02243890(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
-{
-    MessageLoader_GetString(param0->msgLoader, param2, param0->fmtStr);
-    StringTemplate_Format(param0->strTemplate, param0->displayStr, param0->fmtStr);
-
-    switch (param10) {
-    case 1:
-        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0) + 1) / 2;
-        break;
-    case 2:
-        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0);
+    case TEXT_ALIGN_RIGHT:
+        xOffset -= Font_CalcStringWidth(FONT_SYSTEM, app->displayStr, 0);
         break;
     }
 
-    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->displayStr, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
-    Window_ScheduleCopyToVRAM(param1);
+    u8 printerID = Text_AddPrinterWithParamsAndColor(window, font, app->displayStr, xOffset, yOffset, renderDelay, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
+    Window_ScheduleCopyToVRAM(window);
 
-    return v0;
+    return printerID;
 }
 
-static u8 ov107_02243918(BattleCastleSelfApp *param0, int param1, u8 param2)
+static u8 PrintLeftAlignedMessage(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font)
 {
-    u8 v0 = ov107_0224379C(param0, &param0->windows[6], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
-    Window_ScheduleCopyToVRAM(&param0->windows[6]);
-
-    return v0;
+    return PrintMessage(app, window, entryID, xOffset, yOffset, renderDelay, fgColor, shadowColor, bgColor, font, TEXT_ALIGN_LEFT);
 }
 
-static void ov107_02243950(BattleCastleSelfApp *param0, Window *window, Pokemon *mon)
+static u8 PrintMessage(BattleCastleSelfApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, enum TextAlignment alignment)
+{
+    MessageLoader_GetString(app->msgLoader, entryID, app->fmtStr);
+    StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
+
+    switch (alignment) {
+    case TEXT_ALIGN_CENTER:
+        xOffset -= (Font_CalcStringWidth(FONT_SYSTEM, app->displayStr, 0) + 1) / 2;
+        break;
+    case TEXT_ALIGN_RIGHT:
+        xOffset -= Font_CalcStringWidth(FONT_SYSTEM, app->displayStr, 0);
+        break;
+    }
+
+    u8 printerID = Text_AddPrinterWithParamsAndColor(window, font, app->displayStr, xOffset, yOffset, renderDelay, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
+    Window_ScheduleCopyToVRAM(window);
+
+    return printerID;
+}
+
+static u8 PrintMessageAndCopyToVRAM(BattleCastleSelfApp *app, int entryID, u8 font)
+{
+    u8 printerID = PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MSG_BOX], entryID, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, font);
+    Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
+
+    return printerID;
+}
+
+static void PrintPokemonSummary(BattleCastleSelfApp *app, Window *window, Pokemon *mon)
 {
     Window_FillTilemap(window, 0);
 
-    StringTemplate_SetItemName(param0->strTemplate, 0, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL));
-    ov107_02243B5C(param0, window, 70, 0, 8, 0);
-    ov107_02243B5C(param0, window, 71, 64, 8, 0);
+    StringTemplate_SetItemName(app->strTemplate, 0, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL));
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_Item, 0, 8, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_ItemValue, 64, 8, TEXT_ALIGN_LEFT);
 
-    StringTemplate_SetNatureName(param0->strTemplate, 0, Pokemon_GetNature(mon));
-    ov107_02243B5C(param0, window, 72, 0, 24, 0);
-    ov107_02243B5C(param0, window, 73, 64, 24, 0);
+    StringTemplate_SetNatureName(app->strTemplate, 0, Pokemon_GetNature(mon));
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_Nature, 0, 24, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_NatureValue, 64, 24, TEXT_ALIGN_LEFT);
 
-    StringTemplate_SetAbilityName(param0->strTemplate, 0, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
-    ov107_02243B5C(param0, window, 74, 0, 40, 0);
-    ov107_02243B5C(param0, window, 75, 64, 40, 0);
+    StringTemplate_SetAbilityName(app->strTemplate, 0, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_Ability, 0, 40, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_AbilityValue, 64, 40, TEXT_ALIGN_LEFT);
 
-    ov107_02244A74(param0, 0, Pokemon_GetValue(mon, MON_DATA_ATK, NULL), 3, 1);
-    ov107_02243B5C(param0, window, 76, 0, 56, 0);
-    ov107_02243B5C(param0, window, 77, 80, 56, 2);
+    SetStringTemplateNumber(app, 0, Pokemon_GetValue(mon, MON_DATA_ATK, NULL), 3, PADDING_MODE_SPACES);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_Attack, 0, 56, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_AttackValue, 80, 56, TEXT_ALIGN_RIGHT);
 
-    ov107_02244A74(param0, 0, Pokemon_GetValue(mon, MON_DATA_DEF, NULL), 3, 1);
-    ov107_02243B5C(param0, window, 78, 96, 56, 0);
-    ov107_02243B5C(param0, window, 79, 176, 56, 2);
+    SetStringTemplateNumber(app, 0, Pokemon_GetValue(mon, MON_DATA_DEF, NULL), 3, PADDING_MODE_SPACES);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_Defense, 96, 56, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_DefenseValue, 176, 56, TEXT_ALIGN_RIGHT);
 
-    ov107_02244A74(param0, 0, Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL), 3, 1);
-    ov107_02243B5C(param0, window, 80, 0, 72, 0);
-    ov107_02243B5C(param0, window, 81, 80, 72, 2);
+    SetStringTemplateNumber(app, 0, Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL), 3, PADDING_MODE_SPACES);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_SpAttack, 0, 72, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_SpAttackValue, 80, 72, TEXT_ALIGN_RIGHT);
 
-    ov107_02244A74(param0, 0, Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL), 3, 1);
-    ov107_02243B5C(param0, window, 82, 96, 72, 0);
-    ov107_02243B5C(param0, window, 83, 176, 72, 2);
+    SetStringTemplateNumber(app, 0, Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL), 3, PADDING_MODE_SPACES);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_SpDefense, 96, 72, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_SpDefenseValue, 176, 72, TEXT_ALIGN_RIGHT);
 
-    ov107_02244A74(param0, 0, Pokemon_GetValue(mon, MON_DATA_SPEED, NULL), 3, 1);
-    ov107_02243B5C(param0, window, 84, 0, 88, 0);
-    ov107_02243B5C(param0, window, 85, 80, 88, 2);
+    SetStringTemplateNumber(app, 0, Pokemon_GetValue(mon, MON_DATA_SPEED, NULL), 3, PADDING_MODE_SPACES);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_Speed, 0, 88, TEXT_ALIGN_LEFT);
+    PrintStaticMessage(app, window, BattleCastleSelfApp_Text_SpeedValue, 80, 88, TEXT_ALIGN_RIGHT);
 
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02243B5C(BattleCastleSelfApp *param0, Window *param1, int param2, u16 param3, u16 param4, int param5)
+static void PrintStaticMessage(BattleCastleSelfApp *app, Window *window, int entryID, u16 xOffset, u16 yOffset, enum TextAlignment alignment)
 {
-    ov107_02243890(param0, param1, param2, param3, param4, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, param5);
+    PrintMessage(app, window, entryID, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, alignment);
 }
 
-static void ov107_02243B84(BattleCastleSelfApp *param0, Window *param1, Pokemon *param2)
+static void PrintAllMoves(BattleCastleSelfApp *app, Window *window, Pokemon *mon)
 {
-    Window_FillTilemap(param1, 0);
+    Window_FillTilemap(window, 0);
 
-    ov107_02243C18(param0, param1, 0, 88, 92, param2, 54, 58, 66);
-    ov107_02243C18(param0, param1, 1, 89, 92, param2, 55, 59, 67);
-    ov107_02243C18(param0, param1, 2, 90, 92, param2, 56, 60, 68);
-    ov107_02243C18(param0, param1, 3, 91, 92, param2, 57, 61, 69);
+    PrintMoveInfo(app, window, 0, BattleCastleSelfApp_Text_MoveName1, BattleCastleSelfApp_Text_MovePP, mon, MON_DATA_MOVE1, MON_DATA_MOVE1_PP, MON_DATA_MOVE1_MAX_PP);
+    PrintMoveInfo(app, window, 1, BattleCastleSelfApp_Text_MoveName2, BattleCastleSelfApp_Text_MovePP, mon, MON_DATA_MOVE2, MON_DATA_MOVE2_PP, MON_DATA_MOVE2_MAX_PP);
+    PrintMoveInfo(app, window, 2, BattleCastleSelfApp_Text_MoveName3, BattleCastleSelfApp_Text_MovePP, mon, MON_DATA_MOVE3, MON_DATA_MOVE3_PP, MON_DATA_MOVE3_MAX_PP);
+    PrintMoveInfo(app, window, 3, BattleCastleSelfApp_Text_MoveName4, BattleCastleSelfApp_Text_MovePP, mon, MON_DATA_MOVE4, MON_DATA_MOVE4_PP, MON_DATA_MOVE4_MAX_PP);
 
-    Window_ScheduleCopyToVRAM(param1);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02243C18(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3, u32 param4, Pokemon *param5, u32 param6, u32 param7, u32 param8)
+static void PrintMoveInfo(BattleCastleSelfApp *app, Window *window, u8 idx, u32 moveNameEntryID, u32 ppEntryID, Pokemon *mon, u32 moveParam, u32 ppParam, u32 maxPpParam)
 {
-    u16 v0 = 24;
-    u16 v1 = 12 + (param2 * 24);
-    u16 v2 = 137;
-    u16 v3 = 12 + (param2 * 24);
+    u16 nameXOffset = 24;
+    u16 nameYOffset = 12 + (idx * 24);
+    u16 ppXOffset = 137;
+    u16 ppYOffset = 12 + (idx * 24);
 
-    StringTemplate_SetMoveName(param0->strTemplate, param2, Pokemon_GetValue(param5, param6, NULL));
-    param0->unk_0A = ov107_02243860(param0, param1, param3, v0, v1, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM);
+    StringTemplate_SetMoveName(app->strTemplate, idx, Pokemon_GetValue(mon, moveParam, NULL));
+    app->printerID = PrintLeftAlignedMessage(app, window, moveNameEntryID, nameXOffset, nameYOffset, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM);
 
-    ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_CHECKSUM_FAILED, 0);
-    ov107_02244A74(param0, 5, Pokemon_GetValue(param5, param8, NULL), MON_DATA_CHECKSUM_FAILED, 0);
-    param0->unk_0A = ov107_02243890(param0, param1, param4, v2, v3, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
+    SetStringTemplateNumber(app, 4, Pokemon_GetValue(mon, ppParam, NULL), 3, PADDING_MODE_NONE);
+    SetStringTemplateNumber(app, 5, Pokemon_GetValue(mon, maxPpParam, NULL), 3, PADDING_MODE_NONE);
+    app->printerID = PrintMessage(app, window, ppEntryID, ppXOffset, ppYOffset, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
 }
 
-static void ov107_02243CC0(BattleCastleSelfApp *param0, Window *param1)
+static void PrintAllMonsHP(BattleCastleSelfApp *app, Window *window)
 {
-    Window_FillTilemap(param1, 0);
+    Window_FillTilemap(window, 0);
 
-    u8 v1 = ov104_0223B7A8(param0->challengeType, 1);
+    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
 
-    for (int v0 = 0; v0 < v1; v0++) {
-        ov107_02243CFC(param0, param1, v0, 0);
+    for (int i = 0; i < numMons; i++) {
+        PrintMonHP(app, window, i, FALSE);
     }
 
-    Window_ScheduleCopyToVRAM(param1);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02243CFC(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3)
+static void PrintMonHP(BattleCastleSelfApp *app, Window *window, u8 slot, u8 isItemSelectMenu)
 {
-    u16 v0, v1, v2, v3, v4, v5, v6;
-    Pokemon *v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, param2);
+    u16 baseXOffset, hpXOffset, hpYOffset, maxHpXOffset, maxHpYOffset, slashXOffset, slashYOffset;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->unk_43C, slot);
 
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-        v0 = 36;
+    if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == FALSE) {
+        baseXOffset = 36;
     } else {
-        v0 = 4;
+        baseXOffset = 4;
     }
 
-    if (param3 == 0) {
-        v1 = v0 + (64 * param2);
-        v2 = 1;
-        v5 = 24 + v0 + (64 * param2);
-        v6 = 1;
-        v3 = 32 + v0 + (64 * param2);
-        v4 = 1;
+    if (!isItemSelectMenu) {
+        hpXOffset = baseXOffset + (64 * slot);
+        hpYOffset = 1;
+        slashXOffset = 24 + baseXOffset + (64 * slot);
+        slashYOffset = 1;
+        maxHpXOffset = 32 + baseXOffset + (64 * slot);
+        maxHpYOffset = 1;
     } else {
-        v1 = 4;
-        v2 = 0;
-        v5 = 24 + 4;
-        v6 = 0;
-        v3 = 32 + 4;
-        v4 = 0;
+        hpXOffset = 4;
+        hpYOffset = 0;
+        slashXOffset = 24 + 4;
+        slashYOffset = 0;
+        maxHpXOffset = 32 + 4;
+        maxHpYOffset = 0;
     }
 
-    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, Pokemon_GetValue(v7, MON_DATA_HP, NULL), 3, 1, param1, v1, v2);
-    FontSpecialChars_DrawPartyScreenLevelText(param0->specialChars, 0, param1, v5, v6);
-    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
+    FontSpecialChars_DrawPartyScreenHPText(app->specialChars, Pokemon_GetValue(mon, MON_DATA_HP, NULL), 3, PADDING_MODE_SPACES, window, hpXOffset, hpYOffset);
+    FontSpecialChars_DrawPartyScreenLevelText(app->specialChars, SPECIAL_CHAR_SLASH, window, slashXOffset, slashYOffset);
+    FontSpecialChars_DrawPartyScreenHPText(app->specialChars, Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL), 3, PADDING_MODE_NONE, window, maxHpXOffset, maxHpYOffset);
 }
 
-static void ov107_02243DB0(BattleCastleSelfApp *param0, Window *param1)
+static void PrintAllMonsLevelAndGender(BattleCastleSelfApp *app, Window *window)
 {
-    u8 v1 = ov104_0223B7A8(param0->challengeType, 1);
+    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
 
-    for (int v0 = 0; v0 < v1; v0++) {
-        ov107_02243DE4(param0, param1, v0, 0);
+    for (int i = 0; i < numMons; i++) {
+        PrintMonLevelAndGender(app, window, i, FALSE);
     }
 
-    Window_ScheduleCopyToVRAM(param1);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02243DE4(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3)
+static void PrintMonLevelAndGender(BattleCastleSelfApp *app, Window *window, u8 slot, u8 isItemSelectMenu)
 {
-    u16 v5, v6;
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-        v5 = 40;
-        v6 = 80;
+    u16 baseLevelXOffset, baseGenderXOffset;
+    if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == FALSE) {
+        baseLevelXOffset = 40;
+        baseGenderXOffset = 80;
     } else {
-        v5 = 8;
-        v6 = 48;
+        baseLevelXOffset = 8;
+        baseGenderXOffset = 48;
     }
 
-    Pokemon *v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, param2);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->unk_43C, slot);
 
-    u32 v1, v2, v3, v4;
-    if (param3 == 0) {
-        v1 = v5 + (64 * param2);
-        v2 = 1;
-        v3 = v6 + (64 * param2);
-        v4 = 1;
+    u32 levelXOffset, levelYOffset, genderXOffset, genderYOffset;
+    if (!isItemSelectMenu) {
+        levelXOffset = baseLevelXOffset + (64 * slot);
+        levelYOffset = 1;
+        genderXOffset = baseGenderXOffset + (64 * slot);
+        genderYOffset = 1;
     } else {
-        v1 = 4;
-        v2 = 0;
-        v3 = (8 * 6);
-        v4 = 0;
+        levelXOffset = 4;
+        levelYOffset = 0;
+        genderXOffset = 48;
+        genderYOffset = 0;
     }
 
-    FontSpecialChars_DrawPartyScreenText(param0->specialChars, 1, Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL), 3, 0, param1, v1, v2);
-    u32 v0 = Pokemon_GetValue(v7, MON_DATA_GENDER, NULL);
-    ov107_02244B8C(param0, param1, v3, v4, FONT_SYSTEM, v0);
+    FontSpecialChars_DrawPartyScreenText(app->specialChars, SPECIAL_CHAR_LEVEL, Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL), 3, PADDING_MODE_NONE, window, levelXOffset, levelYOffset);
+    u32 gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
+    PrintGenderSymbol(app, window, genderXOffset, genderYOffset, FONT_SYSTEM, gender);
 }
 
-static void ov107_02243E74(BattleCastleSelfApp *param0, Window *param1)
+static void DrawPlayerInfoOnItemSelectMenu(BattleCastleSelfApp *app, Window *window)
 {
-    u16 v0 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+    u16 castlePoints = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
 
-    BattleCastleApp_DrawWindow(param0->bgConfig, param1);
-    Window_FillTilemap(param1, 15);
+    BattleCastleApp_DrawWindow(app->bgConfig, window);
+    Window_FillTilemap(window, 15);
 
-    ov107_02244AB4(param0, param1, 1, 1, FONT_SYSTEM);
-    ov107_02244A74(param0, 0, v0, 4, 1);
+    PrintPlayerName(app, window, 1, 1, FONT_SYSTEM);
+    SetStringTemplateNumber(app, 0, castlePoints, 4, PADDING_MODE_SPACES);
 
-    param0->unk_0A = ov107_02243860(param0, param1, 4, 16, 1 * 16, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM);
-    Window_ScheduleCopyToVRAM(param1);
+    app->printerID = PrintLeftAlignedMessage(app, window, BattleCastleSelfApp_Text_CastlePoints, 16, 16, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static u8 ov107_02243EF8(BattleCastleSelfApp *param0, Window *param1, u16 param2)
+static u8 PrintItemName(BattleCastleSelfApp *app, Window *window, u16 entryID)
 {
-    Window_FillTilemap(param1, 0);
-    MessageLoader_GetString(param0->itemMsgLoader, param2, param0->fmtStr);
-    StringTemplate_Format(param0->strTemplate, param0->displayStr, param0->fmtStr);
+    Window_FillTilemap(window, 0);
+    MessageLoader_GetString(app->itemMsgLoader, entryID, app->fmtStr);
+    StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
 
-    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->displayStr, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    u8 printerID = Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, app->displayStr, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
-    Window_ScheduleCopyToVRAM(param1);
-    return v0;
+    Window_ScheduleCopyToVRAM(window);
+    return printerID;
 }
 
-static void ov107_02243F4C(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3)
+static void ov107_02243F4C(BattleCastleSelfApp *ctx, Window *window, u8 param2, u32 param3)
 {
     u16 v0;
 
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(ctx->challengeType) == FALSE) {
         v0 = 36;
     } else {
         v0 = 4;
     }
 
-    Window_FillRectWithColor(param1, 0, v0 + (64 * param2), 0, 8 * 3, 9);
-    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, param3, 3, 1, param1, v0 + (64 * param2), 1);
-    Window_ScheduleCopyToVRAM(param1);
+    Window_FillRectWithColor(window, 0, v0 + (64 * param2), 0, 8 * 3, 9);
+    FontSpecialChars_DrawPartyScreenHPText(ctx->specialChars, param3, 3, PADDING_MODE_SPACES, window, v0 + (64 * param2), 1);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02243FA4(BattleCastleSelfApp *param0)
+static void PrintMonSelectionStrings(BattleCastleSelfApp *app)
 {
-    param0->unk_0A = ov107_022437CC(param0, &param0->windows[1], 6, 16, 1 + 4, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
-    BattleCastleApp_DrawMessageBox(&param0->windows[7], Options_Frame(param0->options));
-    param0->unk_0A = ov107_0224379C(param0, &param0->windows[7], 5, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    app->printerID = PrintMessageWithBg(app, &app->windows[SELF_APP_WINDOW_EXIT], BattleCastleSelfApp_Text_Exit, 16, 5, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
+    BattleCastleApp_DrawMessageBox(&app->windows[SELF_APP_WINDOW_MON_SELECTION_MSG_BOX], Options_Frame(app->options));
+    app->printerID = PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MON_SELECTION_MSG_BOX], BattleCastleSelfApp_Text_ChoosePokemon, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void ov107_0224400C(BattleCastleSelfApp *param0)
+static void CloseMonSelectionMessageBox(BattleCastleSelfApp *app)
 {
-    ov107_02245288(&param0->windows[7]);
+    CloseMessageBox(&app->windows[SELF_APP_WINDOW_MON_SELECTION_MSG_BOX]);
 }
 
-static void ov107_02244018(BattleCastleSelfApp *param0)
+static void OpenMonOptionsMenu(BattleCastleSelfApp *app)
 {
-    BattleCastleApp_DrawMessageBox(&param0->windows[8], Options_Frame(param0->options));
-    param0->unk_16 = 0;
-    ov107_02244944(param0);
+    BattleCastleApp_DrawMessageBox(&app->windows[SELF_APP_WINDOW_MON_OPTIONS_MSG_BOX], Options_Frame(app->options));
+    app->unk_16 = 0;
+    InitMonOptionsMenu(app);
 }
 
-static void ov107_0224403C(BattleCastleSelfApp *param0)
+static void CloseMonOptions(BattleCastleSelfApp *app)
 {
-    ListMenu_GetListAndCursorPos(param0->unk_198, &param0->unk_18, &param0->unk_1A);
+    ListMenu_GetListAndCursorPos(app->listMenu, &app->monMenuListPos, &app->monMenuCursorPos);
 
-    ov107_02245288(&param0->windows[8]);
-    ov107_02245730(param0);
+    CloseMessageBox(&app->windows[SELF_APP_WINDOW_MON_OPTIONS_MSG_BOX]);
+    FreeListMenu(app);
 }
 
-static void ov107_02244064(BattleCastleSelfApp *param0)
+static void OpenHealMenu(BattleCastleSelfApp *app)
 {
-    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
 
-    param0->unk_0A = ov107_02243918(param0, 24, FONT_MESSAGE);
-    param0->unk_16 = 0;
+    app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleSelfApp_Text_WhichToUse, FONT_MESSAGE);
+    app->unk_16 = 0;
 
-    ov107_022445C4(param0);
+    InitHealMenu(app);
 }
 
-static void ov107_02244094(BattleCastleSelfApp *param0)
+static void FreeListMenu2(BattleCastleSelfApp *app)
 {
-    ov107_02245730(param0);
+    FreeListMenu(app);
 }
 
-static void ov107_0224409C(BattleCastleSelfApp *param0)
+static void OpenRentalMenu(BattleCastleSelfApp *app)
 {
-    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
-    param0->unk_16 = 0;
-    ov107_02244780(param0);
+    BattleCastleApp_DrawMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
+    app->unk_16 = 0;
+    InitRentalMenu(app);
 }
 
-static void ov107_022440C0(BattleCastleSelfApp *param0)
+static void FreeListMenu3(BattleCastleSelfApp *app)
 {
-    ov107_02245730(param0);
+    FreeListMenu(app);
 }
 
-static void ov107_022440C8(BattleCastleSelfApp *param0, u8 param1)
+static void OpenItemSelectScreen(BattleCastleSelfApp *app, u8 param1)
 {
-    param0->unk_0E_3 = 1;
+    app->itemSelectIsOpen = TRUE;
 
-    ov107_02245288(&param0->windows[6]);
+    CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
 
-    Window_ClearAndCopyToVRAM(&param0->windows[6]);
-    Window_ClearAndCopyToVRAM(&param0->windows[9]);
+    Window_ClearAndCopyToVRAM(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
+    Window_ClearAndCopyToVRAM(&app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU]);
 
-    LoadItemSelectBackground(param0, 2);
+    LoadItemSelectBackground(app, BG_LAYER_MAIN_2);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[4]);
+    Window_ClearAndScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_SUMMARY_SCREEN]);
 
-    param0->unk_16 = 0;
+    app->unk_16 = 0;
 
-    ov107_02244240(param0, param1);
-    ov107_02243E74(param0, &param0->windows[15]);
+    DrawItemSelectMenuAndMonInfo(app, param1);
+    DrawPlayerInfoOnItemSelectMenu(app, &app->windows[SELF_APP_WINDOW_ITEM_SELECT_PLAYER_INFO]);
 }
 
-static void ov107_02244120(BattleCastleSelfApp *param0)
+static void FreeItemSelect(BattleCastleSelfApp *app)
 {
-    if (param0->unk_0E_3 == 1) {
-        param0->unk_0E_3 = 0;
-        Window_ClearAndScheduleCopyToVRAM(&param0->windows[12]);
-        ov107_02245730(param0);
-        ov107_02245660(param0);
+    if (app->itemSelectIsOpen == TRUE) {
+        app->itemSelectIsOpen = FALSE;
+        Window_ClearAndScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_SELECTED_ITEM_NAME]);
+        FreeListMenu(app);
+        CloseItemSelectScreen(app);
     }
 }
 
-static void ov107_0224414C(BattleCastleSelfApp *param0, Window *param1, u8 param2)
+static void InitYesNoMenu(BattleCastleSelfApp *app, Window *window, u8 numOptions)
 {
-    for (int v0 = 0; v0 < 3; v0++) {
-        param0->unk_180[v0].entry = NULL;
-        param0->unk_180[v0].index = 0;
+    for (int i = 0; i < 3; i++) {
+        app->yesNoStrList[i].entry = NULL;
+        app->yesNoStrList[i].index = 0;
     }
 
-    param0->unk_170.choices = param0->unk_180;
-    param0->unk_170.window = param1;
-    param0->unk_170.fontID = FONT_SYSTEM;
-    param0->unk_170.xSize = 1;
-    param0->unk_170.ySize = param2;
-    param0->unk_170.lineSpacing = 0;
-    param0->unk_170.suppressCursor = FALSE;
-    param0->unk_170.loopAround = TRUE;
+    app->yesNoMenuTemplate.choices = app->yesNoStrList;
+    app->yesNoMenuTemplate.window = window;
+    app->yesNoMenuTemplate.fontID = FONT_SYSTEM;
+    app->yesNoMenuTemplate.xSize = 1;
+    app->yesNoMenuTemplate.ySize = numOptions;
+    app->yesNoMenuTemplate.lineSpacing = 0;
+    app->yesNoMenuTemplate.suppressCursor = FALSE;
+    app->yesNoMenuTemplate.loopAround = TRUE;
 }
 
-static void ov107_022441B0(BattleCastleSelfApp *param0, u8 param1, u8 param2, int param3)
+static void AddStringToYesNoMenu(BattleCastleSelfApp *app, u8 strIndex, u8 listIndex, int entryID)
 {
-    MessageLoader_GetString(param0->msgLoader, param3, param0->unk_30[param1]);
+    MessageLoader_GetString(app->msgLoader, entryID, app->yesNoStrs[strIndex]);
 
-    param0->unk_180[param1].entry = param0->unk_30[param1];
-    param0->unk_180[param1].index = param2;
+    app->yesNoStrList[strIndex].entry = app->yesNoStrs[strIndex];
+    app->yesNoStrList[strIndex].index = listIndex;
 }
 
-static void ov107_022441DC(BattleCastleSelfApp *param0)
+static void OpenYesNoMenu(BattleCastleSelfApp *app)
 {
-    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[13]);
-    ov107_0224414C(param0, &param0->windows[13], 2);
-    ov107_022441B0(param0, 0, 0, 30);
-    ov107_022441B0(param0, 1, 1, 31);
+    BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[SELF_APP_WINDOW_YES_NO_MENU]);
+    InitYesNoMenu(app, &app->windows[SELF_APP_WINDOW_YES_NO_MENU], 2);
+    AddStringToYesNoMenu(app, 0, 0, BattleCastleSelfApp_Text_Yes);
+    AddStringToYesNoMenu(app, 1, 1, BattleCastleSelfApp_Text_No);
 
-    param0->unk_17C = Menu_NewAndCopyToVRAM(&param0->unk_170, 8, 0, 0, 100, PAD_BUTTON_B);
-    param0->unk_0E_4 = 1;
+    app->yesNoMenu = Menu_NewAndCopyToVRAM(&app->yesNoMenuTemplate, 8, 0, 0, HEAP_ID_BATTLE_CASTLE_APP, PAD_BUTTON_B);
+    app->yesNoMenuIsOpen = TRUE;
 }
 
-static void ov107_02244240(BattleCastleSelfApp *param0, u8 param1)
+static void DrawItemSelectMenuAndMonInfo(BattleCastleSelfApp *app, u8 menuType)
 {
-    ov107_0224503C(param0, param0->unk_0D, 1);
-    u8 v2 = ov107_02249C98(param0->unk_14, param0->unk_0D);
-    ov107_02243CFC(param0, &param0->windows[17], v2, 1);
+    ov107_0224503C(app, app->unk_0D, 1);
+    u8 slot = ov107_02249C98(app->unk_14, app->unk_0D);
+    PrintMonHP(app, &app->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_HP], slot, TRUE);
 
-    Window_ScheduleCopyToVRAM(&param0->windows[17]);
-    ov107_02243DE4(param0, &param0->windows[16], v2, 1);
-    Window_ScheduleCopyToVRAM(&param0->windows[16]);
+    Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_HP]);
+    PrintMonLevelAndGender(app, &app->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_INFO], slot, TRUE);
+    Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_INFO]);
 
-    BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 1);
-    BattleCastleAppSprite_SetDrawFlag(param0->upArrowSprite, 1);
-    BattleCastleAppSprite_SetDrawFlag(param0->downArrowSprite, 1);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_434, 1);
+    BattleCastleAppSprite_SetDrawFlag(app->itemSprite, TRUE);
+    BattleCastleAppSprite_SetDrawFlag(app->upArrowSprite, TRUE);
+    BattleCastleAppSprite_SetDrawFlag(app->downArrowSprite, TRUE);
+    BattleCastleAppSprite_SetDrawFlag(app->unk_434, TRUE);
 
-    MessageLoader *v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BATTLE_CASTLE_APP);
-    u8 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
+    MessageLoader *itemMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BATTLE_CASTLE_APP);
+    u8 rank = ov107_02249CAC(app->saveData, app->challengeType, 1);
 
-    u8 v1;
-    if (param1 == 6) {
-        v1 = Unk_ov107_02249E12[v0 - 1];
+    u8 listSize;
+    if (menuType == MENU_OPTION_RENT_BERRIES) {
+        listSize = sBerriesAvailableByRank[rank - 1];
     } else {
-        v1 = Unk_ov107_02249E06[v0 - 1];
+        listSize = sItemsAvailableByRank[rank - 1];
     }
 
-    param0->unk_19C = StringList_New(v1 + 1, HEAP_ID_BATTLE_CASTLE_APP);
+    app->strList = StringList_New(listSize + 1, HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int v4 = 0; v4 < v1; v4++) {
-        u16 v3;
+    for (int i = 0; i < listSize; i++) {
+        u16 itemID;
 
-        if (param1 == 6) {
-            v3 = Unk_ov107_0224A02C[v4];
+        if (menuType == MENU_OPTION_RENT_BERRIES) {
+            itemID = sBerriesForRent[i];
         } else {
-            v3 = Unk_ov107_02249F84[v4];
+            itemID = sItemsForRent[i];
         }
 
-        StringList_AddFromMessageBank(param0->unk_19C, v5, v3, v4);
+        StringList_AddFromMessageBank(app->strList, itemMsgLoader, itemID, i);
     }
 
-    StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, 13, 0xfffffffe);
+    StringList_AddFromMessageBank(app->strList, app->msgLoader, BattleCastleSelfApp_Text_Cancel, MENU_CANCELED);
 
-    param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->windows[5];
-    param0->unk_1A0.parent = param0;
-    param0->unk_1A0.cursorCallback = ov107_0224440C;
-    param0->unk_1A0.printCallback = ov107_02244560;
-    param0->unk_1A0.count = (v1 + 1);
-    param0->unk_1A0.textColorBg = 0;
-    param0->unk_1A0.maxDisplay = 6;
-    param0->unk_1A0.textXOffset = 0;
-    param0->unk_1A0.cursorType = 1;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
+    app->listTemplate = sDefaultListTemplate;
+    app->listTemplate.choices = app->strList;
+    app->listTemplate.window = &app->windows[SELF_APP_WINDOW_ITEM_SELECT_MENU];
+    app->listTemplate.parent = app;
+    app->listTemplate.cursorCallback = UpdateItemSelectMenuDisplay;
+    app->listTemplate.printCallback = PrintItemPrice;
+    app->listTemplate.count = (listSize + 1);
+    app->listTemplate.textColorBg = 0;
+    app->listTemplate.maxDisplay = 6;
+    app->listTemplate.textXOffset = 0;
+    app->listTemplate.cursorType = 1;
+    app->listMenu = ListMenu_New(&app->listTemplate, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->windows[5]);
-    MessageLoader_Free(v5);
+    MarkListMenuAsOpen(app, &app->windows[SELF_APP_WINDOW_ITEM_SELECT_MENU]);
+    MessageLoader_Free(itemMsgLoader);
 }
 
-static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2)
+static void UpdateItemSelectMenuDisplay(ListMenu *menu, u32 item, u8 onInit)
 {
-    u16 v3, v4, v5;
-    BattleCastleSelfApp *v6 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
+    u16 listPos, cursorPos, pos;
+    BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    if (param2 == 0) {
+    if (!onInit) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
-        ListMenu_CalcTrueCursorPos(v6->unk_198, &v5);
+        ListMenu_CalcTrueCursorPos(app->listMenu, &pos);
     } else {
-        v5 = 0;
+        pos = 0;
     }
 
-    u32 v0 = ListMenu_GetAttribute(param0, 2);
-    u32 v1 = ListMenu_GetAttribute(param0, 3);
+    u32 listCount = ListMenu_GetAttribute(menu, LIST_MENU_COUNT);
+    u32 displayCount = ListMenu_GetAttribute(menu, LIST_MENU_MAX_DISPLAY);
 
-    ListMenu_GetListAndCursorPos(param0, &v3, &v4);
+    ListMenu_GetListAndCursorPos(menu, &listPos, &cursorPos);
 
-    if (v3 == 0) {
-        BattleCastleAppSprite_SetDrawFlag(v6->upArrowSprite, 0);
-        BattleCastleAppSprite_SetDrawFlag(v6->downArrowSprite, 1);
-    } else if (v3 == (v0 - v1)) {
-        BattleCastleAppSprite_SetDrawFlag(v6->upArrowSprite, 1);
-        BattleCastleAppSprite_SetDrawFlag(v6->downArrowSprite, 0);
+    if (listPos == 0) {
+        BattleCastleAppSprite_SetDrawFlag(app->upArrowSprite, FALSE);
+        BattleCastleAppSprite_SetDrawFlag(app->downArrowSprite, TRUE);
+    } else if (listPos == listCount - displayCount) {
+        BattleCastleAppSprite_SetDrawFlag(app->upArrowSprite, TRUE);
+        BattleCastleAppSprite_SetDrawFlag(app->downArrowSprite, FALSE);
     } else {
-        BattleCastleAppSprite_SetDrawFlag(v6->upArrowSprite, 1);
-        BattleCastleAppSprite_SetDrawFlag(v6->downArrowSprite, 1);
+        BattleCastleAppSprite_SetDrawFlag(app->upArrowSprite, TRUE);
+        BattleCastleAppSprite_SetDrawFlag(app->downArrowSprite, TRUE);
     }
 
-    BattleCastleAppSprite_SetPosition(v6->unk_434, 158, 24 + v4 * 16);
+    BattleCastleAppSprite_SetPosition(app->unk_434, 158, 24 + cursorPos * 16);
 
-    if (param1 != 0xfffffffe) {
-        ov107_02243EF8(v6, &v6->windows[12], ov107_02244DE0(v6, v5, v6->unk_13));
+    if (item != MENU_CANCELED) {
+        PrintItemName(app, &app->windows[SELF_APP_WINDOW_SELECTED_ITEM_NAME], GetItemIDFromListPos(app, pos, app->unk_13));
 
-        BattleCastleApp_SetItemGraphic(&v6->spriteMan, ov107_02244DE0(v6, v5, v6->unk_13));
-        BattleCastleApp_SetItemPalette(&v6->spriteMan, ov107_02244DE0(v6, v5, v6->unk_13));
+        BattleCastleApp_SetItemGraphic(&app->spriteMan, GetItemIDFromListPos(app, pos, app->unk_13));
+        BattleCastleApp_SetItemPalette(&app->spriteMan, GetItemIDFromListPos(app, pos, app->unk_13));
     } else {
-        BattleCastleApp_SetItemGraphic(&v6->spriteMan, 0xffff);
-        BattleCastleApp_SetItemPalette(&v6->spriteMan, 0xffff);
-        Window_FillTilemap(&v6->windows[12], 0);
-        Window_ScheduleCopyToVRAM(&v6->windows[12]);
+        BattleCastleApp_SetItemGraphic(&app->spriteMan, 0xffff);
+        BattleCastleApp_SetItemPalette(&app->spriteMan, 0xffff);
+        Window_FillTilemap(&app->windows[SELF_APP_WINDOW_SELECTED_ITEM_NAME], 0);
+        Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_SELECTED_ITEM_NAME]);
     }
 }
 
-static void ov107_02244560(ListMenu *param0, u32 param1, u8 param2)
+static void PrintItemPrice(ListMenu *menu, u32 item, u8 yOffset)
 {
-    BattleCastleSelfApp *v0 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    if (param1 != 0xfffffffe) {
-        ov107_02244A74(v0, 0, ov107_02244D5C(v0, param1, v0->unk_13), 4, 1);
+    if (item != MENU_CANCELED) {
+        SetStringTemplateNumber(app, 0, GetItemPriceFromListPos(app, item, app->unk_13), 4, PADDING_MODE_SPACES);
 
-        v0->unk_0A = ov107_02243890(v0, &v0->windows[5], 4, 128, param2, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 2);
-        Window_ScheduleCopyToVRAM(&v0->windows[5]);
+        app->printerID = PrintMessage(app, &app->windows[SELF_APP_WINDOW_ITEM_SELECT_MENU], BattleCastleSelfApp_Text_CastlePoints, 128, yOffset, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
+        Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_ITEM_SELECT_MENU]);
     }
 }
 
-static void ov107_022445C4(BattleCastleSelfApp *param0)
+static void InitHealMenu(BattleCastleSelfApp *app)
 {
-    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[10]);
-    Window_FillTilemap(&param0->windows[10], 15);
+    BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[SELF_APP_WINDOW_HEAL_MENU]);
+    Window_FillTilemap(&app->windows[SELF_APP_WINDOW_HEAL_MENU], 15);
 
-    param0->unk_19C = StringList_New(NELEMS(Unk_ov107_02249FF0), HEAP_ID_BATTLE_CASTLE_APP);
+    app->strList = StringList_New(NELEMS(sHealMenuItems), HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int v3 = 0; v3 < (NELEMS(Unk_ov107_02249FF0)); v3++) {
-        StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, Unk_ov107_02249FF0[v3][1], Unk_ov107_02249FF0[v3][2]);
+    for (int i = 0; i < NELEMS(sHealMenuItems); i++) {
+        StringList_AddFromMessageBank(app->strList, app->msgLoader, sHealMenuItems[i][1], sHealMenuItems[i][2]);
     }
 
-    param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->windows[10];
-    param0->unk_1A0.parent = param0;
-    param0->unk_1A0.cursorCallback = ov107_02244690;
-    param0->unk_1A0.printCallback = ov107_02244708;
-    param0->unk_1A0.count = (NELEMS(Unk_ov107_02249FF0));
-    param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249FF0));
-    param0->unk_1A0.textColorBg = 15;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
+    app->listTemplate = sDefaultListTemplate;
+    app->listTemplate.choices = app->strList;
+    app->listTemplate.window = &app->windows[SELF_APP_WINDOW_HEAL_MENU];
+    app->listTemplate.parent = app;
+    app->listTemplate.cursorCallback = UpdateHealMenuItemDescription;
+    app->listTemplate.printCallback = SetHealMenuItemColor;
+    app->listTemplate.count = NELEMS(sHealMenuItems);
+    app->listTemplate.maxDisplay = NELEMS(sHealMenuItems);
+    app->listTemplate.textColorBg = 15;
+    app->listMenu = ListMenu_New(&app->listTemplate, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->windows[10]);
+    MarkListMenuAsOpen(app, &app->windows[SELF_APP_WINDOW_HEAL_MENU]);
 }
 
-static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2)
+static void UpdateHealMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
 {
-    BattleCastleSelfApp *v2 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    if (param2 == 0) {
+    if (!onInit) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    u8 v0 = ov107_02249CAC(v2->saveData, v2->challengeType, 0);
+    u8 rank = ov107_02249CAC(app->saveData, app->challengeType, 0);
 
-    u16 v1;
-    switch (param1) {
-    case 4:
-        if (v0 == 3) {
-            v1 = 27;
-        } else if (v0 == 1) {
-            v1 = 25;
+    u16 entryID;
+    switch (item) {
+    case MENU_OPTION_RANK_UP_HEALING:
+        if (rank == 3) {
+            entryID = BattleCastleSelfApp_Text_RankCannotBeRaised;
+        } else if (rank == 1) {
+            entryID = BattleCastleSelfApp_Text_RankUpToRestorePP;
         } else {
-            v1 = 26;
+            entryID = BattleCastleSelfApp_Text_RankUpToRestoreHPAndPP;
         }
         break;
-    case 0xfffffffe:
-        v1 = 28;
+    case MENU_CANCELED:
+        entryID = BattleCastleSelfApp_Text_ReturnToPrevious;
         break;
     default:
-        v1 = 24;
+        entryID = BattleCastleSelfApp_Text_WhichToUse;
         break;
     }
 
-    ov107_0224379C(v2, &v2->windows[6], v1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MSG_BOX], entryID, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2)
+static void SetHealMenuItemColor(ListMenu *menu, u32 item, u8 yOffset)
 {
-    BattleCastleSelfApp *v3 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, 19);
 
-    u16 v0;
-    ListMenu_CalcTrueCursorPos(param0, &v0);
-    u8 v1 = ov107_02249CAC(v3->saveData, v3->challengeType, 0);
+    u16 pos;
+    ListMenu_CalcTrueCursorPos(menu, &pos);
+    u8 rank = ov107_02249CAC(app->saveData, app->challengeType, 0);
 
-    u8 v2;
-    switch (param1) {
-    case 1:
-    case 2:
-    case 3:
-        if (v1 >= Unk_ov107_02249FF0[param1 - 1][0]) {
-            v2 = 1;
+    u8 fgColor;
+    switch (item) {
+    case MENU_OPTION_RESTORE_HP:
+    case MENU_OPTION_RESTORE_PP:
+    case MENU_OPTION_RESTORE_ALL:
+        if (rank >= sHealMenuItems[item - 1][0]) {
+            fgColor = 1;
         } else {
-            v2 = 2;
+            fgColor = 2;
         }
         break;
-    case 4:
-        if (v1 == 3) {
-            v2 = 2;
+    case MENU_OPTION_RANK_UP_HEALING:
+        if (rank == 3) {
+            fgColor = 2;
         } else {
-            v2 = 1;
+            fgColor = 1;
         }
         break;
     default:
-        v2 = 1;
+        fgColor = 1;
         break;
     }
 
-    ListMenu_SetTextColors(param0, v2, 15, 2);
+    ListMenu_SetTextColors(menu, fgColor, 15, 2);
 }
 
-static const u32 Unk_ov107_02249F54[][3] = {
-    { 0x1, 0x2C, 0x6 },
-    { 0x2, 0x2D, 0x7 },
-    { 0x1, 0x2E, 0x8 },
-    { 0x1, 0x2F, 0xfffffffe }
+static const u32 sRentalMenuItems[][3] = {
+    { 1, BattleCastleSelfApp_Text_Berries, MENU_OPTION_RENT_BERRIES },
+    { 2, BattleCastleSelfApp_Text_Items, MENU_OPTION_RENT_ITEMS },
+    { 1, BattleCastleSelfApp_Text_RankUp2, MENU_OPTION_RANK_UP_ITEMS },
+    { 1, BattleCastleSelfApp_Text_Cancel3, MENU_CANCELED }
 };
 
-static void ov107_02244780(BattleCastleSelfApp *param0)
+static void InitRentalMenu(BattleCastleSelfApp *app)
 {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
-    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[11]);
-    Window_FillTilemap(&param0->windows[11], 15);
+    BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[SELF_APP_WINDOW_RENTAL_MENU]);
+    Window_FillTilemap(&app->windows[SELF_APP_WINDOW_RENTAL_MENU], 15);
 
-    param0->unk_19C = StringList_New(NELEMS(Unk_ov107_02249F54), HEAP_ID_BATTLE_CASTLE_APP);
+    app->strList = StringList_New(NELEMS(sRentalMenuItems), HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int v3 = 0; v3 < (NELEMS(Unk_ov107_02249F54)); v3++) {
-        StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, Unk_ov107_02249F54[v3][1], Unk_ov107_02249F54[v3][2]);
+    for (int i = 0; i < NELEMS(sRentalMenuItems); i++) {
+        StringList_AddFromMessageBank(app->strList, app->msgLoader, sRentalMenuItems[i][1], sRentalMenuItems[i][2]);
     }
 
-    param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->windows[11];
-    param0->unk_1A0.parent = param0;
-    param0->unk_1A0.cursorCallback = ov107_0224486C;
-    param0->unk_1A0.printCallback = ov107_022448E8;
-    param0->unk_1A0.count = (NELEMS(Unk_ov107_02249F54));
-    param0->unk_1A0.maxDisplay = (NELEMS(Unk_ov107_02249F54));
-    param0->unk_1A0.textColorBg = 15;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
+    app->listTemplate = sDefaultListTemplate;
+    app->listTemplate.choices = app->strList;
+    app->listTemplate.window = &app->windows[SELF_APP_WINDOW_RENTAL_MENU];
+    app->listTemplate.parent = app;
+    app->listTemplate.cursorCallback = UpdateRentalMenuItemDescription;
+    app->listTemplate.printCallback = SetRentalMenuItemColor;
+    app->listTemplate.count = NELEMS(sRentalMenuItems);
+    app->listTemplate.maxDisplay = NELEMS(sRentalMenuItems);
+    app->listTemplate.textColorBg = 15;
+    app->listMenu = ListMenu_New(&app->listTemplate, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->windows[11]);
+    MarkListMenuAsOpen(app, &app->windows[SELF_APP_WINDOW_RENTAL_MENU]);
 
-    Window_ScheduleCopyToVRAM(&param0->windows[11]);
+    Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_RENTAL_MENU]);
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
 }
 
-static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2)
+static void UpdateRentalMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
 {
-    BattleCastleSelfApp *v2 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    if (param2 == 0) {
+    if (!onInit) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    u8 v1 = ov107_02249CAC(v2->saveData, v2->challengeType, 1);
+    u8 rank = ov107_02249CAC(app->saveData, app->challengeType, 1);
 
-    u16 v0;
-    switch (param1) {
-    case 6:
-        v0 = 48;
+    u16 entryID;
+    switch (item) {
+    case MENU_OPTION_RENT_BERRIES:
+        entryID = BattleCastleSelfApp_Text_MayRentBerry;
         break;
-    case 7:
-        v0 = 49;
+    case MENU_OPTION_RENT_ITEMS:
+        entryID = BattleCastleSelfApp_Text_MayRentItem;
         break;
-    case 8:
-        if (v1 == 3) {
-            v0 = 52;
-        } else if (v1 == 1) {
-            v0 = 50;
+    case MENU_OPTION_RANK_UP_ITEMS:
+        if (rank == 3) {
+            entryID = BattleCastleSelfApp_Text_RankCannotBeRaised2;
+        } else if (rank == 1) {
+            entryID = BattleCastleSelfApp_Text_RankUpToRentItem;
         } else {
-            v0 = 51;
+            entryID = BattleCastleSelfApp_Text_RankUpToExpandChoices;
         }
         break;
     default:
-        v0 = 53;
+        entryID = BattleCastleSelfApp_Text_ReturnToPrevious2;
         break;
     }
 
-    ov107_0224379C(v2, &v2->windows[6], v0, 1, 1, 0xff, 1, 2, 15, 1);
+    PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MSG_BOX], entryID, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2)
+static void SetRentalMenuItemColor(ListMenu *menu, u32 item, u8 onInit)
 {
-    BattleCastleSelfApp *v2 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    u8 v0 = ov107_02249CAC(v2->saveData, v2->challengeType, 1);
+    u8 rank = ov107_02249CAC(app->saveData, app->challengeType, 1);
 
-    u8 v1;
-    switch (param1) {
-    case 7:
-        if (v0 >= Unk_ov107_02249F54[param1 - 6][0]) {
-            v1 = 1;
+    u8 fgColor;
+    switch (item) {
+    case MENU_OPTION_RENT_ITEMS:
+        if (rank >= sRentalMenuItems[item - 6][0]) {
+            fgColor = 1;
         } else {
-            v1 = 2;
+            fgColor = 2;
         }
         break;
-    case 8:
-        if (v0 == 3) {
-            v1 = 2;
+    case MENU_OPTION_RANK_UP_ITEMS:
+        if (rank == 3) {
+            fgColor = 2;
         } else {
-            v1 = 1;
+            fgColor = 1;
         }
         break;
     default:
-        v1 = 1;
+        fgColor = 1;
         break;
     }
 
-    ListMenu_SetTextColors(param0, v1, 15, 2);
+    ListMenu_SetTextColors(menu, fgColor, 15, 2);
 }
 
-static const u32 Unk_ov107_02249F2C[][2] = {
-    { 0x9, 0x0 },
-    { 0xA, 0x5 },
-    { 0xB, 0x9 },
-    { 0xC, 0xA },
-    { 0xD, 0xfffffffe }
+static const u32 sMonMenuItems[][2] = {
+    { BattleCastleSelfApp_Text_Heal, MENU_OPTION_HEAL },
+    { BattleCastleSelfApp_Text_Rental, MENU_OPTION_RENTAL },
+    { BattleCastleSelfApp_Text_Summary, MENU_OPTION_SUMMARY },
+    { BattleCastleSelfApp_Text_Moves, MENU_OPTION_MOVES },
+    { BattleCastleSelfApp_Text_Cancel, MENU_CANCELED }
 };
 
-static const u16 Unk_ov107_02249E18[] = {
-    0xE,
-    0xF,
-    0x10,
-    0x11,
-    0x12
+static const u16 sMonMenuDescriptions[] = {
+    BattleCastleSelfApp_Text_RestoreHPOrPP,
+    BattleCastleSelfApp_Text_RentBerryOrItem,
+    BattleCastleSelfApp_Text_CheckStatsAndMore,
+    BattleCastleSelfApp_Text_CheckMovesAndPP,
+    BattleCastleSelfApp_Text_GoBackToMonSelection
 };
 
-static void ov107_02244944(BattleCastleSelfApp *param0)
+static void InitMonOptionsMenu(BattleCastleSelfApp *app)
 {
-    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[9]);
-    Window_FillTilemap(&param0->windows[9], 15);
+    BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU]);
+    Window_FillTilemap(&app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU], 15);
 
-    param0->unk_19C = StringList_New(5, HEAP_ID_BATTLE_CASTLE_APP);
+    app->strList = StringList_New(5, HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int v0 = 0; v0 < 5; v0++) {
-        StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, Unk_ov107_02249F2C[v0][0], Unk_ov107_02249F2C[v0][1]);
+    for (int i = 0; i < 5; i++) {
+        StringList_AddFromMessageBank(app->strList, app->msgLoader, sMonMenuItems[i][0], sMonMenuItems[i][1]);
     }
 
-    param0->unk_1A0 = Unk_ov107_02249EE4;
-    param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->windows[9];
-    param0->unk_1A0.parent = param0;
-    param0->unk_1A0.cursorCallback = ov107_02244A1C;
-    param0->unk_1A0.printCallback = NULL;
-    param0->unk_1A0.count = 5;
-    param0->unk_1A0.maxDisplay = 5;
-    param0->unk_1A0.textColorBg = 15;
-    param0->unk_1A0.parent = param0;
-    param0->unk_198 = ListMenu_New(&param0->unk_1A0, param0->unk_18, param0->unk_1A, HEAP_ID_BATTLE_CASTLE_APP);
+    app->listTemplate = sDefaultListTemplate;
+    app->listTemplate.choices = app->strList;
+    app->listTemplate.window = &app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU];
+    app->listTemplate.parent = app;
+    app->listTemplate.cursorCallback = UpdateMonMenuItemDescription;
+    app->listTemplate.printCallback = NULL;
+    app->listTemplate.count = 5;
+    app->listTemplate.maxDisplay = 5;
+    app->listTemplate.textColorBg = 15;
+    app->listTemplate.parent = app;
+    app->listMenu = ListMenu_New(&app->listTemplate, app->monMenuListPos, app->monMenuCursorPos, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->windows[9]);
-    Window_ScheduleCopyToVRAM(&param0->windows[9]);
+    MarkListMenuAsOpen(app, &app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU]);
+    Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU]);
 }
 
-static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2)
+static void UpdateMonMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
 {
-    BattleCastleSelfApp *v0 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    if (param2 == 0) {
+    if (!onInit) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    u16 v1;
-    ListMenu_CalcTrueCursorPos(param0, &v1);
-    ov107_0224379C(v0, &v0->windows[8], Unk_ov107_02249E18[v1], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    u16 pos;
+    ListMenu_CalcTrueCursorPos(menu, &pos);
+    PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MON_OPTIONS_MSG_BOX], sMonMenuDescriptions[pos], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void ov107_02244A74(BattleCastleSelfApp *param0, u32 param1, s32 param2, u32 param3, int param4)
+static void SetStringTemplateNumber(BattleCastleSelfApp *app, u32 idx, s32 num, u32 maxDigits, enum PaddingMode paddingMode)
 {
-    StringTemplate_SetNumber(param0->strTemplate, param1, param2, param3, param4, 1);
+    StringTemplate_SetNumber(app->strTemplate, idx, num, maxDigits, paddingMode, CHARSET_MODE_EN);
 }
 
-static void ov107_02244A8C(BattleCastleSelfApp *param0, u32 param1, BoxPokemon *param2)
+static void SetStringTemplateSpecies(BattleCastleSelfApp *app, u32 idx, BoxPokemon *boxMon)
 {
-    StringTemplate_SetSpeciesName(param0->strTemplate, param1, param2);
+    StringTemplate_SetSpeciesName(app->strTemplate, idx, boxMon);
 }
 
-static void ov107_02244A98(BattleCastleSelfApp *param0, u32 param1)
+static void SetStringTemplatePlayerName(BattleCastleSelfApp *app, u32 idx)
 {
-    StringTemplate_SetPlayerName(param0->strTemplate, param1, SaveData_GetTrainerInfo(param0->saveData));
+    StringTemplate_SetPlayerName(app->strTemplate, idx, SaveData_GetTrainerInfo(app->saveData));
 }
 
-static void ov107_02244AB4(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4)
+static void PrintPlayerName(BattleCastleSelfApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font)
 {
-    const TrainerInfo *v1 = SaveData_GetTrainerInfo(param0->saveData);
-    String *v2 = String_Init(7 + 1, HEAP_ID_BATTLE_CASTLE_APP);
+    const TrainerInfo *player = SaveData_GetTrainerInfo(app->saveData);
+    String *playerName = String_Init(8, HEAP_ID_BATTLE_CASTLE_APP);
 
-    String_CopyChars(v2, TrainerInfo_Name(v1));
+    String_CopyChars(playerName, TrainerInfo_Name(player));
 
-    TextColor v0;
-    if (TrainerInfo_Gender(v1) == 0) {
-        v0 = TEXT_COLOR(7, 8, 0);
+    TextColor color;
+    if (TrainerInfo_Gender(player) == GENDER_MALE) {
+        color = TEXT_COLOR(7, 8, 0);
     } else {
-        v0 = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR(3, 4, 0);
     }
 
-    Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
-    Window_ScheduleCopyToVRAM(param1);
-    String_Free(v2);
+    Text_AddPrinterWithParamsAndColor(window, font, playerName, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    Window_ScheduleCopyToVRAM(window);
+    String_Free(playerName);
 }
 
-static void ov107_02244B24(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4)
+static void PrintPartnersName(BattleCastleSelfApp *app, Window *window, u32 xOffset, u32 yOffset, u8 unused)
 {
-    TrainerInfo *v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    TrainerInfo *partnerInfo = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
 
-    TextColor v1;
-    if (TrainerInfo_Gender(v0) == 0) {
-        v1 = TEXT_COLOR(7, 8, 0);
+    TextColor textColor;
+    if (TrainerInfo_Gender(partnerInfo) == GENDER_MALE) {
+        textColor = TEXT_COLOR(7, 8, 0);
     } else {
-        v1 = TEXT_COLOR(3, 4, 0);
+        textColor = TEXT_COLOR(3, 4, 0);
     }
 
-    StringTemplate_SetPlayerName(param0->strTemplate, 0, v0);
-    ov107_02243860(param0, param1, 1, param2, param3, TEXT_SPEED_NO_TRANSFER, GET_TEXT_FG_COLOR(v1), GET_TEXT_SHADOW_COLOR(v1), GET_TEXT_BG_COLOR(v1), FONT_SYSTEM);
+    StringTemplate_SetPlayerName(app->strTemplate, 0, partnerInfo);
+    PrintLeftAlignedMessage(app, window, 1, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, GET_TEXT_FG_COLOR(textColor), GET_TEXT_SHADOW_COLOR(textColor), GET_TEXT_BG_COLOR(textColor), FONT_SYSTEM);
 }
 
-static void ov107_02244B8C(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5)
+static void PrintGenderSymbol(BattleCastleSelfApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font, u8 gender)
 {
-    u32 v0;
-    u8 v2, v3, v4;
+    u32 entryID;
+    u8 fgColor, shadowColor, bgColor;
 
-    if (param5 == 0) {
-        v0 = 86;
-        v2 = 7;
-        v3 = 8;
-        v4 = 0;
-    } else if (param5 == 1) {
-        v0 = 87;
-        v2 = 3;
-        v3 = 4;
-        v4 = 0;
+    if (gender == GENDER_MALE) {
+        entryID = BattleCastleSelfApp_Text_MaleSymbol;
+        fgColor = 7;
+        shadowColor = 8;
+        bgColor = 0;
+    } else if (gender == GENDER_FEMALE) {
+        entryID = BattleCastleSelfApp_Text_FemaleSymbol;
+        fgColor = 3;
+        shadowColor = 4;
+        bgColor = 0;
     } else {
         return;
     }
 
-    ov107_02243860(param0, param1, v0, param2, param3, TEXT_SPEED_NO_TRANSFER, v2, v3, v4, param4);
+    PrintLeftAlignedMessage(app, window, entryID, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, fgColor, shadowColor, bgColor, font);
 }
 
 static void ChangeState(BattleCastleSelfApp *app, int *state, int nextState)
@@ -2664,32 +2679,30 @@ static void GetCursorSpritePos(BattleCastleSelfApp *app, u32 *x, u32 *y, u8 slot
     *y = 88;
 }
 
-static u16 ov107_02244D5C(BattleCastleSelfApp *param0, u16 param1, u8 param2)
+static u16 GetItemPriceFromListPos(BattleCastleSelfApp *app, u16 listPos, u8 menuType)
 {
-    u8 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
-    u8 v2 = Unk_ov107_02249E06[v0 - 1];
-    u8 v3 = Unk_ov107_02249E12[v0 - 1];
+    ov107_02249CAC(app->saveData, app->challengeType, 1);
 
-    if (param2 == 6) {
-        return Unk_ov107_0224A06C[param1];
+    if (menuType == MENU_OPTION_RENT_BERRIES) {
+        return sBerryPrices[listPos];
     }
 
-    return Unk_ov107_02249FBA[param1];
+    return sItemPrices[listPos];
 }
 
-static u16 ov107_02244D90(u16 param0)
+static u16 GetItemPrice(u16 itemID)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < NELEMS(Unk_ov107_02249F84); v0++) {
-        if (Unk_ov107_02249F84[v0] == param0) {
-            return Unk_ov107_02249FBA[v0];
+    for (i = 0; i < NELEMS(sItemsForRent); i++) {
+        if (sItemsForRent[i] == itemID) {
+            return sItemPrices[i];
         }
     }
 
-    for (v0 = 0; v0 < NELEMS(Unk_ov107_0224A02C); v0++) {
-        if (Unk_ov107_0224A02C[v0] == param0) {
-            return Unk_ov107_0224A06C[v0];
+    for (i = 0; i < NELEMS(sBerriesForRent); i++) {
+        if (sBerriesForRent[i] == itemID) {
+            return sBerryPrices[i];
         }
     }
 
@@ -2697,17 +2710,15 @@ static u16 ov107_02244D90(u16 param0)
     return 0;
 }
 
-static u16 ov107_02244DE0(BattleCastleSelfApp *param0, u16 param1, u8 param2)
+static u16 GetItemIDFromListPos(BattleCastleSelfApp *app, u16 idx, u8 selectedMenu)
 {
-    u8 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
-    u8 v2 = Unk_ov107_02249E06[v0 - 1];
-    u8 v3 = Unk_ov107_02249E12[v0 - 1];
+    ov107_02249CAC(app->saveData, app->challengeType, 1);
 
-    if (param2 == 6) {
-        return Unk_ov107_0224A02C[param1];
+    if (selectedMenu == MENU_OPTION_RENT_BERRIES) {
+        return sBerriesForRent[idx];
     }
 
-    return Unk_ov107_02249F84[param1];
+    return sItemsForRent[idx];
 }
 
 static void ov107_02244E14(BattleCastleSelfApp *app, u16 *param1, u16 *param2, u16 *param3, u16 *param4)
@@ -2766,7 +2777,7 @@ static BOOL ov107_02244E44(BattleCastleSelfApp *param0, u8 param1, u8 param2)
         }
 
         if (param0->unk_414 == NULL) {
-            ov107_02243F4C(param0, &param0->windows[3], v5, Pokemon_GetValue(v6, MON_DATA_HP, NULL));
+            ov107_02243F4C(param0, &param0->windows[SELF_APP_WINDOW_HP_BARS], v5, Pokemon_GetValue(v6, MON_DATA_HP, NULL));
             BattleCastleAppSprite_SetAnim(param0->barSprites[v5], v3);
             ov107_02249C1C(param0->monSprites[v5], v2);
             param0->unk_0E_2 = 0;
@@ -2901,7 +2912,7 @@ static void ov107_02245140(BattleCastleSelfApp *param0, s8 param1)
     ov107_02244C70(param0);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
-    ov107_02243950(param0, &param0->windows[4], v0);
+    PrintPokemonSummary(param0, &param0->windows[SELF_APP_WINDOW_SUMMARY_SCREEN], v0);
 }
 
 static void ov107_0224518C(BattleCastleSelfApp *param0, s8 param1)
@@ -2919,15 +2930,15 @@ static void ov107_0224518C(BattleCastleSelfApp *param0, s8 param1)
     ov107_02244C70(param0);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
-    ov107_02243B84(param0, &param0->windows[4], v0);
+    PrintAllMoves(param0, &param0->windows[SELF_APP_WINDOW_SUMMARY_SCREEN], v0);
 }
 
 static void ov107_022451D8(BattleCastleSelfApp *param0)
 {
-    ov107_02245618(param0);
-    ov107_02245730(param0);
-    ov107_02244120(param0);
-    ov107_02245288(&param0->windows[6]);
+    CloseYesNoMenu(param0);
+    FreeListMenu(param0);
+    FreeItemSelect(param0);
+    CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
     ov107_02245BE0(param0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -2957,10 +2968,10 @@ static BOOL ov107_02245210(Pokemon *param0)
     return v0;
 }
 
-static void ov107_02245288(Window *param0)
+static void CloseMessageBox(Window *window)
 {
-    Window_EraseMessageBox(param0, 1);
-    Window_ClearAndScheduleCopyToVRAM(param0);
+    Window_EraseMessageBox(window, TRUE);
+    Window_ClearAndScheduleCopyToVRAM(window);
 }
 
 BOOL ov107_0224529C(BattleCastleSelfApp *param0, u16 param1, u16 param2)
@@ -3130,28 +3141,28 @@ static void ov107_02245464(BattleCastleSelfApp *param0, Window *param1)
     if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
         v0 = v2 + 0;
         v1 = v3 + 0;
-        ov107_02244AB4(param0, param1, v0, v1, FONT_SYSTEM);
+        PrintPlayerName(param0, param1, v0, v1, FONT_SYSTEM);
     } else {
         if (CommSys_CurNetId() == 0) {
             v0 = v2 + 0;
             v1 = v3 + 0;
 
-            ov107_02244AB4(param0, param1, v0, v1, FONT_SYSTEM);
+            PrintPlayerName(param0, param1, v0, v1, FONT_SYSTEM);
 
             v0 = v4 + 0;
             v1 = v5 + 0;
 
-            ov107_02244B24(param0, param1, v0, v1, 0);
+            PrintPartnersName(param0, param1, v0, v1, 0);
         } else {
             v0 = v2 + 0;
             v1 = v3 + 0;
 
-            ov107_02244B24(param0, param1, v0, v1, 0);
+            PrintPartnersName(param0, param1, v0, v1, 0);
 
             v0 = v4 + 0;
             v1 = v5 + 0;
 
-            ov107_02244AB4(param0, param1, v0, v1, FONT_SYSTEM);
+            PrintPlayerName(param0, param1, v0, v1, FONT_SYSTEM);
         }
     }
 
@@ -3163,10 +3174,10 @@ static void ov107_022454F8(BattleCastleSelfApp *param0, u8 param1, u8 param2)
     Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
     u32 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-    ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v1));
-    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+    SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v1));
+    BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
 
-    param0->unk_0A = ov107_02243918(param0, Unk_ov107_02249E00[param2 - 1], FONT_MESSAGE);
+    param0->printerID = PrintMessageAndCopyToVRAM(param0, sHealingMessages[param2 - 1], FONT_MESSAGE);
 
     switch (param2) {
     case 1:
@@ -3194,71 +3205,71 @@ static void ov107_022455A0(BattleCastleSelfApp *param0, u8 param1, u16 param2)
     Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &param2);
 
     BattleCastleAppSprite_SetDrawFlag(param0->itemIconSprites[ov107_02249C98(param0->unk_14, param1)], 1);
-    ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v0));
+    SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v0));
 
     StringTemplate_SetItemName(param0->strTemplate, 1, param2);
-    param0->unk_0A = ov107_02243918(param0, 59, FONT_MESSAGE);
+    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_ItemGivenToMon, FONT_MESSAGE);
     Sound_PlayEffect(SEQ_SE_DP_UG_020);
 }
 
-static void ov107_02245618(BattleCastleSelfApp *param0)
+static void CloseYesNoMenu(BattleCastleSelfApp *app)
 {
-    if (param0->unk_0E_4 == 1) {
-        param0->unk_0E_4 = 0;
-        Menu_Free(param0->unk_17C, NULL);
-        Window_EraseStandardFrame(param0->unk_170.window, 1);
-        Window_ClearAndScheduleCopyToVRAM(param0->unk_170.window);
+    if (app->yesNoMenuIsOpen == TRUE) {
+        app->yesNoMenuIsOpen = FALSE;
+        Menu_Free(app->yesNoMenu, NULL);
+        Window_EraseStandardFrame(app->yesNoMenuTemplate.window, 1);
+        Window_ClearAndScheduleCopyToVRAM(app->yesNoMenuTemplate.window);
     }
 }
 
-static void ov107_02245650(BattleCastleSelfApp *param0, Window *param1)
+static void MarkListMenuAsOpen(BattleCastleSelfApp *app, Window *window)
 {
-    param0->unk_0E_0 = 1;
+    app->listMenuIsOpen = TRUE;
 }
 
-static void ov107_02245660(BattleCastleSelfApp *param0)
+static void CloseItemSelectScreen(BattleCastleSelfApp *param0)
 {
     BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 0);
     BattleCastleAppSprite_SetDrawFlag(param0->upArrowSprite, 0);
     BattleCastleAppSprite_SetDrawFlag(param0->downArrowSprite, 0);
     BattleCastleAppSprite_SetDrawFlag(param0->unk_434, 0);
 
-    Window_EraseStandardFrame(&param0->windows[15], 1);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[15]);
+    Window_EraseStandardFrame(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_PLAYER_INFO], 1);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_PLAYER_INFO]);
 
     ov107_0224503C(param0, param0->unk_0D, 0);
 
-    Window_FillTilemap(&param0->windows[17], 0);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[17]);
-    Window_FillTilemap(&param0->windows[16], 0);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[16]);
+    Window_FillTilemap(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_HP], 0);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_HP]);
+    Window_FillTilemap(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_INFO], 0);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_MON_INFO]);
 }
 
 static void ov107_022456E4(BattleCastleSelfApp *param0)
 {
     u16 v0;
 
-    ov107_02245288(&param0->windows[6]);
+    CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
     BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 1);
 
-    ListMenu_Draw(param0->unk_198);
-    ListMenu_CalcTrueCursorPos(param0->unk_198, &v0);
+    ListMenu_Draw(param0->listMenu);
+    ListMenu_CalcTrueCursorPos(param0->listMenu, &v0);
 
-    ov107_02243EF8(param0, &param0->windows[12], ov107_02244DE0(param0, v0, param0->unk_13));
+    PrintItemName(param0, &param0->windows[SELF_APP_WINDOW_SELECTED_ITEM_NAME], GetItemIDFromListPos(param0, v0, param0->unk_13));
 }
 
-static void ov107_02245730(BattleCastleSelfApp *param0)
+static void FreeListMenu(BattleCastleSelfApp *app)
 {
-    if (param0->unk_0E_0 == 1) {
-        param0->unk_0E_0 = 0;
-        Window *v0 = (Window *)ListMenu_GetAttribute(param0->unk_198, 18);
+    if (app->listMenuIsOpen == TRUE) {
+        app->listMenuIsOpen = FALSE;
+        Window *window = (Window *)ListMenu_GetAttribute(app->listMenu, LIST_MENU_WINDOW);
 
-        Window_EraseStandardFrame(v0, 1);
-        Window_FillTilemap(v0, 0);
-        Window_ClearAndScheduleCopyToVRAM(v0);
+        Window_EraseStandardFrame(window, TRUE);
+        Window_FillTilemap(window, 0);
+        Window_ClearAndScheduleCopyToVRAM(window);
 
-        StringList_Free(param0->unk_19C);
-        ListMenu_Free(param0->unk_198, NULL, NULL);
+        StringList_Free(app->strList);
+        ListMenu_Free(app->listMenu, NULL, NULL);
     }
 }
 
@@ -3271,33 +3282,33 @@ static void ov107_02245780(BattleCastleSelfApp *param0, Window *window)
         x = v0 + 104;
         y = v1;
         Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-        ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
-        param0->unk_0A = ov107_02243890(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+        SetStringTemplateNumber(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
+        param0->printerID = PrintMessage(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
     } else {
         if (CommSys_CurNetId() == 0) {
             x = v0 + 104;
             y = v1;
             Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-            ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
-            param0->unk_0A = ov107_02243890(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+            SetStringTemplateNumber(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
+            param0->printerID = PrintMessage(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
 
             x = v2 + 104;
             y = v3;
             Window_FillRectWithColor(window, 0, x - 48, v3, 48, 16);
-            ov107_02244A74(param0, 0, param0->unk_49A, 4, 1);
-            param0->unk_0A = ov107_02243890(param0, window, 3, x, y, 0xFF, 1, 2, 0, 0, 2);
+            SetStringTemplateNumber(param0, 0, param0->unk_49A, 4, 1);
+            param0->printerID = PrintMessage(param0, window, 3, x, y, 0xFF, 1, 2, 0, 0, 2);
         } else {
             x = v0 + 104;
             y = v1;
             Window_FillRectWithColor(window, 0, x - 48, v1, 48, 16);
-            ov107_02244A74(param0, 0, param0->unk_49A, 4, 1);
-            param0->unk_0A = ov107_02243890(param0, window, 3, x, y, 0xFF, 1, 2, 0, 0, 2);
+            SetStringTemplateNumber(param0, 0, param0->unk_49A, 4, 1);
+            param0->printerID = PrintMessage(param0, window, 3, x, y, 0xFF, 1, 2, 0, 0, 2);
 
             x = v2 + 104;
             y = v3;
             Window_FillRectWithColor(window, 0, x - 48, v3, 48, 16);
-            ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
-            param0->unk_0A = ov107_02243890(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
+            SetStringTemplateNumber(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
+            param0->printerID = PrintMessage(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
         }
     }
 
@@ -3317,11 +3328,11 @@ static void ov107_022459D0(BattleCastleSelfApp *param0, u8 param1, u8 param2)
     case 1:
     case 2:
     case 3:
-        v2 = Unk_ov107_02249E0C[param2 - 1];
+        v2 = sHealingCosts[param2 - 1];
         break;
     case 6:
     case 7:
-        v2 = ov107_02244D90(param0->unk_10);
+        v2 = GetItemPrice(param0->unk_10);
         break;
     case 9:
     case 10:
@@ -3331,7 +3342,7 @@ static void ov107_022459D0(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 
     if (CommSys_CurNetId() == 0) {
         if (param1 < v1) {
-            ov107_02244A98(param0, 5);
+            SetStringTemplatePlayerName(param0, 5);
             ov104_0223BC2C(param0->frontier, param0->challengeType, v2);
         } else {
             ov107_02249CF4(param0->strTemplate, 5);
@@ -3342,29 +3353,29 @@ static void ov107_022459D0(BattleCastleSelfApp *param0, u8 param1, u8 param2)
             ov107_02249CF4(param0->strTemplate, 5);
             param0->unk_49A -= v2;
         } else {
-            ov107_02244A98(param0, 5);
+            SetStringTemplatePlayerName(param0, 5);
             ov104_0223BC2C(param0->frontier, param0->challengeType, v2);
         }
     }
 
-    ov107_02245780(param0, &param0->windows[0]);
-    ov107_02245618(param0);
+    ov107_02245780(param0, &param0->windows[SELF_APP_WINDOW_HEADER]);
+    CloseYesNoMenu(param0);
     ov107_02245BE0(param0);
-    ov107_02244120(param0);
+    FreeItemSelect(param0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    ov107_02245288(&param0->windows[6]);
+    CloseMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
 
     switch (param2) {
     case 1:
     case 2:
     case 3:
-        BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+        BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
         ov107_022454F8(param0, v0, param2);
         break;
     case 6:
     case 7:
-        BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+        BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
         ov107_022455A0(param0, v0, param0->unk_10);
         break;
     case 9:
@@ -3380,12 +3391,12 @@ static void ov107_02245B40(BattleCastleSelfApp *param0, u8 param1)
 {
     LoadSummaryBackground(param0, 2);
 
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[6]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[15]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_MENU]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_PLAYER_INFO]);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
-    ov107_02243950(param0, &param0->windows[4], v0);
+    PrintPokemonSummary(param0, &param0->windows[SELF_APP_WINDOW_SUMMARY_SCREEN], v0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
@@ -3393,26 +3404,26 @@ static void ov107_02245B90(BattleCastleSelfApp *param0, u8 param1)
 {
     LoadMovesListBackground(param0, 2);
 
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[6]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[15]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_MSG_BOX]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_MENU]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[SELF_APP_WINDOW_ITEM_SELECT_PLAYER_INFO]);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
 
-    ov107_02243B84(param0, &param0->windows[4], v0);
+    PrintAllMoves(param0, &param0->windows[SELF_APP_WINDOW_SUMMARY_SCREEN], v0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
 static void ov107_02245BE0(BattleCastleSelfApp *param0)
 {
-    Window_FillTilemap(&param0->windows[4], 0);
-    Window_ClearAndCopyToVRAM(&param0->windows[4]);
+    Window_FillTilemap(&param0->windows[SELF_APP_WINDOW_SUMMARY_SCREEN], 0);
+    Window_ClearAndCopyToVRAM(&param0->windows[SELF_APP_WINDOW_SUMMARY_SCREEN]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
 static void ov107_02245C00(BattleCastleSelfApp *param0)
 {
-    u8 v1 = ov104_0223B7A8(param0->challengeType, 1);
+    u8 v1 = BattleCastle_GetPartySize(param0->challengeType, TRUE);
 
     for (int v0 = 0; v0 < v1; v0++) {
         Pokemon *v3 = Party_GetPokemonBySlotIndex(param0->unk_43C, v0);
@@ -3435,7 +3446,7 @@ static void ov107_02245C94(BattleCastleSelfApp *param0, u8 param1, u8 param2)
     u32 v4;
     u16 v5[4];
 
-    u8 v3 = ov104_0223B7A8(param0->challengeType, 0);
+    u8 v3 = BattleCastle_GetPartySize(param0->challengeType, FALSE);
 
     u8 v2;
     if (param2 == 4) {
@@ -3449,10 +3460,10 @@ static void ov107_02245C94(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 
     if (CommSys_CurNetId() == 0) {
         if (param1 < v0) {
-            ov107_02244A98(param0, 5);
+            SetStringTemplatePlayerName(param0, 5);
 
             v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
-            ov104_0223BC2C(param0->frontier, param0->challengeType, Unk_ov107_02249E46[v2][v4]);
+            ov104_0223BC2C(param0->frontier, param0->challengeType, sRankUpCosts[v2][v4]);
 
             v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
             v5[0] = (v4 + 1);
@@ -3468,20 +3479,20 @@ static void ov107_02245C94(BattleCastleSelfApp *param0, u8 param1, u8 param2)
         } else {
             ov107_02249CF4(param0->strTemplate, 5);
             v4 = param0->unk_497[v2];
-            param0->unk_49A -= Unk_ov107_02249E46[v2][v4];
+            param0->unk_49A -= sRankUpCosts[v2][v4];
             param0->unk_497[v2]++;
         }
     } else {
         if (param1 < v0) {
             ov107_02249CF4(param0->strTemplate, 5);
             v4 = param0->unk_497[v2];
-            param0->unk_49A -= Unk_ov107_02249E46[v2][v4];
+            param0->unk_49A -= sRankUpCosts[v2][v4];
             param0->unk_497[v2]++;
         } else {
-            ov107_02244A98(param0, 5);
+            SetStringTemplatePlayerName(param0, 5);
             v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
 
-            ov104_0223BC2C(param0->frontier, param0->challengeType, Unk_ov107_02249E46[v2][v4]);
+            ov104_0223BC2C(param0->frontier, param0->challengeType, sRankUpCosts[v2][v4]);
             v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
 
             v5[0] = v4 + 1;
@@ -3497,9 +3508,9 @@ static void ov107_02245C94(BattleCastleSelfApp *param0, u8 param1, u8 param2)
         }
     }
 
-    ov107_02245618(param0);
-    ov107_02245780(param0, &param0->windows[0]);
-    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+    CloseYesNoMenu(param0);
+    ov107_02245780(param0, &param0->windows[SELF_APP_WINDOW_HEADER]);
+    BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
 
-    param0->unk_0A = ov107_02243918(param0, Unk_ov107_02249E34[v2][v4], FONT_MESSAGE);
+    param0->printerID = PrintMessageAndCopyToVRAM(param0, Unk_ov107_02249E34[v2][v4], FONT_MESSAGE);
 }

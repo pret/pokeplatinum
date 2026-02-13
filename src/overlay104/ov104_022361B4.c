@@ -134,7 +134,7 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *saveData, u16 param1, u8 para
     }
 
     v2 = SaveData_GetParty(v9->saveData);
-    v6 = ov104_0223B7A8(v9->unk_10, 0);
+    v6 = BattleCastle_GetPartySize(v9->unk_10, 0);
 
     for (v7 = 0; v7 < v6; v7++) {
         Party_AddPokemon(v9->unk_28, Party_GetPokemonBySlotIndex(v2, v9->unk_24[v7]));
@@ -504,7 +504,7 @@ void ov104_02236C50(UnkStruct_ov104_0223BA10 *param0)
         v0 = 2;
     }
 
-    v1 = ov104_0223B7A8(param0->unk_10, 0);
+    v1 = BattleCastle_GetPartySize(param0->unk_10, 0);
     v3 = Party_GetCurrentCount(param0->unk_28);
 
     for (v2 = v0; v2 < (v1 + v0); v2++) {
@@ -550,7 +550,7 @@ int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0)
         v2 = 2;
     }
 
-    v0 = ov104_0223B7A8(param0->unk_10, 0);
+    v0 = BattleCastle_GetPartySize(param0->unk_10, 0);
     v1 = ov104_0223B7DC(param0->unk_10, 1);
 
     for (v5 = v2; v5 < (v0 + v2); v5++) {
@@ -776,7 +776,7 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
     String *v1 = String_Init((10 * 2), param0->heapID);
     String *v2 = String_Init((10 * 2), param0->heapID);
 
-    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_FIELD2);
+    v0 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_CASTLE_SELF_APP, HEAP_ID_FIELD2);
 
     StringTemplate_SetNumber(param0->strTemplate, 0, param3, 4, 1, 1);
     MessageLoader_GetString(v0, 2, v1);
