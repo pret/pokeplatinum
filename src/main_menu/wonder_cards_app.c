@@ -1215,7 +1215,7 @@ static BOOL WonderCardsApp_Init(ApplicationManager *appMan, int *unused)
     appData->numPlayerConnections = 1;
 
     MainMenuUtil_Init(HEAP_ID_WONDER_CARDS_APP);
-    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
 
     return TRUE;
 }
@@ -1836,7 +1836,7 @@ static BOOL WonderCardsApp_Exit(ApplicationManager *appMan, int *unused)
     Bg_FreeTilemapBuffer(appData->bgConfig, BG_LAYER_MAIN_3);
     Heap_Free(appData->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(main_menu), &gMysteryGiftAppTemplate);
-    Heap_Destroy(HEAP_ID_91);
+    Heap_Destroy(HEAP_ID_NETWORK_ICON);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_WONDER_CARDS_APP);
 

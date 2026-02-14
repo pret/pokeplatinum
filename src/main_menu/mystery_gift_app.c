@@ -1187,7 +1187,7 @@ static int MysteryGiftApp_Init(ApplicationManager *appMan, int *unused)
     appData->options = SaveData_GetOptions(appData->saveData);
     appData->msgBoxPrinterDelay = TEXT_SPEED_NO_TRANSFER;
 
-    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_NETWORK_ICON, HEAP_SIZE_NETWORK_ICON);
 
     return TRUE;
 }
@@ -2458,7 +2458,7 @@ static int MysteryGiftApp_Exit(ApplicationManager *appMan, int *unused)
         EnqueueApplication(FS_OVERLAY_ID(main_menu), &gWonderCardsAppTemplate);
     }
 
-    Heap_Destroy(HEAP_ID_91);
+    Heap_Destroy(HEAP_ID_NETWORK_ICON);
     ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_MYSTERY_GIFT_APP);
 

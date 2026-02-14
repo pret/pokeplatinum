@@ -12,6 +12,7 @@
 #include "main_menu/distribution_cartridge.h"
 #include "main_menu/main_menu_util.h"
 #include "main_menu/ov97_02235D18.h"
+#include "main_menu/ranger_link.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -69,7 +70,7 @@ FS_EXTERN_OVERLAY(overlay98);
 #define ALERT_WINDOW_CONTENT_BASE_TILE   (ALERT_WINDOW_FRAME_BASE_TILE + 2 * STANDARD_WINDOW_TILE_COUNT)
 
 #define WIRELESS_ICONS_TILES_OFFS     0x380
-#define WIRELESS_ICONS_TILES_ID_START ((4 << 12) + WIRELESS_ICONS_TILES_OFFS)
+#define WIRELESS_ICONS_TILES_ID_START ((PLTT_4 << 12) + WIRELESS_ICONS_TILES_OFFS)
 #define WIRELESS_ICONS_TILESET_HEIGHT 8
 #define WIRELESS_ICONS_TILESET_WIDTH  8
 #define WIRELESS_ISONS_TILESET_SIZE   (WIRELESS_ICONS_TILESET_HEIGHT * WIRELESS_ICONS_TILESET_WIDTH)
@@ -1293,7 +1294,6 @@ static BOOL MainMenu_Main(ApplicationManager *appMan, int *state)
 
 extern const ApplicationManagerTemplate gMysteryGiftAppTemplate;
 extern const ApplicationManagerTemplate gGBAMigratorAppTemplate;
-extern const ApplicationManagerTemplate gRangerLinkAppTemplate;
 extern const ApplicationManagerTemplate gRebootIntoWFCSettingsAppTemplate;
 extern const ApplicationManagerTemplate gWiiMessageAppTemplate;
 
