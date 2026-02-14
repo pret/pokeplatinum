@@ -3,14 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
-
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 
 #include "terrain_collision_manager.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 void FieldSystem_LoadPCAnimation(FieldSystem *fieldSystem, const u8 tag)
 {
@@ -19,10 +19,10 @@ void FieldSystem_LoadPCAnimation(FieldSystem *fieldSystem, const u8 tag)
     TerrainCollisionHitbox unused;
     int modelID;
     int pcMapProps[] = {
-        MAP_PROP_MODEL_POKECENTER_PC,
-        MAP_PROP_MODEL_DESK_DRAWER_LAPTOP,
-        MAP_PROP_MODEL_DESK_DRAWER_LAPTOP_FACING_RIGHT,
-        MAP_PROP_MODEL_DESK_DRAWER_LAPTOP_FACING_LEFT
+        pokecenter_pc_nsbmd,
+        desk_drawer_laptop_nsbmd,
+        desk_drawer_laptop_facing_right_nsbmd,
+        desk_drawer_laptop_facing_left_nsbmd
     };
 
     pcFound = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, pcMapProps, 4, &mapProp, &modelID);

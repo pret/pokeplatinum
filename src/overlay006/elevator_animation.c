@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/elevator_dirs.h"
-#include "constants/field/map_prop.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
@@ -15,6 +14,8 @@
 #include "heap.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 #define ELEVATOR_ANIMATION_TAG 0x1
 
@@ -35,7 +36,7 @@ static BOOL FieldTask_PlayElevatorAnimation(FieldTask *fieldSystem);
 
 void FieldSystem_PlayElevatorAnimation(FieldSystem *fieldSystem, const u8 elevatorDir, const u8 animationLoopCount)
 {
-    BOOL mapPropLoaded = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_ELEVATOR_LIGHTS, NULL, NULL);
+    BOOL mapPropLoaded = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, elevator_lights_nsbmd, NULL, NULL);
 
     if (mapPropLoaded) {
         ElevatorAnimation *animation = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(ElevatorAnimation));
@@ -63,14 +64,14 @@ static BOOL FieldTask_PlayElevatorAnimation(FieldTask *fieldTask)
         NNSG3dRenderObj *renderObj;
         BOOL mapPropLoaded;
 
-        modelFile = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ELEVATOR_LIGHTS, fieldSystem->areaDataManager);
+        modelFile = AreaDataManager_GetMapPropModelFile(elevator_lights_nsbmd, fieldSystem->areaDataManager);
         model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*modelFile), 0);
 
-        mapPropLoaded = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_ELEVATOR_LIGHTS, &mapProp, NULL);
+        mapPropLoaded = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, elevator_lights_nsbmd, &mapProp, NULL);
         GF_ASSERT(mapPropLoaded);
         renderObj = MapProp_GetRenderObj(mapProp);
 
-        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, ELEVATOR_ANIMATION_TAG, MAP_PROP_MODEL_ELEVATOR_LIGHTS, renderObj, model, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 2, animation->loopCount, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, ELEVATOR_ANIMATION_TAG, elevator_lights_nsbmd, renderObj, model, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 2, animation->loopCount, 0);
     }
         (animation->state)++;
         break;

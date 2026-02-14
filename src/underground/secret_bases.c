@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "constants/field_base_tiles.h"
 #include "constants/heap.h"
 #include "constants/map_object.h"
@@ -68,6 +67,7 @@
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 
+#include "res/field/props/models/prop_models.naix.h"
 #include "res/graphics/trap_effects/trap_effects.naix.h"
 #include "res/text/bank/underground_capture_flag.h"
 #include "res/text/bank/underground_common.h"
@@ -1545,7 +1545,7 @@ static void SecretBases_DrawBaseEntrancesTask(SysTask *unused, void *unused1)
             position.y = 0;
             position.z = entranceZ * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
 
-            secretBasesEnv->baseEntrancePropIdxs[netID] = MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_NORTH + dir, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
+            secretBasesEnv->baseEntrancePropIdxs[netID] = MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, secret_base_entrance_north_nsbmd + dir, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
         }
     }
 }
@@ -2377,7 +2377,7 @@ static void SecretBases_UpdatePCMapProp(FlagRankUpContext *ctx)
     position = MapProp_GetPosition(mapProp);
 
     MapPropManager_ClearOne(0, secretBasesEnv->fieldSystem->mapPropManager);
-    MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_PC_BRONZE_FLAG + ctx->prevFlagRank, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
+    MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, secret_base_pc_bronze_flag_nsbmd + ctx->prevFlagRank, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
 }
 
 static void SecretBases_EndFlagRankUpTask(SysTask *sysTask, void *ctx)

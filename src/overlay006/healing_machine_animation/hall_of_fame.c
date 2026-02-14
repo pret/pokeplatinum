@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "constants/pokemon.h"
 
 #include "field/field_system.h"
@@ -15,6 +14,8 @@
 #include "map_matrix.h"
 #include "party.h"
 #include "terrain_collision_manager.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 typedef struct HallOfFameHealingAnimation {
     VecFx32 position;
@@ -41,7 +42,7 @@ void FieldSystem_PlayHealingAnimation_HallOfFame(FieldSystem *fieldSystem, const
     BOOL mapPropFound;
     MapProp *healingMachine;
     int mapMatrixIndex;
-    int healingMachineID = MAP_PROP_MODEL_POKEMON_LEAGUE_HALL_OF_FAME_MACHINE;
+    int healingMachineID = pokemon_league_hall_of_fame_machine_nsbmd;
 
     mapPropFound = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, healingMachineID, &healingMachine, &mapMatrixIndex);
 
@@ -76,10 +77,10 @@ static BOOL FieldTask_PlayHealingAnimation_HallOfFame(FieldTask *param0)
         NNSG3dResFileHeader **pokeballModelFile;
         NNSG3dRenderObj *unused;
 
-        pokeballModelFile = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, fieldSystem->areaDataManager);
+        pokeballModelFile = AreaDataManager_GetMapPropModelFile(pokecenter_healing_machine_mini_pokeball_nsbmd, fieldSystem->areaDataManager);
         pokeballModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*pokeballModelFile), 0);
 
-        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_POKEBALL_TAG, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, NULL, pokeballModel, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_POKEBALL_TAG, pokecenter_healing_machine_mini_pokeball_nsbmd, NULL, pokeballModel, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
         (animation->state)++;
         break;
     }
@@ -93,7 +94,7 @@ static BOOL FieldTask_PlayHealingAnimation_HallOfFame(FieldTask *param0)
         pokeballPosition.y = animation->position.y + HallOfFameHealingAnimation_PokeballOffsets[animation->currentPokeballIndex].y;
         pokeballPosition.z = animation->position.z + HallOfFameHealingAnimation_PokeballOffsets[animation->currentPokeballIndex].z;
 
-        animation->pokeballLoadedPropIDs[animation->currentPokeballIndex] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, &pokeballPosition, &pokeballRotation, fieldSystem->mapPropAnimMan);
+        animation->pokeballLoadedPropIDs[animation->currentPokeballIndex] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, pokecenter_healing_machine_mini_pokeball_nsbmd, &pokeballPosition, &pokeballRotation, fieldSystem->mapPropAnimMan);
 
         pokeballMapProp = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, animation->pokeballLoadedPropIDs[animation->currentPokeballIndex]);
         pokeballRenderObj = MapProp_GetRenderObj(pokeballMapProp);

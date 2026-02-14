@@ -5,7 +5,6 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
-#include "constants/field/map_prop.h"
 #include "constants/heap.h"
 #include "generated/map_headers.h"
 
@@ -22,6 +21,8 @@
 #include "savedata_misc.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 #define PLATFORM_LIFT_SIZE_X 3
 #define PLATFORM_LIFT_SIZE_Y 2
@@ -179,12 +180,12 @@ void PlatformLift_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
         };
 
         platformLiftInitialPosition.y = currentHeight;
-        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT, &platformLiftInitialPosition, NULL, fieldSystem->mapPropAnimMan);
-        platformLiftMapProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
+        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, iron_island_platform_lift_nsbmd, &platformLiftInitialPosition, NULL, fieldSystem->mapPropAnimMan);
+        platformLiftMapProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
     } else {
         const int platformLiftModels[2] = {
-            MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT,
-            MAP_PROP_MODEL_POKEMON_LEAGUE_PLATFORM_LIFT
+            iron_island_platform_lift_nsbmd,
+            pokemon_league_platform_lift_nsbmd
         };
 
         BOOL platformLiftFound = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, platformLiftModels, NELEMS(platformLiftModels), &platformLiftMapProp, NULL);
@@ -366,11 +367,11 @@ static BOOL FieldTask_PlatformLiftGoUp(FieldTask *taskMan)
         MapProp *platformLiftMapProp;
 
         if (taskEnv->isIronIslandB2FLeftRoom) {
-            platformLiftMapProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
+            platformLiftMapProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
         } else {
             const int platformLiftModels[2] = {
-                MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT,
-                MAP_PROP_MODEL_POKEMON_LEAGUE_PLATFORM_LIFT
+                iron_island_platform_lift_nsbmd,
+                pokemon_league_platform_lift_nsbmd
             };
 
             BOOL platformLiftFound = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, platformLiftModels, NELEMS(platformLiftModels), &platformLiftMapProp, NULL);
@@ -435,11 +436,11 @@ static BOOL FieldTask_PlatformLiftGoDown(FieldTask *taskMan)
         MapProp *platformLiftMapProp;
 
         if (taskEnv->isIronIslandB2FLeftRoom) {
-            platformLiftMapProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
+            platformLiftMapProp = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
         } else {
             const int platformLiftModels[2] = {
-                MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT,
-                MAP_PROP_MODEL_POKEMON_LEAGUE_PLATFORM_LIFT
+                iron_island_platform_lift_nsbmd,
+                pokemon_league_platform_lift_nsbmd
             };
 
             BOOL platformLiftFound = FieldSystem_FindLoadedMapPropByModelIDs(fieldSystem, platformLiftModels, NELEMS(platformLiftModels), &platformLiftMapProp, NULL);
