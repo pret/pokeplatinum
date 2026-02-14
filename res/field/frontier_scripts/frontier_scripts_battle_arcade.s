@@ -3023,40 +3023,40 @@ _29BF:
     End
 
 _29F5:
-    FrontierScrCmd_1B 31, 13, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 72, 255, 0
+    InitLocalTextListMenu 31, 13, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleArcadeScene_Text_ContinueOption, 255, 0
     GoTo _2A81
     End
 
 _2A10:
-    FrontierScrCmd_1B 31, 11, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 72, 255, 0
-    FrontierScrCmd_1C 73, 255, 1
+    InitLocalTextListMenu 31, 11, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleArcadeScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleArcadeScene_Text_RecordOption, 255, 1
     GoTo _2A81
     End
 
 _2A33:
-    FrontierScrCmd_1B 31, 11, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 72, 255, 0
-    FrontierScrCmd_1C 74, 255, 2
+    InitLocalTextListMenu 31, 11, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleArcadeScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleArcadeScene_Text_RestOption, 255, 2
     GoTo _2A81
     End
 
 _2A56:
-    FrontierScrCmd_1B 31, 9, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 72, 255, 0
-    FrontierScrCmd_1C 73, 255, 1
-    FrontierScrCmd_1C 74, 255, 2
+    InitLocalTextListMenu 31, 9, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleArcadeScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleArcadeScene_Text_RecordOption, 255, 1
+    AddListMenuEntry BattleArcadeScene_Text_RestOption, 255, 2
     GoTo _2A81
     End
 
 _2A81:
-    FrontierScrCmd_1C 75, 255, 3
-    FrontierScrCmd_1D
+    AddListMenuEntry BattleArcadeScene_Text_RetireOption, 255, 3
+    ShowListMenu
     GoTo _2A93
     End
 

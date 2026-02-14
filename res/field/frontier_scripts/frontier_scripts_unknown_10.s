@@ -64,15 +64,15 @@ _0070:
 
 _0084:
     Message pl_msg_00000015_00000
-    FrontierScrCmd_1B 31, 5, 0, 1, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 26, 255, 1
-    FrontierScrCmd_1C 27, 255, 2
-    FrontierScrCmd_1C 28, 255, 4
-    FrontierScrCmd_1C 29, 255, 5
-    FrontierScrCmd_1C 30, 255, 6
-    FrontierScrCmd_1C 31, 255, 7
-    FrontierScrCmd_1D
+    InitLocalTextListMenu 31, 5, 0, 1, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry pl_msg_00000015_00026, 255, 1
+    AddListMenuEntry pl_msg_00000015_00027, 255, 2
+    AddListMenuEntry pl_msg_00000015_00028, 255, 4
+    AddListMenuEntry pl_msg_00000015_00029, 255, 5
+    AddListMenuEntry pl_msg_00000015_00030, 255, 6
+    AddListMenuEntry pl_msg_00000015_00031, 255, 7
+    ShowListMenu
     GoToIfEq 0x8008, 1, _010E
     GoToIfEq 0x8008, 2, _012F
     GoToIfEq 0x8008, 4, _01CA
@@ -97,12 +97,12 @@ _012F:
 
 _0143:
     Message pl_msg_00000015_00014
-    FrontierScrCmd_16 31, 11, 0, 1, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_17 pl_msg_00000015_00032, 0
-    FrontierScrCmd_17 pl_msg_00000015_00033, 1
-    FrontierScrCmd_17 pl_msg_00000015_00031, 2
-    FrontierScrCmd_19
+    InitLocalTextMenu 31, 11, 0, TRUE, 0x8008
+    SetMenuXOriginSide 1
+    AddMenuEntry pl_msg_00000015_00032, 0
+    AddMenuEntry pl_msg_00000015_00033, 1
+    AddMenuEntry pl_msg_00000015_00031, 2
+    ShowMenu
     GoToIfEq 0x8008, 0, _0188
     GoToIfEq 0x8008, 1, _01A9
     GoTo _0084
@@ -304,10 +304,10 @@ _04F9:
 
 _0567:
     Message pl_msg_00000015_00015
-    FrontierScrCmd_16 25, 13, 1, 1, 0x8008
-    FrontierScrCmd_17 pl_msg_00000015_00016, 0
-    FrontierScrCmd_17 pl_msg_00000015_00017, 1
-    FrontierScrCmd_19
+    InitLocalTextMenu 25, 13, 1, TRUE, 0x8008
+    AddMenuEntry pl_msg_00000015_00016, 0
+    AddMenuEntry pl_msg_00000015_00017, 1
+    ShowMenu
     MessageNoSkip pl_msg_00000015_00024
     SetVar 0x800B, 0x8008
     GoTo _0593
