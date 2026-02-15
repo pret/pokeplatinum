@@ -1391,13 +1391,13 @@ static void StartMenu_Save(FieldTask *taskMan)
     SaveMenu *saveMenu;
 
     if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
-        ScriptManager_Start(taskMan, 2034, NULL, NULL);
+        ScriptManager_Start(taskMan, SCRIPT_ID(COMMON_SCRIPTS, 34), NULL, NULL);
     } else {
         menu->taskData = Heap_Alloc(HEAP_ID_FIELD3, sizeof(SaveMenu));
         saveMenu = menu->taskData;
         saveMenu->unk_04 = 0;
 
-        ScriptManager_Start(taskMan, 2005, NULL, &saveMenu->unk_04);
+        ScriptManager_Start(taskMan, SCRIPT_ID(COMMON_SCRIPTS, 5), NULL, &saveMenu->unk_04);
     }
 
     menu->state = START_MENU_STATE_SAVE_WAIT;
@@ -1528,7 +1528,7 @@ static BOOL StartMenu_SelectRetire(FieldTask *taskMan)
     sub_0203B200(taskMan);
 
     if (SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
-        ScriptManager_Change(taskMan, 8821, NULL);
+        ScriptManager_Change(taskMan, SCRIPT_ID(SAFARI_GAME, 21), NULL);
     } else {
         ScriptManager_Change(taskMan, 4, NULL);
     }

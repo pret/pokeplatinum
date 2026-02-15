@@ -536,12 +536,12 @@ BOOL ov5_021F0488(FieldTask *param0)
         v1->unk_0E--;
 
         if (v1->unk_0E < 0) {
-            ScriptManager_Start(param0, 2029, NULL, NULL);
+            ScriptManager_Start(param0, SCRIPT_ID(COMMON_SCRIPTS, 29), NULL, NULL);
             v1->unk_0C = 9;
         }
         break;
     case 8:
-        ScriptManager_Start(param0, 2028, NULL, NULL);
+        ScriptManager_Start(param0, SCRIPT_ID(COMMON_SCRIPTS, 28), NULL, NULL);
         v1->unk_0C = 9;
         break;
     case 9:

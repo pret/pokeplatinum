@@ -3882,7 +3882,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
             if (v3 != -1) {
                 int v9 = MapObject_GetScript(v7);
 
-                ScriptManager_Set(fieldSystem, 3928, v7);
+                ScriptManager_Set(fieldSystem, SCRIPT_ID(SINGLE_BATTLES, 928), v7);
                 ScriptManager_SetApproachingTrainer(fieldSystem, v7, v3, v1, v9, Script_GetTrainerID(v9), 0, 0);
                 return 1;
             }

@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0539.h"
+#include "res/text/bank/vs_seeker.h"
 
 
     ScriptEntry _0006

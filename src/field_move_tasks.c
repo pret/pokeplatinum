@@ -305,7 +305,7 @@ static BOOL FieldMoves_CutTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10008, taskData->mapObj);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 8), taskData->mapObj);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -395,7 +395,7 @@ static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10012, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 12), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -436,7 +436,7 @@ static BOOL FieldMoves_StrengthTask(FieldTask *param0)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(param0);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
-    ScriptManager_Change(param0, 10010, taskData->mapObj);
+    ScriptManager_Change(param0, SCRIPT_ID(FIELD_MOVES, 10), taskData->mapObj);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -477,7 +477,7 @@ static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10014, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 14), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -522,7 +522,7 @@ static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10009, taskData->mapObj);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 9), taskData->mapObj);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -563,7 +563,7 @@ static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(param0);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
-    ScriptManager_Change(param0, 10013, NULL);
+    ScriptManager_Change(param0, SCRIPT_ID(FIELD_MOVES, 13), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -608,7 +608,7 @@ static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10011, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 11), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -645,7 +645,7 @@ static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10015, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 15), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -803,7 +803,7 @@ static BOOL FieldMoves_ChatterTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 8900, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(RECORD_CHATOT_CRY, 0), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 

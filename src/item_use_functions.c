@@ -745,12 +745,12 @@ static void UseHoneyFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
 
 static void UseVsSeekerFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 8950);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(VS_SEEKER, 0));
 }
 
 static BOOL UseVsSeekerInField(ItemFieldUseContext *usageContext)
 {
-    sub_02068584(usageContext, 8950);
+    sub_02068584(usageContext, SCRIPT_ID(VS_SEEKER, 0));
     return FALSE;
 }
 
@@ -969,12 +969,12 @@ static BOOL sub_020690F0(FieldTask *task)
 
 static void UseAzureFluteFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 2039);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(COMMON_SCRIPTS, 39));
 }
 
 static BOOL UseAzureFluteInField(ItemFieldUseContext *usageContext)
 {
-    sub_02068584(usageContext, 2039);
+    sub_02068584(usageContext, SCRIPT_ID(COMMON_SCRIPTS, 39));
     return FALSE;
 }
 
