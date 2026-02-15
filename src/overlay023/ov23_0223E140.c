@@ -66,7 +66,7 @@
 #include "vars_flags.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/mining/mining.naix.h"
+#include "res/graphics/mining/objects/objects.naix.h"
 #include "res/graphics/trap_effects/trap_effects.naix.h"
 #include "res/text/bank/underground_common.h"
 
