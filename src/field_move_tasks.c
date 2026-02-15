@@ -687,14 +687,14 @@ static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const Fie
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL FieldMoves_TeleportTask(FieldTask *param0)
+static BOOL FieldMoves_TeleportTask(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(task);
     FieldWarp *fieldWarp = FieldWarp_InitTeleport(fieldSystem, v1->unk_00, HEAP_ID_FIELD1);
 
     Heap_Free(v1);
-    FieldTask_InitJump(param0, FieldWarp_TeleportFadeOut, fieldWarp);
+    FieldTask_InitJump(task, FieldWarp_TeleportFadeOut, fieldWarp);
 
     return FALSE;
 }
@@ -730,17 +730,17 @@ static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     v1->state = START_MENU_STATE_10;
 }
 
-static BOOL FieldMoves_DigTask(FieldTask *param0)
+static BOOL FieldMoves_DigTask(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(task);
     FieldWarp *fieldWarp = FieldWarp_InitDig(fieldSystem, v1->unk_00, HEAP_ID_FIELD2);
 
     void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD1);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 
     Heap_Free(v1);
-    FieldTask_InitJump(param0, FieldWarp_DigFadeOut, fieldWarp);
+    FieldTask_InitJump(task, FieldWarp_DigFadeOut, fieldWarp);
 
     return FALSE;
 }

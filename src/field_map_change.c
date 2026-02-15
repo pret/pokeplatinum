@@ -893,7 +893,7 @@ static BOOL FieldTask_WaitFadeInFly(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_ChangeMapChangeByFieldWarp(FieldTask *task, const Location *location, enum FieldWarpType fieldWarpType)
+void FieldTask_ChangeMapByFieldWarp(FieldTask *task, const Location *location, enum FieldWarpType fieldWarpType)
 {
     MapChangeFieldWarpData *mapChangeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeFieldWarpData));
 
@@ -931,7 +931,7 @@ static BOOL FieldTask_MapChangeByFieldWarp(FieldTask *task)
 
         if (mapChangeData->fieldWarpType == FIELD_WARP_TYPE_TELEPORT) {
             FieldSystem_SetTeleportFlags(fieldSystem);
-        } else if ((mapChangeData->fieldWarpType == FIELD_WARP_TYPE_ESCAPE_ROPE) || (mapChangeData->fieldWarpType == FIELD_WARP_TYPE_DIG)) {
+        } else if (mapChangeData->fieldWarpType == FIELD_WARP_TYPE_ESCAPE_ROPE || mapChangeData->fieldWarpType == FIELD_WARP_TYPE_DIG) {
             FieldSystem_SetEscapeFlags(fieldSystem);
         } else {
             GF_ASSERT(FALSE);

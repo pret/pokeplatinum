@@ -236,10 +236,10 @@ static enum FieldWarpStateResult ChangeMap(FieldTask *task, FieldSystem *fieldSy
 
         u16 warpId = FieldOverworldState_GetWarpId(fieldState);
         Location_InitFly(warpId, &location);
-        FieldTask_ChangeMapChangeByFieldWarp(task, &location, fieldWarp->warpType);
+        FieldTask_ChangeMapByFieldWarp(task, &location, fieldWarp->warpType);
     } else {
         Location *location = FieldOverworldState_GetExitLocation(fieldState);
-        FieldTask_ChangeMapChangeByFieldWarp(task, location, fieldWarp->warpType);
+        FieldTask_ChangeMapByFieldWarp(task, location, fieldWarp->warpType);
     }
 
     return STATE_RESULT_END_TASK;
