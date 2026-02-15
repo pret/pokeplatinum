@@ -2,7 +2,7 @@
   "key": 17483,
   "messages": [
     {
-      "id": "pl_msg_00000050_00000",
+      "id": "JubilifeCitySouthwestHouse1F_Text_IGotMyPikachuThroughATradeFromSomeone",
       "en_US": [
         "I got my PIKACHU through a trade from\n",
         "someone somewhere in the world.\r",
@@ -16,11 +16,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000050_00001",
+      "id": "JubilifeCitySouthwestHouse1F_Text_PikachuPikapikapikaaah",
       "en_US": "PIKACHU: Pikapikapikaaah!"
     },
     {
-      "id": "pl_msg_00000050_00002",
+      "id": "JubilifeCitySouthwestHouse1F_Text_IfEveryoneAroundTheWorldHadPOkemon",
       "en_US": [
         "If everyone around the world had\n",
         "Pokémon...\r",

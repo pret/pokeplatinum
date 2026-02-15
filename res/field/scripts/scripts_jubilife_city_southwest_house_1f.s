@@ -2,39 +2,39 @@
 #include "res/text/bank/jubilife_city_southwest_house_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0040
+    ScriptEntry JubilifeCitySouthwestHouse1F_Youngster
+    ScriptEntry JubilifeCitySouthwestHouse1F_Pikachu
+    ScriptEntry JubilifeCitySouthwestHouse1F_MiddleAgedMan
     ScriptEntryEnd
 
-_000E:
+JubilifeCitySouthwestHouse1F_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeCitySouthwestHouse1F_Text_IGotMyPikachuThroughATradeFromSomeone
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0021:
+JubilifeCitySouthwestHouse1F_Pikachu:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_PIKACHU
-    Message 1
+    Message JubilifeCitySouthwestHouse1F_Text_PikachuPikapikapikaaah
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0040:
+JubilifeCitySouthwestHouse1F_MiddleAgedMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message JubilifeCitySouthwestHouse1F_Text_IfEveryoneAroundTheWorldHadPOkemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll

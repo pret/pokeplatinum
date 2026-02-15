@@ -2,47 +2,47 @@
 #include "res/text/bank/jubilife_city_southwest_house_2f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _0025
-    ScriptEntry _0038
-    ScriptEntry _004B
+    ScriptEntry JubilifeCitySouthwestHouse2F_AceTrainerM
+    ScriptEntry JubilifeCitySouthwestHouse2F_Beauty
+    ScriptEntry JubilifeCitySouthwestHouse2F_Collector
+    ScriptEntry JubilifeCitySouthwestHouse2F_Lass
     ScriptEntryEnd
 
-_0012:
+JubilifeCitySouthwestHouse2F_AceTrainerM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeCitySouthwestHouse2F_Text_WeComeFromFarawayLand
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0025:
+JubilifeCitySouthwestHouse2F_Beauty:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message JubilifeCitySouthwestHouse2F_Text_ILikeLookAtPokemonIGetFromFriendInTrade
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0038:
+JubilifeCitySouthwestHouse2F_Collector:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message JubilifeCitySouthwestHouse2F_Text_YouCanTradePokemonWithPeopleAroundTheWorldOnNintendoWFC
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_004B:
+JubilifeCitySouthwestHouse2F_Lass:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 3
+    Message JubilifeCitySouthwestHouse2F_Text_WhenYouConnectWithPeopleOnNintendoWFCItsHardToBe
     WaitABXPadPress
     CloseMessage
     ReleaseAll

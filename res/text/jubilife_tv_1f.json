@@ -2,7 +2,7 @@
   "key": 17435,
   "messages": [
     {
-      "id": "pl_msg_00000030_00000",
+      "id": "JubilifeTV1F_Text_WhyDontYouTryDressingUpYourPokemonNow",
       "en_US": [
         "Why don’t you try dressing up your\n",
         "Pokémon now?\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00001",
+      "id": "JubilifeTV1F_Text_ThisIsThePokemonLotteryCorner",
       "en_US": [
         "This is the Pokémon Lottery Corner.\n",
         "I’m Felicity, your attendant today.\r",
@@ -25,21 +25,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00002",
+      "id": "JubilifeTV1F_Text_YouveAlreadyDrawnALotoTicketToday",
       "en_US": [
         "You’ve already drawn a Loto Ticket\n",
         "today. Please come back tomorrow."
       ]
     },
     {
-      "id": "pl_msg_00000030_00003",
+      "id": "JubilifeTV1F_Text_OhISeePleaseDoVisitUsAgain",
       "en_US": [
         "Oh. I see.\n",
         "Please do visit us again."
       ]
     },
     {
-      "id": "pl_msg_00000030_00004",
+      "id": "JubilifeTV1F_Text_FirstIllLookUpTodaysPokemonLotteryCornerLuckyNumber",
       "en_US": [
         "First, I’ll look up today’s Pokémon\n",
         "Lottery Corner lucky number.\r",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00005",
+      "id": "JubilifeTV1F_Text_YourLotoTicketNumberIsNum",
       "en_US": [
         "Your Loto Ticket number is {STRVAR_1 54, 0, 0}.\r",
         "Now, let’s see if it matches the\n",
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00006",
+      "id": "JubilifeTV1F_Text_CongratulationsTheIDOfYourTeamsPokemonMatchesYourLotoTicketNumber",
       "en_US": [
         "Congratulations!\r",
         "The ID No. of your team’s\n",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00007",
+      "id": "JubilifeTV1F_Text_CongratulationsTheIDOfYourPCBoxedPokemonMatchesYourLotoTicketNumber",
       "en_US": [
         "Congratulations!\r",
         "The ID No. of your PC-boxed\n",
@@ -73,49 +73,49 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00008",
+      "id": "JubilifeTV1F_Text_ImSorryYouDidntGetAMatch",
       "en_US": [
         "I’m sorry.\n",
         "You didn’t get a match..."
       ]
     },
     {
-      "id": "pl_msg_00000030_00009",
+      "id": "JubilifeTV1F_Text_TheLastDigitMatchedSoYouWinTheFourthPrize",
       "en_US": [
         "The last digit matched, so you\n",
         "win the fourth prize!\r"
       ]
     },
     {
-      "id": "pl_msg_00000030_00010",
+      "id": "JubilifeTV1F_Text_YouGainANewBackdropForUseInFittingRooms",
       "en_US": [
         "You gained a new Backdrop for use\n",
         "in Fitting Rooms."
       ]
     },
     {
-      "id": "pl_msg_00000030_00011",
+      "id": "JubilifeTV1F_Text_TheLastTwoDigitsMatchedSoYouWinTheThirdPrize",
       "en_US": [
         "The last two digits matched, so you\n",
         "win the third prize!\r"
       ]
     },
     {
-      "id": "pl_msg_00000030_00012",
+      "id": "JubilifeTV1F_Text_TheLastThreeDigitsMatchedSoYouWinTheSecondPrize",
       "en_US": [
         "The last three digits matched, so you\n",
         "win the second prize!\r"
       ]
     },
     {
-      "id": "pl_msg_00000030_00013",
+      "id": "JubilifeTV1F_Text_TheLastFourDigitsMatchedSoYouWinTheFirstPrize",
       "en_US": [
         "The last four digits matched, so you\n",
         "win the first prize!\r"
       ]
     },
     {
-      "id": "pl_msg_00000030_00014",
+      "id": "JubilifeTV1F_Text_OhMyGoodnessAllFiveDigitsMatchedYouveWonTheJackpotPrize",
       "en_US": [
         "Oh, my goodness, all five digits\n",
         "matched!\r",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00015",
+      "id": "JubilifeTV1F_Text_OhYouSeemToHaveNoRoomForThis",
       "en_US": [
         "...Oh?\n",
         "You seem to have no room for this.\r",
@@ -136,7 +136,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00016",
+      "id": "JubilifeTV1F_Text_ThisIsThePrizeWeveBeenHoldingForYou",
       "en_US": [
         "{STRVAR_1 3, 0, 0}?\n",
         "Yes, I’ve been expecting you.\r",
@@ -145,14 +145,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00017",
+      "id": "JubilifeTV1F_Text_PleaseDoVisitAgain",
       "en_US": [
         "Please do visit again!\n",
         "Good-bye from Felicity, your attendant!"
       ]
     },
     {
-      "id": "pl_msg_00000030_00018",
+      "id": "JubilifeTV1F_Text_WouldYouLikeToCheckTodaysLuckyNumberAgain",
       "en_US": [
         "This is the Pokémon Lottery Corner.\r",
         "Would you like to check today’s lucky\n",
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00019",
+      "id": "JubilifeTV1F_Text_TheyKeepTrackOfOfficialRecordsHere",
       "en_US": [
         "They keep track of official records\n",
         "here.\r",
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00020",
+      "id": "JubilifeTV1F_Text_ImGoingToGetCommercialsShownOnTV",
       "en_US": [
         "I’m going to get commercials shown\n",
         "on TV.\r",
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000030_00021",
+      "id": "JubilifeTV1F_Text_TheTVStationInterviewsAllSortsOfTrainersForItsShows",
       "en_US": [
         "The TV station interviews all sorts of\n",
         "Trainers for its shows.\r",

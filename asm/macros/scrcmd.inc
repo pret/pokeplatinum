@@ -1066,17 +1066,17 @@
     .short 165
     .endm
 
-    .macro ScrCmd_0A6 arg0, arg1, arg2
+    .macro DressUpPokemon slot, destVar, arg2
     .short 166
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .short \arg2
     .endm
 
-    .macro ScrCmd_0A7 arg0, arg1
+    .macro ShowDressUpPhoto slot, destVar
     .short 167
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
     .macro ScrCmd_0A8 arg0, arg1
@@ -1803,10 +1803,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_12E arg0, arg1
+    .macro DressUpPhotoHasData slot, destVar
     .short 302
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
     .macro ScrCmd_12F arg0, arg1
@@ -1824,9 +1824,9 @@
     .short 305
     .endm
 
-    .macro ScrCmd_132 arg0
+    .macro CheckPoketchEnabled destVar
     .short 306
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro RegisterPoketchApp appID
@@ -2502,9 +2502,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B5 arg0
+    .macro ShowRecordList listIndex
     .short 437
-    .short \arg0
+    .short \listIndex
     .endm
 
     .macro GetTimeOfDay destVarID
@@ -3463,25 +3463,25 @@
     .short 578
     .endm
 
-    .macro ScrCmd_243 arg0, arg1, arg2
+    .macro ChooseCustomMessageWord unused, resultVar, destVar
     .short 579
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \unused
+    .short \resultVar
+    .short \destVar
     .endm
 
-    .macro ScrCmd_244 arg0, arg1, arg2, arg3
+    .macro ChooseTwoCustomMessageWords unused, resultVar, destVar1, destVar2
     .short 580
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \unused
+    .short \resultVar
+    .short \destVar1
+    .short \destVar2
     .endm
 
-    .macro ScrCmd_245 arg0, arg1
+    .macro BufferCustomMessageWord idx, customMessageWord
     .short 581
-    .short \arg0
-    .short \arg1
+    .short \idx
+    .short \customMessageWord
     .endm
 
     .macro GetGameVersion destVar
@@ -3501,13 +3501,13 @@
     .short \slot
     .endm
 
-    .macro ScrCmd_249 arg0, arg1, arg2, arg3, arg4
+    .macro GetWallpaperFromCustomMessageWords destVar, customMessageWord1, customMessageWord2, customMessageWord3, customMessageWord4
     .short 585
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \destVar
+    .short \customMessageWord1
+    .short \customMessageWord2
+    .short \customMessageWord3
+    .short \customMessageWord4
     .endm
 
     .macro GetCapturedFlagCount destFlagCount
@@ -4082,13 +4082,13 @@
     .endif
     .endm
 
-    .macro ScrCmd_2AA arg0, arg1, arg2, arg3, arg4
+    .macro CheckIsMysteryGiftPhrase destVar, customMessageWord1, customMessageWord2, customMessageWord3, customMessageWord4
     .short 682
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \destVar
+    .short \customMessageWord1
+    .short \customMessageWord2
+    .short \customMessageWord3
+    .short \customMessageWord4
     .endm
 
     .macro ScrCmd_2AB arg0
@@ -4692,7 +4692,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_316
+    .macro Dummy316
     .short 790
     .endm
 

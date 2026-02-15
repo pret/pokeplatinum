@@ -2,71 +2,71 @@
 #include "res/text/bank/jubilife_tv_3f_global_ranking_room.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _002C
-    ScriptEntry _003A
-    ScriptEntry _0048
-    ScriptEntry _005B
-    ScriptEntry _006E
-    ScriptEntry _0081
+    ScriptEntry JubilifeTV3FGlobalRankingRoom_RecordMachinePokemon
+    ScriptEntry JubilifeTV3FGlobalRankingRoom_RecordMachineBattles
+    ScriptEntry JubilifeTV3FGlobalRankingRoom_RecordMachineContests
+    ScriptEntry JubilifeTV3FGlobalRankingRoom_AceTrainerF
+    ScriptEntry JubilifeTV3FGlobalRankingRoom_Collector
+    ScriptEntry JubilifeTV3FGlobalRankingRoom_Fisherman
+    ScriptEntry JubilifeTV3FGlobalRankingRoom_Worker
     ScriptEntryEnd
 
-_001E:
+JubilifeTV3FGlobalRankingRoom_RecordMachinePokemon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1B5 0
+    ShowRecordList 0
     ReleaseAll
     End
 
-_002C:
+JubilifeTV3FGlobalRankingRoom_RecordMachineBattles:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1B5 1
+    ShowRecordList 1
     ReleaseAll
     End
 
-_003A:
+JubilifeTV3FGlobalRankingRoom_RecordMachineContests:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_1B5 2
+    ShowRecordList 2
     ReleaseAll
     End
 
-_0048:
+JubilifeTV3FGlobalRankingRoom_AceTrainerF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeTV3FGlobalRankingRoom_Text_SomeoneBrokeMyPokemonCatchingRecord
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_005B:
+JubilifeTV3FGlobalRankingRoom_Collector:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message JubilifeTV3FGlobalRankingRoom_Text_IBetItdFeelGreatIfICouldBeNumberOneHere
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_006E:
+JubilifeTV3FGlobalRankingRoom_Fisherman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message JubilifeTV3FGlobalRankingRoom_Text_ImTryingForTheWorldRecordAtPokemonFishing
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0081:
+JubilifeTV3FGlobalRankingRoom_Worker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 3
+    Message JubilifeTV3FGlobalRankingRoom_Text_SorryImStillFineTuningThisThingyHere
     WaitABXPadPress
     CloseMessage
     ReleaseAll
