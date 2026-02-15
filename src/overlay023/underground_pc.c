@@ -10,7 +10,7 @@
 
 #include "field/field_system.h"
 #include "overlay023/base_decoration.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_manager.h"
@@ -728,7 +728,7 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
     case UG_PC_MENU_STATE_START_TREASURE_RADAR:
         UndergroundMenu_EraseCurrentMenu(menu);
         UndergroundMan_SetTreasureRadarActive();
-        ov23_022412F0();
+        TreasureRadar_Start();
         BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetMiscTextPrinter(), UndergroundPC_Text_TreasureRadarBootedUp, FALSE, NULL);
         menu->state = UG_PC_MENU_STATE_EXIT_RADAR_ON_BUTTON_PRESS;
@@ -777,7 +777,7 @@ static void UndergroundPC_Main(SysTask *sysTask, void *data)
                 }
 
                 TrapRadar_Exit();
-                ov23_02241364();
+                TreasureRadar_Exit();
                 SphereRadar_Exit();
 
                 menu->state = UG_PC_MENU_STATE_INIT_RADAR_MENU;

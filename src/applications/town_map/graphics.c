@@ -1051,7 +1051,7 @@ static void Task_SwitchBottomScreenToZoomedMap(SysTask *sysTask, void *_appData)
         Sprite_SetAnimateFlag(graphicsMan->zoomBtnShockwave, FALSE);
 
         appData->dummy_14 = 0;
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_2, COLOR_BLACK, 8, 1, appData->heapID);
+        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_DOWNWARD_OUT, COLOR_BLACK, 8, 1, appData->heapID);
         graphicsMan->taskState++;
         break;
     case 3:
@@ -1096,7 +1096,7 @@ static void Task_SwitchBottomScreenToZoomButton(SysTask *sysTask, void *_appData
     switch (graphicsMan->taskState) {
     case 0:
         appData->dummy_14 = 0;
-        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_UNK_2, COLOR_BLACK, 8, 1, appData->heapID);
+        StartScreenFade(FADE_SUB_ONLY, FADE_TYPE_UNK_13, FADE_TYPE_DOWNWARD_OUT, COLOR_BLACK, 8, 1, appData->heapID);
         Sound_PlayEffect(SEQ_SE_DP_MEKURU3);
         graphicsMan->taskState++;
         break;

@@ -2321,9 +2321,8 @@ static const TouchScreenRect Unk_020F1C94[] = {
 };
 // clang-format on
 
-#define TOUCH_BUTTON_TILE_PALETTE (1 << 12)
-#define TOUCH_BUTTON_TILE_WIDTH   5
-#define TOUCH_BUTTON_TILE_HEIGHT  5
+#define TOUCH_BUTTON_TILE_WIDTH  5
+#define TOUCH_BUTTON_TILE_HEIGHT 5
 
 static void DrawMemberTouchScreenButton(PartyMenuApplication *application, u8 slot, u8 anim)
 {
@@ -2333,7 +2332,7 @@ static void DrawMemberTouchScreenButton(PartyMenuApplication *application, u8 sl
     u8 dy, dx;
 
     tilemap = Bg_GetTilemapBuffer(application->bgConfig, BG_LAYER_SUB_0);
-    baseTile = 5 + TOUCH_BUTTON_TILE_PALETTE + TOUCH_BUTTON_TILE_WIDTH * TOUCH_BUTTON_TILE_HEIGHT * anim;
+    baseTile = 5 + TILEMAP_PALETTE_SHIFT(1) + TOUCH_BUTTON_TILE_WIDTH * TOUCH_BUTTON_TILE_HEIGHT * anim;
     x = sTouchScreenButtonCoords[slot][0];
     y = sTouchScreenButtonCoords[slot][1];
 
@@ -2346,7 +2345,6 @@ static void DrawMemberTouchScreenButton(PartyMenuApplication *application, u8 sl
 
 #undef TOUCH_BUTTON_TILE_HEIGHT
 #undef TOUCH_BUTTON_TILE_WIDTH
-#undef TOUCH_BUTTON_TILE_PALETTE
 
 static void CalculateWindowPosition(u8 application, s16 *param1, s16 *param2)
 {

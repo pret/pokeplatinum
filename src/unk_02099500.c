@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_02039A58.h"
 
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_manager.h"
 #include "overlay023/underground_pc.h"
@@ -88,15 +88,15 @@ static const CommCmdTable Unk_020F68A4[] = {
     { SecretBases_ProcessFailedBaseEnter, CommPacketSizeOf_NetId, NULL },
     { sub_02058018, CommPacketSizeOf_NetId, NULL },
     { UndergroundSpheres_RetrieveBuriedSphere, CommPacketSizeOf_NetId, NULL },
-    { ov23_0223E9D4, CommPacketSizeOf_NetId, NULL },
-    { ov23_0223EAF8, CommPacketSizeOf_NetId, NULL },
-    { ov23_0223EB8C, CommPacketSizeOf_NetId, NULL },
-    { ov23_0223EBC0, CommPacketSizeOf_NetId, NULL },
-    { ov23_0223EBE4, ov23_0223EBFC, NULL },
-    { Mining_TakeLinkInput, ov23_0223EC30, NULL },
+    { Mining_ProcessMiningSpotInteract, CommPacketSizeOf_NetId, NULL },
+    { Mining_ProcessConfirmStartMiningResult, CommPacketSizeOf_NetId, NULL }, // 65
+    { Mining_ProcessStartMiningConfirm, CommPacketSizeOf_NetId, NULL },
+    { Mining_ProcessMiningGameEnd, CommPacketSizeOf_NetId, NULL },
+    { Mining_ProcessLinkInput, CommPacketSizeOf_MiningLinkInput, NULL },
+    { Mining_ProcessLinkInputServer, CommPacketSizeOf_MiningLinkInputWithNetID, NULL },
     { UndergroundMan_ProcessPlayerState, CommPacketSizeOf_UndergroundPlayerState, NULL },
-    { ov23_022413A0, CommPacketSizeOf_Nothing, NULL },
-    { ov23_0224142C, ov23_022414D0, NULL },
+    { Mining_ProcessTreasureRadarStart, CommPacketSizeOf_Nothing, NULL },
+    { Mining_ProcessMiningSpotRadarResult, CommPacketSizeOf_MiningSpotRadarResult, NULL },
     { UndergroundTalk_RequestLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
     { UndergroundTalkResponse_RequestLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL },
     { UndergroundTalkResponse_HandleLinkTalkStateUpdateServer, CommPacketSizeOf_TalkStateChangeRequest, NULL }, // 75
