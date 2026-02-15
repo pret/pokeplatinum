@@ -2572,7 +2572,7 @@ const ItemArchiveIDs sItemArchiveIDs[] = {
     [ITEM_HM05] = {
         .dataID = 0x192,
         .iconID = hm_NCGR,
-        .paletteID = tm_water_NCLR,
+        .paletteID = tm_water_NCLR, // BUG: Defog is a flying type move, but erroneously uses the water palette.
         .gen3ID = GBA_ITEM_HM05,
     },
     [ITEM_HM06] = {
