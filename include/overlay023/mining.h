@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV23_0223E140_H
-#define POKEPLATINUM_OV23_0223E140_H
+#ifndef POKEPLATINUM_UNDERGROUND_MINING_H
+#define POKEPLATINUM_UNDERGROUND_MINING_H
 
 #include <nitro/math.h>
 
@@ -8,44 +8,36 @@
 
 #include "string_gf.h"
 
-#define MINING_MAX_BURIED_OBJECTS 8
-#define MINING_MAX_BURIED_ITEMS   4
-
-#define INITIAL_WALL_INTEGRITY 196
-
-#define MINING_GAME_WIDTH  13
-#define MINING_GAME_HEIGHT 10
-
-void ov23_0223E1E4(void *param0, FieldSystem *fieldSystem);
-int ov23_0223E2E8(void);
-void ov23_0223E2F0(void);
-void ov23_0223E2F4(void);
-void ov23_0223E2F8(void);
-BOOL ov23_0223E354(int param0, Coordinates *param1);
-void ov23_0223E650(int param0, int param1, MATHRandContext16 *param2);
-void ov23_0223E878(void);
-void ov23_0223E9D4(int param0, int param1, void *param2, void *param3);
-void ov23_0223EAF8(int param0, int param1, void *param2, void *param3);
-void ov23_0223EB8C(int param0, int param1, void *param2, void *param3);
-void ov23_0223EBC0(int param0, int param1, void *param2, void *param3);
-void ov23_0223EBE4(int param0, int param1, void *param2, void *param3);
-int ov23_0223EBFC(void);
-void Mining_TakeLinkInput(int param0, int param1, void *src, void *param3);
-int ov23_0223EC30(void);
-BOOL ov23_02241200(int param0, int param1);
-int ov23_0224121C(int param0);
-int ov23_0224123C(int param0);
-int ov23_0224125C(int param0);
-int ov23_02241294(int param0);
-void ov23_022412F0(void);
-void ov23_02241364(void);
-void ov23_022413A0(int param0, int param1, void *param2, void *param3);
-void ov23_0224142C(int param0, int param1, void *param2, void *param3);
-int ov23_022414D0(void);
-BOOL ov23_022415B8(String *param0);
-void ov23_0224160C(void);
+void MiningEnv_Init(void *dest, FieldSystem *fieldSystem);
+int MiningEnv_Size(void);
+void Mining_Dummy(void);
+void Mining_Dummy2(void);
+void MiningEnv_Free(void);
+BOOL Mining_CheckForMiningSpotInteract(int netID, Coordinates *coordinates);
+void Mining_SpawnMiningSpotNearBuriedSphere(int buriedSphereX, int buriedSphereZ, MATHRandContext16 *rand);
+void Mining_SendRadarResults(void);
+void Mining_ProcessMiningSpotInteract(int unused0, int unused1, void *data, void *unused3);
+void Mining_ProcessConfirmStartMiningResult(int netID, int unused1, void *data, void *unused3);
+void Mining_ProcessStartMiningConfirm(int unused0, int unused1, void *data, void *unused3);
+void Mining_ProcessMiningGameEnd(int netID, int unused1, void *unused2, void *unused3);
+void Mining_ProcessLinkInput(int netID, int unused1, void *data, void *unused3);
+int CommPacketSizeOf_MiningLinkInput(void);
+void Mining_ProcessLinkInputServer(int unused0, int unused1, void *data, void *unused3);
+int CommPacketSizeOf_MiningLinkInputWithNetID(void);
+BOOL Mining_IsMiningSpotAtCoordinates(int x, int z);
+int NormalRadar_GetXCoordOfMiningSpot(int radarIndex);
+int NormalRadar_GetZCoordOfMiningSpot(int radarIndex);
+int TreasureRadar_GetXCoordOfMiningSpot(int radarIndex);
+int TreasureRadar_GetZCoordOfMiningSpot(int radarIndex);
+void TreasureRadar_Start(void);
+void TreasureRadar_Exit(void);
+void Mining_ProcessTreasureRadarStart(int netID, int unused1, void *unused2, void *unused3);
+void Mining_ProcessMiningSpotRadarResult(int unused0, int unused1, void *data, void *unused3);
+int CommPacketSizeOf_MiningSpotRadarResult(void);
+BOOL Mining_GetQueuedMessage(String *dest);
+void Mining_ClearMessageQueue(void);
 BOOL Mining_IsPlayerMining(int netID);
-void ov23_02241648(int param0);
+void Mining_ResetPlayerData(int netID);
 BOOL Mining_IsMiningGameTaskActive(void);
 void Mining_SetPlayerMiningStatus(int netID, int isMining);
 
@@ -121,4 +113,4 @@ enum MiningObjectIDs {
     MINING_ROCK_7
 };
 
-#endif // POKEPLATINUM_OV23_0223E140_H
+#endif // POKEPLATINUM_UNDERGROUND_MINING_H

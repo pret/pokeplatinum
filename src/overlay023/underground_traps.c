@@ -14,7 +14,7 @@
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay005/ov5_021F4E08.h"
 #include "overlay005/ov5_021F55CC.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
