@@ -284,78 +284,78 @@ BOOL BattleCastleOpponentApp_Init(ApplicationManager *appMan, int *state)
 
 BOOL BattleCastleOpponentApp_Main(ApplicationManager *appMan, int *state)
 {
-    BattleCastleOpponentApp *v0 = ApplicationManager_Data(appMan);
+    BattleCastleOpponentApp *app = ApplicationManager_Data(appMan);
 
-    if (v0->unk_436 == 1) {
+    if (app->unk_436 == 1) {
         switch (*state) {
         case 1:
-            v0->unk_436 = 0;
-            ov107_0224883C(v0);
-            ov107_02249238(v0);
+            app->unk_436 = 0;
+            ov107_0224883C(app);
+            ov107_02249238(app);
 
-            if (v0->unk_388 != NULL) {
-                BattleCastleAppSprite_Free(v0->unk_388);
-                v0->unk_0F_0 = 0;
+            if (app->unk_388 != NULL) {
+                BattleCastleAppSprite_Free(app->unk_388);
+                app->unk_0F_0 = 0;
             }
 
-            BattleCastleApp_DrawMessageBox(&v0->windows[7], Options_Frame(v0->options));
-            BattleFrontier_SetPartnerInStrTemplate(v0->strTemplate, 0);
-            v0->unk_0A = ov107_022477CC(v0, 7, FONT_MESSAGE);
-            ChangeState(v0, state, 3);
+            BattleCastleApp_DrawMessageBox(&app->windows[7], Options_Frame(app->options));
+            BattleFrontier_SetPartnerInStrTemplate(app->strTemplate, 0);
+            app->unk_0A = ov107_022477CC(app, 7, FONT_MESSAGE);
+            ChangeState(app, state, 3);
             break;
         }
-    } else if (v0->unk_11 != 0xff) {
+    } else if (app->unk_11 != 0xff) {
         switch (*state) {
         case 1:
         case 3:
-            v0->unk_436 = 0;
-            ov107_0224883C(v0);
-            ov107_02249238(v0);
-            ChangeState(v0, state, 2);
+            app->unk_436 = 0;
+            ov107_0224883C(app);
+            ov107_02249238(app);
+            ChangeState(app, state, 2);
             break;
         }
     }
 
     switch (*state) {
     case 0:
-        if (State_FadeInApp(v0) == 1) {
-            ChangeState(v0, state, 1);
+        if (State_FadeInApp(app) == 1) {
+            ChangeState(app, state, 1);
         }
         break;
     case 1:
-        if (ov107_022462CC(v0) == 1) {
-            if (v0->unk_10 == 1) {
-                ChangeState(v0, state, 2);
+        if (ov107_022462CC(app) == 1) {
+            if (app->unk_10 == 1) {
+                ChangeState(app, state, 2);
             } else {
-                if (BattleCastle_IsMultiPlayerChallenge(v0->challengeType) == 1) {
-                    ChangeState(v0, state, 3);
+                if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == 1) {
+                    ChangeState(app, state, 3);
                 } else {
-                    ChangeState(v0, state, 4);
+                    ChangeState(app, state, 4);
                 }
             }
         }
         break;
     case 2:
-        if (ov107_02246BDC(v0) == 1) {
-            ChangeState(v0, state, 1);
+        if (ov107_02246BDC(app) == 1) {
+            ChangeState(app, state, 1);
         }
         break;
     case 3:
-        if (ov107_02246CD0(v0) == 1) {
-            ChangeState(v0, state, 4);
+        if (ov107_02246CD0(app) == 1) {
+            ChangeState(app, state, 4);
         }
         break;
     case 4:
-        if (State_FadeOutApp(v0) == 1) {
-            return 1;
+        if (State_FadeOutApp(app) == 1) {
+            return TRUE;
         }
         break;
     }
 
-    ov107_022492A8(v0);
-    SpriteList_Update(v0->spriteMan.spriteList);
+    ov107_022492A8(app);
+    SpriteList_Update(app->spriteMan.spriteList);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL BattleCastleOpponentApp_Exit(ApplicationManager *appMan, int *state)

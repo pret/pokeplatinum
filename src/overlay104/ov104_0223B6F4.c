@@ -31,7 +31,6 @@ u8 ov104_0223B7DC(u8 param0, BOOL param1);
 FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223B9E4(u8 param0);
 u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 *param0);
-BOOL BattleCastle_IsMultiPlayerChallenge(u8 param0);
 void ov104_0223BA24(Party *param0);
 void ov104_0223BAB8(UnkStruct_ov104_0223BA10 *param0);
 void ov104_0223BA7C(UnkStruct_ov104_0223BA10 *param0, Pokemon *param1);
