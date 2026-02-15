@@ -1,3 +1,4 @@
+#include "generated/battle_tower_functions.h"
 #include "generated/fade_types.h"
 #include "generated/sdat.h"
 #include "constants/colors.h"
@@ -711,11 +712,11 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_84 arg0, arg1, arg2
+    .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
     .short 0x084
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \functionIndex
+    .short \functionArgument
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_85 arg0

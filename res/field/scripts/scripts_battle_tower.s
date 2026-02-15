@@ -975,7 +975,7 @@ _107B:
     End
 
 _1091:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_45, 0, VAR_RESULT
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_BEAT_PALMER, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, _10AE
     GoTo _10F5
     End

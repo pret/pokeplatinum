@@ -53,10 +53,10 @@ BOOL FrontierScrCmd_AB(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_AC(FrontierScriptContext *param0)
 {
     UnkStruct_0209BBA4 *v0;
-    u16 v1 = ov104_0222FC00(param0);
-    u16 v2 = ov104_0222FC00(param0);
-    u16 v3 = ov104_0222FC00(param0);
-    u16 *v4 = ov104_0222FBE4(param0);
+    u16 v1 = FrontierScriptContext_GetVar(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
+    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
     *v4 = ov104_02239C88(v0, v1, v2, v3);
@@ -89,8 +89,8 @@ static BOOL ov104_02239680(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_AE(FrontierScriptContext *param0)
 {
     UnkStruct_0209BBA4 *v0;
-    u16 v1 = ov104_0222FC00(param0);
-    u16 *v2 = ov104_0222FBE4(param0);
+    u16 v1 = FrontierScriptContext_GetVar(param0);
+    u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
 
@@ -107,9 +107,9 @@ BOOL FrontierScrCmd_AF(FrontierScriptContext *param0)
 {
     UnkStruct_0209BBA4 *v0;
     UnkStruct_ov104_02230BE4 *v1;
-    u16 v2 = ov104_0222FC00(param0);
-    u16 v3 = ov104_0222FC00(param0);
-    u16 *v4 = ov104_0222FBE4(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
+    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
     v1 = sub_0209B970(param0->unk_00->unk_00);
@@ -127,8 +127,8 @@ BOOL FrontierScrCmd_B0(FrontierScriptContext *param0)
     int v0;
     UnkStruct_0209BBA4 *v1;
     u16 v2;
-    u16 *v3 = ov104_0222FBE4(param0);
-    u16 *v4 = ov104_0222FBE4(param0);
+    u16 *v3 = FrontierScriptContext_TryGetVarPointer(param0);
+    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
 
@@ -158,7 +158,7 @@ BOOL FrontierScrCmd_B0(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_B1(FrontierScriptContext *param0)
 {
     UnkStruct_0209BBA4 *v0;
-    u16 *v1 = ov104_0222FBE4(param0);
+    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
     *v1 = v0->unk_59;
@@ -176,7 +176,7 @@ BOOL FrontierScrCmd_B2(FrontierScriptContext *param0)
     u8 v6 = FrontierScriptContext_ReadByte(param0);
     u8 v7 = FrontierScriptContext_ReadByte(param0);
     u8 v8 = FrontierScriptContext_ReadByte(param0);
-    u16 *v9 = ov104_0222FBE4(param0);
+    u16 *v9 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v4 = sub_0209B978(param0->unk_00->unk_00);
     v5 = sub_0209B970(param0->unk_00->unk_00);
@@ -345,7 +345,7 @@ BOOL FrontierScrCmd_B3(FrontierScriptContext *param0)
 BOOL FrontierScrCmd_B4(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
-    u16 *v1 = ov104_0222FBE4(param0);
+    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
 
     battleTower = sub_0209B978(param0->unk_00->unk_00);
     *v1 = sub_0209BB08(battleTower);

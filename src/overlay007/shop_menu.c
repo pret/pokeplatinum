@@ -1392,7 +1392,7 @@ static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId)
 static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu)
 {
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        return sub_0202D230(sub_0202D750(shopMenu->saveData), 0, 0);
+        return BattlePoints_ApplyFuncAndGet(sub_0202D750(shopMenu->saveData), 0, BATTLE_POINTS_FUNC_NONE);
     } else {
         return TrainerInfo_Money(shopMenu->trainerInfo);
     }
@@ -1401,7 +1401,7 @@ static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu)
 static void Shop_TakeMoney(ShopMenu *shopMenu, u32 amount)
 {
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        sub_0202D230(sub_0202D750(shopMenu->saveData), amount, 6);
+        BattlePoints_ApplyFuncAndGet(sub_0202D750(shopMenu->saveData), amount, BATTLE_POINTS_FUNC_SUB);
     } else {
         TrainerInfo_TakeMoney(shopMenu->trainerInfo, amount);
     }

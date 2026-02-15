@@ -136,7 +136,7 @@ static u32 GetNumBackdrops(SaveData *saveData)
 
 static u32 GetNumBattlePoints(SaveData *saveData)
 {
-    return sub_0202D230(sub_0202D750(saveData), 0, 0);
+    return BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
 }
 
 BOOL BagContext_FormatUsageMessage(SaveData *saveData, String *dstString, u16 item, enum HeapID heapID)

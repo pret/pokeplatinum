@@ -34,58 +34,58 @@
 #include "constdata/const_020EA358.h"
 
 static BOOL ov104_0223942C(FrontierScriptContext *param0);
-static u16 ov104_0223927C(BattleTower *battleTower, u8 param1);
+static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param);
 static BOOL ov104_02239464(FrontierScriptContext *param0, BattleTower *battleTower, SaveData *saveData, u16 param3, u16 param4);
 
-BOOL FrontierScrCmd_84(FrontierScriptContext *param0)
+BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
 {
     TVBroadcast *broadcast;
     BattleTower *battleTower;
-    u16 functionIndex, v6;
-    u16 *v7;
-    UnkStruct_ov104_02230BE4 *v8 = sub_0209B970(param0->unk_00->unk_00);
+    u16 functionIndex, functionArgument;
+    u16 *destVar;
+    UnkStruct_ov104_02230BE4 *v8 = sub_0209B970(ctx->unk_00->unk_00);
 
-    functionIndex = FrontierScriptContext_ReadHalfWord(param0);
-    v6 = ov104_0222FC00(param0);
-    v7 = ov104_0222FBE4(param0);
-    battleTower = sub_0209B978(param0->unk_00->unk_00);
+    functionIndex = FrontierScriptContext_ReadHalfWord(ctx);
+    functionArgument = FrontierScriptContext_GetVar(ctx);
+    destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    battleTower = sub_0209B978(ctx->unk_00->unk_00);
 
     switch (functionIndex) {
     case BATTLE_TOWER_FUNCTION_RESET_SYSTEM:
         BattleTower_ResetSystem();
         break;
     case BATTLE_TOWER_FUNCTION_UNK_46:
-        *v7 = sub_0204AA04(battleTower);
+        *destVar = BattleTower_GiveBattlePointsReward(battleTower);
         broadcast = SaveData_GetTVBroadcast(v8->saveData);
-        sub_0206D0C8(broadcast, *v7);
-        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *v7);
+        sub_0206D0C8(broadcast, *destVar);
+        GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *destVar);
         break;
     case BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM:
-        *v7 = ov104_0223927C(battleTower, v6);
+        *destVar = BattleTower_GetPartnerParam(battleTower, functionArgument);
         break;
     case BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM:
-        *v7 = BattleTower_GetNextOpponentNum(battleTower);
+        *destVar = BattleTower_GetNextOpponentNum(battleTower);
         break;
     case BATTLE_TOWER_FUNCTION_UNK_34:
-        *v7 = ov104_022395B4(battleTower);
+        *destVar = ov104_022395B4(battleTower);
         break;
     case BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS:
-        *v7 = BattleTower_HasDefeatedSevenTrainers(battleTower);
+        *destVar = BattleTower_HasDefeatedSevenTrainers(battleTower);
         break;
     case BATTLE_TOWER_FUNCTION_UNK_36:
-        *v7 = ov104_022395D8(battleTower);
+        *destVar = ov104_022395D8(battleTower);
         break;
     case BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE:
-        *v7 = (u16)BattleTower_GetChallengeMode(battleTower);
+        *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
         break;
     case BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS:
         BattleTower_CreateOpponentParties(battleTower, v8->saveData);
         break;
     case BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID:
-        *v7 = ov104_02239588(battleTower, v6);
+        *destVar = BattleTower_GetObjectIDFromOpponentIDInFrontierScript(battleTower, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_44:
-        ov104_022395A0(battleTower, v6);
+    case BATTLE_TOWER_FUNCTION_SET_BEAT_PALMER:
+        BattleTower_SetBeatPalmer(battleTower, functionArgument);
         break;
     case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS:
         BattleTower_UpdateGameRecords(battleTower, v8->saveData);
@@ -104,9 +104,9 @@ BOOL FrontierScrCmd_84(FrontierScriptContext *param0)
         break;
     case BATTLE_TOWER_FUNCTION_CHECK_IS_NULL:
         if (battleTower == NULL) {
-            *v7 = 1;
+            *destVar = TRUE;
         } else {
-            *v7 = 0;
+            *destVar = FALSE;
         }
         break;
     default:
@@ -117,7 +117,7 @@ BOOL FrontierScrCmd_84(FrontierScriptContext *param0)
     return FALSE;
 }
 
-static u16 ov104_0223927C(BattleTower *battleTower, u8 param)
+static u16 BattleTower_GetPartnerParam(BattleTower *battleTower, u8 param)
 {
     static const u16 partnerGraphics[] = {
         OBJ_EVENT_GFX_CHERYL,
@@ -202,7 +202,7 @@ BOOL FrontierScrCmd_88(FrontierScriptContext *param0)
     u16 *v2;
 
     battleTower = sub_0209B978(param0->unk_00->unk_00);
-    v2 = ov104_0222FBE4(param0);
+    v2 = FrontierScriptContext_TryGetVarPointer(param0);
     v1 = battleTower->unk_8D0;
 
     battleTower->unk_8CC = CheckPlayerWonBattle(v1->resultMask);
@@ -216,9 +216,9 @@ BOOL FrontierScrCmd_89(FrontierScriptContext *param0)
 {
     BattleTower *battleTower;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
-    u16 v3 = ov104_0222FC00(param0);
-    u16 *v4 = ov104_0222FBE4(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
+    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
     battleTower = sub_0209B978(param0->unk_00->unk_00);
 
@@ -276,7 +276,7 @@ static BOOL ov104_02239464(FrontierScriptContext *param0, BattleTower *battleTow
         return 0;
     }
 
-    v0 = ov104_0222FC14(param0, param4);
+    v0 = FrontierScriptContext_GetVarPointer(param0, param4);
 
     switch (param3) {
     case 2:
