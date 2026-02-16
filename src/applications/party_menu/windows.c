@@ -782,13 +782,13 @@ void PartyMenu_DrawContextMenu(PartyMenuApplication *application, const u8 *entr
             StringList_AddFromString(
                 application->contextMenuChoices,
                 application->menuStrings[PARTY_MENU_STR_MOVE0 + numFieldMoves],
-                sub_02083370(entries[i]));
+                PartyMenu_GetAction(entries[i]));
             numFieldMoves++;
         } else {
             StringList_AddFromString(
                 application->contextMenuChoices,
                 application->menuStrings[entries[i]],
-                sub_02083370(entries[i]));
+                PartyMenu_GetAction(entries[i]));
         }
     }
 

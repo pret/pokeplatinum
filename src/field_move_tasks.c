@@ -350,7 +350,7 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
 
     TownMapContext_Init(fieldSystem, menu->taskData, TOWN_MAP_MODE_FLY);
     FieldSystem_OpenTownMap(fieldSystem, menu->taskData);
-    sub_0203B674(menu, sub_0203C434);
+    StartMenu_SetCallback(menu, sub_0203C434);
 }
 
 static enum FieldMoveError FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext)
