@@ -11,7 +11,7 @@
 #include "battle_anim/struct_ov12_02235FE0_decl.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     BattlerData *unk_04;
     UnkStruct_ov12_02235FE0 *unk_08;
     BallRotation *unk_0C;

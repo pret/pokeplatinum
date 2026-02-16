@@ -5,7 +5,7 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/struct_ov16_02268520.h"
 
 #include "narc.h"
@@ -178,7 +178,7 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
     v0 = BattleSystem_GetSpriteSystem(param0->unk_04);
     v1 = BattleSystem_GetSpriteManager(param0->unk_04);
-    v9 = ov16_0223EC04(param0->unk_04);
+    v9 = BattleSystem_GetBackgroundTimeOffset(param0->unk_04);
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
     if (param0->unk_08 == 0) {
@@ -198,8 +198,8 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     }
 
     SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_PaletteSys(param0->unk_04), PLTTBUF_MAIN_OBJ, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteData_LoadBufferFromFileStart(BattleSystem_PaletteSys(param0->unk_04), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, Unk_ov16_02270134[param0->unk_09][v9], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(param0->unk_04), PLTTBUF_MAIN_OBJ, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteData_LoadBufferFromFileStart(BattleSystem_GetPaletteData(param0->unk_04), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, Unk_ov16_02270134[param0->unk_09][v9], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
     SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, TRUE, v6);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, TRUE, v8);
     NARC_dtor(v10);

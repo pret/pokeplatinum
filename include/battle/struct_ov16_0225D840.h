@@ -4,7 +4,7 @@
 #include "battle_sub_menus/battle_party.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     BattlePartyContext *unk_04;
     u8 unk_08;
     u8 unk_09;

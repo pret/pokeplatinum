@@ -173,7 +173,7 @@ typedef struct BattlePartyPokemon {
 typedef struct BattlePartyContext {
     Party *party;
     void *unused1;
-    BattleSystem *battleSystem;
+    BattleSystem *battleSys;
     enum HeapID heapID;
     u8 unused2;
     u8 selectedPartyIndex;
