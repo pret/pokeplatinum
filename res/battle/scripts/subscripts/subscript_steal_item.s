@@ -8,7 +8,7 @@ _000:
     PlayMoveAnimation BTLSCR_ATTACKER
     Wait 
     // {0} stole {1}’s {2}!
-    PrintMessage pl_msg_00000368_00401, TAG_NICKNAME_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonStolePokemonsItem_AllyAlly, TAG_NICKNAME_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_DEFENDER, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_DEFENDER, BATTLEMON_HELD_ITEM, BTLVAR_SCRIPT_TEMP
@@ -18,7 +18,7 @@ _000:
 
 _039:
     // {0}’s {1} made {2} ineffective!
-    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
 

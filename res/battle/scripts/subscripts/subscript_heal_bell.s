@@ -5,12 +5,12 @@ _000:
     TryPartyStatusRefresh 
     CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_AROMATHERAPY, _010
     // A bell chimed!
-    PrintMessage pl_msg_00000368_00821, TAG_NONE
+    PrintMessage BattleStrings_Text_ABellChimed, TAG_NONE
     GoTo _013
 
 _010:
     // A soothing aroma wafted through the area!
-    PrintMessage pl_msg_00000368_00592, TAG_NONE
+    PrintMessage BattleStrings_Text_ASoothingAromaWaftedThroughTheArea, TAG_NONE
 
 _013:
     Wait 
@@ -18,14 +18,14 @@ _013:
     CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_AROMATHERAPY, _049
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_CALC_TEMP, 0x00000001, _035
     // {0}’s {1} blocks {2}!
-    PrintMessage pl_msg_00000368_00689, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 
 _035:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_CALC_TEMP, 0x00000002, _049
     // {0}’s {1} blocks {2}!
-    PrintMessage pl_msg_00000368_00689, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER_PARTNER, BTLSCR_ATTACKER_PARTNER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER_PARTNER, BTLSCR_ATTACKER_PARTNER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

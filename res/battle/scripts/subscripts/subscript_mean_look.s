@@ -10,7 +10,7 @@ _000:
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_MEAN_LOOK
     UpdateMonDataFromVar OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_MEAN_LOOK_TARGET, BTLVAR_ATTACKER
     // {0} can no longer escape!
-    PrintMessage pl_msg_00000368_00408, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonCanNoLongerEscape_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     End 

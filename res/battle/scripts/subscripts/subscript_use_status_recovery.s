@@ -5,7 +5,7 @@ _000:
     WaitButtonABTime 15
     PlaySound BTLSCR_ATTACKER, 1516
     // {0} {1} used one {2}!
-    PrintMessage pl_msg_00000368_00858, TAG_TRCLASS_TRNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_TrainerWithClassUsedOneItem, TAG_TRCLASS_TRNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     UseBagItem BTLSCR_ATTACKER
@@ -16,38 +16,38 @@ _000:
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_TEMP, 4, _085
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_TEMP, 5, _092
     // {0} normalized its status using its {1}!
-    PrintMessage pl_msg_00000368_00896, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonNormalizedItsStatusUsingItsItem_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _099
 
 _052:
     UpdateMonData OPCODE_FLAG_OFF, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_CONFUSION
     // {0}’s {1} snapped it out of confusion!
-    PrintMessage pl_msg_00000368_00890, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsItemSnappedItOutOfConfusion_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _104
 
 _064:
     // {0}’s {1} cured its paralysis!
-    PrintMessage pl_msg_00000368_00875, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsItemCuredItsParalysis_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _099
 
 _071:
     // {0}’s {1} defrosted it!
-    PrintMessage pl_msg_00000368_00884, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsItemDefrostedIt_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _099
 
 _078:
     // {0}’s {1} healed its burn!
-    PrintMessage pl_msg_00000368_00881, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsItemCuredItsBurn_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _099
 
 _085:
     // {0}’s {1} cured its poison!
-    PrintMessage pl_msg_00000368_00878, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsItemCuredItsPoison_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _099
 
 _092:
     // {0}’s {1} woke it up!
-    PrintMessage pl_msg_00000368_00887, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsItemWokeItUp_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _099
 
 _099:

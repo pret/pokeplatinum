@@ -6,7 +6,7 @@ _000:
     PlayMoveAnimationOnMons BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
     // {0} is tightening its focus!
-    PrintMessage pl_msg_00000368_00497, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonIsTighteningItsFocus_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_PLAYED_MOVE_ANIMATION
