@@ -17,7 +17,7 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F101C.h"
-#include "overlay006/ov6_02247100.h"
+#include "overlay006/field_warp.h"
 
 #include "field_overworld_state.h"
 #include "field_task.h"
@@ -687,16 +687,16 @@ static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const Fie
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL FieldMoves_TeleportTask(FieldTask *param0)
+static BOOL FieldMoves_TeleportTask(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
-    void *v2 = ov6_02247530(fieldSystem, v1->unk_00, HEAP_ID_FIELD1);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(task);
+    FieldWarp *fieldWarp = FieldWarp_InitTeleport(fieldSystem, v1->unk_00, HEAP_ID_FIELD1);
 
     Heap_Free(v1);
-    FieldTask_InitJump(param0, ov6_02247554, v2);
+    FieldTask_InitJump(task, FieldWarp_TeleportFadeOut, fieldWarp);
 
-    return 0;
+    return FALSE;
 }
 
 static enum FieldMoveError FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext)
@@ -730,17 +730,17 @@ static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     v1->state = START_MENU_STATE_10;
 }
 
-static BOOL FieldMoves_DigTask(FieldTask *param0)
+static BOOL FieldMoves_DigTask(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
-    void *v2 = ov6_02247488(fieldSystem, v1->unk_00, HEAP_ID_FIELD2);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(task);
+    FieldWarp *fieldWarp = FieldWarp_InitDig(fieldSystem, v1->unk_00, HEAP_ID_FIELD2);
 
     void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD1);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 
     Heap_Free(v1);
-    FieldTask_InitJump(param0, ov6_022474AC, v2);
+    FieldTask_InitJump(task, FieldWarp_DigFadeOut, fieldWarp);
 
     return FALSE;
 }

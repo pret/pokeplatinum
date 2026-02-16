@@ -580,7 +580,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_healing_machine_animation_pokecenter.c.o
 	Object main.nef.p/src_overlay006_elevator_animation.c.o
 	Object main.nef.p/src_overlay006_pc_animation.c.o
-	Object main.nef.p/src_overlay006_ov6_02247100.c.o
+	Object main.nef.p/src_overlay006_field_warp.c.o
 	Object main.nef.p/src_overlay006_trophy_garden_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_feebas_fishing.c.o
 	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
