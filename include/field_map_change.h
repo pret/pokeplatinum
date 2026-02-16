@@ -2,6 +2,7 @@
 #define POKEPLATINUM_FIELD_MAP_CHANGE_H
 
 #include "field/field_system_decl.h"
+#include "overlay006/field_warp.h"
 
 #include "field_task.h"
 #include "location.h"
@@ -19,7 +20,7 @@ void FieldTask_ChangeMapToLocation(FieldTask *task, int mapId, int warpId, int x
 void FieldTask_StartMapChangeFull(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
 void FieldTask_StartMapChangeFly(FieldSystem *fieldSystem, int mapId, int warpId, int x, int z, int dir);
 void FieldTask_ChangeMapChangeFly(FieldTask *task, int mapId, int warpId, int x, int z, int dir);
-void FieldTask_ChangeMapChangeByDig(FieldTask *task, const Location *location, u32 param2);
+void FieldTask_ChangeMapByFieldWarp(FieldTask *task, const Location *location, enum FieldWarpType param2);
 void FieldSystem_StartMapChangeWarpTask(FieldSystem *fieldSystem, int param1, int param2);
 void *sub_02053FAC(FieldSystem *fieldSystem);
 void FieldTask_SetUndergroundMapChange(FieldSystem *fieldSystem);
