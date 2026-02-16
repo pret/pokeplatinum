@@ -6,7 +6,7 @@
 #include "savedata.h"
 
 int ChatotCry_SaveSize(void);
-void ChatotCry_Init(ChatotCry *param0);
+void ChatotCry_Init(ChatotCry *chatotCry);
 ChatotCry *ChatotCry_New(enum HeapID heapID);
 ChatotCry *SaveData_GetChatotCry(SaveData *saveData);
 BOOL IsChatotCryDataValid(const ChatotCry *param0);
