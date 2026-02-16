@@ -506,16 +506,16 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
     case 6:
         if (*ballCount == 0) {
             if (encounter->dto->resultMask == BATTLE_RESULT_CAPTURED_MON) {
-                ScriptManager_Start(task, 8802, NULL, NULL);
+                ScriptManager_Start(task, SCRIPT_ID(SAFARI_GAME, 2), NULL, NULL);
             } else {
-                ScriptManager_Start(task, 8809, NULL, NULL);
+                ScriptManager_Start(task, SCRIPT_ID(SAFARI_GAME, 9), NULL, NULL);
             }
         } else {
             PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
             Party *party = SaveData_GetParty(fieldSystem->saveData);
 
             if (PCBoxes_FirstEmptyBox(pcBoxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
-                ScriptManager_Start(task, 8822, NULL, NULL);
+                ScriptManager_Start(task, SCRIPT_ID(SAFARI_GAME, 22), NULL, NULL);
             }
         }
 

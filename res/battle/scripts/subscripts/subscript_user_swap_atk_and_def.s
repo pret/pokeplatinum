@@ -8,7 +8,7 @@ _000:
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_ATTACK, BTLVAR_SCRIPT_TEMP
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_DEFENSE, BTLVAR_CALC_TEMP
     // {0} switched its Attack and Defense!
-    PrintMessage pl_msg_00000368_01009, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonSwitchedItsAttackAndDefense_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

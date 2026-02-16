@@ -2,13 +2,14 @@
 
 #include <nitro.h>
 
+#include "constants/field/field_effect_renderer.h"
+
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
 
-#include "overlay005/ov5_021DF440.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECC20.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "berry_patch_manager.h"
 #include "map_object.h"
@@ -23,13 +24,13 @@
 #define BERRY_PATCH_MOISTURE_RESOURCE_WET   75
 
 typedef struct BerryPatchGraphicsManager {
-    UnkStruct_ov5_021DF47C *renderManager;
+    FieldEffectManager *fieldEffMan;
     Simple3DRenderObj resourceData[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
     Simple3DModel resources[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
 } BerryPatchGraphicsManager;
 
 typedef struct BerryPatchMoistureEffectContext {
-    UnkStruct_ov5_021DF47C *renderManager;
+    FieldEffectManager *fieldEffMan;
     BerryPatchGraphicsManager *graphicsManager;
     MapObject *mapObject;
 } BerryPatchMoistureEffectContext;
@@ -45,11 +46,11 @@ typedef struct BerryPatchMoistureEffect {
 typedef struct BerryPatchEffectCounter {
     int counter;
     BOOL isEnabled;
-    UnkStruct_ov5_021DF47C *renderManager;
+    FieldEffectManager *fieldEffMan;
 } BerryPatchEffectCounter;
 
 typedef struct BerryPatchSparkleEffectContext {
-    UnkStruct_ov5_021DF47C *renderManager;
+    FieldEffectManager *fieldEffMan;
     BerryPatchEffectCounter *effectCounter;
     MapObject *mapObject;
 } BerryPatchSparkleEffectContext;
@@ -76,10 +77,10 @@ static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition;
 static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
 static const UnkStruct_020217F4 sBerryPatchSparkleEffectData[];
 
-void *BerryPatchGraphicsManager_New(UnkStruct_ov5_021DF47C *renderManager)
+void *BerryPatchGraphicsManager_New(FieldEffectManager *fieldEffMan)
 {
-    BerryPatchGraphicsManager *manager = ov5_021DF53C(renderManager, sizeof(BerryPatchGraphicsManager), 0, 0);
-    manager->renderManager = renderManager;
+    BerryPatchGraphicsManager *manager = FieldEffectManager_HeapAllocInit(fieldEffMan, sizeof(BerryPatchGraphicsManager), 0, 0);
+    manager->fieldEffMan = fieldEffMan;
 
     BerryPatchGraphicsManager_InitResources(manager);
     return manager;
@@ -90,7 +91,7 @@ void BerryPatchGraphicsManager_Free(void *manager)
     BerryPatchGraphicsManager *graphicsManager = manager;
 
     BerryPatchGraphicsManager_FreeResources(graphicsManager);
-    ov5_021DF554(graphicsManager);
+    FieldEffectManager_HeapFree(graphicsManager);
 }
 
 static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *manager)
@@ -98,8 +99,8 @@ static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *m
     int i = 0;
 
     do {
-        ov5_021DFB00(
-            manager->renderManager, &manager->resources[i], 0, sBerryPatchMoistureResourceIDs[i], 0);
+        FieldEffectManager_LoadModel(
+            manager->fieldEffMan, &manager->resources[i], 0, sBerryPatchMoistureResourceIDs[i], 0);
         Simple3D_CreateRenderObject(&manager->resourceData[i], &manager->resources[i]);
         i++;
     } while (i < BERRY_PATCH_MOISTURE_RESOURCE_COUNT);
@@ -118,19 +119,19 @@ static void BerryPatchGraphicsManager_FreeResources(BerryPatchGraphicsManager *m
 void BerryPatchGraphics_NewMoistureEffect(MapObject *mapObject)
 {
     BerryPatchMoistureEffectContext context;
-    UnkStruct_ov5_021DF47C *renderManager = ov5_021DF578(mapObject);
+    FieldEffectManager *fieldEffMan = MapObject_GetFieldEffectManager(mapObject);
     VecFx32 position;
 
-    context.renderManager = renderManager;
-    context.graphicsManager = ov5_021DF55C(renderManager, 12);
+    context.fieldEffMan = fieldEffMan;
+    context.graphicsManager = FieldEffectManager_GetRendererContext(fieldEffMan, FIELD_EFFECT_RENDERER_BERRY_PATCH);
     context.mapObject = mapObject;
 
     MapObject_GetPosPtr(mapObject, &position);
 
     int priority = 0;
-    int effectPriority = sub_02062C0C(mapObject) + 1;
+    int effectPriority = MapObject_GetTaskBasePriority(mapObject) + 1;
 
-    ov5_021DF72C(renderManager, &sBerryPatchMoistureEffectDefinition, &position, priority, &context, effectPriority);
+    FieldEffectManager_InitAnimManager(fieldEffMan, &sBerryPatchMoistureEffectDefinition, &position, priority, &context, effectPriority);
 }
 
 static BOOL BerryPatchMoistureEffect_Init(OverworldAnimManager *effect, void *context)
@@ -140,7 +141,7 @@ static BOOL BerryPatchMoistureEffect_Init(OverworldAnimManager *effect, void *co
 
     moistureEffect->context = *effectContext;
     moistureEffect->localID = MapObject_GetLocalID(moistureEffect->context.mapObject);
-    moistureEffect->mapID = sub_02062918(moistureEffect->context.mapObject);
+    moistureEffect->mapID = MapObject_GetMapID(moistureEffect->context.mapObject);
 
     return TRUE;
 }
@@ -156,7 +157,7 @@ static void BerryPatchMoistureEffect_Update(OverworldAnimManager *effectTask, vo
     MapObject *mapObject = berryPatchEffect->context.mapObject;
 
     if (!sub_02062764(mapObject, berryPatchEffect->localID, berryPatchEffect->mapID)) {
-        ov5_021DF74C(effectTask);
+        FieldEffectManager_FinishAnimManager(effectTask);
         return;
     }
 
@@ -195,10 +196,10 @@ static const OverworldAnimManagerFuncs sBerryPatchMoistureEffectDefinition = {
     BerryPatchMoistureEffect_Render
 };
 
-void *BerryPatchGraphicsManager_NewEffectCounter(UnkStruct_ov5_021DF47C *renderManager)
+void *BerryPatchGraphicsManager_NewEffectCounter(FieldEffectManager *fieldEffMan)
 {
-    BerryPatchEffectCounter *effectCounter = ov5_021DF53C(renderManager, sizeof(BerryPatchEffectCounter), 0, 0);
-    effectCounter->renderManager = renderManager;
+    BerryPatchEffectCounter *effectCounter = FieldEffectManager_HeapAllocInit(fieldEffMan, sizeof(BerryPatchEffectCounter), 0, 0);
+    effectCounter->fieldEffMan = fieldEffMan;
 
     return effectCounter;
 }
@@ -208,7 +209,7 @@ void BerryPatchGraphicsManager_FreeEffectCounter(void *counter)
     BerryPatchEffectCounter *effectCounter = counter;
 
     BerryPatchEffectCounter_DisableEffects(effectCounter);
-    ov5_021DF554(effectCounter);
+    FieldEffectManager_HeapFree(effectCounter);
 }
 
 static void BerryPatchEffectCounter_Increment(BerryPatchEffectCounter *counter)
@@ -227,10 +228,10 @@ static void BerryPatchEffectCounter_EnableEffects(BerryPatchEffectCounter *count
     if (!counter->isEnabled) {
         counter->isEnabled = TRUE;
         // Load sparkle effect graphics resources
-        ov5_021DF9E0(counter->renderManager, 11, 109);
-        ov5_021DFA14(counter->renderManager, 11, 181);
-        ov5_021DFA3C(counter->renderManager, 12, 14, 1);
-        ov5_021DF864(counter->renderManager, 13, 11, 11, 12, 0, sBerryPatchSparkleEffectData);
+        ov5_021DF9E0(counter->fieldEffMan, 11, 109);
+        ov5_021DFA14(counter->fieldEffMan, 11, 181);
+        ov5_021DFA3C(counter->fieldEffMan, 12, 14, 1);
+        ov5_021DF864(counter->fieldEffMan, 13, 11, 11, 12, 0, sBerryPatchSparkleEffectData);
     }
 }
 
@@ -239,10 +240,10 @@ static void BerryPatchEffectCounter_DisableEffects(BerryPatchEffectCounter *coun
     if (counter->isEnabled == TRUE) {
         counter->isEnabled = FALSE;
         // Clean up sparkle effect graphics resources
-        ov5_021DFA08(counter->renderManager, 11);
-        ov5_021DFA30(counter->renderManager, 11);
-        ov5_021DFA7C(counter->renderManager, 12);
-        ov5_021DF9D4(counter->renderManager, 13);
+        ov5_021DFA08(counter->fieldEffMan, 11);
+        ov5_021DFA30(counter->fieldEffMan, 11);
+        ov5_021DFA7C(counter->fieldEffMan, 12);
+        ov5_021DF9D4(counter->fieldEffMan, 13);
     }
 }
 
@@ -263,17 +264,17 @@ static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counte
 OverworldAnimManager *BerryPatchGraphics_NewSparkleEffect(MapObject *mapObject)
 {
     VecFx32 position;
-    UnkStruct_ov5_021DF47C *renderManager;
+    FieldEffectManager *fieldEffMan;
     BerryPatchSparkleEffectContext effectContext;
     OverworldAnimManager *effectTask;
 
-    renderManager = ov5_021DF578(mapObject);
+    fieldEffMan = MapObject_GetFieldEffectManager(mapObject);
     ov5_021ECDA0(mapObject, &position);
     position.z += (FX32_ONE * 8); // Offset sparkle effect 8 units above ground
 
-    effectContext.renderManager = renderManager;
-    effectContext.effectCounter = ov5_021DF55C(renderManager, 28);
-    effectTask = ov5_021DF72C(renderManager, &sBerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255);
+    effectContext.fieldEffMan = fieldEffMan;
+    effectContext.effectCounter = FieldEffectManager_GetRendererContext(fieldEffMan, FIELD_EFFECT_RENDERER_BERRY_PATCH_EFFECT_COUNTER);
+    effectTask = FieldEffectManager_InitAnimManager(fieldEffMan, &sBerryPatchSparkleEffectDefinition, &position, 0, &effectContext, 255);
 
     return effectTask;
 }
@@ -289,7 +290,7 @@ static BOOL BerryPatchSparkleEffect_Init(OverworldAnimManager *effect, void *con
     BerryPatchEffectCounter_CheckEnable(sparkleEffect->context.effectCounter);
     OverworldAnimManager_GetPosition(effect, &position);
 
-    sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.renderManager, 13, &position);
+    sparkleEffect->graphicsObject = ov5_021DF84C(sparkleEffect->context.fieldEffMan, 13, &position);
     BerryPatchEffectCounter_Increment(sparkleEffect->context.effectCounter);
 
     return TRUE;
@@ -315,7 +316,7 @@ static void BerryPatchSparkleEffect_Update(OverworldAnimManager *effect, void *c
         sparkleEffect->animationFrame++;
 
         if (sparkleEffect->animationFrame >= (int)NELEMS(animationSpeeds)) {
-            ov5_021DF74C(effect);
+            FieldEffectManager_FinishAnimManager(effect);
             return;
         }
 

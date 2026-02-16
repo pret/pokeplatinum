@@ -3,7 +3,7 @@
 
 _000:
     // {0} is loafing around!
-    PrintMessage pl_msg_00000368_00832, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonIsLoafingAround_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     UnlockMoveChoice BTLSCR_ATTACKER

@@ -101,7 +101,7 @@ PokemonLeagueNorthPokecenter1F_VendorCommon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -111,7 +111,7 @@ PokemonLeagueNorthPokecenter1F_VendorSpecial:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll
@@ -121,7 +121,7 @@ PokemonLeagueNorthPokecenter1F_RivalTrigger:
     LockAll
     ClearFlag FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL
     AddObject LOCALID_RIVAL
-    SetRivalBGM
+    Common_SetRivalBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, 10, PokemonLeagueNorthPokecenter1F_RivalEnterWest
     GoToIfEq VAR_0x8004, 11, PokemonLeagueNorthPokecenter1F_RivalEnterNorth
@@ -272,7 +272,7 @@ PokemonLeagueNorthPokecenter1F_Guitarist:
     End
 
 PokemonLeagueNorthPokecenter1F_Nurse:
-    CallPokecenterNurse 3
+    Common_CallPokecenterNurse 3
     End
 
     .balign 4, 0

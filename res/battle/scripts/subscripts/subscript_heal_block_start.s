@@ -8,7 +8,7 @@ _000:
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_HEAL_BLOCK
     UpdateMonData OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_HEAL_BLOCK_TURNS, 5
     // {0} was prevented from healing!
-    PrintMessage pl_msg_00000368_01051, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonWasPreventedFromHealing_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     End 
@@ -18,7 +18,7 @@ _028:
     Wait 
     WaitButtonABTime 15
     // It failed to affect {0}!
-    PrintMessage pl_msg_00000368_01235, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_ItFailedToAffectPokemon_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

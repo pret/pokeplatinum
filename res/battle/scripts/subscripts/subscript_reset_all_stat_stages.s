@@ -4,7 +4,7 @@
 _000:
     ResetAllStatChanges 
     // All stat changes were eliminated!
-    PrintMessage pl_msg_00000368_00817, TAG_NONE
+    PrintMessage BattleStrings_Text_AllStatChangesWereEliminated, TAG_NONE
     Wait 
     WaitButtonABTime 30
     End 

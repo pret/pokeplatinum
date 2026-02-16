@@ -2,7 +2,7 @@
   "key": 18215,
   "messages": [
     {
-      "id": "pl_msg_00000561_00000",
+      "id": "SandgemTown_Text_DawnTheProfessorIsWaiting",
       "en_US": [
         "Dawn: Oh! There you are!\n",
         "Please, come with me!\f",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00001",
+      "id": "SandgemTown_Text_DawnThisIsItOurPokemonResearchLab",
       "en_US": [
         "This is it!\n",
         "Our Pokémon Research Lab!\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00002",
+      "id": "SandgemTown_Text_LucasTheProfsWaitingToSeeYou",
       "en_US": [
         "Lucas: Hi! I’ve been waiting for you!\n",
         "Please, come with me.\f",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00003",
+      "id": "SandgemTown_Text_LucasSeeThisIsIsOurPokemonResearchLab",
       "en_US": [
         "See? This is our Pokémon Research\n",
         "Lab.\r",
@@ -34,11 +34,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00004",
+      "id": "SandgemTown_Text_BigThud",
       "en_US": "{SIZE 200}Thud!!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000561_00005",
+      "id": "SandgemTown_Text_OhItsYouPlayer",
       "en_US": [
         "{STRVAR_1 3, 0, 0}: What the...\r",
         "Oh, it’s you, {STRVAR_1 3, 1, 0}!\r",
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00006",
+      "id": "SandgemTown_Text_DawnLetsGoInside",
       "en_US": [
         "Dawn: Wow, what was that?\r",
         "Your friend sure seems to be really\n",
@@ -59,7 +59,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00007",
+      "id": "SandgemTown_Text_LucasLetsGoIn",
       "en_US": [
         "Lucas: What was that?!\r",
         "Your friend always seems to be\n",
@@ -69,18 +69,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00008",
+      "id": "SandgemTown_Text_BigPlayer",
       "en_US": "{SIZE 200}{STRVAR_1 3, 0, 0}!{SIZE 100}\r"
     },
     {
-      "id": "pl_msg_00000561_00009",
+      "id": "SandgemTown_Text_YouShouldTakeThisAsWell",
       "en_US": [
         "Rowan: I have something good here.\n",
         "You should take this as well.\r"
       ]
     },
     {
-      "id": "pl_msg_00000561_00010",
+      "id": "SandgemTown_Text_ThatContainsTheMoveReturn",
       "en_US": [
         "Rowan: That is a Technical Machine.\n",
         "That one contains the move Return.\r",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00011",
+      "id": "SandgemTown_Text_DawnIDidntKnowTheProfessorHadTMs",
       "en_US": [
         "Dawn: Oh, wow.\n",
         "I didn’t know the professor had TMs.\r",
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00012",
+      "id": "SandgemTown_Text_LucasWellIllBeTheProfessorHadTMs",
       "en_US": [
         "Lucas: Well, I’ll be...\n",
         "The professor had TMs...?\r",
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00013",
+      "id": "SandgemTown_Text_DawnIllActAsYourMentor",
       "en_US": [
         "OK, {STRVAR_1 3, 1, 0}, I’ll act as\n",
         "your mentor.\r",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00014",
+      "id": "SandgemTown_Text_DawnThisIsThePokemonCenter",
       "en_US": [
         "This building with the red roof is\n",
         "the Pokémon Center.\r",
@@ -138,7 +138,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00015",
+      "id": "SandgemTown_Text_DawnThisIsThePokeMart",
       "en_US": [
         "The building with the blue roof over\n",
         "here is the Poké Mart.\r",
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00016",
+      "id": "SandgemTown_Text_DawnLetYourFamilyKnowYoureHelpingProfRowan",
       "en_US": [
         "Oh, that’s right!\n",
         "{STRVAR_1 3, 0, 0}...\r",
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00017",
+      "id": "SandgemTown_Text_LucasIWantToShowYouAFewThings",
       "en_US": [
         "Hey, {STRVAR_1 3, 1, 0}!\n",
         "I want to show you a few things.\f",
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00018",
+      "id": "SandgemTown_Text_LucasThisIsThePokemonCenter",
       "en_US": [
         "This building with the red roof is\n",
         "the Pokémon Center.\r",
@@ -186,7 +186,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00019",
+      "id": "SandgemTown_Text_LucasThisIsThePokeMart",
       "en_US": [
         "Over here, the building with the blue\n",
         "roof is the Poké Mart.\r",
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00020",
+      "id": "SandgemTown_Text_LucasLetYourFamilyKnowYoureHelpingProfRowan",
       "en_US": [
         "Oh, yeah, right!\n",
         "{STRVAR_1 3, 0, 0}...\r",
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00021",
+      "id": "SandgemTown_Text_PokemonAreSoCool",
       "en_US": [
         "Oh, wow!\n",
         "Pokémon are so cool!\r",
@@ -226,7 +226,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00022",
+      "id": "SandgemTown_Text_TheThingYouHaveItsAPokedexIsntIt",
       "en_US": [
         "That thing you have!\r",
         "It’s a Pokédex, isn’t it?!\r",
@@ -235,7 +235,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00023",
+      "id": "SandgemTown_Text_IdBetterSaveThis",
       "en_US": [
         "So I don’t forget what’s happened,\n",
         "till now, I’d better save this...\r",
@@ -244,7 +244,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00024",
+      "id": "SandgemTown_Text_ProfessorRowansComeBackToTown",
       "en_US": [
         "Professor Rowan’s come back to town!\r",
         "It must be, like, four years since\n",
@@ -254,29 +254,29 @@
       ]
     },
     {
-      "id": "pl_msg_00000561_00025",
+      "id": "SandgemTown_Text_MapSign",
       "en_US": [
         "Sandgem Town\n",
         "Town of Sand!"
       ]
     },
     {
-      "id": "pl_msg_00000561_00026",
+      "id": "SandgemTown_Text_PokemonResearchLabSign",
       "en_US": "Pokémon Research Lab"
     },
     {
-      "id": "pl_msg_00000561_00027",
+      "id": "SandgemTown_Text_CounterpartMailbox",
       "en_US": "{STRVAR_1 3, 0, 0}’s House"
     },
     {
-      "id": "pl_msg_00000561_00028",
+      "id": "SandgemTown_Text_PokeMartSign",
       "en_US": [
         "All Your Item Needs Fulfilled!\n",
         "Pokémon Mart"
       ]
     },
     {
-      "id": "pl_msg_00000561_00029",
+      "id": "SandgemTown_Text_PokemonCenterSign",
       "en_US": [
         "Heal Your Pokémon!\n",
         "Pokémon Center"

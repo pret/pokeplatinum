@@ -13,8 +13,8 @@
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
 #include "overlay105/ov105_02241AE0.h"
-#include "overlay107/ov107_02241AE0.h"
-#include "overlay107/ov107_02245EB0.h"
+#include "overlay107/battle_castle_opponent_app.h"
+#include "overlay107/battle_castle_self_app.h"
 #include "overlay108/ov108_02241AE0.h"
 
 #include "communication_system.h"

@@ -2,14 +2,14 @@
   "key": 18323,
   "messages": [
     {
-      "id": "pl_msg_00000023_00000",
+      "id": "JubilifeCity_Text_DawnAreYouCatchingPokemon",
       "en_US": [
         "Dawn: Hi, {STRVAR_1 3, 1, 0}!\n",
         "Are you catching Pokémon?\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00001",
+      "id": "JubilifeCity_Text_DawnWowYouveAlreadyGotNumPokemonWithYou",
       "en_US": [
         "Wow! You’ve already got {STRVAR_1 50, 0, 0} Pokémon\n",
         "with you!\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00002",
+      "id": "JubilifeCity_Text_DawnIThinkYoudFeelALotSaferIfYouWereToCatchSomeMore",
       "en_US": [
         "...Um...\r",
         "I think you’d feel a lot safer if you\n",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00003",
+      "id": "JubilifeCity_Text_DawnFollowMe",
       "en_US": [
         "Oh, I know! Don’t you think it’s\n",
         "better to know more about Pokémon?\r",
@@ -39,21 +39,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00004",
+      "id": "JubilifeCity_Text_LucasHowManyPokemonhaveYouCaught",
       "en_US": [
         "Lucas: Hey, {STRVAR_1 3, 1, 0}!\n",
         "How many Pokémon have you caught?\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00005",
+      "id": "JubilifeCity_Text_LucasWhoaYouAlreadyHaveNumPokemonWithYou",
       "en_US": [
         "Whoa! You already have {STRVAR_1 50, 0, 0} Pokémon\n",
         "with you!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00006",
+      "id": "JubilifeCity_Text_LucasIThinkYouShouldCatchSomeMore",
       "en_US": [
         "Huh?\n",
         "I think you should catch some more.\r",
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00007",
+      "id": "JubilifeCity_Text_LucasFollowMe",
       "en_US": [
         "Hey, that’s right! Don’t you think it’s\n",
         "better to know more about Pokémon?\r",
@@ -75,33 +75,33 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00008",
+      "id": "JubilifeCity_Text_DawnThatManWhatIsHeDoing",
       "en_US": [
         "Dawn: That man...\n",
         "What is he doing?\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00009",
+      "id": "JubilifeCity_Text_DawnUm",
       "en_US": "Dawn: Um..."
     },
     {
-      "id": "pl_msg_00000023_00010",
+      "id": "JubilifeCity_Text_LucasThatGuyWhatsHeDoing",
       "en_US": [
         "Lucas: That guy...\n",
         "What’s he doing?\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00011",
+      "id": "JubilifeCity_Text_LucasUhExcuse",
       "en_US": "Lucas: Uh, excuse..."
     },
     {
-      "id": "pl_msg_00000023_00012",
+      "id": "JubilifeCity_Text_WHAAAT",
       "en_US": "WHAAAT?!\r"
     },
     {
-      "id": "pl_msg_00000023_00013",
+      "id": "JubilifeCity_Text_HowDidYouUnmaskMe",
       "en_US": [
         "Mysterious man: ...How did you know?\r",
         "How did you unmask me as a member of\n",
@@ -109,21 +109,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00014",
+      "id": "JubilifeCity_Text_DawnIWasJustMakingConversation",
       "en_US": [
         "Dawn: Huh? What? I beg your pardon?\n",
         "I was just making conversation...\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00015",
+      "id": "JubilifeCity_Text_LucasIWasJustMakingSmallTalk",
       "en_US": [
         "Lucas: Huh? What? Are you kidding?\n",
         "I was just making small talk...\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00016",
+      "id": "JubilifeCity_Text_IKnowBetterNotToBelieveThat",
       "en_US": [
         "Shady man: ...Heh. You claim you were\n",
         "only making conversation, do you?\r",
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00017",
+      "id": "JubilifeCity_Text_IsTheSayingDontBeAThiefFamiliarToYou",
       "en_US": [
         "Now that my cover has been blown, let\n",
         "me introduce myself.\r",
@@ -152,14 +152,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00018",
+      "id": "JubilifeCity_Text_TakingWhatBelongsToOthersIsWrong",
       "en_US": [
         "Looker: Yes, that is correct.\n",
         "Taking what belongs to others is wrong.\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00019",
+      "id": "JubilifeCity_Text_YouClaimToNotKnowIt",
       "en_US": [
         "Looker: No? You claim to not know it?\n",
         "How could that be?\r",
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00020",
+      "id": "JubilifeCity_Text_PerhapsYouCanMakeUseOfThis",
       "en_US": [
         "Unfortunately, there are apparently\n",
         "those who do not heed those words.\r",
@@ -183,7 +183,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00021",
+      "id": "JubilifeCity_Text_ThatVsRecorderItIsANiftyDeviceForRecordingAMatch",
       "en_US": [
         "That Vs. Recorder, it is a nifty device\n",
         "for recording a match.\r",
@@ -195,7 +195,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00022",
+      "id": "JubilifeCity_Text_YouMustInformMeOfAnyHappenings",
       "en_US": [
         "Looker: Also, I have a request.\r",
         "If you were to see me again, I ask that\n",
@@ -208,14 +208,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00023",
+      "id": "JubilifeCity_Text_DawnWorkingForTheInternationPoliceMustBeHard",
       "en_US": [
         "Dawn: ...Working for the International\n",
         "Police must be hard.\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00024",
+      "id": "JubilifeCity_Text_DawnHereItIsItsTheTrainersSchool",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, here it is.\n",
         "It’s the Trainers’ School.\f",
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00025",
+      "id": "JubilifeCity_Text_DawnISawYourFriendRivalGoInEarlier",
       "en_US": [
         "I saw your friend {STRVAR_1 3, 1, 0} go in\n",
         "earlier.\r",
@@ -232,14 +232,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00026",
+      "id": "JubilifeCity_Text_LucasWorkingForTheInternationPoliceSoundsHard",
       "en_US": [
         "Lucas: ...Working for the International\n",
         "Police sounds hard.\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00027",
+      "id": "JubilifeCity_Text_LucasHereWeAreThisIsTheTrainersSchool",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, here we are.\n",
         "This is the Trainers’ School.\f",
@@ -247,7 +247,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00028",
+      "id": "JubilifeCity_Text_LucasYourPalRivalWentInEarier",
       "en_US": [
         "Your pal {STRVAR_1 3, 1, 0} went in earlier.\n",
         "He might still be studying in there.\r",
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00029",
+      "id": "JubilifeCity_Text_JubilifeCitysBuiltOnLandTheyCarvedOutOfAMountain",
       "en_US": [
         "Jubilife City’s built on land they\n",
         "carved out of a mountain.\r",
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00030",
+      "id": "JubilifeCity_Text_HaveYouPaidAVisitToTheTVStation",
       "en_US": [
         "Hello! Let me ask you, have you paid\n",
         "a visit to the TV station?\r",
@@ -277,7 +277,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00031",
+      "id": "JubilifeCity_Text_ItIsYouHaveYouVisitedTheTrainersSchool",
       "en_US": [
         "Ah, it is you! Have no fear.\n",
         "There are no shady characters about.\r",
@@ -288,7 +288,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00032",
+      "id": "JubilifeCity_Text_HelloMyFriendHaveYouVisitedTheTrainersSchool",
       "en_US": [
         "Looker: Hello, my friend.\n",
         "Have you visited the Trainers’ School?\r",
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00033",
+      "id": "JubilifeCity_Text_ItIsYouHaveYouNotObtainedAPoketch",
       "en_US": [
         "Ah, it is you! Have no fear.\n",
         "There are no shady characters about.\r",
@@ -308,7 +308,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00034",
+      "id": "JubilifeCity_Text_TellMeHaveYouNotObtainedAPoketch",
       "en_US": [
         "Looker: Tell me, have you not obtained\n",
         "a Pokétch?\r",
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00035",
+      "id": "JubilifeCity_Text_ItIsYouHaveYouNotObtainedAGymBadge",
       "en_US": [
         "Ah, it is you! Have no fear.\n",
         "There are no shady characters about.\r",
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00036",
+      "id": "JubilifeCity_Text_TellMeHaveYouNotObtainedAPalPad",
       "en_US": [
         "Looker: Tell me, have you not obtained\n",
         "a Pal Pad?\r",
@@ -337,7 +337,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00037",
+      "id": "JubilifeCity_Text_ISeeThatYouHaveObtainedItAPalPadForYourself",
       "en_US": [
         "Ah, yes. I see that you have obtained\n",
         "it, a Pal Pad for yourself.\r",
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00038",
+      "id": "JubilifeCity_Text_IShallTakeMyInvestigationElsewhere",
       "en_US": [
         "Anyway, there appears to be no one\n",
         "shady in this Jubilife City.\r",
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00039",
+      "id": "JubilifeCity_Text_YouCallYourselfAPokemonTrainerAndYetYouHaveNoPoketch",
       "en_US": [
         "Oh, oh, oh?\r",
         "You call yourself a Pokémon Trainer?\n",
@@ -374,7 +374,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00040",
+      "id": "JubilifeCity_Text_AllYouHaveToDoIsFindThreeClownsInJubilifeCity",
       "en_US": [
         "You see, I invented, and now\n",
         "manufacture, Pokétches.\r",
@@ -387,7 +387,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00041",
+      "id": "JubilifeCity_Text_CollectACouponFromEachClownThenComeSeeMeOK",
       "en_US": [
         "The three clowns will each ask you\n",
         "a skill-testing question.\r",
@@ -400,7 +400,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00042",
+      "id": "JubilifeCity_Text_InReturnForTheseCouponsIPresentYouThisPokemonWatch",
       "en_US": [
         "OK, let me count your Coupons!\n",
         "I’ll use the Pokétch here...\r",
@@ -412,11 +412,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00043",
+      "id": "JubilifeCity_Text_PlayerReceivedAPoketch",
       "en_US": "{STRVAR_1 3, 0, 0} received a {COLOR 1}Pokétch{COLOR 0}!{YESNO 1}"
     },
     {
-      "id": "pl_msg_00000023_00044",
+      "id": "JubilifeCity_Text_YouCanAddAppsToYourPoketch",
       "en_US": [
         "You can add apps to your Pokétch\n",
         "to make it even more versatile!\r",
@@ -425,7 +425,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00045",
+      "id": "JubilifeCity_Text_DoesAPokemonGrowByDefeatingOthersAndGainingExpPoints",
       "en_US": [
         "Hi! I’m a Pokétch campaign clown!\n",
         "Let’s roll out my question!\r",
@@ -434,21 +434,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00046",
+      "id": "JubilifeCity_Text_DingDingYoureAbsolutelyCorrect1",
       "en_US": [
         "Ding-ding!\n",
         "You’re absolutely correct!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00047",
+      "id": "JubilifeCity_Text_BzzzztThatsTheWrongAnswer1",
       "en_US": [
         "Bzzzzt!\n",
         "That’s the wrong answer..."
       ]
     },
     {
-      "id": "pl_msg_00000023_00048",
+      "id": "JubilifeCity_Text_PokemonGrowStrongerByDefeatingOtherPokemonInBattle",
       "en_US": [
         "Pokémon grow stronger by defeating\n",
         "other Pokémon in battle.\r",
@@ -458,14 +458,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00049",
+      "id": "JubilifeCity_Text_HereYouGoYourPoketchCoupon1",
       "en_US": [
         "Here you go!\n",
         "Your Pokétch Coupon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00050",
+      "id": "JubilifeCity_Text_PokemonGrowStrongerThroughBattling",
       "en_US": [
         "Pokémon grow stronger through\n",
         "battling.\r",
@@ -475,7 +475,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00051",
+      "id": "JubilifeCity_Text_AskJustLikePokemonTypesTheMovesOfPokemonAlsoHaveTypes",
       "en_US": [
         "Hi! I’m a Pokétch campaign clown!\n",
         "Let’s roll out my question!\r",
@@ -484,21 +484,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00052",
+      "id": "JubilifeCity_Text_DingDingYoureAbsolutelyCorrect2",
       "en_US": [
         "Ding-ding!\n",
         "You’re absolutely correct!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00053",
+      "id": "JubilifeCity_Text_BzzzztThatsTheWrongAnswer2",
       "en_US": [
         "Bzzzzt!\n",
         "That’s the wrong answer..."
       ]
     },
     {
-      "id": "pl_msg_00000023_00054",
+      "id": "JubilifeCity_Text_IfThePokemonsTypeMatchesItsMovesTypeThatMoveIsMadeMuchMorePowerful",
       "en_US": [
         "If the Pokémon’s type matches its\n",
         "move’s type, that move is made much\f",
@@ -506,14 +506,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00055",
+      "id": "JubilifeCity_Text_HereYouGoYourPoketchCoupon2",
       "en_US": [
         "Here you go!\n",
         "Your Pokétch Coupon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00056",
+      "id": "JubilifeCity_Text_IfThePokemonsTypeMatchesItsMovesTypeThatMoveIsMadeMuchMorePowerful2",
       "en_US": [
         "If the Pokémon’s type matches its\n",
         "move’s type, that move is made much\f",
@@ -521,7 +521,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00057",
+      "id": "JubilifeCity_Text_CanAPokemonHoldAnItem",
       "en_US": [
         "Hi! I’m a Pokétch campaign clown!\n",
         "Let’s roll out my question!\r",
@@ -529,21 +529,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00058",
+      "id": "JubilifeCity_Text_DingDingYoureAbsolutelyCorrect3",
       "en_US": [
         "Ding-ding!\n",
         "You’re absolutely correct!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00059",
+      "id": "JubilifeCity_Text_BzzzztThatsTheWrongAnswer3",
       "en_US": [
         "Bzzzzt!\n",
         "That’s the wrong answer..."
       ]
     },
     {
-      "id": "pl_msg_00000023_00060",
+      "id": "JubilifeCity_Text_APokemonMayHoldASingleItem",
       "en_US": [
         "A Pokémon may hold a single item.\r",
         "Some items become effective as soon\n",
@@ -553,14 +553,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00061",
+      "id": "JubilifeCity_Text_HereYouGoYourPoketchCoupon3",
       "en_US": [
         "Here you go!\n",
         "Your Pokétch Coupon!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00062",
+      "id": "JubilifeCity_Text_YouShouldStickAround",
       "en_US": [
         "Hi, there. You should stick around.\n",
         "We’re doing a Pokétch campaign soon.\r",
@@ -569,7 +569,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00063",
+      "id": "JubilifeCity_Text_APokemonMayHoldASingleItem2",
       "en_US": [
         "A Pokémon may hold a single item.\r",
         "Some items become effective as soon\n",
@@ -579,7 +579,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00064",
+      "id": "JubilifeCity_Text_HandOverAllYourResearchFindings",
       "en_US": [
         "Mystery man: Now, now, now, now, now!\n",
         "Professor Rowan, you must comply.\r",
@@ -590,7 +590,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00065",
+      "id": "JubilifeCity_Text_ThatsOreburghsGymBadgeISee",
       "en_US": [
         "Rowan: Ah, {STRVAR_1 3, 0, 0}.\n",
         "Well? How is the Pokédex progressing?\r",
@@ -603,7 +603,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00066",
+      "id": "JubilifeCity_Text_OhProfessorOfRowanMustYouBeSoDifficult",
       "en_US": [
         "Mystery man: Oh, professor of Pokémon,\n",
         "must you be so difficult?\r",
@@ -614,7 +614,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00067",
+      "id": "JubilifeCity_Text_WhyMustYouBeSuchANuisance",
       "en_US": [
         "Rowan: Quiet, you lot!\n",
         "Why must you be such a nuisance?\r",
@@ -633,7 +633,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00068",
+      "id": "JubilifeCity_Text_MyGoodnessYouCallYourselvesAdults",
       "en_US": [
         "My goodness...\n",
         "You call yourselves adults?\r",
@@ -642,7 +642,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00069",
+      "id": "JubilifeCity_Text_WeWillMakeYouRegretInsultingTeamGalactic",
       "en_US": [
         "Mystery man: Eeeeeh!\n",
         "You had to make this personal!\r",
@@ -653,28 +653,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00070",
+      "id": "JubilifeCity_Text_YouKidsGiveTheseThugsALessonInCivilityPlease",
       "en_US": [
         "Rowan: You kids, give these thugs a\n",
         "lesson in civility, please.\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00071",
+      "id": "JubilifeCity_Text_DawnPlayerLetsBattleTogether",
       "en_US": [
         "Dawn: {STRVAR_1 3, 1, 0}!\n",
         "Let’s battle together!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00072",
+      "id": "JubilifeCity_Text_LucasPlayerJoinMeAndBattleTheseGuys",
       "en_US": [
         "Lucas: {STRVAR_1 3, 1, 0}!\n",
         "Join me and battle these guys!\r"
       ]
     },
     {
-      "id": "pl_msg_00000023_00073",
+      "id": "JubilifeCity_Text_WeWillRetreatForNow",
       "en_US": [
         "Grunt 1: You leave us no option.\n",
         "We will retreat for now.\r",
@@ -683,7 +683,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00074",
+      "id": "JubilifeCity_Text_ThatLotTheyCalledThemselvesTeamGalactic",
       "en_US": [
         "Rowan: That lot...\n",
         "They called themselves Team Galactic.\r",
@@ -698,7 +698,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00075",
+      "id": "JubilifeCity_Text_DawnTheProfessorStudiesTheEvolutionOfPokemonToo",
       "en_US": [
         "Dawn: {STRVAR_1 3, 1, 0}, did you know?\r",
         "The professor studies the evolution\n",
@@ -712,7 +712,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00076",
+      "id": "JubilifeCity_Text_LucasTheProfessorStudiesTheEvolutionOfPokemonToo",
       "en_US": [
         "Lucas: {STRVAR_1 3, 1, 0}, did you know\n",
         "about this?\r",
@@ -727,7 +727,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00077",
+      "id": "JubilifeCity_Text_WhyDontYouCollectAllTheGymBadgesOfSinnoh",
       "en_US": [
         "Rowan: It’s all over, so you can \n",
         "relax now.\r",
@@ -750,7 +750,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00078",
+      "id": "JubilifeCity_Text_OhThatWasVeryGood",
       "en_US": [
         "Oh, that was very good!\n",
         "Nicely done! Truly excellent!\r",
@@ -761,7 +761,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00079",
+      "id": "JubilifeCity_Text_DressUpYourPokemonAndWatchTheirAppealGrow",
       "en_US": [
         "Contained within that Fashion Case...\r",
         "You will find a whole spectrum of chic\n",
@@ -776,7 +776,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00080",
+      "id": "JubilifeCity_Text_CanYouTellMeWhatTypeOfPokemonYouLike",
       "en_US": [
         "The way you look...\n",
         "You’re obviously a Trainer!\r",
@@ -785,7 +785,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00081",
+      "id": "JubilifeCity_Text_TheFireTypeYouMustHaveAFieryPersonality",
       "en_US": [
         "The Fire type?\n",
         "You must have a fiery personality.\r",
@@ -794,7 +794,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00082",
+      "id": "JubilifeCity_Text_APersonThatLikesTheWaterTypeMustBeSomewhatCool",
       "en_US": [
         "A person that likes the Water type\n",
         "must be somewhat cool.\r",
@@ -803,7 +803,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00083",
+      "id": "JubilifeCity_Text_YouChoseTheGrassTypeNoWonderYouLookSoCalm",
       "en_US": [
         "You chose the Grass type?\n",
         "No wonder you look so calm.\r",
@@ -812,21 +812,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00084",
+      "id": "JubilifeCity_Text_DidYouSeeMeOnTV",
       "en_US": [
         "Did you see me on TV?\n",
         "I was in an interview!"
       ]
     },
     {
-      "id": "pl_msg_00000023_00085",
+      "id": "JubilifeCity_Text_WhenYouWalkWithYourPokemonTheyGraduallyGrowFriendlier",
       "en_US": [
         "When you walk with your Pokémon,\n",
         "they gradually grow friendlier."
       ]
     },
     {
-      "id": "pl_msg_00000023_00086",
+      "id": "JubilifeCity_Text_AtMostYouCanHaveSixPokemonWithYou",
       "en_US": [
         "OK, set six Poké Balls in my\n",
         "belt...\r",
@@ -835,7 +835,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00087",
+      "id": "JubilifeCity_Text_HiyaWheredYouComeFrom",
       "en_US": [
         "Hiya, where’d you come from?\r",
         "...\r",
@@ -846,14 +846,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00088",
+      "id": "JubilifeCity_Text_HelloTrainerDoYouKnowMuchAboutPokemon",
       "en_US": [
         "Hello, Trainer!\n",
         "Do you know much about Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000023_00089",
+      "id": "JubilifeCity_Text_AhISeeYouAreKnowledgeable",
       "en_US": [
         "Ah, I see!\n",
         "You are knowledgeable!\r",
@@ -864,7 +864,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00090",
+      "id": "JubilifeCity_Text_OhYoureNotKnowledgeable",
       "en_US": [
         "Oh, you’re not knowledgeable...\n",
         "But not to worry!\f",
@@ -874,7 +874,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00091",
+      "id": "JubilifeCity_Text_TheGlobalTerminalIsOffLimitsIfYouDontHaveAGymBadge",
       "en_US": [
         "Past here is the Global Terminal, your\n",
         "gateway to the world!\r",
@@ -885,7 +885,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00092",
+      "id": "JubilifeCity_Text_PastHereIsTheGlobalTerminal",
       "en_US": [
         "Past here is the Global Terminal.\n",
         "It lets you trade with the whole world!\r",
@@ -895,11 +895,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00093",
+      "id": "JubilifeCity_Text_ImTradingPokemonWithMyBuddy",
       "en_US": "I’m trading Pokémon with my buddy!"
     },
     {
-      "id": "pl_msg_00000023_00094",
+      "id": "JubilifeCity_TextIMadeMyPokemonHoldAnItemBeforeTradingIt",
       "en_US": [
         "I made my Pokémon hold an item before\n",
         "trading it.\r",
@@ -908,42 +908,42 @@
       ]
     },
     {
-      "id": "pl_msg_00000023_00095",
+      "id": "JubilifeCity_Text_MapSign",
       "en_US": [
         "Jubilife City\n",
         "City of Joy"
       ]
     },
     {
-      "id": "pl_msg_00000023_00096",
+      "id": "JubilifeCity_Text_JubilifeCondominiumsTenantsWanted",
       "en_US": [
         "Jubilife Condominiums\n",
         "Tenants Wanted!"
       ]
     },
     {
-      "id": "pl_msg_00000023_00097",
+      "id": "JubilifeCity_Text_ThePoketchCompanyPokemonWatchesForTheWorld",
       "en_US": [
         "The Pokétch Company\n",
         "Pokémon Watches for the World!"
       ]
     },
     {
-      "id": "pl_msg_00000023_00098",
+      "id": "JubilifeCity_Text_TrainersSchoolTheFirstStepForTrainers",
       "en_US": [
         "Trainers’ School\n",
         "The First Step for Trainers!"
       ]
     },
     {
-      "id": "pl_msg_00000023_00099",
+      "id": "JubilifeCity_Text_JubilifeTVTheFunAndGamesTVStation",
       "en_US": [
         "Jubilife TV\n",
         "The Fun-and-Games TV Station!"
       ]
     },
     {
-      "id": "pl_msg_00000023_00100",
+      "id": "JubilifeCity_Text_TheGlobalTerminalYourGatewayToTheWholeWorld",
       "en_US": [
         "The Global Terminal\n",
         "Your Gateway to the Whole World!"

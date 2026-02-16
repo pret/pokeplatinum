@@ -2,7 +2,7 @@
   "key": 11795,
   "messages": [
     {
-      "id": "pl_msg_00000563_00000",
+      "id": "SandgemTownPokecenter1F_Text_ThatLadyAtTheCounterWillHealYourPokemon",
       "en_US": [
         "Talk to that nice lady at the counter\n",
         "and hand her your Pokémon.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000563_00001",
+      "id": "SandgemTownPokecenter1F_Text_DoYouSeeThatPCOverThere",
       "en_US": [
         "Do you see that PC over there?\n",
         "That fancy blue one?\r",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000563_00002",
+      "id": "SandgemTownPokecenter1F_Text_TheTopFloorIsTheCommunicationClub",
       "en_US": [
         "The top floor of any Pokémon Center\n",
         "is the Pokémon Communication Club.\r",

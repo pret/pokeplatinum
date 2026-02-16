@@ -110,7 +110,7 @@ _245:
     Wait 
     DivideVarByValue BTLVAR_HP_CALC_TEMP, 2
     // The {0} weakened {1}’s power!
-    PrintMessage pl_msg_00000368_01131, TAG_ITEM_MOVE, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_TheItemWeakenedMovesPower, TAG_ITEM_MOVE, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     RemoveItem BTLSCR_MSG_TEMP

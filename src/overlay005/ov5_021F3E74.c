@@ -8,8 +8,7 @@
 #include "struct_defs/struct_020217F4.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DF440.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
+#include "overlay005/field_effect_manager.h"
 
 #include "map_object.h"
 #include "map_object_move.h"
@@ -17,12 +16,12 @@
 #include "unk_02020AEC.h"
 
 typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
+    FieldEffectManager *unk_00;
 } UnkStruct_ov5_021F3EA0;
 
 typedef struct {
     FieldSystem *fieldSystem;
-    UnkStruct_ov5_021DF47C *unk_04;
+    FieldEffectManager *unk_04;
     UnkStruct_ov5_021F3EA0 *unk_08;
     MapObject *unk_0C;
 } UnkStruct_ov5_021F3F10;
@@ -42,9 +41,9 @@ static void ov5_021F3EE8(UnkStruct_ov5_021F3EA0 *param0);
 static const OverworldAnimManagerFuncs Unk_ov5_0220069C;
 const UnkStruct_020217F4 Unk_ov5_022006B0[];
 
-void *ov5_021F3E74(UnkStruct_ov5_021DF47C *param0)
+void *ov5_021F3E74(FieldEffectManager *param0)
 {
-    UnkStruct_ov5_021F3EA0 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F3EA0)), 0, 0);
+    UnkStruct_ov5_021F3EA0 *v0 = FieldEffectManager_HeapAllocInit(param0, (sizeof(UnkStruct_ov5_021F3EA0)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F3EA0(v0);
@@ -56,7 +55,7 @@ void ov5_021F3E90(void *param0)
     UnkStruct_ov5_021F3EA0 *v0 = param0;
 
     ov5_021F3EE8(v0);
-    ov5_021DF554(v0);
+    FieldEffectManager_HeapFree(v0);
 }
 
 static void ov5_021F3EA0(UnkStruct_ov5_021F3EA0 *param0)
@@ -79,23 +78,23 @@ static void ov5_021F3EE8(UnkStruct_ov5_021F3EA0 *param0)
 void ov5_021F3F10(MapObject *param0)
 {
     UnkStruct_ov5_021F3F10 v0;
-    UnkStruct_ov5_021DF47C *v1;
+    FieldEffectManager *v1;
     OverworldAnimManager *v2;
     VecFx32 v3;
     int v4;
 
-    v1 = ov5_021DF578(param0);
+    v1 = MapObject_GetFieldEffectManager(param0);
 
     v0.fieldSystem = MapObject_FieldSystem(param0);
     v0.unk_04 = v1;
-    v0.unk_08 = ov5_021DF55C(v1, 27);
+    v0.unk_08 = FieldEffectManager_GetRendererContext(v1, 27);
     v0.unk_0C = param0;
 
     MapObject_GetPosPtr(param0, &v3);
     VecFx32_SetPosFromMapCoords(MapObject_GetX(param0), MapObject_GetZ(param0), &v3);
 
-    v4 = sub_02062758(param0, 2);
-    v2 = ov5_021DF72C(v1, &Unk_ov5_0220069C, &v3, 0, &v0, v4);
+    v4 = MapObject_CalculateTaskPriority(param0, 2);
+    v2 = FieldEffectManager_InitAnimManager(v1, &Unk_ov5_0220069C, &v3, 0, &v0, v4);
 }
 
 static int ov5_021F3F74(OverworldAnimManager *param0, void *param1)
@@ -109,7 +108,7 @@ static int ov5_021F3F74(OverworldAnimManager *param0, void *param1)
 
     v1->unk_10 = *v2;
     v1->unk_04 = MapObject_GetLocalID(v1->unk_10.unk_0C);
-    v1->unk_08 = sub_02062918(v1->unk_10.unk_0C);
+    v1->unk_08 = MapObject_GetMapID(v1->unk_10.unk_0C);
 
     OverworldAnimManager_GetPosition(param0, &v0);
 
@@ -136,7 +135,7 @@ static void ov5_021F3FC4(OverworldAnimManager *param0, void *param1)
         v0 = sub_020213D4(v1->unk_20) / FX32_ONE;
 
         if (v0 >= 7) {
-            ov5_021DF74C(param0);
+            FieldEffectManager_FinishAnimManager(param0);
             return;
         }
         break;

@@ -175,7 +175,7 @@
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x027D",
+            "hidden_flag": "FLAG_HIDE_VALOR_LAKEFRONT_COLLECTOR",
             "script": 8,
             "initial_dir": 2,
             "data": [],

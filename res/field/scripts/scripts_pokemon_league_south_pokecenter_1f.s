@@ -15,14 +15,14 @@ PokemonLeagueSouthPokecenter1F_OnTransition:
     End
 
 PokemonLeagueSouthPokecenter1F_Nurse:
-    CallPokecenterNurse 0
+    Common_CallPokecenterNurse 0
     End
 
 PokemonLeagueSouthPokecenter1F_UnusedVendor2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -32,7 +32,7 @@ PokemonLeagueSouthPokecenter1F_UnusedVendor3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll

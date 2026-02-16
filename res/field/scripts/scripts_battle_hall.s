@@ -300,7 +300,7 @@ _04FC:
     CallIfEq VAR_UNK_0x40BB, 1, _0673
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
-    SaveGame
+    Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _034D
     GoToIfEq VAR_UNK_0x40BB, 2, _054A
@@ -466,7 +466,7 @@ _07B4:
 
 _07C8:
     SetVar VAR_UNK_0x40BA, 0
-    GriseousOrbCouldNotBeRemoved
+    Common_GriseousOrbCouldNotBeRemoved
     End
 
     .balign 4, 0
@@ -616,13 +616,13 @@ _0955:
     PlaySound SEQ_FANFA4
     WaitSound
     SetVar VAR_BATTLE_HALL_PRINT_STATE, 4
-    CheckAllFrontierGoldPrintsObtained
+    Common_CheckAllFrontierGoldPrintsObtained
     Return
 
 _0970:
     GoTo _034D
     End
-    
+
 BattleHall_UnusedMovement:
     WalkNormalNorth 2
     Delay8

@@ -31,7 +31,7 @@ _062:
     Wait 
     WaitButtonABTime 30
     // But it had no effect!
-    PrintMessage pl_msg_00000368_00607, TAG_NONE
+    PrintMessage BattleStrings_Text_ButItHadNoEffect, TAG_NONE
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

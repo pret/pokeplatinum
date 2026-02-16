@@ -14,6 +14,7 @@
 #include "struct_defs/struct_0208B878.h"
 #include "struct_defs/struct_0208C06C.h"
 
+#include "overlay061/ov61_0222B008.h"
 #include "overlay061/ov61_0222BC4C.h"
 #include "overlay061/struct_ov61_0222BE20.h"
 #include "overlay062/ov62_0222F2C0.h"
@@ -27,7 +28,6 @@
 #include "overlay062/struct_ov62_02233750.h"
 #include "overlay062/struct_ov62_02233828.h"
 #include "overlay062/struct_ov62_02233F74.h"
-#include "overlay062/struct_ov62_022349A8.h"
 #include "overlay062/struct_ov62_0223CAA4.h"
 #include "overlay062/struct_ov62_02248CDC.h"
 

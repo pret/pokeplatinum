@@ -250,8 +250,8 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
     Unk_021C0850++;
     v0 = sub_020340E8();
 
-    if (sub_020360E8() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
-        CommInfo_SendBattleRegulation();
+    if (CommSys_IsClientConnecting() && (sub_0205B4D4() == 1) && (v0->unk_1C != 4)) {
+        CommInfo_SendPlayerInfo();
         CommMan_SetErrorHandling(1, 1);
         sub_0205BEA8(11);
         sub_0205B5B4(param0, sub_0205B578, 0);
@@ -267,11 +267,11 @@ static void sub_0205B4F8(UnkStruct_0205B43C *param0)
 
 static void sub_0205B578(UnkStruct_0205B43C *param0)
 {
-    if (sub_02038938() && (0 == sub_020360E8())) {
+    if (sub_02038938() && (0 == CommSys_IsClientConnecting())) {
         return;
     }
 
-    if (0 == sub_020360E8()) {
+    if (0 == CommSys_IsClientConnecting()) {
         sub_02036AC4();
         sub_0205C160(param0);
         sub_0205BEA8(0);
@@ -331,10 +331,10 @@ static void sub_0205B620(UnkStruct_0205B43C *param0)
 static void sub_0205B634(UnkStruct_0205B43C *param0)
 {
     if (1 == sub_02036A68()) {
-        CommInfo_SendBattleRegulation();
+        CommInfo_SendPlayerInfo();
         sub_0205B5B4(param0, sub_0205B6C4, 3);
         return;
-    } else if (sub_020360E8()) {
+    } else if (CommSys_IsClientConnecting()) {
         param0->unk_20 = 0;
         param0->unk_1C = 3;
 

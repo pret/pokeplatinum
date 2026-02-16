@@ -28,51 +28,51 @@ _058:
 
 _063:
     // {0} protected itself!
-    PrintMessage pl_msg_00000368_00015, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     GoTo _179
 
 _069:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_LEVITATED, _081
     // {0} makes Ground moves miss by using {1}!
-    PrintMessage pl_msg_00000368_00021, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonMakesGroundMovesMissByUsingAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
     GoTo _179
 
 _081:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_MAGNET_RISE, _097
     UpdateVar OPCODE_SET, BTLVAR_MSG_MOVE_TEMP, MOVE_MAGNET_RISE
     // {0} evades Ground moves with {1}!
-    PrintMessage pl_msg_00000368_01036, TAG_NICKNAME_MOVE, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonEvadesGroundMovesWithAbility_Ally, TAG_NICKNAME_MOVE, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
     GoTo _179
 
 _097:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED, _107
     // But it failed!
-    PrintMessage pl_msg_00000368_00796, TAG_NONE
+    PrintMessage BattleStrings_Text_ButItFailed, TAG_NONE
     GoTo _179
 
 _107:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_WONDER_GUARD, _119
     // {0} avoided damage by using {1}!
-    PrintMessage pl_msg_00000368_00018, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonAvoidedDamageByUsingAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
     GoTo _179
 
 _119:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_INEFFECTIVE, _134
     IncrementGameRecord BTLSCR_ATTACKER, BATTLER_TYPE_SOLO_PLAYER, RECORD_USED_INEFFECTIVE_MOVE
     // It doesn’t affect {0}...
-    PrintMessage pl_msg_00000368_00027, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_ItDoesntAffectPokemon_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     GoTo _179
 
 _134:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_STURDY, _146
     // {0} was protected by {1}!
-    PrintMessage pl_msg_00000368_00625, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonWasProtectedByAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
     GoTo _179
 
 _146:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ONE_HIT_KO_FAILED, _157
     // {0} is unaffected!
-    PrintMessage pl_msg_00000368_00342, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonIsUnaffected_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     GoTo _179
 
 _157:
@@ -80,12 +80,12 @@ _157:
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, 0x00000004, _175
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, 0x00000008, _175
     // {0}’s attack missed!
-    PrintMessage pl_msg_00000368_00012, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsAttackMissed_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _179
 
 _175:
     // {0} avoided the attack!
-    PrintMessage pl_msg_00000368_00024, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonAvoidedTheAttack_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
 
 _179:
     Wait 

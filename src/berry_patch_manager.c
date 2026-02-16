@@ -10,10 +10,9 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/map_object_anim_cmd.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
 
 #include "bag.h"
 #include "berry_patch_graphics.h"
@@ -121,18 +120,18 @@ void BerryPatches_ElapseTime(FieldSystem *fieldSystem, int minutes)
 
 static void BerryPatchManager_Init3DRendering(FieldSystem *fieldSystem, BerryPatchManager *manager)
 {
-    UnkStruct_ov5_021DF47C *renderManager = fieldSystem->unk_40;
-    u32 resourceSize = ov5_021DF5A8(renderManager, 17);
+    FieldEffectManager *fieldEffMan = fieldSystem->fieldEffMan;
+    u32 resourceSize = FieldEffectManager_GetNARCMemberSize(fieldEffMan, 17);
 
     manager->resource = Heap_Alloc(manager->heapID, resourceSize);
 
-    ov5_021DF5B4(renderManager, 17, manager->resource);
+    FieldEffectManager_ReadNARCWholeMember(fieldEffMan, 17, manager->resource);
     Easy3D_InitRenderObjFromResource(&manager->renderObj, &manager->model, &manager->resource);
 }
 
 static void BerryPatchManager_Cleanup3DRendering(BerryPatchManager *manager)
 {
-    ov5_021DF554(manager->resource);
+    FieldEffectManager_HeapFree(manager->resource);
 }
 
 static BOOL BerryPatches_IsInView(FieldSystem *fieldSystem, const VecFx32 *position)

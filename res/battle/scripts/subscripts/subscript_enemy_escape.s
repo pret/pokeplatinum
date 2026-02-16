@@ -4,7 +4,7 @@
 _000:
     PlaySound BTLSCR_ATTACKER, 1791
     // The wild {0} fled!
-    PrintGlobalMessage pl_msg_00000368_00784, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintGlobalMessage BattleStrings_Text_TheWildPokemonFled, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     FadeOutBattle 

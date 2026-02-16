@@ -371,13 +371,13 @@ BOOL sub_02033768(void)
     return 0;
 }
 
-void sub_02033794(BOOL param0)
+void CommServerClient_SetSecretBaseClosedState(BOOL isClosed)
 {
     if (!sCommServerClient) {
         return;
     }
 
-    if (param0) {
+    if (isClosed) {
         sCommServerClient->unk_1516 = 2;
     } else {
         sCommServerClient->unk_1516 = 0;

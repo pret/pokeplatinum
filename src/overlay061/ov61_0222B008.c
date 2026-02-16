@@ -18,7 +18,6 @@
 #include "overlay061/struct_ov61_0222B960.h"
 #include "overlay061/struct_ov61_0222BDC8.h"
 #include "overlay062/ov62_02248408.h"
-#include "overlay062/struct_ov62_022349A8.h"
 #include "overlay062/struct_ov62_022349A8_sub3_sub3.h"
 #include "overlay062/struct_ov62_022349A8_sub3_sub4.h"
 #include "overlay062/struct_ov62_022349A8_sub3_sub5.h"

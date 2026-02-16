@@ -10,8 +10,8 @@
     ScriptEntry TwinleafTown_Collector
     ScriptEntry TwinleafTown_BreederF
     ScriptEntry TwinleafTown_MapSign
-    ScriptEntry TwinleafTown_PlayerMailbox
-    ScriptEntry TwinleafTown_RivalMailbox
+    ScriptEntry TwinleafTown_LandmarkSignPlayerMailbox
+    ScriptEntry TwinleafTown_LandmarkSignRivalMailbox
     ScriptEntryEnd
 
 TwinleafTown_OnTransition:
@@ -399,7 +399,7 @@ TwinleafTown_RivalThudTrigger:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message TwinleafTown_Text_BigThud
     WaitTime 30, VAR_RESULT
-    SetRivalBGM
+    Common_SetRivalBGM
     ApplyMovement LOCALID_RIVAL, TwinleafTown_Movement_RivalNoticePlayer
     WaitMovement
     BufferRivalName 0
@@ -419,7 +419,7 @@ TwinleafTown_RivalThudTrigger:
     WaitForAnimation ANIMATION_TAG_DOOR_1
     UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject LOCALID_RIVAL
-    FadeToDefaultMusic2
+    Common_FadeToDefaultMusic2
     SetVar VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, 1
     SetVar VAR_TWINLEAF_TOWN_RIVAL_TRIGGER_STATE, 1
     ReleaseAll
@@ -508,12 +508,12 @@ TwinleafTown_MapSign:
     ShowMapSign TwinleafTown_Text_MapSign
     End
 
-TwinleafTown_PlayerMailbox:
+TwinleafTown_LandmarkSignPlayerMailbox:
     BufferPlayerName 0
     ShowLandmarkSign TwinleafTown_Text_PlayerMailbox
     End
 
-TwinleafTown_RivalMailbox:
+TwinleafTown_LandmarkSignRivalMailbox:
     BufferRivalName 0
     ShowLandmarkSign TwinleafTown_Text_RivalMailbox
     End

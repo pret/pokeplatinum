@@ -36,7 +36,6 @@
 #include "res/graphics/title_screen/titledemo.naix.h"
 
 FS_EXTERN_OVERLAY(game_opening);
-FS_EXTERN_OVERLAY(overlay89);
 FS_EXTERN_OVERLAY(main_menu);
 FS_EXTERN_OVERLAY(d_startmenu);
 

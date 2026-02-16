@@ -6,7 +6,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x4071, 1, 3
+    InitScriptGoToIfEqual VAR_SANDGEM_TOWN_STATE, 1, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

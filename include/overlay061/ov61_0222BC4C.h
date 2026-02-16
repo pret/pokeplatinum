@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_OV61_0222BC4C_H
 #define POKEPLATINUM_OV61_0222BC4C_H
 
+#include "overlay061/ov61_0222B008.h"
 #include "overlay061/struct_ov61_0222B960.h"
 #include "overlay061/struct_ov61_0222BC90.h"
 #include "overlay061/struct_ov61_0222BCF8_sub1_sub1.h"
@@ -8,7 +9,6 @@
 #include "overlay061/struct_ov61_0222BDAC_1.h"
 #include "overlay061/struct_ov61_0222BE20.h"
 #include "overlay061/struct_ov61_0222BED8.h"
-#include "overlay062/struct_ov62_022349A8.h"
 #include "overlay062/struct_ov62_0223DF10.h"
 
 int ov61_0222BC4C(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B960 *param1);

@@ -28,7 +28,7 @@ _003A:
     Message 0
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Call _006F
     GoTo _0064
 
@@ -52,7 +52,7 @@ _007B:
     Message 0
     SetVar VAR_0x8004, ITEM_HM06
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Call _006F
     Message 1
     WaitABXPadPress

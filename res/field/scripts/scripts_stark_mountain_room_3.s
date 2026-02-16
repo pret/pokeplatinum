@@ -175,7 +175,7 @@ _019C:
     RemoveObject 6
     ClearFlag FLAG_UNK_0x0231
     AddObject 4
-    SetLookerBGM
+    Common_SetLookerBGM
     Message 6
     CloseMessage
     ApplyMovement 4, _04A8

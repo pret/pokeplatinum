@@ -16,17 +16,17 @@ _015:
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_RUN_AWAY, _043
     CheckItemHoldEffect CHECK_HAVE, BTLSCR_ATTACKER, HOLD_EFFECT_FLEE, _050
     // Got away safely!
-    PrintMessage pl_msg_00000368_00781, TAG_NONE
+    PrintMessage BattleStrings_Text_GotAwaySafely, TAG_NONE
     GoTo _055
 
 _043:
     // {0} fled using {1}!
-    PrintMessage pl_msg_00000368_00783, TAG_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonFledUsingItsAbility, TAG_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_ATTACKER
     GoTo _055
 
 _050:
     // {0} fled using its {1}!
-    PrintMessage pl_msg_00000368_00782, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonFledUsingItsItem, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_ATTACKER
 
 _055:
     Wait 

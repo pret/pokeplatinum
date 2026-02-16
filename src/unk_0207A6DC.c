@@ -14,8 +14,8 @@
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_controller.h"
+#include "battle/battle_system.h"
 #include "battle/message_defs.h"
-#include "battle/ov16_0223DF00.h"
 
 #include "charcode_util.h"
 #include "communication_system.h"
@@ -94,13 +94,13 @@ static const CommCmdTable Unk_020F099C[] = {
 void sub_0207A6DC(void *param0)
 {
     int v0 = sizeof(Unk_020F099C) / sizeof(CommCmdTable);
-    BattleSystem *v1;
+    BattleSystem *battleSys;
     UnkStruct_0207ACB4 *v2;
     UnkStruct_0207AD40 *v3;
 
-    v1 = (BattleSystem *)param0;
+    battleSys = (BattleSystem *)param0;
 
-    if (BattleSystem_BattleStatus(v1) & 0x10) {
+    if (BattleSystem_GetBattleStatusMask(battleSys) & 0x10) {
         return;
     }
 
@@ -109,13 +109,13 @@ void sub_0207A6DC(void *param0)
 
     CommCmd_Init(Unk_020F099C, v0, param0);
 
-    v2->unk_00 = v1;
+    v2->battleSys = battleSys;
     v2->unk_04 = 0;
-    v3->unk_00 = v1;
+    v3->battleSys = battleSys;
     v3->unk_04 = 0;
 
-    ov16_0223F320(v1, &v2->unk_04);
-    ov16_0223F32C(v1, &v3->unk_04);
+    ov16_0223F320(battleSys, &v2->unk_04);
+    ov16_0223F32C(battleSys, &v3->unk_04);
 
     SysTask_Start(sub_0207ACB4, v2, 0);
     SysTask_Start(sub_0207AD40, v3, 0);
@@ -236,9 +236,9 @@ void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3,
     u16 *v5;
 
     info = (BattleMessageInfo *)Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleMessageInfo));
-    v3 = ov16_0223E06C(battleSys);
-    v4 = ov16_0223E08C(battleSys);
-    v5 = ov16_0223E098(battleSys);
+    v3 = BattleSystem_GetServerMessage(battleSys);
+    v4 = BattleSystem_GetServerWriteIndex(battleSys);
+    v5 = BattleSystem_GetServerEndIndex(battleSys);
 
     if (v4[0] + sizeof(BattleMessageInfo) + param4 + 1 > 0x1000) {
         v5[0] = v4[0];
@@ -268,12 +268,12 @@ void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3,
 
 static void sub_0207A8A8(int param0, int param1, void *param2, void *param3)
 {
-    BattleSystem *v0 = (BattleSystem *)param3;
+    BattleSystem *battleSys = (BattleSystem *)param3;
     int v1;
     u8 *v2 = (u8 *)param2;
-    u8 *v3 = ov16_0223E074(v0);
-    u16 *v4 = ov16_0223E0B0(v0);
-    u16 *v5 = ov16_0223E0BC(v0);
+    u8 *v3 = BattleSystem_GetClientMessage(battleSys);
+    u16 *v4 = BattleSystem_GetClientWriteIndex(battleSys);
+    u16 *v5 = BattleSystem_GetClientEndIndex(battleSys);
 
     if (v4[0] + param1 + 1 > 0x1000) {
         v5[0] = v4[0];
@@ -569,10 +569,10 @@ void sub_0207ACB4(SysTask *param0, void *param1)
     u16 *v4;
     int v5;
 
-    v1 = ov16_0223E06C(v0->unk_00);
-    v2 = ov16_0223E080(v0->unk_00);
-    v3 = ov16_0223E08C(v0->unk_00);
-    v4 = ov16_0223E098(v0->unk_00);
+    v1 = BattleSystem_GetServerMessage(v0->battleSys);
+    v2 = BattleSystem_GetServerReadIndex(v0->battleSys);
+    v3 = BattleSystem_GetServerWriteIndex(v0->battleSys);
+    v4 = BattleSystem_GetServerEndIndex(v0->battleSys);
 
     switch (v0->unk_04) {
     case 0:
@@ -612,10 +612,10 @@ void sub_0207AD40(SysTask *param0, void *param1)
     u16 *v4;
     int v5;
 
-    v1 = ov16_0223E074(v0->unk_00);
-    v2 = ov16_0223E0A4(v0->unk_00);
-    v3 = ov16_0223E0B0(v0->unk_00);
-    v4 = ov16_0223E0BC(v0->unk_00);
+    v1 = BattleSystem_GetClientMessage(v0->battleSys);
+    v2 = BattleSystem_GetClientReadIndex(v0->battleSys);
+    v3 = BattleSystem_GetClientWriteIndex(v0->battleSys);
+    v4 = BattleSystem_GetClientEndIndex(v0->battleSys);
 
     switch (v0->unk_04) {
     case 0:
@@ -628,7 +628,7 @@ void sub_0207AD40(SysTask *param0, void *param1)
             v4[0] = 0;
         }
 
-        if (BattleController_RecvCommMessage(v0->unk_00, (void *)&v1[v2[0]]) == 1) {
+        if (BattleController_RecvCommMessage(v0->battleSys, (void *)&v1[v2[0]]) == 1) {
             v5 = sizeof(BattleMessageInfo) + (v1[v2[0] + 2] | (v1[v2[0] + 3] << 8));
             v2[0] += v5;
         }
@@ -643,11 +643,11 @@ void sub_0207AD40(SysTask *param0, void *param1)
 
 static void sub_0207ADB4(int param0, int param1, void *param2, void *param3)
 {
-    BattleSystem *v0 = (BattleSystem *)param3;
+    BattleSystem *battleSys = (BattleSystem *)param3;
 
-    ov16_0223F338(v0, 255);
-    ov16_0223F344(v0, 255);
-    ov16_0223F350(v0, 1);
+    ov16_0223F338(battleSys, 255);
+    ov16_0223F344(battleSys, 255);
+    BattleSystem_SetCommandIsEndWait(battleSys, 1);
 }
 
 static void PalPad_CreateNetworkObject(TrainerInfo *trainerInfo, PalPad *source, PalPad *destination)

@@ -1,5 +1,4 @@
 prebuilt_files = [
-    'pl_poke_anm.narc',
     'poke_anm.narc'
 ]
 

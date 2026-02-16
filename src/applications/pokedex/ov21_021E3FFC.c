@@ -66,7 +66,7 @@ typedef struct {
 } UnkStruct_ov21_021E4B30;
 
 typedef struct {
-    CursorTransformation unk_00;
+    SpriteTransformation unk_00;
     UnkStruct_ov21_021E4B30 unk_20[9];
     SpriteResource *unk_314[4];
     int unk_324;
@@ -460,7 +460,7 @@ static BOOL ov21_021E4518(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
     int v1;
 
     if (param3 == 0) {
-        v0[0] = PokedexGraphics_TakeCursorTransformStep(&param0->unk_00);
+        v0[0] = PokedexGraphics_TakeTransformStep(&param0->unk_00);
         PokemonGraphics_SetCharCenterXY(param1->unk_00, param0->unk_00.currentX, param0->unk_00.currentY);
     } else {
         v0[0] = 1;

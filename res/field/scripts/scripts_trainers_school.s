@@ -33,7 +33,7 @@ _0032:
     Message 2
     SetVar VAR_0x8004, ITEM_TOWN_MAP
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     BufferRivalName 1
     Message 3
     CloseMessage
@@ -69,10 +69,10 @@ _00F2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar VAR_UNK_0x40E7, 1
-    SetFlag FLAG_UNK_0x00F1
-    ClearFlag FLAG_UNK_0x01F6
-    ClearFlag FLAG_UNK_0x01F5
+    SetVar VAR_POKETCH_CAMPAIGN_STATE, 1
+    SetFlag FLAG_TALKED_TO_TRAINERS_SCHOOL_RIVAL
+    ClearFlag FLAG_HIDE_JUBILIFE_CITY_POKETCH_CO_PRESIDENT
+    ClearFlag FLAG_HIDE_JUBILIFE_CITY_CLOWNS_1_AND_2
     ReleaseAll
     End
 
@@ -209,7 +209,7 @@ _0274:
     SetVar VAR_0x8004, ITEM_POTION
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _02B3
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0112
     GoTo _02A8
     End
@@ -222,7 +222,7 @@ _02A8:
     End
 
 _02B3:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

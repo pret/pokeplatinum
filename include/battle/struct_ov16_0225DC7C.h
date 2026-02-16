@@ -4,7 +4,7 @@
 #include "struct_decls/battle_system.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;

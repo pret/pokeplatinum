@@ -208,7 +208,7 @@ Route201_WeStillLovePokemon:
     ClearFlag FLAG_HIDE_ROUTE_201_COUNTERPART
     AddObject LOCALID_COUNTERPART
     LockObject LOCALID_COUNTERPART
-    SetCounterpartBGM
+    Common_SetCounterpartBGM
     ApplyMovement LOCALID_COUNTERPART, Route201_Movement_CounterpartEnter
     WaitMovement
     GetPlayerGender VAR_RESULT
@@ -265,7 +265,7 @@ Route201_GoOnChoosePokemon:
     Message Route201_Text_YouCanChooseFirst
     WaitABXPadPress
     CloseMessage
-    FadeToDefaultMusic
+    Common_FadeToDefaultMusic
     SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
     SetVar VAR_FOLLOWER_RIVAL_STATE, 1
     ReleaseAll
@@ -1180,7 +1180,7 @@ Route201_Cashier:
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route201_BagIsFull
     SetFlag FLAG_GOT_POTION_FROM_ROUTE_201_CASHIER
-    GiveItemQuantityNoLineFeed
+    Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
@@ -1193,7 +1193,7 @@ Route201_YouCanFindMartsInCitiesAndMajorTowns:
     End
 
 Route201_BagIsFull:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

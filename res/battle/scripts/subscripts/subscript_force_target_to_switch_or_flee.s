@@ -24,7 +24,7 @@ _032:
     HealthbarSlideIn BTLSCR_DEFENDER
     Wait 
     // {0} was dragged out!
-    PrintMessage pl_msg_00000368_00603, TAG_NICKNAME, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonWasDraggedOut_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     UpdateVarFromVar OPCODE_SET, BTLVAR_SWITCHED_MON, BTLVAR_DEFENDER
@@ -43,12 +43,12 @@ _074:
 
 _079:
     // {0} anchors itself with {1}!
-    BufferMessage pl_msg_00000368_00659, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
+    BufferMessage BattleStrings_Text_PokemonAnchorsItselfWithAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_DEFENDER, BTLSCR_DEFENDER
     GoTo _090
 
 _086:
     // {0} anchored itself with its roots!
-    BufferMessage pl_msg_00000368_00542, TAG_NICKNAME, BTLSCR_DEFENDER
+    BufferMessage BattleStrings_Text_PokemonAnchoredItselfWithItsRoots_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
 
 _090:
     PrintAttackMessage 

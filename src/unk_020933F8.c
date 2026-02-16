@@ -1660,7 +1660,7 @@ u16 sub_02094EA0(u32 param0, u32 *param1)
     u32 v0 = ARNG_Next(param0);
     *param1 = v0;
 
-    return v0 / 65536L;
+    return v0 / LCRNG_DIVISOR;
 }
 
 static void sub_02094EB4(UnkStruct_02095C48 *param0, int param1, UnkStruct_ov6_02248DD8 *param2)

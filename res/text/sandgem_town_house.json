@@ -2,7 +2,7 @@
   "key": 37911,
   "messages": [
     {
-      "id": "pl_msg_00000568_00000",
+      "id": "SandgemTownHouse_Text_PokemonGrowStrongerFromBattlingOtherPokemon",
       "en_US": [
         "Pokémon grow steadily stronger from\n",
         "battling against other Pokémon.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000568_00001",
+      "id": "SandgemTownHouse_Text_AGoodTrainerTakesCareToNotLetTheirPokemonFaint",
       "en_US": [
         "A good Trainer is one that takes care\n",
         "not to let their Pokémon faint from\f",

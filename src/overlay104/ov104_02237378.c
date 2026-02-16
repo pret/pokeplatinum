@@ -144,7 +144,7 @@ BOOL FrontierScrCmd_BB(FrontierScriptContext *param0)
     ov104_02239054(v10->parties[v2], v9->unk_70, 0, 0);
     ov104_02239054(v10->parties[v2], v9->unk_70, 1, 1);
 
-    if (ov104_0223BA14(v9->unk_10) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(v9->unk_10) == 0) {
         ov104_02239054(v10->parties[v2], v9->unk_70, 2, 2);
     } else {
         ov104_02239054(v10->parties[v3], v9->unk_70, 0, 2);
