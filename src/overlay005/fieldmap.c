@@ -9,7 +9,6 @@
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 
 #include "field/field_system.h"

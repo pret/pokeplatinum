@@ -6,15 +6,63 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_02020C44_decl.h"
-#include "struct_decls/struct_020216E0_decl.h"
+#include "struct_decls/struct_0201DD00_decl.h"
+#include "struct_decls/struct_0201DDF4_decl.h"
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
 
-#include "functypes/funcptr_02021444.h"
-#include "overlay005/struct_ov5_021DF7F8.h"
 #include "overlay005/struct_ov5_021DF84C.h"
 #include "overlay005/struct_ov5_021EDDAC.h"
+
+typedef struct UnkStruct_020216E0 UnkStruct_020216E0;
+typedef void (*UnkFuncPtr_02021444)(UnkStruct_020216E0 *, void *);
+
+typedef struct UnkStruct_020216E0 {
+    VecFx32 unk_00;
+    VecFx32 unk_0C;
+    const MtxFx33 *unk_18;
+    void *unk_1C;
+    UnkFuncPtr_02021444 unk_20;
+    u8 unk_24;
+    void *unk_28;
+    const UnkStruct_020217F4 *unk_2C;
+    NNSG3dRenderObj unk_30;
+    NNSG3dResMdlSet *unk_84;
+    NNSG3dResMdl *unk_88;
+    NNSG3dResTex *unk_8C;
+    const NNSG3dResTex *unk_90;
+    NNSGfdTexKey unk_94;
+    NNSGfdTexKey unk_98;
+    NNSGfdPlttKey unk_9C;
+    UnkStruct_02024184 unk_A0;
+    UnkStruct_0201DDF4 *unk_B0;
+    u8 unk_B4;
+    u16 unk_B6;
+    fx32 unk_B8;
+    UnkStruct_020216E0 *unk_BC;
+    UnkStruct_020216E0 *unk_C0;
+} UnkStruct_020216E0;
+
+typedef struct UnkStruct_02020C44_t {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+    UnkStruct_020216E0 *unk_04;
+    int unk_08;
+    UnkStruct_020216E0 unk_0C;
+    UnkStruct_020216E0 **unk_CC;
+    int unk_D0;
+    NNSFndAllocator *unk_D4;
+    UnkStruct_0201DD00 *unk_D8;
+} UnkStruct_02020C44;
+
+typedef struct {
+    UnkStruct_02020C44 *unk_00;
+    const UnkStruct_ov5_021DF84C *unk_04;
+    VecFx32 unk_08;
+    VecFx32 unk_14;
+} UnkStruct_ov5_021DF7F8;
 
 void sub_02020B14(UnkStruct_020216E0 *param0);
 void sub_02020B90(int param0, enum HeapID heapID);

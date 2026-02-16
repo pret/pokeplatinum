@@ -1,8 +1,9 @@
 #ifndef POKEPLATINUM_OV5_021EB1A0_H
 #define POKEPLATINUM_OV5_021EB1A0_H
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+
+#include "unk_02020AEC.h"
 
 UnkStruct_020216E0 *ov5_021EB1A0(MapObject *param0);
 void ov5_021EB2EC(MapObject *param0);

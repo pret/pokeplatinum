@@ -3,12 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02020C44_decl.h"
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
 
-#include "overlay005/struct_ov5_021DF7F8.h"
 #include "overlay005/struct_ov5_021DF84C.h"
 #include "overlay005/struct_ov5_021EDDAC.h"
 #include "overlay063/ov63_0222BE18.h"

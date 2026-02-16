@@ -3,13 +3,13 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/struct_ov5_021DF84C.h"
 
 #include "overworld_anim_manager.h"
+#include "unk_02020AEC.h"
 
 void *ov5_021F17B8(FieldEffectManager *param0);
 void ov5_021F17D4(void *param0);

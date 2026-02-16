@@ -3,7 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
 
@@ -12,6 +11,7 @@
 
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
+#include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021DF8FC_t UnkStruct_ov5_021DF8FC;
 typedef struct UnkStruct_ov5_021DF8C8_t UnkStruct_ov5_021DF8C8;

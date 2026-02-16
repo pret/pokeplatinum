@@ -8,7 +8,6 @@
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -45,6 +44,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "unk_02020AEC.h"
 #include "unk_020553DC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"

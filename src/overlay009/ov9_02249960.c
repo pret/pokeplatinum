@@ -13,7 +13,6 @@
 #include "generated/movement_actions.h"
 #include "generated/sdat.h"
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"

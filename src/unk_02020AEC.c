@@ -3,61 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201DD00_decl.h"
-#include "struct_decls/struct_0201DDF4_decl.h"
 #include "struct_defs/struct_0202144C.h"
-#include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02024184.h"
-
-#include "functypes/funcptr_02021444.h"
-#include "overlay005/struct_ov5_021DF7F8.h"
-#include "overlay005/struct_ov5_021DF84C.h"
-#include "overlay005/struct_ov5_021EDDAC.h"
 
 #include "easy3d.h"
 #include "heap.h"
 #include "unk_0201DD00.h"
 #include "unk_0202414C.h"
-
-typedef struct UnkStruct_020216E0_t {
-    VecFx32 unk_00;
-    VecFx32 unk_0C;
-    const MtxFx33 *unk_18;
-    void *unk_1C;
-    UnkFuncPtr_02021444 unk_20;
-    u8 unk_24;
-    void *unk_28;
-    const UnkStruct_020217F4 *unk_2C;
-    NNSG3dRenderObj unk_30;
-    NNSG3dResMdlSet *unk_84;
-    NNSG3dResMdl *unk_88;
-    NNSG3dResTex *unk_8C;
-    const NNSG3dResTex *unk_90;
-    NNSGfdTexKey unk_94;
-    NNSGfdTexKey unk_98;
-    NNSGfdPlttKey unk_9C;
-    UnkStruct_02024184 unk_A0;
-    UnkStruct_0201DDF4 *unk_B0;
-    u8 unk_B4;
-    u16 unk_B6;
-    fx32 unk_B8;
-    struct UnkStruct_020216E0_t *unk_BC;
-    struct UnkStruct_020216E0_t *unk_C0;
-} UnkStruct_020216E0;
-
-typedef struct UnkStruct_02020C44_t {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    UnkStruct_020216E0 *unk_04;
-    int unk_08;
-    UnkStruct_020216E0 unk_0C;
-    UnkStruct_020216E0 **unk_CC;
-    int unk_D0;
-    NNSFndAllocator *unk_D4;
-    UnkStruct_0201DD00 *unk_D8;
-} UnkStruct_02020C44;
 
 static UnkStruct_02020C44 *sub_02020D74(void);
 static void sub_02020AEC(UnkStruct_02020C44 *param0);

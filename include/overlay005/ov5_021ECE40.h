@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV5_021ECE40_H
 #define POKEPLATINUM_OV5_021ECE40_H
 
-#include "struct_decls/struct_02020C44_decl.h"
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
@@ -12,6 +10,7 @@
 #include "overlay005/struct_ov5_021ED0A4.h"
 
 #include "resource_collection.h"
+#include "unk_02020AEC.h"
 
 void ov5_021ECE40(UnkStruct_ov5_021ED0A4 *param0, const MapObjectManager *param1, int param2, int param3, int param4, int param5, const int *param6, int param7);
 void ov5_021ECE94(UnkStruct_ov5_021ED0A4 *param0);

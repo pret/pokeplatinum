@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021ED0A4_H
 #define POKEPLATINUM_STRUCT_OV5_021ED0A4_H
 
-#include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 
 #include "overlay005/resource_heap.h"
@@ -10,6 +9,7 @@
 #include "overlay005/struct_ov5_021EDF3C.h"
 
 #include "resource_collection.h"
+#include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021ED0A4_t {
     int unk_00;
