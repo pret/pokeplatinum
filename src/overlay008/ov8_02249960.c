@@ -5,7 +5,6 @@
 
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field/map.h"
-#include "constants/field/map_prop.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
 
@@ -66,6 +65,7 @@
 #include "unk_02067A84.h"
 #include "vars_flags.h"
 
+#include "res/field/props/models/prop_models.naix.h"
 #include "res/text/bank/eterna_city_gym.h"
 
 typedef struct {
@@ -345,9 +345,9 @@ void PastoriaGym_PressButton(FieldSystem *fieldSystem)
     BOOL hasCollisionHit;
     int mapPropModelID;
     int pastoriaButtonTypes[] = {
-        MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON,
-        MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON,
-        MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON
+        pastoria_gym_blue_button_nsbmd,
+        pastoria_gym_green_button_nsbmd,
+        pastoria_gym_orange_button_nsbmd
     };
 
     int playerX = Player_GetXPos(fieldSystem->playerAvatar);
@@ -368,13 +368,13 @@ void PastoriaGym_PressButton(FieldSystem *fieldSystem)
         v6 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_ov8_0224997C));
         v6->unk_00 = 0;
 
-        if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_BLUE_BUTTON) {
+        if (mapPropModelID == pastoria_gym_blue_button_nsbmd) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249CD8, v6);
             v8->unk_00 = 2;
-        } else if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_GREEN_BUTTON) {
+        } else if (mapPropModelID == pastoria_gym_green_button_nsbmd) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249B74, v6);
             v8->unk_00 = 1;
-        } else if (mapPropModelID == MAP_PROP_MODEL_PASTORIA_GYM_ORANGE_BUTTON) {
+        } else if (mapPropModelID == pastoria_gym_orange_button_nsbmd) {
             FieldTask_InitCall(fieldSystem->task, ov8_02249A94, v6);
             v8->unk_00 = 0;
         } else {
@@ -430,7 +430,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
         v5 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(3, fieldSystem->mapPropAnimMan);
 
         if (MapPropAnimation_IsLoopFinished(v3) && MapPropAnimation_IsLoopFinished(v4) && MapPropAnimation_IsLoopFinished(v5)) {
-            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_PASTORIA_GYM_WATER_FLOOR);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
             {
                 VecFx32 v6;
@@ -481,7 +481,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         v5 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(3, fieldSystem->mapPropAnimMan);
 
         if (MapPropAnimation_IsLoopFinished(v3) && MapPropAnimation_IsLoopFinished(v4) && MapPropAnimation_IsLoopFinished(v5)) {
-            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_PASTORIA_GYM_WATER_FLOOR);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
             {
                 VecFx32 v6;
 
@@ -501,7 +501,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         }
     } break;
     case 2:
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_PASTORIA_GYM_WATER_FLOOR);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
         {
             VecFx32 v7;
@@ -518,7 +518,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         }
         break;
     case 3:
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_PASTORIA_GYM_WATER_FLOOR);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
         {
             VecFx32 v8;
@@ -568,7 +568,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
         v5 = MapPropAnimationManager_GetAnimationByPastoriaGymButtonGroup(3, fieldSystem->mapPropAnimMan);
 
         if (MapPropAnimation_IsLoopFinished(v3) && MapPropAnimation_IsLoopFinished(v4) && MapPropAnimation_IsLoopFinished(v5)) {
-            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_PASTORIA_GYM_WATER_FLOOR);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
             {
                 VecFx32 v6;
@@ -648,7 +648,7 @@ void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
         v6 = 0;
     }
 
-    v1 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_PASTORIA_GYM_WATER_FLOOR);
+    v1 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, pastoria_gym_water_floor_nsbmd);
 
     {
         VecFx32 v10;
@@ -779,7 +779,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
 
         {
             VecFx32 v3;
@@ -825,7 +825,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_IRON_ISLAND_PLATFORM_LIFT);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, iron_island_platform_lift_nsbmd);
 
         {
             VecFx32 v3;

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "generated/movement_actions.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -24,6 +23,8 @@
 #include "terrain_collision_manager.h"
 #include "unk_02056B30.h"
 #include "unk_020655F4.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 typedef struct UnkStruct_ov5_021D432C_t {
     int unk_00;
@@ -78,26 +79,26 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
-            MAP_PROP_MODEL_DOOR01,
-            MAP_PROP_MODEL_BROWN_WOODEN_DOOR,
-            MAP_PROP_MODEL_GREEN_WOODEN_DOOR,
-            MAP_PROP_MODEL_IRON_DOOR,
-            MAP_PROP_MODEL_JUBILIFE_CITY_BUILDING_DOOR,
-            MAP_PROP_MODEL_POKECENTER_DOOR,
-            MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR,
-            MAP_PROP_MODEL_GTS_INSIDE_DOOR,
-            MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR,
-            MAP_PROP_MODEL_BLUE_DOOR,
-            MAP_PROP_MODEL_IRON_DOOR_2,
-            MAP_PROP_MODEL_YELLOW_WOODEN_DOOR,
-            MAP_PROP_MODEL_BLUE_WOODEN_DOOR,
-            MAP_PROP_MODEL_MANSION_DOOR,
-            MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR,
-            MAP_PROP_MODEL_GYM_DOOR,
-            MAP_PROP_MODEL_CARD_DOOR,
-            MAP_PROP_MODEL_POKECENTER_INSIDE_COUNTER_DOOR,
-            MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR,
-            MAP_PROP_MODEL_ELEVATOR_DOOR
+            door01_nsbmd,
+            brown_wooden_door_nsbmd,
+            green_wooden_door_nsbmd,
+            iron_door_nsbmd,
+            jubilife_city_building_door_nsbmd,
+            pokecenter_door_nsbmd,
+            pokecenter_inside_door_nsbmd,
+            gts_inside_door_nsbmd,
+            hearthome_gym_inside_door_nsbmd,
+            blue_door_nsbmd,
+            iron_door_2_nsbmd,
+            yellow_wooden_door_nsbmd,
+            blue_wooden_door_nsbmd,
+            mansion_door_nsbmd,
+            veilstone_dpt_store_door_nsbmd,
+            gym_door_nsbmd,
+            card_door_nsbmd,
+            pokecenter_inside_counter_door_nsbmd,
+            hotel_grand_lake_door_nsbmd,
+            elevator_door_nsbmd
         };
 
         param1->unk_20 = 0;
@@ -237,26 +238,26 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
-            MAP_PROP_MODEL_DOOR01,
-            MAP_PROP_MODEL_BROWN_WOODEN_DOOR,
-            MAP_PROP_MODEL_GREEN_WOODEN_DOOR,
-            MAP_PROP_MODEL_IRON_DOOR,
-            MAP_PROP_MODEL_JUBILIFE_CITY_BUILDING_DOOR,
-            MAP_PROP_MODEL_POKECENTER_DOOR,
-            MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR,
-            MAP_PROP_MODEL_GTS_INSIDE_DOOR,
-            MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR,
-            MAP_PROP_MODEL_BLUE_DOOR,
-            MAP_PROP_MODEL_IRON_DOOR_2,
-            MAP_PROP_MODEL_YELLOW_WOODEN_DOOR,
-            MAP_PROP_MODEL_BLUE_WOODEN_DOOR,
-            MAP_PROP_MODEL_MANSION_DOOR,
-            MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR,
-            MAP_PROP_MODEL_GYM_DOOR,
-            MAP_PROP_MODEL_CARD_DOOR,
-            MAP_PROP_MODEL_POKECENTER_INSIDE_COUNTER_DOOR,
-            MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR,
-            MAP_PROP_MODEL_ELEVATOR_DOOR
+            door01_nsbmd,
+            brown_wooden_door_nsbmd,
+            green_wooden_door_nsbmd,
+            iron_door_nsbmd,
+            jubilife_city_building_door_nsbmd,
+            pokecenter_door_nsbmd,
+            pokecenter_inside_door_nsbmd,
+            gts_inside_door_nsbmd,
+            hearthome_gym_inside_door_nsbmd,
+            blue_door_nsbmd,
+            iron_door_2_nsbmd,
+            yellow_wooden_door_nsbmd,
+            blue_wooden_door_nsbmd,
+            mansion_door_nsbmd,
+            veilstone_dpt_store_door_nsbmd,
+            gym_door_nsbmd,
+            card_door_nsbmd,
+            pokecenter_inside_counter_door_nsbmd,
+            hotel_grand_lake_door_nsbmd,
+            elevator_door_nsbmd
         };
 
         param1->unk_20 = 0;
@@ -464,11 +465,11 @@ static void ov5_021D47DC(Camera *camera, u8 *param1)
 
 static u8 DoorAnimation_GetSoundEffectType(const int doorModelID)
 {
-    if (doorModelID == MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR) {
+    if (doorModelID == veilstone_dpt_store_door_nsbmd) {
         return DOOR_SOUND_EFFECT_TYPE_VEILSTONE_DPT_STORE_CHIME;
     }
 
-    if ((doorModelID == MAP_PROP_MODEL_POKECENTER_DOOR) || (doorModelID == MAP_PROP_MODEL_GYM_DOOR) || (doorModelID == MAP_PROP_MODEL_GTS_INSIDE_DOOR) || (doorModelID == MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR) || (doorModelID == MAP_PROP_MODEL_CARD_DOOR) || (doorModelID == MAP_PROP_MODEL_ELEVATOR_DOOR)) {
+    if ((doorModelID == pokecenter_door_nsbmd) || (doorModelID == gym_door_nsbmd) || (doorModelID == gts_inside_door_nsbmd) || (doorModelID == pokecenter_inside_door_nsbmd) || (doorModelID == card_door_nsbmd) || (doorModelID == elevator_door_nsbmd)) {
         return DOOR_SOUND_EFFECT_TYPE_SLIDING;
     }
 
@@ -486,10 +487,10 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
-            MAP_PROP_MODEL_POKECENTER_STAIR_UP_LEFT,
-            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_LEFT,
-            MAP_PROP_MODEL_POKECENTER_STAIR_UP_RIGHT,
-            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_RIGHT
+            pokecenter_stair_up_left_nsbmd,
+            pokecenter_stair_down_left_nsbmd,
+            pokecenter_stair_up_right_nsbmd,
+            pokecenter_stair_down_right_nsbmd
         };
 
         if (param2 == 2) {
@@ -603,10 +604,10 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         TerrainCollisionHitbox v3;
         int v4;
         int v5[] = {
-            MAP_PROP_MODEL_POKECENTER_STAIR_UP_LEFT,
-            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_LEFT,
-            MAP_PROP_MODEL_POKECENTER_STAIR_UP_RIGHT,
-            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_RIGHT
+            pokecenter_stair_up_left_nsbmd,
+            pokecenter_stair_down_left_nsbmd,
+            pokecenter_stair_up_right_nsbmd,
+            pokecenter_stair_down_right_nsbmd
         };
 
         if (param2 == 2) {
@@ -717,26 +718,26 @@ void DoorAnimation_FindDoorAndLoad(FieldSystem *fieldSystem, const int x, const 
     TerrainCollisionHitbox hitbox;
     int doorModelID;
     int doorModelIDs[] = {
-        MAP_PROP_MODEL_DOOR01,
-        MAP_PROP_MODEL_BROWN_WOODEN_DOOR,
-        MAP_PROP_MODEL_GREEN_WOODEN_DOOR,
-        MAP_PROP_MODEL_IRON_DOOR,
-        MAP_PROP_MODEL_JUBILIFE_CITY_BUILDING_DOOR,
-        MAP_PROP_MODEL_POKECENTER_DOOR,
-        MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR,
-        MAP_PROP_MODEL_GTS_INSIDE_DOOR,
-        MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR,
-        MAP_PROP_MODEL_BLUE_DOOR,
-        MAP_PROP_MODEL_IRON_DOOR_2,
-        MAP_PROP_MODEL_YELLOW_WOODEN_DOOR,
-        MAP_PROP_MODEL_BLUE_WOODEN_DOOR,
-        MAP_PROP_MODEL_MANSION_DOOR,
-        MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR,
-        MAP_PROP_MODEL_GYM_DOOR,
-        MAP_PROP_MODEL_CARD_DOOR,
-        MAP_PROP_MODEL_POKECENTER_INSIDE_COUNTER_DOOR,
-        MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR,
-        MAP_PROP_MODEL_ELEVATOR_DOOR
+        door01_nsbmd,
+        brown_wooden_door_nsbmd,
+        green_wooden_door_nsbmd,
+        iron_door_nsbmd,
+        jubilife_city_building_door_nsbmd,
+        pokecenter_door_nsbmd,
+        pokecenter_inside_door_nsbmd,
+        gts_inside_door_nsbmd,
+        hearthome_gym_inside_door_nsbmd,
+        blue_door_nsbmd,
+        iron_door_2_nsbmd,
+        yellow_wooden_door_nsbmd,
+        blue_wooden_door_nsbmd,
+        mansion_door_nsbmd,
+        veilstone_dpt_store_door_nsbmd,
+        gym_door_nsbmd,
+        card_door_nsbmd,
+        pokecenter_inside_counter_door_nsbmd,
+        hotel_grand_lake_door_nsbmd,
+        elevator_door_nsbmd
     };
 
     TerrainCollisionHitbox_Init(x, z, -1, 0, 3, 1, &hitbox);
@@ -836,8 +837,8 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
     TerrainCollisionHitbox v2;
     int v3;
     int v4[] = {
-        MAP_PROP_MODEL_BIKE_MUDDY_SLOPE,
-        MAP_PROP_MODEL_BIKE_DUNGEON_MUDDY_SLOPE
+        bike_muddy_slope_nsbmd,
+        bike_dungeon_muddy_slope_nsbmd
     };
 
     TerrainCollisionHitbox_Init(param0, param1, 0, -1, 1, 3, &v2);

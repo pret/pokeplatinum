@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "constants/map_object.h"
 
 #include "field/field_system.h"
@@ -24,6 +23,8 @@
 #include "terrain_collision_manager.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 #define BOAT_CUTSCENE_STATE_START_WITHOUT_BRIDGE 0
 #define BOAT_CUTSCENE_STATE_START_WITH_BRIDGE    1
@@ -97,13 +98,13 @@ void FieldSystem_PlayBoatCutscene(FieldSystem *fieldSystem, const u8 travelDir, 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_64, SEQ_NONE, 0);
 
     if (travelDir == BOAT_TRAVEL_DIR_NORTH_TO_SOUTH) {
-        targetMapPropModelID = MAP_PROP_MODEL_REGULAR_SHIP;
+        targetMapPropModelID = regular_ship_nsbmd;
         TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), 1, -3, 3, 6, &hitbox);
         moveBeforeFadeOut = TRUE;
         goalDistance = (25 * MAP_OBJECT_TILE_SIZE);
         boatCutscene->bridgeDistance = (14 * MAP_OBJECT_TILE_SIZE);
     } else if (travelDir == BOAT_TRAVEL_DIR_WEST_TO_EAST) {
-        targetMapPropModelID = MAP_PROP_MODEL_SCREW_STEAMSHIP_SPIRAL;
+        targetMapPropModelID = screw_steamship_spiral_nsbmd;
         TerrainCollisionHitbox_Init(Player_GetXPos(fieldSystem->playerAvatar), Player_GetZPos(fieldSystem->playerAvatar), -2, 2, 6, 3, &hitbox);
         moveBeforeFadeOut = TRUE;
         goalDistance = (12 * MAP_OBJECT_TILE_SIZE);
@@ -313,8 +314,8 @@ static void FieldSystem_LoadCanalaveBridgeAnimation(FieldSystem *fieldSystem)
     u8 bridgeIndex;
     BOOL mapPropLoaded;
     int bridgeIDs[2] = {
-        MAP_PROP_MODEL_CANALAVE_BRIDGE_LEFT,
-        MAP_PROP_MODEL_CANALAVE_BRIDGE_RIGHT
+        canalave_bridge_left_nsbmd,
+        canalave_bridge_right_nsbmd
     };
     int tags[2] = {
         BOAT_CUTSCENE_BRIDGE_ANIMATION_TAG_LEFT,
