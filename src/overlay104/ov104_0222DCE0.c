@@ -313,7 +313,7 @@ void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 pa
     Pokemon_CalcLevelAndStats(param1);
 }
 
-u16 ov104_0222E10C(u8 trainerClass)
+u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass)
 {
     for (int i = 0; i < (NELEMS(sTrainerClassToObjectID)); i++) {
         if (sTrainerClassToObjectID[i][0] == trainerClass) {

@@ -146,8 +146,8 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     case BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE:
         *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_45:
-        *destVar = sub_0204A9FC(battleTower);
+    case BATTLE_TOWER_FUNCTION_GET_BEAT_PALMER:
+        *destVar = BattleTower_GetBeatPalmer(battleTower);
         break;
     case BATTLE_TOWER_FUNCTION_UNK_47:
         sub_0204AA7C(battleTower, ctx->fieldSystem->saveData);
@@ -419,7 +419,7 @@ BOOL ScrCmd_297(ScriptContext *ctx)
     SaveData *saveData = fieldSystem->saveData;
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0202D230(sub_0202D750(saveData), 0, 0);
+    *v2 = BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
     return 0;
 }
 
@@ -430,7 +430,7 @@ BOOL ScrCmd_298(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_068, v2);
-    sub_0202D230(sub_0202D750(saveData), v2, 5);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_ADD);
 
     return 0;
 }
@@ -442,7 +442,7 @@ BOOL ScrCmd_299(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_069, v2);
-    sub_0202D230(sub_0202D750(saveData), v2, 6);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_SUB);
 
     return 0;
 }
@@ -455,8 +455,8 @@ BOOL ScrCmd_29A(ScriptContext *ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0202D230(
-        sub_0202D750(saveData), 0, 0);
+    v0 = BattlePoints_ApplyFuncAndGet(
+        sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
 
     if (v0 < v3) {
         *v4 = 0;

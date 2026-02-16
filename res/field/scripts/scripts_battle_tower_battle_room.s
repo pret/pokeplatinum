@@ -228,7 +228,7 @@ _03C7:
     CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_36, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 48, _0429
     Message 17
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_44, 1, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_BEAT_PALMER, 1, 0
 _040E:
     CloseMessage
     Call _01EF
@@ -242,7 +242,7 @@ _041E:
 
 _0429:
     Message 18
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_44, 2, 0
+    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_BEAT_PALMER, 2, 0
     GoTo _040E
     End
 
