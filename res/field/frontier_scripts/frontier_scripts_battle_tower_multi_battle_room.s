@@ -259,7 +259,7 @@ _0172:
     Call _0BCF
     Call _0C15
     SetVar 0x8006, 0
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _01CE
     GoToIfEq 0x8008, 6, _01CE
     SetVar 0x8001, 5
@@ -290,7 +290,7 @@ _01F8:
 _0226:
     FrontierScrCmd_3D 0x40DE, 3
     Call _025C
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _0270
     GoToIfEq 0x8008, 6, _0270
     GoTo _0965
@@ -314,7 +314,7 @@ _0270:
     End
 
 _02B0:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_NEXT_OPPONENT_NUM, 0, 0x8008
     BufferNumber 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     GoToIfEq 0x8006, 0, _02E9
@@ -358,7 +358,7 @@ _037F:
     Message BattleTowerMultiBattleRoom_Text_AwaitingResponseFromFriend
     FrontierScrCmd_36
     FrontierScrCmd_35 5
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_58, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_58, 0, 0x8008
     GoTo _039F
     End
 
@@ -375,7 +375,7 @@ _039F:
 
 _03DD:
     FrontierScrCmd_6F
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _0437
     GoToIfEq 0x8008, 6, _0443
     WaitTime 30, 0x8008
@@ -401,12 +401,12 @@ _0443:
     FrontierScrCmd_36
     FrontierScrCmd_35 6
     CallIfEq 0x8004, 100, _04D1
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     CallIfEq 0x8008, 6, _04DF
     FadeScreenOut
     FrontierScrCmd_36
     FrontierScrCmd_35 8
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     CallIfEq 0x8008, 3, _04F7
     FrontierScrCmd_25 0
     FrontierScrCmd_25 1
@@ -415,7 +415,7 @@ _0443:
     FrontierScrCmd_25 8
     FrontierScrCmd_23 0x800F
     FrontierScrCmd_23 0x800A
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 6, _04D5
     FrontierScrCmd_02
 
@@ -459,7 +459,7 @@ _051B:
     Return
 
 _053F:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_NEXT_OPPONENT_NUM, 0, 0x8008
     BufferNumber 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     GoToIfEq 0x8006, 0, _0578
@@ -526,7 +526,7 @@ _0675:
     End
 
 _0689:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_36, 0, 0x8005
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, 0x8005
     Return
 
 _0693:
@@ -536,7 +536,7 @@ _0693:
 _069B:
     SetVar 0x8006, 1
     MessageInstant BattleTowerMultiBattleRoom_Text_SavingDontTurnOffPower
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     ShowSavingIcon
     FrontierScrCmd_6D 1, 0x8008, 0x8005, 0x8005
     HideSavingIcon
@@ -568,7 +568,7 @@ _06E7:
 
 _0707:
     FrontierScrCmd_3D 0x40D8, 2
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_39, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0x8008
     FrontierScrCmd_86
     Message BattleTowerMultiBattleRoom_Text_ThanksForParticipating
     ShowSavingIcon
@@ -579,7 +579,7 @@ _0707:
     FadeScreenOut
     CloseMessage
     FrontierScrCmd_6F
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_RESET_SYSTEM, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_RESET_SYSTEM, 0, 0x8008
     End
 
 _0745:
@@ -591,7 +591,7 @@ _0745:
     End
 
 _0765:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS, 0, 0x8008
     SetVar 0x8000, 0
     GoTo _03DD
     End
@@ -602,7 +602,7 @@ _077B:
     End
 
 _0789:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _07B3
     GoToIfEq 0x8008, 6, _07B3
     GoTo _07DF
@@ -626,15 +626,15 @@ _07DF:
     End
 
 _0817:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_YouHaveClearedYourSeventhMatch
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_46, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_46, 0, 0x8008
     BufferNumber 1, 0x8008
     BufferPlayerName 0
     Message BattleTowerMultiBattleRoom_Text_PlayerReceivedBP
     PlayFanfare SEQ_PL_POINTGET3
     WaitFanfare
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _0869
     GoToIfEq 0x8008, 6, _0869
     CloseMessage
@@ -649,7 +649,7 @@ _0869:
 
 _087B:
     SetVar 0x8004, 0
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _08AB
     GoToIfEq 0x8008, 6, _08AB
     GoTo _08E9
@@ -675,7 +675,7 @@ _08E9:
     CallIfEq 0x8008, 1, _06E1
     ShowYesNoMenu 0x8008, MENU_NO
     CallIfEq 0x8008, 0, _0955
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _08D7
     GoToIfEq 0x8008, 6, _08D7
     CloseMessage
@@ -683,7 +683,7 @@ _08E9:
     End
 
 _0945:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS, 0, 0x8008
     GoTo _03DD
     End
 
@@ -707,8 +707,8 @@ _0965:
     End
 
 _09A5:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_34, 0, 0x8008
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_34, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS, 0, 0x8008
     Return
 
 _09B7:
@@ -742,7 +742,7 @@ _0A0D:
     Return
 
 _0A1B:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, 0x8008
     Call _0A61
     Call _0AB5
     FrontierScrCmd_85 0
@@ -760,8 +760,8 @@ _0A1B:
     Return
 
 _0A61:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID, 0, 0x800B
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID, 1, 0x800C
+    CallBattleTowerFunction BT_FUNC_GET_OPPONENT_OBJECT_ID, 0, 0x800B
+    CallBattleTowerFunction BT_FUNC_GET_OPPONENT_OBJECT_ID, 1, 0x800C
     FrontierScrCmd_22 _0020
     FrontierScrCmd_24 _00A0
     FrontierScrCmd_28 3, _00E0
@@ -788,7 +788,7 @@ _0AC1:
     Return
 
 _0ACD:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, 0x8008
     Call _0A61
     Call _0AB5
     FrontierScrCmd_85 0
@@ -848,16 +848,16 @@ _0BCF:
     FrontierScrCmd_3E 0x40DE, 0x8008
     GoToIfEq 0x8008, 0, _0C01
     GoToIfEq 0x8000, 1, _0C03
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 0, 0x8009
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 1, 0x800A
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, 0x8009
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, 0x800A
     Return
 
 _0C01:
     Return
 
 _0C03:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 0, 0x8009
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 1, 0x800A
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, 0x8009
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, 0x800A
     Return
 
 _0C15:
@@ -883,7 +883,7 @@ _0C55:
     Return
 
 _0C57:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _0C74
     SetVar 0x8008, 0
     Return

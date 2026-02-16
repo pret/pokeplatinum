@@ -19,35 +19,35 @@
 BattleTowerBattleSalon_CheckShowCheryl:
     GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, BattleTowerBattleSalon_HideCheryl
     GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowCheryl
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_CHERYL, BattleTowerBattleSalon_HideCheryl
 BattleTowerBattleSalon_ShowCheryl:
     ClearFlag FLAG_HIDE_BATTLE_SALON_CHERYL
 BattleTowerBattleSalon_CheckShowMira:
     GoToIfUnset FLAG_TRAVELED_WITH_MIRA, BattleTowerBattleSalon_HideMira
     GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowMira
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_MIRA, BattleTowerBattleSalon_HideMira
 BattleTowerBattleSalon_ShowMira:
     ClearFlag FLAG_HIDE_BATTLE_SALON_MIRA
 BattleTowerBattleSalon_CheckShowRiley:
     GoToIfUnset FLAG_TRAVELED_WITH_RILEY, BattleTowerBattleSalon_HideRiley
     GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowRiley
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_RILEY, BattleTowerBattleSalon_HideRiley
 BattleTowerBattleSalon_ShowRiley:
     ClearFlag FLAG_HIDE_BATTLE_SALON_RILEY
 BattleTowerBattleSalon_CheckShowMarley:
     GoToIfUnset FLAG_TRAVELED_WITH_MARLEY, BattleTowerBattleSalon_HideMarley
     GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowMarley
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_MARLEY, BattleTowerBattleSalon_HideMarley
 BattleTowerBattleSalon_ShowMarley:
     ClearFlag FLAG_HIDE_BATTLE_SALON_MARLEY
 BattleTowerBattleSalon_CheckShowBuck:
     GoToIfUnset FLAG_BUCK_LEFT_BATTLEGROUND, BattleTowerBattleSalon_HideBuck
     GoToIfNe VAR_UNK_0x40DF, 2, BattleTowerBattleSalon_ShowBuck
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PARTNER_ID, VAR_MAP_LOCAL_9
     GoToIfEq VAR_MAP_LOCAL_9, BT_PARTNER_BUCK, BattleTowerBattleSalon_HideBuck
 BattleTowerBattleSalon_ShowBuck:
     ClearFlag FLAG_HIDE_BATTLE_SALON_BUCK
@@ -98,7 +98,7 @@ BattleTowerBattleSalon_Enter:
     Call BattleTowerBattleSalon_PlayEnterBattleSalonAnimation
     Message BattleTowerBattleSalon_Text_PleaseFindAPartner
     CloseMessage
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_56, 0, 0
+    CallBattleTowerFunction BT_FUNC_UNK_56, 0, 0
     ReleaseAll
     End
 
@@ -173,7 +173,7 @@ BattleTowerBattleSalon_CherylDontTeamUp:
     End
 
 BattleTowerBattleSalon_CherylTeamUp:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
     SetVar VAR_UNK_0x40DF, 2
     Message BattleTowerBattleSalon_Text_CherylTeamUp
     CloseMessage
@@ -201,7 +201,7 @@ BattleTowerBattleSalon_MiraDontTeamUp:
     End
 
 BattleTowerBattleSalon_MiraTeamUp:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
     SetVar VAR_UNK_0x40DF, 2
     BufferPlayerName 0
     Message BattleTowerBattleSalon_Text_MiraTeamUp
@@ -229,7 +229,7 @@ BattleTowerBattleSalon_RileyDontTeamUp:
     End
 
 BattleTowerBattleSalon_RileyTeamUp:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
     SetVar VAR_UNK_0x40DF, 2
     Message BattleTowerBattleSalon_Text_RileyTeamUp
     CloseMessage
@@ -256,7 +256,7 @@ BattleTowerBattleSalon_MarleyDontTeamUp:
     End
 
 BattleTowerBattleSalon_MarleyTeamUp:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
     SetVar VAR_UNK_0x40DF, 2
     Message BattleTowerBattleSalon_Text_MarleyTeamUp
     CloseMessage
@@ -283,7 +283,7 @@ BattleTowerBattleSalon_BuckDontTeamUp:
     End
 
 BattleTowerBattleSalon_BuckTeamUp:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
+    CallBattleTowerFunction BT_FUNC_SET_PARTNER_ID, VAR_MAP_LOCAL_9, 0
     SetVar VAR_UNK_0x40DF, 2
     Message BattleTowerBattleSalon_Text_BuckTeamUp
     CloseMessage

@@ -51,58 +51,58 @@ BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx)
     battleTower = sub_0209B978(ctx->unk_00->unk_00);
 
     switch (functionIndex) {
-    case BATTLE_TOWER_FUNCTION_RESET_SYSTEM:
+    case BT_FUNC_RESET_SYSTEM:
         BattleTower_ResetSystem();
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_46:
+    case BT_FUNC_UNK_46:
         *destVar = BattleTower_GiveBattlePointsReward(battleTower);
         broadcast = SaveData_GetTVBroadcast(v8->saveData);
         sub_0206D0C8(broadcast, *destVar);
         GameRecords_AddToRecordValue(SaveData_GetGameRecords(v8->saveData), RECORD_UNK_068, *destVar);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM:
+    case BT_FUNC_GET_PARTNER_PARAM:
         *destVar = BattleTower_GetPartnerParam(battleTower, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM:
+    case BT_FUNC_GET_NEXT_OPPONENT_NUM:
         *destVar = BattleTower_GetNextOpponentNum(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_34:
+    case BT_FUNC_UNK_34:
         *destVar = ov104_022395B4(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS:
+    case BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS:
         *destVar = BattleTower_HasDefeatedSevenTrainers(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_36:
+    case BT_FUNC_UNK_36:
         *destVar = ov104_022395D8(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE:
+    case BT_FUNC_GET_CHALLENGE_MODE:
         *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS:
+    case BT_FUNC_SET_OPPONENT_TEAMS:
         BattleTower_CreateOpponentParties(battleTower, v8->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID:
+    case BT_FUNC_GET_OPPONENT_OBJECT_ID:
         *destVar = BattleTower_GetObjectIDFromOpponentIDInFrontierScript(battleTower, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_SET_BEAT_PALMER:
+    case BT_FUNC_SET_BEAT_PALMER:
         BattleTower_SetBeatPalmer(battleTower, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS:
+    case BT_FUNC_UPDATE_GAME_RECORDS:
         BattleTower_UpdateGameRecords(battleTower, v8->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL:
+    case BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL:
         BattleTower_UpdateGameRecordsAndJournal(battleTower, v8->saveData, v8->journalEntry);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_39:
+    case BT_FUNC_UNK_39:
         sub_0204A8C8(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_58:
+    case BT_FUNC_UNK_58:
         MI_CpuClear8(battleTower->unk_884, 70);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_59:
+    case BT_FUNC_UNK_59:
         battleTower->unk_8D6 = 1;
         break;
-    case BATTLE_TOWER_FUNCTION_CHECK_IS_NULL:
+    case BT_FUNC_CHECK_IS_NULL:
         if (battleTower == NULL) {
             *destVar = TRUE;
         } else {

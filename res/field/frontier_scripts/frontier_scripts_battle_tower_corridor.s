@@ -153,7 +153,7 @@ _00D0:
     .short 0xFD13
 
 _00E2:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 4, _0145
     GoToIfEq 0x8008, 5, _0145
     GoTo _0153

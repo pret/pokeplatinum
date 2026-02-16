@@ -223,7 +223,7 @@ _0142:
     FrontierScrCmd_2A _009C
     FrontierScrCmd_2C _00A0
     FrontierScrCmd_2F 1
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _01B0
     GoToIfEq 0x8008, 6, _01B0
     SetVar 0x8002, 3
@@ -250,7 +250,7 @@ _01D0:
     FrontierScrCmd_2D 0
     FrontierScrCmd_2D 1
     FrontierScrCmd_2B 1
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 3, _0250
     GoToIfEq 0x8008, 6, _0250
     FrontierScrCmd_25 0
@@ -281,8 +281,8 @@ _0270:
 _0278:
     GoToIfEq 0x8001, 0, _02AA
     GoToIfEq 0x8000, 1, _02AC
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 0, 0x800B
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 1, 0x800C
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, 0x800B
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, 0x800C
     GoTo _02AA
     End
 
@@ -290,8 +290,8 @@ _02AA:
     Return
 
 _02AC:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 0, 0x800B
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, 1, 0x800C
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, 0x800B
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 1, 0x800C
     Return
 
 _02BE:
