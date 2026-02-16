@@ -1071,40 +1071,40 @@ _0D0A:
     End
 
 _0D40:
-    FrontierScrCmd_1B 31, 13, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 31, 255, 0
+    InitLocalTextListMenu 31, 13, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleFactoryScene_Text_ContinueOption, 255, 0
     GoTo _0DCC
     End
 
 _0D5B:
-    FrontierScrCmd_1B 31, 11, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 31, 255, 0
-    FrontierScrCmd_1C 32, 255, 1
+    InitLocalTextListMenu 31, 11, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleFactoryScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleFactoryScene_Text_RecordOption, 255, 1
     GoTo _0DCC
     End
 
 _0D7E:
-    FrontierScrCmd_1B 31, 11, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 31, 255, 0
-    FrontierScrCmd_1C 33, 255, 2
+    InitLocalTextListMenu 31, 11, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleFactoryScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleFactoryScene_Text_RestOption, 255, 2
     GoTo _0DCC
     End
 
 _0DA1:
-    FrontierScrCmd_1B 31, 9, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 31, 255, 0
-    FrontierScrCmd_1C 32, 255, 1
-    FrontierScrCmd_1C 33, 255, 2
+    InitLocalTextListMenu 31, 9, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleFactoryScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleFactoryScene_Text_RecordOption, 255, 1
+    AddListMenuEntry BattleFactoryScene_Text_RestOption, 255, 2
     GoTo _0DCC
     End
 
 _0DCC:
-    FrontierScrCmd_1C 34, 255, 3
-    FrontierScrCmd_1D
+    AddListMenuEntry BattleFactoryScene_Text_RetireOption, 255, 3
+    ShowListMenu
     GoTo _0DDE
     End
 

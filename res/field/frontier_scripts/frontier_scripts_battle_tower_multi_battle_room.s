@@ -1,5 +1,6 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_tower_multi_battle_room.h"
+# include "res/text/bank/menu_entries.h"
 
     .data
 
@@ -318,9 +319,9 @@ _02B0:
     BufferNumber 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     GoToIfEq 0x8006, 0, _02E9
-    FrontierScrCmd_1A 31, 13, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
+    InitGlobalTextListMenu 31, 13, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
     GoTo _034B
     End
 
@@ -329,23 +330,23 @@ _02E9:
     GoToIfEq 0x8008, 1, _0330
     FrontierScrCmd_71 0x8008
     GoToIfEq 0x8008, 0, _0330
-    FrontierScrCmd_1A 31, 11, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
-    FrontierScrCmd_1C 0x110, 255, 1
+    InitGlobalTextListMenu 31, 11, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
+    AddListMenuEntry MenuEntries_Text_Record, 255, 1
     GoTo _034B
     End
 
 _0330:
-    FrontierScrCmd_1A 31, 13, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
+    InitGlobalTextListMenu 31, 13, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
     GoTo _034B
     End
 
 _034B:
-    FrontierScrCmd_1C 148, 255, 2
-    FrontierScrCmd_1D
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 255, 2
+    ShowListMenu
     CloseMessage
     SetVar 0x8000, 0
     GoToIfEq 0x8008, 2, _0B27
@@ -463,24 +464,24 @@ _053F:
     BufferNumber 0, 0x8008
     Message BattleTowerMultiBattleRoom_Text_AskReadyForNextPair
     GoToIfEq 0x8006, 0, _0578
-    FrontierScrCmd_1A 31, 11, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
+    InitGlobalTextListMenu 31, 11, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
     GoTo _059B
     End
 
 _0578:
-    FrontierScrCmd_1A 31, 9, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
-    FrontierScrCmd_1C 0x110, 255, 1
+    InitGlobalTextListMenu 31, 9, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
+    AddListMenuEntry MenuEntries_Text_Record, 255, 1
     GoTo _059B
     End
 
 _059B:
-    FrontierScrCmd_1C 147, 255, 2
-    FrontierScrCmd_1C 148, 255, 3
-    FrontierScrCmd_1D
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Rest, 255, 2
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 255, 3
+    ShowListMenu
     CloseMessage
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 0, _05F1
