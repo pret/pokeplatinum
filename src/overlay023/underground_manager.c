@@ -14,7 +14,7 @@
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
 #include "overlay005/ov5_021EAFA4.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_pc.h"
@@ -55,8 +55,6 @@
 #define TOUCH_RADAR_RADIUS 6
 
 #define MAX_TOUCH_RADAR_BLIPS 8
-
-#define MAX_NORMAL_RADAR_BLIPS 8
 
 #define MAX_STORED_MENU_POSITIONS 20
 
@@ -425,7 +423,7 @@ static void UndergroundMan_StartTouchRadar(int netID, Coordinates *touchCoords)
     size = UndergroundMan_TouchRadarSearch(buffer, UndergroundTraps_IsTrapAtCoordinates, touchCoords);
     CommSys_SendDataServer(49, buffer, size);
 
-    size = UndergroundMan_TouchRadarSearch(buffer, ov23_02241200, touchCoords);
+    size = UndergroundMan_TouchRadarSearch(buffer, Mining_IsMiningSpotAtCoordinates, touchCoords);
     CommSys_SendDataServer(50, buffer, size);
 }
 
@@ -675,7 +673,7 @@ void UndergroundMan_ProcessInteractEvent(int netID, int unused1, void *data, voi
         return;
     }
 
-    if (ov23_0223E354(netID, &coordinates)) {
+    if (Mining_CheckForMiningSpotInteract(netID, &coordinates)) {
         CommPlayerMan_SetMovementEnabled(netID, FALSE);
         return;
     }
@@ -741,7 +739,7 @@ void UndergroundMan_Process(void)
 
     UndergroundSpheres_AdvanceBuriedSphereSparkleTimer();
     UndergroundTraps_SendTrapRadarResults();
-    ov23_0223E878();
+    Mining_SendRadarResults();
 
     if (!sUndergroundMan->resourcesPaused) {
         UndergroundTraps_Dummy2(sUndergroundMan->fieldSystem->bgConfig);
@@ -768,8 +766,8 @@ void UndergroundMan_InitAllResources(FieldSystem *fieldSystem)
         resource = Heap_Alloc(HEAP_ID_COMMUNICATION, BuriedSpheresEnv_Size());
         BuriedSpheresEnv_Init(resource, fieldSystem);
 
-        resource = Heap_Alloc(HEAP_ID_COMMUNICATION, ov23_0223E2E8());
-        ov23_0223E1E4(resource, fieldSystem);
+        resource = Heap_Alloc(HEAP_ID_COMMUNICATION, MiningEnv_Size());
+        MiningEnv_Init(resource, fieldSystem);
 
         resource = Heap_Alloc(HEAP_ID_COMMUNICATION, RecordsEnv_Size());
         RecordsEnv_Init(resource, SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(fieldSystem)), FieldSystem_GetSaveData(fieldSystem));
@@ -786,7 +784,7 @@ void UndergroundMan_PauseResources(void)
         SecretBases_DisableBaseEntranceGraphics();
         UndergroundTraps_DisableTrapGraphics();
         CommPlayerMan_Disable();
-        ov23_0223E2F0();
+        Mining_Dummy();
         UndergroundMan_RemovePrinters();
 
         sUndergroundMan->resourcesPaused = TRUE;
@@ -801,7 +799,7 @@ void UndergroundMan_UnpauseResources(void)
         UndergroundSpheres_EnableBuriedSphereSparkles();
         SecretBases_EnableBaseEntranceGraphics();
         UndergroundTraps_EnableTrapGraphics();
-        ov23_0223E2F4();
+        Mining_Dummy2();
 
         sUndergroundMan->resourcesPaused = FALSE;
         LoadMessageBoxGraphics(sUndergroundMan->fieldSystem->bgConfig, BG_LAYER_MAIN_3, BASE_TILE_SCROLLING_MESSAGE_BOX, 10, 0, HEAP_ID_FIELD1);
@@ -816,7 +814,7 @@ void UndergroundMan_FreeAllResources(void)
         TrapsEnv_Free();
         CommPlayerMan_Delete(TRUE);
         BuriedSpheresEnv_Free();
-        ov23_0223E2F8();
+        MiningEnv_Free();
         UndergroundMenuContext_Free();
         RecordsEnv_Free();
         UndergroundMan_Free();
@@ -851,7 +849,7 @@ BOOL UndergroundMan_GetQueuedMessage(String *dest)
     } else if (SecretBases_GetQueuedMessage(dest)) {
         sUndergroundMan->messageRetrieved = TRUE;
         return TRUE;
-    } else if (ov23_022415B8(dest)) {
+    } else if (Mining_GetQueuedMessage(dest)) {
         sUndergroundMan->messageRetrieved = TRUE;
         return TRUE;
     } else if (UndergroundSpheres_GetQueuedMessage(dest)) {
@@ -910,14 +908,14 @@ int UndergroundMan_GetRadarItemXCoord(int index)
                 return 0;
             case RADAR_NORMAL:
                 if (index < MAX_NORMAL_RADAR_BLIPS) {
-                    return ov23_0224121C(index);
+                    return NormalRadar_GetXCoordOfMiningSpot(index);
                 }
             case RADAR_SPHERE:
                 return SphereRadar_GetXCoordOfBuriedSphere(index);
             case RADAR_TRAP:
                 return TrapRadar_GetXCoordOfBuriedTrap(index);
             case RADAR_TREASURE:
-                return ov23_0224125C(index);
+                return TreasureRadar_GetXCoordOfMiningSpot(index);
             }
         } else {
             SecretBase *secretBase = SaveData_GetSecretBase(sUndergroundMan->fieldSystem->saveData);
@@ -937,14 +935,14 @@ int UndergroundMan_GetRadarItemZCoord(int index)
                 return 0;
             case RADAR_NORMAL:
                 if (index < MAX_NORMAL_RADAR_BLIPS) {
-                    return ov23_0224123C(index);
+                    return NormalRadar_GetZCoordOfMiningSpot(index);
                 }
             case RADAR_SPHERE:
                 return SphereRadar_GetZCoordOfBuriedSphere(index);
             case RADAR_TRAP:
                 return TrapRadar_GetZCoordOfBuriedTrap(index);
             case RADAR_TREASURE:
-                return ov23_02241294(index);
+                return TreasureRadar_GetZCoordOfMiningSpot(index);
             }
         } else {
             SecretBase *secretBase = SaveData_GetSecretBase(sUndergroundMan->fieldSystem->saveData);

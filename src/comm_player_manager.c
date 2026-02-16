@@ -19,7 +19,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F55CC.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_comm_manager.h"
 #include "overlay023/underground_manager.h"
@@ -526,7 +526,7 @@ static void sub_02057EF8(void *unused)
         } else if (sCommPlayerManager->isActive[netId]) {
             if (CommSys_CurNetId() == 0 && sCommPlayerManager->isUnderground) {
                 UndergroundTraps_RemoveLinkData(netId);
-                ov23_02241648(netId);
+                Mining_ResetPlayerData(netId);
             }
 
             u8 netId_u8 = netId;

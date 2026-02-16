@@ -167,6 +167,8 @@ typedef struct GraphicsModes {
     GXBG0As bg0As2DOr3D;
 } GraphicsModes;
 
+#define TILEMAP_PALETTE_SHIFT(i) (i << 12)
+
 void SetAllGraphicsModes(const GraphicsModes *graphicsModes);
 void SetScreenGraphicsModes(const GraphicsModes *graphicsModes, u8 screen);
 

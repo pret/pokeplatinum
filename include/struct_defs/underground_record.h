@@ -8,7 +8,7 @@ typedef struct UndergroundRecord {
     u32 flagsStolen : 20; // never read; refers to taking a flag from another player, not from a base
     u32 numSpheresDug : 20;
     u32 numFossilsDug : 20;
-    u32 unk_18_0 : 20;
+    u32 numNonFossilsDug : 20;
     u32 numTrapHits : 20;
     u32 numTrapsTriggered : 20;
     u32 numPlayersHelped : 20;

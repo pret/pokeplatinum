@@ -74,8 +74,8 @@ UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, enum HeapID heapI
     textPrinter->formattingNeeded = FALSE;
     textPrinter->sysTask = NULL;
     textPrinter->renderDelay = renderDelay;
-    textPrinter->windowBaseTile = (((1024 - (18 + 12)) - 73) - (27 * 4));
-    textPrinter->messageBoxTile = (1024 - (18 + 12));
+    textPrinter->windowBaseTile = UG_TEXT_BASE_TILE_MESSAGE_WINDOW;
+    textPrinter->messageBoxTile = BASE_TILE_SCROLLING_MESSAGE_BOX;
 
     return textPrinter;
 }

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNDERGROUND_TEXT_PRINTER_H
 #define POKEPLATINUM_UNDERGROUND_TEXT_PRINTER_H
 
+#include "constants/field_base_tiles.h"
+
 #include "bg_window.h"
 #include "list_menu.h"
 #include "message.h"
@@ -30,6 +32,8 @@ typedef struct UndergroundTextPrinter {
     BOOL formattingNeeded : 1;
     BOOL dummy : 1;
 } UndergroundTextPrinter;
+
+#define UG_TEXT_BASE_TILE_MESSAGE_WINDOW (BASE_TILE_SCROLLING_MESSAGE_BOX - 73 - MESSAGE_WINDOW_TILE_COUNT)
 
 const ListMenuTemplate *UndergroundTextPrinter_GetListMenuTemplate(void);
 UndergroundTextPrinter *UndergroundTextPrinter_New(int bankID, enum HeapID heapID, BgConfig *bgConfig, int renderDelay, int stringSize);
