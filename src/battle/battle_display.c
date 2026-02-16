@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/battle_script.h"
 #include "constants/heap.h"
 #include "constants/species.h"
 #include "generated/items.h"
@@ -876,7 +877,7 @@ void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMe
     healthbar->damage = message->hpCalcTemp;
     healthbar->level = message->level;
 
-    if (message->hpCalcTemp == 0x7fff) {
+    if (message->hpCalcTemp == HP_CALC_INSTANT_ZERO) {
         healthbar->curHP = 0;
         healthbar->damage = 0;
     }

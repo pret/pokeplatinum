@@ -579,7 +579,8 @@ static const SpriteTemplate sHealthbarTemplate_Unk_ov16_0226F514 = {
         HEALTHBAR_UNK_B8_NCER,
         HEALTHBAR_UNK_B7_NANR,
         SPRITE_RESOURCE_NONE,
-        SPRITE_RESOURCE_NONE },
+        SPRITE_RESOURCE_NONE,
+    },
     .bgPriority = 0,
     .vramTransfer = FALSE
 };
