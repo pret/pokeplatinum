@@ -121,7 +121,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     ov12_02233454,
     ov12_02233734,
     ov12_022339C4,
-    ov12_0222CC54,
+    BattleAnimSpriteFunc_IcicleSpear,
     ov12_02234008,
     ov12_0222D7C0,
     ov12_0222DB60,

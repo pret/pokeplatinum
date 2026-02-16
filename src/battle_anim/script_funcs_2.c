@@ -2207,13 +2207,13 @@ static void ov12_022310D4(SysTask *param0, void *param1)
 
         return;
     case 2:
-        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
+        if (XYTransformContext_UpdateAndApplyParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
             XYTransformContext_InitParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_44, v0->unk_14, v0->unk_46, v0->unk_16, 10, -(32 * FX32_ONE));
             v0->unk_0C++;
         }
         break;
     case 3:
-        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
+        if (XYTransformContext_UpdateAndApplyParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
             ManagedSprite_SetDrawFlag(v0->unk_48, 0);
             v0->unk_0C++;
         }

@@ -5,7 +5,7 @@
 
 #include "sprite_system.h"
 
-void BattleAnimSpriteFunc_StringShot(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimSpriteFunc_StringShot(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_Strength(BattleAnimSystem *system);
 void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system);
 void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system);
@@ -21,8 +21,8 @@ void BattleAnimScriptFunc_Nightmare(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Flail(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Magnitude(BattleAnimSystem *system);
 void BattleAnimScriptFunc_OdorSleuth(BattleAnimSystem *system);
-void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimSpriteFunc_IcicleSpear(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_Surf(BattleAnimSystem *system);
-void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void ov12_0222D56C(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 
 #endif // POKEPLATINUM_SCRIPT_FUNCS_0_H

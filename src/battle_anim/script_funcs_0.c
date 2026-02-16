@@ -540,18 +540,31 @@ enum OdorSleuthState {
 #define ODOR_SLEUTH_DEFENDER_SHAKE_INTERVAL 0
 #define ODOR_SLEUTH_DEFENDER_SHAKE_AMOUNT   10
 
-typedef struct {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    Point2D unk_0C;
-    BattleAnimScriptFuncCommon unk_10;
-    SpriteShakeInfo unk_2C;
-    ManagedSprite *unk_38;
-    BattleAnimSpriteInfo unk_3C[4];
-    XYTransformContext unk_8C[2];
-    ValueLerpContext unk_D4;
-} UnkStruct_ov12_0222CBFC;
+// -------------------------------------------------------------------
+// Icicle Spear Sprite
+// -------------------------------------------------------------------
+typedef struct IcicleSpearSpriteContext {
+    int unused1;
+    int movementFrames;
+    int arcRadius;
+    Point2D targetOffset;
+    BattleAnimScriptFuncCommon common;
+    SpriteShakeInfo unused2;
+    ManagedSprite *sprite;
+    BattleAnimSpriteInfo spriteInfo[4];
+    XYTransformContext pos[2];
+    ValueLerpContext angle;
+} IcicleSpearSpriteContext;
+
+#define ICICLE_SPEAR_SPRITE_VAR_TARGET_OFFSET_X 0
+#define ICICLE_SPEAR_SPRITE_VAR_TARGET_OFFSET_Y 1
+#define ICICLE_SPEAR_SPRITE_VAR_MOVEMENT_FRAMES 2
+#define ICICLE_SPEAR_SPRITE_VAR_ARC_RADIUS      3
+#define ICICLE_SPEAR_SPRITE_START_ANGLE         DEG_TO_IDX(20)
+#define ICICLE_SPEAR_SPRITE_END_ANGLE           DEG_TO_IDX(130)
+#define ICICLE_SPEAR_SPRITE_RSTART_ANGLE        DEG_TO_IDX(90) // Start angle when reversed (enemy to player)
+#define ICICLE_SPEAR_SPRITE_REND_ANGLE          DEG_TO_IDX(130) // End angle when reversed (enemy to player)
+#define ICICLE_SPEAR_SPRITE_ROTATION_FRAMES     10
 
 // -------------------------------------------------------------------
 // Surf
@@ -2348,70 +2361,82 @@ void BattleAnimScriptFunc_OdorSleuth(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_OdorSleuth, ctx);
 }
 
-static void ov12_0222CBFC(SysTask *param0, void *param1)
+static void BattleAnimTask_IcicleSpearSprite(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_0222CBFC *v1 = (UnkStruct_ov12_0222CBFC *)param1;
+    IcicleSpearSpriteContext *ctx = param;
 
-    if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v1->unk_8C[0], &v1->unk_8C[1], v1->unk_38) == 0) {
-        Sprite_DeleteAndFreeResources(v1->unk_38);
-        BattleAnimSystem_EndAnimTask(v1->unk_10.battleAnimSys, param0);
-        BattleAnimUtil_Free(v1);
-        (v1) = NULL;
+    if (XYTransformContext_UpdateAndApplyParabolic(&ctx->pos[0], &ctx->pos[1], ctx->sprite) == FALSE) {
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        BattleAnimUtil_Free(ctx);
+        ctx = NULL;
         return;
     }
 
-    if (ValueLerpContext_Update(&v1->unk_D4) == 1) {
-        ManagedSprite_SetAffineZRotation(v1->unk_38, v1->unk_D4.value);
+    if (ValueLerpContext_Update(&ctx->angle) == TRUE) {
+        ManagedSprite_SetAffineZRotation(ctx->sprite, ctx->angle.value);
     }
 
-    ManagedSprite_TickFrame(v1->unk_38);
-    SpriteSystem_DrawSprites(v1->unk_10.primarySpriteManager);
+    ManagedSprite_TickFrame(ctx->sprite);
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
-void ov12_0222CC54(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_IcicleSpear(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    int v0;
-    int v1;
-    UnkStruct_ov12_0222CBFC *v2 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222CBFC));
-    BattleAnimSystem_GetCommonData(param0, &v2->unk_10);
+    IcicleSpearSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(IcicleSpearSpriteContext));
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    v2->unk_0C.x = BattleAnimSystem_GetScriptVar(param0, 0);
-    v2->unk_0C.y = BattleAnimSystem_GetScriptVar(param0, 1);
-    v2->unk_04 = BattleAnimSystem_GetScriptVar(param0, 2);
-    v2->unk_08 = BattleAnimSystem_GetScriptVar(param0, 3);
+    ctx->targetOffset.x = BattleAnimSystem_GetScriptVar(system, ICICLE_SPEAR_SPRITE_VAR_TARGET_OFFSET_X);
+    ctx->targetOffset.y = BattleAnimSystem_GetScriptVar(system, ICICLE_SPEAR_SPRITE_VAR_TARGET_OFFSET_Y);
+    ctx->movementFrames = BattleAnimSystem_GetScriptVar(system, ICICLE_SPEAR_SPRITE_VAR_MOVEMENT_FRAMES);
+    ctx->arcRadius = BattleAnimSystem_GetScriptVar(system, ICICLE_SPEAR_SPRITE_VAR_ARC_RADIUS);
 
-    v1 = BattleAnimUtil_GetTransformDirectionX(param0, BattleAnimSystem_GetAttacker(param0));
-    v2->unk_38 = param3;
+    int dir = BattleAnimUtil_GetTransformDirectionX(system, BattleAnimSystem_GetAttacker(system));
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetAffineOverwriteMode(v2->unk_38, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    v2->unk_3C[0].monSprite = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetAttacker(param0));
-    v2->unk_3C[1].monSprite = BattleAnimSystem_GetBattlerSprite(param0, BattleAnimSystem_GetDefender(param0));
+    ctx->spriteInfo[0].monSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimSystem_GetAttacker(system));
+    ctx->spriteInfo[1].monSprite = BattleAnimSystem_GetBattlerSprite(system, BattleAnimSystem_GetDefender(system));
 
-    BattleAnimUtil_GetMonSpritePos(v2->unk_3C[0].monSprite, &v2->unk_3C[0].pos);
-    BattleAnimUtil_GetMonSpritePos(v2->unk_3C[1].monSprite, &v2->unk_3C[1].pos);
-    XYTransformContext_InitParabolic(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_3C[0].pos.x, v2->unk_3C[1].pos.x + (v2->unk_0C.x * v1), v2->unk_3C[0].pos.y, v2->unk_3C[1].pos.y + (v2->unk_0C.y * v1), v2->unk_04, v2->unk_08 * FX32_ONE);
+    BattleAnimUtil_GetMonSpritePos(ctx->spriteInfo[0].monSprite, &ctx->spriteInfo[0].pos);
+    BattleAnimUtil_GetMonSpritePos(ctx->spriteInfo[1].monSprite, &ctx->spriteInfo[1].pos);
+    XYTransformContext_InitParabolic(&ctx->pos[0],
+        &ctx->pos[1],
+        ctx->spriteInfo[0].pos.x,
+        ctx->spriteInfo[1].pos.x + (ctx->targetOffset.x * dir),
+        ctx->spriteInfo[0].pos.y,
+        ctx->spriteInfo[1].pos.y + (ctx->targetOffset.y * dir),
+        ctx->movementFrames,
+        ctx->arcRadius * FX32_ONE);
 
-    if ((BattleAnimSystem_GetBattlerType(param0, BattleAnimSystem_GetAttacker(param0)) == 4) && (BattleAnimSystem_GetBattlerType(param0, BattleAnimSystem_GetDefender(param0)) == 2)) {
-        v1 *= -1;
+    if (BattleAnimSystem_GetBattlerType(system, BattleAnimSystem_GetAttacker(system)) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2
+        && BattleAnimSystem_GetBattlerType(system, BattleAnimSystem_GetDefender(system)) == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+        dir *= -1;
     }
 
-    if ((BattleAnimSystem_GetBattlerType(param0, BattleAnimSystem_GetAttacker(param0)) == 5) && (BattleAnimSystem_GetBattlerType(param0, BattleAnimSystem_GetDefender(param0)) == 3)) {
-        v1 *= -1;
+    if (BattleAnimSystem_GetBattlerType(system, BattleAnimSystem_GetAttacker(system)) == BATTLER_TYPE_ENEMY_SIDE_SLOT_2
+        && BattleAnimSystem_GetBattlerType(system, BattleAnimSystem_GetDefender(system)) == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+        dir *= -1;
     }
 
-    if (v1 > 0) {
-        ValueLerpContext_Init(&v2->unk_D4, ((20 * 0xffff) / 360) * v1, ((130 * 0xffff) / 360) * v1, 10);
+    if (dir > 0) {
+        ValueLerpContext_Init(&ctx->angle,
+            ICICLE_SPEAR_SPRITE_START_ANGLE * dir,
+            ICICLE_SPEAR_SPRITE_END_ANGLE * dir,
+            ICICLE_SPEAR_SPRITE_ROTATION_FRAMES);
     } else {
-        ValueLerpContext_Init(&v2->unk_D4, ((90 * 0xffff) / 360) * v1, ((130 * 0xffff) / 360) * v1, 10);
+        ValueLerpContext_Init(&ctx->angle,
+            ICICLE_SPEAR_SPRITE_RSTART_ANGLE * dir,
+            ICICLE_SPEAR_SPRITE_REND_ANGLE * dir,
+            ICICLE_SPEAR_SPRITE_ROTATION_FRAMES);
     }
 
-    ManagedSprite_SetAffineZRotation(v2->unk_38, v2->unk_D4.value);
-    XYTransformContext_UpdateParabolicAndApplyToSprite(&v2->unk_8C[0], &v2->unk_8C[1], v2->unk_38);
+    ManagedSprite_SetAffineZRotation(ctx->sprite, ctx->angle.value);
+    XYTransformContext_UpdateAndApplyParabolic(&ctx->pos[0], &ctx->pos[1], ctx->sprite);
 
-    ManagedSprite_TickFrame(v2->unk_38);
-    BattleAnimSystem_StartAnimTask(v2->unk_10.battleAnimSys, ov12_0222CBFC, v2);
+    ManagedSprite_TickFrame(ctx->sprite);
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_IcicleSpearSprite, ctx);
 }
 
 static void BattleAnimTask_Surf(SysTask *task, void *param)
@@ -2702,11 +2727,11 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     case 7: {
         u8 v16 = 0;
 
-        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v1->unk_30[0].unk_00) == 0) {
+        if (XYTransformContext_UpdateAndApplyParabolic(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v1->unk_30[0].unk_00) == 0) {
             v16++;
         }
 
-        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v1->unk_30[1].unk_00) == 0) {
+        if (XYTransformContext_UpdateAndApplyParabolic(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v1->unk_30[1].unk_00) == 0) {
             v16++;
         }
 

@@ -183,7 +183,7 @@ BOOL PosLerpContext_UpdateAndApplyToSprite(XYTransformContext *ctx, ManagedSprit
 BOOL PosLerpContext_UpdateAndApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite);
 void XYTransformContext_InitParabolic(XYTransformContext *linear, XYTransformContext *revs, s16 sx, s16 ex, s16 sy, s16 ey, u16 frames, fx32 arcRadius);
 BOOL XYTransformContext_UpdateParabolic(XYTransformContext *ctx, XYTransformContext *revs);
-BOOL XYTransformContext_UpdateParabolicAndApplyToSprite(XYTransformContext *ctx, XYTransformContext *revs, ManagedSprite *sprite);
+BOOL XYTransformContext_UpdateAndApplyParabolic(XYTransformContext *ctx, XYTransformContext *revs, ManagedSprite *sprite);
 void ValueLerpContext_Init(ValueLerpContext *ctx, s32 start, s32 end, u32 steps);
 void ValueLerpContext_InitFX32(ValueLerpContext *ctx, s16 start, s16 end, u32 steps); // Uses FX32 internally
 BOOL ValueLerpContext_Update(ValueLerpContext *ctx);

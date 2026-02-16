@@ -332,14 +332,14 @@ BOOL XYTransformContext_UpdateParabolic(XYTransformContext *linear, XYTransformC
     return TRUE;
 }
 
-BOOL XYTransformContext_UpdateParabolicAndApplyToSprite(XYTransformContext *linear, XYTransformContext *revs, ManagedSprite *managedSprite)
+BOOL XYTransformContext_UpdateAndApplyParabolic(XYTransformContext *linear, XYTransformContext *revs, ManagedSprite *sprite)
 {
     if (XYTransformContext_UpdateParabolic(linear, revs)) {
-        XYTransformContext_ApplyPosOffsetToSprite(linear, managedSprite, 0, 0);
-        return 1;
+        XYTransformContext_ApplyPosOffsetToSprite(linear, sprite, 0, 0);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ValueLerpContext_Init(ValueLerpContext *ctx, s32 start, s32 end, u32 steps)

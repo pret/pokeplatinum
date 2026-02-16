@@ -3806,7 +3806,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
         v0->unk_00.state++;
         break;
     case 1:
-        if (XYTransformContext_UpdateParabolicAndApplyToSprite(&v0->unk_24[0], &v0->unk_24[1], v0->unk_1C) == 0) {
+        if (XYTransformContext_UpdateAndApplyParabolic(&v0->unk_24[0], &v0->unk_24[1], v0->unk_1C) == 0) {
             v0->unk_00.state++;
         }
         break;
