@@ -5,7 +5,7 @@
 
 #include "sprite_system.h"
 
-void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
+void BattleAnimSpriteFunc_StringShot(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3);
 void BattleAnimScriptFunc_Strength(BattleAnimSystem *system);
 void BattleAnimScriptFunc_BulkUp(BattleAnimSystem *system);
 void BattleAnimScriptFunc_DoubleTeam(BattleAnimSystem *system);

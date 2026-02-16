@@ -23,18 +23,45 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01[3];
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06;
-    BattleAnimSystem *unk_08;
-    SpriteSystem *unk_0C;
-    SpriteManager *unk_10;
-    ManagedSprite *unk_14[3];
-    XYTransformContext unk_20;
-} UnkStruct_ov12_0222AC70;
+// -------------------------------------------------------------------
+// String Shot Sprite
+// -------------------------------------------------------------------
+typedef struct StringShotSpriteContext {
+    u8 state;
+    u8 spriteCounters[3];
+    u8 delay;
+    u8 spriteAlpha;
+    u8 bgAlpha;
+    BattleAnimSystem *battleAnimSystem;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    ManagedSprite *sprites[3];
+    XYTransformContext scale;
+} StringShotSpriteContext;
+
+enum StringShotSpriteState {
+    STRING_SHOT_SPRITE_STATE_BLINK = 0,
+    STRING_SHOT_SPRITE_STATE_SCALE,
+    STRING_SHOT_SPRITE_STATE_WAIT_FOR_SCALE,
+    STRING_SHOT_SPRITE_STATE_FADE_OUT,
+};
+
+#define STRING_SHOT_SPRITE_INIT_SPRITE_ALPHA 15
+#define STRING_SHOT_SPRITE_INIT_BG_ALPHA     0
+#define STRING_SHOT_SPRITE_END_SPRITE_ALPHA  0
+#define STRING_SHOT_SPRITE_END_BG_ALPHA      15
+#define STRING_SHOT_SPRITE_BASE_Y            32
+#define STRING_SHOT_SPRITE_OFFSET            4
+#define STRING_SHOT_SPRITE_TIMING_DELAY      0
+#define STRING_SHOT_SPRITE_TIMING_INTERVAL   1
+#define STRING_SHOT_SPRITE_TIMING_COUNT      2
+#define STRING_SHOT_SPRITE_BLINK_FRAMES      45
+#define STRING_SHOT_SPRITE_WAIT_FRAMES       45
+#define STRING_SHOT_SPRITE_SCALE_SX          100
+#define STRING_SHOT_SPRITE_SCALE_EX          60
+#define STRING_SHOT_SPRITE_SCALE_FRAMES      10
+
+#define STRING_SHOT_SPRITE_VAR_SPRITE_COUNT 0
 
 // -------------------------------------------------------------------
 // Strength
@@ -601,155 +628,154 @@ typedef struct {
     XYTransformContext unk_CC;
 } UnkStruct_ov12_0222D128;
 
-static const u8 Unk_ov12_0223A09E[][2] = {
-    { 0x8, 0x2 },
-    { 0xD, 0x1 },
-    { 0x12, 0x3 }
+static const u8 sStringShotSpriteTimings[][STRING_SHOT_SPRITE_TIMING_COUNT] = {
+    // { delay before toggling, frames between toggles }
+    { 8, 2 },
+    { 13, 1 },
+    { 18, 3 }
 };
 
-static void ov12_0222AC70(SysTask *param0, void *param1)
+static void BattleAnimTask_StringShotSprite(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_0222AC70 *v1 = (UnkStruct_ov12_0222AC70 *)param1;
+    int i;
+    StringShotSpriteContext *ctx = param;
 
-    switch (v1->unk_00) {
-    case 0:
-        v1->unk_04++;
+    switch (ctx->state) {
+    case STRING_SHOT_SPRITE_STATE_BLINK:
+        ctx->delay++;
 
-        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
-            {
-                s16 v2, v3;
-                ManagedSprite_GetPositionXY(v1->unk_14[v0], &v2, &v3);
-            }
+        for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSystem, STRING_SHOT_SPRITE_VAR_SPRITE_COUNT); i++) {
+            s16 unused0, unused1;
+            ManagedSprite_GetPositionXY(ctx->sprites[i], &unused0, &unused1); // Required to match
 
-            if (v1->unk_04 >= Unk_ov12_0223A09E[v0][0]) {
-                v1->unk_01[v0]++;
+            if (ctx->delay >= sStringShotSpriteTimings[i][STRING_SHOT_SPRITE_TIMING_DELAY]) {
+                ctx->spriteCounters[i]++;
 
-                if (v1->unk_01[v0] >= Unk_ov12_0223A09E[v0][1]) {
-                    v1->unk_01[v0] = 0;
+                if (ctx->spriteCounters[i] >= sStringShotSpriteTimings[i][STRING_SHOT_SPRITE_TIMING_INTERVAL]) {
+                    ctx->spriteCounters[i] = 0;
 
-                    if (ManagedSprite_GetDrawFlag(v1->unk_14[v0]) == 1) {
-                        ManagedSprite_SetDrawFlag(v1->unk_14[v0], 0);
+                    if (ManagedSprite_GetDrawFlag(ctx->sprites[i]) == TRUE) {
+                        ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
                     } else {
-                        ManagedSprite_SetDrawFlag(v1->unk_14[v0], 1);
+                        ManagedSprite_SetDrawFlag(ctx->sprites[i], TRUE);
                     }
                 }
             } else {
-                ManagedSprite_SetDrawFlag(v1->unk_14[v0], 0);
+                ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
             }
         }
 
-        if (v1->unk_04 >= 45) {
-            for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
-                ManagedSprite_SetDrawFlag(v1->unk_14[v0], 1);
+        if (ctx->delay >= STRING_SHOT_SPRITE_BLINK_FRAMES) {
+            for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSystem, STRING_SHOT_SPRITE_VAR_SPRITE_COUNT); i++) {
+                ManagedSprite_SetDrawFlag(ctx->sprites[i], TRUE);
             }
 
-            v1->unk_04 = 0;
-            v1->unk_00++;
+            ctx->delay = 0;
+            ctx->state++;
         }
         break;
-    case 1:
-        ScaleLerpContext_InitXY(&v1->unk_20, 100, 60, 100, 100, 100, 10);
-        v1->unk_00++;
+    case STRING_SHOT_SPRITE_STATE_SCALE:
+        ScaleLerpContext_InitXY(&ctx->scale,
+            STRING_SHOT_SPRITE_SCALE_SX,
+            STRING_SHOT_SPRITE_SCALE_EX,
+            BASE_SCALE_XY,
+            BASE_SCALE_XY,
+            BASE_SCALE_XY,
+            STRING_SHOT_SPRITE_SCALE_FRAMES);
+        ctx->state++;
         break;
-    case 2:
-        if (ScaleLerpContext_UpdateXY(&v1->unk_20) == 1) {
-            for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
-                f32 v4, v5;
-
-                ScaleLerpContext_GetAffineScale(&v1->unk_20, &v4, &v5);
-                ManagedSprite_SetAffineScale(v1->unk_14[v0], v4, v5);
+    case STRING_SHOT_SPRITE_STATE_WAIT_FOR_SCALE:
+        if (ScaleLerpContext_UpdateXY(&ctx->scale) == TRUE) {
+            for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSystem, STRING_SHOT_SPRITE_VAR_SPRITE_COUNT); i++) {
+                f32 affineX, affineY;
+                ScaleLerpContext_GetAffineScale(&ctx->scale, &affineX, &affineY);
+                ManagedSprite_SetAffineScale(ctx->sprites[i], affineX, affineY);
             }
         } else {
-            if (++v1->unk_04 >= 45) {
-                v1->unk_00++;
+            if (++ctx->delay >= STRING_SHOT_SPRITE_WAIT_FRAMES) {
+                ctx->state++;
             }
         }
         break;
-    case 3:
-        if (v1->unk_05 > 0) {
-            v1->unk_05--;
+    case STRING_SHOT_SPRITE_STATE_FADE_OUT:
+        if (ctx->spriteAlpha > STRING_SHOT_SPRITE_END_SPRITE_ALPHA) {
+            ctx->spriteAlpha--;
         }
 
-        if (v1->unk_06 < 15) {
-            v1->unk_06++;
+        if (ctx->bgAlpha < STRING_SHOT_SPRITE_END_BG_ALPHA) {
+            ctx->bgAlpha++;
         }
 
-        if ((v1->unk_05 == 0) && (v1->unk_06 == 15)) {
-            v1->unk_00++;
+        if (ctx->spriteAlpha == STRING_SHOT_SPRITE_END_SPRITE_ALPHA && ctx->bgAlpha == STRING_SHOT_SPRITE_END_BG_ALPHA) {
+            ctx->state++;
         }
 
-        G2_ChangeBlendAlpha(v1->unk_05, v1->unk_06);
+        G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
         break;
     default:
-        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
-            Sprite_DeleteAndFreeResources(v1->unk_14[v0]);
+        for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSystem, STRING_SHOT_SPRITE_VAR_SPRITE_COUNT); i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
         }
 
-        BattleAnimSystem_EndAnimTask(v1->unk_08, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSystem, task);
+        Heap_Free(ctx);
         return;
     }
 
-    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
-        Sprite_TickFrame(v1->unk_14[v0]->sprite);
+    for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSystem, STRING_SHOT_SPRITE_VAR_SPRITE_COUNT); i++) {
+        Sprite_TickFrame(ctx->sprites[i]->sprite);
     }
 
-    SpriteSystem_DrawSprites(v1->unk_10);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_0222AE68(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_StringShot(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    int v0;
-    UnkStruct_ov12_0222AC70 *v1;
-    SpriteTemplate v2;
+    int i;
+    SpriteTemplate template;
 
-    v1 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222AC70));
+    StringShotSpriteContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(StringShotSpriteContext));
+    GF_ASSERT(ctx != NULL);
 
-    GF_ASSERT(v1 != NULL);
+    ctx->delay = 0;
+    ctx->state = 0;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->battleAnimSystem = system;
 
-    v1->unk_04 = 0;
-    v1->unk_00 = 0;
-    v1->unk_0C = param1;
-    v1->unk_10 = param2;
-    v1->unk_08 = param0;
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSystem, BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
 
-    v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    BattleAnimUtil_SetSpriteBgBlending(v1->unk_08, 0xffffffff, 0xffffffff);
+    ctx->spriteAlpha = STRING_SHOT_SPRITE_INIT_SPRITE_ALPHA;
+    ctx->bgAlpha = STRING_SHOT_SPRITE_INIT_BG_ALPHA;
 
-    v1->unk_05 = 15;
-    v1->unk_06 = 0;
+    G2_ChangeBlendAlpha(ctx->spriteAlpha, ctx->bgAlpha);
 
-    G2_ChangeBlendAlpha(v1->unk_05, v1->unk_06);
+    ctx->sprites[0] = sprite;
 
-    v1->unk_14[0] = param3;
-
-    {
-        Point2D v3;
-        int v4 = BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetDefender(param0));
-
-        if (v4 == 0x3) {
-            BattleAnimUtil_GetBattlerTypeDefaultPos(0, BattleAnimSystem_IsContest(param0), &v3);
-        } else {
-            BattleAnimUtil_GetBattlerTypeDefaultPos(1, BattleAnimSystem_IsContest(param0), &v3);
-        }
-
-        for (v0 = 1; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
-            v1->unk_14[v0] = SpriteSystem_NewSprite(v1->unk_0C, v1->unk_10, &v2);
-            ManagedSprite_SetPositionXY(v1->unk_14[v0], v3.x, v3.y);
-        }
-
-        ManagedSprite_SetPositionXY(v1->unk_14[0], v3.x, v3.y);
+    Point2D battlerPos;
+    int side = BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetDefender(system));
+    if (side == BTLSCR_PLAYER) {
+        BattleAnimUtil_GetBattlerTypeDefaultPos(BATTLER_TYPE_SOLO_PLAYER, BattleAnimSystem_IsContest(system), &battlerPos);
+    } else {
+        BattleAnimUtil_GetBattlerTypeDefaultPos(BATTLER_TYPE_SOLO_ENEMY, BattleAnimSystem_IsContest(system), &battlerPos);
     }
 
-    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_08, 0); v0++) {
-        v1->unk_01[v0] = 0;
-        ManagedSprite_SetAffineOverwriteMode(v1->unk_14[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
-        ManagedSprite_OffsetPositionXY(v1->unk_14[v0], 0, 32 - (v0 * 4));
-        ManagedSprite_SetExplicitOamMode(v1->unk_14[v0], GX_OAM_MODE_XLU);
+    for (i = 1; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSystem, STRING_SHOT_SPRITE_VAR_SPRITE_COUNT); i++) {
+        ctx->sprites[i] = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
+        ManagedSprite_SetPositionXY(ctx->sprites[i], battlerPos.x, battlerPos.y);
     }
 
-    BattleAnimSystem_StartAnimTaskEx(param0, ov12_0222AC70, v1, 0x1000);
+    ManagedSprite_SetPositionXY(ctx->sprites[0], battlerPos.x, battlerPos.y);
+
+    for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSystem, STRING_SHOT_SPRITE_VAR_SPRITE_COUNT); i++) {
+        ctx->spriteCounters[i] = 0;
+        ManagedSprite_SetAffineOverwriteMode(ctx->sprites[i], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_OffsetPositionXY(ctx->sprites[i], 0, STRING_SHOT_SPRITE_BASE_Y - (i * STRING_SHOT_SPRITE_OFFSET));
+        ManagedSprite_SetExplicitOamMode(ctx->sprites[i], GX_OAM_MODE_XLU);
+    }
+
+    BattleAnimSystem_StartAnimTaskEx(system, BattleAnimTask_StringShotSprite, ctx, 0x1000);
 }
 
 static void BattleAnimTask_Strength(SysTask *task, void *param)
