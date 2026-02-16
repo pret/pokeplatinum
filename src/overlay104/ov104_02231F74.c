@@ -119,7 +119,7 @@ static void OpenMessageBox(UnkStruct_ov104_022320B4 *param0)
 
     if (param0->isMsgBoxOpen == FALSE) {
         Window_Add(
-            v0->unk_00, &param0->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - (27 * 4));
+            v0->unk_00, &param0->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
         Window_FillTilemap(&param0->msgWindow, 15);
         Window_DrawMessageBoxWithScrollCursor(&param0->msgWindow, 0, BASE_TILE_SCROLLING_MESSAGE_BOX, 11);
 
