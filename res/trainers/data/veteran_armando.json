@@ -20,7 +20,7 @@
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_DARK_PULSE"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_ASSURANCE",
                 "MOVE_TAKE_DOWN"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_SURF",
                 "MOVE_FIRE_BLAST"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

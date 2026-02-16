@@ -21,7 +21,7 @@
                 "MOVE_DISCHARGE",
                 "MOVE_SWEET_KISS"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

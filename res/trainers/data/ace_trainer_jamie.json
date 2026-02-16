@@ -20,7 +20,7 @@
                 "MOVE_PSYCHIC",
                 "MOVE_MAGNET_RISE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 11
         }
     ],

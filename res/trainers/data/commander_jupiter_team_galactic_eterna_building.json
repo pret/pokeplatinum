@@ -19,7 +19,7 @@
                 "MOVE_WING_ATTACK",
                 "MOVE_BITE"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -33,7 +33,7 @@
                 "MOVE_SCREECH",
                 "MOVE_SMOKE_SCREEN"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

@@ -21,7 +21,7 @@
                 "MOVE_ICE_BEAM",
                 "MOVE_TRI_ATTACK"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

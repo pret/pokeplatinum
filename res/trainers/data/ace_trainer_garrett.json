@@ -20,7 +20,7 @@
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_PURSUIT",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_FURY_CUTTER"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

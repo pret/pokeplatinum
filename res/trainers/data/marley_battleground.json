@@ -23,7 +23,7 @@
                 "MOVE_SWORDS_DANCE",
                 "MOVE_SLASH"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_THUNDER_WAVE",
                 "MOVE_DOUBLE_TEAM"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_CONFUSE_RAY",
                 "MOVE_DOUBLE_TEAM"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -65,7 +65,7 @@
                 "MOVE_ICE_PUNCH",
                 "MOVE_AERIAL_ACE"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -79,7 +79,7 @@
                 "MOVE_CRUNCH",
                 "MOVE_THUNDER_FANG"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

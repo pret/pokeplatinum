@@ -23,7 +23,7 @@
                 "MOVE_STEEL_WING",
                 "MOVE_U_TURN"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_ICE_FANG",
                 "MOVE_BRICK_BREAK"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_NIGHT_SLASH",
                 "MOVE_ROCK_SLIDE"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -65,7 +65,7 @@
                 "MOVE_BOUNCE",
                 "MOVE_WILL_O_WISP"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -79,7 +79,7 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_REST"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -93,7 +93,7 @@
                 "MOVE_CRUNCH",
                 "MOVE_LEECH_SEED"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 24
         }
     ],

@@ -23,7 +23,7 @@
                 "MOVE_THUNDERBOLT",
                 "MOVE_DARK_PULSE"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_ENERGY_BALL"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_THUNDER_WAVE",
                 "MOVE_HYPER_BEAM"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -65,7 +65,7 @@
                 "MOVE_AURA_SPHERE",
                 "MOVE_PSYCHIC"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -79,7 +79,7 @@
                 "MOVE_CALM_MIND",
                 "MOVE_HYPER_BEAM"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

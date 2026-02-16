@@ -21,7 +21,7 @@
                 "MOVE_ASTONISH",
                 "MOVE_MINIMIZE"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_SWALLOW",
                 "MOVE_STOCKPILE"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

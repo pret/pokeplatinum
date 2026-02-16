@@ -24,7 +24,7 @@
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -38,7 +38,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_SIGNAL_BEAM"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -52,7 +52,7 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_CALM_MIND"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -66,7 +66,7 @@
                 "MOVE_FOCUS_BLAST",
                 "MOVE_RECOVER"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -80,7 +80,7 @@
                 "MOVE_LEAF_BLADE",
                 "MOVE_STONE_EDGE"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

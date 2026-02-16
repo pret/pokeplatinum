@@ -20,7 +20,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_CRUNCH"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_FLARE_BLITZ",
                 "MOVE_BOUNCE"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_ANCIENT_POWER",
                 "MOVE_POWER_WHIP"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

@@ -122,7 +122,7 @@ static void PackImmediately(const rapidjson::Value &member, TrainerMonBase &base
 static void ParseMovesAndPack(const rapidjson::Value &member, TrainerMonBase &base, unsigned char *bufp)
 {
     TrainerMonWithMoves withMoves = {};
-    withMoves.dv = base.dv;
+    withMoves.iv_scale = base.iv_scale;
     withMoves.level = base.level;
     withMoves.species = base.species;
     withMoves.cbSeal = base.cbSeal;
@@ -138,7 +138,7 @@ static void ParseMovesAndPack(const rapidjson::Value &member, TrainerMonBase &ba
 static void ParseItemAndPack(const rapidjson::Value &member, TrainerMonBase &base, unsigned char *bufp)
 {
     TrainerMonWithItem withItem = {};
-    withItem.dv = base.dv;
+    withItem.iv_scale = base.iv_scale;
     withItem.level = base.level;
     withItem.species = base.species;
     withItem.cbSeal = base.cbSeal;
@@ -151,7 +151,7 @@ static void ParseItemAndPack(const rapidjson::Value &member, TrainerMonBase &bas
 static void ParseMovesAndItemAndPack(const rapidjson::Value &member, TrainerMonBase &base, unsigned char *bufp)
 {
     TrainerMonWithMovesAndItem withMovesAndItem = {};
-    withMovesAndItem.dv = base.dv;
+    withMovesAndItem.iv_scale = base.iv_scale;
     withMovesAndItem.level = base.level;
     withMovesAndItem.species = base.species;
     withMovesAndItem.cbSeal = base.cbSeal;
@@ -184,7 +184,7 @@ static void ParseAndPackParty(const rapidjson::Document &doc, TrainerDataType mo
 
     for (const auto &member : doc["party"].GetArray()) {
         TrainerMonBase base = {};
-        base.dv = member["power"].GetUint();
+        base.iv_scale = member["iv_scale"].GetUint();
         base.level = member["level"].GetUint();
         base.species = LookupConst(member["species"].GetString(), Species);
         base.species |= (member["form"].GetUint() << TRAINER_MON_FORM_SHIFT);
