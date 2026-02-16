@@ -12,7 +12,7 @@ SnowpointCityMart_CommonVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartCommon
     ReleaseAll
@@ -22,7 +22,7 @@ SnowpointCityMart_SpecialtyVendor:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    VendorGreeting
+    Common_VendorGreeting
     CloseMessageWithoutErasing
     PokeMartSpecialties MART_SPECIALTIES_ID_SNOWPOINT
     ReleaseAll

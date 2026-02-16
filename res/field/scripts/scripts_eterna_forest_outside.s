@@ -21,7 +21,7 @@ _0018:
     BufferAccessoryName 0, VAR_0x8004
     Message 0
     SetVar VAR_0x8005, 1
-    GiveAccessoryWaitForConfirm
+    Common_GiveAccessoryWaitForConfirm
     SetFlag FLAG_UNK_0x012A
     CloseMessage
     ReleaseAll

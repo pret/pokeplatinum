@@ -19,7 +19,7 @@
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021F55CC.h"
 #include "overlay005/ov5_021F5894.h"
-#include "overlay023/ov23_022499E4.h"
+#include "overlay023/underground_comm_manager.h"
 #include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_player.h"
@@ -144,29 +144,29 @@ enum FlagRankUpState {
 };
 
 enum MoveToFromBaseState {
-    BASE_MOVE_STATE_INIT = 0,
-    BASE_MOVE_STATE_FADE_OUT,
-    BASE_MOVE_STATE_WAIT_FOR_FADE_OUT,
-    BASE_MOVE_STATE_STOP_FIELD_MAP,
-    BASE_MOVE_STATE_UPDATE_LOCATION,
-    BASE_MOVE_STATE_RESUME_FIELD_MAP,
-    BASE_MOVE_STATE_FADE_IN,
-    BASE_MOVE_STATE_WAIT_FOR_FADE_IN,
-    BASE_MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK,
-    BASE_MOVE_STATE_FRAME_DELAY,
-    BASE_MOVE_STATE_WAIT,
-    BASE_MOVE_STATE_BLOCK_ENTRANCE,
-    BASE_MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT,
-    BASE_MOVE_STATE_END,
+    MOVE_STATE_INIT = 0,
+    MOVE_STATE_FADE_OUT,
+    MOVE_STATE_WAIT_FOR_FADE_OUT,
+    MOVE_STATE_STOP_FIELD_MAP,
+    MOVE_STATE_UPDATE_LOCATION,
+    MOVE_STATE_RESUME_FIELD_MAP,
+    MOVE_STATE_FADE_IN,
+    MOVE_STATE_WAIT_FOR_FADE_IN,
+    MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK,
+    MOVE_STATE_FRAME_DELAY,
+    MOVE_STATE_WAIT,
+    MOVE_STATE_BLOCK_ENTRANCE,
+    MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT,
+    MOVE_STATE_END,
 };
 
 enum MoveStatus {
     MOVE_STATUS_NONE = 0,
     MOVE_STATUS_ENTERING,
     MOVE_STATUS_ERROR_WHILE_ENTERING,
-    MOVE_STATUS_ERROR_WHILE_ENTERING_2 = 4,
+    MOVE_STATUS_ENTERING_AS_CLIENT = 4,
     MOVE_STATUS_ENTERING_2,
-    MOVE_STATUS_EXITING,
+    MOVE_STATUS_EXIT_IF_HOST,
 };
 
 typedef struct SecretBaseInfo {
@@ -219,7 +219,7 @@ typedef struct SecretBasesEnv {
     u8 currentBaseReturnDir;
     u8 unused;
     u8 dummy;
-    u8 baseEntranceLocationsReceived;
+    u8 linksReceivedBaseData;
     u8 baseEntranceGraphicsDisabled;
     u8 baseEntranceGraphicsEnabled;
     u8 currentPlayerInBase;
@@ -1197,7 +1197,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
     case ENTER_PROMPT_STATE_CLOSE_DOOR_COMMS:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
-            ov23_02249A74();
+            CommManUnderground_CloseSecretBase();
             ctx->state = ENTER_PROMPT_STATE_ENTER_CLOSE_DOOR_AND_END;
         }
         break;
@@ -1420,14 +1420,14 @@ int CommPacketSizeOf_SecretBaseInfo(void)
     return sizeof(SecretBaseInfo);
 }
 
-BOOL SecretBases_AreBaseEntranceLocationsReceived(void)
+BOOL SecretBases_HaveLinksReceivedBaseData(void)
 {
-    return secretBasesEnv->baseEntranceLocationsReceived;
+    return secretBasesEnv->linksReceivedBaseData;
 }
 
-void SecretBases_ClearBaseEntranceLocationsReceived(void)
+void SecretBases_ClearLinksReceivedBaseData(void)
 {
-    secretBasesEnv->baseEntranceLocationsReceived = FALSE;
+    secretBasesEnv->linksReceivedBaseData = FALSE;
 }
 
 static void SecretBases_SendBaseEntrancesBuffer(void)
@@ -1485,7 +1485,7 @@ void SecretBases_ProcessBaseEntrancesBuffer(int unused0, int unused1, void *data
         }
     }
 
-    secretBasesEnv->baseEntranceLocationsReceived = TRUE;
+    secretBasesEnv->linksReceivedBaseData = TRUE;
 }
 
 int CommPacketSizeOf_BaseEntrancesBuffer(void)
@@ -1619,7 +1619,7 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
     BaseTransitionContext *ctx = FieldTask_GetEnv(task);
 
     switch (ctx->state) {
-    case BASE_MOVE_STATE_INIT:
+    case MOVE_STATE_INIT:
         SecretBases_SetEntranceGraphicsEnabled(FALSE);
         ov23_0224DC08();
 
@@ -1628,30 +1628,30 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         CommSys_DisableSendMovementData();
         UndergroundSpheres_DisableBuriedSphereSparkles();
 
-        if (ov23_02249AB8()) {
-            ctx->state = BASE_MOVE_STATE_FADE_OUT;
+        if (CommManUnderground_TryEnterBaseTransitionState()) {
+            ctx->state = MOVE_STATE_FADE_OUT;
         }
         break;
-    case BASE_MOVE_STATE_FADE_OUT:
+    case MOVE_STATE_FADE_OUT:
         FinishScreenFade();
         StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_TOP_HALF_CIRCLE_OUT, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         UndergroundTopScreen_EndTask(fieldSystem->ugTopScreenCtx);
         Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         ctx->state++;
         break;
-    case BASE_MOVE_STATE_WAIT_FOR_FADE_OUT:
+    case MOVE_STATE_WAIT_FOR_FADE_OUT:
         if (IsScreenFadeDone()) {
             if (fieldSystem->ugTopScreenCtx == NULL) {
                 ctx->state++;
             }
         }
         break;
-    case BASE_MOVE_STATE_STOP_FIELD_MAP:
+    case MOVE_STATE_STOP_FIELD_MAP:
         if (SecretBases_StopFieldMap(task)) {
             ctx->state++;
         }
         break;
-    case BASE_MOVE_STATE_UPDATE_LOCATION:
+    case MOVE_STATE_UPDATE_LOCATION:
         Location nextLocation;
         nextLocation.mapId = ctx->mapID;
         nextLocation.warpId = ctx->warpID;
@@ -1661,18 +1661,18 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         sub_020544F0(task, &nextLocation);
         ctx->state++;
         break;
-    case BASE_MOVE_STATE_RESUME_FIELD_MAP:
+    case MOVE_STATE_RESUME_FIELD_MAP:
         if (SecretBases_ResumeFieldMap(task)) {
             ctx->state++;
         }
         break;
-    case BASE_MOVE_STATE_FADE_IN:
+    case MOVE_STATE_FADE_IN:
         fieldSystem->ugTopScreenCtx = UndergroundTopScreen_StartTask(fieldSystem);
         FinishScreenFade();
         StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_TOP_HALF_CIRCLE_IN, COLOR_BLACK, 6, 1, HEAP_ID_FIELD1);
         ctx->state++;
         break;
-    case BASE_MOVE_STATE_WAIT_FOR_FADE_IN:
+    case MOVE_STATE_WAIT_FOR_FADE_IN:
         if (!IsScreenFadeDone()) {
             break;
         }
@@ -1692,52 +1692,52 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         if (ctx->forceExit) {
             CommPlayerMan_ClearPauseContextBits();
             UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_EscapedToAvoidDanger, FALSE, NULL);
-            ctx->state = BASE_MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK;
+            ctx->state = MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK;
         } else if (!secretBasesEnv->currentPlayerInBase) {
-            ctx->state = BASE_MOVE_STATE_END;
+            ctx->state = MOVE_STATE_END;
         } else {
             ctx->timer = 0;
-            ctx->state = BASE_MOVE_STATE_FRAME_DELAY;
+            ctx->state = MOVE_STATE_FRAME_DELAY;
         }
         break;
-    case BASE_MOVE_STATE_FRAME_DELAY:
+    case MOVE_STATE_FRAME_DELAY:
         ctx->timer++;
         ctx->timer = 0;
-        ctx->state = BASE_MOVE_STATE_WAIT;
+        ctx->state = MOVE_STATE_WAIT;
         break;
-    case BASE_MOVE_STATE_WAIT:
+    case MOVE_STATE_WAIT:
         ctx->timer++;
 
         if (ctx->timer > 10) {
             if (!CommServerClient_IsInClosedSecretBase() || !ctx->showBlockedEntranceMessage) {
-                ctx->state = BASE_MOVE_STATE_END;
+                ctx->state = MOVE_STATE_END;
             } else {
-                ctx->state = BASE_MOVE_STATE_BLOCK_ENTRANCE;
+                ctx->state = MOVE_STATE_BLOCK_ENTRANCE;
             }
         }
         break;
-    case BASE_MOVE_STATE_BLOCK_ENTRANCE:
+    case MOVE_STATE_BLOCK_ENTRANCE:
         CommPlayerMan_ForceDir();
         PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, MovementAction_TurnActionTowardsDir(DIR_SOUTH, MOVEMENT_ACTION_WALK_ON_SPOT_FAST_NORTH), 1);
         CommPlayer_SetDir(DIR_SOUTH);
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_BlockedEntranceToDecorate, FALSE, NULL);
         Sound_PlayEffect(SEQ_SE_DP_DOOR);
-        ctx->state = BASE_MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT;
+        ctx->state = MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT;
         break;
-    case BASE_MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT:
+    case MOVE_STATE_FACE_NORTH_AND_END_AFTER_TEXT:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                ctx->state = BASE_MOVE_STATE_END;
+                ctx->state = MOVE_STATE_END;
                 UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 CommPlayer_SetDir(DIR_NORTH);
             }
         }
         break;
-    case BASE_MOVE_STATE_END:
+    case MOVE_STATE_END:
         if (CommServerClient_IsInClosedSecretBase() && !UndergroundMan_AreCoordinatesInSecretBase(ctx->x, ctx->z)) {
-            ov23_02249AA4();
+            CommManUnderground_ReopenSecretBase();
         } else {
-            ov23_02249B60();
+            CommManUnderground_TryExitBaseTransitionState();
         }
 
         sub_02059638(FALSE);
@@ -1750,8 +1750,8 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
             UndergroundMan_SetNormalRadarActive();
         }
 
-        if (secretBasesEnv->moveStatus == MOVE_STATUS_ERROR_WHILE_ENTERING_2 && secretBasesEnv->currentPlayerInBase) {
-            secretBasesEnv->moveStatus = MOVE_STATUS_EXITING;
+        if (secretBasesEnv->moveStatus == MOVE_STATUS_ENTERING_AS_CLIENT && secretBasesEnv->currentPlayerInBase) {
+            secretBasesEnv->moveStatus = MOVE_STATUS_EXIT_IF_HOST;
         } else {
             secretBasesEnv->moveStatus = MOVE_STATUS_NONE;
         }
@@ -1759,17 +1759,17 @@ static BOOL SecretBases_MoveToFromSecretBaseTask(FieldTask *task)
         ov23_0224DC24();
         SecretBases_SetEntranceGraphicsEnabled(TRUE);
         return TRUE;
-    case BASE_MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK:
+    case MOVE_STATE_END_AFTER_TEXT_OR_NEW_LINK:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-                ctx->state = BASE_MOVE_STATE_END;
+                ctx->state = MOVE_STATE_END;
                 UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 return FALSE;
             }
         }
 
         if (CommSys_ConnectedCount() > 1 && ctx->initialConnectedCount == 0) {
-            ctx->state = BASE_MOVE_STATE_END;
+            ctx->state = MOVE_STATE_END;
             UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
         }
         break;
@@ -1875,7 +1875,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
     case DRILL_STATE_REMOVE_DRILL:
         UndergroundMenu_RemoveSelectedTrap(TRAP_DIGGER_DRILL);
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
-        ov23_02249A74();
+        CommManUnderground_CloseSecretBase();
         ctx->state = DRILL_STATE_CREATE_BASE_AND_END;
         break;
     case DRILL_STATE_CREATE_BASE_AND_END:
@@ -2043,7 +2043,7 @@ void SecretBases_ProcessBaseCreateEvent(int unused0, int unused1, void *data, vo
     } else if (event->type == BASE_CREATE_EVENT_CANT_ENTER) {
         CommPlayerMan_PauseFieldSystem();
         UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_WallCrumbledCantEnter, TRUE, SecretBases_ResumeFieldSystem);
-        ov23_02249AA4();
+        CommManUnderground_ReopenSecretBase();
         ov23_0224DC24();
     } else if (event->type == BASE_CREATE_EVENT_CLOSE_BASE || event->type == BASE_CREATE_EVENT_MOVE_BASE || event->type == BASE_CREATE_EVENT_NEW_BASE) {
         int x = CommPlayer_GetXInFrontOfPlayer(event->netID);
@@ -2605,9 +2605,10 @@ void SecretBases_HandleDisconnectedPlayers(int unused)
         }
     }
 
+    // will always be 0 because this function wouldn't be called otherwise
     netID = CommSys_CurNetId();
 
-    if (secretBasesEnv->moveStatus == MOVE_STATUS_EXITING) {
+    if (secretBasesEnv->moveStatus == MOVE_STATUS_EXIT_IF_HOST) {
         x = CommPlayer_GetXServerIfActive(netID);
         z = CommPlayer_GetZServerIfActive(netID);
 
@@ -2658,7 +2659,7 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
     secretBasesEnv->currentPlayerInBase = FALSE;
 
     SecretBases_StartMoveToFromSecretBaseTask(secretBasesEnv->fieldSystem, x, z, dir, netID, forceExit);
-    ov23_02249AB8();
+    CommManUnderground_TryEnterBaseTransitionState();
 
     secretBasesEnv->currentOccupiedBaseInfo = NULL;
     secretBasesEnv->occupiedBaseOwnerIDs[netID] = NETID_NONE;
@@ -2666,7 +2667,7 @@ BOOL SecretBases_RemovePlayerFromBase(int netID, BOOL forceExit)
     return TRUE;
 }
 
-void SecretBases_AbortBaseEnterEarly(void)
+void SecretBases_AbortBaseEnter(void)
 {
     if (secretBasesEnv->moveStatus == MOVE_STATUS_ENTERING) {
         secretBasesEnv->moveStatus = MOVE_STATUS_ERROR_WHILE_ENTERING;
@@ -2675,10 +2676,10 @@ void SecretBases_AbortBaseEnterEarly(void)
     }
 }
 
-void SecretBases_AbortBaseEnterLate(void)
+void SecretBases_FlagEnteringBaseAsClient(void)
 {
     if (secretBasesEnv->moveStatus == MOVE_STATUS_ENTERING_2) {
-        secretBasesEnv->moveStatus = MOVE_STATUS_ERROR_WHILE_ENTERING_2;
+        secretBasesEnv->moveStatus = MOVE_STATUS_ENTERING_AS_CLIENT;
     }
 }
 

@@ -16,7 +16,7 @@ _000A:
     SetVar VAR_0x8004, ITEM_SPELL_TAG
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x00A1
     GoTo _005C
     End
@@ -45,7 +45,7 @@ _0072:
     SetVar VAR_0x8004, ITEM_CLEANSE_TAG
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00CF
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0116
     GoTo _00C4
     End
@@ -58,7 +58,7 @@ _00C4:
     End
 
 _00CF:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

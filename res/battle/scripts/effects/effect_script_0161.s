@@ -14,7 +14,7 @@ _000:
     UpdateMonData OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_STOCKPILE_SPDEF_BOOSTS, 0
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_MESSAGE_AFTER_MISS
     // {0}’s stockpiled effect wore off!
-    BufferMessage pl_msg_00000368_00994, TAG_NICKNAME, BTLSCR_ATTACKER
+    BufferMessage BattleStrings_Text_PokemonsStockpiledEffectWoreOff_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_PRINT_MESSAGE_AND_PLAY_ANIMATION
     CalcCrit 
     CalcMaxDamage 
@@ -25,7 +25,7 @@ _064:
     Wait 
     WaitButtonABTime 30
     // But it failed to spit up a thing!
-    PrintMessage pl_msg_00000368_00814, TAG_NONE
+    PrintMessage BattleStrings_Text_ButItFailedToSpitUpAThing, TAG_NONE
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

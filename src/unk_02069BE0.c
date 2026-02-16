@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DF440.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021F3D00.h"
 
 #include "map_object.h"
@@ -312,7 +312,7 @@ MapObject *sub_02069EB8(MapObject *mapObj)
 {
     int v0 = 0;
     int v1 = MapObject_GetTrainerType(mapObj);
-    int v2 = sub_02062918(mapObj);
+    int v2 = MapObject_GetMapID(mapObj);
     u32 v3 = sub_02067F24(mapObj);
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
     MapObject *v5;
@@ -327,7 +327,7 @@ MapObject *sub_02069EB8(MapObject *mapObj)
     case 0x7:
     case 0x8:
         while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v5, &v0, (1 << 0)) == 1) {
-            if ((mapObj != v5) && (sub_02062918(v5) == v2)) {
+            if ((mapObj != v5) && (MapObject_GetMapID(v5) == v2)) {
                 if (sub_02067F24(v5) == v3) {
                     return v5;
                 }
@@ -346,11 +346,11 @@ static int sub_02069F48(MapObject *mapObj, UnkStruct_02069F48 *param1)
     const MapObjectManager *mapObjMan = MapObject_MapObjectManager(mapObj);
 
     v0 = 0;
-    v1 = sub_02062918(mapObj);
+    v1 = MapObject_GetMapID(mapObj);
     v2 = sub_02067F24(mapObj);
 
     while (MapObjectMan_FindObjectWithStatus(mapObjMan, &v3, &v0, (1 << 0)) == 1) {
-        if ((mapObj != v3) && (sub_02062918(v3) == v1) && (sub_02067F24(v3) == v2)) {
+        if ((mapObj != v3) && (MapObject_GetMapID(v3) == v1) && (sub_02067F24(v3) == v2)) {
             if (param1->unk_01 == 0) {
                 sub_02069FC4(mapObj, param1, v3);
             }
@@ -465,7 +465,7 @@ void sub_0206A158(MapObject *mapObj)
     OverworldAnimManager *v0 = sub_0206A224(mapObj);
 
     if (v0 != NULL) {
-        ov5_021DF74C(v0);
+        FieldEffectManager_FinishAnimManager(v0);
     }
 }
 

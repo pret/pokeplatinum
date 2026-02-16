@@ -21,18 +21,17 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/land_data.h"
 #include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F348C.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/camera_configuration.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
@@ -101,7 +100,11 @@
 #define PLATFORM_PROP_ANIM_TIMING_COUNT 8
 #define PLATFORM_PROP_ANIM_DELTA        0x800
 
+#define GIRATINA_SHADOW_EXTERNAL_COUNT 1
+
 #define OBSTACLE_PROP_ANIM_DELTA 2
+
+#define SIMPLE_PROP_MANAGER_ANIMATOR_COUNT 8
 
 enum FloatingPlatformKind {
     FLOATING_PLATFORM_KIND_FLOOR = 0,
@@ -139,21 +142,21 @@ enum PropKind {
     PROP_KIND_LARGE_ELEVATOR_PLATFORM_3,
     PROP_KIND_LARGE_ELEVATOR_PLATFORM_4,
     PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5,
-    PROP_KIND_DUMMY20,
-    PROP_KIND_DUMMY21,
+    PROP_KIND_GIRATINA_SHADOW,
+    PROP_KIND_WATERFALL,
     PROP_KIND_LAND_VINE_FLOWER,
     PROP_KIND_LAND_ROCK,
-    PROP_KIND_DUMMY24,
+    PROP_KIND_PORTAL,
     PROP_KIND_COUNT,
     PROP_KIND_INVALID = PROP_KIND_COUNT,
 };
 
 enum PropAnimKind {
-    PROP_ANIM_KIND_DUMMY20 = 0,
+    PROP_ANIM_KIND_GIRATINA_SHADOW = 0,
     PROP_ANIM_KIND_LAND_VINE_FLOWER,
     PROP_ANIM_KIND_LAND_ROCK,
-    PROP_ANIM_KIND_DUMMY21,
-    PROP_ANIM_KIND_DUMMY24,
+    PROP_ANIM_KIND_WATERFALL,
+    PROP_ANIM_KIND_PORTAL,
     PROP_ANIM_KIND_COUNT,
     PROP_ANIM_KIND_INVALID = PROP_ANIM_KIND_COUNT,
 };
@@ -166,6 +169,29 @@ enum PlatformPropSoundEffectState {
 enum ObstaclePropSoundEffectState {
     OBSTACLE_PROP_SFX_STATE_DISAPPEAR = -2,
     OBSTACLE_PROP_SFX_STATE_APPEAR = 2,
+};
+
+enum GiratinaShadowPropState {
+    GIRATINA_SHADOW_PROP_STATE_SFX = 0,
+    GIRATINA_SHADOW_PROP_STATE_MOVE,
+    GIRATINA_SHADOW_PROP_STATE_END,
+};
+
+enum GiratinaShadowPropSoundEffectKind {
+    GIRATINA_SHADOW_PROP_SFX_KIND_NONE = 0,
+    GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+    GIRATINA_SHADOW_PROP_SFX_KIND_FLEE,
+};
+
+enum FlagCondition {
+    FLAG_COND_NONE = 0,
+    FLAG_COND_1,
+    FLAG_COND_2,
+    FLAG_COND_WORLD_PROGRESS_EQ,
+    FLAG_COND_WORLD_PROGRESS_LEQ,
+    FLAG_COND_WORLD_PROGRESS_GEQ,
+    FLAG_COND_GIRATINA_SHADOW = 7,
+    FLAG_COND_CYRUS_APPEARANCE,
 };
 
 typedef struct DistWorldSystem DistWorldSystem;
@@ -554,35 +580,35 @@ typedef struct DistWorldMapConnections {
     u32 nextID;
 } DistWorldMapConnections;
 
-typedef struct {
-    u32 unk_00;
-    u16 unk_04;
-    s16 unk_06;
-    s16 unk_08;
-    s16 unk_0A;
-    u16 unk_0C;
-    u16 unk_0E;
-} UnkStruct_ov9_0224EC10;
+typedef struct DistWorldSimplePropTemplate {
+    u32 dummy00;
+    u16 propKind;
+    s16 tileX;
+    s16 tileY;
+    s16 tileZ;
+    u16 flagCond;
+    u16 flagCondVal;
+} DistWorldSimplePropTemplate;
 
-typedef struct {
-    u32 unk_00;
-    const UnkStruct_ov9_0224EC10 *unk_04;
-} UnkStruct_ov9_02252548;
+typedef struct DistWorldSimplePropMapTemplates {
+    u32 mapHeaderID;
+    const DistWorldSimplePropTemplate *templates;
+} DistWorldSimplePropMapTemplates;
 
-typedef struct {
-    u16 unk_00;
-    OverworldAnimManager *unk_04;
-    UnkStruct_ov9_0224EC10 unk_08;
-} UnkStruct_ov9_0224EBB8;
+typedef struct DistWorldSimplePropAnimator {
+    u16 mapHeaderID;
+    OverworldAnimManager *animMan;
+    DistWorldSimplePropTemplate template;
+} DistWorldSimplePropAnimator;
 
-typedef struct {
-    UnkStruct_ov9_0224EBB8 unk_00[8];
-} UnkStruct_ov9_0224EB68;
+typedef struct DistWorldSimplePropManager {
+    DistWorldSimplePropAnimator animators[SIMPLE_PROP_MANAGER_ANIMATOR_COUNT];
+} DistWorldSimplePropManager;
 
-typedef struct {
-    DistWorldSystem *unk_00;
-    const UnkStruct_ov9_0224EBB8 *unk_04;
-} UnkStruct_ov9_0224EBCC;
+typedef struct DistWorldSimplePropUserData {
+    DistWorldSystem *system;
+    const DistWorldSimplePropAnimator *animator;
+} DistWorldSimplePropUserData;
 
 typedef struct {
     u16 unk_00;
@@ -645,22 +671,22 @@ typedef struct {
     const UnkStruct_ov9_02252044 *unk_04;
 } UnkStruct_ov9_02252D38;
 
-typedef struct {
-    s16 unk_00;
-    s16 unk_02;
-    s16 unk_04;
-    s8 unk_06;
-    u8 unk_07;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
-    int unk_20;
-} UnkStruct_ov9_02252414;
+typedef struct DistWorldGiratinaShadowTemplate {
+    s16 initialTileX;
+    s16 initialTileY;
+    s16 initialTileZ;
+    s8 rotAnglesIndex;
+    u8 soundKind;
+    VecFx32 scale;
+    VecFx32 posDelta;
+    int movementAnimSteps;
+} DistWorldGiratinaShadowTemplate;
 
-typedef struct {
-    u32 unk_00;
-    DistWorldPropRenderer *unk_04;
-    OverworldAnimManager *unk_08;
-} UnkStruct_ov9_0224E8B4;
+typedef struct DistWorldGiratinaShadowPropRenderer {
+    BOOL valid;
+    DistWorldPropRenderer *renderer;
+    OverworldAnimManager *animMan;
+} DistWorldGiratinaShadowPropRenderer;
 
 typedef struct {
     u8 unk_00;
@@ -704,13 +730,13 @@ struct DistWorldSystem {
     DistWorldGhostPropManager ghostPropMan;
     DistWorldGhostPropManager inactiveGhostPropMan;
     UnkStruct_ov9_0224DC34 unk_1734;
-    UnkStruct_ov9_0224EB68 unk_1BB4;
+    DistWorldSimplePropManager simplePropMan;
     UnkStruct_ov9_0224EE40 unk_1C64;
     UnkStruct_ov9_0224CA5C unk_1CB0;
     UnkStruct_ov9_0224CBD8 unk_1CD0;
     UnkStruct_ov9_0224ADC0 unk_1D00;
     UnkStruct_ov9_0224C8E8 unk_1E88;
-    UnkStruct_ov9_0224E8B4 unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer giratinaShadowPropRenderer;
     GXRgb unk_1EB0[8];
     u16 unk_1EC0;
     u16 unk_1EC2;
@@ -793,29 +819,29 @@ typedef struct {
     u32 unk_00;
 } UnkStruct_ov9_0224E870;
 
-typedef struct {
-    DistWorldSystem *unk_00;
-    DistWorldPropRenderer *unk_04;
-    UnkStruct_ov9_02252414 unk_08;
-} UnkStruct_ov9_0224E91C;
+typedef struct DistWorldGiratinaShadowPropUserData {
+    DistWorldSystem *system;
+    DistWorldPropRenderer *renderer;
+    DistWorldGiratinaShadowTemplate template;
+} DistWorldGiratinaShadowPropUserData;
 
-typedef struct {
-    UnkStruct_ov9_0224E91C unk_00;
-    u16 unk_2C;
-    u16 unk_2E;
-    int unk_30;
-    int unk_34;
-    Simple3DRotationAngles unk_38;
-} UnkStruct_ov9_0224E964;
+typedef struct DistWorldGiratinaShadowProp {
+    DistWorldGiratinaShadowPropUserData userData;
+    u16 state;
+    u16 animStopped;
+    int movementAnimStep;
+    BOOL animFinished;
+    Simple3DRotationAngles rotAngles;
+} DistWorldGiratinaShadowProp;
 
-typedef struct {
-    s16 unk_00;
-    u16 unk_02;
-    VecFx32 unk_04;
-    VecFx32 unk_10;
-    UnkStruct_ov9_0224EBCC unk_1C;
-    DistWorldPropRenderer *unk_24;
-} UnkStruct_ov9_0224ED58;
+typedef struct DistWorldSimpleProp {
+    s16 dummy00;
+    u16 inView;
+    VecFx32 pos;
+    VecFx32 dummy10;
+    DistWorldSimplePropUserData userData;
+    DistWorldPropRenderer *renderer;
+} DistWorldSimpleProp;
 
 typedef struct {
     u32 unk_00;
@@ -1030,7 +1056,7 @@ static void ov9_0224AEE4(DistWorldSystem *param0, UnkStruct_ov9_0224B064 *param1
 static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0);
 static void ov9_0224B124(SysTask *param0, void *param1);
 static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
-static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2);
+static void ov9_0224B1B4(DistWorldSystem *param0, FieldEffectManager *param1, UnkStruct_ov9_0224B064 *param2);
 static void ov9_0224B3A8(DistWorldSystem *param0);
 static void ov9_0224B3F4(DistWorldSystem *param0);
 static void InitGhostPropManager(DistWorldSystem *system, DistWorldGhostPropManager *ghostPropMan, const DistWorldGhostPropHeader *header, const DistWorldGhostPropTemplate *ghostPropTemplateList, int mapHeaderID, u32 hiddenGhostPropGroups);
@@ -1194,25 +1220,25 @@ static BOOL ov9_0224E434(DistWorldSystem *param0, int param1, int param2, int pa
 static void ov9_0224E498(DistWorldSystem *param0, const UnkStruct_ov9_02251438 *param1);
 static void ov9_0224E4B0(DistWorldSystem *param0, const UnkStruct_ov9_02252044 *param1);
 static BOOL ov9_0224E4BC(FieldTask *param0);
-static void ov9_0224E8B4(DistWorldSystem *param0);
-static void ov9_0224E8EC(DistWorldSystem *param0);
-static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *param1);
-static BOOL ov9_0224E964(DistWorldSystem *param0);
-static void ov9_0224E984(DistWorldSystem *param0);
-static void ov9_0224E988(DistWorldSystem *param0);
-static BOOL ov9_0224E9A4(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224E9CC(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224E9F4(DistWorldSystem *param0, int param1);
-static void ov9_0224EB68(DistWorldSystem *param0);
-static void ov9_0224EB94(DistWorldSystem *param0);
-static void ov9_0224EBB8(UnkStruct_ov9_0224EBB8 *param0);
-static void ov9_0224EC10(DistWorldSystem *param0, const UnkStruct_ov9_02252548 *param1);
-static void ov9_0224EC48(DistWorldSystem *param0, u32 param1);
-static UnkStruct_ov9_0224EBB8 *ov9_0224EC70(DistWorldSystem *param0);
-static void ov9_0224EC94(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224ECC0(DistWorldSystem *param0, int param1);
-static BOOL ov9_0224ECE8(DistWorldSystem *param0, u32 param1);
-static BOOL ov9_0224ED20(DistWorldSystem *param0, u32 param1);
+static void LoadGiratinaShadowPropRenderer(DistWorldSystem *system);
+static void FreeGiratinaShadowPropRenderer(DistWorldSystem *system);
+static void LoadGiratinaShadowPropAnimation(DistWorldSystem *system, const DistWorldGiratinaShadowTemplate *giratinaTemplate);
+static BOOL IsGiratinaShadowAnimationFinished(DistWorldSystem *system);
+static void Dummy0224E984(DistWorldSystem *system);
+static void FinishGiratinaShadowPropRenderer(DistWorldSystem *system);
+static BOOL IsGiratinaShadowPropRendererValid2(DistWorldSystem *system, u32 propKind);
+static BOOL IsGiratinaShadowPropRendererAnimValid(DistWorldSystem *system, u32 animKind);
+static BOOL IsGiratinaShadowPropRendererValid(DistWorldSystem *system, int propKind);
+static void InitSimplePropsForCurrentAndNextMaps(DistWorldSystem *system);
+static void FinishAllSimplePropAnimators(DistWorldSystem *system);
+static void DistWorldMapSimplePropAnimator_Finish(DistWorldSimplePropAnimator *animator);
+static void InitSimplePropsFromTemplates(DistWorldSystem *system, const DistWorldSimplePropMapTemplates *mapTemplates);
+static void InitSimplePropsForMap(DistWorldSystem *system, u32 mapHeaderID);
+static DistWorldSimplePropAnimator *FindUnusedSimplePropAnimator(DistWorldSystem *system);
+static void FinishSimplePropAnimatorForMap(DistWorldSystem *system, u32 mapHeaderID);
+static BOOL HasActiveSimpleProp(DistWorldSystem *system, int propKind);
+static BOOL HasActiveSimpleProp2(DistWorldSystem *system, u32 propKind);
+static BOOL HasActiveSimplePropAnim(DistWorldSystem *system, u32 animKind);
 static void ov9_0224EE40(DistWorldSystem *param0);
 static void ov9_0224EE6C(DistWorldSystem *param0);
 static void ov9_0224EE70(DistWorldSystem *param0, MapObject *param1);
@@ -1238,14 +1264,14 @@ static void ov9_02250F1C(fx32 *param0, fx32 param1);
 static void GetPlayerPos(DistWorldSystem *system, int *playerX, int *playerY, int *playerZ);
 static u32 DistWorldSystem_GetMapHeaderID(DistWorldSystem *system);
 static enum AvatarDistortionState GetAvatarDistortionStateForFloatingPlatformKind(u32 platformKind);
-static BOOL ov9_02251104(DistWorldSystem *param0, u32 param1, u32 param2);
+static BOOL CheckFlagCondition(DistWorldSystem *system, enum FlagCondition flagCond, u32 val);
 static void PlaySoundIfNotActive(u16 seqID);
 static void ov9_022511F4(MapObject *param0, const VecFx32 *param1);
 
 static const OverworldAnimManagerFuncs Unk_ov9_02251508;
 static const OverworldAnimManagerFuncs Unk_ov9_02251468;
-static const OverworldAnimManagerFuncs Unk_ov9_022514B8;
-static const OverworldAnimManagerFuncs Unk_ov9_02251530;
+static const OverworldAnimManagerFuncs sGiratinaShadowPropAnimFuncs;
+static const OverworldAnimManagerFuncs sSimplePropAnimFuncs;
 static const fx32 Unk_ov9_02252CF8[16];
 static const FloatingPlatformJumpPointHandler sFloatingPlatformJumpPointHandlers[1];
 static const int Unk_ov9_02251E58[7];
@@ -1268,7 +1294,7 @@ static const UnkFuncPtr_ov9_02253BE4 *Unk_ov9_02253BE4[18];
 const UnkStruct_ov9_02252D38 Unk_ov9_02252D38[];
 const UnkStruct_ov9_02251438 Unk_ov9_02251438[];
 const UnkStruct_ov9_02251438 Unk_ov9_022513D8[];
-const UnkStruct_ov9_02252548 Unk_ov9_02252548[];
+const DistWorldSimplePropMapTemplates sSimplePropsMapTemplates[];
 const UnkStruct_ov9_02252EB4 Unk_ov9_02252EB4[];
 
 void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
@@ -1303,7 +1329,7 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     FieldTaskContextNoOp1(dwSystem);
     ov9_0224A8C0(dwSystem);
     ov9_0224EE40(dwSystem);
-    ov9_0224EB68(dwSystem);
+    InitSimplePropsForCurrentAndNextMaps(dwSystem);
     InitAllGhostPropManagers(dwSystem);
     ov9_0224DC34(dwSystem);
     ov9_0224E33C(dwSystem);
@@ -1311,9 +1337,9 @@ void DistWorld_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     ov9_0224C8E8(dwSystem);
     ov9_0224CBD8(dwSystem);
     ov9_0224DCA8(dwSystem);
-    ov9_0224B1B4(dwSystem, dwSystem->fieldSystem->unk_40, &dwSystem->unk_1A8);
-    ov9_0224E984(dwSystem);
-    ov5_021F34B8(dwSystem->fieldSystem->unk_40);
+    ov9_0224B1B4(dwSystem, dwSystem->fieldSystem->fieldEffMan, &dwSystem->unk_1A8);
+    Dummy0224E984(dwSystem);
+    ov5_021F34B8(dwSystem->fieldSystem->fieldEffMan);
     ov9_02249EF0(dwSystem);
 
     data->valid = TRUE;
@@ -1324,14 +1350,14 @@ void DistWorld_DynamicMapFeaturesFree(FieldSystem *fieldSystem)
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
 
     ov9_02249F18(v0);
-    ov9_0224E988(v0);
+    FinishGiratinaShadowPropRenderer(v0);
     ov9_0224CBF8(v0);
     ov9_0224C9E8(v0);
     ov9_02249EC8(v0);
     ov9_0224E34C(v0);
     ov9_0224DC4C(v0);
     FinishAllGhostPropManagers(v0);
-    ov9_0224EB94(v0);
+    FinishAllSimplePropAnimators(v0);
     ov9_0224EE6C(v0);
     ov9_0224A9E8(v0);
     FieldTaskContextNoOp2(v0);
@@ -1359,13 +1385,13 @@ static void ov9_02249B04(DistWorldSystem *param0)
 
     FinishActiveGhostPropManager(param0);
     SetPersistedHiddenGhostPropGroups(param0, 0);
-    ov9_0224EC94(param0, v1->prevID);
+    FinishSimplePropAnimatorForMap(param0, v1->prevID);
     ov9_0224DC74(param0, v1->prevID);
     ov9_0224F0A4(param0, v1->prevID);
     ov9_0224BF18(param0, v1->nextID);
     ov9_0224DB1C(param0);
     InitInactiveGhostPropManager(param0);
-    ov9_0224EC48(param0, v1->nextID);
+    InitSimplePropsForMap(param0, v1->nextID);
     ov9_0224DD24(param0, v1->nextID);
     ov9_0224F078(param0, v1->nextID);
 }
@@ -1379,13 +1405,13 @@ static void ov9_02249B68(DistWorldSystem *param0)
 
     FinishInactiveGhostPropManager(param0);
     SetPersistedHiddenGhostPropGroups(param0, 0);
-    ov9_0224EC94(param0, v1->nextID);
+    FinishSimplePropAnimatorForMap(param0, v1->nextID);
     ov9_0224DC74(param0, v1->nextID);
     ov9_0224F0A4(param0, v1->nextID);
     ov9_0224BEB4(param0, v0);
     ov9_0224DB1C(param0);
     InitActiveGhostPropManager(param0, TRUE);
-    ov9_0224EC48(param0, v0);
+    InitSimplePropsForMap(param0, v0);
     ov9_0224DD24(param0, v0);
     ov9_0224F078(param0, v0);
 }
@@ -1394,7 +1420,7 @@ static void ov9_02249BD4(DistWorldSystem *param0, u32 param1)
 {
     FinishActiveGhostPropManager(param0);
     SetPersistedHiddenGhostPropGroups(param0, 0);
-    ov9_0224EC94(param0, param1);
+    FinishSimplePropAnimatorForMap(param0, param1);
     ov9_0224DC74(param0, param1);
     ov9_0224F0A4(param0, param1);
     ov9_0224DB1C(param0);
@@ -1403,7 +1429,7 @@ static void ov9_02249BD4(DistWorldSystem *param0, u32 param1)
 static void ov9_02249C08(DistWorldSystem *param0, u32 param1)
 {
     InitInactiveGhostPropManager(param0);
-    ov9_0224EC48(param0, param1);
+    InitSimplePropsForMap(param0, param1);
     ov9_0224DD24(param0, param1);
     ov9_0224F078(param0, param1);
 }
@@ -1412,7 +1438,7 @@ static void ov9_02249C2C(DistWorldSystem *param0, u32 param1)
 {
     FinishInactiveGhostPropManager(param0);
     SetPersistedHiddenGhostPropGroups(param0, 0);
-    ov9_0224EC94(param0, param1);
+    FinishSimplePropAnimatorForMap(param0, param1);
     ov9_0224DC74(param0, param1);
     ov9_0224F0A4(param0, param1);
     ov9_0224DB1C(param0);
@@ -1421,7 +1447,7 @@ static void ov9_02249C2C(DistWorldSystem *param0, u32 param1)
 static void ov9_02249C60(DistWorldSystem *param0, u32 param1)
 {
     InitActiveGhostPropManager(param0, TRUE);
-    ov9_0224EC48(param0, param1);
+    InitSimplePropsForMap(param0, param1);
     ov9_0224DD24(param0, param1);
     ov9_0224F078(param0, param1);
 }
@@ -1549,17 +1575,12 @@ static void ov9_02249DE4(DistWorldSystem *param0, u32 param1)
     v0->unk_0C &= ~(1 << param1);
 }
 
-static BOOL ov9_02249E00(DistWorldSystem *param0, u32 param1)
+static BOOL ov9_02249E00(DistWorldSystem *system, u32 val)
 {
-    DistWorldPersistedData *v0 = param0->persistedData;
+    DistWorldPersistedData *persistedData = system->persistedData;
 
-    GF_ASSERT(param1 < 17);
-
-    if (v0->unk_0C & (1 << param1)) {
-        return 1;
-    }
-
-    return 0;
+    GF_ASSERT(val < 17);
+    return persistedData->unk_0C & (1 << val) ? TRUE : FALSE;
 }
 
 static void SetPersistedCurrentFloatingPlatformIndex(DistWorldSystem *system, u32 floatingPlatformIndex)
@@ -1603,7 +1624,7 @@ static void ov9_02249E94(DistWorldSystem *param0)
 
     memset(v1, 0, sizeof(UnkStruct_ov9_02249E94));
 
-    v0 = sub_02062858(param0->fieldSystem->mapObjMan);
+    v0 = MapObjectMan_GetTaskBasePriority(param0->fieldSystem->mapObjMan);
     v0 += 2;
 
     v1->unk_00 = SysTask_Start(ov9_02249EDC, param0, v0);
@@ -1836,7 +1857,7 @@ static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
     memset(v0->unk_04, 0, param1);
     HeapExp_FndInitAllocator(&v0->unk_10, HEAP_ID_FIELD1, 4);
 
-    v0->unk_08 = ov5_021DF5C0(param0->fieldSystem->unk_40, 197, 1);
+    v0->unk_08 = FieldEffectManager_AllocAndReadNARCWholeMember(param0->fieldSystem->fieldEffMan, 197, 1);
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
 }
 
@@ -2370,7 +2391,7 @@ static void ov9_0224A8C0(DistWorldSystem *param0)
         int v10 = PlayerAvatar_GetDir(playerAvatar);
 
         v9 = ov5_021F85BC(playerAvatar, v2, v3, v4, v10, 1, v0);
-        sub_0205EC00(playerAvatar, v9);
+        PlayerAvatar_SetSurfMountAnimManager(playerAvatar, v9);
     }
 
     ov9_0224A390(param0, v8, v6[v0]);
@@ -2860,7 +2881,7 @@ static Sprite *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *param
     return v2;
 }
 
-static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1, UnkStruct_ov9_0224B064 *param2)
+static void ov9_0224B1B4(DistWorldSystem *param0, FieldEffectManager *param1, UnkStruct_ov9_0224B064 *param2)
 {
     int v0;
     UnkStruct_ov9_0224B1B4 v1;
@@ -2886,7 +2907,7 @@ static void ov9_0224B1B4(DistWorldSystem *param0, UnkStruct_ov5_021DF47C *param1
 
     for (v0 = 0; v0 < 9; v0++) {
         v1.unk_04 = Unk_ov9_02253680[v0];
-        v2 = ov5_021DF72C(param1, &Unk_ov9_02251508, NULL, 0, &v1, 0);
+        v2 = FieldEffectManager_InitAnimManager(param1, &Unk_ov9_02251508, NULL, 0, &v1, 0);
     }
 }
 
@@ -3173,7 +3194,7 @@ static OverworldAnimManager *InitGhostPropAnimManager(DistWorldSystem *system, i
     ghostProp.template = *ghostPropTemplate;
     ghostProp.system = system;
 
-    return ov5_021DF72C(system->fieldSystem->unk_40, animFuncs, NULL, 0, &ghostProp, 2);
+    return FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, animFuncs, NULL, 0, &ghostProp, 2);
 }
 
 static void HandleGhostPropTriggerAt(DistWorldSystem *system, int tileX, int tileY, int tileZ, int direction)
@@ -4995,11 +5016,11 @@ static int ov9_0224D0C8(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
         VecFx32 v6, *v7;
 
         param1->unk_5C = (FX32_ONE * 6);
-        sub_0206309C(v1, &v6);
+        MapObject_GetSpritePosOffset(v1, &v6);
         param1->unk_50 = v6.y;
 
         if (param1->unk_68 != NULL) {
-            sub_0206309C(param1->unk_68, &v6);
+            MapObject_GetSpritePosOffset(param1->unk_68, &v6);
             param1->unk_54 = v6.y;
         }
 
@@ -5027,19 +5048,19 @@ static int ov9_0224D288(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
     MapObject *v2 = Player_MapObject(playerAvatar);
     VecFx32 *v3 = ov9_0224E330(param1->unk_64->unk_20);
 
-    sub_0206309C(v2, &v0);
+    MapObject_GetSpritePosOffset(v2, &v0);
 
     v0.y = param1->unk_50 + param1->unk_5C;
 
-    sub_020630AC(v2, &v0);
+    MapObject_SetSpritePosOffset(v2, &v0);
     ov9_022511F4(v2, &param1->unk_14);
 
     if (param1->unk_68 != NULL) {
         VecFx32 v4;
 
-        sub_0206309C(param1->unk_68, &v0);
+        MapObject_GetSpritePosOffset(param1->unk_68, &v0);
         v0.y = param1->unk_54 + param1->unk_5C;
-        sub_020630AC(param1->unk_68, &v0);
+        MapObject_SetSpritePosOffset(param1->unk_68, &v0);
 
         MapObject_GetPosPtr(param1->unk_68, &v4);
         v4.y = param1->unk_14.y;
@@ -5063,14 +5084,14 @@ static int ov9_0224D288(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
         }
 
         if (param1->unk_5C <= 0) {
-            sub_0206309C(v2, &v0);
+            MapObject_GetSpritePosOffset(v2, &v0);
             v0.y = param1->unk_50;
-            sub_020630AC(v2, &v0);
+            MapObject_SetSpritePosOffset(v2, &v0);
 
             if (param1->unk_68 != NULL) {
-                sub_0206309C(param1->unk_68, &v0);
+                MapObject_GetSpritePosOffset(param1->unk_68, &v0);
                 v0.y = param1->unk_54;
-                sub_020630AC(param1->unk_68, &v0);
+                MapObject_SetSpritePosOffset(param1->unk_68, &v0);
             }
 
             v3->y = param1->unk_58;
@@ -5148,7 +5169,7 @@ static int ov9_0224D430(DistWorldSystem *param0, UnkStruct_ov9_0224D078 *param1)
             MapObject_SetScript(param1->unk_68, 6);
         }
 
-        sub_02062914(param1->unk_68, param1->unk_06);
+        MapObject_SetMapID(param1->unk_68, param1->unk_06);
     }
 
     if (param1->unk_00 == 1) {
@@ -5382,7 +5403,7 @@ static void LoadProp3DModel(DistWorldSystem *system, u32 propKind)
 
     if (renderBuffs->models[propKind].propKind == PROP_KIND_INVALID) {
         renderBuffs->models[propKind].propKind = propKind;
-        ov5_021DFB00(system->fieldSystem->unk_40, &renderBuffs->models[propKind].model, 0, sProp3DModelNARCIndexByKind[propKind], TRUE);
+        FieldEffectManager_LoadModel(system->fieldSystem->fieldEffMan, &renderBuffs->models[propKind].model, 0, sProp3DModelNARCIndexByKind[propKind], TRUE);
     }
 }
 
@@ -5414,10 +5435,10 @@ static void LoadPropAnimSet(DistWorldSystem *system, u32 animKind)
 
     if (renderBuffs->animSets[animKind].animKind == PROP_ANIM_KIND_INVALID) {
         u32 narcIndex = sPropAnimSetNARCIndexByKind[animKind];
-        u32 animSetSize = ov5_021DF5A8(system->fieldSystem->unk_40, narcIndex);
+        u32 animSetSize = FieldEffectManager_GetNARCMemberSize(system->fieldSystem->fieldEffMan, narcIndex);
 
         renderBuffs->animSets[animKind].animSet = Heap_AllocAtEnd(HEAP_ID_FIELD1, animSetSize);
-        ov5_021DF5B4(system->fieldSystem->unk_40, narcIndex, renderBuffs->animSets[animKind].animSet);
+        FieldEffectManager_ReadNARCWholeMember(system->fieldSystem->fieldEffMan, narcIndex, renderBuffs->animSets[animKind].animSet);
         renderBuffs->animSets[animKind].animKind = animKind;
     }
 }
@@ -5572,19 +5593,19 @@ static BOOL DistWorldPropAnimInfo_IsStatic(int propKind)
 static void ov9_0224DB1C(DistWorldSystem *system)
 {
     for (int i = 0; i < PROP_KIND_COUNT; i++) {
-        if (!HasActivePropAnimManager(system, i) && !ov9_0224E160(system, i) && !ov9_0224E9F4(system, i) && !ov9_0224ECC0(system, i)) {
+        if (!HasActivePropAnimManager(system, i) && !ov9_0224E160(system, i) && !IsGiratinaShadowPropRendererValid(system, i) && !HasActiveSimpleProp(system, i)) {
             InvalidateAllPropRenderersOfKind(system, i);
         }
     }
 
     for (int i = 0; i < PROP_KIND_COUNT; i++) {
-        if (!ov9_0224B7B0(system, i) && !ov9_0224E0E0(system, i) && !ov9_0224E9A4(system, i) && !ov9_0224ECE8(system, i)) {
+        if (!ov9_0224B7B0(system, i) && !ov9_0224E0E0(system, i) && !IsGiratinaShadowPropRendererValid2(system, i) && !HasActiveSimpleProp2(system, i)) {
             FreeProp3DModel(system, i);
         }
     }
 
     for (int i = 0; i < PROP_ANIM_KIND_COUNT; i++) {
-        if (!ov9_0224B844(system, i) && !ov9_0224E120(system, i) && !ov9_0224E9CC(system, i) && !ov9_0224ED20(system, i)) {
+        if (!ov9_0224B844(system, i) && !ov9_0224E120(system, i) && !IsGiratinaShadowPropRendererAnimValid(system, i) && !HasActiveSimplePropAnim(system, i)) {
             FreePropAnimSet(system, i);
         }
     }
@@ -5844,7 +5865,7 @@ static OverworldAnimManager *ov9_0224DFA0(DistWorldSystem *param0, UnkStruct_ov9
         v1.unk_08 = 1;
     }
 
-    v0 = ov5_021DF72C(param0->fieldSystem->unk_40, &Unk_ov9_02251468, NULL, 0, &v1, 0);
+    v0 = FieldEffectManager_InitAnimManager(param0->fieldSystem->fieldEffMan, &Unk_ov9_02251468, NULL, 0, &v1, 0);
     return v0;
 }
 
@@ -6202,7 +6223,7 @@ static BOOL ov9_0224E434(DistWorldSystem *param0, int param1, int param2, int pa
                 v2 = v1->unk_08;
                 v3 = v1->unk_0A;
 
-                if (ov9_02251104(param0, v2, v3) == 1) {
+                if (CheckFlagCondition(param0, v2, v3) == 1) {
                     ov9_0224E4B0(param0, v1);
                     return 1;
                 }
@@ -6310,7 +6331,7 @@ static int ov9_0224E550(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject *v4 = Player_MapObject(param0->fieldSystem->playerAvatar);
 
         MapObject_SetHeightCalculationDisabled(v4, TRUE);
-        sub_0206309C(v4, &v3);
+        MapObject_GetSpritePosOffset(v4, &v3);
 
         v1->unk_28 = v3.y;
     }
@@ -6337,10 +6358,10 @@ static int ov9_0224E5EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     if (v0 != NULL) {
         VecFx32 v4;
 
-        sub_0206309C(v0, &v4);
+        MapObject_GetSpritePosOffset(v0, &v4);
         v4.y = v2->unk_28 + v2->unk_30;
 
-        sub_020630AC(v0, &v4);
+        MapObject_SetSpritePosOffset(v0, &v4);
         MapObject_GetPosPtr(v0, &v4);
         ov9_022511F4(v0, &v4);
     }
@@ -6364,9 +6385,9 @@ static int ov9_0224E5EC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
             if (v0 != NULL) {
                 VecFx32 v5;
 
-                sub_0206309C(v0, &v5);
+                MapObject_GetSpritePosOffset(v0, &v5);
                 v5.y = v2->unk_28;
-                sub_020630AC(v0, &v5);
+                MapObject_SetSpritePosOffset(v0, &v5);
 
                 MapObject_GetPosPtr(v0, &v5);
                 ov9_022511F4(v0, &v5);
@@ -6501,515 +6522,472 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_0225126C[1] = {
     ov9_0224E870
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_02252414[1] = {
+static const DistWorldGiratinaShadowTemplate sGiratinaShadowExternal[GIRATINA_SHADOW_EXTERNAL_COUNT] = {
     {
-        0x6,
-        0x129,
-        0x2A,
-        0x3,
-        0x1,
-        { FX32_ONE, FX32_ONE, FX32_ONE },
-        { (FX32_ONE * 48), 0x0, 0x0 },
-        0x40,
+        .initialTileX = 6,
+        .initialTileY = 297,
+        .initialTileZ = 42,
+        .rotAnglesIndex = 3,
+        .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+        .scale = { FX32_ONE, FX32_ONE, FX32_ONE },
+        .posDelta = { FX32_ONE * 48, 0, 0 },
+        .movementAnimSteps = 64,
     },
 };
 
-void ov9_0224E884(FieldSystem *fieldSystem, u16 param1)
+void DistWorld_StartGiratinaShadowEvent(FieldSystem *fieldSystem, u16 eventIndex)
 {
-    DistWorldSystem *v0;
+    GF_ASSERT(eventIndex < GIRATINA_SHADOW_EXTERNAL_COUNT);
 
-    GF_ASSERT(param1 < 1);
-    v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    ov9_0224E91C(v0, &Unk_ov9_02252414[param1]);
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    LoadGiratinaShadowPropAnimation(dwSystem, &sGiratinaShadowExternal[eventIndex]);
 }
 
-void ov9_0224E8A8(FieldSystem *fieldSystem)
+void DistWorld_FinishGiratinaShadowEvent(FieldSystem *fieldSystem)
 {
-    DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
-    ov9_0224E988(v0);
+    DistWorldSystem *dwSystem = fieldSystem->unk_04->dynamicMapFeaturesData;
+    FinishGiratinaShadowPropRenderer(dwSystem);
 }
 
-static void ov9_0224E8B4(DistWorldSystem *param0)
+static void LoadGiratinaShadowPropRenderer(DistWorldSystem *system)
 {
-    int v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    int rendererAlreadyInit;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    if (v1->unk_00 == 0) {
-        v1->unk_04 = DistWorldPropRenderer_Init(param0, 20, &v0);
+    if (giratinaRenderer->valid == FALSE) {
+        giratinaRenderer->renderer = DistWorldPropRenderer_Init(system, PROP_KIND_GIRATINA_SHADOW, &rendererAlreadyInit);
 
-        if (v0 == 0) {
-            LoadRenderBuffersForProp(param0, 20, &v1->unk_04->renderObj, &v1->unk_04->animation);
+        if (!rendererAlreadyInit) {
+            LoadRenderBuffersForProp(system, PROP_KIND_GIRATINA_SHADOW, &giratinaRenderer->renderer->renderObj, &giratinaRenderer->renderer->animation);
         }
 
-        v1->unk_00 = 1;
+        giratinaRenderer->valid = TRUE;
     }
 }
 
-static void ov9_0224E8EC(DistWorldSystem *param0)
+static void FreeGiratinaShadowPropRenderer(DistWorldSystem *system)
 {
-    int v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    if (v1->unk_00 == 1) {
-        DistWorldPropRenderer_InvalidateAnimated(param0, v1->unk_04);
-        FreePropAnimSet(param0, 0);
-        FreeProp3DModel(param0, 20);
-        v1->unk_00 = 0;
+    if (giratinaRenderer->valid == TRUE) {
+        DistWorldPropRenderer_InvalidateAnimated(system, giratinaRenderer->renderer);
+        FreePropAnimSet(system, PROP_ANIM_KIND_GIRATINA_SHADOW);
+        FreeProp3DModel(system, PROP_KIND_GIRATINA_SHADOW);
+        giratinaRenderer->valid = FALSE;
     }
 }
 
-static void ov9_0224E91C(DistWorldSystem *param0, const UnkStruct_ov9_02252414 *param1)
+static void LoadGiratinaShadowPropAnimation(DistWorldSystem *system, const DistWorldGiratinaShadowTemplate *giratinaTemplate)
 {
-    UnkStruct_ov9_0224E91C v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropUserData userData;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    ov9_0224E8B4(param0);
+    LoadGiratinaShadowPropRenderer(system);
 
-    v0.unk_00 = param0;
-    v0.unk_08 = *param1;
-    v0.unk_04 = v1->unk_04;
+    userData.system = system;
+    userData.template = *giratinaTemplate;
+    userData.renderer = giratinaRenderer->renderer;
 
-    v1->unk_08 = ov5_021DF72C(param0->fieldSystem->unk_40, &Unk_ov9_022514B8, NULL, 0, &v0, 0);
+    giratinaRenderer->animMan = FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, &sGiratinaShadowPropAnimFuncs, NULL, 0, &userData, 0);
 }
 
-static BOOL ov9_0224E964(DistWorldSystem *param0)
+static BOOL IsGiratinaShadowAnimationFinished(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224E964 *v0;
-    UnkStruct_ov9_0224E8B4 *v1 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    GF_ASSERT(v1->unk_08 != NULL);
+    GF_ASSERT(giratinaRenderer->animMan != NULL);
 
-    v0 = OverworldAnimManager_GetFuncsContext(v1->unk_08);
-    return v0->unk_34;
+    DistWorldGiratinaShadowProp *giratinaProp = OverworldAnimManager_GetFuncsContext(giratinaRenderer->animMan);
+    return giratinaProp->animFinished;
 }
 
-static void ov9_0224E984(DistWorldSystem *param0)
+static void Dummy0224E984(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
 }
 
-static void ov9_0224E988(DistWorldSystem *param0)
+static void FinishGiratinaShadowPropRenderer(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
 
-    if (v0->unk_08 != NULL) {
-        OverworldAnimManager_Finish(v0->unk_08);
+    if (giratinaRenderer->animMan != NULL) {
+        OverworldAnimManager_Finish(giratinaRenderer->animMan);
     }
 
-    ov9_0224E8EC(param0);
+    FreeGiratinaShadowPropRenderer(system);
 }
 
-static BOOL ov9_0224E9A4(DistWorldSystem *param0, u32 param1)
+static BOOL IsGiratinaShadowPropRendererValid2(DistWorldSystem *system, u32 propKind)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
+    GF_ASSERT(propKind != PROP_KIND_INVALID);
 
-    GF_ASSERT(param1 != 25);
-
-    if (v0->unk_00 == 1) {
-        if (param1 == 20) {
-            return 1;
-        }
-    }
-
-    return 0;
+    return giratinaRenderer->valid == TRUE && propKind == PROP_KIND_GIRATINA_SHADOW;
 }
 
-static BOOL ov9_0224E9CC(DistWorldSystem *param0, u32 param1)
+static BOOL IsGiratinaShadowPropRendererAnimValid(DistWorldSystem *system, u32 animKind)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
+    GF_ASSERT(animKind != PROP_ANIM_KIND_INVALID);
 
-    GF_ASSERT(param1 != 5);
-
-    if (v0->unk_00 == 1) {
-        if (param1 == 0) {
-            return 1;
-        }
-    }
-
-    return 0;
+    return giratinaRenderer->valid == TRUE && animKind == PROP_ANIM_KIND_GIRATINA_SHADOW;
 }
 
-static BOOL ov9_0224E9F4(DistWorldSystem *param0, int param1)
+static BOOL IsGiratinaShadowPropRendererValid(DistWorldSystem *system, int propKind)
 {
-    UnkStruct_ov9_0224E8B4 *v0 = &param0->unk_1EA4;
-
-    if (v0->unk_00 == 1) {
-        if (param1 == 20) {
-            return 1;
-        }
-    }
-
-    return 0;
+    DistWorldGiratinaShadowPropRenderer *giratinaRenderer = &system->giratinaShadowPropRenderer;
+    return giratinaRenderer->valid == TRUE && propKind == PROP_KIND_GIRATINA_SHADOW;
 }
 
-static const Simple3DRotationAngles Unk_ov9_022529F8[5] = {
-    { 0x0, 0x0, 0x0 },
-    { 0x0, 0xB4, 0x0 },
-    { 0x0, 0x5A, 0x0 },
-    { 0x0, 0x10E, 0x0 },
-    { 0x5A, 0x0, 0x0 }
+static const Simple3DRotationAngles sGiratinaShadowPropRotAngles[5] = {
+    { 0, 0, 0 },
+    { 0, 180, 0 },
+    { 0, 90, 0 },
+    { 0, 270, 0 },
+    { 90, 0, 0 }
 };
 
-static int ov9_0224EA0C(OverworldAnimManager *param0, void *param1)
+static BOOL DistWorldGiratinaShadowProp_AnimInit(OverworldAnimManager *animMan, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov9_0224E964 *v1 = param1;
-    const UnkStruct_ov9_0224E91C *v2 = OverworldAnimManager_GetUserData(param0);
-    const UnkStruct_ov9_02252414 *v3;
+    DistWorldGiratinaShadowProp *giratinaProp = context;
+    const DistWorldGiratinaShadowPropUserData *userData = OverworldAnimManager_GetUserData(animMan);
 
-    v1->unk_00 = *v2;
-    v3 = &v1->unk_00.unk_08;
+    giratinaProp->userData = *userData;
+    const DistWorldGiratinaShadowTemplate *template = &giratinaProp->userData.template;
 
-    v1->unk_2E = 1;
-    v1->unk_38 = Unk_ov9_022529F8[v3->unk_06];
+    giratinaProp->animStopped = TRUE;
+    giratinaProp->rotAngles = sGiratinaShadowPropRotAngles[template->rotAnglesIndex];
 
-    v0.x = (((v3->unk_00) << 4) * FX32_ONE);
-    v0.y = (((v3->unk_02) << 4) * FX32_ONE);
-    v0.z = (((v3->unk_04) << 4) * FX32_ONE);
+    VecFx32 pos;
+    pos.x = (template->initialTileX << 4) * FX32_ONE;
+    pos.y = (template->initialTileY << 4) * FX32_ONE;
+    pos.z = (template->initialTileZ << 4) * FX32_ONE;
 
-    if (v3->unk_06 == 4) {
-        v0.x += (FX32_ONE * 8);
+    if (template->rotAnglesIndex == 4) {
+        pos.x += FX32_ONE * 8;
     }
 
-    OverworldAnimManager_SetPosition(param0, &v0);
+    OverworldAnimManager_SetPosition(animMan, &pos);
 
-    v1->unk_2E = 0;
-    return 1;
+    giratinaProp->animStopped = FALSE;
+    return TRUE;
 }
 
-static void ov9_0224EA88(OverworldAnimManager *param0, void *param1)
+static void DistWorldGiratinaShadowProp_AnimExit(OverworldAnimManager *animMan, void *context)
 {
-    UnkStruct_ov9_0224E964 *v0 = param1;
-    Simple3D_FreeAnimObject(&v0->unk_00.unk_04->animation);
+    DistWorldGiratinaShadowProp *giratinaProp = context;
+    Simple3D_FreeAnimObject(&giratinaProp->userData.renderer->animation);
 }
 
-static void ov9_0224EA94(OverworldAnimManager *param0, void *param1)
+static void DistWorldGiratinaShadowProp_AnimTick(OverworldAnimManager *animMan, void *context)
 {
-    VecFx32 v0;
-    UnkStruct_ov9_0224E964 *v1 = param1;
-    const UnkStruct_ov9_02252414 *v2 = &v1->unk_00.unk_08;
+    DistWorldGiratinaShadowProp *giratinaProp = context;
+    const DistWorldGiratinaShadowTemplate *template = &giratinaProp->userData.template;
 
-    switch (v1->unk_2C) {
-    case 0:
-        if (v2->unk_07 == 1) {
+    switch (giratinaProp->state) {
+    case GIRATINA_SHADOW_PROP_STATE_SFX:
+        if (template->soundKind == GIRATINA_SHADOW_PROP_SFX_KIND_CRY) {
             Sound_PlayPokemonCry(SPECIES_GIRATINA, 0);
-        } else if (v2->unk_07 == 2) {
+        } else if (template->soundKind == GIRATINA_SHADOW_PROP_SFX_KIND_FLEE) {
             Sound_PlayEffect(SEQ_SE_DP_FW019);
         }
 
-        v1->unk_2C++;
-    case 1: {
-        VecFx32 v3;
-        const VecFx32 *v4 = &v2->unk_14;
+        giratinaProp->state++;
+        // fallthrough
 
-        OverworldAnimManager_GetPosition(param0, &v3);
+    case GIRATINA_SHADOW_PROP_STATE_MOVE: {
+        VecFx32 pos;
+        const VecFx32 *posDelta = &template->posDelta;
 
-        v3.x += v4->x;
-        v3.y += v4->y;
-        v3.z += v4->z;
+        OverworldAnimManager_GetPosition(animMan, &pos);
 
-        v1->unk_30++;
+        pos.x += posDelta->x;
+        pos.y += posDelta->y;
+        pos.z += posDelta->z;
 
-        if (v1->unk_30 >= v2->unk_20) {
-            v1->unk_2C++;
-            v1->unk_34 = 1;
-            v1->unk_2E = 1;
+        giratinaProp->movementAnimStep++;
+
+        if (giratinaProp->movementAnimStep >= template->movementAnimSteps) {
+            giratinaProp->state++;
+            giratinaProp->animFinished = TRUE;
+            giratinaProp->animStopped = TRUE;
         }
 
-        OverworldAnimManager_SetPosition(param0, &v3);
-    } break;
-    case 2:
+        OverworldAnimManager_SetPosition(animMan, &pos);
         break;
     }
 
-    if (v1->unk_2E == 0) {
-        Simple3D_UpdateAnim(&v1->unk_00.unk_04->animation, FX32_ONE, 1);
+    case GIRATINA_SHADOW_PROP_STATE_END:
+        break;
+    }
+
+    if (!giratinaProp->animStopped) {
+        Simple3D_UpdateAnim(&giratinaProp->userData.renderer->animation, FX32_ONE, TRUE);
     }
 }
 
-static void ov9_0224EB34(OverworldAnimManager *param0, void *param1)
+static void DistWorldGiratinaShadowProp_AnimRender(OverworldAnimManager *animMan, void *context)
 {
-    UnkStruct_ov9_0224E964 *v0 = param1;
+    DistWorldGiratinaShadowProp *giratinaProp = context;
 
-    if (v0->unk_2E == 0) {
-        VecFx32 v1;
-        const VecFx32 *v2;
+    if (!giratinaProp->animStopped) {
+        VecFx32 pos;
+        OverworldAnimManager_GetPosition(animMan, &pos);
 
-        OverworldAnimManager_GetPosition(param0, &v1);
-        v2 = &v0->unk_00.unk_08.unk_08;
+        const VecFx32 *scale = &giratinaProp->userData.template.scale;
 
-        SetPropPolygonID(v0->unk_00.unk_00, 20, (1 * 8));
-        Simple3D_DrawRenderObjRotationAngles(&v0->unk_00.unk_04->renderObj, &v1, v2, &v0->unk_38);
+        SetPropPolygonID(giratinaProp->userData.system, PROP_KIND_GIRATINA_SHADOW, 1 << 3);
+        Simple3D_DrawRenderObjRotationAngles(&giratinaProp->userData.renderer->renderObj, &pos, scale, &giratinaProp->rotAngles);
     }
 }
 
-static const OverworldAnimManagerFuncs Unk_ov9_022514B8 = {
-    sizeof(UnkStruct_ov9_0224E964),
-    ov9_0224EA0C,
-    ov9_0224EA88,
-    ov9_0224EA94,
-    ov9_0224EB34
+static const OverworldAnimManagerFuncs sGiratinaShadowPropAnimFuncs = {
+    sizeof(DistWorldGiratinaShadowProp),
+    DistWorldGiratinaShadowProp_AnimInit,
+    DistWorldGiratinaShadowProp_AnimExit,
+    DistWorldGiratinaShadowProp_AnimTick,
+    DistWorldGiratinaShadowProp_AnimRender
 };
 
-static void ov9_0224EB68(DistWorldSystem *param0)
+static void InitSimplePropsForCurrentAndNextMaps(DistWorldSystem *system)
 {
-    UnkStruct_ov9_0224EB68 *v0 = &param0->unk_1BB4;
-    u32 v1 = DistWorldSystem_GetMapHeaderID(param0);
-    const DistWorldMapConnections *v2 = GetConnectionsForMap(v1);
+    u32 mapHeaderID = DistWorldSystem_GetMapHeaderID(system);
+    const DistWorldMapConnections *mapConnections = GetConnectionsForMap(mapHeaderID);
 
-    ov9_0224EC48(param0, v1);
+    InitSimplePropsForMap(system, mapHeaderID);
 
-    if (v2->nextID != MAP_HEADER_INVALID) {
-        ov9_0224EC48(param0, v2->nextID);
+    if (mapConnections->nextID != MAP_HEADER_INVALID) {
+        InitSimplePropsForMap(system, mapConnections->nextID);
     }
 }
 
-static void ov9_0224EB94(DistWorldSystem *param0)
+static void FinishAllSimplePropAnimators(DistWorldSystem *system)
 {
-    int v0 = 0;
-    UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
-    UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
+    int i = 0;
+    DistWorldSimplePropManager *simplePropMan = &system->simplePropMan;
+    DistWorldSimplePropAnimator *iter = simplePropMan->animators;
 
-    while (v0 < 8) {
-        if (v2->unk_04 != NULL) {
-            ov9_0224EBB8(v2);
+    while (i < SIMPLE_PROP_MANAGER_ANIMATOR_COUNT) {
+        if (iter->animMan != NULL) {
+            DistWorldMapSimplePropAnimator_Finish(iter);
         }
 
-        v2++;
-        v0++;
+        iter++;
+        i++;
     }
 }
 
-static void ov9_0224EBB8(UnkStruct_ov9_0224EBB8 *param0)
+static void DistWorldMapSimplePropAnimator_Finish(DistWorldSimplePropAnimator *animator)
 {
-    if (param0->unk_04 != NULL) {
-        OverworldAnimManager_Finish(param0->unk_04);
+    if (animator->animMan != NULL) {
+        OverworldAnimManager_Finish(animator->animMan);
     }
 
-    param0->unk_04 = NULL;
+    animator->animMan = NULL;
 }
 
-static void ov9_0224EBCC(DistWorldSystem *param0, UnkStruct_ov9_0224EBB8 *param1, const UnkStruct_ov9_0224EC10 *param2, u32 param3)
+static void InitSimplePropAnimation(DistWorldSystem *system, DistWorldSimplePropAnimator *animator, const DistWorldSimplePropTemplate *simplePropTemplate, u32 mapHeaderID)
 {
-    param1->unk_00 = param3;
-    param1->unk_08 = *param2;
+    animator->mapHeaderID = mapHeaderID;
+    animator->template = *simplePropTemplate;
 
-    {
-        UnkStruct_ov9_0224EBCC v0;
-        const OverworldAnimManagerFuncs *v1;
+    DistWorldSimplePropUserData userData;
+    userData.system = system;
+    userData.animator = animator;
 
-        v0.unk_00 = param0;
-        v0.unk_04 = param1;
-        v1 = sPropAnimFuncsByKind[param2->unk_04];
-
-        param1->unk_04 = ov5_021DF72C(param0->fieldSystem->unk_40, v1, NULL, 0, &v0, 2);
-    }
+    const OverworldAnimManagerFuncs *animFuncs = sPropAnimFuncsByKind[simplePropTemplate->propKind];
+    animator->animMan = FieldEffectManager_InitAnimManager(system->fieldSystem->fieldEffMan, animFuncs, NULL, 0, &userData, 2);
 }
 
-static void ov9_0224EC10(DistWorldSystem *param0, const UnkStruct_ov9_02252548 *param1)
+static void InitSimplePropsFromTemplates(DistWorldSystem *system, const DistWorldSimplePropMapTemplates *mapTemplates)
 {
-    u16 v0, v1;
-    const UnkStruct_ov9_0224EC10 *v2 = param1->unk_04;
-    UnkStruct_ov9_0224EBB8 *v3;
+    const DistWorldSimplePropTemplate *iter = mapTemplates->templates;
 
-    while (v2->unk_04 != 25) {
-        v0 = v2->unk_0C;
-        v1 = v2->unk_0E;
-
-        if (ov9_02251104(param0, v0, v1) == 1) {
-            v3 = ov9_0224EC70(param0);
-            ov9_0224EBCC(param0, v3, v2, param1->unk_00);
+    while (iter->propKind != PROP_KIND_INVALID) {
+        if (CheckFlagCondition(system, iter->flagCond, iter->flagCondVal) == TRUE) {
+            DistWorldSimplePropAnimator *animator = FindUnusedSimplePropAnimator(system);
+            InitSimplePropAnimation(system, animator, iter, mapTemplates->mapHeaderID);
         }
 
-        v2++;
+        iter++;
     }
 }
 
-static void ov9_0224EC48(DistWorldSystem *param0, u32 param1)
+static void InitSimplePropsForMap(DistWorldSystem *system, u32 mapHeaderID)
 {
-    const UnkStruct_ov9_02252548 *v0 = Unk_ov9_02252548;
+    const DistWorldSimplePropMapTemplates *iter = sSimplePropsMapTemplates;
 
-    while (v0->unk_00 != 593) {
-        if (v0->unk_00 == param1) {
-            ov9_0224EC10(param0, v0);
-
+    while (iter->mapHeaderID != MAP_HEADER_INVALID) {
+        if (iter->mapHeaderID == mapHeaderID) {
+            InitSimplePropsFromTemplates(system, iter);
             return;
         }
 
-        v0++;
+        iter++;
     }
 }
 
-static UnkStruct_ov9_0224EBB8 *ov9_0224EC70(DistWorldSystem *param0)
+static DistWorldSimplePropAnimator *FindUnusedSimplePropAnimator(DistWorldSystem *system)
 {
-    int v0 = 0;
-    UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
-    UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
+    int i = 0;
+    DistWorldSimplePropManager *simplePropMan = &system->simplePropMan;
+    DistWorldSimplePropAnimator *iter = simplePropMan->animators;
 
     do {
-        if (v2->unk_04 == NULL) {
-            return v2;
+        if (iter->animMan == NULL) {
+            return iter;
         }
 
-        v2++;
-        v0++;
-    } while (v0 < 8);
+        iter++;
+        i++;
+    } while (i < SIMPLE_PROP_MANAGER_ANIMATOR_COUNT);
 
     GF_ASSERT(FALSE);
     return NULL;
 }
 
-static void ov9_0224EC94(DistWorldSystem *param0, u32 param1)
+static void FinishSimplePropAnimatorForMap(DistWorldSystem *system, u32 mapHeaderID)
 {
-    int v0 = 0;
-    UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
-    UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
+    int i = 0;
+    DistWorldSimplePropManager *simplePropMan = &system->simplePropMan;
+    DistWorldSimplePropAnimator *iter = simplePropMan->animators;
 
-    while (v0 < 8) {
-        if ((v2->unk_00 == param1) && (v2->unk_04 != NULL)) {
-            ov9_0224EBB8(v2);
+    while (i < SIMPLE_PROP_MANAGER_ANIMATOR_COUNT) {
+        if (iter->mapHeaderID == mapHeaderID && iter->animMan != NULL) {
+            DistWorldMapSimplePropAnimator_Finish(iter);
         }
 
-        v2++;
-        v0++;
+        iter++;
+        i++;
     }
 }
 
-static BOOL ov9_0224ECC0(DistWorldSystem *param0, int param1)
+static BOOL HasActiveSimpleProp(DistWorldSystem *system, int propKind)
 {
-    int v0 = 0;
-    UnkStruct_ov9_0224EB68 *v1 = &param0->unk_1BB4;
-    UnkStruct_ov9_0224EBB8 *v2 = v1->unk_00;
+    int i = 0;
+    DistWorldSimplePropManager *simplePropMan = &system->simplePropMan;
+    DistWorldSimplePropAnimator *iter = simplePropMan->animators;
 
-    while (v0 < 8) {
-        if (v2->unk_04 != NULL) {
-            if (v2->unk_08.unk_04 == param1) {
-                return 1;
+    while (i < SIMPLE_PROP_MANAGER_ANIMATOR_COUNT) {
+        if (iter->animMan != NULL && iter->template.propKind == propKind) {
+            return TRUE;
+        }
+
+        iter++;
+        i++;
+    }
+
+    return FALSE;
+}
+
+static BOOL HasActiveSimpleProp2(DistWorldSystem *system, u32 propKind)
+{
+    int i = 0;
+    DistWorldSimplePropManager *simplePropMan = &system->simplePropMan;
+    DistWorldSimplePropAnimator *iter = simplePropMan->animators;
+
+    while (i < SIMPLE_PROP_MANAGER_ANIMATOR_COUNT) {
+        if (iter->animMan != NULL) {
+            const DistWorldPropAnimInfo *animInfo = &sPropAnimInfoByKind[iter->template.propKind];
+
+            if (animInfo->propKind == propKind) {
+                return TRUE;
             }
         }
 
-        v2++;
-        v0++;
+        iter++;
+        i++;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov9_0224ECE8(DistWorldSystem *param0, u32 param1)
+static BOOL HasActiveSimplePropAnim(DistWorldSystem *system, u32 animKind)
 {
-    int v0 = 0;
-    const DistWorldPropAnimInfo *v1;
-    UnkStruct_ov9_0224EB68 *v2 = &param0->unk_1BB4;
-    UnkStruct_ov9_0224EBB8 *v3 = v2->unk_00;
+    int i = 0;
+    DistWorldSimplePropManager *simplePropMan = &system->simplePropMan;
+    DistWorldSimplePropAnimator *iter = simplePropMan->animators;
 
-    while (v0 < 8) {
-        if (v3->unk_04 != NULL) {
-            v1 = &sPropAnimInfoByKind[v3->unk_08.unk_04];
+    while (i < SIMPLE_PROP_MANAGER_ANIMATOR_COUNT) {
+        if (iter->animMan != NULL) {
+            const DistWorldPropAnimInfo *animInfo = &sPropAnimInfoByKind[iter->template.propKind];
 
-            if (v1->propKind == param1) {
-                return 1;
+            if (animInfo->animKind == animKind) {
+                return TRUE;
             }
         }
 
-        v3++;
-        v0++;
+        iter++;
+        i++;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov9_0224ED20(DistWorldSystem *param0, u32 param1)
+static BOOL DistWorldSimpleProp_AnimInit(OverworldAnimManager *animMan, void *context)
 {
-    int v0 = 0;
-    const DistWorldPropAnimInfo *v1;
-    UnkStruct_ov9_0224EB68 *v2 = &param0->unk_1BB4;
-    UnkStruct_ov9_0224EBB8 *v3 = v2->unk_00;
+    DistWorldSimpleProp *simpleProp = context;
+    const DistWorldSimplePropUserData *userData = OverworldAnimManager_GetUserData(animMan);
+    const DistWorldSimplePropTemplate *simplePropTemplate = &userData->animator->template;
 
-    while (v0 < 8) {
-        if (v3->unk_04 != NULL) {
-            v1 = &sPropAnimInfoByKind[v3->unk_08.unk_04];
+    simpleProp->userData = *userData;
 
-            if (v1->animKind == param1) {
-                return 1;
-            }
-        }
+    BOOL rendererAlreadyInit;
+    simpleProp->renderer = DistWorldPropRenderer_Init(userData->system, simplePropTemplate->propKind, &rendererAlreadyInit);
 
-        v3++;
-        v0++;
+    if (!rendererAlreadyInit) {
+        LoadRenderBuffersForProp(simpleProp->userData.system, simplePropTemplate->propKind, &simpleProp->renderer->renderObj, &simpleProp->renderer->animation);
     }
 
-    return 0;
+    VecFx32_SetPosFromMapCoords(simplePropTemplate->tileX, simplePropTemplate->tileZ, &simpleProp->pos);
+    simpleProp->pos.y = MAP_OBJECT_COORD_TO_FX32(simplePropTemplate->tileY);
+
+    const VecFx32 *initialPosOffset = &sPropInitialPosOffsetByKind[simplePropTemplate->propKind];
+    simpleProp->pos.x += initialPosOffset->x;
+    simpleProp->pos.y += initialPosOffset->y;
+    simpleProp->pos.z += initialPosOffset->z;
+
+    return TRUE;
 }
 
-static int ov9_0224ED58(OverworldAnimManager *param0, void *param1)
+static void DistWorldSimpleProp_AnimExit(OverworldAnimManager *animMan, void *context)
 {
-    int v0;
-    UnkStruct_ov9_0224ED58 *v1 = param1;
-    const UnkStruct_ov9_0224EBCC *v2 = OverworldAnimManager_GetUserData(param0);
-    const UnkStruct_ov9_0224EC10 *v3 = &v2->unk_04->unk_08;
+    DistWorldSimpleProp *simpleProp = context;
+    const DistWorldSimplePropTemplate *template = &simpleProp->userData.animator->template;
 
-    v1->unk_1C = *v2;
-    v1->unk_24 = DistWorldPropRenderer_Init(v2->unk_00, v3->unk_04, &v0);
-
-    if (v0 == 0) {
-        LoadRenderBuffersForProp(v1->unk_1C.unk_00, v3->unk_04, &v1->unk_24->renderObj, &v1->unk_24->animation);
+    if (DistWorldPropAnimInfo_IsAnimKindValid(template->propKind) == TRUE) {
+        Simple3D_FreeAnimation(&simpleProp->renderer->animation);
     }
 
-    VecFx32_SetPosFromMapCoords(v3->unk_06, v3->unk_0A, &v1->unk_04);
-    v1->unk_04.y = (((v3->unk_08) << 4) * FX32_ONE) + ((16 * FX32_ONE) >> 1);
-
-    {
-        VecFx32 v4;
-        const VecFx32 *v5 = &sPropInitialPosOffsetByKind[v3->unk_04];
-
-        v1->unk_04.x += v5->x;
-        v1->unk_04.y += v5->y;
-        v1->unk_04.z += v5->z;
-    }
-
-    return 1;
+    DistWorldPropRenderer_InvalidateAnimated(simpleProp->userData.system, simpleProp->renderer);
 }
 
-static void ov9_0224EDD8(OverworldAnimManager *param0, void *param1)
+static void DistWorldSimpleProp_AnimTick(OverworldAnimManager *animMan, void *context)
 {
-    int v0;
-    UnkStruct_ov9_0224ED58 *v1 = param1;
-    const UnkStruct_ov9_0224EC10 *v2 = &v1->unk_1C.unk_04->unk_08;
+    DistWorldSimpleProp *simpleProp = context;
+    int propKind = simpleProp->userData.animator->template.propKind;
 
-    if (DistWorldPropAnimInfo_IsAnimKindValid(v2->unk_04) == 1) {
-        Simple3D_FreeAnimation(&v1->unk_24->animation);
+    if (DistWorldPropAnimInfo_IsAnimKindValid(propKind) == TRUE) {
+        Simple3D_UpdateAnim(&simpleProp->renderer->animation, FX32_ONE, TRUE);
     }
 
-    DistWorldPropRenderer_InvalidateAnimated(v1->unk_1C.unk_00, v1->unk_24);
+    simpleProp->inView = IsPropInView(simpleProp->userData.system, propKind, &simpleProp->pos);
 }
 
-static void ov9_0224EDFC(OverworldAnimManager *param0, void *param1)
+static void DistWorldSimpleProp_AnimRender(OverworldAnimManager *animMan, void *context)
 {
-    UnkStruct_ov9_0224ED58 *v0 = param1;
-    int v1 = v0->unk_1C.unk_04->unk_08.unk_04;
+    DistWorldSimpleProp *simpleProp = context;
 
-    if (DistWorldPropAnimInfo_IsAnimKindValid(v1) == 1) {
-        Simple3D_UpdateAnim(&v0->unk_24->animation, FX32_ONE, 1);
-    }
-
-    v0->unk_02 = IsPropInView(v0->unk_1C.unk_00, v1, &v0->unk_04);
-}
-
-static void ov9_0224EE2C(OverworldAnimManager *param0, void *param1)
-{
-    UnkStruct_ov9_0224ED58 *v0 = param1;
-
-    if (v0->unk_02 == 1) {
-        Simple3D_DrawRenderObjWithPos(&v0->unk_24->renderObj, &v0->unk_04);
+    if (simpleProp->inView == TRUE) {
+        Simple3D_DrawRenderObjWithPos(&simpleProp->renderer->renderObj, &simpleProp->pos);
     }
 }
 
-static const OverworldAnimManagerFuncs Unk_ov9_02251530 = {
-    sizeof(UnkStruct_ov9_0224ED58),
-    ov9_0224ED58,
-    ov9_0224EDD8,
-    ov9_0224EDFC,
-    ov9_0224EE2C
+static const OverworldAnimManagerFuncs sSimplePropAnimFuncs = {
+    sizeof(DistWorldSimpleProp),
+    DistWorldSimpleProp_AnimInit,
+    DistWorldSimpleProp_AnimExit,
+    DistWorldSimpleProp_AnimTick,
+    DistWorldSimpleProp_AnimRender
 };
 
 static void ov9_0224EE40(DistWorldSystem *param0)
@@ -7069,7 +7047,7 @@ static MapObject *ov9_0224EECC(DistWorldSystem *param0, const ObjectEvent *param
     const MapObjectManager *v2 = param0->fieldSystem->mapObjMan;
 
     while (MapObjectMan_FindObjectWithStatus(v2, &v1, &v0, (1 << 0))) {
-        if (sub_02062918(v1) == param2) {
+        if (MapObject_GetMapID(v1) == param2) {
             if (MapObject_GetLocalID(v1) == param1->localID) {
                 GF_ASSERT(param1->graphicsID == MapObject_GetGraphicsID(v1));
                 return v1;
@@ -7090,7 +7068,7 @@ static BOOL ov9_0224EF30(DistWorldSystem *param0, const UnkStruct_ov9_0224EF30 *
         if (param2 == 0) {
             return 0;
         }
-    } else if (ov9_02251104(param0, v0, v1) == 0) {
+    } else if (CheckFlagCondition(param0, v0, v1) == 0) {
         return 0;
     }
 
@@ -7181,7 +7159,7 @@ static void ov9_0224F0A4(DistWorldSystem *param0, u32 param1)
 
     for (v0 = 0; v0 < 19; v0++, v2++) {
         if ((*v2) != NULL) {
-            if (sub_02062918(*v2) == param1) {
+            if (MapObject_GetMapID(*v2) == param1) {
                 MapObject_Delete(*v2);
                 *v2 = NULL;
             }
@@ -7245,7 +7223,7 @@ void ov9_0224F16C(FieldSystem *fieldSystem, u16 param1)
     while (MapObjectMan_FindObjectWithStatus(
                v3, &v1, &v0, (1 << 0))
         == 1) {
-        if ((MapObject_GetLocalID(v1) == param1) && (sub_02062918(v1) == v2)) {
+        if ((MapObject_GetLocalID(v1) == param1) && (MapObject_GetMapID(v1) == v2)) {
             ov9_0224EE70(v4, v1);
             return;
         }
@@ -7389,7 +7367,7 @@ static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
     Sound_PlayEffect(SEQ_SE_DP_UG_008);
     v1.y = ((115 << 4) * FX32_ONE);
     MapObject_SetPosDirFromVec(v2, &v1, MapObject_GetFacingDir(v2));
-    sub_02062914(v2, 580);
+    MapObject_SetMapID(v2, 580);
 
     {
         u32 v3, v4;
@@ -7501,7 +7479,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
         {
             VecFx32 v11;
 
-            sub_0206309C(param0->unk_0C, &v11);
+            MapObject_GetSpritePosOffset(param0->unk_0C, &v11);
 
             param0->unk_1C = v11.y;
             param0->unk_20 = (FX32_ONE * 1);
@@ -7515,10 +7493,10 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
         VecFx32 v12;
         MapObject *v13 = param0->unk_0C;
 
-        sub_0206309C(v13, &v12);
+        MapObject_GetSpritePosOffset(v13, &v12);
         v12.y = param0->unk_1C + param0->unk_20;
 
-        sub_020630AC(v13, &v12);
+        MapObject_SetSpritePosOffset(v13, &v12);
         param0->unk_20 = -param0->unk_20;
     }
 
@@ -7983,12 +7961,12 @@ static int ov9_0224FB3C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 v6 = { 0, 0, 0 };
-        sub_020630AC(v2, &v6);
+        MapObject_SetSpritePosOffset(v2, &v6);
     }
 
     {
         VecFx32 *v7;
-        OverworldAnimManager *v8 = sub_0205EC04(playerAvatar);
+        OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
         Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 2, 5);
@@ -8029,7 +8007,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     ov9_0224FA94(param0, v1);
 
     {
-        OverworldAnimManager *v3 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+        OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
 
         {
             Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
@@ -8067,7 +8045,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         ov9_0224F930(v2, 0, 0x400, (FX32_ONE * 4));
 
         {
-            OverworldAnimManager *v6 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+            OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
             VecFx32 *v7;
 
             v7 = ov5_021F88FC(v6);
@@ -8092,7 +8070,7 @@ static int ov9_0224FC2C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_0224FA94 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_40;
@@ -8168,7 +8146,7 @@ static int ov9_0224FD74(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_0224FA94 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_40;
@@ -8221,7 +8199,7 @@ static int ov9_0224FEDC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_TryFace(v2, 2);
         MapObject_Turn(v2, 2);
         MapObject_SetSpriteJumpOffset(v2, &v13);
-        sub_020630AC(v2, &v13);
+        MapObject_SetSpritePosOffset(v2, &v13);
         FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_ACTIVE);
         MapObject_SetHeightCalculationDisabled(v2, FALSE);
@@ -8325,12 +8303,12 @@ static int ov9_02250170(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     {
         VecFx32 v6 = { 0, 0, 0 };
-        sub_020630AC(v2, &v6);
+        MapObject_SetSpritePosOffset(v2, &v6);
     }
 
     {
         VecFx32 *v7;
-        OverworldAnimManager *v8 = sub_0205EC04(playerAvatar);
+        OverworldAnimManager *v8 = PlayerAvatar_GetSurfMountAnimManager(playerAvatar);
         Simple3DRotationAngles *v9 = ov5_021F88A8(v8);
 
         ov5_021F88B4(v8, 3, 1);
@@ -8371,7 +8349,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     ov9_02250138(param0, v1);
 
     {
-        OverworldAnimManager *v3 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+        OverworldAnimManager *v3 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
 
         {
             Simple3DRotationAngles *v4 = ov5_021F88A8(v3);
@@ -8409,7 +8387,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         ov9_0224F930(v2, 0, 0x200, (FX32_ONE * 4));
 
         {
-            OverworldAnimManager *v6 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+            OverworldAnimManager *v6 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
             VecFx32 *v7;
 
             v7 = ov5_021F88FC(v6);
@@ -8431,7 +8409,7 @@ static int ov9_02250260(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_02250138 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_34;
@@ -8484,7 +8462,7 @@ static int ov9_02250388(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     int v0;
-    OverworldAnimManager *v1 = sub_0205EC04(param0->fieldSystem->playerAvatar);
+    OverworldAnimManager *v1 = PlayerAvatar_GetSurfMountAnimManager(param0->fieldSystem->playerAvatar);
     MapObject *v2 = Player_MapObject(param0->fieldSystem->playerAvatar);
     UnkStruct_ov9_02250138 *v3 = ov9_0224E39C(param0);
     UnkStruct_ov9_0224F930 *v4 = &v3->unk_34;
@@ -8537,7 +8515,7 @@ static int ov9_02250468(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         MapObject_TryFace(v2, 3);
         MapObject_Turn(v2, 3);
         MapObject_SetSpriteJumpOffset(v2, &v13);
-        sub_020630AC(v2, &v13);
+        MapObject_SetSpritePosOffset(v2, &v13);
         FindAndPrepareNewCurrentFloatingPlatform(param0, v8, ((v9) / 2), v10, 4);
         PlayerAvatar_SetDistortionState(param0->fieldSystem->playerAvatar, AVATAR_DISTORTION_STATE_CEILING);
         MapObject_SetHeightCalculationDisabled(v2, TRUE);
@@ -8661,17 +8639,17 @@ static const UnkFuncPtr_ov9_02253BE4 Unk_ov9_02251254[1] = {
 
 static int ov9_0225071C(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
-    const UnkStruct_ov9_02252414 *v0 = param3;
+    const DistWorldGiratinaShadowTemplate *v0 = param3;
 
-    ov9_0224E91C(param0, v0);
+    LoadGiratinaShadowPropAnimation(param0, v0);
     *param2 = 1;
     return 0;
 }
 
 static int ov9_02250730(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
-    if (ov9_0224E964(param0) == 1) {
-        ov9_0224E988(param0);
+    if (IsGiratinaShadowAnimationFinished(param0) == TRUE) {
+        FinishGiratinaShadowPropRenderer(param0);
         return 2;
     }
 
@@ -8733,7 +8711,7 @@ static int ov9_022507C4(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     v0->unk_18 = ov9_0224F0D4(param0, 582, (0x80 + 0));
     v0->unk_08.y = ((10 << 4) * FX32_ONE);
 
-    sub_020630AC(v0->unk_18, &v0->unk_08);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_08);
 
     *param2 = 1;
     return 0;
@@ -8783,7 +8761,7 @@ static int ov9_02250854(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
         *param2 = 3;
     }
 
-    sub_020630AC(v0->unk_18, &v0->unk_08);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_08);
     return 0;
 }
 
@@ -8851,7 +8829,7 @@ static int ov9_0225094C(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_14.y += v1;
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.y) >> 4) / FX32_ONE) >= 17) {
         *param2 = 2;
@@ -8864,7 +8842,7 @@ static int ov9_02250994(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 {
     UnkStruct_ov9_02250918 *v0 = ov9_0224E39C(param0);
     v0->unk_14.z -= (FX32_ONE * 1);
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.z) >> 4) / FX32_ONE) <= -2) {
         v0->unk_0C = v0->unk_14.y;
@@ -8881,7 +8859,7 @@ static int ov9_022509D4(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
     v0 = ov9_0224E39C(param0);
     v0->unk_14.y = v0->unk_0C + v1[v0->unk_00 >> 1];
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     v0->unk_00 += v0->unk_04;
 
@@ -8906,7 +8884,7 @@ static int ov9_02250A58(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     UnkStruct_ov9_02250918 *v0 = ov9_0224E39C(param0);
     v0->unk_14.z += (FX32_ONE * 1);
 
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.z) >> 4) / FX32_ONE) == 1) {
         *param2 = 5;
@@ -8924,7 +8902,7 @@ static int ov9_02250A90(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_14.y -= v0->unk_10;
-    sub_020630AC(v0->unk_20, &v0->unk_14);
+    MapObject_SetSpritePosOffset(v0->unk_20, &v0->unk_14);
 
     if ((((v0->unk_14.y) >> 4) / FX32_ONE) <= 0) {
         ov9_0224EE70(param0, v0->unk_20);
@@ -8979,7 +8957,7 @@ static int ov9_02250B30(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y += v1;
-    sub_020630AC(v0->unk_14, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_14, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 13) {
         v0->unk_10 = MapObject_StartAnimation(
@@ -9012,7 +8990,7 @@ static int ov9_02250BAC(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y -= v0->unk_00;
-    sub_020630AC(v0->unk_14, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_14, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) <= 0) {
         ov9_0224EE70(param0, v0->unk_14);
@@ -9143,7 +9121,7 @@ static int ov9_02250C48(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y += v1;
-    sub_020630AC(v0->unk_18, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) >= 9) {
         int v2, v3, v4;
@@ -9190,7 +9168,7 @@ static int ov9_02250D10(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     }
 
     v0->unk_04.y -= v0->unk_00;
-    sub_020630AC(v0->unk_18, &v0->unk_04);
+    MapObject_SetSpritePosOffset(v0->unk_18, &v0->unk_04);
 
     if ((((v0->unk_04.y) >> 4) / FX32_ONE) <= 0) {
         ov9_0224EE70(param0, v0->unk_18);
@@ -9493,51 +9471,65 @@ static enum AvatarDistortionState GetAvatarDistortionStateForFloatingPlatformKin
     return AVATAR_DISTORTION_STATE_ACTIVE;
 }
 
-static BOOL ov9_02251104(DistWorldSystem *param0, u32 param1, u32 param2)
+static BOOL CheckFlagCondition(DistWorldSystem *system, enum FlagCondition flagCond, u32 val)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(system->fieldSystem->saveData);
 
-    switch (param1) {
-    case 0:
-        return 1;
-    case 1:
-        if (ov9_02249E00(param0, param2) != 1) {
-            return 1;
+    switch (flagCond) {
+    case FLAG_COND_NONE:
+        return TRUE;
+
+    case FLAG_COND_1:
+        if (ov9_02249E00(system, val) != TRUE) {
+            return TRUE;
         }
+
         break;
-    case 2:
-        if (ov9_02249E00(param0, param2) == 1) {
-            return 1;
+
+    case FLAG_COND_2:
+        if (ov9_02249E00(system, val) == TRUE) {
+            return TRUE;
         }
+
         break;
-    case 3:
-        if (SystemVars_GetDistortionWorldProgress(v0) == param2) {
-            return 1;
+
+    case FLAG_COND_WORLD_PROGRESS_EQ:
+        if (SystemVars_GetDistortionWorldProgress(varsFlags) == val) {
+            return TRUE;
         }
+
         break;
-    case 4:
-        if (SystemVars_GetDistortionWorldProgress(v0) <= param2) {
-            return 1;
+
+    case FLAG_COND_WORLD_PROGRESS_LEQ:
+        if (SystemVars_GetDistortionWorldProgress(varsFlags) <= val) {
+            return TRUE;
         }
+
         break;
-    case 5:
-        if (SystemVars_GetDistortionWorldProgress(v0) >= param2) {
-            return 1;
+
+    case FLAG_COND_WORLD_PROGRESS_GEQ:
+        if (SystemVars_GetDistortionWorldProgress(varsFlags) >= val) {
+            return TRUE;
         }
+
         break;
-    case 7:
-        if (!SystemFlag_HandleGiratinaAnimation(v0, HANDLE_FLAG_CHECK, param2)) {
-            return 1;
+
+    case FLAG_COND_GIRATINA_SHADOW:
+        if (!SystemFlag_HandleGiratinaAnimation(varsFlags, HANDLE_FLAG_CHECK, val)) {
+            return TRUE;
         }
+
         break;
-    case 8:
-        if (SystemVars_GetDistortionWorldCyrusApperanceState(v0) == param2) {
-            return 1;
+
+    case FLAG_COND_CYRUS_APPEARANCE:
+        if (SystemVars_GetDistortionWorldCyrusApperanceState(varsFlags) == val) {
+            return TRUE;
         }
+
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3)
@@ -9764,19 +9756,19 @@ static const u32 sProp3DModelNARCIndexByKind[PROP_KIND_COUNT] = {
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = 0x8D,
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = 0x8E,
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = 0x8F,
-    [PROP_KIND_DUMMY20] = 0x90,
-    [PROP_KIND_DUMMY21] = 0x91,
+    [PROP_KIND_GIRATINA_SHADOW] = 0x90,
+    [PROP_KIND_WATERFALL] = 0x91,
     [PROP_KIND_LAND_VINE_FLOWER] = 0x92,
     [PROP_KIND_LAND_ROCK] = 0x93,
-    [PROP_KIND_DUMMY24] = 0x94
+    [PROP_KIND_PORTAL] = 0x94
 };
 
 static const u32 sPropAnimSetNARCIndexByKind[PROP_ANIM_KIND_COUNT] = {
-    [PROP_ANIM_KIND_DUMMY20] = 0xC6,
+    [PROP_ANIM_KIND_GIRATINA_SHADOW] = 0xC6,
     [PROP_ANIM_KIND_LAND_VINE_FLOWER] = 0xBF,
     [PROP_ANIM_KIND_LAND_ROCK] = 0xC0,
-    [PROP_ANIM_KIND_DUMMY21] = 0xC8,
-    [PROP_ANIM_KIND_DUMMY24] = 0xC1
+    [PROP_ANIM_KIND_WATERFALL] = 0xC8,
+    [PROP_ANIM_KIND_PORTAL] = 0xC1
 };
 
 // clang-format off
@@ -9881,14 +9873,14 @@ static const DistWorldPropAnimInfo sPropAnimInfoByKind[PROP_KIND_COUNT] = {
         .animKind = PROP_ANIM_KIND_INVALID,
         .isStatic = TRUE
     },
-    [PROP_KIND_DUMMY20] = {
-        .propKind = PROP_KIND_DUMMY20,
-        .animKind = PROP_ANIM_KIND_DUMMY20,
+    [PROP_KIND_GIRATINA_SHADOW] = {
+        .propKind = PROP_KIND_GIRATINA_SHADOW,
+        .animKind = PROP_ANIM_KIND_GIRATINA_SHADOW,
         .isStatic = FALSE
     },
-    [PROP_KIND_DUMMY21] = {
-        .propKind = PROP_KIND_DUMMY21,
-        .animKind = PROP_ANIM_KIND_DUMMY21,
+    [PROP_KIND_WATERFALL] = {
+        .propKind = PROP_KIND_WATERFALL,
+        .animKind = PROP_ANIM_KIND_WATERFALL,
         .isStatic = FALSE
     },
     [PROP_KIND_LAND_VINE_FLOWER] = {
@@ -9901,9 +9893,9 @@ static const DistWorldPropAnimInfo sPropAnimInfoByKind[PROP_KIND_COUNT] = {
         .animKind = PROP_ANIM_KIND_LAND_ROCK,
         .isStatic = FALSE
     },
-    [PROP_KIND_DUMMY24] = {
-        .propKind = PROP_KIND_DUMMY24,
-        .animKind = PROP_ANIM_KIND_DUMMY24,
+    [PROP_KIND_PORTAL] = {
+        .propKind = PROP_KIND_PORTAL,
+        .animKind = PROP_ANIM_KIND_PORTAL,
         .isStatic = FALSE
     }
 };
@@ -9930,11 +9922,11 @@ static const VecFx32 sPropInitialPosOffsetByKind[PROP_KIND_COUNT] = {
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = { 0x0, -FX32_ONE * 25, -FX32_ONE * 6 },
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = { 0 + -FX32_ONE * 8, -FX32_ONE * 25, -FX32_ONE * 6 + FX32_ONE * 16 },
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = { 0x0, -FX32_ONE * 25, -FX32_ONE * 6 },
-    [PROP_KIND_DUMMY20] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
-    [PROP_KIND_DUMMY21] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
+    [PROP_KIND_GIRATINA_SHADOW] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
+    [PROP_KIND_WATERFALL] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
     [PROP_KIND_LAND_VINE_FLOWER] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
     [PROP_KIND_LAND_ROCK] = { 0x0, -FX32_ONE * 32, -FX32_ONE * 6 },
-    [PROP_KIND_DUMMY24] = { 0x0, -FX32_ONE * 14, FX32_ONE * 8 }
+    [PROP_KIND_PORTAL] = { 0x0, -FX32_ONE * 14, FX32_ONE * 8 }
 };
 
 static const VecFx32 sPropScaleByKind[PROP_KIND_COUNT] = {
@@ -9958,11 +9950,11 @@ static const VecFx32 sPropScaleByKind[PROP_KIND_COUNT] = {
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
-    [PROP_KIND_DUMMY20] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
-    [PROP_KIND_DUMMY21] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
+    [PROP_KIND_GIRATINA_SHADOW] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
+    [PROP_KIND_WATERFALL] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4 },
     [PROP_KIND_LAND_VINE_FLOWER] = { FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 4, FX32_ONE + 0x100 * 8 },
     [PROP_KIND_LAND_ROCK] = { 0x0, 0x0, 0x0 },
-    [PROP_KIND_DUMMY24] = { 0x0, 0x0, 0x0 }
+    [PROP_KIND_PORTAL] = { 0x0, 0x0, 0x0 }
 };
 
 static const OverworldAnimManagerFuncs sPlatformPropAnimFuncs = {
@@ -10002,11 +9994,11 @@ static const OverworldAnimManagerFuncs *const sPropAnimFuncsByKind[PROP_KIND_COU
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_3] = &sPlatformPropAnimFuncs,
     [PROP_KIND_LARGE_ELEVATOR_PLATFORM_4] = &sPlatformPropAnimFuncs,
     [PROP_KIND_MEDIUM_ELEVATOR_PLATFORM_5] = &sPlatformPropAnimFuncs,
-    [PROP_KIND_DUMMY20] = &Unk_ov9_022514B8,
-    [PROP_KIND_DUMMY21] = &Unk_ov9_02251530,
+    [PROP_KIND_GIRATINA_SHADOW] = &sGiratinaShadowPropAnimFuncs,
+    [PROP_KIND_WATERFALL] = &sSimplePropAnimFuncs,
     [PROP_KIND_LAND_VINE_FLOWER] = &sObstaclePropAnimFuncs,
     [PROP_KIND_LAND_ROCK] = &sObstaclePropAnimFuncs,
-    [PROP_KIND_DUMMY24] = &Unk_ov9_02251530
+    [PROP_KIND_PORTAL] = &sSimplePropAnimFuncs
 };
 
 // clang-format off
@@ -11741,15 +11733,15 @@ static const UnkStruct_ov9_02251438 Unk_ov9_02251438[] = {
     { 0x12, NULL },
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_022523A8 = {
-    0x3F,
-    0xA9,
-    0x9,
-    0x1,
-    0x1,
-    { FX32_ONE, FX32_ONE, FX32_ONE },
-    { 0x0, 0x0, (FX32_ONE * 48) },
-    0x40,
+static const DistWorldGiratinaShadowTemplate Unk_ov9_022523A8 = {
+    .initialTileX = 63,
+    .initialTileY = 169,
+    .initialTileZ = 9,
+    .rotAnglesIndex = 1,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+    .scale = { FX32_ONE, FX32_ONE, FX32_ONE },
+    .posDelta = { 0, 0, FX32_ONE * 48 },
+    .movementAnimSteps = 64,
 };
 
 static const UnkStruct_ov9_022506EC Unk_ov9_02251274 = {
@@ -11762,15 +11754,15 @@ static const UnkStruct_ov9_02251438 Unk_ov9_02251960[] = {
     { 0x12, NULL }
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_022523CC = {
-    0x2A,
-    0x89,
-    0x20,
-    0x3,
-    0x1,
-    { FX32_ONE, FX32_ONE, FX32_ONE },
-    { (FX32_ONE * 48), 0x0, 0x0 },
-    0x48
+static const DistWorldGiratinaShadowTemplate Unk_ov9_022523CC = {
+    .initialTileX = 42,
+    .initialTileY = 137,
+    .initialTileZ = 32,
+    .rotAnglesIndex = 3,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_CRY,
+    .scale = { FX32_ONE, FX32_ONE, FX32_ONE },
+    .posDelta = { FX32_ONE * 48, 0, 0 },
+    .movementAnimSteps = 72
 };
 
 static const UnkStruct_ov9_022506EC Unk_ov9_02251228 = {
@@ -11882,15 +11874,15 @@ static const UnkStruct_ov9_022506AC Unk_ov9_02251240 = {
     0x7
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_02252438 = {
-    0xFFFFFFFFFFFFFFF7,
-    -4,
-    0x16,
-    0x3,
-    0x0,
-    { FX32_ONE / 4, FX32_ONE / 4, FX32_ONE / 4 },
-    { (FX32_ONE * 16), 0x0, 0x0 },
-    0x30
+static const DistWorldGiratinaShadowTemplate Unk_ov9_02252438 = {
+    .initialTileX = -9,
+    .initialTileY = -4,
+    .initialTileZ = 22,
+    .rotAnglesIndex = 3,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_NONE,
+    .scale = { FX32_ONE / 4, FX32_ONE / 4, FX32_ONE / 4 },
+    .posDelta = { FX32_ONE * 16, 0, 0 },
+    .movementAnimSteps = 48
 };
 
 static const UnkStruct_ov9_022506D0 Unk_ov9_02251264 = {
@@ -11904,15 +11896,15 @@ static const UnkStruct_ov9_02251438 Unk_ov9_022522C4[] = {
     { 0x12, NULL }
 };
 
-static const UnkStruct_ov9_02252414 Unk_ov9_0225245C = {
-    0xF,
-    -34,
-    0x8,
-    0x4,
-    0x2,
-    { FX32_ONE / 2, FX32_ONE / 2, FX32_ONE / 2 },
-    { 0x0, (FX32_ONE * 32), (FX32_ONE * 2) },
-    0x20
+static const DistWorldGiratinaShadowTemplate Unk_ov9_0225245C = {
+    .initialTileX = 15,
+    .initialTileY = -34,
+    .initialTileZ = 8,
+    .rotAnglesIndex = 4,
+    .soundKind = GIRATINA_SHADOW_PROP_SFX_KIND_FLEE,
+    .scale = { FX32_ONE / 2, FX32_ONE / 2, FX32_ONE / 2 },
+    .posDelta = { 0, FX32_ONE * 32, FX32_ONE * 2 },
+    .movementAnimSteps = 32
 };
 
 static const UnkStruct_ov9_022506D0 Unk_ov9_02251230 = {
@@ -11961,32 +11953,60 @@ static const UnkStruct_ov9_02252D38 Unk_ov9_02252D38[] = {
     { 0x251, NULL }
 };
 
-static const UnkStruct_ov9_0224EC10 Unk_ov9_02251F24[] = {
-    { 0x0, 0x18, 0x37, 0x121, 0x27, 0x0, 0x0 },
-    { 0x0, 0x19, 0x0, 0x0, 0x0 }
+static const DistWorldSimplePropTemplate sSimpleProps1F[] = {
+    {
+        .propKind = PROP_KIND_PORTAL,
+        .tileX = 55,
+        .tileY = 289,
+        .tileZ = 39,
+        .flagCond = FLAG_COND_NONE,
+        .flagCondVal = 0,
+    },
+    { 0, PROP_KIND_INVALID, 0, 0, 0, FLAG_COND_NONE, 0 }
 };
 
-static const UnkStruct_ov9_0224EC10 Unk_ov9_02251F44[] = {
-    { 0x0, 0x15, 0x6A, 0x99, 0x4E, 0x0, 0x0 },
-    { 0x0, 0x19, 0x0, 0x0, 0x0, 0x0, 0x0 }
+static const DistWorldSimplePropTemplate sSimplePropsB5F[] = {
+    {
+        .propKind = PROP_KIND_WATERFALL,
+        .tileX = 106,
+        .tileY = 153,
+        .tileZ = 78,
+        .flagCond = FLAG_COND_NONE,
+        .flagCondVal = 0,
+    },
+    { 0, PROP_KIND_INVALID, 0, 0, 0, FLAG_COND_NONE, 0 }
 };
 
-static const UnkStruct_ov9_0224EC10 Unk_ov9_02251F84[] = {
-    { 0x0, 0x18, 0xF, 0x1, 0xC, 0x5, 0xE },
-    { 0x0, 0x19, 0x0, 0x0, 0x0, 0x0, 0x0 }
+static const DistWorldSimplePropTemplate sSimplePropsGiratinaRoom[] = {
+    {
+        .propKind = PROP_KIND_PORTAL,
+        .tileX = 15,
+        .tileY = 1,
+        .tileZ = 12,
+        .flagCond = FLAG_COND_WORLD_PROGRESS_GEQ,
+        .flagCondVal = 14,
+    },
+    { 0, PROP_KIND_INVALID, 0, 0, 0, FLAG_COND_NONE, 0 }
 };
 
-static const UnkStruct_ov9_0224EC10 Unk_ov9_02251FA4[] = {
-    { 0x0, 0x18, 0x74, 0x41, 0x4A, 0x0, 0x0 },
-    { 0x0, 0x19, 0x0, 0x0, 0x0 }
+static const DistWorldSimplePropTemplate sSimplePropsTurnbackCaveRoom[] = {
+    {
+        .propKind = PROP_KIND_PORTAL,
+        .tileX = 116,
+        .tileY = 65,
+        .tileZ = 74,
+        .flagCond = FLAG_COND_NONE,
+        .flagCondVal = 0,
+    },
+    { 0, PROP_KIND_INVALID, 0, 0, 0, FLAG_COND_NONE, 0 }
 };
 
-static const UnkStruct_ov9_02252548 Unk_ov9_02252548[] = {
-    { 0x23D, Unk_ov9_02251F24 },
-    { 0x243, Unk_ov9_02251F44 },
-    { 0x246, Unk_ov9_02251F84 },
-    { 0x247, Unk_ov9_02251FA4 },
-    { 0x251, NULL }
+static const DistWorldSimplePropMapTemplates sSimplePropsMapTemplates[] = {
+    { MAP_HEADER_DISTORTION_WORLD_1F, sSimpleProps1F },
+    { MAP_HEADER_DISTORTION_WORLD_B5F, sSimplePropsB5F },
+    { MAP_HEADER_DISTORTION_WORLD_GIRATINA_ROOM, sSimplePropsGiratinaRoom },
+    { MAP_HEADER_DISTORTION_WORLD_TURNBACK_CAVE_ROOM, sSimplePropsTurnbackCaveRoom },
+    { MAP_HEADER_INVALID, NULL }
 };
 
 static const UnkStruct_ov9_0224EF30 Unk_ov9_02252598 = {

@@ -4,10 +4,10 @@
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 
+#include "overlay005/resource_heap.h"
 #include "overlay005/struct_ov5_021DF84C.h"
 #include "overlay005/struct_ov5_021ED110.h"
 #include "overlay005/struct_ov5_021EDF3C.h"
-#include "overlay005/struct_ov5_021F06D8_decl.h"
 
 #include "resource_collection.h"
 
@@ -29,8 +29,8 @@ typedef struct UnkStruct_ov5_021ED0A4_t {
     ResourceCollection *unk_EC;
     TextureResourceManager *unk_F0;
     UnkStruct_ov5_021ED110 *unk_F4;
-    UnkStruct_ov5_021F06D8 *unk_F8;
-    UnkStruct_ov5_021F06D8 *unk_FC;
+    ResourceHeap *unk_F8;
+    ResourceHeap *unk_FC;
     UnkStruct_ov5_021EDF3C *unk_100;
     const MapObjectManager *unk_104;
 } UnkStruct_ov5_021ED0A4;

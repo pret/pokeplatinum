@@ -3,7 +3,7 @@
 
 _000:
     // {0} used one {1}!
-    PrintMessage pl_msg_00000368_00857, TAG_TRNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_TrainerUsedOneItem, TAG_TRNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     StartCatchMonTask CAPTURE_NORMAL
     WaitCatchMonTask 

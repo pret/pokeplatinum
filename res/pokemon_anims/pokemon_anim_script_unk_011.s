@@ -1,0 +1,25 @@
+#include "macros/pokemon_anim_cmd.inc"
+
+PokemonAnimScript_unk_011:
+    TransformLinearEven TRANSFORM_CALC_SET, 0, TRANSFORM_TYPE_OFFSET_X, -8, 6
+    TransformCurveEven TRANSFORM_CALC_SET, 0, TRANSFORM_CURVE_NEGATIVE_SIN, TRANSFORM_TYPE_OFFSET_Y, 8, 32768, 0, 6
+    WaitTransform
+    UpdateAttribute ANIM_TRANSLATE_X, -8, ANIM_ATTRIBUTE_SET
+    UpdateAttribute ANIM_OFFSET_X, 0, ANIM_ATTRIBUTE_SET
+    ApplyTranslation
+    TransformLinearEven TRANSFORM_CALC_SET, 0, TRANSFORM_TYPE_OFFSET_X, 8, 6
+    TransformCurveEven TRANSFORM_CALC_SET, 0, TRANSFORM_CURVE_NEGATIVE_SIN, TRANSFORM_TYPE_OFFSET_Y, 8, 32768, 0, 6
+    WaitTransform
+    UpdateAttribute ANIM_TRANSLATE_X, 0, ANIM_ATTRIBUTE_SET
+    UpdateAttribute ANIM_OFFSET_X, 0, ANIM_ATTRIBUTE_SET
+    ApplyTranslation
+    TransformLinearEven TRANSFORM_CALC_SET, 0, TRANSFORM_TYPE_OFFSET_X, 8, 6
+    TransformCurveEven TRANSFORM_CALC_SET, 0, TRANSFORM_CURVE_NEGATIVE_SIN, TRANSFORM_TYPE_OFFSET_Y, 8, 32768, 0, 6
+    WaitTransform
+    UpdateAttribute ANIM_TRANSLATE_X, 8, ANIM_ATTRIBUTE_SET
+    UpdateAttribute ANIM_OFFSET_X, 0, ANIM_ATTRIBUTE_SET
+    ApplyTranslation
+    TransformLinearEven TRANSFORM_CALC_SET, 0, TRANSFORM_TYPE_OFFSET_X, -8, 6
+    TransformCurveEven TRANSFORM_CALC_SET, 0, TRANSFORM_CURVE_NEGATIVE_SIN, TRANSFORM_TYPE_OFFSET_Y, 8, 32768, 0, 6
+    WaitTransform
+    End

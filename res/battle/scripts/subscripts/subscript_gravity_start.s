@@ -3,7 +3,7 @@
 
 _000:
     // Gravity intensified!
-    PrintMessage pl_msg_00000368_00997, TAG_NONE
+    PrintMessage BattleStrings_Text_GravityIntensified, TAG_NONE
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_GRAVITY_INIT
@@ -32,7 +32,7 @@ _072:
 
 _078:
     // {0} couldn’t stay airborne because of gravity!
-    PrintMessage pl_msg_00000368_00998, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonCouldntStayAirborneBecauseOfGravity_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

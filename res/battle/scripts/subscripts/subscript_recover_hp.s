@@ -14,7 +14,7 @@ _000:
 _026:
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // {0} regained health!
-    PrintMessage pl_msg_00000368_00184, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonRegainedHealth_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     End 
@@ -22,7 +22,7 @@ _026:
 _036:
     WaitButtonABTime 30
     // {0}’s HP is full!
-    PrintMessage pl_msg_00000368_00187, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsHPIsFull_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

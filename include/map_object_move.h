@@ -36,7 +36,7 @@ void VecFx32_SetPosFromMapCoords(int x, int z, VecFx32 *outVec);
 void sub_02064464(MapObject *mapObj);
 int Direction_GetOpposite(int param0);
 int sub_02064488(int x, int z, int xPrev, int zPrev);
-int sub_020644A4(FieldSystem *fieldSystem, VecFx32 *pos);
-int MapObject_RecalculatePositionHeight(FieldSystem *fieldSystem, VecFx32 *pos, int dynamicHeightCalculationEnabled);
+int MapObject_RecalculatePositionHeight(FieldSystem *fieldSystem, VecFx32 *pos);
+int MapObject_RecalculatePositionHeightEx(FieldSystem *fieldSystem, VecFx32 *pos, int dynamicHeightCalculationEnabled);
 
 #endif // POKEPLATINUM_MAP_OBJECT_MOVE_H

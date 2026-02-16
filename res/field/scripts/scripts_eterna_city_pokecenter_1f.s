@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    CallPokecenterNurse 3
+    Common_CallPokecenterNurse 3
     End
 
 _0022:
@@ -74,7 +74,7 @@ _00D9:
     Message 4
     SetVar VAR_MAP_LOCAL_2, 1
     SetVar VAR_0x8004, POKETCH_APPID_FRIENDSHIPCHECKER
-    GivePoketchApp
+    Common_GivePoketchApp
     WaitABXPadPress
     CloseMessage
     ReleaseAll

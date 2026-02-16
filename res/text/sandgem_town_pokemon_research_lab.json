@@ -2,7 +2,7 @@
   "key": 5126,
   "messages": [
     {
-      "id": "pl_msg_00000565_00000",
+      "id": "SandgemTownLab_Text_LetsHaveALookAtYourPokemon",
       "en_US": [
         "Professor: Well, well, look who’s here.\r",
         "{STRVAR_1 3, 0, 0}, was it?\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00001",
+      "id": "SandgemTownLab_Text_ThisPokemonSeemstoBeRatherHappy",
       "en_US": [
         "...\r",
         "Hmm...\n",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00002",
+      "id": "SandgemTownLab_Text_YouveMadeYourPokemonEvolveAlready",
       "en_US": [
         "Well well!\r",
         "You’ve made your Pokémon evolve\n",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00003",
+      "id": "SandgemTownLab_Text_EntrustingYouWithThatStarterWasNoMistake",
       "en_US": [
         "Hm!\r",
         "Entrusting you with that {STRVAR_1 0, 0, 0}\n",
@@ -36,21 +36,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00004",
+      "id": "SandgemTownLab_Text_WouldYouLikeToGiveItANickname",
       "en_US": [
         "Professor: Well, would you like to give\n",
         "it a nickname?"
       ]
     },
     {
-      "id": "pl_msg_00000565_00005",
+      "id": "SandgemTownLab_Text_AskAndYoureHappyWithThatNickName",
       "en_US": [
         "Professor: Hmm, OK, I see...\n",
         "And you’re happy with that nickname?"
       ]
     },
     {
-      "id": "pl_msg_00000565_00006",
+      "id": "SandgemTownLab_Text_CherishThatStarterOfYours",
       "en_US": [
         "Professor: When I first saw you two \n",
         "about to step into the tall grass\f",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00007",
+      "id": "SandgemTownLab_Text_DawnImSoGladThatYourKindTowardPokemon",
       "en_US": [
         "Dawn: I’m so glad that you’re kind\n",
         "toward Pokémon!\r",
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00008",
+      "id": "SandgemTownLab_Text_LucasBoyAmIGladYoureKindTowardPokemon",
       "en_US": [
         "Lucas: Boy, am I glad you’re kind\n",
         "toward Pokémon.\r",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00009",
+      "id": "SandgemTownLab_Text_ThereIsSomethingIWantYouToDo",
       "en_US": [
         "Professor: Er-hem!\n",
         "Let’s move on to the main topic.\r",
@@ -96,7 +96,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00010",
+      "id": "SandgemTownLab_Text_WillYouRecordDataOnAllPokemonInSinnoh",
       "en_US": [
         "Allow me to properly introduce myself\n",
         "first.\r",
@@ -115,7 +115,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00011",
+      "id": "SandgemTownLab_Text_LetMeAskYouAgain",
       "en_US": [
         "Rowan: ...\r",
         "...\r",
@@ -131,21 +131,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00012",
+      "id": "SandgemTownLab_Text_GoodAnswer",
       "en_US": [
         "Rowan: Hm!\r",
         "Good answer!\r"
       ]
     },
     {
-      "id": "pl_msg_00000565_00013",
+      "id": "SandgemTownLab_Text_PlayerObtainedThePokedex",
       "en_US": [
         "{STRVAR_1 3, 0, 0} obtained\n",
         "the {COLOR 1}Pokédex{COLOR 0}!"
       ]
     },
     {
-      "id": "pl_msg_00000565_00014",
+      "id": "SandgemTownLab_Text_MeetEveryKindOfPokemonInThisRegion",
       "en_US": [
         "Rowan: That Pokédex is a very\n",
         "high-tech device.\r",
@@ -157,18 +157,18 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00015",
+      "id": "SandgemTownLab_Text_DawnIveGotOneToo",
       "en_US": "Dawn: I’ve got one, too!\r"
     },
     {
-      "id": "pl_msg_00000565_00016",
+      "id": "SandgemTownLab_Text_LucasIveGotTheSameKindOfPokedex",
       "en_US": [
         "Lucas: I’ve got the same kind of\n",
         "Pokédex as you.\r"
       ]
     },
     {
-      "id": "pl_msg_00000565_00017",
+      "id": "SandgemTownLab_Text_YourGrandAdventureBeginsRightNow",
       "en_US": [
         "Rowan: When you walked up Route 201\n",
         "with your Pokémon, what did you feel?\r",
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00018",
+      "id": "SandgemTownLab_Text_GoOnYourGrandAdventureAwaitsYou",
       "en_US": [
         "Rowan: Go on!\r",
         "{STRVAR_1 3, 0, 0}, your grand adventure\n",
@@ -193,7 +193,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00019",
+      "id": "SandgemTownLab_Text_DawnIllBeHappyToTeachYouThings",
       "en_US": [
         "Dawn: The Pokémon that I met for\n",
         "the first time was {STRVAR_1 0, 1, 0}!\r",
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00020",
+      "id": "SandgemTownLab_Text_LucasIllTeachYouStuffLater",
       "en_US": [
         "Lucas: The professor asked me to help,\n",
         "so I’m filling the Pokédex pages, too.\r",
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00021",
+      "id": "SandgemTownLab_Text_ImCounterpartsFather",
       "en_US": [
         "I’m {STRVAR_1 3, 0, 0}’s father.\r",
         "I’ll be happy to assist you on your\n",
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00022",
+      "id": "SandgemTownLab_Text_ItsAnHonorToBeAnAssistant",
       "en_US": [
         "Professor Rowan invented a new\n",
         "Pokédex while working alongside a\f",
@@ -243,35 +243,35 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00023",
+      "id": "SandgemTownLab_Text_AdventureRuleNo1",
       "en_US": [
         "Adventure Rule No. 1\n",
         "The X Button opens the menu."
       ]
     },
     {
-      "id": "pl_msg_00000565_00024",
+      "id": "SandgemTownLab_Text_AdventureRuleNo2",
       "en_US": [
         "Adventure Rule No. 2\n",
         "Record your progress with SAVE."
       ]
     },
     {
-      "id": "pl_msg_00000565_00025",
+      "id": "SandgemTownLab_Text_ItsCrammedFullOfBooks",
       "en_US": [
         "It’s crammed full of books with all\n",
         "sorts of Pokémon information."
       ]
     },
     {
-      "id": "pl_msg_00000565_00026",
+      "id": "SandgemTownLab_Text_ThereALotOfReferenceMaterial",
       "en_US": [
         "There’s a lot of reference material\n",
         "and research reports on Pokémon."
       ]
     },
     {
-      "id": "pl_msg_00000565_00027",
+      "id": "SandgemTownLab_Text_AskYouveComeToShowMeYourProgressOnThePokedex",
       "en_US": [
         "Rowan: Ah, {STRVAR_1 3, 0, 0}!\r",
         "You’ve come to show me your\n",
@@ -279,14 +279,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00028",
+      "id": "SandgemTownLab_Text_SoYouveSeenXPokemon",
       "en_US": [
         "Hmm...\r",
         "So, you’ve seen {STRVAR_1 52, 0, 0} Pokémon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000565_00029",
+      "id": "SandgemTownLab_Text_WhatsWrong",
       "en_US": [
         "What’s wrong?\r",
         "You’re not going to tell me you’ve\n",
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00030",
+      "id": "SandgemTownLab_Text_ThePokemonOfTheSInnohRegionAreBeingAdded",
       "en_US": [
         "Excellent work, {STRVAR_1 3, 0, 0}!\r",
         "The Pokémon of the Sinnoh region are\n",
@@ -304,7 +304,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00031",
+      "id": "SandgemTownLab_Text_YouveMetEveryKindOfPokemonInTheSinnohRegion",
       "en_US": [
         "Rowan: Hm! {STRVAR_1 3, 0, 0}, I’ve been\n",
         "waiting to see you!\r",
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00032",
+      "id": "SandgemTownLab_Text_GreetingsProfessorRowan",
       "en_US": [
         "Oak: Greetings, Professor Rowan!\n",
         "It’s been a very long time!\r",
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00033",
+      "id": "SandgemTownLab_Text_IfItIsntMyOldColleagueProfessorOak",
       "en_US": [
         "Rowan: Oh! If it isn’t my old\n",
         "colleague, Professor Oak!\r",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00034",
+      "id": "SandgemTownLab_Text_LetMeIntroduceYouToMyYoungAssistant",
       "en_US": [
         "Professor Oak, let me introduce you\n",
         "to my young assistant.\r",
@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00035",
+      "id": "SandgemTownLab_Text_LetMeUpgradeYourPokedex",
       "en_US": [
         "Oak: Ah, well, very glad to meet you!\n",
         "As you’ve heard, my name is Oak.\r",
@@ -372,14 +372,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00036",
+      "id": "SandgemTownLab_Text_PlayersPokedexWasUpgradedWithTheNationalMode",
       "en_US": [
         "{STRVAR_1 3, 0, 0}’s Pokédex was upgraded\n",
         "with the National Mode!\r"
       ]
     },
     {
-      "id": "pl_msg_00000565_00037",
+      "id": "SandgemTownLab_Text_ItWontBeEasyToCompleteTheNationalPokedex",
       "en_US": [
         "Oak: I’m afraid it won’t be easy to\n",
         "complete the National Pokédex.\r",
@@ -388,7 +388,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00038",
+      "id": "SandgemTownLab_Text_PlayerWillGetTheJobDone",
       "en_US": [
         "Rowan: Have no fear, {STRVAR_1 3, 0, 0}\n",
         "will get the job done.\r",
@@ -397,7 +397,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00039",
+      "id": "SandgemTownLab_Text_IveHeardThatThePalParkIsNowOpen",
       "en_US": [
         "Oak: Ah, yes. I’ve heard that the\n",
         "Pal Park is now open.\r",
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00040",
+      "id": "SandgemTownLab_Text_MaleYouShouldVisitThePalParkToo",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, you should make an\n",
         "effort to visit the Pal Park, too.\r",
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00041",
+      "id": "SandgemTownLab_Text_FemaleYouShouldVisitThePalParkToo",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, you should make an\n",
         "effort to visit the Pal Park, too.\r",
@@ -433,14 +433,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00042",
+      "id": "SandgemTownLab_Text_OffHeGoesAsBusyAsEver",
       "en_US": [
         "Rowan: Off he goes, as busy as\n",
         "ever...\r"
       ]
     },
     {
-      "id": "pl_msg_00000565_00043",
+      "id": "SandgemTownLab_Text_IHaveAGiftForCompletingTheSinnohPokedex",
       "en_US": [
         "Now, {STRVAR_1 3, 0, 0}...\r",
         "I have a gift here as your reward\n",
@@ -448,7 +448,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00044",
+      "id": "SandgemTownLab_Text_ThatsThePokemonRadar",
       "en_US": [
         "Rowan: That’s the Pokémon Radar,\n",
         "or just Poké Radar for short.\r",
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00045",
+      "id": "SandgemTownLab_Text_ThereAreManyMorePokemon",
       "en_US": [
         "Rowan: The world is immense.\n",
         "There are many more Pokémon.\r",
@@ -471,7 +471,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00046",
+      "id": "SandgemTownLab_Text_PlayerCheckedThePC",
       "en_US": [
         "{STRVAR_1 3, 0, 0} checked the PC.\r",
         "The screen is filled with special terms\n",
@@ -480,21 +480,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00047",
+      "id": "SandgemTownLab_Text_ResearchMaterialsAreCarefullyTuckedAway",
       "en_US": [
         "Research materials are carefully\n",
         "tucked away."
       ]
     },
     {
-      "id": "pl_msg_00000565_00048",
+      "id": "SandgemTownLab_Text_TheRefrigeratorIsFilledWithTastySweets",
       "en_US": [
         "The refrigerator is filled with\n",
         "tasty sweets! Mmm..."
       ]
     },
     {
-      "id": "pl_msg_00000565_00049",
+      "id": "SandgemTownLab_Text_YouveBeenGreatForTheProfsResearch",
       "en_US": [
         "It’s really quite something!\r",
         "Imagine... Cataloging every kind of\n",
@@ -506,7 +506,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00050",
+      "id": "SandgemTownLab_Text_ProfessorRowanHasBeenStudyingPokedexSystems",
       "en_US": [
         "Yes, that’s correct.\r",
         "Professor Rowan has been studying\n",
@@ -516,7 +516,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00051",
+      "id": "SandgemTownLab_Text_YouReallyHaveDoneIt",
       "en_US": [
         "Rowan: {STRVAR_1 3, 1, 0}!\n",
         "You’ve come back!\r",
@@ -528,7 +528,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00052",
+      "id": "SandgemTownLab_Text_DawnImGladToSeeYouSafe",
       "en_US": [
         "Dawn: The professor did a lot of\n",
         "checking up after you left.\r",
@@ -541,7 +541,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00053",
+      "id": "SandgemTownLab_Text_LucasImGladToSeeYouBackSafe",
       "en_US": [
         "Lucas: After you left, the professor\n",
         "did a lot of checking around.\r",
@@ -554,7 +554,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00054",
+      "id": "SandgemTownLab_Text_WhyNotObtainSunyshoresBadge",
       "en_US": [
         "Rowan: Oh, yes, there was something\n",
         "I had to tell you.\r",
@@ -578,7 +578,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00055",
+      "id": "SandgemTownLab_Text_IfYouSeeCynthiaGiveHerMyBestRegards",
       "en_US": [
         "Rowan: Oh, yes, {STRVAR_1 3, 0, 0}.\r",
         "If you see Cynthia, please give her \n",
@@ -586,19 +586,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00056",
+      "id": "SandgemTownLab_Text_Dummy56",
       "garbage": 53
     },
     {
-      "id": "pl_msg_00000565_00057",
+      "id": "SandgemTownLab_Text_Dummy57",
       "garbage": 59
     },
     {
-      "id": "pl_msg_00000565_00058",
+      "id": "SandgemTownLab_Text_Dummy58",
       "garbage": 57
     },
     {
-      "id": "pl_msg_00000565_00059",
+      "id": "SandgemTownLab_Text_ImStunnedByYourGreatness",
       "en_US": [
         "I... I’m stunned by your greatness!\r",
         "I feel as shaken and inspired as when\n",
@@ -607,7 +607,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000565_00060",
+      "id": "SandgemTownLab_Text_HearingWhatWasHappeningGaveMeShivers",
       "en_US": [
         "Hearing what was happening from the\n",
         "professor gave me shivers.\r",

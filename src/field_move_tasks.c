@@ -17,7 +17,7 @@
 #include "field/field_system.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021F101C.h"
-#include "overlay006/ov6_02247100.h"
+#include "overlay006/field_warp.h"
 
 #include "field_overworld_state.h"
 #include "field_task.h"
@@ -305,7 +305,7 @@ static BOOL FieldMoves_CutTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10008, taskData->mapObj);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 8), taskData->mapObj);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -350,7 +350,7 @@ static void FieldMoves_SetFlyTask(FieldMovePokemon *fieldMoveMon, const FieldMov
 
     TownMapContext_Init(fieldSystem, menu->taskData, TOWN_MAP_MODE_FLY);
     FieldSystem_OpenTownMap(fieldSystem, menu->taskData);
-    sub_0203B674(menu, sub_0203C434);
+    StartMenu_SetCallback(menu, sub_0203C434);
 }
 
 static enum FieldMoveError FieldMoves_CheckSurf(const FieldMoveContext *fieldMoveContext)
@@ -395,7 +395,7 @@ static BOOL FieldMoves_SurfTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10012, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 12), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -436,7 +436,7 @@ static BOOL FieldMoves_StrengthTask(FieldTask *param0)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(param0);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
-    ScriptManager_Change(param0, 10010, taskData->mapObj);
+    ScriptManager_Change(param0, SCRIPT_ID(FIELD_MOVES, 10), taskData->mapObj);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -477,7 +477,7 @@ static BOOL FieldMoves_DefogTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10014, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 14), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -522,7 +522,7 @@ static BOOL FieldMoves_RockSmashTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10009, taskData->mapObj);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 9), taskData->mapObj);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -563,7 +563,7 @@ static BOOL FieldMoves_WaterfallTask(FieldTask *param0)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(param0);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
-    ScriptManager_Change(param0, 10013, NULL);
+    ScriptManager_Change(param0, SCRIPT_ID(FIELD_MOVES, 13), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -608,7 +608,7 @@ static BOOL FieldMoves_RockClimbTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10011, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 11), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -645,7 +645,7 @@ static BOOL FieldMoves_FlashTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 10015, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(FIELD_MOVES, 15), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 
@@ -687,16 +687,16 @@ static void FieldMoves_SetTeleportTask(FieldMovePokemon *fieldMoveMon, const Fie
     menu->state = START_MENU_STATE_10;
 }
 
-static BOOL FieldMoves_TeleportTask(FieldTask *param0)
+static BOOL FieldMoves_TeleportTask(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
-    void *v2 = ov6_02247530(fieldSystem, v1->unk_00, HEAP_ID_FIELD1);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(task);
+    FieldWarp *fieldWarp = FieldWarp_InitTeleport(fieldSystem, v1->unk_00, HEAP_ID_FIELD1);
 
     Heap_Free(v1);
-    FieldTask_InitJump(param0, ov6_02247554, v2);
+    FieldTask_InitJump(task, FieldWarp_TeleportFadeOut, fieldWarp);
 
-    return 0;
+    return FALSE;
 }
 
 static enum FieldMoveError FieldMoves_CheckDig(const FieldMoveContext *fieldMoveContext)
@@ -730,17 +730,17 @@ static void FieldMoves_SetDigTask(FieldMovePokemon *fieldMoveMon, const FieldMov
     v1->state = START_MENU_STATE_10;
 }
 
-static BOOL FieldMoves_DigTask(FieldTask *param0)
+static BOOL FieldMoves_DigTask(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(param0);
-    void *v2 = ov6_02247488(fieldSystem, v1->unk_00, HEAP_ID_FIELD2);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    UnkStruct_020711C8 *v1 = FieldTask_GetEnv(task);
+    FieldWarp *fieldWarp = FieldWarp_InitDig(fieldSystem, v1->unk_00, HEAP_ID_FIELD2);
 
     void *journalEntryLocationEvent = JournalEntry_CreateEventUsedMove(LOCATION_EVENT_USED_DIG - LOCATION_EVENT_USED_CUT, fieldSystem->location->mapId, HEAP_ID_FIELD1);
     JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
 
     Heap_Free(v1);
-    FieldTask_InitJump(param0, ov6_022474AC, v2);
+    FieldTask_InitJump(task, FieldWarp_DigFadeOut, fieldWarp);
 
     return FALSE;
 }
@@ -803,7 +803,7 @@ static BOOL FieldMoves_ChatterTask(FieldTask *taskMan)
     FieldMoveTaskData *taskData = FieldTask_GetEnv(taskMan);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
 
-    ScriptManager_Change(taskMan, 8900, NULL);
+    ScriptManager_Change(taskMan, SCRIPT_ID(RECORD_CHATOT_CRY, 0), NULL);
     FieldSystem_SetScriptParameters(fieldSystem, taskData->fieldMoveMon.fieldMonId, 0, 0, 0);
     FieldMoves_FreeTaskData(taskData);
 

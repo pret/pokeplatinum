@@ -82,7 +82,7 @@ _0109:
     Message 5
     SetVar VAR_0x8004, ITEM_SEAL_CASE
     SetVar VAR_0x8005, 1
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_UNK_0x0117
     Call _014F
     Message 7

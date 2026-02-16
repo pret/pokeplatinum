@@ -56,7 +56,7 @@ _0074:
     End
 
 _00DB:
-    GiveItemQuantity
+    Common_GiveItemQuantity
     Return
 
 _00E1:

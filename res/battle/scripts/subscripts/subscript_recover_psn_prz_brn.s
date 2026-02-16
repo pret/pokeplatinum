@@ -6,7 +6,7 @@ _000:
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     UpdateMonData OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_NONE
     // {0}’s status returned to normal!
-    PrintMessage pl_msg_00000368_00491, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsStatusReturnedToNormal_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     SetHealthbarStatus BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
     WaitButtonABTime 30

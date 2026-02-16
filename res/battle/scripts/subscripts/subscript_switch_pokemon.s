@@ -29,7 +29,7 @@ _026:
 
 _041:
     // Go! {0}!
-    PrintMessage pl_msg_00000368_00979, TAG_NICKNAME, BTLSCR_SWITCHED_MON
+    PrintMessage BattleStrings_Text_GoPokemon, TAG_NICKNAME, BTLSCR_SWITCHED_MON
 
 _045:
     Wait 

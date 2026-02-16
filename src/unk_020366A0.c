@@ -31,12 +31,12 @@ typedef struct {
     void *unk_00;
     u8 unk_04[6];
     MATHRandContext32 unk_0C;
-    UnkFuncPtr_02036C94 unk_24;
+    UnkFuncPtr_02036C94 task;
     SaveData *saveData;
     TrainerInfo *unk_2C;
     const BattleRegulation *unk_30;
     UnkStruct_ov65_0222F6EC unk_34;
-    int unk_40;
+    int timer;
     u16 unk_44;
     u8 unk_46;
     u8 unk_47;
@@ -64,7 +64,7 @@ typedef struct {
     u8 unk_61[3];
 } UnkStruct_021C07D4;
 
-static void sub_02036C94(UnkFuncPtr_02036C94 param0, int param1);
+static void CommMan_SetTask(UnkFuncPtr_02036C94 param0, int param1);
 static void sub_02036CA4(void);
 static void sub_02036E08(void);
 static void sub_02036D80(void);
@@ -157,7 +157,7 @@ static void sub_020366A0(SaveData *saveData, int param1)
     Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_Alloc(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
     MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
 
-    Unk_021C07D4->unk_40 = 50;
+    Unk_021C07D4->timer = 50;
     Unk_021C07D4->unk_4E = 1;
     Unk_021C07D4->saveData = saveData;
     Unk_021C07D4->unk_2C = SaveData_GetTrainerInfo(saveData);
@@ -218,7 +218,7 @@ void sub_02036794(SaveData *saveData)
 
     Unk_021C07D4->unk_4B = 0;
 
-    sub_02036C94(sub_02036CA4, 50);
+    CommMan_SetTask(sub_02036CA4, 50);
 }
 
 void sub_020367D0(void)
@@ -228,14 +228,14 @@ void sub_020367D0(void)
     }
 
     CommSys_StartShutdown();
-    sub_02036C94(sub_02037344, 0);
+    CommMan_SetTask(sub_02037344, 0);
 }
 
 void sub_020367F0(void)
 {
     CommSys_Reset();
     Unk_021C07D4->unk_44 = CommSys_CurNetId();
-    sub_02036C94(sub_0203712C, 0);
+    CommMan_SetTask(sub_0203712C, 0);
 }
 
 void sub_02036814(BOOL param0)
@@ -245,7 +245,7 @@ void sub_02036814(BOOL param0)
 
 void sub_02036824(void)
 {
-    sub_02036C94(sub_02036FA4, 0);
+    CommMan_SetTask(sub_02036FA4, 0);
 }
 
 BOOL sub_02036834(void)
@@ -254,7 +254,7 @@ BOOL sub_02036834(void)
     u32 v1[] = {
         (u32)sub_020370B8, (u32)sub_020370B4, 0
     };
-    u32 v2 = (u32)Unk_021C07D4->unk_24;
+    u32 v2 = (u32)Unk_021C07D4->task;
 
     if (Unk_021C07D4 == NULL) {
         return 0;
@@ -269,9 +269,9 @@ BOOL sub_02036834(void)
     return 0;
 }
 
-void sub_02036884(void)
+void CommMan_CloseSecretBase(void)
 {
-    sub_02036C94(sub_020370EC, 0);
+    CommMan_SetTask(sub_020370EC, 0);
 }
 
 void sub_02036894(void)
@@ -279,10 +279,10 @@ void sub_02036894(void)
     Unk_021C07D4->unk_57 = 1;
 }
 
-void sub_020368A4(void)
+void CommMan_ReopenSecretBase(void)
 {
     WirelessDriver_Init();
-    sub_02036C94(sub_02037108, 0);
+    CommMan_SetTask(sub_02037108, 0);
 }
 
 void CommMan_StartBattleServer(SaveData *saveData, int param1, int param2, const BattleRegulation *param3, BOOL param4)
@@ -297,7 +297,7 @@ void CommMan_StartBattleServer(SaveData *saveData, int param1, int param2, const
     Unk_021C07D4->unk_4B = param2;
     Unk_021C07D4->unk_30 = param3;
 
-    sub_02036C94(sub_02037144, 0);
+    CommMan_SetTask(sub_02037144, 0);
 }
 
 void CommMan_StartBattleClient(SaveData *saveData, int param1, int param2, const BattleRegulation *param3, BOOL param4)
@@ -312,19 +312,19 @@ void CommMan_StartBattleClient(SaveData *saveData, int param1, int param2, const
     Unk_021C07D4->unk_4B = param2;
     Unk_021C07D4->unk_30 = param3;
 
-    sub_02036C94(sub_020371C0, 0);
+    CommMan_SetTask(sub_020371C0, 0);
 }
 
 void sub_02036948(int param0)
 {
     Unk_021C07D4->unk_49 = param0;
-    sub_02036C94(sub_02037210, 0);
+    CommMan_SetTask(sub_02037210, 0);
 }
 
 void sub_02036964(void)
 {
     CommSys_ResetBattleClient();
-    sub_02036C94(sub_020372DC, 0);
+    CommMan_SetTask(sub_020372DC, 0);
 }
 
 void sub_02036978(void)
@@ -333,7 +333,7 @@ void sub_02036978(void)
         return;
     }
 
-    sub_02036C94(sub_020373B8, 5);
+    CommMan_SetTask(sub_020373B8, 5);
 }
 
 void sub_02036994(BOOL param0)
@@ -349,7 +349,7 @@ BOOL sub_0203699C(void)
         (u32)sub_020372C4,
         0,
     };
-    u32 v2 = (u32)Unk_021C07D4->unk_24;
+    u32 v2 = (u32)Unk_021C07D4->task;
 
     if (Unk_021C07D4 == NULL) {
         return 0;
@@ -379,7 +379,7 @@ void sub_020369EC(SaveData *saveData)
     Unk_021C07D4->unk_4A = 9;
     Unk_021C07D4->unk_4B = 0;
 
-    sub_02036C94(sub_020373F0, 0);
+    CommMan_SetTask(sub_020373F0, 0);
 }
 
 void sub_02036A38(int param0)
@@ -389,7 +389,7 @@ void sub_02036A38(int param0)
 
     sub_02032138(1);
     sub_02039734();
-    sub_02036C94(sub_020375A4, 0);
+    CommMan_SetTask(sub_020375A4, 0);
 }
 
 int sub_02036A68(void)
@@ -400,7 +400,7 @@ int sub_02036A68(void)
         return -1;
     }
 
-    v0 = (u32)Unk_021C07D4->unk_24;
+    v0 = (u32)Unk_021C07D4->task;
 
     if (v0 == (u32)sub_02037724) {
         return 1;
@@ -421,7 +421,7 @@ BOOL sub_02036AA0(void)
         return 0;
     }
 
-    v0 = (u32)Unk_021C07D4->unk_24;
+    v0 = (u32)Unk_021C07D4->task;
 
     if (v0 == (u32)sub_02037790) {
         return 1;
@@ -447,9 +447,9 @@ void sub_02036AC4(void)
 
     if (CommSys_CurNetId() == 0) {
         sub_02032160(1);
-        sub_02036C94(sub_02037354, 15);
+        CommMan_SetTask(sub_02037354, 15);
     } else {
-        sub_02036C94(sub_0203739C, 5);
+        CommMan_SetTask(sub_0203739C, 5);
     }
 }
 
@@ -461,7 +461,7 @@ BOOL sub_02036B44(void)
         return 1;
     }
 
-    v0 = (u32)Unk_021C07D4->unk_24;
+    v0 = (u32)Unk_021C07D4->task;
 
     if (v0 == (u32)sub_02037474) {
         return 0;
@@ -476,7 +476,7 @@ void sub_02036B68(void)
         return;
     }
 
-    sub_02036C94(sub_020373B8, 5);
+    CommMan_SetTask(sub_020373B8, 5);
 }
 
 void sub_02036B84(void)
@@ -498,7 +498,7 @@ void sub_02036BA0(void)
     Unk_021C07D4->unk_53 = 1;
 
     sub_02032138(1);
-    sub_02036C94(sub_020377E4, 0);
+    CommMan_SetTask(sub_020377E4, 0);
 }
 
 void sub_02036BC8(void)
@@ -519,7 +519,7 @@ void sub_02036BE8(SaveData *saveData, int param1)
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
     sub_020366A0(saveData, param1);
-    sub_02036C94(sub_02037E20, 0);
+    CommMan_SetTask(sub_02037E20, 0);
 }
 
 void sub_02036C1C(SaveData *saveData, int param1)
@@ -530,14 +530,14 @@ void sub_02036C1C(SaveData *saveData, int param1)
 
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7080);
     sub_020366A0(saveData, param1);
-    sub_02036C94(sub_02037E68, 0);
+    CommMan_SetTask(sub_02037E68, 0);
 }
 
 void sub_02036C50(void)
 {
     if (Unk_021C07D4) {
-        if (Unk_021C07D4->unk_24 != NULL) {
-            UnkFuncPtr_02036C94 v0 = Unk_021C07D4->unk_24;
+        if (Unk_021C07D4->task != NULL) {
+            UnkFuncPtr_02036C94 v0 = Unk_021C07D4->task;
             v0();
         }
     }
@@ -549,18 +549,18 @@ void sub_02036C50(void)
     }
 }
 
-static void sub_02036C94(UnkFuncPtr_02036C94 param0, int param1)
+static void CommMan_SetTask(UnkFuncPtr_02036C94 task, int timer)
 {
-    Unk_021C07D4->unk_24 = param0;
-    Unk_021C07D4->unk_40 = param1;
+    Unk_021C07D4->task = task;
+    Unk_021C07D4->timer = timer;
 }
 
 static void sub_02036CA4(void)
 {
     void *v0;
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
@@ -578,14 +578,14 @@ static void sub_02036CA4(void)
             u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 40 / 2);
 
             Unk_021C07D4->unk_4E = 0;
-            sub_02036C94(sub_02037040, 40 / 2 + v1);
+            CommMan_SetTask(sub_02037040, 40 / 2 + v1);
         }
     } else {
         if (CommSys_InitClient(1, 1, 500)) {
             if (Unk_021C07D4->unk_57) {
-                sub_02036C94(sub_02037330, 0);
+                CommMan_SetTask(sub_02037330, 0);
             } else {
-                sub_02036C94(sub_02036E5C, 32 * 2);
+                CommMan_SetTask(sub_02036E5C, 32 * 2);
             }
         }
     }
@@ -603,7 +603,7 @@ static void sub_02036D80(void)
     CommSys_EnableSendMovementData();
 
     if (Unk_021C07D4->unk_55) {
-        sub_02036C94(sub_02036FD4, 0);
+        CommMan_SetTask(sub_02036FD4, 0);
     } else {
         v0 = CommSys_InitClient(0, 1, 500);
 
@@ -615,7 +615,7 @@ static void sub_02036D80(void)
                 Unk_021C07D4->unk_44 = 0;
             }
 
-            sub_02036C94(sub_02036E5C, v1);
+            CommMan_SetTask(sub_02036E5C, v1);
         }
     }
 }
@@ -632,7 +632,7 @@ static void sub_02036E08(void)
 
     if (v0) {
         u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 32);
-        sub_02036C94(sub_02036E5C, 32 / 2 + v1);
+        CommMan_SetTask(sub_02036E5C, 32 / 2 + v1);
     }
 }
 
@@ -650,12 +650,12 @@ static void sub_02036E5C(void)
 
     if (v0 != -1) {
         Unk_021C07D4->unk_49 = v0;
-        sub_02036C94(sub_02036EDC, 32);
+        CommMan_SetTask(sub_02036EDC, 32);
         return;
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
@@ -663,11 +663,11 @@ static void sub_02036E5C(void)
 
     if (v0 != -1) {
         Unk_021C07D4->unk_49 = v0;
-        sub_02036C94(sub_02036EDC, 32);
+        CommMan_SetTask(sub_02036EDC, 32);
         return;
     }
 
-    sub_02036C94(sub_02036FA4, 0);
+    CommMan_SetTask(sub_02036FA4, 0);
 }
 
 static void sub_02036EDC(void)
@@ -676,17 +676,17 @@ static void sub_02036EDC(void)
 
     if (sub_02033898(Unk_021C07D4->unk_49) != 0) {
         if (sub_02034984(Unk_021C07D4->unk_49)) {
-            sub_02036C94(sub_02036F44, 100);
+            CommMan_SetTask(sub_02036F44, 100);
             return;
         }
     }
 
     if (CommSys_CheckError()) {
-        sub_02036C94(sub_02036FA4, 0);
-    } else if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+        CommMan_SetTask(sub_02036FA4, 0);
+    } else if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
     } else {
-        sub_02036C94(sub_02036FA4, 0);
+        CommMan_SetTask(sub_02036FA4, 0);
     }
 }
 
@@ -696,21 +696,21 @@ static void sub_02036F44(void)
         CommSys_Reset();
         CommSys_SetAlone(0);
         CommSys_EnableSendMovementData();
-        sub_02036C94(sub_020370B8, 0);
+        CommMan_SetTask(sub_020370B8, 0);
         return;
     }
 
     if (CommSys_CheckError()) {
-        sub_02036C94(sub_02036FA4, 0);
+        CommMan_SetTask(sub_02036FA4, 0);
         return;
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
-    sub_02036C94(sub_02036FA4, 0);
+    CommMan_SetTask(sub_02036FA4, 0);
 }
 
 static void sub_02036FA4(void)
@@ -719,7 +719,7 @@ static void sub_02036FA4(void)
         return;
     }
 
-    sub_02036C94(sub_02036FD4, 0);
+    CommMan_SetTask(sub_02036FD4, 0);
 }
 
 static void sub_02036FBC(void)
@@ -728,7 +728,7 @@ static void sub_02036FBC(void)
         return;
     }
 
-    sub_02036C94(sub_02036E08, 0);
+    CommMan_SetTask(sub_02036E08, 0);
 }
 
 static void sub_02036FD4(void)
@@ -745,20 +745,20 @@ static void sub_02036FD4(void)
         u32 v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 40 / 2);
 
         Unk_021C07D4->unk_4E = 0;
-        sub_02036C94(sub_02037040, 40 / 2 + v1);
+        CommMan_SetTask(sub_02037040, 40 / 2 + v1);
     }
 }
 
 static void sub_02037040(void)
 {
-    if (sub_020360E8()) {
+    if (CommSys_IsClientConnecting()) {
         Unk_021C07D4->unk_4E = 1;
-        sub_02036C94(sub_02037094, 0);
+        CommMan_SetTask(sub_02037094, 0);
         return;
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
@@ -767,7 +767,7 @@ static void sub_02037040(void)
     }
 
     if (sub_020336D4()) {
-        sub_02036C94(sub_02036FBC, 2);
+        CommMan_SetTask(sub_02036FBC, 2);
     }
 }
 
@@ -776,7 +776,7 @@ static void sub_02037094(void)
     CommSys_SetAlone(0);
     sub_02033EA8(1);
     CommSys_EnableSendMovementData();
-    sub_02036C94(sub_020370B4, 0);
+    CommMan_SetTask(sub_020370B4, 0);
 }
 
 static void sub_020370B4(void)
@@ -798,12 +798,10 @@ static void sub_020370BC(void)
 
         CommSys_SetAlone(1);
         CommSys_EnableSendMovementData();
-        sub_02033794(1);
-    } else {
-        (void)0;
+        CommServerClient_SetSecretBaseClosedState(TRUE);
     }
 
-    sub_02036C94(sub_02037330, 0);
+    CommMan_SetTask(sub_02037330, 0);
 }
 
 static void sub_020370EC(void)
@@ -813,7 +811,7 @@ static void sub_020370EC(void)
     }
 
     CommSys_Reset();
-    sub_02036C94(sub_020370BC, 0);
+    CommMan_SetTask(sub_020370BC, 0);
 }
 
 static void sub_02037108(void)
@@ -822,9 +820,9 @@ static void sub_02037108(void)
         return;
     }
 
-    sub_02033794(0);
+    CommServerClient_SetSecretBaseClosedState(FALSE);
     CommSys_Reset();
-    sub_02036C94(sub_02036D80, 0);
+    CommMan_SetTask(sub_02036D80, 0);
 }
 
 static void sub_0203712C(void)
@@ -833,7 +831,7 @@ static void sub_0203712C(void)
         return;
     }
 
-    sub_02036C94(sub_02036D80, 0);
+    CommMan_SetTask(sub_02036D80, 0);
 }
 
 static void sub_02037144(void)
@@ -849,7 +847,7 @@ static void sub_02037144(void)
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_0203718C, 0);
+        CommMan_SetTask(sub_0203718C, 0);
     }
 }
 
@@ -859,13 +857,13 @@ static void sub_0203718C(void)
         return;
     }
 
-    sub_02036C94(sub_020371A8, 0);
+    CommMan_SetTask(sub_020371A8, 0);
 }
 
 static void sub_020371A8(void)
 {
     if (!CommSys_IsInitialized()) {
-        sub_02036C94(sub_02037334, 0);
+        CommMan_SetTask(sub_02037334, 0);
     }
 }
 
@@ -880,7 +878,7 @@ static void sub_020371C0(void)
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037208, 0);
+        CommMan_SetTask(sub_02037208, 0);
     }
 }
 
@@ -894,33 +892,33 @@ static void sub_02037210(void)
     sub_02033A5C();
 
     if (sub_02034984(Unk_021C07D4->unk_49)) {
-        sub_02036C94(sub_02037238, 10);
+        CommMan_SetTask(sub_02037238, 10);
     }
 }
 
 static void sub_02037238(void)
 {
     if (CommSys_CheckError()) {
-        sub_02036C94(sub_02037270, 0);
+        CommMan_SetTask(sub_02037270, 0);
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId()) && (0 != CommSys_CurNetId())) {
-        sub_02036C94(sub_020372C4, 0);
+        CommMan_SetTask(sub_020372C4, 0);
     }
 }
 
 static void sub_02037270(void)
 {
     sub_020336D4();
-    sub_02036C94(sub_02037284, 2);
+    CommMan_SetTask(sub_02037284, 2);
 }
 
 static void sub_02037284(void)
 {
     TrainerInfo *v0;
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
@@ -930,29 +928,29 @@ static void sub_02037284(void)
 
     if (CommSys_InitClient(0, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037210, 10);
+        CommMan_SetTask(sub_02037210, 10);
     }
 }
 
 static void sub_020372C4(void)
 {
     if (!CommSys_IsInitialized()) {
-        sub_02036C94(sub_02037334, 0);
+        CommMan_SetTask(sub_02037334, 0);
     }
 }
 
 static void sub_020372DC(void)
 {
     sub_020336D4();
-    sub_02036C94(sub_020372F0, 2);
+    CommMan_SetTask(sub_020372F0, 2);
 }
 
 static void sub_020372F0(void)
 {
     TrainerInfo *v0;
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
@@ -962,7 +960,7 @@ static void sub_020372F0(void)
 
     if (CommSys_InitClient(0, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037208, 10);
+        CommMan_SetTask(sub_02037208, 10);
     }
 }
 
@@ -982,7 +980,7 @@ static void sub_02037334(void)
 
 static void sub_02037344(void)
 {
-    sub_02036C94(sub_020373B8, 5);
+    CommMan_SetTask(sub_020373B8, 5);
 }
 
 static void sub_02037354(void)
@@ -990,17 +988,17 @@ static void sub_02037354(void)
     if (CommSys_ConnectedCount() <= 1) {
         sub_02032160(0);
         CommSys_ResetDS();
-        sub_02036C94(sub_02037474, 0);
+        CommMan_SetTask(sub_02037474, 0);
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
     sub_02032160(0);
     CommSys_ResetDS();
-    sub_02036C94(sub_02037474, 0);
+    CommMan_SetTask(sub_02037474, 0);
 }
 
 static void sub_0203739C(void)
@@ -1010,25 +1008,25 @@ static void sub_0203739C(void)
     }
 
     CommSys_Reset();
-    sub_02036C94(sub_02037474, 0);
+    CommMan_SetTask(sub_02037474, 0);
 }
 
 static void sub_020373B8(void)
 {
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
     }
 
     if (!sub_020336D4()) {
         return;
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
+    if (Unk_021C07D4->timer != 0) {
         return;
     }
 
     CommSys_Delete();
-    sub_02036C94(sub_02037334, 0);
+    CommMan_SetTask(sub_02037334, 0);
 }
 
 static void sub_020373F0(void)
@@ -1045,7 +1043,7 @@ static void sub_020373F0(void)
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037444, 32 * 2);
+        CommMan_SetTask(sub_02037444, 32 * 2);
     }
 }
 
@@ -1055,8 +1053,8 @@ static void sub_02037444(void)
 
     sub_02033A5C();
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
@@ -1064,7 +1062,7 @@ static void sub_02037444(void)
         return;
     }
 
-    sub_02036C94(sub_0203748C, 0);
+    CommMan_SetTask(sub_0203748C, 0);
 }
 
 static void sub_02037474(void)
@@ -1073,7 +1071,7 @@ static void sub_02037474(void)
         return;
     }
 
-    sub_02036C94(sub_0203748C, 0);
+    CommMan_SetTask(sub_0203748C, 0);
 }
 
 static void sub_0203748C(void)
@@ -1087,7 +1085,7 @@ static void sub_0203748C(void)
 
         CommSys_SwitchTransitionTypeToParallel();
         Unk_021C07D4->unk_4E = 0;
-        sub_02036C94(sub_020374F4, 10000);
+        CommMan_SetTask(sub_020374F4, 10000);
     }
 }
 
@@ -1096,21 +1094,21 @@ static void sub_020374F4(void)
     if (sub_02034148()) {
         (void)0;
     } else {
-        if (sub_020360E8()) {
+        if (CommSys_IsClientConnecting()) {
             Unk_021C07D4->unk_4E = 1;
             sub_02039734();
-            sub_02036C94(sub_02037790, 0);
+            CommMan_SetTask(sub_02037790, 0);
             return;
         }
 
-        if (Unk_021C07D4->unk_40 != 0) {
-            Unk_021C07D4->unk_40--;
+        if (Unk_021C07D4->timer != 0) {
+            Unk_021C07D4->timer--;
             return;
         }
     }
 
     if (sub_020336D4()) {
-        sub_02036C94(sub_0203754C, 0);
+        CommMan_SetTask(sub_0203754C, 0);
     }
 }
 
@@ -1125,7 +1123,7 @@ static void sub_0203754C(void)
     if (CommSys_InitClient(0, 0, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
         v1 = MATH_Rand32(&Unk_021C07D4->unk_0C, 32);
-        sub_02036C94(sub_02037444, v1);
+        CommMan_SetTask(sub_02037444, v1);
     }
 }
 
@@ -1135,7 +1133,7 @@ static void sub_020375A4(void)
         return;
     }
 
-    sub_02036C94(sub_020375BC, 0);
+    CommMan_SetTask(sub_020375BC, 0);
 }
 
 static void sub_020375BC(void)
@@ -1146,7 +1144,7 @@ static void sub_020375BC(void)
 
     if (CommSys_InitClient(0, 0, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_020375E8, 100);
+        CommMan_SetTask(sub_020375E8, 100);
     }
 }
 
@@ -1154,75 +1152,75 @@ static void sub_020375E8(void)
 {
     if (sub_02033898(Unk_021C07D4->unk_49) != 0) {
         if (sub_02034984(Unk_021C07D4->unk_49)) {
-            sub_02036C94(sub_0203764C, 100);
+            CommMan_SetTask(sub_0203764C, 100);
             return;
         }
     }
 
     if (CommSys_CheckError()) {
-        sub_02036C94(sub_02037740, 0);
-    } else if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+        CommMan_SetTask(sub_02037740, 0);
+    } else if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
     } else {
-        sub_02036C94(sub_02037740, 0);
+        CommMan_SetTask(sub_02037740, 0);
     }
 }
 
 static void sub_0203764C(void)
 {
     if (CommSys_CheckError()) {
-        sub_02036C94(sub_02037740, 0);
+        CommMan_SetTask(sub_02037740, 0);
         return;
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
         Unk_021C07D4->unk_48 = 0;
-        sub_02036C94(sub_020376A8, 120);
+        CommMan_SetTask(sub_020376A8, 120);
         return;
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
-    sub_02036C94(sub_02037740, 0);
+    CommMan_SetTask(sub_02037740, 0);
 }
 
 static void sub_020376A8(void)
 {
     if (CommSys_CheckError()) {
-        sub_02036C94(sub_02037740, 0);
+        CommMan_SetTask(sub_02037740, 0);
         return;
     }
 
     if (Unk_021C07D4->unk_48 == 2) {
-        sub_02036C94(sub_0203773C, 0);
+        CommMan_SetTask(sub_0203773C, 0);
         return;
     }
 
     if (Unk_021C07D4->unk_48 == 1) {
-        CommInfo_SendBattleRegulation();
-        sub_02036C94(sub_02037724, 0);
+        CommInfo_SendPlayerInfo();
+        CommMan_SetTask(sub_02037724, 0);
         return;
     }
 
-    if (Unk_021C07D4->unk_40 > (120 - 10)) {
+    if (Unk_021C07D4->timer > (120 - 10)) {
         CommSys_SendDataFixedSize(6, Unk_02100A20);
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
-    sub_02036C94(sub_02037740, 0);
+    CommMan_SetTask(sub_02037740, 0);
 }
 
 static void sub_02037724(void)
 {
     if (CommSys_CheckError()) {
-        sub_02036C94(sub_02037740, 0);
+        CommMan_SetTask(sub_02037740, 0);
         return;
     }
 }
@@ -1242,18 +1240,18 @@ static void sub_02037740(void)
 
     if (Unk_021C07D4->unk_44 != 0) {
         Unk_021C07D4->unk_44--;
-        sub_02036C94(sub_020375BC, 0);
+        CommMan_SetTask(sub_020375BC, 0);
     } else {
-        sub_02036C94(sub_0203773C, 0);
+        CommMan_SetTask(sub_0203773C, 0);
     }
 }
 
 static void sub_02037790(void)
 {
-    if (!sub_020360E8()) {
+    if (!CommSys_IsClientConnecting()) {
         if (!sub_02038938()) {
             if (sub_020336D4()) {
-                sub_02036C94(sub_0203754C, 0);
+                CommMan_SetTask(sub_0203754C, 0);
             }
         }
     } else {
@@ -1264,7 +1262,7 @@ static void sub_02037790(void)
 
     if (CommSys_CheckError()) {
         if (!sub_02038938()) {
-            sub_02036C94(sub_02037740, 0);
+            CommMan_SetTask(sub_02037740, 0);
             return;
         }
     }
@@ -1280,7 +1278,7 @@ static void sub_020377E4(void)
 
     if (CommSys_InitServer(0, Unk_021C07D4->unk_4E, 512, 0)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037330, 0);
+        CommMan_SetTask(sub_02037330, 0);
     }
 }
 
@@ -1301,7 +1299,7 @@ void sub_02037854(int param0)
 {
     Unk_021C07D4->unk_49 = param0;
     Unk_021C07D4->unk_44 = 3;
-    sub_02036C94(sub_020378F8, 0);
+    CommMan_SetTask(sub_020378F8, 0);
 }
 
 void sub_02037878(void)
@@ -1316,7 +1314,7 @@ void sub_02037888(int param0)
     Unk_021C07D4->unk_44 = 3;
 
     sub_02039734();
-    sub_02036C94(sub_020375A4, 0);
+    CommMan_SetTask(sub_020375A4, 0);
 }
 
 void sub_020378B8(void)
@@ -1331,13 +1329,13 @@ void sub_020378C8(int param0)
     Unk_021C07D4->unk_44 = 3;
 
     sub_02039734();
-    sub_02036C94(sub_020375A4, 0);
+    CommMan_SetTask(sub_020375A4, 0);
 }
 
 static void sub_020378F8(void)
 {
     if (sub_020336D4()) {
-        sub_02036C94(sub_02037910, 0);
+        CommMan_SetTask(sub_02037910, 0);
     }
 }
 
@@ -1351,7 +1349,7 @@ static void sub_02037910(void)
 
     if (CommSys_InitClient(0, 0, 512)) {
         CommSys_SwitchTransitionTypeToServerClient();
-        sub_02036C94(sub_0203794C, 100);
+        CommMan_SetTask(sub_0203794C, 100);
     }
 }
 
@@ -1359,28 +1357,28 @@ static void sub_0203794C(void)
 {
     if (sub_02033898(Unk_021C07D4->unk_49) != 0) {
         if (sub_02034984(Unk_021C07D4->unk_49)) {
-            sub_02036C94(sub_020379D0, 100);
+            CommMan_SetTask(sub_020379D0, 100);
             return;
         }
     }
 
-    if (CommSys_CheckError() || (Unk_021C07D4->unk_40 == 0)) {
+    if (CommSys_CheckError() || (Unk_021C07D4->timer == 0)) {
         Unk_021C07D4->unk_44--;
 
         if (Unk_021C07D4->unk_44 == 0) {
-            sub_02036C94(sub_0203773C, 0);
+            CommMan_SetTask(sub_0203773C, 0);
         } else {
-            sub_02036C94(sub_020378F8, 0);
+            CommMan_SetTask(sub_020378F8, 0);
         }
-    } else if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    } else if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
     }
 }
 
 static void sub_020379D0(void)
 {
-    if (Unk_021C07D4->unk_40 > 90) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer > 90) {
+        Unk_021C07D4->timer--;
         return;
     }
 
@@ -1388,30 +1386,30 @@ static void sub_020379D0(void)
         Unk_021C07D4->unk_44--;
 
         if (Unk_021C07D4->unk_44 == 0) {
-            sub_02036C94(sub_0203773C, 0);
+            CommMan_SetTask(sub_0203773C, 0);
         } else {
-            sub_02036C94(sub_020378F8, 0);
+            CommMan_SetTask(sub_020378F8, 0);
         }
 
         return;
     }
 
     if (CommSys_IsPlayerConnected(CommSys_CurNetId())) {
-        sub_02036C94(sub_02037724, 0);
+        CommMan_SetTask(sub_02037724, 0);
         return;
     }
 
-    if (Unk_021C07D4->unk_40 != 0) {
-        Unk_021C07D4->unk_40--;
+    if (Unk_021C07D4->timer != 0) {
+        Unk_021C07D4->timer--;
         return;
     }
 
     Unk_021C07D4->unk_44--;
 
     if (Unk_021C07D4->unk_44 == 0) {
-        sub_02036C94(sub_0203773C, 0);
+        CommMan_SetTask(sub_0203773C, 0);
     } else {
-        sub_02036C94(sub_020378F8, 0);
+        CommMan_SetTask(sub_020378F8, 0);
     }
 }
 
@@ -1517,7 +1515,7 @@ static void sub_02037B78(void)
 
     if (CommSys_InitClient(1, 1, 32)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037B70, 0);
+        CommMan_SetTask(sub_02037B70, 0);
     }
 }
 
@@ -1532,7 +1530,7 @@ void sub_02037BC0(SaveData *saveData)
 
     Unk_021C07D4->unk_4B = 0;
 
-    sub_02036C94(sub_02037B78, 0);
+    CommMan_SetTask(sub_02037B78, 0);
 }
 
 void sub_02037BFC(void)
@@ -1541,7 +1539,7 @@ void sub_02037BFC(void)
         return;
     }
 
-    sub_02036C94(sub_020373B8, 5);
+    CommMan_SetTask(sub_020373B8, 5);
 }
 
 BOOL sub_02037C18(void)
@@ -1550,7 +1548,7 @@ BOOL sub_02037C18(void)
     u32 v1[] = {
         (u32)sub_02037B70, 0
     };
-    u32 v2 = (u32)Unk_021C07D4->unk_24;
+    u32 v2 = (u32)Unk_021C07D4->task;
 
     if (Unk_021C07D4 == NULL) {
         return 0;
@@ -1589,7 +1587,7 @@ static void sub_02037CE4(void)
 {
     if (CommSys_InitClient(1, 1, 32)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037B70, 0);
+        CommMan_SetTask(sub_02037B70, 0);
     }
 }
 
@@ -1602,7 +1600,7 @@ static void sub_02037D08(void)
     CommServerClient_Init(Unk_021C07D4->unk_2C, 0);
     CommInfo_Init(Unk_021C07D4->saveData, NULL);
     sub_020320FC(sub_02037C5C);
-    sub_02036C94(sub_02037CE4, 0);
+    CommMan_SetTask(sub_02037CE4, 0);
 }
 
 void sub_02037D48(SaveData *saveData)
@@ -1614,7 +1612,7 @@ void sub_02037D48(SaveData *saveData)
     Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_COMMUNICATION, 0x7000);
     sub_020366A0(saveData, 17);
     Unk_021C07D4->unk_4B = 0;
-    sub_02036C94(sub_02037D08, 0);
+    CommMan_SetTask(sub_02037D08, 0);
 }
 
 void sub_02037D84(void)
@@ -1623,7 +1621,7 @@ void sub_02037D84(void)
         return;
     }
 
-    sub_02036C94(sub_020373B8, 5);
+    CommMan_SetTask(sub_020373B8, 5);
 }
 
 u8 sub_02037DA0(void)
@@ -1644,12 +1642,12 @@ BOOL sub_02037DB0(void)
         return 1;
     } else if (CommMan_IsConnectedToWifi()) {
         if (Unk_021C07D4->unk_4A == 33) {
-            sub_02036C94(sub_02038D80, 0);
+            CommMan_SetTask(sub_02038D80, 0);
         } else {
-            sub_02036C94(sub_02038314, 0);
+            CommMan_SetTask(sub_02038314, 0);
         }
     } else {
-        sub_02036C94(sub_020370EC, 0);
+        CommMan_SetTask(sub_020370EC, 0);
     }
 
     return 0;
@@ -1668,7 +1666,7 @@ static void sub_02037E20(void)
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_0203718C, 0);
+        CommMan_SetTask(sub_0203718C, 0);
     }
 }
 
@@ -1683,7 +1681,7 @@ static void sub_02037E68(void)
 
     if (CommSys_InitClient(1, 1, 512)) {
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_02037208, 0);
+        CommMan_SetTask(sub_02037208, 0);
     }
 }
 
@@ -1697,7 +1695,7 @@ static void sub_02037EB4(void)
     int v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     } else if (v0 == ((DWC_ERROR_NUM) + 3)) {
         (void)0;
     }
@@ -1722,28 +1720,28 @@ static void sub_02037ED8(void)
     v0 = NintendoWFC_Process(0);
 
     if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
-        sub_02036C94(sub_02037ED4, 0);
+        CommMan_SetTask(sub_02037ED4, 0);
     } else if (v0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     } else if (v0 == ((DWC_ERROR_NUM) + 3)) {
-        sub_02036C94(sub_02037EB4, 0);
+        CommMan_SetTask(sub_02037EB4, 0);
     } else if (v0 == ((DWC_ERROR_NUM) + 4)) {
         if (Unk_021C07D4->unk_4F) {
-            sub_02036C94(sub_02037EB0, 0);
+            CommMan_SetTask(sub_02037EB0, 0);
         } else {
-            sub_02036C94(sub_02037ED0, 0);
+            CommMan_SetTask(sub_02037ED0, 0);
         }
     } else if (v0 == ((DWC_ERROR_NUM) + 1)) {
         if (Unk_021C07D4->unk_4F) {
-            sub_02036C94(sub_02037EB0, 0);
+            CommMan_SetTask(sub_02037EB0, 0);
         } else {
-            sub_02036C94(sub_02037ED0, 0);
+            CommMan_SetTask(sub_02037ED0, 0);
         }
     }
 
     if (Unk_021C07D4->unk_4F) {
         if (Unk_021C07D4->unk_47 != CommSys_ConnectedCount()) {
-            sub_02036C94(sub_02037EB0, 0);
+            CommMan_SetTask(sub_02037EB0, 0);
         }
     }
 }
@@ -1770,17 +1768,17 @@ static void sub_02037FBC(void)
     int v0 = NintendoWFC_Process(0);
 
     if ((v0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > v0)) {
-        sub_02036C94(sub_02037ED4, 0);
+        CommMan_SetTask(sub_02037ED4, 0);
     } else if (v0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_MATCHMAKING_SUCCESS) {
-        sub_02036C94(sub_02037ED8, 0);
+        CommMan_SetTask(sub_02037ED8, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET) {
-        sub_02036C94(sub_02037ED0, 0);
+        CommMan_SetTask(sub_02037ED0, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_CONN_RESET_AFTER_HOST_LEFT) {
-        sub_02036C94(sub_02037ED4, 0);
+        CommMan_SetTask(sub_02037ED4, 0);
     } else if (v0 == NINTENDO_WFC_RESULT_CONNECTION_CLOSED) {
-        sub_02036C94(sub_02037ED0, 0);
+        CommMan_SetTask(sub_02037ED0, 0);
     }
 }
 
@@ -1789,7 +1787,7 @@ static void sub_0203802C(void)
     int v0 = NintendoWFC_Process(1);
 
     if (v0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     } else {
         int v1 = NintendoWFC_StartConnectionWithFriends(Unk_021C07D4->unk_4D, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1, 0);
 
@@ -1797,13 +1795,13 @@ static void sub_0203802C(void)
         case 0:
             CommSys_Reset();
 
-            sub_02036C94(sub_02037FBC, 0);
+            CommMan_SetTask(sub_02037FBC, 0);
             break;
         case -1:
         case -2:
             break;
         case -3:
-            sub_02036C94(sub_02037EB0, 0);
+            CommMan_SetTask(sub_02037EB0, 0);
             break;
         }
     }
@@ -1811,47 +1809,47 @@ static void sub_0203802C(void)
 
 int sub_020380A0(int param0)
 {
-    if (Unk_021C07D4->unk_24 != sub_02037FBC) {
+    if (Unk_021C07D4->task != sub_02037FBC) {
         return 0;
     }
 
     NintendoDWC_SetDataTransferCallbacks(sub_020351F8, sub_0203509C);
     Unk_021C07D4->unk_4D = param0;
-    sub_02036C94(sub_0203802C, 0);
+    CommMan_SetTask(sub_0203802C, 0);
     return 1;
 }
 
 int sub_020380E4(void)
 {
-    if (Unk_021C07D4->unk_24 == sub_02037FBC) {
+    if (Unk_021C07D4->task == sub_02037FBC) {
         return 0;
     }
 
-    if (Unk_021C07D4->unk_24 == sub_02037ED8) {
+    if (Unk_021C07D4->task == sub_02037ED8) {
         return 1;
     }
 
-    if (Unk_021C07D4->unk_24 == sub_02037EB4) {
+    if (Unk_021C07D4->task == sub_02037EB4) {
         return 3;
     }
 
-    if (Unk_021C07D4->unk_24 == sub_02037ED0) {
+    if (Unk_021C07D4->task == sub_02037ED0) {
         return 4;
     }
 
-    if (Unk_021C07D4->unk_24 == sub_02037ED4) {
+    if (Unk_021C07D4->task == sub_02037ED4) {
         return 5;
     }
 
-    if (Unk_021C07D4->unk_24 == sub_02038DEC) {
+    if (Unk_021C07D4->task == sub_02038DEC) {
         return 0;
     }
 
-    if (Unk_021C07D4->unk_24 == sub_02038DCC) {
+    if (Unk_021C07D4->task == sub_02038DCC) {
         return 1;
     }
 
-    if (Unk_021C07D4->unk_24 == sub_02038E84) {
+    if (Unk_021C07D4->task == sub_02038E84) {
         return 3;
     }
 
@@ -1871,13 +1869,13 @@ static void sub_02038164(void)
     case 0:
         Unk_021C07D4->unk_58 = 0;
         CommSys_Reset();
-        sub_02036C94(sub_02037FBC, 0);
+        CommMan_SetTask(sub_02037FBC, 0);
         break;
     case -1:
     case -2:
         break;
     case -3:
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
         break;
     case -4:
         return;
@@ -1886,9 +1884,9 @@ static void sub_02038164(void)
     v1 = NintendoWFC_HandleError();
 
     if (v1 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     } else if (v1 == ((DWC_ERROR_NUM) + 6)) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     }
 }
 
@@ -1902,7 +1900,7 @@ static void sub_020381F0(void)
         if (NintendoWFC_ReturnToReadyState()) {
             CommInfo_Delete();
 
-            sub_02036C94(sub_02038164, 0);
+            CommMan_SetTask(sub_02038164, 0);
             return;
         }
     }
@@ -1910,7 +1908,7 @@ static void sub_020381F0(void)
     v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     }
 }
 
@@ -1918,10 +1916,10 @@ void sub_02038240(int param0, int param1, void *param2, void *param3)
 {
     if (CommSys_CurNetId() == 0) {
         Unk_021C07D4->unk_4C = 0;
-        sub_02036C94(sub_020381F0, 0);
+        CommMan_SetTask(sub_020381F0, 0);
     } else {
         Unk_021C07D4->unk_4C = 1;
-        sub_02036C94(sub_020381F0, 0);
+        CommMan_SetTask(sub_020381F0, 0);
     }
 
     Unk_021C07D4->unk_58 = 1;
@@ -1934,7 +1932,7 @@ BOOL sub_02038284(void)
 
 BOOL sub_02038294(void)
 {
-    u32 v0 = (u32)Unk_021C07D4->unk_24;
+    u32 v0 = (u32)Unk_021C07D4->task;
 
     if (v0 == (u32)sub_02038164) {
         return 1;
@@ -1949,7 +1947,7 @@ BOOL sub_02038294(void)
 
 BOOL sub_020382C0(void)
 {
-    u32 v0 = (u32)Unk_021C07D4->unk_24;
+    u32 v0 = (u32)Unk_021C07D4->task;
 
     if (v0 == (u32)sub_02037FBC) {
         return 1;
@@ -1980,13 +1978,13 @@ static void sub_02038314(void)
 
     if (NintendoWFC_EndConnection(0)) {
         NintendoWFC_ReturnToReadyState();
-        sub_02036C94(sub_020373B8, 0);
+        CommMan_SetTask(sub_020373B8, 0);
     }
 
     v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     }
 }
 
@@ -1998,7 +1996,7 @@ void sub_02038350(void)
 
     ResetUnlock(RESET_LOCK_0x1);
     CommInfo_Delete();
-    sub_02036C94(sub_020373B8, 5);
+    CommMan_SetTask(sub_020373B8, 5);
 }
 
 void sub_02038378(void)
@@ -2008,7 +2006,7 @@ void sub_02038378(void)
     }
 
     Unk_021C07D4->unk_4C = 0;
-    sub_02036C94(sub_020381F0, 0);
+    CommMan_SetTask(sub_020381F0, 0);
 }
 
 void sub_02038398(void)
@@ -2025,7 +2023,7 @@ void sub_02038398(void)
         Unk_021C07D4->unk_4C = 1;
     }
 
-    sub_02036C94(sub_020381F0, 0);
+    CommMan_SetTask(sub_020381F0, 0);
 }
 
 void sub_020383D4(void)
@@ -2038,7 +2036,7 @@ void sub_020383D4(void)
 BOOL sub_020383E8(void)
 {
     if (Unk_021C07D4) {
-        u32 v0 = (u32)Unk_021C07D4->unk_24;
+        u32 v0 = (u32)Unk_021C07D4->task;
 
         if (v0 == (u32)sub_02037EB0) {
             return 1;
@@ -2164,7 +2162,7 @@ static void sub_0203862C(void)
 {
     int v0 = NintendoWFC_ConnectToDWCServer();
 
-    Unk_021C07D4->unk_40--;
+    Unk_021C07D4->timer--;
 
     if (v0 == NINTENDO_WFC_RESULT_CONNECTED_TO_SERVER) {
         if (Unk_021C07D4->unk_4A == 33) {
@@ -2174,22 +2172,22 @@ static void sub_0203862C(void)
 
             if (v1 == TRUE) {
                 Unk_021C07D4->unk_60 = 1;
-                sub_02036C94(sub_02038C1C, Unk_021C07D4->unk_40);
+                CommMan_SetTask(sub_02038C1C, Unk_021C07D4->timer);
                 return;
             } else {
-                sub_02036C94(sub_02038DC8, 0);
+                CommMan_SetTask(sub_02038DC8, 0);
                 return;
             }
         } else {
-            sub_02036C94(sub_02038164, 0);
+            CommMan_SetTask(sub_02038164, 0);
             return;
         }
     } else if (v0 != 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     }
 
-    if (Unk_021C07D4->unk_40 <= 0) {
-        sub_02036C94(sub_02037EB0, 0);
+    if (Unk_021C07D4->timer <= 0) {
+        CommMan_SetTask(sub_02037EB0, 0);
     }
 }
 
@@ -2209,7 +2207,7 @@ static void sub_020386B4(void)
         NintendoWFC_Init(Unk_021C07D4->saveData, HEAP_ID_NINTENDO_WFC, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         NintendoWFC_SetFatalErrorCallback(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
-        sub_02036C94(sub_0203862C, (30 * 60 * 2));
+        CommMan_SetTask(sub_0203862C, (30 * 60 * 2));
     }
 }
 
@@ -2230,7 +2228,7 @@ void *sub_0203871C(SaveData *saveData, int param1)
     Unk_021C07D4->unk_4B = 0;
     Unk_021C07D4->saveData = saveData;
 
-    sub_02036C94(sub_020386B4, 0);
+    CommMan_SetTask(sub_020386B4, 0);
 
     return Unk_021C07D4->unk_00;
 }
@@ -2253,7 +2251,7 @@ void sub_0203878C(SaveData *saveData, const void *param1)
     Unk_021C07D4->unk_4B = 0;
     Unk_021C07D4->saveData = saveData;
 
-    sub_02036C94(sub_02038BA8, 0);
+    CommMan_SetTask(sub_02038BA8, 0);
 }
 
 void sub_020387E8(void)
@@ -2262,7 +2260,7 @@ void sub_020387E8(void)
         return;
     }
 
-    sub_02036C94(sub_02038D80, 0);
+    CommMan_SetTask(sub_02038D80, 0);
 }
 
 BOOL sub_02038804(void)
@@ -2277,7 +2275,7 @@ BOOL sub_02038804(void)
 BOOL sub_0203881C(void)
 {
     if (Unk_021C07D4) {
-        u32 v0 = (u32)Unk_021C07D4->unk_24;
+        u32 v0 = (u32)Unk_021C07D4->task;
 
         if (v0 == (u32)sub_02038DC8) {
             return 1;
@@ -2294,10 +2292,10 @@ void sub_0203883C(UnkEnum_ov66_02232F38 param0)
 
     if (ov66_02233184(param0) == 0) {
         ov66_02232F38(param0, 4);
-        sub_02036C94(sub_02038DEC, 0);
+        CommMan_SetTask(sub_02038DEC, 0);
     } else {
         ov66_02233260(param0);
-        sub_02036C94(sub_02038DEC, 0);
+        CommMan_SetTask(sub_02038DEC, 0);
     }
 }
 
@@ -2310,13 +2308,13 @@ void sub_0203888C(void)
     }
 
     ov66_0223361C();
-    sub_02036C94(sub_02038E38, 0);
+    CommMan_SetTask(sub_02038E38, 0);
 }
 
 u32 sub_020388AC(void)
 {
     if (Unk_021C07D4) {
-        u32 v0 = (u32)Unk_021C07D4->unk_24;
+        u32 v0 = (u32)Unk_021C07D4->task;
 
         if (v0 == (u32)sub_02038DCC) {
             return 2;
@@ -2539,7 +2537,7 @@ static void sub_02038BA8(void)
         CommSys_SwitchTransitionTypeToParallel();
         NintendoWFC_SetVoiceChatEnabled(0);
         sub_0203632C(0);
-        sub_02036C94(sub_0203862C, (30 * 60 * 2));
+        CommMan_SetTask(sub_0203862C, (30 * 60 * 2));
     }
 }
 
@@ -2547,10 +2545,10 @@ static void sub_02038C1C(void)
 {
     BOOL v0;
 
-    Unk_021C07D4->unk_40--;
+    Unk_021C07D4->timer--;
 
-    if (Unk_021C07D4->unk_40 <= 0) {
-        sub_02036C94(sub_02037EB0, 0);
+    if (Unk_021C07D4->timer <= 0) {
+        CommMan_SetTask(sub_02037EB0, 0);
         return;
     }
 
@@ -2565,7 +2563,7 @@ static void sub_02038C1C(void)
     v0 = ov66_02232804();
 
     if (v0) {
-        sub_02036C94(sub_02038C68, 0);
+        CommMan_SetTask(sub_02038C68, 0);
     }
 }
 
@@ -2583,27 +2581,27 @@ static BOOL sub_02038C74(int param0)
     BOOL v0 = 1;
 
     if ((param0 >= DWC_ERROR_FRIENDS_SHORTAGE) && ((DWC_ERROR_NUM) > param0)) {
-        sub_02036C94(sub_02037ED4, 0);
+        CommMan_SetTask(sub_02037ED4, 0);
         v0 = 0;
     } else if (param0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
         v0 = 0;
     } else if (param0 == ((DWC_ERROR_NUM) + 3)) {
-        sub_02036C94(sub_02038E84, 0);
+        CommMan_SetTask(sub_02038E84, 0);
         v0 = 0;
     } else if (param0 == ((DWC_ERROR_NUM) + 4)) {
         v0 = 0;
 
         if (Unk_021C07D4->unk_4F) {
-            sub_02036C94(sub_02037EB0, 0);
+            CommMan_SetTask(sub_02037EB0, 0);
         } else {
-            sub_02036C94(sub_02037ED0, 0);
+            CommMan_SetTask(sub_02037ED0, 0);
         }
     }
 
     if (Unk_021C07D4->unk_4F) {
         if (Unk_021C07D4->unk_47 != CommSys_ConnectedCount()) {
-            sub_02036C94(sub_02037EB0, 0);
+            CommMan_SetTask(sub_02037EB0, 0);
             v0 = 0;
         }
     }
@@ -2626,7 +2624,7 @@ static BOOL sub_02038D10(void)
         break;
 
     case UnkEnum_ov66_0223287C_04:
-        sub_02036C94(sub_02038DC8, 0);
+        CommMan_SetTask(sub_02038DC8, 0);
         v1 = 0;
         break;
     }
@@ -2677,7 +2675,7 @@ static BOOL sub_02038D5C(u32 *param0)
 static void sub_02038D80(void)
 {
     ov66_0223282C();
-    sub_02036C94(sub_02038D94, 0);
+    CommMan_SetTask(sub_02038D94, 0);
 }
 
 static void sub_02038D94(void)
@@ -2692,7 +2690,7 @@ static void sub_02038D94(void)
     if (v0) {
         ResetUnlock(RESET_LOCK_0x1);
         CommInfo_Delete();
-        sub_02036C94(sub_020373B8, 5);
+        CommMan_SetTask(sub_020373B8, 5);
         CommSys_SetWifiConnected(0);
     }
 }
@@ -2712,7 +2710,7 @@ static void sub_02038DCC(void)
 
     if (v0 == 1) {
         ov66_0223361C();
-        sub_02036C94(sub_02038E38, 0);
+        CommMan_SetTask(sub_02038E38, 0);
     }
 }
 
@@ -2725,7 +2723,7 @@ static void sub_02038DEC(void)
 
     if (v0 == 1) {
         ov66_0223361C();
-        sub_02036C94(sub_02038E38, 0);
+        CommMan_SetTask(sub_02038E38, 0);
         return;
     }
 
@@ -2735,11 +2733,11 @@ static void sub_02038DEC(void)
     case 0:
         break;
     case (DWC_ERROR_NUM):
-        sub_02036C94(sub_02038DCC, 0);
+        CommMan_SetTask(sub_02038DCC, 0);
         break;
     default:
         ov66_0223361C();
-        sub_02036C94(sub_02038C68, 0);
+        CommMan_SetTask(sub_02038C68, 0);
         break;
     }
 }
@@ -2750,7 +2748,7 @@ static void sub_02038E38(void)
     int v1 = NintendoWFC_Process(1);
 
     if (v1 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
         return;
     }
 
@@ -2766,7 +2764,7 @@ static void sub_02038E38(void)
         if (v1) {
             CommSys_Reset();
             sub_0203632C(0);
-            sub_02036C94(sub_02038C68, 0);
+            CommMan_SetTask(sub_02038C68, 0);
         }
     }
 }
@@ -2776,7 +2774,7 @@ static void sub_02038E84(void)
     int v0 = NintendoWFC_Process(0);
 
     if (v0 < 0) {
-        sub_02036C94(sub_02037EB0, 0);
+        CommMan_SetTask(sub_02037EB0, 0);
     }
 
     sub_02038D10();

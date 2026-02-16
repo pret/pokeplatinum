@@ -487,7 +487,7 @@ BOOL PokedexSort_SetCurrentStatusIndexWithSpecies(PokedexSortData *param0, int s
     return FALSE;
 }
 
-int PokedexSort_CurrentSpecies(const PokedexSortData *param0)
+enum Species PokedexSort_CurrentSpecies(const PokedexSortData *param0)
 {
     return param0->sortedPokedex.caughtStatusArray[param0->sortedPokedex.currentStatusIndex].species;
 }

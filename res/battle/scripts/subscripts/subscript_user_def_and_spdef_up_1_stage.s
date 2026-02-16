@@ -23,7 +23,7 @@ _046:
     Wait 
     WaitButtonABTime 30
     // {0}’s stats won’t go any higher!
-    PrintMessage pl_msg_00000368_00768, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsStatsWontGoAnyHigher_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

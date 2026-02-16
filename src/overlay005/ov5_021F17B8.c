@@ -8,10 +8,9 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DF440.h"
+#include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021DF84C.h"
 
 #include "berry_patch_graphics.h"
@@ -21,12 +20,12 @@
 #include "unk_02020AEC.h"
 
 typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
+    FieldEffectManager *unk_00;
 } UnkStruct_ov5_021F17E4;
 
 typedef struct {
     FieldSystem *fieldSystem;
-    UnkStruct_ov5_021DF47C *unk_04;
+    FieldEffectManager *unk_04;
     UnkStruct_ov5_021F17E4 *unk_08;
     MapObject *unk_0C;
 } UnkStruct_ov5_021F1800;
@@ -45,7 +44,7 @@ typedef struct {
 
 typedef struct {
     FieldSystem *fieldSystem;
-    UnkStruct_ov5_021DF47C *unk_04;
+    FieldEffectManager *unk_04;
     UnkStruct_ov5_021F17E4 *unk_08;
     UnkStruct_ov5_021DF84C unk_0C;
     const UnkStruct_020216E0 *unk_34;
@@ -67,9 +66,9 @@ static void ov5_021F1A8C(OverworldAnimManager *param0, UnkStruct_ov5_021F1A24 *p
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200338;
 
-void *ov5_021F17B8(UnkStruct_ov5_021DF47C *param0)
+void *ov5_021F17B8(FieldEffectManager *param0)
 {
-    UnkStruct_ov5_021F17E4 *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_ov5_021F17E4), 0, 0);
+    UnkStruct_ov5_021F17E4 *v0 = FieldEffectManager_HeapAllocInit(param0, sizeof(UnkStruct_ov5_021F17E4), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F17E4(v0);
@@ -81,7 +80,7 @@ void ov5_021F17D4(void *param0)
     UnkStruct_ov5_021F17E4 *v0 = param0;
 
     ov5_021F17F4(v0);
-    ov5_021DF554(v0);
+    FieldEffectManager_HeapFree(v0);
 }
 
 static void ov5_021F17E4(UnkStruct_ov5_021F17E4 *param0)
@@ -102,14 +101,14 @@ void ov5_021F1800(MapObject *param0, int param1)
     OverworldAnimManager *v3;
 
     v2.fieldSystem = MapObject_FieldSystem(param0);
-    v2.unk_04 = ov5_021DF578(param0);
-    v2.unk_08 = ov5_021DF55C(v2.unk_04, 1);
+    v2.unk_04 = MapObject_GetFieldEffectManager(param0);
+    v2.unk_08 = FieldEffectManager_GetRendererContext(v2.unk_04, 1);
     v2.unk_0C = param0;
 
     MapObject_GetPosPtr(param0, &v1);
 
-    v0 = sub_02062758(param0, 2);
-    v3 = ov5_021DF72C(v2.unk_04, &Unk_ov5_02200338, &v1, param1, &v2, v0);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
+    v3 = FieldEffectManager_InitAnimManager(v2.unk_04, &Unk_ov5_02200338, &v1, param1, &v2, v0);
 }
 
 static int ov5_021F184C(OverworldAnimManager *param0, void *param1)
@@ -124,7 +123,7 @@ static int ov5_021F184C(OverworldAnimManager *param0, void *param1)
     v1->unk_14 = *v2;
     v1->unk_10 = OverworldAnimManager_GetID(param0);
     v1->unk_00 = MapObject_GetLocalID(v1->unk_14.unk_0C);
-    v1->unk_04 = sub_02062918(v1->unk_14.unk_0C);
+    v1->unk_04 = MapObject_GetMapID(v1->unk_14.unk_0C);
     v1->unk_08 = MapObject_GetGraphicsID(v1->unk_14.unk_0C);
 
     if (BerryPatchGraphics_IsBerryPatch(v1->unk_08) == 1) {
@@ -168,7 +167,7 @@ static void ov5_021F18E0(OverworldAnimManager *param0, void *param1)
     }
 
     if ((v1->unk_08 != v0) || (sub_02062764(v2, v1->unk_00, v1->unk_04) == 0) || (sub_02062F64(v2) == 0)) {
-        ov5_021DF74C(param0);
+        FieldEffectManager_FinishAnimManager(param0);
         return;
     }
 
@@ -209,7 +208,7 @@ static void ov5_021F1978(OverworldAnimManager *param0, void *param1)
         }
 
         if ((v0->unk_08 != v2) || (sub_02062764(v1, v0->unk_00, v0->unk_04) == 0) || (sub_02062F64(v1) == 0)) {
-            ov5_021DF74C(param0);
+            FieldEffectManager_FinishAnimManager(param0);
             return;
         }
     }
@@ -264,7 +263,7 @@ static void ov5_021F1A24(UnkStruct_ov5_021F1A24 *param0, MapObject *param1, VecF
     v2 = -param2->z;
 
     MapObject_GetPosPtr(param1, param2);
-    v0 = sub_020644A4(param0->unk_14.fieldSystem, param2);
+    v0 = MapObject_RecalculatePositionHeight(param0->unk_14.fieldSystem, param2);
 
     param2->x += v1;
     param2->z += v2 + (FX32_ONE * -7);
@@ -342,7 +341,7 @@ static void ov5_021F1B4C(UnkStruct_ov5_021F1AD8 *param0, VecFx32 *param1)
     };
 
     *param1 = param0->unk_50;
-    v0 = sub_020644A4(param0->unk_04.fieldSystem, param1);
+    v0 = MapObject_RecalculatePositionHeight(param0->unk_04.fieldSystem, param1);
     param1->z += (FX32_ONE * -7);
 
     if (v0 == 0) {
@@ -352,18 +351,18 @@ static void ov5_021F1B4C(UnkStruct_ov5_021F1AD8 *param0, VecFx32 *param1)
     }
 }
 
-OverworldAnimManager *ov5_021F1BA4(UnkStruct_ov5_021DF47C *param0, const UnkStruct_ov5_021DF84C *param1, const UnkStruct_020216E0 *param2, const VecFx32 *param3, int param4, int param5)
+OverworldAnimManager *ov5_021F1BA4(FieldEffectManager *param0, const UnkStruct_ov5_021DF84C *param1, const UnkStruct_020216E0 *param2, const VecFx32 *param3, int param4, int param5)
 {
     OverworldAnimManager *v0;
     UnkStruct_ov5_021F1BEC v1;
 
-    v1.fieldSystem = ov5_021DF574(param0);
+    v1.fieldSystem = FieldEffectManager_GetFieldSystem(param0);
     v1.unk_04 = param0;
-    v1.unk_08 = ov5_021DF55C(param0, 1);
+    v1.unk_08 = FieldEffectManager_GetRendererContext(param0, 1);
     v1.unk_0C = *param1;
     v1.unk_34 = param2;
 
-    v0 = ov5_021DF72C(param0, &Unk_ov5_0220034C, param3, param4, &v1, param5);
+    v0 = FieldEffectManager_InitAnimManager(param0, &Unk_ov5_0220034C, param3, param4, &v1, param5);
     return v0;
 }
 

@@ -111,7 +111,7 @@ BOOL CommInfo_IsInitialized(void)
     return sCommInfo != NULL;
 }
 
-void CommInfo_SendBattleRegulation(void)
+void CommInfo_SendPlayerInfo(void)
 {
     u16 netId = CommSys_CurNetId();
     TrainerInfo *trainerInfo;

@@ -44,7 +44,7 @@ CanalaveGym_Byron:
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_COUNTERPART
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_ROWAN
     SetVar VAR_CANALAVE_STATE, 2
-    SetFlag FLAG_UNK_0x0198
+    SetFlag FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN
     Message CanalaveGym_Text_ByronExplainMineBadge
     GoTo CanalaveGym_ByronTryGiveTM91
 
@@ -52,7 +52,7 @@ CanalaveGym_ByronTryGiveTM91:
     SetVar VAR_0x8004, ITEM_TM91
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CanalaveGym_ByronCannotGiveTM91
-    GiveItemQuantity
+    Common_GiveItemQuantity
     SetFlag FLAG_OBTAINED_BYRON_TM91
     BufferItemName 0, VAR_0x8004
     BufferTMHMMoveName 1, VAR_0x8004
@@ -63,7 +63,7 @@ CanalaveGym_ByronTryGiveTM91:
     End
 
 CanalaveGym_ByronCannotGiveTM91:
-    MessageBagIsFull
+    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End

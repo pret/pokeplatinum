@@ -42,7 +42,7 @@ _005C:
 
 _0078:
     SetFlag FLAG_HIDE_BLOCK_POKECENTER_BASEMENT
-    SetVar VAR_GTS_HAS_BADGES_CHECK_TEST, 1
+    SetVar VAR_GTS_ACCESS_STATE, 1
     SetVar VAR_UNK_0x40D4, 1
     End
 
@@ -135,7 +135,7 @@ _01DF:
 
 _01FB:
     SetVar VAR_MAP_LOCAL_0, 0
-    SaveGame
+    Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, _0175
     GoTo _0220

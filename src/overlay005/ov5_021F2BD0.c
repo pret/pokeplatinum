@@ -5,8 +5,7 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "overlay005/ov5_021DF440.h"
-#include "overlay005/struct_ov5_021DF47C_decl.h"
+#include "overlay005/field_effect_manager.h"
 
 #include "map_object.h"
 #include "map_object_move.h"
@@ -14,13 +13,13 @@
 #include "simple3d.h"
 
 typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
+    FieldEffectManager *unk_00;
     Simple3DModel unk_04;
     Simple3DAnimation unk_18;
 } UnkStruct_ov5_021F2BFC;
 
 typedef struct {
-    UnkStruct_ov5_021DF47C *unk_00;
+    FieldEffectManager *unk_00;
     UnkStruct_ov5_021F2BFC *unk_04;
 } UnkStruct_ov5_021F2C38;
 
@@ -35,9 +34,9 @@ static void ov5_021F2C24(UnkStruct_ov5_021F2BFC *param0);
 
 static const OverworldAnimManagerFuncs Unk_ov5_022004D8;
 
-void *ov5_021F2BD0(UnkStruct_ov5_021DF47C *param0)
+void *ov5_021F2BD0(FieldEffectManager *param0)
 {
-    UnkStruct_ov5_021F2BFC *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F2BFC)), 0, 0);
+    UnkStruct_ov5_021F2BFC *v0 = FieldEffectManager_HeapAllocInit(param0, (sizeof(UnkStruct_ov5_021F2BFC)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F2BFC(v0);
@@ -49,13 +48,13 @@ void ov5_021F2BEC(void *param0)
     UnkStruct_ov5_021F2BFC *v0 = param0;
 
     ov5_021F2C24(v0);
-    ov5_021DF554(v0);
+    FieldEffectManager_HeapFree(v0);
 }
 
 static void ov5_021F2BFC(UnkStruct_ov5_021F2BFC *param0)
 {
-    ov5_021DFB00(param0->unk_00, &param0->unk_04, 0, 16, 0);
-    ov5_021DFB24(param0->unk_00, &param0->unk_18, 0, 161, 0);
+    FieldEffectManager_LoadModel(param0->unk_00, &param0->unk_04, 0, 16, 0);
+    FieldEffectManager_LoadAnimation(param0->unk_00, &param0->unk_18, 0, 161, 0);
 }
 
 static void ov5_021F2C24(UnkStruct_ov5_021F2BFC *param0)
@@ -70,8 +69,8 @@ void ov5_021F2C38(MapObject *param0, int param1, int param2, int param3)
     UnkStruct_ov5_021F2C38 v2;
     VecFx32 v3;
 
-    v2.unk_00 = ov5_021DF578(param0);
-    v2.unk_04 = ov5_021DF55C(v2.unk_00, 18);
+    v2.unk_00 = MapObject_GetFieldEffectManager(param0);
+    v2.unk_04 = FieldEffectManager_GetRendererContext(v2.unk_00, 18);
 
     VecFx32_SetPosFromMapCoords(param1, param3, &v3);
 
@@ -79,9 +78,9 @@ void ov5_021F2C38(MapObject *param0, int param1, int param2, int param3)
     v3.y = (((MapObject_GetYPrev(param0)) << 3) * FX32_ONE) + (-FX32_ONE * 8);
 
     v1 = 0;
-    v0 = sub_02062758(param0, 2);
+    v0 = MapObject_CalculateTaskPriority(param0, 2);
 
-    ov5_021DF72C(v2.unk_00, &Unk_ov5_022004D8, &v3, v1, &v2, v0);
+    FieldEffectManager_InitAnimManager(v2.unk_00, &Unk_ov5_022004D8, &v3, v1, &v2, v0);
 }
 
 static int ov5_021F2C98(OverworldAnimManager *param0, void *param1)
@@ -91,7 +90,7 @@ static int ov5_021F2C98(OverworldAnimManager *param0, void *param1)
 
     v0->unk_78 = *v1;
 
-    ov5_021DFB40(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_04, &v0->unk_78.unk_04->unk_18, 0);
+    FieldEffectManager_ApplyAnimCopyToModel(v0->unk_78.unk_00, &v0->unk_00, &v0->unk_78.unk_04->unk_04, &v0->unk_78.unk_04->unk_18, 0);
     Simple3D_CreateRenderObjectWithAnim(&v0->unk_24, &v0->unk_78.unk_04->unk_04, &v0->unk_00);
 
     return 1;
@@ -108,7 +107,7 @@ static void ov5_021F2CDC(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F2C98 *v0 = param1;
 
     if (Simple3D_HasAnimationReachedEnd(&v0->unk_00) == 1) {
-        ov5_021DF74C(param0);
+        FieldEffectManager_FinishAnimManager(param0);
         return;
     }
 

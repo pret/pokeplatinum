@@ -113,7 +113,7 @@ _012F:
     BufferAccessoryName 0, VAR_0x8004
     Message 37
     SetVar VAR_0x8005, 1
-    GiveAccessoryWaitForConfirm
+    Common_GiveAccessoryWaitForConfirm
     SetFlag FLAG_UNK_0x0128
     CloseMessage
     ReleaseAll
@@ -428,7 +428,7 @@ _04C8:
     AddObject PASTORIA_CITY_RIVAL
     ApplyMovement PASTORIA_CITY_RIVAL, _05B0
     WaitMovement
-    SetRivalBGM
+    Common_SetRivalBGM
     ApplyMovement PASTORIA_CITY_RIVAL, _05C0
     ApplyMovement LOCALID_PLAYER, _05A4
     WaitMovement

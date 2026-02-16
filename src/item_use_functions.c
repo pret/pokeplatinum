@@ -20,7 +20,7 @@
 #include "overlay005/ov5_021F007C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021F0468_decl.h"
-#include "overlay006/ov6_02247100.h"
+#include "overlay006/field_warp.h"
 #include "savedata/save_table.h"
 
 #include "bag.h"
@@ -132,7 +132,7 @@ static BOOL MountOrUnmountBicycle(FieldTask *task);
 static BOOL PrintRegisteredKeyItemUseMessage(FieldTask *task);
 static void RegisteredItem_CreateGoToAppTask(ItemFieldUseContext *usageContext, void *param1);
 static BOOL RegisteredItem_GoToApp(FieldTask *task);
-static BOOL sub_020690F0(FieldTask *task);
+static BOOL WarpWithEscapeRope(FieldTask *task);
 static BOOL sub_020685AC(FieldTask *task);
 static void PrintRegisteredKeyItemError(ItemFieldUseContext *usageContext, u32 param1);
 
@@ -318,7 +318,7 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemU
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
     menu->taskData = partyMenu;
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static void UseTownMapFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -327,7 +327,7 @@ static void UseTownMapFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
 
     menu->taskData = FieldSystem_OpenTownMapItem(fieldSystem);
-    sub_0203B674(menu, sub_0203C3F4);
+    StartMenu_SetCallback(menu, sub_0203C3F4);
 }
 
 static BOOL UseTownMapInField(ItemFieldUseContext *usageContext)
@@ -515,7 +515,7 @@ static void UseJournalFromMenu(ItemMenuUseContext *usageContext, const ItemUseCo
     StartMenu *v1 = FieldTask_GetEnv(usageContext->fieldTask);
 
     sub_0203D30C(fieldSystem, NULL);
-    sub_0203B674(v1, sub_0203C50C);
+    StartMenu_SetCallback(v1, sub_0203C50C);
 }
 
 static BOOL UseJournalInField(ItemFieldUseContext *usageContext)
@@ -552,7 +552,7 @@ static void UseTMHMFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
     menu->taskData = partyMenu;
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -564,7 +564,7 @@ static void UseMailFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
     menu->unk_260 = sub_0203C540(usageContext->item, 3, 0);
     menu->taskData = v2;
 
-    sub_0203B674(menu, sub_0203C558);
+    StartMenu_SetCallback(menu, StartMenu_ExitMail);
 }
 
 static enum ItemUseCheckResult CanUseBerry(const ItemUseContext *usageContext)
@@ -604,7 +604,7 @@ static void UsePoffinCaseFromMenu(ItemMenuUseContext *usageContext, const ItemUs
     PoffinCaseAppData *poffinCase = FieldSystem_LaunchPoffinCaseApp(fieldSystem, HEAP_ID_FIELD2);
 
     menu->taskData = poffinCase;
-    sub_0203B674(menu, sub_0203C710);
+    StartMenu_SetCallback(menu, sub_0203C710);
 }
 
 static BOOL UsePoffinCaseInField(ItemFieldUseContext *usageContext)
@@ -625,7 +625,7 @@ static void UsePalPadFromMenu(ItemMenuUseContext *usageContext, const ItemUseCon
 
     sub_0203DE78(fieldSystem, fieldSystem->saveData);
     menu->taskData = NULL;
-    sub_0203B674(menu, sub_0203C750);
+    StartMenu_SetCallback(menu, sub_0203C750);
 }
 
 static BOOL UsePalPadInField(ItemFieldUseContext *usageContext)
@@ -745,12 +745,12 @@ static void UseHoneyFromMenu(ItemMenuUseContext *usageContext, const ItemUseCont
 
 static void UseVsSeekerFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 8950);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(VS_SEEKER, 0));
 }
 
 static BOOL UseVsSeekerInField(ItemFieldUseContext *usageContext)
 {
-    sub_02068584(usageContext, 8950);
+    sub_02068584(usageContext, SCRIPT_ID(VS_SEEKER, 0));
     return FALSE;
 }
 
@@ -928,7 +928,7 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
     menu->taskData = partyMenu;
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static void UseEscapeRopeFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -938,7 +938,7 @@ static void UseEscapeRopeFromMenu(ItemMenuUseContext *usageContext, const ItemUs
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->callback = sub_020690F0;
+    menu->callback = WarpWithEscapeRope;
     menu->taskData = NULL;
     menu->state = START_MENU_STATE_10;
 
@@ -958,23 +958,23 @@ static enum ItemUseCheckResult CanUseEscapeRope(const ItemUseContext *usageConte
     return ITEM_USE_CANNOT_USE_GENERIC;
 }
 
-static BOOL sub_020690F0(FieldTask *task)
+static BOOL WarpWithEscapeRope(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    void *v1 = ov6_02247100(fieldSystem, HEAP_ID_FIELD2);
+    FieldWarp *fieldWarp = FieldWarp_InitEscapeRope(fieldSystem, HEAP_ID_FIELD2);
 
-    FieldTask_InitJump(task, ov6_02247120, v1);
+    FieldTask_InitJump(task, FieldWarp_EscapeRopeFadeOut, fieldWarp);
     return FALSE;
 }
 
 static void UseAzureFluteFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
 {
-    sub_02068540(usageContext, additionalContext, 2039);
+    sub_02068540(usageContext, additionalContext, SCRIPT_ID(COMMON_SCRIPTS, 39));
 }
 
 static BOOL UseAzureFluteInField(ItemFieldUseContext *usageContext)
 {
-    sub_02068584(usageContext, 2039);
+    sub_02068584(usageContext, SCRIPT_ID(COMMON_SCRIPTS, 39));
     return FALSE;
 }
 
@@ -1008,7 +1008,7 @@ static void UseVsRecorderFromMenu(ItemMenuUseContext *usageContext, const ItemUs
 
     sub_0203DE88(fieldSystem, fieldSystem->saveData);
     menu->taskData = NULL;
-    sub_0203B674(menu, sub_0203C784);
+    StartMenu_SetCallback(menu, sub_0203C784);
 }
 
 static BOOL UseVsRecorderInField(ItemFieldUseContext *usageContext)
@@ -1031,7 +1031,7 @@ static void UseGracideaFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
     StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
     menu->taskData = FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, ITEM_GRACIDEA);
 
-    sub_0203B674(menu, sub_0203B7C0);
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 static BOOL UseGracideaInField(ItemFieldUseContext *usageContext)

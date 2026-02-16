@@ -70,7 +70,7 @@ _00D9:
     SetVar VAR_RESULT, 0
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_0BB VAR_0x8005, VAR_RESULT
+    OpenPokemonNamingScreen VAR_0x8005, VAR_RESULT
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 1, _0129

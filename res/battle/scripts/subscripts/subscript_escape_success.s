@@ -4,7 +4,7 @@
 _000:
     PlaySound BTLSCR_ATTACKER, 1791
     // Got away safely!
-    PrintMessage pl_msg_00000368_00781, TAG_NONE
+    PrintMessage BattleStrings_Text_GotAwaySafely, TAG_NONE
     Wait 
     WaitButtonABTime 30
     FadeOutBattle 

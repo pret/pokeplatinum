@@ -402,7 +402,7 @@ static BOOL ScrCmd_0B3(ScriptContext *ctx);
 static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
 static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx);
-static BOOL ScrCmd_0BB(ScriptContext *ctx);
+static BOOL ScrCmd_OpenPokemonNamingScreen(ScriptContext *ctx);
 static BOOL ScrCmd_271(ScriptContext *ctx);
 static BOOL ScrCmd_FadeScreen(ScriptContext *ctx);
 static BOOL ScrCmd_WaitFadeScreen(ScriptContext *ctx);
@@ -567,7 +567,7 @@ static BOOL ScrCmd_Unused_1CE(ScriptContext *ctx);
 static BOOL ScrCmd_AddAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_CanFitAccessory(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx);
-static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx);
+static BOOL ScrCmd_AddContestBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForUnionRoomBattle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx);
@@ -737,8 +737,8 @@ static BOOL ScrCmd_CheckHeapMemory(ScriptContext *ctx);
 static BOOL ScrCmd_StartGiratinaOriginBattle(ScriptContext *ctx);
 static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx);
 static BOOL ScrCmd_320(ScriptContext *ctx);
-static BOOL ScrCmd_321(ScriptContext *ctx);
-static BOOL ScrCmd_322(ScriptContext *ctx);
+static BOOL ScrCmd_StartDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
+static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx);
 static BOOL ScrCmd_323(ScriptContext *ctx);
 static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx);
@@ -955,7 +955,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0B8,
     ScrCmd_GetApproachingTrainerID,
     ScrCmd_Unused_0BA,
-    ScrCmd_0BB,
+    ScrCmd_OpenPokemonNamingScreen,
     ScrCmd_FadeScreen,
     ScrCmd_WaitFadeScreen,
     ScrCmd_Warp,
@@ -1237,7 +1237,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_AddAccessory,
     ScrCmd_CanFitAccessory,
     ScrCmd_Unused_1D4,
-    ScrCmd_ObtainContestBackdrop,
+    ScrCmd_AddContestBackdrop,
     ScrCmd_CheckBackdrop,
     ScrCmd_1D7,
     ScrCmd_1D8,
@@ -1569,8 +1569,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_TryRevertPokemonForm,
     ScrCmd_ResetDistortionWorldPersistedCameraAngles,
     ScrCmd_320,
-    ScrCmd_321,
-    ScrCmd_322,
+    ScrCmd_StartDistortionWorldGiratinaShadowEvent,
+    ScrCmd_FinishDistortionWorldGiratinaShadowEvent,
     ScrCmd_323,
     ScrCmd_324,
     ScrCmd_325,
@@ -3338,7 +3338,7 @@ static BOOL ScrCmd_MoveCamera(ScriptContext *ctx)
     pos.y = FX32_CONST(y);
     pos.z = FX32_CONST(z);
 
-    sub_020630AC(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
+    MapObject_SetSpritePosOffset(Player_MapObject(ctx->fieldSystem->playerAvatar), &pos);
     Camera_Move(&pos, ctx->fieldSystem->camera);
 
     return FALSE;
@@ -4306,16 +4306,16 @@ static BOOL ScrCmd_Unused_0BA(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_0BB(ScriptContext *ctx)
+static BOOL ScrCmd_OpenPokemonNamingScreen(ScriptContext *ctx)
 {
-    u16 v0[10 * 2];
+    u16 nickname[MON_NAME_LEN * 2];
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v3 = ScriptContext_GetVar(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
 
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), v3);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), slot);
 
-    Pokemon_GetValue(v1, MON_DATA_NICKNAME, v0);
-    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), MON_NAME_LEN, v3, v0, ScriptContext_GetVarPointer(ctx));
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, nickname);
+    sub_0203DFE8(ctx->task, NAMING_SCREEN_TYPE_POKEMON, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), MON_NAME_LEN, slot, nickname, ScriptContext_GetVarPointer(ctx));
 
     return TRUE;
 }
@@ -5966,7 +5966,7 @@ static BOOL ScrCmd_Unused_1D4(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_ObtainContestBackdrop(ScriptContext *ctx)
+static BOOL ScrCmd_AddContestBackdrop(ScriptContext *ctx)
 {
     u16 backdropID = ScriptContext_GetVar(ctx);
 
@@ -7909,20 +7909,20 @@ static BOOL ScrCmd_320(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_321(ScriptContext *ctx)
+static BOOL ScrCmd_StartDistortionWorldGiratinaShadowEvent(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 eventIndex = ScriptContext_GetVar(ctx);
 
-    ov9_0224E884(fieldSystem, v1);
+    DistWorld_StartGiratinaShadowEvent(fieldSystem, eventIndex);
     return FALSE;
 }
 
-static BOOL ScrCmd_322(ScriptContext *ctx)
+static BOOL ScrCmd_FinishDistortionWorldGiratinaShadowEvent(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov9_0224E8A8(fieldSystem);
+    DistWorld_FinishGiratinaShadowEvent(fieldSystem);
     return FALSE;
 }
 

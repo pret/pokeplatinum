@@ -21,7 +21,7 @@ _000:
     UpdateVar OPCODE_MUL, BTLVAR_HP_CALC_TEMP, -1
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // The battlers shared their pain!
-    PrintMessage pl_msg_00000368_00820, TAG_NONE
+    PrintMessage BattleStrings_Text_TheBattlersSharedTheirPain, TAG_NONE
     Wait 
     WaitButtonABTime 30
     End 

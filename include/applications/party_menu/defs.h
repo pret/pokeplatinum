@@ -10,7 +10,6 @@
 
 #include "field/field_system_decl.h"
 #include "functypes/funcptr_0207F248.h"
-#include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bag.h"
 #include "battle_regulation.h"
@@ -22,6 +21,7 @@
 #include "grid_menu_cursor_position.h"
 #include "menu.h"
 #include "message.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokedex_heightweight.h"
 #include "sprite.h"
@@ -68,6 +68,33 @@ enum PartyMenuType {
     PARTY_MENU_TYPE_BASIC = 0,
     PARTY_MENU_TYPE_DOUBLE_BATTLE,
     PARTY_MENU_TYPE_MULTI_BATTLE,
+};
+
+enum PartyMenuExitCodes {
+    PARTY_MENU_EXIT_CODE_DONE = 0,
+    PARTY_MENU_EXIT_CODE_SUMMARY,
+    PARTY_MENU_EXIT_CODE_2,
+    PARTY_MENU_EXIT_CODE_GIVE_ITEM,
+    PARTY_MENU_EXIT_CODE_LEARNED_MOVE,
+    PARTY_MENU_EXIT_CODE_FORGET_MOVE,
+    PARTY_MENU_EXIT_CODE_MAIL,
+    PARTY_MENU_EXIT_CODE_READ_MAIL,
+    PARTY_MENU_EXIT_CODE_EVOLVE_BY_ITEM,
+    PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL,
+    PARTY_MENU_EXIT_CODE_RETURN_TO_BAG,
+    PARTY_MENU_EXIT_CODE_CUT,
+    PARTY_MENU_EXIT_CODE_FLY,
+    PARTY_MENU_EXIT_CODE_SURF,
+    PARTY_MENU_EXIT_CODE_STRENGTH,
+    PARTY_MENU_EXIT_CODE_DEFOG,
+    PARTY_MENU_EXIT_CODE_ROCK_SMASH,
+    PARTY_MENU_EXIT_CODE_WATERFALL,
+    PARTY_MENU_EXIT_CODE_ROCK_CLIMB,
+    PARTY_MENU_EXIT_CODE_FLASH,
+    PARTY_MENU_EXIT_CODE_TELEPORT,
+    PARTY_MENU_EXIT_CODE_DIG,
+    PARTY_MENU_EXIT_CODE_SWEET_SCENT,
+    PARTY_MENU_EXIT_CODE_CHATTER
 };
 
 #define PARTY_MENU_MODE_HIDE_CANCEL_FLAG (1 << 7)
@@ -231,6 +258,16 @@ typedef struct PartyMenuMember {
     u8 isPresent;
 } PartyMenuMember;
 
+typedef struct PartyMenuFormChange {
+    int state;
+    int elapsedFrames;
+    int framesBeforeFormChange;
+    int species;
+    u32 narcIdx;
+    int partySlot;
+    ParticleSystem *ps;
+} PartyMenuFormChange;
+
 #define PARTY_MENU_MEMBER_PANEL_SIZE_TILES 96
 
 typedef struct PartyOrderSwitchData {
@@ -281,8 +318,8 @@ typedef struct PartyMenuApplication {
     u8 unk_B13;
     u16 monStats[6];
     HeightWeightData *heightWeight;
-    OverlayMetadata *unk_B24;
-    G3DPipelineBuffers *unk_B28;
+    PartyMenuFormChange *formChanger;
+    G3DPipelineBuffers *formChange3DPipeline;
 } PartyMenuApplication;
 
 #endif // POKEPLATINUM_PARTY_MENU_DEFS_H
