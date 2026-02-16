@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_base_tiles.h"
 #include "constants/narc.h"
 
 #include "struct_defs/sentence.h"
@@ -54,8 +55,8 @@
 #include "unk_02014A84.h"
 #include "unk_0209B6F8.h"
 
-#define LIST_MENU_ENTRY_NO_ALT_TEXT 0xff
-#define LIST_MENU_BUILDER_HEADER    0xfa
+#define LIST_MENU_ENTRY_NO_ALT_TEXT 0xFF
+#define LIST_MENU_BUILDER_HEADER    0xFA
 #define LIST_MENU_MAX_DISPLAY       8
 #define CURSOR_MARGIN_SIZE          12
 
@@ -118,9 +119,9 @@ static void OpenMessageBox(UnkStruct_ov104_022320B4 *param0)
 
     if (param0->isMsgBoxOpen == FALSE) {
         Window_Add(
-            v0->unk_00, &param0->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, ((1024 - (18 + 12)) - 9) - (27 * 4));
+            v0->unk_00, &param0->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - (27 * 4));
         Window_FillTilemap(&param0->msgWindow, 15);
-        Window_DrawMessageBoxWithScrollCursor(&param0->msgWindow, 0, 1024 - (18 + 12), 11);
+        Window_DrawMessageBoxWithScrollCursor(&param0->msgWindow, 0, BASE_TILE_SCROLLING_MESSAGE_BOX, 11);
 
         param0->isMsgBoxOpen = TRUE;
     } else {
