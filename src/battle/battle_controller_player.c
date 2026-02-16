@@ -17,6 +17,7 @@
 #include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"
+#include "struct_decls/battler_data.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/ai_context.h"
@@ -30,7 +31,6 @@
 #include "battle/common.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/struct_ov16_0224DDA8.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
 
 #include "bag.h"
 #include "communication_system.h"
@@ -340,7 +340,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
             }
 
             // Don't let slow AI processing delay the player from picking their action for the turn
-            if (Battler_BootState(BattleSystem_GetBattlerData(battleSys, i)) == BATTLER_BOOT_STATE_AI || battleCtx->totalTurns) {
+            if (BattlerData_GetBootState(BattleSystem_GetBattlerData(battleSys, i)) == BATTLER_BOOT_STATE_AI || battleCtx->totalTurns) {
                 BattleController_EmitSetCommandSelection(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT;
             } else {
@@ -352,7 +352,7 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
         case COMMAND_SELECTION_SELECT2:
             int j;
             for (j = 0; j < maxBattlers; j++) {
-                if (j == i || Battler_BootState(BattleSystem_GetBattlerData(battleSys, j)) != BATTLER_BOOT_STATE_AI) {
+                if (j == i || BattlerData_GetBootState(BattleSystem_GetBattlerData(battleSys, j)) != BATTLER_BOOT_STATE_AI) {
                     continue;
                 }
 
@@ -3845,7 +3845,7 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
 
         int maxBattlers = BattleSystem_GetMaxBattlers(battleSys); // unused, but must stay to match
         BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->attacker);
-        u8 battlerType = Battler_Type(battlerData);
+        u8 battlerType = BattlerData_GetBattlerType(battlerData);
 
         do {
             int battler = battleCtx->monSpeedOrder[battleCtx->battlerCounter++];
@@ -3853,8 +3853,8 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
                 battlerData = BattleSystem_GetBattlerData(battleSys, battler);
 
                 // Loop back to the start of the move if battlers are on opposite sides
-                if (((battlerType & BATTLER_THEM) && (Battler_Type(battlerData) & BATTLER_THEM) == FALSE)
-                    || ((battlerType & BATTLER_THEM) == FALSE && (Battler_Type(battlerData) & BATTLER_THEM))) {
+                if (((battlerType & BATTLER_THEM) && (BattlerData_GetBattlerType(battlerData) & BATTLER_THEM) == FALSE)
+                    || ((battlerType & BATTLER_THEM) == FALSE && (BattlerData_GetBattlerType(battlerData) & BATTLER_THEM))) {
                     BattleSystem_SetupLoop(battleSys, battleCtx);
                     battleCtx->defender = battler;
                     battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
@@ -4234,7 +4234,7 @@ static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, Batt
                 }
 
                 if (totalPartyHP == 0) {
-                    if (Battler_Type(battlerData) & BATTLER_THEM) {
+                    if (BattlerData_GetBattlerType(battlerData) & BATTLER_THEM) {
                         battleResult |= BATTLE_RESULT_WIN;
                     } else {
                         battleResult |= BATTLE_RESULT_LOSE;
@@ -4255,7 +4255,7 @@ static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, Batt
             }
 
             if (totalPartyHP == 0) {
-                if (Battler_Type(battlerData) & BATTLER_THEM) {
+                if (BattlerData_GetBattlerType(battlerData) & BATTLER_THEM) {
                     battleResult |= BATTLE_RESULT_WIN;
                 } else {
                     battleResult |= BATTLE_RESULT_LOSE;

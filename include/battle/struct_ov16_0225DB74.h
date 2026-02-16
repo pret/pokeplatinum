@@ -2,15 +2,15 @@
 #define POKEPLATINUM_STRUCT_OV16_0225DB74_H
 
 #include "struct_decls/battle_system.h"
+#include "struct_decls/battler_data.h"
 
-#include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
 
 #include "pokemon_sprite.h"
 
 typedef struct {
     BattleSystem *battleSys;
-    BattlerData *unk_04;
+    BattlerData *battlerData;
     PokemonSprite *unk_08;
     MoveAnimation unk_0C;
     u8 unk_64;

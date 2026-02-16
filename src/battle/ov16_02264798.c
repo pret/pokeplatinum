@@ -4,10 +4,10 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
+#include "struct_decls/battler_data.h"
+#include "struct_defs/battler_data.h"
 
 #include "battle/battle_system.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225BFFC_t.h"
 
 #include "math_util.h"
 #include "pokemon_sprite.h"
@@ -16,9 +16,9 @@
 
 static void ov16_02264800(SysTask *param0, void *param1);
 
-void ov16_02264798(BattlerData *param0, BattleSystem *battleSys)
+void ov16_02264798(BattlerData *battlerData, BattleSystem *battleSys)
 {
-    if (param0->unk_194 != NULL) {
+    if (battlerData->sysTask != NULL) {
         return;
     }
 
@@ -26,35 +26,35 @@ void ov16_02264798(BattlerData *param0, BattleSystem *battleSys)
         return;
     }
 
-    param0->unk_198 = 180;
-    param0->unk_194 = SysTask_Start(ov16_02264800, param0, 1010);
+    battlerData->degrees = 180;
+    battlerData->sysTask = SysTask_Start(ov16_02264800, battlerData, 1010);
 }
 
-void ov16_022647D8(BattlerData *param0)
+void ov16_022647D8(BattlerData *battlerData)
 {
-    if (param0->unk_194 == NULL) {
+    if (battlerData->sysTask == NULL) {
         return;
     }
 
-    SysTask_Done(param0->unk_194);
+    SysTask_Done(battlerData->sysTask);
 
-    param0->unk_194 = NULL;
-    param0->unk_198 = 0;
+    battlerData->sysTask = NULL;
+    battlerData->degrees = 0;
 
-    PokemonSprite_SetAttribute(param0->unk_20, MON_SPRITE_Y_OFFSET, 0);
+    PokemonSprite_SetAttribute(battlerData->monSprite, MON_SPRITE_Y_OFFSET, 0);
 }
 
 static void ov16_02264800(SysTask *param0, void *param1)
 {
-    BattlerData *v0 = param1;
+    BattlerData *battlerData = param1;
     int v1;
 
-    v0->unk_198 += 20;
+    battlerData->degrees += 20;
 
-    if (v0->unk_198 >= 360) {
-        v0->unk_198 -= 360;
+    if (battlerData->degrees >= 360) {
+        battlerData->degrees -= 360;
     }
 
-    v1 = FX_Mul(CalcSineDegrees(v0->unk_198), 0x1800) / FX32_ONE;
-    PokemonSprite_SetAttribute(v0->unk_20, MON_SPRITE_Y_OFFSET, v1);
+    v1 = FX_Mul(CalcSineDegrees(battlerData->degrees), 0x1800) / FX32_ONE;
+    PokemonSprite_SetAttribute(battlerData->monSprite, MON_SPRITE_Y_OFFSET, v1);
 }

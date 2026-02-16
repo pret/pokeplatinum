@@ -16,6 +16,7 @@
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
+#include "struct_decls/battler_data.h"
 #include "struct_defs/fraction.h"
 
 #include "battle/battle_context.h"
@@ -26,7 +27,6 @@
 #include "battle/battle_mon.h"
 #include "battle/battle_system.h"
 #include "battle/common.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
 
 #include "charcode_util.h"
 #include "flags.h"
@@ -1611,7 +1611,7 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
     if (range == RANGE_ADJACENT_OPPONENTS) { // e.g., Acid, Blizzard
         int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, attacker);
-        u8 attackerType = Battler_Type(battlerData);
+        u8 attackerType = BattlerData_GetBattlerType(battlerData);
 
         // Assign the first possible living target based on speed order
         for (battleCtx->battlerCounter = 0; battleCtx->battlerCounter < maxBattlers; battleCtx->battlerCounter++) {
@@ -1620,8 +1620,8 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
             // Check that this battler is an enemy of the attacker
             if (battleCtx->battleMons[battler].curHP != 0) {
                 battlerData = BattleSystem_GetBattlerData(battleSys, battler);
-                if (((attackerType & BATTLER_TYPE_SOLO_ENEMY) && (Battler_Type(battlerData) & BATTLER_TYPE_SOLO_ENEMY) == FALSE)
-                    || ((attackerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) && (Battler_Type(battlerData) & BATTLER_TYPE_SOLO_ENEMY)) {
+                if (((attackerType & BATTLER_TYPE_SOLO_ENEMY) && (BattlerData_GetBattlerType(battlerData) & BATTLER_TYPE_SOLO_ENEMY) == FALSE)
+                    || ((attackerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) && (BattlerData_GetBattlerType(battlerData) & BATTLER_TYPE_SOLO_ENEMY)) {
                     defender = battler;
                     break;
                 }
