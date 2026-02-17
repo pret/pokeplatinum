@@ -13,8 +13,6 @@
 #include "overlay005/area_light.h"
 #include "overlay005/field_effect_renderer.h"
 #include "overlay005/resource_heap.h"
-#include "overlay005/struct_ov5_021DF84C.h"
-#include "overlay005/struct_ov5_021EDDAC.h"
 
 #include "heap.h"
 #include "map_object.h"

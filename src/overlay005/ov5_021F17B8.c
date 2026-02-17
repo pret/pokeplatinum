@@ -10,7 +10,6 @@
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
-#include "overlay005/struct_ov5_021DF84C.h"
 
 #include "berry_patch_graphics.h"
 #include "map_object.h"

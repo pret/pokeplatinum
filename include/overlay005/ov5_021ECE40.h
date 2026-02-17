@@ -5,7 +5,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/funcptr_ov5_021EE454.h"
-#include "overlay005/struct_ov5_021DF84C.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 

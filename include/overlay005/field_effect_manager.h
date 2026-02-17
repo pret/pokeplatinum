@@ -7,7 +7,6 @@
 #include "struct_defs/struct_020217F4.h"
 
 #include "field/field_system_decl.h"
-#include "overlay005/struct_ov5_021DF84C.h"
 
 #include "overworld_anim_manager.h"
 #include "simple3d.h"

@@ -11,9 +11,6 @@
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
 
-#include "overlay005/struct_ov5_021DF84C.h"
-#include "overlay005/struct_ov5_021EDDAC.h"
-
 typedef struct UnkStruct_020216E0 UnkStruct_020216E0;
 typedef void (*BillboardCallback)(UnkStruct_020216E0 *, void *);
 
@@ -43,7 +40,7 @@ typedef struct UnkStruct_020216E0 {
     UnkStruct_020216E0 *prev;
 } UnkStruct_020216E0;
 
-typedef struct UnkStruct_02020C44_t {
+typedef struct UnkStruct_02020C44 {
     u8 active;
     u8 draw;
     u8 unused;
@@ -57,12 +54,32 @@ typedef struct UnkStruct_02020C44_t {
     UnkStruct_0201DD00 *unk_D8;
 } UnkStruct_02020C44;
 
-typedef struct {
+typedef struct UnkStruct_ov5_021DF84C {
+    void *unk_00;
+    const NNSG3dResTex *unk_04;
+    const UnkStruct_020217F4 *unk_08;
+    UnkStruct_02024184 unk_0C;
+    NNSGfdTexKey unk_1C;
+    NNSGfdTexKey unk_20;
+    NNSGfdPlttKey unk_24;
+} UnkStruct_ov5_021DF84C;
+
+typedef struct UnkStruct_ov5_021DF7F8 {
     UnkStruct_02020C44 *unk_00;
     const UnkStruct_ov5_021DF84C *unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;
 } UnkStruct_ov5_021DF7F8;
+
+typedef struct UnkStruct_ov5_021EDDAC {
+    int unk_00;
+    enum HeapID heapID;
+} UnkStruct_ov5_021EDDAC;
+
+typedef struct UnkStruct_ov5_021ED110 {
+    u32 unk_00;
+    UnkStruct_ov5_021DF84C *unk_04;
+} UnkStruct_ov5_021ED110;
 
 void Billboard_Reset(UnkStruct_020216E0 *param0);
 void sub_02020B90(int param0, enum HeapID heapID);

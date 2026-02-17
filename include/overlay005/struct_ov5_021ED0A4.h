@@ -4,8 +4,6 @@
 #include "struct_decls/struct_02061830_decl.h"
 
 #include "overlay005/resource_heap.h"
-#include "overlay005/struct_ov5_021DF84C.h"
-#include "overlay005/struct_ov5_021ED110.h"
 #include "overlay005/struct_ov5_021EDF3C.h"
 
 #include "resource_collection.h"
