@@ -15,7 +15,7 @@ void ov5_021ECAF0(MapObject *param0);
 void ov5_021ECB34(MapObject *param0);
 void ov5_021ECB58(MapObject *param0);
 void ov5_021ECB78(MapObject *param0);
-UnkStruct_020216E0 *ov5_021ECB80(MapObject *param0);
-UnkStruct_020216E0 *ov5_021ECB8C(UnkStruct_ov5_021ECB8C *param0);
+Billboard *ov5_021ECB80(MapObject *param0);
+Billboard *ov5_021ECB8C(UnkStruct_ov5_021ECB8C *param0);
 
 #endif // POKEPLATINUM_OV5_021ECA70_H

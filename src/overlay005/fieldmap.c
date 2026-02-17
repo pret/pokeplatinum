@@ -130,7 +130,7 @@ static void ov5_021D1A70(UnkStruct_ov5_021D1A68 *param0);
 static inline void inline_fieldmap(FieldSystem *fieldSystem)
 {
     UnkStruct_ov5_021ED0A4 *v0 = sub_0206285C(fieldSystem->mapObjMan);
-    UnkStruct_02020C44 *v1 = ov5_021EDC8C(v0);
+    BillboardList *v1 = ov5_021EDC8C(v0);
 
     sub_02020D68(v1);
 }
@@ -192,7 +192,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
         ov5_021D1414();
 
         VramTransfer_New(128, HEAP_ID_FIELD1);
-        sub_02020B90(4, HEAP_ID_FIELD1);
+        BillboardLists_New(4, HEAP_ID_FIELD1);
         Easy3D_Init(HEAP_ID_FIELD1);
 
         ov5_021D15B4();
@@ -332,7 +332,7 @@ static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
     case 2:
         if (FieldSystem_IsBottomScreenDone(fieldSystem)) {
             ov5_021D15E8();
-            sub_02020BD0();
+            BillboardLists_Delete();
             VramTransfer_Free();
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
@@ -723,7 +723,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
     }
 
     FieldEffectManager_Render(fieldSystem->fieldEffMan);
-    sub_02020C08();
+    BillboardLists_Draw();
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         ov9_02250780(fieldSystem);

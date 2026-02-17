@@ -26,7 +26,7 @@ typedef struct BerryPatchData {
 typedef struct BerryPatchGraphics {
     int graphicsResourceID;
     enum BerryGrowthStage lastGrowthStage;
-    UnkStruct_020216E0 *graphicsObject;
+    Billboard *graphicsObject;
     UnkStruct_ov5_021ED01C graphicsState;
 } BerryPatchGraphics;
 
@@ -212,9 +212,9 @@ static int BerryPatchGraphics_GetGraphicsResourceID(int berryID, enum BerryGrowt
     return 0xffff;
 }
 
-UnkStruct_020216E0 *BerryPatchGraphics_GetGraphicsObject(MapObject *mapObject)
+Billboard *BerryPatchGraphics_GetGraphicsObject(MapObject *mapObject)
 {
-    UnkStruct_020216E0 *graphicsObject = NULL;
+    Billboard *graphicsObject = NULL;
 
     GF_ASSERT(BerryPatchGraphics_IsBerryPatch(MapObject_GetGraphicsID(mapObject)));
 

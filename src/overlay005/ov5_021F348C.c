@@ -32,7 +32,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     UnkStruct_ov5_021F35E8 unk_10;
-    UnkStruct_020216E0 *unk_20;
+    Billboard *unk_20;
 } UnkStruct_ov5_021F36F4;
 
 static void ov5_021F34D0(UnkStruct_ov5_021F34D0 *param0);

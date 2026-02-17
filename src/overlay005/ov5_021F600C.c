@@ -30,7 +30,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     UnkStruct_ov5_021F6094 unk_10;
-    UnkStruct_020216E0 *unk_20;
+    Billboard *unk_20;
 } UnkStruct_ov5_021F6134;
 
 static void ov5_021F6038(UnkStruct_ov5_021F600C *param0);

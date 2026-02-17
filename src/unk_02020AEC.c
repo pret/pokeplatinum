@@ -10,46 +10,46 @@
 #include "unk_0201DD00.h"
 #include "unk_0202414C.h"
 
-static UnkStruct_02020C44 *FindFirstFreeBillboardList(void);
-static void BillboardList_Reset(UnkStruct_02020C44 *list);
-static void sub_02020DA8(UnkStruct_02020C44 *param0);
-static void sub_0202144C(UnkStruct_020216E0 *param0);
+static BillboardList *FindFirstFreeBillboardList(void);
+static void BillboardList_Reset(BillboardList *list);
+static void BillboardList_Draw(BillboardList *param0);
+static void sub_0202144C(Billboard *param0);
 static void sub_0202149C(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2);
 static void sub_02021524(NNSG3dResMat *param0, const NNSG3dResDictTexToMatIdxData *param1, u32 param2);
 static void sub_020215A0(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2);
 static void sub_0202162C(NNSG3dResMat *param0, const NNSG3dResDictPlttToMatIdxData *param1, u32 param2);
-static void sub_020216A8(UnkStruct_02020C44 *param0);
-static UnkStruct_020216E0 *sub_020216E0(UnkStruct_02020C44 *param0);
-static BOOL sub_0202170C(UnkStruct_02020C44 *param0, UnkStruct_020216E0 *param1);
-static void sub_02021744(UnkStruct_020216E0 *param0, UnkStruct_020216E0 *param1);
-static void sub_02021768(UnkStruct_020216E0 *param0);
-static void sub_0202185C(UnkStruct_020216E0 *param0);
-static void sub_0202187C(UnkStruct_020216E0 *param0);
-static void *sub_0202189C(const UnkStruct_ov5_021DF84C *param0, int param1);
+static void sub_020216A8(BillboardList *param0);
+static Billboard *sub_020216E0(BillboardList *param0);
+static BOOL sub_0202170C(BillboardList *param0, Billboard *param1);
+static void sub_02021744(Billboard *param0, Billboard *param1);
+static void sub_02021768(Billboard *param0);
+static void sub_0202185C(Billboard *param0);
+static void sub_0202187C(Billboard *param0);
+static void *sub_0202189C(const BillboardResources *param0, int param1);
 static const UnkStruct_020217F4 *sub_020218B4(const UnkStruct_020217F4 *param0, int param1);
-static NNSG3dResMdlSet *sub_02021788(const UnkStruct_ov5_021DF84C *param0, NNSG3dResMdl **param1, NNSG3dResTex **param2);
-static NNSG3dResTex *sub_020217D4(const UnkStruct_ov5_021DF84C *param0);
-static void sub_020217E0(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1);
-static void sub_02020E28(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1);
-static void sub_02020E78(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1);
-static fx32 sub_020217F4(const UnkStruct_020216E0 *param0, int param1);
-static int sub_02021804(UnkStruct_020216E0 *param0, fx32 param1);
+static NNSG3dResMdlSet *sub_02021788(const BillboardResources *param0, NNSG3dResMdl **param1, NNSG3dResTex **param2);
+static NNSG3dResTex *sub_020217D4(const BillboardResources *param0);
+static void sub_020217E0(Billboard *param0, const BillboardResources *param1);
+static void sub_02020E28(Billboard *param0, const BillboardResources *param1);
+static void sub_02020E78(Billboard *param0, const BillboardResources *param1);
+static fx32 sub_020217F4(const Billboard *param0, int param1);
+static int sub_02021804(Billboard *param0, fx32 param1);
 static int sub_02021824(const UnkStruct_020217F4 *param0, fx32 *param1, fx32 param2);
 static void sub_02020EF8(const NNSG3dResTex *param0, NNSG3dTexKey *param1, NNSG3dTexKey *param2, NNSG3dPlttKey *param3);
 static void sub_02020F90(NNSG3dResTex *param0, NNSG3dTexKey *param1, NNSG3dTexKey *param2, NNSG3dPlttKey *param3);
 static void sub_02020FA4(NNSG3dResTex *param0, NNSG3dResMdlSet *param1, NNSG3dTexKey *param2, NNSG3dTexKey *param3, NNSG3dPlttKey *param4);
 static void FreeVRAMKeys(NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *plttKey);
 static BOOL sub_02020FFC(const NNSG3dResTex *param0, const NNSG3dResTex *param1);
-static void sub_0202105C(UnkStruct_02020C44 *param0, UnkStruct_020216E0 *param1);
-static void sub_02021078(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1);
-static void sub_020210F4(const UnkStruct_02020C44 *param0, UnkStruct_020216E0 *param1, const UnkStruct_ov5_021DF84C *param2);
-static void sub_02021148(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1);
-static void sub_0202117C(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1);
+static void sub_0202105C(BillboardList *param0, Billboard *param1);
+static void sub_02021078(Billboard *param0, const BillboardResources *param1);
+static void sub_020210F4(const BillboardList *param0, Billboard *param1, const BillboardResources *param2);
+static void sub_02021148(Billboard *param0, const BillboardResources *param1);
+static void sub_0202117C(Billboard *param0, const BillboardResources *param1);
 
-static UnkStruct_02020C44 *sBillboardLists = NULL;
+static BillboardList *sBillboardLists = NULL;
 static int sBillboardListCount = 0;
 
-static void BillboardList_Reset(UnkStruct_02020C44 *list)
+static void BillboardList_Reset(BillboardList *list)
 {
     list->active = FALSE;
     list->draw = FALSE;
@@ -62,7 +62,7 @@ static void BillboardList_Reset(UnkStruct_02020C44 *list)
     list->unk_03 = 0;
 }
 
-void Billboard_Reset(UnkStruct_020216E0 *billboard)
+void Billboard_Reset(Billboard *billboard)
 {
     billboard->list = NULL;
     billboard->unk_2C = NULL;
@@ -90,12 +90,11 @@ void Billboard_Reset(UnkStruct_020216E0 *billboard)
     billboard->callback = NULL;
 }
 
-// BillboardLists_New()
-void sub_02020B90(int count, enum HeapID heapID)
+void BillboardLists_New(int count, enum HeapID heapID)
 {
     GF_ASSERT(sBillboardLists == NULL);
 
-    sBillboardLists = Heap_Alloc(heapID, sizeof(UnkStruct_02020C44) * count);
+    sBillboardLists = Heap_Alloc(heapID, sizeof(BillboardList) * count);
     sBillboardListCount = count;
 
     for (int i = 0; i < count; i++) {
@@ -103,11 +102,10 @@ void sub_02020B90(int count, enum HeapID heapID)
     }
 }
 
-// BillboardLists_Delete()
-void sub_02020BD0(void)
+void BillboardLists_Delete(void)
 {
     for (int i = 0; i < sBillboardListCount; i++) {
-        sub_02020CCC(sBillboardLists + i);
+        BillboardList_Delete(sBillboardLists + i);
     }
 
     Heap_Free(sBillboardLists);
@@ -116,12 +114,11 @@ void sub_02020BD0(void)
     sBillboardListCount = 0;
 }
 
-// BillboardLists_Draw()
-void sub_02020C08(void)
+void BillboardLists_Draw(void)
 {
     for (int i = 0; i < sBillboardListCount; i++) {
         if (sBillboardLists[i].draw == TRUE) {
-            sub_02020DA8(&sBillboardLists[i]);
+            BillboardList_Draw(&sBillboardLists[i]);
         }
 
         if (sBillboardLists[i].unk_03 == 1) {
@@ -130,10 +127,9 @@ void sub_02020C08(void)
     }
 }
 
-// BillboardList_New()
-UnkStruct_02020C44 *sub_02020C44(const UnkStruct_ov5_021EDDAC *param0)
+BillboardList *BillboardList_New(const BillboardListParams *param0)
 {
-    UnkStruct_02020C44 *list = FindFirstFreeBillboardList();
+    BillboardList *list = FindFirstFreeBillboardList();
 
     if (list == NULL) {
         GF_ASSERT(0);
@@ -142,14 +138,14 @@ UnkStruct_02020C44 *sub_02020C44(const UnkStruct_ov5_021EDDAC *param0)
 
     list->active = TRUE;
     list->draw = TRUE;
-    list->billboards = Heap_Alloc(param0->heapID, sizeof(UnkStruct_020216E0) * param0->maxElements);
+    list->billboards = Heap_Alloc(param0->heapID, sizeof(Billboard) * param0->maxElements);
     list->capacity = param0->maxElements;
 
     Billboard_Reset(&list->sentinelData);
 
     list->sentinelData.next = &list->sentinelData;
     list->sentinelData.prev = &list->sentinelData;
-    list->freeBillboards = Heap_Alloc(param0->heapID, sizeof(UnkStruct_020216E0 *) * param0->maxElements);
+    list->freeBillboards = Heap_Alloc(param0->heapID, sizeof(Billboard *) * param0->maxElements);
 
     sub_020216A8(list);
     list->allocator = Heap_Alloc(param0->heapID, sizeof(NNSFndAllocator));
@@ -160,8 +156,7 @@ UnkStruct_02020C44 *sub_02020C44(const UnkStruct_ov5_021EDDAC *param0)
     return list;
 }
 
-// BillboardList_Delete()
-BOOL sub_02020CCC(UnkStruct_02020C44 *list)
+BOOL BillboardList_Delete(BillboardList *list)
 {
     if (list == NULL) {
         GF_ASSERT(0);
@@ -180,10 +175,10 @@ BOOL sub_02020CCC(UnkStruct_02020C44 *list)
     return TRUE;
 }
 
-BOOL sub_02020D14(UnkStruct_02020C44 *param0)
+BOOL sub_02020D14(BillboardList *param0)
 {
-    UnkStruct_020216E0 *v0;
-    UnkStruct_020216E0 *v1;
+    Billboard *v0;
+    Billboard *v1;
 
     if (param0 == NULL) {
         GF_ASSERT(param0);
@@ -203,7 +198,7 @@ BOOL sub_02020D14(UnkStruct_02020C44 *param0)
     return TRUE;
 }
 
-BOOL sub_02020D50(UnkStruct_02020C44 *param0)
+BOOL sub_02020D50(BillboardList *param0)
 {
     GF_ASSERT(param0);
 
@@ -214,14 +209,14 @@ BOOL sub_02020D50(UnkStruct_02020C44 *param0)
     return TRUE;
 }
 
-void sub_02020D68(UnkStruct_02020C44 *param0)
+void sub_02020D68(BillboardList *param0)
 {
     if (param0->unk_03 == 2) {
         param0->unk_03 = 0;
     }
 }
 
-static UnkStruct_02020C44 *FindFirstFreeBillboardList(void)
+static BillboardList *FindFirstFreeBillboardList(void)
 {
     for (int i = 0; i < sBillboardListCount; i++) {
         if (sBillboardLists[i].active == FALSE) {
@@ -232,8 +227,7 @@ static UnkStruct_02020C44 *FindFirstFreeBillboardList(void)
     return NULL;
 }
 
-// BillboardList_Draw()
-static void sub_02020DA8(UnkStruct_02020C44 *list)
+static void BillboardList_Draw(BillboardList *list)
 {
     VecFx32 v1;
     MtxFx33 v2;
@@ -242,7 +236,7 @@ static void sub_02020DA8(UnkStruct_02020C44 *list)
     GF_ASSERT(list);
     MTX_Identity33(&v2);
 
-    UnkStruct_020216E0 *billboard = list->sentinelData.next;
+    Billboard *billboard = list->sentinelData.next;
 
     while (billboard != &list->sentinelData) {
         if (billboard->draw == TRUE) {
@@ -274,9 +268,9 @@ static void sub_02020DA8(UnkStruct_02020C44 *list)
     }
 }
 
-static void sub_02020E28(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
+static void sub_02020E28(Billboard *param0, const BillboardResources *param1)
 {
-    UnkStruct_02020C44 *v0 = (UnkStruct_02020C44 *)param0->list;
+    BillboardList *v0 = (BillboardList *)param0->list;
 
     sub_0202105C(v0, param0);
     sub_02021078(param0, param1);
@@ -292,9 +286,9 @@ static void sub_02020E28(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84
     param0->unk_B8 = 0;
 }
 
-static void sub_02020E78(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
+static void sub_02020E78(Billboard *param0, const BillboardResources *param1)
 {
-    UnkStruct_02020C44 *v0 = param0->list;
+    BillboardList *v0 = param0->list;
 
     sub_0202105C(v0, param0);
 
@@ -401,7 +395,7 @@ static BOOL sub_02020FFC(const NNSG3dResTex *param0, const NNSG3dResTex *param1)
     return v6;
 }
 
-static void sub_0202105C(UnkStruct_02020C44 *unused, UnkStruct_020216E0 *param1)
+static void sub_0202105C(BillboardList *unused, Billboard *param1)
 {
     if (param1->unk_B0) {
         sub_0201DDAC(param1->unk_B0);
@@ -409,7 +403,7 @@ static void sub_0202105C(UnkStruct_02020C44 *unused, UnkStruct_020216E0 *param1)
     }
 }
 
-static void sub_02021078(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
+static void sub_02021078(Billboard *param0, const BillboardResources *param1)
 {
     NNSG3dResTex *v0;
     int v1;
@@ -434,30 +428,30 @@ static void sub_02021078(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84
     }
 }
 
-static void sub_020210F4(const UnkStruct_02020C44 *param0, UnkStruct_020216E0 *param1, const UnkStruct_ov5_021DF84C *param2)
+static void sub_020210F4(const BillboardList *param0, Billboard *param1, const BillboardResources *param2)
 {
     param1->unk_90 = sub_020217D4(param2);
     param1->unk_A0 = param2->unk_0C;
     param1->unk_B0 = sub_0201DD54(param0->unk_D8, &param1->unk_A0, param1->unk_90, param1->texKey, param1->plttKey, param1->unk_B8);
 }
 
-static void sub_02021148(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
+static void sub_02021148(Billboard *param0, const BillboardResources *param1)
 {
     param0->modelSet = sub_02021788(param1, &param0->model, &param0->texture);
     NNS_G3dRenderObjInit(&param0->renderObj, param0->model);
     param0->unk_90 = sub_020217D4(param1);
 }
 
-static void sub_0202117C(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
+static void sub_0202117C(Billboard *param0, const BillboardResources *param1)
 {
     param0->unk_A0 = param1->unk_0C;
     param0->unk_B0 = NULL;
 }
 
-UnkStruct_020216E0 *sub_0202119C(const UnkStruct_ov5_021DF7F8 *param0)
+Billboard *sub_0202119C(const BillboardListTemplate *param0)
 {
-    UnkStruct_020216E0 *v0;
-    UnkStruct_02020C44 *v1;
+    Billboard *v0;
+    BillboardList *v1;
 
     if (param0->list == NULL) {
         return NULL;
@@ -482,14 +476,14 @@ UnkStruct_020216E0 *sub_0202119C(const UnkStruct_ov5_021DF7F8 *param0)
     return v0;
 }
 
-BOOL sub_020211FC(UnkStruct_020216E0 *param0)
+BOOL sub_020211FC(Billboard *param0)
 {
-    UnkStruct_02020C44 *v0;
+    BillboardList *v0;
 
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_B4 != 1);
 
-    v0 = (UnkStruct_02020C44 *)param0->list;
+    v0 = (BillboardList *)param0->list;
 
     if (param0->unk_B4 == 0) {
         return 0;
@@ -509,7 +503,7 @@ BOOL sub_020211FC(UnkStruct_020216E0 *param0)
     return 1;
 }
 
-void sub_0202125C(UnkStruct_ov5_021DF84C *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4, NNSGfdTexKey param5, NNSGfdTexKey param6, NNSGfdPlttKey param7)
+void sub_0202125C(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4, NNSGfdTexKey param5, NNSGfdTexKey param6, NNSGfdPlttKey param7)
 {
     param0->model = param1;
     param0->texture = param2;
@@ -520,7 +514,7 @@ void sub_0202125C(UnkStruct_ov5_021DF84C *param0, void *param1, const NNSG3dResT
     param0->plttKey = param7;
 }
 
-void sub_02021284(UnkStruct_ov5_021DF84C *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4)
+void sub_02021284(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4)
 {
     param0->model = param1;
     param0->texture = param2;
@@ -531,86 +525,86 @@ void sub_02021284(UnkStruct_ov5_021DF84C *param0, void *param1, const NNSG3dResT
     param0->plttKey = (NNS_GFD_ALLOC_ERROR_PLTTKEY);
 }
 
-void sub_020212A8(UnkStruct_020216E0 *param0, const VecFx32 *param1)
+void sub_020212A8(Billboard *param0, const VecFx32 *param1)
 {
     GF_ASSERT(param0);
     param0->pos = *param1;
 }
 
-const VecFx32 *sub_020212C0(const UnkStruct_020216E0 *param0)
+const VecFx32 *sub_020212C0(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return &param0->pos;
 }
 
-void sub_020212D0(UnkStruct_020216E0 *param0, const VecFx32 *param1)
+void sub_020212D0(Billboard *param0, const VecFx32 *param1)
 {
     GF_ASSERT(param0);
     param0->scale = *param1;
 }
 
-const VecFx32 *sub_020212EC(const UnkStruct_020216E0 *param0)
+const VecFx32 *sub_020212EC(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return &param0->scale;
 }
 
-void sub_020212FC(UnkStruct_020216E0 *param0, const MtxFx33 *param1)
+void sub_020212FC(Billboard *param0, const MtxFx33 *param1)
 {
     GF_ASSERT(param0);
     param0->rotMatrix = param1;
 }
 
-const MtxFx33 *sub_02021310(const UnkStruct_020216E0 *param0)
+const MtxFx33 *sub_02021310(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return param0->rotMatrix;
 }
 
-void sub_02021320(UnkStruct_020216E0 *param0, u8 param1)
+void sub_02021320(Billboard *param0, u8 param1)
 {
     GF_ASSERT(param0);
     param0->draw = param1;
 }
 
-u8 sub_02021334(const UnkStruct_020216E0 *param0)
+u8 sub_02021334(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return param0->draw;
 }
 
-void sub_02021344(UnkStruct_020216E0 *param0, int param1)
+void sub_02021344(Billboard *param0, int param1)
 {
     GF_ASSERT(param0);
     param0->unk_B6 = param1;
 }
 
-int sub_02021358(const UnkStruct_020216E0 *param0)
+int sub_02021358(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return param0->unk_B6;
 }
 
-int sub_02021368(UnkStruct_020216E0 *param0, fx32 param1)
+int sub_02021368(Billboard *param0, fx32 param1)
 {
     GF_ASSERT(param0);
 
     return sub_02021804(param0, param1);
 }
 
-void sub_02021380(UnkStruct_020216E0 *param0, fx32 param1)
+void sub_02021380(Billboard *param0, fx32 param1)
 {
     GF_ASSERT(param0);
     param0->unk_B8 = param1;
 }
 
-fx32 sub_02021394(const UnkStruct_020216E0 *param0)
+fx32 sub_02021394(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return param0->unk_B8;
 }
 
-void sub_020213A4(UnkStruct_020216E0 *param0, fx32 param1)
+void sub_020213A4(Billboard *param0, fx32 param1)
 {
     GF_ASSERT(param0);
 
@@ -618,53 +612,53 @@ void sub_020213A4(UnkStruct_020216E0 *param0, fx32 param1)
     param0->unk_B8 += param1;
 }
 
-fx32 sub_020213D4(const UnkStruct_020216E0 *param0)
+fx32 sub_020213D4(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return param0->unk_B8 - sub_020217F4(param0, param0->unk_B6);
 }
 
-NNSG3dResMdl *sub_020213F4(const UnkStruct_020216E0 *param0)
+NNSG3dResMdl *sub_020213F4(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return param0->model;
 }
 
-int sub_02021404(const UnkStruct_020216E0 *param0)
+int sub_02021404(const Billboard *param0)
 {
     GF_ASSERT(param0);
     return param0->unk_B4;
 }
 
-void sub_02021414(UnkStruct_020216E0 *param0)
+void sub_02021414(Billboard *param0)
 {
     if (param0->unk_B4 == 2) {
         sub_0201DDD8(param0->unk_B0, param0->unk_B8);
     }
 }
 
-NNSG3dResMdl *sub_02021430(UnkStruct_020216E0 *param0)
+NNSG3dResMdl *sub_02021430(Billboard *param0)
 {
     return param0->model;
 }
 
-NNSG3dResTex *sub_02021438(UnkStruct_020216E0 *param0)
+NNSG3dResTex *sub_02021438(Billboard *param0)
 {
     return param0->texture;
 }
 
-NNSG3dRenderObj *sub_02021440(UnkStruct_020216E0 *param0)
+NNSG3dRenderObj *sub_02021440(Billboard *param0)
 {
     return &param0->renderObj;
 }
 
-void sub_02021444(UnkStruct_020216E0 *param0, BillboardCallback param1, void *param2)
+void sub_02021444(Billboard *param0, BillboardCallback param1, void *param2)
 {
     param0->callbackParam = param2;
     param0->callback = param1;
 }
 
-static void sub_0202144C(UnkStruct_020216E0 *param0)
+static void sub_0202144C(Billboard *param0)
 {
     UnkStruct_0202144C v0;
 
@@ -754,7 +748,7 @@ static void sub_0202162C(NNSG3dResMat *param0, const NNSG3dResDictPlttToMatIdxDa
     }
 }
 
-static void sub_020216A8(UnkStruct_02020C44 *param0)
+static void sub_020216A8(BillboardList *param0)
 {
     int v0;
 
@@ -766,9 +760,9 @@ static void sub_020216A8(UnkStruct_02020C44 *param0)
     param0->freeBillboardHead = 0;
 }
 
-static UnkStruct_020216E0 *sub_020216E0(UnkStruct_02020C44 *param0)
+static Billboard *sub_020216E0(BillboardList *param0)
 {
-    UnkStruct_020216E0 *v0;
+    Billboard *v0;
 
     if (param0->freeBillboardHead >= param0->capacity) {
         return NULL;
@@ -780,7 +774,7 @@ static UnkStruct_020216E0 *sub_020216E0(UnkStruct_02020C44 *param0)
     return v0;
 }
 
-static BOOL sub_0202170C(UnkStruct_02020C44 *param0, UnkStruct_020216E0 *param1)
+static BOOL sub_0202170C(BillboardList *param0, Billboard *param1)
 {
     if (param0->freeBillboardHead <= 0) {
         return 0;
@@ -794,7 +788,7 @@ static BOOL sub_0202170C(UnkStruct_02020C44 *param0, UnkStruct_020216E0 *param1)
     return 1;
 }
 
-static void sub_02021744(UnkStruct_020216E0 *param0, UnkStruct_020216E0 *param1)
+static void sub_02021744(Billboard *param0, Billboard *param1)
 {
     param1->prev = param0->prev;
     param0->prev->next = param1;
@@ -802,13 +796,13 @@ static void sub_02021744(UnkStruct_020216E0 *param0, UnkStruct_020216E0 *param1)
     param0->prev = param1;
 }
 
-static void sub_02021768(UnkStruct_020216E0 *param0)
+static void sub_02021768(Billboard *param0)
 {
     param0->prev->next = param0->next;
     param0->next->prev = param0->prev;
 }
 
-static NNSG3dResMdlSet *sub_02021788(const UnkStruct_ov5_021DF84C *param0, NNSG3dResMdl **param1, NNSG3dResTex **param2)
+static NNSG3dResMdlSet *sub_02021788(const BillboardResources *param0, NNSG3dResMdl **param1, NNSG3dResTex **param2)
 {
     void *v0 = sub_0202189C(param0, 0);
     NNSG3dResMdlSet *v1 = NNS_G3dGetMdlSet(v0);
@@ -822,13 +816,13 @@ static NNSG3dResMdlSet *sub_02021788(const UnkStruct_ov5_021DF84C *param0, NNSG3
     return v1;
 }
 
-static NNSG3dResTex *sub_020217D4(const UnkStruct_ov5_021DF84C *param0)
+static NNSG3dResTex *sub_020217D4(const BillboardResources *param0)
 {
     NNSG3dResTex *v0 = (NNSG3dResTex *)sub_0202189C(param0, 1);
     return v0;
 }
 
-static void sub_020217E0(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
+static void sub_020217E0(Billboard *param0, const BillboardResources *param1)
 {
     if (param1->texKey == (NNS_GFD_ALLOC_ERROR_TEXKEY)) {
         sub_02020E28(param0, param1);
@@ -837,13 +831,13 @@ static void sub_020217E0(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84
     }
 }
 
-static fx32 sub_020217F4(const UnkStruct_020216E0 *param0, int param1)
+static fx32 sub_020217F4(const Billboard *param0, int param1)
 {
     const UnkStruct_020217F4 *v0 = sub_020218B4(param0->unk_2C, param1);
     return v0->unk_00 << FX32_SHIFT;
 }
 
-static int sub_02021804(UnkStruct_020216E0 *param0, fx32 param1)
+static int sub_02021804(Billboard *param0, fx32 param1)
 {
     const UnkStruct_020217F4 *v0 = sub_020218B4(param0->unk_2C, param0->unk_B6);
     return sub_02021824(v0, &param0->unk_B8, param1);
@@ -871,12 +865,12 @@ static int sub_02021824(const UnkStruct_020217F4 *param0, fx32 *param1, fx32 par
     return v0;
 }
 
-static void sub_0202185C(UnkStruct_020216E0 *param0)
+static void sub_0202185C(Billboard *param0)
 {
     sub_02020FA4(param0->texture, param0->modelSet, &param0->texKey, &param0->tex4x4Key, &param0->plttKey);
 }
 
-static void sub_0202187C(UnkStruct_020216E0 *param0)
+static void sub_0202187C(Billboard *param0)
 {
     NNSG3dTexKey v0;
     NNSG3dTexKey v1;
@@ -886,7 +880,7 @@ static void sub_0202187C(UnkStruct_020216E0 *param0)
     sub_02020F90(param0->texture, &v1, &v0, &v2);
 }
 
-static void *sub_0202189C(const UnkStruct_ov5_021DF84C *param0, int param1)
+static void *sub_0202189C(const BillboardResources *param0, int param1)
 {
     void *v0;
 

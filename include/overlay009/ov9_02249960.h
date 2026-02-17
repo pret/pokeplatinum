@@ -33,8 +33,8 @@ BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
 void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem);
 void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem);
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1);
-void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2);
-void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1);
+void ov9_0224A558(FieldSystem *fieldSystem, Billboard *param1, int param2);
+void ov9_0224A564(FieldSystem *fieldSystem, const Billboard *param1);
 BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A71C(FieldSystem *fieldSystem);

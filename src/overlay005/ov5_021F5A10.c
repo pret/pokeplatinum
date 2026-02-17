@@ -44,7 +44,7 @@ typedef struct {
     VecFx32 unk_18;
     VecFx32 unk_24;
     UnkStruct_ov5_021F5D8C unk_30;
-    UnkStruct_020216E0 *unk_40;
+    Billboard *unk_40;
 } UnkStruct_ov5_021F5C4C;
 
 static void ov5_021F5A34(UnkStruct_ov5_021F5A34 *param0);
@@ -63,7 +63,7 @@ static void ov5_021F5BD0(UnkStruct_ov5_021F5A34 *param0);
 static void ov5_021F5BE0(UnkStruct_ov5_021F5A34 *param0);
 static void ov5_021F5BF0(UnkStruct_ov5_021F5A34 *param0, int param1);
 static void ov5_021F5C04(UnkStruct_ov5_021F5A34 *param0, int param1);
-static UnkStruct_020216E0 *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3);
+static Billboard *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3);
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200B98;
 static const OverworldAnimManagerFuncs Unk_ov5_02200B84;
@@ -225,10 +225,10 @@ static void ov5_021F5C04(UnkStruct_ov5_021F5A34 *param0, int param1)
     }
 }
 
-static UnkStruct_020216E0 *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3)
+static Billboard *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *param2, u32 param3)
 {
     int v0[2] = { 1, 12 };
-    UnkStruct_020216E0 *v1 = ov5_021DF84C(param0, v0[param1], param2);
+    Billboard *v1 = ov5_021DF84C(param0, v0[param1], param2);
 
     if (param3 == 1) {
         NNSG3dResMdl *v2 = sub_020213F4(v1);

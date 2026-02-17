@@ -59,7 +59,7 @@ typedef struct BerryPatchSparkleEffect {
     int animationFrame;
     BOOL isAnimating;
     BerryPatchSparkleEffectContext context;
-    UnkStruct_020216E0 *graphicsObject;
+    Billboard *graphicsObject;
 } BerryPatchSparkleEffect;
 
 static void BerryPatchGraphicsManager_InitResources(BerryPatchGraphicsManager *manager);

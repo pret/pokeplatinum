@@ -42,7 +42,7 @@ typedef struct UnkStruct_ov66_02234798_t {
     u8 unk_02;
     u8 unk_03;
     const UnkStruct_ov63_0222BEC0 *unk_04;
-    UnkStruct_020216E0 *unk_08;
+    Billboard *unk_08;
     Easy3DObject unk_0C;
     u8 unk_84;
     u8 unk_85;
@@ -55,7 +55,7 @@ typedef struct UnkStruct_ov66_02234548_t {
     ResourceCollection *unk_00;
     ResourceCollection *unk_04;
     TextureResourceManager *unk_08;
-    UnkStruct_02020C44 *unk_0C;
+    BillboardList *unk_0C;
     UnkStruct_ov66_02234798 *unk_10;
     u32 unk_14;
     UnkStruct_ov66_02234958 unk_18;
@@ -86,8 +86,8 @@ static void ov66_02234C70(UnkStruct_ov66_02234798 *param0);
 static BOOL ov66_02234CD8(u32 param0);
 static void ov66_02234D08(UnkStruct_ov66_02234798 *param0);
 static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0);
-static void ov66_02234D78(UnkStruct_020216E0 *param0, void *param1);
-static BOOL ov66_02234D8C(UnkStruct_020216E0 *param0);
+static void ov66_02234D78(Billboard *param0, void *param1);
+static BOOL ov66_02234D8C(Billboard *param0);
 
 static const u8 Unk_ov66_02258B24[4] = {
     0x1,
@@ -157,13 +157,13 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, enum HeapID heapI
     v0->unk_08 = TextureResourceManager_New(20, heapID);
 
     {
-        UnkStruct_ov5_021EDDAC v2;
+        BillboardListParams v2;
 
-        sub_02020B90(1, heapID);
+        BillboardLists_New(1, heapID);
 
         v2.maxElements = param0;
         v2.heapID = heapID;
-        v0->unk_0C = sub_02020C44(&v2);
+        v0->unk_0C = BillboardList_New(&v2);
     }
 
     {
@@ -248,8 +248,8 @@ void ov66_02234548(UnkStruct_ov66_02234548 *param0)
     }
 
     {
-        sub_02020CCC(param0->unk_0C);
-        sub_02020BD0();
+        BillboardList_Delete(param0->unk_0C);
+        BillboardLists_Delete();
     }
 
     TextureResourceManager_Delete(param0->unk_08);
@@ -274,7 +274,7 @@ void ov66_022345C4(UnkStruct_ov66_02234548 *param0)
 {
     int v0;
 
-    sub_02020C08();
+    BillboardLists_Draw();
 
     if (ov66_0223496C(&param0->unk_18) > 0) {
         for (v0 = 0; v0 < param0->unk_14; v0++) {
@@ -302,8 +302,8 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
 
     {
         const UnkStruct_ov66_02258B38 *v1;
-        UnkStruct_ov5_021DF84C v2;
-        UnkStruct_ov5_021DF7F8 v3;
+        BillboardResources v2;
+        BillboardListTemplate v3;
         Resource *v4;
         TextureResource *v5;
         u32 v6;
@@ -805,14 +805,14 @@ static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0)
     }
 }
 
-static void ov66_02234D78(UnkStruct_020216E0 *param0, void *param1)
+static void ov66_02234D78(Billboard *param0, void *param1)
 {
     UnkStruct_ov66_02234798 *v0 = param1;
     NNSG3dResMdl *v1 = sub_02021430(param0);
     NNS_G3dMdlSetMdlLightEnableFlagAll(v1, v0->unk_8C);
 }
 
-static BOOL ov66_02234D8C(UnkStruct_020216E0 *param0)
+static BOOL ov66_02234D8C(Billboard *param0)
 {
     BOOL v0;
     VecFx32 v1;

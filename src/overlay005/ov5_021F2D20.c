@@ -36,7 +36,7 @@ typedef struct {
     int unk_10;
     int unk_14;
     UnkStruct_021F2EA4 unk_18;
-    UnkStruct_020216E0 *unk_34;
+    Billboard *unk_34;
 } UnkStruct_021F2FA0;
 
 typedef struct {
@@ -51,7 +51,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_021F30C4 unk_08;
-    UnkStruct_020216E0 *unk_1C;
+    Billboard *unk_1C;
 } UnkStruct_021F30FC;
 
 typedef struct {
@@ -68,7 +68,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     UnkStruct_021F3154 unk_10;
-    UnkStruct_020216E0 *unk_24;
+    Billboard *unk_24;
 } UnkStruct_021F31A8;
 
 void include_unk_ov5_02200500(void);

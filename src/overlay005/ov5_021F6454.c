@@ -963,7 +963,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
 {
     fx32 v0;
     VecFx32 v1;
-    UnkStruct_020216E0 *v2;
+    Billboard *v2;
     int v3 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
@@ -1023,7 +1023,7 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
 static void ov5_021F7654(MapObject *param0, int param1)
 {
     VecFx32 v0;
-    UnkStruct_020216E0 *v1;
+    Billboard *v1;
 
     MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_13);
     MapObject_GetPosPtr(param0, &v0);

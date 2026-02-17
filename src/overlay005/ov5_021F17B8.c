@@ -35,7 +35,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     UnkStruct_ov5_021F1800 unk_14;
-    UnkStruct_020216E0 *unk_24;
+    Billboard *unk_24;
     VecFx32 unk_28;
     fx32 unk_34;
 } UnkStruct_ov5_021F1A24;
@@ -44,14 +44,14 @@ typedef struct {
     FieldSystem *fieldSystem;
     FieldEffectManager *unk_04;
     UnkStruct_ov5_021F17E4 *unk_08;
-    UnkStruct_ov5_021DF84C unk_0C;
-    const UnkStruct_020216E0 *unk_34;
+    BillboardResources unk_0C;
+    const Billboard *unk_34;
 } UnkStruct_ov5_021F1BEC;
 
 typedef struct {
     int unk_00;
     UnkStruct_ov5_021F1BEC unk_04;
-    UnkStruct_020216E0 *unk_3C;
+    Billboard *unk_3C;
     VecFx32 unk_40;
     fx32 unk_4C;
     VecFx32 unk_50;
@@ -231,7 +231,7 @@ static void ov5_021F1978(OverworldAnimManager *param0, void *param1)
     sub_020212D0(v0->unk_24, &v0->unk_28);
 
     {
-        UnkStruct_020216E0 *v4 = ov5_021EB1A0(v0->unk_14.unk_0C);
+        Billboard *v4 = ov5_021EB1A0(v0->unk_14.unk_0C);
 
         sub_02021344(v0->unk_24, sub_02021358(v4));
         sub_02021380(v0->unk_24, sub_02021394(v4));
@@ -278,7 +278,7 @@ static void ov5_021F1A8C(OverworldAnimManager *param0, UnkStruct_ov5_021F1A24 *p
     int v0;
     void *v1;
     VecFx32 v2;
-    UnkStruct_ov5_021DF84C v3;
+    BillboardResources v3;
 
     {
         const MapObjectManager *v4 = MapObject_MapObjectManager(param1->unk_14.unk_0C);
@@ -308,7 +308,7 @@ static void ov5_021F1AD8(OverworldAnimManager *param0, UnkStruct_ov5_021F1AD8 *p
     int v0;
     void *v1;
     VecFx32 v2;
-    UnkStruct_ov5_021DF84C v3 = param1->unk_04.unk_0C;
+    BillboardResources v3 = param1->unk_04.unk_0C;
 
     v1 = ov5_021DF9FC(param1->unk_04.unk_04, 2);
     v3.model = v1;
@@ -317,7 +317,7 @@ static void ov5_021F1AD8(OverworldAnimManager *param0, UnkStruct_ov5_021F1AD8 *p
     param1->unk_3C = ov5_021DF7F8(param1->unk_04.unk_04, &v3, &v2);
 
     {
-        const UnkStruct_020216E0 *v4 = param1->unk_04.unk_34;
+        const Billboard *v4 = param1->unk_04.unk_34;
 
         sub_02021344(param1->unk_3C, sub_02021358(v4));
         sub_020213A4(param1->unk_3C, sub_020213D4(v4));
@@ -349,7 +349,7 @@ static void ov5_021F1B4C(UnkStruct_ov5_021F1AD8 *param0, VecFx32 *param1)
     }
 }
 
-OverworldAnimManager *ov5_021F1BA4(FieldEffectManager *param0, const UnkStruct_ov5_021DF84C *param1, const UnkStruct_020216E0 *param2, const VecFx32 *param3, int param4, int param5)
+OverworldAnimManager *ov5_021F1BA4(FieldEffectManager *param0, const BillboardResources *param1, const Billboard *param2, const VecFx32 *param3, int param4, int param5)
 {
     OverworldAnimManager *v0;
     UnkStruct_ov5_021F1BEC v1;

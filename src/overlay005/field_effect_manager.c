@@ -31,17 +31,17 @@ typedef struct UnkStruct_ov5_021DF8FC_t {
     u16 unk_06;
     u16 unk_08;
     u16 unk_0A;
-    UnkStruct_02020C44 *unk_0C;
+    BillboardList *unk_0C;
     ResourceHeap *modelResHeap;
     ResourceHeap *metadataResHeap;
     TextureResourceManager *texResMan;
     UnkStruct_ov5_021DF8C8 *unk_1C;
-    UnkStruct_ov5_021DF84C *unk_20;
+    BillboardResources *unk_20;
 } UnkStruct_ov5_021DF8FC;
 
 typedef struct UnkStruct_ov5_021DF8C8_t {
     u32 unk_00;
-    UnkStruct_ov5_021DF84C *unk_04;
+    BillboardResources *unk_04;
 } UnkStruct_ov5_021DF8C8;
 
 typedef struct FieldEffectTexture {
@@ -70,9 +70,9 @@ static void ov5_021DF754(FieldEffectManager *param0, enum HeapID heapID, u32 par
 static void ov5_021DF7C4(FieldEffectManager *fieldEffMan);
 static void ov5_021DF8C8(FieldEffectManager *fieldEffMan, UnkStruct_ov5_021DF8FC *graphicsManager, u32 objectCount);
 static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC *graphicsManager);
-static UnkStruct_ov5_021DF84C *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
+static BillboardResources *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
 static void ov5_021DF910(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
-static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, UnkStruct_02024184 *textureData, void *textureResource, TextureResource *texture, const UnkStruct_020217F4 *effectData);
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, UnkStruct_02024184 *textureData, void *textureResource, TextureResource *texture, const UnkStruct_020217F4 *effectData);
 static void UploadTextureResourceToVRamDuringVBlank(FieldEffectManager *fieldEffMan, u32 texID, TextureResourceManager *texResMan);
 static void UploadTextureResourceToVRamTask(SysTask *task, void *context);
 static void DiscardTextureDataTask(SysTask *task, void *context);
@@ -368,7 +368,7 @@ void FieldEffectManager_FinishAnimManager(OverworldAnimManager *animMan)
 static void ov5_021DF754(FieldEffectManager *param0, enum HeapID heapID, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov5_021DF8FC *v0;
-    UnkStruct_ov5_021EDDAC v1;
+    BillboardListParams v1;
 
     v0 = FieldEffectManager_HeapAllocInit(param0, (sizeof(UnkStruct_ov5_021DF8FC)), 0, 0);
     param0->unk_20 = v0;
@@ -386,7 +386,7 @@ static void ov5_021DF754(FieldEffectManager *param0, enum HeapID heapID, u32 par
 
     v1.maxElements = param2;
     v1.heapID = GetHeapID(param0);
-    v0->unk_0C = sub_02020C44(&v1);
+    v0->unk_0C = BillboardList_New(&v1);
 }
 
 static void ov5_021DF7C4(FieldEffectManager *fieldEffMan)
@@ -394,7 +394,7 @@ static void ov5_021DF7C4(FieldEffectManager *fieldEffMan)
     UnkStruct_ov5_021DF8FC *v0 = fieldEffMan->unk_20;
 
     if (v0 != NULL) {
-        sub_02020CCC(v0->unk_0C);
+        BillboardList_Delete(v0->unk_0C);
         ov5_021DF8FC(v0);
         ResourceHeap_Free(v0->modelResHeap);
         ResourceHeap_Free(v0->metadataResHeap);
@@ -405,11 +405,11 @@ static void ov5_021DF7C4(FieldEffectManager *fieldEffMan)
     }
 }
 
-UnkStruct_020216E0 *ov5_021DF7F8(FieldEffectManager *param0, const UnkStruct_ov5_021DF84C *param1, const VecFx32 *param2)
+Billboard *ov5_021DF7F8(FieldEffectManager *param0, const BillboardResources *param1, const VecFx32 *param2)
 {
-    UnkStruct_ov5_021DF7F8 v0;
-    UnkStruct_020216E0 *v1;
-    UnkStruct_02020C44 *v2;
+    BillboardListTemplate v0;
+    Billboard *v1;
+    BillboardList *v2;
     VecFx32 v3 = { FX32_ONE, FX32_ONE, FX32_ONE };
 
     v2 = param0->unk_20->unk_0C;
@@ -430,18 +430,18 @@ UnkStruct_020216E0 *ov5_021DF7F8(FieldEffectManager *param0, const UnkStruct_ov5
     return v1;
 }
 
-UnkStruct_020216E0 *ov5_021DF84C(FieldEffectManager *param0, u32 param1, const VecFx32 *param2)
+Billboard *ov5_021DF84C(FieldEffectManager *param0, u32 param1, const VecFx32 *param2)
 {
-    UnkStruct_ov5_021DF84C *v0 = ov5_021DF9B4(param0->unk_20, param1);
+    BillboardResources *v0 = ov5_021DF9B4(param0->unk_20, param1);
     return ov5_021DF7F8(param0, v0, param2);
 }
 
-UnkStruct_ov5_021DF84C *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32 param2, u32 param3, u32 param4, int param5, const UnkStruct_020217F4 *param6)
+BillboardResources *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32 param2, u32 param3, u32 param4, int param5, const UnkStruct_020217F4 *param6)
 {
     void *v0, *v1, *v2;
     UnkStruct_02024184 v3;
     TextureResource *v4;
-    UnkStruct_ov5_021DF84C *v5;
+    BillboardResources *v5;
     UnkStruct_ov5_021DF8FC *v6 = param0->unk_20;
     v0 = ResourceHeap_GetItemData(v6->modelResHeap, param2);
     v2 = ResourceHeap_GetItemData(v6->metadataResHeap, param3);
@@ -464,10 +464,10 @@ UnkStruct_ov5_021DF84C *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32
 
 static void ov5_021DF8C8(FieldEffectManager *param0, UnkStruct_ov5_021DF8FC *param1, u32 param2)
 {
-    UnkStruct_ov5_021DF84C *v0;
+    BillboardResources *v0;
     UnkStruct_ov5_021DF8C8 *v1;
 
-    v0 = FieldEffectManager_HeapAlloc(param0, sizeof(UnkStruct_ov5_021DF84C) * param2, 0);
+    v0 = FieldEffectManager_HeapAlloc(param0, sizeof(BillboardResources) * param2, 0);
     param1->unk_20 = v0;
 
     v1 = FieldEffectManager_HeapAlloc(param0, (sizeof(UnkStruct_ov5_021DF8C8)) * param2, 0);
@@ -506,9 +506,9 @@ static void ov5_021DF910(UnkStruct_ov5_021DF8FC *param0, u32 param1)
     GF_ASSERT(FALSE);
 }
 
-static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, UnkStruct_02024184 *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6)
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, UnkStruct_02024184 *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6)
 {
-    UnkStruct_ov5_021DF84C *v0 = NULL;
+    BillboardResources *v0 = NULL;
 
     {
         u32 v1 = param0->unk_04;
@@ -539,7 +539,7 @@ static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 
     }
 
     GF_ASSERT(v0 != NULL);
-    memset(v0, 0, sizeof(UnkStruct_ov5_021DF84C));
+    memset(v0, 0, sizeof(BillboardResources));
 
     v0->model = param2;
     v0->unk_0C = *param3;
@@ -555,7 +555,7 @@ static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 
     return v0;
 }
 
-static UnkStruct_ov5_021DF84C *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *param0, u32 param1)
+static BillboardResources *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *param0, u32 param1)
 {
     u32 v0 = param0->unk_04;
     UnkStruct_ov5_021DF8C8 *v1 = param0->unk_1C;

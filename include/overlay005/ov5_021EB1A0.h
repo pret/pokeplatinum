@@ -5,7 +5,7 @@
 
 #include "unk_02020AEC.h"
 
-UnkStruct_020216E0 *ov5_021EB1A0(MapObject *param0);
+Billboard *ov5_021EB1A0(MapObject *param0);
 void ov5_021EB2EC(MapObject *param0);
 void ov5_021EB314(MapObject *param0);
 void ov5_021EB328(MapObject *param0);

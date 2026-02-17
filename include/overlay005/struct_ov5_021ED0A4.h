@@ -21,8 +21,8 @@ typedef struct UnkStruct_ov5_021ED0A4_t {
     int unk_20[8];
     int unk_40[8];
     int unk_60[32];
-    UnkStruct_02020C44 *unk_E0;
-    UnkStruct_ov5_021DF84C *unk_E4;
+    BillboardList *unk_E0;
+    BillboardResources *unk_E4;
     ResourceCollection *unk_E8;
     ResourceCollection *unk_EC;
     TextureResourceManager *unk_F0;

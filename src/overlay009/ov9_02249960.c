@@ -441,7 +441,7 @@ typedef struct {
     u16 unk_14;
     u16 unk_16;
     MapObject *unk_18;
-    UnkStruct_020216E0 *unk_1C;
+    Billboard *unk_1C;
 } UnkStruct_ov9_0224A294;
 
 typedef struct {
@@ -1028,15 +1028,15 @@ static void CameraFree(DistWorldSystem *system);
 static void CameraTransitionTask(SysTask *sysTask, void *sysTaskParam);
 static BOOL DoCameraTransition(DistWorldSystem *system, const DistWorldCameraAngleTemplate *cameraAngleTemplate);
 static void ov9_0224A1E4(DistWorldSystem *param0, int param1);
-static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, UnkStruct_020216E0 *param2);
+static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, Billboard *param2);
 static void ov9_0224A294(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1);
 static void ov9_0224A2AC(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1);
 static void ov9_0224A334(DistWorldSystem *param0);
 static void ov9_0224A390(DistWorldSystem *param0, MapObject *param1, int param2);
-static void ov9_0224A3C4(DistWorldSystem *param0, UnkStruct_020216E0 *param1, int param2);
-static void ov9_0224A408(DistWorldSystem *param0, const UnkStruct_020216E0 *param1);
+static void ov9_0224A3C4(DistWorldSystem *param0, Billboard *param1, int param2);
+static void ov9_0224A408(DistWorldSystem *param0, const Billboard *param1);
 static void ov9_0224A49C(DistWorldSystem *param0);
-static void ov9_0224A4C8(UnkStruct_020216E0 *param0, void *param1);
+static void ov9_0224A4C8(Billboard *param0, void *param1);
 static void ov9_0224A4D0(DistWorldSystem *param0, MapObject *param1, int param2, int param3);
 static void FieldTaskContextNoOp1(DistWorldSystem *system);
 static void FieldTaskContextNoOp2(DistWorldSystem *system);
@@ -1860,7 +1860,7 @@ static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
     v0->unk_0C = NNS_G3dGetAnmByIdx(v0->unk_08, 0);
 }
 
-static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, UnkStruct_020216E0 *param2)
+static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, Billboard *param2)
 {
     NNSG3dResMdl *v0 = sub_02021430(param2);
     NNSG3dResTex *v1 = sub_02021438(param2);
@@ -1899,7 +1899,7 @@ static void ov9_0224A2C0(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 
 {
     if (param1->unk_18 != NULL) {
         if (param1->unk_10 == NULL) {
-            UnkStruct_020216E0 *v0 = ov5_021EB1A0(param1->unk_18);
+            Billboard *v0 = ov5_021EB1A0(param1->unk_18);
 
             if (v0 == NULL) {
                 return;
@@ -1983,7 +1983,7 @@ static void ov9_0224A390(DistWorldSystem *param0, MapObject *param1, int param2)
     GF_ASSERT(0);
 }
 
-static void ov9_0224A3C4(DistWorldSystem *param0, UnkStruct_020216E0 *param1, int param2)
+static void ov9_0224A3C4(DistWorldSystem *param0, Billboard *param1, int param2)
 {
     int v0 = 0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
@@ -2003,7 +2003,7 @@ static void ov9_0224A3C4(DistWorldSystem *param0, UnkStruct_020216E0 *param1, in
     GF_ASSERT(0);
 }
 
-static void ov9_0224A408(DistWorldSystem *param0, const UnkStruct_020216E0 *param1)
+static void ov9_0224A408(DistWorldSystem *param0, const Billboard *param1)
 {
     int v0 = 0;
     UnkStruct_ov9_0224A228 *v1 = &param0->unk_188;
@@ -2066,7 +2066,7 @@ static void ov9_0224A49C(DistWorldSystem *param0)
     }
 }
 
-static void ov9_0224A4C8(UnkStruct_020216E0 *param0, void *param1)
+static void ov9_0224A4C8(Billboard *param0, void *param1)
 {
     UnkStruct_ov9_0224A294 *v0 = param1;
     NNS_G3dAnmObjSetFrame(v0->unk_10, v0->unk_0C);
@@ -2115,13 +2115,13 @@ int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1)
     return 0;
 }
 
-void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2)
+void ov9_0224A558(FieldSystem *fieldSystem, Billboard *param1, int param2)
 {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224A3C4(v0, param1, param2);
 }
 
-void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1)
+void ov9_0224A564(FieldSystem *fieldSystem, const Billboard *param1)
 {
     DistWorldSystem *v0 = fieldSystem->unk_04->dynamicMapFeaturesData;
     ov9_0224A408(v0, param1);
@@ -7105,7 +7105,7 @@ static BOOL ov9_0224EF64(DistWorldSystem *param0, MapObject **param1, const UnkS
     MapObject_SetStatusFlagOn(*param1, MAP_OBJ_STATUS_13);
 
     if (v0 == NULL) {
-        UnkStruct_020216E0 *v1;
+        Billboard *v1;
 
         MapObject_SetPosDirFromCoords(*param1, param2->unk_08.x, (((param2->unk_08.y) >> 3) / FX32_ONE), param2->unk_08.z, param2->unk_08.dir);
 
@@ -8719,7 +8719,7 @@ static int ov9_022507C4(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 static int ov9_022507FC(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
     UnkStruct_ov9_0225074C *v1 = ov9_0224E39C(param0);
-    UnkStruct_020216E0 *v0 = ov5_021EB1A0(v1->unk_18);
+    Billboard *v0 = ov5_021EB1A0(v1->unk_18);
 
     if (v0 != NULL) {
         v1->unk_00 = (FX32_ONE * 16);
@@ -8766,7 +8766,7 @@ static int ov9_02250854(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
 
 static int ov9_022508C0(DistWorldSystem *param0, FieldTask *param1, u16 *param2, const void *param3)
 {
-    UnkStruct_020216E0 *v0;
+    Billboard *v0;
     NNSG3dResMdl *v1;
     UnkStruct_ov9_0225074C *v2 = ov9_0224E39C(param0);
     v0 = ov5_021EB1A0(v2->unk_18);
@@ -9558,7 +9558,7 @@ static void PlaySoundIfNotActive(u16 seqID)
 
 static void ov9_022511F4(MapObject *param0, const VecFx32 *param1)
 {
-    UnkStruct_020216E0 *v0;
+    Billboard *v0;
 
     MapObject_SetPos(param0, param1);
     v0 = ov5_021EB1A0(param0);
