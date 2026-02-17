@@ -1356,7 +1356,7 @@ static void ov5_021EDDAC(UnkStruct_ov5_021ED0A4 *param0, int param1)
     UnkStruct_ov5_021EDDAC v0;
     UnkStruct_02020C44 *v1;
 
-    v0.unk_00 = param1;
+    v0.maxElements = param1;
     v0.heapID = HEAP_ID_FIELD1;
 
     v1 = sub_02020C44(&v0);
@@ -1376,10 +1376,10 @@ static UnkStruct_020216E0 *ov5_021EDDDC(UnkStruct_02020C44 *param0, const UnkStr
     UnkStruct_020216E0 *v2;
     VecFx32 v3 = { FX32_ONE, FX32_ONE, FX32_ONE };
 
-    v1.unk_00 = param0;
-    v1.unk_04 = param1;
-    v1.unk_08 = *param2;
-    v1.unk_14 = v3;
+    v1.list = param0;
+    v1.resources = param1;
+    v1.pos = *param2;
+    v1.scale = v3;
 
     v2 = sub_0202119C(&v1);
 
@@ -1400,7 +1400,7 @@ static void ov5_021EDE3C(UnkStruct_ov5_021ED0A4 *param0, u32 param1, UnkStruct_o
         int v0 = ov5_021EDD2C(param1);
         void *v1 = ResourceHeap_GetItemData(param0->unk_F8, v0);
 
-        param2->unk_00 = v1;
+        param2->model = v1;
     }
 
     {
@@ -1414,12 +1414,12 @@ static void ov5_021EDE3C(UnkStruct_ov5_021ED0A4 *param0, u32 param1, UnkStruct_o
         TextureResourceManager *v4 = ov5_021EDCB0(param0);
         TextureResource *v5 = TextureResourceManager_FindTextureResource(v4, param1);
 
-        param2->unk_04 = TextureResource_GetUnderlyingResource(v5);
+        param2->texture = TextureResource_GetUnderlyingResource(v5);
 
         {
-            param2->unk_1C = TextureResource_GetTexKey(v5);
-            param2->unk_20 = TextureResource_GetTex4x4Key(v5);
-            param2->unk_24 = TextureResource_GetPaletteKey(v5);
+            param2->texKey = TextureResource_GetTexKey(v5);
+            param2->tex4x4Key = TextureResource_GetTex4x4Key(v5);
+            param2->plttKey = TextureResource_GetPaletteKey(v5);
         }
     }
 

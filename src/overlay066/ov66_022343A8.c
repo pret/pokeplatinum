@@ -161,7 +161,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, enum HeapID heapI
 
         sub_02020B90(1, heapID);
 
-        v2.unk_00 = param0;
+        v2.maxElements = param0;
         v2.heapID = heapID;
         v0->unk_0C = sub_02020C44(&v2);
     }
@@ -363,10 +363,10 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
             v13.z += (FX32_CONST(16));
         }
 
-        v3.unk_00 = param0->unk_0C;
-        v3.unk_04 = &v2;
-        v3.unk_08 = v13;
-        v3.unk_14 = v14;
+        v3.list = param0->unk_0C;
+        v3.resources = &v2;
+        v3.pos = v13;
+        v3.scale = v14;
         v0->unk_08 = sub_0202119C(&v3);
 
         sub_02021444(v0->unk_08, ov66_02234D78, v0);

@@ -142,20 +142,20 @@ UnkStruct_02020C44 *sub_02020C44(const UnkStruct_ov5_021EDDAC *param0)
 
     list->active = TRUE;
     list->draw = TRUE;
-    list->billboards = Heap_Alloc(param0->heapID, sizeof(UnkStruct_020216E0) * param0->unk_00);
-    list->capacity = param0->unk_00;
+    list->billboards = Heap_Alloc(param0->heapID, sizeof(UnkStruct_020216E0) * param0->maxElements);
+    list->capacity = param0->maxElements;
 
     Billboard_Reset(&list->sentinelData);
 
     list->sentinelData.next = &list->sentinelData;
     list->sentinelData.prev = &list->sentinelData;
-    list->freeBillboards = Heap_Alloc(param0->heapID, sizeof(UnkStruct_020216E0 *) * param0->unk_00);
+    list->freeBillboards = Heap_Alloc(param0->heapID, sizeof(UnkStruct_020216E0 *) * param0->maxElements);
 
     sub_020216A8(list);
     list->allocator = Heap_Alloc(param0->heapID, sizeof(NNSFndAllocator));
 
     HeapExp_FndInitAllocator(list->allocator, param0->heapID, 4);
-    list->unk_D8 = sub_0201DD00(param0->unk_00, param0->heapID);
+    list->unk_D8 = sub_0201DD00(param0->maxElements, param0->heapID);
 
     return list;
 }
@@ -302,9 +302,9 @@ static void sub_02020E78(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84
         FreeVRAMKeys(&param0->texKey, &param0->tex4x4Key, &param0->plttKey);
     }
 
-    param0->texKey = param1->unk_1C;
-    param0->tex4x4Key = param1->unk_20;
-    param0->plttKey = param1->unk_24;
+    param0->texKey = param1->texKey;
+    param0->tex4x4Key = param1->tex4x4Key;
+    param0->plttKey = param1->plttKey;
 
     sub_02021148(param0, param1);
     sub_0202117C(param0, param1);
@@ -459,11 +459,11 @@ UnkStruct_020216E0 *sub_0202119C(const UnkStruct_ov5_021DF7F8 *param0)
     UnkStruct_020216E0 *v0;
     UnkStruct_02020C44 *v1;
 
-    if (param0->unk_00 == NULL) {
+    if (param0->list == NULL) {
         return NULL;
     }
 
-    v1 = param0->unk_00;
+    v1 = param0->list;
     v0 = sub_020216E0(v1);
 
     if (v0 == NULL) {
@@ -471,13 +471,13 @@ UnkStruct_020216E0 *sub_0202119C(const UnkStruct_ov5_021DF7F8 *param0)
     }
 
     v0->list = v1;
-    v0->pos = param0->unk_08;
-    v0->scale = param0->unk_14;
+    v0->pos = param0->pos;
+    v0->scale = param0->scale;
     v0->unk_B6 = 0;
     v0->draw = TRUE;
     v0->unk_B4 = 1;
 
-    sub_020217E0(v0, param0->unk_04);
+    sub_020217E0(v0, param0->resources);
 
     return v0;
 }
@@ -511,24 +511,24 @@ BOOL sub_020211FC(UnkStruct_020216E0 *param0)
 
 void sub_0202125C(UnkStruct_ov5_021DF84C *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4, NNSGfdTexKey param5, NNSGfdTexKey param6, NNSGfdPlttKey param7)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param2;
+    param0->model = param1;
+    param0->texture = param2;
     param0->unk_08 = param3;
     param0->unk_0C = *param4;
-    param0->unk_1C = param5;
-    param0->unk_20 = param6;
-    param0->unk_24 = param7;
+    param0->texKey = param5;
+    param0->tex4x4Key = param6;
+    param0->plttKey = param7;
 }
 
 void sub_02021284(UnkStruct_ov5_021DF84C *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4)
 {
-    param0->unk_00 = param1;
-    param0->unk_04 = param2;
+    param0->model = param1;
+    param0->texture = param2;
     param0->unk_08 = param3;
     param0->unk_0C = *param4;
-    param0->unk_1C = (NNS_GFD_ALLOC_ERROR_TEXKEY);
-    param0->unk_20 = (NNS_GFD_ALLOC_ERROR_TEXKEY);
-    param0->unk_24 = (NNS_GFD_ALLOC_ERROR_PLTTKEY);
+    param0->texKey = (NNS_GFD_ALLOC_ERROR_TEXKEY);
+    param0->tex4x4Key = (NNS_GFD_ALLOC_ERROR_TEXKEY);
+    param0->plttKey = (NNS_GFD_ALLOC_ERROR_PLTTKEY);
 }
 
 void sub_020212A8(UnkStruct_020216E0 *param0, const VecFx32 *param1)
@@ -830,7 +830,7 @@ static NNSG3dResTex *sub_020217D4(const UnkStruct_ov5_021DF84C *param0)
 
 static void sub_020217E0(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
 {
-    if (param1->unk_1C == (NNS_GFD_ALLOC_ERROR_TEXKEY)) {
+    if (param1->texKey == (NNS_GFD_ALLOC_ERROR_TEXKEY)) {
         sub_02020E28(param0, param1);
     } else {
         sub_02020E78(param0, param1);
@@ -892,10 +892,10 @@ static void *sub_0202189C(const UnkStruct_ov5_021DF84C *param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = param0->unk_00;
+        v0 = param0->model;
         break;
     case 1:
-        v0 = (void *)param0->unk_04;
+        v0 = (void *)param0->texture;
         break;
     default:
         v0 = NULL;

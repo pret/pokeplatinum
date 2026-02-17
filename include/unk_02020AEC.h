@@ -55,24 +55,24 @@ typedef struct UnkStruct_02020C44 {
 } UnkStruct_02020C44;
 
 typedef struct UnkStruct_ov5_021DF84C {
-    void *unk_00;
-    const NNSG3dResTex *unk_04;
+    void *model;
+    const NNSG3dResTex *texture;
     const UnkStruct_020217F4 *unk_08;
     UnkStruct_02024184 unk_0C;
-    NNSGfdTexKey unk_1C;
-    NNSGfdTexKey unk_20;
-    NNSGfdPlttKey unk_24;
+    NNSGfdTexKey texKey;
+    NNSGfdTexKey tex4x4Key;
+    NNSGfdPlttKey plttKey;
 } UnkStruct_ov5_021DF84C;
 
 typedef struct UnkStruct_ov5_021DF7F8 {
-    UnkStruct_02020C44 *unk_00;
-    const UnkStruct_ov5_021DF84C *unk_04;
-    VecFx32 unk_08;
-    VecFx32 unk_14;
+    UnkStruct_02020C44 *list;
+    const UnkStruct_ov5_021DF84C *resources;
+    VecFx32 pos;
+    VecFx32 scale;
 } UnkStruct_ov5_021DF7F8;
 
 typedef struct UnkStruct_ov5_021EDDAC {
-    int unk_00;
+    int maxElements;
     enum HeapID heapID;
 } UnkStruct_ov5_021EDDAC;
 

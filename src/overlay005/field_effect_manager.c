@@ -384,7 +384,7 @@ static void ov5_021DF754(FieldEffectManager *param0, enum HeapID heapID, u32 par
 
     ov5_021DF8C8(param0, v0, param2);
 
-    v1.unk_00 = param2;
+    v1.maxElements = param2;
     v1.heapID = GetHeapID(param0);
     v0->unk_0C = sub_02020C44(&v1);
 }
@@ -414,10 +414,10 @@ UnkStruct_020216E0 *ov5_021DF7F8(FieldEffectManager *param0, const UnkStruct_ov5
 
     v2 = param0->unk_20->unk_0C;
 
-    v0.unk_00 = v2;
-    v0.unk_04 = param1;
-    v0.unk_08 = *param2;
-    v0.unk_14 = v3;
+    v0.list = v2;
+    v0.resources = param1;
+    v0.pos = *param2;
+    v0.scale = v3;
 
     v1 = sub_0202119C(&v0);
     GF_ASSERT(v1 != NULL);
@@ -541,14 +541,14 @@ static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, sizeof(UnkStruct_ov5_021DF84C));
 
-    v0->unk_00 = param2;
+    v0->model = param2;
     v0->unk_0C = *param3;
-    v0->unk_04 = param4;
+    v0->texture = param4;
 
     if (param5 != NULL) {
-        v0->unk_1C = TextureResource_GetTexKey(param5);
-        v0->unk_20 = TextureResource_GetTex4x4Key(param5);
-        v0->unk_24 = TextureResource_GetPaletteKey(param5);
+        v0->texKey = TextureResource_GetTexKey(param5);
+        v0->tex4x4Key = TextureResource_GetTex4x4Key(param5);
+        v0->plttKey = TextureResource_GetPaletteKey(param5);
     }
 
     v0->unk_08 = param6;
