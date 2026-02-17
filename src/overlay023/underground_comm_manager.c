@@ -81,7 +81,7 @@ void CommManUnderground_InitUnderground(FieldSystem *fieldSystem)
     fieldCommMan = FieldCommMan_Get();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_UNDERGROUND, HEAP_SIZE_UNDERGROUND);
 
-    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
         sub_02036894();
     }
 }
@@ -256,7 +256,7 @@ static void CommManUnderground_SendInitialDataTask(void)
     UndergroundTraps_SendPlacedTraps();
     SecretBases_SendBaseInfo();
 
-    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
         CommManUnderground_SetFieldCommManTask(CommManUnderground_WaitForRoarkSceneTask, 0);
     } else {
         sub_02059524();
@@ -268,7 +268,7 @@ static void CommManUnderground_WaitForRoarkSceneTask(void)
 {
     FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
 
-    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
         return;
     }
 
