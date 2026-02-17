@@ -122,7 +122,7 @@ static void PackImmediately(const rapidjson::Value &member, TrainerMonBase &base
 static void ParseMovesAndPack(const rapidjson::Value &member, TrainerMonBase &base, unsigned char *bufp)
 {
     TrainerMonWithMoves withMoves = {};
-    withMoves.iv_scale = base.iv_scale;
+    withMoves.ivScale = base.ivScale;
     withMoves.level = base.level;
     withMoves.species = base.species;
     withMoves.cbSeal = base.cbSeal;
@@ -138,7 +138,7 @@ static void ParseMovesAndPack(const rapidjson::Value &member, TrainerMonBase &ba
 static void ParseItemAndPack(const rapidjson::Value &member, TrainerMonBase &base, unsigned char *bufp)
 {
     TrainerMonWithItem withItem = {};
-    withItem.iv_scale = base.iv_scale;
+    withItem.ivScale = base.ivScale;
     withItem.level = base.level;
     withItem.species = base.species;
     withItem.cbSeal = base.cbSeal;
@@ -151,7 +151,7 @@ static void ParseItemAndPack(const rapidjson::Value &member, TrainerMonBase &bas
 static void ParseMovesAndItemAndPack(const rapidjson::Value &member, TrainerMonBase &base, unsigned char *bufp)
 {
     TrainerMonWithMovesAndItem withMovesAndItem = {};
-    withMovesAndItem.iv_scale = base.iv_scale;
+    withMovesAndItem.ivScale = base.ivScale;
     withMovesAndItem.level = base.level;
     withMovesAndItem.species = base.species;
     withMovesAndItem.cbSeal = base.cbSeal;
@@ -184,7 +184,7 @@ static void ParseAndPackParty(const rapidjson::Document &doc, TrainerDataType mo
 
     for (const auto &member : doc["party"].GetArray()) {
         TrainerMonBase base = {};
-        base.iv_scale = member["iv_scale"].GetUint();
+        base.ivScale = member["iv_scale"].GetUint();
         base.level = member["level"].GetUint();
         base.species = LookupConst(member["species"].GetString(), Species);
         base.species |= (member["form"].GetUint() << TRAINER_MON_FORM_SHIFT);
@@ -315,7 +315,7 @@ int main(int argc, char **argv)
         nameMessage.AddMember("en_US", string, namesTextBank.GetAllocator());
 
         nameMessages.PushBack(nameMessage, namesTextBank.GetAllocator());
-        
+
         if (trMsg.length()) {
             if (trainerID < VANILLA_TRAINER_COUNT && trtblIndices[trainerID] != -1) {
                 trMsgs[trtblIndices[trainerID]] = trMsg;
@@ -333,7 +333,7 @@ int main(int argc, char **argv)
 
         trainerID++;
     }
-    
+
     namesTextBank.AddMember("messages", nameMessages, namesTextBank.GetAllocator());
 
     std::string str = "";

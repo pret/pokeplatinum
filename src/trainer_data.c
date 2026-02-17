@@ -203,7 +203,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].iv_scale + trmon[i].level + species + dto->trainerIDs[battler];
+            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
             for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
@@ -211,7 +211,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             }
 
             rnd = (rnd << 8) + genderMod;
-            ivs = trmon[i].iv_scale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
@@ -228,7 +228,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].iv_scale + trmon[i].level + species + dto->trainerIDs[battler];
+            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
             for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
@@ -236,7 +236,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             }
 
             rnd = (rnd << 8) + genderMod;
-            ivs = trmon[i].iv_scale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
 
@@ -258,7 +258,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].iv_scale + trmon[i].level + species + dto->trainerIDs[battler];
+            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
             for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
@@ -266,7 +266,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             }
 
             rnd = (rnd << 8) + genderMod;
-            ivs = trmon[i].iv_scale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
@@ -284,7 +284,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             u16 species = trmon[i].species & 0x3FF;
             u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
 
-            rnd = trmon[i].iv_scale + trmon[i].level + species + dto->trainerIDs[battler];
+            rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
 
             for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
@@ -292,7 +292,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             }
 
             rnd = (rnd << 8) + genderMod;
-            ivs = trmon[i].iv_scale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
+            ivs = trmon[i].ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE;
 
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
