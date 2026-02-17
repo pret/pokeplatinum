@@ -34,7 +34,7 @@ JubilifeCitySouthwestHouse1F_MiddleAgedMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message JubilifeCitySouthwestHouse1F_Text_IfEveryoneAroundTheWorldHadPOkemon
+    Message JubilifeCitySouthwestHouse1F_Text_IfEveryoneAroundTheWorldHadPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll

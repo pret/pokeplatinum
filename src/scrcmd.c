@@ -3778,11 +3778,11 @@ static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ImageClipsSlotHasData(FieldSystem *fieldSystem, int photoType, int slot)
+static BOOL ImageClipsSlotHasData(FieldSystem *fieldSystem, int param1, int slot)
 {
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
-    if (photoType == 0) {
+    if (param1 == 0) {
         if (!ImageClips_DressUpPhotoHasData(imageClips, slot)) {
             return FALSE;
         }
@@ -3795,11 +3795,11 @@ static BOOL ImageClipsSlotHasData(FieldSystem *fieldSystem, int photoType, int s
     return TRUE;
 }
 
-static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSystem, int photoType, int slot)
+static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSystem, int param2, int slot)
 {
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
-    if (!ImageClipsSlotHasData(fieldSystem, photoType, slot)) {
+    if (!ImageClipsSlotHasData(fieldSystem, param2, slot)) {
         return NULL;
     }
 
@@ -3807,7 +3807,7 @@ static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSy
     memset(v0, 0, sizeof(UnkStruct_02041DC8));
 
     v0->imageClips = imageClips;
-    v0->unk_08 = photoType;
+    v0->unk_08 = param2;
     v0->unk_04 = slot;
 
     return v0;

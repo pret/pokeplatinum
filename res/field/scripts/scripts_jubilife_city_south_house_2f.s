@@ -11,7 +11,7 @@ JubilifeCitySouthHouse2F_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message JubilifeCitySouthHouse2F_SomeKidsOfPokemonEvolveWhenTheyGetStrongerFromBattling
+    Message JubilifeCitySouthHouse2F_SomeKindsOfPokemonEvolveWhenTheyGetStrongerFromBattling
     WaitABXPadPress
     CloseMessage
     ReleaseAll
