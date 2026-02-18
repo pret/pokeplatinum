@@ -23,6 +23,7 @@ metang_generators = {
     'battle_backgrounds': { 'type': 'enum', 'tag': 'BattleBackground' },
     'battle_boot_states': { 'type': 'enum', 'tag': 'BattleBootState' },
     'battle_context_params': { 'type': 'enum', 'tag': 'BattleContextParam' },
+    'battle_frontier_challenge_types': { 'type': 'enum', 'tag': 'BattleFrontierChallengeType' },
     'battle_message_tags': { 'type': 'enum', 'tag': 'BattleMessageTag' },
     'battle_mon_params': { 'type': 'enum', 'tag': 'BattleMonParam' },
     'battle_move_effects': { 'type': 'enum', 'tag': 'BattleMoveEffect' },

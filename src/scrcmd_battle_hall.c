@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/battle_frontier_challenge_types.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_02030114_decl.h"
@@ -104,11 +105,11 @@ BOOL ScrCmd_2CC(ScriptContext *ctx)
         break;
     case 4:
         if (arg == 0) {
-            challengeType = 0;
+            challengeType = FRONTIER_CHALLENGE_SINGLE;
         } else if (arg == 1) {
-            challengeType = 1;
+            challengeType = FRONTIER_CHALLENGE_DOUBLE;
         } else {
-            challengeType = 2;
+            challengeType = FRONTIER_CHALLENGE_MULTI;
         }
 
         SelectBattleHallChallengers(ctx->task, partySelect, challengeType);
@@ -306,7 +307,7 @@ static int SubTask_SetupPartyMenu(BattleHallTaskEnv *taskEnv, FieldSystem *field
     partyMenu->minSelectionSlots = 1;
     partyMenu->maxSelectionSlots = 1;
 
-    if (taskEnv->challengeType == 1) {
+    if (taskEnv->challengeType == FRONTIER_CHALLENGE_DOUBLE) {
         partyMenu->minSelectionSlots = 2;
         partyMenu->maxSelectionSlots = 2;
     }
@@ -481,7 +482,7 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
         totalWinRecord = 0;
     } else {
         for (u32 species = 0; species < NATIONAL_DEX_COUNT; species++) {
-            totalWinRecord += sub_020308BC(fieldSystem->saveData, frontierStage, 0, species);
+            totalWinRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_SINGLE, species);
         }
     }
 
@@ -557,9 +558,9 @@ BOOL ScrCmd_GetNumSpeciesWithBattleHallRecords(ScriptContext *ctx)
         for (species = 0; species < NATIONAL_DEX_COUNT; species++) {
             combinedRecord = 0;
 
-            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, 0, species);
-            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, 1, species);
-            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, 2, species);
+            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_SINGLE, species);
+            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_DOUBLE, species);
+            combinedRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_MULTI, species);
 
             if (combinedRecord > 0) {
                 numSpeciesWithRecord++;
@@ -594,7 +595,7 @@ BOOL ScrCmd_GetBattleHallTotalSinglesRecord(ScriptContext *ctx)
         totalRecord = 0;
     } else {
         for (u32 species = 0; species < NATIONAL_DEX_COUNT; species++) {
-            totalRecord += sub_020308BC(fieldSystem->saveData, frontierStage, 0, species);
+            totalRecord += sub_020308BC(fieldSystem->saveData, frontierStage, FRONTIER_CHALLENGE_SINGLE, species);
         }
     }
 

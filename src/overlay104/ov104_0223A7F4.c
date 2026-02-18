@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/battle_frontier_challenge_types.h"
+
 #include "struct_defs/battle_frontier_pokemon_data.h"
 #include "struct_defs/battle_frontier_trainer_data.h"
 
@@ -86,7 +88,6 @@ static u32 ov104_0223AD74(u8 param0);
 u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0);
 void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0);
 void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0);
-BOOL ov104_0223AED4(u8 param0);
 static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0);
 u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0);
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *param0);
@@ -393,7 +394,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
         v5 = Pokemon_New(HEAP_ID_FIELD2);
 
         for (v0 = 0; v0 < v3; v0++) {
-            Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D8, (v3 + v0)), v5);
+            Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D8, v3 + v0), v5);
             FieldBattleDTO_AddPokemonToBattler(v4, v5, 3);
         }
 
@@ -458,7 +459,7 @@ void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
     v1 = Party_GetCurrentCount(param0->unk_4D4);
 
     for (v0 = v1; v0 > 2; v0--) {
-        Party_RemovePokemonBySlotIndex(param0->unk_4D4, (v0 - 1));
+        Party_RemovePokemonBySlotIndex(param0->unk_4D4, v0 - 1);
     }
 
     ov104_0222E330(v3, param0->unk_584, param0->unk_590, param0->unk_598, NULL, 2, 11, 179);
@@ -475,15 +476,9 @@ void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0)
     return;
 }
 
-BOOL ov104_0223AED4(u8 param0)
+BOOL BattleFactory_IsMultiplayerChallenge(u8 challengeType)
 {
-    switch (param0) {
-    case 2:
-    case 3:
-        return 1;
-    }
-
-    return 0;
+    return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
 static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0)
@@ -517,7 +512,7 @@ u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0)
 {
     u16 v0 = param0->unk_0E;
 
-    if (ov104_0223AED4(param0->unk_04) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_04) == 1) {
         if (param0->unk_57E > param0->unk_0E) {
             v0 = param0->unk_57E;
         }

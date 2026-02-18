@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/battle_frontier_challenge_types.h"
 
 #include "struct_defs/battle_frontier.h"
 
@@ -53,18 +54,18 @@ int sub_020308A8(SaveData *saveData, BattleFrontierStage *param1)
     return v0;
 }
 
-u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, int challengeType, int species)
+u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, enum BattleFrontierChallengeType challengeType, int species)
 {
     if (!SaveData_MiscSaveBlock_InitFlag(saveData)) {
         return 0;
     }
 
     switch (challengeType) {
-    case 0:
+    case FRONTIER_CHALLENGE_SINGLE:
         return frontierStage->unk_04.unk_00[species];
-    case 1:
+    case FRONTIER_CHALLENGE_DOUBLE:
         return frontierStage->unk_04.unk_3DE[species];
-    case 2:
+    case FRONTIER_CHALLENGE_MULTI:
         return frontierStage->unk_04.unk_7BC[species];
     }
 

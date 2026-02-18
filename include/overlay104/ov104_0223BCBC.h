@@ -13,7 +13,7 @@ u8 ov104_0223BD70(u8 param0, BOOL param1);
 u8 ov104_0223BDA4(u8 param0, BOOL param1);
 FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1);
 u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC *param0);
-BOOL ov104_0223C000(u8 param0);
+BOOL BattleArcade_IsMultiPlayerChallenge(u8 param0);
 void ov104_0223C010(UnkStruct_ov104_0223BFFC *param0, Pokemon *param1);
 void ov104_0223C034(UnkStruct_ov104_0223BFFC *param0, Party *param1, Pokemon *param2);
 void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0);

@@ -19,7 +19,7 @@ FieldBattleDTO *ov104_0223ABA0(UnkStruct_ov104_0223ADA0 *param0, UnkStruct_ov104
 u8 ov104_0223ADA0(UnkStruct_ov104_0223ADA0 *param0);
 void ov104_0223ADB0(UnkStruct_ov104_0223ADA0 *param0);
 void ov104_0223AE30(UnkStruct_ov104_0223ADA0 *param0);
-BOOL ov104_0223AED4(u8 param0);
+BOOL BattleFactory_IsMultiplayerChallenge(u8 challengeType);
 u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0);
 
 #endif // POKEPLATINUM_OV104_0223A7F4_H

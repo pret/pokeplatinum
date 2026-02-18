@@ -3,6 +3,7 @@
 #include "generated/game_records.h"
 #include "generated/sdat.h"
 #include "generated/trainer_score_events.h"
+#include "generated/vars_flags.h"
 #include "constants/colors.h"
 #include "constants/fade_screen.h"
 #include "constants/scrcmd.h"

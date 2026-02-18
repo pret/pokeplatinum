@@ -129,7 +129,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *saveData, u16 param1, u8 para
         }
     }
 
-    if (BattleFrontier_IsMultiPlayerChallenge(v10->unk_04) == 1) {
+    if (BattleHall_IsMultiPlayerChallenge(v10->unk_04) == 1) {
         ov104_0222E630(v10->saveData);
     }
 
