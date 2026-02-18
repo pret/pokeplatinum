@@ -967,55 +967,54 @@ u32 BattleAnimUtil_GetHOffsetRegisterForBg(int bgID)
     }
 }
 
-void BattleAnimMath_CalcMidpoint(s16 x0, s16 y0, s16 x1, s16 y1, s16 *outMidX, s16 *outMidY)
+void BattleAnimUtil_GetXYMean(s16 x1, s16 y1, s16 x2, s16 y2, s16 *mx, s16 *my)
 {
-    *outMidX = (x0 + x1) / 2;
-    *outMidY = (y0 + y1) / 2;
+    *mx = (x1 + x2) / 2;
+    *my = (y1 + y2) / 2;
 }
 
-void BattleAnimMath_CalcDistance(s16 x0, s16 y0, s16 x1, s16 y1, fx32 *outDist)
+void BattleAnimUtil_DistanceBetween(s16 x1, s16 y1, s16 x2, s16 y2, fx32 *distance)
 {
-    s16 distX = (x0 - x1);
-    s16 distY = (y0 - y1) * -1;
+    s16 dx = x1 - x2;
+    s16 dy = -(y1 - y2);
 
-    *outDist = FX_Sqrt(((distY * distY) + (distX * distX)) * FX32_ONE);
+    *distance = FX_Sqrt((dy * dy + dx * dx) * FX32_ONE);
 }
 
-void BattleAnimMath_CalcAngle(s16 x0, s16 y0, s16 x1, s16 y1, u16 *outAngle)
+// DO NOT USE THIS FUNCTION, it sucks and is wrong
+void BattleAnimUtil_CalcAngleFromPoints(s16 x1, s16 y1, s16 x2, s16 y2, u16 *angle)
 {
-    s16 distX = (x0 - x1);
-    s16 distY = (y0 - y1) * -1;
+    s16 dx = x1 - x2;
+    s16 ndy = -(y1 - y2);
 
-    *outAngle = FX_Atan2Idx(distY * FX32_ONE, distX * FX32_ONE);
+    *angle = FX_Atan2Idx(ndy * FX32_ONE, dx * FX32_ONE);
 
-    if ((*outAngle > 0) && (distY < 0)) {
-        *outAngle = (*outAngle - ((180 * 0xffff) / 360)) * 0xffff;
-    } else if ((*outAngle < 0) && (distY > 0)) {
-        *outAngle += ((180 * 0xffff) / 360);
+    if (*angle > 0 && ndy < 0) {
+        *angle = (*angle - DEG_TO_IDX(180)) * 0xFFFF;
     }
 }
 
-BOOL BattleAnimMath_StepToward(int *value, int target, s32 step)
+BOOL BattleAnimUtil_StepValue(int *value, int target, s32 step)
 {
     if (step < 0) {
         if (*value + step > target) {
             *value += step;
-            return 0;
+            return FALSE;
         } else {
             *value = target;
-            return 1;
+            return TRUE;
         }
     } else {
         if (*value + step < target) {
             *value += step;
-            return 0;
+            return FALSE;
         } else {
             *value = target;
-            return 1;
+            return TRUE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 static void PaletteFadeContext_FadeTask(SysTask *task, void *param)

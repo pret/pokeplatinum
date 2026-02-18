@@ -137,10 +137,10 @@ enum BulkUpState {
 typedef struct DoubleTeamContext {
     u8 iteration;
     u8 state;
-    u16 unk_02;
+    u16 unused1;
     u8 blendA;
     u8 blendB;
-    u16 unk_06;
+    u16 unused2;
     s16 attackerX;
     s16 attackerY;
     BattleAnimSystem *battleAnimSys;
@@ -273,7 +273,7 @@ typedef struct FlashContext {
     u8 delay;
     PaletteData *paletteData;
     BattleAnimSystem *battleAnimSys;
-    PaletteFadeContext *unk_0C;
+    PaletteFadeContext *unused;
     PokemonSprite *attackerSprite;
 } FlashContext;
 
@@ -432,8 +432,8 @@ enum EarthquakeState {
 typedef struct NightmareContext {
     u8 state;
     u8 unused;
-    u8 unk_02;
-    u8 unk_03;
+    u8 unused1;
+    u8 unused2;
     Point2D monPos;
     BgConfig *bgConfig;
     BattleAnimSystem *system;
@@ -462,10 +462,7 @@ typedef struct FlailContext {
     BattleAnimScriptFuncCommon common;
     SpriteShakeInfo shakeInfo;
     PokemonSprite *battlerSprites[2];
-    s16 unk_30;
-    s16 unk_32;
-    s16 unk_34;
-    s16 unk_36;
+    s64 unused;
     XYTransformContext shake;
     ValueLerpContext angle;
 } FlailContext;
@@ -491,7 +488,7 @@ enum FlailState {
 // -------------------------------------------------------------------
 typedef struct MagnitudeContext {
     BattleAnimScriptFuncCommon common;
-    SpriteShakeInfo unk_1C;
+    SpriteShakeInfo unused;
     Point2D battlerPositions[MAX_BATTLERS];
     PokemonSprite *battlerSprites[MAX_BATTLERS];
     int power;
@@ -616,30 +613,62 @@ enum SurfState {
 #define SURF_ALPHA_TARGET          4
 #define SURF_SPRITE_HEIGHT         16
 
-typedef struct {
-    ManagedSprite *unk_00;
-    XYTransformContext unk_04[2];
-} UnkStruct_ov12_0222D128_sub1;
+typedef struct TrickCupSprite {
+    ManagedSprite *sprite;
+    XYTransformContext arc[2];
+} TrickCupSprite;
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    int unk_04;
-    int unk_08;
-    u8 unk_0C;
-    BattleAnimSystem *unk_10;
-    SpriteSystem *unk_14;
-    SpriteManager *unk_18;
-    PokemonSprite *unk_1C;
-    s16 unk_20;
-    int unk_24;
-    u16 unk_28;
-    fx32 unk_2C;
-    UnkStruct_ov12_0222D128_sub1 unk_30[2];
-    s16 unk_C8;
-    s16 unk_CA;
-    XYTransformContext unk_CC;
-} UnkStruct_ov12_0222D128;
+typedef struct TrickSpriteContext {
+    u8 state;
+    u8 delay;
+    int cupAlpha;
+    int bgAlpha;
+    u8 iteration;
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    PokemonSprite *attackerSprite;
+    s16 attackerY;
+    int attackerOffset;
+    u16 unused;
+    fx32 radius;
+    TrickCupSprite cupSprites[2];
+    s16 mx;
+    s16 my;
+    XYTransformContext attackerScale;
+} TrickSpriteContext;
+
+enum TrickSpriteState {
+    TRICK_SPRITE_STATE_INIT_SCALE = 0,
+    TRICK_SPRITE_STATE_SCALE,
+    TRICK_SPRITE_STATE_DELAY_1,
+    TRICK_SPRITE_STATE_CUP_RISE_1,
+    TRICK_SPRITE_STATE_SET_RISE_2,
+    TRICK_SPRITE_STATE_CALC_ARC_PARAMS,
+    TRICK_SPRITE_STATE_INIT_ARC,
+    TRICK_SPRITE_STATE_ARC,
+    TRICK_SPRITE_STATE_FADE_OUT,
+};
+
+#define TRICK_SPRITE_VAR_CUP_COUNT      0
+#define TRICK_SPRITE_CUP_1_X            100
+#define TRICK_SPRITE_CUP_1_Y            54
+#define TRICK_SPRITE_CUP_2_X            180
+#define TRICK_SPRITE_CUP_2_Y            39
+#define TRICK_SPRITE_SCALE_ITERATIONS   3
+#define TRICK_SPRITE_CUP_END_OFFSET_Y   50
+#define TRICK_SPRITE_CUP_OFFSET_Y_STEP  2
+#define TRICK_SPRITE_DELAY_1            1
+#define TRICK_SPRITE_DELAY_2            0
+#define TRICK_SPRITE_CUP_1_OFFSET_DELAY 10
+#define TRICK_SPRITE_CUP_2_OFFSET_DELAY 12
+#define TRICK_SPRITE_CUP_TARGET_ALPHA   16
+#define TRICK_SPRITE_BG_TARGET_ALPHA    0
+#define TRICK_SPRITE_CUP_END_ALPHA      0
+#define TRICK_SPRITE_BG_END_ALPHA       16
+#define TRICK_SPRITE_CUP_FADEOUT_STEP   2
+#define TRICK_SPRITE_CUP_SWITCH_COUNT   5
+#define TRICK_SPRITE_CUP_SWITCH_FRAMES  10
 
 static const u8 sStringShotSpriteTimings[][STRING_SHOT_SPRITE_TIMING_COUNT] = {
     // { delay before toggling, frames between toggles }
@@ -2603,111 +2632,117 @@ void BattleAnimScriptFunc_Surf(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Surf, ctx);
 }
 
-static const u8 Unk_ov12_0223A0D0[][5] = {
-    { 0x64, 0x64, 0x64, 0x46, 0x8 },
-    { 0x64, 0x64, 0x46, 0x78, 0x3 },
-    { 0x64, 0x64, 0x78, 0x64, 0x3 }
+static const struct {
+    u8 sx, ex;
+    u8 sy, ey;
+    u8 frames;
+} sTrickCupScales[] = {
+    { .sx = 100, .ex = 100, .sy = 100, .ey = 70, .frames = 8 },
+    { .sx = 100, .ex = 100, .sy = 70, .ey = 120, .frames = 3 },
+    { .sx = 100, .ex = 100, .sy = 120, .ey = 100, .frames = 3 }
 };
 
-static void ov12_0222D128(SysTask *param0, void *param1)
+static void BattleAnimTask_TrickSprite(SysTask *task, void *param)
 {
-    int v0;
-    UnkStruct_ov12_0222D128 *v1 = (UnkStruct_ov12_0222D128 *)param1;
+    int i;
+    TrickSpriteContext *ctx = param;
 
-    switch (v1->unk_00) {
-    case 0:
-        ScaleLerpContext_InitXY(&v1->unk_CC, Unk_ov12_0223A0D0[v1->unk_0C][0], Unk_ov12_0223A0D0[v1->unk_0C][1], Unk_ov12_0223A0D0[v1->unk_0C][2], Unk_ov12_0223A0D0[v1->unk_0C][3], 100, Unk_ov12_0223A0D0[v1->unk_0C][4]);
-        v1->unk_0C++;
-        v1->unk_00++;
+    switch (ctx->state) {
+    case TRICK_SPRITE_STATE_INIT_SCALE:
+        ScaleLerpContext_InitXY(
+            &ctx->attackerScale,
+            sTrickCupScales[ctx->iteration].sx,
+            sTrickCupScales[ctx->iteration].ex,
+            sTrickCupScales[ctx->iteration].sy,
+            sTrickCupScales[ctx->iteration].ey,
+            BASE_SCALE_XY,
+            sTrickCupScales[ctx->iteration].frames);
+        ctx->iteration++;
+        ctx->state++;
         break;
-    case 1:
-        if (ScaleLerpContext_UpdateXY(&v1->unk_CC) == 1) {
-            PokemonSprite_SetAttribute(v1->unk_1C, MON_SPRITE_SCALE_X, v1->unk_CC.x);
-            PokemonSprite_SetAttribute(v1->unk_1C, MON_SPRITE_SCALE_Y, v1->unk_CC.y);
-            {
-                s16 v2 = BattleAnimUtil_GetGroundAnchoredScaleOffset(v1->unk_20, v1->unk_24, v1->unk_CC.data[4]);
-                PokemonSprite_SetAttribute(v1->unk_1C, MON_SPRITE_Y_CENTER, v1->unk_20 + v2);
-            }
+    case TRICK_SPRITE_STATE_SCALE:
+        if (ScaleLerpContext_UpdateXY(&ctx->attackerScale) == TRUE) {
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_X, ctx->attackerScale.x);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_SCALE_Y, ctx->attackerScale.y);
+            s16 offset = BattleAnimUtil_GetGroundAnchoredScaleOffset(
+                ctx->attackerY,
+                ctx->attackerOffset,
+                ctx->attackerScale.data[XY_PARAM_CUR_Y]);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY + offset);
         } else {
-            if (v1->unk_0C >= 3) {
-                v1->unk_00++;
+            if (ctx->iteration >= TRICK_SPRITE_SCALE_ITERATIONS) {
+                ctx->state++;
             } else {
-                v1->unk_00--;
+                ctx->state--;
             }
         }
         break;
-    case 2:
-        if ((++v1->unk_01) >= 1) {
-            v1->unk_01 = 0;
-            v1->unk_0C = 0;
-            v1->unk_00++;
+    case TRICK_SPRITE_STATE_DELAY_1:
+        if (++ctx->delay >= TRICK_SPRITE_DELAY_1) {
+            ctx->delay = 0;
+            ctx->iteration = 0;
+            ctx->state++;
         }
         break;
-    case 3: {
-        s16 v3, v4;
+    case TRICK_SPRITE_STATE_CUP_RISE_1: {
+        s16 posX, posY;
+        ManagedSprite_GetPositionXY(ctx->cupSprites[0].sprite, &posX, &posY);
 
-        ManagedSprite_GetPositionXY(v1->unk_30[0].unk_00, &v3, &v4);
-
-        if (v4 <= ((40 - 16 + 20 + 10) + 50)) {
-            ManagedSprite_OffsetPositionXY(v1->unk_30[0].unk_00, 0, 2);
-            ManagedSprite_OffsetPositionXY(v1->unk_30[1].unk_00, 0, 2);
+        if (posY <= TRICK_SPRITE_CUP_1_Y + TRICK_SPRITE_CUP_END_OFFSET_Y) {
+            ManagedSprite_OffsetPositionXY(ctx->cupSprites[0].sprite, 0, TRICK_SPRITE_CUP_OFFSET_Y_STEP);
+            ManagedSprite_OffsetPositionXY(ctx->cupSprites[1].sprite, 0, TRICK_SPRITE_CUP_OFFSET_Y_STEP);
         } else {
-            v1->unk_00++;
+            ctx->state++;
         }
     } break;
-    case 4: {
-        s16 v5, v6;
+    case TRICK_SPRITE_STATE_SET_RISE_2: {
+        s16 posX, posY;
+        ManagedSprite_GetPositionXY(ctx->cupSprites[0].sprite, &posX, &posY);
 
-        ManagedSprite_GetPositionXY(v1->unk_30[0].unk_00, &v5, &v6);
-
-        if (v6 <= ((40 - 16 + 20 + 10) + 50)) {
-            ManagedSprite_OffsetPositionXY(v1->unk_30[0].unk_00, 0, 2);
-            ManagedSprite_OffsetPositionXY(v1->unk_30[1].unk_00, 0, 2);
+        if (posY <= TRICK_SPRITE_CUP_1_Y + TRICK_SPRITE_CUP_END_OFFSET_Y) {
+            ManagedSprite_OffsetPositionXY(ctx->cupSprites[0].sprite, 0, TRICK_SPRITE_CUP_OFFSET_Y_STEP);
+            ManagedSprite_OffsetPositionXY(ctx->cupSprites[1].sprite, 0, TRICK_SPRITE_CUP_OFFSET_Y_STEP);
         } else {
-            G2_ChangeBlendAlpha(16, 0);
-            v1->unk_00++;
+            G2_ChangeBlendAlpha(TRICK_SPRITE_CUP_TARGET_ALPHA, TRICK_SPRITE_BG_TARGET_ALPHA);
+            ctx->state++;
         }
-    }
-        v1->unk_01++;
+        ctx->delay++;
 
-        BattleAnimMath_StepToward(&v1->unk_04, 16, +16);
-        BattleAnimMath_StepToward(&v1->unk_08, 0, -16);
+        BattleAnimUtil_StepValue(&ctx->cupAlpha, TRICK_SPRITE_CUP_TARGET_ALPHA, +16);
+        BattleAnimUtil_StepValue(&ctx->bgAlpha, TRICK_SPRITE_BG_TARGET_ALPHA, -16);
 
-        G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);
+        G2_ChangeBlendAlpha(ctx->cupAlpha, ctx->bgAlpha);
 
-        if (v1->unk_01 == 10) {
-            ManagedSprite_OffsetPositionXY(v1->unk_30[0].unk_00, 0, 16);
+        if (ctx->delay == TRICK_SPRITE_CUP_1_OFFSET_DELAY) {
+            ManagedSprite_OffsetPositionXY(ctx->cupSprites[0].sprite, 0, 16);
         }
 
-        if (v1->unk_01 == 12) {
-            ManagedSprite_OffsetPositionXY(v1->unk_30[1].unk_00, 0, 16);
+        if (ctx->delay == TRICK_SPRITE_CUP_2_OFFSET_DELAY) {
+            ManagedSprite_OffsetPositionXY(ctx->cupSprites[1].sprite, 0, 16);
         }
-        break;
-    case 5:
-        if ((++v1->unk_01) < 1) {
+    } break;
+    case TRICK_SPRITE_STATE_CALC_ARC_PARAMS:
+        if (++ctx->delay < TRICK_SPRITE_DELAY_2 + 1) {
             break;
         }
 
-        v1->unk_01 = 0;
+        ctx->delay = 0;
 
-        {
-            s16 v7, v8, v9, v10;
+        s16 cup1X, cup1Y, cup2X, cup2Y;
+        ManagedSprite_GetPositionXY(ctx->cupSprites[0].sprite, &cup1X, &cup1Y);
+        ManagedSprite_GetPositionXY(ctx->cupSprites[1].sprite, &cup2X, &cup2Y);
 
-            ManagedSprite_GetPositionXY(v1->unk_30[0].unk_00, &v7, &v8);
-            ManagedSprite_GetPositionXY(v1->unk_30[1].unk_00, &v9, &v10);
+        BattleAnimUtil_GetXYMean(cup1X, cup1Y, cup2X, cup2Y, &ctx->mx, &ctx->my);
+        BattleAnimUtil_DistanceBetween(cup1X, cup1Y, ctx->mx, ctx->my, &ctx->radius);
+        BattleAnimUtil_CalcAngleFromPoints(cup1X, cup1Y, ctx->mx, ctx->my, &ctx->unused);
 
-            BattleAnimMath_CalcMidpoint(v7, v8, v9, v10, &v1->unk_C8, &v1->unk_CA);
-            BattleAnimMath_CalcDistance(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_2C);
-            BattleAnimMath_CalcAngle(v7, v8, v1->unk_C8, v1->unk_CA, &v1->unk_28);
-
-            v1->unk_2C = (40 * FX32_ONE);
-        }
-        v1->unk_00++;
+        ctx->radius = FX32_CONST(40);
+        ctx->state++;
         break;
 
-    case 6: {
-        s16 v11, v12, v13, v14;
-        s8 v15[][2] = {
+    case TRICK_SPRITE_STATE_INIT_ARC: {
+        s16 cup1X, cup1Y, cup2X, cup2Y;
+        s8 cupArcDirections[TRICK_SPRITE_CUP_SWITCH_COUNT][2] = {
             { +1, -1 },
             { -1, +1 },
             { +1, -1 },
@@ -2715,133 +2750,162 @@ static void ov12_0222D128(SysTask *param0, void *param1)
             { +1, -1 },
         };
 
-        ManagedSprite_GetPositionXY(v1->unk_30[0].unk_00, &v11, &v12);
-        ManagedSprite_GetPositionXY(v1->unk_30[1].unk_00, &v13, &v14);
+        ManagedSprite_GetPositionXY(ctx->cupSprites[0].sprite, &cup1X, &cup1Y);
+        ManagedSprite_GetPositionXY(ctx->cupSprites[1].sprite, &cup2X, &cup2Y);
 
-        XYTransformContext_InitParabolic(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v11, v13, v12, v14, 10, v1->unk_2C * v15[v1->unk_0C][0]);
-        XYTransformContext_InitParabolic(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v13, v11, v14, v12, 10, v1->unk_2C * v15[v1->unk_0C][1]);
+        XYTransformContext_InitParabolic(
+            &ctx->cupSprites[0].arc[0],
+            &ctx->cupSprites[0].arc[1],
+            cup1X,
+            cup2X,
+            cup1Y,
+            cup2Y,
+            TRICK_SPRITE_CUP_SWITCH_FRAMES,
+            ctx->radius * cupArcDirections[ctx->iteration][0]);
+        XYTransformContext_InitParabolic(
+            &ctx->cupSprites[1].arc[0],
+            &ctx->cupSprites[1].arc[1],
+            cup2X,
+            cup1X,
+            cup2Y,
+            cup1Y,
+            TRICK_SPRITE_CUP_SWITCH_FRAMES,
+            ctx->radius * cupArcDirections[ctx->iteration][1]);
     }
-        v1->unk_0C++;
-        v1->unk_00++;
+        ctx->iteration++;
+        ctx->state++;
         break;
-    case 7: {
-        u8 v16 = 0;
+    case TRICK_SPRITE_STATE_ARC: {
+        u8 switchDone = 0;
 
-        if (XYTransformContext_UpdateAndApplyParabolic(&v1->unk_30[0].unk_04[0], &v1->unk_30[0].unk_04[1], v1->unk_30[0].unk_00) == 0) {
-            v16++;
+        if (XYTransformContext_UpdateAndApplyParabolic(
+                &ctx->cupSprites[0].arc[0],
+                &ctx->cupSprites[0].arc[1],
+                ctx->cupSprites[0].sprite)
+            == FALSE) {
+            switchDone++;
         }
 
-        if (XYTransformContext_UpdateAndApplyParabolic(&v1->unk_30[1].unk_04[0], &v1->unk_30[1].unk_04[1], v1->unk_30[1].unk_00) == 0) {
-            v16++;
+        if (XYTransformContext_UpdateAndApplyParabolic(
+                &ctx->cupSprites[1].arc[0],
+                &ctx->cupSprites[1].arc[1],
+                ctx->cupSprites[1].sprite)
+            == FALSE) {
+            switchDone++;
         }
 
-        if (v16 == 2) {
-            if (v1->unk_0C == 5) {
-                v1->unk_00++;
+        if (switchDone == 2) {
+            if (ctx->iteration == TRICK_SPRITE_CUP_SWITCH_COUNT) {
+                ctx->state++;
             } else {
-                v1->unk_00--;
+                ctx->state--;
             }
         }
     } break;
-    case 8: {
-        int v17 = 0;
+    case TRICK_SPRITE_STATE_FADE_OUT: {
+        int alphaDone = 0;
 
-        if (BattleAnimMath_StepToward(&v1->unk_04, 0, -2) == 1) {
-            v17++;
+        if (BattleAnimUtil_StepValue(&ctx->cupAlpha, TRICK_SPRITE_CUP_END_ALPHA, -TRICK_SPRITE_CUP_FADEOUT_STEP) == TRUE) {
+            alphaDone++;
         }
 
-        if (BattleAnimMath_StepToward(&v1->unk_08, 16, +2) == 1) {
-            v17++;
+        if (BattleAnimUtil_StepValue(&ctx->bgAlpha, TRICK_SPRITE_BG_END_ALPHA, +TRICK_SPRITE_CUP_FADEOUT_STEP) == TRUE) {
+            alphaDone++;
         }
 
-        G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);
+        G2_ChangeBlendAlpha(ctx->cupAlpha, ctx->bgAlpha);
 
-        if (v17 == 2) {
-            v1->unk_00++;
+        if (alphaDone == 2) {
+            ctx->state++;
         }
     } break;
     default:
-        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
-            Sprite_DeleteAndFreeResources(v1->unk_30[v0].unk_00);
+        for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, TRICK_SPRITE_VAR_CUP_COUNT); i++) {
+            Sprite_DeleteAndFreeResources(ctx->cupSprites[i].sprite);
         }
 
-        BattleAnimSystem_EndAnimTask(v1->unk_10, param0);
-        Heap_Free(v1);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    {
-        s16 v18, v19;
+    // Adjust draw order based on cup position
+    s16 x, y;
+    for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, TRICK_SPRITE_VAR_CUP_COUNT); i++) {
+        ManagedSprite_GetPositionXY(ctx->cupSprites[i].sprite, &x, &y);
 
-        for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
-            ManagedSprite_GetPositionXY(v1->unk_30[v0].unk_00, &v18, &v19);
-
-            if (v19 < 80) {
-                ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10));
+        if (y < 80) {
+            ManagedSprite_SetExplicitPriority(
+                ctx->cupSprites[i].sprite,
+                BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
+        } else {
+            if (x > 128) {
+                ManagedSprite_SetExplicitPriority(
+                    ctx->cupSprites[i].sprite,
+                    BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys));
             } else {
-                if (v18 > 128) {
-                    ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10));
-                } else {
-                    ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10) + 1);
-                }
+                ManagedSprite_SetExplicitPriority(
+                    ctx->cupSprites[i].sprite,
+                    BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
             }
         }
     }
 
-    if (v1->unk_00 < 4) {
+    if (ctx->state < TRICK_SPRITE_STATE_SET_RISE_2) {
         return;
     }
 
-    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
-        ManagedSprite_TickFrame(v1->unk_30[v0].unk_00);
+    for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, TRICK_SPRITE_VAR_CUP_COUNT); i++) {
+        ManagedSprite_TickFrame(ctx->cupSprites[i].sprite);
     }
 
-    SpriteSystem_DrawSprites(v1->unk_18);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_0222D56C(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Trick(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    int v0;
-    UnkStruct_ov12_0222D128 *v1;
-    SpriteTemplate v2;
+    int i;
+    SpriteTemplate template; // Required to match
+    TrickSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(TrickSpriteContext));
 
-    v1 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222D128));
+    ctx->state = 0;
+    ctx->delay = 0;
+    ctx->battleAnimSys = system;
+    ctx->spriteMan = spriteMan;
+    ctx->spriteSys = spriteSys;
+    ctx->cupAlpha = 0;
+    ctx->bgAlpha = 16;
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
+    ctx->attackerOffset = BattleAnimSystem_GetBattlerSpriteOffset(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v1->unk_00 = 0;
-    v1->unk_01 = 0;
-    v1->unk_10 = param0;
-    v1->unk_18 = param2;
-    v1->unk_14 = param1;
-    v1->unk_04 = 0;
-    v1->unk_08 = 16;
-    v1->unk_1C = BattleAnimSystem_GetBattlerSprite(v1->unk_10, BattleAnimSystem_GetAttacker(v1->unk_10));
-    v1->unk_20 = PokemonSprite_GetAttribute(v1->unk_1C, MON_SPRITE_Y_CENTER);
-    v1->unk_24 = BattleAnimSystem_GetBattlerSpriteOffset(v1->unk_10, BattleAnimSystem_GetAttacker(v1->unk_10));
+    BattleAnimUtil_SetSpriteBlending(ctx->battleAnimSys,
+        1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_EFFECT)
+            | 1 << BattleAnimSystem_GetBgID(system, BATTLE_ANIM_BG_BASE)
+            | GX_WND_PLANEMASK_BG0,
+        BATTLE_ANIM_DEFAULT_ALPHA,
+        BATTLE_ANIM_DEFAULT_ALPHA);
+    G2_ChangeBlendAlpha(ctx->cupAlpha, ctx->bgAlpha);
 
-    BattleAnimUtil_SetSpriteBlending(v1->unk_10, (1 << BattleAnimSystem_GetBgID(param0, 2)) | (1 << BattleAnimSystem_GetBgID(param0, 1)) | GX_WND_PLANEMASK_BG0, 0xffffffff, 0xffffffff);
-    G2_ChangeBlendAlpha(v1->unk_04, v1->unk_08);
+    template = BattleAnimSystem_GetLastSpriteTemplate(system);
+    ctx->cupSprites[0].sprite = sprite;
 
-    v2 = BattleAnimSystem_GetLastSpriteTemplate(param0);
-    v1->unk_30[0].unk_00 = param3;
-
-    {
-        for (v0 = 1; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
-            v1->unk_30[v0].unk_00 = SpriteSystem_NewSprite(v1->unk_14, v1->unk_18, &v2);
-        }
+    for (i = 1; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, TRICK_SPRITE_VAR_CUP_COUNT); i++) {
+        ctx->cupSprites[i].sprite = SpriteSystem_NewSprite(ctx->spriteSys, ctx->spriteMan, &template);
     }
 
-    for (v0 = 0; v0 < BattleAnimSystem_GetScriptVar(v1->unk_10, 0); v0++) {
-        ManagedSprite_SetExplicitOamMode(v1->unk_30[v0].unk_00, GX_OAM_MODE_XLU);
-        ManagedSprite_SetExplicitPriority(v1->unk_30[v0].unk_00, BattleAnimSystem_GetPokemonSpritePriority(v1->unk_10) + 1);
+    for (i = 0; i < BattleAnimSystem_GetScriptVar(ctx->battleAnimSys, TRICK_SPRITE_VAR_CUP_COUNT); i++) {
+        ManagedSprite_SetExplicitOamMode(ctx->cupSprites[i].sprite, GX_OAM_MODE_XLU);
+        ManagedSprite_SetExplicitPriority(ctx->cupSprites[i].sprite, BattleAnimSystem_GetPokemonSpritePriority(ctx->battleAnimSys) + 1);
     }
 
-    if (BattleAnimSystem_IsContest(param0) == 1) {
-        ManagedSprite_SetPositionXY(v1->unk_30[0].unk_00, 180 - 20, 40 - 16 + 20 + 10);
-        ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 100 - 20, 25 - 16 + 20 + 10);
+    if (BattleAnimSystem_IsContest(system) == TRUE) {
+        ManagedSprite_SetPositionXY(ctx->cupSprites[0].sprite, TRICK_SPRITE_CUP_2_X - 20, TRICK_SPRITE_CUP_1_Y);
+        ManagedSprite_SetPositionXY(ctx->cupSprites[1].sprite, TRICK_SPRITE_CUP_1_X - 20, TRICK_SPRITE_CUP_2_Y);
     } else {
-        ManagedSprite_SetPositionXY(v1->unk_30[0].unk_00, 100, 40 - 16 + 20 + 10);
-        ManagedSprite_SetPositionXY(v1->unk_30[1].unk_00, 180, 25 - 16 + 20 + 10);
+        ManagedSprite_SetPositionXY(ctx->cupSprites[0].sprite, TRICK_SPRITE_CUP_1_X, TRICK_SPRITE_CUP_1_Y);
+        ManagedSprite_SetPositionXY(ctx->cupSprites[1].sprite, TRICK_SPRITE_CUP_2_X, TRICK_SPRITE_CUP_2_Y);
     }
 
-    BattleAnimSystem_StartAnimTask(v1->unk_10, ov12_0222D128, v1);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_TrickSprite, ctx);
 }

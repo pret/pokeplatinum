@@ -23,6 +23,6 @@ void BattleAnimScriptFunc_Magnitude(BattleAnimSystem *system);
 void BattleAnimScriptFunc_OdorSleuth(BattleAnimSystem *system);
 void BattleAnimSpriteFunc_IcicleSpear(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_Surf(BattleAnimSystem *system);
-void ov12_0222D56C(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_Trick(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 
 #endif // POKEPLATINUM_SCRIPT_FUNCS_0_H
