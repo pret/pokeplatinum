@@ -2,6 +2,7 @@
 #include "res/text/bank/battle_hall.h"
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_battle_hall.h"
+#include "generated/battle_frontier_challenge_types.h"
 
 
     ScriptEntry BattleHall_SingleAttendant
@@ -219,21 +220,21 @@ _0355:
     End
 
 BattleHall_CheckSingleBattleEligibility:
-    SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, 0
+    SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE
     ScrCmd_2CC 0, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRuleOnePokemon
     GoTo BattleHall_SelectPokemonForChallenge
     End
 
 BattleHall_CheckDoubleBattleEligibility:
-    SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, 1
+    SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE
     ScrCmd_2CC 0, 2, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRulesForTwoPokemon
     GoTo BattleHall_SelectPokemonForChallenge
     End
 
 BattleHall_CheckMultiBattleEligibility:
-    SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, 2
+    SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI
     ScrCmd_2CC 0, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 0, BattleHall_PrintEligbilityRuleOnePokemon
     GoTo BattleHall_SelectPokemonForChallenge
@@ -298,14 +299,14 @@ BattleHall_HealAndSaveBeforeChallenge:
     End
 
 _04FC:
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 0, BattleHall_SetChallengeAsInProgress
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 1, BattleHall_SetChallengeAsInProgress
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_SetChallengeAsInProgress
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_SetChallengeAsInProgress
     SetVar VAR_MAP_LOCAL_0, 0
     HealParty
     Common_SaveGame
     SetVar VAR_RESULT, VAR_MAP_LOCAL_0
     GoToIfEq VAR_RESULT, 0, BattleHall_EndChallenge
-    GoToIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 2, BattleHall_StartWifiCommunication
+    GoToIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_StartWifiCommunication
     GoTo BattleHall_WalkIntoCorridor
     End
 
@@ -371,7 +372,7 @@ BattleHall_StartMultiChallenge:
     ClearReceivedTempDataAllPlayers
     ScrCmd_135 110
     Message BattleHall_Text_MustSaveFirst
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 2, BattleHall_SetChallengeAsInProgress
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_SetChallengeAsInProgress
     Call BattleHall_SaveGame
     GoTo BattleHall_WalkIntoCorridor
     End
@@ -391,9 +392,9 @@ _068C:
     Return
 
 BattleHall_WalkIntoCorridor:
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 0, BattleHall_WalkToStartSingleBattle
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 1, BattleHall_WalkToStartDoubleBattle
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 2, BattleHall_WalkToStartMultiBattle
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_WalkToStartSingleBattle
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_WalkToStartDoubleBattle
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, BattleHall_WalkToStartMultiBattle
     PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo BattleHall_SetupAndRunFrontierScript
     End
@@ -401,14 +402,14 @@ BattleHall_WalkIntoCorridor:
 BattleHall_SetupAndRunFrontierScript:
     FadeScreenOut
     WaitFadeScreen
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 0, _078C
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 1, _07A0
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 2, _07B4
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, _078C
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, _07A0
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _07B4
     IncrementGameRecord RECORD_UNK_058
     CreateJournalEvent LOCATION_EVENT_BATTLE_HALL, 0, 0, 0, 0
     WaitForTransition
     ScrCmd_2C4 9
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 2, _072C
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI, _072C
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
@@ -591,8 +592,8 @@ BattleHall_DidntSaveBeforeQuit:
     End
 
 BattleHall_ChallengeEndedBPEarned:
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 0, BattleHall_IncrementTrainerScore
-    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, 1, BattleHall_IncrementTrainerScore
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_SINGLE, BattleHall_IncrementTrainerScore
+    CallIfEq VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_DOUBLE, BattleHall_IncrementTrainerScore
     CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 1, BattleHall_SilverPrintEarned
     CallIfEq VAR_BATTLE_HALL_PRINT_STATE, 3, BattleHall_GoldPrintEarned
     GoTo BattleHall_EndChallenge

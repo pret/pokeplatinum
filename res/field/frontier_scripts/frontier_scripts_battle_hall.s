@@ -549,7 +549,7 @@ _0320:
     .short 0xFD13
 
 _0326:
-    FrontierScrCmd_3E 0x40BB, 0x8001
+    FrontierScrCmd_3E VAR_BATTLE_HALL_CHALLENGE_TYPE, 0x8001
     FrontierScrCmd_3E 0x4003, 0x8003
     FrontierScrCmd_3E 0x4002, 0x8002
     FrontierScrCmd_3E 0x4005, 0x8000

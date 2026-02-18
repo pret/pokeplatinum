@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/battle_frontier_challenge_types.h"
+
 #include "struct_defs/battle_frontier_trainer_data.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -27,7 +29,6 @@ u8 ov104_0223BDA4(u8 param0, BOOL param1);
 FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223BFD0(u8 param0);
 u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC *param0);
-BOOL ov104_0223C000(u8 param0);
 void ov104_0223C04C(UnkStruct_ov104_0223BFFC *param0);
 void ov104_0223C010(UnkStruct_ov104_0223BFFC *param0, Pokemon *param1);
 void ov104_0223C034(UnkStruct_ov104_0223BFFC *param0, Party *param1, Pokemon *param2);
@@ -195,7 +196,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     v6 = Pokemon_New(HEAP_ID_FIELD2);
 
     for (v0 = 0; v0 < v2; v0++) {
-        Pokemon_Copy(Party_GetPokemonBySlotIndex(v12, (v4 + v0)), v6);
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(v12, v4 + v0), v6);
         FieldBattleDTO_AddPokemonToBattler(v5, v6, 0);
     }
 
@@ -237,7 +238,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
         v6 = Pokemon_New(HEAP_ID_FIELD2);
 
         for (v0 = 0; v0 < v3; v0++) {
-            Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, (v3 + v0)), v6);
+            Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, v3 + v0), v6);
             FieldBattleDTO_AddPokemonToBattler(v5, v6, 3);
         }
 
@@ -272,15 +273,9 @@ u8 ov104_0223BFFC(UnkStruct_ov104_0223BFFC *param0)
     return 50;
 }
 
-BOOL ov104_0223C000(u8 param0)
+BOOL BattleArcade_IsMultiPlayerChallenge(u8 challengeType)
 {
-    switch (param0) {
-    case 2:
-    case 3:
-        return 1;
-    }
-
-    return 0;
+    return challengeType == FRONTIER_CHALLENGE_MULTI || challengeType == FRONTIER_CHALLENGE_MULTI_WFC;
 }
 
 void ov104_0223C010(UnkStruct_ov104_0223BFFC *param0, Pokemon *param1)
@@ -382,7 +377,7 @@ u16 ov104_0223C124(UnkStruct_ov104_0223BFFC *param0)
 {
     u16 v0 = param0->unk_1A;
 
-    if (ov104_0223C000(param0->unk_10) == 1) {
+    if (BattleArcade_IsMultiPlayerChallenge(param0->unk_10) == 1) {
         if (param0->unk_A76 > param0->unk_1A) {
             v0 = param0->unk_A76;
         }

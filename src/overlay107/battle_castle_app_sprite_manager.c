@@ -2,6 +2,8 @@
 
 #include <nitro.h>
 
+#include "generated/battle_frontier_challenge_types.h"
+
 #include "applications/party_menu/main.h"
 
 #include "char_transfer.h"
@@ -63,7 +65,7 @@ void BattleCastleApp_InitSpriteManager(BattleCastleAppSpriteManager *spriteMan, 
         Pokemon *mon;
 
         if (i == 3) {
-            if (challengeType == 0) {
+            if (challengeType == FRONTIER_CHALLENGE_SINGLE) {
                 mon = Party_GetPokemonBySlotIndex(party, 0);
             } else {
                 mon = Party_GetPokemonBySlotIndex(party, i);

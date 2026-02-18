@@ -1,5 +1,6 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_castle_scene.h"
+# include "generated/battle_frontier_challenge_types.h"
 
     .data
 
@@ -650,15 +651,15 @@ _03BC:
     .short 0xFD13
 
 _03C2:
-    FrontierScrCmd_3E 0x40BD, 0x8001
+    FrontierScrCmd_3E VAR_BATTLE_CASTLE_CHALLENGE_TYPE, 0x8001
     FrontierScrCmd_3E 0x4003, 0x8003
     FrontierScrCmd_3E 0x4002, 0x8004
     FrontierScrCmd_3E 0x4005, 0x8005
     FrontierScrCmd_3E 0x4006, 0x8006
     FrontierScrCmd_40 0x8007
     SetVar 0x800E, 0
-    GoToIfEq 0x8001, 2, _041E
-    GoToIfEq 0x8001, 3, _041E
+    GoToIfEq 0x8001, FRONTIER_CHALLENGE_MULTI, _041E
+    GoToIfEq 0x8001, FRONTIER_CHALLENGE_MULTI_WFC, _041E
     SetVar 0x800F, 231
     FrontierScrCmd_22 _0008
     FrontierScrCmd_24 _0024

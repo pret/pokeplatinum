@@ -1,5 +1,6 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/unk_0015.h"
+# include "generated/battle_frontier_challenge_types.h"
 
     .data
 
@@ -90,7 +91,7 @@ _010E:
     End
 
 _012F:
-    FrontierScrCmd_3D 0x40B8, 3
+    FrontierScrCmd_3D VAR_BATTLE_FACTORY_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
     FrontierScrCmd_3D 0x4003, 0
     GoTo _0143
     End
@@ -128,7 +129,7 @@ _01CA:
     FrontierScrCmd_B2 7, 4, 0, 0x8008
     SetVar 0x8004, 0
     SetVar 0x8009, 4
-    FrontierScrCmd_3D 0x40BD, 3
+    FrontierScrCmd_3D VAR_BATTLE_CASTLE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
     FrontierScrCmd_3D 0x4003, 0
     GoTo _0254
     End
@@ -137,7 +138,7 @@ _01F1:
     FrontierScrCmd_B2 7, 5, 0, 0x8008
     SetVar 0x8004, 0
     SetVar 0x8009, 5
-    FrontierScrCmd_3D 0x40BB, 3
+    FrontierScrCmd_3D VAR_BATTLE_HALL_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
     FrontierScrCmd_3D 0x4003, 0
     GoTo _0254
     End
@@ -146,7 +147,7 @@ _0218:
     FrontierScrCmd_B2 7, 6, 0, 0x8008
     SetVar 0x8004, 0
     SetVar 0x8009, 6
-    FrontierScrCmd_3D 0x40BE, 3
+    FrontierScrCmd_3D VAR_BATTLE_ARCADE_CHALLENGE_TYPE, FRONTIER_CHALLENGE_MULTI_WFC
     FrontierScrCmd_3D 0x4003, 0
     GoTo _0254
     End
