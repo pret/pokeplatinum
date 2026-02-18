@@ -5,7 +5,7 @@
 
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021DC9BC.h"
-#include "applications/pokedex/ov21_021E0C68.h"
+#include "applications/pokedex/pokedex_entry_display.h"
 #include "applications/pokedex/ov21_021E3FFC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -452,13 +452,13 @@ static void ov21_021E2E10(UnkStruct_ov21_021E2BA8 *param0)
     param0->unk_28 = 0;
     param0->unk_10->unk_14 = 0;
 
-    ov21_021E0CDC(param0->unk_18, 0);
+    PokedexEntryDisplay_SetAnimationMode(param0->unk_18, 0);
 
     switch (param0->unk_08) {
     case 0:
         param0->unk_10->unk_08 = 56;
         param0->unk_10->unk_0C = 80;
-        ov21_021E0CD4(param0->unk_18, 56, 80);
+        PokedexEntryDisplay_SetDisplayPosition(param0->unk_18, 56, 80);
         param0->unk_0C->unk_14 = 1;
         param0->unk_2C = 1;
         break;
@@ -563,15 +563,15 @@ static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param
     case 0:
         if (ov21_021E2EC0(param1)) {
             param0->unk_10->unk_14 = 2;
-            ov21_021E0CDC(param0->unk_18, 2);
+            PokedexEntryDisplay_SetAnimationMode(param0->unk_18, 2);
         } else {
             param0->unk_10->unk_14 = 1;
-            ov21_021E0CDC(param0->unk_18, 1);
+            PokedexEntryDisplay_SetAnimationMode(param0->unk_18, 1);
         }
 
         param0->unk_10->unk_08 = v0;
         param0->unk_10->unk_0C = v1;
-        ov21_021E0CD4(param0->unk_18, v0, v1);
+        PokedexEntryDisplay_SetDisplayPosition(param0->unk_18, v0, v1);
         break;
     case 1:
         if (ov21_021E2EC0(param1)) {

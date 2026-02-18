@@ -5,7 +5,7 @@
 
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021DE668.h"
-#include "applications/pokedex/ov21_021E0C68.h"
+#include "applications/pokedex/pokedex_entry_display.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -526,9 +526,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 3:
             if (v2->unk_38 & 2) {
                 if (v2->unk_10 == 1) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = PokedexEntryDisplay_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    PokedexEntryDisplay_SetDisplayMode(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -541,9 +541,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 4:
             if (v2->unk_38 & 4) {
                 if (v2->unk_10 == 2) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = PokedexEntryDisplay_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    PokedexEntryDisplay_SetDisplayMode(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -556,9 +556,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 5:
             if (v2->unk_38 & 8) {
                 if (v2->unk_10 == 3) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = PokedexEntryDisplay_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    PokedexEntryDisplay_SetDisplayMode(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -571,9 +571,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 6:
             if (v2->unk_38 & 16) {
                 if (v2->unk_10 == 4) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = PokedexEntryDisplay_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    PokedexEntryDisplay_SetDisplayMode(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -586,9 +586,9 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
         case 7:
             if (v2->unk_38 & 32) {
                 if (v2->unk_10 == 5) {
-                    v3 = ov21_021E0CE4(v1->unk_10);
+                    v3 = PokedexEntryDisplay_GetScreenStateCount(v1->unk_10);
                 } else {
-                    ov21_021E0CE8(v1->unk_10, 0);
+                    PokedexEntryDisplay_SetDisplayMode(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -981,8 +981,8 @@ static void ov21_021E275C(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
     case 3:
     case 4:
     case 5:
-        ov21_021E0CD4(param1->unk_10, v0, v1);
-        ov21_021E0CDC(param1->unk_10, 1);
+        PokedexEntryDisplay_SetDisplayPosition(param1->unk_10, v0, v1);
+        PokedexEntryDisplay_SetAnimationMode(param1->unk_10, 1);
         break;
     default:
         break;
@@ -1012,9 +1012,9 @@ static void ov21_021E27C0(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
         v0 = 48;
         v1 = 72;
 
-        ov21_021E0CDC(param1->unk_10, 2);
+        PokedexEntryDisplay_SetAnimationMode(param1->unk_10, 2);
         v2 = PokedexText_ForeignLanguage(param3 - 1);
-        ov21_021E0CF8(param1->unk_10, v2);
+        PokedexEntryDisplay_SetLanguage(param1->unk_10, v2);
         break;
     default:
         break;
@@ -1031,8 +1031,8 @@ static void ov21_021E27C0(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
     case 3:
     case 4:
     case 5:
-        ov21_021E0CD4(param1->unk_10, v0, v1);
-        ov21_021E0CDC(param1->unk_10, 2);
+        PokedexEntryDisplay_SetDisplayPosition(param1->unk_10, v0, v1);
+        PokedexEntryDisplay_SetAnimationMode(param1->unk_10, 2);
         break;
     default:
         break;
