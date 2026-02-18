@@ -68,13 +68,19 @@ enum ShadowPunchState {
 #define SHADOW_PUNCH_AFTERIMAGE2_G                 196
 #define SHADOW_PUNCH_AFTERIMAGE2_B                 196
 
-typedef struct {
-    BattleAnimScriptFuncCommon unk_00;
-    s16 unk_1C;
-    s16 unk_1E[8];
-    ManagedSprite *unk_30[8];
-    XYTransformContext unk_50;
-} UnkStruct_ov12_0222EC18;
+// -------------------------------------------------------------------
+// Frenzy Plant Sprite
+// -------------------------------------------------------------------
+
+#define FRENZY_PLANT_SPRITE_COUNT 8
+
+typedef struct FrenzyPlantSpriteContext {
+    BattleAnimScriptFuncCommon common;
+    s16 unused;
+    s16 lifetime[FRENZY_PLANT_SPRITE_COUNT];
+    ManagedSprite *sprites[FRENZY_PLANT_SPRITE_COUNT];
+    XYTransformContext pos;
+} FrenzyPlantSpriteContext;
 
 // -------------------------------------------------------------------
 // Role Play
@@ -318,145 +324,132 @@ void BattleAnimScriptFunc_ShadowPunch(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_ShadowPunch, ctx);
 }
 
-static void ov12_0222EC18(SysTask *param0, void *param1)
+static void BattleAnimTask_FrenzyPlantSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222EC18 *v0 = (UnkStruct_ov12_0222EC18 *)param1;
+    FrenzyPlantSpriteContext *v0 = (FrenzyPlantSpriteContext *)param;
 
     {
         int v1;
         int v2 = 0;
 
         for (v1 = 0; v1 < 8; v1++) {
-            v0->unk_1E[v1]++;
+            v0->lifetime[v1]++;
 
-            if (v0->unk_1E[v1] < 32) {
+            if (v0->lifetime[v1] < 32) {
                 continue;
             }
 
-            ov12_0222E248(v0->unk_30[v1]);
+            ov12_0222E248(v0->sprites[v1]);
 
-            if (v0->unk_1E[v1] >= 160) {
-                ManagedSprite_SetDrawFlag(v0->unk_30[v1], 0);
+            if (v0->lifetime[v1] >= 160) {
+                ManagedSprite_SetDrawFlag(v0->sprites[v1], 0);
                 v2++;
             }
         }
 
         if (v2 == 8) {
             for (v1 = 0; v1 < 8; v1++) {
-                Sprite_DeleteAndFreeResources(v0->unk_30[v1]);
+                Sprite_DeleteAndFreeResources(v0->sprites[v1]);
             }
 
-            BattleAnimSystem_EndAnimTask(v0->unk_00.battleAnimSys, param0);
+            BattleAnimSystem_EndAnimTask(v0->common.battleAnimSys, task);
             Heap_Free(v0);
             return;
         }
     }
 
-    SpriteSystem_DrawSprites(v0->unk_00.primarySpriteManager);
+    SpriteSystem_DrawSprites(v0->common.primarySpriteManager);
 }
 
-void ov12_0222EC90(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_FrenzyPlant(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222EC18 *v0 = NULL;
+    FrenzyPlantSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(FrenzyPlantSpriteContext));
+    ctx->unused = 10;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_0222EC18));
-    v0->unk_1C = 10;
+    BattleAnimSystem_GetCommonData(system, &ctx->common);
 
-    BattleAnimSystem_GetCommonData(param0, &v0->unk_00);
+    int i;
+    // Separate declaration and assignment required to match
+    SpriteTemplate template;
 
-    {
-        int v1;
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->common.battleAnimSys);
+    ctx->sprites[0] = sprite;
 
-        {
-            s16 v2, v3;
-            SpriteTemplate v4;
+    for (i = 1; i < FRENZY_PLANT_SPRITE_COUNT; i++) {
+        ctx->sprites[i] = SpriteSystem_NewSprite(ctx->common.spriteSystem, ctx->common.primarySpriteManager, &template);
 
-            v4 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00.battleAnimSys);
-            v0->unk_30[0] = param3;
-
-            for (v1 = 1; v1 < 8; v1++) {
-                v0->unk_30[v1] = SpriteSystem_NewSprite(v0->unk_00.spriteSystem, v0->unk_00.primarySpriteManager, &v4);
-
-                if (v1 % 2) {
-                    ManagedSprite_SetFlipMode(v0->unk_30[v1], 1);
-                }
-            }
-        }
-
-        {
-            PokemonSprite *v5;
-            s16 v6, v7, v8, v9;
-
-            v5 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSys, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSys));
-            v6 = PokemonSprite_GetAttribute(v5, MON_SPRITE_X_CENTER);
-            v8 = PokemonSprite_GetAttribute(v5, MON_SPRITE_Y_CENTER);
-            v5 = BattleAnimSystem_GetBattlerSprite(v0->unk_00.battleAnimSys, BattleAnimSystem_GetDefender(v0->unk_00.battleAnimSys));
-            v7 = PokemonSprite_GetAttribute(v5, MON_SPRITE_X_CENTER);
-            v9 = PokemonSprite_GetAttribute(v5, MON_SPRITE_Y_CENTER);
-
-            PosLerpContext_Init(&v0->unk_50, v6, v7, v8, v9, (8 + 2) * 2);
-        }
-
-        {
-            BOOL v10;
-            int v11 = 0;
-            int v12 = 0;
-            int v13 = 0;
-
-            if (BattleAnimUtil_GetBattlerSide(v0->unk_00.battleAnimSys, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSys)) == 0x4) {
-                v13 = 1;
-            }
-
-            do {
-                v10 = PosLerpContext_Update(&v0->unk_50);
-
-                if (v11 % 2) {
-                    if (v13 == 0) {
-                        if (v12 < 8) {
-                            ManagedSprite_SetPositionXY(v0->unk_30[v12], v0->unk_50.x, v0->unk_50.y);
-                            v12++;
-                        }
-                    } else {
-                        v13 = 0;
-                    }
-                }
-
-                v11++;
-            } while (v10 == 1);
-        }
-
-        {
-            int v14 = BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 1);
-            int v15 = BattleAnimSystem_GetBgPriority(v0->unk_00.battleAnimSys, 2);
-
-            for (v1 = 0; v1 < 8; v1++) {
-                v0->unk_1E[v1] = (8 - v1) * 4;
-
-                if (BattleAnimSystem_IsContest(v0->unk_00.battleAnimSys) == 0) {
-                    if (BattleAnimUtil_GetBattlerSide(v0->unk_00.battleAnimSys, BattleAnimSystem_GetAttacker(v0->unk_00.battleAnimSys)) == 0x3) {
-                        if (v1 < 4) {
-                            ManagedSprite_SetExplicitPriority(v0->unk_30[v1], v15);
-                        } else {
-                            ManagedSprite_SetExplicitPriority(v0->unk_30[v1], v14);
-                        }
-                    } else {
-                        if (v1 >= 4) {
-                            ManagedSprite_SetExplicitPriority(v0->unk_30[v1], v15);
-                        } else {
-                            ManagedSprite_SetExplicitPriority(v0->unk_30[v1], v14);
-                        }
-                    }
-
-                    ManagedSprite_SetPriority(v0->unk_30[v1], 8 - v1);
-                } else {
-                    ManagedSprite_SetPriority(v0->unk_30[v1], v1);
-                    ManagedSprite_SetExplicitPriority(v0->unk_30[v1], v15);
-                }
-            }
+        if (i % 2) {
+            ManagedSprite_SetFlipMode(ctx->sprites[i], TRUE);
         }
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00.battleAnimSys, ov12_0222EC18, v0);
+    PokemonSprite *monSprite;
+    s16 attackerX, defenderX, attackerY, defenderY;
+
+    monSprite = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys));
+    attackerX = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_X_CENTER);
+    attackerY = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_Y_CENTER);
+    monSprite = BattleAnimSystem_GetBattlerSprite(ctx->common.battleAnimSys, BattleAnimSystem_GetDefender(ctx->common.battleAnimSys));
+    defenderX = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_X_CENTER);
+    defenderY = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_Y_CENTER);
+
+    // This section here evenly spreads the roots between attacker and defender
+    PosLerpContext_Init(&ctx->pos, attackerX, defenderX, attackerY, defenderY, (FRENZY_PLANT_SPRITE_COUNT + 2) * 2);
+
+    BOOL active;
+    int frame = 0;
+    int spriteIdx = 0;
+    BOOL skip = FALSE;
+    if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys)) == BTLSCR_ENEMY) {
+        skip = TRUE;
+    }
+
+    do {
+        active = PosLerpContext_Update(&ctx->pos);
+
+        if (frame % 2) {
+            if (skip == FALSE) {
+                if (spriteIdx < 8) {
+                    ManagedSprite_SetPositionXY(ctx->sprites[spriteIdx], ctx->pos.x, ctx->pos.y);
+                    spriteIdx++;
+                }
+            } else {
+                skip = FALSE;
+            }
+        }
+
+        frame++;
+    } while (active == TRUE);
+
+    int baseBgPriority = BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_BASE);
+    int effectBgPriority = BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_EFFECT);
+
+    for (i = 0; i < FRENZY_PLANT_SPRITE_COUNT; i++) {
+        ctx->lifetime[i] = (FRENZY_PLANT_SPRITE_COUNT - i) * 4;
+
+        if (BattleAnimSystem_IsContest(ctx->common.battleAnimSys) == FALSE) {
+            if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys)) == 0x3) {
+                if (i < 4) {
+                    ManagedSprite_SetExplicitPriority(ctx->sprites[i], effectBgPriority);
+                } else {
+                    ManagedSprite_SetExplicitPriority(ctx->sprites[i], baseBgPriority);
+                }
+            } else {
+                if (i >= 4) {
+                    ManagedSprite_SetExplicitPriority(ctx->sprites[i], effectBgPriority);
+                } else {
+                    ManagedSprite_SetExplicitPriority(ctx->sprites[i], baseBgPriority);
+                }
+            }
+
+            ManagedSprite_SetPriority(ctx->sprites[i], FRENZY_PLANT_SPRITE_COUNT - i);
+        } else {
+            ManagedSprite_SetPriority(ctx->sprites[i], i);
+            ManagedSprite_SetExplicitPriority(ctx->sprites[i], effectBgPriority);
+        }
+    }
+
+    BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_FrenzyPlantSprite, ctx);
 }
 
 static void BattleAnimTask_RolePlay(SysTask *task, void *param)
