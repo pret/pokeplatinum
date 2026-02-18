@@ -36,14 +36,14 @@
 #define POKEDEX_TYPE_ICON_BACKGROUND_BOX_CELL 0x11
 
 typedef struct {
-    int *displayWorkData;  // Work data pointer set from ov21_021D138C
-    PokedexSortData *sortData;  // Pokemon sort/listing data
-    int displayPositionX;  // X coordinate for display position animation
-    int displayPositionY;  // Y coordinate for display position animation
-    const PokedexScreenManager *screenManager;  // Screen manager reference
-    int animationMode;  // Display animation mode (0=position+blend, 1=blend, 2=position)
-    int languageID;  // Selected language for text display
-    int displayAllInfoFlag;  // Flag to display all info or selective info
+    int *displayWorkData; // Work data pointer set from ov21_021D138C
+    PokedexSortData *sortData; // Pokemon sort/listing data
+    int displayPositionX; // X coordinate for display position animation
+    int displayPositionY; // Y coordinate for display position animation
+    const PokedexScreenManager *screenManager; // Screen manager reference
+    int animationMode; // Display animation mode (0=position+blend, 1=blend, 2=position)
+    int languageID; // Selected language for text display
+    int displayAllInfoFlag; // Flag to display all info or selective info
 } PokedexEntryDisplayState;
 
 typedef struct {

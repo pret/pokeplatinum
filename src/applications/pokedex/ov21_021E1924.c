@@ -5,10 +5,10 @@
 
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021DE668.h"
-#include "applications/pokedex/pokedex_entry_display.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
+#include "applications/pokedex/pokedex_entry_display.h"
 #include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"
