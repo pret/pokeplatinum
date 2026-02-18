@@ -1400,7 +1400,7 @@ static void ov5_021EDE3C(UnkStruct_ov5_021ED0A4 *param0, u32 param1, BillboardRe
         int v0 = ov5_021EDD2C(param1);
         void *v1 = ResourceHeap_GetItemData(param0->unk_F8, v0);
 
-        param2->model = v1;
+        param2->modelRes = v1;
     }
 
     {

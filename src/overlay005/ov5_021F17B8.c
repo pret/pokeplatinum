@@ -293,7 +293,7 @@ static void ov5_021F1A8C(OverworldAnimManager *param0, UnkStruct_ov5_021F1A24 *p
     }
 
     v1 = ov5_021DF9FC(param1->unk_14.unk_04, 2);
-    v3.model = v1;
+    v3.modelRes = v1;
 
     OverworldAnimManager_GetPosition(param0, &v2);
 
@@ -311,7 +311,7 @@ static void ov5_021F1AD8(OverworldAnimManager *param0, UnkStruct_ov5_021F1AD8 *p
     BillboardResources v3 = param1->unk_04.unk_0C;
 
     v1 = ov5_021DF9FC(param1->unk_04.unk_04, 2);
-    v3.model = v1;
+    v3.modelRes = v1;
 
     OverworldAnimManager_GetPosition(param0, &v2);
     param1->unk_3C = ov5_021DF7F8(param1->unk_04.unk_04, &v3, &v2);

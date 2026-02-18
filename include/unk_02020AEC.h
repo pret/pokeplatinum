@@ -44,7 +44,7 @@ typedef struct BillboardList {
     u8 active;
     u8 draw;
     u8 unused;
-    u8 unk_03;
+    u8 redraw;
     Billboard *billboards;
     int capacity;
     Billboard sentinelData;
@@ -55,7 +55,7 @@ typedef struct BillboardList {
 } BillboardList;
 
 typedef struct BillboardResources {
-    void *model;
+    void *modelRes;
     const NNSG3dResTex *texture;
     const UnkStruct_020217F4 *unk_08;
     UnkStruct_02024184 unk_0C;
@@ -81,13 +81,13 @@ typedef struct UnkStruct_ov5_021ED110 {
     BillboardResources *unk_04;
 } UnkStruct_ov5_021ED110;
 
-void Billboard_Reset(Billboard *param0);
-void BillboardLists_New(int param0, enum HeapID heapID);
+void Billboard_Reset(Billboard *billboard);
+void BillboardLists_New(int count, enum HeapID heapID);
 void BillboardLists_Delete(void);
 void BillboardLists_Draw(void);
-BillboardList *BillboardList_New(const BillboardListParams *param0);
-BOOL BillboardList_Delete(BillboardList *param0);
-BOOL sub_02020D14(BillboardList *param0);
+BillboardList *BillboardList_New(const BillboardListParams *params);
+BOOL BillboardList_Delete(BillboardList *list);
+BOOL BillboardList_DeleteAll(BillboardList *list);
 BOOL sub_02020D50(BillboardList *param0);
 void sub_02020D68(BillboardList *param0);
 Billboard *sub_0202119C(const BillboardListTemplate *param0);
