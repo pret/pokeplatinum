@@ -29,7 +29,7 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_0202CC64.h"
+#include "chatot_cry_data.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 

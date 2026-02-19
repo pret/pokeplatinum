@@ -66,7 +66,7 @@
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_0202ACE0.h"
-#include "unk_0202CC64.h"
+#include "chatot_cry_data.h"
 #include "unk_0202D778.h"
 #include "unk_0202F180.h"
 #include "unk_0203061C.h"

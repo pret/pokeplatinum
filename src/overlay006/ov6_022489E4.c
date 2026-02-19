@@ -13,7 +13,7 @@
 #include "heap.h"
 #include "pokemon.h"
 #include "string_gf.h"
-#include "unk_0202CC64.h"
+#include "chatot_cry_data.h"
 
 typedef struct {
     u8 unk_00;

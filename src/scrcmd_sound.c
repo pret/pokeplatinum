@@ -9,7 +9,7 @@
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "system.h"
-#include "unk_0202CC64.h"
+#include "chatot_cry_data.h"
 #include "unk_020553DC.h"
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);

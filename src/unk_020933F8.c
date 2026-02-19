@@ -54,7 +54,7 @@
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
 #include "unk_020298BC.h"
-#include "unk_0202CC64.h"
+#include "chatot_cry_data.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"

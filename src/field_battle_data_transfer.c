@@ -51,7 +51,7 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202CC64.h"
+#include "chatot_cry_data.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 #include "unk_020559DC.h"

@@ -54,7 +54,7 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_0202CC64.h"
+#include "chatot_cry_data.h"
 #include "unk_0202D778.h"
 
 #include "constdata/const_020F410C.h"
