@@ -407,17 +407,17 @@ u16 ov104_0223BC24(u16 param0)
     return param0;
 }
 
-void ov104_0223BC2C(BattleFrontier *frontier, u8 param1, int param2)
+void ov104_0223BC2C(BattleFrontier *frontier, u8 challengeType, int castlePoints)
 {
     u16 v0;
 
-    sub_02030824(frontier, sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), param2);
-    v0 = sub_02030698(frontier, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)));
+    sub_02030824(frontier, sub_0205E630(challengeType), sub_0205E6A8(sub_0205E630(challengeType)), castlePoints);
+    v0 = sub_02030698(frontier, sub_0205E658(challengeType), sub_0205E6A8(sub_0205E658(challengeType)));
 
-    if (v0 + param2 > 9999) {
-        sub_020306E4(frontier, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)), 9999);
+    if (v0 + castlePoints > 9999) {
+        sub_020306E4(frontier, sub_0205E658(challengeType), sub_0205E6A8(sub_0205E658(challengeType)), 9999);
     } else {
-        sub_02030804(frontier, sub_0205E658(param1), sub_0205E6A8(sub_0205E658(param1)), param2);
+        sub_02030804(frontier, sub_0205E658(challengeType), sub_0205E6A8(sub_0205E658(challengeType)), castlePoints);
     }
 
     return;

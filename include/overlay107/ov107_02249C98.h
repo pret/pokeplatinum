@@ -4,10 +4,14 @@
 #include "savedata.h"
 #include "string_template.h"
 
-u8 ov107_02249C98(u8 param0, u8 param1);
-u8 ov107_02249C9C(u8 param0, u8 param1);
-u8 ov107_02249CAC(SaveData *saveData, u8 param1, u8 param2);
-void ov107_02249CE0(u32 param0, u16 param1);
-void ov107_02249CF4(StringTemplate *template, u32 idx);
+#define BATTLE_CASTLE_RANK_HEALING          0
+#define BATTLE_CASTLE_RANK_RENTALS          1
+#define BATTLE_CASTLE_RANK_OPPONENT_SUMMARY 2
+
+u8 BattleCastleApp_GetSelectedSlot(u8 numSlots, u8 slot);
+u8 BattleCastleApp_GetSlotFromSlotID(u8 exitSlot, u8 slotID);
+u8 BattleCastleApp_GetRank(SaveData *saveData, u8 challengeType, u8 rankType);
+void BattleCastleApp_PlaySound(u32 input, u16 seqID);
+void BattleCastleApp_SetPartnerName(StringTemplate *template, u32 idx);
 
 #endif // POKEPLATINUM_OV107_02249C98_H

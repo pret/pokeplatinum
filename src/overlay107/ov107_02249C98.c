@@ -4,6 +4,7 @@
 
 #include "communication_information.h"
 #include "communication_system.h"
+#include "list_menu.h"
 #include "savedata.h"
 #include "sound_playback.h"
 #include "string_template.h"
@@ -11,33 +12,33 @@
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
 
-u8 ov107_02249C98(u8 param0, u8 param1)
+u8 BattleCastleApp_GetSelectedSlot(u8 numSlots, u8 slot)
 {
-    return param1;
+    return slot;
 }
 
-u8 ov107_02249C9C(u8 param0, u8 param1)
+u8 BattleCastleApp_GetSlotFromSlotID(u8 exitSlot, u8 slotID)
 {
-    if (param1 < param0) {
-        return param1;
+    if (slotID < exitSlot) {
+        return slotID;
     }
 
-    return param1 - param0;
+    return slotID - exitSlot;
 }
 
-u8 ov107_02249CAC(SaveData *saveData, u8 param1, u8 param2)
+u8 BattleCastleApp_GetRank(SaveData *saveData, u8 challengeType, u8 rankType)
 {
-    return sub_02030698(SaveData_GetBattleFrontier(saveData), sub_0205E5B4(param1, param2), sub_0205E6A8(sub_0205E5B4(param1, param2)));
+    return sub_02030698(SaveData_GetBattleFrontier(saveData), sub_0205E5B4(challengeType, rankType), sub_0205E6A8(sub_0205E5B4(challengeType, rankType)));
 }
 
-void ov107_02249CE0(u32 param0, u16 param1)
+void BattleCastleApp_PlaySound(u32 input, u16 seqID)
 {
-    if (param0 != 0xffffffff) {
-        Sound_PlayEffect(param1);
+    if (input != LIST_NOTHING_CHOSEN) {
+        Sound_PlayEffect(seqID);
     }
 }
 
-void ov107_02249CF4(StringTemplate *template, u32 idx)
+void BattleCastleApp_SetPartnerName(StringTemplate *template, u32 idx)
 {
     TrainerInfo *partner = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     StringTemplate_SetPlayerName(template, idx, partner);

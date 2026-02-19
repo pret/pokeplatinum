@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/graphics.h"
+#include "constants/scrcmd.h"
 
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
@@ -36,6 +37,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -62,6 +64,19 @@
 
 FS_EXTERN_OVERLAY(overlay104);
 
+#define NUM_MONS_MAX 4
+
+#define LEVEL_ADJUSTMENT_NONE   0
+#define LEVEL_ADJUSTMENT_UP_5   1
+#define LEVEL_ADJUSTMENT_DOWN_5 2
+
+#define CP_COST_CHECK_IDENTITY 1
+#define CP_COST_LEVEL_UP       1
+#define CP_COST_LEVEL_DOWN     15
+#define CP_COST_SHOW_STATS     2
+#define CP_COST_SHOW_MOVES     5
+#define CP_COST_RANK_UP        50
+
 #define MENU_ENTRY_CHECK           0
 #define MENU_ENTRY_LEVEL           1
 #define MENU_ENTRY_SUMMARY         2
@@ -69,30 +84,64 @@ FS_EXTERN_OVERLAY(overlay104);
 #define MENU_ENTRY_MOVES           4
 #define MENU_ENTRY_RANK_UP_SUMMARY 5
 
+#define COMM_CMD_PLAYER_INFO   20
+#define COMM_CMD_PURCHASE_INFO 21
+#define COMM_CMD_UPDATE_CURSOR 22
+#define COMM_CMD_EXIT_APP      23
+
+enum BattleCastleAppState {
+    STATE_FADE_IN = 0,
+    STATE_MAIN_FLOW,
+    STATE_SYNC_PURCHASE,
+    STATE_SYNC_BEFORE_EXIT,
+    STATE_FADE_OUT
+};
+
+enum BattleCastleAppMainSubState {
+    MAIN_SUBSTATE_INIT = 0,
+    MAIN_SUBSTATE_SELECT_MON,
+    MAIN_SUBSTATE_MON_OPTIONS_MENU,
+    MAIN_SUBSTATE_REVEAL_MON_SLOT_YES_NO,
+    MAIN_SUBSTATE_CHANGE_LEVEL_MENU,
+    MAIN_SUBSTATE_CHANGE_LEVEL_YES_NO,
+    MAIN_SUBSTATE_SUMMARY_MENU,
+    MAIN_SUBSTATE_UNLOCK_MONS_STATS_YES_NO,
+    MAIN_SUBSTATE_UNLOCK_MONS_MOVES_YES_NO,
+    MAIN_SUBSTATE_RANK_UP_SUMMARY_YES_NO,
+    MAIN_SUBSTATE_WAIT_RANK_UP_SUMMARY_MSG,
+    MAIN_SUBSTATE_UPDATE_AFTER_OPTION_PURCHASE,
+    MAIN_SUBSTATE_UPDATE_AFTER_SUMMARY_PURCHASE,
+    MAIN_SUBSTATE_SHOW_SUMMARY_DISPLAY,
+    MAIN_SUBSTATE_WAIT_RETURN_TO_SUMMARY_MENU,
+    MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION,
+    MAIN_SUBSTATE_SHOW_STATS_DISPLAY,
+    MAIN_SUBSTATE_SHOW_MOVES_DISPLAY,
+};
+
 typedef struct BattleCastleOpponentApp {
     ApplicationManager *appMan;
     BattleFrontier *frontier;
     u8 subState;
     u8 challengeType;
     u8 printerID;
-    u8 unk_0B;
-    u8 unk_0C;
-    u8 unk_0D;
-    u8 unk_0E;
-    u8 unk_0F_0 : 1;
+    u8 unused;
+    u8 previousSlot;
+    u8 selectedMonSlot;
+    u8 levelAdjustment;
+    u8 arrowSpriteVisible : 1;
     u8 listMenuIsOpen : 1;
     u8 simpleMenuIsOpen : 1;
-    u8 unk_0F_3 : 5;
-    u8 unk_10;
-    u8 unk_11;
-    u8 unk_12;
-    u8 unk_13;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17;
-    u16 unk_18;
-    u16 unk_1A;
+    u8 syncPurchaseState : 5;
+    u8 syncPurchaseAction;
+    u8 slotID;
+    u8 selectedLevelAdjustment;
+    u8 selectedMenuEntry;
+    u8 numSlots;
+    u8 exitSlot;
+    u8 syncDelay;
+    u8 msgsReceived;
+    u16 menuPos;
+    u16 unused2;
     u16 monMenuListPos;
     u16 monMenuCursorPos;
     MessageLoader *msgLoader;
@@ -100,7 +149,7 @@ typedef struct BattleCastleOpponentApp {
     String *displayStr;
     String *fmtStr;
     String *simpleMenuStr[3];
-    u16 unk_3C[8];
+    u16 unused3[8];
     BgConfig *bgConfig;
     Window windows[NUM_OPPONENT_APP_WINDOWS];
     MenuTemplate simpleMenuTemplate;
@@ -115,51 +164,55 @@ typedef struct BattleCastleOpponentApp {
     UnkStruct_020302DC *unk_150;
     UnkStruct_0203041C *unk_154;
     BattleCastleAppSpriteManager spriteMan;
-    BattleCastleAppSprite *monSprites[4];
-    BattleCastleAppSprite *ballSprites[4];
-    BattleCastleAppSprite *unk_388;
+    BattleCastleAppSprite *monSprites[NUM_MONS_MAX];
+    BattleCastleAppSprite *ballSprites[NUM_MONS_MAX];
+    BattleCastleAppSprite *arrowSprite;
     BattleCastleAppSprite *cursorSprite;
-    BattleCastleAppSprite *unk_390;
-    BattleCastleAppSprite *barSprites[4];
-    BattleCastleAppSprite *unk_3A4[4][2];
-    BattleCastleAppSprite *unk_3C4;
-    u16 *unk_3C8;
-    u8 *unk_3CC;
-    u8 *unk_3D0;
-    u8 *unk_3D4;
-    u8 *unk_3D8;
-    Party *unk_3DC;
+    BattleCastleAppSprite *partnerCursorSprite;
+    BattleCastleAppSprite *barSprites[NUM_MONS_MAX];
+    BattleCastleAppSprite *flagSprites[NUM_MONS_MAX][2];
+    BattleCastleAppSprite *sparklesSprite;
+    u16 *selectedMonSlotPtr;
+    u8 *identityUnlockedForSlot;
+    u8 *levelAdjustmentForSlot;
+    u8 *statsUnlockedForSlot;
+    u8 *movesUnlockedForSlot;
+    Party *opponentsParty;
     NARC *narc;
-    u16 unk_3E4[40];
-    u8 unk_434;
-    u8 unk_435;
-    u8 unk_436;
-    u8 unk_437[3];
-    u16 unk_43A;
-    u32 unk_43C;
+    u16 commPayload[40];
+    u8 partnersSelectedSlot;
+    u8 partnerSlot;
+    u8 partnerIsExiting;
+    u8 partnersRanks[3];
+    u16 partnersCP;
+    u32 unused4;
 } BattleCastleOpponentApp;
 
 static BOOL State_FadeInApp(BattleCastleOpponentApp *app);
-static void ov107_02246274(BattleCastleOpponentApp *param0);
-static BOOL ov107_022462CC(BattleCastleOpponentApp *param0);
-static BOOL ov107_02246BDC(BattleCastleOpponentApp *param0);
-static BOOL ov107_02246CD0(BattleCastleOpponentApp *param0);
+static BOOL State_MainAppFlow(BattleCastleOpponentApp *app);
+static BOOL State_SyncPurchase(BattleCastleOpponentApp *app);
+static BOOL State_SyncBeforeExit(BattleCastleOpponentApp *app);
 static BOOL State_FadeOutApp(BattleCastleOpponentApp *app);
-static void FreeAssets(BattleCastleOpponentApp *app);
-static void InitGraphicsPlane(void);
+static void ChangeState(BattleCastleOpponentApp *app, int *state, enum BattleCastleAppState newState);
+
 static void LoadAssets(BattleCastleOpponentApp *app);
+static void InitGraphicsPlane(void);
 static void InitSpriteManager(BattleCastleOpponentApp *app);
-static void LoadBackgrounds(BattleCastleOpponentApp *app);
-static void FreeBackgrounds(BgConfig *bgConfig);
-static void VBlankCallback(void *data);
-static void SetGXBanks(void);
 static void InitBackgrounds(BgConfig *bgConfig);
+static void LoadBackgrounds(BattleCastleOpponentApp *app);
 static void LoadMainBackground(BattleCastleOpponentApp *app, enum BgLayer bgLayer);
 static void LoadPalette(void);
 static void LoadSummaryBackground(BattleCastleOpponentApp *app, enum BgLayer bgLayer);
 static void LoadMovesListBackground(BattleCastleOpponentApp *app, enum BgLayer bgLayer);
 static void LoadPalette2(void);
 static void LoadSubScreenBackground(BattleCastleOpponentApp *app, enum BgLayer bgLayer);
+static void SetGXBanks(void);
+static void VBlankCallback(void *data);
+static void ShowAppMainDisplay(BattleCastleOpponentApp *app);
+
+static void FreeAssets(BattleCastleOpponentApp *app);
+static void FreeBackgrounds(BgConfig *bgConfig);
+
 static u8 PrintLeftAlignedMessageWithBg(BattleCastleOpponentApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font);
 static u8 PrintMessageWithBg(BattleCastleOpponentApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, enum TextAlignment alignment);
 static u8 PrintLeftAlignedMessage(BattleCastleOpponentApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font);
@@ -171,71 +224,69 @@ static void PrintAllMoves(BattleCastleOpponentApp *app, Window *window, Pokemon 
 static void PrintMoveInfo(BattleCastleOpponentApp *app, Window *window, u8 idx, u32 moveNameEntryID, u32 ppEntryID, Pokemon *mon, u32 moveParam, u32 ppParam, u32 maxPpParam);
 static void PrintAllMonsHP(BattleCastleOpponentApp *app, Window *window);
 static void PrintAllMonsLevelAndGender(BattleCastleOpponentApp *app, Window *window);
+static void SetStringTemplateNumber(BattleCastleOpponentApp *app, u32 idx, s32 num, u32 maxDigits, enum PaddingMode paddingMode);
+static void SetStringTemplateSpecies(BattleCastleOpponentApp *app, u32 idx, BoxPokemon *boxMon);
+static void PrintPlayerName(BattleCastleOpponentApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font);
+static void PrintPartnersName(BattleCastleOpponentApp *app, Window *window, u32 xOffset, u32 yOffset, u8 unused);
+static void PrintGenderSymbol(BattleCastleOpponentApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font, u8 gender);
+static void PrintMonSelectionStrings(BattleCastleOpponentApp *app);
+static void PrintPlayersAndPartnersCastlePoints(BattleCastleOpponentApp *app, Window *window);
+static void PrintCostOfLevelAdjustment(BattleCastleOpponentApp *app, u8 adjustment);
+static void PrintPlayersAndPartnersNames(BattleCastleOpponentApp *app, Window *window);
+
 static void InitSimpleMenu(BattleCastleOpponentApp *app, Window *window, u8 numOptions);
 static void AddStringToSimpleMenu(BattleCastleOpponentApp *app, u8 strIndex, u8 listIndex, int entryID);
 static void OpenYesNoMenu(BattleCastleOpponentApp *app);
 static void OpenLevelMenu(BattleCastleOpponentApp *app);
 static void InitMonOptionsMenu(BattleCastleOpponentApp *app);
-static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 param1, u8 onInit);
+static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit);
 static void InitSummaryMenu(BattleCastleOpponentApp *app);
 static void UpdateSummaryMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit);
 static void SetSummaryMenuEntryColor(ListMenu *menu, u32 item, u8 yOffset);
-static void SetStringTemplateNumber(BattleCastleOpponentApp *app, u32 idx, s32 num, u32 maxDigits, enum PaddingMode paddingMode);
-static void SetStringTemplateSpecies(BattleCastleOpponentApp *app, u32 idx, BoxPokemon *boxMon);
 static void SetStringTemplatePlayerName(BattleCastleOpponentApp *app, u32 idx);
-static void PrintPlayerName(BattleCastleOpponentApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font);
-static void PrintPartnersName(BattleCastleOpponentApp *app, Window *window, u32 xOffset, u32 yOffset, u8 unused);
-static void PrintGenderSymbol(BattleCastleOpponentApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font, u8 gender);
-static void PrintMonSelectionStrings(BattleCastleOpponentApp *app);
 static void CloseMonSelectionMessageBox(BattleCastleOpponentApp *app);
 static void OpenMonOptionsMenu(BattleCastleOpponentApp *app);
-static void CloseListMenu(BattleCastleOpponentApp *app);
 static void OpenSummaryMenu(BattleCastleOpponentApp *app);
+
+static void CloseListMenu(BattleCastleOpponentApp *app);
 static void FreeListMenu2(BattleCastleOpponentApp *app);
-static void ChangeState(BattleCastleOpponentApp *app, int *state, int newState);
-static void ov107_02248358(BattleCastleOpponentApp *param0, int param1);
-static void ov107_022483F0(BattleCastleOpponentApp *param0);
-static void ov107_02248420(BattleCastleOpponentApp *param0, u8 param1, u8 param2);
+
+static void UpdateSelectedMon(BattleCastleOpponentApp *app, int unused);
+static void UpdateCursorPosition(BattleCastleOpponentApp *app);
+static void UpdateCursorSprite(BattleCastleOpponentApp *app, u8 slot, u8 isPartners);
 static void GetCursorSpritePos(BattleCastleOpponentApp *app, u32 *x, u32 *y, u8 slot);
-static void ov107_022484DC(BattleCastleOpponentApp *param0, u16 *param1, u16 *param2, u16 *param3, u16 *param4);
-static BOOL ov107_0224850C(BattleCastleOpponentApp *param0, u8 param1, u8 param2);
-static BOOL ov107_02248674(BattleCastleOpponentApp *param0, u8 param1, u8 param2);
-static u16 ov107_02248770(u8 param0);
-static void ov107_0224877C(BattleCastleOpponentApp *param0, s8 param1);
-static void ov107_022487DC(BattleCastleOpponentApp *param0, s8 param1);
-static void ov107_0224883C(BattleCastleOpponentApp *param0);
+static void GetOffsetsForPlayerInfo(BattleCastleOpponentApp *app, u16 *playerX, u16 *playerY, u16 *partnerX, u16 *partnerY);
+static BOOL UpdateAfterPurchase(BattleCastleOpponentApp *app, u8 selectedSlot, u8 menuOption);
+static BOOL UpdateAfterSyncPurchase(BattleCastleOpponentApp *app, u8 selectedSlot, u8 menuOption);
+static u16 GetCostOfLevelAdjustment(u8 adjustment);
+static void ChangeSelectedMonOnSummaryDisplay(BattleCastleOpponentApp *app, s8 step);
+static void ChangeSelectedMonOnMoveDisplay(BattleCastleOpponentApp *app, s8 step);
+static void CloseAllSubDisplays(BattleCastleOpponentApp *app);
 static void CloseMessageBox(Window *window);
-BOOL ov107_02248874(BattleCastleOpponentApp *param0, u16 param1, u16 param2);
-void ov107_022488CC(BattleCastleOpponentApp *param0, u16 param1);
-void ov107_02248910(int param0, int param1, void *param2, void *param3);
-void ov107_02248940(BattleCastleOpponentApp *param0, u16 param1, u16 param2);
-void ov107_022489D0(BattleCastleOpponentApp *param0, u16 param1);
-void ov107_022489E0(int param0, int param1, void *param2, void *param3);
-void ov107_02248A04(BattleCastleOpponentApp *param0);
-void ov107_02248A10(int param0, int param1, void *param2, void *param3);
-static void ov107_02248A2C(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_02248A74(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_02248A8C(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_02248AF0(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_02248B38(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_02248B50(BattleCastleOpponentApp *param0, u8 param1);
-static void FreeSimpleMenu(BattleCastleOpponentApp *app);
-static void ov107_02248BEC(BattleCastleOpponentApp *param0);
-static void ov107_02248C08(BattleCastleOpponentApp *param0, Window *window);
-static void ov107_02248E54(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_02248E84(BattleCastleOpponentApp *param0, Window *param1);
-static void ov107_02248F18(BattleCastleOpponentApp *param0, u8 param1, u8 param2);
-static void ov107_02249024(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_022490E8(BattleCastleOpponentApp *param0, u8 param1, u8 param2);
 static void CloseSummaryScreen(BattleCastleOpponentApp *app);
+static BOOL SendCommMessage(BattleCastleOpponentApp *app, u16 cmd, u16 slot);
+static void CreatePlayerInfoPayload(BattleCastleOpponentApp *app, u16 cmd);
+static void CreatePurchaseInfoPayload(BattleCastleOpponentApp *app, u16 cmd, u16 slot);
+static void CreateUpdateCursorPayload(BattleCastleOpponentApp *app, u16 cmd);
+static void CreateExitAppPayload(BattleCastleOpponentApp *app);
+static void ShowMonSummary(BattleCastleOpponentApp *app, u8 slot);
+static void UnlockStatsForSlot(BattleCastleOpponentApp *app, u8 slot);
+static void BuyStatsDisplay(BattleCastleOpponentApp *app, u8 slot);
+static void ShowMovesList(BattleCastleOpponentApp *app, u8 slot);
+static void UnlockMovesForSlot(BattleCastleOpponentApp *app, u8 slot);
+static void BuyMovesListDisplay(BattleCastleOpponentApp *app, u8 slot);
+static void FreeSimpleMenu(BattleCastleOpponentApp *app);
+static void DrawMessageBox(BattleCastleOpponentApp *app);
+static void SpendCastlePointsInSync(BattleCastleOpponentApp *app, u8 slotID, u8 menuOption);
+static void RevealPokemonInSlot(BattleCastleOpponentApp *app, u8 slot);
+static void UpdateLevelAdjustment(BattleCastleOpponentApp *app, u8 slot, u8 adjustment);
 static void FreeListMenu(BattleCastleOpponentApp *app);
-static void ov107_022492A8(BattleCastleOpponentApp *param0);
-static BOOL ov107_0224933C(BattleCastleOpponentApp *param0, u16 param1, u16 param2);
-static void ov107_022493CC(BattleCastleOpponentApp *param0, u8 param1, u8 param2);
-static void ov107_02249580(BattleCastleOpponentApp *param0);
-static void ov107_022495A8(BattleCastleOpponentApp *param0, u8 param1);
-static void ov107_022495E4(BattleCastleOpponentApp *app, u32 *x, u32 *y);
-extern void ov107_2247650(void);
+static void UpdatePokemonGraphics(BattleCastleOpponentApp *app);
+static BOOL TryToBuySummaryScreen(BattleCastleOpponentApp *app, u16 cost, u16 failureEntryID);
+static void IncreaseRank(BattleCastleOpponentApp *app, u8 slot, u8 menuOption);
+static void UpdateAllFlagSprites(BattleCastleOpponentApp *app);
+static void UpdateFlagSprites(BattleCastleOpponentApp *app, u8 slot);
+static void GetFlagSpritesOffsets(BattleCastleOpponentApp *app, u32 *x, u32 *y);
 
 BOOL BattleCastleOpponentApp_Init(ApplicationManager *appMan, int *state)
 {
@@ -255,30 +306,30 @@ BOOL BattleCastleOpponentApp_Init(ApplicationManager *appMan, int *state)
     app->unk_150 = sub_020302DC(app->saveData);
     app->unk_154 = sub_0203041C(app->saveData);
     app->challengeType = v2->unk_04;
-    app->unk_3C8 = &v2->unk_20;
+    app->selectedMonSlotPtr = &v2->unk_20;
     app->options = SaveData_GetOptions(app->saveData);
-    app->unk_3DC = v2->unk_1C;
-    app->unk_3CC = &v2->unk_08[0];
-    app->unk_3D0 = &v2->unk_0C[0];
-    app->unk_3D4 = &v2->unk_10[0];
-    app->unk_3D8 = &v2->unk_14[0];
-    app->unk_11 = 0xff;
-    app->unk_43A = v2->unk_28;
+    app->opponentsParty = v2->unk_1C;
+    app->identityUnlockedForSlot = &v2->unk_08[0];
+    app->levelAdjustmentForSlot = &v2->unk_0C[0];
+    app->statsUnlockedForSlot = &v2->unk_10[0];
+    app->movesUnlockedForSlot = &v2->unk_14[0];
+    app->slotID = 0xff;
+    app->partnersCP = v2->unk_28;
     app->frontier = SaveData_GetBattleFrontier(app->saveData);
 
-    for (int v0 = 0; v0 < 3; v0++) {
-        app->unk_437[v0] = 1;
+    for (int i = 0; i < 3; i++) {
+        app->partnersRanks[i] = 1;
     }
 
     if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == FALSE) {
-        app->unk_14 = 3;
+        app->numSlots = 3;
     } else {
-        app->unk_14 = 4;
+        app->numSlots = 4;
     }
 
-    app->unk_15 = app->unk_14;
-    app->unk_0C = app->unk_15 - 1;
-    app->unk_434 = 0;
+    app->exitSlot = app->numSlots;
+    app->previousSlot = app->exitSlot - 1;
+    app->partnersSelectedSlot = 0;
 
     LoadAssets(app);
 
@@ -295,73 +346,73 @@ BOOL BattleCastleOpponentApp_Main(ApplicationManager *appMan, int *state)
 {
     BattleCastleOpponentApp *app = ApplicationManager_Data(appMan);
 
-    if (app->unk_436 == 1) {
+    if (app->partnerIsExiting == TRUE) {
         switch (*state) {
-        case 1:
-            app->unk_436 = 0;
-            ov107_0224883C(app);
+        case STATE_MAIN_FLOW:
+            app->partnerIsExiting = FALSE;
+            CloseAllSubDisplays(app);
             CloseSummaryScreen(app);
 
-            if (app->unk_388 != NULL) {
-                BattleCastleAppSprite_Free(app->unk_388);
-                app->unk_0F_0 = 0;
+            if (app->arrowSprite != NULL) {
+                BattleCastleAppSprite_Free(app->arrowSprite);
+                app->arrowSpriteVisible = FALSE;
             }
 
             BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
             BattleFrontier_SetPartnerInStrTemplate(app->strTemplate, 0);
             app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_PartnerChoseToExit, FONT_MESSAGE);
-            ChangeState(app, state, 3);
+            ChangeState(app, state, STATE_SYNC_BEFORE_EXIT);
             break;
         }
-    } else if (app->unk_11 != 0xff) {
+    } else if (app->slotID != 0xff) {
         switch (*state) {
-        case 1:
-        case 3:
-            app->unk_436 = 0;
-            ov107_0224883C(app);
+        case STATE_MAIN_FLOW:
+        case STATE_SYNC_BEFORE_EXIT:
+            app->partnerIsExiting = FALSE;
+            CloseAllSubDisplays(app);
             CloseSummaryScreen(app);
-            ChangeState(app, state, 2);
+            ChangeState(app, state, STATE_SYNC_PURCHASE);
             break;
         }
     }
 
     switch (*state) {
-    case 0:
-        if (State_FadeInApp(app) == 1) {
-            ChangeState(app, state, 1);
+    case STATE_FADE_IN:
+        if (State_FadeInApp(app) == TRUE) {
+            ChangeState(app, state, STATE_MAIN_FLOW);
         }
         break;
-    case 1:
-        if (ov107_022462CC(app) == 1) {
-            if (app->unk_10 == 1) {
-                ChangeState(app, state, 2);
+    case STATE_MAIN_FLOW:
+        if (State_MainAppFlow(app) == TRUE) {
+            if (app->syncPurchaseAction == TRUE) {
+                ChangeState(app, state, STATE_SYNC_PURCHASE);
             } else {
-                if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == 1) {
-                    ChangeState(app, state, 3);
+                if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+                    ChangeState(app, state, STATE_SYNC_BEFORE_EXIT);
                 } else {
-                    ChangeState(app, state, 4);
+                    ChangeState(app, state, STATE_FADE_OUT);
                 }
             }
         }
         break;
-    case 2:
-        if (ov107_02246BDC(app) == 1) {
-            ChangeState(app, state, 1);
+    case STATE_SYNC_PURCHASE:
+        if (State_SyncPurchase(app) == TRUE) {
+            ChangeState(app, state, STATE_MAIN_FLOW);
         }
         break;
-    case 3:
-        if (ov107_02246CD0(app) == 1) {
-            ChangeState(app, state, 4);
+    case STATE_SYNC_BEFORE_EXIT:
+        if (State_SyncBeforeExit(app) == TRUE) {
+            ChangeState(app, state, STATE_FADE_OUT);
         }
         break;
-    case 4:
-        if (State_FadeOutApp(app) == 1) {
+    case STATE_FADE_OUT:
+        if (State_FadeOutApp(app) == TRUE) {
             return TRUE;
         }
         break;
     }
 
-    ov107_022492A8(app);
+    UpdatePokemonGraphics(app);
     SpriteList_Update(app->spriteMan.spriteList);
 
     return FALSE;
@@ -371,7 +422,7 @@ BOOL BattleCastleOpponentApp_Exit(ApplicationManager *appMan, int *state)
 {
     BattleCastleOpponentApp *app = ApplicationManager_Data(appMan);
 
-    *app->unk_3C8 = app->unk_0D;
+    *app->selectedMonSlotPtr = app->selectedMonSlot;
 
     VramTransfer_Free();
     FreeAssets(app);
@@ -407,21 +458,21 @@ static BOOL State_FadeInApp(BattleCastleOpponentApp *app)
         break;
     case 2:
         if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
-            if (ov107_02248874(app, 20, 0) == TRUE) {
+            if (SendCommMessage(app, COMM_CMD_PLAYER_INFO, 0) == TRUE) {
                 app->subState++;
             }
         } else {
-            ov107_02246274(app);
+            ShowAppMainDisplay(app);
             StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 3, HEAP_ID_BATTLE_CASTLE_APP);
             app->subState++;
         }
         break;
     case 3:
         if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
-            if (app->unk_17 >= 2) {
-                app->unk_17 = 0;
+            if (app->msgsReceived >= 2) {
+                app->msgsReceived = 0;
 
-                ov107_02246274(app);
+                ShowAppMainDisplay(app);
                 StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 3, HEAP_ID_BATTLE_CASTLE_APP);
 
                 app->subState++;
@@ -440,568 +491,565 @@ static BOOL State_FadeInApp(BattleCastleOpponentApp *app)
     return FALSE;
 }
 
-static void ov107_02246274(BattleCastleOpponentApp *param0)
+static void ShowAppMainDisplay(BattleCastleOpponentApp *app)
 {
-    u16 v2, v3, v4, v5;
+    u16 unused, unusd2, unused3, unused4;
 
-    ov107_022484DC(param0, &v2, &v3, &v4, &v5);
-    Window *v8 = &param0->windows[OPPONENT_APP_WINDOW_HEADER];
+    GetOffsetsForPlayerInfo(app, &unused, &unusd2, &unused3, &unused4);
+    Window *window = &app->windows[OPPONENT_APP_WINDOW_HEADER];
 
-    Window_FillTilemap(v8, 0);
+    Window_FillTilemap(window, 0);
 
-    ov107_02248E84(param0, v8);
-    ov107_02248C08(param0, v8);
-    PrintAllMonsHP(param0, &param0->windows[OPPONENT_APP_WINDOW_HP_BARS]);
-    PrintAllMonsLevelAndGender(param0, &param0->windows[OPPONENT_APP_WINDOW_LEVELS]);
-    PrintMonSelectionStrings(param0);
+    PrintPlayersAndPartnersNames(app, window);
+    PrintPlayersAndPartnersCastlePoints(app, window);
+    PrintAllMonsHP(app, &app->windows[OPPONENT_APP_WINDOW_HP_BARS]);
+    PrintAllMonsLevelAndGender(app, &app->windows[OPPONENT_APP_WINDOW_LEVELS]);
+    PrintMonSelectionStrings(app);
     GXLayers_TurnBothDispOn();
 }
 
-static BOOL ov107_022462CC(BattleCastleOpponentApp *param0)
+static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
 {
-    u16 v1, v2;
-    u32 v6, v7;
+    u16 currentCP, cost;
+    u32 rank, input;
 
-    switch (param0->subState) {
-    case 0:
-        param0->unk_0B = 0;
-        param0->subState = 1;
+    switch (app->subState) {
+    case MAIN_SUBSTATE_INIT:
+        app->unused = 0;
+        app->subState = MAIN_SUBSTATE_SELECT_MON;
 
-        if (param0->unk_0F_3 == 1) {
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            PrintMonSelectionStrings(param0);
-        } else if (param0->unk_0F_3 == 2) {
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            OpenSummaryMenu(param0);
-            ov107_02249C60(param0->unk_3C4, 211, 105);
+        if (app->syncPurchaseState == 1) {
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            PrintMonSelectionStrings(app);
+        } else if (app->syncPurchaseState == 2) {
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            OpenSummaryMenu(app);
+            BattleCastleAppSprite_PlaySparkleAnim(app->sparklesSprite, 211, 105);
 
-            param0->subState = 6;
-        } else if (param0->unk_0F_3 == 3) {
-            param0->subState = 13;
+            app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
+        } else if (app->syncPurchaseState == 3) {
+            app->subState = MAIN_SUBSTATE_SHOW_SUMMARY_DISPLAY;
         }
 
-        param0->unk_0F_3 = 0;
+        app->syncPurchaseState = 0;
         break;
-    case 1:
-        ov107_02248358(param0, gSystem.pressedKeys);
+    case MAIN_SUBSTATE_SELECT_MON:
+        UpdateSelectedMon(app, gSystem.pressedKeys);
 
-        if (gSystem.pressedKeys & PAD_BUTTON_A) {
+        if (JOY_NEW(PAD_BUTTON_A)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (param0->unk_0D >= param0->unk_15) {
-                return 1;
+            if (app->selectedMonSlot >= app->exitSlot) {
+                return TRUE;
             } else {
-                CloseMonSelectionMessageBox(param0);
-                OpenMonOptionsMenu(param0);
-                param0->subState = 2;
-                break;
+                CloseMonSelectionMessageBox(app);
+                OpenMonOptionsMenu(app);
+                app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
             }
-        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            if (param0->unk_0D != param0->unk_15) {
+        } else if (JOY_NEW(PAD_BUTTON_B)) {
+            if (app->selectedMonSlot != app->exitSlot) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                param0->unk_0D = param0->unk_15;
-                ov107_022483F0(param0);
+                app->selectedMonSlot = app->exitSlot;
+                UpdateCursorPosition(app);
             }
-            break;
         }
         break;
-    case 2:
-        v7 = ListMenu_ProcessInput(param0->listMenu);
-        ov107_02249CE0(v7, 1500);
-        ListMenu_CalcTrueCursorPos(param0->listMenu, &param0->unk_18);
+    case MAIN_SUBSTATE_MON_OPTIONS_MENU:
+        input = ListMenu_ProcessInput(app->listMenu);
+        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case LIST_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
-            CloseListMenu(param0);
-            PrintMonSelectionStrings(param0);
-            param0->subState = 0;
+        case LIST_CANCEL:
+            CloseListMenu(app);
+            PrintMonSelectionStrings(app);
+            app->subState = MAIN_SUBSTATE_INIT;
             break;
-        case 0:
-            param0->unk_13 = v7;
+        case MENU_ENTRY_CHECK:
+            app->selectedMenuEntry = input;
 
-            if (param0->unk_3CC[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 0) {
-                CloseListMenu(param0);
+            if (!app->identityUnlockedForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot)]) {
+                CloseListMenu(app);
 
-                ov107_02248BEC(param0);
-                SetStringTemplateNumber(param0, 0, 1, 4, 0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_IdentifyForCP, FONT_MESSAGE);
-                OpenYesNoMenu(param0);
-                param0->subState = 3;
+                DrawMessageBox(app);
+                SetStringTemplateNumber(app, 0, CP_COST_CHECK_IDENTITY, 4, PADDING_MODE_NONE);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_IdentifyForCP, FONT_MESSAGE);
+                OpenYesNoMenu(app);
+                app->subState = MAIN_SUBSTATE_REVEAL_MON_SLOT_YES_NO;
             } else {
-                CloseListMenu(param0);
+                CloseListMenu(app);
 
-                Pokemon *v8 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
+                Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot));
+                DrawMessageBox(app);
+                SetStringTemplateSpecies(app, 0, Pokemon_GetBoxPokemon(mon));
 
-                ov107_02248BEC(param0);
-                SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v8));
-
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_IdentityRevealed, FONT_MESSAGE);
-                param0->subState = 15;
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_IdentityRevealed, FONT_MESSAGE);
+                app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION;
             }
             break;
-        case 1:
-            param0->unk_13 = v7;
-            CloseListMenu(param0);
+        case MENU_ENTRY_LEVEL:
+            app->selectedMenuEntry = input;
+            CloseListMenu(app);
 
-            Pokemon *v8 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
+            Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot));
 
-            ov107_02248BEC(param0);
-            SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v8));
+            DrawMessageBox(app);
+            SetStringTemplateSpecies(app, 0, Pokemon_GetBoxPokemon(mon));
 
-            param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_MayChangeLevel, FONT_MESSAGE);
-            OpenLevelMenu(param0);
-            param0->subState = 4;
+            app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_MayChangeLevel, FONT_MESSAGE);
+            OpenLevelMenu(app);
+            app->subState = MAIN_SUBSTATE_CHANGE_LEVEL_MENU;
             break;
-        case 2:
-            CloseListMenu(param0);
-            OpenSummaryMenu(param0);
-            param0->subState = 6;
+        case MENU_ENTRY_SUMMARY:
+            CloseListMenu(app);
+            OpenSummaryMenu(app);
+            app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
             break;
         case 6:
-            CloseListMenu(param0);
-            PrintMonSelectionStrings(param0);
-            param0->subState = 0;
+            CloseListMenu(app);
+            PrintMonSelectionStrings(app);
+            app->subState = MAIN_SUBSTATE_INIT;
             break;
         }
         break;
-    case 3:
-        v7 = Menu_ProcessInput(param0->simpleMenu);
+    case MAIN_SUBSTATE_REVEAL_MON_SLOT_YES_NO:
+        input = Menu_ProcessInput(app->simpleMenu);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0:
-            FreeSimpleMenu(param0);
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+        case MENU_YES:
+            FreeSimpleMenu(app);
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
 
-            v1 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
 
-            if (v1 < 1) {
-                ov107_02248BEC(param0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_NotEnoughCP3, FONT_MESSAGE);
-                param0->subState = 15;
+            if (currentCP < CP_COST_CHECK_IDENTITY) {
+                DrawMessageBox(app);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_NotEnoughCP3, FONT_MESSAGE);
+                app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION;
                 break;
             }
 
-            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-                ov104_0223BC2C(param0->frontier, param0->challengeType, 1);
-                ov107_02248C08(param0, &param0->windows[OPPONENT_APP_WINDOW_HEADER]);
-                ov107_02249024(param0, param0->unk_0D);
-                param0->subState = 11;
+            if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+                ov104_0223BC2C(app->frontier, app->challengeType, CP_COST_CHECK_IDENTITY);
+                PrintPlayersAndPartnersCastlePoints(app, &app->windows[OPPONENT_APP_WINDOW_HEADER]);
+                RevealPokemonInSlot(app, app->selectedMonSlot);
+                app->subState = MAIN_SUBSTATE_UPDATE_AFTER_OPTION_PURCHASE;
             } else {
-                param0->unk_10 = 1;
-                return 1;
+                app->syncPurchaseAction = TRUE;
+                return TRUE;
             }
             break;
-        case 1:
-        case 0xfffffffe:
-            FreeSimpleMenu(param0);
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            OpenMonOptionsMenu(param0);
-            param0->subState = 2;
+        case MENU_NO:
+        case MENU_CANCELED:
+            FreeSimpleMenu(app);
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            OpenMonOptionsMenu(app);
+            app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
             break;
         }
         break;
-    case 4:
-        v7 = Menu_ProcessInput(param0->simpleMenu);
+    case MAIN_SUBSTATE_CHANGE_LEVEL_MENU:
+        input = Menu_ProcessInput(app->simpleMenu);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case MENU_NOTHING_CHOSEN:
             break;
         case 0:
-            FreeSimpleMenu(param0);
-            v1 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+            FreeSimpleMenu(app);
+            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
 
-            if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 1) {
-                ov107_02248BEC(param0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_LevelCantGoHigher, FONT_MESSAGE);
-                param0->subState = 15;
+            if (app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot)] == LEVEL_ADJUSTMENT_UP_5) {
+                DrawMessageBox(app);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_LevelCantGoHigher, FONT_MESSAGE);
+                app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION;
                 break;
             } else {
-                ov107_02248E54(param0, 1);
-                param0->subState = 5;
+                PrintCostOfLevelAdjustment(app, LEVEL_ADJUSTMENT_UP_5);
+                app->subState = MAIN_SUBSTATE_CHANGE_LEVEL_YES_NO;
             }
             break;
         case 1:
-            FreeSimpleMenu(param0);
-            v1 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+            FreeSimpleMenu(app);
+            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
 
-            if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 2) {
-                ov107_02248BEC(param0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_LevelCantGoLower, FONT_MESSAGE);
-                param0->subState = 15;
+            if (app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot)] == LEVEL_ADJUSTMENT_DOWN_5) {
+                DrawMessageBox(app);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_LevelCantGoLower, FONT_MESSAGE);
+                app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION;
                 break;
             } else {
-                ov107_02248E54(param0, 2);
-                param0->subState = 5;
+                PrintCostOfLevelAdjustment(app, LEVEL_ADJUSTMENT_DOWN_5);
+                app->subState = MAIN_SUBSTATE_CHANGE_LEVEL_YES_NO;
             }
             break;
         case 2:
-        case 0xfffffffe:
-            FreeSimpleMenu(param0);
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            OpenMonOptionsMenu(param0);
-            param0->subState = 2;
+        case MENU_CANCELED:
+            FreeSimpleMenu(app);
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            OpenMonOptionsMenu(app);
+            app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
             break;
         }
         break;
-    case 5:
-        v7 = Menu_ProcessInput(param0->simpleMenu);
+    case MAIN_SUBSTATE_CHANGE_LEVEL_YES_NO:
+        input = Menu_ProcessInput(app->simpleMenu);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0:
-            FreeSimpleMenu(param0);
+        case MENU_YES:
+            FreeSimpleMenu(app);
 
-            v1 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
-            v2 = ov107_02248770(param0->unk_0E);
+            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+            cost = GetCostOfLevelAdjustment(app->levelAdjustment);
 
-            if (v1 < v2) {
-                ov107_02248BEC(param0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_NotEnoughCP3, FONT_MESSAGE);
-                param0->subState = 15;
-                return 0;
+            if (currentCP < cost) {
+                DrawMessageBox(app);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_NotEnoughCP3, FONT_MESSAGE);
+                app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION;
+                return FALSE;
             }
 
-            param0->unk_12 = param0->unk_0E;
+            app->selectedLevelAdjustment = app->levelAdjustment;
 
-            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-                CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-                ov104_0223BC2C(param0->frontier, param0->challengeType, ov107_02248770(param0->unk_0E));
-                ov107_02248C08(param0, &param0->windows[OPPONENT_APP_WINDOW_HEADER]);
-                ov107_022490E8(param0, param0->unk_0D, param0->unk_0E);
-                param0->subState = 11;
+            if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+                CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+                ov104_0223BC2C(app->frontier, app->challengeType, GetCostOfLevelAdjustment(app->levelAdjustment));
+                PrintPlayersAndPartnersCastlePoints(app, &app->windows[OPPONENT_APP_WINDOW_HEADER]);
+                UpdateLevelAdjustment(app, app->selectedMonSlot, app->levelAdjustment);
+                app->subState = MAIN_SUBSTATE_UPDATE_AFTER_OPTION_PURCHASE;
             } else {
-                param0->unk_10 = 1;
-                return 1;
+                app->syncPurchaseAction = TRUE;
+                return TRUE;
             }
             break;
-        case 1:
-        case 0xfffffffe:
-            FreeSimpleMenu(param0);
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            OpenMonOptionsMenu(param0);
-            param0->subState = 2;
+        case MENU_NO:
+        case MENU_CANCELED:
+            FreeSimpleMenu(app);
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            OpenMonOptionsMenu(app);
+            app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
             break;
         }
         break;
-    case 6:
-        v7 = ListMenu_ProcessInput(param0->listMenu);
-        ov107_02249CE0(v7, 1500);
-        ListMenu_CalcTrueCursorPos(param0->listMenu, &param0->unk_18);
+    case MAIN_SUBSTATE_SUMMARY_MENU:
+        input = ListMenu_ProcessInput(app->listMenu);
+        BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
+        ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case LIST_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            FreeListMenu2(param0);
-            OpenMonOptionsMenu(param0);
-            param0->subState = 2;
+        case LIST_CANCEL:
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            FreeListMenu2(app);
+            OpenMonOptionsMenu(app);
+            app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
             break;
-        case 3:
-            param0->unk_13 = v7;
-            FreeListMenu2(param0);
+        case MENU_ENTRY_STATS:
+            app->selectedMenuEntry = input;
+            FreeListMenu2(app);
 
-            if (param0->unk_3D4[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 0) {
-                ov107_02248BEC(param0);
-                SetStringTemplateNumber(param0, 0, 2, 4, 0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_CanCheckStats, FONT_MESSAGE);
-                OpenYesNoMenu(param0);
-                param0->subState = 7;
+            if (!app->statsUnlockedForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot)]) {
+                DrawMessageBox(app);
+                SetStringTemplateNumber(app, 0, CP_COST_SHOW_STATS, 4, PADDING_MODE_NONE);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_CanCheckStats, FONT_MESSAGE);
+                OpenYesNoMenu(app);
+                app->subState = MAIN_SUBSTATE_UNLOCK_MONS_STATS_YES_NO;
             } else {
-                ov107_02248A2C(param0, param0->unk_0D);
-                param0->subState = 16;
+                ShowMonSummary(app, app->selectedMonSlot);
+                app->subState = MAIN_SUBSTATE_SHOW_STATS_DISPLAY;
             }
             break;
-        case 4:
-            param0->unk_13 = v7;
-            FreeListMenu2(param0);
+        case MENU_ENTRY_MOVES:
+            app->selectedMenuEntry = input;
+            FreeListMenu2(app);
 
-            v6 = ov107_02249CAC(param0->saveData, param0->challengeType, 2);
+            rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_OPPONENT_SUMMARY);
 
-            if (v6 == 1) {
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_TooLowForMoveList, FONT_MESSAGE);
-                param0->subState = 14;
-                return 0;
+            if (rank == 1) {
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_TooLowForMoveList, FONT_MESSAGE);
+                app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_SUMMARY_MENU;
+                return FALSE;
             }
 
-            if (param0->unk_3D8[ov107_02249C98(param0->unk_14, param0->unk_0D)] == 0) {
-                ov107_02248BEC(param0);
-                SetStringTemplateNumber(param0, 0, 5, 4, 0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_MayCheckMoveList, FONT_MESSAGE);
-                OpenYesNoMenu(param0);
-                param0->subState = 8;
+            if (!app->movesUnlockedForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot)]) {
+                DrawMessageBox(app);
+                SetStringTemplateNumber(app, 0, CP_COST_SHOW_MOVES, 4, PADDING_MODE_NONE);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_MayCheckMoveList, FONT_MESSAGE);
+                OpenYesNoMenu(app);
+                app->subState = MAIN_SUBSTATE_UNLOCK_MONS_MOVES_YES_NO;
             } else {
-                ov107_02248AF0(param0, param0->unk_0D);
-                param0->subState = 17;
+                ShowMovesList(app, app->selectedMonSlot);
+                app->subState = MAIN_SUBSTATE_SHOW_MOVES_DISPLAY;
             }
             break;
-        case 5:
-            v6 = ov107_02249CAC(param0->saveData, param0->challengeType, 2);
+        case MENU_ENTRY_RANK_UP_SUMMARY:
+            rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_OPPONENT_SUMMARY);
 
-            if (v6 == (3 - 1)) {
-                Sound_StopEffect(1500, 0);
+            if (rank == 2) {
+                Sound_StopEffect(SEQ_SE_CONFIRM, 0);
                 Sound_PlayEffect(SEQ_SE_DP_BOX03);
             } else {
-                param0->unk_13 = v7;
-                FreeListMenu2(param0);
+                app->selectedMenuEntry = input;
+                FreeListMenu2(app);
 
-                v1 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+                currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
 
-                SetStringTemplateNumber(param0, 0, 50, 4, 0);
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_RankUpForCP, FONT_MESSAGE);
+                SetStringTemplateNumber(app, 0, CP_COST_RANK_UP, 4, PADDING_MODE_NONE);
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_RankUpForCP, FONT_MESSAGE);
 
-                OpenYesNoMenu(param0);
-                param0->subState = 9;
+                OpenYesNoMenu(app);
+                app->subState = MAIN_SUBSTATE_RANK_UP_SUMMARY_YES_NO;
             }
             break;
         }
         break;
-    case 7:
-        v7 = Menu_ProcessInput(param0->simpleMenu);
+    case MAIN_SUBSTATE_UNLOCK_MONS_STATS_YES_NO:
+        input = Menu_ProcessInput(app->simpleMenu);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0:
-            if (ov107_0224933C(param0, 2, BattleCastleOpponentApp_Text_NotEnoughCP) == 1) {
-                return 1;
+        case MENU_YES:
+            if (TryToBuySummaryScreen(app, CP_COST_SHOW_STATS, BattleCastleOpponentApp_Text_NotEnoughCP) == TRUE) {
+                return TRUE;
             }
             break;
-        case 1:
-        case 0xfffffffe:
-            FreeSimpleMenu(param0);
-            OpenSummaryMenu(param0);
-            param0->subState = 6;
+        case MENU_NO:
+        case MENU_CANCELED:
+            FreeSimpleMenu(app);
+            OpenSummaryMenu(app);
+            app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
             break;
         }
         break;
-    case 8:
-        v7 = Menu_ProcessInput(param0->simpleMenu);
+    case MAIN_SUBSTATE_UNLOCK_MONS_MOVES_YES_NO:
+        input = Menu_ProcessInput(app->simpleMenu);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0:
-            if (ov107_0224933C(param0, 5, BattleCastleOpponentApp_Text_NotEnoughCP2) == 1) {
-                return 1;
+        case MENU_YES:
+            if (TryToBuySummaryScreen(app, CP_COST_SHOW_MOVES, BattleCastleOpponentApp_Text_NotEnoughCP2) == TRUE) {
+                return TRUE;
             }
             break;
-        case 1:
-        case 0xfffffffe:
-            FreeSimpleMenu(param0);
-            OpenSummaryMenu(param0);
-            param0->subState = 6;
+        case MENU_NO:
+        case MENU_CANCELED:
+            FreeSimpleMenu(app);
+            OpenSummaryMenu(app);
+            app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
             break;
         }
         break;
-    case 9:
-        v7 = Menu_ProcessInput(param0->simpleMenu);
+    case MAIN_SUBSTATE_RANK_UP_SUMMARY_YES_NO:
+        input = Menu_ProcessInput(app->simpleMenu);
 
-        switch (v7) {
-        case 0xffffffff:
+        switch (input) {
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0:
-            FreeSimpleMenu(param0);
+        case MENU_YES:
+            FreeSimpleMenu(app);
 
-            v1 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
-            v6 = ov107_02249CAC(param0->saveData, param0->challengeType, 2);
+            currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
+            rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_OPPONENT_SUMMARY);
 
-            if (v1 < 50) {
-                FreeSimpleMenu(param0);
-                BattleCastleApp_DrawMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
-                param0->printerID = PrintMessageAndCopyToVRAM(param0, 69, FONT_MESSAGE);
-                param0->subState = 14;
+            if (currentCP < CP_COST_RANK_UP) {
+                FreeSimpleMenu(app);
+                BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
+                app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_NotEnoughCP2, FONT_MESSAGE);
+                app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_SUMMARY_MENU;
                 break;
             }
 
-            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-                ov107_022493CC(param0, param0->unk_0D, 5);
-                param0->subState = 10;
+            if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+                IncreaseRank(app, app->selectedMonSlot, MENU_ENTRY_RANK_UP_SUMMARY);
+                app->subState = MAIN_SUBSTATE_WAIT_RANK_UP_SUMMARY_MSG;
                 break;
             } else {
-                param0->unk_10 = 1;
-                return 1;
+                app->syncPurchaseAction = TRUE;
+                return TRUE;
             }
             break;
-        case 1:
-        case 0xfffffffe:
-            FreeSimpleMenu(param0);
-            OpenSummaryMenu(param0);
-            param0->subState = 6;
+        case MENU_NO:
+        case MENU_CANCELED:
+            FreeSimpleMenu(app);
+            OpenSummaryMenu(app);
+            app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
             break;
         }
         break;
-    case 10:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            FreeSimpleMenu(param0);
-            OpenSummaryMenu(param0);
-            ov107_02249C60(param0->unk_3C4, 211, 105);
-            param0->subState = 6;
+    case MAIN_SUBSTATE_WAIT_RANK_UP_SUMMARY_MSG:
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
+            FreeSimpleMenu(app);
+            OpenSummaryMenu(app);
+            BattleCastleAppSprite_PlaySparkleAnim(app->sparklesSprite, 211, 105);
+            app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
         }
         break;
-    case 11:
-        if (ov107_0224850C(param0, param0->unk_0D, param0->unk_13) == 1) {
-            param0->subState = 15;
+    case MAIN_SUBSTATE_UPDATE_AFTER_OPTION_PURCHASE:
+        if (UpdateAfterPurchase(app, app->selectedMonSlot, app->selectedMenuEntry) == TRUE) {
+            app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION;
         }
         break;
-    case 12:
-        if (ov107_0224850C(param0, param0->unk_0D, param0->unk_13) == 1) {
-            param0->subState = 13;
+    case MAIN_SUBSTATE_UPDATE_AFTER_SUMMARY_PURCHASE:
+        if (UpdateAfterPurchase(app, app->selectedMonSlot, app->selectedMenuEntry) == TRUE) {
+            app->subState = MAIN_SUBSTATE_SHOW_SUMMARY_DISPLAY;
         }
         break;
-    case 13:
-        if (param0->unk_13 == 3) {
-            param0->subState = 16;
+    case MAIN_SUBSTATE_SHOW_SUMMARY_DISPLAY:
+        if (app->selectedMenuEntry == MENU_ENTRY_STATS) {
+            app->subState = MAIN_SUBSTATE_SHOW_STATS_DISPLAY;
         } else {
-            param0->subState = 17;
+            app->subState = MAIN_SUBSTATE_SHOW_MOVES_DISPLAY;
         }
         break;
-    case 14:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    case MAIN_SUBSTATE_WAIT_RETURN_TO_SUMMARY_MENU:
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            OpenSummaryMenu(param0);
-            param0->subState = 6;
+            OpenSummaryMenu(app);
+            app->subState = MAIN_SUBSTATE_SUMMARY_MENU;
         }
         break;
-    case 15:
-        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    case MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION:
+        if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            PrintMonSelectionStrings(param0);
-            param0->subState = 0;
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            PrintMonSelectionStrings(app);
+            app->subState = MAIN_SUBSTATE_INIT;
         }
         break;
-    case 16:
-        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-            ov107_0224877C(param0, -1);
-        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-            ov107_0224877C(param0, 1);
-        } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    case MAIN_SUBSTATE_SHOW_STATS_DISPLAY:
+        if (JOY_NEW(PAD_KEY_LEFT)) {
+            ChangeSelectedMonOnSummaryDisplay(app, -1);
+        } else if (JOY_NEW(PAD_KEY_RIGHT)) {
+            ChangeSelectedMonOnSummaryDisplay(app, 1);
+        } else if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            CloseSummaryScreen(param0);
-            OpenMonOptionsMenu(param0);
-            param0->subState = 2;
+            CloseSummaryScreen(app);
+            OpenMonOptionsMenu(app);
+            app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
         }
         break;
-    case 17:
-        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-            ov107_022487DC(param0, -1);
-        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-            ov107_022487DC(param0, 1);
-        } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    case MAIN_SUBSTATE_SHOW_MOVES_DISPLAY:
+        if (JOY_NEW(PAD_KEY_LEFT)) {
+            ChangeSelectedMonOnMoveDisplay(app, -1);
+        } else if (JOY_NEW(PAD_KEY_RIGHT)) {
+            ChangeSelectedMonOnMoveDisplay(app, 1);
+        } else if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            CloseSummaryScreen(param0);
-            OpenMonOptionsMenu(param0);
-            param0->subState = 2;
+            CloseSummaryScreen(app);
+            OpenMonOptionsMenu(app);
+            app->subState = MAIN_SUBSTATE_MON_OPTIONS_MENU;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov107_02246BDC(BattleCastleOpponentApp *param0)
+static BOOL State_SyncPurchase(BattleCastleOpponentApp *app)
 {
-    u8 v0;
+    u8 slot;
 
-    switch (param0->subState) {
+    switch (app->subState) {
     case 0:
-        param0->unk_0F_3 = 1;
+        app->syncPurchaseState = 1;
 
-        if (ov107_02248874(param0, 21, param0->unk_0D) == 1) {
-            param0->unk_10 = 0;
-            param0->subState++;
+        if (SendCommMessage(app, COMM_CMD_PURCHASE_INFO, app->selectedMonSlot) == TRUE) {
+            app->syncPurchaseAction = FALSE;
+            app->subState++;
         }
         break;
     case 1:
-        if (param0->unk_11 == 0xff) {
+        if (app->slotID == 0xff) {
             break;
         }
 
-        param0->unk_17 = 0;
+        app->msgsReceived = 0;
 
-        if (param0->unk_13 == 5) {
-            ov107_022493CC(param0, param0->unk_11, 5);
+        if (app->selectedMenuEntry == MENU_ENTRY_RANK_UP_SUMMARY) {
+            IncreaseRank(app, app->slotID, MENU_ENTRY_RANK_UP_SUMMARY);
         } else {
-            ov107_02248F18(param0, param0->unk_11, param0->unk_13);
+            SpendCastlePointsInSync(app, app->slotID, app->selectedMenuEntry);
         }
 
-        param0->subState++;
+        app->subState++;
         break;
     case 2:
-        v0 = ov107_02249C9C(param0->unk_15, param0->unk_11);
+        slot = BattleCastleApp_GetSlotFromSlotID(app->exitSlot, app->slotID);
 
-        if (ov107_0224850C(param0, v0, param0->unk_13) == 1) {
-            param0->unk_16 = 30;
-            param0->subState++;
+        if (UpdateAfterPurchase(app, slot, app->selectedMenuEntry) == TRUE) {
+            app->syncDelay = 30;
+            app->subState++;
         }
         break;
     case 3:
-        param0->unk_16--;
+        app->syncDelay--;
 
-        if (param0->unk_16 == 0) {
+        if (app->syncDelay == 0) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(133);
-            param0->subState++;
+            app->subState++;
             break;
         }
         break;
     case 4:
-        if (CommTiming_IsSyncState(133) == 1) {
-            param0->subState++;
+        if (CommTiming_IsSyncState(133) == TRUE) {
+            app->subState++;
         }
         break;
     case 5:
-        v0 = ov107_02249C9C(param0->unk_15, param0->unk_11);
+        slot = BattleCastleApp_GetSlotFromSlotID(app->exitSlot, app->slotID);
 
-        if (ov107_02248674(param0, v0, param0->unk_13) == 1) {
+        if (UpdateAfterSyncPurchase(app, slot, app->selectedMenuEntry) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTool_Init(100);
-            param0->unk_11 = 0xff;
-            param0->unk_436 = 0;
-            return 1;
+            app->slotID = 0xff;
+            app->partnerIsExiting = FALSE;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov107_02246CD0(BattleCastleOpponentApp *param0)
+static BOOL State_SyncBeforeExit(BattleCastleOpponentApp *app)
 {
-    switch (param0->subState) {
+    switch (app->subState) {
     case 0:
-        if (ov107_02248874(param0, 23, 0) == 1) {
-            param0->unk_16 = 30;
-            param0->subState++;
+        if (SendCommMessage(app, COMM_CMD_EXIT_APP, 0) == TRUE) {
+            app->syncDelay = 30;
+            app->subState++;
         }
         break;
     case 1:
-        if (param0->unk_16 > 0) {
-            param0->unk_16--;
+        if (app->syncDelay > 0) {
+            app->syncDelay--;
         }
 
-        if (param0->unk_16 == 0) {
+        if (app->syncDelay == 0) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(134);
-            param0->subState++;
+            app->subState++;
         }
         break;
     case 2:
-        if (CommTiming_IsSyncState(134) == 1) {
+        if (CommTiming_IsSyncState(134) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
-            CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-            return 1;
+            CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL State_FadeOutApp(BattleCastleOpponentApp *app)
@@ -1026,12 +1074,12 @@ static void FreeAssets(BattleCastleOpponentApp *app)
     int i, j;
 
     BattleCastleAppSprite_Free(app->cursorSprite);
-    BattleCastleAppSprite_Free(app->unk_390);
-    BattleCastleAppSprite_Free(app->unk_3C4);
+    BattleCastleAppSprite_Free(app->partnerCursorSprite);
+    BattleCastleAppSprite_Free(app->sparklesSprite);
 
-    for (i = 0; i < (2 * 2); i++) {
+    for (i = 0; i < NUM_MONS_MAX; i++) {
         for (j = 0; j < 2; j++) {
-            BattleCastleAppSprite_Free(app->unk_3A4[i][j]);
+            BattleCastleAppSprite_Free(app->flagSprites[i][j]);
         }
     }
 
@@ -1104,7 +1152,7 @@ static void LoadAssets(BattleCastleOpponentApp *app)
     app->specialChars = FontSpecialChars_Init(1, 2, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
     BattleCastleApp_InitWindows(app->bgConfig, app->windows, TRUE);
-    ov107_022484DC(app, &unused1, &unused2, &unused3, &unused4);
+    GetOffsetsForPlayerInfo(app, &unused1, &unused2, &unused3, &unused4);
 
     if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
         xOffset = 64;
@@ -1117,13 +1165,13 @@ static void LoadAssets(BattleCastleOpponentApp *app)
     u8 numMons = ov104_0223B7DC(app->challengeType, 1);
 
     for (i = 0; i < numMons; i++) {
-        app->ballSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 7, 64 * i + ballXOffset, 62, 2, NULL);
-        app->barSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 15, 64 * i + xOffset, 58 + 20, 3, NULL);
-        app->monSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 3 + i, 3, 3, 1, 64 * i + xOffset, 58, 2, NULL);
+        app->ballSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, ANIM_ID_SHAKING_POKE_BALL, 64 * i + ballXOffset, 62, 2, NULL);
+        app->barSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, ANIM_ID_GREEN_BAR, 64 * i + xOffset, 58 + 20, 3, NULL);
+        app->monSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 3 + i, 3, 3, POKEICON_ANIM_HP_MAX, 64 * i + xOffset, 58, 2, NULL);
 
-        BattleCastleAppSprite_UpdatePalette(app->monSprites[i], Party_GetPokemonBySlotIndex(app->unk_3DC, i));
+        BattleCastleAppSprite_UpdatePalette(app->monSprites[i], Party_GetPokemonBySlotIndex(app->opponentsParty, i));
 
-        if (app->unk_3CC[i] == 0) {
+        if (app->identityUnlockedForSlot[i] == 0) {
             BattleCastleAppSprite_SetDrawFlag(app->ballSprites[i], TRUE);
             BattleCastleAppSprite_SetDrawFlag(app->monSprites[i], FALSE);
             BattleCastleAppSprite_SetDrawFlag(app->barSprites[i], FALSE);
@@ -1137,24 +1185,24 @@ static void LoadAssets(BattleCastleOpponentApp *app)
     u32 x, y;
     GetCursorSpritePos(app, &x, &y, 0);
 
-    app->cursorSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 1, x, y, 2, NULL);
-    app->unk_390 = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 2, x, y, 2, NULL);
+    app->cursorSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, ANIM_ID_MON_CURSOR, x, y, 2, NULL);
+    app->partnerCursorSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, ANIM_ID_PARTNER_MON_CURSOR, x, y, 2, NULL);
 
     if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
-        BattleCastleAppSprite_SetDrawFlag(app->unk_390, FALSE);
+        BattleCastleAppSprite_SetDrawFlag(app->partnerCursorSprite, FALSE);
     }
 
-    for (i = 0; i < (2 * 2); i++) {
+    for (i = 0; i < NUM_MONS_MAX; i++) {
         for (j = 0; j < 2; j++) {
-            ov107_022495E4(app, &x, &y);
-            app->unk_3A4[i][j] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 12, x + (64 * i), y + (12 * j), 2, NULL);
-            BattleCastleAppSprite_SetDrawFlag(app->unk_3A4[i][j], FALSE);
+            GetFlagSpritesOffsets(app, &x, &y);
+            app->flagSprites[i][j] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, ANIM_ID_FLAG, x + (64 * i), y + (12 * j), 2, NULL);
+            BattleCastleAppSprite_SetDrawFlag(app->flagSprites[i][j], FALSE);
         }
     }
 
-    ov107_02249580(app);
-    app->unk_3C4 = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 11, 20, 20, 0, NULL);
-    BattleCastleAppSprite_SetDrawFlag(app->unk_3C4, FALSE);
+    UpdateAllFlagSprites(app);
+    app->sparklesSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, ANIM_ID_OPEN_SUMMARY_SPARKLES, 20, 20, 0, NULL);
+    BattleCastleAppSprite_SetDrawFlag(app->sparklesSprite, FALSE);
 
     if (CommSys_IsInitialized()) {
         ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -1185,7 +1233,7 @@ static void LoadBackgrounds(BattleCastleOpponentApp *app)
 
 static void InitSpriteManager(BattleCastleOpponentApp *app)
 {
-    BattleCastleApp_InitSpriteManager(&app->spriteMan, app->unk_3DC, BattleCastle_IsMultiPlayerChallenge(app->challengeType));
+    BattleCastleApp_InitSpriteManager(&app->spriteMan, app->opponentsParty, BattleCastle_IsMultiPlayerChallenge(app->challengeType));
 }
 
 static void FreeBackgrounds(BgConfig *bgConfig)
@@ -1535,12 +1583,12 @@ static void PrintAllMonsHP(BattleCastleOpponentApp *app, Window *window)
     u8 numMons = ov104_0223B7DC(app->challengeType, 1);
 
     for (int i = 0; i < numMons; i++) {
-        if (app->unk_3CC[i] == 0) {
-            Window_FillRectWithColor(window, 0, baseXOffset + (64 * i), 1, 64, 2 * 8);
+        if (!app->identityUnlockedForSlot[i]) {
+            Window_FillRectWithColor(window, 0, baseXOffset + (64 * i), 1, 64, 16);
             continue;
         }
 
-        Pokemon *mon = Party_GetPokemonBySlotIndex(app->unk_3DC, i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, i);
 
         FontSpecialChars_DrawPartyScreenHPText(app->specialChars, Pokemon_GetValue(mon, MON_DATA_HP, NULL), 3, PADDING_MODE_SPACES, window, baseXOffset + (64 * i), 1);
         FontSpecialChars_DrawPartyScreenLevelText(app->specialChars, 0, window, 24 + baseXOffset + (64 * i), PADDING_MODE_SPACES);
@@ -1554,22 +1602,22 @@ static void PrintAllMonsLevelAndGender(BattleCastleOpponentApp *app, Window *win
 {
     Window_FillTilemap(window, 0);
 
-    u16 v1, v2;
-    if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == 0) {
-        v1 = 40;
-        v2 = 80;
+    u16 levelXOffset, genderXOffset;
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        levelXOffset = 40;
+        genderXOffset = 80;
     } else {
-        v1 = 8;
-        v2 = 48;
+        levelXOffset = 8;
+        genderXOffset = 48;
     }
 
     u8 numMons = ov104_0223B7DC(app->challengeType, 1);
 
     for (int i = 0; i < numMons; i++) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(app->unk_3DC, i);
-        FontSpecialChars_DrawPartyScreenText(app->specialChars, SPECIAL_CHAR_LEVEL, Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL), 3, PADDING_MODE_NONE, window, v1 + (64 * i), 1);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, i);
+        FontSpecialChars_DrawPartyScreenText(app->specialChars, SPECIAL_CHAR_LEVEL, Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL), 3, PADDING_MODE_NONE, window, levelXOffset + (64 * i), 1);
         u32 gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
-        PrintGenderSymbol(app, window, v2 + (64 * i), 1, FONT_SYSTEM, gender);
+        PrintGenderSymbol(app, window, genderXOffset + (64 * i), 1, FONT_SYSTEM, gender);
     }
 
     Window_ScheduleCopyToVRAM(window);
@@ -1687,7 +1735,7 @@ static void InitMonOptionsMenu(BattleCastleOpponentApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[OPPONENT_APP_WINDOW_MON_OPTIONS_MENU]);
 }
 
-static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 param1, u8 onInit)
+static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
 {
     BattleCastleOpponentApp *app = (BattleCastleOpponentApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -1753,8 +1801,8 @@ static void UpdateSummaryMenuEntryDescription(ListMenu *menu, u32 item, u8 onIni
     u16 pos;
     ListMenu_CalcTrueCursorPos(menu, &pos);
 
-    u8 rankIsMaxed = ov107_02249CAC(app->saveData, app->challengeType, 2);
-    u8 index = !(rankIsMaxed == TRUE);
+    u8 rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_OPPONENT_SUMMARY);
+    u8 index = !(rank == 1);
 
     PrintLeftAlignedMessageWithBg(app, &app->windows[OPPONENT_APP_WINDOW_MSG_BOX], sSummaryMenuDescriptions[pos][index], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
@@ -1763,7 +1811,7 @@ static void SetSummaryMenuEntryColor(ListMenu *menu, u32 item, u8 yOffset)
 {
     BattleCastleOpponentApp *app = (BattleCastleOpponentApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    u8 rank = ov107_02249CAC(app->saveData, app->challengeType, 2);
+    u8 rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, BATTLE_CASTLE_RANK_OPPONENT_SUMMARY);
     u8 fgColor = 1;
 
     switch (item) {
@@ -1875,7 +1923,7 @@ static void OpenMonOptionsMenu(BattleCastleOpponentApp *app)
 {
     BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MON_OPTION_MSG_BOX], Options_Frame(app->options));
 
-    app->unk_18 = 0;
+    app->menuPos = 0;
     InitMonOptionsMenu(app);
 }
 
@@ -1892,7 +1940,7 @@ static void OpenSummaryMenu(BattleCastleOpponentApp *app)
     BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
 
     app->printerID = PrintLeftAlignedMessageWithBg(app, &app->windows[OPPONENT_APP_WINDOW_MSG_BOX], BattleCastleOpponentApp_Text_CheckStats, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
-    app->unk_18 = 0;
+    app->menuPos = 0;
 
     InitSummaryMenu(app);
 }
@@ -1902,102 +1950,102 @@ static void FreeListMenu2(BattleCastleOpponentApp *app)
     FreeListMenu(app);
 }
 
-static void ChangeState(BattleCastleOpponentApp *app, int *state, int newState)
+static void ChangeState(BattleCastleOpponentApp *app, int *state, enum BattleCastleAppState newState)
 {
     app->subState = 0;
     *state = newState;
 }
 
-static void ov107_02248358(BattleCastleOpponentApp *param0, int param1)
+static void UpdateSelectedMon(BattleCastleOpponentApp *app, int unused)
 {
-    int v1 = 0;
-    u8 v0 = ov107_02249C98(param0->unk_14, param0->unk_0D);
+    BOOL changeMade = FALSE;
+    u8 currentSlot = BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot);
 
-    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        if (param0->unk_0D == param0->unk_15) {
+    if (JOY_NEW(PAD_KEY_LEFT)) {
+        if (app->selectedMonSlot == app->exitSlot) {
             return;
         }
 
-        if (v0 == 0) {
-            param0->unk_0D += (param0->unk_14 - 1);
+        if (currentSlot == 0) {
+            app->selectedMonSlot += app->numSlots - 1;
         } else {
-            param0->unk_0D--;
+            app->selectedMonSlot--;
         }
 
-        v1 = 1;
+        changeMade = TRUE;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        if (param0->unk_0D == param0->unk_15) {
+    if (JOY_NEW(PAD_KEY_RIGHT)) {
+        if (app->selectedMonSlot == app->exitSlot) {
             return;
         }
 
-        if (v0 == (param0->unk_14 - 1)) {
-            param0->unk_0D -= (param0->unk_14 - 1);
+        if (currentSlot == app->numSlots - 1) {
+            app->selectedMonSlot -= app->numSlots - 1;
         } else {
-            param0->unk_0D++;
+            app->selectedMonSlot++;
         }
 
-        v1 = 1;
+        changeMade = TRUE;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_UP) {
-        if (param0->unk_0D < param0->unk_14) {
+    if (JOY_NEW(PAD_KEY_UP)) {
+        if (app->selectedMonSlot < app->numSlots) {
             return;
         }
 
-        param0->unk_0D = param0->unk_0C;
-        v1 = 1;
+        app->selectedMonSlot = app->previousSlot;
+        changeMade = TRUE;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        if (param0->unk_0D >= param0->unk_15) {
+    if (JOY_NEW(PAD_KEY_DOWN)) {
+        if (app->selectedMonSlot >= app->exitSlot) {
             return;
         }
 
-        param0->unk_0C = param0->unk_0D;
-        param0->unk_0D = param0->unk_15;
-        v1 = 1;
+        app->previousSlot = app->selectedMonSlot;
+        app->selectedMonSlot = app->exitSlot;
+        changeMade = TRUE;
     }
 
-    if (v1 == 1) {
-        ov107_022483F0(param0);
+    if (changeMade == TRUE) {
+        UpdateCursorPosition(app);
     }
 }
 
-static void ov107_022483F0(BattleCastleOpponentApp *param0)
+static void UpdateCursorPosition(BattleCastleOpponentApp *app)
 {
     Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
-        ov107_02248874(param0, 22, param0->unk_0D);
+    if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+        SendCommMessage(app, COMM_CMD_UPDATE_CURSOR, app->selectedMonSlot);
     }
 
-    ov107_02248420(param0, param0->unk_0D, 0);
+    UpdateCursorSprite(app, app->selectedMonSlot, FALSE);
 }
 
-static void ov107_02248420(BattleCastleOpponentApp *param0, u8 param1, u8 param2)
+static void UpdateCursorSprite(BattleCastleOpponentApp *app, u8 slot, u8 isPartners)
 {
-    BattleCastleAppSprite *v0;
-    u32 v1, v2, v3, v4;
+    BattleCastleAppSprite *sprite;
+    u32 x, y, monSelectAnimID, exitAnimID;
 
-    if (param2 == 0) {
-        v0 = param0->cursorSprite;
-        v3 = 1;
-        v4 = 0;
+    if (!isPartners) {
+        sprite = app->cursorSprite;
+        monSelectAnimID = ANIM_ID_MON_CURSOR;
+        exitAnimID = ANIM_ID_EXIT_CURSOR;
     } else {
-        v0 = param0->unk_390;
-        v3 = 2;
-        v4 = 17;
+        sprite = app->partnerCursorSprite;
+        monSelectAnimID = ANIM_ID_PARTNER_MON_CURSOR;
+        exitAnimID = ANIM_ID_PARTNER_EXIT_CURSOR;
     }
 
-    if (param1 >= param0->unk_15) {
-        BattleCastleAppSprite_SetAnim(v0, v4);
-        BattleCastleAppSprite_SetPosition(v0, 224, 160);
+    if (slot >= app->exitSlot) {
+        BattleCastleAppSprite_SetAnim(sprite, exitAnimID);
+        BattleCastleAppSprite_SetPosition(sprite, 224, 160);
     } else {
-        BattleCastleAppSprite_SetAnim(v0, v3);
-        GetCursorSpritePos(param0, &v1, &v2, param1);
-        BattleCastleAppSprite_SetPosition(v0, v1, v2);
+        BattleCastleAppSprite_SetAnim(sprite, monSelectAnimID);
+        GetCursorSpritePos(app, &x, &y, slot);
+        BattleCastleAppSprite_SetPosition(sprite, x, y);
     }
 }
 
@@ -2026,228 +2074,224 @@ static void GetCursorSpritePos(BattleCastleOpponentApp *app, u32 *x, u32 *y, u8 
     *y = 88;
 }
 
-static void ov107_022484DC(BattleCastleOpponentApp *param0, u16 *param1, u16 *param2, u16 *param3, u16 *param4)
+static void GetOffsetsForPlayerInfo(BattleCastleOpponentApp *app, u16 *playerX, u16 *playerY, u16 *partnerX, u16 *partnerY)
 {
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-        *param1 = 32;
-        *param2 = 0;
-        *param3 = 0;
-        *param4 = 0;
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        *playerX = 32;
+        *playerY = 0;
+        *partnerX = 0;
+        *partnerY = 0;
     } else {
-        *param1 = 0;
-        *param2 = 0;
-        *param3 = 120;
-        *param4 = 0;
+        *playerX = 0;
+        *playerY = 0;
+        *partnerX = 120;
+        *partnerY = 0;
     }
 }
 
-static BOOL ov107_0224850C(BattleCastleOpponentApp *param0, u8 param1, u8 param2)
+static BOOL UpdateAfterPurchase(BattleCastleOpponentApp *app, u8 selectedSlot, u8 menuOption)
 {
 
-    u8 v3 = param0->unk_15;
-    u8 v2 = ov107_02249C98(param0->unk_14, param1);
-    Pokemon *v4 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v2);
+    u8 slot = BattleCastleApp_GetSelectedSlot(app->numSlots, selectedSlot);
+    Pokemon *unused = Party_GetPokemonBySlotIndex(app->opponentsParty, slot);
 
-    switch (param2) {
-    case 0:
-        param0->unk_0F_0 = 0;
-        return 1;
-        break;
-    case 1:
-        if (param0->unk_0F_0 == 0) {
-            param0->unk_0F_0 = 1;
+    switch (menuOption) {
+    case MENU_ENTRY_CHECK:
+        app->arrowSpriteVisible = FALSE;
+        return TRUE;
+    case MENU_ENTRY_LEVEL:
+        if (!app->arrowSpriteVisible) {
+            app->arrowSpriteVisible = TRUE;
 
-            u32 v1;
-            if (param0->unk_12 == 1) {
-                v1 = 9;
+            u32 animID;
+            if (app->selectedLevelAdjustment == LEVEL_ADJUSTMENT_UP_5) {
+                animID = ANIM_ID_LEVEL_UP_ARROW;
             } else {
-                v1 = 10;
+                animID = ANIM_ID_LEVEL_DOWN_ARROW;
             }
 
-            u16 v0;
-            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-                v0 = 80;
+            u16 xOffset;
+            if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == FALSE) {
+                xOffset = 80;
             } else {
-                v0 = 48;
+                xOffset = 48;
             }
 
-            param0->unk_388 = BattleCastleAppSprite_New(&param0->spriteMan, 0, 0, 0, v1, v0 + (64 * v2), 50, 0, NULL);
+            app->arrowSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, animID, xOffset + (64 * slot), 50, 0, NULL);
         }
 
-        if (BattleCastleAppSprite_IsAnimated(param0->unk_388) == 0) {
-            BattleCastleAppSprite_Free(param0->unk_388);
-            param0->unk_388 = NULL;
-            param0->unk_0F_0 = 0;
-            return 1;
+        if (!BattleCastleAppSprite_IsAnimated(app->arrowSprite)) {
+            BattleCastleAppSprite_Free(app->arrowSprite);
+            app->arrowSprite = NULL;
+            app->arrowSpriteVisible = FALSE;
+            return TRUE;
         }
         break;
-    case 3:
-        if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    case MENU_ENTRY_STATS:
+        if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+            if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                ov107_02248A2C(param0, param1);
-                param0->unk_0F_0 = 0;
-                return 1;
+                ShowMonSummary(app, selectedSlot);
+                app->arrowSpriteVisible = FALSE;
+                return TRUE;
             }
         } else {
-            param0->unk_0F_0 = 0;
-            return 1;
+            app->arrowSpriteVisible = FALSE;
+            return TRUE;
         }
         break;
-    case 4:
-        if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    case MENU_ENTRY_MOVES:
+        if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+            if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                ov107_02248AF0(param0, param1);
-                param0->unk_0F_0 = 0;
-                return 1;
+                ShowMovesList(app, selectedSlot);
+                app->arrowSpriteVisible = FALSE;
+                return TRUE;
             }
         } else {
-            param0->unk_0F_0 = 0;
-            return 1;
+            app->arrowSpriteVisible = FALSE;
+            return TRUE;
         }
         break;
-    case 5:
-        param0->unk_0F_0 = 0;
-        return 1;
-        break;
+    case MENU_ENTRY_RANK_UP_SUMMARY:
+        app->arrowSpriteVisible = FALSE;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov107_02248674(BattleCastleOpponentApp *param0, u8 param1, u8 param2)
+static BOOL UpdateAfterSyncPurchase(BattleCastleOpponentApp *app, u8 selectedSlot, u8 menuOption)
 {
-    u8 v2 = param0->unk_15;
-    u8 v1 = ov107_02249C98(param0->unk_14, param1);
-    Pokemon *v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v1);
+    u8 exitSlot = app->exitSlot;
+    u8 slot = BattleCastleApp_GetSelectedSlot(app->numSlots, selectedSlot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, slot);
 
-    switch (param2) {
-    case 0:
-    case 1:
-    case 5:
-        param0->unk_0F_0 = 0;
-        return 1;
-        break;
-    case 3:
-        if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
+    switch (menuOption) {
+    case MENU_ENTRY_CHECK:
+    case MENU_ENTRY_LEVEL:
+    case MENU_ENTRY_RANK_UP_SUMMARY:
+        app->arrowSpriteVisible = FALSE;
+        return TRUE;
+    case MENU_ENTRY_STATS:
+        if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
             if (CommSys_CurNetId() == 0) {
-                if (param0->unk_11 >= v2) {
-                    param0->unk_0F_0 = 0;
-                    return 1;
+                if (app->slotID >= exitSlot) {
+                    app->arrowSpriteVisible = FALSE;
+                    return TRUE;
                 }
             } else {
-                if (param0->unk_11 < v2) {
-                    param0->unk_0F_0 = 0;
-                    return 1;
+                if (app->slotID < exitSlot) {
+                    app->arrowSpriteVisible = FALSE;
+                    return TRUE;
                 }
             }
         }
 
-        if (param0->unk_0F_0 == 0) {
-            param0->unk_0F_3 = 3;
-            ov107_02248A2C(param0, param1);
-            param0->unk_0F_0 = 0;
-            return 1;
+        if (!app->arrowSpriteVisible) {
+            app->syncPurchaseState = 3;
+            ShowMonSummary(app, selectedSlot);
+            app->arrowSpriteVisible = FALSE;
+            return TRUE;
         }
         break;
-    case 4:
-        if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
+    case MENU_ENTRY_MOVES:
+        if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
             if (CommSys_CurNetId() == 0) {
-                if (param0->unk_11 >= v2) {
-                    param0->unk_0F_0 = 0;
-                    return 1;
+                if (app->slotID >= exitSlot) {
+                    app->arrowSpriteVisible = FALSE;
+                    return TRUE;
                 }
             } else {
-                if (param0->unk_11 < v2) {
-                    param0->unk_0F_0 = 0;
-                    return 1;
+                if (app->slotID < exitSlot) {
+                    app->arrowSpriteVisible = FALSE;
+                    return TRUE;
                 }
             }
         }
 
-        if (param0->unk_0F_0 == 0) {
-            param0->unk_0F_3 = 3;
-            ov107_02248AF0(param0, param1);
-            param0->unk_0F_0 = 0;
-            return 1;
+        if (!app->arrowSpriteVisible) {
+            app->syncPurchaseState = 3;
+            ShowMovesList(app, selectedSlot);
+            app->arrowSpriteVisible = FALSE;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static u16 ov107_02248770(u8 param0)
+static u16 GetCostOfLevelAdjustment(u8 adjustment)
 {
-    if (param0 == 1) {
-        return 1;
+    if (adjustment == LEVEL_ADJUSTMENT_UP_5) {
+        return CP_COST_LEVEL_UP;
     }
 
-    return 15;
+    return CP_COST_LEVEL_DOWN;
 }
 
-static void ov107_0224877C(BattleCastleOpponentApp *param0, s8 param1)
+static void ChangeSelectedMonOnSummaryDisplay(BattleCastleOpponentApp *app, s8 step)
 {
-    s8 v1 = param0->unk_0D;
+    s8 slot = app->selectedMonSlot;
 
     while (TRUE) {
-        v1 += param1;
+        slot += step;
 
-        if (v1 < 0) {
-            v1 = (param0->unk_14 - 1);
-        } else if (v1 >= param0->unk_14) {
-            v1 = 0;
+        if (slot < 0) {
+            slot = app->numSlots - 1;
+        } else if (slot >= app->numSlots) {
+            slot = 0;
         }
 
-        if (v1 == param0->unk_0D) {
+        if (slot == app->selectedMonSlot) {
             return;
         }
 
-        if (param0->unk_3D4[v1] == 1) {
-            param0->unk_0D = v1;
-            ov107_022483F0(param0);
-            Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
-            PrintPokemonSummary(param0, &param0->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], v0);
+        if (app->statsUnlockedForSlot[slot] == TRUE) {
+            app->selectedMonSlot = slot;
+            UpdateCursorPosition(app);
+            Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot));
+            PrintPokemonSummary(app, &app->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], mon);
             return;
         }
     }
 }
 
-static void ov107_022487DC(BattleCastleOpponentApp *param0, s8 param1)
+static void ChangeSelectedMonOnMoveDisplay(BattleCastleOpponentApp *app, s8 step)
 {
-    s8 v1 = param0->unk_0D;
+    s8 slot = app->selectedMonSlot;
 
     while (TRUE) {
-        v1 += param1;
+        slot += step;
 
-        if (v1 < 0) {
-            v1 = (param0->unk_14 - 1);
-        } else if (v1 >= param0->unk_14) {
-            v1 = 0;
+        if (slot < 0) {
+            slot = app->numSlots - 1;
+        } else if (slot >= app->numSlots) {
+            slot = 0;
         }
 
-        if (v1 == param0->unk_0D) {
+        if (slot == app->selectedMonSlot) {
             return;
         }
 
-        if (param0->unk_3D8[v1] == 1) {
-            param0->unk_0D = v1;
-            ov107_022483F0(param0);
-            Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
-            PrintAllMoves(param0, &param0->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], v0);
+        if (app->movesUnlockedForSlot[slot] == TRUE) {
+            app->selectedMonSlot = slot;
+            UpdateCursorPosition(app);
+            Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot));
+            PrintAllMoves(app, &app->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], mon);
             return;
         }
     }
 }
 
-static void ov107_0224883C(BattleCastleOpponentApp *param0)
+static void CloseAllSubDisplays(BattleCastleOpponentApp *app)
 {
-    FreeSimpleMenu(param0);
-    FreeListMenu(param0);
+    FreeSimpleMenu(app);
+    FreeListMenu(app);
 
-    CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3C4, 0);
+    CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+    BattleCastleAppSprite_SetDrawFlag(app->sparklesSprite, FALSE);
 }
 
 static void CloseMessageBox(Window *window)
@@ -2256,221 +2300,212 @@ static void CloseMessageBox(Window *window)
     Window_ClearAndScheduleCopyToVRAM(window);
 }
 
-BOOL ov107_02248874(BattleCastleOpponentApp *param0, u16 param1, u16 param2)
+static BOOL SendCommMessage(BattleCastleOpponentApp *app, u16 cmd, u16 slot)
 {
-    int v0, v1;
+    int commCmd;
 
-    switch (param1) {
-    case 20:
-        v1 = 53;
-        ov107_022488CC(param0, param1);
+    switch (cmd) {
+    case COMM_CMD_PLAYER_INFO:
+        commCmd = 53;
+        CreatePlayerInfoPayload(app, cmd);
         break;
-    case 21:
-        v1 = 54;
-        ov107_02248940(param0, param1, param2);
+    case COMM_CMD_PURCHASE_INFO:
+        commCmd = 54;
+        CreatePurchaseInfoPayload(app, cmd, slot);
         break;
-    case 22:
-        v1 = 55;
-        ov107_022489D0(param0, param1);
+    case COMM_CMD_UPDATE_CURSOR:
+        commCmd = 55;
+        CreateUpdateCursorPayload(app, cmd);
         break;
-    case 23:
-        v1 = 56;
-        ov107_02248A04(param0);
+    case COMM_CMD_EXIT_APP:
+        commCmd = 56;
+        CreateExitAppPayload(app);
         break;
     }
 
-    if (CommSys_SendData(v1, param0->unk_3E4, 40) == 1) {
-        v0 = 1;
-    } else {
-        v0 = 0;
-    }
-
-    return v0;
+    return CommSys_SendData(commCmd, app->commPayload, 40) == TRUE;
 }
 
-void ov107_022488CC(BattleCastleOpponentApp *param0, u16 param1)
+static void CreatePlayerInfoPayload(BattleCastleOpponentApp *app, u16 cmd)
 {
-    int v1 = 0;
-    TrainerInfo *v2 = SaveData_GetTrainerInfo(param0->saveData);
+    int i = 0;
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(app->saveData);
 
-    param0->unk_3E4[v1] = param1;
-    v1 += 1;
+    app->commPayload[i] = cmd;
+    i += 1;
 
-    param0->unk_3E4[v1] = TrainerInfo_Gender(v2);
-    v1 += 1;
+    app->commPayload[i] = TrainerInfo_Gender(trainerInfo);
+    i += 1;
 
-    for (int v0 = 0; v0 < 3; v0++) {
-        param0->unk_3E4[v1 + v0] = ov107_02249CAC(param0->saveData, param0->challengeType, v0);
+    for (int j = 0; j < 3; j++) {
+        app->commPayload[i + j] = BattleCastleApp_GetRank(app->saveData, app->challengeType, j);
     }
 
-    v1 += 3;
+    i += 3;
 }
 
-void ov107_02248910(int param0, int param1, void *param2, void *param3)
+void BattleCastleOpponentApp_HandlePlayerInfoCmd(int netID, int unused, void *data, void *context)
 {
-    BattleCastleOpponentApp *v2 = param3;
-    const u16 *v3 = param2;
+    BattleCastleOpponentApp *app = context;
+    const u16 *payload = data;
 
-    int v1 = 0;
-    v2->unk_17++;
+    int i = 0;
+    app->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v1 += 1;
-    v1 += 1;
+    i += 2;
 
-    for (int v0 = 0; v0 < 3; v0++) {
-        v2->unk_437[v0] = (u8)v3[v1 + v0];
+    for (int j = 0; j < 3; j++) {
+        app->partnersRanks[j] = payload[i + j];
     }
 
-    v1 += 3;
+    i += 3;
 }
 
-void ov107_02248940(BattleCastleOpponentApp *param0, u16 param1, u16 param2)
+static void CreatePurchaseInfoPayload(BattleCastleOpponentApp *app, u16 cmd, u16 slot)
 {
-    param0->unk_3E4[0] = param1;
-    param0->unk_3E4[1] = param2;
+    app->commPayload[0] = cmd;
+    app->commPayload[1] = slot;
 
     if (CommSys_CurNetId() == 0) {
-        if (param0->unk_11 == 0xff) {
-            param0->unk_11 = param2;
+        if (app->slotID == 0xff) {
+            app->slotID = slot;
         }
     }
 
-    param0->unk_3E4[2] = param0->unk_11;
-    param0->unk_3E4[4] = param0->unk_12;
-    param0->unk_3E4[5] = param0->unk_13;
+    app->commPayload[2] = app->slotID;
+    app->commPayload[4] = app->selectedLevelAdjustment;
+    app->commPayload[5] = app->selectedMenuEntry;
 }
 
-void ov107_02248978(int param0, int param1, void *param2, void *param3)
+void BattleCastleOpponentApp_HandlePurchaseInfoCmd(int netID, int unused, void *data, void *context)
 {
-    BattleCastleOpponentApp *v2 = param3;
-    const u16 *v3 = param2;
+    BattleCastleOpponentApp *app = context;
+    const u16 *payload = data;
 
-    int v1 = 0;
-    v2->unk_17++;
+    app->msgsReceived++;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v2->unk_435 = v3[1];
+    app->partnerSlot = payload[1];
 
     if (CommSys_CurNetId() == 0) {
-        if (v2->unk_11 != 0xff) {
-            v2->unk_435 = 0;
+        if (app->slotID != 0xff) {
+            app->partnerSlot = 0;
         } else {
-            v2->unk_11 = v2->unk_435 + v2->unk_15;
-            v2->unk_12 = v3[4];
-            v2->unk_13 = v3[5];
+            app->slotID = app->partnerSlot + app->exitSlot;
+            app->selectedLevelAdjustment = payload[4];
+            app->selectedMenuEntry = payload[5];
         }
     } else {
-        v2->unk_11 = v3[2];
-        v2->unk_12 = v3[4];
-        v2->unk_13 = v3[5];
+        app->slotID = payload[2];
+        app->selectedLevelAdjustment = payload[4];
+        app->selectedMenuEntry = payload[5];
     }
 }
 
-void ov107_022489D0(BattleCastleOpponentApp *param0, u16 param1)
+static void CreateUpdateCursorPayload(BattleCastleOpponentApp *app, u16 cmd)
 {
-    param0->unk_3E4[0] = param1;
-    param0->unk_3E4[1] = param0->unk_0D;
+    app->commPayload[0] = cmd;
+    app->commPayload[1] = app->selectedMonSlot;
 }
 
-void ov107_022489E0(int param0, int param1, void *param2, void *param3)
+void BattleCastleOpponentApp_HandleUpdateCursorCmd(int netID, int unused, void *data, void *context)
 {
-    BattleCastleOpponentApp *v0 = param3;
-    const u16 *v1 = param2;
+    BattleCastleOpponentApp *app = context;
+    const u16 *payload = data;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v0->unk_434 = (u8)v1[1];
-
-    ov107_02248420(v0, v0->unk_434, 1);
+    app->partnersSelectedSlot = payload[1];
+    UpdateCursorSprite(app, app->partnersSelectedSlot, TRUE);
 }
 
-void ov107_02248A04(BattleCastleOpponentApp *param0)
+static void CreateExitAppPayload(BattleCastleOpponentApp *app)
 {
-    param0->unk_3E4[0] = 1;
+    app->commPayload[0] = TRUE;
 }
 
-void ov107_02248A10(int param0, int param1, void *param2, void *param3)
+void BattleCastleOpponentApp_HandleExitAppCmd(int netID, int unused, void *data, void *context)
 {
-    BattleCastleOpponentApp *v0 = param3;
-    const u16 *v1 = param2;
+    BattleCastleOpponentApp *app = context;
+    const u16 *payload = data;
 
-    if (CommSys_CurNetId() == param0) {
+    if (CommSys_CurNetId() == netID) {
         return;
     }
 
-    v0->unk_436 = (u8)v1[0];
+    app->partnerIsExiting = payload[0];
 }
 
-static void ov107_02248A2C(BattleCastleOpponentApp *param0, u8 param1)
+static void ShowMonSummary(BattleCastleOpponentApp *app, u8 slot)
 {
 
-    LoadSummaryBackground(param0, 2);
-    CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+    LoadSummaryBackground(app, BG_LAYER_MAIN_2);
+    CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
 
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+    Window_ClearAndScheduleCopyToVRAM(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
 
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    PrintPokemonSummary(param0, &param0->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], v0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, slot));
+    PrintPokemonSummary(app, &app->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], mon);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
 }
 
-static void ov107_02248A74(BattleCastleOpponentApp *param0, u8 param1)
+static void UnlockStatsForSlot(BattleCastleOpponentApp *app, u8 slot)
 {
-    param0->unk_3D4[ov107_02249C98(param0->unk_14, param1)] = 1;
+    app->statsUnlockedForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] = TRUE;
 }
 
-static void ov107_02248A8C(BattleCastleOpponentApp *param0, u8 param1)
+static void BuyStatsDisplay(BattleCastleOpponentApp *app, u8 slot)
 {
-    BattleCastleApp_DrawMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
 
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v0));
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, slot));
+    SetStringTemplateSpecies(app, 0, Pokemon_GetBoxPokemon(mon));
 
-    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_SummaryBought, FONT_MESSAGE);
+    app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_SummaryBought, FONT_MESSAGE);
 
-    ov107_02248A74(param0, param1);
-    ov107_02249580(param0);
+    UnlockStatsForSlot(app, slot);
+    UpdateAllFlagSprites(app);
 
     Sound_PlayEffect(SEQ_SE_DP_UG_020);
 }
 
-static void ov107_02248AF0(BattleCastleOpponentApp *param0, u8 param1)
+static void ShowMovesList(BattleCastleOpponentApp *app, u8 slot)
 {
-    LoadMovesListBackground(param0, 2);
-    CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+    LoadMovesListBackground(app, BG_LAYER_MAIN_2);
+    CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
 
-    Window_ClearAndScheduleCopyToVRAM(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+    Window_ClearAndScheduleCopyToVRAM(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
 
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    PrintAllMoves(param0, &param0->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], v0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, slot));
+    PrintAllMoves(app, &app->windows[OPPONENT_APP_WINDOW_SUMMARY_SCREEN], mon);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
 }
 
-static void ov107_02248B38(BattleCastleOpponentApp *param0, u8 param1)
+static void UnlockMovesForSlot(BattleCastleOpponentApp *app, u8 slot)
 {
-    param0->unk_3D8[ov107_02249C98(param0->unk_14, param1)] = 1;
+    app->movesUnlockedForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] = TRUE;
 }
 
-static void ov107_02248B50(BattleCastleOpponentApp *param0, u8 param1)
+static void BuyMovesListDisplay(BattleCastleOpponentApp *app, u8 slot)
 {
-    BattleCastleApp_DrawMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
 
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v0));
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, slot));
+    SetStringTemplateSpecies(app, 0, Pokemon_GetBoxPokemon(mon));
 
-    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_MoveListBought, FONT_MESSAGE);
+    app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_MoveListBought, FONT_MESSAGE);
 
-    ov107_02248B38(param0, param1);
-    ov107_02249580(param0);
+    UnlockMovesForSlot(app, slot);
+    UpdateAllFlagSprites(app);
 
     Sound_PlayEffect(SEQ_SE_DP_UG_020);
 }
@@ -2485,217 +2520,213 @@ static void FreeSimpleMenu(BattleCastleOpponentApp *app)
     }
 }
 
-static void ov107_02248BEC(BattleCastleOpponentApp *param0)
+static void DrawMessageBox(BattleCastleOpponentApp *app)
 {
-    BattleCastleApp_DrawMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
 }
 
-static void ov107_02248C08(BattleCastleOpponentApp *param0, Window *window)
+static void PrintPlayersAndPartnersCastlePoints(BattleCastleOpponentApp *app, Window *window)
 {
-    u16 v0, v1, v2, v3, x, y;
-    ov107_022484DC(param0, &v0, &v1, &v2, &v3);
+    u16 playerXOffset, playerYOffset, partnerXOffset, partnerYOffset, x, y;
+    GetOffsetsForPlayerInfo(app, &playerXOffset, &playerYOffset, &partnerXOffset, &partnerYOffset);
 
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == FALSE) {
-        x = v0 + 104;
-        y = v1;
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        x = playerXOffset + 104;
+        y = playerYOffset;
         Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-        SetStringTemplateNumber(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
-        param0->printerID = PrintMessage(param0, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, 0xFF, 1, 2, 0, 0, 2);
+        SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType))), 4, PADDING_MODE_SPACES);
+        app->printerID = PrintMessage(app, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
     } else {
         if (CommSys_CurNetId() == 0) {
-            x = v0 + 104;
-            y = v1;
+            x = playerXOffset + 104;
+            y = playerYOffset;
             Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-            SetStringTemplateNumber(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
-            param0->printerID = PrintMessage(param0, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, 0xFF, 1, 2, 0, 0, 2);
+            SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType))), 4, PADDING_MODE_SPACES);
+            app->printerID = PrintMessage(app, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
 
-            x = v2 + 104;
-            y = v3;
-            Window_FillRectWithColor(window, 0, x - 48, v3, 48, 16);
-            SetStringTemplateNumber(param0, 0, param0->unk_43A, 4, 1);
-            param0->printerID = PrintMessage(param0, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, 0xFF, 1, 2, 0, 0, 2);
+            x = partnerXOffset + 104;
+            y = partnerYOffset;
+            Window_FillRectWithColor(window, 0, x - 48, partnerYOffset, 48, 16);
+            SetStringTemplateNumber(app, 0, app->partnersCP, 4, PADDING_MODE_SPACES);
+            app->printerID = PrintMessage(app, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
         } else {
-            x = v0 + 104;
-            y = v1;
-            Window_FillRectWithColor(window, 0, x - 48, v1, 48, 16);
-            SetStringTemplateNumber(param0, 0, param0->unk_43A, 4, 1);
-            param0->printerID = PrintMessage(param0, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, 0xFF, 1, 2, 0, 0, 2);
+            x = playerXOffset + 104;
+            y = playerYOffset;
+            Window_FillRectWithColor(window, 0, x - 48, playerYOffset, 48, 16);
+            SetStringTemplateNumber(app, 0, app->partnersCP, 4, PADDING_MODE_SPACES);
+            app->printerID = PrintMessage(app, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
 
-            x = v2 + 104;
-            y = v3;
-            Window_FillRectWithColor(window, 0, x - 48, v3, 48, 16);
-            SetStringTemplateNumber(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
-            param0->printerID = PrintMessage(param0, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, 0xFF, 1, 2, 0, 0, 2);
+            x = partnerXOffset + 104;
+            y = partnerYOffset;
+            Window_FillRectWithColor(window, 0, x - 48, partnerYOffset, 48, 16);
+            SetStringTemplateNumber(app, 0, sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType))), 4, PADDING_MODE_SPACES);
+            app->printerID = PrintMessage(app, window, BattleCastleOpponentApp_Text_CastlePoints, x, y, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
         }
     }
 
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02248E54(BattleCastleOpponentApp *param0, u8 param1)
+static void PrintCostOfLevelAdjustment(BattleCastleOpponentApp *app, u8 adjustment)
 {
-    SetStringTemplateNumber(param0, 0, ov107_02248770(param1), 4, 0);
-    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_WillCostCP, FONT_MESSAGE);
+    SetStringTemplateNumber(app, 0, GetCostOfLevelAdjustment(adjustment), 4, 0);
+    app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_WillCostCP, FONT_MESSAGE);
 
-    OpenYesNoMenu(param0);
-    param0->unk_0E = param1;
+    OpenYesNoMenu(app);
+    app->levelAdjustment = adjustment;
 }
 
-static void ov107_02248E84(BattleCastleOpponentApp *param0, Window *param1)
+static void PrintPlayersAndPartnersNames(BattleCastleOpponentApp *app, Window *window)
 {
-    u16 v0, v1, v2, v3, v4, v5;
+    u16 x, y, playerXOffset, playerYOffset, partnerXOffset, partnerYOffset;
 
-    ov107_022484DC(param0, &v2, &v3, &v4, &v5);
+    GetOffsetsForPlayerInfo(app, &playerXOffset, &playerYOffset, &partnerXOffset, &partnerYOffset);
 
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-        v0 = v2 + 0;
-        v1 = v3 + 0;
-        PrintPlayerName(param0, param1, v0, v1, 0);
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        x = playerXOffset + 0;
+        y = playerYOffset + 0;
+        PrintPlayerName(app, window, x, y, FONT_SYSTEM);
     } else {
         if (CommSys_CurNetId() == 0) {
-            v0 = v2 + 0;
-            v1 = v3 + 0;
+            x = playerXOffset + 0;
+            y = playerYOffset + 0;
+            PrintPlayerName(app, window, x, y, FONT_SYSTEM);
 
-            PrintPlayerName(param0, param1, v0, v1, 0);
-
-            v0 = v4 + 0;
-            v1 = v5 + 0;
-
-            PrintPartnersName(param0, param1, v0, v1, 0);
+            x = partnerXOffset + 0;
+            y = partnerYOffset + 0;
+            PrintPartnersName(app, window, x, y, FONT_SYSTEM);
         } else {
-            v0 = v2 + 0;
-            v1 = v3 + 0;
+            x = playerXOffset + 0;
+            y = playerYOffset + 0;
+            PrintPartnersName(app, window, x, y, FONT_SYSTEM);
 
-            PrintPartnersName(param0, param1, v0, v1, 0);
-
-            v0 = v4 + 0;
-            v1 = v5 + 0;
-
-            PrintPlayerName(param0, param1, v0, v1, 0);
+            x = partnerXOffset + 0;
+            y = partnerYOffset + 0;
+            PrintPlayerName(app, window, x, y, FONT_SYSTEM);
         }
     }
 
-    Window_ScheduleCopyToVRAM(param1);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02248F18(BattleCastleOpponentApp *param0, u8 param1, u8 param2)
+static void SpendCastlePointsInSync(BattleCastleOpponentApp *app, u8 slotID, u8 menuOption)
 {
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
-    u8 v1, v2;
-    v2 = param0->unk_15;
-    v1 = ov107_02249C9C(v2, param1);
+    u8 slot, exitSlot;
+    exitSlot = app->exitSlot;
+    slot = BattleCastleApp_GetSlotFromSlotID(exitSlot, slotID);
 
-    u16 v3;
-    switch (param2) {
-    case 0:
-        v3 = 1;
+    u16 cost;
+    switch (menuOption) {
+    case MENU_ENTRY_CHECK:
+        cost = CP_COST_CHECK_IDENTITY;
         break;
-    case 1:
-        v3 = ov107_02248770(param0->unk_12);
+    case MENU_ENTRY_LEVEL:
+        cost = GetCostOfLevelAdjustment(app->selectedLevelAdjustment);
         break;
-    case 3:
-        v3 = 2;
+    case MENU_ENTRY_STATS:
+        cost = CP_COST_SHOW_STATS;
         break;
-    case 4:
-        v3 = 5;
+    case MENU_ENTRY_MOVES:
+        cost = CP_COST_SHOW_MOVES;
         break;
     }
 
     if (CommSys_CurNetId() == 0) {
-        if (param1 < v2) {
-            SetStringTemplatePlayerName(param0, 5);
-            ov104_0223BC2C(param0->frontier, param0->challengeType, v3);
+        if (slotID < exitSlot) {
+            SetStringTemplatePlayerName(app, 5);
+            ov104_0223BC2C(app->frontier, app->challengeType, cost);
         } else {
-            ov107_02249CF4(param0->strTemplate, 5);
-            param0->unk_43A -= v3;
+            BattleCastleApp_SetPartnerName(app->strTemplate, 5);
+            app->partnersCP -= cost;
         }
     } else {
-        if (param1 < v2) {
-            ov107_02249CF4(param0->strTemplate, 5);
-            param0->unk_43A -= v3;
+        if (slotID < exitSlot) {
+            BattleCastleApp_SetPartnerName(app->strTemplate, 5);
+            app->partnersCP -= cost;
         } else {
-            SetStringTemplatePlayerName(param0, 5);
-            ov104_0223BC2C(param0->frontier, param0->challengeType, v3);
+            SetStringTemplatePlayerName(app, 5);
+            ov104_0223BC2C(app->frontier, app->challengeType, cost);
         }
     }
 
-    ov107_02248C08(param0, &param0->windows[OPPONENT_APP_WINDOW_HEADER]);
-    FreeSimpleMenu(param0);
+    PrintPlayersAndPartnersCastlePoints(app, &app->windows[OPPONENT_APP_WINDOW_HEADER]);
+    FreeSimpleMenu(app);
 
-    switch (param2) {
-    case 0:
-        ov107_02249024(param0, v1);
+    switch (menuOption) {
+    case MENU_ENTRY_CHECK:
+        RevealPokemonInSlot(app, slot);
         break;
-    case 1:
-        ov107_022490E8(param0, v1, param0->unk_12);
+    case MENU_ENTRY_LEVEL:
+        UpdateLevelAdjustment(app, slot, app->selectedLevelAdjustment);
         break;
-    case 3:
-        ov107_02248A8C(param0, v1);
+    case MENU_ENTRY_STATS:
+        BuyStatsDisplay(app, slot);
         break;
-    case 4:
-        ov107_02248B50(param0, v1);
+    case MENU_ENTRY_MOVES:
+        BuyMovesListDisplay(app, slot);
         break;
     }
 }
 
-static void ov107_02249024(BattleCastleOpponentApp *param0, u8 param1)
+static void RevealPokemonInSlot(BattleCastleOpponentApp *app, u8 slot)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, slot));
 
-    BattleCastleApp_DrawMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
-    SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v0));
+    BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
+    SetStringTemplateSpecies(app, 0, Pokemon_GetBoxPokemon(mon));
 
-    param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_IdentityRevealed, FONT_MESSAGE);
-    param0->unk_3CC[ov107_02249C98(param0->unk_14, param1)] = 1;
+    app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_IdentityRevealed, FONT_MESSAGE);
+    app->identityUnlockedForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] = TRUE;
 
-    BattleCastleAppSprite_SetDrawFlag(param0->ballSprites[ov107_02249C98(param0->unk_14, param1)], 0);
-    BattleCastleAppSprite_SetDrawFlag(param0->monSprites[ov107_02249C98(param0->unk_14, param1)], 1);
+    BattleCastleAppSprite_SetDrawFlag(app->ballSprites[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)], FALSE);
+    BattleCastleAppSprite_SetDrawFlag(app->monSprites[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)], TRUE);
 
-    PrintAllMonsHP(param0, &param0->windows[OPPONENT_APP_WINDOW_HP_BARS]);
-    PrintAllMonsLevelAndGender(param0, &param0->windows[OPPONENT_APP_WINDOW_LEVELS]);
-    BattleCastleAppSprite_SetDrawFlag(param0->barSprites[ov107_02249C98(param0->unk_14, param1)], 1);
+    PrintAllMonsHP(app, &app->windows[OPPONENT_APP_WINDOW_HP_BARS]);
+    PrintAllMonsLevelAndGender(app, &app->windows[OPPONENT_APP_WINDOW_LEVELS]);
+    BattleCastleAppSprite_SetDrawFlag(app->barSprites[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)], TRUE);
 
     Sound_PlayEffect(SEQ_SE_DP_UG_020);
 }
 
-static void ov107_022490E8(BattleCastleOpponentApp *param0, u8 param1, u8 param2)
+static void UpdateLevelAdjustment(BattleCastleOpponentApp *app, u8 slot, u8 adjustment)
 {
-    BattleCastleApp_DrawMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    SetStringTemplateSpecies(param0, 0, Pokemon_GetBoxPokemon(v1));
+    BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, BattleCastleApp_GetSelectedSlot(app->numSlots, slot));
+    SetStringTemplateSpecies(app, 0, Pokemon_GetBoxPokemon(mon));
 
-    if (param2 == 1) {
-        param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_LevelBoostedBy5, FONT_MESSAGE);
+    if (adjustment == LEVEL_ADJUSTMENT_UP_5) {
+        app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_LevelBoostedBy5, FONT_MESSAGE);
         Sound_PlayEffect(SEQ_SE_DP_OPEN7);
     } else {
-        param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleOpponentApp_Text_LevelLoweredBy5, FONT_MESSAGE);
+        app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleOpponentApp_Text_LevelLoweredBy5, FONT_MESSAGE);
         Sound_PlayEffect(SEQ_SE_DP_CLOSE7);
     }
 
-    if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
-        param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] = param2;
+    if (app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] == LEVEL_ADJUSTMENT_NONE) {
+        app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] = adjustment;
     } else {
-        param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] = 0;
+        app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] = 0;
     }
 
-    u32 v0;
-    if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
-        v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 50);
-        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
-        Pokemon_CalcLevelAndStats(v1);
-    } else if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 1) {
-        v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 55);
-        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
-        Pokemon_CalcLevelAndStats(v1);
+    u32 exp;
+    if (app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] == LEVEL_ADJUSTMENT_NONE) {
+        exp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), 50);
+        Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &exp);
+        Pokemon_CalcLevelAndStats(mon);
+    } else if (app->levelAdjustmentForSlot[BattleCastleApp_GetSelectedSlot(app->numSlots, slot)] == LEVEL_ADJUSTMENT_UP_5) {
+        exp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), 55);
+        Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &exp);
+        Pokemon_CalcLevelAndStats(mon);
     } else {
-        v0 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 45);
-        Pokemon_SetValue(v1, MON_DATA_EXPERIENCE, &v0);
-        Pokemon_CalcLevelAndStats(v1);
+        exp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), 45);
+        Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &exp);
+        Pokemon_CalcLevelAndStats(mon);
     }
 
-    PrintAllMonsHP(param0, &param0->windows[OPPONENT_APP_WINDOW_HP_BARS]);
-    PrintAllMonsLevelAndGender(param0, &param0->windows[OPPONENT_APP_WINDOW_LEVELS]);
+    PrintAllMonsHP(app, &app->windows[OPPONENT_APP_WINDOW_HP_BARS]);
+    PrintAllMonsLevelAndGender(app, &app->windows[OPPONENT_APP_WINDOW_LEVELS]);
 }
 
 static void CloseSummaryScreen(BattleCastleOpponentApp *app)
@@ -2720,152 +2751,149 @@ static void FreeListMenu(BattleCastleOpponentApp *app)
     }
 }
 
-static void ov107_022492A8(BattleCastleOpponentApp *param0)
+static void UpdatePokemonGraphics(BattleCastleOpponentApp *app)
 {
-    u8 v1 = BattleCastle_GetPartySize(param0->challengeType, TRUE);
+    u8 numMons = BattleCastle_GetPartySize(app->challengeType, TRUE);
 
-    for (int v0 = 0; v0 < v1; v0++) {
-        Pokemon *v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v0);
-        u8 v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
+    for (int i = 0; i < numMons; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(app->opponentsParty, i);
+        u8 animID = BattleCastle_GetPokeIconAnimID(Pokemon_GetValue(mon, MON_DATA_HP, NULL), Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL));
 
-        if (param0->monSprites[v0] != NULL) {
-            ov107_02249C1C(param0->monSprites[v0], v2);
+        if (app->monSprites[i] != NULL) {
+            BattleCastleAppSprite_UpdateMonSpriteAnim(app->monSprites[i], animID);
 
-            if ((v0 != ov107_02249C98(param0->unk_14, param0->unk_0D)) || (param0->unk_0D >= param0->unk_15)) {
-                ov107_02249C28(param0->monSprites[v0], 0);
+            if (i != BattleCastleApp_GetSelectedSlot(app->numSlots, app->selectedMonSlot) || app->selectedMonSlot >= app->exitSlot) {
+                BattleCastleAppSprite_UpdateMonPosition(app->monSprites[i], FALSE);
             } else {
-                ov107_02249C28(param0->monSprites[v0], 1);
+                BattleCastleAppSprite_UpdateMonPosition(app->monSprites[i], TRUE);
             }
         }
     }
 }
 
-static BOOL ov107_0224933C(BattleCastleOpponentApp *param0, u16 param1, u16 param2)
+static BOOL TryToBuySummaryScreen(BattleCastleOpponentApp *app, u16 cost, u16 failureEntryID)
 {
-    FreeSimpleMenu(param0);
+    FreeSimpleMenu(app);
 
-    u16 v0 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+    u16 currentCP = sub_02030698(app->frontier, sub_0205E630(app->challengeType), sub_0205E6A8(sub_0205E630(app->challengeType)));
 
-    if (v0 < param1) {
-        ov107_02248BEC(param0);
-        param0->printerID = PrintMessageAndCopyToVRAM(param0, param2, FONT_MESSAGE);
-        param0->subState = 15;
-        return 0;
+    if (currentCP < cost) {
+        DrawMessageBox(app);
+        app->printerID = PrintMessageAndCopyToVRAM(app, failureEntryID, FONT_MESSAGE);
+        app->subState = MAIN_SUBSTATE_WAIT_RETURN_TO_MON_SELECTION;
+        return FALSE;
     }
 
-    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
-        CloseMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
-        ov104_0223BC2C(param0->frontier, param0->challengeType, param1);
-        ov107_02248C08(param0, &param0->windows[OPPONENT_APP_WINDOW_HEADER]);
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
+        ov104_0223BC2C(app->frontier, app->challengeType, cost);
+        PrintPlayersAndPartnersCastlePoints(app, &app->windows[OPPONENT_APP_WINDOW_HEADER]);
 
-        if (param1 == 2) {
-            ov107_02248A8C(param0, param0->unk_0D);
+        if (cost == CP_COST_SHOW_STATS) {
+            BuyStatsDisplay(app, app->selectedMonSlot);
         } else {
-            ov107_02248B50(param0, param0->unk_0D);
+            BuyMovesListDisplay(app, app->selectedMonSlot);
         }
 
-        param0->subState = 12;
-        return 0;
+        app->subState = MAIN_SUBSTATE_UPDATE_AFTER_SUMMARY_PURCHASE;
+        return FALSE;
     } else {
-        param0->unk_10 = 1;
-        return 1;
+        app->syncPurchaseAction = TRUE;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static const u16 Unk_ov107_0224A0DC[3][3] = {
+static const u16 sRankUpMessages[3][3] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, BattleCastleOpponentApp_Text_GainedMoveListPurchasePower, BattleCastleOpponentApp_Text_GainedMoveListPurchasePower }
 };
 
-static void ov107_022493CC(BattleCastleOpponentApp *param0, u8 param1, u8 param2)
+static void IncreaseRank(BattleCastleOpponentApp *app, u8 slot, u8 menuOption)
 {
-    u8 v3 = BattleCastle_GetPartySize(param0->challengeType, FALSE);
+    u8 unused = BattleCastle_GetPartySize(app->challengeType, FALSE);
 
-    u8 v2;
-    if (param2 == 5) {
-        v2 = 2;
+    u8 rankType;
+    if (menuOption == MENU_ENTRY_RANK_UP_SUMMARY) {
+        rankType = BATTLE_CASTLE_RANK_OPPONENT_SUMMARY;
     } else {
         GF_ASSERT(0);
     }
 
-    u8 v0 = param0->unk_15;
-    u8 v1 = ov107_02249C9C(v0, param1);
+    u8 exitSlot = app->exitSlot;
+    u8 unused2 = BattleCastleApp_GetSlotFromSlotID(exitSlot, slot);
 
-    u32 v4;
-    u16 v5[4];
+    u32 rank;
     if (CommSys_CurNetId() == 0) {
-        if (param1 < v0) {
-            SetStringTemplatePlayerName(param0, 5);
-            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
+        if (slot < exitSlot) {
+            SetStringTemplatePlayerName(app, 5);
+            rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
 
-            ov104_0223BC2C(param0->frontier, param0->challengeType, 50);
-            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
+            ov104_0223BC2C(app->frontier, app->challengeType, CP_COST_RANK_UP);
+            rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
 
-            v5[0] = (v4 + 1);
-            sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), sub_0205E5B4(param0->challengeType, v2), sub_0205E6A8(sub_0205E5B4(param0->challengeType, v2)), v4 + 1);
+            sub_020306E4(SaveData_GetBattleFrontier(app->saveData), sub_0205E5B4(app->challengeType, rankType), sub_0205E6A8(sub_0205E5B4(app->challengeType, rankType)), rank + 1);
 
-            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
-                param0->unk_0F_3 = 2;
+            if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+                app->syncPurchaseState = 2;
             }
         } else {
-            ov107_02249CF4(param0->strTemplate, 5);
-            v4 = param0->unk_437[v2];
-            param0->unk_43A -= 50;
-            param0->unk_437[v2]++;
+            BattleCastleApp_SetPartnerName(app->strTemplate, 5);
+            rank = app->partnersRanks[rankType];
+            app->partnersCP -= CP_COST_RANK_UP;
+            app->partnersRanks[rankType]++;
         }
     } else {
-        if (param1 < v0) {
-            ov107_02249CF4(param0->strTemplate, 5);
-            v4 = param0->unk_437[v2];
-            param0->unk_43A -= 50;
-            param0->unk_437[v2]++;
+        if (slot < exitSlot) {
+            BattleCastleApp_SetPartnerName(app->strTemplate, 5);
+            rank = app->partnersRanks[rankType];
+            app->partnersCP -= CP_COST_RANK_UP;
+            app->partnersRanks[rankType]++;
         } else {
-            SetStringTemplatePlayerName(param0, 5);
-            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
+            SetStringTemplatePlayerName(app, 5);
+            rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
 
-            ov104_0223BC2C(param0->frontier, param0->challengeType, 50);
-            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
+            ov104_0223BC2C(app->frontier, app->challengeType, CP_COST_RANK_UP);
+            rank = BattleCastleApp_GetRank(app->saveData, app->challengeType, rankType);
 
-            v5[0] = (v4 + 1);
-            sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), sub_0205E5B4(param0->challengeType, v2), sub_0205E6A8(sub_0205E5B4(param0->challengeType, v2)), v4 + 1);
+            sub_020306E4(SaveData_GetBattleFrontier(app->saveData), sub_0205E5B4(app->challengeType, rankType), sub_0205E6A8(sub_0205E5B4(app->challengeType, rankType)), rank + 1);
 
-            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
-                param0->unk_0F_3 = 2;
+            if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+                app->syncPurchaseState = 2;
             }
         }
     }
 
-    FreeSimpleMenu(param0);
-    ov107_02248C08(param0, &param0->windows[OPPONENT_APP_WINDOW_HEADER]);
-    BattleCastleApp_DrawMessageBox(&param0->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
+    FreeSimpleMenu(app);
+    PrintPlayersAndPartnersCastlePoints(app, &app->windows[OPPONENT_APP_WINDOW_HEADER]);
+    BattleCastleApp_DrawMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX], Options_Frame(app->options));
 
-    param0->printerID = PrintMessageAndCopyToVRAM(param0, Unk_ov107_0224A0DC[v2][v4], FONT_MESSAGE);
+    app->printerID = PrintMessageAndCopyToVRAM(app, sRankUpMessages[rankType][rank], FONT_MESSAGE);
 }
 
-static void ov107_02249580(BattleCastleOpponentApp *param0)
+static void UpdateAllFlagSprites(BattleCastleOpponentApp *app)
 {
-    u8 v0 = ov104_0223B7DC(param0->challengeType, 1);
+    u8 numMons = ov104_0223B7DC(app->challengeType, TRUE);
 
-    for (int v1 = 0; v1 < v0; v1++) {
-        ov107_022495A8(param0, v1);
+    for (int i = 0; i < numMons; i++) {
+        UpdateFlagSprites(app, i);
     }
 }
 
-static void ov107_022495A8(BattleCastleOpponentApp *param0, u8 param1)
+static void UpdateFlagSprites(BattleCastleOpponentApp *app, u8 slot)
 {
-    if (param0->unk_3D4[param1] == 1) {
-        BattleCastleAppSprite_SetDrawFlag(param0->unk_3A4[param1][0], 1);
+    if (app->statsUnlockedForSlot[slot] == TRUE) {
+        BattleCastleAppSprite_SetDrawFlag(app->flagSprites[slot][0], TRUE);
     }
 
-    if (param0->unk_3D8[param1] == 1) {
-        BattleCastleAppSprite_SetDrawFlag(param0->unk_3A4[param1][1], 1);
+    if (app->movesUnlockedForSlot[slot] == TRUE) {
+        BattleCastleAppSprite_SetDrawFlag(app->flagSprites[slot][1], TRUE);
     }
 }
 
-static void ov107_022495E4(BattleCastleOpponentApp *app, u32 *x, u32 *y)
+static void GetFlagSpritesOffsets(BattleCastleOpponentApp *app, u32 *x, u32 *y)
 {
     if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
         *x = 64;

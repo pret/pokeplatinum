@@ -6,19 +6,19 @@
       "en_US": "{STRVAR_1 3, 0, 0}"
     },
     {
-      "id": "pl_msg_00000199_00001",
+      "id": "BattleCastleSelfApp_Text_PartnerName",
       "en_US": "{STRVAR_1 3, 0, 0}"
     },
     {
-      "id": "pl_msg_00000199_00002",
-      "en_US": "{STRVAR_1 53, 0, 0} CP"
-    },
-    {
-      "id": "pl_msg_00000199_00003",
-      "en_US": "{STRVAR_1 53, 0, 0} CP"
-    },
-    {
       "id": "BattleCastleSelfApp_Text_CastlePoints",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_PartnersCastlePoints",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_CastlePointsItemSelect",
       "en_US": "{STRVAR_1 53, 0, 0} CP"
     },
     {

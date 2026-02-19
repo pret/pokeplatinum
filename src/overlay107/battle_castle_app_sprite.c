@@ -66,14 +66,14 @@ void BattleCastleAppSprite_UpdatePalette(BattleCastleAppSprite *sprite, Pokemon 
     Sprite_SetExplicitPaletteOffsetAutoAdjust(sprite->sprite, Pokemon_IconPaletteIndex(mon));
 }
 
-void ov107_02249C1C(BattleCastleAppSprite *sprite, u8 param1)
+void BattleCastleAppSprite_UpdateMonSpriteAnim(BattleCastleAppSprite *sprite, u8 animID)
 {
-    ov104_0222E1D8(sprite->sprite, param1);
+    BattleCastle_UpdateMonSpriteAnimID(sprite->sprite, animID);
 }
 
-void ov107_02249C28(BattleCastleAppSprite *sprite, u8 param1)
+void BattleCastleAppSprite_UpdateMonPosition(BattleCastleAppSprite *sprite, u8 isSelected)
 {
-    ov104_0222E204(sprite->sprite, sprite->x, sprite->y, param1);
+    BattleCastle_UpdateMonSpritePosition(sprite->sprite, sprite->x, sprite->y, isSelected);
 }
 
 BOOL BattleCastleAppSprite_IsAnimated(BattleCastleAppSprite *sprite)
@@ -86,15 +86,15 @@ void BattleCastleAppSprite_SetPriority(BattleCastleAppSprite *sprite, u8 priorit
     Sprite_SetExplicitPriority(sprite->sprite, priority);
 }
 
-void ov107_02249C58(BattleCastleAppSprite *sprite, s16 x, s16 y)
+void BattleCastleAppSprite_UpdateCoords(BattleCastleAppSprite *sprite, s16 x, s16 y)
 {
     sprite->x = x;
     sprite->y = y;
 }
 
-void ov107_02249C60(BattleCastleAppSprite *sprite, u16 x, u16 y)
+void BattleCastleAppSprite_PlaySparkleAnim(BattleCastleAppSprite *sprite, u16 x, u16 y)
 {
-    BattleCastleAppSprite_SetAnim(sprite, 11);
+    BattleCastleAppSprite_SetAnim(sprite, ANIM_ID_OPEN_SUMMARY_SPARKLES);
     BattleCastleAppSprite_SetPosition(sprite, x, y);
     BattleCastleAppSprite_SetDrawFlag(sprite, TRUE);
 
