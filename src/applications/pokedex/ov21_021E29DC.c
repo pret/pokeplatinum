@@ -8,7 +8,7 @@
 #include "applications/pokedex/ov21_021E3FFC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
-#include "applications/pokedex/pokedex_entry_display.h"
+#include "applications/pokedex/infomain_foreign.h"
 #include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_graphics_manager.h"
 #include "applications/pokedex/pokedex_main.h"
@@ -452,13 +452,13 @@ static void ov21_021E2E10(UnkStruct_ov21_021E2BA8 *param0)
     param0->unk_28 = 0;
     param0->unk_10->unk_14 = 0;
 
-    PokedexEntryDisplay_SetAnimationMode(param0->unk_18, 0);
+    InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_MODE_POSITION_BLEND);
 
     switch (param0->unk_08) {
     case 0:
         param0->unk_10->unk_08 = 56;
         param0->unk_10->unk_0C = 80;
-        PokedexEntryDisplay_SetDisplayPosition(param0->unk_18, 56, 80);
+        InfoMainForeign_SetDisplayPosition(param0->unk_18, 56, 80);
         param0->unk_0C->unk_14 = 1;
         param0->unk_2C = 1;
         break;
@@ -563,15 +563,15 @@ static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param
     case 0:
         if (ov21_021E2EC0(param1)) {
             param0->unk_10->unk_14 = 2;
-            PokedexEntryDisplay_SetAnimationMode(param0->unk_18, 2);
+            InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_MODE_POSITION);
         } else {
             param0->unk_10->unk_14 = 1;
-            PokedexEntryDisplay_SetAnimationMode(param0->unk_18, 1);
+            InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_MODE_BLEND);
         }
 
         param0->unk_10->unk_08 = v0;
         param0->unk_10->unk_0C = v1;
-        PokedexEntryDisplay_SetDisplayPosition(param0->unk_18, v0, v1);
+        InfoMainForeign_SetDisplayPosition(param0->unk_18, v0, v1);
         break;
     case 1:
         if (ov21_021E2EC0(param1)) {
@@ -1575,3 +1575,4 @@ static void ov21_021E3FE4(UnkStruct_ov21_021E3900 *param0, const UnkStruct_ov21_
         Sprite_SetDrawFlag(param0->unk_00[4], FALSE);
     }
 }
+
