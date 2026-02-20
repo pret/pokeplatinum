@@ -32,6 +32,7 @@
 
 #include "bag.h"
 #include "bag_context.h"
+#include "chatot_cry_data.h"
 #include "dexmode_checker.h"
 #include "enums.h"
 #include "game_options.h"
@@ -54,7 +55,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "chatot_cry_data.h"
 #include "unk_0202D778.h"
 
 #include "constdata/const_020F410C.h"

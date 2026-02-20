@@ -18,6 +18,7 @@
 #include "battle/message_defs.h"
 
 #include "charcode_util.h"
+#include "chatot_cry_data.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "pal_pad.h"
@@ -25,7 +26,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "chatot_cry_data.h"
 #include "unk_0202F1D4.h"
 #include "unk_02032798.h"
 #include "unk_020363E8.h"

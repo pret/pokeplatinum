@@ -7,11 +7,11 @@
 
 #include "struct_defs/chatot_cry.h"
 
+#include "chatot_cry_data.h"
 #include "math_util.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sound_system.h"
-#include "chatot_cry_data.h"
 
 #define CHATOT_CRY_SPEED_VARIANCE   8192
 #define CHATOT_CRY_WAVE_BUFFER_SIZE SOUND_WAVE_BUFFER_SIZE

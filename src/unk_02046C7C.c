@@ -7,6 +7,7 @@
 #include "overlay005/hblank_system.h"
 #include "overlay006/link_contest_record_display.h"
 
+#include "chatot_cry_data.h"
 #include "field_script_context.h"
 #include "field_system.h"
 #include "inlines.h"
@@ -21,7 +22,6 @@
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020298BC.h"
-#include "chatot_cry_data.h"
 #include "unk_020933F8.h"
 #include "vars_flags.h"
 

@@ -30,6 +30,7 @@
 
 #include "assert.h"
 #include "brightness_controller.h"
+#include "chatot_cry_data.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_task.h"
@@ -54,7 +55,6 @@
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
 #include "unk_020298BC.h"
-#include "chatot_cry_data.h"
 #include "unk_020363E8.h"
 #include "unk_02094EDC.h"
 #include "unk_02095AF0.h"
