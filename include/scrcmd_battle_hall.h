@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0204F13C_H
-#define POKEPLATINUM_UNK_0204F13C_H
+#ifndef POKEPLATINUM_SCRCMD_BATTLE_HALL_H
+#define POKEPLATINUM_SCRCMD_BATTLE_HALL_H
 
 #include "field_script_context.h"
 
@@ -11,4 +11,4 @@ BOOL ScrCmd_GetNumSpeciesWithBattleHallRecords(ScriptContext *param0);
 BOOL ScrCmd_GetBattleHallTotalSinglesRecord(ScriptContext *param0);
 BOOL ScrCmd_32A(ScriptContext *param0);
 
-#endif // POKEPLATINUM_UNK_0204F13C_H
+#endif // POKEPLATINUM_SCRCMD_BATTLE_HALL_H

@@ -195,9 +195,9 @@ BOOL ScrCmd_2D1(ScriptContext *ctx)
 BOOL ScrCmd_BattleHallCheckUsingSameSpeciesAsPartner(ScriptContext *ctx)
 {
     u16 species = ScriptContext_GetVar(ctx);
-    u16 *speciesAreDifferent = ScriptContext_GetVarPointer(ctx);
+    u16 *result = ScriptContext_GetVarPointer(ctx);
 
-    CheckSameSpeciesAsPartner(ctx->task, species, speciesAreDifferent);
+    CheckSameSpeciesAsPartner(ctx->task, species, result);
     return TRUE;
 }
 

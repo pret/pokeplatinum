@@ -4271,10 +4271,10 @@
     .short 718
     .endm
 
-    .macro BattleHallCheckUsingSameSpeciesAsPartner species, speciesAreDifferent
+    .macro BattleHallCheckUsingSameSpeciesAsPartner species, result
     .short 719
     .short \species
-    .short \speciesAreDifferent
+    .short \result
     .endm
 
     .macro GetBattleHallSelectedSlots slot1, slot2
