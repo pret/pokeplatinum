@@ -46,7 +46,6 @@ const void *GetChatotCryAudioBuffer(const ChatotCry *chatotCry)
     return chatotCry->data;
 }
 
-// Converts Chatot Cry data (stored in 1Khz 4-bit) to wave data (2khz 8-bit)
 void ProcessChatotCryAudioData(s8 *outData, const s8 *inCryData)
 {
     int i, index = 0;
@@ -68,15 +67,13 @@ void ProcessChatotCryAudioData(s8 *outData, const s8 *inCryData)
     }
 }
 
-// Stores input data (2khz 8-bit) in chatotCry object (1khz 4-bit)
 void StoreProcessedAudioInChatotCryData(ChatotCry *chatotCry, const s8 *inData)
 {
-    int i, index;
+    int i, index = 0;
     s8 sample;
     u8 convertedSample;
 
     chatotCry->exists = TRUE;
-    index = 0;
 
     for (i = 0; i < CHATOT_CRY_SIZE * 2; i += 2) {
         // first sample (lower 4 bits)
