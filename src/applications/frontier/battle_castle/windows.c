@@ -1,4 +1,4 @@
-#include "overlay107/battle_castle_app_windows.h"
+#include "applications/frontier/battle_castle/windows.h"
 
 #include <nitro.h>
 

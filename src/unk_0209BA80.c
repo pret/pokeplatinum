@@ -9,12 +9,12 @@
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_0209BBA4.h"
 
+#include "applications/frontier/battle_castle/opponent_app.h"
+#include "applications/frontier/battle_castle/self_app.h"
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
 #include "overlay105/ov105_02241AE0.h"
-#include "overlay107/battle_castle_opponent_app.h"
-#include "overlay107/battle_castle_self_app.h"
 #include "overlay108/ov108_02241AE0.h"
 
 #include "communication_system.h"

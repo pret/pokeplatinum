@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_OV107_02249C98_H
-#define POKEPLATINUM_OV107_02249C98_H
+#ifndef POKEPLATINUM_APPLICATIONS_BATTLE_CASTLE_HELPERS_H
+#define POKEPLATINUM_APPLICATIONS_BATTLE_CASTLE_HELPERS_H
 
 #include "savedata.h"
 #include "string_template.h"
@@ -14,4 +14,4 @@ u8 BattleCastleApp_GetRank(SaveData *saveData, u8 challengeType, u8 rankType);
 void BattleCastleApp_PlaySound(u32 input, u16 seqID);
 void BattleCastleApp_SetPartnerName(StringTemplate *template, u32 idx);
 
-#endif // POKEPLATINUM_OV107_02249C98_H
+#endif // POKEPLATINUM_APPLICATIONS_BATTLE_CASTLE_HELPERS_H

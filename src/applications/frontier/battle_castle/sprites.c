@@ -1,10 +1,10 @@
-#include "overlay107/battle_castle_app_sprite.h"
+#include "applications/frontier/battle_castle/sprites.h"
 
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/frontier/battle_castle/sprite_manager.h"
 #include "overlay104/ov104_0222DCE0.h"
-#include "overlay107/battle_castle_app_sprite_manager.h"
 
 #include "heap.h"
 #include "pokemon_icon.h"

@@ -1,4 +1,4 @@
-#include "overlay107/battle_castle_app_sprite_manager.h"
+#include "applications/frontier/battle_castle/sprite_manager.h"
 
 #include <nitro.h>
 

@@ -1,4 +1,4 @@
-#include "overlay107/battle_castle_opponent_app.h"
+#include "applications/frontier/battle_castle/opponent_app.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -10,13 +10,13 @@
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
 
+#include "applications/frontier/battle_castle/helpers.h"
+#include "applications/frontier/battle_castle/sprite_manager.h"
+#include "applications/frontier/battle_castle/sprites.h"
+#include "applications/frontier/battle_castle/windows.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223B6F4.h"
 #include "overlay104/struct_ov104_0223597C.h"
-#include "overlay107/battle_castle_app_sprite.h"
-#include "overlay107/battle_castle_app_sprite_manager.h"
-#include "overlay107/battle_castle_app_windows.h"
-#include "overlay107/ov107_02249C98.h"
 
 #include "bg_window.h"
 #include "communication_information.h"

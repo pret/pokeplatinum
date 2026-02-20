@@ -1,4 +1,4 @@
-#include "overlay107/ov107_02249C98.h"
+#include "applications/frontier/battle_castle/helpers.h"
 
 #include <nitro.h>
 
