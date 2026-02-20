@@ -1,4 +1,4 @@
-#include "overlay107/ov107_02241AE0.h"
+#include "overlay107/battle_castle_self_app.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -14,7 +14,6 @@
 #include "overlay107/battle_castle_app_sprite_manager.h"
 #include "overlay107/battle_castle_app_windows.h"
 #include "overlay107/ov107_02249C98.h"
-#include "overlay107/struct_ov107_02241D6C_decl.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -31,6 +30,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "narc_frontier_bg.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
@@ -202,11 +202,11 @@ const u16 Unk_ov107_02249E12[] = {
     NELEMS(Unk_ov107_0224A02C)
 };
 
-struct UnkStruct_ov107_02241D6C_t {
+typedef struct BattleCastleSelfApp {
     ApplicationManager *appMan;
     BattleFrontier *frontier;
-    u8 unk_08;
-    u8 unk_09;
+    u8 subState;
+    u8 challengeType;
     u8 unk_0A;
     u8 unk_0B;
     u8 unk_0C;
@@ -227,42 +227,42 @@ struct UnkStruct_ov107_02241D6C_t {
     u16 unk_16;
     u16 unk_18;
     u16 unk_1A;
-    MessageLoader *unk_1C;
-    MessageLoader *unk_20;
-    StringTemplate *unk_24;
-    String *unk_28;
-    String *unk_2C;
+    MessageLoader *itemMsgLoader;
+    MessageLoader *msgLoader;
+    StringTemplate *strTemplate;
+    String *displayStr;
+    String *fmtStr;
     String *unk_30[3];
     u16 unk_3C[8];
-    BgConfig *unk_4C;
-    Window unk_50[18];
+    BgConfig *bgConfig;
+    Window windows[18];
     MenuTemplate unk_170;
     Menu *unk_17C;
     StringList unk_180[3];
     ListMenu *unk_198;
     StringList *unk_19C;
     ListMenuTemplate unk_1A0;
-    PaletteData *unk_1C0;
-    FontSpecialCharsContext *unk_1C4;
+    PaletteData *plttData;
+    FontSpecialCharsContext *specialChars;
     Options *options;
     SaveData *saveData;
     UnkStruct_020302DC *unk_1D0;
     UnkStruct_0203041C *unk_1D4;
-    BattleCastleAppSpriteManager unk_1D8;
-    BattleCastleAppSprite *unk_3E8;
-    BattleCastleAppSprite *unk_3EC;
-    BattleCastleAppSprite *unk_3F0;
-    BattleCastleAppSprite *unk_3F4[4];
-    BattleCastleAppSprite *unk_404[4];
+    BattleCastleAppSpriteManager spriteMan;
+    BattleCastleAppSprite *upArrowSprite;
+    BattleCastleAppSprite *downArrowSprite;
+    BattleCastleAppSprite *itemSprite;
+    BattleCastleAppSprite *monSprites[4];
+    BattleCastleAppSprite *itemIconSprites[4];
     BattleCastleAppSprite *unk_414;
-    BattleCastleAppSprite *unk_418;
+    BattleCastleAppSprite *cursorSprite;
     BattleCastleAppSprite *unk_41C;
-    BattleCastleAppSprite *unk_420[4];
+    BattleCastleAppSprite *barSprites[4];
     BattleCastleAppSprite *unk_430;
     BattleCastleAppSprite *unk_434;
     u16 *unk_438;
     Party *unk_43C;
-    NARC *unk_440;
+    NARC *narc;
     u16 unk_444[40];
     u8 unk_494;
     u8 unk_495;
@@ -270,118 +270,118 @@ struct UnkStruct_ov107_02241D6C_t {
     u8 unk_497[3];
     u16 unk_49A;
     u32 unk_49C;
-};
+} BattleCastleSelfApp;
 
-static BOOL ov107_02241D6C(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02241E70(UnkStruct_ov107_02241D6C *param0);
-static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0);
-static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0);
-static BOOL ov107_02242D60(UnkStruct_ov107_02241D6C *param0);
-static BOOL ov107_02242DCC(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02242E14(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02242F24(void);
-static void ov107_02242F5C(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02243384(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02243324(UnkStruct_ov107_02241D6C *param0);
-static void ov107_022433A8(BgConfig *param0);
-static void ov107_022433EC(void *param0);
-static void ov107_02243424(void);
-static void ov107_02243444(BgConfig *param0);
-static void ov107_02243588(UnkStruct_ov107_02241D6C *param0, u32 param1);
-static void ov107_022435FC(void);
-static void ov107_02243630(UnkStruct_ov107_02241D6C *param0, u32 param1);
-static void ov107_022436AC(UnkStruct_ov107_02241D6C *param0, u32 param1);
-static void ov107_022436F4(UnkStruct_ov107_02241D6C *param0, u32 param1);
-static void ov107_02243678(void);
-static void ov107_0224373C(UnkStruct_ov107_02241D6C *param0, u32 param1);
-static u8 ov107_0224379C(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov107_022437CC(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10);
-static u8 ov107_02243860(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov107_02243890(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10);
-static u8 ov107_02243918(UnkStruct_ov107_02241D6C *param0, int param1, u8 param2);
-static void ov107_02243950(UnkStruct_ov107_02241D6C *param0, Window *param1, Pokemon *param2);
-static void ov107_02243B5C(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u16 param3, u16 param4, int param5);
-static void ov107_02243B84(UnkStruct_ov107_02241D6C *param0, Window *param1, Pokemon *param2);
-static void ov107_02243C18(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u32 param3, u32 param4, Pokemon *param5, u32 param6, u32 param7, u32 param8);
-static void ov107_02243CC0(UnkStruct_ov107_02241D6C *param0, Window *param1);
-static void ov107_02243CFC(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u8 param3);
-static void ov107_02243DB0(UnkStruct_ov107_02241D6C *param0, Window *param1);
-static void ov107_02243DE4(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u8 param3);
-static void ov107_02243E74(UnkStruct_ov107_02241D6C *param0, Window *param1);
-static void ov107_02243F4C(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u32 param3);
-static void ov107_02243FA4(UnkStruct_ov107_02241D6C *param0);
-static void ov107_0224400C(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02244018(UnkStruct_ov107_02241D6C *param0);
-static void ov107_0224403C(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02244064(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02244094(UnkStruct_ov107_02241D6C *param0);
-static void ov107_0224409C(UnkStruct_ov107_02241D6C *param0);
-static void ov107_022440C0(UnkStruct_ov107_02241D6C *param0);
-static void ov107_022440C8(UnkStruct_ov107_02241D6C *param0, u8 param1);
-static void ov107_02244120(UnkStruct_ov107_02241D6C *param0);
-static void ov107_0224414C(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2);
-static void ov107_022441B0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2, int param3);
-static void ov107_022441DC(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02244240(UnkStruct_ov107_02241D6C *param0, u8 param1);
+static BOOL State_FadeInApp(BattleCastleSelfApp *app);
+static void ov107_02241E70(BattleCastleSelfApp *param0);
+static BOOL ov107_02241EC8(BattleCastleSelfApp *param0);
+static BOOL ov107_02242C64(BattleCastleSelfApp *param0);
+static BOOL ov107_02242D60(BattleCastleSelfApp *param0);
+static BOOL State_FadeOutApp(BattleCastleSelfApp *app);
+static void FreeAssets(BattleCastleSelfApp *app);
+static void InitGraphicsPlane(void);
+static void LoadAssets(BattleCastleSelfApp *app);
+static void InitSpriteManager(BattleCastleSelfApp *app);
+static void LoadBackgrounds(BattleCastleSelfApp *app);
+static void FreeBackgrounds(BgConfig *bgConfig);
+static void VBlankCallback(void *data);
+static void SetGXBanks(void);
+static void InitBackgrounds(BgConfig *bgConfig);
+static void LoadMainBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer);
+static void LoadPalette(void);
+static void LoadSummaryBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer);
+static void LoadMovesListBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer);
+static void LoadItemSelectBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer);
+static void LoadPalette2(void);
+static void LoadSubScreenBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer);
+static u8 ov107_0224379C(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
+static u8 ov107_022437CC(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10);
+static u8 ov107_02243860(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
+static u8 ov107_02243890(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10);
+static u8 ov107_02243918(BattleCastleSelfApp *param0, int param1, u8 param2);
+static void ov107_02243950(BattleCastleSelfApp *param0, Window *param1, Pokemon *param2);
+static void ov107_02243B5C(BattleCastleSelfApp *param0, Window *param1, int param2, u16 param3, u16 param4, int param5);
+static void ov107_02243B84(BattleCastleSelfApp *param0, Window *param1, Pokemon *param2);
+static void ov107_02243C18(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3, u32 param4, Pokemon *param5, u32 param6, u32 param7, u32 param8);
+static void ov107_02243CC0(BattleCastleSelfApp *param0, Window *param1);
+static void ov107_02243CFC(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3);
+static void ov107_02243DB0(BattleCastleSelfApp *param0, Window *param1);
+static void ov107_02243DE4(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3);
+static void ov107_02243E74(BattleCastleSelfApp *param0, Window *param1);
+static void ov107_02243F4C(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3);
+static void ov107_02243FA4(BattleCastleSelfApp *param0);
+static void ov107_0224400C(BattleCastleSelfApp *param0);
+static void ov107_02244018(BattleCastleSelfApp *param0);
+static void ov107_0224403C(BattleCastleSelfApp *param0);
+static void ov107_02244064(BattleCastleSelfApp *param0);
+static void ov107_02244094(BattleCastleSelfApp *param0);
+static void ov107_0224409C(BattleCastleSelfApp *param0);
+static void ov107_022440C0(BattleCastleSelfApp *param0);
+static void ov107_022440C8(BattleCastleSelfApp *param0, u8 param1);
+static void ov107_02244120(BattleCastleSelfApp *param0);
+static void ov107_0224414C(BattleCastleSelfApp *param0, Window *param1, u8 param2);
+static void ov107_022441B0(BattleCastleSelfApp *param0, u8 param1, u8 param2, int param3);
+static void ov107_022441DC(BattleCastleSelfApp *param0);
+static void ov107_02244240(BattleCastleSelfApp *param0, u8 param1);
 static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_02244560(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_022445C4(UnkStruct_ov107_02241D6C *param0);
+static void ov107_022445C4(BattleCastleSelfApp *param0);
 static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244780(UnkStruct_ov107_02241D6C *param0);
+static void ov107_02244780(BattleCastleSelfApp *param0);
 static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2);
 static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244944(UnkStruct_ov107_02241D6C *param0);
+static void ov107_02244944(BattleCastleSelfApp *param0);
 static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2);
-static void ov107_02244A74(UnkStruct_ov107_02241D6C *param0, u32 param1, s32 param2, u32 param3, int param4);
-static void ov107_02244A8C(UnkStruct_ov107_02241D6C *param0, u32 param1, BoxPokemon *param2);
-static void ov107_02244A98(UnkStruct_ov107_02241D6C *param0, u32 param1);
-static void ov107_02244AB4(UnkStruct_ov107_02241D6C *param0, Window *param1, u32 param2, u32 param3, u8 param4);
-static void ov107_02244B24(UnkStruct_ov107_02241D6C *param0, Window *param1, u32 param2, u32 param3, u8 param4);
-static void ov107_02244B8C(UnkStruct_ov107_02241D6C *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5);
-static u8 ov107_02243EF8(UnkStruct_ov107_02241D6C *param0, Window *param1, u16 param2);
-static void ov107_02244BD0(UnkStruct_ov107_02241D6C *param0, int *param1, int param2);
-static void ov107_02244BD8(UnkStruct_ov107_02241D6C *param0, int param1);
-static void ov107_02244C70(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02244CA0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2);
-static void ov107_02244D08(UnkStruct_ov107_02241D6C *param0, u32 *param1, u32 *param2, u8 param3);
-static u16 ov107_02244D5C(UnkStruct_ov107_02241D6C *param0, u16 param1, u8 param2);
+static void ov107_02244A74(BattleCastleSelfApp *param0, u32 param1, s32 param2, u32 param3, int param4);
+static void ov107_02244A8C(BattleCastleSelfApp *param0, u32 param1, BoxPokemon *param2);
+static void ov107_02244A98(BattleCastleSelfApp *param0, u32 param1);
+static void ov107_02244AB4(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4);
+static void ov107_02244B24(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4);
+static void ov107_02244B8C(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5);
+static u8 ov107_02243EF8(BattleCastleSelfApp *param0, Window *param1, u16 param2);
+static void ChangeState(BattleCastleSelfApp *app, int *state, int newState);
+static void ov107_02244BD8(BattleCastleSelfApp *param0, int param1);
+static void ov107_02244C70(BattleCastleSelfApp *param0);
+static void ov107_02244CA0(BattleCastleSelfApp *param0, u8 param1, u8 param2);
+static void GetCursorSpritePos(BattleCastleSelfApp *app, u32 *x, u32 *y, u8 slot);
+static u16 ov107_02244D5C(BattleCastleSelfApp *param0, u16 param1, u8 param2);
 static u16 ov107_02244D90(u16 param0);
-static u16 ov107_02244DE0(UnkStruct_ov107_02241D6C *param0, u16 param1, u8 param2);
-static void ov107_02244E14(UnkStruct_ov107_02241D6C *param0, u16 *param1, u16 *param2, u16 *param3, u16 *param4);
-static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2);
-static void ov107_0224503C(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2);
-static u32 ov107_022450E8(UnkStruct_ov107_02241D6C *param0, u8 param1);
-static u32 ov107_02245114(UnkStruct_ov107_02241D6C *param0, u8 param1);
-static void ov107_02245140(UnkStruct_ov107_02241D6C *param0, s8 param1);
-static void ov107_0224518C(UnkStruct_ov107_02241D6C *param0, s8 param1);
-static void ov107_022451D8(UnkStruct_ov107_02241D6C *param0);
+static u16 ov107_02244DE0(BattleCastleSelfApp *param0, u16 param1, u8 param2);
+static void ov107_02244E14(BattleCastleSelfApp *param0, u16 *param1, u16 *param2, u16 *param3, u16 *param4);
+static BOOL ov107_02244E44(BattleCastleSelfApp *param0, u8 param1, u8 param2);
+static void ov107_0224503C(BattleCastleSelfApp *param0, u8 param1, u8 param2);
+static u32 ov107_022450E8(BattleCastleSelfApp *param0, u8 param1);
+static u32 ov107_02245114(BattleCastleSelfApp *param0, u8 param1);
+static void ov107_02245140(BattleCastleSelfApp *param0, s8 param1);
+static void ov107_0224518C(BattleCastleSelfApp *param0, s8 param1);
+static void ov107_022451D8(BattleCastleSelfApp *param0);
 static BOOL ov107_02245210(Pokemon *param0);
 static void ov107_02245288(Window *param0);
-BOOL ov107_0224529C(UnkStruct_ov107_02241D6C *param0, u16 param1, u16 param2);
-void ov107_022452F4(UnkStruct_ov107_02241D6C *param0, u16 param1);
+BOOL ov107_0224529C(BattleCastleSelfApp *param0, u16 param1, u16 param2);
+void ov107_022452F4(BattleCastleSelfApp *param0, u16 param1);
 void ov107_02245338(int param0, int param1, void *param2, void *param3);
-void ov107_02245368(UnkStruct_ov107_02241D6C *param0, u16 param1, u16 param2);
-void ov107_022453F8(UnkStruct_ov107_02241D6C *param0, u16 param1);
+void ov107_02245368(BattleCastleSelfApp *param0, u16 param1, u16 param2);
+void ov107_022453F8(BattleCastleSelfApp *param0, u16 param1);
 void ov107_02245408(int param0, int param1, void *param2, void *param3);
-void ov107_0224542C(UnkStruct_ov107_02241D6C *param0);
+void ov107_0224542C(BattleCastleSelfApp *param0);
 void ov107_02245438(int param0, int param1, void *param2, void *param3);
 static void ov107_02245454(Pokemon *param0, u16 param1);
-static void ov107_02245464(UnkStruct_ov107_02241D6C *param0, Window *param1);
-static void ov107_022454F8(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2);
-static void ov107_022455A0(UnkStruct_ov107_02241D6C *param0, u8 param1, u16 param2);
-static void ov107_02245618(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02245650(UnkStruct_ov107_02241D6C *param0, Window *param1);
-static void ov107_02245660(UnkStruct_ov107_02241D6C *param0);
-static void ov107_022456E4(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02245730(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02245780(UnkStruct_ov107_02241D6C *param0, Window *param1);
-static void ov107_022459D0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2);
-static void ov107_02245B40(UnkStruct_ov107_02241D6C *param0, u8 param1);
-static void ov107_02245B90(UnkStruct_ov107_02241D6C *param0, u8 param1);
-static void ov107_02245BE0(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02245C00(UnkStruct_ov107_02241D6C *param0);
-static void ov107_02245C94(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2);
+static void ov107_02245464(BattleCastleSelfApp *param0, Window *param1);
+static void ov107_022454F8(BattleCastleSelfApp *param0, u8 param1, u8 param2);
+static void ov107_022455A0(BattleCastleSelfApp *param0, u8 param1, u16 param2);
+static void ov107_02245618(BattleCastleSelfApp *param0);
+static void ov107_02245650(BattleCastleSelfApp *param0, Window *param1);
+static void ov107_02245660(BattleCastleSelfApp *param0);
+static void ov107_022456E4(BattleCastleSelfApp *param0);
+static void ov107_02245730(BattleCastleSelfApp *param0);
+static void ov107_02245780(BattleCastleSelfApp *param0, Window *param1);
+static void ov107_022459D0(BattleCastleSelfApp *param0, u8 param1, u8 param2);
+static void ov107_02245B40(BattleCastleSelfApp *param0, u8 param1);
+static void ov107_02245B90(BattleCastleSelfApp *param0, u8 param1);
+static void ov107_02245BE0(BattleCastleSelfApp *param0);
+static void ov107_02245C00(BattleCastleSelfApp *param0);
+static void ov107_02245C94(BattleCastleSelfApp *param0, u8 param1, u8 param2);
 extern void ov107_2243860(void);
 
 static const u16 Unk_ov107_02249E00[] = {
@@ -438,61 +438,61 @@ static const ListMenuTemplate Unk_ov107_02249EE4 = {
     NULL
 };
 
-int ov107_02241AE0(ApplicationManager *appMan, int *param1)
+BOOL BattleCastleSelfApp_Init(ApplicationManager *appMan, int *state)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
-    ov107_02242F24();
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), OVERLAY_LOAD_ASYNC);
+    InitGraphicsPlane();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_CASTLE_APP, 0x25000);
 
-    UnkStruct_ov107_02241D6C *v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov107_02241D6C), HEAP_ID_BATTLE_CASTLE_APP);
-    memset(v1, 0, sizeof(UnkStruct_ov107_02241D6C));
+    BattleCastleSelfApp *app = ApplicationManager_NewData(appMan, sizeof(BattleCastleSelfApp), HEAP_ID_BATTLE_CASTLE_APP);
+    memset(app, 0, sizeof(BattleCastleSelfApp));
 
-    v1->unk_4C = BgConfig_New(HEAP_ID_BATTLE_CASTLE_APP);
-    v1->appMan = appMan;
+    app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_CASTLE_APP);
+    app->appMan = appMan;
 
     UnkStruct_ov104_0223597C *v2 = ApplicationManager_Args(appMan);
 
-    v1->saveData = v2->saveData;
-    v1->unk_1D0 = sub_020302DC(v1->saveData);
-    v1->unk_1D4 = sub_0203041C(v1->saveData);
-    v1->unk_09 = v2->unk_04;
-    v1->unk_438 = &v2->unk_20;
-    v1->options = SaveData_GetOptions(v1->saveData);
-    v1->unk_43C = v2->unk_18;
-    v1->unk_12 = 0xff;
-    v1->unk_49A = v2->unk_28;
-    v1->frontier = SaveData_GetBattleFrontier(v1->saveData);
+    app->saveData = v2->saveData;
+    app->unk_1D0 = sub_020302DC(app->saveData);
+    app->unk_1D4 = sub_0203041C(app->saveData);
+    app->challengeType = v2->unk_04;
+    app->unk_438 = &v2->unk_20;
+    app->options = SaveData_GetOptions(app->saveData);
+    app->unk_43C = v2->unk_18;
+    app->unk_12 = 0xff;
+    app->unk_49A = v2->unk_28;
+    app->frontier = SaveData_GetBattleFrontier(app->saveData);
 
-    for (int v0 = 0; v0 < 3; v0++) {
-        v1->unk_497[v0] = 1;
+    for (int i = 0; i < 3; i++) {
+        app->unk_497[i] = 1;
     }
 
-    if (ov104_0223BA14(v1->unk_09) == 0) {
-        v1->unk_14 = 3;
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        app->unk_14 = 3;
     } else {
-        v1->unk_14 = 4;
+        app->unk_14 = 4;
     }
 
-    v1->unk_15 = v1->unk_14;
-    v1->unk_0C = (v1->unk_15 - 1);
+    app->unk_15 = app->unk_14;
+    app->unk_0C = (app->unk_15 - 1);
 
-    ov107_02242F5C(v1);
+    LoadAssets(app);
 
-    if (ov104_0223BA14(v1->unk_09) == 1) {
-        sub_0209BA80(v1);
+    if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+        sub_0209BA80(app);
     }
 
-    (*param1) = 0;
+    *state = 0;
 
-    return 1;
+    return TRUE;
 }
 
-int ov107_02241BD4(ApplicationManager *appMan, int *param1)
+BOOL BattleCastleSelfApp_Main(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov107_02241D6C *v0 = ApplicationManager_Data(appMan);
+    BattleCastleSelfApp *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_496 == 1) {
-        switch (*param1) {
+        switch (*state) {
         case 1:
             v0->unk_496 = 0;
             ov107_022451D8(v0);
@@ -502,174 +502,174 @@ int ov107_02241BD4(ApplicationManager *appMan, int *param1)
                 v0->unk_0E_2 = 0;
             }
 
-            BattleCastleApp_DrawMessageBox(&v0->unk_50[6], Options_Frame(v0->options));
-            BattleFrontier_SetPartnerInStrTemplate(v0->unk_24, 0);
+            BattleCastleApp_DrawMessageBox(&v0->windows[6], Options_Frame(v0->options));
+            BattleFrontier_SetPartnerInStrTemplate(v0->strTemplate, 0);
 
             v0->unk_0A = ov107_02243918(v0, 8, FONT_MESSAGE);
 
-            ov107_02244BD0(v0, param1, 3);
+            ChangeState(v0, state, 3);
             break;
         }
     } else if (v0->unk_12 != 0xff) {
-        switch (*param1) {
+        switch (*state) {
         case 1:
         case 3:
             v0->unk_496 = 0;
             ov107_022451D8(v0);
-            ov107_02244BD0(v0, param1, 2);
+            ChangeState(v0, state, 2);
             break;
         }
     }
 
-    switch (*param1) {
+    switch (*state) {
     case 0:
-        if (ov107_02241D6C(v0) == 1) {
-            ov107_02244BD0(v0, param1, 1);
+        if (State_FadeInApp(v0) == 1) {
+            ChangeState(v0, state, 1);
         }
         break;
     case 1:
         if (ov107_02241EC8(v0) == 1) {
             if (v0->unk_0E_1 == 1) {
-                ov107_02244BD0(v0, param1, 2);
+                ChangeState(v0, state, 2);
             } else {
-                if (ov104_0223BA14(v0->unk_09) == 1) {
-                    ov107_02244BD0(v0, param1, 3);
+                if (BattleCastle_IsMultiPlayerChallenge(v0->challengeType) == 1) {
+                    ChangeState(v0, state, 3);
                 } else {
-                    ov107_02244BD0(v0, param1, 4);
+                    ChangeState(v0, state, 4);
                 }
             }
         }
         break;
     case 2:
         if (ov107_02242C64(v0) == 1) {
-            ov107_02244BD0(v0, param1, 1);
+            ChangeState(v0, state, 1);
         }
         break;
     case 3:
         if (ov107_02242D60(v0) == 1) {
-            ov107_02244BD0(v0, param1, 4);
+            ChangeState(v0, state, 4);
         }
         break;
     case 4:
-        if (ov107_02242DCC(v0) == 1) {
-            return 1;
+        if (State_FadeOutApp(v0) == TRUE) {
+            return TRUE;
         }
         break;
     }
 
     ov107_02245C00(v0);
-    SpriteList_Update(v0->unk_1D8.spriteList);
+    SpriteList_Update(v0->spriteMan.spriteList);
 
-    return 0;
+    return FALSE;
 }
 
-int ov107_02241D2C(ApplicationManager *appMan, int *param1)
+BOOL BattleCastleSelfApp_Exit(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov107_02241D6C *v1 = ApplicationManager_Data(appMan);
-    *v1->unk_438 = v1->unk_0D;
+    BattleCastleSelfApp *app = ApplicationManager_Data(appMan);
+    *app->unk_438 = app->unk_0D;
 
     VramTransfer_Free();
-    ov107_02242E14(v1);
+    FreeAssets(app);
 
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_BATTLE_CASTLE_APP);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov107_02241D6C(UnkStruct_ov107_02241D6C *param0)
+static BOOL State_FadeInApp(BattleCastleSelfApp *app)
 {
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        if (ov104_0223BA14(param0->unk_09) == 1) {
+        if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(215);
         }
 
-        param0->unk_08++;
+        app->subState++;
         break;
     case 1:
-        if (ov104_0223BA14(param0->unk_09) == 1) {
-            if (CommTiming_IsSyncState(215) == 1) {
+        if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+            if (CommTiming_IsSyncState(215) == TRUE) {
                 CommTool_ClearReceivedTempDataAllPlayers();
-                param0->unk_08++;
+                app->subState++;
             }
         } else {
-            param0->unk_08++;
+            app->subState++;
         }
         break;
     case 2:
-        if (ov104_0223BA14(param0->unk_09) == 1) {
-            if (ov107_0224529C(param0, 10, 0) == 1) {
-                param0->unk_08++;
+        if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+            if (ov107_0224529C(app, 10, 0) == TRUE) {
+                app->subState++;
             }
         } else {
-            ov107_02241E70(param0);
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_BATTLE_CASTLE_APP);
-            param0->unk_08++;
+            ov107_02241E70(app);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 3, HEAP_ID_BATTLE_CASTLE_APP);
+            app->subState++;
         }
         break;
     case 3:
-        if (ov104_0223BA14(param0->unk_09) == 1) {
-            if (param0->unk_0F >= 2) {
-                param0->unk_0F = 0;
-                ov107_02241E70(param0);
-                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_BATTLE_CASTLE_APP);
-                param0->unk_08++;
+        if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+            if (app->unk_0F >= 2) {
+                app->unk_0F = 0;
+                ov107_02241E70(app);
+                StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 3, HEAP_ID_BATTLE_CASTLE_APP);
+                app->subState++;
             }
         } else {
-            param0->unk_08++;
+            app->subState++;
         }
         break;
     case 4:
         if (IsScreenFadeDone() == TRUE) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov107_02241E70(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02241E70(BattleCastleSelfApp *param0)
 {
     u16 v2, v3, v4, v5;
     ov107_02244E14(param0, &v2, &v3, &v4, &v5);
 
-    Window *v7 = &param0->unk_50[0];
+    Window *v7 = &param0->windows[0];
     Window_FillTilemap(v7, 0);
 
     ov107_02245464(param0, v7);
     ov107_02245780(param0, v7);
-    ov107_02243CC0(param0, &param0->unk_50[3]);
-    ov107_02243DB0(param0, &param0->unk_50[2]);
+    ov107_02243CC0(param0, &param0->windows[3]);
+    ov107_02243DB0(param0, &param0->windows[2]);
     ov107_02243FA4(param0);
 
     GXLayers_TurnBothDispOn();
     return;
 }
 
-static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
+static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
 {
     u8 v2;
     u16 v3;
     u32 v6;
     Pokemon *v7;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         if (param0->unk_0E_5 == 1) {
             ov107_02244064(param0);
             ov107_02249C60(param0->unk_430, 204, 100);
-            param0->unk_08 = 2;
+            param0->subState = 2;
             param0->unk_0E_5 = 0;
             return 0;
         } else if (param0->unk_0E_5 == 2) {
             ov107_0224409C(param0);
             ov107_02249C60(param0->unk_430, 211, 106);
-            param0->unk_08 = 8;
+            param0->subState = 8;
             param0->unk_0E_5 = 0;
             return 0;
         }
@@ -684,7 +684,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             } else {
                 ov107_0224400C(param0);
                 ov107_02244018(param0);
-                param0->unk_08 = 1;
+                param0->subState = 1;
                 break;
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -706,32 +706,32 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0xfffffffe:
             ov107_0224403C(param0);
             ov107_02243FA4(param0);
-            param0->unk_08 = 0;
+            param0->subState = 0;
             break;
         case 0:
             ov107_0224403C(param0);
             ov107_02244064(param0);
-            param0->unk_08 = 2;
+            param0->subState = 2;
             break;
         case 5:
             ov107_0224403C(param0);
             ov107_0224409C(param0);
-            param0->unk_08 = 8;
+            param0->subState = 8;
             break;
         case 9:
             ov107_0224403C(param0);
             ov107_02245B40(param0, param0->unk_0D);
-            param0->unk_08 = 20;
+            param0->subState = 20;
             break;
         case 10:
             ov107_0224403C(param0);
             ov107_02245B90(param0, param0->unk_0D);
-            param0->unk_08 = 21;
+            param0->subState = 21;
             break;
         case 11:
             ov107_0224403C(param0);
             ov107_02243FA4(param0);
-            param0->unk_08 = 0;
+            param0->subState = 0;
             break;
         }
         break;
@@ -743,7 +743,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
                 ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, NELEMS(Unk_ov107_02249FF0) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
                 ListMenu_Draw(param0->unk_198);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                ov107_0224379C(param0, &param0->unk_50[6], 28, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+                ov107_0224379C(param0, &param0->windows[6], 28, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
@@ -751,7 +751,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
                 ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
                 ListMenu_Draw(param0->unk_198);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                ov107_0224379C(param0, &param0->unk_50[6], 24, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+                ov107_0224379C(param0, &param0->windows[6], 24, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         }
@@ -765,32 +765,32 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_02244094(param0);
             ov107_02244018(param0);
-            param0->unk_08 = 1;
+            param0->subState = 1;
             break;
         case 1:
         case 2:
         case 3:
             param0->unk_13 = v6;
             ov107_02244094(param0);
-            BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+            BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
 
-            v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
+            v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
             if (v2 < Unk_ov107_02249FF0[param0->unk_16][0]) {
                 param0->unk_0A = ov107_02243918(param0, 33, FONT_MESSAGE);
-                param0->unk_08 = 7;
+                param0->subState = 7;
             } else {
                 ov107_02244A74(param0, 0, Unk_ov107_02249E0C[param0->unk_16], 3, 0);
                 param0->unk_0A = ov107_02243918(param0, 55, FONT_MESSAGE);
                 ov107_022441DC(param0);
-                param0->unk_08 = 3;
+                param0->subState = 3;
             }
             break;
         case 4:
-            v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
+            v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
             if (v2 == 3) {
                 Sound_StopEffect(1500, 0);
@@ -798,11 +798,11 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             } else {
                 param0->unk_13 = v6;
                 ov107_02244094(param0);
-                v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+                v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
                 ov107_02244A74(param0, 0, Unk_ov107_02249E46[0][v2], 4, 0);
                 param0->unk_0A = ov107_02243918(param0, 38, FONT_MESSAGE);
                 ov107_022441DC(param0);
-                param0->unk_08 = 4;
+                param0->subState = 4;
             }
             break;
         }
@@ -817,50 +817,50 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
             ov107_02245618(param0);
 
-            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
-            v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+            v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
             if (v2 < Unk_ov107_02249FF0[param0->unk_16][0]) {
-                BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
                 param0->unk_0A = ov107_02243918(param0, 33, FONT_MESSAGE);
-                param0->unk_08 = 7;
+                param0->subState = 7;
                 break;
             }
 
             if (v3 < Unk_ov107_02249E0C[param0->unk_16]) {
-                BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
                 param0->unk_0A = ov107_02243918(param0, 32, FONT_MESSAGE);
-                param0->unk_08 = 7;
+                param0->subState = 7;
                 break;
             }
 
             if (param0->unk_16 == 0) {
                 if (Pokemon_GetValue(v7, MON_DATA_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) {
                     param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
-                    param0->unk_08 = 7;
+                    param0->subState = 7;
                     break;
                 }
             } else if (param0->unk_16 == 1) {
                 if (ov107_02245210(v7) == 0) {
                     param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
-                    param0->unk_08 = 7;
+                    param0->subState = 7;
                     break;
                 }
             } else {
                 if ((Pokemon_GetValue(v7, MON_DATA_HP, NULL) == Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL)) && (ov107_02245210(v7) == 0)) {
                     param0->unk_0A = ov107_02243918(param0, 37, FONT_MESSAGE);
-                    param0->unk_08 = 7;
+                    param0->subState = 7;
                     break;
                 }
             }
 
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
 
-            if (ov104_0223BA14(param0->unk_09) == 0) {
-                ov104_0223BC2C(param0->frontier, param0->unk_09, Unk_ov107_02249E0C[param0->unk_13 - 1]);
-                ov107_02245780(param0, &param0->unk_50[0]);
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
+                ov104_0223BC2C(param0->frontier, param0->challengeType, Unk_ov107_02249E0C[param0->unk_13 - 1]);
+                ov107_02245780(param0, &param0->windows[0]);
                 ov107_022454F8(param0, param0->unk_0D, param0->unk_13);
-                param0->unk_08 = 18;
+                param0->subState = 18;
             } else {
                 param0->unk_0E_1 = 1;
                 return 1;
@@ -869,9 +869,9 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 1:
         case 0xfffffffe:
             ov107_02245618(param0);
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_02244064(param0);
-            param0->unk_08 = 2;
+            param0->subState = 2;
             break;
         }
         break;
@@ -884,20 +884,20 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0:
             ov107_02245618(param0);
 
-            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
-            v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+            v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
             if (v3 < Unk_ov107_02249E46[0][v2]) {
                 ov107_02245618(param0);
-                BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
                 param0->unk_0A = ov107_02243918(param0, 41, FONT_MESSAGE);
-                param0->unk_08 = 7;
+                param0->subState = 7;
                 break;
             }
 
-            if (ov104_0223BA14(param0->unk_09) == 0) {
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
                 ov107_02245C94(param0, param0->unk_0D, 4);
-                param0->unk_08 = 5;
+                param0->subState = 5;
                 break;
             } else {
                 param0->unk_0E_1 = 1;
@@ -907,15 +907,15 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 1:
         case 0xfffffffe:
             ov107_02245618(param0);
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_02244064(param0);
-            param0->unk_08 = 2;
+            param0->subState = 2;
             break;
         }
         break;
     case 5:
         if (ov107_02244E44(param0, param0->unk_0D, param0->unk_13) == 1) {
-            param0->unk_08 = 6;
+            param0->subState = 6;
         }
         break;
     case 6:
@@ -924,15 +924,15 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             ov107_02245618(param0);
             ov107_02244064(param0);
             ov107_02249C60(param0->unk_430, 204, 100);
-            param0->unk_08 = 2;
+            param0->subState = 2;
         }
         break;
     case 7:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_02244064(param0);
-            param0->unk_08 = 2;
+            param0->subState = 2;
         }
         break;
     case 8:
@@ -945,38 +945,38 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_022440C0(param0);
             ov107_02244018(param0);
-            param0->unk_08 = 1;
+            param0->subState = 1;
             break;
         case 6:
             param0->unk_13 = v6;
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_022440C0(param0);
             ov107_022440C8(param0, 6);
-            param0->unk_08 = 9;
+            param0->subState = 9;
             break;
         case 7:
             param0->unk_13 = v6;
 
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_022440C0(param0);
 
-            v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
+            v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
 
             if (v2 == 1) {
-                BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
                 param0->unk_0A = ov107_02243918(param0, 54, FONT_MESSAGE);
-                param0->unk_08 = 14;
+                param0->subState = 14;
                 return 0;
             }
 
             ov107_022440C8(param0, 7);
-            param0->unk_08 = 9;
+            param0->subState = 9;
             break;
         case 8:
-            v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
+            v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
 
             if (v2 == 3) {
                 Sound_StopEffect(1500, 0);
@@ -987,7 +987,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
                 ov107_02244A74(param0, 0, Unk_ov107_02249E46[1][v2], 4, 0);
                 param0->unk_0A = ov107_02243918(param0, 38, FONT_MESSAGE);
                 ov107_022441DC(param0);
-                param0->unk_08 = 11;
+                param0->subState = 11;
             }
             break;
         }
@@ -1003,20 +1003,20 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0xfffffffe:
             ov107_02244120(param0);
             ov107_0224409C(param0);
-            param0->unk_08 = 8;
+            param0->subState = 8;
             break;
         default:
-            Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[12]);
+            Window_ClearAndScheduleCopyToVRAM(&param0->windows[12]);
 
-            BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+            BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
             ov107_02244A74(param0, 0, ov107_02244D5C(param0, param0->unk_16, param0->unk_13), 3, 0);
 
             param0->unk_0A = ov107_02243918(param0, 55, FONT_MESSAGE);
 
             ov107_022441DC(param0);
-            BattleCastleAppSprite_SetDrawFlag(param0->unk_3F0, 0);
+            BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 0);
 
-            param0->unk_08 = 10;
+            param0->subState = 10;
             break;
         }
         break;
@@ -1029,44 +1029,44 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             break;
         case 0:
             ov107_02245618(param0);
-            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
 
             if (v3 < ov107_02244D5C(param0, param0->unk_16, param0->unk_13)) {
-                BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
                 param0->unk_0A = ov107_02243918(param0, 32, FONT_MESSAGE);
 
-                BattleCastleAppSprite_SetDrawFlag(param0->unk_3F0, 0);
-                param0->unk_08 = 15;
+                BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 0);
+                param0->subState = 15;
                 break;
             }
 
             if (Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL) == 0) {
-                if (ov104_0223BA14(param0->unk_09) == 0) {
+                if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
                     ov107_02244120(param0);
-                    BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
-                    ov104_0223BC2C(param0->frontier, param0->unk_09, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
-                    ov107_02245780(param0, &param0->unk_50[0]);
+                    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+                    ov104_0223BC2C(param0->frontier, param0->challengeType, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
+                    ov107_02245780(param0, &param0->windows[0]);
                     ov107_022455A0(param0, param0->unk_0D, ov107_02244DE0(param0, param0->unk_16, param0->unk_13));
-                    param0->unk_08 = 18;
+                    param0->subState = 18;
                 } else {
                     param0->unk_10 = ov107_02244DE0(param0, param0->unk_16, param0->unk_13);
                     ov107_02244120(param0);
-                    ov107_02245288(&param0->unk_50[6]);
+                    ov107_02245288(&param0->windows[6]);
                     param0->unk_0E_1 = 1;
                     return 1;
                 }
             } else {
                 ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v7));
-                StringTemplate_SetItemNameWithArticle(param0->unk_24, 1, Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL));
+                StringTemplate_SetItemNameWithArticle(param0->strTemplate, 1, Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL));
                 param0->unk_0A = ov107_02243918(param0, 60, FONT_MESSAGE);
-                param0->unk_08 = 16;
+                param0->subState = 16;
             }
             break;
         case 1:
         case 0xfffffffe:
             ov107_02245618(param0);
             ov107_022456E4(param0);
-            param0->unk_08 = 9;
+            param0->subState = 9;
             break;
         }
         break;
@@ -1079,20 +1079,20 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0:
             ov107_02245618(param0);
 
-            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
-            v2 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
+            v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
+            v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
 
             if (v3 < Unk_ov107_02249E46[1][v2]) {
                 ov107_02245618(param0);
-                BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
                 param0->unk_0A = ov107_02243918(param0, 41, FONT_MESSAGE);
-                param0->unk_08 = 14;
+                param0->subState = 14;
                 break;
             }
 
-            if (ov104_0223BA14(param0->unk_09) == 0) {
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
                 ov107_02245C94(param0, param0->unk_0D, 8);
-                param0->unk_08 = 12;
+                param0->subState = 12;
                 break;
             } else {
                 param0->unk_0E_1 = 1;
@@ -1102,15 +1102,15 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 1:
         case 0xfffffffe:
             ov107_02245618(param0);
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_0224409C(param0);
-            param0->unk_08 = 8;
+            param0->subState = 8;
             break;
         }
         break;
     case 12:
         if (ov107_02244E44(param0, param0->unk_0D, param0->unk_13) == 1) {
-            param0->unk_08 = 13;
+            param0->subState = 13;
         }
         break;
     case 13:
@@ -1119,22 +1119,22 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             ov107_02245618(param0);
             ov107_0224409C(param0);
             ov107_02249C60(param0->unk_430, 211, 106);
-            param0->unk_08 = 8;
+            param0->subState = 8;
         }
         break;
     case 14:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_0224409C(param0);
-            param0->unk_08 = 8;
+            param0->subState = 8;
         }
         break;
     case 15:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_022456E4(param0);
-            param0->unk_08 = 9;
+            param0->subState = 9;
         }
         break;
     case 16:
@@ -1142,7 +1142,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_0A = ov107_02243918(param0, 61, FONT_MESSAGE);
             ov107_022441DC(param0);
-            param0->unk_08 = 17;
+            param0->subState = 17;
         }
         break;
     case 17:
@@ -1154,17 +1154,17 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0:
             ov107_02245618(param0);
 
-            if (ov104_0223BA14(param0->unk_09) == 0) {
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
                 ov107_02244120(param0);
-                BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
-                ov104_0223BC2C(param0->frontier, param0->unk_09, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
-                ov107_02245780(param0, &param0->unk_50[0]);
+                BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
+                ov104_0223BC2C(param0->frontier, param0->challengeType, ov107_02244D5C(param0, param0->unk_16, param0->unk_13));
+                ov107_02245780(param0, &param0->windows[0]);
                 ov107_022455A0(param0, param0->unk_0D, ov107_02244DE0(param0, param0->unk_16, param0->unk_13));
-                param0->unk_08 = 18;
+                param0->subState = 18;
             } else {
                 param0->unk_10 = ov107_02244DE0(param0, param0->unk_16, param0->unk_13);
                 ov107_02244120(param0);
-                ov107_02245288(&param0->unk_50[6]);
+                ov107_02245288(&param0->windows[6]);
                 param0->unk_0E_1 = 1;
                 return 1;
             }
@@ -1173,7 +1173,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         case 0xfffffffe:
             ov107_02245618(param0);
             ov107_022456E4(param0);
-            param0->unk_08 = 9;
+            param0->subState = 9;
             break;
         }
         break;
@@ -1181,15 +1181,15 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
         if (ov107_02244E44(param0, param0->unk_0D, param0->unk_13) == 1) {
-            param0->unk_08 = 19;
+            param0->subState = 19;
         }
         break;
     case 19:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             ov107_02243FA4(param0);
-            param0->unk_08 = 0;
+            param0->subState = 0;
         }
         break;
     case 20:
@@ -1201,7 +1201,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245BE0(param0);
             ov107_02244018(param0);
-            param0->unk_08 = 1;
+            param0->subState = 1;
         }
         break;
     case 21:
@@ -1213,7 +1213,7 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245BE0(param0);
             ov107_02244018(param0);
-            param0->unk_08 = 1;
+            param0->subState = 1;
         }
         break;
     }
@@ -1221,18 +1221,18 @@ static BOOL ov107_02241EC8(UnkStruct_ov107_02241D6C *param0)
     return 0;
 }
 
-static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0)
+static BOOL ov107_02242C64(BattleCastleSelfApp *param0)
 {
     u8 v0;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         param0->unk_0E_5 = 0;
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
         if (ov107_0224529C(param0, 11, param0->unk_0D) == 1) {
             param0->unk_0E_1 = 0;
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 1:
@@ -1248,14 +1248,14 @@ static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0)
             ov107_022459D0(param0, param0->unk_12, param0->unk_13);
         }
 
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 2:
         v0 = ov107_02249C9C(param0->unk_15, param0->unk_12);
 
         if (ov107_02244E44(param0, v0, param0->unk_13) == 1) {
             param0->unk_0B = 30;
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 3:
@@ -1264,7 +1264,7 @@ static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0)
         if (param0->unk_0B == 0) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(130);
-            param0->unk_08++;
+            param0->subState++;
             break;
         }
         break;
@@ -1276,7 +1276,7 @@ static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0)
             param0->unk_12 = 0xff;
 
             if (param0->unk_0E_5 == 0) {
-                ov107_02245288(&param0->unk_50[6]);
+                ov107_02245288(&param0->windows[6]);
                 ov107_02243FA4(param0);
             }
 
@@ -1290,13 +1290,13 @@ static BOOL ov107_02242C64(UnkStruct_ov107_02241D6C *param0)
     return 0;
 }
 
-static BOOL ov107_02242D60(UnkStruct_ov107_02241D6C *param0)
+static BOOL ov107_02242D60(BattleCastleSelfApp *param0)
 {
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         if (ov107_0224529C(param0, 13, 0) == 1) {
             param0->unk_0B = 30;
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 1:
@@ -1307,13 +1307,13 @@ static BOOL ov107_02242D60(UnkStruct_ov107_02241D6C *param0)
         if (param0->unk_0B == 0) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(131);
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 2:
         if (CommTiming_IsSyncState(131) == 1) {
             CommTool_ClearReceivedTempDataAllPlayers();
-            ov107_02245288(&param0->unk_50[6]);
+            ov107_02245288(&param0->windows[6]);
             return 1;
         }
         break;
@@ -1322,70 +1322,70 @@ static BOOL ov107_02242D60(UnkStruct_ov107_02241D6C *param0)
     return 0;
 }
 
-static BOOL ov107_02242DCC(UnkStruct_ov107_02241D6C *param0)
+static BOOL State_FadeOutApp(BattleCastleSelfApp *app)
 {
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BATTLE_CASTLE_APP);
-        param0->unk_08++;
+        app->subState++;
         break;
     case 1:
         if (IsScreenFadeDone() == TRUE) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov107_02242E14(UnkStruct_ov107_02241D6C *param0)
+static void FreeAssets(BattleCastleSelfApp *app)
 {
-    BattleCastleAppSprite_Free(param0->unk_3E8);
-    BattleCastleAppSprite_Free(param0->unk_3EC);
-    BattleCastleAppSprite_Free(param0->unk_3F0);
+    BattleCastleAppSprite_Free(app->upArrowSprite);
+    BattleCastleAppSprite_Free(app->downArrowSprite);
+    BattleCastleAppSprite_Free(app->itemSprite);
 
-    BattleCastleAppSprite_Free(param0->unk_430);
-    BattleCastleAppSprite_Free(param0->unk_418);
-    BattleCastleAppSprite_Free(param0->unk_41C);
-    BattleCastleAppSprite_Free(param0->unk_434);
+    BattleCastleAppSprite_Free(app->unk_430);
+    BattleCastleAppSprite_Free(app->cursorSprite);
+    BattleCastleAppSprite_Free(app->unk_41C);
+    BattleCastleAppSprite_Free(app->unk_434);
 
-    u8 v0 = ov104_0223B7A8(param0->unk_09, 1);
+    u8 numMons = ov104_0223B7A8(app->challengeType, 1);
 
-    for (int v1 = 0; v1 < v0; v1++) {
-        BattleCastleAppSprite_Free(param0->unk_3F4[v1]);
-        BattleCastleAppSprite_Free(param0->unk_404[v1]);
-        BattleCastleAppSprite_Free(param0->unk_420[v1]);
+    for (int i = 0; i < numMons; i++) {
+        BattleCastleAppSprite_Free(app->monSprites[i]);
+        BattleCastleAppSprite_Free(app->itemIconSprites[i]);
+        BattleCastleAppSprite_Free(app->barSprites[i]);
     }
 
     NetworkIcon_Destroy();
 
-    PaletteData_FreeBuffer(param0->unk_1C0, 2);
-    PaletteData_FreeBuffer(param0->unk_1C0, 0);
-    PaletteData_Free(param0->unk_1C0);
+    PaletteData_FreeBuffer(app->plttData, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(app->plttData, PLTTBUF_MAIN_BG);
+    PaletteData_Free(app->plttData);
 
-    param0->unk_1C0 = NULL;
+    app->plttData = NULL;
 
-    BattleCastleApp_FreeSprites(&param0->unk_1D8);
+    BattleCastleApp_FreeSprites(&app->spriteMan);
 
-    MessageLoader_Free(param0->unk_20);
-    MessageLoader_Free(param0->unk_1C);
-    StringTemplate_Free(param0->unk_24);
-    String_Free(param0->unk_28);
-    String_Free(param0->unk_2C);
-    FontSpecialChars_Free(param0->unk_1C4);
+    MessageLoader_Free(app->msgLoader);
+    MessageLoader_Free(app->itemMsgLoader);
+    StringTemplate_Free(app->strTemplate);
+    String_Free(app->displayStr);
+    String_Free(app->fmtStr);
+    FontSpecialChars_Free(app->specialChars);
 
-    for (int v1 = 0; v1 < 3; v1++) {
-        String_Free(param0->unk_30[v1]);
+    for (int i = 0; i < 3; i++) {
+        String_Free(app->unk_30[i]);
     }
 
-    BattleCastleApp_FreeWindows(param0->unk_50, 0);
-    ov107_022433A8(param0->unk_4C);
+    BattleCastleApp_FreeWindows(app->windows, FALSE);
+    FreeBackgrounds(app->bgConfig);
 
-    NARC_dtor(param0->unk_440);
+    NARC_dtor(app->narc);
 }
 
-static void ov107_02242F24(void)
+static void InitGraphicsPlane(void)
 {
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
@@ -1396,92 +1396,92 @@ static void ov107_02242F24(void)
     GXS_SetVisiblePlane(0);
 }
 
-static void ov107_02242F5C(UnkStruct_ov107_02241D6C *param0)
+static void LoadAssets(BattleCastleSelfApp *app)
 {
 
-    param0->unk_440 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_CASTLE_APP);
+    app->narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02243324(param0);
-    ov107_02243384(param0);
+    LoadBackgrounds(app);
+    InitSpriteManager(app);
 
-    param0->unk_20 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_BATTLE_CASTLE_APP);
-    param0->unk_1C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, HEAP_ID_BATTLE_CASTLE_APP);
-    param0->unk_24 = StringTemplate_Default(HEAP_ID_BATTLE_CASTLE_APP);
-    param0->unk_28 = String_Init(600, HEAP_ID_BATTLE_CASTLE_APP);
-    param0->unk_2C = String_Init(600, HEAP_ID_BATTLE_CASTLE_APP);
+    app->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0199, HEAP_ID_BATTLE_CASTLE_APP);
+    app->itemMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_DESCRIPTIONS, HEAP_ID_BATTLE_CASTLE_APP);
+    app->strTemplate = StringTemplate_Default(HEAP_ID_BATTLE_CASTLE_APP);
+    app->displayStr = String_Init(600, HEAP_ID_BATTLE_CASTLE_APP);
+    app->fmtStr = String_Init(600, HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int v15 = 0; v15 < 3; v15++) {
-        param0->unk_30[v15] = String_Init(32, HEAP_ID_BATTLE_CASTLE_APP);
+    for (int i = 0; i < 3; i++) {
+        app->unk_30[i] = String_Init(32, HEAP_ID_BATTLE_CASTLE_APP);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_BATTLE_CASTLE_APP);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_BATTLE_CASTLE_APP);
+    Font_LoadTextPalette(0, 13 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_CASTLE_APP);
+    Font_LoadScreenIndicatorsPalette(0, 12 * PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_CASTLE_APP);
 
-    param0->unk_1C4 = FontSpecialChars_Init(1, 2, 0, HEAP_ID_BATTLE_CASTLE_APP);
+    app->specialChars = FontSpecialChars_Init(1, 2, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
-    BattleCastleApp_InitWindows(param0->unk_4C, param0->unk_50, 0);
+    BattleCastleApp_InitWindows(app->bgConfig, app->windows, FALSE);
 
-    u16 v9, v10, v11, v12;
-    ov107_02244E14(param0, &v9, &v10, &v11, &v12);
+    u16 unused1, unused2, unused3, unused4;
+    ov107_02244E14(app, &unused1, &unused2, &unused3, &unused4);
 
-    param0->unk_3E8 = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 4, 160, 10, 0, NULL);
-    param0->unk_3EC = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 5, 160, 124, 0, NULL);
+    app->upArrowSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 4, 160, 10, 0, NULL);
+    app->downArrowSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 5, 160, 124, 0, NULL);
 
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3E8, 0);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3EC, 0);
+    BattleCastleAppSprite_SetDrawFlag(app->upArrowSprite, FALSE);
+    BattleCastleAppSprite_SetDrawFlag(app->downArrowSprite, FALSE);
 
-    u16 v13, v14;
-    if (ov104_0223BA14(param0->unk_09) == 0) {
-        v13 = 64;
-        v14 = 64 + 8;
+    u16 xOffset, iconXOffset;
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        xOffset = 64;
+        iconXOffset = 64 + 8;
     } else {
-        v13 = 32;
-        v14 = 32 + 8;
+        xOffset = 32;
+        iconXOffset = 32 + 8;
     }
 
-    u8 v6 = ov104_0223B7A8(param0->unk_09, 1);
+    u8 numMons = ov104_0223B7A8(app->challengeType, 1);
 
-    for (int v15 = 0; v15 < v6; v15++) {
-        param0->unk_404[v15] = BattleCastleAppSprite_New(&param0->unk_1D8, 2, 2, 2, 0, 64 * v15 + v14, 58 + 4, 2, NULL);
+    for (int i = 0; i < numMons; i++) {
+        app->itemIconSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 2, 2, 2, 0, 64 * i + iconXOffset, 58 + 4, 2, NULL);
 
-        Pokemon *v19 = Party_GetPokemonBySlotIndex(param0->unk_43C, v15);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(app->unk_43C, i);
 
-        if (Pokemon_GetValue(v19, MON_DATA_HELD_ITEM, NULL) == 0) {
-            BattleCastleAppSprite_SetDrawFlag(param0->unk_404[v15], 0);
+        if (!Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL)) {
+            BattleCastleAppSprite_SetDrawFlag(app->itemIconSprites[i], FALSE);
         }
 
-        u32 v2 = Pokemon_GetValue(v19, MON_DATA_HP, NULL);
-        u32 v3 = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
-        u32 v4 = ov107_022450E8(param0, HealthBar_Color(v2, v3, 48));
-        u32 v5 = ov107_02245114(param0, HealthBar_Color(v2, v3, 48));
+        u32 hp = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
+        u32 maxHp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+        u32 v4 = ov107_022450E8(app, HealthBar_Color(hp, maxHp, 48));
+        u32 v5 = ov107_02245114(app, HealthBar_Color(hp, maxHp, 48));
 
-        param0->unk_420[v15] = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, v5, 64 * v15 + v13, 58 + 20, 3, NULL);
-        param0->unk_3F4[v15] = BattleCastleAppSprite_New(&param0->unk_1D8, 3 + v15, 3, 3, v4, 64 * v15 + v13, 58, 2, NULL);
+        app->barSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, v5, 64 * i + xOffset, 58 + 20, 3, NULL);
+        app->monSprites[i] = BattleCastleAppSprite_New(&app->spriteMan, 3 + i, 3, 3, v4, 64 * i + xOffset, 58, 2, NULL);
 
-        BattleCastleAppSprite_UpdatePalette(param0->unk_3F4[v15], Party_GetPokemonBySlotIndex(param0->unk_43C, v15));
+        BattleCastleAppSprite_UpdatePalette(app->monSprites[i], Party_GetPokemonBySlotIndex(app->unk_43C, i));
     }
 
-    param0->unk_3F0 = BattleCastleAppSprite_New(&param0->unk_1D8, 1, 1, 1, 0, 24, 162, 0, NULL);
+    app->itemSprite = BattleCastleAppSprite_New(&app->spriteMan, 1, 1, 1, 0, 24, 162, 0, NULL);
 
-    ov107_022499BC(&param0->unk_1D8, 17);
-    ov107_022499FC(&param0->unk_1D8, 17);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3F0, 0);
+    BattleCastleApp_SetItemGraphic(&app->spriteMan, ITEM_POTION);
+    BattleCastleApp_SetItemPalette(&app->spriteMan, ITEM_POTION);
+    BattleCastleAppSprite_SetDrawFlag(app->itemSprite, FALSE);
 
-    u32 v0, v1;
-    ov107_02244D08(param0, &v0, &v1, 0);
+    u32 x, y;
+    GetCursorSpritePos(app, &x, &y, 0);
 
-    param0->unk_418 = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 1, v0, v1, 2, NULL);
-    param0->unk_41C = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 2, v0, v1, 2, NULL);
+    app->cursorSprite = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 1, x, y, 2, NULL);
+    app->unk_41C = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 2, x, y, 2, NULL);
 
-    if (ov104_0223BA14(param0->unk_09) == 0) {
-        BattleCastleAppSprite_SetDrawFlag(param0->unk_41C, 0);
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        BattleCastleAppSprite_SetDrawFlag(app->unk_41C, FALSE);
     }
 
-    param0->unk_430 = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 11, 20, 20, 0, NULL);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_430, 0);
+    app->unk_430 = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 11, 20, 20, 0, NULL);
+    BattleCastleAppSprite_SetDrawFlag(app->unk_430, FALSE);
 
-    param0->unk_434 = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 3, 20, 20, 1, NULL);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_434, 0);
+    app->unk_434 = BattleCastleAppSprite_New(&app->spriteMan, 0, 0, 0, 3, 20, 20, 1, NULL);
+    BattleCastleAppSprite_SetDrawFlag(app->unk_434, FALSE);
 
     if (CommSys_IsInitialized()) {
         ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -1489,65 +1489,65 @@ static void ov107_02242F5C(UnkStruct_ov107_02241D6C *param0)
         sub_02039734();
     }
 
-    SetVBlankCallback(ov107_022433EC, param0);
+    SetVBlankCallback(VBlankCallback, app);
 }
 
-static void ov107_02243324(UnkStruct_ov107_02241D6C *param0)
+static void LoadBackgrounds(BattleCastleSelfApp *app)
 {
-    ov107_02243424();
-    ov107_02243444(param0->unk_4C);
+    SetGXBanks();
+    InitBackgrounds(app->bgConfig);
 
-    param0->unk_1C0 = PaletteData_New(HEAP_ID_BATTLE_CASTLE_APP);
+    app->plttData = PaletteData_New(HEAP_ID_BATTLE_CASTLE_APP);
 
-    PaletteData_AllocBuffer(param0->unk_1C0, 2, 32 * 16, HEAP_ID_BATTLE_CASTLE_APP);
-    PaletteData_AllocBuffer(param0->unk_1C0, 0, 32 * 16, HEAP_ID_BATTLE_CASTLE_APP);
+    PaletteData_AllocBuffer(app->plttData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_BATTLE_CASTLE_APP);
+    PaletteData_AllocBuffer(app->plttData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02243588(param0, 3);
-    ov107_022435FC();
-    ov107_02243630(param0, 2);
-    ov107_02243678();
+    LoadMainBackground(app, BG_LAYER_MAIN_3);
+    LoadPalette();
+    LoadSummaryBackground(app, BG_LAYER_MAIN_2);
+    LoadPalette2();
 
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    ov107_0224373C(param0, 4);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, FALSE);
+    LoadSubScreenBackground(app, BG_LAYER_SUB_0);
 }
 
-static void ov107_02243384(UnkStruct_ov107_02241D6C *param0)
+static void InitSpriteManager(BattleCastleSelfApp *app)
 {
-    BattleCastleApp_InitSpriteManager(&param0->unk_1D8, param0->unk_43C, ov104_0223BA14(param0->unk_09));
+    BattleCastleApp_InitSpriteManager(&app->spriteMan, app->unk_43C, BattleCastle_IsMultiPlayerChallenge(app->challengeType));
 }
 
-static void ov107_022433A8(BgConfig *param0)
+static void FreeBackgrounds(BgConfig *bgConfig)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
 
-    Heap_Free(param0);
+    Heap_Free(bgConfig);
 }
 
-static void ov107_022433EC(void *param0)
+static void VBlankCallback(void *data)
 {
-    UnkStruct_ov107_02241D6C *v0 = param0;
+    BattleCastleSelfApp *app = data;
 
-    if (v0->unk_1C0 != NULL) {
-        PaletteData_CommitFadedBuffers(v0->unk_1C0);
+    if (app->plttData != NULL) {
+        PaletteData_CommitFadedBuffers(app->plttData);
     }
 
-    Bg_RunScheduledUpdates(v0->unk_4C);
+    Bg_RunScheduledUpdates(app->bgConfig);
     VramTransfer_Process();
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov107_02243424(void)
+static void SetGXBanks(void)
 {
-    GXBanks v0 = {
+    GXBanks banks = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,
@@ -1560,21 +1560,21 @@ static void ov107_02243424(void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&banks);
 }
 
-static void ov107_02243444(BgConfig *param0)
+static void InitBackgrounds(BgConfig *bgConfig)
 {
-    GraphicsModes v0 = {
+    GraphicsModes graphicsModes = {
         GX_DISPMODE_GRAPHICS,
         GX_BGMODE_0,
         GX_BGMODE_0,
         GX_BG0_AS_2D
     };
 
-    SetAllGraphicsModes(&v0);
+    SetAllGraphicsModes(&graphicsModes);
 
-    BgTemplate v1 = {
+    BgTemplate bgTemplate1 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -1589,11 +1589,11 @@ static void ov107_02243444(BgConfig *param0)
         .mosaic = FALSE,
     };
 
-    Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplate1, BG_TYPE_STATIC);
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_BATTLE_CASTLE_APP);
-    Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
 
-    BgTemplate v2 = {
+    BgTemplate bgTemplate0 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -1608,11 +1608,11 @@ static void ov107_02243444(BgConfig *param0)
         .mosaic = FALSE,
     };
 
-    Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v2, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_0, &bgTemplate0, BG_TYPE_STATIC);
     Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_BATTLE_CASTLE_APP);
-    Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_0);
 
-    BgTemplate v3 = {
+    BgTemplate bgTemplate2 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -1627,11 +1627,11 @@ static void ov107_02243444(BgConfig *param0)
         .mosaic = FALSE,
     };
 
-    Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplate2, BG_TYPE_STATIC);
     Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_BATTLE_CASTLE_APP);
-    Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
 
-    BgTemplate v4 = {
+    BgTemplate bgTemplate3 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -1646,11 +1646,11 @@ static void ov107_02243444(BgConfig *param0)
         .mosaic = FALSE,
     };
 
-    Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v4, 0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplate3, BG_TYPE_STATIC);
     Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_BATTLE_CASTLE_APP);
-    Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
 
-    BgTemplate v5 = {
+    BgTemplate bgTemplateSub0 = {
         .x = 0,
         .y = 0,
         .bufferSize = 0x800,
@@ -1665,142 +1665,142 @@ static void ov107_02243444(BgConfig *param0)
         .mosaic = FALSE,
     };
 
-    Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v5, 0);
-    Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &bgTemplateSub0, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 
     G2_SetBG0Priority(0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
 }
 
-static void ov107_02243588(UnkStruct_ov107_02241D6C *param0, u32 param1)
+static void LoadMainBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 
-    if (ov104_0223BA14(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 35, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_SOLO_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 36, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_MULTI_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
     }
 }
 
-static void ov107_022435FC(void)
+static void LoadPalette(void)
 {
-    NNSG2dPaletteData *v1;
-    void *v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 137, &v1, HEAP_ID_BATTLE_CASTLE_APP);
+    NNSG2dPaletteData *plttData;
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_CASTLE_SELF_APP_PLTT, &plttData, HEAP_ID_BATTLE_CASTLE_APP);
 
-    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 4);
-    GX_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 4);
-    Heap_Free(v0);
+    DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 4);
+    GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 4);
+    Heap_Free(pltt);
 }
 
-static void ov107_02243630(UnkStruct_ov107_02241D6C *param0, u32 param1)
+static void LoadSummaryBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 38, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_SUMMARY_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
-static void ov107_02243678(void)
+static void LoadPalette2(void)
 {
-    NNSG2dPaletteData *v1;
-    void *v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 137, &v1, HEAP_ID_BATTLE_CASTLE_APP);
+    NNSG2dPaletteData *plttData;
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_CASTLE_SELF_APP_PLTT, &plttData, HEAP_ID_BATTLE_CASTLE_APP);
 
-    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 4);
-    GX_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 4);
+    DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 4);
+    GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 4);
 
-    Heap_Free(v0);
+    Heap_Free(pltt);
 }
 
-static void ov107_022436AC(UnkStruct_ov107_02241D6C *param0, u32 param1)
+static void LoadMovesListBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 39, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_MOVES_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
-static void ov107_022436F4(UnkStruct_ov107_02241D6C *param0, u32 param1)
+static void LoadItemSelectBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 37, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_CASTLE_SELF_APP_ITEMS_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
-static void ov107_0224373C(UnkStruct_ov107_02241D6C *param0, u32 param1)
+static void LoadSubScreenBackground(BattleCastleSelfApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 125, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 126, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_BATTLE_CASTLE_APP);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_440, 171, 4, 0, 0x20, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_CASTLE_APP);
+    Graphics_LoadPaletteFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, PAL_LOAD_SUB_BG, 0, PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_CASTLE_APP);
 }
 
-static u8 ov107_0224379C(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static u8 ov107_0224379C(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     ov107_022437CC(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
 }
 
-static u8 ov107_022437CC(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10)
+static u8 ov107_022437CC(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10)
 {
     Window_FillTilemap(param1, param8);
-    MessageLoader_GetString(param0->unk_20, param2, param0->unk_2C);
-    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    MessageLoader_GetString(param0->msgLoader, param2, param0->fmtStr);
+    StringTemplate_Format(param0->strTemplate, param0->displayStr, param0->fmtStr);
 
     switch (param10) {
     case 1:
-        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0);
+        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0);
         break;
     }
 
-    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
+    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->displayStr, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
     Window_ScheduleCopyToVRAM(param1);
 
     return v0;
 }
 
-static u8 ov107_02243860(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static u8 ov107_02243860(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     return ov107_02243890(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
 }
 
-static u8 ov107_02243890(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
+static u8 ov107_02243890(BattleCastleSelfApp *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
 {
-    MessageLoader_GetString(param0->unk_20, param2, param0->unk_2C);
-    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    MessageLoader_GetString(param0->msgLoader, param2, param0->fmtStr);
+    StringTemplate_Format(param0->strTemplate, param0->displayStr, param0->fmtStr);
 
     switch (param10) {
     case 1:
-        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
+        param3 -= (Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0) + 1) / 2;
         break;
     case 2:
-        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->unk_28, 0);
+        param3 -= Font_CalcStringWidth(FONT_SYSTEM, param0->displayStr, 0);
         break;
     }
 
-    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_28, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
+    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, param9, param0->displayStr, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
     Window_ScheduleCopyToVRAM(param1);
 
     return v0;
 }
 
-static u8 ov107_02243918(UnkStruct_ov107_02241D6C *param0, int param1, u8 param2)
+static u8 ov107_02243918(BattleCastleSelfApp *param0, int param1, u8 param2)
 {
-    u8 v0 = ov107_0224379C(param0, &param0->unk_50[6], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[6]);
+    u8 v0 = ov107_0224379C(param0, &param0->windows[6], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
+    Window_ScheduleCopyToVRAM(&param0->windows[6]);
 
     return v0;
 }
 
-static void ov107_02243950(UnkStruct_ov107_02241D6C *param0, Window *window, Pokemon *mon)
+static void ov107_02243950(BattleCastleSelfApp *param0, Window *window, Pokemon *mon)
 {
     Window_FillTilemap(window, 0);
 
-    StringTemplate_SetItemName(param0->unk_24, 0, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL));
+    StringTemplate_SetItemName(param0->strTemplate, 0, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL));
     ov107_02243B5C(param0, window, 70, 0, 8, 0);
     ov107_02243B5C(param0, window, 71, 64, 8, 0);
 
-    StringTemplate_SetNatureName(param0->unk_24, 0, Pokemon_GetNature(mon));
+    StringTemplate_SetNatureName(param0->strTemplate, 0, Pokemon_GetNature(mon));
     ov107_02243B5C(param0, window, 72, 0, 24, 0);
     ov107_02243B5C(param0, window, 73, 64, 24, 0);
 
-    StringTemplate_SetAbilityName(param0->unk_24, 0, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+    StringTemplate_SetAbilityName(param0->strTemplate, 0, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
     ov107_02243B5C(param0, window, 74, 0, 40, 0);
     ov107_02243B5C(param0, window, 75, 64, 40, 0);
 
@@ -1827,12 +1827,12 @@ static void ov107_02243950(UnkStruct_ov107_02241D6C *param0, Window *window, Pok
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_02243B5C(UnkStruct_ov107_02241D6C *param0, Window *param1, int param2, u16 param3, u16 param4, int param5)
+static void ov107_02243B5C(BattleCastleSelfApp *param0, Window *param1, int param2, u16 param3, u16 param4, int param5)
 {
     ov107_02243890(param0, param1, param2, param3, param4, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, param5);
 }
 
-static void ov107_02243B84(UnkStruct_ov107_02241D6C *param0, Window *param1, Pokemon *param2)
+static void ov107_02243B84(BattleCastleSelfApp *param0, Window *param1, Pokemon *param2)
 {
     Window_FillTilemap(param1, 0);
 
@@ -1844,14 +1844,14 @@ static void ov107_02243B84(UnkStruct_ov107_02241D6C *param0, Window *param1, Pok
     Window_ScheduleCopyToVRAM(param1);
 }
 
-static void ov107_02243C18(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u32 param3, u32 param4, Pokemon *param5, u32 param6, u32 param7, u32 param8)
+static void ov107_02243C18(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3, u32 param4, Pokemon *param5, u32 param6, u32 param7, u32 param8)
 {
     u16 v0 = 24;
     u16 v1 = 12 + (param2 * 24);
     u16 v2 = 137;
     u16 v3 = 12 + (param2 * 24);
 
-    StringTemplate_SetMoveName(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
+    StringTemplate_SetMoveName(param0->strTemplate, param2, Pokemon_GetValue(param5, param6, NULL));
     param0->unk_0A = ov107_02243860(param0, param1, param3, v0, v1, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM);
 
     ov107_02244A74(param0, 4, Pokemon_GetValue(param5, param7, NULL), MON_DATA_CHECKSUM_FAILED, 0);
@@ -1859,11 +1859,11 @@ static void ov107_02243C18(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
     param0->unk_0A = ov107_02243890(param0, param1, param4, v2, v3, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
 }
 
-static void ov107_02243CC0(UnkStruct_ov107_02241D6C *param0, Window *param1)
+static void ov107_02243CC0(BattleCastleSelfApp *param0, Window *param1)
 {
     Window_FillTilemap(param1, 0);
 
-    u8 v1 = ov104_0223B7A8(param0->unk_09, 1);
+    u8 v1 = ov104_0223B7A8(param0->challengeType, 1);
 
     for (int v0 = 0; v0 < v1; v0++) {
         ov107_02243CFC(param0, param1, v0, 0);
@@ -1872,12 +1872,12 @@ static void ov107_02243CC0(UnkStruct_ov107_02241D6C *param0, Window *param1)
     Window_ScheduleCopyToVRAM(param1);
 }
 
-static void ov107_02243CFC(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u8 param3)
+static void ov107_02243CFC(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3)
 {
     u16 v0, v1, v2, v3, v4, v5, v6;
     Pokemon *v7 = Party_GetPokemonBySlotIndex(param0->unk_43C, param2);
 
-    if (ov104_0223BA14(param0->unk_09) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
         v0 = 36;
     } else {
         v0 = 4;
@@ -1899,14 +1899,14 @@ static void ov107_02243CFC(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
         v4 = 0;
     }
 
-    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_HP, NULL), 3, 1, param1, v1, v2);
-    FontSpecialChars_DrawPartyScreenLevelText(param0->unk_1C4, 0, param1, v5, v6);
-    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
+    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, Pokemon_GetValue(v7, MON_DATA_HP, NULL), 3, 1, param1, v1, v2);
+    FontSpecialChars_DrawPartyScreenLevelText(param0->specialChars, 0, param1, v5, v6);
+    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, Pokemon_GetValue(v7, MON_DATA_MAX_HP, NULL), 3, 0, param1, v3, v4);
 }
 
-static void ov107_02243DB0(UnkStruct_ov107_02241D6C *param0, Window *param1)
+static void ov107_02243DB0(BattleCastleSelfApp *param0, Window *param1)
 {
-    u8 v1 = ov104_0223B7A8(param0->unk_09, 1);
+    u8 v1 = ov104_0223B7A8(param0->challengeType, 1);
 
     for (int v0 = 0; v0 < v1; v0++) {
         ov107_02243DE4(param0, param1, v0, 0);
@@ -1915,10 +1915,10 @@ static void ov107_02243DB0(UnkStruct_ov107_02241D6C *param0, Window *param1)
     Window_ScheduleCopyToVRAM(param1);
 }
 
-static void ov107_02243DE4(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u8 param3)
+static void ov107_02243DE4(BattleCastleSelfApp *param0, Window *param1, u8 param2, u8 param3)
 {
     u16 v5, v6;
-    if (ov104_0223BA14(param0->unk_09) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
         v5 = 40;
         v6 = 80;
     } else {
@@ -1941,16 +1941,16 @@ static void ov107_02243DE4(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
         v4 = 0;
     }
 
-    FontSpecialChars_DrawPartyScreenText(param0->unk_1C4, 1, Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL), 3, 0, param1, v1, v2);
+    FontSpecialChars_DrawPartyScreenText(param0->specialChars, 1, Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL), 3, 0, param1, v1, v2);
     u32 v0 = Pokemon_GetValue(v7, MON_DATA_GENDER, NULL);
     ov107_02244B8C(param0, param1, v3, v4, FONT_SYSTEM, v0);
 }
 
-static void ov107_02243E74(UnkStruct_ov107_02241D6C *param0, Window *param1)
+static void ov107_02243E74(BattleCastleSelfApp *param0, Window *param1)
 {
-    u16 v0 = sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+    u16 v0 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
 
-    BattleCastleApp_DrawWindow(param0->unk_4C, param1);
+    BattleCastleApp_DrawWindow(param0->bgConfig, param1);
     Window_FillTilemap(param1, 15);
 
     ov107_02244AB4(param0, param1, 1, 1, FONT_SYSTEM);
@@ -1960,63 +1960,63 @@ static void ov107_02243E74(UnkStruct_ov107_02241D6C *param0, Window *param1)
     Window_ScheduleCopyToVRAM(param1);
 }
 
-static u8 ov107_02243EF8(UnkStruct_ov107_02241D6C *param0, Window *param1, u16 param2)
+static u8 ov107_02243EF8(BattleCastleSelfApp *param0, Window *param1, u16 param2)
 {
     Window_FillTilemap(param1, 0);
-    MessageLoader_GetString(param0->unk_1C, param2, param0->unk_2C);
-    StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
+    MessageLoader_GetString(param0->itemMsgLoader, param2, param0->fmtStr);
+    StringTemplate_Format(param0->strTemplate, param0->displayStr, param0->fmtStr);
 
-    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->unk_28, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    u8 v0 = Text_AddPrinterWithParamsAndColor(param1, FONT_SYSTEM, param0->displayStr, 0, 6, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     Window_ScheduleCopyToVRAM(param1);
     return v0;
 }
 
-static void ov107_02243F4C(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2, u32 param3)
+static void ov107_02243F4C(BattleCastleSelfApp *param0, Window *param1, u8 param2, u32 param3)
 {
     u16 v0;
 
-    if (ov104_0223BA14(param0->unk_09) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
         v0 = 36;
     } else {
         v0 = 4;
     }
 
     Window_FillRectWithColor(param1, 0, v0 + (64 * param2), 0, 8 * 3, 9);
-    FontSpecialChars_DrawPartyScreenHPText(param0->unk_1C4, param3, 3, 1, param1, v0 + (64 * param2), 1);
+    FontSpecialChars_DrawPartyScreenHPText(param0->specialChars, param3, 3, 1, param1, v0 + (64 * param2), 1);
     Window_ScheduleCopyToVRAM(param1);
 }
 
-static void ov107_02243FA4(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02243FA4(BattleCastleSelfApp *param0)
 {
-    param0->unk_0A = ov107_022437CC(param0, &param0->unk_50[1], 6, 16, 1 + 4, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
-    BattleCastleApp_DrawMessageBox(&param0->unk_50[7], Options_Frame(param0->options));
-    param0->unk_0A = ov107_0224379C(param0, &param0->unk_50[7], 5, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    param0->unk_0A = ov107_022437CC(param0, &param0->windows[1], 6, 16, 1 + 4, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
+    BattleCastleApp_DrawMessageBox(&param0->windows[7], Options_Frame(param0->options));
+    param0->unk_0A = ov107_0224379C(param0, &param0->windows[7], 5, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void ov107_0224400C(UnkStruct_ov107_02241D6C *param0)
+static void ov107_0224400C(BattleCastleSelfApp *param0)
 {
-    ov107_02245288(&param0->unk_50[7]);
+    ov107_02245288(&param0->windows[7]);
 }
 
-static void ov107_02244018(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02244018(BattleCastleSelfApp *param0)
 {
-    BattleCastleApp_DrawMessageBox(&param0->unk_50[8], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&param0->windows[8], Options_Frame(param0->options));
     param0->unk_16 = 0;
     ov107_02244944(param0);
 }
 
-static void ov107_0224403C(UnkStruct_ov107_02241D6C *param0)
+static void ov107_0224403C(BattleCastleSelfApp *param0)
 {
     ListMenu_GetListAndCursorPos(param0->unk_198, &param0->unk_18, &param0->unk_1A);
 
-    ov107_02245288(&param0->unk_50[8]);
+    ov107_02245288(&param0->windows[8]);
     ov107_02245730(param0);
 }
 
-static void ov107_02244064(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02244064(BattleCastleSelfApp *param0)
 {
-    BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
 
     param0->unk_0A = ov107_02243918(param0, 24, FONT_MESSAGE);
     param0->unk_16 = 0;
@@ -2024,54 +2024,54 @@ static void ov107_02244064(UnkStruct_ov107_02241D6C *param0)
     ov107_022445C4(param0);
 }
 
-static void ov107_02244094(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02244094(BattleCastleSelfApp *param0)
 {
     ov107_02245730(param0);
 }
 
-static void ov107_0224409C(UnkStruct_ov107_02241D6C *param0)
+static void ov107_0224409C(BattleCastleSelfApp *param0)
 {
-    BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
     param0->unk_16 = 0;
     ov107_02244780(param0);
 }
 
-static void ov107_022440C0(UnkStruct_ov107_02241D6C *param0)
+static void ov107_022440C0(BattleCastleSelfApp *param0)
 {
     ov107_02245730(param0);
 }
 
-static void ov107_022440C8(UnkStruct_ov107_02241D6C *param0, u8 param1)
+static void ov107_022440C8(BattleCastleSelfApp *param0, u8 param1)
 {
     param0->unk_0E_3 = 1;
 
-    ov107_02245288(&param0->unk_50[6]);
+    ov107_02245288(&param0->windows[6]);
 
-    Window_ClearAndCopyToVRAM(&param0->unk_50[6]);
-    Window_ClearAndCopyToVRAM(&param0->unk_50[9]);
+    Window_ClearAndCopyToVRAM(&param0->windows[6]);
+    Window_ClearAndCopyToVRAM(&param0->windows[9]);
 
-    ov107_022436F4(param0, 2);
+    LoadItemSelectBackground(param0, 2);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[4]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[4]);
 
     param0->unk_16 = 0;
 
     ov107_02244240(param0, param1);
-    ov107_02243E74(param0, &param0->unk_50[15]);
+    ov107_02243E74(param0, &param0->windows[15]);
 }
 
-static void ov107_02244120(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02244120(BattleCastleSelfApp *param0)
 {
     if (param0->unk_0E_3 == 1) {
         param0->unk_0E_3 = 0;
-        Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[12]);
+        Window_ClearAndScheduleCopyToVRAM(&param0->windows[12]);
         ov107_02245730(param0);
         ov107_02245660(param0);
     }
 }
 
-static void ov107_0224414C(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 param2)
+static void ov107_0224414C(BattleCastleSelfApp *param0, Window *param1, u8 param2)
 {
     for (int v0 = 0; v0 < 3; v0++) {
         param0->unk_180[v0].entry = NULL;
@@ -2088,18 +2088,18 @@ static void ov107_0224414C(UnkStruct_ov107_02241D6C *param0, Window *param1, u8 
     param0->unk_170.loopAround = TRUE;
 }
 
-static void ov107_022441B0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2, int param3)
+static void ov107_022441B0(BattleCastleSelfApp *param0, u8 param1, u8 param2, int param3)
 {
-    MessageLoader_GetString(param0->unk_20, param3, param0->unk_30[param1]);
+    MessageLoader_GetString(param0->msgLoader, param3, param0->unk_30[param1]);
 
     param0->unk_180[param1].entry = param0->unk_30[param1];
     param0->unk_180[param1].index = param2;
 }
 
-static void ov107_022441DC(UnkStruct_ov107_02241D6C *param0)
+static void ov107_022441DC(BattleCastleSelfApp *param0)
 {
-    BattleCastleApp_DrawWindow(param0->unk_4C, &param0->unk_50[13]);
-    ov107_0224414C(param0, &param0->unk_50[13], 2);
+    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[13]);
+    ov107_0224414C(param0, &param0->windows[13], 2);
     ov107_022441B0(param0, 0, 0, 30);
     ov107_022441B0(param0, 1, 1, 31);
 
@@ -2107,23 +2107,23 @@ static void ov107_022441DC(UnkStruct_ov107_02241D6C *param0)
     param0->unk_0E_4 = 1;
 }
 
-static void ov107_02244240(UnkStruct_ov107_02241D6C *param0, u8 param1)
+static void ov107_02244240(BattleCastleSelfApp *param0, u8 param1)
 {
     ov107_0224503C(param0, param0->unk_0D, 1);
     u8 v2 = ov107_02249C98(param0->unk_14, param0->unk_0D);
-    ov107_02243CFC(param0, &param0->unk_50[17], v2, 1);
+    ov107_02243CFC(param0, &param0->windows[17], v2, 1);
 
-    Window_ScheduleCopyToVRAM(&param0->unk_50[17]);
-    ov107_02243DE4(param0, &param0->unk_50[16], v2, 1);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[16]);
+    Window_ScheduleCopyToVRAM(&param0->windows[17]);
+    ov107_02243DE4(param0, &param0->windows[16], v2, 1);
+    Window_ScheduleCopyToVRAM(&param0->windows[16]);
 
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3F0, 1);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3E8, 1);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3EC, 1);
+    BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 1);
+    BattleCastleAppSprite_SetDrawFlag(param0->upArrowSprite, 1);
+    BattleCastleAppSprite_SetDrawFlag(param0->downArrowSprite, 1);
     BattleCastleAppSprite_SetDrawFlag(param0->unk_434, 1);
 
     MessageLoader *v5 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_BATTLE_CASTLE_APP);
-    u8 v0 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
+    u8 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
 
     u8 v1;
     if (param1 == 6) {
@@ -2146,11 +2146,11 @@ static void ov107_02244240(UnkStruct_ov107_02241D6C *param0, u8 param1)
         StringList_AddFromMessageBank(param0->unk_19C, v5, v3, v4);
     }
 
-    StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, 13, 0xfffffffe);
+    StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, 13, 0xfffffffe);
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->unk_50[5];
+    param0->unk_1A0.window = &param0->windows[5];
     param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_0224440C;
     param0->unk_1A0.printCallback = ov107_02244560;
@@ -2161,14 +2161,14 @@ static void ov107_02244240(UnkStruct_ov107_02241D6C *param0, u8 param1)
     param0->unk_1A0.cursorType = 1;
     param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->unk_50[5]);
+    ov107_02245650(param0, &param0->windows[5]);
     MessageLoader_Free(v5);
 }
 
 static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2)
 {
     u16 v3, v4, v5;
-    UnkStruct_ov107_02241D6C *v6 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *v6 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -2183,57 +2183,57 @@ static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2)
     ListMenu_GetListAndCursorPos(param0, &v3, &v4);
 
     if (v3 == 0) {
-        BattleCastleAppSprite_SetDrawFlag(v6->unk_3E8, 0);
-        BattleCastleAppSprite_SetDrawFlag(v6->unk_3EC, 1);
+        BattleCastleAppSprite_SetDrawFlag(v6->upArrowSprite, 0);
+        BattleCastleAppSprite_SetDrawFlag(v6->downArrowSprite, 1);
     } else if (v3 == (v0 - v1)) {
-        BattleCastleAppSprite_SetDrawFlag(v6->unk_3E8, 1);
-        BattleCastleAppSprite_SetDrawFlag(v6->unk_3EC, 0);
+        BattleCastleAppSprite_SetDrawFlag(v6->upArrowSprite, 1);
+        BattleCastleAppSprite_SetDrawFlag(v6->downArrowSprite, 0);
     } else {
-        BattleCastleAppSprite_SetDrawFlag(v6->unk_3E8, 1);
-        BattleCastleAppSprite_SetDrawFlag(v6->unk_3EC, 1);
+        BattleCastleAppSprite_SetDrawFlag(v6->upArrowSprite, 1);
+        BattleCastleAppSprite_SetDrawFlag(v6->downArrowSprite, 1);
     }
 
     BattleCastleAppSprite_SetPosition(v6->unk_434, 158, 24 + v4 * 16);
 
     if (param1 != 0xfffffffe) {
-        ov107_02243EF8(v6, &v6->unk_50[12], ov107_02244DE0(v6, v5, v6->unk_13));
+        ov107_02243EF8(v6, &v6->windows[12], ov107_02244DE0(v6, v5, v6->unk_13));
 
-        ov107_022499BC(&v6->unk_1D8, ov107_02244DE0(v6, v5, v6->unk_13));
-        ov107_022499FC(&v6->unk_1D8, ov107_02244DE0(v6, v5, v6->unk_13));
+        BattleCastleApp_SetItemGraphic(&v6->spriteMan, ov107_02244DE0(v6, v5, v6->unk_13));
+        BattleCastleApp_SetItemPalette(&v6->spriteMan, ov107_02244DE0(v6, v5, v6->unk_13));
     } else {
-        ov107_022499BC(&v6->unk_1D8, 0xffff);
-        ov107_022499FC(&v6->unk_1D8, 0xffff);
-        Window_FillTilemap(&v6->unk_50[12], 0);
-        Window_ScheduleCopyToVRAM(&v6->unk_50[12]);
+        BattleCastleApp_SetItemGraphic(&v6->spriteMan, 0xffff);
+        BattleCastleApp_SetItemPalette(&v6->spriteMan, 0xffff);
+        Window_FillTilemap(&v6->windows[12], 0);
+        Window_ScheduleCopyToVRAM(&v6->windows[12]);
     }
 }
 
 static void ov107_02244560(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov107_02241D6C *v0 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *v0 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 != 0xfffffffe) {
         ov107_02244A74(v0, 0, ov107_02244D5C(v0, param1, v0->unk_13), 4, 1);
 
-        v0->unk_0A = ov107_02243890(v0, &v0->unk_50[5], 4, 128, param2, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 2);
-        Window_ScheduleCopyToVRAM(&v0->unk_50[5]);
+        v0->unk_0A = ov107_02243890(v0, &v0->windows[5], 4, 128, param2, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 2);
+        Window_ScheduleCopyToVRAM(&v0->windows[5]);
     }
 }
 
-static void ov107_022445C4(UnkStruct_ov107_02241D6C *param0)
+static void ov107_022445C4(BattleCastleSelfApp *param0)
 {
-    BattleCastleApp_DrawWindow(param0->unk_4C, &param0->unk_50[10]);
-    Window_FillTilemap(&param0->unk_50[10], 15);
+    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[10]);
+    Window_FillTilemap(&param0->windows[10], 15);
 
     param0->unk_19C = StringList_New(NELEMS(Unk_ov107_02249FF0), HEAP_ID_BATTLE_CASTLE_APP);
 
     for (int v3 = 0; v3 < (NELEMS(Unk_ov107_02249FF0)); v3++) {
-        StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249FF0[v3][1], Unk_ov107_02249FF0[v3][2]);
+        StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, Unk_ov107_02249FF0[v3][1], Unk_ov107_02249FF0[v3][2]);
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->unk_50[10];
+    param0->unk_1A0.window = &param0->windows[10];
     param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_02244690;
     param0->unk_1A0.printCallback = ov107_02244708;
@@ -2242,18 +2242,18 @@ static void ov107_022445C4(UnkStruct_ov107_02241D6C *param0)
     param0->unk_1A0.textColorBg = 15;
     param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->unk_50[10]);
+    ov107_02245650(param0, &param0->windows[10]);
 }
 
 static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *v2 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    u8 v0 = ov107_02249CAC(v2->saveData, v2->unk_09, 0);
+    u8 v0 = ov107_02249CAC(v2->saveData, v2->challengeType, 0);
 
     u16 v1;
     switch (param1) {
@@ -2274,16 +2274,16 @@ static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2)
         break;
     }
 
-    ov107_0224379C(v2, &v2->unk_50[6], v1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    ov107_0224379C(v2, &v2->windows[6], v1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
 static void ov107_02244708(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov107_02241D6C *v3 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *v3 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
 
     u16 v0;
     ListMenu_CalcTrueCursorPos(param0, &v0);
-    u8 v1 = ov107_02249CAC(v3->saveData, v3->unk_09, 0);
+    u8 v1 = ov107_02249CAC(v3->saveData, v3->challengeType, 0);
 
     u8 v2;
     switch (param1) {
@@ -2318,21 +2318,21 @@ static const u32 Unk_ov107_02249F54[][3] = {
     { 0x1, 0x2F, 0xfffffffe }
 };
 
-static void ov107_02244780(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02244780(BattleCastleSelfApp *param0)
 {
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
-    BattleCastleApp_DrawWindow(param0->unk_4C, &param0->unk_50[11]);
-    Window_FillTilemap(&param0->unk_50[11], 15);
+    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[11]);
+    Window_FillTilemap(&param0->windows[11], 15);
 
     param0->unk_19C = StringList_New(NELEMS(Unk_ov107_02249F54), HEAP_ID_BATTLE_CASTLE_APP);
 
     for (int v3 = 0; v3 < (NELEMS(Unk_ov107_02249F54)); v3++) {
-        StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249F54[v3][1], Unk_ov107_02249F54[v3][2]);
+        StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, Unk_ov107_02249F54[v3][1], Unk_ov107_02249F54[v3][2]);
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->unk_50[11];
+    param0->unk_1A0.window = &param0->windows[11];
     param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_0224486C;
     param0->unk_1A0.printCallback = ov107_022448E8;
@@ -2341,21 +2341,21 @@ static void ov107_02244780(UnkStruct_ov107_02241D6C *param0)
     param0->unk_1A0.textColorBg = 15;
     param0->unk_198 = ListMenu_New(&param0->unk_1A0, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->unk_50[11]);
+    ov107_02245650(param0, &param0->windows[11]);
 
-    Window_ScheduleCopyToVRAM(&param0->unk_50[11]);
+    Window_ScheduleCopyToVRAM(&param0->windows[11]);
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
 }
 
 static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *v2 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    u8 v1 = ov107_02249CAC(v2->saveData, v2->unk_09, 1);
+    u8 v1 = ov107_02249CAC(v2->saveData, v2->challengeType, 1);
 
     u16 v0;
     switch (param1) {
@@ -2379,14 +2379,14 @@ static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2)
         break;
     }
 
-    ov107_0224379C(v2, &v2->unk_50[6], v0, 1, 1, 0xff, 1, 2, 15, 1);
+    ov107_0224379C(v2, &v2->windows[6], v0, 1, 1, 0xff, 1, 2, 15, 1);
 }
 
 static void ov107_022448E8(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *v2 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
 
-    u8 v0 = ov107_02249CAC(v2->saveData, v2->unk_09, 1);
+    u8 v0 = ov107_02249CAC(v2->saveData, v2->challengeType, 1);
 
     u8 v1;
     switch (param1) {
@@ -2428,20 +2428,20 @@ static const u16 Unk_ov107_02249E18[] = {
     0x12
 };
 
-static void ov107_02244944(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02244944(BattleCastleSelfApp *param0)
 {
-    BattleCastleApp_DrawWindow(param0->unk_4C, &param0->unk_50[9]);
-    Window_FillTilemap(&param0->unk_50[9], 15);
+    BattleCastleApp_DrawWindow(param0->bgConfig, &param0->windows[9]);
+    Window_FillTilemap(&param0->windows[9], 15);
 
     param0->unk_19C = StringList_New(5, HEAP_ID_BATTLE_CASTLE_APP);
 
     for (int v0 = 0; v0 < 5; v0++) {
-        StringList_AddFromMessageBank(param0->unk_19C, param0->unk_20, Unk_ov107_02249F2C[v0][0], Unk_ov107_02249F2C[v0][1]);
+        StringList_AddFromMessageBank(param0->unk_19C, param0->msgLoader, Unk_ov107_02249F2C[v0][0], Unk_ov107_02249F2C[v0][1]);
     }
 
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
-    param0->unk_1A0.window = &param0->unk_50[9];
+    param0->unk_1A0.window = &param0->windows[9];
     param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_02244A1C;
     param0->unk_1A0.printCallback = NULL;
@@ -2451,13 +2451,13 @@ static void ov107_02244944(UnkStruct_ov107_02241D6C *param0)
     param0->unk_1A0.parent = param0;
     param0->unk_198 = ListMenu_New(&param0->unk_1A0, param0->unk_18, param0->unk_1A, HEAP_ID_BATTLE_CASTLE_APP);
 
-    ov107_02245650(param0, &param0->unk_50[9]);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[9]);
+    ov107_02245650(param0, &param0->windows[9]);
+    Window_ScheduleCopyToVRAM(&param0->windows[9]);
 }
 
 static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov107_02241D6C *v0 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
+    BattleCastleSelfApp *v0 = (BattleCastleSelfApp *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -2465,25 +2465,25 @@ static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2)
 
     u16 v1;
     ListMenu_CalcTrueCursorPos(param0, &v1);
-    ov107_0224379C(v0, &v0->unk_50[8], Unk_ov107_02249E18[v1], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    ov107_0224379C(v0, &v0->windows[8], Unk_ov107_02249E18[v1], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void ov107_02244A74(UnkStruct_ov107_02241D6C *param0, u32 param1, s32 param2, u32 param3, int param4)
+static void ov107_02244A74(BattleCastleSelfApp *param0, u32 param1, s32 param2, u32 param3, int param4)
 {
-    StringTemplate_SetNumber(param0->unk_24, param1, param2, param3, param4, 1);
+    StringTemplate_SetNumber(param0->strTemplate, param1, param2, param3, param4, 1);
 }
 
-static void ov107_02244A8C(UnkStruct_ov107_02241D6C *param0, u32 param1, BoxPokemon *param2)
+static void ov107_02244A8C(BattleCastleSelfApp *param0, u32 param1, BoxPokemon *param2)
 {
-    StringTemplate_SetSpeciesName(param0->unk_24, param1, param2);
+    StringTemplate_SetSpeciesName(param0->strTemplate, param1, param2);
 }
 
-static void ov107_02244A98(UnkStruct_ov107_02241D6C *param0, u32 param1)
+static void ov107_02244A98(BattleCastleSelfApp *param0, u32 param1)
 {
-    StringTemplate_SetPlayerName(param0->unk_24, param1, SaveData_GetTrainerInfo(param0->saveData));
+    StringTemplate_SetPlayerName(param0->strTemplate, param1, SaveData_GetTrainerInfo(param0->saveData));
 }
 
-static void ov107_02244AB4(UnkStruct_ov107_02241D6C *param0, Window *param1, u32 param2, u32 param3, u8 param4)
+static void ov107_02244AB4(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4)
 {
     const TrainerInfo *v1 = SaveData_GetTrainerInfo(param0->saveData);
     String *v2 = String_Init(7 + 1, HEAP_ID_BATTLE_CASTLE_APP);
@@ -2502,7 +2502,7 @@ static void ov107_02244AB4(UnkStruct_ov107_02241D6C *param0, Window *param1, u32
     String_Free(v2);
 }
 
-static void ov107_02244B24(UnkStruct_ov107_02241D6C *param0, Window *param1, u32 param2, u32 param3, u8 param4)
+static void ov107_02244B24(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4)
 {
     TrainerInfo *v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
 
@@ -2513,11 +2513,11 @@ static void ov107_02244B24(UnkStruct_ov107_02241D6C *param0, Window *param1, u32
         v1 = TEXT_COLOR(3, 4, 0);
     }
 
-    StringTemplate_SetPlayerName(param0->unk_24, 0, v0);
+    StringTemplate_SetPlayerName(param0->strTemplate, 0, v0);
     ov107_02243860(param0, param1, 1, param2, param3, TEXT_SPEED_NO_TRANSFER, GET_TEXT_FG_COLOR(v1), GET_TEXT_SHADOW_COLOR(v1), GET_TEXT_BG_COLOR(v1), FONT_SYSTEM);
 }
 
-static void ov107_02244B8C(UnkStruct_ov107_02241D6C *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5)
+static void ov107_02244B8C(BattleCastleSelfApp *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5)
 {
     u32 v0;
     u8 v2, v3, v4;
@@ -2539,13 +2539,13 @@ static void ov107_02244B8C(UnkStruct_ov107_02241D6C *param0, Window *param1, u32
     ov107_02243860(param0, param1, v0, param2, param3, TEXT_SPEED_NO_TRANSFER, v2, v3, v4, param4);
 }
 
-static void ov107_02244BD0(UnkStruct_ov107_02241D6C *param0, int *param1, int param2)
+static void ChangeState(BattleCastleSelfApp *app, int *state, int nextState)
 {
-    param0->unk_08 = 0;
-    *param1 = param2;
+    app->subState = 0;
+    *state = nextState;
 }
 
-static void ov107_02244BD8(UnkStruct_ov107_02241D6C *param0, int param1)
+static void ov107_02244BD8(BattleCastleSelfApp *param0, int param1)
 {
     int v1 = 0;
     u8 v0 = ov107_02249C98(param0->unk_14, param0->unk_0D);
@@ -2603,24 +2603,24 @@ static void ov107_02244BD8(UnkStruct_ov107_02241D6C *param0, int param1)
     }
 }
 
-static void ov107_02244C70(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02244C70(BattleCastleSelfApp *param0)
 {
     Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-    if (ov104_0223BA14(param0->unk_09) == 1) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
         ov107_0224529C(param0, 12, param0->unk_0D);
     }
 
     ov107_02244CA0(param0, param0->unk_0D, 0);
 }
 
-static void ov107_02244CA0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2)
+static void ov107_02244CA0(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 {
     BattleCastleAppSprite *v0;
     u32 v1, v2, v3, v4;
 
     if (param2 == 0) {
-        v0 = param0->unk_418;
+        v0 = param0->cursorSprite;
         v3 = 1;
         v4 = 0;
     } else {
@@ -2634,39 +2634,39 @@ static void ov107_02244CA0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
         BattleCastleAppSprite_SetPosition(v0, 224, 160);
     } else {
         BattleCastleAppSprite_SetAnim(v0, v3);
-        ov107_02244D08(param0, &v1, &v2, param1);
+        GetCursorSpritePos(param0, &v1, &v2, param1);
         BattleCastleAppSprite_SetPosition(v0, v1, v2);
     }
 }
 
-static void ov107_02244D08(UnkStruct_ov107_02241D6C *param0, u32 *param1, u32 *param2, u8 param3)
+static void GetCursorSpritePos(BattleCastleSelfApp *app, u32 *x, u32 *y, u8 slot)
 {
-    if (ov104_0223BA14(param0->unk_09) == 1) {
-        if (param3 == 0) {
-            *param1 = 40;
-        } else if (param3 == 1) {
-            *param1 = 104;
-        } else if (param3 == 2) {
-            *param1 = 168;
+    if (BattleCastle_IsMultiPlayerChallenge(app->challengeType) == TRUE) {
+        if (slot == 0) {
+            *x = 40;
+        } else if (slot == 1) {
+            *x = 104;
+        } else if (slot == 2) {
+            *x = 168;
         } else {
-            *param1 = 232;
+            *x = 232;
         }
     } else {
-        if (param3 == 0) {
-            *param1 = 72;
-        } else if (param3 == 1) {
-            *param1 = 136;
+        if (slot == 0) {
+            *x = 72;
+        } else if (slot == 1) {
+            *x = 136;
         } else {
-            *param1 = 200;
+            *x = 200;
         }
     }
 
-    *param2 = 88;
+    *y = 88;
 }
 
-static u16 ov107_02244D5C(UnkStruct_ov107_02241D6C *param0, u16 param1, u8 param2)
+static u16 ov107_02244D5C(BattleCastleSelfApp *param0, u16 param1, u8 param2)
 {
-    u8 v0 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
+    u8 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
     u8 v2 = Unk_ov107_02249E06[v0 - 1];
     u8 v3 = Unk_ov107_02249E12[v0 - 1];
 
@@ -2697,9 +2697,9 @@ static u16 ov107_02244D90(u16 param0)
     return 0;
 }
 
-static u16 ov107_02244DE0(UnkStruct_ov107_02241D6C *param0, u16 param1, u8 param2)
+static u16 ov107_02244DE0(BattleCastleSelfApp *param0, u16 param1, u8 param2)
 {
-    u8 v0 = ov107_02249CAC(param0->saveData, param0->unk_09, 1);
+    u8 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 1);
     u8 v2 = Unk_ov107_02249E06[v0 - 1];
     u8 v3 = Unk_ov107_02249E12[v0 - 1];
 
@@ -2710,9 +2710,9 @@ static u16 ov107_02244DE0(UnkStruct_ov107_02241D6C *param0, u16 param1, u8 param
     return Unk_ov107_02249F84[param1];
 }
 
-static void ov107_02244E14(UnkStruct_ov107_02241D6C *param0, u16 *param1, u16 *param2, u16 *param3, u16 *param4)
+static void ov107_02244E14(BattleCastleSelfApp *app, u16 *param1, u16 *param2, u16 *param3, u16 *param4)
 {
-    if (ov104_0223BA14(param0->unk_09) == 0) {
+    if (!BattleCastle_IsMultiPlayerChallenge(app->challengeType)) {
         *param1 = 28;
         *param2 = 0;
         *param3 = 0;
@@ -2723,11 +2723,9 @@ static void ov107_02244E14(UnkStruct_ov107_02241D6C *param0, u16 *param1, u16 *p
         *param3 = 120;
         *param4 = 0;
     }
-
-    return;
 }
 
-static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2)
+static BOOL ov107_02244E44(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 {
     u32 v0, v1, v2, v3;
 
@@ -2751,13 +2749,13 @@ static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
             param0->unk_0E_2 = 1;
 
             u16 v4;
-            if (ov104_0223BA14(param0->unk_09) == 0) {
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
                 v4 = 64;
             } else {
                 v4 = 32;
             }
 
-            param0->unk_414 = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 8, v4 + (64 * v5), 62, 0, NULL);
+            param0->unk_414 = BattleCastleAppSprite_New(&param0->spriteMan, 0, 0, 0, 8, v4 + (64 * v5), 62, 0, NULL);
         }
 
         if (param0->unk_414 != NULL) {
@@ -2768,9 +2766,9 @@ static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
         }
 
         if (param0->unk_414 == NULL) {
-            ov107_02243F4C(param0, &param0->unk_50[3], v5, Pokemon_GetValue(v6, MON_DATA_HP, NULL));
-            BattleCastleAppSprite_SetAnim(param0->unk_420[v5], v3);
-            ov107_02249C1C(param0->unk_3F4[v5], v2);
+            ov107_02243F4C(param0, &param0->windows[3], v5, Pokemon_GetValue(v6, MON_DATA_HP, NULL));
+            BattleCastleAppSprite_SetAnim(param0->barSprites[v5], v3);
+            ov107_02249C1C(param0->monSprites[v5], v2);
             param0->unk_0E_2 = 0;
             return 1;
         }
@@ -2781,13 +2779,13 @@ static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
             param0->unk_0E_2 = 1;
 
             u16 v4;
-            if (ov104_0223BA14(param0->unk_09) == 0) {
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
                 v4 = 64;
             } else {
                 v4 = 32;
             }
 
-            param0->unk_414 = BattleCastleAppSprite_New(&param0->unk_1D8, 0, 0, 0, 16, v4 + (64 * v5), 62, 0, NULL);
+            param0->unk_414 = BattleCastleAppSprite_New(&param0->spriteMan, 0, 0, 0, 16, v4 + (64 * v5), 62, 0, NULL);
         }
 
         if (BattleCastleAppSprite_IsAnimated(param0->unk_414) == 0) {
@@ -2810,12 +2808,12 @@ static BOOL ov107_02244E44(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     return 0;
 }
 
-static void ov107_0224503C(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2)
+static void ov107_0224503C(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 {
     u8 v0 = ov107_02249C98(param0->unk_14, param1);
 
     u16 v2;
-    if (ov104_0223BA14(param0->unk_09) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
         v2 = 64;
     } else {
         v2 = 32;
@@ -2836,15 +2834,15 @@ static void ov107_0224503C(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     s16 v5 = v3 + 8;
     s16 v6 = v4 + 4;
 
-    ov107_02249C58(param0->unk_404[v0], v5, v6);
-    BattleCastleAppSprite_SetPosition(param0->unk_404[v0], v5, v6);
-    BattleCastleAppSprite_SetPriority(param0->unk_404[v0], v1);
-    ov107_02249C58(param0->unk_3F4[v0], v3, v4);
-    BattleCastleAppSprite_SetPosition(param0->unk_3F4[v0], v3, v4);
-    BattleCastleAppSprite_SetPriority(param0->unk_3F4[v0], v1);
+    ov107_02249C58(param0->itemIconSprites[v0], v5, v6);
+    BattleCastleAppSprite_SetPosition(param0->itemIconSprites[v0], v5, v6);
+    BattleCastleAppSprite_SetPriority(param0->itemIconSprites[v0], v1);
+    ov107_02249C58(param0->monSprites[v0], v3, v4);
+    BattleCastleAppSprite_SetPosition(param0->monSprites[v0], v3, v4);
+    BattleCastleAppSprite_SetPriority(param0->monSprites[v0], v1);
 }
 
-static u32 ov107_022450E8(UnkStruct_ov107_02241D6C *param0, u8 param1)
+static u32 ov107_022450E8(BattleCastleSelfApp *param0, u8 param1)
 {
     u32 v0;
 
@@ -2866,7 +2864,7 @@ static u32 ov107_022450E8(UnkStruct_ov107_02241D6C *param0, u8 param1)
     return v0;
 }
 
-static u32 ov107_02245114(UnkStruct_ov107_02241D6C *param0, u8 param1)
+static u32 ov107_02245114(BattleCastleSelfApp *param0, u8 param1)
 {
     u32 v0;
 
@@ -2888,7 +2886,7 @@ static u32 ov107_02245114(UnkStruct_ov107_02241D6C *param0, u8 param1)
     return v0;
 }
 
-static void ov107_02245140(UnkStruct_ov107_02241D6C *param0, s8 param1)
+static void ov107_02245140(BattleCastleSelfApp *param0, s8 param1)
 {
     s8 v1 = param0->unk_0D;
     v1 += param1;
@@ -2903,10 +2901,10 @@ static void ov107_02245140(UnkStruct_ov107_02241D6C *param0, s8 param1)
     ov107_02244C70(param0);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
-    ov107_02243950(param0, &param0->unk_50[4], v0);
+    ov107_02243950(param0, &param0->windows[4], v0);
 }
 
-static void ov107_0224518C(UnkStruct_ov107_02241D6C *param0, s8 param1)
+static void ov107_0224518C(BattleCastleSelfApp *param0, s8 param1)
 {
     s8 v1 = param0->unk_0D;
     v1 += param1;
@@ -2921,15 +2919,15 @@ static void ov107_0224518C(UnkStruct_ov107_02241D6C *param0, s8 param1)
     ov107_02244C70(param0);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param0->unk_0D));
-    ov107_02243B84(param0, &param0->unk_50[4], v0);
+    ov107_02243B84(param0, &param0->windows[4], v0);
 }
 
-static void ov107_022451D8(UnkStruct_ov107_02241D6C *param0)
+static void ov107_022451D8(BattleCastleSelfApp *param0)
 {
     ov107_02245618(param0);
     ov107_02245730(param0);
     ov107_02244120(param0);
-    ov107_02245288(&param0->unk_50[6]);
+    ov107_02245288(&param0->windows[6]);
     ov107_02245BE0(param0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -2965,7 +2963,7 @@ static void ov107_02245288(Window *param0)
     Window_ClearAndScheduleCopyToVRAM(param0);
 }
 
-BOOL ov107_0224529C(UnkStruct_ov107_02241D6C *param0, u16 param1, u16 param2)
+BOOL ov107_0224529C(BattleCastleSelfApp *param0, u16 param1, u16 param2)
 {
     int v0, v1;
 
@@ -2997,7 +2995,7 @@ BOOL ov107_0224529C(UnkStruct_ov107_02241D6C *param0, u16 param1, u16 param2)
     return v0;
 }
 
-void ov107_022452F4(UnkStruct_ov107_02241D6C *param0, u16 param1)
+void ov107_022452F4(BattleCastleSelfApp *param0, u16 param1)
 {
     int v1 = 0;
     TrainerInfo *v2 = SaveData_GetTrainerInfo(param0->saveData);
@@ -3009,7 +3007,7 @@ void ov107_022452F4(UnkStruct_ov107_02241D6C *param0, u16 param1)
     v1 += 1;
 
     for (int v0 = 0; v0 < 3; v0++) {
-        param0->unk_444[v1 + v0] = ov107_02249CAC(param0->saveData, param0->unk_09, v0);
+        param0->unk_444[v1 + v0] = ov107_02249CAC(param0->saveData, param0->challengeType, v0);
     }
 
     v1 += 3;
@@ -3017,7 +3015,7 @@ void ov107_022452F4(UnkStruct_ov107_02241D6C *param0, u16 param1)
 
 void ov107_02245338(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov107_02241D6C *v2 = param3;
+    BattleCastleSelfApp *v2 = param3;
     const u16 *v3 = param2;
 
     int v1 = 0;
@@ -3037,7 +3035,7 @@ void ov107_02245338(int param0, int param1, void *param2, void *param3)
     v1 += 3;
 }
 
-void ov107_02245368(UnkStruct_ov107_02241D6C *param0, u16 param1, u16 param2)
+void ov107_02245368(BattleCastleSelfApp *param0, u16 param1, u16 param2)
 {
     param0->unk_444[0] = param1;
     param0->unk_444[1] = param2;
@@ -3055,7 +3053,7 @@ void ov107_02245368(UnkStruct_ov107_02241D6C *param0, u16 param1, u16 param2)
 
 void ov107_022453A0(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov107_02241D6C *v2 = param3;
+    BattleCastleSelfApp *v2 = param3;
     const u16 *v3 = param2;
 
     int v1 = 0;
@@ -3082,7 +3080,7 @@ void ov107_022453A0(int param0, int param1, void *param2, void *param3)
     }
 }
 
-void ov107_022453F8(UnkStruct_ov107_02241D6C *param0, u16 param1)
+void ov107_022453F8(BattleCastleSelfApp *param0, u16 param1)
 {
     param0->unk_444[0] = param1;
     param0->unk_444[1] = param0->unk_0D;
@@ -3090,7 +3088,7 @@ void ov107_022453F8(UnkStruct_ov107_02241D6C *param0, u16 param1)
 
 void ov107_02245408(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov107_02241D6C *v0 = param3;
+    BattleCastleSelfApp *v0 = param3;
     const u16 *v1 = param2;
 
     if (CommSys_CurNetId() == param0) {
@@ -3101,14 +3099,14 @@ void ov107_02245408(int param0, int param1, void *param2, void *param3)
     ov107_02244CA0(v0, v0->unk_494, 1);
 }
 
-void ov107_0224542C(UnkStruct_ov107_02241D6C *param0)
+void ov107_0224542C(BattleCastleSelfApp *param0)
 {
     param0->unk_444[0] = 1;
 }
 
 void ov107_02245438(int param0, int param1, void *param2, void *param3)
 {
-    UnkStruct_ov107_02241D6C *v0 = param3;
+    BattleCastleSelfApp *v0 = param3;
     const u16 *v1 = param2;
 
     if (CommSys_CurNetId() == param0) {
@@ -3123,13 +3121,13 @@ static void ov107_02245454(Pokemon *param0, u16 param1)
     Pokemon_ApplyItemEffects(param0, param1, 0, 0, 100);
 }
 
-static void ov107_02245464(UnkStruct_ov107_02241D6C *param0, Window *param1)
+static void ov107_02245464(BattleCastleSelfApp *param0, Window *param1)
 {
     u16 v0, v1, v2, v3, v4, v5;
 
     ov107_02244E14(param0, &v2, &v3, &v4, &v5);
 
-    if (ov104_0223BA14(param0->unk_09) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 0) {
         v0 = v2 + 0;
         v1 = v3 + 0;
         ov107_02244AB4(param0, param1, v0, v1, FONT_SYSTEM);
@@ -3160,13 +3158,13 @@ static void ov107_02245464(UnkStruct_ov107_02241D6C *param0, Window *param1)
     Window_ScheduleCopyToVRAM(param1);
 }
 
-static void ov107_022454F8(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2)
+static void ov107_022454F8(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 {
     Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
-    u32 v0 = ov107_02249CAC(param0->saveData, param0->unk_09, 0);
+    u32 v0 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
     ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v1));
-    BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
 
     param0->unk_0A = ov107_02243918(param0, Unk_ov107_02249E00[param2 - 1], FONT_MESSAGE);
 
@@ -3189,21 +3187,21 @@ static void ov107_022454F8(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 }
 
-static void ov107_022455A0(UnkStruct_ov107_02241D6C *param0, u8 param1, u16 param2)
+static void ov107_022455A0(BattleCastleSelfApp *param0, u8 param1, u16 param2)
 {
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
 
     Pokemon_SetValue(v0, MON_DATA_HELD_ITEM, &param2);
 
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_404[ov107_02249C98(param0->unk_14, param1)], 1);
+    BattleCastleAppSprite_SetDrawFlag(param0->itemIconSprites[ov107_02249C98(param0->unk_14, param1)], 1);
     ov107_02244A8C(param0, 0, Pokemon_GetBoxPokemon(v0));
 
-    StringTemplate_SetItemName(param0->unk_24, 1, param2);
+    StringTemplate_SetItemName(param0->strTemplate, 1, param2);
     param0->unk_0A = ov107_02243918(param0, 59, FONT_MESSAGE);
     Sound_PlayEffect(SEQ_SE_DP_UG_020);
 }
 
-static void ov107_02245618(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02245618(BattleCastleSelfApp *param0)
 {
     if (param0->unk_0E_4 == 1) {
         param0->unk_0E_4 = 0;
@@ -3213,43 +3211,43 @@ static void ov107_02245618(UnkStruct_ov107_02241D6C *param0)
     }
 }
 
-static void ov107_02245650(UnkStruct_ov107_02241D6C *param0, Window *param1)
+static void ov107_02245650(BattleCastleSelfApp *param0, Window *param1)
 {
     param0->unk_0E_0 = 1;
 }
 
-static void ov107_02245660(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02245660(BattleCastleSelfApp *param0)
 {
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3F0, 0);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3E8, 0);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3EC, 0);
+    BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 0);
+    BattleCastleAppSprite_SetDrawFlag(param0->upArrowSprite, 0);
+    BattleCastleAppSprite_SetDrawFlag(param0->downArrowSprite, 0);
     BattleCastleAppSprite_SetDrawFlag(param0->unk_434, 0);
 
-    Window_EraseStandardFrame(&param0->unk_50[15], 1);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[15]);
+    Window_EraseStandardFrame(&param0->windows[15], 1);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[15]);
 
     ov107_0224503C(param0, param0->unk_0D, 0);
 
-    Window_FillTilemap(&param0->unk_50[17], 0);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[17]);
-    Window_FillTilemap(&param0->unk_50[16], 0);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[16]);
+    Window_FillTilemap(&param0->windows[17], 0);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[17]);
+    Window_FillTilemap(&param0->windows[16], 0);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[16]);
 }
 
-static void ov107_022456E4(UnkStruct_ov107_02241D6C *param0)
+static void ov107_022456E4(BattleCastleSelfApp *param0)
 {
     u16 v0;
 
-    ov107_02245288(&param0->unk_50[6]);
-    BattleCastleAppSprite_SetDrawFlag(param0->unk_3F0, 1);
+    ov107_02245288(&param0->windows[6]);
+    BattleCastleAppSprite_SetDrawFlag(param0->itemSprite, 1);
 
     ListMenu_Draw(param0->unk_198);
     ListMenu_CalcTrueCursorPos(param0->unk_198, &v0);
 
-    ov107_02243EF8(param0, &param0->unk_50[12], ov107_02244DE0(param0, v0, param0->unk_13));
+    ov107_02243EF8(param0, &param0->windows[12], ov107_02244DE0(param0, v0, param0->unk_13));
 }
 
-static void ov107_02245730(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02245730(BattleCastleSelfApp *param0)
 {
     if (param0->unk_0E_0 == 1) {
         param0->unk_0E_0 = 0;
@@ -3264,23 +3262,23 @@ static void ov107_02245730(UnkStruct_ov107_02241D6C *param0)
     }
 }
 
-static void ov107_02245780(UnkStruct_ov107_02241D6C *param0, Window *window)
+static void ov107_02245780(BattleCastleSelfApp *param0, Window *window)
 {
     u16 v0, v1, v2, v3, x, y;
     ov107_02244E14(param0, &v0, &v1, &v2, &v3);
 
-    if (ov104_0223BA14(param0->unk_09) == FALSE) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == FALSE) {
         x = v0 + 104;
         y = v1;
         Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-        ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09))), 4, 1);
+        ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
         param0->unk_0A = ov107_02243890(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
     } else {
         if (CommSys_CurNetId() == 0) {
             x = v0 + 104;
             y = v1;
             Window_FillRectWithColor(window, 0, x - 48, y, 48, 16);
-            ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09))), 4, 1);
+            ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
             param0->unk_0A = ov107_02243890(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
 
             x = v2 + 104;
@@ -3298,7 +3296,7 @@ static void ov107_02245780(UnkStruct_ov107_02241D6C *param0, Window *window)
             x = v2 + 104;
             y = v3;
             Window_FillRectWithColor(window, 0, x - 48, v3, 48, 16);
-            ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09))), 4, 1);
+            ov107_02244A74(param0, 0, sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType))), 4, 1);
             param0->unk_0A = ov107_02243890(param0, window, 2, x, y, 0xFF, 1, 2, 0, 0, 2);
         }
     }
@@ -3306,7 +3304,7 @@ static void ov107_02245780(UnkStruct_ov107_02241D6C *param0, Window *window)
     Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov107_022459D0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2)
+static void ov107_022459D0(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 {
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
@@ -3334,39 +3332,39 @@ static void ov107_022459D0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     if (CommSys_CurNetId() == 0) {
         if (param1 < v1) {
             ov107_02244A98(param0, 5);
-            ov104_0223BC2C(param0->frontier, param0->unk_09, v2);
+            ov104_0223BC2C(param0->frontier, param0->challengeType, v2);
         } else {
-            ov107_02249CF4(param0->unk_24, 5);
+            ov107_02249CF4(param0->strTemplate, 5);
             param0->unk_49A -= v2;
         }
     } else {
         if (param1 < v1) {
-            ov107_02249CF4(param0->unk_24, 5);
+            ov107_02249CF4(param0->strTemplate, 5);
             param0->unk_49A -= v2;
         } else {
             ov107_02244A98(param0, 5);
-            ov104_0223BC2C(param0->frontier, param0->unk_09, v2);
+            ov104_0223BC2C(param0->frontier, param0->challengeType, v2);
         }
     }
 
-    ov107_02245780(param0, &param0->unk_50[0]);
+    ov107_02245780(param0, &param0->windows[0]);
     ov107_02245618(param0);
     ov107_02245BE0(param0);
     ov107_02244120(param0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-    ov107_02245288(&param0->unk_50[6]);
+    ov107_02245288(&param0->windows[6]);
 
     switch (param2) {
     case 1:
     case 2:
     case 3:
-        BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+        BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
         ov107_022454F8(param0, v0, param2);
         break;
     case 6:
     case 7:
-        BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+        BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
         ov107_022455A0(param0, v0, param0->unk_10);
         break;
     case 9:
@@ -3378,66 +3376,66 @@ static void ov107_022459D0(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     }
 }
 
-static void ov107_02245B40(UnkStruct_ov107_02241D6C *param0, u8 param1)
+static void ov107_02245B40(BattleCastleSelfApp *param0, u8 param1)
 {
-    ov107_02243630(param0, 2);
+    LoadSummaryBackground(param0, 2);
 
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[6]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[15]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[6]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[15]);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
-    ov107_02243950(param0, &param0->unk_50[4], v0);
+    ov107_02243950(param0, &param0->windows[4], v0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
-static void ov107_02245B90(UnkStruct_ov107_02241D6C *param0, u8 param1)
+static void ov107_02245B90(BattleCastleSelfApp *param0, u8 param1)
 {
-    ov107_022436AC(param0, 2);
+    LoadMovesListBackground(param0, 2);
 
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[6]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[5]);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[15]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[6]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[5]);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[15]);
 
     Pokemon *v0 = Party_GetPokemonBySlotIndex(param0->unk_43C, ov107_02249C98(param0->unk_14, param1));
 
-    ov107_02243B84(param0, &param0->unk_50[4], v0);
+    ov107_02243B84(param0, &param0->windows[4], v0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
 }
 
-static void ov107_02245BE0(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02245BE0(BattleCastleSelfApp *param0)
 {
-    Window_FillTilemap(&param0->unk_50[4], 0);
-    Window_ClearAndCopyToVRAM(&param0->unk_50[4]);
+    Window_FillTilemap(&param0->windows[4], 0);
+    Window_ClearAndCopyToVRAM(&param0->windows[4]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
-static void ov107_02245C00(UnkStruct_ov107_02241D6C *param0)
+static void ov107_02245C00(BattleCastleSelfApp *param0)
 {
-    u8 v1 = ov104_0223B7A8(param0->unk_09, 1);
+    u8 v1 = ov104_0223B7A8(param0->challengeType, 1);
 
     for (int v0 = 0; v0 < v1; v0++) {
         Pokemon *v3 = Party_GetPokemonBySlotIndex(param0->unk_43C, v0);
         u8 v2 = ov104_0222E240(Pokemon_GetValue(v3, MON_DATA_HP, NULL), Pokemon_GetValue(v3, MON_DATA_MAX_HP, NULL));
 
-        if (param0->unk_3F4[v0] != NULL) {
-            ov107_02249C1C(param0->unk_3F4[v0], v2);
+        if (param0->monSprites[v0] != NULL) {
+            ov107_02249C1C(param0->monSprites[v0], v2);
 
             if ((v0 != ov107_02249C98(param0->unk_14, param0->unk_0D)) || (param0->unk_0D >= param0->unk_15)) {
-                ov107_02249C28(param0->unk_3F4[v0], 0);
+                ov107_02249C28(param0->monSprites[v0], 0);
             } else {
-                ov107_02249C28(param0->unk_3F4[v0], 1);
+                ov107_02249C28(param0->monSprites[v0], 1);
             }
         }
     }
 }
 
-static void ov107_02245C94(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param2)
+static void ov107_02245C94(BattleCastleSelfApp *param0, u8 param1, u8 param2)
 {
     u32 v4;
     u16 v5[4];
 
-    u8 v3 = ov104_0223B7A8(param0->unk_09, 0);
+    u8 v3 = ov104_0223B7A8(param0->challengeType, 0);
 
     u8 v2;
     if (param2 == 4) {
@@ -3453,14 +3451,14 @@ static void ov107_02245C94(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
         if (param1 < v0) {
             ov107_02244A98(param0, 5);
 
-            v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
-            ov104_0223BC2C(param0->frontier, param0->unk_09, Unk_ov107_02249E46[v2][v4]);
+            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
+            ov104_0223BC2C(param0->frontier, param0->challengeType, Unk_ov107_02249E46[v2][v4]);
 
-            v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
+            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
             v5[0] = (v4 + 1);
-            sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), sub_0205E5B4(param0->unk_09, v2), sub_0205E6A8(sub_0205E5B4(param0->unk_09, v2)), v4 + 1);
+            sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), sub_0205E5B4(param0->challengeType, v2), sub_0205E6A8(sub_0205E5B4(param0->challengeType, v2)), v4 + 1);
 
-            if (ov104_0223BA14(param0->unk_09) == 1) {
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
                 if (param2 == 4) {
                     param0->unk_0E_5 = 1;
                 } else {
@@ -3468,28 +3466,28 @@ static void ov107_02245C94(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
                 }
             }
         } else {
-            ov107_02249CF4(param0->unk_24, 5);
+            ov107_02249CF4(param0->strTemplate, 5);
             v4 = param0->unk_497[v2];
             param0->unk_49A -= Unk_ov107_02249E46[v2][v4];
             param0->unk_497[v2]++;
         }
     } else {
         if (param1 < v0) {
-            ov107_02249CF4(param0->unk_24, 5);
+            ov107_02249CF4(param0->strTemplate, 5);
             v4 = param0->unk_497[v2];
             param0->unk_49A -= Unk_ov107_02249E46[v2][v4];
             param0->unk_497[v2]++;
         } else {
             ov107_02244A98(param0, 5);
-            v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
+            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
 
-            ov104_0223BC2C(param0->frontier, param0->unk_09, Unk_ov107_02249E46[v2][v4]);
-            v4 = ov107_02249CAC(param0->saveData, param0->unk_09, v2);
+            ov104_0223BC2C(param0->frontier, param0->challengeType, Unk_ov107_02249E46[v2][v4]);
+            v4 = ov107_02249CAC(param0->saveData, param0->challengeType, v2);
 
             v5[0] = v4 + 1;
-            sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), sub_0205E5B4(param0->unk_09, v2), sub_0205E6A8(sub_0205E5B4(param0->unk_09, v2)), v4 + 1);
+            sub_020306E4(SaveData_GetBattleFrontier(param0->saveData), sub_0205E5B4(param0->challengeType, v2), sub_0205E6A8(sub_0205E5B4(param0->challengeType, v2)), v4 + 1);
 
-            if (ov104_0223BA14(param0->unk_09) == 1) {
+            if (BattleCastle_IsMultiPlayerChallenge(param0->challengeType) == 1) {
                 if (param2 == 4) {
                     param0->unk_0E_5 = 1;
                 } else {
@@ -3500,8 +3498,8 @@ static void ov107_02245C94(UnkStruct_ov107_02241D6C *param0, u8 param1, u8 param
     }
 
     ov107_02245618(param0);
-    ov107_02245780(param0, &param0->unk_50[0]);
-    BattleCastleApp_DrawMessageBox(&param0->unk_50[6], Options_Frame(param0->options));
+    ov107_02245780(param0, &param0->windows[0]);
+    BattleCastleApp_DrawMessageBox(&param0->windows[6], Options_Frame(param0->options));
 
     param0->unk_0A = ov107_02243918(param0, Unk_ov107_02249E34[v2][v4], FONT_MESSAGE);
 }

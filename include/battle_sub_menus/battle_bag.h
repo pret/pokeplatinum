@@ -62,7 +62,7 @@ enum BattleBagUseItemScreenButton {
 #define MENU_POCKET_ICON_SIZE_TILES   (MENU_POCKET_ICON_WIDTH_TILES * MENU_POCKET_ICON_HEIGHT_TILES)
 
 typedef struct BattleBagContext {
-    BattleSystem *battleSystem;
+    BattleSystem *battleSys;
     TrainerInfo *trainerInfo;
     Bag *bag;
     enum HeapID heapID;

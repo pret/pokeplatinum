@@ -580,7 +580,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_healing_machine_animation_pokecenter.c.o
 	Object main.nef.p/src_overlay006_elevator_animation.c.o
 	Object main.nef.p/src_overlay006_pc_animation.c.o
-	Object main.nef.p/src_overlay006_ov6_02247100.c.o
+	Object main.nef.p/src_overlay006_field_warp.c.o
 	Object main.nef.p/src_overlay006_trophy_garden_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_feebas_fishing.c.o
 	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
@@ -686,7 +686,7 @@ Overlay battle
 {
 	After battle_anim
 	Object main.nef.p/src_battle_ov16_0223B140.c.o
-	Object main.nef.p/src_battle_ov16_0223DF00.c.o
+	Object main.nef.p/src_battle_battle_system.c.o
 	Object main.nef.p/src_battle_battle_script.c.o
 	Object main.nef.p/src_battle_battle_controller_player.c.o
 	Object main.nef.p/src_battle_battle_lib.c.o
@@ -1594,8 +1594,8 @@ Overlay battle_hall_app
 Overlay overlay107
 {
 	After overlay104
-	Object main.nef.p/src_overlay107_ov107_02241AE0.c.o
-	Object main.nef.p/src_overlay107_ov107_02245EB0.c.o
+	Object main.nef.p/src_overlay107_battle_castle_self_app.c.o
+	Object main.nef.p/src_overlay107_battle_castle_opponent_app.c.o
 	Object main.nef.p/src_overlay107_battle_castle_app_sprite_manager.c.o
 	Object main.nef.p/src_overlay107_battle_castle_app_sprite.c.o
 	Object main.nef.p/src_overlay107_ov107_02249C98.c.o

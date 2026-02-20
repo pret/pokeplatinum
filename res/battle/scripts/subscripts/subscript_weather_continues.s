@@ -16,18 +16,18 @@ _009:
     CheckAbility CHECK_HAVE, BTLSCR_MSG_TEMP, ABILITY_MAGIC_GUARD, _090
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _045
     // {1} is buffeted by the {0}!
-    PrintMessage pl_msg_00000368_00285, TAG_MOVE_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonIsBuffetedByTheWeather_Ally, TAG_MOVE_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     GoTo _062
 
 _045:
     CompareVarToValue OPCODE_EQU, BTLVAR_SCRIPT_TEMP, 2, _057
     // {0} is hurt by its {1}!
-    PrintMessage pl_msg_00000368_01090, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonIsHurtByItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
     GoTo _062
 
 _057:
     // {0} lost some HP because of its {1}!
-    PrintMessage pl_msg_00000368_01096, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonLostSomeHPBecauseOfItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
 
 _062:
     Wait 
@@ -41,7 +41,7 @@ _076:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     // {0} restored HP using its {1}!
-    PrintMessage pl_msg_00000368_00635, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonRestoredHPUsingItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
     Wait 
     WaitButtonABTime 30
 

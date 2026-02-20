@@ -33,6 +33,7 @@
 #include "generated/time_of_day.h"
 #include "generated/trainer_score_events.h"
 #include "generated/trainers.h"
+#include "constants/battle/battle_script.h"
 #include "constants/animation_tags.h"
 #include "constants/battle_tower.h"
 #include "constants/boat_cutscene.h"

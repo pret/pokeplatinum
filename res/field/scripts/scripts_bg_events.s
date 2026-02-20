@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0017.h"
+#include "res/text/bank/bg_events.h"
 
 
     ScriptEntry _0026

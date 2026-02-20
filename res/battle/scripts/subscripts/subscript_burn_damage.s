@@ -11,7 +11,7 @@ _000:
 _020:
     UpdateVar OPCODE_MUL, BTLVAR_HP_CALC_TEMP, -1
     // {0} is hurt by its burn!
-    PrintMessage pl_msg_00000368_00095, TAG_NICKNAME, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonIsHurtByItsBurn_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_BURNED

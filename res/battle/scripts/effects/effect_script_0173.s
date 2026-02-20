@@ -8,7 +8,7 @@ _000:
     Wait 
     GetTerrainMove 
     // {0} turned into {1}!
-    PrintMessage pl_msg_00000368_00490, TAG_MOVE_MOVE, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_MoveTurnedIntoMove, TAG_MOVE_MOVE, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     GoToMoveScript FALSE

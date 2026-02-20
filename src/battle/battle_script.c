@@ -33,10 +33,10 @@
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
+#include "battle/battle_system.h"
 #include "battle/btlcmd.h"
 #include "battle/common.h"
 #include "battle/ov16_0223B140.h"
-#include "battle/ov16_0223DF00.h"
 #include "battle/ov16_02268520.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
@@ -579,7 +579,7 @@ BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx)
     do {
         result = sBattleCommands[battleCtx->battleScript[battleCtx->scriptCursor]](battleSys, battleCtx);
     } while (battleCtx->battleProgressFlag == FALSE
-        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE);
+        && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE);
 
     battleCtx->battleProgressFlag = FALSE;
     return result;
@@ -615,7 +615,7 @@ static BOOL BtlCmd_PlayEncounterAnimation(BattleSystem *battleSys, BattleContext
 static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
 
@@ -634,7 +634,7 @@ static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *b
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitSetEncounter(battleSys, i);
@@ -662,7 +662,7 @@ static BOOL BtlCmd_SetPokemonEncounter(BattleSystem *battleSys, BattleContext *b
 static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -679,7 +679,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitShowEncounter(battleSys, i);
@@ -693,7 +693,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleSystem_ClearSideExpGain(battleCtx, i);
@@ -705,7 +705,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         break;
 
     case BTLSCR_ATTACKER:
-        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
+        battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->attacker);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_1);
@@ -720,7 +720,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         break;
 
     case BTLSCR_DEFENDER:
-        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
+        battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->defender);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_1);
@@ -735,7 +735,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         break;
 
     case BTLSCR_SWITCHED_MON:
-        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
+        battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->switchedMon);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_1);
@@ -768,7 +768,7 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -785,7 +785,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitShowPokemon(battleSys, i, NULL, 0);
@@ -799,7 +799,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleSystem_ClearSideExpGain(battleCtx, i);
@@ -811,7 +811,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         break;
 
     case BTLSCR_ATTACKER:
-        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
+        battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->attacker);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_1);
@@ -826,7 +826,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         break;
 
     case BTLSCR_DEFENDER:
-        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
+        battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->defender);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_1);
@@ -841,7 +841,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
         break;
 
     case BTLSCR_SWITCHED_MON:
-        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
+        battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->switchedMon);
 
         if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagBattlerExpGain(battleSys, battleCtx, BATTLER_ENEMY_1);
@@ -872,7 +872,7 @@ static BOOL BtlCmd_PokemonSendOut(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -887,7 +887,7 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitReturnPokemon(battleSys, battleCtx, i);
@@ -897,7 +897,7 @@ static BOOL BtlCmd_RecallPokemon(BattleSystem *battleSys, BattleContext *battleC
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
                 BattleController_EmitReturnPokemon(battleSys, battleCtx, i);
@@ -949,7 +949,7 @@ static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -959,17 +959,17 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
     switch (battlerIn) {
     default:
     case BTLSCR_ALL_BATTLERS:
-        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) {
+        if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) {
             for (i = 0; i < maxBattlers; i++) {
-                battlerData = BattleSystem_BattlerData(battleSys, i);
+                battlerData = BattleSystem_GetBattlerData(battleSys, i);
                 if (battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
                     BattleController_EmitSetTrainerEncounter(battleSys, i);
                 }
             }
         } else {
             for (i = 0; i < maxBattlers; i++) {
-                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
                     && i > 1) {
                     break;
                 }
@@ -981,13 +981,13 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitSetTrainerEncounter(battleSys, i);
 
-                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
+                if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -996,14 +996,14 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitSetTrainerEncounter(battleSys, i);
 
-                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
+                if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -1031,7 +1031,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
 static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -1043,8 +1043,8 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+            if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
                 && i > 1) {
                 break;
             }
@@ -1055,13 +1055,13 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitThrowTrainerBall(battleSys, i, ballTypeIn);
 
-                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
+                if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -1070,14 +1070,14 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitThrowTrainerBall(battleSys, i, ballTypeIn);
 
-                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
+                if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -1102,7 +1102,7 @@ static BOOL BtlCmd_ThrowPokeball(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -1113,8 +1113,8 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+            if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
                 && i > 1) {
                 break;
             }
@@ -1125,13 +1125,13 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitSlideTrainerOut(battleSys, i);
 
-                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
+                if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -1140,14 +1140,14 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitSlideTrainerOut(battleSys, i);
 
-                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
-                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
+                if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
+                    && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -1156,7 +1156,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
     case BTLSCR_PLAYER_SLOT_1:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER
                 || battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
@@ -1168,7 +1168,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
     case BTLSCR_ENEMY_SLOT_1:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY
                 || battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
@@ -1180,7 +1180,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
     case BTLSCR_PLAYER_SLOT_2:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
                 BattleController_EmitSlideTrainerOut(battleSys, i);
@@ -1191,7 +1191,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 
     case BTLSCR_ENEMY_SLOT_2:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
                 BattleController_EmitSlideTrainerOut(battleSys, i);
@@ -1219,7 +1219,7 @@ static BOOL BtlCmd_TrainerSlideOut(BattleSystem *battleSys, BattleContext *battl
 static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -1231,7 +1231,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
     default:
     case BTLSCR_ALL_BATTLERS:
         for (i = 0; i < maxBattlers; i++) {
-            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+            if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
                 && i > 1) {
                 break;
             }
@@ -1242,12 +1242,12 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
 
-                if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+                if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                     break;
                 }
             }
@@ -1256,12 +1256,12 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
 
-                if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+                if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                     break;
                 }
             }
@@ -1270,7 +1270,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_PLAYER_SLOT_1:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER
                 || battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
@@ -1282,7 +1282,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_ENEMY_SLOT_1:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY
                 || battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
@@ -1294,7 +1294,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_PLAYER_SLOT_2:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
                 BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
@@ -1305,7 +1305,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 
     case BTLSCR_ENEMY_SLOT_2:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
                 BattleController_EmitSlideTrainerIn(battleSys, i, posIn);
@@ -1321,7 +1321,7 @@ static BOOL BtlCmd_TrainerSlideIn(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
 
@@ -1345,7 +1345,7 @@ static BOOL BtlCmd_BackgroundSlideIn(BattleSystem *battleSys, BattleContext *bat
 static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -1361,7 +1361,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, 0);
@@ -1371,7 +1371,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, 0);
@@ -1402,7 +1402,7 @@ static BOOL BtlCmd_HealthbarSlideIn(BattleSystem *battleSys, BattleContext *batt
 static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -1419,7 +1419,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, wait);
@@ -1430,7 +1430,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitSlideHealthbarIn(battleSys, battleCtx, i, wait);
@@ -1461,7 +1461,7 @@ static BOOL BtlCmd_HealthbarSlideInDelay(BattleSystem *battleSys, BattleContext 
 static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i;
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     BattlerData *battlerData;
 
     BattleScript_Iter(battleCtx, 1);
@@ -1477,7 +1477,7 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
 
     case BTLSCR_PLAYER:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE
                 && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
@@ -1488,7 +1488,7 @@ static BOOL BtlCmd_HealthbarSlideOut(BattleSystem *battleSys, BattleContext *bat
 
     case BTLSCR_ENEMY:
         for (i = 0; i < maxBattlers; i++) {
-            battlerData = BattleSystem_BattlerData(battleSys, i);
+            battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleController_EmitSlideHealthbarOut(battleSys, i);
@@ -1559,7 +1559,7 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,
         battleCtx,
         battleCtx->moveCur,
-        battleCtx->sideConditionsMask[Battler_Side(battleSys, battleCtx->defender)],
+        battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)],
         battleCtx->fieldConditionsMask,
         battleCtx->movePower,
         moveType,
@@ -1817,13 +1817,13 @@ static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *bat
         move = battleCtx->moveCur;
     }
 
-    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
+    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AreAnimationsOn(battleSys) == TRUE)
         || move == MOVE_TRANSFORM) {
         battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
         BattleController_EmitPlayMoveAnimation(battleSys, battleCtx, move);
     }
 
-    if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
+    if (BattleSystem_AreAnimationsOn(battleSys) == FALSE) {
         BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_wait_move_animation);
     }
 
@@ -1862,13 +1862,13 @@ static BOOL BtlCmd_PlayMoveAnimationOnMons(BattleSystem *battleSys, BattleContex
     int attacker = BattleScript_Battler(battleSys, battleCtx, inAttacker);
     int defender = BattleScript_Battler(battleSys, battleCtx, inDefender);
 
-    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
+    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AreAnimationsOn(battleSys) == TRUE)
         || move == MOVE_TRANSFORM) {
         battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
         BattleController_EmitPlayMoveAnimationA2D(battleSys, battleCtx, move, attacker, defender);
     }
 
-    if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
+    if (BattleSystem_AreAnimationsOn(battleSys) == FALSE) {
         BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_wait_move_animation);
     }
 
@@ -2050,7 +2050,7 @@ static BOOL BtlCmd_WaitButtonABTime(BattleSystem *battleSys, BattleContext *batt
     BattleScript_Iter(battleCtx, 1);
     int frames = BattleScript_Read(battleCtx);
 
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
         if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
             battleCtx->waitCounter = frames;
         }
@@ -2376,8 +2376,8 @@ static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
-    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL)
-        || (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_FIRST_BATTLE)) {
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL)
+        || (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_FIRST_BATTLE)) {
         battleCtx->criticalMul = 1;
     } else {
         battleCtx->criticalMul = BattleSystem_CalcCriticalMulti(battleSys,
@@ -2412,8 +2412,8 @@ static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx)
 static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int jump;
-    u32 battleType = BattleSystem_BattleType(battleSys);
-    BattlerData *battlerData = BattleSystem_BattlerData(battleSys, battleCtx->faintedMon);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+    BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, battleCtx->faintedMon);
 
     BattleScript_Iter(battleCtx, 1);
     jump = BattleScript_Read(battleCtx);
@@ -2423,8 +2423,8 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
         int totalMonsGainingExp = 0;
         int totalMonsWithExpShare = 0;
 
-        for (i = 0; i < Party_GetCurrentCount(BattleSystem_Party(battleSys, BATTLER_US)); i++) {
-            Pokemon *mon = BattleSystem_PartyPokemon(battleSys, BATTLER_US, i);
+        for (i = 0; i < Party_GetCurrentCount(BattleSystem_GetParty(battleSys, BATTLER_US)); i++) {
+            Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, BATTLER_US, i);
 
             if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
                 if (battleCtx->sideGetExpMask[(battleCtx->faintedMon >> 1) & 1] & FlagIndex(i)) {
@@ -2602,7 +2602,7 @@ static BOOL BtlCmd_Dummy2A(BattleSystem *battleSys, BattleContext *battleCtx)
  */
 static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
 
@@ -2617,9 +2617,9 @@ static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx)
     }
 
     for (battler = 0; battler < maxBattlers; battler++) {
-        if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_LINK_DOUBLES) {
+        if (BattleSystem_GetBattleType(battleSys) == BATTLE_TYPE_LINK_DOUBLES) {
             // CompareVarToValue both battlers are done selecting replacements, wait for all other battlers
-            int partner = BattleSystem_Partner(battleSys, battler);
+            int partner = BattleSystem_GetPartner(battleSys, battler);
             if ((switchingMask & FlagIndex(battler)) == FALSE
                 && (switchingMask & FlagIndex(partner)) == FALSE) {
                 switchingMask |= FlagIndex(battler);
@@ -2653,7 +2653,7 @@ static BOOL BtlCmd_ShowParty(BattleSystem *battleSys, BattleContext *battleCtx)
  */
 static BOOL BtlCmd_WaitMonSelection(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     int totalSwitching = 0;
 
     int battler;
@@ -2762,7 +2762,7 @@ static BOOL BtlCmd_SwitchAndUpdateMon(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_GoToIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int i; // must declare here to match
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
     int jump = BattleScript_Read(battleCtx);
@@ -3071,22 +3071,22 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                 BattleScript_Iter(battleCtx, jumpBlocked);
             } else {
-                SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoHigher, statOffset); // "{0}'s {1} won't go higher!"
+                SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoHigher_Ally, statOffset); // "{0}'s {1} won't go higher!"
                 BattleScript_Iter(battleCtx, jumpNoChange);
             }
         } else {
             if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-                SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityRaisedItsStat, statOffset); // "{0}'s {1} raised its {2}!"
+                SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityRaisedItsStat_Ally, statOffset); // "{0}'s {1} raised its {2}!"
             } else if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) {
-                battleCtx->msgBuffer.id = BattleStrings_Text_TheItemRaisedPokemonsStat; // "The {0} raised {1}'s {2}!"
+                battleCtx->msgBuffer.id = BattleStrings_Text_TheItemRaisedPokemonsStat_Ally; // "The {0} raised {1}'s {2}!"
                 battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM_STAT;
                 battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
                 battleCtx->msgBuffer.params[1] = battleCtx->msgItemTemp;
                 battleCtx->msgBuffer.params[2] = BATTLE_STAT_ATTACK + statOffset;
             } else {
                 SetupNicknameStatMsg(battleCtx,
-                    stageChange == 1 ? BattleStrings_Text_PokemonsStatRose : // "{0}'s {1} rose!"
-                        BattleStrings_Text_PokemonsStatSharplyRose, // "{0}'s {1} sharply rose!"
+                    stageChange == 1 ? BattleStrings_Text_PokemonsStatRose_Ally : // "{0}'s {1} rose!"
+                        BattleStrings_Text_PokemonsStatSharplyRose_Ally, // "{0}'s {1} sharply rose!"
                     statOffset);
             }
 
@@ -3099,8 +3099,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
     } else {
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
             if (battleCtx->attacker != battleCtx->sideEffectMon) {
-                if (battleCtx->sideConditions[Battler_Side(battleSys, battleCtx->sideEffectMon)].mistTurns) {
-                    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist; // "{0} is protected by Mist!"
+                if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns) {
+                    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist_Ally; // "{0} is protected by Mist!"
                     battleCtx->msgBuffer.tags = TAG_NICKNAME;
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
 
@@ -3108,9 +3108,9 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
                     || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE) {
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedByPokemonsAbility); // "{0}'s {1} suppressed {2}'s {3}!"
+                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
-                        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityPreventsStatLoss; // "{0}'s {1} prevents stat loss!"
+                        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
                         battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY;
                         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
                         battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->sideEffectMon].ability;
@@ -3120,7 +3120,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)) {
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedByPokemonsAbility); // "{0}'s {1} suppressed {2}'s {3}!"
+                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
                         SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityPreventsBufferStatLoss, statOffset); // "{0}'s {1} prevents {2} loss!"
                     }
@@ -3135,7 +3135,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                         return FALSE;
                     } else {
-                        SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower, statOffset); // "{0}'s {1} won't go lower!"
+                        SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, statOffset); // "{0}'s {1} won't go lower!"
                         BattleScript_Iter(battleCtx, jumpNoChange);
 
                         return FALSE;
@@ -3155,7 +3155,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                     return FALSE;
                 } else {
-                    SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower, statOffset); // "{0}'s {1} won't go lower!"
+                    SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, statOffset); // "{0}'s {1} won't go lower!"
                     BattleScript_Iter(battleCtx, jumpNoChange);
 
                     return FALSE;
@@ -3178,7 +3178,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         }
 
         if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
-            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityCutsPokemonsStat; // "{0}'s {1} cuts {2}'s {3}!"
+            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityCutsPokemonsStat_AllyAlly; // "{0}'s {1} cuts {2}'s {3}!"
             battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_STAT;
             battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
             battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->attacker].ability;
@@ -3186,8 +3186,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             battleCtx->msgBuffer.params[3] = BATTLE_STAT_ATTACK + statOffset;
         } else {
             SetupNicknameStatMsg(battleCtx,
-                stageChange == -1 ? BattleStrings_Text_PokemonsStatFell : // "{0}'s {1} fell!"
-                    BattleStrings_Text_PokemonsStatHarshlyFell, // "{0}'s {1} harshly fell!"
+                stageChange == -1 ? BattleStrings_Text_PokemonsStatFell_Ally : // "{0}'s {1} fell!"
+                    BattleStrings_Text_PokemonsStatHarshlyFell_Ally, // "{0}'s {1} harshly fell!"
                 statOffset);
         }
 
@@ -3377,7 +3377,7 @@ static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCt
 
     int battler;
     if (inBattler == BTLSCR_ALL_BATTLERS) {
-        int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
         for (battler = 0; battler < maxBattlers; battler++) {
             if (op == CHECK_HAVE) {
@@ -3708,7 +3708,7 @@ static BOOL BtlCmd_CallFromVar(BattleSystem *battleSys, BattleContext *battleCtx
 static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int move = MOVE_NONE;
-    int battleType = BattleSystem_BattleType(battleSys);
+    int battleType = BattleSystem_GetBattleType(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
 
@@ -3760,7 +3760,7 @@ static BOOL BtlCmd_ResetAllStatChanges(BattleSystem *battleSys, BattleContext *b
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     for (int i = 0; i < maxBattlers; i++) {
         for (int j = BATTLE_STAT_HP; j < BATTLE_STAT_MAX; j++) {
             battleCtx->battleMons[i].statBoosts[j] = DEFAULT_STAT_STAGE;
@@ -3939,10 +3939,10 @@ static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleC
             money += BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_2);
         }
 
-        TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), money);
+        TrainerInfo_GiveMoney(BattleSystem_GetTrainerInfo(battleSys, BATTLER_US), money);
     } else {
         money = BattleSystem_CalcMoneyPenalty(battleSys->parties[BATTLER_US], battleSys->trainerInfo[BATTLER_US]);
-        TrainerInfo_TakeMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), money);
+        TrainerInfo_TakeMoney(BattleSystem_GetTrainerInfo(battleSys, BATTLER_US), money);
     }
 
     if (money) {
@@ -3976,7 +3976,7 @@ static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *b
     int inBattler = BattleScript_Read(battleCtx);
     int effect = BattleScript_Read(battleCtx);
 
-    if (BattleSystem_AnimationsOn(battleSys) == TRUE
+    if (BattleSystem_AreAnimationsOn(battleSys) == TRUE
         || effect == BATTLE_ANIMATION_SUB_OUT
         || effect == BATTLE_ANIMATION_SUB_IN
         || effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
@@ -4012,7 +4012,7 @@ static BOOL BtlCmd_PlayBattleAnimationOnMons(BattleSystem *battleSys, BattleCont
     int inDefender = BattleScript_Read(battleCtx);
     int effect = BattleScript_Read(battleCtx);
 
-    if (BattleSystem_AnimationsOn(battleSys) == TRUE
+    if (BattleSystem_AreAnimationsOn(battleSys) == TRUE
         || effect == BATTLE_ANIMATION_SUB_OUT
         || effect == BATTLE_ANIMATION_SUB_IN
         || effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
@@ -4049,7 +4049,7 @@ static BOOL BtlCmd_PlayBattleAnimationFromVar(BattleSystem *battleSys, BattleCon
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     int *effect = BattleScript_VarAddress(battleSys, battleCtx, var);
 
-    if ((BattleSystem_AnimationsOn(battleSys) == TRUE
+    if ((BattleSystem_AreAnimationsOn(battleSys) == TRUE
             || var == BATTLE_ANIMATION_SUB_OUT // bug: this should be *effect, not var
             || var == BATTLE_ANIMATION_SUB_IN // bug: this should be *effect, not var
             || *effect == BATTLE_ANIMATION_SUBSTITUTE_OUT
@@ -4421,7 +4421,7 @@ static BOOL BtlCmd_AddPayDayMoney(BattleSystem *battleSys, BattleContext *battle
         battleCtx->msgTemp = PAYDAY_MAX;
     }
 
-    TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), battleCtx->msgTemp);
+    TrainerInfo_GiveMoney(BattleSystem_GetTrainerInfo(battleSys, BATTLER_US), battleCtx->msgTemp);
 
     return FALSE;
 }
@@ -4441,7 +4441,7 @@ static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battle
     BattleScript_Iter(battleCtx, 1);
     int jump = BattleScript_Read(battleCtx);
 
-    int side = Battler_Side(battleSys, battleCtx->attacker);
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_LIGHT_SCREEN) {
         BattleScript_Iter(battleCtx, jump);
@@ -4484,7 +4484,7 @@ static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
     int jump = BattleScript_Read(battleCtx);
 
-    int side = Battler_Side(battleSys, battleCtx->attacker);
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_REFLECT) {
         BattleScript_Iter(battleCtx, jump);
@@ -4527,7 +4527,7 @@ static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
     int jump = BattleScript_Read(battleCtx);
 
-    int side = Battler_Side(battleSys, battleCtx->attacker);
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_MIST) {
         BattleScript_Iter(battleCtx, jump);
@@ -4842,8 +4842,8 @@ static BOOL BtlCmd_Counter(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
 
     int lastAttacker = ATTACKER_TURN_FLAGS.physicalDamageLastAttacker;
-    int attackingSide = Battler_Side(battleSys, battleCtx->attacker);
-    int defendingSide = Battler_Side(battleSys, lastAttacker);
+    int attackingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+    int defendingSide = BattleSystem_GetBattlerSide(battleSys, lastAttacker);
 
     if (ATTACKER_TURN_FLAGS.physicalDamageTakenFrom[lastAttacker]
         && attackingSide != defendingSide
@@ -4895,8 +4895,8 @@ static BOOL BtlCmd_MirrorCoat(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
 
     int lastAttacker = ATTACKER_TURN_FLAGS.specialDamageLastAttacker;
-    int attackingSide = Battler_Side(battleSys, battleCtx->attacker);
-    int defendingSide = Battler_Side(battleSys, lastAttacker);
+    int attackingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+    int defendingSide = BattleSystem_GetBattlerSide(battleSys, lastAttacker);
 
     if (ATTACKER_TURN_FLAGS.specialDamageTakenFrom[lastAttacker]
         && attackingSide != defendingSide
@@ -5254,7 +5254,7 @@ static BOOL BtlCmd_TrySpite(BattleSystem *battleSys, BattleContext *battleCtx)
  */
 static BOOL BtlCmd_TryPartyStatusRefresh(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
     BattleScript_Iter(battleCtx, 1);
 
     battleCtx->calcTemp = 0;
@@ -5321,10 +5321,10 @@ static BOOL BtlCmd_TryStealItem(BattleSystem *battleSys, BattleContext *battleCt
     int jumpOnFail = BattleScript_Read(battleCtx);
     int jumpStickyHold = BattleScript_Read(battleCtx);
 
-    u32 battleType = BattleSystem_BattleType(battleSys);
-    int attackingSide = Battler_Side(battleSys, battleCtx->attacker);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+    int attackingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
-    if (Battler_Side(battleSys, battleCtx->attacker) && (battleType & BATTLE_TYPE_RESTORE_ITEMS_AFTER) == FALSE) {
+    if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) && (battleType & BATTLE_TYPE_RESTORE_ITEMS_AFTER) == FALSE) {
         // AI trainers are unable to steal items outside of the Battle Frontier. PvP trainers can steal items.
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else if (battleCtx->sideConditions[attackingSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker])) {
@@ -5393,12 +5393,12 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
         && moreBattlersThisTurn) {
         if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PROTECT) {
             ATTACKER_TURN_FLAGS.protecting = TRUE;
-            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonProtectedItself; // "{0} protected itself!"
+            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonProtectedItself2_Ally; // "{0} protected itself!"
         }
 
         if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_SURVIVE_WITH_1_HP) {
             ATTACKER_TURN_FLAGS.enduring = TRUE;
-            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonBracedItself; // "{0} braced itself!"
+            battleCtx->msgBuffer.id = BattleStrings_Text_PokemonBracedItself_Ally; // "{0} braced itself!"
         }
 
         battleCtx->msgBuffer.tags = TAG_NICKNAME;
@@ -5467,7 +5467,7 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     if (battleType & BATTLE_TYPE_TRAINER) {
         Party *defenderParty;
@@ -5476,11 +5476,11 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
         int eligibleMons = 0, maxActiveMons, i, partyStart, partyEnd, max;
         int selectedSlot1, selectedSlot2;
 
-        defenderParty = BattleSystem_Party(battleSys, battleCtx->defender);
-        defenderPartyCount = BattleSystem_PartyCount(battleSys, battleCtx->defender);
+        defenderParty = BattleSystem_GetParty(battleSys, battleCtx->defender);
+        defenderPartyCount = BattleSystem_GetPartyCount(battleSys, battleCtx->defender);
 
         if ((battleType & BATTLE_TYPE_2vs2)
-            || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, battleCtx->defender))) {
+            || ((battleType & BATTLE_TYPE_TAG) && BattleSystem_GetBattlerSide(battleSys, battleCtx->defender))) {
             // There are two battlers out at one time, but only one of these belongs to each trainer.
             partyStart = 0;
             partyEnd = defenderPartyCount;
@@ -5495,7 +5495,7 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
             max = defenderPartyCount;
             maxActiveMons = 2;
             selectedSlot1 = battleCtx->selectedPartySlot[battleCtx->defender];
-            selectedSlot2 = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battleCtx->defender)];
+            selectedSlot2 = battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battleCtx->defender)];
         } else {
             // There is only one active battler (singles).
             partyStart = 0;
@@ -5614,7 +5614,7 @@ static BOOL BtlCmd_TrySpikes(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int defendingSide = Battler_Side(battleSys, battleCtx->attacker) ^ 1;
+    int defendingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) ^ 1;
 
     if (battleCtx->sideConditions[defendingSide].spikesLayers == 3) {
         battleCtx->selfTurnFlags[battleCtx->attacker].skipPressureCheck = TRUE;
@@ -5654,7 +5654,7 @@ static BOOL BtlCmd_CheckSpikes(BattleSystem *battleSys, BattleContext *battleCtx
     int jumpOnFail = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    int side = Battler_Side(battleSys, battler);
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
 
     if (battleCtx->sideConditions[side].spikesLayers && battleCtx->battleMons[battler].curHP) {
         battleCtx->hpCalcTemp = (5 - battleCtx->sideConditions[side].spikesLayers) * 2;
@@ -5688,7 +5688,7 @@ static BOOL BtlCmd_TryPerishSong(BattleSystem *battleSys, BattleContext *battleC
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     battleCtx->calcTemp = maxBattlers;
 
@@ -5755,7 +5755,7 @@ static BOOL BtlCmd_GoToIfValidMon(BattleSystem *battleSys, BattleContext *battle
     int jump = BattleScript_Read(battleCtx);
 
     u32 *var = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     if (*var < maxBattlers) {
         BattleScript_Iter(battleCtx, jump);
@@ -5980,7 +5980,7 @@ static BOOL BtlCmd_TrySafeguard(BattleSystem *battleSys, BattleContext *battleCt
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int side = Battler_Side(battleSys, battleCtx->attacker);
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_SAFEGUARD) {
         BattleScript_Iter(battleCtx, jumpOnFail);
@@ -6125,7 +6125,7 @@ static BOOL BtlCmd_TryReplaceFaintedMon(BattleSystem *battleSys, BattleContext *
  */
 static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int side = Battler_Side(battleSys, battleCtx->attacker);
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
     if (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_BIND) {
         ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_BIND;
@@ -6293,7 +6293,7 @@ static BOOL BtlCmd_TryFutureSight(BattleSystem *battleSys, BattleContext *battle
     int jumpOnFail = BattleScript_Read(battleCtx);
 
     if (battleCtx->fieldConditions.futureSightTurns[battleCtx->defender] == 0) {
-        int side = Battler_Side(battleSys, battleCtx->defender);
+        int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
         battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_FUTURE_SIGHT;
         battleCtx->fieldConditions.futureSightTurns[battleCtx->defender] = 3;
         battleCtx->fieldConditions.futureSightMove[battleCtx->defender] = battleCtx->moveCur;
@@ -6405,7 +6405,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
 
     BattleScript_Iter(battleCtx, 1);
 
-    partyCount = BattleSystem_PartyCount(battleSys, battleCtx->attacker);
+    partyCount = BattleSystem_GetPartyCount(battleSys, battleCtx->attacker);
 
     if (battleCtx->multiHitNumHits == 0) {
         battleCtx->multiHitNumHits = 2; // not actually used, just set to make multi-hit stuff work
@@ -6414,7 +6414,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
 
         while (TRUE) {
             // Find the next mon to deal Beat Up damage
-            mon = BattleSystem_PartyPokemon(battleSys, battleCtx->attacker, battleCtx->beatUpCounter);
+            mon = BattleSystem_GetPartyPokemon(battleSys, battleCtx->attacker, battleCtx->beatUpCounter);
             if (BeatUpEligibleMon(battleCtx, mon)) {
                 break;
             }
@@ -6423,7 +6423,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
         }
     }
 
-    mon = BattleSystem_PartyPokemon(battleSys, battleCtx->attacker, battleCtx->beatUpCounter);
+    mon = BattleSystem_GetPartyPokemon(battleSys, battleCtx->attacker, battleCtx->beatUpCounter);
     species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
@@ -6443,7 +6443,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     battleCtx->damage = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->damage);
     battleCtx->damage *= -1;
 
-    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsBeatUpAttack; // "{0}'s attack!"
+    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsBeatUpAttack_Ally; // "{0}'s attack!"
     battleCtx->msgBuffer.tags = TAG_NICKNAME;
     battleCtx->msgBuffer.params[0] = (battleCtx->attacker | (battleCtx->beatUpCounter << 8));
 
@@ -6453,7 +6453,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     // Check if there are more eligible mons in the back to attack
     if (battleCtx->beatUpCounter < partyCount) {
         while (TRUE) {
-            mon = BattleSystem_PartyPokemon(battleSys, battleCtx->attacker, battleCtx->beatUpCounter);
+            mon = BattleSystem_GetPartyPokemon(battleSys, battleCtx->attacker, battleCtx->beatUpCounter);
             if (BeatUpEligibleMon(battleCtx, mon)) {
                 break;
             }
@@ -6487,7 +6487,7 @@ static BOOL BtlCmd_FollowMe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int side = Battler_Side(battleSys, battleCtx->attacker);
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
     battleCtx->sideConditions[side].followMe = TRUE;
     FOLLOW_ME_USER(side) = battleCtx->attacker;
 
@@ -6517,7 +6517,7 @@ static BOOL BtlCmd_TryHelpingHand(BattleSystem *battleSys, BattleContext *battle
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int battleType = BattleSystem_BattleType(battleSys);
+    int battleType = BattleSystem_GetBattleType(battleSys);
 
     if (battleType & BATTLE_TYPE_DOUBLES) {
         int partner = BattleScript_Battler(battleSys, battleCtx, BTLSCR_ATTACKER_PARTNER);
@@ -6564,11 +6564,11 @@ static BOOL BtlCmd_TrySwapItems(BattleSystem *battleSys, BattleContext *battleCt
     int jumpOnFail = BattleScript_Read(battleCtx);
     int jumpStickyHold = BattleScript_Read(battleCtx);
 
-    u32 battleType = BattleSystem_BattleType(battleSys);
-    int attacking = Battler_Side(battleSys, battleCtx->attacker);
-    int defending = Battler_Side(battleSys, battleCtx->defender);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+    int attacking = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+    int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
-    if (Battler_Side(battleSys, battleCtx->attacker) && (battleType & BATTLE_TYPE_RESTORE_ITEMS_AFTER) == FALSE) {
+    if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) && (battleType & BATTLE_TYPE_RESTORE_ITEMS_AFTER) == FALSE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else if ((battleCtx->sideConditions[attacking].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker]))
         || (battleCtx->sideConditions[defending].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->defender]))) {
@@ -6640,14 +6640,14 @@ static BOOL BtlCmd_TryAssist(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
     jumpOnFail = BattleScript_Read(battleCtx);
     numMoves = 0;
-    partyCount = BattleSystem_PartyCount(battleSys, battleCtx->attacker);
+    partyCount = BattleSystem_GetPartyCount(battleSys, battleCtx->attacker);
 
     for (i = 0; i < partyCount; i++) {
         if (i == battleCtx->selectedPartySlot[battleCtx->attacker]) {
             continue;
         }
 
-        mon = BattleSystem_PartyPokemon(battleSys, battleCtx->attacker, i);
+        mon = BattleSystem_GetPartyPokemon(battleSys, battleCtx->attacker, i);
         if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
             && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
             for (j = 0; j < LEARNED_MOVES_MAX; j++) {
@@ -6687,7 +6687,7 @@ static BOOL BtlCmd_TrySetMagicCoat(BattleSystem *battleSys, BattleContext *battl
 
     int jumpOnFail = BattleScript_Read(battleCtx);
     u32 numBattlers = 0;
-    for (int i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         if (battleCtx->battleMons[i].curHP) {
             numBattlers++;
         }
@@ -6713,7 +6713,7 @@ static BOOL BtlCmd_MagicCoat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int target = Battler_Side(battleSys, battleCtx->attacker);
+    int target = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
     int attacker = battleCtx->attacker;
 
     battleCtx->magicCoatMon = attacker;
@@ -6776,7 +6776,7 @@ static BOOL BtlCmd_TryBreakScreens(BattleSystem *battleSys, BattleContext *battl
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpIfNoScreens = BattleScript_Read(battleCtx);
-    int defending = Battler_Side(battleSys, battleCtx->defender);
+    int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
     if ((battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_REFLECT)
         || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)) {
@@ -6834,16 +6834,16 @@ static BOOL BtlCmd_TryKnockOff(BattleSystem *battleSys, BattleContext *battleCtx
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int defending = Battler_Side(battleSys, battleCtx->defender);
+    int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
     if (DEFENDING_MON.heldItem && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STICKY_HOLD) == TRUE) {
-        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityMadeMoveIneffective; // "{0}'s {1} made {2} ineffective!"
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityMadeMoveIneffective_Ally; // "{0}'s {1} made {2} ineffective!"
         battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_MOVE;
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->defender);
         battleCtx->msgBuffer.params[1] = DEFENDING_MON.ability;
         battleCtx->msgBuffer.params[2] = battleCtx->moveCur;
     } else if (DEFENDING_MON.heldItem) {
-        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonKnockedOffPokemonsItem; // "{0} knocked off {1}'s {2}!"
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonKnockedOffPokemonsItem_AllyAlly; // "{0} knocked off {1}'s {2}!"
         battleCtx->msgBuffer.tags = TAG_NICKNAME_NICKNAME_ITEM;
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
         battleCtx->msgBuffer.params[1] = BattleSystem_NicknameTag(battleCtx, battleCtx->defender);
@@ -6908,8 +6908,8 @@ static BOOL BtlCmd_TryImprison(BattleSystem *battleSys, BattleContext *battleCtx
     BattleScript_Iter(battleCtx, 1);
     jumpOnFail = BattleScript_Read(battleCtx);
 
-    defender1 = BattleSystem_EnemyInSlot(battleSys, battleCtx->attacker, ENEMY_IN_SLOT_RIGHT);
-    defender2 = BattleSystem_EnemyInSlot(battleSys, battleCtx->attacker, ENEMY_IN_SLOT_LEFT);
+    defender1 = BattleSystem_GetEnemyInSlot(battleSys, battleCtx->attacker, ENEMY_IN_SLOT_RIGHT);
+    defender2 = BattleSystem_GetEnemyInSlot(battleSys, battleCtx->attacker, ENEMY_IN_SLOT_LEFT);
 
     battleCtx->battleMons[defender1].moveEffectsMask |= MOVE_EFFECT_IMPRISONED;
     battleCtx->battleMons[defender2].moveEffectsMask |= MOVE_EFFECT_IMPRISONED;
@@ -6917,12 +6917,12 @@ static BOOL BtlCmd_TryImprison(BattleSystem *battleSys, BattleContext *battleCtx
     if (ATTACKING_MON.moveEffectsMask & MOVE_EFFECT_IMPRISON) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
-        attackingSide = Battler_Side(battleSys, battleCtx->attacker);
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        attackingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
         // Check that the Imprisoning mon knows at least 1 move that the active defenders know
         for (battler = 0; battler < maxBattlers; battler++) {
-            if (attackingSide != Battler_Side(battleSys, battler)) {
+            if (attackingSide != BattleSystem_GetBattlerSide(battleSys, battler)) {
                 for (i = 0; i < LEARNED_MOVES_MAX; i++) {
                     for (j = 0; j < LEARNED_MOVES_MAX; j++) {
                         if (ATTACKING_MON.moves[i] == battleCtx->battleMons[battler].moves[j]
@@ -6969,10 +6969,10 @@ static BOOL BtlCmd_TryGrudge(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int defending = Battler_Side(battleSys, battleCtx->defender);
+    int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
     if ((FAINTED_MON.moveEffectsMask & MOVE_EFFECT_GRUDGE)
-        && Battler_Side(battleSys, battleCtx->attacker) != Battler_Side(battleSys, battleCtx->faintedMon)
+        && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->faintedMon)
         && ATTACKING_MON.curHP
         && battleCtx->moveTemp != MOVE_STRUGGLE) {
         int moveSlot = ATTACKER_MOVE_SLOT;
@@ -7005,7 +7005,7 @@ static BOOL BtlCmd_TrySnatch(BattleSystem *battleSys, BattleContext *battleCtx)
     int jumpOnFail = BattleScript_Read(battleCtx);
     u32 numBattlers = 0;
 
-    for (int i = 0; i < BattleSystem_MaxBattlers(battleSys); i++) {
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         if (battleCtx->battleMons[i].curHP) {
             numBattlers++;
         }
@@ -7117,7 +7117,7 @@ static BOOL BtlCmd_TryPursuit(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
 
     jumpIfNoTrigger = BattleScript_Read(battleCtx);
-    maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     // Go through all of the battlers while trying to switch and check for any of them using Pursuit.
     // Only consider battlers which would move after us and are not currently asleep, frozen, or Truant.
@@ -7126,7 +7126,7 @@ static BOOL BtlCmd_TryPursuit(BattleSystem *battleSys, BattleContext *battleCtx)
             && battleCtx->battleMons[i].curHP
             && (battleCtx->battleMons[i].status & (MON_CONDITION_SLEEP | MON_CONDITION_FREEZE)) == FALSE
             && Battler_CheckTruant(battleCtx, i) == FALSE
-            && Battler_Side(battleSys, i) != Battler_Side(battleSys, battleCtx->switchedMon)) {
+            && BattleSystem_GetBattlerSide(battleSys, i) != BattleSystem_GetBattlerSide(battleSys, battleCtx->switchedMon)) {
             if (battleCtx->battleMons[i].moveEffectsData.encoredMove
                 && battleCtx->battleMons[i].moveEffectsData.encoredMove == battleCtx->battleMons[i].moves[battleCtx->battleMons[i].moveEffectsData.encoredMoveSlot]) {
                 move = battleCtx->battleMons[i].moveEffectsData.encoredMove;
@@ -7379,8 +7379,8 @@ static BOOL BtlCmd_TryMetalBurst(BattleSystem *battleSys, BattleContext *battleC
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int attacking = Battler_Side(battleSys, battleCtx->attacker);
-    int defending = Battler_Side(battleSys, ATTACKER_TURN_FLAGS.lastAttacker);
+    int attacking = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+    int defending = BattleSystem_GetBattlerSide(battleSys, ATTACKER_TURN_FLAGS.lastAttacker);
 
     if (ATTACKER_TURN_FLAGS.lastDamageTaken
         && attacking != defending
@@ -7651,7 +7651,7 @@ static BOOL BtlCmd_CheckSideCondition(BattleSystem *battleSys, BattleContext *ba
     int jump = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    int side = Battler_Side(battleSys, battler);
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
     int val;
 
     switch (op) {
@@ -7818,7 +7818,7 @@ static BOOL BtlCmd_TryToxicSpikes(BattleSystem *battleSys, BattleContext *battle
 {
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
-    int defending = Battler_Side(battleSys, battleCtx->attacker) ^ 1;
+    int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) ^ 1;
 
     if (battleCtx->sideConditions[defending].toxicSpikesLayers == 2) {
         ATTACKER_SELF_TURN_FLAGS.skipPressureCheck = TRUE;
@@ -7858,7 +7858,7 @@ static BOOL BtlCmd_CheckToxicSpikes(BattleSystem *battleSys, BattleContext *batt
     int jumpIfNoToxicSpikes = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    int side = Battler_Side(battleSys, battler);
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
 
     if (battleCtx->sideConditions[side].toxicSpikesLayers) {
         battleCtx->calcTemp = battleCtx->sideConditions[side].toxicSpikesLayers;
@@ -7905,7 +7905,7 @@ static BOOL BtlCmd_CheckIgnorableAbility(BattleSystem *battleSys, BattleContext 
 
     int battler;
     if (inBattler == BTLSCR_ALL_BATTLERS) {
-        int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
         for (int i = 0; i < maxBattlers; i++) {
             battler = battleCtx->monSpeedOrder[i];
@@ -7966,7 +7966,7 @@ static BOOL BtlCmd_IfSameSide(BattleSystem *battleSys, BattleContext *battleCtx)
     int battler1 = BattleScript_Battler(battleSys, battleCtx, inBattler1);
     int battler2 = BattleScript_Battler(battleSys, battleCtx, inBattler2);
 
-    if (Battler_Side(battleSys, battler1) == Battler_Side(battleSys, battler2)) {
+    if (BattleSystem_GetBattlerSide(battleSys, battler1) == BattleSystem_GetBattlerSide(battleSys, battler2)) {
         BattleScript_Iter(battleCtx, jumpIfSameSide);
     }
 
@@ -8013,8 +8013,8 @@ static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContex
 
     BattleScript_Iter(battleCtx, 1);
 
-    for (i = 0; i < BattleSystem_PartyCount(battleSys, BATTLER_US); i++) {
-        mon = BattleSystem_PartyPokemon(battleSys, BATTLER_US, i);
+    for (i = 0; i < BattleSystem_GetPartyCount(battleSys, BATTLER_US); i++) {
+        mon = BattleSystem_GetPartyPokemon(battleSys, BATTLER_US, i);
         species = Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL);
         item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
         ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
@@ -8229,7 +8229,7 @@ static BOOL BtlCmd_TryCamouflage(BattleSystem *battleSys, BattleContext *battleC
         return FALSE;
     }
 
-    int terrain = BattleSystem_Terrain(battleSys);
+    int terrain = BattleSystem_GetTerrain(battleSys);
     if (terrain > TERRAIN_SPECIAL) {
         terrain = TERRAIN_SPECIAL;
     }
@@ -8262,7 +8262,7 @@ static BOOL BtlCmd_GetTerrainMove(BattleSystem *battleSys, BattleContext *battle
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int terrain = BattleSystem_Terrain(battleSys);
+    int terrain = BattleSystem_GetTerrain(battleSys);
     if (terrain > TERRAIN_SPECIAL) {
         terrain = TERRAIN_SPECIAL;
     }
@@ -8289,7 +8289,7 @@ static BOOL BtlCmd_GetTerrainSecondaryEffect(BattleSystem *battleSys, BattleCont
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int terrain = BattleSystem_Terrain(battleSys);
+    int terrain = BattleSystem_GetTerrain(battleSys);
     if (terrain > TERRAIN_SPECIAL) {
         terrain = TERRAIN_SPECIAL;
     }
@@ -8445,7 +8445,7 @@ static BOOL BtlCmd_WaitYesNoResult(BattleSystem *battleSys, BattleContext *battl
  */
 static BOOL BtlCmd_ChoosePokemonMenu(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleSystem_MaxBattlers(battleSys); // must stay to match
+    BattleSystem_GetMaxBattlers(battleSys); // must stay to match
     BattleScript_Iter(battleCtx, 1);
 
     BattleController_EmitShowPartyMenu(battleSys, battleCtx, BATTLER_US, 0, 0, 6);
@@ -8502,7 +8502,7 @@ static BOOL BtlCmd_SetLinkBattleResult(BattleSystem *battleSys, BattleContext *b
 {
     BattleScript_Iter(battleCtx, 1);
 
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) {
         BattleController_EmitSubmitResult(battleSys);
     }
 
@@ -8531,7 +8531,7 @@ static BOOL BtlCmd_CheckStealthRock(BattleSystem *battleSys, BattleContext *batt
     int jumpNoEffect = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    int side = Battler_Side(battleSys, battler);
+    int side = BattleSystem_GetBattlerSide(battleSys, battler);
     int type1 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_1, NULL);
     int type2 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_2, NULL);
 
@@ -8628,10 +8628,10 @@ static BOOL BtlCmd_CheckChatterActivation(BattleSystem *battleSys, BattleContext
         && DEFENDING_MON.curHP
         && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
         int chatter;
-        if ((BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) == FALSE) {
-            chatter = Sound_GetChatterActivationParameter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
+        if ((BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_RECORDING) == FALSE) {
+            chatter = Sound_GetChatterActivationParameter(BattleSystem_GetChatotCry(battleSys, battleCtx->attacker));
         } else {
-            chatter = BattleSystem_RecordedChatter(battleSys, battleCtx->attacker);
+            chatter = BattleSystem_GetRecordedChatter(battleSys, battleCtx->attacker);
         }
 
         u16 effectChance;
@@ -8979,7 +8979,7 @@ static BOOL BtlCmd_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *b
  */
 static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
     int battler = BattleScript_Read(battleCtx);
@@ -8987,7 +8987,7 @@ static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx
     switch (battler) {
     case BTLSCR_PLAYER:
         for (int i = 0; i < maxBattlers; i++) {
-            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, i);
             if ((battlerData->battlerType & BATTLER_THEM) == FALSE) {
                 BattleController_EmitSpriteToOAM(battleSys, i);
             }
@@ -8996,7 +8996,7 @@ static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx
 
     case BTLSCR_ENEMY:
         for (int i = 0; i < maxBattlers; i++) {
-            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, i);
             if (battlerData->battlerType & BATTLER_THEM) {
                 BattleController_EmitSpriteToOAM(battleSys, i);
             }
@@ -9024,7 +9024,7 @@ static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx
  */
 static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
     int battler = BattleScript_Read(battleCtx);
@@ -9032,7 +9032,7 @@ static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx
     switch (battler) {
     case BTLSCR_PLAYER:
         for (int i = 0; i < maxBattlers; i++) {
-            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, i);
             if ((battlerData->battlerType & BATTLER_THEM) == FALSE) {
                 BattleController_EmitOAMToSprite(battleSys, i);
             }
@@ -9041,7 +9041,7 @@ static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx
 
     case BTLSCR_ENEMY:
         for (int i = 0; i < maxBattlers; i++) {
-            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, i);
             if (battlerData->battlerType & BATTLER_THEM) {
                 BattleController_EmitOAMToSprite(battleSys, i);
             }
@@ -9083,14 +9083,14 @@ static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleC
 
     inBattler = BattleScript_Read(battleCtx);
     jumpIfWhiteOut = BattleScript_Read(battleCtx);
-    battleType = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_GetBattleType(battleSys);
     battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
     if ((battleType & BATTLE_TYPE_2vs2)
-        || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, battler))) {
-        Party *party1 = BattleSystem_Party(battleSys, battler);
-        Party *party2 = BattleSystem_Party(battleSys, BattleSystem_Partner(battleSys, battler));
-        battlerData = BattleSystem_BattlerData(battleSys, battler);
+        || ((battleType & BATTLE_TYPE_TAG) && BattleSystem_GetBattlerSide(battleSys, battler))) {
+        Party *party1 = BattleSystem_GetParty(battleSys, battler);
+        Party *party2 = BattleSystem_GetParty(battleSys, BattleSystem_GetPartner(battleSys, battler));
+        battlerData = BattleSystem_GetBattlerData(battleSys, battler);
 
         for (i = 0; i < Party_GetCurrentCount(party1); i++) {
             mon = Party_GetPokemonBySlotIndex(party1, i);
@@ -9104,8 +9104,8 @@ static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleC
         // Don't consider the second slot if we have a partner
         // first condition here does not match as an AND of NEQs, must be a NOT of an OR of EQs
         if (!(battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER || battleType == BATTLE_TYPE_AI_PARTNER)
-            || Battler_Side(battleSys, battler) != BATTLER_US
-            || BattleSystem_BattlerSlot(battleSys, battler) != BATTLER_PLAYER_2) {
+            || BattleSystem_GetBattlerSide(battleSys, battler) != BATTLER_US
+            || BattleSystem_GetBattlerType(battleSys, battler) != BATTLER_PLAYER_2) {
             for (i = 0; i < Party_GetCurrentCount(party2); i++) {
                 mon = Party_GetPokemonBySlotIndex(party2, i);
 
@@ -9120,8 +9120,8 @@ static BOOL BtlCmd_CheckBlackOut(BattleSystem *battleSys, BattleContext *battleC
             BattleScript_Iter(battleCtx, jumpIfWhiteOut);
         }
     } else {
-        Party *party = BattleSystem_Party(battleSys, battler);
-        battlerData = BattleSystem_BattlerData(battleSys, battler);
+        Party *party = BattleSystem_GetParty(battleSys, battler);
+        battlerData = BattleSystem_GetBattlerData(battleSys, battler);
 
         for (i = 0; i < Party_GetCurrentCount(party); i++) {
             mon = Party_GetPokemonBySlotIndex(party, i);
@@ -9369,7 +9369,7 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     if (battleCtx->battleMons[battler].curHP && battleCtx->selectedPartySlot[battler] != 6) {
-        Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+        Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
         int ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
         int status = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
 
@@ -9554,7 +9554,7 @@ static BOOL BtlCmd_CheckSafariGameDone(BattleSystem *battleSys, BattleContext *b
     BattleScript_Iter(battleCtx, 1);
     int jumpNotOver = BattleScript_Read(battleCtx);
 
-    if ((BattleSystem_PartyCount(battleSys, BATTLER_US) != MAX_PARTY_SIZE || PCBoxes_FirstEmptyBox(battleSys->pcBoxes) != MAX_PC_BOXES)
+    if ((BattleSystem_GetPartyCount(battleSys, BATTLER_US) != MAX_PARTY_SIZE || PCBoxes_FirstEmptyBox(battleSys->pcBoxes) != MAX_PC_BOXES)
         && battleSys->safariBalls) {
         BattleScript_Iter(battleCtx, jumpNotOver);
     }
@@ -9774,11 +9774,11 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_MOVE_STATUS_FLAGS:
         return &battleCtx->moveStatusFlags;
     case BTLVAR_SIDE_CONDITIONS_ATTACKER:
-        return &battleCtx->sideConditionsMask[Battler_Side(battleSys, battleCtx->attacker)];
+        return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
     case BTLVAR_SIDE_CONDITIONS_DEFENDER:
-        return &battleCtx->sideConditionsMask[Battler_Side(battleSys, battleCtx->defender)];
+        return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)];
     case BTLVAR_SIDE_CONDITIONS_EFFECT_MON:
-        return &battleCtx->sideConditionsMask[Battler_Side(battleSys, battleCtx->sideEffectMon)];
+        return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)];
     case BTLVAR_DAMAGE:
         return &battleCtx->damage;
     case BTLVAR_ATTACKER:
@@ -9870,7 +9870,7 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_MOVE_EFFECT_CHANCE:
         return &battleCtx->moveEffectChance;
     case BTLVAR_REGULATION_FLAG:
-        return &battleSys->unk_2418;
+        return &battleSys->rulesetMask;
     case BTLVAR_BATTLE_CTX_STATUS_2:
         return &battleCtx->battleStatusMask2;
     case BTLVAR_TURN_ORDER_COUNTER:
@@ -9918,7 +9918,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     int battler;
     int expBattler;
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(data->battleSys);
-    u32 battleType = BattleSystem_BattleType(data->battleSys);
+    u32 battleType = BattleSystem_GetBattleType(data->battleSys);
     int item;
     int itemEffect;
 
@@ -9926,8 +9926,8 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     expBattler = 0;
 
     // Figure out which mon we're working on
-    for (slot = data->tmpData[GET_EXP_PARTY_SLOT]; slot < BattleSystem_PartyCount(data->battleSys, expBattler); slot++) {
-        mon = BattleSystem_PartyPokemon(data->battleSys, expBattler, slot);
+    for (slot = data->tmpData[GET_EXP_PARTY_SLOT]; slot < BattleSystem_GetPartyCount(data->battleSys, expBattler); slot++) {
+        mon = BattleSystem_GetPartyPokemon(data->battleSys, expBattler, slot);
         item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
         itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
 
@@ -9936,7 +9936,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         }
     }
 
-    if (slot == BattleSystem_PartyCount(data->battleSys, expBattler)) {
+    if (slot == BattleSystem_GetPartyCount(data->battleSys, expBattler)) {
         data->seqNum = SEQ_GET_EXP_DONE;
     } else if ((battleType & BATTLE_TYPE_DOUBLES)
         && (battleType & BATTLE_TYPE_AI) == FALSE
@@ -9998,7 +9998,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             }
 
             Pokemon_SetValue(mon, MON_DATA_EXPERIENCE, &newExp);
-            BattleScript_CalcEffortValues(BattleSystem_Party(data->battleSys, expBattler),
+            BattleScript_CalcEffortValues(BattleSystem_GetParty(data->battleSys, expBattler),
                 slot,
                 data->battleCtx->battleMons[data->battleCtx->faintedMon].species,
                 data->battleCtx->battleMons[data->battleCtx->faintedMon].formNum);
@@ -10008,7 +10008,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             msg.tags = TAG_NICKNAME_NUM;
             msg.params[0] = expBattler | (slot << 8);
             msg.params[1] = totalExp;
-            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
             data->tmpData[GET_EXP_MSG_DELAY] = 30 / 4;
             data->seqNum++;
         } else {
@@ -10079,7 +10079,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
                 oldStats->stat[i] = Pokemon_GetValue(mon, statParams[i], NULL);
             }
 
-            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_LEVEL_UP, BattleSystem_MapHeader(data->battleSys));
+            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_LEVEL_UP, BattleSystem_GetMapHeader(data->battleSys));
             Pokemon_CalcStats(mon);
 
             if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
@@ -10096,7 +10096,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             msg.tags = TAG_NICKNAME_NUM;
             msg.params[0] = expBattler | (slot << 8);
             msg.params[1] = level;
-            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
             data->seqNum = SEQ_GET_EXP_WAIT_LEVEL_UP_MESSAGE_PRINT;
         }
         break;
@@ -10118,9 +10118,9 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT:
-        BgConfig *bgl = BattleSystem_BGL(data->battleSys);
-        Window *window = BattleSystem_Window(data->battleSys, 1);
-        PaletteData *paletteSys = BattleSystem_PaletteSys(data->battleSys);
+        BgConfig *bgl = BattleSystem_GetBgConfig(data->battleSys);
+        Window *window = BattleSystem_GetWindow(data->battleSys, 1);
+        PaletteData *paletteSys = BattleSystem_GetPaletteData(data->battleSys);
 
         G2_SetBG0Priority(1 + 1); // this is the background + 1; could do with a constant
         Bg_SetPriority(BG_LAYER_MAIN_1, 1);
@@ -10147,7 +10147,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             MON_DATA_SP_DEF,
             MON_DATA_SPEED
         };
-        Window *window = BattleSystem_Window(data->battleSys, 1);
+        Window *window = BattleSystem_GetWindow(data->battleSys, 1);
         PokemonStats *oldStats = data->battleCtx->tmpData;
 
         for (i = 0; i < STAT_MAX; i++) {
@@ -10179,7 +10179,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             MON_DATA_SP_DEF,
             MON_DATA_SPEED
         };
-        Window *window = BattleSystem_Window(data->battleSys, 1);
+        Window *window = BattleSystem_GetWindow(data->battleSys, 1);
 
         Window_FillRectWithColor(window, 15, 80, 0, 36, 96); // clear out the diff section (keep the printed stat names)
 
@@ -10205,7 +10205,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         break;
 
     case SEQ_GET_EXP_LEVEL_UP_CLEAR: {
-        Window *window = BattleSystem_Window(data->battleSys, 1);
+        Window *window = BattleSystem_GetWindow(data->battleSys, 1);
 
         Window_EraseStandardFrame(window, 0);
         Window_Remove(window);
@@ -10227,7 +10227,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_CHECK_LEARN_MOVE: {
         u16 move;
-        BgConfig *bgl = BattleSystem_BGL(data->battleSys); // unused, but must be kept to match
+        BgConfig *bgl = BattleSystem_GetBgConfig(data->battleSys); // unused, but must be kept to match
 
         switch (Pokemon_LevelUpMove(mon, &data->tmpData[GET_EXP_LEARNSET_INDEX], &move)) {
         case LEARNSET_MOVE_ALREADY_KNOWN:
@@ -10255,7 +10255,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             msg.tags = TAG_NICKNAME_MOVE;
             msg.params[0] = expBattler | (slot << 8);
             msg.params[1] = move;
-            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
             data->seqNum = SEQ_GET_EXP_LEARNED_MOVE_WAIT;
             break;
         }
@@ -10268,15 +10268,15 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         msg.tags = TAG_NICKNAME_MOVE;
         msg.params[0] = expBattler | (slot << 8);
         msg.params[1] = data->tmpData[GET_EXP_MOVE];
-        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
         data->seqNum++;
         break;
 
     case SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT:
-        msg.id = BattleStrings_Text_PokemonCantLearnMoreThanFourMoves; // "But {0} can't learn more than four moves."
+        msg.id = BattleStrings_Text_ButPokemonCantLearnMoreThanFourMoves2; // "But {0} can't learn more than four moves."
         msg.tags = TAG_NICKNAME;
         msg.params[0] = expBattler | (slot << 8);
-        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
         data->seqNum++;
         break;
 
@@ -10304,7 +10304,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             } else {
                 msg.id = BattleStrings_Text_WhichMoveShouldBeForgotten2; // "Which move should be forgotten?"
                 msg.tags = TAG_NONE;
-                data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+                data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
                 data->seqNum = SEQ_GET_EXP_MAKE_IT_FORGET_WAIT;
             }
         }
@@ -10329,7 +10329,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED:
         msg.id = BattleStrings_Text_WellThen; // "Well, then..."
         msg.tags = TAG_NONE;
-        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
         data->seqNum++;
         break;
 
@@ -10344,11 +10344,11 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             if (BattleContext_IOBufferVal(data->battleCtx, expBattler) == PLAYER_INPUT_CANCEL) {
                 data->seqNum = SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT;
             } else {
-                msg.id = BattleStrings_Text_PokemonDidNotLearnMove; // "{0} did not learn {1}."
+                msg.id = BattleStrings_Text_PokemonDidNotLearnMove2; // "{0} did not learn {1}."
                 msg.tags = TAG_NICKNAME_MOVE;
                 msg.params[0] = expBattler | (slot << 8);
                 msg.params[1] = data->tmpData[GET_EXP_MOVE];
-                data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+                data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
                 data->seqNum = SEQ_GET_EXP_GIVE_UP_LEARNING_WAIT;
             }
         }
@@ -10364,7 +10364,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     case SEQ_GET_EXP_ONE_TWO_POOF:
         msg.id = BattleStrings_Text_BattleOneTwoAndPoof; // "1, 2, and... ... Poof!"
         msg.tags = TAG_NONE;
-        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
         data->seqNum++;
         break;
 
@@ -10373,14 +10373,14 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         msg.tags = TAG_NICKNAME_MOVE;
         msg.params[0] = expBattler | (slot << 8);
         msg.params[1] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + data->tmpData[GET_EXP_MOVE_SLOT], NULL);
-        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
         data->seqNum++;
         break;
 
     case SEQ_GET_EXP_AND_DOTDOTDOT:
         msg.id = BattleStrings_Text_BattleAndDotDotDot; // "And..."
         msg.tags = TAG_NONE;
-        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
         data->seqNum++;
         break;
 
@@ -10389,7 +10389,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         msg.tags = TAG_NICKNAME_MOVE;
         msg.params[0] = expBattler | (slot << 8);
         msg.params[1] = data->tmpData[GET_EXP_MOVE];
-        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
 
         i = 0;
         Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + data->tmpData[GET_EXP_MOVE_SLOT], &i);
@@ -10584,7 +10584,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     PaletteData *paletteData;
     PokemonSpriteManager *monSpriteMan;
     MessageLoader *msgLoader = BattleSystem_GetMessageLoader(data->battleSys);
-    paletteData = BattleSystem_PaletteSys(data->battleSys);
+    paletteData = BattleSystem_GetPaletteData(data->battleSys);
     monSpriteMan = BattleSystem_GetPokemonSpriteManager(data->battleSys);
     battler = BATTLER_ENEMY_1;
 
@@ -10602,12 +10602,12 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ballThrow.target = battler + 20000;
             ballThrow.ballID = data->ball;
             ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(data->battleSys);
-            ballThrow.paletteSys = BattleSystem_PaletteSys(data->battleSys);
+            ballThrow.paletteSys = BattleSystem_GetPaletteData(data->battleSys);
             ballThrow.bgPrio = 1;
             ballThrow.surface = 0;
             ballThrow.battleSys = data->battleSys;
 
-            if (BattleSystem_BattleType(data->battleSys) & BATTLE_TYPE_DOUBLES) {
+            if (BattleSystem_GetBattleType(data->battleSys) & BATTLE_TYPE_DOUBLES) {
                 if (battler == BATTLER_ENEMY_1) {
                     ballThrow.type = 16;
                 } else {
@@ -10624,7 +10624,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             data->battleSys->ballsThrown++;
             ov12_022368C8(data->ballRotation, 0);
         } else {
-            BattlerData *battlerData = BattleSystem_BattlerData(data->battleSys, 0);
+            BattlerData *battlerData = BattleSystem_GetBattlerData(data->battleSys, 0);
 
             if (ov12_02237890(battlerData->unk_84) != 4) {
                 data->ballRotation = battlerData->unk_84;
@@ -10639,7 +10639,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         break;
     case SEQ_CATCH_MON_CHECK_BATTLE_TYPE:
         if (ov12_022368D0(data->ballRotation, 0) == FALSE) {
-            u32 battleType = BattleSystem_BattleType(data->battleSys);
+            u32 battleType = BattleSystem_GetBattleType(data->battleSys);
 
             if (battleType & BATTLE_TYPE_TRAINER) {
                 Sound_PlayPannedEffect(SEQ_SE_DP_KON, BATTLE_SOUND_PAN_RIGHT);
@@ -10715,7 +10715,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             msg.id = BattleStrings_Text_GotchaPokemonWasCaught;
             msg.tags = TAG_NICKNAME | 0x80;
             msg.params[0] = battler;
-            data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
             data->tmpData[CATCH_MON_DELAY] = 30;
             data->seqNum = SEQ_CATCH_MON_WAIT_PRINT_POKEMON_WAS_CAUGHT;
 
@@ -10733,16 +10733,16 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         if (ov12_022368D0(data->ballRotation, 7) == FALSE) {
             if (--data->tmpData[CATCH_MON_DELAY] == 0) {
                 BattleSystem_SetCaughtBattlerIndex(data->battleSys, battler);
-                mon = BattleSystem_PartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+                mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
 
-                if (BattleSystem_BattleType(data->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
-                    mon = BattleSystem_PartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+                if (BattleSystem_GetBattleType(data->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
+                    mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
                     BattleSystem_SetPokemonCatchData(data->battleSys, data->battleCtx, mon);
                     sub_02015738(ov16_0223E220(data->battleSys), 1);
                     PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                     PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
                     data->seqNum = SEQ_CATCH_MON_DONE;
-                } else if (BattleSystem_CaughtSpecies(data->battleSys, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL))) {
+                } else if (BattleSystem_HasCaughtSpecies(data->battleSys, Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL))) {
                     sub_02015738(ov16_0223E220(data->battleSys), 1);
                     PaletteData_StartFade(paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_MAIN_OBJ_F, 0xFFFF, 1, 0, 16, 0);
                     PokemonSpriteManager_StartFadeAll(monSpriteMan, 0, 16, 0, 0);
@@ -10753,7 +10753,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                     msg.id = BattleStrings_Text_PokemonsDataWasAddedToThePokedex;
                     msg.tags = TAG_NICKNAME | 0x80;
                     msg.params[0] = battler;
-                    data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+                    data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
                     data->tmpData[CATCH_MON_DELAY] = 30;
                     data->seqNum = SEQ_CATCH_MON_FADE_FOR_POKEDEX;
 
@@ -10781,13 +10781,13 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             ov16_0223B53C(data->battleSys);
             ov16_022686BC(ov16_0223E020(data->battleSys, 0), 0);
             ov16_022686BC(ov16_0223E020(data->battleSys, 1), 0);
-            ov16_02263B20(BattleSystem_BattlerData(data->battleSys, 0), 0);
+            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), 0);
 
-            v12.unk_00 = BattleSystem_BGL(data->battleSys);
-            v12.unk_04 = BattleSystem_PaletteSys(data->battleSys);
+            v12.unk_00 = BattleSystem_GetBgConfig(data->battleSys);
+            v12.unk_04 = BattleSystem_GetPaletteData(data->battleSys);
             v12.unk_08 = monSpriteMan;
             v12.heapID = HEAP_ID_BATTLE;
-            v12.unk_10 = BattleSystem_PartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+            v12.unk_10 = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
             v12.unk_14 = IsNationalDexObtained(BattleSystem_GetPokedex(data->battleSys));
             data->tmpPtr[1] = CharTransfer_PopTaskManager();
             data->tmpPtr[0] = ov21_021E8D48(&v12);
@@ -10829,11 +10829,11 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
             PokemonSpriteTemplate monSpriteTemplate;
 
-            mon = BattleSystem_PartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+            mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
 
             ov12_0223783C(data->ballRotation);
             PokemonSpriteManager_DeleteAll(monSpriteMan);
-            ov16_02263B20(BattleSystem_BattlerData(data->battleSys, 0), 0);
+            ov16_02263B20(BattleSystem_GetBattlerData(data->battleSys, 0), 0);
             ov16_0223B53C(data->battleSys);
             ov16_0223B578(data->battleSys);
             Pokemon_BuildSpriteTemplate(&monSpriteTemplate, mon, 2);
@@ -10875,7 +10875,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
-            mon = BattleSystem_PartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+            mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
             namingScreenArgs = NamingScreenArgs_Init(
                 HEAP_ID_BATTLE,
                 NAMING_SCREEN_TYPE_POKEMON,
@@ -10884,14 +10884,14 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                 BattleSystem_GetOptions(data->battleSys));
             data->tmpPtr[1] = namingScreenArgs;
 
-            if (BattleSystem_PartyCount(data->battleSys, 0) < MAX_PARTY_SIZE) {
+            if (BattleSystem_GetPartyCount(data->battleSys, 0) < MAX_PARTY_SIZE) {
                 namingScreenArgs->battleMsgID = 0;
             } else {
                 namingScreenArgs->battleMsgID = BattleStrings_Text_PokemonWasTransferredToBoxInSomeonesPC + BattleSystem_GetMetBebe(data->battleSys);
             }
 
             namingScreenArgs->monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-            namingScreenArgs->pcBoxes = BattleSystem_PCBoxes(data->battleSys);
+            namingScreenArgs->pcBoxes = BattleSystem_GetPCBoxes(data->battleSys);
             namingScreenArgs->monGender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
             data->tmpPtr[0] = ApplicationManager_New(&gNamingScreenAppTemplate, namingScreenArgs, HEAP_ID_BATTLE);
             data->seqNum = SEQ_CATCH_MON_FREE_NAMING_SCREEN;
@@ -10901,8 +10901,8 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             int i;
             BattlerData *battlerData;
 
-            for (i = 0; i < BattleSystem_MaxBattlers(data->battleSys); i++) {
-                battlerData = BattleSystem_BattlerData(data->battleSys, i);
+            for (i = 0; i < BattleSystem_GetMaxBattlers(data->battleSys); i++) {
+                battlerData = BattleSystem_GetBattlerData(data->battleSys, i);
 
                 if (battlerData->unk_18) {
                     Sprite_DeleteAndFreeResources(battlerData->unk_18);
@@ -10917,7 +10917,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     case SEQ_CATCH_MON_FREE_NAMING_SCREEN:
         if (ApplicationManager_Exec(data->tmpPtr[0])) {
             NamingScreenArgs *namingScreenArgs = data->tmpPtr[1];
-            mon = BattleSystem_PartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+            mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
 
             if (namingScreenArgs->returnCode == NAMING_SCREEN_CODE_OK) {
                 Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING_AND_FLAG, namingScreenArgs->textInputStr);
@@ -10935,13 +10935,13 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
     case SEQ_CATCH_MON_GAVE_NICKNAME:
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
             BattleMessage msg;
-            Party *party = BattleSystem_Party(data->battleSys, 0);
-            mon = BattleSystem_PartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
+            Party *party = BattleSystem_GetParty(data->battleSys, 0);
+            mon = BattleSystem_GetPartyPokemon(data->battleSys, battler, data->battleCtx->selectedPartySlot[battler]);
 
             BattleSystem_DexFlagCaught(data->battleSys, battler);
             BattleSystem_SetPokemonCatchData(data->battleSys, data->battleCtx, mon);
-            ov16_0223EF48(data->battleSys, mon);
-            ov16_0223EF68(data->battleSys, mon);
+            BattleSystem_EnqueuePokemonHistory(data->battleSys, mon);
+            BattleSystem_InitCaptureAttempt(data->battleSys, mon);
             BattleController_EmitIncrementRecord(data->battleSys, 0, 0, RECORD_CAUGHT_POKEMON);
 
             if (Party_AddPokemon(party, mon) == TRUE) {
@@ -10953,7 +10953,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
                 data->seqNum = SEQ_CATCH_MON_DONE;
             } else {
-                PCBoxes *pcBoxes = BattleSystem_PCBoxes(data->battleSys);
+                PCBoxes *pcBoxes = BattleSystem_GetPCBoxes(data->battleSys);
                 u32 currentBoxID = PCBoxes_GetCurrentBoxID(pcBoxes);
                 u32 firstEmptyBoxID = PCBoxes_FirstEmptyBox(pcBoxes);
                 int i;
@@ -10986,7 +10986,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
                         msg.params[2] = firstEmptyBoxID;
                     }
 
-                    data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+                    data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
                     data->tmpData[CATCH_MON_DELAY] = 30;
                     data->seqNum = SEQ_CATCH_MON_WAIT_PRINT_TRANSFERRED_TO_BOX;
                 } else {
@@ -11015,7 +11015,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             msg.id = BattleStrings_Text_TheTrainerBlockedTheBall;
             msg.tags = 0;
 
-            data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
             data->tmpData[CATCH_MON_DELAY] = 30;
             data->seqNum = SEQ_CATCH_MON_PRINT_DONT_BE_A_THIEF;
         }
@@ -11027,7 +11027,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
                 msg.id = BattleStrings_Text_DontBeAThief;
                 msg.tags = 0;
-                data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+                data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
                 data->tmpData[CATCH_MON_DELAY] = 30;
                 data->seqNum = SEQ_CATCH_MON_DONE_TRAINER_BLOCKED_BALL;
             }
@@ -11059,7 +11059,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
 
             msg.id = BattleStrings_Text_OhNoThePokemonBrokeFree + data->tmpData[CATCH_MON_TOTAL_SHAKES];
             msg.tags = 0;
-            data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->tmpData[CATCH_MON_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_GetTextSpeed(data->battleSys));
             data->tmpData[CATCH_MON_DELAY] = 30;
             data->seqNum = SEQ_CATCH_MON_DONE_POKEMON_BROKE_FREE;
         }
@@ -11075,7 +11075,7 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         break;
     case SEQ_CATCH_MON_DONE:
         if (PaletteData_GetSelectedBuffersMask(paletteData) == 0) {
-            if (BattleSystem_BattleType(data->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
+            if (BattleSystem_GetBattleType(data->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
                 ov12_0223783C(data->ballRotation);
                 PokemonSpriteManager_DeleteAll(monSpriteMan);
             }
@@ -11128,7 +11128,7 @@ static const struct Fraction sSafariCatchRate[] = {
  */
 static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_ALWAYS_CATCH) {
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_ALWAYS_CATCH) {
         return BALL_3_SHAKES_SUCCESS;
     }
 
@@ -11154,7 +11154,7 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
             break;
 
         case ITEM_DIVE_BALL:
-            if (BattleSystem_Terrain(battleSys) == TERRAIN_WATER) {
+            if (BattleSystem_GetTerrain(battleSys) == TERRAIN_WATER) {
                 ballMod = 35;
             }
             break;
@@ -11170,7 +11170,7 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
             break;
 
         case ITEM_REPEAT_BALL:
-            if (BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battleCtx->defender].species) == TRUE) {
+            if (BattleSystem_HasCaughtSpecies(battleSys, battleCtx->battleMons[battleCtx->defender].species) == TRUE) {
                 ballMod = 30;
             }
             break;
@@ -11183,9 +11183,9 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
             break;
 
         case ITEM_DUSK_BALL:
-            if (BattleSystem_Time(battleSys) == TIMEOFDAY_NIGHT
-                || BattleSystem_Time(battleSys) == TIMEOFDAY_LATE_NIGHT
-                || BattleSystem_Terrain(battleSys) == TERRAIN_CAVE) {
+            if (BattleSystem_GetTime(battleSys) == TIMEOFDAY_NIGHT
+                || BattleSystem_GetTime(battleSys) == TIMEOFDAY_LATE_NIGHT
+                || BattleSystem_GetTerrain(battleSys) == TERRAIN_CAVE) {
                 ballMod = 35;
             }
             break;
@@ -11286,9 +11286,9 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case BTLSCR_ENEMY:
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
+            battlerData = BattleSystem_GetBattlerData(battleSys, battlerOut);
             if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 break;
             }
@@ -11296,9 +11296,9 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case BTLSCR_ENEMY_SLOT_1:
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
+            battlerData = BattleSystem_GetBattlerData(battleSys, battlerOut);
             if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 || battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY) {
                 break;
             }
@@ -11306,15 +11306,15 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case BTLSCR_ENEMY_SLOT_2:
-        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+        if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
             expectedBattlerType = BATTLER_TYPE_ENEMY_SIDE_SLOT_2;
         } else {
             expectedBattlerType = BATTLER_TYPE_SOLO_ENEMY;
         }
 
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
+            battlerData = BattleSystem_GetBattlerData(battleSys, battlerOut);
             if (battlerData->battlerType == expectedBattlerType) {
                 break;
             }
@@ -11322,9 +11322,9 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case BTLSCR_PLAYER:
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
+            battlerData = BattleSystem_GetBattlerData(battleSys, battlerOut);
             if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 break;
             }
@@ -11332,9 +11332,9 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case BTLSCR_PLAYER_SLOT_1:
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
+            battlerData = BattleSystem_GetBattlerData(battleSys, battlerOut);
             if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1
                 || battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
                 break;
@@ -11343,15 +11343,15 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         break;
 
     case BTLSCR_PLAYER_SLOT_2:
-        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+        if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
             expectedBattlerType = BATTLER_TYPE_PLAYER_SIDE_SLOT_2;
         } else {
             expectedBattlerType = BATTLER_TYPE_SOLO_PLAYER;
         }
 
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
+            battlerData = BattleSystem_GetBattlerData(battleSys, battlerOut);
             if (battlerData->battlerType == expectedBattlerType) {
                 break;
             }
@@ -11368,10 +11368,10 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
 
     case BTLSCR_ATTACKER_PARTNER: {
         // must re-declare to match
-        int battlers = BattleSystem_MaxBattlers(battleSys);
+        int battlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < battlers; battlerOut++) {
             if (battlerOut != battleCtx->attacker
-                && Battler_Side(battleSys, battlerOut) == Battler_Side(battleSys, battleCtx->attacker)) {
+                && BattleSystem_GetBattlerSide(battleSys, battlerOut) == BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)) {
                 break;
             }
         }
@@ -11385,10 +11385,10 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
 
     case BTLSCR_DEFENDER_PARTNER: {
         // must re-declare to match
-        int battlers = BattleSystem_MaxBattlers(battleSys);
+        int battlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < battlers; battlerOut++) {
             if (battlerOut != battleCtx->defender
-                && Battler_Side(battleSys, battlerOut) == Battler_Side(battleSys, battleCtx->defender)) {
+                && BattleSystem_GetBattlerSide(battleSys, battlerOut) == BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)) {
                 break;
             }
         }
@@ -11401,22 +11401,22 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
     }
 
     case BTLSCR_ATTACKER_ENEMY:
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
-        side = Battler_Side(battleSys, battleCtx->attacker);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+        side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            if (side != Battler_Side(battleSys, battlerOut)) {
+            if (side != BattleSystem_GetBattlerSide(battleSys, battlerOut)) {
                 break;
             }
         }
         break;
 
     case BTLSCR_DEFENDER_ENEMY:
-        maxBattlers = BattleSystem_MaxBattlers(battleSys);
-        side = Battler_Side(battleSys, battleCtx->defender);
+        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+        side = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
-            if (side != Battler_Side(battleSys, battlerOut)) {
+            if (side != BattleSystem_GetBattlerSide(battleSys, battlerOut)) {
                 break;
             }
         }
@@ -12190,11 +12190,11 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     UnkStruct_020127E8 v12;
     int gender;
 
-    strTemplate = BattleSystem_StringTemplate(battleSys);
-    bgConfig = BattleSystem_BGL(battleSys);
+    strTemplate = BattleSystem_GetStringTemplate(battleSys);
+    bgConfig = BattleSystem_GetBgConfig(battleSys);
     spriteSys = BattleSystem_GetSpriteSystem(battleSys);
     spriteMan = BattleSystem_GetSpriteManager(battleSys);
-    paletteData = BattleSystem_PaletteSys(battleSys);
+    paletteData = BattleSystem_GetPaletteData(battleSys);
 
     SpriteSystem_LoadCharResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 256, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
     SpriteSystem_LoadPaletteBuffer(paletteData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 82, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
@@ -12292,31 +12292,31 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScr
  */
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler)
 {
-    if (Battler_Side(battleSys, faintingBattler)) {
+    if (BattleSystem_GetBattlerSide(battleSys, faintingBattler)) {
         return;
     }
 
     u8 battler;
-    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
-        battler = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
-        u8 battler2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+        battler = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+        u8 battler2 = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
         if (battleCtx->battleMons[battler2].level > battleCtx->battleMons[battler].level) {
             battler = battler2;
         }
     } else {
-        battler = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_SOLO_ENEMY);
+        battler = BattleSystem_GetBattlerOfType(battleSys, BATTLER_TYPE_SOLO_ENEMY);
     }
 
-    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, faintingBattler, battleCtx->selectedPartySlot[faintingBattler]);
+    Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, faintingBattler, battleCtx->selectedPartySlot[faintingBattler]);
 
     if (battleCtx->battleMons[battler].level > battleCtx->battleMons[faintingBattler].level) {
         if (battleCtx->battleMons[battler].level - battleCtx->battleMons[faintingBattler].level >= 30) {
-            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT_HIGH_LVL_DIFF, BattleSystem_MapHeader(battleSys));
+            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT_HIGH_LVL_DIFF, BattleSystem_GetMapHeader(battleSys));
         } else {
-            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT, BattleSystem_MapHeader(battleSys));
+            Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT, BattleSystem_GetMapHeader(battleSys));
         }
     } else {
-        Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT, BattleSystem_MapHeader(battleSys));
+        Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_BATTLE_FAINT, BattleSystem_GetMapHeader(battleSys));
     }
 }
 

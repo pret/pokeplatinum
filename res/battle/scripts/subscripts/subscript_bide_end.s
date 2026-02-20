@@ -4,7 +4,7 @@
 _000:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_BIDE, _038
     // {0} unleashed energy!
-    PrintMessage pl_msg_00000368_00335, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonUnleashedEnergy_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_SET, BTLVAR_MOVE_EFFECT_CHANCE, 1
@@ -20,7 +20,7 @@ _031:
 
 _038:
     // {0} is storing energy!
-    PrintMessage pl_msg_00000368_00332, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonIsStoringEnergy_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

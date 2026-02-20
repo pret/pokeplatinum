@@ -16,8 +16,8 @@
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
+#include "overlay006/field_warp.h"
 #include "overlay006/hm_cut_in.h"
-#include "overlay006/ov6_02247100.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_comm_manager.h"
 #include "overlay023/underground_top_screen.h"
@@ -97,12 +97,12 @@ typedef struct MapChangeFromErrorData {
     Location location;
 } MapChangeFromErrorData;
 
-typedef struct MapChangeDigData {
+typedef struct MapChangeFieldWarpData {
     int state;
-    int unk_04;
+    enum FieldWarpType fieldWarpType;
     SysTask *task;
     Location location;
-} MapChangeDigData;
+} MapChangeFieldWarpData;
 
 typedef struct MapChangeWarpData {
     int state;
@@ -147,12 +147,12 @@ static void FieldTransition_StartMapAndFadeInFly(FieldTask *task);
 static BOOL FieldTransition_StartMapAndFadeInFlySub(FieldTask *task);
 static void FieldTask_FadeInFly(FieldTask *task);
 static BOOL FieldTask_WaitFadeInFly(FieldTask *task);
-static BOOL FieldTask_MapChangeByDig(FieldTask *task);
-static void FieldTask_StartFinishFieldMapDig(FieldTask *task);
-static BOOL FieldTransition_FinishMapDig(FieldTask *task);
-static void FieldTransition_StartMapAndFadeInDig(FieldTask *task);
-static BOOL FieldTask_FadeInDig(FieldTask *task);
-static void sub_02053E5C(FieldTask *task);
+static BOOL FieldTask_MapChangeByFieldWarp(FieldTask *task);
+static void FieldTask_StartFinishFieldMapFieldWarp(FieldTask *task);
+static BOOL FieldTransition_FinishMapFieldWarp(FieldTask *task);
+static void FieldTransition_StartMapAndFadeInFieldWarp(FieldTask *task);
+static BOOL FieldTransition_StartMapAndFadeInFieldWarpSub(FieldTask *task);
+static void FieldTask_FadeInFieldWarp(FieldTask *task);
 static BOOL sub_0205444C(FieldTask *task, int param1);
 
 static const MapLoadMode sMapLoadMode[] = {
@@ -893,28 +893,28 @@ static BOOL FieldTask_WaitFadeInFly(FieldTask *task)
     return FALSE;
 }
 
-void FieldTask_ChangeMapChangeByDig(FieldTask *task, const Location *location, u32 param2)
+void FieldTask_ChangeMapByFieldWarp(FieldTask *task, const Location *location, enum FieldWarpType fieldWarpType)
 {
-    MapChangeDigData *mapChangeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeDigData));
+    MapChangeFieldWarpData *mapChangeData = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(MapChangeFieldWarpData));
 
     mapChangeData->state = 0;
-    mapChangeData->unk_04 = param2;
+    mapChangeData->fieldWarpType = fieldWarpType;
     mapChangeData->task = NULL;
     mapChangeData->location = *location;
 
-    FieldTask_InitJump(task, FieldTask_MapChangeByDig, mapChangeData);
+    FieldTask_InitJump(task, FieldTask_MapChangeByFieldWarp, mapChangeData);
 }
 
-static BOOL FieldTask_MapChangeByDig(FieldTask *task)
+static BOOL FieldTask_MapChangeByFieldWarp(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeDigData *mapChangeData = FieldTask_GetEnv(task);
+    MapChangeFieldWarpData *mapChangeData = FieldTask_GetEnv(task);
     Location *location = &mapChangeData->location;
 
     switch (mapChangeData->state) {
     case 0:
         Sound_TryFadeInBGM(fieldSystem, location->mapId);
-        FieldTask_StartFinishFieldMapDig(task);
+        FieldTask_StartFinishFieldMapFieldWarp(task);
         mapChangeData->state++;
         break;
     case 1:
@@ -929,15 +929,15 @@ static BOOL FieldTask_MapChangeByDig(FieldTask *task)
 
         Sound_PlayMapBGM(fieldSystem, location->mapId);
 
-        if (mapChangeData->unk_04 == 2) {
+        if (mapChangeData->fieldWarpType == FIELD_WARP_TYPE_TELEPORT) {
             FieldSystem_SetTeleportFlags(fieldSystem);
-        } else if ((mapChangeData->unk_04 == 0) || (mapChangeData->unk_04 == 1)) {
+        } else if (mapChangeData->fieldWarpType == FIELD_WARP_TYPE_ESCAPE_ROPE || mapChangeData->fieldWarpType == FIELD_WARP_TYPE_DIG) {
             FieldSystem_SetEscapeFlags(fieldSystem);
         } else {
             GF_ASSERT(FALSE);
         }
 
-        FieldTransition_StartMapAndFadeInDig(task);
+        FieldTransition_StartMapAndFadeInFieldWarp(task);
         mapChangeData->state++;
         break;
     case 3:
@@ -948,12 +948,12 @@ static BOOL FieldTask_MapChangeByDig(FieldTask *task)
     return FALSE;
 }
 
-static void FieldTask_StartFinishFieldMapDig(FieldTask *task)
+static void FieldTask_StartFinishFieldMapFieldWarp(FieldTask *task)
 {
-    FieldTask_InitCall(task, FieldTransition_FinishMapDig, NULL);
+    FieldTask_InitCall(task, FieldTransition_FinishMapFieldWarp, NULL);
 }
 
-static BOOL FieldTransition_FinishMapDig(FieldTask *task)
+static BOOL FieldTransition_FinishMapFieldWarp(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
 
@@ -969,17 +969,17 @@ static BOOL FieldTransition_FinishMapDig(FieldTask *task)
     return FALSE;
 }
 
-static void FieldTransition_StartMapAndFadeInDig(FieldTask *task)
+static void FieldTransition_StartMapAndFadeInFieldWarp(FieldTask *task)
 {
-    MapChangeDigData *mapChangeData = FieldTask_GetEnv(task);
-    FieldTask_InitCall(task, FieldTask_FadeInDig, mapChangeData);
+    MapChangeFieldWarpData *mapChangeData = FieldTask_GetEnv(task);
+    FieldTask_InitCall(task, FieldTransition_StartMapAndFadeInFieldWarpSub, mapChangeData);
 }
 
-static BOOL FieldTask_FadeInDig(FieldTask *task)
+static BOOL FieldTransition_StartMapAndFadeInFieldWarpSub(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeDigData *mapChangeData = FieldTask_GetEnv(task);
+    MapChangeFieldWarpData *mapChangeData = FieldTask_GetEnv(task);
 
     switch (*state) {
     case 0:
@@ -988,7 +988,7 @@ static BOOL FieldTask_FadeInDig(FieldTask *task)
         break;
     case 1:
         FieldSystem_RequestLocationName(fieldSystem);
-        sub_02053E5C(task);
+        FieldTask_FadeInFieldWarp(task);
         (*state)++;
         break;
     case 2:
@@ -998,18 +998,18 @@ static BOOL FieldTask_FadeInDig(FieldTask *task)
     return FALSE;
 }
 
-static void sub_02053E5C(FieldTask *task)
+static void FieldTask_FadeInFieldWarp(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
-    MapChangeDigData *mapChangeData = FieldTask_GetEnv(task);
+    MapChangeFieldWarpData *mapChangeData = FieldTask_GetEnv(task);
 
     if (!FieldSystem_HasParentProcess(fieldSystem)) {
         GF_ASSERT(FALSE);
         return;
     }
 
-    void *v2 = ov6_022472C8(fieldSystem, HEAP_ID_FIELD1, mapChangeData->unk_04);
-    FieldTask_InitCall(task, ov6_022472E8, v2);
+    FieldWarp *fieldwarp = FieldWarp_InitFadeIn(fieldSystem, HEAP_ID_FIELD1, mapChangeData->fieldWarpType);
+    FieldTask_InitCall(task, FieldWarp_FadeIn, fieldwarp);
 }
 
 static BOOL FieldTask_MapChangeWarp(FieldTask *task)
@@ -1142,7 +1142,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
 
     switch (mapChangeUndergroundData->state) {
     case 0:
-        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0221, HEAP_ID_FIELD2);
+        MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_CENTER_2F_ATTENDANTS, HEAP_ID_FIELD2);
 
         mapChangeUndergroundData->unk_34 = MessageLoader_GetNewString(msgLoader, 124);
         MessageLoader_Free(msgLoader);
@@ -1175,13 +1175,13 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         break;
     case 3:
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
-            ScriptManager_Start(task, 2034, NULL, NULL);
+            ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 34), NULL, NULL);
         } else {
             sub_020287E0(fieldSystem->saveData);
             mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD2, BG_LAYER_MAIN_3);
             SaveInfoWindow_Draw(mapChangeUndergroundData->saveInfoWin);
             mapChangeUndergroundData->unk_1C = 0;
-            ScriptManager_Start(task, 2005, NULL, &mapChangeUndergroundData->unk_1C);
+            ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 5), NULL, &mapChangeUndergroundData->unk_1C);
         }
 
         mapChangeUndergroundData->state = 4;

@@ -13,8 +13,8 @@
 #include "overlay104/struct_ov104_0223597C.h"
 #include "overlay104/struct_ov104_0223BA10.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
-#include "overlay107/ov107_02241AE0.h"
-#include "overlay107/ov107_02245EB0.h"
+#include "overlay107/battle_castle_opponent_app.h"
+#include "overlay107/battle_castle_self_app.h"
 
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
@@ -87,9 +87,9 @@ BOOL FrontierScrCmd_9A(FrontierScriptContext *param0)
     FS_EXTERN_OVERLAY(overlay107);
 
     static const ApplicationManagerTemplate v4 = {
-        ov107_02241AE0,
-        ov107_02241BD4,
-        ov107_02241D2C,
+        BattleCastleSelfApp_Init,
+        BattleCastleSelfApp_Main,
+        BattleCastleSelfApp_Exit,
         FS_OVERLAY_ID(overlay107)
     };
 
@@ -149,7 +149,7 @@ BOOL FrontierScrCmd_9B(FrontierScriptContext *param0)
     v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 1);
     Party_AddPokemonBySlotIndex(v1->unk_28, 1, v3);
 
-    if (ov104_0223BA14(v1->unk_10) == 0) {
+    if (BattleCastle_IsMultiPlayerChallenge(v1->unk_10) == 0) {
         v3 = Party_GetPokemonBySlotIndex(v2->parties[0], 2);
         Party_AddPokemonBySlotIndex(v1->unk_28, 2, v3);
     } else {
@@ -191,9 +191,9 @@ BOOL FrontierScrCmd_9D(FrontierScriptContext *param0)
     FS_EXTERN_OVERLAY(overlay107);
 
     static const ApplicationManagerTemplate v4 = {
-        ov107_02245EB0,
-        ov107_02245FD0,
-        ov107_02246130,
+        BattleCastleOpponentApp_Init,
+        BattleCastleOpponentApp_Main,
+        BattleCastleOpponentApp_Exit,
         FS_OVERLAY_ID(overlay107)
     };
 
@@ -386,7 +386,7 @@ BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
     case 34:
         *v17 = 0;
 
-        if (ov104_0223BA14(v3->unk_10) == 1) {
+        if (BattleCastle_IsMultiPlayerChallenge(v3->unk_10) == 1) {
             if (v3->unk_A1B >= 6) {
                 if (CommSys_CurNetId() == 0) {
                     *v17 = 1;
@@ -399,7 +399,7 @@ BOOL FrontierScrCmd_A0(FrontierScriptContext *param0)
         }
         break;
     case 35:
-        *v17 = ov104_0223BA14(v3->unk_10);
+        *v17 = BattleCastle_IsMultiPlayerChallenge(v3->unk_10);
         break;
     case 17:
         *v17 = v3->unk_10;

@@ -11,7 +11,7 @@ _000:
     UpdateMonData OPCODE_ADD, BTLSCR_ATTACKER, BATTLEMON_STOCKPILE_COUNT, 1
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_STOCKPILE_COUNT, BTLVAR_MSG_TEMP
     // {0} stockpiled {1}!
-    PrintMessage pl_msg_00000368_00317, TAG_NICKNAME_NUM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonStockpiledX_Ally, TAG_NICKNAME_NUM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_STAT_STAGE_CHANGE_SHOWN
@@ -34,7 +34,7 @@ _068:
 _077:
     WaitButtonABTime 30
     // {0} can’t stockpile any more!
-    PrintMessage pl_msg_00000368_00320, TAG_NICKNAME_NUM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonCantStockpileAnyMore_Ally, TAG_NICKNAME_NUM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

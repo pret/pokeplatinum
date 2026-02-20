@@ -5,7 +5,7 @@ _000:
     TryPerishSong _045
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     // All Pokémon hearing the song will faint in three turns!
-    PrintMessage pl_msg_00000368_00822, TAG_NONE
+    PrintMessage BattleStrings_Text_AllPokemonHearingTheSongWillFaintInThreeTurns, TAG_NONE
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_SET, BTLVAR_MSG_MOVE_TEMP, MOVE_PERISH_SONG
@@ -16,7 +16,7 @@ _021:
     GetMonBySpeedOrder BTLVAR_MSG_BATTLER_TEMP
     CheckIgnorableAbility CHECK_NOT_HAVE, BTLSCR_MSG_TEMP, ABILITY_SOUNDPROOF, _037
     // {0}’s {1} blocks {2}!
-    PrintMessage pl_msg_00000368_00689, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
 

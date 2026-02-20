@@ -4,10 +4,10 @@
 #include "struct_decls/battle_system.h"
 
 #include "battle/battle_message.h"
+#include "battle/healthbar.h"
 #include "battle/message_defs.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_0226C378.h"
 
 #include "pokemon_sprite.h"
@@ -124,7 +124,7 @@ void ov16_02263730(BattleSystem *battleSys, BattlerData *param1);
 u8 Battler_Type(BattlerData *param0);
 u8 Battler_BootState(BattlerData *param0);
 PokemonSprite *ov16_02263AFC(BattlerData *param0);
-Healthbar *ov16_02263B08(BattlerData *param0);
+Healthbar *BattlerData_GetHealthbar(BattlerData *param0);
 UnkStruct_ov16_0226C378 *ov16_02263B0C(BattlerData *param0);
 void ov16_02263B10(BattlerData *param0);
 void ov16_02263B20(BattlerData *param0, int param1);

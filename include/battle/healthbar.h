@@ -1,11 +1,14 @@
-#ifndef POKEPLATINUM_OV16_02266F1C_H
-#define POKEPLATINUM_OV16_02266F1C_H
+#ifndef POKEPLATINUM_HEALTHBAR_H
+#define POKEPLATINUM_HEALTHBAR_H
 
-#include "battle/struct_ov16_022674C4.h"
+#include "struct_decls/battle_system.h"
 
+#include "bg_window.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite.h"
 #include "sprite_system.h"
+#include "sys_task_manager.h"
 
 #define HEALTHBAR_INFO_NONE                   0
 #define HEALTHBAR_INFO_HP_GAUGE               (1 << 0)
@@ -50,6 +53,41 @@ enum HealthbarGaugeType {
     HEALTHBAR_GAUGE_EXP,
 };
 
+typedef struct Healthbar {
+    u8 state;
+    ManagedSprite *mainSprite;
+    ManagedSprite *arrowSprite;
+    BattleSystem *battleSys;
+    SysTask *task_10;
+    Window unused_14;
+    u8 battler;
+    u8 type;
+    u8 selectedPartySlot;
+    u8 numSafariBalls;
+    s32 curHP;
+    s32 maxHP;
+    s32 damage;
+    s32 hpTemp;
+    s32 curExp;
+    s32 maxExp;
+    s32 expReward;
+    s32 expTemp;
+    u8 level;
+    u8 gender;
+    u8 status;
+    u8 caughtSpecies;
+    u8 command;
+    u8 delay;
+    u8 unk_4E;
+    u8 scrollDirection : 1;
+    u8 doneScrolling : 1;
+    u8 unused_4F_2 : 1;
+    u8 numberMode : 1;
+    u8 padding : 4;
+    SysTask *task_50;
+    u16 degrees;
+} Healthbar;
+
 /**
  * @brief Load the resources required to display a healthbar.
  *
@@ -74,11 +112,11 @@ ManagedSprite *Healthbar_DrawSprite(SpriteSystem *spriteSys, SpriteManager *spri
  * @param flags     The components to be drawn, as a bitmask.
  */
 void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags);
-void ov16_02267220(Healthbar *param0);
-void ov16_02267258(Healthbar *param0);
-void ov16_022672C4(Healthbar *param0);
-void ov16_02267360(Healthbar *param0);
-void ov16_0226737C(Healthbar *param0);
+void ov16_02267220(Healthbar *healthbar);
+void ov16_02267258(Healthbar *healthbar);
+void ov16_022672C4(Healthbar *healthbar);
+void ov16_02267360(Healthbar *healthbar);
+void ov16_0226737C(Healthbar *healthbar);
 
 /**
  * @brief Compute the battler's new HP after taking a given amount of
@@ -91,12 +129,12 @@ void ov16_0226737C(Healthbar *param0);
  *                  values are damage, positive values are recovery.
  */
 void Healthbar_CalcHP(Healthbar *healthbar, int damage);
-s32 ov16_022674F8(Healthbar *param0);
-void Healthbar_CalcExp(Healthbar *param0, int param1);
-s32 ov16_02267560(Healthbar *param0);
-void ov16_0226757C(Healthbar *param0);
-void ov16_022675AC(Healthbar *param0);
-void ov16_022675D8(Healthbar *param0, int param1);
+s32 ov16_022674F8(Healthbar *healthbar);
+void Healthbar_CalcExp(Healthbar *healthbar, int expReward);
+s32 ov16_02267560(Healthbar *healthbar);
+void ov16_0226757C(Healthbar *healthbar);
+void ov16_022675AC(Healthbar *healthbar);
+void ov16_022675D8(Healthbar *healthbar, int priority);
 
 /**
  * @brief Enable (or disable) the healthbar.
@@ -134,10 +172,10 @@ void Healthbar_Scroll(Healthbar *healthbar, enum HealthbarScrollDirection direct
  * @return              The resulting healthbar type; see enum HealthbarType.
  */
 u8 Healthbar_Type(int battlerType, u32 battleType);
-void ov16_0226834C(Healthbar *param0, u8 *param1);
-void ov16_02268468(Healthbar *param0);
-void ov16_0226846C(Healthbar *param0);
-void ov16_02268470(Healthbar *param0);
-void ov16_02268498(Healthbar *param0);
+void ov16_0226834C(Healthbar *healthbar, u8 *param1);
+void ov16_02268468(Healthbar *healthbar);
+void ov16_0226846C(Healthbar *healthbar);
+void ov16_02268470(Healthbar *healthbar);
+void ov16_02268498(Healthbar *healthbar);
 
-#endif // POKEPLATINUM_OV16_02266F1C_H
+#endif // POKEPLATINUM_HEALTHBAR_H

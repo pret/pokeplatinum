@@ -1579,7 +1579,7 @@ void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnim
 static u16 PokemonSprite_LCRNGNext(u32 *seed)
 {
     *seed = *seed * LCRNG_MULTIPLIER + LCRNG_INCREMENT;
-    return (u16)(*seed / 65536L);
+    return (u16)(*seed / LCRNG_DIVISOR);
 }
 
 void PokemonSprite_DecryptPt(u8 *rawCharData)
