@@ -411,7 +411,7 @@ static const u16 sHealingCosts[] = {
     12
 };
 
-static const u32 sHealMenuItems[][3] = {
+static const u32 sHealMenuOptions[][3] = {
     { 1, BattleCastleSelfApp_Text_RestoreHP, MENU_OPTION_RESTORE_HP },
     { 2, BattleCastleSelfApp_Text_RestorePP, MENU_OPTION_RESTORE_PP },
     { 3, BattleCastleSelfApp_Text_RestoreAll, MENU_OPTION_RESTORE_ALL },
@@ -755,14 +755,14 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
 
         if (gSystem.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_16 == 0) {
-                ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, NELEMS(sHealMenuItems) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
+                ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, NELEMS(sHealMenuOptions) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
                 ListMenu_Draw(param0->listMenu);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 PrintLeftAlignedMessageWithBg(param0, &param0->windows[SELF_APP_WINDOW_MSG_BOX], BattleCastleSelfApp_Text_ReturnToPrevious, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            if (param0->unk_16 == NELEMS(sHealMenuItems) - 1) {
+            if (param0->unk_16 == NELEMS(sHealMenuOptions) - 1) {
                 ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
                 ListMenu_Draw(param0->listMenu);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -794,7 +794,7 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
 
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-            if (v2 < sHealMenuItems[param0->unk_16][0]) {
+            if (v2 < sHealMenuOptions[param0->unk_16][0]) {
                 param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_HealRankTooLow, FONT_MESSAGE);
                 param0->subState = 7;
             } else {
@@ -835,7 +835,7 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
             v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-            if (v2 < sHealMenuItems[param0->unk_16][0]) {
+            if (v2 < sHealMenuOptions[param0->unk_16][0]) {
                 BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
                 param0->printerID = PrintMessageAndCopyToVRAM(param0, 33, FONT_MESSAGE);
                 param0->subState = 7;
@@ -2240,10 +2240,10 @@ static void InitHealMenu(BattleCastleSelfApp *app)
     BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[SELF_APP_WINDOW_HEAL_MENU]);
     Window_FillTilemap(&app->windows[SELF_APP_WINDOW_HEAL_MENU], 15);
 
-    app->strList = StringList_New(NELEMS(sHealMenuItems), HEAP_ID_BATTLE_CASTLE_APP);
+    app->strList = StringList_New(NELEMS(sHealMenuOptions), HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int i = 0; i < NELEMS(sHealMenuItems); i++) {
-        StringList_AddFromMessageBank(app->strList, app->msgLoader, sHealMenuItems[i][1], sHealMenuItems[i][2]);
+    for (int i = 0; i < NELEMS(sHealMenuOptions); i++) {
+        StringList_AddFromMessageBank(app->strList, app->msgLoader, sHealMenuOptions[i][1], sHealMenuOptions[i][2]);
     }
 
     app->listTemplate = sDefaultListTemplate;
@@ -2252,8 +2252,8 @@ static void InitHealMenu(BattleCastleSelfApp *app)
     app->listTemplate.parent = app;
     app->listTemplate.cursorCallback = UpdateHealMenuItemDescription;
     app->listTemplate.printCallback = SetHealMenuItemColor;
-    app->listTemplate.count = NELEMS(sHealMenuItems);
-    app->listTemplate.maxDisplay = NELEMS(sHealMenuItems);
+    app->listTemplate.count = NELEMS(sHealMenuOptions);
+    app->listTemplate.maxDisplay = NELEMS(sHealMenuOptions);
     app->listTemplate.textColorBg = 15;
     app->listMenu = ListMenu_New(&app->listTemplate, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
@@ -2305,7 +2305,7 @@ static void SetHealMenuItemColor(ListMenu *menu, u32 item, u8 yOffset)
     case MENU_OPTION_RESTORE_HP:
     case MENU_OPTION_RESTORE_PP:
     case MENU_OPTION_RESTORE_ALL:
-        if (rank >= sHealMenuItems[item - 1][0]) {
+        if (rank >= sHealMenuOptions[item - 1][0]) {
             fgColor = 1;
         } else {
             fgColor = 2;
