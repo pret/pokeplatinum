@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/battle_script.h"
 #include "constants/heap.h"
 #include "constants/species.h"
 #include "generated/items.h"
@@ -58,7 +59,6 @@
 #include "battle/struct_ov16_02264650.h"
 #include "battle/struct_ov16_02264650_1.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_02269668.h"
 #include "battle/struct_ov16_0226C378.h"
@@ -564,24 +564,24 @@ void BattleDisplay_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battle
     healthbar->battleSys = battleSys;
     healthbar->battler = battlerData->battler;
     healthbar->type = Healthbar_Type(battlerData->battlerType, BattleSystem_GetBattleType(battleSys));
-    healthbar->unk_4C = healthbarData->command;
+    healthbar->command = healthbarData->command;
     healthbar->curHP = healthbarData->curHP;
     healthbar->maxHP = healthbarData->maxHP;
-    healthbar->unk_48 = healthbarData->level;
-    healthbar->unk_49 = healthbarData->gender;
+    healthbar->level = healthbarData->level;
+    healthbar->gender = healthbarData->gender;
     healthbar->damage = 0;
     healthbar->curExp = healthbarData->expFromLastLevel;
     healthbar->maxExp = healthbarData->expToNextLevel;
     healthbar->selectedPartySlot = healthbarData->selectedPartySlot;
     healthbar->status = healthbarData->status;
-    healthbar->unk_4B = healthbarData->speciesCaught;
-    healthbar->unk_4D = healthbarData->delay;
-    healthbar->unk_27 = healthbarData->numSafariBalls;
+    healthbar->caughtSpecies = healthbarData->speciesCaught;
+    healthbar->delay = healthbarData->delay;
+    healthbar->numSafariBalls = healthbarData->numSafariBalls;
 
     Healthbar_Enable(healthbar, FALSE);
     Healthbar_DrawInfo(healthbar, healthbar->curHP, HEALTHBAR_INFO_ALL);
 
-    healthbar->unk_10 = SysTask_Start(SlideHealthbarInTask, healthbar, 1000);
+    healthbar->task_10 = SysTask_Start(SlideHealthbarInTask, healthbar, 1000);
 }
 
 void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData)
@@ -591,11 +591,11 @@ void BattleDisplay_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battl
 
     healthbar->battleSys = battleSys;
     healthbar->battler = battlerData->battler;
-    healthbar->unk_4C = battlerData->data[0];
+    healthbar->command = battlerData->data[0];
 
     Healthbar_Scroll(healthbar, HEALTHBAR_SCROLL_OUT);
 
-    healthbar->unk_10 = SysTask_Start(SlideHealthbarOutTask, healthbar, 1000);
+    healthbar->task_10 = SysTask_Start(SlideHealthbarOutTask, healthbar, 1000);
 }
 
 void ov16_0225D5B8(BattleSystem *battleSys, BattlerData *param1, CommandSetMessage *message)
@@ -861,52 +861,52 @@ void ov16_0225DA44(BattleSystem *battleSys, BattlerData *param1)
 
 void ov16_0225DA74(BattleSystem *battleSys, BattlerData *param1, HPGaugeUpdateMessage *message)
 {
-    Healthbar *v0;
+    Healthbar *healthbar;
 
     GF_ASSERT(param1->healthbar.mainSprite != NULL);
 
-    v0 = &param1->healthbar;
-    MI_CpuClear8(&v0->state, sizeof(u8));
+    healthbar = &param1->healthbar;
+    MI_CpuClear8(&healthbar->state, sizeof(u8));
 
-    v0->battleSys = battleSys;
-    v0->unk_4C = message->command;
-    v0->battler = param1->battler;
-    v0->type = Healthbar_Type(param1->battlerType, BattleSystem_GetBattleType(battleSys));
-    v0->curHP = message->curHP;
-    v0->maxHP = message->maxHP;
-    v0->damage = message->hpCalcTemp;
-    v0->unk_48 = message->level;
+    healthbar->battleSys = battleSys;
+    healthbar->command = message->command;
+    healthbar->battler = param1->battler;
+    healthbar->type = Healthbar_Type(param1->battlerType, BattleSystem_GetBattleType(battleSys));
+    healthbar->curHP = message->curHP;
+    healthbar->maxHP = message->maxHP;
+    healthbar->damage = message->hpCalcTemp;
+    healthbar->level = message->level;
 
-    if (message->hpCalcTemp == 0x7fff) {
-        v0->curHP = 0;
-        v0->damage = 0;
+    if (message->hpCalcTemp == HP_CALC_INSTANT_ZERO) {
+        healthbar->curHP = 0;
+        healthbar->damage = 0;
     }
 
-    v0->unk_10 = SysTask_Start(ov16_02262988, v0, 1000);
+    healthbar->task_10 = SysTask_Start(ov16_02262988, healthbar, 1000);
 }
 
 void ov16_0225DB00(BattleSystem *battleSys, BattlerData *param1, ExpGaugeUpdateMessage *message)
 {
-    Healthbar *v0;
+    Healthbar *healthbar;
 
     GF_ASSERT(param1->healthbar.mainSprite != NULL);
 
-    v0 = &param1->healthbar;
+    healthbar = &param1->healthbar;
 
-    MI_CpuClear8(&v0->state, sizeof(u8));
+    MI_CpuClear8(&healthbar->state, sizeof(u8));
 
-    v0->battleSys = battleSys;
-    v0->unk_4C = message->command;
-    v0->battler = param1->battler;
-    v0->curExp = message->curExp;
-    v0->maxExp = message->expToNextLevel;
-    v0->expReward = message->gainedExp - v0->curExp;
+    healthbar->battleSys = battleSys;
+    healthbar->command = message->command;
+    healthbar->battler = param1->battler;
+    healthbar->curExp = message->curExp;
+    healthbar->maxExp = message->expToNextLevel;
+    healthbar->expReward = message->gainedExp - healthbar->curExp;
 
     if (param1->battlerType == 0) {
-        v0->unk_10 = SysTask_Start(ov16_022629DC, v0, 1000);
+        healthbar->task_10 = SysTask_Start(ov16_022629DC, healthbar, 1000);
         return;
     } else {
-        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
+        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->command);
     }
 }
 
@@ -1142,28 +1142,28 @@ void ov16_0225DF6C(BattleSystem *battleSys, BattlerData *param1, AlertMsgMessage
 
 void ov16_0225E008(BattleSystem *battleSys, BattlerData *param1, RefreshHPGaugeMessage *message)
 {
-    Healthbar *v0 = &param1->healthbar;
+    Healthbar *healthbar = &param1->healthbar;
 
-    MI_CpuClearFast(&v0->state, sizeof(u8));
+    MI_CpuClearFast(&healthbar->state, sizeof(u8));
 
-    v0->battleSys = battleSys;
-    v0->battler = param1->battler;
-    v0->type = Healthbar_Type(param1->battlerType, BattleSystem_GetBattleType(battleSys));
-    v0->unk_4C = message->command;
-    v0->curHP = message->curHP;
-    v0->maxHP = message->maxHP;
-    v0->unk_48 = message->level;
-    v0->unk_49 = message->gender;
-    v0->damage = 0;
-    v0->curExp = message->curExp;
-    v0->maxExp = message->maxExp;
-    v0->selectedPartySlot = message->partySlot;
-    v0->status = message->status;
-    v0->unk_4B = message->caughtSpecies;
-    v0->unk_27 = message->numSafariBalls;
+    healthbar->battleSys = battleSys;
+    healthbar->battler = param1->battler;
+    healthbar->type = Healthbar_Type(param1->battlerType, BattleSystem_GetBattleType(battleSys));
+    healthbar->command = message->command;
+    healthbar->curHP = message->curHP;
+    healthbar->maxHP = message->maxHP;
+    healthbar->level = message->level;
+    healthbar->gender = message->gender;
+    healthbar->damage = 0;
+    healthbar->curExp = message->curExp;
+    healthbar->maxExp = message->maxExp;
+    healthbar->selectedPartySlot = message->partySlot;
+    healthbar->status = message->status;
+    healthbar->caughtSpecies = message->caughtSpecies;
+    healthbar->numSafariBalls = message->numSafariBalls;
 
-    Healthbar_DrawInfo(v0, v0->curHP, ~HEALTHBAR_INFO_EXP_GAUGE);
-    BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
+    Healthbar_DrawInfo(healthbar, healthbar->curHP, ~HEALTHBAR_INFO_EXP_GAUGE);
+    BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->command);
 }
 
 void ov16_0225E0BC(BattleSystem *battleSys, BattlerData *param1, ForgetMoveMessage *message)
@@ -2733,8 +2733,8 @@ static void SlideHealthbarInTask(SysTask *task, void *data)
 
     switch (healthbar->state) {
     case SLIDE_HEALTHBAR_IN_STATE_ENABLE:
-        if (healthbar->unk_4D > 0) {
-            healthbar->unk_4D--;
+        if (healthbar->delay > 0) {
+            healthbar->delay--;
             break;
         }
 
@@ -2750,8 +2750,8 @@ static void SlideHealthbarInTask(SysTask *task, void *data)
         break;
 
     default:
-        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
-        healthbar->unk_10 = NULL;
+        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->command);
+        healthbar->task_10 = NULL;
         SysTask_Done(task);
         break;
     }
@@ -2780,8 +2780,8 @@ static void SlideHealthbarOutTask(SysTask *task, void *data)
         break;
 
     default:
-        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->unk_4C);
-        healthbar->unk_10 = NULL;
+        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->command);
+        healthbar->task_10 = NULL;
         SysTask_Done(task);
         Healthbar_Enable(healthbar, FALSE);
         break;
@@ -2796,7 +2796,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
     BattlerData *v3;
     u32 battleType;
     int v5;
-    Healthbar *v6;
+    Healthbar *healthbar;
 
     v0 = (UnkStruct_ov16_0225D5B8 *)param1;
     v1 = BattleSystem_GetBgConfig(v0->battleSys);
@@ -2806,9 +2806,9 @@ static void ov16_022604C8(SysTask *param0, void *param1)
     v5 = BattleSystem_GetPartner(v0->battleSys, v0->unk_09);
 
     if (v5 != v0->unk_09) {
-        v6 = BattleSystem_GetHealthbar(v0->battleSys, v5);
+        healthbar = BattleSystem_GetHealthbar(v0->battleSys, v5);
     } else {
-        v6 = NULL;
+        healthbar = NULL;
     }
 
     switch (v0->unk_0A) {
@@ -2938,8 +2938,8 @@ static void ov16_022604C8(SysTask *param0, void *param1)
             NARC_dtor(v13);
         }
 
-        if (v6 != NULL) {
-            ov16_02268468(v6);
+        if (healthbar != NULL) {
+            ov16_02268468(healthbar);
         }
 
         v0->unk_0A = 5;
@@ -2977,7 +2977,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
 
                 ov16_02268C04(v16, v17, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
-                ov16_0226846C(v6);
+                ov16_0226846C(healthbar);
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v3);
                 NARC_dtor(v16);
@@ -2989,7 +2989,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
 
                 ov16_02268C04(v18, v19, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
-                ov16_0226846C(v6);
+                ov16_0226846C(healthbar);
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v3);
                 NARC_dtor(v18);
@@ -3000,7 +3000,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC *v21 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
                 if (ov16_0226D088(v2) == 1) {
-                    ov16_0226846C(v6);
+                    ov16_0226846C(healthbar);
                     v0->unk_0C = 0xff;
                 }
 
@@ -3024,7 +3024,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
 
             ov16_02268C04(v22, v23, v2, 0, 0, NULL);
             ov16_0226BCCC(v2, 0);
-            ov16_0226846C(v6);
+            ov16_0226846C(healthbar);
             ov16_022675AC(v0->unk_04);
             ov16_022647D8(v3);
             ov16_02269218(v2);
@@ -3142,7 +3142,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
     BgConfig *v1 = BattleSystem_GetBgConfig(v0->battleSys);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
-    Healthbar *v4;
+    Healthbar *healthbar;
     BattlerData *v5;
 
     v2 = ov16_0223E02C(v0->battleSys);
@@ -3150,9 +3150,9 @@ static void ov16_02260C00(SysTask *param0, void *param1)
     v3 = BattleSystem_GetPartner(v0->battleSys, v0->unk_1D);
 
     if (v3 != v0->unk_1D) {
-        v4 = BattleSystem_GetHealthbar(v0->battleSys, v3);
+        healthbar = BattleSystem_GetHealthbar(v0->battleSys, v3);
     } else {
-        v4 = NULL;
+        healthbar = NULL;
     }
 
     switch (v0->unk_20) {
@@ -3208,7 +3208,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
             if (v0->unk_08 != 0xff) {
                 if ((BattleSystem_GetBattleType(v0->battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
                     ov16_0226BCCC(v2, 0);
-                    ov16_0226846C(v4);
+                    ov16_0226846C(healthbar);
                     ov16_022675AC(v0->unk_04);
                     ov16_022647D8(v5);
                 }
@@ -3323,15 +3323,15 @@ static void ov16_02260F14(SysTask *param0, void *param1)
     BgConfig *v1 = BattleSystem_GetBgConfig(v0->battleSys);
     UnkStruct_ov16_02268A14 *v2;
     int v3;
-    Healthbar *v4;
+    Healthbar *healthbar;
     BattlerData *v5 = BattleSystem_GetBattlerData(v0->battleSys, v0->unk_0D);
     v2 = ov16_0223E02C(v0->battleSys);
     v3 = BattleSystem_GetPartner(v0->battleSys, v0->unk_0D);
 
     if (v3 != v0->unk_0D) {
-        v4 = BattleSystem_GetHealthbar(v0->battleSys, v3);
+        healthbar = BattleSystem_GetHealthbar(v0->battleSys, v3);
     } else {
-        v4 = NULL;
+        healthbar = NULL;
     }
 
     switch (v0->unk_0F) {
@@ -3373,7 +3373,7 @@ static void ov16_02260F14(SysTask *param0, void *param1)
             if (v0->unk_08 != 0xff) {
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v5);
-                ov16_0226846C(v4);
+                ov16_0226846C(healthbar);
 
                 if (v0->unk_32 == 1) {
                     ov16_0226BCCC(v2, 0);
@@ -3831,7 +3831,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v0->unk_0E++;
         break;
     case 21: {
-        Healthbar *v18;
+        Healthbar *healthbar;
         Pokemon *v19;
         int v20;
         int v21;
@@ -3839,32 +3839,32 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v20 = v0->unk_08->unk_04->selectedPartyIndex * 2;
         v21 = v0->unk_08->unk_04->pokemonPartySlots[v0->unk_08->unk_04->selectedPartyIndex];
 
-        v18 = BattleSystem_GetHealthbar(v0->battleSys, v20);
-        MI_CpuClear8(&v18->state, sizeof(u8));
-        v18->type = Healthbar_Type(BattleSystem_GetBattlerType(v0->battleSys, v20), BattleSystem_GetBattleType(v0->battleSys));
+        healthbar = BattleSystem_GetHealthbar(v0->battleSys, v20);
+        MI_CpuClear8(&healthbar->state, sizeof(u8));
+        healthbar->type = Healthbar_Type(BattleSystem_GetBattlerType(v0->battleSys, v20), BattleSystem_GetBattleType(v0->battleSys));
 
         v19 = BattleSystem_GetPartyPokemon(v0->battleSys, v20, v21);
-        v18->curHP = Pokemon_GetValue(v19, MON_DATA_HP, NULL) - v0->unk_08->unk_04->currentDamage;
-        v18->maxHP = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
-        v18->damage = v0->unk_08->unk_04->currentDamage;
+        healthbar->curHP = Pokemon_GetValue(v19, MON_DATA_HP, NULL) - v0->unk_08->unk_04->currentDamage;
+        healthbar->maxHP = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
+        healthbar->damage = v0->unk_08->unk_04->currentDamage;
 
         if (Pokemon_GetValue(v19, MON_DATA_STATUS, NULL) == 0) {
-            v18->status = 0;
+            healthbar->status = 0;
         }
 
-        Healthbar_CalcHP(v18, v18->damage);
+        Healthbar_CalcHP(healthbar, healthbar->damage);
     }
         v0->unk_0E++;
         break;
     case 22: {
-        Healthbar *v22;
+        Healthbar *healthbar;
         int v23;
 
         v23 = v0->unk_08->unk_04->selectedPartyIndex * 2;
-        v22 = BattleSystem_GetHealthbar(v0->battleSys, v23);
+        healthbar = BattleSystem_GetHealthbar(v0->battleSys, v23);
 
-        if (ov16_022674F8(v22) == -1) {
-            Healthbar_DrawInfo(v22, NULL, HEALTHBAR_INFO_STATUS);
+        if (ov16_022674F8(healthbar) == -1) {
+            Healthbar_DrawInfo(healthbar, NULL, HEALTHBAR_INFO_STATUS);
             v0->unk_0E++;
         }
     } break;
@@ -3893,7 +3893,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         v0->unk_0E++;
     } break;
     case 29: {
-        Healthbar *v27;
+        Healthbar *healthbar;
         int v28;
         MessageLoader *v29;
         BattleMessage v30;
@@ -3903,15 +3903,15 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         int v34;
 
         v28 = v0->unk_08->unk_04->selectedPartyIndex * 2;
-        v27 = BattleSystem_GetHealthbar(v0->battleSys, v28);
+        healthbar = BattleSystem_GetHealthbar(v0->battleSys, v28);
         v34 = v0->unk_08->unk_04->pokemonPartySlots[v0->unk_08->unk_04->selectedPartyIndex];
         v33 = BattleSystem_GetPartyPokemon(v0->battleSys, v28, v34);
 
         if (Pokemon_GetValue(v33, MON_DATA_STATUS, NULL) == 0) {
-            v27->status = 0;
+            healthbar->status = 0;
         }
 
-        Healthbar_DrawInfo(v27, v27->curHP, HEALTHBAR_INFO_STATUS);
+        Healthbar_DrawInfo(healthbar, healthbar->curHP, HEALTHBAR_INFO_STATUS);
 
         v30.tags = 2;
         v30.params[0] = v28 | (v0->unk_08->unk_0C[v28] << 8);
@@ -4330,14 +4330,14 @@ static void ov16_022623F0(SysTask *param0, void *param1)
     BgConfig *v1 = BattleSystem_GetBgConfig(v0->battleSys);
     UnkStruct_ov16_02268A14 *v2 = ov16_0223E02C(v0->battleSys);
     int v3;
-    Healthbar *v4;
+    Healthbar *healthbar;
     BattlerData *v5 = BattleSystem_GetBattlerData(v0->battleSys, v0->unk_0D);
     v3 = BattleSystem_GetPartner(v0->battleSys, v0->unk_0D);
 
     if (v3 != v0->unk_0D) {
-        v4 = BattleSystem_GetHealthbar(v0->battleSys, v3);
+        healthbar = BattleSystem_GetHealthbar(v0->battleSys, v3);
     } else {
-        v4 = NULL;
+        healthbar = NULL;
     }
 
     switch (v0->unk_0E) {
@@ -4424,7 +4424,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
 
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v5);
-                ov16_0226846C(v4);
+                ov16_0226846C(healthbar);
                 ov16_02269218(v2);
                 ov16_02268C04(v12, v13, v2, 0, 0, NULL);
 
@@ -4617,23 +4617,23 @@ static void ov16_0226292C(SysTask *param0, void *param1)
 
 static void ov16_02262988(SysTask *param0, void *param1)
 {
-    Healthbar *v0 = param1;
+    Healthbar *healthbar = param1;
     int v1;
 
-    switch (v0->state) {
+    switch (healthbar->state) {
     case 0:
-        Healthbar_CalcHP(v0, v0->damage);
-        v0->state++;
+        Healthbar_CalcHP(healthbar, healthbar->damage);
+        healthbar->state++;
     case 1:
-        v1 = ov16_022674F8(v0);
+        v1 = ov16_022674F8(healthbar);
 
         if (v1 == -1) {
-            v0->state++;
+            healthbar->state++;
         }
         break;
     default:
-        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
-        v0->unk_10 = NULL;
+        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->command);
+        healthbar->task_10 = NULL;
         SysTask_Done(param0);
         return;
     }
@@ -4641,42 +4641,42 @@ static void ov16_02262988(SysTask *param0, void *param1)
 
 static void ov16_022629DC(SysTask *param0, void *param1)
 {
-    Healthbar *v0 = param1;
+    Healthbar *healthbar = param1;
     int v1;
 
-    switch (v0->state) {
+    switch (healthbar->state) {
     case 0:
-        v0->unk_4E = 0;
+        healthbar->unk_4E = 0;
         Sound_PlayEffect(SEQ_SE_DP_EXP);
-        Healthbar_CalcExp(v0, v0->expReward);
-        v0->state++;
+        Healthbar_CalcExp(healthbar, healthbar->expReward);
+        healthbar->state++;
     case 1:
-        if (v0->unk_4E < 8) {
-            v0->unk_4E++;
+        if (healthbar->unk_4E < 8) {
+            healthbar->unk_4E++;
         }
 
-        v1 = ov16_02267560(v0);
+        v1 = ov16_02267560(healthbar);
 
         if (v1 == -1) {
-            if (v0->unk_4E >= 8) {
+            if (healthbar->unk_4E >= 8) {
                 Sound_StopEffect(1803, 0);
-                v0->state = 100;
+                healthbar->state = 100;
             } else {
-                v0->state++;
+                healthbar->state++;
             }
         }
         break;
     case 2:
-        v0->unk_4E++;
+        healthbar->unk_4E++;
 
-        if (v0->unk_4E >= 8) {
+        if (healthbar->unk_4E >= 8) {
             Sound_StopEffect(1803, 0);
-            v0->state = 100;
+            healthbar->state = 100;
         }
         break;
     default:
-        BattleController_EmitClearCommand(v0->battleSys, v0->battler, v0->unk_4C);
-        v0->unk_10 = NULL;
+        BattleController_EmitClearCommand(healthbar->battleSys, healthbar->battler, healthbar->command);
+        healthbar->task_10 = NULL;
         SysTask_Done(param0);
         break;
     }
