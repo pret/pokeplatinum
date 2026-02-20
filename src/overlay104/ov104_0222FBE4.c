@@ -140,17 +140,17 @@ static BOOL FrontierScrCmd_CloseMessage(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_FadeScreen(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_WaitFadeScreen(FrontierScriptContext *ctx);
 static BOOL ScreenWipeDone(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_15(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_16(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_17(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_18(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_19(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_1A(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_1B(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_1C(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_1D(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_1E(FrontierScriptContext *param0);
-static BOOL ov104_02230124(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_InitGlobalTextMenu(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_InitLocalTextMenu(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_AddMenuEntry(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_AddMenuEntryWithDesc(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_ShowMenu(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_InitGlobalTextListMenu(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_InitLocalTextListMenu(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_AddListMenuEntry(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_ShowListMenu(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_FreeListMenu(FrontierScriptContext *param0);
+static BOOL ResumeOnMenuSelection(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_CompareVarToValue(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_CompareVarToVar(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_SetVarFromValue(FrontierScriptContext *ctx);
@@ -263,8 +263,8 @@ static BOOL FrontierScrCmd_71(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_B7(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_C8(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_C9(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_CA(FrontierScriptContext *param0);
-static BOOL FrontierScrCmd_CB(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_SetMenuXOriginSide(FrontierScriptContext *param0);
+static BOOL FrontierScrCmd_SetMenuYOriginSide(FrontierScriptContext *param0);
 static void ov104_02230950(void *param0);
 static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0);
 static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0);
@@ -315,16 +315,16 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_CloseMessage,
     FrontierScrCmd_FadeScreen,
     FrontierScrCmd_WaitFadeScreen,
-    FrontierScrCmd_15,
-    FrontierScrCmd_16,
-    FrontierScrCmd_17,
-    FrontierScrCmd_18,
-    FrontierScrCmd_19,
-    FrontierScrCmd_1A,
-    FrontierScrCmd_1B,
-    FrontierScrCmd_1C,
-    FrontierScrCmd_1D,
-    FrontierScrCmd_1E,
+    FrontierScrCmd_InitGlobalTextMenu,
+    FrontierScrCmd_InitLocalTextMenu,
+    FrontierScrCmd_AddMenuEntry,
+    FrontierScrCmd_AddMenuEntryWithDesc,
+    FrontierScrCmd_ShowMenu,
+    FrontierScrCmd_InitGlobalTextListMenu,
+    FrontierScrCmd_InitLocalTextListMenu,
+    FrontierScrCmd_AddListMenuEntry,
+    FrontierScrCmd_ShowListMenu,
+    FrontierScrCmd_FreeListMenu,
     FrontierScrCmd_ShowYesNoMenu,
     FrontierScrCmd_CompareVarToValue,
     FrontierScrCmd_CompareVarToVar,
@@ -496,8 +496,8 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_C7,
     FrontierScrCmd_C8,
     FrontierScrCmd_C9,
-    FrontierScrCmd_CA,
-    FrontierScrCmd_CB,
+    FrontierScrCmd_SetMenuXOriginSide,
+    FrontierScrCmd_SetMenuYOriginSide,
 };
 
 const u32 Unk_ov104_0223F63C = NELEMS(Unk_ov104_0223F674);
@@ -762,7 +762,7 @@ static BOOL WaitForPrinter(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_CloseMessage(FrontierScriptContext *ctx)
 {
-    ov104_02232088(ctx->unk_00);
+    Frontier_CloseMessage(ctx->unk_00);
     return FALSE;
 }
 
@@ -790,144 +790,141 @@ static BOOL ScreenWipeDone(FrontierScriptContext *ctx)
     return IsScreenFadeDone() == TRUE;
 }
 
-static BOOL FrontierScrCmd_15(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_InitGlobalTextMenu(FrontierScriptContext *ctx)
+{
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    u8 anchorX = FrontierScriptContext_ReadByte(ctx);
+    u8 anchorY = FrontierScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = FrontierScriptContext_ReadByte(ctx);
+    u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
+
+    v0->unk_60 = FrontierMenuManager_New(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, NULL);
+    ctx->data[0] = selectedOptionVar;
+
+    return TRUE;
+}
+
+static BOOL FrontierScrCmd_InitLocalTextMenu(FrontierScriptContext *ctx)
+{
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    u8 anchorX = FrontierScriptContext_ReadByte(ctx);
+    u8 anchorY = FrontierScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = FrontierScriptContext_ReadByte(ctx);
+    u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
+
+    v0->unk_60 = FrontierMenuManager_New(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, ctx->msgLoader);
+    ctx->data[0] = selectedOptionVar;
+
+    return TRUE;
+}
+
+static BOOL FrontierScrCmd_AddMenuEntry(FrontierScriptContext *ctx)
+{
+    UnkStruct_ov104_022320B4 *v3 = ctx->unk_00;
+
+    u16 entryID = FrontierScriptContext_ReadHalfWord(ctx);
+    u16 descriptionID = 0xff;
+    u16 index = FrontierScriptContext_ReadHalfWord(ctx);
+
+    FrontierMenuManager_AddMenuEntry(v3->unk_60, entryID, descriptionID, index);
+    return FALSE;
+}
+
+static BOOL FrontierScrCmd_AddMenuEntryWithDesc(FrontierScriptContext *ctx)
+{
+    UnkStruct_ov104_022320B4 *v3 = ctx->unk_00;
+
+    u16 entryID = FrontierScriptContext_ReadHalfWord(ctx);
+    u16 descriptionID = FrontierScriptContext_ReadHalfWord(ctx);
+    u16 index = FrontierScriptContext_ReadHalfWord(ctx);
+
+    FrontierMenuManager_AddMenuEntry(v3->unk_60, entryID, descriptionID, index);
+    return FALSE;
+}
+
+static BOOL FrontierScrCmd_ShowMenu(FrontierScriptContext *ctx)
+{
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+
+    FrontierMenuManager_ShowMenu(v0->unk_60);
+    FrontierScriptContext_Pause(ctx, ResumeOnMenuSelection);
+
+    return TRUE;
+}
+
+static BOOL ResumeOnMenuSelection(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u8 v1 = FrontierScriptContext_ReadByte(param0);
-    u8 v2 = FrontierScriptContext_ReadByte(param0);
-    u8 v3 = FrontierScriptContext_ReadByte(param0);
-    u8 v4 = FrontierScriptContext_ReadByte(param0);
-    u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
+    u16 *selectedOptionPtr = ov104_0222FC14(param0, param0->data[0]);
 
-    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, NULL);
-    param0->data[0] = v5;
-
-    return 1;
-}
-
-static BOOL FrontierScrCmd_16(FrontierScriptContext *param0)
-{
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u8 v1 = FrontierScriptContext_ReadByte(param0);
-    u8 v2 = FrontierScriptContext_ReadByte(param0);
-    u8 v3 = FrontierScriptContext_ReadByte(param0);
-    u8 v4 = FrontierScriptContext_ReadByte(param0);
-    u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
-
-    v0->unk_60 = ov104_02232258(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, param0->msgLoader);
-    param0->data[0] = v5;
-
-    return 1;
-}
-
-static BOOL FrontierScrCmd_17(FrontierScriptContext *param0)
-{
-    u16 v0, v1, v2;
-    UnkStruct_ov104_022320B4 *v3 = param0->unk_00;
-
-    v0 = FrontierScriptContext_ReadHalfWord(param0);
-    v1 = 0xff;
-    v2 = FrontierScriptContext_ReadHalfWord(param0);
-
-    ov104_022322A8(v3->unk_60, v0, v1, v2);
-    return 0;
-}
-
-static BOOL FrontierScrCmd_18(FrontierScriptContext *param0)
-{
-    u16 v0, v1, v2;
-    UnkStruct_ov104_022320B4 *v3 = param0->unk_00;
-
-    v0 = FrontierScriptContext_ReadHalfWord(param0);
-    v1 = FrontierScriptContext_ReadHalfWord(param0);
-    v2 = FrontierScriptContext_ReadHalfWord(param0);
-
-    ov104_022322A8(v3->unk_60, v0, v1, v2);
-    return 0;
-}
-
-static BOOL FrontierScrCmd_19(FrontierScriptContext *param0)
-{
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-
-    ov104_022322B0(v0->unk_60);
-    FrontierScriptContext_Pause(param0, ov104_02230124);
-
-    return 1;
-}
-
-static BOOL ov104_02230124(FrontierScriptContext *param0)
-{
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u16 *v1 = ov104_0222FC14(param0, param0->data[0]);
-
-    if (*v1 == 0xeeee) {
-        return 0;
+    if (*selectedOptionPtr == LIST_MENU_NO_SELECTION_YET) {
+        return FALSE;
     }
 
     v0->unk_60 = NULL;
-    return 1;
+    return TRUE;
 }
 
-static BOOL FrontierScrCmd_1A(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_InitGlobalTextListMenu(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u8 v1 = FrontierScriptContext_ReadByte(param0);
-    u8 v2 = FrontierScriptContext_ReadByte(param0);
-    u8 v3 = FrontierScriptContext_ReadByte(param0);
-    u8 v4 = FrontierScriptContext_ReadByte(param0);
-    u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    u8 anchorX = FrontierScriptContext_ReadByte(ctx);
+    u8 anchorY = FrontierScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = FrontierScriptContext_ReadByte(ctx);
+    u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, NULL);
-    param0->data[0] = v5;
+    v0->unk_60 = FrontierMenuManager_New2(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, NULL);
+    ctx->data[0] = selectedOptionVar;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL FrontierScrCmd_1B(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_InitLocalTextListMenu(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u8 v1 = FrontierScriptContext_ReadByte(param0);
-    u8 v2 = FrontierScriptContext_ReadByte(param0);
-    u8 v3 = FrontierScriptContext_ReadByte(param0);
-    u8 v4 = FrontierScriptContext_ReadByte(param0);
-    u16 v5 = FrontierScriptContext_ReadHalfWord(param0);
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    u8 anchorX = FrontierScriptContext_ReadByte(ctx);
+    u8 anchorY = FrontierScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = FrontierScriptContext_ReadByte(ctx);
+    u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0->unk_60 = ov104_022325FC(v0, v1, v2, v3, v4, ov104_0222FC14(param0, v5), v0->strTemplate, param0->msgLoader);
-    param0->data[0] = v5;
+    v0->unk_60 = FrontierMenuManager_New2(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, ctx->msgLoader);
+    ctx->data[0] = selectedOptionVar;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL FrontierScrCmd_1C(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_AddListMenuEntry(FrontierScriptContext *ctx)
 {
-    u16 v0, v1, v2;
-    UnkStruct_ov104_022320B4 *v3 = param0->unk_00;
+    UnkStruct_ov104_022320B4 *v3 = ctx->unk_00;
 
-    v0 = FrontierScriptContext_ReadHalfWord(param0);
-    v1 = FrontierScriptContext_ReadHalfWord(param0);
-    v2 = FrontierScriptContext_ReadHalfWord(param0);
+    u16 entryID = FrontierScriptContext_ReadHalfWord(ctx);
+    u16 descriptionID = FrontierScriptContext_ReadHalfWord(ctx);
+    u16 index = FrontierScriptContext_ReadHalfWord(ctx);
 
-    ov104_0223261C(v3->unk_60, v0, v1, v2);
-    return 0;
+    FrontierMenuManager_AddListMenuEntry(v3->unk_60, entryID, descriptionID, index);
+    return FALSE;
 }
 
-static BOOL FrontierScrCmd_1D(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_ShowListMenu(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
 
-    ov104_02232624(v0->unk_60);
-    FrontierScriptContext_Pause(param0, ov104_02230124);
+    FrontierMenuManager_ShowListMenu(v0->unk_60);
+    FrontierScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL FrontierScrCmd_1E(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_FreeListMenu(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
 
-    ov104_02232B5C(v0->unk_60);
-    return 1;
+    FrontierMenuManager_FreeListMenu(v0->unk_60);
+    return TRUE;
 }
 
 static BOOL FrontierScrCmd_ShowYesNoMenu(FrontierScriptContext *ctx)
@@ -2736,18 +2733,18 @@ static BOOL FrontierScrCmd_C9(FrontierScriptContext *param0)
     return 0;
 }
 
-static BOOL FrontierScrCmd_CA(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_SetMenuXOriginSide(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u8 v1 = FrontierScriptContext_ReadByte(param0);
-    ov104_0223327C(v0->unk_60, v1);
-    return 1;
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    u8 isRightSide = FrontierScriptContext_ReadByte(ctx);
+    FrontierMenuManager_SetHorizontalAnchor(v0->unk_60, isRightSide);
+    return TRUE;
 }
 
-static BOOL FrontierScrCmd_CB(FrontierScriptContext *param0)
+static BOOL FrontierScrCmd_SetMenuYOriginSide(FrontierScriptContext *ctx)
 {
-    UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u8 v1 = FrontierScriptContext_ReadByte(param0);
-    ov104_02233298(v0->unk_60, v1);
-    return 1;
+    UnkStruct_ov104_022320B4 *v0 = ctx->unk_00;
+    u8 isBottomSide = FrontierScriptContext_ReadByte(ctx);
+    FrontierMenuManager_SetVerticalAnchor(v0->unk_60, isBottomSide);
+    return TRUE;
 }
