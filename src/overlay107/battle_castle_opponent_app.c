@@ -62,12 +62,12 @@
 
 FS_EXTERN_OVERLAY(overlay104);
 
-#define MENU_OPTION_CHECK           0
-#define MENU_OPTION_LEVEL           1
-#define MENU_OPTION_SUMMARY         2
-#define MENU_OPTION_STATS           3
-#define MENU_OPTION_MOVES           4
-#define MENU_OPTION_RANK_UP_SUMMARY 5
+#define MENU_ENTRY_CHECK           0
+#define MENU_ENTRY_LEVEL           1
+#define MENU_ENTRY_SUMMARY         2
+#define MENU_ENTRY_STATS           3
+#define MENU_ENTRY_MOVES           4
+#define MENU_ENTRY_RANK_UP_SUMMARY 5
 
 typedef struct BattleCastleOpponentApp {
     ApplicationManager *appMan;
@@ -176,10 +176,10 @@ static void AddStringToSimpleMenu(BattleCastleOpponentApp *app, u8 strIndex, u8 
 static void OpenYesNoMenu(BattleCastleOpponentApp *app);
 static void OpenLevelMenu(BattleCastleOpponentApp *app);
 static void InitMonOptionsMenu(BattleCastleOpponentApp *app);
-static void UpdateMonMenuItemDescription(ListMenu *menu, u32 param1, u8 onInit);
+static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 param1, u8 onInit);
 static void InitSummaryMenu(BattleCastleOpponentApp *app);
-static void UpdateSummaryMenuItemDescription(ListMenu *menu, u32 item, u8 onInit);
-static void SetSummaryMenuItemColor(ListMenu *menu, u32 item, u8 yOffset);
+static void UpdateSummaryMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit);
+static void SetSummaryMenuEntryColor(ListMenu *menu, u32 item, u8 yOffset);
 static void SetStringTemplateNumber(BattleCastleOpponentApp *app, u32 idx, s32 num, u32 maxDigits, enum PaddingMode paddingMode);
 static void SetStringTemplateSpecies(BattleCastleOpponentApp *app, u32 idx, BoxPokemon *boxMon);
 static void SetStringTemplatePlayerName(BattleCastleOpponentApp *app, u32 idx);
@@ -1645,10 +1645,10 @@ static const ListMenuTemplate sDefaultListMenuTemplate = {
     .parent = NULL
 };
 
-static const u32 sMonMenuItems[][2] = {
-    { BattleCastleOpponentApp_Text_Check, MENU_OPTION_CHECK },
-    { BattleCastleOpponentApp_Text_Level, MENU_OPTION_LEVEL },
-    { BattleCastleOpponentApp_Text_Summary, MENU_OPTION_SUMMARY },
+static const u32 sMonMenuEntries[][2] = {
+    { BattleCastleOpponentApp_Text_Check, MENU_ENTRY_CHECK },
+    { BattleCastleOpponentApp_Text_Level, MENU_ENTRY_LEVEL },
+    { BattleCastleOpponentApp_Text_Summary, MENU_ENTRY_SUMMARY },
     { BattleCastleOpponentApp_Text_Cancel, MENU_CANCELED }
 };
 
@@ -1664,10 +1664,10 @@ static void InitMonOptionsMenu(BattleCastleOpponentApp *app)
     BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[OPPONENT_APP_WINDOW_MON_OPTIONS_MENU]);
     Window_FillTilemap(&app->windows[OPPONENT_APP_WINDOW_MON_OPTIONS_MENU], 15);
 
-    app->listMenuStrList = StringList_New(NELEMS(sMonMenuItems), HEAP_ID_BATTLE_CASTLE_APP);
+    app->listMenuStrList = StringList_New(NELEMS(sMonMenuEntries), HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int i = 0; i < NELEMS(sMonMenuItems); i++) {
-        StringList_AddFromMessageBank(app->listMenuStrList, app->msgLoader, sMonMenuItems[i][0], sMonMenuItems[i][1]);
+    for (int i = 0; i < NELEMS(sMonMenuEntries); i++) {
+        StringList_AddFromMessageBank(app->listMenuStrList, app->msgLoader, sMonMenuEntries[i][0], sMonMenuEntries[i][1]);
     }
 
     ListMenuTemplate template = sDefaultListMenuTemplate;
@@ -1675,9 +1675,9 @@ static void InitMonOptionsMenu(BattleCastleOpponentApp *app)
     template.choices = app->listMenuStrList;
     template.window = &app->windows[OPPONENT_APP_WINDOW_MON_OPTIONS_MENU];
     template.parent = app;
-    template.cursorCallback = UpdateMonMenuItemDescription;
+    template.cursorCallback = UpdateMonMenuEntryDescription;
     template.printCallback = NULL;
-    template.count = NELEMS(sMonMenuItems);
+    template.count = NELEMS(sMonMenuEntries);
     template.textColorBg = 15;
     template.maxDisplay = 4;
 
@@ -1687,7 +1687,7 @@ static void InitMonOptionsMenu(BattleCastleOpponentApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[OPPONENT_APP_WINDOW_MON_OPTIONS_MENU]);
 }
 
-static void UpdateMonMenuItemDescription(ListMenu *menu, u32 param1, u8 onInit)
+static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 param1, u8 onInit)
 {
     BattleCastleOpponentApp *app = (BattleCastleOpponentApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -1700,10 +1700,10 @@ static void UpdateMonMenuItemDescription(ListMenu *menu, u32 param1, u8 onInit)
     PrintLeftAlignedMessageWithBg(app, &app->windows[OPPONENT_APP_WINDOW_MON_OPTION_MSG_BOX], sMonMenuDescriptions[pos], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static const u32 sSummaryMenuItems[][2] = {
-    { BattleCastleOpponentApp_Text_Summary2, MENU_OPTION_STATS },
-    { BattleCastleOpponentApp_Text_Moves, MENU_OPTION_MOVES },
-    { BattleCastleOpponentApp_Text_RankUp, MENU_OPTION_RANK_UP_SUMMARY },
+static const u32 sSummaryMenuEntries[][2] = {
+    { BattleCastleOpponentApp_Text_Summary2, MENU_ENTRY_STATS },
+    { BattleCastleOpponentApp_Text_Moves, MENU_ENTRY_MOVES },
+    { BattleCastleOpponentApp_Text_RankUp, MENU_ENTRY_RANK_UP_SUMMARY },
     { BattleCastleOpponentApp_Text_Cancel3, MENU_CANCELED }
 };
 
@@ -1719,10 +1719,10 @@ static void InitSummaryMenu(BattleCastleOpponentApp *app)
     BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[OPPONENT_APP_WINDOW_SUMMARY_MENU]);
     Window_FillTilemap(&app->windows[OPPONENT_APP_WINDOW_SUMMARY_MENU], 15);
 
-    app->listMenuStrList = StringList_New(NELEMS(sSummaryMenuItems), HEAP_ID_BATTLE_CASTLE_APP);
+    app->listMenuStrList = StringList_New(NELEMS(sSummaryMenuEntries), HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int i = 0; i < (NELEMS(sSummaryMenuItems)); i++) {
-        StringList_AddFromMessageBank(app->listMenuStrList, app->msgLoader, sSummaryMenuItems[i][0], sSummaryMenuItems[i][1]);
+    for (int i = 0; i < (NELEMS(sSummaryMenuEntries)); i++) {
+        StringList_AddFromMessageBank(app->listMenuStrList, app->msgLoader, sSummaryMenuEntries[i][0], sSummaryMenuEntries[i][1]);
     }
 
     ListMenuTemplate template = sDefaultListMenuTemplate;
@@ -1730,9 +1730,9 @@ static void InitSummaryMenu(BattleCastleOpponentApp *app)
     template.choices = app->listMenuStrList;
     template.window = &app->windows[OPPONENT_APP_WINDOW_SUMMARY_MENU];
     template.parent = app;
-    template.cursorCallback = UpdateSummaryMenuItemDescription;
-    template.printCallback = SetSummaryMenuItemColor;
-    template.count = (NELEMS(sSummaryMenuItems));
+    template.cursorCallback = UpdateSummaryMenuEntryDescription;
+    template.printCallback = SetSummaryMenuEntryColor;
+    template.count = (NELEMS(sSummaryMenuEntries));
     template.textColorBg = 15;
     template.maxDisplay = 4;
 
@@ -1742,7 +1742,7 @@ static void InitSummaryMenu(BattleCastleOpponentApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[OPPONENT_APP_WINDOW_SUMMARY_MENU]);
 }
 
-static void UpdateSummaryMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
+static void UpdateSummaryMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
 {
     BattleCastleOpponentApp *app = (BattleCastleOpponentApp *)ListMenu_GetAttribute(menu, 19);
 
@@ -1759,7 +1759,7 @@ static void UpdateSummaryMenuItemDescription(ListMenu *menu, u32 item, u8 onInit
     PrintLeftAlignedMessageWithBg(app, &app->windows[OPPONENT_APP_WINDOW_MSG_BOX], sSummaryMenuDescriptions[pos][index], 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void SetSummaryMenuItemColor(ListMenu *menu, u32 item, u8 yOffset)
+static void SetSummaryMenuEntryColor(ListMenu *menu, u32 item, u8 yOffset)
 {
     BattleCastleOpponentApp *app = (BattleCastleOpponentApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -1767,14 +1767,14 @@ static void SetSummaryMenuItemColor(ListMenu *menu, u32 item, u8 yOffset)
     u8 fgColor = 1;
 
     switch (item) {
-    case MENU_OPTION_MOVES:
+    case MENU_ENTRY_MOVES:
         if (rank == 1) {
             fgColor = 2;
         } else {
             fgColor = 1;
         }
         break;
-    case MENU_OPTION_RANK_UP_SUMMARY:
+    case MENU_ENTRY_RANK_UP_SUMMARY:
         if (rank == (3 - 1)) {
             fgColor = 2;
         } else {

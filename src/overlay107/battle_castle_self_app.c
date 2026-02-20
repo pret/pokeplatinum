@@ -63,17 +63,17 @@
 
 FS_EXTERN_OVERLAY(overlay104);
 
-#define MENU_OPTION_HEAL            0
-#define MENU_OPTION_RESTORE_HP      1
-#define MENU_OPTION_RESTORE_PP      2
-#define MENU_OPTION_RESTORE_ALL     3
-#define MENU_OPTION_RANK_UP_HEALING 4
-#define MENU_OPTION_RENTAL          5
-#define MENU_OPTION_RENT_BERRIES    6
-#define MENU_OPTION_RENT_ITEMS      7
-#define MENU_OPTION_RANK_UP_ITEMS   8
-#define MENU_OPTION_SUMMARY         9
-#define MENU_OPTION_MOVES           10
+#define MENU_ENTRY_HEAL            0
+#define MENU_ENTRY_RESTORE_HP      1
+#define MENU_ENTRY_RESTORE_PP      2
+#define MENU_ENTRY_RESTORE_ALL     3
+#define MENU_ENTRY_RANK_UP_HEALING 4
+#define MENU_ENTRY_RENTAL          5
+#define MENU_ENTRY_RENT_BERRIES    6
+#define MENU_ENTRY_RENT_ITEMS      7
+#define MENU_ENTRY_RANK_UP_ITEMS   8
+#define MENU_ENTRY_SUMMARY         9
+#define MENU_ENTRY_MOVES           10
 
 const u16 sItemsForRent[] = {
     ITEM_KINGS_ROCK,
@@ -341,13 +341,13 @@ static void DrawItemSelectMenuAndMonInfo(BattleCastleSelfApp *app, u8 menuType);
 static void UpdateItemSelectMenuDisplay(ListMenu *menu, u32 item, u8 onInit);
 static void PrintItemPrice(ListMenu *menu, u32 item, u8 yOffset);
 static void InitHealMenu(BattleCastleSelfApp *app);
-static void UpdateHealMenuItemDescription(ListMenu *menu, u32 item, u8 onInit);
-static void SetHealMenuItemColor(ListMenu *menu, u32 item, u8 yOffset);
+static void UpdateHealMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit);
+static void SetHealMenuEntryColor(ListMenu *menu, u32 item, u8 yOffset);
 static void InitRentalMenu(BattleCastleSelfApp *app);
-static void UpdateRentalMenuItemDescription(ListMenu *menu, u32 item, u8 onInit);
-static void SetRentalMenuItemColor(ListMenu *menu, u32 item, u8 onInit);
+static void UpdateRentalMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit);
+static void SetRentalMenuEntryColor(ListMenu *menu, u32 item, u8 onInit);
 static void InitMonOptionsMenu(BattleCastleSelfApp *app);
-static void UpdateMonMenuItemDescription(ListMenu *menu, u32 item, u8 onInit);
+static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit);
 static void SetStringTemplateNumber(BattleCastleSelfApp *app, u32 idx, s32 num, u32 maxDigits, enum PaddingMode paddingMode);
 static void SetStringTemplateSpecies(BattleCastleSelfApp *app, u32 idx, BoxPokemon *boxMon);
 static void SetStringTemplatePlayerName(BattleCastleSelfApp *app, u32 idx);
@@ -411,11 +411,11 @@ static const u16 sHealingCosts[] = {
     12
 };
 
-static const u32 sHealMenuOptions[][3] = {
-    { 1, BattleCastleSelfApp_Text_RestoreHP, MENU_OPTION_RESTORE_HP },
-    { 2, BattleCastleSelfApp_Text_RestorePP, MENU_OPTION_RESTORE_PP },
-    { 3, BattleCastleSelfApp_Text_RestoreAll, MENU_OPTION_RESTORE_ALL },
-    { 1, BattleCastleSelfApp_Text_RankUp, MENU_OPTION_RANK_UP_HEALING },
+static const u32 sHealMenuEntries[][3] = {
+    { 1, BattleCastleSelfApp_Text_RestoreHP, MENU_ENTRY_RESTORE_HP },
+    { 2, BattleCastleSelfApp_Text_RestorePP, MENU_ENTRY_RESTORE_PP },
+    { 3, BattleCastleSelfApp_Text_RestoreAll, MENU_ENTRY_RESTORE_ALL },
+    { 1, BattleCastleSelfApp_Text_RankUp, MENU_ENTRY_RANK_UP_HEALING },
     { 1, BattleCastleSelfApp_Text_Cancel2, MENU_CANCELED }
 };
 
@@ -755,14 +755,14 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
 
         if (gSystem.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_16 == 0) {
-                ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, NELEMS(sHealMenuOptions) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
+                ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, NELEMS(sHealMenuEntries) - 1, 1, PAD_KEY_DOWN, NULL, NULL);
                 ListMenu_Draw(param0->listMenu);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 PrintLeftAlignedMessageWithBg(param0, &param0->windows[SELF_APP_WINDOW_MSG_BOX], BattleCastleSelfApp_Text_ReturnToPrevious, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            if (param0->unk_16 == NELEMS(sHealMenuOptions) - 1) {
+            if (param0->unk_16 == NELEMS(sHealMenuEntries) - 1) {
                 ListMenu_TestInput(param0->listMenu, (ListMenuTemplate *)&param0->listTemplate, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
                 ListMenu_Draw(param0->listMenu);
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -794,7 +794,7 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
 
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-            if (v2 < sHealMenuOptions[param0->unk_16][0]) {
+            if (v2 < sHealMenuEntries[param0->unk_16][0]) {
                 param0->printerID = PrintMessageAndCopyToVRAM(param0, BattleCastleSelfApp_Text_HealRankTooLow, FONT_MESSAGE);
                 param0->subState = 7;
             } else {
@@ -835,7 +835,7 @@ static BOOL ov107_02241EC8(BattleCastleSelfApp *param0)
             v3 = sub_02030698(param0->frontier, sub_0205E630(param0->challengeType), sub_0205E6A8(sub_0205E630(param0->challengeType)));
             v2 = ov107_02249CAC(param0->saveData, param0->challengeType, 0);
 
-            if (v2 < sHealMenuOptions[param0->unk_16][0]) {
+            if (v2 < sHealMenuEntries[param0->unk_16][0]) {
                 BattleCastleApp_DrawMessageBox(&param0->windows[SELF_APP_WINDOW_MSG_BOX], Options_Frame(param0->options));
                 param0->printerID = PrintMessageAndCopyToVRAM(param0, 33, FONT_MESSAGE);
                 param0->subState = 7;
@@ -2141,7 +2141,7 @@ static void DrawItemSelectMenuAndMonInfo(BattleCastleSelfApp *app, u8 menuType)
     u8 rank = ov107_02249CAC(app->saveData, app->challengeType, 1);
 
     u8 listSize;
-    if (menuType == MENU_OPTION_RENT_BERRIES) {
+    if (menuType == MENU_ENTRY_RENT_BERRIES) {
         listSize = sBerriesAvailableByRank[rank - 1];
     } else {
         listSize = sItemsAvailableByRank[rank - 1];
@@ -2152,7 +2152,7 @@ static void DrawItemSelectMenuAndMonInfo(BattleCastleSelfApp *app, u8 menuType)
     for (int i = 0; i < listSize; i++) {
         u16 itemID;
 
-        if (menuType == MENU_OPTION_RENT_BERRIES) {
+        if (menuType == MENU_ENTRY_RENT_BERRIES) {
             itemID = sBerriesForRent[i];
         } else {
             itemID = sItemsForRent[i];
@@ -2240,27 +2240,27 @@ static void InitHealMenu(BattleCastleSelfApp *app)
     BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[SELF_APP_WINDOW_HEAL_MENU]);
     Window_FillTilemap(&app->windows[SELF_APP_WINDOW_HEAL_MENU], 15);
 
-    app->strList = StringList_New(NELEMS(sHealMenuOptions), HEAP_ID_BATTLE_CASTLE_APP);
+    app->strList = StringList_New(NELEMS(sHealMenuEntries), HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int i = 0; i < NELEMS(sHealMenuOptions); i++) {
-        StringList_AddFromMessageBank(app->strList, app->msgLoader, sHealMenuOptions[i][1], sHealMenuOptions[i][2]);
+    for (int i = 0; i < NELEMS(sHealMenuEntries); i++) {
+        StringList_AddFromMessageBank(app->strList, app->msgLoader, sHealMenuEntries[i][1], sHealMenuEntries[i][2]);
     }
 
     app->listTemplate = sDefaultListTemplate;
     app->listTemplate.choices = app->strList;
     app->listTemplate.window = &app->windows[SELF_APP_WINDOW_HEAL_MENU];
     app->listTemplate.parent = app;
-    app->listTemplate.cursorCallback = UpdateHealMenuItemDescription;
-    app->listTemplate.printCallback = SetHealMenuItemColor;
-    app->listTemplate.count = NELEMS(sHealMenuOptions);
-    app->listTemplate.maxDisplay = NELEMS(sHealMenuOptions);
+    app->listTemplate.cursorCallback = UpdateHealMenuEntryDescription;
+    app->listTemplate.printCallback = SetHealMenuEntryColor;
+    app->listTemplate.count = NELEMS(sHealMenuEntries);
+    app->listTemplate.maxDisplay = NELEMS(sHealMenuEntries);
     app->listTemplate.textColorBg = 15;
     app->listMenu = ListMenu_New(&app->listTemplate, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
     MarkListMenuAsOpen(app, &app->windows[SELF_APP_WINDOW_HEAL_MENU]);
 }
 
-static void UpdateHealMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
+static void UpdateHealMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
 {
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -2272,7 +2272,7 @@ static void UpdateHealMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
 
     u16 entryID;
     switch (item) {
-    case MENU_OPTION_RANK_UP_HEALING:
+    case MENU_ENTRY_RANK_UP_HEALING:
         if (rank == 3) {
             entryID = BattleCastleSelfApp_Text_RankCannotBeRaised;
         } else if (rank == 1) {
@@ -2292,7 +2292,7 @@ static void UpdateHealMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
     PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MSG_BOX], entryID, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void SetHealMenuItemColor(ListMenu *menu, u32 item, u8 yOffset)
+static void SetHealMenuEntryColor(ListMenu *menu, u32 item, u8 yOffset)
 {
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, 19);
 
@@ -2302,16 +2302,16 @@ static void SetHealMenuItemColor(ListMenu *menu, u32 item, u8 yOffset)
 
     u8 fgColor;
     switch (item) {
-    case MENU_OPTION_RESTORE_HP:
-    case MENU_OPTION_RESTORE_PP:
-    case MENU_OPTION_RESTORE_ALL:
-        if (rank >= sHealMenuOptions[item - 1][0]) {
+    case MENU_ENTRY_RESTORE_HP:
+    case MENU_ENTRY_RESTORE_PP:
+    case MENU_ENTRY_RESTORE_ALL:
+        if (rank >= sHealMenuEntries[item - 1][0]) {
             fgColor = 1;
         } else {
             fgColor = 2;
         }
         break;
-    case MENU_OPTION_RANK_UP_HEALING:
+    case MENU_ENTRY_RANK_UP_HEALING:
         if (rank == 3) {
             fgColor = 2;
         } else {
@@ -2326,10 +2326,10 @@ static void SetHealMenuItemColor(ListMenu *menu, u32 item, u8 yOffset)
     ListMenu_SetTextColors(menu, fgColor, 15, 2);
 }
 
-static const u32 sRentalMenuItems[][3] = {
-    { 1, BattleCastleSelfApp_Text_Berries, MENU_OPTION_RENT_BERRIES },
-    { 2, BattleCastleSelfApp_Text_Items, MENU_OPTION_RENT_ITEMS },
-    { 1, BattleCastleSelfApp_Text_RankUp2, MENU_OPTION_RANK_UP_ITEMS },
+static const u32 sRentalMenuEntries[][3] = {
+    { 1, BattleCastleSelfApp_Text_Berries, MENU_ENTRY_RENT_BERRIES },
+    { 2, BattleCastleSelfApp_Text_Items, MENU_ENTRY_RENT_ITEMS },
+    { 1, BattleCastleSelfApp_Text_RankUp2, MENU_ENTRY_RANK_UP_ITEMS },
     { 1, BattleCastleSelfApp_Text_Cancel3, MENU_CANCELED }
 };
 
@@ -2339,20 +2339,20 @@ static void InitRentalMenu(BattleCastleSelfApp *app)
     BattleCastleApp_DrawWindow(app->bgConfig, &app->windows[SELF_APP_WINDOW_RENTAL_MENU]);
     Window_FillTilemap(&app->windows[SELF_APP_WINDOW_RENTAL_MENU], 15);
 
-    app->strList = StringList_New(NELEMS(sRentalMenuItems), HEAP_ID_BATTLE_CASTLE_APP);
+    app->strList = StringList_New(NELEMS(sRentalMenuEntries), HEAP_ID_BATTLE_CASTLE_APP);
 
-    for (int i = 0; i < NELEMS(sRentalMenuItems); i++) {
-        StringList_AddFromMessageBank(app->strList, app->msgLoader, sRentalMenuItems[i][1], sRentalMenuItems[i][2]);
+    for (int i = 0; i < NELEMS(sRentalMenuEntries); i++) {
+        StringList_AddFromMessageBank(app->strList, app->msgLoader, sRentalMenuEntries[i][1], sRentalMenuEntries[i][2]);
     }
 
     app->listTemplate = sDefaultListTemplate;
     app->listTemplate.choices = app->strList;
     app->listTemplate.window = &app->windows[SELF_APP_WINDOW_RENTAL_MENU];
     app->listTemplate.parent = app;
-    app->listTemplate.cursorCallback = UpdateRentalMenuItemDescription;
-    app->listTemplate.printCallback = SetRentalMenuItemColor;
-    app->listTemplate.count = NELEMS(sRentalMenuItems);
-    app->listTemplate.maxDisplay = NELEMS(sRentalMenuItems);
+    app->listTemplate.cursorCallback = UpdateRentalMenuEntryDescription;
+    app->listTemplate.printCallback = SetRentalMenuEntryColor;
+    app->listTemplate.count = NELEMS(sRentalMenuEntries);
+    app->listTemplate.maxDisplay = NELEMS(sRentalMenuEntries);
     app->listTemplate.textColorBg = 15;
     app->listMenu = ListMenu_New(&app->listTemplate, 0, 0, HEAP_ID_BATTLE_CASTLE_APP);
 
@@ -2362,7 +2362,7 @@ static void InitRentalMenu(BattleCastleSelfApp *app)
     Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
 }
 
-static void UpdateRentalMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
+static void UpdateRentalMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
 {
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -2374,13 +2374,13 @@ static void UpdateRentalMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
 
     u16 entryID;
     switch (item) {
-    case MENU_OPTION_RENT_BERRIES:
+    case MENU_ENTRY_RENT_BERRIES:
         entryID = BattleCastleSelfApp_Text_MayRentBerry;
         break;
-    case MENU_OPTION_RENT_ITEMS:
+    case MENU_ENTRY_RENT_ITEMS:
         entryID = BattleCastleSelfApp_Text_MayRentItem;
         break;
-    case MENU_OPTION_RANK_UP_ITEMS:
+    case MENU_ENTRY_RANK_UP_ITEMS:
         if (rank == 3) {
             entryID = BattleCastleSelfApp_Text_RankCannotBeRaised2;
         } else if (rank == 1) {
@@ -2397,7 +2397,7 @@ static void UpdateRentalMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
     PrintLeftAlignedMessageWithBg(app, &app->windows[SELF_APP_WINDOW_MSG_BOX], entryID, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
-static void SetRentalMenuItemColor(ListMenu *menu, u32 item, u8 onInit)
+static void SetRentalMenuEntryColor(ListMenu *menu, u32 item, u8 onInit)
 {
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -2405,14 +2405,14 @@ static void SetRentalMenuItemColor(ListMenu *menu, u32 item, u8 onInit)
 
     u8 fgColor;
     switch (item) {
-    case MENU_OPTION_RENT_ITEMS:
-        if (rank >= sRentalMenuItems[item - 6][0]) {
+    case MENU_ENTRY_RENT_ITEMS:
+        if (rank >= sRentalMenuEntries[item - 6][0]) {
             fgColor = 1;
         } else {
             fgColor = 2;
         }
         break;
-    case MENU_OPTION_RANK_UP_ITEMS:
+    case MENU_ENTRY_RANK_UP_ITEMS:
         if (rank == 3) {
             fgColor = 2;
         } else {
@@ -2427,11 +2427,11 @@ static void SetRentalMenuItemColor(ListMenu *menu, u32 item, u8 onInit)
     ListMenu_SetTextColors(menu, fgColor, 15, 2);
 }
 
-static const u32 sMonMenuItems[][2] = {
-    { BattleCastleSelfApp_Text_Heal, MENU_OPTION_HEAL },
-    { BattleCastleSelfApp_Text_Rental, MENU_OPTION_RENTAL },
-    { BattleCastleSelfApp_Text_Summary, MENU_OPTION_SUMMARY },
-    { BattleCastleSelfApp_Text_Moves, MENU_OPTION_MOVES },
+static const u32 sMonMenuEntries[][2] = {
+    { BattleCastleSelfApp_Text_Heal, MENU_ENTRY_HEAL },
+    { BattleCastleSelfApp_Text_Rental, MENU_ENTRY_RENTAL },
+    { BattleCastleSelfApp_Text_Summary, MENU_ENTRY_SUMMARY },
+    { BattleCastleSelfApp_Text_Moves, MENU_ENTRY_MOVES },
     { BattleCastleSelfApp_Text_Cancel, MENU_CANCELED }
 };
 
@@ -2451,14 +2451,14 @@ static void InitMonOptionsMenu(BattleCastleSelfApp *app)
     app->strList = StringList_New(5, HEAP_ID_BATTLE_CASTLE_APP);
 
     for (int i = 0; i < 5; i++) {
-        StringList_AddFromMessageBank(app->strList, app->msgLoader, sMonMenuItems[i][0], sMonMenuItems[i][1]);
+        StringList_AddFromMessageBank(app->strList, app->msgLoader, sMonMenuEntries[i][0], sMonMenuEntries[i][1]);
     }
 
     app->listTemplate = sDefaultListTemplate;
     app->listTemplate.choices = app->strList;
     app->listTemplate.window = &app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU];
     app->listTemplate.parent = app;
-    app->listTemplate.cursorCallback = UpdateMonMenuItemDescription;
+    app->listTemplate.cursorCallback = UpdateMonMenuEntryDescription;
     app->listTemplate.printCallback = NULL;
     app->listTemplate.count = 5;
     app->listTemplate.maxDisplay = 5;
@@ -2470,7 +2470,7 @@ static void InitMonOptionsMenu(BattleCastleSelfApp *app)
     Window_ScheduleCopyToVRAM(&app->windows[SELF_APP_WINDOW_MON_OPTIONS_MENU]);
 }
 
-static void UpdateMonMenuItemDescription(ListMenu *menu, u32 item, u8 onInit)
+static void UpdateMonMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
 {
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
@@ -2683,7 +2683,7 @@ static u16 GetItemPriceFromListPos(BattleCastleSelfApp *app, u16 listPos, u8 men
 {
     ov107_02249CAC(app->saveData, app->challengeType, 1);
 
-    if (menuType == MENU_OPTION_RENT_BERRIES) {
+    if (menuType == MENU_ENTRY_RENT_BERRIES) {
         return sBerryPrices[listPos];
     }
 
@@ -2714,7 +2714,7 @@ static u16 GetItemIDFromListPos(BattleCastleSelfApp *app, u16 idx, u8 selectedMe
 {
     ov107_02249CAC(app->saveData, app->challengeType, 1);
 
-    if (selectedMenu == MENU_OPTION_RENT_BERRIES) {
+    if (selectedMenu == MENU_ENTRY_RENT_BERRIES) {
         return sBerriesForRent[idx];
     }
 
