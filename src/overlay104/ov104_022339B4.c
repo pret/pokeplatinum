@@ -439,7 +439,7 @@ u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
 
     Heap_Free(BattleTower_GetTrainerData(&v0, param0->unk_18[v2], HEAP_ID_FIELD2, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR));
 
-    return ov104_0222E10C(v0.trainerType);
+    return BattleTower_GetObjectIDFromTrainerClass(v0.trainerType);
 }
 
 void ov104_02234474(UnkStruct_ov104_0223ADA0 *param0)

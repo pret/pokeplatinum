@@ -3,7 +3,7 @@
 
 #include "overlay104/frontier_script_context.h"
 
-BOOL FrontierScrCmd_84(FrontierScriptContext *param0);
+BOOL FrontierScrCmd_CallBattleTowerFunction(FrontierScriptContext *ctx);
 BOOL FrontierScrCmd_85(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_86(FrontierScriptContext *param0);
 BOOL FrontierScrCmd_87(FrontierScriptContext *param0);

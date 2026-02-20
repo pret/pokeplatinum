@@ -6,6 +6,7 @@
 #include "constants/scrcmd.h"
 #include "generated/game_records.h"
 #include "generated/string_padding_mode.h"
+#include "generated/vars_flags.h"
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -125,8 +126,8 @@ typedef struct {
 } UnkStruct_ov104_02231148;
 
 void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteManager *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
-u16 ov104_0222FC8C(FrontierScriptContext *param0, u16 param1);
-u16 *ov104_0222FC14(FrontierScriptContext *param0, u16 param1);
+u16 FrontierScriptContext_TryGetVar(FrontierScriptContext *ctx, u16 varID);
+u16 *FrontierScriptContext_GetVarPointer(FrontierScriptContext *ctx, u16 varID);
 static BOOL FrontierScrCmd_Noop(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_End(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_02(FrontierScriptContext *param0);
@@ -197,8 +198,8 @@ static BOOL FrontierScrCmd_81(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_82(FrontierScriptContext *param0);
 static BOOL FrontierScrCmd_83(FrontierScriptContext *param0);
 static u16 GetNumberDigitCount(u32 number);
-u16 *ov104_0222FBE4(FrontierScriptContext *param0);
-u16 ov104_0222FC00(FrontierScriptContext *param0);
+u16 *FrontierScriptContext_TryGetVarPointer(FrontierScriptContext *ctx);
+u16 FrontierScriptContext_GetVar(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Call(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_Return(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_CallIf(FrontierScriptContext *ctx);
@@ -426,7 +427,7 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
     FrontierScrCmd_81,
     FrontierScrCmd_82,
     FrontierScrCmd_83,
-    FrontierScrCmd_84,
+    FrontierScrCmd_CallBattleTowerFunction,
     FrontierScrCmd_85,
     FrontierScrCmd_86,
     FrontierScrCmd_87,
@@ -502,41 +503,41 @@ const FrontierScrCmdFunc Unk_ov104_0223F674[] = {
 
 const u32 Unk_ov104_0223F63C = NELEMS(Unk_ov104_0223F674);
 
-u16 *ov104_0222FBE4(FrontierScriptContext *param0)
+u16 *FrontierScriptContext_TryGetVarPointer(FrontierScriptContext *ctx)
 {
-    u16 *v0;
-    u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
+    u16 *var;
+    u16 varID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0 = ov104_0222FC14(param0, v1);
+    var = FrontierScriptContext_GetVarPointer(ctx, varID);
 
-    if (v0 == NULL) {
+    if (var == NULL) {
         (void)0;
     }
 
-    GF_ASSERT(v0 != NULL);
-    return v0;
+    GF_ASSERT(var != NULL);
+    return var;
 }
 
-u16 ov104_0222FC00(FrontierScriptContext *param0)
+u16 FrontierScriptContext_GetVar(FrontierScriptContext *ctx)
 {
-    return ov104_0222FC8C(param0, FrontierScriptContext_ReadHalfWord(param0));
+    return FrontierScriptContext_TryGetVar(ctx, FrontierScriptContext_ReadHalfWord(ctx));
 }
 
-u16 *ov104_0222FC14(FrontierScriptContext *param0, u16 param1)
+u16 *FrontierScriptContext_GetVarPointer(FrontierScriptContext *ctx, u16 varID)
 {
-    if (param1 < 0x8000) {
+    if (varID < SCRIPT_LOCAL_VARS_START) {
         return NULL;
-    } else if (param1 < ((0x8000 + 7) + 1)) {
-        return &param0->unk_08[param1 - 0x8000];
-    } else if (param1 < ((((0x8000 + 7) + 1) + 7) + 1)) {
-        return ov104_0222E91C(param0->unk_00, param1 - ((0x8000 + 7) + 1));
-    } else if (param1 < ((((((0x8000 + 7) + 1) + 7) + 1) + 3) + 1)) {
-        return &param0->data[param1 - ((((0x8000 + 7) + 1) + 7) + 1)];
-    } else if (param1 == 0xfd13) {
+    } else if (varID < ((SCRIPT_LOCAL_VARS_START + 7) + 1)) {
+        return &ctx->unk_08[varID - SCRIPT_LOCAL_VARS_START];
+    } else if (varID < ((((SCRIPT_LOCAL_VARS_START + 7) + 1) + 7) + 1)) {
+        return ov104_0222E91C(ctx->unk_00, varID - ((SCRIPT_LOCAL_VARS_START + 7) + 1));
+    } else if (varID < ((((((SCRIPT_LOCAL_VARS_START + 7) + 1) + 7) + 1) + 3) + 1)) {
+        return &ctx->data[varID - ((((SCRIPT_LOCAL_VARS_START + 7) + 1) + 7) + 1)];
+    } else if (varID == 0xfd13) {
         return NULL;
-    } else if (param1 == 0xeeee) {
+    } else if (varID == 0xeeee) {
         return NULL;
-    } else if (param1 == 0xeeef) {
+    } else if (varID == 0xeeef) {
         return NULL;
     }
 
@@ -544,15 +545,15 @@ u16 *ov104_0222FC14(FrontierScriptContext *param0, u16 param1)
     return NULL;
 }
 
-u16 ov104_0222FC8C(FrontierScriptContext *param0, u16 param1)
+u16 FrontierScriptContext_TryGetVar(FrontierScriptContext *ctx, u16 varID)
 {
-    u16 *v0 = ov104_0222FC14(param0, param1);
+    u16 *var = FrontierScriptContext_GetVarPointer(ctx, varID);
 
-    if (v0 == NULL) {
-        return param1;
+    if (var == NULL) {
+        return varID;
     }
 
-    return *v0;
+    return *var;
 }
 
 static BOOL FrontierScrCmd_Noop(FrontierScriptContext *ctx)
@@ -577,7 +578,7 @@ static BOOL FrontierScrCmd_02(FrontierScriptContext *param0)
 static BOOL FrontierScrCmd_03(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u16 v1 = ov104_0222FC00(param0);
+    u16 v1 = FrontierScriptContext_GetVar(param0);
 
     sub_0209B9BC(v0->unk_00, v1, 0xffff);
     FrontierScriptContext_Pause(param0, ov104_0222FCEC);
@@ -593,8 +594,8 @@ static BOOL ov104_0222FCEC(FrontierScriptContext *param0)
 static BOOL FrontierScrCmd_04(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u16 v1 = ov104_0222FC00(param0);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v1 = FrontierScriptContext_GetVar(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
 
     sub_0209B9BC(v0->unk_00, v1, v2);
     FrontierScriptContext_Stop(param0);
@@ -607,7 +608,7 @@ static BOOL FrontierScrCmd_WaitTime(FrontierScriptContext *ctx)
     u16 frames = FrontierScriptContext_ReadHalfWord(ctx);
     u16 countdownVarID = FrontierScriptContext_ReadHalfWord(ctx);
 
-    u16 *countdownVar = ov104_0222FC14(ctx, countdownVarID);
+    u16 *countdownVar = FrontierScriptContext_GetVarPointer(ctx, countdownVarID);
     *countdownVar = frames;
     ctx->data[0] = countdownVarID;
     FrontierScriptContext_Pause(ctx, DecrementTimer);
@@ -616,37 +617,37 @@ static BOOL FrontierScrCmd_WaitTime(FrontierScriptContext *ctx)
 
 static BOOL DecrementTimer(FrontierScriptContext *ctx)
 {
-    u16 *frames = ov104_0222FC14(ctx, ctx->data[0]);
+    u16 *frames = FrontierScriptContext_GetVarPointer(ctx, ctx->data[0]);
     (*frames)--;
     return *frames == 0;
 }
 
 static BOOL FrontierScrCmd_SetVarFromValue(FrontierScriptContext *ctx)
 {
-    u16 *destVar = ov104_0222FBE4(ctx);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
     *destVar = FrontierScriptContext_ReadHalfWord(ctx);
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_SetVarFromVar(FrontierScriptContext *ctx)
 {
-    u16 *destVar = ov104_0222FBE4(ctx);
-    u16 *srcVar = ov104_0222FBE4(ctx);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    u16 *srcVar = FrontierScriptContext_TryGetVarPointer(ctx);
     *destVar = *srcVar;
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_AddVar(FrontierScriptContext *ctx)
 {
-    u16 *destVar = ov104_0222FBE4(ctx);
-    *destVar += ov104_0222FC00(ctx);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    *destVar += FrontierScriptContext_GetVar(ctx);
     return FALSE;
 }
 
 static BOOL FrontierScrCmd_SubVar(FrontierScriptContext *ctx)
 {
-    u16 *destVar = ov104_0222FBE4(ctx);
-    *destVar -= ov104_0222FC00(ctx);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    *destVar -= FrontierScriptContext_GetVar(ctx);
     return FALSE;
 }
 
@@ -663,7 +664,7 @@ static BOOL Compare(u16 value0, u16 value1)
 
 static BOOL FrontierScrCmd_CompareVarToValue(FrontierScriptContext *ctx)
 {
-    u16 value0 = ov104_0222FC00(ctx);
+    u16 value0 = FrontierScriptContext_GetVar(ctx);
     u16 value1 = FrontierScriptContext_ReadHalfWord(ctx);
     ctx->comparisonResult = Compare(value0, value1);
     return FALSE;
@@ -671,8 +672,8 @@ static BOOL FrontierScrCmd_CompareVarToValue(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_CompareVarToVar(FrontierScriptContext *ctx)
 {
-    u16 *var0 = ov104_0222FBE4(ctx);
-    u16 *var1 = ov104_0222FBE4(ctx);
+    u16 *var0 = FrontierScriptContext_TryGetVarPointer(ctx);
+    u16 *var1 = FrontierScriptContext_TryGetVarPointer(ctx);
     ctx->comparisonResult = Compare(*var0, *var1);
     return FALSE;
 }
@@ -799,7 +800,7 @@ static BOOL FrontierScrCmd_InitGlobalTextMenu(FrontierScriptContext *ctx)
     u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
     u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0->unk_60 = FrontierMenuManager_New(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, NULL);
+    v0->unk_60 = FrontierMenuManager_New(v0, anchorX, anchorY, initialCursorPos, canExitWithB, FrontierScriptContext_GetVarPointer(ctx, selectedOptionVar), v0->strTemplate, NULL);
     ctx->data[0] = selectedOptionVar;
 
     return TRUE;
@@ -814,7 +815,7 @@ static BOOL FrontierScrCmd_InitLocalTextMenu(FrontierScriptContext *ctx)
     u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
     u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0->unk_60 = FrontierMenuManager_New(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, ctx->msgLoader);
+    v0->unk_60 = FrontierMenuManager_New(v0, anchorX, anchorY, initialCursorPos, canExitWithB, FrontierScriptContext_GetVarPointer(ctx, selectedOptionVar), v0->strTemplate, ctx->msgLoader);
     ctx->data[0] = selectedOptionVar;
 
     return TRUE;
@@ -857,7 +858,7 @@ static BOOL FrontierScrCmd_ShowMenu(FrontierScriptContext *ctx)
 static BOOL ResumeOnMenuSelection(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
-    u16 *selectedOptionPtr = ov104_0222FC14(param0, param0->data[0]);
+    u16 *selectedOptionPtr = FrontierScriptContext_GetVarPointer(param0, param0->data[0]);
 
     if (*selectedOptionPtr == LIST_MENU_NO_SELECTION_YET) {
         return FALSE;
@@ -876,7 +877,7 @@ static BOOL FrontierScrCmd_InitGlobalTextListMenu(FrontierScriptContext *ctx)
     u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
     u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0->unk_60 = FrontierMenuManager_New2(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, NULL);
+    v0->unk_60 = FrontierMenuManager_New2(v0, anchorX, anchorY, initialCursorPos, canExitWithB, FrontierScriptContext_GetVarPointer(ctx, selectedOptionVar), v0->strTemplate, NULL);
     ctx->data[0] = selectedOptionVar;
 
     return TRUE;
@@ -891,7 +892,7 @@ static BOOL FrontierScrCmd_InitLocalTextListMenu(FrontierScriptContext *ctx)
     u8 canExitWithB = FrontierScriptContext_ReadByte(ctx);
     u16 selectedOptionVar = FrontierScriptContext_ReadHalfWord(ctx);
 
-    v0->unk_60 = FrontierMenuManager_New2(v0, anchorX, anchorY, initialCursorPos, canExitWithB, ov104_0222FC14(ctx, selectedOptionVar), v0->strTemplate, ctx->msgLoader);
+    v0->unk_60 = FrontierMenuManager_New2(v0, anchorX, anchorY, initialCursorPos, canExitWithB, FrontierScriptContext_GetVarPointer(ctx, selectedOptionVar), v0->strTemplate, ctx->msgLoader);
     ctx->data[0] = selectedOptionVar;
 
     return TRUE;
@@ -943,7 +944,7 @@ static BOOL FrontierScrCmd_ShowYesNoMenu(FrontierScriptContext *ctx)
 static BOOL WaitForYesNoResult(FrontierScriptContext *ctx)
 {
     UnkStruct_ov104_022320B4 *v1 = ctx->unk_00;
-    u16 *destVar = ov104_0222FC14(ctx, ctx->data[0]);
+    u16 *destVar = FrontierScriptContext_GetVarPointer(ctx, ctx->data[0]);
     u32 result = Menu_ProcessInputAndHandleExit(v1->menu, v1->heapID);
     if (result == MENU_NOTHING_CHOSEN) {
         return FALSE;
@@ -968,7 +969,7 @@ static BOOL FrontierScrCmd_22(FrontierScriptContext *param0)
     param0->scriptPtr = (u8 *)(param0->scriptPtr + v4);
 
     while (TRUE) {
-        v3.unk_00 = ov104_0222FC00(param0);
+        v3.unk_00 = FrontierScriptContext_GetVar(param0);
 
         if (v3.unk_00 == 0xfd13) {
             break;
@@ -1013,7 +1014,7 @@ static BOOL FrontierScrCmd_23(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
     ov104_0223D148(v1, v2);
 
     return 0;
@@ -1035,13 +1036,13 @@ static BOOL FrontierScrCmd_24(FrontierScriptContext *param0)
 
     while (TRUE) {
         v5 = -1;
-        v4.unk_04 = ov104_0222FC00(param0);
+        v4.unk_04 = FrontierScriptContext_GetVar(param0);
 
         if (v4.unk_04 == 0xfd13) {
             break;
         }
 
-        v4.unk_00 = ov104_0222FC00(param0);
+        v4.unk_00 = FrontierScriptContext_GetVar(param0);
         v4.unk_0A = FrontierScriptContext_ReadByte(param0);
         v4.unk_06 = FrontierScriptContext_ReadHalfWord(param0) + -8;
         v4.unk_08 = FrontierScriptContext_ReadHalfWord(param0) + -16;
@@ -1080,7 +1081,7 @@ static BOOL FrontierScrCmd_25(FrontierScriptContext *param0)
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     UnkStruct_ov63_0222BEC0 *v2;
-    u16 v3 = ov104_0222FC00(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
     v2 = ov63_0222BF18(v1->unk_14, v3);
 
     ov104_0223D200(v1, v2);
@@ -1092,7 +1093,7 @@ static BOOL FrontierScrCmd_26(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
     u8 v3 = FrontierScriptContext_ReadByte(param0);
     UnkStruct_ov63_0222CE44 *v4 = NULL;
 
@@ -1113,7 +1114,7 @@ static BOOL FrontierScrCmd_28(FrontierScriptContext *param0)
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u8 *v2;
-    u16 v3 = ov104_0222FC00(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
     u32 v4 = (s32)FrontierScriptContext_ReadWord(param0);
     UnkStruct_ov104_0223C634 *v5 = ov104_0223D5A8(v0->unk_00, v3);
 
@@ -1175,7 +1176,7 @@ static BOOL FrontierScrCmd_2A(FrontierScriptContext *param0)
     v5 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, v0->heapID);
 
     while (TRUE) {
-        v4 = ov104_0222FC00(param0);
+        v4 = FrontierScriptContext_GetVar(param0);
 
         if (v4 == 0xfd13) {
             break;
@@ -1195,7 +1196,7 @@ static BOOL FrontierScrCmd_2B(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
 
     ov104_0223D7EC(v1->unk_34.unk_04, v2);
     ov104_0223D2CC(v1, v2);
@@ -1218,15 +1219,15 @@ static BOOL FrontierScrCmd_2C(FrontierScriptContext *param0)
     param0->scriptPtr = (u8 *)(param0->scriptPtr + v3);
 
     while (TRUE) {
-        v4 = ov104_0222FC00(param0);
+        v4 = FrontierScriptContext_GetVar(param0);
 
         if (v4 == 0xfd13) {
             break;
         }
 
-        v5 = ov104_0222FC00(param0);
-        v6 = ov104_0222FC00(param0);
-        v7 = ov104_0222FC00(param0);
+        v5 = FrontierScriptContext_GetVar(param0);
+        v6 = FrontierScriptContext_GetVar(param0);
+        v7 = FrontierScriptContext_GetVar(param0);
         v8 = FrontierScriptContext_ReadByte(param0);
         v9 = FrontierScriptContext_ReadByte(param0);
         v10 = ov104_0223D2FC(v1, v9, v4);
@@ -1247,7 +1248,7 @@ static BOOL FrontierScrCmd_2D(FrontierScriptContext *param0)
     u16 v1;
     UnkStruct_ov104_0223C4CC *v2 = sub_0209B974(v0->unk_00);
 
-    v1 = ov104_0222FC00(param0);
+    v1 = FrontierScriptContext_GetVar(param0);
     ov104_0223D348(v2, v1);
 
     return 0;
@@ -1257,7 +1258,7 @@ static BOOL FrontierScrCmd_2E(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
     u8 v3 = FrontierScriptContext_ReadByte(param0);
     ManagedSprite *v4 = ov104_0223D370(v1, v2);
 
@@ -1271,7 +1272,7 @@ static BOOL FrontierScrCmd_2F(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
     ManagedSprite *v3 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v3 != NULL);
@@ -1285,8 +1286,8 @@ static BOOL FrontierScrCmd_30(FrontierScriptContext *param0)
     ManagedSprite *v0;
     UnkStruct_ov104_022320B4 *v1 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v2 = sub_0209B974(v1->unk_00);
-    u16 v3 = ov104_0222FC00(param0);
-    u16 v4 = ov104_0222FC00(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
+    u16 v4 = FrontierScriptContext_GetVar(param0);
 
     v0 = ov104_0223D370(v2, v3);
     GF_ASSERT(v0 != NULL);
@@ -1302,8 +1303,8 @@ static BOOL FrontierScrCmd_30(FrontierScriptContext *param0)
 
 static BOOL FrontierScrCmd_31(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222FC00(param0);
-    u16 v1 = ov104_0222FC00(param0);
+    u16 v0 = FrontierScriptContext_GetVar(param0);
+    u16 v1 = FrontierScriptContext_GetVar(param0);
     ManagedSprite *v2;
     UnkStruct_ov104_0223C4CC *v3 = sub_0209B974(param0->unk_00->unk_00);
 
@@ -1317,7 +1318,7 @@ static BOOL FrontierScrCmd_31(FrontierScriptContext *param0)
 
 static BOOL FrontierScrCmd_32(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222FC00(param0);
+    u16 v0 = FrontierScriptContext_GetVar(param0);
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(param0->unk_00->unk_00);
 
     ov104_0223D378(v1, v0, 0);
@@ -1326,7 +1327,7 @@ static BOOL FrontierScrCmd_32(FrontierScriptContext *param0)
 
 static BOOL FrontierScrCmd_33(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222FC00(param0);
+    u16 v0 = FrontierScriptContext_GetVar(param0);
 
     param0->data[0] = v0;
     FrontierScriptContext_Pause(param0, ov104_02230850);
@@ -1358,10 +1359,10 @@ static void ov104_0223088C(FrontierScriptContext *param0, int param1, int param2
     GF_ASSERT(param2 <= 7);
 
     v1 = Heap_Alloc(v0->heapID, sizeof(s16) * param2);
-    v2 = ov104_0222FC00(param0);
+    v2 = FrontierScriptContext_GetVar(param0);
 
     for (v3 = 0; v3 < 3; v3++) {
-        v1[v3] = ov104_0222FC00(param0);
+        v1[v3] = FrontierScriptContext_GetVar(param0);
     }
 
     ov104_0223D860(v0->unk_00, v2, 1, v1, 3);
@@ -1370,7 +1371,7 @@ static void ov104_0223088C(FrontierScriptContext *param0, int param1, int param2
 
 static BOOL FrontierScrCmd_53(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222FC00(param0);
+    u16 v0 = FrontierScriptContext_GetVar(param0);
     ov104_0223D860(param0->unk_00->unk_00, v0, 0, NULL, 0);
 
     return 0;
@@ -1410,9 +1411,9 @@ static BOOL FrontierScrCmd_6D(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
-    u16 v2 = ov104_0222FC00(param0);
-    u16 v3 = ov104_0222FC00(param0);
-    u16 *v4 = ov104_0222FBE4(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
+    u16 *v4 = FrontierScriptContext_TryGetVarPointer(param0);
 
     if (v3 > 9999) {
         v3 = 9999;
@@ -1590,7 +1591,7 @@ static BOOL FrontierScrCmd_70(FrontierScriptContext *param0)
 {
     int v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    u16 *v2 = ov104_0222FBE4(param0);
+    u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
 
     *v2 = sub_0202F330(v1->saveData, 11, &v0, 0);
     return 0;
@@ -1599,7 +1600,7 @@ static BOOL FrontierScrCmd_70(FrontierScriptContext *param0)
 static BOOL FrontierScrCmd_72(FrontierScriptContext *ctx)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(ctx->unk_00->unk_00);
-    u16 *unused = ov104_0222FBE4(ctx);
+    u16 *unused = FrontierScriptContext_TryGetVarPointer(ctx);
     SaveData_Save(v0->saveData);
     return FALSE;
 }
@@ -1608,7 +1609,7 @@ static BOOL FrontierScrCmd_73(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    u16 *v2 = ov104_0222FBE4(param0);
+    u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
 
     ResetLock(RESET_LOCK_SOFT_RESET);
     InitHeapCanary(v0->heapID);
@@ -1651,7 +1652,7 @@ static BOOL FrontierScrCmd_74(FrontierScriptContext *param0)
 static BOOL FrontierScrCmd_75(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
-    u16 *v1 = ov104_0222FBE4(param0);
+    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
 
     *v1 = SaveData_MiscSaveBlock_InitFlag(v0->saveData);
     return 0;
@@ -1674,7 +1675,7 @@ static BOOL FrontierScrCmd_HideSavingIcon(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_BufferItemName(FrontierScriptContext *ctx)
 {
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
-    u16 item = ov104_0222FC00(ctx);
+    u16 item = FrontierScriptContext_GetVar(ctx);
 
     StringTemplate_SetItemName(ctx->unk_00->strTemplate, templateArg, item);
     return FALSE;
@@ -1683,7 +1684,7 @@ static BOOL FrontierScrCmd_BufferItemName(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_BufferNumber(FrontierScriptContext *ctx)
 {
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
-    u16 number = ov104_0222FC00(ctx);
+    u16 number = FrontierScriptContext_GetVar(ctx);
 
     StringTemplate_SetNumber(ctx->unk_00->strTemplate, templateArg, number, GetNumberDigitCount(number), PADDING_MODE_SPACES, CHARSET_MODE_EN);
     return FALSE;
@@ -1733,7 +1734,7 @@ static BOOL FrontierScrCmd_BufferPartnerName(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BufferMoveName(FrontierScriptContext *ctx)
 {
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
-    u16 move = ov104_0222FC00(ctx);
+    u16 move = FrontierScriptContext_GetVar(ctx);
 
     StringTemplate_SetMoveName(ctx->unk_00->strTemplate, templateArg, move);
     return FALSE;
@@ -1742,7 +1743,7 @@ BOOL FrontierScrCmd_BufferMoveName(FrontierScriptContext *ctx)
 BOOL FrontierScrCmd_BufferSpeciesName(FrontierScriptContext *ctx)
 {
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
-    u16 species = ov104_0222FC00(ctx);
+    u16 species = FrontierScriptContext_GetVar(ctx);
     u16 unused1 = FrontierScriptContext_ReadHalfWord(ctx);
     u8 unused2 = FrontierScriptContext_ReadByte(ctx);
     String *speciesName = GetSpeciesNameString(species, HEAP_ID_FIELD2);
@@ -1764,7 +1765,7 @@ static String *GetSpeciesNameString(u16 species, u32 heapID)
 static BOOL FrontierScrCmd_BufferTypeName(FrontierScriptContext *ctx)
 {
     u8 templateArg = FrontierScriptContext_ReadByte(ctx);
-    u16 type = ov104_0222FC00(ctx);
+    u16 type = FrontierScriptContext_GetVar(ctx);
 
     StringTemplate_SetPokemonTypeName(ctx->unk_00->strTemplate, templateArg, type);
     return FALSE;
@@ -1782,9 +1783,9 @@ static BOOL FrontierScrCmd_BufferRivalName(FrontierScriptContext *ctx)
 static BOOL FrontierScrCmd_81(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
-    u16 *v1 = ov104_0222FBE4(param0);
+    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
 
-    *v1 = sub_0202D230(sub_0202D750(v0->saveData), 0, 0);
+    *v1 = BattlePoints_ApplyFuncAndGet(sub_0202D750(v0->saveData), 0, BATTLE_POINTS_FUNC_NONE);
     return 0;
 }
 
@@ -1792,13 +1793,13 @@ static BOOL FrontierScrCmd_82(FrontierScriptContext *param0)
 {
     TVBroadcast *broadcast;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
 
     broadcast = SaveData_GetTVBroadcast(v1->saveData);
 
     sub_0206D0C8(broadcast, v2);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v1->saveData), RECORD_UNK_068, v2);
-    sub_0202D230(sub_0202D750(v1->saveData), v2, 5);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(v1->saveData), v2, BATTLE_POINTS_FUNC_ADD);
 
     return 0;
 }
@@ -1806,17 +1807,17 @@ static BOOL FrontierScrCmd_82(FrontierScriptContext *param0)
 static BOOL FrontierScrCmd_83(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
-    u16 v1 = ov104_0222FC00(param0);
+    u16 v1 = FrontierScriptContext_GetVar(param0);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v0->saveData), RECORD_UNK_069, v1);
-    sub_0202D230(sub_0202D750(v0->saveData), v1, 6);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(v0->saveData), v1, BATTLE_POINTS_FUNC_SUB);
 
     return 0;
 }
 
 static BOOL FrontierScrCmd_35(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222FC00(param0);
+    u16 v0 = FrontierScriptContext_GetVar(param0);
 
     param0->data[0] = v0;
 
@@ -1866,8 +1867,8 @@ static BOOL ov104_02231010(FrontierScriptContext *param0)
 
 static BOOL FrontierScrCmd_GetRandom(FrontierScriptContext *ctx)
 {
-    u16 *destVar = ov104_0222FBE4(ctx);
-    u16 upperBound = ov104_0222FC00(ctx);
+    u16 *destVar = FrontierScriptContext_TryGetVarPointer(ctx);
+    u16 upperBound = FrontierScriptContext_GetVar(ctx);
 
     *destVar = LCRNG_Next() % upperBound;
     return TRUE;
@@ -1893,7 +1894,7 @@ static BOOL CheckABPress(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_WaitABPressTime(FrontierScriptContext *ctx)
 {
-    ctx->data[0] = ov104_0222FC00(ctx);
+    ctx->data[0] = FrontierScriptContext_GetVar(ctx);
     FrontierScriptContext_Pause(ctx, DecrementABPressTimer);
     return TRUE;
 }
@@ -1911,7 +1912,7 @@ static BOOL DecrementABPressTimer(FrontierScriptContext *ctx)
 
 static BOOL FrontierScrCmd_3C(FrontierScriptContext *param0)
 {
-    u16 *v0 = ov104_0222FBE4(param0);
+    u16 *v0 = FrontierScriptContext_TryGetVarPointer(param0);
 
     return 1;
 }
@@ -1920,7 +1921,7 @@ BOOL FrontierScrCmd_3D(FrontierScriptContext *param0)
 {
     u16 *v0;
     u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
     v0 = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), v1);
@@ -1933,7 +1934,7 @@ BOOL FrontierScrCmd_3E(FrontierScriptContext *param0)
 {
     u16 *v0;
     u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
-    u16 *v2 = ov104_0222FBE4(param0);
+    u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
     v0 = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(v3->saveData), v1);
@@ -2386,7 +2387,7 @@ static BOOL FrontierScrCmd_3F(FrontierScriptContext *param0)
     UnkStruct_ov104_02231148 *v1;
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
-    param0->data[0] = ov104_0222FC00(param0);
+    param0->data[0] = FrontierScriptContext_GetVar(param0);
 
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
 
@@ -2424,7 +2425,7 @@ static BOOL FrontierScrCmd_40(FrontierScriptContext *param0)
 {
     u16 v0;
     UnkStruct_ov104_02230BE4 *v1;
-    u16 *v2 = ov104_0222FBE4(param0);
+    u16 *v2 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
 
@@ -2442,9 +2443,9 @@ static BOOL FrontierScrCmd_41(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
-    u16 v3 = ov104_0222FC00(param0);
-    u16 v4 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
+    u16 v3 = FrontierScriptContext_GetVar(param0);
+    u16 v4 = FrontierScriptContext_GetVar(param0);
 
     ov104_0223D614(v1->unk_10, v2, v3, v4);
 
@@ -2455,7 +2456,7 @@ static BOOL FrontierScrCmd_42(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
     ov104_0223D68C(v1->unk_10, v2);
 
     return 0;
@@ -2468,8 +2469,8 @@ static BOOL FrontierScrCmd_43(FrontierScriptContext *param0)
     u16 v2, v3;
     ParticleSystem *v4;
 
-    v2 = ov104_0222FC00(param0);
-    v3 = ov104_0222FC00(param0);
+    v2 = FrontierScriptContext_GetVar(param0);
+    v3 = FrontierScriptContext_GetVar(param0);
     v4 = ov104_0223D6D0(v1->unk_10, v2);
 
     ParticleSystem_CreateEmitterWithCallback(v4, v3, NULL, NULL);
@@ -2507,10 +2508,10 @@ static BOOL FrontierScrCmd_4C(FrontierScriptContext *param0)
         SysTask_Done(v6->unk_00);
     }
 
-    v2 = ov104_0222FC00(param0);
-    v3 = ov104_0222FC00(param0);
-    v4 = ov104_0222FC00(param0);
-    v5 = ov104_0222FC00(param0);
+    v2 = FrontierScriptContext_GetVar(param0);
+    v3 = FrontierScriptContext_GetVar(param0);
+    v4 = FrontierScriptContext_GetVar(param0);
+    v5 = FrontierScriptContext_GetVar(param0);
 
     MI_CpuClear8(v6, sizeof(UnkStruct_ov104_0223319C));
 
@@ -2555,12 +2556,12 @@ static BOOL FrontierScrCmd_4E(FrontierScriptContext *param0)
 
     MI_CpuClear8(v6, sizeof(UnkStruct_ov104_022331E8));
 
-    v6->unk_04 = ov104_0222FC00(param0);
-    v6->unk_05 = ov104_0222FC00(param0);
-    v6->unk_06 = ov104_0222FC00(param0);
-    v6->unk_07 = ov104_0222FC00(param0);
-    v6->unk_08 = ov104_0222FC00(param0);
-    v6->unk_0A = ov104_0222FC00(param0);
+    v6->unk_04 = FrontierScriptContext_GetVar(param0);
+    v6->unk_05 = FrontierScriptContext_GetVar(param0);
+    v6->unk_06 = FrontierScriptContext_GetVar(param0);
+    v6->unk_07 = FrontierScriptContext_GetVar(param0);
+    v6->unk_08 = FrontierScriptContext_GetVar(param0);
+    v6->unk_0A = FrontierScriptContext_GetVar(param0);
     v6->unk_00 = SysTask_Start(ov104_022331E8, v6, 300);
 
     return 0;
@@ -2597,9 +2598,9 @@ static BOOL FrontierScrCmd_45(FrontierScriptContext *param0)
     Pokemon *v1;
     UnkStruct_ov104_02230BE4 *v2;
     UnkStruct_ov104_0223C4CC *v3 = ov104_0222E924(param0->unk_00);
-    u16 v4 = ov104_0222FC00(param0);
-    u16 v5 = ov104_0222FC00(param0);
-    u16 v6 = ov104_0222FC00(param0);
+    u16 v4 = FrontierScriptContext_GetVar(param0);
+    u16 v5 = FrontierScriptContext_GetVar(param0);
+    u16 v6 = FrontierScriptContext_GetVar(param0);
     u16 v7 = FrontierScriptContext_ReadHalfWord(param0);
     u16 v8 = FrontierScriptContext_ReadHalfWord(param0);
     u16 v9 = FrontierScriptContext_ReadHalfWord(param0);
@@ -2664,7 +2665,7 @@ static BOOL FrontierScrCmd_49(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_02230BE4 *v0;
     u16 v1 = FrontierScriptContext_ReadHalfWord(param0);
-    u16 v2 = ov104_0222FC00(param0);
+    u16 v2 = FrontierScriptContext_GetVar(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v0->saveData), v1, v2);
@@ -2686,7 +2687,7 @@ static BOOL FrontierScrCmd_4A(FrontierScriptContext *param0)
 static BOOL FrontierScrCmd_4B(FrontierScriptContext *param0)
 {
     UnkStruct_ov104_02230BE4 *v0;
-    u16 *v1 = ov104_0222FBE4(param0);
+    u16 *v1 = FrontierScriptContext_TryGetVarPointer(param0);
 
     v0 = sub_0209B970(param0->unk_00->unk_00);
     *v1 = sub_0205E6D8(v0->saveData);
@@ -2696,7 +2697,7 @@ static BOOL FrontierScrCmd_4B(FrontierScriptContext *param0)
 
 static BOOL FrontierScrCmd_71(FrontierScriptContext *param0)
 {
-    u16 *v0 = ov104_0222FBE4(param0);
+    u16 *v0 = FrontierScriptContext_TryGetVarPointer(param0);
 
     *v0 = sub_0202FAC0();
     return 0;
@@ -2718,7 +2719,7 @@ static BOOL FrontierScrCmd_C8(FrontierScriptContext *param0)
     TrainerInfo *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
     broadcast = SaveData_GetTVBroadcast(v3->saveData);
-    v0 = ov104_0222FC00(param0);
+    v0 = FrontierScriptContext_GetVar(param0);
     v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 
     sub_0206D088(broadcast, v0, v2);
@@ -2727,7 +2728,7 @@ static BOOL FrontierScrCmd_C8(FrontierScriptContext *param0)
 
 static BOOL FrontierScrCmd_C9(FrontierScriptContext *param0)
 {
-    u16 v0 = ov104_0222FC00(param0);
+    u16 v0 = FrontierScriptContext_GetVar(param0);
 
     sub_0203632C(v0);
     return 0;

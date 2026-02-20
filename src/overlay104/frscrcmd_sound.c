@@ -12,19 +12,19 @@ static BOOL WaitFanfare(FrontierScriptContext *ctx);
 
 BOOL FrontierScrCmd_PlaySoundEffect(FrontierScriptContext *ctx)
 {
-    Sound_PlayEffect(ov104_0222FC00(ctx));
+    Sound_PlayEffect(FrontierScriptContext_GetVar(ctx));
     return FALSE;
 }
 
 BOOL FrontierScrCmd_StopSoundEffect(FrontierScriptContext *ctx)
 {
-    Sound_StopEffect(ov104_0222FC00(ctx), 0);
+    Sound_StopEffect(FrontierScriptContext_GetVar(ctx), 0);
     return FALSE;
 }
 
 BOOL FrontierScrCmd_WaitSoundEffect(FrontierScriptContext *ctx)
 {
-    ctx->data[0] = ov104_0222FC00(ctx);
+    ctx->data[0] = FrontierScriptContext_GetVar(ctx);
     FrontierScriptContext_Pause(ctx, WaitSoundEffect);
     return TRUE;
 }

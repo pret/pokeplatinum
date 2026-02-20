@@ -791,7 +791,7 @@ void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window)
     StringTemplate *stringTemplate = StringTemplate_Default(HEAP_ID_FIELD1);
     String *string = String_Init(16, HEAP_ID_FIELD1);
     String *fmtString = MessageLoader_GetNewString(messageLaoder, pl_msg_00000361_00230);
-    u16 battlePoints = sub_0202D230(sub_0202D750(fieldSystem->saveData), 0, 0);
+    u16 battlePoints = BattlePoints_ApplyFuncAndGet(sub_0202D750(fieldSystem->saveData), 0, BATTLE_POINTS_FUNC_NONE);
 
     StringTemplate_SetNumber(stringTemplate, 0, battlePoints, 5, PADDING_MODE_SPACES, CHARSET_MODE_EN);
     StringTemplate_Format(stringTemplate, string, fmtString);

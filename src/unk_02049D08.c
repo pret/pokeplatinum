@@ -745,49 +745,49 @@ u16 BattleTower_GetChallengeMode(BattleTower *battleTower)
     return battleTower->challengeMode;
 }
 
-u16 sub_0204A9FC(BattleTower *battleTower)
+u16 BattleTower_GetBeatPalmer(BattleTower *battleTower)
 {
-    return (u16)battleTower->unk_10_1;
+    return (u16)battleTower->beatPalmer;
 }
 
-u16 sub_0204AA04(BattleTower *battleTower)
+u16 BattleTower_GiveBattlePointsReward(BattleTower *battleTower)
 {
-    u16 v0;
-    u16 v1 = 0;
-    static const u8 v2[] = { 0, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10 };
-    static const u8 v3[] = { 0, 3, 3, 4, 4, 5, 5, 7 };
-    static const u8 v4[] = { 0, 8, 9, 11, 12, 14, 15, 18 };
+    u16 roomNum;
+    u16 battlePoints = 0;
+    static const u8 wifiBattlePoints[] = { 0, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10 };
+    static const u8 soloBattlePoints[] = { 0, 3, 3, 4, 4, 5, 5, 7 };
+    static const u8 linkMultiBattlePoints[] = { 0, 8, 9, 11, 12, 14, 15, 18 };
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_5) {
         return 0;
     }
 
     if (battleTower->challengeMode == BATTLE_TOWER_MODE_WIFI) {
-        v1 = v2[sub_0202D2C0(battleTower->unk_74, 0)];
+        battlePoints = wifiBattlePoints[sub_0202D2C0(battleTower->unk_74, 0)];
     } else {
         if (battleTower->challengeMode == BATTLE_TOWER_MODE_LINK_MULTI || battleTower->challengeMode == BATTLE_TOWER_MODE_6) {
-            v0 = sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 0);
+            roomNum = sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 0);
 
-            if (v0 >= 7) {
-                v1 = 18;
+            if (roomNum >= 7) {
+                battlePoints = 18;
             } else {
-                v1 = v4[v0];
+                battlePoints = linkMultiBattlePoints[roomNum];
             }
         } else {
-            v0 = sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 0);
+            roomNum = sub_0202D3B4(battleTower->unk_74, battleTower->challengeMode, 0);
 
-            if (battleTower->unk_10_1) {
-                v1 = 20;
-            } else if (v0 >= 7) {
-                v1 = 7;
+            if (battleTower->beatPalmer) {
+                battlePoints = 20;
+            } else if (roomNum >= 7) {
+                battlePoints = 7;
             } else {
-                v1 = v3[v0];
+                battlePoints = soloBattlePoints[roomNum];
             }
         }
     }
 
-    sub_0202D230(battleTower->unk_74, v1, 5);
-    return v1;
+    BattlePoints_ApplyFuncAndGet(battleTower->unk_74, battlePoints, BATTLE_POINTS_FUNC_ADD);
+    return battlePoints;
 }
 
 u16 sub_0204AA7C(BattleTower *battleTower, SaveData *saveData)
@@ -878,7 +878,7 @@ u16 sub_0204AB68(BattleTower *battleTower, SaveData *saveData)
         return 0;
     }
 
-    switch (battleTower->unk_10_1) {
+    switch (battleTower->beatPalmer) {
     case 1:
         return sub_0204AC54(saveData, MON_DATA_ABILITY_RIBBON, battleTower);
     case 2:

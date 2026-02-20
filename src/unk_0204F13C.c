@@ -568,8 +568,8 @@ BOOL ScrCmd_324(ScriptContext *param0)
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_UNK_068, v7);
 
     if (v7 != 0) {
-        sub_0202D230(
-            sub_0202D750(param0->fieldSystem->saveData), v7, 5);
+        BattlePoints_ApplyFuncAndGet(
+            sub_0202D750(param0->fieldSystem->saveData), v7, BATTLE_POINTS_FUNC_ADD);
     }
 
     if (v4 == 0) {
