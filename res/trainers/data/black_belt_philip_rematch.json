@@ -14,7 +14,7 @@
             "level": 55,
             "item": null,
             "moves": null,
-            "power": 30,
+            "iv_scale": 30,
             "ball_seal": 0
         }
     ],

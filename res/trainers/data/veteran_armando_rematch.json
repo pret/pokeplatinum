@@ -20,7 +20,7 @@
                 "MOVE_SWORDS_DANCE",
                 "MOVE_SILVER_WIND"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_NIGHT_SLASH",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_SHADOW_CLAW",
                 "MOVE_AERIAL_ACE"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

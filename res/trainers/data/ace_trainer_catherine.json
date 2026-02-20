@@ -20,7 +20,7 @@
                 "MOVE_SUCKER_PUNCH",
                 "MOVE_CURSE"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_CONFUSE_RAY",
                 "MOVE_SPITE"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         }
     ],

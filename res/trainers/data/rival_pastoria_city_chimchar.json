@@ -20,7 +20,7 @@
                 "MOVE_ENDEAVOR",
                 "MOVE_DOUBLE_TEAM"
             ],
-            "power": 80,
+            "iv_scale": 80,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_LEECH_SEED",
                 "MOVE_MAGICAL_LEAF"
             ],
-            "power": 80,
+            "iv_scale": 80,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_TAIL_WHIP",
                 "MOVE_GROWL"
             ],
-            "power": 80,
+            "iv_scale": 80,
             "ball_seal": 0
         },
         {
@@ -62,7 +62,7 @@
                 "MOVE_METAL_CLAW",
                 "MOVE_GROWL"
             ],
-            "power": 80,
+            "iv_scale": 80,
             "ball_seal": 10
         }
     ],

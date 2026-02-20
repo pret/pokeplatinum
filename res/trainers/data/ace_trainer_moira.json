@@ -20,7 +20,7 @@
                 "MOVE_DIG",
                 "MOVE_X_SCISSOR"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_BODY_SLAM",
                 "MOVE_PROTECT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_ANCIENT_POWER",
                 "MOVE_COSMIC_POWER"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

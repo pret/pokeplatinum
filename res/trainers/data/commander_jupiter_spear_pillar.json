@@ -21,7 +21,7 @@
                 "MOVE_ROCK_SLIDE",
                 "MOVE_REFLECT"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -35,7 +35,7 @@
                 "MOVE_GIGA_DRAIN",
                 "MOVE_MEAN_LOOK"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -49,7 +49,7 @@
                 "MOVE_FLAMETHROWER",
                 "MOVE_SMOKE_SCREEN"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

@@ -25,7 +25,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_U_TURN"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -39,7 +39,7 @@
                 "MOVE_ICE_FANG",
                 "MOVE_BRICK_BREAK"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -53,7 +53,7 @@
                 "MOVE_NIGHT_SLASH",
                 "MOVE_STONE_EDGE"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -67,7 +67,7 @@
                 "MOVE_SHADOW_BALL",
                 "MOVE_GRASS_WHISTLE"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -81,7 +81,7 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_ZEN_HEADBUTT"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -95,7 +95,7 @@
                 "MOVE_SHADOW_CLAW",
                 "MOVE_AERIAL_ACE"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 24
         }
     ],

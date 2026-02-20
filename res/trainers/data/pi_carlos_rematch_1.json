@@ -17,7 +17,7 @@
                 "MOVE_HORN_DRILL",
                 "MOVE_FLAIL"
             ],
-            "power": 150,
+            "iv_scale": 150,
             "ball_seal": 0
         }
     ],

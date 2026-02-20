@@ -17,7 +17,7 @@
                 "MOVE_WING_ATTACK",
                 "MOVE_SUPERSONIC"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -30,7 +30,7 @@
                 "MOVE_MUD_BOMB",
                 "MOVE_RAIN_DANCE"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -43,7 +43,7 @@
                 "MOVE_CONFUSION",
                 "MOVE_WATER_PULSE"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

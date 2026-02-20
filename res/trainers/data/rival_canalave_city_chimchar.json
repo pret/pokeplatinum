@@ -20,7 +20,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_DOUBLE_TEAM"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_LEECH_SEED",
                 "MOVE_GRASS_WHISTLE"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_NIGHT_SLASH",
                 "MOVE_HORN_ATTACK"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -62,7 +62,7 @@
                 "MOVE_STOMP",
                 "MOVE_TAIL_WHIP"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -76,7 +76,7 @@
                 "MOVE_METAL_CLAW",
                 "MOVE_FURY_ATTACK"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 10
         }
     ],

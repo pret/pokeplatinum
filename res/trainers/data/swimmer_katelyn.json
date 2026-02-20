@@ -18,7 +18,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_ATTRACT"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -32,7 +32,7 @@
                 "MOVE_MEDITATE",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -46,7 +46,7 @@
                 "MOVE_AQUA_RING",
                 "MOVE_CAPTIVATE"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 15
         }
     ],

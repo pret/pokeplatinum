@@ -20,7 +20,7 @@
                 "MOVE_SWAGGER",
                 "MOVE_PAYBACK"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 12
         }
     ],

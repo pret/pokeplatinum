@@ -19,7 +19,7 @@
                 "MOVE_SPARK",
                 "MOVE_MAGNET_BOMB"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -33,7 +33,7 @@
                 "MOVE_KINESIS",
                 "MOVE_THUNDER_PUNCH"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

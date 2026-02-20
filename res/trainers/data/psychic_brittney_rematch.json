@@ -19,7 +19,7 @@
                 "MOVE_SHADOW_BALL",
                 "MOVE_DREAM_EATER"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -33,7 +33,7 @@
                 "MOVE_CALM_MIND",
                 "MOVE_SHADOW_BALL"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

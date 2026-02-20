@@ -23,7 +23,7 @@
                 "MOVE_SHADOW_SNEAK",
                 "MOVE_FUTURE_SIGHT"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_HYPNOSIS",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_MAGICAL_LEAF",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],
