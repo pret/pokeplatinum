@@ -229,6 +229,7 @@
 #include "constdata/const_020EAB80.h"
 #include "constdata/const_020EAC58.h"
 #include "constdata/const_020F8BE0.h"
+#include "res/text/bank/mystery_gift_phrase.h"
 
 typedef struct {
     SysTask *unk_00;
@@ -379,9 +380,9 @@ static BOOL ScrCmd_20B(ScriptContext *ctx);
 static BOOL ScrCmd_0A5(ScriptContext *ctx);
 static BOOL ScrCmd_30E(ScriptContext *ctx);
 static BOOL ScrCmd_0A6(ScriptContext *ctx);
-static BOOL ScrCmd_0A7(ScriptContext *ctx);
+static BOOL ScrCmd_ShowDressUpPhoto(ScriptContext *ctx);
 static BOOL ScrCmd_0A8(ScriptContext *ctx);
-static BOOL ScrCmd_12E(ScriptContext *ctx);
+static BOOL ScrCmd_DressUpPhotoHasData(ScriptContext *ctx);
 static BOOL ScrCmd_12F(ScriptContext *ctx);
 static BOOL ScrCmd_SetDressUpPhotoTitle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSealCapsuleEditor(ScriptContext *ctx);
@@ -456,7 +457,7 @@ static BOOL ScrCmd_12B(ScriptContext *ctx);
 static BOOL ScrCmd_CheckSaveType(ScriptContext *ctx);
 static BOOL ScrCmd_TrySaveGame(ScriptContext *ctx);
 static BOOL ScrCmd_131(ScriptContext *ctx);
-static BOOL ScrCmd_132(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPoketchEnabled(ScriptContext *ctx);
 static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPoketchAppRegistered(ScriptContext *ctx);
 static BOOL ScrCmd_135(ScriptContext *ctx);
@@ -621,11 +622,11 @@ static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx);
 static BOOL ScrCmd_PlayPokecenterHealingAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayElevatorAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayBoatCutscene(ScriptContext *ctx);
-static BOOL ScrCmd_243(ScriptContext *ctx);
-static BOOL ScrCmd_244(ScriptContext *ctx);
-static BOOL ScrCmd_245(ScriptContext *ctx);
+static BOOL ScrCmd_ChooseCustomMessageWord(ScriptContext *ctx);
+static BOOL ScrCmd_ChooseTwoCustomMessageWords(ScriptContext *ctx);
+static BOOL ScrCmd_BufferCustomMessageWord(ScriptContext *ctx);
 static BOOL ScrCmd_GetGameVersion(ScriptContext *ctx);
-static BOOL ScrCmd_249(ScriptContext *ctx);
+static BOOL ScrCmd_GetWallpaperFromCustomMessageWords(ScriptContext *ctx);
 static BOOL ScrCmd_GetCapturedFlagCount(ScriptContext *ctx);
 static BOOL ScrCmd_LoadPCAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_PlayPCBootUpAnimation(ScriptContext *ctx);
@@ -688,7 +689,7 @@ static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx);
 static BOOL ScrCmd_2A3(ScriptContext *ctx);
 static BOOL ScrCmd_2A4(ScriptContext *ctx);
 static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx);
-static BOOL ScrCmd_2AA(ScriptContext *ctx);
+static BOOL ScrCmd_CheckIsMysteryGiftPhrase(ScriptContext *ctx);
 static BOOL ScrCmd_2AB(ScriptContext *ctx);
 static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx);
 static BOOL ScrCmd_2AF(ScriptContext *ctx);
@@ -935,7 +936,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Unused_0A4,
     ScrCmd_0A5,
     ScrCmd_0A6,
-    ScrCmd_0A7,
+    ScrCmd_ShowDressUpPhoto,
     ScrCmd_0A8,
     ScrCmd_OpenSealCapsuleEditor,
     ScrCmd_OpenRegionMap,
@@ -1070,11 +1071,11 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_12B,
     ScrCmd_CheckSaveType,
     ScrCmd_TrySaveGame,
-    ScrCmd_12E,
+    ScrCmd_DressUpPhotoHasData,
     ScrCmd_12F,
     ScrCmd_SetDressUpPhotoTitle,
     ScrCmd_131,
-    ScrCmd_132,
+    ScrCmd_CheckPoketchEnabled,
     ScrCmd_RegisterPoketchApp,
     ScrCmd_CheckPoketchAppRegistered,
     ScrCmd_135,
@@ -1347,13 +1348,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Dummy240,
     ScrCmd_Dummy241,
     ScrCmd_Dummy242,
-    ScrCmd_243,
-    ScrCmd_244,
-    ScrCmd_245,
+    ScrCmd_ChooseCustomMessageWord,
+    ScrCmd_ChooseTwoCustomMessageWords,
+    ScrCmd_BufferCustomMessageWord,
     ScrCmd_GetGameVersion,
     ScrCmd_GetFirstNonEggInParty,
     ScrCmd_GetPartyMonType,
-    ScrCmd_249,
+    ScrCmd_GetWallpaperFromCustomMessageWords,
     ScrCmd_GetCapturedFlagCount,
     ScrCmd_LoadPCAnimation,
     ScrCmd_PlayPCBootUpAnimation,
@@ -1450,7 +1451,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckItemIsPlate,
     ScrCmd_SubtractCoinsFromVar,
     ScrCmd_HasCoinsFromVar,
-    ScrCmd_2AA,
+    ScrCmd_CheckIsMysteryGiftPhrase,
     ScrCmd_2AB,
     ScrCmd_UnlockMysteryGift,
     ScrCmd_GetMovementType,
@@ -1558,7 +1559,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckHeapMemory,
     ScrCmd_GetBattleResult,
     ScrCmd_315,
-    ScrCmd_316,
+    ScrCmd_Dummy316,
     ScrCmd_GetPlayer3DPos,
     ScrCmd_StartFatefulEncounter,
     ScrCmd_StartGiratinaOriginBattle,
@@ -3777,16 +3778,16 @@ static BOOL ScrCmd_WaitForTransition(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
+static BOOL ImageClipsSlotHasData(FieldSystem *fieldSystem, int param1, int slot)
 {
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
     if (param1 == 0) {
-        if (!ImageClips_DressUpPhotoHasData(imageClips, param2)) {
+        if (!ImageClips_DressUpPhotoHasData(imageClips, slot)) {
             return FALSE;
         }
     } else {
-        if (!sub_02029D2C(imageClips, param2)) {
+        if (!sub_02029D2C(imageClips, slot)) {
             return FALSE;
         }
     }
@@ -3794,11 +3795,11 @@ static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
     return TRUE;
 }
 
-static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSystem, int param2, int param3)
+static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSystem, int param2, int slot)
 {
     ImageClips *imageClips = SaveData_GetImageClips(fieldSystem->saveData);
 
-    if (!sub_02041D98(fieldSystem, param2, param3)) {
+    if (!ImageClipsSlotHasData(fieldSystem, param2, slot)) {
         return NULL;
     }
 
@@ -3807,7 +3808,7 @@ static UnkStruct_02041DC8 *sub_02041DC8(enum HeapID heapID, FieldSystem *fieldSy
 
     v0->imageClips = imageClips;
     v0->unk_08 = param2;
-    v0->unk_04 = param3;
+    v0->unk_04 = slot;
 
     return v0;
 }
@@ -3954,29 +3955,29 @@ static BOOL ScrCmd_30E(ScriptContext *ctx)
 
 static BOOL ScrCmd_0A6(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    sub_0203DAC0(ctx->fieldSystem->task, v1, ctx->fieldSystem->saveData, v0, v2);
+    sub_0203DAC0(ctx->fieldSystem->task, destVar, ctx->fieldSystem->saveData, slot, v2);
     return TRUE;
 }
 
-static BOOL ScrCmd_0A7(ScriptContext *ctx)
+static BOOL ScrCmd_ShowDressUpPhoto(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    int v1 = ScriptContext_ReadHalfWord(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    int slot = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_02041DC8(HEAP_ID_FIELD2, ctx->fieldSystem, 0, v1);
+    *v0 = sub_02041DC8(HEAP_ID_FIELD2, ctx->fieldSystem, 0, slot);
 
     if (*v0 == NULL) {
-        *v2 = 1;
+        *destVar = 1;
 
         return TRUE;
     }
 
-    *v2 = 0;
+    *destVar = 0;
 
     sub_0203DB24(ctx->fieldSystem, *v0);
     ScriptContext_Pause(ctx, sub_02041CC8);
@@ -4006,19 +4007,19 @@ static BOOL ScrCmd_0A8(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_12E(ScriptContext *ctx)
+static BOOL ScrCmd_DressUpPhotoHasData(ScriptContext *ctx)
 {
-    int v1 = ScriptContext_ReadHalfWord(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    int slot = ScriptContext_ReadHalfWord(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    BOOL v0 = sub_02041D98(ctx->fieldSystem, 0, v1);
+    BOOL result = ImageClipsSlotHasData(ctx->fieldSystem, 0, slot);
 
-    if (v0 == TRUE) {
-        *v2 = 1;
+    if (result == TRUE) {
+        *destVar = TRUE;
         return TRUE;
     }
 
-    *v2 = 0;
+    *destVar = FALSE;
     return TRUE;
 }
 
@@ -4027,7 +4028,7 @@ static BOOL ScrCmd_12F(ScriptContext *ctx)
     int v1 = ScriptContext_ReadHalfWord(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    BOOL v0 = sub_02041D98(ctx->fieldSystem, 1, v1);
+    BOOL v0 = ImageClipsSlotHasData(ctx->fieldSystem, 1, v1);
 
     if (v0 == TRUE) {
         *v2 = 1;
@@ -4350,39 +4351,39 @@ static BOOL ScrCmd_2C7(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_243(ScriptContext *ctx)
+static BOOL ScrCmd_ChooseCustomMessageWord(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    u16 unused = ScriptContext_GetVar(ctx);
+    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = 0xffff;
-    sub_0203D80C(ctx->fieldSystem->task, v1, v2, NULL);
+    *destVar = 0xFFFF;
+    sub_0203D80C(ctx->fieldSystem->task, resultVar, destVar, NULL);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_244(ScriptContext *ctx)
+static BOOL ScrCmd_ChooseTwoCustomMessageWords(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
+    u16 unused = ScriptContext_GetVar(ctx);
+    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = 0xffff;
-    *v3 = 0xffff;
+    *destVar1 = 0xFFFF;
+    *destVar2 = 0xFFFF;
 
-    sub_0203D80C(ctx->fieldSystem->task, v1, v2, v3);
+    sub_0203D80C(ctx->fieldSystem->task, resultVar, destVar1, destVar2);
     return TRUE;
 }
 
-static BOOL ScrCmd_245(ScriptContext *ctx)
+static BOOL ScrCmd_BufferCustomMessageWord(ScriptContext *ctx)
 {
-    StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 idx = ScriptContext_GetVar(ctx);
+    u16 customMessageWord = ScriptContext_GetVar(ctx);
 
-    StringTemplate_SetCustomMessageWord(*v0, v1, v2);
+    StringTemplate_SetCustomMessageWord(*strTemplate, idx, customMessageWord);
 
     return FALSE;
 }
@@ -4987,12 +4988,12 @@ static BOOL ScrCmd_131(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_132(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPoketchEnabled(ScriptContext *ctx)
 {
     Poketch *poketch = SaveData_GetPoketch(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = Poketch_IsEnabled(poketch);
+    *destVar = Poketch_IsEnabled(poketch);
     return FALSE;
 }
 
@@ -5774,9 +5775,9 @@ static BOOL ScrCmd_1B4(ScriptContext *ctx)
 
 static BOOL ScrCmd_1B5(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
+    u16 listIndex = ScriptContext_GetVar(ctx);
 
-    sub_020703FC(ctx->task, v0);
+    sub_020703FC(ctx->task, listIndex);
     return TRUE;
 }
 
@@ -6421,28 +6422,28 @@ static BOOL ScrCmd_GetGameVersion(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_249(ScriptContext *ctx)
+static BOOL ScrCmd_GetWallpaperFromCustomMessageWords(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    TrainerInfo *v1 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     PCBoxes *pcBoxes = SaveData_GetPCBoxes(fieldSystem->saveData);
-    u16 v4 = ScriptContext_GetVar(ctx);
-    u16 v5 = ScriptContext_GetVar(ctx);
-    u16 v6 = ScriptContext_GetVar(ctx);
-    u16 v7 = ScriptContext_GetVar(ctx);
-    int v8 = ov6_022479D0(v1, v4, v5, v6, v7, 4);
+    u16 customMessageWord1 = ScriptContext_GetVar(ctx);
+    u16 customMessageWord2 = ScriptContext_GetVar(ctx);
+    u16 customMessageWord3 = ScriptContext_GetVar(ctx);
+    u16 customMessageWord4 = ScriptContext_GetVar(ctx);
+    int wallpaper = ov6_022479D0(trainerInfo, customMessageWord1, customMessageWord2, customMessageWord3, customMessageWord4, HEAP_ID_FIELD1);
 
-    if ((v8 == -1) || (v8 > 7)) {
-        *v2 = 0xff;
+    if (wallpaper == -1 || wallpaper > 7) {
+        *destVar = 0xFF;
         return FALSE;
     }
 
-    if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, v8)) {
-        *v2 = 0;
+    if (PCBoxes_CheckHasUnlockedWallpaper(pcBoxes, wallpaper)) {
+        *destVar = 0;
     } else {
-        PCBoxes_UnlockWallpaper(pcBoxes, v8);
-        *v2 = v8 + 1;
+        PCBoxes_UnlockWallpaper(pcBoxes, wallpaper);
+        *destVar = wallpaper + 1;
     }
 
     return FALSE;
@@ -7279,30 +7280,30 @@ static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2AA(ScriptContext *ctx)
+static BOOL ScrCmd_CheckIsMysteryGiftPhrase(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_GetVar(ctx);
-    u16 v5 = ScriptContext_GetVar(ctx);
-    StringTemplate *v6 = StringTemplate_Default(HEAP_ID_FIELD3);
-    MessageLoader *v7 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0372, HEAP_ID_FIELD3);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 customMessageWord1 = ScriptContext_GetVar(ctx);
+    u16 customMessageWord2 = ScriptContext_GetVar(ctx);
+    u16 customMessageWord3 = ScriptContext_GetVar(ctx);
+    u16 customMessageWord4 = ScriptContext_GetVar(ctx);
+    StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_FIELD3);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MYSTERY_GIFT_PHRASE, HEAP_ID_FIELD3);
 
-    StringTemplate_SetCustomMessageWord(v6, 0, v2);
-    StringTemplate_SetCustomMessageWord(v6, 1, v3);
-    StringTemplate_SetCustomMessageWord(v6, 2, v4);
-    StringTemplate_SetCustomMessageWord(v6, 3, v5);
+    StringTemplate_SetCustomMessageWord(strTemplate, 0, customMessageWord1);
+    StringTemplate_SetCustomMessageWord(strTemplate, 1, customMessageWord2);
+    StringTemplate_SetCustomMessageWord(strTemplate, 2, customMessageWord3);
+    StringTemplate_SetCustomMessageWord(strTemplate, 3, customMessageWord4);
 
-    String *v8 = MessageUtil_ExpandedString(v6, v7, 1, HEAP_ID_FIELD3);
-    String *v9 = MessageLoader_GetNewString(v7, 0);
-    *v1 = (String_Compare(v8, v9) == 0);
+    String *stringCustomMessageWords = MessageUtil_ExpandedString(strTemplate, msgLoader, MysteryGiftPhrase_CustomMessageWords, HEAP_ID_FIELD3);
+    String *stringEveryoneHappyWiFiConnection = MessageLoader_GetNewString(msgLoader, MysteryGiftPhrase_EveryoneHappyWiFiConnection);
+    *destVar = String_Compare(stringCustomMessageWords, stringEveryoneHappyWiFiConnection) == 0;
 
-    String_Free(v8);
-    String_Free(v9);
-    MessageLoader_Free(v7);
-    StringTemplate_Free(v6);
+    String_Free(stringCustomMessageWords);
+    String_Free(stringEveryoneHappyWiFiConnection);
+    MessageLoader_Free(msgLoader);
+    StringTemplate_Free(strTemplate);
 
     return FALSE;
 }

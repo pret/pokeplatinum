@@ -2,7 +2,7 @@
   "key": 17419,
   "messages": [
     {
-      "id": "pl_msg_00000029_00000",
+      "id": "PoketchCo3F_Text_TheresAGirlsModelAndABoysModel",
       "en_US": [
         "Do you have a Pokétch?\r",
         "There’s a girl’s model and a boy’s\n",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00001",
+      "id": "PoketchCo3F_Text_MyHusbandsThePresident",
       "en_US": [
         "My husband’s the president.\r",
         "We started out in a small workshop\n",
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00002",
+      "id": "PoketchCo3F_Text_PeopleEverywhereMakePoketchApps",
       "en_US": [
         "People everywhere make Pokétch apps.\r",
         "You’ll be able to get new apps from\n",
@@ -30,63 +30,63 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00003",
+      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps1",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "pl_msg_00000029_00004",
+      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout1",
       "en_US": [
         "Which Pokétch app would\n",
         "you like to read about?"
       ]
     },
     {
-      "id": "pl_msg_00000029_00005",
+      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps2",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "pl_msg_00000029_00006",
+      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout2",
       "en_US": [
         "Which Pokétch app would\n",
         "you like to read about?"
       ]
     },
     {
-      "id": "pl_msg_00000029_00007",
+      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps3",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "pl_msg_00000029_00008",
+      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout3",
       "en_US": [
         "Which Pokétch app would you like\n",
         "to read about?"
       ]
     },
     {
-      "id": "pl_msg_00000029_00009",
+      "id": "PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps4",
       "en_US": [
         "There are descriptions of Pokétch\n",
         "apps.\r"
       ]
     },
     {
-      "id": "pl_msg_00000029_00010",
+      "id": "PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout4",
       "en_US": [
         "Which Pokétch app would you like\n",
         "to read about?"
       ]
     },
     {
-      "id": "pl_msg_00000029_00011",
+      "id": "PoketchCo3F_Text_DescriptionDigitalWatch",
       "en_US": [
         "The Digital Watch displays the\n",
         "current time.\r",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00012",
+      "id": "PoketchCo3F_Text_DescriptionAnalogWatch",
       "en_US": [
         "The Analog Watch displays the\n",
         "current time.\r",
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00013",
+      "id": "PoketchCo3F_Text_DescriptionAlarmClock",
       "en_US": [
         "The Alarm Clock can be set to sound\n",
         "every 24 hours.\r",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00014",
+      "id": "PoketchCo3F_Text_DescriptionStopwatch",
       "en_US": [
         "The Stopwatch is used for measuring\n",
         "time precisely.\r",
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00015",
+      "id": "PoketchCo3F_Text_DescriptionKitchenTimer",
       "en_US": [
         "The Kitchen Timer can count down from\n",
         "up to 99 minutes, but not precisely.\r",
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00016",
+      "id": "PoketchCo3F_Text_DescriptionCalendar",
       "en_US": [
         "Use the monthly Calendar to make\n",
         "a note of important dates.\r",
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00017",
+      "id": "PoketchCo3F_Text_DescriptionCalculator",
       "en_US": [
         "The Calculator can handle up to\n",
         "ten digits.\r",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00018",
+      "id": "PoketchCo3F_Text_DescriptionPokemonList",
       "en_US": [
         "The Pokémon List indicates the\n",
         "statuses of your team’s Pokémon.\r",
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00019",
+      "id": "PoketchCo3F_Text_DescriptionFriendshipChecker",
       "en_US": [
         "The Friendship Checker indicates how\n",
         "friendly your Pokémon are to you.\r",
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00020",
+      "id": "PoketchCo3F_Text_DescriptionDayCareChecker",
       "en_US": [
         "The Day-Care Checker shows the\n",
         "Pokémon you have in the Day Care.\r",
@@ -176,7 +176,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00021",
+      "id": "PoketchCo3F_Text_DescriptionMatchupChecker",
       "en_US": [
         "The Matchup Checker tests the\n",
         "attraction between Pokémon.\r",
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00022",
+      "id": "PoketchCo3F_Text_DescriptionPokemonHistory",
       "en_US": [
         "The Pokémon History keeps track of\n",
         "the Pokémon you have obtained.\r",
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00023",
+      "id": "PoketchCo3F_Text_DescriptionBerrySearcher",
       "en_US": [
         "The Berry Searcher is a map that\n",
         "shows the locations of Berries.\r",
@@ -203,7 +203,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00024",
+      "id": "PoketchCo3F_Text_DescriptionMemoPad",
       "en_US": [
         "The Memo Pad is useful for jotting\n",
         "down a note, or just doodling.\r",
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00025",
+      "id": "PoketchCo3F_Text_DescriptionDotArtist",
       "en_US": [
         "The Dot Artist lets you draw pictures\n",
         "in a mosaic style.\r",
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00026",
+      "id": "PoketchCo3F_Text_DescriptionColorChanger",
       "en_US": [
         "The Color Changer changes the\n",
         "Pokétch’s display color.\r",
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00027",
+      "id": "PoketchCo3F_Text_DescriptionMarkingMap",
       "en_US": [
         "The Marking Map lets you mark\n",
         "intriguing locations.\r",
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00028",
+      "id": "PoketchCo3F_Text_DescriptionRoulette",
       "en_US": [
         "The Roulette features a wheel\n",
         "that can be written on.\r",
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00029",
+      "id": "PoketchCo3F_Text_DescriptionCoinToss",
       "en_US": [
         "The Coin Toss flips a coin that\n",
         "comes up heads or tails.\r",
@@ -257,7 +257,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00030",
+      "id": "PoketchCo3F_Text_DescriptionPedometer",
       "en_US": [
         "The Pedometer keeps a count of\n",
         "the number of steps traveled.\r",
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00031",
+      "id": "PoketchCo3F_Text_DescriptionDowsingMachine",
       "en_US": [
         "The Dowsing Machine searches for\n",
         "hidden or obscured items.\r",
@@ -275,7 +275,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00032",
+      "id": "PoketchCo3F_Text_DescriptionCounter",
       "en_US": [
         "The Counter is used for counting\n",
         "things one at a time.\r",
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00033",
+      "id": "PoketchCo3F_Text_DescriptionTrainerCounter",
       "en_US": [
         "The Trainer Counter tracks the\n",
         "performance of the Poké Radar.\r",
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00034",
+      "id": "PoketchCo3F_Text_DescriptionLinkSearcher",
       "en_US": [
         "The Link Searcher searches for\n",
         "players on wireless communications.\r",
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000029_00035",
+      "id": "PoketchCo3F_Text_DescriptionMoveTester",
       "en_US": [
         "The Move Tester checks how effective\n",
         "moves are by type.\r",
