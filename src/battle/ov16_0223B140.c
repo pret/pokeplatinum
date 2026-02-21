@@ -11,8 +11,8 @@
 #include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/battler_data.h"
 #include "struct_defs/battle_system.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/struct_0207A778.h"
 
 #include "battle/battle_context.h"

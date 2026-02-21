@@ -17,7 +17,7 @@
 #include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/battler_data.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/ai_context.h"

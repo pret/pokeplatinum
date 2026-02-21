@@ -17,7 +17,6 @@
 #include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/battler_data.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/battler_data.h"

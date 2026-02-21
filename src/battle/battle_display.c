@@ -8,7 +8,6 @@
 #include "generated/items.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/battler_data.h"
 #include "struct_defs/battler_data.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"

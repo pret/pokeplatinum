@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_0225E4E8_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/battler_data.h"
+#include "struct_defs/battler_data.h"
 
 #include "battle/struct_ov16_02268520.h"
 

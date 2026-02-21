@@ -6,9 +6,9 @@
 #include "constants/battle.h"
 #include "constants/rtc.h"
 
-#include "struct_decls/battler_data.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
