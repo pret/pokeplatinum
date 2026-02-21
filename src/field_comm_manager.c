@@ -12,7 +12,7 @@
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
 #include "overlay007/communication_club.h"
-#include "overlay023/underground_manager.h"
+#include "underground/manager.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"

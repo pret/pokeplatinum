@@ -83,43 +83,43 @@
       "en_US": "ID: {STRVAR_1 54, 5, 0}"
     },
     {
-      "id": "pl_msg_00000639_00018",
+      "id": "UndergroundPC_Text_Dummy_00018",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000639_00019",
+      "id": "UndergroundPC_Text_Dummy_00019",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000639_00020",
+      "id": "UndergroundPC_Text_Dummy_00020",
       "garbage": 8
     },
     {
-      "id": "pl_msg_00000639_00021",
+      "id": "UndergroundPC_Text_Dummy_00021",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000639_00022",
+      "id": "UndergroundPC_Text_Dummy_00022",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000639_00023",
+      "id": "UndergroundPC_Text_Dummy_00023",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000639_00024",
+      "id": "UndergroundPC_Text_Dummy_00024",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000639_00025",
+      "id": "UndergroundPC_Text_Dummy_00025",
       "garbage": 8
     },
     {
-      "id": "pl_msg_00000639_00026",
+      "id": "UndergroundPC_Text_Dummy_00026",
       "garbage": 10
     },
     {
-      "id": "pl_msg_00000639_00027",
+      "id": "UndergroundPC_Text_Dummy_00027",
       "garbage": 3
     },
     {
@@ -130,21 +130,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00029",
+      "id": "UndergroundPC_Text_TreasuresOnHand_Unused",
       "en_US": [
         "Treasures\n",
         "on hand"
       ]
     },
     {
-      "id": "pl_msg_00000639_00030",
+      "id": "UndergroundPC_Text_TrapsOnHand_Unused",
       "en_US": [
         "Traps on\n",
         "hand"
       ]
     },
     {
-      "id": "pl_msg_00000639_00031",
+      "id": "UndergroundPC_Text_SpheresOnHand_Unused",
       "en_US": [
         "Spheres\n",
         "on hand"
@@ -158,21 +158,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000639_00033",
+      "id": "UndergroundPC_Text_TreasuresInPC_Unused",
       "en_US": [
         "Treasures\n",
         "in PC"
       ]
     },
     {
-      "id": "pl_msg_00000639_00034",
+      "id": "UndergroundPC_Text_TrapsInPC_Unused",
       "en_US": [
         "Traps in\n",
         "PC"
       ]
     },
     {
-      "id": "pl_msg_00000639_00035",
+      "id": "UndergroundPC_Text_SpheresInPC_Unused",
       "en_US": [
         "Spheres\n",
         "in PC"
@@ -280,11 +280,11 @@
       "en_US": "ID:-------"
     },
     {
-      "id": "pl_msg_00000639_00053",
+      "id": "UndergroundPC_Text_Dummy_00053",
       "garbage": 18
     },
     {
-      "id": "pl_msg_00000639_00054",
+      "id": "UndergroundPC_Text_Dummy_00054",
       "garbage": 17
     },
     {

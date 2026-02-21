@@ -18,9 +18,9 @@
 #include "overlay005/struct_ov5_021D432C_decl.h"
 #include "overlay006/field_warp.h"
 #include "overlay006/hm_cut_in.h"
-#include "overlay023/secret_bases.h"
-#include "overlay023/underground_comm_manager.h"
-#include "overlay023/underground_top_screen.h"
+#include "underground/comm_manager.h"
+#include "underground/secret_bases.h"
+#include "underground/top_screen.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -72,7 +72,7 @@
 #include "unk_02070428.h"
 #include "vars_flags.h"
 
-FS_EXTERN_OVERLAY(overlay23);
+FS_EXTERN_OVERLAY(underground);
 
 typedef struct MapChangeData {
     int state;
@@ -1219,7 +1219,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         break;
     case 9:
         fieldSystem->mapLoadType = MAP_LOAD_TYPE_UNDERGROUND;
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay23), 2);
+        Overlay_LoadByID(FS_OVERLAY_ID(underground), 2);
         CommManUnderground_InitUnderground(fieldSystem);
         FieldTask_ChangeMapToLocation(task, mapChangeUndergroundData->mapId, -1, mapChangeUndergroundData->unk_10, mapChangeUndergroundData->unk_14, 1);
         mapChangeUndergroundData->state++;
@@ -1287,7 +1287,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
         break;
     case 4:
         fieldSystem->mapLoadType = MAP_LOAD_TYPE_OVERWORLD;
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay23));
+        Overlay_UnloadByID(FS_OVERLAY_ID(underground));
         FieldTask_ChangeMapToLocation(task, mapChangeUndergroundData->mapId, -1, mapChangeUndergroundData->unk_10, mapChangeUndergroundData->unk_14, 1);
         mapChangeUndergroundData->state++;
         break;
