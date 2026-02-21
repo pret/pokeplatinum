@@ -5,7 +5,7 @@
 
 #include "struct_defs/underground_record.h"
 
-#include "overlay023/underground_defs.h"
+#include "underground/defs.h"
 
 #include "charcode.h"
 

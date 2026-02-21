@@ -90,11 +90,11 @@
 #include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay023/underground_vendors.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay098/struct_ov98_02247168.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
+#include "underground/vendors.h"
 
 #include "bag.h"
 #include "bg_window.h"

@@ -13,7 +13,7 @@
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
-#include "overlay023/mining.h"
+#include "underground/mining.h"
 
 #include "heap.h"
 #include "math_util.h"

@@ -6,7 +6,7 @@
 #include "generated/goods.h"
 #include "generated/sphere_types.h"
 
-#include "overlay023/underground_defs.h"
+#include "underground/defs.h"
 
 #include "res/text/bank/underground_records.h"
 

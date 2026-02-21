@@ -8,7 +8,7 @@
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
-#include "overlay023/underground_manager.h"
+#include "underground/manager.h"
 
 #include "field_comm_manager.h"
 #include "goods.h"

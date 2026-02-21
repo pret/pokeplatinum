@@ -6,7 +6,7 @@
 #include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
-#include "overlay023/underground_player_status.h"
+#include "underground/player_status.h"
 
 #include "communication_system.h"
 #include "overworld_anim_manager.h"
