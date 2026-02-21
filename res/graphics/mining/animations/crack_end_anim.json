@@ -1,0 +1,114 @@
+{
+	"labelEnabled":	true,
+	"uaatEnabled":	false,
+	"sequenceCount":	7,
+	"frameCount":	12,
+	"sequences":	[{
+			"frameCount":	6,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	0
+				}, {
+					"frameDelay":	4,
+					"resultId":	1
+				}, {
+					"frameDelay":	4,
+					"resultId":	2
+				}, {
+					"frameDelay":	4,
+					"resultId":	3
+				}, {
+					"frameDelay":	4,
+					"resultId":	4
+				}, {
+					"frameDelay":	4,
+					"resultId":	5
+				}]
+		}, {
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	0
+				}]
+		}, {
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	1
+				}]
+		}, {
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	2
+				}]
+		}, {
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	3
+				}]
+		}, {
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	4
+				}]
+		}, {
+			"frameCount":	1,
+			"loopStartFrame":	0,
+			"animationElement":	0,
+			"animationType":	1,
+			"playbackMode":	2,
+			"frameData":	[{
+					"frameDelay":	4,
+					"resultId":	5
+				}]
+		}],
+	"animationResults":	[{
+			"resultType":	0,
+			"index":	0
+		}, {
+			"resultType":	0,
+			"index":	1
+		}, {
+			"resultType":	0,
+			"index":	2
+		}, {
+			"resultType":	0,
+			"index":	3
+		}, {
+			"resultType":	0,
+			"index":	4
+		}, {
+			"resultType":	0,
+			"index":	5
+		}],
+	"resultCount":	6,
+	"labels":	["CellAnime0", "h0", "h1", "h2", "h3", "h4", "h5"],
+	"labelCount":	7
+}

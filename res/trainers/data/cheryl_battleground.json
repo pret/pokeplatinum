@@ -23,7 +23,7 @@
                 "MOVE_SAFEGUARD",
                 "MOVE_ENCORE"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_FLY",
                 "MOVE_PROTECT"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_BULLET_PUNCH",
                 "MOVE_STONE_EDGE"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -65,7 +65,7 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_AVALANCHE"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -79,7 +79,7 @@
                 "MOVE_PSYCHIC",
                 "MOVE_TOXIC"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

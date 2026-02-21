@@ -5,7 +5,7 @@ _000:
     PlayBattleAnimation BTLSCR_PLAYER, BATTLE_ANIMATION_WEATHER_SUN
     Wait 
     // {0}’s {1} intensified the sun’s rays!
-    PrintMessage pl_msg_00000368_00698, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    PrintMessage BattleStrings_Text_PokemonsAbilityIntensifiedTheSunsRays_Ally, TAG_NICKNAME_ABILITY, BTLSCR_MSG_TEMP, BTLSCR_MSG_BATTLER_TEMP
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_WEATHER

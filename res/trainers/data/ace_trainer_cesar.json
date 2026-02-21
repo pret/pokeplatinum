@@ -20,7 +20,7 @@
                 "MOVE_SLASH",
                 "MOVE_PURSUIT"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         }
     ],

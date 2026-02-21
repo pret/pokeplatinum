@@ -425,7 +425,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
         u8 *v2 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
-            ScriptManager_Start(taskMan, 8970, NULL, NULL);
+            ScriptManager_Start(taskMan, SCRIPT_ID(POKE_RADAR, 0), NULL, NULL);
             *(u16 *)FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_PARAMETER_0) = RADAR_BATTERY_STEPS - (*v2);
             *v1 = 4;
         } else {
@@ -457,7 +457,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
         return TRUE;
         break;
     case 3:
-        ScriptManager_Start(taskMan, 8971, NULL, NULL);
+        ScriptManager_Start(taskMan, SCRIPT_ID(POKE_RADAR, 1), NULL, NULL);
         *v1 = 4;
         break;
     }

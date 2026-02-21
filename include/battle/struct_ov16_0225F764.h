@@ -10,7 +10,7 @@
 #include "pokemon_sprite.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     BattlerData *unk_04;
     PokemonSprite *unk_08;
     BallRotation *unk_0C;

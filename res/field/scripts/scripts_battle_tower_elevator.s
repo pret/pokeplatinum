@@ -10,7 +10,7 @@
 
 BattleTowerElevator_Init:
     CallIfNe VAR_UNK_0x40DB, 0, _008A
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_A
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_MAP_LOCAL_A
     Call BattleTowerElevator_SetSingleAttendantGraphics
     CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
     CallIfEq VAR_MAP_LOCAL_A, BATTLE_TOWER_MODE_LINK_MULTI, BattleTowerElevator_SetMultiAttendantGraphics
@@ -40,7 +40,7 @@ BattleTowerElevator_SetMultiAttendantGraphics:
 BattleTowerElevator_BattleRoomCheckWiFi:
     FadeScreenOut
     WaitFadeScreen
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_WIFI, BattleTowerElevator_WiFiBattleRoom
     GoToIfEq VAR_RESULT, BATTLE_TOWER_MODE_5, BattleTowerElevator_WiFiBattleRoom
     WaitForTransition

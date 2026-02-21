@@ -6,7 +6,7 @@
 #include "struct_decls/battle_system.h"
 
 #include "battle/battle_cursor.h"
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 
 #include "heap.h"
@@ -16,7 +16,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     s16 unk_04;
     s16 unk_06;
 } UnkStruct_ov16_0226E148;
@@ -31,7 +31,7 @@ SysTask *ov16_0226E148(BattleSystem *battleSys)
     v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0226E148));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226E148));
 
-    v0->unk_00 = battleSys;
+    v0->battleSys = battleSys;
     v1 = SysTask_Start(ov16_0226E188, v0, 1000);
 
     return v1;
@@ -48,7 +48,7 @@ void ov16_0226E174(SysTask *param0)
 static void ov16_0226E188(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0226E148 *v0 = param1;
-    UnkStruct_ov16_02268A14 *v1 = ov16_0223E02C(v0->unk_00);
+    UnkStruct_ov16_02268A14 *v1 = ov16_0223E02C(v0->battleSys);
 
     switch (v0->unk_04) {
     case 0:
@@ -72,7 +72,7 @@ static void ov16_0226E188(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (ov16_0223F7A4(v0->unk_00) == 1) {
+        if (ov16_0223F7A4(v0->battleSys) == 1) {
             if (BattleSystem_MenuInput(v1) == 1) {
                 Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v0->unk_04++;
@@ -83,7 +83,7 @@ static void ov16_0226E188(SysTask *param0, void *param1)
         v0->unk_06++;
 
         if (v0->unk_06 > 8) {
-            BattleSystem_SetStopRecording(v0->unk_00, 0);
+            BattleSystem_SetStopRecording(v0->battleSys, 0);
             v0->unk_04++;
         }
         break;

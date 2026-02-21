@@ -69,12 +69,12 @@ _202:
     UpdateMonData OPCODE_FLAG_ON, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_TOXIC
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_HELD_ITEM, _222
     // {0} was badly poisoned!
-    PrintMessage pl_msg_00000368_00079, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonWasBadlyPoisoned_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _227
 
 _222:
     // {0} was badly poisoned by the {1}!
-    PrintMessage pl_msg_00000368_01168, TAG_NICKNAME_ITEM, BTLSCR_SIDE_EFFECT_MON, BTLSCR_MSG_TEMP
+    PrintMessage BattleStrings_Text_PokemonWasBadlyPoisonedByTheItem_Ally, TAG_NICKNAME_ITEM, BTLSCR_SIDE_EFFECT_MON, BTLSCR_MSG_TEMP
 
 _227:
     Wait 
@@ -100,7 +100,7 @@ _249:
 _266:
     WaitButtonABTime 30
     // {0}’s {1} prevents poisoning!
-    PrintMessage pl_msg_00000368_00650, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonsAbilityPreventsPoisoning_Ally, TAG_NICKNAME_ABILITY, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
     GoTo _348
 
 _275:
@@ -116,7 +116,7 @@ _296:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_TOXIC_SPIKES, _355
     WaitButtonABTime 30
     // {0} is already poisoned.
-    PrintMessage pl_msg_00000368_00076, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonIsAlreadyPoisoned_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _348
 
 _314:
@@ -124,7 +124,7 @@ _314:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_TOXIC_SPIKES, _355
     WaitButtonABTime 30
     // It doesn’t affect {0}...
-    PrintMessage pl_msg_00000368_00027, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_ItDoesntAffectPokemon_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _348
 
 _332:
@@ -132,7 +132,7 @@ _332:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_TOXIC_SPIKES, _355
     WaitButtonABTime 30
     // {0} is protected by Safeguard!
-    PrintMessage pl_msg_00000368_00200, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    PrintMessage BattleStrings_Text_PokemonIsProtectedBySafeguard_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
 
 _348:
     Wait 

@@ -13,7 +13,7 @@ _000:
     PlayMoveAnimation BTLSCR_MSG_TEMP
     Wait 
     // {0} snatched {1}’s move!
-    PrintMessage pl_msg_00000368_00580, TAG_NICKNAME_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonSnatchedPokemonsMove_AllyAlly, TAG_NICKNAME_NICKNAME, BTLSCR_MSG_TEMP, BTLSCR_MSG_ATTACKER
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_SET, BTLVAR_MOVE_EFFECT_CHANCE, 0

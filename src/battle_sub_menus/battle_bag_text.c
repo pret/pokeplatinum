@@ -2,7 +2,7 @@
 
 #include "constants/graphics.h"
 
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle_sub_menus/battle_bag.h"
 
 #include "bg_window.h"
@@ -641,5 +641,5 @@ void BattleBagText_DisplayMessage(BattleBag *battleBag)
 void BattleBagText_PrintToMessageBox(BattleBag *battleBag)
 {
     RenderControlFlags_SetCanABSpeedUpPrint(TRUE);
-    battleBag->textPrinterID = Text_AddPrinterWithParams(&battleBag->messageBoxWindow, FONT_MESSAGE, battleBag->string, 0, 0, BattleSystem_TextSpeed(battleBag->context->battleSystem), NULL);
+    battleBag->textPrinterID = Text_AddPrinterWithParams(&battleBag->messageBoxWindow, FONT_MESSAGE, battleBag->string, 0, 0, BattleSystem_GetTextSpeed(battleBag->context->battleSys), NULL);
 }

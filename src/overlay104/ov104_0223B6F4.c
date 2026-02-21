@@ -31,7 +31,6 @@ u8 ov104_0223B7DC(u8 param0, BOOL param1);
 FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223B9E4(u8 param0);
 u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 *param0);
-BOOL ov104_0223BA14(u8 param0);
 void ov104_0223BA24(Party *param0);
 void ov104_0223BAB8(UnkStruct_ov104_0223BA10 *param0);
 void ov104_0223BA7C(UnkStruct_ov104_0223BA10 *param0, Pokemon *param1);
@@ -252,15 +251,9 @@ u8 ov104_0223BA10(UnkStruct_ov104_0223BA10 *param0)
     return 50;
 }
 
-BOOL ov104_0223BA14(u8 param0)
+BOOL BattleCastle_IsMultiPlayerChallenge(u8 challengeType)
 {
-    switch (param0) {
-    case 2:
-    case 3:
-        return 1;
-    }
-
-    return 0;
+    return challengeType == 2 || challengeType == 3;
 }
 
 void ov104_0223BA24(Party *param0)
@@ -355,7 +348,7 @@ u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 *param0)
 {
     u16 v0 = param0->unk_16;
 
-    if (ov104_0223BA14(param0->unk_10) == 1) {
+    if (BattleCastle_IsMultiPlayerChallenge(param0->unk_10) == 1) {
         if (param0->unk_A12 > param0->unk_16) {
             v0 = param0->unk_A12;
         }

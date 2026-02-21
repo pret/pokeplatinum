@@ -68,125 +68,125 @@ BOOL ScrCmd_CallBattleTowerFunction(ScriptContext *ctx)
     BattleTower *battleTower = ctx->fieldSystem->battleTower;
 
     switch (functionIndex) {
-    case BATTLE_TOWER_FUNCTION_CHECK_ENOUGH_VALID_POKEMON: // enough pokemon?
+    case BT_FUNC_CHECK_ENOUGH_VALID_POKEMON: // enough pokemon?
         if (functionArgument == 0) {
             *destVar = sub_02049EC4(battleTower->partySize, ctx->fieldSystem->saveData, 1);
         } else {
             *destVar = sub_02049EC4(functionArgument, ctx->fieldSystem->saveData, 1);
         }
         break;
-    case BATTLE_TOWER_FUNCTION_RESET_SYSTEM:
+    case BT_FUNC_RESET_SYSTEM:
         BattleTower_ResetSystem();
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_03:
+    case BT_FUNC_UNK_03:
         sub_02049F98(sub_0202D740(ctx->fieldSystem->saveData));
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_04:
+    case BT_FUNC_UNK_04:
         *destVar = sub_02049FA0(sub_0202D740(ctx->fieldSystem->saveData));
         break;
-    case BATTLE_TOWER_FUNCTION_SET_COMMUNICATION_CLUB_ACCESSIBLE:
+    case BT_FUNC_SET_COMMUNICATION_CLUB_ACCESSIBLE:
         BattleTower_SetCommunicationClubAccessible(ctx->fieldSystem);
         break;
-    case BATTLE_TOWER_FUNCTION_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE:
+    case BT_FUNC_CLEAR_COMMUNICATION_CLUB_ACCESSIBLE:
         BattleTower_ClearCommunicationClubAccessible(ctx->fieldSystem);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_08:
+    case BT_FUNC_UNK_08:
         *destVar = sub_02049FF8(ctx->fieldSystem->saveData, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_09:
+    case BT_FUNC_UNK_09:
         *destVar = sub_0204AABC(NULL, ctx->fieldSystem->saveData, 2);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_10:
+    case BT_FUNC_UNK_10:
         *destVar = sub_0204AABC(NULL, ctx->fieldSystem->saveData, 0);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_11:
+    case BT_FUNC_UNK_11:
         sub_0204A030(ctx->fieldSystem->saveData, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_12:
+    case BT_FUNC_UNK_12:
         *destVar = sub_0204A050(ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_14:
+    case BT_FUNC_UNK_14:
         *destVar = sub_0204A064(ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_15:
+    case BT_FUNC_UNK_15:
         *destVar = sub_0204A100(ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_16:
+    case BT_FUNC_UNK_16:
         sub_0206BCE4(ctx->task, functionArgument, varID, *destVar);
         return TRUE;
-    case BATTLE_TOWER_FUNCTION_UNK_30:
+    case BT_FUNC_UNK_30:
         partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
         sub_0204A358(battleTower, ctx->task, partyMenu);
         return TRUE;
-    case BATTLE_TOWER_FUNCTION_UNK_31:
+    case BT_FUNC_UNK_31:
         partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
         *destVar = sub_0204A378(battleTower, partyMenu, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS:
+    case BT_FUNC_CHECK_DUPLICATE_SPECIES_AND_HELD_ITEMS:
         *destVar = BattleTower_CheckDuplicateSpeciesAndHeldItems(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS:
+    case BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS:
         *destVar = BattleTower_HasDefeatedSevenTrainers(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS:
+    case BT_FUNC_UPDATE_GAME_RECORDS:
         BattleTower_UpdateGameRecords(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL:
+    case BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL:
         BattleTower_UpdateGameRecordsAndJournal(battleTower, ctx->fieldSystem->saveData, ctx->fieldSystem->journalEntry);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_39:
+    case BT_FUNC_UNK_39:
         sub_0204A8C8(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_56:
+    case BT_FUNC_UNK_56:
         sub_0204A97C(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID:
+    case BT_FUNC_GET_OPPONENT_OBJECT_ID:
         *destVar = BattleTower_GetObjectIDFromOpponentID(battleTower, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE:
+    case BT_FUNC_GET_CHALLENGE_MODE:
         *destVar = (u16)BattleTower_GetChallengeMode(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_45:
-        *destVar = sub_0204A9FC(battleTower);
+    case BT_FUNC_GET_BEAT_PALMER:
+        *destVar = BattleTower_GetBeatPalmer(battleTower);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_47:
+    case BT_FUNC_UNK_47:
         sub_0204AA7C(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_48:
+    case BT_FUNC_UNK_48:
         *destVar = sub_0204AB68(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_49:
+    case BT_FUNC_UNK_49:
         *destVar = sub_0204ABA0(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_SET_PARTNER_ID:
+    case BT_FUNC_SET_PARTNER_ID:
         battleTower->partnerID = functionArgument;
         break;
-    case BATTLE_TOWER_FUNCTION_GET_PARTNER_ID:
+    case BT_FUNC_GET_PARTNER_ID:
         *destVar = battleTower->partnerID;
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_52:
+    case BT_FUNC_UNK_52:
         sub_0204A4C8(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_SLOT_INDEX:
+    case BT_FUNC_GET_SLOT_INDEX:
         *destVar = battleTower->unk_2A[functionArgument];
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_54:
+    case BT_FUNC_UNK_54:
         *destVar = sub_0204AABC(battleTower, ctx->fieldSystem->saveData, 1);
         break;
-    case BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM:
+    case BT_FUNC_GET_PARTNER_PARAM:
         *destVar = BattleTower_GetPartnerParam(battleTower, functionArgument);
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_57:
+    case BT_FUNC_UNK_57:
         *destVar = sub_0204ABF4(battleTower, ctx->fieldSystem->saveData);
         break;
-    case BATTLE_TOWER_FUNCTION_CHECK_IS_NULL:
+    case BT_FUNC_CHECK_IS_NULL:
         if (battleTower == NULL) {
             *destVar = TRUE;
         } else {
             *destVar = FALSE;
         }
         break;
-    case BATTLE_TOWER_FUNCTION_UNK_58:
+    case BT_FUNC_UNK_58:
         MI_CpuClear8(battleTower->unk_884, 70);
         break;
     default:
@@ -419,7 +419,7 @@ BOOL ScrCmd_297(ScriptContext *ctx)
     SaveData *saveData = fieldSystem->saveData;
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = sub_0202D230(sub_0202D750(saveData), 0, 0);
+    *v2 = BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
     return 0;
 }
 
@@ -430,7 +430,7 @@ BOOL ScrCmd_298(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_068, v2);
-    sub_0202D230(sub_0202D750(saveData), v2, 5);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_ADD);
 
     return 0;
 }
@@ -442,7 +442,7 @@ BOOL ScrCmd_299(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_069, v2);
-    sub_0202D230(sub_0202D750(saveData), v2, 6);
+    BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_SUB);
 
     return 0;
 }
@@ -455,8 +455,8 @@ BOOL ScrCmd_29A(ScriptContext *ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
 
-    v0 = sub_0202D230(
-        sub_0202D750(saveData), 0, 0);
+    v0 = BattlePoints_ApplyFuncAndGet(
+        sub_0202D750(saveData), 0, BATTLE_POINTS_FUNC_NONE);
 
     if (v0 < v3) {
         *v4 = 0;

@@ -4,7 +4,7 @@
 _000:
     TryPluck _024, _023
     // {0} stole and ate its foe’s {1}!
-    PrintMessage pl_msg_00000368_01141, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_DEFENDER
+    PrintMessage BattleStrings_Text_PokemonStoleAndAteItsFoesItem_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_DEFENDER
     Wait 
     WaitButtonABTime 30
     RemoveItem BTLSCR_DEFENDER
@@ -17,7 +17,7 @@ _023:
 
 _024:
     // {0}’s {1} made {2} ineffective!
-    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsAbilityMadeMoveIneffective_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_DEFENDER, BTLSCR_DEFENDER, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

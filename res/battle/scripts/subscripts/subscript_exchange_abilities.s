@@ -39,7 +39,7 @@ _120:
 
 _148:
     // {0} swapped abilities with its target!
-    PrintMessage pl_msg_00000368_00559, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonSwappedAbilitiesWithItsTarget_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

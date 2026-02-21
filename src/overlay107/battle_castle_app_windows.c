@@ -9,65 +9,305 @@
 
 #define BASE_TILE_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
 
-static const WindowTemplate Unk_ov107_0224A288[] = {
-    { BG_LAYER_MAIN_1, 2, 1, 29, 2, 13, 1 },
-    { BG_LAYER_MAIN_1, 26, 19, 4, 3, 13, 59 },
-    { BG_LAYER_MAIN_1, 0, 4, 32, 2, 13, 71 },
-    { BG_LAYER_MAIN_1, 0, 9, 32, 2, 13, 135 },
-    { BG_LAYER_MAIN_0, 5, 10, 24, 14, 13, 1 },
-    { BG_LAYER_MAIN_0, 12, 2, 19, 12, 13, 1 },
-    { BG_LAYER_MAIN_0, 2, 19, 27, 4, 12, 337 },
-    { BG_LAYER_MAIN_0, 2, 19, 20, 4, 12, 445 },
-    { BG_LAYER_MAIN_0, 2, 19, 17, 4, 12, 525 },
-    { BG_LAYER_MAIN_0, 23, 13, 8, 10, 13, 593 },
-    { BG_LAYER_MAIN_0, 20, 7, 11, 10, 13, 673 },
-    { BG_LAYER_MAIN_0, 22, 9, 9, 8, 13, 673 },
-    { BG_LAYER_MAIN_0, 5, 16, 27, 7, 12, 445 },
-    { BG_LAYER_MAIN_0, 24, 13, 7, 4, 13, 634 },
-    { BG_LAYER_MAIN_0, 24, 11, 7, 6, 13, 662 },
-    { BG_LAYER_MAIN_0, 1, 1, 8, 4, 13, 704 },
-    { BG_LAYER_MAIN_0, 1, 7, 10, 2, 13, 736 },
-    { BG_LAYER_MAIN_0, 1, 13, 11, 2, 13, 756 }
+static const WindowTemplate sSelfAppWinTemplates[] = {
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 2,
+        .tilemapTop = 1,
+        .width = 29,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 1,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 26,
+        .tilemapTop = 19,
+        .width = 4,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 59,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 0,
+        .tilemapTop = 4,
+        .width = 32,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 71,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 0,
+        .tilemapTop = 9,
+        .width = 32,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 135,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 5,
+        .tilemapTop = 10,
+        .width = 24,
+        .height = 14,
+        .palette = 13,
+        .baseTile = 1,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 12,
+        .tilemapTop = 2,
+        .width = 19,
+        .height = 12,
+        .palette = 13,
+        .baseTile = 1,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 337,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 20,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 445,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 17,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 525,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 23,
+        .tilemapTop = 13,
+        .width = 8,
+        .height = 10,
+        .palette = 13,
+        .baseTile = 593,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 20,
+        .tilemapTop = 7,
+        .width = 11,
+        .height = 10,
+        .palette = 13,
+        .baseTile = 673,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 22,
+        .tilemapTop = 9,
+        .width = 9,
+        .height = 8,
+        .palette = 13,
+        .baseTile = 673,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 5,
+        .tilemapTop = 16,
+        .width = 27,
+        .height = 7,
+        .palette = 12,
+        .baseTile = 445,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 24,
+        .tilemapTop = 13,
+        .width = 7,
+        .height = 4,
+        .palette = 13,
+        .baseTile = 634,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 24,
+        .tilemapTop = 11,
+        .width = 7,
+        .height = 6,
+        .palette = 13,
+        .baseTile = 662,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 1,
+        .tilemapTop = 1,
+        .width = 8,
+        .height = 4,
+        .palette = 13,
+        .baseTile = 704,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 1,
+        .tilemapTop = 7,
+        .width = 10,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 736,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 1,
+        .tilemapTop = 13,
+        .width = 11,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 756,
+    }
 };
 
-static const WindowTemplate Unk_ov107_0224A228[] = {
-    { BG_LAYER_MAIN_1, 2, 1, 29, 2, 13, 1 },
-    { BG_LAYER_MAIN_1, 26, 19, 4, 3, 13, 59 },
-    { BG_LAYER_MAIN_1, 0, 4, 32, 2, 13, 71 },
-    { BG_LAYER_MAIN_1, 0, 9, 32, 2, 13, 135 },
-    { BG_LAYER_MAIN_0, 4, 10, 26, 14, 13, 1 },
-    { BG_LAYER_MAIN_0, 23, 15, 8, 8, 13, 1 },
-    { BG_LAYER_MAIN_0, 22, 9, 9, 8, 13, 365 },
-    { BG_LAYER_MAIN_0, 2, 19, 27, 4, 12, 437 },
-    { BG_LAYER_MAIN_0, 2, 19, 20, 4, 12, 545 },
-    { BG_LAYER_MAIN_0, 2, 19, 17, 4, 12, 625 },
-    { BG_LAYER_MAIN_0, 24, 13, 7, 4, 13, 693 },
-    { BG_LAYER_MAIN_0, 24, 11, 7, 6, 13, 721 }
+static const WindowTemplate sOpponentAppWinTemplates[] = {
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 2,
+        .tilemapTop = 1,
+        .width = 29,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 1,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 26,
+        .tilemapTop = 19,
+        .width = 4,
+        .height = 3,
+        .palette = 13,
+        .baseTile = 59,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 0,
+        .tilemapTop = 4,
+        .width = 32,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 71,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_1,
+        .tilemapLeft = 0,
+        .tilemapTop = 9,
+        .width = 32,
+        .height = 2,
+        .palette = 13,
+        .baseTile = 135,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 4,
+        .tilemapTop = 10,
+        .width = 26,
+        .height = 14,
+        .palette = 13,
+        .baseTile = 1,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 23,
+        .tilemapTop = 15,
+        .width = 8,
+        .height = 8,
+        .palette = 13,
+        .baseTile = 1,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 22,
+        .tilemapTop = 9,
+        .width = 9,
+        .height = 8,
+        .palette = 13,
+        .baseTile = 365,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 437,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 20,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 545,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 17,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 625,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 24,
+        .tilemapTop = 13,
+        .width = 7,
+        .height = 4,
+        .palette = 13,
+        .baseTile = 693,
+    },
+    {
+        .bgLayer = BG_LAYER_MAIN_0,
+        .tilemapLeft = 24,
+        .tilemapTop = 11,
+        .width = 7,
+        .height = 6,
+        .palette = 13,
+        .baseTile = 721,
+    }
 };
 
 static const struct {
     const WindowTemplate *templates;
     u32 numTemplates;
 } sWinTemplates[2] = {
-    { Unk_ov107_0224A288, 18 },
-    { Unk_ov107_0224A228, 12 }
+    { sSelfAppWinTemplates, 18 },
+    { sOpponentAppWinTemplates, 12 }
 };
 
-void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 param2)
+void BattleCastleApp_InitWindows(BgConfig *bgConfigs, Window *windows, u8 isOpponentApp)
 {
-    const WindowTemplate *v1 = sWinTemplates[param2].templates;
-    u32 numTemplates = sWinTemplates[param2].numTemplates;
+    const WindowTemplate *template = sWinTemplates[isOpponentApp].templates;
+    u32 numTemplates = sWinTemplates[isOpponentApp].numTemplates;
 
     for (u8 i = 0; i < numTemplates; i++) {
-        Window_AddFromTemplate(bgConfigs, &windows[i], &v1[i]);
+        Window_AddFromTemplate(bgConfigs, &windows[i], &template[i]);
         Window_FillTilemap(&windows[i], 0);
     }
 }
 
-void BattleCastleApp_FreeWindows(Window *windows, u8 param1)
+void BattleCastleApp_FreeWindows(Window *windows, u8 isOpponentApp)
 {
     u16 i;
-    u32 numTemplates = sWinTemplates[param1].numTemplates;
+    u32 numTemplates = sWinTemplates[isOpponentApp].numTemplates;
 
     for (i = 0; i < numTemplates; i++) {
         Window_Remove(&windows[i]);

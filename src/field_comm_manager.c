@@ -408,7 +408,7 @@ static void sub_02059B74(void)
                         }
                     }
 
-                    ScriptManager_Set(sFieldCommMan->fieldSystem, 9102, NULL);
+                    ScriptManager_Set(sFieldCommMan->fieldSystem, SCRIPT_ID(COMMUNICATION_CLUB, 2), NULL);
                 }
             }
         }

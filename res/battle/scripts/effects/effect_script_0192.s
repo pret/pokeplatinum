@@ -4,7 +4,7 @@
 _000:
     TryImprison _010
     // {0} sealed the opponent’s move(s)!
-    BufferMessage pl_msg_00000368_00562, TAG_NICKNAME, BTLSCR_ATTACKER
+    BufferMessage BattleStrings_Text_PokemonSealedTheOpponentsMoves_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_ON_HIT|MOVE_SUBSCRIPT_PTR_PRINT_MESSAGE_AND_PLAY_ANIMATION
     End 
 

@@ -17,14 +17,14 @@ _027:
     Wait 
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_NOT_SLEEP, _053
     // {0} went to sleep!
-    PrintMessage pl_msg_00000368_00205, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonWentToSleep_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _065
 
 _053:
     SetHealthbarStatus BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
     UpdateMonData OPCODE_FLAG_OFF, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_NOT_SLEEP
     // {0} slept and became healthy!
-    PrintMessage pl_msg_00000368_00208, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonSleptAndBecameHealthy_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
 
 _065:
     Wait 
@@ -36,38 +36,38 @@ _065:
     Call BATTLE_SUBSCRIPT_UPDATE_HP
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_NOT_SLEEP, _053
     // {0} regained health!
-    PrintMessage pl_msg_00000368_00184, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonRegainedHealth_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _147
 
 _098:
     WaitButtonABTime 30
     // {0} stayed awake because of its {1}!
-    PrintMessage pl_msg_00000368_00329, TAG_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonStayedAwakeBecauseOfItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_ATTACKER
     GoTo _143
 
 _107:
     WaitButtonABTime 30
     // {0} is already asleep!
-    PrintMessage pl_msg_00000368_00057, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonIsAlreadyAsleep_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _143
 
 _115:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_UPROAR, _129
     WaitButtonABTime 30
     // But the uproar kept {0} awake!
-    PrintMessage pl_msg_00000368_00326, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_ButTheUproarKeptPokemonAwake_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _143
 
 _129:
     WaitButtonABTime 30
     // But {0} can’t sleep in an uproar!
-    PrintMessage pl_msg_00000368_00323, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_ButPokemonCantSleepInAnUproar_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _143
 
 _137:
     WaitButtonABTime 30
     // {0}’s HP is full!
-    PrintMessage pl_msg_00000368_00187, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonsHPIsFull_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
 
 _143:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK

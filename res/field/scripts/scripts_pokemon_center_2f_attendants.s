@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0221.h"
+#include "res/text/bank/pokemon_center_2f_attendants.h"
 #include "res/text/bank/menu_entries.h"
 #include "constants/map_object.h"
 

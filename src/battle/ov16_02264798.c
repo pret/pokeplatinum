@@ -5,7 +5,7 @@
 
 #include "struct_decls/battle_system.h"
 
-#include "battle/ov16_0223DF00.h"
+#include "battle/battle_system.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_0225BFFC_t.h"
 
@@ -22,7 +22,7 @@ void ov16_02264798(BattlerData *param0, BattleSystem *battleSys)
         return;
     }
 
-    if (BattleSystem_BattleType(battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
+    if (BattleSystem_GetBattleType(battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         return;
     }
 

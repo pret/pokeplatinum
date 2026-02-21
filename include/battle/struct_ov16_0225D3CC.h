@@ -6,7 +6,7 @@
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
 typedef struct {
-    BattleSystem *unk_00;
+    BattleSystem *battleSys;
     BattlerData *unk_04;
     u8 unk_08;
     u8 unk_09;

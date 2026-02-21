@@ -99,7 +99,7 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
     int x, z;
     BOOL isFacingHoneyTree;
 
-    *eventId = SCRIPT_ID_OFFSET_COMMON_SCRIPTS + 8;
+    *eventId = SCRIPT_ID(COMMON_SCRIPTS, 8);
 
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);

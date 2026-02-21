@@ -11,7 +11,7 @@ _000:
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_SP_ATTACK_STAGE, BTLVAR_SCRIPT_TEMP
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_SP_ATTACK_STAGE, BTLVAR_CALC_TEMP
     // {0} switched all changes to its Attack and Sp. Atk with the target!
-    PrintMessage pl_msg_00000368_01015, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonSwitchedAllAttackChangesWithItsTarget_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

@@ -20,7 +20,7 @@
                 "MOVE_SIGNAL_BEAM",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_SYNTHESIS",
                 "MOVE_SUNNY_DAY"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 19
         }
     ],

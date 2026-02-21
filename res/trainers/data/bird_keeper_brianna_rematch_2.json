@@ -18,7 +18,7 @@
                 "MOVE_AIR_SLASH",
                 "MOVE_STEEL_WING"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -32,7 +32,7 @@
                 "MOVE_ROOST",
                 "MOVE_AIR_SLASH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -46,7 +46,7 @@
                 "MOVE_ROOST",
                 "MOVE_AIR_SLASH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

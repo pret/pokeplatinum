@@ -18,7 +18,7 @@
                 "MOVE_SILVER_WIND",
                 "MOVE_BATON_PASS"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -32,7 +32,7 @@
                 "MOVE_REFLECT",
                 "MOVE_MIMIC"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -46,7 +46,7 @@
                 "MOVE_SUCKER_PUNCH",
                 "MOVE_MIMIC"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

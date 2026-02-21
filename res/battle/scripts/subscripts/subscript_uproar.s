@@ -10,7 +10,7 @@ _000:
     UpdateVar OPCODE_LEFT_SHIFT, BTLVAR_CALC_TEMP, 0x00000008
     UpdateVarFromVar OPCODE_FLAG_ON, BTLVAR_FIELD_CONDITIONS, BTLVAR_CALC_TEMP
     // {0} caused an uproar!
-    PrintMessage pl_msg_00000368_00308, TAG_NICKNAME, BTLSCR_ATTACKER
+    PrintMessage BattleStrings_Text_PokemonCausedAnUproar_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
     End 

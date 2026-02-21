@@ -16,7 +16,7 @@
                 "MOVE_BLOCK",
                 "MOVE_ROCK_THROW"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -29,7 +29,7 @@
                 "MOVE_LIGHT_SCREEN",
                 "MOVE_DOUBLE_SLAP"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

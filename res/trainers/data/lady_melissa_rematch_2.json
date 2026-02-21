@@ -20,7 +20,7 @@
                 "MOVE_LEECH_SEED",
                 "MOVE_MAGICAL_LEAF"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

@@ -14,7 +14,7 @@
             "level": 18,
             "item": null,
             "moves": null,
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 1
         },
         {
@@ -23,7 +23,7 @@
             "level": 22,
             "item": null,
             "moves": null,
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

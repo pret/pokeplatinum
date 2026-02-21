@@ -1,5 +1,5 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0431.h"
+#include "res/text/bank/record_chatot_cry.h"
 
 
     ScriptEntry _0006

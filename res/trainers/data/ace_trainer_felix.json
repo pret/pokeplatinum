@@ -20,7 +20,7 @@
                 "MOVE_CURSE",
                 "MOVE_WILL_O_WISP"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_ZEN_HEADBUTT",
                 "MOVE_CRUNCH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 23
         }
     ],

@@ -20,7 +20,7 @@
                 "MOVE_ICE_FANG",
                 "MOVE_ANCIENT_POWER"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         }
     ],
