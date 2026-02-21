@@ -13,21 +13,21 @@
 JubilifeTV3FGroupRankingRoom_RecordMachinePokemon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ShowRecordList 3
+    ScrCmd_1B5 3
     ReleaseAll
     End
 
 JubilifeTV3FGroupRankingRoom_RecordMachineBattles:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ShowRecordList 4
+    ScrCmd_1B5 4
     ReleaseAll
     End
 
 JubilifeTV3FGroupRankingRoom_RecordMachineContests:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ShowRecordList 5
+    ScrCmd_1B5 5
     ReleaseAll
     End
 

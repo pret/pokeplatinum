@@ -379,7 +379,7 @@ static BOOL ScrCmd_20A(ScriptContext *ctx);
 static BOOL ScrCmd_20B(ScriptContext *ctx);
 static BOOL ScrCmd_0A5(ScriptContext *ctx);
 static BOOL ScrCmd_30E(ScriptContext *ctx);
-static BOOL ScrCmd_DressUpPokemon(ScriptContext *ctx);
+static BOOL ScrCmd_0A6(ScriptContext *ctx);
 static BOOL ScrCmd_ShowDressUpPhoto(ScriptContext *ctx);
 static BOOL ScrCmd_0A8(ScriptContext *ctx);
 static BOOL ScrCmd_DressUpPhotoHasData(ScriptContext *ctx);
@@ -553,7 +553,7 @@ static BOOL ScrCmd_ShowObject(ScriptContext *ctx);
 static BOOL ScrCmd_HideObject(ScriptContext *ctx);
 static BOOL ScrCmd_1B3(ScriptContext *ctx);
 static BOOL ScrCmd_1B4(ScriptContext *ctx);
-static BOOL ScrCmd_ShowRecordList(ScriptContext *ctx);
+static BOOL ScrCmd_1B5(ScriptContext *ctx);
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom(ScriptContext *ctx);
 static BOOL ScrCmd_GetRandom2(ScriptContext *ctx);
@@ -935,7 +935,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0A3,
     ScrCmd_Unused_0A4,
     ScrCmd_0A5,
-    ScrCmd_DressUpPokemon,
+    ScrCmd_0A6,
     ScrCmd_ShowDressUpPhoto,
     ScrCmd_0A8,
     ScrCmd_OpenSealCapsuleEditor,
@@ -1206,7 +1206,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_HideObject,
     ScrCmd_1B3,
     ScrCmd_1B4,
-    ScrCmd_ShowRecordList,
+    ScrCmd_1B5,
     ScrCmd_GetTimeOfDay,
     ScrCmd_GetRandom,
     ScrCmd_GetRandom2,
@@ -3953,7 +3953,7 @@ static BOOL ScrCmd_30E(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_DressUpPokemon(ScriptContext *ctx)
+static BOOL ScrCmd_0A6(ScriptContext *ctx)
 {
     u16 slot = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
@@ -5773,7 +5773,7 @@ static BOOL ScrCmd_1B4(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_ShowRecordList(ScriptContext *ctx)
+static BOOL ScrCmd_1B5(ScriptContext *ctx)
 {
     u16 listIndex = ScriptContext_GetVar(ctx);
 

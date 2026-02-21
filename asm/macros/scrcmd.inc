@@ -1066,7 +1066,7 @@
     .short 165
     .endm
 
-    .macro DressUpPokemon slot, destVar, arg2
+    .macro ScrCmd_0A6 slot, destVar, arg2
     .short 166
     .short \slot
     .short \destVar
@@ -2502,7 +2502,7 @@
     .short \arg0
     .endm
 
-    .macro ShowRecordList listIndex
+    .macro ScrCmd_1B5 listIndex
     .short 437
     .short \listIndex
     .endm

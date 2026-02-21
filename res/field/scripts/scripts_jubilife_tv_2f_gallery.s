@@ -123,7 +123,7 @@ JubilifeTV2FGallery_EnterDressingRoom:
     SetFlag FLAG_ENTERED_DRESSING_ROOM
     FadeScreenOut
     WaitFadeScreen
-    DressUpPokemon VAR_MAP_LOCAL_2, VAR_0x8005, VAR_0x8007
+    ScrCmd_0A6 VAR_MAP_LOCAL_2, VAR_0x8005, VAR_0x8007
     ReturnToField
     ApplyMovement LOCALID_PLAYER, JubilifeTV2FGallery_Movement_PlayerFaceSouth
     WaitMovement
