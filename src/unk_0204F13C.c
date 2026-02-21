@@ -565,7 +565,7 @@ BOOL ScrCmd_324(ScriptContext *param0)
         }
     }
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_UNK_068, v7);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(param0->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, v7);
 
     if (v7 != 0) {
         BattlePoints_ApplyFuncAndGet(

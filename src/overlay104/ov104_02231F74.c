@@ -672,7 +672,7 @@ void ov104_02232B78(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        if (v2 == 0xfd13) {
+        if (v2 == 0xFD13) {
             v0->unk_00 = 2;
             break;
         }

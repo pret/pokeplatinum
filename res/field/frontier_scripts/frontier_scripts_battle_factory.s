@@ -492,7 +492,7 @@ _02D6:
     FrontierScrCmd_3E 0x40B8, 0x8001
     FrontierScrCmd_3E 0x40B9, 0x8002
     FrontierScrCmd_3E 0x4003, 0x8003
-    FrontierScrCmd_40 0x8007
+    GetPlayerObjEventGfx 0x8007
     GoToIfEq 0x8001, 2, _0320
     GoToIfEq 0x8001, 3, _0320
     SetVar 0x800F, 231
@@ -502,7 +502,7 @@ _02D6:
     End
 
 _0320:
-    FrontierScrCmd_4A 43
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_43
     SetVar 0x800F, 232
     FrontierScrCmd_22 _0014
     FrontierScrCmd_24 _004C
@@ -530,10 +530,10 @@ _0385:
     FrontierScrCmd_69 0x8002, 0, 0x8008
     GoToIfEq 0x8008, 0, _0385
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 230
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _03B6
     End
 
@@ -549,10 +549,10 @@ _03D6:
     FrontierScrCmd_69 0x8002, 0, 0x8008
     GoToIfEq 0x8008, 0, _03D6
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 231
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0407
     End
 
@@ -597,9 +597,9 @@ _04A9:
     End
 
 _04C5:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 238
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _04D5
     End
 
@@ -608,10 +608,10 @@ _04D5:
     FrontierScrCmd_69 0x8002, 0, 0x8008
     GoToIfEq 0x8008, 0, _04D5
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 232
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 39, 0, 0, 0x8008
     FrontierScrCmd_67 19, 0, 0, 0x8008
     SetVar 0x8009, 0x8008
@@ -734,11 +734,11 @@ _072D:
     FrontierScrCmd_69 0x8002, 0, 0x8008
     GoToIfEq 0x8008, 0, _072D
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 40, 0, 0, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 160
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0765
     End
 
@@ -759,15 +759,15 @@ _0765:
     End
 
 _07C8:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 234
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _07D2:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 235
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _07DC:
@@ -807,7 +807,7 @@ _084E:
     FrontierScrCmd_23 30
     FrontierScrCmd_67 32, 0, 0, 0x8008
     FrontierScrCmd_03 4
-    FrontierScrCmd_40 0x8007
+    GetPlayerObjEventGfx 0x8007
     FrontierScrCmd_22 _00F8
     FrontierScrCmd_24 _0108
     FadeScreenIn
@@ -844,7 +844,7 @@ _0927:
     FrontierScrCmd_23 30
     FrontierScrCmd_67 32, 0, 0, 0x8008
     FrontierScrCmd_03 4
-    FrontierScrCmd_40 0x8007
+    GetPlayerObjEventGfx 0x8007
     FrontierScrCmd_22 _0100
     FrontierScrCmd_24 _0120
     FadeScreenIn
@@ -908,7 +908,7 @@ _0A41:
     End
 
 _0A82:
-    FrontierScrCmd_48 59
+    IncrementRecordValue RECORD_UNK_059
     FrontierScrCmd_47 2
     GoTo _0AD0
     End
@@ -918,11 +918,11 @@ _0A92:
     FrontierScrCmd_69 0x8002, 0, 0x8008
     GoToIfEq 0x8008, 0, _0A92
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 38, 0, 0, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 161
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     CloseMessage
     FrontierScrCmd_3F 3
     GoTo _0AD0
@@ -935,7 +935,7 @@ _0AD0:
     FadeScreenIn
     FrontierScrCmd_68 0x8008
     GoToIfEq 0x8008, 0, _1233
-    FrontierScrCmd_48 60
+    IncrementRecordValue RECORD_UNK_060
     FrontierScrCmd_67 37, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _15AA
     GoToIfEq 0x8008, 2, _15DE
@@ -990,7 +990,7 @@ _0BD9:
     BufferPlayerName 0
     FrontierScrCmd_67 35, 0, 0, 0x8008
     BufferNumber 1, 0x8008
-    FrontierScrCmd_82 0x8008
+    GiveBattlePoints 0x8008
     Message BattleFactoryScene_Text_ReceiveBP
     PlayFanfare SEQ_PL_POINTGET3
     WaitFanfare
@@ -1133,12 +1133,12 @@ _0E45:
     FrontierScrCmd_69 0x8002, 0, 0x8008
     GoToIfEq 0x8008, 0, _0E45
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 24, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _0E8A
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 162
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0E9F
     End
 
@@ -1176,7 +1176,7 @@ _0EFA:
     FrontierScrCmd_69 0x8002, 0, 0x8008
     GoToIfEq 0x8008, 0, _0EFA
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0F23
     End
 
@@ -1189,9 +1189,9 @@ _0F23:
     End
 
 _0F4D:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 163
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0F5D
     End
 
@@ -1209,15 +1209,15 @@ _0F5D:
     End
 
 _0FAB:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 236
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _0FB5:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 233
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _0FBF:
@@ -1235,7 +1235,7 @@ _0FE5:
     FrontierScrCmd_69 0x8002, 1, 0x8008
     GoToIfEq 0x8008, 0, _0FE5
     FrontierScrCmd_6A 0x8002
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_67 26, 0, 0, 0x8008
     GoToIfEq 0x8008, 0, _0F23
     GoTo _1022
@@ -1377,9 +1377,9 @@ _11DB:
 _11FE:
     Message BattleFactoryScene_Text_ReturnPokemon
     MessageNoSkip BattleFactoryScene_Text_PleaseWait
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 168
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _1216
     End
 
@@ -1435,9 +1435,9 @@ _12BF:
 
 _12DF:
     MessageNoSkip BattleFactoryScene_Text_PleaseWait
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 166
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _12F3
     End
 
@@ -1465,9 +1465,9 @@ _1358:
     Return
 
 _135E:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 167
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _1368:
@@ -1496,7 +1496,7 @@ _1391:
     FrontierScrCmd_25 4
     FrontierScrCmd_03 3
     FrontierScrCmd_67 31, 0, 0, 0x8008
-    FrontierScrCmd_40 0x8007
+    GetPlayerObjEventGfx 0x8007
     FrontierScrCmd_22 _0008
     FrontierScrCmd_24 _0098
     FadeScreenIn
@@ -1508,7 +1508,7 @@ _13EA:
     FrontierScrCmd_25 4
     FrontierScrCmd_03 3
     FrontierScrCmd_67 31, 0, 0, 0x8008
-    FrontierScrCmd_40 0x8007
+    GetPlayerObjEventGfx 0x8007
     FrontierScrCmd_22 _0014
     FrontierScrCmd_24 _00BC
     FadeScreenIn
@@ -1644,27 +1644,27 @@ _1630:
     WaitTime 1, 0x8008
     FrontierScrCmd_67 27, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 195
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _164D:
     WaitTime 1, 0x8008
     FrontierScrCmd_67 27, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 196
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _166A:
     WaitTime 1, 0x8008
     FrontierScrCmd_67 27, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 197
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
     .balign 4, 0
