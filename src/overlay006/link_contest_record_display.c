@@ -24,12 +24,6 @@
 
 #include "res/text/bank/link_contest_records.h"
 
-enum TextAlignment {
-    TEXT_ALIGN_LEFT,
-    TEXT_ALIGN_CENTER,
-    TEXT_ALIGN_RIGHT
-};
-
 typedef struct LinkContestRecordMessage {
     u32 messageID;
     s16 offsetX;
