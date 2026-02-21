@@ -14,9 +14,13 @@
 
 #define MAX_NORMAL_RADAR_BLIPS 8
 
+#define TOUCH_RADAR_RADIUS 6
+
+#define MAX_TOUCH_RADAR_RESULTS_OF_TYPE 8
+
 typedef void (*EndSysTaskFunc)(SysTask *sysTask, void *ctx);
 
-enum UndergroundStoredPosKeys {
+enum UndergroundStoredPosKey {
     UNDERGROUND_STORED_POS_NONE = 0,
     UNDERGROUND_STORED_POS_KEY_PC,
     UNDERGROUND_STORED_POS_KEY_START_MENU,
@@ -25,7 +29,7 @@ enum UndergroundStoredPosKeys {
     UNDERGROUND_STORED_POS_KEY_TREASURES_VENDOR,
 };
 
-enum UndergroundMenuKeys {
+enum UndergroundMenuKey {
     UNDERGROUND_MENU_KEY_STORE_GOODS = 2,
     UNDERGROUND_MENU_KEY_WITHDRAW_GOODS = 6,
     UNDERGROUND_MENU_KEY_TRAPS = 8,
@@ -123,6 +127,6 @@ BOOL UndergroundMan_ShouldFieldSystemBeResumed(int netID);
 void UndergroundMan_SendPlayerState(void);
 void UndergroundMan_ProcessPlayerState(int netID, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_UndergroundPlayerState(void);
-void ov23_022433BC(int netID, int unused1, void *unused2, void *unused3);
+void UndergroundMan_ProcessAllDataSentMessage(int netID, int unused1, void *unused2, void *unused3);
 
 #endif // POKEPLATINUM_UNDERGROUND_MANAGER_H

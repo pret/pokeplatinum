@@ -20,7 +20,7 @@ enum PauseBit {
     PAUSE_BIT_TRAPS = 1 << 4,
     PAUSE_BIT_BURIED_OBJECT_WITH_FLAG = 1 << 5,
     PAUSE_BIT_LINK_PC = 1 << 6,
-    PAUSE_BIT_RADAR = 1 << 7,
+    PAUSE_BIT_TOUCH_RADAR = 1 << 7,
 };
 
 enum Emote {

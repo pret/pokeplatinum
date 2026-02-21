@@ -134,17 +134,17 @@ static void UndergroundPC_StartTakeFlagPromptTask(FieldSystem *fieldSystem, PCIn
 static void UndergroundPC_OpenPCMenu(FieldSystem *fieldSystem);
 static void UndergroundPC_UpdateCursorPos(UndergroundMenu *menu);
 
-static const WindowTemplate sWindowTemplate = {
+static const WindowTemplate sYesNoWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 25,
     .tilemapTop = 13,
-    .width = 6,
-    .height = 4,
+    .width = YES_NO_MENU_TILE_W,
+    .height = YES_NO_MENU_TILE_H,
     .palette = 13,
-    .baseTile = 543,
+    .baseTile = BASE_TILE_YES_NO_MENU
 };
 
-int UndergroundPC_GetPCAtCoordinates(Coordinates *coordinates, int dir)
+int UndergroundPC_GetPCOwnerNetIDAtCoordinates(Coordinates *coordinates, int dir)
 {
     int netID;
     int x = coordinates->x;
@@ -152,7 +152,7 @@ int UndergroundPC_GetPCAtCoordinates(Coordinates *coordinates, int dir)
     int modifier = 0;
 
     if (dir != DIR_NONE && dir != DIR_NORTH) {
-        return PC_NONE;
+        return NETID_NONE;
     }
 
     if (z == PC_COORDINATE_Z) {
@@ -160,7 +160,7 @@ int UndergroundPC_GetPCAtCoordinates(Coordinates *coordinates, int dir)
     } else if (z == PC_COORDINATE_Z + SECRET_BASE_DEPTH) {
         modifier = MAX_CONNECTED_PLAYERS; // bug: would lead to out of bounds array access
     } else {
-        return PC_NONE;
+        return NETID_NONE;
     }
 
     if (x == PC_COORDINATE_X || x == PC_COORDINATE_X + 1) {
@@ -175,18 +175,18 @@ int UndergroundPC_GetPCAtCoordinates(Coordinates *coordinates, int dir)
         x -= SECRET_BASE_WIDTH;
     }
 
-    return PC_NONE;
+    return NETID_NONE;
 }
 
 BOOL UndergroundPC_TryUsePC(int netID, Coordinates *coordinates)
 {
-    int pcNetID = UndergroundPC_GetPCAtCoordinates(coordinates, CommPlayer_DirServer(netID));
+    int pcNetID = UndergroundPC_GetPCOwnerNetIDAtCoordinates(coordinates, CommPlayer_DirServer(netID));
 
     if (CommPlayer_Dir(pcNetID) == DIR_NONE) {
-        pcNetID = PC_NONE;
+        pcNetID = NETID_NONE;
     }
 
-    if (pcNetID != PC_NONE) {
+    if (pcNetID != NETID_NONE) {
         CommPlayerMan_SetMovementEnabled(netID, FALSE);
 
         PCInteraction pcInteraction;
@@ -252,7 +252,7 @@ int CommPacketSizeOf_PCInteraction(void)
 static BOOL UndergroundPC_TryDepositGood(int slot, UndergroundMenu *menu)
 {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(menu->fieldSystem));
-    int goodID = Underground_GetGoodAtSlotBag(underground, slot);
+    enum Good goodID = Underground_GetGoodAtSlotBag(underground, slot);
 
     if (Underground_TryAddGoodPC(underground, goodID)) {
         Underground_RemoveGoodAtSlotBag(underground, slot);
@@ -270,7 +270,7 @@ static int UndergroundPC_TryWithdrawGood(int slot, UndergroundMenu *menu)
         return -1;
     }
 
-    int goodID = Underground_GetGoodAtSlotPC(underground, slot);
+    enum Good goodID = Underground_GetGoodAtSlotPC(underground, slot);
 
     if (UndergroundInventory_TryAddGoodBag(goodID)) {
         Underground_RemoveGoodAtSlotPC(underground, slot);
@@ -518,7 +518,7 @@ static BOOL UndergroundPC_HandleStoreGoodsMenu(SysTask *sysTask, void *data)
         break;
     default:
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
-        u32 goodID = UndergroundMenu_GetGoodAtSlotBag(input, menu);
+        enum Good goodID = UndergroundMenu_GetGoodAtSlotBag(input, menu);
 
         if (UndergroundPC_TryDepositGood(input, menu)) {
             UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetMiscTextPrinter(), goodID);
@@ -560,7 +560,7 @@ static BOOL UndergroundPC_HandleWithdrawGoodsMenu(SysTask *sysTask, void *data)
         break;
     default:
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
-        u32 goodID = UndergroundMenu_GetGoodAtSlotPC(input, menu);
+        enum Good goodID = UndergroundMenu_GetGoodAtSlotPC(input, menu);
         int withdrawResult = UndergroundPC_TryWithdrawGood(input, menu);
 
         if (withdrawResult == 1) {
@@ -600,8 +600,8 @@ static void UndergroundPC_MoveCamera(BOOL isDecorating, FieldSystem *fieldSystem
     VecFx32 delta;
 
     delta.y = 0;
-    delta.x = 15 * FX32_ONE * 16 - Player_GetXPos(fieldSystem->playerAvatar) * FX32_ONE * 16;
-    delta.z = 17 * FX32_ONE * 16 - Player_GetZPos(fieldSystem->playerAvatar) * FX32_ONE * 16;
+    delta.x = 15 * MAP_OBJECT_TILE_SIZE - Player_GetXPos(fieldSystem->playerAvatar) * MAP_OBJECT_TILE_SIZE;
+    delta.z = 17 * MAP_OBJECT_TILE_SIZE - Player_GetZPos(fieldSystem->playerAvatar) * MAP_OBJECT_TILE_SIZE;
 
     if (!isDecorating) {
         delta.x = -delta.x;
@@ -631,7 +631,7 @@ static BOOL UndergroundPC_DecorateTask(FieldTask *task)
         }
         break;
     case DECORATE_STATE_START:
-        BaseDecoration_StartDecorationTask(fieldSystem, task);
+        BaseDecoration_StartDecorationMenuTask(fieldSystem, task);
         ctx->state = DECORATE_STATE_MAIN;
         break;
     case DECORATE_STATE_MAIN:
@@ -867,7 +867,7 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
     switch (ctx->state) {
     case TAKE_FLAG_PROMPT_STATE_INIT:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = Menu_MakeYesNoChoice(ctx->fieldSystem->bgConfig, &sWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = Menu_MakeYesNoChoice(ctx->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = TAKE_FLAG_PROMPT_STATE_MAIN;
         }
         break;

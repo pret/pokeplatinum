@@ -5,6 +5,7 @@
 
 #include "constants/field_base_tiles.h"
 #include "generated/goods.h"
+#include "generated/sphere_types.h"
 #include "generated/traps.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -112,14 +113,14 @@ UndergroundVendor sUndergroundVendors[] = {
     { .vendorType = VENDOR_TYPE_TREASURES, .x = 40, .z = 72 }
 };
 
-static const WindowTemplate sWindowTemplate = {
+static const WindowTemplate sYesNoWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 25,
     .tilemapTop = 13,
-    .width = 6,
-    .height = 4,
+    .width = YES_NO_MENU_TILE_W,
+    .height = YES_NO_MENU_TILE_H,
     .palette = 13,
-    .baseTile = BASE_TILE_MESSAGE_WINDOW - 6 * 4
+    .baseTile = BASE_TILE_YES_NO_MENU
 };
 
 static void UndergroundVendors_InitTrapsVendorInventory(UndergroundMenu *menu, int vendorIndex)
@@ -129,7 +130,7 @@ static void UndergroundVendors_InitTrapsVendorInventory(UndergroundMenu *menu, i
     MATHRandContext16 rand;
     MATH_InitRand16(&rand, Underground_GetRandomSeed(underground) + vendorIndex);
 
-    int trapID;
+    int trapID; // doesn't match if declared as enum Trap
 
     for (int i = 0; i < SHOP_INVENTORY_SIZE; i++) {
         if (i == 0) {
@@ -148,9 +149,10 @@ static void UndergroundVendors_InitTrapsVendorInventory(UndergroundMenu *menu, i
             i--;
             continue;
         }
+
         int maxSize; // needs to be declared before below variable to match
-        int minSize = TrapGetSpherePriceMinSize(trapID);
-        maxSize = TrapGetSpherePriceMaxSize(trapID);
+        int minSize = Trap_GetSpherePriceMinSize(trapID);
+        maxSize = Trap_GetSpherePriceMaxSize(trapID);
 
         if (minSize == 0 && maxSize == 0) {
             i--;
@@ -158,10 +160,10 @@ static void UndergroundVendors_InitTrapsVendorInventory(UndergroundMenu *menu, i
         }
 
         menu->shopInventory[i] = trapID;
-        menu->shopPriceTypes[i] = TrapGetSpherePriceType(trapID);
+        menu->shopPriceTypes[i] = Trap_GetSpherePriceType(trapID);
 
         if (menu->shopPriceTypes[i] == RANDOM_SPHERE_TYPE) {
-            menu->shopPriceTypes[i] = MATH_Rand16(&rand, 6 - 1) + 1;
+            menu->shopPriceTypes[i] = MATH_Rand16(&rand, SPHERE_MAX - 1) + 1;
         }
 
         menu->shopPriceSizes[i] = MATH_Rand16(&rand, maxSize - minSize) + minSize;
@@ -179,7 +181,7 @@ static void UndergroundVendors_InitGoodsVendorInventory(UndergroundMenu *menu, i
     MATH_InitRand16(&rand, Underground_GetRandomSeed(underground) + vendorIndex);
 
     for (int i = 0; i < SHOP_INVENTORY_SIZE; i++) {
-        int goodID = MATH_Rand16(&rand, UG_GOOD_MAX - 1) + 1;
+        enum Good goodID = MATH_Rand16(&rand, UG_GOOD_MAX - 1) + 1;
 
         for (int j = 0; j < i; j++) {
             if (menu->shopInventory[j] == goodID) {
@@ -204,7 +206,7 @@ static void UndergroundVendors_InitGoodsVendorInventory(UndergroundMenu *menu, i
             i--;
             continue;
         } else if (menu->shopPriceTypes[i] == RANDOM_SPHERE_TYPE) {
-            menu->shopPriceTypes[i] = MATH_Rand16(&rand, 6 - 1) + 1;
+            menu->shopPriceTypes[i] = MATH_Rand16(&rand, SPHERE_MAX - 1) + 1;
         }
 
         minSize = Good_GetSpherePriceMinSize(goodID);
@@ -335,31 +337,31 @@ static void UndergroundVendors_PrintItemDescriptionAndSellPrice(ListMenu *listMe
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(menu->fieldSystem));
     int minSize, maxSize;
-    int sphereType = SPHERE_NONE, sphereSize;
+    enum SphereType sphereType = SPHERE_NONE, sphereSize;
 
     Window_FillTilemap(&menu->secondaryWindow, 15);
 
     if (index != LIST_CANCEL) {
         if (menu->vendorType == VENDOR_TYPE_TRAPS) {
-            const int trapID = UndergroundMenu_GetTrapAtSlot(index, menu);
+            const enum Trap trapID = UndergroundMenu_GetTrapAtSlot(index, menu);
             MATH_InitRand16(&rand, Underground_GetRandomSeed(underground) + menu->vendorIndex + trapID);
-            sphereType = TrapGetSpherePriceType(trapID);
+            sphereType = Trap_GetSpherePriceType(trapID);
 
             if (sphereType == RANDOM_SPHERE_TYPE) {
-                sphereType = MATH_Rand16(&rand, SPHERE_TYPE_MAX - 1) + 1;
+                sphereType = MATH_Rand16(&rand, SPHERE_MAX - 1) + 1;
             }
 
-            minSize = TrapGetSpherePriceMinSize(trapID);
-            maxSize = TrapGetSpherePriceMaxSize(trapID);
+            minSize = Trap_GetSpherePriceMinSize(trapID);
+            maxSize = Trap_GetSpherePriceMaxSize(trapID);
             sphereSize = MATH_Rand16(&rand, maxSize - minSize) + minSize;
             sphereSize /= 2;
         } else if (menu->vendorType == VENDOR_TYPE_GOODS) {
-            const int goodID = UndergroundMenu_GetGoodAtSlotBag(index, menu);
+            const enum Good goodID = UndergroundMenu_GetGoodAtSlotBag(index, menu);
             MATH_InitRand16(&rand, Underground_GetRandomSeed(underground) + menu->vendorIndex + goodID);
             sphereType = Good_GetSpherePriceType(goodID);
 
             if (sphereType == RANDOM_SPHERE_TYPE) {
-                sphereType = MATH_Rand16(&rand, SPHERE_TYPE_MAX - 1) + 1;
+                sphereType = MATH_Rand16(&rand, SPHERE_MAX - 1) + 1;
             }
 
             minSize = Good_GetSpherePriceMinSize(goodID);
@@ -372,7 +374,7 @@ static void UndergroundVendors_PrintItemDescriptionAndSellPrice(ListMenu *listMe
             sphereType = Treasure_GetSpherePriceType(treasureID);
 
             if (sphereType == RANDOM_SPHERE_TYPE) {
-                sphereType = MATH_Rand16(&rand, SPHERE_TYPE_MAX - 1) + 1;
+                sphereType = MATH_Rand16(&rand, SPHERE_MAX - 1) + 1;
             }
 
             minSize = Treasure_GetSpherePriceMinSize(treasureID);
@@ -487,10 +489,10 @@ static void UndergroundVendors_EraseCurrentMenu(UndergroundMenu *menu, BOOL unus
 static void UndergroundVendors_PrintConfirmSellPrompt(int slot, UndergroundMenu *menu)
 {
     if (menu->vendorType == VENDOR_TYPE_TRAPS) {
-        int trapID = UndergroundMenu_GetTrapAtSlot(slot, menu);
+        enum Trap trapID = UndergroundMenu_GetTrapAtSlot(slot, menu);
         UndergroundVendors_SetTrapNameForPrinter(2, trapID);
     } else if (menu->vendorType == VENDOR_TYPE_GOODS) {
-        int goodID = UndergroundMenu_GetGoodAtSlotBag(slot, menu);
+        enum Good goodID = UndergroundMenu_GetGoodAtSlotBag(slot, menu);
         UndergroundVendors_SetGoodNameForPrinter(2, goodID);
     } else {
         int treasureID = UndergroundMenu_GetTreasureAtSlot(slot, menu);
@@ -556,12 +558,12 @@ void UndergroundVendors_SetTreasureNameForPrinter(int index, int treasureID)
     UndergroundTextPrinter_SetUndergroundItemName(UndergroundMan_GetMiscTextPrinter(), index, treasureID);
 }
 
-void UndergroundVendors_SetTrapNameForPrinter(int index, int trapID)
+void UndergroundVendors_SetTrapNameForPrinter(int index, enum Trap trapID)
 {
     UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundMan_GetMiscTextPrinter(), index, trapID);
 }
 
-void UndergroundVendors_SetGoodNameForPrinter(int index, int goodID)
+void UndergroundVendors_SetGoodNameForPrinter(int index, enum Good goodID)
 {
     UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundMan_GetMiscTextPrinter(), index, goodID);
 }
@@ -618,7 +620,7 @@ static int UndergroundVendors_FindVendorAtCoordinates(int x, int z, int *outInde
     }
 
     GF_ASSERT(FALSE);
-    return 0;
+    return VENDOR_TYPE_GOODS;
 }
 
 static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
@@ -873,7 +875,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         break;
     case SHOP_MENU_STATE_INIT_CONFIRM_SELL_MENU:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetMiscTextPrinter())) {
-            menu->yesNoMenu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            menu->yesNoMenu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             menu->state = SHOP_MENU_STATE_CONFIRM_SELL;
         }
         break;

@@ -9,7 +9,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00001",
+      "id": "UndergroundCommon_Text_Dummy_00001",
       "garbage": 16
     },
     {
@@ -99,7 +99,7 @@
       "en_US": "OK, see you!"
     },
     {
-      "id": "pl_msg_00000634_00016",
+      "id": "UndergroundCommon_Text_SorrySomethingsComeUp_Unused",
       "en_US": [
         "Sorry!\n",
         "Something’s come up!"
@@ -147,7 +147,7 @@
       "en_US": "Hello!"
     },
     {
-      "id": "pl_msg_00000634_00023",
+      "id": "UndergroundCommon_Text_Dummy_00023",
       "garbage": 16
     },
     {
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00025",
+      "id": "UndergroundCommon_Text_SorryToBugYou_Unused",
       "en_US": [
         "Oh, you’re busy? Sorry to bug you!\n",
         "Maybe next time!"
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00032",
+      "id": "UndergroundCommon_Text_OkSeeYouAround_Unused",
       "en_US": "OK, see you around!"
     },
     {
@@ -246,7 +246,7 @@
       "en_US": "Close and decorate"
     },
     {
-      "id": "pl_msg_00000634_00040",
+      "id": "UndergroundCommon_Text_Dummy_00040",
       "garbage": 24
     },
     {
@@ -257,11 +257,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00042",
+      "id": "UndergroundCommon_Text_Dummy_00042",
       "garbage": 26
     },
     {
-      "id": "pl_msg_00000634_00043",
+      "id": "UndergroundCommon_Text_Dummy_00043",
       "garbage": 29
     },
     {
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00046",
+      "id": "UndergroundCommon_Text_Dummy_00046",
       "garbage": 13
     },
     {
@@ -294,7 +294,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00049",
+      "id": "UndergroundCommon_Text_Dummy_00049",
       "garbage": 15
     },
     {
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00053",
+      "id": "UndergroundCommon_Text_Dummy_00053",
       "garbage": 33
     },
     {
@@ -358,7 +358,7 @@
       "en_US": "You can’t bury anything in a wall."
     },
     {
-      "id": "pl_msg_00000634_00061",
+      "id": "UndergroundCommon_Text_Dummy_00061",
       "garbage": 14
     },
     {
@@ -487,7 +487,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00082",
+      "id": "UndergroundCommon_Text_Dummy_00082",
       "garbage": 17
     },
     {
@@ -544,7 +544,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00089",
+      "id": "UndergroundCommon_Text_Dummy_00089",
       "garbage": 11
     },
     {
@@ -556,15 +556,15 @@
       "en_US": "{STRVAR_1 3, 1, 0} has entered."
     },
     {
-      "id": "pl_msg_00000634_00092",
+      "id": "UndergroundCommon_Text_Dummy_00092",
       "garbage": 14
     },
     {
-      "id": "pl_msg_00000634_00093",
+      "id": "UndergroundCommon_Text_Dummy_00093",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000634_00094",
+      "id": "UndergroundCommon_Text_Dummy_00094",
       "garbage": 15
     },
     {
@@ -575,11 +575,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00096",
+      "id": "UndergroundCommon_Text_Dummy_00096",
       "garbage": 17
     },
     {
-      "id": "pl_msg_00000634_00097",
+      "id": "UndergroundCommon_Text_Dummy_00097",
       "garbage": 20
     },
     {
@@ -598,15 +598,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00101",
+      "id": "UndergroundCommon_Text_Dummy_00101",
       "garbage": 9
     },
     {
-      "id": "pl_msg_00000634_00102",
+      "id": "UndergroundCommon_Text_Dummy_00102",
       "garbage": 12
     },
     {
-      "id": "pl_msg_00000634_00103",
+      "id": "UndergroundCommon_Text_Dummy_00103",
       "garbage": 12
     },
     {
@@ -621,11 +621,11 @@
       "en_US": "{STRVAR_1 3, 0, 0} is digging for Treasure!"
     },
     {
-      "id": "pl_msg_00000634_00106",
+      "id": "UndergroundCommon_Text_Dummy_00106",
       "garbage": 13
     },
     {
-      "id": "pl_msg_00000634_00107",
+      "id": "UndergroundCommon_Text_Dummy_00107",
       "garbage": 13
     },
     {
@@ -661,11 +661,11 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00113",
+      "id": "UndergroundCommon_Text_Dummy_00113",
       "garbage": 25
     },
     {
-      "id": "pl_msg_00000634_00114",
+      "id": "UndergroundCommon_Text_Dummy_00114",
       "garbage": 25
     },
     {
@@ -888,19 +888,19 @@
       ]
     },
     {
-      "id": "pl_msg_00000634_00151",
+      "id": "UndergroundCommon_Text_Dummy_00151",
       "garbage": 15
     },
     {
-      "id": "pl_msg_00000634_00152",
+      "id": "UndergroundCommon_Text_Dummy_00152",
       "garbage": 29
     },
     {
-      "id": "pl_msg_00000634_00153",
+      "id": "UndergroundCommon_Text_Dummy_00153",
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000634_00154",
+      "id": "UndergroundCommon_Text_Dummy_00154",
       "garbage": 24
     },
     {

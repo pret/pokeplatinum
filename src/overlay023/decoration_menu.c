@@ -381,7 +381,7 @@ static void DecorationGoodsMenu_InitMenu(DecorationGoodsMenu *menu)
     int i;
     int option;
     for (i = 0; i < goodsCount; i++) {
-        int goodID = Underground_GetGoodAtSlotPC(underground, i);
+        enum Good goodID = Underground_GetGoodAtSlotPC(underground, i);
         BOOL isPlaced = Underground_IsGoodAtSlotPlacedInBase(underground, i);
         option = (i << 1) + (u8)(!isPlaced ? 1 : 0);
 

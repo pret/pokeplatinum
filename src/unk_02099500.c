@@ -55,7 +55,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundMan_ProcessInteractEvent, CommPacketSizeOf_InteractEvent, NULL },
     { UndergroundPlayer_ProcessOpenMenuEvent, CommPacketSizeOf_Variable, NULL },
     { UndergroundPlayer_ProcessTalkEvent, CommPacketSizeOf_Variable, NULL }, // 30
-    { ov23_022433BC, CommPacketSizeOf_Nothing, NULL },
+    { UndergroundMan_ProcessAllDataSentMessage, CommPacketSizeOf_Nothing, NULL },
     { UndergroundTraps_TryPlaceTrap, CommPacketSizeOf_NetId, NULL },
     { UndergroundTraps_RemoveBuriedTrapAtIndex_Unused, CommPacketSizeOf_2Bytes_Unused, NULL }, // corresponding cmd never sent
     { UndergroundTraps_ProcessPlaceTrapResult, CommPacketSizeOf_PlaceTrapResult, NULL },
@@ -87,7 +87,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { SecretBases_ProcessGoodInteractionEvent, CommPacketSizeOf_GoodInteractionEvent, NULL }, // 60
     { SecretBases_ProcessFailedBaseEnter, CommPacketSizeOf_NetId, NULL },
     { sub_02058018, CommPacketSizeOf_NetId, NULL },
-    { UndergroundSpheres_RetrieveBuriedSphere, CommPacketSizeOf_NetId, NULL },
+    { UndergroundSpheres_ProcessRetrieveBuriedSphereRequest, CommPacketSizeOf_NetId, NULL },
     { Mining_ProcessMiningSpotInteract, CommPacketSizeOf_NetId, NULL },
     { Mining_ProcessConfirmStartMiningResult, CommPacketSizeOf_NetId, NULL }, // 65
     { Mining_ProcessStartMiningConfirm, CommPacketSizeOf_NetId, NULL },
@@ -116,7 +116,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { UndergroundPC_ProcessTakeFlagAttempt, CommPacketSizeOf_PCInteraction, NULL },
     { UndergroundPC_ProcessTakenFlag, CommPacketSizeOf_PCInteraction, NULL }, // 90
     { UndergroundPlayer_ProcessHeldFlagOwnerInfo, CommPacketSizeOf_TrainerInfo, NULL },
-    { UndergroundPlayer_ProcessHeldFlagOwnerInfoServer, CommPacketSizeOf_HeldFlagInfo, ov23_0224AAA0 },
+    { UndergroundPlayer_ProcessHeldFlagOwnerInfoServer, CommPacketSizeOf_HeldFlagInfo, UndergroundPlayer_GetHeldFlagInfoBuffer },
     { UndergroundPlayer_ProcessHeldFlagOwnerInfoAck, CommPacketSizeOf_NetId, NULL },
     { sub_02059180, CommPacketSizeOf_NetId, NULL },
     { sub_02059D0C, CommPacketSizeOf_NetId, NULL }, // 95

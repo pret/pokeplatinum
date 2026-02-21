@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "generated/game_records.h"
+#include "generated/sphere_types.h"
 
 #include "struct_defs/underground.h"
 
@@ -40,29 +41,27 @@ typedef struct BuriedSphere {
     u8 type;
 } BuriedSphere;
 
-typedef struct SphereRadarTimer {
+typedef struct SphereRadarContext {
     u8 unused;
     u16 timer;
-} SphereRadarTimer;
+} SphereRadarContext;
 
 typedef struct BuriedSpheresEnv {
     BuriedSphere buriedSpheres[MAX_BURIED_SPHERES];
     BuriedSphere *buriedSpheresByCoordinates[MAX_BURIED_SPHERES];
-    u8 unused[16];
-    SysTask *sysTask;
-    SphereRadarTimer *sphereRadarTimer;
+    u8 padding[16];
+    SysTask *sphereRadarTask;
+    SphereRadarContext *sphereRadarContext;
     FieldSystem *fieldSystem;
     u8 retrievedSpheres[MAX_CONNECTED_PLAYERS];
     int sparkleTimer;
-    u8 unused2[2];
+    u8 padding2[2];
     u8 disableBuriedSphereSparkles;
 } BuriedSpheresEnv;
 
-static BuriedSphere *UndergroundSpheres_Dummy(BuriedSphere *param0);
-static Coordinates *UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex(Coordinates *param0, int param1);
-static void UndergroundSpheres_RemoveBuriedSphere(BuriedSphere *param0);
-static void UndergroundSpheres_AddBuriedSphere(BuriedSphere *param0);
-static void UndergroundSpheres_AddBuriedSphereToCoordinatesOrdering(BuriedSphere *param0);
+static void UndergroundSpheres_RemoveBuriedSphere(BuriedSphere *sphere);
+static void UndergroundSpheres_AddBuriedSphere(BuriedSphere *sphere);
+static void UndergroundSpheres_AddBuriedSphereToCoordinatesOrdering(BuriedSphere *sphere);
 
 static BuriedSpheresEnv *buriedSpheresEnv = NULL;
 
@@ -151,9 +150,9 @@ void UndergroundSpheres_AdvanceBuriedSphereSparkleTimer(void)
     }
 
     if ((buriedSpheresEnv->sparkleTimer % 20) == 10) {
-        int idx = buriedSpheresEnv->sparkleTimer / 20;
-        int x = UndergroundSpheres_GetBuriedSphereXCoordAtIndex(idx);
-        int z = UndergroundSpheres_GetBuriedSphereZCoordAtIndex(idx);
+        int index = buriedSpheresEnv->sparkleTimer / 20;
+        int x = UndergroundSpheres_GetBuriedSphereXCoordAtIndex(index);
+        int z = UndergroundSpheres_GetBuriedSphereZCoordAtIndex(index);
 
         if (x != 0 && z != 0) {
             ov5_DisplayBuriedSphereSparkle(buriedSpheresEnv->fieldSystem, x, z);
@@ -161,14 +160,14 @@ void UndergroundSpheres_AdvanceBuriedSphereSparkleTimer(void)
     }
 }
 
-static Coordinates *UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex(Coordinates *coordinates, int idx)
+static Coordinates *UndergroundSpheres_GetCoordinatesOfBuriedSphereAtOrderedIndex(Coordinates *coordinates, int index)
 {
-    if (buriedSpheresEnv->buriedSpheresByCoordinates[idx] == NULL) {
+    if (buriedSpheresEnv->buriedSpheresByCoordinates[index] == NULL) {
         return NULL;
     }
 
-    coordinates->x = buriedSpheresEnv->buriedSpheresByCoordinates[idx]->x;
-    coordinates->z = buriedSpheresEnv->buriedSpheresByCoordinates[idx]->z;
+    coordinates->x = buriedSpheresEnv->buriedSpheresByCoordinates[index]->x;
+    coordinates->z = buriedSpheresEnv->buriedSpheresByCoordinates[index]->z;
 
     return coordinates;
 }
@@ -204,14 +203,14 @@ static void UndergroundSpheres_RecalculateCoordinatesOrdering(BuriedSphere *unus
     }
 }
 
-static BuriedSphere *UndergroundSpheres_FindEmptyBuriedSphereSlot(BuriedSphere *param0)
+static BuriedSphere *UndergroundSpheres_FindEmptyBuriedSphereSlot(BuriedSphere *spherePtr)
 {
     for (int i = 0; i < MAX_BURIED_SPHERES; i++) {
-        if (param0->type == SPHERE_NONE) {
-            return param0;
+        if (spherePtr->type == SPHERE_NONE) {
+            return spherePtr;
         }
 
-        param0++;
+        spherePtr++;
     }
 
     return NULL;
@@ -240,22 +239,22 @@ static BuriedSphere *UndergroundSpheres_GetBuriedSphereAtCoordinates(int x, int 
     return buriedSpheresEnv->buriedSpheresByCoordinates[index];
 }
 
-void UndergroundSpheres_RetrieveBuriedSphere(int unused, int unused2, void *src, void *unused3)
+void UndergroundSpheres_ProcessRetrieveBuriedSphereRequest(int unused, int unused2, void *data, void *unused3)
 {
-    u8 *buffer = src;
-    int netID = CommSys_CurNetId();
+    u8 *netID = data;
+    int curNetID = CommSys_CurNetId();
     int numberToPrint;
 
-    if (buffer[0] == netID) {
-        int x = CommPlayer_GetXInFrontOfPlayer(netID);
-        int z = CommPlayer_GetZInFrontOfPlayer(netID);
+    if (*netID == curNetID) {
+        int x = CommPlayer_GetXInFrontOfPlayer(curNetID);
+        int z = CommPlayer_GetZInFrontOfPlayer(curNetID);
         BuriedSphere *sphere = UndergroundSpheres_GetBuriedSphereAtCoordinates(x, z);
 
         if (sphere) {
             CommPlayerMan_PauseFieldSystem();
 
             if (UndergroundInventory_TryAddSphere(sphere->type, sphere->initialSize + sphere->growth)) {
-                buriedSpheresEnv->retrievedSpheres[netID] = sphere->type;
+                buriedSpheresEnv->retrievedSpheres[curNetID] = sphere->type;
                 Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
                 numberToPrint = MAX_SPHERE_SIZE;
 
@@ -328,7 +327,7 @@ BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, TouchRadarCoor
     return FALSE;
 }
 
-void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int z)
+void UndergroundSpheres_TryBurySphere(enum SphereType sphereType, int sphereSize, int x, int z)
 {
     BOOL success = FALSE;
 
@@ -393,16 +392,16 @@ void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int
 
 static void UndergroundSpheres_RemoveBuriedSphere(BuriedSphere *sphere)
 {
-    int idx = -1, i;
+    int index = -1, i;
 
     for (i = 0; i < MAX_BURIED_SPHERES; i++) {
         if (sphere == &buriedSpheresEnv->buriedSpheres[i]) {
-            idx = i;
+            index = i;
             break;
         }
     }
 
-    GF_ASSERT(idx != -1);
+    GF_ASSERT(index != -1);
 
     for (; i < MAX_BURIED_SPHERES - 1; i++) {
         MI_CpuCopy8(&buriedSpheresEnv->buriedSpheres[i + 1], &buriedSpheresEnv->buriedSpheres[i], sizeof(BuriedSphere));
@@ -449,19 +448,19 @@ BOOL UndergroundSpheres_IsBuriedSphereAtCoordinates(int x, int z)
     return FALSE;
 }
 
-int UndergroundSpheres_GetBuriedSphereXCoordAtIndex(int idx)
+int UndergroundSpheres_GetBuriedSphereXCoordAtIndex(int index)
 {
-    if (buriedSpheresEnv && (buriedSpheresEnv->buriedSpheres[idx].type != SPHERE_NONE)) {
-        return buriedSpheresEnv->buriedSpheres[idx].x;
+    if (buriedSpheresEnv && (buriedSpheresEnv->buriedSpheres[index].type != SPHERE_NONE)) {
+        return buriedSpheresEnv->buriedSpheres[index].x;
     }
 
     return 0;
 }
 
-int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int idx)
+int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int index)
 {
-    if (buriedSpheresEnv && (buriedSpheresEnv->buriedSpheres[idx].type != SPHERE_NONE)) {
-        return buriedSpheresEnv->buriedSpheres[idx].z;
+    if (buriedSpheresEnv && (buriedSpheresEnv->buriedSpheres[index].type != SPHERE_NONE)) {
+        return buriedSpheresEnv->buriedSpheres[index].z;
     }
 
     return 0;
@@ -521,47 +520,47 @@ int UndergroundSpheres_SpawnMiningSpotsNearBuriedSpheres(MATHRandContext16 *rand
     return i;
 }
 
-static void SphereRadar_TimerSysTask(SysTask *sysTask, void *timer)
+static void SphereRadar_TimerTask(SysTask *sysTask, void *data)
 {
-    SphereRadarTimer *radarTimer = timer;
+    SphereRadarContext *ctx = data;
 
-    radarTimer->timer++;
+    ctx->timer++;
 
-    if (radarTimer->timer > MAX_BURIED_SPHERES) {
+    if (ctx->timer > MAX_BURIED_SPHERES) {
         Sound_PlayEffect(SEQ_SE_PL_UG_006);
-        radarTimer->timer = 0;
+        ctx->timer = 0;
     }
 }
 
 void SphereRadar_Start(void)
 {
-    GF_ASSERT(!buriedSpheresEnv->sphereRadarTimer);
-    GF_ASSERT(!buriedSpheresEnv->sysTask);
+    GF_ASSERT(!buriedSpheresEnv->sphereRadarContext);
+    GF_ASSERT(!buriedSpheresEnv->sphereRadarTask);
 
-    SphereRadarTimer *radarTimer = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(SphereRadarTimer));
-    MI_CpuFill8(radarTimer, 0, sizeof(SphereRadarTimer));
-    radarTimer->timer = MAX_BURIED_SPHERES;
+    SphereRadarContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(SphereRadarContext));
+    MI_CpuFill8(ctx, 0, sizeof(SphereRadarContext));
+    ctx->timer = MAX_BURIED_SPHERES;
 
-    buriedSpheresEnv->sphereRadarTimer = radarTimer;
-    buriedSpheresEnv->sysTask = SysTask_Start(SphereRadar_TimerSysTask, radarTimer, 100);
+    buriedSpheresEnv->sphereRadarContext = ctx;
+    buriedSpheresEnv->sphereRadarTask = SysTask_Start(SphereRadar_TimerTask, ctx, 100);
 }
 
 void SphereRadar_Exit(void)
 {
-    if (buriedSpheresEnv->sysTask) {
-        SysTask_Done(buriedSpheresEnv->sysTask);
-        Heap_Free(buriedSpheresEnv->sphereRadarTimer);
+    if (buriedSpheresEnv->sphereRadarTask) {
+        SysTask_Done(buriedSpheresEnv->sphereRadarTask);
+        Heap_Free(buriedSpheresEnv->sphereRadarContext);
 
-        buriedSpheresEnv->sysTask = NULL;
-        buriedSpheresEnv->sphereRadarTimer = NULL;
+        buriedSpheresEnv->sphereRadarTask = NULL;
+        buriedSpheresEnv->sphereRadarContext = NULL;
     }
 }
 
 int SphereRadar_GetXCoordOfBuriedSphere(int radarIndex)
 {
-    if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarTimer) {
+    if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarContext) {
         // bug: only the first 66 buried spheres can show up on the radar
-        int index = buriedSpheresEnv->sphereRadarTimer->timer / 2;
+        int index = buriedSpheresEnv->sphereRadarContext->timer / 2;
         index = (index + radarIndex) % MAX_BURIED_SPHERES;
 
         return UndergroundSpheres_GetBuriedSphereXCoordAtIndex(index);
@@ -572,9 +571,9 @@ int SphereRadar_GetXCoordOfBuriedSphere(int radarIndex)
 
 int SphereRadar_GetZCoordOfBuriedSphere(int radarIndex)
 {
-    if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarTimer) {
+    if (buriedSpheresEnv && buriedSpheresEnv->sphereRadarContext) {
         // bug: only the first 66 buried spheres can show up on the radar
-        int index = buriedSpheresEnv->sphereRadarTimer->timer / 2;
+        int index = buriedSpheresEnv->sphereRadarContext->timer / 2;
         index = (index + radarIndex) % MAX_BURIED_SPHERES;
 
         return UndergroundSpheres_GetBuriedSphereZCoordAtIndex(index);

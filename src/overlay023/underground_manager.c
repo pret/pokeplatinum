@@ -52,10 +52,6 @@
 #include "res/graphics/trap_effects/trap_effects.naix.h"
 #include "res/text/bank/underground_common.h"
 
-#define TOUCH_RADAR_RADIUS 6
-
-#define MAX_TOUCH_RADAR_BLIPS 8
-
 #define MAX_STORED_MENU_POSITIONS 20
 
 #define COORDS_TO_EVENT_POS(x, z) (x & 0xF) * 16 + (z & 0xF)
@@ -77,16 +73,16 @@ typedef struct UndergroundManager {
     u8 padding[4];
     SysTask *sysTask;
     Coordinates2D touchCoordinates;
-    Coordinates touchedTileCoordinates;
+    Coordinates touchedTileCoords;
     StoredListMenuPos storedPositions[MAX_STORED_MENU_POSITIONS];
     u16 storedPositionKey;
     u8 linksTalkedTo[MAX_CONNECTED_PLAYERS];
-    u8 unk_CA[MAX_CONNECTED_PLAYERS];
+    u8 initialized[MAX_CONNECTED_PLAYERS];
     u8 talkedToVendorMessagesQueued[MAX_CONNECTED_PLAYERS];
     String *leftUndergroundMessages[MAX_CONNECTED_PLAYERS];
-    u8 touchRadarTrapResults[MAX_TOUCH_RADAR_BLIPS];
-    u8 touchRadarMiningSpotResults[MAX_TOUCH_RADAR_BLIPS];
-    u8 touchRadarBuriedSphereResults[MAX_TOUCH_RADAR_BLIPS];
+    u8 touchRadarTrapResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE];
+    u8 touchRadarMiningSpotResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE];
+    u8 touchRadarBuriedSphereResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE];
     CoordinatesGetter coordinatesGetter;
     UndergroundTextPrinter *commonTextPrinter;
     UndergroundTextPrinter *captureFlagTextPrinter;
@@ -128,9 +124,9 @@ enum Radar {
     RADAR_TRAP,
 };
 
-static void UndergroundMan_DisconnectCallback(int param0);
-static void UndergroundMan_ClearPrinterIDsTask(SysTask *param0, void *param1);
-static int ov23_022433D0(void);
+static void UndergroundMan_DisconnectCallback(int netID);
+static void UndergroundMan_ClearPrinterIDsTask(SysTask *unused0, void *unused1);
+static int UndergroundMan_CountInitializedPlayers(void);
 
 static UndergroundManager *sUndergroundMan = NULL;
 
@@ -143,8 +139,8 @@ static void UndergroundMan_Init(UndergroundManager *dest, FieldSystem *fieldSyst
 
     sUndergroundMan->fieldSystem = fieldSystem;
     sUndergroundMan->touchCooldown = 0;
-    sUndergroundMan->touchedTileCoordinates.x = 0;
-    sUndergroundMan->touchedTileCoordinates.z = 0;
+    sUndergroundMan->touchedTileCoords.x = 0;
+    sUndergroundMan->touchedTileCoords.z = 0;
     sUndergroundMan->resourcesPaused = 0;
     sUndergroundMan->activeRadar = RADAR_NORMAL;
     sUndergroundMan->commonTextPrinter = UndergroundTextPrinter_New(TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_UNDERGROUND, fieldSystem->bgConfig, renderDelay, 500);
@@ -159,7 +155,7 @@ static void UndergroundMan_Init(UndergroundManager *dest, FieldSystem *fieldSyst
 
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         sUndergroundMan->linksTalkedTo[netID] = NETID_NONE;
-        sUndergroundMan->talkedToVendorMessagesQueued[netID] = 0xFF;
+        sUndergroundMan->talkedToVendorMessagesQueued[netID] = -1;
         sUndergroundMan->leftUndergroundMessages[netID] = NULL;
     }
 
@@ -288,9 +284,9 @@ static BOOL UndergroundMan_GetQueuedPlayerMessage(String *dest)
             }
         }
 
-        if (sUndergroundMan->talkedToVendorMessagesQueued[netID] != 0xFF) {
+        if (sUndergroundMan->talkedToVendorMessagesQueued[netID] != (u8)-1) {
             TrainerInfo *trainerInfo = CommInfo_TrainerInfo(netID);
-            sUndergroundMan->talkedToVendorMessagesQueued[netID] = 0xFF;
+            sUndergroundMan->talkedToVendorMessagesQueued[netID] = -1;
 
             if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerTalkedWithSomeone, dest)) {
                 return TRUE;
@@ -329,7 +325,7 @@ BOOL UndergroundMan_AreCoordinatesOccupied(int x, int z)
         return TRUE;
     }
 
-    if (UndergroundPC_GetPCAtCoordinates(&coordinates, DIR_NONE) != PC_NONE) {
+    if (UndergroundPC_GetPCOwnerNetIDAtCoordinates(&coordinates, DIR_NONE) != NETID_NONE) {
         return TRUE;
     }
 
@@ -363,17 +359,17 @@ BOOL UndergroundMan_CheckForTouchInput(void)
                 pos = ov5_GetPositionFromTouchCoordinates(gSystem.touchX, gSystem.touchY, sUndergroundMan->fieldSystem->unk_8C);
                 int x, z;
                 LandData_ObjectPosToTilePos(pos.x, pos.z, &x, &z);
-                Coordinates coordinates = {
+                Coordinates touchedTileCoords = {
                     .x = x,
                     .z = z
                 };
 
                 sUndergroundMan->touchCoordinates.x = gSystem.touchX;
                 sUndergroundMan->touchCoordinates.y = gSystem.touchY;
-                sUndergroundMan->touchedTileCoordinates.x = x;
-                sUndergroundMan->touchedTileCoordinates.z = z;
+                sUndergroundMan->touchedTileCoords.x = x;
+                sUndergroundMan->touchedTileCoords.z = z;
 
-                CommSys_SendData(48, &coordinates, sizeof(Coordinates));
+                CommSys_SendData(48, &touchedTileCoords, sizeof(Coordinates));
 
                 return TRUE;
             }
@@ -383,25 +379,25 @@ BOOL UndergroundMan_CheckForTouchInput(void)
     return FALSE;
 }
 
-static int UndergroundMan_TouchRadarSearch(u8 *out, TouchRadarItemCheckFunc isItemAtCoords, Coordinates *touchCoords)
+static int UndergroundMan_TouchRadarSearch(u8 *out, TouchRadarItemCheckFunc isItemAtCoords, Coordinates *touchedTileCoords)
 {
     int index = 1;
 
-    int minX = touchCoords->x - TOUCH_RADAR_RADIUS;
-    int minZ = touchCoords->z - TOUCH_RADAR_RADIUS;
+    int minX = touchedTileCoords->x - TOUCH_RADAR_RADIUS;
+    int minZ = touchedTileCoords->z - TOUCH_RADAR_RADIUS;
 
     TouchRadarSearchContext ctx;
     TouchRadarSearch_Init(&ctx, TOUCH_RADAR_RADIUS);
 
     TouchRadarCoordinates radarCoords;
     while (TouchRadarSearch_GetNextCoords(&ctx, &radarCoords)) {
-        int x = touchCoords->x + radarCoords.x;
-        int z = touchCoords->z + radarCoords.z;
+        int x = touchedTileCoords->x + radarCoords.x;
+        int z = touchedTileCoords->z + radarCoords.z;
 
         if (isItemAtCoords(x, z)) {
-            out[index] = (x - minX) + (z - minZ) * 16;
+            out[index] = x - minX + (z - minZ) * 16;
 
-            if (index == MAX_TOUCH_RADAR_BLIPS) {
+            if (index == MAX_TOUCH_RADAR_RESULTS_OF_TYPE) {
                 index++;
                 break;
             }
@@ -413,23 +409,23 @@ static int UndergroundMan_TouchRadarSearch(u8 *out, TouchRadarItemCheckFunc isIt
     return index;
 }
 
-static void UndergroundMan_StartTouchRadar(int netID, Coordinates *touchCoords)
+static void UndergroundMan_StartTouchRadar(int netID, Coordinates *touchedTileCoords)
 {
-    u8 buffer[MAX_TOUCH_RADAR_BLIPS + 1];
+    u8 buffer[MAX_TOUCH_RADAR_RESULTS_OF_TYPE + 1];
     int size = 1;
 
     buffer[0] = netID;
 
-    size = UndergroundMan_TouchRadarSearch(buffer, UndergroundTraps_IsTrapAtCoordinates, touchCoords);
+    size = UndergroundMan_TouchRadarSearch(buffer, UndergroundTraps_IsTrapAtCoordinates, touchedTileCoords);
     CommSys_SendDataServer(49, buffer, size);
 
-    size = UndergroundMan_TouchRadarSearch(buffer, Mining_IsMiningSpotAtCoordinates, touchCoords);
+    size = UndergroundMan_TouchRadarSearch(buffer, Mining_IsMiningSpotAtCoordinates, touchedTileCoords);
     CommSys_SendDataServer(50, buffer, size);
 }
 
 void UndergroundMan_ProcessTouchInput(int netID, int unused1, void *data, void *unused3)
 {
-    Coordinates *coordinates = data;
+    Coordinates *touchedTileCoords = data;
 
     if (!CommPlayerMan_IsMovementEnabled(netID)) {
         return;
@@ -440,7 +436,7 @@ void UndergroundMan_ProcessTouchInput(int netID, int unused1, void *data, void *
     }
 
     CommPlayerMan_SetMovementEnabled(netID, FALSE);
-    UndergroundMan_StartTouchRadar(netID, coordinates);
+    UndergroundMan_StartTouchRadar(netID, touchedTileCoords);
 }
 
 void UndergroundMan_ProcessTouchRadarTrapResults(int unused0, int size, void *data, void *unused3)
@@ -458,7 +454,7 @@ void UndergroundMan_ProcessTouchRadarTrapResults(int unused0, int size, void *da
 void UndergroundMan_ProcessTouchRadarMiningSpotResults(int unused0, int size, void *data, void *unused3)
 {
     u8 *buffer = data;
-    u8 sphereResults[MAX_TOUCH_RADAR_BLIPS + 1];
+    u8 sphereResults[MAX_TOUCH_RADAR_RESULTS_OF_TYPE + 1];
 
     if (CommSys_CurNetId() != buffer[0]) {
         return;
@@ -467,11 +463,11 @@ void UndergroundMan_ProcessTouchRadarMiningSpotResults(int unused0, int size, vo
     MI_CpuCopy8(&buffer[1], sUndergroundMan->touchRadarMiningSpotResults, size - 1);
     sUndergroundMan->touchRadarMiningSpotResultCount = size - 1;
 
-    sUndergroundMan->touchRadarBuriedSphereResultCount = UndergroundMan_TouchRadarSearch(sphereResults, UndergroundSpheres_IsBuriedSphereAtCoordinates, &sUndergroundMan->touchedTileCoordinates);
+    sUndergroundMan->touchRadarBuriedSphereResultCount = UndergroundMan_TouchRadarSearch(sphereResults, UndergroundSpheres_IsBuriedSphereAtCoordinates, &sUndergroundMan->touchedTileCoords);
     sUndergroundMan->touchRadarBuriedSphereResultCount -= 1;
 
     MI_CpuCopy8(&sphereResults[1], sUndergroundMan->touchRadarBuriedSphereResults, sUndergroundMan->touchRadarBuriedSphereResultCount);
-    UndergroundTraps_StartTouchRadarTask(sUndergroundMan->fieldSystem, sUndergroundMan->touchedTileCoordinates.x, sUndergroundMan->touchedTileCoordinates.z, sUndergroundMan->touchCoordinates.x, sUndergroundMan->touchCoordinates.y, sUndergroundMan->touchRadarTrapResults, sUndergroundMan->touchRadarTrapResultCount, sUndergroundMan->touchRadarMiningSpotResults, sUndergroundMan->touchRadarMiningSpotResultCount, sUndergroundMan->touchRadarBuriedSphereResults, sUndergroundMan->touchRadarBuriedSphereResultCount);
+    TouchRadar_StartTask(sUndergroundMan->fieldSystem, sUndergroundMan->touchedTileCoords.x, sUndergroundMan->touchedTileCoords.z, sUndergroundMan->touchCoordinates.x, sUndergroundMan->touchCoordinates.y, sUndergroundMan->touchRadarTrapResults, sUndergroundMan->touchRadarTrapResultCount, sUndergroundMan->touchRadarMiningSpotResults, sUndergroundMan->touchRadarMiningSpotResultCount, sUndergroundMan->touchRadarBuriedSphereResults, sUndergroundMan->touchRadarBuriedSphereResultCount);
 }
 
 static int UndergroundMan_GetOrderedCoordinatesValue(Coordinates *coordinates)
@@ -726,7 +722,7 @@ void UndergroundMan_Process(void)
             }
         }
 
-        sub_02037B58(ov23_022433D0() + 2);
+        sub_02037B58(UndergroundMan_CountInitializedPlayers() + 2);
     }
 
     sUndergroundMan->dummyCounter++;
@@ -1220,17 +1216,17 @@ int CommPacketSizeOf_UndergroundPlayerState(void)
     return sizeof(UndergroundPlayerState);
 }
 
-void ov23_022433BC(int netID, int unused1, void *unused2, void *unused3)
+void UndergroundMan_ProcessAllDataSentMessage(int netID, int unused1, void *unused2, void *unused3)
 {
-    sUndergroundMan->unk_CA[netID] = TRUE;
+    sUndergroundMan->initialized[netID] = TRUE;
 }
 
-static int ov23_022433D0(void)
+static int UndergroundMan_CountInitializedPlayers(void)
 {
     int count = 0;
 
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
-        if (sUndergroundMan->unk_CA[netID]) {
+        if (sUndergroundMan->initialized[netID]) {
             count++;
         }
     }
@@ -1240,6 +1236,6 @@ static int ov23_022433D0(void)
 
 static void UndergroundMan_DisconnectCallback(int netID)
 {
-    sUndergroundMan->unk_CA[netID] = FALSE;
+    sUndergroundMan->initialized[netID] = FALSE;
     SecretBases_ClearBaseEntranceData(netID);
 }

@@ -247,8 +247,8 @@ typedef struct MiningEnv {
     MATHRandContext32 rand;
     SpriteList *spriteList;
     G2dRenderer g2DRenderer;
-    SpriteResourceCollection *spriteResourceCollection[4];
-    SpriteResource *spriteResources[8];
+    SpriteResourceCollection *spriteResourceCollection[MAX_SPRITE_RESOURCE_GEN4];
+    SpriteResource *spriteResources[MAX_SPRITE_RESOURCE_GEN4 * 2];
     u8 padding[36];
     SpriteResourcesHeader resourceData[2];
     Sprite *sprites[MINING_SPRITE_COUNT];
@@ -690,10 +690,10 @@ static const WindowTemplate sYesNoWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 25,
     .tilemapTop = 13,
-    .width = 6,
-    .height = 4,
+    .width = YES_NO_MENU_TILE_W,
+    .height = YES_NO_MENU_TILE_H,
     .palette = 13,
-    .baseTile = BASE_TILE_MESSAGE_WINDOW - 6 * 4
+    .baseTile = BASE_TILE_YES_NO_MENU
 };
 
 static void Mining_InitGameState(void)
@@ -913,7 +913,7 @@ static void Mining_SpawnMiningSpotsAndTraps(MATHRandContext16 *rand, int unused)
             z = MATH_Rand16(rand, 20) + centerZ - 10;
 
             if (!TerrainCollisionManager_CheckCollision(sMiningEnv->fieldSystem, x, z)) {
-                int trapID = UndergroundTraps_SpawnRandomTrap(x, z, rand, sMiningEnv->spawnedTrapIndex);
+                enum Trap trapID = UndergroundTraps_SpawnRandomTrap(x, z, rand, sMiningEnv->spawnedTrapIndex);
 
                 if (trapID != TRAP_NONE) {
                     sMiningEnv->spawnedTrapIndex++;
@@ -1433,11 +1433,11 @@ static void Mining_FreeGameResources(MiningGameContext *ctx)
     Bg_FreeTilemapBuffer(sMiningEnv->bgConfig, BG_LAYER_MAIN_2);
     Bg_FreeTilemapBuffer(sMiningEnv->bgConfig, BG_LAYER_MAIN_3);
     SpriteTransfer_ResetCharTransfer(sMiningEnv->spriteResources[SPRITE_RESOURCE_CHAR]);
-    SpriteTransfer_ResetCharTransfer(sMiningEnv->spriteResources[SPRITE_RESOURCE_CHAR + 4]);
+    SpriteTransfer_ResetCharTransfer(sMiningEnv->spriteResources[SPRITE_RESOURCE_CHAR + MAX_SPRITE_RESOURCE_GEN4]);
     SpriteTransfer_ResetPlttTransfer(sMiningEnv->spriteResources[SPRITE_RESOURCE_PLTT]);
-    SpriteTransfer_ResetPlttTransfer(sMiningEnv->spriteResources[SPRITE_RESOURCE_PLTT + 4]);
+    SpriteTransfer_ResetPlttTransfer(sMiningEnv->spriteResources[SPRITE_RESOURCE_PLTT + MAX_SPRITE_RESOURCE_GEN4]);
 
-    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < SPRITE_RESOURCE_ANIM + 1; resourceType++) {
+    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
         SpriteResourceCollection_Delete(sMiningEnv->spriteResourceCollection[resourceType]);
     }
 
@@ -2805,7 +2805,7 @@ static void Mining_InitSpriteResources(void)
 
     SetSubScreenViewRect(&sMiningEnv->g2DRenderer, 0, (HW_LCD_HEIGHT << FX32_SHIFT) * 2);
 
-    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < SPRITE_RESOURCE_ANIM + 1; resourceType++) {
+    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
         sMiningEnv->spriteResourceCollection[resourceType] = SpriteResourceCollection_New(2, resourceType, HEAP_ID_MINING);
     }
 

@@ -7,6 +7,7 @@
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "generated/goods.h"
+#include "generated/sphere_types.h"
 #include "generated/traps.h"
 
 #include "struct_defs/underground.h"
@@ -168,19 +169,19 @@ void Underground_HandleDailyEvents(SaveData *saveData, int daysPassed)
 
     u8 growthRateRange[] = {
         [SPHERE_NONE] = 0,
-        [PRISM_SPHERE] = 2,
-        [PALE_SPHERE] = 2,
-        [RED_SPHERE] = 4,
-        [BLUE_SPHERE] = 4,
-        [GREEN_SPHERE] = 5
+        [SPHERE_PRISM] = 2,
+        [SPHERE_PALE] = 2,
+        [SPHERE_RED] = 4,
+        [SPHERE_BLUE] = 4,
+        [SPHERE_GREEN] = 5
     };
     u8 baseGrowthRate[] = {
         [SPHERE_NONE] = 0,
-        [PRISM_SPHERE] = 1,
-        [PALE_SPHERE] = 1,
-        [RED_SPHERE] = 3,
-        [BLUE_SPHERE] = 3,
-        [GREEN_SPHERE] = 5
+        [SPHERE_PRISM] = 1,
+        [SPHERE_PALE] = 1,
+        [SPHERE_RED] = 3,
+        [SPHERE_BLUE] = 3,
+        [SPHERE_GREEN] = 5
     };
 
     int i;
@@ -342,7 +343,7 @@ int Underground_ConvertTreasureToBagItem(int treasureID)
     return sMiningItems[treasureID];
 }
 
-BOOL Underground_TryAddGoodPC(Underground *underground, int goodID)
+BOOL Underground_TryAddGoodPC(Underground *underground, enum Good goodID)
 {
     int i;
     BOOL added = FALSE;
@@ -387,11 +388,11 @@ int Underground_GetGoodAtSlotPC(Underground *underground, int slot)
     return underground->goodsPC[slot];
 }
 
-int Underground_RemoveGoodAtSlotPC(Underground *underground, int slot)
+enum Good Underground_RemoveGoodAtSlotPC(Underground *underground, int slot)
 {
     GF_ASSERT(!Underground_IsGoodAtSlotPlacedInBase(underground, slot));
 
-    int goodID = underground->goodsPC[slot];
+    enum Good goodID = underground->goodsPC[slot];
 
     for (int i = slot; i < MAX_GOODS_PC_SLOTS - 1; i++) {
         underground->goodsPC[i] = underground->goodsPC[i + 1];
@@ -514,7 +515,7 @@ int Underground_RemoveGoodAtSlotBag(Underground *underground, int slot)
     return goods;
 }
 
-BOOL Underground_TryAddGoodBag(Underground *underground, int goodID)
+BOOL Underground_TryAddGoodBag(Underground *underground, enum Good goodID)
 {
     BOOL added = FALSE;
 
@@ -585,7 +586,7 @@ int Underground_RemoveSphereAtSlot(Underground *underground, int slot)
     return sphere;
 }
 
-BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphereSize)
+BOOL Underground_TryAddSphere(Underground *underground, enum SphereType sphereType, int sphereSize)
 {
     BOOL added = FALSE;
 
@@ -720,7 +721,7 @@ int Underground_RemoveTrapAtSlot(Underground *underground, int slot)
     return trap;
 }
 
-BOOL Underground_TryAddTrap(Underground *underground, int trapID)
+BOOL Underground_TryAddTrap(Underground *underground, enum Trap trapID)
 {
     BOOL added = FALSE;
 
@@ -754,7 +755,7 @@ void Underground_MoveTrapInInventory(Underground *underground, int origSlot, int
     }
 }
 
-void Underground_SaveSpawnedTrap(Underground *underground, int trapID, int index, int x, int z)
+void Underground_SaveSpawnedTrap(Underground *underground, enum Trap trapID, int index, int x, int z)
 {
     GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
@@ -798,7 +799,7 @@ void Underground_RemoveSpawnedTrapAtIndex(Underground *underground, int index)
     MI_CpuClear8(underground->spawnedTrapCoordinates[index], 3);
 }
 
-void Underground_SavePlacedTrap(Underground *underground, int trapID, int index, int x, int z, int param5)
+void Underground_SavePlacedTrap(Underground *underground, enum Trap trapID, int index, int x, int z, int spawnedIndex)
 {
     GF_ASSERT(index < MAX_PLACED_TRAPS);
 
@@ -806,7 +807,7 @@ void Underground_SavePlacedTrap(Underground *underground, int trapID, int index,
     underground->placedTrapCoordinates[index][0] = x;
     underground->placedTrapCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
     underground->placedTrapCoordinates[index][2] = z;
-    underground->unk_548[index] = param5;
+    underground->placedTrapSpawnedIndices[index] = spawnedIndex; // pointless because placed traps aren't spawned
 }
 
 int Underground_GetPlacedTrapIDAtIndex(Underground *underground, int index)
@@ -830,9 +831,10 @@ int Underground_GetPlacedTrapZCoordAtIndex(Underground *underground, int index)
     return z;
 }
 
-int sub_0202907C(Underground *underground, int index)
+// spawned indices don't apply to manually placed traps for obvious reasons, so this is completely pointless
+int Underground_GetPlacedTrapSpawnedIndexAtIndex(Underground *underground, int index)
 {
-    return underground->unk_548[index];
+    return underground->placedTrapSpawnedIndices[index];
 }
 
 void Underground_SaveBuriedSphere(Underground *underground, int type, int index, int x, int z, int initialSize, int growth)
@@ -997,9 +999,9 @@ void SecretBase_SetInactive(SecretBase *secretBase)
     secretBase->active = FALSE;
 }
 
-void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, int goodID, int x, int z)
+void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, enum Good goodID, int x, int z)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
     GF_ASSERT(x < 32);
     GF_ASSERT(z < 32);
     GF_ASSERT(secretBase);
@@ -1018,7 +1020,7 @@ void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, int goodID, in
 
 void SecretBase_SetGoodCoordsAtIndex(SecretBase *secretBase, int index, int x, int z)
 {
-    int goodID = SecretBase_GetGoodIDAtIndex(secretBase, index);
+    enum Good goodID = SecretBase_GetGoodIDAtIndex(secretBase, index);
     SecretBase_AddGoodAtIndex(secretBase, index, goodID, x, z);
 }
 
@@ -1041,7 +1043,7 @@ static int SecretBase_GetPCGoodID(const SecretBase *secretBase)
 
 int SecretBase_GetGoodIDAtIndex(const SecretBase *secretBase, int index)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
 
     if (index == 0) {
         return SecretBase_GetPCGoodID(secretBase);
@@ -1056,7 +1058,7 @@ int SecretBase_GetGoodIDAtIndex(const SecretBase *secretBase, int index)
 
 int SecretBase_GetGoodXCoordAtIndex(const SecretBase *secretBase, int index)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
 
     if (index == 0) {
         return PC_COORDINATE_X;
@@ -1069,7 +1071,7 @@ int SecretBase_GetGoodXCoordAtIndex(const SecretBase *secretBase, int index)
 
 int SecretBase_GetGoodZCoordAtIndex(const SecretBase *secretBase, int index)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
 
     if (index == 0) {
         return PC_COORDINATE_Z;

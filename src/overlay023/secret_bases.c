@@ -308,24 +308,24 @@ static void ov23_0224DC24(void);
 
 static SecretBasesEnv *secretBasesEnv = NULL;
 
-static const WindowTemplate Unk_ov23_02256864 = {
+static const WindowTemplate sYesNoWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 25,
     .tilemapTop = 13,
-    .width = 6,
-    .height = 4,
+    .width = YES_NO_MENU_TILE_W,
+    .height = YES_NO_MENU_TILE_H,
     .palette = 13,
-    .baseTile = 543,
+    .baseTile = BASE_TILE_YES_NO_MENU
 };
 
-static const WindowTemplate Unk_ov23_0225686C = {
+static const WindowTemplate sLeaveOpenOrCloseWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 16,
     .tilemapTop = 13,
     .width = 15,
     .height = 4,
     .palette = 13,
-    .baseTile = 505,
+    .baseTile = BASE_TILE_MESSAGE_WINDOW - 15 * 4 - 2 // ?
 };
 
 // clang-format off
@@ -431,7 +431,7 @@ void SecretBasesEnv_Init(void *dest, FieldSystem *fieldSystem)
         secretBasesEnv->visitedBaseOwnerNetIDs[netID] = NETID_NONE;
         secretBasesEnv->obtainedFlagOwnerNetIDs[netID] = NETID_NONE;
         secretBasesEnv->flagStealVictimNetIDs[netID] = NETID_NONE;
-        secretBasesEnv->tookBackFlagMessageQueued[netID] = 0xff;
+        secretBasesEnv->tookBackFlagMessageQueued[netID] = -1;
 
         secretBasesEnv->baseReturnXCoords[netID] = DEFAULT_BASE_RETURN_X;
         secretBasesEnv->baseReturnZCoords[netID] = DEFAULT_BASE_RETURN_Z;
@@ -472,10 +472,10 @@ void SecretBases_LoadCurrentPlayerBase(FieldSystem *fieldSystem)
 
 static void SecretBases_AddGoodCollisionToBaseCollision(int x, int z, const u8 *goodCollision, u32 *baseCollision)
 {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < MAX_GOOD_DEPTH; i++) {
         if (z + i < SECRET_BASE_DEPTH) {
-            for (int j = 0; j < 3; j++) {
-                if (goodCollision[i * 3 + j]) {
+            for (int j = 0; j < MAX_GOOD_WIDTH; j++) {
+                if (goodCollision[i * MAX_GOOD_WIDTH + j]) {
                     if (x + j < SECRET_BASE_WIDTH) {
                         baseCollision[i + z] &= ~(0x1 << (x + j));
                     }
@@ -501,10 +501,10 @@ static void SecretBases_CalculateBaseCollision(SecretBase *secretBase, u32 *base
     };
     // clang-format on
 
-    MI_CpuFill8(baseCollision, 0xFF, 32 * sizeof(u32));
+    MI_CpuFill8(baseCollision, 0xFF, SECRET_BASE_DEPTH * sizeof(u32));
 
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
-        int goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
+        enum Good goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
 
         if (goodID == UG_GOOD_NONE) {
             continue;
@@ -931,7 +931,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
         break;
     case EXIT_PROMPT_STATE_OPEN_CONFIRM_MENU:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = EXIT_PROMPT_STATE_CONFIRM;
         }
         break;
@@ -948,7 +948,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
         break;
     case EXIT_PROMPT_STATE_OPEN_CONFIRM_MENU_DOOR_CLOSED:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = EXIT_PROMPT_STATE_CONFIRM_DOOR_CLOSED;
         }
         break;
@@ -966,7 +966,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
         break;
     case EXIT_PROMPT_STATE_OPEN_COMMS_CONFIRM_MENU:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = EXIT_PROMPT_STATE_CONFIRM_COMMS;
         }
         break;
@@ -1130,7 +1130,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         break;
     case ENTER_PROMPT_STATE_OPEN_CONFIRM_MENU_OTHER_BASE:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = ENTER_PROMPT_STATE_CONFIRM_OTHER_BASE;
         }
         break;
@@ -1152,7 +1152,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         break;
     case ENTER_PROMPT_STATE_OPEN_CONFIRM_MENU_OWN_BASE:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = ENTER_PROMPT_STATE_CONFIRM_OWN_BASE;
         }
         break;
@@ -1176,7 +1176,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
         break;
     case ENTER_PROMPT_STATE_OPEN_CLOSE_DOOR_MENU:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = SecretBases_MakeLeaveOpenOrCloseMenu(fieldSystem->bgConfig, &Unk_ov23_0225686C, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = SecretBases_MakeLeaveOpenOrCloseMenu(fieldSystem->bgConfig, &sLeaveOpenOrCloseWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = ENTER_PROMPT_STATE_CLOSE_DOOR_MENU;
         }
         break;
@@ -1541,9 +1541,9 @@ static void SecretBases_DrawBaseEntrancesTask(SysTask *unused, void *unused1)
             }
 
             VecFx32 position;
-            position.x = entranceX * (FX32_ONE * 16) + (FX32_ONE * 8);
+            position.x = entranceX * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
             position.y = 0;
-            position.z = entranceZ * (FX32_ONE * 16) + (FX32_ONE * 8);
+            position.z = entranceZ * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
 
             secretBasesEnv->baseEntrancePropIdxs[netID] = MapPropManager_LoadOne(secretBasesEnv->fieldSystem->mapPropManager, secretBasesEnv->fieldSystem->areaDataManager, MAP_PROP_MODEL_SECRET_BASE_ENTRANCE_NORTH + dir, &position, NULL, secretBasesEnv->fieldSystem->mapPropAnimMan);
         }
@@ -1831,7 +1831,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         ctx->state = DRILL_STATE_PRINT_PROMPT;
     } break;
     case DRILL_STATE_PRINT_PROMPT:
-        if (UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter()) == FALSE) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             int bankEntry;
 
             if (SecretBases_CountPlayersInBase(CommSys_CurNetId(), FALSE) != 0) {
@@ -1857,7 +1857,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
         break;
     case DRILL_STATE_OPEN_CONFIRM_MENU:
         if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
-            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_ov23_02256864, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
+            ctx->menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
             ctx->state = 6;
         }
         break;
@@ -2098,9 +2098,9 @@ BOOL SecretBases_GetQueuedMessage(String *dest)
             }
         }
 
-        if (secretBasesEnv->tookBackFlagMessageQueued[netID] != 0xff) {
+        if (secretBasesEnv->tookBackFlagMessageQueued[netID] != (u8)-1) {
             TrainerInfo *trainerInfo = CommInfo_TrainerInfo(netID);
-            secretBasesEnv->tookBackFlagMessageQueued[netID] = 0xff;
+            secretBasesEnv->tookBackFlagMessageQueued[netID] = -1;
 
             if (UndergroundMan_FormatCommonStringWithTrainerName(trainerInfo, 0, UndergroundCommon_Text_PlayerTookBackFlag, dest)) {
                 return TRUE;
@@ -2255,7 +2255,7 @@ void SecretBases_EraseBaseDecorationMessageBox(void)
     UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetBaseDecorationTextPrinter());
 }
 
-void SecretBases_SetGoodNameForPrinter(int goodID)
+void SecretBases_SetGoodNameForPrinter(enum Good goodID)
 {
     UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundMan_GetBaseDecorationTextPrinter(), 0, goodID);
 }
@@ -2265,12 +2265,12 @@ void SecretBases_SetTwoDigitNumberWithIndexForPrinter(int num, int index)
     UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundMan_GetBaseDecorationTextPrinter(), index, num);
 }
 
-static int SecretBases_GetGoodWithCollisionAtCoordinates(SecretBase *secretBase, int xWithinBase, int zWithinBase)
+static enum Good SecretBases_GetGoodWithCollisionAtCoordinates(SecretBase *secretBase, int xWithinBase, int zWithinBase)
 {
     const u8 *collision;
 
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
-        int goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
+        enum Good goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
 
         if (goodID == UG_GOOD_NONE) {
             continue;
@@ -2290,15 +2290,15 @@ static int SecretBases_GetGoodWithCollisionAtCoordinates(SecretBase *secretBase,
         xOffset = xWithinBase - xOffset;
         zOffset = zWithinBase - zOffset;
 
-        if (xOffset < 0 || xOffset > 2) {
+        if (xOffset < 0 || MAX_GOOD_WIDTH - 1 < xOffset) {
             continue;
         }
 
-        if (zOffset < 0 || zOffset > 2) {
+        if (zOffset < 0 || MAX_GOOD_DEPTH - 1 < zOffset) {
             continue;
         }
 
-        if (collision[zOffset * 3 + xOffset]) {
+        if (collision[zOffset * MAX_GOOD_WIDTH + xOffset]) {
             return goodID;
         }
     }
@@ -2317,7 +2317,7 @@ BOOL SecretBases_CheckForInteractableGood(int netID, Coordinates *coordinates)
 
         int baseOwnerNetID = SecretBases_GetOwnerNetIDFromCoordinates(x, z);
         SecretBase *secretBase = (SecretBase *)secretBasesEnv->baseInfo[baseOwnerNetID].secretBase;
-        int goodID = SecretBases_GetGoodWithCollisionAtCoordinates(secretBase, x % SECRET_BASE_WIDTH, z % SECRET_BASE_DEPTH);
+        enum Good goodID = SecretBases_GetGoodWithCollisionAtCoordinates(secretBase, x % SECRET_BASE_WIDTH, z % SECRET_BASE_DEPTH);
 
         event.bankEntry = Good_GetInteractMessageID(goodID);
 
@@ -2460,10 +2460,10 @@ int CommPacketSizeOf_FlagRankUpEvent(void)
     return sizeof(FlagRankUpEvent);
 }
 
-static int SecretBases_GetPlacedGoodAtCoordinates(SecretBase *secretBase, int xWithinBase, int zWithinBase)
+static enum Good SecretBases_GetPlacedGoodAtCoordinates(SecretBase *secretBase, int xWithinBase, int zWithinBase)
 {
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
-        int goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
+        enum Good goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
 
         if (goodID == UG_GOOD_NONE) {
             continue;
@@ -2490,7 +2490,7 @@ static int SecretBases_GetPlacedGoodAtCoordinates(SecretBase *secretBase, int xW
     return UG_GOOD_NONE;
 }
 
-static int SecretBases_GetTrapIDFromGoodID(int goodID)
+static enum Trap SecretBases_GetTrapIDFromGoodID(enum Good goodID)
 {
     switch (goodID) {
     case UG_GOOD_HOLE_TOOL:
@@ -2545,7 +2545,7 @@ BOOL SecretBases_CheckPlayerTriggeredTool(int netID)
         SecretBase *secretBase = (SecretBase *)secretBasesEnv->baseInfo[baseOwnerNetID].secretBase;
 
         u8 goodID = SecretBases_GetPlacedGoodAtCoordinates(secretBase, x % SECRET_BASE_WIDTH, z % SECRET_BASE_DEPTH);
-        int trapID = SecretBases_GetTrapIDFromGoodID(goodID);
+        enum Trap trapID = SecretBases_GetTrapIDFromGoodID(goodID);
 
         if (trapID != TRAP_NONE) {
             secretBasesEnv->playerAffectedByTool[netID] = TRUE;

@@ -248,10 +248,10 @@ static const WindowTemplate sYesNoWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 25,
     .tilemapTop = 13,
-    .width = 6,
-    .height = 4,
+    .width = YES_NO_MENU_TILE_W,
+    .height = YES_NO_MENU_TILE_H,
     .palette = 13,
-    .baseTile = 543,
+    .baseTile = BASE_TILE_YES_NO_MENU
 };
 
 static void UndergroundTalkResponse_RequestLinkTalkStateUpdate(ResponseMenu *menu, int newState)
@@ -535,7 +535,7 @@ static void UndergroundTalk_RemoveGiftedGood(TalkMenu *menu)
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
 
-static void UndergroundTalk_PrintGiftConfirmPrompt(TalkMenu *unused, int goodID)
+static void UndergroundTalk_PrintGiftConfirmPrompt(TalkMenu *unused, enum Good goodID)
 {
     UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundMan_GetCommonTextPrinter(), goodID);
     UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_YouWantToGiveMeGiftPrompt, FALSE, NULL);

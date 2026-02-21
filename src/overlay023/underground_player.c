@@ -1,5 +1,6 @@
 #include "overlay023/underground_player.h"
 
+#include <limits.h>
 #include <nitro.h>
 #include <string.h>
 
@@ -371,7 +372,7 @@ BOOL UndergroundPlayer_BuriedObjectHeldFlagCheck(int netID)
     return TRUE;
 }
 
-static void UndergroundPlayer_HandleCurrentPlayerLosingFlag(FlagEvent *param0, BOOL takerIsNotFlagOwner, UndergroundRecord *unused)
+static void UndergroundPlayer_HandleCurrentPlayerLosingFlag(FlagEvent *event, BOOL takerIsNotFlagOwner, UndergroundRecord *unused)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
 
@@ -380,7 +381,7 @@ static void UndergroundPlayer_HandleCurrentPlayerLosingFlag(FlagEvent *param0, B
     sub_02057FC4(FALSE);
     CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_LOST_FLAG);
 
-    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(param0->netID));
+    UndergroundTextPrinter_SetPlayerNameIndex0(UndergroundMan_GetCaptureFlagTextPrinter(), CommInfo_TrainerInfo(event->netID));
 
     if (takerIsNotFlagOwner) {
         commPlayerMan->emote[CommSys_CurNetId()] = EMOTE_NONE;
@@ -482,7 +483,7 @@ void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, vo
             if (commPlayerMan->heldFlagOwnerInfo[event->netID]) {
                 FieldSystem_SaveTVEpisodeSegment_CaptureTheFlagDigest_TakeFlag(commPlayerMan->fieldSystem, commPlayerMan->heldFlagOwnerInfo[event->netID]);
 
-                if (commPlayerMan->flagsRegisteredInCurrentSession != 0xffff) {
+                if (commPlayerMan->flagsRegisteredInCurrentSession != USHRT_MAX) {
                     commPlayerMan->flagsRegisteredInCurrentSession++;
                 }
             }
@@ -519,7 +520,7 @@ void UndergroundPlayer_ClearHeldFlagInfo(void)
     }
 }
 
-u8 *ov23_0224AAA0(int unused0, void *unused1, int unused2)
+u8 *UndergroundPlayer_GetHeldFlagInfoBuffer(int unused0, void *unused1, int unused2)
 {
     CommPlayerManager *commPlayerMan = CommPlayerMan_Get();
     return (u8 *)&commPlayerMan->heldFlagInfo[MAX_CONNECTED_PLAYERS];
@@ -624,7 +625,7 @@ BOOL UndergroundPlayer_HaveLinksReceivedHeldFlagData(void)
     return commPlayerMan->linksReceivedHeldFlagData;
 }
 
-void ov23_0224AC4C(void)
+void UndergroundPlayer_ResetHeldFlagInfo(void)
 {
     TrainerInfo *flagOwnerInfo = NULL;
     int netID; // needs to be declared here to match

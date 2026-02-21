@@ -1,5 +1,6 @@
 #include "overlay023/underground_traps.h"
 
+#include <limits.h>
 #include <nitro.h>
 #include <string.h>
 
@@ -69,20 +70,26 @@
 #define BOULDER_RADIUS 48
 #define MAX_DEBRIS     14
 
-#define ROCK_TRAP_ANIM_BOULDER    0
-#define ROCK_TRAP_ANIM_DUST_CLOUD 1
-#define ROCK_TRAP_ANIM_DEBRIS     2
-#define ROCK_TRAP_SPRITE_COUNT    15
+#define ROCK_TRAP_SPRITE_COUNT 15
 
 #define MAX_TRAP_EFFECT_SPRITES 32
 
-#define MAX_BURIED_TRAPS MAX_PLACED_TRAPS *MAX_CONNECTED_PLAYERS + MAX_SPAWNED_TRAPS
+#define MAX_BURIED_TRAPS (MAX_PLACED_TRAPS * MAX_CONNECTED_PLAYERS + MAX_SPAWNED_TRAPS)
 
 enum TrapSpriteResourceType {
     TRAP_RESOURCES = 0,
     RADAR_RESOURCES,
     RESOURCE_TYPE_COUNT,
 };
+
+enum TouchRadarResultType {
+    RADAR_RESULT_TYPE_TRAPS = 0,
+    RADAR_RESULT_TYPE_MINING_SPOTS,
+    RADAR_RESULT_TYPE_BURIED_SPHERES,
+    RADAR_RESULT_TYPE_COUNT,
+};
+
+#define MAX_TOUCH_RADAR_SPRITES (MAX_TOUCH_RADAR_RESULTS_OF_TYPE * RADAR_RESULT_TYPE_COUNT + 1)
 
 typedef void (*UnusedFunc)(BgConfig *bgConfig);
 typedef void (*EndTrapEffectClientFunc)(int netID, BOOL allowToolStepBack);
@@ -132,7 +139,7 @@ typedef struct LinkSpinContext {
     BOOL doneSpinning;
     int timer;
     int netID;
-    int trapID;
+    enum Trap trapID;
 } LinkSpinContext;
 
 typedef struct TrapsEnv {
@@ -141,19 +148,18 @@ typedef struct TrapsEnv {
     FieldSystem *fieldSystem;
     SpriteList *spriteList;
     G2dRenderer g2dRenderer;
-    SpriteResourceCollection *spriteResourceCollection[RESOURCE_TYPE_COUNT][4];
-    SpriteResource *spriteResources[RESOURCE_TYPE_COUNT][4];
-    SpriteResourcesHeader unused;
+    SpriteResourceCollection *spriteResourceCollection[RESOURCE_TYPE_COUNT][MAX_SPRITE_RESOURCE_GEN4];
+    SpriteResource *spriteResources[RESOURCE_TYPE_COUNT][MAX_SPRITE_RESOURCE_GEN4];
+    u8 padding[36];
     SpriteResourcesHeader resourceData;
     Sprite *sprites[MAX_TRAP_EFFECT_SPRITES];
-    Sprite *unused2[4];
-    FieldTask *unused3;
+    u8 padding2[20];
     SysTask *trapEffectTask;
     SysTask *touchRadarTask;
-    SysTask *baseRadarTask;
+    SysTask *trapRadarTask;
     TrapRadarContext *trapRadarContext;
     void *currentTrapContext;
-    UnusedFunc unused4; // never anything other than null
+    UnusedFunc unused; // never anything other than null
     BuriedTrap playerPlacedTraps[MAX_PLACED_TRAPS];
     OverworldAnimManager *trapTextureManager[MAX_PLACED_TRAPS];
     BuriedTrap buriedTraps[MAX_BURIED_TRAPS];
@@ -166,11 +172,11 @@ typedef struct TrapsEnv {
     u8 queuedDisengageMessages[MAX_CONNECTED_PLAYERS];
     u16 retrievedTrapCount;
     u8 retrievedTrapID;
-    u16 unused5;
+    u8 padding3[3];
     s8 micSample;
     u8 triggeredTrapIDClient;
     u8 triggeredTrapIDs[MAX_CONNECTED_PLAYERS];
-    u8 unused6;
+    u8 unused2;
     u8 linksReceivedPlacedTraps;
     u8 graphicsDisabled;
 } TrapsEnv;
@@ -214,7 +220,7 @@ typedef struct RockTrapContext {
 typedef struct AlertTrapContext {
     int state;
     int printerID;
-    int unused;
+    u8 padding[4];
     int timer;
     u8 toolInitialDir;
     u8 isTool;
@@ -225,7 +231,7 @@ typedef struct FireTrapContext {
     int printerID;
     u8 micSamples[10];
     int micSampleIndex;
-    fx32Coordinates unused;
+    u8 padding[8];
     int flameIntensity;
     int timer;
     u8 subState;
@@ -250,14 +256,14 @@ typedef struct BubbleTrapContext {
 
 typedef struct TouchRadarContext {
     int state;
-    int unused;
-    u8 *unk_08[3];
-    int unk_14[3];
-    int unk_20;
-    int unk_24;
-    int unk_28;
-    int unk_2C;
-    int unk_30;
+    u8 padding[4];
+    u8 *results[RADAR_RESULT_TYPE_COUNT];
+    int resultCounts[RADAR_RESULT_TYPE_COUNT];
+    int touchedTileX;
+    int touchedTileZ;
+    int touchX;
+    int touchY;
+    int ringScale;
 } TouchRadarContext;
 
 typedef struct AlterMovementTrapContext {
@@ -278,7 +284,7 @@ typedef struct HoleTrapContext {
     OverworldAnimManager *holeTextureManager;
     int lastDir;
     int timer;
-    int unused;
+    u8 padding[4];
 } HoleTrapContext;
 
 typedef struct SmokeTrapContext {
@@ -470,6 +476,13 @@ enum AlertTrapTaskState {
     ALERT_TRAP_STATE_TOOL_WAIT_THEN_END,
 };
 
+enum TouchRadarState {
+    TOUCH_RADAR_STATE_INIT = 0,
+    TOUCH_RADAR_STATE_INIT_SPRITES = 5,
+    TOUCH_RADAR_STATE_MAIN = 7,
+    TOUCH_RADAR_STATE_END = 9,
+};
+
 enum TrapRelativePosition {
     PLAYER_TILE_BACK_FROM_TRAP = 0,
     PLAYER_ON_TRAP,
@@ -484,18 +497,38 @@ enum TrapPlaceResultCode {
     PLACE_TRAP_FAIL,
 };
 
-static void UndergroundTraps_AddPlacedTrapCurrentPlayer(BuriedTrap *trap);
+enum TouchRadarAnim {
+    TOUCH_RADAR_ANIM_RING = 0,
+    TOUCH_RADAR_ANIM_LIGHT_SPARKLE,
+    TOUCH_RADAR_ANIM_SPARKLE,
+};
+
+enum RockTrapAnim {
+    ROCK_TRAP_ANIM_BOULDER = 0,
+    ROCK_TRAP_ANIM_DUST_CLOUD,
+    ROCK_TRAP_ANIM_DEBRIS,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_1,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_2,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_3,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_4,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_5,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_6,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_7,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_8,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_9,
+    ROCK_TRAP_ANIM_BOULDER_COLLAPSE_10,
+};
+
 static int UndergroundTraps_GetBuriedTrapSetterNetID(BuriedTrap *trap);
-static BuriedTrap *UndergroundTraps_AddBuriedTrap(int x, int z, BuriedTrap *dest, int trapID);
 static void UndergroundTraps_ResetPlayerTrapsCoordinateOrdering(int netID);
 static BuriedTrap *UndergroundTraps_GetTrapAtCoordinates(int x, int z);
-static OverworldAnimManager *UndergroundTraps_DrawPlacedTrap(int x, int z, int size, int trapID);
+static OverworldAnimManager *UndergroundTraps_DrawPlacedTrap(int x, int z, int size, enum Trap trapID);
 static void UndergroundTraps_InitRadarSpriteResources(void);
 static void UndergroundTraps_DeleteRadarSpriteResources(void);
 static void UndergroundTraps_RemovePlacedTrapCurrentPlayer(BuriedTrap *trap);
 static void SendTrapRadarResults(void);
-static void UndergroundTraps_StartTrapEffectServer(int netID, int trapID);
-static void UndergroundTraps_EndTrapEffectServer(int netID, int trapID);
+static void UndergroundTraps_StartTrapEffectServer(int netID, enum Trap trapID);
+static void UndergroundTraps_EndTrapEffectServer(int netID, enum Trap trapID);
 static void UndergroundTraps_ReverseTrapEffectServer(int netID);
 static void UndergroundTraps_ConfuseTrapEffectServer(int netID);
 static void UndergroundTraps_SmokeTrapEffectServer(int netID);
@@ -512,7 +545,7 @@ static void UndergroundTraps_MoveTrapEffectServer(int netID);
 static void UndergroundTraps_DummyServer(int netID);
 static void UndergroundTraps_EndMoveTrapEffectClient(int netID, BOOL unused);
 static void UndergroundTraps_ForceEndMoveTrapEffectClient(int netID, BOOL unused);
-static void UndergroundTraps_StartTrapEffectClient(int netID, int trapID, BOOL isTool, int toolInitialDir);
+static void UndergroundTraps_StartTrapEffectClient(int netID, enum Trap trapID, BOOL isTool, int toolInitialDir);
 static void UndergroundTraps_ReverseTrapEffectClient(int netID, BOOL isTool, int toolInitialDir);
 static void UndergroundTraps_ConfuseTrapEffectClient(int netID, BOOL isTool, int toolInitialDir);
 static void UndergroundTraps_SmokeTrapEffectClient(int netID, BOOL isTool, int toolInitialDir);
@@ -533,7 +566,6 @@ static void UndergroundTraps_ForceEndAlterMovementTrapEffectClient(int netID, BO
 static BuriedTrap *UndergroundTraps_Dummy(BuriedTrap *trap);
 static void UndergroundTraps_StartMoveTrapClientTask(FieldSystem *fieldSystem, int netID, int dir, BOOL isHurlTrap);
 static void UndergroundTraps_StartSmokeTrapClientTask(FieldSystem *fieldSystem, BOOL isTool, int toolInitialDir);
-static BOOL UndergroundTraps_ProcessSmoke(Coordinates2D *touchCoordinates, BgConfig *bgConfig, SmokeTrapContext *ctx);
 static BOOL UndergroundTraps_ClearSmoke(int x, int y, u8 *tilemap);
 static void UndergroundTraps_SmokeTrapClientTask(SysTask *sysTask, void *data);
 static void UndergroundTraps_ResetSmokeTrapTouchCoords(SmokeTrapContext *ctx);
@@ -544,10 +576,7 @@ static void UndergroundTraps_InitSpriteResources(void);
 static void UndergroundTraps_DeleteSpritesAndResources(int spriteCount);
 static void UndergroundTraps_InitLeafSprites(int leafCount);
 static void UndergroundTraps_InitBubbles(BubbleTrapContext *ctx);
-static void UndergroundTraps_BubbleTrapClientTask(SysTask *sysTask, void *data);
-static void UndergroundTraps_StartBubbleTrapClientTask(BgConfig *unused, BOOL isTool, int toolInitialDir);
 static void UndergroundTraps_InitBubbleSprites(BubbleTrapContext *ctx);
-static void UndergroundTraps_UpdateBubbleSprite(int index, BubbleTrapContext *ctx);
 static BOOL UndergroundTraps_ProcessBubbles(BgConfig *unused, BubbleTrapContext *ctx);
 static void UndergroundTraps_BubbleTrapEffectClient(int netID, BOOL isTool, int toolInitialDir);
 static void UndergroundTraps_BubbleTrapEffectServer(int netID);
@@ -571,8 +600,8 @@ static void UndergroundTraps_FireTrapEffectServer(int netID);
 static void UndergroundTraps_AlertTrapEffectClient(int netID, BOOL isTool, int toolInitialDir);
 static void UndergroundTraps_EndAlertTrapEffectClient(int netID, BOOL allowToolStepBack);
 static void UndergroundTraps_AlertTrapEffectServer(int netID);
-static void UndergroundTraps_StartLinkSpinTask(int netID, int trapID);
-static void UndergroundTraps_StopAllLinkSpin(void);
+static void UndergroundTraps_StartLinkSpinTask(int netID, enum Trap trapID);
+static void UndergroundTraps_StopAllLinkSpinTasks(void);
 
 static TrapsEnv *trapsEnv = NULL;
 static s8 sMicSample ATTRIBUTE_ALIGN(32);
@@ -813,7 +842,7 @@ static void UndergroundTraps_LoadCurrentPlayerPlacedTraps(void)
         trapsEnv->playerPlacedTraps[i].trapID = Underground_GetPlacedTrapIDAtIndex(underground, i);
         trapsEnv->playerPlacedTraps[i].x = Underground_GetPlacedTrapXCoordAtIndex(underground, i);
         trapsEnv->playerPlacedTraps[i].z = Underground_GetPlacedTrapZCoordAtIndex(underground, i);
-        trapsEnv->playerPlacedTraps[i].spawnedTrapIndex = sub_0202907C(underground, i);
+        trapsEnv->playerPlacedTraps[i].spawnedTrapIndex = Underground_GetPlacedTrapSpawnedIndexAtIndex(underground, i);
 
         if (!trapsEnv->graphicsDisabled) {
             if (trapsEnv->playerPlacedTraps[i].trapID != TRAP_NONE) {
@@ -830,7 +859,7 @@ void TrapsEnv_Init(void *dest, FieldSystem *fieldSystem)
     }
 
     trapsEnv = (TrapsEnv *)dest;
-    ;
+
     MI_CpuFill8(trapsEnv, 0, sizeof(TrapsEnv));
     trapsEnv->fieldSystem = fieldSystem;
 
@@ -839,7 +868,7 @@ void TrapsEnv_Init(void *dest, FieldSystem *fieldSystem)
     trapsEnv->trapEffectTask = NULL;
 
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
-        trapsEnv->helpedNetIDs[netID] = 0xFF;
+        trapsEnv->helpedNetIDs[netID] = NETID_NONE;
     }
 
     fieldSystem->unk_8C = ov5_021EB0C8(fieldSystem->camera);
@@ -852,7 +881,7 @@ void UndergroundTraps_DisableTrapGraphics(void)
 {
     ov5_021EB184(&trapsEnv->fieldSystem->unk_8C);
     UndergroundTraps_DeleteRadarSpriteResources();
-    UndergroundTraps_StopAllLinkSpin();
+    UndergroundTraps_StopAllLinkSpinTasks();
 
     for (int i = 0; i < MAX_PLACED_TRAPS; i++) {
         if (trapsEnv->trapTextureManager[i]) {
@@ -891,7 +920,7 @@ void TrapsEnv_Free(void)
         }
     }
 
-    UndergroundTraps_StopAllLinkSpin();
+    UndergroundTraps_StopAllLinkSpinTasks();
     UndergroundTraps_DeleteRadarSpriteResources();
 
     ov5_021EB184(&trapsEnv->fieldSystem->unk_8C);
@@ -921,7 +950,7 @@ void UndergroundTraps_Reinit(FieldSystem *fieldSystem)
         }
     }
 
-    UndergroundTraps_StopAllLinkSpin();
+    UndergroundTraps_StopAllLinkSpinTasks();
     UndergroundTraps_LoadCurrentPlayerPlacedTraps();
 
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
@@ -954,7 +983,7 @@ void UndergroundTraps_RemoveLinkData(int netID)
 
 static void UndergroundTraps_InitRadarSpriteResources(void)
 {
-    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < SPRITE_RESOURCE_ANIM + 1; resourceType++) {
+    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
         trapsEnv->spriteResourceCollection[RADAR_RESOURCES][resourceType] = SpriteResourceCollection_New(1, resourceType, HEAP_ID_FIELD1);
     }
 
@@ -970,7 +999,7 @@ static void UndergroundTraps_InitRadarSpriteResources(void)
 
 static void UndergroundTraps_DeleteRadarSpriteResources()
 {
-    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < SPRITE_RESOURCE_ANIM + 1; resourceType++) {
+    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
         SpriteResourceCollection_Delete(trapsEnv->spriteResourceCollection[RADAR_RESOURCES][resourceType]);
     }
 }
@@ -1112,7 +1141,7 @@ static void UndergroundTraps_RemoveBuriedTrap(BuriedTrap *trap)
     UndergroundTraps_ResetPlayerTrapsCoordinateOrdering(netID);
 }
 
-static BuriedTrap *UndergroundTraps_AddBuriedTrap(int x, int z, BuriedTrap *dest, int trapID)
+static BuriedTrap *UndergroundTraps_AddBuriedTrap(int x, int z, BuriedTrap *dest, enum Trap trapID)
 {
     if (TerrainCollisionManager_CheckCollision(trapsEnv->fieldSystem, x, z)) {
         return NULL;
@@ -1171,7 +1200,7 @@ void UndergroundTraps_TryPlaceTrap(int netID, int unused1, void *data, void *unu
         return;
     }
 
-    if (CommPlayerMan_GetLinkNetIDAtLocation(x, z) != 0xFF) {
+    if (CommPlayerMan_GetLinkNetIDAtLocation(x, z) != NETID_NONE) {
         placeResult.result = PLACE_TRAP_PERSON_IN_WAY;
         CommSys_SendDataServer(34, &placeResult, sizeof(PlaceTrapResult));
         return;
@@ -1213,7 +1242,7 @@ int CommPacketSizeOf_PlaceTrapResult(void)
     return sizeof(PlaceTrapResult);
 }
 
-int UndergroundTraps_SpawnRandomTrap(int x, int z, MATHRandContext16 *rand, int index)
+enum Trap UndergroundTraps_SpawnRandomTrap(int x, int z, MATHRandContext16 *rand, int index)
 {
     static const u8 traps[] = {
         TRAP_MOVE_UP,
@@ -1279,7 +1308,7 @@ void UndergroundTraps_LoadSpawnedTraps(void)
     Underground *underground = SaveData_GetUnderground(trapsEnv->fieldSystem->saveData);
 
     for (i = 0; i < MAX_SPAWNED_TRAPS; i++) {
-        int trapID = Underground_GetSpawnedTrapIDAtIndex(underground, i);
+        enum Trap trapID = Underground_GetSpawnedTrapIDAtIndex(underground, i);
 
         if (trapID != TRAP_NONE) {
             int x = Underground_GetSpawnedTrapXCoordAtIndex(underground, i);
@@ -1532,7 +1561,7 @@ void UndergroundTraps_ProcessDisengagedTrap(int unused0, int unused1, void *data
                     trapsEnv->retrievedTrapID = retrievedTrap->trap.trapID;
                 }
 
-                if (trapsEnv->retrievedTrapCount != 0xFFFF) {
+                if (trapsEnv->retrievedTrapCount != USHRT_MAX) {
                     trapsEnv->retrievedTrapCount++;
                 }
             }
@@ -1636,7 +1665,7 @@ static BOOL CheckPlayerSteppedOnTrap(int netID)
     return TRUE;
 }
 
-void UndergroundTraps_HandleTriggeredTool(int victimNetID, int setterNetID, int trapID, int x, int z, int victimDir)
+void UndergroundTraps_HandleTriggeredTool(int victimNetID, int setterNetID, enum Trap trapID, int x, int z, int victimDir)
 {
     if (trapsEnv->triggeredTrapIDs[victimNetID] != TRAP_NONE) {
         UndergroundTraps_EndTrapEffectServer(victimNetID, trapsEnv->triggeredTrapIDs[victimNetID]);
@@ -1809,11 +1838,11 @@ BOOL UndergroundTraps_GetQueuedMessage(String *dest)
             }
         }
 
-        if (trapsEnv->helpedNetIDs[netID] != 0xFF) {
+        if (trapsEnv->helpedNetIDs[netID] != NETID_NONE) {
             TrainerInfo *helperInfo = CommInfo_TrainerInfo(netID);
             TrainerInfo *trapVictimInfo = CommInfo_TrainerInfo(trapsEnv->helpedNetIDs[netID]);
 
-            trapsEnv->helpedNetIDs[netID] = 0xFF;
+            trapsEnv->helpedNetIDs[netID] = NETID_NONE;
 
             if (UndergroundMan_FormatCommonStringWith2TrainerNames(helperInfo, trapVictimInfo, UndergroundCommon_Text_PlayerHelpedOtherPlayer, dest)) {
                 return TRUE;
@@ -1865,7 +1894,7 @@ BOOL UndergroundTraps_GetQueuedMessage2(String *dest)
     return FALSE;
 }
 
-static void UndergroundTraps_StartTrapEffectServer(int netID, int trapID)
+static void UndergroundTraps_StartTrapEffectServer(int netID, enum Trap trapID)
 {
     TrapServerFunc trapEffectFunc = sTrapEffectServerFuncs[trapID];
 
@@ -1874,7 +1903,7 @@ static void UndergroundTraps_StartTrapEffectServer(int netID, int trapID)
     }
 }
 
-static void UndergroundTraps_EndTrapEffectServer(int netID, int trapID)
+static void UndergroundTraps_EndTrapEffectServer(int netID, enum Trap trapID)
 {
     TrapServerFunc endTrapEffectFunc = sEndTrapEffectServerFuncs[trapID];
 
@@ -1899,7 +1928,7 @@ void UndergroundTraps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolS
         CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 
-        trapsEnv->unused4 = NULL;
+        trapsEnv->unused = NULL;
 
         UndergroundPlayer_RemoveEmote(netID);
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
@@ -1908,7 +1937,7 @@ void UndergroundTraps_ForceEndCurrentTrapEffectClient(int netID, BOOL allowToolS
     }
 }
 
-static void UndergroundTraps_StartTrapEffectClient(int netID, int trapID, BOOL isTool, int toolInitialDir)
+static void UndergroundTraps_StartTrapEffectClient(int netID, enum Trap trapID, BOOL isTool, int toolInitialDir)
 {
     UndergroundTraps_ForceEndCurrentTrapEffectClient(netID, TRUE);
 
@@ -2239,7 +2268,7 @@ static void UndergroundTraps_DummyClient(int netID, BOOL isTool, int toolInitial
     return;
 }
 
-static OverworldAnimManager *UndergroundTraps_DrawPlacedTrap(int x, int z, int size, int trapID)
+static OverworldAnimManager *UndergroundTraps_DrawPlacedTrap(int x, int z, int size, enum Trap trapID)
 {
     if (!trapsEnv->graphicsDisabled) {
         OverworldAnimManager *trapTextureManager = ov5_DrawFloorTexture(trapsEnv->fieldSystem, x, z, size, trapID - 1);
@@ -2577,7 +2606,7 @@ void UndergroundTraps_EndCurrentTrapEffectServer(int netID, int unused1, void *u
 void UndergroundTraps_ProcessEscapedTrap(int unused0, int unused1, void *data, void *unused3)
 {
     EscapedTrap *escapedTrap = data;
-    int trapID = escapedTrap->trapID;
+    enum Trap trapID = escapedTrap->trapID;
 
     if (escapedTrap->showOKEmote) {
         UndergroundPlayer_AddOKEmote(escapedTrap->netID);
@@ -2617,7 +2646,7 @@ void UndergroundTraps_ProcessEscapedTrap(int unused0, int unused1, void *data, v
 void UndergroundTraps_EscapeHole(int unused0, int unused1, void *data, void *unused3)
 {
     u8 *netID = data;
-    int trapID = trapsEnv->triggeredTrapIDClient;
+    enum Trap trapID = trapsEnv->triggeredTrapIDClient;
 
     if (trapID == TRAP_HOLE || trapID == TRAP_PIT) {
         EscapeHole(*netID);
@@ -2658,14 +2687,14 @@ void UndergroundTraps_ProcessTrapHelp(int unused0, int unused1, void *data, void
     UndergroundTraps_StopLinkSpin(helpdata->helpeeNetID);
 
     if (helpdata->helpeeNetID == CommSys_CurNetId() && trapsEnv->triggeredTrapIDClient != TRAP_NONE) {
-        int trapID = trapsEnv->triggeredTrapIDClient;
+        enum Trap trapID = trapsEnv->triggeredTrapIDClient;
         EndTrapEffectClientFunc endTrapEffectFunc = sForceEndTrapEffectClientFuncs[trapID];
 
         if (endTrapEffectFunc) {
             endTrapEffectFunc(helpdata->helpeeNetID, FALSE);
         }
 
-        trapsEnv->unused4 = NULL;
+        trapsEnv->unused = NULL;
         trapsEnv->triggeredTrapIDClient = TRAP_NONE;
 
         CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TRAPS);
@@ -2726,7 +2755,7 @@ void TrapRadar_Start(void)
         return;
     }
 
-    if (trapsEnv->baseRadarTask) {
+    if (trapsEnv->trapRadarTask) {
         return;
     }
 
@@ -2735,18 +2764,18 @@ void TrapRadar_Start(void)
     CommSys_SendMessage(46);
 
     trapsEnv->trapRadarContext = ctx;
-    trapsEnv->baseRadarTask = SysTask_Start(TrapRadar_TimerTask, ctx, 100);
+    trapsEnv->trapRadarTask = SysTask_Start(TrapRadar_TimerTask, ctx, 100);
 }
 
 void TrapRadar_Exit(void)
 {
-    if (trapsEnv->baseRadarTask) {
+    if (trapsEnv->trapRadarTask) {
         BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
         G2_BlendNone();
         GX_SetMasterBrightness(0);
-        SysTask_Done(trapsEnv->baseRadarTask);
+        SysTask_Done(trapsEnv->trapRadarTask);
         Heap_Free(trapsEnv->trapRadarContext);
-        trapsEnv->baseRadarTask = NULL;
+        trapsEnv->trapRadarTask = NULL;
         trapsEnv->trapRadarContext = NULL;
     }
 }
@@ -3325,10 +3354,10 @@ static void UndergroundTraps_StartLeafTrapClientTask(FieldSystem *fieldSystem, B
 
 static void UndergroundTraps_InitSpriteResources(void)
 {
-    trapsEnv->spriteList = SpriteList_InitRendering(32, &trapsEnv->g2dRenderer, HEAP_ID_FIELD1);
-    SetSubScreenViewRect(&trapsEnv->g2dRenderer, 0, (192 << FX32_SHIFT) * 2);
+    trapsEnv->spriteList = SpriteList_InitRendering(MAX_TRAP_EFFECT_SPRITES, &trapsEnv->g2dRenderer, HEAP_ID_FIELD1);
+    SetSubScreenViewRect(&trapsEnv->g2dRenderer, 0, (HW_LCD_HEIGHT << FX32_SHIFT) * 2);
 
-    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < SPRITE_RESOURCE_ANIM + 1; resourceType++) {
+    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
         trapsEnv->spriteResourceCollection[TRAP_RESOURCES][resourceType] = SpriteResourceCollection_New(2, resourceType, HEAP_ID_FIELD1);
     }
 }
@@ -3360,7 +3389,7 @@ static void UndergroundTraps_DeleteSpritesAndResources(int spriteCount)
 
     trapsEnv->spriteResources[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT] = NULL;
 
-    for (i = SPRITE_RESOURCE_CHAR; i < SPRITE_RESOURCE_ANIM + 1; i++) {
+    for (i = SPRITE_RESOURCE_CHAR; i < MAX_SPRITE_RESOURCE_GEN4; i++) {
         if (trapsEnv->spriteResourceCollection[TRAP_RESOURCES][i]) {
             SpriteResourceCollection_Delete(trapsEnv->spriteResourceCollection[TRAP_RESOURCES][i]);
         }
@@ -3377,7 +3406,22 @@ static void UndergroundTraps_DeleteSpritesAndResources(int spriteCount)
 
 static void UndergroundTraps_InitLeafSprites(int leafCount)
 {
-    SpriteResourcesHeader_Init(&trapsEnv->resourceData, 0, 0, 0, 0, 0xFFFFFFFF, 0xFFFFFFFF, FALSE, 0, trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(
+        &trapsEnv->resourceData,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        FALSE,
+        0,
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM],
+        NULL,
+        NULL);
 
     AffineSpriteListTemplate template;
 
@@ -3528,7 +3572,7 @@ static BOOL UndergroundTraps_ProcessLeaves(BgConfig *unused, LeafTrapContext *ct
 
     ctx->blowIntensityIndex++;
 
-    if (ctx->blowIntensityIndex >= 40) {
+    if (ctx->blowIntensityIndex >= NELEMS(ctx->micBlowIntensities)) {
         ctx->blowIntensityIndex = 0;
     }
 
@@ -3538,8 +3582,8 @@ static BOOL UndergroundTraps_ProcessLeaves(BgConfig *unused, LeafTrapContext *ct
 
 void UndergroundTraps_Dummy2(BgConfig *bgConfig)
 {
-    if (trapsEnv->unused4) {
-        trapsEnv->unused4(bgConfig);
+    if (trapsEnv->unused) {
+        trapsEnv->unused(bgConfig);
     }
 }
 
@@ -3708,7 +3752,22 @@ static void UndergroundTraps_InitBubbleSprites(BubbleTrapContext *ctx)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(trapsEnv->spriteResources[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_RequestPlttFreeSpace(trapsEnv->spriteResources[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT]);
-    SpriteResourcesHeader_Init(&trapsEnv->resourceData, 0, 0, 0, 0, 0xFFFFFFFF, 0xFFFFFFFF, FALSE, 0, trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(
+        &trapsEnv->resourceData,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        FALSE,
+        0,
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM],
+        NULL,
+        NULL);
 
     AffineSpriteListTemplate template;
 
@@ -3875,7 +3934,22 @@ static void UndergroundTraps_InitBoulderSprites(RockTrapContext *unused)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(trapsEnv->spriteResources[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_RequestPlttFreeSpace(trapsEnv->spriteResources[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT]);
-    SpriteResourcesHeader_Init(&trapsEnv->resourceData, 0, 0, 0, 0, 0xFFFFFFFF, 0xFFFFFFFF, FALSE, 0, trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(
+        &trapsEnv->resourceData,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        FALSE,
+        0,
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM],
+        NULL,
+        NULL);
 
     AffineSpriteListTemplate template;
 
@@ -4106,6 +4180,7 @@ static BOOL UndergroundTraps_ProcessBoulder(BgConfig *unused, RockTrapContext *c
 
             Sprite_SetPosition(trapsEnv->sprites[10], &position);
             Sprite_SetDrawFlag(trapsEnv->sprites[10], TRUE);
+
             Sprite_SetAnim(trapsEnv->sprites[11], ROCK_TRAP_ANIM_DUST_CLOUD);
 
             position.x = 122 * FX32_ONE;
@@ -4124,7 +4199,7 @@ static BOOL UndergroundTraps_ProcessBoulder(BgConfig *unused, RockTrapContext *c
         ctx->boulderYPos += 1;
 
         if (ctx->timer % 8) {
-            Sprite_SetAnim(trapsEnv->sprites[0], 3 + ctx->timer / 8);
+            Sprite_SetAnim(trapsEnv->sprites[0], ROCK_TRAP_ANIM_BOULDER_COLLAPSE_1 + ctx->timer / 8);
         }
 
         if (ctx->timer == 75) {
@@ -4184,11 +4259,11 @@ static void UndergroundTraps_RockTrapClientTask(SysTask *sysTask, void *data)
         ctx->printerID = UndergroundTraps_NotifyTrapTriggered();
         ctx->timer = 0;
 
-        trapsEnv->spriteList = SpriteList_InitRendering(32, &trapsEnv->g2dRenderer, HEAP_ID_FIELD1);
-        SetSubScreenViewRect(&trapsEnv->g2dRenderer, 0, (192 << FX32_SHIFT) * 2);
+        trapsEnv->spriteList = SpriteList_InitRendering(MAX_TRAP_EFFECT_SPRITES, &trapsEnv->g2dRenderer, HEAP_ID_FIELD1);
+        SetSubScreenViewRect(&trapsEnv->g2dRenderer, 0, (HW_LCD_HEIGHT << FX32_SHIFT) * 2);
 
-        for (int i = SPRITE_RESOURCE_CHAR; i < SPRITE_RESOURCE_ANIM + 1; i++) {
-            trapsEnv->spriteResourceCollection[TRAP_RESOURCES][i] = SpriteResourceCollection_New(BOULDER_STAGES + 1, i, HEAP_ID_FIELD1);
+        for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
+            trapsEnv->spriteResourceCollection[TRAP_RESOURCES][resourceType] = SpriteResourceCollection_New(BOULDER_STAGES + 1, resourceType, HEAP_ID_FIELD1);
         }
         ctx->state++;
         break;
@@ -4329,7 +4404,22 @@ static void UndergroundTraps_InitFireSprite(FireTrapContext *unused)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(trapsEnv->spriteResources[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_RequestPlttFreeSpace(trapsEnv->spriteResources[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT]);
-    SpriteResourcesHeader_Init(&trapsEnv->resourceData, 0, 0, 0, 0, 0xFFFFFFFF, 0xFFFFFFFF, FALSE, 0, trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL], trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(
+        &trapsEnv->resourceData,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        FALSE,
+        0,
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CHAR],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_PLTT],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_CELL],
+        trapsEnv->spriteResourceCollection[TRAP_RESOURCES][SPRITE_RESOURCE_ANIM],
+        NULL,
+        NULL);
 
     AffineSpriteListTemplate template;
 
@@ -4726,58 +4816,72 @@ static void UndergroundTraps_EndAlertTrapEffectClient(int netID, BOOL allowToolS
     }
 }
 
-static BOOL ov23_02248614(BgConfig *unused, TouchRadarContext *ctx)
+// returns true when done
+static BOOL TouchRadar_DrawEffects(BgConfig *unused, TouchRadarContext *ctx)
 {
-    int v0, v1;
-    VecFx32 v2;
-    int v3, v4, v5, v6;
+    VecFx32 vec;
+    vec.x = ctx->touchX * FX32_ONE;
+    vec.y = ctx->touchY * FX32_ONE;
 
-    v2.x = ctx->unk_28 * FX32_ONE;
-    v2.y = ctx->unk_2C * FX32_ONE;
+    Sprite_SetPosition(trapsEnv->sprites[0], &vec);
 
-    Sprite_SetPosition(trapsEnv->sprites[0], &v2);
+    vec.x = (ctx->ringScale * FX32_ONE) / 10;
+    vec.y = vec.z = vec.x;
 
-    v2.x = (ctx->unk_30 * FX32_ONE) / 10;
-    v2.y = v2.z = v2.x;
-
-    Sprite_SetAffineScale(trapsEnv->sprites[0], &v2);
+    Sprite_SetAffineScale(trapsEnv->sprites[0], &vec);
     Sprite_SetExplicitOAMMode(trapsEnv->sprites[0], GX_OAM_MODE_XLU);
 
-    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 16 - (ctx->unk_30 / 2), 16);
+    G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 16 - (ctx->ringScale / 2), 16);
 
-    for (v1 = 0; v1 < 3; v1++) {
-        for (v0 = 0; v0 < ctx->unk_14[v1]; v0++) {
-            v6 = ctx->unk_08[v1][v0] / 16;
-            v5 = ctx->unk_08[v1][v0] % 16;
+    for (int resultType = 0; resultType < RADAR_RESULT_TYPE_COUNT; resultType++) {
+        for (int i = 0; i < ctx->resultCounts[resultType]; i++) {
+            int z = ctx->results[resultType][i] / 16;
+            int x = ctx->results[resultType][i] % 16;
 
-            v2.x = (ctx->unk_20 - 6 + v5) * FX32_ONE * 16 + (FX32_ONE * 16 / 2);
-            v2.y = 0;
-            v2.z = (ctx->unk_24 - 6 + v6) * FX32_ONE * 16 + (FX32_ONE * 16 / 2);
+            vec.x = (ctx->touchedTileX - TOUCH_RADAR_RADIUS + x) * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
+            vec.y = 0;
+            vec.z = (ctx->touchedTileZ - TOUCH_RADAR_RADIUS + z) * MAP_OBJECT_TILE_SIZE + MAP_OBJECT_TILE_SIZE / 2;
 
-            NNS_G3dWorldPosToScrPos(&v2, &v3, &v4);
+            int screenX, screenY;
+            NNS_G3dWorldPosToScrPos(&vec, &screenX, &screenY);
 
-            v2.x = v3 * FX32_ONE;
-            v2.y = v4 * FX32_ONE;
+            vec.x = screenX * FX32_ONE;
+            vec.y = screenY * FX32_ONE;
 
-            Sprite_SetPosition(trapsEnv->sprites[v0 + 1 + v1 * 8], &v2);
+            Sprite_SetPosition(trapsEnv->sprites[i + 1 + resultType * MAX_TOUCH_RADAR_RESULTS_OF_TYPE], &vec);
         }
     }
 
-    ctx->unk_30++;
+    ctx->ringScale++;
 
-    if (ctx->unk_30 > 20) {
-        return 1;
+    if (ctx->ringScale > 20) {
+        return TRUE;
     }
 
     SpriteList_Update(trapsEnv->spriteList);
-    return 0;
+    return FALSE;
 }
 
-static void UndergroundTraps_InitRadarSprites(TouchRadarContext *unused)
+static void TouchRadar_InitSprites(TouchRadarContext *unused)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(trapsEnv->spriteResources[RADAR_RESOURCES][SPRITE_RESOURCE_CHAR]);
     SpriteTransfer_RequestPlttFreeSpace(trapsEnv->spriteResources[RADAR_RESOURCES][SPRITE_RESOURCE_PLTT]);
-    SpriteResourcesHeader_Init(&trapsEnv->resourceData, 0, 0, 0, 0, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_CHAR], trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_PLTT], trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_CELL], trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(
+        &trapsEnv->resourceData,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        FALSE,
+        0,
+        trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_CHAR],
+        trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_PLTT],
+        trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_CELL],
+        trapsEnv->spriteResourceCollection[RADAR_RESOURCES][SPRITE_RESOURCE_ANIM],
+        NULL,
+        NULL);
 
     AffineSpriteListTemplate template;
 
@@ -4794,7 +4898,7 @@ static void UndergroundTraps_InitRadarSprites(TouchRadarContext *unused)
     template.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     template.heapID = HEAP_ID_FIELD1;
 
-    for (int i = 0; i < 25; i++) {
+    for (int i = 0; i < MAX_TOUCH_RADAR_SPRITES; i++) {
         template.position.x = FX32_ONE * 300;
         template.position.y = FX32_ONE * 300;
 
@@ -4802,11 +4906,11 @@ static void UndergroundTraps_InitRadarSprites(TouchRadarContext *unused)
 
         if (i == 0) {
             Sprite_SetAffineOverwriteMode(trapsEnv->sprites[i], AFFINE_OVERWRITE_MODE_DOUBLE);
-            Sprite_SetAnim(trapsEnv->sprites[i], 0);
-        } else if (i < 9) {
-            Sprite_SetAnim(trapsEnv->sprites[i], 1);
+            Sprite_SetAnim(trapsEnv->sprites[i], TOUCH_RADAR_ANIM_RING);
+        } else if (i < MAX_TOUCH_RADAR_RESULTS_OF_TYPE + 1) {
+            Sprite_SetAnim(trapsEnv->sprites[i], TOUCH_RADAR_ANIM_LIGHT_SPARKLE);
         } else {
-            Sprite_SetAnim(trapsEnv->sprites[i], 2);
+            Sprite_SetAnim(trapsEnv->sprites[i], TOUCH_RADAR_ANIM_SPARKLE);
         }
 
         Sprite_SetAnimateFlag(trapsEnv->sprites[i], TRUE);
@@ -4817,12 +4921,12 @@ static void UndergroundTraps_InitRadarSprites(TouchRadarContext *unused)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-static void UndergroundTraps_TouchRadarTask(SysTask *sysTask, void *data)
+static void TouchRadar_Task(SysTask *sysTask, void *data)
 {
     TouchRadarContext *ctx = data;
 
     switch (ctx->state) {
-    case 0:
+    case TOUCH_RADAR_STATE_INIT:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 14, 7);
         G2_SetWnd0Position(255 - 16, 0, 256, 16);
         G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 0);
@@ -4832,20 +4936,20 @@ static void UndergroundTraps_TouchRadarTask(SysTask *sysTask, void *data)
         CommPlayerMan_PauseFieldSystem();
         Sound_PlayEffect(SEQ_SE_PL_UG_006);
 
-        trapsEnv->spriteList = SpriteList_InitRendering(32, &trapsEnv->g2dRenderer, HEAP_ID_FIELD1);
-        SetSubScreenViewRect(&trapsEnv->g2dRenderer, 0, (192 << FX32_SHIFT) * 2);
-        ctx->state = 5;
+        trapsEnv->spriteList = SpriteList_InitRendering(MAX_TRAP_EFFECT_SPRITES, &trapsEnv->g2dRenderer, HEAP_ID_FIELD1);
+        SetSubScreenViewRect(&trapsEnv->g2dRenderer, 0, (HW_LCD_HEIGHT << FX32_SHIFT) * 2);
+        ctx->state = TOUCH_RADAR_STATE_INIT_SPRITES;
         break;
-    case 5:
-        UndergroundTraps_InitRadarSprites(ctx);
-        ctx->state = 7;
+    case TOUCH_RADAR_STATE_INIT_SPRITES:
+        TouchRadar_InitSprites(ctx);
+        ctx->state = TOUCH_RADAR_STATE_MAIN;
         break;
-    case 7:
-        if (ov23_02248614(trapsEnv->fieldSystem->bgConfig, ctx)) {
-            ctx->state = 9;
+    case TOUCH_RADAR_STATE_MAIN:
+        if (TouchRadar_DrawEffects(trapsEnv->fieldSystem->bgConfig, ctx)) {
+            ctx->state = TOUCH_RADAR_STATE_END;
         }
         break;
-    case 9:
+    case TOUCH_RADAR_STATE_END:
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
         G2_BlendNone();
         GX_SetMasterBrightness(0);
@@ -4853,7 +4957,7 @@ static void UndergroundTraps_TouchRadarTask(SysTask *sysTask, void *data)
         SpriteTransfer_ResetCharTransfer(trapsEnv->spriteResources[RADAR_RESOURCES][SPRITE_RESOURCE_CHAR]);
         SpriteTransfer_ResetPlttTransfer(trapsEnv->spriteResources[RADAR_RESOURCES][SPRITE_RESOURCE_PLTT]);
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < MAX_TOUCH_RADAR_SPRITES; i++) {
             if (trapsEnv->sprites[i] != NULL) {
                 Sprite_Delete(trapsEnv->sprites[i]);
             }
@@ -4866,38 +4970,37 @@ static void UndergroundTraps_TouchRadarTask(SysTask *sysTask, void *data)
         Heap_Free(ctx);
 
         trapsEnv->touchRadarTask = NULL;
-        CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_RADAR);
+        CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_TOUCH_RADAR);
         break;
     default:
         break;
     }
 }
 
-void UndergroundTraps_StartTouchRadarTask(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, u8 *param5, int param6, u8 *param7, int param8, u8 *param9, int param10)
+void TouchRadar_StartTask(FieldSystem *fieldSystem, int touchedTileX, int touchedTileZ, int touchX, int touchY, u8 *trapResults, int trapResultCount, u8 *miningSpotResults, int miningSpotResultCount, u8 *buriedSphereResults, int buriedSphereResultCount)
 {
     if (trapsEnv->touchRadarTask) {
         return;
     }
 
-    TouchRadarContext *ctx;
-    ctx = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(TouchRadarContext));
+    TouchRadarContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(TouchRadarContext));
     MI_CpuFill8(ctx, 0, sizeof(TouchRadarContext));
 
     ctx->state = 0;
-    ctx->unk_30 = 0;
-    ctx->unk_20 = param1;
-    ctx->unk_24 = param2;
-    ctx->unk_28 = param3;
-    ctx->unk_2C = param4;
-    ctx->unk_08[0] = param5;
-    ctx->unk_08[1] = param7;
-    ctx->unk_08[2] = param9;
-    ctx->unk_14[0] = param6;
-    ctx->unk_14[1] = param8;
-    ctx->unk_14[2] = param10;
+    ctx->ringScale = 0;
+    ctx->touchedTileX = touchedTileX;
+    ctx->touchedTileZ = touchedTileZ;
+    ctx->touchX = touchX;
+    ctx->touchY = touchY;
+    ctx->results[RADAR_RESULT_TYPE_TRAPS] = trapResults;
+    ctx->results[RADAR_RESULT_TYPE_MINING_SPOTS] = miningSpotResults;
+    ctx->results[RADAR_RESULT_TYPE_BURIED_SPHERES] = buriedSphereResults;
+    ctx->resultCounts[RADAR_RESULT_TYPE_TRAPS] = trapResultCount;
+    ctx->resultCounts[RADAR_RESULT_TYPE_MINING_SPOTS] = miningSpotResultCount;
+    ctx->resultCounts[RADAR_RESULT_TYPE_BURIED_SPHERES] = buriedSphereResultCount;
 
-    trapsEnv->touchRadarTask = SysTask_Start(UndergroundTraps_TouchRadarTask, ctx, 100);
-    CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_RADAR);
+    trapsEnv->touchRadarTask = SysTask_Start(TouchRadar_Task, ctx, 100);
+    CommPlayerMan_PauseFieldSystemWithContextBit(PAUSE_BIT_TOUCH_RADAR);
 }
 
 static void UndergroundTraps_LinkSpinTask(SysTask *sysTask, void *data)
@@ -4960,7 +5063,7 @@ static void UndergroundTraps_LinkSpinTask(SysTask *sysTask, void *data)
     }
 }
 
-static void UndergroundTraps_StartLinkSpinTask(int netID, int trapID)
+static void UndergroundTraps_StartLinkSpinTask(int netID, enum Trap trapID)
 {
     if (!trapsEnv) {
         return;
@@ -4997,7 +5100,7 @@ void UndergroundTraps_StopLinkSpin(int netID)
     CommPlayer_StopSlideAnimation(netID);
 }
 
-static void UndergroundTraps_StopAllLinkSpin(void)
+static void UndergroundTraps_StopAllLinkSpinTasks(void)
 {
     for (int netID = 0; netID < MAX_CONNECTED_PLAYERS; netID++) {
         if (trapsEnv->spinSysTasks[netID]) {

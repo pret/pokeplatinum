@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNDERGROUND_VENDORS_H
 #define POKEPLATINUM_UNDERGROUND_VENDORS_H
 
+#include "generated/traps.h"
+
 #include "field/field_system_decl.h"
 #include "overlay023/underground_menu.h"
 
@@ -9,8 +11,8 @@ void *UndergroundVendors_ReturnNull(int unused0, FieldSystem *unused1, int unuse
 int UndergroundVendors_PrintNPCMessage(int bankEntry);
 void UndergroundVendors_EraseMessageBoxWindow(void);
 void UndergroundVendors_SetTreasureNameForPrinter(int index, int treasureID);
-void UndergroundVendors_SetTrapNameForPrinter(int index, int trapID);
-void UndergroundVendors_SetGoodNameForPrinter(int index, int goodID);
+void UndergroundVendors_SetTrapNameForPrinter(int index, enum Trap trapID);
+void UndergroundVendors_SetGoodNameForPrinter(int index, enum Good goodID);
 void UndergroundMenu_PrintMenuDescription(UndergroundMenu *menu, int bankEntry);
 void UndergroundMenu_RemoveDescriptionWindow(UndergroundMenu *menu);
 void UndergroundMenu_RemoveDescriptionWindowInstant(UndergroundMenu *menu);

@@ -48,7 +48,7 @@ typedef struct Underground {
     u8 miningSpots[MAX_MINING_SPOTS + 5][3];
     u8 placedTrapIDs[MAX_PLACED_TRAPS];
     u8 placedTrapCoordinates[MAX_PLACED_TRAPS][3];
-    u8 unk_548[MAX_PLACED_TRAPS];
+    u8 placedTrapSpawnedIndices[MAX_PLACED_TRAPS]; // pointless field
     u8 buriedSphereTypes[MAX_BURIED_SPHERES];
     u8 buriedSphereGrowth[MAX_BURIED_SPHERES];
     u8 buriedSphereInitialSizes[MAX_BURIED_SPHERES];

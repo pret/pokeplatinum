@@ -48,7 +48,7 @@ typedef struct PositionRect {
 typedef struct DecorationGood {
     PositionRect position;
     int propIndex;
-    int goodID;
+    enum Good goodID;
     int width;
     int depth;
 } DecorationGood;
@@ -75,7 +75,7 @@ typedef struct DecorateCursor {
 
 typedef struct DecorationTouchInput {
     int x;
-    int z;
+    int y;
     BOOL active;
 } DecorationTouchInput;
 
@@ -85,7 +85,7 @@ typedef struct BaseDecorationContext {
     int printerID;
     MovedGood movedGood;
     DecorationGood heldGood;
-    BaseGoodSlot goodSlots[MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1];
+    BaseGoodSlot goodSlots[MAX_SECRET_BASE_GOODS];
     PropBlinkContext propBlinkCtx;
     DecorationTouchInput touchInput;
     DecorateCursor *cursor;
@@ -155,7 +155,6 @@ enum MoveGoodSubState {
 };
 
 static BOOL BaseDecoration_MenuTask(FieldTask *task);
-static BOOL BaseDecoration_DecorationTask(FieldTask *task);
 static BOOL BaseDecoration_DecorateTask(FieldTask *task);
 static BOOL BaseDecoration_PutAwayTask(FieldTask *task);
 static BOOL BaseDecoration_SelectGoodToMoveTask(FieldTask *task);
@@ -169,10 +168,10 @@ static BOOL BaseDecoration_AreGoodsOverlapping(const PositionRect *good1Position
 static BOOL BaseDecoration_AreCoordinatesInsideGood(const PositionRect *goodPosition, int x, int z);
 static BOOL BaseDecoration_IsPositionOutOfBounds(const PositionRect *position);
 static void BaseDecoration_LoadBaseGoods(FieldSystem *fieldSystem, BaseDecorationContext *ctx, BaseGoodSlot goodSlots[]);
-static void BaseDecoration_AddGoodAtIndex(int index, int goodID, int x, int z, BaseGoodSlot goodSlots[]);
+static void BaseDecoration_AddGoodAtIndex(int index, enum Good goodID, int x, int z, BaseGoodSlot goodSlots[]);
 static void BaseDecoration_LoadGoodMapProp(FieldSystem *fieldSystem, BaseGoodSlot goodSlots[]);
 static void BaseDecoration_SaveBaseGoods(FieldSystem *fieldSystem, const BaseGoodSlot goodSlots[]);
-static int BaseDecoration_GetGoodMapPropModelID(FieldSystem *fieldSystem, int goodID);
+static int BaseDecoration_GetGoodMapPropModelID(FieldSystem *fieldSystem, enum Good goodID);
 static void BaseDecoration_SetMovedGood(int index, BaseDecorationContext *ctx);
 static void BaseDecoration_UpdateMovedGoodProp(BaseDecorationContext *ctx);
 static void BaseDecoration_UpdateState(int newState, BaseDecorationContext *ctx);
@@ -202,7 +201,7 @@ static const UnkStruct_ov6_0223E6EC Unk_ov23_02256B88 = {
     ov23_022562C8
 };
 
-static void BaseDecoration_CreateHeldGood(FieldSystem *fieldSystem, int goodID, BaseDecorationContext *ctx)
+static void BaseDecoration_CreateHeldGood(FieldSystem *fieldSystem, enum Good goodID, BaseDecorationContext *ctx)
 {
     GF_ASSERT(goodID != UG_GOOD_NONE);
 
@@ -237,7 +236,7 @@ static void BaseDecoration_SetHeldGood(int index, BaseDecorationContext *ctx)
     ctx->heldGood = *good;
 }
 
-static BOOL BaseDecoration_DecorationTask(FieldTask *task)
+static BOOL BaseDecoration_DecorationMenuTask(FieldTask *task)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     BaseDecorationContext *ctx = FieldTask_GetEnv(task);
@@ -362,7 +361,7 @@ static BOOL BaseDecoration_MenuTask(FieldTask *task)
     return FALSE;
 }
 
-void BaseDecoration_StartDecorationTask(FieldSystem *fieldSystem, FieldTask *task)
+void BaseDecoration_StartDecorationMenuTask(FieldSystem *fieldSystem, FieldTask *task)
 {
     BaseDecorationContext *ctx = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(BaseDecorationContext));
 
@@ -373,7 +372,7 @@ void BaseDecoration_StartDecorationTask(FieldSystem *fieldSystem, FieldTask *tas
     ctx->unk_50C = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &Unk_ov23_02256B88);
     ctx->cursor = ov5_021D1C2C(ctx->unk_50C);
 
-    FieldTask_InitCall(task, BaseDecoration_DecorationTask, ctx);
+    FieldTask_InitCall(task, BaseDecoration_DecorationMenuTask, ctx);
 }
 
 static BOOL BaseDecoration_DecorateTask(FieldTask *task)
@@ -395,7 +394,7 @@ static BOOL BaseDecoration_DecorateTask(FieldTask *task)
                 return TRUE;
             }
 
-            int goodID = Underground_GetGoodAtSlotPC(underground, input);
+            enum Good goodID = Underground_GetGoodAtSlotPC(underground, input);
 
             if (goodID != UG_GOOD_NONE) {
                 if (!Underground_IsGoodAtSlotPlacedInBase(underground, input)) {
@@ -999,7 +998,7 @@ static BOOL BaseDecoration_MoveSelectedGoodTask(FieldTask *task)
 
 static BOOL BaseDecoration_CanPlaceGood(const DecorationGood *good, const BaseGoodSlot goodSlots[])
 {
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
         if (goodSlots[i].active == TRUE) {
             if (BaseDecoration_AreGoodsOverlapping(&goodSlots[i].good.position, &good->position)) {
                 return FALSE;
@@ -1024,7 +1023,7 @@ static BOOL BaseDecoration_CanPlaceGood(const DecorationGood *good, const BaseGo
 
 static BOOL BaseDecoration_FindGoodOccupyingCoordinates(int x, int z, const BaseGoodSlot goodSlots[], int *outIndex)
 {
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
         if (goodSlots[i].active == TRUE) {
             if (BaseDecoration_AreCoordinatesInsideGood(&goodSlots[i].good.position, x, z)) {
                 *outIndex = i;
@@ -1033,7 +1032,7 @@ static BOOL BaseDecoration_FindGoodOccupyingCoordinates(int x, int z, const Base
         }
     }
 
-    *outIndex = MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1;
+    *outIndex = MAX_SECRET_BASE_GOODS;
     return FALSE;
 }
 
@@ -1049,7 +1048,7 @@ static BOOL BaseDecoration_IsPositionOutOfBounds(const PositionRect *position)
 
 static int BaseDecoration_PlaceGood(const DecorationGood *good, BaseGoodSlot goodSlots[])
 {
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
         if (!goodSlots[i].active) {
             goodSlots[i].active = TRUE;
             goodSlots[i].good = *good;
@@ -1064,7 +1063,7 @@ static int BaseDecoration_PlaceGood(const DecorationGood *good, BaseGoodSlot goo
 
 static void BaseDecoration_SetGoodAtIndex(const DecorationGood *good, int index, BaseGoodSlot goodSlots[])
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
     GF_ASSERT(!goodSlots[index].active);
 
     goodSlots[index].active = TRUE;
@@ -1073,7 +1072,7 @@ static void BaseDecoration_SetGoodAtIndex(const DecorationGood *good, int index,
 
 static void BaseDecoration_RemoveGood(int index, BaseGoodSlot goodSlots[])
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
     GF_ASSERT(index != 0);
     GF_ASSERT(goodSlots[index].active);
 
@@ -1105,8 +1104,8 @@ static void BaseDecoration_LoadBaseGoods(FieldSystem *fieldSystem, BaseDecoratio
     ctx->unremovableBoulderCount = SecretBase_GetUnremovableBoulderCount(secretBase);
     ctx->maxPlacedGoods = SecretBase_GetPlacedGoodsLimit(secretBase);
 
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
-        int goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
+        enum Good goodID = SecretBase_GetGoodIDAtIndex(secretBase, i);
 
         if (goodID != UG_GOOD_NONE) {
             if (goodID == UG_GOOD_BIG_BOULDER) {
@@ -1123,7 +1122,7 @@ static void BaseDecoration_LoadBaseGoods(FieldSystem *fieldSystem, BaseDecoratio
     }
 }
 
-static void BaseDecoration_AddGoodAtIndex(int index, int goodID, int x, int z, BaseGoodSlot goodSlots[])
+static void BaseDecoration_AddGoodAtIndex(int index, enum Good goodID, int x, int z, BaseGoodSlot goodSlots[])
 {
     DecorationGood good;
 
@@ -1146,7 +1145,7 @@ static void BaseDecoration_LoadGoodMapProp(FieldSystem *fieldSystem, BaseGoodSlo
 {
     MapPropManager_Init(fieldSystem->mapPropManager);
 
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
         if (!goodSlots[i].active) {
             continue;
         }
@@ -1168,11 +1167,11 @@ static void BaseDecoration_LoadGoodMapProp(FieldSystem *fieldSystem, BaseGoodSlo
 
 static void BaseDecoration_SaveBaseGoods(FieldSystem *fieldSystem, const BaseGoodSlot goodSlots[])
 {
-    int goodID;
+    enum Good goodID;
     int x, z;
     SecretBase *secretBase = SaveData_GetSecretBase(fieldSystem->saveData);
 
-    for (int i = 0; i < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1; i++) {
+    for (int i = 0; i < MAX_SECRET_BASE_GOODS; i++) {
         if (goodSlots[i].active == TRUE) {
             goodID = goodSlots[i].good.goodID;
             x = goodSlots[i].good.position.minX;
@@ -1187,7 +1186,7 @@ static void BaseDecoration_SaveBaseGoods(FieldSystem *fieldSystem, const BaseGoo
     }
 }
 
-static int BaseDecoration_GetGoodMapPropModelID(FieldSystem *fieldSystem, int goodID)
+static int BaseDecoration_GetGoodMapPropModelID(FieldSystem *fieldSystem, enum Good goodID)
 {
     GF_ASSERT(goodID != UG_GOOD_NONE);
     return AreaDataManager_GetMapPropModelID(fieldSystem->areaDataManager, goodID);
@@ -1266,7 +1265,7 @@ static void BaseDecoration_StoreTouchCoordinates(int touchX, int touchY, Decorat
     }
 
     if (touchY != (u16)TOUCHSCREEN_INPUT_NONE) {
-        touchInput->z = touchY;
+        touchInput->y = touchY;
     }
 }
 
@@ -1278,7 +1277,7 @@ static void BaseDecoration_UpdatePropPositionFromTouchInput(FieldSystem *fieldSy
 
     BaseDecoration_StoreTouchCoordinates(gSystem.touchX, gSystem.touchY, touchInput);
 
-    propPosition = ov5_GetPositionFromTouchCoordinates(touchInput->x, touchInput->z, v6);
+    propPosition = ov5_GetPositionFromTouchCoordinates(touchInput->x, touchInput->y, v6);
     int x = propPosition.x / MAP_OBJECT_TILE_SIZE;
     int z = propPosition.z / MAP_OBJECT_TILE_SIZE;
 
@@ -1313,7 +1312,7 @@ static void BaseDecoration_UpdateCursorPositionFromTouchInput(FieldSystem *field
 
     BaseDecoration_StoreTouchCoordinates(gSystem.touchX, gSystem.touchY, touchInput);
 
-    modelPosition = ov5_GetPositionFromTouchCoordinates(touchInput->x, touchInput->z, v4);
+    modelPosition = ov5_GetPositionFromTouchCoordinates(touchInput->x, touchInput->y, v4);
     int x = modelPosition.x / MAP_OBJECT_TILE_SIZE;
     int z = modelPosition.z / MAP_OBJECT_TILE_SIZE;
 

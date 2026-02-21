@@ -1,6 +1,10 @@
 #ifndef POKEPLATINUM_UNDERGROUND_MENU_H
 #define POKEPLATINUM_UNDERGROUND_MENU_H
 
+#include "generated/goods.h"
+#include "generated/sphere_types.h"
+#include "generated/traps.h"
+
 #include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
@@ -18,7 +22,7 @@
 #include "string_template.h"
 #include "sys_task_manager.h"
 
-enum UndergroundStartMenuOptions {
+enum UndergroundStartMenuOption {
     UNDERGROUND_START_MENU_OPTION_TRAPS = 0,
     UNDERGROUND_START_MENU_OPTION_SPHERES,
     UNDERGROUND_START_MENU_OPTION_GOODS,
@@ -90,22 +94,22 @@ void UndergroundMenuContext_Init(Underground *underground);
 void UndergroundMenuContext_Free(void);
 int UndergroundMenu_GetGoodAtSlotPC(int slot, void *menu);
 int UndergroundMenu_GetGoodAtSlotBag(int slot, void *menu);
-void UndergroundMenu_RemoveSelectedGoodBag(int goodID);
+void UndergroundMenu_RemoveSelectedGoodBag(enum Good goodID);
 int UndergroundMenu_GetTrapAtSlot(int slot, void *menu);
 int UndergroundMenu_GetSphereTypeAtSlot(int slot, void *menu);
 int UndergroundMenu_GetSphereSizeAtSlot(int slot, void *menu);
 int UndergroundMenu_GetTreasureAtSlot(int slot, void *menu);
-BOOL UndergroundInventory_TryAddSphere(int sphereType, int sphereSize);
+BOOL UndergroundInventory_TryAddSphere(enum SphereType sphereType, int sphereSize);
 BOOL UndergroundInventory_TryAddTreasure(int treasureID);
-BOOL UndergroundInventory_TryAddTrap(int trapID);
-BOOL UndergroundInventory_TryAddGoodBag(int goodID);
+BOOL UndergroundInventory_TryAddTrap(enum Trap trapID);
+BOOL UndergroundInventory_TryAddGoodBag(enum Good goodID);
 void UndergroundMenu_Start(ExitCallback exitCallback, FieldSystem *fieldSystem);
 void UndergroundMenu_EraseCurrentMenu(UndergroundMenu *menu);
-void UndergroundMenu_RemoveSelectedTrap(int trapID);
+void UndergroundMenu_RemoveSelectedTrap(enum Trap trapID);
 void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onInit);
 void UndergroundMenu_OpenSellTrapsMenu(UndergroundMenu *menu);
 void UndergroundMenu_OpenTrapsMenu(UndergroundMenu *menu);
-void UndergroundMenu_RemoveSelectedSphere(int sphereType);
+void UndergroundMenu_RemoveSelectedSphere(enum SphereType sphereType);
 void UndergroundMenu_OpenPayWithSpheresMenu(UndergroundMenu *menu);
 void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 onInit);
 void UndergroundMenu_OpenSellTreasuresMenu(UndergroundMenu *menu);

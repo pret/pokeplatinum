@@ -2,6 +2,8 @@
 #define POKEPLATINUM_UNDERGROUND_TEXT_PRINTER_H
 
 #include "constants/field_base_tiles.h"
+#include "generated/goods.h"
+#include "generated/traps.h"
 
 #include "bg_window.h"
 #include "list_menu.h"
@@ -52,18 +54,18 @@ void UndergroundTextPrinter_SetUndergroundItemNameWithArticle(UndergroundTextPri
 void UndergroundTextPrinter_SetUndergroundTrapName(UndergroundTextPrinter *textPrinter, int trap);
 void UndergroundTextPrinter_SetUndergroundQuestion(UndergroundTextPrinter *textPrinter, int question);
 void UndergroundTextPrinter_SetUndergroundAnswer(UndergroundTextPrinter *textPrinter, int answer);
-void UndergroundTextPrinter_SetUndergroundAnswerWithIndex(UndergroundTextPrinter *textPrinter, int idx, int answer);
-void UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundTextPrinter *textPrinter, int idx);
-void UndergroundTextPrinter_SetSingleDigitNumber(UndergroundTextPrinter *textPrinter, int idx, int num);
+void UndergroundTextPrinter_SetUndergroundAnswerWithIndex(UndergroundTextPrinter *textPrinter, int index, int answer);
+void UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundTextPrinter *textPrinter, enum Good goodID);
+void UndergroundTextPrinter_SetSingleDigitNumber(UndergroundTextPrinter *textPrinter, int index, int num);
 void UndergroundTextPrinter_SetTwoDigitNumber(UndergroundTextPrinter *textPrinter, int num);
-void UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundTextPrinter *textPrinter, int idx, int num);
+void UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundTextPrinter *textPrinter, int index, int num);
 void UndergroundTextPrinter_SetNumber(UndergroundTextPrinter *textPrinter, int num);
-void UndergroundTextPrinter_SetUndergroundItemName(UndergroundTextPrinter *textPrinter, int idx, int item);
-void UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int trap);
-void UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goods);
-void UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(UndergroundTextPrinter *textPrinter, int idx, int item);
-void UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(UndergroundTextPrinter *textPrinter, int idx, int trap);
-void UndergroundTextPrinter_CapitalizeArgAtIndex(UndergroundTextPrinter *textPrinter, int idx);
+void UndergroundTextPrinter_SetUndergroundItemName(UndergroundTextPrinter *textPrinter, int index, int itemID);
+void UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundTextPrinter *textPrinter, int index, enum Trap trapID);
+void UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundTextPrinter *textPrinter, int index, enum Good goodID);
+void UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(UndergroundTextPrinter *textPrinter, int index, int itemID);
+void UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(UndergroundTextPrinter *textPrinter, int index, enum Trap trapID);
+void UndergroundTextPrinter_CapitalizeArgAtIndex(UndergroundTextPrinter *textPrinter, int index);
 void UndergroundTextPrinter_RemovePrinter(UndergroundTextPrinter *textPrinter);
 BOOL UndergroundTextPrinter_IsPrinterActive(UndergroundTextPrinter *textPrinter);
 void UndergroundTextPrinter_ClearPrinterID(UndergroundTextPrinter *textPrinter);

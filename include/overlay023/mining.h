@@ -41,7 +41,7 @@ void Mining_ResetPlayerData(int netID);
 BOOL Mining_IsMiningGameTaskActive(void);
 void Mining_SetPlayerMiningStatus(int netID, int isMining);
 
-enum MiningObjectIDs {
+enum MiningObjectID {
     MINING_TREASURE_NONE = 0,
     MINING_SMALL_PRISM_SPHERE,
     MINING_SMALL_PALE_SPHERE,

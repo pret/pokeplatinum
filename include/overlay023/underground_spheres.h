@@ -1,9 +1,13 @@
-#ifndef POKEPLATINUM_OV23_022416A8_H
-#define POKEPLATINUM_OV23_022416A8_H
+#ifndef POKEPLATINUM_UNDERGROUND_SPHERES_H
+#define POKEPLATINUM_UNDERGROUND_SPHERES_H
 
 #include <nitro/math.h>
 
+#include "generated/sphere_types.h"
+
 #include "field/field_system_decl.h"
+
+#include "string_gf.h"
 
 typedef struct TouchRadarSearchContext {
     u16 iterator;
@@ -15,22 +19,20 @@ typedef struct TouchRadarCoordinates {
     s16 z;
 } TouchRadarCoordinates;
 
-#include "string_gf.h"
-
 void BuriedSpheresEnv_Init(void *dest, FieldSystem *fieldSystem);
 int BuriedSpheresEnv_Size(void);
 void UndergroundSpheres_DisableBuriedSphereSparkles(void);
 void UndergroundSpheres_EnableBuriedSphereSparkles(void);
 void BuriedSpheresEnv_Free(void);
 void UndergroundSpheres_AdvanceBuriedSphereSparkleTimer(void);
-void UndergroundSpheres_RetrieveBuriedSphere(int unused, int unused2, void *src, void *unused3);
+void UndergroundSpheres_ProcessRetrieveBuriedSphereRequest(int unused, int unused2, void *src, void *unused3);
 void TouchRadarSearch_Init(TouchRadarSearchContext *ctx, int radius);
 BOOL TouchRadarSearch_GetNextCoords(TouchRadarSearchContext *ctx, TouchRadarCoordinates *out);
-void UndergroundSpheres_TryBurySphere(int sphereType, int sphereSize, int x, int z);
+void UndergroundSpheres_TryBurySphere(enum SphereType sphereType, int sphereSize, int x, int z);
 BOOL UndergroundSpheres_IsMiningItemSphere(int miningItemID);
 BOOL UndergroundSpheres_IsBuriedSphereAtCoordinates(int x, int z);
-int UndergroundSpheres_GetBuriedSphereXCoordAtIndex(int idx);
-int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int idx);
+int UndergroundSpheres_GetBuriedSphereXCoordAtIndex(int index);
+int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int index);
 BOOL UndergroundSpheres_GetQueuedMessage(String *string);
 int UndergroundSpheres_SpawnMiningSpotsNearBuriedSpheres(MATHRandContext16 *rand);
 void SphereRadar_Start(void);
@@ -38,4 +40,4 @@ void SphereRadar_Exit(void);
 int SphereRadar_GetXCoordOfBuriedSphere(int radarIndex);
 int SphereRadar_GetZCoordOfBuriedSphere(int radarIndex);
 
-#endif // POKEPLATINUM_OV23_022416A8_H
+#endif // POKEPLATINUM_UNDERGROUND_SPHERES_H

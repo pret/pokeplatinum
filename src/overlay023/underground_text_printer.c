@@ -15,9 +15,9 @@
 #include "trainer_info.h"
 
 enum EraseMessageBoxType {
-    CLEAR_MESSAGE_BOX,
+    CLEAR_MESSAGE_BOX = 0,
     CLEAR_WINDOW,
-    CLEAR_WINDOW_SCHEDULE
+    CLEAR_WINDOW_SCHEDULE,
 };
 
 static void UndergroundTextPrinter_EraseMessageBox(UndergroundTextPrinter *textPrinter, enum EraseMessageBoxType type);
@@ -112,17 +112,17 @@ MessageLoader *UndergroundTextPrinter_GetMessageLoader(UndergroundTextPrinter *t
     return textPrinter->msgLoader;
 }
 
-static void UndergroundTextPrinter_SysTaskEraseMessageBoxOnAPress(SysTask *sysTask, void *printer)
+static void UndergroundTextPrinter_EraseMessageBoxOnAPressTask(SysTask *sysTask, void *data)
 {
-    UndergroundTextPrinter *textPrinter = printer;
+    UndergroundTextPrinter *textPrinter = data;
 
     if (textPrinter->printerID < MAX_TEXT_PRINTERS) {
-        if (Text_IsPrinterActive(textPrinter->printerID) != FALSE) {
+        if (Text_IsPrinterActive(textPrinter->printerID)) {
             return;
         }
     }
 
-    if (gSystem.pressedKeys & PAD_BUTTON_A) {
+    if (JOY_NEW(PAD_BUTTON_A)) {
         UndergroundTextPrinter_EraseMessageBoxWindow(textPrinter);
     }
 }
@@ -153,7 +153,7 @@ static int UndergroundTextPrinter_AddPrinter(UndergroundTextPrinter *textPrinter
     Window_DrawMessageBoxWithScrollCursor(&textPrinter->window, TRUE, textPrinter->messageBoxTile, 10);
 
     if (sysTaskManaged) {
-        textPrinter->sysTask = SysTask_Start(UndergroundTextPrinter_SysTaskEraseMessageBoxOnAPress, textPrinter, 100);
+        textPrinter->sysTask = SysTask_Start(UndergroundTextPrinter_EraseMessageBoxOnAPressTask, textPrinter, 100);
     }
 
     textPrinter->messageBoxActive = TRUE;
@@ -276,21 +276,21 @@ void UndergroundTextPrinter_SetUndergroundAnswer(UndergroundTextPrinter *textPri
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundAnswerWithIndex(UndergroundTextPrinter *textPrinter, int idx, int answer)
+void UndergroundTextPrinter_SetUndergroundAnswerWithIndex(UndergroundTextPrinter *textPrinter, int index, int answer)
 {
-    StringTemplate_SetUndergroundAnswer(textPrinter->template, idx, answer);
+    StringTemplate_SetUndergroundAnswer(textPrinter->template, index, answer);
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundTextPrinter *textPrinter, int goods)
+void UndergroundTextPrinter_SetUndergroundGoodsName(UndergroundTextPrinter *textPrinter, enum Good goodID)
 {
-    StringTemplate_SetUndergroundGoodsName(textPrinter->template, 2, goods);
+    StringTemplate_SetUndergroundGoodsName(textPrinter->template, 2, goodID);
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetSingleDigitNumber(UndergroundTextPrinter *textPrinter, int idx, int num)
+void UndergroundTextPrinter_SetSingleDigitNumber(UndergroundTextPrinter *textPrinter, int index, int num)
 {
-    StringTemplate_SetNumber(textPrinter->template, idx, num, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(textPrinter->template, index, num, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
     textPrinter->formattingNeeded = TRUE;
 }
 
@@ -300,9 +300,9 @@ void UndergroundTextPrinter_SetTwoDigitNumber(UndergroundTextPrinter *textPrinte
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundTextPrinter *textPrinter, int idx, int num)
+void UndergroundTextPrinter_SetTwoDigitNumberWithIndex(UndergroundTextPrinter *textPrinter, int index, int num)
 {
-    StringTemplate_SetNumber(textPrinter->template, idx, num, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
+    StringTemplate_SetNumber(textPrinter->template, index, num, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
     textPrinter->formattingNeeded = TRUE;
 }
 
@@ -312,39 +312,39 @@ void UndergroundTextPrinter_SetNumber(UndergroundTextPrinter *textPrinter, int n
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundItemName(UndergroundTextPrinter *textPrinter, int idx, int item)
+void UndergroundTextPrinter_SetUndergroundItemName(UndergroundTextPrinter *textPrinter, int index, int itemID)
 {
-    StringTemplate_SetUndergroundItemName(textPrinter->template, idx, item);
+    StringTemplate_SetUndergroundItemName(textPrinter->template, index, itemID);
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int trap)
+void UndergroundTextPrinter_SetUndergroundTrapNameWithIndex(UndergroundTextPrinter *textPrinter, int index, enum Trap trapID)
 {
-    StringTemplate_SetUndergroundTrapName(textPrinter->template, idx, trap);
+    StringTemplate_SetUndergroundTrapName(textPrinter->template, index, trapID);
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundTextPrinter *textPrinter, int idx, int goodID)
+void UndergroundTextPrinter_SetGoodNameWithIndex(UndergroundTextPrinter *textPrinter, int index, enum Good goodID)
 {
-    StringTemplate_SetUndergroundGoodsName(textPrinter->template, idx, goodID);
+    StringTemplate_SetUndergroundGoodsName(textPrinter->template, index, goodID);
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(UndergroundTextPrinter *textPrinter, int idx, int item)
+void UndergroundTextPrinter_SetUndergroundItemNameWithArticleWithIndex(UndergroundTextPrinter *textPrinter, int index, int itemID)
 {
-    StringTemplate_SetUndergroundItemNameWithArticle(textPrinter->template, idx, item);
+    StringTemplate_SetUndergroundItemNameWithArticle(textPrinter->template, index, itemID);
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(UndergroundTextPrinter *textPrinter, int idx, int trap)
+void UndergroundTextPrinter_SetUndergroundTrapNameWithArticle(UndergroundTextPrinter *textPrinter, int index, enum Trap trapID)
 {
-    StringTemplate_SetUndergroundTrapNameWithArticle(textPrinter->template, idx, trap);
+    StringTemplate_SetUndergroundTrapNameWithArticle(textPrinter->template, index, trapID);
     textPrinter->formattingNeeded = TRUE;
 }
 
-void UndergroundTextPrinter_CapitalizeArgAtIndex(UndergroundTextPrinter *textPrinter, int idx)
+void UndergroundTextPrinter_CapitalizeArgAtIndex(UndergroundTextPrinter *textPrinter, int index)
 {
-    StringTemplate_CapitalizeArgAtIndex(textPrinter->template, idx);
+    StringTemplate_CapitalizeArgAtIndex(textPrinter->template, index);
 }
 
 void UndergroundTextPrinter_RemovePrinter(UndergroundTextPrinter *textPrinter)

@@ -3,6 +3,8 @@
 
 #include <nitro/math.h>
 
+#include "generated/traps.h"
+
 #include "field/field_system_decl.h"
 #include "overlay023/underground_defs.h"
 
@@ -22,7 +24,7 @@ void UndergroundTraps_SendTrapRadarResults(void);
 void UndergroundTraps_SendPlacedTraps(void);
 void UndergroundTraps_TryPlaceTrap(int netID, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_PlaceTrapResult(void);
-int UndergroundTraps_SpawnRandomTrap(int x, int z, MATHRandContext16 *rand, int index);
+enum Trap UndergroundTraps_SpawnRandomTrap(int x, int z, MATHRandContext16 *rand, int index);
 void UndergroundTraps_LoadSpawnedTraps(void);
 void UndergroundTraps_ProcessPlaceTrapResult(int unused0, int unused1, void *data, void *unused3);
 void UndergroundTraps_RemoveBuriedTrapAtIndex_Unused(int unused0, int unused1, void *data, void *unused3);
@@ -38,7 +40,7 @@ int CommPacketSizeOf_TriggeredTrap(void);
 void UndergroundTraps_ProcessDisengagedTrap(int unused0, int unused1, void *data, void *unused3);
 BOOL UndergroundTraps_IsTrapAtCoordinates(int x, int z);
 int CommPacketSizeOf_TriggeredTrap2(void);
-void UndergroundTraps_HandleTriggeredTool(int victimNetID, int setterNetID, int trapID, int x, int z, int victimDir);
+void UndergroundTraps_HandleTriggeredTool(int victimNetID, int setterNetID, enum Trap trapID, int x, int z, int victimDir);
 BOOL UndergroundTraps_CheckPlayerSteppedOnTrap(int netID);
 BOOL UndergroundTraps_HasPlayerTriggeredTool(int netID);
 void UndergroundTraps_HandleTriggeredTrap(int unused0, int unused1, void *data, void *unused3);
@@ -65,7 +67,7 @@ void UndergroundTraps_QueueSendTrapRadarResults(int netID, int unused1, void *un
 void UndergroundTraps_ReceiveTrapRadarResults(int unused0, int unused1, void *data, void *unused3);
 int CommPacketSizeOf_TrapRadarResult(void);
 void UndergroundTraps_Dummy2(BgConfig *bgConfig);
-void UndergroundTraps_StartTouchRadarTask(FieldSystem *fieldSystem, int param1, int param2, int param3, int param4, u8 *param5, int param6, u8 *param7, int param8, u8 *param9, int param10);
+void TouchRadar_StartTask(FieldSystem *fieldSystem, int touchedTileX, int touchedTileZ, int touchX, int touchY, u8 *trapResults, int trapResultCount, u8 *miningSpotResults, int miningSpotResultCount, u8 *buriedSphereResults, int buriedSphereResultCount);
 void UndergroundTraps_StopLinkSpin(int netID);
 
 #endif // POKEPLATINUM_UNDERGROUND_TRAPS_H

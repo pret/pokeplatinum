@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNDERGROUND_SECRET_BASES_H
 #define POKEPLATINUM_UNDERGROUND_SECRET_BASES_H
 
+#include "generated/goods.h"
+
 #include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
@@ -61,7 +63,7 @@ int SecretBases_GetBaseZCoordinate(void);
 BOOL SecretBases_AreCoordinatesWalkable(int x, int z);
 int SecretBases_PrintBaseDecorationMessage(int bankEntry);
 void SecretBases_EraseBaseDecorationMessageBox(void);
-void SecretBases_SetGoodNameForPrinter(int goodID);
+void SecretBases_SetGoodNameForPrinter(enum Good goodID);
 void SecretBases_SetTwoDigitNumberWithIndexForPrinter(int num, int index);
 BOOL SecretBases_CheckForInteractableGood(int netID, Coordinates *coordinates);
 void SecretBases_ProcessGoodInteractionEvent(int unused0, int unused1, void *data, void *unused3);

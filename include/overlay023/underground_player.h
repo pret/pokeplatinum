@@ -31,7 +31,7 @@ BOOL UndergroundPlayer_TalkHeldFlagCheck(int netID, int targetNetID, BOOL blockI
 BOOL UndergroundPlayer_BuriedObjectHeldFlagCheck(int netID);
 void UndergroundPlayer_ProcessFlagEvent(int unused0, int unused1, void *data, void *unused3);
 void UndergroundPlayer_ClearHeldFlagInfo(void);
-u8 *ov23_0224AAA0(int unused0, void *unused1, int unused2);
+u8 *UndergroundPlayer_GetHeldFlagInfoBuffer(int unused0, void *unused1, int unused2);
 void UndergroundPlayer_SendHeldFlagOwnerInfo(void);
 int CommPacketSizeOf_TrainerInfo(void);
 void UndergroundPlayer_ProcessHeldFlagOwnerInfo(int flagOwnerNetID, int unused1, void *data, void *unused3);
@@ -39,7 +39,7 @@ void UndergroundPlayer_ProcessHeldFlagOwnerInfoServer(int unused0, int unused1, 
 int CommPacketSizeOf_HeldFlagInfo(void);
 void UndergroundPlayer_ProcessHeldFlagOwnerInfoAck(int unused0, int unused1, void *data, void *unused3);
 BOOL UndergroundPlayer_HaveLinksReceivedHeldFlagData(void);
-void ov23_0224AC4C(void);
+void UndergroundPlayer_ResetHeldFlagInfo(void);
 BOOL UndergroundPlayer_IsAffectedByTrap(int netID);
 void UndergroundPlayer_ProcessVendorTalk(int netID, int unused1, void *unused2, void *unused3);
 void UndergroundPlayer_ProcessVendorTalkServer(int unused0, int unused1, void *data, void *unused3);

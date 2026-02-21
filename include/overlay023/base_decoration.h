@@ -5,6 +5,6 @@
 
 #include "field_task.h"
 
-void BaseDecoration_StartDecorationTask(FieldSystem *fieldSystem, FieldTask *task);
+void BaseDecoration_StartDecorationMenuTask(FieldSystem *fieldSystem, FieldTask *task);
 
 #endif // POKEPLATINUM_UNDERGROUND_BASE_DECORATION_H

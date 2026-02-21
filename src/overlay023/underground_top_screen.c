@@ -100,8 +100,8 @@ struct UndergroundTopScreenContext_t {
     BgConfig *bgConfig;
     SpriteList *spriteList;
     G2dRenderer g2dRenderer;
-    SpriteResourceCollection *spriteResourceCollection[4];
-    SpriteResource *spriteResources[4];
+    SpriteResourceCollection *spriteResourceCollection[MAX_SPRITE_RESOURCE_GEN4];
+    SpriteResource *spriteResources[MAX_SPRITE_RESOURCE_GEN4];
     SpriteResourcesHeader resourceData;
     Sprite *playerMarkerSprites[MAX_CONNECTED_PLAYERS];
     Sprite *otherMarkerSprites[MAX_RADAR_BLIPS + 1];
@@ -232,7 +232,7 @@ static void UndergroundTopScreen_Task(SysTask *sysTask, void *data)
         SpriteTransfer_ResetCharTransfer(ctx->spriteResources[SPRITE_RESOURCE_CHAR]);
         SpriteTransfer_ResetPlttTransfer(ctx->spriteResources[SPRITE_RESOURCE_PLTT]);
 
-        for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < SPRITE_RESOURCE_ANIM + 1; resourceType++) {
+        for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
             SpriteResourceCollection_Delete(ctx->spriteResourceCollection[resourceType]);
         }
 
@@ -474,7 +474,7 @@ static void UndergroundMap_InitSpriteResources(UndergroundTopScreenContext *ctx)
 {
     ctx->spriteList = SpriteList_InitRendering(MAX_CONNECTED_PLAYERS + MAX_RADAR_BLIPS + 1, &ctx->g2dRenderer, HEAP_ID_FIELD1);
 
-    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < SPRITE_RESOURCE_ANIM + 1; resourceType++) {
+    for (int resourceType = SPRITE_RESOURCE_CHAR; resourceType < MAX_SPRITE_RESOURCE_GEN4; resourceType++) {
         ctx->spriteResourceCollection[resourceType] = SpriteResourceCollection_New(1, resourceType, HEAP_ID_FIELD1);
     }
 

@@ -58,19 +58,19 @@
 #include "res/text/bank/underground_items.h"
 #include "res/text/bank/underground_traps.h"
 
-enum UndergroundSelectedMenuTypes {
+enum UndergroundSelectedMenuType {
     UNDERGROUND_MENU_SELECTED_SPHERE_TRAP = 1,
     UNDERGROUND_MENU_SELECTED_GOOD,
     UNDERGROUND_MENU_SELECTED_TREASURE,
 };
 
-enum UndergroundSelectedMenuOptions {
+enum UndergroundSelectedMenuOption {
     UNDERGROUND_MENU_OPTION_BURY = 1,
     UNDERGROUND_MENU_OPTION_TRASH,
     UNDERGROUND_MENU_OPTION_PUT_IN_BAG,
 };
 
-enum UndergroundMenuStates {
+enum UndergroundMenuState {
     UNDERGROUND_MENU_STATE_INIT = 0,
     UNDERGROUND_MENU_STATE_START,
     UNDERGROUND_MENU_STATE_CLOSE,
@@ -93,19 +93,19 @@ enum UndergroundMenuStates {
     UNDERGROUND_MENU_STATE_GOOD_SELECTED,
 };
 
-enum MenuIconAnimStates {
+enum MenuIconAnimState {
     ICON_ANIM_NONE = 0,
     ICON_ANIM_SWELL,
     ICON_ANIM_WIGGLE,
     ICON_ANIM_COUNT,
 };
 
-enum MenuIconPalettes {
+enum MenuIconPalette {
     ICON_GRAYSCALE = 0,
     ICON_COLORED,
 };
 
-enum UndergroundMenuSpriteTemplates {
+enum UndergroundMenuSpriteTemplate {
     UNDERGROUND_MENU_CURSOR_TEMPLATE = 0,
     UNDERGROUND_MENU_ICON_TEMPLATE,
 };
@@ -134,10 +134,10 @@ typedef struct ItemSelectedOption {
 
 static void UndergroundMenu_FreeSprites(UndergroundMenu *menu);
 static void UndergroundMenu_AnimateSprites(UndergroundMenu *menu);
-static void UndergroundMenu_SetStartMenuCursorPos(Sprite *param0, u32 param1);
-static void UndergroundMenu_SetIconAnimationAndPalette(Sprite *param0, u16 param1, u16 param2);
-static void UndergroundMenu_ChangeActiveMenuIcon(UndergroundMenu *menu, u16 param1, u16 param2);
-static void UndergroundMenu_TryTransitionIconAnimationToWiggle(Sprite *param0);
+static void UndergroundMenu_SetStartMenuCursorPos(Sprite *sprite, u32 pos);
+static void UndergroundMenu_SetIconAnimationAndPalette(Sprite *sprite, u16 anim, u16 palette);
+static void UndergroundMenu_ChangeActiveMenuIcon(UndergroundMenu *menu, u16 oldIndex, u16 index);
+static void UndergroundMenu_TryTransitionIconAnimationToWiggle(Sprite *sprite);
 static void UndergroundMenu_Main(SysTask *sysTask, void *data);
 static BOOL UndergroundMenu_HandleStartMenu(SysTask *sysTask, void *data);
 static void UndergroundMenu_InitTrapsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback);
@@ -154,24 +154,24 @@ static void UndergroundMenu_GoUpCallback(UndergroundMenu *menu);
 static void UndergroundMenu_OpenTrainerRecords(UndergroundMenu *menu);
 static BOOL UndergroundMenu_HandleTrapSelectedMenu(SysTask *sysTask, void *data);
 static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data);
-static void UndergroundMenu_MainHoldingFlag(SysTask *sysTask, void *param1);
+static void UndergroundMenu_MainHoldingFlag(SysTask *sysTask, void *data);
 static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallback moveItemCallback);
 static BOOL UndergroundMenu_HandleGoodsMenu(SysTask *sysTask, void *data);
-static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *param1);
+static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *data);
 static void UndergroundMenu_ConfirmReturnToSurface(SysTask *sysTask, void *data);
 static void UndergroundMenu_CheckForReturnYesNo(SysTask *sysTask, void *data);
 static void UndergroundMenu_Free(SysTask *sysTask, UndergroundMenu *menu, BOOL leaveFieldSystemPaused);
 
 static UndergroundMenuContext *ctx = NULL;
 
-static const WindowTemplate sWindowTemplate = {
+static const WindowTemplate sYesNoWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 25,
     .tilemapTop = 13,
-    .width = 6,
-    .height = 4,
+    .width = YES_NO_MENU_TILE_W,
+    .height = YES_NO_MENU_TILE_H,
     .palette = 13,
-    .baseTile = 543
+    .baseTile = BASE_TILE_YES_NO_MENU
 };
 
 static const struct {
@@ -327,7 +327,7 @@ static void UndergroundMenu_TryTransitionIconAnimationToWiggle(Sprite *sprite)
         return;
     }
 
-    if (Sprite_IsAnimated(sprite) == FALSE) {
+    if (!Sprite_IsAnimated(sprite)) {
         UndergroundMenu_SetIconAnimationAndPalette(sprite, ICON_ANIM_WIGGLE, ICON_COLORED);
     }
 }
@@ -386,7 +386,7 @@ int UndergroundMenu_GetGoodAtSlotBag(int slot, void *menu)
     return Underground_GetGoodAtSlotBag(underground, slot);
 }
 
-void UndergroundMenu_RemoveSelectedGoodBag(int goodID)
+void UndergroundMenu_RemoveSelectedGoodBag(enum Good goodID)
 {
     GF_ASSERT(ctx->selectedID == goodID);
     Underground_RemoveGoodAtSlotBag(ctx->underground, ctx->selectedSlot);
@@ -440,7 +440,7 @@ int UndergroundMenu_GetTreasureAtSlot(int slot, void *menu)
     return Underground_GetTreasureAtSlot(underground, slot);
 }
 
-BOOL UndergroundInventory_TryAddSphere(int sphereType, int sphereSize)
+BOOL UndergroundInventory_TryAddSphere(enum SphereType sphereType, int sphereSize)
 {
     GF_ASSERT(sphereType < MINING_SPHERES_MAX);
 
@@ -461,12 +461,12 @@ BOOL UndergroundInventory_TryAddTreasure(int treasureID)
     return Underground_TryAddTreasure(ctx->underground, treasureID);
 }
 
-BOOL UndergroundInventory_TryAddTrap(int trapID)
+BOOL UndergroundInventory_TryAddTrap(enum Trap trapID)
 {
     return Underground_TryAddTrap(ctx->underground, trapID);
 }
 
-BOOL UndergroundInventory_TryAddGoodBag(int goodID)
+BOOL UndergroundInventory_TryAddGoodBag(enum Good goodID)
 {
     return Underground_TryAddGoodBag(ctx->underground, goodID);
 }
@@ -518,8 +518,8 @@ static void UndergroundMenu_InitStartMenu(UndergroundMenu *menu)
     UndergroundMenu_MakeList(optionList);
     menu->menuOptions = StringList_New(NELEMS(sUndergroundMenuOptions), HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 20, 1, 11, NELEMS(sUndergroundMenuOptions) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
-    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 20, 1, 11, NELEMS(sUndergroundMenuOptions) * 3, 13, BASE_TILE_STANDARD_WINDOW_FRAME - 11 * 22);
+    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetCommonTextPrinter());
 
@@ -600,7 +600,7 @@ static void UndergroundMenu_Main(SysTask *sysTask, void *data)
         UndergroundMenu_CheckForReturnYesNo(sysTask, data);
         break;
     case UNDERGROUND_MENU_STATE_CLOSE_AFTER_TEXT:
-        if (UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter()) == FALSE) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
                 UndergroundMenu_Free(sysTask, menu, FALSE);
@@ -610,7 +610,7 @@ static void UndergroundMenu_Main(SysTask *sysTask, void *data)
         }
         break;
     case UNDERGROUND_MENU_STATE_CHANGE_STATE_AFTER_TEXT:
-        if (UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter()) == FALSE) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 OpenMenuFn openNextMenu = (OpenMenuFn)menu->openMenuFn;
 
@@ -759,8 +759,8 @@ static void UndergroundMenu_InitItemSelectedMenu(UndergroundMenu *menu, int menu
 
     menu->itemSelectedOptions = StringList_New(optionCount, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->secondaryWindow, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, width, optionCount * 2, 13, (1024 - (18 + 12) - 9 - 11 * 22));
-    Window_DrawStandardFrame(&menu->secondaryWindow, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->secondaryWindow, BG_LAYER_MAIN_3, tilemapLeft, tilemapTop, width, optionCount * 2, 13, BASE_TILE_STANDARD_WINDOW_FRAME - 11 * 22);
+    Window_DrawStandardFrame(&menu->secondaryWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetCommonTextPrinter());
 
@@ -807,7 +807,7 @@ static void UndergroundMenu_ReturnToStartMenu(UndergroundMenu *menu)
     UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
 }
 
-void UndergroundMenu_RemoveSelectedTrap(int trapID)
+void UndergroundMenu_RemoveSelectedTrap(enum Trap trapID)
 {
     if (ctx->selectedID == trapID) {
         Underground_RemoveTrapAtSlot(ctx->underground, ctx->selectedSlot);
@@ -819,7 +819,7 @@ void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onIn
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     GetItemFunc getTrap = menu->getItem;
     int bankEntry;
-    int trapID = getTrap(index, menu);
+    enum Trap trapID = getTrap(index, menu);
 
     if (index == LIST_CANCEL) {
         bankEntry = UndergroundTraps_Text_CloseDescription;
@@ -864,8 +864,8 @@ static void UndergroundMenu_InitTrapsMenu(UndergroundMenu *menu, MoveItemCallbac
 
     menu->menuOptions = StringList_New(trapCount + 1, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, 6 * 2, 13, (BASE_TILE_STANDARD_WINDOW_FRAME - 11 * 22) - 12 * (6 * 2));
+    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetItemNameTextPrinter());
 
@@ -988,7 +988,7 @@ static BOOL UndergroundMenu_HandleTrapSelectedMenu(SysTask *sysTask, void *data)
     return TRUE;
 }
 
-void UndergroundMenu_RemoveSelectedSphere(int sphereType)
+void UndergroundMenu_RemoveSelectedSphere(enum SphereType sphereType)
 {
     GF_ASSERT(ctx->selectedID == sphereType);
     Underground_RemoveSphereAtSlot(ctx->underground, ctx->selectedSlot);
@@ -999,7 +999,7 @@ static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u32 index
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     GetItemFunc getSphereType = menu->getItem;
     int bankEntry;
-    int sphereType = getSphereType(index, menu);
+    enum SphereType sphereType = getSphereType(index, menu);
 
     if (index == LIST_CANCEL) {
         bankEntry = UndergroundItems_Text_CloseDescription;
@@ -1046,8 +1046,8 @@ static void UndergroundMenu_InitSpheresMenu(UndergroundMenu *menu, MoveItemCallb
 
     menu->menuOptions = StringList_New(sphereCount + 1, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, (BASE_TILE_STANDARD_WINDOW_FRAME - 11 * 22) - 12 * (6 * 2));
+    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetItemNameTextPrinter());
 
@@ -1214,8 +1214,8 @@ static void UndergroundMenu_InitTreasuresMenu(UndergroundMenu *menu, MoveItemCal
 
     menu->menuOptions = StringList_New(treasureCount + 1, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, (BASE_TILE_STANDARD_WINDOW_FRAME - 11 * 22) - 12 * (6 * 2));
+    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetItemNameTextPrinter());
 
@@ -1369,8 +1369,8 @@ static void UndergroundMenu_ConfirmReturnToSurface(SysTask *sysTask, void *data)
 {
     UndergroundMenu *menu = data;
 
-    if (UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter()) == FALSE) {
-        menu->yesNoMenu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
+    if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCommonTextPrinter())) {
+        menu->yesNoMenu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
         menu->state = UNDERGROUND_MENU_STATE_WAIT_FOR_CONFIRM;
     }
 }
@@ -1428,8 +1428,8 @@ void UndergroundMenu_StartHoldingFlag(ExitCallback exitCallback, FieldSystem *fi
 
 static void UndergroundMenu_ConfirmThrowAwayFlag(UndergroundMenu *menu)
 {
-    if (UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCaptureFlagTextPrinter()) == FALSE) {
-        menu->yesNoMenu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sWindowTemplate, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD1);
+    if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCaptureFlagTextPrinter())) {
+        menu->yesNoMenu = Menu_MakeYesNoChoice(menu->fieldSystem->bgConfig, &sYesNoWindowTemplate, BASE_TILE_STANDARD_WINDOW_FRAME, 11, HEAP_ID_FIELD1);
         menu->state = UNDERGROUND_MENU_STATE_START;
     }
 }
@@ -1509,7 +1509,7 @@ static void UndergroundMenu_MainHoldingFlag(SysTask *sysTask, void *data)
         CommSys_SendDataFixedSize(84, &flagEventType);
         return;
     case UNDERGROUND_MENU_STATE_UNUSED:
-        if (UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCaptureFlagTextPrinter()) == FALSE) {
+        if (!UndergroundTextPrinter_IsPrinterActive(UndergroundMan_GetCaptureFlagTextPrinter())) {
             if (JOY_NEW(PAD_BUTTON_A)) {
                 menu->state = UNDERGROUND_MENU_STATE_CLOSE;
             }
@@ -1523,7 +1523,7 @@ void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onIn
     UndergroundMenu *menu = (UndergroundMenu *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     GetItemFunc getGood = menu->getItem;
     int bankEntry;
-    int goodID = getGood(index, menu);
+    enum Good goodID = getGood(index, menu);
 
     if (index == LIST_CANCEL) {
         bankEntry = UndergroundGoods_Text_CloseDescription;
@@ -1600,8 +1600,8 @@ static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallbac
 
     menu->menuOptions = StringList_New(goodsCount + 1, HEAP_ID_FIELD1);
 
-    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, ((1024 - (18 + 12) - 9 - 11 * 22) - 12 * (6 * 2)));
-    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, 1024 - (18 + 12) - 9, 11);
+    Window_Add(menu->fieldSystem->bgConfig, &menu->primaryWindow, BG_LAYER_MAIN_3, 19, 3, 12, (6 * 2), 13, (BASE_TILE_STANDARD_WINDOW_FRAME - 11 * 22) - 12 * (6 * 2));
+    Window_DrawStandardFrame(&menu->primaryWindow, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, 11);
 
     MessageLoader *loader = UndergroundTextPrinter_GetMessageLoader(UndergroundMan_GetItemNameTextPrinter());
 

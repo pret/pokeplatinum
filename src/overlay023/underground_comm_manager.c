@@ -552,7 +552,7 @@ static void CommManUnderground_RestartClient(void)
     CommPlayerMan_Stop();
     UndergroundMan_ForceEndCurrentSysTask();
     sub_020367F0();
-    ov23_0224AC4C();
+    UndergroundPlayer_ResetHeldFlagInfo();
     CommManUnderground_SetFieldCommManTask(CommManUnderground_RestartTaskClient, 0);
 }
 
@@ -595,7 +595,7 @@ static void CommManUnderground_BaseTransitionEndTaskClient(void)
         CommPlayerMan_Stop();
         UndergroundMan_ForceEndCurrentSysTask();
         sub_020367F0();
-        ov23_0224AC4C();
+        UndergroundPlayer_ResetHeldFlagInfo();
         CommManUnderground_SetFieldCommManTask(CommManUnderground_RestartTaskClient, 0);
     } else {
         CommManUnderground_SetFieldCommManTask(CommManUnderground_MainTaskClient, 0);

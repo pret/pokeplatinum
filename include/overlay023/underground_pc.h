@@ -4,9 +4,7 @@
 #include "overlay023/underground_defs.h"
 #include "overlay023/underground_menu.h"
 
-#define PC_NONE 0xFF
-
-int UndergroundPC_GetPCAtCoordinates(Coordinates *coordinates, int dir);
+int UndergroundPC_GetPCOwnerNetIDAtCoordinates(Coordinates *coordinates, int dir);
 BOOL UndergroundPC_TryUsePC(int netID, Coordinates *coordinates);
 void UndergroundPC_ProcessPCInteraction(int unused0, int unused1, void *data, void *data2);
 int CommPacketSizeOf_PCInteraction(void);
