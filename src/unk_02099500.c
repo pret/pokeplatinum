@@ -156,7 +156,7 @@ static const CommCmdTable Unk_020F68A4[] = {
     { sub_02099510, CommPacketSizeOf_Nothing, NULL },
     { sub_02099510, sub_02099504, NULL },
     { sub_02099510, sub_02099508, NULL },
-    { sub_0204FA34, CommPacketSizeOf_Variable, NULL },
+    { BattleHall_ProcessSelectedSpeciesMsg, CommPacketSizeOf_Variable, NULL },
     { sub_0205001C, CommPacketSizeOf_Variable, NULL },
     { sub_02050548, CommPacketSizeOf_Variable, NULL }
 };
