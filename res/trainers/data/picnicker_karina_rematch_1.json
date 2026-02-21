@@ -20,7 +20,7 @@
                 "MOVE_POUND",
                 "MOVE_GROWL"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

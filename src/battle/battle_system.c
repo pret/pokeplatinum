@@ -33,7 +33,6 @@
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"

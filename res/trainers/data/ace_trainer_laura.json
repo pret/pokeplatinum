@@ -20,7 +20,7 @@
                 "MOVE_MAGICAL_LEAF",
                 "MOVE_SWEET_SCENT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

@@ -608,7 +608,7 @@ static BOOL ov62_02237884(UnkStruct_0208C06C *param0)
         if (ov62_02231664(&v0->unk_00, 1)) {
             UnkStruct_0202D750 *v2 = sub_0202D750(param0->saveData);
 
-            v0->unk_90 = sub_0202D230(v2, 0, 0);
+            v0->unk_90 = BattlePoints_ApplyFuncAndGet(v2, 0, BATTLE_POINTS_FUNC_NONE);
             param0->unk_08++;
         }
 

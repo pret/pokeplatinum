@@ -18,7 +18,7 @@
                 "MOVE_AERIAL_ACE",
                 "MOVE_LEER"
             ],
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 0
         }
     ],

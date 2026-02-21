@@ -19,7 +19,6 @@
 #include "battle/party_gauge.h"
 #include "battle/struct_ov16_0223C2C0.h"
 #include "battle/struct_ov16_02265BBC.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/ov12_022380BC.h"
@@ -726,7 +725,7 @@ static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *battlerData)
         {
             UnkStruct_ov16_02268A14 *v0;
             int v1;
-            Healthbar *v2;
+            Healthbar *healthbar;
             NARC *v3;
             NARC *v4;
 
@@ -743,8 +742,8 @@ static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *battlerData)
             v1 = BattleSystem_GetPartner(battleSys, battlerData->battler);
 
             if (v1 != battlerData->battler) {
-                v2 = BattleSystem_GetHealthbar(battleSys, v1);
-                ov16_0226846C(v2);
+                healthbar = BattleSystem_GetHealthbar(battleSys, v1);
+                ov16_0226846C(healthbar);
             }
 
             ov16_022675AC(&battlerData->healthbar);

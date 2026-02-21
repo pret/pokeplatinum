@@ -20,7 +20,7 @@
                 "MOVE_BODY_SLAM",
                 "MOVE_PROTECT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_DARK_PULSE",
                 "MOVE_EXTRASENSORY"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_DISCHARGE",
                 "MOVE_HYPER_BEAM"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

@@ -19,7 +19,7 @@
                 "MOVE_SANDSTORM",
                 "MOVE_SCREECH"
             ],
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 0
         },
         {
@@ -33,7 +33,7 @@
                 "MOVE_SANDSTORM",
                 "MOVE_SCREECH"
             ],
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 0
         }
     ],

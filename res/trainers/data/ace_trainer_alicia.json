@@ -20,7 +20,7 @@
                 "MOVE_SCREECH",
                 "MOVE_FAINT_ATTACK"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_SCREECH",
                 "MOVE_FAINT_ATTACK"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         }
     ],

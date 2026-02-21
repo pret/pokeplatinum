@@ -4,8 +4,8 @@
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/ov104_02231F74.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
-#include "overlay104/struct_ov104_02232B5C_decl.h"
 
 #include "bg_window.h"
 #include "menu.h"
@@ -30,9 +30,9 @@ struct UnkStruct_ov104_022320B4_t {
     int unk_54;
     u8 unk_58;
     u8 unk_59;
-    u8 unk_5A;
+    u8 isMsgBoxOpen;
     BOOL unk_5C;
-    UnkStruct_ov104_02232B5C *unk_60;
+    FrontierMenuManager *unk_60;
     Window msgWindow;
     Menu *menu;
     u16 *unk_78;

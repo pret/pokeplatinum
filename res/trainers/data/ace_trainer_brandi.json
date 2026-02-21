@@ -20,7 +20,7 @@
                 "MOVE_SWORDS_DANCE",
                 "MOVE_ENDEAVOR"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_OUTRAGE",
                 "MOVE_EARTHQUAKE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

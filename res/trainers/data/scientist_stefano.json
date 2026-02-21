@@ -21,7 +21,7 @@
                 "MOVE_KINESIS",
                 "MOVE_ICE_PUNCH"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

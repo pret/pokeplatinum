@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field_base_tiles.h"
 #include "constants/narc.h"
 
 #include "struct_defs/sentence.h"
@@ -54,67 +55,38 @@
 #include "unk_02014A84.h"
 #include "unk_0209B6F8.h"
 
-typedef struct UnkStruct_ov104_02232B5C_t {
-    UnkStruct_ov104_022320B4 *unk_00;
-    SysTask *unk_04;
-    Window unk_08;
-    Window *unk_18;
-    String *unk_1C[28];
-    MessageLoader *unk_8C;
-    StringTemplate *unk_90;
-    u8 unk_94;
-    u8 unk_95;
-    u8 unk_96;
-    u8 unk_97_0 : 1;
-    u8 unk_97_1 : 1;
-    u8 unk_97_2 : 4;
-    u8 unk_97_6 : 1;
-    u8 unk_97_7 : 1;
-    u8 unk_98;
-    u8 unk_99;
-    u8 unk_9A;
-    u8 unk_9B;
-    u16 *unk_9C;
-    u16 *unk_A0;
-    MenuTemplate unk_A4;
-    Menu *unk_B0;
-    StringList unk_B4[28];
-    ListMenuTemplate unk_194;
-    ListMenu *unk_1B4;
-    u16 unk_1B8;
-    u16 unk_1BA;
-    StringList unk_1BC[28];
-    u16 unk_29C[28];
-    u16 unk_2D4;
-} UnkStruct_ov104_02232B5C;
+#define LIST_MENU_ENTRY_NO_ALT_TEXT 0xFF
+#define LIST_MENU_BUILDER_HEADER    0xFA
+#define LIST_MENU_MAX_DISPLAY       8
+#define CURSOR_MARGIN_SIZE          12
 
 typedef struct {
     u16 unk_00;
     u16 unk_02;
 } UnkStruct_ov104_022419A0;
 
-static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0);
+static void OpenMessageBox(UnkStruct_ov104_022320B4 *param0);
 static void GetMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u32 entryID);
 static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int renderDelay, BOOL canSpeedUp, int autoScroll);
-static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8);
-static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
-static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0);
-static void ov104_02232454(UnkStruct_ov104_02232B5C *param0);
-static void ov104_022324C8(SysTask *param0, void *param1);
-static void ov104_02232570(UnkStruct_ov104_02232B5C *param0);
-static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0);
-static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2);
-static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6);
-static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u16 param4);
-static BOOL ov104_02233184(FrontierScriptContext *param0);
-static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3);
-static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0);
-static void ov104_02232830(UnkStruct_ov104_02232B5C *param0);
-static void ov104_0223293C(ListMenu *param0, u32 param1, u8 param2);
-static void ov104_02232960(ListMenu *param0, u32 param1, u8 param2);
-static void ov104_0223296C(SysTask *param0, void *param1);
-static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1);
-static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0);
+static void FrontierMenuManager_Init(UnkStruct_ov104_022320B4 *param0, FrontierMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader);
+static void AddMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);
+static u32 CalcMenuWidth(FrontierMenuManager *menuManager);
+static void SetupSingleColumnMenu(FrontierMenuManager *menuManager);
+static void MenuSysTaskCallback(SysTask *task, void *data);
+static void FreeManagerWithMenu(FrontierMenuManager *menuManager);
+static void UpdateMenuAltText(FrontierMenuManager *menuManager);
+static void PrintListMenuAltText(FrontierMenuManager *menuManager, u16 entryID, u32 printerDelay);
+static void ShowSentence(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSpeedUp);
+static void GetStringFromSentence(String *msgBuf, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2);
+static BOOL WaitForFinishedPrinting(FrontierScriptContext *ctx);
+static void AddListMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index);
+static u32 CalcListMenuWidth(FrontierMenuManager *menuManager);
+static void InitListMenuTemplate(FrontierMenuManager *menuManager);
+static void SetListMenuItemAltColor(ListMenu *listMenu, u32 index, u8 yOffset);
+static void ListMenuDummyCursorCallback(ListMenu *listMenu, u32 index, u8 onInit);
+static void ListMenuSysTaskCallback(SysTask *task, void *data);
+static void FreeManagerWithListMenu(FrontierMenuManager *menuManager, u8 playSound);
+static void UpdateListMenuAltText(FrontierMenuManager *menuManager);
 
 void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *msgLoader, u16 messageID, u8 canSpeedUp, FrontierMessageOptions *msgOptions)
 {
@@ -122,7 +94,7 @@ void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *
     u8 autoScroll;
     u8 font;
 
-    ov104_02231FC4(param0);
+    OpenMessageBox(param0);
     GetMessage(param0, msgLoader, messageID);
 
     if (msgOptions == NULL) {
@@ -141,17 +113,17 @@ void FrontierShowMessage(UnkStruct_ov104_022320B4 *param0, const MessageLoader *
     PrintMessage(param0, font, renderDelay, canSpeedUp, autoScroll);
 }
 
-static void ov104_02231FC4(UnkStruct_ov104_022320B4 *param0)
+static void OpenMessageBox(UnkStruct_ov104_022320B4 *param0)
 {
     UnkStruct_ov104_0223C4CC *v0 = ov104_0222E924(param0);
 
-    if (param0->unk_5A == 0) {
+    if (param0->isMsgBoxOpen == FALSE) {
         Window_Add(
-            v0->unk_00, &param0->msgWindow, 1, 2, 19, 27, 4, 13, ((1024 - (18 + 12)) - 9) - (27 * 4));
+            v0->unk_00, &param0->msgWindow, BG_LAYER_MAIN_1, 2, 19, 27, 4, 13, BASE_TILE_STANDARD_WINDOW_FRAME - MESSAGE_WINDOW_TILE_COUNT);
         Window_FillTilemap(&param0->msgWindow, 15);
-        Window_DrawMessageBoxWithScrollCursor(&param0->msgWindow, 0, 1024 - (18 + 12), 11);
+        Window_DrawMessageBoxWithScrollCursor(&param0->msgWindow, 0, BASE_TILE_SCROLLING_MESSAGE_BOX, 11);
 
-        param0->unk_5A = 1;
+        param0->isMsgBoxOpen = TRUE;
     } else {
         Window_FillTilemap(&param0->msgWindow, 15);
     }
@@ -171,21 +143,21 @@ static void PrintMessage(UnkStruct_ov104_022320B4 *param0, enum Font font, int r
     param0->printerID = Text_AddPrinterWithParams(&param0->msgWindow, font, param0->string, 0, 0, renderDelay, NULL);
 }
 
-void ov104_02232088(UnkStruct_ov104_022320B4 *param0)
+void Frontier_CloseMessage(UnkStruct_ov104_022320B4 *param0)
 {
-    GF_ASSERT(param0->unk_5A == 1);
+    GF_ASSERT(param0->isMsgBoxOpen == TRUE);
 
-    Window_EraseMessageBox(&param0->msgWindow, 0);
+    Window_EraseMessageBox(&param0->msgWindow, FALSE);
     Window_Remove(&param0->msgWindow);
 
-    param0->unk_5A = 0;
+    param0->isMsgBoxOpen = FALSE;
 }
 
-static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16 param2, u16 param3, u16 param4, s16 param5, u8 canSpeedUp)
+static void ShowSentence(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16 sentenceType, u16 sentenceID, u16 word1, s16 word2, u8 canSpeedUp)
 {
-    ov104_02231FC4(param0);
+    OpenMessageBox(param0);
 
-    ov104_022320FC(param0->string, param2, param3, param4, param5);
+    GetStringFromSentence(param0->string, sentenceType, sentenceID, word1, word2);
 
     if (canSpeedUp != 0xFF) {
         PrintMessage(param0, FONT_MESSAGE, renderDelay, canSpeedUp, AUTO_SCROLL_DISABLED);
@@ -194,523 +166,456 @@ static void ov104_022320B4(UnkStruct_ov104_022320B4 *param0, u8 renderDelay, u16
     }
 }
 
-static void ov104_022320FC(String *param0, u16 param1, u16 param2, u16 param3, u16 param4)
+static void GetStringFromSentence(String *msgBuf, u16 sentenceType, u16 sentenceID, u16 word1, u16 word2)
 {
-    Sentence v0;
-    String *v1;
+    Sentence sentence;
+    String *string;
 
-    sub_02014A84(&v0);
-    sub_02014CE0(&v0, param1, param2);
-    Sentence_SetWord(&v0, 0, param3);
-    Sentence_SetWord(&v0, 1, param4);
+    sub_02014A84(&sentence);
+    sub_02014CE0(&sentence, sentenceType, sentenceID);
+    Sentence_SetWord(&sentence, 0, word1);
+    Sentence_SetWord(&sentence, 1, word2);
 
-    v1 = sub_02014B34(&v0, HEAP_ID_FIELD3);
-    String_Copy(param0, v1);
-    String_Free(v1);
+    string = sub_02014B34(&sentence, HEAP_ID_FIELD3);
+    String_Copy(msgBuf, string);
+    String_Free(string);
 }
 
-static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_02232B5C *param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 *param6, StringTemplate *param7, MessageLoader *param8)
+static void FrontierMenuManager_Init(UnkStruct_ov104_022320B4 *param0, FrontierMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
 {
-    int v0;
+    int i;
 
-    if (param8 == NULL) {
-        param1->unk_8C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, param0->heapID);
-        param1->unk_97_1 = 1;
+    if (msgLoader == NULL) {
+        menuManager->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, param0->heapID);
+        menuManager->freeMsgLoaderOnDelete = TRUE;
     } else {
-        param1->unk_8C = param8;
-        param1->unk_97_1 = 0;
+        menuManager->msgLoader = msgLoader;
+        menuManager->freeMsgLoaderOnDelete = FALSE;
     }
 
-    param1->unk_90 = param7;
+    menuManager->strTemplate = strTemplate;
+    menuManager->unk_00 = param0;
+    menuManager->selectedOptionPtr = selectedOptionPtr;
 
-    param1->unk_00 = param0;
-    param1->unk_A0 = param6;
+    *menuManager->selectedOptionPtr = 0;
 
-    *param1->unk_A0 = 0;
+    menuManager->canExitWithB = canExitWithB;
+    menuManager->initialCursorPos = initialCursorPos;
+    menuManager->anchorX = anchorX;
+    menuManager->anchorY = anchorY;
+    menuManager->optionCount = 0;
+    menuManager->parent = &param0->msgWindow;
+    menuManager->sysTaskDelay = 3;
+    menuManager->cursorPos = initialCursorPos;
 
-    param1->unk_97_0 = param5;
-    param1->unk_96 = param4;
-    param1->unk_98 = param2;
-    param1->unk_99 = param3;
-    param1->unk_9B = 0;
-    param1->unk_18 = &param0->msgWindow;
-    param1->unk_94 = 3;
-    param1->unk_2D4 = param4;
-
-    for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_B4[v0].entry = NULL;
-        param1->unk_B4[v0].index = 0;
+    for (i = 0; i < FRONTIER_MENU_ENTRIES_MAX; i++) {
+        menuManager->menuChoiceStrings[i].entry = NULL;
+        menuManager->menuChoiceStrings[i].index = 0;
     }
 
-    for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1BC[v0].entry = NULL;
-        param1->unk_1BC[v0].index = 0;
-        param1->unk_29C[v0] = 0xff;
+    for (i = 0; i < FRONTIER_MENU_ENTRIES_MAX; i++) {
+        menuManager->listMenuChoiceStrings[i].entry = NULL;
+        menuManager->listMenuChoiceStrings[i].index = 0;
+        menuManager->choicesAltTextEntryIDs[i] = LIST_MENU_ENTRY_NO_ALT_TEXT;
     }
 
-    for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C[v0] = String_Init(40 * 2, param0->heapID);
+    for (i = 0; i < FRONTIER_MENU_ENTRIES_MAX; i++) {
+        menuManager->choiceStringBuffers[i] = String_Init(80, param0->heapID);
     }
 
-    *param1->unk_A0 = 0xeeee;
-
-    return;
+    *menuManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
 }
 
-UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7)
+FrontierMenuManager *FrontierMenuManager_New(UnkStruct_ov104_022320B4 *param0, u8 anchorX, u8 anchorY, u8 initalCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
 {
-    UnkStruct_ov104_02232B5C *v0;
-    int v1;
+    FrontierMenuManager *menuManager = Heap_Alloc(param0->heapID, sizeof(FrontierMenuManager));
 
-    v0 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov104_02232B5C));
-
-    if (v0 == NULL) {
+    if (menuManager == NULL) {
         return NULL;
     }
 
-    memset(v0, 0, sizeof(UnkStruct_ov104_02232B5C));
+    memset(menuManager, 0, sizeof(FrontierMenuManager));
 
-    ov104_0223214C(param0, v0, param1, param2, param3, param4, param5, param6, param7);
+    FrontierMenuManager_Init(param0, menuManager, anchorX, anchorY, initalCursorPos, canExitWithB, selectedOptionPtr, strTemplate, msgLoader);
 
-    return v0;
+    return menuManager;
 }
 
-void ov104_022322A8(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3)
+void FrontierMenuManager_AddMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index)
 {
-    ov104_02232390(param0, param1, param2, param3);
-    return;
+    AddMenuEntry(menuManager, entryID, altTextEntryID, index);
 }
 
-void ov104_022322B0(UnkStruct_ov104_02232B5C *param0)
+void FrontierMenuManager_ShowMenu(FrontierMenuManager *menuManager)
 {
-    u32 v0;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
+    u32 menuWidth;
+    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(menuManager->unk_00);
 
-    v0 = ov104_02232414(param0);
-    if (v0 % 8 == 0) {
-        v0 /= 8;
+    menuWidth = CalcMenuWidth(menuManager);
+    if (menuWidth % TILE_WIDTH_PIXELS == 0) {
+        menuWidth /= TILE_WIDTH_PIXELS;
     } else {
-        v0 = v0 / 8 + 1;
+        menuWidth = menuWidth / TILE_WIDTH_PIXELS + 1;
     }
 
-    if (param0->unk_97_6) {
-        param0->unk_98 -= v0;
+    if (menuManager->anchorRight) {
+        menuManager->anchorX -= menuWidth;
     }
-    if (param0->unk_97_7) {
-        param0->unk_99 -= param0->unk_9B * 2;
+    if (menuManager->anchorBottom) {
+        menuManager->anchorY -= menuManager->optionCount * 2;
     }
 
-    Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
-    Window_DrawStandardFrame(&param0->unk_08, 1, 985, 12);
-    ov104_02232454(param0);
-    param0->unk_B0 = Menu_NewSimple(&param0->unk_A4, param0->unk_96, param0->unk_00->heapID);
-    ov104_022325D8(param0);
-    param0->unk_04 = SysTask_Start(ov104_022324C8, param0, 0);
+    Window_Add(v1->unk_00, &menuManager->window, BG_LAYER_MAIN_1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
+    Window_DrawStandardFrame(&menuManager->window, TRUE, 985, PLTT_12);
+    SetupSingleColumnMenu(menuManager);
+    menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, menuManager->unk_00->heapID);
+    UpdateMenuAltText(menuManager);
+    menuManager->sysTask = SysTask_Start(MenuSysTaskCallback, menuManager, 0);
 }
 
-static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3)
+static void AddMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index)
 {
-    int v0;
-    void *v1;
+    String *entryBuf = String_Init(80, menuManager->unk_00->heapID);
 
-    {
-        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
+    MessageLoader_GetString(menuManager->msgLoader, entryID, entryBuf);
+    StringTemplate_Format(menuManager->strTemplate, menuManager->choiceStringBuffers[menuManager->optionCount], entryBuf);
+    menuManager->menuChoiceStrings[menuManager->optionCount].entry = menuManager->choiceStringBuffers[menuManager->optionCount];
+    String_Free(entryBuf);
 
-        MessageLoader_GetString(param0->unk_8C, param1, v2);
-        StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
-        param0->unk_B4[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
-        String_Free(v2);
-    }
-
-    param0->unk_29C[param0->unk_9B] = param2;
-    param0->unk_B4[param0->unk_9B].index = param3;
-    param0->unk_9B++;
-
-    return;
+    menuManager->choicesAltTextEntryIDs[menuManager->optionCount] = altTextEntryID;
+    menuManager->menuChoiceStrings[menuManager->optionCount].index = index;
+    menuManager->optionCount++;
 }
 
-static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
+static u32 CalcMenuWidth(FrontierMenuManager *menuManager)
 {
-    int v0;
-    u32 v1 = 0, v2;
-    v2 = 0;
+    u32 maxWidth = 0;
 
-    for (v0 = 0; v0 < param0->unk_9B; v0++) {
-        if (param0->unk_B4[v0].entry == NULL) {
+    for (int i = 0; i < menuManager->optionCount; i++) {
+        if (menuManager->menuChoiceStrings[i].entry == NULL) {
             break;
         }
 
-        v1 = Font_CalcStringWidth(FONT_SYSTEM, (String *)param0->unk_B4[v0].entry, 0);
+        u32 entryWidth = Font_CalcStringWidth(FONT_SYSTEM, menuManager->menuChoiceStrings[i].entry, 0);
 
-        if (v2 < v1) {
-            v2 = v1;
+        if (maxWidth < entryWidth) {
+            maxWidth = entryWidth;
         }
     }
 
-    return v2 + 12;
+    return maxWidth + CURSOR_MARGIN_SIZE;
 }
 
-static void ov104_02232454(UnkStruct_ov104_02232B5C *param0)
+static void SetupSingleColumnMenu(FrontierMenuManager *menuManager)
 {
-    param0->unk_A4.choices = param0->unk_B4;
-    param0->unk_A4.window = &param0->unk_08;
-    param0->unk_A4.fontID = FONT_SYSTEM;
-    param0->unk_A4.xSize = 1;
-    param0->unk_A4.ySize = param0->unk_9B;
-    param0->unk_A4.lineSpacing = 0;
-    param0->unk_A4.suppressCursor = FALSE;
+    menuManager->menuTemplate.choices = menuManager->menuChoiceStrings;
+    menuManager->menuTemplate.window = &menuManager->window;
+    menuManager->menuTemplate.fontID = FONT_SYSTEM;
+    menuManager->menuTemplate.xSize = 1;
+    menuManager->menuTemplate.ySize = menuManager->optionCount;
+    menuManager->menuTemplate.lineSpacing = 0;
+    menuManager->menuTemplate.suppressCursor = FALSE;
 
-    if (param0->unk_9B >= 4) {
-        param0->unk_A4.loopAround = TRUE;
+    if (menuManager->optionCount >= 4) {
+        menuManager->menuTemplate.loopAround = TRUE;
     } else {
-        param0->unk_A4.loopAround = FALSE;
+        menuManager->menuTemplate.loopAround = FALSE;
     }
-
-    return;
 }
 
-static void ov104_022324C8(SysTask *param0, void *param1)
+static void MenuSysTaskCallback(SysTask *task, void *data)
 {
-    u32 v0;
-    UnkStruct_ov104_02232B5C *v1 = param1;
+    FrontierMenuManager *menuManager = data;
 
-    if (v1->unk_94 != 0) {
-        v1->unk_94--;
+    if (menuManager->sysTaskDelay != 0) {
+        menuManager->sysTaskDelay--;
         return;
     }
 
-    if (IsScreenFadeDone() == FALSE) {
+    if (!IsScreenFadeDone()) {
         return;
     }
 
-    v0 = Menu_ProcessInput(v1->unk_B0);
+    u32 selectedEntry = Menu_ProcessInput(menuManager->menu);
 
-    if ((gSystem.pressedKeysRepeatable & PAD_KEY_UP) || (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) || (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) || (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
-        ov104_022325D8(v1);
+    if (JOY_REPEAT(PAD_KEY_UP) || JOY_REPEAT(PAD_KEY_DOWN) || JOY_REPEAT(PAD_KEY_LEFT) || JOY_REPEAT(PAD_KEY_RIGHT)) {
+        UpdateMenuAltText(menuManager);
     }
 
-    if (*v1->unk_A0 == 0xeedd) {
-        ov104_02232570(param1);
+    if (*menuManager->selectedOptionPtr == 0xeedd) {
+        FreeManagerWithMenu(data);
     } else {
-        switch (v0) {
-        case 0xffffffff:
+        switch (selectedEntry) {
+        case MENU_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
-            if (v1->unk_97_0 == 1) {
-                *v1->unk_A0 = 0xfffe;
-                ov104_02232570(param1);
+        case MENU_CANCELED:
+            if (menuManager->canExitWithB == TRUE) {
+                *menuManager->selectedOptionPtr = MENU_CANCELED;
+                FreeManagerWithMenu(data);
             }
             break;
         default:
-            *v1->unk_A0 = v0;
-            ov104_02232570(param1);
+            *menuManager->selectedOptionPtr = selectedEntry;
+            FreeManagerWithMenu(data);
             break;
         }
     }
-
-    return;
 }
 
-static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
+static void FreeManagerWithMenu(FrontierMenuManager *menuManager)
 {
-    int v0;
-
     Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-    Menu_Free(param0->unk_B0, NULL);
-    Window_EraseStandardFrame(param0->unk_A4.window, 0);
-    Window_Remove(param0->unk_A4.window);
+    Menu_Free(menuManager->menu, NULL);
+    Window_EraseStandardFrame(menuManager->menuTemplate.window, FALSE);
+    Window_Remove(menuManager->menuTemplate.window);
 
-    for (v0 = 0; v0 < 28; v0++) {
-        String_Free(param0->unk_1C[v0]);
+    for (int i = 0; i < FRONTIER_MENU_ENTRIES_MAX; i++) {
+        String_Free(menuManager->choiceStringBuffers[i]);
     }
 
-    if (param0->unk_97_1 == 1) {
-        MessageLoader_Free(param0->unk_8C);
+    if (menuManager->freeMsgLoaderOnDelete == TRUE) {
+        MessageLoader_Free(menuManager->msgLoader);
     }
 
-    SysTask_Done(param0->unk_04);
-    Heap_Free(param0);
-    return;
+    SysTask_Done(menuManager->sysTask);
+    Heap_Free(menuManager);
 }
 
-static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0)
+static void UpdateMenuAltText(FrontierMenuManager *menuManager)
 {
-    u8 v0 = Menu_GetCursorPos(param0->unk_B0);
+    u8 cursorPos = Menu_GetCursorPos(menuManager->menu);
 
-    if (param0->unk_29C[v0] != 0xff) {
-        ov104_02232AC4(param0, param0->unk_29C[v0], TEXT_SPEED_INSTANT);
+    if (menuManager->choicesAltTextEntryIDs[cursorPos] != LIST_MENU_ENTRY_NO_ALT_TEXT) {
+        PrintListMenuAltText(menuManager, menuManager->choicesAltTextEntryIDs[cursorPos], TEXT_SPEED_INSTANT);
     }
-
-    return;
 }
 
-UnkStruct_ov104_02232B5C *ov104_022325FC(UnkStruct_ov104_022320B4 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, MessageLoader *param7)
+FrontierMenuManager *FrontierMenuManager_New2(UnkStruct_ov104_022320B4 *param0, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *strTemplate, MessageLoader *msgLoader)
 {
-    return ov104_02232258(param0, param1, param2, param3, param4, param5, param6, param7);
+    return FrontierMenuManager_New(param0, anchorX, anchorY, initialCursorPos, canExitWithB, selectedOptionPtr, strTemplate, msgLoader);
 }
 
-void ov104_0223261C(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3)
+void FrontierMenuManager_AddListMenuEntry(FrontierMenuManager *menuManager, u32 entry, u32 altTextEntryID, u32 index)
 {
-    ov104_02232750(param0, param1, param2, param3);
-    return;
+    AddListMenuEntry(menuManager, entry, altTextEntryID, index);
 }
 
-void ov104_02232624(UnkStruct_ov104_02232B5C *param0)
+void FrontierMenuManager_ShowListMenu(FrontierMenuManager *menuManager)
 {
-    u32 v0;
-    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(param0->unk_00);
+    UnkStruct_ov104_0223C4CC *v1 = ov104_0222E924(menuManager->unk_00);
 
-    v0 = ov104_022327F0(param0);
-    if (v0 % 8 == 0) {
-        v0 /= 8;
+    u32 menuWidth = CalcListMenuWidth(menuManager);
+    if (menuWidth % TILE_WIDTH_PIXELS == 0) {
+        menuWidth /= TILE_WIDTH_PIXELS;
     } else {
-        v0 = v0 / 8 + 1;
+        menuWidth = menuWidth / TILE_WIDTH_PIXELS + 1;
     }
 
-    if (param0->unk_97_6) {
-        param0->unk_98 -= v0;
+    if (menuManager->anchorRight) {
+        menuManager->anchorX -= menuWidth;
     }
 
-    if (param0->unk_9B > 8) {
-        if (param0->unk_97_7) {
-            param0->unk_99 -= 8 * 2;
+    if (menuManager->optionCount > LIST_MENU_MAX_DISPLAY) {
+        if (menuManager->anchorBottom) {
+            menuManager->anchorY -= LIST_MENU_MAX_DISPLAY * 2;
         }
-        Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, 8 * 2, 14, 1);
+        Window_Add(v1->unk_00, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, 8 * 2, 14, 1);
     } else {
-        if (param0->unk_97_7) {
-            param0->unk_99 -= param0->unk_9B * 2;
+        if (menuManager->anchorBottom) {
+            menuManager->anchorY -= menuManager->optionCount * 2;
         }
-        Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
+        Window_Add(v1->unk_00, &menuManager->window, 1, menuManager->anchorX, menuManager->anchorY, menuWidth, menuManager->optionCount * 2, 14, 1);
     }
-    Window_DrawStandardFrame(&param0->unk_08, 1, 985, 12);
-    ov104_02232830(param0);
-    param0->unk_1B4 = ListMenu_New((const ListMenuTemplate *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->heapID);
-    ov104_02232B2C(param0);
-    param0->unk_04 = SysTask_Start(ov104_0223296C, param0, 0);
+    Window_DrawStandardFrame(&menuManager->window, 1, 985, PLTT_12);
+    InitListMenuTemplate(menuManager);
+    menuManager->listMenu = ListMenu_New(&menuManager->listMenuTemplate, 0, menuManager->initialCursorPos, menuManager->unk_00->heapID);
+    UpdateListMenuAltText(menuManager);
+    menuManager->sysTask = SysTask_Start(ListMenuSysTaskCallback, menuManager, 0);
 }
 
-static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 param2, u32 param3)
+static void AddListMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 altTextEntryID, u32 index)
 {
-    int v0;
-    void *v1;
+    String *fmtStr = String_Init(80, menuManager->unk_00->heapID);
 
-    {
-        String *v2 = String_Init(40 * 2, param0->unk_00->heapID);
+    MessageLoader_GetString(menuManager->msgLoader, entryID, fmtStr);
+    StringTemplate_Format(menuManager->strTemplate, menuManager->choiceStringBuffers[menuManager->optionCount], fmtStr);
+    menuManager->listMenuChoiceStrings[menuManager->optionCount].entry = menuManager->choiceStringBuffers[menuManager->optionCount];
 
-        MessageLoader_GetString(param0->unk_8C, param1, v2);
-        StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
-        param0->unk_1BC[param0->unk_9B].entry = (const void *)param0->unk_1C[param0->unk_9B];
+    String_Free(fmtStr);
 
-        String_Free(v2);
-    }
-
-    if (param3 == 0xfa) {
-        param0->unk_1BC[param0->unk_9B].index = 0xfffffffd;
+    if (index == LIST_MENU_BUILDER_HEADER) {
+        menuManager->listMenuChoiceStrings[menuManager->optionCount].index = LIST_HEADER;
     } else {
-        param0->unk_1BC[param0->unk_9B].index = param3;
+        menuManager->listMenuChoiceStrings[menuManager->optionCount].index = index;
     }
 
-    param0->unk_29C[param0->unk_9B] = param2;
-    param0->unk_9B++;
-
-    return;
+    menuManager->choicesAltTextEntryIDs[menuManager->optionCount] = altTextEntryID;
+    menuManager->optionCount++;
 }
 
-static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
+static u32 CalcListMenuWidth(FrontierMenuManager *param0)
 {
-    int v0;
-    u32 v1 = 0, v2;
-    v2 = 0;
+    u32 maxWidth = 0;
 
-    for (v0 = 0; v0 < param0->unk_9B; v0++) {
-        if (param0->unk_1BC[v0].entry == NULL) {
+    for (int i = 0; i < param0->optionCount; i++) {
+        if (param0->listMenuChoiceStrings[i].entry == NULL) {
             break;
         }
 
-        v1 = Font_CalcStringWidth(FONT_SYSTEM, (String *)param0->unk_1BC[v0].entry, 0);
+        u32 entryWidth = Font_CalcStringWidth(FONT_SYSTEM, param0->listMenuChoiceStrings[i].entry, 0);
 
-        if (v2 < v1) {
-            v2 = v1;
+        if (maxWidth < entryWidth) {
+            maxWidth = entryWidth;
         }
     }
 
-    return v2 + 12;
+    return maxWidth + CURSOR_MARGIN_SIZE;
 }
 
-static void ov104_02232830(UnkStruct_ov104_02232B5C *param0)
+static void InitListMenuTemplate(FrontierMenuManager *menuManager)
 {
-    param0->unk_194.choices = param0->unk_1BC;
-    param0->unk_194.cursorCallback = ov104_02232960;
-    param0->unk_194.printCallback = ov104_0223293C;
-    param0->unk_194.window = &param0->unk_08;
-
-    param0->unk_194.count = param0->unk_9B;
-    param0->unk_194.maxDisplay = 8;
-
-    param0->unk_194.headerXOffset = 1;
-    param0->unk_194.textXOffset = 12;
-    param0->unk_194.cursorXOffset = 2;
-    param0->unk_194.yOffset = 1;
-
-    param0->unk_194.textColorFg = 1;
-    param0->unk_194.textColorBg = 15;
-    param0->unk_194.textColorShadow = 2;
-
-    param0->unk_194.letterSpacing = 0;
-    param0->unk_194.lineSpacing = 0;
-
-    param0->unk_194.pagerMode = PAGER_MODE_NONE;
-
-    param0->unk_194.fontID = FONT_SYSTEM;
-    param0->unk_194.cursorType = 0;
-
-    param0->unk_194.parent = (void *)param0;
-    return;
+    menuManager->listMenuTemplate.choices = menuManager->listMenuChoiceStrings;
+    menuManager->listMenuTemplate.cursorCallback = ListMenuDummyCursorCallback;
+    menuManager->listMenuTemplate.printCallback = SetListMenuItemAltColor;
+    menuManager->listMenuTemplate.window = &menuManager->window;
+    menuManager->listMenuTemplate.count = menuManager->optionCount;
+    menuManager->listMenuTemplate.maxDisplay = LIST_MENU_MAX_DISPLAY;
+    menuManager->listMenuTemplate.headerXOffset = 1;
+    menuManager->listMenuTemplate.textXOffset = CURSOR_MARGIN_SIZE;
+    menuManager->listMenuTemplate.cursorXOffset = 2;
+    menuManager->listMenuTemplate.yOffset = 1;
+    menuManager->listMenuTemplate.textColorFg = 1;
+    menuManager->listMenuTemplate.textColorBg = 15;
+    menuManager->listMenuTemplate.textColorShadow = 2;
+    menuManager->listMenuTemplate.letterSpacing = 0;
+    menuManager->listMenuTemplate.lineSpacing = 0;
+    menuManager->listMenuTemplate.pagerMode = PAGER_MODE_NONE;
+    menuManager->listMenuTemplate.fontID = FONT_SYSTEM;
+    menuManager->listMenuTemplate.cursorType = 0;
+    menuManager->listMenuTemplate.parent = menuManager;
 }
 
-static void ov104_0223293C(ListMenu *param0, u32 param1, u8 param2)
+static void SetListMenuItemAltColor(ListMenu *listMenu, u32 index, u8 yOffset)
 {
-    if (param1 == 0xfffffffd) {
-        ListMenu_SetAltTextColors(param0, 3, 15, 4);
+    if (index == LIST_HEADER) {
+        ListMenu_SetAltTextColors(listMenu, 3, 15, 4);
     } else {
-        ListMenu_SetAltTextColors(param0, 1, 15, 2);
+        ListMenu_SetAltTextColors(listMenu, 1, 15, 2);
     }
 }
 
-static void ov104_02232960(ListMenu *param0, u32 param1, u8 param2)
+static void ListMenuDummyCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
 {
-    u32 v0, v1;
-    u16 v2 = 0;
-    u16 v3 = 0;
-    UnkStruct_ov104_02232B5C *v4 = (UnkStruct_ov104_02232B5C *)ListMenu_GetAttribute(param0, 19);
-
-    return;
+    ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 }
 
-static void ov104_0223296C(SysTask *param0, void *param1)
+static void ListMenuSysTaskCallback(SysTask *task, void *data)
 {
-    u16 v0;
-    u32 v1;
-    UnkStruct_ov104_02232B5C *v2 = (UnkStruct_ov104_02232B5C *)param1;
+    FrontierMenuManager *menuManager = data;
 
-    if (v2->unk_94 != 0) {
-        v2->unk_94--;
+    if (menuManager->sysTaskDelay != 0) {
+        menuManager->sysTaskDelay--;
         return;
     }
 
-    if (IsScreenFadeDone() == FALSE) {
+    if (!IsScreenFadeDone()) {
         return;
     }
 
-    v1 = ListMenu_ProcessInput(v2->unk_1B4);
+    u32 selectedEntry = ListMenu_ProcessInput(menuManager->listMenu);
+    u16 cursorPos = menuManager->cursorPos;
 
-    v0 = v2->unk_2D4;
-    ListMenu_CalcTrueCursorPos(v2->unk_1B4, &v2->unk_2D4);
+    ListMenu_CalcTrueCursorPos(menuManager->listMenu, &menuManager->cursorPos);
 
-    if (v0 != v2->unk_2D4) {
+    if (cursorPos != menuManager->cursorPos) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    if ((gSystem.pressedKeysRepeatable & PAD_KEY_UP) || (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) || (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) || (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
-        ov104_02232B2C(v2);
+    if (JOY_REPEAT(PAD_KEY_UP) || JOY_REPEAT(PAD_KEY_DOWN) || JOY_REPEAT(PAD_KEY_LEFT) || JOY_REPEAT(PAD_KEY_RIGHT)) {
+        UpdateListMenuAltText(menuManager);
     }
 
-    if (*v2->unk_A0 == 0xeedd) {
-        ov104_02232A58(param1, 0);
+    if (*menuManager->selectedOptionPtr == 0xeedd) {
+        FreeManagerWithListMenu(data, FALSE);
     } else {
-        switch (v1) {
-        case 0xffffffff:
+        switch (selectedEntry) {
+        case LIST_NOTHING_CHOSEN:
             break;
-        case 0xfffffffe:
-            if (v2->unk_97_0 == 1) {
+        case LIST_CANCEL:
+            if (menuManager->canExitWithB == TRUE) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                *v2->unk_A0 = 0xfffe;
+                *menuManager->selectedOptionPtr = LIST_CANCEL;
 
-                ov104_02232A58(param1, 1);
+                FreeManagerWithListMenu(data, TRUE);
             }
 
             break;
         default:
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            *v2->unk_A0 = v1;
+            *menuManager->selectedOptionPtr = selectedEntry;
 
-            ov104_02232A58(param1, 1);
+            FreeManagerWithListMenu(data, TRUE);
             break;
         }
     }
-
-    return;
 }
 
-static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
+static void FreeManagerWithListMenu(FrontierMenuManager *menuManager, u8 playSound)
 {
-    int v0;
-
-    if (param1 == 1) {
+    if (playSound == TRUE) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    ListMenu_Free(param0->unk_1B4, NULL, NULL);
-    Window_EraseStandardFrame(param0->unk_194.window, 0);
-    Window_Remove(&param0->unk_08);
+    ListMenu_Free(menuManager->listMenu, NULL, NULL);
+    Window_EraseStandardFrame(menuManager->listMenuTemplate.window, FALSE);
+    Window_Remove(&menuManager->window);
 
-    for (v0 = 0; v0 < 28; v0++) {
-        String_Free(param0->unk_1C[v0]);
+    for (int i = 0; i < FRONTIER_MENU_ENTRIES_MAX; i++) {
+        String_Free(menuManager->choiceStringBuffers[i]);
     }
 
-    if (param0->unk_97_1 == 1) {
-        MessageLoader_Free(param0->unk_8C);
+    if (menuManager->freeMsgLoaderOnDelete == TRUE) {
+        MessageLoader_Free(menuManager->msgLoader);
     }
 
-    SysTask_Done(param0->unk_04);
-    Heap_Free(param0);
-    return;
+    SysTask_Done(menuManager->sysTask);
+    Heap_Free(menuManager);
 }
 
-static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2)
+static void PrintListMenuAltText(FrontierMenuManager *menuManager, u16 entryID, u32 printerDelay)
 {
-    String *v0 = String_Init(40 * 2, param0->unk_00->heapID);
-    String *v1 = String_Init(40 * 2, param0->unk_00->heapID);
+    String *fmtStr = String_Init(80, menuManager->unk_00->heapID);
+    String *displayStr = String_Init(80, menuManager->unk_00->heapID);
 
-    Window_FillTilemap(param0->unk_18, 15);
+    Window_FillTilemap(menuManager->parent, 15);
 
-    MessageLoader_GetString(param0->unk_8C, param1, v0);
+    MessageLoader_GetString(menuManager->msgLoader, entryID, fmtStr);
+    StringTemplate_Format(menuManager->strTemplate, displayStr, fmtStr);
 
-    StringTemplate_Format(param0->unk_90, v1, v0);
+    Text_AddPrinterWithParams(menuManager->parent, FONT_MESSAGE, displayStr, 0, 0, printerDelay, NULL);
 
-    Text_AddPrinterWithParams(param0->unk_18, 1, v1, 0, 0, param2, NULL);
-
-    String_Free(v0);
-    String_Free(v1);
-    return;
+    String_Free(fmtStr);
+    String_Free(displayStr);
 }
 
-static void ov104_02232B2C(UnkStruct_ov104_02232B5C *param0)
+static void UpdateListMenuAltText(FrontierMenuManager *menuManager)
 {
-    ListMenu_CalcTrueCursorPos(param0->unk_1B4, &param0->unk_1BA);
+    ListMenu_CalcTrueCursorPos(menuManager->listMenu, &menuManager->listMenuAltTextIndex);
 
-    if (param0->unk_29C[param0->unk_1BA] != 0xff) {
-        ov104_02232AC4(param0, param0->unk_29C[param0->unk_1BA], TEXT_SPEED_INSTANT);
+    if (menuManager->choicesAltTextEntryIDs[menuManager->listMenuAltTextIndex] != LIST_MENU_ENTRY_NO_ALT_TEXT) {
+        PrintListMenuAltText(menuManager, menuManager->choicesAltTextEntryIDs[menuManager->listMenuAltTextIndex], TEXT_SPEED_INSTANT);
     }
-
-    return;
 }
 
-void ov104_02232B5C(UnkStruct_ov104_02232B5C *param0)
+void FrontierMenuManager_FreeListMenu(FrontierMenuManager *menuManager)
 {
-    UnkStruct_ov104_02232B5C *v0;
-
-    if (param0 == NULL) {
+    if (menuManager == NULL) {
         return;
     }
 
-    v0 = (UnkStruct_ov104_02232B5C *)param0;
-
-    *v0->unk_A0 = 0xfffe;
-
-    ov104_02232A58(param0, 0);
-    return;
+    *menuManager->selectedOptionPtr = MENU_CANCELED;
+    FreeManagerWithListMenu(menuManager, FALSE);
 }
 
 __attribute__((aligned(4))) static const u8 Unk_ov104_0223F9A4[] = {
@@ -1041,39 +946,36 @@ void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
     Sprite_DeleteAndFreeResources(param1);
 }
 
-void ov104_022330FC(FrontierScriptContext *param0, u16 *param1)
+void ov104_022330FC(FrontierScriptContext *ctx, u16 *args)
 {
-    ov104_0223310C(param0, param1, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
-    return;
+    ov104_0223310C(ctx, args, TEXT_BANK_FRONTIER_TRAINER_MESSAGES);
 }
 
-void ov104_0223310C(FrontierScriptContext *param0, u16 *param1, u32 bankID)
+void ov104_0223310C(FrontierScriptContext *ctx, u16 *args, u32 bankID)
 {
-    u8 v0;
-    MessageLoader *v1;
-    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
+    MessageLoader *msgLoader;
+    UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(ctx->unk_00->unk_00);
 
-    if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
+    if (args[0] == 0xFFFF) {
+        msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, bankID, HEAP_ID_FIELD3);
 
-        FrontierShowMessage(param0->unk_00, v1, param1[1], 1, NULL);
-        MessageLoader_Free(v1);
+        FrontierShowMessage(ctx->unk_00, msgLoader, args[1], 1, NULL);
+        MessageLoader_Free(msgLoader);
     } else {
-        v0 = Options_TextFrameDelay(SaveData_GetOptions(v2->saveData));
-        ov104_022320B4(param0->unk_00, v0, param1[0], param1[1], param1[2], param1[3], 1);
+        u8 frameDelay = Options_TextFrameDelay(SaveData_GetOptions(v2->saveData));
+        ShowSentence(ctx->unk_00, frameDelay, args[0], args[1], args[2], args[3], TRUE);
     }
 
-    FrontierScriptContext_Pause(param0, ov104_02233184);
-    return;
+    FrontierScriptContext_Pause(ctx, WaitForFinishedPrinting);
 }
 
-static BOOL ov104_02233184(FrontierScriptContext *param0)
+static BOOL WaitForFinishedPrinting(FrontierScriptContext *ctx)
 {
-    if (Text_IsPrinterActive(param0->unk_00->printerID) == 0) {
-        return 1;
+    if (!Text_IsPrinterActive(ctx->unk_00->printerID)) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void ov104_0223319C(SysTask *param0, void *param1)
@@ -1119,12 +1021,12 @@ void ov104_022331E8(SysTask *param0, void *param1)
     }
 }
 
-void ov104_0223327C(UnkStruct_ov104_02232B5C *param0, int param1)
+void FrontierMenuManager_SetHorizontalAnchor(FrontierMenuManager *menuManager, BOOL anchorRight)
 {
-    param0->unk_97_6 = param1;
+    menuManager->anchorRight = anchorRight;
 }
 
-void ov104_02233298(UnkStruct_ov104_02232B5C *param0, int param1)
+void FrontierMenuManager_SetVerticalAnchor(FrontierMenuManager *menuManager, BOOL anchorBottom)
 {
-    param0->unk_97_7 = param1;
+    menuManager->anchorBottom = anchorBottom;
 }
