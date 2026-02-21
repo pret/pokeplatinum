@@ -2,8 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV16_0225EA80_H
 
 #include "struct_decls/battle_system.h"
+#include "struct_defs/battler_data.h"
 
-#include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle_anim/battle_anim_system.h"
 #include "battle_anim/struct_ball_rotation_decl.h"
@@ -12,7 +12,7 @@
 
 typedef struct {
     BattleSystem *battleSys;
-    BattlerData *unk_04;
+    BattlerData *battlerData;
     UnkStruct_ov12_02235FE0 *unk_08;
     BallRotation *unk_0C;
     UnkStruct_ov12_02223764 *unk_10;
