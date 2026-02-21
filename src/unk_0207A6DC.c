@@ -18,7 +18,7 @@
 #include "battle/message_defs.h"
 
 #include "charcode_util.h"
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "pal_pad.h"
@@ -419,7 +419,7 @@ BOOL sub_0207AAA0(UnkStruct_0207A778 *param0)
     }
 
     v0 = (ChatotCry *)&param0->unk_20[0];
-    CopyChatotCryData(v0, param0->unk_00->chatotCries[0]);
+    ChatotCry_Copy(v0, param0->unk_00->chatotCries[0]);
 
     return 1;
 }

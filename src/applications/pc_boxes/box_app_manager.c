@@ -32,7 +32,7 @@
 
 #include "bag.h"
 #include "bag_context.h"
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "dexmode_checker.h"
 #include "enums.h"
 #include "game_options.h"
@@ -268,7 +268,7 @@ BOOL BoxAppMan_Exit(ApplicationManager *appMan, int *state)
     if (Party_HasSpecies(boxAppMan->party, SPECIES_CHATOT) == FALSE) {
         ChatotCry *chatotCry = SaveData_GetChatotCry(boxAppMan->saveData);
 
-        ResetChatotCryDataStatus(chatotCry);
+        ChatotCry_ResetStatus(chatotCry);
     }
 
     BoxGraphics_Free(boxAppMan->unk_114);

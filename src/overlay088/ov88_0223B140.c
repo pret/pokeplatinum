@@ -22,7 +22,7 @@
 #include "char_transfer.h"
 #include "character_sprite.h"
 #include "charcode_util.h"
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -2490,7 +2490,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 
     if (Party_HasSpecies(param0, SPECIES_CHATOT) == 0) {
         ChatotCry *v4 = SaveData_GetChatotCry(param4->saveData);
-        ResetChatotCryDataStatus(v4);
+        ChatotCry_ResetStatus(v4);
     }
 
     SaveData_UpdateCatchRecords(param4->saveData, v1);

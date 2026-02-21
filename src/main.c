@@ -7,7 +7,7 @@
 
 #include "assert.h"
 #include "brightness_controller.h"
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_overlay.h"

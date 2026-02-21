@@ -14,7 +14,7 @@
 
 #include "field/field_system.h"
 
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "daycare_save.h"
 #include "game_records.h"
 #include "heap.h"
@@ -115,7 +115,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, Dayca
 
     if (Party_HasSpecies(party, SPECIES_CHATOT) == FALSE) {
         ChatotCry *cry = SaveData_GetChatotCry(saveData);
-        ResetChatotCryDataStatus(cry);
+        ChatotCry_ResetStatus(cry);
     }
 }
 

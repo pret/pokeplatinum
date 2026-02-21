@@ -3,7 +3,7 @@
 
 #include "field/field_system.h"
 
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "sound.h"

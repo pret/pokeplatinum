@@ -30,7 +30,7 @@
 
 #include "assert.h"
 #include "brightness_controller.h"
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_task.h"
@@ -443,7 +443,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
         v0->unk_14C[v2] = ChatotCry_New(HEAP_ID_20);
     }
 
-    CopyChatotCryData(v0->unk_14C[0], param0->unk_20);
+    ChatotCry_Copy(v0->unk_14C[0], param0->unk_20);
 
     {
         Pokemon_Copy(param0->unk_08, v0->unk_00.unk_00[0]);

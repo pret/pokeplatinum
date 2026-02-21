@@ -9,7 +9,7 @@
 #include "overlay006/struct_ov6_02248BE8.h"
 #include "overlay006/struct_ov6_02248DD8.h"
 
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "pokemon.h"

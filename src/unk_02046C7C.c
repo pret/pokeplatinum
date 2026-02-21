@@ -7,7 +7,7 @@
 #include "overlay005/hblank_system.h"
 #include "overlay006/link_contest_record_display.h"
 
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "field_script_context.h"
 #include "field_system.h"
 #include "inlines.h"

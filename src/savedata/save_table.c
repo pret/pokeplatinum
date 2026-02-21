@@ -5,7 +5,7 @@
 
 #include "bag.h"
 #include "battle_regulation.h"
-#include "chatot_cry_data.h"
+#include "chatot_cry.h"
 #include "daycare_save.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
