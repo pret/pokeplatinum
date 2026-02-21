@@ -45,7 +45,7 @@ typedef struct Underground {
     u8 registeredFlagOwnerIndex;
     u8 spawnedTrapIDs[MAX_SPAWNED_TRAPS];
     u8 spawnedTrapCoordinates[MAX_SPAWNED_TRAPS][3];
-    u8 unk_20B[255][3];
+    u8 miningSpots[MAX_MINING_SPOTS + 5][3];
     u8 placedTrapIDs[MAX_PLACED_TRAPS];
     u8 placedTrapCoordinates[MAX_PLACED_TRAPS][3];
     u8 unk_548[MAX_PLACED_TRAPS];
@@ -63,7 +63,7 @@ typedef struct Underground {
     u8 sphereSizes[MAX_SPHERE_SLOTS];
     u8 placedGoodSlots[MAX_PLACED_GOODS];
     u8 stepCount;
-    u8 unk_9AC_0 : 4;
+    u8 shouldSpawnNewBuriedObjects : 4;
     u8 hasMined : 4;
 } Underground;
 

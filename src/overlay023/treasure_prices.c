@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/underground_defs.h"
 
 // TODO: make this error if it doesn't contain an entry for every treasure

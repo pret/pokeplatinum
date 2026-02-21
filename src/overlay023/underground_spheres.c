@@ -9,7 +9,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F575C.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/underground_manager.h"
 #include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
@@ -505,7 +505,7 @@ BOOL UndergroundSpheres_GetQueuedMessage(String *dest)
     return isMessageQueued;
 }
 
-int ov23_02241DF8(MATHRandContext16 *rand)
+int UndergroundSpheres_SpawnMiningSpotsNearBuriedSpheres(MATHRandContext16 *rand)
 {
     Underground *underground = SaveData_GetUnderground(FieldSystem_GetSaveData(buriedSpheresEnv->fieldSystem));
     int i;
@@ -514,7 +514,7 @@ int ov23_02241DF8(MATHRandContext16 *rand)
         if (Underground_GetBuriedSphereTypeAtIndex(underground, i) != SPHERE_NONE) {
             int x = Underground_GetBuriedSphereXCoordAtIndex(underground, i);
             int z = Underground_GetBuriedSphereZCoordAtIndex(underground, i);
-            ov23_0223E650(x, z, rand);
+            Mining_SpawnMiningSpotNearBuriedSphere(x, z, rand);
         }
     }
 

@@ -9,7 +9,7 @@
 
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_manager.h"
 #include "overlay023/underground_player.h"
@@ -548,7 +548,7 @@ static void CommManUnderground_RestartClient(void)
 {
     UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), TRUE);
     SecretBases_RemovePlayerFromBase(CommSys_CurNetId(), TRUE);
-    ov23_0224160C();
+    Mining_ClearMessageQueue();
     CommPlayerMan_Stop();
     UndergroundMan_ForceEndCurrentSysTask();
     sub_020367F0();
