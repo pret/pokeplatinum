@@ -540,7 +540,7 @@ static BOOL ScrCmd_197(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx);
 static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy19E(ScriptContext *ctx);
-static BOOL ScriptContext_Dummy(ScriptContext *ctx);
+static BOOL ScriptContext_UndergroundVendorsDummy(ScriptContext *ctx);
 static BOOL ScrCmd_UndergroundNPCMessage(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForFinishedPrinting2(ScriptContext *ctx);
 static BOOL ScrCmd_CloseUndergroundNPCMessage(ScriptContext *ctx);
@@ -5665,11 +5665,11 @@ static BOOL ScrCmd_Dummy19E(ScriptContext *ctx)
     ctx->data[0] = destVar;
     *data = UndergroundVendors_ReturnNull(vendorType, ctx->fieldSystem, MapObject_GetLocalID(*mapObj));
 
-    ScriptContext_Pause(ctx, ScriptContext_Dummy);
+    ScriptContext_Pause(ctx, ScriptContext_UndergroundVendorsDummy);
     return TRUE;
 }
 
-static BOOL ScriptContext_Dummy(ScriptContext *ctx)
+static BOOL ScriptContext_UndergroundVendorsDummy(ScriptContext *ctx)
 {
     void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
