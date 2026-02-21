@@ -1,42 +1,43 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/jubilife_city_pokecenter_1f.h"
+#include "res/field/events/events_jubilife_city_pokecenter_1f.h"
 
 
-    ScriptEntry _0012
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
+    ScriptEntry JubilifeCityPokecenter1F_Nurse
+    ScriptEntry JubilifeCityPokecenter1F_Twin
+    ScriptEntry JubilifeCityPokecenter1F_SchoolKidM
+    ScriptEntry JubilifeCityPokecenter1F_TrainerF
     ScriptEntryEnd
 
-_0012:
-    Common_CallPokecenterNurse 3
+JubilifeCityPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_001E:
+JubilifeCityPokecenter1F_Twin:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeCityPokecenter1F_Text_AllTypesHaveStrengthsAndWeaknesses
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0031:
+JubilifeCityPokecenter1F_SchoolKidM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message JubilifeCityPokecenter1F_Text_InTheUnionRoomUpstairsYouCanChatAndTradeWithOtherPeople
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0044:
+JubilifeCityPokecenter1F_TrainerF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message JubilifeCityPokecenter1F_Text_YouCanStillCatchAPokemonIfYouAlreadyHaveSixTravelingWithYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll

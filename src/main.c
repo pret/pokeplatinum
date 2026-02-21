@@ -7,6 +7,7 @@
 
 #include "assert.h"
 #include "brightness_controller.h"
+#include "chatot_cry.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_overlay.h"
@@ -25,7 +26,6 @@
 #include "timer.h"
 #include "touch_pad.h"
 #include "unk_0202419C.h"
-#include "unk_0202CC64.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_02039814.h"

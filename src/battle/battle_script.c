@@ -19,6 +19,7 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/battle_system.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/fraction.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/trainer.h"
@@ -38,8 +39,6 @@
 #include "battle/common.h"
 #include "battle/ov16_0223B140.h"
 #include "battle/ov16_02268520.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225BFFC_t.h"
 #include "battle_anim/ov12_02235E94.h"
 #include "battle_anim/struct_ov12_02237728.h"
 
@@ -10626,9 +10625,9 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
         } else {
             BattlerData *battlerData = BattleSystem_GetBattlerData(data->battleSys, 0);
 
-            if (ov12_02237890(battlerData->unk_84) != 4) {
-                data->ballRotation = battlerData->unk_84;
-                battlerData->unk_84 = NULL;
+            if (ov12_02237890(battlerData->ballRotation) != 4) {
+                data->ballRotation = battlerData->ballRotation;
+                battlerData->ballRotation = NULL;
                 data->seqNum = SEQ_CATCH_MON_CHECK_BATTLE_TYPE;
 
                 Sound_PlayEffect(SEQ_SE_DP_NAGERU);
@@ -10904,9 +10903,9 @@ static void BattleScript_CatchMonTask(SysTask *task, void *inData)
             for (i = 0; i < BattleSystem_GetMaxBattlers(data->battleSys); i++) {
                 battlerData = BattleSystem_GetBattlerData(data->battleSys, i);
 
-                if (battlerData->unk_18) {
-                    Sprite_DeleteAndFreeResources(battlerData->unk_18);
-                    battlerData->unk_18 = NULL;
+                if (battlerData->managedSprite) {
+                    Sprite_DeleteAndFreeResources(battlerData->managedSprite);
+                    battlerData->managedSprite = NULL;
                 }
             }
 

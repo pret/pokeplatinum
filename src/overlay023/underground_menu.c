@@ -10,7 +10,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/sprite_resource_manager.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_item_list_menu.h"
 #include "overlay023/underground_manager.h"
@@ -1723,7 +1723,7 @@ void UndergroundMenu_Exit(void *data, u32 input)
     UndergroundMan_SetNormalRadarActive();
     UndergroundRecords_ForceExitTrainerCase();
     TrapRadar_Exit();
-    ov23_02241364();
+    TreasureRadar_Exit();
     SphereRadar_Exit();
 
     if (menu->checkFlagsCtx) {

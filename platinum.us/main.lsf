@@ -128,7 +128,7 @@ Static main
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
-	Object main.nef.p/src_unk_0202CC64.c.o
+	Object main.nef.p/src_chatot_cry.c.o
 	Object main.nef.p/src_game_records.c.o
 	Object main.nef.p/src_unk_0202D05C.c.o
 	Object main.nef.p/src_unk_0202D778.c.o
@@ -835,7 +835,7 @@ Overlay overlay22
 Overlay overlay23
 {
 	After overlay5
-	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
+	Object main.nef.p/src_overlay023_mining.c.o
 	Object main.nef.p/src_overlay023_underground_spheres.c.o
 	Object main.nef.p/src_overlay023_underground_manager.c.o
 	Object main.nef.p/src_overlay023_underground_traps.c.o

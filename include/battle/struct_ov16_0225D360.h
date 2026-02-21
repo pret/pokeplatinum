@@ -2,12 +2,11 @@
 #define POKEPLATINUM_STRUCT_OV16_0225D360_H
 
 #include "struct_decls/battle_system.h"
-
-#include "battle/struct_ov16_0225BFFC_decl.h"
+#include "struct_defs/battler_data.h"
 
 typedef struct {
     BattleSystem *battleSys;
-    BattlerData *unk_04;
+    BattlerData *battlerData;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;

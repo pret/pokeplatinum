@@ -9,7 +9,7 @@
 
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 #include "overlay023/secret_bases.h"
 #include "overlay023/underground_manager.h"
 #include "overlay023/underground_player.h"
@@ -81,7 +81,7 @@ void CommManUnderground_InitUnderground(FieldSystem *fieldSystem)
     fieldCommMan = FieldCommMan_Get();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_UNDERGROUND, HEAP_SIZE_UNDERGROUND);
 
-    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
         sub_02036894();
     }
 }
@@ -256,7 +256,7 @@ static void CommManUnderground_SendInitialDataTask(void)
     UndergroundTraps_SendPlacedTraps();
     SecretBases_SendBaseInfo();
 
-    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
         CommManUnderground_SetFieldCommManTask(CommManUnderground_WaitForRoarkSceneTask, 0);
     } else {
         sub_02059524();
@@ -268,7 +268,7 @@ static void CommManUnderground_WaitForRoarkSceneTask(void)
 {
     FieldCommunicationManager *fieldCommMan = FieldCommMan_Get();
 
-    if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
+    if (!SystemFlag_CheckHasSeenUndergroundRoarkIntro(SaveData_GetVarsFlags(fieldCommMan->fieldSystem->saveData))) {
         return;
     }
 
@@ -548,7 +548,7 @@ static void CommManUnderground_RestartClient(void)
 {
     UndergroundTraps_ForceEndCurrentTrapEffectClient(CommSys_CurNetId(), TRUE);
     SecretBases_RemovePlayerFromBase(CommSys_CurNetId(), TRUE);
-    ov23_0224160C();
+    Mining_ClearMessageQueue();
     CommPlayerMan_Stop();
     UndergroundMan_ForceEndCurrentSysTask();
     sub_020367F0();

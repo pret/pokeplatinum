@@ -12,6 +12,8 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
+#define MAX_NORMAL_RADAR_BLIPS 8
+
 typedef void (*EndSysTaskFunc)(SysTask *sysTask, void *ctx);
 
 enum UndergroundStoredPosKeys {

@@ -10,12 +10,12 @@ _000A:
     LoadMysteryGift
     CheckAvailableMysteryGift VAR_UNK_0x40ED
     GoToIfEq VAR_UNK_0x40ED, 0, _002B
-    ClearFlag FLAG_UNK_0x020A
+    ClearFlag FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN
     UnloadMysteryGift
     End
 
 _002B:
-    SetFlag FLAG_UNK_0x020A
+    SetFlag FLAG_HIDE_MART_MYSTERY_GIFT_DELIVERYMAN
     UnloadMysteryGift
     End
 

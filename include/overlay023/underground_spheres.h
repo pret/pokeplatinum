@@ -32,7 +32,7 @@ BOOL UndergroundSpheres_IsBuriedSphereAtCoordinates(int x, int z);
 int UndergroundSpheres_GetBuriedSphereXCoordAtIndex(int idx);
 int UndergroundSpheres_GetBuriedSphereZCoordAtIndex(int idx);
 BOOL UndergroundSpheres_GetQueuedMessage(String *string);
-int ov23_02241DF8(MATHRandContext16 *rand);
+int UndergroundSpheres_SpawnMiningSpotsNearBuriedSpheres(MATHRandContext16 *rand);
 void SphereRadar_Start(void);
 void SphereRadar_Exit(void);
 int SphereRadar_GetXCoordOfBuriedSphere(int radarIndex);

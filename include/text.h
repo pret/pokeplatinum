@@ -29,6 +29,12 @@ typedef u32 TextColor;
 #define TEXT_SPEED_SLOW        8
 #define TEXT_SPEED_NO_TRANSFER 0xFF
 
+enum TextAlignment {
+    TEXT_ALIGN_LEFT,
+    TEXT_ALIGN_CENTER,
+    TEXT_ALIGN_RIGHT
+};
+
 void Text_SetFontAttributesPtr(const FontAttributes *fontAttributes);
 void Text_ResetAllPrinters(void);
 u8 Text_IsPrinterActive(u8 printerID);

@@ -12,7 +12,7 @@
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
-#include "overlay023/ov23_0223E140.h"
+#include "overlay023/mining.h"
 
 #include "heap.h"
 #include "math_util.h"
@@ -115,7 +115,7 @@ void Underground_Init(Underground *underground)
     MI_CpuFill8(underground, 0, sizeof(Underground));
 
     underground->randomSeed = seed;
-    underground->unk_9AC_0 = 1;
+    underground->shouldSpawnNewBuriedObjects = TRUE;
 }
 
 static int Underground_FindEmptyGoodsSlotBag(Underground *underground)
@@ -162,7 +162,7 @@ static int Underground_FindEmptyTrapSlot(Underground *underground)
     return -1;
 }
 
-void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed)
+void Underground_HandleDailyEvents(SaveData *saveData, int daysPassed)
 {
     Underground *underground = SaveData_GetUnderground(saveData);
 
@@ -214,7 +214,7 @@ void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed)
     }
 
     underground->randomSeed = ARNG_Next(underground->randomSeed + daysPassed);
-    underground->unk_9AC_0 = 1;
+    underground->shouldSpawnNewBuriedObjects = TRUE;
 }
 
 void sub_02028758(SaveData *saveData, s32 param1, BOOL param2)
@@ -878,49 +878,49 @@ int Underground_GetBuriedSphereGrowthAtIndex(Underground *underground, int index
     return underground->buriedSphereGrowth[index];
 }
 
-int sub_02029140(Underground *underground, int param1, int param2)
+int Underground_TryAddMiningSpot(Underground *underground, int x, int z)
 {
     int i;
 
-    for (i = 0; i < 255; i++) {
-        if ((underground->unk_20B[i][0] == 0) && (underground->unk_20B[i][1] == 0) && (underground->unk_20B[i][2] == 0)) {
-            underground->unk_20B[i][0] = param1;
-            underground->unk_20B[i][1] = ((param1 & 0xf00) >> 8) + ((param2 & 0xf00) >> 4);
-            underground->unk_20B[i][2] = param2;
+    for (i = 0; i < MAX_MINING_SPOTS + 5; i++) {
+        if (underground->miningSpots[i][0] == 0 && underground->miningSpots[i][1] == 0 && underground->miningSpots[i][2] == 0) {
+            underground->miningSpots[i][0] = x;
+            underground->miningSpots[i][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
+            underground->miningSpots[i][2] = z;
             break;
         }
     }
 
-    if (i == 255) {
+    if (i == MAX_MINING_SPOTS + 5) {
         i = 0;
     }
 
     return i;
 }
 
-void sub_020291A4(Underground *underground, int param1)
+void Underground_RemoveMiningSpotAtIndex(Underground *underground, int index)
 {
-    GF_ASSERT(param1 < 255);
-    MI_CpuFill8(underground->unk_20B[param1], 0, 3);
+    GF_ASSERT(index < MAX_MINING_SPOTS + 5);
+    MI_CpuFill8(underground->miningSpots[index], 0, 3);
 }
 
-int sub_020291CC(Underground *underground, int param1)
+int Underground_GetMiningSpotXCoordAtIndex(Underground *underground, int index)
 {
-    int v0 = underground->unk_20B[param1][0];
+    int x = underground->miningSpots[index][0];
 
-    v0 += (underground->unk_20B[param1][1] << 8) & 0xf00;
-    return v0;
+    x += (underground->miningSpots[index][1] << 8) & 0xF00;
+    return x;
 }
 
-int sub_020291EC(Underground *underground, int param1)
+int Underground_GetMiningSpotZCoordAtIndex(Underground *underground, int index)
 {
-    int v0 = underground->unk_20B[param1][2];
+    int z = underground->miningSpots[index][2];
 
-    v0 += (underground->unk_20B[param1][1] << 4) & 0xf00;
-    return v0;
+    z += (underground->miningSpots[index][1] << 4) & 0xF00;
+    return z;
 }
 
-BOOL Underground_HasNeverMined(Underground *underground)
+BOOL Underground_HasPlayerNeverMined(Underground *underground)
 {
     return underground->hasMined == FALSE;
 }
@@ -930,14 +930,14 @@ void Underground_SetHasMined(Underground *underground)
     underground->hasMined = TRUE;
 }
 
-BOOL sub_02029234(Underground *underground)
+BOOL Underground_ShouldSpawnNewBuriedObjects(Underground *underground)
 {
-    return underground->unk_9AC_0;
+    return underground->shouldSpawnNewBuriedObjects;
 }
 
-void sub_02029240(Underground *underground)
+void Underground_FlagSpawnedNewBuriedObjects(Underground *underground)
 {
-    underground->unk_9AC_0 = 0;
+    underground->shouldSpawnNewBuriedObjects = FALSE;
 }
 
 void Underground_SetPlateMined(Underground *underground, int miningItemID)
@@ -1206,19 +1206,19 @@ int UndergroundRecord_GetNumFossilsDug(const UndergroundRecord *undergroundRecor
 
 void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if ((amount > 0) && (undergroundRecord->numFossilsDug > (999999 - amount))) {
+    if (amount > 0 && undergroundRecord->numFossilsDug > 999999 - amount) {
         undergroundRecord->numFossilsDug = 999999;
     } else {
         undergroundRecord->numFossilsDug += amount;
     }
 }
 
-void sub_02029688(UndergroundRecord *param0, int param1)
+void Underground_AddNumNonFossilsDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if ((param1 > 0) && (param0->unk_18_0 > (999999 - param1))) {
-        param0->unk_18_0 = 999999;
+    if (amount > 0 && undergroundRecord->numNonFossilsDug > 999999 - amount) {
+        undergroundRecord->numNonFossilsDug = 999999;
     } else {
-        param0->unk_18_0 += param1;
+        undergroundRecord->numNonFossilsDug += amount;
     }
 }
 

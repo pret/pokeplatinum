@@ -2,14 +2,14 @@
 #include "res/text/bank/jubilife_city_south_house_3f.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry JubilifeCitySouthHouse3F_PokefanM
     ScriptEntryEnd
 
-_0006:
+JubilifeCitySouthHouse3F_PokefanM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeCitySouthHouse3F_WhenIGiveMyPokemonNicknamesItsLikeTheyreMyVeryOwn
     WaitABXPadPress
     CloseMessage
     ReleaseAll
