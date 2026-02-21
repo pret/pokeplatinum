@@ -493,11 +493,11 @@ static BOOL ScrCmd_BlackOutFromBattle2(ScriptContext *ctx);
 static BOOL ScrCmd_14C(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerGender(ScriptContext *ctx);
 static BOOL ScrCmd_HealParty(ScriptContext *ctx);
-static BOOL ScrCmd_14F(ScriptContext *ctx);
+static BOOL ScrCmd_Dummy14F(ScriptContext *ctx);
 static BOOL ScrCmd_EndCommunication(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForCommManIsDeleted(ScriptContext *ctx);
 static BOOL ScrCmd_151(ScriptContext *ctx);
-static BOOL ScrCmd_152(ScriptContext *ctx);
+static BOOL ScrCmd_SetCommPlayerDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_SetPosition(ScriptContext *ctx);
 static BOOL ScrCmd_SetObjectEventMovementType(ScriptContext *ctx);
@@ -540,13 +540,13 @@ static BOOL ScrCmd_196(ScriptContext *ctx);
 static BOOL ScrCmd_197(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx);
 static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx);
-static BOOL ScrCmd_19E(ScriptContext *ctx);
-static BOOL sub_020441C8(ScriptContext *ctx);
-static BOOL ScrCmd_19F(ScriptContext *ctx);
-static BOOL sub_02044240(ScriptContext *ctx);
-static BOOL ScrCmd_1A0(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_1A1(ScriptContext *ctx);
-static BOOL ScrCmd_Unused_1A2(ScriptContext *ctx);
+static BOOL ScrCmd_Dummy19E(ScriptContext *ctx);
+static BOOL ScriptContext_UndergroundVendorsDummy(ScriptContext *ctx);
+static BOOL ScrCmd_UndergroundNPCMessage(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForFinishedPrinting2(ScriptContext *ctx);
+static BOOL ScrCmd_CloseUndergroundNPCMessage(ScriptContext *ctx);
+static BOOL ScrCmd_BufferTreasureNameForUndergroundVendor_Unused(ScriptContext *ctx);
+static BOOL ScrCmd_BufferTrapNameForUndergroundVendor_Unused(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_03F(ScriptContext *ctx);
 static BOOL ScrCmd_1AC(ScriptContext *ctx);
 static BOOL ScrCmd_ShowObject(ScriptContext *ctx);
@@ -1104,10 +1104,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_14C,
     ScrCmd_GetPlayerGender,
     ScrCmd_HealParty,
-    ScrCmd_14F,
+    ScrCmd_Dummy14F,
     ScrCmd_EndCommunication,
     ScrCmd_151,
-    ScrCmd_152,
+    ScrCmd_SetCommPlayerDir,
     ScrCmd_153,
     ScrCmd_LoadTrainerAppearances,
     ScrCmd_155,
@@ -1183,11 +1183,11 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CountAliveMonsExcept,
     ScrCmd_CountAliveMonsAndBoxMons,
     ScrCmd_CountPartyEggs,
-    ScrCmd_19E,
-    ScrCmd_19F,
-    ScrCmd_1A0,
-    ScrCmd_Unused_1A1,
-    ScrCmd_Unused_1A2,
+    ScrCmd_Dummy19E,
+    ScrCmd_UndergroundNPCMessage,
+    ScrCmd_CloseUndergroundNPCMessage,
+    ScrCmd_BufferTreasureNameForUndergroundVendor_Unused,
+    ScrCmd_BufferTrapNameForUndergroundVendor_Unused,
     ScrCmd_RemoveMoney2,
     ScrCmd_MoveMonToPartyFromDaycareSlot,
     ScrCmd_Dummy1A5,
@@ -5362,7 +5362,7 @@ static BOOL ScrCmd_HealParty(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_14F(ScriptContext *ctx)
+static BOOL ScrCmd_Dummy14F(ScriptContext *ctx)
 {
     return FALSE;
 }
@@ -5398,7 +5398,7 @@ static BOOL ScrCmd_151(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_152(ScriptContext *ctx)
+static BOOL ScrCmd_SetCommPlayerDir(ScriptContext *ctx)
 {
     CommPlayer_SetDir(ScriptContext_ReadHalfWord(ctx));
     return FALSE;
@@ -5656,71 +5656,71 @@ static BOOL ScrCmd_1AC(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_19E(ScriptContext *ctx)
+static BOOL ScrCmd_Dummy19E(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    MapObject **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
-    u16 v2 = ScriptContext_GetVar(ctx);
-    u16 v3 = ScriptContext_ReadHalfWord(ctx);
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    MapObject **mapObj = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
+    u16 vendorType = ScriptContext_GetVar(ctx);
+    u16 destVar = ScriptContext_ReadHalfWord(ctx);
 
-    ctx->data[0] = v3;
-    *v0 = UndergroundVendors_ReturnNull(v2, ctx->fieldSystem, MapObject_GetLocalID(*v1));
+    ctx->data[0] = destVar;
+    *data = UndergroundVendors_ReturnNull(vendorType, ctx->fieldSystem, MapObject_GetLocalID(*mapObj));
 
-    ScriptContext_Pause(ctx, sub_020441C8);
+    ScriptContext_Pause(ctx, ScriptContext_UndergroundVendorsDummy);
     return TRUE;
 }
 
-static BOOL sub_020441C8(ScriptContext *ctx)
+static BOOL ScriptContext_UndergroundVendorsDummy(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 *v1 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u16 *destVar = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
 
-    *v1 = UndergroundVendors_ReturnFFFE(*v0);
+    *destVar = UndergroundVendors_ReturnFFFE(*data);
 
-    if (*v1 == 0xFFFE) {
+    if (*destVar == 0xFFFE) {
         return FALSE;
     }
 
     return TRUE;
 }
 
-static BOOL ScrCmd_19F(ScriptContext *ctx)
+static BOOL ScrCmd_UndergroundNPCMessage(ScriptContext *ctx)
 {
-    u8 *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    u8 *printerID = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
 
-    *v0 = UndergroundVendors_PrintNPCMessage(ScriptContext_GetVar(ctx));
-    ScriptContext_Pause(ctx, sub_02044240);
+    *printerID = UndergroundVendors_PrintNPCMessage(ScriptContext_GetVar(ctx));
+    ScriptContext_Pause(ctx, ScriptContext_WaitForFinishedPrinting2);
 
     return TRUE;
 }
 
-static BOOL sub_02044240(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForFinishedPrinting2(ScriptContext *ctx)
 {
-    u8 *v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
-    return FieldMessage_FinishedPrinting(*v0);
+    u8 *printerID = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    return FieldMessage_FinishedPrinting(*printerID);
 }
 
-static BOOL ScrCmd_1A0(ScriptContext *ctx)
+static BOOL ScrCmd_CloseUndergroundNPCMessage(ScriptContext *ctx)
 {
     UndergroundVendors_EraseMessageBoxWindow();
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_1A1(ScriptContext *ctx)
+static BOOL ScrCmd_BufferTreasureNameForUndergroundVendor_Unused(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 treasureID = ScriptContext_GetVar(ctx);
 
-    UndergroundVendors_SetTreasureNameForPrinter(v0, v1);
+    UndergroundVendors_SetTreasureNameForPrinter(templateArg, treasureID);
     return FALSE;
 }
 
-static BOOL ScrCmd_Unused_1A2(ScriptContext *ctx)
+static BOOL ScrCmd_BufferTrapNameForUndergroundVendor_Unused(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u8 templateArg = ScriptContext_ReadByte(ctx);
+    u16 trapID = ScriptContext_GetVar(ctx);
 
-    UndergroundVendors_SetTrapNameForPrinter(v0, v1);
+    UndergroundVendors_SetTrapNameForPrinter(templateArg, trapID);
     return FALSE;
 }
 

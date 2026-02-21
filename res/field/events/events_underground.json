@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "UNDERGROUND_HIKER_0",
+            "id": "LOCALID_TRAPS_VENDOR_1",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,7 +17,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_1",
+            "id": "LOCALID_GOODS_VENDOR_1",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_2",
+            "id": "LOCALID_GOODS_VENDOR_2",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_3",
+            "id": "LOCALID_GOODS_VENDOR_3",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_4",
+            "id": "LOCALID_GOODS_VENDOR_4",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_5",
+            "id": "LOCALID_TRAPS_VENDOR_2",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -92,7 +92,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_6",
+            "id": "LOCALID_TRAPS_VENDOR_3",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_7",
+            "id": "LOCALID_TRAPS_VENDOR_4",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -122,7 +122,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_8",
+            "id": "LOCALID_GOODS_VENDOR_5",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -137,7 +137,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_9",
+            "id": "LOCALID_GOODS_VENDOR_6",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -152,7 +152,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_10",
+            "id": "LOCALID_GOODS_VENDOR_7",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -167,7 +167,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_11",
+            "id": "LOCALID_GOODS_VENDOR_8",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -182,7 +182,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_12",
+            "id": "LOCALID_TRAPS_VENDOR_5",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -197,7 +197,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_13",
+            "id": "LOCALID_TRAPS_VENDOR_6",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -212,7 +212,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_14",
+            "id": "LOCALID_TRAPS_VENDOR_7",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -227,7 +227,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_15",
+            "id": "LOCALID_TRAPS_VENDOR_8",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -242,11 +242,11 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_ROARK_16",
+            "id": "LOCALID_ROARK",
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x01A7",
+            "hidden_flag": "FLAG_HIDE_ROARK_UNDERGROUND",
             "script": 6,
             "initial_dir": 1,
             "data": [],
@@ -257,7 +257,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_17",
+            "id": "LOCALID_TREASURES_VENDOR_1",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -272,7 +272,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_18",
+            "id": "LOCALID_TREASURES_VENDOR_2",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -287,7 +287,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_19",
+            "id": "LOCALID_TREASURES_VENDOR_3",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -302,7 +302,7 @@
             "y": 0
         },
         {
-            "id": "UNDERGROUND_HIKER_20",
+            "id": "LOCALID_TREASURES_VENDOR_4",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

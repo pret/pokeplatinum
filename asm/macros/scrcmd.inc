@@ -1966,7 +1966,7 @@
     .short 334
     .endm
 
-    .macro ScrCmd_14F
+    .macro Dummy14F
     .short 335
     .endm
 
@@ -1978,9 +1978,9 @@
     .short 337
     .endm
 
-    .macro ScrCmd_152 arg0
+    .macro SetCommPlayerDir dir
     .short 338
-    .short \arg0
+    .short \dir
     .endm
 
     .macro ScrCmd_153
@@ -2386,31 +2386,31 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_19E arg0, arg1
+    .macro Dummy19E vendorType, destVar
     .short 414
-    .short \arg0
-    .short \arg1
+    .short \vendorType
+    .short \destVar
     .endm
 
-    .macro ScrCmd_19F arg0
+    .macro UndergroundNPCMessage messageID
     .short 415
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro ScrCmd_1A0
+    .macro CloseUndergroundNPCMessage
     .short 416
     .endm
 
-    .macro ScrCmd_Unused_1A1 arg0, arg1
+    .macro BufferTreasureNameForUndergroundVendor_Unused templateArg, treasureID
     .short 417
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \treasureID
     .endm
 
-    .macro ScrCmd_Unused_1A2 arg0, arg1
+    .macro BufferTrapNameForUndergroundVendor_Unused templateArg, trapID
     .short 418
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trapID
     .endm
 
     .macro RemoveMoney2 valueOrVarID
