@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "game_opening/const_ov77_021D742C.h"
 #include "main_menu/main_menu_util.h"
 #include "main_menu/ov97_02232DC8.h"

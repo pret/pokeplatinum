@@ -6,7 +6,6 @@
 #include "constants/narc.h"
 #include "constants/species.h"
 
-#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208C06C.h"
 

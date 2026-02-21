@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_BOX_APP_MANAGER_H
 #define POKEPLATINUM_BOX_APP_MANAGER_H
 
-#include "struct_decls/pc_boxes_decl.h"
-
 #include "applications/naming_screen.h"
 #include "applications/pc_boxes/box_application.h"
 #include "applications/pc_boxes/box_customization.h"
@@ -15,6 +13,7 @@
 
 #include "message.h"
 #include "overlay_manager.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "string_template.h"
 #include "touch_screen_actions.h"

@@ -8,8 +8,6 @@
 #include "generated/gender_ratios.h"
 #include "generated/species_data_params.h"
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "overlay094/application.h"
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/const_ov94_02245FD8.h"

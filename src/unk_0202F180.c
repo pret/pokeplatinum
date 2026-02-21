@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/pokedexdata_decl.h"
-
 #include "game_records.h"
 #include "pokedex.h"
 #include "pokemon.h"

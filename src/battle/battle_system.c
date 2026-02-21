@@ -16,8 +16,6 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/pc_boxes_decl.h"
-#include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/battler_data.h"
 #include "struct_defs/chatot_cry.h"
@@ -53,6 +51,7 @@
 #include "message.h"
 #include "palette.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_anim.h"
