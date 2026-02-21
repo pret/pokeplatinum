@@ -25,6 +25,7 @@
 #include "bag.h"
 #include "battle_regulation.h"
 #include "charcode_util.h"
+#include "chatot_cry.h"
 #include "communication_system.h"
 #include "field_overworld_state.h"
 #include "game_options.h"
@@ -51,7 +52,6 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202CC64.h"
 #include "unk_0203266C.h"
 #include "unk_020366A0.h"
 #include "unk_020559DC.h"
@@ -230,7 +230,7 @@ void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerI
 
 void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry *src, int battler)
 {
-    CopyChatotCryData(dto->chatotCries[battler], src);
+    ChatotCry_Copy(dto->chatotCries[battler], src);
 }
 
 void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *saveData, enum MapHeader mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn)

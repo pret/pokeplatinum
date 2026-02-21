@@ -23,6 +23,7 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
+#include "chatot_cry.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -43,7 +44,6 @@
 #include "system_vars.h"
 #include "text.h"
 #include "tv_episode_segment.h"
-#include "unk_0202CC64.h"
 #include "unk_0202F180.h"
 #include "unk_020366A0.h"
 #include "unk_02038F8C.h"
@@ -1233,7 +1233,7 @@ static void ov94_02243B08(GTSApplicationState *param0, int param1)
 
         if (Party_HasSpecies(param0->playerData->party, SPECIES_CHATOT) == 0) {
             ChatotCry *v2 = SaveData_GetChatotCry(param0->playerData->saveData);
-            ResetChatotCryDataStatus(v2);
+            ChatotCry_ResetStatus(v2);
         }
     }
 
