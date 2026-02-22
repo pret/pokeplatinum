@@ -1490,16 +1490,16 @@ void ov16_0223F858(BattleSystem *battleSys, u8 *param1)
     }
 }
 
-void ov16_0223F87C(BattleSystem *battleSys, u8 *param1)
+void BattleSystem_SetBattlerTypes(BattleSystem *battleSys, u8 *battlerTypes)
 {
     int battler;
 
     for (battler = 0; battler < MAX_BATTLERS; battler++) {
-        param1[battler] = 0xFF;
+        battlerTypes[battler] = 0xFF;
     }
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        param1[battler] = BattlerData_GetBattlerType(battleSys->battlers[battler]);
+        battlerTypes[battler] = BattlerData_GetBattlerType(battleSys->battlers[battler]);
     }
 }
 
