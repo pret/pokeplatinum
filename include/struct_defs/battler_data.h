@@ -13,12 +13,12 @@
 #include "sys_task_manager.h"
 
 typedef struct BattlerDataSysTaskFuncs {
-    SysTaskFunc func_00;
-    SysTaskFunc func_04;
-    SysTaskFunc func_08;
-    SysTaskFunc func_0C;
-    SysTaskFunc func_10;
-    SysTaskFunc func_14;
+    SysTaskFunc setCommandSelection;
+    SysTaskFunc showMoveSelectMenu;
+    SysTaskFunc showTargetSelectMenu;
+    SysTaskFunc showBagMenu;
+    SysTaskFunc showPartyMenu;
+    SysTaskFunc showYesNoMenu;
 } BattlerDataSysTaskFuncs;
 
 #define DATA_BUF_SIZE 256

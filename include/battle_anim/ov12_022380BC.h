@@ -3,6 +3,9 @@
 
 #include "battle_anim/struct_ov12_022380DC.h"
 
+extern const s16 gEncounterCoords[][3];
+extern const s16 gSlideTrainerInCoords[][3];
+
 void ov12_022380BC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID);
 void ov12_022380CC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID);
 void ov12_022382BC(UnkStruct_ov12_022380DC *param0, enum HeapID heapID);
