@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02024184.h"
 
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -309,7 +308,7 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
         u32 v6;
         void *v7;
         const NNSG3dResTex *v8;
-        UnkStruct_02024184 v9;
+        BillboardGfxSequence v9;
         NNSGfdTexKey v10;
         NNSGfdTexKey v11;
         NNSGfdPlttKey v12;
@@ -342,7 +341,7 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
             v4 = ResourceCollection_FindResource(param0->unk_04, v15);
             v16 = Resource_GetData(v4);
 
-            sub_02024184(v16, &v9);
+            BillboardGfxSequence_SetData(v16, &v9);
         }
 
         if (v1->unk_02_15 == 1) {

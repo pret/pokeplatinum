@@ -3,37 +3,33 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202144C.h"
-#include "struct_defs/struct_02024184.h"
-
-UnkStruct_0202144C sub_0202414C(const UnkStruct_02024184 *param0, const u16 param1)
+BillboardTexPlttIndex BillboardGfxSequence_GetTexPlttIndexAt(const BillboardGfxSequence *gfxSequence, const u16 index)
 {
-    int v0;
-    UnkStruct_0202144C v1;
-
-    for (v0 = 0; v0 < param0->unk_0C - 1; v0++) {
-        if (param0->unk_00[v0 + 1] > param1) {
+    int i;
+    for (i = 0; i < gfxSequence->seqCount - 1; i++) {
+        if (gfxSequence->startFrame[i + 1] > index) {
             break;
         }
     }
 
-    v1.unk_00 = param0->unk_04[v0];
-    v1.unk_01 = param0->unk_08[v0];
+    BillboardTexPlttIndex outIndexes;
+    outIndexes.textureIdx = gfxSequence->textureIdx[i];
+    outIndexes.plttIdx = gfxSequence->plttIdx[i];
 
-    return v1;
+    return outIndexes;
 }
 
-void sub_02024184(const void *param0, UnkStruct_02024184 *param1)
+void BillboardGfxSequence_SetData(const void *data, BillboardGfxSequence *gfxSequence)
 {
-    const u8 *v0 = param0;
-    param1->unk_0C = *((u32 *)v0);
+    const u8 *u8DataPtr = data;
+    gfxSequence->seqCount = *((u32 *)u8DataPtr);
 
-    v0 = v0 + sizeof(u32);
-    param1->unk_00 = (u16 *)v0;
+    u8DataPtr += sizeof(u32);
+    gfxSequence->startFrame = (u16 *)u8DataPtr;
 
-    v0 = v0 + (sizeof(u16) * param1->unk_0C);
-    param1->unk_04 = (u8 *)v0;
+    u8DataPtr += sizeof(u16) * gfxSequence->seqCount;
+    gfxSequence->textureIdx = u8DataPtr;
 
-    v0 = v0 + (sizeof(u8) * param1->unk_0C);
-    param1->unk_08 = (u8 *)v0;
+    u8DataPtr += sizeof(u8) * gfxSequence->seqCount;
+    gfxSequence->plttIdx = u8DataPtr;
 }

@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02024184.h"
 
 #include "field/field_system.h"
 #include "overlay005/area_light.h"
@@ -72,7 +71,7 @@ static void ov5_021DF8C8(FieldEffectManager *fieldEffMan, UnkStruct_ov5_021DF8FC
 static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC *graphicsManager);
 static BillboardResources *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
 static void ov5_021DF910(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
-static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, UnkStruct_02024184 *textureData, void *textureResource, TextureResource *texture, const UnkStruct_020217F4 *effectData);
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, BillboardGfxSequence *textureData, void *textureResource, TextureResource *texture, const UnkStruct_020217F4 *effectData);
 static void UploadTextureResourceToVRamDuringVBlank(FieldEffectManager *fieldEffMan, u32 texID, TextureResourceManager *texResMan);
 static void UploadTextureResourceToVRamTask(SysTask *task, void *context);
 static void DiscardTextureDataTask(SysTask *task, void *context);
@@ -439,14 +438,14 @@ Billboard *ov5_021DF84C(FieldEffectManager *param0, u32 param1, const VecFx32 *p
 BillboardResources *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32 param2, u32 param3, u32 param4, int param5, const UnkStruct_020217F4 *param6)
 {
     void *v0, *v1, *v2;
-    UnkStruct_02024184 v3;
+    BillboardGfxSequence v3;
     TextureResource *v4;
     BillboardResources *v5;
     UnkStruct_ov5_021DF8FC *v6 = param0->unk_20;
     v0 = ResourceHeap_GetItemData(v6->modelResHeap, param2);
     v2 = ResourceHeap_GetItemData(v6->metadataResHeap, param3);
 
-    sub_02024184(v2, &v3);
+    BillboardGfxSequence_SetData(v2, &v3);
 
     v4 = TextureResourceManager_FindTextureResource(v6->texResMan, param4);
     GF_ASSERT(v4 != NULL);
@@ -506,7 +505,7 @@ static void ov5_021DF910(UnkStruct_ov5_021DF8FC *param0, u32 param1)
     GF_ASSERT(FALSE);
 }
 
-static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, UnkStruct_02024184 *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6)
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, BillboardGfxSequence *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6)
 {
     BillboardResources *v0 = NULL;
 

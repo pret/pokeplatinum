@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202144C.h"
-#include "struct_defs/struct_02024184.h"
-
 #include "ascii_util.h"
 #include "heap.h"
+#include "unk_02020AEC.h"
 #include "unk_0202414C.h"
 #include "vram_transfer.h"
 
 typedef struct UnkStruct_0201DDF4_t {
-    const UnkStruct_02024184 *unk_00;
+    const BillboardGfxSequence *unk_00;
     const NNSG3dResTex *unk_04;
     NNSGfdTexKey unk_08;
     NNSGfdPlttKey unk_0C;
@@ -26,11 +24,11 @@ typedef struct UnkStruct_0201DD00_t {
 } UnkStruct_0201DD00;
 
 static void sub_0201DDF4(UnkStruct_0201DDF4 *param0, const u16 param1);
-static void *sub_0201DE94(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
-static void *sub_0201DEA0(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
+static void *sub_0201DE94(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
+static void *sub_0201DEA0(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
 static void sub_0201DDE4(UnkStruct_0201DDF4 *param0);
-static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
-static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
+static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
+static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
 
 UnkStruct_0201DD00 *sub_0201DD00(int param0, enum HeapID heapID)
 {
@@ -56,7 +54,7 @@ void sub_0201DD3C(UnkStruct_0201DD00 *param0)
     Heap_Free(param0);
 }
 
-UnkStruct_0201DDF4 *sub_0201DD54(UnkStruct_0201DD00 *param0, const UnkStruct_02024184 *param1, const NNSG3dResTex *param2, NNSGfdTexKey param3, NNSGfdPlttKey param4, const fx32 param5)
+UnkStruct_0201DDF4 *sub_0201DD54(UnkStruct_0201DD00 *param0, const BillboardGfxSequence *param1, const NNSG3dResTex *param2, NNSGfdTexKey param3, NNSGfdPlttKey param4, const fx32 param5)
 {
     UnkStruct_0201DDF4 *v0;
     u32 v1;
@@ -120,43 +118,43 @@ static void sub_0201DDE4(UnkStruct_0201DDF4 *param0)
 
 static void sub_0201DDF4(UnkStruct_0201DDF4 *param0, const u16 param1)
 {
-    UnkStruct_0202144C v0;
+    BillboardTexPlttIndex v0;
 
-    v0 = sub_0202414C(param0->unk_00, param1);
+    v0 = BillboardGfxSequence_GetTexPlttIndexAt(param0->unk_00, param1);
 
-    if (param0->unk_10 != v0.unk_00) {
+    if (param0->unk_10 != v0.textureIdx) {
         sub_0201DE3C(param0, &v0);
     }
 
-    if (param0->unk_11 != v0.unk_01) {
+    if (param0->unk_11 != v0.plttIdx) {
         sub_0201DE68(param0, &v0);
     }
 }
 
-static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1)
+static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
 {
     void *v0 = sub_0201DE94(param0, param1);
 
     VramTransfer_Request(NNS_GFD_DST_3D_TEX_VRAM, NNS_GfdGetTexKeyAddr(param0->unk_08), v0, NNS_GfdGetTexKeySize(param0->unk_08));
-    param0->unk_10 = param1->unk_00;
+    param0->unk_10 = param1->textureIdx;
 }
 
-static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1)
+static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
 {
     void *v0 = sub_0201DEA0(param0, param1);
     VramTransfer_Request(NNS_GFD_DST_3D_TEX_PLTT, NNS_GfdGetPlttKeyAddr(param0->unk_0C), v0, NNS_GfdGetPlttKeySize(param0->unk_0C));
 
-    param0->unk_11 = param1->unk_01;
+    param0->unk_11 = param1->plttIdx;
 }
 
-static void *sub_0201DE94(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1)
+static void *sub_0201DE94(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
 {
-    return sub_0201DEAC((NNSG3dResTex *)param0->unk_04, param1->unk_00);
+    return sub_0201DEAC((NNSG3dResTex *)param0->unk_04, param1->textureIdx);
 }
 
-static void *sub_0201DEA0(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1)
+static void *sub_0201DEA0(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
 {
-    return sub_0201DEFC((NNSG3dResTex *)param0->unk_04, param1->unk_01);
+    return sub_0201DEFC((NNSG3dResTex *)param0->unk_04, param1->plttIdx);
 }
 
 void *sub_0201DEAC(NNSG3dResTex *param0, const u8 param1)

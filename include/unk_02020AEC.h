@@ -9,7 +9,8 @@
 #include "struct_decls/struct_0201DD00_decl.h"
 #include "struct_decls/struct_0201DDF4_decl.h"
 #include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02024184.h"
+
+#include "unk_0202414C.h"
 
 typedef struct Billboard Billboard;
 typedef void (*BillboardCallback)(Billboard *, void *);
@@ -31,7 +32,7 @@ typedef struct Billboard {
     NNSGfdTexKey texKey;
     NNSGfdTexKey tex4x4Key;
     NNSGfdPlttKey plttKey;
-    UnkStruct_02024184 unk_A0;
+    BillboardGfxSequence unk_A0;
     UnkStruct_0201DDF4 *unk_B0;
     u8 unk_B4;
     u16 unk_B6;
@@ -58,7 +59,7 @@ typedef struct BillboardResources {
     void *modelRes;
     const NNSG3dResTex *texture;
     const UnkStruct_020217F4 *unk_08;
-    UnkStruct_02024184 unk_0C;
+    BillboardGfxSequence unk_0C;
     NNSGfdTexKey texKey;
     NNSGfdTexKey tex4x4Key;
     NNSGfdPlttKey plttKey;
@@ -92,8 +93,8 @@ BOOL sub_02020D50(BillboardList *param0);
 void sub_02020D68(BillboardList *param0);
 Billboard *sub_0202119C(const BillboardListTemplate *param0);
 BOOL sub_020211FC(Billboard *param0);
-void sub_0202125C(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4, NNSGfdTexKey param5, NNSGfdTexKey param6, NNSGfdPlttKey param7);
-void sub_02021284(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4);
+void sub_0202125C(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4, NNSGfdTexKey param5, NNSGfdTexKey param6, NNSGfdPlttKey param7);
+void sub_02021284(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4);
 void sub_020212A8(Billboard *param0, const VecFx32 *param1);
 const VecFx32 *sub_020212C0(const Billboard *param0);
 void sub_020212D0(Billboard *param0, const VecFx32 *param1);

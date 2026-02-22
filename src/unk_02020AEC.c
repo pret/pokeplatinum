@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202144C.h"
-
 #include "easy3d.h"
 #include "heap.h"
 #include "unk_0201DD00.h"
@@ -82,7 +80,7 @@ void Billboard_Reset(Billboard *billboard)
     billboard->texture = NULL;
     billboard->unk_90 = NULL;
 
-    memset(&billboard->unk_A0, 0, sizeof(UnkStruct_02024184));
+    memset(&billboard->unk_A0, 0, sizeof(BillboardGfxSequence));
 
     billboard->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
     billboard->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
@@ -511,7 +509,7 @@ BOOL sub_020211FC(Billboard *billboard)
 }
 
 // BillboardResources_Set
-void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
+void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
@@ -523,7 +521,7 @@ void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dRes
 }
 
 // BillboardResources_SetWithoutKeys
-void sub_02021284(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const UnkStruct_02024184 *param4)
+void sub_02021284(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
@@ -682,10 +680,10 @@ void sub_02021444(Billboard *billboard, BillboardCallback callback, void *callba
 
 static void sub_0202144C(Billboard *billboard)
 {
-    UnkStruct_0202144C v0 = sub_0202414C(&billboard->unk_A0, billboard->unk_B8 >> FX32_SHIFT);
+    BillboardTexPlttIndex v0 = BillboardGfxSequence_GetTexPlttIndexAt(&billboard->unk_A0, billboard->unk_B8 >> FX32_SHIFT);
 
-    sub_0202149C(billboard->model, billboard->unk_90, v0.unk_00);
-    sub_020215A0(billboard->model, billboard->unk_90, v0.unk_01);
+    sub_0202149C(billboard->model, billboard->unk_90, v0.textureIdx);
+    sub_020215A0(billboard->model, billboard->unk_90, v0.plttIdx);
 }
 
 static void sub_0202149C(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2)

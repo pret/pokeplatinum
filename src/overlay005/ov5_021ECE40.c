@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_020217F4.h"
-#include "struct_defs/struct_02024184.h"
 
 #include "overlay005/area_light.h"
 #include "overlay005/const_ov5_021FAF40.h"
@@ -58,7 +57,7 @@ typedef struct {
     void *unk_08;
     void *unk_0C;
     void *unk_10;
-    UnkStruct_02024184 unk_14;
+    BillboardGfxSequence unk_14;
     Billboard *unk_24;
     BillboardResources unk_28;
     MapObject *unk_50;
@@ -1407,7 +1406,7 @@ static void ov5_021EDE3C(UnkStruct_ov5_021ED0A4 *param0, u32 param1, BillboardRe
         int v2 = ov5_021EDD38(param1);
         void *v3 = ResourceHeap_GetItemData(param0->unk_FC, v2);
 
-        sub_02024184(v3, &param2->unk_0C);
+        BillboardGfxSequence_SetData(v3, &param2->unk_0C);
     }
 
     {
@@ -1919,7 +1918,7 @@ static Billboard *ov5_021EE454(MapObject *param0, int param1, UnkFuncPtr_ov5_021
 
         GF_ASSERT(v7->unk_00 != 0xffff);
         v11->unk_0C = ov5_021EDCF4(v8, v7->unk_04, 0);
-        sub_02024184(v11->unk_0C, &v11->unk_14);
+        BillboardGfxSequence_SetData(v11->unk_0C, &v11->unk_14);
     }
 
     {
