@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_UNDERGROUND_ITEM_LIST_MENU_H
 #define POKEPLATINUM_UNDERGROUND_ITEM_LIST_MENU_H
 
-#include "struct_defs/underground.h"
-
 #include "colored_arrow.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "string_list.h"
+#include "underground.h"
 
 typedef void (*MoveItemCallback)(Underground *underground, int origSlot, int slotToMoveAfter);
 

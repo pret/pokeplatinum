@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_UNDERGROUND_MANAGER_H
 #define POKEPLATINUM_UNDERGROUND_MANAGER_H
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system_decl.h"
 #include "underground/defs.h"
 #include "underground/text_printer.h"
@@ -11,6 +9,7 @@
 #include "string_gf.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
+#include "underground.h"
 
 #define MAX_NORMAL_RADAR_BLIPS 8
 

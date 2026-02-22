@@ -6,8 +6,6 @@
 #include "generated/game_records.h"
 #include "generated/sphere_types.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 #include "overlay005/ov5_021F575C.h"
 #include "underground/manager.h"
@@ -28,7 +26,7 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/underground_common.h"

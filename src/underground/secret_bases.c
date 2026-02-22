@@ -11,9 +11,6 @@
 #include "generated/trainer_score_events.h"
 #include "generated/traps.h"
 
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
-
 #include "field/field_system.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021F55CC.h"
@@ -59,7 +56,7 @@
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"

@@ -53,7 +53,7 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"

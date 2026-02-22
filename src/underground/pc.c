@@ -6,8 +6,6 @@
 #include "constants/field_base_tiles.h"
 #include "constants/map_object.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 #include "underground/base_decoration.h"
 #include "underground/item_list_menu.h"
@@ -48,7 +46,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_02033200.h"
 #include "vars_flags.h"
 

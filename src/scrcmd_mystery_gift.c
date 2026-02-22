@@ -9,6 +9,7 @@
 #include "generated/mystery_gift_delivery_stages.h"
 
 #include "field/field_system.h"
+#include "underground/defs.h"
 
 #include "bag.h"
 #include "battle_regulation.h"
@@ -27,8 +28,8 @@
 #include "string_template.h"
 #include "system_vars.h"
 #include "trainer_info.h"
+#include "underground.h"
 #include "unk_02017038.h"
-#include "unk_0202854C.h"
 #include "unk_020298BC.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202D778.h"
@@ -426,7 +427,7 @@ static BOOL CanReceiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)
 {
     int ownedCount = Underground_GetGoodsCountPC(SaveData_GetUnderground(fieldSystem->saveData));
 
-    return ownedCount < NUM_MAX_DECORATION_GOODS;
+    return ownedCount < MAX_GOODS_PC_SLOTS;
 }
 
 static void GiveDecorationGood(FieldSystem *fieldSystem, GiftData *dummy)

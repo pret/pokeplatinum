@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/underground.h"
-
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "heap.h"
@@ -13,7 +11,7 @@
 #include "sound_playback.h"
 #include "string_list.h"
 #include "system.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 UndergroundItemListMenu *UndergroundItemListMenu_New(ListMenuTemplate *template, u16 startListPos, u16 startCursorPos, u8 heapID, MoveItemCallback moveItemCallback, Underground *underground, BOOL isDecorationMenu)
 {

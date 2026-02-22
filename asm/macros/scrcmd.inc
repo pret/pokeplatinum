@@ -4018,7 +4018,7 @@
     .short \arg2
     .endm
 
-    .macro TrySetUnusedUndergroundField item
+    .macro TrySetUnusedCollectedOrbFlag item
     .short 674
     .short \item
     .endm

@@ -43,8 +43,6 @@
 #include "struct_defs/struct_02029C88.h"
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02041DC8.h"
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
 
 #include "applications/naming_screen.h"
 #include "applications/party_menu/defs.h"
@@ -182,8 +180,8 @@
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
+#include "underground.h"
 #include "unk_02014D38.h"
-#include "unk_0202854C.h"
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C9F4.h"
@@ -685,7 +683,7 @@ static BOOL ScrCmd_29E(ScriptContext *ctx);
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx);
 static BOOL ScrCmd_29F(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_2A1(ScriptContext *ctx);
-static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx);
+static BOOL ScrCmd_TrySetUnusedCollectedOrbFlag(ScriptContext *ctx);
 static BOOL ScrCmd_2A3(ScriptContext *ctx);
 static BOOL ScrCmd_2A4(ScriptContext *ctx);
 static BOOL ScrCmd_CheckItemIsPlate(ScriptContext *ctx);
@@ -1443,7 +1441,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_29F,
     ScrCmd_StartTagBattle,
     ScrCmd_Unused_2A1,
-    ScrCmd_TrySetUnusedUndergroundField,
+    ScrCmd_TrySetUnusedCollectedOrbFlag,
     ScrCmd_2A3,
     ScrCmd_2A4,
     ScrCmd_OpenPartyMenuForTrade,
@@ -7252,13 +7250,13 @@ static BOOL ScrCmd_2A4(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_TrySetUnusedUndergroundField(ScriptContext *ctx)
+static BOOL ScrCmd_TrySetUnusedCollectedOrbFlag(ScriptContext *ctx)
 {
     u16 item = ScriptContext_GetVar(ctx);
     Underground *underground = SaveData_GetUnderground(ctx->fieldSystem->saveData);
 
     if (item == ITEM_ADAMANT_ORB || item == ITEM_LUSTROUS_ORB) {
-        Underground_SetUnusedField(underground);
+        Underground_SetUnusedCollectedOrbFlag(underground);
     }
 
     return FALSE;

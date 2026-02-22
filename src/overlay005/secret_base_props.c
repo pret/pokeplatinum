@@ -5,8 +5,6 @@
 
 #include "generated/goods.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
@@ -16,7 +14,7 @@
 
 #include "field_comm_manager.h"
 #include "goods.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 void SecretBase_LoadProps(FieldSystem *fieldSystem)
 {

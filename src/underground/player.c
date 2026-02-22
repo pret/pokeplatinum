@@ -7,7 +7,6 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_defs/struct_02057B48.h"
-#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F50BC.h"
@@ -39,7 +38,7 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/underground_capture_flag.h"

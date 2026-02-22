@@ -6,7 +6,6 @@
 #include "generated/game_records.h"
 
 #include "struct_defs/battle_frontier.h"
-#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 
@@ -23,7 +22,7 @@
 #include "system_flags.h"
 #include "trainer_card_save_data.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_0203061C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020559DC.h"

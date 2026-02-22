@@ -108,7 +108,7 @@ pokeplatinum_c = files(
     'persisted_map_features.c',
     'pal_pad.c',
     'mail.c',
-    'unk_0202854C.c',
+    'underground.c',
     'unk_020298BC.c',
     'unk_0202ACE0.c',
     'record_mixed_rng.c',

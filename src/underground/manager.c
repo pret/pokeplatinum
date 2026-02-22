@@ -9,7 +9,6 @@
 #include "constants/map_object.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "overlay005/land_data.h"
@@ -44,7 +43,7 @@
 #include "system_flags.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_02030EE0.h"
 #include "unk_020366A0.h"
 #include "vars_flags.h"
@@ -805,7 +804,7 @@ void UndergroundMan_UnpauseResources(void)
 void UndergroundMan_FreeAllResources(void)
 {
     if (sUndergroundMan != NULL) {
-        sub_020287F8(sUndergroundMan->fieldSystem->saveData);
+        Underground_ClearGiftPenaltyFlag(sUndergroundMan->fieldSystem->saveData);
         SecretBasesEnv_Free();
         TrapsEnv_Free();
         CommPlayerMan_Delete(TRUE);
