@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay104/frontier_scrcmd.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frscrcmd.h"
 
 #include "sound.h"
 #include "sound_playback.h"

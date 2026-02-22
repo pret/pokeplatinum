@@ -1,4 +1,4 @@
-#include "overlay104/frontier_scrcmd.h"
+#include "overlay104/frscrcmd.h"
 
 #include <nitro.h>
 #include <string.h>

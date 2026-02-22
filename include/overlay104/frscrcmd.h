@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_FRONTIER_SCRCMD_H
-#define POKEPLATINUM_FRONTIER_SCRCMD_H
+#ifndef POKEPLATINUM_FRSCRCMD_H
+#define POKEPLATINUM_FRSCRCMD_H
 
 #include "overlay104/frontier_script_context.h"
 
@@ -11,4 +11,4 @@ u16 FrontierScriptContext_GetVar(FrontierScriptContext *ctx);
 u16 *FrontierScriptContext_GetVarPointer(FrontierScriptContext *ctx, u16 varID);
 u16 FrontierScriptContext_TryGetVar(FrontierScriptContext *ctx, u16 varID);
 
-#endif // POKEPLATINUM_FRONTIER_SCRCMD_H
+#endif // POKEPLATINUM_FRSCRCMD_H

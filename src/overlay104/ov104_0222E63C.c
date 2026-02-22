@@ -5,8 +5,8 @@
 
 #include "struct_decls/struct_0209B75C_decl.h"
 
-#include "overlay104/frontier_scrcmd.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222EA90.h"
 #include "overlay104/ov104_0223D860.h"
 #include "overlay104/struct_ov104_0222E8C8.h"

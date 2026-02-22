@@ -11,8 +11,8 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/battle_tower.h"
 
-#include "overlay104/frontier_scrcmd.h"
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_02231F74.h"
 #include "overlay104/ov104_022394A4.h"
 #include "overlay104/ov104_0223A0C4.h"
