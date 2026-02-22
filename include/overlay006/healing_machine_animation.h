@@ -28,8 +28,8 @@
 #define HEALING_MACHINE_ANIMATION_CREATE_POKEBALL_OFFSETS(zPos, xPos) \
     {                                                                 \
         HEALING_MACHINE_ANIMATION_POKEBALL_OFFSET_X_##xPos,           \
-            HEALING_MACHINE_ANIMATION_POKEBALL_OFFSET_Y_ALL,          \
-            HEALING_MACHINE_ANIMATION_POKEBALL_OFFSET_Z_##zPos,       \
+        HEALING_MACHINE_ANIMATION_POKEBALL_OFFSET_Y_ALL,              \
+        HEALING_MACHINE_ANIMATION_POKEBALL_OFFSET_Z_##zPos,           \
     }
 
 void FieldSystem_PlayHealingAnimation_Pokecenter(FieldSystem *fieldSystem, const u8 pokeballCount);
