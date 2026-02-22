@@ -715,7 +715,7 @@ static void sub_0205A058(void)
     FieldCommMan_SetTask(FieldCommMan_Delete, 0);
 }
 
-SecretBase *sub_0205A080(SaveData *saveData)
+SecretBase *FieldCommMan_GetCurrentOccupiedSecretBase(SaveData *saveData)
 {
     if (!sFieldCommMan || !sFieldCommMan->isUnderground) {
         return NULL;

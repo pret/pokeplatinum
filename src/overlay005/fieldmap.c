@@ -37,8 +37,8 @@
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021EE75C.h"
 #include "overlay005/ov5_021EF4BC.h"
-#include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
+#include "overlay005/secret_base_props.h"
 #include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
@@ -211,7 +211,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
 
         fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD1);
 
-        ov5_021F0824(fieldSystem);
+        SecretBase_LoadProps(fieldSystem);
         FieldSystem_InitLandManager(fieldSystem);
         ov5_021D1878(fieldSystem);
         ov5_021D1968(fieldSystem);
