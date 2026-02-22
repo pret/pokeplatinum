@@ -188,7 +188,7 @@ static BOOL ov5_021F65D4(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*v1 == 0xeeee) {
+    if (*v1 == 0xEEEE) {
         return 0;
     }
 
@@ -243,7 +243,7 @@ static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param
         param1->unk_1C[v0] = String_Init(40 * 2, HEAP_ID_FIELD1);
     }
 
-    *param1->unk_210 = 0xeeee;
+    *param1->unk_210 = 0xEEEE;
     return;
 }
 

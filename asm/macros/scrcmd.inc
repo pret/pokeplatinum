@@ -456,7 +456,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -470,7 +470,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -499,7 +499,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowListMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -513,7 +513,7 @@
     .endm
 
     /*
-     * selectedOptionVar is set to 0xeeee as part of initializing a FieldMenuManager.
+     * selectedOptionVar is set to 0xEEEE as part of initializing a FieldMenuManager.
      * Once ShowListMenu or one of its variants is used, selectedOptionVar is set to the
      * entryIndex of the option the player selected.
      */
@@ -1711,7 +1711,7 @@
     .short \destVarID
     .endm
 
-    /* destVar is used to initialize a FieldMenuManager, setting it to 0xeeee, but is otherwise left without a meaningful value */
+    /* destVar is used to initialize a FieldMenuManager, setting it to 0xEEEE, but is otherwise left without a meaningful value */
     .macro ShowCurrentFloor tilemapLeft, tilemapTop, destVarID
     .short 285
     .byte \tilemapLeft

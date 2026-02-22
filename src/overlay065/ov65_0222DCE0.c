@@ -2707,7 +2707,7 @@ static int ov65_02230634(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232DFC(param0);
         ov65_02232E58(param0, 1);
         param0->unk_3A8 = 24;
-        sub_0202B13C(param0->unk_00, param0->unk_3E2 - 1);
+        WiFiList_SetHostFriendCurrentDate(param0->unk_00, param0->unk_3E2 - 1);
     }
 
     return param1;
@@ -2721,7 +2721,7 @@ static int ov65_02230774(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     param0->unk_3A8 = 23;
 
-    sub_0202B13C(param0->unk_00, NintendoWFC_GetHostFriendIdx());
+    WiFiList_SetHostFriendCurrentDate(param0->unk_00, NintendoWFC_GetHostFriendIdx());
 
     return param1;
 }
@@ -2822,7 +2822,7 @@ static int ov65_022309D0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     }
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        sub_0202B13C(param0->unk_00, NintendoWFC_GetHostFriendIdx());
+        WiFiList_SetHostFriendCurrentDate(param0->unk_00, NintendoWFC_GetHostFriendIdx());
 
         param0->unk_184 = Menu_MakeYesNoChoice(param0->unk_15C, &Unk_ov65_0223894C, (512 - (18 + 12)) - 9, 11, 54);
         param0->unk_3A8 = 26;

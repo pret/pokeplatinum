@@ -244,15 +244,15 @@ void sub_0202B0F8(WiFiList *param0)
     }
 }
 
-void sub_0202B13C(WiFiList *param0, int param1)
+void WiFiList_SetHostFriendCurrentDate(WiFiList *wiFiList, int hostFriendID)
 {
-    RTCDate v0;
+    RTCDate date;
 
-    GetCurrentDate(&v0);
+    GetCurrentDate(&date);
 
-    param0->unk_1C0[param1].unk_2A = v0.year + 2000;
-    param0->unk_1C0[param1].unk_2C = v0.month;
-    param0->unk_1C0[param1].unk_2D = v0.day;
+    wiFiList->unk_1C0[hostFriendID].unk_2A = date.year + 2000;
+    wiFiList->unk_1C0[hostFriendID].unk_2C = date.month;
+    wiFiList->unk_1C0[hostFriendID].unk_2D = date.day;
 }
 
 void sub_0202B174(WiFiList *param0, int param1, int param2, int param3, int param4)
@@ -275,7 +275,7 @@ void sub_0202B174(WiFiList *param0, int param1, int param2, int param3, int para
         param0->unk_1C0[param1].unk_28 = 9999;
     }
 
-    sub_0202B13C(param0, param1);
+    WiFiList_SetHostFriendCurrentDate(param0, param1);
 }
 
 void sub_0202B1D0(WiFiList *param0, int param1, int param2)
@@ -286,7 +286,7 @@ void sub_0202B1D0(WiFiList *param0, int param1, int param2)
         param0->unk_1C0[param1].unk_30 = 9999;
     }
 
-    sub_0202B13C(param0, param1);
+    WiFiList_SetHostFriendCurrentDate(param0, param1);
 }
 
 void sub_0202B1F8(WiFiList *param0, int param1, int param2)
@@ -297,7 +297,7 @@ void sub_0202B1F8(WiFiList *param0, int param1, int param2)
         param0->unk_1C0[param1].unk_32 = 9999;
     }
 
-    sub_0202B13C(param0, param1);
+    WiFiList_SetHostFriendCurrentDate(param0, param1);
 }
 
 void sub_0202B220(WiFiList *param0, int param1, int param2)
@@ -308,7 +308,7 @@ void sub_0202B220(WiFiList *param0, int param1, int param2)
         param0->unk_1C0[param1].unk_34 = 9999;
     }
 
-    sub_0202B13C(param0, param1);
+    WiFiList_SetHostFriendCurrentDate(param0, param1);
 }
 
 void sub_0202B248(WiFiList *param0, int param1, int param2)
@@ -319,7 +319,7 @@ void sub_0202B248(WiFiList *param0, int param1, int param2)
         param0->unk_1C0[param1].unk_36 = 9999;
     }
 
-    sub_0202B13C(param0, param1);
+    WiFiList_SetHostFriendCurrentDate(param0, param1);
 }
 
 void sub_0202B270(WiFiList *param0, int param1, int param2)

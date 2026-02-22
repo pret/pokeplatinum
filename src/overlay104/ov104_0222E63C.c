@@ -6,8 +6,8 @@
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/frscrcmd.h"
 #include "overlay104/ov104_0222EA90.h"
-#include "overlay104/ov104_0222FBE4.h"
 #include "overlay104/ov104_0223D860.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -101,7 +101,7 @@ void ov104_0222E748(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
     FrontierScriptContext *ctx = Heap_Alloc(param0->heapID, sizeof(FrontierScriptContext));
     MI_CpuClear8(ctx, sizeof(FrontierScriptContext));
 
-    FrontierScriptContext_Init(ctx, Unk_ov104_0223F674, Unk_ov104_0223F63C);
+    FrontierScriptContext_Init(ctx, gFrontierScrCmdFuncs, gFrontierScrCmdFuncsCount);
 
     ctx->unk_00 = param0;
 

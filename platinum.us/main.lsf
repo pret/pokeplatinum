@@ -1540,7 +1540,7 @@ Overlay overlay104
 	Object main.nef.p/src_overlay104_frontier_script_context.c.o
 	Object main.nef.p/src_overlay104_ov104_0222EA90.c.o
 	Object main.nef.p/src_overlay104_ov104_0222ECE8.c.o
-	Object main.nef.p/src_overlay104_ov104_0222FBE4.c.o
+	Object main.nef.p/src_overlay104_frscrcmd.c.o
 	Object main.nef.p/src_overlay104_ov104_02231F74.c.o
 	Object main.nef.p/src_overlay104_ov104_022332B4.c.o
 	Object main.nef.p/src_overlay104_ov104_022339B4.c.o

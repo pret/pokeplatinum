@@ -1,6 +1,8 @@
 #include "generated/battle_tower_functions.h"
 #include "generated/fade_types.h"
+#include "generated/game_records.h"
 #include "generated/sdat.h"
+#include "generated/trainer_score_events.h"
 #include "constants/colors.h"
 #include "constants/fade_screen.h"
 #include "constants/scrcmd.h"
@@ -236,7 +238,7 @@
     .byte \arg1
     .endm
 
-    .macro FrontierScrCmd_27
+    .macro FrontierScrCmd_Dummy27
     .short 0x027
     .endm
 
@@ -270,10 +272,10 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_2E arg0, arg1
+    .macro FrontierScrCmd_2E arg0, draw
     .short 0x02E
     .short \arg0
-    .byte \arg1
+    .byte \draw
     .endm
 
     .macro FrontierScrCmd_2F arg0
@@ -312,7 +314,7 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_36
+    .macro ClearReceivedTempDataAllPlayers
     .short 0x036
     .endm
 
@@ -339,21 +341,21 @@
     .short \frames
     .endm
 
-    .macro FrontierScrCmd_3C arg0
+    .macro FrontierScrCmd_Dummy3C unused
     .short 0x03C
-    .short \arg0
+    .short \unused
     .endm
 
-    .macro FrontierScrCmd_3D arg0, arg1
+    .macro FrontierScrCmd_3D destVar, value
     .short 0x03D
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \value
     .endm
 
-    .macro FrontierScrCmd_3E arg0, arg1
+    .macro FrontierScrCmd_3E srcVar, destVar
     .short 0x03E
-    .short \arg0
-    .short \arg1
+    .short \srcVar
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_3F arg0
@@ -361,9 +363,9 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_40 arg0
+    .macro GetPlayerObjEventGfx destVar
     .short 0x040
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_41 arg0, arg1, arg2
@@ -378,24 +380,24 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_43 arg0, arg1
+    .macro FrontierScrCmd_43 arg0, resourceID
     .short 0x043
     .short \arg0
-    .short \arg1
+    .short \resourceID
     .endm
 
     .macro FrontierScrCmd_44
     .short 0x044
     .endm
 
-    .macro FrontierScrCmd_45 arg0, arg1, arg2, arg3, arg4, arg5
+    .macro FrontierScrCmd_45 slot, x, y, arg3, blendFraction, blendTarget
     .short 0x045
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \slot
+    .short \x
+    .short \y
     .short \arg3
-    .short \arg4
-    .short \arg5
+    .short \blendFraction
+    .short \blendTarget
     .endm
 
     .macro FrontierScrCmd_46 arg0
@@ -408,25 +410,25 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_48 arg0
+    .macro IncrementRecordValue recordID
     .short 0x048
-    .short \arg0
+    .short \recordID
     .endm
 
-    .macro FrontierScrCmd_49 arg0, arg1
+    .macro AddToRecordValue recordID, value
     .short 0x049
-    .short \arg0
-    .short \arg1
+    .short \recordID
+    .short \value
     .endm
 
-    .macro FrontierScrCmd_4A arg0
+    .macro IncrementTrainerScore scoreID
     .short 0x04A
-    .short \arg0
+    .short \scoreID
     .endm
 
-    .macro FrontierScrCmd_4B arg0
+    .macro FrontierScrCmd_4B destVar
     .short 0x04B
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_4C arg0, arg1, arg2, arg3
@@ -613,9 +615,9 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_71 arg0
+    .macro FrontierScrCmd_71 destVar
     .short 0x071
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_72 arg0
@@ -628,13 +630,13 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_74
+    .macro SaveDataExtraInit
     .short 0x074
     .endm
 
-    .macro FrontierScrCmd_75 arg0
+    .macro FrontierScrCmd_GetMiscSaveBlockInitFlag destVar
     .short 0x075
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_76 arg0
@@ -697,19 +699,19 @@
     .byte \templateArg
     .endm
 
-    .macro FrontierScrCmd_81 arg0
+    .macro GetNumBattlePoints destVar
     .short 0x081
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro FrontierScrCmd_82 arg0
+    .macro GiveBattlePoints battlePoints
     .short 0x082
-    .short \arg0
+    .short \battlePoints
     .endm
 
-    .macro FrontierScrCmd_83 arg0
+    .macro RemoteBattlePoints battlePoints
     .short 0x083
-    .short \arg0
+    .short \battlePoints
     .endm
 
     .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
@@ -809,7 +811,7 @@
     .byte \arg0
     .endm
 
-    .macro FrontierScrCmd_96 arg0
+    .macro FrontierScrCmd_Dummy96 arg0
     .short 0x096
     .short \arg0
     .endm
@@ -984,7 +986,7 @@
     .short 0x0B6
     .endm
 
-    .macro FrontierScrCmd_B7
+    .macro SetWiFiListHostFriendCurrentDate
     .short 0x0B7
     .endm
 

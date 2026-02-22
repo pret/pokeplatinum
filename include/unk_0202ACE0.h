@@ -25,7 +25,7 @@ int sub_0202AF94(WiFiList *param0);
 int sub_0202AFB4(WiFiList *param0);
 void sub_0202AFD4(WiFiList *param0, int param1);
 void sub_0202B0F8(WiFiList *param0);
-void sub_0202B13C(WiFiList *param0, int param1);
+void WiFiList_SetHostFriendCurrentDate(WiFiList *param0, int param1);
 void sub_0202B174(WiFiList *param0, int param1, int param2, int param3, int param4);
 void sub_0202B1D0(WiFiList *param0, int param1, int param2);
 void sub_0202B1F8(WiFiList *param0, int param1, int param2);

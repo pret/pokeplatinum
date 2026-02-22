@@ -553,7 +553,7 @@ _0326:
     FrontierScrCmd_3E 0x4003, 0x8003
     FrontierScrCmd_3E 0x4002, 0x8002
     FrontierScrCmd_3E 0x4005, 0x8000
-    FrontierScrCmd_40 0x800A
+    GetPlayerObjEventGfx 0x800A
     SetVar 0x800E, 0
     FrontierScrCmd_6C
     FrontierScrCmd_8B 0x8003, 0x8001, 0x8002, 0x8000
@@ -567,7 +567,7 @@ _0326:
 
 _0382:
     Call _13E1
-    FrontierScrCmd_4A 43
+    IncrementTrainerScore TRAINER_SCORE_EVENT_UNK_43
     SetVar 0x800F, 232
     FrontierScrCmd_22 _0010
     FrontierScrCmd_24 _005C
@@ -679,9 +679,9 @@ _0595:
 
 _05BC:
     MessageNoSkip BattleHallScene_Text_PleaseWait
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 220
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_C9 1
     GoTo _05D4
     End
@@ -691,14 +691,14 @@ _05D4:
     FrontierScrCmd_93 0x8006, 0, 0x8008
     GoToIfEq 0x8008, 0, _05D4
     FrontierScrCmd_94 0x8006
-    FrontierScrCmd_36
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 221
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_C9 0
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 100
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0611
     End
 
@@ -716,9 +716,9 @@ _0611:
     End
 
 _065B:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 224
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _0665:
@@ -754,9 +754,9 @@ _0700:
 _0708:
     CallIfNe 0x800E, 0, _0821
     SetVar 0x800E, 1
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 223
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Call _13FE
     GoTo _0731
     End
@@ -766,10 +766,10 @@ _0731:
     FrontierScrCmd_93 0x8006, 0, 0x8008
     GoToIfEq 0x8008, 0, _0731
     FrontierScrCmd_94 0x8006
-    FrontierScrCmd_36
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 222
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0762
     End
 
@@ -778,8 +778,8 @@ _0762:
     FrontierScrCmd_93 0x8006, 0, 0x8008
     GoToIfEq 0x8008, 0, _0762
     FrontierScrCmd_94 0x8006
-    FrontierScrCmd_36
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 103
     Call _0858
     FrontierScrCmd_28 98, _0254
@@ -855,15 +855,15 @@ _08A0:
     End
 
 _08E1:
-    FrontierScrCmd_48 59
+    IncrementRecordValue RECORD_UNK_059
     FrontierScrCmd_47 5
     GoTo _0907
     End
 
 _08F1:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 101
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     CloseMessage
     FrontierScrCmd_3F 1
     GoTo _0907
@@ -877,7 +877,7 @@ _0907:
     FadeScreenIn
     FrontierScrCmd_92 0x8008
     GoToIfEq 0x8008, 0, _0F5D
-    FrontierScrCmd_48 62
+    IncrementRecordValue RECORD_UNK_062
     FrontierScrCmd_91 28, 0, 0, 0x8008
     FrontierScrCmd_91 33, 0, 0, 0x8008
     CallIfEq 0x8008, 10, _09B1
@@ -896,7 +896,7 @@ _0907:
     End
 
 _09B1:
-    FrontierScrCmd_48 66
+    IncrementRecordValue RECORD_UNK_066
     Return
 
 _09B7:
@@ -972,7 +972,7 @@ _0AD6:
     BufferPlayerName 0
     FrontierScrCmd_91 34, 0, 0, 0x8008
     BufferNumber 1, 0x8008
-    FrontierScrCmd_82 0x8008
+    GiveBattlePoints 0x8008
     Message BattleHallScene_Text_ReceiveBP
     PlayFanfare SEQ_PL_POINTGET3
     WaitFanfare
@@ -1112,12 +1112,12 @@ _0D3B:
     FrontierScrCmd_93 0x8006, 0, 0x8008
     GoToIfEq 0x8008, 0, _0D3B
     FrontierScrCmd_94 0x8006
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_91 24, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _0D80
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 102
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0D99
     End
 
@@ -1244,9 +1244,9 @@ _0F0D:
     End
 
 _0F30:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 107
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _0F40
     End
 
@@ -1299,9 +1299,9 @@ _0FDD:
 
 _0FF9:
     MessageNoSkip BattleHallScene_Text_PleaseWait
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 105
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _100D
     End
 
@@ -1328,9 +1328,9 @@ _106B:
     Return
 
 _1071:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 106
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _107B:
@@ -1541,27 +1541,27 @@ _13E1:
     WaitTime 1, 0x8008
     FrontierScrCmd_91 29, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 185
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _13FE:
     WaitTime 1, 0x8008
     FrontierScrCmd_91 29, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 186
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _141B:
     WaitTime 1, 0x8008
     FrontierScrCmd_91 29, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 187
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
     .balign 4, 0

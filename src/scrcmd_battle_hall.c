@@ -504,7 +504,7 @@ BOOL ScrCmd_GetBattleHallRecordKeeperStats(ScriptContext *ctx)
         }
     }
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_068, earnedBP);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, earnedBP);
 
     if (earnedBP != 0) {
         BattlePoints_ApplyFuncAndGet(

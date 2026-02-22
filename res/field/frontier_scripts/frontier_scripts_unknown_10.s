@@ -49,9 +49,9 @@ _0039:
     WaitTime 1, 0x8008
     FrontierScrCmd_B2 0, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 176
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
     GoTo _0070
@@ -167,14 +167,14 @@ _0260:
     FrontierScrCmd_AC 0x800A, 0x8004, 0, 0x8008
     GoToIfEq 0x8008, 0, _0260
     FrontierScrCmd_AD 0x800A
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_B2 9, 0, 0, 0x8008
     GoToIfEq 0x8008, 7, _09C0
     FrontierScrCmd_B1 0x8008
     GoToIfEq 0x8008, 1, _02B8
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 170
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoTo _02C0
     End
 
@@ -187,7 +187,7 @@ _02C0:
     FrontierScrCmd_AC 0x800A, 0, 0, 0x8008
     GoToIfEq 0x8008, 0, _02C0
     FrontierScrCmd_AD 0x800A
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_AE 0x8009, 0x8008
     GoToIfEq 0x8008, 1, _0302
     Message pl_msg_00000015_00003
@@ -238,7 +238,7 @@ _03CD:
     FrontierScrCmd_AC 0x800A, 0x8002, 0x8005, 0x8008
     GoToIfEq 0x8008, 0, _03CD
     FrontierScrCmd_AD 0x800A
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     GoToIfEq 0x8002, 255, _0084
     FrontierScrCmd_B2 1, 0, 0, 0x8008
     GoToIfEq 0x8008, 0, _044E
@@ -318,7 +318,7 @@ _0593:
     FrontierScrCmd_AC 0x800A, 0x800B, 0, 0x8008
     GoToIfEq 0x8008, 0, _0593
     FrontierScrCmd_AD 0x800A
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_B2 8, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _05F9
     GoToIfEq 0x8008, -2, _05F9
@@ -414,9 +414,9 @@ _0758:
 _0766:
     FrontierScrCmd_B2 12, 0, 0, 0x8008
     FrontierScrCmd_3D 0x4064, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 175
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     MessageInstant pl_msg_00000015_00019
     ShowSavingIcon
     FrontierScrCmd_73 0x8008
@@ -425,15 +425,15 @@ _0766:
     WaitSoundEffect SEQ_SE_DP_SAVE
     MessageNoSkip pl_msg_00000015_00020
     WaitTime 10, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 171
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     CloseMessage
     FadeScreenOut
     FrontierScrCmd_25 0
     FrontierScrCmd_25 2
     FrontierScrCmd_25 3
-    FrontierScrCmd_48 58
+    IncrementRecordValue RECORD_UNK_058
     FrontierScrCmd_B2 9, 0, 0, 0x8008
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 1, _0842
@@ -499,28 +499,28 @@ _08B5:
     End
 
 _08C9:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 173
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _08D3:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 174
 
 _08D9:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     Return
 
 _08DD:
-    FrontierScrCmd_B7
+    SetWiFiListHostFriendCurrentDate
     FrontierScrCmd_AA
     WaitTime 1, 0x8008
     FrontierScrCmd_B2 0, 0, 0, 0x8008
     WaitTime 1, 0x8008
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 177
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_22 _000C
     FrontierScrCmd_24 _0014
     PlayBGM SEQ_BF_TOWWER
@@ -549,7 +549,7 @@ _095D:
     FrontierScrCmd_AC 0x800A, 0x800B, 0, 0x8008
     GoToIfEq 0x8008, 0, _095D
     FrontierScrCmd_AD 0x800A
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_B1 0x8008
     FrontierScrCmd_B2 10, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _09AD
@@ -565,9 +565,9 @@ _09AD:
     End
 
 _09C0:
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 172
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     CloseMessage
     GoTo _09D2
     End
@@ -575,9 +575,9 @@ _09C0:
 _09D2:
     FadeScreenOut
     FrontierScrCmd_AB
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_35 178
-    FrontierScrCmd_36
+    ClearReceivedTempDataAllPlayers
     FrontierScrCmd_02
 
     .balign 4, 0

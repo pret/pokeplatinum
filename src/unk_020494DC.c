@@ -429,7 +429,7 @@ BOOL ScrCmd_298(ScriptContext *ctx)
     SaveData *saveData = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_068, v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_RECEIVED, v2);
     BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_ADD);
 
     return 0;
@@ -441,7 +441,7 @@ BOOL ScrCmd_299(ScriptContext *ctx)
     SaveData *saveData = fieldSystem->saveData;
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_UNK_069, v2);
+    GameRecords_AddToRecordValue(SaveData_GetGameRecords(ctx->fieldSystem->saveData), RECORD_BATTLE_POINTS_SPENT, v2);
     BattlePoints_ApplyFuncAndGet(sub_0202D750(saveData), v2, BATTLE_POINTS_FUNC_SUB);
 
     return 0;

@@ -1228,7 +1228,7 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     Shop_TakeMoney(shopMenu, shopMenu->itemPrice * shopMenu->itemAmount);
 
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        GameRecords_AddToRecordValue(shopMenu->records, RECORD_UNK_069, shopMenu->itemPrice * shopMenu->itemAmount);
+        GameRecords_AddToRecordValue(shopMenu->records, RECORD_BATTLE_POINTS_SPENT, shopMenu->itemPrice * shopMenu->itemAmount);
     } else {
         GameRecords_AddToRecordValue(shopMenu->records, RECORD_MONEY_SPENT, shopMenu->itemPrice * shopMenu->itemAmount);
     }
