@@ -1,5 +1,6 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_factory_scene.h"
+# include "generated/battle_frontier_challenge_types.h"
 
     .data
 
@@ -489,12 +490,12 @@ _02A8:
     .short 0xFD13
 
 _02D6:
-    FrontierScrCmd_3E 0x40B8, 0x8001
+    FrontierScrCmd_3E VAR_BATTLE_FACTORY_CHALLENGE_TYPE, 0x8001
     FrontierScrCmd_3E 0x40B9, 0x8002
     FrontierScrCmd_3E 0x4003, 0x8003
     FrontierScrCmd_40 0x8007
-    GoToIfEq 0x8001, 2, _0320
-    GoToIfEq 0x8001, 3, _0320
+    GoToIfEq 0x8001, FRONTIER_CHALLENGE_MULTI, _0320
+    GoToIfEq 0x8001, FRONTIER_CHALLENGE_MULTI_WFC, _0320
     SetVar 0x800F, 231
     FrontierScrCmd_22 _0008
     FrontierScrCmd_24 _0028

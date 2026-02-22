@@ -344,7 +344,7 @@ BOOL FrontierScrCmd_67(FrontierScriptContext *param0)
         sub_0209BA80(v4);
         break;
     case 28:
-        *v15 = ov104_0223AED4(v4->unk_04);
+        *v15 = BattleFactory_IsMultiplayerChallenge(v4->unk_04);
         break;
     case 29:
         *v15 = v4->unk_04;

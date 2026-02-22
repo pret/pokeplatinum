@@ -1,6 +1,7 @@
 #include "generated/battle_tower_functions.h"
 #include "generated/fade_types.h"
 #include "generated/sdat.h"
+#include "generated/vars_flags.h"
 #include "constants/colors.h"
 #include "constants/fade_screen.h"
 #include "constants/scrcmd.h"

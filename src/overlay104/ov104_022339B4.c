@@ -109,7 +109,7 @@ UnkStruct_ov104_0223ADA0 *ov104_022339B4(SaveData *saveData, u16 param1, u8 para
 
     v7->unk_0E = (u16)(v7->unk_0C / 7);
 
-    if (ov104_0223AED4(v7->unk_04) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(v7->unk_04) == 1) {
         ov104_0222E630(v7->saveData);
     }
 
@@ -148,7 +148,7 @@ static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 *param0)
         v2[v0] = param0->unk_280[v0];
     }
 
-    if (ov104_0223AED4(param0->unk_04) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_04) == 1) {
         for (v0 = 0; v0 < 6; v0++) {
             v5[v0] = param0->unk_280[v0].species;
             v6[v0] = param0->unk_280[v0].item;

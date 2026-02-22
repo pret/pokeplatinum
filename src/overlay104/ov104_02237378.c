@@ -402,7 +402,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         sub_0209BA80(v3);
         break;
     case 28:
-        *v20 = ov104_0223C000(v3->unk_10);
+        *v20 = BattleArcade_IsMultiPlayerChallenge(v3->unk_10);
         break;
     case 17:
         *v20 = v3->unk_10;
@@ -448,7 +448,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         ov104_02238658(v3, v15);
         break;
     case 37:
-        if (ov104_0223C000(v3->unk_10) == 1) {
+        if (BattleArcade_IsMultiPlayerChallenge(v3->unk_10) == 1) {
             ov104_02238728(v3, v15);
         }
         break;
@@ -458,7 +458,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         if (v6 == 0) {
             StringTemplate_SetFrontierTrainerName(param0->unk_00->strTemplate, v18, v3->unk_78[ov104_02238498(v3, v19)]);
         } else {
-            if (ov104_0223C000(v3->unk_10) == 0) {
+            if (BattleArcade_IsMultiPlayerChallenge(v3->unk_10) == 0) {
                 v16 = SaveData_GetTrainerInfo(v14->saveData);
             } else {
                 v16 = CommInfo_TrainerInfo(v19);

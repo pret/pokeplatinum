@@ -1079,7 +1079,7 @@ _065C:
     .short 0xFD13
 
 _0662:
-    FrontierScrCmd_3E 0x40BE, 0x8001
+    FrontierScrCmd_3E VAR_BATTLE_ARCADE_CHALLENGE_TYPE, 0x8001
     FrontierScrCmd_3E 0x4003, 0x8003
     FrontierScrCmd_3E 0x4002, 0x8004
     FrontierScrCmd_3E 0x4005, 0x8005

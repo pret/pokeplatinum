@@ -373,7 +373,7 @@ int ov105_02241AE0(ApplicationManager *appMan, int *param1)
     if (ov105_022454F8(v1, 0) == 1) {
         v1->unk_12 = (NELEMS(Unk_ov105_02246394));
     } else {
-        if (ov104_0223AED4(v1->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(v1->unk_09) == 1) {
             v1->unk_12 = (NELEMS(Unk_ov105_022462EC));
             v1->unk_1A = (NELEMS(Unk_ov105_022462FC));
             v1->unk_1B = (NELEMS(Unk_ov105_0224637C));
@@ -386,7 +386,7 @@ int ov105_02241AE0(ApplicationManager *appMan, int *param1)
 
     ov105_0224531C(v1);
 
-    if (ov104_0223AED4(v1->unk_09) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(v1->unk_09) == 1) {
         sub_0209BA80(v1);
     }
 
@@ -488,7 +488,7 @@ int ov105_02241BD8(ApplicationManager *appMan, int *param1)
                 ov105_02245528(v0, 0);
                 ov105_02244778(v0, param1, 6);
             } else {
-                if (ov104_0223AED4(v0->unk_09) == 1) {
+                if (BattleFactory_IsMultiplayerChallenge(v0->unk_09) == 1) {
                     v0->unk_13_3 = 0;
                     ov105_02244778(v0, param1, 11);
                 } else {
@@ -506,7 +506,7 @@ int ov105_02241BD8(ApplicationManager *appMan, int *param1)
                 if (v0->unk_11 == 0) {
                     ov105_02244778(v0, param1, 10);
                 } else {
-                    if (ov104_0223AED4(v0->unk_09) == 1) {
+                    if (BattleFactory_IsMultiplayerChallenge(v0->unk_09) == 1) {
                         ov105_02244778(v0, param1, 11);
                     } else {
                         ov105_02244778(v0, param1, 13);
@@ -521,7 +521,7 @@ int ov105_02241BD8(ApplicationManager *appMan, int *param1)
                 ov105_02245528(v0, 0);
                 ov105_02244778(v0, param1, 8);
             } else {
-                if (ov104_0223AED4(v0->unk_09) == 1) {
+                if (BattleFactory_IsMultiplayerChallenge(v0->unk_09) == 1) {
                     v0->unk_13_3 = 0;
                     ov105_02244778(v0, param1, 11);
                 } else {
@@ -609,7 +609,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(237);
         }
@@ -617,7 +617,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
         param0->unk_08++;
         break;
     case 1:
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             if (CommTiming_IsSyncState(237) == 1) {
                 CommTool_ClearReceivedTempDataAllPlayers();
                 param0->unk_08++;
@@ -712,7 +712,7 @@ static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
             ov105_022424CC(param0);
         }
 
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             ov105_02244F84(param0, &param0->unk_50[1], 0, 0, 0);
         }
 
@@ -802,7 +802,7 @@ static void ov105_022424CC(UnkStruct_ov105_02241FF4 *param0)
     ov105_02245528(param0, 0);
     ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
 
-    if (ov104_0223AED4(param0->unk_09) == 0) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
         param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, NELEMS(Unk_ov105_02246340) - 1, 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
     } else {
         param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, NELEMS(Unk_ov105_022462FC) - 1, 2, param0->unk_334, Unk_ov105_022462FC, Unk_ov105_022462CC);
@@ -903,7 +903,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov105_0224296C(param0);
 
-                if (ov104_0223AED4(param0->unk_09) == 1) {
+                if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                     ov105_02245620(param0, 8, 0);
                 }
 
@@ -933,7 +933,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_02245A98(param0->unk_F0.window);
             ov105_02242A58(param0);
 
-            if (ov104_0223AED4(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                 ov105_02245620(param0, 8, 0);
             }
 
@@ -944,7 +944,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_02245A98(param0->unk_F0.window);
             ov105_02242B54(param0);
 
-            if (ov104_0223AED4(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                 ov105_02245620(param0, 8, 0);
             }
 
@@ -1166,7 +1166,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
                 PokemonSprite_SetAttribute(param0->unk_12C[v2], MON_SPRITE_HIDE, 0);
             }
 
-            if (ov104_0223AED4(param0->unk_09) == 0) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
                 ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 32, 11);
             } else {
                 ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
@@ -1185,7 +1185,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             break;
         }
 
-        if (ov104_0223AED4(param0->unk_09) == 0) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 2, 1), 32, 11);
         } else {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 2, 1), 21, 11);
@@ -1193,7 +1193,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
 
         param0->unk_13_5 = 0;
 
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             param0->unk_3BF = 1;
             ov105_022457C0(param0);
         }
@@ -1233,7 +1233,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_11--;
             param0->unk_324[param0->unk_11] = 0;
 
-            if (ov104_0223AED4(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                 ov105_02245620(param0, 8, 0);
             }
 
@@ -1241,7 +1241,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 6:
-        if (ov104_0223AED4(param0->unk_09) == 0) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             return 1;
         }
 
@@ -1279,7 +1279,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
         Window_ClearAndCopyToVRAM(&param0->unk_50[8]);
         Window_ClearAndCopyToVRAM(&param0->unk_50[9]);
 
-        if (ov104_0223AED4(param0->unk_09) == 0) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 32, 11);
         } else {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
@@ -1303,7 +1303,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
 
         ov105_02244924(param0, 5);
 
-        if (ov104_0223AED4(param0->unk_09) == 0) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 32, 11);
         } else {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 21, 11);
@@ -1362,7 +1362,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
         ov105_022448F4(param0, 3, ov105_02245538(param0, 2, 0), 21, 11);
         param0->unk_13_5 = 0;
 
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             param0->unk_3BF = 1;
             ov105_022457C0(param0);
         }
@@ -1556,7 +1556,7 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_310 = NULL;
             param0->unk_13_3 = 0;
 
-            if (ov104_0223AED4(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                 param0->unk_10 = ov105_02244D14(param0, 2);
             }
 
@@ -1613,7 +1613,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
 
         Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
 
-        if (ov104_0223AED4(param0->unk_09) == 0) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, NELEMS(Unk_ov105_02246350) - 2, 2, 0, Unk_ov105_02246350, Unk_ov105_022462D4);
         } else {
             param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, NELEMS(Unk_ov105_0224637C) - 2, 2, 0, Unk_ov105_0224637C, Unk_ov105_022462E4);
@@ -1677,7 +1677,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
             ov105_02245A98(param0->unk_F0.window);
             ov105_02243D84(param0);
 
-            if (ov104_0223AED4(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                 param0->unk_10 = ov105_02244D14(param0, 2);
             }
 
@@ -1787,7 +1787,7 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_310 = NULL;
             param0->unk_13_3 = 0;
 
-            if (ov104_0223AED4(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                 param0->unk_10 = ov105_02244D14(param0, 2);
             }
 
@@ -1903,7 +1903,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
                 param0->unk_2F4[v1] = NULL;
             }
 
-            if (ov104_0223AED4(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
                 if (param0->unk_12 == (NELEMS(Unk_ov105_022462EC))) {
                     param0->unk_12 = (NELEMS(Unk_ov105_02246320));
                 } else {
@@ -1982,7 +1982,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
 
         param0->unk_13_5 = 0;
 
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             param0->unk_3BF = 1;
             ov105_022457C0(param0);
         }
@@ -2417,7 +2417,7 @@ static void ov105_02244924(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
     param0->unk_314 = ov105_022459B0(param0, ov105_02245584(param0, param1));
 
-    if (ov104_0223AED4(param0->unk_09) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
         param0->unk_318 = ov105_02245A04(param0, v0);
     }
 
@@ -2428,7 +2428,7 @@ static void ov105_022449A4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
 
-    if (ov104_0223AED4(param0->unk_09) == 0) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
     } else {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
@@ -2487,7 +2487,7 @@ static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_02244B90(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    if (ov104_0223AED4(param0->unk_09) == 0) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
     } else {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
@@ -2504,7 +2504,7 @@ static void ov105_02244BE4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_02244C0C(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    if (ov104_0223AED4(param0->unk_09) == 0) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 10, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
     } else {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 12, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
@@ -2929,7 +2929,7 @@ static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
     case 0:
         if (param2 == 1) {
             v0 = 2;
-        } else if (ov104_0223AED4(param0->unk_09) == 0) {
+        } else if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             v0 = 2;
         } else {
             v0 = 2;
@@ -2938,7 +2938,7 @@ static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
     case 1:
         if (param2 == 1) {
             v0 = 1;
-        } else if (ov104_0223AED4(param0->unk_09) == 0) {
+        } else if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             v0 = 1;
         } else {
             v0 = 1;
@@ -2947,7 +2947,7 @@ static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
     case 2:
         if (param2 == 1) {
             v0 = 2;
-        } else if (ov104_0223AED4(param0->unk_09) == 0) {
+        } else if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             v0 = 2;
         } else {
             v0 = 2;
@@ -2966,12 +2966,12 @@ static u32 ov105_02245584(UnkStruct_ov105_02241FF4 *param0, u32 param1)
     case 1:
         break;
     case 4:
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             return 11;
         }
         break;
     case 5:
-        if (ov104_0223AED4(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
             return 12;
         }
         break;
@@ -3002,7 +3002,7 @@ BOOL ov105_02245620(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
 {
     int v0, v1;
 
-    if (ov104_0223AED4(param0->unk_09) == 0) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
         return 0;
     }
 
@@ -3207,7 +3207,7 @@ static UnkStruct_ov105_02245EA8 *ov105_02245934(UnkStruct_ov105_02241FF4 *param0
         v0 = Unk_ov105_02246364[param1][0];
         v1 = Unk_ov105_02246364[param1][1];
     } else {
-        if (ov104_0223AED4(param0->unk_09) == 0) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
             v0 = Unk_ov105_02246314[param1][0];
             v1 = Unk_ov105_02246314[param1][1];
         } else {

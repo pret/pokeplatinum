@@ -243,7 +243,7 @@ BOOL FrontierScrCmd_91(FrontierScriptContext *param0)
         sub_0209BA80(v3);
         break;
     case 30:
-        *v11 = BattleFrontier_IsMultiPlayerChallenge(v3->unk_04);
+        *v11 = BattleHall_IsMultiPlayerChallenge(v3->unk_04);
         break;
     case 17:
         *v11 = v3->unk_04;
