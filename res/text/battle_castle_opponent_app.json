@@ -1,0 +1,392 @@
+{
+  "key": 10039,
+  "messages": [
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy1",
+      "garbage": 5
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_PartnerName",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_CastlePoints",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy2",
+      "garbage": 7
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_CheckWhichPokemon",
+      "en_US": [
+        "Which Pokémon would you like\n",
+        "to check?"
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy3",
+      "garbage": 14
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_PartnerChoseToExit",
+      "en_US": "{STRVAR_1 3, 0, 0} chose to exit."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Check",
+      "en_US": "CHECK"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Level",
+      "en_US": "LEVEL"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Summary",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_CheckIdentity",
+      "en_US": [
+        "Check the identity of a\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_ChangeLevel",
+      "en_US": [
+        "Change the level of a\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_ExamineStats",
+      "en_US": [
+        "Examine the stats of a\n",
+        "Pokémon."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_GoBackToMonSelection",
+      "en_US": [
+        "Return to previous\n",
+        "selections."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_IdentifyForCP",
+      "en_US": [
+        "Would you like to identify this Pokémon?\n",
+        "It will cost {STRVAR_1 51, 0, 0} CP."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy4",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy5",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy6",
+      "garbage": 10
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_IdentityRevealed",
+      "en_US": [
+        "The Pokémon’s identity is\n",
+        "{STRVAR_1 0, 0, 0}."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MayChangeLevel",
+      "en_US": [
+        "You may change this Pokémon’s level.\n",
+        "What would you like to do?"
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_LevelUp5",
+      "en_US": "LEVEL +5"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_LevelDown5",
+      "en_US": "LEVEL -5"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Cancel2",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_WillCostCP",
+      "en_US": [
+        "It will cost {STRVAR_1 51, 0, 0} CP.\n",
+        "Is that OK?"
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Yes",
+      "en_US": "YES"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_No",
+      "en_US": "NO"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_NotEnoughCP3",
+      "en_US": "You don’t have enough CP..."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_LevelCantGoHigher",
+      "en_US": [
+        "This Pokémon’s level can’t be raised\n",
+        "higher."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_LevelCantGoLower",
+      "en_US": [
+        "This Pokémon’s level can’t be lowered\n",
+        "any more."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_LevelBoostedBy5",
+      "en_US": [
+        "The Pokémon’s level was\n",
+        "boosted by five."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_LevelLoweredBy5",
+      "en_US": [
+        "The Pokémon’s level was\n",
+        "lowered by five."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Summary2",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Moves",
+      "en_US": "MOVES"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_RankUp",
+      "en_US": "RANK UP"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Cancel3",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_CheckStats",
+      "en_US": "Check the stats of the Pokémon."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_CheckMoveList",
+      "en_US": "Check the move list of the Pokémon."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_RankUpToCheckMoves",
+      "en_US": [
+        "You will be able to check moves using CP\n",
+        "by going up in rank."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_CantRankUp",
+      "en_US": "Your rank cannot be raised any higher."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_ReturnToPreviousMenu",
+      "en_US": "Return to previous selections."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_TooLowForMoveList",
+      "en_US": [
+        "You are too low in information rank to\n",
+        "check the target’s move list."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_CanCheckStats",
+      "en_US": [
+        "You may check this Pokémon’s stats.\n",
+        "It will cost {STRVAR_1 51, 0, 0} CP. Is that OK?"
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy7",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy8",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_NotEnoughCP",
+      "en_US": "You don’t have enough CP..."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_SummaryBought",
+      "en_US": [
+        "The Pokémon’s stat summary was\n",
+        "bought."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Item",
+      "en_US": "Item"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_ItemValue",
+      "en_US": "{COLOR 2}{STRVAR_1 8, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Nature",
+      "en_US": "Nature"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_NatureValue",
+      "en_US": "{COLOR 2}{STRVAR_1 7, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Ability",
+      "en_US": "Ability"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_AbilityValue",
+      "en_US": "{COLOR 2}{STRVAR_1 5, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Attack",
+      "en_US": "Attack"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_AttackValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Defense",
+      "en_US": "Defense"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_DefenseValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_SpAttack",
+      "en_US": "Sp. Atk"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_SpAttackValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_SpDefense",
+      "en_US": "Sp. Def"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_SpDefenseValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Speed",
+      "en_US": "Speed"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_SpeedValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MaleSymbol",
+      "en_US": "♂"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_FemaleSymbol",
+      "en_US": "♀"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MayCheckMoveList",
+      "en_US": [
+        "You may check this Pokémon’s move list.\n",
+        "It will cost {STRVAR_1 51, 0, 0} CP. Is that OK?"
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy9",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy10",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_NotEnoughCP2",
+      "en_US": "You don’t have enough CP..."
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MoveListBought",
+      "en_US": [
+        "The Pokémon’s move-list data was\n",
+        "bought."
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MoveName1",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MoveName2",
+      "en_US": "{STRVAR_1 6, 1, 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MoveName3",
+      "en_US": "{STRVAR_1 6, 2, 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MoveName4",
+      "en_US": "{STRVAR_1 6, 3, 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_MovePP",
+      "en_US": "{COLOR 2}{STRVAR_1 51, 4, 0}{COLOR 0}/{COLOR 2}{STRVAR_1 51, 5, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_RankUpForCP",
+      "en_US": [
+        "Would you like to up your rank for\n",
+        "{STRVAR_1 52, 0, 0} CP?"
+      ]
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy11",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy12",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_Dummy13",
+      "garbage": 10
+    },
+    {
+      "id": "BattleCastleOpponentApp_Text_GainedMoveListPurchasePower",
+      "en_US": [
+        "{STRVAR_1 3, 5, 0} gained the ability to buy\n",
+        "the target’s move-list information."
+      ]
+    }
+  ]
+}

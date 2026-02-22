@@ -1067,17 +1067,17 @@
     .short 165
     .endm
 
-    .macro ScrCmd_0A6 arg0, arg1, arg2
+    .macro ScrCmd_0A6 slot, destVar, arg2
     .short 166
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .short \arg2
     .endm
 
-    .macro ScrCmd_0A7 arg0, arg1
+    .macro ShowDressUpPhoto slot, destVar
     .short 167
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
     .macro ScrCmd_0A8 arg0, arg1
@@ -1804,10 +1804,10 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_12E arg0, arg1
+    .macro DressUpPhotoHasData slot, destVar
     .short 302
-    .short \arg0
-    .short \arg1
+    .short \slot
+    .short \destVar
     .endm
 
     .macro ScrCmd_12F arg0, arg1
@@ -1825,9 +1825,9 @@
     .short 305
     .endm
 
-    .macro ScrCmd_132 arg0
+    .macro CheckPoketchEnabled destVar
     .short 306
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro RegisterPoketchApp appID
@@ -1966,7 +1966,7 @@
     .short 334
     .endm
 
-    .macro ScrCmd_14F
+    .macro Dummy14F
     .short 335
     .endm
 
@@ -1978,9 +1978,9 @@
     .short 337
     .endm
 
-    .macro ScrCmd_152 arg0
+    .macro SetCommPlayerDir dir
     .short 338
-    .short \arg0
+    .short \dir
     .endm
 
     .macro ScrCmd_153
@@ -2386,31 +2386,31 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_19E arg0, arg1
+    .macro Dummy19E vendorType, destVar
     .short 414
-    .short \arg0
-    .short \arg1
+    .short \vendorType
+    .short \destVar
     .endm
 
-    .macro ScrCmd_19F arg0
+    .macro UndergroundNPCMessage messageID
     .short 415
-    .short \arg0
+    .short \messageID
     .endm
 
-    .macro ScrCmd_1A0
+    .macro CloseUndergroundNPCMessage
     .short 416
     .endm
 
-    .macro ScrCmd_Unused_1A1 arg0, arg1
+    .macro BufferTreasureNameForUndergroundVendor_Unused templateArg, treasureID
     .short 417
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \treasureID
     .endm
 
-    .macro ScrCmd_Unused_1A2 arg0, arg1
+    .macro BufferTrapNameForUndergroundVendor_Unused templateArg, trapID
     .short 418
-    .byte \arg0
-    .short \arg1
+    .byte \templateArg
+    .short \trapID
     .endm
 
     .macro RemoveMoney2 valueOrVarID
@@ -2503,9 +2503,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1B5 arg0
+    .macro ScrCmd_1B5 listIndex
     .short 437
-    .short \arg0
+    .short \listIndex
     .endm
 
     .macro GetTimeOfDay destVarID
@@ -3464,25 +3464,25 @@
     .short 578
     .endm
 
-    .macro ScrCmd_243 arg0, arg1, arg2
+    .macro ChooseCustomMessageWord unused, resultVar, destVar
     .short 579
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \unused
+    .short \resultVar
+    .short \destVar
     .endm
 
-    .macro ScrCmd_244 arg0, arg1, arg2, arg3
+    .macro ChooseTwoCustomMessageWords unused, resultVar, destVar1, destVar2
     .short 580
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \unused
+    .short \resultVar
+    .short \destVar1
+    .short \destVar2
     .endm
 
-    .macro ScrCmd_245 arg0, arg1
+    .macro BufferCustomMessageWord idx, customMessageWord
     .short 581
-    .short \arg0
-    .short \arg1
+    .short \idx
+    .short \customMessageWord
     .endm
 
     .macro GetGameVersion destVar
@@ -3502,13 +3502,13 @@
     .short \slot
     .endm
 
-    .macro ScrCmd_249 arg0, arg1, arg2, arg3, arg4
+    .macro GetWallpaperFromCustomMessageWords destVar, customMessageWord1, customMessageWord2, customMessageWord3, customMessageWord4
     .short 585
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \destVar
+    .short \customMessageWord1
+    .short \customMessageWord2
+    .short \customMessageWord3
+    .short \customMessageWord4
     .endm
 
     .macro GetCapturedFlagCount destFlagCount
@@ -4083,13 +4083,13 @@
     .endif
     .endm
 
-    .macro ScrCmd_2AA arg0, arg1, arg2, arg3, arg4
+    .macro CheckIsMysteryGiftPhrase destVar, customMessageWord1, customMessageWord2, customMessageWord3, customMessageWord4
     .short 682
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
-    .short \arg4
+    .short \destVar
+    .short \customMessageWord1
+    .short \customMessageWord2
+    .short \customMessageWord3
+    .short \customMessageWord4
     .endm
 
     .macro ScrCmd_2AB arg0
@@ -4271,16 +4271,16 @@
     .short 718
     .endm
 
-    .macro ScrCmd_2CF arg0, arg1
+    .macro BattleHallCheckUsingSameSpeciesAsPartner species, result
     .short 719
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \result
     .endm
 
-    .macro ScrCmd_2D0 arg0, arg1
+    .macro GetBattleHallSelectedSlots slot1, slot2
     .short 720
-    .short \arg0
-    .short \arg1
+    .short \slot1
+    .short \slot2
     .endm
 
     .macro ScrCmd_2D1 arg0
@@ -4693,7 +4693,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_316
+    .macro Dummy316
     .short 790
     .endm
 
@@ -4765,24 +4765,24 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_324 arg0, arg1, arg2, arg3, arg4, arg5
+    .macro GetBattleHallRecordKeeperStats curStreakIdx, passedMilestoneIdx, nextMilestoneIdx, earnedBPIdx, nextMilestone, response
     .short 804
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
-    .short \arg5
+    .byte \curStreakIdx
+    .byte \passedMilestoneIdx
+    .byte \nextMilestoneIdx
+    .byte \earnedBPIdx
+    .short \nextMilestone
+    .short \response
     .endm
 
-    .macro ScrCmd_325 arg0
+    .macro GetNumSpeciesWithBattleHallRecords result
     .short 805
-    .short \arg0
+    .short \result
     .endm
 
-    .macro ScrCmd_326 arg0
+    .macro GetBattleHallTotalSinglesRecord result
     .short 806
-    .short \arg0
+    .short \result
     .endm
 
     .macro ShowListMenuSetWidth width

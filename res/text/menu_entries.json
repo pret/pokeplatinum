@@ -166,11 +166,11 @@
       "en_US": "RULES"
     },
     {
-      "id": "pl_msg_00000361_00041",
+      "id": "MenuEntries_Text_Yes",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000361_00042",
+      "id": "MenuEntries_Text_No",
       "en_US": "NO"
     },
     {
@@ -958,107 +958,107 @@
       "en_US": "NO THANKS"
     },
     {
-      "id": "pl_msg_00000361_00233",
+      "id": "MenuEntries_Text_DigitalWatch",
       "en_US": "DIGITAL WATCH"
     },
     {
-      "id": "pl_msg_00000361_00234",
+      "id": "MenuEntries_Text_Stopwatch",
       "en_US": "STOPWATCH"
     },
     {
-      "id": "pl_msg_00000361_00235",
+      "id": "MenuEntries_Text_Calculator",
       "en_US": "CALCULATOR"
     },
     {
-      "id": "pl_msg_00000361_00236",
+      "id": "MenuEntries_Text_MemoPad",
       "en_US": "MEMO PAD"
     },
     {
-      "id": "pl_msg_00000361_00237",
+      "id": "MenuEntries_Text_AnalogWatch",
       "en_US": "ANALOG WATCH"
     },
     {
-      "id": "pl_msg_00000361_00238",
+      "id": "MenuEntries_Text_DotArtist",
       "en_US": "DOT ARTIST"
     },
     {
-      "id": "pl_msg_00000361_00239",
+      "id": "MenuEntries_Text_PokemonList",
       "en_US": "POKéMON LIST"
     },
     {
-      "id": "pl_msg_00000361_00240",
+      "id": "MenuEntries_Text_FriendshipChecker",
       "en_US": "FRIENDSHIP CHECKER"
     },
     {
-      "id": "pl_msg_00000361_00241",
+      "id": "MenuEntries_Text_DowsingMachine",
       "en_US": "DOWSING MACHINE"
     },
     {
-      "id": "pl_msg_00000361_00242",
+      "id": "MenuEntries_Text_Counter",
       "en_US": "COUNTER"
     },
     {
-      "id": "pl_msg_00000361_00243",
+      "id": "MenuEntries_Text_Pedometer",
       "en_US": "PEDOMETER"
     },
     {
-      "id": "pl_msg_00000361_00244",
+      "id": "MenuEntries_Text_DayCareChecker",
       "en_US": "DAY-CARE CHECKER"
     },
     {
-      "id": "pl_msg_00000361_00245",
+      "id": "MenuEntries_Text_Roulette",
       "en_US": "ROULETTE"
     },
     {
-      "id": "pl_msg_00000361_00246",
+      "id": "MenuEntries_Text_CoinToss",
       "en_US": "COIN TOSS"
     },
     {
-      "id": "pl_msg_00000361_00247",
+      "id": "MenuEntries_Text_MoveTester",
       "en_US": "MOVE TESTER"
     },
     {
-      "id": "pl_msg_00000361_00248",
+      "id": "MenuEntries_Text_MatchupChecker",
       "en_US": "MATCHUP CHECKER"
     },
     {
-      "id": "pl_msg_00000361_00249",
+      "id": "MenuEntries_Text_AlarmClock",
       "en_US": "ALARM CLOCK"
     },
     {
-      "id": "pl_msg_00000361_00250",
+      "id": "MenuEntries_Text_KitchenTimer",
       "en_US": "KITCHEN TIMER"
     },
     {
-      "id": "pl_msg_00000361_00251",
+      "id": "MenuEntries_Text_MarkingMap",
       "en_US": "MARKING MAP"
     },
     {
-      "id": "pl_msg_00000361_00252",
+      "id": "MenuEntries_Text_BerrySearcher",
       "en_US": "BERRY SEARCHER"
     },
     {
-      "id": "pl_msg_00000361_00253",
+      "id": "MenuEntries_Text_ColorChanger",
       "en_US": "COLOR CHANGER"
     },
     {
-      "id": "pl_msg_00000361_00254",
+      "id": "MenuEntries_Text_Calendar",
       "en_US": "CALENDAR"
     },
     {
-      "id": "pl_msg_00000361_00255",
+      "id": "MenuEntries_Text_LinkSearcher",
       "en_US": "LINK SEARCHER"
     },
     {
-      "id": "pl_msg_00000361_00256",
+      "id": "MenuEntries_Text_TrainerCounter",
       "en_US": "TRAINER COUNTER"
     },
     {
-      "id": "pl_msg_00000361_00257",
+      "id": "MenuEntries_Text_PokemonHistory",
       "en_US": "POKéMON HISTORY"
     },
     {
-      "id": "pl_msg_00000361_00258",
+      "id": "MenuEntries_Text_PoketchDescriptionsExit",
       "en_US": "EXIT"
     },
     {

@@ -19,6 +19,7 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_defs/battle_system.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 
@@ -32,7 +33,6 @@
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
@@ -343,11 +343,11 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler)
     return TrainerInfo_Gender(battleSys->trainerInfo[battler]);
 }
 
-int BattleSystem_GetBattlerOfType(BattleSystem *battleSys, int type)
+int BattleSystem_GetBattlerOfType(BattleSystem *battleSys, int battlerType)
 {
     int i;
     for (i = 0; i < battleSys->maxBattlers; i++) {
-        if (Battler_Type(battleSys->battlers[i]) == type) {
+        if (BattlerData_GetBattlerType(battleSys->battlers[i]) == battlerType) {
             break;
         }
     }
@@ -358,12 +358,12 @@ int BattleSystem_GetBattlerOfType(BattleSystem *battleSys, int type)
 
 u8 BattleSystem_GetBattlerType(BattleSystem *battleSys, int battler)
 {
-    return Battler_Type(battleSys->battlers[battler]);
+    return BattlerData_GetBattlerType(battleSys->battlers[battler]);
 }
 
 u8 BattleSystem_GetBattlerSide(BattleSystem *battleSys, int battler)
 {
-    return Battler_Type(battleSys->battlers[battler]) & 1;
+    return BattlerData_GetBattlerType(battleSys->battlers[battler]) & 1;
 }
 
 UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys)
@@ -1233,7 +1233,7 @@ void ov16_0223F36C(BattleSystem *battleSys)
         healthbar = BattlerData_GetHealthbar(battleSys->battlers[i]);
 
         healthbar->battleSys = battleSys;
-        healthbar->type = Healthbar_Type(Battler_Type(battleSys->battlers[i]), BattleSystem_GetBattleType(battleSys));
+        healthbar->type = Healthbar_Type(BattlerData_GetBattlerType(battleSys->battlers[i]), BattleSystem_GetBattleType(battleSys));
 
         ov16_022672C4(healthbar);
         Healthbar_Enable(healthbar, FALSE);
@@ -1486,7 +1486,7 @@ void ov16_0223F858(BattleSystem *battleSys, u8 *param1)
     int battler;
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        param1[Battler_Type(battleSys->battlers[battler])] = battler;
+        param1[BattlerData_GetBattlerType(battleSys->battlers[battler])] = battler;
     }
 }
 
@@ -1499,7 +1499,7 @@ void ov16_0223F87C(BattleSystem *battleSys, u8 *param1)
     }
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        param1[battler] = Battler_Type(battleSys->battlers[battler]);
+        param1[battler] = BattlerData_GetBattlerType(battleSys->battlers[battler]);
     }
 }
 
@@ -1512,7 +1512,7 @@ void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **monSprites)
     }
 
     for (battler = 0; battler < battleSys->maxBattlers; battler++) {
-        monSprites[battler] = ov16_02263AFC(battleSys->battlers[battler]);
+        monSprites[battler] = BattlerData_GetPokemonSprite(battleSys->battlers[battler]);
     }
 }
 
@@ -1554,7 +1554,7 @@ u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo)
 
 void BattleSystem_DexFlagSeen(BattleSystem *battleSys, int battler)
 {
-    int battlerType = Battler_Type(battleSys->battlers[battler]);
+    int battlerType = BattlerData_GetBattlerType(battleSys->battlers[battler]);
     int selectedSlot = BattleContext_Get(battleSys, battleSys->battleCtx, BATTLECTX_SELECTED_PARTY_SLOT, battler);
     Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, selectedSlot);
 
@@ -1574,7 +1574,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSys, int battler)
 
 void BattleSystem_DexFlagCaught(BattleSystem *battleSys, int battler)
 {
-    int battlerType = Battler_Type(battleSys->battlers[battler]);
+    int battlerType = BattlerData_GetBattlerType(battleSys->battlers[battler]);
 
     if ((battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == FALSE) {
         if (battlerType & BATTLER_THEM) {

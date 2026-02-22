@@ -43,6 +43,10 @@
 #define SIGNPOST_FRAME_TILE_H         3
 #define SIGNPOST_FRAME_TILE_COUNT     (SIGNPOST_FRAME_TILE_W * SIGNPOST_FRAME_TILE_H)
 
+#define YES_NO_MENU_TILE_W     6
+#define YES_NO_MENU_TILE_H     4
+#define YES_NO_MENU_TILE_COUNT (YES_NO_MENU_TILE_W * YES_NO_MENU_TILE_H)
+
 typedef struct WaitDial WaitDial;
 
 enum StandardWindowType {

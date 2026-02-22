@@ -3,13 +3,13 @@
 
 #include "field/field_system.h"
 
+#include "chatot_cry.h"
 #include "field_script_context.h"
 #include "inlines.h"
 #include "sound.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
 #include "system.h"
-#include "unk_0202CC64.h"
 #include "unk_020553DC.h"
 
 static BOOL ScriptContext_IsSoundFadeFinished(ScriptContext *ctx);

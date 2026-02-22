@@ -1,6 +1,10 @@
 #ifndef POKEPLATINUM_UNK_0202854C_H
 #define POKEPLATINUM_UNK_0202854C_H
 
+#include "generated/goods.h"
+#include "generated/sphere_types.h"
+#include "generated/traps.h"
+
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
@@ -22,7 +26,7 @@ int SecretBase_Size(void);
 int UndergroundRecord_Size(void);
 UndergroundRecord *UndergroundRecord_Init(enum HeapID heapID);
 void Underground_Init(Underground *underground);
-void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed);
+void Underground_HandleDailyEvents(SaveData *saveData, int daysPassed);
 void sub_02028758(SaveData *saveData, s32 param1, BOOL param2);
 void SaveData_LoadAndUpdateUnderground(SaveData *saveData);
 void sub_020287E0(SaveData *saveData);
@@ -33,11 +37,11 @@ void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const Tr
 TrainerInfo *Underground_GetRegisteredFlagOwnerInfo(const Underground *underground, enum HeapID heapID, int param2);
 u32 Underground_GetRandomSeed(Underground *underground);
 int Underground_ConvertTreasureToBagItem(int treasureID);
-BOOL Underground_TryAddGoodPC(Underground *underground, int goodID);
+BOOL Underground_TryAddGoodPC(Underground *underground, enum Good goodID);
 BOOL Underground_IsRoomForGoodsInPC(Underground *underground, int unused);
 int Underground_GetGoodsCountPC(Underground *underground);
 int Underground_GetGoodAtSlotPC(Underground *underground, int slot);
-int Underground_RemoveGoodAtSlotPC(Underground *underground, int slot);
+enum Good Underground_RemoveGoodAtSlotPC(Underground *underground, int slot);
 void Underground_MoveGoodPC(Underground *underground, int origSlot, int slotToMoveAfter);
 int Underground_AddPlacedGood(Underground *underground, int slot, int index);
 BOOL Underground_IsGoodAtSlotPlacedInBase(Underground *underground, int slot);
@@ -46,13 +50,13 @@ void Underground_InitPlacedGoodSlots(Underground *underground);
 int Underground_GetGoodsCountBag(Underground *underground);
 int Underground_GetGoodAtSlotBag(Underground *underground, int slot);
 int Underground_RemoveGoodAtSlotBag(Underground *underground, int slot);
-BOOL Underground_TryAddGoodBag(Underground *underground, int goodID);
+BOOL Underground_TryAddGoodBag(Underground *underground, enum Good goodID);
 void Underground_MoveGoodBag(Underground *underground, int origSlot, int slotToMoveAfter);
 int Underground_GetSphereCount(Underground *underground);
 int Underground_GetSphereTypeAtSlot(Underground *underground, int slot);
 int Underground_GetSphereSizeAtSlot(Underground *underground, int slot);
 int Underground_RemoveSphereAtSlot(Underground *underground, int slot);
-BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphereSize);
+BOOL Underground_TryAddSphere(Underground *underground, enum SphereType sphereType, int sphereSize);
 void Underground_MoveSphereInInventory(Underground *underground, int origSlot, int slotToMoveAfter);
 int Underground_GetTreasureCount(Underground *underground);
 int Underground_GetTreasureAtSlot(Underground *underground, int slot);
@@ -62,32 +66,32 @@ void Underground_MoveTreasureInInventory(Underground *underground, int origSlot,
 int Underground_GetTrapCount(Underground *underground);
 int Underground_GetTrapAtSlot(Underground *underground, int slot);
 int Underground_RemoveTrapAtSlot(Underground *underground, int slot);
-BOOL Underground_TryAddTrap(Underground *underground, int trapID);
+BOOL Underground_TryAddTrap(Underground *underground, enum Trap trapID);
 void Underground_MoveTrapInInventory(Underground *underground, int origSlot, int slotToMoveAfter);
-void Underground_SaveSpawnedTrap(Underground *underground, int trapID, int index, int x, int z);
+void Underground_SaveSpawnedTrap(Underground *underground, enum Trap trapID, int index, int x, int z);
 int Underground_GetSpawnedTrapIDAtIndex(Underground *underground, int index);
 int Underground_GetSpawnedTrapXCoordAtIndex(Underground *underground, int index);
 int Underground_GetSpawnedTrapZCoordAtIndex(Underground *underground, int index);
 void Underground_RemoveSpawnedTrapAtIndex(Underground *underground, int index);
-void Underground_SavePlacedTrap(Underground *underground, int trapID, int index, int x, int z, int param5);
+void Underground_SavePlacedTrap(Underground *underground, enum Trap trapID, int index, int x, int z, int spawnedIndex);
 int Underground_GetPlacedTrapIDAtIndex(Underground *underground, int index);
 int Underground_GetPlacedTrapXCoordAtIndex(Underground *underground, int index);
 int Underground_GetPlacedTrapZCoordAtIndex(Underground *underground, int index);
-int sub_0202907C(Underground *underground, int index);
+int Underground_GetPlacedTrapSpawnedIndexAtIndex(Underground *underground, int index);
 void Underground_SaveBuriedSphere(Underground *underground, int type, int index, int x, int z, int initialSize, int growth);
 int Underground_GetBuriedSphereTypeAtIndex(Underground *underground, int index);
 int Underground_GetBuriedSphereXCoordAtIndex(Underground *underground, int index);
 int Underground_GetBuriedSphereZCoordAtIndex(Underground *underground, int index);
 int Underground_GetBuriedSphereInitialSizeAtIndex(Underground *underground, int index);
 int Underground_GetBuriedSphereGrowthAtIndex(Underground *underground, int index);
-int sub_02029140(Underground *underground, int param1, int param2);
-void sub_020291A4(Underground *underground, int param1);
-int sub_020291CC(Underground *underground, int param1);
-int sub_020291EC(Underground *underground, int param1);
-BOOL Underground_HasNeverMined(Underground *underground);
+int Underground_TryAddMiningSpot(Underground *underground, int x, int z);
+void Underground_RemoveMiningSpotAtIndex(Underground *underground, int index);
+int Underground_GetMiningSpotXCoordAtIndex(Underground *underground, int index);
+int Underground_GetMiningSpotZCoordAtIndex(Underground *underground, int index);
+BOOL Underground_HasPlayerNeverMined(Underground *underground);
 void Underground_SetHasMined(Underground *underground);
-BOOL sub_02029234(Underground *underground);
-void sub_02029240(Underground *underground);
+BOOL Underground_ShouldSpawnNewBuriedObjects(Underground *underground);
+void Underground_FlagSpawnedNewBuriedObjects(Underground *underground);
 void Underground_SetPlateMined(Underground *underground, int miningItemID);
 BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItemID);
 void Underground_IncrementStepCount(Underground *underground);
@@ -95,7 +99,7 @@ int Underground_GetStepCount(Underground *underground);
 void SecretBase_Init(SecretBase *secretBase);
 void SecretBase_Clear(SecretBase *secretBase);
 void SecretBase_SetInactive(SecretBase *secretBase);
-void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, int goodID, int x, int z);
+void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, enum Good goodID, int x, int z);
 void SecretBase_SetGoodCoordsAtIndex(SecretBase *secretBase, int index, int x, int z);
 int SecretBase_GetGoodIDAtIndex(const SecretBase *secretBase, int index);
 int SecretBase_GetGoodXCoordAtIndex(const SecretBase *secretBase, int index);
@@ -117,7 +121,7 @@ int UndergroundRecord_GetNumSpheresDug(const UndergroundRecord *undergroundRecor
 void UndergroundRecord_AddNumSpheresDug(UndergroundRecord *undergroundRecord, int amount);
 int UndergroundRecord_GetNumFossilsDug(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, int amount);
-void sub_02029688(UndergroundRecord *param0, int param1);
+void Underground_AddNumNonFossilsDug(UndergroundRecord *undergroundRecord, int amount);
 int UndergroundRecord_GetNumTrapHits(const UndergroundRecord *undergroundRecord);
 void UndergroundRecord_IncrementNumTrapHits(UndergroundRecord *undergroundRecord);
 int UndergroundRecord_GetNumTrapsTriggered(const UndergroundRecord *undergroundRecord);

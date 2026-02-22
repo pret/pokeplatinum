@@ -5,7 +5,7 @@
 
 #include "struct_defs/underground_record.h"
 
-#include "overlay023/underground_defs.h"
+#include "underground/defs.h"
 
 #include "charcode.h"
 
@@ -45,10 +45,10 @@ typedef struct Underground {
     u8 registeredFlagOwnerIndex;
     u8 spawnedTrapIDs[MAX_SPAWNED_TRAPS];
     u8 spawnedTrapCoordinates[MAX_SPAWNED_TRAPS][3];
-    u8 unk_20B[255][3];
+    u8 miningSpots[MAX_MINING_SPOTS + 5][3];
     u8 placedTrapIDs[MAX_PLACED_TRAPS];
     u8 placedTrapCoordinates[MAX_PLACED_TRAPS][3];
-    u8 unk_548[MAX_PLACED_TRAPS];
+    u8 placedTrapSpawnedIndices[MAX_PLACED_TRAPS]; // pointless field
     u8 buriedSphereTypes[MAX_BURIED_SPHERES];
     u8 buriedSphereGrowth[MAX_BURIED_SPHERES];
     u8 buriedSphereInitialSizes[MAX_BURIED_SPHERES];
@@ -63,7 +63,7 @@ typedef struct Underground {
     u8 sphereSizes[MAX_SPHERE_SLOTS];
     u8 placedGoodSlots[MAX_PLACED_GOODS];
     u8 stepCount;
-    u8 unk_9AC_0 : 4;
+    u8 shouldSpawnNewBuriedObjects : 4;
     u8 hasMined : 4;
 } Underground;
 

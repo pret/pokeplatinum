@@ -2,215 +2,215 @@
 #include "res/text/bank/jubilife_tv_1f.h"
 
 
-    ScriptEntry _0028
-    ScriptEntry _002A
-    ScriptEntry _003D
-    ScriptEntry _003F
-    ScriptEntry _027E
-    ScriptEntry _0291
-    ScriptEntry _02A4
-    ScriptEntry _0026
-    ScriptEntry _02A6
+    ScriptEntry JubilifeTV1F_Unused1
+    ScriptEntry JubilifeTV1F_GymGuide
+    ScriptEntry JubilifeTV1F_Unused2
+    ScriptEntry JubilifeTV1F_AceTrainerSnowF
+    ScriptEntry JubilifeTV1F_Beauty
+    ScriptEntry JubilifeTV1F_MiddleAgedMan
+    ScriptEntry JubilifeTV1F_Unused3
+    ScriptEntry JubilifeTV1F_OnTransition
+    ScriptEntry JubilifeTV1F_AceTrainerM
     ScriptEntryEnd
 
-_0026:
+JubilifeTV1F_OnTransition:
     End
 
-_0028:
+JubilifeTV1F_Unused1:
     End
 
-_002A:
+JubilifeTV1F_GymGuide:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeTV1F_Text_WhyDontYouTryDressingUpYourPokemonNow
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_003D:
+JubilifeTV1F_Unused2:
     End
 
-_003F:
+JubilifeTV1F_AceTrainerSnowF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfNe VAR_UNK_0x40F2, 0, _0257
-    GoToIfSet FLAG_UNK_0x0AB3, _00A0
-    GoToIfSet FLAG_UNK_0x0AA9, _0084
-    Message 1
+    GoToIfNe VAR_LOTTERY_PRIZE_ITEM, 0, JubilifeTV1F_GiveStoredLotteryPrize
+    GoToIfSet FLAG_OBTAINED_LOTTERY_PRIZE, JubilifeTV1F_YouveAlreadyDrawnALotoTicketToday
+    GoToIfSet FLAG_CHECKED_LUCKY_NUMBER, JubilifeTV1F_AskCheckLuckyNumberAgain
+    Message JubilifeTV1F_Text_ThisIsThePokemonLotteryCorner
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00B6
-    GoTo _00AB
+    GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV1F_CheckTodaysLuckyNumber
+    GoTo JubilifeTV1F_OhISeePleaseDoVisitUsAgain
 
-_0084:
-    Message 18
+JubilifeTV1F_AskCheckLuckyNumberAgain:
+    Message JubilifeTV1F_Text_WouldYouLikeToCheckTodaysLuckyNumberAgain
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00B6
-    GoTo _00AB
+    GoToIfEq VAR_RESULT, MENU_YES, JubilifeTV1F_CheckTodaysLuckyNumber
+    GoTo JubilifeTV1F_OhISeePleaseDoVisitUsAgain
     End
 
-_00A0:
-    Message 2
+JubilifeTV1F_YouveAlreadyDrawnALotoTicketToday:
+    Message JubilifeTV1F_Text_YouveAlreadyDrawnALotoTicketToday
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00AB:
-    Message 3
+JubilifeTV1F_OhISeePleaseDoVisitUsAgain:
+    Message JubilifeTV1F_Text_OhISeePleaseDoVisitUsAgain
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00B6:
-    SetFlag FLAG_UNK_0x0AA9
-    Message 4
+JubilifeTV1F_CheckTodaysLuckyNumber:
+    SetFlag FLAG_CHECKED_LUCKY_NUMBER
+    Message JubilifeTV1F_Text_FirstIllLookUpTodaysPokemonLotteryCornerLuckyNumber
     GetJubilifeLotteryTrainerID VAR_0x8000
     BufferVarPaddingDigits 0, VAR_0x8000, PADDING_MODE_ZEROES, 5
-    Message 5
+    Message JubilifeTV1F_Text_YourLotoTicketNumberIsNum
     CheckForJubilifeLotteryWinner VAR_0x8001, VAR_0x8002, VAR_0x8003, VAR_0x8000
-    GoToIfEq VAR_0x8002, 0, _00F5
-    GoToIfEq VAR_0x8003, 0, _0100
-    GoTo _010E
+    GoToIfEq VAR_0x8002, 0, JubilifeTV1F_NoMatch
+    GoToIfEq VAR_0x8003, FALSE, JubilifeTV1F_MatchedTeamsPokemon
+    GoTo JubilifeTV1F_MatchedPCBoxedPokemon
 
-_00F5:
-    Message 8
+JubilifeTV1F_NoMatch:
+    Message JubilifeTV1F_Text_ImSorryYouDidntGetAMatch
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0100:
+JubilifeTV1F_MatchedTeamsPokemon:
     BufferPartyMonNickname 0, VAR_0x8001
-    Message 6
-    GoTo _011C
+    Message JubilifeTV1F_Text_CongratulationsTheIDOfYourTeamsPokemonMatchesYourLotoTicketNumber
+    GoTo JubilifeTV1F_CheckMatchedDigits
 
-_010E:
+JubilifeTV1F_MatchedPCBoxedPokemon:
     BufferMonNicknameFromPC 0, VAR_0x8001
-    Message 7
-    GoTo _011C
+    Message JubilifeTV1F_Text_CongratulationsTheIDOfYourPCBoxedPokemonMatchesYourLotoTicketNumber
+    GoTo JubilifeTV1F_CheckMatchedDigits
 
-_011C:
+JubilifeTV1F_CheckMatchedDigits:
     SetVar VAR_0x8008, VAR_0x8002
-    GoToIfEq VAR_0x8008, 1, _0165
-    GoToIfEq VAR_0x8008, 2, _0170
-    GoToIfEq VAR_0x8008, 3, _0179
-    GoToIfEq VAR_0x8008, 4, _0182
-    GoToIfEq VAR_0x8008, 5, _018B
+    GoToIfEq VAR_0x8008, 1, JubilifeTV1F_LastDigitMatched
+    GoToIfEq VAR_0x8008, 2, JubilifeTV1F_LastTwoDigitsMatched
+    GoToIfEq VAR_0x8008, 3, JubilifeTV1F_LastThreeDigitsMatched
+    GoToIfEq VAR_0x8008, 4, JubilifeTV1F_LastFourDigitsMatched
+    GoToIfEq VAR_0x8008, 5, JubilifeTV1F_LastFiveDigitsMatched
     End
 
-_0165:
-    Message 9
-    GoTo _0194
+JubilifeTV1F_LastDigitMatched:
+    Message JubilifeTV1F_Text_TheLastDigitMatchedSoYouWinTheFourthPrize
+    GoTo JubilifeTV1F_SetLotteryPrize
     End
 
-_0170:
-    Message 11
-    GoTo _0194
+JubilifeTV1F_LastTwoDigitsMatched:
+    Message JubilifeTV1F_Text_TheLastTwoDigitsMatchedSoYouWinTheThirdPrize
+    GoTo JubilifeTV1F_SetLotteryPrize
 
-_0179:
-    Message 12
-    GoTo _0194
+JubilifeTV1F_LastThreeDigitsMatched:
+    Message JubilifeTV1F_Text_TheLastThreeDigitsMatchedSoYouWinTheSecondPrize
+    GoTo JubilifeTV1F_SetLotteryPrize
 
-_0182:
-    Message 13
-    GoTo _0194
+JubilifeTV1F_LastFourDigitsMatched:
+    Message JubilifeTV1F_Text_TheLastFourDigitsMatchedSoYouWinTheFirstPrize
+    GoTo JubilifeTV1F_SetLotteryPrize
 
-_018B:
-    Message 14
-    GoTo _0194
+JubilifeTV1F_LastFiveDigitsMatched:
+    Message JubilifeTV1F_Text_OhMyGoodnessAllFiveDigitsMatchedYouveWonTheJackpotPrize
+    GoTo JubilifeTV1F_SetLotteryPrize
 
-_0194:
+JubilifeTV1F_SetLotteryPrize:
     SetVar VAR_0x8008, VAR_0x8002
-    GoToIfEq VAR_0x8008, 1, _01DD
-    GoToIfEq VAR_0x8008, 2, _01EB
-    GoToIfEq VAR_0x8008, 3, _01F7
-    GoToIfEq VAR_0x8008, 4, _0203
-    GoToIfEq VAR_0x8008, 5, _020F
+    GoToIfEq VAR_0x8008, 1, JubilifeTV1F_SetFourthPrize
+    GoToIfEq VAR_0x8008, 2, JubilifeTV1F_SetThirdPrize
+    GoToIfEq VAR_0x8008, 3, JubilifeTV1F_SetSecondPrize
+    GoToIfEq VAR_0x8008, 4, JubilifeTV1F_SetFirstPrize
+    GoToIfEq VAR_0x8008, 5, JubilifeTV1F_SetJackpotPrize
     End
 
-_01DD:
+JubilifeTV1F_SetFourthPrize:
     SetVar VAR_0x8003, ITEM_ULTRA_BALL
-    GoTo _021B
+    GoTo JubilifeTV1F_GiveLotteryPrize
     End
 
-_01EB:
+JubilifeTV1F_SetThirdPrize:
     SetVar VAR_0x8003, ITEM_PP_UP
-    GoTo _021B
+    GoTo JubilifeTV1F_GiveLotteryPrize
 
-_01F7:
+JubilifeTV1F_SetSecondPrize:
     SetVar VAR_0x8003, ITEM_EXP_SHARE
-    GoTo _021B
+    GoTo JubilifeTV1F_GiveLotteryPrize
 
-_0203:
+JubilifeTV1F_SetFirstPrize:
     SetVar VAR_0x8003, ITEM_MAX_REVIVE
-    GoTo _021B
+    GoTo JubilifeTV1F_GiveLotteryPrize
 
-_020F:
+JubilifeTV1F_SetJackpotPrize:
     SetVar VAR_0x8003, ITEM_MASTER_BALL
-    GoTo _021B
+    GoTo JubilifeTV1F_GiveLotteryPrize
 
-_021B:
+JubilifeTV1F_GiveLotteryPrize:
     SetVar VAR_0x8004, VAR_0x8003
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0246
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, JubilifeTV1F_OhYouSeemToHaveNoRoomForThis
     Common_GiveItemQuantity
-    GoTo _0269
+    GoTo JubilifeTV1F_PleaseDoVisitAgain
 
-_0246:
-    SetVar VAR_UNK_0x40F2, VAR_0x8002
-    Message 15
+JubilifeTV1F_OhYouSeemToHaveNoRoomForThis:
+    SetVar VAR_LOTTERY_PRIZE_ITEM, VAR_0x8002
+    Message JubilifeTV1F_Text_OhYouSeemToHaveNoRoomForThis
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0257:
+JubilifeTV1F_GiveStoredLotteryPrize:
     BufferPlayerName 0
-    Message 16
-    SetVar VAR_0x8002, VAR_UNK_0x40F2
-    GoTo _0194
+    Message JubilifeTV1F_Text_ThisIsThePrizeWeveBeenHoldingForYou
+    SetVar VAR_0x8002, VAR_LOTTERY_PRIZE_ITEM
+    GoTo JubilifeTV1F_SetLotteryPrize
 
-_0269:
-    SetVar VAR_UNK_0x40F2, 0
-    SetFlag FLAG_UNK_0x0AB3
-    Message 17
+JubilifeTV1F_PleaseDoVisitAgain:
+    SetVar VAR_LOTTERY_PRIZE_ITEM, 0
+    SetFlag FLAG_OBTAINED_LOTTERY_PRIZE
+    Message JubilifeTV1F_Text_PleaseDoVisitAgain
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_027E:
+JubilifeTV1F_Beauty:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 19
+    Message JubilifeTV1F_Text_TheyKeepTrackOfOfficialRecordsHere
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0291:
+JubilifeTV1F_MiddleAgedMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 20
+    Message JubilifeTV1F_Text_ImGoingToGetCommercialsShownOnTV
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_02A4:
+JubilifeTV1F_Unused3:
     End
 
-_02A6:
+JubilifeTV1F_AceTrainerM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 21
+    Message JubilifeTV1F_Text_TheTVStationInterviewsAllSortsOfTrainersForItsShows
     WaitABXPadPress
     CloseMessage
     ReleaseAll

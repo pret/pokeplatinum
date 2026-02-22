@@ -8,11 +8,11 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"

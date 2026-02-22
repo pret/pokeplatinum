@@ -6,6 +6,7 @@
 #include "constants/battle/battle_controller.h"
 
 #include "struct_decls/battle_system.h"
+#include "struct_defs/battler_data.h"
 
 #include "battle/battle_controller.h"
 #include "battle/battle_cursor.h"
@@ -17,8 +18,6 @@
 #include "battle/ov16_02264798.h"
 #include "battle/party_gauge.h"
 #include "battle/struct_ov16_0223C2C0.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_0225BFFC_t.h"
 #include "battle/struct_ov16_02265BBC.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle_anim/ov12_02235E94.h"
@@ -39,96 +38,96 @@
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
 
 BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *param1);
-void ov16_0225C0DC(BattleSystem *battleSys, BattlerData *param1);
-void ov16_0225C104(BattleSystem *battleSys, BattlerData *param1, int param2);
-void ov16_0225C038(BattleSystem *battleSys, BattlerData *param1, int param2, int param3);
-static void ov16_0225C138(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C13C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C168(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C17C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C190(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C1A4(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C1B8(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C1CC(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C1F0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C204(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C218(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C228(BattleSystem *battleSys, BattlerData *param1);
+void ov16_0225C0DC(BattleSystem *battleSys, BattlerData *battlerData);
+void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2);
+void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int param2, int param3);
+static void ov16_0225C138(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C13C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C168(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C17C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C190(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C1A4(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C1B8(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C1CC(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C1F0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C204(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C218(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C228(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_SlideHealthbarIn(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *battlerData);
-static void ov16_0225C260(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C288(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C29C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C2B0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C2C4(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C2D8(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C2EC(BattleSystem *battleSys, BattlerData *param1);
+static void ov16_0225C260(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C288(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C29C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C2B0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C2C4(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C2D8(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C2EC(BattleSystem *battleSys, BattlerData *battlerData);
 static void BtlIOCmd_PrintBattleMessage(BattleSystem *battleSys, BattlerData *battlerData);
-static void ov16_0225C314(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C328(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C35C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C370(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C384(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C398(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C3AC(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C3BC(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C3D0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C3E4(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C3F8(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C40C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C420(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C430(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C444(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C454(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C468(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C558(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C5B0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C65C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C670(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C77C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C840(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C854(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C868(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C8A4(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C940(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C988(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C9AC(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C9C0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C9D0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C9E0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225C9F0(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225CA14(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225CA38(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225CA4C(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225CA60(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1);
-static void ov16_0225CB80(BattleSystem *battleSys, BattlerData *param1);
-static void ZeroDataBuffer(BattlerData *param0);
+static void ov16_0225C314(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C328(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C35C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C370(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C384(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C398(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C3AC(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C3BC(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C3D0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C3E4(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C3F8(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C40C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C420(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C430(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C444(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C454(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C468(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C5B0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C65C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C670(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C684(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C77C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C840(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C854(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C868(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C8A4(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C940(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C988(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C9AC(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C9C0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C9D0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C9E0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225C9F0(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225CA14(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225CA38(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225CA4C(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225CA60(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *battlerData);
+static void ov16_0225CB80(BattleSystem *battleSys, BattlerData *battlerData);
+static void ZeroDataBuffer(BattlerData *battlerData);
 
 extern const u8 Unk_ov16_0226F174[];
 
 BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *param1)
 {
-    BattlerData *v0;
+    BattlerData *battlerData;
     int v1;
 
-    v0 = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattlerData));
-    MI_CpuClearFast(v0, sizeof(BattlerData));
+    battlerData = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattlerData));
+    MI_CpuClearFast(battlerData, sizeof(BattlerData));
 
-    v0->battler = param1->unk_00;
-    v0->battlerType = param1->unk_01;
-    v0->unk_1A0 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_BATTLE);
+    battlerData->battler = param1->unk_00;
+    battlerData->battlerType = param1->unk_01;
+    battlerData->narc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_BATTLE);
 
-    return v0;
+    return battlerData;
 }
 
-void ov16_0225C038(BattleSystem *battleSys, BattlerData *param1, int param2, int param3)
+void ov16_0225C038(BattleSystem *battleSys, BattlerData *battlerData, int param2, int param3)
 {
     BallThrow v0;
     s16 v1, v2;
@@ -137,26 +136,26 @@ void ov16_0225C038(BattleSystem *battleSys, BattlerData *param1, int param2, int
         return;
     }
 
-    if ((param1->battlerType & 0x1) && ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE)) {
+    if ((battlerData->battlerType & 0x1) && ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE)) {
         return;
     }
 
-    v0.type = Unk_ov16_0226F174[param1->battlerType];
+    v0.type = Unk_ov16_0226F174[battlerData->battlerType];
     v0.heapID = HEAP_ID_BATTLE;
     v0.mode = 4;
-    v0.target = param1->battler;
+    v0.target = battlerData->battler;
     v0.ballID = param2;
     v0.cellActorSys = BattleSystem_GetSpriteSystem(battleSys);
     v0.paletteSys = BattleSystem_GetPaletteData(battleSys);
     v0.surface = 0;
     v0.bgPrio = 1;
 
-    param1->unk_84 = ov12_02237728(&v0);
+    battlerData->ballRotation = ov12_02237728(&v0);
 
-    ov12_02237E34(param1->unk_84, 100);
-    ov12_02237E40(param1->unk_84, 2);
-    ov12_02237E0C(param1->unk_84, 0);
-    ov12_02237E30(param1->unk_84, 0);
+    ov12_02237E34(battlerData->ballRotation, 100);
+    ov12_02237E40(battlerData->ballRotation, 2);
+    ov12_02237E0C(battlerData->ballRotation, 0);
+    ov12_02237E30(battlerData->ballRotation, 0);
 }
 
 static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
@@ -229,120 +228,120 @@ static const UnkFuncPtr_ov16_0226F068 Unk_ov16_0226F068[] = {
     [BATTLE_COMMAND_CLEAR_MESSAGE_BOX] = ov16_0225CB80
 };
 
-void ov16_0225C0DC(BattleSystem *battleSys, BattlerData *param1)
+void ov16_0225C0DC(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    if (param1->data[0]) {
-        param1->unk_1A4 = 0;
-        Unk_ov16_0226F068[param1->data[0]](battleSys, param1);
+    if (battlerData->data[0]) {
+        battlerData->unk_1A4 = 0;
+        Unk_ov16_0226F068[battlerData->data[0]](battleSys, battlerData);
     }
 }
 
-void ov16_0225C104(BattleSystem *battleSys, BattlerData *param1, int param2)
+void ov16_0225C104(BattleSystem *battleSys, BattlerData *battlerData, int param2)
 {
     if (param2 != 2) {
-        ov16_02267360(&param1->healthbar);
+        ov16_02267360(&battlerData->healthbar);
     }
 
-    if (param1->unk_18) {
-        Sprite_DeleteAndFreeResources(param1->unk_18);
+    if (battlerData->managedSprite) {
+        Sprite_DeleteAndFreeResources(battlerData->managedSprite);
     }
 
-    ov16_022647D8(param1);
+    ov16_022647D8(battlerData);
 
-    NARC_dtor(param1->unk_1A0);
-    Heap_Free(param1);
+    NARC_dtor(battlerData->narc);
+    Heap_Free(battlerData);
 }
 
-static void ov16_0225C138(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C138(BattleSystem *battleSys, BattlerData *battlerData)
 {
     return;
 }
 
-static void ov16_0225C13C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C13C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    UISetupMessage *message = (UISetupMessage *)&param1->data[0];
+    UISetupMessage *message = (UISetupMessage *)&battlerData->data[0];
 
     BattleSystem_SetSeedDTO(battleSys, message->unk_04);
-    ov16_0225CBB8(battleSys, param1);
-    BattleController_EmitClearCommand(battleSys, param1->battler, 1);
-    ZeroDataBuffer(param1);
+    ov16_0225CBB8(battleSys, battlerData);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, 1);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C168(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C168(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MonEncounterMessage *message = (MonEncounterMessage *)&param1->data[0];
+    MonEncounterMessage *message = (MonEncounterMessage *)&battlerData->data[0];
 
-    ov16_0225CBDC(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225CBDC(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C17C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C17C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MonShowMessage *message = (MonShowMessage *)&param1->data[0];
+    MonShowMessage *message = (MonShowMessage *)&battlerData->data[0];
 
-    ov16_0225CE1C(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225CE1C(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C190(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C190(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MonShowMessage *message = (MonShowMessage *)&param1->data[0];
+    MonShowMessage *message = (MonShowMessage *)&battlerData->data[0];
 
-    ov16_0225CF70(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225CF70(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C1A4(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C1A4(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MonReturnMessage *message = (MonReturnMessage *)&param1->data[0];
+    MonReturnMessage *message = (MonReturnMessage *)&battlerData->data[0];
 
-    ov16_0225D118(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D118(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C1B8(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C1B8(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    CaptureOpenBallMessage *message = (CaptureOpenBallMessage *)&param1->data[0];
+    CaptureOpenBallMessage *message = (CaptureOpenBallMessage *)&battlerData->data[0];
 
-    ov16_0225D1C4(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D1C4(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C1CC(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C1CC(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    PokemonSprite_Delete(param1->unk_20);
-    BattleController_EmitClearCommand(battleSys, param1->battler, 7);
-    ZeroDataBuffer(param1);
+    PokemonSprite_Delete(battlerData->monSprite);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, 7);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C1F0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C1F0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    TrainerEncounterMessage *message = (TrainerEncounterMessage *)&param1->data[0];
+    TrainerEncounterMessage *message = (TrainerEncounterMessage *)&battlerData->data[0];
 
-    ov16_0225D228(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D228(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C204(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C204(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    TrainerThrowBallMessage *message = (TrainerThrowBallMessage *)&param1->data[0];
+    TrainerThrowBallMessage *message = (TrainerThrowBallMessage *)&battlerData->data[0];
 
-    ov16_0225D360(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D360(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C218(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C218(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225D3CC(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225D3CC(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C228(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C228(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    TrainerSlideInMessage *message = (TrainerSlideInMessage *)&param1->data[0];
+    TrainerSlideInMessage *message = (TrainerSlideInMessage *)&battlerData->data[0];
 
-    ov16_0225D414(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D414(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
 /**
@@ -371,61 +370,61 @@ static void BtlIOCmd_SlideHealthbarOut(BattleSystem *battleSys, BattlerData *bat
     ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C260(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C260(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    CommandSetMessage *message = (CommandSetMessage *)&param1->data[0];
+    CommandSetMessage *message = (CommandSetMessage *)&battlerData->data[0];
 
     ov16_0223F290(battleSys, message->unk_29);
-    ov16_0225D5B8(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D5B8(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C288(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C288(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MoveSelectMenuMessage *message = (MoveSelectMenuMessage *)&param1->data[0];
+    MoveSelectMenuMessage *message = (MoveSelectMenuMessage *)&battlerData->data[0];
 
-    ov16_0225D698(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D698(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C29C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C29C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    TargetSelectMenuMessage *message = (TargetSelectMenuMessage *)&param1->data[0];
+    TargetSelectMenuMessage *message = (TargetSelectMenuMessage *)&battlerData->data[0];
 
-    ov16_0225D708(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D708(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C2B0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C2B0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    BagMenuMessage *message = (BagMenuMessage *)&param1->data[0];
+    BagMenuMessage *message = (BagMenuMessage *)&battlerData->data[0];
 
-    ov16_0225D794(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D794(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C2C4(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C2C4(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    PartyMenuMessage *message = (PartyMenuMessage *)&param1->data[0];
+    PartyMenuMessage *message = (PartyMenuMessage *)&battlerData->data[0];
 
-    ov16_0225D840(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D840(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C2D8(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C2D8(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    YesNoMenuMessage *message = (YesNoMenuMessage *)&param1->data[0];
+    YesNoMenuMessage *message = (YesNoMenuMessage *)&battlerData->data[0];
 
-    ov16_0225D8AC(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D8AC(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C2EC(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C2EC(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    AttackMsgMessage *message = (AttackMsgMessage *)&param1->data[0];
+    AttackMsgMessage *message = (AttackMsgMessage *)&battlerData->data[0];
 
-    ov16_0225D8F0(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225D8F0(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
 /**
@@ -442,144 +441,144 @@ static void BtlIOCmd_PrintBattleMessage(BattleSystem *battleSys, BattlerData *ba
     ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C314(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C314(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MoveAnimation *v0 = (MoveAnimation *)&param1->data[0];
+    MoveAnimation *v0 = (MoveAnimation *)&battlerData->data[0];
 
-    ov16_0225D9A8(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225D9A8(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C328(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C328(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    if (PokemonSprite_GetAttribute(param1->unk_20, MON_SPRITE_HIDE) == 1) {
-        BattleController_EmitClearCommand(battleSys, param1->battler, 23);
+    if (PokemonSprite_GetAttribute(battlerData->monSprite, MON_SPRITE_HIDE) == 1) {
+        BattleController_EmitClearCommand(battleSys, battlerData->battler, 23);
     } else {
-        ov16_0225DA44(battleSys, param1);
+        ov16_0225DA44(battleSys, battlerData);
     }
 
-    ZeroDataBuffer(param1);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C35C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C35C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    HPGaugeUpdateMessage *message = (HPGaugeUpdateMessage *)&param1->data[0];
+    HPGaugeUpdateMessage *message = (HPGaugeUpdateMessage *)&battlerData->data[0];
 
-    ov16_0225DA74(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225DA74(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C370(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C370(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ExpGaugeUpdateMessage *message = (ExpGaugeUpdateMessage *)&param1->data[0];
+    ExpGaugeUpdateMessage *message = (ExpGaugeUpdateMessage *)&battlerData->data[0];
 
-    ov16_0225DB00(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225DB00(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C384(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C384(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    FaintingSequenceMessage *message = (FaintingSequenceMessage *)&param1->data[0];
+    FaintingSequenceMessage *message = (FaintingSequenceMessage *)&battlerData->data[0];
 
-    ov16_0225DB74(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225DB74(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C398(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C398(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    PlaySoundMessage *message = (PlaySoundMessage *)&param1->data[0];
+    PlaySoundMessage *message = (PlaySoundMessage *)&battlerData->data[0];
 
-    ov16_0225DC4C(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225DC4C(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C3AC(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C3AC(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225DC7C(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225DC7C(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C3BC(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C3BC(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ToggleVanishMessage *v0 = (ToggleVanishMessage *)&param1->data[0];
+    ToggleVanishMessage *v0 = (ToggleVanishMessage *)&battlerData->data[0];
 
-    ov16_0225DCB0(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225DCB0(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C3D0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C3D0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    SetStatusIconMessage *v0 = (SetStatusIconMessage *)&param1->data[0];
+    SetStatusIconMessage *v0 = (SetStatusIconMessage *)&battlerData->data[0];
 
-    ov16_0225DD44(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225DD44(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C3E4(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C3E4(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    TrainerMsgMessage *message = (TrainerMsgMessage *)&param1->data[0];
+    TrainerMsgMessage *message = (TrainerMsgMessage *)&battlerData->data[0];
 
-    ov16_0225DD7C(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225DD7C(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C3F8(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C3F8(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    RecallMsgMessage *v0 = (RecallMsgMessage *)&param1->data[0];
+    RecallMsgMessage *v0 = (RecallMsgMessage *)&battlerData->data[0];
 
-    ov16_0225DDD8(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225DDD8(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C40C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C40C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    SendOutMsgMessage *v0 = (SendOutMsgMessage *)&param1->data[0];
+    SendOutMsgMessage *v0 = (SendOutMsgMessage *)&battlerData->data[0];
 
-    ov16_0225DE30(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225DE30(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C420(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C420(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225DE88(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225DE88(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C430(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C430(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    LeadMonMsgMessage *v0 = (LeadMonMsgMessage *)&param1->data[0];
+    LeadMonMsgMessage *v0 = (LeadMonMsgMessage *)&battlerData->data[0];
 
-    ov16_0225DEDC(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225DEDC(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C444(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C444(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225DF34(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225DF34(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C454(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C454(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    AlertMsgMessage *v0 = (AlertMsgMessage *)&param1->data[0];
+    AlertMsgMessage *v0 = (AlertMsgMessage *)&battlerData->data[0];
 
-    ov16_0225DF6C(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225DF6C(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C468(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C468(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    RefreshHPGaugeMessage *v0 = (RefreshHPGaugeMessage *)&param1->data[0];
+    RefreshHPGaugeMessage *v0 = (RefreshHPGaugeMessage *)&battlerData->data[0];
 
-    ov16_0225E008(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225E008(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    UpdatePartyMonMessage *message = (UpdatePartyMonMessage *)&param1->data[0];
+    UpdatePartyMonMessage *message = (UpdatePartyMonMessage *)&battlerData->data[0];
     int v1;
-    Pokemon *v2 = BattleSystem_GetPartyPokemon(battleSys, param1->battler, message->partySlot);
+    Pokemon *v2 = BattleSystem_GetPartyPokemon(battleSys, battlerData->battler, message->partySlot);
 
     if ((message->statusVolatile & 0x200000) == 0) {
         for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
@@ -606,11 +605,11 @@ static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1)
         Pokemon_CalcLevelAndStats(v2);
     }
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, message->command);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C558(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C558(BattleSystem *battleSys, BattlerData *battlerData)
 {
     u32 battleType;
     UnkStruct_ov16_02268A14 *v1;
@@ -618,34 +617,34 @@ static void ov16_0225C558(BattleSystem *battleSys, BattlerData *param1)
     battleType = BattleSystem_GetBattleType(battleSys);
     v1 = ov16_0223E02C(battleSys);
 
-    if (param1->bootState == 0x0) {
-        if ((battleType & BATTLE_TYPE_2vs2) || (((battleType & BATTLE_TYPE_2vs2) == 0) && (param1->battlerType != 4))) {
+    if (battlerData->bootState == 0x0) {
+        if ((battleType & BATTLE_TYPE_2vs2) || (((battleType & BATTLE_TYPE_2vs2) == 0) && (battlerData->battlerType != 4))) {
             ov16_0226947C(v1, -0xd00, 0);
         }
     }
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, param1->data[0]);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, battlerData->data[0]);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C5B0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C5B0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_022675AC(&param1->healthbar);
-    ov16_022647D8(param1);
-    BattleController_EmitClearCommand(battleSys, param1->battler, param1->data[0]);
-    ZeroDataBuffer(param1);
+    ov16_022675AC(&battlerData->healthbar);
+    ov16_022647D8(battlerData);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, battlerData->data[0]);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    RefreshPartyStatusMessage *message = (RefreshPartyStatusMessage *)&param1->data[0];
+    RefreshPartyStatusMessage *message = (RefreshPartyStatusMessage *)&battlerData->data[0];
     Pokemon *v1;
     int v2, v3, v4;
     u32 v5 = 0;
-    v3 = BattleSystem_GetPartyCount(battleSys, param1->battler);
+    v3 = BattleSystem_GetPartyCount(battleSys, battlerData->battler);
 
     for (v2 = 0; v2 < v3; v2++) {
-        v1 = BattleSystem_GetPartyPokemon(battleSys, param1->battler, v2);
+        v1 = BattleSystem_GetPartyPokemon(battleSys, battlerData->battler, v2);
 
         if (message->ability == 104) {
             v4 = ABILITY_NONE;
@@ -658,35 +657,35 @@ static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, message->command);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C65C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C65C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ForgetMoveMessage *v0 = (ForgetMoveMessage *)&param1->data[0];
+    ForgetMoveMessage *v0 = (ForgetMoveMessage *)&battlerData->data[0];
 
-    ov16_0225E0BC(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225E0BC(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C670(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C670(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MosaicSetMessage *v0 = (MosaicSetMessage *)&param1->data[0];
+    MosaicSetMessage *v0 = (MosaicSetMessage *)&battlerData->data[0];
 
-    ov16_0225E0F4(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225E0F4(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C684(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MonChangeFormMessage *message = (MonChangeFormMessage *)&param1->data[0];
+    MonChangeFormMessage *message = (MonChangeFormMessage *)&battlerData->data[0];
     PokemonSpriteTemplate v1;
     PokemonSpriteTemplate *v2;
     int v3;
     int v4;
 
-    if (param1->battlerType & 0x1) {
+    if (battlerData->battlerType & 0x1) {
         v4 = 2;
     } else {
         v4 = 0;
@@ -694,35 +693,35 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
 
     BuildPokemonSpriteTemplate(&v1, message->species, message->gender, v4, message->isShiny, message->formNum, message->personality);
 
-    v2 = PokemonSprite_GetTemplate(param1->unk_20);
+    v2 = PokemonSprite_GetTemplate(battlerData->monSprite);
     *v2 = v1;
 
-    PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
-    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, PokemonSpriteData_GetTiles(BattleSystem_GetPokemonSpriteData(battleSys), param1->battler), message->personality, FALSE, v4, v2->spindaSpots);
+    PokemonSprite_ScheduleReloadFromNARC(battlerData->monSprite);
+    CharacterSprite_LoadPokemonSprite(v2->narcID, v2->character, HEAP_ID_BATTLE, PokemonSpriteData_GetTiles(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler), message->personality, FALSE, v4, v2->spindaSpots);
 
-    PokemonSpriteData_SetNarcID(BattleSystem_GetPokemonSpriteData(battleSys), param1->battler, v2->narcID);
-    PokemonSpriteData_SetPalette(BattleSystem_GetPokemonSpriteData(battleSys), param1->battler, v2->palette);
+    PokemonSpriteData_SetNarcID(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler, v2->narcID);
+    PokemonSpriteData_SetPalette(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler, v2->palette);
 
     v3 = LoadPokemonSpriteYOffset(message->species, message->gender, v4, message->formNum, message->personality);
-    PokemonSpriteData_SetYOffset(BattleSystem_GetPokemonSpriteData(battleSys), param1->battler, v3);
+    PokemonSpriteData_SetYOffset(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler, v3);
 
-    v3 = ov12_022384CC(param1->battlerType, 1) + v3;
-    PokemonSprite_SetAttribute(param1->unk_20, MON_SPRITE_Y_CENTER, v3);
+    v3 = ov12_022384CC(battlerData->battlerType, 1) + v3;
+    PokemonSprite_SetAttribute(battlerData->monSprite, MON_SPRITE_Y_CENTER, v3);
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, message->command);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C77C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C77C(BattleSystem *battleSys, BattlerData *battlerData)
 {
     ov16_0223EF8C(battleSys);
-    BattleController_EmitClearCommand(battleSys, param1->battler, 46);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, 46);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    if (param1->bootState == 0x0) {
+    if (battlerData->bootState == 0x0) {
         {
             UnkStruct_ov16_02268A14 *v0;
             int v1;
@@ -740,183 +739,183 @@ static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *param1)
             NARC_dtor(v3);
             NARC_dtor(v4);
 
-            v1 = BattleSystem_GetPartner(battleSys, param1->battler);
+            v1 = BattleSystem_GetPartner(battleSys, battlerData->battler);
 
-            if (v1 != param1->battler) {
+            if (v1 != battlerData->battler) {
                 healthbar = BattleSystem_GetHealthbar(battleSys, v1);
                 ov16_0226846C(healthbar);
             }
 
-            ov16_022675AC(&param1->healthbar);
+            ov16_022675AC(&battlerData->healthbar);
             ov16_02269218(v0);
-            ov16_022647D8(param1);
+            ov16_022647D8(battlerData);
         }
     }
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, 47);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, 47);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C840(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C840(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    PartyGaugeData *v0 = (PartyGaugeData *)&param1->data[0];
+    PartyGaugeData *v0 = (PartyGaugeData *)&battlerData->data[0];
 
-    BattleDisplay_ShowBattleStartPartyGauge(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    BattleDisplay_ShowBattleStartPartyGauge(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C854(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C854(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    PartyGaugeData *v0 = (PartyGaugeData *)&param1->data[0];
+    PartyGaugeData *v0 = (PartyGaugeData *)&battlerData->data[0];
 
-    BattleDisplay_HideBattleStartPartyGauge(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    BattleDisplay_HideBattleStartPartyGauge(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C868(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C868(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    PartyGaugeData *v0 = (PartyGaugeData *)&param1->data[0];
+    PartyGaugeData *v0 = (PartyGaugeData *)&battlerData->data[0];
 
-    if (BattleSystem_GetBattlerSide(battleSys, param1->battler)) {
-        BattleDisplay_ShowPartyGauge(battleSys, param1, v0);
+    if (BattleSystem_GetBattlerSide(battleSys, battlerData->battler)) {
+        BattleDisplay_ShowPartyGauge(battleSys, battlerData, v0);
     } else {
-        BattleController_EmitClearCommand(battleSys, param1->battler, 50);
+        BattleController_EmitClearCommand(battleSys, battlerData->battler, 50);
     }
 
-    ZeroDataBuffer(param1);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C8A4(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C8A4(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    PartyGaugeData *v0 = (PartyGaugeData *)&param1->data[0];
+    PartyGaugeData *v0 = (PartyGaugeData *)&battlerData->data[0];
 
-    if (BattleSystem_GetBattlerSide(battleSys, param1->battler)) {
-        BattleDisplay_HidePartyGauge(battleSys, param1, v0);
+    if (BattleSystem_GetBattlerSide(battleSys, battlerData->battler)) {
+        BattleDisplay_HidePartyGauge(battleSys, battlerData, v0);
     } else {
-        BattleController_EmitClearCommand(battleSys, param1->battler, 51);
+        BattleController_EmitClearCommand(battleSys, battlerData->battler, 51);
     }
 
-    ZeroDataBuffer(param1);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *battlerData)
 {
     SpriteSystem *v0 = BattleSystem_GetSpriteSystem(battleSys);
     SpriteManager *v1 = BattleSystem_GetSpriteManager(battleSys);
     PaletteData *v2 = BattleSystem_GetPaletteData(battleSys);
 
     PartyGauge_LoadGraphics(v0, v1, v2);
-    BattleController_EmitClearCommand(battleSys, param1->battler, 52);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, 52);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *battlerData)
 {
     SpriteManager *v0 = BattleSystem_GetSpriteManager(battleSys);
 
     PartyGauge_FreeGraphics(v0);
-    BattleController_EmitClearCommand(battleSys, param1->battler, 53);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, 53);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C940(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C940(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    RecordIncrementMessage *message = (RecordIncrementMessage *)&param1->data[0];
+    RecordIncrementMessage *message = (RecordIncrementMessage *)&battlerData->data[0];
 
     if (message->battlerType == 0) {
-        if (param1->bootState == 0x0) {
+        if (battlerData->bootState == 0x0) {
             BattleSystem_TryIncrementRecordValue(battleSys, message->record);
         }
     } else {
-        if (param1->bootState != 0x0) {
+        if (battlerData->bootState != 0x0) {
             BattleSystem_TryIncrementRecordValue(battleSys, message->record);
         }
     }
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, message->command);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C988(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C988(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    LinkWaitMsgMessage *v0 = (LinkWaitMsgMessage *)&param1->data[0];
+    LinkWaitMsgMessage *v0 = (LinkWaitMsgMessage *)&battlerData->data[0];
 
     ov16_0223F638(battleSys, v0->unk_02, v0->unk_04);
-    ov16_0225E23C(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225E23C(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C9AC(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C9AC(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MoveAnimation *v0 = (MoveAnimation *)&param1->data[0];
+    MoveAnimation *v0 = (MoveAnimation *)&battlerData->data[0];
 
-    ov16_0225E294(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225E294(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C9C0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C9C0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225E2C8(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225E2C8(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C9D0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C9D0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225E300(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225E300(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C9E0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C9E0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ov16_0225E338(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225E338(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225C9F0(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225C9F0(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    EscapeMsgMessage *message = (EscapeMsgMessage *)&param1->data[0];
+    EscapeMsgMessage *message = (EscapeMsgMessage *)&battlerData->data[0];
 
     ov16_0223F638(battleSys, message->unk_02, message->unk_04);
-    ov16_0225E38C(battleSys, param1, message);
-    ZeroDataBuffer(param1);
+    ov16_0225E38C(battleSys, battlerData, message);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225CA14(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225CA14(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ForfeitMsgMessage *message = (ForfeitMsgMessage *)&param1->data[0];
+    ForfeitMsgMessage *message = (ForfeitMsgMessage *)&battlerData->data[0];
 
     ov16_0223F638(battleSys, message->unk_02, message->unk_04);
-    ov16_0225E3E0(battleSys, param1);
-    ZeroDataBuffer(param1);
+    ov16_0225E3E0(battleSys, battlerData);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225CA38(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225CA38(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MoveAnimation *v0 = (MoveAnimation *)&param1->data[0];
+    MoveAnimation *v0 = (MoveAnimation *)&battlerData->data[0];
 
-    ov16_0225E434(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225E434(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225CA4C(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225CA4C(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MoveHitSoundMessage *v0 = (MoveHitSoundMessage *)&param1->data[0];
+    MoveHitSoundMessage *v0 = (MoveHitSoundMessage *)&battlerData->data[0];
 
-    ov16_0225E468(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225E468(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225CA60(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225CA60(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    MusicPlayMessage *v0 = (MusicPlayMessage *)&param1->data[0];
+    MusicPlayMessage *v0 = (MusicPlayMessage *)&battlerData->data[0];
 
-    ov16_0225E4C8(battleSys, param1, v0);
-    ZeroDataBuffer(param1);
+    ov16_0225E4C8(battleSys, battlerData, v0);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *battlerData)
 {
-    ResultSubmitMessage *message = (ResultSubmitMessage *)&param1->data[0];
+    ResultSubmitMessage *message = (ResultSubmitMessage *)&battlerData->data[0];
     Party *v1;
     Pokemon *v2;
     int v3;
@@ -955,22 +954,22 @@ static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
         }
     }
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, message->command);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, message->command);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ov16_0225CB80(BattleSystem *battleSys, BattlerData *param1)
+static void ov16_0225CB80(BattleSystem *battleSys, BattlerData *battlerData)
 {
     Window *v0 = BattleSystem_GetWindow(battleSys, 0);
 
     Window_FillTilemap(v0, 0xff);
     Window_LoadTiles(v0);
 
-    BattleController_EmitClearCommand(battleSys, param1->battler, 66);
-    ZeroDataBuffer(param1);
+    BattleController_EmitClearCommand(battleSys, battlerData->battler, 66);
+    ZeroDataBuffer(battlerData);
 }
 
-static void ZeroDataBuffer(BattlerData *param0)
+static void ZeroDataBuffer(BattlerData *battlerData)
 {
-    param0->data[0] = 0;
+    battlerData->data[0] = 0;
 }

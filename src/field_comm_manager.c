@@ -12,7 +12,7 @@
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
 #include "overlay007/communication_club.h"
-#include "overlay023/underground_manager.h"
+#include "underground/manager.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -715,7 +715,7 @@ static void sub_0205A058(void)
     FieldCommMan_SetTask(FieldCommMan_Delete, 0);
 }
 
-SecretBase *sub_0205A080(SaveData *saveData)
+SecretBase *FieldCommMan_GetCurrentOccupiedSecretBase(SaveData *saveData)
 {
     if (!sFieldCommMan || !sFieldCommMan->isUnderground) {
         return NULL;

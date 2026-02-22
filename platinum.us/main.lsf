@@ -128,7 +128,7 @@ Static main
 	Object main.nef.p/src_unk_0202C858.c.o
 	Object main.nef.p/src_unk_0202C9F4.c.o
 	Object main.nef.p/src_play_time.c.o
-	Object main.nef.p/src_unk_0202CC64.c.o
+	Object main.nef.p/src_chatot_cry.c.o
 	Object main.nef.p/src_game_records.c.o
 	Object main.nef.p/src_unk_0202D05C.c.o
 	Object main.nef.p/src_unk_0202D778.c.o
@@ -210,7 +210,7 @@ Static main
 	Object main.nef.p/src_scrcmd_party_mon_moves.c.o
 	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
 	Object main.nef.p/src_unk_0204F04C.c.o
-	Object main.nef.p/src_unk_0204F13C.c.o
+	Object main.nef.p/src_scrcmd_battle_hall.c.o
 	Object main.nef.p/src_unk_0204FA34.c.o
 	Object main.nef.p/src_unk_0204FAB4.c.o
 	Object main.nef.p/src_unk_0205001C.c.o
@@ -514,7 +514,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
 	Object main.nef.p/src_overlay005_field_effect_renderer.c.o
 	Object main.nef.p/src_overlay005_resource_heap.c.o
-	Object main.nef.p/src_overlay005_ov5_021F0824.c.o
+	Object main.nef.p/src_overlay005_secret_base_props.c.o
 	Object main.nef.p/src_overlay005_fishing.c.o
 	Object main.nef.p/src_overlay005_footprint_type.c.o
 	Object main.nef.p/src_overlay005_ov5_021F0EB0.c.o
@@ -832,29 +832,29 @@ Overlay overlay22
 	Object main.nef.p/src_overlay022_ov22_0225B660.c.o
 }
 
-Overlay overlay23
+Overlay underground
 {
 	After overlay5
-	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
-	Object main.nef.p/src_overlay023_underground_spheres.c.o
-	Object main.nef.p/src_overlay023_underground_manager.c.o
-	Object main.nef.p/src_overlay023_underground_traps.c.o
-	Object main.nef.p/src_overlay023_underground_item_list_menu.c.o
-	Object main.nef.p/src_overlay023_underground_top_screen.c.o
-	Object main.nef.p/src_overlay023_underground_player_status.c.o
-	Object main.nef.p/src_overlay023_underground_comm_manager.c.o
-	Object main.nef.p/src_overlay023_underground_player.c.o
-	Object main.nef.p/src_overlay023_secret_bases.c.o
-	Object main.nef.p/src_overlay023_underground_player_talk.c.o
-	Object main.nef.p/src_overlay023_underground_menu.c.o
-	Object main.nef.p/src_overlay023_underground_pc.c.o
-	Object main.nef.p/src_overlay023_underground_vendors.c.o
-	Object main.nef.p/src_overlay023_underground_records.c.o
-	Object main.nef.p/src_overlay023_underground_text_printer.c.o
-	Object main.nef.p/src_overlay023_treasure_prices.c.o
-	Object main.nef.p/src_overlay023_trap_prices.c.o
-	Object main.nef.p/src_overlay023_decoration_menu.c.o
-	Object main.nef.p/src_overlay023_base_decoration.c.o
+	Object main.nef.p/src_underground_mining.c.o
+	Object main.nef.p/src_underground_spheres.c.o
+	Object main.nef.p/src_underground_manager.c.o
+	Object main.nef.p/src_underground_traps.c.o
+	Object main.nef.p/src_underground_item_list_menu.c.o
+	Object main.nef.p/src_underground_top_screen.c.o
+	Object main.nef.p/src_underground_player_status.c.o
+	Object main.nef.p/src_underground_comm_manager.c.o
+	Object main.nef.p/src_underground_player.c.o
+	Object main.nef.p/src_underground_secret_bases.c.o
+	Object main.nef.p/src_underground_player_talk.c.o
+	Object main.nef.p/src_underground_menus.c.o
+	Object main.nef.p/src_underground_pc.c.o
+	Object main.nef.p/src_underground_vendors.c.o
+	Object main.nef.p/src_underground_records.c.o
+	Object main.nef.p/src_underground_text_printer.c.o
+	Object main.nef.p/src_underground_treasure_prices.c.o
+	Object main.nef.p/src_underground_trap_prices.c.o
+	Object main.nef.p/src_underground_decoration_menu.c.o
+	Object main.nef.p/src_underground_base_decoration.c.o
 }
 
 Overlay poketch_unavailable

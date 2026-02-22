@@ -1,0 +1,19 @@
+{
+  "key": 37072,
+  "messages": [
+    {
+      "id": "MysteryGiftPhrase_EveryoneHappyWiFiConnection",
+      "en_US": [
+        "EVERYONE HAPPY\n",
+        "WI-FI CONNECTION"
+      ]
+    },
+    {
+      "id": "MysteryGiftPhrase_CustomMessageWords",
+      "en_US": [
+        "{STRVAR_1 28, 0, 0} {STRVAR_1 28, 1, 0}\n",
+        "{STRVAR_1 28, 2, 0} {STRVAR_1 28, 3, 0}"
+      ]
+    }
+  ]
+}

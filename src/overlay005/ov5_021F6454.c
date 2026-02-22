@@ -874,9 +874,9 @@ BOOL ScrCmd_30F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_316(ScriptContext *param0)
+BOOL ScrCmd_Dummy316(ScriptContext *ctx)
 {
-    return 1;
+    return TRUE;
 }
 
 static const UnkStruct_ov5_02200C90 Unk_ov5_02200C90[] = {

@@ -26,7 +26,6 @@
 
 static int ov104_0223B6F4(u8 param0, int param1, int param2);
 void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3);
-u8 ov104_0223B7A8(u8 param0, BOOL param1);
 u8 ov104_0223B7DC(u8 param0, BOOL param1);
 FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104_02230BE4 *param1);
 static u32 ov104_0223B9E4(u8 param0);
@@ -112,18 +111,18 @@ void ov104_0223B760(u8 param0, int param1, u16 param2[], u8 param3)
     } while (v0 < param3);
 }
 
-u8 ov104_0223B7A8(u8 param0, BOOL param1)
+u8 BattleCastle_GetPartySize(u8 challengeType, BOOL includePartnersMons)
 {
-    switch (param0) {
+    switch (challengeType) {
     case 0:
     case 1:
         return 3;
     case 2:
     case 3:
-        if (param1 == 0) {
+        if (includePartnersMons == FALSE) {
             return 2;
         } else {
-            return 2 * 2;
+            return 4;
         }
     }
 
@@ -158,7 +157,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
     Pokemon *v6;
     FrontierTrainerDataDTO v7;
 
-    u8 v2 = ov104_0223B7A8(param0->unk_10, 0);
+    u8 v2 = BattleCastle_GetPartySize(param0->unk_10, 0);
     u8 v3 = ov104_0223B7DC(param0->unk_10, 0);
 
     Party_HealAllMembers(param0->unk_2C);

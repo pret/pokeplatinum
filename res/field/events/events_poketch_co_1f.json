@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "POKETCH_CO_1F_SCIENTIST_M_0",
+            "id": "LOCALID_SCIENTIST_M",
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "POKETCH_CO_1F_REPORTER_1",
+            "id": "LOCALID_REPORTER",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0212",
+            "hidden_flag": "FLAG_HIDE_POKETCH_CO_1F_REPORTER",
             "script": 10155,
             "initial_dir": 3,
             "data": [],
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "POKETCH_CO_1F_RECEPTIONIST_2",
+            "id": "LOCALID_RECEPTIONIST",
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "id": "POKETCH_CO_1F_MIDDLE_AGED_MAN_3",
+            "id": "LOCALID_POKETCH_CO_PRESIDENT",
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -62,7 +62,7 @@
             "y": 0
         },
         {
-            "id": "POKETCH_CO_1F_LASS_4",
+            "id": "LOCALID_LASS",
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

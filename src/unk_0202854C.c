@@ -7,12 +7,13 @@
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "generated/goods.h"
+#include "generated/sphere_types.h"
 #include "generated/traps.h"
 
 #include "struct_defs/underground.h"
 #include "struct_defs/underground_record.h"
 
-#include "overlay023/ov23_0223E140.h"
+#include "underground/mining.h"
 
 #include "heap.h"
 #include "math_util.h"
@@ -115,7 +116,7 @@ void Underground_Init(Underground *underground)
     MI_CpuFill8(underground, 0, sizeof(Underground));
 
     underground->randomSeed = seed;
-    underground->unk_9AC_0 = 1;
+    underground->shouldSpawnNewBuriedObjects = TRUE;
 }
 
 static int Underground_FindEmptyGoodsSlotBag(Underground *underground)
@@ -162,25 +163,25 @@ static int Underground_FindEmptyTrapSlot(Underground *underground)
     return -1;
 }
 
-void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed)
+void Underground_HandleDailyEvents(SaveData *saveData, int daysPassed)
 {
     Underground *underground = SaveData_GetUnderground(saveData);
 
     u8 growthRateRange[] = {
         [SPHERE_NONE] = 0,
-        [PRISM_SPHERE] = 2,
-        [PALE_SPHERE] = 2,
-        [RED_SPHERE] = 4,
-        [BLUE_SPHERE] = 4,
-        [GREEN_SPHERE] = 5
+        [SPHERE_PRISM] = 2,
+        [SPHERE_PALE] = 2,
+        [SPHERE_RED] = 4,
+        [SPHERE_BLUE] = 4,
+        [SPHERE_GREEN] = 5
     };
     u8 baseGrowthRate[] = {
         [SPHERE_NONE] = 0,
-        [PRISM_SPHERE] = 1,
-        [PALE_SPHERE] = 1,
-        [RED_SPHERE] = 3,
-        [BLUE_SPHERE] = 3,
-        [GREEN_SPHERE] = 5
+        [SPHERE_PRISM] = 1,
+        [SPHERE_PALE] = 1,
+        [SPHERE_RED] = 3,
+        [SPHERE_BLUE] = 3,
+        [SPHERE_GREEN] = 5
     };
 
     int i;
@@ -214,7 +215,7 @@ void Underground_UpdateBuriedSphereSizes(SaveData *saveData, int daysPassed)
     }
 
     underground->randomSeed = ARNG_Next(underground->randomSeed + daysPassed);
-    underground->unk_9AC_0 = 1;
+    underground->shouldSpawnNewBuriedObjects = TRUE;
 }
 
 void sub_02028758(SaveData *saveData, s32 param1, BOOL param2)
@@ -342,7 +343,7 @@ int Underground_ConvertTreasureToBagItem(int treasureID)
     return sMiningItems[treasureID];
 }
 
-BOOL Underground_TryAddGoodPC(Underground *underground, int goodID)
+BOOL Underground_TryAddGoodPC(Underground *underground, enum Good goodID)
 {
     int i;
     BOOL added = FALSE;
@@ -387,11 +388,11 @@ int Underground_GetGoodAtSlotPC(Underground *underground, int slot)
     return underground->goodsPC[slot];
 }
 
-int Underground_RemoveGoodAtSlotPC(Underground *underground, int slot)
+enum Good Underground_RemoveGoodAtSlotPC(Underground *underground, int slot)
 {
     GF_ASSERT(!Underground_IsGoodAtSlotPlacedInBase(underground, slot));
 
-    int goodID = underground->goodsPC[slot];
+    enum Good goodID = underground->goodsPC[slot];
 
     for (int i = slot; i < MAX_GOODS_PC_SLOTS - 1; i++) {
         underground->goodsPC[i] = underground->goodsPC[i + 1];
@@ -514,7 +515,7 @@ int Underground_RemoveGoodAtSlotBag(Underground *underground, int slot)
     return goods;
 }
 
-BOOL Underground_TryAddGoodBag(Underground *underground, int goodID)
+BOOL Underground_TryAddGoodBag(Underground *underground, enum Good goodID)
 {
     BOOL added = FALSE;
 
@@ -585,7 +586,7 @@ int Underground_RemoveSphereAtSlot(Underground *underground, int slot)
     return sphere;
 }
 
-BOOL Underground_TryAddSphere(Underground *underground, int sphereType, int sphereSize)
+BOOL Underground_TryAddSphere(Underground *underground, enum SphereType sphereType, int sphereSize)
 {
     BOOL added = FALSE;
 
@@ -720,7 +721,7 @@ int Underground_RemoveTrapAtSlot(Underground *underground, int slot)
     return trap;
 }
 
-BOOL Underground_TryAddTrap(Underground *underground, int trapID)
+BOOL Underground_TryAddTrap(Underground *underground, enum Trap trapID)
 {
     BOOL added = FALSE;
 
@@ -754,7 +755,7 @@ void Underground_MoveTrapInInventory(Underground *underground, int origSlot, int
     }
 }
 
-void Underground_SaveSpawnedTrap(Underground *underground, int trapID, int index, int x, int z)
+void Underground_SaveSpawnedTrap(Underground *underground, enum Trap trapID, int index, int x, int z)
 {
     GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
@@ -798,7 +799,7 @@ void Underground_RemoveSpawnedTrapAtIndex(Underground *underground, int index)
     MI_CpuClear8(underground->spawnedTrapCoordinates[index], 3);
 }
 
-void Underground_SavePlacedTrap(Underground *underground, int trapID, int index, int x, int z, int param5)
+void Underground_SavePlacedTrap(Underground *underground, enum Trap trapID, int index, int x, int z, int spawnedIndex)
 {
     GF_ASSERT(index < MAX_PLACED_TRAPS);
 
@@ -806,7 +807,7 @@ void Underground_SavePlacedTrap(Underground *underground, int trapID, int index,
     underground->placedTrapCoordinates[index][0] = x;
     underground->placedTrapCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
     underground->placedTrapCoordinates[index][2] = z;
-    underground->unk_548[index] = param5;
+    underground->placedTrapSpawnedIndices[index] = spawnedIndex; // pointless because placed traps aren't spawned
 }
 
 int Underground_GetPlacedTrapIDAtIndex(Underground *underground, int index)
@@ -830,9 +831,10 @@ int Underground_GetPlacedTrapZCoordAtIndex(Underground *underground, int index)
     return z;
 }
 
-int sub_0202907C(Underground *underground, int index)
+// spawned indices don't apply to manually placed traps for obvious reasons, so this is completely pointless
+int Underground_GetPlacedTrapSpawnedIndexAtIndex(Underground *underground, int index)
 {
-    return underground->unk_548[index];
+    return underground->placedTrapSpawnedIndices[index];
 }
 
 void Underground_SaveBuriedSphere(Underground *underground, int type, int index, int x, int z, int initialSize, int growth)
@@ -878,49 +880,49 @@ int Underground_GetBuriedSphereGrowthAtIndex(Underground *underground, int index
     return underground->buriedSphereGrowth[index];
 }
 
-int sub_02029140(Underground *underground, int param1, int param2)
+int Underground_TryAddMiningSpot(Underground *underground, int x, int z)
 {
     int i;
 
-    for (i = 0; i < 255; i++) {
-        if ((underground->unk_20B[i][0] == 0) && (underground->unk_20B[i][1] == 0) && (underground->unk_20B[i][2] == 0)) {
-            underground->unk_20B[i][0] = param1;
-            underground->unk_20B[i][1] = ((param1 & 0xf00) >> 8) + ((param2 & 0xf00) >> 4);
-            underground->unk_20B[i][2] = param2;
+    for (i = 0; i < MAX_MINING_SPOTS + 5; i++) {
+        if (underground->miningSpots[i][0] == 0 && underground->miningSpots[i][1] == 0 && underground->miningSpots[i][2] == 0) {
+            underground->miningSpots[i][0] = x;
+            underground->miningSpots[i][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
+            underground->miningSpots[i][2] = z;
             break;
         }
     }
 
-    if (i == 255) {
+    if (i == MAX_MINING_SPOTS + 5) {
         i = 0;
     }
 
     return i;
 }
 
-void sub_020291A4(Underground *underground, int param1)
+void Underground_RemoveMiningSpotAtIndex(Underground *underground, int index)
 {
-    GF_ASSERT(param1 < 255);
-    MI_CpuFill8(underground->unk_20B[param1], 0, 3);
+    GF_ASSERT(index < MAX_MINING_SPOTS + 5);
+    MI_CpuFill8(underground->miningSpots[index], 0, 3);
 }
 
-int sub_020291CC(Underground *underground, int param1)
+int Underground_GetMiningSpotXCoordAtIndex(Underground *underground, int index)
 {
-    int v0 = underground->unk_20B[param1][0];
+    int x = underground->miningSpots[index][0];
 
-    v0 += (underground->unk_20B[param1][1] << 8) & 0xf00;
-    return v0;
+    x += (underground->miningSpots[index][1] << 8) & 0xF00;
+    return x;
 }
 
-int sub_020291EC(Underground *underground, int param1)
+int Underground_GetMiningSpotZCoordAtIndex(Underground *underground, int index)
 {
-    int v0 = underground->unk_20B[param1][2];
+    int z = underground->miningSpots[index][2];
 
-    v0 += (underground->unk_20B[param1][1] << 4) & 0xf00;
-    return v0;
+    z += (underground->miningSpots[index][1] << 4) & 0xF00;
+    return z;
 }
 
-BOOL Underground_HasNeverMined(Underground *underground)
+BOOL Underground_HasPlayerNeverMined(Underground *underground)
 {
     return underground->hasMined == FALSE;
 }
@@ -930,14 +932,14 @@ void Underground_SetHasMined(Underground *underground)
     underground->hasMined = TRUE;
 }
 
-BOOL sub_02029234(Underground *underground)
+BOOL Underground_ShouldSpawnNewBuriedObjects(Underground *underground)
 {
-    return underground->unk_9AC_0;
+    return underground->shouldSpawnNewBuriedObjects;
 }
 
-void sub_02029240(Underground *underground)
+void Underground_FlagSpawnedNewBuriedObjects(Underground *underground)
 {
-    underground->unk_9AC_0 = 0;
+    underground->shouldSpawnNewBuriedObjects = FALSE;
 }
 
 void Underground_SetPlateMined(Underground *underground, int miningItemID)
@@ -997,9 +999,9 @@ void SecretBase_SetInactive(SecretBase *secretBase)
     secretBase->active = FALSE;
 }
 
-void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, int goodID, int x, int z)
+void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, enum Good goodID, int x, int z)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
     GF_ASSERT(x < 32);
     GF_ASSERT(z < 32);
     GF_ASSERT(secretBase);
@@ -1018,7 +1020,7 @@ void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, int goodID, in
 
 void SecretBase_SetGoodCoordsAtIndex(SecretBase *secretBase, int index, int x, int z)
 {
-    int goodID = SecretBase_GetGoodIDAtIndex(secretBase, index);
+    enum Good goodID = SecretBase_GetGoodIDAtIndex(secretBase, index);
     SecretBase_AddGoodAtIndex(secretBase, index, goodID, x, z);
 }
 
@@ -1041,7 +1043,7 @@ static int SecretBase_GetPCGoodID(const SecretBase *secretBase)
 
 int SecretBase_GetGoodIDAtIndex(const SecretBase *secretBase, int index)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
 
     if (index == 0) {
         return SecretBase_GetPCGoodID(secretBase);
@@ -1056,7 +1058,7 @@ int SecretBase_GetGoodIDAtIndex(const SecretBase *secretBase, int index)
 
 int SecretBase_GetGoodXCoordAtIndex(const SecretBase *secretBase, int index)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
 
     if (index == 0) {
         return PC_COORDINATE_X;
@@ -1069,7 +1071,7 @@ int SecretBase_GetGoodXCoordAtIndex(const SecretBase *secretBase, int index)
 
 int SecretBase_GetGoodZCoordAtIndex(const SecretBase *secretBase, int index)
 {
-    GF_ASSERT(index < MAX_PLACED_GOODS + MAX_BASE_BOULDERS + 1);
+    GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
 
     if (index == 0) {
         return PC_COORDINATE_Z;
@@ -1206,19 +1208,19 @@ int UndergroundRecord_GetNumFossilsDug(const UndergroundRecord *undergroundRecor
 
 void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if ((amount > 0) && (undergroundRecord->numFossilsDug > (999999 - amount))) {
+    if (amount > 0 && undergroundRecord->numFossilsDug > 999999 - amount) {
         undergroundRecord->numFossilsDug = 999999;
     } else {
         undergroundRecord->numFossilsDug += amount;
     }
 }
 
-void sub_02029688(UndergroundRecord *param0, int param1)
+void Underground_AddNumNonFossilsDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if ((param1 > 0) && (param0->unk_18_0 > (999999 - param1))) {
-        param0->unk_18_0 = 999999;
+    if (amount > 0 && undergroundRecord->numNonFossilsDug > 999999 - amount) {
+        undergroundRecord->numNonFossilsDug = 999999;
     } else {
-        param0->unk_18_0 += param1;
+        undergroundRecord->numNonFossilsDug += amount;
     }
 }
 
