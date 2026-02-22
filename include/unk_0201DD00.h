@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0201DD00_decl.h"
 #include "struct_decls/struct_0201DDF4_decl.h"
 
-#include "unk_02020AEC.h"
+#include "billboard.h"
 
 UnkStruct_0201DD00 *sub_0201DD00(int param0, enum HeapID heapID);
 void sub_0201DD3C(UnkStruct_0201DD00 *param0);

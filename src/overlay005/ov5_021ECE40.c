@@ -32,6 +32,7 @@
 #include "overlay005/struct_ov5_021EE294.h"
 
 #include "berry_patch_graphics.h"
+#include "billboard.h"
 #include "enums.h"
 #include "heap.h"
 #include "map_object.h"
@@ -42,8 +43,6 @@
 #include "resource_collection.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02020AEC.h"
-#include "unk_0202414C.h"
 
 typedef enum {
     UnkEnum_ov5_021ED334_00 = 0,

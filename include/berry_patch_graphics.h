@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "unk_02020AEC.h"
+#include "billboard.h"
 
 BOOL BerryPatchGraphics_IsBerryPatch(int graphicsID);
 int BerryPatchGraphics_GetCurrentGraphicsResourceID(const MapObject *mapObject);

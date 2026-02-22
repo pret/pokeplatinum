@@ -11,6 +11,7 @@
 #include "overlay066/ov66_02231428.h"
 #include "overlay070/ov70_0225C700.h"
 
+#include "billboard.h"
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "gfx_box_test.h"
@@ -18,8 +19,6 @@
 #include "heap.h"
 #include "narc.h"
 #include "resource_collection.h"
-#include "unk_02020AEC.h"
-#include "unk_0202414C.h"
 
 typedef struct {
     u16 unk_00;

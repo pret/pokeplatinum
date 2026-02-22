@@ -6,8 +6,8 @@
 #include "field/field_system_decl.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 
+#include "billboard.h"
 #include "field_task.h"
-#include "unk_02020AEC.h"
 
 #define GHOST_PROP_GROUP_MAX_COUNT 24
 

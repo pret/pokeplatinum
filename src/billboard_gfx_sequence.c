@@ -1,4 +1,4 @@
-#include "unk_0202414C.h"
+#include "billboard_gfx_sequence.h"
 
 #include <nitro.h>
 #include <string.h>

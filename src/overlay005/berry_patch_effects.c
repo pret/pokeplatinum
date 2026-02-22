@@ -11,10 +11,10 @@
 #include "overlay005/ov5_021ECC20.h"
 
 #include "berry_patch_manager.h"
+#include "billboard.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
-#include "unk_02020AEC.h"
 
 // Berry patch moisture effect resource IDs
 #define BERRY_PATCH_MOISTURE_RESOURCE_COUNT 3

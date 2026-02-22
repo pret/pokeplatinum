@@ -46,6 +46,7 @@
 
 #include "berry_patch_manager.h"
 #include "bg_window.h"
+#include "billboard.h"
 #include "camera.h"
 #include "char_transfer.h"
 #include "comm_player_manager.h"
@@ -77,7 +78,6 @@
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "system.h"
-#include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"

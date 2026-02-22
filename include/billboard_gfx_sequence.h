@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0202414C_H
-#define POKEPLATINUM_UNK_0202414C_H
+#ifndef POKEPLATINUM_BILLBOARD_GFX_SEQUENCE_H
+#define POKEPLATINUM_BILLBOARD_GFX_SEQUENCE_H
 
 typedef struct BillboardTexPlttIndex {
     u8 textureIdx;
@@ -16,4 +16,4 @@ typedef struct BillboardGfxSequence {
 BillboardTexPlttIndex BillboardGfxSequence_GetTexPlttIndexAt(const BillboardGfxSequence *gfxSequence, const u16 index);
 void BillboardGfxSequence_SetData(const void *data, BillboardGfxSequence *gfxSequence);
 
-#endif // POKEPLATINUM_UNK_0202414C_H
+#endif // POKEPLATINUM_BILLBOARD_GFX_SEQUENCE_H

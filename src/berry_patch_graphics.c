@@ -14,9 +14,9 @@
 
 #include "berry_patch_manager.h"
 #include "berry_patches.h"
+#include "billboard.h"
 #include "map_header_data.h"
 #include "map_object.h"
-#include "unk_02020AEC.h"
 
 typedef struct BerryPatchData {
     u16 growthStage;

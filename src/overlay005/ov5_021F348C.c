@@ -9,10 +9,10 @@
 #include "field/field_system.h"
 #include "overlay005/field_effect_manager.h"
 
+#include "billboard.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
-#include "unk_02020AEC.h"
 
 typedef struct {
     u32 unk_00;

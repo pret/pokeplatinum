@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02020AEC_H
-#define POKEPLATINUM_UNK_02020AEC_H
+#ifndef POKEPLATINUM_BILLBOARD_H
+#define POKEPLATINUM_BILLBOARD_H
 
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0201DDF4_decl.h"
 #include "struct_defs/struct_020217F4.h"
 
-#include "unk_0202414C.h"
+#include "billboard_gfx_sequence.h"
 
 typedef struct Billboard Billboard;
 typedef void (*BillboardCallback)(Billboard *, void *);
@@ -118,4 +118,4 @@ NNSG3dResTex *sub_02021438(Billboard *param0);
 NNSG3dRenderObj *sub_02021440(Billboard *param0);
 void sub_02021444(Billboard *param0, BillboardCallback param1, void *param2);
 
-#endif // POKEPLATINUM_UNK_02020AEC_H
+#endif // POKEPLATINUM_BILLBOARD_H

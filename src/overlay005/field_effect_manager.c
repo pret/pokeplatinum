@@ -13,6 +13,7 @@
 #include "overlay005/field_effect_renderer.h"
 #include "overlay005/resource_heap.h"
 
+#include "billboard.h"
 #include "heap.h"
 #include "map_object.h"
 #include "narc.h"
@@ -21,8 +22,6 @@
 #include "simple3d.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02020AEC.h"
-#include "unk_0202414C.h"
 
 typedef struct UnkStruct_ov5_021DF8FC_t {
     enum HeapID heapID;

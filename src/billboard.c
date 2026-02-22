@@ -1,4 +1,4 @@
-#include "unk_02020AEC.h"
+#include "billboard.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -6,7 +6,6 @@
 #include "easy3d.h"
 #include "heap.h"
 #include "unk_0201DD00.h"
-#include "unk_0202414C.h"
 
 enum BillboardRedraw {
     BILLBOARD_REDRAW_NONE = 0,

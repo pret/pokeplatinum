@@ -10,10 +10,10 @@
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECC20.h"
 
+#include "billboard.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
 #include "sound_playback.h"
-#include "unk_02020AEC.h"
 
 void include_unk_ov5_02200B98(void);
 

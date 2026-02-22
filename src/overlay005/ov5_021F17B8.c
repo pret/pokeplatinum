@@ -12,10 +12,10 @@
 #include "overlay005/ov5_021ECE40.h"
 
 #include "berry_patch_graphics.h"
+#include "billboard.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
-#include "unk_02020AEC.h"
 
 typedef struct {
     FieldEffectManager *unk_00;

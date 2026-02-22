@@ -5,7 +5,7 @@
 
 #include "overlay005/struct_ov5_021ECB8C_decl.h"
 
-#include "unk_02020AEC.h"
+#include "billboard.h"
 
 void ov5_021ECA70(MapObject *param0);
 void ov5_021ECA90(MapObject *param0);

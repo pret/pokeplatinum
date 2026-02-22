@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "unk_02020AEC.h"
+#include "billboard.h"
 
 typedef struct {
     int unk_00;

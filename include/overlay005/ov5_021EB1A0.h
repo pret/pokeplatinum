@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "unk_02020AEC.h"
+#include "billboard.h"
 
 Billboard *ov5_021EB1A0(MapObject *param0);
 void ov5_021EB2EC(MapObject *param0);

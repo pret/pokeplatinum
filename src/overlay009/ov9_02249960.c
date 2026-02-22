@@ -36,6 +36,7 @@
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 
 #include "bg_window.h"
+#include "billboard.h"
 #include "camera.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -66,7 +67,6 @@
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "system_vars.h"
-#include "unk_02020AEC.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "vars_flags.h"

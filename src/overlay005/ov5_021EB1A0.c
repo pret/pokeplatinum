@@ -16,10 +16,10 @@
 #include "overlay005/struct_ov5_021ECD10.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 
+#include "billboard.h"
 #include "map_object.h"
 #include "math_util.h"
 #include "overworld_anim_manager.h"
-#include "unk_02020AEC.h"
 
 typedef struct {
     s16 unk_00;

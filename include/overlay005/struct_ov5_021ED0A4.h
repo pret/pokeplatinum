@@ -6,8 +6,8 @@
 #include "overlay005/resource_heap.h"
 #include "overlay005/struct_ov5_021EDF3C.h"
 
+#include "billboard.h"
 #include "resource_collection.h"
-#include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021ED0A4_t {
     int unk_00;

@@ -7,8 +7,8 @@
 
 #include "overlay005/field_effect_manager.h"
 
+#include "billboard.h"
 #include "overworld_anim_manager.h"
-#include "unk_02020AEC.h"
 
 void *ov5_021F17B8(FieldEffectManager *param0);
 void ov5_021F17D4(void *param0);

@@ -9,8 +9,8 @@
 #include "overlay005/struct_ov5_021ECB8C_decl.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 
+#include "billboard.h"
 #include "map_object.h"
-#include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021ECB8C_t {
     Billboard *unk_00;

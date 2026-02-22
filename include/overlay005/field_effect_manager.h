@@ -8,9 +8,9 @@
 
 #include "field/field_system_decl.h"
 
+#include "billboard.h"
 #include "overworld_anim_manager.h"
 #include "simple3d.h"
-#include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021DF8FC_t UnkStruct_ov5_021DF8FC;
 typedef struct UnkStruct_ov5_021DF8C8_t UnkStruct_ov5_021DF8C8;

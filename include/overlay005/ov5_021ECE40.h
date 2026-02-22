@@ -8,8 +8,8 @@
 #include "overlay005/struct_ov5_021ED01C.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 
+#include "billboard.h"
 #include "resource_collection.h"
-#include "unk_02020AEC.h"
 
 void ov5_021ECE40(UnkStruct_ov5_021ED0A4 *param0, const MapObjectManager *param1, int param2, int param3, int param4, int param5, const int *param6, int param7);
 void ov5_021ECE94(UnkStruct_ov5_021ED0A4 *param0);

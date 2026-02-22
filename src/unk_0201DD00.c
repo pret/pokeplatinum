@@ -4,9 +4,8 @@
 #include <string.h>
 
 #include "ascii_util.h"
+#include "billboard.h"
 #include "heap.h"
-#include "unk_02020AEC.h"
-#include "unk_0202414C.h"
 #include "vram_transfer.h"
 
 typedef struct UnkStruct_0201DDF4_t {
