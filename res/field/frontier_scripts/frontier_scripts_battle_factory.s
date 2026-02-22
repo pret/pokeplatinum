@@ -1,6 +1,6 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_factory_scene.h"
-# include "generated/battle_frontier_challenge_types.h"
+# include "constants/battle_frontier.h"
 
     .data
 

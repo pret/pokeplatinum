@@ -2,8 +2,8 @@
 
 #include <nitro.h>
 
+#include "constants/battle_frontier.h"
 #include "constants/scrcmd.h"
-#include "generated/battle_frontier_challenge_types.h"
 
 #include "applications/frontier/battle_hall/sprite_manager.h"
 #include "applications/frontier/battle_hall/sprites.h"

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle_frontier.h"
 #include "constants/species.h"
-#include "generated/battle_frontier_challenge_types.h"
 
 #include "struct_defs/battle_frontier.h"
 
@@ -54,7 +54,7 @@ int sub_020308A8(SaveData *saveData, BattleFrontierStage *param1)
     return v0;
 }
 
-u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, enum BattleFrontierChallengeType challengeType, int species)
+u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, int challengeType, int species)
 {
     if (!SaveData_MiscSaveBlock_InitFlag(saveData)) {
         return 0;

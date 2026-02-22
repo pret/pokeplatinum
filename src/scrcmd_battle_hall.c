@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/battle_frontier_challenge_types.h"
+#include "constants/battle_frontier.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/struct_02030114_decl.h"

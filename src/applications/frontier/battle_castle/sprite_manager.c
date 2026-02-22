@@ -2,7 +2,7 @@
 
 #include <nitro.h>
 
-#include "generated/battle_frontier_challenge_types.h"
+#include "constants/battle_frontier.h"
 
 #include "applications/party_menu/main.h"
 

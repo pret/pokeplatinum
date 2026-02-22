@@ -2,7 +2,7 @@
 
 #include <nitro.h>
 
-#include "generated/battle_frontier_challenge_types.h"
+#include "constants/battle_frontier.h"
 
 #include "struct_decls/struct_0203026C_decl.h"
 

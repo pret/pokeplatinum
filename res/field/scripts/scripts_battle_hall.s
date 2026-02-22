@@ -2,7 +2,7 @@
 #include "res/text/bank/battle_hall.h"
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_battle_hall.h"
-#include "generated/battle_frontier_challenge_types.h"
+#include "constants/battle_frontier.h"
 
 
     ScriptEntry BattleHall_SingleAttendant

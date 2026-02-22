@@ -1,6 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_castle.h"
-#include "generated/battle_frontier_challenge_types.h"
+#include "constants/battle_frontier.h"
 
 
     ScriptEntry _0059
