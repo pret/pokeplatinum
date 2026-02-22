@@ -35,13 +35,7 @@
 #include "res/text/bank/pokedex.h"
 
 #define POKEDEX_TYPE_ICON_BACKGROUND_BOX_CELL 0x11
-#define POKEDEX_TYPE_ICON_RESOURCE_OFFSET 4000
-
-enum AnimationMode {
-    ANIM_MODE_POSITION_BLEND = 0,
-    ANIM_MODE_BLEND = 1,
-    ANIM_MODE_POSITION = 2,
-};
+#define POKEDEX_TYPE_ICON_RESOURCE_OFFSET     4000
 
 typedef struct PokedexEntryDisplayState {
     int *displayWorkData; // Work data pointer set from ov21_021D138C
@@ -829,6 +823,3 @@ static void RenderCategory(PokedexGraphicData **graphicsData, int heapID, enum S
     Text_AddPrinterWithParamsAndColor(&(*graphicsData)->window, FONT_SYSTEM, v0, v1, 112, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     PokedexText_Free(v0);
 }
-
-
-

@@ -359,7 +359,10 @@ typedef struct TVProgramType {
     const TVProgramSegment *segments;
 } TVProgramType;
 
-#define TV_PROGRAM_SEGMENT_NULL { NULL, NULL }
+#define TV_PROGRAM_SEGMENT_NULL \
+    {                           \
+        NULL, NULL              \
+    }
 
 static const TVProgramSegment sTrainerSightingsSegments[TV_PROGRAM_TYPE_TRAINER_SIGHTINGS_NUM_SEGMENTS];
 static const TVProgramSegment sRecordsSegments[TV_PROGRAM_TYPE_RECORDS_NUM_SEGMENTS];

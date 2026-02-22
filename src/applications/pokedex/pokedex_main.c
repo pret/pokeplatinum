@@ -9,6 +9,7 @@
 #include "applications/pokedex/formsub.h"
 #include "applications/pokedex/funcptr_ov21_021E9B74.h"
 #include "applications/pokedex/funcptr_ov21_021E9B9C.h"
+#include "applications/pokedex/infomain_foreign.h"
 #include "applications/pokedex/ov21_021D423C.h"
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021D5AEC.h"
@@ -23,7 +24,6 @@
 #include "applications/pokedex/ov21_021E68F4.h"
 #include "applications/pokedex/ov21_021E737C.h"
 #include "applications/pokedex/pokedex_app.h"
-#include "applications/pokedex/infomain_foreign.h"
 #include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_height_check.h"
 #include "applications/pokedex/pokedex_search.h"
@@ -1020,4 +1020,3 @@ static void ResetFrm(void)
     NNS_GfdResetFrmTexVramState();
     NNS_GfdResetFrmPlttVramState();
 }
-

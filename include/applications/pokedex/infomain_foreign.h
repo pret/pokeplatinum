@@ -21,4 +21,3 @@ BOOL InfoMainForeign_SetDisplayMode(PokedexScreenManager *screenManager, int dis
 void InfoMainForeign_SetLanguage(PokedexScreenManager *screenManager, int languageID);
 
 #endif // POKEPLATINUM_INFOMAIN_FOREIGN_H
-
