@@ -12,6 +12,8 @@ subdir('postconf')
 subdir('scripts')
 subdir('debug')
 
+copy_exe = find_program('cp')
+
 # ARM binutils
 arm_none_eabi_gcc_exe = find_program('arm-none-eabi-gcc', native: true)
 arm_none_eabi_objcopy_exe = find_program('arm-none-eabi-objcopy', native: true)

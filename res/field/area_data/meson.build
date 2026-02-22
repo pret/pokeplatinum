@@ -1,7 +1,14 @@
+area_data_deps = [
+    prop_model_set_narc[0],
+    map_texture_set_narc[0],
+    lighting_narc[0],
+]
+
 area_data_bin_gen = generator(
     area_data_py,
     arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
-    output: '@BASENAME@'
+    output: '@BASENAME@',
+    depends: [ py_consts_generators, area_data_deps ],
 )
 
 area_data_srcs = files(
@@ -84,19 +91,13 @@ area_data_srcs = files(
 
 area_data_order = files('area_data.order')
 
-area_data_deps = [ 
-    prop_model_set_narc, 
-    map_texture_set_narc, 
-    lighting_narc 
-]
-
 area_data_narc = custom_target('area_data.narc',
     output: [
         'area_data.narc',
         'area_data.naix',
     ],
     input: [
-        area_data_bin_gen.process(area_data_srcs, 
+        area_data_bin_gen.process(area_data_srcs,
             env: jsoncnv_env,
             extra_args: [
                 '--map-prop-set-naix', prop_model_set_narc[1].full_path() + '.h',
@@ -106,10 +107,7 @@ area_data_narc = custom_target('area_data.narc',
         ),
         area_data_order,
     ],
-    depends: [ 
-        py_consts_generators, 
-        area_data_deps 
-    ],
+    depends: py_consts_generators,
     command: [
         narc_exe, 'create',
         '--naix',

@@ -1,4 +1,4 @@
-map_texture_set_gen = generator(find_program('cp'),
+map_texture_set_gen = generator(copy_exe,
     arguments: [ '@INPUT@', '@OUTPUT@', ],
     output: '@BASENAME@'
 )
