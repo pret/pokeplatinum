@@ -1,4 +1,4 @@
-#include "unk_0202854C.h"
+#include "underground.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -10,13 +10,12 @@
 #include "generated/sphere_types.h"
 #include "generated/traps.h"
 
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
-
 #include "underground/mining.h"
+#include "underground/secret_bases.h"
 
 #include "heap.h"
 #include "math_util.h"
+#include "play_time.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "system.h"
@@ -28,7 +27,22 @@
 #define FLAG_CAPTURED_COUNT_BRONZE   1
 #define FLAG_CAPTURED_COUNT_NORMAL   0
 
-static void Underground_UpdatePlacedGoodSlots(Underground *underground, int param1, int param2);
+#define MINING_TREASURE_START MINING_TREASURE_OVAL_STONE
+
+#define MINING_PLATES_START MINING_TREASURE_FLAME_PLATE
+#define MINING_PLATES_MAX   MINING_TREASURE_IRON_PLATE
+
+#define CONDENSE_HIGH_BITS(x, z) ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4)
+#define GET_X_HIGH_BITS(field)   ((field << 8) & 0xF00)
+#define GET_Z_HIGH_BITS(field)   ((field << 4) & 0xF00)
+
+enum GiftPenaltyState {
+    GIFT_PENALTY_STATE_NONE = 0,
+    GIFT_PENALTY_STATE_PRIMED,
+    GIFT_PENALTY_STATE_ACTIVE,
+};
+
+static void Underground_UpdatePlacedGoodSlots(Underground *underground, int startSlot, int modifier);
 
 static u16 sMiningItems[] = {
     [0] = ITEM_OVAL_STONE,
@@ -122,7 +136,7 @@ void Underground_Init(Underground *underground)
 static int Underground_FindEmptyGoodsSlotBag(Underground *underground)
 {
     for (int i = 0; i < MAX_GOODS_BAG_SLOTS; i++) {
-        if (underground->goodsBag[i] == 0) {
+        if (underground->goodsBag[i] == UG_GOOD_NONE) {
             return i;
         }
     }
@@ -144,7 +158,7 @@ static int Underground_FindEmptySphereSlot(Underground *underground)
 static int Underground_FindEmptyTreasureSlot(Underground *underground)
 {
     for (int i = 0; i < MAX_TREASURE_SLOTS; i++) {
-        if (underground->treasure[i] == 0) {
+        if (underground->treasure[i] == MINING_TREASURE_NONE) {
             return i;
         }
     }
@@ -155,7 +169,7 @@ static int Underground_FindEmptyTreasureSlot(Underground *underground)
 static int Underground_FindEmptyTrapSlot(Underground *underground)
 {
     for (int i = 0; i < MAX_TRAP_SLOTS; i++) {
-        if (underground->traps[i] == 0) {
+        if (underground->traps[i] == TRAP_NONE) {
             return i;
         }
     }
@@ -218,70 +232,68 @@ void Underground_HandleDailyEvents(SaveData *saveData, int daysPassed)
     underground->shouldSpawnNewBuriedObjects = TRUE;
 }
 
-void sub_02028758(SaveData *saveData, s32 param1, BOOL param2)
+void Underground_ProgressGiftPenalty(SaveData *saveData, s32 minutes, BOOL hasTimePenalty)
 {
-    Underground *v0 = SaveData_GetUnderground(saveData);
+    Underground *underground = SaveData_GetUnderground(saveData);
 
-    if ((param1 < 0) || (param2)) {
+    if (minutes < 0 || hasTimePenalty) {
         return;
     }
 
-    if (v0->unk_94 < param1) {
-        v0->unk_94 = 0;
+    if (underground->giftPenaltyMinutesLeft < minutes) {
+        underground->giftPenaltyMinutesLeft = 0;
     } else {
-        v0->unk_94 -= param1;
+        underground->giftPenaltyMinutesLeft -= minutes;
     }
 }
 
-void SaveData_LoadAndUpdateUnderground(SaveData *saveData)
+void Underground_UpdateGiftPenaltyState(SaveData *saveData)
 {
-    Underground *v0 = SaveData_GetUnderground(saveData);
+    Underground *underground = SaveData_GetUnderground(saveData);
 
-    if ((v0->unk_94 == 0) && (v0->unk_98 == 2)) {
-        v0->unk_98 = 0;
+    if (underground->giftPenaltyMinutesLeft == 0 && underground->giftPenaltyState == GIFT_PENALTY_STATE_ACTIVE) {
+        underground->giftPenaltyState = GIFT_PENALTY_STATE_NONE;
     }
 
-    if ((v0->unk_94 == 0) && (v0->unk_98 == 1)) {
-        v0->unk_94 = (24 * 60);
+    if (underground->giftPenaltyMinutesLeft == 0 && underground->giftPenaltyState == GIFT_PENALTY_STATE_PRIMED) {
+        underground->giftPenaltyMinutesLeft = HOURS_PER_DAY * MINUTES_PER_HOUR;
     }
 
-    if (v0->unk_98 == 1) {
-        v0->unk_98 = 2;
+    if (underground->giftPenaltyState == GIFT_PENALTY_STATE_PRIMED) {
+        underground->giftPenaltyState = GIFT_PENALTY_STATE_ACTIVE;
     }
 }
 
-void sub_020287E0(SaveData *saveData)
+void Underground_SetGiftPenaltyPrimedFlag(SaveData *saveData)
 {
-    Underground *v0 = SaveData_GetUnderground(saveData);
+    Underground *underground = SaveData_GetUnderground(saveData);
 
-    if (v0->unk_98 == 0) {
-        v0->unk_98 = 1;
+    if (underground->giftPenaltyState == GIFT_PENALTY_STATE_NONE) {
+        underground->giftPenaltyState = GIFT_PENALTY_STATE_PRIMED;
     }
 }
 
-void sub_020287F8(SaveData *saveData)
+void Underground_ClearGiftPenaltyFlag(SaveData *saveData)
 {
-    Underground *v0 = SaveData_GetUnderground(saveData);
+    Underground *underground = SaveData_GetUnderground(saveData);
 
-    if (v0->unk_98 == 1) {
-        v0->unk_98 = 0;
+    if (underground->giftPenaltyState == GIFT_PENALTY_STATE_PRIMED) {
+        underground->giftPenaltyState = GIFT_PENALTY_STATE_NONE;
     }
 }
 
-BOOL sub_02028810(SaveData *saveData)
+BOOL Underground_CanExchangeGifts(SaveData *saveData)
 {
-    Underground *v0 = SaveData_GetUnderground(saveData);
+    Underground *underground = SaveData_GetUnderground(saveData);
 
-    if (v0->unk_98 == 2) {
-        return 0;
-    }
-
-    return 1;
+    return underground->giftPenaltyState != GIFT_PENALTY_STATE_ACTIVE;
 }
 
-void Underground_SetUnusedField(Underground *underground)
+void Underground_SetUnusedCollectedOrbFlag(Underground *underground)
 {
-    underground->unused = 1;
+    // in diamond and pearl, this flag altered the odds of finding certain spheres
+    // here, it does nothing
+    underground->collectedOrbUnused = TRUE;
 }
 
 void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const TrainerInfo *info)
@@ -295,7 +307,7 @@ void Underground_StoreRegisteredFlagOwnerInfo(Underground *underground, const Tr
     }
 
     GF_ASSERT(index < MAX_CAPTURED_FLAG_RECORDS);
-    MI_CpuCopy8(TrainerInfo_Name(info), underground->registeredFlagOwnerNames[index], (sizeof(u16) * (TRAINER_NAME_LEN + 1)));
+    MI_CpuCopy8(TrainerInfo_Name(info), underground->registeredFlagOwnerNames[index], sizeof(charcode_t) * (TRAINER_NAME_LEN + 1));
 
     underground->registeredFlagOwnerIDs[index] = TrainerInfo_ID(info);
     underground->registeredFlagOwnerLanguages[index] = TrainerInfo_Language(info);
@@ -336,10 +348,10 @@ u32 Underground_GetRandomSeed(Underground *underground)
 
 int Underground_ConvertTreasureToBagItem(int treasureID)
 {
-    GF_ASSERT(MINING_TREASURE_OVAL_STONE <= treasureID);
+    GF_ASSERT(MINING_TREASURE_START <= treasureID);
     GF_ASSERT(treasureID < MINING_TREASURE_MAX);
 
-    treasureID -= MINING_TREASURE_OVAL_STONE;
+    treasureID -= MINING_TREASURE_START;
     return sMiningItems[treasureID];
 }
 
@@ -349,7 +361,7 @@ BOOL Underground_TryAddGoodPC(Underground *underground, enum Good goodID)
     BOOL added = FALSE;
 
     for (i = 0; i < MAX_GOODS_PC_SLOTS; i++) {
-        if (underground->goodsPC[i] == 0) {
+        if (underground->goodsPC[i] == UG_GOOD_NONE) {
             underground->goodsPC[i] = goodID;
             added = TRUE;
             break;
@@ -362,7 +374,7 @@ BOOL Underground_TryAddGoodPC(Underground *underground, enum Good goodID)
 BOOL Underground_IsRoomForGoodsInPC(Underground *underground, int unused)
 {
     for (int i = 0; i < MAX_GOODS_PC_SLOTS; i++) {
-        if (underground->goodsPC[i] == 0) {
+        if (underground->goodsPC[i] == UG_GOOD_NONE) {
             return TRUE;
         }
     }
@@ -375,7 +387,7 @@ int Underground_GetGoodsCountPC(Underground *underground)
     int i;
 
     for (i = 0; i < MAX_GOODS_PC_SLOTS; i++) {
-        if (underground->goodsPC[i] == 0) {
+        if (underground->goodsPC[i] == UG_GOOD_NONE) {
             break;
         }
     }
@@ -398,7 +410,7 @@ enum Good Underground_RemoveGoodAtSlotPC(Underground *underground, int slot)
         underground->goodsPC[i] = underground->goodsPC[i + 1];
     }
 
-    underground->goodsPC[MAX_GOODS_PC_SLOTS - 1] = 0;
+    underground->goodsPC[MAX_GOODS_PC_SLOTS - 1] = UG_GOOD_NONE;
     Underground_UpdatePlacedGoodSlots(underground, slot, -1);
 
     return goodID;
@@ -490,7 +502,7 @@ int Underground_GetGoodsCountBag(Underground *underground)
     int i;
 
     for (i = 0; i < MAX_GOODS_BAG_SLOTS; i++) {
-        if (underground->goodsBag[i] == 0) {
+        if (underground->goodsBag[i] == UG_GOOD_NONE) {
             break;
         }
     }
@@ -511,7 +523,7 @@ int Underground_RemoveGoodAtSlotBag(Underground *underground, int slot)
         underground->goodsBag[i] = underground->goodsBag[i + 1];
     }
 
-    underground->goodsBag[MAX_GOODS_BAG_SLOTS - 1] = 0;
+    underground->goodsBag[MAX_GOODS_BAG_SLOTS - 1] = UG_GOOD_NONE;
     return goods;
 }
 
@@ -630,7 +642,7 @@ int Underground_GetTreasureCount(Underground *underground)
     int i;
 
     for (i = 0; i < MAX_TREASURE_SLOTS; i++) {
-        if (underground->treasure[i] == 0) {
+        if (underground->treasure[i] == MINING_TREASURE_NONE) {
             break;
         }
     }
@@ -651,7 +663,7 @@ int Underground_RemoveTreasureAtSlot(Underground *underground, int slot)
         underground->treasure[i] = underground->treasure[i + 1];
     }
 
-    underground->treasure[MAX_TREASURE_SLOTS - 1] = 0;
+    underground->treasure[MAX_TREASURE_SLOTS - 1] = MINING_TREASURE_NONE;
 
     return treasure;
 }
@@ -695,7 +707,7 @@ int Underground_GetTrapCount(Underground *underground)
     int i;
 
     for (i = 0; i < MAX_TRAP_SLOTS; i++) {
-        if (underground->traps[i] == 0) {
+        if (underground->traps[i] == TRAP_NONE) {
             break;
         }
     }
@@ -716,7 +728,7 @@ int Underground_RemoveTrapAtSlot(Underground *underground, int slot)
         underground->traps[i] = underground->traps[i + 1];
     }
 
-    underground->traps[MAX_TRAP_SLOTS - 1] = 0;
+    underground->traps[MAX_TRAP_SLOTS - 1] = TRAP_NONE;
 
     return trap;
 }
@@ -760,9 +772,9 @@ void Underground_SaveSpawnedTrap(Underground *underground, enum Trap trapID, int
     GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
     underground->spawnedTrapIDs[index] = trapID;
-    underground->spawnedTrapCoordinates[index][0] = x;
-    underground->spawnedTrapCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
-    underground->spawnedTrapCoordinates[index][2] = z;
+    underground->spawnedTrapCoordinates[index][X_LOW_BITS_INDEX] = x;
+    underground->spawnedTrapCoordinates[index][HIGH_BITS_INDEX] = CONDENSE_HIGH_BITS(x, z);
+    underground->spawnedTrapCoordinates[index][Z_LOW_BITS_INDEX] = z;
 }
 
 int Underground_GetSpawnedTrapIDAtIndex(Underground *underground, int index)
@@ -775,8 +787,8 @@ int Underground_GetSpawnedTrapXCoordAtIndex(Underground *underground, int index)
 {
     GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
-    int x = underground->spawnedTrapCoordinates[index][0];
-    x += (underground->spawnedTrapCoordinates[index][1] << 8) & 0xF00;
+    int x = underground->spawnedTrapCoordinates[index][X_LOW_BITS_INDEX];
+    x += GET_X_HIGH_BITS(underground->spawnedTrapCoordinates[index][HIGH_BITS_INDEX]);
 
     return x;
 }
@@ -785,8 +797,8 @@ int Underground_GetSpawnedTrapZCoordAtIndex(Underground *underground, int index)
 {
     GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
-    int z = underground->spawnedTrapCoordinates[index][2];
-    z += (underground->spawnedTrapCoordinates[index][1] << 4) & 0xF00;
+    int z = underground->spawnedTrapCoordinates[index][Z_LOW_BITS_INDEX];
+    z += GET_Z_HIGH_BITS(underground->spawnedTrapCoordinates[index][HIGH_BITS_INDEX]);
 
     return z;
 }
@@ -796,7 +808,7 @@ void Underground_RemoveSpawnedTrapAtIndex(Underground *underground, int index)
     GF_ASSERT(index < MAX_SPAWNED_TRAPS);
 
     underground->spawnedTrapIDs[index] = TRAP_NONE;
-    MI_CpuClear8(underground->spawnedTrapCoordinates[index], 3);
+    MI_CpuClear8(underground->spawnedTrapCoordinates[index], CONDENSED_COORDS_BYTE_COUNT);
 }
 
 void Underground_SavePlacedTrap(Underground *underground, enum Trap trapID, int index, int x, int z, int spawnedIndex)
@@ -804,9 +816,9 @@ void Underground_SavePlacedTrap(Underground *underground, enum Trap trapID, int 
     GF_ASSERT(index < MAX_PLACED_TRAPS);
 
     underground->placedTrapIDs[index] = trapID;
-    underground->placedTrapCoordinates[index][0] = x;
-    underground->placedTrapCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
-    underground->placedTrapCoordinates[index][2] = z;
+    underground->placedTrapCoordinates[index][X_LOW_BITS_INDEX] = x;
+    underground->placedTrapCoordinates[index][HIGH_BITS_INDEX] = CONDENSE_HIGH_BITS(x, z);
+    underground->placedTrapCoordinates[index][Z_LOW_BITS_INDEX] = z;
     underground->placedTrapSpawnedIndices[index] = spawnedIndex; // pointless because placed traps aren't spawned
 }
 
@@ -817,17 +829,17 @@ int Underground_GetPlacedTrapIDAtIndex(Underground *underground, int index)
 
 int Underground_GetPlacedTrapXCoordAtIndex(Underground *underground, int index)
 {
-    int x = underground->placedTrapCoordinates[index][0];
+    int x = underground->placedTrapCoordinates[index][X_LOW_BITS_INDEX];
 
-    x += (underground->placedTrapCoordinates[index][1] << 8) & 0xF00;
+    x += GET_X_HIGH_BITS(underground->placedTrapCoordinates[index][HIGH_BITS_INDEX]);
     return x;
 }
 
 int Underground_GetPlacedTrapZCoordAtIndex(Underground *underground, int index)
 {
-    int z = underground->placedTrapCoordinates[index][2];
+    int z = underground->placedTrapCoordinates[index][Z_LOW_BITS_INDEX];
 
-    z += (underground->placedTrapCoordinates[index][1] << 4) & 0xF00;
+    z += GET_Z_HIGH_BITS(underground->placedTrapCoordinates[index][HIGH_BITS_INDEX]);
     return z;
 }
 
@@ -842,9 +854,9 @@ void Underground_SaveBuriedSphere(Underground *underground, int type, int index,
     GF_ASSERT(index < MAX_BURIED_SPHERES);
 
     underground->buriedSphereTypes[index] = type;
-    underground->buriedSphereCoordinates[index][0] = x;
-    underground->buriedSphereCoordinates[index][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
-    underground->buriedSphereCoordinates[index][2] = z;
+    underground->buriedSphereCoordinates[index][X_LOW_BITS_INDEX] = x;
+    underground->buriedSphereCoordinates[index][HIGH_BITS_INDEX] = CONDENSE_HIGH_BITS(x, z);
+    underground->buriedSphereCoordinates[index][Z_LOW_BITS_INDEX] = z;
     underground->buriedSphereInitialSizes[index] = initialSize;
     underground->buriedSphereGrowth[index] = growth;
 }
@@ -856,17 +868,17 @@ int Underground_GetBuriedSphereTypeAtIndex(Underground *underground, int index)
 
 int Underground_GetBuriedSphereXCoordAtIndex(Underground *underground, int index)
 {
-    int x = underground->buriedSphereCoordinates[index][0];
+    int x = underground->buriedSphereCoordinates[index][X_LOW_BITS_INDEX];
 
-    x += (underground->buriedSphereCoordinates[index][1] << 8) & 0xF00;
+    x += GET_X_HIGH_BITS(underground->buriedSphereCoordinates[index][HIGH_BITS_INDEX]);
     return x;
 }
 
 int Underground_GetBuriedSphereZCoordAtIndex(Underground *underground, int index)
 {
-    int z = underground->buriedSphereCoordinates[index][2];
+    int z = underground->buriedSphereCoordinates[index][Z_LOW_BITS_INDEX];
 
-    z += (underground->buriedSphereCoordinates[index][1] << 4) & 0xF00;
+    z += GET_Z_HIGH_BITS(underground->buriedSphereCoordinates[index][HIGH_BITS_INDEX]);
     return z;
 }
 
@@ -885,10 +897,10 @@ int Underground_TryAddMiningSpot(Underground *underground, int x, int z)
     int i;
 
     for (i = 0; i < MAX_MINING_SPOTS + 5; i++) {
-        if (underground->miningSpots[i][0] == 0 && underground->miningSpots[i][1] == 0 && underground->miningSpots[i][2] == 0) {
-            underground->miningSpots[i][0] = x;
-            underground->miningSpots[i][1] = ((x & 0xF00) >> 8) + ((z & 0xF00) >> 4);
-            underground->miningSpots[i][2] = z;
+        if (underground->miningSpotCoordinates[i][X_LOW_BITS_INDEX] == 0 && underground->miningSpotCoordinates[i][HIGH_BITS_INDEX] == 0 && underground->miningSpotCoordinates[i][Z_LOW_BITS_INDEX] == 0) {
+            underground->miningSpotCoordinates[i][X_LOW_BITS_INDEX] = x;
+            underground->miningSpotCoordinates[i][HIGH_BITS_INDEX] = CONDENSE_HIGH_BITS(x, z);
+            underground->miningSpotCoordinates[i][Z_LOW_BITS_INDEX] = z;
             break;
         }
     }
@@ -903,22 +915,22 @@ int Underground_TryAddMiningSpot(Underground *underground, int x, int z)
 void Underground_RemoveMiningSpotAtIndex(Underground *underground, int index)
 {
     GF_ASSERT(index < MAX_MINING_SPOTS + 5);
-    MI_CpuFill8(underground->miningSpots[index], 0, 3);
+    MI_CpuFill8(underground->miningSpotCoordinates[index], 0, CONDENSED_COORDS_BYTE_COUNT);
 }
 
 int Underground_GetMiningSpotXCoordAtIndex(Underground *underground, int index)
 {
-    int x = underground->miningSpots[index][0];
+    int x = underground->miningSpotCoordinates[index][X_LOW_BITS_INDEX];
 
-    x += (underground->miningSpots[index][1] << 8) & 0xF00;
+    x += GET_X_HIGH_BITS(underground->miningSpotCoordinates[index][HIGH_BITS_INDEX]);
     return x;
 }
 
 int Underground_GetMiningSpotZCoordAtIndex(Underground *underground, int index)
 {
-    int z = underground->miningSpots[index][2];
+    int z = underground->miningSpotCoordinates[index][Z_LOW_BITS_INDEX];
 
-    z += (underground->miningSpots[index][1] << 4) & 0xF00;
+    z += GET_Z_HIGH_BITS(underground->miningSpotCoordinates[index][HIGH_BITS_INDEX]);
     return z;
 }
 
@@ -944,20 +956,20 @@ void Underground_FlagSpawnedNewBuriedObjects(Underground *underground)
 
 void Underground_SetPlateMined(Underground *underground, int miningItemID)
 {
-    if (miningItemID < MINING_TREASURE_FLAME_PLATE || miningItemID > MINING_TREASURE_IRON_PLATE) {
+    if (miningItemID < MINING_PLATES_START || MINING_PLATES_MAX < miningItemID) {
         return;
     }
 
-    underground->minedPlates |= (0x1 << (miningItemID - MINING_TREASURE_FLAME_PLATE));
+    underground->minedPlates |= (0x1 << (miningItemID - MINING_PLATES_START));
 }
 
 BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItemID)
 {
-    if (miningItemID < MINING_TREASURE_FLAME_PLATE || miningItemID > MINING_TREASURE_IRON_PLATE) {
+    if (miningItemID < MINING_PLATES_START || MINING_PLATES_MAX < miningItemID) {
         return TRUE;
     }
 
-    if (underground->minedPlates & (0x1 << (miningItemID - MINING_TREASURE_FLAME_PLATE))) {
+    if (underground->minedPlates & (0x1 << (miningItemID - MINING_PLATES_START))) {
         return FALSE;
     }
 
@@ -966,7 +978,7 @@ BOOL Underground_HasPlateNeverBeenMined(Underground *underground, int miningItem
 
 void Underground_IncrementStepCount(Underground *underground)
 {
-    if (underground->stepCount >= (100 - 1)) {
+    if (underground->stepCount >= 100 - 1) {
         underground->stepCount = 0;
     } else {
         underground->stepCount++;
@@ -1002,13 +1014,13 @@ void SecretBase_SetInactive(SecretBase *secretBase)
 void SecretBase_AddGoodAtIndex(SecretBase *secretBase, int index, enum Good goodID, int x, int z)
 {
     GF_ASSERT(index < MAX_SECRET_BASE_GOODS);
-    GF_ASSERT(x < 32);
-    GF_ASSERT(z < 32);
+    GF_ASSERT(x < SECRET_BASE_WIDTH);
+    GF_ASSERT(z < SECRET_BASE_DEPTH);
     GF_ASSERT(secretBase);
 
     if (index == 0) {
         return;
-    } else if (index < (MAX_PLACED_GOODS + 1)) {
+    } else if (index < MAX_PLACED_GOODS + 1) {
         secretBase->placedGoods[index - 1].x = x;
         secretBase->placedGoods[index - 1].z = z;
         secretBase->placedGoods[index - 1].goodID = goodID;
@@ -1075,7 +1087,7 @@ int SecretBase_GetGoodZCoordAtIndex(const SecretBase *secretBase, int index)
 
     if (index == 0) {
         return PC_COORDINATE_Z;
-    } else if (index < (MAX_PLACED_GOODS + 1)) {
+    } else if (index < MAX_PLACED_GOODS + 1) {
         return secretBase->placedGoods[index - 1].z;
     }
 
@@ -1119,7 +1131,7 @@ int UndergroundRecord_GetTrainerScore(const UndergroundRecord *undergroundRecord
 
 BOOL UndergroundRecord_HasPlatBaseFlag(const UndergroundRecord *undergroundRecord)
 {
-    return BASE_FLAG_PLATINUM == UndergroundRecord_GetFlagRank(undergroundRecord);
+    return UndergroundRecord_GetFlagRank(undergroundRecord) == BASE_FLAG_PLATINUM;
 }
 
 void UndergroundRecord_SetTrainerScore(UndergroundRecord *undergroundRecord, int trainerScore)
@@ -1134,7 +1146,7 @@ int UndergroundRecord_GetPeopleMet(const UndergroundRecord *undergroundRecord)
 
 void UndergroundRecord_IncrementPeopleMet(UndergroundRecord *undergroundRecord, int unused)
 {
-    if (undergroundRecord->peopleMet < 999999) {
+    if (undergroundRecord->peopleMet < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->peopleMet++;
     }
 }
@@ -1146,14 +1158,14 @@ int UndergroundRecord_GetNumGiftsGiven(const UndergroundRecord *undergroundRecor
 
 void UndergroundRecord_IncrementGiftsGiven(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->numGiftsGiven < 999999) {
+    if (undergroundRecord->numGiftsGiven < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->numGiftsGiven++;
     }
 }
 
 void UndergroundRecord_IncrementFlagsStolen(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->flagsStolen < 999999) {
+    if (undergroundRecord->flagsStolen < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->flagsStolen++;
     }
 }
@@ -1162,13 +1174,13 @@ enum BaseFlagType UndergroundRecord_GetFlagRank(const UndergroundRecord *undergr
 {
     int capturedFlagCount = undergroundRecord->capturedFlagCount;
 
-    if (FLAG_CAPTURED_COUNT_PLATINUM <= capturedFlagCount) {
+    if (capturedFlagCount >= FLAG_CAPTURED_COUNT_PLATINUM) {
         return BASE_FLAG_PLATINUM;
-    } else if (FLAG_CAPTURED_COUNT_GOLD <= capturedFlagCount) {
+    } else if (capturedFlagCount >= FLAG_CAPTURED_COUNT_GOLD) {
         return BASE_FLAG_GOLD;
-    } else if (FLAG_CAPTURED_COUNT_SILVER <= capturedFlagCount) {
+    } else if (capturedFlagCount >= FLAG_CAPTURED_COUNT_SILVER) {
         return BASE_FLAG_SILVER;
-    } else if (FLAG_CAPTURED_COUNT_BRONZE <= capturedFlagCount) {
+    } else if (capturedFlagCount >= FLAG_CAPTURED_COUNT_BRONZE) {
         return BASE_FLAG_BRONZE;
     }
 
@@ -1182,7 +1194,7 @@ int UndergroundRecord_GetCapturedFlagCount(const UndergroundRecord *undergroundR
 
 void UndergroundRecord_IncrementCapturedFlagCount(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->capturedFlagCount < 999999) {
+    if (undergroundRecord->capturedFlagCount < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->capturedFlagCount++;
     }
 }
@@ -1194,8 +1206,8 @@ int UndergroundRecord_GetNumSpheresDug(const UndergroundRecord *undergroundRecor
 
 void UndergroundRecord_AddNumSpheresDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if ((amount > 0) && (undergroundRecord->numSpheresDug > (999999 - amount))) {
-        undergroundRecord->numSpheresDug = 999999;
+    if (amount > 0 && undergroundRecord->numSpheresDug > MAX_UNDERGROUND_RECORD_VALUE - amount) {
+        undergroundRecord->numSpheresDug = MAX_UNDERGROUND_RECORD_VALUE;
     } else {
         undergroundRecord->numSpheresDug += amount;
     }
@@ -1208,8 +1220,8 @@ int UndergroundRecord_GetNumFossilsDug(const UndergroundRecord *undergroundRecor
 
 void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if (amount > 0 && undergroundRecord->numFossilsDug > 999999 - amount) {
-        undergroundRecord->numFossilsDug = 999999;
+    if (amount > 0 && undergroundRecord->numFossilsDug > MAX_UNDERGROUND_RECORD_VALUE - amount) {
+        undergroundRecord->numFossilsDug = MAX_UNDERGROUND_RECORD_VALUE;
     } else {
         undergroundRecord->numFossilsDug += amount;
     }
@@ -1217,8 +1229,8 @@ void UndergroundRecord_AddNumFossilsDug(UndergroundRecord *undergroundRecord, in
 
 void Underground_AddNumNonFossilsDug(UndergroundRecord *undergroundRecord, int amount)
 {
-    if (amount > 0 && undergroundRecord->numNonFossilsDug > 999999 - amount) {
-        undergroundRecord->numNonFossilsDug = 999999;
+    if (amount > 0 && undergroundRecord->numNonFossilsDug > MAX_UNDERGROUND_RECORD_VALUE - amount) {
+        undergroundRecord->numNonFossilsDug = MAX_UNDERGROUND_RECORD_VALUE;
     } else {
         undergroundRecord->numNonFossilsDug += amount;
     }
@@ -1231,7 +1243,7 @@ int UndergroundRecord_GetNumTrapHits(const UndergroundRecord *undergroundRecord)
 
 void UndergroundRecord_IncrementNumTrapHits(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->numTrapHits < 999999) {
+    if (undergroundRecord->numTrapHits < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->numTrapHits++;
     }
 }
@@ -1243,7 +1255,7 @@ int UndergroundRecord_GetNumTrapsTriggered(const UndergroundRecord *undergroundR
 
 void UndergroundRecord_IncrementNumTrapsTriggered(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->numTrapsTriggered < 999999) {
+    if (undergroundRecord->numTrapsTriggered < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->numTrapsTriggered++;
     }
 }
@@ -1255,7 +1267,7 @@ int UndergroundRecord_GetNumPlayersHelped(const UndergroundRecord *undergroundRe
 
 void UndergroundRecord_IncrementNumPlayersHelped(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->numPlayersHelped < 999999) {
+    if (undergroundRecord->numPlayersHelped < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->numPlayersHelped++;
     }
 }
@@ -1267,7 +1279,7 @@ int UndergroundRecord_GetGiftsReceived(const UndergroundRecord *undergroundRecor
 
 void UndergroundRecord_IncrementGiftsReceived(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->numGiftsReceived < 999999) {
+    if (undergroundRecord->numGiftsReceived < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->numGiftsReceived++;
     }
 }
@@ -1279,7 +1291,7 @@ int UndergroundRecord_GetTimesFlagTaken(const UndergroundRecord *undergroundReco
 
 void UndergroundRecord_IncrementTimesFlagTaken(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->timesFlagTaken < 999999) {
+    if (undergroundRecord->timesFlagTaken < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->timesFlagTaken++;
     }
 }
@@ -1291,20 +1303,20 @@ int UndergroundRecord_GetFlagsRecovered(const UndergroundRecord *undergroundReco
 
 void UndergroundRecord_IncrementFlagsRecovered(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->flagsRecovered < 999999) {
+    if (undergroundRecord->flagsRecovered < MAX_UNDERGROUND_RECORD_VALUE) {
         undergroundRecord->flagsRecovered++;
     }
 }
 
 int UndergroundRecord_GetTimesBaseMoved(const UndergroundRecord *undergroundRecord)
 {
-    return undergroundRecord->unk_34_0;
+    return undergroundRecord->timesBaseMoved;
 }
 
 void UndergroundRecord_IncrementTimesBaseMoved(UndergroundRecord *undergroundRecord)
 {
-    if (undergroundRecord->unk_34_0 < 999999) {
-        undergroundRecord->unk_34_0++;
+    if (undergroundRecord->timesBaseMoved < MAX_UNDERGROUND_RECORD_VALUE) {
+        undergroundRecord->timesBaseMoved++;
     }
 }
 

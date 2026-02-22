@@ -3,13 +3,12 @@
 
 #include "generated/goods.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system_decl.h"
 #include "underground/defs.h"
 
 #include "savedata.h"
 #include "string_gf.h"
+#include "underground.h"
 
 #define SECRET_BASE_WIDTH 32
 #define SECRET_BASE_DEPTH 32

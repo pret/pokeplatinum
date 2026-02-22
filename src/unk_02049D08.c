@@ -14,7 +14,6 @@
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/battle_tower.h"
-#include "struct_defs/underground.h"
 
 #include "applications/party_menu/defs.h"
 #include "field/field_system.h"
@@ -38,6 +37,7 @@
 #include "system_vars.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
+#include "underground.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0204AEE8.h"

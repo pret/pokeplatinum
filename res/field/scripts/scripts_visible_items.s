@@ -2315,7 +2315,7 @@ _1EF0:
     Common_CheckBagPocketForItem
     RemoveObject VAR_LAST_TALKED
     AddItem VAR_0x8004, VAR_0x8005, VAR_RESULT
-    TrySetUnusedUndergroundField VAR_0x8004
+    TrySetUnusedCollectedOrbFlag VAR_0x8004
     CallIfEq VAR_0x8004, 0x1CF, _20C0
     IsItemTMHM VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, _207D

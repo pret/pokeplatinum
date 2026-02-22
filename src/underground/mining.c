@@ -9,9 +9,6 @@
 #include "generated/trainer_score_events.h"
 #include "generated/traps.h"
 
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
-
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
@@ -64,7 +61,7 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_020393C8.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"

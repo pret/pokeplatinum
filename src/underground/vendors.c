@@ -9,7 +9,6 @@
 #include "generated/traps.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "underground/item_list_menu.h"
@@ -42,7 +41,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 #include "res/text/bank/underground_npcs.h"
 

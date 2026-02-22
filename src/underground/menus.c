@@ -6,8 +6,6 @@
 #include "constants/heap.h"
 #include "generated/traps.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 #include "overlay005/sprite_resource_manager.h"
 #include "underground/item_list_menu.h"
@@ -49,7 +47,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 #include "res/graphics/start_menu/start_menu.naix.h"
 #include "res/text/bank/underground_capture_flag.h"

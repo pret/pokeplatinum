@@ -62,7 +62,7 @@
 #include "terrain_attributes.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
@@ -489,7 +489,7 @@ static BOOL FieldTask_LoadSavedGameMap(FieldTask *task)
 
     switch (*state) {
     case 0:
-        SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
+        Underground_UpdateGiftPenaltyState(fieldSystem->saveData);
 
         if (Journal_CheckOpenOnContinue(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags))) {
             sub_0203D30C(fieldSystem, NULL);
@@ -555,7 +555,7 @@ static BOOL FieldTask_LoadMapFromError(FieldTask *task)
     case 0:
         SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
         SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
-        SaveData_LoadAndUpdateUnderground(fieldSystem->saveData);
+        Underground_UpdateGiftPenaltyState(fieldSystem->saveData);
         fieldSystem->journalEntry = Journal_GetSavedPage(SaveData_GetJournal(fieldSystem->saveData), CheckJournalAcquired(varsFlags));
         (*state)++;
         break;
@@ -1177,7 +1177,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         if (SaveData_OverwriteCheck(fieldSystem->saveData)) {
             ScriptManager_Start(task, SCRIPT_ID(COMMON_SCRIPTS, 34), NULL, NULL);
         } else {
-            sub_020287E0(fieldSystem->saveData);
+            Underground_SetGiftPenaltyPrimedFlag(fieldSystem->saveData);
             mapChangeUndergroundData->saveInfoWin = SaveInfoWindow_New(fieldSystem, HEAP_ID_FIELD2, BG_LAYER_MAIN_3);
             SaveInfoWindow_Draw(mapChangeUndergroundData->saveInfoWin);
             mapChangeUndergroundData->unk_1C = 0;

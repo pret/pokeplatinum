@@ -7,7 +7,6 @@
 #include "constants/heap.h"
 
 #include "struct_defs/struct_0205964C.h"
-#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
@@ -28,6 +27,7 @@
 #include "sys_task_manager.h"
 #include "trainer_card.h"
 #include "trainer_info.h"
+#include "underground.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"

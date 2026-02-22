@@ -21,7 +21,7 @@
 #include "system_vars.h"
 #include "trainer_card_badge_dirt.h"
 #include "tv_episode_segment.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
 #include "unk_0206B9D8.h"
@@ -131,7 +131,7 @@ static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *rt
 {
     BerryPatches_ElapseTime(fieldSystem, param1);
     SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
-    sub_02028758(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
+    Underground_ProgressGiftPenalty(fieldSystem->saveData, param1, FieldSystem_HasPenalty(fieldSystem));
 
     TVBroadcast *broadcast = SaveData_GetTVBroadcast(fieldSystem->saveData);
     TVBroadcast_UpdateProgramTimeSlot(broadcast, param1, rtcTime->minute);

@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_defs/struct_02057B48.h"
-#include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
 #include "underground/player_status.h"
@@ -12,6 +11,7 @@
 #include "overworld_anim_manager.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
+#include "underground.h"
 
 enum PauseBit {
     PAUSE_BIT_STOLE_FLAG = 1,

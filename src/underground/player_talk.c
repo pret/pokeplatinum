@@ -32,7 +32,7 @@
 #include "system.h"
 #include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/underground_answers.h"
@@ -737,10 +737,10 @@ static void UndergroundTalk_Main(SysTask *sysTask, void *data)
         if (sCurrentTalkMenu->sentGift.goodID == 0) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_NextTimeWillBeFine);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
-        } else if (sub_02032FC0(menu->linkNetID)) {
+        } else if (CommInfo_PlayerHasGiftPenalty(menu->linkNetID)) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_IllPass);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
-        } else if (!sub_02028810(menu->fieldSystem->saveData)) {
+        } else if (!Underground_CanExchangeGifts(menu->fieldSystem->saveData)) {
             UndergroundTalk_PrintMessage(menu, UndergroundCommon_Text_IllPass);
             menu->state = TALK_MENU_STATE_DO_SOMETHING_ELSE_PROMPT_AFTER_TEXT;
         } else if (Good_IsUngiftable(sCurrentTalkMenu->sentGift.goodID)) {

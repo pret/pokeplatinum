@@ -5,8 +5,6 @@
 
 #include "constants/field_base_tiles.h"
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 #include "underground/item_list_menu.h"
 #include "underground/manager.h"
@@ -23,7 +21,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 #include "res/text/bank/underground_base_decoration.h"
 #include "res/text/bank/underground_goods.h"
