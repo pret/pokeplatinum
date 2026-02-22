@@ -3,12 +3,12 @@
 
 
     ScriptEntry _0522
-    ScriptEntry _0536
-    ScriptEntry _054A
-    ScriptEntry _055E
-    ScriptEntry _0572
-    ScriptEntry _0586
-    ScriptEntry _059A
+    ScriptEntry VisibleItems_Route203_Repel
+    ScriptEntry VisibleItems_Route203_PokeBall
+    ScriptEntry VisibleItems_OreburghGateB1F_TM01
+    ScriptEntry VisibleItems_OreburghGateB1F_TM31
+    ScriptEntry VisibleItems_OreburghGateB1F_TM70
+    ScriptEntry VisibleItems_OreburghGateB1F_EarthPlate
     ScriptEntry _05AE
     ScriptEntry _05C2
     ScriptEntry _05D6
@@ -171,7 +171,7 @@
     ScriptEntry _121A
     ScriptEntry _122E
     ScriptEntry _1242
-    ScriptEntry _1256
+    ScriptEntry VisibleItems_OreburghGateB1F_BigPearl
     ScriptEntry _126A
     ScriptEntry _127E
     ScriptEntry _1292
@@ -257,7 +257,7 @@
     ScriptEntry _18D2
     ScriptEntry _18E6
     ScriptEntry _18FA
-    ScriptEntry _190E
+    ScriptEntry VisibleItems_Route203_XDefense
     ScriptEntry _1922
     ScriptEntry _1936
     ScriptEntry _194A
@@ -338,37 +338,37 @@ _0522:
     GoTo _1EAE
     End
 
-_0536:
+VisibleItems_Route203_Repel:
     SetVar VAR_0x8008, ITEM_REPEL
     SetVar VAR_0x8009, 1
     GoTo _1EAE
     End
 
-_054A:
+VisibleItems_Route203_PokeBall:
     SetVar VAR_0x8008, ITEM_POKE_BALL
     SetVar VAR_0x8009, 1
     GoTo _1EAE
     End
 
-_055E:
+VisibleItems_OreburghGateB1F_TM01:
     SetVar VAR_0x8008, ITEM_TM01
     SetVar VAR_0x8009, 1
     GoTo _1EAE
     End
 
-_0572:
+VisibleItems_OreburghGateB1F_TM31:
     SetVar VAR_0x8008, ITEM_TM31
     SetVar VAR_0x8009, 1
     GoTo _1EAE
     End
 
-_0586:
+VisibleItems_OreburghGateB1F_TM70:
     SetVar VAR_0x8008, ITEM_TM70
     SetVar VAR_0x8009, 1
     GoTo _1EAE
     End
 
-_059A:
+VisibleItems_OreburghGateB1F_EarthPlate:
     SetVar VAR_0x8008, ITEM_EARTH_PLATE
     SetVar VAR_0x8009, 1
     GoTo _1EAE
@@ -1346,7 +1346,7 @@ _1242:
     GoTo _1EAE
     End
 
-_1256:
+VisibleItems_OreburghGateB1F_BigPearl:
     SetVar VAR_0x8008, ITEM_BIG_PEARL
     SetVar VAR_0x8009, 1
     GoTo _1EAE
@@ -1862,7 +1862,7 @@ _18FA:
     GoTo _1EAE
     End
 
-_190E:
+VisibleItems_Route203_XDefense:
     SetVar VAR_0x8008, ITEM_X_DEFENSE
     SetVar VAR_0x8009, 1
     GoTo _1EAE

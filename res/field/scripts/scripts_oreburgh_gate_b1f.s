@@ -2,14 +2,14 @@
 #include "res/text/bank/oreburgh_gate_b1f.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry OreburghGateB1F_CyclistF
     ScriptEntryEnd
 
-_0006:
+OreburghGateB1F_CyclistF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghGateB1F_Text_DoYouSeeThoseBumpsOnTheGround
     WaitABXPadPress
     CloseMessage
     ReleaseAll
