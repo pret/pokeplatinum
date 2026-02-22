@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "constants/pokemon.h"
 
 #include "field/field_system.h"
@@ -16,6 +15,8 @@
 #include "party.h"
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 typedef struct PokecenterHealingAnimation {
     VecFx32 position;
@@ -42,7 +43,7 @@ void FieldSystem_PlayHealingAnimation_Pokecenter(FieldSystem *fieldSystem, const
     BOOL mapPropFound;
     MapProp *healingMachine;
     int mapMatrixIndex;
-    int healingMachineID = MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE;
+    int healingMachineID = pokecenter_healing_machine_nsbmd;
 
     mapPropFound = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, healingMachineID, &healingMachine, &mapMatrixIndex);
 
@@ -81,18 +82,18 @@ static BOOL FieldTask_PlayHealingAnimation_Pokecenter(FieldTask *param0)
         NNSG3dRenderObj *screenRenderObj;
         BOOL screenFound;
 
-        pokeballModelFile = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, fieldSystem->areaDataManager);
-        screenModelFile = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV, fieldSystem->areaDataManager);
+        pokeballModelFile = AreaDataManager_GetMapPropModelFile(pokecenter_healing_machine_mini_pokeball_nsbmd, fieldSystem->areaDataManager);
+        screenModelFile = AreaDataManager_GetMapPropModelFile(pokecenter_healing_machine_tv_nsbmd, fieldSystem->areaDataManager);
         pokeballModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*pokeballModelFile), 0);
         screenModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*screenModelFile), 0);
 
-        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_POKEBALL_TAG, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, NULL, pokeballModel, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_POKEBALL_TAG, pokecenter_healing_machine_mini_pokeball_nsbmd, NULL, pokeballModel, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
 
-        screenFound = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV, &screenMapProp, NULL);
+        screenFound = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, pokecenter_healing_machine_tv_nsbmd, &screenMapProp, NULL);
         GF_ASSERT(screenFound);
         screenRenderObj = MapProp_GetRenderObj(screenMapProp);
 
-        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_SCREEN_TAG, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV, screenRenderObj, screenModel, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, HEALING_MACHINE_ANIMATION_SCREEN_TAG, pokecenter_healing_machine_tv_nsbmd, screenRenderObj, screenModel, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
         (animation->state)++;
         break;
     }
@@ -108,7 +109,7 @@ static BOOL FieldTask_PlayHealingAnimation_Pokecenter(FieldTask *param0)
 
         Sound_PlayEffect(SEQ_SE_DP_BOWA);
 
-        animation->pokeballLoadedPropIDs[animation->currentPokeballIndex] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, &pokeballPosition, &pokeballRotation, fieldSystem->mapPropAnimMan);
+        animation->pokeballLoadedPropIDs[animation->currentPokeballIndex] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, pokecenter_healing_machine_mini_pokeball_nsbmd, &pokeballPosition, &pokeballRotation, fieldSystem->mapPropAnimMan);
 
         pokeballMapProp = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, animation->pokeballLoadedPropIDs[animation->currentPokeballIndex]);
         pokeballRenderObj = MapProp_GetRenderObj(pokeballMapProp);

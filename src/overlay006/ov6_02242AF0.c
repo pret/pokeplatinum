@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/field/dynamic_map_features.h"
-#include "constants/field/map_prop.h"
 #include "constants/great_marsh_tram.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -22,6 +21,8 @@
 #include "savedata_misc.h"
 #include "sound_playback.h"
 #include "unk_020655F4.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 typedef struct UnkStruct_ov6_02242B58_t UnkStruct_ov6_02242B58;
 
@@ -198,12 +199,12 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         MapProp *v4;
         NNSG3dRenderObj *v5;
 
-        v4 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_GREAT_MARSH_TRAIN);
+        v4 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, great_marsh_train_nsbmd);
         v5 = MapProp_GetRenderObj(v4);
-        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_GREAT_MARSH_TRAIN, fieldSystem->areaDataManager);
+        v3 = AreaDataManager_GetMapPropModelFile(great_marsh_train_nsbmd, fieldSystem->areaDataManager);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
-        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 16, MAP_PROP_MODEL_GREAT_MARSH_TRAIN, v5, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, -1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 16, great_marsh_train_nsbmd, v5, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, -1, 0);
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 16, 0);
     }
         (v1->unk_05)++;
@@ -225,7 +226,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         MapProp *v6;
         VecFx32 v7;
 
-        v6 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_GREAT_MARSH_TRAIN);
+        v6 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, great_marsh_train_nsbmd);
         v7 = MapProp_GetPosition(v6);
 
         if (v1->unk_00(fieldSystem, v1, &v1->unk_0C, &v7)) {

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/field/map_prop.h"
 #include "constants/map_object.h"
 #include "generated/map_headers.h"
 
@@ -21,6 +20,8 @@
 #include "special_encounter.h"
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
+
+#include "res/field/props/models/prop_models.naix.h"
 
 #define TREE_GROUP_NO_ENCOUNTER 0
 #define TREE_GROUP_A            1
@@ -106,7 +107,7 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
 
     if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == DIR_NORTH) { // Honey Trees can only be interacted with from below.
         TerrainCollisionHitbox_Init(x, z, 0, -1, 1, 1, &v0);
-        isFacingHoneyTree = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, MAP_PROP_MODEL_HONEY_TREE, &v0, NULL);
+        isFacingHoneyTree = FieldSystem_FindCollidingLoadedMapPropByModelID(fieldSystem, honey_tree_nsbmd, &v0, NULL);
     } else {
         isFacingHoneyTree = FALSE;
     }
@@ -194,11 +195,11 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
 
         LandDataManager_GetLoadedMapPropManager(v1, fieldSystem->landDataMan, &v3);
 
-        v2 = MapPropManager_FindLoadedPropByModelID(v3, MAP_PROP_MODEL_HONEY_TREE);
+        v2 = MapPropManager_FindLoadedPropByModelID(v3, honey_tree_nsbmd);
         v4 = MapProp_GetRenderObj(v2);
 
         if (v2 != NULL) {
-            MapPropAnimationManager_RemoveAnimationFromRenderObj(fieldSystem->mapPropAnimMan, v4, MAP_PROP_MODEL_HONEY_TREE, fieldSystem->unk_A8->trees[treeId].shakeValue);
+            MapPropAnimationManager_RemoveAnimationFromRenderObj(fieldSystem->mapPropAnimMan, v4, honey_tree_nsbmd, fieldSystem->unk_A8->trees[treeId].shakeValue);
         }
 
         fieldSystem->unk_A8->trees[treeId].isShaking = FALSE;
@@ -364,19 +365,19 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *par
                 return;
             }
 
-            v4 = MapPropManager_FindLoadedPropByModelID(param1, MAP_PROP_MODEL_HONEY_TREE);
+            v4 = MapPropManager_FindLoadedPropByModelID(param1, honey_tree_nsbmd);
 
             if (v4 != NULL) {
                 NNSG3dRenderObj *v7;
 
                 v7 = MapProp_GetRenderObj(v4);
 
-                MapPropAnimationManager_RemoveAnimationFromRenderObj(fieldSystem->mapPropAnimMan, v7, MAP_PROP_MODEL_HONEY_TREE, fieldSystem->unk_A8->trees[treeId].shakeValue);
+                MapPropAnimationManager_RemoveAnimationFromRenderObj(fieldSystem->mapPropAnimMan, v7, honey_tree_nsbmd, fieldSystem->unk_A8->trees[treeId].shakeValue);
 
                 fieldSystem->unk_A8->trees[treeId].shakeValue = shakeValue;
                 fieldSystem->unk_A8->trees[treeId].isShaking = isShaking;
 
-                MapPropAnimationManager_AddAnimationToRenderObj(MAP_PROP_MODEL_HONEY_TREE, shakeValue, 1, v7, fieldSystem->mapPropAnimMan);
+                MapPropAnimationManager_AddAnimationToRenderObj(honey_tree_nsbmd, shakeValue, 1, v7, fieldSystem->mapPropAnimMan);
             }
         }
     }

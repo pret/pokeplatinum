@@ -1,6 +1,5 @@
 prebuilt_files = [
-    'build_model_matshp.dat',
-    'build_model.narc'
+    'build_model_matshp.dat'
 ]
 
 foreach f : prebuilt_files
