@@ -452,7 +452,7 @@ const ScrCmdFunc gFieldScriptCommands[] = {
     ScriptCommandTableEntry(SCRCMD_GIVEEGGFROMDAYCARE,                                   ScrCmd_GiveEggFromDaycare)
     ScriptCommandTableEntry(SCRCMD_BUFFERDAYCAREPRICEBYSLOT,                             ScrCmd_BufferDaycarePriceBySlot)
     ScriptCommandTableEntry(SCRCMD_CHECKMONEY2,                                          ScrCmd_CheckMoney2)
-    ScriptCommandTableEntry(SCRCMD_1AC,                                                  ScrCmd_1AC)
+    ScriptCommandTableEntry(SCRCMD_HATCHEGG,                                             ScrCmd_HatchEgg)
     ScriptCommandTableEntry(SCRCMD_DUMMY1AD,                                             ScrCmd_Dummy1AD)
     ScriptCommandTableEntry(SCRCMD_BUFFERDAYCAREGAINEDLEVELSBYSLOT,                      ScrCmd_BufferDaycareGainedLevelsBySlot)
     ScriptCommandTableEntry(SCRCMD_BUFFERPARTYMONNICKNAMERETURNSPECIES,                  ScrCmd_BufferPartyMonNicknameReturnSpecies)

@@ -14,7 +14,6 @@
 #include "overlay005/daycare.h"
 #include "overlay119/ov119_021D0D80.h"
 #include "overlay119/ov119_021D191C.h"
-#include "overlay119/struct_ov119_021D0FD0.h"
 
 #include "bg_window.h"
 #include "field_system.h"
@@ -41,242 +40,217 @@
 #include "unk_02092494.h"
 #include "vram_transfer.h"
 
-#include "constdata/const_020F67FC.h"
-
 FS_EXTERN_OVERLAY(overlay119);
 
-static int sub_02098218(ApplicationManager *appMan, int *param1);
-static int sub_02098304(ApplicationManager *appMan, int *param1);
-static int sub_02098388(ApplicationManager *appMan, int *param1);
+static BOOL EggHatch_Init(ApplicationManager *appMan, int *state);
+static BOOL EggHatch_Main(ApplicationManager *appMan, int *state);
+static BOOL EggHatch_Exit(ApplicationManager *appMan, int *state);
 
-const ApplicationManagerTemplate Unk_020F67FC = {
-    sub_02098218,
-    sub_02098304,
-    sub_02098388,
+static const ApplicationManagerTemplate sEggHatchAppTemplate = {
+    EggHatch_Init,
+    EggHatch_Main,
+    EggHatch_Exit,
     FS_OVERLAY_ID(overlay119)
 };
 
-static int sub_02098218(ApplicationManager *appMan, int *param1)
+static BOOL EggHatch_Init(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_0209843C *v0;
-    UnkStruct_ov119_021D0FD0 *v1;
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_71, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_EGG_HATCH, 0x40000);
 
-    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov119_021D0FD0), HEAP_ID_71);
-    memset(v1, 0, sizeof(UnkStruct_ov119_021D0FD0));
+    EggHatchCutscene *eggHatch = ApplicationManager_NewData(appMan, sizeof(EggHatchCutscene), HEAP_ID_EGG_HATCH);
+    memset(eggHatch, 0, sizeof(EggHatchCutscene));
 
-    v0 = ApplicationManager_Args(appMan);
+    EggHatchApp *app = ApplicationManager_Args(appMan);
 
-    v1->unk_00 = v0;
-    v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.options);
-    v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.options);
-    v1->unk_04.unk_34 = ov119_021D0DD4();
-    v1->unk_04.unk_38 = PokemonSpriteManager_New(HEAP_ID_71);
-    v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_71);
-    v1->unk_04.unk_00 = BgConfig_New(HEAP_ID_71);
+    eggHatch->app = app;
+    eggHatch->graphics.renderDelay = Options_TextFrameDelay(eggHatch->app->args.options);
+    eggHatch->graphics.frame = Options_Frame(eggHatch->app->args.options);
+    eggHatch->graphics.g3dPipeline = EggHatch_InitG3DPipeline();
+    eggHatch->graphics.monSpriteMan = PokemonSpriteManager_New(HEAP_ID_EGG_HATCH);
+    eggHatch->graphics.monDataNarc = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_EGG_HATCH);
+    eggHatch->graphics.bgConfig = BgConfig_New(HEAP_ID_EGG_HATCH);
 
-    VramTransfer_New(64, HEAP_ID_71);
+    VramTransfer_New(64, HEAP_ID_EGG_HATCH);
 
-    v1->unk_04.unk_54 = PokemonAnimManager_New(HEAP_ID_71, 1, FALSE);
-    v1->unk_04.unk_04 = PaletteData_New(HEAP_ID_71);
+    eggHatch->graphics.animMan = PokemonAnimManager_New(HEAP_ID_EGG_HATCH, 1, FALSE);
+    eggHatch->graphics.plttData = PaletteData_New(HEAP_ID_EGG_HATCH);
 
-    PaletteData_SetAutoTransparent(v1->unk_04.unk_04, 1);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 0, 0x200, HEAP_ID_71);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 2, 0x200, HEAP_ID_71);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 1, 0x200, HEAP_ID_71);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 3, 0x200, HEAP_ID_71);
+    PaletteData_SetAutoTransparent(eggHatch->graphics.plttData, TRUE);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_BG, 0x200, HEAP_ID_EGG_HATCH);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_OBJ, 0x200, HEAP_ID_EGG_HATCH);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_BG, 0x200, HEAP_ID_EGG_HATCH);
+    PaletteData_AllocBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_OBJ, 0x200, HEAP_ID_EGG_HATCH);
 
-    ov119_021D0D80();
-    ov119_021D0DA8();
-    ov119_021D0E78();
+    EggHatch_InitGraphicsPlane();
+    EggHatch_SetBlendAlphas();
+    EggHatch_ZeroParticleSystem();
 
-    ov119_021D0EB8(v1->unk_04.unk_00);
-    ov119_021D17B8(&v1->unk_04);
+    EggHatch_InitBackgrounds(eggHatch->graphics.bgConfig);
+    EggHatch_InitSpriteSystem(&eggHatch->graphics);
 
     Sound_StopWaveOutAndSequences();
-    SetVBlankCallback(ov119_021D0FD0, v1);
+    SetVBlankCallback(EggHatch_VBlankCallback, eggHatch);
 
-    return 1;
+    return TRUE;
 }
 
-static int sub_02098304(ApplicationManager *appMan, int *param1)
+static BOOL EggHatch_Main(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
+    EggHatchCutscene *eggHatch = ApplicationManager_Data(appMan);
 
-    switch (*param1) {
+    switch (*state) {
     case 0:
         if (IsScreenFadeDone() == TRUE) {
-            (*param1)++;
+            (*state)++;
         }
 
-        {
-            int v1;
+        int species = Pokemon_GetValue(eggHatch->app->args.mon, MON_DATA_SPECIES, NULL);
 
-            v1 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+        PokemonSprite_LoadCryDelay(eggHatch->graphics.monDataNarc, &eggHatch->cryDelay, species, 1);
 
-            PokemonSprite_LoadCryDelay(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
-
-            if (v1 == SPECIES_MANAPHY) {
-                v0->unk_5C = 1;
-            } else {
-                v0->unk_5C = 0;
-            }
+        if (species == SPECIES_MANAPHY) {
+            eggHatch->isManaphy = TRUE;
+        } else {
+            eggHatch->isManaphy = FALSE;
         }
         break;
     case 1: {
-        BOOL v2;
-
-        v2 = ov119_021D191C(v0);
-
-        if (v2 == 0) {
-            (*param1)++;
+        if (!EggHatch_PlayCutscene(eggHatch)) {
+            (*state)++;
             break;
         }
 
-        PokemonSpriteManager_DrawSprites(v0->unk_04.unk_38);
-        ov119_021D1004();
+        PokemonSpriteManager_DrawSprites(eggHatch->graphics.monSpriteMan);
+        EggHatchParticleSystem_Update();
     } break;
     default:
         if (IsScreenFadeDone() == TRUE) {
-            return 1;
+            return TRUE;
         }
 
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static int sub_02098388(ApplicationManager *appMan, int *param1)
+static BOOL EggHatch_Exit(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov119_021D0FD0 *v0 = ApplicationManager_Data(appMan);
+    EggHatchCutscene *eggHatch = ApplicationManager_Data(appMan);
 
-    G3DPipelineBuffers_Free(v0->unk_04.unk_34);
+    G3DPipelineBuffers_Free(eggHatch->graphics.g3dPipeline);
 
-    GXLayers_EngineAToggleLayers(1, 0);
-    GXLayers_EngineAToggleLayers(2, 0);
-    GXLayers_EngineAToggleLayers(3, 0);
-    GXLayers_EngineBToggleLayers(4, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, FALSE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, FALSE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1, FALSE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, FALSE);
 
-    PaletteData_FreeBuffer(v0->unk_04.unk_04, 0);
-    PaletteData_FreeBuffer(v0->unk_04.unk_04, 2);
-    PaletteData_FreeBuffer(v0->unk_04.unk_04, 1);
-    PaletteData_FreeBuffer(v0->unk_04.unk_04, 3);
-    PaletteData_Free(v0->unk_04.unk_04);
+    PaletteData_FreeBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_BG);
+    PaletteData_FreeBuffer(eggHatch->graphics.plttData, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_BG);
+    PaletteData_FreeBuffer(eggHatch->graphics.plttData, PLTTBUF_SUB_OBJ);
+    PaletteData_Free(eggHatch->graphics.plttData);
 
-    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 1);
-    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 2);
-    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 3);
-    Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
+    Bg_FreeTilemapBuffer(eggHatch->graphics.bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(eggHatch->graphics.bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(eggHatch->graphics.bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(eggHatch->graphics.bgConfig, BG_LAYER_SUB_0);
 
-    Heap_Free(v0->unk_04.unk_00);
+    Heap_Free(eggHatch->graphics.bgConfig);
     VramTransfer_Free();
-    PokemonSpriteManager_Free(v0->unk_04.unk_38);
-    PokemonAnimManager_Free(v0->unk_04.unk_54);
-    NARC_dtor(v0->unk_04.unk_3C);
+    PokemonSpriteManager_Free(eggHatch->graphics.monSpriteMan);
+    PokemonAnimManager_Free(eggHatch->graphics.animMan);
+    NARC_dtor(eggHatch->graphics.monDataNarc);
 
-    ov119_021D1844(&v0->unk_04);
+    EggHatch_FreeSpriteSystem(&eggHatch->graphics);
 
     ApplicationManager_FreeData(appMan);
-    Heap_Destroy(HEAP_ID_71);
+    Heap_Destroy(HEAP_ID_EGG_HATCH);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_0209843C(FieldTask *param0)
+static BOOL HatchEgg(FieldTask *fieldTask)
 {
-    UnkStruct_0209843C *v0 = FieldTask_GetEnv(param0);
+    EggHatchApp *app = FieldTask_GetEnv(fieldTask);
 
-    switch (v0->unk_00) {
+    switch (app->state) {
     case 0:
-        Egg_CreateHatchedMon(v0->unk_0C.unk_00, HEAP_ID_FIELD2);
-        FieldTransition_FinishMap(param0);
-        v0->unk_00++;
+        Egg_CreateHatchedMon(app->args.mon, HEAP_ID_FIELD2);
+        FieldTransition_FinishMap(fieldTask);
+        app->state++;
         break;
     case 1:
-        FieldTask_RunApplication(param0, &Unk_020F67FC, v0);
-        v0->unk_00++;
+        FieldTask_RunApplication(fieldTask, &sEggHatchAppTemplate, app);
+        app->state++;
         break;
     case 2: {
-        FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+        FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
 
-        {
-            Pokemon *mon = v0->unk_0C.unk_00;
-            TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
-            int v4 = 6;
-            int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
-            int isEgg = FALSE;
+        Pokemon *mon = app->args.mon;
+        TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
+        int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+        int isEgg = FALSE;
 
-            Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
-            UpdateMonStatusAndTrainerInfo(mon, trainerInfo, v4, location, HEAP_ID_FIELD2);
-            Pokemon_SetValue(mon, MON_DATA_SPECIES_NAME, NULL);
-        }
+        Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
+        UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 6, location, HEAP_ID_FIELD2);
+        Pokemon_SetValue(mon, MON_DATA_SPECIES_NAME, NULL);
 
-        {
-            SaveData_UpdateCatchRecords(FieldSystem_GetSaveData(fieldSystem), v0->unk_0C.unk_00);
-        }
+        SaveData_UpdateCatchRecords(FieldSystem_GetSaveData(fieldSystem), app->args.mon);
 
-        if (v0->unk_04 == 1) {
-            v0->unk_00 = 3;
+        if (app->nicknameMon == TRUE) {
+            app->state = 3;
         } else {
-            v0->unk_00 = 5;
+            app->state = 5;
         }
     } break;
     case 3: {
-        FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-        int v9;
+        FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
 
-        v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
+        int species = Pokemon_GetValue(app->args.mon, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = NamingScreenArgs_Init(HEAP_ID_FIELD2, NAMING_SCREEN_TYPE_POKEMON, v9, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
-        v0->unk_08->monGender = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
-        v0->unk_08->monForm = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
-        FieldTask_RunApplication(param0, &gNamingScreenAppTemplate, v0->unk_08);
-        v0->unk_00++;
+        app->nameScreenArgs = NamingScreenArgs_Init(HEAP_ID_FIELD2, NAMING_SCREEN_TYPE_POKEMON, species, MON_NAME_LEN, SaveData_GetOptions(FieldSystem_GetSaveData(fieldSystem)));
+        app->nameScreenArgs->monGender = Pokemon_GetValue(app->args.mon, MON_DATA_GENDER, NULL);
+        app->nameScreenArgs->monForm = Pokemon_GetValue(app->args.mon, MON_DATA_FORM, NULL);
+        FieldTask_RunApplication(fieldTask, &gNamingScreenAppTemplate, app->nameScreenArgs);
+        app->state++;
     } break;
     case 4:
-        if (v0->unk_08->returnCode == NAMING_SCREEN_CODE_OK) {
-            Pokemon_SetValue(v0->unk_0C.unk_00, MON_DATA_NICKNAME_STRING_AND_FLAG, v0->unk_08->textInputStr);
+        if (app->nameScreenArgs->returnCode == NAMING_SCREEN_CODE_OK) {
+            Pokemon_SetValue(app->args.mon, MON_DATA_NICKNAME_STRING_AND_FLAG, app->nameScreenArgs->textInputStr);
 
-            {
-                FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-                GameRecords *v11 = SaveData_GetGameRecords(FieldSystem_GetSaveData(fieldSystem));
-
-                GameRecords_IncrementRecordValue(v11, RECORD_POKEMON_NICKNAMED);
-            }
+            FieldSystem *fieldSystem = FieldTask_GetFieldSystem(fieldTask);
+            GameRecords *records = SaveData_GetGameRecords(FieldSystem_GetSaveData(fieldSystem));
+            GameRecords_IncrementRecordValue(records, RECORD_POKEMON_NICKNAMED);
         }
 
-        NamingScreenArgs_Free(v0->unk_08);
-        v0->unk_00++;
+        NamingScreenArgs_Free(app->nameScreenArgs);
+        app->state++;
         break;
     case 5:
-        FieldTransition_StartMap(param0);
-        v0->unk_00++;
+        FieldTransition_StartMap(fieldTask);
+        app->state++;
         break;
     case 6:
-        Heap_Free(v0);
-        return 1;
+        Heap_Free(app);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_020985AC(FieldTask *param0, void *param1)
+void EggHatch_HatchEgg(FieldTask *task, void *args)
 {
-    UnkStruct_0209843C *v0;
-    UnkStruct_0203E2FC *v1;
+    EggHatchApp *app = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(EggHatchApp));
+    memset(app, 0, sizeof(EggHatchApp));
 
-    v0 = Heap_AllocAtEnd(HEAP_ID_FIELD2, sizeof(UnkStruct_0209843C));
-    memset(v0, 0, sizeof(UnkStruct_0209843C));
+    app->args = *(EggHatchArgs *)args;
 
-    v1 = (UnkStruct_0203E2FC *)param1;
-    v0->unk_0C = *v1;
-
-    FieldTask_InitCall(param0, sub_0209843C, v0);
+    FieldTask_InitCall(task, HatchEgg, app);
 }

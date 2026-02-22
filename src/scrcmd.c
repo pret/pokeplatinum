@@ -541,7 +541,7 @@ static BOOL ScrCmd_CloseUndergroundNPCMessage(ScriptContext *ctx);
 static BOOL ScrCmd_BufferTreasureNameForUndergroundVendor_Unused(ScriptContext *ctx);
 static BOOL ScrCmd_BufferTrapNameForUndergroundVendor_Unused(ScriptContext *ctx);
 static BOOL ScrCmd_Unused_03F(ScriptContext *ctx);
-static BOOL ScrCmd_1AC(ScriptContext *ctx);
+static BOOL ScrCmd_HatchEgg(ScriptContext *ctx);
 static BOOL ScrCmd_ShowObject(ScriptContext *ctx);
 static BOOL ScrCmd_HideObject(ScriptContext *ctx);
 static BOOL ScrCmd_1B3(ScriptContext *ctx);
@@ -4798,9 +4798,9 @@ static BOOL ScrCmd_GetPlayer3DPos(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1AC(ScriptContext *ctx)
+static BOOL ScrCmd_HatchEgg(ScriptContext *ctx)
 {
-    sub_0203E2FC(ctx->fieldSystem);
+    FieldSystem_HatchEgg(ctx->fieldSystem);
     return TRUE;
 }
 

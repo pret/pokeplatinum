@@ -6,10 +6,10 @@
 #include "applications/naming_screen.h"
 
 typedef struct {
-    int unk_00;
-    BOOL unk_04;
-    NamingScreenArgs *unk_08;
-    UnkStruct_0203E2FC unk_0C;
-} UnkStruct_0209843C;
+    int state;
+    BOOL nicknameMon;
+    NamingScreenArgs *nameScreenArgs;
+    EggHatchArgs args;
+} EggHatchApp;
 
 #endif // POKEPLATINUM_STRUCT_0209843C_H

@@ -3,6 +3,6 @@
 
 #include "field_task.h"
 
-void sub_020985AC(FieldTask *param0, void *param1);
+void EggHatch_HatchEgg(FieldTask *task, void *args);
 
 #endif // POKEPLATINUM_UNK_02098218_H

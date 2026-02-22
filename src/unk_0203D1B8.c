@@ -1484,21 +1484,21 @@ void FieldTask_PlayBoatCutscene_SnowpointShip(FieldSystem *fieldSystem, void *ta
     FieldSystem_StartChildProcess(fieldSystem, &appTemplate, taskEnv);
 }
 
-void sub_0203E2FC(FieldSystem *fieldSystem)
+void FieldSystem_HatchEgg(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203E2FC v0;
-    Party *v1 = SaveData_GetParty(fieldSystem->saveData);
-    Pokemon *v2 = Party_GetFirstEgg(v1);
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *eggMon = Party_GetFirstEgg(party);
 
-    GF_ASSERT(v2 != NULL);
-    FieldSystem_SaveTVEpisodeSegment_HappyHappyEggClub(fieldSystem, v2);
+    GF_ASSERT(eggMon != NULL);
+    FieldSystem_SaveTVEpisodeSegment_HappyHappyEggClub(fieldSystem, eggMon);
 
-    v0.unk_00 = v2;
-    v0.options = SaveData_GetOptions(fieldSystem->saveData);
-    v0.unk_08 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0.unk_0C = Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId);
+    EggHatchArgs args;
+    args.mon = eggMon;
+    args.options = SaveData_GetOptions(fieldSystem->saveData);
+    args.trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    args.bgmID = Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId);
 
-    sub_020985AC(fieldSystem->task, &v0);
+    EggHatch_HatchEgg(fieldSystem->task, &args);
 }
 
 BOOL sub_0203E348(FieldSystem *fieldSystem, UnkStruct_0203E348 *param1)

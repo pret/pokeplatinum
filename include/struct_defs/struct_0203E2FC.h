@@ -6,10 +6,10 @@
 #include "trainer_info.h"
 
 typedef struct {
-    Pokemon *unk_00;
+    Pokemon *mon;
     Options *options;
-    TrainerInfo *unk_08;
-    u16 unk_0C;
-} UnkStruct_0203E2FC;
+    TrainerInfo *trainerInfo;
+    u16 bgmID;
+} EggHatchArgs;
 
 #endif // POKEPLATINUM_STRUCT_0203E2FC_H

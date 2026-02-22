@@ -1,18 +1,11 @@
 #include "overlay119/ov119_021D0D80.h"
 
 #include <nitro.h>
-#include <string.h>
 
 #include "constants/heap.h"
 #include "constants/narc.h"
 
 #include "struct_defs/sprite_animation_frame.h"
-
-#include "overlay119/struct_ov119_021D0FD0.h"
-#include "overlay119/struct_ov119_021D14DC.h"
-#include "overlay119/struct_ov119_021D16C0.h"
-#include "overlay119/struct_ov119_021D17B8.h"
-#include "overlay119/struct_ov119_021D1930.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -29,7 +22,6 @@
 #include "pokemon_sprite.h"
 #include "render_window.h"
 #include "screen_fade.h"
-#include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -39,18 +31,28 @@
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
 
-void ov119_021D0D80(void);
-void ov119_021D0DA8(void);
-G3DPipelineBuffers *ov119_021D0DD4(void);
-void ov119_021D0DF4(void);
-void ov119_021D0E78(void);
-static u32 ov119_021D13B4(u32 param0, BOOL param1);
-static u32 ov119_021D13D0(u32 param0, BOOL param1);
-static ParticleSystem *ov119_021D13EC(enum HeapID heapID);
-static ParticleSystem *ov119_021D1434(enum HeapID heapID, int param1, int param2);
-static void ov119_021D1474(SPLEmitter *param0);
+#include "res/fonts/pl_font.naix"
+#include "res/graphics/egg_hatch/egg_graphics.naix"
+#include "res/graphics/poketch/poketch.naix"
+#include "res/text/bank/egg_hatch.h"
 
-void ov119_021D0D80(void)
+#define ID_EGG_CHAR 20000
+#define ID_EGG_PLTT 20001
+#define ID_EGG_CELL 20002
+#define ID_EGG_ANIM 20003
+#define ID_BAR_CHAR 25000
+#define ID_BAR_PLTT 25001
+#define ID_BAR_CELL 25002
+#define ID_BAR_ANIM 25003
+
+static void G3DPipelineCallback(void);
+static u32 AllocTexVram(u32 size, BOOL is4x4comp);
+static u32 AllocPaletteVram(u32 size, BOOL is4pltt);
+static ParticleSystem *NewParticleSystem(enum HeapID heapID);
+static ParticleSystem *CreateParticleSystem(enum HeapID heapID, int narcID, int narcMemberIdx);
+static void SetSPLEmitterPos(SPLEmitter *emitter);
+
+void EggHatch_InitGraphicsPlane(void)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -59,193 +61,174 @@ void ov119_021D0D80(void)
     GXS_SetVisiblePlane(0);
 }
 
-void ov119_021D0DA8(void)
+void EggHatch_SetBlendAlphas(void)
 {
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 11, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-G3DPipelineBuffers *ov119_021D0DD4(void)
+G3DPipelineBuffers *EggHatch_InitG3DPipeline(void)
 {
-    return G3DPipeline_Init(HEAP_ID_71, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov119_021D0DF4);
+    return G3DPipeline_Init(HEAP_ID_EGG_HATCH, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, G3DPipelineCallback);
 }
 
-void ov119_021D0DF4(void)
+static void G3DPipelineCallback(void)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
     G2_SetBG0Priority(1);
     G3X_SetShading(GX_SHADING_TOON);
-    G3X_AntiAlias(1);
-    G3X_AlphaTest(0, 0);
-    G3X_AlphaBlend(1);
-    G3X_EdgeMarking(0);
-    G3X_SetFog(0, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
-    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, 0);
-    G3_ViewPort(0, 0, 255, 191);
+    G3X_AntiAlias(TRUE);
+    G3X_AlphaTest(FALSE, 0);
+    G3X_AlphaBlend(TRUE);
+    G3X_EdgeMarking(FALSE);
+    G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
+    G3X_SetClearColor(COLOR_BLACK, 0, G3X_DEPTH_MAX, 63, FALSE);
+    G3_ViewPort(0, 0, HW_LCD_WIDTH - 1, HW_LCD_HEIGHT - 1);
 }
 
-void ov119_021D0E78(void)
+void EggHatch_ZeroParticleSystem(void)
 {
-    NNSGfdTexKey v0;
-    NNSGfdPlttKey v1;
-    u32 v2, v3;
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x8000, FALSE, 0);
+    NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(0x80, FALSE, 0);
 
-    v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
-    v1 = NNS_GfdAllocPlttVram(0x20 * 4, 0, 0);
+    GF_ASSERT(texKey != NNS_GFD_ALLOC_ERROR_TEXKEY);
+    GF_ASSERT(plttKey != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 
-    GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_TEXKEY);
-    GF_ASSERT(v1 != NNS_GFD_ALLOC_ERROR_PLTTKEY);
-
-    v2 = NNS_GfdGetTexKeyAddr(v0);
-    v3 = NNS_GfdGetPlttKeyAddr(v1);
+    NNS_GfdGetTexKeyAddr(texKey);
+    NNS_GfdGetPlttKeyAddr(plttKey);
 
     ParticleSystem_ZeroAll();
 }
 
-void ov119_021D0EB8(BgConfig *param0)
+void EggHatch_InitBackgrounds(BgConfig *bgConfig)
 {
     GXLayers_DisableEngineALayers();
 
-    {
-        GXBanks v0 = {
-            GX_VRAM_BG_128_A,
-            GX_VRAM_BGEXTPLTT_NONE,
-            GX_VRAM_SUB_BG_32_H,
-            GX_VRAM_SUB_BGEXTPLTT_NONE,
-            GX_VRAM_OBJ_64_E,
-            GX_VRAM_OBJEXTPLTT_NONE,
-            GX_VRAM_SUB_OBJ_16_I,
-            GX_VRAM_SUB_OBJEXTPLTT_NONE,
-            GX_VRAM_TEX_01_BC,
-            GX_VRAM_TEXPLTT_01_FG
-        };
+    GXBanks gxBanks = {
+        GX_VRAM_BG_128_A,
+        GX_VRAM_BGEXTPLTT_NONE,
+        GX_VRAM_SUB_BG_32_H,
+        GX_VRAM_SUB_BGEXTPLTT_NONE,
+        GX_VRAM_OBJ_64_E,
+        GX_VRAM_OBJEXTPLTT_NONE,
+        GX_VRAM_SUB_OBJ_16_I,
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,
+        GX_VRAM_TEX_01_BC,
+        GX_VRAM_TEXPLTT_01_FG
+    };
 
-        GXLayers_SetBanks(&v0);
+    GXLayers_SetBanks(&gxBanks);
 
-        MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
-        MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
-    }
+    MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
+    MI_CpuClear32((void *)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 
-    {
-        GraphicsModes v1 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_3D
-        };
+    GraphicsModes grapicsModes = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_3D
+    };
 
-        SetAllGraphicsModes(&v1);
-    }
+    SetAllGraphicsModes(&grapicsModes);
 
-    {
-        BgTemplate v2[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x0000,
-                .charBase = GX_BG_CHARBASE_0x04000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 0,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x2000,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x1000,
-                .charBase = GX_BG_CHARBASE_0x0c000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 1,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x1000,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x3000,
-                .charBase = GX_BG_CHARBASE_0x10000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 2,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate bgTemplates[] = {
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x0000,
+            .charBase = GX_BG_CHARBASE_0x04000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x2000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x1000,
+            .charBase = GX_BG_CHARBASE_0x0c000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+        {
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x1000,
+            .baseTile = 0,
+            .screenSize = BG_SCREEN_SIZE_256x256,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0x3000,
+            .charBase = GX_BG_CHARBASE_0x10000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 2,
+            .areaOver = 0,
+            .mosaic = FALSE,
+        },
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_1, &bgTemplates[0], BG_TYPE_STATIC);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_2, &bgTemplates[1], BG_TYPE_STATIC);
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_MAIN_3, &bgTemplates[2], BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_1);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_2);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_MAIN_3);
 
-        G2_SetBG0Priority(1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    }
+    G2_SetBG0Priority(1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 
     GXLayers_TurnBothDispOn();
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 
-    {
-        BgTemplate v3[] = {
-            {
-                .x = 0,
-                .y = 0,
-                .bufferSize = 0x800,
-                .baseTile = 0,
-                .screenSize = BG_SCREEN_SIZE_256x256,
-                .colorMode = GX_BG_COLORMODE_16,
-                .screenBase = GX_BG_SCRBASE_0x6800,
-                .charBase = GX_BG_CHARBASE_0x00000,
-                .bgExtPltt = GX_BG_EXTPLTT_01,
-                .priority = 0,
-                .areaOver = 0,
-                .mosaic = FALSE,
-            },
-        };
+    BgTemplate subBgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x6800,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &subBgTemplate, BG_TYPE_STATIC);
+    Bg_ClearTilemap(bgConfig, BG_LAYER_SUB_0);
 }
 
-void ov119_021D0FD0(void *param0)
+void EggHatch_VBlankCallback(void *arg)
 {
-    UnkStruct_ov119_021D0FD0 *v0 = (UnkStruct_ov119_021D0FD0 *)param0;
+    EggHatchCutscene *eggHatch = arg;
 
-    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_04.unk_38);
+    PokemonSpriteManager_UpdateCharAndPltt(eggHatch->graphics.monSpriteMan);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
-    PaletteData_CommitFadedBuffers(v0->unk_04.unk_04);
-    Bg_RunScheduledUpdates(v0->unk_04.unk_00);
+    PaletteData_CommitFadedBuffers(eggHatch->graphics.plttData);
+    Bg_RunScheduledUpdates(eggHatch->graphics.bgConfig);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-void ov119_021D1004(void)
+void EggHatchParticleSystem_Update(void)
 {
-    int v0;
-    const MtxFx43 *v1;
-
     G3_ResetG3X();
 
-    v0 = ParticleSystem_DrawAll();
-
-    if (v0 > 0) {
+    if (ParticleSystem_DrawAll() > 0) {
         G3_ResetG3X();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
@@ -254,509 +237,450 @@ void ov119_021D1004(void)
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
-void ov119_021D1028(void)
+void EggHatch_FadeIn(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_71);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_EGG_HATCH);
 }
 
-void ov119_021D1048(void)
+void EggHatch_FadeOut(void)
 {
-    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_71);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_EGG_HATCH);
 }
 
-void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
+void EggHatch_LoadMessageBoxGraphics(BgConfig *bgConfig, PaletteData *plttData, int frame)
 {
-    int v0 = 71;
-
-    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 20, 15, param2, v0);
-    PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), v0, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, 20 + (18 + 12), 13, 0, v0);
-    PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), v0, 0, 0x20, 13 * 16);
-    PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
+    LoadMessageBoxGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_OFFSET, PLTT_15, frame, HEAP_ID_EGG_HATCH);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetMessageBoxPaletteNARCMember(frame), HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(12));
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, PLTT_13, STANDARD_WINDOW_SYSTEM, HEAP_ID_EGG_HATCH);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_WINFRAME, GetStandardWindowPaletteNARCMember(), HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(13));
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__PL_FONT, screen_indicators_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES, PLTT_DEST(14));
 }
 
-void ov119_021D10F0(BgConfig *param0, Window *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+void EggHatch_CreateMessageWindow(BgConfig *bgConfig, Window *window, enum BgLayer bgLayer, int tilemapTop, int tilemapLeft, int width, int height, int baseTile, int palette)
 {
-    Window_Init(param1);
-    Window_Add(param0, param1, param2, param3, param4, param5, param6, param8, param7);
-    Window_DrawMessageBoxWithScrollCursor(param1, 1, 20, 12);
-    Window_FillTilemap(param1, 15);
-    Window_CopyToVRAM(param1);
+    Window_Init(window);
+    Window_Add(bgConfig, window, bgLayer, tilemapTop, tilemapLeft, width, height, palette, baseTile);
+    Window_DrawMessageBoxWithScrollCursor(window, TRUE, BASE_TILE_OFFSET, PLTT_12);
+    Window_FillTilemap(window, 15);
+    Window_CopyToVRAM(window);
 }
 
-int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
+int EggHatch_PrintMessage(Window *window, int entryID, Pokemon *mon, int renderDelay)
 {
-    int v0;
-    String *v1;
-    String *v2;
-    StringTemplate *v3;
-    BoxPokemon *v4;
-    MessageLoader *v5;
+    Window_FillTilemap(window, 15);
 
-    Window_FillTilemap(param0, 15);
+    MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_EGG_HATCH);
+    StringTemplate *strTemplate = StringTemplate_Default(HEAP_ID_EGG_HATCH);
+    String *fmtStr = MessageLoader_GetNewString(loader, entryID);
+    String *displayStr = String_Init(255, HEAP_ID_EGG_HATCH);
+    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(mon);
 
-    v5 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_71);
-    v3 = StringTemplate_Default(HEAP_ID_71);
-    v1 = MessageLoader_GetNewString(v5, param1);
-    v2 = String_Init(255, HEAP_ID_71);
-    v4 = Pokemon_GetBoxPokemon(param2);
+    StringTemplate_SetSpeciesName(strTemplate, 0, boxMon);
+    StringTemplate_Format(strTemplate, displayStr, fmtStr);
 
-    StringTemplate_SetSpeciesName(v3, 0, v4);
-    StringTemplate_Format(v3, v2, v1);
+    int printerID = Text_AddPrinterWithParams(window, FONT_MESSAGE, displayStr, 0, 0, renderDelay, NULL);
 
-    v0 = Text_AddPrinterWithParams(param0, FONT_MESSAGE, v2, 0, 0, param3, NULL);
+    MessageLoader_Free(loader);
+    String_Free(displayStr);
+    String_Free(fmtStr);
+    StringTemplate_Free(strTemplate);
 
-    MessageLoader_Free(v5);
-    String_Free(v2);
-    String_Free(v1);
-    StringTemplate_Free(v3);
-
-    return v0;
+    return printerID;
 }
 
-void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
+void EggHatch_CreateYesNoMenu(EggHatchCutscene *eggHatch, BgConfig *bgConfig, Window *window, int bgLayer, int tilemapLeft, int tilemapTop, int width, int height, int baseTile, int palette)
 {
-    MenuTemplate v0;
+    Window_Init(window);
+    Window_Add(bgConfig, window, bgLayer, tilemapLeft, tilemapTop, width, height, palette, baseTile);
 
-    Window_Init(param2);
-    Window_Add(param1, param2, param3, param4, param5, param6, param7, param9, param8);
+    eggHatch->graphics.strList = StringList_New(2, HEAP_ID_EGG_HATCH);
 
-    param0->unk_04.unk_44 = StringList_New(2, HEAP_ID_71);
+    MessageLoader *loader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_EGG_HATCH);
 
-    {
-        int v1;
-        String *v2;
-        MessageLoader *v3 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_EGG_HATCH, HEAP_ID_71);
-
-        for (v1 = 0; v1 < 2; v1++) {
-            v2 = MessageLoader_GetNewString(v3, 2 + v1);
-            StringList_AddFromString(param0->unk_04.unk_44, v2, v1);
-            String_Free(v2);
-        }
-
-        MessageLoader_Free(v3);
+    for (int i = 0; i < 2; i++) {
+        String *string = MessageLoader_GetNewString(loader, EggHatch_Text_Yes + i);
+        StringList_AddFromString(eggHatch->graphics.strList, string, i);
+        String_Free(string);
     }
 
-    v0.choices = param0->unk_04.unk_44;
-    v0.fontID = FONT_SYSTEM;
-    v0.window = param2;
-    v0.xSize = 1;
-    v0.ySize = 2;
-    v0.lineSpacing = 0;
-    v0.suppressCursor = FALSE;
-    v0.loopAround = TRUE;
+    MessageLoader_Free(loader);
 
-    Window_DrawStandardFrame(param2, 1, 20 + (18 + 12), 13);
-    param0->unk_04.unk_48 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
+    MenuTemplate menuTemplate;
+    menuTemplate.choices = eggHatch->graphics.strList;
+    menuTemplate.fontID = FONT_SYSTEM;
+    menuTemplate.window = window;
+    menuTemplate.xSize = 1;
+    menuTemplate.ySize = 2;
+    menuTemplate.lineSpacing = 0;
+    menuTemplate.suppressCursor = FALSE;
+    menuTemplate.loopAround = TRUE;
+
+    Window_DrawStandardFrame(window, 1, BASE_TILE_OFFSET + SCROLLING_MESSAGE_BOX_TILE_COUNT, PLTT_13);
+    eggHatch->graphics.yesNoMenu = Menu_NewAndCopyToVRAM(&menuTemplate, 8, 0, 0, HEAP_ID_EGG_HATCH, PAD_BUTTON_B);
 }
 
-void ov119_021D12CC(UnkStruct_ov119_021D0FD0 *param0)
+void EggHatch_FreeMenu(EggHatchCutscene *eggHatch)
 {
-    Window_EraseStandardFrame(&param0->unk_04.unk_14[1], 1);
-    Window_ClearAndCopyToVRAM(&param0->unk_04.unk_14[1]);
-    Window_Remove(&param0->unk_04.unk_14[1]);
-    Menu_Free(param0->unk_04.unk_48, NULL);
-    StringList_Free(param0->unk_04.unk_44);
+    Window_EraseStandardFrame(&eggHatch->graphics.windows[1], TRUE);
+    Window_ClearAndCopyToVRAM(&eggHatch->graphics.windows[1]);
+    Window_Remove(&eggHatch->graphics.windows[1]);
+    Menu_Free(eggHatch->graphics.yesNoMenu, NULL);
+    StringList_Free(eggHatch->graphics.strList);
 }
 
-void ov119_021D12F8(Window *param0)
+void EggHatch_FreeWindow(Window *window)
 {
-    Window_ClearAndCopyToVRAM(param0);
-    Window_Remove(param0);
+    Window_ClearAndCopyToVRAM(window);
+    Window_Remove(window);
 }
 
-void ov119_021D1308(BgConfig *param0, PaletteData *param1)
+void EggHatch_LoadMainBackground(BgConfig *bgConfig, PaletteData *plttData)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 0, param0, 3, 0, 0, 1, HEAP_ID_71);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 1, param0, 3, 0, 0, 1, HEAP_ID_71);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 8, HEAP_ID_71, 0, 0x20 * 2, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, background_NCGR_lz, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, background_NSCR_lz, bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, background_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * 2, 0);
 }
 
-void ov119_021D135C(BgConfig *param0, PaletteData *param1)
+void EggHatch_LoadSubScreenBackground(BgConfig *bgConfig, PaletteData *plttData)
 {
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0, 4, 0, 0, 1, HEAP_ID_71);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0, 4, 0, 0, 1, HEAP_ID_71);
-    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_71, 1, 0x20 * 1, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCGR_lz, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, unavailable_NSCR_lz, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, HEAP_ID_EGG_HATCH);
+    PaletteData_LoadBufferFromFileStart(plttData, NARC_INDEX_GRAPHIC__POKETCH, unavailable_bg_tiles_NCLR, HEAP_ID_EGG_HATCH, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES, 0);
 }
 
-static u32 ov119_021D13B4(u32 param0, BOOL param1)
+static u32 AllocTexVram(u32 size, BOOL is4x4comp)
 {
-    NNSGfdTexKey v0;
-    u32 v1;
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(size, is4x4comp, 0);
+    ParticleSystem_RegisterTextureKey(texKey);
 
-    v0 = NNS_GfdAllocTexVram(param0, param1, 0);
-    ParticleSystem_RegisterTextureKey(v0);
-
-    v1 = NNS_GfdGetTexKeyAddr(v0);
-    return v1;
+    return NNS_GfdGetTexKeyAddr(texKey);
 }
 
-static u32 ov119_021D13D0(u32 param0, BOOL param1)
+static u32 AllocPaletteVram(u32 size, BOOL is4pltt)
 {
-    NNSGfdPlttKey v0;
-    u32 v1;
+    NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(size, is4pltt, 0);
+    ParticleSystem_RegisterPaletteKey(plttKey);
 
-    v0 = NNS_GfdAllocPlttVram(param0, param1, 0);
-    ParticleSystem_RegisterPaletteKey(v0);
-
-    v1 = NNS_GfdGetPlttKeyAddr(v0);
-    return v1;
+    return NNS_GfdGetPlttKeyAddr(plttKey);
 }
 
-static ParticleSystem *ov119_021D13EC(enum HeapID heapID)
+static ParticleSystem *NewParticleSystem(enum HeapID heapID)
 {
-    ParticleSystem *v0;
-    void *v1;
-    Camera *camera;
-
-    v1 = Heap_Alloc(heapID, 0x4800);
-    v0 = ParticleSystem_New(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
-    camera = ParticleSystem_GetCamera(v0);
+    void *heap = Heap_Alloc(heapID, 0x4800);
+    ParticleSystem *ps = ParticleSystem_New(AllocTexVram, AllocPaletteVram, heap, 0x4800, TRUE, heapID);
+    Camera *camera = ParticleSystem_GetCamera(ps);
 
     if (camera != NULL) {
-        Camera_SetClipping(FX32_ONE, FX32_ONE * 900, camera);
+        Camera_SetClipping(FX32_ONE, FX32_CONST(900), camera);
     }
 
-    return v0;
+    return ps;
 }
 
-static ParticleSystem *ov119_021D1434(enum HeapID heapID, int param1, int param2)
+static ParticleSystem *CreateParticleSystem(enum HeapID heapID, int narcID, int narcMemberIdx)
 {
-    ParticleSystem *v0 = ov119_021D13EC(heapID);
-    void *v1 = ParticleSystem_LoadResourceFromNARC(param1, param2, heapID);
+    ParticleSystem *ps = NewParticleSystem(heapID);
+    void *resource = ParticleSystem_LoadResourceFromNARC(narcID, narcMemberIdx, heapID);
 
-    ParticleSystem_SetResource(v0, v1, (1 << 1) | (1 << 3), 1);
+    ParticleSystem_SetResource(ps, resource, VRAM_AUTO_RELEASE_TEXTURE_LNK | VRAM_AUTO_RELEASE_PALETTE_LNK, TRUE);
 
-    return v0;
+    return ps;
 }
 
-void ov119_021D145C(ParticleSystem *param0)
+void EggHatchParticleSystem_FreeParticleSystem(ParticleSystem *ps)
 {
-    void *v0 = ParticleSystem_GetHeapStart(param0);
-    ParticleSystem_Free(param0);
-    Heap_Free(v0);
+    void *heap = ParticleSystem_GetHeapStart(ps);
+    ParticleSystem_Free(ps);
+    Heap_Free(heap);
 }
 
-static void ov119_021D1474(SPLEmitter *param0)
+static void SetSPLEmitterPos(SPLEmitter *emitter)
 {
-    VecFx32 v0 = { 0, 0, 0 };
-
-    SPLEmitter_SetPos(param0, &v0);
+    VecFx32 pos = { 0, 0, 0 };
+    SPLEmitter_SetPos(emitter, &pos);
 }
 
-UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
+EggHatchParticleSystem *EggHatchParticleSystem_New(EggHatchParticleSystemArgs *args)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    UnkStruct_ov119_021D14DC *v4 = Heap_Alloc(param0->heapID, sizeof(UnkStruct_ov119_021D14DC));
+    EggHatchParticleSystem *eps = Heap_Alloc(args->heapID, sizeof(EggHatchParticleSystem));
 
-    GF_ASSERT(v4 != NULL);
+    GF_ASSERT(eps != NULL);
 
-    v4->unk_00 = *param0;
-    v4->unk_0C = ov119_021D1434(v4->unk_00.heapID, 119, v4->unk_00.unk_04);
+    eps->args = *args;
+    eps->ps = CreateParticleSystem(eps->args.heapID, NARC_INDEX_DEMO__EGG__DATA__PARTICLE__EGG_DEMO_PARTICLE, eps->args.narcIdx);
 
-    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
+    ParticleSystem_SetCameraProjection(eps->ps, CAMERA_PROJECTION_ORTHOGRAPHIC);
 
-    return v4;
+    return eps;
 }
 
-void ov119_021D14DC(UnkStruct_ov119_021D14DC *param0, int param1)
+void EggHatchParticleSystem_CreateEmitter(EggHatchParticleSystem *eps, int resourceID)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    UnkStruct_ov119_021D14DC *v4 = param0;
-
-    ParticleSystem_CreateEmitterWithCallback(v4->unk_0C, param1, ov119_021D1474, v4);
-    ParticleSystem_SetCameraProjection(v4->unk_0C, 1);
+    ParticleSystem_CreateEmitterWithCallback(eps->ps, resourceID, SetSPLEmitterPos, eps);
+    ParticleSystem_SetCameraProjection(eps->ps, CAMERA_PROJECTION_ORTHOGRAPHIC);
 }
 
-BOOL ov119_021D14F8(UnkStruct_ov119_021D14DC *param0)
+BOOL EggHatchParticleSystem_EmittersActive(EggHatchParticleSystem *eps)
 {
-    UnkStruct_ov119_021D14DC *v0 = param0;
-
-    if (ParticleSystem_GetActiveEmitterCount(v0->unk_0C) == 0) {
-        return 0;
-    }
-
-    return 1;
+    return !!ParticleSystem_GetActiveEmitterCount(eps->ps);
 }
 
-void ov119_021D150C(UnkStruct_ov119_021D14DC *param0)
+void EggHatchParticleSystem_Free(EggHatchParticleSystem *eps)
 {
-    Heap_Free(param0);
+    Heap_Free(eps);
 }
 
-void ov119_021D1514(UnkStruct_ov119_021D0FD0 *param0)
+void EggHatch_LoadSpriteResources(EggHatchCutscene *eggHatch)
 {
-    SpriteSystem *v0;
-    SpriteManager *v1;
-    PaletteData *v2;
-    int v3[][4] = {
-        { 4, 9, 3, 2 },
-        { 4, 9, 3, 2 }
+    int narcIdx[][4] = {
+        { egg_NCGR_lz, egg_NCLR, egg_cell_NCER_lz, egg_anim_NANR_lz },
+        { egg_NCGR_lz, egg_NCLR, egg_cell_NCER_lz, egg_anim_NANR_lz }
     };
-    int v4 = 118;
-    int v5 = NNS_G2D_VRAM_TYPE_2DMAIN;
-    int v6 = 0;
+    int narcID = NARC_INDEX_DEMO__EGG__DATA__EGG_DATA;
+    int vRamType = NNS_G2D_VRAM_TYPE_2DMAIN;
 
-    v0 = param0->unk_04.unk_50;
-    v1 = param0->unk_04.unk_4C;
-    v2 = param0->unk_04.unk_04;
+    SpriteSystem *spriteSys = eggHatch->graphics.spriteSys;
+    SpriteManager *spriteMan = eggHatch->graphics.spriteMan;
+    PaletteData *plttData = eggHatch->graphics.plttData;
 
-    SpriteSystem_LoadCharResObj(v0, v1, v4, v3[v6][0], TRUE, v5, 20000);
-    SpriteSystem_LoadPaletteBuffer(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, v3[v6][1], FALSE, 1, v5, 20001);
-    SpriteSystem_LoadCellResObj(v0, v1, v4, v3[v6][2], TRUE, 20002);
-    SpriteSystem_LoadAnimResObj(v0, v1, v4, v3[v6][3], TRUE, 20003);
+    SpriteSystem_LoadCharResObj(spriteSys, spriteMan, narcID, narcIdx[0][0], TRUE, vRamType, ID_EGG_CHAR);
+    SpriteSystem_LoadPaletteBuffer(plttData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narcID, narcIdx[0][1], FALSE, 1, vRamType, ID_EGG_PLTT);
+    SpriteSystem_LoadCellResObj(spriteSys, spriteMan, narcID, narcIdx[0][2], TRUE, ID_EGG_CELL);
+    SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, narcID, narcIdx[0][3], TRUE, ID_EGG_ANIM);
 
-    SpriteSystem_LoadCharResObj(v0, v1, v4, 7, TRUE, v5, 25000);
-    SpriteSystem_LoadPaletteBuffer(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, 10, FALSE, 1, v5, 25001);
-    SpriteSystem_LoadCellResObj(v0, v1, v4, 6, TRUE, 25002);
-    SpriteSystem_LoadAnimResObj(v0, v1, v4, 5, TRUE, 25003);
+    SpriteSystem_LoadCharResObj(spriteSys, spriteMan, narcID, black_bar_NCGR_lz, TRUE, vRamType, ID_BAR_CHAR);
+    SpriteSystem_LoadPaletteBuffer(plttData, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narcID, 10, FALSE, 1, vRamType, ID_BAR_PLTT);
+    SpriteSystem_LoadCellResObj(spriteSys, spriteMan, narcID, black_bar_cell_NCER_lz, TRUE, ID_BAR_CELL);
+    SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, narcID, black_bar_anim_NANR_lz, TRUE, ID_BAR_ANIM);
 }
 
-void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)
+void EggHatch_CreateSprites(EggHatchCutscene *eggHatch)
 {
-    SpriteTemplate v0;
+    SpriteTemplate spriteTemplate;
 
-    v0.x = 128;
-    v0.y = 120;
-    v0.z = 0;
-    v0.animIdx = 0;
-    v0.priority = 0;
-    v0.plttIdx = 0;
-    v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v0.bgPriority = 2;
-    v0.vramTransfer = FALSE;
+    spriteTemplate.x = 128;
+    spriteTemplate.y = 120;
+    spriteTemplate.z = 0;
+    spriteTemplate.animIdx = 0;
+    spriteTemplate.priority = 0;
+    spriteTemplate.plttIdx = 0;
+    spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    spriteTemplate.bgPriority = 2;
+    spriteTemplate.vramTransfer = FALSE;
 
-    v0.resources[0] = 20000;
-    v0.resources[1] = 20001;
-    v0.resources[2] = 20002;
-    v0.resources[3] = 20003;
-    v0.resources[4] = SPRITE_RESOURCE_NONE;
-    v0.resources[5] = SPRITE_RESOURCE_NONE;
+    spriteTemplate.resources[SPRITE_RESOURCE_CHAR] = ID_EGG_CHAR;
+    spriteTemplate.resources[SPRITE_RESOURCE_PLTT] = ID_EGG_PLTT;
+    spriteTemplate.resources[SPRITE_RESOURCE_CELL] = ID_EGG_CELL;
+    spriteTemplate.resources[SPRITE_RESOURCE_ANIM] = ID_EGG_ANIM;
+    spriteTemplate.resources[SPRITE_RESOURCE_MULTI_CELL] = SPRITE_RESOURCE_NONE;
+    spriteTemplate.resources[SPRITE_RESOURCE_MULTI_ANIM] = SPRITE_RESOURCE_NONE;
 
-    param0->unk_74 = SpriteSystem_NewSprite(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
+    eggHatch->eggSprite = SpriteSystem_NewSprite(eggHatch->graphics.spriteSys, eggHatch->graphics.spriteMan, &spriteTemplate);
 
-    ManagedSprite_TickFrame(param0->unk_74);
-    ManagedSprite_SetAffineOverwriteMode(param0->unk_74, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_TickFrame(eggHatch->eggSprite);
+    ManagedSprite_SetAffineOverwriteMode(eggHatch->eggSprite, AFFINE_OVERWRITE_MODE_DOUBLE);
 
-    v0.x = 0;
-    v0.y = 0 - (2 * 8);
-    v0.bgPriority = 0;
-    v0.resources[0] = 25000;
-    v0.resources[1] = 25001;
-    v0.resources[2] = 25002;
-    v0.resources[3] = 25003;
+    spriteTemplate.x = 0;
+    spriteTemplate.y = -16;
+    spriteTemplate.bgPriority = 0;
+    spriteTemplate.resources[SPRITE_RESOURCE_CHAR] = ID_BAR_CHAR;
+    spriteTemplate.resources[SPRITE_RESOURCE_PLTT] = ID_BAR_PLTT;
+    spriteTemplate.resources[SPRITE_RESOURCE_CELL] = ID_BAR_CELL;
+    spriteTemplate.resources[SPRITE_RESOURCE_ANIM] = ID_BAR_ANIM;
 
-    param0->unk_78 = SpriteSystem_NewSprite(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
-    ManagedSprite_TickFrame(param0->unk_78);
+    eggHatch->topBarSprite = SpriteSystem_NewSprite(eggHatch->graphics.spriteSys, eggHatch->graphics.spriteMan, &spriteTemplate);
+    ManagedSprite_TickFrame(eggHatch->topBarSprite);
 
-    v0.y = 192 - (6 * 8);
+    spriteTemplate.y = HW_LCD_HEIGHT - 48;
 
-    param0->unk_7C = SpriteSystem_NewSprite(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
-    ManagedSprite_TickFrame(param0->unk_7C);
+    eggHatch->bottomBarSprite = SpriteSystem_NewSprite(eggHatch->graphics.spriteSys, eggHatch->graphics.spriteMan, &spriteTemplate);
+    ManagedSprite_TickFrame(eggHatch->bottomBarSprite);
 }
 
-static const s16 Unk_ov119_021D2478[][10] = {
-    { -1, 0x1, 0x1, -1, -1, 0x1, 0x1, -1, 0xFF, 0xFF },
-    { -2, 0x2, 0x2, -2, -2, 0x2, 0x2, -2, 0xFF, 0xFF },
-    { -3, 0x3, 0x3, -3, -3, 0x3, 0xFF, 0xFF },
-    { -3, 0x3, 0x3, -3, -3, 0x3, 0xFF, 0xFF }
+static const s16 sXOffsets[][10] = {
+    [EGG_MINOR_SHAKE] = { -1, 1, 1, -1, -1, 1, 1, -1, 0xFF, 0xFF },
+    [EGG_BIG_SHAKE] = { -2, 2, 2, -2, -2, 2, 2, -2, 0xFF, 0xFF },
+    [EGG_BIGGER_SHAKE] = { -3, 3, 3, -3, -3, 3, 0xFF, 0xFF },
+    [EGG_EXPLOSIVE_SHAKE] = { -3, 3, 3, -3, -3, 3, 0xFF, 0xFF }
 };
-static const s16 Unk_ov119_021D24C8[][10] = {
-    { 0x0, 0xFF },
-    { 0x0, 0x0, 0x1, 0x1, 0x0, -1, -1, 0x0, 0x0, 0xFF },
-    { 0x0, 0x0, 0x1, 0x1, 0x1, -1, -1, -1, 0x0, 0x0 },
-    { 0x0, 0x0, 0x1, 0x1, 0x1, -1, -1, -1, 0x0, 0x0 }
+static const s16 sYOffsets[][10] = {
+    [EGG_MINOR_SHAKE] = { 0, 0xFF },
+    [EGG_BIG_SHAKE] = { 0, 0, 1, 1, 0, -1, -1, 0, 0, 0xFF },
+    [EGG_BIGGER_SHAKE] = { 0, 0, 1, 1, 1, -1, -1, -1, 0, 0 },
+    [EGG_EXPLOSIVE_SHAKE] = { 0, 0, 1, 1, 1, -1, -1, -1, 0, 0 }
 };
-static const f32 Unk_ov119_021D256C[][10] = {
-    { 1.0f, 0.0f },
-    { 1.0f, 1.0f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.0f, 1.0f, 0.0f },
-    { 1.0f, 1.1f, 1.1f, 1.2f, 1.2f, 1.2f, 1.1f, 1.1f, 1.0f, 0.0f },
-    { 1.0f, 1.1f, 1.1f, 1.2f, 1.2f, 1.2f, 1.1f, 1.1f, 1.0f, 0.0f }
+static const f32 sXScales[][10] = {
+    [EGG_MINOR_SHAKE] = { 1.0f, 0 },
+    [EGG_BIG_SHAKE] = { 1.0f, 1.0f, 1.1f, 1.1f, 1.1f, 1.1f, 1.1f, 1.0f, 1.0f, 0 },
+    [EGG_BIGGER_SHAKE] = { 1.0f, 1.1f, 1.1f, 1.2f, 1.2f, 1.2f, 1.1f, 1.1f, 1.0f, 0 },
+    [EGG_EXPLOSIVE_SHAKE] = { 1.0f, 1.1f, 1.1f, 1.2f, 1.2f, 1.2f, 1.1f, 1.1f, 1.0f, 0 }
 };
-static const f32 Unk_ov119_021D260C[][10] = {
-    { 1.0f, 0.0f },
-    { 1.0f, 1.0f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 1.0f, 1.0f, 0.0f },
-    { 1.0f, 1.0f, 0.9f, 0.8f, 0.7f, 0.7f, 0.8f, 0.9f, 1.0f, 1.0f },
-    { 1.0f, 1.0f, 0.9f, 0.8f, 0.7f, 0.7f, 0.8f, 0.9f, 1.0f, 1.0f }
+static const f32 sYScales[][10] = {
+    [EGG_MINOR_SHAKE] = { 1.0f, 0 },
+    [EGG_BIG_SHAKE] = { 1.0f, 1.0f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 1.0f, 1.0f, 0 },
+    [EGG_BIGGER_SHAKE] = { 1.0f, 1.0f, 0.9f, 0.8f, 0.7f, 0.7f, 0.8f, 0.9f, 1.0f, 1.0f },
+    [EGG_EXPLOSIVE_SHAKE] = { 1.0f, 1.0f, 0.9f, 0.8f, 0.7f, 0.7f, 0.8f, 0.9f, 1.0f, 1.0f }
 };
 
-BOOL ov119_021D16C0(UnkStruct_ov119_021D0FD0 *param0, int param1)
+static BOOL IncrementShakeAnimation(EggHatchCutscene *eggHatch, enum EggHatchShakeAnimID idx)
 {
-    UnkStruct_ov119_021D16C0 *v0 = &param0->unk_80;
+    EggHatchShakeAnimation *anim = &eggHatch->shake;
 
-    switch (v0->unk_00) {
-    case 0:
-        if (v0->unk_04 >= 10) {
-            v0->unk_00++;
-            v0->unk_04 = 0;
+    switch (anim->isAnimFinished) {
+    case FALSE:
+        if (anim->shakeProgress >= 10) {
+            anim->isAnimFinished++;
+            anim->shakeProgress = 0;
         } else {
-            s16 v1;
-            s16 v2;
-            f32 v3;
-            f32 v4;
-            int v5 = 0;
+            int finishedPieces = 0;
 
-            v1 = Unk_ov119_021D2478[param1][v0->unk_04];
-            v2 = Unk_ov119_021D24C8[param1][v0->unk_04];
-            v3 = Unk_ov119_021D256C[param1][v0->unk_04];
-            v4 = Unk_ov119_021D260C[param1][v0->unk_04];
+            s16 x = sXOffsets[idx][anim->shakeProgress];
+            s16 y = sYOffsets[idx][anim->shakeProgress];
+            f32 xScale = sXScales[idx][anim->shakeProgress];
+            f32 yScale = sYScales[idx][anim->shakeProgress];
 
-            if (v1 == 0xFF) {
-                v1 = 0;
-                v5++;
+            if (x == 0xFF) {
+                x = 0;
+                finishedPieces++;
             }
 
-            if (v2 == 0xFF) {
-                v2 = 0;
-                v5++;
+            if (y == 0xFF) {
+                y = 0;
+                finishedPieces++;
             }
 
-            ManagedSprite_OffsetPositionXY(param0->unk_74, v1, v2);
+            ManagedSprite_OffsetPositionXY(eggHatch->eggSprite, x, y);
 
-            if (v3 != 0.0f) {
-                ManagedSprite_SetAffineScale(param0->unk_74, v3, v4);
+            if (xScale != 0.0f) {
+                ManagedSprite_SetAffineScale(eggHatch->eggSprite, xScale, yScale);
             } else {
-                v5++;
+                finishedPieces++;
             }
 
-            if (v5 != 3) {
-                v0->unk_04++;
+            if (finishedPieces != 3) {
+                anim->shakeProgress++;
                 break;
             } else {
-                v0->unk_00++;
+                anim->isAnimFinished++;
             }
         }
     default:
-        v0->unk_00 = 0;
-        v0->unk_04 = 0;
-        return 0;
+        anim->isAnimFinished = FALSE;
+        anim->shakeProgress = 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-int ov119_021D176C(UnkStruct_ov119_021D0FD0 *param0, int param1)
+int EggHatch_ShakeEgg(EggHatchCutscene *eggHatch, enum EggHatchShakeAnimID idx)
 {
-    if (ov119_021D16C0(param0, param1) == 0) {
-        return 2;
+    if (IncrementShakeAnimation(eggHatch, idx) == FALSE) {
+        return EGG_SHAKE_FINISHED;
     }
 
-    if (param1 == 4) {
-        if (param0->unk_80.unk_04 == 6) {
-            return 1;
+    if (idx == 4) {
+        if (eggHatch->shake.shakeProgress == 6) {
+            return EGG_SHAKE_HALF_OVER;
         }
     } else {
-        if (param0->unk_80.unk_04 == 6) {
-            return 1;
+        if (eggHatch->shake.shakeProgress == 6) {
+            return EGG_SHAKE_HALF_OVER;
         }
     }
 
-    return 0;
+    return EGG_SHAKE_STARTED;
 }
 
-void ov119_021D17A0(UnkStruct_ov119_021D0FD0 *param0)
+void EggHatch_DeleteSprites(EggHatchCutscene *eggHatch)
 {
-    Sprite_DeleteAndFreeResources(param0->unk_74);
-    Sprite_DeleteAndFreeResources(param0->unk_78);
-    Sprite_DeleteAndFreeResources(param0->unk_7C);
+    Sprite_DeleteAndFreeResources(eggHatch->eggSprite);
+    Sprite_DeleteAndFreeResources(eggHatch->topBarSprite);
+    Sprite_DeleteAndFreeResources(eggHatch->bottomBarSprite);
 }
 
-void ov119_021D17B8(UnkStruct_ov119_021D17B8 *param0)
+void EggHatch_InitSpriteSystem(EggHatchGraphics *graphics)
 {
-    param0->unk_50 = SpriteSystem_Alloc(71);
-    {
-        const RenderOamTemplate v0 = {
-            0,
-            128,
-            0,
-            32,
-            0,
-            128,
-            0,
-            32,
-        };
-        const CharTransferTemplateWithModes v1 = {
-            48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
-        };
+    graphics->spriteSys = SpriteSystem_Alloc(HEAP_ID_EGG_HATCH);
+    const RenderOamTemplate renderOamTemplate = {
+        .mainOamStart = 0,
+        .mainOamCount = 128,
+        .mainAffineOamStart = 0,
+        .mainAffineOamCount = 32,
+        .subOamStart = 0,
+        .subOamCount = 128,
+        .subAffineOamStart = 0,
+        .subAffineOamCount = 32,
+    };
+    const CharTransferTemplateWithModes charTransferTemplate = {
+        .maxTasks = 96,
+        .sizeMain = 1024 * 64,
+        .sizeSub = 512 * 32,
+        .modeMain = GX_OBJVRAMMODE_CHAR_1D_64K,
+        .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
+    };
 
-        SpriteSystem_Init(param0->unk_50, &v0, &v1, 16 + 16);
-    }
+    SpriteSystem_Init(graphics->spriteSys, &renderOamTemplate, &charTransferTemplate, 32);
 
-    {
-        BOOL v2;
-        const SpriteResourceCapacities v3 = {
-            48 + 48,
-            16 + 16,
-            64,
-            64,
-            16,
-            16,
-        };
+    const SpriteResourceCapacities capacities = {
+        .asStruct = {
+            .charCapacity = 96,
+            .plttCapacity = 32,
+            .cellCapacity = 64,
+            .animCapacity = 64,
+            .mcellCapacity = 16,
+            .manimCapacity = 16,
+        }
+    };
 
-        param0->unk_4C = SpriteManager_New(param0->unk_50);
+    graphics->spriteMan = SpriteManager_New(graphics->spriteSys);
 
-        v2 = SpriteSystem_InitSprites(param0->unk_50, param0->unk_4C, 255);
-        GF_ASSERT(v2);
+    BOOL success = SpriteSystem_InitSprites(graphics->spriteSys, graphics->spriteMan, 255);
+    GF_ASSERT(success);
 
-        v2 = SpriteSystem_InitManagerWithCapacities(param0->unk_50, param0->unk_4C, &v3);
-        GF_ASSERT(v2);
-    }
+    success = SpriteSystem_InitManagerWithCapacities(graphics->spriteSys, graphics->spriteMan, &capacities);
+    GF_ASSERT(success);
 }
 
-void ov119_021D1844(UnkStruct_ov119_021D17B8 *param0)
+void EggHatch_FreeSpriteSystem(EggHatchGraphics *eggHatch)
 {
-    SpriteSystem_FreeResourcesAndManager(param0->unk_50, param0->unk_4C);
-    SpriteSystem_Free(param0->unk_50);
+    SpriteSystem_FreeResourcesAndManager(eggHatch->spriteSys, eggHatch->spriteMan);
+    SpriteSystem_Free(eggHatch->spriteSys);
 }
 
-void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
+void EggHatch_CreateMonSprite(EggHatchCutscene *eggHatch)
 {
-    PokemonSpriteTemplate v0;
-    SpriteAnimFrame v1[10];
-    Pokemon *v2;
-    int v3;
-    int v4;
+    PokemonSpriteTemplate monSpriteTemplate;
+    SpriteAnimFrame animFrames[MAX_ANIMATION_FRAMES];
 
-    v2 = param0->unk_00->unk_0C.unk_00;
-    v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
-    v4 = Pokemon_SpriteYOffset(v2, 2);
+    Pokemon *mon = eggHatch->app->args.mon;
+    enum Species species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int yOffset = Pokemon_SpriteYOffset(mon, FACE_FRONT);
 
-    {
-        int v5 = 0;
+    BOOL isEgg = FALSE;
+    Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
 
-        Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v5);
-    }
+    Pokemon_BuildSpriteTemplate(&monSpriteTemplate, mon, FACE_FRONT);
+    PokemonSprite_LoadAnimFrames(eggHatch->graphics.monDataNarc, &animFrames[0], species, 1);
 
-    Pokemon_BuildSpriteTemplate(&v0, v2, 2);
-    PokemonSprite_LoadAnimFrames(param0->unk_04.unk_3C, &v1[0], v3, 1);
-
-    param0->unk_70 = PokemonSpriteManager_CreateSprite(param0->unk_04.unk_38, &v0, 128, 96 + v4, 0, 0, &v1[0], NULL);
+    eggHatch->monSprite = PokemonSpriteManager_CreateSprite(eggHatch->graphics.monSpriteMan, &monSpriteTemplate, HW_LCD_WIDTH / 2, (HW_LCD_HEIGHT / 2) + yOffset, 0, 0, &animFrames[0], NULL);
 }
 
-void ov119_021D18C0(UnkStruct_ov119_021D0FD0 *param0)
+void EggHatch_PlayMonAnim(EggHatchCutscene *eggHatch)
 {
-    int v0;
-    int v1;
+    int species = Pokemon_GetValue(eggHatch->app->args.mon, MON_DATA_SPECIES, NULL);
+    int nature = Pokemon_GetNature(eggHatch->app->args.mon);
 
-    v0 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
-    v1 = Pokemon_GetNature(param0->unk_00->unk_0C.unk_00);
-
-    PokemonSprite_InitAnim(param0->unk_70, 1);
-    PokemonSprite_LoadAnim(param0->unk_04.unk_3C, param0->unk_04.unk_54, param0->unk_70, v0, 2, 0, 0);
+    PokemonSprite_InitAnim(eggHatch->monSprite, 1);
+    PokemonSprite_LoadAnim(eggHatch->graphics.monDataNarc, eggHatch->graphics.animMan, eggHatch->monSprite, species, FACE_FRONT, FALSE, 0);
 }
 
-void ov119_021D1900(UnkStruct_ov119_021D0FD0 *param0)
+void EggHatch_DeleteMonSprite(EggHatchCutscene *eggHatch)
 {
-    PokemonSprite_Delete(param0->unk_70);
+    PokemonSprite_Delete(eggHatch->monSprite);
 }
 
-void ov119_021D190C(UnkStruct_ov119_021D0FD0 *param0, int param1)
+void EggHatch_HideMonSprite(EggHatchCutscene *eggHatch, BOOL hide)
 {
-    PokemonSprite_SetAttribute(param0->unk_70, MON_SPRITE_HIDE, param1);
+    PokemonSprite_SetAttribute(eggHatch->monSprite, MON_SPRITE_HIDE, hide);
 }

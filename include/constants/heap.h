@@ -73,7 +73,7 @@ enum HeapID {
     HEAP_ID_68,
     HEAP_ID_69,
     HEAP_ID_70,
-    HEAP_ID_71,
+    HEAP_ID_EGG_HATCH,
     HEAP_ID_BOAT_CUTSCENE,
     HEAP_ID_EVOLUTION,
     HEAP_ID_74,
