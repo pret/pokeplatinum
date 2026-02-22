@@ -54,7 +54,10 @@
 
 #define VS_SEEKER_REMATCH_DATA_INDEX_NONE 0xFF
 
-#define NoUniqueRematches(trainerID) { trainerID, trainerID, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END }
+#define NoUniqueRematches(trainerID)                                                                                                         \
+    {                                                                                                                                        \
+        trainerID, trainerID, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END, VS_SEEKER_REMATCH_DATA_END \
+    }
 
 enum VsSeekerUsability {
     VS_SEEKER_USABILITY_NO_BATTERY = 0,

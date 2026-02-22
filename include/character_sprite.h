@@ -5,8 +5,14 @@
 #include "constants/narc.h"
 #include "constants/species.h"
 
-#define FRAME_0_REGION { 0, 0, 10, 10 }
-#define FRAME_1_REGION { 10, 0, 10, 10 }
+#define FRAME_0_REGION \
+    {                  \
+        0, 0, 10, 10   \
+    }
+#define FRAME_1_REGION \
+    {                  \
+        10, 0, 10, 10  \
+    }
 
 typedef struct TileRegion {
     int x;
