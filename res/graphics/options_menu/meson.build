@@ -7,25 +7,24 @@ tiles_nclr = nclr_gen.process(tiles_png,
 )
 tilemap_nscr = copy_gen.process(files('tilemap.bin'))
 
-config_gra_order = files('config_gra.order')
 config_gra_narc = custom_target('config_gra.narc',
     output: [
         'config_gra.narc',
-        'config_gra.naix.h',
+        'config_gra.naix',
     ],
     input: [
         tiles_ncgr,
         tiles_nclr,
         tilemap_nscr,
-        config_gra_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', config_gra_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('config_gra.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += config_gra_narc

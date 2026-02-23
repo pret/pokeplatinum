@@ -40,11 +40,10 @@ nclrs_8bpp = nclr_gen.process(pngs_8bpp,
 ncers = ncer_gen.process(cells)
 nanrs = nanr_gen.process(anims)
 
-underground_map_transition_order = files('underground_map_transition.order')
 underground_map_transition_narc = custom_target('underground_map_transition.narc',
     output: [
         'underground_map_transition.narc',
-        'underground_map_transition.naix.h',
+        'underground_map_transition.naix',
     ],
     input: [
         ncgrs_4bpp,
@@ -55,12 +54,13 @@ underground_map_transition_narc = custom_target('underground_map_transition.narc
         nanrs,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', underground_map_transition_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('underground_map_transition.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += underground_map_transition_narc

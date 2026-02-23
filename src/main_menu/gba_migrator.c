@@ -63,7 +63,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+#include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/migrate_from_gba.h"
 
 FS_EXTERN_OVERLAY(game_opening);

@@ -17,7 +17,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 /*
 The poketch palette file contains 16 pallets of 16 colors each.

@@ -92,7 +92,7 @@
 #include "vars_flags.h"
 
 #include "constdata/const_020EA02C.h"
-#include "res/graphics/start_menu/start_menu.naix.h"
+#include "res/graphics/start_menu/start_menu.naix"
 #include "res/text/bank/start_menu.h"
 
 typedef enum StartMenuPos {

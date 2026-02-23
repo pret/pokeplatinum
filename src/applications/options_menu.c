@@ -29,7 +29,7 @@
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/options_menu/config_gra.naix.h"
+#include "res/graphics/options_menu/config_gra.naix"
 #include "res/text/bank/options_menu.h"
 
 #define MENU_TITLE_BASE_TILE      10

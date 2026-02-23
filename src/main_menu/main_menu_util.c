@@ -45,7 +45,7 @@
 #include "versions.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+#include "res/graphics/main_menu/main_menu_graphics.naix"
 
 #define WONDER_CARD_ENCRYPTION_MAGIC 0xD679
 

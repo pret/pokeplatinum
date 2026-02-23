@@ -48,4 +48,9 @@ with open(args.table) as data_file:
             target_file.write(out)
         count += 1
 
-subprocess.run([args.narc, 'create', '--output', output_dir / 'pl_growtbl.narc', private_dir])
+subprocess.run([
+    args.narc,
+    '--create',
+    '--file', output_dir / 'pl_growtbl.narc',
+    private_dir
+])

@@ -228,7 +228,7 @@ def jsoncnv(target: str,
             binaries[output_idx] = output_bin
         elif output_mode == OutputMode.MULTI_FILE:
             _write(output_bin, output_idx, private_dir)
-    
+
     if output_mode == OutputMode.SINGLE_FILE:
         merged = bytearray([])
         for idx in sorted(binaries.keys()):
@@ -236,7 +236,8 @@ def jsoncnv(target: str,
         _write(merged, 0, private_dir)
 
     subprocess.run([
-        pathlib.Path(narc_packer), 'create',
-        '--output', output_dir / f'{narc_name}.narc',
+        pathlib.Path(narc_packer),
+        '--create',
+        '--file', output_dir / f'{narc_name}.narc',
         private_dir,
     ])

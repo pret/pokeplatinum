@@ -42,11 +42,10 @@ palettes_nclr = nclr_gen.process(palettes_pal,
     ],
 )
 
-shop_gra_order = files('shop_gra.order')
 shop_gra_narc = custom_target('shop_gra.narc',
     output: [
         'shop_gra.narc',
-        'shop_gra.naix.h',
+        'shop_gra.naix',
     ],
     input: [
         tiles_ncgr,
@@ -55,15 +54,15 @@ shop_gra_narc = custom_target('shop_gra.narc',
         sprites_ncer,
         sprites_nanr,
         palettes_nclr,
-        shop_gra_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', shop_gra_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('shop_gra.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += shop_gra_narc

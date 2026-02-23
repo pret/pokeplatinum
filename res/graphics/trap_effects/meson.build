@@ -116,7 +116,7 @@ trap_effects_order = files('trap_effects.order')
 trap_effects_narc = custom_target('trap_effects.narc',
     output: [
         'trap_effects.narc',
-        'trap_effects.naix.h',
+        'trap_effects.naix',
     ],
     input: [
         trap_effect_boulder_ncgrs,
@@ -128,12 +128,13 @@ trap_effects_narc = custom_target('trap_effects.narc',
         trap_effect_copied,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', trap_effects_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('trap_effects.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += trap_effects_narc

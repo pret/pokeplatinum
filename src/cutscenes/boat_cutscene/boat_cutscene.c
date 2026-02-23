@@ -24,7 +24,7 @@
 #include "unk_0203D1B8.h"
 #include "unk_020553DC.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 #define BOAT_CUTSCENE_STATE_START_WITHOUT_BRIDGE 0
 #define BOAT_CUTSCENE_STATE_START_WITH_BRIDGE    1

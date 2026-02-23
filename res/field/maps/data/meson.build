@@ -667,21 +667,18 @@ map_data_files = copy_gen.process(files(
     'map_data_665.bin'
 ))
 
-map_data_order = files('map_data.order')
 map_data_narc = custom_target('land_data.narc',
     output: [
         'land_data.narc',
     ],
-    input: [
-        map_data_files,
-        map_data_order,
-    ],
+    input: map_data_files,
     command: [
-        narc_exe, 'create',
-        '--order', map_data_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--files-from', files('map_data.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += map_data_narc

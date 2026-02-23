@@ -216,7 +216,7 @@ castle_valet_NCGR = ncgr_gen.process(castle_valet_png,
 trfgra_narc = custom_target('trfgra.narc',
     output: [
         'trfgra.narc',
-        'trfgra.naix.h',
+        'trfgra.naix',
     ],
     input: [
         trainer_front_NCGR,
@@ -227,10 +227,11 @@ trfgra_narc = custom_target('trfgra.narc',
         castle_valet_NCGR,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', trfgra_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', trfgra_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )
@@ -268,7 +269,7 @@ trainer_back_scan_NCGR = ncgr_gen.process(trainer_back_scan_png,
 trbgra_narc = custom_target('trbgra.narc',
     output: [
         'trbgra.narc',
-        'trbgra.naix.h',
+        'trbgra.naix',
     ],
     input: [
         trainer_back_NCGR,
@@ -278,10 +279,11 @@ trbgra_narc = custom_target('trbgra.narc',
         trainer_back_scan_NCGR,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', trbgra_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', trbgra_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )
@@ -356,11 +358,10 @@ trainer_encounter_NCLR = nclr_gen.process(trainer_encounter_pal,
 trainer_encounter_paste = copy_gen.process(trainer_encounter_copy,
     preserve_path_from: trainer_classes_root,)
 
-field_encounteffect_order = files('field_encounteffect.order')
 field_encounteffect_narc = custom_target('field_encounteffect.narc',
     output: [
         'field_encounteffect.narc',
-        'field_encounteffect.naix.h',
+        'field_encounteffect.naix',
     ],
     input: [
         trainer_encounter_mugshot_NCGR,
@@ -375,10 +376,11 @@ field_encounteffect_narc = custom_target('field_encounteffect.narc',
         frontier_vs_anim_NANR,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', field_encounteffect_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('field_encounteffect.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )

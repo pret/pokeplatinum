@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 static void SetupSprites(PedometerGraphics *graphics, const PedometerData *pedometerData);
 static void UnloadSprites(PedometerGraphics *graphics);

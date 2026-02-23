@@ -24,7 +24,7 @@
 #include "touch_pad.h"
 #include "unk_0208C098.h"
 
-#include "res/graphics/town_map/town_map_graphics.naix.h"
+#include "res/graphics/town_map/town_map_graphics.naix"
 
 enum TownMapAppState {
     TOWN_MAP_APP_STATE_INIT_RESOURCES,

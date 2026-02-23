@@ -70,9 +70,10 @@ for i, input_fname in enumerate(args.icon_files):
     ])
 
 subprocess.run([
-    args.narc, "create",
-    "--naix",
-    "--order", args.order_file,
-    "--output", output_dir / "pl_poke_icon.narc",
+    args.narc,
+    "--create",
+    "--index",
+    "--files-from", args.order_file,
+    "--file", output_dir / "pl_poke_icon.narc",
     bin_dest_dir,
 ])

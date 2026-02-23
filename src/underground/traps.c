@@ -57,7 +57,7 @@
 #include "unk_020366A0.h"
 #include "vars_flags.h"
 
-#include "res/graphics/trap_effects/trap_effects.naix.h"
+#include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_common.h"
 
 #define MAX_BUBBLES 20

@@ -75,7 +75,7 @@
 #include "unk_0201567C.h"
 #include "unk_0208C098.h"
 
-#include "res/battle/scripts/sub_seq.naix.h"
+#include "res/battle/scripts/sub_seq.naix"
 #include "res/text/bank/battle_strings.h"
 
 typedef BOOL (*BtlCmd)(BattleSystem *, BattleContext *);

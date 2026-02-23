@@ -36,11 +36,10 @@ nscrs = copy_gen.process(files(
     'bottom_screen_tilemap.NSCR',
 ))
 
-cutscene_order = files('cutscene.order')
 poffin_cutscene_narc = custom_target('cutscene.narc',
     output: [
         'cutscene.narc',
-        'cutscene.naix.h',
+        'cutscene.naix',
     ],
     input: [
         top_nclr,
@@ -50,12 +49,13 @@ poffin_cutscene_narc = custom_target('cutscene.narc',
         nscrs,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', cutscene_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('cutscene.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += poffin_cutscene_narc

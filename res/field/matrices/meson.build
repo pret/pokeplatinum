@@ -3,7 +3,6 @@ matrix_bin_gen = generator(
     arguments: [ '@INPUT@', '@OUTPUT@', ],
     output: '@BASENAME@',
     depends: [ py_consts_generators ],
-
 )
 
 matrix_data_srcs = files(
@@ -298,22 +297,21 @@ matrix_data_srcs = files(
     'map_matrix_288.json'
 )
 
-matrix_data_order = files('map_matrices.order')
-
 map_matrix_narc = custom_target('map_matrix.narc',
-    output: 'map_matrix.narc',
-    input: [
-        matrix_bin_gen.process(matrix_data_srcs, env: jsoncnv_env),
-        matrix_data_order
+    output: [
+        'map_matrix.narc',
+        'map_matrix.naix',
     ],
+    input: matrix_bin_gen.process(matrix_data_srcs, env: jsoncnv_env),
     depends: [ py_consts_generators ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', matrix_data_order,
-        '--output', '@OUTPUT@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('map_matrices.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += map_matrix_narc

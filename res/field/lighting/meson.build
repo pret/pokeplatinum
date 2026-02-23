@@ -20,8 +20,6 @@ lighting_data_newline_srcs = lighting_txt_gen.process(files(
     ],
 )
 
-lighting_data_order = files('lighting_sets.order')
-
 lighting_narc = custom_target('lighting.narc',
     output: [
         'lighting.narc',
@@ -30,14 +28,14 @@ lighting_narc = custom_target('lighting.narc',
     input: [
         lighting_data_srcs,
         lighting_data_newline_srcs,
-        lighting_data_order
     ],
     depends: [ py_consts_generators ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', lighting_data_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('lighting_sets.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ]
 )

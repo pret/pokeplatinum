@@ -48,7 +48,7 @@
 #include "unk_0201567C.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/naming_screen/namein.naix.h"
+#include "res/graphics/naming_screen/namein.naix"
 #include "res/text/bank/generic_names.h"
 #include "res/text/bank/naming_screen.h"
 

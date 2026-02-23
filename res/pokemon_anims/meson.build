@@ -149,22 +149,21 @@ pokemon_anims_files = files(
     'pokemon_anim_script_unk_142.s',
 )
 
-pokemon_anims_narc_order = files('pokemon_anims.order')
-
 pokemon_anims_narc = custom_target(pokemon_anims_target_name,
     output: [
         'pokemon_anims.narc',
-        'pokemon_anims.naix.h',
+        'pokemon_anims.naix',
     ],
     input: script_bin_gen.process(
         pokemon_anims_files,
         extra_args: ['--depfile', '--out-dir', pokemon_anims_private_dir]
     ),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', pokemon_anims_narc_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('pokemon_anims.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )

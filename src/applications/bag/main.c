@@ -50,7 +50,7 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/bag/bag_graphics.naix.h"
+#include "res/graphics/bag/bag_graphics.naix"
 #include "res/text/bank/bag.h"
 
 #define DIAL_CENTER_X      (HW_LCD_WIDTH / 2)

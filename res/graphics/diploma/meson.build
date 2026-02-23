@@ -25,25 +25,24 @@ diploma_nscrs = copy_gen.process(files(
     'national_dex_blank.NSCR',
 ))
 
-diploma_order = files('diploma.order')
 diploma_narc = custom_target('diploma.narc',
     output: [
         'diploma.narc',
-        'diploma.naix.h',
+        'diploma.naix',
     ],
     input: [
         diploma_ncgrs,
         diploma_nclrs,
         diploma_nscrs,
-        diploma_order,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', diploma_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('diploma.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += diploma_narc

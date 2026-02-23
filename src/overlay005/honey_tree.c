@@ -21,7 +21,7 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 #define TREE_GROUP_NO_ENCOUNTER 0
 #define TREE_GROUP_A            1

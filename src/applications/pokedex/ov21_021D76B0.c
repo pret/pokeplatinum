@@ -33,7 +33,7 @@
 #include "touch_screen_actions.h"
 #include "unk_02012744.h"
 
-#include "res/graphics/pokedex/zukan.naix.h"
+#include "res/graphics/pokedex/zukan.naix"
 #include "res/text/bank/pokedex.h"
 
 typedef struct {

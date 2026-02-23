@@ -26,7 +26,7 @@
 
 #include "constdata/const_020EAB80.h"
 #include "constdata/const_020EAC58.h"
-#include "res/field/scripts/scr_seq.naix.h"
+#include "res/field/scripts/scr_seq.naix"
 
 // clang-format off
 #define SCRIPT_RANGE_TABLE(Entry) \

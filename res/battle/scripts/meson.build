@@ -10,7 +10,7 @@ waza_seq_target_name = 'waza_seq.narc'
 
 sub_seq_basename = 'sub_seq'
 sub_seq_narc_name = sub_seq_basename + '.narc'
-sub_seq_naix_name = sub_seq_basename + '.naix.h'
+sub_seq_naix_name = sub_seq_basename + '.naix'
 
 be_seq_private_dir = relative_build_dir / be_seq_target_name + '.p'
 sub_seq_private_dir = relative_build_dir / sub_seq_narc_name + '.p'
@@ -23,10 +23,11 @@ be_seq_narc = custom_target(be_seq_target_name,
         extra_args: ['--out-dir', be_seq_private_dir]
     ),
     command: [
-        narc_exe, 'create',
-        '--output', '@OUTPUT@',
+        nitroarc_exe,
+        '--create',
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 sub_seq_narc = custom_target(sub_seq_narc_name,
@@ -39,12 +40,13 @@ sub_seq_narc = custom_target(sub_seq_narc_name,
         extra_args: ['--out-dir', sub_seq_private_dir]
     ),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', sub_seq_narc_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', sub_seq_narc_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 waza_seq_narc = custom_target(waza_seq_target_name,
@@ -54,10 +56,11 @@ waza_seq_narc = custom_target(waza_seq_target_name,
         extra_args: ['--out-dir', waza_seq_private_dir]
     ),
     command: [
-        narc_exe, 'create',
-        '--output', '@OUTPUT@',
+        nitroarc_exe,
+        '--create',
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += be_seq_narc

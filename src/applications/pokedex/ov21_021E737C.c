@@ -34,7 +34,7 @@
 #include "text.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/pokedex/zukan.naix.h"
+#include "res/graphics/pokedex/zukan.naix"
 #include "res/text/bank/pokedex.h"
 
 typedef struct {

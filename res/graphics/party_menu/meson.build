@@ -3,7 +3,7 @@ subdir('form_changes')
 party_menu_narc = custom_target('party_menu_graphics.narc',
     output: [
         'party_menu_graphics.narc',
-        'party_menu_graphics.naix.h',
+        'party_menu_graphics.naix',
     ],
 
     input: [
@@ -69,11 +69,13 @@ party_menu_narc = custom_target('party_menu_graphics.narc',
     ],
 
     command: [
-        narc_exe, 'create', '--naix',
-        '--order', files('party_menu_graphics.order'),
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('party_menu_graphics.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += party_menu_narc

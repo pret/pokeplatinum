@@ -160,11 +160,13 @@ text_banks = custom_target('pl_msg.narc',
     output: 'pl_msg.narc',
     input: json_to_bin_gen.process(text_bank_files),
     command: [
-        narc_exe, 'create',
-        '--order', text_banks_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', text_banks_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += text_banks

@@ -65,7 +65,7 @@
 #include "unk_02067A84.h"
 #include "vars_flags.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 #include "res/text/bank/eterna_city_gym.h"
 
 typedef struct {

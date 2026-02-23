@@ -186,4 +186,9 @@ for i in range(NUM_FILES):
     with open(target_fname, 'wb+') as target_file:
         target_file.write(binData[i])
 
-subprocess.run([args.narc, 'create', '--output', str(output_dir / output_name) + '.narc', private_dir])
+subprocess.run([
+    args.narc,
+    '--create',
+    '--file', f'{output_dir / output_name}.narc',
+    private_dir
+])

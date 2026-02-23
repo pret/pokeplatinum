@@ -15,7 +15,7 @@
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 #define ELEVATOR_ANIMATION_TAG 0x1
 

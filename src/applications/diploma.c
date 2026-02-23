@@ -20,7 +20,7 @@
 #include "text.h"
 #include "trainer_info.h"
 
-#include "res/graphics/diploma/diploma.naix.h"
+#include "res/graphics/diploma/diploma.naix"
 #include "res/text/bank/diploma.h"
 
 typedef struct Diploma {

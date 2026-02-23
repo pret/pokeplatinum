@@ -15,7 +15,7 @@
 #include "party.h"
 #include "terrain_collision_manager.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 typedef struct HallOfFameHealingAnimation {
     VecFx32 position;

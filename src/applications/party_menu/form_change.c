@@ -25,7 +25,7 @@
 #include "text.h"
 #include "unk_0202419C.h"
 
-#include "res/graphics/party_menu/form_changes/form_change_effects.naix.h"
+#include "res/graphics/party_menu/form_changes/form_change_effects.naix"
 #include "res/text/bank/party_menu.h"
 
 static void PartyMenuFormChange_Free(PartyMenuApplication *app);

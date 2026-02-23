@@ -2,7 +2,7 @@
 #define POKEPLATINUM_NARC_FRONTIER_BG_H
 // TODO This is a temporary header file for recording NARC indexes of
 // frontier_bg.narc. This file should eventually be deleted and the constants
-// replaced with those from a naix.h file once the NARC is unpacked.
+// replaced with those from a naix file once the NARC is unpacked.
 
 #define BATTLE_FACTORY_TILES                        0
 #define BATTLE_FACTORY_BATTLE_ROOM_TILEMAP          1

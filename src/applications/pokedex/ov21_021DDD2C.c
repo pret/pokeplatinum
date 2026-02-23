@@ -29,7 +29,7 @@
 #include "touch_screen_actions.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/pokedex/zukan.naix.h"
+#include "res/graphics/pokedex/zukan.naix"
 
 typedef struct {
     PokedexScreenManager *unk_00;

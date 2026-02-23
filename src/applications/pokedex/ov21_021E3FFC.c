@@ -25,7 +25,7 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 
-#include "res/graphics/pokedex/zukan.naix.h"
+#include "res/graphics/pokedex/zukan.naix"
 
 typedef struct {
     int *unk_00;

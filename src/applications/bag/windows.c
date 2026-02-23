@@ -28,7 +28,7 @@
 #include "text.h"
 #include "trainer_info.h"
 
-#include "res/graphics/bag/bag_graphics.naix.h"
+#include "res/graphics/bag/bag_graphics.naix"
 #include "res/text/bank/bag.h"
 
 #define ITEM_LIST_WINDOW_WIDTH         17

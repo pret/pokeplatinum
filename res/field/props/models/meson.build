@@ -591,23 +591,20 @@ map_prop_model_files = copy_gen.process(files(
     'prop_model_589.nsbmd',
 ))
 
-map_prop_model_order = files('map_prop_models.order')
 map_prop_model_narc = custom_target('prop_models.narc',
     output: [
         'prop_models.narc',
         'prop_models.naix',
     ],
-    input: [
-        map_prop_model_files,
-        map_prop_model_order,
-    ],
+    input: map_prop_model_files,
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', map_prop_model_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('map_prop_models.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += map_prop_model_narc

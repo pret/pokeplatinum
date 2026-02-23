@@ -31,8 +31,8 @@
 #include "text.h"
 #include "unk_0200679C.h"
 
-#include "res/graphics/trap_effects/trap_effects.naix.h"
-#include "res/graphics/underground_top_screen/underground_top_screen.naix.h"
+#include "res/graphics/trap_effects/trap_effects.naix"
+#include "res/graphics/underground_top_screen/underground_top_screen.naix"
 
 #define MAX_QUEUE_SIZE 32
 

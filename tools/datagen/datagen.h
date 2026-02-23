@@ -6,23 +6,26 @@
  * and packing programs.
  */
 
-// clang-format off
 #include <algorithm>
+#include <cassert>
+#include <cstddef>
 #include <cstdint>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <ostream>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
+// clang-format off
+#include <nitroarc.h>
 #include <rapidjson/document.h>
 #include <rapidjson/error/en.h>
-#include "rapidjson/filewritestream.h"
+#include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
-#include <narc/narc.h>
 // clang-format on
 
 namespace fs = std::filesystem;
@@ -124,29 +127,80 @@ static inline std::vector<std::string> Tokenize(const std::string &s, const char
     return tokens;
 }
 
-// Pack a NARC to an output path from a VFS context.
-static inline void PackNarc(vfs_pack_ctx *ctx, fs::path path)
-{
-    narc *narc = narc_pack(ctx);
+// Wrapper class around nitroarc's packing API
+class NarcBuilder {
+    nitroarc_packer_t packer = { 0 };
 
-    std::ofstream ofs(path);
-    ofs.write(reinterpret_cast<char *>(narc), narc->size);
+    static void* libc_malloc(void *ctx, unsigned items, unsigned size) {
+        (void)ctx;
 
-    free(narc);
-}
-
-// Pack a single-file NARC of binary elements to an output path.
-template <typename T>
-static inline void PackSingleFileNarc(std::vector<T> &elems, fs::path path)
-{
-    if (elems.empty()) {
-        return;
+        return malloc(items * size);
     }
 
-    vfs_pack_ctx *vfs = narc_pack_start();
-    narc_pack_file_copy(vfs, reinterpret_cast<unsigned char *>(elems.data()), sizeof(elems[0]) * elems.size());
-    PackNarc(vfs, path);
-}
+    static void libc_free(void *ctx, void *ptr, unsigned items, unsigned size) {
+        (void)ctx;
+        (void)items;
+        (void)size;
+
+        free(ptr);
+    }
+
+    static void* libc_realloc(void *ctx, void *ptr, unsigned items, unsigned size) {
+        (void)ctx;
+
+        return realloc(ptr, items * size);
+    }
+
+public:
+    NarcBuilder(std::size_t num_files, bool named = false, bool stripped = false) {
+        packer.malloc = libc_malloc;
+        packer.realloc = libc_realloc;
+        packer.free = libc_free;
+
+        if (int errc = nitroarc_pinit(&this->packer, num_files, named, stripped); errc) {
+            throw std::runtime_error(nitroarc_errs(errc));
+        }
+    }
+
+    struct Span {
+        std::byte *ptr;
+        u32 size;
+    };
+
+    void append(std::byte *ptr, u32 size, char *name = nullptr) {
+        if (int errc = nitroarc_ppack(&this->packer, ptr, size, name); errc) {
+            throw std::runtime_error(nitroarc_errs(errc));
+        }
+    }
+
+    void append(Span &span, char *name = nullptr) { append(span.ptr, span.size, name); }
+
+    Span build() {
+        void *result = nullptr;
+        u32   size   = 0;
+        if (int errc = nitroarc_pseal(&this->packer, &result, &size); errc) {
+            throw std::runtime_error(nitroarc_errs(errc));
+        }
+
+        return Span { reinterpret_cast<std::byte *>(result), size };
+    }
+
+    void write(fs::path path) {
+        std::ofstream ofs(path);
+        Span narc = this->build();
+        ofs.write(reinterpret_cast<char *>(narc.ptr), narc.size);
+        free(narc.ptr);
+    }
+
+    template <typename T>
+    static void write(std::vector<T> &elems, fs::path path, char *name = nullptr) {
+        if (elems.empty()) return;
+
+        NarcBuilder b { 1 };
+        b.append(reinterpret_cast<std::byte *>(elems.data()), sizeof(elems[0]) * elems.size(), name);
+        b.write(path);
+    }
+};
 
 // Read a whole file into a C++-string.
 static inline std::string ReadWholeFile(std::ifstream &ifs)
@@ -240,7 +294,8 @@ static inline void ReportJsonError(rapidjson::ParseResult ok, std::string &json,
     }
 }
 
-static inline void CopyMessage(const rapidjson::Value &member, rapidjson::Value &outMessage, rapidjson::MemoryPoolAllocator<> &allocator) {
+static inline void CopyMessage(const rapidjson::Value &member, rapidjson::Value &outMessage, rapidjson::MemoryPoolAllocator<> &allocator)
+{
     if (member.HasMember("en_US")) {
         if (member["en_US"].IsArray()) {
             rapidjson::Value strings(rapidjson::kArrayType);

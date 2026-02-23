@@ -1,7 +1,8 @@
 prop_model_set_bin_gen = generator(
     prop_model_set_py,
     arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
-    output: '@BASENAME@'
+    output: '@BASENAME@',
+    depends: [ py_consts_generators, map_prop_model_narc[0] ],
 )
 
 prop_model_set_data_srcs = files(
@@ -78,33 +79,25 @@ prop_model_set_data_srcs = files(
     'prop_model_set_070.json'
 )
 
-prop_model_set_data_order = files('prop_model_sets.order')
-
 prop_model_set_narc = custom_target('prop_model_sets.narc',
     output: [
         'prop_model_sets.narc',
         'prop_model_sets.naix',
     ],
-    input: [
-        prop_model_set_bin_gen.process(prop_model_set_data_srcs, 
-            env: jsoncnv_env,
-            extra_args: [
-                '--map-prop-model-naix', map_prop_model_narc[1].full_path() + '.h',
-            ],
-        ),
-        prop_model_set_data_order
-    ],
-    depends: [ 
-        py_consts_generators,
-        map_prop_model_narc
-    ],
+    input: prop_model_set_bin_gen.process(prop_model_set_data_srcs,
+        env: jsoncnv_env,
+        extra_args: [
+            '--map-prop-model-naix', map_prop_model_narc[1].full_path(),
+        ],
+    ),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', prop_model_set_data_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('prop_model_sets.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += prop_model_set_narc

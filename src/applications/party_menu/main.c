@@ -64,7 +64,7 @@
 #include "unk_0206B9D8.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/party_menu/party_menu_graphics.naix.h"
+#include "res/graphics/party_menu/party_menu_graphics.naix"
 #include "res/text/bank/party_menu.h"
 
 FS_EXTERN_OVERLAY(party_menu_form_change);

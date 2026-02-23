@@ -216,12 +216,10 @@ poketch_ncgrs = copy_gen.process(files(
     'stopwatch.NCGR.lz',
 ))
 
-poketch_order = files('poketch.order')
-
 poketch_narc = custom_target('poketch_narc',
     output: [
         'poketch.narc',
-        'poketch.naix.h',
+        'poketch.naix',
     ],
     input: [
         poketch_graphics,
@@ -238,12 +236,13 @@ poketch_narc = custom_target('poketch_narc',
         poketch_screen_palette_dupe,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', poketch_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('poketch.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += poketch_narc

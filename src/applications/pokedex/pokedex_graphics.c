@@ -11,7 +11,7 @@
 #include "sys_task.h"
 #include "unk_02012744.h"
 
-#include "res/graphics/pokedex/zukan.naix.h"
+#include "res/graphics/pokedex/zukan.naix"
 
 static void InitBackgrounds(BgConfig *bgConfig, enum HeapID heapID);
 static void FreeBackgrounds(BgConfig *bgConfig);

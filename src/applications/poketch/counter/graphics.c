@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 static void SetupSprites(CounterGraphics *graphics, const CounterData *counterData);
 static void UnloadSprites(CounterGraphics *graphics);

@@ -22,7 +22,7 @@
 #include "sound_playback.h"
 #include "unk_020655F4.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 typedef struct UnkStruct_ov6_02242B58_t UnkStruct_ov6_02242B58;
 

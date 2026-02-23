@@ -22,7 +22,7 @@
 #include "sound_playback.h"
 #include "terrain_collision_manager.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 #define PLATFORM_LIFT_SIZE_X 3
 #define PLATFORM_LIFT_SIZE_Y 2

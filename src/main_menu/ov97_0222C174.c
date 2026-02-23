@@ -39,7 +39,7 @@
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 
-#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+#include "res/graphics/main_menu/main_menu_graphics.naix"
 
 FS_EXTERN_OVERLAY(game_opening);
 

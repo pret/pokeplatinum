@@ -65,7 +65,7 @@ pl_waza_tbl_narc = custom_target('pl_waza_tbl.narc',
     depends: [ py_consts_generators ],
     command: [
         movedata_py,
-        '--narc', narc_exe,
+        '--narc', nitroarc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
@@ -131,11 +131,13 @@ anim_scripts_narc = custom_target(anim_scripts_narc_name,
         preserve_path_from: anim_scripts_root,
     ),
     command: [
-        narc_exe, 'create',
-        '--order', anim_scripts_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--files-from', anim_scripts_order,
+        '--exclude', '*.d',
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += pl_waza_tbl_narc

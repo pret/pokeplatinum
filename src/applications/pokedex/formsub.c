@@ -31,7 +31,7 @@
 #include "unk_02012744.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/pokedex/zukan.naix.h"
+#include "res/graphics/pokedex/zukan.naix"
 #include "res/text/bank/pokedex.h"
 
 /*

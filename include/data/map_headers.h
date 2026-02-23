@@ -7,11 +7,11 @@
 
 #include "map_header.h"
 
-#include "res/field/area_data/area_data.naix.h"
-#include "res/field/encounters/pl_enc_data.naix.h"
-#include "res/field/events/zone_event.naix.h"
-#include "res/field/matrices/map_matrix.naix.h"
-#include "res/field/scripts/scr_seq.naix.h"
+#include "res/field/area_data/area_data.naix"
+#include "res/field/encounters/pl_enc_data.naix"
+#include "res/field/events/zone_event.naix"
+#include "res/field/matrices/map_matrix.naix"
+#include "res/field/scripts/scr_seq.naix"
 #include "res/text/bank/location_names.h"
 
 static const MapHeader sMapHeaders[] = {

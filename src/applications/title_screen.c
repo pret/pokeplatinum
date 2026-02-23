@@ -33,7 +33,7 @@
 #include "text.h"
 #include "unk_0202419C.h"
 
-#include "res/graphics/title_screen/titledemo.naix.h"
+#include "res/graphics/title_screen/titledemo.naix"
 
 FS_EXTERN_OVERLAY(game_opening);
 FS_EXTERN_OVERLAY(main_menu);

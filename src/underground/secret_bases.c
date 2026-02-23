@@ -64,8 +64,8 @@
 #include "unk_020655F4.h"
 #include "vars_flags.h"
 
-#include "res/field/props/models/prop_models.naix.h"
-#include "res/graphics/trap_effects/trap_effects.naix.h"
+#include "res/field/props/models/prop_models.naix"
+#include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_capture_flag.h"
 #include "res/text/bank/underground_common.h"
 

@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define ANIM_INDEX_SPINNING 0
 #define ANIM_INDEX_HEADS    1

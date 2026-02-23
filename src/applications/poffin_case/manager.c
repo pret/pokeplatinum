@@ -32,7 +32,7 @@
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/poffin_case/poru_gra.naix.h"
+#include "res/graphics/poffin_case/poru_gra.naix"
 #include "res/text/bank/poffin_case.h"
 
 typedef enum PoffinManagerState {

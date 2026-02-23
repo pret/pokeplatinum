@@ -744,7 +744,7 @@ item_icon_order = files('item_icon.order')
 item_icon_narc = custom_target('item_icon.narc',
     output: [
         'item_icon.narc',
-        'item_icon.naix.h',
+        'item_icon.naix',
     ],
     input: [
         item_icon_ncgrs,
@@ -753,15 +753,15 @@ item_icon_narc = custom_target('item_icon.narc',
         copy_gen.process(item_icon_unused_nclrs),
         item_icon_nanrs,
         item_icon_ncers,
-        item_icon_order
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', item_icon_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('item_icon.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += item_icon_narc

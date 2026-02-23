@@ -1159,22 +1159,21 @@ scr_seq_files = files(
     'scripts_route_230.s',
 )
 
-scr_seq_narc_order = files('scripts.order')
-
 scr_seq_narc = custom_target('scr_seq.narc',
     output: [
         'scr_seq.narc',
-        'scr_seq.naix.h',
+        'scr_seq.naix',
     ],
     input: field_script_bin_gen.process(
         scr_seq_files,
         extra_args: ['--depfile', '--out-dir', scr_seq_private_dir]
     ),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', scr_seq_narc_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('scripts.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
     ],
 )

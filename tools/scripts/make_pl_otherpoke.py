@@ -107,4 +107,10 @@ subprocess.run([
     '-comp', '10'
 ])
 
-subprocess.run([args.narc, 'create', '--naix', '--output', output_dir / 'pl_otherpoke.narc', private_dir])
+subprocess.run([
+    args.narc,
+    '--create',
+    '--index',
+    '--file', output_dir / 'pl_otherpoke.narc',
+    private_dir
+])

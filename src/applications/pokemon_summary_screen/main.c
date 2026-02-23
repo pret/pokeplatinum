@@ -57,7 +57,7 @@
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
-#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix.h"
+#include "res/graphics/pokemon_summary_screen/pl_pst_gra.naix"
 #include "res/text/bank/pokemon_summary_screen.h"
 
 enum SummaryState {

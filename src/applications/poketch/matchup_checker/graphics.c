@@ -16,7 +16,7 @@
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define ANIM_COMMAND_END           -1
 #define ANIM_COMMAND_MOVE_FORWARD  -2

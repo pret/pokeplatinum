@@ -49,7 +49,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/main_menu/main_menu_graphics.naix.h"
+#include "res/graphics/main_menu/main_menu_graphics.naix"
 #include "res/text/bank/main_menu_alerts.h"
 #include "res/text/bank/main_menu_options.h"
 #include "res/text/bank/unk_0695.h"

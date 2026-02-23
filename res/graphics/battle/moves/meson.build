@@ -14,10 +14,10 @@ anim_ncer_order = files(anim_ncer_basename + '.order')
 anim_nanr_order = files(anim_nanr_basename + '.order')
 anim_nclr_order = files(anim_nclr_basename + '.order')
 
-anim_ncgr_naix = anim_ncgr_basename + '.naix.h'
-anim_ncer_naix = anim_ncer_basename + '.naix.h'
-anim_nanr_naix = anim_nanr_basename + '.naix.h'
-anim_nclr_naix = anim_nclr_basename + '.naix.h'
+anim_ncgr_naix = anim_ncgr_basename + '.naix'
+anim_ncer_naix = anim_ncer_basename + '.naix'
+anim_nanr_naix = anim_nanr_basename + '.naix'
+anim_nclr_naix = anim_nclr_basename + '.naix'
 
 pngs = files(
     'surf.png',
@@ -267,12 +267,13 @@ anim_ncgr_narc_files = custom_target(anim_ncgr_narc,
         no_cell_ncgr_lz_files,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', anim_ncgr_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', anim_ncgr_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 anim_ncer_narc_files = custom_target(anim_ncer_narc,
     output: [
@@ -283,12 +284,13 @@ anim_ncer_narc_files = custom_target(anim_ncer_narc,
         ncer_lz_files,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', anim_ncer_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', anim_ncer_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 anim_nanr_narc_files = custom_target(anim_nanr_narc,
     output: [
@@ -299,12 +301,13 @@ anim_nanr_narc_files = custom_target(anim_nanr_narc,
         nanr_lz_files,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', anim_nanr_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', anim_nanr_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 anim_nclr_narc_files = custom_target(anim_nclr_narc,
     output: [
@@ -319,12 +322,13 @@ anim_nclr_narc_files = custom_target(anim_nclr_narc,
         no_cell_nclr_files,
     ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', anim_nclr_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', anim_nclr_order,
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += anim_ncgr_narc_files

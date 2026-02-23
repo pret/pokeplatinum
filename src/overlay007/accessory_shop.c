@@ -26,7 +26,7 @@
 #include "text.h"
 #include "unk_020298BC.h"
 
-#include "res/graphics/shop_menu/shop_gra.naix.h"
+#include "res/graphics/shop_menu/shop_gra.naix"
 #include "res/text/bank/flower_shop.h"
 
 static const AccessoryShopItem sAccessoryShop_ItemLists[ACCESSORY_SHOP_ITEM_LIST_COUNT] = {

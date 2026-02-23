@@ -66,10 +66,10 @@
 #include "vars_flags.h"
 #include "vram_transfer.h"
 
-#include "res/graphics/mining/animations/animations.naix.h"
-#include "res/graphics/mining/interface/interface.naix.h"
-#include "res/graphics/mining/objects/objects.naix.h"
-#include "res/graphics/trap_effects/trap_effects.naix.h"
+#include "res/graphics/mining/animations/animations.naix"
+#include "res/graphics/mining/interface/interface.naix"
+#include "res/graphics/mining/objects/objects.naix"
+#include "res/graphics/trap_effects/trap_effects.naix"
 #include "res/text/bank/underground_common.h"
 
 #define MAX_BURIED_OBJECTS 8

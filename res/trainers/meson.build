@@ -65,16 +65,15 @@ ball_capsules_bin = generator(
 ball_capsules_narc = custom_target('trainer_ball_capsules.narc',
     output: [
         'trainer_ball_capsules.narc',
-        'trainer_ball_capsules.naix.h',
+        'trainer_ball_capsules.naix',
     ],
-    input: [
-        ball_capsules_bin,
-    ],
+    input: ball_capsules_bin,
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--output', '@OUTPUT0@',
-        '@PRIVATE_DIR@'
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--file', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ],
     depends: [ py_consts_generators ],
 )

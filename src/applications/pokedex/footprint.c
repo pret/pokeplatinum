@@ -1,6 +1,6 @@
 #include "applications/pokedex/footprint.h"
 
-#include "res/pokemon/pokefoot.naix.h"
+#include "res/pokemon/pokefoot.naix"
 
 enum NarcID GetPokedexFootprintsNarcID(void)
 {

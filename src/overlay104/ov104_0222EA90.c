@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "narc_frontier_bg.h"
 
-#include "res/field/frontier_scripts/fr_script.naix.h"
+#include "res/field/frontier_scripts/fr_script.naix"
 
 typedef void (*UnkFuncPtr_ov104_0223F394)(UnkStruct_ov104_0223C4CC *, void **);
 

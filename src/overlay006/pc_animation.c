@@ -10,7 +10,7 @@
 
 #include "terrain_collision_manager.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 void FieldSystem_LoadPCAnimation(FieldSystem *fieldSystem, const u8 tag)
 {

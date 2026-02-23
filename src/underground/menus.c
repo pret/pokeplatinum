@@ -49,7 +49,7 @@
 #include "trainer_info.h"
 #include "underground.h"
 
-#include "res/graphics/start_menu/start_menu.naix.h"
+#include "res/graphics/start_menu/start_menu.naix"
 #include "res/text/bank/underground_capture_flag.h"
 #include "res/text/bank/underground_common.h"
 #include "res/text/bank/underground_goods.h"

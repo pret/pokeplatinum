@@ -488,26 +488,20 @@ battle_particle_files = files(
     'shadow_force.spa',
 )
 
-battle_particles_basename = 'battle_particles'
-battle_particles_narc_name = battle_particles_basename + '.narc'
-battle_particles_naix_name = battle_particles_basename + '.naix.h'
-battle_particles_order = files('battle_particles.order')
-
-battle_particles_narc = custom_target(battle_particles_narc_name,
+battle_particles_narc = custom_target('battle_particles.narc',
     output: [
-        battle_particles_narc_name,
-        battle_particles_naix_name
+        'battle_particles.narc',
+        'battle_particles.naix',
     ],
-    input: copy_gen.process(
-        battle_particle_files,
-    ),
+    input: copy_gen.process(battle_particle_files),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', battle_particles_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('battle_particles.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += battle_particles_narc

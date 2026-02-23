@@ -55,7 +55,7 @@
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
-#include "res/graphics/diploma/diploma.naix.h"
+#include "res/graphics/diploma/diploma.naix"
 #include "res/text/bank/battle_strings.h"
 
 static void SysTask_Evolution(SysTask *task, void *data);

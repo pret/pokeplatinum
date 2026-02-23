@@ -13,7 +13,7 @@
 #include "sound_playback.h"
 #include "sys_task_manager.h"
 
-#include "res/graphics/poketch/poketch.naix.h"
+#include "res/graphics/poketch/poketch.naix"
 
 #define SPRITE_ALARM_SET_BUTTON   0
 #define SPRITE_EAR_LEFT           1

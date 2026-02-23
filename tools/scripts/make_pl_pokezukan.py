@@ -68,4 +68,9 @@ with open(target_fname, 'wb+') as target_file:
         pl_pokezukan[i*2 + 1] = (pokedex[i] >> 8) & 0xff
     target_file.write(bytes(pl_pokezukan))
 
-subprocess.run([args.narc, 'create', '--output', output_dir / 'pl_pokezukan.narc', private_dir])
+subprocess.run([
+    args.narc,
+    '--create',
+    '--file', output_dir / 'pl_pokezukan.narc',
+    private_dir
+])

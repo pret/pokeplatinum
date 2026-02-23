@@ -72,21 +72,16 @@ prop_texture_set_files = copy_gen.process(files(
     'prop_texture_set_070.nsbtx'
 ))
 
-prop_texture_set_order = files('prop_texture_sets.order')
 prop_texture_set_narc = custom_target('prop_texture_sets.narc',
-    output: [
-        'prop_texture_sets.narc',
-    ],
-    input: [
-        prop_texture_set_files,
-        prop_texture_set_order,
-    ],
+    output: 'prop_texture_sets.narc',
+    input: prop_texture_set_files,
     command: [
-        narc_exe, 'create',
-        '--order', prop_texture_set_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--files-from', files('prop_texture_sets.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += prop_texture_set_narc

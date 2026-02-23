@@ -99,21 +99,16 @@ prop_animation_files = copy_gen.process(files(
     'prop_animation_097.nsbtp',
 ))
 
-prop_animation_order = files('prop_animations.order')
 prop_animation_narc = custom_target('prop_animations.narc',
-    output: [
-        'prop_animations.narc',
-    ],
-    input: [
-        prop_animation_files,
-        prop_animation_order,
-    ],
+    output: 'prop_animations.narc',
+    input: prop_animation_files,
     command: [
-        narc_exe, 'create',
-        '--order', prop_animation_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--files-from', files('prop_animations.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += prop_animation_narc

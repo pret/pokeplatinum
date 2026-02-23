@@ -24,7 +24,7 @@
 #include "unk_02056B30.h"
 #include "unk_020655F4.h"
 
-#include "res/field/props/models/prop_models.naix.h"
+#include "res/field/props/models/prop_models.naix"
 
 typedef struct UnkStruct_ov5_021D432C_t {
     int unk_00;

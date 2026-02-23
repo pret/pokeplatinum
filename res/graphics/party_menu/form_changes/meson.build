@@ -3,23 +3,20 @@ form_change_effects_files = files(
     'shaymin.spa',
 )
 
-form_change_effects_order = files('form_change_effects.order')
-
 form_change_effects_narc = custom_target('form_change_effects_narc',
     output: [
         'form_change_effects.narc',
-        'form_change_effects.naix.h',
+        'form_change_effects.naix',
     ],
-    input: copy_gen.process( 
-        form_change_effects_files,
-    ),
+    input: copy_gen.process(form_change_effects_files),
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', form_change_effects_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('form_change_effects.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += form_change_effects_narc

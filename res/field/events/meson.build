@@ -561,17 +561,18 @@ events_order = files('zone_event.order')
 events_narc = custom_target('zone_event.narc',
     output: [
         'zone_event.narc',
-        'zone_event.naix.h',
+        'zone_event.naix',
     ],
     input: event_bin_gen.process(events_files, env: jsoncnv_env),
     depends: [ py_consts_generators, events_headers ],
     command: [
-        narc_exe, 'create',
-        '--naix',
-        '--order', events_order,
-        '--output', '@OUTPUT0@',
+        nitroarc_exe,
+        '--create',
+        '--index',
+        '--files-from', files('zone_event.order'),
+        '--file', '@OUTPUT0@',
         '@PRIVATE_DIR@',
-    ]
+    ],
 )
 
 nitrofs_files += events_narc

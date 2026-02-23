@@ -61,7 +61,7 @@
 #include "unk_02097B18.h"
 #include "vars_flags.h"
 
-#include "res/graphics/shop_menu/shop_gra.naix.h"
+#include "res/graphics/shop_menu/shop_gra.naix"
 #include "res/text/bank/location_names.h"
 #include "res/text/bank/underground_goods.h"
 #include "res/text/bank/unk_0543.h"
