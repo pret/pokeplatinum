@@ -296,13 +296,34 @@ c_commands = [
     for file in (homedir / "src").rglob("*.c")
 ]
 
+nitroarc_c_commands = [
+    {
+        "directory": builddir,
+        "arguments": [
+            "gcc",
+            f"-I{homedir}/tools/nitroarc/lib/include",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Wpedantic",
+            "-Wconversion",
+            "-Wno-sign-conversion",
+            "-o",
+            file.with_suffix(".o"),
+            file.resolve(),
+        ],
+        "file": file.resolve(),
+    }
+    for file in (homedir / "tools" / "nitroarc").rglob("*.c")
+]
+
 datagen_cpp_commands = [
     {
         "directory": builddir,
         "arguments": [
             "g++",
-            f"-I{homedir}/subprojects/narc/lib/include",  # NARC packing
             f"-I{homedir}/subprojects/rapidjson-1.1.0/include",  # JSON parser
+            f"-I{homedir}/tools/nitroarc/lib/include",  # NARC packing
             f"-I{homedir}/tools/datagen",  # base header file
             f"-I{homedir}/include",  # source includes
             f"-I{builddir}",  # metang-generated headers (constants)
@@ -328,7 +349,8 @@ with open("compile_commands.json", "w") as ofp:
         + libcrypto_c_commands
         + ppwlobby_c_commands
         + c_commands
-        + datagen_cpp_commands,
+        + datagen_cpp_commands
+        + nitroarc_c_commands,
         ofp,
         default=str,
         indent=4,
