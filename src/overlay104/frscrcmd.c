@@ -214,8 +214,8 @@ static BOOL FrontierScrCmd_Dummy27(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_35(FrontierScriptContext *ctx);
 static BOOL WaitForSyncState(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_ClearReceivedTempDataAllPlayers(FrontierScriptContext *ctx);
-static BOOL FrontierScrCmd_37(FrontierScriptContext *ctx);
-static BOOL WaitForCommsFinished(FrontierScriptContext *ctx);
+static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx);
+static BOOL WaitForCommManIsDeleted(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_GetRandom(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_HealParty(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_WaitABPress(FrontierScriptContext *ctx);
@@ -269,7 +269,7 @@ static BOOL FrontierScrCmd_C8(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_C9(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_SetMenuXOriginSide(FrontierScriptContext *ctx);
 static BOOL FrontierScrCmd_SetMenuYOriginSide(FrontierScriptContext *ctx);
-static void ov104_02230950(void *param0);
+static void ov104_02230950(void *namingScreenArgs);
 static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0);
 static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0);
 static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0);
@@ -353,7 +353,7 @@ const FrontierScrCmdFunc gFrontierScrCmdFuncs[] = {
     FrontierScrCmd_34,
     FrontierScrCmd_35,
     FrontierScrCmd_ClearReceivedTempDataAllPlayers,
-    FrontierScrCmd_37,
+    FrontierScrCmd_EndCommunication,
     FrontierScrCmd_GetRandom,
     FrontierScrCmd_HealParty,
     FrontierScrCmd_WaitABPress,
@@ -1384,9 +1384,9 @@ static BOOL FrontierScrCmd_34(FrontierScriptContext *ctx)
     return TRUE;
 }
 
-static void ov104_02230950(void *param0)
+static void ov104_02230950(void *namingScreenArgs)
 {
-    NamingScreenArgs_Free(param0);
+    NamingScreenArgs_Free(namingScreenArgs);
 }
 
 static BOOL FrontierScrCmd_6C(FrontierScriptContext *ctx)
@@ -1612,10 +1612,8 @@ static BOOL FrontierScrCmd_73(FrontierScriptContext *ctx)
 
 static BOOL WaitForSaveStateFinish(FrontierScriptContext *ctx)
 {
-    int saveResult;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(ctx->unk_00->unk_00);
-
-    saveResult = SaveData_SaveStateMain(v1->saveData);
+    int saveResult = SaveData_SaveStateMain(v1->saveData);
 
     if (saveResult == SAVE_RESULT_OK) {
         FreeHeapCanary();
@@ -1837,23 +1835,17 @@ static BOOL FrontierScrCmd_ClearReceivedTempDataAllPlayers(FrontierScriptContext
     return FALSE;
 }
 
-static BOOL FrontierScrCmd_37(FrontierScriptContext *ctx)
+static BOOL FrontierScrCmd_EndCommunication(FrontierScriptContext *ctx)
 {
     FieldCommMan_EndBattle();
-    FrontierScriptContext_Pause(ctx, WaitForCommsFinished);
+    FrontierScriptContext_Pause(ctx, WaitForCommManIsDeleted);
 
     return TRUE;
 }
 
-static BOOL WaitForCommsFinished(FrontierScriptContext *ctx)
+static BOOL WaitForCommManIsDeleted(FrontierScriptContext *ctx)
 {
-    if (CommMan_IsInitialized() != TRUE) {
-        if (CommServerClient_IsInitialized() != TRUE) {
-            return TRUE;
-        }
-    }
-
-    return FALSE;
+    return CommMan_IsInitialized() != TRUE && CommServerClient_IsInitialized() != TRUE;
 }
 
 static BOOL FrontierScrCmd_GetRandom(FrontierScriptContext *ctx)

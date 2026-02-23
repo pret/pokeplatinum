@@ -440,7 +440,7 @@ _04DF:
     Return
 
 _04F7:
-    FrontierScrCmd_37
+    EndCommunication
     Return
 
 _04FB:

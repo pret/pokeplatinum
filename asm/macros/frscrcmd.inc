@@ -318,7 +318,7 @@
     .short 0x036
     .endm
 
-    .macro FrontierScrCmd_37
+    .macro EndCommunication
     .short 0x037
     .endm
 
