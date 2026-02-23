@@ -3,15 +3,15 @@
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_defs/struct_02057B48.h"
-#include "struct_defs/underground.h"
 
 #include "field/field_system_decl.h"
-#include "overlay023/underground_player_status.h"
+#include "underground/player_status.h"
 
 #include "communication_system.h"
 #include "overworld_anim_manager.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
+#include "underground.h"
 
 enum PauseBit {
     PAUSE_BIT_STOLE_FLAG = 1,
@@ -20,7 +20,7 @@ enum PauseBit {
     PAUSE_BIT_TRAPS = 1 << 4,
     PAUSE_BIT_BURIED_OBJECT_WITH_FLAG = 1 << 5,
     PAUSE_BIT_LINK_PC = 1 << 6,
-    PAUSE_BIT_RADAR = 1 << 7,
+    PAUSE_BIT_TOUCH_RADAR = 1 << 7,
 };
 
 enum Emote {

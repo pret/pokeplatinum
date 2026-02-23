@@ -13,7 +13,7 @@
             "level": 48,
             "item": null,
             "moves": null,
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 2
         },
         {
@@ -22,7 +22,7 @@
             "level": 48,
             "item": null,
             "moves": null,
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 2
         },
         {
@@ -31,7 +31,7 @@
             "level": 48,
             "item": null,
             "moves": null,
-            "power": 80,
+            "iv_scale": 80,
             "ball_seal": 2
         },
         {
@@ -40,7 +40,7 @@
             "level": 48,
             "item": null,
             "moves": null,
-            "power": 120,
+            "iv_scale": 120,
             "ball_seal": 2
         },
         {
@@ -49,7 +49,7 @@
             "level": 48,
             "item": null,
             "moves": null,
-            "power": 160,
+            "iv_scale": 160,
             "ball_seal": 2
         }
     ],

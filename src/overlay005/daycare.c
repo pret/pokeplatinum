@@ -14,6 +14,7 @@
 
 #include "field/field_system.h"
 
+#include "chatot_cry.h"
 #include "daycare_save.h"
 #include "game_records.h"
 #include "heap.h"
@@ -29,7 +30,6 @@
 #include "string_template.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
-#include "unk_0202CC64.h"
 #include "unk_020559DC.h"
 #include "unk_02092494.h"
 
@@ -115,7 +115,7 @@ static void Daycare_MoveToDaycareMonFromParty(Party *party, int partySlot, Dayca
 
     if (Party_HasSpecies(party, SPECIES_CHATOT) == FALSE) {
         ChatotCry *cry = SaveData_GetChatotCry(saveData);
-        ResetChatotCryDataStatus(cry);
+        ChatotCry_ResetStatus(cry);
     }
 }
 

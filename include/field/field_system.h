@@ -22,9 +22,9 @@
 #include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay023/struct_underground_top_screen_context_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
+#include "underground/struct_underground_top_screen_context_decl.h"
 
 #include "bag.h"
 #include "battle_regulation.h"

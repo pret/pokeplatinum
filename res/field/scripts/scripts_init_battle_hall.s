@@ -8,10 +8,10 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40BA, 1, 4
-    InitScriptGoToIfEqual VAR_UNK_0x40BA, 2, 2
-    InitScriptGoToIfEqual VAR_UNK_0x40BA, 3, 5
-    InitScriptGoToIfEqual VAR_UNK_0x40BA, 0xFF, 3
+    InitScriptGoToIfEqual VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 1, 4
+    InitScriptGoToIfEqual VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 2, 2
+    InitScriptGoToIfEqual VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 3, 5
+    InitScriptGoToIfEqual VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0xFF, 3
     InitScriptFrameTableEnd
 
     InitScriptEnd

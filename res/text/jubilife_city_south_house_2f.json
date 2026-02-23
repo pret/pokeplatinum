@@ -2,7 +2,7 @@
   "key": 50206,
   "messages": [
     {
-      "id": "pl_msg_00000039_00000",
+      "id": "JubilifeCitySouthHouse2F_SomeKindsOfPokemonEvolveWhenTheyGetStrongerFromBattling",
       "en_US": [
         "Did you know?\r",
         "Some kinds of Pokémon evolve when\n",
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000039_00001",
+      "id": "JubilifeCitySouthHouse2F_EvolutionMakesPokemonJustThatMuchMoreFascinating",
       "en_US": [
         "Evolution makes Pokémon just that\n",
         "much more fascinating.\r",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000039_00002",
+      "id": "JubilifeCitySouthHouse2F_DidntProfRowanConductResearchWithProfOak",
       "en_US": [
         "Didn’t Prof. Rowan conduct research\n",
         "with Prof. Oak of the Kanto region?"

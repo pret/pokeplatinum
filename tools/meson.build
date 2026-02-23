@@ -4,13 +4,15 @@ rapidjson_dep = dependency('rapidjson')
 subdir('csv2bin')
 subdir('datagen')
 subdir('fixrom')
-subdir('json2bin')
+subdir('jsoncnv')
 subdir('msgenc')
 subdir('nitrogfx')
 subdir('ordergen')
 subdir('postconf')
 subdir('scripts')
 subdir('debug')
+
+copy_exe = find_program('cp')
 
 # ARM binutils
 arm_none_eabi_gcc_exe = find_program('arm-none-eabi-gcc', native: true)

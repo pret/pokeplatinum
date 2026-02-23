@@ -27,7 +27,7 @@
 #include "overlay006/wild_encounters.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay023/underground_manager.h"
+#include "underground/manager.h"
 
 #include "catching_show.h"
 #include "comm_player_manager.h"

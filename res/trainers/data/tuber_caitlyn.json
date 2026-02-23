@@ -17,7 +17,7 @@
                 "MOVE_SLAM",
                 "MOVE_CHARM"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -31,7 +31,7 @@
                 "MOVE_DEFENSE_CURL",
                 "MOVE_AQUA_RING"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -45,7 +45,7 @@
                 "MOVE_ROLLOUT",
                 "MOVE_AQUA_RING"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

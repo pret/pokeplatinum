@@ -9,6 +9,7 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
+#include "struct_defs/battler_data.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
@@ -18,7 +19,6 @@
 #include "battle/common.h"
 #include "battle/message_defs.h"
 #include "battle/struct_ov16_0224DDA8.h"
-#include "battle/struct_ov16_0225BFFC_t.h"
 #include "battle/struct_ov16_02265BBC.h"
 
 #include "communication_system.h"

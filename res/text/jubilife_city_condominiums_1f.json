@@ -2,7 +2,7 @@
   "key": 50210,
   "messages": [
     {
-      "id": "pl_msg_00000042_00000",
+      "id": "JubilifeCityCondominiums1F_Text_IsntMyPoketchQuiteFetching",
       "en_US": [
         "Oh, hello, darlings.\n",
         "Isn’t my Pokétch quite fetching?\r",
@@ -13,15 +13,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000042_00001",
+      "id": "JubilifeCityCondominiums1F_Text_PiikaPi",
       "en_US": "PIKACHU: Piika pi!"
     },
     {
-      "id": "pl_msg_00000042_00002",
+      "id": "JubilifeCityCondominiums1F_Text_Pachipachii",
       "en_US": "PACHIRISU: Pachipachii?"
     },
     {
-      "id": "pl_msg_00000042_00003",
+      "id": "JubilifeCityCondominiums1F_Text_YourPokemonIsQuiteAdorableTryMakingItHoldThis",
       "en_US": [
         "Oh, your Pokémon is quite adorable!\r",
         "Here, try making it hold this\n",
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000042_00004",
+      "id": "JubilifeCityCondominiums1F_Text_APokemonHoldingThatQuickClawCanSometimesAttackFirst",
       "en_US": [
         "A Pokémon holding that Quick Claw can\n",
         "sometimes attack first, even if it is\f",

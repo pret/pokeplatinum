@@ -20,7 +20,7 @@
                 "MOVE_PSYCHIC",
                 "MOVE_SWIFT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_FAINT_ATTACK",
                 "MOVE_SCREECH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

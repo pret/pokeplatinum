@@ -20,7 +20,7 @@
                 "MOVE_LEECH_SEED",
                 "MOVE_TOXIC"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_CALM_MIND",
                 "MOVE_DOUBLE_TEAM"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_ROLLOUT",
                 "MOVE_DEFENSE_CURL"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

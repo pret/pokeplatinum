@@ -35,7 +35,7 @@
     ],
     "object_events": [
         {
-            "id": "POKETCH_CO_3F_NINJA_BOY_0",
+            "id": "LOCALID_NINJA_BOY",
             "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -50,7 +50,7 @@
             "y": 0
         },
         {
-            "id": "POKETCH_CO_3F_POKEFAN_F_1",
+            "id": "LOCALID_POKEFAN_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -65,7 +65,7 @@
             "y": 0
         },
         {
-            "id": "POKETCH_CO_3F_EXPERT_F_2",
+            "id": "LOCALID_EXPERT_F",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",

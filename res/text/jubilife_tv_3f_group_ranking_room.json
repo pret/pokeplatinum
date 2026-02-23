@@ -2,7 +2,7 @@
   "key": 17411,
   "messages": [
     {
-      "id": "pl_msg_00000036_00000",
+      "id": "JubilifeTV3FGroupRankingRoom_Text_YouCanSeeTheRankingsOfPeopleInYourGroupHere",
       "en_US": [
         "You can see the rankings of people\n",
         "in your group here.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000036_00001",
+      "id": "JubilifeTV3FGroupRankingRoom_Text_TheseRankingsAreNifty",
       "en_US": [
         "These rankings are nifty!\r",
         "I’m going to make a group and\n",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000036_00002",
+      "id": "JubilifeTV3FGroupRankingRoom_Text_SorryImStillFineTuningThisThingyHere",
       "en_US": [
         "Sorry, I’m still fine-tuning this\n",
         "thingy here."

@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
 #include "generated/goods.h"
+#include "generated/sphere_types.h"
 #include "generated/traps.h"
 
 
@@ -191,13 +192,13 @@ _023D:
     SetVar VAR_UNK_0x40B6, 2
     ClearFlag FLAG_UNK_0x0111
     Message 10
-    SetVar VAR_0x8004, 1
+    SetVar VAR_0x8004, SPHERE_PRISM
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundSphere
-    SetVar VAR_0x8004, 3
+    SetVar VAR_0x8004, SPHERE_RED
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundSphere
-    SetVar VAR_0x8004, 4
+    SetVar VAR_0x8004, SPHERE_BLUE
     SetVar VAR_0x8005, 1
     Common_ObtainUndergroundSphere
     Message 11

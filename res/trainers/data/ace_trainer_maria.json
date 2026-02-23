@@ -20,7 +20,7 @@
                 "MOVE_DISABLE",
                 "MOVE_SCREECH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_FURY_ATTACK",
                 "MOVE_WILL_O_WISP"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_FLAIL",
                 "MOVE_ENDURE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

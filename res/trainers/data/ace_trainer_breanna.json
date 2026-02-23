@@ -19,7 +19,7 @@
                 "MOVE_EXTRASENSORY",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         },
         {
@@ -32,7 +32,7 @@
                 "MOVE_EXTRASENSORY",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         },
         {
@@ -45,7 +45,7 @@
                 "MOVE_EXTRASENSORY",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         }
     ],

@@ -20,7 +20,7 @@
                 "MOVE_METAL_CLAW",
                 "MOVE_AQUA_JET"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

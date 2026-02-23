@@ -14,7 +14,7 @@
 _0016:
     GoToIfEq VAR_UNK_0x40D9, 0, _0035
     SetFlag FLAG_UNK_0x01CB
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, BT_PARAM_PLAYER_GRAPHICS_ID, VAR_MAP_LOCAL_0
     SetVar VAR_OBJ_GFX_ID_0, VAR_MAP_LOCAL_0
 _0035:
     End
@@ -47,7 +47,7 @@ _0070:
 _007D:
     WaitTime 30, VAR_RESULT
     SetVar VAR_UNK_0x40D8, 1
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_WIFI, _00D9
     GoToIfEq VAR_0x8008, BATTLE_TOWER_MODE_5, _00D9
@@ -71,7 +71,7 @@ _00D9:
 _0101:
     LockAll
     SetVar VAR_UNK_0x40D9, 3
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, _007D
     Call _043C
     GoTo _0201
@@ -80,7 +80,7 @@ _0101:
 _012C:
     LockAll
     SetVar VAR_UNK_0x40D9, 3
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_CHECK_IS_NULL, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, _007D
     Call _043C
     Call _0448
@@ -88,30 +88,30 @@ _012C:
     End
 
 _015D:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0
+    CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, 0
     Call _045C
     PrintBattleTowerIntroMessage 0
     WaitABPress
     CloseMessage
     Call _047E
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_42, 0, 0
+    CallBattleTowerFunction BT_FUNC_UNK_42, 0, 0
     CheckWonBattle VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     Return
 
 _018C:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS, 0, 0
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS, 0, 0
     GoTo _007D
     End
 
 _019C:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0
     GoTo _007D
     End
 
 _01AC:
     SetVar VAR_UNK_0x40D8, 2
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_39, 0, 0
+    CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0
     FreeBattleTower
     Message 4
     ShowSavingIcon
@@ -122,7 +122,7 @@ _01AC:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_RESET_SYSTEM, 0, 0
+    CallBattleTowerFunction BT_FUNC_RESET_SYSTEM, 0, 0
     End
 
 _01E7:
@@ -130,8 +130,8 @@ _01E7:
     End
 
 _01EF:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_34, 0, VAR_RESULT
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_UNK_34, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS, 0, VAR_RESULT
     Return
 
 _0201:
@@ -146,7 +146,7 @@ _0201:
     End
 
 _0241:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_NEXT_OPPONENT_NUM, 0, VAR_0x8004
+    CallBattleTowerFunction BT_FUNC_GET_NEXT_OPPONENT_NUM, 0, VAR_0x8004
     BufferNumber 0, VAR_0x8004
     Message 1
     InitGlobalTextListMenu 31, 11, 0, VAR_RESULT, NO_EXIT_ON_B
@@ -185,9 +185,9 @@ _02D9:
     End
 
 _02F7:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_CHALLENGE_MODE, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, VAR_RESULT
     GoToIfNe VAR_RESULT, BATTLE_TOWER_MODE_SINGLE, _0241
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_36, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 20, _0336
     GoToIfEq VAR_RESULT, 48, _0336
     GoTo _0241
@@ -211,9 +211,9 @@ _0336:
 
 _0395:
     Call _04BA
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_SET_OPPONENT_TEAMS, 0, 0
+    CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, 0
     Call _04CE
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_36, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 48, _041E
     BufferPlayerName 0
     BufferRivalName 1
@@ -221,14 +221,14 @@ _0395:
 _03C7:
     CloseMessage
     Call _047E
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_42, 0, 0
+    CallBattleTowerFunction BT_FUNC_UNK_42, 0, 0
     CheckWonBattle VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_0x8004, FALSE, _018C
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_36, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, VAR_RESULT
     GoToIfEq VAR_RESULT, 48, _0429
     Message 17
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_44, 1, 0
+    CallBattleTowerFunction BT_FUNC_SET_BEAT_PALMER, 1, 0
 _040E:
     CloseMessage
     Call _01EF
@@ -242,7 +242,7 @@ _041E:
 
 _0429:
     Message 18
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_UNK_44, 2, 0
+    CallBattleTowerFunction BT_FUNC_SET_BEAT_PALMER, 2, 0
     GoTo _040E
     End
 
@@ -258,7 +258,7 @@ _0448:
     Return
 
 _045C:
-    CallBattleTowerFunction BATTLE_TOWER_FUNCTION_GET_OPPONENT_OBJECT_ID, 0, VAR_RESULT
+    CallBattleTowerFunction BT_FUNC_GET_OPPONENT_OBJECT_ID, 0, VAR_RESULT
     SetVar VAR_OBJ_GFX_ID_1, VAR_RESULT
     ClearFlag FLAG_UNK_0x01CB
     AddObject 1

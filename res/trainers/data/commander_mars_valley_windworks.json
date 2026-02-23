@@ -19,7 +19,7 @@
                 "MOVE_LEECH_LIFE",
                 "MOVE_TOXIC"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -32,7 +32,7 @@
                 "MOVE_SCRATCH",
                 "MOVE_FAKE_OUT"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

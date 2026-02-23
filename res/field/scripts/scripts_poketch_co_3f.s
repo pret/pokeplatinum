@@ -1,424 +1,425 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/poketch_co_3f.h"
+#include "res/text/bank/menu_entries.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _0031
-    ScriptEntry _0044
-    ScriptEntry _0057
-    ScriptEntry _01D8
-    ScriptEntry _0390
-    ScriptEntry _0511
+    ScriptEntry PoketchCo3F_NinjaBoy
+    ScriptEntry PoketchCo3F_PokefanF
+    ScriptEntry PoketchCo3F_ExpertF
+    ScriptEntry PoketchCo3F_PCSouthWest
+    ScriptEntry PoketchCo3F_PCSouthMiddle
+    ScriptEntry PoketchCo3F_PCSouthEast
+    ScriptEntry PoketchCo3F_PCNorthWest
     ScriptEntryEnd
 
-_001E:
+PoketchCo3F_NinjaBoy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message PoketchCo3F_Text_TheresAGirlsModelAndABoysModel
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0031:
+PoketchCo3F_PokefanF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message PoketchCo3F_Text_MyHusbandsThePresident
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0044:
+PoketchCo3F_ExpertF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message PoketchCo3F_Text_PeopleEverywhereMakePoketchApps
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0057:
+PoketchCo3F_PCSouthWest:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 3
-_0062:
-    Message 4
+    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps1
+PoketchCo3F_PCSouthWestAddMenuEntries:
+    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout1
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _00A2
-    Call _00FE
-    Call _0122
-    Call _0146
-    Call _016A
-    Call _018E
-    Call _01B2
-_00A2:
-    AddMenuEntry 0x102, 0
+    CheckPoketchEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCSouthWestShowMenu
+    Call PoketchCo3F_CheckAddMenuEntryDigitalWatch
+    Call PoketchCo3F_CheckAddMenuEntryAnalogWatch
+    Call PoketchCo3F_CheckAddMenuEntryStopwatch
+    Call PoketchCo3F_CheckAddMenuEntryKitchenTimer
+    Call PoketchCo3F_CheckAddMenuEntryAlarmClock
+    Call PoketchCo3F_CheckAddMenuEntryCalendar
+PoketchCo3F_PCSouthWestShowMenu:
+    AddMenuEntry MenuEntries_Text_PoketchDescriptionsExit, 0
     ShowMenu
-    GoToIfEq VAR_0x8004, 1, _0119
-    GoToIfEq VAR_0x8004, 2, _013D
-    GoToIfEq VAR_0x8004, 3, _0161
-    GoToIfEq VAR_0x8004, 4, _0185
-    GoToIfEq VAR_0x8004, 5, _01A9
-    GoToIfEq VAR_0x8004, 6, _01CD
+    GoToIfEq VAR_0x8004, 1, PoketchCo3F_DescriptionDigitalWatch
+    GoToIfEq VAR_0x8004, 2, PoketchCo3F_DescriptionAnalogWatch
+    GoToIfEq VAR_0x8004, 3, PoketchCo3F_DescriptionStopwatch
+    GoToIfEq VAR_0x8004, 4, PoketchCo3F_DescriptionKitchenTimer
+    GoToIfEq VAR_0x8004, 5, PoketchCo3F_DescriptionAlarmClock
+    GoToIfEq VAR_0x8004, 6, PoketchCo3F_DescriptionCalendar
     CloseMessage
     ReleaseAll
     End
 
-_00FE:
+PoketchCo3F_CheckAddMenuEntryDigitalWatch:
     CheckPoketchAppRegistered POKETCH_APPID_DIGITALWATCH, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01D6
-    AddMenuEntry 233, 1
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthWestReturn
+    AddMenuEntry MenuEntries_Text_DigitalWatch, 1
     Return
 
-_0119:
-    Message 11
-    GoTo _0062
+PoketchCo3F_DescriptionDigitalWatch:
+    Message PoketchCo3F_Text_DescriptionDigitalWatch
+    GoTo PoketchCo3F_PCSouthWestAddMenuEntries
 
-_0122:
+PoketchCo3F_CheckAddMenuEntryAnalogWatch:
     CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01D6
-    AddMenuEntry 237, 2
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthWestReturn
+    AddMenuEntry MenuEntries_Text_AnalogWatch, 2
     Return
 
-_013D:
-    Message 12
-    GoTo _0062
+PoketchCo3F_DescriptionAnalogWatch:
+    Message PoketchCo3F_Text_DescriptionAnalogWatch
+    GoTo PoketchCo3F_PCSouthWestAddMenuEntries
 
-_0146:
+PoketchCo3F_CheckAddMenuEntryStopwatch:
     CheckPoketchAppRegistered POKETCH_APPID_STOPWATCH, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01D6
-    AddMenuEntry 234, 3
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthWestReturn
+    AddMenuEntry MenuEntries_Text_Stopwatch, 3
     Return
 
-_0161:
-    Message 14
-    GoTo _0062
+PoketchCo3F_DescriptionStopwatch:
+    Message PoketchCo3F_Text_DescriptionStopwatch
+    GoTo PoketchCo3F_PCSouthWestAddMenuEntries
 
-_016A:
+PoketchCo3F_CheckAddMenuEntryKitchenTimer:
     CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01D6
-    AddMenuEntry 250, 4
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthWestReturn
+    AddMenuEntry MenuEntries_Text_KitchenTimer, 4
     Return
 
-_0185:
-    Message 15
-    GoTo _0062
+PoketchCo3F_DescriptionKitchenTimer:
+    Message PoketchCo3F_Text_DescriptionKitchenTimer
+    GoTo PoketchCo3F_PCSouthWestAddMenuEntries
 
-_018E:
+PoketchCo3F_CheckAddMenuEntryAlarmClock:
     CheckPoketchAppRegistered POKETCH_APPID_ALARMCLOCK, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01D6
-    AddMenuEntry 249, 5
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthWestReturn
+    AddMenuEntry MenuEntries_Text_AlarmClock, 5
     Return
 
-_01A9:
-    Message 13
-    GoTo _0062
+PoketchCo3F_DescriptionAlarmClock:
+    Message PoketchCo3F_Text_DescriptionAlarmClock
+    GoTo PoketchCo3F_PCSouthWestAddMenuEntries
 
-_01B2:
+PoketchCo3F_CheckAddMenuEntryCalendar:
     CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _01D6
-    AddMenuEntry 254, 6
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthWestReturn
+    AddMenuEntry MenuEntries_Text_Calendar, 6
     Return
 
-_01CD:
-    Message 16
-    GoTo _0062
+PoketchCo3F_DescriptionCalendar:
+    Message PoketchCo3F_Text_DescriptionCalendar
+    GoTo PoketchCo3F_PCSouthWestAddMenuEntries
 
-_01D6:
+PoketchCo3F_PCSouthWestReturn:
     Return
 
-_01D8:
+PoketchCo3F_PCSouthMiddle:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 5
-_01E3:
-    Message 6
+    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps2
+PoketchCo3F_PCSouthMiddleAddMenuEntries:
+    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout2
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0229
-    Call _0292
-    Call _02B6
-    Call _02DA
-    Call _02FE
-    Call _0322
-    Call _0346
-    Call _036A
-_0229:
-    AddMenuEntry 0x102, 0
+    CheckPoketchEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCSouthMiddleShowMenu
+    Call PoketchCo3F_CheckAddMenuEntryCalculator
+    Call PoketchCo3F_CheckAddMenuEntryMemoPad
+    Call PoketchCo3F_CheckAddMenuEntryFriendshipChecker
+    Call PoketchCo3F_CheckAddMenuEntryDaycareChecker
+    Call PoketchCo3F_CheckAddMenuEntryMatchupChecker
+    Call PoketchCo3F_CheckAddMenuEntryPokemonHistory
+    Call PoketchCo3F_CheckAddMenuEntryBerrySearcher
+PoketchCo3F_PCSouthMiddleShowMenu:
+    AddMenuEntry MenuEntries_Text_PoketchDescriptionsExit, 0
     ShowMenu
-    GoToIfEq VAR_0x8004, 1, _02AD
-    GoToIfEq VAR_0x8004, 2, _02D1
-    GoToIfEq VAR_0x8004, 3, _02F5
-    GoToIfEq VAR_0x8004, 4, _0319
-    GoToIfEq VAR_0x8004, 5, _033D
-    GoToIfEq VAR_0x8004, 6, _0361
-    GoToIfEq VAR_0x8004, 7, _0385
+    GoToIfEq VAR_0x8004, 1, PoketchCo3F_DescriptionCalculator
+    GoToIfEq VAR_0x8004, 2, PoketchCo3F_DescriptionMemoPad
+    GoToIfEq VAR_0x8004, 3, PoketchCo3F_DescriptionFriendshipChecker
+    GoToIfEq VAR_0x8004, 4, PoketchCo3F_DescriptionDayCareChecker
+    GoToIfEq VAR_0x8004, 5, PoketchCo3F_DescriptionMatchupChecker
+    GoToIfEq VAR_0x8004, 6, PoketchCo3F_DescriptionPokemonHistory
+    GoToIfEq VAR_0x8004, 7, PoketchCo3F_DescriptionBerrySearcher
     CloseMessage
     ReleaseAll
     End
 
-_0292:
+PoketchCo3F_CheckAddMenuEntryCalculator:
     CheckPoketchAppRegistered POKETCH_APPID_CALCULATOR, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _038E
-    AddMenuEntry 235, 1
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthMiddleReturn
+    AddMenuEntry MenuEntries_Text_Calculator, 1
     Return
 
-_02AD:
-    Message 17
-    GoTo _01E3
+PoketchCo3F_DescriptionCalculator:
+    Message PoketchCo3F_Text_DescriptionCalculator
+    GoTo PoketchCo3F_PCSouthMiddleAddMenuEntries
 
-_02B6:
+PoketchCo3F_CheckAddMenuEntryMemoPad:
     CheckPoketchAppRegistered POKETCH_APPID_MEMOPAD, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _038E
-    AddMenuEntry 236, 2
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthMiddleReturn
+    AddMenuEntry MenuEntries_Text_MemoPad, 2
     Return
 
-_02D1:
-    Message 24
-    GoTo _01E3
+PoketchCo3F_DescriptionMemoPad:
+    Message PoketchCo3F_Text_DescriptionMemoPad
+    GoTo PoketchCo3F_PCSouthMiddleAddMenuEntries
 
-_02DA:
+PoketchCo3F_CheckAddMenuEntryFriendshipChecker:
     CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _038E
-    AddMenuEntry 240, 3
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthMiddleReturn
+    AddMenuEntry MenuEntries_Text_FriendshipChecker, 3
     Return
 
-_02F5:
-    Message 19
-    GoTo _01E3
+PoketchCo3F_DescriptionFriendshipChecker:
+    Message PoketchCo3F_Text_DescriptionFriendshipChecker
+    GoTo PoketchCo3F_PCSouthMiddleAddMenuEntries
 
-_02FE:
+PoketchCo3F_CheckAddMenuEntryDaycareChecker:
     CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _038E
-    AddMenuEntry 244, 4
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthMiddleReturn
+    AddMenuEntry MenuEntries_Text_DayCareChecker, 4
     Return
 
-_0319:
-    Message 20
-    GoTo _01E3
+PoketchCo3F_DescriptionDayCareChecker:
+    Message PoketchCo3F_Text_DescriptionDayCareChecker
+    GoTo PoketchCo3F_PCSouthMiddleAddMenuEntries
 
-_0322:
+PoketchCo3F_CheckAddMenuEntryMatchupChecker:
     CheckPoketchAppRegistered POKETCH_APPID_MATCHUPCHECKER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _038E
-    AddMenuEntry 248, 5
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthMiddleReturn
+    AddMenuEntry MenuEntries_Text_MatchupChecker, 5
     Return
 
-_033D:
-    Message 21
-    GoTo _01E3
+PoketchCo3F_DescriptionMatchupChecker:
+    Message PoketchCo3F_Text_DescriptionMatchupChecker
+    GoTo PoketchCo3F_PCSouthMiddleAddMenuEntries
 
-_0346:
+PoketchCo3F_CheckAddMenuEntryPokemonHistory:
     CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _038E
-    AddMenuEntry 0x101, 6
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthMiddleReturn
+    AddMenuEntry MenuEntries_Text_PokemonHistory, 6
     Return
 
-_0361:
-    Message 22
-    GoTo _01E3
+PoketchCo3F_DescriptionPokemonHistory:
+    Message PoketchCo3F_Text_DescriptionPokemonHistory
+    GoTo PoketchCo3F_PCSouthMiddleAddMenuEntries
 
-_036A:
+PoketchCo3F_CheckAddMenuEntryBerrySearcher:
     CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _038E
-    AddMenuEntry 252, 7
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthMiddleReturn
+    AddMenuEntry MenuEntries_Text_BerrySearcher, 7
     Return
 
-_0385:
-    Message 23
-    GoTo _01E3
+PoketchCo3F_DescriptionBerrySearcher:
+    Message PoketchCo3F_Text_DescriptionBerrySearcher
+    GoTo PoketchCo3F_PCSouthMiddleAddMenuEntries
 
-_038E:
+PoketchCo3F_PCSouthMiddleReturn:
     Return
 
-_0390:
+PoketchCo3F_PCSouthEast:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 7
-_039B:
-    Message 8
+    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps3
+PoketchCo3F_PCSouthEastAddMenuEntries:
+    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout3
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _03DB
-    Call _0437
-    Call _045B
-    Call _047F
-    Call _04A3
-    Call _04C7
-    Call _04EB
-_03DB:
-    AddMenuEntry 0x102, 0
+    CheckPoketchEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCSouthEastShowMenu
+    Call PoketchCo3F_CheckAddMenuEntryPokemonList
+    Call PoketchCo3F_CheckAddMenuEntryDotArtist
+    Call PoketchCo3F_CheckAddMenuEntryCoinToss
+    Call PoketchCo3F_CheckAddMenuEntryRoulette
+    Call PoketchCo3F_CheckAddMenuEntryColorChanger
+    Call PoketchCo3F_CheckAddMenuEntryMarkingMap
+PoketchCo3F_PCSouthEastShowMenu:
+    AddMenuEntry MenuEntries_Text_PoketchDescriptionsExit, 0
     ShowMenu
-    GoToIfEq VAR_0x8004, 1, _0452
-    GoToIfEq VAR_0x8004, 2, _0476
-    GoToIfEq VAR_0x8004, 3, _049A
-    GoToIfEq VAR_0x8004, 4, _04BE
-    GoToIfEq VAR_0x8004, 5, _04E2
-    GoToIfEq VAR_0x8004, 6, _0506
+    GoToIfEq VAR_0x8004, 1, PoketchCo3F_DescriptionPokemonList
+    GoToIfEq VAR_0x8004, 2, PoketchCo3F_DescriptionDotArtist
+    GoToIfEq VAR_0x8004, 3, PoketchCo3F_DescriptionCoinToss
+    GoToIfEq VAR_0x8004, 4, PoketchCo3F_DescriptionRoulette
+    GoToIfEq VAR_0x8004, 5, PoketchCo3F_DescriptionColorChanger
+    GoToIfEq VAR_0x8004, 6, PoketchCo3F_DescriptionMarkingMap
     CloseMessage
     ReleaseAll
     End
 
-_0437:
+PoketchCo3F_CheckAddMenuEntryPokemonList:
     CheckPoketchAppRegistered POKETCH_APPID_PARTYSTATUS, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _050F
-    AddMenuEntry 239, 1
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthEastReturn
+    AddMenuEntry MenuEntries_Text_PokemonList, 1
     Return
 
-_0452:
-    Message 18
-    GoTo _039B
+PoketchCo3F_DescriptionPokemonList:
+    Message PoketchCo3F_Text_DescriptionPokemonList
+    GoTo PoketchCo3F_PCSouthEastAddMenuEntries
 
-_045B:
+PoketchCo3F_CheckAddMenuEntryDotArtist:
     CheckPoketchAppRegistered POKETCH_APPID_DOTART, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _050F
-    AddMenuEntry 238, 2
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthEastReturn
+    AddMenuEntry MenuEntries_Text_DotArtist, 2
     Return
 
-_0476:
-    Message 25
-    GoTo _039B
+PoketchCo3F_DescriptionDotArtist:
+    Message PoketchCo3F_Text_DescriptionDotArtist
+    GoTo PoketchCo3F_PCSouthEastAddMenuEntries
 
-_047F:
+PoketchCo3F_CheckAddMenuEntryCoinToss:
     CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _050F
-    AddMenuEntry 246, 3
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthEastReturn
+    AddMenuEntry MenuEntries_Text_CoinToss, 3
     Return
 
-_049A:
-    Message 29
-    GoTo _039B
+PoketchCo3F_DescriptionCoinToss:
+    Message PoketchCo3F_Text_DescriptionCoinToss
+    GoTo PoketchCo3F_PCSouthEastAddMenuEntries
 
-_04A3:
+PoketchCo3F_CheckAddMenuEntryRoulette:
     CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _050F
-    AddMenuEntry 245, 4
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthEastReturn
+    AddMenuEntry MenuEntries_Text_Roulette, 4
     Return
 
-_04BE:
-    Message 28
-    GoTo _039B
+PoketchCo3F_DescriptionRoulette:
+    Message PoketchCo3F_Text_DescriptionRoulette
+    GoTo PoketchCo3F_PCSouthEastAddMenuEntries
 
-_04C7:
+PoketchCo3F_CheckAddMenuEntryColorChanger:
     CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _050F
-    AddMenuEntry 253, 5
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthEastReturn
+    AddMenuEntry MenuEntries_Text_ColorChanger, 5
     Return
 
-_04E2:
-    Message 26
-    GoTo _039B
+PoketchCo3F_DescriptionColorChanger:
+    Message PoketchCo3F_Text_DescriptionColorChanger
+    GoTo PoketchCo3F_PCSouthEastAddMenuEntries
 
-_04EB:
+PoketchCo3F_CheckAddMenuEntryMarkingMap:
     CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _050F
-    AddMenuEntry 251, 6
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCSouthEastReturn
+    AddMenuEntry MenuEntries_Text_MarkingMap, 6
     Return
 
-_0506:
-    Message 27
-    GoTo _039B
+PoketchCo3F_DescriptionMarkingMap:
+    Message PoketchCo3F_Text_DescriptionMarkingMap
+    GoTo PoketchCo3F_PCSouthEastAddMenuEntries
 
-_050F:
+PoketchCo3F_PCSouthEastReturn:
     Return
 
-_0511:
+PoketchCo3F_PCNorthWest:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 9
-_051C:
-    Message 10
+    Message PoketchCo3F_Text_ThereAreDescriptionsOfPoketchApps4
+PoketchCo3F_PCNorthWestAddMenuEntries:
+    Message PoketchCo3F_Text_WhichPoketchAppWouldYouLikeToReadAbout4
     InitGlobalTextMenu 1, 1, 0, VAR_0x8004
-    ScrCmd_132 VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _055C
-    Call _05B8
-    Call _05DC
-    Call _0600
-    Call _0624
-    Call _0648
-    Call _066C
-_055C:
-    AddMenuEntry 0x102, 0
+    CheckPoketchEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, PoketchCo3F_PCNorthWestShowMenu
+    Call PoketchCo3F_CheckAddMenuEntryPedometer
+    Call PoketchCo3F_CheckAddMenuEntryCounter
+    Call PoketchCo3F_CheckAddMenuEntryTrainerCounter
+    Call PoketchCo3F_CheckAddMenuEntryLinkSearcher
+    Call PoketchCo3F_CheckAddMenuEntryMoveTester
+    Call PoketchCo3F_CheckAddMenuEntryDowsingMachine
+PoketchCo3F_PCNorthWestShowMenu:
+    AddMenuEntry MenuEntries_Text_PoketchDescriptionsExit, 0
     ShowMenu
-    GoToIfEq VAR_0x8004, 1, _05D3
-    GoToIfEq VAR_0x8004, 2, _05F7
-    GoToIfEq VAR_0x8004, 3, _061B
-    GoToIfEq VAR_0x8004, 4, _063F
-    GoToIfEq VAR_0x8004, 5, _0663
-    GoToIfEq VAR_0x8004, 6, _0687
+    GoToIfEq VAR_0x8004, 1, PoketchCo3F_DescriptionPedometer
+    GoToIfEq VAR_0x8004, 2, PoketchCo3F_DescriptionCounter
+    GoToIfEq VAR_0x8004, 3, PoketchCo3F_DescriptionTrainerCounter
+    GoToIfEq VAR_0x8004, 4, PoketchCo3F_DescriptionLinkSearcher
+    GoToIfEq VAR_0x8004, 5, PoketchCo3F_DescriptionMoveTester
+    GoToIfEq VAR_0x8004, 6, PoketchCo3F_DescriptionDowsingMachine
     CloseMessage
     ReleaseAll
     End
 
-_05B8:
+PoketchCo3F_CheckAddMenuEntryPedometer:
     CheckPoketchAppRegistered POKETCH_APPID_PEDOMETER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0690
-    AddMenuEntry 243, 1
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCNorthWestReturn
+    AddMenuEntry MenuEntries_Text_Pedometer, 1
     Return
 
-_05D3:
-    Message 30
-    GoTo _051C
+PoketchCo3F_DescriptionPedometer:
+    Message PoketchCo3F_Text_DescriptionPedometer
+    GoTo PoketchCo3F_PCNorthWestAddMenuEntries
 
-_05DC:
+PoketchCo3F_CheckAddMenuEntryCounter:
     CheckPoketchAppRegistered POKETCH_APPID_COUNTER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0690
-    AddMenuEntry 242, 2
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCNorthWestReturn
+    AddMenuEntry MenuEntries_Text_Counter, 2
     Return
 
-_05F7:
-    Message 32
-    GoTo _051C
+PoketchCo3F_DescriptionCounter:
+    Message PoketchCo3F_Text_DescriptionCounter
+    GoTo PoketchCo3F_PCNorthWestAddMenuEntries
 
-_0600:
+PoketchCo3F_CheckAddMenuEntryTrainerCounter:
     CheckPoketchAppRegistered POKETCH_APPID_TRAINERCOUNTER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0690
-    AddMenuEntry 0x100, 3
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCNorthWestReturn
+    AddMenuEntry MenuEntries_Text_TrainerCounter, 3
     Return
 
-_061B:
-    Message 33
-    GoTo _051C
+PoketchCo3F_DescriptionTrainerCounter:
+    Message PoketchCo3F_Text_DescriptionTrainerCounter
+    GoTo PoketchCo3F_PCNorthWestAddMenuEntries
 
-_0624:
+PoketchCo3F_CheckAddMenuEntryLinkSearcher:
     CheckPoketchAppRegistered POKETCH_APPID_LINKSEARCHER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0690
-    AddMenuEntry 0xFF, 4
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCNorthWestReturn
+    AddMenuEntry MenuEntries_Text_LinkSearcher, 4
     Return
 
-_063F:
-    Message 34
-    GoTo _051C
+PoketchCo3F_DescriptionLinkSearcher:
+    Message PoketchCo3F_Text_DescriptionLinkSearcher
+    GoTo PoketchCo3F_PCNorthWestAddMenuEntries
 
-_0648:
+PoketchCo3F_CheckAddMenuEntryMoveTester:
     CheckPoketchAppRegistered POKETCH_APPID_MOVETESTER, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0690
-    AddMenuEntry 247, 5
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCNorthWestReturn
+    AddMenuEntry MenuEntries_Text_MoveTester, 5
     Return
 
-_0663:
-    Message 35
-    GoTo _051C
+PoketchCo3F_DescriptionMoveTester:
+    Message PoketchCo3F_Text_DescriptionMoveTester
+    GoTo PoketchCo3F_PCNorthWestAddMenuEntries
 
-_066C:
+PoketchCo3F_CheckAddMenuEntryDowsingMachine:
     CheckPoketchAppRegistered POKETCH_APPID_DOWSINGMACHINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _0690
-    AddMenuEntry 241, 6
+    GoToIfEq VAR_RESULT, FALSE, PoketchCo3F_PCNorthWestReturn
+    AddMenuEntry MenuEntries_Text_DowsingMachine, 6
     Return
 
-_0687:
-    Message 31
-    GoTo _051C
+PoketchCo3F_DescriptionDowsingMachine:
+    Message PoketchCo3F_Text_DescriptionDowsingMachine
+    GoTo PoketchCo3F_PCNorthWestAddMenuEntries
 
-_0690:
+PoketchCo3F_PCNorthWestReturn:
     Return
 
     .balign 4, 0

@@ -1,5 +1,5 @@
 dd9f06b78e2a187fb62f2d3ad5d781a8a74d3d1b *res/prebuilt/data/UTF16.dat
-cea2ad20f4550dcf648aeb6f2bc118dcec7570d9 *res/prebuilt/data/arealight.narc
+cea2ad20f4550dcf648aeb6f2bc118dcec7570d9 *res/field/lighting/lighting.narc
 a0c8ba8987d30f0c9930dfe109b7ee8c325582b9 *res/prebuilt/data/battle_win.NSCR
 09f94a65e5581ef1cf30066be8786c185aa9b2b2 *res/prebuilt/data/btower_canm.resdat
 89951491d6b76b65098917872397e0b11c7bb9de *res/prebuilt/data/btower_celact.cldat
@@ -259,12 +259,12 @@ e484a4ea105e16977b9f39b965aaad014a4ec923 *res/field/events/zone_event.narc
 bda5c8e66cfa121c2d518d4388bd6f742746cda0 *res/prebuilt/fielddata/encountdata/d_enc_data.narc
 4bcbf53d522ed962160b85af588816f7257fb1c3 *res/prebuilt/fielddata/encountdata/p_enc_data.narc
 d9bf534c175c3c991e77fff985c099723499e1eb *res/field/encounters/pl_enc_data.narc
-7eca91aaa5f7ef816f51a884e2f42a26f51f8bbd *res/prebuilt/fielddata/build_model/build_model.narc
+7eca91aaa5f7ef816f51a884e2f42a26f51f8bbd *res/field/props/models/prop_models.narc
 f49c6992b8caf5fea13831789fe4bfb026beb967 *res/prebuilt/fielddata/build_model/build_model_matshp.dat
-992f33f6450613066830606d28e94b91031caddb *res/field/maps/matrices/map_matrix.narc
-2df833d8f0145f29f21b23c06ba3561dec3f5180 *res/prebuilt/fielddata/areadata/area_data.narc
-a2cd6f636960544440b489e827e5e16dcaa7f014 *res/prebuilt/fielddata/areadata/area_build_model/area_build.narc
-8174da67845c24f377f56e84a0f5f0e890e765ec *res/prebuilt/fielddata/areadata/area_build_model/areabm_texset.narc
+992f33f6450613066830606d28e94b91031caddb *res/field/matrices/map_matrix.narc
+2df833d8f0145f29f21b23c06ba3561dec3f5180 *res/field/area_data/area_data.narc
+a2cd6f636960544440b489e827e5e16dcaa7f014 *res/field/props/model_sets/prop_model_sets.narc
+8174da67845c24f377f56e84a0f5f0e890e765ec *res/field/props/texture_sets/prop_texture_sets.narc
 74aded294b971d68f10554f86fd795b072a0b01f *res/field/maps/texture_sets/map_tex_set.narc
 2fb9b73d29f2577fdbd385daf961749794969d72 *res/prebuilt/fielddata/areadata/area_move_model/move_model_list.narc
 fa044bf2e0599ed2bf42d3b632776af3b7e8452e *res/field/maps/data/land_data.narc
@@ -283,7 +283,7 @@ dc6caed3c4b1a0b04bebfcf6627a668e37ae6f2c *res/pokemon_anims/pokemon_anims.narc
 e8c96b0f5b6d59820e7201f7881183e3aff1b35f *res/prebuilt/battle/tr_ai/tr_ai_seq.narc
 b54b704c20f35cb66eb2790086dc47cd9ac612f7 *res/prebuilt/arc/area_win_gra.narc
 7d5eac7006f041f4da9f9baf04ee61cc187f4580 *res/prebuilt/arc/balance_ball_gra.narc
-99295a6e74067238dbbc23105cad1679687c6d86 *res/prebuilt/arc/bm_anime.narc
+99295a6e74067238dbbc23105cad1679687c6d86 *res/field/props/animations/prop_animations.narc
 afd2be309c09733b33ec9b73b793518b41153828 *res/prebuilt/arc/bm_anime_list.narc
 6a403c707b8737e4f19644ffe51606838fe43456 *res/prebuilt/arc/codein_gra.narc
 f1ef036922af5a593650d6a52f56fb3ec59d3d83 *res/prebuilt/arc/demo_tengan_gra.narc

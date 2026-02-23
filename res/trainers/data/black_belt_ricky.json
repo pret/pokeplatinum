@@ -19,7 +19,7 @@
                 "MOVE_TORMENT",
                 "MOVE_SCREECH"
             ],
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 0
         }
     ],

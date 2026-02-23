@@ -2,36 +2,36 @@
 #include "res/text/bank/jubilife_tv_4f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry JubilifeTV4F_MiddleAgedMan
+    ScriptEntry JubilifeTV4F_Receptionist
+    ScriptEntry JubilifeTV4F_PokemonBreederF
     ScriptEntryEnd
 
-_000E:
+JubilifeTV4F_MiddleAgedMan:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeTV4F_Text_YourExploitsAreFantastic
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0021:
+JubilifeTV4F_Receptionist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message JubilifeTV4F_Text_ParticipationForAllIsOurTVNetworksMotto
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0034:
+JubilifeTV4F_PokemonBreederF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message JubilifeTV4F_Text_WerePromotingTheThemeSmilesAreDreamy
     WaitABXPadPress
     CloseMessage
     ReleaseAll

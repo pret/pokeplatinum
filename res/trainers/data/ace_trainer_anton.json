@@ -18,7 +18,7 @@
                 "MOVE_ICE_BEAM",
                 "MOVE_CRUNCH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

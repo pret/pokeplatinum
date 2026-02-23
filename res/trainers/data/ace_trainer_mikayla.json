@@ -20,7 +20,7 @@
                 "MOVE_WRING_OUT",
                 "MOVE_GLARE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_FAINT_ATTACK",
                 "MOVE_FAKE_OUT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_SLASH",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

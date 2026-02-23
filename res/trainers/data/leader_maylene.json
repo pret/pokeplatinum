@@ -20,7 +20,7 @@
                 "MOVE_ROCK_TOMB",
                 "MOVE_FAKE_OUT"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_STRENGTH",
                 "MOVE_FOCUS_ENERGY"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_METAL_CLAW",
                 "MOVE_BONE_RUSH"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

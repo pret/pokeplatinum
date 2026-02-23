@@ -19,7 +19,7 @@
                 "MOVE_SWIFT",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -31,7 +31,7 @@
                 "MOVE_SPARK",
                 "MOVE_BITE"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

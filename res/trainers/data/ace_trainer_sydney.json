@@ -20,7 +20,7 @@
                 "MOVE_LIGHT_SCREEN",
                 "MOVE_GRAVITY"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_LEECH_SEED",
                 "MOVE_SYNTHESIS"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

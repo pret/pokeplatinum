@@ -20,7 +20,7 @@
                 "MOVE_ENDEAVOR",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_CRUNCH",
                 "MOVE_THUNDER_WAVE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

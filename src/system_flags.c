@@ -369,9 +369,9 @@ BOOL SystemFlag_CheckContestHallVisited(VarsFlags *varsFlags)
     return CheckFlag(varsFlags, FLAG_CONTEST_HALL_VISITED);
 }
 
-BOOL SystemFlag_CheckUndergroundFirstEntered(VarsFlags *varsFlags)
+BOOL SystemFlag_CheckHasSeenUndergroundRoarkIntro(VarsFlags *varsFlags)
 {
-    return CheckFlag(varsFlags, FLAG_UNDERGROUND_FIRST_ENTERED);
+    return CheckFlag(varsFlags, FLAG_HAS_SEEN_UNDERGROUND_ROARK_INTRO);
 }
 
 BOOL SystemFlag_CheckFreedGalacticHQPokemon(VarsFlags *varsFlags)

@@ -19,7 +19,7 @@
                 "MOVE_SKY_UPPERCUT",
                 "MOVE_SPORE"
             ],
-            "power": 30,
+            "iv_scale": 30,
             "ball_seal": 0
         },
         {
@@ -33,7 +33,7 @@
                 "MOVE_FOCUS_BLAST",
                 "MOVE_DARK_PULSE"
             ],
-            "power": 30,
+            "iv_scale": 30,
             "ball_seal": 0
         }
     ],

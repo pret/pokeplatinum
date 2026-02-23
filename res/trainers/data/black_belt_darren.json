@@ -17,7 +17,7 @@
                 "MOVE_KARATE_CHOP",
                 "MOVE_FORESIGHT"
             ],
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 0
         },
         {
@@ -29,7 +29,7 @@
                 "MOVE_CONFUSION",
                 "MOVE_FORCE_PALM"
             ],
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 0
         },
         {
@@ -41,7 +41,7 @@
                 "MOVE_KARATE_CHOP",
                 "MOVE_FORESIGHT"
             ],
-            "power": 40,
+            "iv_scale": 40,
             "ball_seal": 0
         }
     ],

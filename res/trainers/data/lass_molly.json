@@ -17,7 +17,7 @@
                 "MOVE_PSYBEAM",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

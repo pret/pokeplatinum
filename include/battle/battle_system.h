@@ -7,6 +7,7 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
 
@@ -14,7 +15,6 @@
 #include "battle/battle_message.h"
 #include "battle/party_gauge.h"
 #include "battle/pokemon_sprite_data.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02268520.h"
 #include "battle/struct_ov16_02268A14_decl.h"
 #include "battle/struct_ov16_0226D160_decl.h"
@@ -140,7 +140,7 @@ u32 BattleSystem_GetTrainerGender(BattleSystem *battleSys, int battler);
  * @param type      The type of battler.
  * @return ID of the battler of the given type.
  */
-int BattleSystem_GetBattlerOfType(BattleSystem *battleSys, int type);
+int BattleSystem_GetBattlerOfType(BattleSystem *battleSys, int battlerType);
 u8 BattleSystem_GetBattlerType(BattleSystem *battleSys, int battler);
 u8 BattleSystem_GetBattlerSide(BattleSystem *battleSys, int battler);
 UnkStruct_020157E4 *ov16_0223E220(BattleSystem *battleSys);

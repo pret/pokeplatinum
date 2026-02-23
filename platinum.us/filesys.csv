@@ -1,6 +1,6 @@
 Source File,Target File
 res/prebuilt/data/UTF16.dat,/data/UTF16.dat
-res/prebuilt/data/arealight.narc,/data/arealight.narc
+res/field/lighting/lighting.narc,/data/arealight.narc
 res/prebuilt/data/battle_win.NSCR,/data/battle_win.NSCR
 res/prebuilt/data/btower_canm.resdat,/data/btower_canm.resdat
 res/prebuilt/data/btower_celact.cldat,/data/btower_celact.cldat
@@ -260,12 +260,12 @@ res/field/events/zone_event.narc,/fielddata/eventdata/zone_event.narc
 res/prebuilt/fielddata/encountdata/d_enc_data.narc,/fielddata/encountdata/d_enc_data.narc
 res/prebuilt/fielddata/encountdata/p_enc_data.narc,/fielddata/encountdata/p_enc_data.narc
 res/field/encounters/pl_enc_data.narc,/fielddata/encountdata/pl_enc_data.narc
-res/prebuilt/fielddata/build_model/build_model.narc,/fielddata/build_model/build_model.narc
+res/field/props/models/prop_models.narc,/fielddata/build_model/build_model.narc
 res/prebuilt/fielddata/build_model/build_model_matshp.dat,/fielddata/build_model/build_model_matshp.dat
-res/field/maps/matrices/map_matrix.narc,/fielddata/mapmatrix/map_matrix.narc
-res/prebuilt/fielddata/areadata/area_data.narc,/fielddata/areadata/area_data.narc
-res/prebuilt/fielddata/areadata/area_build_model/area_build.narc,/fielddata/areadata/area_build_model/area_build.narc
-res/prebuilt/fielddata/areadata/area_build_model/areabm_texset.narc,/fielddata/areadata/area_build_model/areabm_texset.narc
+res/field/matrices/map_matrix.narc,/fielddata/mapmatrix/map_matrix.narc
+res/field/area_data/area_data.narc,/fielddata/areadata/area_data.narc
+res/field/props/model_sets/prop_model_sets.narc,/fielddata/areadata/area_build_model/area_build.narc
+res/field/props/texture_sets/prop_texture_sets.narc,/fielddata/areadata/area_build_model/areabm_texset.narc
 res/field/maps/texture_sets/map_tex_set.narc,/fielddata/areadata/area_map_tex/map_tex_set.narc
 res/prebuilt/fielddata/areadata/area_move_model/move_model_list.narc,/fielddata/areadata/area_move_model/move_model_list.narc
 res/field/maps/data/land_data.narc,/fielddata/land_data/land_data.narc
@@ -284,7 +284,7 @@ res/pokemon_anims/pokemon_anims.narc,/pokeanime/pl_poke_anm.narc
 res/prebuilt/battle/tr_ai/tr_ai_seq.narc,/battle/tr_ai/tr_ai_seq.narc
 res/prebuilt/arc/area_win_gra.narc,/arc/area_win_gra.narc
 res/prebuilt/arc/balance_ball_gra.narc,/arc/balance_ball_gra.narc
-res/prebuilt/arc/bm_anime.narc,/arc/bm_anime.narc
+res/field/props/animations/prop_animations.narc,/arc/bm_anime.narc
 res/prebuilt/arc/bm_anime_list.narc,/arc/bm_anime_list.narc
 res/prebuilt/arc/codein_gra.narc,/arc/codein_gra.narc
 res/prebuilt/arc/demo_tengan_gra.narc,/arc/demo_tengan_gra.narc

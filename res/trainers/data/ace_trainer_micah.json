@@ -20,7 +20,7 @@
                 "MOVE_PURSUIT",
                 "MOVE_METEOR_MASH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_ENERGY_BALL",
                 "MOVE_FAKE_OUT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

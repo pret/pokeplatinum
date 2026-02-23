@@ -12,6 +12,7 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
+#include "struct_defs/battler_data.h"
 #include "struct_defs/struct_0207A778.h"
 
 #include "battle/battle_context.h"
@@ -22,11 +23,10 @@
 #include "battle/battle_io_command.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_system.h"
+#include "battle/healthbar.h"
 #include "battle/ov16_02268520.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/struct_ov16_0223C2C0.h"
-#include "battle/struct_ov16_0225BFFC_decl.h"
-#include "battle/struct_ov16_022674C4.h"
 #include "battle_anim/battle_anim_system.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay010/struct_ov10_0221F800.h"
@@ -1542,8 +1542,8 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
 static void ov16_0223CF8C(SysTask *param0, void *param1)
 {
     BattleSystem *battleSys = param1;
-    BattlerData *v1;
-    Healthbar *v2;
+    BattlerData *battlerData;
+    Healthbar *healthbar;
     int v3;
     int v4;
     int v5;
@@ -1568,13 +1568,13 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
     }
 
     for (v3 = 0; v3 < v4; v3++) {
-        v1 = BattleSystem_GetBattlerData(battleSys, v3);
+        battlerData = BattleSystem_GetBattlerData(battleSys, v3);
 
-        if (((Battler_BootState(v1) == 0x0) && ((BattleSystem_GetBattleStatusMask(battleSys) & 0x10) == 0)) || ((BattleSystem_GetBattlerSide(battleSys, v3) == 0) && (BattleSystem_GetBattleStatusMask(battleSys) & 0x10))) {
-            v2 = BattlerData_GetHealthbar(v1);
+        if (((BattlerData_GetBootState(battlerData) == 0x0) && ((BattleSystem_GetBattleStatusMask(battleSys) & 0x10) == 0)) || ((BattleSystem_GetBattlerSide(battleSys, v3) == 0) && (BattleSystem_GetBattleStatusMask(battleSys) & 0x10))) {
+            healthbar = BattlerData_GetHealthbar(battlerData);
 
-            if (v2 != NULL) {
-                if (HealthBar_Color(v2->curHP, v2->maxHP, 8 * 6) == 1) {
+            if (healthbar != NULL) {
+                if (HealthBar_Color(healthbar->curHP, healthbar->maxHP, 8 * 6) == 1) {
                     v5 |= FlagIndex(v3);
                 }
             }

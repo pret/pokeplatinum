@@ -16,7 +16,7 @@
             "level": 23,
             "item": "ITEM_SITRUS_BERRY",
             "moves": null,
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 6
         }
     ],

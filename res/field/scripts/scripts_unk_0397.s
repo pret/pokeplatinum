@@ -13,8 +13,8 @@
     ScriptEntryEnd
 
 _0022:
-    SetFlag FLAG_UNK_0x01A7
-    SetVar VAR_UNK_0x40D0, 1
+    SetFlag FLAG_HIDE_ROARK_UNDERGROUND
+    SetVar VAR_HAS_SEEN_UNDERGROUND_ROARK_INTRO, 1
     End
 
 _002E:

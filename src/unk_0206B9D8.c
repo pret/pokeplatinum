@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/underground.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
@@ -27,7 +26,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_0203061C.h"

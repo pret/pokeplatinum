@@ -14,18 +14,16 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_defs/struct_020590C4.h"
-#include "struct_defs/underground.h"
-#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F55CC.h"
-#include "overlay023/ov23_0223E140.h"
-#include "overlay023/secret_bases.h"
-#include "overlay023/underground_comm_manager.h"
-#include "overlay023/underground_manager.h"
-#include "overlay023/underground_player.h"
-#include "overlay023/underground_player_status.h"
-#include "overlay023/underground_traps.h"
+#include "underground/comm_manager.h"
+#include "underground/manager.h"
+#include "underground/mining.h"
+#include "underground/player.h"
+#include "underground/player_status.h"
+#include "underground/secret_bases.h"
+#include "underground/traps.h"
 
 #include "communication_information.h"
 #include "communication_system.h"
@@ -43,7 +41,7 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 #include "tv_episode_segment.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_020366A0.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
@@ -525,8 +523,8 @@ static void sub_02057EF8(void *unused)
             }
         } else if (sCommPlayerManager->isActive[netId]) {
             if (CommSys_CurNetId() == 0 && sCommPlayerManager->isUnderground) {
-                UndergroundTraps_RemoveLinkData(netId);
-                ov23_02241648(netId);
+                Traps_RemoveLinkData(netId);
+                Mining_ResetPlayerData(netId);
             }
 
             u8 netId_u8 = netId;
@@ -712,7 +710,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
 
             if (sCommPlayerManager->moveTimerServer[netId] == 0) {
                 if (sCommPlayerManager->isUnderground) {
-                    if (UndergroundTraps_CheckPlayerSteppedOnTrap(netId)) {
+                    if (Traps_CheckPlayerSteppedOnTrap(netId)) {
                         continue;
                     }
 
@@ -799,7 +797,7 @@ static void CommPlayer_Move(SysTask *unused0, void *unused1)
 
                         if (sCommPlayerManager->alteredMovementStepsLeft[netId] == 0) {
                             u8 v10 = 1;
-                            UndergroundTraps_EscapeTrapServer(netId, 1, &v10, NULL);
+                            Traps_EscapeTrapServer(netId, 1, &v10, NULL);
                         }
                     }
                 }
@@ -1138,7 +1136,7 @@ static BOOL CommPlayer_MoveSlide(int netId, int speed)
     } else if (sCommPlayerManager->slideTilesLeft[netId] == 0) {
         u8 data = 1;
 
-        UndergroundTraps_EscapeTrapServer(netId, 1, &data, NULL);
+        Traps_EscapeTrapServer(netId, 1, &data, NULL);
         return TRUE;
     }
 

@@ -23,7 +23,7 @@
                 "MOVE_SUNNY_DAY",
                 "MOVE_BOUNCE"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_SUNNY_DAY",
                 "MOVE_LEECH_SEED"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_INGRAIN",
                 "MOVE_SUNNY_DAY"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -65,7 +65,7 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_STONE_EDGE"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -79,7 +79,7 @@
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_HYPER_BEAM"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

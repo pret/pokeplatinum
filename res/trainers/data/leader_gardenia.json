@@ -23,7 +23,7 @@
                 "MOVE_SUNNY_DAY",
                 "MOVE_REFLECT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_MAGICAL_LEAF",
                 "MOVE_SAFEGUARD"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_POISON_STING",
                 "MOVE_STUN_SPORE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

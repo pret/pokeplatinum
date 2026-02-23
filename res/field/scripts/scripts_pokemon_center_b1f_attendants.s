@@ -327,12 +327,12 @@ _043C:
     SetVar VAR_UNK_0x40B8, 0
     SetVar VAR_UNK_0x40B9, 0
     SetVar VAR_UNK_0x40BD, 0
-    SetVar VAR_UNK_0x40BB, 0
+    SetVar VAR_BATTLE_HALL_CHALLENGE_TYPE, 0
     SetVar VAR_UNK_0x40BE, 0
     SetVar VAR_UNK_0x40D8, 0
     SetVar VAR_UNK_0x40B7, 0
     SetVar VAR_UNK_0x40BC, 0
-    SetVar VAR_UNK_0x40BA, 0
+    SetVar VAR_BATTLE_HALL_LOBBY_LOAD_ACTION, 0
     SetVar VAR_UNK_0x40BF, 0
     Dummy1F9 VAR_UNK_0x40B8
     End

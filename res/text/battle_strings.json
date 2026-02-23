@@ -6481,7 +6481,7 @@
       "en_US": "{STRVAR_1 1, 0, 0}{COLOR 4}♀{COLOR 0}"
     },
     {
-      "id": "BattleStrings_Text_00964",
+      "id": "BattleStrings_Text_HealthbarPokemonName",
       "en_US": "{STRVAR_1 1, 0, 0}"
     },
     {
@@ -8204,11 +8204,11 @@
       ]
     },
     {
-      "id": "BattleStrings_Text_ParkBallls",
+      "id": "BattleStrings_Text_ParkBalls",
       "en_US": "PARK BALLS"
     },
     {
-      "id": "BattleStrings_Text_ParkBalllsLeft",
+      "id": "BattleStrings_Text_ParkBallsLeft",
       "en_US": "Left: {STRVAR_1 51, 0, 0}"
     },
     {

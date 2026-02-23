@@ -18,7 +18,7 @@
                 "MOVE_THUNDER_WAVE",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

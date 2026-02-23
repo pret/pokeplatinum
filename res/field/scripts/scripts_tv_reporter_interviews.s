@@ -121,7 +121,7 @@ _0190:
     FadeScreenOut
     WaitFadeScreen
     CloseMessage
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8004
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8004
     ReturnToField
     FadeScreenIn
     WaitFadeScreen

@@ -1,0 +1,21 @@
+{
+    "mapPropModels": [
+        "prop_model_004_nsbmd",
+        "prop_model_005_nsbmd",
+        "prop_model_008_nsbmd",
+        "prop_model_039_nsbmd",
+        "prop_model_040_nsbmd",
+        "honey_tree_nsbmd",
+        "pokecenter_door_nsbmd",
+        "prop_model_219_nsbmd",
+        "prop_model_217_nsbmd",
+        "prop_model_233_nsbmd",
+        "prop_model_234_nsbmd",
+        "prop_model_454_nsbmd",
+        "prop_model_455_nsbmd",
+        "gym_door_nsbmd",
+        "hotel_grand_lake_door_nsbmd",
+        "green_wooden_door_nsbmd",
+        "blue_door_nsbmd"
+    ]
+}

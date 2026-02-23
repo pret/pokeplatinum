@@ -156,30 +156,30 @@ void sub_0202D21C(UnkStruct_0202D060 *param0, BOOL param1)
     param0->unk_00_1 = param1;
 }
 
-u16 sub_0202D230(UnkStruct_0202D750 *param0, u16 param1, int param2)
+u16 BattlePoints_ApplyFuncAndGet(UnkStruct_0202D750 *param0, u16 value, int func)
 {
-    switch (param2) {
-    case 1:
-        if (param1 > 9999) {
+    switch (func) {
+    case BATTLE_POINTS_FUNC_SET:
+        if (value > 9999) {
             param0->unk_00 = 9999;
         } else {
-            param0->unk_00 = param1;
+            param0->unk_00 = value;
         }
         break;
-    case 5:
-        if (param0->unk_00 + param1 > 9999) {
+    case BATTLE_POINTS_FUNC_ADD:
+        if (param0->unk_00 + value > 9999) {
             param0->unk_00 = 9999;
         } else {
-            param0->unk_00 += param1;
+            param0->unk_00 += value;
         }
         break;
-    case 6:
-        if (param0->unk_00 < param1) {
+    case BATTLE_POINTS_FUNC_SUB:
+        if (param0->unk_00 < value) {
             param0->unk_00 = 0;
         } else {
-            param0->unk_00 -= param1;
+            param0->unk_00 -= value;
         }
-    case 0:
+    case BATTLE_POINTS_FUNC_NONE:
     default:
         break;
     }
@@ -286,18 +286,18 @@ u8 sub_0202D3A0(UnkStruct_0202D750 *param0)
     return v0;
 }
 
-u16 sub_0202D3B4(UnkStruct_0202D750 *param0, u16 param1, int param2)
+u16 sub_0202D3B4(UnkStruct_0202D750 *param0, u16 challengeMode, int param2)
 {
     u16 v0;
 
-    if (param1 == 5) {
+    if (challengeMode == 5) {
         return 0;
     }
 
-    if (param1 == 6) {
+    if (challengeMode == 6) {
         v0 = 5;
     } else {
-        v0 = param1;
+        v0 = challengeMode;
     }
 
     switch (param2) {

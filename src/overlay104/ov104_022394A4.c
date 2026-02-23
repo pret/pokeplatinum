@@ -11,8 +11,8 @@
 #include "savedata.h"
 #include "unk_0206B9D8.h"
 
-u16 ov104_02239588(BattleTower *battleTower, u16 param1);
-void ov104_022395A0(BattleTower *battleTower, u16 param1);
+u16 BattleTower_GetObjectIDFromOpponentIDInFrontierScript(BattleTower *battleTower, u16 opponentID);
+void BattleTower_SetBeatPalmer(BattleTower *battleTower, u16 value);
 u16 ov104_022395B4(BattleTower *battleTower);
 u16 ov104_022395D8(BattleTower *battleTower);
 
@@ -46,14 +46,14 @@ void BattleTower_CreateOpponentParties(BattleTower *battleTower, SaveData *saveD
     }
 }
 
-u16 ov104_02239588(BattleTower *battleTower, u16 param1)
+u16 BattleTower_GetObjectIDFromOpponentIDInFrontierScript(BattleTower *battleTower, u16 opponentID)
 {
-    return ov104_0222E10C(battleTower->opponentsDataDTO[param1].trDataDTO.trainerType);
+    return BattleTower_GetObjectIDFromTrainerClass(battleTower->opponentsDataDTO[opponentID].trDataDTO.trainerType);
 }
 
-void ov104_022395A0(BattleTower *battleTower, u16 param1)
+void BattleTower_SetBeatPalmer(BattleTower *battleTower, u16 value)
 {
-    battleTower->unk_10_1 = param1;
+    battleTower->beatPalmer = value;
 }
 
 u16 ov104_022395B4(BattleTower *battleTower)

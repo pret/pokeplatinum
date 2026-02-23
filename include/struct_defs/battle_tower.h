@@ -20,7 +20,7 @@ typedef struct BattleTower {
     u8 partySize;
     u8 challengeMode;
     u8 defeatedSevenTrainers : 1;
-    u8 unk_10_1 : 2;
+    u8 beatPalmer : 2;
     u8 unk_10_3 : 1;
     u8 unk_10_4 : 1;
     u8 partnerID : 3;

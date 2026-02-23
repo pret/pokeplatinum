@@ -7,7 +7,7 @@
     InitScriptEntryEnd
 
 InitScriptFrameTable:
-    InitScriptGoToIfEqual VAR_UNK_0x40D0, 0, 6
+    InitScriptGoToIfEqual VAR_HAS_SEEN_UNDERGROUND_ROARK_INTRO, 0, 6
     InitScriptFrameTableEnd
 
     InitScriptEnd

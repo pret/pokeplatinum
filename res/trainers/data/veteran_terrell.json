@@ -20,7 +20,7 @@
                 "MOVE_SPORE",
                 "MOVE_SLASH"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_MEGAHORN"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_IRON_TAIL",
                 "MOVE_FOCUS_BLAST"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

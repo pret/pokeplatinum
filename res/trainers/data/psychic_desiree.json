@@ -19,7 +19,7 @@
                 "MOVE_LIGHT_SCREEN",
                 "MOVE_DRAIN_PUNCH"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         },
         {
@@ -33,7 +33,7 @@
                 "MOVE_AERIAL_ACE",
                 "MOVE_SHOCK_WAVE"
             ],
-            "power": 0,
+            "iv_scale": 0,
             "ball_seal": 0
         }
     ],

@@ -20,7 +20,7 @@
                 "MOVE_FAINT_ATTACK",
                 "MOVE_DOUBLE_EDGE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_RAZOR_LEAF",
                 "MOVE_WATER_PULSE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

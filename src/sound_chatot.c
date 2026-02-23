@@ -7,11 +7,11 @@
 
 #include "struct_defs/chatot_cry.h"
 
+#include "chatot_cry.h"
 #include "math_util.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sound_system.h"
-#include "unk_0202CC64.h"
 
 #define CHATOT_CRY_SPEED_VARIANCE   8192
 #define CHATOT_CRY_WAVE_BUFFER_SIZE SOUND_WAVE_BUFFER_SIZE
@@ -42,7 +42,7 @@ BOOL Sound_IsRecordedChatotCryPlayable(const ChatotCry *cry)
     u8 *usingDefaultCry = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_DEFAULT_CHATOT_CRY);
     u8 *v1 = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_54);
 
-    if (IsChatotCryDataValid(cry) == FALSE) {
+    if (ChatotCry_IsValid(cry) == FALSE) {
         return FALSE;
     }
 
@@ -78,7 +78,7 @@ BOOL Sound_Impl_PlayChatotCry(const ChatotCry *cry, u32 unused, int volume, int 
     Sound_AllocateWaveOutChannel(WAVE_OUT_CHANNEL_PRIMARY);
 
     u16 speedVariance = LCRNG_Next() % CHATOT_CRY_SPEED_VARIANCE;
-    ProcessChatotCryAudioData(waveBuffer, GetChatotCryAudioBuffer(cry));
+    ChatotCry_GetUpsampledAudio(waveBuffer, ChatotCry_GetRawAudio(cry));
 
     WaveOutParam param;
     param.handle = Sound_GetWaveOutHandle(WAVE_OUT_CHANNEL_PRIMARY);
@@ -142,7 +142,7 @@ MICResult Sound_StopRecordingChatotCry(void)
 
 void Sound_StoreRecordedChatotCry(ChatotCry *cry)
 {
-    StoreProcessedAudioInChatotCryData(cry, (const s8 *)Sound_GetWaveBuffer());
+    ChatotCry_StoreAudio(cry, (const s8 *)Sound_GetWaveBuffer());
 }
 
 void Sound_SetUsingDefaultChatotCry(u8 value)
@@ -195,11 +195,11 @@ int Sound_GetChatterActivationParameter(ChatotCry *chatotCry)
     const s8 *buffer;
     s8 val;
 
-    if (IsChatotCryDataValid(chatotCry) == FALSE) {
+    if (ChatotCry_IsValid(chatotCry) == FALSE) {
         return 0;
     }
 
-    buffer = GetChatotCryAudioBuffer(chatotCry);
+    buffer = ChatotCry_GetRawAudio(chatotCry);
     val = buffer[15];
 
     if (-128 <= val && val < -30) {

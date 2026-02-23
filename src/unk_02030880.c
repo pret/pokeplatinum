@@ -53,19 +53,19 @@ int sub_020308A8(SaveData *saveData, BattleFrontierStage *param1)
     return v0;
 }
 
-u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *param1, int param2, int param3)
+u16 sub_020308BC(SaveData *saveData, BattleFrontierStage *frontierStage, int challengeType, int species)
 {
-    if (SaveData_MiscSaveBlock_InitFlag(saveData) == 0) {
+    if (!SaveData_MiscSaveBlock_InitFlag(saveData)) {
         return 0;
     }
 
-    switch (param2) {
+    switch (challengeType) {
     case 0:
-        return param1->unk_04.unk_00[param3];
+        return frontierStage->unk_04.unk_00[species];
     case 1:
-        return param1->unk_04.unk_3DE[param3];
+        return frontierStage->unk_04.unk_3DE[species];
     case 2:
-        return param1->unk_04.unk_7BC[param3];
+        return frontierStage->unk_04.unk_7BC[species];
     }
 
     GF_ASSERT(0);

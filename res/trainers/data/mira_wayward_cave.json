@@ -20,7 +20,7 @@
                 "MOVE_FLASH",
                 "MOVE_KINESIS"
             ],
-            "power": 30,
+            "iv_scale": 30,
             "ball_seal": 0
         }
     ],

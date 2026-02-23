@@ -23,7 +23,7 @@
                 "MOVE_BITE",
                 "MOVE_TWISTER"
             ],
-            "power": 150,
+            "iv_scale": 150,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_WATER_PULSE",
                 "MOVE_YAWN"
             ],
-            "power": 150,
+            "iv_scale": 150,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_CRUNCH",
                 "MOVE_AQUA_JET"
             ],
-            "power": 150,
+            "iv_scale": 150,
             "ball_seal": 0
         }
     ],

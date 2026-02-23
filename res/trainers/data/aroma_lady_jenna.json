@@ -18,7 +18,7 @@
                 "MOVE_STUN_SPORE",
                 "MOVE_WATER_SPORT"
             ],
-            "power": 20,
+            "iv_scale": 20,
             "ball_seal": 0
         },
         {
@@ -31,7 +31,7 @@
                 "MOVE_STUN_SPORE",
                 "MOVE_WATER_SPORT"
             ],
-            "power": 20,
+            "iv_scale": 20,
             "ball_seal": 0
         },
         {
@@ -44,7 +44,7 @@
                 "MOVE_STUN_SPORE",
                 "MOVE_WATER_SPORT"
             ],
-            "power": 20,
+            "iv_scale": 20,
             "ball_seal": 0
         }
     ],

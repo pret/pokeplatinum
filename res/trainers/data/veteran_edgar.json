@@ -20,7 +20,7 @@
                 "MOVE_PSYCHIC",
                 "MOVE_THUNDERBOLT"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_TOXIC",
                 "MOVE_SLAM"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_METAL_CLAW",
                 "MOVE_GROWL"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

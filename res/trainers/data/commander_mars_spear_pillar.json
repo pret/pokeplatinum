@@ -21,7 +21,7 @@
                 "MOVE_LIGHT_SCREEN",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -35,7 +35,7 @@
                 "MOVE_POISON_FANG",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
@@ -49,7 +49,7 @@
                 "MOVE_AERIAL_ACE",
                 "MOVE_HYPNOSIS"
             ],
-            "power": 200,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

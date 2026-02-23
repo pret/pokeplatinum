@@ -21,7 +21,7 @@
                 "MOVE_STEALTH_ROCK",
                 "MOVE_ROCK_THROW"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_ROCK_THROW",
                 "MOVE_SCREECH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -47,7 +47,7 @@
                 "MOVE_PURSUIT",
                 "MOVE_LEER"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

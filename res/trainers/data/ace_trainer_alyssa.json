@@ -20,7 +20,7 @@
                 "MOVE_SHOCK_WAVE",
                 "MOVE_AERIAL_ACE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_ASSURANCE",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -47,7 +47,7 @@
                 "MOVE_BITE",
                 "MOVE_CURSE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

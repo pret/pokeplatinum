@@ -16,7 +16,7 @@
                 "MOVE_TACKLE",
                 "MOVE_DEFENSE_CURL"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -29,7 +29,7 @@
                 "MOVE_TACKLE",
                 "MOVE_HARDEN"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

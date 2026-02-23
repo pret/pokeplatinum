@@ -2,60 +2,60 @@
 #include "res/text/bank/jubilife_tv_3f_group_ranking_room.h"
 
 
-    ScriptEntry _001A
-    ScriptEntry _0028
-    ScriptEntry _0036
-    ScriptEntry _0044
-    ScriptEntry _0057
-    ScriptEntry _006A
+    ScriptEntry JubilifeTV3FGroupRankingRoom_RecordMachinePokemon
+    ScriptEntry JubilifeTV3FGroupRankingRoom_RecordMachineBattles
+    ScriptEntry JubilifeTV3FGroupRankingRoom_RecordMachineContests
+    ScriptEntry JubilifeTV3FGroupRankingRoom_Youngster
+    ScriptEntry JubilifeTV3FGroupRankingRoom_BattleGirl
+    ScriptEntry JubilifeTV3FGroupRankingRoom_Worker
     ScriptEntryEnd
 
-_001A:
+JubilifeTV3FGroupRankingRoom_RecordMachinePokemon:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_1B5 3
     ReleaseAll
     End
 
-_0028:
+JubilifeTV3FGroupRankingRoom_RecordMachineBattles:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_1B5 4
     ReleaseAll
     End
 
-_0036:
+JubilifeTV3FGroupRankingRoom_RecordMachineContests:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_1B5 5
     ReleaseAll
     End
 
-_0044:
+JubilifeTV3FGroupRankingRoom_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message JubilifeTV3FGroupRankingRoom_Text_YouCanSeeTheRankingsOfPeopleInYourGroupHere
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0057:
+JubilifeTV3FGroupRankingRoom_BattleGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message JubilifeTV3FGroupRankingRoom_Text_TheseRankingsAreNifty
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_006A:
+JubilifeTV3FGroupRankingRoom_Worker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message JubilifeTV3FGroupRankingRoom_Text_SorryImStillFineTuningThisThingyHere
     WaitABXPadPress
     CloseMessage
     ReleaseAll

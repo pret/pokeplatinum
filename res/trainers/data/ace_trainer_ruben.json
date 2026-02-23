@@ -20,7 +20,7 @@
                 "MOVE_FAINT_ATTACK",
                 "MOVE_RAZOR_LEAF"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_DRAGON_DANCE",
                 "MOVE_ICE_FANG"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

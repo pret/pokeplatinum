@@ -860,13 +860,13 @@ _0714:
     FrontierScrCmd_A0 19, 0, 0, 0x8006
     CallIfLt 0x8006, 3, _07A2
     CallIfGe 0x8006, 3, _07AC
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 49, 21, 1
-    FrontierScrCmd_1C 50, 22, 2
-    FrontierScrCmd_1C 51, 23, 4
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleCastleScene_Text_SelfOption, BattleCastleScene_Text_HealOrRentItem, 1
+    AddListMenuEntry BattleCastleScene_Text_OpponentOption, BattleCastleScene_Text_CheckOpponentsMons, 2
+    AddListMenuEntry BattleCastleScene_Text_BattleOption, BattleCastleScene_Text_BattleTrainer, 4
     FrontierScrCmd_A0 19, 0, 0, 0x8006
     CallIfGe 0x8006, 3, _07D7
-    FrontierScrCmd_1D
+    ShowListMenu
     GoToIfEq 0x8008, 1, _0804
     GoToIfEq 0x8008, 2, _08B6
     GoToIfEq 0x8008, 4, _0964
@@ -875,21 +875,21 @@ _0714:
     End
 
 _07A2:
-    FrontierScrCmd_1B 31, 11, 0, 0, 0x8008
+    InitLocalTextListMenu 31, 11, 0, 0, 0x8008
     Return
 
 _07AC:
     FrontierScrCmd_A0 40, 0, 0, 0x8008
     GoToIfEq 0x8008, 1, _07A2
     GoToIfEq 0x8008, 2, _07A2
-    FrontierScrCmd_1B 31, 9, 0, 0, 0x8008
+    InitLocalTextListMenu 31, 9, 0, 0, 0x8008
     Return
 
 _07D7:
     FrontierScrCmd_A0 40, 0, 0, 0x800D
     GoToIfEq 0x800D, 1, _0802
     GoToIfEq 0x800D, 2, _0802
-    FrontierScrCmd_1C 52, 24, 5
+    AddListMenuEntry BattleCastleScene_Text_PassOption, BattleCastleScene_Text_PassOnBattle, 5
     Return
 
 _0802:
@@ -1617,40 +1617,40 @@ _148D:
     End
 
 _14C3:
-    FrontierScrCmd_1B 31, 13, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 45, 255, 0
+    InitLocalTextListMenu 31, 13, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleCastleScene_Text_ContinueOption, 255, 0
     GoTo _154F
     End
 
 _14DE:
-    FrontierScrCmd_1B 31, 11, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 45, 255, 0
-    FrontierScrCmd_1C 46, 255, 1
+    InitLocalTextListMenu 31, 11, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleCastleScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleCastleScene_Text_RecordOption, 255, 1
     GoTo _154F
     End
 
 _1501:
-    FrontierScrCmd_1B 31, 11, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 45, 255, 0
-    FrontierScrCmd_1C 47, 255, 2
+    InitLocalTextListMenu 31, 11, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleCastleScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleCastleScene_Text_RestOption, 255, 2
     GoTo _154F
     End
 
 _1524:
-    FrontierScrCmd_1B 31, 9, 0, 0, 0x800A
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 45, 255, 0
-    FrontierScrCmd_1C 46, 255, 1
-    FrontierScrCmd_1C 47, 255, 2
+    InitLocalTextListMenu 31, 9, 0, 0, 0x800A
+    SetMenuXOriginSide 1
+    AddListMenuEntry BattleCastleScene_Text_ContinueOption, 255, 0
+    AddListMenuEntry BattleCastleScene_Text_RecordOption, 255, 1
+    AddListMenuEntry BattleCastleScene_Text_RestOption, 255, 2
     GoTo _154F
     End
 
 _154F:
-    FrontierScrCmd_1C 48, 255, 3
-    FrontierScrCmd_1D
+    AddListMenuEntry BattleCastleScene_Text_RetireOption, 255, 3
+    ShowListMenu
     GoTo _1561
     End
 

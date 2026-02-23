@@ -20,7 +20,7 @@
                 "MOVE_STEALTH_ROCK",
                 "MOVE_TOXIC_SPIKES"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_ICE_FANG",
                 "MOVE_DRAGON_PULSE"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_PROTECT",
                 "MOVE_REST"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

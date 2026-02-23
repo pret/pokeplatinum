@@ -25,7 +25,7 @@
                 "MOVE_SILVER_WIND",
                 "MOVE_OMINOUS_WIND"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -39,7 +39,7 @@
                 "MOVE_SHADOW_BALL",
                 "MOVE_EXTRASENSORY"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -53,7 +53,7 @@
                 "MOVE_WATER_PULSE",
                 "MOVE_PSYCHIC"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -67,7 +67,7 @@
                 "MOVE_PSYCHIC",
                 "MOVE_EARTHQUAKE"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -81,7 +81,7 @@
                 "MOVE_MIRROR_COAT",
                 "MOVE_AQUA_RING"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -95,7 +95,7 @@
                 "MOVE_BRICK_BREAK",
                 "MOVE_GIGA_IMPACT"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

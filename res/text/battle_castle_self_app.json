@@ -1,0 +1,440 @@
+{
+  "key": 14690,
+  "messages": [
+    {
+      "id": "pl_msg_00000199_00000",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000199_00001",
+      "en_US": "{STRVAR_1 3, 0, 0}"
+    },
+    {
+      "id": "pl_msg_00000199_00002",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "pl_msg_00000199_00003",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_CastlePoints",
+      "en_US": "{STRVAR_1 53, 0, 0} CP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_ChoosePokemon",
+      "en_US": "Please choose your Pokémon."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Exit",
+      "en_US": "EXIT"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy1",
+      "garbage": 14
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_PartnerChoseToExit",
+      "en_US": "{STRVAR_1 3, 0, 0} chose to exit."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Heal",
+      "en_US": "HEAL"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Rental",
+      "en_US": "RENTAL"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Summary",
+      "en_US": "SUMMARY"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Moves",
+      "en_US": "MOVES"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Cancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RestoreHPOrPP",
+      "en_US": "Restore HP and/or PP."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RentBerryOrItem",
+      "en_US": [
+        "You may rent a Berry or\n",
+        "an item."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_CheckStatsAndMore",
+      "en_US": [
+        "Check stats, including\n",
+        "ability and nature."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_CheckMovesAndPP",
+      "en_US": [
+        "Check moves and their\n",
+        "PP."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_GoBackToMonSelection",
+      "en_US": [
+        "Go back to the Pokémon-\n",
+        "selection page."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RestoreHP",
+      "en_US": "RESTORE HP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RestorePP",
+      "en_US": "RESTORE PP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RestoreAll",
+      "en_US": "RESTORE ALL"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankUp",
+      "en_US": "RANK UP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Cancel2",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_WhichToUse",
+      "en_US": "Which would you like to use?"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankUpToRestorePP",
+      "en_US": [
+        "You will be able to restore PP by going\n",
+        "up in rank."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankUpToRestoreHPAndPP",
+      "en_US": [
+        "You will be able to restore both HP and\n",
+        "PP by going up in rank."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankCannotBeRaised",
+      "en_US": "Your rank cannot be raised any higher."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_ReturnToPrevious",
+      "en_US": "Return to previous selections."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy2",
+      "garbage": 28
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Yes",
+      "en_US": "YES"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_No",
+      "en_US": "NO"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_NotEnoughCP",
+      "en_US": "You don’t have enough CP."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_HealRankTooLow",
+      "en_US": [
+        "You are too low in healing rank to use\n",
+        "this menu item."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_HPWillBeRestored",
+      "en_US": "{STRVAR_1 0, 0, 0}’s HP will be restored."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_PPWillBeRestored",
+      "en_US": "{STRVAR_1 0, 0, 0}’s PP will be restored."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_HPAndPPWillBeRestored",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0}’s HP and PP will be\n",
+        "restored."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_NoBenefit",
+      "en_US": [
+        "There is no benefit to using that\n",
+        "command."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankUpForCP",
+      "en_US": [
+        "Would you like to up your rank\n",
+        "for {STRVAR_1 52, 0, 0} CP?"
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy3",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy4",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_NotEnoughCP2",
+      "en_US": "You don’t have enough CP."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_GainedAbilityToRestorePP",
+      "en_US": [
+        "{STRVAR_1 3, 5, 0} gained the ability to\n",
+        "restore PP!"
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_GainedAbilityToRestoreHPAndPP",
+      "en_US": [
+        "{STRVAR_1 3, 5, 0} gained the ability to\n",
+        "restore both HP and PP!"
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Berries",
+      "en_US": "BERRIES"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Items",
+      "en_US": "ITEMS"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankUp2",
+      "en_US": "RANK UP"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Cancel3",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MayRentBerry",
+      "en_US": "You may rent a Berry for this Pokémon."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MayRentItem",
+      "en_US": "You may rent an item for this Pokémon."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankUpToRentItem",
+      "en_US": [
+        "You will be able to rent an item for\n",
+        "your Pokémon by going up in rank."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankUpToExpandChoices",
+      "en_US": [
+        "Your choices of items and Berries will\n",
+        "be expanded by going up in rank."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RankCannotBeRaised2",
+      "en_US": "Your rank cannot be raised any higher."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_ReturnToPrevious2",
+      "en_US": "Return to previous selections."
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_RentalRankTooLow",
+      "en_US": [
+        "You are too low in rental rank to use\n",
+        "CP."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_WillCostCP",
+      "en_US": [
+        "It will cost {STRVAR_1 51, 0, 0} CP.\n",
+        "Is that OK?"
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy5",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy6",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy7",
+      "garbage": 10
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_ItemGivenToMon",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} was given the\n",
+        "{STRVAR_1 8, 1, 0} to hold."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_AlreadyHoldingItem",
+      "en_US": [
+        "{STRVAR_1 0, 0, 0} is already holding\n",
+        "{STRVAR_1 8, 1, 0}."
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_WantToSwitchItems",
+      "en_US": [
+        "Would you like to switch the\n",
+        "two items?"
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy8",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy9",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy10",
+      "garbage": 25
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy11",
+      "garbage": 2
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy12",
+      "garbage": 3
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Dummy13",
+      "garbage": 10
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_GainedAbilityToRentItems",
+      "en_US": [
+        "{STRVAR_1 3, 5, 0} gained the ability to\n",
+        "rent items!"
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_ExpandedItemRentals",
+      "en_US": [
+        "{STRVAR_1 3, 5, 0} expanded the variety of\n",
+        "rentable Berries and items!"
+      ]
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Item",
+      "en_US": "Item"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_ItemValue",
+      "en_US": "{COLOR 2}{STRVAR_1 8, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Nature",
+      "en_US": "Nature"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_NatureValue",
+      "en_US": "{COLOR 2}{STRVAR_1 7, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Ability",
+      "en_US": "Ability"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_AbilityValue",
+      "en_US": "{COLOR 2}{STRVAR_1 5, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Attack",
+      "en_US": "Attack"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_AttackValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Defense",
+      "en_US": "Defense"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_DefenseValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_SpAttack",
+      "en_US": "Sp. Atk"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_SpAttackValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_SpDefense",
+      "en_US": "Sp. Def"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_SpDefenseValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_Speed",
+      "en_US": "Speed"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_SpeedValue",
+      "en_US": "{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MaleSymbol",
+      "en_US": "♂"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_FemaleSymbol",
+      "en_US": "♀"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MoveName1",
+      "en_US": "{STRVAR_1 6, 0, 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MoveName2",
+      "en_US": "{STRVAR_1 6, 1, 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MoveName3",
+      "en_US": "{STRVAR_1 6, 2, 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MoveName4",
+      "en_US": "{STRVAR_1 6, 3, 0}"
+    },
+    {
+      "id": "BattleCastleSelfApp_Text_MovePP",
+      "en_US": "{COLOR 2}{STRVAR_1 51, 4, 0}{COLOR 0}/{COLOR 2}{STRVAR_1 51, 5, 0}{COLOR 0}"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 # include "macros/frscrcmd.inc"
 # include "res/text/bank/battle_tower_battle_room.h"
+# include "res/text/bank/menu_entries.h"
 
     .data
 
@@ -159,7 +160,7 @@ _00E2:
     FrontierScrCmd_3E 0x40D9, 0x8001
     Call _0176
     Call _018F
-    FrontierScrCmd_84 43, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 4, _015A
     GoToIfEq 0x8008, 5, _015A
     GoTo _0168
@@ -186,7 +187,7 @@ _0168:
 
 _0176:
     GoToIfEq 0x8001, 0, _018D
-    FrontierScrCmd_84 55, 0, 0x8009
+    CallBattleTowerFunction BT_FUNC_GET_PARTNER_PARAM, 0, 0x8009
     Return
 
 _018D:
@@ -202,7 +203,7 @@ _019E:
 _01A0:
     FrontierScrCmd_3D 0x40D9, 3
     FrontierScrCmd_3E 0x40D9, 0x8001
-    FrontierScrCmd_84 100, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, 0x8008
     GoToIfEq 0x8008, 1, _03EF
     Call _03CF
     GoTo _01CF
@@ -237,7 +238,7 @@ _0227:
     CallIfEq 0x8008, 1, _06AD
     ShowYesNoMenu 0x8008, MENU_NO
     CallIfEq 0x8008, 0, _0328
-    FrontierScrCmd_84 38, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0x8008
     Message BattleTowerBattleRoom_Text_BPFromTycoon
     Call _0330
     CloseMessage
@@ -250,8 +251,8 @@ _0273:
     CallIfEq 0x8008, 1, _06AD
     ShowYesNoMenu 0x8008, MENU_NO
     CallIfEq 0x8008, 0, _0328
-    FrontierScrCmd_84 38, 0, 0x8008
-    FrontierScrCmd_84 43, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS_AND_JOURNAL, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfEq 0x8008, 5, _02D4
     Message BattleTowerBattleRoom_Text_BPEarned
     Call _0330
@@ -271,7 +272,7 @@ _02DE:
     ShowYesNoMenu 0x8008, MENU_NO
     CallIfEq 0x8008, 0, _0320
     CloseMessage
-    FrontierScrCmd_84 37, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS, 0, 0x8008
     GoTo _03EF
     End
 
@@ -284,7 +285,7 @@ _0328:
     Return
 
 _0330:
-    FrontierScrCmd_84 46, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_46, 0, 0x8008
     BufferNumber 1, 0x8008
     BufferPlayerName 0
     Message BattleTowerBattleRoom_Text_ReceiveBP
@@ -313,15 +314,15 @@ _0374:
     Return
 
 _0382:
-    FrontierScrCmd_84 34, 0, 0x8008
-    FrontierScrCmd_84 35, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_34, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_HAS_DEFEATED_SEVEN_TRAINERS, 0, 0x8008
     Return
 
 _0394:
     FrontierScrCmd_3D 0x40D9, 3
     FrontierScrCmd_3E 0x40D9, 0x8001
     SetVar 0x8003, 1
-    FrontierScrCmd_84 100, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_CHECK_IS_NULL, 0, 0x8008
     GoToIfEq 0x8008, 1, _03EF
     Call _03CF
     Call _03DB
@@ -343,7 +344,7 @@ _03EF:
     FrontierScrCmd_6F
     WaitTime 30, 0x8008
     FrontierScrCmd_3D 0x40D8, 1
-    FrontierScrCmd_84 43, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 4, _043F
     GoToIfEq 0x8010, 5, _043F
@@ -367,21 +368,21 @@ _0459:
     End
 
 _046D:
-    FrontierScrCmd_84 40, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, 0x8008
     Call _04A8
     FrontierScrCmd_85 0
     WaitABPress
     CloseMessage
     Call _04C8
     FrontierScrCmd_3F 0
-    FrontierScrCmd_84 59, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_59, 0, 0x8008
     FrontierScrCmd_87
     FrontierScrCmd_88 0x800C
     FadeScreenIn
     Return
 
 _04A8:
-    FrontierScrCmd_84 41, 0, 0x800B
+    CallBattleTowerFunction BT_FUNC_GET_OPPONENT_OBJECT_ID, 0, 0x800B
     FrontierScrCmd_22 _0010
     FrontierScrCmd_24 _003C
     FrontierScrCmd_28 2, _006C
@@ -395,12 +396,12 @@ _04C8:
     Return
 
 _04DC:
-    FrontierScrCmd_84 33, 0, 0x800C
+    CallBattleTowerFunction BT_FUNC_GET_NEXT_OPPONENT_NUM, 0, 0x800C
     BufferNumber 0, 0x800C
     Message BattleTowerBattleRoom_Text_AreYouReady
-    FrontierScrCmd_84 43, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfNe 0x8008, 0, _052C
-    FrontierScrCmd_84 36, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, 0x8008
     GoToIfEq 0x8008, 20, _078C
     GoToIfEq 0x8008, 48, _078C
     GoTo _052C
@@ -408,24 +409,24 @@ _04DC:
 
 _052C:
     GoToIfEq 0x8003, 0, _0554
-    FrontierScrCmd_1A 31, 11, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
+    InitGlobalTextListMenu 31, 11, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
     GoTo _0577
     End
 
 _0554:
-    FrontierScrCmd_1A 31, 9, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
-    FrontierScrCmd_1C 0x110, 255, 1
+    InitGlobalTextListMenu 31, 9, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
+    AddListMenuEntry MenuEntries_Text_Record, 255, 1
     GoTo _0577
     End
 
 _0577:
-    FrontierScrCmd_1C 147, 255, 2
-    FrontierScrCmd_1C 148, 255, 3
-    FrontierScrCmd_1D
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Rest, 255, 2
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 255, 3
+    ShowListMenu
     CloseMessage
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 0, _05CD
@@ -469,7 +470,7 @@ _0641:
     End
 
 _0655:
-    FrontierScrCmd_84 36, 0, 0x8005
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, 0x8005
     Return
 
 _065F:
@@ -479,7 +480,7 @@ _065F:
 _0667:
     SetVar 0x8003, 1
     MessageInstant BattleTowerBattleRoom_Text_Saving2
-    FrontierScrCmd_84 43, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     ShowSavingIcon
     FrontierScrCmd_6D 1, 0x8008, 0x8005, 0x8005
     HideSavingIcon
@@ -511,7 +512,7 @@ _06B3:
 
 _06D3:
     FrontierScrCmd_3D 0x40D8, 2
-    FrontierScrCmd_84 39, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_39, 0, 0x8008
     FrontierScrCmd_86
     Message BattleTowerBattleRoom_Text_Saving
     ShowSavingIcon
@@ -522,7 +523,7 @@ _06D3:
     FadeScreenOut
     CloseMessage
     FrontierScrCmd_6F
-    FrontierScrCmd_84 2, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_RESET_SYSTEM, 0, 0x8008
     End
 
 _0711:
@@ -534,14 +535,14 @@ _0711:
     End
 
 _0731:
-    FrontierScrCmd_84 37, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UPDATE_GAME_RECORDS, 0, 0x8008
     GoTo _03EF
     End
 
 _0741:
-    FrontierScrCmd_84 43, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_GET_CHALLENGE_MODE, 0, 0x8008
     GoToIfNe 0x8008, 0, _04DC
-    FrontierScrCmd_84 36, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, 0x8008
     GoToIfEq 0x8008, 20, _0780
     GoToIfEq 0x8008, 48, _0780
     GoTo _04DC
@@ -554,24 +555,24 @@ _0780:
 
 _078C:
     GoToIfEq 0x8003, 0, _07B4
-    FrontierScrCmd_1A 31, 11, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
+    InitGlobalTextListMenu 31, 11, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
     GoTo _07D7
     End
 
 _07B4:
-    FrontierScrCmd_1A 31, 9, 0, 0, 0x8008
-    FrontierScrCmd_CA 1
-    FrontierScrCmd_1C 146, 255, 0
-    FrontierScrCmd_1C 0x110, 255, 1
+    InitGlobalTextListMenu 31, 9, 0, 0, 0x8008
+    SetMenuXOriginSide 1
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_KeepGoing, 255, 0
+    AddListMenuEntry MenuEntries_Text_Record, 255, 1
     GoTo _07D7
     End
 
 _07D7:
-    FrontierScrCmd_1C 147, 255, 2
-    FrontierScrCmd_1C 148, 255, 3
-    FrontierScrCmd_1D
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Rest, 255, 2
+    AddListMenuEntry MenuEntries_Text_BattleTowerBattleRoom_Retire, 255, 3
+    ShowListMenu
     CloseMessage
     SetVar 0x8010, 0x8008
     GoToIfEq 0x8010, 0, _082D
@@ -584,9 +585,9 @@ _07D7:
 _082D:
     Call _05E1
     SetVar 0x8003, 0
-    FrontierScrCmd_84 40, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_SET_OPPONENT_TEAMS, 0, 0x8008
     Call _092C
-    FrontierScrCmd_84 36, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, 0x8008
     GoToIfEq 0x8008, 48, _08F1
     BufferPlayerName 0
     BufferRivalName 1
@@ -603,12 +604,12 @@ _086E:
     FrontierScrCmd_88 0x800C
     FadeScreenIn
     GoToIfEq 0x800C, 0, _020F
-    FrontierScrCmd_84 36, 0, 0x8008
+    CallBattleTowerFunction BT_FUNC_UNK_36, 0, 0x8008
     GoToIfEq 0x8008, 48, _08FD
     FrontierScrCmd_3E 0x404F, 0x8008
     CallIfEq 0x8008, 0, _08D9
     Message BattleTowerBattleRoom_Text_BeatPalmer
-    FrontierScrCmd_84 44, 1, 0x8008
+    CallBattleTowerFunction BT_FUNC_SET_BEAT_PALMER, 1, 0x8008
     GoTo _08E1
     End
 
@@ -631,7 +632,7 @@ _08FD:
     FrontierScrCmd_3E 0x404F, 0x8008
     CallIfEq 0x8008, 2, _0924
     Message BattleTowerBattleRoom_Text_BeatPalmerGold
-    FrontierScrCmd_84 44, 2, 0x8008
+    CallBattleTowerFunction BT_FUNC_SET_BEAT_PALMER, 2, 0x8008
     GoTo _08E1
     End
 

@@ -20,7 +20,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_IRON_TAIL"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         },
         {
@@ -33,7 +33,7 @@
                 "MOVE_TRI_ATTACK",
                 "MOVE_MIRROR_SHOT"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         }
     ],

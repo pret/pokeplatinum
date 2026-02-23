@@ -3,14 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/underground.h"
-
 #include "field/field_system.h"
 
 #include "field_script_context.h"
 #include "inlines.h"
 #include "savedata.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 
 BOOL ScrCmd_SendGoodToPC(ScriptContext *ctx)
 {

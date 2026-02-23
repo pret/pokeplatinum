@@ -19,7 +19,7 @@ void BattleTower_GetMonDataFromSetIDAndNarcID(BattleFrontierPokemonData *monData
 BattleFrontierTrainerData *BattleTower_GetTrainerData(FrontierTrainerDataDTO *trDataDTO, int battleTowerTrainerID, enum HeapID heapID, enum NarcID narcID);
 u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, enum NarcID narcID);
 void ov104_0222DF40(const FrontierPokemonDataDTO *param0, Pokemon *param1, u8 param2);
-u16 ov104_0222E10C(u8 param0);
+u16 BattleTower_GetObjectIDFromTrainerClass(u8 trainerClass);
 void ov104_0222E134(SaveData *saveData, Pokemon *param1);
 void ov104_0222E1C0(SaveData *saveData, Party *param1, Pokemon *param2);
 void ov104_0222E1D8(Sprite *param0, u8 param1);

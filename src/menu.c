@@ -354,8 +354,8 @@ Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate 
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, heapID);
     StringList *choices = StringList_New(2, heapID);
 
-    StringList_AddFromMessageBank(choices, msgLoader, pl_msg_00000361_00041, 0);
-    StringList_AddFromMessageBank(choices, msgLoader, pl_msg_00000361_00042, MENU_CANCELED);
+    StringList_AddFromMessageBank(choices, msgLoader, MenuEntries_Text_Yes, 0);
+    StringList_AddFromMessageBank(choices, msgLoader, MenuEntries_Text_No, MENU_CANCELED);
     MessageLoader_Free(msgLoader);
 
     menuTemplate.choices = choices;

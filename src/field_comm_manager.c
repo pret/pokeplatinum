@@ -7,12 +7,11 @@
 #include "constants/heap.h"
 
 #include "struct_defs/struct_0205964C.h"
-#include "struct_defs/underground.h"
 
 #include "field/field_system.h"
 #include "functypes/funcptr_020598EC.h"
 #include "overlay007/communication_club.h"
-#include "overlay023/underground_manager.h"
+#include "underground/manager.h"
 
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -28,6 +27,7 @@
 #include "sys_task_manager.h"
 #include "trainer_card.h"
 #include "trainer_info.h"
+#include "underground.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -715,7 +715,7 @@ static void sub_0205A058(void)
     FieldCommMan_SetTask(FieldCommMan_Delete, 0);
 }
 
-SecretBase *sub_0205A080(SaveData *saveData)
+SecretBase *FieldCommMan_GetCurrentOccupiedSecretBase(SaveData *saveData)
 {
     if (!sFieldCommMan || !sFieldCommMan->isUnderground) {
         return NULL;

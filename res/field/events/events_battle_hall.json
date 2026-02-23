@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "id": "BATTLE_HALL_FRONTIER_SINGLE_ATTENDANT_0",
+            "id": "LOCALID_SINGLE_ATTENDANT",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -26,7 +26,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_FRONTIER_MULTI_ATTENDANT_1",
+            "id": "LOCALID_MULTI_ATTENDANT",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_MULTI_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_MAID_2",
+            "id": "LOCALID_MAID",
             "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -56,7 +56,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_POKEFAN_F_3",
+            "id": "LOCALID_POKEFAN_F",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -71,7 +71,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_TWIN_4",
+            "id": "LOCALID_TWIN",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -86,7 +86,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_PACHIRISU_5",
+            "id": "LOCALID_PACHIRISU",
             "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -101,7 +101,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_SNOWPOINT_NPC_F_6",
+            "id": "LOCALID_SNOWPOINT_NPC_F",
             "graphics_id": "OBJ_EVENT_GFX_SNOWPOINT_NPC_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -116,7 +116,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_HIKER_7",
+            "id": "LOCALID_HIKER",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -131,7 +131,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_EXPERT_M_8",
+            "id": "LOCALID_EXPERT_M",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -146,7 +146,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_IDOL_9",
+            "id": "LOCALID_IDOL",
             "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -161,11 +161,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_REPORTER_10",
+            "id": "LOCALID_REPORTER",
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02C1",
+            "hidden_flag": "FLAG_BATTLE_HALL_HIDE_REPORTER",
             "script": 10163,
             "initial_dir": 1,
             "data": [],
@@ -176,7 +176,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_BUG_CATCHER_11",
+            "id": "LOCALID_BUG_CATCHER",
             "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -191,7 +191,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_UNK_104_12",
+            "id": "LOCALID_SERENA_WINSTON",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -206,11 +206,11 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_UNK_102_13",
+            "id": "LOCALID_MAJOR_NPC",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02CB",
+            "hidden_flag": "FLAG_HIDE_BATTLE_HALL_MAJOR_NPC",
             "script": 20,
             "initial_dir": 1,
             "data": [],
@@ -221,7 +221,7 @@
             "y": 0
         },
         {
-            "id": "BATTLE_HALL_FRONTIER_SINGLE_ATTENDANT_14",
+            "id": "LOCALID_RECORD_KEEPER",
             "graphics_id": "OBJ_EVENT_GFX_FRONTIER_SINGLE_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

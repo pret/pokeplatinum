@@ -21,7 +21,7 @@
                 "MOVE_CONFUSE_RAY",
                 "MOVE_HYPNOSIS"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

@@ -20,7 +20,7 @@
                 "MOVE_EARTHQUAKE",
                 "MOVE_STONE_EDGE"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 12
         }
     ],

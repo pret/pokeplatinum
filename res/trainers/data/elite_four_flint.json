@@ -23,7 +23,7 @@
                 "MOVE_DARK_PULSE",
                 "MOVE_SUNNY_DAY"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_QUICK_ATTACK",
                 "MOVE_WILL_O_WISP"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -51,7 +51,7 @@
                 "MOVE_BOUNCE",
                 "MOVE_SUNNY_DAY"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -65,7 +65,7 @@
                 "MOVE_MACH_PUNCH",
                 "MOVE_EARTHQUAKE"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
@@ -79,7 +79,7 @@
                 "MOVE_SOLAR_BEAM",
                 "MOVE_HYPER_BEAM"
             ],
-            "power": 250,
+            "iv_scale": 250,
             "ball_seal": 13
         }
     ],

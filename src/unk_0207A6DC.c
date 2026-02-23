@@ -18,6 +18,7 @@
 #include "battle/message_defs.h"
 
 #include "charcode_util.h"
+#include "chatot_cry.h"
 #include "communication_system.h"
 #include "heap.h"
 #include "pal_pad.h"
@@ -25,7 +26,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
-#include "unk_0202CC64.h"
 #include "unk_0202F1D4.h"
 #include "unk_02032798.h"
 #include "unk_020363E8.h"
@@ -419,7 +419,7 @@ BOOL sub_0207AAA0(UnkStruct_0207A778 *param0)
     }
 
     v0 = (ChatotCry *)&param0->unk_20[0];
-    CopyChatotCryData(v0, param0->unk_00->chatotCries[0]);
+    ChatotCry_Copy(v0, param0->unk_00->chatotCries[0]);
 
     return 1;
 }

@@ -17,7 +17,7 @@
                 "MOVE_SPARK",
                 "MOVE_THUNDER_WAVE"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -30,7 +30,7 @@
                 "MOVE_SPARK",
                 "MOVE_THUNDER_WAVE"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -43,7 +43,7 @@
                 "MOVE_SPARK",
                 "MOVE_THUNDER_WAVE"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

@@ -116,12 +116,12 @@ _019E:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
-    ScrCmd_245 0, VAR_0x8000
+    BufferCustomMessageWord 0, VAR_0x8000
     Message 21
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SMILE
@@ -134,12 +134,12 @@ _01F2:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
-    ScrCmd_245 0, VAR_0x8000
+    BufferCustomMessageWord 0, VAR_0x8000
     Message 3
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_ALERT
@@ -152,12 +152,12 @@ _0246:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
-    ScrCmd_245 0, VAR_0x8000
+    BufferCustomMessageWord 0, VAR_0x8000
     Message 11
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SHOCK
@@ -170,12 +170,12 @@ _029A:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
-    ScrCmd_245 0, VAR_0x8000
+    BufferCustomMessageWord 0, VAR_0x8000
     Message 13
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_DOWNCAST
@@ -188,12 +188,12 @@ _02EE:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
-    ScrCmd_245 0, VAR_0x8000
+    BufferCustomMessageWord 0, VAR_0x8000
     Message 15
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_CARELESS
@@ -206,12 +206,12 @@ _0342:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
-    ScrCmd_245 0, VAR_0x8000
+    BufferCustomMessageWord 0, VAR_0x8000
     Message 17
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_RELAX
@@ -224,12 +224,12 @@ _0396:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
-    ScrCmd_243 0, VAR_RESULT, VAR_0x8000
+    ChooseCustomMessageWord 0, VAR_RESULT, VAR_0x8000
     ReturnToField
     FadeScreenIn
     WaitFadeScreen
     GoToIfEq VAR_RESULT, 0, _03EA
-    ScrCmd_245 0, VAR_0x8000
+    BufferCustomMessageWord 0, VAR_0x8000
     Message 19
     SetFlag FLAG_UNK_0x0AA4
     SetPartyMonRibbon VAR_0x8002, RIBBON_SNOOZE

@@ -1,3 +1,4 @@
+#include "generated/battle_tower_functions.h"
 #include "generated/fade_types.h"
 #include "generated/sdat.h"
 #include "constants/colors.h"
@@ -125,71 +126,71 @@
     WaitFadeScreen
     .endm
 
-    .macro FrontierScrCmd_15 arg0, arg1, arg2, arg3, arg4
+    .macro InitGlobalTextMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
     .short 0x015
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOption
     .endm
 
-    .macro FrontierScrCmd_16 arg0, arg1, arg2, arg3, arg4
+    .macro InitLocalTextMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
     .short 0x016
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOption
     .endm
 
-    .macro FrontierScrCmd_17 arg0, arg1
+    .macro AddMenuEntry entryID, index
     .short 0x017
-    .short \arg0
-    .short \arg1
+    .short \entryID
+    .short \index
     .endm
 
-    .macro FrontierScrCmd_18 arg0, arg1, arg2
+    .macro AddMenuEntryWithDesc entryID, descriptionID, index
     .short 0x018
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \entryID
+    .short \descriptionID
+    .short \index
     .endm
 
-    .macro FrontierScrCmd_19
+    .macro ShowMenu
     .short 0x019
     .endm
 
-    .macro FrontierScrCmd_1A arg0, arg1, arg2, arg3, arg4
+    .macro InitGlobalTextListMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
     .short 0x01A
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOption
     .endm
 
-    .macro FrontierScrCmd_1B arg0, arg1, arg2, arg3, arg4
+    .macro InitLocalTextListMenu anchorX, anchorY, initialCursorPos, canExitWithB, selectedOption
     .short 0x01B
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \selectedOption
     .endm
 
-    .macro FrontierScrCmd_1C arg0, arg1, arg2
+    .macro AddListMenuEntry entryID, descriptionID, index
     .short 0x01C
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \entryID
+    .short \descriptionID
+    .short \index
     .endm
 
-    .macro FrontierScrCmd_1D
+    .macro ShowListMenu
     .short 0x01D
     .endm
 
-    .macro FrontierScrCmd_1E
+    .macro FreeListMenu
     .short 0x01E
     .endm
 
@@ -711,11 +712,11 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_84 arg0, arg1, arg2
+    .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
     .short 0x084
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \functionIndex
+    .short \functionArgument
+    .short \destVar
     .endm
 
     .macro FrontierScrCmd_85 arg0
@@ -1081,14 +1082,14 @@
     .short \arg0
     .endm
 
-    .macro FrontierScrCmd_CA arg0
+    .macro SetMenuXOriginSide isRightSide
     .short 0x0CA
-    .byte \arg0
+    .byte \isRightSide
     .endm
 
-    .macro FrontierScrCmd_CB arg0
+    .macro SetMenuYOriginSide isBottomSide
     .short 0x0CB
-    .byte \arg0
+    .byte \isBottomSide
     .endm
 
 

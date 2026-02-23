@@ -19,7 +19,7 @@
                 "MOVE_LOW_KICK",
                 "MOVE_FORESIGHT"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -32,7 +32,7 @@
                 "MOVE_TACKLE",
                 "MOVE_CONFUSE_RAY"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

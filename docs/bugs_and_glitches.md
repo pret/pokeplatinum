@@ -28,6 +28,8 @@ this is some code
   - [Using Spit Up Moves the Attacker's Sprite Two Pixels Right](#using-spit-up-moves-the-attackers-sprite-two-pixels-right)
 - [Wild Encounters](#wild-encounters)
   - [Fishing Encounters ignore Sticky Hold and Suction Cups](#fishing-encounters-ignore-sticky-hold-and-suction-cups)
+- [Items](#items)
+  - [Defog HM Uses Water Palette](#defog-hm-uses-water-palette)
 - [Title Screen](#title-screen)
   - [Giratina Hover Range](#giratina-hover-range)
 - [3D Rendering](#3d-rendering)
@@ -235,6 +237,25 @@ Essentially the same as Strength.
 +     PokemonSprite_SetAttribute(ctx->sprite, MON_SPRITE_X_CENTER, pos->x);
       ctx->state++;
     }
+```
+
+## Items
+
+### Defog HM Uses Water Palette
+
+HM05 (Defog) is a Flying-type move, but its TM/HM icon in the bag erroneously
+uses the water-type palette instead of the flying-type palette.
+
+**Fix:** Edit the `sItemArchiveIDs` entry for `ITEM_HM05` in [`src/item.c`](https://github.com/pret/pokeplatinum/blob/main/src/item.c):
+
+```diff
+     [ITEM_HM05] = {
+         .dataID = 0x192,
+         .iconID = hm_NCGR,
+-        .paletteID = tm_water_NCLR, // BUG: Defog is a flying type move, but erroneously uses the water palette.
++        .paletteID = tm_flying_NCLR,
+         .gen3ID = GBA_ITEM_HM05,
+     },
 ```
 
 ## Wild Encounters

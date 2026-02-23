@@ -20,7 +20,7 @@
                 "MOVE_MAGICAL_LEAF",
                 "MOVE_LUCKY_CHANT"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_SUPERSONIC",
                 "MOVE_AQUA_RING"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_JUMP_KICK",
                 "MOVE_SHADOW_BALL"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],

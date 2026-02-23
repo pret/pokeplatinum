@@ -43,7 +43,7 @@ void SystemFlag_SetCommunicationClubAccessible(VarsFlags *varsFlags);
 void SystemFlag_ClearCommunicationClubAccessible(VarsFlags *varsFlags);
 BOOL SystemFlag_CheckCommunicationClubAccessible(VarsFlags *varsFlags);
 BOOL SystemFlag_CheckContestHallVisited(VarsFlags *varsFlags);
-BOOL SystemFlag_CheckUndergroundFirstEntered(VarsFlags *varsFlags);
+BOOL SystemFlag_CheckHasSeenUndergroundRoarkIntro(VarsFlags *varsFlags);
 BOOL SystemFlag_CheckFreedGalacticHQPokemon(VarsFlags *varsFlags);
 BOOL SystemFlag_CheckMetBebe(VarsFlags *varsFlags);
 void SystemFlag_SetPoketchHidden(VarsFlags *varsFlags);

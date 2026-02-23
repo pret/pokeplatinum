@@ -20,7 +20,7 @@
                 "MOVE_HAIL",
                 "MOVE_PROTECT"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_HAIL",
                 "MOVE_PROTECT"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_HAIL",
                 "MOVE_PROTECT"
             ],
-            "power": 60,
+            "iv_scale": 60,
             "ball_seal": 0
         }
     ],

@@ -103,6 +103,7 @@ metang_generators = {
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },
+    'sphere_types': { 'type': 'enum', 'tag': 'SphereType' },
     'string_padding_mode': { 'type': 'enum', 'tag': 'PaddingMode' },
     'text_banks': { 'type': 'enum', 'tag': 'TextBank' },
     'time_of_day': { 'type': 'enum', 'tag': 'TimeOfDay' },

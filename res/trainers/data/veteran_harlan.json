@@ -20,7 +20,7 @@
                 "MOVE_CRUNCH",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_TOXIC",
                 "MOVE_FLY"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_EXTRASENSORY",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 100,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

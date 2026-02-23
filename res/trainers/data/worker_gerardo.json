@@ -17,7 +17,7 @@
                 "MOVE_MAGNET_BOMB",
                 "MOVE_SPARK"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         },
         {
@@ -30,7 +30,7 @@
                 "MOVE_MAGNET_BOMB",
                 "MOVE_SPARK"
             ],
-            "power": 10,
+            "iv_scale": 10,
             "ball_seal": 0
         }
     ],

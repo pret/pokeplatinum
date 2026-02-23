@@ -20,7 +20,7 @@
                 "MOVE_SUPERSONIC",
                 "MOVE_SCREECH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -34,7 +34,7 @@
                 "MOVE_ANCIENT_POWER",
                 "MOVE_SCREECH"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         },
         {
@@ -48,7 +48,7 @@
                 "MOVE_ROOST",
                 "MOVE_QUICK_ATTACK"
             ],
-            "power": 50,
+            "iv_scale": 50,
             "ball_seal": 0
         }
     ],
