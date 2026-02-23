@@ -183,7 +183,7 @@ typedef struct BattleCastleOpponentApp {
     u8 partnersSelectedSlot;
     u8 partnerSlot;
     u8 partnerIsExiting;
-    u8 partnersRanks[3];
+    u8 partnersRanks[BATTLE_CASTLE_NUM_RANK_TYPES];
     u16 partnersCP;
     u32 unused4;
 } BattleCastleOpponentApp;
@@ -317,7 +317,7 @@ BOOL BattleCastleOpponentApp_Init(ApplicationManager *appMan, int *state)
     app->partnersCP = v2->unk_28;
     app->frontier = SaveData_GetBattleFrontier(app->saveData);
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < BATTLE_CASTLE_NUM_RANK_TYPES; i++) {
         app->partnersRanks[i] = 1;
     }
 
@@ -2358,7 +2358,7 @@ void BattleCastleOpponentApp_HandlePlayerInfoCmd(int netID, int unused, void *da
 
     i += 2;
 
-    for (int j = 0; j < 3; j++) {
+    for (int j = 0; j < BATTLE_CASTLE_NUM_RANK_TYPES; j++) {
         app->partnersRanks[j] = payload[i + j];
     }
 

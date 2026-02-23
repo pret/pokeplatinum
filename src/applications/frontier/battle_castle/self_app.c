@@ -325,7 +325,7 @@ typedef struct BattleCastleSelfApp {
     u8 partnersSelectedSlot;
     u8 partnerSlot;
     u8 partnerIsExiting;
-    u8 partnersRanks[3];
+    u8 partnersRanks[BATTLE_CASTLE_NUM_RANK_TYPES];
     u16 partnersCP;
     u32 unused3;
 } BattleCastleSelfApp;
@@ -520,7 +520,7 @@ BOOL BattleCastleSelfApp_Init(ApplicationManager *appMan, int *state)
     app->partnersCP = v2->unk_28;
     app->frontier = SaveData_GetBattleFrontier(app->saveData);
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < BATTLE_CASTLE_NUM_RANK_TYPES; i++) {
         app->partnersRanks[i] = 1;
     }
 
@@ -903,7 +903,7 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
                     break;
                 }
             } else {
-                if ((Pokemon_GetValue(mon, MON_DATA_HP, NULL) == Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) && (!IsMonMissingPP(mon))) {
+                if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) == Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL) && !IsMonMissingPP(mon)) {
                     app->printerID = PrintMessageAndCopyToVRAM(app, BattleCastleSelfApp_Text_NoBenefit, FONT_MESSAGE);
                     app->subState = MAIN_SUBSTATE_WAIT_AFTER_HEAL_FAILURE;
                     break;
@@ -3072,7 +3072,7 @@ void BattleCastleSelfApp_HandlePlayerInfoCmd(int netID, int unused, void *data, 
 
     i += 2;
 
-    for (int j = 0; j < 3; j++) {
+    for (int j = 0; j < BATTLE_CASTLE_NUM_RANK_TYPES; j++) {
         app->partnersRanks[j] = (u8)payload[i + j];
     }
 
