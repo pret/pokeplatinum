@@ -45,7 +45,7 @@ typedef struct PokedexEntryDisplayState {
     const PokedexScreenManager *screenManager; // Screen manager reference
     enum AnimationMode animationMode; // Display animation mode
     int languageID; // Language constant (JAPANESE, ENGLISH, FRENCH, GERMAN, ITALIAN, SPANISH)
-    int displayAllInfoFlag; // Flag to display all info or selective info
+    int displayMode; // Display mode (0 = selective info, 1 = all info)
 } PokedexEntryDisplayState;
 
 typedef struct PokedexEntryDisplayGraphics {
@@ -76,7 +76,7 @@ static BOOL UpdatePositionMode(PokedexEntryDisplayGraphics *graphicsStruct, Poke
 static void BlendPokemonSprite(PokedexGraphicData **graphicsData);
 static void SetXluMode(PokedexEntryDisplayGraphics *graphicsStruct);
 static void SetNormalMode(PokedexEntryDisplayGraphics *graphicsStruct);
-static void InitPokemonTransform(PokedexEntryDisplayGraphics *graphicsStruct, int posX, int posY, int speed);
+static void InitPokemonTransform(PokedexEntryDisplayGraphics *graphicsStruct, int posX, int posY, int numSteps);
 static BOOL UpdatePokemonTransform(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData);
 static void InitLabelTransform(PokedexEntryDisplayGraphics *graphicsStruct);
 static BOOL UpdateLabelTransform(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData);
@@ -139,10 +139,9 @@ void InfoMainForeign_SetAnimationMode(PokedexScreenManager *screenManager, enum 
     displayState->animationMode = animationMode;
 }
 
-BOOL InfoMainForeign_GetScreenStateCount(PokedexScreenManager *screenManager)
+int InfoMainForeign_GetScreenStateCount(PokedexScreenManager *screenManager)
 {
     // Get the number of screen states (always returns 0 for this module)
-    PokedexEntryDisplayState *displayState = screenManager->pageData;
     return 0;
 }
 
@@ -157,7 +156,7 @@ BOOL InfoMainForeign_SetDisplayMode(PokedexScreenManager *screenManager, int dis
         result = FALSE;
     }
 
-    displayState->displayAllInfoFlag = displayMode;
+    displayState->displayMode = displayMode;
 
     return result;
 }
@@ -168,13 +167,12 @@ void InfoMainForeign_SetLanguage(PokedexScreenManager *screenManager, int langua
     PokedexEntryDisplayState *displayState = screenManager->pageData;
 
     displayState->languageID = languageID;
-    displayState->displayAllInfoFlag = 0;
+    displayState->displayMode = 0;
 }
 
 static PokedexEntryDisplayState *AllocateState(enum HeapID heapID, PokedexApp *pokedexApp)
 {
     PokedexEntryDisplayState *displayState = Heap_Alloc(heapID, sizeof(PokedexEntryDisplayState));
-    PokedexScreenManager *screenManager;
 
     GF_ASSERT(displayState);
     memset(displayState, 0, sizeof(PokedexEntryDisplayState));
@@ -182,9 +180,7 @@ static PokedexEntryDisplayState *AllocateState(enum HeapID heapID, PokedexApp *p
     displayState->displayWorkData = ov21_021D138C(pokedexApp);
     displayState->sortData = PokedexMain_GetSortData(pokedexApp);
 
-    screenManager = ov21_021D1410(pokedexApp, 5);
-
-    displayState->screenManager = screenManager;
+    displayState->screenManager = ov21_021D1410(pokedexApp, 5);
 
     return displayState;
 }
@@ -192,7 +188,6 @@ static PokedexEntryDisplayState *AllocateState(enum HeapID heapID, PokedexApp *p
 static PokedexGraphicData **AllocateGraphicsData(enum HeapID heapID, PokedexApp *pokedexApp)
 {
     PokedexGraphicData **graphicsData = Heap_Alloc(heapID, sizeof(PokedexGraphicData *));
-    PokedexScreenManager *screenManager;
 
     GF_ASSERT(graphicsData);
     memset(graphicsData, 0, sizeof(PokedexGraphicData *));
@@ -226,7 +221,7 @@ static int ProcessInitData(PokedexDataManager *dataMan, void *data)
 
 static int ProcessUpdateData(PokedexDataManager *dataMan, void *data)
 {
-    PokedexEntryDisplayState *v0 = data;
+    PokedexEntryDisplayState *displayState = data;
 
     if (dataMan->exit == TRUE) {
         return TRUE;
@@ -417,26 +412,24 @@ static void RenderAllText(PokedexGraphicData **graphicsData, const PokedexEntryD
     String *text = String_Init(64, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
     enum Species species = PokedexSort_CurrentSpecies(displayState->sortData);
-    int entryID;
-    int textWidth;
 
     if (PokedexSort_CurrentCaughtStatus(displayState->sortData) != CS_CAUGHT) {
         species = SPECIES_NONE;
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    entryID = LanguageMessage(displayState->languageID);
+    int entryID = LanguageMessage(displayState->languageID);
 
     MessageLoader_GetString(pokedexMessageBank, entryID, text);
 
-    textWidth = Font_CalcStringWidth(FONT_SYSTEM, text, 0);
+    int textWidth = Font_CalcStringWidth(FONT_SYSTEM, text, 0);
     textWidth /= 2;
 
     Text_AddPrinterWithParamsAndColor(&(*graphicsData)->window, FONT_SYSTEM, text, 176 - textWidth, 72, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     String_Free(text);
     MessageLoader_Free(pokedexMessageBank);
 
-    RenderDexEntry(graphicsData, heapID, species, displayState->languageID, displayState->displayAllInfoFlag);
+    RenderDexEntry(graphicsData, heapID, species, displayState->languageID, displayState->displayMode);
     RenderNameNumber(graphicsData, heapID, species, displayState->languageID);
     RenderCategory(graphicsData, heapID, species, displayState->languageID);
 }
@@ -514,25 +507,25 @@ static void UnloadTypeIconSprites(PokedexEntryDisplayGraphics *graphicsStruct, P
 
 static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, int heapID)
 {
-    SpriteResourcesHeader v0;
-    SpriteListTemplate v1;
-    PokedexGraphicData *v2 = *graphicsData;
+    SpriteResourcesHeader spriteResourcesHeader;
+    SpriteListTemplate spriteListTemplate;
+    PokedexGraphicData *graphicData = *graphicsData;
     enum Species species = PokedexSort_CurrentSpecies(displayState->sortData);
-    Window *v4;
+    Window *categoryWindow;
     PokedexDisplayBox displayBox;
-    SpriteResource *v6;
+    SpriteResource *labelSpriteResource;
 
-    SpriteResourcesHeader_Init(&v0, type_icons_NCGR_lz + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, type_icons_NCLR + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, type_icons_cell_NCER_lz + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, type_icons_anim_NANR_lz + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, 0xffffffff, 0xffffffff, FALSE, 0, v2->spriteResourceCollection[SPRITE_RESOURCE_CHAR], v2->spriteResourceCollection[SPRITE_RESOURCE_PLTT], v2->spriteResourceCollection[SPRITE_RESOURCE_CELL], v2->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
+    SpriteResourcesHeader_Init(&spriteResourcesHeader, type_icons_NCGR_lz + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, type_icons_NCLR + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, type_icons_cell_NCER_lz + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, type_icons_anim_NANR_lz + POKEDEX_TYPE_ICON_RESOURCE_OFFSET, 0xffffffff, 0xffffffff, FALSE, 0, graphicData->spriteResourceCollection[SPRITE_RESOURCE_CHAR], graphicData->spriteResourceCollection[SPRITE_RESOURCE_PLTT], graphicData->spriteResourceCollection[SPRITE_RESOURCE_CELL], graphicData->spriteResourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
-    v1.list = v2->spriteList;
-    v1.resourceData = &v0;
-    v1.priority = 32;
-    v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v1.heapID = heapID;
-    v1.position.x = (192 * FX32_ONE);
-    v1.position.y = (52 * FX32_ONE);
+    spriteListTemplate.list = graphicData->spriteList;
+    spriteListTemplate.resourceData = &spriteResourcesHeader;
+    spriteListTemplate.priority = 32;
+    spriteListTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    spriteListTemplate.heapID = heapID;
+    spriteListTemplate.position.x = (192 * FX32_ONE);
+    spriteListTemplate.position.y = (52 * FX32_ONE);
 
-    graphicsStruct->displayedIconSprite = SpriteList_Add(&v1);
+    graphicsStruct->displayedIconSprite = SpriteList_Add(&spriteListTemplate);
 
     Sprite_SetAnim(graphicsStruct->displayedIconSprite, POKEDEX_TYPE_ICON_BACKGROUND_BOX_CELL);
 
@@ -540,11 +533,11 @@ static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, Poked
         species = SPECIES_NONE;
     }
 
-    v4 = CreateCategoryWindow(graphicsData, species, heapID);
-    v6 = PokedexGraphics_GetSpeciesLabelSpriteResource(*graphicsData, 1);
+    categoryWindow = CreateCategoryWindow(graphicsData, species, heapID);
+    labelSpriteResource = PokedexGraphics_GetSpeciesLabelSpriteResource(*graphicsData, 1);
 
     displayBox.textMan = (*graphicsData)->textMan;
-    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(v6, NULL);
+    displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(labelSpriteResource, NULL);
     displayBox.sprite = graphicsStruct->displayedIconSprite;
     displayBox.x = -78;
     displayBox.y = -8;
@@ -552,27 +545,27 @@ static void CreateCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct, Poked
     displayBox.spriteListPriority = 32 - 1;
     displayBox.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     displayBox.heapID = heapID;
-    displayBox.window = v4;
+    displayBox.window = categoryWindow;
 
     graphicsStruct->textData = PokedexTextManager_NextTextData(&displayBox);
 
-    PokedexTextManager_FreeWindow(v4);
+    PokedexTextManager_FreeWindow(categoryWindow);
 }
 
 static Window *CreateCategoryWindow(PokedexGraphicData **graphicsData, int species, int heapID)
 {
-    Window *v0 = PokedexTextManager_NewWindow((*graphicsData)->textMan, 18, 2);
-    String *v1 = PokedexText_Category(species, GAME_LANGUAGE, heapID);
+    Window *window = PokedexTextManager_NewWindow((*graphicsData)->textMan, 18, 2);
+    String *categoryText = PokedexText_Category(species, GAME_LANGUAGE, heapID);
 
     {
-        u32 v2 = Font_CalcStringWidth(FONT_SUBSCREEN, v1, 0);
-        u32 v3 = (v2 < 136) ? (136 - v2) / 2 : 0;
-        PokedexTextManager_DisplayString((*graphicsData)->textMan, v0, v1, v3, 0);
+        u32 textWidth = Font_CalcStringWidth(FONT_SUBSCREEN, categoryText, 0);
+        u32 xOffset = (textWidth < 136) ? (136 - textWidth) / 2 : 0;
+        PokedexTextManager_DisplayString((*graphicsData)->textMan, window, categoryText, xOffset, 0);
     }
 
-    PokedexText_Free(v1);
+    PokedexText_Free(categoryText);
 
-    return v0;
+    return window;
 }
 
 static void DeleteCategoryBox(PokedexEntryDisplayGraphics *graphicsStruct)
@@ -600,15 +593,15 @@ static void InitBlendMode(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGr
 
 static BOOL UpdateBlendMode(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, BOOL isInitializing)
 {
-    BOOL v0;
+    BOOL transitionComplete;
 
     if (ov21_021E2A54(displayState->screenManager)) {
-        v0 = PokedexGraphics_TakeBlendTransitionStep(&(*graphicsData)->blendMain);
+        transitionComplete = PokedexGraphics_TakeBlendTransitionStep(&(*graphicsData)->blendMain);
     } else {
-        v0 = PokedexGraphics_BlendTransitionComplete(&(*graphicsData)->blendMain);
+        transitionComplete = PokedexGraphics_BlendTransitionComplete(&(*graphicsData)->blendMain);
     }
 
-    if (v0 == TRUE) {
+    if (transitionComplete == TRUE) {
         if (isInitializing == TRUE) {
             SetNormalMode(graphicsStruct);
             PokedexGraphics_SetSpeciesLabelGXOamMode(*graphicsData, GX_OAM_MODE_NORMAL);
@@ -620,7 +613,7 @@ static BOOL UpdateBlendMode(PokedexEntryDisplayGraphics *graphicsStruct, Pokedex
         BlendPokemonSprite(graphicsData);
     }
 
-    return v0;
+    return transitionComplete;
 }
 
 static void InitPositionBlendMode(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, BOOL isInitializing)
@@ -643,31 +636,31 @@ static void InitPositionBlendMode(PokedexEntryDisplayGraphics *graphicsStruct, P
 
 static BOOL UpdatePositionBlendMode(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, BOOL isInitializing)
 {
-    BOOL v0[3];
-    int v1;
+    BOOL transitionsComplete[3];
+    int i;
 
     if (isInitializing == FALSE) {
-        v0[0] = UpdatePokemonTransform(graphicsStruct, graphicsData);
+        transitionsComplete[0] = UpdatePokemonTransform(graphicsStruct, graphicsData);
 
-        v0[1] = UpdateLabelTransform(graphicsStruct, graphicsData);
+        transitionsComplete[1] = UpdateLabelTransform(graphicsStruct, graphicsData);
     } else {
-        v0[0] = TRUE;
-        v0[1] = TRUE;
+        transitionsComplete[0] = TRUE;
+        transitionsComplete[1] = TRUE;
     }
 
     if (ov21_021E2A54(displayState->screenManager)) {
-        v0[2] = PokedexGraphics_TakeBlendTransitionStep(&(*graphicsData)->blendMain);
+        transitionsComplete[2] = PokedexGraphics_TakeBlendTransitionStep(&(*graphicsData)->blendMain);
     } else {
-        v0[2] = PokedexGraphics_BlendTransitionComplete(&(*graphicsData)->blendMain);
+        transitionsComplete[2] = PokedexGraphics_BlendTransitionComplete(&(*graphicsData)->blendMain);
     }
 
-    for (v1 = 0; v1 < 3; v1++) {
-        if (v0[v1] == FALSE) {
+    for (i = 0; i < 3; i++) {
+        if (transitionsComplete[i] == FALSE) {
             break;
         }
     }
 
-    if (v1 == 3) {
+    if (i == 3) {
         if (isInitializing == TRUE) {
             SetNormalMode(graphicsStruct);
         }
@@ -698,28 +691,28 @@ static void InitPositionMode(PokedexEntryDisplayGraphics *graphicsStruct, Pokede
 
 static BOOL UpdatePositionMode(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const PokedexEntryDisplayState *displayState, BOOL isInitializing)
 {
-    BOOL v0[2];
-    int v1;
+    BOOL transformComplete[2];
+    int i;
 
     if (isInitializing == FALSE) {
-        v0[0] = UpdatePokemonTransform(graphicsStruct, graphicsData);
+        transformComplete[0] = UpdatePokemonTransform(graphicsStruct, graphicsData);
     } else {
-        v0[0] = TRUE;
+        transformComplete[0] = TRUE;
     }
 
     if (ov21_021E2A54(displayState->screenManager)) {
-        v0[1] = PokedexGraphics_TakeBlendTransitionStep(&(*graphicsData)->blendMain);
+        transformComplete[1] = PokedexGraphics_TakeBlendTransitionStep(&(*graphicsData)->blendMain);
     } else {
-        v0[1] = PokedexGraphics_BlendTransitionComplete(&(*graphicsData)->blendMain);
+        transformComplete[1] = PokedexGraphics_BlendTransitionComplete(&(*graphicsData)->blendMain);
     }
 
-    for (v1 = 0; v1 < 2; v1++) {
-        if (v0[v1] == FALSE) {
+    for (i = 0; i < 2; i++) {
+        if (transformComplete[i] == FALSE) {
             break;
         }
     }
 
-    if (v1 == 2) {
+    if (i == 2) {
         if (isInitializing == TRUE) {
             SetNormalMode(graphicsStruct);
             PokedexGraphics_SetSpeciesLabelGXOamMode(*graphicsData, GX_OAM_MODE_NORMAL);
@@ -750,17 +743,17 @@ static void BlendPokemonSprite(PokedexGraphicData **graphicsData)
     PokedexGraphics_BlendPokemonChar(*graphicsData, &(*graphicsData)->blendMain);
 }
 
-static void InitPokemonTransform(PokedexEntryDisplayGraphics *graphicsStruct, int posX, int posY, int speed)
+static void InitPokemonTransform(PokedexEntryDisplayGraphics *graphicsStruct, int posX, int posY, int numSteps)
 {
-    PokedexGraphics_InitTransformation(&graphicsStruct->transformPokemon, 48, posX, 72, posY, speed);
+    PokedexGraphics_InitTransformation(&graphicsStruct->transformPokemon, 48, posX, 72, posY, numSteps);
 }
 
 static BOOL UpdatePokemonTransform(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData)
 {
-    BOOL v0 = PokedexGraphics_TakeTransformStep(&graphicsStruct->transformPokemon);
+    BOOL transformComplete = PokedexGraphics_TakeTransformStep(&graphicsStruct->transformPokemon);
     PokemonGraphics_SetCharCenterXY(*graphicsData, graphicsStruct->transformPokemon.currentX, graphicsStruct->transformPokemon.currentY);
 
-    return v0;
+    return transformComplete;
 }
 
 static void InitLabelTransform(PokedexEntryDisplayGraphics *graphicsStruct)
@@ -770,10 +763,10 @@ static void InitLabelTransform(PokedexEntryDisplayGraphics *graphicsStruct)
 
 static BOOL UpdateLabelTransform(PokedexEntryDisplayGraphics *graphicsStruct, PokedexGraphicData **graphicsData)
 {
-    BOOL v0 = PokedexGraphics_TakeTransformStep(&graphicsStruct->transformLabel);
+    BOOL transformComplete = PokedexGraphics_TakeTransformStep(&graphicsStruct->transformLabel);
     ov21_021D1848(*graphicsData, graphicsStruct->transformLabel.currentX, graphicsStruct->transformLabel.currentY);
 
-    return v0;
+    return transformComplete;
 }
 
 static int LanguageMessage(int languageID)
@@ -781,22 +774,22 @@ static int LanguageMessage(int languageID)
     int entryID;
 
     switch (languageID) {
-    case 1:
+    case JAPANESE:
         entryID = pl_msg_pokedex_japanese;
         break;
-    case 2:
+    case ENGLISH:
         entryID = pl_msg_pokedex_english;
         break;
-    case 3:
+    case FRENCH:
         entryID = pl_msg_pokedex_french;
         break;
-    case 4:
+    case ITALIAN:
         entryID = pl_msg_pokedex_italian;
         break;
-    case 5:
+    case GERMAN:
         entryID = pl_msg_pokedex_german;
         break;
-    case 7:
+    case SPANISH:
         entryID = pl_msg_pokedex_spanish;
         break;
     default:
@@ -809,17 +802,17 @@ static int LanguageMessage(int languageID)
 
 static void RenderNameNumber(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID)
 {
-    String *v0 = PokedexText_NameNumber(species, languageID, heapID);
+    String *nameNumberText = PokedexText_NameNumber(species, languageID, heapID);
 
-    Text_AddPrinterWithParamsAndColor(&(*graphicsData)->window, FONT_SYSTEM, v0, 120, 96, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    PokedexText_Free(v0);
+    Text_AddPrinterWithParamsAndColor(&(*graphicsData)->window, FONT_SYSTEM, nameNumberText, 120, 96, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+    PokedexText_Free(nameNumberText);
 }
 
 static void RenderCategory(PokedexGraphicData **graphicsData, int heapID, enum Species species, int languageID)
 {
-    String *v0 = PokedexText_Category(species, languageID, heapID);
-    u32 v1 = 240 - Font_CalcStringWidth(FONT_SYSTEM, v0, 0);
+    String *categoryText = PokedexText_Category(species, languageID, heapID);
+    u32 xPosition = 240 - Font_CalcStringWidth(FONT_SYSTEM, categoryText, 0);
 
-    Text_AddPrinterWithParamsAndColor(&(*graphicsData)->window, FONT_SYSTEM, v0, v1, 112, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    PokedexText_Free(v0);
+    Text_AddPrinterWithParamsAndColor(&(*graphicsData)->window, FONT_SYSTEM, categoryText, xPosition, 112, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
+    PokedexText_Free(categoryText);
 }
