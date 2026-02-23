@@ -146,18 +146,18 @@ fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps)
     return FX_Div(end - start, steps << FX32_SHIFT);
 }
 
-u32 BattleAnimMath_CalcStepCount(fx32 start, fx32 end, fx32 stepSize)
+u32 BattleAnimUtil_GetRequiredSteps(fx32 a, fx32 b, fx32 stepSize)
 {
-    fx32 div = FX_Div(end - start, stepSize);
-    fx32 modf = FX_Modf(div, &div);
+    fx32 steps = FX_Div(b - a, stepSize);
+    fx32 fractional = FX_Modf(steps, &steps);
 
-    if (modf) {
-        div += FX32_ONE;
+    if (fractional) {
+        steps += FX32_ONE;
     }
 
-    div = MATH_ABS(div);
+    steps = MATH_ABS(steps);
 
-    return div >> FX32_SHIFT;
+    return steps >> FX32_SHIFT;
 }
 
 void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedSprite *sprite, s16 cx, s16 cy)
@@ -195,23 +195,25 @@ void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16
     ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / steps;
 }
 
-void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize)
+void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSizeX)
 {
+    s16 stepSizeSigned;
+
     GF_ASSERT(ctx);
 
     if (sx > ex) {
-        stepSize = -stepSize;
+        stepSizeX = -stepSizeX;
     }
 
-    s16 stepSizeSigned = stepSize;
+    stepSizeSigned = stepSizeX;
 
-    ctx->data[XY_PARAM_REV_STEPS] = BattleAnimMath_CalcStepCount(sx * FX32_ONE, ex * FX32_ONE, stepSizeSigned * FX32_ONE);
+    ctx->data[XY_PARAM_REV_STEPS] = BattleAnimUtil_GetRequiredSteps(sx * FX32_ONE, ex * FX32_ONE, stepSizeSigned * FX32_ONE);
     ctx->data[XY_PARAM_REV_CUR_X] = sx;
     ctx->data[XY_PARAM_REV_RADIUS_X] = rx;
     ctx->data[XY_PARAM_REV_CUR_Y] = sy;
     ctx->data[XY_PARAM_REV_RADIUS_Y] = ry;
     ctx->data[XY_PARAM_REV_STEP_SIZE_X] = stepSizeSigned;
-    ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / ctx->data[0];
+    ctx->data[XY_PARAM_REV_STEP_SIZE_Y] = (ey - sy) / ctx->data[XY_PARAM_REV_STEPS];
 }
 
 BOOL RevolutionContext_Update(XYTransformContext *ctx)
@@ -390,7 +392,7 @@ BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx)
     return FALSE;
 }
 
-void ValueLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
+void ValueLerpContext_InitSinusoidal(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps)
 {
     ctx->data[VALUE_PARAM_COS_STEPS] = steps;
     ctx->data[VALUE_PARAM_COS_CUR_ANGLE] = start;
@@ -398,7 +400,7 @@ void ValueLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 am
     ctx->data[VALUE_PARAM_COS_STEP_SIZE] = (end - start) / steps;
 }
 
-BOOL ValueLerpContext_UpdateCos(ValueLerpContext *ctx)
+BOOL ValueLerpContext_UpdateSinusoidal(ValueLerpContext *ctx)
 {
     GF_ASSERT(ctx);
 

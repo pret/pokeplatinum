@@ -106,7 +106,7 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
 static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_SpriteExample,
     BattleAnimSpriteFunc_StringShot,
-    ov12_0222FE30,
+    BattleAnimSpriteFunc_Kinesis,
     BattleAnimSpriteFunc_Trick,
     ov12_02230CEC,
     ov12_02231010,

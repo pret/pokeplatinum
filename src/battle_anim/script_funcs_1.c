@@ -72,15 +72,18 @@ enum ShadowPunchState {
 // Frenzy Plant Sprite
 // -------------------------------------------------------------------
 
-#define FRENZY_PLANT_SPRITE_COUNT 8
+#define FRENZY_PLANT_ROOT_COUNT 8
 
 typedef struct FrenzyPlantSpriteContext {
     BattleAnimScriptFuncCommon common;
     s16 unused;
-    s16 lifetime[FRENZY_PLANT_SPRITE_COUNT];
-    ManagedSprite *sprites[FRENZY_PLANT_SPRITE_COUNT];
+    s16 lifetime[FRENZY_PLANT_ROOT_COUNT];
+    ManagedSprite *sprites[FRENZY_PLANT_ROOT_COUNT];
     XYTransformContext pos;
 } FrenzyPlantSpriteContext;
+
+#define FRENZY_PLANT_ROOT_MOVE_DELAY 32 // Frames before a root starts animating
+#define FRENZY_PLANT_ROOT_LIFETIME   160 // Frames before a root disappears
 
 // -------------------------------------------------------------------
 // Role Play
@@ -326,39 +329,37 @@ void BattleAnimScriptFunc_ShadowPunch(BattleAnimSystem *system)
 
 static void BattleAnimTask_FrenzyPlantSprite(SysTask *task, void *param)
 {
-    FrenzyPlantSpriteContext *v0 = (FrenzyPlantSpriteContext *)param;
+    FrenzyPlantSpriteContext *ctx = param;
 
-    {
-        int v1;
-        int v2 = 0;
+    int i;
+    int invisibleRoots = 0;
 
-        for (v1 = 0; v1 < 8; v1++) {
-            v0->lifetime[v1]++;
+    for (i = 0; i < FRENZY_PLANT_ROOT_COUNT; i++) {
+        ctx->lifetime[i]++;
 
-            if (v0->lifetime[v1] < 32) {
-                continue;
-            }
-
-            ov12_0222E248(v0->sprites[v1]);
-
-            if (v0->lifetime[v1] >= 160) {
-                ManagedSprite_SetDrawFlag(v0->sprites[v1], 0);
-                v2++;
-            }
+        if (ctx->lifetime[i] < FRENZY_PLANT_ROOT_MOVE_DELAY) {
+            continue;
         }
 
-        if (v2 == 8) {
-            for (v1 = 0; v1 < 8; v1++) {
-                Sprite_DeleteAndFreeResources(v0->sprites[v1]);
-            }
+        BattleAnimUtil_TickSpriteIfVisible(ctx->sprites[i]);
 
-            BattleAnimSystem_EndAnimTask(v0->common.battleAnimSys, task);
-            Heap_Free(v0);
-            return;
+        if (ctx->lifetime[i] >= FRENZY_PLANT_ROOT_LIFETIME) {
+            ManagedSprite_SetDrawFlag(ctx->sprites[i], FALSE);
+            invisibleRoots++;
         }
     }
 
-    SpriteSystem_DrawSprites(v0->common.primarySpriteManager);
+    if (invisibleRoots == FRENZY_PLANT_ROOT_COUNT) {
+        for (i = 0; i < FRENZY_PLANT_ROOT_COUNT; i++) {
+            Sprite_DeleteAndFreeResources(ctx->sprites[i]);
+        }
+
+        BattleAnimSystem_EndAnimTask(ctx->common.battleAnimSys, task);
+        Heap_Free(ctx);
+        return;
+    }
+
+    SpriteSystem_DrawSprites(ctx->common.primarySpriteManager);
 }
 
 void BattleAnimSpriteFunc_FrenzyPlant(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
@@ -375,7 +376,7 @@ void BattleAnimSpriteFunc_FrenzyPlant(BattleAnimSystem *system, SpriteSystem *sp
     template = BattleAnimSystem_GetLastSpriteTemplate(ctx->common.battleAnimSys);
     ctx->sprites[0] = sprite;
 
-    for (i = 1; i < FRENZY_PLANT_SPRITE_COUNT; i++) {
+    for (i = 1; i < FRENZY_PLANT_ROOT_COUNT; i++) {
         ctx->sprites[i] = SpriteSystem_NewSprite(ctx->common.spriteSystem, ctx->common.primarySpriteManager, &template);
 
         if (i % 2) {
@@ -394,7 +395,7 @@ void BattleAnimSpriteFunc_FrenzyPlant(BattleAnimSystem *system, SpriteSystem *sp
     defenderY = PokemonSprite_GetAttribute(monSprite, MON_SPRITE_Y_CENTER);
 
     // This section here evenly spreads the roots between attacker and defender
-    PosLerpContext_Init(&ctx->pos, attackerX, defenderX, attackerY, defenderY, (FRENZY_PLANT_SPRITE_COUNT + 2) * 2);
+    PosLerpContext_Init(&ctx->pos, attackerX, defenderX, attackerY, defenderY, (FRENZY_PLANT_ROOT_COUNT + 2) * 2);
 
     BOOL active;
     int frame = 0;
@@ -424,8 +425,8 @@ void BattleAnimSpriteFunc_FrenzyPlant(BattleAnimSystem *system, SpriteSystem *sp
     int baseBgPriority = BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_BASE);
     int effectBgPriority = BattleAnimSystem_GetBgPriority(ctx->common.battleAnimSys, BATTLE_ANIM_BG_EFFECT);
 
-    for (i = 0; i < FRENZY_PLANT_SPRITE_COUNT; i++) {
-        ctx->lifetime[i] = (FRENZY_PLANT_SPRITE_COUNT - i) * 4;
+    for (i = 0; i < FRENZY_PLANT_ROOT_COUNT; i++) {
+        ctx->lifetime[i] = (FRENZY_PLANT_ROOT_COUNT - i) * 4;
 
         if (BattleAnimSystem_IsContest(ctx->common.battleAnimSys) == FALSE) {
             if (BattleAnimUtil_GetBattlerSide(ctx->common.battleAnimSys, BattleAnimSystem_GetAttacker(ctx->common.battleAnimSys)) == 0x3) {
@@ -442,7 +443,7 @@ void BattleAnimSpriteFunc_FrenzyPlant(BattleAnimSystem *system, SpriteSystem *sp
                 }
             }
 
-            ManagedSprite_SetPriority(ctx->sprites[i], FRENZY_PLANT_SPRITE_COUNT - i);
+            ManagedSprite_SetPriority(ctx->sprites[i], FRENZY_PLANT_ROOT_COUNT - i);
         } else {
             ManagedSprite_SetPriority(ctx->sprites[i], i);
             ManagedSprite_SetExplicitPriority(ctx->sprites[i], effectBgPriority);

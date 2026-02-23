@@ -796,10 +796,10 @@ void BattleAnimScriptFunc_Camouflage(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_Camouflage, ctx);
 }
 
-void ov12_0222E248(ManagedSprite *param0)
+void BattleAnimUtil_TickSpriteIfVisible(ManagedSprite *sprite)
 {
-    if (ManagedSprite_GetDrawFlag(param0) == 1) {
-        ManagedSprite_TickFrame(param0);
+    if (ManagedSprite_GetDrawFlag(sprite) == TRUE) {
+        ManagedSprite_TickFrame(sprite);
     }
 }
 
@@ -808,14 +808,14 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
     UnkStruct_ov12_0222E25C *v0 = (UnkStruct_ov12_0222E25C *)param1;
 
     if (v0->unk_1C <= 0) {
-        ov12_0222E248(v0->unk_28[2]);
-        ov12_0222E248(v0->unk_28[3]);
+        BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[2]);
+        BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[3]);
     } else {
         v0->unk_1C--;
     }
 
-    ov12_0222E248(v0->unk_28[0]);
-    ov12_0222E248(v0->unk_28[1]);
+    BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[0]);
+    BattleAnimUtil_TickSpriteIfVisible(v0->unk_28[1]);
 
     {
         int v1;
@@ -898,7 +898,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
                 continue;
             }
 
-            ov12_0222E248(v0->unk_2C[v1]);
+            BattleAnimUtil_TickSpriteIfVisible(v0->unk_2C[v1]);
 
             if (v0->unk_22[0] == 110) {
                 BattleAnimUtil_SetSpriteBgBlending(v0->unk_00.battleAnimSys, 0xffffffff, 0xffffffff);

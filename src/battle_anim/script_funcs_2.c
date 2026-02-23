@@ -83,28 +83,63 @@ enum DrillPeckState {
 #define DRILL_PECK_POST_ROTATION_FWD_DELAY 2
 #define DRILL_PECK_POST_MOVE_FWD_DELAY     32
 
-typedef struct {
-    ManagedSprite *unk_00;
-    XYTransformContext unk_04;
-    ValueLerpContext unk_28;
-    s16 unk_3C;
-    s16 unk_3E;
-    s16 unk_40;
-    int unk_44;
-    BOOL unk_48;
-} UnkStruct_ov12_0222FAFC;
+// -------------------------------------------------------------------
+// Kinesis Sprite
+// -------------------------------------------------------------------
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    UnkStruct_ov12_0222FAFC unk_0C;
-    UnkStruct_ov12_0222FAFC unk_58[2];
-    int unk_EC;
-    int unk_F0;
-    int unk_F4;
-    int unk_F8;
-} UnkStruct_ov12_0222FC44;
+#define KINESIS_EXTRA_SPOON_COUNT 2
+
+typedef struct KinesisSpoon {
+    ManagedSprite *sprite;
+    XYTransformContext revs;
+    ValueLerpContext cosWave;
+    s16 revStepSizeX;
+    s16 posX;
+    s16 posY;
+    int state;
+    BOOL active;
+} KinesisSpoon;
+
+enum KinesisSpoonState {
+    KINESIS_SPOON_STATE_INIT_REVS = 0,
+    KINESIS_SPOON_STATE_REV,
+    KINESIS_SPOON_STATE_DONE,
+};
+
+typedef struct KinesisSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    KinesisSpoon spoon;
+    KinesisSpoon extraSpoons[KINESIS_EXTRA_SPOON_COUNT];
+    int state;
+    int delay;
+    int activeSpoon;
+    int spoonAlpha;
+} KinesisSpriteContext;
+
+enum KinesisSpriteState {
+    KINESIS_SPRITE_STATE_INIT = 0,
+    KINESIS_SPRITE_STATE_FADE_IN_SPOONS,
+    KINESIS_SPRITE_STATE_FIX_ALPHA,
+    KINESIS_SPRITE_STATE_MOVE_SPOONS,
+    KINESIS_SPRITE_STATE_ANIMATE_SPOON,
+    KINESIS_SPRITE_STATE_FADE_OUT_SPOONS,
+    KINESIS_SPRITE_STATE_CLEANUP,
+};
+
+#define KINESIS_SPRITE_START_REV_X          DEG_TO_IDX(90)
+#define KINESIS_SPRITE_END_REV_X            DEG_TO_IDX(270)
+#define KINESIS_SPRITE_START_REV_Y          DEG_TO_IDX(90)
+#define KINESIS_SPRITE_END_REV_Y            DEG_TO_IDX(270)
+#define KINESIS_SPRITE_REV_RADIUS_X         FX32_CONST(-32)
+#define KINESIS_SPRITE_REV_RADIUS_Y         FX32_CONST(-8)
+#define KINESIS_SPRITE_REV_STEP             DEG_TO_IDX(10)
+#define KINESIS_SPRITE_SPOON_START_ALPHA    0
+#define KINESIS_SPRITE_BG_START_ALPHA       31
+#define KINESIS_SPRITE_SPOON_END_ALPHA      31
+#define KINESIS_SPRITE_ALPHA_SCALE          10
+#define KINESIS_SPRITE_SPOON_STAGGER_FRAMES 8
 
 // -------------------------------------------------------------------
 // Confusion
@@ -1079,203 +1114,227 @@ void BattleAnimScriptFunc_DrillPeck(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_DrillPeck, ctx);
 }
 
-static void ov12_0222FAFC(UnkStruct_ov12_0222FAFC *param0, SpriteSystem *param1, SpriteManager *param2, const SpriteTemplate *param3, const UnkStruct_ov12_0222FAFC *param4)
+static void KinesisSpoon_CopyFrom(KinesisSpoon *spoon, SpriteSystem *spriteSys, SpriteManager *spriteMan, const SpriteTemplate *template, const KinesisSpoon *source)
 {
-    param0->unk_00 = SpriteSystem_NewSprite(param1, param2, param3);
-    param0->unk_04 = param4->unk_04;
-    param0->unk_28 = param4->unk_28;
-    param0->unk_3C = param4->unk_3C;
-    param0->unk_3E = param4->unk_3E;
-    param0->unk_40 = param4->unk_40;
-    param0->unk_44 = param4->unk_44;
-    param0->unk_48 = 0;
+    spoon->sprite = SpriteSystem_NewSprite(spriteSys, spriteMan, template);
+    spoon->revs = source->revs;
+    spoon->cosWave = source->cosWave;
+    spoon->revStepSizeX = source->revStepSizeX;
+    spoon->posX = source->posX;
+    spoon->posY = source->posY;
+    spoon->state = source->state;
+    spoon->active = 0;
 
-    ManagedSprite_SetDrawFlag(param0->unk_00, 0);
-    ManagedSprite_SetPriority(param0->unk_00, 100);
-    ManagedSprite_SetExplicitPriority(param0->unk_00, 1);
+    ManagedSprite_SetDrawFlag(spoon->sprite, FALSE);
+    ManagedSprite_SetPriority(spoon->sprite, 100);
+    ManagedSprite_SetExplicitPriority(spoon->sprite, 1);
 }
 
-static void ov12_0222FB6C(UnkStruct_ov12_0222FAFC *param0)
+static void KinesisSpoon_FreeSprite(KinesisSpoon *spoon)
 {
-    Sprite_DeleteAndFreeResources(param0->unk_00);
+    Sprite_DeleteAndFreeResources(spoon->sprite);
 }
 
-static void ov12_0222FB78(UnkStruct_ov12_0222FAFC *param0, BOOL param1)
+static void KinesisSpoon_SetDrawFlag(KinesisSpoon *spoon, BOOL draw)
 {
-    ManagedSprite_SetDrawFlag(param0->unk_00, param1);
+    ManagedSprite_SetDrawFlag(spoon->sprite, draw);
 }
 
-static BOOL ov12_0222FB84(UnkStruct_ov12_0222FAFC *param0)
+static BOOL KinesisSpoon_Update(KinesisSpoon *spoon)
 {
-    if (param0->unk_48 == 0) {
-        return 1;
+    if (spoon->active == FALSE) {
+        return TRUE;
     }
 
-    switch (param0->unk_44) {
-    case 0:
-    case 1:
-        if (RevolutionContext_Update(&param0->unk_04)) {
-            ValueLerpContext_UpdateCos(&param0->unk_28);
-            param0->unk_04.data[5] = param0->unk_3C + param0->unk_28.value;
-            ManagedSprite_SetPositionXY(param0->unk_00, param0->unk_3E + param0->unk_04.x, param0->unk_40 + param0->unk_04.y);
+    switch (spoon->state) {
+    case KINESIS_SPOON_STATE_INIT_REVS:
+    case KINESIS_SPOON_STATE_REV:
+        if (RevolutionContext_Update(&spoon->revs)) {
+            ValueLerpContext_UpdateSinusoidal(&spoon->cosWave);
+            spoon->revs.data[XY_PARAM_REV_STEP_SIZE_X] = spoon->revStepSizeX + spoon->cosWave.value;
+            ManagedSprite_SetPositionXY(spoon->sprite, spoon->posX + spoon->revs.x, spoon->posY + spoon->revs.y);
         } else {
-            if (param0->unk_44 < 1) {
-                if (param0->unk_44 == 0) {
-                    RevolutionContext_InitWithStepSize(&param0->unk_04, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[1], (180 * 0xffff) / 360, param0->unk_04.data[2], param0->unk_04.data[4], (10 * 0xffff) / 360);
+            if (spoon->state < KINESIS_SPOON_STATE_REV) {
+                if (spoon->state == KINESIS_SPOON_STATE_INIT_REVS) {
+                    RevolutionContext_InitWithStepSize(
+                        &spoon->revs,
+                        spoon->revs.data[XY_PARAM_REV_CUR_X],
+                        DEG_TO_IDX(180),
+                        spoon->revs.data[XY_PARAM_REV_CUR_X],
+                        DEG_TO_IDX(180),
+                        spoon->revs.data[XY_PARAM_REV_RADIUS_X],
+                        spoon->revs.data[XY_PARAM_REV_RADIUS_Y],
+                        KINESIS_SPRITE_REV_STEP);
                 }
 
-                ValueLerpContext_InitCos(&param0->unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, param0->unk_04.data[0]);
+                ValueLerpContext_InitSinusoidal(
+                    &spoon->cosWave,
+                    DEG_TO_IDX(0),
+                    DEG_TO_IDX(360),
+                    -FX32_ONE,
+                    spoon->revs.data[XY_PARAM_REV_STEPS]);
             }
 
-            param0->unk_44++;
+            spoon->state++;
         }
         break;
-    case 2:
-        return 0;
+    case KINESIS_SPOON_STATE_DONE:
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov12_0222FC44(SysTask *param0, void *param1)
+static void BattleAnimTask_KinesisSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_0222FC44 *v0 = param1;
-    int v1;
-    BOOL v2 = 0;
-    BOOL v3;
+    KinesisSpriteContext *ctx = param;
+    int i;
 
-    switch (v0->unk_EC) {
-    case 0:
-        ov12_0222FB84(&v0->unk_0C);
-        v0->unk_EC++;
+    switch (ctx->state) {
+    case KINESIS_SPRITE_STATE_INIT:
+        KinesisSpoon_Update(&ctx->spoon);
+        ctx->state++;
         break;
-    case 1:
-        v0->unk_F8 += 10;
-        G2_ChangeBlendAlpha(v0->unk_F8 / 10, 31 - (v0->unk_F8 / 10));
+    case KINESIS_SPRITE_STATE_FADE_IN_SPOONS:
+        ctx->spoonAlpha += 1 * KINESIS_SPRITE_ALPHA_SCALE;
+        G2_ChangeBlendAlpha(
+            ctx->spoonAlpha / KINESIS_SPRITE_ALPHA_SCALE,
+            KINESIS_SPRITE_BG_START_ALPHA - (ctx->spoonAlpha / KINESIS_SPRITE_ALPHA_SCALE));
 
-        if (v0->unk_F8 >= 310) {
-            ManagedSprite_SetExplicitOamMode(v0->unk_0C.unk_00, GX_OAM_MODE_NORMAL);
+        if (ctx->spoonAlpha >= KINESIS_SPRITE_SPOON_END_ALPHA * KINESIS_SPRITE_ALPHA_SCALE) {
+            ManagedSprite_SetExplicitOamMode(ctx->spoon.sprite, GX_OAM_MODE_NORMAL);
 
-            v0->unk_EC++;
+            ctx->state++;
         }
         break;
-    case 2:
-        G2_ChangeBlendAlpha(0xffffffff, 0xffffffff);
-        v0->unk_EC++;
+    case KINESIS_SPRITE_STATE_FIX_ALPHA:
+        G2_ChangeBlendAlpha(BATTLE_ANIM_DEFAULT_ALPHA, BATTLE_ANIM_DEFAULT_ALPHA);
+        ctx->state++;
         break;
-    case 3:
-        if (v0->unk_F0 <= 0) {
-            v0->unk_58[v0->unk_F4].unk_48 = 1;
-            ManagedSprite_SetDrawFlag(v0->unk_58[v0->unk_F4].unk_00, 1);
-            v0->unk_F4++;
-            v0->unk_F0 = 8;
+    case KINESIS_SPRITE_STATE_MOVE_SPOONS: {
+        if (ctx->delay <= 0) {
+            ctx->extraSpoons[ctx->activeSpoon].active = TRUE;
+            ManagedSprite_SetDrawFlag(ctx->extraSpoons[ctx->activeSpoon].sprite, TRUE);
+            ctx->activeSpoon++;
+            ctx->delay = KINESIS_SPRITE_SPOON_STAGGER_FRAMES;
         }
 
-        if (v0->unk_F4 < 2) {
-            v0->unk_F0--;
+        if (ctx->activeSpoon < KINESIS_EXTRA_SPOON_COUNT) {
+            ctx->delay--;
         }
 
-        v2 = ov12_0222FB84(&v0->unk_0C);
+        BOOL anyActive = KinesisSpoon_Update(&ctx->spoon);
 
-        for (v1 = 0; v1 < 2; v1++) {
-            v3 = ov12_0222FB84(&v0->unk_58[v1]);
-
-            if (v3 == 0) {
-                ov12_0222FB78(&v0->unk_58[v1], 0);
+        for (i = 0; i < KINESIS_EXTRA_SPOON_COUNT; i++) {
+            BOOL active = KinesisSpoon_Update(&ctx->extraSpoons[i]);
+            if (active == FALSE) {
+                KinesisSpoon_SetDrawFlag(&ctx->extraSpoons[i], FALSE);
             }
 
-            v2 |= v3;
+            anyActive |= active;
         }
 
-        if (v2 == 0) {
-            v0->unk_EC++;
+        if (anyActive == FALSE) {
+            ctx->state++;
+        }
+    } break;
+    case KINESIS_SPRITE_STATE_ANIMATE_SPOON:
+        ManagedSprite_TickFrame(ctx->spoon.sprite);
+
+        if (Sprite_IsAnimated(ctx->spoon.sprite->sprite) == FALSE) {
+            ManagedSprite_SetExplicitOamMode(ctx->spoon.sprite, GX_OAM_MODE_XLU);
+            ctx->state++;
         }
         break;
-    case 4:
-        ManagedSprite_TickFrame(v0->unk_0C.unk_00);
+    case KINESIS_SPRITE_STATE_FADE_OUT_SPOONS:
+        ctx->spoonAlpha -= 1 * KINESIS_SPRITE_ALPHA_SCALE;
+        G2_ChangeBlendAlpha(
+            ctx->spoonAlpha / KINESIS_SPRITE_ALPHA_SCALE,
+            KINESIS_SPRITE_BG_START_ALPHA - (ctx->spoonAlpha / KINESIS_SPRITE_ALPHA_SCALE));
 
-        if (Sprite_IsAnimated(v0->unk_0C.unk_00->sprite) == 0) {
-            ManagedSprite_SetExplicitOamMode(v0->unk_0C.unk_00, GX_OAM_MODE_XLU);
-            v0->unk_EC++;
+        if (ctx->spoonAlpha <= 0) {
+            ctx->state++;
         }
         break;
-    case 5:
-        v0->unk_F8 -= 10;
-        G2_ChangeBlendAlpha(v0->unk_F8 / 10, 31 - (v0->unk_F8 / 10));
-
-        if (v0->unk_F8 <= 0) {
-            v0->unk_EC++;
-        }
-        break;
-    case 6:
-        for (v1 = 0; v1 < 2; v1++) {
-            ov12_0222FB6C(&v0->unk_58[v1]);
+    case KINESIS_SPRITE_STATE_CLEANUP:
+        for (i = 0; i < KINESIS_EXTRA_SPOON_COUNT; i++) {
+            KinesisSpoon_FreeSprite(&ctx->extraSpoons[i]);
         }
 
-        Sprite_DeleteAndFreeResources(v0->unk_0C.unk_00);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+        Sprite_DeleteAndFreeResources(ctx->spoon.sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
 
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_0222FE30(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Kinesis(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_0222FC44 *v0;
-    SpriteTemplate v1;
-    int v2;
-    int v3;
-    int v4;
+    SpriteTemplate template;
+    int i;
 
-    v0 = Heap_Alloc(BattleAnimSystem_GetHeapID(param0), sizeof(UnkStruct_ov12_0222FC44));
+    KinesisSpriteContext *ctx = Heap_Alloc(BattleAnimSystem_GetHeapID(system), sizeof(KinesisSpriteContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_F0 = 8;
-    v0->unk_F4 = 0;
-    v0->unk_EC = 0;
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->delay = KINESIS_SPRITE_SPOON_STAGGER_FRAMES;
+    ctx->activeSpoon = 0;
+    ctx->state = 0;
 
-    v3 = BattleAnimSystem_GetAttacker(param0);
-    v4 = BattleAnimUtil_GetTransformDirectionX(param0, v3);
-    v4 *= (-32 * FX32_ONE);
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    int revRadiusX = BattleAnimUtil_GetTransformDirectionX(system, attacker);
+    revRadiusX *= KINESIS_SPRITE_REV_RADIUS_X;
 
-    v0->unk_0C.unk_00 = param3;
-    v0->unk_0C.unk_44 = 0;
+    ctx->spoon.sprite = sprite;
+    ctx->spoon.state = 0;
 
-    RevolutionContext_InitWithStepSize(&v0->unk_0C.unk_04, (90 * 0xffff) / 360, (270 * 0xffff) / 360, (90 * 0xffff) / 360, (270 * 0xffff) / 360, v4, -8 * FX32_ONE, (10 * 0xffff) / 360);
-    ValueLerpContext_InitCos(&v0->unk_0C.unk_28, (0 * 0xffff) / 360, (360 * 0xffff) / 360, -1 * FX32_ONE, v0->unk_0C.unk_04.data[0]);
+    RevolutionContext_InitWithStepSize(
+        &ctx->spoon.revs,
+        KINESIS_SPRITE_START_REV_X,
+        KINESIS_SPRITE_END_REV_X,
+        KINESIS_SPRITE_START_REV_Y,
+        KINESIS_SPRITE_END_REV_Y,
+        revRadiusX,
+        KINESIS_SPRITE_REV_RADIUS_Y,
+        KINESIS_SPRITE_REV_STEP);
+    ValueLerpContext_InitSinusoidal(
+        &ctx->spoon.cosWave,
+        DEG_TO_IDX(0),
+        DEG_TO_IDX(360),
+        -1 * FX32_ONE,
+        ctx->spoon.revs.data[0]);
 
-    v0->unk_0C.unk_3C = v0->unk_0C.unk_04.data[5];
-    v0->unk_0C.unk_48 = 1;
-    v0->unk_0C.unk_3E = BattleAnimUtil_GetBattlerPos(param0, v3, 0);
-    v0->unk_0C.unk_40 = BattleAnimUtil_GetBattlerPos(param0, v3, 1);
+    ctx->spoon.revStepSizeX = ctx->spoon.revs.data[XY_PARAM_REV_STEP_SIZE_X];
+    ctx->spoon.active = 1;
+    ctx->spoon.posX = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_X);
+    ctx->spoon.posY = BattleAnimUtil_GetBattlerPos(system, attacker, BATTLE_ANIM_POSITION_MON_Y);
 
-    ManagedSprite_SetPositionXY(v0->unk_0C.unk_00, v0->unk_0C.unk_3E, v0->unk_0C.unk_40);
-    ManagedSprite_SetPriority(v0->unk_0C.unk_00, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_0C.unk_00, 1);
+    ManagedSprite_SetPositionXY(ctx->spoon.sprite, ctx->spoon.posX, ctx->spoon.posY);
+    ManagedSprite_SetPriority(ctx->spoon.sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->spoon.sprite, 1);
 
-    v1 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00);
-    v1.x = v0->unk_0C.unk_3E;
-    v1.y = v0->unk_0C.unk_40;
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->battleAnimSys);
+    template.x = ctx->spoon.posX;
+    template.y = ctx->spoon.posY;
 
-    for (v2 = 0; v2 < 2; v2++) {
-        ov12_0222FAFC(&v0->unk_58[v2], v0->unk_04, v0->unk_08, &v1, &v0->unk_0C);
+    for (i = 0; i < KINESIS_EXTRA_SPOON_COUNT; i++) {
+        KinesisSpoon_CopyFrom(&ctx->extraSpoons[i], ctx->spriteSys, ctx->spriteMan, &template, &ctx->spoon);
     }
 
-    v0->unk_F8 = 0;
+    ctx->spoonAlpha = 0;
 
-    BattleAnimUtil_SetSpriteBgBlending(v0->unk_00, 0, 31);
-    ManagedSprite_SetExplicitOamMode(v0->unk_0C.unk_00, GX_OAM_MODE_XLU);
+    BattleAnimUtil_SetSpriteBgBlending(ctx->battleAnimSys, KINESIS_SPRITE_SPOON_START_ALPHA, KINESIS_SPRITE_BG_START_ALPHA);
+    ManagedSprite_SetExplicitOamMode(ctx->spoon.sprite, GX_OAM_MODE_XLU);
 
-    for (v2 = 0; v2 < 2; v2++) {
-        ManagedSprite_SetExplicitOamMode(v0->unk_58[v2].unk_00, GX_OAM_MODE_XLU);
+    for (i = 0; i < KINESIS_EXTRA_SPOON_COUNT; i++) {
+        ManagedSprite_SetExplicitOamMode(ctx->extraSpoons[i].sprite, GX_OAM_MODE_XLU);
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_0222FC44, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_KinesisSprite, ctx);
 }
 
 static void ConfusionContext_Apply(ConfusionContext *ctx)

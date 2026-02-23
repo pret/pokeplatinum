@@ -165,7 +165,7 @@ u8 BattleAnimUtil_GetSpritePalette(ManagedSprite *sprite);
 int BattleAnimUtil_GetTransformDirectionX(BattleAnimSystem *system, int battler);
 int BattleAnimUtil_GetTransformDirectionY(BattleAnimSystem *system, int battler);
 fx32 BattleAnimMath_GetStepSize(fx32 start, fx32 end, u32 steps);
-u32 BattleAnimMath_CalcStepCount(fx32 start, fx32 end, fx32 stepSize);
+u32 BattleAnimUtil_GetRequiredSteps(fx32 start, fx32 end, fx32 stepSize);
 void XYTransformContext_ApplyPosOffsetToSprite(XYTransformContext *ctx, ManagedSprite *sprite, s16 cx, s16 cy);
 void ScaleLerpContext_ApplyToSprite(XYTransformContext *ctx, ManagedSprite *sprite);
 void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSprite *sprite, s16 cx, s16 cy);
@@ -173,7 +173,7 @@ void XYTransformContext_ApplyPosOffsetToMon(XYTransformContext *ctx, PokemonSpri
 #define PosLerpContext_Apply    XYTransformContext_ApplyPosOffsetToMon
 void ScaleLerpContext_ApplyToMon(XYTransformContext *ctx, PokemonSprite *sprite);
 void RevolutionContext_Init(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, int steps);
-void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSize);
+void RevolutionContext_InitWithStepSize(XYTransformContext *ctx, u16 sx, u16 ex, u16 sy, u16 ey, fx32 rx, fx32 ry, u16 stepSizeX);
 BOOL RevolutionContext_Update(XYTransformContext *ctx);
 BOOL RevolutionContext_UpdateAndApplyToSprite(XYTransformContext *ctx, s16 cx, s16 cy, ManagedSprite *sprite);
 BOOL RevolutionContext_UpdateAndApplyToMon(XYTransformContext *ctx, s16 cx, s16 cy, PokemonSprite *sprite);
@@ -188,8 +188,8 @@ void ValueLerpContext_Init(ValueLerpContext *ctx, s32 start, s32 end, u32 steps)
 void ValueLerpContext_InitFX32(ValueLerpContext *ctx, s16 start, s16 end, u32 steps); // Uses FX32 internally
 BOOL ValueLerpContext_Update(ValueLerpContext *ctx);
 BOOL ValueLerpContext_UpdateFX32(ValueLerpContext *ctx);
-void ValueLerpContext_InitCos(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps);
-BOOL ValueLerpContext_UpdateCos(ValueLerpContext *ctx);
+void ValueLerpContext_InitSinusoidal(ValueLerpContext *ctx, u16 start, u16 end, fx32 amplitude, u32 steps);
+BOOL ValueLerpContext_UpdateSinusoidal(ValueLerpContext *ctx);
 void ScaleLerpContext_Init(XYTransformContext *ctx, s16 startScale, s16 refScale, s16 endScale, u32 steps);
 BOOL ScaleLerpContext_Update(XYTransformContext *ctx);
 void ScaleLerpContext_InitXY(XYTransformContext *ctx, s16 sx, s16 ex, s16 sy, s16 ey, s16 ref, u32 steps);
