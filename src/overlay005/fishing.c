@@ -102,8 +102,7 @@ static u16 ConvertRodTypeToRodItem(enum EncounterFishingRodType rodType);
 static BOOL IsDoneFishing(SysTask *task);
 static int HasCaughtFish(SysTask *task);
 
-BOOL(*const sFishingActions[])
-(FishingTask *, PlayerAvatar *, MapObject *);
+BOOL (*const sFishingActions[])(FishingTask *, PlayerAvatar *, MapObject *);
 const int sRodTypeHookTimingWindow[];
 
 void *FishingContext_Init(FieldSystem *fieldSystem, enum HeapID heapID, enum EncounterFishingRodType rodType)

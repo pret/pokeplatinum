@@ -2425,8 +2425,7 @@ static BOOL ov62_02243B1C(UnkStruct_0208C06C *param0)
     return 0;
 }
 
-BOOL(*const Unk_ov62_02249680[])
-(UnkStruct_0208C06C *) = {
+BOOL (*const Unk_ov62_02249680[])(UnkStruct_0208C06C *) = {
     ov62_02243DC8,
     ov62_02243E20,
     ov62_02241D24,
@@ -2461,8 +2460,7 @@ BOOL(*const Unk_ov62_02249680[])
     ov62_02243888,
 };
 
-BOOL(*const Unk_ov62_0224962C[])
-(UnkStruct_0208C06C *) = {
+BOOL (*const Unk_ov62_0224962C[])(UnkStruct_0208C06C *) = {
     ov62_02243DC8,
     ov62_02243E20,
     ov62_02243FA8,
@@ -2486,8 +2484,7 @@ BOOL(*const Unk_ov62_0224962C[])
     ov62_02244FAC,
 };
 
-BOOL(*const Unk_ov62_02249618[])
-(UnkStruct_0208C06C *) = {
+BOOL (*const Unk_ov62_02249618[])(UnkStruct_0208C06C *) = {
     ov62_02243DC8,
     ov62_02243E20,
     ov62_02245334,
