@@ -13,7 +13,7 @@ void BattleAnimScriptFunc_AcidArmor(BattleAnimSystem *system);
 void BattleAnimScriptFunc_NightShadeAttacker(BattleAnimSystem *system);
 void BattleAnimScriptFunc_NightShadeDefender(BattleAnimSystem *system);
 void BattleAnimScriptFunc_Spite(BattleAnimSystem *system);
-void ov12_02230CEC(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
+void BattleAnimSpriteFunc_Metronome(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void ov12_02231010(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void ov12_022312A4(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite);
 void BattleAnimScriptFunc_FaintAttack(BattleAnimSystem *system);

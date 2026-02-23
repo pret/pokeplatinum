@@ -327,18 +327,43 @@ enum SpiteState {
 #define SPITE_BLEND_FRACTION         8
 #define SPITE_BLEND_COLOR            COLOR_BLACK
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    ManagedSprite *unk_10;
-    XYTransformContext unk_14;
-    ValueLerpContext unk_38;
-    int unk_4C;
-    int unk_50;
-    int unk_54;
-} UnkStruct_ov12_02230BE0;
+// -------------------------------------------------------------------
+// Metronome Sprite
+// -------------------------------------------------------------------
+typedef struct MetronomeSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    ManagedSprite *sprite;
+    XYTransformContext scale;
+    ValueLerpContext angle;
+    int counter;
+    int nextEndAngle;
+    int scaleDir;
+} MetronomeSpriteContext;
+
+enum MetronomeSpriteState {
+    METRONOME_SPRITE_STATE_GROW = 0,
+    METRONOME_SPRITE_STATE_WIGGLE,
+    METRONOME_SPRITE_STATE_SHRINK,
+    METRONOME_SPRITE_STATE_CLEANUP,
+};
+
+#define METRONOME_SPRITE_OFFSET_X        40
+#define METRONOME_SPRITE_OFFSET_Y        0
+#define METRONOME_SPRITE_AFFINE_OFFSET_X -12
+#define METRONOME_SPRITE_AFFINE_OFFSET_Y 12
+#define METRONOME_SPRITE_START_SCALE     1
+#define METRONOME_SPRITE_END_SCALE       10
+#define METRONOME_SPRITE_REF_SCALE       10
+#define METRONOME_SPRITE_SCALE_FRAMES    8
+#define METRONOME_SPRITE_START_ANGLE     DEG_TO_IDX(359)
+#define METRONOME_SPRITE_END_ANGLE       DEG_TO_IDX(320)
+#define METRONOME_SPRITE_RSTART_ANGLE    DEG_TO_IDX(0)
+#define METRONOME_SPRITE_REND_ANGLE      DEG_TO_IDX(40)
+#define METRONOME_SPRITE_ROTATE_FRAMES   4
+#define METRONOME_SPRITE_WAGGLE_COUNT    5
 
 typedef struct {
     ManagedSprite *unk_00;
@@ -1968,119 +1993,131 @@ void BattleAnimScriptFunc_Spite(BattleAnimSystem *system)
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_Spite, ctx);
 }
 
-static void ov12_02230BE0(SysTask *param0, void *param1)
+static void BattleAnimTask_MetronomeSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02230BE0 *v0 = param1;
-    BOOL v1;
-    f32 v2, v3;
-    int v4, v5;
+    MetronomeSpriteContext *ctx = param;
+    f32 scaleX, scaleY;
 
-    switch (v0->unk_0C) {
-    case 0:
-        v1 = ScaleLerpContext_Update(&v0->unk_14);
-
-        if (v1 == 1) {
-            ScaleLerpContext_GetAffineScale(&v0->unk_14, &v2, &v3);
-            ManagedSprite_SetAffineScale(v0->unk_10, v2 * v0->unk_54, v3);
+    switch (ctx->state) {
+    case METRONOME_SPRITE_STATE_GROW: {
+        BOOL active = ScaleLerpContext_Update(&ctx->scale);
+        if (active == TRUE) {
+            ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
+            ManagedSprite_SetAffineScale(ctx->sprite, scaleX * ctx->scaleDir, scaleY);
         } else {
-            v0->unk_0C++;
-            v0->unk_4C = 5;
+            ctx->state++;
+            ctx->counter = METRONOME_SPRITE_WAGGLE_COUNT;
 
             ScaleLerpContext_Init(
-                &v0->unk_14, 10, 10, 1, 8);
+                &ctx->scale,
+                METRONOME_SPRITE_END_SCALE,
+                METRONOME_SPRITE_REF_SCALE,
+                METRONOME_SPRITE_START_SCALE,
+                METRONOME_SPRITE_SCALE_FRAMES);
         }
-        break;
-    case 1:
-        v1 = ValueLerpContext_Update(&v0->unk_38);
-        ManagedSprite_SetAffineZRotation(v0->unk_10, v0->unk_38.value);
+    } break;
+    case METRONOME_SPRITE_STATE_WIGGLE: {
+        BOOL active = ValueLerpContext_Update(&ctx->angle);
+        ManagedSprite_SetAffineZRotation(ctx->sprite, ctx->angle.value);
 
-        if (v1 == 0) {
-            if (v0->unk_4C > 0) {
-                v0->unk_4C--;
+        if (active == FALSE) {
+            if (ctx->counter > 0) {
+                ctx->counter--;
 
-                v4 = v0->unk_38.value;
-                v5 = v0->unk_50;
-                v0->unk_50 = v0->unk_38.value;
+                int start = ctx->angle.value;
+                int end = ctx->nextEndAngle;
+                ctx->nextEndAngle = ctx->angle.value;
 
-                ValueLerpContext_Init(&v0->unk_38, v4, v5, 4);
+                ValueLerpContext_Init(&ctx->angle, start, end, METRONOME_SPRITE_ROTATE_FRAMES);
             } else {
-                v0->unk_0C++;
+                ctx->state++;
             }
         }
-        break;
-    case 2:
-        v1 = ScaleLerpContext_Update(&v0->unk_14);
-
-        if (v1 == 1) {
-            ScaleLerpContext_GetAffineScale(&v0->unk_14, &v2, &v3);
-            ManagedSprite_SetAffineScale(v0->unk_10, v2 * v0->unk_54, v3);
+    } break;
+    case METRONOME_SPRITE_STATE_SHRINK: {
+        BOOL active = ScaleLerpContext_Update(&ctx->scale);
+        if (active == TRUE) {
+            ScaleLerpContext_GetAffineScale(&ctx->scale, &scaleX, &scaleY);
+            ManagedSprite_SetAffineScale(ctx->sprite, scaleX * ctx->scaleDir, scaleY);
         } else {
-            v0->unk_0C++;
+            ctx->state++;
         }
-        break;
-    case 3:
-        Sprite_DeleteAndFreeResources(v0->unk_10);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    } break;
+    case METRONOME_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02230CEC(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Metronome(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02230BE0 *v0;
-    int v1;
-    int v2;
-    s16 v3, v4;
+    MetronomeSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(MetronomeSpriteContext));
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02230BE0));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
+    int dir = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
 
-    v1 = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-
-    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(v0->unk_00, 0) == 1) {
-        v0->unk_54 = -1;
-        v2 = v1 * -1;
+    int translationDir;
+    if (BattleAnimSystem_ShouldBattlerSpriteBeFlipped(ctx->battleAnimSys, BATTLER_ROLE_ATTACKER) == TRUE) {
+        ctx->scaleDir = -1;
+        translationDir = dir * -1;
     } else {
-        v0->unk_54 = 1;
-        v2 = v1;
+        ctx->scaleDir = 1;
+        translationDir = dir;
     }
 
-    v3 = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(v0->unk_00), 0);
-    v4 = BattleAnimUtil_GetBattlerPos(param0, BattleAnimSystem_GetAttacker(v0->unk_00), 1);
+    s16 x = BattleAnimUtil_GetBattlerPos(system, BattleAnimSystem_GetAttacker(ctx->battleAnimSys), BATTLE_ANIM_POSITION_MON_X);
+    s16 y = BattleAnimUtil_GetBattlerPos(system, BattleAnimSystem_GetAttacker(ctx->battleAnimSys), BATTLE_ANIM_POSITION_MON_Y);
 
-    v0->unk_10 = param3;
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetAffineOverwriteMode(v0->unk_10, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetAffineScale(v0->unk_10, 1, 1);
-    ManagedSprite_SetPositionXY(v0->unk_10, v3, v4);
-    ManagedSprite_OffsetPositionXY(v0->unk_10, 40 * v1, 0);
-    ManagedSprite_SetPriority(v0->unk_10, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_10, 1);
-    ManagedSprite_SetAffineTranslation(v0->unk_10, -12 * v2, 12);
+    ManagedSprite_SetAffineOverwriteMode(ctx->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetAffineScale(ctx->sprite, 1.0f, 1.0f);
+    ManagedSprite_SetPositionXY(ctx->sprite, x, y);
+    ManagedSprite_OffsetPositionXY(ctx->sprite, METRONOME_SPRITE_OFFSET_X * dir, METRONOME_SPRITE_OFFSET_Y);
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
+    ManagedSprite_SetAffineTranslation(
+        ctx->sprite,
+        METRONOME_SPRITE_AFFINE_OFFSET_X * translationDir,
+        METRONOME_SPRITE_AFFINE_OFFSET_Y);
 
-    if (BattleAnimUtil_GetBattlerSide(param0, BattleAnimSystem_GetAttacker(param0)) == 0x4) {
-        ManagedSprite_SetAnim(v0->unk_10, 1);
+    if (BattleAnimUtil_GetBattlerSide(system, BattleAnimSystem_GetAttacker(system)) == BTLSCR_ENEMY) {
+        ManagedSprite_SetAnim(ctx->sprite, 1);
     } else {
-        ManagedSprite_SetAnim(v0->unk_10, 0);
+        ManagedSprite_SetAnim(ctx->sprite, 0);
     }
 
-    ScaleLerpContext_Init(&v0->unk_14, 1, 10, 10, 8);
+    ScaleLerpContext_Init(
+        &ctx->scale,
+        METRONOME_SPRITE_START_SCALE,
+        METRONOME_SPRITE_REF_SCALE,
+        METRONOME_SPRITE_END_SCALE,
+        METRONOME_SPRITE_SCALE_FRAMES);
 
-    if (v2 >= 0) {
-        ValueLerpContext_Init(&v0->unk_38, (359 * 0xffff) / 360, (320 * 0xffff) / 360, 4);
-        v0->unk_50 = ((359 * 0xffff) / 360);
+    if (translationDir >= 0) {
+        ValueLerpContext_Init(
+            &ctx->angle,
+            METRONOME_SPRITE_START_ANGLE,
+            METRONOME_SPRITE_END_ANGLE,
+            METRONOME_SPRITE_ROTATE_FRAMES);
+        ctx->nextEndAngle = METRONOME_SPRITE_START_ANGLE;
     } else {
-        ValueLerpContext_Init(&v0->unk_38, (0 * 0xffff) / 360, (40 * 0xffff) / 360, 4);
-        v0->unk_50 = ((0 * 0xffff) / 360);
+        ValueLerpContext_Init(
+            &ctx->angle,
+            METRONOME_SPRITE_RSTART_ANGLE,
+            METRONOME_SPRITE_REND_ANGLE,
+            METRONOME_SPRITE_ROTATE_FRAMES);
+        ctx->nextEndAngle = METRONOME_SPRITE_RSTART_ANGLE;
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02230BE0, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_MetronomeSprite, ctx);
 }
 
 static void ov12_02230E24(UnkStruct_ov12_02230E24 *param0, ManagedSprite *param1, s16 param2, s16 param3, BOOL param4)
