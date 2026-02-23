@@ -528,7 +528,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
                 if (v2->unk_10 == 1) {
                     v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    InfoMainForeign_SetDisplayMode(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -543,7 +543,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
                 if (v2->unk_10 == 2) {
                     v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    InfoMainForeign_SetDisplayMode(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -558,7 +558,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
                 if (v2->unk_10 == 3) {
                     v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    InfoMainForeign_SetDisplayMode(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -573,7 +573,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
                 if (v2->unk_10 == 4) {
                     v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    InfoMainForeign_SetDisplayMode(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 
@@ -588,7 +588,7 @@ static void ov21_021E1E8C(u32 param0, enum TouchScreenButtonState param1, void *
                 if (v2->unk_10 == 5) {
                     v3 = InfoMainForeign_GetScreenStateCount(v1->unk_10);
                 } else {
-                    InfoMainForeign_SetDisplayMode(v1->unk_10, 0);
+                    InfoMainForeign_SetEntryOffset(v1->unk_10, 0);
                     v3 = 1;
                 }
 

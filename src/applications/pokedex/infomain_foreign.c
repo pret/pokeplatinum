@@ -45,7 +45,7 @@ typedef struct PokedexEntryDisplayState {
     const PokedexScreenManager *screenManager; // Screen manager reference
     enum AnimationMode animationMode; // Display animation mode
     int languageID; // Language constant (JAPANESE, ENGLISH, FRENCH, GERMAN, ITALIAN, SPANISH)
-    int displayMode; // Display mode (0 = selective info, 1 = all info)
+    int entryOffset; // Dex entry offset (0 = current entry)
 } PokedexEntryDisplayState;
 
 typedef struct PokedexEntryDisplayGraphics {
@@ -145,18 +145,18 @@ int InfoMainForeign_GetScreenStateCount(PokedexScreenManager *screenManager)
     return 0;
 }
 
-BOOL InfoMainForeign_SetDisplayMode(PokedexScreenManager *screenManager, int displayMode)
+BOOL InfoMainForeign_SetEntryOffset(PokedexScreenManager *screenManager, int entryOffset)
 {
-    // Set display mode (whether to show all info or selective display)
+    // Set dex entry offset (0 = current entry)
     PokedexEntryDisplayState *displayState = screenManager->pageData;
     BOOL result = TRUE;
 
-    if (displayMode == 1) {
-        displayMode = 0;
+    if (entryOffset == 1) {
+        entryOffset = 0;
         result = FALSE;
     }
 
-    displayState->displayMode = displayMode;
+    displayState->entryOffset = entryOffset;
 
     return result;
 }
@@ -167,7 +167,7 @@ void InfoMainForeign_SetLanguage(PokedexScreenManager *screenManager, int langua
     PokedexEntryDisplayState *displayState = screenManager->pageData;
 
     displayState->languageID = languageID;
-    displayState->displayMode = 0;
+    displayState->entryOffset = 0;
 }
 
 static PokedexEntryDisplayState *AllocateState(enum HeapID heapID, PokedexApp *pokedexApp)
@@ -429,7 +429,7 @@ static void RenderAllText(PokedexGraphicData **graphicsData, const PokedexEntryD
     String_Free(text);
     MessageLoader_Free(pokedexMessageBank);
 
-    RenderDexEntry(graphicsData, heapID, species, displayState->languageID, displayState->displayMode);
+    RenderDexEntry(graphicsData, heapID, species, displayState->languageID, displayState->entryOffset);
     RenderNameNumber(graphicsData, heapID, species, displayState->languageID);
     RenderCategory(graphicsData, heapID, species, displayState->languageID);
 }

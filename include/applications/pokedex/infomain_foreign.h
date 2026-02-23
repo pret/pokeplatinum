@@ -17,7 +17,7 @@ void InfoMainForeign_FreeScreen(PokedexScreenManager *screenManager);
 void InfoMainForeign_SetDisplayPosition(PokedexScreenManager *screenManager, int posX, int posY);
 void InfoMainForeign_SetAnimationMode(PokedexScreenManager *screenManager, enum AnimationMode animationMode);
 int InfoMainForeign_GetScreenStateCount(PokedexScreenManager *screenManager);
-BOOL InfoMainForeign_SetDisplayMode(PokedexScreenManager *screenManager, int displayMode);
+BOOL InfoMainForeign_SetEntryOffset(PokedexScreenManager *screenManager, int entryOffset);
 void InfoMainForeign_SetLanguage(PokedexScreenManager *screenManager, int languageID);
 
 #endif // POKEPLATINUM_POKEDEX_INFOMAIN_FOREIGN_H
