@@ -79,7 +79,7 @@ void Billboard_Reset(Billboard *billboard)
     billboard->texture = NULL;
     billboard->unk_90 = NULL;
 
-    memset(&billboard->unk_A0, 0, sizeof(BillboardGfxSequence));
+    memset(&billboard->gfxSequence, 0, sizeof(BillboardGfxSequence));
 
     billboard->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
     billboard->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
@@ -436,8 +436,8 @@ static void sub_02021078(Billboard *billboard, const BillboardResources *resourc
 static void sub_020210F4(const BillboardList *list, Billboard *billboard, const BillboardResources *resources)
 {
     billboard->unk_90 = BillboardResources_GetTexture(resources);
-    billboard->unk_A0 = resources->unk_0C;
-    billboard->unk_B0 = sub_0201DD54(list->unk_D8, &billboard->unk_A0, billboard->unk_90, billboard->texKey, billboard->plttKey, billboard->unk_B8);
+    billboard->gfxSequence = resources->gfxSequence;
+    billboard->unk_B0 = sub_0201DD54(list->unk_D8, &billboard->gfxSequence, billboard->unk_90, billboard->texKey, billboard->plttKey, billboard->unk_B8);
 }
 
 static void sub_02021148(Billboard *billboard, const BillboardResources *resources)
@@ -449,7 +449,7 @@ static void sub_02021148(Billboard *billboard, const BillboardResources *resourc
 
 static void sub_0202117C(Billboard *param0, const BillboardResources *param1)
 {
-    param0->unk_A0 = param1->unk_0C;
+    param0->gfxSequence = param1->gfxSequence;
     param0->unk_B0 = NULL;
 }
 
@@ -508,24 +508,24 @@ BOOL sub_020211FC(Billboard *billboard)
 }
 
 // BillboardResources_Set
-void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
+void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *gfxSequence, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
     resources->unk_08 = param3;
-    resources->unk_0C = *param4;
+    resources->gfxSequence = *gfxSequence;
     resources->texKey = texKey;
     resources->tex4x4Key = tex4x4Key;
     resources->plttKey = plttKey;
 }
 
 // BillboardResources_SetWithoutKeys
-void sub_02021284(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4)
+void sub_02021284(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *gfxSequence)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
     resources->unk_08 = param3;
-    resources->unk_0C = *param4;
+    resources->gfxSequence = *gfxSequence;
     resources->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
     resources->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
     resources->plttKey = NNS_GFD_ALLOC_ERROR_PLTTKEY;
@@ -679,7 +679,7 @@ void sub_02021444(Billboard *billboard, BillboardCallback callback, void *callba
 
 static void sub_0202144C(Billboard *billboard)
 {
-    BillboardTexPlttIndex v0 = BillboardGfxSequence_GetTexPlttIndexAt(&billboard->unk_A0, billboard->unk_B8 >> FX32_SHIFT);
+    BillboardTexPlttIndex v0 = BillboardGfxSequence_GetTexPlttIndexAt(&billboard->gfxSequence, billboard->unk_B8 >> FX32_SHIFT);
 
     sub_0202149C(billboard->model, billboard->unk_90, v0.textureIdx);
     sub_020215A0(billboard->model, billboard->unk_90, v0.plttIdx);

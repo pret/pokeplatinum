@@ -32,7 +32,7 @@ typedef struct Billboard {
     NNSGfdTexKey texKey;
     NNSGfdTexKey tex4x4Key;
     NNSGfdPlttKey plttKey;
-    BillboardGfxSequence unk_A0;
+    BillboardGfxSequence gfxSequence;
     UnkStruct_0201DDF4 *unk_B0;
     u8 unk_B4;
     u16 unk_B6;
@@ -59,7 +59,7 @@ typedef struct BillboardResources {
     void *modelRes;
     const NNSG3dResTex *texture;
     const UnkStruct_020217F4 *unk_08;
-    BillboardGfxSequence unk_0C;
+    BillboardGfxSequence gfxSequence;
     NNSGfdTexKey texKey;
     NNSGfdTexKey tex4x4Key;
     NNSGfdPlttKey plttKey;

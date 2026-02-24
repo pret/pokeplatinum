@@ -540,7 +540,7 @@ static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 para
     memset(v0, 0, sizeof(BillboardResources));
 
     v0->modelRes = param2;
-    v0->unk_0C = *param3;
+    v0->gfxSequence = *param3;
     v0->texture = param4;
 
     if (param5 != NULL) {
