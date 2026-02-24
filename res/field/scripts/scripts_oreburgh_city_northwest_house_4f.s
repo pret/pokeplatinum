@@ -2,36 +2,36 @@
 #include "res/text/bank/oreburgh_city_northwest_house_4f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityNorthwestHouse4F_SchoolKidM
+    ScriptEntry OreburghCityNorthwestHouse4F_NinjaBoy
+    ScriptEntry OreburghCityNorthwestHouse4F_PokefanF
     ScriptEntryEnd
 
-_000E:
+OreburghCityNorthwestHouse4F_SchoolKidM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityNorthwestHouse4F_Text_HahahaImGonnaSwipeYourFlag
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0021:
+OreburghCityNorthwestHouse4F_NinjaBoy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityNorthwestHouse4F_Text_ISetSomeNastyTrapsCatchMeIfYouCan
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0034:
+OreburghCityNorthwestHouse4F_PokefanF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message OreburghCityNorthwestHouse4F_Text_ThanksToTheGymLeaderWeCanPlayUnderground
     WaitABXPadPress
     CloseMessage
     ReleaseAll

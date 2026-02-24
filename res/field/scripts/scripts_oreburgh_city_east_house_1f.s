@@ -2,36 +2,36 @@
 #include "res/text/bank/oreburgh_city_east_house_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityEastHouse1F_PokefanM
+    ScriptEntry OreburghCityEastHouse1F_Hiker
+    ScriptEntry OreburghCityEastHouse1F_AceTrainerM
     ScriptEntryEnd
 
-_000E:
+OreburghCityEastHouse1F_PokefanM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityEastHouse1F_Text_WhyNotTryTrainingInTheOreburghMine
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0021:
+OreburghCityEastHouse1F_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityEastHouse1F_Text_IAlwaysHaveARottenTimeTryingToDecideWhichMovesMyPokemonShouldLearn
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0034:
+OreburghCityEastHouse1F_AceTrainerM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message OreburghCityEastHouse1F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll

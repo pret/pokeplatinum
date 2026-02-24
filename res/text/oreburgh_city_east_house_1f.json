@@ -2,7 +2,7 @@
   "key": 58426,
   "messages": [
     {
-      "id": "pl_msg_00000081_00000",
+      "id": "OreburghCityEastHouse1F_Text_WhyNotTryTrainingInTheOreburghMine",
       "en_US": [
         "Hiya! Your Pokémon could use some\n",
         "toughening up.\r",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000081_00001",
+      "id": "OreburghCityEastHouse1F_Text_IAlwaysHaveARottenTimeTryingToDecideWhichMovesMyPokemonShouldLearn",
       "en_US": [
         "I always have a rotten time trying\n",
         "to decide which moves my Pokémon\f",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000081_00002",
+      "id": "OreburghCityEastHouse1F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon",
       "en_US": [
         "You remind me so much of the time\n",
         "I got my first Pokémon."

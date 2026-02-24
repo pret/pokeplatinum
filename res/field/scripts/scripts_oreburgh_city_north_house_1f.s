@@ -2,80 +2,80 @@
 #include "res/text/bank/oreburgh_city_north_house_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _00C2
-    ScriptEntry _00D5
+    ScriptEntry OreburghCityNorthHouse1F_SchoolKidF
+    ScriptEntry OreburghCityNorthHouse1F_ExpertF
+    ScriptEntry OreburghCityNorthHouse1F_PokemonBreederM
     ScriptEntryEnd
 
-_000E:
+OreburghCityNorthHouse1F_SchoolKidF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0085, _00B7
-    Message 0
+    GoToIfSet FLAG_TRADED_FOR_KAZZA_ABRA, OreburghCityNorthHouse1F_ThanksToPokemonIGotToBeFriendsWithYou
+    Message OreburghCityNorthHouse1F_Text_WouldYouBeWillingToTradeYourMachopForMyAbra
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _003B
-    GoTo _00AC
+    GoToIfEq VAR_RESULT, MENU_YES, OreburghCityNorthHouse1F_TryTrade
+    GoTo OreburghCityNorthHouse1F_IfYouChangeYourMindIllBeRightHereWaiting
 
-_003B:
+OreburghCityNorthHouse1F_TryTrade:
     CloseMessage
     FadeScreenOut
     WaitFadeScreen
     SelectPokemonToTrade
     FadeScreenIn
     WaitFadeScreen
-    GoToIfEq VAR_RESULT, 0xFF, _00AC
+    GoToIfEq VAR_RESULT, 0xFF, OreburghCityNorthHouse1F_IfYouChangeYourMindIllBeRightHereWaiting
     StartNpcTrade NPC_TRADE_KAZZA_ABRA
     SetVar VAR_0x8004, VAR_RESULT
     GetPartyMonSpecies VAR_0x8004, VAR_0x8005
     GetNpcTradeRequestedSpecies VAR_RESULT
-    GoToIfNe VAR_0x8005, VAR_RESULT, _009F
+    GoToIfNe VAR_0x8005, VAR_RESULT, OreburghCityNorthHouse1F_WhatIAskedForWasAMachop
     ScrCmd_229 VAR_0x8004
     FinishNpcTrade
-    SetFlag FLAG_UNK_0x0085
-    Message 1
+    SetFlag FLAG_TRADED_FOR_KAZZA_ABRA
+    Message OreburghCityNorthHouse1F_Text_BeNiceToMyAbra
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_009F:
+OreburghCityNorthHouse1F_WhatIAskedForWasAMachop:
     FinishNpcTrade
-    Message 2
+    Message OreburghCityNorthHouse1F_Text_WhatIAskedForWasAMachop
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00AC:
-    Message 3
+OreburghCityNorthHouse1F_IfYouChangeYourMindIllBeRightHereWaiting:
+    Message OreburghCityNorthHouse1F_Text_IfYouChangeYourMindIllBeRightHereWaiting
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00B7:
-    Message 4
+OreburghCityNorthHouse1F_ThanksToPokemonIGotToBeFriendsWithYou:
+    Message OreburghCityNorthHouse1F_Text_ThanksToPokemonIGotToBeFriendsWithYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00C2:
+OreburghCityNorthHouse1F_ExpertF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 5
+    Message OreburghCityNorthHouse1F_Text_APokemonObtainedInATradeGrowsQuickly
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00D5:
+OreburghCityNorthHouse1F_PokemonBreederM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 6
+    Message OreburghCityNorthHouse1F_Text_WhenYouTradeAPokemonTheItemItsHoldingIsTradedAsWell
     WaitABXPadPress
     CloseMessage
     ReleaseAll

@@ -1,59 +1,60 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_mine_b2f.h"
+#include "res/field/events/events_oreburgh_mine_b2f.h"
 
 
-    ScriptEntry _0016
-    ScriptEntry _00FC
-    ScriptEntry _011B
-    ScriptEntry _013A
-    ScriptEntry _0159
+    ScriptEntry OreburghMineB2F_Roark
+    ScriptEntry OreburghMineB2F_Machop1
+    ScriptEntry OreburghMineB2F_Machop3
+    ScriptEntry OreburghMineB2F_Machop2
+    ScriptEntry OreburghMineB2F_Worker
     ScriptEntryEnd
 
-_0016:
+OreburghMineB2F_Roark:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoTo _0034
+    GoTo OreburghMineB2F_RoarkTurnBackEast
 
 OreburghMineB2F_Unused:
-    ApplyMovement 0, OreburghMineB2F_UnusedMovement2
+    ApplyMovement LOCALID_ROARK, OreburghMineB2F_UnusedMovement2
     WaitMovement
-    GoTo _0044
+    GoTo OreburghMineB2F_RoarkUseRockSmash
 
-_0034:
-    ApplyMovement 0, _00D8
+OreburghMineB2F_RoarkTurnBackEast:
+    ApplyMovement LOCALID_ROARK, OreburghMineB2F_Movement_RoarkTurnBackEast
     WaitMovement
-    GoTo _0044
+    GoTo OreburghMineB2F_RoarkUseRockSmash
 
-_0044:
-    Message 0
+OreburghMineB2F_RoarkUseRockSmash:
+    Message OreburghMineB2F_Text_OKStandBackAndWatchThis
     CloseMessage
     ScrCmd_29E 2, VAR_0x8005
     WaitTime 10, VAR_RESULT
-    RemoveObject 1
-_0059:
+    RemoveObject LOCALID_ROCK_SMASH_1
+OreburghMineB2F_WaitRockSmash:
     WaitTime 1, VAR_RESULT
-    GoToIfEq VAR_0x8005, 0, _0059
+    GoToIfEq VAR_0x8005, 0, OreburghMineB2F_WaitRockSmash
     FacePlayer
-    Message 1
+    Message OreburghMineB2F_Text_FallenBouldersNeedToBeSmashedSoTheyreOutOfTheWay
     CloseMessage
-    GoTo _0091
+    GoTo OreburghMineB2F_RoarkLeave
 
 OreburghMineB2F_Unused2:
     ApplyMovement 0, OreburghMineB2F_UnusedMovement
     ApplyMovement LOCALID_PLAYER, OreburghMineB2F_UnusedMovement3
     WaitMovement
-    GoTo _00A1
+    GoTo OreburghMineB2F_RemoveRoark
 
-_0091:
-    ApplyMovement 0, _00C0
+OreburghMineB2F_RoarkLeave:
+    ApplyMovement LOCALID_ROARK, OreburghMineB2F_Movement_RoarkLeave
     WaitMovement
-    GoTo _00A1
+    GoTo OreburghMineB2F_RemoveRoark
 
-_00A1:
-    RemoveObject 0
-    SetFlag FLAG_UNK_0x007A
-    SetFlag FLAG_UNK_0x017C
+OreburghMineB2F_RemoveRoark:
+    RemoveObject LOCALID_ROARK
+    SetFlag FLAG_ROARK_RETURNED_TO_OREBURGH_GYM
+    SetFlag FLAG_HIDE_OREBURGH_CITY_RIVAL
     ReleaseAll
     End
 
@@ -64,7 +65,7 @@ OreburghMineB2F_UnusedMovement:
     EndMovement
 
     .balign 4, 0
-_00C0:
+OreburghMineB2F_Movement_RoarkLeave:
     WalkNormalEast 10
     EndMovement
 
@@ -75,7 +76,7 @@ OreburghMineB2F_UnusedMovement2:
     EndMovement
 
     .balign 4, 0
-_00D8:
+OreburghMineB2F_Movement_RoarkTurnBackEast:
     Delay8 2
     WalkOnSpotNormalEast
     Delay8 4
@@ -88,50 +89,50 @@ OreburghMineB2F_UnusedMovement3:
     WalkOnSpotNormalEast
     EndMovement
 
-_00FC:
+OreburghMineB2F_Machop1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
-    Message 2
+    Message OreburghMineB2F_Text_MachopMaaacho
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_011B:
+OreburghMineB2F_Machop3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
-    Message 3
+    Message OreburghMineB2F_Text_MachopChopChop
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_013A:
+OreburghMineB2F_Machop2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
-    Message 4
+    Message OreburghMineB2F_Text_MachopChopmacho
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0159:
+OreburghMineB2F_Worker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 5
+    Message OreburghMineB2F_Text_IMetTheseMachopOnRoute207
     WaitABXPadPress
     CloseMessage
     ReleaseAll

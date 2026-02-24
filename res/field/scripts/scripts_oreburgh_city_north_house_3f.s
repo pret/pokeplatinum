@@ -2,36 +2,36 @@
 #include "res/text/bank/oreburgh_city_north_house_3f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityNorthHouse3F_PokefanF
+    ScriptEntry OreburghCityNorthHouse3F_Worker
+    ScriptEntry OreburghCityNorthHouse3F_Twin
     ScriptEntryEnd
 
-_000E:
+OreburghCityNorthHouse3F_PokefanF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityNorthHouse3F_Text_DuringTheDaytimeEveryoneGoesOffToTheMine
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0021:
+OreburghCityNorthHouse3F_Worker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityNorthHouse3F_Text_WellKeepDiggingCoal
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0034:
+OreburghCityNorthHouse3F_Twin:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message OreburghCityNorthHouse3F_Text_EveryoneIncludingLotsOfPokemonDugTheBigUndergroundMaze
     WaitABXPadPress
     CloseMessage
     ReleaseAll

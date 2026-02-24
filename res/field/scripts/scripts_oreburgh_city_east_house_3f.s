@@ -2,25 +2,25 @@
 #include "res/text/bank/oreburgh_city_east_house_3f.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry OreburghCityEastHouse3F_ScientistM
+    ScriptEntry OreburghCityEastHouse3F_AceTrainerM
     ScriptEntryEnd
 
-_000A:
+OreburghCityEastHouse3F_ScientistM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityEastHouse3F_Text_TheCoalMineHeresFullyAutomated
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_001D:
+OreburghCityEastHouse3F_AceTrainerM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityEastHouse3F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll

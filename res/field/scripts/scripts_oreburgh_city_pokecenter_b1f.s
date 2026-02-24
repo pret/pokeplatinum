@@ -2,14 +2,14 @@
 #include "res/text/bank/oreburgh_city_pokecenter_b1f.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry OreburghCityPokecenterB1F_BattleGirl
     ScriptEntryEnd
 
-_0006:
+OreburghCityPokecenterB1F_BattleGirl:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityPokecenterB1F_Text_IWantToBecomeFriendsWithAnExperiencedTrainerIReallyAdmire
     WaitABXPadPress
     CloseMessage
     ReleaseAll

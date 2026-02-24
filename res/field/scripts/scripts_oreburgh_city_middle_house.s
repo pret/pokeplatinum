@@ -2,25 +2,25 @@
 #include "res/text/bank/oreburgh_city_middle_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry OreburghCityMiddleHouse_SchoolKidF
+    ScriptEntry OreburghCityMiddleHouse_Hiker
     ScriptEntryEnd
 
-_000A:
+OreburghCityMiddleHouse_SchoolKidF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityMiddleHouse_Text_RoarkIsAUserOfRockTypePokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_001D:
+OreburghCityMiddleHouse_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityMiddleHouse_Text_RoarkIsOurTownsGymLeader
     WaitABXPadPress
     CloseMessage
     ReleaseAll

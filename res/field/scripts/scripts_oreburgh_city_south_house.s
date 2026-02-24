@@ -2,14 +2,14 @@
 #include "res/text/bank/oreburgh_city_south_house.h"
 
 
-    ScriptEntry _0006
+    ScriptEntry OreburghCitySouthHouse_Worker
     ScriptEntryEnd
 
-_0006:
+OreburghCitySouthHouse_Worker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCitySouthHouse_Text_YoureTakingATourOfOurCoalMine
     WaitABXPadPress
     CloseMessage
     ReleaseAll

@@ -1,123 +1,125 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/menu_entries.h"
 #include "res/text/bank/oreburgh_city_pokecenter_1f.h"
+#include "res/field/events/events_oreburgh_city_pokecenter_1f.h"
 
 
-    ScriptEntry _001E
-    ScriptEntry _002A
-    ScriptEntry _003D
-    ScriptEntry _0050
-    ScriptEntry _0110
-    ScriptEntry _0139
-    ScriptEntry _014C
+    ScriptEntry OreburghCityPokecenter1F_Nurse
+    ScriptEntry OreburghCityPokecenter1F_NinjaBoy
+    ScriptEntry OreburghCityPokecenter1F_AceTrainerF
+    ScriptEntry OreburghCityPokecenter1F_Psychic
+    ScriptEntry OreburghCityPokecenter1F_Gentleman
+    ScriptEntry OreburghCityPokecenter1F_KidWithNDSWest
+    ScriptEntry OreburghCityPokecenter1F_KidWithNDSEast
     ScriptEntryEnd
 
-_001E:
-    Common_CallPokecenterNurse 3
+OreburghCityPokecenter1F_Nurse:
+    Common_CallPokecenterNurse LOCALID_POKECENTER_NURSE
     End
 
-_002A:
+OreburghCityPokecenter1F_NinjaBoy:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityPokecenter1F_Text_YayIGotAPalPadAtThePokemonWiFiClubDownstairs
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_003D:
+OreburghCityPokecenter1F_AceTrainerF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityPokecenter1F_Text_SwitchOnThePCAtAnyPokemonCenter
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0050:
+OreburghCityPokecenter1F_Psychic:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0070, _006C
-    Message 2
-    GoTo _0078
+    GoToIfSet FLAG_CHOSE_TRAINER_CLASS, OreburghCityPokecenter1F_HowAboutTellingMeWhatKindOfTrainerYouLike
+    Message OreburghCityPokecenter1F_Text_WhatIsYourFavoriteKindOfTrainerCanYouTellMe
+    GoTo OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe
 
-_006C:
+OreburghCityPokecenter1F_HowAboutTellingMeWhatKindOfTrainerYouLike:
     BufferTrainerClassFromAppearance 0
-    Message 7
-    GoTo _0078
+    Message OreburghCityPokecenter1F_Text_HowAboutTellingMeWhatKindOfTrainerYouLike
+    GoTo OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe
 
-_0078:
-    Message 3
+OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe:
+    Message OreburghCityPokecenter1F_Text_WhichKindOfTrainerWouldYouLikeToBe
     LoadTrainerAppearances
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm 50, 0
-    AddMenuEntryImm 51, 1
-    AddMenuEntryImm 52, 2
-    AddMenuEntryImm 53, 3
-    AddMenuEntryImm 43, 4
+    AddMenuEntryImm MenuEntries_Text_TrainerAppearanceVariant1, 0
+    AddMenuEntryImm MenuEntries_Text_TrainerAppearanceVariant2, 1
+    AddMenuEntryImm MenuEntries_Text_TrainerAppearanceVariant3, 2
+    AddMenuEntryImm MenuEntries_Text_TrainerAppearanceVariant4, 3
+    AddMenuEntryImm MenuEntries_Text_TrainerAppearancesExit, 4
     ShowMenu
     SetVar VAR_0x8004, VAR_RESULT
     SetVar VAR_0x8008, VAR_RESULT
-    GoToIfEq VAR_0x8008, 4, _00E9
-    GoToIfEq VAR_0x8008, -2, _00E9
+    GoToIfEq VAR_0x8008, 4, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
+    GoToIfEq VAR_0x8008, -2, OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
     ScrCmd_155 VAR_0x8004, VAR_0x8005
     BufferTrainerClassNameWithArticle 0, VAR_0x8005
     CapitalizeFirstLetter 0
-    Message 4
+    Message OreburghCityPokecenter1F_Text_AskThisIsTheKindOfTrainerYouWantToBe
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, _00F4
-    GoTo _0078
+    GoToIfEq VAR_RESULT, MENU_YES, OreburghCityPokecenter1F_SetTrainerClass
+    GoTo OreburghCityPokecenter1F_WhichKindOfTrainerWouldYouLikeToBe
 
-_00E9:
-    Message 6
+OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater:
+    Message OreburghCityPokecenter1F_Text_OKThenIllJustTalkToYouLater
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00F4:
+OreburghCityPokecenter1F_SetTrainerClass:
     BufferTrainerClassNameWithArticle 0, VAR_0x8005
-    Message 5
-    SetFlag FLAG_UNK_0x0070
+    Message OreburghCityPokecenter1F_Text_ISeeSoThisIsTheKindOfTrainerYouLike
+    SetFlag FLAG_CHOSE_TRAINER_CLASS
     ScrCmd_29C VAR_0x8004, VAR_0x8005
     ScrCmd_156 VAR_0x8005
-    GoTo _00E9
+    GoTo OreburghCityPokecenter1F_OKThenIllJustTalkToYouLater
 
-_0110:
+OreburghCityPokecenter1F_Gentleman:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_GAME_COMPLETED, _012E
-    Message 8
+    GoToIfSet FLAG_GAME_COMPLETED, OreburghCityPokecenter1F_WhatOrWhoIsThisTeamGalactic
+    Message OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalacticItsAMystery
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_012E:
-    Message 9
+OreburghCityPokecenter1F_WhatOrWhoIsThisTeamGalactic:
+    Message OreburghCityPokecenter1F_Text_WhatOrWhoIsThisTeamGalactic
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0139:
+OreburghCityPokecenter1F_KidWithNDSWest:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 10
+    Message OreburghCityPokecenter1F_Text_NowYouCanCaptureItAsABattleVideoUsingAVsRecorder
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_014C:
+OreburghCityPokecenter1F_KidWithNDSEast:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 11
+    Message OreburghCityPokecenter1F_Text_CoolYouHaveAVsRecorder
     WaitABXPadPress
     CloseMessage
     ReleaseAll

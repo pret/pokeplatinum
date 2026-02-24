@@ -2,36 +2,36 @@
 #include "res/text/bank/oreburgh_city_northwest_house_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityNorthwestHouse1F_BreederM
+    ScriptEntry OreburghCityNorthwestHouse1F_Youngster
+    ScriptEntry OreburghCityNorthwestHouse1F_PokefanF
     ScriptEntryEnd
 
-_000E:
+OreburghCityNorthwestHouse1F_BreederM:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityNorthwestHouse1F_Text_ThereAreEightGymLeadersInTheSinnohRegion
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0021:
+OreburghCityNorthwestHouse1F_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityNorthwestHouse1F_Text_AGymLeaderIsntLikeJustAnyTrainerYouMeet
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0034:
+OreburghCityNorthwestHouse1F_PokefanF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 2
+    Message OreburghCityNorthwestHouse1F_Text_RoarkLetsUsTrainOurPokemonInTheMine
     WaitABXPadPress
     CloseMessage
     ReleaseAll

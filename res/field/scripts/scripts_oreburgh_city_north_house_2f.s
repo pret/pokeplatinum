@@ -2,63 +2,63 @@
 #include "res/text/bank/oreburgh_city_north_house_2f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityNorthHouse2F_Guitarist
+    ScriptEntry OreburghCityNorthHouse2F_PokemonBreederF
+    ScriptEntry OreburghCityNorthHouse2F_Collector
     ScriptEntryEnd
 
-_000E:
+OreburghCityNorthHouse2F_Guitarist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 0
+    Message OreburghCityNorthHouse2F_Text_AllPokemonHaveASpecialPowerCalledAnAbility
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0021:
+OreburghCityNorthHouse2F_PokemonBreederF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 1
+    Message OreburghCityNorthHouse2F_Text_MyFavoritePokemonAbilityIsMyPachirisusPickup
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0034:
+OreburghCityNorthHouse2F_Collector:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x00C1, _00A1
+    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_NORTH_HOUSE_2F_HEAL_BALL, OreburghCityNorthHouse2F_YeahThereAreSoManyKindsOfPokemonOutInTheWorld
     CheckPartyHasSpecies VAR_RESULT, SPECIES_GEODUDE
-    GoToIfEq VAR_RESULT, 0, _0096
-    Message 3
+    GoToIfEq VAR_RESULT, FALSE, OreburghCityNorthHouse2F_HowAboutShowingMeAPokemonCalledGeodude
+    Message OreburghCityNorthHouse2F_Text_ThatsAGeodudeThisIsATokenOfMyThanks
     SetVar VAR_0x8004, ITEM_HEAL_BALL
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _008C
-    SetFlag FLAG_UNK_0x00C1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghCityNorthHouse2F_BagIsFull
+    SetFlag FLAG_RECEIVED_OREBURGH_CITY_NORTH_HOUSE_2F_HEAL_BALL
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     ReleaseAll
     End
 
-_008C:
+OreburghCityNorthHouse2F_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_0096:
-    Message 2
+OreburghCityNorthHouse2F_HowAboutShowingMeAPokemonCalledGeodude:
+    Message OreburghCityNorthHouse2F_Text_HowAboutShowingMeAPokemonCalledGeodude
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00A1:
-    Message 4
+OreburghCityNorthHouse2F_YeahThereAreSoManyKindsOfPokemonOutInTheWorld:
+    Message OreburghCityNorthHouse2F_Text_YeahThereAreSoManyKindsOfPokemonOutInTheWorld
     WaitABXPadPress
     CloseMessage
     ReleaseAll

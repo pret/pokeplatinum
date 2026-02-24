@@ -1,188 +1,188 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city.h"
+#include "res/field/events/events_oreburgh_city.h"
 
-
-    ScriptEntry _005A
-    ScriptEntry _0090
-    ScriptEntry _03F8
-    ScriptEntry _00D7
-    ScriptEntry _0350
-    ScriptEntry _0363
-    ScriptEntry _0376
-    ScriptEntry _03D2
-    ScriptEntry _03E5
-    ScriptEntry _0634
-    ScriptEntry _0647
-    ScriptEntry _0670
-    ScriptEntry _0683
-    ScriptEntry _0696
-    ScriptEntry _06A9
-    ScriptEntry _06C0
-    ScriptEntry _06D5
-    ScriptEntry _06EC
-    ScriptEntry _0703
-    ScriptEntry _0722
-    ScriptEntry _0735
-    ScriptEntry _0754
+    ScriptEntry OreburghCity_Rival
+    ScriptEntry OreburghCity_Youngster
+    ScriptEntry OreburghCity_TriggerYoungster
+    ScriptEntry OreburghCity_TriggerRival
+    ScriptEntry OreburghCity_Hiker
+    ScriptEntry OreburghCity_Worker1
+    ScriptEntry OreburghCity_Worker2
+    ScriptEntry OreburghCity_Worker3
+    ScriptEntry OreburghCity_Worker4
+    ScriptEntry OreburghCity_BattleGirl1
+    ScriptEntry OreburghCity_SchoolKidF
+    ScriptEntry OreburghCity_Guitarist
+    ScriptEntry OreburghCity_PokefanF
+    ScriptEntry OreburghCity_Camper
+    ScriptEntry OreburghCity_MapSign
+    ScriptEntry OreburghCity_GymSignpost
+    ScriptEntry OreburghCity_ScrollingSignOreburghMiningMuseum
+    ScriptEntry OreburghCity_ScrollingSignOreburghMine
+    ScriptEntry OreburghCity_Machop1
+    ScriptEntry OreburghCity_BattleGirl2
+    ScriptEntry OreburghCity_Machop3
+    ScriptEntry OreburghCity_Machop2
     ScriptEntryEnd
 
-_005A:
+OreburghCity_Rival:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x008A, _0082
+    GoToIfSet FLAG_TALKED_TO_OREBURGH_CITY_RIVAL, OreburghCity_IToldYouTheGymLeaderWentDownToTheOreburghMine
     BufferRivalName 0
     BufferPlayerName 1
-    Message 0
+    Message OreburghCity_Text_TheGymLeadersGoneOffToTheCoalMine
     WaitABXPadPress
-    SetFlag FLAG_UNK_0x008A
+    SetFlag FLAG_TALKED_TO_OREBURGH_CITY_RIVAL
     CloseMessage
     ReleaseAll
     End
 
-_0082:
+OreburghCity_IToldYouTheGymLeaderWentDownToTheOreburghMine:
     BufferRivalName 0
-    Message 1
+    Message OreburghCity_Text_IToldYouTheGymLeaderWentDownToTheOreburghMine
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0090:
+OreburghCity_Youngster:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfBadgeAcquired BADGE_ID_COAL, _00C1
-    GoToIfSet FLAG_UNK_0x007A, _00CC
-    Message 8
+    GoToIfBadgeAcquired BADGE_ID_COAL, OreburghCity_CanISeeYourTrainerCase
+    GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeadersWaitingForYou
+    Message OreburghCity_Text_IsThatGuyInFrontOfTheGymYourFriend
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00C1:
-    Message 10
+OreburghCity_CanISeeYourTrainerCase:
+    Message OreburghCity_Text_CanISeeYourTrainerCase
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00CC:
-    Message 9
+OreburghCity_TheGymLeadersWaitingForYou:
+    Message OreburghCity_Text_TheGymLeadersWaitingForYou
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_00D7:
+OreburghCity_TriggerRival:
     LockAll
-    ClearFlag FLAG_UNK_0x017C
-    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_WEST
-    SetObjectEventDir 3, DIR_WEST
+    ClearFlag FLAG_HIDE_OREBURGH_CITY_RIVAL
+    SetObjectEventMovementType LOCALID_RIVAL, MOVEMENT_TYPE_LOOK_WEST
+    SetObjectEventDir LOCALID_RIVAL, DIR_WEST
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x2EC, _011E
-    GoToIfEq VAR_0x8005, 0x2ED, _0144
-    GoToIfEq VAR_0x8005, 0x2EE, _016A
-    GoTo _0190
+    GoToIfEq VAR_0x8005, 748, OreburghCity_RivalRunIntoPlayerZ748
+    GoToIfEq VAR_0x8005, 749, OreburghCity_RivalRunIntoPlayerZ749
+    GoToIfEq VAR_0x8005, 750, OreburghCity_RivalRunIntoPlayerZ750
+    GoTo OreburghCity_RivalRunIntoPlayerZ751
     End
 
-_011E:
-    SetObjectEventPos 3, 0x10F, 0x2EC
-    AddObject 3
-    ApplyMovement LOCALID_PLAYER, _02A0
-    ApplyMovement 3, _02B8
+OreburghCity_RivalRunIntoPlayerZ748:
+    SetObjectEventPos LOCALID_RIVAL, 271, 748
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerGetPushedByRival
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalRunIntoPlayer
     WaitMovement
-    GoTo _01B6
+    GoTo OreburghCity_NextStopTheEternaGymBadge
     End
 
-_0144:
-    SetObjectEventPos 3, 0x10F, 0x2ED
-    AddObject 3
-    ApplyMovement LOCALID_PLAYER, _02A0
-    ApplyMovement 3, _02B8
+OreburghCity_RivalRunIntoPlayerZ749:
+    SetObjectEventPos LOCALID_RIVAL, 271, 749
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerGetPushedByRival
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalRunIntoPlayer
     WaitMovement
-    GoTo _01B6
+    GoTo OreburghCity_NextStopTheEternaGymBadge
     End
 
-_016A:
-    SetObjectEventPos 3, 0x10F, 0x2EE
-    AddObject 3
-    ApplyMovement LOCALID_PLAYER, _02A0
-    ApplyMovement 3, _02B8
+OreburghCity_RivalRunIntoPlayerZ750:
+    SetObjectEventPos LOCALID_RIVAL, 271, 750
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerGetPushedByRival
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalRunIntoPlayer
     WaitMovement
-    GoTo _01B6
+    GoTo OreburghCity_NextStopTheEternaGymBadge
     End
 
-_0190:
-    SetObjectEventPos 3, 0x10F, 0x2EF
-    AddObject 3
-    ApplyMovement LOCALID_PLAYER, _02A0
-    ApplyMovement 3, _02B8
+OreburghCity_RivalRunIntoPlayerZ751:
+    SetObjectEventPos LOCALID_RIVAL, 271, 751
+    AddObject LOCALID_RIVAL
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerGetPushedByRival
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalRunIntoPlayer
     WaitMovement
-    GoTo _01B6
+    GoTo OreburghCity_NextStopTheEternaGymBadge
     End
 
-_01B6:
+OreburghCity_NextStopTheEternaGymBadge:
     PlayFanfare SEQ_SE_DP_WALL_HIT2
-    Message 2
+    Message OreburghCity_Text_BigThud
     CloseMessage
     Common_SetRivalBGM
     BufferRivalName 0
     BufferPlayerName 1
-    Message 3
+    Message OreburghCity_Text_EternaCityIsTheNextPlaceWithAGymThatGivesAwayBadgesRight
     CloseMessage
-    ApplyMovement 3, _0340
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalWalkOnSpotEast
     WaitMovement
-    Message 4
-    ApplyMovement 3, _0348
+    Message OreburghCity_Text_IWentToRoute207ButYouCantGoThereWithoutABicycle
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalWalkOnSpotWest
     WaitMovement
-    Message 5
+    Message OreburghCity_Text_NextStopTheEternaGymBadge
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x2EC, _021F
-    GoToIfEq VAR_0x8005, 0x2ED, _0239
-    GoToIfEq VAR_0x8005, 0x2EE, _0253
-    GoTo _026D
+    GoToIfEq VAR_0x8005, 748, OreburghCity_RivalLeaveZ748
+    GoToIfEq VAR_0x8005, 749, OreburghCity_RivalLeaveZ749
+    GoToIfEq VAR_0x8005, 750, OreburghCity_RivalLeaveZ750
+    GoTo OreburghCity_RivalLeaveZ751
     End
 
-_021F:
-    ApplyMovement LOCALID_PLAYER, _0310
-    ApplyMovement 3, _02C0
+OreburghCity_RivalLeaveZ748:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWatchRivalLeaveZ748
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalLeaveZ748
     WaitMovement
-    GoTo _0287
+    GoTo OreburghCity_RemoveRival
     End
 
-_0239:
-    ApplyMovement LOCALID_PLAYER, _031C
-    ApplyMovement 3, _02D0
+OreburghCity_RivalLeaveZ749:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWatchRivalLeaveZ749
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalLeaveZ749
     WaitMovement
-    GoTo _0287
+    GoTo OreburghCity_RemoveRival
     End
 
-_0253:
-    ApplyMovement LOCALID_PLAYER, _0328
-    ApplyMovement 3, _02E8
+OreburghCity_RivalLeaveZ750:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWatchRivalLeaveZ750
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalLeaveZ750
     WaitMovement
-    GoTo _0287
+    GoTo OreburghCity_RemoveRival
     End
 
-_026D:
-    ApplyMovement LOCALID_PLAYER, _0334
-    ApplyMovement 3, _02F8
+OreburghCity_RivalLeaveZ751:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWatchRivalLeaveZ751
+    ApplyMovement LOCALID_RIVAL, OreburghCity_Movement_RivalLeaveZ751
     WaitMovement
-    GoTo _0287
+    GoTo OreburghCity_RemoveRival
     End
 
-_0287:
+OreburghCity_RemoveRival:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    RemoveObject 3
+    RemoveObject LOCALID_RIVAL
     Common_FadeToDefaultMusic2
     SetVar VAR_OREBURGH_STATE, 3
     ReleaseAll
     End
 
     .balign 4, 0
-_02A0:
+OreburghCity_Movement_PlayerGetPushedByRival:
     Delay4 7
     LockDir
     WalkFastWest
@@ -191,19 +191,19 @@ _02A0:
     EndMovement
 
     .balign 4, 0
-_02B8:
+OreburghCity_Movement_RivalRunIntoPlayer:
     WalkFastWest 9
     EndMovement
 
     .balign 4, 0
-_02C0:
+OreburghCity_Movement_RivalLeaveZ748:
     WalkFastSouth
     WalkFastWest 4
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_02D0:
+OreburghCity_Movement_RivalLeaveZ749:
     WalkFastSouth
     WalkFastWest 3
     WalkFastNorth
@@ -212,14 +212,14 @@ _02D0:
     EndMovement
 
     .balign 4, 0
-_02E8:
+OreburghCity_Movement_RivalLeaveZ750:
     WalkFastNorth
     WalkFastWest 4
     WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
-_02F8:
+OreburghCity_Movement_RivalLeaveZ751:
     WalkFastNorth
     WalkFastWest 3
     WalkFastNorth
@@ -228,184 +228,184 @@ _02F8:
     EndMovement
 
     .balign 4, 0
-_0310:
+OreburghCity_Movement_PlayerWatchRivalLeaveZ748:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_031C:
+OreburghCity_Movement_PlayerWatchRivalLeaveZ749:
     WalkOnSpotNormalSouth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0328:
+OreburghCity_Movement_PlayerWatchRivalLeaveZ750:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0334:
+OreburghCity_Movement_PlayerWatchRivalLeaveZ751:
     WalkOnSpotNormalNorth
     WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
-_0340:
+OreburghCity_Movement_RivalWalkOnSpotEast:
     WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
-_0348:
+OreburghCity_Movement_RivalWalkOnSpotWest:
     WalkOnSpotNormalWest
     EndMovement
 
-_0350:
+OreburghCity_Hiker:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 14
+    Message OreburghCity_Text_UpAheadTheresAHugeMountainThatTowersAboveEverything
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0363:
+OreburghCity_Worker1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 16
+    Message OreburghCity_Text_TheseVentsExchangeTheHotAirDownBelowWithTheFreshAirOutside
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0376:
+OreburghCity_Worker2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x0109, _03BD
-    Message 17
+    GoToIfSet FLAG_RECEIVED_OREBURGH_CITY_SUPER_POTION, OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace
+    Message OreburghCity_Text_HereTakeOneOfThese
     SetVar VAR_0x8004, ITEM_SUPER_POTION
     SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _03C8
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, OreburghCity_BagIsFull
     Common_GiveItemQuantity
-    SetFlag FLAG_UNK_0x0109
-    GoTo _03BD
+    SetFlag FLAG_RECEIVED_OREBURGH_CITY_SUPER_POTION
+    GoTo OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace
     End
 
-_03BD:
-    Message 18
+OreburghCity_FeelingHaleAndHeartyPutsASmileOnMyFace:
+    Message OreburghCity_Text_FeelingHaleAndHeartyPutsASmileOnMyFace
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_03C8:
+OreburghCity_BagIsFull:
     Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
 
-_03D2:
+OreburghCity_Worker3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 19
+    Message OreburghCity_Text_ThisPileOfDirtySandIsCalledASlagHeap
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_03E5:
+OreburghCity_Worker4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 20
+    Message OreburghCity_Text_ChopChopMachopChopChopAwayOnRocks
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_03F8:
+OreburghCity_TriggerYoungster:
     LockAll
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x2EC, _042F
-    GoToIfEq VAR_0x8005, 0x2ED, _0449
-    GoToIfEq VAR_0x8005, 0x2EE, _0463
-    GoTo _047D
+    GoToIfEq VAR_0x8005, 748, OreburghCity_YoungsterWalkToPlayerZ748
+    GoToIfEq VAR_0x8005, 749, OreburghCity_YoungsterWalkToPlayerZ749
+    GoToIfEq VAR_0x8005, 750, OreburghCity_YoungsterWalkToPlayerZ750
+    GoTo OreburghCity_YoungsterWalkToPlayerZ751
     End
 
-_042F:
-    ApplyMovement LOCALID_PLAYER, _055C
-    ApplyMovement 4, _0604
+OreburghCity_YoungsterWalkToPlayerZ748:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ748
     WaitMovement
-    GoTo _0497
+    GoTo OreburghCity_IllTakeYouToThePokemonGym
     End
 
-_0449:
-    ApplyMovement LOCALID_PLAYER, _055C
-    ApplyMovement 4, _0610
+OreburghCity_YoungsterWalkToPlayerZ749:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ749
     WaitMovement
-    GoTo _0497
+    GoTo OreburghCity_IllTakeYouToThePokemonGym
     End
 
-_0463:
-    ApplyMovement LOCALID_PLAYER, _055C
-    ApplyMovement 4, _061C
+OreburghCity_YoungsterWalkToPlayerZ750:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ750
     WaitMovement
-    GoTo _0497
+    GoTo OreburghCity_IllTakeYouToThePokemonGym
     End
 
-_047D:
-    ApplyMovement LOCALID_PLAYER, _055C
-    ApplyMovement 4, _0628
+OreburghCity_YoungsterWalkToPlayerZ751:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkOnSpotSouth
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToPlayerZ751
     WaitMovement
-    GoTo _0497
+    GoTo OreburghCity_IllTakeYouToThePokemonGym
     End
 
-_0497:
-    Message 6
+OreburghCity_IllTakeYouToThePokemonGym:
+    Message OreburghCity_Text_IllTakeYouToThePokemonGym
     CloseMessage
     Common_SetFollowMeBGM
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    GoToIfEq VAR_0x8005, 0x2EC, _04DC
-    GoToIfEq VAR_0x8005, 0x2ED, _04F6
-    GoToIfEq VAR_0x8005, 0x2EE, _0510
-    GoToIfEq VAR_0x8005, 0x2EF, _052A
+    GoToIfEq VAR_0x8005, 748, OreburghCity_WalkWithYoungsterToTheGymZ748
+    GoToIfEq VAR_0x8005, 749, OreburghCity_WalkWithYoungsterToTheGymZ749
+    GoToIfEq VAR_0x8005, 750, OreburghCity_WalkWithYoungsterToTheGymZ750
+    GoToIfEq VAR_0x8005, 751, OreburghCity_WalkWithYoungsterToTheGymZ751
     End
 
-_04DC:
-    ApplyMovement LOCALID_PLAYER, _0564
-    ApplyMovement 4, _05B4
+OreburghCity_WalkWithYoungsterToTheGymZ748:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkToTheGymZ748
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToTheGymZ748
     WaitMovement
-    GoTo _0544
+    GoTo OreburghCity_HuhTheresSomeoneThere
     End
 
-_04F6:
-    ApplyMovement LOCALID_PLAYER, _0578
-    ApplyMovement 4, _05C8
+OreburghCity_WalkWithYoungsterToTheGymZ749:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkToTheGymZ749
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToTheGymZ749
     WaitMovement
-    GoTo _0544
+    GoTo OreburghCity_HuhTheresSomeoneThere
     End
 
-_0510:
-    ApplyMovement LOCALID_PLAYER, _058C
-    ApplyMovement 4, _05DC
+OreburghCity_WalkWithYoungsterToTheGymZ750:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkToTheGymZ750
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToTheGymZ750
     WaitMovement
-    GoTo _0544
+    GoTo OreburghCity_HuhTheresSomeoneThere
     End
 
-_052A:
-    ApplyMovement LOCALID_PLAYER, _05A0
-    ApplyMovement 4, _05F0
+OreburghCity_WalkWithYoungsterToTheGymZ751:
+    ApplyMovement LOCALID_PLAYER, OreburghCity_Movement_PlayerWalkToTheGymZ751
+    ApplyMovement LOCALID_YOUNGSTER, OreburghCity_Movement_YoungsterWalkToTheGymZ751
     WaitMovement
-    GoTo _0544
+    GoTo OreburghCity_HuhTheresSomeoneThere
     End
 
-_0544:
-    Message 7
+OreburghCity_HuhTheresSomeoneThere:
+    Message OreburghCity_Text_HuhTheresSomeoneThere
     WaitABXPadPress
     CloseMessage
     Common_FadeToDefaultMusic3
@@ -414,12 +414,12 @@ _0544:
     End
 
     .balign 4, 0
-_055C:
+OreburghCity_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
-_0564:
+OreburghCity_Movement_PlayerWalkToTheGymZ748:
     WalkNormalSouth
     WalkNormalEast
     WalkNormalSouth 10
@@ -427,7 +427,7 @@ _0564:
     EndMovement
 
     .balign 4, 0
-_0578:
+OreburghCity_Movement_PlayerWalkToTheGymZ749:
     WalkNormalSouth
     WalkNormalEast
     WalkNormalSouth 9
@@ -435,7 +435,7 @@ _0578:
     EndMovement
 
     .balign 4, 0
-_058C:
+OreburghCity_Movement_PlayerWalkToTheGymZ750:
     WalkNormalSouth
     WalkNormalEast
     WalkNormalSouth 8
@@ -443,7 +443,7 @@ _058C:
     EndMovement
 
     .balign 4, 0
-_05A0:
+OreburghCity_Movement_PlayerWalkToTheGymZ751:
     WalkNormalSouth
     WalkNormalEast
     WalkNormalSouth 7
@@ -451,7 +451,7 @@ _05A0:
     EndMovement
 
     .balign 4, 0
-_05B4:
+OreburghCity_Movement_YoungsterWalkToTheGymZ748:
     WalkNormalEast
     WalkNormalSouth 10
     WalkNormalEast 13
@@ -459,7 +459,7 @@ _05B4:
     EndMovement
 
     .balign 4, 0
-_05C8:
+OreburghCity_Movement_YoungsterWalkToTheGymZ749:
     WalkNormalEast
     WalkNormalSouth 9
     WalkNormalEast 13
@@ -467,7 +467,7 @@ _05C8:
     EndMovement
 
     .balign 4, 0
-_05DC:
+OreburghCity_Movement_YoungsterWalkToTheGymZ750:
     WalkNormalEast
     WalkNormalSouth 8
     WalkNormalEast 13
@@ -475,7 +475,7 @@ _05DC:
     EndMovement
 
     .balign 4, 0
-_05F0:
+OreburghCity_Movement_YoungsterWalkToTheGymZ751:
     WalkNormalEast
     WalkNormalSouth 7
     WalkNormalEast 13
@@ -483,146 +483,146 @@ _05F0:
     EndMovement
 
     .balign 4, 0
-_0604:
+OreburghCity_Movement_YoungsterWalkToPlayerZ748:
     EmoteExclamationMark
     WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
-_0610:
+OreburghCity_Movement_YoungsterWalkToPlayerZ749:
     EmoteExclamationMark
     WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
-_061C:
+OreburghCity_Movement_YoungsterWalkToPlayerZ750:
     EmoteExclamationMark
     WalkNormalNorth
     EndMovement
 
     .balign 4, 0
-_0628:
+OreburghCity_Movement_YoungsterWalkToPlayerZ751:
     EmoteExclamationMark
     WalkOnSpotNormalNorth
     EndMovement
 
-_0634:
+OreburghCity_BattleGirl1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 21
+    Message OreburghCity_Text_TMsAreSingleUseOnlyButHMsCanBeUsedOverAndOver
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0647:
+OreburghCity_SchoolKidF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet FLAG_UNK_0x007A, _0665
-    Message 11
+    GoToIfSet FLAG_ROARK_RETURNED_TO_OREBURGH_GYM, OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
+    Message OreburghCity_Text_TheGymLeaderWentOffToWorkInTheMine
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0665:
-    Message 12
+OreburghCity_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor:
+    Message OreburghCity_Text_TheGymLeaderIsYoungButHesTheMinesSafetySupervisor
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0670:
+OreburghCity_Guitarist:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 15
+    Message OreburghCity_Text_HaveYouSeenTheVents
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0683:
+OreburghCity_PokefanF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 13
+    Message OreburghCity_Text_EveryonesProudOfTheMine
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0696:
+OreburghCity_Camper:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 22
+    Message OreburghCity_Text_WhenIRunAroundWithMyRunningShoesOnImTheCenterOfAttention
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_06A9:
-    ShowMapSign 27
+OreburghCity_MapSign:
+    ShowMapSign OreburghCity_Text_MapSign
     End
 
-_06C0:
-    ShowScrollingSign 28
+OreburghCity_GymSignpost:
+    ShowScrollingSign OreburghCity_Text_OreburgCityPokemonGymCallMeRoarkTheRock
     End
 
-_06D5:
-    ShowLandmarkSign 29
+OreburghCity_ScrollingSignOreburghMiningMuseum:
+    ShowLandmarkSign OreburghCity_Text_OreburghMiningMuseumCoalMiningAndYou
     End
 
-_06EC:
-    ShowLandmarkSign 30
+OreburghCity_ScrollingSignOreburghMine:
+    ShowLandmarkSign OreburghCity_Text_OreburghMineBewareOfBusyPokemon
     End
 
-_0703:
+OreburghCity_Machop1:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
-    Message 24
+    Message OreburghCity_Text_MachopMachoChopo
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0722:
+OreburghCity_BattleGirl2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    Message 23
+    Message OreburghCity_Text_ThatsWhatFossilsAre
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0735:
+OreburghCity_Machop3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
-    Message 25
+    Message OreburghCity_Text_MachopPigyooh
     WaitCry
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0754:
+OreburghCity_Machop2:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
     PlayCry SPECIES_MACHOP
-    Message 26
+    Message OreburghCity_Text_MachopGwoohGogogooh
     WaitCry
     WaitABXPadPress
     CloseMessage
