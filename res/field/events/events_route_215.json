@@ -340,11 +340,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_POKEBALL_19",
+            "id": "LOCALID_ITEM_HYPER_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x045F",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_215_HYPER_POTION",
             "script": 7105,
             "initial_dir": 0,
             "data": [],
@@ -355,11 +355,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_POKEBALL_20",
+            "id": "LOCALID_ITEM_FULL_HEAL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0461",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_215_FULL_HEAL",
             "script": 7107,
             "initial_dir": 0,
             "data": [],
@@ -370,11 +370,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_POKEBALL_21",
+            "id": "LOCALID_ITEM_MAX_ETHER",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0460",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_215_MAX_ETHER",
             "script": 7106,
             "initial_dir": 0,
             "data": [],
@@ -385,11 +385,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_POKEBALL_22",
+            "id": "LOCALID_ITEM_TM34",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0462",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_215_TM34",
             "script": 7108,
             "initial_dir": 0,
             "data": [],
@@ -415,11 +415,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_POKEBALL_24",
+            "id": "LOCALID_ITEM_FIST_PLATE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x045E",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_215_FIST_PLATE",
             "script": 7104,
             "initial_dir": 0,
             "data": [],
@@ -479,11 +479,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_215_POKEBALL_28",
+            "id": "LOCALID_ITEM_HP_UP",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0505",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_215_HP_UP",
             "script": 7270,
             "initial_dir": 0,
             "data": [],

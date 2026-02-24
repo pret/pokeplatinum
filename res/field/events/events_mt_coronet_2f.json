@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "MT_CORONET_2F_POKEBALL_0",
+            "id": "LOCALID_ITEM_MAX_REVIVE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04A0",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_MAX_REVIVE",
             "script": 7170,
             "initial_dir": 0,
             "data": [],
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_POKEBALL_1",
+            "id": "LOCALID_ITEM_MAX_REPEL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04A2",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_MAX_REPEL",
             "script": 7172,
             "initial_dir": 0,
             "data": [],
@@ -49,11 +49,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_POKEBALL_2",
+            "id": "LOCALID_ITEM_TM80",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04A1",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_TM80",
             "script": 7171,
             "initial_dir": 0,
             "data": [],
@@ -64,11 +64,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_2F_POKEBALL_3",
+            "id": "LOCALID_ITEM_ESCAPE_ROPE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04A3",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE",
             "script": 7173,
             "initial_dir": 0,
             "data": [],

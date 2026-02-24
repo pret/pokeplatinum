@@ -151,11 +151,11 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_MEADOW_POKEBALL_4",
+            "id": "LOCALID_ITEM_MIRACLE_SEED",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0488",
+            "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_MIRACLE_SEED",
             "script": 7146,
             "initial_dir": 0,
             "data": [],
@@ -166,11 +166,11 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_MEADOW_POKEBALL_5",
+            "id": "LOCALID_ITEM_LEAF_STONE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04E0",
+            "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_LEAF_STONE",
             "script": 7234,
             "initial_dir": 0,
             "data": [],
@@ -181,11 +181,11 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_MEADOW_POKEBALL_6",
+            "id": "LOCALID_ITEM_ULTRA_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0513",
+            "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_ULTRA_BALL",
             "script": 7284,
             "initial_dir": 0,
             "data": [],
@@ -196,11 +196,11 @@
             "y": 0
         },
         {
-            "id": "FLOAROMA_MEADOW_POKEBALL_7",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0514",
+            "hidden_flag": "FLAG_OBTAINED_FLOAROMA_MEADOW_RARE_CANDY",
             "script": 7285,
             "initial_dir": 0,
             "data": [],

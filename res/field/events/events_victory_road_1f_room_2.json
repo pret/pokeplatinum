@@ -43,11 +43,11 @@
     ],
     "object_events": [
         {
-            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_0",
+            "id": "LOCALID_ITEM_NUGGET",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B7",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_ROOM_2_NUGGET",
             "script": 7193,
             "initial_dir": 0,
             "data": [],
@@ -58,11 +58,11 @@
             "y": 1
         },
         {
-            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_1",
+            "id": "LOCALID_ITEM_FULL_RESTORE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B5",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_ROOM_2_FULL_RESTORE",
             "script": 7191,
             "initial_dir": 0,
             "data": [],
@@ -73,11 +73,11 @@
             "y": 1
         },
         {
-            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_2",
+            "id": "LOCALID_ITEM_DUSK_STONE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B6",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_ROOM_2_DUSK_STONE",
             "script": 7192,
             "initial_dir": 0,
             "data": [],
@@ -88,11 +88,11 @@
             "y": 1
         },
         {
-            "id": "VICTORY_ROAD_1F_ROOM_2_POKEBALL_3",
+            "id": "LOCALID_ITEM_LEFTOVERS",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04BB",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_1F_ROOM_2_LEFTOVERS",
             "script": 7197,
             "initial_dir": 0,
             "data": [],

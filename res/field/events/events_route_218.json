@@ -100,11 +100,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_POKEBALL_6",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x047A",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_218_RARE_CANDY",
             "script": 7132,
             "initial_dir": 0,
             "data": [],
@@ -115,11 +115,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_POKEBALL_7",
+            "id": "LOCALID_HYPER_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x047B",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_218_HYPER_POTION",
             "script": 7133,
             "initial_dir": 0,
             "data": [],
@@ -318,11 +318,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_218_POKEBALL_20",
+            "id": "LOCALID_ITEM_X_ACCURACY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04F7",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_218_X_ACCURACY",
             "script": 7256,
             "initial_dir": 0,
             "data": [],

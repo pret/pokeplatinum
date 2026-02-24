@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "VICTORY_ROAD_2F_POKEBALL_0",
+            "id": "LOCALID_ITEM_TM79",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B2",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_2F_TM79",
             "script": 7188,
             "initial_dir": 0,
             "data": [],
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_POKEBALL_1",
+            "id": "LOCALID_ITEM_MAX_ELIXIR",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B0",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_2F_MAX_ELIXIR",
             "script": 7186,
             "initial_dir": 0,
             "data": [],
@@ -49,11 +49,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_POKEBALL_2",
+            "id": "LOCALID_ITEM_FULL_RESTORE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B1",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_2F_FULL_RESTORE",
             "script": 7187,
             "initial_dir": 0,
             "data": [],
@@ -64,11 +64,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_2F_POKEBALL_3",
+            "id": "LOCALID_ITEM_TM71",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B3",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_2F_TM71",
             "script": 7189,
             "initial_dir": 0,
             "data": [],

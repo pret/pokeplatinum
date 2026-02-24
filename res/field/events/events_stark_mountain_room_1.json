@@ -161,11 +161,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_10",
+            "id": "LOCALID_ITEM_FULL_HEAL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04CA",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_FULL_HEAL",
             "script": 7212,
             "initial_dir": 0,
             "data": [],
@@ -176,11 +176,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_11",
+            "id": "LOCALID_ITEM_ESCAPE_ROPE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04CB",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_ESCAPE_ROPE",
             "script": 7213,
             "initial_dir": 0,
             "data": [],
@@ -191,11 +191,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_12",
+            "id": "LOCALID_ITEM_PP_UP",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04CC",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_PP_UP",
             "script": 7214,
             "initial_dir": 0,
             "data": [],
@@ -206,11 +206,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_1_POKEBALL_13",
+            "id": "LOCALID_ITEM_FULL_RESTORE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04CD",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_FULL_RESTORE",
             "script": 7215,
             "initial_dir": 0,
             "data": [],

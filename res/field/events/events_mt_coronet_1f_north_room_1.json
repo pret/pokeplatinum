@@ -208,11 +208,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_11",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x048C",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_RARE_CANDY",
             "script": 7150,
             "initial_dir": 0,
             "data": [],
@@ -223,11 +223,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_12",
+            "id": "LOCALID_ITEM_TM69",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x048A",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM69",
             "script": 7148,
             "initial_dir": 0,
             "data": [],
@@ -238,11 +238,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_13",
+            "id": "LOCALID_ITEM_ESCAPE_ROPE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x048B",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_ESCAPE_ROPE",
             "script": 7149,
             "initial_dir": 0,
             "data": [],
@@ -253,11 +253,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_14",
+            "id": "LOCALID_ITEM_TM02",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04A4",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM02",
             "script": 7174,
             "initial_dir": 0,
             "data": [],
@@ -313,11 +313,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_NORTH_ROOM_1_POKEBALL_18",
+            "id": "LOCALID_ITEM_ICE_HEAL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04FC",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_ICE_HEAL",
             "script": 7261,
             "initial_dir": 0,
             "data": [],

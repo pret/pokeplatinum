@@ -234,11 +234,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_POKEBALL_13",
+            "id": "LOCALID_ITEM_POISON_BARB",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0414",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_POISON_BARB",
             "script": 7030,
             "initial_dir": 0,
             "data": [],
@@ -249,11 +249,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_POKEBALL_14",
+            "id": "LOCALID_ITEM_PP_UP",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0415",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_PP_UP",
             "script": 7031,
             "initial_dir": 0,
             "data": [],
@@ -348,11 +348,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_POKEBALL_20",
+            "id": "LOCALID_ITEM_BURN_HEAL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0417",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_BURN_HEAL",
             "script": 7033,
             "initial_dir": 0,
             "data": [],
@@ -363,11 +363,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_206_POKEBALL_21",
+            "id": "LOCALID_ITEM_SUPER_REPEL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0416",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_206_SUPER_REPEL",
             "script": 7032,
             "initial_dir": 0,
             "data": [],

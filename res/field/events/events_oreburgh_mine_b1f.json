@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_MINE_B1F_POKEBALL_1",
+            "id": "LOCALID_ITEM_POKE_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04E1",
+            "hidden_flag": "FLAG_OBTAINED_OREBURGH_MINE_B1F_POKE_BALL",
             "script": 7235,
             "initial_dir": 0,
             "data": [],

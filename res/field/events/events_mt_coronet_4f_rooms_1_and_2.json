@@ -192,11 +192,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_4F_ROOMS_1_AND_2_POKEBALL_8",
+            "id": "LOCALID_ITEM_ADAMANT_ORB",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x041B",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_4F_ROOMS_1_AND_2_ADAMANT_ORB",
             "script": 7037,
             "initial_dir": 0,
             "data": [],
@@ -207,11 +207,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_4F_ROOMS_1_AND_2_POKEBALL_9",
+            "id": "LOCALID_ITEM_LUSTROUS_ORB",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x041D",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_4F_ROOMS_1_AND_2_LUSTROUS_ORB",
             "script": 7039,
             "initial_dir": 0,
             "data": [],

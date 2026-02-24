@@ -407,11 +407,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_27",
+            "id": "LOCALID_ITEM_TM39",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0401",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_TM39",
             "script": 7011,
             "initial_dir": 0,
             "data": [],
@@ -422,11 +422,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_28",
+            "id": "LOCALID_ITEM_LUCK_INCENSE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0402",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_LUCK_INCENSE",
             "script": 7012,
             "initial_dir": 0,
             "data": [],
@@ -437,11 +437,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_29",
+            "id": "LOCALID_ITEM_TM03",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0403",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_TM03",
             "script": 7013,
             "initial_dir": 0,
             "data": [],
@@ -452,11 +452,11 @@
             "y": 0
         },
         {
-            "id": "RAVAGED_PATH_POKEBALL_30",
+            "id": "LOCALID_ITEM_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04F1",
+            "hidden_flag": "FLAG_OBTAINED_RAVAGED_PATH_POTION",
             "script": 7251,
             "initial_dir": 0,
             "data": [],

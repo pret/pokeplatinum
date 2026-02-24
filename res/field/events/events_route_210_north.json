@@ -269,11 +269,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_POKEBALL_15",
+            "id": "LOCALID_ITEM_SMOKE_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x046B",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL",
             "script": 7117,
             "initial_dir": 0,
             "data": [],
@@ -284,11 +284,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_POKEBALL_16",
+            "id": "LOCALID_ITEM_WAVE_INCENSE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x046C",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE",
             "script": 7118,
             "initial_dir": 0,
             "data": [],
@@ -299,11 +299,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_POKEBALL_17",
+            "id": "LOCALID_ITEM_TM30",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x046D",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_NORTH_TM30",
             "script": 7119,
             "initial_dir": 0,
             "data": [],
@@ -412,11 +412,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_POKEBALL_24",
+            "id": "LOCALID_ITEM_ZINC",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x050E",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_NORTH_ZINC",
             "script": 7279,
             "initial_dir": 0,
             "data": [],
@@ -427,11 +427,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_NORTH_POKEBALL_25",
+            "id": "LOCALID_ITEM_RED_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x050D",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD",
             "script": 7278,
             "initial_dir": 0,
             "data": [],

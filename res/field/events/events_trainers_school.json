@@ -139,11 +139,11 @@
             "y": 0
         },
         {
-            "id": "TRAINERS_SCHOOL_POKEBALL_8",
+            "id": "LOCALID_ITEM_X_ATTACK",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04F9",
+            "hidden_flag": "FLAG_OBTAINED_TRAINERS_SCHOOL_X_ATTACK",
             "script": 7258,
             "initial_dir": 0,
             "data": [],

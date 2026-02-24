@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "IRON_ISLAND_B1F_LEFT_ROOM_POKEBALL_0",
+            "id": "LOCALID_ITEM_PROTECTOR",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x047D",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B1F_LEFT_ROOM_PROTECTOR",
             "script": 7135,
             "initial_dir": 0,
             "data": [],
@@ -34,11 +34,11 @@
             "y": 0
         },
         {
-            "id": "IRON_ISLAND_B1F_LEFT_ROOM_POKEBALL_2",
+            "id": "LOCALID_ITEM_YELLOW_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0516",
+            "hidden_flag": "FLAG_OBTAINED_IRON_ISLAND_B1F_LEFT_ROOM_YELLOW_SHARD",
             "script": 7287,
             "initial_dir": 0,
             "data": [],

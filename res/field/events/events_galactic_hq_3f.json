@@ -50,11 +50,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_POKEBALL_1",
+            "id": "LOCALID_ITEM_TM21",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x049C",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_3F_TM21",
             "script": 7166,
             "initial_dir": 0,
             "data": [],
@@ -164,11 +164,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_POKEBALL_8",
+            "id": "LOCALID_ITEM_MAX_ELIXIR",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x049E",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR",
             "script": 7168,
             "initial_dir": 0,
             "data": [],
@@ -179,11 +179,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_3F_POKEBALL_9",
+            "id": "LOCALID_ITEM_PROTEIN",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x051E",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN",
             "script": 7295,
             "initial_dir": 0,
             "data": [],

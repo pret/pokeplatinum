@@ -105,11 +105,11 @@
             "y": 7
         },
         {
-            "id": "ROUTE_205_NORTH_POKEBALL_6",
+            "id": "LOCALID_ITEM_GUARD_SPEC",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x040D",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_205_NORTH_GUARD_SPEC",
             "script": 7023,
             "initial_dir": 0,
             "data": [],

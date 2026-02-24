@@ -51,11 +51,11 @@
     ],
     "object_events": [
         {
-            "id": "WAYWARD_CAVE_1F_POKEBALL_0",
+            "id": "LOCALID_ITEM_TM26",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x041C",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_TM26",
             "script": 7038,
             "initial_dir": 0,
             "data": [],
@@ -66,11 +66,11 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_POKEBALL_1",
+            "id": "LOCALID_ITEM_TM32",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0418",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_TM32",
             "script": 7034,
             "initial_dir": 0,
             "data": [],
@@ -81,11 +81,11 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_POKEBALL_2",
+            "id": "LOCALID_ITEM_REVIVE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0419",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_REVIVE",
             "script": 7035,
             "initial_dir": 0,
             "data": [],
@@ -96,11 +96,11 @@
             "y": 0
         },
         {
-            "id": "WAYWARD_CAVE_1F_POKEBALL_3",
+            "id": "LOCALID_ITEM_ESCAPE_ROPE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x041A",
+            "hidden_flag": "FLAG_OBTAINED_WAYWARD_CAVE_1F_ESCAPE_ROPE",
             "script": 7036,
             "initial_dir": 0,
             "data": [],

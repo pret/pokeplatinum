@@ -149,11 +149,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_204_NORTH_POKEBALL_9",
+            "id": "LOCALID_ITEM_TM09",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0404",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_204_NORTH_TM09",
             "script": 7014,
             "initial_dir": 0,
             "data": [],
@@ -179,11 +179,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_204_NORTH_POKEBALL_11",
+            "id": "LOCALID_ITEM_AWAKENING",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04F4",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_204_NORTH_AWAKENING",
             "script": 7254,
             "initial_dir": 0,
             "data": [],

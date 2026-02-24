@@ -384,11 +384,11 @@
             "y": 1
         },
         {
-            "id": "OREBURGH_CITY_POKEBALL_23",
+            "id": "LOCALID_ITEM_DIRE_HIT",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04FA",
+            "hidden_flag": "FLAG_OBTAINED_OREBURGH_CITY_DIRE_HIT",
             "script": 7259,
             "initial_dir": 0,
             "data": [],
@@ -399,11 +399,11 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_CITY_POKEBALL_24",
+            "id": "LOCALID_ITEM_YELLOW_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04FB",
+            "hidden_flag": "FLAG_OBTAINED_OREBURGH_CITY_YELLOW_SHARD",
             "script": 7260,
             "initial_dir": 0,
             "data": [],

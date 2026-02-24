@@ -27,11 +27,11 @@
     ],
     "object_events": [
         {
-            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_0",
+            "id": "LOCALID_ITEM_MIND_PLATE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0455",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_MIND_PLATE",
             "script": 7095,
             "initial_dir": 0,
             "data": [],
@@ -42,11 +42,11 @@
             "y": 0
         },
         {
-            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_1",
+            "id": "LOCALID_ITEM_ODD_INCENSE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0456",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_ODD_INCENSE",
             "script": 7096,
             "initial_dir": 0,
             "data": [],
@@ -57,11 +57,11 @@
             "y": 0
         },
         {
-            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_2",
+            "id": "LOCALID_ITEM_NUGGET",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0457",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_NUGGET",
             "script": 7097,
             "initial_dir": 0,
             "data": [],
@@ -72,11 +72,11 @@
             "y": 0
         },
         {
-            "id": "SOLACEON_RUINS_ROOM_7_POKEBALL_3",
+            "id": "LOCALID_ITEM_HM05",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0458",
+            "hidden_flag": "FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05",
             "script": 7098,
             "initial_dir": 0,
             "data": [],

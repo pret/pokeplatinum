@@ -145,11 +145,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_POKEBALL_6",
+            "id": "LOCALID_ITEM_PROTECTOR",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D6",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_228_PROTECTOR",
             "script": 7224,
             "initial_dir": 0,
             "data": [],
@@ -160,11 +160,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_POKEBALL_7",
+            "id": "LOCALID_ITEM_IRON",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D7",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_228_IRON",
             "script": 7225,
             "initial_dir": 0,
             "data": [],
@@ -175,11 +175,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_POKEBALL_8",
+            "id": "LOCALID_ITEM_SHINY_STONE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D8",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_228_SHINY_STONE",
             "script": 7226,
             "initial_dir": 0,
             "data": [],
@@ -190,11 +190,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_POKEBALL_9",
+            "id": "LOCALID_ITEM_SHED_SHELL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D9",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_228_SHED_SHELL",
             "script": 7227,
             "initial_dir": 0,
             "data": [],
@@ -205,11 +205,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_228_POKEBALL_10",
+            "id": "LOCALID_ITEM_TM37",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04DA",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_228_TM37",
             "script": 7228,
             "initial_dir": 0,
             "data": [],

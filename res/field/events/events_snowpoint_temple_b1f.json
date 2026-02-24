@@ -2,11 +2,11 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "SNOWPOINT_TEMPLE_B1F_POKEBALL_0",
+            "id": "LOCALID_ITEM_CALCIUM",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04E8",
+            "hidden_flag": "FLAG_OBTAINED_SNOWPOINT_TEMPLE_B1F_CALCIUM",
             "script": 7242,
             "initial_dir": 0,
             "data": [],

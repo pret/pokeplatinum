@@ -298,11 +298,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_208_POKEBALL_17",
+            "id": "LOCALID_ITEM_ETHER",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0428",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_208_ETHER",
             "script": 7050,
             "initial_dir": 0,
             "data": [],
@@ -313,11 +313,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_208_POKEBALL_18",
+            "id": "LOCALID_ITEM_CARBOS",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0426",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_208_CARBOS",
             "script": 7048,
             "initial_dir": 0,
             "data": [],
@@ -328,11 +328,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_208_POKEBALL_19",
+            "id": "LOCALID_ITEM_GREAT_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0427",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_208_GREAT_BALL",
             "script": 7049,
             "initial_dir": 0,
             "data": [],

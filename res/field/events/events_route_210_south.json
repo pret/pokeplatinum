@@ -234,11 +234,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_POKEBALL_11",
+            "id": "LOCALID_ITEM_MAX_REPEL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x045A",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_SOUTH_MAX_REPEL",
             "script": 7100,
             "initial_dir": 0,
             "data": [],
@@ -249,11 +249,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_POKEBALL_12",
+            "id": "LOCALID_ITEM_SUPER_REPEL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0459",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_SOUTH_SUPER_REPEL",
             "script": 7099,
             "initial_dir": 0,
             "data": [],
@@ -279,11 +279,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_POKEBALL_14",
+            "id": "LOCALID_ITEM_NEST_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x045C",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_SOUTH_NEST_BALL",
             "script": 7102,
             "initial_dir": 0,
             "data": [],
@@ -411,11 +411,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_210_SOUTH_POKEBALL_22",
+            "id": "LOCALID_ITEM_HYPER_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x045D",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_210_SOUTH_HYPER_POTION",
             "script": 7103,
             "initial_dir": 0,
             "data": [],

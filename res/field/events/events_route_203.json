@@ -229,11 +229,11 @@
             "y": 0
         },
         {
-            "id": "LOCALID_ITEM_X_DEFEND",
+            "id": "LOCALID_ITEM_X_DEFENSE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_OBTAINED_ROUTE_203_X_DEFEND",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_203_X_DEFENSE",
             "script": 7255,
             "initial_dir": 0,
             "data": [],

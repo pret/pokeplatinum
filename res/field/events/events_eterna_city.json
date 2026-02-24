@@ -371,11 +371,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_POKEBALL_21",
+            "id": "LOCALID_ITEM_TM46",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x040E",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_CITY_TM46",
             "script": 7024,
             "initial_dir": 0,
             "data": [],
@@ -386,11 +386,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_CITY_POKEBALL_22",
+            "id": "LOCALID_ITEM_SUPER_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0410",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_CITY_SUPER_POTION",
             "script": 7026,
             "initial_dir": 0,
             "data": [],

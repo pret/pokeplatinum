@@ -59,11 +59,11 @@
     ],
     "object_events": [
         {
-            "id": "POKEMON_MANSION_MAIDS_ROOM_POKEBALL_0",
+            "id": "LOCALID_ITEM_LUXURY_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0430",
+            "hidden_flag": "FLAG_OBTAINED_POKEMON_MANSION_MAIDS_ROOM_LUXURY_BALL",
             "script": 7058,
             "initial_dir": 0,
             "data": [],

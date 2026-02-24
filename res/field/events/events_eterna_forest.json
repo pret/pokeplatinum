@@ -143,11 +143,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_POKEBALL_8",
+            "id": "LOCALID_ITEM_ANTIDOTE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0408",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_ANTIDOTE",
             "script": 7018,
             "initial_dir": 0,
             "data": [],
@@ -158,11 +158,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_POKEBALL_9",
+            "id": "LOCALID_ITEM_PARLYZ_HEAL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0409",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_PARLYZ_HEAL",
             "script": 7019,
             "initial_dir": 0,
             "data": [],
@@ -173,11 +173,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_POKEBALL_10",
+            "id": "LOCALID_ITEM_NET_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x040A",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_NET_BALL",
             "script": 7020,
             "initial_dir": 0,
             "data": [],
@@ -188,11 +188,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_POKEBALL_11",
+            "id": "LOCALID_ITEM_GREEN_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x040B",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_GREEN_SHARD",
             "script": 7021,
             "initial_dir": 0,
             "data": [],
@@ -282,11 +282,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_POKEBALL_17",
+            "id": "LOCALID_ITEM_ETHER",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x044B",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_ETHER",
             "script": 7085,
             "initial_dir": 0,
             "data": [],
@@ -297,11 +297,11 @@
             "y": 0
         },
         {
-            "id": "ETERNA_FOREST_POKEBALL_18",
+            "id": "LOCALID_ITEM_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04EF",
+            "hidden_flag": "FLAG_OBTAINED_ETERNA_FOREST_POTION",
             "script": 7249,
             "initial_dir": 0,
             "data": [],

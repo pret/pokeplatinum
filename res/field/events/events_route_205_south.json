@@ -177,11 +177,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_POKEBALL_10",
+            "id": "LOCALID_ITEM_HEAL_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_UNK_0x0406",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_205_SOUTH_HEAL_BALL",
             "script": 7016,
             "initial_dir": 0,
             "data": [],
@@ -192,11 +192,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_POKEBALL_11",
+            "id": "LOCALID_ITEM_X_SP_DEF",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_UNK_0x0407",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_205_SOUTH_X_SP_DEF",
             "script": 7017,
             "initial_dir": 0,
             "data": [],
@@ -477,11 +477,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_POKEBALL_29",
+            "id": "LOCALID_ITEM_SUPER_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_UNK_0x04F3",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_205_SOUTH_SUPER_POTION",
             "script": 7253,
             "initial_dir": 0,
             "data": [],
@@ -492,11 +492,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_205_SOUTH_POKEBALL_30",
+            "id": "LOCALID_ITEM_REPEL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_UNK_003",
-            "hidden_flag": "FLAG_UNK_0x0474",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_205_SOUTH_REPEL",
             "script": 7126,
             "initial_dir": 0,
             "data": [],

@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "POKEMON_MANSION_OFFICE_POKEBALL_0",
+            "id": "LOCALID_ITEM_TM87",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x042F",
+            "hidden_flag": "FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87",
             "script": 7057,
             "initial_dir": 0,
             "data": [],

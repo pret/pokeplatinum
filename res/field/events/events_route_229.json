@@ -118,11 +118,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_229_POKEBALL_7",
+            "id": "LOCALID_ITEM_REAPER_CLOTH",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04DB",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_229_REAPER_CLOTH",
             "script": 7229,
             "initial_dir": 0,
             "data": [],
@@ -133,11 +133,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_229_POKEBALL_8",
+            "id": "LOCALID_ITEM_FULL_RESTORE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04DD",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_229_FULL_RESTORE",
             "script": 7231,
             "initial_dir": 0,
             "data": [],
@@ -148,11 +148,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_229_POKEBALL_9",
+            "id": "LOCALID_ITEM_PROTEIN",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04DC",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_229_PROTEIN",
             "script": 7230,
             "initial_dir": 0,
             "data": [],

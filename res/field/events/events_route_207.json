@@ -194,11 +194,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_207_POKEBALL_9",
+            "id": "LOCALID_ITEM_POKE_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0421",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_207_POKE_BALL",
             "script": 7043,
             "initial_dir": 0,
             "data": [],
@@ -209,11 +209,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_207_POKEBALL_10",
+            "id": "LOCALID_ITEM_REVIVE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0422",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_207_REVIVE",
             "script": 7044,
             "initial_dir": 0,
             "data": [],
@@ -224,11 +224,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_207_POKEBALL_11",
+            "id": "LOCALID_ITEM_IRON",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0423",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_207_IRON",
             "script": 7045,
             "initial_dir": 0,
             "data": [],
@@ -448,11 +448,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_207_POKEBALL_25",
+            "id": "LOCALID_ITEM_SUPER_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0487",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_207_SUPER_POTION",
             "script": 7145,
             "initial_dir": 0,
             "data": [],
@@ -463,11 +463,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_207_POKEBALL_26",
+            "id": "LOCALID_ITEM_TIMER_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0537",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_207_TIMER_BALL",
             "script": 7320,
             "initial_dir": 0,
             "data": [],

@@ -69,11 +69,11 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_POKEBALL_3",
+            "id": "LOCALID_ITEM_TM24",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0405",
+            "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24",
             "script": 7015,
             "initial_dir": 0,
             "data": [],
@@ -101,11 +101,11 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_POKEBALL_5",
+            "id": "LOCALID_ITEM_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04F2",
+            "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_POTION",
             "script": 7252,
             "initial_dir": 0,
             "data": [],
@@ -133,11 +133,11 @@
             "y": 0
         },
         {
-            "id": "VALLEY_WINDWORKS_OUTSIDE_POKEBALL_7",
+            "id": "LOCALID_ITEM_ELECTIRIZER",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0535",
+            "hidden_flag": "FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_ELECTIRIZER",
             "script": 7318,
             "initial_dir": 0,
             "data": [],

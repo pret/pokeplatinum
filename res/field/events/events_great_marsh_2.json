@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "GREAT_MARSH_2_POKEBALL_0",
+            "id": "LOCALID_ITEM_BLUE_SHARD",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x043A",
+            "hidden_flag": "FLAG_OBTAINED_GREAT_MARSH_2_BLUE_SHARD",
             "script": 7068,
             "initial_dir": 0,
             "data": [],

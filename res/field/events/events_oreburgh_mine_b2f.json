@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_MINE_B2F_POKEBALL_3",
+            "id": "LOCALID_ITEM_ESCAPE_ROPE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x03FD",
+            "hidden_flag": "FLAG_OBTAINED_OREBURGH_MINE_B2F_ESCAPE_ROPE",
             "script": 7007,
             "initial_dir": 0,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_MINE_B2F_POKEBALL_4",
+            "id": "LOCALID_ITEM_POTION",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x03FE",
+            "hidden_flag": "FLAG_OBTAINED_OREBURGH_MINE_B2F_POTION",
             "script": 7008,
             "initial_dir": 0,
             "data": [],

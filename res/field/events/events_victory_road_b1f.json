@@ -19,11 +19,11 @@
     ],
     "object_events": [
         {
-            "id": "VICTORY_ROAD_B1F_POKEBALL_0",
+            "id": "LOCALID_ITEM_TM59",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B4",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59",
             "script": 7190,
             "initial_dir": 0,
             "data": [],
@@ -121,11 +121,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_B1F_POKEBALL_6",
+            "id": "LOCALID_ITEM_ULTRA_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x052F",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_B1F_ULTRA_BALL",
             "script": 7312,
             "initial_dir": 0,
             "data": [],
@@ -136,11 +136,11 @@
             "y": 0
         },
         {
-            "id": "VICTORY_ROAD_B1F_POKEBALL_7",
+            "id": "LOCALID_ITEM_CALCIUM",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0530",
+            "hidden_flag": "FLAG_OBTAINED_VICTORY_ROAD_B1F_CALCIUM",
             "script": 7313,
             "initial_dir": 0,
             "data": [],

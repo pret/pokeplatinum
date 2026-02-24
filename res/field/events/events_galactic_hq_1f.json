@@ -49,11 +49,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_1F_POKEBALL_2",
+            "id": "LOCALID_ITEM_TM49",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x049B",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_1F_TM49",
             "script": 7165,
             "initial_dir": 0,
             "data": [],
@@ -173,11 +173,11 @@
             "y": 0
         },
         {
-            "id": "GALACTIC_HQ_1F_POKEBALL_10",
+            "id": "LOCALID_ITEM_DUBIOUS_DISC",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0520",
+            "hidden_flag": "FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC",
             "script": 7297,
             "initial_dir": 0,
             "data": [],

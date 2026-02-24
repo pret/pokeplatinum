@@ -149,11 +149,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_6",
+            "id": "LOCALID_ITEM_TM50",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04CE",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_TM50",
             "script": 7216,
             "initial_dir": 0,
             "data": [],
@@ -164,11 +164,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_7",
+            "id": "LOCALID_ITEM_CALCIUM",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D5",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_CALCIUM",
             "script": 7223,
             "initial_dir": 0,
             "data": [],
@@ -179,11 +179,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_8",
+            "id": "LOCALID_ITEM_MAX_REVIVE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D4",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_MAX_REVIVE",
             "script": 7222,
             "initial_dir": 0,
             "data": [],
@@ -194,11 +194,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_9",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D2",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_RARE_CANDY",
             "script": 7220,
             "initial_dir": 0,
             "data": [],
@@ -209,11 +209,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_10",
+            "id": "LOCALID_ITEM_IRON_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04CF",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_IRON_BALL",
             "script": 7217,
             "initial_dir": 0,
             "data": [],
@@ -224,11 +224,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_11",
+            "id": "LOCALID_ITEM_MAX_ELIXIR",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D0",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_MAX_ELIXIR",
             "script": 7218,
             "initial_dir": 0,
             "data": [],
@@ -239,11 +239,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_12",
+            "id": "LOCALID_ITEM_NUGGET",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D1",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_NUGGET",
             "script": 7219,
             "initial_dir": 0,
             "data": [],
@@ -254,11 +254,11 @@
             "y": 0
         },
         {
-            "id": "STARK_MOUNTAIN_ROOM_2_POKEBALL_13",
+            "id": "LOCALID_ITEM_ULTRA_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04D3",
+            "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_ULTRA_BALL",
             "script": 7221,
             "initial_dir": 0,
             "data": [],

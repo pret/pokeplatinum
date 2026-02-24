@@ -199,11 +199,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_EAST_POKEBALL_12",
+            "id": "LOCALID_ITEM_TM29",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0489",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_211_EAST_TM29",
             "script": 7147,
             "initial_dir": 0,
             "data": [],
@@ -346,11 +346,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_211_EAST_POKEBALL_21",
+            "id": "LOCALID_ITEM_CARBOS",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0533",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_211_EAST_CARBOS",
             "script": 7316,
             "initial_dir": 0,
             "data": [],

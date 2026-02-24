@@ -67,11 +67,11 @@
     ],
     "object_events": [
         {
-            "id": "ROUTE_224_POKEBALL_0",
+            "id": "LOCALID_ITEM_RAZOR_CLAW",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B8",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_224_RAZOR_CLAW",
             "script": 7194,
             "initial_dir": 0,
             "data": [],
@@ -82,11 +82,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_POKEBALL_1",
+            "id": "LOCALID_ITEM_RARE_CANDY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04B9",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_224_RARE_CANDY",
             "script": 7195,
             "initial_dir": 0,
             "data": [],
@@ -97,11 +97,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_POKEBALL_2",
+            "id": "LOCALID_ITEM_DESTINY_KNOT",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04BA",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_224_DESTINY_KNOT",
             "script": 7196,
             "initial_dir": 0,
             "data": [],
@@ -346,11 +346,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_POKEBALL_17",
+            "id": "LOCALID_ITEM_REPEAT_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0526",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_224_REPEAT_BALL",
             "script": 7303,
             "initial_dir": 0,
             "data": [],
@@ -361,11 +361,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_POKEBALL_18",
+            "id": "LOCALID_ITEM_PP_MAX",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0527",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_224_PP_MAX",
             "script": 7304,
             "initial_dir": 0,
             "data": [],
@@ -376,11 +376,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_POKEBALL_19",
+            "id": "LOCALID_ITEM_ULTRA_BALL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0528",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_224_ULTRA_BALL",
             "script": 7305,
             "initial_dir": 0,
             "data": [],
@@ -391,11 +391,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_224_POKEBALL_20",
+            "id": "LOCALID_ITEM_UPGRADE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0525",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_224_UPGRADE",
             "script": 7302,
             "initial_dir": 0,
             "data": [],

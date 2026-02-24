@@ -87,11 +87,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_SOUTH_POKEBALL_4",
+            "id": "LOCALID_ITEM_PROTEIN",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0424",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_SOUTH_PROTEIN",
             "script": 7046,
             "initial_dir": 0,
             "data": [],
@@ -102,11 +102,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_1F_SOUTH_POKEBALL_5",
+            "id": "LOCALID_ITEM_DAWN_STONE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0425",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_1F_SOUTH_DAWN_STONE",
             "script": 7047,
             "initial_dir": 0,
             "data": [],

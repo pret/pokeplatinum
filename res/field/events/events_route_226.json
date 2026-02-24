@@ -60,11 +60,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_POKEBALL_1",
+            "id": "LOCALID_ITEM_TM53",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04C3",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_226_TM53",
             "script": 7205,
             "initial_dir": 0,
             "data": [],
@@ -75,11 +75,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_POKEBALL_2",
+            "id": "LOCALID_ITEM_CARBOS",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04C5",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_226_CARBOS",
             "script": 7207,
             "initial_dir": 0,
             "data": [],
@@ -90,11 +90,11 @@
             "y": 0
         },
         {
-            "id": "ROUTE_226_POKEBALL_3",
+            "id": "LOCALID_ITEM_LAGGING_TAIL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04C4",
+            "hidden_flag": "FLAG_OBTAINED_ROUTE_226_LAGGING_TAIL",
             "script": 7206,
             "initial_dir": 0,
             "data": [],

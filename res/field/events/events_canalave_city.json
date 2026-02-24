@@ -246,11 +246,11 @@
             "y": 1
         },
         {
-            "id": "CANALAVE_CITY_POKEBALL_15",
+            "id": "LOCALID_ITEM_TM89",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x047C",
+            "hidden_flag": "FLAG_OBTAINED_CANALAVE_CITY_TM89",
             "script": 7134,
             "initial_dir": 0,
             "data": [],

@@ -60,11 +60,11 @@
             "y": 0
         },
         {
-            "id": "TEAM_GALACTIC_ETERNA_BUILDING_3F_POKEBALL_3",
+            "id": "LOCALID_ITEM_X_SPECIAL",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x04FE",
+            "hidden_flag": "FLAG_OBTAINED_TEAM_GALACTIC_ETERNA_BUILDING_3F_X_SPECIAL",
             "script": 7263,
             "initial_dir": 0,
             "data": [],

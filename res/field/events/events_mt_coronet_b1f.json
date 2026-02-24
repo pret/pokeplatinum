@@ -305,11 +305,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_B1F_POKEBALL_18",
+            "id": "LOCALID_ITEM_REVIVE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0492",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_B1F_REVIVE",
             "script": 7156,
             "initial_dir": 0,
             "data": [],
@@ -320,11 +320,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_B1F_POKEBALL_19",
+            "id": "LOCALID_ITEM_REVIVE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x048D",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_B1F_SOFT_SAND",
             "script": 7151,
             "initial_dir": 0,
             "data": [],
@@ -335,11 +335,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_B1F_POKEBALL_20",
+            "id": "LOCALID_ITEM_LIGHT_CLAY",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x048E",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_B1F_LIGHT_CLAY",
             "script": 7152,
             "initial_dir": 0,
             "data": [],
@@ -350,11 +350,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_B1F_POKEBALL_21",
+            "id": "LOCALID_ITEM_MAX_ELIXIR",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0491",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_B1F_MAX_ELIXIR",
             "script": 7155,
             "initial_dir": 0,
             "data": [],
@@ -365,11 +365,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_B1F_POKEBALL_22",
+            "id": "LOCALID_ITEM_FULL_RESTORE",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0490",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_B1F_FULL_RESTORE",
             "script": 7154,
             "initial_dir": 0,
             "data": [],
@@ -380,11 +380,11 @@
             "y": 0
         },
         {
-            "id": "MT_CORONET_B1F_POKEBALL_23",
+            "id": "LOCALID_ITEM_ULTRA_BALl",
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x048F",
+            "hidden_flag": "FLAG_OBTAINED_MT_CORONET_B1F_ULTRA_BALL",
             "script": 7153,
             "initial_dir": 0,
             "data": [],
