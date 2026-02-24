@@ -6,6 +6,7 @@
 #include "generated/pokemon_types.h"
 
 #include "applications/pokedex/footprint.h"
+#include "applications/pokedex/infomain_state.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -16,7 +17,6 @@
 #include "applications/pokedex/pokedex_text.h"
 #include "applications/pokedex/pokedex_text_manager.h"
 #include "applications/pokedex/species_caught_status.h"
-#include "applications/pokedex/infomain_state.h"
 #include "applications/pokedex/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"

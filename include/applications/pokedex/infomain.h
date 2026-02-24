@@ -7,8 +7,8 @@
  */
 enum AnimationMode {
     ANIM_POSITION_BLEND = 0, // Animate position and blend transparency
-    ANIM_BLEND,              // Animate blend transparency only
-    ANIM_POSITION,           // Animate position only
+    ANIM_BLEND, // Animate blend transparency only
+    ANIM_POSITION, // Animate position only
 };
 
 #include "applications/pokedex/infomain_state.h"
