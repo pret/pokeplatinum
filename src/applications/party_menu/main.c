@@ -1074,8 +1074,7 @@ static void SetupRequestedMode(PartyMenuApplication *application)
         flags ^= PARTY_MENU_SHOW_CONFIRM;
     }
 
-    if (application->partyMenu->mode == PARTY_MENU_MODE_UNK_04
-        || application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
+    if (application->partyMenu->mode == PARTY_MENU_MODE_UNK_04 || application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG) {
         Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CANCEL_BUTTON], FALSE);
         flags ^= PARTY_MENU_SHOW_CANCEL;
     }
@@ -1698,12 +1697,10 @@ static u8 sub_0207FE98(PartyMenuApplication *application)
             if (application->hideCancel == 0) {
                 return 3;
             }
-        } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_NO_PROMPT
-            || application->partyMenu->mode == PARTY_MENU_MODE_NPC_TRADE) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_NO_PROMPT || application->partyMenu->mode == PARTY_MENU_MODE_NPC_TRADE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             return 0;
-        } else if (application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN
-            || application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) {
+        } else if (application->partyMenu->mode == PARTY_MENU_MODE_FEED_POFFIN || application->partyMenu->mode == PARTY_MENU_MODE_MAILBOX) {
             if (application->partyMembers[application->currPartySlot].isEgg == FALSE) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 return 0;
