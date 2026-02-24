@@ -172,7 +172,7 @@ FS_EXTERN_OVERLAY(dw_warp);
 
 typedef struct {
     enum HeapID heapID;
-    PartyMenu *unk_04;
+    PartyMenu *partyMenu;
     PokemonSummary *unk_08;
 } UnkStruct_0203D444;
 
@@ -438,12 +438,12 @@ static BOOL sub_0203D444(FieldTask *param0)
 
     switch (*v2) {
     case 0:
-        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, v1->unk_04);
+        FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, v1->partyMenu);
         *v2 = 1;
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            switch (v1->unk_04->selectedMonSlot) {
+            switch (v1->partyMenu->selectedMonSlot) {
             case 7:
                 sub_0205BAAC(2);
                 *v2 = 4;
@@ -459,7 +459,7 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 2:
         v1->unk_08 = sub_0203D670(fieldSystem, v1->heapID, SUMMARY_MODE_NORMAL);
-        v1->unk_08->monIndex = v1->unk_04->selectedMonSlot;
+        v1->unk_08->monIndex = v1->partyMenu->selectedMonSlot;
         FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
         *v2 = 3;
         break;
@@ -489,7 +489,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForUnionRoomBattle(FieldTask *taskMan
     partyMenu->maxSelectionSlots = 2;
     partyMenu->reqLevel = 30;
     partyMenu->battleRegulation = NULL;
-    v0->unk_04 = partyMenu;
+    v0->partyMenu = partyMenu;
 
     FieldTask_InitCall(taskMan, sub_0203D444, v0);
 
