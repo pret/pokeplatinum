@@ -97,7 +97,7 @@ static const u16 Unk_ov66_02258B28[2] = {
     0x1BE
 };
 
-static const UnkStruct_020217F4 Unk_ov66_02258B88[] = {
+static const BillboardAnim Unk_ov66_02258B88[] = {
     { 0x0, 0xF, 0x0 },
     { 0x10, 0x1F, 0x0 },
     { 0x20, 0x2F, 0x0 },

@@ -73,7 +73,7 @@ static void BerryPatchEffectCounter_CheckDisable(BerryPatchEffectCounter *counte
 static const OverworldAnimManagerFuncs sBerryPatchMoistureEffectDefinition;
 static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition;
 static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_COUNT];
-static const UnkStruct_020217F4 sBerryPatchSparkleEffectData[];
+static const BillboardAnim sBerryPatchSparkleEffectData[];
 
 void *BerryPatchGraphicsManager_New(FieldEffectManager *fieldEffMan)
 {
@@ -353,7 +353,7 @@ static const u32 sBerryPatchMoistureResourceIDs[BERRY_PATCH_MOISTURE_RESOURCE_CO
 
 // Sparkle effect configuration data for berry patches
 // Each entry defines: { model_variant, animation_frame_count, effect_type }
-static const UnkStruct_020217F4 sBerryPatchSparkleEffectData[] = {
+static const BillboardAnim sBerryPatchSparkleEffectData[] = {
     { 0, 9, 1 }, // Animated sparkle effect (9 animation frames, type 1)
     { 0, 0, 2 } // Static sparkle effect (no animation, type 2)
 };

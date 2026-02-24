@@ -36,7 +36,7 @@ static void ov5_021F6038(UnkStruct_ov5_021F600C *param0);
 static void ov5_021F6074(UnkStruct_ov5_021F600C *param0);
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200BD8;
-const UnkStruct_020217F4 Unk_ov5_02200BEC[];
+const BillboardAnim Unk_ov5_02200BEC[];
 
 void *ov5_021F600C(FieldEffectManager *param0)
 {
@@ -158,7 +158,7 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200BD8 = {
     ov5_021F615C
 };
 
-static const UnkStruct_020217F4 Unk_ov5_02200BEC[] = {
+static const BillboardAnim Unk_ov5_02200BEC[] = {
     { 0x0, 0x1, 0x1 },
     { 0x0, 0x0, 0x2 }
 };

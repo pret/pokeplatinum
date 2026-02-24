@@ -7,6 +7,17 @@
 #include "heap.h"
 #include "unk_0201DD00.h"
 
+enum BillboardAnimType {
+    BILLBOARD_ANIM_TYPE_LOOP = 0,
+    BILLBOARD_ANIM_TYPE_ONESHOT,
+    BILLBOARD_ANIM_TYPE_TABLE_END, // used as the anim type for the dummy entry at the end of anim tables
+};
+
+enum BillboardAnimStatus {
+    BILLBOARD_ANIM_STATUS_RUNNING = 0,
+    BILLBOARD_ANIM_STATUS_FINISHED,
+};
+
 enum BillboardRedraw {
     BILLBOARD_REDRAW_NONE = 0,
     BILLBOARD_REDRAW_NEEDED,
@@ -18,14 +29,21 @@ enum BillboardResourceValue {
     BILLBOARD_RESOURCE_TEXTURE,
 };
 
+enum BillboardState {
+    BILLBOARD_STATE_INACTIVE = 0,
+    BILLBOARD_STATE_INITIALIZED,
+    BILLBOARD_STATE_UNK_2,
+    BILLBOARD_STATE_ACTIVE,
+};
+
 static BillboardList *FindFirstFreeBillboardList(void);
 static void BillboardList_Reset(BillboardList *list);
 static void BillboardList_Draw(BillboardList *list);
-static void sub_0202144C(Billboard *param0);
-static void sub_0202149C(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2);
-static void sub_02021524(NNSG3dResMat *param0, const NNSG3dResDictTexToMatIdxData *param1, u32 param2);
-static void sub_020215A0(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2);
-static void sub_0202162C(NNSG3dResMat *param0, const NNSG3dResDictPlttToMatIdxData *param1, u32 param2);
+static void UpdateTexPlttAddressesForCurrentFrame(Billboard *param0);
+static void UpdateModelTextureAddresses(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2);
+static void UpdateMaterialTextureAddresses(NNSG3dResMat *param0, const NNSG3dResDictTexToMatIdxData *param1, u32 param2);
+static void UpdateModelPlttAddresses(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2);
+static void UpdateMaterialPlttAddresses(NNSG3dResMat *param0, const NNSG3dResDictPlttToMatIdxData *param1, u32 param2);
 static void BillboardList_InitBillboards(BillboardList *list);
 static Billboard *BillboardList_AllocBillboard(BillboardList *list);
 static BOOL BillboardList_FreeBillboard(BillboardList *list, Billboard *billboard);
@@ -34,15 +52,15 @@ static void BillboardList_Remove(Billboard *billboard);
 static void Billboard_SetKeysAndBindModelSet(Billboard *billboard);
 static void ReleaseVRAMKeysAndModelSet(Billboard *billboard);
 static void *BillboardResources_GetValue(const BillboardResources *resources, int value);
-static const UnkStruct_020217F4 *sub_020218B4(const UnkStruct_020217F4 *param0, int param1);
+static const BillboardAnim *Billboard_GetAnimAt(const BillboardAnim *param0, int param1);
 static NNSG3dResMdlSet *RetrieveBillboardResources(const BillboardResources *resources, NNSG3dResMdl **outModel, NNSG3dResTex **outTexture);
 static NNSG3dResTex *BillboardResources_GetTexture(const BillboardResources *resources);
 static void sub_020217E0(Billboard *param0, const BillboardResources *param1);
 static void sub_02020E28(Billboard *param0, const BillboardResources *param1);
 static void sub_02020E78(Billboard *param0, const BillboardResources *param1);
-static fx32 sub_020217F4(const Billboard *param0, int param1);
-static int sub_02021804(Billboard *param0, fx32 param1);
-static int sub_02021824(const UnkStruct_020217F4 *param0, fx32 *param1, fx32 param2);
+static fx32 GetAnimStartFrame(const Billboard *param0, int param1);
+static int GetAndAdvanceAnim(Billboard *param0, fx32 param1);
+static int AdvanceAnim(const BillboardAnim *anim, fx32 *currFrame, fx32 numFrames);
 static void AllocTextureVRAM(const NNSG3dResTex *texture, NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *plttKey);
 static void ReleaseVRAMKeys(NNSG3dResTex *texture, NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *outPlttKey);
 static void SetKeysAndBindModelSet(NNSG3dResTex *texture, NNSG3dResMdlSet *modelSet, NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *plttKey);
@@ -73,11 +91,11 @@ static void BillboardList_Reset(BillboardList *list)
 void Billboard_Reset(Billboard *billboard)
 {
     billboard->list = NULL;
-    billboard->unk_2C = NULL;
+    billboard->anims = NULL;
     billboard->modelSet = NULL;
     billboard->model = NULL;
     billboard->texture = NULL;
-    billboard->unk_90 = NULL;
+    billboard->animTexture = NULL;
 
     memset(&billboard->gfxSequence, 0, sizeof(BillboardGfxSequence));
 
@@ -90,8 +108,8 @@ void Billboard_Reset(Billboard *billboard)
     VEC_Set(&billboard->scale, FX32_ONE, FX32_ONE, FX32_ONE);
 
     billboard->rotMatrix = NULL;
-    billboard->unk_B6 = 0;
-    billboard->unk_B4 = 0;
+    billboard->animNum = 0;
+    billboard->state = BILLBOARD_STATE_INACTIVE;
     billboard->next = NULL;
     billboard->prev = NULL;
     billboard->draw = FALSE;
@@ -254,10 +272,10 @@ static void BillboardList_Draw(BillboardList *list)
 
             Billboard_SetKeysAndBindModelSet(billboard);
 
-            if (billboard->unk_B4 == 3) {
-                sub_0202144C(billboard);
+            if (billboard->state == BILLBOARD_STATE_ACTIVE) {
+                UpdateTexPlttAddressesForCurrentFrame(billboard);
             } else {
-                if (billboard->unk_B4 == 2) {
+                if (billboard->state == BILLBOARD_STATE_UNK_2) {
                     sub_02021414(billboard);
                 }
             }
@@ -284,41 +302,41 @@ static void sub_02020E28(Billboard *billboard, const BillboardResources *resourc
     sub_02021078(billboard, resources);
     sub_020210F4(list, billboard, resources);
 
-    if (billboard->unk_B4 == 1) {
+    if (billboard->state == BILLBOARD_STATE_INITIALIZED) {
         sub_02021744(&list->sentinelData, billboard);
     }
 
-    billboard->unk_B4 = 2;
-    billboard->unk_2C = resources->unk_08;
-    billboard->unk_B6 = 0;
-    billboard->unk_B8 = 0;
+    billboard->state = BILLBOARD_STATE_UNK_2;
+    billboard->anims = resources->anims;
+    billboard->animNum = 0;
+    billboard->frameNum = 0;
 }
 
-static void sub_02020E78(Billboard *param0, const BillboardResources *param1)
+static void sub_02020E78(Billboard *billboard, const BillboardResources *resources)
 {
-    BillboardList *v0 = param0->list;
+    BillboardList *list = billboard->list;
 
-    sub_0202105C(v0, param0);
+    sub_0202105C(list, billboard);
 
-    if (param0->unk_B4 == 2) {
-        FreeVRAMKeys(&param0->texKey, &param0->tex4x4Key, &param0->plttKey);
+    if (billboard->state == BILLBOARD_STATE_UNK_2) {
+        FreeVRAMKeys(&billboard->texKey, &billboard->tex4x4Key, &billboard->plttKey);
     }
 
-    param0->texKey = param1->texKey;
-    param0->tex4x4Key = param1->tex4x4Key;
-    param0->plttKey = param1->plttKey;
+    billboard->texKey = resources->texKey;
+    billboard->tex4x4Key = resources->tex4x4Key;
+    billboard->plttKey = resources->plttKey;
 
-    sub_02021148(param0, param1);
-    sub_0202117C(param0, param1);
+    sub_02021148(billboard, resources);
+    sub_0202117C(billboard, resources);
 
-    if (param0->unk_B4 == 1) {
-        sub_02021744(&v0->sentinelData, param0);
+    if (billboard->state == BILLBOARD_STATE_INITIALIZED) {
+        sub_02021744(&list->sentinelData, billboard);
     }
 
-    param0->unk_B4 = 3;
-    param0->unk_2C = param1->unk_08;
-    param0->unk_B6 = 0;
-    param0->unk_B8 = 0;
+    billboard->state = BILLBOARD_STATE_ACTIVE;
+    billboard->anims = resources->anims;
+    billboard->animNum = 0;
+    billboard->frameNum = 0;
 }
 
 static void AllocTextureVRAM(const NNSG3dResTex *texture, NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *plttKey)
@@ -418,14 +436,14 @@ static void sub_02021078(Billboard *billboard, const BillboardResources *resourc
 
     NNS_G3dRenderObjInit(&billboard->renderObj, billboard->model);
 
-    if (billboard->unk_B4 != 3) {
+    if (billboard->state != BILLBOARD_STATE_ACTIVE) {
         sameTexSize = AreTexturesSameSize(originalTexture, billboard->texture);
     } else {
         sameTexSize = FALSE;
     }
 
     if (sameTexSize == FALSE) {
-        if (billboard->unk_B4 == 2) {
+        if (billboard->state == BILLBOARD_STATE_UNK_2) {
             FreeVRAMKeys(&billboard->texKey, &billboard->tex4x4Key, &billboard->plttKey);
         }
 
@@ -435,16 +453,16 @@ static void sub_02021078(Billboard *billboard, const BillboardResources *resourc
 
 static void sub_020210F4(const BillboardList *list, Billboard *billboard, const BillboardResources *resources)
 {
-    billboard->unk_90 = BillboardResources_GetTexture(resources);
+    billboard->animTexture = BillboardResources_GetTexture(resources);
     billboard->gfxSequence = resources->gfxSequence;
-    billboard->unk_B0 = sub_0201DD54(list->unk_D8, &billboard->gfxSequence, billboard->unk_90, billboard->texKey, billboard->plttKey, billboard->unk_B8);
+    billboard->unk_B0 = sub_0201DD54(list->unk_D8, &billboard->gfxSequence, billboard->animTexture, billboard->texKey, billboard->plttKey, billboard->frameNum);
 }
 
 static void sub_02021148(Billboard *billboard, const BillboardResources *resources)
 {
     billboard->modelSet = RetrieveBillboardResources(resources, &billboard->model, &billboard->texture);
     NNS_G3dRenderObjInit(&billboard->renderObj, billboard->model);
-    billboard->unk_90 = BillboardResources_GetTexture(resources);
+    billboard->animTexture = BillboardResources_GetTexture(resources);
 }
 
 static void sub_0202117C(Billboard *param0, const BillboardResources *param1)
@@ -472,9 +490,9 @@ Billboard *sub_0202119C(const BillboardListTemplate *param0)
     v0->list = v1;
     v0->pos = param0->pos;
     v0->scale = param0->scale;
-    v0->unk_B6 = 0;
+    v0->animNum = 0;
     v0->draw = TRUE;
-    v0->unk_B4 = 1;
+    v0->state = BILLBOARD_STATE_INITIALIZED;
 
     sub_020217E0(v0, param0->resources);
 
@@ -485,17 +503,17 @@ Billboard *sub_0202119C(const BillboardListTemplate *param0)
 BOOL sub_020211FC(Billboard *billboard)
 {
     GF_ASSERT(billboard);
-    GF_ASSERT(billboard->unk_B4 != 1);
+    GF_ASSERT(billboard->state != BILLBOARD_STATE_INITIALIZED);
 
     BillboardList *list = (BillboardList *)billboard->list;
 
-    if (billboard->unk_B4 == 0) {
+    if (billboard->state == BILLBOARD_STATE_INACTIVE) {
         return FALSE;
     }
 
     BillboardList_Remove(billboard);
 
-    if (billboard->unk_B4 == 2) {
+    if (billboard->state == BILLBOARD_STATE_UNK_2) {
         FreeVRAMKeys(&billboard->texKey, &billboard->tex4x4Key, &billboard->plttKey);
     }
 
@@ -508,11 +526,11 @@ BOOL sub_020211FC(Billboard *billboard)
 }
 
 // BillboardResources_Set
-void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *gfxSequence, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
+void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *param3, const BillboardGfxSequence *gfxSequence, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
-    resources->unk_08 = param3;
+    resources->anims = param3;
     resources->gfxSequence = *gfxSequence;
     resources->texKey = texKey;
     resources->tex4x4Key = tex4x4Key;
@@ -520,11 +538,11 @@ void sub_0202125C(BillboardResources *resources, void *modelRes, const NNSG3dRes
 }
 
 // BillboardResources_SetWithoutKeys
-void sub_02021284(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *gfxSequence)
+void sub_02021284(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *param3, const BillboardGfxSequence *gfxSequence)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
-    resources->unk_08 = param3;
+    resources->anims = param3;
     resources->gfxSequence = *gfxSequence;
     resources->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
     resources->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
@@ -587,49 +605,56 @@ u8 sub_02021334(const Billboard *billboard)
     return billboard->draw;
 }
 
-void sub_02021344(Billboard *param0, int param1)
+// Billboard_SetAnimNum
+void sub_02021344(Billboard *billboard, int animNum)
 {
-    GF_ASSERT(param0);
-    param0->unk_B6 = param1;
+    GF_ASSERT(billboard);
+    billboard->animNum = animNum;
 }
 
-int sub_02021358(const Billboard *param0)
+// Billboard_GetAnimNum
+int sub_02021358(const Billboard *billboard)
 {
-    GF_ASSERT(param0);
-    return param0->unk_B6;
+    GF_ASSERT(billboard);
+    return billboard->animNum;
 }
 
-int sub_02021368(Billboard *param0, fx32 param1)
+// Billboard_AdvanceAnim
+int sub_02021368(Billboard *billboard, fx32 numFrames)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(billboard);
 
-    return sub_02021804(param0, param1);
+    return GetAndAdvanceAnim(billboard, numFrames);
 }
 
-void sub_02021380(Billboard *param0, fx32 param1)
+// Billboard_SetFrameNum
+void sub_02021380(Billboard *billboard, fx32 frameNum)
 {
-    GF_ASSERT(param0);
-    param0->unk_B8 = param1;
+    GF_ASSERT(billboard);
+    billboard->frameNum = frameNum;
 }
 
-fx32 sub_02021394(const Billboard *param0)
+// Billboard_GetFrameNum
+fx32 sub_02021394(const Billboard *billboard)
 {
-    GF_ASSERT(param0);
-    return param0->unk_B8;
+    GF_ASSERT(billboard);
+    return billboard->frameNum;
 }
 
-void sub_020213A4(Billboard *param0, fx32 param1)
+// Billboard_SetAnimFrameNum
+void sub_020213A4(Billboard *billboard, fx32 animFrameNum)
 {
-    GF_ASSERT(param0);
+    GF_ASSERT(billboard);
 
-    param0->unk_B8 = sub_020217F4(param0, param0->unk_B6);
-    param0->unk_B8 += param1;
+    billboard->frameNum = GetAnimStartFrame(billboard, billboard->animNum);
+    billboard->frameNum += animFrameNum;
 }
 
-fx32 sub_020213D4(const Billboard *param0)
+// Billboard_GetAnimFrameNum
+fx32 sub_020213D4(const Billboard *billboard)
 {
-    GF_ASSERT(param0);
-    return param0->unk_B8 - sub_020217F4(param0, param0->unk_B6);
+    GF_ASSERT(billboard);
+    return billboard->frameNum - GetAnimStartFrame(billboard, billboard->animNum);
 }
 
 // Billboard_GetModel
@@ -639,16 +664,17 @@ NNSG3dResMdl *sub_020213F4(const Billboard *billboard)
     return billboard->model;
 }
 
-int sub_02021404(const Billboard *param0)
+// Billboard_GetState
+int sub_02021404(const Billboard *billboard)
 {
-    GF_ASSERT(param0);
-    return param0->unk_B4;
+    GF_ASSERT(billboard);
+    return billboard->state;
 }
 
 void sub_02021414(Billboard *billboard)
 {
-    if (billboard->unk_B4 == 2) {
-        sub_0201DDD8(billboard->unk_B0, billboard->unk_B8);
+    if (billboard->state == BILLBOARD_STATE_UNK_2) {
+        sub_0201DDD8(billboard->unk_B0, billboard->frameNum);
     }
 }
 
@@ -677,91 +703,69 @@ void sub_02021444(Billboard *billboard, BillboardCallback callback, void *callba
     billboard->callback = callback;
 }
 
-static void sub_0202144C(Billboard *billboard)
+static void UpdateTexPlttAddressesForCurrentFrame(Billboard *billboard)
 {
-    BillboardTexPlttIndex v0 = BillboardGfxSequence_GetTexPlttIndexAt(&billboard->gfxSequence, billboard->unk_B8 >> FX32_SHIFT);
+    BillboardTexPlttIndex indexes = BillboardGfxSequence_GetTexPlttIndexAt(&billboard->gfxSequence, billboard->frameNum >> FX32_SHIFT);
 
-    sub_0202149C(billboard->model, billboard->unk_90, v0.textureIdx);
-    sub_020215A0(billboard->model, billboard->unk_90, v0.plttIdx);
+    UpdateModelTextureAddresses(billboard->model, billboard->animTexture, indexes.textureIdx);
+    UpdateModelPlttAddresses(billboard->model, billboard->animTexture, indexes.plttIdx);
 }
 
-static void sub_0202149C(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2)
+static void UpdateModelTextureAddresses(NNSG3dResMdl *model, const NNSG3dResTex *texture, u8 textureIdx)
 {
-    NNSG3dResMat *v0;
-    const NNSG3dResDict *v1;
-    const NNSG3dResDictTexToMatIdxData *v2;
-    const NNSG3dResDictTexData *v3;
-    u32 v4;
-    int v5;
+    NNSG3dResMat *material = NNS_G3dGetMat(model);
+    const NNSG3dResDict *textureDict = (NNSG3dResDict *)((u8 *)material + material->ofsDictTexToMatList);
+    const NNSG3dResDictTexData *textureData = NNS_G3dGetTexDataByIdx(texture, textureIdx);
+    u32 textureAddress = textureData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK;
 
-    v0 = NNS_G3dGetMat(param0);
-    v1 = (NNSG3dResDict *)((u8 *)v0 + v0->ofsDictTexToMatList);
-    v3 = NNS_G3dGetTexDataByIdx(param1, param2);
-    v4 = (v3->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
+    for (int i = 0; i < textureDict->numEntry; ++i) {
+        const NNSG3dResDictTexToMatIdxData *texToMatDict = (NNSG3dResDictTexToMatIdxData *)NNS_G3dGetResDataByIdx(textureDict, i);
 
-    for (v5 = 0; v5 < v1->numEntry; ++v5) {
-        v2 = (NNSG3dResDictTexToMatIdxData *)NNS_G3dGetResDataByIdx(v1, v5);
-
-        if (v2->flag & 1) {
-            sub_02021524(v0, v2, v4);
+        if (texToMatDict->flag & 1) {
+            UpdateMaterialTextureAddresses(material, texToMatDict, textureAddress);
         }
     }
 }
 
-static void sub_02021524(NNSG3dResMat *param0, const NNSG3dResDictTexToMatIdxData *param1, u32 param2)
+static void UpdateMaterialTextureAddresses(NNSG3dResMat *material, const NNSG3dResDictTexToMatIdxData *texToMatDict, u32 textureAddress)
 {
-    u8 *v0;
-    int v1;
-    NNSG3dResMatData *v2;
+    u8 *texMaterials = (u8 *)material + texToMatDict->offset;
 
-    v0 = (u8 *)param0 + param1->offset;
-
-    for (v1 = 0; v1 < param1->numIdx; v1++) {
-        v2 = NNS_G3dGetMatDataByIdx(param0, *(v0 + v1));
-        GF_ASSERT(((v2->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) + param2) <= NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
-        v2->texImageParam += param2;
+    for (int i = 0; i < texToMatDict->numIdx; i++) {
+        NNSG3dResMatData *materialData = NNS_G3dGetMatDataByIdx(material, *(texMaterials + i));
+        GF_ASSERT((materialData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) + textureAddress <= NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
+        materialData->texImageParam += textureAddress;
     }
 }
 
-static void sub_020215A0(NNSG3dResMdl *param0, const NNSG3dResTex *param1, u8 param2)
+static void UpdateModelPlttAddresses(NNSG3dResMdl *model, const NNSG3dResTex *texture, u8 plttIdx)
 {
-    NNSG3dResMat *v0;
-    const NNSG3dResDict *v1;
-    const NNSG3dResDictPlttToMatIdxData *v2;
-    const NNSG3dResDictPlttData *v3;
-    u32 v4;
-    u32 v5;
+    NNSG3dResMat *material = NNS_G3dGetMat(model);
+    const NNSG3dResDict *plttDict = (NNSG3dResDict *)((u8 *)material + material->ofsDictPlttToMatList);
+    const NNSG3dResDictPlttData *plttData = NNS_G3dGetPlttDataByIdx(texture, plttIdx);
+    u32 plttAddress = plttData->offset;
 
-    v0 = NNS_G3dGetMat(param0);
-    v1 = (NNSG3dResDict *)((u8 *)v0 + v0->ofsDictPlttToMatList);
-    v3 = NNS_G3dGetPlttDataByIdx(param1, param2);
-    v4 = v3->offset;
-
-    if (!(v3->flag & 1)) {
-        v4 >>= 1;
+    if (!(plttData->flag & 1)) {
+        plttAddress >>= 1;
     }
 
-    for (v5 = 0; v5 < v1->numEntry; ++v5) {
-        v2 = (NNSG3dResDictPlttToMatIdxData *)NNS_G3dGetResDataByIdx(v1, v5);
+    for (u32 i = 0; i < plttDict->numEntry; ++i) {
+        const NNSG3dResDictPlttToMatIdxData *plttToMatDict = (NNSG3dResDictPlttToMatIdxData *)NNS_G3dGetResDataByIdx(plttDict, i);
 
-        if (v2->flag & 1) {
-            sub_0202162C(v0, v2, v4);
+        if (plttToMatDict->flag & 1) {
+            UpdateMaterialPlttAddresses(material, plttToMatDict, plttAddress);
         }
     }
 }
 
-static void sub_0202162C(NNSG3dResMat *param0, const NNSG3dResDictPlttToMatIdxData *param1, u32 param2)
+static void UpdateMaterialPlttAddresses(NNSG3dResMat *material, const NNSG3dResDictPlttToMatIdxData *plttToMatDict, u32 plttAddress)
 {
-    u8 *v0;
-    u32 v1;
+    u8 *plttMaterials = (u8 *)material + plttToMatDict->offset;
 
-    v0 = (u8 *)param0 + param1->offset;
-
-    for (v1 = 0; v1 < param1->numIdx; v1++) {
-        NNSG3dResMatData *v2 = NNS_G3dGetMatDataByIdx(param0, *(v0 + v1));
-
-        GF_ASSERT(((v2->texPlttBase & 0x1fff) + param2) <= 0x1fff);
-        v2->texPlttBase += param2;
+    for (u32 i = 0; i < plttToMatDict->numIdx; i++) {
+        NNSG3dResMatData *materialData = NNS_G3dGetMatDataByIdx(material, *(plttMaterials + i));
+        GF_ASSERT(((materialData->texPlttBase & REG_G3_TEXPLTT_BASE_PLTT_BASE_MASK) + plttAddress) <= REG_G3_TEXPLTT_BASE_PLTT_BASE_MASK);
+        materialData->texPlttBase += plttAddress;
     }
 }
 
@@ -844,38 +848,39 @@ static void sub_020217E0(Billboard *param0, const BillboardResources *param1)
     }
 }
 
-static fx32 sub_020217F4(const Billboard *param0, int param1)
+static fx32 GetAnimStartFrame(const Billboard *billboard, int animNum)
 {
-    const UnkStruct_020217F4 *v0 = sub_020218B4(param0->unk_2C, param1);
-    return v0->unk_00 << FX32_SHIFT;
+    const BillboardAnim *anim = Billboard_GetAnimAt(billboard->anims, animNum);
+    return anim->startFrame << FX32_SHIFT;
 }
 
-static int sub_02021804(Billboard *param0, fx32 param1)
+static int GetAndAdvanceAnim(Billboard *billboard, fx32 numFrames)
 {
-    const UnkStruct_020217F4 *v0 = sub_020218B4(param0->unk_2C, param0->unk_B6);
-    return sub_02021824(v0, &param0->unk_B8, param1);
+    const BillboardAnim *anim = Billboard_GetAnimAt(billboard->anims, billboard->animNum);
+    return AdvanceAnim(anim, &billboard->frameNum, numFrames);
 }
 
-static int sub_02021824(const UnkStruct_020217F4 *param0, fx32 *param1, fx32 param2)
+static int AdvanceAnim(const BillboardAnim *anim, fx32 *currentFrame, fx32 numFrames)
 {
-    int v0 = 0;
+    int status = BILLBOARD_ANIM_STATUS_RUNNING;
 
-    if (((param0->unk_00 * FX32_ONE) > *param1) || ((param0->unk_04 * FX32_ONE) < *param1)) {
-        *param1 = (param0->unk_00 * FX32_ONE);
+    if (anim->startFrame * FX32_ONE > *currentFrame
+        || anim->endFrame * FX32_ONE < *currentFrame) {
+        *currentFrame = anim->startFrame * FX32_ONE;
     } else {
-        if ((param0->unk_04 * FX32_ONE) < *param1 + param2) {
-            if (param0->unk_08 == 0) {
-                *param1 = (param0->unk_00 * FX32_ONE);
+        if (anim->endFrame * FX32_ONE < *currentFrame + numFrames) {
+            if (anim->animType == BILLBOARD_ANIM_TYPE_LOOP) {
+                *currentFrame = anim->startFrame * FX32_ONE;
             } else {
-                v0 = 1;
-                *param1 = (param0->unk_04 * FX32_ONE);
+                status = BILLBOARD_ANIM_STATUS_FINISHED;
+                *currentFrame = anim->endFrame * FX32_ONE;
             }
         } else {
-            *param1 += param2;
+            *currentFrame += numFrames;
         }
     }
 
-    return v0;
+    return status;
 }
 
 static void Billboard_SetKeysAndBindModelSet(Billboard *billboard)
@@ -911,7 +916,7 @@ static void *BillboardResources_GetValue(const BillboardResources *resources, in
     return ret;
 }
 
-static const UnkStruct_020217F4 *sub_020218B4(const UnkStruct_020217F4 *param0, int param1)
+static const BillboardAnim *Billboard_GetAnimAt(const BillboardAnim *anims, int index)
 {
-    return param0 + param1;
+    return anims + index;
 }

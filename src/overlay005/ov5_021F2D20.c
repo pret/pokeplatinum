@@ -76,10 +76,10 @@ static void ov5_021F2D4C(UnkStruct_ov5_021F2D20 *param0);
 static void ov5_021F2E2C(UnkStruct_ov5_021F2D20 *param0);
 
 static const OverworldAnimManagerFuncs Unk_ov5_022004EC;
-const UnkStruct_020217F4 Unk_ov5_02200540[];
-const UnkStruct_020217F4 Unk_ov5_02200558[];
-const UnkStruct_020217F4 Unk_ov5_02200528[];
-const UnkStruct_020217F4 Unk_ov5_02200570[];
+const BillboardAnim Unk_ov5_02200540[];
+const BillboardAnim Unk_ov5_02200558[];
+const BillboardAnim Unk_ov5_02200528[];
+const BillboardAnim Unk_ov5_02200570[];
 
 void *ov5_021F2D20(FieldEffectManager *param0)
 {
@@ -289,7 +289,7 @@ static const OverworldAnimManagerFuncs Unk_ov5_022004EC = {
     ov5_021F308C
 };
 
-static const UnkStruct_020217F4 Unk_ov5_02200540[] = {
+static const BillboardAnim Unk_ov5_02200540[] = {
     { 0x0, 0xC, 0x0 },
     { 0x0, 0x0, 0x2 }
 };
@@ -361,17 +361,17 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200500 = {
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200514;
 
-static const UnkStruct_020217F4 Unk_ov5_02200558[] = {
+static const BillboardAnim Unk_ov5_02200558[] = {
     { 0x0, 0x28, 0x1 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_02200528[] = {
+static const BillboardAnim Unk_ov5_02200528[] = {
     { 0x0, 0x18, 0x1 },
     { 0x0, 0x0, 0x2 }
 };
 
-static const UnkStruct_020217F4 Unk_ov5_02200570[] = {
+static const BillboardAnim Unk_ov5_02200570[] = {
     { 0x0, 0x28, 0x1 },
     { 0x0, 0x0, 0x2 }
 };

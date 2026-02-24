@@ -140,7 +140,7 @@ static void *ov5_021EDCF4(UnkStruct_ov5_021ED0A4 *param0, u32 param1, int param2
 static const UnkStruct_ov5_021EDD04 *ov5_021EDD04(int param0);
 static int ov5_021EDD2C(int param0);
 static int ov5_021EDD38(int param0);
-static const UnkStruct_020217F4 *ov5_021EDD44(int param0);
+static const BillboardAnim *ov5_021EDD44(int param0);
 static u32 ov5_021EDD50(int param0);
 static void ov5_021EDDAC(UnkStruct_ov5_021ED0A4 *param0, int param1);
 static void ov5_021EDDD4(BillboardList *param0);
@@ -1310,7 +1310,7 @@ static int ov5_021EDD38(int param0)
     return v0->unk_06;
 }
 
-static const UnkStruct_020217F4 *ov5_021EDD44(int param0)
+static const BillboardAnim *ov5_021EDD44(int param0)
 {
     const UnkStruct_ov5_021EDD04 *v0 = ov5_021EDD04(param0);
     return v0->unk_08;
@@ -1421,7 +1421,7 @@ static void ov5_021EDE3C(UnkStruct_ov5_021ED0A4 *param0, u32 param1, BillboardRe
     }
 
     {
-        param2->unk_08 = ov5_021EDD44(param1);
+        param2->anims = ov5_021EDD44(param1);
     }
 }
 

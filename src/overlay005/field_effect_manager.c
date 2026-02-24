@@ -69,7 +69,7 @@ static void ov5_021DF8C8(FieldEffectManager *fieldEffMan, UnkStruct_ov5_021DF8FC
 static void ov5_021DF8FC(UnkStruct_ov5_021DF8FC *graphicsManager);
 static BillboardResources *ov5_021DF9B4(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
 static void ov5_021DF910(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id);
-static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, BillboardGfxSequence *textureData, void *textureResource, TextureResource *texture, const UnkStruct_020217F4 *effectData);
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *graphicsManager, u32 id, void *modelData, BillboardGfxSequence *textureData, void *textureResource, TextureResource *texture, const BillboardAnim *effectData);
 static void UploadTextureResourceToVRamDuringVBlank(FieldEffectManager *fieldEffMan, u32 texID, TextureResourceManager *texResMan);
 static void UploadTextureResourceToVRamTask(SysTask *task, void *context);
 static void DiscardTextureDataTask(SysTask *task, void *context);
@@ -433,7 +433,7 @@ Billboard *ov5_021DF84C(FieldEffectManager *param0, u32 param1, const VecFx32 *p
     return ov5_021DF7F8(param0, v0, param2);
 }
 
-BillboardResources *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32 param2, u32 param3, u32 param4, int param5, const UnkStruct_020217F4 *param6)
+BillboardResources *ov5_021DF864(FieldEffectManager *param0, u32 param1, u32 param2, u32 param3, u32 param4, int param5, const BillboardAnim *param6)
 {
     void *v0, *v1, *v2;
     BillboardGfxSequence v3;
@@ -503,7 +503,7 @@ static void ov5_021DF910(UnkStruct_ov5_021DF8FC *param0, u32 param1)
     GF_ASSERT(FALSE);
 }
 
-static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, BillboardGfxSequence *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6)
+static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, BillboardGfxSequence *param3, void *param4, TextureResource *param5, const BillboardAnim *param6)
 {
     BillboardResources *v0 = NULL;
 
@@ -548,7 +548,7 @@ static BillboardResources *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 para
         v0->plttKey = TextureResource_GetPaletteKey(param5);
     }
 
-    v0->unk_08 = param6;
+    v0->anims = param6;
     return v0;
 }
 

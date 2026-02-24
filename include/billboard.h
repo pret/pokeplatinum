@@ -14,11 +14,11 @@
 typedef struct Billboard Billboard;
 typedef void (*BillboardCallback)(Billboard *, void *);
 
-typedef struct UnkStruct_020217F4 {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-} UnkStruct_020217F4;
+typedef struct BillboardAnim {
+    int startFrame;
+    int endFrame;
+    int animType;
+} BillboardAnim;
 
 typedef struct Billboard {
     VecFx32 pos;
@@ -28,20 +28,20 @@ typedef struct Billboard {
     BillboardCallback callback;
     u8 draw;
     void *list;
-    const UnkStruct_020217F4 *unk_2C;
+    const BillboardAnim *anims;
     NNSG3dRenderObj renderObj;
     NNSG3dResMdlSet *modelSet;
     NNSG3dResMdl *model;
     NNSG3dResTex *texture;
-    const NNSG3dResTex *unk_90;
+    const NNSG3dResTex *animTexture;
     NNSGfdTexKey texKey;
     NNSGfdTexKey tex4x4Key;
     NNSGfdPlttKey plttKey;
     BillboardGfxSequence gfxSequence;
     UnkStruct_0201DDF4 *unk_B0;
-    u8 unk_B4;
-    u16 unk_B6;
-    fx32 unk_B8;
+    u8 state;
+    u16 animNum;
+    fx32 frameNum;
     Billboard *next;
     Billboard *prev;
 } Billboard;
@@ -63,7 +63,7 @@ typedef struct BillboardList {
 typedef struct BillboardResources {
     void *modelRes;
     const NNSG3dResTex *texture;
-    const UnkStruct_020217F4 *unk_08;
+    const BillboardAnim *anims;
     BillboardGfxSequence gfxSequence;
     NNSGfdTexKey texKey;
     NNSGfdTexKey tex4x4Key;
@@ -98,8 +98,8 @@ BOOL sub_02020D50(BillboardList *param0);
 void sub_02020D68(BillboardList *param0);
 Billboard *sub_0202119C(const BillboardListTemplate *param0);
 BOOL sub_020211FC(Billboard *param0);
-void sub_0202125C(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4, NNSGfdTexKey param5, NNSGfdTexKey param6, NNSGfdPlttKey param7);
-void sub_02021284(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const UnkStruct_020217F4 *param3, const BillboardGfxSequence *param4);
+void sub_0202125C(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const BillboardAnim *param3, const BillboardGfxSequence *param4, NNSGfdTexKey param5, NNSGfdTexKey param6, NNSGfdPlttKey param7);
+void sub_02021284(BillboardResources *param0, void *param1, const NNSG3dResTex *param2, const BillboardAnim *param3, const BillboardGfxSequence *param4);
 void sub_020212A8(Billboard *param0, const VecFx32 *param1);
 const VecFx32 *sub_020212C0(const Billboard *param0);
 void sub_020212D0(Billboard *param0, const VecFx32 *param1);
