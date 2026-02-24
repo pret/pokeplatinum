@@ -796,7 +796,7 @@ Overlay pokedex
 	Object main.nef.p/src_applications_pokedex_ov21_021D94BC.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021DC9BC.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021DDD2C.c.o
-	Object main.nef.p/src_applications_pokedex_ov21_021DE668.c.o
+	Object main.nef.p/src_applications_pokedex_infomain.c.o
 	Object main.nef.p/src_applications_pokedex_formmain.c.o
 	Object main.nef.p/src_applications_pokedex_infomain_foreign.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E1924.c.o

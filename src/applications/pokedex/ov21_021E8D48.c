@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "applications/pokedex/footprint.h"
-#include "applications/pokedex/ov21_021DE668.h"
+#include "applications/pokedex/infomain.h"
 #include "applications/pokedex/pokedex_graphics.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokedex/pokedex_text_manager.h"
@@ -536,7 +536,7 @@ static void ov21_021E9560(UnkStruct_ov21_021E95B0 *param0, PokedexTextManager *t
     Window *v0;
     PokedexDisplayBox displayBox;
 
-    v0 = ov21_021DF30C(textMan, param3, param2);
+    v0 = InfoMain_CreateCategoryWindow(textMan, param3, param2);
 
     displayBox.textMan = textMan;
     displayBox.paletteProxy = SpriteTransfer_GetPaletteProxy(param4, NULL);
@@ -724,7 +724,7 @@ static BOOL ov21_021E9948(PaletteData *param0, PokemonSprite *param1)
 
 static void ov21_021E9968(Window *param0, int param1, int param2)
 {
-    ov21_021DEB8C(param0, param2, param1, 0, TEXT_COLOR(2, 1, 0));
+    InfoMain_RenderHeightWeightEntry(param0, param2, param1, 0, TEXT_COLOR(2, 1, 0));
     ov21_021E998C(param0, param1);
 }
 

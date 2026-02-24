@@ -221,8 +221,6 @@ static int ProcessInitData(PokedexDataManager *dataMan, void *data)
 
 static int ProcessUpdateData(PokedexDataManager *dataMan, void *data)
 {
-    PokedexEntryDisplayState *displayState = data;
-
     if (dataMan->exit == TRUE) {
         return TRUE;
     }
@@ -256,13 +254,13 @@ static int ProcessInitGraphics(void *graphics, PokedexGraphicsManager *graphicsM
         SetupGraphics(graphicsStruct, graphicsData, displayState, graphicsMan->heapID);
 
         switch (displayState->animationMode) {
-        case 0:
+        case ANIM_POSITION_BLEND:
             InitPositionBlendMode(graphicsStruct, graphicsData, displayState, 1);
             break;
-        case 1:
+        case ANIM_BLEND:
             InitBlendMode(graphicsStruct, graphicsData, displayState, 1);
             break;
-        case 2:
+        case ANIM_POSITION:
             InitPositionMode(graphicsStruct, graphicsData, displayState, 1);
             break;
         }
@@ -272,13 +270,13 @@ static int ProcessInitGraphics(void *graphics, PokedexGraphicsManager *graphicsM
 
     case 2:
         switch (displayState->animationMode) {
-        case 0:
+        case ANIM_POSITION_BLEND:
             animationComplete = UpdatePositionBlendMode(graphicsStruct, graphicsData, displayState, 1);
             break;
-        case 1:
+        case ANIM_BLEND:
             animationComplete = UpdateBlendMode(graphicsStruct, graphicsData, displayState, 1);
             break;
-        case 2:
+        case ANIM_POSITION:
             animationComplete = UpdatePositionMode(graphicsStruct, graphicsData, displayState, 1);
             break;
         }
@@ -312,13 +310,13 @@ static int ProcessFinalizeGraphics(void *graphics, PokedexGraphicsManager *graph
     switch (graphicsMan->state) {
     case 0:
         switch (displayState->animationMode) {
-        case 0:
+        case ANIM_POSITION_BLEND:
             InitPositionBlendMode(graphicsStruct, graphicsData, displayState, 0);
             break;
-        case 1:
+        case ANIM_BLEND:
             InitBlendMode(graphicsStruct, graphicsData, displayState, 0);
             break;
-        case 2:
+        case ANIM_POSITION:
             InitPositionMode(graphicsStruct, graphicsData, displayState, 0);
             break;
         }
@@ -327,13 +325,13 @@ static int ProcessFinalizeGraphics(void *graphics, PokedexGraphicsManager *graph
         break;
     case 1:
         switch (displayState->animationMode) {
-        case 0:
+        case ANIM_POSITION_BLEND:
             animationComplete = UpdatePositionBlendMode(graphicsStruct, graphicsData, displayState, 0);
             break;
-        case 1:
+        case ANIM_BLEND:
             animationComplete = UpdateBlendMode(graphicsStruct, graphicsData, displayState, 0);
             break;
-        case 2:
+        case ANIM_POSITION:
             animationComplete = UpdatePositionMode(graphicsStruct, graphicsData, displayState, 0);
             break;
         }
