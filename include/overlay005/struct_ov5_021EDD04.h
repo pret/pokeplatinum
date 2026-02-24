@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021EDD04_H
 #define POKEPLATINUM_STRUCT_OV5_021EDD04_H
 
-#include "struct_defs/struct_020217F4.h"
+#include "billboard.h"
 
 typedef struct {
     int unk_00;

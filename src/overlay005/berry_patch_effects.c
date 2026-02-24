@@ -5,7 +5,6 @@
 #include "constants/field/field_effect_renderer.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "overlay005/field_effect_manager.h"
 #include "overlay005/ov5_021ECC20.h"

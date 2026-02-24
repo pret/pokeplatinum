@@ -3,8 +3,6 @@
 
 #include "generated/object_events_gfx.h"
 
-#include "struct_defs/struct_020217F4.h"
-
 #include "overlay005/berry_graphics_data.h"
 #include "overlay005/berry_graphics_table.h"
 #include "overlay005/const_ov5_021FAF40.h"

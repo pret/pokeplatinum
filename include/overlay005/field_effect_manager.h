@@ -4,7 +4,6 @@
 #include <nitro/fx/fx.h>
 
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "field/field_system_decl.h"
 

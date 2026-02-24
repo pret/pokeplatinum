@@ -8,12 +8,17 @@
 
 #include "struct_decls/struct_0201DD00_decl.h"
 #include "struct_decls/struct_0201DDF4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "billboard_gfx_sequence.h"
 
 typedef struct Billboard Billboard;
 typedef void (*BillboardCallback)(Billboard *, void *);
+
+typedef struct UnkStruct_020217F4 {
+    int unk_00;
+    int unk_04;
+    int unk_08;
+} UnkStruct_020217F4;
 
 typedef struct Billboard {
     VecFx32 pos;

@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "overlay005/area_light.h"
 #include "overlay005/const_ov5_021FAF40.h"
