@@ -414,23 +414,45 @@ enum ConstrictSpriteState {
 #define CONSTRICT_SPRITE_VINE_STAGGER_FRAMES 4
 #define CONSTRICT_SPRITE_VINE_SCALE_COUNT    3
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    PokemonSprite *unk_10;
-    s16 unk_14;
-    s16 unk_16;
-    XYTransformContext unk_18;
-    s32 unk_3C;
-    PokemonSprite *unk_40;
-    s16 unk_44;
-    s16 unk_46;
-    ManagedSprite *unk_48;
-    XYTransformContext unk_4C;
-    XYTransformContext unk_70;
-} UnkStruct_ov12_022310D4;
+// -------------------------------------------------------------------
+// Bonemerang Sprite
+// -------------------------------------------------------------------
+typedef struct BonemerangSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    PokemonSprite *attackerSprite;
+    s16 attackerX;
+    s16 attackerY;
+    XYTransformContext attackerPos;
+    s32 dirX;
+    PokemonSprite *defenderSprite;
+    s16 defenderX;
+    s16 defenderY;
+    ManagedSprite *sprite;
+    XYTransformContext linear;
+    XYTransformContext revs;
+} BonemerangSpriteContext;
+
+enum BonemerangSpriteState {
+    BONEMERANG_SPRITE_STATE_THROW_1 = 0,
+    BONEMERANG_SPRITE_STATE_THROW_2,
+    BONEMERANG_SPRITE_STATE_BONE_ARC_1,
+    BONEMERANG_SPRITE_STATE_BONE_ARC_2,
+    BONEMERANG_SPRITE_STATE_CATCH_1,
+    BONEMERANG_SPRITE_STATE_CATCH_2,
+    BONEMERANG_SPRITE_STATE_CLEANUP,
+};
+
+#define BONEMERANG_SPRITE_THROW_MOVE_X        -16
+#define BONEMERANG_SPRITE_CATCH_MOVE_X        -32
+#define BONEMERANG_SPRITE_THROW_MOVE_FRAMES_A 4
+#define BONEMERANG_SPRITE_THROW_MOVE_FRAMES_B 2
+#define BONEMERANG_SPRITE_CATCH_MOVE_FRAMES_A 4
+#define BONEMERANG_SPRITE_CATCH_MOVE_FRAMES_B 4
+#define BONEMERANG_SPRITE_BONE_ARC_RADIUS     FX32_CONST(32)
+#define BONEMERANG_SPRITE_BONE_ARC_FRAMES     10
 
 // -------------------------------------------------------------------
 // Faint Attack
@@ -2318,97 +2340,153 @@ void BattleAnimSpriteFunc_Constrict(BattleAnimSystem *system, SpriteSystem *spri
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ConstrictSprite, ctx);
 }
 
-static void ov12_022310D4(SysTask *param0, void *param1)
+static void BattleAnimTask_BonemerangSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_022310D4 *v0 = param1;
+    BonemerangSpriteContext *ctx = param;
 
-    switch (v0->unk_0C) {
-    case 0:
-        if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+    switch (ctx->state) {
+    case BONEMERANG_SPRITE_STATE_THROW_1:
+        if (PosLerpContext_Update(&ctx->attackerPos)) {
+            XYTransformContext_ApplyPosOffsetToMon(
+                &ctx->attackerPos,
+                ctx->attackerSprite,
+                ctx->attackerX,
+                ctx->attackerY);
         } else {
             PosLerpContext_Init(
-                &v0->unk_18, v0->unk_18.x, 0, 0, 0, 2);
-            v0->unk_0C++;
+                &ctx->attackerPos,
+                ctx->attackerPos.x,
+                0,
+                0,
+                0,
+                BONEMERANG_SPRITE_THROW_MOVE_FRAMES_B);
+            ctx->state++;
         }
 
         return;
-    case 1:
-        if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+    case BONEMERANG_SPRITE_STATE_THROW_2:
+        if (PosLerpContext_Update(&ctx->attackerPos)) {
+            XYTransformContext_ApplyPosOffsetToMon(
+                &ctx->attackerPos,
+                ctx->attackerSprite,
+                ctx->attackerX,
+                ctx->attackerY);
         } else {
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
-            PosLerpContext_Init(&v0->unk_18, 0, -32 * v0->unk_3C, 0, 0, 4);
-            v0->unk_0C++;
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerX);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY);
+            PosLerpContext_Init(
+                &ctx->attackerPos,
+                0,
+                BONEMERANG_SPRITE_CATCH_MOVE_X * ctx->dirX,
+                0,
+                0,
+                BONEMERANG_SPRITE_CATCH_MOVE_FRAMES_A);
+            ctx->state++;
         }
 
         return;
-    case 2:
-        if (XYTransformContext_UpdateAndApplyParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
-            XYTransformContext_InitParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_44, v0->unk_14, v0->unk_46, v0->unk_16, 10, -(32 * FX32_ONE));
-            v0->unk_0C++;
+    case BONEMERANG_SPRITE_STATE_BONE_ARC_1:
+        if (XYTransformContext_UpdateAndApplyParabolic(&ctx->linear, &ctx->revs, ctx->sprite) == FALSE) {
+            XYTransformContext_InitParabolic(
+                &ctx->linear,
+                &ctx->revs,
+                ctx->defenderX,
+                ctx->attackerX,
+                ctx->defenderY,
+                ctx->attackerY,
+                BONEMERANG_SPRITE_BONE_ARC_FRAMES,
+                -BONEMERANG_SPRITE_BONE_ARC_RADIUS);
+            ctx->state++;
         }
         break;
-    case 3:
-        if (XYTransformContext_UpdateAndApplyParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_48) == 0) {
-            ManagedSprite_SetDrawFlag(v0->unk_48, 0);
-            v0->unk_0C++;
+    case BONEMERANG_SPRITE_STATE_BONE_ARC_2:
+        if (XYTransformContext_UpdateAndApplyParabolic(&ctx->linear, &ctx->revs, ctx->sprite) == FALSE) {
+            ManagedSprite_SetDrawFlag(ctx->sprite, FALSE);
+            ctx->state++;
         }
         break;
-    case 4:
-        if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+    case BONEMERANG_SPRITE_STATE_CATCH_1:
+        if (PosLerpContext_Update(&ctx->attackerPos)) {
+            XYTransformContext_ApplyPosOffsetToMon(
+                &ctx->attackerPos,
+                ctx->attackerSprite,
+                ctx->attackerX,
+                ctx->attackerY);
         } else {
-            PosLerpContext_Init(&v0->unk_18, v0->unk_18.x, 0, 0, 0, 4);
-            v0->unk_0C++;
+            PosLerpContext_Init(
+                &ctx->attackerPos,
+                ctx->attackerPos.x,
+                0,
+                0,
+                0,
+                BONEMERANG_SPRITE_CATCH_MOVE_FRAMES_B);
+            ctx->state++;
         }
         break;
-    case 5:
-        if (PosLerpContext_Update(&v0->unk_18)) {
-            XYTransformContext_ApplyPosOffsetToMon(&v0->unk_18, v0->unk_10, v0->unk_14, v0->unk_16);
+    case BONEMERANG_SPRITE_STATE_CATCH_2:
+        if (PosLerpContext_Update(&ctx->attackerPos)) {
+            XYTransformContext_ApplyPosOffsetToMon(
+                &ctx->attackerPos,
+                ctx->attackerSprite,
+                ctx->attackerX,
+                ctx->attackerY);
         } else {
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_X_CENTER, v0->unk_14);
-            PokemonSprite_SetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER, v0->unk_16);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER, ctx->attackerX);
+            PokemonSprite_SetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER, ctx->attackerY);
 
-            v0->unk_0C++;
+            ctx->state++;
         }
         break;
-    case 6:
-        Sprite_DeleteAndFreeResources(v0->unk_48);
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+    case BONEMERANG_SPRITE_STATE_CLEANUP:
+        Sprite_DeleteAndFreeResources(ctx->sprite);
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_022312A4(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Bonemerang(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_022310D4 *v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_022310D4));
+    BonemerangSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(BonemerangSpriteContext));
 
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_3C = BattleAnimUtil_GetTransformDirectionX(v0->unk_00, BattleAnimSystem_GetAttacker(v0->unk_00));
-    v0->unk_10 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetAttacker(param0));
-    v0->unk_14 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_X_CENTER);
-    v0->unk_16 = PokemonSprite_GetAttribute(v0->unk_10, MON_SPRITE_Y_CENTER);
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
+    ctx->dirX = BattleAnimUtil_GetTransformDirectionX(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(ctx->battleAnimSys));
+    ctx->attackerSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetAttacker(system));
+    ctx->attackerX = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_X_CENTER);
+    ctx->attackerY = PokemonSprite_GetAttribute(ctx->attackerSprite, MON_SPRITE_Y_CENTER);
 
-    PosLerpContext_Init(&v0->unk_18, 0, -16 * v0->unk_3C, 0, 0, 4);
+    PosLerpContext_Init(
+        &ctx->attackerPos,
+        0,
+        BONEMERANG_SPRITE_THROW_MOVE_X * ctx->dirX,
+        0,
+        0,
+        BONEMERANG_SPRITE_THROW_MOVE_FRAMES_A);
 
-    v0->unk_40 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, BattleAnimSystem_GetDefender(param0));
-    v0->unk_44 = PokemonSprite_GetAttribute(v0->unk_40, MON_SPRITE_X_CENTER);
-    v0->unk_46 = PokemonSprite_GetAttribute(v0->unk_40, MON_SPRITE_Y_CENTER);
-    v0->unk_48 = param3;
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, BattleAnimSystem_GetDefender(system));
+    ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
+    ctx->sprite = sprite;
 
-    ManagedSprite_SetAnimateFlag(v0->unk_48, 1);
-    ManagedSprite_SetPriority(v0->unk_48, 100);
-    ManagedSprite_SetExplicitPriority(v0->unk_48, 1);
+    ManagedSprite_SetAnimateFlag(ctx->sprite, TRUE);
+    ManagedSprite_SetPriority(ctx->sprite, 100);
+    ManagedSprite_SetExplicitPriority(ctx->sprite, 1);
 
-    XYTransformContext_InitParabolic(&v0->unk_4C, &v0->unk_70, v0->unk_14, v0->unk_44, v0->unk_16, v0->unk_46, 10, 32 * FX32_ONE);
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_022310D4, v0);
+    XYTransformContext_InitParabolic(
+        &ctx->linear,
+        &ctx->revs,
+        ctx->attackerX,
+        ctx->defenderX,
+        ctx->attackerY,
+        ctx->defenderY,
+        BONEMERANG_SPRITE_BONE_ARC_FRAMES,
+        BONEMERANG_SPRITE_BONE_ARC_RADIUS);
+
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_BonemerangSprite, ctx);
 }
 
 static void BattleAnimTask_FaintAttack(SysTask *task, void *param)
