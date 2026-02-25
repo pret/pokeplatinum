@@ -365,29 +365,54 @@ enum MetronomeSpriteState {
 #define METRONOME_SPRITE_ROTATE_FRAMES   4
 #define METRONOME_SPRITE_WAGGLE_COUNT    5
 
-typedef struct {
-    ManagedSprite *unk_00;
-    XYTransformContext unk_04;
-    BOOL unk_28;
-    int unk_2C;
-    int unk_30;
-    int unk_34;
-} UnkStruct_ov12_02230E24;
+// -------------------------------------------------------------------
+// Constrict Sprite
+// -------------------------------------------------------------------
+#define CONSTRICT_VINE_COUNT 4
 
-typedef struct {
-    BattleAnimSystem *unk_00;
-    SpriteSystem *unk_04;
-    SpriteManager *unk_08;
-    int unk_0C;
-    int unk_10;
-    int unk_14;
-    PokemonSprite *unk_18;
-    s16 unk_1C;
-    s16 unk_1E;
-    XYTransformContext unk_20;
-    UnkStruct_ov12_02230E24 unk_44[4];
-    int unk_124;
-} UnkStruct_ov12_02230F3C;
+typedef struct ConstrictVine {
+    ManagedSprite *sprite;
+    XYTransformContext scale;
+    BOOL flip;
+    int scaleCounter;
+    int nextStartScale;
+    int nextEndScale;
+} ConstrictVine;
+
+typedef struct ConstrictSpriteContext {
+    BattleAnimSystem *battleAnimSys;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    int state;
+    int counter;
+    int vineIdx;
+    PokemonSprite *defenderSprite;
+    s16 defenderX;
+    s16 defenderY;
+    XYTransformContext shake;
+    ConstrictVine vines[CONSTRICT_VINE_COUNT];
+    int unused;
+} ConstrictSpriteContext;
+
+enum ConstrictSpriteState {
+    CONSTRICT_SPRITE_STATE_ANIMATE = 0,
+    CONSTRICT_SPRITE_STATE_SHAKE,
+    CONSTRICT_SPRITE_STATE_SCALE,
+    CONSTRICT_SPRITE_STATE_CLEANUP,
+};
+
+#define CONSTRICT_SPRITE_VINE_BASE_OFFSET_Y  16
+#define CONSTRICT_SPRITE_VINE_STEP_OFFSET_Y  10
+#define CONSTRICT_SPRITE_SHAKE_EXTENT_X      4
+#define CONSTRICT_SPRITE_SHAKE_EXTENT_Y      0
+#define CONSTRICT_SPRITE_SHAKE_INTERVAL      1
+#define CONSTRICT_SPRITE_SHAKE_AMOUNT        1
+#define CONSTRICT_SPRITE_VINE_START_SCALE    10
+#define CONSTRICT_SPRITE_VINE_REF_SCALE      10
+#define CONSTRICT_SPRITE_VINE_END_SCALE      8
+#define CONSTRICT_SPRITE_VINE_SCALE_FRAMES   8
+#define CONSTRICT_SPRITE_VINE_STAGGER_FRAMES 4
+#define CONSTRICT_SPRITE_VINE_SCALE_COUNT    3
 
 typedef struct {
     BattleAnimSystem *unk_00;
@@ -2120,160 +2145,177 @@ void BattleAnimSpriteFunc_Metronome(BattleAnimSystem *system, SpriteSystem *spri
     BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_MetronomeSprite, ctx);
 }
 
-static void ov12_02230E24(UnkStruct_ov12_02230E24 *param0, ManagedSprite *param1, s16 param2, s16 param3, BOOL param4)
+static void ConstrictVine_Init(ConstrictVine *vine, ManagedSprite *sprite, s16 x, s16 y, BOOL flip)
 {
-    param0->unk_00 = param1;
+    vine->sprite = sprite;
 
-    ScaleLerpContext_Init(&param0->unk_04, 10, 10, 8, 8);
+    ScaleLerpContext_Init(
+        &vine->scale,
+        CONSTRICT_SPRITE_VINE_START_SCALE,
+        CONSTRICT_SPRITE_VINE_REF_SCALE,
+        CONSTRICT_SPRITE_VINE_END_SCALE,
+        CONSTRICT_SPRITE_VINE_SCALE_FRAMES);
 
-    param0->unk_2C = 3;
-    param0->unk_30 = 8;
-    param0->unk_34 = 10;
-    param0->unk_28 = param4;
+    vine->scaleCounter = CONSTRICT_SPRITE_VINE_SCALE_COUNT;
+    vine->nextStartScale = CONSTRICT_SPRITE_VINE_END_SCALE;
+    vine->nextEndScale = CONSTRICT_SPRITE_VINE_START_SCALE;
+    vine->flip = flip;
 
-    ManagedSprite_SetPositionXY(param0->unk_00, param2, param3);
-    ManagedSprite_SetPositionXY(param0->unk_00, param2, param3);
-    ManagedSprite_SetAffineOverwriteMode(param0->unk_00, AFFINE_OVERWRITE_MODE_DOUBLE);
-    ManagedSprite_SetPriority(param0->unk_00, 100);
-    ManagedSprite_SetExplicitPriority(param0->unk_00, 1);
+    ManagedSprite_SetPositionXY(vine->sprite, x, y);
+    ManagedSprite_SetPositionXY(vine->sprite, x, y);
+    ManagedSprite_SetAffineOverwriteMode(vine->sprite, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_SetPriority(vine->sprite, 100);
+    ManagedSprite_SetExplicitPriority(vine->sprite, 1);
 
-    if (param4) {
-        ManagedSprite_SetAffineScale(param0->unk_00, -1, 1);
+    if (flip) {
+        ManagedSprite_SetAffineScale(vine->sprite, -1.0f, 1.0f);
     }
 
-    ManagedSprite_SetDrawFlag(param0->unk_00, 0);
+    ManagedSprite_SetDrawFlag(vine->sprite, FALSE);
 }
 
-static void ov12_02230E9C(UnkStruct_ov12_02230E24 *param0)
+static void ConstrictVine_Free(ConstrictVine *vine)
 {
-    Sprite_DeleteAndFreeResources(param0->unk_00);
+    Sprite_DeleteAndFreeResources(vine->sprite);
 }
 
-static void ov12_02230EA8(UnkStruct_ov12_02230E24 *param0)
+static void ConstrictVine_Enable(ConstrictVine *vine)
 {
-    ManagedSprite_SetDrawFlag(param0->unk_00, 1);
-    ManagedSprite_SetAnimateFlag(param0->unk_00, 1);
+    ManagedSprite_SetDrawFlag(vine->sprite, TRUE);
+    ManagedSprite_SetAnimateFlag(vine->sprite, TRUE);
 }
 
-static BOOL ov12_02230EC0(UnkStruct_ov12_02230E24 *param0)
+static BOOL ConstrictVine_Update(ConstrictVine *vine)
 {
-    BOOL v0;
-    f32 v1, v2;
-    int v3;
+    BOOL scaleActive = ScaleLerpContext_Update(&vine->scale);
+    if (scaleActive == TRUE) {
+        f32 scaleX, scaleY;
+        ScaleLerpContext_GetAffineScale(&vine->scale, &scaleX, &scaleY);
 
-    v0 = ScaleLerpContext_Update(&param0->unk_04);
-
-    if (v0 == 1) {
-        ScaleLerpContext_GetAffineScale(&param0->unk_04, &v1, &v2);
-
-        if (param0->unk_28) {
-            ManagedSprite_SetAffineScale(param0->unk_00, -v1, 1);
+        if (vine->flip) {
+            ManagedSprite_SetAffineScale(vine->sprite, -scaleX, 1.0f);
         } else {
-            ManagedSprite_SetAffineScale(param0->unk_00, v1, 1);
+            ManagedSprite_SetAffineScale(vine->sprite, scaleX, 1.0f);
         }
     } else {
-        if (param0->unk_2C > 0) {
-            param0->unk_2C--;
-            ScaleLerpContext_Init(&param0->unk_04, param0->unk_30, 10, param0->unk_34, 8);
-            v3 = param0->unk_30;
-            param0->unk_30 = param0->unk_34;
-            param0->unk_34 = v3;
+        if (vine->scaleCounter > 0) {
+            vine->scaleCounter--;
+            ScaleLerpContext_Init(
+                &vine->scale,
+                vine->nextStartScale,
+                CONSTRICT_SPRITE_VINE_REF_SCALE,
+                vine->nextEndScale,
+                CONSTRICT_SPRITE_VINE_SCALE_FRAMES);
+            int startScale = vine->nextStartScale;
+            vine->nextStartScale = vine->nextEndScale;
+            vine->nextEndScale = startScale;
         } else {
-            return 0;
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-static void ov12_02230F3C(SysTask *param0, void *param1)
+static void BattleAnimTask_ConstrictSprite(SysTask *task, void *param)
 {
-    UnkStruct_ov12_02230F3C *v0 = param1;
-    int v1;
-    BOOL v2;
+    ConstrictSpriteContext *ctx = param;
+    int i;
 
-    switch (v0->unk_0C) {
-    case 0:
-        if (v0->unk_10 >= 4) {
-            v0->unk_10 = 0;
-            ov12_02230EA8(&v0->unk_44[v0->unk_14]);
-            v0->unk_14++;
+    switch (ctx->state) {
+    case CONSTRICT_SPRITE_STATE_ANIMATE:
+        if (ctx->counter >= CONSTRICT_SPRITE_VINE_STAGGER_FRAMES) {
+            ctx->counter = 0;
+            ConstrictVine_Enable(&ctx->vines[ctx->vineIdx]);
+            ctx->vineIdx++;
 
-            if (v0->unk_14 >= 4) {
-                v0->unk_0C++;
+            if (ctx->vineIdx >= CONSTRICT_VINE_COUNT) {
+                ctx->state++;
             }
         }
 
-        v0->unk_10++;
+        ctx->counter++;
         break;
-    case 1:
-        if (ShakeContext_UpdateAndApplyToMon(&v0->unk_20, v0->unk_1C, v0->unk_1E, v0->unk_18) == 0) {
-            v0->unk_0C++;
-        }
-        break;
-    case 2:
-        for (v1 = 0; v1 < 4; v1++) {
-            v2 = ov12_02230EC0(v0->unk_44 + v1);
-        }
-
-        if (v2 == 0) {
-            v0->unk_0C++;
+    case CONSTRICT_SPRITE_STATE_SHAKE:
+        if (ShakeContext_UpdateAndApplyToMon(&ctx->shake, ctx->defenderX, ctx->defenderY, ctx->defenderSprite) == FALSE) {
+            ctx->state++;
         }
         break;
-    case 3:
-        PokemonSprite_SetAttribute(v0->unk_18, MON_SPRITE_X_CENTER, v0->unk_1C);
-        PokemonSprite_SetAttribute(v0->unk_18, MON_SPRITE_Y_CENTER, v0->unk_1E);
-
-        for (v1 = 0; v1 < 4; v1++) {
-            ov12_02230E9C(v0->unk_44 + v1);
+    case CONSTRICT_SPRITE_STATE_SCALE: {
+        BOOL active;
+        for (i = 0; i < CONSTRICT_VINE_COUNT; i++) {
+            // BUG: This should be |= instead of =
+            active = ConstrictVine_Update(ctx->vines + i);
         }
 
-        BattleAnimSystem_EndAnimTask(v0->unk_00, param0);
-        Heap_Free(v0);
+        if (active == FALSE) {
+            ctx->state++;
+        }
+    } break;
+    case CONSTRICT_SPRITE_STATE_CLEANUP:
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER, ctx->defenderX);
+        PokemonSprite_SetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER, ctx->defenderY);
+
+        for (i = 0; i < CONSTRICT_VINE_COUNT; i++) {
+            ConstrictVine_Free(ctx->vines + i);
+        }
+
+        BattleAnimSystem_EndAnimTask(ctx->battleAnimSys, task);
+        Heap_Free(ctx);
         return;
     }
 
-    SpriteSystem_DrawSprites(v0->unk_08);
+    SpriteSystem_DrawSprites(ctx->spriteMan);
 }
 
-void ov12_02231010(BattleAnimSystem *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
+void BattleAnimSpriteFunc_Constrict(BattleAnimSystem *system, SpriteSystem *spriteSys, SpriteManager *spriteMan, ManagedSprite *sprite)
 {
-    UnkStruct_ov12_02230F3C *v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    SpriteTemplate v5;
+    SpriteTemplate template;
 
-    v0 = BattleAnimUtil_Alloc(param0, sizeof(UnkStruct_ov12_02230F3C));
-    v0->unk_00 = param0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
+    ConstrictSpriteContext *ctx = BattleAnimUtil_Alloc(system, sizeof(ConstrictSpriteContext));
+    ctx->battleAnimSys = system;
+    ctx->spriteSys = spriteSys;
+    ctx->spriteMan = spriteMan;
 
-    v2 = BattleAnimSystem_GetDefender(param0);
+    int defender = BattleAnimSystem_GetDefender(system);
 
-    v0->unk_18 = BattleAnimSystem_GetBattlerSprite(v0->unk_00, v2);
-    v0->unk_1C = PokemonSprite_GetAttribute(v0->unk_18, MON_SPRITE_X_CENTER);
-    v0->unk_1E = PokemonSprite_GetAttribute(v0->unk_18, MON_SPRITE_Y_CENTER);
+    ctx->defenderSprite = BattleAnimSystem_GetBattlerSprite(ctx->battleAnimSys, defender);
+    ctx->defenderX = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_X_CENTER);
+    ctx->defenderY = PokemonSprite_GetAttribute(ctx->defenderSprite, MON_SPRITE_Y_CENTER);
 
-    ShakeContext_Init(&v0->unk_20, 4, 0, 1, 1);
+    ShakeContext_Init(
+        &ctx->shake,
+        CONSTRICT_SPRITE_SHAKE_EXTENT_X,
+        CONSTRICT_SPRITE_SHAKE_EXTENT_Y,
+        CONSTRICT_SPRITE_SHAKE_INTERVAL,
+        CONSTRICT_SPRITE_SHAKE_AMOUNT);
 
-    v3 = v0->unk_1E + 16;
-    v4 = 0;
-    v5 = BattleAnimSystem_GetLastSpriteTemplate(v0->unk_00);
+    int vineY = ctx->defenderY + CONSTRICT_SPRITE_VINE_BASE_OFFSET_Y;
+    BOOL flip = FALSE;
+    template = BattleAnimSystem_GetLastSpriteTemplate(ctx->battleAnimSys);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (v1 == 0) {
-            ov12_02230E24(&v0->unk_44[v1], param3, v0->unk_1C, v3, v4);
+    for (int i = 0; i < CONSTRICT_VINE_COUNT; i++) {
+        if (i == 0) {
+            ConstrictVine_Init(
+                &ctx->vines[i],
+                sprite,
+                ctx->defenderX,
+                vineY,
+                flip);
         } else {
-            ov12_02230E24(&v0->unk_44[v1], SpriteSystem_NewSprite(param1, param2, &v5), v0->unk_1C, v3, v4);
+            ConstrictVine_Init(
+                &ctx->vines[i],
+                SpriteSystem_NewSprite(spriteSys, spriteMan, &template),
+                ctx->defenderX,
+                vineY,
+                flip);
         }
 
-        v3 -= 10;
-        v4 ^= 1;
+        vineY -= CONSTRICT_SPRITE_VINE_STEP_OFFSET_Y;
+        flip ^= 1;
     }
 
-    BattleAnimSystem_StartAnimTask(v0->unk_00, ov12_02230F3C, v0);
+    BattleAnimSystem_StartAnimTask(ctx->battleAnimSys, BattleAnimTask_ConstrictSprite, ctx);
 }
 
 static void ov12_022310D4(SysTask *param0, void *param1)

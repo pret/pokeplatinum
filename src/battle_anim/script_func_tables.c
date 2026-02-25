@@ -109,7 +109,7 @@ static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {
     BattleAnimSpriteFunc_Kinesis,
     BattleAnimSpriteFunc_Trick,
     BattleAnimSpriteFunc_Metronome,
-    ov12_02231010,
+    BattleAnimSpriteFunc_Constrict,
     ov12_022312A4,
     ov12_02231650,
     ov12_02231950,
