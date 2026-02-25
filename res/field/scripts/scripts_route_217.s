@@ -9,12 +9,7 @@
     ScriptEntryEnd
 
 _0012:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 3
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 3
     End
 
 _0023:
@@ -22,13 +17,7 @@ _0023:
     End
 
 _003A:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 2
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 2
     End
 
 _004D:

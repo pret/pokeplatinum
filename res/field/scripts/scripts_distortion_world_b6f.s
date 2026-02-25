@@ -19,13 +19,7 @@ _0022:
 _0026:
     GoToIfEq VAR_DISTORTION_WORLD_PROGRESS, 7, _0080
     GoToIfSet FLAG_DISTORTION_WORLD_PUZZLE_FINISHED, _0051
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 3
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 3
     End
 
 _0051:
@@ -44,13 +38,7 @@ _0051:
     End
 
 _0080:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 5
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 5
     End
 
 _0093:
@@ -90,12 +78,7 @@ _00D5:
     End
 
 _00F6:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 6
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 6
     End
 
     .balign 4, 0

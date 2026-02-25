@@ -219,13 +219,7 @@ Route210South_UnusedMovement2:
     EndMovement
 
 _030C:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 6
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 6
     End
 
 _031F:
@@ -263,13 +257,7 @@ _0390:
     End
 
 _03A7:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 9
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 9
     End
 
     .balign 4, 0

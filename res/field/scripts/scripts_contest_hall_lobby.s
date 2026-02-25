@@ -252,33 +252,15 @@ _031D:
     End
 
 _0328:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 21
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 21
     End
 
 _033B:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 22
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 22
     End
 
 _034E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 23
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 23
     End
 
 _0361:

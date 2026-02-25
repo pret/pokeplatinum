@@ -938,53 +938,23 @@ _0C08:
     EndMovement
 
 _0C18:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 43
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 43
     End
 
 _0C2B:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 49
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 49
     End
 
 _0C3E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 44
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 44
     End
 
 _0C51:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 45
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 45
     End
 
 _0C64:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 46
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 46
     End
 
 _0C77:
@@ -1014,23 +984,11 @@ _0CC7:
     End
 
 _0CD1:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 47
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 47
     End
 
 _0CE4:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 48
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 48
     End
 
 VeilstoneCity_GalacticGruntWarehouseGuard:
@@ -1286,13 +1244,7 @@ _0FE0:
     EndMovement
 
 _0FF0:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 42
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 42
     End
 
 _1003:
@@ -1454,13 +1406,7 @@ _1236:
     End
 
 _123E:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 55
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 55
     End
 
     .balign 4, 0

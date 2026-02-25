@@ -7,21 +7,9 @@
     ScriptEntryEnd
 
 JubilifeCityCondominiums3F_Collector:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCityCondominiums3F_Text_ICanTradePokemonAroundTheWorldUsingNintendoWFC
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCityCondominiums3F_Text_ICanTradePokemonAroundTheWorldUsingNintendoWFC
     End
 
 JubilifeCityCondominiums3F_Lass:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCityCondominiums3F_Text_TheWorldYouCanReachWithNintendoWFC
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCityCondominiums3F_Text_TheWorldYouCanReachWithNintendoWFC
     End

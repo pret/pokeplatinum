@@ -212,13 +212,7 @@ _035C:
     EndMovement
 
 _0364:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 1
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 1
     End
 
 _0377:
@@ -344,13 +338,7 @@ _04C8:
     EndMovement
 
 _04D4:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message 13
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage 13
     End
 
 _04E7:
@@ -499,12 +487,7 @@ _06E2:
     End
 
 _06F7:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 43
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 43
     End
 
 _0708:

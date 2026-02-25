@@ -778,13 +778,7 @@ TwinleafTownPlayerHouse1F_Movement_Unused4:
 
 TwinleafTownPlayerHouse1F_RivalsMom:
     BufferRivalName 1
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message TwinleafTownPlayerHouse1F_Text_HedProbablyHeadStraightToJubilife
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage TwinleafTownPlayerHouse1F_Text_HedProbablyHeadStraightToJubilife
     End
 
 TwinleafTownPlayerHouse1F_TV:
@@ -797,57 +791,27 @@ TwinleafTownPlayerHouse1F_TV:
     End
 
 TwinleafTownPlayerHouse1F_CuteContestDigest:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse1F_Text_CuteContestDigest
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse1F_Text_CuteContestDigest
     End
 
 TwinleafTownPlayerHouse1F_SmartContestDigest:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse1F_Text_SmartContestDigest
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse1F_Text_SmartContestDigest
     End
 
 TwinleafTownPlayerHouse1F_ToughContestDigest:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse1F_Text_ToughContestDigest
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse1F_Text_ToughContestDigest
     End
 
 TwinleafTownPlayerHouse1F_Fridge:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse1F_Text_MomsFavoriteDessertIsInRefrigerator
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse1F_Text_MomsFavoriteDessertIsInRefrigerator
     End
 
 TwinleafTownPlayerHouse1F_KitchenSink:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse1F_Text_MomsKitchenIsSpotless
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse1F_Text_MomsKitchenIsSpotless
     End
 
 TwinleafTownPlayerHouse1F_KitchenCounter:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message TwinleafTownPlayerHouse1F_Text_ThisIsWhereMomDoesHerDeliciousCooking
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage TwinleafTownPlayerHouse1F_Text_ThisIsWhereMomDoesHerDeliciousCooking
     End
 
     .balign 4, 0

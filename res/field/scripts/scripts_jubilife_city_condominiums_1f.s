@@ -9,39 +9,15 @@
     ScriptEntryEnd
 
 JubilifeCityCondominiums1F_ExpertF:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    Message JubilifeCityCondominiums1F_Text_IsntMyPoketchQuiteFetching
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    NPCMessage JubilifeCityCondominiums1F_Text_IsntMyPoketchQuiteFetching
     End
 
 JubilifeCityCondominiums1F_Pikachu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU
-    Message JubilifeCityCondominiums1F_Text_PiikaPi
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PIKACHU, JubilifeCityCondominiums1F_Text_PiikaPi
     End
 
 JubilifeCityCondominiums1F_Pachirisu:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    FacePlayer
-    WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PACHIRISU
-    Message JubilifeCityCondominiums1F_Text_Pachipachii
-    WaitCry
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    PokemonCryAndMessage SPECIES_PACHIRISU, JubilifeCityCondominiums1F_Text_Pachipachii
     End
 
 JubilifeCityCondominiums1F_Beauty:

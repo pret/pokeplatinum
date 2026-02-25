@@ -77,10 +77,5 @@ _00DC:
     End
 
 _00E7:
-    PlayFanfare SEQ_SE_CONFIRM
-    LockAll
-    Message 7
-    WaitABXPadPress
-    CloseMessage
-    ReleaseAll
+    EventMessage 7
     End
