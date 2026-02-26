@@ -283,7 +283,7 @@ void ov66_022345C4(UnkStruct_ov66_02234548 *param0)
 
 void ov66_02234604(UnkStruct_ov66_02234548 *param0)
 {
-    sub_02020D68(param0->unk_0C);
+    BillboardList_ResetRedraw(param0->unk_0C);
 }
 
 void ov66_02234610(UnkStruct_ov66_02234548 *param0, u32 param1)
@@ -342,13 +342,13 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
         }
 
         if (v1->unk_02_15 == 1) {
-            sub_02021284(&v2, v7, v8, Unk_ov66_02258B88, &v9);
+            BillboardResources_SetWithoutKeys(&v2, v7, v8, Unk_ov66_02258B88, &v9);
         } else {
             v10 = TextureResource_GetTexKey(v5);
             v11 = TextureResource_GetTex4x4Key(v5);
             v12 = TextureResource_GetPaletteKey(v5);
 
-            sub_0202125C(&v2, v7, v8, Unk_ov66_02258B88, &v9, v10, v11, v12);
+            BillboardResources_Set(&v2, v7, v8, Unk_ov66_02258B88, &v9, v10, v11, v12);
         }
 
         {
@@ -365,7 +365,7 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
         v3.scale = v14;
         v0->unk_08 = sub_0202119C(&v3);
 
-        sub_02021444(v0->unk_08, ov66_02234D78, v0);
+        Billboard_SetCallback(v0->unk_08, ov66_02234D78, v0);
         ov66_02234970(&param0->unk_18, &v0->unk_0C);
         Easy3DObject_SetPosition(&v0->unk_0C, v13.x + 0, ((FX32_CONST(0)) + FX32_CONST(2)), v13.z + (FX32_CONST(-8)));
     }
@@ -380,7 +380,7 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
 
 void ov66_02234798(UnkStruct_ov66_02234798 *param0)
 {
-    sub_020211FC(param0->unk_08);
+    Billboard_Delete(param0->unk_08);
     memset(param0, 0, sizeof(UnkStruct_ov66_02234798));
 }
 
@@ -410,13 +410,13 @@ void ov66_022347D4(UnkStruct_ov66_02234798 *param0, const UnkStruct_ov63_0222CC3
 
 void ov66_022347F8(UnkStruct_ov66_02234798 *param0, const VecFx32 *param1)
 {
-    sub_020212A8(param0->unk_08, param1);
+    Billboard_SetPos(param0->unk_08, param1);
     Easy3DObject_SetPosition(&param0->unk_0C, param1->x + 0, ((FX32_CONST(0)) + FX32_CONST(2)), param1->z + (FX32_CONST(-8)));
 }
 
 void ov66_0223481C(const UnkStruct_ov66_02234798 *param0, VecFx32 *param1)
 {
-    const VecFx32 *v0 = sub_020212C0(param0->unk_08);
+    const VecFx32 *v0 = Billboard_GetPos(param0->unk_08);
     *param1 = *v0;
 }
 
@@ -424,8 +424,8 @@ void ov66_02234834(UnkStruct_ov66_02234798 *param0, int param1)
 {
     u32 v0 = ov66_022348D8(1, param1);
 
-    sub_02021344(param0->unk_08, v0);
-    sub_020213A4(param0->unk_08, 0);
+    Billboard_SetAnimNum(param0->unk_08, v0);
+    Billboard_SetAnimFrameNum(param0->unk_08, 0);
 }
 
 void ov66_02234850(UnkStruct_ov66_02234798 *param0, int param1)
@@ -590,8 +590,8 @@ static void ov66_022349E0(UnkStruct_ov66_02234798 *param0)
 
     if ((param0->unk_86 > v1) || (param0->unk_84 != v0)) {
         if (ov66_02234CD8(param0->unk_84) == 1) {
-            param0->unk_85 = sub_02021358(param0->unk_08);
-            param0->unk_88 = sub_020213D4(param0->unk_08);
+            param0->unk_85 = Billboard_GetAnimNum(param0->unk_08);
+            param0->unk_88 = Billboard_GetAnimFrameNum(param0->unk_08);
         }
 
         param0->unk_84 = v0;
@@ -613,8 +613,8 @@ static void ov66_02234A78(UnkStruct_ov66_02234798 *param0)
     v0 = ov63_0222BF90(param0->unk_04, 6);
     v1 = ov66_022348D8(1, v0);
 
-    sub_02021344(param0->unk_08, v1);
-    sub_020213A4(param0->unk_08, 0);
+    Billboard_SetAnimNum(param0->unk_08, v1);
+    Billboard_SetAnimFrameNum(param0->unk_08, 0);
 }
 
 static void ov66_02234AA0(UnkStruct_ov66_02234798 *param0)
@@ -631,14 +631,14 @@ static void ov66_02234AA0(UnkStruct_ov66_02234798 *param0)
     v4 = ov63_0222BF90(param0->unk_04, 8);
     v2 = ov66_022348E4(v3, v4, 8);
 
-    sub_02021344(param0->unk_08, v1);
+    Billboard_SetAnimNum(param0->unk_08, v1);
 
     if (param0->unk_85 == v1) {
-        sub_020213A4(param0->unk_08, 0);
-        sub_02021368(param0->unk_08, v2 + param0->unk_88);
+        Billboard_SetAnimFrameNum(param0->unk_08, 0);
+        Billboard_AdvanceAnim(param0->unk_08, v2 + param0->unk_88);
     } else {
-        sub_020213A4(param0->unk_08, 0);
-        sub_02021368(param0->unk_08, v2);
+        Billboard_SetAnimFrameNum(param0->unk_08, 0);
+        Billboard_AdvanceAnim(param0->unk_08, v2);
     }
 }
 
@@ -649,13 +649,13 @@ static void ov66_02234B10(UnkStruct_ov66_02234798 *param0)
     u16 v2 = ov63_0222BF90(param0->unk_04, 8);
 
     if (v2 < 4) {
-        sub_020213A4(param0->unk_08, 4 * FX32_ONE);
+        Billboard_SetAnimFrameNum(param0->unk_08, 4 * FX32_ONE);
     } else {
         v0 = ov63_0222BF90(param0->unk_04, 6);
         v1 = ov66_022348D8(1, v0);
 
-        sub_02021344(param0->unk_08, v1);
-        sub_020213A4(param0->unk_08, 0);
+        Billboard_SetAnimNum(param0->unk_08, v1);
+        Billboard_SetAnimFrameNum(param0->unk_08, 0);
     }
 }
 
@@ -673,14 +673,14 @@ static void ov66_02234B54(UnkStruct_ov66_02234798 *param0)
     v4 = ov63_0222BF90(param0->unk_04, 8);
     v2 = ov66_022348E4(v3, v4, 4);
 
-    sub_02021344(param0->unk_08, v1);
+    Billboard_SetAnimNum(param0->unk_08, v1);
 
     if (param0->unk_85 == v1) {
-        sub_020213A4(param0->unk_08, 0);
-        sub_02021368(param0->unk_08, v2 + param0->unk_88);
+        Billboard_SetAnimFrameNum(param0->unk_08, 0);
+        Billboard_AdvanceAnim(param0->unk_08, v2 + param0->unk_88);
     } else {
-        sub_020213A4(param0->unk_08, 0);
-        sub_02021368(param0->unk_08, v2);
+        Billboard_SetAnimFrameNum(param0->unk_08, 0);
+        Billboard_AdvanceAnim(param0->unk_08, v2);
     }
 }
 
@@ -706,8 +706,8 @@ static void ov66_02234BEC(UnkStruct_ov66_02234798 *param0)
         v0 = param0->unk_02 / 4;
         v1 = ov66_022348D8(1, Unk_ov66_02258B24[v0]);
 
-        sub_02021344(param0->unk_08, v1);
-        sub_020213A4(param0->unk_08, 0);
+        Billboard_SetAnimNum(param0->unk_08, v1);
+        Billboard_SetAnimFrameNum(param0->unk_08, 0);
     }
 
     if ((param0->unk_02 + param0->unk_03) < (4 * 4)) {
@@ -727,8 +727,8 @@ static void ov66_02234C34(UnkStruct_ov66_02234798 *param0)
         v0 = ov63_0222BF90(param0->unk_04, 6);
         v1 = ov66_022348D8(1, v0);
 
-        sub_02021344(param0->unk_08, v1);
-        sub_020213A4(param0->unk_08, 4 * FX32_ONE);
+        Billboard_SetAnimNum(param0->unk_08, v1);
+        Billboard_SetAnimFrameNum(param0->unk_08, 4 * FX32_ONE);
 
         param0->unk_02++;
     }
@@ -743,14 +743,14 @@ static void ov66_02234C70(UnkStruct_ov66_02234798 *param0)
         v0 = ov63_0222BF90(param0->unk_04, 6);
         v1 = ov66_022348D8(1, v0);
 
-        sub_02021344(param0->unk_08, v1);
-        sub_020213A4(param0->unk_08, 4 * FX32_ONE);
+        Billboard_SetAnimNum(param0->unk_08, v1);
+        Billboard_SetAnimFrameNum(param0->unk_08, 4 * FX32_ONE);
     } else if (param0->unk_02 == 4) {
         v0 = ov63_0222BF90(param0->unk_04, 6);
         v1 = ov66_022348D8(1, v0);
 
-        sub_02021344(param0->unk_08, v1);
-        sub_020213A4(param0->unk_08, (4 * 3) * FX32_ONE);
+        Billboard_SetAnimNum(param0->unk_08, v1);
+        Billboard_SetAnimFrameNum(param0->unk_08, (4 * 3) * FX32_ONE);
     }
 
     param0->unk_02 = (param0->unk_02 + 1) % (4 * 2);
@@ -793,10 +793,10 @@ static void ov66_02234D08(UnkStruct_ov66_02234798 *param0)
 static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0)
 {
     if ((param0->unk_00_4 == 0) && (param0->unk_00_6 == 1)) {
-        sub_02021320(param0->unk_08, 1);
+        Billboard_SetDrawFlag(param0->unk_08, 1);
         Easy3DObject_SetVisible(&param0->unk_0C, 1);
     } else {
-        sub_02021320(param0->unk_08, 0);
+        Billboard_SetDrawFlag(param0->unk_08, 0);
         Easy3DObject_SetVisible(&param0->unk_0C, 0);
     }
 }
@@ -804,7 +804,7 @@ static void ov66_02234D3C(UnkStruct_ov66_02234798 *param0)
 static void ov66_02234D78(Billboard *param0, void *param1)
 {
     UnkStruct_ov66_02234798 *v0 = param1;
-    NNSG3dResMdl *v1 = sub_02021430(param0);
+    NNSG3dResMdl *v1 = Billboard_GetModel2(param0);
     NNS_G3dMdlSetMdlLightEnableFlagAll(v1, v0->unk_8C);
 }
 
@@ -817,9 +817,9 @@ static BOOL ov66_02234D8C(Billboard *param0)
     GFXTestBox v4;
     MtxFx33 v5;
 
-    v3 = sub_020213F4(param0);
+    v3 = Billboard_GetModel(param0);
     v2 = NNS_G3dGetMdlInfo(v3);
-    v1 = *sub_020212C0(param0);
+    v1 = *Billboard_GetPos(param0);
 
     v4.width = v2->boxW;
     v4.height = v2->boxH;
@@ -835,7 +835,7 @@ static BOOL ov66_02234D8C(Billboard *param0)
 
     MTX_Identity33(&v5);
     NNS_G3dGlbSetBaseRot(&v5);
-    NNS_G3dGlbSetBaseScale(sub_020212EC(param0));
+    NNS_G3dGlbSetBaseScale(Billboard_GetScale(param0));
 
     v0 = GFXBoxTest_IsBoxAtPositionInView(&v1, &v4);
 

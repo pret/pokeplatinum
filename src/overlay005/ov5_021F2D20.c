@@ -202,7 +202,7 @@ static int ov5_021F2F0C(OverworldAnimManager *param0, void *param1)
 static void ov5_021F2FA0(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F2FA0 *v0 = param1;
-    sub_020211FC(v0->unk_34);
+    Billboard_Delete(v0->unk_34);
 }
 
 static void ov5_021F2FAC(OverworldAnimManager *param0, void *param1)
@@ -235,15 +235,15 @@ static void ov5_021F2FAC(OverworldAnimManager *param0, void *param1)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02021368(v1->unk_34, FX32_ONE);
-        v0 = sub_020213D4(v1->unk_34) / FX32_ONE;
+        Billboard_AdvanceAnim(v1->unk_34, FX32_ONE);
+        v0 = Billboard_GetAnimFrameNum(v1->unk_34) / FX32_ONE;
 
         if (v0 >= 12) {
             v1->unk_00 = 1;
         }
         break;
     case 1:
-        sub_02021380(v1->unk_34, (12 * FX32_ONE));
+        Billboard_SetFrameNum(v1->unk_34, (12 * FX32_ONE));
         v1->unk_00 = 2;
     case 2:
         if (sub_020627B4(v2, v1->unk_04, v1->unk_08, v1->unk_0C) == 0) {
@@ -278,7 +278,7 @@ static void ov5_021F308C(OverworldAnimManager *param0, void *param1)
     }
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_020212A8(v1->unk_34, &v0);
+    Billboard_SetPos(v1->unk_34, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_022004EC = {
@@ -320,7 +320,7 @@ static int ov5_021F30C4(OverworldAnimManager *param0, void *param1)
 static void ov5_021F30FC(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F30FC *v0 = param1;
-    sub_020211FC(v0->unk_1C);
+    Billboard_Delete(v0->unk_1C);
 }
 
 static void ov5_021F3108(OverworldAnimManager *param0, void *param1)
@@ -330,8 +330,8 @@ static void ov5_021F3108(OverworldAnimManager *param0, void *param1)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02021368(v1->unk_1C, FX32_ONE);
-        v0 = sub_020213D4(v1->unk_1C) / FX32_ONE;
+        Billboard_AdvanceAnim(v1->unk_1C, FX32_ONE);
+        v0 = Billboard_GetAnimFrameNum(v1->unk_1C) / FX32_ONE;
 
         if (v0 >= 12) {
             v1->unk_04 = 1;
@@ -348,7 +348,7 @@ static void ov5_021F313C(OverworldAnimManager *param0, void *param1)
     VecFx32 v0;
     UnkStruct_021F30FC *v1 = param1;
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_020212A8(v1->unk_1C, &v0);
+    Billboard_SetPos(v1->unk_1C, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200500 = {
@@ -445,7 +445,7 @@ static int ov5_021F31B4(OverworldAnimManager *param0, void *param1)
 static void ov5_021F3238(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_021F31A8 *v0 = param1;
-    sub_020211FC(v0->unk_24);
+    Billboard_Delete(v0->unk_24);
 }
 
 static void ov5_021F3244(OverworldAnimManager *param0, void *param1)
@@ -455,7 +455,7 @@ static void ov5_021F3244(OverworldAnimManager *param0, void *param1)
 
     switch (v1->unk_00) {
     case 0:
-        if (sub_02021368(v1->unk_24, FX32_ONE) == 1) {
+        if (Billboard_AdvanceAnim(v1->unk_24, FX32_ONE) == 1) {
             v1->unk_04 = 1;
             v1->unk_00++;
         }
@@ -471,7 +471,7 @@ static void ov5_021F326C(OverworldAnimManager *param0, void *param1)
     UnkStruct_021F31A8 *v1 = param1;
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_020212A8(v1->unk_24, &v0);
+    Billboard_SetPos(v1->unk_24, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200514 = {

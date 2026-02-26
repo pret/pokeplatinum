@@ -114,7 +114,7 @@ static int ov5_021F60E4(OverworldAnimManager *param0, void *param1)
 static void ov5_021F6134(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F6134 *v0 = param1;
-    sub_020211FC(v0->unk_20);
+    Billboard_Delete(v0->unk_20);
 }
 
 static void ov5_021F6140(OverworldAnimManager *param0, void *param1)
@@ -147,7 +147,7 @@ static void ov5_021F615C(OverworldAnimManager *param0, void *param1)
     v0.z += v1.z;
     v0.z += FX32_ONE * 12;
 
-    sub_020212A8(v2->unk_20, &v0);
+    Billboard_SetPos(v2->unk_20, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200BD8 = {

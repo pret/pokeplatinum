@@ -230,7 +230,7 @@ static Billboard *ov5_021F5C18(FieldEffectManager *param0, int param1, VecFx32 *
     Billboard *v1 = ov5_021DF84C(param0, v0[param1], param2);
 
     if (param3 == 1) {
-        NNSG3dResMdl *v2 = sub_020213F4(v1);
+        NNSG3dResMdl *v2 = Billboard_GetModel(v1);
         NNS_G3dMdlSetMdlFogEnableFlagAll(v2, 0);
     }
 
@@ -250,7 +250,7 @@ void ov5_021F5C58(OverworldAnimManager *param0)
     v0->unk_10 = 1;
 
     if (v0->unk_40 != NULL) {
-        sub_02021320(v0->unk_40, 0);
+        Billboard_SetDrawFlag(v0->unk_40, 0);
     }
 }
 
@@ -317,7 +317,7 @@ static void ov5_021F5D38(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F5C4C *v0 = param1;
 
-    sub_020211FC(v0->unk_40);
+    Billboard_Delete(v0->unk_40);
 
     ov5_021F5A90(v0->unk_30.unk_08, v0->unk_30.unk_00);
     ov5_021F5C04(v0->unk_30.unk_08, v0->unk_30.unk_00);
@@ -338,7 +338,7 @@ static void ov5_021F5D54(OverworldAnimManager *param0, void *param1)
     v0.y += v1->unk_18.y;
     v0.z += v1->unk_18.z;
 
-    sub_020212A8(v1->unk_40, &v0);
+    Billboard_SetPos(v1->unk_40, &v0);
 }
 
 OverworldAnimManager *ov5_021F5D8C(MapObject *param0, int param1, int param2, int param3)
@@ -482,11 +482,11 @@ static void ov5_021F5F24(OverworldAnimManager *param0, void *param1)
         break;
     case 2:
         v0->unk_40 = ov5_021F5C18(v0->unk_30.unk_04, v0->unk_30.unk_00, &v2, v0->unk_30.unk_08->unk_06);
-        sub_02021320(v0->unk_40, 0);
+        Billboard_SetDrawFlag(v0->unk_40, 0);
         v0->unk_00++;
         break;
     case 3:
-        sub_02021320(v0->unk_40, 1);
+        Billboard_SetDrawFlag(v0->unk_40, 1);
         v0->unk_10 = 0;
 
         if (OverworldAnimManager_GetID(param0) == 1) {

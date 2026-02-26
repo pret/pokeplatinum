@@ -132,7 +132,7 @@ static inline void inline_fieldmap(FieldSystem *fieldSystem)
     UnkStruct_ov5_021ED0A4 *v0 = sub_0206285C(fieldSystem->mapObjMan);
     BillboardList *v1 = ov5_021EDC8C(v0);
 
-    sub_02020D68(v1);
+    BillboardList_ResetRedraw(v1);
 }
 
 static void fieldmap(void *param0)

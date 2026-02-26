@@ -134,7 +134,7 @@ void BerryPatchGraphics_UpdateGraphics(MapObject *mapObject)
         ov5_021EDEB4(mapObject, graphicsData->graphicsObject);
 
         if (ov5_021ECD38(mapObject) == 0) {
-            sub_02021368(graphicsData->graphicsObject, FX32_ONE );
+            Billboard_AdvanceAnim(graphicsData->graphicsObject, FX32_ONE );
         }
 
         ov5_021EDED8(mapObject, graphicsData->graphicsObject);

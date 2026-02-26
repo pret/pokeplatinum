@@ -995,7 +995,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
 
             if (v2 != NULL) {
                 ov5_021EDEB4(v7, v2);
-                sub_02021320(v2, 1);
+                Billboard_SetDrawFlag(v2, 1);
             }
         }
     }
@@ -1037,7 +1037,7 @@ static void ov5_021F7654(MapObject *param0, int param1)
 
     if (v1 != NULL) {
         ov5_021EDEB4(param0, v1);
-        sub_02021320(v1, 1);
+        Billboard_SetDrawFlag(v1, 1);
     }
 }
 

@@ -298,7 +298,7 @@ static void BerryPatchSparkleEffect_Free(OverworldAnimManager *effect, void *con
 {
     BerryPatchSparkleEffect *sparkleEffect = context;
 
-    sub_020211FC(sparkleEffect->graphicsObject);
+    Billboard_Delete(sparkleEffect->graphicsObject);
     BerryPatchEffectCounter_Decrement(sparkleEffect->context.effectCounter);
     BerryPatchEffectCounter_CheckDisable(sparkleEffect->context.effectCounter);
 }
@@ -318,10 +318,10 @@ static void BerryPatchSparkleEffect_Update(OverworldAnimManager *effect, void *c
             return;
         }
 
-        sub_02021380(sparkleEffect->graphicsObject, 0);
+        Billboard_SetFrameNum(sparkleEffect->graphicsObject, 0);
     }
 
-    if (sub_02021368(sparkleEffect->graphicsObject, animationSpeeds[sparkleEffect->animationFrame]) != 1) {
+    if (Billboard_AdvanceAnim(sparkleEffect->graphicsObject, animationSpeeds[sparkleEffect->animationFrame]) != 1) {
         return;
     }
 
@@ -334,7 +334,7 @@ static void BerryPatchSparkleEffect_Render(OverworldAnimManager *effect, void *c
     BerryPatchSparkleEffect *sparkleEffect = context;
 
     OverworldAnimManager_GetPosition(effect, &position);
-    sub_020212A8(sparkleEffect->graphicsObject, &position);
+    Billboard_SetPos(sparkleEffect->graphicsObject, &position);
 }
 
 static const OverworldAnimManagerFuncs sBerryPatchSparkleEffectDefinition = {

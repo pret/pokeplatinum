@@ -149,7 +149,7 @@ static void ov5_021F18D0(OverworldAnimManager *param0, void *param1)
     UnkStruct_ov5_021F1A24 *v0 = param1;
 
     if (v0->unk_0C == 1) {
-        sub_020211FC(v0->unk_24);
+        Billboard_Delete(v0->unk_24);
     }
 }
 
@@ -216,25 +216,25 @@ static void ov5_021F1978(OverworldAnimManager *param0, void *param1)
     }
 
     if (MapObject_IsHidden(v1) == 1) {
-        sub_02021320(v0->unk_24, 0);
+        Billboard_SetDrawFlag(v0->unk_24, 0);
     } else {
-        sub_02021320(v0->unk_24, 1);
+        Billboard_SetDrawFlag(v0->unk_24, 1);
     }
 
     {
         VecFx32 v3;
 
         OverworldAnimManager_GetPosition(param0, &v3);
-        sub_020212A8(v0->unk_24, &v3);
+        Billboard_SetPos(v0->unk_24, &v3);
     }
 
-    sub_020212D0(v0->unk_24, &v0->unk_28);
+    Billboard_SetScale(v0->unk_24, &v0->unk_28);
 
     {
         Billboard *v4 = ov5_021EB1A0(v0->unk_14.unk_0C);
 
-        sub_02021344(v0->unk_24, sub_02021358(v4));
-        sub_02021380(v0->unk_24, sub_02021394(v4));
+        Billboard_SetAnimNum(v0->unk_24, Billboard_GetAnimNum(v4));
+        Billboard_SetFrameNum(v0->unk_24, Billboard_GetFrameNum(v4));
     }
 }
 
@@ -319,10 +319,10 @@ static void ov5_021F1AD8(OverworldAnimManager *param0, UnkStruct_ov5_021F1AD8 *p
     {
         const Billboard *v4 = param1->unk_04.unk_34;
 
-        sub_02021344(param1->unk_3C, sub_02021358(v4));
-        sub_020213A4(param1->unk_3C, sub_020213D4(v4));
-        sub_02021380(param1->unk_3C, sub_02021394(v4));
-        sub_02021368(param1->unk_3C, 0);
+        Billboard_SetAnimNum(param1->unk_3C, Billboard_GetAnimNum(v4));
+        Billboard_SetAnimFrameNum(param1->unk_3C, Billboard_GetAnimFrameNum(v4));
+        Billboard_SetFrameNum(param1->unk_3C, Billboard_GetFrameNum(v4));
+        Billboard_AdvanceAnim(param1->unk_3C, 0);
         sub_02021414(param1->unk_3C);
     }
 }
@@ -397,7 +397,7 @@ static int ov5_021F1BEC(OverworldAnimManager *param0, void *param1)
 static void ov5_021F1C54(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F1AD8 *v0 = param1;
-    sub_020211FC(v0->unk_3C);
+    Billboard_Delete(v0->unk_3C);
 }
 
 static void ov5_021F1C60(OverworldAnimManager *param0, void *param1)
@@ -430,10 +430,10 @@ static void ov5_021F1CA4(OverworldAnimManager *param0, void *param1)
         VecFx32 v1;
 
         OverworldAnimManager_GetPosition(param0, &v1);
-        sub_020212A8(v0->unk_3C, &v1);
+        Billboard_SetPos(v0->unk_3C, &v1);
     }
 
-    sub_020212D0(v0->unk_3C, &v0->unk_40);
+    Billboard_SetScale(v0->unk_3C, &v0->unk_40);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_0220034C = {

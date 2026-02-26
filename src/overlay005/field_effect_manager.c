@@ -420,8 +420,8 @@ Billboard *ov5_021DF7F8(FieldEffectManager *param0, const BillboardResources *pa
     GF_ASSERT(v1 != NULL);
 
     if (v1 != NULL) {
-        NNS_G3dMdlSetMdlFogEnableFlagAll(sub_020213F4(v1), 1);
-        AreaLight_UseGlobalModelAttributes(sub_020213F4(v1));
+        NNS_G3dMdlSetMdlFogEnableFlagAll(Billboard_GetModel(v1), 1);
+        AreaLight_UseGlobalModelAttributes(Billboard_GetModel(v1));
     }
 
     return v1;

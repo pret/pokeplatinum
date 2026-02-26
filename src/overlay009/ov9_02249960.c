@@ -1862,9 +1862,9 @@ static void ov9_0224A1E4(DistWorldSystem *param0, int param1)
 
 static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 *param1, Billboard *param2)
 {
-    NNSG3dResMdl *v0 = sub_02021430(param2);
-    NNSG3dResTex *v1 = sub_02021438(param2);
-    NNSG3dRenderObj *v2 = sub_02021440(param2);
+    NNSG3dResMdl *v0 = Billboard_GetModel2(param2);
+    NNSG3dResTex *v1 = Billboard_GetTexture(param2);
+    NNSG3dRenderObj *v2 = Billboard_GetRenderObj(param2);
 
     GF_ASSERT(param1->unk_10 == NULL);
 
@@ -1874,7 +1874,7 @@ static void ov9_0224A228(UnkStruct_ov9_0224A228 *param0, UnkStruct_ov9_0224A294 
     NNS_G3dAnmObjInit(param1->unk_10, param0->unk_0C, v0, v1);
     NNS_G3dRenderObjAddAnmObj(v2, param1->unk_10);
 
-    sub_02021444(param2, ov9_0224A4C8, param1);
+    Billboard_SetCallback(param2, ov9_0224A4C8, param1);
 
     if (param1->unk_18 != NULL) {
         param1->unk_14 = MapObject_GetGraphicsID(param1->unk_18);
@@ -1926,7 +1926,7 @@ static int ov9_0224A2E4(UnkStruct_ov9_0224A294 *param0)
                 return 2;
             }
         }
-    } else if (sub_02021404(param0->unk_1C) == 0) {
+    } else if (Billboard_GetState(param0->unk_1C) == 0) {
         return 1;
     }
 
@@ -8770,7 +8770,7 @@ static int ov9_022508C0(DistWorldSystem *param0, FieldTask *param1, u16 *param2,
     NNSG3dResMdl *v1;
     UnkStruct_ov9_0225074C *v2 = ov9_0224E39C(param0);
     v0 = ov5_021EB1A0(v2->unk_18);
-    v1 = sub_02021430(v0);
+    v1 = Billboard_GetModel2(v0);
 
     v2->unk_00 -= (FX32_ONE * 16) / (3 * 30);
 

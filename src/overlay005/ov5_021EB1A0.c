@@ -300,7 +300,7 @@ void ov5_021EB438(MapObject *mapObj)
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, (FX32_ONE));
     }
 
     ov5_021EDEB4(mapObj, v3);
@@ -312,13 +312,13 @@ static void ov5_021EB478(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else {
         ov5_021EC668(param1);
     }
 
-    sub_02021368(param1, 0);
+    Billboard_AdvanceAnim(param1, 0);
 }
 
 static void ov5_021EB4AC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021EB2EC *param2, int param3)
@@ -326,12 +326,12 @@ static void ov5_021EB4AC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, ((FX32_ONE) / 2));
+        Billboard_AdvanceAnim(param1, ((FX32_ONE) / 2));
     }
 }
 
@@ -340,12 +340,12 @@ static void ov5_021EB4E8(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, (FX32_ONE));
     }
 }
 
@@ -354,12 +354,12 @@ static void ov5_021EB524(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, ((FX32_ONE) * 2));
+        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 2));
     }
 }
 
@@ -368,12 +368,12 @@ static void ov5_021EB560(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, ((FX32_ONE) * 4));
+        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 4));
     }
 }
 
@@ -382,8 +382,8 @@ static void ov5_021EB59C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
 
         param2->unk_00 = 0;
     }
@@ -403,7 +403,7 @@ static void ov5_021EB59C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
             0
         };
 
-        sub_02021368(param1, v1[param2->unk_00]);
+        Billboard_AdvanceAnim(param1, v1[param2->unk_00]);
         param2->unk_00++;
 
         if (v1[param2->unk_00] == 0) {
@@ -417,8 +417,8 @@ static void ov5_021EB620(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
 
         param2->unk_00 = 0;
     }
@@ -435,7 +435,7 @@ static void ov5_021EB620(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
             0
         };
 
-        sub_02021368(param1, v1[param2->unk_00]);
+        Billboard_AdvanceAnim(param1, v1[param2->unk_00]);
         param2->unk_00++;
 
         if (v1[param2->unk_00] == 0) {
@@ -449,8 +449,8 @@ static void ov5_021EB69C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_02) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
 
         param2->unk_00 = 0;
     }
@@ -471,7 +471,7 @@ static void ov5_021EB69C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
             0
         };
 
-        sub_02021368(param1, v1[param2->unk_00]);
+        Billboard_AdvanceAnim(param1, v1[param2->unk_00]);
 
         param2->unk_00++;
         if (v1[param2->unk_00] == 0) {
@@ -529,23 +529,23 @@ static void ov5_021EB794(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if ((param3 != param2->unk_02) || (param2->unk_03 == 0x9)) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else {
         ov5_021EC668(param1);
     }
 
-    sub_02021368(param1, 0);
+    Billboard_AdvanceAnim(param1, 0);
 }
 
 static void ov5_021EB7D0(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021EB2EC *param2, int param3)
 {
     if (param2->unk_03 != 0x9) {
-        sub_02021344(param1, 4);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, 4);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
-    sub_02021368(param1, (FX32_ONE));
+    Billboard_AdvanceAnim(param1, (FX32_ONE));
 }
 
 static void (*const Unk_ov5_021FF420[])(MapObject *, Billboard *, UnkStruct_ov5_021EB2EC *, int) = {
@@ -634,9 +634,9 @@ void ov5_021EB8B8(MapObject *mapObj)
 
     if (v2->unk_02) {
         v2->unk_02--;
-        sub_02021368(v3, 0);
+        Billboard_AdvanceAnim(v3, 0);
     } else {
-        sub_02021368(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, (FX32_ONE));
         v2->unk_01++;
 
         if (v2->unk_01 >= 32) {
@@ -681,13 +681,13 @@ void ov5_021EB944(MapObject *mapObj)
             v4 = 1;
         }
 
-        if ((sub_02021358(v3) != v4) || (v2->unk_03 == 0x0)) {
-            sub_02021344(v3, v4);
-            sub_020213A4(v3, 0);
-            sub_02021368(v3, 0);
+        if ((Billboard_GetAnimNum(v3) != v4) || (v2->unk_03 == 0x0)) {
+            Billboard_SetAnimNum(v3, v4);
+            Billboard_SetAnimFrameNum(v3, 0);
+            Billboard_AdvanceAnim(v3, 0);
         }
 
-        sub_02021368(v3, 0);
+        Billboard_AdvanceAnim(v3, 0);
     } break;
     default: {
         int v5;
@@ -699,12 +699,12 @@ void ov5_021EB944(MapObject *mapObj)
             v5 = 1;
         }
 
-        if (sub_02021358(v3) != v5) {
-            sub_02021344(v3, v5);
-            sub_020213A4(v3, 0);
+        if (Billboard_GetAnimNum(v3) != v5) {
+            Billboard_SetAnimNum(v3, v5);
+            Billboard_SetAnimFrameNum(v3, 0);
         }
 
-        sub_02021368(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, (FX32_ONE));
     } break;
     }
 
@@ -804,8 +804,8 @@ static void ov5_021EBB44(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_00) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
         param2->unk_03_0 = 0;
     } else if (param2->unk_02 == (0x8 + 1)) {
         param2->unk_03_0 = 1;
@@ -823,8 +823,8 @@ static void ov5_021EBBB4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
 
     if (param3 != param2->unk_00) {
         v0 = ov5_021EDF18(param3);
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else if (param2->unk_02 == (0x8 + 1)) {
         param2->unk_03_0 = 1;
         return;
@@ -834,7 +834,7 @@ static void ov5_021EBBB4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, ((FX32_ONE) / 2));
+        Billboard_AdvanceAnim(param1, ((FX32_ONE) / 2));
     }
 }
 
@@ -844,14 +844,14 @@ static void ov5_021EBC28(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
 
     if (param3 != param2->unk_00) {
         v0 = ov5_021EDF18(param3);
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else if (param2->unk_02 == (0x8 + 1)) {
         ov5_021EC69C(param1, ov5_021EDF18(param3));
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, (FX32_ONE));
     }
 }
 
@@ -860,14 +860,14 @@ static void ov5_021EBC7C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_00) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else if (param2->unk_02 == (0x8 + 1)) {
         ov5_021EC69C(param1, ov5_021EDF18(param3));
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, ((FX32_ONE) * 2));
+        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 2));
     }
 }
 
@@ -876,14 +876,14 @@ static void ov5_021EBCD0(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_00) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else if (param2->unk_02 == (0x8 + 1)) {
         ov5_021EC69C(param1, ov5_021EDF18(param3));
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, ((FX32_ONE) * 4));
+        Billboard_AdvanceAnim(param1, ((FX32_ONE) * 4));
     }
 }
 
@@ -892,8 +892,8 @@ static void ov5_021EBD24(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_00) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
         param2->unk_01 = 0;
     } else if (param2->unk_02 == (0x8 + 1)) {
         ov5_021EC69C(param1, ov5_021EDF18(param3));
@@ -914,7 +914,7 @@ static void ov5_021EBD24(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
             0
         };
 
-        sub_02021368(param1, v1[param2->unk_01]);
+        Billboard_AdvanceAnim(param1, v1[param2->unk_01]);
         param2->unk_01++;
 
         if (v1[param2->unk_01] == 0) {
@@ -928,8 +928,8 @@ static void ov5_021EBDC4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_00) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
         param2->unk_01 = 0;
     } else if (param2->unk_02 == (0x8 + 1)) {
         ov5_021EC69C(param1, ov5_021EDF18(param3));
@@ -947,7 +947,7 @@ static void ov5_021EBDC4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
             0
         };
 
-        sub_02021368(param1, v1[param2->unk_01]);
+        Billboard_AdvanceAnim(param1, v1[param2->unk_01]);
         param2->unk_01++;
 
         if (v1[param2->unk_01] == 0) {
@@ -961,8 +961,8 @@ static void ov5_021EBE5C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     if (param3 != param2->unk_00) {
         int v0 = ov5_021EDF18(param3);
 
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
         param2->unk_01 = 0;
     } else if (param2->unk_02 == (0x8 + 1)) {
         ov5_021EC69C(param1, ov5_021EDF18(param3));
@@ -984,7 +984,7 @@ static void ov5_021EBE5C(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
             0
         };
 
-        sub_02021368(param1, v1[param2->unk_01]);
+        Billboard_AdvanceAnim(param1, v1[param2->unk_01]);
         param2->unk_01++;
 
         if (v1[param2->unk_01] == 0) {
@@ -999,15 +999,15 @@ static void ov5_021EBEFC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
 
     if (param3 != param2->unk_00) {
         v0 = ov5_021EDF24(param3);
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else if (param2->unk_02 != (0x8 + 1)) {
         ov5_021EC674(
             param1, ov5_021EDF24(param3), 4);
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, (FX32_ONE));
     }
 }
 
@@ -1066,17 +1066,17 @@ static void ov5_021EBFDC(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     int v1 = v0[param3];
 
     if (param3 != param2->unk_00) {
-        sub_02021344(param1, v1);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v1);
+        Billboard_SetAnimFrameNum(param1, 0);
         param2->unk_03_0 = 0;
     } else if (param2->unk_02 != 0x0) {
         param2->unk_03_0 = 1;
     } else if (param2->unk_03_0 == 1) {
-        sub_02021344(param1, v1);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v1);
+        Billboard_SetAnimFrameNum(param1, 0);
         param2->unk_03_0 = 0;
     } else {
-        sub_02021368(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, (FX32_ONE));
     }
 }
 
@@ -1085,18 +1085,18 @@ static void ov5_021EC068(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     int v0 = ov5_021EDF30(param3);
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x0)) {
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else if (param2->unk_02 != (0x8 + 1)) {
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
-    } else if (sub_02021358(param1) != v0) {
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
+    } else if (Billboard_GetAnimNum(param1) != v0) {
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, ((FX32_ONE) / 2));
+        Billboard_AdvanceAnim(param1, ((FX32_ONE) / 2));
     }
 }
 
@@ -1105,18 +1105,18 @@ static void ov5_021EC0E4(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     int v0 = ov5_021EDF30(param3);
 
     if (param3 != param2->unk_00) {
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     } else if (param2->unk_02 != ((0x8 + 1) + 1)) {
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
-    } else if (sub_02021358(param1) != v0) {
-        sub_02021344(param1, v0);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
+    } else if (Billboard_GetAnimNum(param1) != v0) {
+        Billboard_SetAnimNum(param1, v0);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(param1, (FX32_ONE));
+        Billboard_AdvanceAnim(param1, (FX32_ONE));
     }
 }
 
@@ -1177,19 +1177,19 @@ static void ov5_021EC1D8(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     fx32 v0;
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x0)) {
-        sub_02021344(param1, Unk_ov5_021FF34C[param3]);
-        sub_020213A4(param1, (FX32_ONE * 15));
+        Billboard_SetAnimNum(param1, Unk_ov5_021FF34C[param3]);
+        Billboard_SetAnimFrameNum(param1, (FX32_ONE * 15));
     }
 
-    v0 = sub_020213D4(param1);
+    v0 = Billboard_GetAnimFrameNum(param1);
     v0 -= (FX32_ONE);
 
     if (v0 < 0) {
         v0 = 0;
     }
 
-    sub_020213A4(param1, v0);
-    sub_02021368(param1, 0);
+    Billboard_SetAnimFrameNum(param1, v0);
+    Billboard_AdvanceAnim(param1, 0);
 }
 
 static void ov5_021EC228(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021EBA0C *param2, int param3)
@@ -1197,11 +1197,11 @@ static void ov5_021EC228(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     fx32 v0;
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x1)) {
-        sub_02021344(param1, Unk_ov5_021FF34C[param3]);
-        sub_020213A4(param1, 0);
+        Billboard_SetAnimNum(param1, Unk_ov5_021FF34C[param3]);
+        Billboard_SetAnimFrameNum(param1, 0);
     }
 
-    sub_02021368(param1, (FX32_ONE));
+    Billboard_AdvanceAnim(param1, (FX32_ONE));
 }
 
 static void ov5_021EC260(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021EBA0C *param2, int param3)
@@ -1209,12 +1209,12 @@ static void ov5_021EC260(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     fx32 v0;
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x2)) {
-        sub_02021344(param1, Unk_ov5_021FF34C[param3]);
-        sub_020213A4(param1, (FX32_ONE * 15));
+        Billboard_SetAnimNum(param1, Unk_ov5_021FF34C[param3]);
+        Billboard_SetAnimFrameNum(param1, (FX32_ONE * 15));
         param2->unk_03_1 = 0;
     }
 
-    v0 = sub_020213D4(param1);
+    v0 = Billboard_GetAnimFrameNum(param1);
 
     switch (param2->unk_03_1) {
     case 0:
@@ -1241,8 +1241,8 @@ static void ov5_021EC260(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
         }
     }
 
-    sub_020213A4(param1, v0);
-    sub_02021368(param1, 0);
+    Billboard_SetAnimFrameNum(param1, v0);
+    Billboard_AdvanceAnim(param1, 0);
 }
 
 static void ov5_021EC324(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021EBA0C *param2, int param3)
@@ -1250,24 +1250,24 @@ static void ov5_021EC324(MapObject *mapObj, Billboard *param1, UnkStruct_ov5_021
     fx32 v0;
 
     if ((param3 != param2->unk_00) || (param2->unk_02 != 0x3)) {
-        sub_02021344(param1, Unk_ov5_021FF34C[param3]);
-        sub_020213A4(param1, (FX32_ONE * 15));
+        Billboard_SetAnimNum(param1, Unk_ov5_021FF34C[param3]);
+        Billboard_SetAnimFrameNum(param1, (FX32_ONE * 15));
     }
 
-    v0 = sub_020213D4(param1) - (FX32_ONE);
+    v0 = Billboard_GetAnimFrameNum(param1) - (FX32_ONE);
 
     if (v0 < 0) {
         v0 = 0;
     }
 
-    sub_020213A4(param1, v0);
-    sub_02021368(param1, 0);
+    Billboard_SetAnimFrameNum(param1, v0);
+    Billboard_AdvanceAnim(param1, 0);
 }
 
 static void ov5_021EC374(MapObject *mapObj, Billboard *param1, int param2)
 {
     VecFx32 v0 = { 0, 0, 0 };
-    int v1 = (sub_02021394(param1) / FX32_ONE);
+    int v1 = (Billboard_GetFrameNum(param1) / FX32_ONE);
 
     switch (param2) {
     case 0:
@@ -1327,9 +1327,9 @@ void ov5_021EC3F0(MapObject *mapObj)
     {
         int v3 = ov5_021EDF18(v0);
 
-        sub_02021344(v2, v3);
-        sub_020213A4(v2, 0);
-        sub_02021368(v2, 0);
+        Billboard_SetAnimNum(v2, v3);
+        Billboard_SetAnimFrameNum(v2, 0);
+        Billboard_AdvanceAnim(v2, 0);
     }
 
     ov5_021EDEB4(mapObj, v2);
@@ -1357,12 +1357,12 @@ void ov5_021EC454(MapObject *mapObj)
     v1->unk_00 = v0;
     v1->unk_02 = sub_02062A14(mapObj);
 
-    if (sub_02021358(v2) != 0) {
-        sub_02021344(v2, 0);
-        sub_020213A4(v2, 0);
+    if (Billboard_GetAnimNum(v2) != 0) {
+        Billboard_SetAnimNum(v2, 0);
+        Billboard_SetAnimFrameNum(v2, 0);
     }
 
-    sub_02021368(v2, (FX32_ONE));
+    Billboard_AdvanceAnim(v2, (FX32_ONE));
 
     ov5_021EDEB4(mapObj, v2);
     ov5_021EC6C0(mapObj, v2);
@@ -1389,20 +1389,20 @@ void ov5_021EC4BC(MapObject *mapObj)
 
     switch (v1) {
     case 0x0:
-        if (sub_02021358(v3) != 1) {
-            sub_02021344(v3, 1);
-            sub_020213A4(v3, 0);
+        if (Billboard_GetAnimNum(v3) != 1) {
+            Billboard_SetAnimNum(v3, 1);
+            Billboard_SetAnimFrameNum(v3, 0);
         }
 
-        sub_02021368(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, (FX32_ONE));
         break;
     default:
-        if (sub_02021358(v3) != 0) {
-            sub_02021344(v3, 0);
-            sub_020213A4(v3, 0);
+        if (Billboard_GetAnimNum(v3) != 0) {
+            Billboard_SetAnimNum(v3, 0);
+            Billboard_SetAnimFrameNum(v3, 0);
         }
 
-        sub_02021368(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, (FX32_ONE));
     }
 
     v2->unk_00 = v0;
@@ -1432,11 +1432,11 @@ void ov5_021EC554(MapObject *mapObj)
 
     if (v0 != v2->unk_00) {
         v1 = ov5_021EDF18(v0);
-        sub_02021344(v3, v1);
-        sub_020213A4(v3, 0);
+        Billboard_SetAnimNum(v3, v1);
+        Billboard_SetAnimFrameNum(v3, 0);
     }
 
-    sub_02021368(v3, (FX32_ONE));
+    Billboard_AdvanceAnim(v3, (FX32_ONE));
     ov5_021EDEB4(mapObj, v3);
     ov5_021EC6C0(mapObj, v3);
 
@@ -1465,15 +1465,15 @@ void ov5_021EC5C0(MapObject *mapObj)
 
     if (v1 != v2->unk_02) {
         if (v1 == 0x0) {
-            sub_02021344(v3, 0);
+            Billboard_SetAnimNum(v3, 0);
         } else {
-            sub_02021344(v3, 1);
+            Billboard_SetAnimNum(v3, 1);
         }
 
-        sub_020213A4(v3, 0);
+        Billboard_SetAnimFrameNum(v3, 0);
     }
 
-    sub_02021368(v3, (FX32_ONE));
+    Billboard_AdvanceAnim(v3, (FX32_ONE));
 
     v2->unk_00 = v0;
     v2->unk_02 = v1;
@@ -1486,14 +1486,14 @@ static void ov5_021EC638(Billboard *param0, int param1)
 {
     fx32 v0, v1;
 
-    v0 = sub_020213D4(param0);
+    v0 = Billboard_GetAnimFrameNum(param0);
     v0 /= FX32_ONE;
     v1 = v0 % param1;
     v0 -= v1;
     v0 *= FX32_ONE;
 
-    sub_020213A4(param0, v0);
-    sub_02021368(param0, 0);
+    Billboard_SetAnimFrameNum(param0, v0);
+    Billboard_AdvanceAnim(param0, 0);
 }
 
 static void ov5_021EC668(Billboard *param0)
@@ -1506,10 +1506,10 @@ static void ov5_021EC674(Billboard *param0, int param1, int param2)
     fx32 v0;
 
     ov5_021EC638(param0, param2);
-    v0 = sub_020213D4(param0);
+    v0 = Billboard_GetAnimFrameNum(param0);
 
-    sub_02021344(param0, param1);
-    sub_020213A4(param0, v0);
+    Billboard_SetAnimNum(param0, param1);
+    Billboard_SetAnimFrameNum(param0, v0);
 }
 
 static void ov5_021EC69C(Billboard *param0, int param1)
@@ -1517,10 +1517,10 @@ static void ov5_021EC69C(Billboard *param0, int param1)
     fx32 v0;
 
     ov5_021EC668(param0);
-    v0 = sub_020213D4(param0);
+    v0 = Billboard_GetAnimFrameNum(param0);
 
-    sub_02021344(param0, param1);
-    sub_020213A4(param0, v0);
+    Billboard_SetAnimNum(param0, param1);
+    Billboard_SetAnimFrameNum(param0, v0);
 }
 
 static void ov5_021EC6C0(MapObject *mapObj, Billboard *param1)
@@ -1537,7 +1537,7 @@ static void ov5_021EC6C0(MapObject *mapObj, Billboard *param1)
         }
     }
 
-    sub_02021320(param1, v0);
+    Billboard_SetDrawFlag(param1, v0);
 }
 
 static void ov5_021EC700(u32 param0, VecFx32 *param1)
@@ -1620,7 +1620,7 @@ void ov5_021EC7F0(MapObject *mapObj)
 static void ov5_021EC804(Billboard *param0, void *param1)
 {
     UnkStruct_ov5_021EC804 *v0 = param1;
-    NNSG3dResMdl *v1 = sub_020213F4(param0);
+    NNSG3dResMdl *v1 = Billboard_GetModel(param0);
 
     NNS_G3dMdlUseMdlAlpha(v1);
     NNS_G3dMdlSetMdlAlphaAll(v1, v0->unk_10);
@@ -1634,7 +1634,7 @@ void ov5_021EC824(MapObject *mapObj)
     ov5_021ECF04(mapObj, &v0->unk_04);
 
     if (v0->unk_04 != NULL) {
-        sub_02021444(v0->unk_04, ov5_021EC804, v0);
+        Billboard_SetCallback(v0->unk_04, ov5_021EC804, v0);
         sub_02062B68(mapObj);
     }
 }
@@ -1674,7 +1674,7 @@ void ov5_021EC898(MapObject *mapObj)
         ov5_021ED03C(v1->unk_04, &v1->unk_08);
         ov5_021EDEB4(mapObj, v1->unk_04);
         MapObject_SetStatusFlagOff(mapObj, MAP_OBJ_STATUS_21);
-        sub_02021444(v1->unk_04, ov5_021EC804, v1);
+        Billboard_SetCallback(v1->unk_04, ov5_021EC804, v1);
     }
 }
 
@@ -1701,7 +1701,7 @@ void ov5_021EC8EC(MapObject *mapObj)
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, (FX32_ONE));
     }
 
     ov5_021EDEB4(mapObj, v3);
@@ -1775,7 +1775,7 @@ void ov5_021EC9E8(MapObject *mapObj)
     }
 
     if (ov5_021ECD38(mapObj) == 0) {
-        sub_02021368(v3, (FX32_ONE));
+        Billboard_AdvanceAnim(v3, (FX32_ONE));
     }
 
     {
