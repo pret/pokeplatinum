@@ -32,7 +32,7 @@ enum BillboardResourceValue {
 enum BillboardState {
     BILLBOARD_STATE_INACTIVE = 0,
     BILLBOARD_STATE_INITIALIZED,
-    BILLBOARD_STATE_UNK_2,
+    BILLBOARD_STATE_VRAM_TRANSFER,
     BILLBOARD_STATE_ACTIVE,
 };
 
@@ -66,11 +66,11 @@ static void ReleaseVRAMKeys(NNSG3dResTex *texture, NNSG3dTexKey *texKey, NNSG3dT
 static void SetKeysAndBindModelSet(NNSG3dResTex *texture, NNSG3dResMdlSet *modelSet, NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *plttKey);
 static void FreeVRAMKeys(NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *plttKey);
 static BOOL AreTexturesSameSize(const NNSG3dResTex *texture1, const NNSG3dResTex *texture2);
-static void sub_0202105C(BillboardList *unused, Billboard *billboard);
+static void Billboard_ResetVRAMTransfer(BillboardList *unused, Billboard *billboard);
 static void sub_02021078(Billboard *billboard, const BillboardResources *resources);
-static void sub_020210F4(const BillboardList *list, Billboard *billboard, const BillboardResources *resources);
+static void InitBillboardAnimFromResources(const BillboardList *list, Billboard *billboard, const BillboardResources *resources);
 static void sub_02021148(Billboard *billboard, const BillboardResources *resources);
-static void sub_0202117C(Billboard *billboard, const BillboardResources *resources);
+static void SetBillboardGfxSeqAndResetVRAMTransfer(Billboard *billboard, const BillboardResources *resources);
 
 static BillboardList *sBillboardLists = NULL;
 static int sBillboardListCount = 0;
@@ -84,7 +84,7 @@ static void BillboardList_Reset(BillboardList *list)
     list->freeBillboards = NULL;
     list->freeBillboardHead = 0;
     list->allocator = NULL;
-    list->unk_D8 = NULL;
+    list->vramTransfer = NULL;
     list->redraw = BILLBOARD_REDRAW_NONE;
 }
 
@@ -102,7 +102,7 @@ void Billboard_Reset(Billboard *billboard)
     billboard->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
     billboard->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
     billboard->plttKey = NNS_GFD_ALLOC_ERROR_PLTTKEY;
-    billboard->unk_B0 = NULL;
+    billboard->vramTransfer = NULL;
 
     VEC_Set(&billboard->pos, 0, 0, 0);
     VEC_Set(&billboard->scale, FX32_ONE, FX32_ONE, FX32_ONE);
@@ -177,7 +177,7 @@ BillboardList *BillboardList_New(const BillboardListParams *params)
     list->allocator = Heap_Alloc(params->heapID, sizeof(NNSFndAllocator));
 
     HeapExp_FndInitAllocator(list->allocator, params->heapID, 4);
-    list->unk_D8 = sub_0201DD00(params->maxElements, params->heapID);
+    list->vramTransfer = BillboardListVRAMTransfer_New(params->maxElements, params->heapID);
 
     return list;
 }
@@ -194,7 +194,7 @@ BOOL BillboardList_Delete(BillboardList *list)
         Heap_Free(list->billboards);
         Heap_Free(list->freeBillboards);
         Heap_Free(list->allocator);
-        sub_0201DD3C(list->unk_D8);
+        BillboardListVRAMTransfer_Free(list->vramTransfer);
         BillboardList_Reset(list);
     }
 
@@ -273,8 +273,8 @@ static void BillboardList_Draw(BillboardList *list)
             if (billboard->state == BILLBOARD_STATE_ACTIVE) {
                 UpdateTexPlttAddressesForCurrentFrame(billboard);
             } else {
-                if (billboard->state == BILLBOARD_STATE_UNK_2) {
-                    sub_02021414(billboard);
+                if (billboard->state == BILLBOARD_STATE_VRAM_TRANSFER) {
+                    Billboard_TryRequestVRAMTransfer(billboard);
                 }
             }
 
@@ -296,15 +296,15 @@ static void sub_02020E28(Billboard *billboard, const BillboardResources *resourc
 {
     BillboardList *list = (BillboardList *)billboard->list;
 
-    sub_0202105C(list, billboard);
+    Billboard_ResetVRAMTransfer(list, billboard);
     sub_02021078(billboard, resources);
-    sub_020210F4(list, billboard, resources);
+    InitBillboardAnimFromResources(list, billboard, resources);
 
     if (billboard->state == BILLBOARD_STATE_INITIALIZED) {
         sub_02021744(&list->sentinelData, billboard);
     }
 
-    billboard->state = BILLBOARD_STATE_UNK_2;
+    billboard->state = BILLBOARD_STATE_VRAM_TRANSFER;
     billboard->anims = resources->anims;
     billboard->animNum = 0;
     billboard->frameNum = 0;
@@ -314,9 +314,9 @@ static void sub_02020E78(Billboard *billboard, const BillboardResources *resourc
 {
     BillboardList *list = billboard->list;
 
-    sub_0202105C(list, billboard);
+    Billboard_ResetVRAMTransfer(list, billboard);
 
-    if (billboard->state == BILLBOARD_STATE_UNK_2) {
+    if (billboard->state == BILLBOARD_STATE_VRAM_TRANSFER) {
         FreeVRAMKeys(&billboard->texKey, &billboard->tex4x4Key, &billboard->plttKey);
     }
 
@@ -325,7 +325,7 @@ static void sub_02020E78(Billboard *billboard, const BillboardResources *resourc
     billboard->plttKey = resources->plttKey;
 
     sub_02021148(billboard, resources);
-    sub_0202117C(billboard, resources);
+    SetBillboardGfxSeqAndResetVRAMTransfer(billboard, resources);
 
     if (billboard->state == BILLBOARD_STATE_INITIALIZED) {
         sub_02021744(&list->sentinelData, billboard);
@@ -416,11 +416,11 @@ static BOOL AreTexturesSameSize(const NNSG3dResTex *texture1, const NNSG3dResTex
     return ret;
 }
 
-static void sub_0202105C(BillboardList *unused, Billboard *billboard)
+static void Billboard_ResetVRAMTransfer(BillboardList *unused, Billboard *billboard)
 {
-    if (billboard->unk_B0) {
-        sub_0201DDAC(billboard->unk_B0);
-        billboard->unk_B0 = NULL;
+    if (billboard->vramTransfer) {
+        BillboardVRAMTransfer_Reset(billboard->vramTransfer);
+        billboard->vramTransfer = NULL;
     }
 }
 
@@ -441,7 +441,7 @@ static void sub_02021078(Billboard *billboard, const BillboardResources *resourc
     }
 
     if (sameTexSize == FALSE) {
-        if (billboard->state == BILLBOARD_STATE_UNK_2) {
+        if (billboard->state == BILLBOARD_STATE_VRAM_TRANSFER) {
             FreeVRAMKeys(&billboard->texKey, &billboard->tex4x4Key, &billboard->plttKey);
         }
 
@@ -449,11 +449,11 @@ static void sub_02021078(Billboard *billboard, const BillboardResources *resourc
     }
 }
 
-static void sub_020210F4(const BillboardList *list, Billboard *billboard, const BillboardResources *resources)
+static void InitBillboardAnimFromResources(const BillboardList *list, Billboard *billboard, const BillboardResources *resources)
 {
     billboard->animTexture = BillboardResources_GetTexture(resources);
     billboard->gfxSequence = resources->gfxSequence;
-    billboard->unk_B0 = sub_0201DD54(list->unk_D8, &billboard->gfxSequence, billboard->animTexture, billboard->texKey, billboard->plttKey, billboard->frameNum);
+    billboard->vramTransfer = BillboardListVRAMTransfer_NewBillboardTransfer(list->vramTransfer, &billboard->gfxSequence, billboard->animTexture, billboard->texKey, billboard->plttKey, billboard->frameNum);
 }
 
 static void sub_02021148(Billboard *billboard, const BillboardResources *resources)
@@ -463,10 +463,10 @@ static void sub_02021148(Billboard *billboard, const BillboardResources *resourc
     billboard->animTexture = BillboardResources_GetTexture(resources);
 }
 
-static void sub_0202117C(Billboard *billboard, const BillboardResources *resources)
+static void SetBillboardGfxSeqAndResetVRAMTransfer(Billboard *billboard, const BillboardResources *resources)
 {
     billboard->gfxSequence = resources->gfxSequence;
-    billboard->unk_B0 = NULL;
+    billboard->vramTransfer = NULL;
 }
 
 Billboard *sub_0202119C(const BillboardListTemplate *param0)
@@ -510,11 +510,11 @@ BOOL Billboard_Delete(Billboard *billboard)
 
     BillboardList_Remove(billboard);
 
-    if (billboard->state == BILLBOARD_STATE_UNK_2) {
+    if (billboard->state == BILLBOARD_STATE_VRAM_TRANSFER) {
         FreeVRAMKeys(&billboard->texKey, &billboard->tex4x4Key, &billboard->plttKey);
     }
 
-    sub_0202105C(list, billboard);
+    Billboard_ResetVRAMTransfer(list, billboard);
     BillboardList_FreeBillboard(list, billboard);
 
     list->redraw = BILLBOARD_REDRAW_NEEDED;
@@ -649,10 +649,10 @@ int Billboard_GetState(const Billboard *billboard)
     return billboard->state;
 }
 
-void sub_02021414(Billboard *billboard)
+void Billboard_TryRequestVRAMTransfer(Billboard *billboard)
 {
-    if (billboard->state == BILLBOARD_STATE_UNK_2) {
-        sub_0201DDD8(billboard->unk_B0, billboard->frameNum);
+    if (billboard->state == BILLBOARD_STATE_VRAM_TRANSFER) {
+        BillboardVRAMTransfer_Request(billboard->vramTransfer, billboard->frameNum);
     }
 }
 

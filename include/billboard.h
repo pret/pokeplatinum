@@ -6,10 +6,8 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0201DD00_decl.h"
-#include "struct_decls/struct_0201DDF4_decl.h"
-
 #include "billboard_gfx_sequence.h"
+#include "unk_0201DD00.h"
 
 typedef struct Billboard Billboard;
 typedef void (*BillboardCallback)(Billboard *, void *);
@@ -38,7 +36,7 @@ typedef struct Billboard {
     NNSGfdTexKey tex4x4Key;
     NNSGfdPlttKey plttKey;
     BillboardGfxSequence gfxSequence;
-    UnkStruct_0201DDF4 *unk_B0;
+    BillboardVRAMTransfer *vramTransfer;
     u8 state;
     u16 animNum;
     fx32 frameNum;
@@ -57,7 +55,7 @@ typedef struct BillboardList {
     Billboard **freeBillboards;
     int freeBillboardHead;
     NNSFndAllocator *allocator;
-    UnkStruct_0201DD00 *unk_D8;
+    BillboardListVRAMTransfer *vramTransfer;
 } BillboardList;
 
 typedef struct BillboardResources {
@@ -117,7 +115,7 @@ void Billboard_SetAnimFrameNum(Billboard *billboard, fx32 animFrameNum);
 fx32 Billboard_GetAnimFrameNum(const Billboard *billboard);
 NNSG3dResMdl *Billboard_GetModel(const Billboard *billboard);
 int Billboard_GetState(const Billboard *billboard);
-void sub_02021414(Billboard *billboard);
+void Billboard_TryRequestVRAMTransfer(Billboard *billboard);
 NNSG3dResMdl *Billboard_GetModel2(Billboard *billboard);
 NNSG3dResTex *Billboard_GetTexture(Billboard *billboard);
 NNSG3dRenderObj *Billboard_GetRenderObj(Billboard *billboard);

@@ -5,20 +5,31 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_0201DD00_decl.h"
-#include "struct_decls/struct_0201DDF4_decl.h"
+#include "billboard_gfx_sequence.h"
 
-#include "billboard.h"
+typedef struct BillboardVRAMTransfer {
+    const BillboardGfxSequence *gfxSequence;
+    const NNSG3dResTex *texture;
+    NNSGfdTexKey texKey;
+    NNSGfdPlttKey plttKey;
+    u8 textureIdx;
+    u8 plttIdx;
+} BillboardVRAMTransfer;
 
-UnkStruct_0201DD00 *sub_0201DD00(int param0, enum HeapID heapID);
-void sub_0201DD3C(UnkStruct_0201DD00 *param0);
-UnkStruct_0201DDF4 *sub_0201DD54(UnkStruct_0201DD00 *param0, const BillboardGfxSequence *param1, const NNSG3dResTex *param2, NNSGfdTexKey param3, NNSGfdPlttKey param4, const fx32 param5);
-void sub_0201DDAC(UnkStruct_0201DDF4 *param0);
-void sub_0201DDB4(UnkStruct_0201DD00 *param0);
-void sub_0201DDD8(UnkStruct_0201DDF4 *param0, const fx32 param1);
-void *sub_0201DEAC(NNSG3dResTex *param0, const u8 param1);
-void *sub_0201DEFC(NNSG3dResTex *param0, const u8 param1);
-void *sub_0201DF50(NNSG3dResTex *param0, const char *param1);
-int sub_0201DFE4(NNSG3dResTex *param0, const char *param1);
+typedef struct BillboardListVRAMTransfer {
+    BillboardVRAMTransfer *billboardTransfers;
+    int maxElements;
+} BillboardListVRAMTransfer;
+
+BillboardListVRAMTransfer *BillboardListVRAMTransfer_New(int maxElements, enum HeapID heapID);
+void BillboardListVRAMTransfer_Free(BillboardListVRAMTransfer *listTransfer);
+BillboardVRAMTransfer *BillboardListVRAMTransfer_NewBillboardTransfer(BillboardListVRAMTransfer *listTransfer, const BillboardGfxSequence *gfxSequence, const NNSG3dResTex *texture, NNSGfdTexKey texKey, NNSGfdPlttKey plttKey, const fx32 index);
+void BillboardVRAMTransfer_Reset(BillboardVRAMTransfer *transfer);
+void BillboardListVRAMTransfer_ResetAll(BillboardListVRAMTransfer *listTransfer);
+void BillboardVRAMTransfer_Request(BillboardVRAMTransfer *param0, const fx32 param1);
+void *GetTextureDataVRAMBuffer(NNSG3dResTex *texture, const u8 index);
+void *GetPlttDataVRAMBuffer(NNSG3dResTex *texture, const u8 index);
+void *GetTextureDataBufferFromResourceName(NNSG3dResTex *texture, const char *name);
+int CalcTextureDataSizeFromResourceName(NNSG3dResTex *texture, const char *name);
 
 #endif // POKEPLATINUM_UNK_0201DD00_H

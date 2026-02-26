@@ -8,248 +8,207 @@
 #include "heap.h"
 #include "vram_transfer.h"
 
-typedef struct UnkStruct_0201DDF4_t {
-    const BillboardGfxSequence *unk_00;
-    const NNSG3dResTex *unk_04;
-    NNSGfdTexKey unk_08;
-    NNSGfdPlttKey unk_0C;
-    u8 unk_10;
-    u8 unk_11;
-} UnkStruct_0201DDF4;
+static void RequestBillboardVRAMTransfer(BillboardVRAMTransfer *transfer, const u16 index);
+static void *GetBillboardTextureVRAMBuffer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndex);
+static void *GetBillboardPlttVRAMBuffer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndex);
+static void ResetBillboardVRAMTransfer(BillboardVRAMTransfer *transfer);
+static void RequestBillboardTextureVRAMTransfer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndexes);
+static void RequestBillboardPlttVRAMTransfer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndexes);
 
-typedef struct UnkStruct_0201DD00_t {
-    UnkStruct_0201DDF4 *unk_00;
-    int unk_04;
-} UnkStruct_0201DD00;
-
-static void sub_0201DDF4(UnkStruct_0201DDF4 *param0, const u16 param1);
-static void *sub_0201DE94(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
-static void *sub_0201DEA0(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
-static void sub_0201DDE4(UnkStruct_0201DDF4 *param0);
-static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
-static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1);
-
-UnkStruct_0201DD00 *sub_0201DD00(int param0, enum HeapID heapID)
+BillboardListVRAMTransfer *BillboardListVRAMTransfer_New(int maxElements, enum HeapID heapID)
 {
-    UnkStruct_0201DD00 *v0;
-    int v1;
+    BillboardListVRAMTransfer *listTransfer = Heap_Alloc(heapID, sizeof(BillboardListVRAMTransfer));
+    listTransfer->billboardTransfers = Heap_Alloc(heapID, sizeof(BillboardVRAMTransfer) * maxElements);
+    listTransfer->maxElements = maxElements;
 
-    v0 = Heap_Alloc(heapID, sizeof(UnkStruct_0201DD00));
-
-    v0->unk_00 = Heap_Alloc(heapID, sizeof(UnkStruct_0201DDF4) * param0);
-    v0->unk_04 = param0;
-
-    for (v1 = 0; v1 < v0->unk_04; v1++) {
-        sub_0201DDE4(&v0->unk_00[v1]);
+    for (int i = 0; i < listTransfer->maxElements; i++) {
+        ResetBillboardVRAMTransfer(&listTransfer->billboardTransfers[i]);
     }
 
-    return v0;
+    return listTransfer;
 }
 
-void sub_0201DD3C(UnkStruct_0201DD00 *param0)
+void BillboardListVRAMTransfer_Free(BillboardListVRAMTransfer *listTransfer)
 {
-    sub_0201DDB4(param0);
-    Heap_Free(param0->unk_00);
-    Heap_Free(param0);
+    BillboardListVRAMTransfer_ResetAll(listTransfer);
+    Heap_Free(listTransfer->billboardTransfers);
+    Heap_Free(listTransfer);
 }
 
-UnkStruct_0201DDF4 *sub_0201DD54(UnkStruct_0201DD00 *param0, const BillboardGfxSequence *param1, const NNSG3dResTex *param2, NNSGfdTexKey param3, NNSGfdPlttKey param4, const fx32 param5)
+BillboardVRAMTransfer *BillboardListVRAMTransfer_NewBillboardTransfer(BillboardListVRAMTransfer *listTransfer, const BillboardGfxSequence *gfxSequence, const NNSG3dResTex *texture, NNSGfdTexKey texKey, NNSGfdPlttKey plttKey, const fx32 index)
 {
-    UnkStruct_0201DDF4 *v0;
-    u32 v1;
-    int v2;
+    BillboardVRAMTransfer *transfer = NULL;
 
-    v0 = NULL;
-
-    for (v2 = 0; v2 < param0->unk_04; v2++) {
-        if (param0->unk_00[v2].unk_00 == NULL) {
-            v0 = &param0->unk_00[v2];
+    for (int i = 0; i < listTransfer->maxElements; i++) {
+        if (listTransfer->billboardTransfers[i].gfxSequence == NULL) {
+            transfer = &listTransfer->billboardTransfers[i];
             break;
         }
     }
 
-    if (v0 == NULL) {
+    if (transfer == NULL) {
         return NULL;
     }
 
-    v0->unk_00 = param1;
-    v0->unk_04 = param2;
-    v0->unk_08 = param3;
-    v0->unk_0C = param4;
-    v0->unk_10 = -1;
-    v0->unk_11 = -1;
+    transfer->gfxSequence = gfxSequence;
+    transfer->texture = texture;
+    transfer->texKey = texKey;
+    transfer->plttKey = plttKey;
+    transfer->textureIdx = -1;
+    transfer->plttIdx = -1;
 
-    sub_0201DDF4(v0, param5 >> FX32_SHIFT);
+    RequestBillboardVRAMTransfer(transfer, index >> FX32_SHIFT);
 
-    return v0;
+    return transfer;
 }
 
-void sub_0201DDAC(UnkStruct_0201DDF4 *param0)
+void BillboardVRAMTransfer_Reset(BillboardVRAMTransfer *transfer)
 {
-    sub_0201DDE4(param0);
+    ResetBillboardVRAMTransfer(transfer);
 }
 
-void sub_0201DDB4(UnkStruct_0201DD00 *param0)
+void BillboardListVRAMTransfer_ResetAll(BillboardListVRAMTransfer *listTransfer)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        sub_0201DDE4(param0->unk_00 + v0);
+    for (int i = 0; i < listTransfer->maxElements; i++) {
+        ResetBillboardVRAMTransfer(listTransfer->billboardTransfers + i);
     }
 }
 
-void sub_0201DDD8(UnkStruct_0201DDF4 *param0, const fx32 param1)
+void BillboardVRAMTransfer_Request(BillboardVRAMTransfer *transfer, const fx32 indexFx32)
 {
-    u16 v0 = param1 >> FX32_SHIFT;
-
-    sub_0201DDF4(param0, v0);
+    u16 index = indexFx32 >> FX32_SHIFT;
+    RequestBillboardVRAMTransfer(transfer, index);
 }
 
-static void sub_0201DDE4(UnkStruct_0201DDF4 *param0)
+static void ResetBillboardVRAMTransfer(BillboardVRAMTransfer *transfer)
 {
-    param0->unk_00 = NULL;
-    param0->unk_04 = NULL;
-    param0->unk_08 = 0;
-    param0->unk_0C = 0;
-    param0->unk_10 = 0;
-    param0->unk_11 = 0;
+    transfer->gfxSequence = NULL;
+    transfer->texture = NULL;
+    transfer->texKey = 0;
+    transfer->plttKey = 0;
+    transfer->textureIdx = 0;
+    transfer->plttIdx = 0;
 }
 
-static void sub_0201DDF4(UnkStruct_0201DDF4 *param0, const u16 param1)
+static void RequestBillboardVRAMTransfer(BillboardVRAMTransfer *transfer, const u16 index)
 {
-    BillboardTexPlttIndex v0;
+    BillboardTexPlttIndex texPlttIndexes = BillboardGfxSequence_GetTexPlttIndexAt(transfer->gfxSequence, index);
 
-    v0 = BillboardGfxSequence_GetTexPlttIndexAt(param0->unk_00, param1);
-
-    if (param0->unk_10 != v0.textureIdx) {
-        sub_0201DE3C(param0, &v0);
+    if (transfer->textureIdx != texPlttIndexes.textureIdx) {
+        RequestBillboardTextureVRAMTransfer(transfer, &texPlttIndexes);
     }
 
-    if (param0->unk_11 != v0.plttIdx) {
-        sub_0201DE68(param0, &v0);
+    if (transfer->plttIdx != texPlttIndexes.plttIdx) {
+        RequestBillboardPlttVRAMTransfer(transfer, &texPlttIndexes);
     }
 }
 
-static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
+static void RequestBillboardTextureVRAMTransfer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndexes)
 {
-    void *v0 = sub_0201DE94(param0, param1);
-
-    VramTransfer_Request(NNS_GFD_DST_3D_TEX_VRAM, NNS_GfdGetTexKeyAddr(param0->unk_08), v0, NNS_GfdGetTexKeySize(param0->unk_08));
-    param0->unk_10 = param1->textureIdx;
+    void *buffer = GetBillboardTextureVRAMBuffer(transfer, texPlttIndexes);
+    VramTransfer_Request(NNS_GFD_DST_3D_TEX_VRAM, NNS_GfdGetTexKeyAddr(transfer->texKey), buffer, NNS_GfdGetTexKeySize(transfer->texKey));
+    transfer->textureIdx = texPlttIndexes->textureIdx;
 }
 
-static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
+static void RequestBillboardPlttVRAMTransfer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndexes)
 {
-    void *v0 = sub_0201DEA0(param0, param1);
-    VramTransfer_Request(NNS_GFD_DST_3D_TEX_PLTT, NNS_GfdGetPlttKeyAddr(param0->unk_0C), v0, NNS_GfdGetPlttKeySize(param0->unk_0C));
-
-    param0->unk_11 = param1->plttIdx;
+    void *buffer = GetBillboardPlttVRAMBuffer(transfer, texPlttIndexes);
+    VramTransfer_Request(NNS_GFD_DST_3D_TEX_PLTT, NNS_GfdGetPlttKeyAddr(transfer->plttKey), buffer, NNS_GfdGetPlttKeySize(transfer->plttKey));
+    transfer->plttIdx = texPlttIndexes->plttIdx;
 }
 
-static void *sub_0201DE94(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
+static void *GetBillboardTextureVRAMBuffer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndex)
 {
-    return sub_0201DEAC((NNSG3dResTex *)param0->unk_04, param1->textureIdx);
+    return GetTextureDataVRAMBuffer(transfer->texture, texPlttIndex->textureIdx);
 }
 
-static void *sub_0201DEA0(UnkStruct_0201DDF4 *param0, const BillboardTexPlttIndex *param1)
+static void *GetBillboardPlttVRAMBuffer(BillboardVRAMTransfer *transfer, const BillboardTexPlttIndex *texPlttIndex)
 {
-    return sub_0201DEFC((NNSG3dResTex *)param0->unk_04, param1->plttIdx);
+    return GetPlttDataVRAMBuffer(transfer->texture, texPlttIndex->plttIdx);
 }
 
-void *sub_0201DEAC(NNSG3dResTex *param0, const u8 param1)
+void *GetTextureDataVRAMBuffer(NNSG3dResTex *texture, const u8 index)
 {
-    u32 v0;
-    const NNSG3dResDictTexData *v1 = NNS_G3dGetTexDataByIdx(param0, param1);
+    const NNSG3dResDictTexData *textureData = NNS_G3dGetTexDataByIdx(texture, index);
 
-    if (v1 == NULL) {
+    if (textureData == NULL) {
         return NULL;
     }
 
-    v0 = (v1->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) + param0->texInfo.vramKey;
-    return (void *)((u8 *)param0 + param0->texInfo.ofsTex + (v0 << 3));
+    u32 address = (textureData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) + texture->texInfo.vramKey;
+    return (void *)((u8 *)texture + texture->texInfo.ofsTex + (address << 3));
 }
 
-void *sub_0201DEFC(NNSG3dResTex *param0, const u8 param1)
+void *GetPlttDataVRAMBuffer(NNSG3dResTex *texture, const u8 index)
 {
-    const NNSG3dResDictPlttData *v0 = NNS_G3dGetPlttDataByIdx(param0, param1);
+    const NNSG3dResDictPlttData *plttData = NNS_G3dGetPlttDataByIdx(texture, index);
 
-    if (v0 == NULL) {
+    if (plttData == NULL) {
         return NULL;
     }
 
-    return (void *)((u8 *)param0 + param0->plttInfo.ofsPlttData + (v0->offset << 3));
+    return (void *)((u8 *)texture + texture->plttInfo.ofsPlttData + (plttData->offset << 3));
 }
 
-static void *sub_0201DF40(NNSG3dResTex *param0, const NNSG3dResDictTexData *param1)
+static void *GetTextureDataBuffer(NNSG3dResTex *texture, const NNSG3dResDictTexData *textureData)
 {
-    u32 v0 = (param1->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) << 3;
-
-    v0 += NNS_GfdGetTexKeyAddr(param0->texInfo.vramKey);
-    return (void *)(v0);
+    u32 address = (textureData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) << 3;
+    address += NNS_GfdGetTexKeyAddr(texture->texInfo.vramKey);
+    return (void *)address;
 }
 
-void *sub_0201DF50(NNSG3dResTex *param0, const char *param1)
+void *GetTextureDataBufferFromResourceName(NNSG3dResTex *texture, const char *name)
 {
-    NNSG3dResName v0;
-    const NNSG3dResDictTexData *v1;
+    NNSG3dResName resName;
+    Ascii_SetResourceName(&resName, name);
+    const NNSG3dResDictTexData *textureData = NNS_G3dGetTexDataByName(texture, &resName);
 
-    Ascii_SetResourceName(&v0, param1);
-    v1 = NNS_G3dGetTexDataByName(param0, &v0);
-
-    if (v1 == NULL) {
+    if (textureData == NULL) {
         return NULL;
     }
 
-    return sub_0201DF40(param0, v1);
+    return GetTextureDataBuffer(texture, textureData);
 }
 
-static int sub_0201DF84(NNSG3dResTex *param0, const NNSG3dResDictTexData *param1)
+static int CalcTextureDataSize(NNSG3dResTex *texture, const NNSG3dResDictTexData *textureData)
 {
-    u32 v0;
-    u32 v1;
-    u32 v2, v3;
-    u32 v4;
+    u32 textureFormat = (textureData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEXFMT_MASK) >> NNS_G3D_TEXIMAGE_PARAM_TEXFMT_SHIFT;
+    u32 texelSize;
 
-    v1 = (param1->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEXFMT_MASK) >> NNS_G3D_TEXIMAGE_PARAM_TEXFMT_SHIFT;
-
-    switch (v1) {
+    switch (textureFormat) {
     case GX_TEXFMT_PLTT4:
-        v4 = 4;
+        texelSize = 4;
         break;
     case GX_TEXFMT_PLTT16:
-        v4 = 2;
+        texelSize = 2;
         break;
     case GX_TEXFMT_PLTT256:
-        v4 = 1;
+        texelSize = 1;
         break;
     case GX_TEXFMT_A3I5:
-        v4 = 1;
+        texelSize = 1;
         break;
     case GX_TEXFMT_A5I3:
-        v4 = 1;
+        texelSize = 1;
         break;
     default:
         return 0;
     }
 
-    v3 = (param1->texImageParam & NNS_G3D_TEXIMAGE_PARAM_S_SIZE_MASK) >> NNS_G3D_TEXIMAGE_PARAM_S_SIZE_SHIFT;
-    v3 <<= 4;
+    u32 sSize = (textureData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_S_SIZE_MASK) >> NNS_G3D_TEXIMAGE_PARAM_S_SIZE_SHIFT;
+    sSize <<= 4;
 
-    v2 = (param1->texImageParam & NNS_G3D_TEXIMAGE_PARAM_T_SIZE_MASK) >> NNS_G3D_TEXIMAGE_PARAM_T_SIZE_SHIFT;
-    v2 <<= 4;
+    u32 tSize = (textureData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_T_SIZE_MASK) >> NNS_G3D_TEXIMAGE_PARAM_T_SIZE_SHIFT;
+    tSize <<= 4;
 
-    v0 = (v3 * v2) / v4;
-
-    return v0;
+    return (sSize * tSize) / texelSize;
 }
 
-int sub_0201DFE4(NNSG3dResTex *param0, const char *param1)
+int CalcTextureDataSizeFromResourceName(NNSG3dResTex *texture, const char *name)
 {
-    const NNSG3dResDictTexData *v0;
-    NNSG3dResName v1;
+    NNSG3dResName resName;
+    Ascii_SetResourceName(&resName, name);
+    const NNSG3dResDictTexData *textureData = NNS_G3dGetTexDataByName(texture, &resName);
 
-    Ascii_SetResourceName(&v1, param1);
-    v0 = NNS_G3dGetTexDataByName(param0, &v1);
-
-    return sub_0201DF84(param0, v0);
+    return CalcTextureDataSize(texture, textureData);
 }

@@ -323,7 +323,7 @@ static void ov5_021F1AD8(OverworldAnimManager *param0, UnkStruct_ov5_021F1AD8 *p
         Billboard_SetAnimFrameNum(param1->unk_3C, Billboard_GetAnimFrameNum(v4));
         Billboard_SetFrameNum(param1->unk_3C, Billboard_GetFrameNum(v4));
         Billboard_AdvanceAnim(param1->unk_3C, 0);
-        sub_02021414(param1->unk_3C);
+        Billboard_TryRequestVRAMTransfer(param1->unk_3C);
     }
 }
 

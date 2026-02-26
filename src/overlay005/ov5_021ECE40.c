@@ -1954,7 +1954,7 @@ static Billboard *ov5_021EE454(MapObject *param0, int param1, UnkFuncPtr_ov5_021
     Billboard_SetFrameNum(v11->unk_24, Billboard_GetFrameNum(v10));
     Billboard_AdvanceAnim(v11->unk_24, 0);
     Billboard_SetDrawFlag(v11->unk_24, 1);
-    sub_02021414(v11->unk_24);
+    Billboard_TryRequestVRAMTransfer(v11->unk_24);
 
     {
         if (sub_02062F64(param0) == 1) {
