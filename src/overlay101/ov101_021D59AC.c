@@ -2351,7 +2351,7 @@ static void ov101_021D7BB4(OverworldAnimManager *param0, void *param1)
 
         for (v0 = 0; v0 < 3; v0++) {
             v2 = Unk_ov101_021D9424[v3->unk_1C][v0];
-            ov101_021D84A4(v3->unk_44->unk_450, &v3->unk_20[v0], &v2, (NNS_G2D_VRAM_TYPE_MAX), 0, 10, 0, 10, 10, 1, 0);
+            ov101_021D84A4(v3->unk_44->unk_450, &v3->unk_20[v0], &v2, (NNS_G2D_VRAM_TYPE_2DBOTH), 0, 10, 0, 10, 10, 1, 0);
             Sprite_SetAnimateFlag(v3->unk_20[v0].unk_04, 1);
         }
 
@@ -2463,11 +2463,11 @@ static void ov101_021D7D94(UnkStruct_ov101_021D7D94 *param0)
     UnkStruct_ov101_021D13C8 *v1 = param0->unk_44;
 
     if (param0->unk_18 == 0) {
-        ov101_021D80E4(v1->unk_450, (NNS_G2D_VRAM_TYPE_MAX), v1->unk_438, 14, 10);
+        ov101_021D80E4(v1->unk_450, (NNS_G2D_VRAM_TYPE_2DBOTH), v1->unk_438, 14, 10);
         ov101_021D8288(v1->unk_450, v1->unk_438, 15, 10);
         ov101_021D82F0(v1->unk_450, v1->unk_438, 16, 10);
     } else {
-        ov101_021D80E4(v1->unk_450, (NNS_G2D_VRAM_TYPE_MAX), v1->unk_438, 17, 10);
+        ov101_021D80E4(v1->unk_450, (NNS_G2D_VRAM_TYPE_2DBOTH), v1->unk_438, 17, 10);
         ov101_021D8288(v1->unk_450, v1->unk_438, 18, 10);
         ov101_021D82F0(v1->unk_450, v1->unk_438, 19, 10);
     }

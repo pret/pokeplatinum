@@ -286,10 +286,10 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
     if (param4) {
         switch (param3) {
         case NNS_G2D_VRAM_TYPE_2DMAIN:
-            param0->unk_18->mapingType = GX_GetOBJVRamModeChar();
+            param0->unk_18->mappingType = GX_GetOBJVRamModeChar();
             break;
         case NNS_G2D_VRAM_TYPE_2DSUB:
-            param0->unk_18->mapingType = GXS_GetOBJVRamModeChar();
+            param0->unk_18->mappingType = GXS_GetOBJVRamModeChar();
             break;
         }
 
@@ -719,7 +719,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1)
         NNS_G2dInitImageProxy(&v2);
 
         v4 = Graphics_GetCharData(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param1, 1), 0, &v3, HEAP_ID_BOX_GRAPHICS);
-        v3->mapingType = GX_GetOBJVRamModeChar();
+        v3->mappingType = GX_GetOBJVRamModeChar();
         NNS_G2dLoadImage1DMapping(v3, 1520 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
         Graphics_LoadPalette(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(param1, 2), 1, 6 * 0x20, 0x20, HEAP_ID_BOX_GRAPHICS);

@@ -429,7 +429,7 @@ void *PokemonSpriteManager_New(enum HeapID heapID)
     NNS_G2dGetUnpackedCharacterData(shadowsNCGR, &charData);
 
     monSpriteMan->charData.pixelFmt = charData->pixelFmt;
-    monSpriteMan->charData.mapingType = charData->mapingType;
+    monSpriteMan->charData.mappingType = charData->mappingType;
     monSpriteMan->charData.characterFmt = charData->characterFmt;
     rawCharData = charData->pRawData;
 
@@ -1328,7 +1328,7 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
             NNS_G2dGetUnpackedCharacterData(ncgrFile, &charData);
 
             monSpriteMan->charData.pixelFmt = charData->pixelFmt;
-            monSpriteMan->charData.mapingType = charData->mapingType;
+            monSpriteMan->charData.mappingType = charData->mappingType;
             monSpriteMan->charData.characterFmt = charData->characterFmt;
 
             rawCharData = charData->pRawData;

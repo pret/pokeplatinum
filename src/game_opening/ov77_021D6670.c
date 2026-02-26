@@ -198,8 +198,8 @@ static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
         param0->unk_190[i] = SpriteResourceCollection_New(Unk_ov77_021D7930[i], i, heapID);
     }
 
-    param0->unk_1A0[0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 4, 0, 0, NNS_G2D_VRAM_TYPE_MAX, heapID);
-    param0->unk_1A0[1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 3, 0, 0, NNS_G2D_VRAM_TYPE_MAX, 1, heapID);
+    param0->unk_1A0[0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 128, 4, 0, 0, NNS_G2D_VRAM_TYPE_2DBOTH, heapID);
+    param0->unk_1A0[1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 128, 3, 0, 0, NNS_G2D_VRAM_TYPE_2DBOTH, 1, heapID);
     param0->unk_1A0[2] = SpriteResourceCollection_Add(param0->unk_190[2], 128, 5, 0, 0, 2, heapID);
     param0->unk_1A0[3] = SpriteResourceCollection_Add(param0->unk_190[3], 128, 6, 0, 0, 3, heapID);
 
