@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "billboard_vram_transfer.h"
 #include "heap.h"
 #include "narc.h"
 #include "particle_system.h"
-#include "unk_0201DD00.h"
 #include "vram_transfer.h"
 
 typedef struct {

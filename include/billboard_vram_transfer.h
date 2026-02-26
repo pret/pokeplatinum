@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0201DD00_H
-#define POKEPLATINUM_UNK_0201DD00_H
+#ifndef POKEPLATINUM_BILLBOARD_VRAM_TRANSFER_H
+#define POKEPLATINUM_BILLBOARD_VRAM_TRANSFER_H
 
 #include <nnsys.h>
 
@@ -32,4 +32,4 @@ void *GetPlttDataVRAMBuffer(NNSG3dResTex *texture, const u8 index);
 void *GetTextureDataBufferFromResourceName(NNSG3dResTex *texture, const char *name);
 int CalcTextureDataSizeFromResourceName(NNSG3dResTex *texture, const char *name);
 
-#endif // POKEPLATINUM_UNK_0201DD00_H
+#endif // POKEPLATINUM_BILLBOARD_VRAM_TRANSFER_H

@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "billboard_vram_transfer.h"
 #include "easy3d.h"
 #include "heap.h"
-#include "unk_0201DD00.h"
 
 enum BillboardAnimType {
     BILLBOARD_ANIM_TYPE_LOOP = 0,

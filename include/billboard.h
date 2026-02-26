@@ -7,7 +7,7 @@
 #include "constants/heap.h"
 
 #include "billboard_gfx_sequence.h"
-#include "unk_0201DD00.h"
+#include "billboard_vram_transfer.h"
 
 typedef struct Billboard Billboard;
 typedef void (*BillboardCallback)(Billboard *, void *);
