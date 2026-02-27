@@ -1701,7 +1701,7 @@ BOOL sub_0203C50C(FieldTask *taskMan)
     return 0;
 }
 
-static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *param1, u8 param2);
+static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode);
 
 void *sub_0203C540(u16 fieldSystem, u8 param1, u8 param2)
 {
@@ -1733,7 +1733,7 @@ BOOL StartMenu_ExitMail(FieldTask *taskMan)
         break;
     case 0:
         if (sub_02097728(menu->taskData) == 1) {
-            sub_0203C668(fieldSystem, menu, 12);
+            sub_0203C668(fieldSystem, menu, PARTY_MENU_MODE_GIVE_MAIL_DONE);
         } else {
             sub_02097770(menu->taskData);
             menu->taskData = FieldSystem_OpenPartyMenu(fieldSystem, &menu->fieldMoveContext, v2->unk_02);
@@ -1742,7 +1742,7 @@ BOOL StartMenu_ExitMail(FieldTask *taskMan)
         break;
     case 1:
         if (sub_02097728(menu->taskData) == 1) {
-            sub_0203C668(fieldSystem, menu, 11);
+            sub_0203C668(fieldSystem, menu, PARTY_MENU_MODE_GIVE_MAIL);
         } else {
             sub_02097770(menu->taskData);
             menu->taskData = sub_0203D20C(fieldSystem, &menu->unk_230);

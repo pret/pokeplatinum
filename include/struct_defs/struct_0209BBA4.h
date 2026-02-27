@@ -32,7 +32,7 @@ typedef struct {
     u8 unk_9F;
     u8 unk_A0;
     u8 unk_A1[4];
-    PartyMenu *unk_A8;
+    PartyMenu *partyMenu;
     PokemonSummary *unk_AC;
     u16 *unk_B0;
 } UnkStruct_0209BBA4;

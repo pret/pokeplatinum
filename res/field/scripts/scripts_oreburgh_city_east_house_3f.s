@@ -2,14 +2,14 @@
 #include "res/text/bank/oreburgh_city_east_house_3f.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry OreburghCityEastHouse3F_ScientistM
+    ScriptEntry OreburghCityEastHouse3F_AceTrainerM
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+OreburghCityEastHouse3F_ScientistM:
+    NPCMessage OreburghCityEastHouse3F_Text_TheCoalMineHeresFullyAutomated
     End
 
-_001D:
-    NPCMessage 1
+OreburghCityEastHouse3F_AceTrainerM:
+    NPCMessage OreburghCityEastHouse3F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
     End

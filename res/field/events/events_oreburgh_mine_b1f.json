@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "OREBURGH_MINE_B1F_WORKER_0",
+            "id": "LOCALID_WORKER",
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -32,7 +32,7 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_MINE_B1F_TWIN_2",
+            "id": "LOCALID_TWIN",
             "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "OREBURGH_MINE_B1F_HIKER_3",
+            "id": "LOCALID_HIKER",
             "graphics_id": "OBJ_EVENT_GFX_HIKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_EAST",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x02C8",
+            "hidden_flag": "FLAG_HIDE_OREBURGH_MINE_B1F_HIKER",
             "script": 4,
             "initial_dir": 3,
             "data": [],

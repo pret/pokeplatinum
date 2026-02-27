@@ -132,25 +132,25 @@ BOOL FrontierScrCmd_B0(FrontierScriptContext *param0)
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
 
-    if (v1->unk_A8->selectedMonSlot == 7) {
+    if (v1->partyMenu->selectedMonSlot == 7) {
         *v3 = 0xff;
 
         for (v0 = 0; v0 < 2; v0++) {
             v1->unk_A1[v0] = 0;
         }
-    } else if (v1->unk_A8->selectedMonSlot == 6) {
-        *v3 = v1->unk_A8->selectionOrder[0];
+    } else if (v1->partyMenu->selectedMonSlot == 6) {
+        *v3 = v1->partyMenu->selectionOrder[0];
         *v3 -= 1;
 
-        *v4 = v1->unk_A8->selectionOrder[1];
+        *v4 = v1->partyMenu->selectionOrder[1];
 
         if (*v4 > 0) {
             *v4 -= 1;
         }
     }
 
-    Heap_Free(v1->unk_A8);
-    v1->unk_A8 = NULL;
+    Heap_Free(v1->partyMenu);
+    v1->partyMenu = NULL;
 
     return 0;
 }

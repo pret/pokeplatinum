@@ -2,21 +2,21 @@
 #include "res/text/bank/oreburgh_city_west_house.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityWestHouse_Youngster
+    ScriptEntry OreburghCityWestHouse_PokefanF
+    ScriptEntry OreburghCityWestHouse_Pikachu
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+OreburghCityWestHouse_Youngster:
+    NPCMessage OreburghCityWestHouse_Text_HaveYouEverSeenOrHeardAboutDifferentlyColoredPokemon
     End
 
-_0021:
-    NPCMessage 1
+OreburghCityWestHouse_PokefanF:
+    NPCMessage OreburghCityWestHouse_Text_YouKnowHowPokemonHaveDifferentNaturesLikeWeHavePersonalities
     End
 
-_0034:
-    PokemonCryAndMessage SPECIES_PIKACHU, 2
+OreburghCityWestHouse_Pikachu:
+    PokemonCryAndMessage SPECIES_PIKACHU, OreburghCityWestHouse_Text_PikachuPikaaah
     End
 
     .balign 4, 0

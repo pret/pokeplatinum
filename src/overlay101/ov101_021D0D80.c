@@ -516,7 +516,7 @@ static void ov101_021D15BC(UnkStruct_ov101_021D13C8 *param0)
     ov101_021D80E4(param0->unk_450, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_438, 64, 8);
     ov101_021D80E4(param0->unk_450, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_438, 60, 9);
 
-    ov101_021D81B4(param0->unk_450, NNS_G2D_VRAM_TYPE_MAX, param0->unk_438, 10, 0);
+    ov101_021D81B4(param0->unk_450, NNS_G2D_VRAM_TYPE_2DBOTH, param0->unk_438, 10, 0);
     ov101_021D81B4(param0->unk_450, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_438, 20, 1);
     ov101_021D81B4(param0->unk_450, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_438, 67, 6);
     ov101_021D81B4(param0->unk_450, NNS_G2D_VRAM_TYPE_2DSUB, param0->unk_438, 63, 7);

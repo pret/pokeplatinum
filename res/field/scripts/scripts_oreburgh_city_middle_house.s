@@ -2,14 +2,14 @@
 #include "res/text/bank/oreburgh_city_middle_house.h"
 
 
-    ScriptEntry _000A
-    ScriptEntry _001D
+    ScriptEntry OreburghCityMiddleHouse_SchoolKidF
+    ScriptEntry OreburghCityMiddleHouse_Hiker
     ScriptEntryEnd
 
-_000A:
-    NPCMessage 0
+OreburghCityMiddleHouse_SchoolKidF:
+    NPCMessage OreburghCityMiddleHouse_Text_RoarkIsAUserOfRockTypePokemon
     End
 
-_001D:
-    NPCMessage 1
+OreburghCityMiddleHouse_Hiker:
+    NPCMessage OreburghCityMiddleHouse_Text_RoarkIsOurTownsGymLeader
     End

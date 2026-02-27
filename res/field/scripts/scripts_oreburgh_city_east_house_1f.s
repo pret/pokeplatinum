@@ -2,21 +2,21 @@
 #include "res/text/bank/oreburgh_city_east_house_1f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityEastHouse1F_PokefanM
+    ScriptEntry OreburghCityEastHouse1F_Hiker
+    ScriptEntry OreburghCityEastHouse1F_AceTrainerM
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+OreburghCityEastHouse1F_PokefanM:
+    NPCMessage OreburghCityEastHouse1F_Text_WhyNotTryTrainingInTheOreburghMine
     End
 
-_0021:
-    NPCMessage 1
+OreburghCityEastHouse1F_Hiker:
+    NPCMessage OreburghCityEastHouse1F_Text_IAlwaysHaveARottenTimeTryingToDecideWhichMovesMyPokemonShouldLearn
     End
 
-_0034:
-    NPCMessage 2
+OreburghCityEastHouse1F_AceTrainerM:
+    NPCMessage OreburghCityEastHouse1F_Text_YouRemindMeSoMuchOfTheTimeIGotMyFirstPokemon
     End
 
     .balign 4, 0

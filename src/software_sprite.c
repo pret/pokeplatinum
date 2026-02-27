@@ -118,7 +118,7 @@ SoftwareSpriteChars *SoftwareSprite_LoadChars(const SoftwareSpriteCharsTemplate 
 {
     SoftwareSpriteChars *chars = FindAvailableChars(template->softSpriteMan);
     GF_ASSERT(chars);
-    GF_ASSERT(template->charsData->mapingType == GX_OBJVRAMMODE_CHAR_2D);
+    GF_ASSERT(template->charsData->mappingType == GX_OBJVRAMMODE_CHAR_2D);
 
     chars->vramKey = AllocateVRAM_Chars(template->charsData);
     GF_ASSERT(chars->vramKey);

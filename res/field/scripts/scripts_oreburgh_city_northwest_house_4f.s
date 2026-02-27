@@ -2,21 +2,21 @@
 #include "res/text/bank/oreburgh_city_northwest_house_4f.h"
 
 
-    ScriptEntry _000E
-    ScriptEntry _0021
-    ScriptEntry _0034
+    ScriptEntry OreburghCityNorthwestHouse4F_SchoolKidM
+    ScriptEntry OreburghCityNorthwestHouse4F_NinjaBoy
+    ScriptEntry OreburghCityNorthwestHouse4F_PokefanF
     ScriptEntryEnd
 
-_000E:
-    NPCMessage 0
+OreburghCityNorthwestHouse4F_SchoolKidM:
+    NPCMessage OreburghCityNorthwestHouse4F_Text_HahahaImGonnaSwipeYourFlag
     End
 
-_0021:
-    NPCMessage 1
+OreburghCityNorthwestHouse4F_NinjaBoy:
+    NPCMessage OreburghCityNorthwestHouse4F_Text_ISetSomeNastyTrapsCatchMeIfYouCan
     End
 
-_0034:
-    NPCMessage 2
+OreburghCityNorthwestHouse4F_PokefanF:
+    NPCMessage OreburghCityNorthwestHouse4F_Text_ThanksToTheGymLeaderWeCanPlayUnderground
     End
 
     .balign 4, 0

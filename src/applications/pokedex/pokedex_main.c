@@ -9,6 +9,7 @@
 #include "applications/pokedex/formsub.h"
 #include "applications/pokedex/funcptr_ov21_021E9B74.h"
 #include "applications/pokedex/funcptr_ov21_021E9B9C.h"
+#include "applications/pokedex/infomain.h"
 #include "applications/pokedex/infomain_foreign.h"
 #include "applications/pokedex/ov21_021D423C.h"
 #include "applications/pokedex/ov21_021D4340.h"
@@ -17,7 +18,6 @@
 #include "applications/pokedex/ov21_021D94BC.h"
 #include "applications/pokedex/ov21_021DC9BC.h"
 #include "applications/pokedex/ov21_021DDD2C.h"
-#include "applications/pokedex/ov21_021DE668.h"
 #include "applications/pokedex/ov21_021E1924.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/ov21_021E3FFC.h"
@@ -202,7 +202,7 @@ static BOOL TransitionComplete(PokedexApp **appPtr)
 const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B74[10] = {
     ov21_021D5AEC,
     PokedexSearch_TransitionFunctions,
-    ov21_021DE668,
+    InfoMain_InitScreen,
     FormMain_Init,
     InfoMainForeign_InitScreen,
     ov21_021E29DC,
@@ -226,7 +226,7 @@ const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B34[8] = {
 const static UnkFuncPtr_ov21_021E9B9C Unk_ov21_021E9B9C[10] = {
     ov21_021D5B50,
     PokedexSearch_FreeData,
-    ov21_021DE6C0,
+    InfoMain_FreeScreen,
     FormMain_Free,
     InfoMainForeign_FreeScreen,
     ov21_021E2A3C,

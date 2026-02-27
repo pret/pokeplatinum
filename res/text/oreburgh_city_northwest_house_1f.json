@@ -2,7 +2,7 @@
   "key": 25603,
   "messages": [
     {
-      "id": "pl_msg_00000070_00000",
+      "id": "OreburghCityNorthwestHouse1F_Text_ThereAreEightGymLeadersInTheSinnohRegion",
       "en_US": [
         "There are eight Gym Leaders in the\n",
         "Sinnoh region.\r",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000070_00001",
+      "id": "OreburghCityNorthwestHouse1F_Text_AGymLeaderIsntLikeJustAnyTrainerYouMeet",
       "en_US": [
         "A Gym Leader isn’t like just any Trainer\n",
         "you meet.\r",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000070_00002",
+      "id": "OreburghCityNorthwestHouse1F_Text_RoarkLetsUsTrainOurPokemonInTheMine",
       "en_US": [
         "Roark lets us train our Pokémon in\n",
         "the mine."

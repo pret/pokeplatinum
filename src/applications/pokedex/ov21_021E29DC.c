@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokedex/infomain.h"
 #include "applications/pokedex/infomain_foreign.h"
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021DC9BC.h"
@@ -18,7 +19,6 @@
 #include "applications/pokedex/pokedex_text_manager.h"
 #include "applications/pokedex/struct_ov21_021D4660.h"
 #include "applications/pokedex/struct_ov21_021D5B68.h"
-#include "applications/pokedex/struct_ov21_021DE6D4.h"
 #include "applications/pokedex/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
@@ -44,7 +44,7 @@ typedef struct {
     PokedexSortData *unk_04;
     int unk_08;
     UnkStruct_ov21_021D5B68 *unk_0C;
-    UnkStruct_ov21_021DE6D4 *unk_10;
+    InfoMainState *unk_10;
     PokedexScreenManager *unk_14;
     PokedexScreenManager *unk_18;
     PokedexScreenManager *unk_1C;
@@ -315,7 +315,7 @@ static int ov21_021E2C24(PokedexDataManager *dataMan, void *data)
 {
     UnkStruct_ov21_021E2BA8 *v0 = data;
 
-    v0->unk_10->unk_1C = 1;
+    v0->unk_10->playCry = 1;
 
     return 1;
 }
@@ -450,14 +450,14 @@ static void ov21_021E2E10(UnkStruct_ov21_021E2BA8 *param0)
 {
     *param0->unk_00 |= (0x1 << 1);
     param0->unk_28 = 0;
-    param0->unk_10->unk_14 = 0;
+    param0->unk_10->animationMode = 0;
 
-    InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_MODE_POSITION_BLEND);
+    InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_POSITION_BLEND);
 
     switch (param0->unk_08) {
     case 0:
-        param0->unk_10->unk_08 = 56;
-        param0->unk_10->unk_0C = 80;
+        param0->unk_10->displayPositionX = 56;
+        param0->unk_10->displayPositionY = 80;
         InfoMainForeign_SetDisplayPosition(param0->unk_18, 56, 80);
         param0->unk_0C->unk_14 = 1;
         param0->unk_2C = 1;
@@ -502,9 +502,9 @@ static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param
     switch (param1) {
     case 0:
         if (ov21_021E2EC0(param2)) {
-            param0->unk_10->unk_14 = 2;
+            param0->unk_10->animationMode = 2;
         } else {
-            param0->unk_10->unk_14 = 1;
+            param0->unk_10->animationMode = 1;
         }
 
         *param0->unk_00 |= (0x1 << 2);
@@ -562,15 +562,15 @@ static BOOL ov21_021E2EC4(UnkStruct_ov21_021E2BA8 *param0, int param1, int param
     switch (param2) {
     case 0:
         if (ov21_021E2EC0(param1)) {
-            param0->unk_10->unk_14 = 2;
-            InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_MODE_POSITION);
+            param0->unk_10->animationMode = 2;
+            InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_POSITION);
         } else {
-            param0->unk_10->unk_14 = 1;
-            InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_MODE_BLEND);
+            param0->unk_10->animationMode = 1;
+            InfoMainForeign_SetAnimationMode(param0->unk_18, ANIM_BLEND);
         }
 
-        param0->unk_10->unk_08 = v0;
-        param0->unk_10->unk_0C = v1;
+        param0->unk_10->displayPositionX = v0;
+        param0->unk_10->displayPositionY = v1;
         InfoMainForeign_SetDisplayPosition(param0->unk_18, v0, v1);
         break;
     case 1:
@@ -737,7 +737,7 @@ static void ov21_021E331C(UnkStruct_ov21_021E326C *param0, int param1)
 static void ov21_021E3320(UnkStruct_ov21_021E2BA8 *param0)
 {
     param0->unk_28 = 1;
-    param0->unk_10->unk_14 = 1;
+    param0->unk_10->animationMode = 1;
 }
 
 void ov21_021E332C(PokedexScreenManager *screenMan, PokedexApp *param1, enum HeapID heapID)

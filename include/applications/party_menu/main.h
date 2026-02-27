@@ -22,7 +22,7 @@ void sub_0207FD68(PartyMenuApplication *application, u8 partySlot);
 u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 slot);
 u8 PartyMenu_CheckBattleHallEligibility(PartyMenuApplication *application, u8 slot);
 u8 PartyMenu_CheckBattleCastleEligibility(PartyMenuApplication *application, u8 slot);
-u8 PartyMenu_GetMemberPanelAnim(u8 param0, u8 param1);
+u8 PartyMenu_GetMemberPanelAnim(u8 menuType, u8 slot);
 u8 GetElementIndex(u16 param0);
 u32 sub_02081930(void);
 u32 sub_02081934(void);
