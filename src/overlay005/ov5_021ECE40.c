@@ -1369,7 +1369,7 @@ static void ov5_021EDDD4(BillboardList *param0)
 static Billboard *ov5_021EDDDC(BillboardList *param0, const BillboardResources *param1, const VecFx32 *param2, u32 param3)
 {
     int v0;
-    BillboardListTemplate v1;
+    BillboardTemplate v1;
     Billboard *v2;
     VecFx32 v3 = { FX32_ONE, FX32_ONE, FX32_ONE };
 
@@ -1378,7 +1378,7 @@ static Billboard *ov5_021EDDDC(BillboardList *param0, const BillboardResources *
     v1.pos = *param2;
     v1.scale = v3;
 
-    v2 = sub_0202119C(&v1);
+    v2 = BillboardList_Append(&v1);
 
     if (v2 != NULL) {
         Billboard_SetDrawFlag(v2, 0);

@@ -47,7 +47,7 @@ static void UpdateMaterialPlttAddresses(NNSG3dResMat *material, const NNSG3dResD
 static void BillboardList_InitBillboards(BillboardList *list);
 static Billboard *BillboardList_AllocBillboard(BillboardList *list);
 static BOOL BillboardList_FreeBillboard(BillboardList *list, Billboard *billboard);
-static void sub_02021744(Billboard *param0, Billboard *param1);
+static void AppendBillboardToList(Billboard *sentinel, Billboard *newBillboard);
 static void BillboardList_Remove(Billboard *billboard);
 static void Billboard_SetKeysAndBindModelSet(Billboard *billboard);
 static void ReleaseVRAMKeysAndModelSet(Billboard *billboard);
@@ -55,9 +55,9 @@ static void *BillboardResources_GetValue(const BillboardResources *resources, in
 static const BillboardAnim *Billboard_GetAnimAt(const BillboardAnim *anims, int index);
 static NNSG3dResMdlSet *RetrieveBillboardResources(const BillboardResources *resources, NNSG3dResMdl **outModel, NNSG3dResTex **outTexture);
 static NNSG3dResTex *BillboardResources_GetTexture(const BillboardResources *resources);
-static void sub_020217E0(Billboard *param0, const BillboardResources *param1);
-static void sub_02020E28(Billboard *billboard, const BillboardResources *resources);
-static void sub_02020E78(Billboard *billboard, const BillboardResources *resources);
+static void SetAndAppendBillboard(Billboard *billboard, const BillboardResources *resources);
+static void AllocResourcesAndAppendBillboard(Billboard *billboard, const BillboardResources *resources);
+static void ResetResourcesAndAppendBillboard(Billboard *billboard, const BillboardResources *resources);
 static fx32 GetAnimStartFrame(const Billboard *billboard, int animNum);
 static int GetAndAdvanceAnim(Billboard *billboard, fx32 numFrames);
 static int AdvanceAnim(const BillboardAnim *anim, fx32 *currFrame, fx32 numFrames);
@@ -67,9 +67,9 @@ static void SetKeysAndBindModelSet(NNSG3dResTex *texture, NNSG3dResMdlSet *model
 static void FreeVRAMKeys(NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key, NNSG3dPlttKey *plttKey);
 static BOOL AreTexturesSameSize(const NNSG3dResTex *texture1, const NNSG3dResTex *texture2);
 static void Billboard_ResetVRAMTransfer(BillboardList *unused, Billboard *billboard);
-static void sub_02021078(Billboard *billboard, const BillboardResources *resources);
-static void InitBillboardAnimFromResources(const BillboardList *list, Billboard *billboard, const BillboardResources *resources);
-static void sub_02021148(Billboard *billboard, const BillboardResources *resources);
+static void Billboard_AllocTextureAndSetModel(Billboard *billboard, const BillboardResources *resources);
+static void Billboard_InitAnimAndRequestTransfer(const BillboardList *list, Billboard *billboard, const BillboardResources *resources);
+static void SetBillboardModelSetAndAnimTexture(Billboard *billboard, const BillboardResources *resources);
 static void SetBillboardGfxSeqAndResetVRAMTransfer(Billboard *billboard, const BillboardResources *resources);
 
 static BillboardList *sBillboardLists = NULL;
@@ -292,16 +292,16 @@ static void BillboardList_Draw(BillboardList *list)
     }
 }
 
-static void sub_02020E28(Billboard *billboard, const BillboardResources *resources)
+static void AllocResourcesAndAppendBillboard(Billboard *billboard, const BillboardResources *resources)
 {
-    BillboardList *list = (BillboardList *)billboard->list;
+    BillboardList *list = billboard->list;
 
     Billboard_ResetVRAMTransfer(list, billboard);
-    sub_02021078(billboard, resources);
-    InitBillboardAnimFromResources(list, billboard, resources);
+    Billboard_AllocTextureAndSetModel(billboard, resources);
+    Billboard_InitAnimAndRequestTransfer(list, billboard, resources);
 
     if (billboard->state == BILLBOARD_STATE_INITIALIZED) {
-        sub_02021744(&list->sentinelData, billboard);
+        AppendBillboardToList(&list->sentinelData, billboard);
     }
 
     billboard->state = BILLBOARD_STATE_VRAM_TRANSFER;
@@ -310,7 +310,7 @@ static void sub_02020E28(Billboard *billboard, const BillboardResources *resourc
     billboard->frameNum = 0;
 }
 
-static void sub_02020E78(Billboard *billboard, const BillboardResources *resources)
+static void ResetResourcesAndAppendBillboard(Billboard *billboard, const BillboardResources *resources)
 {
     BillboardList *list = billboard->list;
 
@@ -324,11 +324,11 @@ static void sub_02020E78(Billboard *billboard, const BillboardResources *resourc
     billboard->tex4x4Key = resources->tex4x4Key;
     billboard->plttKey = resources->plttKey;
 
-    sub_02021148(billboard, resources);
+    SetBillboardModelSetAndAnimTexture(billboard, resources);
     SetBillboardGfxSeqAndResetVRAMTransfer(billboard, resources);
 
     if (billboard->state == BILLBOARD_STATE_INITIALIZED) {
-        sub_02021744(&list->sentinelData, billboard);
+        AppendBillboardToList(&list->sentinelData, billboard);
     }
 
     billboard->state = BILLBOARD_STATE_ACTIVE;
@@ -424,8 +424,7 @@ static void Billboard_ResetVRAMTransfer(BillboardList *unused, Billboard *billbo
     }
 }
 
-// AllocBillboardResources
-static void sub_02021078(Billboard *billboard, const BillboardResources *resources)
+static void Billboard_AllocTextureAndSetModel(Billboard *billboard, const BillboardResources *resources)
 {
     BOOL sameTexSize;
     NNSG3dResTex *originalTexture = billboard->texture;
@@ -449,14 +448,14 @@ static void sub_02021078(Billboard *billboard, const BillboardResources *resourc
     }
 }
 
-static void InitBillboardAnimFromResources(const BillboardList *list, Billboard *billboard, const BillboardResources *resources)
+static void Billboard_InitAnimAndRequestTransfer(const BillboardList *list, Billboard *billboard, const BillboardResources *resources)
 {
     billboard->animTexture = BillboardResources_GetTexture(resources);
     billboard->gfxSequence = resources->gfxSequence;
     billboard->vramTransfer = BillboardListVRAMTransfer_NewBillboardTransfer(list->vramTransfer, &billboard->gfxSequence, billboard->animTexture, billboard->texKey, billboard->plttKey, billboard->frameNum);
 }
 
-static void sub_02021148(Billboard *billboard, const BillboardResources *resources)
+static void SetBillboardModelSetAndAnimTexture(Billboard *billboard, const BillboardResources *resources)
 {
     billboard->modelSet = RetrieveBillboardResources(resources, &billboard->model, &billboard->texture);
     NNS_G3dRenderObjInit(&billboard->renderObj, billboard->model);
@@ -469,32 +468,29 @@ static void SetBillboardGfxSeqAndResetVRAMTransfer(Billboard *billboard, const B
     billboard->vramTransfer = NULL;
 }
 
-Billboard *sub_0202119C(const BillboardListTemplate *param0)
+Billboard *BillboardList_Append(const BillboardTemplate *template)
 {
-    Billboard *v0;
-    BillboardList *v1;
-
-    if (param0->list == NULL) {
+    if (template->list == NULL) {
         return NULL;
     }
 
-    v1 = param0->list;
-    v0 = BillboardList_AllocBillboard(v1);
+    BillboardList *list = template->list;
+    Billboard *billboard = BillboardList_AllocBillboard(list);
 
-    if (v0 == NULL) {
+    if (billboard == NULL) {
         return NULL;
     }
 
-    v0->list = v1;
-    v0->pos = param0->pos;
-    v0->scale = param0->scale;
-    v0->animNum = 0;
-    v0->draw = TRUE;
-    v0->state = BILLBOARD_STATE_INITIALIZED;
+    billboard->list = list;
+    billboard->pos = template->pos;
+    billboard->scale = template->scale;
+    billboard->animNum = 0;
+    billboard->draw = TRUE;
+    billboard->state = BILLBOARD_STATE_INITIALIZED;
 
-    sub_020217E0(v0, param0->resources);
+    SetAndAppendBillboard(billboard, template->resources);
 
-    return v0;
+    return billboard;
 }
 
 BOOL Billboard_Delete(Billboard *billboard)
@@ -502,7 +498,7 @@ BOOL Billboard_Delete(Billboard *billboard)
     GF_ASSERT(billboard);
     GF_ASSERT(billboard->state != BILLBOARD_STATE_INITIALIZED);
 
-    BillboardList *list = (BillboardList *)billboard->list;
+    BillboardList *list = billboard->list;
 
     if (billboard->state == BILLBOARD_STATE_INACTIVE) {
         return FALSE;
@@ -522,22 +518,22 @@ BOOL Billboard_Delete(Billboard *billboard)
     return TRUE;
 }
 
-void BillboardResources_Set(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *param3, const BillboardGfxSequence *gfxSequence, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
+void BillboardResources_Set(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *anims, const BillboardGfxSequence *gfxSequence, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
-    resources->anims = param3;
+    resources->anims = anims;
     resources->gfxSequence = *gfxSequence;
     resources->texKey = texKey;
     resources->tex4x4Key = tex4x4Key;
     resources->plttKey = plttKey;
 }
 
-void BillboardResources_SetWithoutKeys(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *param3, const BillboardGfxSequence *gfxSequence)
+void BillboardResources_SetWithoutKeys(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *anims, const BillboardGfxSequence *gfxSequence)
 {
     resources->modelRes = modelRes;
     resources->texture = texture;
-    resources->anims = param3;
+    resources->anims = anims;
     resources->gfxSequence = *gfxSequence;
     resources->texKey = NNS_GFD_ALLOC_ERROR_TEXKEY;
     resources->tex4x4Key = NNS_GFD_ALLOC_ERROR_TEXKEY;
@@ -779,12 +775,12 @@ static BOOL BillboardList_FreeBillboard(BillboardList *list, Billboard *billboar
     return TRUE;
 }
 
-static void sub_02021744(Billboard *param0, Billboard *param1)
+static void AppendBillboardToList(Billboard *sentinel, Billboard *newBillboard)
 {
-    param1->prev = param0->prev;
-    param0->prev->next = param1;
-    param1->next = param0;
-    param0->prev = param1;
+    newBillboard->prev = sentinel->prev;
+    sentinel->prev->next = newBillboard;
+    newBillboard->next = sentinel;
+    sentinel->prev = newBillboard;
 }
 
 static void BillboardList_Remove(Billboard *billboard)
@@ -813,12 +809,12 @@ static NNSG3dResTex *BillboardResources_GetTexture(const BillboardResources *res
     return texture;
 }
 
-static void sub_020217E0(Billboard *param0, const BillboardResources *param1)
+static void SetAndAppendBillboard(Billboard *billboard, const BillboardResources *resources)
 {
-    if (param1->texKey == (NNS_GFD_ALLOC_ERROR_TEXKEY)) {
-        sub_02020E28(param0, param1);
+    if (resources->texKey == NNS_GFD_ALLOC_ERROR_TEXKEY) {
+        AllocResourcesAndAppendBillboard(billboard, resources);
     } else {
-        sub_02020E78(param0, param1);
+        ResetResourcesAndAppendBillboard(billboard, resources);
     }
 }
 

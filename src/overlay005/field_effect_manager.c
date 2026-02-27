@@ -404,7 +404,7 @@ static void ov5_021DF7C4(FieldEffectManager *fieldEffMan)
 
 Billboard *ov5_021DF7F8(FieldEffectManager *param0, const BillboardResources *param1, const VecFx32 *param2)
 {
-    BillboardListTemplate v0;
+    BillboardTemplate v0;
     Billboard *v1;
     BillboardList *v2;
     VecFx32 v3 = { FX32_ONE, FX32_ONE, FX32_ONE };
@@ -416,7 +416,7 @@ Billboard *ov5_021DF7F8(FieldEffectManager *param0, const BillboardResources *pa
     v0.pos = *param2;
     v0.scale = v3;
 
-    v1 = sub_0202119C(&v0);
+    v1 = BillboardList_Append(&v0);
     GF_ASSERT(v1 != NULL);
 
     if (v1 != NULL) {

@@ -10,6 +10,7 @@
 #include "billboard_vram_transfer.h"
 
 typedef struct Billboard Billboard;
+typedef struct BillboardList BillboardList;
 typedef void (*BillboardCallback)(Billboard *, void *);
 
 typedef struct BillboardAnim {
@@ -25,7 +26,7 @@ typedef struct Billboard {
     void *callbackParam;
     BillboardCallback callback;
     u8 draw;
-    void *list;
+    BillboardList *list;
     const BillboardAnim *anims;
     NNSG3dRenderObj renderObj;
     NNSG3dResMdlSet *modelSet;
@@ -68,12 +69,12 @@ typedef struct BillboardResources {
     NNSGfdPlttKey plttKey;
 } BillboardResources;
 
-typedef struct BillboardListTemplate {
+typedef struct BillboardTemplate {
     BillboardList *list;
     const BillboardResources *resources;
     VecFx32 pos;
     VecFx32 scale;
-} BillboardListTemplate;
+} BillboardTemplate;
 
 typedef struct BillboardListParams {
     int maxElements;
@@ -94,7 +95,7 @@ BOOL BillboardList_Delete(BillboardList *list);
 BOOL BillboardList_DeleteAll(BillboardList *list);
 BOOL BillboardList_IsRedrawing(BillboardList *list);
 void BillboardList_ResetRedraw(BillboardList *list);
-Billboard *sub_0202119C(const BillboardListTemplate *param0);
+Billboard *BillboardList_Append(const BillboardTemplate *template);
 BOOL Billboard_Delete(Billboard *billboard);
 void BillboardResources_Set(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *param3, const BillboardGfxSequence *gfxSequence, NNSGfdTexKey texKey, NNSGfdTexKey tex4x4Key, NNSGfdPlttKey plttKey);
 void BillboardResources_SetWithoutKeys(BillboardResources *resources, void *modelRes, const NNSG3dResTex *texture, const BillboardAnim *param3, const BillboardGfxSequence *gfxSequence);

@@ -299,7 +299,7 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
     {
         const UnkStruct_ov66_02258B38 *v1;
         BillboardResources v2;
-        BillboardListTemplate v3;
+        BillboardTemplate v3;
         Resource *v4;
         TextureResource *v5;
         u32 v6;
@@ -363,7 +363,7 @@ UnkStruct_ov66_02234798 *ov66_0223461C(UnkStruct_ov66_02234548 *param0, const Un
         v3.resources = &v2;
         v3.pos = v13;
         v3.scale = v14;
-        v0->unk_08 = sub_0202119C(&v3);
+        v0->unk_08 = BillboardList_Append(&v3);
 
         Billboard_SetCallback(v0->unk_08, ov66_02234D78, v0);
         ov66_02234970(&param0->unk_18, &v0->unk_0C);
