@@ -1,12 +1,10 @@
 #include "overlay105/ov105_02245AAC.h"
 
 #include <nitro.h>
-#include <string.h>
-
-#include "overlay105/struct_ov105_02245AAC.h"
 
 #include "char_transfer.h"
 #include "gx_layers.h"
+#include "narc_frontier_obj.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "sprite.h"
@@ -14,125 +12,96 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 
-void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0);
-Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
-void ov105_02245C50(UnkStruct_ov105_02245AAC *param0);
-static void ov105_02245C98(void);
+static void InitCharPlttTransferBuffers(void);
 
-static const u8 Unk_ov105_02246444[4] = {
-    0x1,
-    0x1,
-    0x1,
-    0x1
-};
+static const u8 sCapacities[4] = { 1, 1, 1, 1 };
 
-void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
+void BattleFactoryApp_InitSpriteManager(BattleFactoryAppSpriteManager *sprites)
 {
-    int v0;
-
-    ov105_02245C98();
+    InitCharPlttTransferBuffers();
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 93);
 
-    param0->unk_00 = SpriteList_InitRendering((6 + 2 + 1), &param0->unk_04, HEAP_ID_93);
+    sprites->spriteList = SpriteList_InitRendering(9, &sprites->unk_04, HEAP_ID_BATTLE_FACTORY_APP);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov105_02246444[v0], v0, HEAP_ID_93);
+    for (int i = 0; i < MAX_SPRITE_RESOURCE_GEN4; i++) {
+        sprites->resourceCollection[i] = SpriteResourceCollection_New(sCapacities[i], i, HEAP_ID_BATTLE_FACTORY_APP);
     }
 
-    param0->unk_1A0[0][0] = SpriteResourceCollection_AddTiles(param0->unk_190[0], 151, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_93);
-    param0->unk_1A0[0][1] = SpriteResourceCollection_AddPalette(param0->unk_190[1], 151, 36, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 8, HEAP_ID_93);
-    param0->unk_1A0[0][2] = SpriteResourceCollection_Add(param0->unk_190[2], 151, 2, 1, 0, 2, HEAP_ID_93);
-    param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 1, 1, 0, 3, HEAP_ID_93);
+    sprites->resources[0][0] = SpriteResourceCollection_AddTiles(sprites->resourceCollection[0], NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, BATTLE_FACTORY_APP_SPRITES_NCGR, TRUE, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_BATTLE_FACTORY_APP);
+    sprites->resources[0][1] = SpriteResourceCollection_AddPalette(sprites->resourceCollection[1], NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, BATTLE_FACTORY_APP_SPRITES_PLTT, FALSE, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 8, HEAP_ID_BATTLE_FACTORY_APP);
+    sprites->resources[0][2] = SpriteResourceCollection_Add(sprites->resourceCollection[2], NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, BATTLE_FACTORY_APP_SPRITES_NCER, TRUE, 0, SPRITE_RESOURCE_CELL, HEAP_ID_BATTLE_FACTORY_APP);
+    sprites->resources[0][3] = SpriteResourceCollection_Add(sprites->resourceCollection[3], NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, BATTLE_FACTORY_APP_SPRITES_NANR, TRUE, 0, SPRITE_RESOURCE_ANIM, HEAP_ID_BATTLE_FACTORY_APP);
 
-    for (v0 = 0; v0 < 1; v0++) {
-        SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
-        SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[v0][1]);
-    }
+    SpriteTransfer_RequestChar(sprites->resources[0][SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_RequestPlttWholeRange(sprites->resources[0][SPRITE_RESOURCE_PLTT]);
 
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-
-    return;
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
 }
 
-Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
+Sprite *BattleFactoryApp_InitSprite(BattleFactoryAppSpriteManager *spriteMan, u32 resourceID, u32 animID, u32 priority, int resourcePriority, u8 onSubScreen)
 {
-    int v0;
-    SpriteResourcesHeader v1;
-    Sprite *v2;
+    SpriteResourcesHeader resourceHeader;
+    SpriteResourcesHeader_Init(&resourceHeader, resourceID, resourceID, resourceID, resourceID, -1, -1, FALSE, resourcePriority, spriteMan->resourceCollection[SPRITE_RESOURCE_CHAR], spriteMan->resourceCollection[SPRITE_RESOURCE_PLTT], spriteMan->resourceCollection[SPRITE_RESOURCE_CELL], spriteMan->resourceCollection[SPRITE_RESOURCE_ANIM], NULL, NULL);
 
-    SpriteResourcesHeader_Init(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param4, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    AffineSpriteListTemplate spriteTemplate;
 
-    {
-        AffineSpriteListTemplate v3;
+    spriteTemplate.list = spriteMan->spriteList;
+    spriteTemplate.resourceData = &resourceHeader;
+    spriteTemplate.position.x = 0;
+    spriteTemplate.position.y = 0;
+    spriteTemplate.position.z = 0;
+    spriteTemplate.affineScale.x = FX32_ONE;
+    spriteTemplate.affineScale.y = FX32_ONE;
+    spriteTemplate.affineScale.z = FX32_ONE;
+    spriteTemplate.affineZRotation = 0;
+    spriteTemplate.priority = priority;
 
-        v3.list = param0->unk_00;
-        v3.resourceData = &v1;
-        v3.position.x = 0;
-        v3.position.y = 0;
-        v3.position.z = 0;
-        v3.affineScale.x = FX32_ONE;
-        v3.affineScale.y = FX32_ONE;
-        v3.affineScale.z = FX32_ONE;
-        v3.affineZRotation = 0;
-        v3.priority = param3;
-
-        if (param5 == 0) {
-            v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        } else {
-            v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-        }
-
-        v3.heapID = HEAP_ID_93;
-
-        if (param5 == 1) {
-            v3.position.y += (192 << FX32_SHIFT);
-        }
-
-        v2 = SpriteList_AddAffine(&v3);
-
-        Sprite_SetAnimateFlag(v2, 1);
-        Sprite_SetAnim(v2, param2);
+    if (!onSubScreen) {
+        spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
+    } else {
+        spriteTemplate.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     }
 
-    return v2;
+    spriteTemplate.heapID = HEAP_ID_BATTLE_FACTORY_APP;
+
+    if (onSubScreen == TRUE) {
+        spriteTemplate.position.y += FX32_CONST(192);
+    }
+
+    Sprite *sprite = SpriteList_AddAffine(&spriteTemplate);
+
+    Sprite_SetAnimateFlag(sprite, TRUE);
+    Sprite_SetAnim(sprite, animID);
+
+    return sprite;
 }
 
-void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
+void BattleFactoryApp_FreeSprites(BattleFactoryAppSpriteManager *spriteMan)
 {
-    u8 v0;
+    SpriteTransfer_ResetCharTransfer(spriteMan->resources[0][SPRITE_RESOURCE_CHAR]);
+    SpriteTransfer_ResetPlttTransfer(spriteMan->resources[0][SPRITE_RESOURCE_PLTT]);
 
-    for (v0 = 0; v0 < 1; v0++) {
-        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
-        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
+    for (u8 i = 0; i < MAX_SPRITE_RESOURCE_GEN4; i++) {
+        SpriteResourceCollection_Delete(spriteMan->resourceCollection[i]);
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        SpriteResourceCollection_Delete(param0->unk_190[v0]);
-    }
-
-    SpriteList_Delete(param0->unk_00);
+    SpriteList_Delete(spriteMan->spriteList);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
-
-    return;
 }
 
-static void ov105_02245C98(void)
+static void InitCharPlttTransferBuffers(void)
 {
-    {
-        CharTransferTemplate v0 = {
-            32, 2048, 2048, 93
-        };
+    CharTransferTemplate transferTemplate = {
+        32, 2048, 2048, 93
+    };
 
-        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_64K);
-    }
+    CharTransfer_InitWithVramModes(&transferTemplate, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_64K);
 
-    PlttTransfer_Init(8, HEAP_ID_93);
+    PlttTransfer_Init(8, HEAP_ID_BATTLE_FACTORY_APP);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-
-    return;
 }

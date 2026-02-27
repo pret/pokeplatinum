@@ -85,9 +85,9 @@ BOOL FrontierScrCmd_5F(FrontierScriptContext *param0)
     FS_EXTERN_OVERLAY(overlay105);
 
     static const ApplicationManagerTemplate v4 = {
-        ov105_02241AE0,
-        ov105_02241BD8,
-        ov105_02241F54,
+        BattleFactoryApp_Init,
+        BattleFactoryApp_Main,
+        BattleFactoryApp_Exit,
         FS_OVERLAY_ID(overlay105)
     };
 
@@ -144,9 +144,9 @@ BOOL FrontierScrCmd_62(FrontierScriptContext *param0)
     FS_EXTERN_OVERLAY(overlay105);
 
     static const ApplicationManagerTemplate v4 = {
-        ov105_02241AE0,
-        ov105_02241BD8,
-        ov105_02241F54,
+        BattleFactoryApp_Init,
+        BattleFactoryApp_Main,
+        BattleFactoryApp_Exit,
         FS_OVERLAY_ID(overlay105)
     };
 

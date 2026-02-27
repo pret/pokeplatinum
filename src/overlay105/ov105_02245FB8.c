@@ -4,85 +4,57 @@
 #include <string.h>
 
 #include "overlay105/ov105_02245AAC.h"
-#include "overlay105/struct_ov105_02245AAC.h"
-#include "overlay105/struct_ov105_02246060_decl.h"
-#include "overlay105/struct_ov105_02246394.h"
 
 #include "heap.h"
 #include "sprite.h"
 #include "system.h"
 
-struct UnkStruct_ov105_02246060_t {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    u8 unk_03;
-    const UnkStruct_ov105_02246394 *unk_04;
-    const u8 *unk_08;
-    Sprite *unk_0C;
-    u8 unk_10;
-};
-
-UnkStruct_ov105_02246060 *ov105_02245FB8(UnkStruct_ov105_02245AAC *param0, u8 param1, u8 param2, u8 param3, u8 param4, const UnkStruct_ov105_02246394 *param5, const u8 *param6);
-void *ov105_02246060(UnkStruct_ov105_02246060 *param0);
-void ov105_02246074(UnkStruct_ov105_02246060 *param0, int param1);
-void ov105_02246080(UnkStruct_ov105_02246060 *param0);
-u8 ov105_022461A0(UnkStruct_ov105_02246060 *param0);
-void ov105_022461A4(UnkStruct_ov105_02246060 *param0, int param1);
-void ov105_022461C0(UnkStruct_ov105_02246060 *param0, u8 param1);
-
-UnkStruct_ov105_02246060 *ov105_02245FB8(UnkStruct_ov105_02245AAC *param0, u8 param1, u8 param2, u8 param3, u8 param4, const UnkStruct_ov105_02246394 *param5, const u8 *param6)
+BattleFactoryAppCursor *BattleFactoryAppCursor_New(BattleFactoryAppSpriteManager *spriteMan, u8 param1, u8 param2, u8 param3, u8 startingSlot, const BattleFactoryAppCursorPosition *positions, const u8 *animIDs)
 {
-    UnkStruct_ov105_02246060 *v0;
-    VecFx32 v1;
+    BattleFactoryAppCursor *cursor = Heap_Alloc(HEAP_ID_BATTLE_FACTORY_APP, sizeof(BattleFactoryAppCursor));
+    memset(cursor, 0, sizeof(BattleFactoryAppCursor));
 
-    v0 = Heap_Alloc(HEAP_ID_93, sizeof(UnkStruct_ov105_02246060));
-    memset(v0, 0, sizeof(UnkStruct_ov105_02246060));
+    cursor->unk_00 = param1;
+    cursor->unk_10 = param2;
+    cursor->unk_01 = param3;
+    cursor->currentSlot = startingSlot;
+    cursor->positions = positions;
+    cursor->animIDs = animIDs;
 
-    v0->unk_00 = param1;
-    v0->unk_10 = param2;
-    v0->unk_01 = param3;
-    v0->unk_02 = param4;
-    v0->unk_04 = param5;
-    v0->unk_08 = param6;
-
-    if (param6 != NULL) {
-        v0->unk_0C = ov105_02245BA4(param0, 0, v0->unk_08[param4], 0, 0, 0);
+    if (animIDs != NULL) {
+        cursor->sprite = BattleFactoryApp_InitSprite(spriteMan, 0, cursor->animIDs[startingSlot], 0, 0, FALSE);
     } else {
         if (param3 == 0) {
-            v0->unk_0C = ov105_02245BA4(param0, 0, 8, 0, 0, 0);
+            cursor->sprite = BattleFactoryApp_InitSprite(spriteMan, 0, ANIM_ID_CURSOR, 0, 0, FALSE);
         } else {
-            v0->unk_0C = ov105_02245BA4(param0, 0, 9, 0, 0, 0);
+            cursor->sprite = BattleFactoryApp_InitSprite(spriteMan, 0, ANIM_ID_MENU_CURSOR, 0, 0, FALSE);
         }
     }
 
-    v1.x = (v0->unk_04[v0->unk_02].unk_00 * FX32_ONE);
-    v1.y = (v0->unk_04[v0->unk_02].unk_02 * FX32_ONE);
+    VecFx32 position;
+    position.x = cursor->positions[cursor->currentSlot].x * FX32_ONE;
+    position.y = cursor->positions[cursor->currentSlot].y * FX32_ONE;
 
-    Sprite_SetPosition(v0->unk_0C, &v1);
-    return v0;
+    Sprite_SetPosition(cursor->sprite, &position);
+    return cursor;
 }
 
-void *ov105_02246060(UnkStruct_ov105_02246060 *param0)
+void *BattleFactoryAppCursor_Free(BattleFactoryAppCursor *sprite)
 {
-    Sprite_Delete(param0->unk_0C);
-    Heap_Free(param0);
+    Sprite_Delete(sprite->sprite);
+    Heap_Free(sprite);
 
     return NULL;
 }
 
-void ov105_02246074(UnkStruct_ov105_02246060 *param0, int param1)
+void BattleFactoryAppCursor_SetDrawFlag(BattleFactoryAppCursor *sprite, BOOL draw)
 {
-    Sprite_SetDrawFlag(param0->unk_0C, param1);
-    return;
+    Sprite_SetDrawFlag(sprite->sprite, draw);
 }
 
-void ov105_02246080(UnkStruct_ov105_02246060 *param0)
+void ov105_02246080(BattleFactoryAppCursor *sprite)
 {
-    VecFx32 v0;
-    u32 v1, v2;
-
-    if (param0->unk_03 == 1) {
+    if (sprite->unk_03 == 1) {
         return;
     }
 
@@ -90,36 +62,37 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
         return;
     }
 
-    if (param0->unk_01 == 2) {
-        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-            if (param0->unk_02 == 0) {
-                param0->unk_02 = (param0->unk_00 - 1);
+    if (sprite->unk_01 == 2) {
+        if (JOY_NEW(PAD_KEY_LEFT)) {
+            if (sprite->currentSlot == 0) {
+                sprite->currentSlot = (sprite->unk_00 - 1);
             } else {
-                param0->unk_02--;
+                sprite->currentSlot--;
             }
-        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-            if (param0->unk_02 == (param0->unk_00 - 1)) {
-                param0->unk_02 = 0;
+        } else if (JOY_NEW(PAD_KEY_RIGHT)) {
+            if (sprite->currentSlot == (sprite->unk_00 - 1)) {
+                sprite->currentSlot = 0;
             } else {
-                param0->unk_02++;
+                sprite->currentSlot++;
             }
-        } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-            if (param0->unk_02 < (param0->unk_10)) {
-                param0->unk_02 = param0->unk_10;
-            } else if (param0->unk_02 == (param0->unk_00 - 1)) {
-                param0->unk_02 = 0;
+        } else if (JOY_NEW(PAD_KEY_DOWN)) {
+            if (sprite->currentSlot < (sprite->unk_10)) {
+                sprite->currentSlot = sprite->unk_10;
+            } else if (sprite->currentSlot == (sprite->unk_00 - 1)) {
+                sprite->currentSlot = 0;
             } else {
-                param0->unk_02++;
+                sprite->currentSlot++;
             }
-        } else if (gSystem.pressedKeys & PAD_KEY_UP) {
-            if (param0->unk_02 < (param0->unk_10)) {
-                param0->unk_02 = (param0->unk_00 - 1);
+        } else if (JOY_NEW(PAD_KEY_UP)) {
+            if (sprite->currentSlot < (sprite->unk_10)) {
+                sprite->currentSlot = (sprite->unk_00 - 1);
             } else {
-                param0->unk_02--;
+                sprite->currentSlot--;
             }
         }
     } else {
-        if (param0->unk_01 == 0) {
+        u32 v1, v2;
+        if (sprite->unk_01 == 0) {
             v1 = PAD_KEY_RIGHT;
             v2 = PAD_KEY_LEFT;
         } else {
@@ -127,66 +100,60 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
             v2 = PAD_KEY_UP;
         }
 
-        if (gSystem.pressedKeys & v1) {
-            param0->unk_02++;
+        if (JOY_NEW(v1)) {
+            sprite->currentSlot++;
 
-            if (param0->unk_02 >= param0->unk_00) {
-                param0->unk_02 = 0;
+            if (sprite->currentSlot >= sprite->unk_00) {
+                sprite->currentSlot = 0;
             }
-        } else if (gSystem.pressedKeys & v2) {
-            if (param0->unk_02 == 0) {
-                param0->unk_02 = param0->unk_00;
+        } else if (JOY_NEW(v2)) {
+            if (sprite->currentSlot == 0) {
+                sprite->currentSlot = sprite->unk_00;
             }
 
-            param0->unk_02--;
+            sprite->currentSlot--;
         }
     }
 
-    if (param0->unk_08 != NULL) {
-        Sprite_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
+    if (sprite->animIDs != NULL) {
+        Sprite_SetAnimNoRestart(sprite->sprite, sprite->animIDs[sprite->currentSlot]);
     }
 
-    v0 = *(Sprite_GetPosition(param0->unk_0C));
-    v0.x = (param0->unk_04[param0->unk_02].unk_00 * FX32_ONE);
-    v0.y = (param0->unk_04[param0->unk_02].unk_02 * FX32_ONE);
+    VecFx32 position = *Sprite_GetPosition(sprite->sprite);
+    position.x = sprite->positions[sprite->currentSlot].x * FX32_ONE;
+    position.y = sprite->positions[sprite->currentSlot].y * FX32_ONE;
 
-    Sprite_SetPosition(param0->unk_0C, &v0);
-    return;
+    Sprite_SetPosition(sprite->sprite, &position);
 }
 
-u8 ov105_022461A0(UnkStruct_ov105_02246060 *param0)
+u8 BattleFactoryAppCursor_GetCurrentSlot(BattleFactoryAppCursor *sprite)
 {
-    return param0->unk_02;
+    return sprite->currentSlot;
 }
 
-void ov105_022461A4(UnkStruct_ov105_02246060 *param0, int param1)
+void ov105_022461A4(BattleFactoryAppCursor *sprite, int param1)
 {
-    param0->unk_03 = param1;
+    sprite->unk_03 = param1;
 
     if (param1 == 0) {
-        Sprite_SetAnimNoRestart(param0->unk_0C, 8);
+        Sprite_SetAnimNoRestart(sprite->sprite, ANIM_ID_CURSOR);
     } else {
-        Sprite_SetAnimNoRestart(param0->unk_0C, 13);
+        Sprite_SetAnimNoRestart(sprite->sprite, ANIM_ID_CURSOR_SELECTED);
     }
-
-    return;
 }
 
-void ov105_022461C0(UnkStruct_ov105_02246060 *param0, u8 param1)
+void BattleFactoryAppCursor_UpdatePosition(BattleFactoryAppCursor *sprite, u8 slot)
 {
-    VecFx32 v0;
+    sprite->currentSlot = slot;
 
-    param0->unk_02 = param1;
-
-    if (param0->unk_08 != NULL) {
-        Sprite_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
+    if (sprite->animIDs != NULL) {
+        Sprite_SetAnimNoRestart(sprite->sprite, sprite->animIDs[sprite->currentSlot]);
     }
 
-    v0 = *(Sprite_GetPosition(param0->unk_0C));
+    VecFx32 position = *Sprite_GetPosition(sprite->sprite);
 
-    v0.x = (param0->unk_04[param0->unk_02].unk_00 * FX32_ONE);
-    v0.y = (param0->unk_04[param0->unk_02].unk_02 * FX32_ONE);
+    position.x = sprite->positions[sprite->currentSlot].x * FX32_ONE;
+    position.y = sprite->positions[sprite->currentSlot].y * FX32_ONE;
 
-    Sprite_SetPosition(param0->unk_0C, &v0);
-    return;
+    Sprite_SetPosition(sprite->sprite, &position);
 }

@@ -1,16 +1,30 @@
-#ifndef POKEPLATINUM_OV105_02245FB8_H
-#define POKEPLATINUM_OV105_02245FB8_H
+#ifndef POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_CURSOR_H
+#define POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_CURSOR_H
 
-#include "overlay105/struct_ov105_02245AAC.h"
-#include "overlay105/struct_ov105_02246060_decl.h"
-#include "overlay105/struct_ov105_02246394.h"
+#include "overlay105/ov105_02245AAC.h"
 
-UnkStruct_ov105_02246060 *ov105_02245FB8(UnkStruct_ov105_02245AAC *param0, u8 param1, u8 param2, u8 param3, u8 param4, const UnkStruct_ov105_02246394 *param5, const u8 *param6);
-void *ov105_02246060(UnkStruct_ov105_02246060 *param0);
-void ov105_02246074(UnkStruct_ov105_02246060 *param0, int param1);
-void ov105_02246080(UnkStruct_ov105_02246060 *param0);
-u8 ov105_022461A0(UnkStruct_ov105_02246060 *param0);
-void ov105_022461A4(UnkStruct_ov105_02246060 *param0, int param1);
-void ov105_022461C0(UnkStruct_ov105_02246060 *param0, u8 param1);
+typedef struct BattleFactoryAppCursorPosition {
+    s16 x;
+    s16 y;
+} BattleFactoryAppCursorPosition;
 
-#endif // POKEPLATINUM_OV105_02245FB8_H
+typedef struct BattleFactoryAppCursorSprite {
+    u8 unk_00;
+    u8 unk_01;
+    u8 currentSlot;
+    u8 unk_03;
+    const BattleFactoryAppCursorPosition *positions;
+    const u8 *animIDs;
+    Sprite *sprite;
+    u8 unk_10;
+} BattleFactoryAppCursor;
+
+BattleFactoryAppCursor *BattleFactoryAppCursor_New(BattleFactoryAppSpriteManager *spriteMan, u8 param1, u8 param2, u8 param3, u8 startingSlot, const BattleFactoryAppCursorPosition *positions, const u8 *animIDs);
+void *BattleFactoryAppCursor_Free(BattleFactoryAppCursor *sprite);
+void BattleFactoryAppCursor_SetDrawFlag(BattleFactoryAppCursor *sprite, BOOL draw);
+void ov105_02246080(BattleFactoryAppCursor *sprite);
+u8 BattleFactoryAppCursor_GetCurrentSlot(BattleFactoryAppCursor *sprite);
+void ov105_022461A4(BattleFactoryAppCursor *sprite, int param1);
+void BattleFactoryAppCursor_UpdatePosition(BattleFactoryAppCursor *sprite, u8 slot);
+
+#endif // POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_CURSOR_H

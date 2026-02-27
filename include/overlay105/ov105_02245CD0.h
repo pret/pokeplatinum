@@ -1,12 +1,13 @@
-#ifndef POKEPLATINUM_OV105_02245CD0_H
-#define POKEPLATINUM_OV105_02245CD0_H
+#ifndef POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_HELPERS_H
+#define POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_HELPERS_H
 
-#include "pokemon.h"
+#include "struct_defs/pokemon.h"
+
 #include "pokemon_sprite.h"
 
-void ov105_02245CD0(void);
-void ov105_02245D50(PokemonSpriteManager *param0);
-PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
-void ov105_02245DB8(PokemonSprite *param0, int param1);
+void BattleFactoryApp_Setup3D(void);
+void BattleFactoryApp_UpdateMonGraphics(PokemonSpriteManager *spriteMan);
+PokemonSprite *BattleFactoryApp_CreateMonSprite(PokemonSpriteManager *spriteMan, int polygonID, Pokemon *mon, int x, int y, int z);
+void BattleFactoryApp_FlipMonSprite(PokemonSprite *sprite, BOOL flipHorizontal);
 
-#endif // POKEPLATINUM_OV105_02245CD0_H
+#endif // POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_HELPERS_H

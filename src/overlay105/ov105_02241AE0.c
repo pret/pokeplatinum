@@ -13,11 +13,6 @@
 #include "overlay105/ov105_02245E54.h"
 #include "overlay105/ov105_02245FB8.h"
 #include "overlay105/ov105_02246214.h"
-#include "overlay105/struct_ov105_02241FF4_decl.h"
-#include "overlay105/struct_ov105_02245AAC.h"
-#include "overlay105/struct_ov105_02245E1C_decl.h"
-#include "overlay105/struct_ov105_02245EA8_decl.h"
-#include "overlay105/struct_ov105_02246060_decl.h"
 
 #include "bg_window.h"
 #include "communication_information.h"
@@ -33,6 +28,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "narc_frontier_bg.h"
 #include "overlay_manager.h"
 #include "palette.h"
 #include "party.h"
@@ -58,14 +54,15 @@
 #include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
+#include "res/text/bank/battle_factory_app.h"
 
 FS_EXTERN_OVERLAY(overlay104);
 
-struct UnkStruct_ov105_02241FF4_t {
-    ApplicationManager *unk_00;
+typedef struct BattleFactoryApp {
+    ApplicationManager *appMan;
     ApplicationManager *unk_04;
-    u8 unk_08;
-    u8 unk_09;
+    u8 subState;
+    u8 challengeType;
     u8 unk_0A;
     u8 unk_0B;
     int unk_0C;
@@ -85,36 +82,36 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_19;
     u8 unk_1A;
     u8 unk_1B;
-    MessageLoader *unk_1C;
-    StringTemplate *unk_20;
-    String *unk_24;
-    String *unk_28;
-    String *unk_2C[4];
+    MessageLoader *msgLoader;
+    StringTemplate *strTemplate;
+    String *displayStr;
+    String *fmtStr;
+    String *menuStr[4];
     u16 unk_3C[8];
-    BgConfig *unk_4C;
-    Window unk_50[10];
-    MenuTemplate unk_F0;
-    Menu *unk_FC;
-    StringList unk_100[4];
-    PaletteData *unk_120;
-    G3DPipelineBuffers *unk_124;
-    PokemonSpriteManager *unk_128;
+    BgConfig *bgConfig;
+    Window windows[10];
+    MenuTemplate menuTemplate;
+    Menu *menu;
+    StringList strList[4];
+    PaletteData *plttData;
+    G3DPipelineBuffers *g3dPipeline;
+    PokemonSpriteManager *monSpriteMan;
     PokemonSprite *unk_12C[3];
     Options *options;
     SaveData *saveData;
     PokemonSummary *unk_140;
-    UnkStruct_ov105_02245AAC unk_144;
-    UnkStruct_ov105_02245EA8 *unk_2F4[6];
-    UnkStruct_ov105_02246060 *unk_30C;
-    UnkStruct_ov105_02246060 *unk_310;
-    UnkStruct_ov105_02245E1C *unk_314;
-    UnkStruct_ov105_02245E1C *unk_318;
+    BattleFactoryAppSpriteManager spriteMan;
+    BattleFactoryAppPokeballSprite *unk_2F4[6];
+    BattleFactoryAppCursor *unk_30C;
+    BattleFactoryAppCursor *unk_310;
+    BattleFactoryAppPanelSprite *unk_314;
+    BattleFactoryAppPanelSprite *unk_318;
     Party *unk_31C;
     Party *unk_320;
     u16 unk_324[6];
     u16 *unk_330;
     int unk_334;
-    NARC *unk_338;
+    NARC *narc;
     u16 unk_33C[60];
     u16 unk_3B4;
     u16 unk_3B6[2];
@@ -122,102 +119,102 @@ struct UnkStruct_ov105_02241FF4_t {
     u8 unk_3BE;
     u8 unk_3BF;
     u32 unk_3C0;
-};
+} BattleFactoryApp;
 
-int ov105_02241AE0(ApplicationManager *appMan, int *param1);
-int ov105_02241BD8(ApplicationManager *appMan, int *param1);
-int ov105_02241F54(ApplicationManager *appMan, int *param1);
-static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_0224227C(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_0224246C(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022424A0(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022424CC(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_0224260C(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_0224296C(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02242A58(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02242B54(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022433AC(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02243738(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_0224396C(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02243D20(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02243D84(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02243DE4(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02243FDC(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_0224435C(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_0224439C(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022452E4(void);
-static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022453F8(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2, int param3, const Party *param4);
-static void ov105_0224472C(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_0224473C(BgConfig *param0);
-static void ov105_0224451C(void *param0);
-static void ov105_02244564(void);
-static void ov105_02244584(BgConfig *param0);
-static void ov105_02244778(UnkStruct_ov105_02241FF4 *param0, int *param1, int param2);
-static BOOL ov105_02244780(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_02244830(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022448BC(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_022448F4(UnkStruct_ov105_02241FF4 *param0, u32 param1, u8 param2, u8 param3, u8 param4);
-static void ov105_02244924(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_022449A4(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02244A60(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02244A18(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02244AA8(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02244AF8(void);
-static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02244B90(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02244BE4(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02244C0C(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static u8 ov105_02244C60(UnkStruct_ov105_02241FF4 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov105_02244CC0(UnkStruct_ov105_02241FF4 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov105_02244D14(UnkStruct_ov105_02241FF4 *param0, int param1);
-static void ov105_02244D48(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 param2);
-static void ov105_02244DC4(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2, int param3);
-static void ov105_02244DF0(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02244E94(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02244EE8(UnkStruct_ov105_02241FF4 *param0, u32 param1, s32 param2);
-static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPokemon *boxMon);
-static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4);
-static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4);
-static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const Party *param9);
-static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8, u8 param9);
-static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0);
-static BOOL ov105_022454F8(UnkStruct_ov105_02241FF4 *param0, u8 param1);
+int BattleFactoryApp_Init(ApplicationManager *appMan, int *param1);
+int BattleFactoryApp_Main(ApplicationManager *appMan, int *param1);
+int BattleFactoryApp_Exit(ApplicationManager *appMan, int *param1);
+static BOOL ov105_02241FF4(BattleFactoryApp *param0);
+static BOOL ov105_022421F0(BattleFactoryApp *app);
+static BOOL ov105_02242698(BattleFactoryApp *param0);
+static void ov105_0224227C(BattleFactoryApp *param0);
+static void ov105_0224246C(BattleFactoryApp *app);
+static void ov105_022424A0(BattleFactoryApp *app);
+static void ov105_022424CC(BattleFactoryApp *param0);
+static void ov105_0224260C(BattleFactoryApp *app);
+static BOOL ov105_022426E0(BattleFactoryApp *param0);
+static void ov105_0224296C(BattleFactoryApp *param0);
+static void ov105_02242A58(BattleFactoryApp *param0);
+static void ov105_02242B54(BattleFactoryApp *param0);
+static BOOL ov105_02242D04(BattleFactoryApp *param0);
+static BOOL ov105_02243144(BattleFactoryApp *param0);
+static void ov105_022433AC(BattleFactoryApp *param0);
+static BOOL ov105_022434BC(BattleFactoryApp *param0);
+static void ov105_02243738(BattleFactoryApp *param0);
+static BOOL ov105_02243818(BattleFactoryApp *param0);
+static void ov105_0224396C(BattleFactoryApp *param0);
+static BOOL ov105_02243A3C(BattleFactoryApp *param0);
+static void ov105_02243D20(BattleFactoryApp *param0);
+static void ov105_02243D84(BattleFactoryApp *param0);
+static void ov105_02243DE4(BattleFactoryApp *param0);
+static BOOL ov105_02243E84(BattleFactoryApp *param0);
+static void ov105_02243FDC(BattleFactoryApp *param0);
+static BOOL ov105_0224400C(BattleFactoryApp *param0);
+static BOOL ov105_0224435C(BattleFactoryApp *param0);
+static BOOL ov105_0224439C(BattleFactoryApp *param0);
+static BOOL ov105_022443DC(BattleFactoryApp *param0);
+static BOOL ov105_02244424(BattleFactoryApp *param0);
+static void FreeAssets(BattleFactoryApp *app);
+static void ReInitApp(BattleFactoryApp *app);
+static void InitGraphicsPlane(void);
+static void LoadAssets(BattleFactoryApp *app);
+static void ov105_022453F8(BattleFactoryApp *param0, u8 param1, u8 param2, int param3, const Party *param4);
+static void InitSpriteManager(BattleFactoryApp *app);
+static void LoadBackgrounds(BattleFactoryApp *app);
+static void FreeBackgrounds(BgConfig *bgConfig);
+static void VBlankCallback(void *data);
+static void SetGXBanks(void);
+static void InitBackgrounds(BgConfig *app);
+static void ChangeState(BattleFactoryApp *app, int *state, int newState);
+static BOOL ov105_02244780(BattleFactoryApp *param0);
+static BOOL ov105_02244830(BattleFactoryApp *param0);
+static void ov105_022448BC(BattleFactoryApp *param0);
+static void ov105_022448F4(BattleFactoryApp *param0, u32 param1, u8 param2, u8 param3, u8 param4);
+static void ov105_02244924(BattleFactoryApp *param0, u32 param1);
+static void LoadMonSelectionBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static void LoadConveyorBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static void LoadAppStartupBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static void LoadWheelBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static void LoadPalette(void);
+static void LoadSubScreenBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static void ReloadMonSelectionBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static void ReloadNoScreensBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static void LoadSelectionConfirmBackground(BattleFactoryApp *app, enum BgLayer bgLayer);
+static u8 PrintMessageWithBg(BattleFactoryApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font);
+static u8 PrintMessage(BattleFactoryApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font);
+static u8 PrintMessageAndCopyToVRAM(BattleFactoryApp *app, int entryID);
+static void InitMenu(BattleFactoryApp *app, Window *window, u8 numOptions);
+static void AddStringToMenu(BattleFactoryApp *app, u8 strIndex, u8 listIndex, int entryID);
+static void OpenMonOptionsMenu(BattleFactoryApp *app);
+static void OpenYesNoMenu(BattleFactoryApp *app);
+static void SetStringTemplateNumber(BattleFactoryApp *app, u32 idx, s32 num);
+static void SetStringTemplateSpecies(BattleFactoryApp *app, u32 idx, BoxPokemon *boxMon);
+static void PrintPlayersName(BattleFactoryApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font);
+static void PrintPartnersName(BattleFactoryApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font);
+static void PrintMonNameAndGender(BattleFactoryApp *app, Window *window, u8 slot, u32 xOffset, u32 yOffset, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, const Party *party);
+static void PrintPartnersMonNameAndGender(BattleFactoryApp *app, Window *window, u32 xOffset, u32 yOffset, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, u16 species, u8 gender);
+static void ov105_02245464(BattleFactoryApp *param0);
+static BOOL ov105_022454F8(BattleFactoryApp *param0, u8 param1);
 static u8 ov105_02245508(u8 param0);
-static BOOL ov105_02245518(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02245528(UnkStruct_ov105_02241FF4 *param0, u8 param1);
-static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2);
-static u32 ov105_02245584(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_022455C4(UnkStruct_ov105_02241FF4 *param0, u8 param1, Pokemon *param2, int param3, int param4, int param5);
-BOOL ov105_02245620(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2);
-void ov105_02245684(UnkStruct_ov105_02241FF4 *param0, u16 param1);
+static BOOL ov105_02245518(BattleFactoryApp *param0);
+static void ov105_02245528(BattleFactoryApp *param0, u8 param1);
+static u8 ov105_02245538(BattleFactoryApp *param0, u8 param1, u8 param2);
+static u32 ov105_02245584(BattleFactoryApp *param0, u32 param1);
+static void ov105_022455C4(BattleFactoryApp *app, u8 param1, Pokemon *mon, int x, int y, int param5);
+BOOL ov105_02245620(BattleFactoryApp *param0, u16 param1, u16 param2);
+void ov105_02245684(BattleFactoryApp *param0, u16 param1);
 void ov105_0224569C(int param0, int param1, void *param2, void *param3);
-void ov105_022456A8(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2);
+void ov105_022456A8(BattleFactoryApp *param0, u16 param1, u16 param2);
 void ov105_02245744(int param0, int param1, void *param2, void *param3);
 void ov105_022457B8(int param0, int param1, void *param2, void *param3);
-void ov105_02245884(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2);
+void ov105_02245884(BattleFactoryApp *param0, u16 param1, u16 param2);
 void ov105_022458A4(int param0, int param1, void *param2, void *param3);
-static void ov105_022457C0(UnkStruct_ov105_02241FF4 *param0);
-static UnkStruct_ov105_02245EA8 *ov105_02245934(UnkStruct_ov105_02241FF4 *param0, int param1);
-static UnkStruct_ov105_02245E1C *ov105_022459B0(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static UnkStruct_ov105_02245E1C *ov105_02245A04(UnkStruct_ov105_02241FF4 *param0, u32 param1);
-static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0);
-static void ov105_02245A64(UnkStruct_ov105_02241FF4 *param0);
+static void ov105_022457C0(BattleFactoryApp *param0);
+static BattleFactoryAppPokeballSprite *ov105_02245934(BattleFactoryApp *param0, int param1);
+static BattleFactoryAppPanelSprite *ov105_022459B0(BattleFactoryApp *param0, u32 param1);
+static BattleFactoryAppPanelSprite *ov105_02245A04(BattleFactoryApp *param0, u32 param1);
+static void ov105_02245A30(BattleFactoryApp *param0);
+static void ov105_02245A64(BattleFactoryApp *param0);
 static void ov105_02245A98(Window *param0);
 
 static const u16 Unk_ov105_02246364[][2] = {
@@ -247,7 +244,7 @@ static const u16 Unk_ov105_02246320[][2] = {
     { 0xD0, 0x70 }
 };
 
-static const UnkStruct_ov105_02246394 Unk_ov105_02246394[] = {
+static const BattleFactoryAppCursorPosition Unk_ov105_02246394[] = {
     { 0x18, 0x70 },
     { 0x40, 0x70 },
     { 0x68, 0x70 },
@@ -256,7 +253,7 @@ static const UnkStruct_ov105_02246394 Unk_ov105_02246394[] = {
     { 0xE0, 0x70 }
 };
 
-static const UnkStruct_ov105_02246394 Unk_ov105_02246340[] = {
+static const BattleFactoryAppCursorPosition Unk_ov105_02246340[] = {
     { 0x40, 0x70 },
     { 0x78, 0x70 },
     { 0xB0, 0x70 },
@@ -270,7 +267,7 @@ static const u8 Unk_ov105_022462D0[(NELEMS(Unk_ov105_02246340))] = {
     0x9
 };
 
-static const UnkStruct_ov105_02246394 Unk_ov105_022462FC[] = {
+static const BattleFactoryAppCursorPosition Unk_ov105_022462FC[] = {
     { 0x60, 0x70 },
     { 0x98, 0x70 },
     { 0xD4, 0x90 }
@@ -282,7 +279,7 @@ static const u8 Unk_ov105_022462CC[(NELEMS(Unk_ov105_022462FC))] = {
     0x9
 };
 
-static const UnkStruct_ov105_02246394 Unk_ov105_02246350[] = {
+static const BattleFactoryAppCursorPosition Unk_ov105_02246350[] = {
     { 0x40, 0x70 },
     { 0x78, 0x70 },
     { 0xB0, 0x70 },
@@ -298,7 +295,7 @@ static const u8 Unk_ov105_022462D4[(NELEMS(Unk_ov105_02246350))] = {
     0x9
 };
 
-static const UnkStruct_ov105_02246394 Unk_ov105_0224637C[] = {
+static const BattleFactoryAppCursorPosition Unk_ov105_0224637C[] = {
     { 0x28, 0x70 },
     { 0x60, 0x70 },
     { 0x98, 0x70 },
@@ -316,18 +313,18 @@ static const u8 Unk_ov105_022462E4[(NELEMS(Unk_ov105_0224637C))] = {
     0x9
 };
 
-static const UnkStruct_ov105_02246394 Unk_ov105_02246308[] = {
+static const BattleFactoryAppCursorPosition Unk_ov105_02246308[] = {
     { 0xD4, 0x90 },
     { 0xD4, 0xA0 },
     { 0xD4, 0xB0 }
 };
 
-static const UnkStruct_ov105_02246394 Unk_ov105_022462F4[] = {
+static const BattleFactoryAppCursorPosition Unk_ov105_022462F4[] = {
     { 0xD4, 0x90 },
     { 0xD4, 0xA0 }
 };
 
-static const UnkStruct_ov105_02246394 bf_v_trade_final_csr_pos[] = {
+static const BattleFactoryAppCursorPosition bf_v_trade_final_csr_pos[] = {
     { 212, 144 },
     { 212, 160 },
 };
@@ -341,301 +338,296 @@ static const u8 Unk_ov105_022462DC[] = {
     0x8
 };
 
-int ov105_02241AE0(ApplicationManager *appMan, int *param1)
+int BattleFactoryApp_Init(ApplicationManager *appMan, int *state)
 {
-    int v0;
-    UnkStruct_ov105_02241FF4 *v1;
-    UnkStruct_ov104_02234130 *v2;
+    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), OVERLAY_LOAD_ASYNC);
+    InitGraphicsPlane();
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_FACTORY_APP, 0x20000);
 
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
-    ov105_022452E4();
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_93, 0x20000);
+    BattleFactoryApp *app = ApplicationManager_NewData(appMan, sizeof(BattleFactoryApp), HEAP_ID_BATTLE_FACTORY_APP);
+    memset(app, 0, sizeof(BattleFactoryApp));
 
-    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
-    memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
+    app->g3dPipeline = G3DPipeline_Init(HEAP_ID_BATTLE_FACTORY_APP, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, BattleFactoryApp_Setup3D);
+    app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_FACTORY_APP);
+    app->appMan = appMan;
 
-    v1->unk_124 = G3DPipeline_Init(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
-    v1->unk_4C = BgConfig_New(HEAP_ID_93);
-    v1->unk_00 = appMan;
+    UnkStruct_ov104_02234130 *v2 = ApplicationManager_Args(appMan);
 
-    v2 = (UnkStruct_ov104_02234130 *)ApplicationManager_Args(appMan);
+    app->saveData = v2->saveData;
+    app->challengeType = v2->unk_04;
+    app->unk_0A = v2->unk_05;
+    app->unk_0B = v2->unk_06;
+    app->unk_31C = v2->unk_08;
+    app->unk_320 = v2->unk_0C;
+    app->unk_330 = &v2->unk_10[0];
+    app->options = SaveData_GetOptions(app->saveData);
+    app->unk_14 = (4 * 2);
 
-    v1->saveData = v2->saveData;
-    v1->unk_09 = v2->unk_04;
-    v1->unk_0A = v2->unk_05;
-    v1->unk_0B = v2->unk_06;
-    v1->unk_31C = v2->unk_08;
-    v1->unk_320 = v2->unk_0C;
-    v1->unk_330 = &v2->unk_10[0];
-    v1->options = SaveData_GetOptions(v1->saveData);
-    v1->unk_14 = (4 * 2);
-
-    if (ov105_022454F8(v1, 0) == 1) {
-        v1->unk_12 = (NELEMS(Unk_ov105_02246394));
+    if (ov105_022454F8(app, 0) == 1) {
+        app->unk_12 = (NELEMS(Unk_ov105_02246394));
     } else {
-        if (BattleFactory_IsMultiplayerChallenge(v1->unk_09) == 1) {
-            v1->unk_12 = (NELEMS(Unk_ov105_022462EC));
-            v1->unk_1A = (NELEMS(Unk_ov105_022462FC));
-            v1->unk_1B = (NELEMS(Unk_ov105_0224637C));
+        if (BattleFactory_IsMultiplayerChallenge(app->challengeType) == TRUE) {
+            app->unk_12 = (NELEMS(Unk_ov105_022462EC));
+            app->unk_1A = (NELEMS(Unk_ov105_022462FC));
+            app->unk_1B = (NELEMS(Unk_ov105_0224637C));
         } else {
-            v1->unk_12 = (NELEMS(Unk_ov105_02246314));
-            v1->unk_1A = (NELEMS(Unk_ov105_02246340));
-            v1->unk_1B = (NELEMS(Unk_ov105_02246350));
+            app->unk_12 = (NELEMS(Unk_ov105_02246314));
+            app->unk_1A = (NELEMS(Unk_ov105_02246340));
+            app->unk_1B = (NELEMS(Unk_ov105_02246350));
         }
     }
 
-    ov105_0224531C(v1);
+    LoadAssets(app);
 
-    if (BattleFactory_IsMultiplayerChallenge(v1->unk_09) == 1) {
-        sub_0209BA80(v1);
+    if (BattleFactory_IsMultiplayerChallenge(app->challengeType) == TRUE) {
+        sub_0209BA80(app);
     }
 
-    (*param1) = 0;
-
-    return 1;
+    *state = 0;
+    return TRUE;
 }
 
-int ov105_02241BD8(ApplicationManager *appMan, int *param1)
+int BattleFactoryApp_Main(ApplicationManager *appMan, int *state)
 {
-    UnkStruct_ov105_02241FF4 *v0 = ApplicationManager_Data(appMan);
+    BattleFactoryApp *app = ApplicationManager_Data(appMan);
 
-    if (v0->unk_3B4 == 1) {
-        switch (*param1) {
+    if (app->unk_3B4 == 1) {
+        switch (*state) {
         case 6:
         case 7:
         case 8:
         case 9:
-            if (v0->unk_13_6 == 0) {
-                ov105_02244778(v0, param1, 11);
+            if (app->unk_13_6 == 0) {
+                ChangeState(app, state, 11);
             }
             break;
         }
     }
 
-    switch (*param1) {
+    switch (*state) {
     case 0:
-        if (ov105_02241FF4(v0) == 1) {
-            ov105_02244778(v0, param1, 1);
+        if (ov105_02241FF4(app) == 1) {
+            ChangeState(app, state, 1);
         }
         break;
     case 2:
-        if (ov105_02242698(v0) == 1) {
-            ov105_02244778(v0, param1, 1);
+        if (ov105_02242698(app) == 1) {
+            ChangeState(app, state, 1);
         } else {
             return 0;
         }
     case 1:
-        if (ov105_022421F0(v0) == 1) {
-            if (ov105_022454F8(v0, 0) == 1) {
-                ov105_02244778(v0, param1, 3);
+        if (ov105_022421F0(app) == 1) {
+            if (ov105_022454F8(app, 0) == 1) {
+                ChangeState(app, state, 3);
             } else {
-                ov105_02244778(v0, param1, 6);
+                ChangeState(app, state, 6);
             }
         }
         break;
     case 3:
-        ov105_022457C0(v0);
+        ov105_022457C0(app);
 
-        if (ov105_022426E0(v0) == 1) {
-            if (v0->unk_13_1 == 1) {
-                ov105_02244778(v0, param1, 2);
+        if (ov105_022426E0(app) == 1) {
+            if (app->unk_13_1 == 1) {
+                ChangeState(app, state, 2);
             } else {
-                if (v0->unk_11 == ov105_02245508(v0->unk_09)) {
-                    ov105_02244778(v0, param1, 4);
+                if (app->unk_11 == ov105_02245508(app->challengeType)) {
+                    ChangeState(app, state, 4);
                 } else {
-                    if (ov105_02245518(v0) == 1) {
-                        ov105_02244778(v0, param1, 13);
+                    if (ov105_02245518(app) == 1) {
+                        ChangeState(app, state, 13);
                     } else {
-                        ov105_02244778(v0, param1, 3);
+                        ChangeState(app, state, 3);
                     }
                 }
             }
         }
         break;
     case 4:
-        ov105_022457C0(v0);
+        ov105_022457C0(app);
 
-        if (ov105_02242D04(v0) == 1) {
-            if (v0->unk_11 == ov105_02245508(v0->unk_09)) {
-                ov105_02244778(v0, param1, 13);
+        if (ov105_02242D04(app) == 1) {
+            if (app->unk_11 == ov105_02245508(app->challengeType)) {
+                ChangeState(app, state, 13);
             } else {
-                ov105_02244778(v0, param1, 5);
+                ChangeState(app, state, 5);
             }
         }
         break;
     case 5:
-        if (ov105_02243144(v0) == 1) {
-            ov105_02244778(v0, param1, 3);
+        if (ov105_02243144(app) == 1) {
+            ChangeState(app, state, 3);
         }
         break;
     case 6:
-        if (ov105_022434BC(v0) == 1) {
-            if (v0->unk_13_1 == 1) {
-                ov105_02244778(v0, param1, 2);
+        if (ov105_022434BC(app) == 1) {
+            if (app->unk_13_1 == 1) {
+                ChangeState(app, state, 2);
             } else {
-                if (ov105_02245518(v0) == 1) {
-                    ov105_02245528(v0, 0);
-                    ov105_02244778(v0, param1, 7);
+                if (ov105_02245518(app) == 1) {
+                    ov105_02245528(app, 0);
+                    ChangeState(app, state, 7);
                 } else {
-                    ov105_02244778(v0, param1, 10);
+                    ChangeState(app, state, 10);
                 }
             }
         }
         break;
     case 7:
-        if (ov105_02243818(v0) == 1) {
-            if (ov105_02245518(v0) == 1) {
-                ov105_02245528(v0, 0);
-                ov105_02244778(v0, param1, 6);
+        if (ov105_02243818(app) == 1) {
+            if (ov105_02245518(app) == 1) {
+                ov105_02245528(app, 0);
+                ChangeState(app, state, 6);
             } else {
-                if (BattleFactory_IsMultiplayerChallenge(v0->unk_09) == 1) {
-                    v0->unk_13_3 = 0;
-                    ov105_02244778(v0, param1, 11);
+                if (BattleFactory_IsMultiplayerChallenge(app->challengeType) == TRUE) {
+                    app->unk_13_3 = 0;
+                    ChangeState(app, state, 11);
                 } else {
-                    ov105_02244778(v0, param1, 13);
+                    ChangeState(app, state, 13);
                 }
             }
         }
         break;
     case 8:
-        if (ov105_02243A3C(v0) == 1) {
-            if (ov105_02245518(v0) == 1) {
-                ov105_02245528(v0, 0);
-                ov105_02244778(v0, param1, 9);
+        if (ov105_02243A3C(app) == 1) {
+            if (ov105_02245518(app) == 1) {
+                ov105_02245528(app, 0);
+                ChangeState(app, state, 9);
             } else {
-                if (v0->unk_11 == 0) {
-                    ov105_02244778(v0, param1, 10);
+                if (app->unk_11 == 0) {
+                    ChangeState(app, state, 10);
                 } else {
-                    if (BattleFactory_IsMultiplayerChallenge(v0->unk_09) == 1) {
-                        ov105_02244778(v0, param1, 11);
+                    if (BattleFactory_IsMultiplayerChallenge(app->challengeType) == TRUE) {
+                        ChangeState(app, state, 11);
                     } else {
-                        ov105_02244778(v0, param1, 13);
+                        ChangeState(app, state, 13);
                     }
                 }
             }
         }
         break;
     case 9:
-        if (ov105_02243E84(v0) == 1) {
-            if (ov105_02245518(v0) == 1) {
-                ov105_02245528(v0, 0);
-                ov105_02244778(v0, param1, 8);
+        if (ov105_02243E84(app) == 1) {
+            if (ov105_02245518(app) == 1) {
+                ov105_02245528(app, 0);
+                ChangeState(app, state, 8);
             } else {
-                if (BattleFactory_IsMultiplayerChallenge(v0->unk_09) == 1) {
-                    v0->unk_13_3 = 0;
-                    ov105_02244778(v0, param1, 11);
+                if (BattleFactory_IsMultiplayerChallenge(app->challengeType) == TRUE) {
+                    app->unk_13_3 = 0;
+                    ChangeState(app, state, 11);
                 } else {
-                    ov105_02244778(v0, param1, 13);
+                    ChangeState(app, state, 13);
                 }
             }
         }
         break;
     case 10:
-        if (ov105_0224400C(v0) == 1) {
-            if (v0->unk_11 == 0) {
-                ov105_022424CC(v0);
-                ov105_02244778(v0, param1, 6);
+        if (ov105_0224400C(app) == 1) {
+            if (app->unk_11 == 0) {
+                ov105_022424CC(app);
+                ChangeState(app, state, 6);
             } else {
-                ov105_02244778(v0, param1, 8);
+                ChangeState(app, state, 8);
             }
         }
         break;
     case 11:
-        if (ov105_0224435C(v0) == 1) {
-            if (v0->unk_3B4 == 1) {
-                ov105_02244778(v0, param1, 14);
+        if (ov105_0224435C(app) == 1) {
+            if (app->unk_3B4 == 1) {
+                ChangeState(app, state, 14);
             } else {
-                ov105_02244778(v0, param1, 12);
+                ChangeState(app, state, 12);
             }
         }
         break;
     case 12:
-        if (ov105_0224439C(v0) == 1) {
-            ov105_02244778(v0, param1, 13);
+        if (ov105_0224439C(app) == 1) {
+            ChangeState(app, state, 13);
         }
         break;
     case 13:
-        if (ov105_022443DC(v0) == 1) {
+        if (ov105_022443DC(app) == 1) {
             return 1;
         }
         break;
     case 14:
-        if (ov105_02244424(v0) == 1) {
-            ov105_02244778(v0, param1, 12);
+        if (ov105_02244424(app) == 1) {
+            ChangeState(app, state, 12);
         }
         break;
     }
 
-    SpriteList_Update(v0->unk_144.unk_00);
-    ov105_02245D50(v0->unk_128);
+    SpriteList_Update(app->spriteMan.spriteList);
+    BattleFactoryApp_UpdateMonGraphics(app->monSpriteMan);
 
     return 0;
 }
 
-int ov105_02241F54(ApplicationManager *appMan, int *param1)
+int BattleFactoryApp_Exit(ApplicationManager *appMan, int *state)
 {
     int v0;
-    UnkStruct_ov105_02241FF4 *v1 = ApplicationManager_Data(appMan);
+    BattleFactoryApp *app = ApplicationManager_Data(appMan);
 
-    if (ov105_022454F8(v1, 0) == 1) {
-        for (v0 = 0; v0 < ov105_02245508(v1->unk_09); v0++) {
-            v1->unk_330[v0] = v1->unk_324[v0];
+    if (ov105_022454F8(app, 0) == 1) {
+        for (v0 = 0; v0 < ov105_02245508(app->challengeType); v0++) {
+            app->unk_330[v0] = app->unk_324[v0];
         }
     } else {
         for (v0 = 0; v0 < 2; v0++) {
-            v1->unk_330[v0] = v1->unk_324[v0];
+            app->unk_330[v0] = app->unk_324[v0];
         }
 
-        if (v1->unk_13_3 == 0) {
-            v1->unk_330[0] = 0xff;
-            v1->unk_330[1] = 0xff;
+        if (app->unk_13_3 == 0) {
+            app->unk_330[0] = 0xff;
+            app->unk_330[1] = 0xff;
         }
     }
 
-    ov105_022451B4(v1);
+    FreeAssets(app);
 
     ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(HEAP_ID_93);
+    Heap_Destroy(HEAP_ID_BATTLE_FACTORY_APP);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02241FF4(BattleFactoryApp *param0)
 {
     int v0;
     const VecFx32 *v1;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(237);
         }
 
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 1:
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
             if (CommTiming_IsSyncState(237) == 1) {
                 CommTool_ClearReceivedTempDataAllPlayers();
-                param0->unk_08++;
+                param0->subState++;
             }
         } else {
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 2:
         for (v0 = 0; v0 < param0->unk_12; v0++) {
-            v1 = ov105_02245F2C(param0->unk_2F4[v0]);
+            v1 = BattleFactoryAppPokeballSprite_GetPosition(param0->unk_2F4[v0]);
             ov105_02245F5C(param0->unk_2F4[v0]);
         }
 
-        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, 33 * 8);
+        Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 0, 33 * 8);
         PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_93);
-        param0->unk_08++;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_BATTLE_FACTORY_APP);
+        param0->subState++;
         break;
     case 3:
         if (IsScreenFadeDone() == FALSE) {
@@ -644,7 +636,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
 
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 4:
         if (ov105_02244780(param0) == 1) {
@@ -652,32 +644,32 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
             Sound_PlayEffect(SEQ_SE_DP_KASYA);
 
             for (v0 = 0; v0 < param0->unk_12; v0++) {
-                ov105_02245F90(param0->unk_2F4[v0], 10);
+                BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[v0], 10);
             }
 
             ov105_02244924(param0, 0);
 
             param0->unk_14 = (4 * 2);
             param0->unk_19 = 0;
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 5:
-        if (ov105_02245E48(param0->unk_314) == 1) {
+        if (BattleFactoryAppPanelSprite_IsAnimated(param0->unk_314) == 1) {
             break;
         }
 
         ov105_02245A30(param0);
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 6:
         if (param0->unk_19 == 0) {
-            ov105_02244B90(param0, 3);
+            ReloadMonSelectionBackground(param0, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
             PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
-            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSpriteManager_StartFadeAll(param0->monSpriteMan, 16, 0, 1, 0xffff);
         }
 
         if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
@@ -700,76 +692,74 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_022421F0(BattleFactoryApp *app)
 {
-    int v0;
-
-    switch (param0->unk_08) {
+    switch (app->subState) {
     case 0:
-        if (ov105_022454F8(param0, 0) == 1) {
-            ov105_0224227C(param0);
+        if (ov105_022454F8(app, 0) == 1) {
+            ov105_0224227C(app);
         } else {
-            ov105_022424CC(param0);
+            ov105_022424CC(app);
         }
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
-            ov105_02244F84(param0, &param0->unk_50[1], 0, 0, 0);
+        if (BattleFactory_IsMultiplayerChallenge(app->challengeType) == TRUE) {
+            PrintPartnersName(app, &app->windows[1], 0, 0, 0);
         }
 
-        if (param0->unk_13_4 == 1) {
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_93);
+        if (app->unk_13_4 == 1) {
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1 * 3, HEAP_ID_BATTLE_FACTORY_APP);
         }
 
-        param0->unk_13_4 = 1;
-        param0->unk_08++;
+        app->unk_13_4 = 1;
+        app->subState++;
         break;
     case 1:
         if (IsScreenFadeDone() == TRUE) {
-            return 1;
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov105_0224227C(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_0224227C(BattleFactoryApp *param0)
 {
     int v0;
-    u8 v1 = ov104_0223AA50(param0->unk_09);
+    u8 v1 = ov104_0223AA50(param0->challengeType);
 
     ov105_02245528(param0, 0);
-    param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_12, param0->unk_12, 0, param0->unk_334, Unk_ov105_02246394, NULL);
-    ov105_02244F0C(param0, &param0->unk_50[0], 0, 0, 0);
+    param0->unk_30C = BattleFactoryAppCursor_New(&param0->spriteMan, param0->unk_12, param0->unk_12, 0, param0->unk_334, Unk_ov105_02246394, NULL);
+    PrintPlayersName(param0, &param0->windows[0], 0, 0, 0);
 
     for (v0 = 0; v0 < param0->unk_11; v0++) {
-        ov105_02245F44(param0->unk_2F4[param0->unk_324[v0]]);
-        ov105_02245FAC(param0->unk_2F4[param0->unk_324[v0]], 0);
-        ov105_02245F90(param0->unk_2F4[param0->unk_324[v0]], 7);
-        ov105_02244FF8(param0, &param0->unk_50[2 + v0], param0->unk_324[v0], 0, 0, 15, 2, 0, 0, param0->unk_31C);
+        BattleFactoryAppPokeballSprite_SelectMon(param0->unk_2F4[param0->unk_324[v0]]);
+        BattleFactoryAppPokeballSprite_UpdatePalette(param0->unk_2F4[param0->unk_324[v0]], 0);
+        BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[param0->unk_324[v0]], 7);
+        PrintMonNameAndGender(param0, &param0->windows[2 + v0], param0->unk_324[v0], 0, 0, 15, 2, 0, 0, param0->unk_31C);
     }
 
-    ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
-    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
+    PrintMonNameAndGender(param0, &param0->windows[2 + param0->unk_11], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+    BattleFactoryApp_DrawMessageBox(&param0->windows[5], Options_Frame(param0->options));
+    SetStringTemplateNumber(param0, 0, param0->unk_11 + 1);
 
-    param0->unk_10 = ov105_02244D14(param0, 0);
+    param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChoosePokemon);
 
     if (param0->unk_13_1 == 1) {
         ov105_022461A4(param0->unk_30C, 1);
-        ov105_02244DF0(param0);
+        OpenMonOptionsMenu(param0);
 
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
+        param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
 
         if (param0->unk_18 != 0) {
             for (v0 = 0; v0 < v1; v0++) {
-                Window_FillTilemap(&param0->unk_50[8 + v0], 0);
+                Window_FillTilemap(&param0->windows[8 + v0], 0);
 
                 if (v0 < param0->unk_18) {
-                    ov105_022450DC(param0, &param0->unk_50[8 + v0], 0, 0, 15, 2, 0, 0, param0->unk_3B6[v0], param0->unk_3BA[v0]);
+                    PrintPartnersMonNameAndGender(param0, &param0->windows[8 + v0], 0, 0, 15, 2, 0, 0, param0->unk_3B6[v0], param0->unk_3BA[v0]);
                 }
 
-                Window_ScheduleCopyToVRAM(&param0->unk_50[8 + v0]);
+                Window_ScheduleCopyToVRAM(&param0->windows[8 + v0]);
             }
         }
     }
@@ -777,80 +767,70 @@ static void ov105_0224227C(UnkStruct_ov105_02241FF4 *param0)
     return;
 }
 
-static void ov105_0224246C(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_0224246C(BattleFactoryApp *app)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_12; v0++) {
-        param0->unk_2F4[v0] = ov105_02245934(param0, v0);
-        ov105_02245EBC(param0->unk_2F4[v0], 1);
+    for (int i = 0; i < app->unk_12; i++) {
+        app->unk_2F4[i] = ov105_02245934(app, i);
+        BattleFactoryAppPokeballSprite_SetDrawFlag(app->unk_2F4[i], TRUE);
     }
-
-    return;
 }
 
-static void ov105_022424A0(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_022424A0(BattleFactoryApp *app)
 {
-    ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, param0->unk_334), 120, 43, 0);
-    return;
+    ov105_022455C4(app, 0, Party_GetPokemonBySlotIndex(app->unk_31C, app->unk_334), 120, 43, 0);
 }
 
-static void ov105_022424CC(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_022424CC(BattleFactoryApp *param0)
 {
     int v0;
 
     ov105_02245528(param0, 0);
-    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
+    BattleFactoryApp_DrawMessageBox(&param0->windows[5], Options_Frame(param0->options));
 
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
-        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, NELEMS(Unk_ov105_02246340) - 1, 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
+    if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
+        param0->unk_30C = BattleFactoryAppCursor_New(&param0->spriteMan, param0->unk_1A, NELEMS(Unk_ov105_02246340) - 1, 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
     } else {
-        param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, NELEMS(Unk_ov105_022462FC) - 1, 2, param0->unk_334, Unk_ov105_022462FC, Unk_ov105_022462CC);
+        param0->unk_30C = BattleFactoryAppCursor_New(&param0->spriteMan, param0->unk_1A, NELEMS(Unk_ov105_022462FC) - 1, 2, param0->unk_334, Unk_ov105_022462FC, Unk_ov105_022462CC);
     }
 
-    ov105_02244F0C(param0, &param0->unk_50[0], 0, 0, 0);
-    ov105_02244FF8(param0, &param0->unk_50[2], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
+    PrintPlayersName(param0, &param0->windows[0], 0, 0, 0);
+    PrintMonNameAndGender(param0, &param0->windows[2], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+    BattleFactoryApp_DrawWindow(param0->bgConfig, &param0->windows[7]);
 
-    param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 19, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
-    param0->unk_10 = ov105_02244D14(param0, 9);
+    param0->unk_10 = PrintMessageWithBg(param0, &param0->windows[7], BattleFactoryApp_Text_Cancel2, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
+    Window_ScheduleCopyToVRAM(&param0->windows[7]);
+    param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChooseExchange);
 
     if (param0->unk_13_1 == 1) {
-        ov105_02244DF0(param0);
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
+        OpenMonOptionsMenu(param0);
+        param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
     }
 
     return;
 }
 
-static void ov105_0224260C(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_0224260C(BattleFactoryApp *app)
 {
-    int v0;
+    for (int i = 0; i < app->unk_12; i++) {
+        app->unk_2F4[i] = ov105_02245934(app, i);
+        BattleFactoryAppPokeballSprite_SetDrawFlag(app->unk_2F4[i], TRUE);
 
-    for (v0 = 0; v0 < param0->unk_12; v0++) {
-        param0->unk_2F4[v0] = ov105_02245934(param0, v0);
-        ov105_02245EBC(param0->unk_2F4[v0], 1);
-
-        if (param0->unk_13_2 == 0) {
-            ov105_02245F44(param0->unk_2F4[v0]);
-            ov105_02245FAC(param0->unk_2F4[v0], 0);
-            ov105_02245F90(param0->unk_2F4[v0], 6);
+        if (app->unk_13_2 == 0) {
+            BattleFactoryAppPokeballSprite_SelectMon(app->unk_2F4[i]);
+            BattleFactoryAppPokeballSprite_UpdatePalette(app->unk_2F4[i], 0);
+            BattleFactoryAppPokeballSprite_SetAnim(app->unk_2F4[i], ANIM_ID_BALL_STATIC);
         }
     }
-
-    return;
 }
 
-static void ov105_0224266C(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_0224266C(BattleFactoryApp *app)
 {
-    ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, param0->unk_334), 120, 43, 1);
-    return;
+    ov105_022455C4(app, 0, Party_GetPokemonBySlotIndex(app->unk_31C, app->unk_334), 120, 43, 1);
 }
 
-static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02242698(BattleFactoryApp *param0)
 {
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
 
         if (ApplicationManager_Exec(param0->unk_04) == 1) {
@@ -858,7 +838,7 @@ static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0)
             Heap_Free(param0->unk_140);
             Heap_Free(param0->unk_04);
             param0->unk_04 = NULL;
-            ov105_022452A0(param0);
+            ReInitApp(param0);
             param0->unk_13_6 = 0;
             return 1;
         }
@@ -868,17 +848,17 @@ static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_022426E0(BattleFactoryApp *param0)
 {
     int v0;
     u32 v1;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         if (param0->unk_13_1 == 0) {
-            param0->unk_08 = 1;
+            param0->subState = 1;
         } else {
-            param0->unk_08 = 2;
+            param0->subState = 2;
         }
 
         param0->unk_13_1 = 0;
@@ -888,22 +868,22 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
 
         if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov105_022453F8(param0, param0->unk_11, ov105_022461A0(param0->unk_30C), 0, param0->unk_31C);
+            ov105_022453F8(param0, param0->unk_11, BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, param0->unk_31C);
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov105_022461A4(param0->unk_30C, 1);
-            ov105_02244DF0(param0);
+            OpenMonOptionsMenu(param0);
 
-            param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
-            param0->unk_08++;
+            param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
+            param0->subState++;
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (param0->unk_11 > 0) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov105_0224296C(param0);
 
-                if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+                if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
                     ov105_02245620(param0, 8, 0);
                 }
 
@@ -912,39 +892,39 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 2:
-        v1 = Menu_ProcessInput(param0->unk_FC);
+        v1 = Menu_ProcessInput(param0->menu);
         ov105_02246080(param0->unk_310);
 
         switch (v1) {
         case 0xffffffff:
             break;
         case 0:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_93);
-            param0->unk_08++;
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BATTLE_FACTORY_APP);
+            param0->subState++;
             break;
         case 1:
-            Menu_Free(param0->unk_FC, NULL);
+            Menu_Free(param0->menu, NULL);
 
-            ov105_02245A98(param0->unk_F0.window);
+            ov105_02245A98(param0->menuTemplate.window);
             ov105_02242A58(param0);
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
                 ov105_02245620(param0, 8, 0);
             }
 
             return 1;
         case 3:
-            Menu_Free(param0->unk_FC, NULL);
+            Menu_Free(param0->menu, NULL);
 
-            ov105_02245A98(param0->unk_F0.window);
+            ov105_02245A98(param0->menuTemplate.window);
             ov105_02242B54(param0);
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
                 ov105_02245620(param0, 8, 0);
             }
 
@@ -952,10 +932,10 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         case 0xfffffffe:
         case 2:
         default:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
             ov105_022461A4(param0->unk_30C, 0);
-            ov105_02246060(param0->unk_310);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
             return 1;
         }
@@ -963,8 +943,8 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
     case 3:
         if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
-            ov105_022451B4(param0);
-            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_93);
+            FreeAssets(param0);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_BATTLE_FACTORY_APP);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -976,7 +956,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         break;
     case 5:
         if (IsScreenFadeDone() == TRUE) {
-            param0->unk_08 = 2;
+            param0->subState = 2;
         }
         break;
     }
@@ -984,68 +964,68 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_0224296C(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_0224296C(BattleFactoryApp *param0)
 {
-    Window_FillTilemap(&param0->unk_50[2 + param0->unk_11], 0);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[2 + param0->unk_11]);
+    Window_FillTilemap(&param0->windows[2 + param0->unk_11], 0);
+    Window_ScheduleCopyToVRAM(&param0->windows[2 + param0->unk_11]);
 
     param0->unk_11--;
-    Window_FillTilemap(&param0->unk_50[2 + param0->unk_11], 0);
+    Window_FillTilemap(&param0->windows[2 + param0->unk_11], 0);
 
-    ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
+    PrintMonNameAndGender(param0, &param0->windows[2 + param0->unk_11], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+    SetStringTemplateNumber(param0, 0, param0->unk_11 + 1);
 
-    param0->unk_10 = ov105_02244D14(param0, 0);
+    param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChoosePokemon);
 
-    ov105_02245F50(param0->unk_2F4[param0->unk_324[param0->unk_11]]);
-    ov105_02245FAC(param0->unk_2F4[param0->unk_324[param0->unk_11]], 1);
-    ov105_02245F90(param0->unk_2F4[param0->unk_324[param0->unk_11]], 6);
+    BattleFactoryAppPokeballSprite_UnselectMon(param0->unk_2F4[param0->unk_324[param0->unk_11]]);
+    BattleFactoryAppPokeballSprite_UpdatePalette(param0->unk_2F4[param0->unk_324[param0->unk_11]], 1);
+    BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[param0->unk_324[param0->unk_11]], 6);
 
     param0->unk_324[param0->unk_11] = 0;
     return;
 }
 
-static void ov105_02242A58(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02242A58(BattleFactoryApp *param0)
 {
-    ov105_02245F44(param0->unk_2F4[ov105_022461A0(param0->unk_30C)]);
-    ov105_02245FAC(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 0);
-    ov105_02245F90(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 7);
+    BattleFactoryAppPokeballSprite_SelectMon(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)]);
+    BattleFactoryAppPokeballSprite_UpdatePalette(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 0);
+    BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 7);
 
-    param0->unk_324[param0->unk_11] = ov105_022461A0(param0->unk_30C);
+    param0->unk_324[param0->unk_11] = BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C);
     param0->unk_11++;
 
-    if (param0->unk_11 == ov105_02245508(param0->unk_09)) {
-        ov105_02246060(param0->unk_310);
+    if (param0->unk_11 == ov105_02245508(param0->challengeType)) {
+        BattleFactoryAppCursor_Free(param0->unk_310);
         param0->unk_310 = NULL;
     } else {
         ov105_022461A4(param0->unk_30C, 0);
-        ov105_02246060(param0->unk_310);
+        BattleFactoryAppCursor_Free(param0->unk_310);
 
         param0->unk_310 = NULL;
 
-        ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-        ov105_02244EE8(param0, 0, param0->unk_11 + 1);
+        PrintMonNameAndGender(param0, &param0->windows[2 + param0->unk_11], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+        SetStringTemplateNumber(param0, 0, param0->unk_11 + 1);
 
-        param0->unk_10 = ov105_02244D14(param0, 0);
+        param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChoosePokemon);
     }
 
     return;
 }
 
-static void ov105_02242B54(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02242B54(BattleFactoryApp *param0)
 {
     u8 v0;
     int v1;
 
-    ov105_02245F50(param0->unk_2F4[ov105_022461A0(param0->unk_30C)]);
-    ov105_02245FAC(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 1);
-    ov105_02245F90(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 6);
+    BattleFactoryAppPokeballSprite_UnselectMon(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)]);
+    BattleFactoryAppPokeballSprite_UpdatePalette(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 1);
+    BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 6);
 
     if (param0->unk_11 >= 2) {
-        if (param0->unk_324[0] == ov105_022461A0(param0->unk_30C)) {
+        if (param0->unk_324[0] == BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)) {
             param0->unk_324[0] = param0->unk_324[1];
             PokemonSprite_Delete(param0->unk_12C[0]);
-            ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, ov105_022461A0(param0->unk_30C)), 120, 43, 0);
+            ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)), 120, 43, 0);
         }
     }
 
@@ -1053,61 +1033,61 @@ static void ov105_02242B54(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_324[param0->unk_11] = 0;
 
     ov105_022461A4(param0->unk_30C, 0);
-    ov105_02246060(param0->unk_310);
+    BattleFactoryAppCursor_Free(param0->unk_310);
 
     param0->unk_310 = NULL;
-    v0 = ov105_02245508(param0->unk_09);
+    v0 = ov105_02245508(param0->challengeType);
 
     for (v1 = 0; v1 < v0; v1++) {
-        Window_FillTilemap(&param0->unk_50[2 + v1], 0);
+        Window_FillTilemap(&param0->windows[2 + v1], 0);
     }
 
     for (v1 = 0; v1 < param0->unk_11; v1++) {
-        ov105_02244FF8(param0, &param0->unk_50[2 + v1], param0->unk_324[v1], 0, 0, 15, 2, 0, 0, param0->unk_31C);
+        PrintMonNameAndGender(param0, &param0->windows[2 + v1], param0->unk_324[v1], 0, 0, 15, 2, 0, 0, param0->unk_31C);
     }
 
-    ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+    PrintMonNameAndGender(param0, &param0->windows[2 + param0->unk_11], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
 
     for (v1 = 0; v1 < v0; v1++) {
-        Window_ScheduleCopyToVRAM(&param0->unk_50[2 + v1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[2 + v1]);
     }
 
-    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
-    param0->unk_10 = ov105_02244D14(param0, 0);
+    SetStringTemplateNumber(param0, 0, param0->unk_11 + 1);
+    param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChoosePokemon);
 
     return;
 }
 
-static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02242D04(BattleFactoryApp *param0)
 {
     u8 v0;
     u32 v1;
     int v2;
     int v3[3];
 
-    v0 = ov104_0223AA50(param0->unk_09);
+    v0 = ov104_0223AA50(param0->challengeType);
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
-        ov105_02246074(param0->unk_30C, 0);
+        BattleFactoryAppCursor_SetDrawFlag(param0->unk_30C, 0);
         param0->unk_13_5 = 1;
-        Window_ClearAndCopyToVRAM(&param0->unk_50[1]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[8]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[9]);
+        Window_ClearAndCopyToVRAM(&param0->windows[1]);
+        Window_ClearAndCopyToVRAM(&param0->windows[8]);
+        Window_ClearAndCopyToVRAM(&param0->windows[9]);
 
         for (v2 = 0; v2 < param0->unk_11; v2++) {
-            Window_FillTilemap(&param0->unk_50[2 + v2], 0);
-            Window_ScheduleCopyToVRAM(&param0->unk_50[2 + v2]);
+            Window_FillTilemap(&param0->windows[2 + v2], 0);
+            Window_ScheduleCopyToVRAM(&param0->windows[2 + v2]);
         }
 
-        Window_FillTilemap(&param0->unk_50[0], 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_50[0]);
+        Window_FillTilemap(&param0->windows[0], 0);
+        Window_ScheduleCopyToVRAM(&param0->windows[0]);
 
         ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
-        PokemonSpriteManager_StartFadeAll(param0->unk_128, 0, 16, 0, 0xffff);
+        PokemonSpriteManager_StartFadeAll(param0->monSpriteMan, 0, 16, 0, 0xffff);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 1:
         param0->unk_19++;
@@ -1120,16 +1100,16 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
 
         ov105_02244924(param0, 1);
         ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 21, 11);
-        ov105_02244BE4(param0, 3);
+        ReloadNoScreensBackground(param0, 3);
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 2:
         if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
-        if (ov105_02245E48(param0->unk_314) == 1) {
+        if (BattleFactoryAppPanelSprite_IsAnimated(param0->unk_314) == 1) {
             break;
         }
 
@@ -1146,33 +1126,33 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         }
 
         ov105_02244924(param0, 4);
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 3:
-        if (ov105_02245E48(param0->unk_314) == 1) {
+        if (BattleFactoryAppPanelSprite_IsAnimated(param0->unk_314) == 1) {
             break;
         }
 
         ov105_02245A30(param0);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 4:
         if (param0->unk_19 == 0) {
-            ov105_02244C0C(param0, 3);
+            LoadSelectionConfirmBackground(param0, 3);
 
             for (v2 = 0; v2 < v0; v2++) {
                 PokemonSprite_SetAttribute(param0->unk_12C[v2], MON_SPRITE_HIDE, 0);
             }
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+            if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
                 ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 32, 11);
             } else {
                 ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
             }
 
-            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSpriteManager_StartFadeAll(param0->monSpriteMan, 16, 0, 1, 0xffff);
         }
 
         if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
@@ -1185,7 +1165,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             break;
         }
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 2, 1), 32, 11);
         } else {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 2, 1), 21, 11);
@@ -1193,47 +1173,47 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
 
         param0->unk_13_5 = 0;
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
             param0->unk_3BF = 1;
             ov105_022457C0(param0);
         }
 
-        ov105_02244EE8(param0, 0, v0);
-        param0->unk_10 = ov105_02244D14(param0, 1);
-        ov105_02244E94(param0);
+        SetStringTemplateNumber(param0, 0, v0);
+        param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_OkWithSelection);
+        OpenYesNoMenu(param0);
 
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
+        param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 5:
-        v1 = Menu_ProcessInput(param0->unk_FC);
+        v1 = Menu_ProcessInput(param0->menu);
         ov105_02246080(param0->unk_310);
 
         switch (v1) {
         case 0xffffffff:
             break;
         case 0:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
-            param0->unk_08++;
+            param0->subState++;
             break;
         case 0xfffffffe:
         case 1:
         default:
-            ov105_02246074(param0->unk_30C, 1);
-            Menu_Free(param0->unk_FC, NULL);
+            BattleFactoryAppCursor_SetDrawFlag(param0->unk_30C, 1);
+            Menu_Free(param0->menu, NULL);
 
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
 
             param0->unk_310 = NULL;
             param0->unk_11--;
             param0->unk_324[param0->unk_11] = 0;
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
                 ov105_02245620(param0, 8, 0);
             }
 
@@ -1241,16 +1221,16 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 6:
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             return 1;
         }
 
         if (ov105_02245620(param0, 8, 0) == 1) {
-            param0->unk_10 = ov105_02244D14(param0, 2);
+            param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_PleaseWait);
 
             CommTool_ClearReceivedTempDataAllPlayers();
             CommTiming_StartSync(164);
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 7:
@@ -1264,31 +1244,31 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02243144(BattleFactoryApp *param0)
 {
     u8 v0;
     int v1;
 
-    v0 = ov104_0223AA50(param0->unk_09);
+    v0 = ov104_0223AA50(param0->challengeType);
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         param0->unk_13_5 = 1;
 
-        Window_ClearAndCopyToVRAM(&param0->unk_50[1]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[8]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[9]);
+        Window_ClearAndCopyToVRAM(&param0->windows[1]);
+        Window_ClearAndCopyToVRAM(&param0->windows[8]);
+        Window_ClearAndCopyToVRAM(&param0->windows[9]);
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 32, 11);
         } else {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
         }
 
-        PokemonSpriteManager_StartFadeAll(param0->unk_128, 0, 16, 0, 0xffff);
+        PokemonSpriteManager_StartFadeAll(param0->monSpriteMan, 0, 16, 0, 0xffff);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 1:
         param0->unk_19++;
@@ -1303,16 +1283,16 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
 
         ov105_02244924(param0, 5);
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 32, 11);
         } else {
             ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 21, 11);
         }
 
-        ov105_02244BE4(param0, 3);
+        ReloadNoScreensBackground(param0, 3);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
 
         break;
     case 2:
@@ -1320,33 +1300,33 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
             (void)0;
         }
 
-        if (ov105_02245E48(param0->unk_314) == 1) {
+        if (BattleFactoryAppPanelSprite_IsAnimated(param0->unk_314) == 1) {
             break;
         }
 
         ov105_02245A30(param0);
-        ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, ov105_022461A0(param0->unk_30C)), 120, 43, 0);
+        ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)), 120, 43, 0);
 
         PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         ov105_02244924(param0, 0);
 
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 3:
-        if (ov105_02245E48(param0->unk_314) == 1) {
+        if (BattleFactoryAppPanelSprite_IsAnimated(param0->unk_314) == 1) {
             break;
         }
 
         ov105_02245A30(param0);
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 4:
         if (param0->unk_19 == 0) {
-            ov105_02244B90(param0, 3);
+            ReloadMonSelectionBackground(param0, 3);
             PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
-            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSpriteManager_StartFadeAll(param0->monSpriteMan, 16, 0, 1, 0xffff);
         }
 
         if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
@@ -1362,7 +1342,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
         ov105_022448F4(param0, 3, ov105_02245538(param0, 2, 0), 21, 11);
         param0->unk_13_5 = 0;
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
             param0->unk_3BF = 1;
             ov105_022457C0(param0);
         }
@@ -1374,40 +1354,40 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_022433AC(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_022433AC(BattleFactoryApp *param0)
 {
     int v0;
-    u8 v1 = ov104_0223AA50(param0->unk_09);
+    u8 v1 = ov104_0223AA50(param0->challengeType);
 
     for (v0 = 0; v0 < param0->unk_11; v0++) {
-        ov105_02244FF8(param0, &param0->unk_50[2 + v0], param0->unk_324[v0], 0, 0, 15, 2, 0, 0, param0->unk_31C);
+        PrintMonNameAndGender(param0, &param0->windows[2 + v0], param0->unk_324[v0], 0, 0, 15, 2, 0, 0, param0->unk_31C);
     }
 
-    ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_02244F0C(param0, &param0->unk_50[0], 0, 0, 0);
+    PrintMonNameAndGender(param0, &param0->windows[2 + param0->unk_11], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+    PrintPlayersName(param0, &param0->windows[0], 0, 0, 0);
     ov105_022461A4(param0->unk_30C, 0);
-    ov105_02245F50(param0->unk_2F4[ov105_022461A0(param0->unk_30C)]);
-    ov105_02245FAC(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 1);
-    ov105_02245F90(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 6);
-    ov105_02244EE8(param0, 0, param0->unk_11 + 1);
+    BattleFactoryAppPokeballSprite_UnselectMon(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)]);
+    BattleFactoryAppPokeballSprite_UpdatePalette(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 1);
+    BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 6);
+    SetStringTemplateNumber(param0, 0, param0->unk_11 + 1);
 
-    param0->unk_10 = ov105_02244D14(param0, 0);
+    param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChoosePokemon);
     return;
 }
 
-static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_022434BC(BattleFactoryApp *param0)
 {
     int v0;
     u32 v1;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         ov105_02245528(param0, 0);
 
         if (param0->unk_13_1 == 0) {
-            param0->unk_08 = 1;
+            param0->subState = 1;
         } else {
-            param0->unk_08 = 2;
+            param0->subState = 2;
         }
 
         param0->unk_13_1 = 0;
@@ -1417,21 +1397,21 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
 
         if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov105_022453F8(param0, param0->unk_11, ov105_022461A0(param0->unk_30C), 1, param0->unk_31C);
+            ov105_022453F8(param0, param0->unk_11, BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 1, param0->unk_31C);
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (ov105_022461A0(param0->unk_30C) == (param0->unk_1A - 1)) {
+            if (BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C) == (param0->unk_1A - 1)) {
                 ov105_02245528(param0, 1);
                 return 1;
             } else {
                 ov105_022461A4(param0->unk_30C, 1);
-                ov105_02244DF0(param0);
+                OpenMonOptionsMenu(param0);
 
-                param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
-                param0->unk_08++;
+                param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_02246308), NELEMS(Unk_ov105_02246308), 1, 0, Unk_ov105_02246308, NULL);
+                param0->subState++;
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -1440,46 +1420,46 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 2:
-        v1 = Menu_ProcessInput(param0->unk_FC);
+        v1 = Menu_ProcessInput(param0->menu);
         ov105_02246080(param0->unk_310);
 
         switch (v1) {
         case 0xffffffff:
             break;
         case 0:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_93);
-            param0->unk_08++;
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BATTLE_FACTORY_APP);
+            param0->subState++;
             break;
         case 4:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
             ov105_02243738(param0);
             return 1;
         case 0xfffffffe:
         case 2:
         default:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
             ov105_022461A4(param0->unk_30C, 0);
-            ov105_02246060(param0->unk_310);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
-            ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
-            param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 19, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
-            Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
-            param0->unk_08 = 1;
+            BattleFactoryApp_DrawWindow(param0->bgConfig, &param0->windows[7]);
+            param0->unk_10 = PrintMessageWithBg(param0, &param0->windows[7], BattleFactoryApp_Text_Cancel2, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
+            Window_ScheduleCopyToVRAM(&param0->windows[7]);
+            param0->subState = 1;
             break;
         }
         break;
     case 3:
         if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
-            ov105_022451B4(param0);
-            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_93);
+            FreeAssets(param0);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_BATTLE_FACTORY_APP);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -1491,7 +1471,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         break;
     case 5:
         if (IsScreenFadeDone() == TRUE) {
-            param0->unk_08 = 2;
+            param0->subState = 2;
         }
         break;
     }
@@ -1499,78 +1479,78 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_02243738(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02243738(BattleFactoryApp *param0)
 {
-    ov105_02245F44(param0->unk_2F4[ov105_022461A0(param0->unk_30C)]);
-    ov105_02245FAC(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 0);
-    ov105_02245F90(param0->unk_2F4[ov105_022461A0(param0->unk_30C)], 6);
-    ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+    BattleFactoryAppPokeballSprite_SelectMon(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)]);
+    BattleFactoryAppPokeballSprite_UpdatePalette(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 0);
+    BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)], 6);
+    PrintMonNameAndGender(param0, &param0->windows[2 + param0->unk_11], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
 
-    param0->unk_324[param0->unk_11] = ov105_022461A0(param0->unk_30C);
+    param0->unk_324[param0->unk_11] = BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C);
     param0->unk_11++;
 
-    ov105_02246060(param0->unk_310);
+    BattleFactoryAppCursor_Free(param0->unk_310);
     param0->unk_310 = NULL;
 
-    ov105_02246060(param0->unk_30C);
+    BattleFactoryAppCursor_Free(param0->unk_30C);
     param0->unk_30C = NULL;
     param0->unk_13_2 = 1;
 
-    Window_FillTilemap(&param0->unk_50[2], 0);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
+    Window_FillTilemap(&param0->windows[2], 0);
+    Window_ScheduleCopyToVRAM(&param0->windows[2]);
 
     return;
 }
 
-static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02243818(BattleFactoryApp *param0)
 {
     int v0, v1;
     u32 v2;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
 
-        Window_FillTilemap(&param0->unk_50[2], 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_50[2 + param0->unk_11]);
+        Window_FillTilemap(&param0->windows[2], 0);
+        Window_ScheduleCopyToVRAM(&param0->windows[2 + param0->unk_11]);
         PokemonSprite_Delete(param0->unk_12C[0]);
 
-        param0->unk_10 = ov105_02244D14(param0, 10);
+        param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_CancelTrade);
 
-        ov105_02246074(param0->unk_30C, 0);
+        BattleFactoryAppCursor_SetDrawFlag(param0->unk_30C, 0);
         ov105_022461A4(param0->unk_30C, 1);
-        ov105_02244E94(param0);
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
-        param0->unk_08++;
+        OpenYesNoMenu(param0);
+        param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
+        param0->subState++;
         break;
     case 1:
-        v2 = Menu_ProcessInput(param0->unk_FC);
+        v2 = Menu_ProcessInput(param0->menu);
         ov105_02246080(param0->unk_310);
 
         switch (v2) {
         case 0xffffffff:
             break;
         case 0:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_3 = 0;
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
-                param0->unk_10 = ov105_02244D14(param0, 2);
+            if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
+                param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_PleaseWait);
             }
 
-            param0->unk_08++;
+            param0->subState++;
             break;
         case 0xfffffffe:
         case 1:
         default:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
             ov105_0224396C(param0);
-            param0->unk_08++;
+            param0->subState++;
             break;
         }
         break;
@@ -1581,51 +1561,51 @@ static BOOL ov105_02243818(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_0224396C(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_0224396C(BattleFactoryApp *param0)
 {
-    ov105_022461C0(param0->unk_30C, 0);
-    ov105_02244FF8(param0, &param0->unk_50[2], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, ov105_022461A0(param0->unk_30C)), 120, 43, 1);
-    ov105_02246074(param0->unk_30C, 1);
+    BattleFactoryAppCursor_UpdatePosition(param0->unk_30C, 0);
+    PrintMonNameAndGender(param0, &param0->windows[2], BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
+    ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C)), 120, 43, 1);
+    BattleFactoryAppCursor_SetDrawFlag(param0->unk_30C, 1);
     ov105_022461A4(param0->unk_30C, 0);
     ov105_02245528(param0, 1);
-    ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
+    BattleFactoryApp_DrawWindow(param0->bgConfig, &param0->windows[7]);
 
-    param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 19, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
-    param0->unk_10 = ov105_02244D14(param0, 9);
+    param0->unk_10 = PrintMessageWithBg(param0, &param0->windows[7], BattleFactoryApp_Text_Cancel2, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
+    Window_ScheduleCopyToVRAM(&param0->windows[7]);
+    param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChooseExchange);
 
     return;
 }
 
-static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02243A3C(BattleFactoryApp *param0)
 {
     int v0, v1;
     u32 v2;
     u8 v3;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
-        ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
+        BattleFactoryApp_DrawWindow(param0->bgConfig, &param0->windows[7]);
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 23, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
-        param0->unk_10 = ov105_02244CC0(param0, &param0->unk_50[7], 24, 1, 1 + 16, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
+        param0->unk_10 = PrintMessageWithBg(param0, &param0->windows[7], BattleFactoryApp_Text_Back, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
+        param0->unk_10 = PrintMessage(param0, &param0->windows[7], BattleFactoryApp_Text_Cancel3, 1, 1 + 16, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
 
-        Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
+        Window_ScheduleCopyToVRAM(&param0->windows[7]);
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
-            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, NELEMS(Unk_ov105_02246350) - 2, 2, 0, Unk_ov105_02246350, Unk_ov105_022462D4);
+        if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
+            param0->unk_30C = BattleFactoryAppCursor_New(&param0->spriteMan, param0->unk_1B, NELEMS(Unk_ov105_02246350) - 2, 2, 0, Unk_ov105_02246350, Unk_ov105_022462D4);
         } else {
-            param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1B, NELEMS(Unk_ov105_0224637C) - 2, 2, 0, Unk_ov105_0224637C, Unk_ov105_022462E4);
+            param0->unk_30C = BattleFactoryAppCursor_New(&param0->spriteMan, param0->unk_1B, NELEMS(Unk_ov105_0224637C) - 2, 2, 0, Unk_ov105_0224637C, Unk_ov105_022462E4);
         }
 
-        v3 = ov105_022461A0(param0->unk_30C);
+        v3 = BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C);
 
-        ov105_02244FF8(param0, &param0->unk_50[2], v3, 0, 0, 15, 2, 0, 0, param0->unk_320);
-        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
+        PrintMonNameAndGender(param0, &param0->windows[2], v3, 0, 0, 15, 2, 0, 0, param0->unk_320);
+        BattleFactoryApp_DrawMessageBox(&param0->windows[5], Options_Frame(param0->options));
 
-        param0->unk_10 = ov105_02244D14(param0, 13);
-        param0->unk_08++;
+        param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChooseReceive);
+        param0->subState++;
 
         break;
     case 1:
@@ -1633,30 +1613,30 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
 
         if (gSystem.pressedKeys & (PAD_KEY_UP | PAD_KEY_DOWN)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov105_022453F8(param0, 0, ov105_022461A0(param0->unk_30C), 0, param0->unk_320);
+            ov105_022453F8(param0, 0, BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, param0->unk_320);
         }
 
         if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-            ov105_022453F8(param0, 0, ov105_022461A0(param0->unk_30C), 0, param0->unk_320);
+            ov105_022453F8(param0, 0, BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C), 0, param0->unk_320);
         }
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
 
-            if (ov105_022461A0(param0->unk_30C) == (param0->unk_1B - 1)) {
+            if (BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C) == (param0->unk_1B - 1)) {
                 ov105_02245528(param0, 1);
                 return 1;
-            } else if (ov105_022461A0(param0->unk_30C) == (param0->unk_1B - 2)) {
+            } else if (BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C) == (param0->unk_1B - 2)) {
                 ov105_02243D20(param0);
                 return 1;
             } else {
                 ov105_022461A4(param0->unk_30C, 1);
-                ov105_02244E94(param0);
+                OpenYesNoMenu(param0);
 
-                param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
-                param0->unk_10 = ov105_02244D14(param0, 14);
-                param0->unk_08++;
+                param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
+                param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_AcceptPokemon);
+                param0->subState++;
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
@@ -1665,7 +1645,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         }
         break;
     case 2:
-        v2 = Menu_ProcessInput(param0->unk_FC);
+        v2 = Menu_ProcessInput(param0->menu);
         ov105_02246080(param0->unk_310);
 
         switch (v2) {
@@ -1673,23 +1653,23 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
             break;
 
         case 0:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
             ov105_02243D84(param0);
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
-                param0->unk_10 = ov105_02244D14(param0, 2);
+            if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
+                param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_PleaseWait);
             }
 
-            param0->unk_08++;
+            param0->subState++;
             break;
         case 0xfffffffe:
         case 1:
         default:
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
             ov105_02243DE4(param0);
-            param0->unk_08 = 1;
+            param0->subState = 1;
             break;
         }
         break;
@@ -1700,20 +1680,20 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_02243D20(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02243D20(BattleFactoryApp *param0)
 {
-    ov105_02246060(param0->unk_30C);
+    BattleFactoryAppCursor_Free(param0->unk_30C);
 
     param0->unk_30C = NULL;
     param0->unk_13_2 = 0;
 
-    Window_FillTilemap(&param0->unk_50[2], 0);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
+    Window_FillTilemap(&param0->windows[2], 0);
+    Window_ScheduleCopyToVRAM(&param0->windows[2]);
     PokemonSprite_Delete(param0->unk_12C[0]);
 
-    Window_FillTilemap(&param0->unk_50[7], 15);
-    Window_EraseMessageBox(&param0->unk_50[7], 1);
-    Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[7]);
+    Window_FillTilemap(&param0->windows[7], 15);
+    Window_EraseMessageBox(&param0->windows[7], 1);
+    Window_ClearAndScheduleCopyToVRAM(&param0->windows[7]);
 
     param0->unk_11--;
     param0->unk_324[0] = 0;
@@ -1721,91 +1701,91 @@ static void ov105_02243D20(UnkStruct_ov105_02241FF4 *param0)
     return;
 }
 
-static void ov105_02243D84(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02243D84(BattleFactoryApp *param0)
 {
     param0->unk_13_3 = 1;
-    param0->unk_324[param0->unk_11] = ov105_022461A0(param0->unk_30C);
+    param0->unk_324[param0->unk_11] = BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C);
     param0->unk_11++;
 
-    ov105_02246060(param0->unk_310);
+    BattleFactoryAppCursor_Free(param0->unk_310);
     param0->unk_310 = NULL;
-    ov105_02246074(param0->unk_30C, 0);
+    BattleFactoryAppCursor_SetDrawFlag(param0->unk_30C, 0);
 
-    Window_FillTilemap(&param0->unk_50[2], 0);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
+    Window_FillTilemap(&param0->windows[2], 0);
+    Window_ScheduleCopyToVRAM(&param0->windows[2]);
     PokemonSprite_Delete(param0->unk_12C[0]);
 
     return;
 }
 
-static void ov105_02243DE4(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02243DE4(BattleFactoryApp *param0)
 {
-    ov105_02246060(param0->unk_310);
+    BattleFactoryAppCursor_Free(param0->unk_310);
     param0->unk_310 = NULL;
     ov105_022461A4(param0->unk_30C, 0);
-    ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
-    param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 23, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
-    param0->unk_10 = ov105_02244CC0(param0, &param0->unk_50[7], 24, 1, 1 + 16, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
-    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
-    param0->unk_10 = ov105_02244D14(param0, 13);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
+    BattleFactoryApp_DrawWindow(param0->bgConfig, &param0->windows[7]);
+    param0->unk_10 = PrintMessageWithBg(param0, &param0->windows[7], BattleFactoryApp_Text_Back, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
+    param0->unk_10 = PrintMessage(param0, &param0->windows[7], BattleFactoryApp_Text_Cancel3, 1, 1 + 16, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
+    BattleFactoryApp_DrawMessageBox(&param0->windows[5], Options_Frame(param0->options));
+    param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_ChooseReceive);
+    Window_ScheduleCopyToVRAM(&param0->windows[7]);
 }
 
-static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02243E84(BattleFactoryApp *param0)
 {
     int v0, v1;
     u32 v2;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
-        Window_FillTilemap(&param0->unk_50[2], 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
+        Window_FillTilemap(&param0->windows[2], 0);
+        Window_ScheduleCopyToVRAM(&param0->windows[2]);
         PokemonSprite_Delete(param0->unk_12C[0]);
 
-        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
-        param0->unk_10 = ov105_02244D14(param0, 10);
-        ov105_02246074(param0->unk_30C, 0);
+        BattleFactoryApp_DrawMessageBox(&param0->windows[5], Options_Frame(param0->options));
+        param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_CancelTrade);
+        BattleFactoryAppCursor_SetDrawFlag(param0->unk_30C, 0);
 
-        ov105_02244E94(param0);
-        param0->unk_310 = ov105_02245FB8(&param0->unk_144, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
-        param0->unk_08++;
+        OpenYesNoMenu(param0);
+        param0->unk_310 = BattleFactoryAppCursor_New(&param0->spriteMan, NELEMS(Unk_ov105_022462F4), NELEMS(Unk_ov105_022462F4), 1, 0, Unk_ov105_022462F4, NULL);
+        param0->subState++;
         break;
 
     case 1:
-        v2 = Menu_ProcessInput(param0->unk_FC);
+        v2 = Menu_ProcessInput(param0->menu);
         ov105_02246080(param0->unk_310);
 
         switch (v2) {
         case 0xffffffff:
             break;
         case 0:
-            Menu_Free(param0->unk_FC, NULL);
+            Menu_Free(param0->menu, NULL);
 
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
 
             param0->unk_310 = NULL;
             param0->unk_13_3 = 0;
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
-                param0->unk_10 = ov105_02244D14(param0, 2);
+            if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
+                param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_PleaseWait);
             }
 
-            param0->unk_08++;
+            param0->subState++;
             break;
         case 0xfffffffe:
         case 1:
         default:
-            Menu_Free(param0->unk_FC, NULL);
+            Menu_Free(param0->menu, NULL);
 
-            ov105_02246060(param0->unk_30C);
+            BattleFactoryAppCursor_Free(param0->unk_30C);
             param0->unk_30C = NULL;
 
-            ov105_02246060(param0->unk_310);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
 
             ov105_02243FDC(param0);
-            param0->unk_08++;
+            param0->subState++;
             break;
         }
         break;
@@ -1816,7 +1796,7 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_02243FDC(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02243FDC(BattleFactoryApp *param0)
 {
     ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_320, 0), 120, 43, 0);
     ov105_02245528(param0, 1);
@@ -1824,36 +1804,36 @@ static void ov105_02243FDC(UnkStruct_ov105_02241FF4 *param0)
     return;
 }
 
-static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_0224400C(BattleFactoryApp *param0)
 {
     u8 v0;
     int v1, v2, v3, v4;
     VecFx32 v5;
     const VecFx32 *v6;
 
-    v0 = ov104_0223AA50(param0->unk_09);
+    v0 = ov104_0223AA50(param0->challengeType);
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         param0->unk_13_5 = 1;
 
-        Window_ClearAndCopyToVRAM(&param0->unk_50[1]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[8]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[9]);
+        Window_ClearAndCopyToVRAM(&param0->windows[1]);
+        Window_ClearAndCopyToVRAM(&param0->windows[8]);
+        Window_ClearAndCopyToVRAM(&param0->windows[9]);
 
-        Window_FillTilemap(&param0->unk_50[0], 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_50[0]);
+        Window_FillTilemap(&param0->windows[0], 0);
+        Window_ScheduleCopyToVRAM(&param0->windows[0]);
 
-        Window_EraseMessageBox(&param0->unk_50[5], 1);
-        Window_ClearAndScheduleCopyToVRAM(&param0->unk_50[5]);
+        Window_EraseMessageBox(&param0->windows[5], 1);
+        Window_ClearAndScheduleCopyToVRAM(&param0->windows[5]);
 
-        ov105_02246244(param0->unk_50);
+        BattleFactoryApp_FreeWindows(param0->windows);
         ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
 
-        PokemonSpriteManager_StartFadeAll(param0->unk_128, 0, 16, 0, 0xffff);
+        PokemonSpriteManager_StartFadeAll(param0->monSpriteMan, 0, 16, 0, 0xffff);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 1:
         param0->unk_19++;
@@ -1866,30 +1846,30 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
 
         ov105_02244924(param0, 1);
         ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 21, 11);
-        ov105_02244BE4(param0, 3);
+        ReloadNoScreensBackground(param0, 3);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 2:
         if (PokemonSprite_IsFadeActive(param0->unk_12C[0])) {
             (void)0;
         }
 
-        if (ov105_02245E48(param0->unk_314) == 1) {
+        if (BattleFactoryAppPanelSprite_IsAnimated(param0->unk_314) == 1) {
             break;
         }
 
         ov105_02245A30(param0);
-        ov105_02244AA8(param0, 1);
-        ov105_02244A60(param0, 2);
-        ov105_02244A18(param0, 3);
+        LoadWheelBackground(param0, 1);
+        LoadConveyorBackground(param0, 2);
+        LoadAppStartupBackground(param0, 3);
 
-        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, param0->unk_0C);
+        Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 0, param0->unk_0C);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 3:
         if (ov105_02244830(param0) == 1) {
@@ -1899,11 +1879,11 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
             param0->unk_14 = (4 * 2);
 
             for (v1 = 0; v1 < param0->unk_12; v1++) {
-                param0->unk_2F4[v1] = ov105_02245EA8(param0->unk_2F4[v1]);
+                param0->unk_2F4[v1] = BattleFactoryAppPokeballSprite_Free(param0->unk_2F4[v1]);
                 param0->unk_2F4[v1] = NULL;
             }
 
-            if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+            if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
                 if (param0->unk_12 == (NELEMS(Unk_ov105_022462EC))) {
                     param0->unk_12 = (NELEMS(Unk_ov105_02246320));
                 } else {
@@ -1920,7 +1900,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
             Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
 
             param0->unk_19 = 0;
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 4:
@@ -1929,7 +1909,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
             Sound_PlayEffect(SEQ_SE_DP_KASYA);
 
             for (v1 = 0; v1 < param0->unk_12; v1++) {
-                ov105_02245F90(param0->unk_2F4[v1], 10);
+                BattleFactoryAppPokeballSprite_SetAnim(param0->unk_2F4[v1], 10);
             }
 
             param0->unk_14 = (4 * 2);
@@ -1937,22 +1917,22 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
             ov105_02244924(param0, 0);
 
             param0->unk_19 = 0;
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 5:
-        if (ov105_02245E48(param0->unk_314) == 1) {
+        if (BattleFactoryAppPanelSprite_IsAnimated(param0->unk_314) == 1) {
             break;
         }
 
         ov105_02245A30(param0);
 
         param0->unk_19 = 0;
-        param0->unk_08++;
+        param0->subState++;
         break;
     case 6:
         if (param0->unk_19 == 0) {
-            ov105_02244B90(param0, 3);
+            ReloadMonSelectionBackground(param0, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
 
             if (param0->unk_13_2 == 0) {
@@ -1962,7 +1942,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
             }
 
             PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
-            PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
+            PokemonSpriteManager_StartFadeAll(param0->monSpriteMan, 16, 0, 1, 0xffff);
 
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
         }
@@ -1982,7 +1962,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
 
         param0->unk_13_5 = 0;
 
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
             param0->unk_3BF = 1;
             ov105_022457C0(param0);
         }
@@ -1994,12 +1974,12 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_0224435C(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_0224435C(BattleFactoryApp *param0)
 {
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
         if (ov105_02245620(param0, 10, param0->unk_13_3) == 1) {
-            param0->unk_08++;
+            param0->subState++;
         }
         break;
     case 1:
@@ -2014,18 +1994,18 @@ static BOOL ov105_0224435C(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_0224439C(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_0224439C(BattleFactoryApp *param0)
 {
     int v0;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
-        param0->unk_10 = ov105_02244D14(param0, 15);
+        param0->unk_10 = PrintMessageAndCopyToVRAM(param0, BattleFactoryApp_Text_PleaseWait2);
 
         CommTool_ClearReceivedTempDataAllPlayers();
         CommTiming_StartSync(165);
 
-        param0->unk_08++;
+        param0->subState++;
 
         break;
     case 1:
@@ -2039,14 +2019,14 @@ static BOOL ov105_0224439C(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_022443DC(BattleFactoryApp *param0)
 {
     int v0;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_93);
-        param0->unk_08++;
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 6, 1, HEAP_ID_BATTLE_FACTORY_APP);
+        param0->subState++;
         break;
     case 1:
         if (IsScreenFadeDone() == TRUE) {
@@ -2058,41 +2038,41 @@ static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02244424(BattleFactoryApp *param0)
 {
     int v0;
     Pokemon *v1;
     BoxPokemon *v2;
 
-    switch (param0->unk_08) {
+    switch (param0->subState) {
     case 0:
 
         if (param0->unk_310 != NULL) {
-            Menu_Free(param0->unk_FC, NULL);
-            ov105_02245A98(param0->unk_F0.window);
-            ov105_02246060(param0->unk_310);
+            Menu_Free(param0->menu, NULL);
+            ov105_02245A98(param0->menuTemplate.window);
+            BattleFactoryAppCursor_Free(param0->unk_310);
             param0->unk_310 = NULL;
         }
 
-        BattleFrontier_SetPartnerInStrTemplate(param0->unk_20, 0);
+        BattleFrontier_SetPartnerInStrTemplate(param0->strTemplate, 0);
 
         v1 = Party_GetPokemonBySlotIndex(param0->unk_31C, 2 + param0->unk_324[0]);
         v2 = Pokemon_GetBoxPokemon(v1);
 
-        ov105_02244F00(param0, 1, v2);
+        SetStringTemplateSpecies(param0, 1, v2);
 
         v1 = Party_GetPokemonBySlotIndex(param0->unk_320, param0->unk_324[1]);
         v2 = Pokemon_GetBoxPokemon(v1);
 
-        ov105_02244F00(param0, 2, v2);
-        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
+        SetStringTemplateSpecies(param0, 2, v2);
+        BattleFactoryApp_DrawMessageBox(&param0->windows[5], Options_Frame(param0->options));
 
-        param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(param0->saveData)), 1, 2, 15, FONT_MESSAGE);
+        param0->unk_10 = PrintMessageWithBg(param0, &param0->windows[5], BattleFactoryApp_Text_TradeOccurred, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(param0->saveData)), 1, 2, 15, FONT_MESSAGE);
 
-        Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
+        Window_ScheduleCopyToVRAM(&param0->windows[5]);
 
         param0->unk_19 = 80;
-        param0->unk_08++;
+        param0->subState++;
 
         break;
     case 1:
@@ -2107,30 +2087,30 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_0224451C(void *param0)
+static void VBlankCallback(void *data)
 {
-    UnkStruct_ov105_02241FF4 *v0 = param0;
+    BattleFactoryApp *app = data;
 
-    if (v0->unk_04 != NULL) {
+    if (app->unk_04 != NULL) {
         return;
     }
 
-    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_128);
+    PokemonSpriteManager_UpdateCharAndPltt(app->monSpriteMan);
 
-    if (v0->unk_120 != NULL) {
-        PaletteData_CommitFadedBuffers(v0->unk_120);
+    if (app->plttData != NULL) {
+        PaletteData_CommitFadedBuffers(app->plttData);
     }
 
-    Bg_RunScheduledUpdates(v0->unk_4C);
+    Bg_RunScheduledUpdates(app->bgConfig);
     VramTransfer_Process();
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov105_02244564(void)
+static void SetGXBanks(void)
 {
-    GXBanks v0 = {
+    GXBanks banks = {
         GX_VRAM_BG_128_C,
         GX_VRAM_BGEXTPLTT_NONE,
         GX_VRAM_SUB_BG_32_H,
@@ -2143,191 +2123,173 @@ static void ov105_02244564(void)
         GX_VRAM_TEXPLTT_01_FG
     };
 
-    GXLayers_SetBanks(&v0);
-    return;
+    GXLayers_SetBanks(&banks);
 }
 
-static void ov105_02244584(BgConfig *param0)
+static void InitBackgrounds(BgConfig *app)
 {
-    {
-        GraphicsModes v0 = {
-            GX_DISPMODE_GRAPHICS,
-            GX_BGMODE_0,
-            GX_BGMODE_0,
-            GX_BG0_AS_3D
-        };
+    GraphicsModes graphicsModes = {
+        GX_DISPMODE_GRAPHICS,
+        GX_BGMODE_0,
+        GX_BGMODE_0,
+        GX_BG0_AS_3D
+    };
 
-        SetAllGraphicsModes(&v0);
-    }
+    SetAllGraphicsModes(&graphicsModes);
 
-    {
-        BgTemplate v1 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x0000,
-            .charBase = GX_BG_CHARBASE_0x04000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 1,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x0000,
+        .charBase = GX_BG_CHARBASE_0x04000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 1,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
-        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_93);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
-    }
+    Bg_InitFromTemplate(app, BG_LAYER_MAIN_1, &mainBgTemplate, BG_TYPE_STATIC);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_BATTLE_FACTORY_APP);
+    Bg_ClearTilemap(app, BG_LAYER_MAIN_1);
 
-    {
-        BgTemplate v2 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x1800,
-            .charBase = GX_BG_CHARBASE_0x0c000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 2,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBgTemplate2 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x1800,
+        .charBase = GX_BG_CHARBASE_0x0c000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
-    }
+    Bg_InitFromTemplate(app, BG_LAYER_MAIN_2, &mainBgTemplate2, BG_TYPE_STATIC);
+    Bg_ClearTilemap(app, BG_LAYER_MAIN_2);
 
-    {
-        BgTemplate v3 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x2800,
-            .charBase = GX_BG_CHARBASE_0x0c000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 3,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate mainBgTemplate3 = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x2800,
+        .charBase = GX_BG_CHARBASE_0x0c000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 3,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
-    }
+    Bg_InitFromTemplate(app, BG_LAYER_MAIN_3, &mainBgTemplate3, BG_TYPE_STATIC);
+    Bg_ClearTilemap(app, BG_LAYER_MAIN_3);
 
-    {
-        BgTemplate v4 = {
-            .x = 0,
-            .y = 0,
-            .bufferSize = 0x800,
-            .baseTile = 0,
-            .screenSize = BG_SCREEN_SIZE_256x256,
-            .colorMode = GX_BG_COLORMODE_16,
-            .screenBase = GX_BG_SCRBASE_0x3800,
-            .charBase = GX_BG_CHARBASE_0x10000,
-            .bgExtPltt = GX_BG_EXTPLTT_01,
-            .priority = 0,
-            .areaOver = 0,
-            .mosaic = FALSE,
-        };
+    BgTemplate subBgTemplate = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x3800,
+        .charBase = GX_BG_CHARBASE_0x10000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 0,
+        .areaOver = 0,
+        .mosaic = FALSE,
+    };
 
-        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
-        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
-    }
+    Bg_InitFromTemplate(app, BG_LAYER_SUB_0, &subBgTemplate, BG_TYPE_STATIC);
+    Bg_ClearTilemap(app, BG_LAYER_SUB_0);
 
     G2_SetBG0Priority(0);
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-
-    return;
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, TRUE);
 }
 
-static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0)
+static void LoadBackgrounds(BattleFactoryApp *app)
 {
-    ov105_02244564();
-    ov105_02244584(param0->unk_4C);
+    SetGXBanks();
+    InitBackgrounds(app->bgConfig);
 
-    param0->unk_120 = PaletteData_New(HEAP_ID_93);
+    app->plttData = PaletteData_New(HEAP_ID_BATTLE_FACTORY_APP);
 
-    PaletteData_AllocBuffer(param0->unk_120, 2, 32 * 16, HEAP_ID_93);
-    PaletteData_AllocBuffer(param0->unk_120, 0, 32 * 16, HEAP_ID_93);
+    PaletteData_AllocBuffer(app->plttData, PLTTBUF_MAIN_OBJ, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_BATTLE_FACTORY_APP);
+    PaletteData_AllocBuffer(app->plttData, PLTTBUF_MAIN_BG, PALETTE_SIZE_BYTES * SLOTS_PER_PALETTE, HEAP_ID_BATTLE_FACTORY_APP);
 
-    ov105_02244AF8();
+    LoadPalette();
 
-    if (param0->unk_13_4 == 0) {
-        ov105_02244AA8(param0, 1);
-        ov105_02244A60(param0, 2);
-        ov105_02244A18(param0, 3);
+    if (app->unk_13_4 == 0) {
+        LoadWheelBackground(app, BG_LAYER_MAIN_1);
+        LoadConveyorBackground(app, BG_LAYER_MAIN_2);
+        LoadAppStartupBackground(app, BG_LAYER_MAIN_3);
 
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, TRUE);
     } else {
-        ov105_022449A4(param0, 3);
-        ov105_02244A60(param0, 2);
+        LoadMonSelectionBackground(app, BG_LAYER_MAIN_3);
+        LoadConveyorBackground(app, BG_LAYER_MAIN_2);
 
-        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, param0->unk_0C);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
+        Bg_SetOffset(app->bgConfig, BG_LAYER_MAIN_2, 0, app->unk_0C);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, TRUE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, TRUE);
+        GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, TRUE);
     }
 
-    ov105_02244B30(param0, 4);
-    return;
+    LoadSubScreenBackground(app, BG_LAYER_SUB_0);
 }
 
-static void ov105_0224472C(UnkStruct_ov105_02241FF4 *param0)
+static void InitSpriteManager(BattleFactoryApp *app)
 {
-    ov105_02245AAC(&param0->unk_144);
-    return;
+    BattleFactoryApp_InitSpriteManager(&app->spriteMan);
 }
 
-static void ov105_0224473C(BgConfig *param0)
+static void FreeBackgrounds(BgConfig *bgConfig)
 {
-    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
+    GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, FALSE);
+    GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, FALSE);
 
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
-    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
-    Heap_Free(param0);
-
-    return;
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
+    Heap_Free(bgConfig);
 }
 
-static void ov105_02244778(UnkStruct_ov105_02241FF4 *param0, int *param1, int param2)
+static void ChangeState(BattleFactoryApp *app, int *state, int newState)
 {
-    param0->unk_08 = 0;
-    *param1 = param2;
-    return;
+    app->subState = 0;
+    *state = newState;
 }
 
-static BOOL ov105_02244780(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02244780(BattleFactoryApp *param0)
 {
     int v0, v1, v2, v3;
     const VecFx32 *v4;
 
     v3 = 0;
 
-    Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 1, 8);
-    param0->unk_0C = Bg_GetXOffset(param0->unk_4C, 2);
+    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 1, 8);
+    param0->unk_0C = Bg_GetXOffset(param0->bgConfig, 2);
 
     for (v0 = 0; v0 < param0->unk_12; v0++) {
-        v4 = ov105_02245F2C(param0->unk_2F4[v0]);
+        v4 = BattleFactoryAppPokeballSprite_GetPosition(param0->unk_2F4[v0]);
 
-        if (((v4->x / FX32_ONE) - 8) <= ov105_02245F88(param0->unk_2F4[v0])) {
-            v1 = ov105_02245F88(param0->unk_2F4[v0]);
-            v2 = ov105_02245F8C(param0->unk_2F4[v0]);
-            ov105_02245F14(param0->unk_2F4[v0], v1, v2);
+        if (((v4->x / FX32_ONE) - 8) <= BattleFactoryAppPokeballSprite_GetX(param0->unk_2F4[v0])) {
+            v1 = BattleFactoryAppPokeballSprite_GetX(param0->unk_2F4[v0]);
+            v2 = BattleFactoryAppPokeballSprite_GetY(param0->unk_2F4[v0]);
+            BattleFactoryAppPokeballSprite_SetPosition(param0->unk_2F4[v0], v1, v2);
             v3 = 1;
         } else {
-            ov105_02245EC8(param0->unk_2F4[v0], -8, 0);
+            BattleFactoryAppPokeballSprite_SetAndGetPosition(param0->unk_2F4[v0], -8, 0);
         }
     }
 
@@ -2340,24 +2302,24 @@ static BOOL ov105_02244780(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static BOOL ov105_02244830(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02244830(BattleFactoryApp *param0)
 {
     int v0, v1, v2, v3;
     const VecFx32 *v4;
 
     v3 = 0;
 
-    Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 1, 8);
-    param0->unk_0C = Bg_GetXOffset(param0->unk_4C, 2);
+    Bg_SetOffset(param0->bgConfig, BG_LAYER_MAIN_2, 1, 8);
+    param0->unk_0C = Bg_GetXOffset(param0->bgConfig, 2);
 
     for (v0 = 0; v0 < param0->unk_12; v0++) {
-        v4 = ov105_02245F2C(param0->unk_2F4[v0]);
+        v4 = BattleFactoryAppPokeballSprite_GetPosition(param0->unk_2F4[v0]);
 
         if (((v4->x / FX32_ONE) - 8) < -24) {
-            ov105_02245EBC(param0->unk_2F4[v0], 0);
+            BattleFactoryAppPokeballSprite_SetDrawFlag(param0->unk_2F4[v0], 0);
             v3++;
         } else {
-            ov105_02245EC8(param0->unk_2F4[v0], -8, 0);
+            BattleFactoryAppPokeballSprite_SetAndGetPosition(param0->unk_2F4[v0], -8, 0);
         }
     }
 
@@ -2370,7 +2332,7 @@ static BOOL ov105_02244830(UnkStruct_ov105_02241FF4 *param0)
     return 0;
 }
 
-static void ov105_022448BC(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_022448BC(BattleFactoryApp *param0)
 {
     if ((param0->unk_14 % 4) == 0) {
         if ((param0->unk_14 / 4) >= 4) {
@@ -2384,15 +2346,15 @@ static void ov105_022448BC(UnkStruct_ov105_02241FF4 *param0)
     return;
 }
 
-static void ov105_022448F4(UnkStruct_ov105_02241FF4 *param0, u32 param1, u8 param2, u8 param3, u8 param4)
+static void ov105_022448F4(BattleFactoryApp *param0, u32 param1, u8 param2, u8 param3, u8 param4)
 {
-    Bg_ChangeTilemapRectPalette(param0->unk_4C, param1, 0, 0, param3, param4, param2);
-    Bg_ScheduleTilemapTransfer(param0->unk_4C, param1);
+    Bg_ChangeTilemapRectPalette(param0->bgConfig, param1, 0, 0, param3, param4, param2);
+    Bg_ScheduleTilemapTransfer(param0->bgConfig, param1);
 
     return;
 }
 
-static void ov105_02244924(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void ov105_02244924(BattleFactoryApp *param0, u32 param1)
 {
     u32 v0;
 
@@ -2417,385 +2379,323 @@ static void ov105_02244924(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
     param0->unk_314 = ov105_022459B0(param0, ov105_02245584(param0, param1));
 
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+    if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
         param0->unk_318 = ov105_02245A04(param0, v0);
     }
 
     return;
 }
 
-static void ov105_022449A4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void LoadMonSelectionBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MON_SELECTION_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MULTI_MON_SELECTION_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     }
-
-    return;
 }
 
-static void ov105_02244A18(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void LoadAppStartupBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-
-    return;
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_NO_SCREENS_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
-static void ov105_02244A60(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void LoadConveyorBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 8, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-
-    return;
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_CONVEYOR_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
-static void ov105_02244AA8(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void LoadWheelBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 9, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_WHEEL_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     Bg_SetPriority(BG_LAYER_MAIN_1, 2);
-
-    return;
 }
 
-static void ov105_02244AF8(void)
+static void LoadPalette(void)
 {
-    void *v0;
-    NNSG2dPaletteData *v1;
+    NNSG2dPaletteData *plttData;
+    void *pltt = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, BATTLE_FACTORY_APP_PLTT, &plttData, HEAP_ID_BATTLE_FACTORY_APP);
 
-    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 130, &v1, HEAP_ID_93);
-
-    DC_FlushRange(v1->pRawData, sizeof(u16) * 16 * 11);
-    GX_LoadBGPltt(v1->pRawData, 0, sizeof(u16) * 16 * 11);
-    Heap_Free(v0);
-
-    return;
+    DC_FlushRange(plttData->pRawData, PALETTE_SIZE_BYTES * 11);
+    GX_LoadBGPltt(plttData->pRawData, 0, PALETTE_SIZE_BYTES * 11);
+    Heap_Free(pltt);
 }
 
-static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void LoadSubScreenBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 125, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 126, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_338, 171, 4, 0, 0x20, HEAP_ID_93);
-
-    return;
+    Graphics_LoadTilesToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILES, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_TILEMAP, app->bgConfig, bgLayer, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    Graphics_LoadPaletteFromOpenNARC(app->narc, BATTLE_FRONTIER_APP_SUB_SCREEN_PLTT, PAL_LOAD_SUB_BG, 0, PALETTE_SIZE_BYTES, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
-static void ov105_02244B90(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void ReloadMonSelectionBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
+    if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MON_SELECTION_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MULTI_MON_SELECTION_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     }
-
-    return;
 }
 
-static void ov105_02244BE4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void ReloadNoScreensBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
-    return;
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_NO_SCREENS_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
-static void ov105_02244C0C(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static void LoadSelectionConfirmBackground(BattleFactoryApp *app, enum BgLayer bgLayer)
 {
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 10, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
+    if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_SUMMARY_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 12, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(app->narc, BATTLE_FACTORY_APP_MULTI_SUMMARY_TILEMAP, app->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, HEAP_ID_BATTLE_FACTORY_APP);
+    }
+}
+
+static u8 PrintMessageWithBg(BattleFactoryApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font)
+{
+    Window_FillTilemap(window, bgColor);
+    MessageLoader_GetString(app->msgLoader, entryID, app->fmtStr);
+    StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
+
+    return Text_AddPrinterWithParamsAndColor(window, font, app->displayStr, xOffset, yOffset, renderDelay, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
+}
+
+static u8 PrintMessage(BattleFactoryApp *app, Window *window, int entryID, u32 xOffset, u32 yOffset, u32 renderDelay, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font)
+{
+    MessageLoader_GetString(app->msgLoader, entryID, app->fmtStr);
+    StringTemplate_Format(app->strTemplate, app->displayStr, app->fmtStr);
+
+    return Text_AddPrinterWithParamsAndColor(window, font, app->displayStr, xOffset, yOffset, renderDelay, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
+}
+
+static u8 PrintMessageAndCopyToVRAM(BattleFactoryApp *app, int entryID)
+{
+    u8 printerID = PrintMessageWithBg(app, &app->windows[5], entryID, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    Window_ScheduleCopyToVRAM(&app->windows[5]);
+
+    return printerID;
+}
+
+static void InitMenu(BattleFactoryApp *app, Window *window, u8 numOptions)
+{
+    for (int i = 0; i < 4; i++) {
+        app->strList[i].entry = NULL;
+        app->strList[i].index = 0;
     }
 
-    return;
+    app->menuTemplate.choices = app->strList;
+    app->menuTemplate.window = window;
+    app->menuTemplate.fontID = FONT_SYSTEM;
+    app->menuTemplate.xSize = 1;
+    app->menuTemplate.ySize = numOptions;
+    app->menuTemplate.lineSpacing = 0;
+    app->menuTemplate.suppressCursor = TRUE;
+    app->menuTemplate.loopAround = TRUE;
 }
 
-static u8 ov105_02244C60(UnkStruct_ov105_02241FF4 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static void AddStringToMenu(BattleFactoryApp *app, u8 strIndex, u8 listIndex, int entryID)
 {
-    Window_FillTilemap(param1, param8);
-    MessageLoader_GetString(param0->unk_1C, param2, param0->unk_28);
-    StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
+    MessageLoader_GetString(app->msgLoader, entryID, app->menuStr[strIndex]);
 
-    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_24, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
+    app->strList[strIndex].entry = app->menuStr[strIndex];
+    app->strList[strIndex].index = listIndex;
 }
 
-static u8 ov105_02244CC0(UnkStruct_ov105_02241FF4 *param0, Window *param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static void OpenMonOptionsMenu(BattleFactoryApp *app)
 {
-    MessageLoader_GetString(param0->unk_1C, param2, param0->unk_28);
-    StringTemplate_Format(param0->unk_20, param0->unk_24, param0->unk_28);
+    BattleFactoryApp_DrawWindow(app->bgConfig, &app->windows[7]);
+    InitMenu(app, &app->windows[7], NELEMS(Unk_ov105_02246308));
+    AddStringToMenu(app, 0, 0, BattleFactoryApp_Text_Summary);
 
-    return Text_AddPrinterWithParamsAndColor(param1, param9, param0->unk_24, param3, param4, param5, TEXT_COLOR(param6, param7, param8), NULL);
-}
-
-static u8 ov105_02244D14(UnkStruct_ov105_02241FF4 *param0, int param1)
-{
-    u8 v0 = ov105_02244C60(param0, &param0->unk_50[5], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
-    Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
-
-    return v0;
-}
-
-static void ov105_02244D48(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 param2)
-{
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_100[v0].entry = NULL;
-        param0->unk_100[v0].index = 0;
-    }
-
-    param0->unk_F0.choices = param0->unk_100;
-    param0->unk_F0.window = param1;
-    param0->unk_F0.fontID = FONT_SYSTEM;
-    param0->unk_F0.xSize = 1;
-    param0->unk_F0.ySize = param2;
-    param0->unk_F0.lineSpacing = 0;
-    param0->unk_F0.suppressCursor = TRUE;
-    param0->unk_F0.loopAround = TRUE;
-
-    return;
-}
-
-static void ov105_02244DC4(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2, int param3)
-{
-    int v0;
-    void *v1;
-
-    MessageLoader_GetString(param0->unk_1C, param3, param0->unk_2C[param1]);
-
-    param0->unk_100[param1].entry = (const void *)param0->unk_2C[param1];
-    param0->unk_100[param1].index = param2;
-
-    return;
-}
-
-static void ov105_02244DF0(UnkStruct_ov105_02241FF4 *param0)
-{
-    ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
-    ov105_02244D48(param0, &param0->unk_50[7], NELEMS(Unk_ov105_02246308));
-    ov105_02244DC4(param0, 0, 0, 5);
-
-    if (ov105_022454F8(param0, 0) == 1) {
-        if (ov105_02245F3C(param0->unk_2F4[ov105_022461A0(param0->unk_30C)]) == 0) {
-            ov105_02244DC4(param0, 1, 1, 6);
+    if (ov105_022454F8(app, 0) == 1) {
+        if (BattleFactoryAppPokeballSprite_IsSelected(app->unk_2F4[BattleFactoryAppCursor_GetCurrentSlot(app->unk_30C)]) == 0) {
+            AddStringToMenu(app, 1, 1, BattleFactoryApp_Text_Rent);
         } else {
-            ov105_02244DC4(param0, 1, 3, 8);
+            AddStringToMenu(app, 1, 3, BattleFactoryApp_Text_Remove);
         }
     } else {
-        ov105_02244DC4(param0, 1, 4, 21);
+        AddStringToMenu(app, 1, 4, BattleFactoryApp_Text_Exchange);
     }
 
-    ov105_02244DC4(param0, 2, 2, 7);
-    param0->unk_FC = Menu_NewAndCopyToVRAM(&param0->unk_F0, 0, 0, 0, 93, PAD_BUTTON_B);
-
-    return;
+    AddStringToMenu(app, 2, 2, BattleFactoryApp_Text_Cancel);
+    app->menu = Menu_NewAndCopyToVRAM(&app->menuTemplate, 0, 0, 0, HEAP_ID_BATTLE_FACTORY_APP, PAD_BUTTON_B);
 }
 
-static void ov105_02244E94(UnkStruct_ov105_02241FF4 *param0)
+static void OpenYesNoMenu(BattleFactoryApp *app)
 {
-    ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
-    ov105_02244D48(param0, &param0->unk_50[7], NELEMS(Unk_ov105_022462F4));
-    ov105_02244DC4(param0, 0, 0, 3);
-    ov105_02244DC4(param0, 1, 1, 4);
+    BattleFactoryApp_DrawWindow(app->bgConfig, &app->windows[7]);
+    InitMenu(app, &app->windows[7], NELEMS(Unk_ov105_022462F4));
+    AddStringToMenu(app, 0, 0, BattleFactoryApp_Text_Yes);
+    AddStringToMenu(app, 1, 1, BattleFactoryApp_Text_No);
 
-    param0->unk_FC = Menu_NewAndCopyToVRAM(&param0->unk_F0, 0, 0, 0, 93, PAD_BUTTON_B);
-    return;
+    app->menu = Menu_NewAndCopyToVRAM(&app->menuTemplate, 0, 0, 0, HEAP_ID_BATTLE_FACTORY_APP, PAD_BUTTON_B);
 }
 
-static void ov105_02244EE8(UnkStruct_ov105_02241FF4 *param0, u32 param1, s32 param2)
+static void SetStringTemplateNumber(BattleFactoryApp *app, u32 idx, s32 num)
 {
-    StringTemplate_SetNumber(param0->unk_20, param1, param2, 1, 0, 1);
-    return;
+    StringTemplate_SetNumber(app->strTemplate, idx, num, 1, PADDING_MODE_NONE, CHARSET_MODE_EN);
 }
 
-static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPokemon *boxMon)
+static void SetStringTemplateSpecies(BattleFactoryApp *app, u32 idx, BoxPokemon *boxMon)
 {
-    StringTemplate_SetSpeciesName(param0->unk_20, param1, boxMon);
-    return;
+    StringTemplate_SetSpeciesName(app->strTemplate, idx, boxMon);
 }
 
-static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4)
+static void PrintPlayersName(BattleFactoryApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font)
 {
-    TextColor v0;
-    const TrainerInfo *v1 = SaveData_GetTrainerInfo(param0->saveData);
-    String *v2 = String_Init(7 + 1, HEAP_ID_93);
+    const TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(app->saveData);
+    String *name = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_BATTLE_FACTORY_APP);
 
-    Window_FillTilemap(param1, 0);
-    String_CopyChars(v2, TrainerInfo_Name(v1));
+    Window_FillTilemap(window, 0);
+    String_CopyChars(name, TrainerInfo_Name(trainerInfo));
 
-    if (TrainerInfo_Gender(v1) == 0) {
-        v0 = TEXT_COLOR(7, 8, 0);
+    TextColor color;
+    if (TrainerInfo_Gender(trainerInfo) == GENDER_MALE) {
+        color = TEXT_COLOR(7, 8, 0);
     } else {
-        v0 = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR(3, 4, 0);
     }
 
-    Text_AddPrinterWithParamsAndColor(param1, param4, v2, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
-    String_Free(v2);
-    Window_ScheduleCopyToVRAM(param1);
-
-    return;
+    Text_AddPrinterWithParamsAndColor(window, font, name, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    String_Free(name);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4)
+static void PrintPartnersName(BattleFactoryApp *app, Window *window, u32 xOffset, u32 yOffset, u8 font)
 {
-    TextColor v0;
-    TrainerInfo *v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-    String *v1 = String_Init(7 + 1, HEAP_ID_93);
+    TrainerInfo *trainerInfo = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
+    String *name = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_BATTLE_FACTORY_APP);
 
-    Window_FillTilemap(param1, 0);
-    TrainerInfo_NameString(v2, v1);
+    Window_FillTilemap(window, 0);
+    TrainerInfo_NameString(trainerInfo, name);
 
-    if (TrainerInfo_Gender(v2) == 0) {
-        v0 = TEXT_COLOR(7, 8, 0);
+    TextColor color;
+    if (TrainerInfo_Gender(trainerInfo) == 0) {
+        color = TEXT_COLOR(7, 8, 0);
     } else {
-        v0 = TEXT_COLOR(3, 4, 0);
+        color = TEXT_COLOR(3, 4, 0);
     }
 
-    Text_AddPrinterWithParamsAndColor(param1, param4, v1, param2, param3, TEXT_SPEED_NO_TRANSFER, v0, NULL);
-    String_Free(v1);
-    Window_ScheduleCopyToVRAM(param1);
-
-    return;
+    Text_AddPrinterWithParamsAndColor(window, font, name, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
+    String_Free(name);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const Party *param9)
+static void PrintMonNameAndGender(BattleFactoryApp *app, Window *window, u8 slot, u32 xOffset, u32 yOffset, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, const Party *party)
 {
-    u8 v0;
-    u32 v1, v2;
-    TextColor v3;
-    String *v4;
-    Pokemon *v5;
-    u16 v6[(10 + 1)];
+    u16 monNameBuf[MON_NAME_LEN + 1];
 
-    v5 = Party_GetPokemonBySlotIndex(param9, param2);
-    Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
-    Window_FillTilemap(param1, param7);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+    Pokemon_GetValue(mon, MON_DATA_SPECIES_NAME, monNameBuf);
+    Window_FillTilemap(window, bgColor);
 
-    v4 = String_Init(10 + 1, HEAP_ID_93);
-    String_CopyChars(v4, v6);
-    Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param5, param6, param7), NULL);
+    String *displayStr = String_Init(MON_NAME_LEN + 1, HEAP_ID_BATTLE_FACTORY_APP);
+    String_CopyChars(displayStr, monNameBuf);
+    Text_AddPrinterWithParamsAndColor(window, font, displayStr, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
 
-    v0 = Window_GetWidth(param1) - 1;
-    v1 = Pokemon_GetValue(v5, MON_DATA_GENDER, NULL);
-    v2 = (v1 == 0) ? 25 : 26;
-    v3 = (v1 == 0) ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
+    u8 width = Window_GetWidth(window) - 1;
+    u32 gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
+    u32 symbol = gender == GENDER_MALE ? BattleFactoryApp_Text_MaleSymbol : BattleFactoryApp_Text_FemaleSymbol;
+    TextColor v3 = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
 
-    String_Clear(v4);
+    String_Clear(displayStr);
 
-    if (v1 != 2) {
-        MessageLoader_GetString(param0->unk_1C, v2, v4);
-        Text_AddPrinterWithParamsAndColor(param1, param8, v4, v0 * 8, param4, TEXT_SPEED_NO_TRANSFER, v3, NULL);
+    if (gender != GENDER_NONE) {
+        MessageLoader_GetString(app->msgLoader, symbol, displayStr);
+        Text_AddPrinterWithParamsAndColor(window, font, displayStr, width * 8, yOffset, TEXT_SPEED_NO_TRANSFER, v3, NULL);
     }
 
-    String_Free(v4);
-    Window_ScheduleCopyToVRAM(param1);
-
-    return;
+    String_Free(displayStr);
+    Window_ScheduleCopyToVRAM(window);
 }
 
-static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4, u8 param5, u8 param6, u8 param7, u16 param8, u8 param9)
+static void PrintPartnersMonNameAndGender(BattleFactoryApp *app, Window *window, u32 xOffset, u32 yOffset, u8 fgColor, u8 shadowColor, u8 bgColor, u8 font, u16 species, u8 gender)
 {
-    u8 v0;
-    u32 v1;
-    TextColor v2;
-    MessageLoader *v3;
-    String *v4;
-    Pokemon *v5;
-    u16 v6[(10 + 1)];
+    Window_FillTilemap(window, bgColor);
 
-    Window_FillTilemap(param1, param6);
+    MessageLoader *loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BATTLE_FACTORY_APP);
+    String *string = MessageLoader_GetNewString(loader, species);
 
-    v3 = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_93);
-    v4 = MessageLoader_GetNewString(v3, param8);
+    MessageLoader_Free(loader);
+    Text_AddPrinterWithParamsAndColor(window, font, string, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(fgColor, shadowColor, bgColor), NULL);
 
-    MessageLoader_Free(v3);
-    Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param4, param5, param6), NULL);
+    u8 width = Window_GetWidth(window) - 1;
+    u32 symbol = gender == GENDER_MALE ? BattleFactoryApp_Text_MaleSymbol : BattleFactoryApp_Text_FemaleSymbol;
+    TextColor color = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
 
-    v0 = Window_GetWidth(param1) - 1;
-    v1 = (param9 == 0) ? 25 : 26;
-    v2 = (param9 == 0) ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
+    String_Clear(string);
 
-    String_Clear(v4);
-
-    if (param9 != 2) {
-        MessageLoader_GetString(param0->unk_1C, v1, v4);
-        Text_AddPrinterWithParamsAndColor(param1, param7, v4, v0 * 8, param3, TEXT_SPEED_NO_TRANSFER, v2, NULL);
+    if (gender != GENDER_NONE) {
+        MessageLoader_GetString(app->msgLoader, symbol, string);
+        Text_AddPrinterWithParamsAndColor(window, font, string, width * 8, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     }
 
-    String_Free(v4);
-
-    return;
+    String_Free(string);
 }
 
-static void ov105_022451B4(UnkStruct_ov105_02241FF4 *param0)
+static void FreeAssets(BattleFactoryApp *app)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_12; v0++) {
-        if (param0->unk_2F4[v0] != NULL) {
-            param0->unk_2F4[v0] = ov105_02245EA8(param0->unk_2F4[v0]);
+    for (int i = 0; i < app->unk_12; i++) {
+        if (app->unk_2F4[i] != NULL) {
+            app->unk_2F4[i] = BattleFactoryAppPokeballSprite_Free(app->unk_2F4[i]);
         }
     }
 
-    if (param0->unk_30C != NULL) {
-        ov105_02246060(param0->unk_30C);
-        param0->unk_30C = NULL;
+    if (app->unk_30C != NULL) {
+        BattleFactoryAppCursor_Free(app->unk_30C);
+        app->unk_30C = NULL;
     }
 
     NetworkIcon_Destroy();
 
-    PaletteData_FreeBuffer(param0->unk_120, 2);
-    PaletteData_FreeBuffer(param0->unk_120, 0);
-    PaletteData_Free(param0->unk_120);
+    PaletteData_FreeBuffer(app->plttData, PLTTBUF_MAIN_OBJ);
+    PaletteData_FreeBuffer(app->plttData, PLTTBUF_MAIN_BG);
+    PaletteData_Free(app->plttData);
 
-    param0->unk_120 = NULL;
+    app->plttData = NULL;
 
-    ov105_02245C50(&param0->unk_144);
+    BattleFactoryApp_FreeSprites(&app->spriteMan);
 
-    for (v0 = 0; v0 < 3; v0++) {
-        if (param0->unk_12C[v0] != NULL) {
-            PokemonSprite_Delete(param0->unk_12C[v0]);
+    for (int i = 0; i < 3; i++) {
+        if (app->unk_12C[i] != NULL) {
+            PokemonSprite_Delete(app->unk_12C[i]);
         }
     }
 
-    PokemonSpriteManager_Free(param0->unk_128);
-    MessageLoader_Free(param0->unk_1C);
-    StringTemplate_Free(param0->unk_20);
-    String_Free(param0->unk_24);
-    String_Free(param0->unk_28);
+    PokemonSpriteManager_Free(app->monSpriteMan);
+    MessageLoader_Free(app->msgLoader);
+    StringTemplate_Free(app->strTemplate);
+    String_Free(app->displayStr);
+    String_Free(app->fmtStr);
 
-    for (v0 = 0; v0 < 4; v0++) {
-        String_Free(param0->unk_2C[v0]);
+    for (int i = 0; i < 4; i++) {
+        String_Free(app->menuStr[i]);
     }
 
-    ov105_02246244(param0->unk_50);
-    ov105_0224473C(param0->unk_4C);
+    BattleFactoryApp_FreeWindows(app->windows);
+    FreeBackgrounds(app->bgConfig);
 
-    NARC_dtor(param0->unk_338);
-    G3DPipelineBuffers_Free(param0->unk_124);
-
-    return;
+    NARC_dtor(app->narc);
+    G3DPipelineBuffers_Free(app->g3dPipeline);
 }
 
-static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0)
+static void ReInitApp(BattleFactoryApp *app)
 {
-    int v0;
+    InitGraphicsPlane();
 
-    ov105_022452E4();
+    app->g3dPipeline = G3DPipeline_Init(HEAP_ID_BATTLE_FACTORY_APP, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, BattleFactoryApp_Setup3D);
+    app->bgConfig = BgConfig_New(HEAP_ID_BATTLE_FACTORY_APP);
 
-    param0->unk_124 = G3DPipeline_Init(HEAP_ID_93, TEXTURE_VRAM_SIZE_256K, PALETTE_VRAM_SIZE_32K, ov105_02245CD0);
-    param0->unk_4C = BgConfig_New(HEAP_ID_93);
-
-    ov105_0224531C(param0);
-    ov105_02246214(param0->unk_4C, param0->unk_50);
-
-    return;
+    LoadAssets(app);
+    BattleFactoryApp_InitWindows(app->bgConfig, app->windows);
 }
 
-static void ov105_022452E4(void)
+static void InitGraphicsPlane(void)
 {
     SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
@@ -2805,32 +2705,28 @@ static void ov105_022452E4(void)
 
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
-
-    return;
 }
 
-static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
+static void LoadAssets(BattleFactoryApp *app)
 {
-    int v0, v1;
+    app->narc = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_BATTLE_FACTORY_APP);
 
-    param0->unk_338 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_93);
+    LoadBackgrounds(app);
+    InitSpriteManager(app);
 
-    ov105_02244678(param0);
-    ov105_0224472C(param0);
+    app->msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_FACTORY_APP, HEAP_ID_BATTLE_FACTORY_APP);
+    app->strTemplate = StringTemplate_Default(HEAP_ID_BATTLE_FACTORY_APP);
+    app->displayStr = String_Init(800, HEAP_ID_BATTLE_FACTORY_APP);
+    app->fmtStr = String_Init(800, HEAP_ID_BATTLE_FACTORY_APP);
 
-    param0->unk_1C = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0364, HEAP_ID_93);
-    param0->unk_20 = StringTemplate_Default(HEAP_ID_93);
-    param0->unk_24 = String_Init(800, HEAP_ID_93);
-    param0->unk_28 = String_Init(800, HEAP_ID_93);
-
-    for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2C[v0] = String_Init(64, HEAP_ID_93);
+    for (int i = 0; i < 4; i++) {
+        app->menuStr[i] = String_Init(64, HEAP_ID_BATTLE_FACTORY_APP);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_93);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_93);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(13), HEAP_ID_BATTLE_FACTORY_APP);
+    Font_LoadScreenIndicatorsPalette(PAL_LOAD_MAIN_BG, PLTT_OFFSET(12), HEAP_ID_BATTLE_FACTORY_APP);
 
-    param0->unk_128 = PokemonSpriteManager_New(HEAP_ID_93);
+    app->monSpriteMan = PokemonSpriteManager_New(HEAP_ID_BATTLE_FACTORY_APP);
 
     if (CommSys_IsInitialized()) {
         ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
@@ -2838,36 +2734,34 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
         sub_02039734();
     }
 
-    if (ov105_022454F8(param0, 0) == 1) {
-        ov105_0224246C(param0);
-        ov105_022424A0(param0);
+    if (ov105_022454F8(app, 0) == 1) {
+        ov105_0224246C(app);
+        ov105_022424A0(app);
     } else {
-        ov105_0224260C(param0);
-        ov105_0224266C(param0);
+        ov105_0224260C(app);
+        ov105_0224266C(app);
     }
 
     GXLayers_TurnBothDispOn();
-    SetVBlankCallback(ov105_0224451C, (void *)param0);
-
-    return;
+    SetVBlankCallback(VBlankCallback, app);
 }
 
-static void ov105_022453F8(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2, int param3, const Party *param4)
+static void ov105_022453F8(BattleFactoryApp *param0, u8 param1, u8 param2, int param3, const Party *param4)
 {
     int v0 = param2;
 
-    if (ov105_022461A0(param0->unk_30C) < param0->unk_12) {
+    if (BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C) < param0->unk_12) {
         PokemonSprite_Delete(param0->unk_12C[0]);
         ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param4, v0), 120, 43, param3);
-        ov105_02244FF8(param0, &param0->unk_50[2 + param1], v0, 0, 0, 15, 2, 0, 0, param4);
+        PrintMonNameAndGender(param0, &param0->windows[2 + param1], v0, 0, 0, 15, 2, 0, 0, param4);
     }
 
     return;
 }
 
-static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02245464(BattleFactoryApp *param0)
 {
-    param0->unk_140 = Heap_Alloc(HEAP_ID_93, sizeof(PokemonSummary));
+    param0->unk_140 = Heap_Alloc(HEAP_ID_BATTLE_FACTORY_APP, sizeof(PokemonSummary));
     memset(param0->unk_140, 0, sizeof(PokemonSummary));
 
     param0->unk_140->monData = param0->unk_31C;
@@ -2875,7 +2769,7 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_140->dataType = SUMMARY_DATA_PARTY_MON;
     param0->unk_140->mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_140->monMax = param0->unk_12;
-    param0->unk_140->monIndex = ov105_022461A0(param0->unk_30C);
+    param0->unk_140->monIndex = BattleFactoryAppCursor_GetCurrentSlot(param0->unk_30C);
     param0->unk_140->move = 0;
     param0->unk_140->dexMode = SaveData_GetDexMode(param0->saveData);
     param0->unk_140->showContest = FALSE;
@@ -2886,7 +2780,7 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     return;
 }
 
-static BOOL ov105_022454F8(UnkStruct_ov105_02241FF4 *param0, u8 param1)
+static BOOL ov105_022454F8(BattleFactoryApp *param0, u8 param1)
 {
     if (param0->unk_0B == param1) {
         return 1;
@@ -2906,7 +2800,7 @@ static u8 ov105_02245508(u8 param0)
     return 2;
 }
 
-static BOOL ov105_02245518(UnkStruct_ov105_02241FF4 *param0)
+static BOOL ov105_02245518(BattleFactoryApp *param0)
 {
     if (param0->unk_13_0 == 0) {
         return 0;
@@ -2915,13 +2809,13 @@ static BOOL ov105_02245518(UnkStruct_ov105_02241FF4 *param0)
     return 1;
 }
 
-static void ov105_02245528(UnkStruct_ov105_02241FF4 *param0, u8 param1)
+static void ov105_02245528(BattleFactoryApp *param0, u8 param1)
 {
     param0->unk_13_0 = param1;
     return;
 }
 
-static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
+static u8 ov105_02245538(BattleFactoryApp *param0, u8 param1, u8 param2)
 {
     u8 v0 = 0;
 
@@ -2929,7 +2823,7 @@ static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
     case 0:
         if (param2 == 1) {
             v0 = 2;
-        } else if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        } else if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             v0 = 2;
         } else {
             v0 = 2;
@@ -2938,7 +2832,7 @@ static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
     case 1:
         if (param2 == 1) {
             v0 = 1;
-        } else if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        } else if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             v0 = 1;
         } else {
             v0 = 1;
@@ -2947,7 +2841,7 @@ static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
     case 2:
         if (param2 == 1) {
             v0 = 2;
-        } else if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        } else if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             v0 = 2;
         } else {
             v0 = 2;
@@ -2958,7 +2852,7 @@ static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
     return v0;
 }
 
-static u32 ov105_02245584(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static u32 ov105_02245584(BattleFactoryApp *param0, u32 param1)
 {
     switch (param1) {
     case 0:
@@ -2966,12 +2860,12 @@ static u32 ov105_02245584(UnkStruct_ov105_02241FF4 *param0, u32 param1)
     case 1:
         break;
     case 4:
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
             return 11;
         }
         break;
     case 5:
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 1) {
+        if (BattleFactory_IsMultiplayerChallenge(param0->challengeType) == TRUE) {
             return 12;
         }
         break;
@@ -2980,29 +2874,25 @@ static u32 ov105_02245584(UnkStruct_ov105_02241FF4 *param0, u32 param1)
     return param1;
 }
 
-static void ov105_022455C4(UnkStruct_ov105_02241FF4 *param0, u8 param1, Pokemon *param2, int param3, int param4, int param5)
+static void ov105_022455C4(BattleFactoryApp *app, u8 param1, Pokemon *mon, int x, int y, int param5)
 {
-    u32 v0, v1;
+    app->unk_12C[param1] = BattleFactoryApp_CreateMonSprite(app->monSpriteMan, 0, mon, x, y, 0);
 
-    param0->unk_12C[param1] = ov105_02245D88(param0->unk_128, 0, param2, param3, param4, 0);
+    PokemonSprite_SetAttribute(app->unk_12C[param1], MON_SPRITE_HIDE, FALSE);
 
-    PokemonSprite_SetAttribute(param0->unk_12C[param1], MON_SPRITE_HIDE, 0);
+    u32 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
-    v1 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
-
-    if (SpeciesData_GetFormValue(v0, v1, 28) == 0) {
-        ov105_02245DB8(param0->unk_12C[param1], param5);
+    if (!SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE)) {
+        BattleFactoryApp_FlipMonSprite(app->unk_12C[param1], param5);
     }
-
-    return;
 }
 
-BOOL ov105_02245620(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
+BOOL ov105_02245620(BattleFactoryApp *param0, u16 param1, u16 param2)
 {
     int v0, v1;
 
-    if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+    if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
         return 0;
     }
 
@@ -3030,7 +2920,7 @@ BOOL ov105_02245620(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
     return v0;
 }
 
-void ov105_02245684(UnkStruct_ov105_02241FF4 *param0, u16 param1)
+void ov105_02245684(BattleFactoryApp *param0, u16 param1)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->saveData);
     param0->unk_33C[0] = param1;
@@ -3041,7 +2931,7 @@ void ov105_02245684(UnkStruct_ov105_02241FF4 *param0, u16 param1)
 void ov105_0224569C(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov105_02241FF4 *v2 = param3;
+    BattleFactoryApp *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -3053,7 +2943,7 @@ void ov105_0224569C(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-void ov105_022456A8(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
+void ov105_022456A8(BattleFactoryApp *param0, u16 param1, u16 param2)
 {
     int v0, v1;
     Pokemon *v2;
@@ -3088,11 +2978,11 @@ void ov105_02245744(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
     u8 v2;
-    UnkStruct_ov105_02241FF4 *v3 = param3;
+    BattleFactoryApp *v3 = param3;
     const u16 *v4 = param2;
 
     v1 = 0;
-    v2 = ov104_0223AA50(v3->unk_09);
+    v2 = ov104_0223AA50(v3->challengeType);
 
     if (CommSys_CurNetId() == param0) {
         return;
@@ -3123,37 +3013,37 @@ void ov105_022457B8(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-static void ov105_022457C0(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_022457C0(BattleFactoryApp *param0)
 {
     int v0;
-    u8 v1 = ov104_0223AA50(param0->unk_09);
+    u8 v1 = ov104_0223AA50(param0->challengeType);
 
     if (param0->unk_13_5 == 1) {
-        Window_ClearAndCopyToVRAM(&param0->unk_50[1]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[8]);
-        Window_ClearAndCopyToVRAM(&param0->unk_50[9]);
+        Window_ClearAndCopyToVRAM(&param0->windows[1]);
+        Window_ClearAndCopyToVRAM(&param0->windows[8]);
+        Window_ClearAndCopyToVRAM(&param0->windows[9]);
         return;
     }
 
     if (param0->unk_3BF == 1) {
         for (v0 = 0; v0 < v1; v0++) {
-            Window_FillTilemap(&param0->unk_50[8 + v0], 0);
+            Window_FillTilemap(&param0->windows[8 + v0], 0);
 
             if (v0 < param0->unk_18) {
-                ov105_022450DC(param0, &param0->unk_50[8 + v0], 0, 0, 15, 2, 0, 0, param0->unk_3B6[v0], param0->unk_3BA[v0]);
+                PrintPartnersMonNameAndGender(param0, &param0->windows[8 + v0], 0, 0, 15, 2, 0, 0, param0->unk_3B6[v0], param0->unk_3BA[v0]);
             }
 
-            Window_ScheduleCopyToVRAM(&param0->unk_50[8 + v0]);
+            Window_ScheduleCopyToVRAM(&param0->windows[8 + v0]);
         }
 
-        ov105_02244F84(param0, &param0->unk_50[1], 0, 0, 0);
+        PrintPartnersName(param0, &param0->windows[1], 0, 0, 0);
     }
 
     param0->unk_3BF = 0;
     return;
 }
 
-void ov105_02245884(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
+void ov105_02245884(BattleFactoryApp *param0, u16 param1, u16 param2)
 {
     param0->unk_33C[0] = param1;
     param0->unk_33C[1] = param2;
@@ -3166,7 +3056,7 @@ void ov105_02245884(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
 void ov105_022458A4(int param0, int param1, void *param2, void *param3)
 {
     int v0, v1;
-    UnkStruct_ov105_02241FF4 *v2 = param3;
+    BattleFactoryApp *v2 = param3;
     const u16 *v3 = param2;
 
     v1 = 0;
@@ -3199,7 +3089,7 @@ void ov105_022458A4(int param0, int param1, void *param2, void *param3)
     return;
 }
 
-static UnkStruct_ov105_02245EA8 *ov105_02245934(UnkStruct_ov105_02241FF4 *param0, int param1)
+static BattleFactoryAppPokeballSprite *ov105_02245934(BattleFactoryApp *param0, int param1)
 {
     int v0, v1;
 
@@ -3207,7 +3097,7 @@ static UnkStruct_ov105_02245EA8 *ov105_02245934(UnkStruct_ov105_02241FF4 *param0
         v0 = Unk_ov105_02246364[param1][0];
         v1 = Unk_ov105_02246364[param1][1];
     } else {
-        if (BattleFactory_IsMultiplayerChallenge(param0->unk_09) == 0) {
+        if (!BattleFactory_IsMultiplayerChallenge(param0->challengeType)) {
             v0 = Unk_ov105_02246314[param1][0];
             v1 = Unk_ov105_02246314[param1][1];
         } else {
@@ -3221,10 +3111,10 @@ static UnkStruct_ov105_02245EA8 *ov105_02245934(UnkStruct_ov105_02241FF4 *param0
         }
     }
 
-    return ov105_02245E54(&param0->unk_144, v0, v1, HEAP_ID_93);
+    return BattleFactoryAppPokeballSprite_New(&param0->spriteMan, v0, v1, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
-static UnkStruct_ov105_02245E1C *ov105_022459B0(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static BattleFactoryAppPanelSprite *ov105_022459B0(BattleFactoryApp *param0, u32 param1)
 {
     int v0, v1;
 
@@ -3249,10 +3139,10 @@ static UnkStruct_ov105_02245E1C *ov105_022459B0(UnkStruct_ov105_02241FF4 *param0
         break;
     }
 
-    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, HEAP_ID_93);
+    return BattleFactoryAppPanelSprite_New(&param0->spriteMan, param1, v0, v1, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
-static UnkStruct_ov105_02245E1C *ov105_02245A04(UnkStruct_ov105_02241FF4 *param0, u32 param1)
+static BattleFactoryAppPanelSprite *ov105_02245A04(BattleFactoryApp *param0, u32 param1)
 {
     int v0, v1;
 
@@ -3269,30 +3159,30 @@ static UnkStruct_ov105_02245E1C *ov105_02245A04(UnkStruct_ov105_02241FF4 *param0
         break;
     }
 
-    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, HEAP_ID_93);
+    return BattleFactoryAppPanelSprite_New(&param0->spriteMan, param1, v0, v1, HEAP_ID_BATTLE_FACTORY_APP);
 }
 
-static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02245A30(BattleFactoryApp *param0)
 {
     if (param0->unk_314 != NULL) {
-        ov105_02245E1C(param0->unk_314);
+        BattleFactoryAppPanelSprite_Free(param0->unk_314);
         param0->unk_314 = NULL;
     }
 
     if (param0->unk_318 != NULL) {
-        ov105_02245E1C(param0->unk_318);
+        BattleFactoryAppPanelSprite_Free(param0->unk_318);
         param0->unk_318 = NULL;
     }
 
     return;
 }
 
-static void ov105_02245A64(UnkStruct_ov105_02241FF4 *param0)
+static void ov105_02245A64(BattleFactoryApp *param0)
 {
     Bg_SetPriority(BG_LAYER_MAIN_1, 1);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_93);
-    Bg_ClearTilemap(param0->unk_4C, BG_LAYER_MAIN_1);
-    ov105_02246214(param0->unk_4C, param0->unk_50);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_BATTLE_FACTORY_APP);
+    Bg_ClearTilemap(param0->bgConfig, BG_LAYER_MAIN_1);
+    BattleFactoryApp_InitWindows(param0->bgConfig, param0->windows);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
 
     return;

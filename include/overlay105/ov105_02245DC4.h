@@ -1,12 +1,16 @@
-#ifndef POKEPLATINUM_OV105_02245DC4_H
-#define POKEPLATINUM_OV105_02245DC4_H
+#ifndef POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_SCREEN_SPRITE_H
+#define POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_SCREEN_SPRITE_H
 
-#include "overlay105/struct_ov105_02245AAC.h"
-#include "overlay105/struct_ov105_02245E1C_decl.h"
+#include "overlay105/ov105_02245AAC.h"
 
-UnkStruct_ov105_02245E1C *ov105_02245DC4(UnkStruct_ov105_02245AAC *param0, u32 param1, int param2, int param3, enum HeapID heapID);
-void *ov105_02245E1C(UnkStruct_ov105_02245E1C *param0);
-void ov105_02245E30(UnkStruct_ov105_02245E1C *param0, int param1, int param2);
-BOOL ov105_02245E48(UnkStruct_ov105_02245E1C *param0);
+typedef struct BattleFactoryAppPanelSprite {
+    int x;
+    int y;
+    Sprite *sprite;
+} BattleFactoryAppPanelSprite;
 
-#endif // POKEPLATINUM_OV105_02245DC4_H
+BattleFactoryAppPanelSprite *BattleFactoryAppPanelSprite_New(BattleFactoryAppSpriteManager *spriteMan, u32 animID, int x, int y, enum HeapID heapID);
+void *BattleFactoryAppPanelSprite_Free(BattleFactoryAppPanelSprite *sprite);
+BOOL BattleFactoryAppPanelSprite_IsAnimated(BattleFactoryAppPanelSprite *sprite);
+
+#endif // POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_SCREEN_SPRITE_H

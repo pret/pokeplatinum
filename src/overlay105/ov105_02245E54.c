@@ -4,148 +4,114 @@
 #include <string.h>
 
 #include "overlay105/ov105_02245AAC.h"
-#include "overlay105/struct_ov105_02245AAC.h"
-#include "overlay105/struct_ov105_02245EA8_decl.h"
 
 #include "heap.h"
 #include "sprite.h"
 
-struct UnkStruct_ov105_02245EA8_t {
-    u16 unk_00;
-    u16 unk_02;
-    int unk_04;
-    int unk_08;
-    Sprite *unk_0C;
-};
+static void BattleFactoryAppPokeballSprite_SetSelected(BattleFactoryAppPokeballSprite *sprite, u8 isSelected);
 
-void *ov105_02245EA8(UnkStruct_ov105_02245EA8 *param0);
-void ov105_02245EBC(UnkStruct_ov105_02245EA8 *param0, int param1);
-VecFx32 ov105_02245EC8(UnkStruct_ov105_02245EA8 *param0, int param1, int param2);
-void ov105_02245F14(UnkStruct_ov105_02245EA8 *param0, int param1, int param2);
-const VecFx32 *ov105_02245F2C(UnkStruct_ov105_02245EA8 *param0);
-void ov105_02245F38(UnkStruct_ov105_02245EA8 *param0, u8 param1);
-u8 ov105_02245F3C(UnkStruct_ov105_02245EA8 *param0);
-void ov105_02245F44(UnkStruct_ov105_02245EA8 *param0);
-void ov105_02245F50(UnkStruct_ov105_02245EA8 *param0);
-void ov105_02245F5C(UnkStruct_ov105_02245EA8 *param0);
-int ov105_02245F88(UnkStruct_ov105_02245EA8 *param0);
-int ov105_02245F8C(UnkStruct_ov105_02245EA8 *param0);
-void ov105_02245F90(UnkStruct_ov105_02245EA8 *param0, u32 param1);
-void ov105_02245FAC(UnkStruct_ov105_02245EA8 *param0, u32 param1);
-
-UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 heapID)
+BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactoryAppSpriteManager *spriteMan, int x, int y, u32 heapID)
 {
-    UnkStruct_ov105_02245EA8 *v0 = Heap_Alloc(heapID, sizeof(UnkStruct_ov105_02245EA8));
-    memset(v0, 0, sizeof(UnkStruct_ov105_02245EA8));
+    BattleFactoryAppPokeballSprite *sprite = Heap_Alloc(heapID, sizeof(BattleFactoryAppPokeballSprite));
+    memset(sprite, 0, sizeof(BattleFactoryAppPokeballSprite));
 
-    v0->unk_00 = 0;
-    v0->unk_04 = param1;
-    v0->unk_08 = param2;
-    v0->unk_0C = ov105_02245BA4(param0, 0, 6, 0, 0, 0);
+    sprite->isSelected = 0;
+    sprite->x = x;
+    sprite->y = y;
+    sprite->sprite = BattleFactoryApp_InitSprite(spriteMan, 0, ANIM_ID_BALL_STATIC, 0, 0, FALSE);
 
-    ov105_02245F14(v0, param1, param2);
-    Sprite_SetExplicitPalette(v0->unk_0C, 1);
+    BattleFactoryAppPokeballSprite_SetPosition(sprite, x, y);
+    Sprite_SetExplicitPalette(sprite->sprite, 1);
 
-    return v0;
+    return sprite;
 }
 
-void *ov105_02245EA8(UnkStruct_ov105_02245EA8 *param0)
+void *BattleFactoryAppPokeballSprite_Free(BattleFactoryAppPokeballSprite *sprite)
 {
-    Sprite_Delete(param0->unk_0C);
-    Heap_Free(param0);
+    Sprite_Delete(sprite->sprite);
+    Heap_Free(sprite);
 
     return NULL;
 }
 
-void ov105_02245EBC(UnkStruct_ov105_02245EA8 *param0, int param1)
+void BattleFactoryAppPokeballSprite_SetDrawFlag(BattleFactoryAppPokeballSprite *sprite, int draw)
 {
-    Sprite_SetDrawFlag(param0->unk_0C, param1);
-    return;
+    Sprite_SetDrawFlag(sprite->sprite, draw);
 }
 
-VecFx32 ov105_02245EC8(UnkStruct_ov105_02245EA8 *param0, int param1, int param2)
+VecFx32 BattleFactoryAppPokeballSprite_SetAndGetPosition(BattleFactoryAppPokeballSprite *sprite, int x, int y)
 {
-    VecFx32 v0;
+    VecFx32 position = *Sprite_GetPosition(sprite->sprite);
+    position.x += x * FX32_ONE;
+    position.y += y * FX32_ONE;
 
-    v0 = *(Sprite_GetPosition(param0->unk_0C));
-    v0.x += (param1 * FX32_ONE);
-    v0.y += (param2 * FX32_ONE);
-
-    Sprite_SetPosition(param0->unk_0C, &v0);
-    return *(Sprite_GetPosition(param0->unk_0C));
+    Sprite_SetPosition(sprite->sprite, &position);
+    return *Sprite_GetPosition(sprite->sprite);
 }
 
-void ov105_02245F14(UnkStruct_ov105_02245EA8 *param0, int param1, int param2)
+void BattleFactoryAppPokeballSprite_SetPosition(BattleFactoryAppPokeballSprite *sprite, int x, int y)
 {
-    VecFx32 v0;
+    VecFx32 position;
 
-    v0.x = (param1 * FX32_ONE);
-    v0.y = (param2 * FX32_ONE);
+    position.x = x * FX32_ONE;
+    position.y = y * FX32_ONE;
 
-    Sprite_SetPosition(param0->unk_0C, &v0);
-    return;
+    Sprite_SetPosition(sprite->sprite, &position);
 }
 
-const VecFx32 *ov105_02245F2C(UnkStruct_ov105_02245EA8 *param0)
+const VecFx32 *BattleFactoryAppPokeballSprite_GetPosition(BattleFactoryAppPokeballSprite *sprite)
 {
-    return Sprite_GetPosition(param0->unk_0C);
+    return Sprite_GetPosition(sprite->sprite);
 }
 
-void ov105_02245F38(UnkStruct_ov105_02245EA8 *param0, u8 param1)
+static void BattleFactoryAppPokeballSprite_SetSelected(BattleFactoryAppPokeballSprite *sprite, u8 isSelected)
 {
-    param0->unk_00 = param1;
-    return;
+    sprite->isSelected = isSelected;
 }
 
-u8 ov105_02245F3C(UnkStruct_ov105_02245EA8 *param0)
+u8 BattleFactoryAppPokeballSprite_IsSelected(BattleFactoryAppPokeballSprite *sprite)
 {
-    return param0->unk_00;
+    return sprite->isSelected;
 }
 
-void ov105_02245F44(UnkStruct_ov105_02245EA8 *param0)
+void BattleFactoryAppPokeballSprite_SelectMon(BattleFactoryAppPokeballSprite *sprite)
 {
-    ov105_02245F38(param0, 1);
-    return;
+    BattleFactoryAppPokeballSprite_SetSelected(sprite, TRUE);
 }
 
-void ov105_02245F50(UnkStruct_ov105_02245EA8 *param0)
+void BattleFactoryAppPokeballSprite_UnselectMon(BattleFactoryAppPokeballSprite *sprite)
 {
-    ov105_02245F38(param0, 0);
-    return;
+    BattleFactoryAppPokeballSprite_SetSelected(sprite, FALSE);
 }
 
-void ov105_02245F5C(UnkStruct_ov105_02245EA8 *param0)
+void ov105_02245F5C(BattleFactoryAppPokeballSprite *sprite)
 {
-    VecFx32 v0;
-    const VecFx32 *v1 = ov105_02245F2C(param0);
+    const VecFx32 *oldPos = BattleFactoryAppPokeballSprite_GetPosition(sprite);
 
-    v0.x = ((v1->x / FX32_ONE) + 248) * FX32_ONE;
-    v0.y = v1->y;
+    VecFx32 newPos;
+    newPos.x = ((oldPos->x / FX32_ONE) + 248) * FX32_ONE;
+    newPos.y = oldPos->y;
 
-    Sprite_SetPosition(param0->unk_0C, &v0);
-    return;
+    Sprite_SetPosition(sprite->sprite, &newPos);
 }
 
-int ov105_02245F88(UnkStruct_ov105_02245EA8 *param0)
+int BattleFactoryAppPokeballSprite_GetX(BattleFactoryAppPokeballSprite *sprite)
 {
-    return param0->unk_04;
+    return sprite->x;
 }
 
-int ov105_02245F8C(UnkStruct_ov105_02245EA8 *param0)
+int BattleFactoryAppPokeballSprite_GetY(BattleFactoryAppPokeballSprite *sprite)
 {
-    return param0->unk_08;
+    return sprite->y;
 }
 
-void ov105_02245F90(UnkStruct_ov105_02245EA8 *param0, u32 param1)
+void BattleFactoryAppPokeballSprite_SetAnim(BattleFactoryAppPokeballSprite *sprite, u32 animID)
 {
-    Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    Sprite_SetAnim(param0->unk_0C, param1);
-
-    return;
+    Sprite_SetAnimSpeed(sprite->sprite, FX32_ONE);
+    Sprite_SetAnim(sprite->sprite, animID);
 }
 
-void ov105_02245FAC(UnkStruct_ov105_02245EA8 *param0, u32 param1)
+void BattleFactoryAppPokeballSprite_UpdatePalette(BattleFactoryAppPokeballSprite *sprite, u32 palette)
 {
-    Sprite_SetExplicitPalette(param0->unk_0C, param1);
-    return;
+    Sprite_SetExplicitPalette(sprite->sprite, palette);
 }

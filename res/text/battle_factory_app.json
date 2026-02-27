@@ -2,89 +2,89 @@
   "key": 3949,
   "messages": [
     {
-      "id": "pl_msg_00000364_00000",
+      "id": "BattleFactoryApp_Text_ChoosePokemon",
       "en_US": [
         "Please choose Pokémon\n",
         "no. {STRVAR_1 50, 0, 0}."
       ]
     },
     {
-      "id": "pl_msg_00000364_00001",
+      "id": "BattleFactoryApp_Text_OkWithSelection",
       "en_US": [
         "Are you OK with the\n",
         "chosen {STRVAR_1 50, 0, 0} Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000364_00002",
+      "id": "BattleFactoryApp_Text_PleaseWait",
       "en_US": "Please wait a moment."
     },
     {
-      "id": "pl_msg_00000364_00003",
+      "id": "BattleFactoryApp_Text_Yes",
       "en_US": "YES"
     },
     {
-      "id": "pl_msg_00000364_00004",
+      "id": "BattleFactoryApp_Text_No",
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000364_00005",
+      "id": "BattleFactoryApp_Text_Summary",
       "en_US": "SUMMARY"
     },
     {
-      "id": "pl_msg_00000364_00006",
+      "id": "BattleFactoryApp_Text_Rent",
       "en_US": "RENT"
     },
     {
-      "id": "pl_msg_00000364_00007",
+      "id": "BattleFactoryApp_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000364_00008",
+      "id": "BattleFactoryApp_Text_Remove",
       "en_US": "REMOVE"
     },
     {
-      "id": "pl_msg_00000364_00009",
+      "id": "BattleFactoryApp_Text_ChooseExchange",
       "en_US": [
         "Choose the Pokémon to\n",
         "be exchanged."
       ]
     },
     {
-      "id": "pl_msg_00000364_00010",
+      "id": "BattleFactoryApp_Text_CancelTrade",
       "en_US": [
         "Cancel the Pokémon\n",
         "trade?"
       ]
     },
     {
-      "id": "pl_msg_00000364_00011",
+      "id": "BattleFactoryApp_Text_Dummy1",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000364_00012",
+      "id": "BattleFactoryApp_Text_Dummy2",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000364_00013",
+      "id": "BattleFactoryApp_Text_ChooseReceive",
       "en_US": [
         "Choose the Pokémon you\n",
         "want to receive."
       ]
     },
     {
-      "id": "pl_msg_00000364_00014",
+      "id": "BattleFactoryApp_Text_AcceptPokemon",
       "en_US": [
         "Will you accept this\n",
         "Pokémon?"
       ]
     },
     {
-      "id": "pl_msg_00000364_00015",
+      "id": "BattleFactoryApp_Text_PleaseWait2",
       "en_US": "Please wait a moment."
     },
     {
-      "id": "pl_msg_00000364_00016",
+      "id": "BattleFactoryApp_Text_TradeOccurred",
       "en_US": [
         "{STRVAR_1 3, 0, 0} traded\n",
         "away {STRVAR_1 0, 1, 0} and\f",
@@ -92,43 +92,43 @@
       ]
     },
     {
-      "id": "pl_msg_00000364_00017",
+      "id": "BattleFactoryApp_Text_Dummy3",
       "garbage": 2
     },
     {
-      "id": "pl_msg_00000364_00018",
+      "id": "BattleFactoryApp_Text_Dummy4",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000364_00019",
+      "id": "BattleFactoryApp_Text_Cancel2",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000364_00020",
+      "id": "BattleFactoryApp_Text_Dummy5",
       "garbage": 6
     },
     {
-      "id": "pl_msg_00000364_00021",
+      "id": "BattleFactoryApp_Text_Exchange",
       "en_US": "EXCHANGE"
     },
     {
-      "id": "pl_msg_00000364_00022",
+      "id": "BattleFactoryApp_Text_Dummy6",
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000364_00023",
+      "id": "BattleFactoryApp_Text_Back",
       "en_US": "BACK"
     },
     {
-      "id": "pl_msg_00000364_00024",
+      "id": "BattleFactoryApp_Text_Cancel3",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000364_00025",
+      "id": "BattleFactoryApp_Text_MaleSymbol",
       "en_US": "♂"
     },
     {
-      "id": "pl_msg_00000364_00026",
+      "id": "BattleFactoryApp_Text_FemaleSymbol",
       "en_US": "♀"
     }
   ]

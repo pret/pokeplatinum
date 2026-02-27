@@ -1,11 +1,11 @@
-#ifndef POKEPLATINUM_OV105_02246214_H
-#define POKEPLATINUM_OV105_02246214_H
+#ifndef POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_WINDOWS_H
+#define POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_WINDOWS_H
 
 #include "bg_window.h"
 
-void ov105_02246214(BgConfig *param0, Window *param1);
-void ov105_02246244(Window *param0);
-void ov105_02246260(BgConfig *param0, Window *param1);
-void ov105_0224628C(Window *param0, int param1);
+void BattleFactoryApp_InitWindows(BgConfig *bgConfig, Window *windows);
+void BattleFactoryApp_FreeWindows(Window *windows);
+void BattleFactoryApp_DrawWindow(BgConfig *bgConfig, Window *window);
+void BattleFactoryApp_DrawMessageBox(Window *window, int frame);
 
-#endif // POKEPLATINUM_OV105_02246214_H
+#endif // POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_WINDOWS_H

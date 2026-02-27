@@ -95,7 +95,7 @@ enum HeapID {
     HEAP_ID_90,
     HEAP_ID_91,
     HEAP_ID_92,
-    HEAP_ID_93,
+    HEAP_ID_BATTLE_FACTORY_APP,
     HEAP_ID_94,
     HEAP_ID_95,
     HEAP_ID_96,

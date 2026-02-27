@@ -1,66 +1,51 @@
 #include "overlay105/ov105_02246214.h"
 
 #include <nitro.h>
-#include <string.h>
+
+#include "constants/field_base_tiles.h"
 
 #include "bg_window.h"
 #include "render_window.h"
 
-void ov105_02246214(BgConfig *param0, Window *param1);
-void ov105_02246244(Window *param0);
-void ov105_02246260(BgConfig *param0, Window *param1);
-void ov105_0224628C(Window *param0, int param1);
+#define BASE_TILE_WINDOW_FRAME (1024 - STANDARD_WINDOW_TILE_COUNT)
 
-static const WindowTemplate Unk_ov105_02246458[] = {
-    { 0x1, 0x1, 0x1, 0xA, 0x2, 0xD, 0x1 },
-    { 0x1, 0x16, 0x1, 0xA, 0x2, 0xD, 0x15 },
-    { 0x1, 0x1, 0x4, 0x9, 0x2, 0xD, 0x29 },
-    { 0x1, 0x1, 0x6, 0x9, 0x2, 0xD, 0x3B },
-    { 0x1, 0x1, 0x8, 0x9, 0x2, 0xD, 0x4D },
-    { 0x1, 0x2, 0x13, 0x11, 0x4, 0xC, 0x5F },
-    { 0x1, 0x17, 0x13, 0x8, 0x4, 0xD, 0xA3 },
-    { 0x1, 0x17, 0x11, 0x8, 0x6, 0xD, 0xC3 },
-    { 0x1, 0x16, 0x4, 0x9, 0x2, 0xD, 0xF3 },
-    { 0x1, 0x16, 0x6, 0x9, 0x2, 0xD, 0x105 }
-};
-
-void ov105_02246214(BgConfig *param0, Window *param1)
+void BattleFactoryApp_InitWindows(BgConfig *bgConfig, Window *windows)
 {
-    u8 v0;
-    const WindowTemplate *v1 = Unk_ov105_02246458;
+    static const WindowTemplate sWinTemplates[] = {
+        { BG_LAYER_MAIN_1, 1, 1, 10, 2, 13, 1 },
+        { BG_LAYER_MAIN_1, 22, 1, 10, 2, 13, 21 },
+        { BG_LAYER_MAIN_1, 1, 4, 9, 2, 13, 41 },
+        { BG_LAYER_MAIN_1, 1, 6, 9, 2, 13, 59 },
+        { BG_LAYER_MAIN_1, 1, 8, 9, 2, 13, 77 },
+        { BG_LAYER_MAIN_1, 2, 19, 17, 4, 12, 95 },
+        { BG_LAYER_MAIN_1, 23, 19, 8, 4, 13, 163 },
+        { BG_LAYER_MAIN_1, 23, 17, 8, 6, 13, 195 },
+        { BG_LAYER_MAIN_1, 22, 4, 9, 2, 13, 243 },
+        { BG_LAYER_MAIN_1, 22, 6, 9, 2, 13, 261 }
+    };
 
-    for (v0 = 0; v0 < 10; v0++) {
-        Window_AddFromTemplate(param0, &param1[v0], &v1[v0]);
-        Window_FillTilemap(&param1[v0], 0);
+    for (u8 i = 0; i < 10; i++) {
+        Window_AddFromTemplate(bgConfig, &windows[i], &sWinTemplates[i]);
+        Window_FillTilemap(&windows[i], 0);
     }
-
-    return;
 }
 
-void ov105_02246244(Window *param0)
+void BattleFactoryApp_FreeWindows(Window *windows)
 {
-    u16 v0;
-
-    for (v0 = 0; v0 < 10; v0++) {
-        Window_Remove(&param0[v0]);
+    for (u16 i = 0; i < 10; i++) {
+        Window_Remove(&windows[i]);
     }
-
-    return;
 }
 
-void ov105_02246260(BgConfig *param0, Window *param1)
+void BattleFactoryApp_DrawWindow(BgConfig *bgConfig, Window *window)
 {
-    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, (1024 - 9), 11, 0, HEAP_ID_93);
-    Window_DrawStandardFrame(param1, 1, (1024 - 9), 11);
-
-    return;
+    LoadStandardWindowGraphics(bgConfig, BG_LAYER_MAIN_1, BASE_TILE_WINDOW_FRAME, PLTT_11, STANDARD_WINDOW_SYSTEM, HEAP_ID_BATTLE_FACTORY_APP);
+    Window_DrawStandardFrame(window, TRUE, BASE_TILE_WINDOW_FRAME, PLTT_11);
 }
 
-void ov105_0224628C(Window *param0, int param1)
+void BattleFactoryApp_DrawMessageBox(Window *window, int frame)
 {
-    LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, HEAP_ID_93);
-    Window_FillTilemap(param0, 15);
-    Window_DrawMessageBoxWithScrollCursor(param0, 1, ((1024 - 9) - (18 + 12)), 10);
-
-    return;
+    LoadMessageBoxGraphics(window->bgConfig, Window_GetBgLayer(window), BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10, frame, HEAP_ID_BATTLE_FACTORY_APP);
+    Window_FillTilemap(window, 15);
+    Window_DrawMessageBoxWithScrollCursor(window, TRUE, BASE_TILE_STANDARD_WINDOW_FRAME, PLTT_10);
 }
