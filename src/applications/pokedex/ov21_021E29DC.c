@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/pokedex/infomain.h"
 #include "applications/pokedex/infomain_foreign.h"
-#include "applications/pokedex/infomain_state.h"
 #include "applications/pokedex/ov21_021D4340.h"
 #include "applications/pokedex/ov21_021DC9BC.h"
 #include "applications/pokedex/ov21_021E3FFC.h"

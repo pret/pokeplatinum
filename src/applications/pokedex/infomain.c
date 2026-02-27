@@ -6,7 +6,6 @@
 #include "generated/pokemon_types.h"
 
 #include "applications/pokedex/footprint.h"
-#include "applications/pokedex/infomain_state.h"
 #include "applications/pokedex/ov21_021E29DC.h"
 #include "applications/pokedex/pokedex_app.h"
 #include "applications/pokedex/pokedex_data_manager.h"
@@ -39,10 +38,19 @@
 #include "res/graphics/pokedex/zukan.naix"
 #include "res/text/bank/pokedex.h"
 
-#define POKEDEX_TYPE_ICON_RESOURCE_OFFSET 4000
+#define POKEDEX_TYPE_ICON_BACKGROUND_BOX_CELL 0x11
+#define POKEDEX_TYPE_ICON_RESOURCE_OFFSET     4000
+#define STRING_BUFFER_SIZE                    64
+
+enum InfoMainGraphicsSpriteIndex {
+    INFOMAIN_SPRITE_FOOTPRINT = 0, // Footprint sprite
+    INFOMAIN_SPRITE_TYPE_ICON_1 = 1, // Type icon sprite 1
+    INFOMAIN_SPRITE_TYPE_ICON_2 = 2, // Type icon sprite 2
+    INFOMAIN_SPRITE_MAX = 3, // Maximum number of sprites
+};
 
 typedef struct InfoMainGraphics {
-    Sprite *footprintAndTypeSprites[3]; // [0] = footprint sprite, [1,2] = type icon sprites
+    Sprite *footprintAndTypeSprites[INFOMAIN_SPRITE_MAX];
     Sprite *categoryBoxSprite;
     PokedexTextData *categoryTextData;
     SpriteResource *typeIconResources[MAX_SPRITE_RESOURCE_GEN4];
@@ -56,12 +64,12 @@ static PokedexGraphicData **AllocateGraphicsData(enum HeapID heapID, PokedexApp 
 static void FreeState(InfoMainState *displayState);
 static void FreeGraphicsData(PokedexGraphicData **graphicsData);
 static int GetNumScreenStates(void);
-static int ProcessInitData(PokedexDataManager *dataMan, void *data);
-static int ProcessUpdateData(PokedexDataManager *dataMan, void *data);
-static int ProcessFinalizeData(PokedexDataManager *dataMan, void *data);
-static int ProcessInitGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
-static int ProcessUpdateGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
-static int ProcessFinalizeGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int InitData(PokedexDataManager *dataMan, void *data);
+static int UpdateData(PokedexDataManager *dataMan, void *data);
+static int FinalizeData(PokedexDataManager *dataMan, void *data);
+static int InitGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int UpdateGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
+static int FinalizeGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan);
 static void InitBlendMode(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, BOOL isInitializing);
 static BOOL UpdateBlendMode(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, BOOL isInitializing);
 static void InitPositionBlendMode(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, BOOL isInitializing);
@@ -108,12 +116,12 @@ void InfoMain_InitScreen(PokedexScreenManager *screenManager, PokedexApp *pokede
     screenManager->pageGraphics = graphicsData;
     screenManager->screenStates = NULL;
     screenManager->numStates = GetNumScreenStates();
-    screenManager->dataFunc[0] = ProcessInitData;
-    screenManager->dataFunc[1] = ProcessUpdateData;
-    screenManager->dataFunc[2] = ProcessFinalizeData;
-    screenManager->graphicsFunc[0] = ProcessInitGraphics;
-    screenManager->graphicsFunc[1] = ProcessUpdateGraphics;
-    screenManager->graphicsFunc[2] = ProcessFinalizeGraphics;
+    screenManager->dataFunc[0] = InitData;
+    screenManager->dataFunc[1] = UpdateData;
+    screenManager->dataFunc[2] = FinalizeData;
+    screenManager->graphicsFunc[0] = InitGraphics;
+    screenManager->graphicsFunc[1] = UpdateGraphics;
+    screenManager->graphicsFunc[2] = FinalizeGraphics;
 }
 
 void InfoMain_FreeScreen(PokedexScreenManager *screenManager)
@@ -122,6 +130,7 @@ void InfoMain_FreeScreen(PokedexScreenManager *screenManager)
     FreeGraphicsData(screenManager->pageGraphics);
 }
 
+// Compatibility stub for InfoMainForeign_SetDisplayPosition. Main screen doesn't support position animations.
 BOOL InfoMain_SetDisplayPosition(InfoMainState *displayState, int unused)
 {
     return FALSE;
@@ -183,7 +192,7 @@ static int GetNumScreenStates(void)
     return 0;
 }
 
-static int ProcessInitData(PokedexDataManager *dataMan, void *data)
+static int InitData(PokedexDataManager *dataMan, void *data)
 {
     InfoMainState *displayState = data;
 
@@ -193,7 +202,7 @@ static int ProcessInitData(PokedexDataManager *dataMan, void *data)
     return TRUE;
 }
 
-static int ProcessUpdateData(PokedexDataManager *dataMan, void *data)
+static int UpdateData(PokedexDataManager *dataMan, void *data)
 {
     InfoMainState *displayState = data;
 
@@ -208,6 +217,7 @@ static int ProcessUpdateData(PokedexDataManager *dataMan, void *data)
     switch (dataMan->state) {
     case 0:
         if (displayState->playCry == TRUE) {
+            // The pan, volume, and heapID parameters are unused by the sound system's code path, which is why their values are set to 0x1ff
             Sound_PlayPokemonCryEx(POKECRY_POKEDEX, PokedexSort_CurrentSpecies(displayState->sortData), 0x1ff, 0x1ff, 0x1ff, 0);
             displayState->playCry = FALSE;
         }
@@ -221,13 +231,13 @@ static int ProcessUpdateData(PokedexDataManager *dataMan, void *data)
     return FALSE;
 }
 
-static int ProcessFinalizeData(PokedexDataManager *dataMan, void *data)
+static int FinalizeData(PokedexDataManager *dataMan, void *data)
 {
     Sound_StopPokemonCries(0);
     return TRUE;
 }
 
-static int ProcessInitGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
+static int InitGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
     const InfoMainState *displayState = data;
     PokedexGraphicData **graphicsData = graphics;
@@ -284,12 +294,12 @@ static int ProcessInitGraphics(void *graphics, PokedexGraphicsManager *graphicsM
     return FALSE;
 }
 
-static int ProcessUpdateGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
+static int UpdateGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
     return FALSE;
 }
 
-static int ProcessFinalizeGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
+static int FinalizeGraphics(void *graphics, PokedexGraphicsManager *graphicsMan, const void *data, const PokedexDataManager *dataMan)
 {
     const InfoMainState *displayState = data;
     PokedexGraphicData **graphicsData = graphics;
@@ -371,7 +381,7 @@ static void CleanupGraphics(InfoMainGraphics *graphicsStruct, PokedexGraphicData
     DeleteTypeIconSprites(graphicsStruct);
     UnloadTypeIconResources(graphicsStruct, graphicsData);
 
-    Bg_ClearTilemap((*graphicsData)->bgConfig, 1);
+    Bg_ClearTilemap((*graphicsData)->bgConfig, BG_LAYER_MAIN_1);
 }
 
 static void LoadBackground(PokedexGraphicData **graphicsData, enum HeapID heapID)
@@ -379,24 +389,24 @@ static void LoadBackground(PokedexGraphicData **graphicsData, enum HeapID heapID
     void *tilemapData;
     NNSG2dScreenData *screenData;
 
-    PokedexGraphics_LoadGraphicNarcCharacterData(*graphicsData, entry_main_NCGR_lz, (*graphicsData)->bgConfig, 3, 0, 0, TRUE, heapID);
+    PokedexGraphics_LoadGraphicNarcCharacterData(*graphicsData, entry_main_NCGR_lz, (*graphicsData)->bgConfig, BG_LAYER_MAIN_3, 0, 0, TRUE, heapID);
 
     tilemapData = PokedexGraphics_GetGraphicNarcTilemapData(*graphicsData, info_main_NSCR_lz, TRUE, &screenData, heapID);
-    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, 3, screenData->rawData, 0, 0, screenData->screenWidth / 8, screenData->screenHeight / 8);
+    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, BG_LAYER_MAIN_3, screenData->rawData, 0, 0, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tilemapData);
 
     tilemapData = PokedexGraphics_GetGraphicNarcTilemapData(*graphicsData, info_species_window_NSCR_lz, TRUE, &screenData, heapID);
-    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, 3, screenData->rawData, 0, 3, screenData->screenWidth / 8, screenData->screenHeight / 8);
+    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, BG_LAYER_MAIN_3, screenData->rawData, 0, 3, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tilemapData);
 
     tilemapData = PokedexGraphics_GetGraphicNarcTilemapData(*graphicsData, info_footprint_window_NSCR_lz, TRUE, &screenData, heapID);
-    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, 3, screenData->rawData, 12, 8, screenData->screenWidth / 8, screenData->screenHeight / 8);
+    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, BG_LAYER_MAIN_3, screenData->rawData, 12, 8, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tilemapData);
 
     tilemapData = PokedexGraphics_GetGraphicNarcTilemapData(*graphicsData, info_entry_window_NSCR_lz, TRUE, &screenData, heapID);
-    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, 3, screenData->rawData, 0, 16, screenData->screenWidth / 8, screenData->screenHeight / 8);
+    Bg_LoadToTilemapRect((*graphicsData)->bgConfig, BG_LAYER_MAIN_3, screenData->rawData, 0, 16, screenData->screenWidth / 8, screenData->screenHeight / 8);
     Heap_Free(tilemapData);
-    Bg_ScheduleTilemapTransfer((*graphicsData)->bgConfig, 3);
+    Bg_ScheduleTilemapTransfer((*graphicsData)->bgConfig, BG_LAYER_MAIN_3);
 }
 
 static void RenderAllText(PokedexGraphicData **graphicsData, const InfoMainState *displayState, enum HeapID heapID)
@@ -412,7 +422,7 @@ static void RenderAllText(PokedexGraphicData **graphicsData, const InfoMainState
 
 void InfoMain_RenderHeightWeightEntry(Window *window, int species, enum HeapID heapID, int entryOffset, u32 textColor)
 {
-    String *labelString = String_Init(64, heapID);
+    String *labelString = String_Init(STRING_BUFFER_SIZE, heapID);
     MessageLoader *pokedexMessageBank = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_ht, labelString);
@@ -430,10 +440,8 @@ void InfoMain_RenderHeightWeightEntry(Window *window, int species, enum HeapID h
 
 static void RenderHeight(Window *window, enum HeapID heapID, int species, u32 textColor)
 {
-    String *heightString = String_Init(64, heapID);
-
-    int heightMessageBankIndex = Height_Message_Bank_Index();
-    MessageLoader *heightMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, heightMessageBankIndex, heapID);
+    String *heightString = String_Init(STRING_BUFFER_SIZE, heapID);
+    MessageLoader *heightMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, Height_Message_Bank_Index(), heapID);
 
     MessageLoader_GetString(heightMsgLoader, species, heightString);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, heightString, 184, 88, TEXT_SPEED_INSTANT, textColor, NULL);
@@ -443,10 +451,8 @@ static void RenderHeight(Window *window, enum HeapID heapID, int species, u32 te
 
 static void RenderWeight(Window *window, enum HeapID heapID, int species, u32 textColor)
 {
-    String *weightString = String_Init(64, heapID);
-
-    int weightMessageBankIndex = Weight_Message_Bank_Index();
-    MessageLoader *weightMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, weightMessageBankIndex, heapID);
+    String *weightString = String_Init(STRING_BUFFER_SIZE, heapID);
+    MessageLoader *weightMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, Weight_Message_Bank_Index(), heapID);
 
     MessageLoader_GetString(weightMsgLoader, species, weightString);
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, weightString, 184, 104, TEXT_SPEED_INSTANT, textColor, NULL);
@@ -466,11 +472,11 @@ static void RenderDexEntry(Window *window, enum HeapID heapID, int species, int 
 
 static void CreateFootprintSprite(InfoMainGraphics *graphicsStruct, PokedexGraphicData **graphicsData, const InfoMainState *displayState, int heapID)
 {
-    int species = PokedexSort_CurrentSpecies(displayState->sortData);
+    enum Species species = PokedexSort_CurrentSpecies(displayState->sortData);
     int form = PokedexSort_DefaultForm(displayState->sortData, species);
 
     if ((species == SPECIES_GIRATINA) && (form > 0)) {
-        species = 11;
+        species = SPECIES_METAPOD;
     }
 
     LoadFootprintResources(graphicsStruct, graphicsData, heapID, species);
@@ -651,56 +657,56 @@ int PokedexGraphics_GetAnimIDfromType(int monType)
 
     switch (monType) {
     case TYPE_NORMAL:
-        animID = 0x0;
+        animID = 0;
         break;
     case TYPE_FIGHTING:
-        animID = 0x6;
+        animID = 6;
         break;
     case TYPE_FLYING:
-        animID = 0xe;
+        animID = 14;
         break;
     case TYPE_POISON:
-        animID = 0xa;
+        animID = 10;
         break;
     case TYPE_GROUND:
-        animID = 0x8;
+        animID = 8;
         break;
     case TYPE_ROCK:
-        animID = 0x5;
+        animID = 5;
         break;
     case TYPE_BUG:
-        animID = 0xb;
+        animID = 11;
         break;
     case TYPE_GHOST:
     case TYPE_MYSTERY:
-        animID = 0x7;
+        animID = 7;
         break;
     case TYPE_STEEL:
-        animID = 0x9;
+        animID = 9;
         break;
     case TYPE_FIRE:
-        animID = 0x1;
+        animID = 1;
         break;
     case TYPE_WATER:
-        animID = 0x3;
+        animID = 3;
         break;
     case TYPE_GRASS:
-        animID = 0x2;
+        animID = 2;
         break;
     case TYPE_ELECTRIC:
-        animID = 0x4;
+        animID = 4;
         break;
     case TYPE_PSYCHIC:
-        animID = 0xf;
+        animID = 15;
         break;
     case TYPE_ICE:
-        animID = 0xd;
+        animID = 13;
         break;
     case TYPE_DRAGON:
-        animID = 0x10;
+        animID = 16;
         break;
     case TYPE_DARK:
-        animID = 0xc;
+        animID = 12;
         break;
     }
 
@@ -738,7 +744,7 @@ static void CreateCategoryBox(InfoMainGraphics *graphicsStruct, PokedexGraphicDa
 
     graphicsStruct->categoryBoxSprite = SpriteList_Add(&spriteTemplate);
 
-    Sprite_SetAnim(graphicsStruct->categoryBoxSprite, 0x11);
+    Sprite_SetAnim(graphicsStruct->categoryBoxSprite, POKEDEX_TYPE_ICON_BACKGROUND_BOX_CELL);
 
     if (PokedexSort_CurrentCaughtStatus(displayState->sortData) != CS_CAUGHT) {
         species = SPECIES_NONE;
@@ -763,7 +769,7 @@ static void CreateCategoryBox(InfoMainGraphics *graphicsStruct, PokedexGraphicDa
     PokedexTextManager_FreeWindow(categoryWindow);
 }
 
-Window *InfoMain_CreateCategoryWindow(PokedexTextManager *textMan, int species, int heapID)
+Window *InfoMain_CreateCategoryWindow(PokedexTextManager *textMan, enum Species species, enum HeapID heapID)
 {
     Window *categoryWindow = PokedexTextManager_NewWindow(textMan, 18, 2);
     String *categoryString = PokedexText_Category(species, GAME_LANGUAGE, heapID);
