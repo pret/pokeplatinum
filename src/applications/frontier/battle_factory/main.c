@@ -1,18 +1,18 @@
-#include "overlay105/ov105_02241AE0.h"
+#include "applications/frontier/battle_factory/main.h"
 
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/frontier/battle_factory/cursor.h"
+#include "applications/frontier/battle_factory/helpers.h"
+#include "applications/frontier/battle_factory/panel_sprite.h"
+#include "applications/frontier/battle_factory/pokeball_sprite.h"
+#include "applications/frontier/battle_factory/sprite_manager.h"
+#include "applications/frontier/battle_factory/windows.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223A7F4.h"
 #include "overlay104/struct_ov104_02234130.h"
-#include "overlay105/ov105_02245AAC.h"
-#include "overlay105/ov105_02245CD0.h"
-#include "overlay105/ov105_02245DC4.h"
-#include "overlay105/ov105_02245E54.h"
-#include "overlay105/ov105_02245FB8.h"
-#include "overlay105/ov105_02246214.h"
 
 #include "bg_window.h"
 #include "communication_information.h"

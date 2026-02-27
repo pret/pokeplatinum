@@ -1573,13 +1573,13 @@ Overlay overlay104
 Overlay overlay105
 {
 	After overlay104
-	Object main.nef.p/src_overlay105_ov105_02241AE0.c.o
-	Object main.nef.p/src_overlay105_ov105_02245AAC.c.o
-	Object main.nef.p/src_overlay105_ov105_02245CD0.c.o
-	Object main.nef.p/src_overlay105_ov105_02245DC4.c.o
-	Object main.nef.p/src_overlay105_ov105_02245E54.c.o
-	Object main.nef.p/src_overlay105_ov105_02245FB8.c.o
-	Object main.nef.p/src_overlay105_ov105_02246214.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_main.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_sprite_manager.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_helpers.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_panel_sprite.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_pokeball_sprite.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_cursor.c.o
+	Object main.nef.p/src_applications_frontier_battle_factory_windows.c.o
 }
 
 Overlay battle_hall_app

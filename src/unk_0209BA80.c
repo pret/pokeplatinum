@@ -11,10 +11,10 @@
 
 #include "applications/frontier/battle_castle/opponent_app.h"
 #include "applications/frontier/battle_castle/self_app.h"
+#include "applications/frontier/battle_factory/main.h"
 #include "applications/frontier/battle_hall/main.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_0223C164.h"
-#include "overlay105/ov105_02241AE0.h"
 #include "overlay108/ov108_02241AE0.h"
 
 #include "communication_system.h"

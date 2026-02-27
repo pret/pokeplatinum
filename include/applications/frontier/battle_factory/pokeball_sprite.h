@@ -3,7 +3,7 @@
 
 #include <nitro/fx/fx.h>
 
-#include "overlay105/ov105_02245AAC.h"
+#include "applications/frontier/battle_factory/sprite_manager.h"
 
 typedef struct BattleFactoryAppPokeballSprite {
     u16 isSelected;

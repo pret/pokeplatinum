@@ -1,9 +1,9 @@
-#include "overlay105/ov105_02245E54.h"
+#include "applications/frontier/battle_factory/pokeball_sprite.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay105/ov105_02245AAC.h"
+#include "applications/frontier/battle_factory/sprite_manager.h"
 
 #include "heap.h"
 #include "sprite.h"

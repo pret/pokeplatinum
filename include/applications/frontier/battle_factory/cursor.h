@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_CURSOR_H
 #define POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_CURSOR_H
 
-#include "overlay105/ov105_02245AAC.h"
+#include "applications/frontier/battle_factory/sprite_manager.h"
 
 typedef struct BattleFactoryAppCursorPosition {
     s16 x;

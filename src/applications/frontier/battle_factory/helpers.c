@@ -1,3 +1,5 @@
+#include "applications/frontier/battle_factory/helpers.h"
+
 #include <nitro.h>
 
 #include "gx_layers.h"

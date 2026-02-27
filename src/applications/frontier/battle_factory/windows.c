@@ -1,4 +1,4 @@
-#include "overlay105/ov105_02246214.h"
+#include "applications/frontier/battle_factory/windows.h"
 
 #include <nitro.h>
 
