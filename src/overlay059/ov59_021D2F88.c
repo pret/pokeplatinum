@@ -114,7 +114,7 @@ static void *ov59_021D3088(SaveData *saveData, enum HeapID heapID, u32 param2)
 
 static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
 {
-    Rankings *v0 = sub_0202E8C0(param0->saveData);
+    Rankings *v0 = SaveData_GetRankings(param0->saveData);
 
     sub_0202ED0C(param0->saveData, param0->unk_0C, param0->unk_08, param0->unk_10, param0->heapID);
 }
