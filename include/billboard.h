@@ -87,7 +87,7 @@ typedef struct UnkStruct_ov5_021ED110 {
 } UnkStruct_ov5_021ED110;
 
 void Billboard_Reset(Billboard *billboard);
-void BillboardLists_New(int count, enum HeapID heapID);
+void BillboardLists_Create(int count, enum HeapID heapID);
 void BillboardLists_Delete(void);
 void BillboardLists_Draw(void);
 BillboardList *BillboardList_New(const BillboardListParams *params);

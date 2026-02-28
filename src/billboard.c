@@ -1,8 +1,5 @@
 #include "billboard.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "billboard_vram_transfer.h"
 #include "easy3d.h"
 #include "heap.h"
@@ -116,7 +113,7 @@ void Billboard_Reset(Billboard *billboard)
     billboard->callback = NULL;
 }
 
-void BillboardLists_New(int count, enum HeapID heapID)
+void BillboardLists_Create(int count, enum HeapID heapID)
 {
     GF_ASSERT(sBillboardLists == NULL);
 
@@ -272,10 +269,8 @@ static void BillboardList_Draw(BillboardList *list)
 
             if (billboard->state == BILLBOARD_STATE_ACTIVE) {
                 UpdateTexPlttAddressesForCurrentFrame(billboard);
-            } else {
-                if (billboard->state == BILLBOARD_STATE_VRAM_TRANSFER) {
-                    Billboard_TryRequestVRAMTransfer(billboard);
-                }
+            } else if (billboard->state == BILLBOARD_STATE_VRAM_TRANSFER) {
+                Billboard_TryRequestVRAMTransfer(billboard);
             }
 
             rotMatrix = billboard->rotMatrix;
@@ -834,20 +829,17 @@ static int AdvanceAnim(const BillboardAnim *anim, fx32 *currentFrame, fx32 numFr
 {
     int status = BILLBOARD_ANIM_STATUS_RUNNING;
 
-    if (anim->startFrame * FX32_ONE > *currentFrame
-        || anim->endFrame * FX32_ONE < *currentFrame) {
+    if (anim->startFrame * FX32_ONE > *currentFrame || anim->endFrame * FX32_ONE < *currentFrame) {
         *currentFrame = anim->startFrame * FX32_ONE;
-    } else {
-        if (anim->endFrame * FX32_ONE < *currentFrame + numFrames) {
-            if (anim->animType == BILLBOARD_ANIM_TYPE_LOOP) {
-                *currentFrame = anim->startFrame * FX32_ONE;
-            } else {
-                status = BILLBOARD_ANIM_STATUS_FINISHED;
-                *currentFrame = anim->endFrame * FX32_ONE;
-            }
+    } else if (anim->endFrame * FX32_ONE < *currentFrame + numFrames) {
+        if (anim->animType == BILLBOARD_ANIM_TYPE_LOOP) {
+            *currentFrame = anim->startFrame * FX32_ONE;
         } else {
-            *currentFrame += numFrames;
+            status = BILLBOARD_ANIM_STATUS_FINISHED;
+            *currentFrame = anim->endFrame * FX32_ONE;
         }
+    } else {
+        *currentFrame += numFrames;
     }
 
     return status;

@@ -1,8 +1,5 @@
 #include "billboard_gfx_sequence.h"
 
-#include <nitro.h>
-#include <string.h>
-
 BillboardTexPlttIndex BillboardGfxSequence_GetTexPlttIndexAt(const BillboardGfxSequence *gfxSequence, const u16 index)
 {
     int i;

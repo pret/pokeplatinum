@@ -1,8 +1,5 @@
 #include "billboard_vram_transfer.h"
 
-#include <nitro.h>
-#include <string.h>
-
 #include "ascii_util.h"
 #include "billboard.h"
 #include "heap.h"

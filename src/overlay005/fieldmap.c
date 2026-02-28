@@ -192,7 +192,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *state)
         ov5_021D1414();
 
         VramTransfer_New(128, HEAP_ID_FIELD1);
-        BillboardLists_New(4, HEAP_ID_FIELD1);
+        BillboardLists_Create(4, HEAP_ID_FIELD1);
         Easy3D_Init(HEAP_ID_FIELD1);
 
         ov5_021D15B4();

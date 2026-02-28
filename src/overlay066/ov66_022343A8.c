@@ -155,7 +155,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, enum HeapID heapI
     {
         BillboardListParams v2;
 
-        BillboardLists_New(1, heapID);
+        BillboardLists_Create(1, heapID);
 
         v2.maxElements = param0;
         v2.heapID = heapID;
