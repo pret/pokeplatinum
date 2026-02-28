@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field_base_tiles.h"
+#include "constants/scrcmd.h"
 
 #include "field/field_system.h"
 #include "overlay005/sprite_resource_manager.h"
@@ -32,11 +33,13 @@
 
 #include "res/text/bank/rankings_machine.h"
 
-#define VALUE_SRINGS_COUNT                7
+#define PLAYERID_OWN 0xFF
+
+#define VALUE_STRINGS_COUNT               7
 #define MAX_RECORDS_PER_MACHINE           6
 #define DELETE_INSTRUCTIONS_STRINGS_COUNT 3
 
-#define MANAGED_SPRITE_CURSOS        0
+#define MANAGED_SPRITE_CURSOR        0
 #define MANAGED_SPRITE_DELETE_WINDOW 1
 
 typedef struct RankingsMachineText {
@@ -47,7 +50,7 @@ typedef struct RankingsMachineText {
     String *whichRecord;
     String *deleteRecord;
     String *recordEntryInfo;
-    String *values[VALUE_SRINGS_COUNT];
+    String *values[VALUE_STRINGS_COUNT];
     String *titles[MAX_RECORDS_PER_MACHINE];
     String *explanations[MAX_RECORDS_PER_MACHINE];
     String *deleteInstructions[DELETE_INSTRUCTIONS_STRINGS_COUNT];
@@ -118,7 +121,7 @@ typedef struct RankingsMachine {
     RankingsMachineManager *manager;
 } RankingsMachine;
 
-static void RankingsMachine_InitRankings(RankingsMachineManager *rankingsMachineMan, SaveData *saveData);
+static void RankingsMachine_NewRankings(RankingsMachineManager *rankingsMachineMan, SaveData *saveData);
 static void RankingsMachine_FreeRankings(RankingsMachineManager *rankingsMachineMan);
 static void RankingsMachine_InitStrings(RankingsMachineManager *rankingsMachineMan);
 static void RankingsMachine_FreeStrings(RankingsMachineManager *rankingsMachineMan);
@@ -175,25 +178,77 @@ static const ListMenuTemplate sRankingsMachineListMenuTemplate = {
 };
 
 static const RecordPrintingData sPrintingDataBattleRecords[] = {
-    { 9999, 4, RankingsMachine_Text_BattleWinsValue },
-    { 9999, 4, RankingsMachine_Text_BattleWinsValue },
-    { 9999, 4, RankingsMachine_Text_BattleWinsValue },
-    { 9999, 4, RankingsMachine_Text_BattleWinsValue },
-    { 9999, 4, RankingsMachine_Text_BattleWinsValue },
-    { 7, 1, RankingsMachine_Text_AvgWinStreakValue }
+    {
+        .maxScore = 9999,
+        .maxDigits = 4,
+        .valueString = RankingsMachine_Text_BattleWinsValue,
+    },
+    {
+        .maxScore = 9999,
+        .maxDigits = 4,
+        .valueString = RankingsMachine_Text_BattleWinsValue,
+    },
+    {
+        .maxScore = 9999,
+        .maxDigits = 4,
+        .valueString = RankingsMachine_Text_BattleWinsValue,
+    },
+    {
+        .maxScore = 9999,
+        .maxDigits = 4,
+        .valueString = RankingsMachine_Text_BattleWinsValue,
+    },
+    {
+        .maxScore = 9999,
+        .maxDigits = 4,
+        .valueString = RankingsMachine_Text_BattleWinsValue,
+    },
+    {
+        .maxScore = 7,
+        .maxDigits = 1,
+        .valueString = RankingsMachine_Text_AvgWinStreakValue,
+    },
 };
 
 static const RecordPrintingData sPrintingDataPokemonRecords[] = {
-    { 999999, 6, RankingsMachine_Text_PokemonCaughtValue },
-    { 999999, 6, RankingsMachine_Text_PokemonCaughtValue },
-    { 999999, 6, RankingsMachine_Text_PokemonHatchedValue },
-    { 999999, 6, RankingsMachine_Text_PokemonCaughtValue }
+    {
+        .maxScore = 999999,
+        .maxDigits = 6,
+        .valueString = RankingsMachine_Text_PokemonCaughtValue,
+    },
+    {
+        .maxScore = 999999,
+        .maxDigits = 6,
+        .valueString = RankingsMachine_Text_PokemonCaughtValue,
+    },
+    {
+        .maxScore = 999999,
+        .maxDigits = 6,
+        .valueString = RankingsMachine_Text_PokemonHatchedValue,
+    },
+    {
+        .maxScore = 999999,
+        .maxDigits = 6,
+        .valueString = RankingsMachine_Text_PokemonCaughtValue,
+    },
 };
 
 static const RecordPrintingData sPrintingDataContestRecords[] = {
-    { 9999, 4, RankingsMachine_Text_ContestWinsValue },
-    { 100, 4, RankingsMachine_Text_ContestWinPercentValue },
-    { 65535, 5, RankingsMachine_Text_RibbonsValue }
+    {
+        .maxScore = 9999,
+        .maxDigits = 4,
+        .valueString = RankingsMachine_Text_ContestWinsValue,
+    },
+    {
+        .maxScore = 100,
+        .maxDigits = 4,
+        .valueString = RankingsMachine_Text_ContestWinPercentValue,
+    },
+    {
+        .maxScore = 65535,
+        .maxDigits = 5,
+        .valueString = RankingsMachine_Text_RibbonsValue,
+    },
 };
 
 static const RecordPrintingData *const sRecordsPrintingData[] = {
@@ -207,19 +262,19 @@ static int RankingsMachine_InitManager(RankingsMachine *rankingsMachine, FieldSy
     RankingsMachineManager *rankingsMachineMan;
     SaveData *saveData = fieldSystem->saveData;
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_RECORD_LIST, 0x6000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_RANKINGS_MACHINE, HEAP_SIZE_RECORD_LIST);
 
-    rankingsMachineMan = Heap_Alloc(HEAP_ID_RECORD_LIST, sizeof(RankingsMachineManager));
+    rankingsMachineMan = Heap_Alloc(HEAP_ID_RANKINGS_MACHINE, sizeof(RankingsMachineManager));
     MI_CpuClear8(rankingsMachineMan, sizeof(RankingsMachineManager));
 
-    rankingsMachineMan->heapID = HEAP_ID_RECORD_LIST;
+    rankingsMachineMan->heapID = HEAP_ID_RANKINGS_MACHINE;
     rankingsMachineMan->listID = machineID % 3;
     rankingsMachineMan->mode = machineID / 3;
     rankingsMachineMan->recordsCount = GetRecordsListLength(rankingsMachineMan->listID);
     rankingsMachineMan->firstRecord = GetRecordsListFirstRecord(rankingsMachineMan->listID);
     rankingsMachineMan->fieldSystem = fieldSystem;
     rankingsMachineMan->bgConfig = fieldSystem->bgConfig;
-    rankingsMachineMan->rankings = sub_0202E8C0(saveData);
+    rankingsMachineMan->rankings = SaveData_GetRankings(saveData);
     rankingsMachineMan->textDelay = Options_TextFrameDelay(SaveData_GetOptions(saveData));
     rankingsMachineMan->frame = Options_Frame(SaveData_GetOptions(saveData));
 
@@ -230,22 +285,22 @@ static int RankingsMachine_InitManager(RankingsMachine *rankingsMachine, FieldSy
 
 static int RankingsMachine_FreeManager(RankingsMachine *rankingsMachine)
 {
-    int recordID, rankingID, v2, heapID;
+    int recordID, rankingID, entryIDOffset, heapID;
     MachineRankingInfo *rankingInfo;
     RankingsMachineManager *rankingsMachineMan = rankingsMachine->manager;
 
     for (recordID = 0; recordID < rankingsMachineMan->recordsCount; recordID++) {
-        v2 = 0;
+        entryIDOffset = 0;
 
         for (rankingID = 0; rankingID < rankingsMachineMan->machineRankings[recordID].rankingsCount; rankingID++) {
             rankingInfo = &(rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID]);
 
-            if (rankingInfo->playerID == 0xFF || rankingInfo->exists) {
+            if (rankingInfo->playerID == PLAYERID_OWN || rankingInfo->exists) {
                 continue;
             }
 
-            Rankings_RemoveEntry(rankingsMachineMan->rankings, (rankingsMachineMan->mode * 13) + rankingsMachineMan->firstRecord + recordID, rankingInfo->playerID - v2);
-            ++v2;
+            Rankings_RemoveEntry(rankingsMachineMan->rankings, (rankingsMachineMan->mode * 13) + rankingsMachineMan->firstRecord + recordID, rankingInfo->playerID - entryIDOffset);
+            ++entryIDOffset;
         }
     }
 
@@ -260,7 +315,7 @@ static int RankingsMachine_FreeManager(RankingsMachine *rankingsMachine)
 
 static int RankingsMachine_Init(RankingsMachineManager *rankingsMachineMan, SaveData *saveData)
 {
-    RankingsMachine_InitRankings(rankingsMachineMan, saveData);
+    RankingsMachine_NewRankings(rankingsMachineMan, saveData);
     RankingsMachine_InitStrings(rankingsMachineMan);
     RankingsMachine_InitBg(rankingsMachineMan);
     RankingsMachine_InitSprites(rankingsMachineMan);
@@ -288,13 +343,13 @@ static int RankingsMachine_HandleRecordsListInput(RankingsMachineManager *rankin
 {
     s32 input = ListMenu_ProcessInput(rankingsMachineMan->listMenu);
 
-    if (gSystem.pressedKeys & PAD_BUTTON_B) {
+    if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         RankingsMachine_RemoveRecordsList(rankingsMachineMan);
         return STATE_FREE;
     }
 
-    if (!(gSystem.pressedKeys & PAD_BUTTON_A)) {
+    if (!(JOY_NEW(PAD_BUTTON_A))) {
         return STATE_HANDLE_RECORDS_LIST_INPUT;
     }
 
@@ -324,13 +379,13 @@ static int RankingsMachine_StateShowRankingList(RankingsMachineManager *rankings
 
 static int RankingsMachine_HandleRankingListInput(RankingsMachineManager *rankingsMachineMan)
 {
-    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (JOY_NEW(PAD_BUTTON_B | PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         RankingsMachine_RemoveRankingList(rankingsMachineMan);
         return STATE_PRINT_RECORD_TITLES;
     }
 
-    if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
+    if (JOY_NEW(PAD_BUTTON_SELECT)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         RankingsMachine_PrepareForDeletingRecord(rankingsMachineMan);
         return STATE_HANDLE_DELETE_RANKINGS_INPUT;
@@ -341,37 +396,37 @@ static int RankingsMachine_HandleRankingListInput(RankingsMachineManager *rankin
 
 static int RankingsMachine_HandleDeleteRankingInput(RankingsMachineManager *rankingsMachineMan)
 {
-    if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
+    if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         RankingsMachine_PrintRecordExplanation(rankingsMachineMan);
         return STATE_HANDLE_RANKINGS_LIST_INPUT;
     }
 
-    if (gSystem.pressedKeys & PAD_BUTTON_A) {
+    if (JOY_NEW(PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         rankingsMachineMan->deleteState = 0;
         rankingsMachineMan->rankingToDelete = &(rankingsMachineMan->machineRankings[rankingsMachineMan->selectedRecordID].rankingsInfo[rankingsMachineMan->rankingIDs[rankingsMachineMan->cursorPos]]);
 
-        if (rankingsMachineMan->rankingToDelete->playerID == 0xFF) {
+        if (rankingsMachineMan->rankingToDelete->playerID == PLAYERID_OWN) {
             return STATE_CANT_DELETE_OWN_RANKING;
         }
 
         return STATE_ASK_DELETE_RANKING;
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_UP) {
+    if (JOY_NEW(PAD_KEY_UP)) {
         if (rankingsMachineMan->cursorPos > 0) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             --rankingsMachineMan->cursorPos;
-            ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 126, 16 + 16 * rankingsMachineMan->cursorPos);
+            ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 126, 16 + 16 * rankingsMachineMan->cursorPos);
         }
     }
 
-    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
+    if (JOY_NEW(PAD_KEY_DOWN)) {
         if (rankingsMachineMan->cursorPos < rankingsMachineMan->lastRankingID - 1) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             ++rankingsMachineMan->cursorPos;
-            ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 126, 16 + 16 * rankingsMachineMan->cursorPos);
+            ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 126, 16 + 16 * rankingsMachineMan->cursorPos);
         }
     }
 
@@ -399,7 +454,7 @@ static int RankingsMachine_AskDeleteRanking(RankingsMachineManager *rankingsMach
     case 0:
         Window_FillTilemap(&rankingsMachineMan->msgBoxWindow, ((15 << 4) | 15));
         rankingsMachineMan->printerID = Text_AddPrinterWithParamsAndColor(&rankingsMachineMan->msgBoxWindow, FONT_MESSAGE, rankingsMachineMan->text.deleteInstructions[1], 0, 0, rankingsMachineMan->textDelay, TEXT_COLOR(1, 2, 15), NULL);
-        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 2);
+        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 2);
         rankingsMachineMan->deleteState++;
         break;
     case 1:
@@ -412,7 +467,7 @@ static int RankingsMachine_AskDeleteRanking(RankingsMachineManager *rankingsMach
         break;
     case 2:
         switch (Menu_ProcessInputAndHandleExit(rankingsMachineMan->menu, rankingsMachineMan->heapID)) {
-        case 0:
+        case MENU_YES:
             rankingsMachineMan->deleteState++;
             break;
         case LIST_CANCEL:
@@ -423,12 +478,12 @@ static int RankingsMachine_AskDeleteRanking(RankingsMachineManager *rankingsMach
     case 3:
         rankingsMachineMan->rankingToDelete->exists = FALSE;
         RankingsMachine_PrintRecordRankings(rankingsMachineMan, TRUE);
-        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 1);
+        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 1);
         rankingsMachineMan->deleteState = 0;
         return STATE_HANDLE_DELETE_RANKINGS_INPUT;
     case 0xFF:
         RankingsMachine_PrintDeleteInstruction(rankingsMachineMan);
-        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 1);
+        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 1);
         rankingsMachineMan->deleteState = 0;
         return STATE_HANDLE_DELETE_RANKINGS_INPUT;
     }
@@ -443,7 +498,7 @@ static int RankingsMachine_CantDeleteOwnRanking(RankingsMachineManager *rankings
         Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         Window_FillTilemap(&rankingsMachineMan->msgBoxWindow, ((15 << 4) | 15));
         rankingsMachineMan->printerID = Text_AddPrinterWithParamsAndColor(&rankingsMachineMan->msgBoxWindow, FONT_MESSAGE, rankingsMachineMan->text.deleteInstructions[2], 0, 0, rankingsMachineMan->textDelay, TEXT_COLOR(1, 2, 15), NULL);
-        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 2);
+        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 2);
         rankingsMachineMan->deleteState++;
         break;
     case 1:
@@ -454,13 +509,13 @@ static int RankingsMachine_CantDeleteOwnRanking(RankingsMachineManager *rankings
         rankingsMachineMan->deleteState++;
         break;
     case 2:
-        if (!(gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (!(JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B))) {
             break;
         }
 
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         RankingsMachine_PrintDeleteInstruction(rankingsMachineMan);
-        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 1);
+        ManagedSprite_SetExplicitPalette(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 1);
         rankingsMachineMan->deleteState = 0;
         return STATE_HANDLE_DELETE_RANKINGS_INPUT;
     }
@@ -468,9 +523,9 @@ static int RankingsMachine_CantDeleteOwnRanking(RankingsMachineManager *rankings
     return STATE_CANT_DELETE_OWN_RANKING;
 }
 
-static void RankingsMachine_InitRankings(RankingsMachineManager *rankingsMachineMan, SaveData *saveData)
+static void RankingsMachine_NewRankings(RankingsMachineManager *rankingsMachineMan, SaveData *saveData)
 {
-    int recordID, playerID, rankingID, v3;
+    int recordID, playerID, rankingID, addedOwnPlayerID;
     RecordPlayersInfo *playersInfo;
 
     rankingsMachineMan->machineRankings = Heap_Alloc(rankingsMachineMan->heapID, sizeof(MachineRankings) * rankingsMachineMan->recordsCount);
@@ -482,24 +537,24 @@ static void RankingsMachine_InitRankings(RankingsMachineManager *rankingsMachine
 
         playersInfo = rankingsMachineMan->recordsPlayersInfo[recordID + 1];
         rankingID = 0;
-        v3 = 0;
+        addedOwnPlayerID = FALSE;
 
         if (playersInfo->count == 0) {
             rankingsMachineMan->machineRankings[recordID].rankingsInfo[0].playerInfo = &(rankingsMachineMan->recordsPlayersInfo[0]->players[recordID]);
             rankingsMachineMan->machineRankings[recordID].rankingsInfo[0].exists = TRUE;
-            rankingsMachineMan->machineRankings[recordID].rankingsInfo[0].playerID = 0xFF;
+            rankingsMachineMan->machineRankings[recordID].rankingsInfo[0].playerID = PLAYERID_OWN;
             rankingsMachineMan->machineRankings[recordID].rankingsCount = 1;
         } else {
             for (playerID = 0; playerID < playersInfo->count; playerID++) {
-                if (v3 == 0 && rankingsMachineMan->recordsPlayersInfo[0]->players[recordID].recordValue >= playersInfo->players[playerID].recordValue) {
+                if (addedOwnPlayerID == FALSE && rankingsMachineMan->recordsPlayersInfo[0]->players[recordID].recordValue >= playersInfo->players[playerID].recordValue) {
                     rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerInfo = &(rankingsMachineMan->recordsPlayersInfo[0]->players[recordID]);
                     rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].exists = TRUE;
-                    rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerID = 0xFF;
+                    rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerID = PLAYERID_OWN;
                     ++rankingID;
                     rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerInfo = &(playersInfo->players[playerID]);
                     rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].exists = TRUE;
                     rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerID = playerID;
-                    v3 = 1;
+                    addedOwnPlayerID = TRUE;
                 } else {
                     rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerInfo = &(playersInfo->players[playerID]);
                     rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].exists = TRUE;
@@ -509,10 +564,10 @@ static void RankingsMachine_InitRankings(RankingsMachineManager *rankingsMachine
                 ++rankingID;
             }
 
-            if (!v3) {
+            if (!addedOwnPlayerID) {
                 rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerInfo = &(rankingsMachineMan->recordsPlayersInfo[0]->players[recordID]);
                 rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].exists = TRUE;
-                rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerID = 0xFF;
+                rankingsMachineMan->machineRankings[recordID].rankingsInfo[rankingID].playerID = PLAYERID_OWN;
             }
 
             rankingsMachineMan->machineRankings[recordID].rankingsCount = playersInfo->count + 1;
@@ -548,7 +603,7 @@ static void RankingsMachine_InitStrings(RankingsMachineManager *rankingsMachineM
         rankingsMachineMan->text.explanations[i] = MessageLoader_GetNewString(rankingsMachineMan->text.msgLoader, RankingsMachine_Text_SingleBattlesRecordExplanation + rankingsMachineMan->firstRecord + i);
     }
 
-    for (i = 0; i < VALUE_SRINGS_COUNT; i++) {
+    for (i = 0; i < VALUE_STRINGS_COUNT; i++) {
         rankingsMachineMan->text.values[i] = MessageLoader_GetNewString(rankingsMachineMan->text.msgLoader, RankingsMachine_Text_BattleWinsValue + i);
     }
 
@@ -565,7 +620,7 @@ static void RankingsMachine_FreeStrings(RankingsMachineManager *rankingsMachineM
         String_Free(rankingsMachineMan->text.deleteInstructions[i]);
     }
 
-    for (i = 0; i < VALUE_SRINGS_COUNT; i++) {
+    for (i = 0; i < VALUE_STRINGS_COUNT; i++) {
         String_Free(rankingsMachineMan->text.values[i]);
     }
 
@@ -586,7 +641,7 @@ static void RankingsMachine_FreeStrings(RankingsMachineManager *rankingsMachineM
 static void RankingsMachine_InitBg(RankingsMachineManager *rankingsMachineMan)
 {
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32 * (24 * (12 + 2) + 9 + 1), 0, rankingsMachineMan->heapID);
-    Bg_FillTilemapRect(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_1, 0x0, 0, 0, 32, 32, 17);
+    Bg_FillTilemapRect(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, 32, 32, 17);
     Bg_ScheduleTilemapTransfer(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_1);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
 
@@ -610,7 +665,7 @@ static void RankingsMachine_FreeBg(RankingsMachineManager *rankingsMachineMan)
     Window_ClearAndCopyToVRAM(&rankingsMachineMan->msgBoxWindow);
     Window_Remove(&rankingsMachineMan->msgBoxWindow);
     Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32 * (24 * (12 + 2) + 9 + 1), 0, rankingsMachineMan->heapID);
-    Bg_FillTilemapRect(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_1, 0x0, 0, 0, 32, 32, 17);
+    Bg_FillTilemapRect(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_1, 0, 0, 0, 32, 32, 17);
     Bg_ScheduleTilemapTransfer(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_1);
     Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
     Bg_SetPriority(BG_LAYER_MAIN_0, rankingsMachineMan->bgMain0Priority);
@@ -726,7 +781,7 @@ static void RankingsMachine_ShowRecordsList(RankingsMachineManager *rankingsMach
     Window_DrawMessageBoxWithScrollCursor(&rankingsMachineMan->msgBoxWindow, 1, BASE_TILE_SCROLLING_MESSAGE_BOX, 10);
     Window_FillTilemap(&rankingsMachineMan->msgBoxWindow, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&rankingsMachineMan->msgBoxWindow, FONT_MESSAGE, rankingsMachineMan->text.whichRecord, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], TRUE);
+    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], TRUE);
     Bg_ScheduleTilemapTransfer(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_3);
 }
 
@@ -737,7 +792,7 @@ static void RankingsMachine_RemoveRecordsList(RankingsMachineManager *rankingsMa
     Window_ClearAndCopyToVRAM(&(rankingsMachineMan->listWindow));
     Window_EraseStandardFrame(&(rankingsMachineMan->listWindow), 0);
     Window_Remove(&(rankingsMachineMan->listWindow));
-    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], FALSE);
+    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], FALSE);
     Bg_ScheduleTilemapTransfer(rankingsMachineMan->bgConfig, BG_LAYER_MAIN_3);
 }
 
@@ -753,7 +808,7 @@ static void RankingsMachine_SetCursorPos(ListMenu *listMenu, u32 unused, u8 mute
     ListMenu_GetListAndCursorPos(listMenu, &listPos, &cursorPos);
     count = ListMenu_GetAttribute(listMenu, LIST_MENU_COUNT);
 
-    ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 126, 16 + 16 * (cursorPos + listPos));
+    ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 126, 16 + 16 * (cursorPos + listPos));
 }
 
 static void RankingsMachine_PrintDeleteInstruction(RankingsMachineManager *rankingsMachineMan)
@@ -765,15 +820,15 @@ static void RankingsMachine_PrintDeleteInstruction(RankingsMachineManager *ranki
 static void RankingsMachine_PrepareForDeletingRecord(RankingsMachineManager *rankingsMachineMan)
 {
     RankingsMachine_PrintDeleteInstruction(rankingsMachineMan);
-    ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], 126, 16 + rankingsMachineMan->cursorPos * 16);
-    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], TRUE);
+    ManagedSprite_SetPositionXY(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], 126, 16 + rankingsMachineMan->cursorPos * 16);
+    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], TRUE);
 }
 
 static void RankingsMachine_PrintRecordExplanation(RankingsMachineManager *rankingsMachineMan)
 {
     Window_FillTilemap(&rankingsMachineMan->msgBoxWindow, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&rankingsMachineMan->msgBoxWindow, FONT_MESSAGE, rankingsMachineMan->text.explanations[rankingsMachineMan->selectedRecordID], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], FALSE);
+    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], FALSE);
 }
 
 static void RankingsMachine_PrintRecordRankings(RankingsMachineManager *rankingsMachineMan, BOOL showDeleteScreen)
@@ -857,7 +912,7 @@ static void RankingsMachine_RemoveRankingList(RankingsMachineManager *rankingsMa
     Window_Remove(&rankingsMachineMan->listWindow);
     Window_ClearAndCopyToVRAM(&rankingsMachineMan->rankingsWindow);
     Window_Remove(&rankingsMachineMan->rankingsWindow);
-    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOS], FALSE);
+    ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_CURSOR], FALSE);
     ManagedSprite_SetDrawFlag(rankingsMachineMan->managedSprites[MANAGED_SPRITE_DELETE_WINDOW], FALSE);
 }
 
@@ -903,7 +958,7 @@ static BOOL RankingsMachine_Show(FieldTask *task)
         SpriteList_Update(rankingsMachine->manager->spriteManager.spriteList);
         break;
     case STATE_UNUSED:
-        if (!(gSystem.pressedKeys & PAD_BUTTON_A)) {
+        if (!(JOY_NEW(PAD_BUTTON_A))) {
             return FALSE;
         }
 

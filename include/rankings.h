@@ -42,7 +42,7 @@ void sub_0202E858(RankingEntry *entry);
 BOOL sub_0202E870(RankingEntry *entry);
 int Rankings_SaveSize(void);
 void Rankings_Init(Rankings *rankings);
-Rankings *sub_0202E8C0(SaveData *saveData);
+Rankings *SaveData_GetRankings(SaveData *saveData);
 void Rankings_RemoveEntry(Rankings *rankings, int listID, u8 entryID);
 int RankingsEntries_Size(void);
 void *sub_0202E9FC(SaveData *saveData, enum HeapID heapID);

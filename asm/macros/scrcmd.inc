@@ -2503,9 +2503,9 @@
     .short \arg0
     .endm
 
-    .macro StartRankingsMachine listID
+    .macro StartRankingsMachine machineID
     .short 437
-    .short \listID
+    .short \machineID
     .endm
 
     .macro GetTimeOfDay destVarID
