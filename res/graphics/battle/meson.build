@@ -1,12 +1,31 @@
 subdir('moves')
 
-healthbar_parts_embed = custom_target('healthbar_parts.4bpp.h',
-    output: [
-        'healthbar_parts.4bpp',
-        'healthbar_parts.4bpp.h',
-    ],
-    input: files('healthbar_parts.png'),
-    command: [ nitrogfx_exe, '@INPUT@', '@OUTPUT0@', '-embed', 'sHealthbarPartsBitmap' ],
+battle_sprites = []
+base_directory = meson.current_source_dir()
+base_build_directory = meson.current_build_dir()
+
+subdir('ball_throws')
+subdir('healthbox')
+subdir('interface')
+subdir('misc')
+subdir('terrain')
+subdir('trainer_backs')
+subdir('type_icons')
+
+battle_sprites_narc = custom_target(
+  'sprites.narc',
+  output: [ 'sprites.narc', 'sprites.naix' ],
+  input: battle_sprites,
+
+  command: [
+    nitroarc_exe,
+    '--create',
+    '--index',
+    '--files-from', files('sprites.order'),
+    '--file', '@OUTPUT0@',
+    '@PRIVATE_DIR@',
+  ],
 )
 
-embed_headers += healthbar_parts_embed[1]
+nitrofs_files += battle_sprites_narc
+naix_headers += battle_sprites_narc[1]

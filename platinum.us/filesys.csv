@@ -173,7 +173,7 @@ res/prebuilt/battle/graphic/batt_bg.narc,/battle/graphic/batt_bg.narc
 res/prebuilt/battle/graphic/batt_obj.narc,/battle/graphic/batt_obj.narc
 res/prebuilt/battle/graphic/pl_b_plist_gra.narc,/battle/graphic/pl_b_plist_gra.narc
 res/prebuilt/battle/graphic/pl_batt_bg.narc,/battle/graphic/pl_batt_bg.narc
-res/prebuilt/battle/graphic/pl_batt_obj.narc,/battle/graphic/pl_batt_obj.narc
+res/graphics/battle/sprites.narc,/battle/graphic/pl_batt_obj.narc
 res/prebuilt/battle/graphic/vs_demo_gra.narc,/battle/graphic/vs_demo_gra.narc
 res/battle/moves/anim_scripts.narc,/wazaeffect/we.arc
 res/battle/scripts/common_anims/anim_subscripts.narc,/wazaeffect/we_sub.narc
