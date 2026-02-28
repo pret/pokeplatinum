@@ -7,7 +7,6 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -21,6 +20,7 @@
 #include "bag.h"
 #include "berry_patch_graphics.h"
 #include "bg_window.h"
+#include "billboard.h"
 #include "field_script_context.h"
 #include "font.h"
 #include "game_records.h"
@@ -48,7 +48,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_vars.h"
-#include "unk_02020AEC.h"
 #include "unk_0202C858.h"
 #include "unk_02030880.h"
 #include "unk_02038F8C.h"
@@ -964,7 +963,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
 {
     fx32 v0;
     VecFx32 v1;
-    UnkStruct_020216E0 *v2;
+    Billboard *v2;
     int v3 = 0;
     FieldSystem *fieldSystem = ctx->fieldSystem;
     MapObjectManager *mapObjMan = fieldSystem->mapObjMan;
@@ -996,7 +995,7 @@ BOOL ScrCmd_32D(ScriptContext *ctx)
 
             if (v2 != NULL) {
                 ov5_021EDEB4(v7, v2);
-                sub_02021320(v2, 1);
+                Billboard_SetDrawFlag(v2, 1);
             }
         }
     }
@@ -1024,7 +1023,7 @@ BOOL ScrCmd_32E(ScriptContext *ctx)
 static void ov5_021F7654(MapObject *param0, int param1)
 {
     VecFx32 v0;
-    UnkStruct_020216E0 *v1;
+    Billboard *v1;
 
     MapObject_SetStatusFlagOn(param0, MAP_OBJ_STATUS_13);
     MapObject_GetPosPtr(param0, &v0);
@@ -1038,7 +1037,7 @@ static void ov5_021F7654(MapObject *param0, int param1)
 
     if (v1 != NULL) {
         ov5_021EDEB4(param0, v1);
-        sub_02021320(v1, 1);
+        Billboard_SetDrawFlag(v1, 1);
     }
 }
 

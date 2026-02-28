@@ -3,24 +3,23 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/struct_ov5_021ECB8C_decl.h"
 #include "overlay005/struct_ov5_021ED01C.h"
 
+#include "billboard.h"
 #include "map_object.h"
-#include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021ECB8C_t {
-    UnkStruct_020216E0 *unk_00;
+    Billboard *unk_00;
     UnkStruct_ov5_021ED01C unk_04;
 };
 
 static void ov5_021ECB90(MapObject *param0);
 static void ov5_021ECBA4(MapObject *param0);
-static void ov5_021ECBCC(MapObject *param0, UnkStruct_020216E0 *param1);
+static void ov5_021ECBCC(MapObject *param0, Billboard *param1);
 static void ov5_021ECC0C(MapObject *param0);
 
 void ov5_021ECA70(MapObject *param0)
@@ -39,7 +38,7 @@ void ov5_021ECA70(MapObject *param0)
 void ov5_021ECA90(MapObject *param0)
 {
     UnkStruct_ov5_021ECB8C *v0 = sub_02062AF0(param0);
-    UnkStruct_020216E0 *v1 = v0->unk_00;
+    Billboard *v1 = v0->unk_00;
 
     if (ov5_021EDD94(param0) == 1) {
         return;
@@ -50,7 +49,7 @@ void ov5_021ECA90(MapObject *param0)
     }
 
     ov5_021ECBA4(param0);
-    sub_02021368(v1, FX32_ONE);
+    Billboard_AdvanceAnim(v1, FX32_ONE);
 }
 
 void ov5_021ECABC(MapObject *param0)
@@ -105,7 +104,7 @@ void ov5_021ECB34(MapObject *param0)
 void ov5_021ECB58(MapObject *param0)
 {
     UnkStruct_ov5_021ECB8C *v0 = sub_02062AF0(param0);
-    UnkStruct_020216E0 *v1 = v0->unk_00;
+    Billboard *v1 = v0->unk_00;
 
     if (ov5_021EDD94(param0) == 1) {
         return;
@@ -123,13 +122,13 @@ void ov5_021ECB78(MapObject *param0)
     ov5_021ECC0C(param0);
 }
 
-UnkStruct_020216E0 *ov5_021ECB80(MapObject *param0)
+Billboard *ov5_021ECB80(MapObject *param0)
 {
     UnkStruct_ov5_021ECB8C *v0 = sub_02062AF0(param0);
     return ov5_021ECB8C(v0);
 }
 
-UnkStruct_020216E0 *ov5_021ECB8C(UnkStruct_ov5_021ECB8C *param0)
+Billboard *ov5_021ECB8C(UnkStruct_ov5_021ECB8C *param0)
 {
     return param0->unk_00;
 }
@@ -144,14 +143,14 @@ static void ov5_021ECB90(MapObject *param0)
 static void ov5_021ECBA4(MapObject *param0)
 {
     UnkStruct_ov5_021ECB8C *v0 = sub_02062AF0(param0);
-    UnkStruct_020216E0 *v1 = v0->unk_00;
+    Billboard *v1 = v0->unk_00;
 
     ov5_021EDEB4(param0, v1);
-    sub_02021368(v1, (FX32_ONE));
+    Billboard_AdvanceAnim(v1, (FX32_ONE));
     ov5_021ECBCC(param0, v1);
 }
 
-static void ov5_021ECBCC(MapObject *param0, UnkStruct_020216E0 *param1)
+static void ov5_021ECBCC(MapObject *param0, Billboard *param1)
 {
     int v0 = 1;
 
@@ -165,7 +164,7 @@ static void ov5_021ECBCC(MapObject *param0, UnkStruct_020216E0 *param1)
         }
     }
 
-    sub_02021320(param1, v0);
+    Billboard_SetDrawFlag(param1, v0);
 }
 
 static void ov5_021ECC0C(MapObject *param0)

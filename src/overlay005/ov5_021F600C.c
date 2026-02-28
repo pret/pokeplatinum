@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_effect_manager.h"
 
+#include "billboard.h"
 #include "map_object.h"
 #include "overworld_anim_manager.h"
-#include "unk_02020AEC.h"
 
 typedef struct UnkStruct_ov5_021F600C_t {
     FieldEffectManager *unk_00;
@@ -31,14 +29,14 @@ typedef struct {
     int unk_08;
     int unk_0C;
     UnkStruct_ov5_021F6094 unk_10;
-    UnkStruct_020216E0 *unk_20;
+    Billboard *unk_20;
 } UnkStruct_ov5_021F6134;
 
 static void ov5_021F6038(UnkStruct_ov5_021F600C *param0);
 static void ov5_021F6074(UnkStruct_ov5_021F600C *param0);
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200BD8;
-const UnkStruct_020217F4 Unk_ov5_02200BEC[];
+const BillboardAnim Unk_ov5_02200BEC[];
 
 void *ov5_021F600C(FieldEffectManager *param0)
 {
@@ -116,7 +114,7 @@ static int ov5_021F60E4(OverworldAnimManager *param0, void *param1)
 static void ov5_021F6134(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F6134 *v0 = param1;
-    sub_020211FC(v0->unk_20);
+    Billboard_Delete(v0->unk_20);
 }
 
 static void ov5_021F6140(OverworldAnimManager *param0, void *param1)
@@ -149,7 +147,7 @@ static void ov5_021F615C(OverworldAnimManager *param0, void *param1)
     v0.z += v1.z;
     v0.z += FX32_ONE * 12;
 
-    sub_020212A8(v2->unk_20, &v0);
+    Billboard_SetPos(v2->unk_20, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_02200BD8 = {
@@ -160,7 +158,7 @@ static const OverworldAnimManagerFuncs Unk_ov5_02200BD8 = {
     ov5_021F615C
 };
 
-static const UnkStruct_020217F4 Unk_ov5_02200BEC[] = {
+static const BillboardAnim Unk_ov5_02200BEC[] = {
     { 0x0, 0x1, 0x1 },
     { 0x0, 0x0, 0x2 }
 };

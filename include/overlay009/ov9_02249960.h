@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_OV9_02249960_H
 #define POKEPLATINUM_OV9_02249960_H
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system_decl.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 
+#include "billboard.h"
 #include "field_task.h"
 
 #define GHOST_PROP_GROUP_MAX_COUNT 24
@@ -33,8 +33,8 @@ BOOL DistWorld_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
 void DistWorld_UpdateCameraAngle(FieldSystem *fieldSystem);
 void DistWorld_ResetPersistedCameraAngles(FieldSystem *fieldSystem);
 int ov9_0224A520(FieldSystem *fieldSystem, MapObject *param1);
-void ov9_0224A558(FieldSystem *fieldSystem, UnkStruct_020216E0 *param1, int param2);
-void ov9_0224A564(FieldSystem *fieldSystem, const UnkStruct_020216E0 *param1);
+void ov9_0224A558(FieldSystem *fieldSystem, Billboard *param1, int param2);
+void ov9_0224A564(FieldSystem *fieldSystem, const Billboard *param1);
 BOOL ov9_0224A59C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1);
 BOOL ov9_0224A71C(FieldSystem *fieldSystem);

@@ -3,17 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/struct_020217F4.h"
 
 #include "field/field_system.h"
 #include "overlay005/field_effect_manager.h"
 
+#include "billboard.h"
 #include "map_object.h"
 #include "map_object_move.h"
 #include "overworld_anim_manager.h"
-#include "unk_02020AEC.h"
 
 typedef struct {
     FieldEffectManager *unk_00;
@@ -37,14 +35,14 @@ typedef struct {
     int unk_10;
     int unk_14;
     UnkStruct_ov5_021F3AEC unk_18;
-    UnkStruct_020216E0 *unk_34;
+    Billboard *unk_34;
 } UnkStruct_ov5_021F3B54;
 
 static void ov5_021F3A7C(UnkStruct_ov5_021F3A7C *param0);
 static void ov5_021F3AC4(UnkStruct_ov5_021F3A7C *param0);
 
 static const OverworldAnimManagerFuncs Unk_ov5_0220064C;
-const UnkStruct_020217F4 Unk_ov5_02200660[];
+const BillboardAnim Unk_ov5_02200660[];
 
 void *ov5_021F3A50(FieldEffectManager *param0)
 {
@@ -141,7 +139,7 @@ static int ov5_021F3B54(OverworldAnimManager *param0, void *param1)
 static void ov5_021F3BF4(OverworldAnimManager *param0, void *param1)
 {
     UnkStruct_ov5_021F3B54 *v0 = param1;
-    sub_020211FC(v0->unk_34);
+    Billboard_Delete(v0->unk_34);
 }
 
 static void ov5_021F3C00(OverworldAnimManager *param0, void *param1)
@@ -174,16 +172,16 @@ static void ov5_021F3C00(OverworldAnimManager *param0, void *param1)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02021368(v1->unk_34, FX32_ONE);
-        v0 = (sub_020213D4(v1->unk_34) / FX32_ONE);
+        Billboard_AdvanceAnim(v1->unk_34, FX32_ONE);
+        v0 = (Billboard_GetAnimFrameNum(v1->unk_34) / FX32_ONE);
 
         if (v0 >= 2) {
             v1->unk_00 = 1;
         }
         break;
     case 1:
-        sub_02021380(v1->unk_34, (FX32_ONE * 2));
-        sub_02021368(v1->unk_34, 0);
+        Billboard_SetFrameNum(v1->unk_34, (FX32_ONE * 2));
+        Billboard_AdvanceAnim(v1->unk_34, 0);
         v1->unk_00 = 2;
     case 2: {
         int v5 = MapObject_GetX(v2);
@@ -209,7 +207,7 @@ static void ov5_021F3CCC(OverworldAnimManager *param0, void *param1)
     }
 
     OverworldAnimManager_GetPosition(param0, &v0);
-    sub_020212A8(v1->unk_34, &v0);
+    Billboard_SetPos(v1->unk_34, &v0);
 }
 
 static const OverworldAnimManagerFuncs Unk_ov5_0220064C = {
@@ -220,7 +218,7 @@ static const OverworldAnimManagerFuncs Unk_ov5_0220064C = {
     ov5_021F3CCC
 };
 
-static const UnkStruct_020217F4 Unk_ov5_02200660[] = {
+static const BillboardAnim Unk_ov5_02200660[] = {
     { 0x0, 0x2, 0x0 },
     { 0x0, 0x0, 0x2 }
 };

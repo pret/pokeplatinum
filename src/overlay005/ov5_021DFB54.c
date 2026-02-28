@@ -8,7 +8,6 @@
 #include "generated/game_records.h"
 #include "generated/movement_actions.h"
 
-#include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -28,6 +27,7 @@
 #include "overlay009/ov9_02249960.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 
+#include "billboard.h"
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
 #include "field_task.h"
@@ -164,7 +164,7 @@ static void MonRideTask_Init(FieldSystem *fieldSystem, Pokemon *partyMon, MonRid
 static void NewMonRideCutIn(FieldSystem *fieldSystem, MonRideTask *monRideTask);
 static BOOL CheckMonRideCutInFinished(MonRideTask *monRideTask);
 static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1);
-static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1);
+static void ov5_021E10C0(void *param0, const Billboard *param1);
 static MapObject *ov5_021E10D4(PlayerAvatar *playerAvatar, int param1);
 static void *MonRideTaskEnv_New(int size);
 static void MonRideTaskEnv_Free(void *taskEnv);
@@ -1736,7 +1736,7 @@ static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1)
     } else {
         int v1;
         FieldSystem *fieldSystem;
-        UnkStruct_020216E0 *v3;
+        Billboard *v3;
 
         fieldSystem = MapObject_FieldSystem(v0);
         v1 = ov9_0224A520(fieldSystem, v0);
@@ -1748,7 +1748,7 @@ static void PlayerAvatar_Redraw(PlayerAvatar *playerAvatar, int param1)
     }
 }
 
-static void ov5_021E10C0(void *param0, const UnkStruct_020216E0 *param1)
+static void ov5_021E10C0(void *param0, const Billboard *param1)
 {
     PlayerAvatar *playerAvatar = param0;
     MapObject *v1 = Player_MapObject(playerAvatar);
