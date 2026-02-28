@@ -10,21 +10,21 @@ enum BattleFactoryAppAnimIDs {
     ANIM_ID_MON_PANEL_CLOSE,
     ANIM_ID_PARTNER_PANEL_OPEN,
     ANIM_ID_PARTNER_PANEL_CLOSE,
-    ANIM_ID_UNK_4,
-    ANIM_ID_UNK_5,
+    ANIM_ID_CONFIRM_PANEL_OPEN,
+    ANIM_ID_CONFIRM_PANEL_CLOSE,
     ANIM_ID_BALL_STATIC,
     ANIM_ID_BALL_SHAKING,
     ANIM_ID_CURSOR,
     ANIM_ID_MENU_CURSOR,
     ANIM_ID_BALL_ONE_SHAKE,
-    ANIM_ID_UNK_11,
-    ANIM_ID_UNK_12,
+    ANIM_ID_MULTI_CONFIRM_OPEN,
+    ANIM_ID_MULTI_CONFIRM_CLOSE,
     ANIM_ID_CURSOR_SELECTED,
 };
 
 typedef struct {
     SpriteList *spriteList;
-    G2dRenderer unk_04;
+    G2dRenderer g2dRenderer;
     SpriteResourceCollection *resourceCollection[4];
     SpriteResource *resources[1][4];
 } BattleFactoryAppSpriteManager;
