@@ -1,6 +1,9 @@
 #include "applications/frontier/battle_factory/helpers.h"
 
+#include "nitro/hw/common/lcd.h"
 #include <nitro.h>
+
+#include "constants/graphics.h"
 
 #include "gx_layers.h"
 #include "pokemon.h"
@@ -18,9 +21,9 @@ void BattleFactoryApp_Setup3D(void)
     G3X_AlphaBlend(TRUE);
     G3X_EdgeMarking(FALSE);
     G3X_SetFog(FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0);
-    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, 0x7fff, 63, FALSE);
+    G3X_SetClearColor(GX_RGB(0, 0, 0), 0, G3X_DEPTH_MAX, 63, FALSE);
 
-    G3_ViewPort(0, 0, 255, 191);
+    G3_ViewPort(0, 0, HW_LCD_WIDTH - 1, HW_LCD_HEIGHT - 1);
 }
 
 void BattleFactoryApp_UpdateMonGraphics(PokemonSpriteManager *spriteMan)

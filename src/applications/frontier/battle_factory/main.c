@@ -17,6 +17,7 @@
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "coordinates.h"
 #include "dexmode_checker.h"
 #include "font.h"
 #include "g3d_pipeline.h"
@@ -201,14 +202,10 @@ static void ov105_02245528(BattleFactoryApp *param0, u8 param1);
 static u8 ov105_02245538(BattleFactoryApp *param0, u8 param1, u8 param2);
 static u32 ov105_02245584(BattleFactoryApp *param0, u32 param1);
 static void ov105_022455C4(BattleFactoryApp *app, u8 param1, Pokemon *mon, int x, int y, int param5);
-BOOL ov105_02245620(BattleFactoryApp *param0, u16 param1, u16 param2);
-void ov105_02245684(BattleFactoryApp *param0, u16 param1);
-void ov105_0224569C(int param0, int param1, void *param2, void *param3);
-void ov105_022456A8(BattleFactoryApp *param0, u16 param1, u16 param2);
-void ov105_02245744(int param0, int param1, void *param2, void *param3);
-void ov105_022457B8(int param0, int param1, void *param2, void *param3);
-void ov105_02245884(BattleFactoryApp *param0, u16 param1, u16 param2);
-void ov105_022458A4(int param0, int param1, void *param2, void *param3);
+static BOOL ov105_02245620(BattleFactoryApp *param0, u16 param1, u16 param2);
+static void ov105_02245684(BattleFactoryApp *param0, u16 param1);
+static void ov105_022456A8(BattleFactoryApp *param0, u16 param1, u16 param2);
+static void ov105_02245884(BattleFactoryApp *param0, u16 param1, u16 param2);
 static void ov105_022457C0(BattleFactoryApp *param0);
 static BattleFactoryAppPokeballSprite *ov105_02245934(BattleFactoryApp *param0, int param1);
 static BattleFactoryAppPanelSprite *ov105_022459B0(BattleFactoryApp *param0, u32 param1);
@@ -244,7 +241,7 @@ static const u16 Unk_ov105_02246320[][2] = {
     { 0xD0, 0x70 }
 };
 
-static const BattleFactoryAppCursorPosition Unk_ov105_02246394[] = {
+static const CoordinatesS16 Unk_ov105_02246394[] = {
     { 0x18, 0x70 },
     { 0x40, 0x70 },
     { 0x68, 0x70 },
@@ -253,7 +250,7 @@ static const BattleFactoryAppCursorPosition Unk_ov105_02246394[] = {
     { 0xE0, 0x70 }
 };
 
-static const BattleFactoryAppCursorPosition Unk_ov105_02246340[] = {
+static const CoordinatesS16 Unk_ov105_02246340[] = {
     { 0x40, 0x70 },
     { 0x78, 0x70 },
     { 0xB0, 0x70 },
@@ -267,7 +264,7 @@ static const u8 Unk_ov105_022462D0[(NELEMS(Unk_ov105_02246340))] = {
     0x9
 };
 
-static const BattleFactoryAppCursorPosition Unk_ov105_022462FC[] = {
+static const CoordinatesS16 Unk_ov105_022462FC[] = {
     { 0x60, 0x70 },
     { 0x98, 0x70 },
     { 0xD4, 0x90 }
@@ -279,7 +276,7 @@ static const u8 Unk_ov105_022462CC[(NELEMS(Unk_ov105_022462FC))] = {
     0x9
 };
 
-static const BattleFactoryAppCursorPosition Unk_ov105_02246350[] = {
+static const CoordinatesS16 Unk_ov105_02246350[] = {
     { 0x40, 0x70 },
     { 0x78, 0x70 },
     { 0xB0, 0x70 },
@@ -295,7 +292,7 @@ static const u8 Unk_ov105_022462D4[(NELEMS(Unk_ov105_02246350))] = {
     0x9
 };
 
-static const BattleFactoryAppCursorPosition Unk_ov105_0224637C[] = {
+static const CoordinatesS16 Unk_ov105_0224637C[] = {
     { 0x28, 0x70 },
     { 0x60, 0x70 },
     { 0x98, 0x70 },
@@ -313,18 +310,18 @@ static const u8 Unk_ov105_022462E4[(NELEMS(Unk_ov105_0224637C))] = {
     0x9
 };
 
-static const BattleFactoryAppCursorPosition Unk_ov105_02246308[] = {
+static const CoordinatesS16 Unk_ov105_02246308[] = {
     { 0xD4, 0x90 },
     { 0xD4, 0xA0 },
     { 0xD4, 0xB0 }
 };
 
-static const BattleFactoryAppCursorPosition Unk_ov105_022462F4[] = {
+static const CoordinatesS16 Unk_ov105_022462F4[] = {
     { 0xD4, 0x90 },
     { 0xD4, 0xA0 }
 };
 
-static const BattleFactoryAppCursorPosition bf_v_trade_final_csr_pos[] = {
+static const CoordinatesS16 bf_v_trade_final_csr_pos[] = {
     { 212, 144 },
     { 212, 160 },
 };
@@ -342,7 +339,7 @@ int BattleFactoryApp_Init(ApplicationManager *appMan, int *state)
 {
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), OVERLAY_LOAD_ASYNC);
     InitGraphicsPlane();
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_FACTORY_APP, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE_FACTORY_APP, HEAP_SIZE_BATTLE_FACTORY_APP);
 
     BattleFactoryApp *app = ApplicationManager_NewData(appMan, sizeof(BattleFactoryApp), HEAP_ID_BATTLE_FACTORY_APP);
     memset(app, 0, sizeof(BattleFactoryApp));
@@ -2601,13 +2598,13 @@ static void PrintMonNameAndGender(BattleFactoryApp *app, Window *window, u8 slot
     u8 width = Window_GetWidth(window) - 1;
     u32 gender = Pokemon_GetValue(mon, MON_DATA_GENDER, NULL);
     u32 symbol = gender == GENDER_MALE ? BattleFactoryApp_Text_MaleSymbol : BattleFactoryApp_Text_FemaleSymbol;
-    TextColor v3 = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
+    TextColor color = gender == GENDER_MALE ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(3, 4, 0);
 
     String_Clear(displayStr);
 
     if (gender != GENDER_NONE) {
         MessageLoader_GetString(app->msgLoader, symbol, displayStr);
-        Text_AddPrinterWithParamsAndColor(window, font, displayStr, width * 8, yOffset, TEXT_SPEED_NO_TRANSFER, v3, NULL);
+        Text_AddPrinterWithParamsAndColor(window, font, displayStr, width * 8, yOffset, TEXT_SPEED_NO_TRANSFER, color, NULL);
     }
 
     String_Free(displayStr);

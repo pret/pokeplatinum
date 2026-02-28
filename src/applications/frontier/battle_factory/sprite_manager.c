@@ -20,7 +20,7 @@ void BattleFactoryApp_InitSpriteManager(BattleFactoryAppSpriteManager *sprites)
 {
     InitCharPlttTransferBuffers();
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 93);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_BATTLE_FACTORY_APP);
 
     sprites->spriteList = SpriteList_InitRendering(9, &sprites->unk_04, HEAP_ID_BATTLE_FACTORY_APP);
 
@@ -67,7 +67,7 @@ Sprite *BattleFactoryApp_InitSprite(BattleFactoryAppSpriteManager *spriteMan, u3
     spriteTemplate.heapID = HEAP_ID_BATTLE_FACTORY_APP;
 
     if (onSubScreen == TRUE) {
-        spriteTemplate.position.y += FX32_CONST(192);
+        spriteTemplate.position.y += FX32_CONST(HW_LCD_HEIGHT);
     }
 
     Sprite *sprite = SpriteList_AddAffine(&spriteTemplate);
@@ -96,7 +96,7 @@ void BattleFactoryApp_FreeSprites(BattleFactoryAppSpriteManager *spriteMan)
 static void InitCharPlttTransferBuffers(void)
 {
     CharTransferTemplate transferTemplate = {
-        32, 2048, 2048, 93
+        32, 2048, 2048, HEAP_ID_BATTLE_FACTORY_APP
     };
 
     CharTransfer_InitWithVramModes(&transferTemplate, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_64K);

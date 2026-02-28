@@ -8,110 +8,110 @@
 #include "heap.h"
 #include "sprite.h"
 
-static void BattleFactoryAppPokeballSprite_SetSelected(BattleFactoryAppPokeballSprite *sprite, u8 isSelected);
+static void BattleFactoryAppPokeballSprite_SetSelected(BattleFactoryAppPokeballSprite *ballSprite, u8 isSelected);
 
 BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactoryAppSpriteManager *spriteMan, int x, int y, u32 heapID)
 {
-    BattleFactoryAppPokeballSprite *sprite = Heap_Alloc(heapID, sizeof(BattleFactoryAppPokeballSprite));
-    memset(sprite, 0, sizeof(BattleFactoryAppPokeballSprite));
+    BattleFactoryAppPokeballSprite *ballSprite = Heap_Alloc(heapID, sizeof(BattleFactoryAppPokeballSprite));
+    memset(ballSprite, 0, sizeof(BattleFactoryAppPokeballSprite));
 
-    sprite->isSelected = 0;
-    sprite->x = x;
-    sprite->y = y;
-    sprite->sprite = BattleFactoryApp_InitSprite(spriteMan, 0, ANIM_ID_BALL_STATIC, 0, 0, FALSE);
+    ballSprite->isSelected = 0;
+    ballSprite->x = x;
+    ballSprite->y = y;
+    ballSprite->sprite = BattleFactoryApp_InitSprite(spriteMan, 0, ANIM_ID_BALL_STATIC, 0, 0, FALSE);
 
-    BattleFactoryAppPokeballSprite_SetPosition(sprite, x, y);
-    Sprite_SetExplicitPalette(sprite->sprite, 1);
+    BattleFactoryAppPokeballSprite_SetPosition(ballSprite, x, y);
+    Sprite_SetExplicitPalette(ballSprite->sprite, 1);
 
-    return sprite;
+    return ballSprite;
 }
 
-void *BattleFactoryAppPokeballSprite_Free(BattleFactoryAppPokeballSprite *sprite)
+void *BattleFactoryAppPokeballSprite_Free(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    Sprite_Delete(sprite->sprite);
-    Heap_Free(sprite);
+    Sprite_Delete(ballSprite->sprite);
+    Heap_Free(ballSprite);
 
     return NULL;
 }
 
-void BattleFactoryAppPokeballSprite_SetDrawFlag(BattleFactoryAppPokeballSprite *sprite, int draw)
+void BattleFactoryAppPokeballSprite_SetDrawFlag(BattleFactoryAppPokeballSprite *ballSprite, BOOL draw)
 {
-    Sprite_SetDrawFlag(sprite->sprite, draw);
+    Sprite_SetDrawFlag(ballSprite->sprite, draw);
 }
 
-VecFx32 BattleFactoryAppPokeballSprite_SetAndGetPosition(BattleFactoryAppPokeballSprite *sprite, int x, int y)
+VecFx32 BattleFactoryAppPokeballSprite_SetAndGetPosition(BattleFactoryAppPokeballSprite *ballSprite, int x, int y)
 {
-    VecFx32 position = *Sprite_GetPosition(sprite->sprite);
+    VecFx32 position = *Sprite_GetPosition(ballSprite->sprite);
     position.x += x * FX32_ONE;
     position.y += y * FX32_ONE;
 
-    Sprite_SetPosition(sprite->sprite, &position);
-    return *Sprite_GetPosition(sprite->sprite);
+    Sprite_SetPosition(ballSprite->sprite, &position);
+    return *Sprite_GetPosition(ballSprite->sprite);
 }
 
-void BattleFactoryAppPokeballSprite_SetPosition(BattleFactoryAppPokeballSprite *sprite, int x, int y)
+void BattleFactoryAppPokeballSprite_SetPosition(BattleFactoryAppPokeballSprite *ballSprite, int x, int y)
 {
     VecFx32 position;
 
     position.x = x * FX32_ONE;
     position.y = y * FX32_ONE;
 
-    Sprite_SetPosition(sprite->sprite, &position);
+    Sprite_SetPosition(ballSprite->sprite, &position);
 }
 
-const VecFx32 *BattleFactoryAppPokeballSprite_GetPosition(BattleFactoryAppPokeballSprite *sprite)
+const VecFx32 *BattleFactoryAppPokeballSprite_GetPosition(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    return Sprite_GetPosition(sprite->sprite);
+    return Sprite_GetPosition(ballSprite->sprite);
 }
 
-static void BattleFactoryAppPokeballSprite_SetSelected(BattleFactoryAppPokeballSprite *sprite, u8 isSelected)
+static void BattleFactoryAppPokeballSprite_SetSelected(BattleFactoryAppPokeballSprite *ballSprite, u8 isSelected)
 {
-    sprite->isSelected = isSelected;
+    ballSprite->isSelected = isSelected;
 }
 
-u8 BattleFactoryAppPokeballSprite_IsSelected(BattleFactoryAppPokeballSprite *sprite)
+u8 BattleFactoryAppPokeballSprite_IsSelected(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    return sprite->isSelected;
+    return ballSprite->isSelected;
 }
 
-void BattleFactoryAppPokeballSprite_SelectMon(BattleFactoryAppPokeballSprite *sprite)
+void BattleFactoryAppPokeballSprite_SelectMon(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    BattleFactoryAppPokeballSprite_SetSelected(sprite, TRUE);
+    BattleFactoryAppPokeballSprite_SetSelected(ballSprite, TRUE);
 }
 
-void BattleFactoryAppPokeballSprite_UnselectMon(BattleFactoryAppPokeballSprite *sprite)
+void BattleFactoryAppPokeballSprite_UnselectMon(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    BattleFactoryAppPokeballSprite_SetSelected(sprite, FALSE);
+    BattleFactoryAppPokeballSprite_SetSelected(ballSprite, FALSE);
 }
 
-void ov105_02245F5C(BattleFactoryAppPokeballSprite *sprite)
+void ov105_02245F5C(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    const VecFx32 *oldPos = BattleFactoryAppPokeballSprite_GetPosition(sprite);
+    const VecFx32 *oldPos = BattleFactoryAppPokeballSprite_GetPosition(ballSprite);
 
     VecFx32 newPos;
     newPos.x = ((oldPos->x / FX32_ONE) + 248) * FX32_ONE;
     newPos.y = oldPos->y;
 
-    Sprite_SetPosition(sprite->sprite, &newPos);
+    Sprite_SetPosition(ballSprite->sprite, &newPos);
 }
 
-int BattleFactoryAppPokeballSprite_GetX(BattleFactoryAppPokeballSprite *sprite)
+int BattleFactoryAppPokeballSprite_GetX(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    return sprite->x;
+    return ballSprite->x;
 }
 
-int BattleFactoryAppPokeballSprite_GetY(BattleFactoryAppPokeballSprite *sprite)
+int BattleFactoryAppPokeballSprite_GetY(BattleFactoryAppPokeballSprite *ballSprite)
 {
-    return sprite->y;
+    return ballSprite->y;
 }
 
-void BattleFactoryAppPokeballSprite_SetAnim(BattleFactoryAppPokeballSprite *sprite, u32 animID)
+void BattleFactoryAppPokeballSprite_SetAnim(BattleFactoryAppPokeballSprite *ballSprite, u32 animID)
 {
-    Sprite_SetAnimSpeed(sprite->sprite, FX32_ONE);
-    Sprite_SetAnim(sprite->sprite, animID);
+    Sprite_SetAnimSpeed(ballSprite->sprite, FX32_ONE);
+    Sprite_SetAnim(ballSprite->sprite, animID);
 }
 
-void BattleFactoryAppPokeballSprite_UpdatePalette(BattleFactoryAppPokeballSprite *sprite, u32 palette)
+void BattleFactoryAppPokeballSprite_UpdatePalette(BattleFactoryAppPokeballSprite *ballSprite, u32 palette)
 {
-    Sprite_SetExplicitPalette(sprite->sprite, palette);
+    Sprite_SetExplicitPalette(ballSprite->sprite, palette);
 }

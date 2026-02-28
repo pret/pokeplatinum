@@ -5,20 +5,22 @@
 #include "sprite_resource.h"
 #include "sprite_util.h"
 
-#define ANIM_ID_MON_PANEL_OPEN      0
-#define ANIM_ID_MON_PANEL_CLOSE     1
-#define ANIM_ID_PARTNER_PANEL_OPEN  2
-#define ANIM_ID_PARTNER_PANEL_CLOSE 3
-#define ANIM_ID_UNK_4               4
-#define ANIM_ID_UNK_5               5
-#define ANIM_ID_BALL_STATIC         6
-#define ANIM_ID_BALL_SHAKING        7
-#define ANIM_ID_CURSOR              8
-#define ANIM_ID_MENU_CURSOR         9
-#define ANIM_ID_BALL_ONE_SHAKE      10
-#define ANIM_ID_UNK_11              11
-#define ANIM_ID_UNK_12              12
-#define ANIM_ID_CURSOR_SELECTED     13
+enum BattleFactoryAppAnimIDs {
+    ANIM_ID_MON_PANEL_OPEN = 0,
+    ANIM_ID_MON_PANEL_CLOSE,
+    ANIM_ID_PARTNER_PANEL_OPEN,
+    ANIM_ID_PARTNER_PANEL_CLOSE,
+    ANIM_ID_UNK_4,
+    ANIM_ID_UNK_5,
+    ANIM_ID_BALL_STATIC,
+    ANIM_ID_BALL_SHAKING,
+    ANIM_ID_CURSOR,
+    ANIM_ID_MENU_CURSOR,
+    ANIM_ID_BALL_ONE_SHAKE,
+    ANIM_ID_UNK_11,
+    ANIM_ID_UNK_12,
+    ANIM_ID_CURSOR_SELECTED,
+};
 
 typedef struct {
     SpriteList *spriteList;

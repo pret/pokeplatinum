@@ -9,7 +9,7 @@
 #include "sprite.h"
 #include "system.h"
 
-BattleFactoryAppCursor *BattleFactoryAppCursor_New(BattleFactoryAppSpriteManager *spriteMan, u8 param1, u8 param2, u8 param3, u8 startingSlot, const BattleFactoryAppCursorPosition *positions, const u8 *animIDs)
+BattleFactoryAppCursor *BattleFactoryAppCursor_New(BattleFactoryAppSpriteManager *spriteMan, u8 param1, u8 param2, u8 param3, u8 startingSlot, const CoordinatesS16 *positions, const u8 *animIDs)
 {
     BattleFactoryAppCursor *cursor = Heap_Alloc(HEAP_ID_BATTLE_FACTORY_APP, sizeof(BattleFactoryAppCursor));
     memset(cursor, 0, sizeof(BattleFactoryAppCursor));
@@ -39,22 +39,22 @@ BattleFactoryAppCursor *BattleFactoryAppCursor_New(BattleFactoryAppSpriteManager
     return cursor;
 }
 
-void *BattleFactoryAppCursor_Free(BattleFactoryAppCursor *sprite)
+void *BattleFactoryAppCursor_Free(BattleFactoryAppCursor *cursor)
 {
-    Sprite_Delete(sprite->sprite);
-    Heap_Free(sprite);
+    Sprite_Delete(cursor->sprite);
+    Heap_Free(cursor);
 
     return NULL;
 }
 
-void BattleFactoryAppCursor_SetDrawFlag(BattleFactoryAppCursor *sprite, BOOL draw)
+void BattleFactoryAppCursor_SetDrawFlag(BattleFactoryAppCursor *cursor, BOOL draw)
 {
-    Sprite_SetDrawFlag(sprite->sprite, draw);
+    Sprite_SetDrawFlag(cursor->sprite, draw);
 }
 
-void ov105_02246080(BattleFactoryAppCursor *sprite)
+void ov105_02246080(BattleFactoryAppCursor *cursor)
 {
-    if (sprite->unk_03 == 1) {
+    if (cursor->unk_03 == 1) {
         return;
     }
 
@@ -62,37 +62,37 @@ void ov105_02246080(BattleFactoryAppCursor *sprite)
         return;
     }
 
-    if (sprite->unk_01 == 2) {
+    if (cursor->unk_01 == 2) {
         if (JOY_NEW(PAD_KEY_LEFT)) {
-            if (sprite->currentSlot == 0) {
-                sprite->currentSlot = (sprite->unk_00 - 1);
+            if (cursor->currentSlot == 0) {
+                cursor->currentSlot = (cursor->unk_00 - 1);
             } else {
-                sprite->currentSlot--;
+                cursor->currentSlot--;
             }
         } else if (JOY_NEW(PAD_KEY_RIGHT)) {
-            if (sprite->currentSlot == (sprite->unk_00 - 1)) {
-                sprite->currentSlot = 0;
+            if (cursor->currentSlot == (cursor->unk_00 - 1)) {
+                cursor->currentSlot = 0;
             } else {
-                sprite->currentSlot++;
+                cursor->currentSlot++;
             }
         } else if (JOY_NEW(PAD_KEY_DOWN)) {
-            if (sprite->currentSlot < (sprite->unk_10)) {
-                sprite->currentSlot = sprite->unk_10;
-            } else if (sprite->currentSlot == (sprite->unk_00 - 1)) {
-                sprite->currentSlot = 0;
+            if (cursor->currentSlot < (cursor->unk_10)) {
+                cursor->currentSlot = cursor->unk_10;
+            } else if (cursor->currentSlot == (cursor->unk_00 - 1)) {
+                cursor->currentSlot = 0;
             } else {
-                sprite->currentSlot++;
+                cursor->currentSlot++;
             }
         } else if (JOY_NEW(PAD_KEY_UP)) {
-            if (sprite->currentSlot < (sprite->unk_10)) {
-                sprite->currentSlot = (sprite->unk_00 - 1);
+            if (cursor->currentSlot < (cursor->unk_10)) {
+                cursor->currentSlot = (cursor->unk_00 - 1);
             } else {
-                sprite->currentSlot--;
+                cursor->currentSlot--;
             }
         }
     } else {
         u32 v1, v2;
-        if (sprite->unk_01 == 0) {
+        if (cursor->unk_01 == 0) {
             v1 = PAD_KEY_RIGHT;
             v2 = PAD_KEY_LEFT;
         } else {
@@ -101,59 +101,59 @@ void ov105_02246080(BattleFactoryAppCursor *sprite)
         }
 
         if (JOY_NEW(v1)) {
-            sprite->currentSlot++;
+            cursor->currentSlot++;
 
-            if (sprite->currentSlot >= sprite->unk_00) {
-                sprite->currentSlot = 0;
+            if (cursor->currentSlot >= cursor->unk_00) {
+                cursor->currentSlot = 0;
             }
         } else if (JOY_NEW(v2)) {
-            if (sprite->currentSlot == 0) {
-                sprite->currentSlot = sprite->unk_00;
+            if (cursor->currentSlot == 0) {
+                cursor->currentSlot = cursor->unk_00;
             }
 
-            sprite->currentSlot--;
+            cursor->currentSlot--;
         }
     }
 
-    if (sprite->animIDs != NULL) {
-        Sprite_SetAnimNoRestart(sprite->sprite, sprite->animIDs[sprite->currentSlot]);
+    if (cursor->animIDs != NULL) {
+        Sprite_SetAnimNoRestart(cursor->sprite, cursor->animIDs[cursor->currentSlot]);
     }
 
-    VecFx32 position = *Sprite_GetPosition(sprite->sprite);
-    position.x = sprite->positions[sprite->currentSlot].x * FX32_ONE;
-    position.y = sprite->positions[sprite->currentSlot].y * FX32_ONE;
+    VecFx32 position = *Sprite_GetPosition(cursor->sprite);
+    position.x = cursor->positions[cursor->currentSlot].x * FX32_ONE;
+    position.y = cursor->positions[cursor->currentSlot].y * FX32_ONE;
 
-    Sprite_SetPosition(sprite->sprite, &position);
+    Sprite_SetPosition(cursor->sprite, &position);
 }
 
-u8 BattleFactoryAppCursor_GetCurrentSlot(BattleFactoryAppCursor *sprite)
+u8 BattleFactoryAppCursor_GetCurrentSlot(BattleFactoryAppCursor *cursor)
 {
-    return sprite->currentSlot;
+    return cursor->currentSlot;
 }
 
-void ov105_022461A4(BattleFactoryAppCursor *sprite, int param1)
+void ov105_022461A4(BattleFactoryAppCursor *cursor, int param1)
 {
-    sprite->unk_03 = param1;
+    cursor->unk_03 = param1;
 
     if (param1 == 0) {
-        Sprite_SetAnimNoRestart(sprite->sprite, ANIM_ID_CURSOR);
+        Sprite_SetAnimNoRestart(cursor->sprite, ANIM_ID_CURSOR);
     } else {
-        Sprite_SetAnimNoRestart(sprite->sprite, ANIM_ID_CURSOR_SELECTED);
+        Sprite_SetAnimNoRestart(cursor->sprite, ANIM_ID_CURSOR_SELECTED);
     }
 }
 
-void BattleFactoryAppCursor_UpdatePosition(BattleFactoryAppCursor *sprite, u8 slot)
+void BattleFactoryAppCursor_UpdatePosition(BattleFactoryAppCursor *cursor, u8 slot)
 {
-    sprite->currentSlot = slot;
+    cursor->currentSlot = slot;
 
-    if (sprite->animIDs != NULL) {
-        Sprite_SetAnimNoRestart(sprite->sprite, sprite->animIDs[sprite->currentSlot]);
+    if (cursor->animIDs != NULL) {
+        Sprite_SetAnimNoRestart(cursor->sprite, cursor->animIDs[cursor->currentSlot]);
     }
 
-    VecFx32 position = *Sprite_GetPosition(sprite->sprite);
+    VecFx32 position = *Sprite_GetPosition(cursor->sprite);
 
-    position.x = sprite->positions[sprite->currentSlot].x * FX32_ONE;
-    position.y = sprite->positions[sprite->currentSlot].y * FX32_ONE;
+    position.x = cursor->positions[cursor->currentSlot].x * FX32_ONE;
+    position.y = cursor->positions[cursor->currentSlot].y * FX32_ONE;
 
-    Sprite_SetPosition(sprite->sprite, &position);
+    Sprite_SetPosition(cursor->sprite, &position);
 }

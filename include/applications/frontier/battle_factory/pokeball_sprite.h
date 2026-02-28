@@ -14,18 +14,18 @@ typedef struct BattleFactoryAppPokeballSprite {
 } BattleFactoryAppPokeballSprite;
 
 BattleFactoryAppPokeballSprite *BattleFactoryAppPokeballSprite_New(BattleFactoryAppSpriteManager *spriteMan, int x, int y, u32 heapID);
-void *BattleFactoryAppPokeballSprite_Free(BattleFactoryAppPokeballSprite *sprite);
-void BattleFactoryAppPokeballSprite_SetDrawFlag(BattleFactoryAppPokeballSprite *sprite, int draw);
-VecFx32 BattleFactoryAppPokeballSprite_SetAndGetPosition(BattleFactoryAppPokeballSprite *sprite, int x, int y);
-void BattleFactoryAppPokeballSprite_SetPosition(BattleFactoryAppPokeballSprite *sprite, int x, int y);
-const VecFx32 *BattleFactoryAppPokeballSprite_GetPosition(BattleFactoryAppPokeballSprite *sprite);
-u8 BattleFactoryAppPokeballSprite_IsSelected(BattleFactoryAppPokeballSprite *sprite);
-void BattleFactoryAppPokeballSprite_SelectMon(BattleFactoryAppPokeballSprite *sprite);
-void BattleFactoryAppPokeballSprite_UnselectMon(BattleFactoryAppPokeballSprite *sprite);
-void ov105_02245F5C(BattleFactoryAppPokeballSprite *sprite);
-int BattleFactoryAppPokeballSprite_GetX(BattleFactoryAppPokeballSprite *sprite);
-int BattleFactoryAppPokeballSprite_GetY(BattleFactoryAppPokeballSprite *sprite);
-void BattleFactoryAppPokeballSprite_SetAnim(BattleFactoryAppPokeballSprite *sprite, u32 animID);
-void BattleFactoryAppPokeballSprite_UpdatePalette(BattleFactoryAppPokeballSprite *sprite, u32 palette);
+void *BattleFactoryAppPokeballSprite_Free(BattleFactoryAppPokeballSprite *ballSprite);
+void BattleFactoryAppPokeballSprite_SetDrawFlag(BattleFactoryAppPokeballSprite *ballSprite, BOOL draw);
+VecFx32 BattleFactoryAppPokeballSprite_SetAndGetPosition(BattleFactoryAppPokeballSprite *ballSprite, int x, int y);
+void BattleFactoryAppPokeballSprite_SetPosition(BattleFactoryAppPokeballSprite *ballSprite, int x, int y);
+const VecFx32 *BattleFactoryAppPokeballSprite_GetPosition(BattleFactoryAppPokeballSprite *ballSprite);
+u8 BattleFactoryAppPokeballSprite_IsSelected(BattleFactoryAppPokeballSprite *ballSprite);
+void BattleFactoryAppPokeballSprite_SelectMon(BattleFactoryAppPokeballSprite *ballSprite);
+void BattleFactoryAppPokeballSprite_UnselectMon(BattleFactoryAppPokeballSprite *ballSprite);
+void ov105_02245F5C(BattleFactoryAppPokeballSprite *ballSprite);
+int BattleFactoryAppPokeballSprite_GetX(BattleFactoryAppPokeballSprite *ballSprite);
+int BattleFactoryAppPokeballSprite_GetY(BattleFactoryAppPokeballSprite *ballSprite);
+void BattleFactoryAppPokeballSprite_SetAnim(BattleFactoryAppPokeballSprite *ballSprite, u32 animID);
+void BattleFactoryAppPokeballSprite_UpdatePalette(BattleFactoryAppPokeballSprite *ballSprite, u32 palette);
 
 #endif // POKEPLATINUM_APPLICATIONS_BATTLE_FACTORY_POKEBALL_SPRITE_H
