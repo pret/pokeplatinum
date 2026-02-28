@@ -122,9 +122,6 @@ typedef struct BattleFactoryApp {
     u32 unk_3C0;
 } BattleFactoryApp;
 
-int BattleFactoryApp_Init(ApplicationManager *appMan, int *param1);
-int BattleFactoryApp_Main(ApplicationManager *appMan, int *param1);
-int BattleFactoryApp_Exit(ApplicationManager *appMan, int *param1);
 static BOOL ov105_02241FF4(BattleFactoryApp *param0);
 static BOOL ov105_022421F0(BattleFactoryApp *app);
 static BOOL ov105_02242698(BattleFactoryApp *param0);
