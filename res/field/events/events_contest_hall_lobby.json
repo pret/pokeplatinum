@@ -51,7 +51,7 @@
     ],
     "object_events": [
         {
-            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_SUPER_CONTEST",
+            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_OFFICIAL_CONTEST",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",

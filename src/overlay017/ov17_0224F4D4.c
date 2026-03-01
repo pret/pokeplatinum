@@ -750,7 +750,7 @@ static int ov17_02250178(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
     switch (param1->unk_00) {
     case 0:
         switch (param0->unk_00->unk_00.competitionType) {
-        case CONTEST_COMPETITION_LINK_OR_SUPER:
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
         case CONTEST_COMPETITION_UNK1:
         case CONTEST_COMPETITION_UNK0:
         case CONTEST_COMPETITION_PRACTICE_VISUAL:
@@ -805,7 +805,7 @@ static int ov17_02250284(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
     switch (param1->unk_00) {
     case 0:
         switch (param0->unk_00->unk_00.competitionType) {
-        case CONTEST_COMPETITION_LINK_OR_SUPER:
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
         case CONTEST_COMPETITION_UNK1:
         case CONTEST_COMPETITION_PRACTICE_DANCE:
         case CONTEST_COMPETITION_DANCE:
@@ -861,7 +861,7 @@ static int ov17_022503B0(UnkStruct_ov17_0224FCA0 *param0, UnkStruct_ov17_0224FEC
     switch (param1->unk_00) {
     case 0:
         switch (param0->unk_00->unk_00.competitionType) {
-        case CONTEST_COMPETITION_LINK_OR_SUPER:
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
         case CONTEST_COMPETITION_UNK0:
         case CONTEST_COMPETITION_PRACTICE_ACTING:
         case CONTEST_COMPETITION_ACTING:
