@@ -9,8 +9,8 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
+#include "struct_defs/contest.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_02252A70.h"
 #include "overlay017/struct_ov17_0223F2E4.h"
@@ -189,7 +189,7 @@ String *Contest_GetJudgeName(u32 judgeNameMessageID, enum HeapID heapID)
     return judgeName;
 }
 
-void ov17_0223F334(SuperContest *param0, int param1)
+void ov17_0223F334(Contest *param0, int param1)
 {
     u8 *v0;
     int v1;
@@ -203,21 +203,21 @@ void ov17_0223F334(SuperContest *param0, int param1)
     Heap_Free(v0);
 }
 
-void ov17_0223F374(SuperContest *superContest)
+void ov17_0223F374(Contest *contest)
 {
     int i, primaryContestStat, secondayContestStat1, secondayContestStat2, sheen;
     u32 item;
     s32 itemModifier, contestStatScore;
 
     for (i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
-        item = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_HELD_ITEM, NULL);
+        item = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_HELD_ITEM, NULL);
         itemModifier = 100;
 
-        switch (superContest->unk_00.contestType) {
+        switch (contest->unk_00.contestType) {
         case CONTEST_TYPE_COOL:
-            primaryContestStat = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
-            secondayContestStat1 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
-            secondayContestStat2 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
 
             switch (item) {
             case ITEM_RED_SCARF:
@@ -230,9 +230,9 @@ void ov17_0223F374(SuperContest *superContest)
             }
             break;
         case CONTEST_TYPE_BEAUTY:
-            primaryContestStat = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
-            secondayContestStat1 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
-            secondayContestStat2 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
 
             switch (item) {
             case ITEM_BLUE_SCARF:
@@ -245,9 +245,9 @@ void ov17_0223F374(SuperContest *superContest)
             }
             break;
         case CONTEST_TYPE_CUTE:
-            primaryContestStat = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
-            secondayContestStat1 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
-            secondayContestStat2 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_BEAUTY, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
 
             switch (item) {
             case ITEM_PINK_SCARF:
@@ -260,9 +260,9 @@ void ov17_0223F374(SuperContest *superContest)
             }
             break;
         case CONTEST_TYPE_SMART:
-            primaryContestStat = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
-            secondayContestStat1 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
-            secondayContestStat2 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_CUTE, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
 
             switch (item) {
             case ITEM_GREEN_SCARF:
@@ -275,9 +275,9 @@ void ov17_0223F374(SuperContest *superContest)
             }
             break;
         case CONTEST_TYPE_TOUGH:
-            primaryContestStat = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
-            secondayContestStat1 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
-            secondayContestStat2 = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
+            primaryContestStat = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_TOUGH, NULL);
+            secondayContestStat1 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SMART, NULL);
+            secondayContestStat2 = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_COOL, NULL);
 
             switch (item) {
             case ITEM_YELLOW_SCARF:
@@ -295,11 +295,11 @@ void ov17_0223F374(SuperContest *superContest)
             return;
         }
 
-        sheen = Pokemon_GetValue(superContest->unk_00.contestMons[i], MON_DATA_SHEEN, NULL);
+        sheen = Pokemon_GetValue(contest->unk_00.contestMons[i], MON_DATA_SHEEN, NULL);
         contestStatScore = primaryContestStat + ((secondayContestStat1 + secondayContestStat2 + sheen) / 2);
         contestStatScore = contestStatScore * itemModifier / 100;
 
-        superContest->unk_00.unk_118[i].unk_00 = contestStatScore;
+        contest->unk_00.unk_118[i].unk_00 = contestStatScore;
     }
 }
 

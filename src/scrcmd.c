@@ -1016,7 +1016,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Unused_0F7,
     ScrCmd_StartContestCommSync,
     ScrCmd_WaitForCommSyncState,
-    ScrCmd_SuperContestNew,
+    ScrCmd_ContestNew,
     ScrCmd_EndContest,
     ScrCmd_BufferJudgeName,
     ScrCmd_BufferContestantTrainerName,

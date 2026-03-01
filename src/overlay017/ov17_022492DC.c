@@ -5,8 +5,8 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
+#include "struct_defs/contest.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/struct_ov17_0224A1EC.h"
 
@@ -84,7 +84,7 @@ typedef struct {
 } UnkStruct_ov17_02249BC4;
 
 typedef struct UnkStruct_ov17_022492DC_t {
-    SuperContest *unk_00;
+    Contest *unk_00;
     UnkStruct_ov17_0224A1EC *unk_04;
     void *unk_08;
     SysTask *unk_0C;
@@ -298,7 +298,7 @@ void ov17_02249358(BgConfig *param0)
     }
 }
 
-void *ov17_02249380(SuperContest *param0, UnkStruct_ov17_0224A1EC *param1)
+void *ov17_02249380(Contest *param0, UnkStruct_ov17_0224A1EC *param1)
 {
     UnkStruct_ov17_022492DC *v0 = ov17_022492DC();
 

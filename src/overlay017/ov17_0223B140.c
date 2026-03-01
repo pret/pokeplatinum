@@ -261,7 +261,7 @@ int ActingCompetitionMain(ApplicationManager *appMan, int *param1)
     UnkStruct_ov17_02246F24 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    SuperContest_GetRNGNext(v0->unk_00);
+    Contest_GetRNGNext(v0->unk_00);
 
     switch (*param1) {
     case 0:
@@ -720,7 +720,7 @@ static int ov17_0223BCE8(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BCE
 
 static int ov17_0223BD58(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BCE8 *param1)
 {
-    if (SuperContest_IsPracticeCompetition(param0->unk_00) == FALSE) {
+    if (Contest_IsPracticeCompetition(param0->unk_00) == FALSE) {
         return 1;
     }
 
@@ -749,7 +749,7 @@ static int ov17_0223BDCC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BCE
     switch (param1->unk_00) {
     case 0:
 
-        if (SuperContest_IsPracticeCompetition(param0->unk_00) == TRUE) {
+        if (Contest_IsPracticeCompetition(param0->unk_00) == TRUE) {
             param0->unk_304.unk_C6.actingMessagesID = ACTING_COMPETITION_MESSAGE_BEGIN_PRACTICE;
         } else {
             param0->unk_304.unk_C6.actingMessagesID = Contest_GetActingCompetitionMessageIntroAnnouncement(param0->unk_00->unk_00.contestType);

@@ -442,16 +442,16 @@ static void ov17_02247F8C(SysTask *param0, void *param1)
         {
             s16 v2, v3, v4, v5;
 
-            v4 = SuperContest_GetRNGNext(v0->unk_00->unk_00) % ((256 - 32 - 32) / 2);
-            v5 = SuperContest_GetRNGNext(v0->unk_00->unk_00) % ((192 - 32 - 32) / 2);
+            v4 = Contest_GetRNGNext(v0->unk_00->unk_00) % ((256 - 32 - 32) / 2);
+            v5 = Contest_GetRNGNext(v0->unk_00->unk_00) % ((192 - 32 - 32) / 2);
 
-            if (SuperContest_GetRNGNext(v0->unk_00->unk_00) & 1) {
+            if (Contest_GetRNGNext(v0->unk_00->unk_00) & 1) {
                 v2 = 128 + v4;
             } else {
                 v2 = 128 - v4;
             }
 
-            if (SuperContest_GetRNGNext(v0->unk_00->unk_00) & 1) {
+            if (Contest_GetRNGNext(v0->unk_00->unk_00) & 1) {
                 v3 = 96 + v5;
             } else {
                 v3 = 96 - v5;
@@ -459,7 +459,7 @@ static void ov17_02247F8C(SysTask *param0, void *param1)
 
             if (v0->unk_13 > 0) {
                 if ((((v0->unk_16 < 128) && (v2 < 128)) || ((v0->unk_16 > 128) && (v2 > 128))) && (((v0->unk_18 < 96) && (v3 < 96)) || ((v0->unk_18 > 96) && (v3 > 96)))) {
-                    if (SuperContest_GetRNGNext(v0->unk_00->unk_00) & 1) {
+                    if (Contest_GetRNGNext(v0->unk_00->unk_00) & 1) {
                         if (v2 < 128) {
                             v2 = 128 + v4;
                         } else {

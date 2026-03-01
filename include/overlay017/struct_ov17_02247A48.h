@@ -3,7 +3,7 @@
 
 #include "constants/contests.h"
 
-#include "struct_defs/struct_02095C48.h"
+#include "struct_defs/contest.h"
 
 #include "overlay017/struct_ov17_0223D60C.h"
 #include "overlay017/struct_ov17_022476F8.h"
@@ -17,7 +17,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    SuperContest *unk_00;
+    Contest *unk_00;
     SysTask *unk_04;
     G3DPipelineBuffers *unk_08;
     UnkStruct_ov17_022476F8 unk_0C;

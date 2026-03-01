@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/contest.h"
 #include "struct_defs/struct_020954F0.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "battle_anim/is_form_symmetrical.h"
 #include "overlay017/const_ov17_022536B4.h"
@@ -631,7 +631,7 @@ static void ov17_02241908(SpriteManager *param0)
     SpriteManager_UnloadAnimObjById(param0, 33004);
 }
 
-void ov17_02241928(UnkStruct_ov17_0223F88C *param0, SuperContest *param1, NARC *param2)
+void ov17_02241928(UnkStruct_ov17_0223F88C *param0, Contest *param1, NARC *param2)
 {
     int v0;
 
@@ -2082,7 +2082,7 @@ u32 Contest_GetActingCompetitionMessageBadMoveType(enum PokemonContestType conte
     return ActingMessagesMoveTypeVoltageDown[contestType];
 }
 
-void ov17_022439C8(SuperContest *param0, int contestantID, int moveID, UnkStruct_ov17_022439C8 *param3)
+void ov17_022439C8(Contest *param0, int contestantID, int moveID, UnkStruct_ov17_022439C8 *param3)
 {
     MI_CpuClear8(param3, sizeof(UnkStruct_ov17_022439C8));
 

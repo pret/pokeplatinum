@@ -674,7 +674,7 @@ static int ov17_02246AB0(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0224654
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v4 = SuperContest_GetRNGNext(param0->unk_00) % (4 - v0);
+        v4 = Contest_GetRNGNext(param0->unk_00) % (4 - v0);
         v5 = v4;
 
         for (v1 = 0; v1 < 4; v1++) {

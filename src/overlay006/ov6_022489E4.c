@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "struct_defs/contest.h"
 #include "struct_defs/struct_020954F0.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "overlay006/struct_ov6_02248BE8.h"
 #include "overlay006/struct_ov6_02248DD8.h"
@@ -26,7 +26,7 @@ static int ov6_02248A94(UnkStruct_ov6_02248A94 *param0[4], int connectionCount, 
 
 void ov6_022489E4(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
 
     MI_CpuCopy8(param2, v0->unk_168[param0], param1);
     v0->unk_568++;
@@ -46,7 +46,7 @@ void ov6_022489E4(int param0, int param1, void *param2, void *param3)
     }
 }
 
-BOOL ov6_02248A64(SuperContest *param0)
+BOOL ov6_02248A64(Contest *param0)
 {
     UnkStruct_ov6_02248A94 v0;
 
@@ -77,7 +77,7 @@ static int ov6_02248A94(UnkStruct_ov6_02248A94 *param0[4], int connectionCount, 
 
 void ov6_02248AC8(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     int v1;
     int v2;
     u8 *v3;
@@ -91,7 +91,7 @@ void ov6_02248AC8(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248AF0(SuperContest *param0, int param1, const Pokemon *param2)
+BOOL ov6_02248AF0(Contest *param0, int param1, const Pokemon *param2)
 {
     u8 *v0;
     int v1;
@@ -114,7 +114,7 @@ BOOL ov6_02248AF0(SuperContest *param0, int param1, const Pokemon *param2)
 
 void ov6_02248B30(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     int v1, v2;
     u8 *v3;
     int v4;
@@ -130,7 +130,7 @@ void ov6_02248B30(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248B70(SuperContest *param0, Pokemon **param1)
+BOOL ov6_02248B70(Contest *param0, Pokemon **param1)
 {
     u8 *v0;
     int v1, v2;
@@ -156,7 +156,7 @@ BOOL ov6_02248B70(SuperContest *param0, Pokemon **param1)
 
 void ov6_02248BC0(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     int v1;
     int v2;
     u8 *v3;
@@ -170,7 +170,7 @@ void ov6_02248BC0(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248BE8(SuperContest *param0, int param1, const UnkStruct_ov6_02248BE8 *param2)
+BOOL ov6_02248BE8(Contest *param0, int param1, const UnkStruct_ov6_02248BE8 *param2)
 {
     u8 *v0;
     int v1;
@@ -193,7 +193,7 @@ BOOL ov6_02248BE8(SuperContest *param0, int param1, const UnkStruct_ov6_02248BE8
 
 void ov6_02248C28(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     int v1;
     u8 *v2;
     int v3;
@@ -209,7 +209,7 @@ void ov6_02248C28(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248C68(SuperContest *param0, int param1, const UnkStruct_020954F0 *param2)
+BOOL ov6_02248C68(Contest *param0, int param1, const UnkStruct_020954F0 *param2)
 {
     u8 *v0;
     int v1;
@@ -238,7 +238,7 @@ BOOL ov6_02248C68(SuperContest *param0, int param1, const UnkStruct_020954F0 *pa
 
 void ov6_02248CBC(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     int contestantID, v2, v3;
     u8 *v4;
     u16 *v5;
@@ -255,7 +255,7 @@ void ov6_02248CBC(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248CE8(SuperContest *superContest, int param1, const String *trainerNames)
+BOOL ov6_02248CE8(Contest *contest, int param1, const String *trainerNames)
 {
     int v0, v1;
     u8 *v2;
@@ -286,7 +286,7 @@ BOOL ov6_02248CE8(SuperContest *superContest, int param1, const String *trainerN
 
 void ov6_02248D38(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     int v1;
     int v2;
     u8 *v3;
@@ -300,7 +300,7 @@ void ov6_02248D38(int param0, int param1, void *param2, void *param3)
     v0->unk_568++;
 }
 
-BOOL ov6_02248D64(SuperContest *param0, int param1, void *param2)
+BOOL ov6_02248D64(Contest *param0, int param1, void *param2)
 {
     u8 *v0;
     int v1;
@@ -326,7 +326,7 @@ BOOL ov6_02248D64(SuperContest *param0, int param1, void *param2)
 
 void ov6_02248DA0(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *superContest = param3;
+    Contest *contest = param3;
     int v1;
     int contestantID;
     u8 *v3;
@@ -337,14 +337,14 @@ void ov6_02248DA0(int param0, int param1, void *param2, void *param3)
     v3 = param2;
     contestantID = v3[v1];
 
-    superContest->unk_00.trainerGenders[contestantID] = v4->trainerGender;
-    superContest->unk_00.unk_FC[contestantID] = v4->unk_01;
-    superContest->unk_00.monContestFame[contestantID] = v4->monContestFame;
-    superContest->unk_00.contestantObjEventGFX[contestantID] = v4->contestantObjEventGFX;
-    superContest->unk_568++;
+    contest->unk_00.trainerGenders[contestantID] = v4->trainerGender;
+    contest->unk_00.unk_FC[contestantID] = v4->unk_01;
+    contest->unk_00.monContestFame[contestantID] = v4->monContestFame;
+    contest->unk_00.contestantObjEventGFX[contestantID] = v4->contestantObjEventGFX;
+    contest->unk_568++;
 }
 
-BOOL ov6_02248DD8(SuperContest *param0, int param1, const UnkStruct_ov6_02248DD8 *param2)
+BOOL ov6_02248DD8(Contest *param0, int param1, const UnkStruct_ov6_02248DD8 *param2)
 {
     u8 *v0;
     int v1;

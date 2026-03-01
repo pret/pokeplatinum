@@ -4,7 +4,7 @@
 #include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 
-#include "struct_defs/struct_02095C48.h"
+#include "struct_defs/contest.h"
 
 #include "overlay017/struct_ov17_0223F88C.h"
 #include "overlay017/struct_ov17_0224145C.h"
@@ -78,7 +78,7 @@ BOOL ov17_022414BC(UnkStruct_ov17_0224145C *param0);
 void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int contestantID);
 void ov17_022415E4(UnkStruct_ov17_0223F88C *param0);
 void ov17_022416E4(UnkStruct_ov17_0223F88C *param0);
-void ov17_02241928(UnkStruct_ov17_0223F88C *param0, SuperContest *param1, NARC *param2);
+void ov17_02241928(UnkStruct_ov17_0223F88C *param0, Contest *param1, NARC *param2);
 void ov17_0224197C(UnkStruct_ov17_0223F88C *param0);
 void ov17_022419AC(PaletteData *param0, SpriteSystem *param1, SpriteManager *param2, NARC *param3);
 void ov17_02241A00(SpriteManager *param0);
@@ -122,7 +122,7 @@ void ov17_022436D0(UnkStruct_ov17_02246F24 *param0, int param1, int param2, int 
 u32 Contest_GetActingCompetitionMessageIntroAnnouncement(enum PokemonContestType contestType);
 u32 Contest_GetActingCompetitionMessageGoodMoveType(enum PokemonContestType contestType);
 u32 Contest_GetActingCompetitionMessageBadMoveType(enum PokemonContestType contestType);
-void ov17_022439C8(SuperContest *param0, int contestantID, int moveID, UnkStruct_ov17_022439C8 *param3);
+void ov17_022439C8(Contest *param0, int contestantID, int moveID, UnkStruct_ov17_022439C8 *param3);
 BOOL ov17_02243A98(UnkStruct_ov17_022472F8 *param0, int contestantID, int moveID);
 
 #endif // POKEPLATINUM_OV17_022413D8_H

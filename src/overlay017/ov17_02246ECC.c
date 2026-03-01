@@ -1386,11 +1386,11 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
         int v10, v11, v12, v13, v14, v15;
 
         for (v1 = 0; v1 < 4; v1++) {
-            v8[v1] = SuperContest_GetRNGNext(param0->unk_00);
+            v8[v1] = Contest_GetRNGNext(param0->unk_00);
         }
 
         for (v1 = 0; v1 < (1 + 2); v1++) {
-            v9[v1] = SuperContest_GetRNGNext(param0->unk_00);
+            v9[v1] = Contest_GetRNGNext(param0->unk_00);
         }
 
         for (v10 = 0; param1->unk_00[v10].moveID == MOVE_NONE; v10++) {
@@ -1432,7 +1432,7 @@ static void ov17_02246F9C(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_02246F
                     0,
                 };
 
-                v18 = SuperContest_GetRNGNext(param0->unk_00) & 0xff;
+                v18 = Contest_GetRNGNext(param0->unk_00) & 0xff;
 
                 if (v18 < v20[param0->unk_00->unk_00.contestRank]) {
                     v19 = param0->unk_220.unk_0E[param0->unk_00->unk_00.playerContestantID];

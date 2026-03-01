@@ -5,8 +5,8 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012744_decl.h"
+#include "struct_defs/contest.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_02241270.h"
@@ -114,7 +114,7 @@ typedef struct {
 } UnkStruct_ov17_0223FF38;
 
 typedef struct UnkStruct_ov17_0223F7E4_t {
-    SuperContest *unk_00;
+    Contest *unk_00;
     UnkStruct_ov17_0223F88C *unk_04;
     UnkStruct_ov17_022472F8 *unk_08;
     void *unk_0C;
@@ -194,7 +194,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
 static void ov17_02240260(UnkStruct_ov17_0223F7E4 *param0);
 void ov17_0223F80C(BgConfig *param0);
 void ov17_0223F864(BgConfig *param0);
-void *ov17_0223F88C(SuperContest *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2);
+void *ov17_0223F88C(Contest *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2);
 void ov17_0223F960(UnkStruct_ov17_0223F7E4 *param0);
 void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void *param3);
 int ov17_0223FAF8(UnkStruct_ov17_0223F7E4 *param0);
@@ -607,7 +607,7 @@ void ov17_0223F864(BgConfig *param0)
     }
 }
 
-void *ov17_0223F88C(SuperContest *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2)
+void *ov17_0223F88C(Contest *param0, UnkStruct_ov17_0223F88C *param1, UnkStruct_ov17_022472F8 *param2)
 {
     UnkStruct_ov17_0223F7E4 *v0;
     NARC *v1;

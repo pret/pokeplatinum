@@ -223,7 +223,7 @@ int ContestFinalScoringMain(ApplicationManager *appMan, int *param1)
     UnkStruct_ov17_0224FCA0 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    SuperContest_GetRNGNext(v0->unk_00);
+    Contest_GetRNGNext(v0->unk_00);
 
     switch (*param1) {
     case 0:
