@@ -901,7 +901,7 @@ static int ov17_02251860(Contest *contest, int param1)
             return 0;
         }
         break;
-    case CONTEST_COMPETITION_LINK_OR_SUPER:
+    case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
         switch (param1) {
         case 0:
             return 3333;
@@ -1013,7 +1013,7 @@ void ov17_02251A1C(UnkStruct_ov17_0224FCA0 *param0)
         ov17_02251930(param0->unk_00, 0, param0->unk_39A.unk_3A);
         ov17_02251930(param0->unk_00, 1, param0->unk_39A.unk_42);
         break;
-    case CONTEST_COMPETITION_LINK_OR_SUPER:
+    case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
         ov17_02251930(param0->unk_00, 0, param0->unk_39A.unk_3A);
         ov17_02251930(param0->unk_00, 1, param0->unk_39A.unk_42);
         ov17_02251930(param0->unk_00, 2, param0->unk_39A.unk_4A);

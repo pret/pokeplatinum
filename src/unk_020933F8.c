@@ -83,7 +83,7 @@ void Contest_VisualCompetitionAppArgsFree(Contest *contest);
 static void sub_020944E8(Contest *contest);
 static void sub_0209451C(SysTask *param0, void *param1);
 static void sub_02094EB4(Contest *contest, int contestantID, UnkStruct_ov6_02248DD8 *param2);
-static void SysTask_DoContestCameraFlash(SysTask *param0, void *param1);
+static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam);
 static int CalcMonContestFame(Pokemon *mon, enum PokemonContestType contestType);
 static void sub_020939E0(Contest *contest, int isGameCompleted, int isNatDexObtained);
 
@@ -154,7 +154,7 @@ void FieldTask_InitRunContestTask(FieldTask *fieldTask, Contest *contest)
     switch (contest->unk_00.competitionType) {
     case CONTEST_COMPETITION_UNK0:
     case CONTEST_COMPETITION_UNK1:
-    case CONTEST_COMPETITION_LINK_OR_SUPER:
+    case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
         FieldTask_InitCall(fieldTask, FieldTask_RunContest, taskEnv);
         break;
     default:
@@ -236,14 +236,14 @@ static BOOL FieldTask_RunContest(FieldTask *fieldTask)
         taskEnv->state++;
         break;
     case CONTEST_MANAGER_STATE_RUN_APP_DANCE_COMPETITION:
-        if (taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_UNK1 || taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_SUPER) {
+        if (taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_UNK1 || taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL) {
             FieldTask_RunApplication(fieldTask, &DanceCompetitionAppTemplate, taskEnv->contest);
         }
 
         taskEnv->state++;
         break;
     case CONTEST_MANAGER_STATE_RUN_APP_ACTING_COMPETITION:
-        if (taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_UNK0 || taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_SUPER) {
+        if (taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_UNK0 || taskEnv->contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL) {
             FieldTask_RunApplication(fieldTask, &ActingCompetitionAppTemplate, taskEnv->contest);
         }
 
@@ -1257,7 +1257,7 @@ int Contest_GetContestMode(Contest *contest)
         return CONTEST_MODE_PRACTICE;
     }
 
-    return CONTEST_MODE_SUPER;
+    return CONTEST_MODE_OFFICIAL;
 }
 
 void Contest_GetContestInfo(Contest *contest, u16 *contestRank, u16 *contestType, u16 *competitionType, u16 *monPartySlot)
@@ -1466,9 +1466,9 @@ BOOL Contest_CameraFlashTaskDone(Contest *contest)
     return FALSE;
 }
 
-static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *superContestParam)
+static void SysTask_DoContestCameraFlash(SysTask *sysTask, void *contestParam)
 {
-    Contest *contest = superContestParam;
+    Contest *contest = contestParam;
     ContestCameraFlashTask *cameraFlashTask = contest->cameraFlashTask;
 
     if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
@@ -1554,7 +1554,7 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
     if (contest->isLinkContest == FALSE) {
         VarsFlags *varsFlags = SaveData_GetVarsFlags(contest->saveData);
 
-        if (contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_SUPER && contest->unk_00.contestRank >= CONTEST_RANK_MASTER && Contest_GetPlayerContestPlacement(contest) == 0
+        if (contest->unk_00.competitionType == CONTEST_COMPETITION_LINK_OR_OFFICIAL && contest->unk_00.contestRank >= CONTEST_RANK_MASTER && Contest_GetPlayerContestPlacement(contest) == 0
             && SystemFlag_CheckContestMaster(varsFlags, contest->unk_00.contestType) == FALSE) {
             SystemFlag_SetContestMaster(varsFlags, contest->unk_00.contestType);
         }
@@ -1578,8 +1578,8 @@ void Contest_EndContest(Contest *contest, SaveData *saveData, u32 mapID, Journal
         GameRecords_IncrementRecordValue(gameRecords, RECORD_SUPER_CONTEST_PARTICIPATIONS);
 
         if (Contest_GetPlayerContestPlacement(contest) == 0) {
-            GameRecords_IncrementRecordValue(gameRecords, RECORD_SUPER_CONTEST_WINS);
-            GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_WIN_SUPER_CONTEST);
+            GameRecords_IncrementRecordValue(gameRecords, RECORD_OFFICIAL_CONTEST_WINS);
+            GameRecords_IncrementTrainerScore(gameRecords, TRAINER_SCORE_EVENT_WIN_OFFICIAL_CONTEST);
         }
 
         if (ribbonWon == TRUE) {

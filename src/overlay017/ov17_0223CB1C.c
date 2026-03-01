@@ -849,7 +849,7 @@ static int ov17_0223D99C(UnkStruct_ov17_02247A48 *param0, UnkStruct_ov17_0223D60
         break;
     case 2:
         switch (param0->unk_00->unk_00.competitionType) {
-        case CONTEST_COMPETITION_LINK_OR_SUPER:
+        case CONTEST_COMPETITION_LINK_OR_OFFICIAL:
             param0->unk_E0.unk_07 = 7;
             break;
         default:

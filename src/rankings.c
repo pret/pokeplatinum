@@ -128,7 +128,7 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
         RECORD_CAUGHT_POKEMON,
         RECORD_EGGS_HATCHED,
         RECORD_CAUGHT_FISH,
-        RECORD_SUPER_CONTEST_WINS,
+        RECORD_OFFICIAL_CONTEST_WINS,
         RECORD_SUPER_CONTEST_PARTICIPATIONS,
         RECORD_RIBBONS_WON
     };
@@ -149,7 +149,7 @@ static u32 *GetRecordValues(SaveData *saveData, enum HeapID heapID)
             recordValues[i] = recordValue;
             break;
         case 10:
-            recordValue = GameRecords_GetRecordValue(gameRecords, RECORD_SUPER_CONTEST_WINS);
+            recordValue = GameRecords_GetRecordValue(gameRecords, RECORD_OFFICIAL_CONTEST_WINS);
             recordValue += GameRecords_GetRecordValue(gameRecords, RECORD_LINK_CONTEST_WINS);
             recordValues[i] = recordValue;
             break;
