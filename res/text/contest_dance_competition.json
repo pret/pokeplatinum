@@ -2,39 +2,39 @@
   "key": 59653,
   "messages": [
     {
-      "id": "pl_msg_00000206_00000",
+      "id": "DanceCompetition_Text_Jump",
       "en_US": "JUMP"
     },
     {
-      "id": "pl_msg_00000206_00001",
+      "id": "DanceCompetition_Text_Up",
       "en_US": "UP"
     },
     {
-      "id": "pl_msg_00000206_00002",
+      "id": "DanceCompetition_Text_Front",
       "en_US": "FRONT"
     },
     {
-      "id": "pl_msg_00000206_00003",
+      "id": "DanceCompetition_Text_Left",
       "en_US": "LEFT"
     },
     {
-      "id": "pl_msg_00000206_00004",
+      "id": "DanceCompetition_Text_Right",
       "en_US": "RIGHT"
     },
     {
-      "id": "pl_msg_00000206_00005",
+      "id": "DanceCompetition_Text_Excellent",
       "en_US": "Excellent!"
     },
     {
-      "id": "pl_msg_00000206_00006",
+      "id": "DanceCompetition_Text_Good",
       "en_US": "Good!"
     },
     {
-      "id": "pl_msg_00000206_00007",
+      "id": "DanceCompetition_Text_Miss",
       "en_US": "Miss!"
     },
     {
-      "id": "pl_msg_00000206_00008",
+      "id": "DanceCompetition_Text_CompetitionIsReady",
       "en_US": [
         "The Dance Competition is ready to\n",
         "get under way!\r",
@@ -45,15 +45,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000206_00009",
+      "id": "DanceCompetition_Text_PerformStepsAsMainDancer",
       "en_US": "{COLOR 2}Perform {STRVAR_1 50, 0, 0} steps as the main dancer!{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000206_00010",
+      "id": "DanceCompetition_Text_CopyPokemonBeforeYou",
       "en_US": "{COLOR 1}Copy the Pokémon before you!{COLOR 0}"
     },
     {
-      "id": "pl_msg_00000206_00011",
+      "id": "DanceCompetition_Text_Unused",
       "garbage": 32
     },
     {
@@ -81,7 +81,7 @@
       "garbage": 8
     },
     {
-      "id": "pl_msg_00000206_00018",
+      "id": "DanceCompetition_Text_AnnounceLeadingMon",
       "en_US": [
         "That’s it for the Dance Competition!\r",
         "Leading in points right now is\n",
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000206_00019",
+      "id": "DanceCompetition_Text_ThanksForJoiningPracticeContest",
       "en_US": [
         "Welcome! Thanks for joining our\n",
         "practice Contest!\r",
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000206_00020",
+      "id": "DanceCompetition_Text_EveryoneHereForPracticeContest",
       "en_US": [
         "Looks like everyone’s here, so let’s\n",
         "get on with our dance practice!\r",

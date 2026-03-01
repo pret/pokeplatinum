@@ -20,6 +20,7 @@
 #include "generated/journal_location_events.h"
 #include "generated/movement_actions.h"
 #include "generated/movement_types.h"
+#include "generated/pokemon_contest_ranks.h"
 #include "generated/save_types.h"
 #include "generated/signpost_commands.h"
 
@@ -147,6 +148,7 @@
 #include "scrcmd_berry.h"
 #include "scrcmd_catching_show.h"
 #include "scrcmd_coins.h"
+#include "scrcmd_contests.h"
 #include "scrcmd_daycare.h"
 #include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_fossil.h"
@@ -191,7 +193,6 @@
 #include "unk_02038FFC.h"
 #include "unk_020393C8.h"
 #include "unk_0203D1B8.h"
-#include "unk_02046C7C.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
 #include "unk_020494DC.h"
@@ -415,7 +416,7 @@ static BOOL ScrCmd_0C3(ScriptContext *ctx);
 static BOOL ScrCmd_0C4(ScriptContext *ctx);
 static BOOL ScrCmd_0C5(ScriptContext *ctx);
 static BOOL sub_02042C80(ScriptContext *ctx);
-static BOOL ScrCmd_0C6(ScriptContext *ctx);
+static BOOL ScrCmd_ChangeIntoContestAttire(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx);
 static BOOL ScrCmd_0C9(ScriptContext *ctx);
@@ -534,8 +535,8 @@ static BOOL ScrCmd_GetBattleHallSelectedSlots(ScriptContext *ctx);
 static BOOL ScrCmd_2D4(ScriptContext *ctx);
 static BOOL ScrCmd_2DB(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForTrade(ScriptContext *ctx);
-static BOOL ScrCmd_196(ScriptContext *ctx);
-static BOOL ScrCmd_197(ScriptContext *ctx);
+static BOOL ScrCmd_SetMonSummary(ScriptContext *ctx);
+static BOOL ScrCmd_GetMonPartySlot(ScriptContext *ctx);
 static BOOL ScrCmd_OpenSummaryScreenTeachMove(ScriptContext *ctx);
 static BOOL ScrCmd_GetSummarySelectedMoveSlot(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy19E(ScriptContext *ctx);
@@ -570,7 +571,7 @@ static BOOL ScrCmd_AddContestBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBackdrop(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForUnionRoomBattle(ScriptContext *ctx);
 static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx);
-static BOOL ScrCmd_195(ScriptContext *ctx);
+static BOOL ScrCmd_TryEnterContestMon(ScriptContext *ctx);
 static BOOL ScrCmd_CheckLocalDexCompleted(ScriptContext *ctx);
 static BOOL ScrCmd_CheckNationalDexCompleted(ScriptContext *ctx);
 static BOOL ScrCmd_ShowDiplomaSinnoh(ScriptContext *ctx);
@@ -692,7 +693,7 @@ static BOOL ScrCmd_2AB(ScriptContext *ctx);
 static BOOL ScrCmd_UnlockMysteryGift(ScriptContext *ctx);
 static BOOL ScrCmd_2AF(ScriptContext *ctx);
 static BOOL ScrCmd_2B0(ScriptContext *ctx);
-static BOOL ScrCmd_2B1(ScriptContext *ctx);
+static BOOL ScrCmd_DestroyNetworkIcon(ScriptContext *ctx);
 static BOOL ScrCmd_2B2(ScriptContext *ctx);
 static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx);
 static BOOL ScrCmd_2B5(ScriptContext *ctx);
@@ -965,7 +966,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0C3,
     ScrCmd_0C4,
     ScrCmd_0C5,
-    ScrCmd_0C6,
+    ScrCmd_ChangeIntoContestAttire,
     ScrCmd_CheckPlayerOnBike,
     ScrCmd_SetPlayerBike,
     ScrCmd_0C9,
@@ -1015,39 +1016,39 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_Unused_0F5,
     ScrCmd_StartLinkBattle,
     ScrCmd_Unused_0F7,
-    ScrCmd_0F8,
-    ScrCmd_0F9,
-    ScrCmd_0FA,
-    ScrCmd_0FB,
-    ScrCmd_0FC,
-    ScrCmd_0FD,
-    ScrCmd_0FE,
-    ScrCmd_0FF,
-    ScrCmd_100,
-    ScrCmd_101,
-    ScrCmd_102,
-    ScrCmd_103,
-    ScrCmd_104,
-    ScrCmd_105,
-    ScrCmd_106,
-    ScrCmd_107,
-    ScrCmd_108,
-    ScrCmd_109,
-    ScrCmd_10A,
-    ScrCmd_10B,
-    ScrCmd_10C,
-    ScrCmd_10D,
-    ScrCmd_10E,
-    ScrCmd_10F,
-    ScrCmd_110,
-    ScrCmd_111,
-    ScrCmd_112,
-    ScrCmd_113,
-    ScrCmd_114,
-    ScrCmd_115,
+    ScrCmd_StartContestCommSync,
+    ScrCmd_WaitForCommSyncState,
+    ScrCmd_SuperContestNew,
+    ScrCmd_EndContest,
+    ScrCmd_BufferJudgeName,
+    ScrCmd_BufferContestantTrainerName,
+    ScrCmd_BufferContestantMonName,
+    ScrCmd_BufferContestRegistrationEntryNumber,
+    ScrCmd_WaitForLinkContestSetup,
+    ScrCmd_RunContestApplication,
+    ScrCmd_BufferContestRank,
+    ScrCmd_BufferContestType,
+    ScrCmd_BufferWinningContestantTrainerName,
+    ScrCmd_SetTrue,
+    ScrCmd_BufferWinningContestantMonName,
+    ScrCmd_GetPlayerContestPlacement,
+    ScrCmd_GetWinningContestantEntryNum,
+    ScrCmd_GetContestRegistrationEntryNum,
+    ScrCmd_GetContestantObjEventGFX,
+    ScrCmd_GetContestantMonContestFame,
+    ScrCmd_GetContestMode,
+    ScrCmd_PlayerMonAlreadyHasRibbon,
+    ScrCmd_SetRibbonName,
+    ScrCmd_GetFirstTimeVictoryAccessory,
+    ScrCmd_GetContestInfo,
+    ScrCmd_StartContestCameraFlashTask,
+    ScrCmd_WaitForContestCameraFlashTask,
+    ScrCmd_HBlankSystem_Stop,
+    ScrCmd_HBlankSystem_Start,
+    ScrCmd_GetShouldSkipAwardCeremony,
     ScrCmd_ShowLinkContestRecords,
     ScrCmd_LockAutoScrollForLinkContests,
-    ScrCmd_118,
+    ScrCmd_LockTextSpeed,
     ScrCmd_CheckPartyPokerus,
     ScrCmd_GetPartyMonGender_Unused,
     ScrCmd_SetSpecialLocation,
@@ -1172,9 +1173,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_OpenPartyMenuForUnionRoomBattle,
     ScrCmd_GetSelectedPartySlot,
     ScrCmd_OpenPartyMenuForContest,
-    ScrCmd_195,
-    ScrCmd_196,
-    ScrCmd_197,
+    ScrCmd_TryEnterContestMon,
+    ScrCmd_SetMonSummary,
+    ScrCmd_GetMonPartySlot,
     ScrCmd_GetPartyMonSpecies,
     ScrCmd_CheckIsPartyMonOutsider,
     ScrCmd_CountPartyNonEggs,
@@ -1456,7 +1457,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_IsSequencePlaying,
     ScrCmd_2AF,
     ScrCmd_2B0,
-    ScrCmd_2B1,
+    ScrCmd_DestroyNetworkIcon,
     ScrCmd_2B2,
     ScrCmd_BufferBallSealName,
     ScrCmd_LockLastTalked,
@@ -3460,7 +3461,7 @@ static BOOL ScrCmd_GetSelectedPartySlot(ScriptContext *ctx)
     *destVar = PartyMenu_GetSelectedSlot(*partySelect);
 
     if (*destVar == MAX_PARTY_SIZE + 1) {
-        *destVar = 0xff;
+        *destVar = PARTY_SLOT_NONE;
     }
 
     Heap_Free(*partySelect);
@@ -3481,7 +3482,7 @@ static BOOL ScrCmd_GetBattleHallSelectedSlots(ScriptContext *ctx)
     int slot = PartyMenu_GetSelectedSlot(*partySelect);
 
     if (slot == MAX_PARTY_SIZE + 1) {
-        *selectedSlot1 = 0xff;
+        *selectedSlot1 = PARTY_SLOT_NONE;
     } else if (slot == MAX_PARTY_SIZE) {
         *selectedSlot1 = partyMenu->selectionOrder[0];
         *selectedSlot1 -= 1;
@@ -3511,7 +3512,7 @@ static BOOL ScrCmd_2D4(ScriptContext *ctx)
     int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
-        *v3 = 0xff;
+        *v3 = PARTY_SLOT_NONE;
     } else if (v1 == MAX_PARTY_SIZE) {
         *v3 = partyMenu->selectionOrder[0];
         *v3 -= 1;
@@ -3545,7 +3546,7 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx)
     int v1 = PartyMenu_GetSelectedSlot(*v2);
 
     if (v1 == MAX_PARTY_SIZE + 1) {
-        *v3 = 0xff;
+        *v3 = PARTY_SLOT_NONE;
     } else if (v1 == MAX_PARTY_SIZE) {
         *v3 = partyMenu->selectionOrder[0];
         *v3 -= 1;
@@ -3568,68 +3569,68 @@ static BOOL ScrCmd_2DB(ScriptContext *ctx)
 
 static BOOL ScrCmd_OpenPartyMenuForContest(ScriptContext *ctx)
 {
-    void **pPartyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    void **partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     u16 selectedPartySlot = ScriptContext_GetVar(ctx);
     u16 contestRank = ScriptContext_GetVar(ctx);
     u16 contestType = ScriptContext_GetVar(ctx);
-    u16 v4 = ScriptContext_GetVar(ctx);
+    u16 useDefaultContestRank = ScriptContext_GetVar(ctx);
 
-    *pPartyMenu = FieldSystem_OpenPartyMenu_SelectForContest(32, ctx->fieldSystem, contestType, contestRank, v4, selectedPartySlot);
+    *partyMenu = FieldSystem_OpenPartyMenu_SelectForContest(32, ctx->fieldSystem, contestType, contestRank, useDefaultContestRank, selectedPartySlot);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_195(ScriptContext *ctx)
+static BOOL ScrCmd_TryEnterContestMon(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 *selectedSlot = ScriptContext_GetVarPointer(ctx);
+    u16 *menuSelection = ScriptContext_GetVarPointer(ctx);
+    void **partyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    GF_ASSERT(*v0 != 0);
+    GF_ASSERT(*partyMenu != 0);
 
-    *v1 = PartyMenu_GetSelectedSlot(*v0);
+    *selectedSlot = PartyMenu_GetSelectedSlot(*partyMenu);
 
-    if (*v1 == MAX_PARTY_SIZE + 1) {
-        *v1 = 0xff;
+    if (*selectedSlot == MAX_PARTY_SIZE + 1) {
+        *selectedSlot = PARTY_SLOT_NONE;
     }
 
-    *v2 = sub_0203D438(*v0);
+    *menuSelection = PartyMenu_GetMenuSelectionResult(*partyMenu);
 
-    if (*v2 == 1) {
-        *v2 = 1;
+    if (*menuSelection == 1) {
+        *menuSelection = 1;
     } else {
-        *v2 = 0;
+        *menuSelection = 0;
     }
 
-    Heap_Free(*v0);
-    *v0 = NULL;
+    Heap_Free(*partyMenu);
+    *partyMenu = NULL;
 
     return FALSE;
 }
 
-static BOOL ScrCmd_196(ScriptContext *ctx)
+static BOOL ScrCmd_SetMonSummary(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    void **monSummary = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 partySlot = ScriptContext_GetVar(ctx);
 
-    *v0 = sub_0203D5C8(32, ctx->fieldSystem, v1);
+    *monSummary = FieldSystem_GetContestMonSummary(32, ctx->fieldSystem, partySlot);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
 }
 
-static BOOL ScrCmd_197(ScriptContext *ctx)
+static BOOL ScrCmd_GetMonPartySlot(ScriptContext *ctx)
 {
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
+    u16 *partySlot = ScriptContext_GetVarPointer(ctx);
+    void **monSummary = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
 
-    GF_ASSERT(*v0 != 0);
+    GF_ASSERT(*monSummary != 0);
 
-    *v1 = sub_0203D440(*v0);
+    *partySlot = PokemonSummary_GetPartySlot(*monSummary);
 
-    Heap_Free(*v0);
-    *v0 = NULL;
+    Heap_Free(*monSummary);
+    *monSummary = NULL;
 
     return FALSE;
 }
@@ -4544,7 +4545,7 @@ static BOOL sub_02042C80(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0C6(ScriptContext *ctx)
+static BOOL ScrCmd_ChangeIntoContestAttire(ScriptContext *ctx)
 {
     ov5_021E0DD4(ctx->task);
     return TRUE;
@@ -7152,10 +7153,10 @@ static BOOL ScrCmd_291(ScriptContext *ctx)
     *v1 = PartyMenu_GetSelectedSlot(*v0);
 
     if (*v1 == MAX_PARTY_SIZE + 1) {
-        *v1 = 0xff;
+        *v1 = PARTY_SLOT_NONE;
     }
 
-    *v2 = sub_0203D438(*v0);
+    *v2 = PartyMenu_GetMenuSelectionResult(*v0);
 
     if (*v2 == 1) {
         *v2 = 1;
@@ -7329,7 +7330,7 @@ static BOOL ScrCmd_2B0(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_2B1(ScriptContext *ctx)
+static BOOL ScrCmd_DestroyNetworkIcon(ScriptContext *ctx)
 {
     NetworkIcon_Destroy();
     return FALSE;

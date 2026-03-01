@@ -5,6 +5,7 @@
 
 #include "constants/heap.h"
 #include "generated/game_records.h"
+#include "generated/pokemon_contest_ranks.h"
 #include "generated/pokemon_contest_types.h"
 #include "generated/trainer_score_events.h"
 
@@ -106,6 +107,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "start_menu.h"
 #include "string_gf.h"
 #include "system_data.h"
 #include "system_flags.h"
@@ -129,7 +131,6 @@
 #include "unk_02098218.h"
 #include "vars_flags.h"
 
-#include "constdata/const_020EA02C.h"
 #include "constdata/const_020EA328.h"
 #include "constdata/const_020EA358.h"
 #include "constdata/const_020F2FCC.h"
@@ -418,16 +419,14 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForDaycare(int param0, FieldSystem *f
     return partyMenu;
 }
 
-int sub_0203D438(void *param0)
+int PartyMenu_GetMenuSelectionResult(PartyMenu *partyMenu)
 {
-    PartyMenu *partyMenu = param0;
     return partyMenu->menuSelectionResult;
 }
 
-int sub_0203D440(void *param0)
+int PokemonSummary_GetPartySlot(PokemonSummary *monSummary)
 {
-    PokemonSummary *v0 = param0;
-    return v0->monIndex;
+    return monSummary->monIndex;
 }
 
 static BOOL sub_0203D444(FieldTask *param0)
@@ -496,17 +495,17 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForUnionRoomBattle(FieldTask *taskMan
     return partyMenu;
 }
 
-PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *fieldSystem, enum PokemonContestType contestType, int contestRank, int param4, int selectedMonSlot)
+PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *fieldSystem, enum PokemonContestType contestType, int contestRank, int useDefaultContestRank, int selectedMonSlot)
 {
     PartyMenu *partyMenu = PartyMenu_New(HEAP_ID_FIELD2, fieldSystem, PARTY_MENU_TYPE_BASIC, PARTY_MENU_MODE_CONTEST);
     partyMenu->selectedMonSlot = selectedMonSlot;
     partyMenu->unk_29 = 2;
     partyMenu->contestType = contestType;
 
-    if (param4 == 0) {
+    if (useDefaultContestRank == FALSE) {
         partyMenu->contestRank = contestRank;
     } else {
-        partyMenu->contestRank = 0;
+        partyMenu->contestRank = CONTEST_RANK_NORMAL;
     }
 
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
@@ -514,27 +513,27 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForContest(int unused, FieldSystem *f
     return partyMenu;
 }
 
-void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
+void *FieldSystem_GetContestMonSummary(int unused, FieldSystem *fieldSystem, int partySlot)
 {
-    PokemonSummary *v0 = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
+    PokemonSummary *monSummary = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PokemonSummary));
 
-    v0->monData = SaveData_GetParty(fieldSystem->saveData);
-    v0->options = SaveData_GetOptions(fieldSystem->saveData);
-    v0->dataType = SUMMARY_DATA_PARTY_MON;
-    v0->monIndex = param2;
-    v0->monMax = Party_GetCurrentCount(v0->monData);
-    v0->move = 0;
-    v0->mode = SUMMARY_MODE_NORMAL;
-    v0->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
-    v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
-    v0->chatotCry = NULL;
+    monSummary->monData = SaveData_GetParty(fieldSystem->saveData);
+    monSummary->options = SaveData_GetOptions(fieldSystem->saveData);
+    monSummary->dataType = SUMMARY_DATA_PARTY_MON;
+    monSummary->monIndex = partySlot;
+    monSummary->monMax = Party_GetCurrentCount(monSummary->monData);
+    monSummary->move = 0;
+    monSummary->mode = SUMMARY_MODE_NORMAL;
+    monSummary->specialRibbons = SaveData_GetRibbons(fieldSystem->saveData);
+    monSummary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
+    monSummary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+    monSummary->chatotCry = NULL;
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA02C);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, v0);
+    PokemonSummaryScreen_FlagVisiblePages(monSummary, ContestMonSummaryPages);
+    PokemonSummaryScreen_SetPlayerProfile(monSummary, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, monSummary);
 
-    return v0;
+    return monSummary;
 }
 
 PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem, int selectedMonSlot)

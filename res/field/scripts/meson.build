@@ -245,7 +245,7 @@ scr_seq_files = files(
     'scripts_fight_area_south_house.s',
     'scripts_unk_0210.s',
     'scripts_common.s',
-    'scripts_contest_registration.s',
+    'scripts_contests.s',
     'scripts_pokemon_center_2f_attendants.s',
     'scripts_oreburgh_mine_b1f.s',
     'scripts_oreburgh_mine_b2f.s',

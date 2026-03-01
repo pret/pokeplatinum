@@ -51,7 +51,7 @@
     ],
     "object_events": [
         {
-            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_0",
+            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_SUPER_CONTEST",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -66,7 +66,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_1",
+            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_LINK_CONTEST",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,7 +81,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_POKECENTER_NURSE_2",
+            "id": "CONTEST_HALL_LOBBY_RECEPTIONIST_PRACTICE_CONTEST",
             "graphics_id": "OBJ_EVENT_GFX_POKECENTER_NURSE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -160,7 +160,7 @@
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0213",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_LOBBY_REPORTER",
             "script": 10156,
             "initial_dir": 2,
             "data": [],
@@ -186,7 +186,7 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_LOBBY_RICH_BOY_9",
+            "id": "CONTEST_HALL_LOBBY_RICH_BOY",
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",

@@ -34,9 +34,9 @@ typedef struct {
     SpriteManager *unk_5C;
     BgConfig *unk_60;
     Window unk_64[2];
-    MessageLoader *unk_84;
+    MessageLoader *danceMessageLoader;
     StringTemplate *unk_88;
-    String *unk_8C;
+    String *danceMessage;
     PaletteData *unk_90;
     UnkStruct_02012744 *unk_94;
     PokemonSpriteData pokemonSpriteDataArray[4];
@@ -45,7 +45,7 @@ typedef struct {
     SysTask *unk_1EC;
     UnkStruct_ov17_0224C9A4 unk_1F0;
     UnkStruct_ov17_0224C384 *unk_1FC;
-    UnkStruct_ov17_0224ABFC unk_200[4];
+    UnkStruct_ov17_0224ABFC unk_200[CONTEST_NUM_PARTICIPANTS];
     UnkStruct_ov17_0224A1EC_sub1 unk_254[4];
     UnkStruct_ov17_0224AE84 unk_290[4][16];
     UnkStruct_ov17_0224B058 unk_910;

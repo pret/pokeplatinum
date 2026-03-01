@@ -1,8 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224F3D8_H
 #define POKEPLATINUM_STRUCT_OV17_0224F3D8_H
 
+#include "constants/contests.h"
+
 typedef struct {
-    void *unk_00[4];
+    void *unk_00[CONTEST_NUM_PARTICIPANTS];
 } UnkStruct_ov17_0224F3D8;
 
 #endif // POKEPLATINUM_STRUCT_OV17_0224F3D8_H

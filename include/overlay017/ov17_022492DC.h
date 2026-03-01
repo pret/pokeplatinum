@@ -10,7 +10,7 @@
 
 void ov17_02249300(BgConfig *param0);
 void ov17_02249358(BgConfig *param0);
-void *ov17_02249380(UnkStruct_02095C48 *param0, UnkStruct_ov17_0224A1EC *param1);
+void *ov17_02249380(SuperContest *param0, UnkStruct_ov17_0224A1EC *param1);
 void ov17_022493A4(UnkStruct_ov17_022492DC *param0);
 void ov17_022493C4(UnkStruct_ov17_022492DC *param0);
 void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void *param3);

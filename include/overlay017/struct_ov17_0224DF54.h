@@ -20,7 +20,7 @@
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov17_0224DF54_t {
-    UnkStruct_02095C48 *unk_00;
+    SuperContest *unk_00;
     SysTask *unk_04;
     SysTask *unk_08;
     ParticleSystem *unk_0C;

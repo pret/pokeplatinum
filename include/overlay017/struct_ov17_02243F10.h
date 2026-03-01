@@ -10,7 +10,7 @@ typedef struct {
     s32 unk_0C;
     s32 unk_10;
     u8 unk_14;
-    u8 unk_15;
+    u8 contestantID;
     u8 unk_16;
     s16 unk_18;
 } UnkStruct_ov17_02243F10;

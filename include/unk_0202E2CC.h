@@ -5,7 +5,6 @@
 #include "struct_decls/struct_0202E4D4_decl.h"
 #include "struct_decls/struct_0202E768_decl.h"
 #include "struct_decls/struct_0202E794_decl.h"
-#include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
 #include "struct_defs/struct_0202E7FC.h"
@@ -14,6 +13,7 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
+#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
 
 int TVBroadcast_SaveSize(void);
 void TVBroadcast_Init(TVBroadcast *broadcast);
@@ -40,7 +40,7 @@ UnkStruct_0202E768 *sub_0202E768(TVBroadcast *broadcast, int param1, int param2)
 UnkStruct_0202E794 *sub_0202E794(TVBroadcast *broadcast, int param1, int param2);
 BOOL sub_0202E7C0(int param0);
 int sub_0202E7D0(int param0);
-UnkStruct_0202E7D8 *sub_0202E7D8(TVBroadcast *broadcast);
+TVEpisodeSegment_ContestHall_ShowcasedPokemon *TVBroadcast_GetShowcasedPokemon(TVBroadcast *broadcast);
 UnkStruct_0202E7E4 *sub_0202E7E4(TVBroadcast *broadcast);
 UnkStruct_0202E7F0 *sub_0202E7F0(TVBroadcast *broadcast);
 UnkStruct_0202E7FC *sub_0202E7FC(TVBroadcast *broadcast);

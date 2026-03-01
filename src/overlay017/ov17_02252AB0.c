@@ -87,14 +87,14 @@ void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0)
     Heap_Free(param0);
 }
 
-void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, fx32 param9)
+void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int touchScreenRectLeft1, int touchScreenRectTop1, int touchScreenRectRight1, int touchScreenRectTop2, int touchScreenRectLeft2, int touchScreenRectBottom1, int touchScreenRectRight2, int touchScreenRectBottom2, fx32 param9)
 {
     int v0;
 
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[0], param1, param2, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[1], param3, param4, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[2], param5, param6, param9);
-    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[3], param7, param8, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[0], touchScreenRectLeft1, touchScreenRectTop1, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[1], touchScreenRectRight1, touchScreenRectTop2, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[2], touchScreenRectLeft2, touchScreenRectBottom1, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[3], touchScreenRectRight2, touchScreenRectBottom2, param9);
 
     ManagedSprite_SetAnim(param0->unk_00[0], 0);
     ManagedSprite_SetAnim(param0->unk_00[1], 1);
@@ -106,17 +106,15 @@ void ov17_02252BF0(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int 
     }
 }
 
-void ov17_02252C78(UnkStruct_ov17_02252B48 *param0, int param1, int param2, int param3, int param4, fx32 param5)
+void ov17_02252C78(UnkStruct_ov17_02252B48 *param0, int touchScreenRectLeft, int touchScreenRectRight, int touchScreenRectTop, int touchScreenRectBottom, fx32 param5)
 {
-    ov17_02252BF0(param0, param1, param3, param2, param3, param1, param4, param2, param4, param5);
+    ov17_02252BF0(param0, touchScreenRectLeft, touchScreenRectTop, touchScreenRectRight, touchScreenRectTop, touchScreenRectLeft, touchScreenRectBottom, touchScreenRectRight, touchScreenRectBottom, param5);
 }
 
 void ov17_02252C9C(UnkStruct_ov17_02252B48 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 5; v0++) {
-        ManagedSprite_SetDrawFlag(param0->unk_00[v0], 0);
+    for (int i = 0; i < 5; i++) {
+        ManagedSprite_SetDrawFlag(param0->unk_00[i], FALSE);
     }
 }
 

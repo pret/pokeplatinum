@@ -11,20 +11,20 @@
 #include "string_gf.h"
 
 void ov6_022489E4(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248A64(UnkStruct_02095C48 *param0);
+BOOL ov6_02248A64(SuperContest *param0);
 void ov6_02248AC8(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248AF0(UnkStruct_02095C48 *param0, int param1, const Pokemon *param2);
+BOOL ov6_02248AF0(SuperContest *param0, int param1, const Pokemon *param2);
 void ov6_02248B30(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248B70(UnkStruct_02095C48 *param0, Pokemon **param1);
+BOOL ov6_02248B70(SuperContest *param0, Pokemon **param1);
 void ov6_02248BC0(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248BE8(UnkStruct_02095C48 *param0, int param1, const UnkStruct_ov6_02248BE8 *param2);
+BOOL ov6_02248BE8(SuperContest *param0, int param1, const UnkStruct_ov6_02248BE8 *param2);
 void ov6_02248C28(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248C68(UnkStruct_02095C48 *param0, int param1, const UnkStruct_020954F0 *param2);
+BOOL ov6_02248C68(SuperContest *param0, int param1, const UnkStruct_020954F0 *param2);
 void ov6_02248CBC(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248CE8(UnkStruct_02095C48 *param0, int param1, const String *param2);
+BOOL ov6_02248CE8(SuperContest *param0, int param1, const String *param2);
 void ov6_02248D38(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248D64(UnkStruct_02095C48 *param0, int param1, void *param2);
+BOOL ov6_02248D64(SuperContest *param0, int param1, void *param2);
 void ov6_02248DA0(int param0, int param1, void *param2, void *param3);
-BOOL ov6_02248DD8(UnkStruct_02095C48 *param0, int param1, const UnkStruct_ov6_02248DD8 *param2);
+BOOL ov6_02248DD8(SuperContest *param0, int param1, const UnkStruct_ov6_02248DD8 *param2);
 
 #endif // POKEPLATINUM_OV6_022489E4_H

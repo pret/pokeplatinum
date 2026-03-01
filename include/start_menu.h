@@ -7,6 +7,8 @@
 
 #include "field_task.h"
 
+extern const u8 ContestMonSummaryPages[];
+
 BOOL sub_0203A9C8(FieldSystem *fieldSystem);
 void StartMenu_Init(struct FieldSystem_t *fieldSystem);
 void sub_0203AA78(struct FieldSystem_t *fieldSystem);

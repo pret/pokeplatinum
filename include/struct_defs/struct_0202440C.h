@@ -5,7 +5,6 @@
 
 #include "struct_defs/struct_0202E768.h"
 #include "struct_defs/struct_0202E794.h"
-#include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
 #include "struct_defs/struct_0202E7FC.h"
@@ -14,6 +13,7 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
+#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
 
 #define TV_BROADCAST_MAX_PLAYED_SEGMENTS 4
 
@@ -27,7 +27,7 @@ typedef struct TVBroadcast {
     UnkStruct_0202E794 unk_234[16];
     UnkStruct_0202E794 unk_684[8];
     UnkStruct_0202E794 unk_8AC[8];
-    UnkStruct_0202E7D8 unk_AD4;
+    TVEpisodeSegment_ContestHall_ShowcasedPokemon showcasedPokemon;
     UnkStruct_0202E7E4 unk_ADE;
     UnkStruct_0202E7F0 unk_B02;
     UnkStruct_0202E7FC unk_B04;
