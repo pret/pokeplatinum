@@ -351,12 +351,12 @@ static BOOL State_InitDeletePoffinConfirm(PoffinManager *app)
 static BOOL State_ConfirmDeletePoffin(PoffinManager *app)
 {
     switch (Menu_ProcessInputAndHandleExit(app->yesNoMenu, app->heapID)) {
-    case 0:
+    case MENU_YES:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         PoffinManager_ShowThrownOutMessage(app);
         app->state = STATE_DELETE_POFFIN;
         return FALSE;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         Window_EraseMessageBox(&app->windows[2], FALSE);
         app->state = STATE_INIT_ACTION_MENU;

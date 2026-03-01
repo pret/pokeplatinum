@@ -772,7 +772,7 @@ static int ov94_0224208C(GTSApplicationState *appState)
     int input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
     if (input != MENU_NOTHING_CHOSEN) {
-        if (input == MENU_CANCELED) {
+        if (input == MENU_CANCEL) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
             appState->currentScreenInstruction = 2;
         } else {

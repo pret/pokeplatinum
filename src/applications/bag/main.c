@@ -2031,7 +2031,7 @@ static int ProcessMenuInput_SelectAction(BagController *controller)
             RotateDial(controller, -18);
         }
     } break;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
         BagUI_CloseItemActionsMenu(controller);
 
@@ -2202,12 +2202,12 @@ static int TMHMUseTask(BagController *controller)
         }
 
         switch (selected) {
-        case 0:
+        case MENU_YES:
             App_StartScreenFade(TRUE, HEAP_ID_BAG);
             ToggleHideItemSprite(controller, FALSE);
             controller->bagCtx->exitCode = BAG_EXIT_CODE_USE_ITEM;
             return BAG_APP_STATE_EXIT;
-        case MENU_NOTHING_CHOSEN: {
+        case MENU_NOTHING_CHOSEN:
             u8 action = Menu_GetLastAction(controller->menu);
 
             if (action == MENU_ACTION_MOVE_UP) {
@@ -2215,8 +2215,8 @@ static int TMHMUseTask(BagController *controller)
             } else if (action == MENU_ACTION_MOVE_DOWN) {
                 RotateDial(controller, -18);
             }
-        } break;
-        case MENU_CANCELED:
+            break;
+        case MENU_CANCEL:
             Window_EraseMessageBox(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
             Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
             BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
@@ -2419,7 +2419,7 @@ static int ProcessMenuInput_ConfirmTrash(BagController *controller)
     }
 
     switch (selectedOption) {
-    case 0: {
+    case MENU_YES:
         String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ThrewAwayItem);
 
         if (controller->selectedItemCount == 1) {
@@ -2431,12 +2431,12 @@ static int ProcessMenuInput_ConfirmTrash(BagController *controller)
         StringTemplate_SetNumber(controller->strTemplate, 1, controller->selectedItemCount, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(controller->strTemplate, controller->stringBuffer, string);
         String_Free(string);
-    }
+
         Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
         controller->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(controller);
         return BAG_APP_STATE_RESOLVE_TRASH;
 
-    case MENU_NOTHING_CHOSEN: {
+    case MENU_NOTHING_CHOSEN:
         u8 action = Menu_GetLastAction(controller->menu);
 
         if (action == MENU_ACTION_MOVE_UP) {
@@ -2444,8 +2444,8 @@ static int ProcessMenuInput_ConfirmTrash(BagController *controller)
         } else if (action == MENU_ACTION_MOVE_DOWN) {
             RotateDial(controller, -18);
         }
-    } break;
-    case MENU_CANCELED:
+        break;
+    case MENU_CANCEL:
         Window_EraseMessageBox(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);
         Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
         BagUI_SetHighlightSpritesPalette(controller, PLTT_1);
@@ -2757,7 +2757,7 @@ static int ProcessMenuInput_ConfirmSale(BagController *interface)
     }
 
     switch (selected) {
-    case 0: {
+    case MENU_YES:
         String *string = MessageLoader_GetNewString(interface->bagStringsLoader, Bag_Text_TurnedOverItems);
 
         if (interface->selectedItemCount > 1) {
@@ -2769,11 +2769,11 @@ static int ProcessMenuInput_ConfirmSale(BagController *interface)
         StringTemplate_SetNumber(interface->strTemplate, 1, interface->selectedItemCount * interface->soldItemPrice, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
         StringTemplate_Format(interface->strTemplate, interface->stringBuffer, string);
         String_Free(string);
-    }
+
         Window_FillTilemap(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);
         interface->msgBoxPrinterID = BagUI_PrintStrBufferToWideMsgBox(interface);
         return BAG_APP_STATE_RESOLVE_SALE;
-    case MENU_NOTHING_CHOSEN: {
+    case MENU_NOTHING_CHOSEN:
         u8 action = Menu_GetLastAction(interface->menu);
 
         if (action == MENU_ACTION_MOVE_UP) {
@@ -2781,8 +2781,8 @@ static int ProcessMenuInput_ConfirmSale(BagController *interface)
         } else if (action == MENU_ACTION_MOVE_DOWN) {
             RotateDial(interface, -18);
         }
-    } break;
-    case MENU_CANCELED:
+        break;
+    case MENU_CANCEL:
         interface->soldItemPrice = 0;
         Window_EraseStandardFrame(&interface->windows[BAG_UI_WINDOW_MONEY], TRUE);
         Window_EraseMessageBox(&interface->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], FALSE);

@@ -317,7 +317,7 @@ static void UndergroundVendors_PrintItemDescriptionAndBuyPrice(ListMenu *listMen
     Window_ScheduleCopyToVRAM(&menu->secondaryWindow);
 
     // make sure we have the right type of -2
-    if (index == MENU_CANCELED) {
+    if (index == MENU_CANCEL) {
         index = LIST_CANCEL;
     }
 
@@ -703,7 +703,7 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
         }
 
         // make sure we have the right type of -2
-        if (input == MENU_CANCELED) {
+        if (input == MENU_CANCEL) {
             input = LIST_CANCEL;
         }
 
@@ -881,9 +881,9 @@ static void UndergroundVendors_ShopMenuTask(SysTask *sysTask, void *data)
     case SHOP_MENU_STATE_CONFIRM_SELL:
         input = Menu_ProcessInputAndHandleExit(menu->yesNoMenu, HEAP_ID_FIELD1);
 
-        if (input == LIST_NOTHING_CHOSEN) {
+        if (input == MENU_NOTHING_CHOSEN) {
             return;
-        } else if (input == 0) {
+        } else if (input == MENU_YES) {
             int result = UndergroundVendors_TrySellItem(menu);
 
             if (result == RESULT_BAG_FULL) {

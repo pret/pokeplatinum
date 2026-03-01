@@ -935,7 +935,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
     case EXIT_PROMPT_STATE_CONFIRM:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             ctx->state = EXIT_PROMPT_STATE_EXIT_AND_END;
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -952,7 +952,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
     case EXIT_PROMPT_STATE_CONFIRM_DOOR_CLOSED:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             UndergroundTextPrinter_PrintText(UndergroundMan_GetCommonTextPrinter(), UndergroundCommon_Text_CommsWillBeLaunched, FALSE, NULL);
             ctx->state = EXIT_PROMPT_STATE_OPEN_COMMS_CONFIRM_MENU;
@@ -970,7 +970,7 @@ static void SecretBases_ExitBasePromptTask(SysTask *sysTask, void *data)
     case EXIT_PROMPT_STATE_CONFIRM_COMMS:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             ctx->state = EXIT_PROMPT_STATE_EXIT_AND_END;
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -1134,7 +1134,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
     case ENTER_PROMPT_STATE_CONFIRM_OTHER_BASE:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
             ctx->state = ENTER_PROMPT_STATE_ENTER_AFTER_TEXT;
         } else if (input != MENU_NOTHING_CHOSEN) {
@@ -1156,7 +1156,7 @@ static void SecretBases_EnterBasePromptTask(SysTask *sysTask, void *data)
     case ENTER_PROMPT_STATE_CONFIRM_OWN_BASE:
         input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->menu = NULL;
 
             if (UndergroundPlayer_IsHoldingFlag(ctx->baseOwnerNetID) || (SecretBases_CountPlayersInBase(ctx->baseOwnerNetID, 0) > 0)) {
@@ -1861,7 +1861,7 @@ static void SecretBases_DiggerDrillTask(SysTask *sysTask, void *data)
     case DRILL_STATE_CONFIRM:
         u32 input = Menu_ProcessInputAndHandleExit(ctx->menu, HEAP_ID_FIELD1);
 
-        if (input == 0) {
+        if (input == MENU_YES) {
             ctx->state = DRILL_STATE_REMOVE_DRILL;
             ctx->menu = NULL;
         } else if (input != MENU_NOTHING_CHOSEN) {

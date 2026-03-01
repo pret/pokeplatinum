@@ -348,9 +348,9 @@ static void MenuSysTaskCallback(SysTask *task, void *data)
         switch (selectedEntry) {
         case MENU_NOTHING_CHOSEN:
             break;
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             if (menuManager->canExitWithB == TRUE) {
-                *menuManager->selectedOptionPtr = MENU_CANCELED;
+                *menuManager->selectedOptionPtr = MENU_CANCEL;
                 FreeManagerWithMenu(data);
             }
             break;
@@ -614,7 +614,7 @@ void FrontierMenuManager_FreeListMenu(FrontierMenuManager *menuManager)
         return;
     }
 
-    *menuManager->selectedOptionPtr = MENU_CANCELED;
+    *menuManager->selectedOptionPtr = MENU_CANCEL;
     FreeManagerWithListMenu(menuManager, FALSE);
 }
 

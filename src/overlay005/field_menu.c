@@ -237,9 +237,9 @@ static void MenuSysTaskCallback(SysTask *sysTask, void *param)
     switch (selectedEntry) {
     case MENU_NOTHING_CHOSEN:
         break;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         if (menuManager->canExitWithB == TRUE) {
-            *menuManager->selectedOptionPtr = MENU_CANCELED;
+            *menuManager->selectedOptionPtr = MENU_CANCEL;
             FieldMenuManager_DeleteWithMenu(menuManager);
         }
         break;

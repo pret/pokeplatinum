@@ -1129,7 +1129,7 @@ static void Mining_ConfirmStartMiningTask(SysTask *sysTask, void *unused)
         u8 confirmResult;
         if (input == MENU_NOTHING_CHOSEN) {
             return;
-        } else if (input == 0) {
+        } else if (input == MENU_YES) {
             confirmResult = TRUE;
         } else {
             confirmResult = FALSE;

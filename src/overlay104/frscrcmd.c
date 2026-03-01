@@ -952,7 +952,7 @@ static BOOL WaitForYesNoResult(FrontierScriptContext *ctx)
     if (result == MENU_NOTHING_CHOSEN) {
         return FALSE;
     }
-    if (result == 0) {
+    if (result == MENU_YES) {
         *destVar = MENU_YES;
     } else {
         *destVar = MENU_NO;

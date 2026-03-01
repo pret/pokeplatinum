@@ -333,7 +333,7 @@ static int GTSApplication_WFCInit_ProcessSetupConfirmation(GTSApplicationState *
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
-        if (menuInput == MENU_CANCELED) {
+        if (menuInput == MENU_CANCEL) {
             sub_0203848C(); // free the network lock?
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_WFC_INIT, SCREEN_ARGUMENT_0);
             appState->currentScreenInstruction = 11;
@@ -360,7 +360,7 @@ static int GTSApplication_WFCInit_RestartOrExit(GTSApplicationState *appState)
     int menuInput = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
     if (menuInput != MENU_NOTHING_CHOSEN) {
-        if (menuInput == MENU_CANCELED) {
+        if (menuInput == MENU_CANCEL) {
             if (!DWC_CheckInet()) {
                 appState->currentScreenInstruction = 0;
             } else {

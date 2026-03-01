@@ -5,7 +5,6 @@
 
 #include "constants/accessories.h"
 #include "constants/field/window.h"
-#include "constants/scrcmd.h"
 
 #include "overlay007/shop_menu.h"
 
@@ -212,7 +211,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
 
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
             shop->nextState = ACCESSORY_SHOP_STATE_CONFIRM_PURCHASE;
-        } else if (input == MENU_CANCELED) {
+        } else if (input == MENU_CANCEL) {
             AccessoryShop_DeleteYesNoChoice(&shop->yesNoChoice);
             shop->state = ACCESSORY_SHOP_STATE_LOAD_BUY_MSG;
         }

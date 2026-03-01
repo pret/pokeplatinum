@@ -502,7 +502,7 @@ static BOOL UndergroundPC_HandleStoreGoodsMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_STORE_GOODS, cursorPos, listPos);
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
+    if (input == MENU_CANCEL) {
         input = LIST_CANCEL;
     }
 
@@ -544,7 +544,7 @@ static BOOL UndergroundPC_HandleWithdrawGoodsMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS, cursorPos, listPos);
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
+    if (input == MENU_CANCEL) {
         input = LIST_CANCEL;
     }
 
@@ -874,7 +874,7 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
 
         if (input == MENU_NOTHING_CHOSEN) {
             return;
-        } else if (input == 0) {
+        } else if (input == MENU_YES) {
             CommSys_SendDataFixedSize(89, &ctx->pcInteraction);
         } else {
             CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_LINK_PC);

@@ -549,7 +549,7 @@ static void UndergroundTalk_HandleGiftConfirmMenu(SysTask *unused, TalkMenu *men
         return;
     }
 
-    if (input == 0) {
+    if (input == MENU_YES) {
         menu->sentGift.recipientNetID = menu->linkNetID;
         CommSys_SendDataFixedSize(77, &menu->sentGift);
         menu->state = TALK_MENU_STATE_GIFT_OFFERED;
@@ -937,7 +937,7 @@ static void UndergroundTalkResponse_HandleConfirmTrainerCaseMenu(SysTask *unused
         return;
     }
 
-    if (input == 0) {
+    if (input == MENU_YES) {
         UndergroundTalkResponse_RequestLinkTalkStateUpdate(menu, TALK_MENU_STATE_START_CASE_EXCHANGE);
         UndergroundRecords_SendRecord(menu->linkNetID);
         menu->state = RESPONSE_MENU_STATE_START_CASE_EXCHANGE;
@@ -957,7 +957,7 @@ static void UndergroundTalkResponse_HandleAcceptGiftMenu(SysTask *unused, Respon
         return;
     }
 
-    if (input == 0) {
+    if (input == MENU_YES) {
         if (UndergroundInventory_TryAddGoodBag(menu->receivedGift.goodID)) {
             UndergroundRecord_IncrementGiftsReceived(SaveData_GetUndergroundRecord(FieldSystem_GetSaveData(menu->fieldSystem)));
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);

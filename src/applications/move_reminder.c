@@ -916,7 +916,7 @@ static int MoveReminder_State_DrawYesNoMenu(MoveReminderController *controller)
 static int MoveReminder_State_ProcessYesNoInput(MoveReminderController *controller)
 {
     switch (Menu_ProcessInputAndHandleExit(controller->yesNoMenu, HEAP_ID_MOVE_REMINDER)) {
-    case 0:
+    case MENU_YES:
         return sYesNoCallbacks[controller->yesNoCallback].yesCallback(controller);
     case LIST_CANCEL:
         return sYesNoCallbacks[controller->yesNoCallback].noCallback(controller);

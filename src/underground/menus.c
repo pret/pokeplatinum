@@ -654,7 +654,7 @@ static BOOL UndergroundMenu_HandleStartMenu(SysTask *sysTask, void *data)
     UndergroundMenu_TryTransitionIconAnimationToWiggle(menu->sprites[menu->menuCursorPos + 1]->sprite);
 
     if (CommSys_CheckError()) {
-        menu->startMenuInput = MENU_CANCELED;
+        menu->startMenuInput = MENU_CANCEL;
     }
 
     switch (menu->startMenuInput) {
@@ -662,7 +662,7 @@ static BOOL UndergroundMenu_HandleStartMenu(SysTask *sysTask, void *data)
         UndergroundMenu_AnimateSprites(menu);
         SpriteList_Update(menu->spriteManager.spriteList);
         return FALSE;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         menu->state = UNDERGROUND_MENU_STATE_CLOSE;
         break;
     default:
@@ -903,7 +903,7 @@ static BOOL UndergroundMenu_HandleTrapsMenu(SysTask *sysTask, void *data)
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
+    if (input == MENU_CANCEL) {
         input = LIST_CANCEL;
     }
 
@@ -1088,7 +1088,7 @@ static BOOL UndergroundMenu_HandleSpheresMenu(SysTask *sysTask, void *data)
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
+    if (input == MENU_CANCEL) {
         input = LIST_CANCEL;
     }
 
@@ -1252,7 +1252,7 @@ static BOOL UndergroundMenu_HandleTreasuresMenu(SysTask *sysTask, void *data)
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
+    if (input == MENU_CANCEL) {
         input = LIST_CANCEL;
     }
 
@@ -1380,7 +1380,7 @@ static void UndergroundMenu_CheckForReturnYesNo(SysTask *sysTask, void *data)
 
     if (result == MENU_NOTHING_CHOSEN) {
         return;
-    } else if (result == 0) {
+    } else if (result == MENU_YES) {
         menu->state = UNDERGROUND_MENU_STATE_RETURN_TO_SURFACE;
     } else {
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
@@ -1438,7 +1438,7 @@ static void UndergroundMenu_CheckForThrowAwayYesNo(UndergroundMenu *menu)
 
     if (input == MENU_NOTHING_CHOSEN) {
         return;
-    } else if (input == 0) {
+    } else if (input == MENU_YES) {
         menu->state = UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED;
     } else {
         menu->state = UNDERGROUND_MENU_STATE_CLOSE;
@@ -1639,7 +1639,7 @@ static BOOL UndergroundMenu_HandleGoodsMenu(SysTask *sysTask, void *data)
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
+    if (input == MENU_CANCEL) {
         input = LIST_CANCEL;
     }
 
@@ -1774,7 +1774,7 @@ static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *data)
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
+    if (input == MENU_CANCEL) {
         input = LIST_CANCEL;
     }
 

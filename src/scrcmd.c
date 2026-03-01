@@ -2619,7 +2619,7 @@ static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx)
         return FALSE;
     }
 
-    if (result == 0) {
+    if (result == MENU_YES) {
         *destVar = MENU_YES;
     } else {
         *destVar = MENU_NO;
