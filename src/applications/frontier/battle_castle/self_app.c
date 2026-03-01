@@ -755,9 +755,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMonOptions(app);
             PrintMonSelectionStrings(app);
             app->subState = MAIN_SUBSTATE_SELECT_MON;
@@ -816,9 +816,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
             FreeListMenu2(app);
             OpenMonOptionsMenu(app);
@@ -996,9 +996,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
             FreeListMenu3(app);
             OpenMonOptionsMenu(app);
@@ -1052,9 +1052,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             FreeItemSelect(app);
             OpenRentalMenu(app);
             app->subState = MAIN_SUBSTATE_RENTAL_MENU;

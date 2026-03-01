@@ -1,13 +1,11 @@
 #ifndef POKEPLATINUM_LIST_MENU_H
 #define POKEPLATINUM_LIST_MENU_H
 
+#include "constants/menu.h"
+
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "string_list.h"
-
-#define LIST_NOTHING_CHOSEN -1
-#define LIST_CANCEL         -2
-#define LIST_HEADER         -3
 
 #define LIST_MENU_NO_SELECTION_YET 0xEEEE // Only used outside of list_menu, as a placeholder for before the player makes a choice
 

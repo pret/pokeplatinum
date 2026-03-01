@@ -381,21 +381,21 @@ static void Shop_InitContextMenu(ShopMenu *shopMenu)
 
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00015, SHOP_STATE_INIT_CAMERA);
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00016, 14);
-        StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00017, LIST_CANCEL);
+        StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00017, MENU_CANCEL);
         Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 1, 1, 13, 6, FIELD_MESSAGE_PALETTE_INDEX, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6));
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         maxOptions = 2;
         shopMenu->optionsList = StringList_New(maxOptions, HEAP_ID_FIELD2);
 
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00029, SHOP_STATE_INIT_CAMERA);
-        StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00030, LIST_CANCEL);
+        StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00030, MENU_CANCEL);
         Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 23, 13, 7, 4, FIELD_MESSAGE_PALETTE_INDEX, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6));
     } else {
         maxOptions = 2;
         shopMenu->optionsList = StringList_New(maxOptions, HEAP_ID_FIELD2);
 
         StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00015, SHOP_STATE_INIT_CAMERA);
-        StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00017, LIST_CANCEL);
+        StringList_AddFromMessageBank(shopMenu->optionsList, shopMenu->msgLoader, pl_msg_00000543_00017, MENU_CANCEL);
         Window_Add(shopMenu->bgConfig, &shopMenu->windows[0], BG_LAYER_MAIN_3, 1, 1, 13, 4, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6));
     }
 
@@ -667,9 +667,9 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
     }
 
     if (isTMShop) {
-        StringList_AddFromMessageBank(shopMenu->itemsList, shopMenu->msgLoader, pl_msg_00000543_00026, LIST_CANCEL);
+        StringList_AddFromMessageBank(shopMenu->itemsList, shopMenu->msgLoader, pl_msg_00000543_00026, MENU_CANCEL);
     } else {
-        StringList_AddFromMessageBank(shopMenu->itemsList, shopMenu->msgLoader, pl_msg_00000543_00008, LIST_CANCEL);
+        StringList_AddFromMessageBank(shopMenu->itemsList, shopMenu->msgLoader, pl_msg_00000543_00008, MENU_CANCEL);
     }
 
     MessageLoader_Free(itemNames);

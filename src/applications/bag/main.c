@@ -331,7 +331,7 @@ static const u32 sItemActionFuncs[] = {
     [ITEM_ACTION_GIVE] = (u32)ItemActionFunc_Give,
     [ITEM_ACTION_CHECK_TAG] = (u32)ItemActionFunc_CheckTag,
     [ITEM_ACTION_CONFIRM] = (u32)ItemActionFunc_Confirm,
-    [ITEM_ACTION_CANCEL] = LIST_CANCEL
+    [ITEM_ACTION_CANCEL] = MENU_CANCEL
 };
 
 // clang-format off
@@ -972,7 +972,7 @@ static void LoadCurrentPocketItemNames(BagController *controller)
             StringList_AddFromString(controller->itemListEntries, controller->itemNames[i], i);
         }
 
-        StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_Empty, LIST_CANCEL);
+        StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_Empty, MENU_CANCEL);
         StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_Empty, ITEM_LIST_EMPTY_ENTRY);
 
         pocket->listEntryCount = i + 3;
@@ -989,9 +989,9 @@ static void LoadCurrentPocketItemNames(BagController *controller)
 
         if (controller->bagCtx->mode != BAG_MODE_POFFIN_MULTIPLAYER) {
             if (pocket->pocketType == POCKET_BERRIES) {
-                StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_Empty, LIST_CANCEL); // The game has some logic to print the close bag message instead of the empty string in this case
+                StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_Empty, MENU_CANCEL); // The game has some logic to print the close bag message instead of the empty string in this case
             } else {
-                StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_CloseBag, LIST_CANCEL);
+                StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_CloseBag, MENU_CANCEL);
             }
 
             StringList_AddFromMessageBank(controller->itemListEntries, controller->bagStringsLoader, Bag_Text_Empty, ITEM_LIST_EMPTY_ENTRY);
@@ -1113,7 +1113,7 @@ static void ItemListMenuCursorCB(ListMenu *menu, u32 index, u8 onInit)
 
     Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION], 0);
 
-    if (index != LIST_CANCEL) {
+    if (index != MENU_CANCEL) {
         BagApplicationPocket *pocket;
 
         pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
@@ -1141,25 +1141,25 @@ static void ItemListMenuPrintCB(ListMenu *menu, u32 index, u8 yOffset)
     }
 
     if (pocket->pocketType == POCKET_KEY_ITEMS) {
-        if (index != ITEM_LIST_EMPTY_ENTRY && index != LIST_CANCEL) {
+        if (index != ITEM_LIST_EMPTY_ENTRY && index != MENU_CANCEL) {
             if (Bag_GetRegisteredItem(controller->bag) == pocket->items[index].item) {
                 BagUI_DrawRegisteredIcon(controller, yOffset);
             }
         }
     } else if (pocket->pocketType == POCKET_TMHMS) {
-        if (index == LIST_CANCEL) {
+        if (index == MENU_CANCEL) {
             BagUI_PrintCloseBagEntry(controller, yOffset);
         } else if (index != ITEM_LIST_EMPTY_ENTRY) {
             BagUI_PrintTMHMNumber(controller, &pocket->items[index], yOffset);
         }
     } else if (pocket->pocketType == POCKET_BERRIES) {
-        if (index == LIST_CANCEL) {
+        if (index == MENU_CANCEL) {
             BagUI_PrintCloseBagEntry(controller, yOffset);
         } else if (index != ITEM_LIST_EMPTY_ENTRY) {
             BagUI_PrintBerryNumber(controller, &pocket->items[index], yOffset);
         }
     } else {
-        if (index != ITEM_LIST_EMPTY_ENTRY && index != LIST_CANCEL) {
+        if (index != ITEM_LIST_EMPTY_ENTRY && index != MENU_CANCEL) {
             if (controller->isMovingItem == 1 && controller->movedItemID == index) {
                 BagUI_PrintItemCount(controller, pocket->items[index].quantity, yOffset, TEXT_COLOR(8, 9, 0));
             } else {
@@ -1240,7 +1240,7 @@ static u8 ProcessItemListMenuInput(BagController *interface)
     pocket->cursorScroll = newCursorScroll;
     pocket->cursorPos = newCursorPos;
 
-    if (selectedItem == LIST_NOTHING_CHOSEN) {
+    if (selectedItem == MENU_NOTHING_CHOSEN) {
         if (CheckDialButtonPressed(interface) == TRUE) {
             selectedItem = ListMenu_GetIndexOfChoice(interface->itemList, newCursorScroll + newCursorPos);
             interface->dialButtonAnimStep = 1;
@@ -1248,7 +1248,7 @@ static u8 ProcessItemListMenuInput(BagController *interface)
     }
 
     switch (selectedItem) {
-    case LIST_NOTHING_CHOSEN: {
+    case MENU_NOTHING_CHOSEN: {
         u8 lastAction = ListMenu_GetLastAction(interface->itemList);
 
         if (lastAction == LIST_MENU_ACTION_MOVE_UP) {
@@ -1257,7 +1257,7 @@ static u8 ProcessItemListMenuInput(BagController *interface)
             RotateDial(interface, -36);
         }
     } break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         if (interface->bagCtx->mode == BAG_MODE_POFFIN_MULTIPLAYER) {
             return ITEM_LIST_INPUT_NONE;
         }
@@ -1784,7 +1784,7 @@ static u8 CanMoveSelectedEntry(BagController *controller)
 {
     BagApplicationPocket *pocket = &controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx];
 
-    if (ListMenu_GetIndexOfChoice(controller->itemList, pocket->cursorScroll + pocket->cursorPos) == LIST_CANCEL) {
+    if (ListMenu_GetIndexOfChoice(controller->itemList, pocket->cursorScroll + pocket->cursorPos) == MENU_CANCEL) {
         return FALSE;
     }
 
@@ -1848,7 +1848,7 @@ static u8 ProcessItemListInput_MovingItem(BagController *controller)
     pocket->cursorPos = cursorPos;
 
     switch (selectedItem) {
-    case LIST_NOTHING_CHOSEN: {
+    case MENU_NOTHING_CHOSEN: {
         u8 lastAction = ListMenu_GetLastAction(controller->itemList);
 
         if (lastAction == LIST_MENU_ACTION_MOVE_UP) {
@@ -1857,7 +1857,7 @@ static u8 ProcessItemListInput_MovingItem(BagController *controller)
             RotateDial(controller, -36);
         }
     } break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {

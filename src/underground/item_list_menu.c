@@ -88,11 +88,11 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (listPos + cursorPos == count - 1) {
-                    return LIST_NOTHING_CHOSEN;
+                    return MENU_NOTHING_CHOSEN;
                 }
 
                 if (listPos + cursorPos == menu->initialListPos + menu->initialCursorPos) {
-                    return LIST_NOTHING_CHOSEN;
+                    return MENU_NOTHING_CHOSEN;
                 }
 
                 menu->moveItemCallback(menu->underground, menu->initialListPos + menu->initialCursorPos, listPos + cursorPos);
@@ -133,14 +133,14 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
                 menu->movingItems = FALSE;
 
                 ListMenu_Draw(listMenu);
-                return LIST_NOTHING_CHOSEN;
+                return MENU_NOTHING_CHOSEN;
             }
         } else {
             if (JOY_NEW(PAD_BUTTON_SELECT)) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (listPos + cursorPos == count - 1) {
-                    return LIST_NOTHING_CHOSEN;
+                    return MENU_NOTHING_CHOSEN;
                 }
 
                 menu->initialListPos = listPos;
@@ -149,7 +149,7 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
                 menu->cursorPos = cursorPos;
                 menu->movingItems = TRUE;
 
-                return LIST_NOTHING_CHOSEN;
+                return MENU_NOTHING_CHOSEN;
             }
         }
     }
@@ -164,9 +164,9 @@ u32 UndergroundItemListMenu_ProcessInput(UndergroundItemListMenu *menu)
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     default:

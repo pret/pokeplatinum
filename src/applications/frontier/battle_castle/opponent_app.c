@@ -559,9 +559,9 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseListMenu(app);
             PrintMonSelectionStrings(app);
             app->subState = MAIN_SUBSTATE_INIT;
@@ -741,9 +741,9 @@ static BOOL State_MainAppFlow(BattleCastleOpponentApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMessageBox(&app->windows[OPPONENT_APP_WINDOW_MSG_BOX]);
             FreeListMenu2(app);
             OpenMonOptionsMenu(app);

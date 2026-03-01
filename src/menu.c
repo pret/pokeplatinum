@@ -284,7 +284,7 @@ static u8 TryMovingCursor(Menu *menu, u8 direction)
         }
     }
 
-    if (menu->template.choices[newCursorPos].index == MENU_DUMMY) {
+    if (menu->template.choices[newCursorPos].index == MENU_HEADER) {
         return FALSE;
     }
 
