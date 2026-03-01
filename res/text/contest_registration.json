@@ -14,7 +14,7 @@
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000217_00003",
+      "id": "ContestRegistration_Text_Welcome",
       "en_US": [
         "Welcome to the Contest Hall.\r",
         "I can help you with registering\n",
@@ -22,14 +22,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00004",
+      "id": "ContestRegistration_Text_WouldYouLikeToEnterAContest",
       "en_US": [
         "Would you like to enter a Pokémon\n",
         "in a Contest?"
       ]
     },
     {
-      "id": "pl_msg_00000217_00005",
+      "id": "ContestRegistration_Text_WhatWouldYouLikeToKnow1",
       "en_US": "What would you like to know about?"
     },
     {
@@ -37,7 +37,7 @@
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000217_00007",
+      "id": "ContestRegistration_Text_WelcomeLinkContest",
       "en_US": [
         "Welcome to the Contest Hall!\r",
         "This is the reception counter for\n",
@@ -48,33 +48,33 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00008",
+      "id": "ContestRegistration_Text_Enter",
       "en_US": "ENTER"
     },
     {
-      "id": "pl_msg_00000217_00009",
+      "id": "ContestRegistration_Text_Info1",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000217_00010",
+      "id": "ContestRegistration_Text_Exit1",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000217_00011",
+      "id": "ContestRegistration_Text_LookForwardToYourParticipationAnotherTime",
       "en_US": [
         "We look forward to your participation\n",
         "another time!"
       ]
     },
     {
-      "id": "pl_msg_00000217_00012",
+      "id": "ContestRegistration_Text_WouldYouLikeToEnterLinkContest",
       "en_US": [
         "Would you like to\n",
         "enter a link Contest?"
       ]
     },
     {
-      "id": "pl_msg_00000217_00013",
+      "id": "ContestRegistration_Text_ExplainLinkContest",
       "en_US": [
         "Two to four players may compete\n",
         "using wireless communications.\r",
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00014",
+      "id": "ContestRegistration_Text_ExplainSuperContest",
       "en_US": [
         "A Pokémon Super Contest involves\n",
         "four Trainers.\r",
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00015",
+      "id": "ContestRegistration_Text_ExplainVisualContest",
       "en_US": [
         "In the Visual Competition, Pokémon\n",
         "are rated on their appearance.\r",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00016",
+      "id": "ContestRegistration_Text_ExplainDanceContest",
       "en_US": [
         "In the Dance Competition, the Pokémon\n",
         "will get to show off their footwork.\r",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00017",
+      "id": "ContestRegistration_Text_ExplainActingContest",
       "en_US": [
         "In the Acting Competition, the\n",
         "Pokémon will perform their moves in\f",
@@ -145,7 +145,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00018",
+      "id": "ContestRegistration_Text_ExplainContestTypes",
       "en_US": [
         "There are five Contests in all:\n",
         "Cool, Beauty, Cute, Smart, and Tough.\r",
@@ -155,7 +155,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00019",
+      "id": "ContestRegistration_Text_ExplainContestRanks",
       "en_US": [
         "There are four different ranks to\n",
         "the Pokémon Super Contests.\r",
@@ -176,21 +176,21 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00020",
+      "id": "ContestRegistration_Text_EnterWhichPokemon1",
       "en_US": [
         "Which Pokémon would you like to\n",
         "enter?\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00021",
+      "id": "ContestRegistration_Text_PleaseChoosePokemon1",
       "en_US": [
         "Please choose\n",
         "a Pokémon.\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00022",
+      "id": "ContestRegistration_Text_YourPokemonHasBeenAccepted",
       "en_US": [
         "OK! Your Pokémon has been accepted\n",
         "for entry!\r",
@@ -217,14 +217,14 @@
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000217_00027",
+      "id": "ContestRegistration_Text_SelectRank",
       "en_US": [
         "Which rank would you like to\n",
         "challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000217_00028",
+      "id": "ContestRegistration_Text_SelectContestType",
       "en_US": [
         "Which Contest would you like to\n",
         "challenge?"
@@ -259,23 +259,23 @@
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000217_00036",
+      "id": "ContestRegistration_Text_WhatsAContest",
       "en_US": "WHAT’S A CONTEST?"
     },
     {
-      "id": "pl_msg_00000217_00037",
+      "id": "ContestRegistration_Text_VisualCompetition",
       "en_US": "VISUAL COMPETITION"
     },
     {
-      "id": "pl_msg_00000217_00038",
+      "id": "ContestRegistration_Text_DanceCompetition",
       "en_US": "DANCE COMPETITION"
     },
     {
-      "id": "pl_msg_00000217_00039",
+      "id": "ContestRegistration_Text_ActingCompetition",
       "en_US": "ACTING COMPETITION"
     },
     {
-      "id": "pl_msg_00000217_00040",
+      "id": "ContestRegistration_Text_CancelCompetition",
       "en_US": "CANCEL"
     },
     {
@@ -371,7 +371,7 @@
       "garbage": 58
     },
     {
-      "id": "pl_msg_00000217_00064",
+      "id": "ContestRegistration_Text_TheContestWillStartRightAway",
       "en_US": [
         "The Contest will start right away.\n",
         "This way, please!\r"
@@ -382,22 +382,22 @@
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000217_00066",
+      "id": "ContestRegistration_Text_PlayerChangedIntoTuxedo",
       "en_US": "{STRVAR_1 3, 0, 0} changed into the tuxedo.\r"
     },
     {
-      "id": "pl_msg_00000217_00067",
+      "id": "ContestRegistration_Text_PlayerChangedIntoDress",
       "en_US": "{STRVAR_1 3, 0, 0} changed into the dress.\r"
     },
     {
-      "id": "pl_msg_00000217_00068",
+      "id": "ContestRegistration_Text_RightThisWayPlease1",
       "en_US": [
         "Right this way, please!\n",
         "Good luck!\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00069",
+      "id": "ContestRegistration_Text_WeAreAboutToGetUnderWay",
       "en_US": [
         "MC: We are about to get under way with\n",
         "this {STRVAR_1 35, 0, 0} Pokémon\f",
@@ -409,7 +409,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00070",
+      "id": "ContestRegistration_Text_IntroduceFirstContestant",
       "en_US": [
         "Let me introduce our contestants!\r",
         "Entry number 1!\n",
@@ -417,28 +417,28 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00071",
+      "id": "ContestRegistration_Text_IntroduceSecondContestant",
       "en_US": [
         "Next, it’s entry number 2!\n",
         "{STRVAR_1 3, 0, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00072",
+      "id": "ContestRegistration_Text_IntroduceThirdContestant",
       "en_US": [
         "Entry number 3!\n",
         "{STRVAR_1 3, 0, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00073",
+      "id": "ContestRegistration_Text_IntroduceFourthContestant",
       "en_US": [
         "And last but not least, entry\n",
         "number 4! {STRVAR_1 3, 0, 0}!\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00074",
+      "id": "ContestRegistration_Text_DressUpYourPokemon",
       "en_US": [
         "Let’s begin by having everyone get in\n",
         "proper attire for evaluations.\r",
@@ -451,11 +451,11 @@
       "garbage": 85
     },
     {
-      "id": "pl_msg_00000217_00076",
+      "id": "ContestRegistration_Text_Congratulations2",
       "en_US": "Dexter: Congratulations!\r"
     },
     {
-      "id": "pl_msg_00000217_00077",
+      "id": "ContestRegistration_Text_LetsRecognizeOurWinner",
       "en_US": [
         "Let’s recognize our winner!\n",
         "{STRVAR_1 3, 0, 0}’s {STRVAR_1 1, 1, 0}!\r",
@@ -464,14 +464,14 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00078",
+      "id": "ContestRegistration_Text_WeLookForwardToYourNextContestChallenge",
       "en_US": [
         "We look forward to your next\n",
         "Contest challenge!\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00079",
+      "id": "ContestRegistration_Text_WeExpectGreatThingsFromWinningTeam",
       "en_US": [
         "We expect great things from the\n",
         "winning team of {STRVAR_1 3, 0, 0} and\f",
@@ -479,7 +479,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00080",
+      "id": "ContestRegistration_Text_Congratulations1",
       "en_US": [
         "Congratulations!\n",
         "Here is your prize!\r"
@@ -490,7 +490,7 @@
       "garbage": 20
     },
     {
-      "id": "pl_msg_00000217_00082",
+      "id": "ContestRegistration_Text_ThankYouForParticipating",
       "en_US": [
         "Thank you for participating.\n",
         "We look forward to your next visit!"
@@ -609,7 +609,7 @@
       "garbage": 66
     },
     {
-      "id": "pl_msg_00000217_00111",
+      "id": "ContestRegistration_Text_PracticeContest",
       "en_US": [
         "Hi! This is the registration counter\n",
         "for practice sessions.\r",
@@ -618,58 +618,58 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00112",
+      "id": "ContestRegistration_Text_JoinPracticeContest",
       "en_US": [
         "Would you like to join a practice\n",
         "session?"
       ]
     },
     {
-      "id": "pl_msg_00000217_00113",
+      "id": "ContestRegistration_Text_Practice",
       "en_US": "PRACTICE"
     },
     {
-      "id": "pl_msg_00000217_00114",
+      "id": "ContestRegistration_Text_Info2",
       "en_US": "INFO"
     },
     {
-      "id": "pl_msg_00000217_00115",
+      "id": "ContestRegistration_Text_Exit2",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000217_00116",
+      "id": "ContestRegistration_Text_WeLookForwardToYourNextVisit1",
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00117",
+      "id": "ContestRegistration_Text_WhatWouldYouLikeToKnow2",
       "en_US": "What would you like to know about?"
     },
     {
-      "id": "pl_msg_00000217_00118",
+      "id": "ContestRegistration_Text_Visual",
       "en_US": "VISUAL"
     },
     {
-      "id": "pl_msg_00000217_00119",
+      "id": "ContestRegistration_Text_Dance",
       "en_US": "DANCE"
     },
     {
-      "id": "pl_msg_00000217_00120",
+      "id": "ContestRegistration_Text_Acting",
       "en_US": "ACTING"
     },
     {
-      "id": "pl_msg_00000217_00121",
+      "id": "ContestRegistration_Text_Practice1",
       "en_US": "PRACTICE"
     },
     {
-      "id": "pl_msg_00000217_00122",
+      "id": "ContestRegistration_Text_Cancel",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000217_00123",
+      "id": "ContestRegistration_Text_WeLookForwardToYourNextVisit2",
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00124",
+      "id": "ContestRegistration_Text_HereYouMayPracticeEachContestCategory",
       "en_US": [
         "A Contest involves judging in three\n",
         "categories: Visual, Dance, and Acting.\r",
@@ -683,15 +683,15 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00125",
+      "id": "ContestRegistration_Text_OverallFlow",
       "en_US": "OVERALL FLOW"
     },
     {
-      "id": "pl_msg_00000217_00126",
+      "id": "ContestRegistration_Text_ConditionPoints",
       "en_US": "CONDITION POINTS"
     },
     {
-      "id": "pl_msg_00000217_00127",
+      "id": "ContestRegistration_Text_DressUpPoints",
       "en_US": "DRESS-UP POINTS"
     },
     {
@@ -699,11 +699,11 @@
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000217_00129",
+      "id": "ContestRegistration_Text_Cancel1",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000217_00130",
+      "id": "ContestRegistration_Text_ExplainVisualOverallFlow",
       "en_US": [
         "Judging here is based on the visual\n",
         "appeal of Pokémon.\r",
@@ -717,7 +717,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00131",
+      "id": "ContestRegistration_Text_ExplainCondition",
       "en_US": [
         "Condition Points are scored on\n",
         "the Pokémon’s condition in one of\f",
@@ -733,7 +733,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00132",
+      "id": "ContestRegistration_Text_ExplainDressUp",
       "en_US": [
         "Dress-Up Points are awarded for\n",
         "fashionably dressing up your Pokémon\f",
@@ -762,27 +762,27 @@
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00135",
+      "id": "ContestRegistration_Text_OverallFlow1",
       "en_US": "OVERALL FLOW"
     },
     {
-      "id": "pl_msg_00000217_00136",
+      "id": "ContestRegistration_Text_BackupDancer",
       "en_US": "BACKUP DANCER"
     },
     {
-      "id": "pl_msg_00000217_00137",
+      "id": "ContestRegistration_Text_MainDancer",
       "en_US": "MAIN DANCER"
     },
     {
-      "id": "pl_msg_00000217_00138",
+      "id": "ContestRegistration_Text_Panel",
       "en_US": "PANEL"
     },
     {
-      "id": "pl_msg_00000217_00139",
+      "id": "ContestRegistration_Text_Cancel2",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000217_00140",
+      "id": "ContestRegistration_Text_ExplainDanceOverallFlow",
       "en_US": [
         "In a Dance Competition, the four\n",
         "contestants take on different parts.\r",
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00141",
+      "id": "ContestRegistration_Text_ExplainBackupDancer",
       "en_US": [
         "Your Pokémon will first appear as\n",
         "a backup dancer.\r",
@@ -809,7 +809,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00142",
+      "id": "ContestRegistration_Text_ExplainMainDancer",
       "en_US": [
         "The main dancer rotates with a\n",
         "backup dancer so everyone gets\f",
@@ -819,7 +819,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00143",
+      "id": "ContestRegistration_Text_ExplainDanceColorPanels",
       "en_US": [
         "The melody will be shown playing on\n",
         "the red and blue panels.\r",
@@ -839,27 +839,27 @@
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00145",
+      "id": "ContestRegistration_Text_OverallFlow2",
       "en_US": "OVERALL FLOW"
     },
     {
-      "id": "pl_msg_00000217_00146",
+      "id": "ContestRegistration_Text_ContestMoves",
       "en_US": "CONTEST MOVES"
     },
     {
-      "id": "pl_msg_00000217_00147",
+      "id": "ContestRegistration_Text_Judges",
       "en_US": "JUDGES"
     },
     {
-      "id": "pl_msg_00000217_00148",
+      "id": "ContestRegistration_Text_Voltage",
       "en_US": "VOLTAGE"
     },
     {
-      "id": "pl_msg_00000217_00149",
+      "id": "ContestRegistration_Text_Cancel3",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000217_00150",
+      "id": "ContestRegistration_Text_ExplainActingOverallFlow",
       "en_US": [
         "In the Acting Competition, four\n",
         "Pokémon will perform their moves for\f",
@@ -871,7 +871,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00151",
+      "id": "ContestRegistration_Text_ExplainActingScoring",
       "en_US": [
         "Every move has one or more {COLOR 1}♡{COLOR 0} marks\n",
         "that indicate the acting score.\r",
@@ -883,7 +883,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00152",
+      "id": "ContestRegistration_Text_ExplainActingJudges",
       "en_US": [
         "There are three Judges in all.\r",
         "You get to choose which one you want\n",
@@ -897,7 +897,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00153",
+      "id": "ContestRegistration_Text_ExplainVoltage",
       "en_US": [
         "Voltage shows the excitement level\n",
         "of the Judges.\r",
@@ -919,62 +919,62 @@
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00155",
+      "id": "ContestRegistration_Text_VisualPractice",
       "en_US": "VISUAL PRACTICE"
     },
     {
-      "id": "pl_msg_00000217_00156",
+      "id": "ContestRegistration_Text_DancePractice",
       "en_US": "DANCE PRACTICE"
     },
     {
-      "id": "pl_msg_00000217_00157",
+      "id": "ContestRegistration_Text_ActingPractice",
       "en_US": "ACTING PRACTICE"
     },
     {
-      "id": "pl_msg_00000217_00158",
+      "id": "ContestRegistration_Text_CancelPractice",
       "en_US": "CANCEL"
     },
     {
-      "id": "pl_msg_00000217_00159",
+      "id": "ContestRegistration_Text_WeLookForwardToYourNextVisit3",
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00160",
+      "id": "ContestRegistration_Text_WhichContestWouldYouLikeToChallenge",
       "en_US": [
         "Which Contest would you like to\n",
         "challenge?"
       ]
     },
     {
-      "id": "pl_msg_00000217_00161",
+      "id": "ContestRegistration_Text_Cool",
       "en_US": "COOL"
     },
     {
-      "id": "pl_msg_00000217_00162",
+      "id": "ContestRegistration_Text_Beauty",
       "en_US": "BEAUTY"
     },
     {
-      "id": "pl_msg_00000217_00163",
+      "id": "ContestRegistration_Text_Cute",
       "en_US": "CUTE"
     },
     {
-      "id": "pl_msg_00000217_00164",
+      "id": "ContestRegistration_Text_Smart",
       "en_US": "SMART"
     },
     {
-      "id": "pl_msg_00000217_00165",
+      "id": "ContestRegistration_Text_Tough",
       "en_US": "TOUGH"
     },
     {
-      "id": "pl_msg_00000217_00166",
+      "id": "ContestRegistration_Text_Exit3",
       "en_US": "EXIT"
     },
     {
-      "id": "pl_msg_00000217_00167",
+      "id": "ContestRegistration_Text_WeLookForwardToYourNextVisit4",
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00168",
+      "id": "ContestRegistration_Text_Unused",
       "garbage": 17
     },
     {
@@ -998,22 +998,22 @@
       "garbage": 3
     },
     {
-      "id": "pl_msg_00000217_00174",
+      "id": "ContestRegistration_Text_Unused6",
       "garbage": 19
     },
     {
-      "id": "pl_msg_00000217_00175",
+      "id": "ContestRegistration_Text_EnterWhichPokemon2",
       "en_US": [
         "Which Pokémon would you like to\n",
         "enter?\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00176",
+      "id": "ContestRegistration_Text_PleaseChoosePokemon2",
       "en_US": "Please choose a Pokémon.\r"
     },
     {
-      "id": "pl_msg_00000217_00177",
+      "id": "ContestRegistration_Text_YourPokemonRegisteredForPractice",
       "en_US": [
         "OK, your Pokémon has been registered\n",
         "for a practice session.\r",
@@ -1061,7 +1061,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00184",
+      "id": "ContestRegistration_Text_CompletedVisualPractice",
       "en_US": [
         "Thanks for participating!\n",
         "Your Pokémon was quite popular!\f",
@@ -1070,7 +1070,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00185",
+      "id": "ContestRegistration_Text_FailedVisualPractice",
       "en_US": [
         "Thank you for participating!\n",
         "It’s too bad how things turned out...\r",
@@ -1115,7 +1115,7 @@
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000217_00194",
+      "id": "ContestRegistration_Text_CompletedDancePractice",
       "en_US": [
         "Thanks for participating!\n",
         "Your Pokémon danced quite well!\f",
@@ -1125,7 +1125,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00195",
+      "id": "ContestRegistration_Text_FailedDancePractice",
       "en_US": [
         "Thank you for participating!\n",
         "It’s too bad how things turned out...\r",
@@ -1169,7 +1169,7 @@
       "garbage": 30
     },
     {
-      "id": "pl_msg_00000217_00204",
+      "id": "ContestRegistration_Text_CompletedActingPractice",
       "en_US": [
         "Thanks for participating!\r",
         "Your Pokémon attracted a good deal\n",
@@ -1185,7 +1185,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000217_00205",
+      "id": "ContestRegistration_Text_FailedActingPractice",
       "en_US": [
         "Thank you for participating!\n",
         "It’s too bad how things turned out...\r",
@@ -1217,18 +1217,18 @@
       "en_US": "What would you like to know about?"
     },
     {
-      "id": "pl_msg_00000217_00210",
+      "id": "ContestRegistration_Text_CommunicatingStandBy",
       "en_US": "Communicating. Please stand by..."
     },
     {
-      "id": "pl_msg_00000217_00211",
+      "id": "ContestRegistration_Text_RightThisWayPlease2",
       "en_US": [
         "Right this way, please!\n",
         "Good luck!\r"
       ]
     },
     {
-      "id": "pl_msg_00000217_00212",
+      "id": "ContestRegistration_Text_CommunicatingWillBeLaunched",
       "en_US": [
         "DS Wireless Communications will\n",
         "be launched."
@@ -1243,7 +1243,7 @@
       "en_US": "NO"
     },
     {
-      "id": "pl_msg_00000217_00215",
+      "id": "ContestRegistration_Text_CancelEntry",
       "en_US": "Would you like to cancel your entry?"
     },
     {
@@ -1259,7 +1259,7 @@
       "en_US": "We look forward to your next visit!"
     },
     {
-      "id": "pl_msg_00000217_00219",
+      "id": "ContestRegistration_Text_OnePersonMustBeLeader",
       "en_US": [
         "One person in the group needs to\n",
         "choose “BECOME LEADER.”\r",

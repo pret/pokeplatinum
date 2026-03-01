@@ -51,9 +51,9 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForSpinTrade(FieldSystem *fieldSystem
 PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem, enum HeapID heapID, enum Item item);
 
 int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu);
-int sub_0203D438(void *param0);
-int sub_0203D440(void *param0);
-void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2);
+int PartyMenu_GetMenuSelectionResult(PartyMenu *partyMenu);
+int PokemonSummary_GetPartySlot(PokemonSummary *monSummary);
+void *FieldSystem_GetContestMonSummary(int unused, FieldSystem *fieldSystem, int partySlot);
 PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, enum HeapID heapID, int mode);
 void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapID heapID, FieldSystem *fieldSystem, u8 partyIndex);
 int PokemonSummary_GetSelectedMoveSlot(void *summary);

@@ -134,9 +134,9 @@ void ov17_0224CFB8(UnkStruct_ov17_0224DF54 *param0)
 
     v0.unk_00 = Unk_ov17_022549E4;
     v0.unk_04 = NELEMS(Unk_ov17_022549E4);
-    v0.unk_06 = param0->unk_00->unk_00.unk_113;
+    v0.playerContestantID = param0->unk_00->unk_00.playerContestantID;
     v0.unk_08 = param0->unk_00->unk_00.unk_10C;
-    v0.unk_07 = param0->unk_00->isLinkContest;
+    v0.isLinkContest = param0->unk_00->isLinkContest;
 
     ov17_0224F18C(&param0->unk_109C, &v0);
 }
@@ -411,7 +411,7 @@ static void ov17_0224D41C(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov17_0224C6B0(v0->unk_00, v0->unk_00->unk_00->unk_00.unk_113, &v0->unk_11);
+        ov17_0224C6B0(v0->unk_00, v0->unk_00->unk_00->unk_00.playerContestantID, &v0->unk_11);
         v0->unk_10++;
         break;
     case 5:
@@ -463,7 +463,7 @@ static void ov17_0224D558(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_0224DF54 *v0 = param1;
     UnkStruct_ov17_0224DF54_sub2 *v1 = param3;
     UnkStruct_ov17_0224D710 *v2;
-    int v3, v4;
+    int contestantID, v4;
 
     v2 = Heap_Alloc(HEAP_ID_23, sizeof(UnkStruct_ov17_0224D710));
     MI_CpuClear8(v2, sizeof(UnkStruct_ov17_0224D710));
@@ -476,17 +476,17 @@ static void ov17_0224D558(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     SysTask_Start(ov17_0224D710, v2, 30000);
 
-    for (v3 = 0; v3 < 4; v3++) {
-        if (v3 < v0->unk_00->unk_00.unk_117) {
-            v2->unk_140[v3] = ov17_0224D668(v0, 0);
+    for (contestantID = 0; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+        if (contestantID < v0->unk_00->unk_00.connectionCount) {
+            v2->unk_140[contestantID] = ov17_0224D668(v0, 0);
         } else {
-            v2->unk_140[v3] = ov17_0224D668(v0, 1);
+            v2->unk_140[contestantID] = ov17_0224D668(v0, 1);
         }
     }
 
     {
         for (v4 = 0; v4 < 4; v4++) {
-            if (v2->unk_18.unk_02[v4] == v2->unk_00->unk_00->unk_00.unk_113) {
+            if (v2->unk_18.unk_02[v4] == v2->unk_00->unk_00->unk_00.playerContestantID) {
                 v2->unk_00->unk_14.unk_A2C = v4;
                 break;
             }
@@ -495,15 +495,15 @@ static void ov17_0224D558(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
     ov17_0224DF54(v0);
 
-    for (v3 = v0->unk_00->unk_00.unk_117; v3 < 4; v3++) {
+    for (contestantID = v0->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
         {
-            for (v4 = 0; v4 < 4; v4++) {
-                if (v2->unk_18.unk_02[v4] == v3) {
+            for (v4 = 0; v4 < CONTEST_NUM_PARTICIPANTS; v4++) {
+                if (v2->unk_18.unk_02[v4] == contestantID) {
                     break;
                 }
             }
         }
-        ov17_0224E930(&v2->unk_58[v3], v3, v4, v1->unk_14[v3], v0->unk_00->unk_00.unk_FC[v3]);
+        ov17_0224E930(&v2->unk_58[contestantID], contestantID, v4, v1->unk_14[contestantID], v0->unk_00->unk_00.unk_FC[contestantID]);
     }
 }
 
@@ -556,7 +556,7 @@ static void ov17_0224D710(SysTask *param0, void *param1)
     u32 v4;
     int v5;
 
-    if (v0->unk_00->unk_00->unk_00.unk_113 == v0->unk_18.unk_00) {
+    if (v0->unk_00->unk_00->unk_00.playerContestantID == v0->unk_18.unk_00) {
         v2 = 0;
     } else {
         v2 = 1;
@@ -626,14 +626,10 @@ static void ov17_0224D710(SysTask *param0, void *param1)
 
                 ov17_0224DF54(v0->unk_00);
 
-                {
-                    int v7;
+                v0->unk_17 = 0;
 
-                    v0->unk_17 = 0;
-
-                    for (v7 = v0->unk_00->unk_00->unk_00.unk_117; v7 < 4; v7++) {
-                        ov17_0224E958(&v0->unk_58[v7]);
-                    }
+                for (int contestantID = v0->unk_00->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+                    ov17_0224E958(&v0->unk_58[contestantID]);
                 }
 
                 ov17_0224A580(&v0->unk_00->unk_14);
@@ -682,8 +678,8 @@ static void ov17_0224D710(SysTask *param0, void *param1)
                 }
 
                 if (v1 != 0xffffffff) {
-                    ov17_0224DE54(v0->unk_00->unk_00->unk_00.unk_113, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, NULL, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
-                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->unk_00.unk_113], &v8);
+                    ov17_0224DE54(v0->unk_00->unk_00->unk_00.playerContestantID, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, NULL, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
+                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->unk_00.playerContestantID], &v8);
                     v0->unk_17++;
                 }
             } else {
@@ -699,19 +695,15 @@ static void ov17_0224D710(SysTask *param0, void *param1)
                 }
 
                 if (v1 != 0xffffffff) {
-                    ov17_0224DE54(v0->unk_00->unk_00->unk_00.unk_113, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, v0->unk_00->unk_1AD4, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
-                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->unk_00.unk_113], &v8);
+                    ov17_0224DE54(v0->unk_00->unk_00->unk_00.playerContestantID, v1, v4, v0->unk_18.unk_08, &v0->unk_18.unk_24.unk_08, &v8, v0->unk_00->unk_1AD4, v3, v0->unk_17, v0->unk_18.unk_24.unk_05, v0->unk_00->unk_A3C.unk_2F);
+                    ov17_0224D6B0(v0->unk_140[v0->unk_00->unk_00->unk_00.playerContestantID], &v8);
                     v0->unk_17++;
                 }
             }
         }
 
-        {
-            int v10;
-
-            for (v10 = v0->unk_00->unk_00->unk_00.unk_117; v10 < 4; v10++) {
-                ov17_0224ED8C(v5, v0->unk_00, &v0->unk_58[v10], v4, v0->unk_18.unk_0C, v0->unk_18.unk_08, &v0->unk_18.unk_24, v0->unk_140[v10]);
-            }
+        for (int contestantID = v0->unk_00->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
+            ov17_0224ED8C(v5, v0->unk_00, &v0->unk_58[contestantID], v4, v0->unk_18.unk_0C, v0->unk_18.unk_08, &v0->unk_18.unk_24, v0->unk_140[contestantID]);
         }
 
         if ((v5 == 1) && (v0->unk_12 == 0)) {
@@ -1054,13 +1046,13 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        for (v2 = 0; v2 < 4; v2++) {
+        for (v2 = 0; v2 < CONTEST_NUM_PARTICIPANTS; v2++) {
             v1 = v0->unk_C8.unk_02[v2];
-            v0->unk_18[v1].unk_00 = v0->unk_00->unk_14.unk_00->unk_00[v1];
+            v0->unk_18[v1].mon = v0->unk_00->unk_14.unk_00->contestMons[v1];
             v0->unk_18[v1].unk_04 = v0->unk_00->unk_14.unk_48[v1];
             v0->unk_18[v1].unk_08 = &v0->unk_00->unk_14.unk_04[v1];
             v0->unk_18[v1].unk_0E = (v0->unk_00->unk_A3C.unk_24 / 10000) * 40 / 100;
-            v0->unk_18[v1].unk_0C = v2;
+            v0->unk_18[v1].contestantID = v2;
 
             if (v2 == 0) {
                 v0->unk_18[v1].unk_0D = 3;
@@ -1076,7 +1068,7 @@ static void ov17_0224DFF8(SysTask *param0, void *param1)
 
             v3.unk_04 = v0->unk_C8.unk_24.unk_05;
 
-            if (v0->unk_C8.unk_02[1] == v0->unk_00->unk_00->unk_00.unk_113) {
+            if (v0->unk_C8.unk_02[1] == v0->unk_00->unk_00->unk_00.playerContestantID) {
                 ov17_0224C5A0(v0->unk_00, 4, &v3);
             } else {
                 ov17_0224C5A0(v0->unk_00, 5, &v3);
@@ -1128,9 +1120,9 @@ static void ov17_0224E1F4(SysTask *param0, void *param1)
         v0->unk_18 = v0->unk_08->unk_0C * 0x100;
 
         {
-            v1 = ov17_0224A0FC(v0->unk_0C) * 0x100;
-            v2 = ov17_0224A10C(v0->unk_0C) * 0x100;
-            v3 = ov17_0224A120(v0->unk_0C) * 0x100;
+            v1 = ov17_0224A0FC(v0->contestantID) * 0x100;
+            v2 = ov17_0224A10C(v0->contestantID) * 0x100;
+            v3 = ov17_0224A120(v0->contestantID) * 0x100;
 
             if ((v0->unk_0D == 0) || (v0->unk_0D == 4 - 1)) {
                 if (v0->unk_0D == 0) {
@@ -1176,7 +1168,7 @@ static void ov17_0224E1F4(SysTask *param0, void *param1)
                     ov22_0225B1AC(v0->unk_08->unk_00, -100);
                 }
 
-                v7 = Pokemon_DPSpriteYOffset(v0->unk_00, 2);
+                v7 = Pokemon_DPSpriteYOffset(v0->mon, 2);
 
                 v0->unk_14 = (ov17_0224A10C(v0->unk_0D) + v7) * 0x100;
                 v0->unk_18 = ov17_0224A120(v0->unk_0D) * 0x100;
@@ -1195,7 +1187,7 @@ static void ov17_0224E1F4(SysTask *param0, void *param1)
         }
 
         if (v0->unk_28 >= v0->unk_0E) {
-            v7 = Pokemon_DPSpriteYOffset(v0->unk_00, 2);
+            v7 = Pokemon_DPSpriteYOffset(v0->mon, 2);
             v0->unk_10 = ov17_0224A0FC(v0->unk_0D) * 0x100;
             v0->unk_14 = (ov17_0224A10C(v0->unk_0D) + v7) * 0x100;
             v0->unk_18 = ov17_0224A120(v0->unk_0D) * 0x100;

@@ -399,7 +399,7 @@ static void sub_02059B74(void)
 
     for (i = 0; i < CommSys_ConnectedCount(); i++) {
         if (i != CommSys_CurNetId()) {
-            if (sub_02036564(i) == 94) {
+            if (CommTool_GetSyncNo(i) == 94) {
                 if (sFieldCommMan->fieldSystem->task == NULL) {
                     for (j = 0; j < 4; j++) {
                         if (sFieldCommMan->trainerCard[j]) {

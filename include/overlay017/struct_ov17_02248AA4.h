@@ -9,7 +9,7 @@ typedef struct {
     fx32 unk_08;
     u8 unk_0C;
     u8 unk_0D;
-    u8 unk_0E;
+    u8 contestantID;
 } UnkStruct_ov17_02248AA4;
 
 #endif // POKEPLATINUM_STRUCT_OV17_02248AA4_H

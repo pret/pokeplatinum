@@ -14,7 +14,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    UnkStruct_02095C48 *unk_00;
+    SuperContest *unk_00;
     SysTask *unk_04;
     SysTask *unk_08;
     G3DPipelineBuffers *unk_0C;

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_020298BC_H
 #define POKEPLATINUM_UNK_020298BC_H
 
+#include "generated/pokemon_contest_ranks.h"
+
 #include "struct_defs/dress_up_photo.h"
 #include "struct_defs/image_clips.h"
 #include "struct_defs/photo_accessory.h"
@@ -59,7 +61,7 @@ void sub_0202A25C(UnkStruct_02029C88 *param0);
 void sub_0202A284(UnkStruct_02029C88 *param0, Pokemon *param1, UnkStruct_020298D8 *param2);
 void sub_0202A2A8(UnkStruct_02029C88 *param0, const UnkStruct_ov22_02255040 *param1, int param2);
 void sub_0202A35C(UnkStruct_02029C88 *param0, u8 param1);
-void sub_0202A378(UnkStruct_02029C88 *param0, u32 param1);
+void sub_0202A378(UnkStruct_02029C88 *param0, enum PokemonContestRank contestRank);
 void sub_0202A390(UnkStruct_02029C88 *param0, const UnkStruct_02029C88 *param1);
 void sub_0202A3B0(UnkStruct_02029C88 *param0, Pokemon *mon, s8 param2);
 void sub_0202A3EC(UnkStruct_02029C88 *param0, u32 param1, u8 param2, u8 xPos, u8 yPos, s8 priority);

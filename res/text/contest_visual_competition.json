@@ -2,14 +2,14 @@
   "key": 23702,
   "messages": [
     {
-      "id": "pl_msg_00000209_00000",
+      "id": "VisualCompetition_Text_LetsBeginTheVisualCompetition",
       "en_US": [
         "All right, thanks for your patience!\n",
         "Let’s begin the Visual Competition!\r"
       ]
     },
     {
-      "id": "pl_msg_00000209_00001",
+      "id": "VisualCompetition_Text_EntryNumberOne",
       "en_US": [
         "Dexter: Entry number 1!\n",
         "{STRVAR_1 3, 0, 0}!\r",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000209_00002",
+      "id": "VisualCompetition_Text_EntryNumberTwo",
       "en_US": [
         "Dexter: Entry number 2!\n",
         "{STRVAR_1 3, 0, 0}!\r",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000209_00003",
+      "id": "VisualCompetition_Text_EntryNumberThree",
       "en_US": [
         "Dexter: Entry number 3!\n",
         "{STRVAR_1 3, 0, 0}!\r",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "id": "pl_msg_00000209_00004",
+      "id": "VisualCompetition_Text_EntryNumberFour",
       "en_US": [
         "Dexter: Entry number 4!\n",
         "{STRVAR_1 3, 0, 0}!\r",
@@ -45,38 +45,38 @@
       ]
     },
     {
-      "id": "pl_msg_00000209_00005",
+      "id": "VisualCompetition_Text_DanceCompetitionIsNext",
       "en_US": [
         "The Dance Competition is next!\n",
         "Is everyone up and ready for this?!\r"
       ]
     },
     {
-      "id": "pl_msg_00000209_00006",
+      "id": "VisualCompetition_Text_Empty1",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000209_00007",
+      "id": "VisualCompetition_Text_Empty2",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000209_00008",
+      "id": "VisualCompetition_Text_Empty3",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000209_00009",
+      "id": "VisualCompetition_Text_Empty4",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000209_00010",
+      "id": "VisualCompetition_Text_Empty5",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000209_00011",
+      "id": "VisualCompetition_Text_Empty6",
       "garbage": 4
     },
     {
-      "id": "pl_msg_00000209_00012",
+      "id": "VisualCompetition_Text_Empty7",
       "garbage": 13
     },
     {
@@ -96,7 +96,7 @@
       "garbage": 21
     },
     {
-      "id": "pl_msg_00000209_00017",
+      "id": "VisualCompetition_Text_PracticeSession",
       "en_US": [
         "OK, let’s watch the reactions of the\n",
         "audience toward the Pokémon involved\f",

@@ -172,7 +172,7 @@ pokeplatinum_c = files(
     'script_manager.c',
     'scrcmd.c',
     'scrcmd_shop.c',
-    'unk_02046C7C.c',
+    'scrcmd_contests.c',
     'scrcmd_strings.c',
     'scrcmd_jubilife_lottery.c',
     'scrcmd_sound.c',

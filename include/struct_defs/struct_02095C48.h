@@ -1,10 +1,11 @@
-#ifndef POKEPLATINUM_STRUCT_02095C48_H
-#define POKEPLATINUM_STRUCT_02095C48_H
+#ifndef POKEPLATINUM_SUPER_CONTEST_H
+#define POKEPLATINUM_SUPER_CONTEST_H
 
+#include "struct_defs/contest_camera_flash_task.h"
 #include "struct_defs/image_clips.h"
-#include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "struct_defs/struct_02095C60.h"
+#include "struct_defs/visual_competition_app_args.h"
 
 #include "game_options.h"
 #include "party.h"
@@ -13,19 +14,19 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
-typedef struct {
+typedef struct SuperContest {
     UnkStruct_02095C48_sub1 unk_00;
-    Party *unk_148;
-    void *unk_14C[4];
+    Party *party;
+    void *chatotCry[CONTEST_NUM_PARTICIPANTS];
     void *unk_150;
     u8 unk_154;
     u8 isLinkContest;
     u8 unk_156[4];
-    u8 unk_15A;
+    u8 linkState;
     u8 unk_15B;
     int unk_15C;
     int padding_160;
-    SysTask *unk_164;
+    SysTask *commTask;
     u8 unk_168[4][256];
     u8 unk_568;
     u8 unk_569[1024];
@@ -33,17 +34,17 @@ typedef struct {
     u8 padding_1969[3];
     const Options *options;
     SaveData *saveData;
-    Pokemon *unk_1974;
-    const TrainerInfo *unk_1978;
-    u8 unk_197C;
+    Pokemon *playerMon;
+    const TrainerInfo *trainerInfo;
+    u8 monPartySlot;
     u8 isGameCompleted;
     u8 isNatDexObtained;
     u8 padding_197F;
     ImageClips *imageClips;
     UnkStruct_02095C60 unk_1984;
-    void *unk_199C;
-    UnkStruct_02094A58 *unk_19A0;
-    u32 unk_19A4;
-} UnkStruct_02095C48;
+    VisualCompetitionAppArgs *visualCompetitionAppArgs;
+    ContestCameraFlashTask *cameraFlashTask;
+    u32 rngSeed;
+} SuperContest;
 
-#endif // POKEPLATINUM_STRUCT_02095C48_H
+#endif // POKEPLATINUM_SUPER_CONTEST_H

@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_GENTLEMAN_0",
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_MCDEXTER",
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
@@ -17,11 +17,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_COUNTERPART_1",
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT1",
             "graphics_id": "OBJ_EVENT_GFX_COUNTERPART",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0201",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT1",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -32,11 +32,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_102_2",
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT2",
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0202",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT2",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -47,11 +47,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_103_3",
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT3",
             "graphics_id": "OBJ_EVENT_GFX_UNK_103",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0203",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT3",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -62,11 +62,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_104_4",
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT4",
             "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0204",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT4",
             "script": 0,
             "initial_dir": 1,
             "data": [],
@@ -77,11 +77,11 @@
             "y": 0
         },
         {
-            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_UNK_105_5",
+            "id": "CONTEST_HALL_STAGE_ONGOING_CONTEST_CONTESTANT_WINNER",
             "graphics_id": "OBJ_EVENT_GFX_UNK_105",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_UNK_0x0205",
+            "hidden_flag": "FLAG_HIDE_CONTEST_HALL_STAGE_CONTESTANT_WINNER",
             "script": 0,
             "initial_dir": 1,
             "data": [],

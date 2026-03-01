@@ -8,13 +8,13 @@
 
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_defs/image_clips.h"
-#include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
 #include "struct_defs/struct_0202E7FC.h"
 #include "struct_defs/struct_0202E808.h"
 #include "struct_defs/struct_0202E810.h"
 #include "struct_defs/struct_0202E81C.h"
+#include "struct_defs/tv_episode_segment_contest_hall_showcased_pokemon.h"
 
 #include "applications/poketch/poketch_system.h"
 #include "field/field_system.h"
@@ -321,7 +321,7 @@ static BOOL sub_02049358(FieldSystem *fieldSystem)
 
 static BOOL sub_02049368(FieldSystem *fieldSystem)
 {
-    UnkStruct_0202E7D8 *v0 = sub_0202E7D8(SaveData_GetTVBroadcast(fieldSystem->saveData));
+    TVEpisodeSegment_ContestHall_ShowcasedPokemon *v0 = TVBroadcast_GetShowcasedPokemon(SaveData_GetTVBroadcast(fieldSystem->saveData));
     return v0->unk_00;
 }
 

@@ -6,6 +6,7 @@
 #include "constants/accessories.h"
 #include "constants/charcode.h"
 #include "generated/backdrops.h"
+#include "generated/pokemon_contest_types.h"
 
 #include "struct_defs/image_clips.h"
 #include "struct_defs/sentence.h"
@@ -310,12 +311,12 @@ DressUpPhoto *ImageClips_GetDressUpPhoto(ImageClips *imageClips, int slot)
     return &imageClips->savedPhotos[slot];
 }
 
-UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int param1)
+UnkStruct_02029C88 *sub_02029CD0(ImageClips *imageClips, int contestType)
 {
-    GF_ASSERT(param1 < 5);
-    GF_ASSERT(inline_02029CD0(&imageClips->unk_4C8[param1]));
+    GF_ASSERT(contestType < CONTEST_TYPE_MAX);
+    GF_ASSERT(inline_02029CD0(&imageClips->unk_4C8[contestType]));
 
-    return &imageClips->unk_4C8[param1];
+    return &imageClips->unk_4C8[contestType];
 }
 
 FashionCase *ImageClips_GetFashionCase(ImageClips *imageClips)
@@ -667,10 +668,10 @@ void sub_0202A35C(UnkStruct_02029C88 *param0, u8 param1)
     param0->unk_94 = param1;
 }
 
-void sub_0202A378(UnkStruct_02029C88 *param0, u32 param1)
+void sub_0202A378(UnkStruct_02029C88 *param0, enum PokemonContestRank contestRank)
 {
     GF_ASSERT(inline_02029CD0(param0));
-    param0->unk_04 = param1;
+    param0->unk_04 = contestRank;
 }
 
 void sub_0202A390(UnkStruct_02029C88 *param0, const UnkStruct_02029C88 *param1)
