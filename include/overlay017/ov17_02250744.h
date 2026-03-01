@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV17_02250744_H
 #define POKEPLATINUM_OV17_02250744_H
 
-#include "struct_defs/struct_02095C48.h"
+#include "struct_defs/contest.h"
 
 #include "overlay017/struct_ov17_0224FCA0.h"
 #include "overlay017/struct_ov17_022507C4.h"
@@ -47,7 +47,7 @@ void ov17_022513F4(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2, int 
 void ov17_02251544(UnkStruct_ov17_0224FCA0 *param0);
 void ov17_02251598(UnkStruct_ov17_0224FCA0 *param0, int param1, u8 *param2);
 void ov17_02251718(UnkStruct_ov17_0224FCA0 *param0, int contestantID, int param2, u8 *param3);
-void ov17_02251930(SuperContest *param0, int param1, s16 param2[]);
+void ov17_02251930(Contest *param0, int param1, s16 param2[]);
 void ov17_02251A1C(UnkStruct_ov17_0224FCA0 *param0);
 
 #endif // POKEPLATINUM_OV17_02250744_H

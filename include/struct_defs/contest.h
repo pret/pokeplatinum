@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_SUPER_CONTEST_H
-#define POKEPLATINUM_SUPER_CONTEST_H
+#ifndef POKEPLATINUM_CONTEST_H
+#define POKEPLATINUM_CONTEST_H
 
 #include "struct_defs/contest_camera_flash_task.h"
 #include "struct_defs/image_clips.h"
@@ -14,7 +14,7 @@
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 
-typedef struct SuperContest {
+typedef struct Contest {
     UnkStruct_02095C48_sub1 unk_00;
     Party *party;
     void *chatotCry[CONTEST_NUM_PARTICIPANTS];
@@ -45,6 +45,6 @@ typedef struct SuperContest {
     VisualCompetitionAppArgs *visualCompetitionAppArgs;
     ContestCameraFlashTask *cameraFlashTask;
     u32 rngSeed;
-} SuperContest;
+} Contest;
 
-#endif // POKEPLATINUM_SUPER_CONTEST_H
+#endif // POKEPLATINUM_CONTEST_H

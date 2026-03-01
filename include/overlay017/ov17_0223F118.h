@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV17_0223F118_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/struct_02095C48.h"
+#include "struct_defs/contest.h"
 
 #include "overlay017/struct_ov17_0223F2E4.h"
 #include "overlay017/struct_ov17_0223F6E8.h"
@@ -21,8 +21,8 @@ void ov17_0223F1E8(enum HeapID heapID, BgConfig *param1, SpriteManager *param2, 
 void ov17_0223F2E4(UnkStruct_ov17_0223F2E4 *param0);
 void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int param3);
 String *Contest_GetJudgeName(u32 judgeNameMessageID, enum HeapID heapID);
-void ov17_0223F334(SuperContest *param0, int param1);
-void ov17_0223F374(SuperContest *param0);
+void ov17_0223F334(Contest *param0, int param1);
+void ov17_0223F374(Contest *param0);
 void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6);
 void ov17_0223F5E8(SpriteManager *param0, int param1, int param2, int param3, int param4);
 void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10);

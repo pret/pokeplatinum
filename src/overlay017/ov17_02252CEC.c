@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02095C48.h"
+#include "struct_defs/contest.h"
 
 #include "overlay017/ov17_0224A0FC.h"
 #include "overlay017/struct_ov17_02246F24.h"
@@ -15,7 +15,7 @@
 
 void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     UnkStruct_ov17_0224F30C *v1;
 
     if (v0->unk_154 == 0) {
@@ -48,7 +48,7 @@ void ov17_02252CEC(int param0, int param1, void *param2, void *param3)
 
 void ov17_02252D7C(int param0, int param1, void *param2, void *param3)
 {
-    SuperContest *v0 = param3;
+    Contest *v0 = param3;
     UnkStruct_ov17_0224DF54 *v1 = v0->unk_150;
     UnkStruct_ov17_0224EDE0 *v2 = param2;
 

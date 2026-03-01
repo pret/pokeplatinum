@@ -5,7 +5,7 @@
 
 BOOL ScrCmd_StartContestCommSync(ScriptContext *ctx);
 BOOL ScrCmd_WaitForCommSyncState(ScriptContext *ctx);
-BOOL ScrCmd_SuperContestNew(ScriptContext *ctx);
+BOOL ScrCmd_ContestNew(ScriptContext *ctx);
 BOOL ScrCmd_EndContest(ScriptContext *ctx);
 BOOL ScrCmd_BufferJudgeName(ScriptContext *ctx);
 BOOL ScrCmd_BufferContestantTrainerName(ScriptContext *ctx);

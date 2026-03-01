@@ -1523,7 +1523,7 @@
     .short \syncState
     .endm
 
-    .macro SuperContestNew contestRank, contestType, competitionType, partySlot
+    .macro ContestNew contestRank, contestType, competitionType, partySlot
     .short 250
     .short \contestRank
     .short \contestType

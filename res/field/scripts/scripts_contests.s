@@ -538,7 +538,7 @@ ContestRegistration_ReceptionistLinkContest_End:
     End
 
 ContestRegistration_StartContest:
-    SuperContestNew VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
+    ContestNew VAR_0x8004, VAR_0x8005, VAR_0x8007, VAR_MAP_LOCAL_2
     CallIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_LINK, ContestRegistration_SetupLinkContest
     GoToIfEq VAR_MAP_LOCAL_3, CONTEST_MODE_PRACTICE, ContestRegistration_RegisteredForPractice
     GetContestRegistrationEntryNum VAR_RESULT

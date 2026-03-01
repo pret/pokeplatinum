@@ -32,16 +32,16 @@ static BOOL ScriptContext_IsContestCameraFlashTaskDone(ScriptContext *ctx);
 
 BOOL ScrCmd_StartContestCommSync(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 syncNo = ScriptContext_GetVar(ctx);
 
-    SuperContest_StartCommSync(*superContest, syncNo);
+    Contest_StartCommSync(*contest, syncNo);
     return FALSE;
 }
 
 BOOL ScrCmd_WaitForCommSyncState(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 syncState = ScriptContext_GetVar(ctx);
 
     ctx->data[0] = syncState;
@@ -52,15 +52,15 @@ BOOL ScrCmd_WaitForCommSyncState(ScriptContext *ctx)
 
 static BOOL ScriptContext_ResumeWhenContestSynced(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    return SuperContest_IsSyncState(*superContest, ctx->data[0]);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    return Contest_IsSyncState(*contest, ctx->data[0]);
 }
 
-BOOL ScrCmd_SuperContestNew(ScriptContext *ctx)
+BOOL ScrCmd_ContestNew(ScriptContext *ctx)
 {
     String *trainerName;
     Pokemon *mon;
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
     u16 contestRank = ScriptContext_GetVar(ctx);
     u16 contestType = ScriptContext_GetVar(ctx);
@@ -85,7 +85,7 @@ BOOL ScrCmd_SuperContestNew(ScriptContext *ctx)
     playerMonContestDTO.saveData = ctx->fieldSystem->saveData;
     playerMonContestDTO.chatotCry = SaveData_GetChatotCry(ctx->fieldSystem->saveData);
 
-    *superContest = SuperContest_Init(&playerMonContestDTO);
+    *contest = Contest_Init(&playerMonContestDTO);
 
     String_Free(trainerName);
 
@@ -94,55 +94,55 @@ BOOL ScrCmd_SuperContestNew(ScriptContext *ctx)
 
 BOOL ScrCmd_EndContest(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 unused = ScriptContext_GetVar(ctx);
     u32 mapID = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapId);
 
-    SuperContest_EndContest(*superContest, ctx->fieldSystem->saveData, mapID, ctx->fieldSystem->journalEntry);
-    SuperContest_Free(*superContest);
+    Contest_EndContest(*contest, ctx->fieldSystem->saveData, mapID, ctx->fieldSystem->journalEntry);
+    Contest_Free(*contest);
 
     return FALSE;
 }
 
 BOOL ScrCmd_BufferJudgeName(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 judgeID = ScriptContext_GetVar(ctx);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_BufferJudgeName(*superContest, judgeID, *strTemplate, idx);
+    Contest_BufferJudgeName(*contest, judgeID, *strTemplate, idx);
 
     return FALSE;
 }
 
 BOOL ScrCmd_BufferContestantTrainerName(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **strTempalte = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 contestantEntryNum = ScriptContext_GetVar(ctx);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_BufferContestantTrainerName(*superContest, contestantEntryNum, *strTempalte, idx);
+    Contest_BufferContestantTrainerName(*contest, contestantEntryNum, *strTempalte, idx);
 
     return FALSE;
 }
 
 BOOL ScrCmd_BufferContestantMonName(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 contestantEntryNum = ScriptContext_GetVar(ctx);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_BufferMonNickname(*superContest, contestantEntryNum, *strTemplate, idx);
+    Contest_BufferMonNickname(*contest, contestantEntryNum, *strTemplate, idx);
 
     return FALSE;
 }
 
 BOOL ScrCmd_BufferContestRegistrationEntryNumber(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **str = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 entryNum = ScriptContext_GetVar(ctx);
     u16 strNumIdx = ScriptContext_GetVar(ctx);
@@ -153,9 +153,9 @@ BOOL ScrCmd_BufferContestRegistrationEntryNumber(ScriptContext *ctx)
 
 BOOL ScrCmd_WaitForLinkContestSetup(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    SuperContest_SetUpLinkContest(*superContest);
+    Contest_SetUpLinkContest(*contest);
     ScriptContext_Pause(ctx, ScriptContext_IsContestCommTaskDone);
 
     return TRUE;
@@ -163,168 +163,168 @@ BOOL ScrCmd_WaitForLinkContestSetup(ScriptContext *ctx)
 
 static BOOL ScriptContext_IsContestCommTaskDone(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    return SuperContest_IsCommTaskDone(*superContest);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    return Contest_IsCommTaskDone(*contest);
 }
 
 BOOL ScrCmd_RunContestApplication(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    FieldTask_InitRunContestTask(ctx->task, *superContest);
+    FieldTask_InitRunContestTask(ctx->task, *contest);
     return TRUE;
 }
 
 BOOL ScrCmd_BufferContestRank(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_BufferContestRank(*superContest, *strTemplate, idx);
+    Contest_BufferContestRank(*contest, *strTemplate, idx);
     return FALSE;
 }
 
 BOOL ScrCmd_BufferContestType(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_BufferContestType(*superContest, *strTemplate, idx);
+    Contest_BufferContestType(*contest, *strTemplate, idx);
     return FALSE;
 }
 
 BOOL ScrCmd_BufferWinningContestantTrainerName(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_BufferWinningContestantTrainerName(*superContest, *strTemplate, idx);
+    Contest_BufferWinningContestantTrainerName(*contest, *strTemplate, idx);
     return FALSE;
 }
 
 BOOL ScrCmd_SetTrue(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destTrue = ScriptContext_GetVarPointer(ctx);
 
-    *destTrue = SuperContest_True(*superContest);
+    *destTrue = Contest_True(*contest);
     return FALSE;
 }
 
 BOOL ScrCmd_BufferWinningContestantMonName(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_BufferWinningContestantMonName(*superContest, *strTemplate, idx);
+    Contest_BufferWinningContestantMonName(*contest, *strTemplate, idx);
     return FALSE;
 }
 
 BOOL ScrCmd_GetPlayerContestPlacement(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destPlayerContestPlacement = ScriptContext_GetVarPointer(ctx);
 
-    *destPlayerContestPlacement = SuperContest_GetPlayerContestPlacement(*superContest);
+    *destPlayerContestPlacement = Contest_GetPlayerContestPlacement(*contest);
     return FALSE;
 }
 
 BOOL ScrCmd_GetWinningContestantEntryNum(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destWinningContestantEntryNum = ScriptContext_GetVarPointer(ctx);
 
-    *destWinningContestantEntryNum = SuperContest_GetWinningContestantEntryNum(*superContest);
+    *destWinningContestantEntryNum = Contest_GetWinningContestantEntryNum(*contest);
     return FALSE;
 }
 
 BOOL ScrCmd_GetContestRegistrationEntryNum(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destEntryNum = ScriptContext_GetVarPointer(ctx);
 
-    *destEntryNum = SuperContest_GetPlayerContestantEntryNum(*superContest);
+    *destEntryNum = Contest_GetPlayerContestantEntryNum(*contest);
     return FALSE;
 }
 
 BOOL ScrCmd_GetContestantObjEventGFX(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 contestantEntryNum = ScriptContext_GetVar(ctx);
     u16 *destContestantObjEventGFX = ScriptContext_GetVarPointer(ctx);
 
-    *destContestantObjEventGFX = SuperContest_GetContestantObjEventGFX(*superContest, contestantEntryNum);
+    *destContestantObjEventGFX = Contest_GetContestantObjEventGFX(*contest, contestantEntryNum);
     return FALSE;
 }
 
 BOOL ScrCmd_GetContestantMonContestFame(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 entryNum = ScriptContext_GetVar(ctx);
     u16 *destMonContestFame = ScriptContext_GetVarPointer(ctx);
 
-    *destMonContestFame = SuperContest_GetContestantMonContestFame(*superContest, entryNum);
+    *destMonContestFame = Contest_GetContestantMonContestFame(*contest, entryNum);
     return FALSE;
 }
 
 BOOL ScrCmd_GetContestMode(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destContestMode = ScriptContext_GetVarPointer(ctx);
 
-    *destContestMode = SuperContest_GetContestMode(*superContest);
+    *destContestMode = Contest_GetContestMode(*contest);
     return FALSE;
 }
 
 BOOL ScrCmd_GetContestInfo(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *contestRank = ScriptContext_GetVarPointer(ctx);
     u16 *contestType = ScriptContext_GetVarPointer(ctx);
     u16 *competitionType = ScriptContext_GetVarPointer(ctx);
     u16 *monPartySlot = ScriptContext_GetVarPointer(ctx);
 
-    SuperContest_GetContestInfo(*superContest, contestRank, contestType, competitionType, monPartySlot);
+    Contest_GetContestInfo(*contest, contestRank, contestType, competitionType, monPartySlot);
     return FALSE;
 }
 
 BOOL ScrCmd_PlayerMonAlreadyHasRibbon(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destHasRibbon = ScriptContext_GetVarPointer(ctx);
 
-    *destHasRibbon = SuperContest_PlayerMonAlreadyHasRibbon(*superContest);
+    *destHasRibbon = Contest_PlayerMonAlreadyHasRibbon(*contest);
     return FALSE;
 }
 
 BOOL ScrCmd_SetRibbonName(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     StringTemplate **string = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u16 idx = ScriptContext_GetVar(ctx);
 
-    SuperContest_SetRibbonName(*superContest, *string, idx, 11);
+    Contest_SetRibbonName(*contest, *string, idx, 11);
     return FALSE;
 }
 
 BOOL ScrCmd_GetFirstTimeVictoryAccessory(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destAccessoryID = ScriptContext_GetVarPointer(ctx);
 
-    *destAccessoryID = SuperContest_CalcFirstTimeVictoryAccessoryReward(*superContest);
+    *destAccessoryID = Contest_CalcFirstTimeVictoryAccessoryReward(*contest);
     return FALSE;
 }
 
 BOOL ScrCmd_LockAutoScrollForLinkContests(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    SuperContest_LockAutoScrollForLinkContests(*superContest);
+    Contest_LockAutoScrollForLinkContests(*contest);
     return FALSE;
 }
 
@@ -332,7 +332,7 @@ BOOL ScrCmd_LockTextSpeed(ScriptContext *ctx)
 {
     void **unused = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    SuperContest_LockTextSpeed(*unused);
+    Contest_LockTextSpeed(*unused);
     return FALSE;
 }
 
@@ -341,7 +341,7 @@ BOOL ScrCmd_StartContestCameraFlashTask(ScriptContext *ctx)
     void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 contestantEntryNum = ScriptContext_GetVar(ctx);
 
-    SuperContest_StartCameraFlashTask(*contest, contestantEntryNum);
+    Contest_StartCameraFlashTask(*contest, contestantEntryNum);
     return FALSE;
 }
 
@@ -355,9 +355,9 @@ BOOL ScrCmd_WaitForContestCameraFlashTask(ScriptContext *ctx)
 
 static BOOL ScriptContext_IsContestCameraFlashTaskDone(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    if (SuperContest_CameraFlashTaskDone(*superContest) == TRUE) {
+    if (Contest_CameraFlashTaskDone(*contest) == TRUE) {
         return TRUE;
     }
 
@@ -378,11 +378,11 @@ BOOL ScrCmd_HBlankSystem_Start(ScriptContext *ctx)
 
 BOOL ScrCmd_GetShouldSkipAwardCeremony(ScriptContext *ctx)
 {
-    void **superContest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    void **contest = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
     u16 *destSkipAwardCeremony = ScriptContext_GetVarPointer(ctx);
     int winningContestantEntryNum, isLinkContest, v4, isPracticeCompetition, v6;
 
-    sub_02094BB4(*superContest, &winningContestantEntryNum, &isLinkContest, &v4, &isPracticeCompetition, &v6);
+    sub_02094BB4(*contest, &winningContestantEntryNum, &isLinkContest, &v4, &isPracticeCompetition, &v6);
 
     if (isLinkContest == TRUE || v4 == 1 || isPracticeCompetition == TRUE || v6 == 1) {
         *destSkipAwardCeremony = TRUE;

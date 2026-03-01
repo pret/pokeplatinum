@@ -5,7 +5,7 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/struct_02095C48.h"
+#include "struct_defs/contest.h"
 
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
@@ -528,19 +528,19 @@ static void ov17_02251070(UnkStruct_ov17_0224FCA0 *param0)
     v1->unk_00 = param0;
     v1->unk_04 = SpriteSystem_NewSprite(param0->unk_10.unk_18, param0->unk_10.unk_1C, &Unk_ov17_02254C28);
 
-    v2 = (SuperContest_GetRNGNext(param0->unk_00) & 0xff) + 20;
-    v3 = -16 + (SuperContest_GetRNGNext(param0->unk_00) % (96 - 32 - 16));
+    v2 = (Contest_GetRNGNext(param0->unk_00) & 0xff) + 20;
+    v3 = -16 + (Contest_GetRNGNext(param0->unk_00) % (96 - 32 - 16));
 
     v1->unk_08 = v2 * 0x100;
     v1->unk_0C = v3 * 0x100;
 
     ManagedSprite_SetPositionXY(v1->unk_04, v2, v3);
 
-    v1->unk_14 = (SuperContest_GetRNGNext(param0->unk_00) % 0x200) + 0x60;
-    v1->unk_18 = (SuperContest_GetRNGNext(param0->unk_00) % 0x300) + 0x100;
-    v1->unk_12 = (SuperContest_GetRNGNext(param0->unk_00) % 24) + 16;
+    v1->unk_14 = (Contest_GetRNGNext(param0->unk_00) % 0x200) + 0x60;
+    v1->unk_18 = (Contest_GetRNGNext(param0->unk_00) % 0x300) + 0x100;
+    v1->unk_12 = (Contest_GetRNGNext(param0->unk_00) % 24) + 16;
 
-    ManagedSprite_SetAnim(v1->unk_04, SuperContest_GetRNGNext(param0->unk_00) % 0x9);
+    ManagedSprite_SetAnim(v1->unk_04, Contest_GetRNGNext(param0->unk_00) % 0x9);
     ManagedSprite_TickFrame(v1->unk_04);
     SysTask_Start(ov17_02251140, v1, ((50000 + 10) + 1));
 
@@ -878,9 +878,9 @@ static void ov17_022517F0(SysTask *param0, void *param1)
     }
 }
 
-static int ov17_02251860(SuperContest *superContest, int param1)
+static int ov17_02251860(Contest *contest, int param1)
 {
-    switch (superContest->unk_00.competitionType) {
+    switch (contest->unk_00.competitionType) {
     case CONTEST_COMPETITION_UNK0:
         switch (param1) {
         case 0:
@@ -937,7 +937,7 @@ static int ov17_02251860(SuperContest *superContest, int param1)
     }
 }
 
-static int ov17_02251914(SuperContest *param0, int param1)
+static int ov17_02251914(Contest *param0, int param1)
 {
     int v0 = ov17_02251860(param0, param1);
     int v1 = (24 * 8) * v0;
@@ -946,7 +946,7 @@ static int ov17_02251914(SuperContest *param0, int param1)
     return v1;
 }
 
-void ov17_02251930(SuperContest *param0, int param1, s16 param2[])
+void ov17_02251930(Contest *param0, int param1, s16 param2[])
 {
     int v0[4];
     int v1[4];
@@ -1117,7 +1117,7 @@ void ov17_02251A1C(UnkStruct_ov17_0224FCA0 *param0)
         for (v7 = 0; v7 < 4; v7++) {
             v5[v7] = v7;
             v6[v7] = param0->unk_39A.unk_7A[v7];
-            v4[v7] = SuperContest_GetRNGNext(param0->unk_00);
+            v4[v7] = Contest_GetRNGNext(param0->unk_00);
         }
 
         for (v7 = 0; v7 < 4 - 1; v7++) {

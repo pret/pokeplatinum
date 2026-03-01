@@ -333,7 +333,7 @@ int DanceCompetitionMain(ApplicationManager *appMan, int *param1)
     UnkStruct_ov17_0224DF54 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    SuperContest_GetRNGNext(v0->unk_00);
+    Contest_GetRNGNext(v0->unk_00);
 
     switch (*param1) {
     case 0:
@@ -905,7 +905,7 @@ static int ov17_0223E8AC(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         param0->unk_A6C.unk_30.contestantID = param0->unk_00->unk_00.playerContestantID;
         param0->unk_A6C.unk_30.unk_04 = ov17_0224C57C(param0->unk_00->unk_00.contestRank);
 
-        if (SuperContest_IsPracticeCompetition(param0->unk_00) == TRUE) {
+        if (Contest_IsPracticeCompetition(param0->unk_00) == TRUE) {
             param0->unk_A6C.unk_36 = 2;
         } else {
             param0->unk_A6C.unk_36 = 1;
@@ -1016,7 +1016,7 @@ static int ov17_0223EBB0(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0223E83
         }
 
         for (contestantID = param0->unk_00->unk_00.connectionCount; contestantID < CONTEST_NUM_PARTICIPANTS; contestantID++) {
-            param0->unk_A6C.unk_14[contestantID] = SuperContest_GetRNGNext(param0->unk_00);
+            param0->unk_A6C.unk_14[contestantID] = Contest_GetRNGNext(param0->unk_00);
         }
 
         param1->unk_00++;

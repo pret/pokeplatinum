@@ -964,7 +964,7 @@ BOOL ov17_0224AD70(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
     Sprite_SetAnimateFlag(v0->sprite, 1);
     Sprite_TickFrame(v0->sprite);
 
-    v1 = SuperContest_GetRNGNext(param0->unk_00);
+    v1 = Contest_GetRNGNext(param0->unk_00);
     v2 = 0x500;
 
     CP_SetDiv32_32(v1, v2);
@@ -979,7 +979,7 @@ BOOL ov17_0224AD70(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
         v3->unk_10 = -v3->unk_10;
     }
 
-    v1 = SuperContest_GetRNGNext(param0->unk_00);
+    v1 = Contest_GetRNGNext(param0->unk_00);
     v2 = 0xf00;
 
     CP_SetDivImm32_32(v1, v2);

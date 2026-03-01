@@ -225,7 +225,7 @@ int VisualCompetitionScoringMain(ApplicationManager *appMan, int *param1)
     UnkStruct_ov17_02247A48 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    SuperContest_GetRNGNext(v0->unk_00);
+    Contest_GetRNGNext(v0->unk_00);
 
     switch (*param1) {
     case 0:
@@ -649,7 +649,7 @@ static int ov17_0223D640(UnkStruct_ov17_02247A48 *param0, UnkStruct_ov17_0223D60
 {
     switch (param1->unk_00) {
     case 0:
-        if (SuperContest_IsPracticeCompetition(param0->unk_00) == TRUE) {
+        if (Contest_IsPracticeCompetition(param0->unk_00) == TRUE) {
             param0->unk_E0.unk_07 = 2;
         } else {
             param0->unk_E0.unk_07 = 1;
