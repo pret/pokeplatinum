@@ -387,7 +387,7 @@ static BOOL BaseDecoration_DecorateTask(FieldTask *task)
             Underground *underground = SaveData_GetUnderground(ctx->fieldSystem->saveData);
             u32 input = DecorationGoodsMenu_GetLastInput(ctx->decorationGoodsMenu);
 
-            if (input == LIST_CANCEL) {
+            if (input == MENU_CANCEL) {
                 BaseDecoration_UpdateState(DECORATION_STATE_MAIN_MENU, ctx);
                 return TRUE;
             }

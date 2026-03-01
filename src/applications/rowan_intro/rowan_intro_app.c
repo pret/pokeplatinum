@@ -1123,11 +1123,11 @@ static BOOL RowanIntro_ChoiceBox(RowanIntro *manager, enum ChoicesCase choicesCa
     case 1:
         manager->playerChoice = ListMenu_ProcessInput(manager->listMenu);
 
-        if (manager->playerChoice == LIST_NOTHING_CHOSEN) {
+        if (manager->playerChoice == MENU_NOTHING_CHOSEN) {
             break;
         }
 
-        if ((manager->playerChoice == LIST_CANCEL) && (allowCancel == TRUE)) {
+        if (manager->playerChoice == MENU_CANCEL && allowCancel == TRUE) {
             break;
         }
 
@@ -2675,7 +2675,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 manager->state = RI_STATE_NAME_DIALOGUE;
                 break;
             case 2:
-            case LIST_CANCEL: {
+            case MENU_CANCEL: {
                 Bg_ClearTilemap(manager->bgConfig, BG_LAYER_MAIN_0);
             }
                 manager->state = RI_STATE_GENDR_REPEAT;
@@ -2770,7 +2770,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 manager->state = RI_STATE_NAME_FADE_OUT_AVATAR;
                 break;
             case 2:
-            case LIST_CANCEL:
+            case MENU_CANCEL:
                 String_Clear(manager->playerNamingScreenArgs->textInputStr);
                 manager->bufferedState = RI_STATE_GENDR_FADE_IN_AVATAR_PREP;
                 manager->state = RI_STATE_NAME_FADE_OUT_AVATAR;
@@ -2916,7 +2916,7 @@ static BOOL RowanIntro_Run(RowanIntro *manager)
                 manager->state = RI_STATE_FADE_OUT_RIVAL;
                 break;
             case 2:
-            case LIST_CANCEL:
+            case MENU_CANCEL:
                 String_Clear(manager->rivalNamingScreenArgs->textInputStr);
                 manager->state = RI_STATE_RIVAL_NAME_DIALOGUE;
                 break;

@@ -654,7 +654,7 @@ static BOOL UndergroundMenu_HandleStartMenu(SysTask *sysTask, void *data)
     UndergroundMenu_TryTransitionIconAnimationToWiggle(menu->sprites[menu->menuCursorPos + 1]->sprite);
 
     if (CommSys_CheckError()) {
-        menu->startMenuInput = MENU_CANCELED;
+        menu->startMenuInput = MENU_CANCEL;
     }
 
     switch (menu->startMenuInput) {
@@ -662,7 +662,7 @@ static BOOL UndergroundMenu_HandleStartMenu(SysTask *sysTask, void *data)
         UndergroundMenu_AnimateSprites(menu);
         SpriteList_Update(menu->spriteManager.spriteList);
         return FALSE;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         menu->state = UNDERGROUND_MENU_STATE_CLOSE;
         break;
     default:
@@ -715,18 +715,18 @@ void UndergroundMenu_EraseCurrentMenu(UndergroundMenu *menu)
 static ItemSelectedOption sSphereTrapOptions[] = {
     { .bankEntry = UndergroundCommon_Text_Bury, .index = UNDERGROUND_MENU_OPTION_BURY },
     { .bankEntry = UndergroundCommon_Text_Trash, .index = UNDERGROUND_MENU_OPTION_TRASH },
-    { .bankEntry = UndergroundCommon_Text_Cancel, .index = LIST_CANCEL }
+    { .bankEntry = UndergroundCommon_Text_Cancel, .index = MENU_CANCEL }
 };
 
 static ItemSelectedOption sGoodOptions[] = {
     { .bankEntry = UndergroundCommon_Text_Trash, .index = UNDERGROUND_MENU_OPTION_TRASH },
-    { .bankEntry = UndergroundCommon_Text_Cancel, .index = LIST_CANCEL }
+    { .bankEntry = UndergroundCommon_Text_Cancel, .index = MENU_CANCEL }
 };
 
 static ItemSelectedOption sTreasureOptions[] = {
     { .bankEntry = UndergroundCommon_Text_PutInBag, .index = UNDERGROUND_MENU_OPTION_PUT_IN_BAG },
     { .bankEntry = UndergroundCommon_Text_Trash, .index = UNDERGROUND_MENU_OPTION_TRASH },
-    { .bankEntry = UndergroundCommon_Text_Cancel, .index = LIST_CANCEL }
+    { .bankEntry = UndergroundCommon_Text_Cancel, .index = MENU_CANCEL }
 };
 
 static void UndergroundMenu_InitItemSelectedMenu(UndergroundMenu *menu, int menuType)
@@ -819,7 +819,7 @@ void UndergroundMenu_PrintTrapDescription(ListMenu *listMenu, u32 index, u8 onIn
     int bankEntry;
     enum Trap trapID = getTrap(index, menu);
 
-    if (index == LIST_CANCEL) {
+    if (index == MENU_CANCEL) {
         bankEntry = UndergroundTraps_Text_CloseDescription;
     } else {
         bankEntry = UNDERGROUND_TRAP_DESCRIPTIONS_START + trapID - 1;
@@ -871,7 +871,7 @@ static void UndergroundMenu_InitTrapsMenu(UndergroundMenu *menu, MoveItemCallbac
         StringList_AddFromMessageBank(menu->menuOptions, loader, getTrap(i, menu), i);
     }
 
-    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundTraps_Text_Close, LIST_CANCEL);
+    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundTraps_Text_Close, MENU_CANCEL);
 
     ListMenuTemplate template = sListMenuTemplate;
     template.count = trapCount + 1;
@@ -899,19 +899,19 @@ static BOOL UndergroundMenu_HandleTrapsMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_TRAPS, cursorPos, listPos);
 
     if (CommSys_CheckError()) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
-        input = LIST_CANCEL;
+    if (input == MENU_CANCEL) {
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), UNDERGROUND_MENU_MAX_DISPLAY);
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         UndergroundMenu_ReturnToStartMenu(menu);
         break;
     default:
@@ -954,9 +954,9 @@ static BOOL UndergroundMenu_HandleTrapSelectedMenu(SysTask *sysTask, void *data)
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenTrapsMenu(menu);
@@ -999,7 +999,7 @@ static void UndergroundMenu_PrintSphereDescription(ListMenu *listMenu, u32 index
     int bankEntry;
     enum SphereType sphereType = getSphereType(index, menu);
 
-    if (index == LIST_CANCEL) {
+    if (index == MENU_CANCEL) {
         bankEntry = UndergroundItems_Text_CloseDescription;
     } else {
         bankEntry = UNDERGROUND_ITEM_DESCRIPTIONS_START - 1 + sphereType;
@@ -1057,7 +1057,7 @@ static void UndergroundMenu_InitSpheresMenu(UndergroundMenu *menu, MoveItemCallb
         StringList_AddFromString(menu->menuOptions, menu->string, i);
     }
 
-    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundItems_Text_Close, LIST_CANCEL);
+    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundItems_Text_Close, MENU_CANCEL);
 
     ListMenuTemplate template = sListMenuTemplate;
     template.count = sphereCount + 1;
@@ -1084,19 +1084,19 @@ static BOOL UndergroundMenu_HandleSpheresMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_SPHERES, cursorPos, listPos);
 
     if (CommSys_CheckError()) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
-        input = LIST_CANCEL;
+    if (input == MENU_CANCEL) {
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), UNDERGROUND_MENU_MAX_DISPLAY);
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         UndergroundMenu_ReturnToStartMenu(menu);
         break;
     default:
@@ -1129,9 +1129,9 @@ static BOOL UndergroundMenu_HandleSphereSelectedMenu(SysTask *sysTask, void *dat
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenSpheresMenu(menu);
@@ -1171,7 +1171,7 @@ void UndergroundMenu_PrintTreasureDescription(ListMenu *listMenu, u32 index, u8 
     int bankEntry = index;
     int treasureID = getTreasure(index, menu);
 
-    if (index == LIST_CANCEL) {
+    if (index == MENU_CANCEL) {
         bankEntry = UndergroundItems_Text_CloseDescription;
     } else {
         bankEntry = UNDERGROUND_ITEM_DESCRIPTIONS_START - 1 + treasureID;
@@ -1221,7 +1221,7 @@ static void UndergroundMenu_InitTreasuresMenu(UndergroundMenu *menu, MoveItemCal
         StringList_AddFromMessageBank(menu->menuOptions, loader, getTreasure(i, menu), i);
     }
 
-    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundItems_Text_Close, LIST_CANCEL);
+    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundItems_Text_Close, MENU_CANCEL);
 
     ListMenuTemplate template = sListMenuTemplate;
     template.count = treasureCount + 1;
@@ -1248,19 +1248,19 @@ static BOOL UndergroundMenu_HandleTreasuresMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_TREASURES, cursorPos, listPos);
 
     if (CommSys_CheckError()) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
-        input = LIST_CANCEL;
+    if (input == MENU_CANCEL) {
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), UNDERGROUND_MENU_MAX_DISPLAY);
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         UndergroundMenu_ReturnToStartMenu(menu);
         break;
     default:
@@ -1297,9 +1297,9 @@ static BOOL UndergroundMenu_HandleTreasureSelectedMenu(SysTask *sysTask, void *d
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenTreasuresMenu(menu);
@@ -1380,7 +1380,7 @@ static void UndergroundMenu_CheckForReturnYesNo(SysTask *sysTask, void *data)
 
     if (result == MENU_NOTHING_CHOSEN) {
         return;
-    } else if (result == 0) {
+    } else if (result == MENU_YES) {
         menu->state = UNDERGROUND_MENU_STATE_RETURN_TO_SURFACE;
     } else {
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetCommonTextPrinter());
@@ -1438,7 +1438,7 @@ static void UndergroundMenu_CheckForThrowAwayYesNo(UndergroundMenu *menu)
 
     if (input == MENU_NOTHING_CHOSEN) {
         return;
-    } else if (input == 0) {
+    } else if (input == MENU_YES) {
         menu->state = UNDERGROUND_MENU_STATE_CLOSE_LEAVE_PAUSED;
     } else {
         menu->state = UNDERGROUND_MENU_STATE_CLOSE;
@@ -1523,7 +1523,7 @@ void UndergroundMenu_PrintGoodDescription(ListMenu *listMenu, u32 index, u8 onIn
     int bankEntry;
     enum Good goodID = getGood(index, menu);
 
-    if (index == LIST_CANCEL) {
+    if (index == MENU_CANCEL) {
         bankEntry = UndergroundGoods_Text_CloseDescription;
     } else {
         bankEntry = UNDERGROUND_GOOD_DESCRIPTIONS_START + goodID - 1;
@@ -1607,7 +1607,7 @@ static void UndergroundMenu_InitGoodsMenu(UndergroundMenu *menu, MoveItemCallbac
         StringList_AddFromMessageBank(menu->menuOptions, loader, getGood(i, menu), i);
     }
 
-    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundGoods_Text_Close, LIST_CANCEL);
+    StringList_AddFromMessageBank(menu->menuOptions, loader, UndergroundGoods_Text_Close, MENU_CANCEL);
 
     ListMenuTemplate template = sListMenuTemplate;
     template.count = goodsCount + 1;
@@ -1635,19 +1635,19 @@ static BOOL UndergroundMenu_HandleGoodsMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_GOODS, cursorPos, listPos);
 
     if (CommSys_CheckError()) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
-        input = LIST_CANCEL;
+    if (input == MENU_CANCEL) {
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), UNDERGROUND_MENU_MAX_DISPLAY);
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         UndergroundMenu_ReturnToStartMenu(menu);
         break;
@@ -1685,9 +1685,9 @@ static BOOL UndergroundMenu_HandleGoodSelectedMenu(SysTask *sysTask, void *data)
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         UndergroundMenu_CloseItemSelectedMenu(menu);
         UndergroundMenu_OpenGoodsMenu(menu);
@@ -1770,18 +1770,18 @@ static BOOL UndergroundMenu_HandleGiftMenu(SysTask *sysTask, void *data)
     u32 input = UndergroundItemListMenu_ProcessInput(menu->itemListMenu);
 
     if (CommSys_CheckError()) {
-        input = LIST_CANCEL;
+        input = MENU_CANCEL;
     }
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
-        input = LIST_CANCEL;
+    if (input == MENU_CANCEL) {
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         if (menu->exitCallback != NULL) {
             ctx->selectedSlot = input;
             ctx->selectedID = 0;
@@ -1858,7 +1858,7 @@ void UndergroundMenu_MoveListCursorPosInBounds(UndergroundMenu *menu, int maxDis
 void UndergroundMenu_ResetBrightnessAndExit(SysTask *sysTask, void *data)
 {
     BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-    UndergroundMenu_Exit(data, LIST_CANCEL);
+    UndergroundMenu_Exit(data, MENU_CANCEL);
 }
 
 void UndergroundMenu_UpdateScrollPrompts(UndergroundMenu *menu, int listPos, int count, int maxDisplay)

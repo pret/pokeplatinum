@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/scrcmd.h"
-
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_defs/battle_frontier.h"
@@ -458,7 +456,7 @@ static const u32 sHealMenuEntries[][3] = {
     { 2, BattleCastleSelfApp_Text_RestorePP, MENU_ENTRY_RESTORE_PP },
     { 3, BattleCastleSelfApp_Text_RestoreAll, MENU_ENTRY_RESTORE_ALL },
     { 1, BattleCastleSelfApp_Text_RankUp, MENU_ENTRY_RANK_UP_HEALING },
-    { 1, BattleCastleSelfApp_Text_Cancel2, MENU_CANCELED }
+    { 1, BattleCastleSelfApp_Text_Cancel2, MENU_CANCEL }
 };
 
 static const u16 sRankUpCosts[3][3] = {
@@ -757,9 +755,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         BattleCastleApp_PlaySound(input, SEQ_SE_CONFIRM);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMonOptions(app);
             PrintMonSelectionStrings(app);
             app->subState = MAIN_SUBSTATE_SELECT_MON;
@@ -818,9 +816,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
             FreeListMenu2(app);
             OpenMonOptionsMenu(app);
@@ -998,9 +996,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             CloseMessageBox(&app->windows[SELF_APP_WINDOW_MSG_BOX]);
             FreeListMenu3(app);
             OpenMonOptionsMenu(app);
@@ -1054,9 +1052,9 @@ static BOOL State_MainAppFlow(BattleCastleSelfApp *app)
         ListMenu_CalcTrueCursorPos(app->listMenu, &app->menuPos);
 
         switch (input) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             FreeItemSelect(app);
             OpenRentalMenu(app);
             app->subState = MAIN_SUBSTATE_RENTAL_MENU;
@@ -2202,7 +2200,7 @@ static void DrawItemSelectMenuAndMonInfo(BattleCastleSelfApp *app, u8 menuOption
         StringList_AddFromMessageBank(app->strList, itemMsgLoader, itemID, i);
     }
 
-    StringList_AddFromMessageBank(app->strList, app->msgLoader, BattleCastleSelfApp_Text_Cancel, MENU_CANCELED);
+    StringList_AddFromMessageBank(app->strList, app->msgLoader, BattleCastleSelfApp_Text_Cancel, MENU_CANCEL);
 
     app->listTemplate = sDefaultListTemplate;
     app->listTemplate.choices = app->strList;
@@ -2251,7 +2249,7 @@ static void UpdateItemSelectMenuDisplay(ListMenu *menu, u32 item, u8 onInit)
 
     BattleCastleAppSprite_SetPosition(app->itemSelectCursorSprite, 158, 24 + cursorPos * 16);
 
-    if (item != MENU_CANCELED) {
+    if (item != MENU_CANCEL) {
         PrintItemName(app, &app->windows[SELF_APP_WINDOW_SELECTED_ITEM_NAME], GetItemIDFromListPos(app, pos, app->selectedMenuEntry));
 
         BattleCastleApp_SetItemGraphic(&app->spriteMan, GetItemIDFromListPos(app, pos, app->selectedMenuEntry));
@@ -2268,7 +2266,7 @@ static void PrintItemPrice(ListMenu *menu, u32 item, u8 yOffset)
 {
     BattleCastleSelfApp *app = (BattleCastleSelfApp *)ListMenu_GetAttribute(menu, LIST_MENU_PARENT);
 
-    if (item != MENU_CANCELED) {
+    if (item != MENU_CANCEL) {
         SetStringTemplateNumber(app, 0, GetItemPriceFromListPos(app, item, app->selectedMenuEntry), 4, PADDING_MODE_SPACES);
 
         app->printerID = PrintMessage(app, &app->windows[SELF_APP_WINDOW_ITEM_SELECT_MENU], BattleCastleSelfApp_Text_CastlePointsItemSelect, 128, yOffset, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, TEXT_ALIGN_RIGHT);
@@ -2322,7 +2320,7 @@ static void UpdateHealMenuEntryDescription(ListMenu *menu, u32 item, u8 onInit)
             entryID = BattleCastleSelfApp_Text_RankUpToRestoreHPAndPP;
         }
         break;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         entryID = BattleCastleSelfApp_Text_ReturnToPrevious;
         break;
     default:
@@ -2371,7 +2369,7 @@ static const u32 sRentalMenuEntries[][3] = {
     { 1, BattleCastleSelfApp_Text_Berries, MENU_ENTRY_RENT_BERRIES },
     { 2, BattleCastleSelfApp_Text_Items, MENU_ENTRY_RENT_ITEMS },
     { 1, BattleCastleSelfApp_Text_RankUp2, MENU_ENTRY_RANK_UP_ITEMS },
-    { 1, BattleCastleSelfApp_Text_Cancel3, MENU_CANCELED }
+    { 1, BattleCastleSelfApp_Text_Cancel3, MENU_CANCEL }
 };
 
 static void InitRentalMenu(BattleCastleSelfApp *app)
@@ -2473,7 +2471,7 @@ static const u32 sMonMenuEntries[][2] = {
     { BattleCastleSelfApp_Text_Rental, MENU_ENTRY_RENTAL },
     { BattleCastleSelfApp_Text_Summary, MENU_ENTRY_SUMMARY },
     { BattleCastleSelfApp_Text_Moves, MENU_ENTRY_MOVES },
-    { BattleCastleSelfApp_Text_Cancel, MENU_CANCELED }
+    { BattleCastleSelfApp_Text_Cancel, MENU_CANCEL }
 };
 
 static const u16 sMonMenuDescriptions[] = {

@@ -5,7 +5,6 @@
 
 #include "constants/accessories.h"
 #include "constants/field/window.h"
-#include "constants/scrcmd.h"
 
 #include "overlay007/shop_menu.h"
 
@@ -158,7 +157,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
     case ACCESSORY_SHOP_STATE_SELECT_ITEM_LIST:
         input = AccessoryShop_SelectItemListMenu(&shop->itemList);
 
-        if (input != LIST_NOTHING_CHOSEN && input != LIST_CANCEL) {
+        if (input != MENU_NOTHING_CHOSEN && input != MENU_CANCEL) {
             Bg_FillTilemapRect(shop->bgConfig, BG_LAYER_MAIN_3, 0, 0, 0, 32, 18, 17);
 
             AccessoryShop_HideScrollArrows(&shop->itemList);
@@ -168,7 +167,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
             shop->nextState = ACCESSORY_SHOP_STATE_INIT_YES_NO_CHOICE;
 
             Sound_PlayEffect(SEQ_SE_CONFIRM);
-        } else if (input == LIST_CANCEL) {
+        } else if (input == MENU_CANCEL) {
             string = MessageLoader_GetNewString(shop->msgLoader, FlowerShop_Text_PleaseComeAgain);
             AccessoryShop_PrintStringToMsgBox(&shop->msgbox, string, shop->heapID);
             String_Free(string);
@@ -212,7 +211,7 @@ BOOL AccessoryShop_Main(AccessoryShop *shop)
 
             shop->state = ACCESSORY_SHOP_STATE_WAIT_AB_INPUT;
             shop->nextState = ACCESSORY_SHOP_STATE_CONFIRM_PURCHASE;
-        } else if (input == MENU_CANCELED) {
+        } else if (input == MENU_CANCEL) {
             AccessoryShop_DeleteYesNoChoice(&shop->yesNoChoice);
             shop->state = ACCESSORY_SHOP_STATE_LOAD_BUY_MSG;
         }
@@ -583,7 +582,7 @@ static u32 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList)
     u16 cursorPos;
     u32 input = ListMenu_ProcessInput(itemList->listMenu);
 
-    if (input == LIST_NOTHING_CHOSEN) {
+    if (input == MENU_NOTHING_CHOSEN) {
         ListMenu_CalcTrueCursorPos(itemList->listMenu, &cursorPos);
 
         if (itemList->cursorPos != cursorPos) {
@@ -593,9 +592,9 @@ static u32 AccessoryShop_SelectItemListMenu(AccessoryShopItemList *itemList)
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             AccessoryShop_UpdateScrollArrowsVisibility(itemList);
         }
-    } else if (input != LIST_CANCEL) {
+    } else if (input != MENU_CANCEL) {
         if (itemList->cursorPos == (itemList->maxListItems - 1)) {
-            input = LIST_CANCEL;
+            input = MENU_CANCEL;
         }
     }
 

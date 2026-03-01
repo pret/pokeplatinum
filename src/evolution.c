@@ -519,12 +519,12 @@ static void Evolution_Main(EvolutionData *evolutionData)
         break;
     case EVOLUTION_STATE_PROCESS_INPUT_SHOULD_A_MOVE_BE_DELETED:
         switch (Menu_ProcessInputAndHandleExit(evolutionData->menu, evolutionData->heapID)) {
-        case 0:
+        case MENU_YES:
             evolutionData->state = EVOLUTION_STATE_SET_SUMMARY_DATA;
             PaletteData_StartFade(evolutionData->paletteData, PLTTBUF_MAIN_BG_F | PLTTBUF_SUB_BG_F | PLTTBUF_MAIN_OBJ_F | PLTTBUF_SUB_OBJ_F, 0xFFFF, 1, 0, 16, 0);
             PokemonSpriteManager_StartFadeAll(evolutionData->monSpriteMan, 0, 16, 0, 0);
             break;
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             evolutionData->state = EVOLUTION_STATE_PRINT_STOP_TRYING_TO_TEACH_MOVE;
             break;
         }
@@ -589,14 +589,14 @@ static void Evolution_Main(EvolutionData *evolutionData)
         break;
     case EVOLUTION_STATE_PROCESS_INPUT_STOP_TRYING_TO_TEACH_MOVE:
         switch (Menu_ProcessInputAndHandleExit(evolutionData->menu, evolutionData->heapID)) {
-        case 0:
+        case MENU_YES:
             StringTemplate_SetNickname(evolutionData->strTemplate, 0, Pokemon_GetBoxPokemon(evolutionData->mon));
             StringTemplate_SetMoveName(evolutionData->strTemplate, 1, evolutionData->moveID);
             evolutionData->printerID = Evolution_PrintString(evolutionData, BattleStrings_Text_PokemonDidNotLearnTheMove);
             evolutionData->delay = 30;
             evolutionData->state = EVOLUTION_STATE_WAIT_PRINT_DID_NOT_LEARN_MOVE;
             break;
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             evolutionData->state = EVOLUTION_STATE_PRINT_WANTS_TO_LEARN_MOVE;
             break;
         }

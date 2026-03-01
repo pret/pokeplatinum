@@ -1196,7 +1196,7 @@ int sub_02086774(PartyMenuApplication *application)
     switch (menuAction) {
     case MENU_NOTHING_CHOSEN:
         break;
-    case MENU_CANCELED:
+    case MENU_CANCEL:
         Window_EraseMessageBox(&application->windows[33], 1);
         Window_EraseStandardFrame(&application->windows[36], 1);
         Menu_Free(application->contextMenu, NULL);

@@ -3,7 +3,6 @@
 #include <nitro.h>
 
 #include "constants/battle_frontier.h"
-#include "constants/scrcmd.h"
 
 #include "applications/frontier/battle_hall/sprite_manager.h"
 #include "applications/frontier/battle_hall/sprites.h"
@@ -509,7 +508,7 @@ static BOOL State_SelectNextBattle(BattleHallApp *app)
             }
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeYesNoMenu(app);
             DeselectCell(app);
             app->subState = SELECT_STATE_MAKE_PICK;
@@ -643,7 +642,7 @@ static BOOL State_MultiplayerConfirmSelection(BattleHallApp *app)
             app->subState = MCONFIRM_STATE_SEND_CONFIRM_COMM;
             break;
         case MENU_NO:
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             FreeYesNoMenu(app);
             app->subState = MCONFIRM_STATE_SEND_CANCELED_COMM;
             break;

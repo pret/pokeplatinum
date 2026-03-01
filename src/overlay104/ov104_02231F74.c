@@ -348,9 +348,9 @@ static void MenuSysTaskCallback(SysTask *task, void *data)
         switch (selectedEntry) {
         case MENU_NOTHING_CHOSEN:
             break;
-        case MENU_CANCELED:
+        case MENU_CANCEL:
             if (menuManager->canExitWithB == TRUE) {
-                *menuManager->selectedOptionPtr = MENU_CANCELED;
+                *menuManager->selectedOptionPtr = MENU_CANCEL;
                 FreeManagerWithMenu(data);
             }
             break;
@@ -445,7 +445,7 @@ static void AddListMenuEntry(FrontierMenuManager *menuManager, u32 entryID, u32 
     String_Free(fmtStr);
 
     if (index == LIST_MENU_BUILDER_HEADER) {
-        menuManager->listMenuChoiceStrings[menuManager->optionCount].index = LIST_HEADER;
+        menuManager->listMenuChoiceStrings[menuManager->optionCount].index = MENU_HEADER;
     } else {
         menuManager->listMenuChoiceStrings[menuManager->optionCount].index = index;
     }
@@ -498,7 +498,7 @@ static void InitListMenuTemplate(FrontierMenuManager *menuManager)
 
 static void SetListMenuItemAltColor(ListMenu *listMenu, u32 index, u8 yOffset)
 {
-    if (index == LIST_HEADER) {
+    if (index == MENU_HEADER) {
         ListMenu_SetAltTextColors(listMenu, 3, 15, 4);
     } else {
         ListMenu_SetAltTextColors(listMenu, 1, 15, 2);
@@ -540,12 +540,12 @@ static void ListMenuSysTaskCallback(SysTask *task, void *data)
         FreeManagerWithListMenu(data, FALSE);
     } else {
         switch (selectedEntry) {
-        case LIST_NOTHING_CHOSEN:
+        case MENU_NOTHING_CHOSEN:
             break;
-        case LIST_CANCEL:
+        case MENU_CANCEL:
             if (menuManager->canExitWithB == TRUE) {
                 Sound_PlayEffect(SEQ_SE_CONFIRM);
-                *menuManager->selectedOptionPtr = LIST_CANCEL;
+                *menuManager->selectedOptionPtr = MENU_CANCEL;
 
                 FreeManagerWithListMenu(data, TRUE);
             }
@@ -614,7 +614,7 @@ void FrontierMenuManager_FreeListMenu(FrontierMenuManager *menuManager)
         return;
     }
 
-    *menuManager->selectedOptionPtr = MENU_CANCELED;
+    *menuManager->selectedOptionPtr = MENU_CANCEL;
     FreeManagerWithListMenu(menuManager, FALSE);
 }
 

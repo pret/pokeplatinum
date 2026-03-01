@@ -1,13 +1,11 @@
 #ifndef POKEPLATINUM_MENU_H
 #define POKEPLATINUM_MENU_H
 
+#include "constants/menu.h"
+
 #include "bg_window.h"
 #include "colored_arrow.h"
 #include "string_list.h"
-
-#define MENU_NOTHING_CHOSEN -1
-#define MENU_CANCELED       -2
-#define MENU_DUMMY          -3
 
 enum MenuAction {
     MENU_ACTION_NONE = 0,

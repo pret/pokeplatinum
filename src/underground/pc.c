@@ -283,7 +283,7 @@ static void UndergroundPC_PrintMenuItemDescription(ListMenu *listMenu, u32 menuI
     ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     int index = menuItemIdx;
 
-    if (menuItemIdx == LIST_CANCEL) {
+    if (menuItemIdx == MENU_CANCEL) {
         index = UndergroundPC_Text_ExitDescription - UndergroundPC_Text_DecorateDescription;
     }
 
@@ -295,7 +295,7 @@ static void UndergroundPC_PrintRadarMenuItemDescription(ListMenu *listMenu, u32 
     ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
     int index = menuItemIdx;
 
-    if (menuItemIdx == LIST_CANCEL) {
+    if (menuItemIdx == MENU_CANCEL) {
         index = UndergroundPC_Text_CancelDescription - UndergroundPC_Text_TreasureSearchDescription;
     }
 
@@ -314,9 +314,9 @@ static BOOL UndergroundPC_HandleMenu(SysTask *sysTask, void *data)
     UndergroundPC_UpdateCursorPos(menu);
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         menu->state = UG_PC_MENU_STATE_EXIT;
         break;
@@ -378,7 +378,7 @@ static void UndergroundPC_InitMenu(UndergroundMenu *menu, int startBankEntry, in
 
     for (int i = 0; i < trueOptionCount; i++) {
         if (i == trueOptionCount - 1) {
-            StringList_AddFromMessageBank(menu->menuOptions, loader, startBankEntry + (UndergroundPC_Text_Exit - UndergroundPC_Text_Decorate), LIST_CANCEL);
+            StringList_AddFromMessageBank(menu->menuOptions, loader, startBankEntry + (UndergroundPC_Text_Exit - UndergroundPC_Text_Decorate), MENU_CANCEL);
         } else {
             StringList_AddFromMessageBank(menu->menuOptions, loader, startBankEntry + i, i);
         }
@@ -418,7 +418,7 @@ static void UndergroundPC_InitRadarMenu(UndergroundMenu *menu, int startBankEntr
 
     for (int i = 0; i < trueOptionCount; i++) {
         if (i == optionCount) {
-            StringList_AddFromMessageBank(menu->menuOptions, loader, startBankEntry + i, LIST_CANCEL);
+            StringList_AddFromMessageBank(menu->menuOptions, loader, startBankEntry + i, MENU_CANCEL);
         } else {
             StringList_AddFromMessageBank(menu->menuOptions, loader, startBankEntry + i, i);
         }
@@ -456,9 +456,9 @@ static BOOL UndergroundPC_HandleRadarMenu(SysTask *sysTask, void *data)
     UndergroundPC_UpdateCursorPos(menu);
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         menu->state = UG_PC_MENU_STATE_INIT;
         break;
@@ -502,15 +502,15 @@ static BOOL UndergroundPC_HandleStoreGoodsMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_STORE_GOODS, cursorPos, listPos);
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
-        input = LIST_CANCEL;
+    if (input == MENU_CANCEL) {
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), 6);
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
         menu->state = UG_PC_MENU_STATE_INIT;
         break;
@@ -544,15 +544,15 @@ static BOOL UndergroundPC_HandleWithdrawGoodsMenu(SysTask *sysTask, void *data)
     UndergroundMan_StoreCursorAndListPos(UNDERGROUND_MENU_KEY_WITHDRAW_GOODS, cursorPos, listPos);
 
     // make sure we have the right type of -2
-    if (input == MENU_CANCELED) {
-        input = LIST_CANCEL;
+    if (input == MENU_CANCEL) {
+        input = MENU_CANCEL;
     }
 
     switch (input) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         UndergroundMenu_UpdateScrollPrompts(menu, listPos, ListMenu_GetAttribute(menu->itemListMenu->listMenu, LIST_MENU_COUNT), 6);
         return FALSE;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         UndergroundTextPrinter_EraseMessageBoxWindow(UndergroundMan_GetItemNameTextPrinter());
         menu->state = UG_PC_MENU_STATE_INIT;
         break;
@@ -874,7 +874,7 @@ static void UndergroundPC_TakeFlagPromptTask(SysTask *sysTask, void *data)
 
         if (input == MENU_NOTHING_CHOSEN) {
             return;
-        } else if (input == 0) {
+        } else if (input == MENU_YES) {
             CommSys_SendDataFixedSize(89, &ctx->pcInteraction);
         } else {
             CommPlayerMan_ResumeFieldSystemWithContextBit(PAUSE_BIT_LINK_PC);

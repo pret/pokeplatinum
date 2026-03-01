@@ -555,7 +555,7 @@ static int ov94_02241A58(GTSApplicationState *appState)
         appState->currentScreenInstruction = 5;
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_06, &appState->unk_10E4->unk_04);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
@@ -601,9 +601,9 @@ static int ov94_02241BAC(GTSApplicationState *appState)
 {
     u32 input;
     switch (input = ov94_02242A6C(appState->unk_10D8, &appState->unk_108)) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         ListMenu_Free(appState->unk_10D8, &appState->unk_10E4->unk_0A, &appState->unk_10E4->unk_08);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[1], 0);
@@ -667,7 +667,7 @@ static int ov94_02241DA0(GTSApplicationState *appState)
     u32 input;
 
     switch (input = ov94_02242A6C(appState->unk_10D8, &appState->unk_108)) {
-    case LIST_CANCEL:
+    case MENU_CANCEL:
         ListMenu_Free(appState->unk_10D8, NULL, NULL);
         StringList_Free(appState->unk_10CC);
         Window_EraseStandardFrame(&appState->unk_F9C[0], 0);
@@ -719,9 +719,9 @@ static int ov94_02241F28(GTSApplicationState *appState)
     u32 input;
 
     switch (input = ov94_02242A6C(appState->unk_10D8, &appState->unk_108)) {
-    case LIST_NOTHING_CHOSEN:
+    case MENU_NOTHING_CHOSEN:
         break;
-    case LIST_CANCEL:
+    case MENU_CANCEL:
     case 12:
         ListMenu_Free(appState->unk_10D8, NULL, NULL);
         StringList_Free(appState->unk_10CC);
@@ -772,7 +772,7 @@ static int ov94_0224208C(GTSApplicationState *appState)
     int input = Menu_ProcessInputAndHandleExit(appState->yesNoMenu, HEAP_ID_62);
 
     if (input != MENU_NOTHING_CHOSEN) {
-        if (input == MENU_CANCELED) {
+        if (input == MENU_CANCEL) {
             GTSApplication_SetNextScreenWithArgument(appState, GTS_SCREEN_SELECT_POKEMON, SCREEN_ARGUMENT_5);
             appState->currentScreenInstruction = 2;
         } else {
@@ -1109,7 +1109,7 @@ static int ov94_02242718(StringList **stringList, MessageLoader *speciesMessageL
         }
     }
 
-    StringList_AddFromMessageBank(*stringList, gtsMessageLoader, GTS_Text_Species_Cancel, LIST_CANCEL);
+    StringList_AddFromMessageBank(*stringList, gtsMessageLoader, GTS_Text_Species_Cancel, MENU_CANCEL);
 
     return seen + 1;
 }
@@ -1135,7 +1135,7 @@ static sGenderSelectionOptions[][2] = {
     { GTS_Text_Either, 2 },
     { GTS_Text_MaleIcon, 0 },
     { GTS_Text_FemaleIcon, 1 },
-    { GTS_Text_Species_Cancel, LIST_CANCEL }
+    { GTS_Text_Species_Cancel, MENU_CANCEL }
 };
 
 ListMenu *ov94_02242840(StringList **stringList, Window *window, MessageLoader *gtsMessageLoader)
