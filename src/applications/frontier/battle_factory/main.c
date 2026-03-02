@@ -1871,7 +1871,7 @@ static BOOL State_ChangeExchangeToReceiveSelect(BattleFactoryApp *app)
         }
         break;
     case 4:
-        if (ConveyPokeballsOntoScreen(app) == 1) {
+        if (ConveyPokeballsOntoScreen(app) == TRUE) {
             Sound_StopEffect(SEQ_SE_DP_ELEBETA2, 0);
             Sound_PlayEffect(SEQ_SE_DP_KASYA);
 
@@ -2519,7 +2519,7 @@ static void PrintPartnersName(BattleFactoryApp *app, Window *window, u32 xOffset
     TrainerInfo_NameString(trainerInfo, name);
 
     TextColor color;
-    if (TrainerInfo_Gender(trainerInfo) == 0) {
+    if (TrainerInfo_Gender(trainerInfo) == GENDER_MALE) {
         color = TEXT_COLOR(7, 8, 0);
     } else {
         color = TEXT_COLOR(3, 4, 0);
@@ -2752,27 +2752,24 @@ static u8 GetBackgroundPanelPalette(BattleFactoryApp *app, u8 panelState, u8 don
     case BACKGROUND_PANEL_HIDDEN:
         if (dontCare == 1) {
             palette = 2;
-        } else if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
-            palette = 2;
         } else {
+            BattleFactory_IsMultiplayerChallenge(app->challengeType);
             palette = 2;
         }
         break;
     case BACKGROUND_PANEL_FADING:
         if (dontCare == 1) {
             palette = 1;
-        } else if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
-            palette = 1;
         } else {
+            BattleFactory_IsMultiplayerChallenge(app->challengeType);
             palette = 1;
         }
         break;
     case BACKGROUND_PANEL_SHOWN:
         if (dontCare == 1) {
             palette = 2;
-        } else if (!BattleFactory_IsMultiplayerChallenge(app->challengeType)) {
-            palette = 2;
         } else {
+            BattleFactory_IsMultiplayerChallenge(app->challengeType);
             palette = 2;
         }
         break;
