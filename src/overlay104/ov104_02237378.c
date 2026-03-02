@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/frontier/battle_arcade/main.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay104/frontier_script_context.h"
 #include "overlay104/frscrcmd.h"
@@ -19,7 +20,6 @@
 #include "overlay104/struct_ov104_0223BFFC.h"
 #include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
-#include "overlay108/ov108_02241AE0.h"
 
 #include "communication_information.h"
 #include "field_battle_data_transfer.h"
@@ -42,7 +42,7 @@
 
 #include "constdata/const_020EA358.h"
 
-FS_EXTERN_OVERLAY(overlay108);
+FS_EXTERN_OVERLAY(battle_arcade_app);
 
 #include <nitro/code16.h>
 
@@ -96,13 +96,13 @@ BOOL FrontierScrCmd_C3(FrontierScriptContext *param0)
     UnkStruct_ov104_02238240 *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
 
-    FS_EXTERN_OVERLAY(overlay108);
+    FS_EXTERN_OVERLAY(battle_arcade_app);
 
     static const ApplicationManagerTemplate v4 = {
-        ov108_02241AE0,
-        ov108_02241C38,
-        ov108_02241D70,
-        FS_OVERLAY_ID(overlay108)
+        BattleArcadeApp_Init,
+        BattleArcadeApp_Main,
+        BattleArcadeApp_Exit,
+        FS_OVERLAY_ID(battle_arcade_app)
     };
 
     v1 = sub_0209B978(param0->unk_00->unk_00);
@@ -152,7 +152,7 @@ BOOL FrontierScrCmd_BB(FrontierScriptContext *param0)
     }
 
     if (v9->unk_13 == 17) {
-        v0 = ov104_0223BD70(v9->unk_10, 1);
+        v0 = BattleArcade_GetPartySize(v9->unk_10, 1);
 
         for (v1 = 0; v1 < v0; v1++) {
             v11 = Party_GetPokemonBySlotIndex(v9->unk_70, v1);
@@ -367,8 +367,8 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         break;
     case 25:
         if (v3->unk_13 == 27) {
-            v4 = ov104_0223BD70(v3->unk_10, 1);
-            v5 = ov104_0223BDA4(v3->unk_10, 1);
+            v4 = BattleArcade_GetPartySize(v3->unk_10, 1);
+            v5 = BattleArcade_GetOpponentPartySize(v3->unk_10, 1);
 
             {
                 VecFx32 v21;
@@ -416,8 +416,8 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
     case 31:
         ov104_02238764(v3, v15, v18);
 
-        v4 = ov104_0223BD70(v3->unk_10, 1);
-        v5 = ov104_0223BDA4(v3->unk_10, 1);
+        v4 = BattleArcade_GetPartySize(v3->unk_10, 1);
+        v5 = BattleArcade_GetOpponentPartySize(v3->unk_10, 1);
 
         if (v18 == 0) {
             for (v11 = 0; v11 < v4; v11++) {
@@ -453,7 +453,7 @@ BOOL FrontierScrCmd_BF(FrontierScriptContext *param0)
         }
         break;
     case 38:
-        v6 = ov104_0223C148(v3->unk_13);
+        v6 = BattleArcade_GetCategoryFromEffect(v3->unk_13);
 
         if (v6 == 0) {
             StringTemplate_SetFrontierTrainerName(param0->unk_00->strTemplate, v18, v3->unk_78[ov104_02238498(v3, v19)]);
