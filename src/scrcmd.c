@@ -94,6 +94,7 @@
 #include "savedata/save_table.h"
 #include "underground/vendors.h"
 
+#include "appearance.h"
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
@@ -206,7 +207,6 @@
 #include "unk_0205749C.h"
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
-#include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
 #include "unk_020655F4.h"
 #include "unk_02069BE0.h"
@@ -483,9 +483,9 @@ static BOOL ScrCmd_145(ScriptContext *ctx);
 static BOOL sub_02043A4C(ScriptContext *ctx);
 static BOOL ScrCmd_153(ScriptContext *ctx);
 static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx);
-static BOOL ScrCmd_155(ScriptContext *ctx);
-static BOOL ScrCmd_29C(ScriptContext *ctx);
-static BOOL ScrCmd_156(ScriptContext *ctx);
+static BOOL ScrCmd_GetAppearanceVariantTrainerClass(ScriptContext *ctx);
+static BOOL ScrCmd_CalculateTrainerInfoAppearance(ScriptContext *ctx);
+static BOOL ScrCmd_SetTrainerInfoAppearance(ScriptContext *ctx);
 static BOOL ScrCmd_2BA(ScriptContext *ctx);
 static BOOL ScrCmd_BlackOutFromBattle2(ScriptContext *ctx);
 static BOOL ScrCmd_14C(ScriptContext *ctx);
@@ -1108,8 +1108,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_SetCommPlayerDir,
     ScrCmd_153,
     ScrCmd_LoadTrainerAppearances,
-    ScrCmd_155,
-    ScrCmd_156,
+    ScrCmd_GetAppearanceVariantTrainerClass,
+    ScrCmd_SetTrainerInfoAppearance,
     ScrCmd_CheckPokedexAcquired,
     ScrCmd_GivePokedex,
     ScrCmd_CheckRunningShoesAcquired,
@@ -1435,7 +1435,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_299,
     ScrCmd_29A,
     ScrCmd_29B,
-    ScrCmd_29C,
+    ScrCmd_CalculateTrainerInfoAppearance,
     ScrCmd_AddMenuEntry,
     ScrCmd_29E,
     ScrCmd_29F,
@@ -5287,42 +5287,42 @@ static BOOL ScrCmd_153(ScriptContext *ctx)
 
 static BOOL ScrCmd_LoadTrainerAppearances(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
 
-    TrainerInfo_LoadAppearanceVariants(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
+    Appearance_LoadVariants(TrainerInfo_ID(trainerInfo), TrainerInfo_Gender(trainerInfo), *strTemplate);
     return FALSE;
 }
 
-static BOOL ScrCmd_155(ScriptContext *ctx)
+static BOOL ScrCmd_GetAppearanceVariantTrainerClass(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    u16 variant = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v2 = TrainerInfo_GetAppearanceIndex(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
-    *v2 = sub_0205CA14(TrainerInfo_Gender(v0), *v2, 2);
-
-    return FALSE;
-}
-
-static BOOL ScrCmd_29C(ScriptContext *ctx)
-{
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-
-    *v2 = TrainerInfo_GetAppearanceIndex(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
+    *destVar = Appearance_CalculateFromTrainerInfo(TrainerInfo_ID(trainerInfo), TrainerInfo_Gender(trainerInfo), variant);
+    *destVar = Appearance_GetTrainerClass(TrainerInfo_Gender(trainerInfo), *destVar, 2);
 
     return FALSE;
 }
 
-static BOOL ScrCmd_156(ScriptContext *ctx)
+static BOOL ScrCmd_CalculateTrainerInfoAppearance(ScriptContext *ctx)
 {
-    TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
-    u16 v1 = ScriptContext_GetVar(ctx);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    u16 variant = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    TrainerInfo_SetAppearance(v0, v1);
+    *destVar = Appearance_CalculateFromTrainerInfo(TrainerInfo_ID(trainerInfo), TrainerInfo_Gender(trainerInfo), variant);
+
+    return FALSE;
+}
+
+static BOOL ScrCmd_SetTrainerInfoAppearance(ScriptContext *ctx)
+{
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(ctx->fieldSystem));
+    u16 appearance = ScriptContext_GetVar(ctx);
+
+    TrainerInfo_SetAppearance(trainerInfo, appearance);
     return FALSE;
 }
 

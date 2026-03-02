@@ -3,6 +3,7 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 
+#include "appearance.h"
 #include "berry_patches.h"
 #include "game_options.h"
 #include "heap.h"
@@ -20,7 +21,6 @@
 #include "system_data.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0205C980.h"
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 
@@ -165,7 +165,7 @@ static void InitializeNewSave(enum HeapID heapID, SaveData *saveData, BOOL setTr
         TrainerInfo_SetID(trainerInfo, rnd);
     }
 
-    TrainerInfo_SetAppearance(trainerInfo, TrainerInfo_GetAppearanceIndex(rnd, TrainerInfo_Gender(trainerInfo), 0));
+    TrainerInfo_SetAppearance(trainerInfo, Appearance_CalculateFromTrainerInfo(rnd, TrainerInfo_Gender(trainerInfo), 0));
 
     berryPatches = MiscSaveBlock_GetBerryPatches(saveData);
     BerryPatches_Init(berryPatches, heapID, (const u16 *)sBerryInitTable, NELEMS(sBerryInitTable));
