@@ -418,7 +418,7 @@ static BOOL sub_02042C80(ScriptContext *ctx);
 static BOOL ScrCmd_0C6(ScriptContext *ctx);
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerBike(ScriptContext *ctx);
-static BOOL ScrCmd_0C9(ScriptContext *ctx);
+static BOOL ScrCmd_SetPlayerOnCyclingRoad(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
@@ -503,7 +503,7 @@ static BOOL ScrCmd_SetObjectEventDir(ScriptContext *ctx);
 static BOOL ScrCmd_SetWarpEventPos(ScriptContext *ctx);
 static BOOL ScrCmd_18B(ScriptContext *ctx);
 static BOOL ScrCmd_18C(ScriptContext *ctx);
-static BOOL ScrCmd_18F(ScriptContext *ctx);
+static BOOL ScrCmd_StoreSaveResult(ScriptContext *ctx);
 static BOOL ScrCmd_LoadDoorAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_WaitForAnimation(ScriptContext *ctx);
 static BOOL ScrCmd_UnloadAnimation(ScriptContext *ctx);
@@ -968,7 +968,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0C6,
     ScrCmd_CheckPlayerOnBike,
     ScrCmd_SetPlayerBike,
-    ScrCmd_0C9,
+    ScrCmd_SetPlayerOnCyclingRoad,
     ScrCmd_GetPlayerState,
     ScrCmd_SetPlayerState,
     ScrCmd_ChangePlayerState,
@@ -1166,7 +1166,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_18C,
     ScrCmd_ShowSavingIcon,
     ScrCmd_HideSavingIcon,
-    ScrCmd_18F,
+    ScrCmd_StoreSaveResult,
     ScrCmd_WaitABPressTime,
     ScrCmd_SelectMoveTutorPokemon,
     ScrCmd_OpenPartyMenuForUnionRoomBattle,
@@ -4582,9 +4582,9 @@ static BOOL ScrCmd_2BF(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0C9(ScriptContext *ctx)
+static BOOL ScrCmd_SetPlayerOnCyclingRoad(ScriptContext *ctx)
 {
-    sub_0205EFC4(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
+    PlayerAvatar_SetOnCyclingRoad(ctx->fieldSystem->playerAvatar, ScriptContext_ReadByte(ctx));
     return FALSE;
 }
 
@@ -5488,13 +5488,13 @@ static BOOL ScrCmd_18C(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_18F(ScriptContext *ctx)
+static BOOL ScrCmd_StoreSaveResult(ScriptContext *ctx)
 {
     u16 **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_SAVE_TYPE);
-    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 saveResult = ScriptContext_GetVar(ctx);
 
     if (*v0 != NULL) {
-        **v0 = v1;
+        **v0 = saveResult;
     }
 
     return FALSE;

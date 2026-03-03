@@ -33,14 +33,14 @@ _008E:
     SetFlag FLAG_UNK_0x0003
     SetFlag FLAG_ON_CYCLING_ROAD
     ScrCmd_2BF
-    ScrCmd_0C9 1
+    SetPlayerOnCyclingRoad TRUE
     End
 
 _009D:
     End
 
 _009F:
-    ScrCmd_0C9 1
+    SetPlayerOnCyclingRoad TRUE
     Return
 
 _00A4:

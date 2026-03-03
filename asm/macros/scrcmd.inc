@@ -1255,9 +1255,9 @@
     .byte \rideBike
     .endm
 
-    .macro ScrCmd_0C9 arg0
+    .macro SetPlayerOnCyclingRoad onCyclingRoad
     .short 201
-    .byte \arg0
+    .byte \onCyclingRoad
     .endm
 
     .macro GetPlayerState destVarID
@@ -2299,9 +2299,9 @@
     .short 398
     .endm
 
-    .macro ScrCmd_18F arg0
+    .macro StoreSaveResult result
     .short 399
-    .short \arg0
+    .short \result
     .endm
 
     .macro WaitABPressTime frames

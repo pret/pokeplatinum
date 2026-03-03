@@ -19,9 +19,9 @@
 #include "sprite_system.h"
 #include "string_gf.h"
 #include "sys_task.h"
+#include "sys_task_extensions.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200679C.h"
 #include "unk_02012744.h"
 
 typedef struct {

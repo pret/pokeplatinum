@@ -12,7 +12,7 @@
     ScriptEntry CommonScript_PokecenterNurse @ 0x7D2
     ScriptEntry _03E8 @ 0x7D3
     ScriptEntry _043B @ 0x7D4
-    ScriptEntry _0479 @ 0x7D5
+    ScriptEntry CommonScript_SaveAndStoreResult @ 0x7D5
     ScriptEntry CommonScript_SaveGame  @ 0x7D6
     ScriptEntry CommonScript_EmptyScript2 @ 0x7D7
     ScriptEntry _05EA @ 0x7D8
@@ -327,10 +327,10 @@ _0457:
     BlackOutFromBattle2
     End
 
-_0479:
+CommonScript_SaveAndStoreResult:
     ClearFlag FLAG_SAVE_EXTRA_BLOCK
     Call CommonScript_SaveGame_Dialog
-    ScrCmd_18F VAR_RESULT
+    StoreSaveResult VAR_RESULT
     CloseMessage
     End
 
